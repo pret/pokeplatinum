@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_0207F248.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 
 #include "bag.h"

@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223FB48.h"
 #include "overlay094/struct_ov94_0223FD4C.h"

@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020F1DB8.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/struct_ov16_0226DC24_decl.h"

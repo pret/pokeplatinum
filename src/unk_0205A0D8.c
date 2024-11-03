@@ -7,7 +7,7 @@
 #include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_02098C44.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "functypes/funcptr_0205AB10.h"
 #include "overlay005/fieldmap.h"

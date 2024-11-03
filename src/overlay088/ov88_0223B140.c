@@ -15,7 +15,7 @@
 #include "struct_defs/struct_02095E80_t.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay088/ov88_0223E9C4.h"
 #include "overlay088/struct_ov88_0223C370.h"

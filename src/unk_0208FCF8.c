@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02090800.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 
 #include "bg_window.h"
 #include "font.h"

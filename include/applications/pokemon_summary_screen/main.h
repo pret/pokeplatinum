@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_H
-#define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_H
+#ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_MAIN_H
+#define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_MAIN_H
 
 #include "constants/moves.h"
 
@@ -13,8 +13,6 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02091850.h"
-
-#include "applications/pokemon_summary_screen.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -249,4 +247,4 @@ u32 PokemonSummary_StatusIconCell(void);
 u32 PokemonSummary_StatusIconAnim(void);
 u32 PokemonSummary_StatusIconAnimIdx(Pokemon *mon);
 
-#endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_H
+#endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_MAIN_H

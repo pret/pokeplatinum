@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0208EA44_H
 #define POKEPLATINUM_UNK_0208EA44_H
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 
 #include "bg_window.h"
 

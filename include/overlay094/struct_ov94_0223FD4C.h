@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203E0FC.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay094/struct_ov94_0223BA88.h"

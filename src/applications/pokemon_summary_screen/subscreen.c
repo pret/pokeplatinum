@@ -1,11 +1,11 @@
-#include "unk_020920C0.h"
+#include "applications/pokemon_summary_screen/subscreen.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "consts/sdat.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 
 #include "bg_window.h"
 #include "core_sys.h"

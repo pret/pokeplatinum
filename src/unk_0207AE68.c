@@ -18,7 +18,7 @@
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 
 #include "bag.h"
 #include "bg_window.h"

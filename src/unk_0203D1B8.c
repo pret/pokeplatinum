@@ -40,7 +40,7 @@
 #include "struct_defs/struct_020997B8.h"
 
 #include "applications/options_menu.h"
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223B140.h"
 #include "choose_starter/choose_starter_app.h"
 #include "dw_warp/dw_warp.h"

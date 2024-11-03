@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/struct_ov13_0221FC20.h"
 #include "overlay013/struct_ov13_022213F0.h"

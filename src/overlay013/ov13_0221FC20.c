@@ -5,7 +5,7 @@
 
 #include "struct_decls/battle_system.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/ov13_02221A88.h"
 #include "overlay013/ov13_02224500.h"

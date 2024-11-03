@@ -5,7 +5,8 @@
 
 #include "constants/narc.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
+#include "applications/pokemon_summary_screen/subscreen.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -21,7 +22,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
-#include "unk_020920C0.h"
 
 static void sub_0208F194(PokemonSummaryScreen *param0, u8 param1, u8 param2, u8 param3);
 static void sub_0208EF0C(PokemonSummaryScreen *param0);

@@ -1,4 +1,4 @@
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -13,7 +13,8 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
+#include "applications/pokemon_summary_screen/subscreen.h"
 #include "text/pl_msg.naix"
 
 #include "bg_window.h"
@@ -54,7 +55,6 @@
 #include "unk_0208EA44.h"
 #include "unk_0208FCF8.h"
 #include "unk_020916B4.h"
-#include "unk_020920C0.h"
 #include "unk_02094EDC.h"
 #include "unk_020989DC.h"
 #include "vars_flags.h"

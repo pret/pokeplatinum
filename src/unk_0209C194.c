@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0209C194.h"
 #include "struct_defs/struct_0209C194_1.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "overlay109/ov109_021D0D80.h"
 #include "overlay109/ov109_021D3D50.h"

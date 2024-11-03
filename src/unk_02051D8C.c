@@ -16,7 +16,7 @@
 #include "struct_defs/struct_0209C370.h"
 #include "struct_defs/trainer_data.h"
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "overlay006/battle_params.h"
 #include "overlay006/struct_ov6_02240D5C_sub1.h"

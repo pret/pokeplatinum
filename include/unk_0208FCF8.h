@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0208FCF8_H
 #define POKEPLATINUM_UNK_0208FCF8_H
 
-#include "applications/pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen/main.h"
 
 void sub_0208FCF8(PokemonSummaryScreen *param0);
 void sub_0208FD40(PokemonSummaryScreen *param0);
