@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020923C0_H
-#define POKEPLATINUM_UNK_020923C0_H
+#ifndef POKEPLATINUM_RIBBON_H
+#define POKEPLATINUM_RIBBON_H
 
 enum RibbonNum {
     RIBBON_HOENN_CHAMPION = 0,
@@ -99,4 +99,4 @@ u32 PokemonSummaryScreen_GetRibbonDescriptionID(u8 *ribbons, u8 ribbonNum);
 u8 Ribbon_TryGetSpecialDescriptionID(u8 ribbonNum);
 u16 Ribbon_RibbonIDToNameID(u32 ribbonID);
 
-#endif // POKEPLATINUM_UNK_020923C0_H
+#endif // POKEPLATINUM_RIBBON_H

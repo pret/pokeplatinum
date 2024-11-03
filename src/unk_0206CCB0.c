@@ -43,6 +43,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "record_mixed_rng.h"
+#include "ribbon.h"
 #include "roaming_pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -60,7 +61,6 @@
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
 #include "unk_02071CFC.h"
-#include "unk_020923C0.h"
 #include "unk_02094EDC.h"
 #include "vars_flags.h"
 

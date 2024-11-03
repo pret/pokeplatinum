@@ -18,6 +18,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "poketch_data.h"
+#include "ribbon.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "strbuf.h"
@@ -34,7 +35,6 @@
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
 #include "unk_0206AFE0.h"
-#include "unk_020923C0.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
 

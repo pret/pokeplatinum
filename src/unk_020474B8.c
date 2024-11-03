@@ -17,6 +17,7 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "ribbon.h"
 #include "save_player.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
@@ -28,7 +29,6 @@
 #include "unk_0206AFE0.h"
 #include "unk_02071CFC.h"
 #include "unk_020797C8.h"
-#include "unk_020923C0.h"
 #include "vars_flags.h"
 
 static Strbuf *sub_02047998(u16 param0, u32 param1);

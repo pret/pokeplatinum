@@ -18,6 +18,7 @@
 #include "map_header.h"
 #include "party.h"
 #include "pokemon.h"
+#include "ribbon.h"
 #include "save_player.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
@@ -25,7 +26,6 @@
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
 #include "unk_020797C8.h"
-#include "unk_020923C0.h"
 
 BOOL ScrCmd_096(ScriptContext *param0)
 {

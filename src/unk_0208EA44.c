@@ -17,11 +17,11 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "pokemon_summary_app.h"
+#include "ribbon.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
 #include "unk_020920C0.h"
-#include "unk_020923C0.h"
 
 static void sub_0208F194(PokemonSummaryScreen *param0, u8 param1, u8 param2, u8 param3);
 static void sub_0208EF0C(PokemonSummaryScreen *param0);
