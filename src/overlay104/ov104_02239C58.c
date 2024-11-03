@@ -7,12 +7,12 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_0209BBA4.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "field/field_system.h"
 
 #include "bag.h"
 #include "heap.h"
 #include "party.h"
-#include "pokemon_summary_screen.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "unk_02028124.h"

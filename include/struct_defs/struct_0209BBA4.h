@@ -3,9 +3,9 @@
 
 #include "struct_defs/struct_02098C44.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "field/field_system_decl.h"
 
-#include "pokemon_summary_screen.h"
 #include "savedata.h"
 
 typedef struct {

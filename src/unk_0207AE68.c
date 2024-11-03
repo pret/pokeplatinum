@@ -18,6 +18,8 @@
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen.h"
+
 #include "bag.h"
 #include "bg_window.h"
 #include "core_sys.h"
@@ -34,7 +36,6 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "poketch_data.h"
 #include "render_text.h"
 #include "render_window.h"

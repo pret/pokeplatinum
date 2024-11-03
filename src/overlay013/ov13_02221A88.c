@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/pokemon_summary_screen.h"
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/struct_ov13_0221FC20.h"
 #include "overlay013/struct_ov13_022213F0.h"
@@ -17,7 +18,6 @@
 #include "move_table.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "strbuf.h"

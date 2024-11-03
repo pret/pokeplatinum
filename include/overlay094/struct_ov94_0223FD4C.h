@@ -9,6 +9,7 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203E0FC.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay094/struct_ov94_0223BA88.h"
@@ -28,7 +29,6 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_list.h"

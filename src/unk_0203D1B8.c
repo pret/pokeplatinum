@@ -40,6 +40,7 @@
 #include "struct_defs/struct_020997B8.h"
 
 #include "applications/options_menu.h"
+#include "applications/pokemon_summary_screen.h"
 #include "battle/ov16_0223B140.h"
 #include "choose_starter/choose_starter_app.h"
 #include "dw_warp/dw_warp.h"
@@ -97,7 +98,6 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "poketch_data.h"
 #include "record_mixed_rng.h"
 #include "rtc.h"

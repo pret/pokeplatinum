@@ -7,6 +7,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223AF58.h"
 #include "overlay104/struct_ov104_02235208.h"
@@ -34,7 +35,6 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"

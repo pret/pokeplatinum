@@ -5,6 +5,7 @@
 
 #include "constants/narc.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -16,7 +17,6 @@
 #include "move_table.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "pokemon_summary_screen.h"
 #include "ribbon.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"

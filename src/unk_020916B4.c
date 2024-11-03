@@ -8,12 +8,12 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02091850.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "overlay115/camera_angle.h"
 
 #include "camera.h"
 #include "gx_layers.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "unk_0200762C.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"

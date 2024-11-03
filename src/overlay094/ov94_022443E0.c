@@ -4,12 +4,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/pokemon_summary_screen.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223FB48.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "overlay_manager.h"
-#include "pokemon_summary_screen.h"
 #include "unk_0202D778.h"
 
 #include "constdata/const_020F410C.h"

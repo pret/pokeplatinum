@@ -8,6 +8,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020F1DB8.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
@@ -22,7 +23,6 @@
 #include "narc.h"
 #include "party.h"
 #include "pokemon_icon.h"
-#include "pokemon_summary_screen.h"
 #include "unk_0200C6E4.h"
 #include "unk_0207C908.h"
 #include "unk_0207E0B8.h"

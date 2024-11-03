@@ -14,6 +14,7 @@
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "overlay019/ov19_021D603C.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DF964.h"
@@ -44,7 +45,6 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"

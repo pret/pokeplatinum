@@ -9,6 +9,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_02098DE8.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "overlay079/ov79_021D0D80.h"
 #include "overlay079/ov79_021D2268.h"
 
@@ -20,7 +21,6 @@
 #include "party.h"
 #include "poffin.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "string_template.h"

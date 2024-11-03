@@ -14,6 +14,7 @@
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_sub1.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "field/field_system_decl.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
@@ -24,7 +25,6 @@
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
-#include "pokemon_summary_screen.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"

@@ -10,6 +10,7 @@
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/struct_020F1DB8.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "field/field_system.h"
 #include "functypes/funcptr_0207E634.h"
 #include "overlay118/ov118_021D0D80.h"
@@ -32,7 +33,6 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_list.h"

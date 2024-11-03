@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020920C0_H
 #define POKEPLATINUM_UNK_020920C0_H
 
-#include "pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen.h"
 
 void sub_020920C0(PokemonSummaryScreen *param0);
 void sub_0209219C(PokemonSummaryScreen *param0);

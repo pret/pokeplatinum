@@ -7,6 +7,7 @@
 #include "struct_defs/struct_0209C194.h"
 #include "struct_defs/struct_0209C194_1.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "field/field_system.h"
 #include "overlay109/ov109_021D0D80.h"
 #include "overlay109/ov109_021D3D50.h"
@@ -17,7 +18,6 @@
 #include "game_records.h"
 #include "heap.h"
 #include "journal.h"
-#include "pokemon_summary_screen.h"
 #include "save_player.h"
 #include "unk_020366A0.h"
 #include "unk_0203D1B8.h"

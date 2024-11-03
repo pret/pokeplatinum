@@ -1,4 +1,4 @@
-#include "pokemon_summary_screen.h"
+#include "applications/pokemon_summary_screen.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -12,6 +12,8 @@
 #include "consts/species.h"
 
 #include "struct_defs/struct_02099F80.h"
+
+#include "applications/pokemon_summary_screen.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -28,7 +30,6 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "render_window.h"
 #include "ribbon.h"
 #include "savedata.h"

@@ -14,6 +14,8 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02091850.h"
 
+#include "applications/pokemon_summary_screen.h"
+
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
@@ -21,7 +23,6 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"

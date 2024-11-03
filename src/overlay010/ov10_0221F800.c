@@ -16,6 +16,7 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
@@ -43,7 +44,6 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "pokemon_summary_screen.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"

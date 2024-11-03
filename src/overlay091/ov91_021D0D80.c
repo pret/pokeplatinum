@@ -10,6 +10,7 @@
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -29,7 +30,6 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "strbuf.h"

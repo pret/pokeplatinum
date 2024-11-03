@@ -9,6 +9,8 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C8C4.h"
 
+#include "applications/pokemon_summary_screen.h"
+
 #include "bag.h"
 #include "bg_window.h"
 #include "game_options.h"
@@ -18,7 +20,6 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "poketch_data.h"
 #include "strbuf.h"
 #include "string_template.h"

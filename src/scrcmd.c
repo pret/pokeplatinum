@@ -40,6 +40,7 @@
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/map_object_anim_cmd.h"
@@ -116,7 +117,6 @@
 #include "player_avatar.h"
 #include "poffin.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "pokeradar.h"
 #include "poketch_data.h"
 #include "render_window.h"

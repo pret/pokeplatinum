@@ -16,13 +16,13 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
+#include "applications/pokemon_summary_screen.h"
 #include "field/field_system_decl.h"
 #include "overlay006/battle_params.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
 #include "field_task.h"
 #include "pokemon.h"
-#include "pokemon_summary_screen.h"
 #include "savedata.h"
 
 void sub_0203D1D4(FieldSystem *fieldSystem, BattleParams *param1);
