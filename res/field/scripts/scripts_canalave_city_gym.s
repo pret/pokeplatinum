@@ -16,7 +16,7 @@ _0016:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadge BADGE_ID_MINE, 0x800C
+    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
     GoToIfEq 0x800C, 1, _0107
     ScrCmd_1CD 9, 35, 0, 0, 0
     Message 0
@@ -29,7 +29,7 @@ _0016:
     Message 2
     PlaySound SEQ_BADGE
     WaitSound
-    ScrCmd_15C 5
+    GiveBadge BADGE_ID_MINE
     ScrCmd_260 23
     SetTrainerFlag 232
     SetTrainerFlag 0x100
@@ -88,7 +88,7 @@ _0126:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadge BADGE_ID_MINE, 0x800C
+    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
     GoToIfEq 0x800C, 1, _014C
     Message 6
     WaitABXPadPress
@@ -107,7 +107,7 @@ _014C:
 _015A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadge BADGE_ID_MINE, 0x800C
+    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
     GoToIfEq 0x800C, 1, _0184
     BufferRivalName 0
     BufferRivalName 1

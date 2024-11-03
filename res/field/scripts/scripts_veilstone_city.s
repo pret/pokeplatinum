@@ -1173,7 +1173,7 @@ _0D5C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadge BADGE_ID_COBBLE, 0x800C
+    CheckBadgeAcquired BADGE_ID_COBBLE, 0x800C
     GoToIfEq 0x800C, 1, _0D82
     Message 12
     WaitABXPadPress
@@ -1192,7 +1192,7 @@ _0D8D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadge BADGE_ID_COBBLE, 0x800C
+    CheckBadgeAcquired BADGE_ID_COBBLE, 0x800C
     GoToIfEq 0x800C, 1, _0DB3
     Message 13
     WaitABXPadPress

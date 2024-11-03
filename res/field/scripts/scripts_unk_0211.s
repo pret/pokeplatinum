@@ -1205,7 +1205,7 @@ _103A:
     Message 43
     Call _10C7
     Call _01C1
-    CheckBadge BADGE_ID_COAL, 0x800C
+    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _10A2
     Message 44
     ApplyMovement 0xFF, _02F4

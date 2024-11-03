@@ -1840,38 +1840,38 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_157 arg0
+    .macro CheckPokedexAcquired destVarID
     .short 343
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_158
+    .macro GivePokedex
     .short 344
     .endm
 
-    .macro ScrCmd_159 arg0
+    .macro CheckRunningShoesAcquired destVarID
     .short 345
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_15A
+    .macro GiveRunningShoes
     .short 346
     .endm
 
-    .macro CheckBadge badgeID, destVarID
+    .macro CheckBadgeAcquired badgeID, destVarID
     .short 347
     .short \badgeID
     .short \destVarID
     .endm
 
-    .macro ScrCmd_15C arg0
+    .macro GiveBadge badgeID
     .short 348
-    .short \arg0
+    .short \badgeID
     .endm
 
-    .macro ScrCmd_15D arg0
+    .macro CountBadgesAcquired destVarID
     .short 349
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro CheckBagAcquired destVarID

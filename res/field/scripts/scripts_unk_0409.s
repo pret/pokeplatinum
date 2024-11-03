@@ -26,7 +26,7 @@ _0042:
     FacePlayer
     ScrCmd_09A 0x800C, 15
     GoToIfEq 0x800C, 6, _008E
-    CheckBadge BADGE_ID_FOREST, 0x800C
+    CheckBadgeAcquired BADGE_ID_FOREST, 0x800C
     GoToIfEq 0x800C, 0, _008E
     Message 0
     ScrCmd_03E 0x800C
@@ -131,7 +131,7 @@ _0223:
     ScrCmd_09A 0x800C, 249
     SetVar 0x8004, 0x800C
     GoToIfEq 0x800C, 6, _0275
-    CheckBadge BADGE_ID_COAL, 0x800C
+    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 0, _0275
     Message 3
     ScrCmd_03E 0x800C
@@ -188,7 +188,7 @@ _0314:
     GoToIfEq 0x800C, 1, _03BD
     ScrCmd_09A 0x800C, 70
     GoToIfEq 0x800C, 6, _0372
-    CheckBadge BADGE_ID_MINE, 0x800C
+    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
     GoToIfEq 0x800C, 0, _0372
     Message 6
     ScrCmd_03E 0x800C
@@ -248,7 +248,7 @@ _040E:
     LockAll
     ScrCmd_09A 0x800C, 0x1AF
     GoToIfEq 0x800C, 6, _0469
-    CheckBadge BADGE_ID_ICICLE, 0x800C
+    CheckBadgeAcquired BADGE_ID_ICICLE, 0x800C
     GoToIfEq 0x800C, 0, _0469
     CheckHasPartner 0x800C
     GoToIfEq 0x800C, 1, _0478
@@ -419,7 +419,7 @@ _0679:
     LockAll
     ScrCmd_09A 0x800C, 127
     GoToIfEq 0x800C, 6, _06C3
-    CheckBadge BADGE_ID_BEACON, 0x800C
+    CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
     GoToIfEq 0x800C, 0, _06C3
     Message 22
     ScrCmd_03E 0x800C

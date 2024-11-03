@@ -124,6 +124,7 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "scrcmd_system_flags.h"
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -173,7 +174,6 @@
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
 #include "unk_0204E378.h"
-#include "unk_0204E3CC.h"
 #include "unk_0204E75C.h"
 #include "unk_0204E974.h"
 #include "unk_0204EDA4.h"
@@ -1106,13 +1106,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_154,
     ScrCmd_155,
     ScrCmd_156,
-    ScrCmd_157,
-    ScrCmd_158,
-    ScrCmd_159,
-    ScrCmd_15A,
-    ScrCmd_CheckBadge,
-    ScrCmd_15C,
-    ScrCmd_15D,
+    ScrCmd_CheckPokedexAcquired,
+    ScrCmd_GivePokedex,
+    ScrCmd_CheckRunningShoesAcquired,
+    ScrCmd_GiveRunningShoes,
+    ScrCmd_CheckBadgeAcquired,
+    ScrCmd_GiveBadge,
+    ScrCmd_CountBadgesAcquired,
     ScrCmd_CheckBagAcquired,
     ScrCmd_GiveBag,
     ScrCmd_CheckHasPartner,

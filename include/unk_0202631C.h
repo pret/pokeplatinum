@@ -45,7 +45,7 @@ BOOL sub_020274D0(const PokedexData *param0, u16 param1, u32 param2);
 void sub_02027508(PokedexData *param0);
 BOOL sub_02027514(const PokedexData *param0);
 BOOL Pokedex_IsObtained(const PokedexData *pokedex);
-void sub_02027540(PokedexData *param0);
+void Pokedex_FlagObtained(PokedexData *param0);
 PokedexData *SaveData_Pokedex(SaveData *saveData);
 u32 sub_0202756C(const PokedexData *param0, int param1, int param2);
 u32 sub_020276C8(const PokedexData *param0, int param1);

@@ -129,7 +129,7 @@ _017C:
     WaitTime 30, 0x800C
     BufferPlayerName 0
     Message 7
-    ScrCmd_15A
+    GiveRunningShoes
     BufferPlayerName 0
     Message 8
     PlaySound SEQ_FANFA4

@@ -25,7 +25,7 @@ _0027:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadge BADGE_ID_BEACON, 0x800C
+    CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
     GoToIfEq 0x800C, 1, _0104
     ScrCmd_1CD 9, 156, 0, 0, 0
     Message 0
@@ -38,7 +38,7 @@ _0027:
     Message 2
     PlaySound SEQ_BADGE
     WaitSound
-    ScrCmd_15C 7
+    GiveBadge BADGE_ID_BEACON
     ScrCmd_260 23
     SetTrainerFlag 0x119
     SetTrainerFlag 0x11D

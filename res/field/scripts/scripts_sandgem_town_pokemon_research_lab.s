@@ -245,7 +245,7 @@ _0375:
 
 _0394:
     Message 12
-    ScrCmd_158
+    GivePokedex
     SetFlag 144
     BufferPlayerName 0
     Message 13

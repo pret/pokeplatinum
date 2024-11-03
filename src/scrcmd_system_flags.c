@@ -1,8 +1,4 @@
-#include "unk_0204E3CC.h"
-
-#include <nitro.h>
-#include <nitro/code16.h>
-#include <string.h>
+#include "scrcmd_system_flags.h"
 
 #include "consts/badges.h"
 
@@ -20,49 +16,39 @@
 #include "unk_0202631C.h"
 #include "vars_flags.h"
 
-BOOL ScrCmd_157(ScriptContext *param0)
+BOOL ScrCmd_CheckPokedexAcquired(ScriptContext *ctx)
 {
-    const PokedexData *pokedex = SaveData_Pokedex(param0->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
-
-    *v1 = Pokedex_IsObtained(pokedex);
+    const PokedexData *pokedex = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = Pokedex_IsObtained(pokedex);
     return FALSE;
 }
 
-BOOL ScrCmd_158(ScriptContext *param0)
+BOOL ScrCmd_GivePokedex(ScriptContext *ctx)
 {
-    PokedexData *v0 = SaveData_Pokedex(param0->fieldSystem->saveData);
-
-    sub_02027540(v0);
-    return 0;
+    PokedexData *pokedex = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    Pokedex_FlagObtained(pokedex);
+    return FALSE;
 }
 
-BOOL ScrCmd_159(ScriptContext *param0)
+BOOL ScrCmd_CheckRunningShoesAcquired(ScriptContext *ctx)
 {
-    FieldOverworldState *v0;
-    PlayerData *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-
-    v0 = SaveData_GetFieldOverworldState(param0->fieldSystem->saveData);
-    v1 = FieldOverworldState_GetPlayerData(v0);
-    *v2 = PlayerData_HasRunningShoes(v1);
-
-    return 0;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    FieldOverworldState *overworldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
+    PlayerData *playerData = FieldOverworldState_GetPlayerData(overworldState);
+    *destVar = PlayerData_HasRunningShoes(playerData);
+    return FALSE;
 }
 
-BOOL ScrCmd_15A(ScriptContext *param0)
+BOOL ScrCmd_GiveRunningShoes(ScriptContext *ctx)
 {
-    FieldOverworldState *v0;
-    PlayerData *v1;
-
-    v0 = SaveData_GetFieldOverworldState(param0->fieldSystem->saveData);
-    v1 = FieldOverworldState_GetPlayerData(v0);
-
-    PlayerData_SetRunningShoes(v1, 1);
-    return 0;
+    FieldOverworldState *overworldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
+    PlayerData *playerData = FieldOverworldState_GetPlayerData(overworldState);
+    PlayerData_SetRunningShoes(playerData, TRUE);
+    return FALSE;
 }
 
-BOOL ScrCmd_CheckBadge(ScriptContext *ctx)
+BOOL ScrCmd_CheckBadgeAcquired(ScriptContext *ctx)
 {
     u16 badgeNum = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
@@ -73,14 +59,14 @@ BOOL ScrCmd_CheckBadge(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_15C(ScriptContext *param0)
+BOOL ScrCmd_GiveBadge(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
+    u16 badgeNum = ScriptContext_GetVar(ctx);
 
-    GF_ASSERT(v0 < 8);
-    TrainerInfo_SetBadge(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), v0);
+    GF_ASSERT(badgeNum < MAX_BADGES);
+    TrainerInfo_SetBadge(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData), badgeNum);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_CheckBagAcquired(ScriptContext *ctx)
@@ -90,30 +76,30 @@ BOOL ScrCmd_CheckBagAcquired(ScriptContext *ctx)
     return FALSE;
 }
 
-const u8 Unk_020EC064[8] = {
-    0x0,
-    0x1,
-    0x2,
-    0x3,
-    0x4,
-    0x5,
-    0x6,
-    0x7
+// Game Freak moment.
+static const u8 sBadgeIDs[MAX_BADGES] = {
+    BADGE_ID_COAL,
+    BADGE_ID_FOREST,
+    BADGE_ID_COBBLE,
+    BADGE_ID_FEN,
+    BADGE_ID_RELIC,
+    BADGE_ID_MINE,
+    BADGE_ID_ICICLE,
+    BADGE_ID_BEACON,
 };
 
-BOOL ScrCmd_15D(ScriptContext *param0)
+BOOL ScrCmd_CountBadgesAcquired(ScriptContext *ctx)
 {
-    u16 v0, v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-
-    for (v0 = 0, v1 = 0; v0 < 8; v0++) {
-        if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), Unk_020EC064[v0]) == 1) {
-            v1++;
+    u16 i, count;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    for (i = 0, count = 0; i < MAX_BADGES; i++) {
+        if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData), sBadgeIDs[i]) == TRUE) {
+            count++;
         }
     }
 
-    *v2 = v1;
-    return 0;
+    *destVar = count;
+    return FALSE;
 }
 
 BOOL ScrCmd_GiveBag(ScriptContext *ctx)

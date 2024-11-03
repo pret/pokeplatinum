@@ -192,7 +192,7 @@ pokeplatinum_c = files(
     'unk_0204CFFC.c',
     'unk_0204E240.c',
     'unk_0204E378.c',
-    'unk_0204E3CC.c',
+    'scrcmd_system_flags.c',
     'unk_0204E75C.c',
     'unk_0204E974.c',
     'unk_0204EDA4.c',
