@@ -30,13 +30,13 @@
 #include "message.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_0201E86C.h"
 #include "unk_02024220.h"
@@ -148,7 +148,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
     v0.unk_00 = param3;
     v0.unk_04 = &v1;
     v0.unk_08 = sub_0200D9B0(param2);
-    v0.unk_0C = sub_0200D04C(param2, param9);
+    v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(param2, param9);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.unk_04;
     v0.unk_18 = param10;
@@ -317,19 +317,19 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
 void ov17_0223F560(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6)
 {
     if (param3 != -1) {
-        sub_0200CBDC(param0, param1, 46, 73, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+        SpriteRenderer_LoadCharResObj(param0, param1, 46, 73, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
     }
 
     if (param4 != -1) {
-        sub_0200CD7C(param2, 2, param0, param1, 46, 7, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param4);
+        SpriteRenderer_LoadPalette(param2, 2, param0, param1, 46, 7, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param4);
     }
 
     if (param5 != -1) {
-        sub_0200CE0C(param0, param1, 46, 74, 1, param5);
+        SpriteRenderer_LoadCellResObj(param0, param1, 46, 74, 1, param5);
     }
 
     if (param6 != -1) {
-        sub_0200CE3C(param0, param1, 46, 75, 1, param6);
+        SpriteRenderer_LoadAnimResObj(param0, param1, 46, 75, 1, param6);
     }
 }
 
@@ -370,12 +370,12 @@ void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteRenderer *param1, Spri
     v1.bgPriority = param9;
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_00[v0] = SpriteActor_LoadResources(param1, param2, &v1);
+        param0->unk_00[v0] = CellActor_LoadResources(param1, param2, &v1);
 
-        SpriteActor_SetSpritePositionXY(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
-        sub_0200D364(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
+        CellActorData_SetPositionXY(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
+        CellActorData_SetAnim(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
         sub_0200D6A4(param0->unk_00[v0], 1);
-        SpriteActor_UpdateObject(param0->unk_00[v0]->unk_00);
+        CellActor_UpdateObject(param0->unk_00[v0]->cellActor);
     }
 
     param0->unk_18 = SysTask_Start(ov17_0223F6E8, param0, param10);
@@ -386,7 +386,7 @@ void ov17_0223F6C4(UnkStruct_ov17_0223F6E8 *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_0200D0F4(param0->unk_00[v0]);
+        CellActorData_Delete(param0->unk_00[v0]);
     }
 
     SysTask_Done(param0->unk_18);

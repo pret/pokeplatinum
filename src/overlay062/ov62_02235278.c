@@ -16,11 +16,11 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0208B284.h"
@@ -303,10 +303,10 @@ static BOOL ov62_02235580(UnkStruct_0208C06C *param0)
                             v5->unk_04 = v5->unk_00;
                             v5->unk_06 = (25 + (36 * (5 - 1)));
 
-                            sub_0200D364(param0->unk_534.unk_00[v4].unk_00, param0->unk_818[param0->unk_534.unk_1B0].unk_0C);
+                            CellActorData_SetAnim(param0->unk_534.unk_00[v4].unk_00, param0->unk_818[param0->unk_534.unk_1B0].unk_0C);
                             ov62_02230FC8(param0, &param0->unk_534.unk_00[param0->unk_534.unk_1A4], param0->unk_818[param0->unk_534.unk_1B0].unk_08, &param0->unk_818[param0->unk_534.unk_1B0]);
                             sub_020129D0(param0->unk_534.unk_00[param0->unk_534.unk_1A4].unk_14, 1);
-                            SpriteActor_EnableObject(param0->unk_534.unk_00[v4].unk_00, 1);
+                            CellActorData_DrawSprite(param0->unk_534.unk_00[v4].unk_00, 1);
                         } else {
                             v5->unk_04 = v5->unk_00 - 4;
                             v5->unk_06 = (16 * (param0->unk_534.unk_1A4 - v4)) + (25 + (36 * (5 - (param0->unk_534.unk_1A4 - v4) - 1)));
@@ -324,9 +324,9 @@ static BOOL ov62_02235580(UnkStruct_0208C06C *param0)
 
             for (v4 = 0; v4 < param0->unk_534.unk_1A4; v4++) {
                 if (v4 == param0->unk_534.unk_1A4) {
-                    sub_0200D430(param0->unk_534.unk_00[v4].unk_00, (2 - 1));
+                    CellActorData_SetExplicitPaletteOffset(param0->unk_534.unk_00[v4].unk_00, (2 - 1));
                 } else {
-                    sub_0200D430(param0->unk_534.unk_00[v4].unk_00, (3 - 1));
+                    CellActorData_SetExplicitPaletteOffset(param0->unk_534.unk_00[v4].unk_00, (3 - 1));
                 }
             }
         }
@@ -432,9 +432,9 @@ static BOOL ov62_02235854(UnkStruct_0208C06C *param0)
 
                 for (v3 = 0; v3 < param0->unk_534.unk_1A4; v3++) {
                     if (v3 == param0->unk_534.unk_1A4 - 1) {
-                        sub_0200D430(param0->unk_534.unk_00[v3].unk_00, (2 - 1));
+                        CellActorData_SetExplicitPaletteOffset(param0->unk_534.unk_00[v3].unk_00, (2 - 1));
                     } else {
-                        sub_0200D430(param0->unk_534.unk_00[v3].unk_00, (3 - 1));
+                        CellActorData_SetExplicitPaletteOffset(param0->unk_534.unk_00[v3].unk_00, (3 - 1));
                     }
                 }
             }

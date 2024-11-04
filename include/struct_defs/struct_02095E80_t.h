@@ -10,7 +10,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0200C738.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_sub1.h"
 
@@ -26,6 +26,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -70,7 +71,7 @@ struct UnkStruct_02095E80_t {
     Strbuf *unk_18C;
     Strbuf *unk_190;
     CellActorCollection *unk_194;
-    UnkStruct_0200C738 unk_198;
+    GF_G2dRenderer unk_198;
     SpriteResourceCollection *unk_324[4];
     SpriteResource *unk_334[2][4];
     CellActorResourceData unk_354;

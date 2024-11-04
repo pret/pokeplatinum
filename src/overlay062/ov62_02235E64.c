@@ -20,10 +20,10 @@
 #include "message.h"
 #include "palette.h"
 #include "savedata.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
@@ -738,8 +738,8 @@ static void ov62_02236C20(UnkStruct_0208C06C *param0)
     ov62_0223118C(&v0->unk_158[0], &param0->unk_14, NNS_G2D_VRAM_TYPE_2DSUB);
     ov62_0223124C(&v0->unk_158[0], &param0->unk_14, 3);
 
-    sub_0200D364(v0->unk_158[0].unk_08, 0);
-    SpriteActor_SetSpritePositionXY(v0->unk_158[0].unk_08, 80, 232);
+    CellActorData_SetAnim(v0->unk_158[0].unk_08, 0);
+    CellActorData_SetPositionXY(v0->unk_158[0].unk_08, 80, 232);
     sub_020128C4(v0->unk_158[0].unk_0C, 36, -8);
     sub_020129D0(v0->unk_158[0].unk_0C, 1);
 }
@@ -749,6 +749,6 @@ static void ov62_02236C94(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     ov62_022312B0(&v0->unk_158[0]);
-    sub_0200D0F4(v0->unk_158[0].unk_08);
+    CellActorData_Delete(v0->unk_158[0].unk_08);
     ov62_022313BC(param0);
 }

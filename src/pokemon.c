@@ -46,12 +46,12 @@
 #include "party.h"
 #include "pokemon.h"
 #include "rtc.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_0200C6E4.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
 #include "unk_0201D15C.h"
@@ -3149,7 +3149,7 @@ CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, Pa
     narc = NARC_ctor(v3.unk_00, heapID);
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
-    SpriteRenderer_LoadPalette(param2, 2, param0, param1, narc, v3.unk_08, 0, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param2, 2, param0, param1, narc, v3.unk_08, 0, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, 0, 20007 + param7);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, 0, 20007 + param7);
     NARC_dtor(narc);
@@ -3163,12 +3163,12 @@ CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, Pa
     v0.resources[3] = 20007 + param7;
     v0.priority = Unk_020F0588[param7];
 
-    v1 = SpriteActor_LoadResources(param0, param1, &v0);
+    v1 = CellActor_LoadResources(param0, param1, &v0);
 
-    CellActor_SetExplicitPaletteOffsetAutoAdjust(v1->unk_00, 0);
-    SpriteActor_SetSpritePositionXY(v1, param3, param4);
-    sub_0200D330(v1);
-    sub_0200D390(v1, 1);
+    CellActor_SetExplicitPaletteOffsetAutoAdjust(v1->cellActor, 0);
+    CellActorData_SetPositionXY(v1, param3, param4);
+    CellActorData_UpdateObject(v1);
+    CellActorData_SetAnimateFlag(v1, 1);
 
     return v1;
 }

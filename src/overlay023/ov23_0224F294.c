@@ -46,6 +46,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -54,7 +55,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
 
@@ -193,7 +193,7 @@ static void ov23_0224F294(UnkStruct_ov23_02250CD4 *param0, u8 *param1, u32 param
 
     param0->unk_23C[0] = ov5_021D3584(&param0->unk_74, &Unk_ov23_0225695C[0]);
 
-    ov23_0224F4D0(param0->unk_23C[0]->unk_00, param0->unk_29C);
+    ov23_0224F4D0(param0->unk_23C[0]->cellActor, param0->unk_29C);
 
     ov5_021D3374(&param0->unk_74, v2, 8, 0, 14529);
     ov5_021D339C(&param0->unk_74, v2, 7, 0, 14529);
@@ -212,11 +212,11 @@ static void ov23_0224F294(UnkStruct_ov23_02250CD4 *param0, u8 *param1, u32 param
 
         {
             VecFx32 v4 = { FX32_ONE, FX32_ONE, FX32_ONE };
-            CellActor_SetAffineScaleEx(param0->unk_23C[1 + v1]->unk_00, &v4, 1);
+            CellActor_SetAffineScaleEx(param0->unk_23C[1 + v1]->cellActor, &v4, 1);
         }
     }
 
-    ov23_0224F500(param0->unk_23C[1 + param0->unk_29C]->unk_00, 2, 1);
+    ov23_0224F500(param0->unk_23C[1 + param0->unk_29C]->cellActor, 2, 1);
     param0->unk_25C = param2 + 1;
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
@@ -226,7 +226,7 @@ static void ov23_0224F460(UnkStruct_ov23_02250CD4 *param0)
     u16 v0;
 
     for (v0 = 0; v0 < param0->unk_25C; v0++) {
-        sub_0200D0F4(param0->unk_23C[v0]);
+        CellActorData_Delete(param0->unk_23C[v0]);
     }
 
     ov5_021D375C(&param0->unk_74);
@@ -237,7 +237,7 @@ static void ov23_0224F498(UnkStruct_ov23_02250CD4 *param0)
     u16 v0;
 
     for (v0 = 0; v0 < param0->unk_25C; v0++) {
-        CellActor_UpdateAnim(param0->unk_23C[v0]->unk_00, FX32_ONE);
+        CellActor_UpdateAnim(param0->unk_23C[v0]->cellActor, FX32_ONE);
     }
 }
 
@@ -261,8 +261,8 @@ static void ov23_0224F500(CellActor *param0, u16 param1, u16 param2)
 
 static void ov23_0224F52C(UnkStruct_ov23_02250CD4 *param0, u16 param1, u16 param2)
 {
-    ov23_0224F500(param0->unk_23C[1 + param1]->unk_00, 0, 0);
-    ov23_0224F500(param0->unk_23C[1 + param2]->unk_00, 1, 1);
+    ov23_0224F500(param0->unk_23C[1 + param1]->cellActor, 0, 0);
+    ov23_0224F500(param0->unk_23C[1 + param2]->cellActor, 1, 1);
 }
 
 static void ov23_0224F560(CellActor *param0)
@@ -621,12 +621,12 @@ static BOOL ov23_0224FA58(SysTask *param0, void *param1)
     v0->unk_29C = Menu_GetCursorPos(v0->unk_54);
 
     if (v1 != v0->unk_29C) {
-        ov23_0224F4D0(v0->unk_23C[0]->unk_00, v0->unk_29C);
+        ov23_0224F4D0(v0->unk_23C[0]->cellActor, v0->unk_29C);
         ov23_0224F52C(v0, v1, v0->unk_29C);
         v0->fieldSystem->unk_90 = v0->unk_29C;
     }
 
-    ov23_0224F560(v0->unk_23C[1 + v0->unk_29C]->unk_00);
+    ov23_0224F560(v0->unk_23C[1 + v0->unk_29C]->cellActor);
 
     if (CommSys_CheckError()) {
         v0->unk_2A0 = 0xfffffffe;

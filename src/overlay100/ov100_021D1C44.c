@@ -23,12 +23,12 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "sys_task.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0201D15C.h"
 #include "unk_0202419C.h"
@@ -83,7 +83,7 @@ static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0)
     PaletteData_LoadBufferFromFileStart(v4, 172, 19, 111, 1, 0x20 * 2, 0);
     PaletteData_LoadBufferFromFileStart(v4, 172, 19, 111, 0, 0x20 * 2, 0);
 
-    SpriteRenderer_LoadPalette(v4, 3, v2, v3, v0, 50, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
+    SpriteRenderer_LoadPaletteFromOpenNarc(v4, 3, v2, v3, v0, 50, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, 0, v5);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 47, 0, v5);
     SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 49, 0, NNS_G2D_VRAM_TYPE_2DSUB, v5);
@@ -221,13 +221,13 @@ static void ov100_021D2250(UnkStruct_ov100_021D1C98 *param0)
     v6.resources[3] = 50000;
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_08.unk_0C[v0].unk_00 = SpriteActor_LoadResources(v3, v4, &v6);
+        param0->unk_08.unk_0C[v0].unk_00 = CellActor_LoadResources(v3, v4, &v6);
 
-        sub_0200D330(param0->unk_08.unk_0C[v0].unk_00);
+        CellActorData_UpdateObject(param0->unk_08.unk_0C[v0].unk_00);
         sub_0200D6A4(param0->unk_08.unk_0C[v0].unk_00, 2);
         sub_0200D6E8(param0->unk_08.unk_0C[v0].unk_00, 0.5f, 0.5f);
-        sub_0200D430(param0->unk_08.unk_0C[v0].unk_00, v0);
-        SpriteActor_SetSpritePositionXY(param0->unk_08.unk_0C[v0].unk_00, 16 + (v0 * 64), 64);
+        CellActorData_SetExplicitPaletteOffset(param0->unk_08.unk_0C[v0].unk_00, v0);
+        CellActorData_SetPositionXY(param0->unk_08.unk_0C[v0].unk_00, 16 + (v0 * 64), 64);
 
         param0->unk_08.unk_0C[v0].unk_0C = 1;
         param0->unk_08.unk_0C[v0].unk_08 = v0;
@@ -249,7 +249,7 @@ static void ov100_021D2324(UnkStruct_ov100_021D1C98 *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         SysTask_Done(param0->unk_08.unk_0C[v0].unk_40);
-        sub_0200D0F4(param0->unk_08.unk_0C[v0].unk_00);
+        CellActorData_Delete(param0->unk_08.unk_0C[v0].unk_00);
     }
 }
 

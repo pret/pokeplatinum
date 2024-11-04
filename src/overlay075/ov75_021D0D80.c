@@ -29,13 +29,13 @@
 #include "pokemon_icon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
@@ -401,7 +401,7 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
         break;
     case 2:
         if (param0->unk_AC != NULL) {
-            sub_0200C7EC(param0->unk_AC);
+            SpriteGfxHandler_UpdateCellActorCollection(param0->unk_AC);
         }
 
         if (PaletteData_GetSelectedBuffersMask(param0->unk_30)) {
@@ -417,7 +417,7 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
         };
 
         if (param0->unk_AC != NULL) {
-            sub_0200C7EC(param0->unk_AC);
+            SpriteGfxHandler_UpdateCellActorCollection(param0->unk_AC);
         }
 
         if (!v0[param0->unk_0C](param0)) {
@@ -429,7 +429,7 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
     case 4:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_30)) {
             if (param0->unk_AC != NULL) {
-                sub_0200C7EC(param0->unk_AC);
+                SpriteGfxHandler_UpdateCellActorCollection(param0->unk_AC);
             }
 
             return 0;
@@ -871,8 +871,8 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
 
     VRAMTransferManager_New(32, param0->unk_00);
 
-    param0->unk_A8 = sub_0200C6E4(param0->unk_00);
-    param0->unk_AC = sub_0200C704(param0->unk_A8);
+    param0->unk_A8 = SpriteRenderer_Create(param0->unk_00);
+    param0->unk_AC = SpriteRenderer_CreateGfxHandler(param0->unk_A8);
 
     {
         UnkStruct_ov104_0224133C v3 = {
@@ -901,15 +901,15 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
             0,
         };
 
-        sub_0200C73C(param0->unk_A8, &v3, &v4, 32);
-        sub_0200C7C0(param0->unk_A8, param0->unk_AC, 3);
-        sub_0200CB30(param0->unk_A8, param0->unk_AC, &v5);
+        SpriteRenderer_CreateOamCharPlttManagers(param0->unk_A8, &v3, &v4, 32);
+        SpriteRenderer_CreateCellActorList(param0->unk_A8, param0->unk_AC, 3);
+        SpriteRenderer_InitGfxResourceList(param0->unk_A8, param0->unk_AC, &v5);
         sub_0200A93C(param0->unk_00);
     }
 
-    sub_0200CC9C(param0->unk_A8, param0->unk_AC, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
-    sub_0200CE0C(param0->unk_A8, param0->unk_AC, 19, PokeIconCellsFileIndex(), 0, 0);
-    sub_0200CE3C(param0->unk_A8, param0->unk_AC, 19, PokeIconAnimationFileIndex(), 0, 0);
+    SpriteRenderer_LoadPaletteResObj(param0->unk_A8, param0->unk_AC, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
+    SpriteRenderer_LoadCellResObj(param0->unk_A8, param0->unk_AC, 19, PokeIconCellsFileIndex(), 0, 0);
+    SpriteRenderer_LoadAnimResObj(param0->unk_A8, param0->unk_AC, 19, PokeIconAnimationFileIndex(), 0, 0);
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_1C->unk_14[v0].val2 == 0xFFFF) {
@@ -936,10 +936,10 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         v2.resources[4] = SPRITE_RESOURCE_NONE;
         v2.resources[5] = SPRITE_RESOURCE_NONE;
 
-        param0->unk_B0[v0] = SpriteActor_LoadResources(param0->unk_A8, param0->unk_AC, &v2);
+        param0->unk_B0[v0] = CellActor_LoadResources(param0->unk_A8, param0->unk_AC, &v2);
 
         if (param0->unk_1C->unk_14[v0].val1_0 == 7) {
-            SpriteActor_EnableObject(param0->unk_B0[v0], 0);
+            CellActorData_DrawSprite(param0->unk_B0[v0], 0);
         }
     }
 }
@@ -951,12 +951,12 @@ static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0)
     if (param0->unk_0C == 0) {
         for (v0 = 0; v0 < 3; v0++) {
             if (param0->unk_B0[v0] != NULL) {
-                sub_0200D0F4(param0->unk_B0[v0]);
+                CellActorData_Delete(param0->unk_B0[v0]);
             }
         }
 
-        sub_0200D0B0(param0->unk_A8, param0->unk_AC);
-        sub_0200C8D4(param0->unk_A8);
+        SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(param0->unk_A8, param0->unk_AC);
+        SpriteRenderer_Free(param0->unk_A8);
         VRAMTransferManager_Destroy();
     }
 }

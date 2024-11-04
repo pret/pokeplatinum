@@ -18,13 +18,13 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200679C.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201E86C.h"
@@ -257,7 +257,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         memset(param0->unk_0C, 0, sizeof(UnkStruct_ov104_0223DDE4));
 
         v0 = param0->unk_0C;
-        v7 = SpriteRenderer_LoadPalette(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2004);
+        v7 = SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2004);
 
         param0->unk_164 |= 1 << v7;
         param0->unk_30 = sub_02012744(4, 94);
@@ -277,7 +277,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         }
 
         {
-            param0->unk_160 = SpriteRenderer_LoadPalette(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_04, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2002);
+            param0->unk_160 = SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_04, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2002);
             param0->unk_164 |= 1 << param0->unk_160;
 
             SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_05, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2010);
@@ -285,7 +285,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
             SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_07, 0, 2002);
             PaletteData_Blend(param0->unk_1C, 2, param0->unk_160 * 16, 16, 14, (GX_RGB(0, 0, 0)));
 
-            v7 = SpriteRenderer_LoadPalette(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, 51, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2003);
+            v7 = SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, 51, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2003);
             param0->unk_164 |= 1 << v7;
 
             SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, 144, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2011);
@@ -293,10 +293,10 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
             SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, 146, 0, 2003);
         }
 
-        v0->unk_90 = SpriteActor_LoadResources(param0->unk_14, param0->unk_18, &Unk_ov104_022418B4);
+        v0->unk_90 = CellActor_LoadResources(param0->unk_14, param0->unk_18, &Unk_ov104_022418B4);
 
-        SpriteActor_EnableObject(v0->unk_90, 0);
-        SpriteActor_UpdateObject(v0->unk_90->unk_00);
+        CellActorData_DrawSprite(v0->unk_90, 0);
+        CellActor_UpdateObject(v0->unk_90->cellActor);
         ov104_0223E3FC(param0, &v0->unk_14, (FX32_CONST(72)) + FX32_CONST(param0->unk_28), (FX32_CONST(82)) + FX32_CONST(param0->unk_2A), param1);
         param0->unk_00++;
         break;
@@ -410,7 +410,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         ov104_0223E3B8(&v0->unk_7C);
 
         sub_020127BC(param0->unk_30);
-        sub_0200D0F4(v0->unk_90);
+        CellActorData_Delete(v0->unk_90);
 
         ov104_0223E48C(&v0->unk_14);
         return 1;
@@ -462,7 +462,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
     v0.unk_00 = param0->unk_30;
     v0.unk_04 = &v1;
     v0.unk_08 = sub_0200D9B0(v6);
-    v0.unk_0C = sub_0200D04C(v6, param6);
+    v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.unk_04;
     v0.unk_18 = param7;
@@ -519,12 +519,12 @@ static void ov104_0223E3FC(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
     param1->unk_02 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param1->unk_04[v0] = SpriteActor_LoadResources(param0->unk_14, param0->unk_18, &v1);
-        SpriteActor_EnableObject(param1->unk_04[v0], 0);
+        param1->unk_04[v0] = CellActor_LoadResources(param0->unk_14, param0->unk_18, &v1);
+        CellActorData_DrawSprite(param1->unk_04[v0], 0);
 
         if (v0 != 3) {
-            CellActor_SetAffineOverwriteMode(param1->unk_04[v0]->unk_00, 2);
-            CellActor_SetAnim(param1->unk_04[v0]->unk_00, 1);
+            CellActor_SetAffineOverwriteMode(param1->unk_04[v0]->cellActor, 2);
+            CellActor_SetAnim(param1->unk_04[v0]->cellActor, 1);
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
         } else {
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(1), FX32_CONST(1), 6);
@@ -537,7 +537,7 @@ static void ov104_0223E48C(UnkStruct_ov104_0223E48C *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200D0F4(param0->unk_04[v0]);
+        CellActorData_Delete(param0->unk_04[v0]);
     }
 }
 
@@ -562,8 +562,8 @@ static BOOL ov104_0223E4A4(UnkStruct_ov104_0223E48C *param0)
         v1 = ov104_0223E544(&param0->unk_14[v0]);
         v3 = ov104_0223E58C(param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
 
-        CellActor_SetAffineScale(param0->unk_04[v0]->unk_00, &v3);
-        CellActor_SetDrawFlag(param0->unk_04[v0]->unk_00, 1);
+        CellActor_SetAffineScale(param0->unk_04[v0]->cellActor, &v3);
+        CellActor_SetDrawFlag(param0->unk_04[v0]->cellActor, 1);
 
         if (v1 == 0) {
             v2 = 0;
@@ -748,7 +748,7 @@ static BOOL ov104_0223E804(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
     switch (param2->unk_04) {
     case 0:
         sub_0200D500(param1->unk_90, 256 + param0->unk_28, 80 + param0->unk_2A, (512 * FX32_ONE));
-        SpriteActor_EnableObject(param1->unk_90, 1);
+        CellActorData_DrawSprite(param1->unk_90, 1);
         param2->unk_00 = 256 << 8;
         param2->unk_04++;
         break;

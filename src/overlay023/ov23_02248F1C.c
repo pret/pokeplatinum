@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0205E884_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
@@ -19,6 +18,7 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
@@ -47,7 +47,7 @@ struct UnkStruct_ov23_0224942C_t {
     FieldSystem *fieldSystem;
     BgConfig *unk_1B8;
     CellActorCollection *unk_1BC;
-    UnkStruct_0200C738 unk_1C0;
+    GF_G2dRenderer unk_1C0;
     SpriteResourceCollection *unk_34C[4];
     SpriteResource *unk_35C[4];
     CellActorResourceData unk_36C;

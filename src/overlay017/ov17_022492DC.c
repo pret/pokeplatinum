@@ -21,12 +21,12 @@
 #include "heap.h"
 #include "message.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_0201E86C.h"
 #include "unk_02094EDC.h"
@@ -716,7 +716,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
     v0.unk_00 = param0->unk_18;
     v0.unk_04 = &v1;
     v0.unk_08 = sub_0200D9B0(v6);
-    v0.unk_0C = sub_0200D04C(v6, param6);
+    v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.unk_04;
     v0.unk_18 = param7;
@@ -822,7 +822,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_8C.unk_04_val1.unk_10[v4] != NULL) {
-                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->unk_00, 0, 16);
+                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->cellActor, 0, 16);
             }
         }
 
@@ -851,7 +851,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_8C.unk_04_val1.unk_10[v4] != NULL) {
-                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->unk_00, 0, -4);
+                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->cellActor, 0, -4);
             }
         }
 
@@ -880,7 +880,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_8C.unk_04_val1.unk_10[v4] != NULL) {
-                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->unk_00, 0, (-(16 + -4)));
+                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->cellActor, 0, (-(16 + -4)));
             }
         }
 

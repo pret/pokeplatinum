@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0209903C.h"
 #include "struct_defs/struct_0209903C_sub1.h"
@@ -12,10 +11,10 @@
 #include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_0200C6E4.h"
 
 static void sub_02099058(UnkStruct_0209903C *param0);
 static void sub_02099118(UnkStruct_0209903C *param0);
@@ -130,14 +129,14 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
 
     v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorData));
 
-    v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02009508));
-    v4->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
-    v4->unk_04 = v4->unk_08->unk_00;
+    v4->cellActorResourceList = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceDataList));
+    v4->cellActorResourceList->resourceDataList = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
+    v4->cellActorResource = v4->cellActorResourceList->resourceDataList;
 
-    sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
+    sub_020093B4(v4->cellActorResource, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 
     v5.collection = param0->unk_10;
-    v5.resourceData = v4->unk_04;
+    v5.resourceData = v4->cellActorResource;
     v5.position.x = FX32_CONST(param2);
     v5.position.y = FX32_CONST(param3);
     v5.position.z = FX32_CONST(param4);
@@ -154,13 +153,13 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
     v5.vramType = v0;
     v5.heapID = param0->unk_00;
 
-    v4->unk_00 = CellActorCollection_AddEx(&v5);
+    v4->cellActor = CellActorCollection_AddEx(&v5);
 
-    if (v4->unk_00 != NULL) {
-        CellActor_SetAnim(v4->unk_00, 0);
+    if (v4->cellActor != NULL) {
+        CellActor_SetAnim(v4->cellActor, 0);
         v2 = sub_0200A760(
             v6, v0);
-        CellActor_SetExplicitPalette(v4->unk_00, v2);
+        CellActor_SetExplicitPalette(v4->cellActor, v2);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -181,7 +180,7 @@ void sub_0209933C(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1, int pa
 
 void sub_02099370(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1)
 {
-    sub_0200D0F4(param1->unk_04);
+    CellActorData_Delete(param1->unk_04);
 
     param0->unk_1C4[param1->unk_00].unk_00 = 0;
     param0->unk_1C4[param1->unk_00].unk_02 = 0;

@@ -32,6 +32,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -40,7 +41,6 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_020797C8.h"
 
 static void ov13_02226590(SysTask *param0, void *param1);
@@ -186,7 +186,7 @@ static void ov13_02226590(SysTask *param0, void *param1)
     }
 
     ov13_02228848(v0);
-    sub_0200C7EC(v0->unk_30C);
+    SpriteGfxHandler_UpdateCellActorCollection(v0->unk_30C);
 }
 
 static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)

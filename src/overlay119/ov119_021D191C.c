@@ -14,11 +14,11 @@
 #include "menu.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_0201F834.h"
@@ -222,7 +222,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         break;
     }
 
-    sub_0200C7EC(param0->unk_04.unk_4C);
+    SpriteGfxHandler_UpdateCellActorCollection(param0->unk_04.unk_4C);
 
     return v0;
 }
@@ -242,7 +242,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D1514(param0);
         ov119_021D161C(param0);
 
-        SpriteActor_EnableObject(param0->unk_74, 0);
+        CellActorData_DrawSprite(param0->unk_74, 0);
 
         ov119_021D1858(param0);
         ov119_021D190C(param0, 1);
@@ -375,7 +375,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         break;
     }
 
-    sub_0200C7EC(param0->unk_04.unk_4C);
+    SpriteGfxHandler_UpdateCellActorCollection(param0->unk_04.unk_4C);
 
     return v0;
 }
@@ -384,7 +384,7 @@ static BOOL ov119_021D1E38(UnkStruct_ov119_021D0FD0 *param0)
 {
     switch (param0->unk_68) {
     case 0:
-        sub_0200D3CC(param0->unk_74, 0);
+        CellActorData_SetAnimFrame(param0->unk_74, 0);
         param0->unk_68++;
         break;
     case 1:
@@ -411,7 +411,7 @@ static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        sub_0200D3CC(param0->unk_74, 1);
+        CellActorData_SetAnimFrame(param0->unk_74, 1);
         param0->unk_68++;
         break;
     case 1: {
@@ -422,7 +422,7 @@ static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
         if (v0 == 2) {
             Sound_PlayEffect(1812);
 
-            sub_0200D3CC(param0->unk_74, 2);
+            CellActorData_SetAnimFrame(param0->unk_74, 2);
             param0->unk_68++;
             param0->unk_64 = 0;
         }
@@ -433,7 +433,7 @@ static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
         v1 = ov119_021D176C(param0, 0);
 
         if (v1 == 2) {
-            sub_0200D3CC(param0->unk_74, 2);
+            CellActorData_SetAnimFrame(param0->unk_74, 2);
             param0->unk_68 = 0;
             param0->unk_64 = 0;
             return 0;
@@ -457,7 +457,7 @@ static BOOL ov119_021D1EF0(UnkStruct_ov119_021D0FD0 *param0)
 
         if (v0 == 1) {
             Sound_PlayEffect(1812);
-            sub_0200D3CC(param0->unk_74, 3);
+            CellActorData_SetAnimFrame(param0->unk_74, 3);
             ov119_021D14DC(param0->unk_04.unk_40, 0);
         }
 
@@ -493,7 +493,7 @@ static BOOL ov119_021D1F48(UnkStruct_ov119_021D0FD0 *param0)
         if (v0 == 1) {
             Sound_PlayEffect(1812);
 
-            sub_0200D3CC(param0->unk_74, 4);
+            CellActorData_SetAnimFrame(param0->unk_74, 4);
             ov119_021D14DC(param0->unk_04.unk_40, 1);
         }
 
@@ -519,7 +519,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        sub_0200D3CC(param0->unk_74, 4);
+        CellActorData_SetAnimFrame(param0->unk_74, 4);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         param0->unk_68++;
         break;
@@ -529,14 +529,14 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
         v0 = ov119_021D176C(param0, 3);
 
         if (v0 == 1) {
-            sub_0200D3CC(param0->unk_74, 5);
+            CellActorData_SetAnimFrame(param0->unk_74, 5);
             Sound_PlayEffect(1799);
             ov119_021D14DC(param0->unk_04.unk_40, 2);
             ov119_021D14DC(param0->unk_04.unk_40, 3);
         }
 
         if (v0 == 2) {
-            SpriteActor_EnableObject(param0->unk_74, 0);
+            CellActorData_DrawSprite(param0->unk_74, 0);
             param0->unk_64 = 0;
             param0->unk_68++;
         }
@@ -551,7 +551,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
                 NNSG2dImagePaletteProxy *v1;
                 int v2;
 
-                v1 = CellActor_GetPaletteProxy(param0->unk_78->unk_00);
+                v1 = CellActor_GetPaletteProxy(param0->unk_78->cellActor);
                 v2 = sub_0201FAB4(v1, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v2), 0, 0, 16, 0xFFFF);
@@ -587,9 +587,9 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         ov119_021D190C(param0, 0);
-        SpriteActor_EnableObject(param0->unk_74, 0);
-        SpriteActor_EnableObject(param0->unk_78, 0);
-        SpriteActor_EnableObject(param0->unk_7C, 0);
+        CellActorData_DrawSprite(param0->unk_74, 0);
+        CellActorData_DrawSprite(param0->unk_78, 0);
+        CellActorData_DrawSprite(param0->unk_7C, 0);
 
         param0->unk_68++;
     } break;
@@ -657,7 +657,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
                 NNSG2dImagePaletteProxy *v0;
                 int v1;
 
-                v0 = CellActor_GetPaletteProxy(param0->unk_78->unk_00);
+                v0 = CellActor_GetPaletteProxy(param0->unk_78->cellActor);
                 v1 = sub_0201FAB4(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v1), 0, 0, 16, 0xFFFF);
@@ -694,9 +694,9 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D190C(param0, 0);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-        SpriteActor_EnableObject(param0->unk_74, 0);
-        SpriteActor_EnableObject(param0->unk_78, 0);
-        SpriteActor_EnableObject(param0->unk_7C, 0);
+        CellActorData_DrawSprite(param0->unk_74, 0);
+        CellActorData_DrawSprite(param0->unk_78, 0);
+        CellActorData_DrawSprite(param0->unk_7C, 0);
 
         param0->unk_68++;
     } break;

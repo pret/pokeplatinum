@@ -30,6 +30,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -38,7 +39,6 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200A784.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -534,7 +534,7 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
 {
     VRAMTransferManager_New(32, param0->unk_00);
 
-    param0->unk_7C = sub_0200C6E4(param0->unk_00);
+    param0->unk_7C = SpriteRenderer_Create(param0->unk_00);
 
     {
         UnkStruct_ov104_0224133C v0 = {
@@ -555,14 +555,14 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
             GX_OBJVRAMMODE_CHAR_1D_32K,
         };
 
-        sub_0200C73C(param0->unk_7C, &v0, &v1, 32);
+        SpriteRenderer_CreateOamCharPlttManagers(param0->unk_7C, &v0, &v1, 32);
         sub_0200A93C(param0->unk_00);
     }
 
     param0->unk_5C = sub_02098FFC(param0->unk_00, 2, 2, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
     param0->unk_60[0] = sub_0209916C(param0->unk_5C, param0->unk_10->unk_08, 100, 90, 0, 1, 0, 0);
 
-    SpriteActor_EnableObject(param0->unk_60[0]->unk_04, 0);
+    CellActorData_DrawSprite(param0->unk_60[0]->unk_04, 0);
 
     if (CommSys_IsInitialized()) {
         sub_02039734();
@@ -575,7 +575,7 @@ static void ov79_021D2908(UnkStruct_ov79_021D2928 *param0)
 {
     sub_02099370(param0->unk_5C, param0->unk_60[0]);
     sub_0209903C(param0->unk_5C);
-    sub_0200C8D4(param0->unk_7C);
+    SpriteRenderer_Free(param0->unk_7C);
     VRAMTransferManager_Destroy();
 }
 
@@ -643,7 +643,7 @@ static int ov79_021D2A04(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov79_021D29B4));
 
-    param1->unk_C4 = param0->unk_60[0]->unk_04->unk_00;
+    param1->unk_C4 = param0->unk_60[0]->unk_04->cellActor;
     param1->unk_C8 = param0->unk_40.unk_18;
     param1->unk_08 = param0->unk_30.unk_09;
     param1->unk_00 = 24;

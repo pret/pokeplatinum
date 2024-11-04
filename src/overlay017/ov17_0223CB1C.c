@@ -29,6 +29,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -37,7 +38,6 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
@@ -167,17 +167,17 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     sub_0201E450(4);
     Font_InitManager(FONT_SUBSCREEN, 22);
 
-    v0->unk_0C.unk_1C = sub_0200C6E4(22);
+    v0->unk_0C.unk_1C = SpriteRenderer_Create(22);
 
-    sub_0200C73C(v0->unk_0C.unk_1C, &Unk_ov17_02252EFC, &Unk_ov17_02252EB4, (16 + 16));
+    SpriteRenderer_CreateOamCharPlttManagers(v0->unk_0C.unk_1C, &Unk_ov17_02252EFC, &Unk_ov17_02252EB4, (16 + 16));
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_0C.unk_20 = sub_0200C704(v0->unk_0C.unk_1C);
+    v0->unk_0C.unk_20 = SpriteRenderer_CreateGfxHandler(v0->unk_0C.unk_1C);
 
-    sub_0200C7C0(v0->unk_0C.unk_1C, v0->unk_0C.unk_20, (64 + 64));
-    sub_0200CB30(v0->unk_0C.unk_1C, v0->unk_0C.unk_20, &Unk_ov17_02252EC8);
-    sub_0200964C(sub_0200C738(v0->unk_0C.unk_1C), 0, (256 * FX32_ONE));
+    SpriteRenderer_CreateCellActorList(v0->unk_0C.unk_1C, v0->unk_0C.unk_20, (64 + 64));
+    SpriteRenderer_InitGfxResourceList(v0->unk_0C.unk_1C, v0->unk_0C.unk_20, &Unk_ov17_02252EC8);
+    sub_0200964C(SpriteRenderer_GetG2dRenderer(v0->unk_0C.unk_1C), 0, (256 * FX32_ONE));
 
     v0->unk_0C.unk_04 = sub_0200762C(22);
     ov17_0223D350();
@@ -307,8 +307,8 @@ int ov17_0223CF8C(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_0C.unk_24, 3);
     Bg_ToggleLayer(4, 0);
     Bg_FreeTilemapBuffer(v0->unk_0C.unk_24, 4);
-    sub_0200D0B0(v0->unk_0C.unk_1C, v0->unk_0C.unk_20);
-    sub_0200C8D4(v0->unk_0C.unk_1C);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(v0->unk_0C.unk_1C, v0->unk_0C.unk_20);
+    SpriteRenderer_Free(v0->unk_0C.unk_1C);
     VRAMTransferManager_Destroy();
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -396,7 +396,7 @@ static void ov17_0223D164(SysTask *param0, void *param1)
         }
 
         ov11_0221F8F0();
-        sub_0200C7EC(v0->unk_0C.unk_20);
+        SpriteGfxHandler_UpdateCellActorCollection(v0->unk_0C.unk_20);
         sub_0200C808();
 
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
@@ -572,7 +572,7 @@ static void ov17_0223D390(UnkStruct_ov17_02247A48 *param0)
 
 static void ov17_0223D3B8(UnkStruct_ov17_02247A48 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadPalette(param0->unk_0C.unk_44, 2, param0->unk_0C.unk_1C, param0->unk_0C.unk_20, param1, 7, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_0C.unk_44, 2, param0->unk_0C.unk_1C, param0->unk_0C.unk_20, param1, 7, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
 
     ov17_0224774C(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, param1);
     ov17_0223F560(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, param0->unk_0C.unk_44, 33001, -1, 33001, 33001);
@@ -590,7 +590,7 @@ static void ov17_0223D434(UnkStruct_ov17_02247A48 *param0)
 
 static void ov17_0223D468(UnkStruct_ov17_02247A48 *param0, NARC *param1)
 {
-    sub_0200CD7C(param0->unk_0C.unk_44, 3, param0->unk_0C.unk_1C, param0->unk_0C.unk_20, 46, 8, 0, 2, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
+    SpriteRenderer_LoadPalette(param0->unk_0C.unk_44, 3, param0->unk_0C.unk_1C, param0->unk_0C.unk_20, 46, 8, 0, 2, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
 }
 
 static void ov17_0223D498(UnkStruct_ov17_02247A48 *param0)

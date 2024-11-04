@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -37,6 +36,7 @@
 #include "message.h"
 #include "narc.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -281,7 +281,7 @@ typedef struct {
     u16 unk_16;
     GenericPointerData *unk_18;
     CellActorCollection *unk_1C;
-    UnkStruct_0200C738 unk_20;
+    GF_G2dRenderer unk_20;
     SpriteResourceCollection *unk_1AC[4];
     CellActorResourceData unk_1BC;
     SpriteResource *unk_1E0[4];

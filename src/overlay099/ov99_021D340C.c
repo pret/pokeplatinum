@@ -13,8 +13,8 @@
 #include "overlay099/struct_ov99_021D3A40.h"
 
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -250,8 +250,8 @@ static void ov99_021D372C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     param1->unk_11F = 31;
 
     sub_0200D500(param0->unk_10E0[4], Unk_ov99_021D4C84[param2].unk_00, Unk_ov99_021D4C84[param2].unk_02, ((192 + 80) << FX32_SHIFT));
-    SpriteActor_EnableObject(param0->unk_10E0[4], 1);
-    SpriteActor_EnableObject(param0->unk_10E0[3], 0);
+    CellActorData_DrawSprite(param0->unk_10E0[4], 1);
+    CellActorData_DrawSprite(param0->unk_10E0[3], 0);
 
     G2S_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, param1->unk_11E, param1->unk_11F);
     G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, param1->unk_11F, param1->unk_11E);
@@ -283,8 +283,8 @@ static void ov99_021D37E0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
         sub_0200D5A0(param0->unk_10E0[4], &v0, &v1, ((192 + 80) << FX32_SHIFT));
 
         if (v1 > 192 + 32) {
-            SpriteActor_EnableObject(param0->unk_10E0[4], 0);
-            SpriteActor_EnableObject(param0->unk_10E0[3], 1);
+            CellActorData_DrawSprite(param0->unk_10E0[4], 0);
+            CellActorData_DrawSprite(param0->unk_10E0[3], 1);
             sub_0200D500(param0->unk_10E0[3], v0, -32, ((192 + 80) << FX32_SHIFT));
             param1->unk_11D = 1;
         }
@@ -306,7 +306,7 @@ static void ov99_021D37E0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
         sub_0200D5A0(param0->unk_10E0[3], &v0, &v1, ((192 + 80) << FX32_SHIFT));
 
         if (v1 > 192 + 32) {
-            SpriteActor_EnableObject(param0->unk_10E0[3], 0);
+            CellActorData_DrawSprite(param0->unk_10E0[3], 0);
             param1->unk_11D = 0;
             param1->unk_11C = 0;
         }

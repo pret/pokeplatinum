@@ -16,7 +16,7 @@
 #include "gx_layers.h"
 #include "item.h"
 #include "move_table.h"
-#include "unk_0200C6E4.h"
+#include "sprite_renderer.h"
 #include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
 
@@ -188,8 +188,8 @@ static void ov84_02240424(UnkStruct_ov84_0223B5A0 *param0)
 {
     UnkStruct_ov104_02241308 v0 = { 10, 6, 9, 9, 0, 0 };
 
-    param0->unk_D8 = sub_0200C6E4(6);
-    param0->unk_DC = sub_0200C704(param0->unk_D8);
+    param0->unk_D8 = SpriteRenderer_Create(6);
+    param0->unk_DC = SpriteRenderer_CreateGfxHandler(param0->unk_D8);
     {
         UnkStruct_ov104_0224133C v1 = {
             0,
@@ -210,11 +210,11 @@ static void ov84_02240424(UnkStruct_ov84_0223B5A0 *param0)
             GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
-        sub_0200C73C(param0->unk_D8, &v1, &v2, 32);
+        SpriteRenderer_CreateOamCharPlttManagers(param0->unk_D8, &v1, &v2, 32);
     }
 
-    sub_0200C7C0(param0->unk_D8, param0->unk_DC, 12);
-    sub_0200CB30(param0->unk_D8, param0->unk_DC, &v0);
+    SpriteRenderer_CreateCellActorList(param0->unk_D8, param0->unk_DC, 12);
+    SpriteRenderer_InitGfxResourceList(param0->unk_D8, param0->unk_DC, &v0);
 }
 
 static void ov84_022404C0(UnkStruct_ov84_0223B5A0 *param0)
@@ -235,32 +235,32 @@ static void ov84_022404C0(UnkStruct_ov84_0223B5A0 *param0)
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 31, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 10, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 36, 0, NNS_G2D_VRAM_TYPE_2DSUB, 49406);
-    sub_0200CBDC(param0->unk_D8, param0->unk_DC, 62, 4, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
-    sub_0200CBDC(param0->unk_D8, param0->unk_DC, 16, Item_FileID(0, 1), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
+    SpriteRenderer_LoadCharResObj(param0->unk_D8, param0->unk_DC, 62, 4, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
+    SpriteRenderer_LoadCharResObj(param0->unk_D8, param0->unk_DC, 16, Item_FileID(0, 1), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
     sub_0207C948(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49409);
     sub_0207CAC4(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49410);
-    sub_0200CD0C(param0->unk_D8, param0->unk_DC, param0->unk_D4, v1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
-    sub_0200CD0C(param0->unk_D8, param0->unk_DC, param0->unk_D4, 20, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
-    sub_0200CC9C(param0->unk_D8, param0->unk_DC, 16, Item_FileID(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
-    sub_0200CC9C(param0->unk_D8, param0->unk_DC, 62, 10, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
+    SpriteRenderer_LoadPaletteResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, v1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
+    SpriteRenderer_LoadPaletteResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 20, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
+    SpriteRenderer_LoadPaletteResObj(param0->unk_D8, param0->unk_DC, 16, Item_FileID(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
+    SpriteRenderer_LoadPaletteResObj(param0->unk_D8, param0->unk_DC, 62, 10, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
     sub_0207C97C(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 49406);
-    sub_0200CD0C(param0->unk_D8, param0->unk_DC, param0->unk_D4, 37, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
+    SpriteRenderer_LoadPaletteResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 37, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 1, 0, 49401);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 24, 0, 49402);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 27, 0, 49403);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 30, 0, 49404);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 9, 0, 49405);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 35, 0, 49406);
-    sub_0200CE0C(param0->unk_D8, param0->unk_DC, 16, Item_IconNCERFile(), 0, 49407);
-    sub_0200CE0C(param0->unk_D8, param0->unk_DC, 62, 5, 0, 49408);
+    SpriteRenderer_LoadCellResObj(param0->unk_D8, param0->unk_DC, 16, Item_IconNCERFile(), 0, 49407);
+    SpriteRenderer_LoadCellResObj(param0->unk_D8, param0->unk_DC, 62, 5, 0, 49408);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 0, 0, 49401);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 23, 0, 49402);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 26, 0, 49403);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 29, 0, 49404);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 8, 0, 49405);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 34, 0, 49406);
-    sub_0200CE3C(param0->unk_D8, param0->unk_DC, 16, Item_IconNANRFile(), 0, 49407);
-    sub_0200CE3C(param0->unk_D8, param0->unk_DC, 62, 6, 0, 49408);
+    SpriteRenderer_LoadAnimResObj(param0->unk_D8, param0->unk_DC, 16, Item_IconNANRFile(), 0, 49407);
+    SpriteRenderer_LoadAnimResObj(param0->unk_D8, param0->unk_DC, 62, 6, 0, 49408);
     sub_0207C9EC(param0->unk_D8, param0->unk_DC, 49409, 49409);
 }
 
@@ -269,32 +269,32 @@ static void ov84_02240950(UnkStruct_ov84_0223B5A0 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        param0->unk_E0[v0] = SpriteActor_LoadResources(param0->unk_D8, param0->unk_DC, &Unk_ov84_022411B0[v0]);
+        param0->unk_E0[v0] = CellActor_LoadResources(param0->unk_D8, param0->unk_DC, &Unk_ov84_022411B0[v0]);
     }
 
-    SpriteActor_EnableObject(param0->unk_E0[5], 0);
-    SpriteActor_EnableObject(param0->unk_E0[6], 0);
-    SpriteActor_EnableObject(param0->unk_E0[10], 0);
-    SpriteActor_EnableObject(param0->unk_E0[11], 0);
+    CellActorData_DrawSprite(param0->unk_E0[5], 0);
+    CellActorData_DrawSprite(param0->unk_E0[6], 0);
+    CellActorData_DrawSprite(param0->unk_E0[10], 0);
+    CellActorData_DrawSprite(param0->unk_E0[11], 0);
 
     if ((param0->unk_C4->unk_65 == 4) || (param0->unk_C4->unk_65 == 5)) {
-        SpriteActor_EnableObject(param0->unk_E0[1], 0);
+        CellActorData_DrawSprite(param0->unk_E0[1], 0);
     }
 
     if (param0->unk_424 == 1) {
-        SpriteActor_EnableObject(param0->unk_E0[2], 0);
-        SpriteActor_EnableObject(param0->unk_E0[3], 0);
+        CellActorData_DrawSprite(param0->unk_E0[2], 0);
+        CellActorData_DrawSprite(param0->unk_E0[3], 0);
     }
 
     ov84_02240D3C(param0, 0);
 
-    sub_0200D364(param0->unk_E0[0], param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08);
-    SpriteActor_SetSpritePositionXY(param0->unk_E0[1], ov84_02240C30(param0, param0->unk_C4->unk_64), 97);
-    SpriteActor_SetSpritePositionXY(param0->unk_E0[4], 177, 24 + (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 - 1) * 16);
+    CellActorData_SetAnim(param0->unk_E0[0], param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08);
+    CellActorData_SetPositionXY(param0->unk_E0[1], ov84_02240C30(param0, param0->unk_C4->unk_64), 97);
+    CellActorData_SetPositionXY(param0->unk_E0[4], 177, 24 + (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 - 1) * 16);
 
     {
         VecFx32 v1 = { FX32_ONE, FX32_ONE, FX32_ONE };
-        CellActor_SetAffineScaleEx(param0->unk_E0[0]->unk_00, &v1, 2);
+        CellActor_SetAffineScaleEx(param0->unk_E0[0]->cellActor, &v1, 2);
     }
 }
 
@@ -303,11 +303,11 @@ void ov84_02240A88(UnkStruct_ov84_0223B5A0 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        sub_0200D0F4(param0->unk_E0[v0]);
+        CellActorData_Delete(param0->unk_E0[v0]);
     }
 
-    sub_0200D0B0(param0->unk_D8, param0->unk_DC);
-    sub_0200C8D4(param0->unk_D8);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(param0->unk_D8, param0->unk_DC);
+    SpriteRenderer_Free(param0->unk_D8);
 }
 
 void ov84_02240ABC(UnkStruct_ov84_0223B5A0 *param0)
@@ -315,7 +315,7 @@ void ov84_02240ABC(UnkStruct_ov84_0223B5A0 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        sub_0200D330(param0->unk_E0[v0]);
+        CellActorData_UpdateObject(param0->unk_E0[v0]);
     }
 }
 
@@ -327,8 +327,8 @@ void ov84_02240AD8(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 
 void ov84_02240B34(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 {
-    sub_0200D41C(param0->unk_E0[4], param1);
-    sub_0200D41C(param0->unk_E0[1], param1);
+    CellActorData_SetExplicitPalette(param0->unk_E0[4], param1);
+    CellActorData_SetExplicitPalette(param0->unk_E0[1], param1);
 }
 
 u8 ov84_02240B50(UnkStruct_ov84_0223B5A0 *param0)
@@ -363,7 +363,7 @@ static void ov84_02240B98(UnkStruct_ov84_0223B5A0 *param0)
 {
     VecFx32 v0;
 
-    v0 = *(CellActor_GetPosition(param0->unk_E0[1]->unk_00));
+    v0 = *(CellActor_GetPosition(param0->unk_E0[1]->cellActor));
 
     if (param0->unk_454.unk_01 == 0) {
         v0.x -= param0->unk_454.unk_04[param0->unk_454.unk_03];
@@ -371,12 +371,12 @@ static void ov84_02240B98(UnkStruct_ov84_0223B5A0 *param0)
         v0.x += param0->unk_454.unk_04[param0->unk_454.unk_03];
     }
 
-    CellActor_SetPosition(param0->unk_E0[1]->unk_00, &v0);
+    CellActor_SetPosition(param0->unk_E0[1]->cellActor, &v0);
     param0->unk_454.unk_03++;
 
     if (param0->unk_454.unk_03 == 8) {
         v0.x = ov84_02240C30(param0, param0->unk_478) * FX32_ONE;
-        CellActor_SetPosition(param0->unk_E0[1]->unk_00, &v0);
+        CellActor_SetPosition(param0->unk_E0[1]->cellActor, &v0);
         param0->unk_454.unk_00 = 0;
     }
 }
@@ -391,7 +391,7 @@ static void ov84_02240C48(UnkStruct_ov84_0223B5A0 *param0)
     VecFx32 v0;
     fx32 v1;
 
-    v0 = *(CellActor_GetPosition(param0->unk_E0[1]->unk_00));
+    v0 = *(CellActor_GetPosition(param0->unk_E0[1]->cellActor));
     v1 = ov84_02240C30(param0, param0->unk_478) * FX32_ONE;
 
     if (v1 < v0.x) {
@@ -415,11 +415,11 @@ static void ov84_02240C48(UnkStruct_ov84_0223B5A0 *param0)
 void ov84_02240CF0(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 {
     if (param1 == 0) {
-        SpriteActor_SetSpritePositionXY(param0->unk_E0[8], 220, 156);
-        SpriteActor_SetSpritePositionXY(param0->unk_E0[9], 220, 180);
+        CellActorData_SetPositionXY(param0->unk_E0[8], 220, 156);
+        CellActorData_SetPositionXY(param0->unk_E0[9], 220, 180);
     } else {
-        SpriteActor_SetSpritePositionXY(param0->unk_E0[8], 162, 108);
-        SpriteActor_SetSpritePositionXY(param0->unk_E0[9], 162, 132);
+        CellActorData_SetPositionXY(param0->unk_E0[8], 162, 108);
+        CellActorData_SetPositionXY(param0->unk_E0[9], 162, 132);
     }
 
     ov84_02240D3C(param0, 1);
@@ -427,8 +427,8 @@ void ov84_02240CF0(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 
 void ov84_02240D3C(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 {
-    SpriteActor_EnableObject(param0->unk_E0[8], param1);
-    SpriteActor_EnableObject(param0->unk_E0[9], param1);
+    CellActorData_DrawSprite(param0->unk_E0[8], param1);
+    CellActorData_DrawSprite(param0->unk_E0[9], param1);
 }
 
 void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
@@ -437,8 +437,8 @@ void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
     u16 v1;
     u16 v2;
 
-    SpriteActor_EnableObject(param0->unk_E0[10], param2);
-    SpriteActor_EnableObject(param0->unk_E0[11], param2);
+    CellActorData_DrawSprite(param0->unk_E0[10], param2);
+    CellActorData_DrawSprite(param0->unk_E0[11], param2);
 
     if (param2 == 0) {
         return;
@@ -449,26 +449,26 @@ void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
     v2 = MoveTable_LoadParam(v0, MOVEATTRIBUTE_CLASS);
 
     sub_0200D948(param0->unk_D8, param0->unk_DC, sub_0207C944(), sub_0207C908(v1), 1, 49409);
-    sub_0200D41C(param0->unk_E0[10], sub_0207C92C(v1) + 6);
+    CellActorData_SetExplicitPalette(param0->unk_E0[10], sub_0207C92C(v1) + 6);
     sub_0200D948(param0->unk_D8, param0->unk_DC, sub_0207CAC0(), sub_0207CA90(v2), 1, 49410);
-    sub_0200D41C(param0->unk_E0[11], sub_0207CAA8(v2) + 6);
+    CellActorData_SetExplicitPalette(param0->unk_E0[11], sub_0207CAA8(v2) + 6);
 }
 
 void ov84_02240E24(UnkStruct_ov84_0223B5A0 *param0, s16 param1, s16 param2)
 {
-    SpriteActor_EnableObject(param0->unk_E0[6], 1);
-    SpriteActor_SetSpritePositionXY(param0->unk_E0[6], param1, param2);
-    sub_0200D3CC(param0->unk_E0[6], 0);
-    sub_0200D364(param0->unk_E0[6], 0);
+    CellActorData_DrawSprite(param0->unk_E0[6], 1);
+    CellActorData_SetPositionXY(param0->unk_E0[6], param1, param2);
+    CellActorData_SetAnimFrame(param0->unk_E0[6], 0);
+    CellActorData_SetAnim(param0->unk_E0[6], 0);
 }
 
 void ov84_02240E5C(UnkStruct_ov84_0223B5A0 *param0)
 {
-    if (sub_0200D408(param0->unk_E0[6]) == 1) {
-        sub_0200D34C(param0->unk_E0[6], FX32_ONE);
+    if (CellActorData_GetDrawFlag(param0->unk_E0[6]) == 1) {
+        CellActorData_UpdateNFrames(param0->unk_E0[6], FX32_ONE);
 
-        if (sub_0200D3E0(param0->unk_E0[6]) == 2) {
-            SpriteActor_EnableObject(param0->unk_E0[6], 0);
+        if (CellActorData_GetAnimFrame(param0->unk_E0[6]) == 2) {
+            CellActorData_DrawSprite(param0->unk_E0[6], 0);
         }
     }
 }

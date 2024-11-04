@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
 
@@ -22,6 +21,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -123,7 +123,7 @@ typedef struct UnkStruct_ov7_0224BEFC_t {
     BgConfig *unk_14;
     u32 unk_18;
     CellActorCollection *unk_1C;
-    UnkStruct_0200C738 unk_20;
+    GF_G2dRenderer unk_20;
     MessageLoader *unk_1AC;
     u32 unk_1B0;
     u32 unk_1B4;

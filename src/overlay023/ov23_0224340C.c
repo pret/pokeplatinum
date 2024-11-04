@@ -38,6 +38,7 @@
 #include "map_object_move.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -115,7 +116,7 @@ typedef struct {
     SysTask *unk_20[8];
     FieldSystem *fieldSystem;
     CellActorCollection *unk_44;
-    UnkStruct_0200C738 unk_48;
+    GF_G2dRenderer unk_48;
     SpriteResourceCollection *unk_1D4[2][4];
     SpriteResource *unk_1F4[2][4];
     CellActorResourceData unk_214;

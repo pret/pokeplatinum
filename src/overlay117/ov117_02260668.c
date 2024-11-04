@@ -39,6 +39,7 @@
 #include "palette.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -47,7 +48,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -217,17 +217,17 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     sub_0201E450(4);
     ov117_02260EC0(v0);
 
-    v0->unk_24 = sub_0200C6E4(110);
+    v0->unk_24 = SpriteRenderer_Create(110);
 
-    sub_0200C73C(v0->unk_24, &Unk_ov117_022669A8, &Unk_ov117_0226697C, (16 + 16));
+    SpriteRenderer_CreateOamCharPlttManagers(v0->unk_24, &Unk_ov117_022669A8, &Unk_ov117_0226697C, (16 + 16));
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_28 = sub_0200C704(v0->unk_24);
+    v0->unk_28 = SpriteRenderer_CreateGfxHandler(v0->unk_24);
 
-    sub_0200C7C0(v0->unk_24, v0->unk_28, (96 + 128));
-    sub_0200CB30(v0->unk_24, v0->unk_28, &Unk_ov117_02266990);
-    sub_0200964C(sub_0200C738(v0->unk_24), 0, ((192 + 160) << FX32_SHIFT));
+    SpriteRenderer_CreateCellActorList(v0->unk_24, v0->unk_28, (96 + 128));
+    SpriteRenderer_InitGfxResourceList(v0->unk_24, v0->unk_28, &Unk_ov117_02266990);
+    sub_0200964C(SpriteRenderer_GetG2dRenderer(v0->unk_24), 0, ((192 + 160) << FX32_SHIFT));
     ov117_02261574(v0);
 
     v0->unk_80 = MessageLoader_Init(0, 26, 9, 110);
@@ -460,8 +460,8 @@ int ov117_02260C10(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_2C, 6);
     Bg_FreeTilemapBuffer(v0->unk_2C, 7);
     sub_020127BC(v0->unk_90);
-    sub_0200D0B0(v0->unk_24, v0->unk_28);
-    sub_0200C8D4(v0->unk_24);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(v0->unk_24, v0->unk_28);
+    SpriteRenderer_Free(v0->unk_24);
     VRAMTransferManager_Destroy();
     PaletteData_FreeBuffer(v0->unk_8C, 0);
     PaletteData_FreeBuffer(v0->unk_8C, 1);
@@ -627,7 +627,7 @@ static void ov117_02260F7C(SysTask *param0, void *param1)
         sub_020146C0();
     }
 
-    sub_0200C7EC(v0->unk_28);
+    SpriteGfxHandler_UpdateCellActorCollection(v0->unk_28);
     sub_0200C808();
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     sub_02038A1C(110, v0->unk_2C);
@@ -974,7 +974,7 @@ static void ov117_0226168C(UnkStruct_ov117_02261280 *param0, NARC *param1)
     Strbuf *v1, *v2;
     int v3;
 
-    SpriteRenderer_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_80, 2);
     v0 = 6 + ((30 - Font_CalcStrbufWidth(0, v1, 0)) / 2);
@@ -994,16 +994,16 @@ static void ov117_0226168C(UnkStruct_ov117_02261280 *param0, NARC *param1)
 
     ov117_02266150(param0);
 
-    SpriteRenderer_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10004);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10004);
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 24, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 26, 0, 10002);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 25, 0, 10002);
     param0->unk_15A8.unk_00 = ov117_02266130(param0);
 
-    sub_0200CD7C(param0->unk_8C, 2, param0->unk_24, param0->unk_28, 171, 20, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
-    sub_0200CBDC(param0->unk_24, param0->unk_28, 171, 21, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
-    sub_0200CE0C(param0->unk_24, param0->unk_28, 171, 22, 0, 10001);
-    sub_0200CE3C(param0->unk_24, param0->unk_28, 171, 23, 0, 10001);
+    SpriteRenderer_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, 171, 20, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
+    SpriteRenderer_LoadCharResObj(param0->unk_24, param0->unk_28, 171, 21, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
+    SpriteRenderer_LoadCellResObj(param0->unk_24, param0->unk_28, 171, 22, 0, 10001);
+    SpriteRenderer_LoadAnimResObj(param0->unk_24, param0->unk_28, 171, 23, 0, 10001);
     param0->unk_174C.unk_00 = ov117_02266244(param0);
 }
 
@@ -1024,7 +1024,7 @@ static void ov117_022618E8(UnkStruct_ov117_02261280 *param0)
 
 static void ov117_02261940(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadPalette(param0->unk_8C, 3, param0->unk_24, param0->unk_28, param1, 23, 0, 9, NNS_G2D_VRAM_TYPE_2DSUB, 10006);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_8C, 3, param0->unk_24, param0->unk_28, param1, 23, 0, 9, NNS_G2D_VRAM_TYPE_2DSUB, 10006);
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 20, 0, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 22, 0, 10004);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 21, 0, 10004);

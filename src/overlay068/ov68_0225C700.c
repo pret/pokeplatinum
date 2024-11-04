@@ -6,7 +6,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02030EC4_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay022/struct_ov22_022559F8.h"
@@ -34,6 +33,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -110,7 +110,7 @@ typedef struct {
 typedef struct {
     BgConfig *unk_00;
     CellActorCollection *unk_04;
-    UnkStruct_0200C738 unk_08;
+    GF_G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
     NARC *unk_1A4;
 } UnkStruct_ov68_0225C91C;

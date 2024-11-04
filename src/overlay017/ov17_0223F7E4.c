@@ -34,13 +34,13 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_0201E86C.h"
 #include "unk_02094EDC.h"
@@ -987,7 +987,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     v0.unk_00 = param0->unk_3C;
     v0.unk_04 = &v1;
     v0.unk_08 = sub_0200D9B0(v6);
-    v0.unk_0C = sub_0200D04C(v6, param6);
+    v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.unk_04;
     v0.unk_18 = param7;
@@ -1181,7 +1181,7 @@ static void ov17_0224051C(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_2CC.unk_04_val1.unk_00[v4] != NULL) {
-                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->unk_00, 0, -2);
+                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->cellActor, 0, -2);
             }
         }
 
@@ -1204,7 +1204,7 @@ static void ov17_0224051C(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_2CC.unk_04_val1.unk_00[v4] != NULL) {
-                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->unk_00, 0, 1);
+                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->cellActor, 0, 1);
             }
         }
 
@@ -1293,11 +1293,11 @@ static void ov17_02240658(SysTask *param0, void *param1)
             sub_020128C4(v0->unk_40[v6].unk_00, v2, v3 + -2);
 
             if (v8 != 0) {
-                sub_0200D5AC(v0->unk_118[v7]->unk_00, 0, -2);
+                sub_0200D5AC(v0->unk_118[v7]->cellActor, 0, -2);
 
                 for (v10 = 0; v10 < 6; v10++) {
                     if (v0->unk_12C[v11][v10] != NULL) {
-                        sub_0200D5AC(v0->unk_12C[v11][v10]->unk_00, 0, -2);
+                        sub_0200D5AC(v0->unk_12C[v11][v10]->cellActor, 0, -2);
                     }
                 }
             }
@@ -1328,11 +1328,11 @@ static void ov17_02240658(SysTask *param0, void *param1)
             sub_020128C4(v0->unk_40[v6].unk_00, v2, v3 + 1);
 
             if (v8 != 0) {
-                sub_0200D5AC(v0->unk_118[v7]->unk_00, 0, 1);
+                sub_0200D5AC(v0->unk_118[v7]->cellActor, 0, 1);
 
                 for (v10 = 0; v10 < 6; v10++) {
                     if (v0->unk_12C[v11][v10] != NULL) {
-                        sub_0200D5AC(v0->unk_12C[v11][v10]->unk_00, 0, 1);
+                        sub_0200D5AC(v0->unk_12C[v11][v10]->cellActor, 0, 1);
                     }
                 }
             }

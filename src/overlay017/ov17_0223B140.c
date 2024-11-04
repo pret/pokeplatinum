@@ -37,6 +37,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -44,7 +45,6 @@
 #include "unk_020041CC.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -189,16 +189,16 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     sub_0201E450(4);
     Font_InitManager(FONT_SUBSCREEN, 21);
 
-    v0->unk_0C.unk_18 = sub_0200C6E4(21);
-    sub_0200C73C(v0->unk_0C.unk_18, &Unk_ov17_02252DC8, &Unk_ov17_02252D9C, (16 + 16));
+    v0->unk_0C.unk_18 = SpriteRenderer_Create(21);
+    SpriteRenderer_CreateOamCharPlttManagers(v0->unk_0C.unk_18, &Unk_ov17_02252DC8, &Unk_ov17_02252D9C, (16 + 16));
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_0C.unk_1C = sub_0200C704(v0->unk_0C.unk_18);
+    v0->unk_0C.unk_1C = SpriteRenderer_CreateGfxHandler(v0->unk_0C.unk_18);
 
-    sub_0200C7C0(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, (64 + 64));
-    sub_0200CB30(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, &Unk_ov17_02252DB0);
-    sub_0200964C(sub_0200C738(v0->unk_0C.unk_18), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteRenderer_CreateCellActorList(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, (64 + 64));
+    SpriteRenderer_InitGfxResourceList(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, &Unk_ov17_02252DB0);
+    sub_0200964C(SpriteRenderer_GetG2dRenderer(v0->unk_0C.unk_18), 0, ((192 + 80) << FX32_SHIFT));
 
     v0->unk_0C.unk_04 = sub_0200762C(21);
     ov17_0223B884();
@@ -342,8 +342,8 @@ int ov17_0223B580(OverlayManager *param0, int *param1)
     ov17_0223F864(v0->unk_0C.unk_24);
     ov17_0223F960(v0->unk_7E4);
 
-    sub_0200D0B0(v0->unk_0C.unk_18, v0->unk_0C.unk_1C);
-    sub_0200C8D4(v0->unk_0C.unk_18);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(v0->unk_0C.unk_18, v0->unk_0C.unk_1C);
+    SpriteRenderer_Free(v0->unk_0C.unk_18);
     VRAMTransferManager_Destroy();
 
     ov17_022416E4(&v0->unk_0C);
@@ -404,7 +404,7 @@ static void ov17_0223B6F0(SysTask *param0, void *param1)
     if (v0->unk_7EC == 1) {
         sub_02007768(v0->unk_0C.unk_04);
         ov11_0221F8F0();
-        sub_0200C7EC(v0->unk_0C.unk_1C);
+        SpriteGfxHandler_UpdateCellActorCollection(v0->unk_0C.unk_1C);
         sub_0200C808();
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
@@ -558,8 +558,8 @@ static void ov17_0223B8C4(UnkStruct_ov17_02246F24 *param0)
 
 static void ov17_0223B8F8(UnkStruct_ov17_02246F24 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadPalette(param0->unk_0C.unk_50, 2, param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1, 0, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
-    SpriteRenderer_LoadPalette(param0->unk_0C.unk_50, 2, param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1, 9, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33005);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_0C.unk_50, 2, param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1, 0, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_0C.unk_50, 2, param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1, 9, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33005);
 
     ov17_02243040(param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1);
     ov17_02242FA4(param0);
@@ -593,8 +593,8 @@ static void ov17_0223B9A4(UnkStruct_ov17_02246F24 *param0)
 
 static void ov17_0223BA10(UnkStruct_ov17_02246F24 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadPalette(param0->unk_0C.unk_50, 3, param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1, 4, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 33007);
-    SpriteRenderer_LoadPalette(param0->unk_0C.unk_50, 3, param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1, 9, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33008);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_0C.unk_50, 3, param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1, 4, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 33007);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_0C.unk_50, 3, param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1, 9, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33008);
 
     ov17_0224131C(param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1);
     ov17_02241270(param0->unk_0C.unk_18, param0->unk_0C.unk_1C, param1);

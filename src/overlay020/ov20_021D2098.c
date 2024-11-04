@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_020998EC_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay020/ov20_021D0D80.h"
@@ -26,6 +25,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite_renderer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020093B4.h"
@@ -41,7 +41,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     const UnkStruct_020998EC *unk_1C;
     BgConfig *unk_20;
     CellActorCollection *unk_24;
-    UnkStruct_0200C738 unk_28;
+    GF_G2dRenderer unk_28;
     NNSG2dImageProxy unk_1B4[2];
     NNSG2dImagePaletteProxy unk_1FC[2];
     NNSG2dCellDataBank *unk_224[2];

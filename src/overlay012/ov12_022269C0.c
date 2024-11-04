@@ -13,9 +13,9 @@
 
 #include "cell_actor.h"
 #include "heap.h"
+#include "sprite_renderer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200C6E4.h"
 
 typedef struct {
     u8 unk_00;
@@ -134,20 +134,20 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        SpriteActor_UpdateObject(v0->unk_14[0]->unk_00);
-        SpriteActor_UpdateObject(v0->unk_14[1]->unk_00);
-        SpriteActor_UpdateObject(v0->unk_14[2]->unk_00);
+        CellActor_UpdateObject(v0->unk_14[0]->cellActor);
+        CellActor_UpdateObject(v0->unk_14[1]->cellActor);
+        CellActor_UpdateObject(v0->unk_14[2]->cellActor);
 
-        sub_0200D5AC(v0->unk_14[0]->unk_00, 1, 0);
-        sub_0200D5AC(v0->unk_14[1]->unk_00, -1, 0);
-        sub_0200D5AC(v0->unk_14[2]->unk_00, 1, 1);
+        sub_0200D5AC(v0->unk_14[0]->cellActor, 1, 0);
+        sub_0200D5AC(v0->unk_14[1]->cellActor, -1, 0);
+        sub_0200D5AC(v0->unk_14[2]->cellActor, 1, 1);
 
-        sub_0200C7EC(v0->unk_0C);
+        SpriteGfxHandler_UpdateCellActorCollection(v0->unk_0C);
         break;
     case 1: {
         UnkStruct_ov12_0221FCDC *v1 = v0->unk_04;
 
-        sub_0200D0F4(v0->unk_10);
+        CellActorData_Delete(v0->unk_10);
         Heap_FreeToHeap(v0);
         ov12_02220220(v1, param0);
     } break;
@@ -176,7 +176,7 @@ void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, Spri
         int v2;
 
         for (v2 = 1; v2 < 3; v2++) {
-            v0->unk_14[v2] = SpriteActor_LoadResources(v0->unk_08, v0->unk_0C, &v1);
+            v0->unk_14[v2] = CellActor_LoadResources(v0->unk_08, v0->unk_0C, &v1);
         }
     }
 

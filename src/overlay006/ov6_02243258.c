@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F0EB0.h"
@@ -21,6 +20,7 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -64,7 +64,7 @@ typedef struct {
     NNSG2dCharacterData *unk_68;
     NNSG2dPaletteData *unk_6C;
     CellActorCollection *unk_70;
-    UnkStruct_0200C738 unk_74;
+    GF_G2dRenderer unk_74;
     SpriteResourceCollection *unk_200;
     SpriteResourceCollection *unk_204;
     SpriteResourceCollection *unk_208;
@@ -151,7 +151,7 @@ typedef struct {
     s8 unk_06;
     s8 unk_07;
     CellActorCollection *unk_08;
-    UnkStruct_0200C738 unk_0C;
+    GF_G2dRenderer unk_0C;
     SpriteResourceCollection *unk_198;
     SpriteResourceCollection *unk_19C;
     SpriteResourceCollection *unk_1A0;

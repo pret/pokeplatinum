@@ -33,6 +33,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -42,7 +43,6 @@
 #include "unk_02005474.h"
 #include "unk_0200A328.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_0202C9F4.h"
@@ -822,7 +822,7 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
     ListMenu_GetListAndCursorPos(param0->unk_78, NULL, &v2);
 
     if (v1 != v2) {
-        SpriteActor_SetPositionXY(param0->unk_25C[2], (176 - 4), 24 + v2 * 16);
+        CellActor_SetPositionXY(param0->unk_25C[2], (176 - 4), 24 + v2 * 16);
     }
 
     switch (v0) {
@@ -1481,11 +1481,11 @@ static void ov7_0224EB14(UnkStruct_ov7_0224D008 *param0)
 static void ov7_0224EB38(UnkStruct_ov7_0224D008 *param0, u8 param1)
 {
     if (param1 == 0) {
-        SpriteActor_SetPositionXY(param0->unk_25C[0], 177, 8);
-        SpriteActor_SetPositionXY(param0->unk_25C[1], 177, 132);
+        CellActor_SetPositionXY(param0->unk_25C[0], 177, 8);
+        CellActor_SetPositionXY(param0->unk_25C[1], 177, 132);
     } else {
-        SpriteActor_SetPositionXY(param0->unk_25C[0], 162, 108);
-        SpriteActor_SetPositionXY(param0->unk_25C[1], 162, 132);
+        CellActor_SetPositionXY(param0->unk_25C[0], 162, 108);
+        CellActor_SetPositionXY(param0->unk_25C[1], 162, 132);
     }
 }
 
@@ -1511,7 +1511,7 @@ static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
 
 static void ov7_0224EC10(UnkStruct_ov7_0224D008 *param0, u8 param1)
 {
-    sub_0200D414(param0->unk_25C[2], param1);
+    thunk_CellActor_SetExplicitPalette(param0->unk_25C[2], param1);
 }
 
 static void ov7_0224EC20(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)

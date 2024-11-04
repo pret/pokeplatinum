@@ -17,8 +17,8 @@
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 
 typedef struct {
     fx32 unk_00;
@@ -919,7 +919,7 @@ static void ov117_022638D8(UnkStruct_ov117_02261280 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
 
-    SpriteRenderer_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, v0, 58, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10005);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_8C, 2, param0->unk_24, param0->unk_28, v0, 58, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10005);
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 55, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 57, 0, 10003);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 56, 0, 10003);
@@ -940,10 +940,10 @@ static CellActorData *ov117_02263A00(UnkStruct_ov117_02261280 *param0)
     SpriteTemplate v1;
 
     v1 = Unk_ov117_02266B38;
-    v0 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &v1);
+    v0 = CellActor_LoadResources(param0->unk_24, param0->unk_28, &v1);
 
-    SpriteActor_EnableObject(v0, 0);
-    SpriteActor_UpdateObject(v0->unk_00);
+    CellActorData_DrawSprite(v0, 0);
+    CellActor_UpdateObject(v0->cellActor);
 
     return v0;
 }
@@ -959,11 +959,11 @@ static void ov117_02263A6C(UnkStruct_ov117_022626B0 *param0, CellActorData *para
     }
 
     sub_0200D500(param1, param0->unk_21C, (param0->unk_230 >> FX32_SHIFT) + Unk_ov117_02266B05[param0->unk_270].unk_02, ((192 + 160) << FX32_SHIFT));
-    sub_0200D364(param1, v0);
-    SpriteActor_UpdateObject(param1->unk_00);
+    CellActorData_SetAnim(param1, v0);
+    CellActor_UpdateObject(param1->cellActor);
 }
 
 static void ov117_02263AE4(CellActorData *param0)
 {
-    sub_0200D0F4(param0);
+    CellActorData_Delete(param0);
 }

@@ -6,8 +6,8 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "gx_layers.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
 
 void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0);
@@ -21,8 +21,8 @@ void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     VRAMTransferManager_New(32, param0->unk_04);
 
-    param0->unk_D8 = sub_0200C6E4(param0->unk_04);
-    param0->unk_DC = sub_0200C704(param0->unk_D8);
+    param0->unk_D8 = SpriteRenderer_Create(param0->unk_04);
+    param0->unk_DC = SpriteRenderer_CreateGfxHandler(param0->unk_D8);
 
     {
         UnkStruct_ov104_0224133C v0 = {
@@ -43,8 +43,8 @@ void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0)
             GX_OBJVRAMMODE_CHAR_1D_32K,
         };
 
-        sub_0200C73C(param0->unk_D8, &v0, &v1, 32);
-        sub_0200C7C0(param0->unk_D8, param0->unk_DC, (1 + 1 + 1 + 5 + 20));
+        SpriteRenderer_CreateOamCharPlttManagers(param0->unk_D8, &v0, &v1, 32);
+        SpriteRenderer_CreateCellActorList(param0->unk_D8, param0->unk_DC, (1 + 1 + 1 + 5 + 20));
     }
 
     {
@@ -58,20 +58,20 @@ void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0)
             "data/tmapn_celact.cldat"
         };
 
-        LoadSpriteResourceData(param0->unk_D8, param0->unk_DC, &v2);
+        SpriteRenderer_LoadSpriteResourceData(param0->unk_D8, param0->unk_DC, &v2);
     }
 }
 
 void ov80_021D2AC0(UnkStruct_ov80_021D2A08 *param0)
 {
-    sub_0200C8B0(param0->unk_D8, param0->unk_DC);
-    sub_0200C8D4(param0->unk_D8);
+    SpriteRenderer_DeleteGfxHandler(param0->unk_D8, param0->unk_DC);
+    SpriteRenderer_Free(param0->unk_D8);
     VRAMTransferManager_Destroy();
 }
 
 void ov80_021D2AE0(UnkStruct_ov80_021D2A08 *param0)
 {
-    sub_0200C7EC(param0->unk_DC);
+    SpriteGfxHandler_UpdateCellActorCollection(param0->unk_DC);
 }
 
 void ov80_021D2AEC(UnkStruct_ov80_021D2A08 *param0)

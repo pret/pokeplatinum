@@ -20,6 +20,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -27,7 +28,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -118,14 +118,14 @@ void ov17_022477B8(UnkStruct_ov17_02247A48 *param0, int param1, int param2, fx32
     v0 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_022477B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022477B8));
 
-    v0->unk_04 = SpriteActor_LoadResources(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
+    v0->unk_04 = CellActor_LoadResources(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
     sub_0200D500(v0->unk_04, param1, param2, (256 * FX32_ONE));
 
     if (param4 == 1) {
-        sub_0200D364(v0->unk_04, 1);
+        CellActorData_SetAnim(v0->unk_04, 1);
     }
 
-    SpriteActor_UpdateObject(v0->unk_04->unk_00);
+    CellActor_UpdateObject(v0->unk_04->cellActor);
 
     v0->unk_08 = param1 << 8;
     v0->unk_0C = param2 << 8;
@@ -156,7 +156,7 @@ static void ov17_02247840(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_0200D0F4(v0->unk_04);
+        CellActorData_Delete(v0->unk_04);
         (*(v0->unk_00))--;
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);

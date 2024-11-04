@@ -76,6 +76,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -84,7 +85,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
@@ -1325,8 +1325,8 @@ static BOOL ov104_0223066C(UnkStruct_ov104_0222E930 *param0)
         v9 = (*((param0)->unk_1C++));
         v10 = ov104_0223D2FC(v1, v9, v4);
 
-        SpriteActor_SetSpritePositionXY(v10, v5, v6);
-        SpriteActor_EnableObject(v10, v7);
+        CellActorData_SetPositionXY(v10, v5, v6);
+        CellActorData_DrawSprite(v10, v7);
 
         ov104_0223D378(v1, v9, v8);
     }
@@ -1358,7 +1358,7 @@ static BOOL ov104_02230728(UnkStruct_ov104_0222E930 *param0)
     v4 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v4 != NULL);
-    SpriteActor_EnableObject(v4, v3);
+    CellActorData_DrawSprite(v4, v3);
 
     return 0;
 }
@@ -1373,7 +1373,7 @@ static BOOL ov104_02230760(UnkStruct_ov104_0222E930 *param0)
     v3 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v3 != NULL);
-    sub_0200D7CC(v3->unk_00, 1);
+    sub_0200D7CC(v3->cellActor, 1);
 
     return 0;
 }
@@ -1390,9 +1390,9 @@ static BOOL ov104_02230790(UnkStruct_ov104_0222E930 *param0)
     GF_ASSERT(v0 != NULL);
 
     if (v4 == 0) {
-        sub_0200D808(v0->unk_00, GX_OAM_MODE_NORMAL);
+        sub_0200D808(v0->cellActor, GX_OAM_MODE_NORMAL);
     } else {
-        sub_0200D808(v0->unk_00, GX_OAM_MODE_XLU);
+        sub_0200D808(v0->cellActor, GX_OAM_MODE_XLU);
     }
 
     return 0;
@@ -1407,7 +1407,7 @@ static BOOL ov104_022307D8(UnkStruct_ov104_0222E930 *param0)
 
     v2 = ov104_0223D370(v3, v0);
 
-    sub_0200D364(v2, v1);
+    CellActorData_SetAnim(v2, v1);
     ov104_0223D378(v3, v0, 1);
 
     return 0;
@@ -1439,7 +1439,7 @@ static BOOL ov104_02230850(UnkStruct_ov104_0222E930 *param0)
 
     v0 = ov104_0223D370(v1, param0->unk_78[0]);
 
-    if ((ov104_0223D3A4(v1, param0->unk_78[0]) == 0) || (sub_0200D3B8(v0) == 0)) {
+    if ((ov104_0223D3A4(v1, param0->unk_78[0]) == 0) || (CellActorData_IsAnimated(v0) == 0)) {
         return 1;
     }
 

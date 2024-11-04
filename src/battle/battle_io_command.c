@@ -76,8 +76,8 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
 
 typedef void (*UnkFuncPtr_ov16_0226F068)(BattleSystem *, BattlerData *);
@@ -288,7 +288,7 @@ void ov16_0225C104(BattleSystem *param0, BattlerData *param1, int param2)
     }
 
     if (param1->unk_18) {
-        sub_0200D0F4(param1->unk_18);
+        CellActorData_Delete(param1->unk_18);
     }
 
     ov16_022647D8(param1);

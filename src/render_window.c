@@ -25,13 +25,13 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
 #include "unk_0200762C.h"
 #include "unk_0200A328.h"
-#include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
 
 #define SIGNPOST_CONTENT_WIDTH_TILES  6
@@ -775,24 +775,24 @@ static void SysTask_HandlePokemonPreview(SysTask *task, void *data)
     switch (preview->state) {
     case 1:
         ErasePokemonPreviewWindow(preview);
-        sub_0200D0F4(preview->cellActorData);
+        CellActorData_Delete(preview->cellActorData);
         ov5_021D375C(&preview->unk_00);
         SysTask_FinishAndFreeParam(task);
         return;
 
     case 2:
         preview->state = 3;
-        CellActor_SetAnim(preview->cellActorData->unk_00, 1);
+        CellActor_SetAnim(preview->cellActorData->cellActor, 1);
         break;
 
     case 3:
-        if (CellActor_GetAnimFrame(preview->cellActorData->unk_00) == 6) {
+        if (CellActor_GetAnimFrame(preview->cellActorData->cellActor) == 6) {
             preview->state = 0;
         }
         break;
     }
 
-    CellActor_UpdateAnim(preview->cellActorData->unk_00, FX32_ONE);
+    CellActor_UpdateAnim(preview->cellActorData->cellActor, FX32_ONE);
     CellActorCollection_Update(preview->unk_00.unk_00);
 }
 

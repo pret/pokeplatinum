@@ -21,10 +21,10 @@
 #include "inlines.h"
 #include "palette.h"
 #include "screen_scroll_manager.h"
+#include "sprite_renderer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201F834.h"
 
 typedef struct {
@@ -149,7 +149,7 @@ s16 ov12_022258E0(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
 
 u8 ov12_02225950(CellActorData *param0)
 {
-    return sub_0201FAB4(CellActor_GetPaletteProxy(param0->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+    return sub_0201FAB4(CellActor_GetPaletteProxy(param0->cellActor), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
 int ov12_02225964(UnkStruct_ov12_0221FCDC *param0, int param1)
@@ -215,7 +215,7 @@ u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
 
 void ov12_022259DC(UnkStruct_ov12_02225F6C *param0, CellActorData *param1, s16 param2, s16 param3)
 {
-    SpriteActor_SetSpritePositionXY(param1, param2 + param0->unk_00, param3 + param0->unk_02);
+    CellActorData_SetPositionXY(param1, param2 + param0->unk_00, param3 + param0->unk_02);
 }
 
 void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, CellActorData *param1)
@@ -619,7 +619,7 @@ void ov12_0222605C(CellActorData *param0, s16 param1, s16 param2, fx32 param3, i
     }
 
     SpriteActor_GetSpritePositionXY(param0, &v2, &v3);
-    SpriteActor_SetSpritePositionXY(param0, v2, v1 + v0);
+    CellActorData_SetPositionXY(param0, v2, v1 + v0);
 }
 
 BOOL ov12_022260A8(UnkStruct_ov12_02225F6C *param0, CellActorData *param1)
@@ -747,7 +747,7 @@ void ov12_022261C4(UnkStruct_ov12_02226274 *param0, UnkStruct_ov12_02225F6C *par
     param0->unk_98[3] = param11;
 
     for (v0 = 0; v0 < param0->unk_AC; v0++) {
-        SpriteActor_EnableObject(param0->unk_98[v0], 0);
+        CellActorData_DrawSprite(param0->unk_98[v0], 0);
     }
 }
 
@@ -762,7 +762,7 @@ BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
     }
 
     if (param0->unk_A8 <= param0->unk_AA) {
-        SpriteActor_EnableObject(param0->unk_98[param0->unk_AD], 1);
+        CellActorData_DrawSprite(param0->unk_98[param0->unk_AD], 1);
         param0->unk_AD++;
         param0->unk_AA = 0;
     }
@@ -776,13 +776,13 @@ BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
 
         if (v1[v0]) {
             if (param0->unk_AE == 0) {
-                SpriteActor_SetSpritePositionXY(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
+                CellActorData_SetPositionXY(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
             } else {
                 ov12_02225FA4(&param0->unk_04[v0], &v2, &v3);
                 sub_0200D6E8(param0->unk_98[v0], v2, v3);
             }
         } else {
-            SpriteActor_EnableObject(param0->unk_98[v0], 0);
+            CellActorData_DrawSprite(param0->unk_98[v0], 0);
         }
     }
 

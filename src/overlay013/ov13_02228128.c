@@ -10,7 +10,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "unk_0200C6E4.h"
+#include "sprite_renderer.h"
 
 typedef struct {
     u8 unk_00;
@@ -399,7 +399,7 @@ static void ov13_022287A4(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
         for (v1 = 0; v1 < 6; v1++) {
             v0 = param0->unk_310[v1];
 
-            if (sub_0200D408(v0) != 0) {
+            if (CellActorData_GetDrawFlag(v0) != 0) {
                 break;
             }
         }

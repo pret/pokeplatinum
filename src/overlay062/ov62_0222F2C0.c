@@ -25,11 +25,11 @@
 #include "palette.h"
 #include "render_text.h"
 #include "savedata_misc.h"
+#include "sprite_renderer.h"
 #include "sys_task.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -171,8 +171,8 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
 
     NARC_dtor(param0->unk_14.unk_00);
     SysTask_Done(param0->unk_41E8);
-    sub_0200D0B0(param0->unk_14.unk_04, param0->unk_14.unk_08);
-    sub_0200C8D4(param0->unk_14.unk_04);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(param0->unk_14.unk_04, param0->unk_14.unk_08);
+    SpriteRenderer_Free(param0->unk_14.unk_04);
     sub_02039794();
 
     {
@@ -315,7 +315,7 @@ void ov62_0222F834(UnkStruct_0208C06C *param0)
 
 static void ov62_0222F848(UnkStruct_0208C06C *param0)
 {
-    param0->unk_14.unk_04 = sub_0200C6E4(102);
+    param0->unk_14.unk_04 = SpriteRenderer_Create(102);
     {
         const UnkStruct_ov104_0224133C v0 = {
             0,
@@ -332,7 +332,7 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
             128, 0x10000, 0x4000, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K
         };
 
-        sub_0200C73C(param0->unk_14.unk_04, &v0, &v1, 16 + 16);
+        SpriteRenderer_CreateOamCharPlttManagers(param0->unk_14.unk_04, &v0, &v1, 16 + 16);
     }
 
     {
@@ -346,16 +346,16 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
             16,
         };
 
-        param0->unk_14.unk_08 = sub_0200C704(param0->unk_14.unk_04);
+        param0->unk_14.unk_08 = SpriteRenderer_CreateGfxHandler(param0->unk_14.unk_04);
 
-        v2 = sub_0200C7C0(param0->unk_14.unk_04, param0->unk_14.unk_08, 64 + 64 + 64);
+        v2 = SpriteRenderer_CreateCellActorList(param0->unk_14.unk_04, param0->unk_14.unk_08, 64 + 64 + 64);
         GF_ASSERT(v2);
 
-        v2 = sub_0200CB30(param0->unk_14.unk_04, param0->unk_14.unk_08, &v3);
+        v2 = SpriteRenderer_InitGfxResourceList(param0->unk_14.unk_04, param0->unk_14.unk_08, &v3);
         GF_ASSERT(v2);
     }
 
-    sub_0200964C(sub_0200C738(param0->unk_14.unk_04), 0, (256 * FX32_ONE));
+    sub_0200964C(SpriteRenderer_GetG2dRenderer(param0->unk_14.unk_04), 0, (256 * FX32_ONE));
 }
 
 void ov62_0222F8E4(void *param0)

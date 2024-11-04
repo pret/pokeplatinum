@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_020961E8_sub1.h"
 
@@ -15,6 +14,7 @@
 #include "menu.h"
 #include "message.h"
 #include "savedata.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -35,7 +35,7 @@ struct UnkStruct_020961E8_t {
     Strbuf *unk_48;
     int unk_4C;
     CellActorCollection *unk_50;
-    UnkStruct_0200C738 unk_54;
+    GF_G2dRenderer unk_54;
     SpriteResourceCollection *unk_1E0[4];
     SpriteResource *unk_1F0[3][4];
     CellActorResourceData unk_220;

@@ -1138,7 +1138,7 @@ void ov16_0223EF8C(BattleSystem *param0)
     MI_CpuCopy32(PaletteData_GetUnfadedBuffer(param0->unk_28, 0), param0->unk_220, HW_BG_PLTT_SIZE);
 
     v7 = G2_GetOBJCharPtr();
-    v0 = SpriteActor_ImageProxy(param0->unk_17C[1].unk_00->unk_00);
+    v0 = SpriteActor_ImageProxy(param0->unk_17C[1].unk_00->cellActor);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v2 = 20; v2 < 20 + 8; v2++) {
@@ -1169,7 +1169,7 @@ void ov16_0223EF8C(BattleSystem *param0)
     }
 
     v7 = G2_GetOBJCharPtr();
-    v0 = SpriteActor_ImageProxy(param0->unk_17C[0].unk_00->unk_00);
+    v0 = SpriteActor_ImageProxy(param0->unk_17C[0].unk_00->cellActor);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v6 = 0; v6 < 0x40 * 32; v6++) {

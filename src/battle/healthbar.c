@@ -23,13 +23,13 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
 #include "unk_0208C098.h"
 
@@ -519,13 +519,13 @@ void Healthbar_LoadResources(SpriteRenderer *renderer, SpriteGfxHandler *gfxHand
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbarType);
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
-    SpriteRenderer_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
+    SpriteRenderer_LoadPaletteFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
     SpriteRenderer_LoadCellResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[2], TRUE, template->resources[2]);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[3], TRUE, template->resources[3]);
-    SpriteRenderer_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_EFFECTS_PALETTE_RESID);
+    SpriteRenderer_LoadPaletteFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_EFFECTS_PALETTE_RESID);
 
     if (healthbarType == HEALTHBAR_TYPE_SAFARI_ZONE || healthbarType == HEALTHBAR_TYPE_PAL_PARK) {
-        SpriteRenderer_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 81, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_SAFARI_PALETTE_RESID);
+        SpriteRenderer_LoadPaletteFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 81, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_SAFARI_PALETTE_RESID);
     }
 }
 
@@ -535,7 +535,7 @@ static void Healthbar_LoadMainPalette(SpriteRenderer *renderer, SpriteGfxHandler
 
     if (template != NULL) {
         SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, handler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
-        SpriteRenderer_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, handler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
+        SpriteRenderer_LoadPaletteFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, handler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
         SpriteRenderer_LoadCellResObjFromOpenNarc(renderer, handler, narc, template->resources[2], TRUE, template->resources[2]);
         SpriteRenderer_LoadAnimResObjFromOpenNarc(renderer, handler, narc, template->resources[3], TRUE, template->resources[3]);
     }
@@ -544,9 +544,9 @@ static void Healthbar_LoadMainPalette(SpriteRenderer *renderer, SpriteGfxHandler
 CellActorData *Healthbar_LoadCellActor(SpriteRenderer *renderer, SpriteGfxHandler *handler, int type)
 {
     const SpriteTemplate *template = Healthbar_SpriteTemplate(type);
-    CellActorData *data = SpriteActor_LoadResources(renderer, handler, template);
+    CellActorData *data = CellActor_LoadResources(renderer, handler, template);
 
-    SpriteActor_UpdateObject(data->unk_00);
+    CellActor_UpdateObject(data->cellActor);
     return data;
 }
 
@@ -681,7 +681,7 @@ void ov16_02267220(Healthbar *param0)
         return;
     }
 
-    sub_0200D0F4(param0->mainActor);
+    CellActorData_Delete(param0->mainActor);
     param0->mainActor = NULL;
 }
 
@@ -691,7 +691,7 @@ static void ov16_02267244(Healthbar *param0)
         return;
     }
 
-    sub_0200D0F4(param0->arrowActor);
+    CellActorData_Delete(param0->arrowActor);
     param0->arrowActor = NULL;
 }
 
@@ -750,7 +750,7 @@ void ov16_022672C4(Healthbar *param0)
     Healthbar_LoadMainPalette(v1, v2, v4, v3, param0->type);
 
     if (param0->arrowActor != NULL) {
-        SpriteActor_SetPositionXY(param0->arrowActor->unk_00, v0->x - sArrowOffsetX[param0->type], v0->y + 0);
+        CellActor_SetPositionXY(param0->arrowActor->cellActor, v0->x - sArrowOffsetX[param0->type], v0->y + 0);
     }
 
     NARC_dtor(v4);
@@ -781,7 +781,7 @@ void ov16_0226737C(Healthbar *param0)
     param0->numberMode ^= 1;
 
     v2 = G2_GetOBJCharPtr();
-    v1 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
+    v1 = SpriteActor_ImageProxy(param0->mainActor->cellActor);
 
     if (param0->numberMode == 1) {
         v0 = ov16_02268250(70);
@@ -886,7 +886,7 @@ s32 ov16_02267560(Healthbar *param0)
 void ov16_0226757C(Healthbar *param0)
 {
     if (param0->arrowActor != NULL) {
-        CellActor_SetAnimateFlag(param0->arrowActor->unk_00, 1);
+        CellActor_SetAnimateFlag(param0->arrowActor->cellActor, 1);
         Healthbar_EnableArrow(param0, 1);
     }
 
@@ -898,8 +898,8 @@ void ov16_0226757C(Healthbar *param0)
 void ov16_022675AC(Healthbar *param0)
 {
     if (param0->arrowActor != NULL) {
-        CellActor_SetAnimateFlag(param0->arrowActor->unk_00, 0);
-        SpriteActor_SetAnimFrame(param0->arrowActor->unk_00, 0);
+        CellActor_SetAnimateFlag(param0->arrowActor->cellActor, 0);
+        SpriteActor_SetAnimFrame(param0->arrowActor->cellActor, 0);
         Healthbar_EnableArrow(param0, 0);
     }
 
@@ -912,10 +912,10 @@ void ov16_022675D8(Healthbar *param0, int param1)
         return;
     }
 
-    sub_0200D460(param0->mainActor, param1);
+    CellActorData_SetExplicitPriority(param0->mainActor, param1);
 
     if (param0->arrowActor != NULL) {
-        sub_0200D460(param0->arrowActor, param1);
+        CellActorData_SetExplicitPriority(param0->arrowActor, param1);
     }
 }
 
@@ -937,7 +937,7 @@ static void Healthbar_EnableArrow(Healthbar *battleSys, BOOL enable)
         return;
     }
 
-    SpriteActor_EnableObject(battleSys->arrowActor, enable);
+    CellActorData_DrawSprite(battleSys->arrowActor, enable);
 }
 
 void Healthbar_Enable(Healthbar *battleSys, BOOL enable)
@@ -946,7 +946,7 @@ void Healthbar_Enable(Healthbar *battleSys, BOOL enable)
         return;
     }
 
-    SpriteActor_EnableObject(battleSys->mainActor, enable);
+    CellActorData_DrawSprite(battleSys->mainActor, enable);
     Healthbar_EnableArrow(battleSys, enable);
 }
 
@@ -955,9 +955,9 @@ void Healthbar_OffsetPositionXY(Healthbar *healthbar, int x, int y)
     GF_ASSERT(healthbar->mainActor != NULL);
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbar->type);
 
-    SpriteActor_SetPositionXY(healthbar->mainActor->unk_00, template->x + x, template->y + y);
+    CellActor_SetPositionXY(healthbar->mainActor->cellActor, template->x + x, template->y + y);
     if (healthbar->arrowActor != NULL) {
-        SpriteActor_SetPositionXY(healthbar->arrowActor->unk_00,
+        CellActor_SetPositionXY(healthbar->arrowActor->cellActor,
             template->x + x - sArrowOffsetX[healthbar->type],
             template->y + y + 0);
     }
@@ -1055,9 +1055,9 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
     }
 
     // Update positions of the sprites on the screen
-    SpriteActor_SetSpritePositionXY(healthbar->mainActor, x, y);
+    CellActorData_SetPositionXY(healthbar->mainActor, x, y);
     if (healthbar->arrowActor != NULL) {
-        SpriteActor_SetSpritePositionXY(healthbar->arrowActor, x - sArrowOffsetX[healthbar->type], y + 0);
+        CellActorData_SetPositionXY(healthbar->arrowActor, x - sArrowOffsetX[healthbar->type], y + 0);
     }
 
     // If the sprites are now in position, we're done
@@ -1104,7 +1104,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     // copy the window's data into VRAM over the painted healthbar
     {
         void *vram = G2_GetOBJCharPtr();
-        imgProxy = SpriteActor_ImageProxy(healthbar->mainActor->unk_00);
+        imgProxy = SpriteActor_ImageProxy(healthbar->mainActor->cellActor);
         u8 *hiHalf = buf;
         u8 *loHalf = &buf[HEALTHBAR_NAME_BLOCK_COUNT_X * HEALTHBAR_WINDOW_BLOCK_SIZE];
 
@@ -1152,7 +1152,7 @@ static void Healthbar_DrawLevelText(Healthbar *param0)
         void *v5;
 
         v5 = G2_GetOBJCharPtr();
-        v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
+        v0 = SpriteActor_ImageProxy(param0->mainActor->cellActor);
 
         MI_CpuCopy16(v2, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][0].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][0].size);
         MI_CpuCopy16(v1, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][1].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][1].size);
@@ -1177,7 +1177,7 @@ static void Healthbar_DrawLevelNumber(Healthbar *param0)
         u8 *v8, *v9;
 
         v7 = G2_GetOBJCharPtr();
-        v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
+        v2 = SpriteActor_ImageProxy(param0->mainActor->cellActor);
 
         MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][0].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), v1, Unk_ov16_0226F3EC[param0->type][0].size);
         MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), &v1[v3], Unk_ov16_0226F3EC[param0->type][1].size);
@@ -1220,7 +1220,7 @@ static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
         u8 *v3;
 
         v2 = G2_GetOBJCharPtr();
-        v1 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
+        v1 = SpriteActor_ImageProxy(param0->mainActor->cellActor);
         v3 = v0;
 
         MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][0].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][0].size);
@@ -1245,7 +1245,7 @@ static void Healthbar_DrawMaxHP(Healthbar *param0)
         u8 *v3;
 
         v2 = G2_GetOBJCharPtr();
-        v1 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
+        v1 = SpriteActor_ImageProxy(param0->mainActor->cellActor);
         v3 = v0;
 
         MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->type].size);
@@ -1269,7 +1269,7 @@ static void Healthbar_DrawCaughtIcon(Healthbar *param0)
         void *v2;
 
         v2 = G2_GetOBJCharPtr();
-        v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
+        v0 = SpriteActor_ImageProxy(param0->mainActor->cellActor);
 
         MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F38C[param0->type].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F38C[param0->type].size);
     }
@@ -1286,7 +1286,7 @@ static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1)
         void *v2;
 
         v2 = G2_GetOBJCharPtr();
-        v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
+        v0 = SpriteActor_ImageProxy(param0->mainActor->cellActor);
 
         MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F35C[param0->type].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F35C[param0->type].size);
     }
@@ -1320,7 +1320,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
         u8 *v7, *v8;
 
         v6 = G2_GetOBJCharPtr();
-        v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
+        v2 = SpriteActor_ImageProxy(param0->mainActor->cellActor);
         v7 = v1;
         v8 = &v1[13 * 0x20];
 
@@ -1368,7 +1368,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
         u8 *v9, *v10;
 
         v8 = G2_GetOBJCharPtr();
-        v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
+        v2 = SpriteActor_ImageProxy(param0->mainActor->cellActor);
         v9 = v1;
         v10 = &v1[13 * 0x20];
 
@@ -1429,7 +1429,7 @@ static void DrawGauge(Healthbar *param0, u8 param1)
     int v9;
 
     v7 = G2_GetOBJCharPtr();
-    v8 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
+    v8 = SpriteActor_ImageProxy(param0->mainActor->cellActor);
 
     switch (param1) {
     case 0:
@@ -1776,8 +1776,8 @@ static void ov16_02268380(SysTask *param0, void *param1)
 
     switch (v0->unk_08) {
     case 0:
-        v2 = sub_0200D05C(v1, 20007, NNS_G2D_VRAM_TYPE_2DMAIN);
-        sub_0200D41C(v0->unk_00->mainActor, v2);
+        v2 = SpriteGfxHandler_GetPaletteNumberById(v1, 20007, NNS_G2D_VRAM_TYPE_2DMAIN);
+        CellActorData_SetExplicitPalette(v0->unk_00->mainActor, v2);
         v0->unk_09 = v2;
         v0->unk_08++;
     case 1:
@@ -1801,8 +1801,8 @@ static void ov16_02268380(SysTask *param0, void *param1)
         PaletteData_Blend(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
         break;
     default:
-        v2 = sub_0200D05C(v1, 20006, NNS_G2D_VRAM_TYPE_2DMAIN);
-        sub_0200D41C(v0->unk_00->mainActor, v2);
+        v2 = SpriteGfxHandler_GetPaletteNumberById(v1, 20006, NNS_G2D_VRAM_TYPE_2DMAIN);
+        CellActorData_SetExplicitPalette(v0->unk_00->mainActor, v2);
 
         (*(v0->unk_04)) = 1;
 

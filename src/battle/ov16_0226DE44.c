@@ -11,9 +11,9 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
 
 typedef struct UnkStruct_ov16_0226DEEC_t {
@@ -57,7 +57,7 @@ void ov16_0226DE44(SpriteRenderer *param0, SpriteGfxHandler *param1, u32 param2,
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
 
-    SpriteRenderer_LoadPalette(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, v0, 10, 0, NNS_G2D_VRAM_TYPE_2DSUB, param4);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, v0, 12, 0, param6);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, v0, 13, 0, param7);
@@ -89,8 +89,8 @@ UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteRenderer *param0, SpriteGfxHandler 
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov16_0226DEEC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DEEC));
 
-    v0->unk_00 = SpriteActor_LoadResources(param0, param1, &v1);
-    SpriteActor_EnableObject(v0->unk_00, 0);
+    v0->unk_00 = CellActor_LoadResources(param0, param1, &v1);
+    CellActorData_DrawSprite(v0->unk_00, 0);
 
     v0->unk_14 = (192 << FX32_SHIFT);
     v0->unk_04 = SysTask_Start(ov16_0226DFD8, v0, 999);
@@ -100,7 +100,7 @@ UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteRenderer *param0, SpriteGfxHandler 
 
 void ov16_0226DF68(UnkStruct_ov16_0226DEEC *param0)
 {
-    sub_0200D0F4(param0->unk_00);
+    CellActorData_Delete(param0->unk_00);
     SysTask_Done(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
@@ -114,7 +114,7 @@ void ov16_0226DF80(UnkStruct_ov16_0226DEEC *param0, int param1, int param2, fx32
     param0->unk_14 = param3;
 
     sub_0200D500(param0->unk_00, param1, param2, param3);
-    SpriteActor_EnableObject(param0->unk_00, 1);
+    CellActorData_DrawSprite(param0->unk_00, 1);
 }
 
 void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2)
@@ -124,7 +124,7 @@ void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2)
 
 void ov16_0226DFBC(UnkStruct_ov16_0226DEEC *param0)
 {
-    SpriteActor_EnableObject(param0->unk_00, 0);
+    CellActorData_DrawSprite(param0->unk_00, 0);
     ov16_0226E13C(param0);
 }
 
@@ -154,7 +154,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
         }
     }
 
-    if (sub_0200D408(v0->unk_00) == 0) {
+    if (CellActorData_GetDrawFlag(v0->unk_00) == 0) {
         return;
     }
 
@@ -216,7 +216,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
         }
     }
 
-    sub_0200D330(v0->unk_00);
+    CellActorData_UpdateObject(v0->unk_00);
 }
 
 static void ov16_0226E13C(UnkStruct_ov16_0226DEEC *param0)

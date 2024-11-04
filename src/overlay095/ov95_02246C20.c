@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
 
 #include "overlay006/struct_ov6_02246254.h"
@@ -29,6 +28,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -50,7 +50,7 @@ struct UnkStruct_ov95_02247628_t {
     MessageLoader *unk_10;
     Strbuf *unk_14;
     CellActorCollection *unk_18;
-    UnkStruct_0200C738 unk_1C;
+    GF_G2dRenderer unk_1C;
     SysTask *unk_1A8;
     BOOL unk_1AC;
     u16 unk_1B0;

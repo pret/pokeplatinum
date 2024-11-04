@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02009508.h"
-#include "struct_defs/struct_0200C738.h"
-
 #include "field/field_system.h"
 
 #include "bg_window.h"
@@ -16,6 +13,7 @@
 #include "map_object.h"
 #include "player_avatar.h"
 #include "save_player.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
@@ -27,11 +25,11 @@
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_02009508 *unk_04;
+    CellActorResourceDataList *unk_04;
     SpriteResourceCollection *unk_08[4];
     SpriteResourceList *unk_18[2];
     int unk_20[4];
-    UnkStruct_0200C738 unk_30;
+    GF_G2dRenderer unk_30;
 } UnkStruct_0205D094;
 
 typedef struct UnkStruct_0205D3AC_t {
@@ -562,7 +560,7 @@ static CellActor *sub_0205D344(UnkStruct_0205D094 *param0, int param1, VecFx32 *
     memset(&v0, 0, sizeof(CellActorInitParamsEx));
 
     v0.collection = param0->unk_00;
-    v0.resourceData = &param0->unk_04->unk_00[param1];
+    v0.resourceData = &param0->unk_04->resourceDataList[param1];
     v0.position = *param2;
     v0.affineScale = v2;
     v0.priority = param3;

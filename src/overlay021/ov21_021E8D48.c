@@ -6,7 +6,6 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1F90.h"
@@ -31,6 +30,7 @@
 #include "palette.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -71,7 +71,7 @@ typedef struct UnkStruct_ov21_021E8D48_t {
     Window *unk_04;
     PaletteData *unk_08;
     Sprite *unk_0C;
-    UnkStruct_0200C738 unk_10;
+    GF_G2dRenderer unk_10;
     CellActorCollection *unk_19C;
     SpriteResourceCollection *unk_1A0[4];
     UnkStruct_ov21_021D4C0C *unk_1B0;

@@ -25,11 +25,11 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0207070C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -222,7 +222,7 @@ int sub_02083658(GameWindowLayout *param0)
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             sub_020826E0(param0, 29, 1);
-            sub_0200D414(param0->unk_5B0[6], 0);
+            thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], 0);
             return 1;
         }
     }
@@ -371,7 +371,7 @@ static int sub_02083990(void *param0)
 
     Window_EraseMessageBox(&v0->unk_04[34], 1);
     sub_020826E0(v0, 29, 1);
-    sub_0200D414(v0->unk_5B0[6], 0);
+    thunk_CellActor_SetExplicitPalette(v0->unk_5B0[6], 0);
 
     return 1;
 }
@@ -381,7 +381,7 @@ int sub_020839BC(GameWindowLayout *param0)
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
-        sub_0200D414(param0->unk_5B0[6], 0);
+        thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], 0);
         return 1;
     }
 
@@ -427,7 +427,7 @@ int sub_02083AA4(void *param0)
 
     Window_EraseMessageBox(&v0->unk_04[34], 1);
     sub_020826E0(v0, 29, 1);
-    sub_0200D414(v0->unk_5B0[6], 0);
+    thunk_CellActor_SetExplicitPalette(v0->unk_5B0[6], 0);
 
     return 1;
 }
@@ -439,9 +439,9 @@ static void sub_02083AD0(GameWindowLayout *param0, int *param1)
     param0->unk_B0F_6 = 1;
     param0->unk_B0F_0 = param0->unk_B11;
 
-    sub_0200D414(param0->unk_5B0[6], 0);
+    thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], 0);
     sub_0200D50C(param0->unk_5B0[6], &v0, &v1);
-    SpriteActor_SetPositionXY(param0->unk_5B0[7], v0, v1);
+    CellActor_SetPositionXY(param0->unk_5B0[7], v0, v1);
     CellActor_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
     CellActor_SetDrawFlag(param0->unk_5B0[7], 1);
     sub_0207F8F8(param0, param0->unk_B0F_0);
@@ -613,11 +613,11 @@ static void sub_02083FDC(GameWindowLayout *param0, u8 param1, u8 param2)
         v1 += 8;
     }
 
-    SpriteActor_SetPositionXY(param0->unk_704[v0->unk_300[param1]].unk_24, param0->unk_704[v0->unk_300[param1]].unk_16, param0->unk_704[v0->unk_300[param1]].unk_18);
-    SpriteActor_SetPositionXY(param0->unk_5B0[10 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1A, param0->unk_704[v0->unk_300[param1]].unk_1C);
-    SpriteActor_SetPositionXY(param0->unk_5B0[16 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1E, param0->unk_704[v0->unk_300[param1]].unk_20);
-    SpriteActor_SetPositionXY(param0->unk_5B0[22 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1E + 8, param0->unk_704[v0->unk_300[param1]].unk_20);
-    SpriteActor_SetPositionXY(param0->unk_5B0[0 + v0->unk_300[param1]], v1, v2);
+    CellActor_SetPositionXY(param0->unk_704[v0->unk_300[param1]].unk_24, param0->unk_704[v0->unk_300[param1]].unk_16, param0->unk_704[v0->unk_300[param1]].unk_18);
+    CellActor_SetPositionXY(param0->unk_5B0[10 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1A, param0->unk_704[v0->unk_300[param1]].unk_1C);
+    CellActor_SetPositionXY(param0->unk_5B0[16 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1E, param0->unk_704[v0->unk_300[param1]].unk_20);
+    CellActor_SetPositionXY(param0->unk_5B0[22 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1E + 8, param0->unk_704[v0->unk_300[param1]].unk_20);
+    CellActor_SetPositionXY(param0->unk_5B0[0 + v0->unk_300[param1]], v1, v2);
 }
 
 static void sub_02084134(GameWindowLayout *param0)
@@ -728,7 +728,7 @@ static void sub_020844B0(GameWindowLayout *param0, int *param1)
 
         sub_02082508(param0, param0->unk_B11);
         sub_020826E0(param0, 34, 1);
-        sub_0200D414(param0->unk_5B0[6], 0);
+        thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], 0);
 
         if (v0 == param0->unk_5A4->unk_32_4 - 1) {
             sub_0207FD68(param0, 6);
@@ -765,7 +765,7 @@ int sub_020845A8(GameWindowLayout *param0)
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 34, 1);
-        sub_0200D414(param0->unk_5B0[6], 0);
+        thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], 0);
         return 1;
     }
 
@@ -799,7 +799,7 @@ static void sub_020845E8(GameWindowLayout *param0, int *param1)
     Window_EraseMessageBox(&param0->unk_04[33], 1);
     sub_0208337C(param0);
     sub_020826E0(param0, 29, 1);
-    sub_0200D414(param0->unk_5B0[6], 0);
+    thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], 0);
 
     *param1 = 1;
 }
@@ -1018,9 +1018,9 @@ static int sub_02084A18(GameWindowLayout *param0)
         param0->unk_B0F_6 = 1;
         param0->unk_B0F_0 = param0->unk_B11;
 
-        sub_0200D414(param0->unk_5B0[6], 0);
+        thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], 0);
         sub_0200D50C(param0->unk_5B0[6], &v0, &v1);
-        SpriteActor_SetPositionXY(param0->unk_5B0[7], v0, v1);
+        CellActor_SetPositionXY(param0->unk_5B0[7], v0, v1);
         CellActor_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
         CellActor_SetDrawFlag(param0->unk_5B0[7], 1);
         sub_0207F8F8(param0, param0->unk_B0F_0);
@@ -1036,7 +1036,7 @@ int sub_02084B34(GameWindowLayout *param0)
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
-        sub_0200D414(param0->unk_5B0[6], 0);
+        thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], 0);
         return 1;
     }
 

@@ -16,8 +16,8 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
-#include "unk_0200C6E4.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -145,8 +145,8 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
         v1 = sub_0201E530();
     }
 
-    sub_0200D0B0(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);
-    sub_0200C8D4(v0->unk_2C0.unk_04);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);
+    SpriteRenderer_Free(v0->unk_2C0.unk_04);
     sub_02024034(v0->unk_2C0.unk_14);
     OverlayManager_FreeData(param0);
     Heap_Destroy(101);

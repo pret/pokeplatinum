@@ -13,8 +13,8 @@
 
 #include "bg_window.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
 
 typedef struct {

@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C924.h"
@@ -26,6 +25,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "save_player.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -73,7 +73,7 @@ struct UnkStruct_ov56_02256468_t {
     u16 *unk_20;
     NNSG2dScreenData *unk_24;
     CellActorCollection *unk_28;
-    UnkStruct_0200C738 unk_2C;
+    GF_G2dRenderer unk_2C;
     SpriteResourceCollection *unk_1B8[4];
     SpriteResource *unk_1C8[4];
     CellActorResourceData unk_1D8;

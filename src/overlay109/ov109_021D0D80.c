@@ -45,6 +45,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -54,7 +55,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -1597,7 +1597,7 @@ static void ov109_021D1C90(UnkStruct_ov109_021D0F70 *param0)
     ov109_021D2CCC(param0);
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
-    sub_0200C7EC(param0->unk_D98);
+    SpriteGfxHandler_UpdateCellActorCollection(param0->unk_D98);
 }
 
 static void ov109_021D1CF0(UnkStruct_ov109_021D0F70 *param0)
@@ -1942,8 +1942,8 @@ static void ov109_021D2368(UnkStruct_ov109_021D0F70 *param0)
             48 + 48, 1024 * 0x40, 512 * 0x20, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
-        param0->unk_D94 = sub_0200C6E4(95);
-        sub_0200C73C(param0->unk_D94, &v0, &v1, 16 + 16);
+        param0->unk_D94 = SpriteRenderer_Create(95);
+        SpriteRenderer_CreateOamCharPlttManagers(param0->unk_D94, &v0, &v1, 16 + 16);
     }
 
     {
@@ -1957,10 +1957,10 @@ static void ov109_021D2368(UnkStruct_ov109_021D0F70 *param0)
             16,
         };
 
-        param0->unk_D98 = sub_0200C704(param0->unk_D94);
-        v2 = sub_0200C7C0(param0->unk_D94, param0->unk_D98, 255);
+        param0->unk_D98 = SpriteRenderer_CreateGfxHandler(param0->unk_D94);
+        v2 = SpriteRenderer_CreateCellActorList(param0->unk_D94, param0->unk_D98, 255);
         GF_ASSERT(v2);
-        v2 = sub_0200CB30(param0->unk_D94, param0->unk_D98, &v3);
+        v2 = SpriteRenderer_InitGfxResourceList(param0->unk_D94, param0->unk_D98, &v3);
         GF_ASSERT(v2);
     }
 }
@@ -1982,7 +1982,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
         v4 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, 95);
 
         SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, v4, 14, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
-        SpriteRenderer_LoadPalette(v2, 2, v0, v1, v4, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
+        SpriteRenderer_LoadPaletteFromOpenNarc(v2, 2, v0, v1, v4, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
         SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, v4, 13, 0, 6);
         SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, v4, 12, 0, 7);
         NARC_dtor(v4);
@@ -2004,13 +2004,13 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
 
 static void ov109_021D24C0(UnkStruct_ov109_021D0F70 *param0)
 {
-    sub_0200D0B0(param0->unk_D94, param0->unk_D98);
-    sub_0200C8D4(param0->unk_D94);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(param0->unk_D94, param0->unk_D98);
+    SpriteRenderer_Free(param0->unk_D94);
 }
 
 static CellActorData *ov109_021D24E0(UnkStruct_ov109_021D0F70 *param0, const SpriteTemplate *param1)
 {
-    CellActorData *v0 = SpriteActor_LoadResources(param0->unk_D94, param0->unk_D98, param1);
+    CellActorData *v0 = CellActor_LoadResources(param0->unk_D94, param0->unk_D98, param1);
     return v0;
 }
 
@@ -3096,15 +3096,15 @@ static void ov109_021D3600(SysTask *param0, void *param1)
             }
         }
 
-        sub_0200D34C(v0->unk_14, FX32_ONE + (FX32_ONE / 2));
+        CellActorData_UpdateNFrames(v0->unk_14, FX32_ONE + (FX32_ONE / 2));
 
-        if (sub_0200D3B8(v0->unk_14) == 0) {
+        if (CellActorData_IsAnimated(v0->unk_14) == 0) {
             v0->unk_00++;
         }
 
         break;
     case 1:
-        sub_0200D0F4(v0->unk_14);
+        CellActorData_Delete(v0->unk_14);
         Heap_FreeToHeap(v0);
         SysTask_Done(param0);
     }
@@ -3134,7 +3134,7 @@ static SysTask *ov109_021D3684(UnkStruct_ov109_021D0F70 *param0)
     v0.resources[5] = SPRITE_RESOURCE_NONE;
 
     v1->unk_14 = ov109_021D24E0(param0, &v0);
-    sub_0200D330(v1->unk_14);
+    CellActorData_UpdateObject(v1->unk_14);
 
     v1->unk_10 = param0;
     {

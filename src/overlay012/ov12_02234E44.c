@@ -13,8 +13,8 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "sys_task_manager.h"
-#include "unk_0200C6E4.h"
 
 typedef struct {
     int unk_00;
@@ -102,9 +102,9 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
 
         if ((v0->unk_00.unk_14 == 0) && (v0->unk_00.unk_16 == 16)) {
             Bg_ClearTilemap(v0->unk_18.unk_14, 2);
-            SpriteActor_EnableObject(v0->unk_34, 0);
-            SpriteActor_EnableObject(v0->unk_38, 0);
-            SpriteActor_EnableObject(v0->unk_3C, 0);
+            CellActorData_DrawSprite(v0->unk_34, 0);
+            CellActorData_DrawSprite(v0->unk_38, 0);
+            CellActorData_DrawSprite(v0->unk_3C, 0);
             v0->unk_18.unk_00++;
         }
 
@@ -128,10 +128,10 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
     Bg_SetOffset(v0->unk_18.unk_14, 2, 0, v0->unk_00.unk_10);
     Bg_SetOffset(v0->unk_18.unk_14, 2, 3, v0->unk_00.unk_12);
 
-    sub_0200D330(v0->unk_34);
-    sub_0200D330(v0->unk_38);
-    sub_0200D330(v0->unk_3C);
-    sub_0200C7EC(v0->unk_18.unk_0C);
+    CellActorData_UpdateObject(v0->unk_34);
+    CellActorData_UpdateObject(v0->unk_38);
+    CellActorData_UpdateObject(v0->unk_3C);
+    SpriteGfxHandler_UpdateCellActorCollection(v0->unk_18.unk_0C);
 }
 
 static void ov12_0223505C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02234E44 *param1)
@@ -158,8 +158,8 @@ static void ov12_0223507C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02234E
         v1 = ov12_02223428(v0->unk_18.unk_04, 2);
         v1 = 2;
 
-        sub_0200D460(v0->unk_34, v1);
-        sub_0200D460(v0->unk_38, v1);
+        CellActorData_SetExplicitPriority(v0->unk_34, v1);
+        CellActorData_SetExplicitPriority(v0->unk_38, v1);
 
         {
             int v2;
@@ -174,24 +174,24 @@ static void ov12_0223507C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02234E
             v2 = ov12_02235254(param0, v3);
 
             if (ov12_0221FDD4(param0) == 1) {
-                SpriteActor_EnableObject(v0->unk_3C, 0);
+                CellActorData_DrawSprite(v0->unk_3C, 0);
                 v1 = ov12_02223428(v0->unk_18.unk_04, 2);
-                sub_0200D460(v0->unk_34, v1);
-                sub_0200D460(v0->unk_38, v1);
+                CellActorData_SetExplicitPriority(v0->unk_34, v1);
+                CellActorData_SetExplicitPriority(v0->unk_38, v1);
             } else {
                 if ((v2 == 0) || (v2 == 1)) {
-                    SpriteActor_EnableObject(v0->unk_3C, 0);
+                    CellActorData_DrawSprite(v0->unk_3C, 0);
                 } else if ((v2 == 4) || (v2 == 3)) {
                     if (v0->unk_00.unk_08 == 0) {
-                        sub_0200D460(v0->unk_3C, v1 + 1);
+                        CellActorData_SetExplicitPriority(v0->unk_3C, v1 + 1);
                     } else {
-                        sub_0200D460(v0->unk_3C, v1 + 1);
+                        CellActorData_SetExplicitPriority(v0->unk_3C, v1 + 1);
                     }
                 } else {
                     if (v0->unk_00.unk_08 == 0) {
-                        sub_0200D460(v0->unk_3C, v1 - 1);
+                        CellActorData_SetExplicitPriority(v0->unk_3C, v1 - 1);
                     } else {
-                        sub_0200D460(v0->unk_3C, v1 - 1);
+                        CellActorData_SetExplicitPriority(v0->unk_3C, v1 - 1);
                     }
                 }
             }

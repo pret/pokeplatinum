@@ -15,7 +15,7 @@
 
 #include "cell_actor.h"
 #include "heap.h"
-#include "unk_0200C6E4.h"
+#include "sprite_renderer.h"
 
 const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
     { 0x19B, 0x0, 0x0, 0x0, 0x0, 0x15, 0xBD },
@@ -68,7 +68,7 @@ UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteRenderer *param0, SpriteGfxHandler 
         v1->unk_00.unk_0C = v2[v3].unk_0C;
         v1->unk_00.unk_10 = v2[v3].unk_10;
         v1->unk_14 = param2[v3];
-        v1->unk_18 = sub_0200CA08(param0, param1, &v4);
+        v1->unk_18 = SpriteRenderer_CreateCellActorFromTemplate(param0, param1, &v4);
 
         CellActor_SetDrawFlag(v1->unk_18, 1);
 
@@ -81,7 +81,7 @@ UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteRenderer *param0, SpriteGfxHandler 
         }
 
         CellActor_UpdateAnim(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
-        SpriteActor_SetPositionXY(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
+        CellActor_SetPositionXY(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
     }
 
     return v0;

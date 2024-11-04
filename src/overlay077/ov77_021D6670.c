@@ -3,13 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "overlay022/struct_ov22_022559F8.h"
 
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -50,7 +49,7 @@ typedef struct {
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
+    GF_G2dRenderer unk_04;
     SpriteResourceCollection *unk_190[4];
     SpriteResource *unk_1A0[4];
     UnkStruct_ov77_021D6ADC unk_1B0[10];

@@ -5,8 +5,8 @@
 
 #include "overlay100/struct_ov100_021D4104.h"
 
+#include "sprite_renderer.h"
 #include "sys_task_manager.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -204,7 +204,7 @@ static void ov100_021D43BC(UnkStruct_ov100_021D4104 *param0)
     }
 
     sub_0200D6E8(param0->unk_00, v0, v0);
-    sub_0200D474(param0->unk_00, param0->unk_14);
+    CellActorData_SetPriority(param0->unk_00, param0->unk_14);
 }
 
 void ov100_021D4414(SysTask *param0, void *param1)
@@ -214,7 +214,7 @@ void ov100_021D4414(SysTask *param0, void *param1)
     Unk_ov100_021D5334[v0->unk_0C](v0);
 
     ov100_021D43BC(v0);
-    sub_0200D33C(v0->unk_00);
+    CellActorData_Update2Frames(v0->unk_00);
 }
 
 void ov100_021D4438(SysTask *param0, void *param1)
@@ -246,5 +246,5 @@ void ov100_021D4438(SysTask *param0, void *param1)
         }
     }
 
-    sub_0200D33C(v0->unk_00);
+    CellActorData_Update2Frames(v0->unk_00);
 }

@@ -63,6 +63,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -73,7 +74,6 @@
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
@@ -10901,7 +10901,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                         v18 = BattleSystem_BattlerData(v2->battleSys, v17);
 
                         if (v18->unk_18) {
-                            sub_0200D0F4(v18->unk_18);
+                            CellActorData_Delete(v18->unk_18);
                             v18->unk_18 = NULL;
                         }
                     }
@@ -12221,23 +12221,23 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     v2 = ov16_0223E018(param0);
     v3 = BattleSystem_PaletteSys(param0);
 
-    sub_0200CBDC(v1, v2, 27, 256, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
-    sub_0200CD7C(v3, 2, v1, v2, 27, 82, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
-    sub_0200CE0C(v1, v2, 27, 257, 1, 20013);
-    sub_0200CE3C(v1, v2, 27, 258, 1, 20013);
+    SpriteRenderer_LoadCharResObj(v1, v2, 27, 256, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
+    SpriteRenderer_LoadPalette(v3, 2, v1, v2, 27, 82, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
+    SpriteRenderer_LoadCellResObj(v1, v2, 27, 257, 1, 20013);
+    SpriteRenderer_LoadAnimResObj(v1, v2, 27, 258, 1, 20013);
 
-    param1->cellActorData[0] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6C4);
+    param1->cellActorData[0] = CellActor_LoadResources(v1, v2, &Unk_ov16_0226E6C4);
 
-    sub_0200D330(param1->cellActorData[0]);
+    CellActorData_UpdateObject(param1->cellActorData[0]);
     sub_0200D888(v1, v2, 19, Pokemon_IconSpriteIndex(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
-    sub_0200CD7C(v3, 2, v1, v2, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 20017);
-    sub_0200CE0C(v1, v2, 19, PokeIcon64KCellsFileIndex(), 0, 20014);
-    sub_0200CE3C(v1, v2, 19, PokeIcon64KAnimationFileIndex(), 0, 20014);
+    SpriteRenderer_LoadPalette(v3, 2, v1, v2, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 20017);
+    SpriteRenderer_LoadCellResObj(v1, v2, 19, PokeIcon64KCellsFileIndex(), 0, 20014);
+    SpriteRenderer_LoadAnimResObj(v1, v2, 19, PokeIcon64KAnimationFileIndex(), 0, 20014);
 
-    param1->cellActorData[1] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6F8);
+    param1->cellActorData[1] = CellActor_LoadResources(v1, v2, &Unk_ov16_0226E6F8);
 
-    CellActor_SetExplicitPaletteOffsetAutoAdjust(param1->cellActorData[1]->unk_00, Pokemon_IconPaletteIndex(param2));
-    sub_0200D330(param1->cellActorData[1]);
+    CellActor_SetExplicitPaletteOffsetAutoAdjust(param1->cellActorData[1]->cellActor, Pokemon_IconPaletteIndex(param2));
+    CellActorData_UpdateObject(param1->cellActorData[1]);
 
     param1->tmpPtr[0] = sub_02012744(1, 5);
 
@@ -12269,7 +12269,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     v12.unk_00 = param1->tmpPtr[0];
     v12.unk_04 = &v9;
     v12.unk_08 = sub_0200D9B0(v2);
-    v12.unk_0C = sub_0200D04C(v2, 20016);
+    v12.unk_0C = SpriteGfxHandler_GetPaletteProxy(v2, 20016);
     v12.unk_10 = NULL;
     v12.unk_14 = v11.unk_04;
     v12.unk_18 = 176;
@@ -12292,8 +12292,8 @@ static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScript
 
     v0 = ov16_0223E018(param0);
 
-    sub_0200D0F4(param1->cellActorData[0]);
-    sub_0200D0F4(param1->cellActorData[1]);
+    CellActorData_Delete(param1->cellActorData[0]);
+    CellActorData_Delete(param1->cellActorData[1]);
     sub_02012870(param1->fontOAM);
     sub_0201EE28(&param1->spriteMgrAlloc);
     SpriteGfxHandler_UnloadCharObjById(v0, 20021);

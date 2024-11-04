@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay077/ov77_021D6670.h"
 #include "overlay077/struct_ov77_021D6734_decl.h"
@@ -12,6 +10,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "gx_layers.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
@@ -26,7 +25,7 @@ void include_data_ov77_021D79B8(void);
 
 typedef struct UnkStruct_ov77_021D5564_t {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
+    GF_G2dRenderer unk_04;
     SpriteResourceCollection *unk_190[4];
     SpriteResource *unk_1A0[11][4];
     CellActor *unk_250[17];

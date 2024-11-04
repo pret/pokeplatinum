@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -22,6 +21,7 @@
 #include "message.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -41,7 +41,7 @@ typedef struct UnkStruct_ov87_021D106C_t {
     BgConfig *unk_10;
     Window unk_14[2];
     CellActorCollection *unk_34;
-    UnkStruct_0200C738 unk_38;
+    GF_G2dRenderer unk_38;
     CellActor *unk_1C4[6];
     void *unk_1DC;
     void *unk_1E0;

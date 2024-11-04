@@ -12,9 +12,9 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -190,8 +190,8 @@ void sub_0208B63C(UnkStruct_0208B878 *param0, int param1)
 
     SpriteGfxHandler_UnloadPlttObjById(v2, 22222 + 1);
     SpriteGfxHandler_UnloadPlttObjById(v2, 22222 + 2);
-    SpriteRenderer_LoadPalette(v3, 2, v1, v2, v0, Unk_020F2FB0[param1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 22222 + 1);
-    SpriteRenderer_LoadPalette(v3, 3, v1, v2, v0, Unk_020F2FB0[param1], 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 22222 + 2);
+    SpriteRenderer_LoadPaletteFromOpenNarc(v3, 2, v1, v2, v0, Unk_020F2FB0[param1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 22222 + 1);
+    SpriteRenderer_LoadPaletteFromOpenNarc(v3, 3, v1, v2, v0, Unk_020F2FB0[param1], 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 22222 + 2);
 }
 
 void sub_0208B6B0(UnkStruct_0208B878 *param0, int param1)
@@ -209,17 +209,17 @@ void sub_0208B6B0(UnkStruct_0208B878 *param0, int param1)
 
     if (param0->unk_10.unk_08 == 1) {
         if (param0->unk_10.unk_0C == 0) {
-            SpriteRenderer_LoadPalette(v3, 2, v1, v2, v0, Unk_020F2FB0[param1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
+            SpriteRenderer_LoadPaletteFromOpenNarc(v3, 2, v1, v2, v0, Unk_020F2FB0[param1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
         } else {
-            SpriteRenderer_LoadPalette(v3, 2, v1, v2, v0, 96, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
+            SpriteRenderer_LoadPaletteFromOpenNarc(v3, 2, v1, v2, v0, 96, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
         }
 
         SpriteRenderer_LoadCharResObjFromOpenNarc(v1, v2, v0, 95, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
     } else {
         if (param0->unk_10.unk_0C == 0) {
-            SpriteRenderer_LoadPalette(v3, 3, v1, v2, v0, Unk_020F2FB0[param1], 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, v4);
+            SpriteRenderer_LoadPaletteFromOpenNarc(v3, 3, v1, v2, v0, Unk_020F2FB0[param1], 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, v4);
         } else {
-            SpriteRenderer_LoadPalette(v3, 3, v1, v2, v0, 96, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, v4);
+            SpriteRenderer_LoadPaletteFromOpenNarc(v3, 3, v1, v2, v0, 96, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, v4);
         }
 
         SpriteRenderer_LoadCharResObjFromOpenNarc(v1, v2, v0, 95, 0, NNS_G2D_VRAM_TYPE_2DSUB, v4);
@@ -258,10 +258,10 @@ void sub_0208B7B4(UnkStruct_0208B878 *param0)
     v1.resources[5] = SPRITE_RESOURCE_NONE;
 
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
-        param0->unk_24[v0].unk_00 = SpriteActor_LoadResources(v2, v3, &v1);
+        param0->unk_24[v0].unk_00 = CellActor_LoadResources(v2, v3, &v1);
 
-        sub_0200D330(param0->unk_24[v0].unk_00);
-        SpriteActor_SetSpritePositionXY(param0->unk_24[v0].unk_00, 256 / 2, 192 / 2);
+        CellActorData_UpdateObject(param0->unk_24[v0].unk_00);
+        CellActorData_SetPositionXY(param0->unk_24[v0].unk_00, 256 / 2, 192 / 2);
     }
 }
 
@@ -273,7 +273,7 @@ void sub_0208B830(UnkStruct_0208B878 *param0)
         SpriteGfxHandler_UnloadCharObjById(param0->unk_00.unk_08, 22222 + param0->unk_10.unk_08);
         SpriteGfxHandler_UnloadCellObjById(param0->unk_00.unk_08, 22222 + param0->unk_10.unk_08);
         SpriteGfxHandler_UnloadAnimObjById(param0->unk_00.unk_08, 22222 + param0->unk_10.unk_08);
-        sub_0200D0F4(param0->unk_24[v0].unk_00);
+        CellActorData_Delete(param0->unk_24[v0].unk_00);
     }
 }
 
@@ -390,7 +390,7 @@ BOOL sub_0208B9E0(UnkStruct_0208B878 *param0, BOOL param1)
         int v0;
 
         for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
-            SpriteActor_EnableObject(param0->unk_24[v0].unk_00, param1);
+            CellActorData_DrawSprite(param0->unk_24[v0].unk_00, param1);
         }
     }
 
@@ -413,7 +413,7 @@ void sub_0208BA30(UnkStruct_0208B878 *param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
-        sub_0200D364(param0->unk_24[v0].unk_00, 1);
+        CellActorData_SetAnim(param0->unk_24[v0].unk_00, 1);
     }
 }
 
@@ -422,6 +422,6 @@ void sub_0208BA54(UnkStruct_0208B878 *param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
-        sub_0200D364(param0->unk_24[v0].unk_00, 0);
+        CellActorData_SetAnim(param0->unk_24[v0].unk_00, 0);
     }
 }

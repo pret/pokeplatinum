@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -34,6 +33,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -82,7 +82,7 @@ typedef struct {
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
+    GF_G2dRenderer unk_04;
 } UnkStruct_ov114_0225CFCC;
 
 typedef struct {

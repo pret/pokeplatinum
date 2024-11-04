@@ -15,12 +15,12 @@
 #include "menu.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_020158A8.h"
 #include "unk_02098FFC.h"
 
@@ -324,7 +324,7 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
     }
 
     ListMenu_GetListAndCursorPos(param0, &v2, &v3);
-    SpriteActor_SetPositionXY(v0->unk_1C0[0], 105, v3 * 16 + 40);
+    CellActor_SetPositionXY(v0->unk_1C0[0], 105, v3 * 16 + 40);
 
     if (v2 == 0) {
         CellActor_SetDrawFlag(v0->unk_1C0[1], 0);
@@ -343,7 +343,7 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
     if (param1 == 0xFF) {
         ov79_021D1D20(v0, NULL);
         Window_CopyToVRAM(&v0->unk_E8[1]);
-        SpriteActor_EnableObject(v0->unk_1FC->unk_04, 0);
+        CellActorData_DrawSprite(v0->unk_1FC->unk_04, 0);
         return;
     }
 
@@ -360,7 +360,7 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
     StringTemplate_Format(v0->unk_30.unk_00, v0->unk_30.unk_04, v0->unk_30.unk_10);
     Text_AddPrinterWithParamsAndColor(&v0->unk_E8[1], FONT_SYSTEM, v0->unk_30.unk_04, 8, 0, TEXT_SPEED_INSTANT, v1, NULL);
     sub_0209933C(v0->unk_1F8, v0->unk_1FC, v0->unk_20->unk_1C[param1].unk_02);
-    SpriteActor_EnableObject(v0->unk_1FC->unk_04, 1);
+    CellActorData_DrawSprite(v0->unk_1FC->unk_04, 1);
 }
 
 void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)

@@ -15,8 +15,8 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "sprite_renderer.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_02014000.h"
 
 void ov17_022413D8(void);
