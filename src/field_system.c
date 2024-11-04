@@ -170,7 +170,7 @@ static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
     RadarChain_Clear(fieldSystem->chain);
 
     fieldSystem->unk_B4 = sub_0209ACBC(HEAP_ID_FIELDMAP);
-    fieldSystem->unk_BC = sub_0209C370(HEAP_ID_FIELDMAP);
+    fieldSystem->battleSubscreenCursorOn = sub_0209C370(HEAP_ID_FIELDMAP);
 
     return fieldSystem;
 }
@@ -184,7 +184,7 @@ static void TeardownFieldSystem(OverlayManager *ovyManager)
     Heap_FreeToHeap(fieldSystem->unk_98);
     RadarChain_Free(fieldSystem->chain);
     sub_0209ACDC(fieldSystem->unk_B4);
-    sub_0209C388(fieldSystem->unk_BC);
+    sub_0209C388(fieldSystem->battleSubscreenCursorOn);
 
     Heap_FreeToHeap(fieldSystem->processManager);
     OverlayManager_FreeData(ovyManager);

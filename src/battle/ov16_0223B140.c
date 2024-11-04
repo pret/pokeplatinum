@@ -736,7 +736,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
 
     v1->pcBoxes = v0->pcBoxes;
     v1->bagCursor = v0->unk_5C;
-    v1->unk_190 = v0->unk_1BC;
+    v1->subscreenCursorOn = v0->unk_1BC;
     v1->poketchData = v0->poketchData;
     v1->unk_10C = v0->unk_9C;
     v1->countSafariBalls = v0->safariBalls;
@@ -1091,7 +1091,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
     param0->unk_1B0 = param1->options;
     param0->unk_1B4 = param1->unk_124;
     param0->unk_5C = param1->bagCursor;
-    param0->unk_1BC = param1->unk_190;
+    param0->unk_1BC = param1->subscreenCursorOn;
     param0->poketchData = param1->poketchData;
     param0->unk_2420 = param1->mapEvolutionMethod;
     param0->unk_9C = param1->unk_10C;

@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_02230BE4_H
 #define POKEPLATINUM_STRUCT_OV104_02230BE4_H
 
-#include "struct_defs/struct_0209C370.h"
-
 #include "field/field_system_decl.h"
 
 #include "bag.h"
@@ -19,7 +17,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    UnkStruct_0209C370 *unk_20;
+    u8 *unk_20;
     u8 unk_24;
     FieldSystem *fieldSystem;
 } UnkStruct_ov104_02230BE4;

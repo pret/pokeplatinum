@@ -18,7 +18,6 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/struct_0209C370.h"
 #include "struct_defs/trainer_data.h"
 
 #include "battle/battle_context.h"
@@ -31,8 +30,8 @@
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "bag.h"
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
+#include "field_battle_data_transfer.h"
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
@@ -83,7 +82,7 @@ struct BattleSystem {
     Options *unk_1B0;
     UnkStruct_02027F8C *unk_1B4;
     void *unk_1B8;
-    UnkStruct_0209C370 *unk_1BC;
+    u8 *unk_1BC;
     UnkStruct_ov10_0221F800 *unk_1C0;
     PokemonAnimationSys *unk_1C4;
     NNSG2dCellTransferState *cellTransferState;

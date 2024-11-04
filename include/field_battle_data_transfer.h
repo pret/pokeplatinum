@@ -2,6 +2,7 @@
 #define POKEPLATINUM_FIELD_BATTLE_DATA_TRANSFER_H
 
 #include "constants/battle.h"
+
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -9,7 +10,6 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0209C370.h"
 #include "struct_defs/trainer_data.h"
 
 #include "field/field_system_decl.h"
@@ -71,8 +71,8 @@ typedef struct FieldBattleDTO {
     u8 unk_18A;
     u8 dummy18B;
     int totalTurnsElapsed;
-    UnkStruct_0209C370 *unk_190;
-    u8 unk_194[4];
+    u8 *subscreenCursorOn;
+    u8 unk_194[MAX_BATTLERS];
     SaveData *saveData;
     u32 unk_19C;
 } FieldBattleDTO;
@@ -86,7 +86,7 @@ void sub_0205213C(FieldBattleDTO *param0, Pokemon *param1, int param2);
 void sub_02052164(FieldBattleDTO *param0, const Party *param1, int param2);
 void sub_02052184(FieldBattleDTO *param0, const TrainerInfo *param1, int param2);
 void sub_020521A4(FieldBattleDTO *param0, const ChatotCry *param1, int param2);
-void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, BagCursor *param5, UnkStruct_0209C370 *param6);
+void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, BagCursor *param5, u8 *param6);
 void sub_02052314(FieldBattleDTO *param0, const FieldSystem *fieldSystem);
 void sub_02052348(FieldBattleDTO *param0, const FieldSystem *fieldSystem, int param2);
 void sub_020524E4(FieldBattleDTO *param0, const FieldSystem *fieldSystem, const Party *param2, const u8 *param3);

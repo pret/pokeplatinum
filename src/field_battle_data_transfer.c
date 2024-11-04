@@ -14,7 +14,6 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0205EC34.h"
-#include "struct_defs/struct_0209C370.h"
 #include "struct_defs/trainer_data.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -105,7 +104,7 @@ FieldBattleDTO *sub_02051D8C(int param0, u32 param1)
     v1->options = Options_New(param0);
     v1->unk_10C = sub_0206D140(param0);
     v1->bagCursor = NULL;
-    v1->unk_190 = NULL;
+    v1->subscreenCursorOn = NULL;
     v1->countSafariBalls = 0;
     v1->unk_104 = NULL;
     v1->records = NULL;
@@ -185,7 +184,7 @@ FieldBattleDTO *sub_02051F4C(int param0, const FieldSystem *fieldSystem)
 
     v4->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
     v4->bagCursor = fieldSystem->unk_98;
-    v4->unk_190 = NULL;
+    v4->subscreenCursorOn = NULL;
     v4->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v4->journal = fieldSystem->journal;
     v4->mapHeaderID = fieldSystem->location->mapId;
@@ -247,7 +246,7 @@ void sub_020521A4(FieldBattleDTO *param0, const ChatotCry *param1, int param2)
     CopyChatotCryData(param0->chatotCries[param2], param1);
 }
 
-void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, BagCursor *param5, UnkStruct_0209C370 *param6)
+void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, BagCursor *param5, u8 *param6)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(param2);
     Party *v1 = Party_GetFromSavedata(param2);
@@ -284,7 +283,7 @@ void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveDa
     param0->metBebe = SystemFlag_CheckMetBebe(SaveData_GetVarsFlags(param2));
     param0->fieldWeather = FieldOverworldState_GetWeather(v6);
     param0->bagCursor = param5;
-    param0->unk_190 = param6;
+    param0->subscreenCursorOn = param6;
     param0->poketchData = SaveData_PoketchData(param2);
     param0->unk_104 = sub_0202C878(param2);
     param0->records = SaveData_GetGameRecordsPtr(param2);
@@ -296,7 +295,7 @@ void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveDa
 
 void sub_02052314(FieldBattleDTO *battleParams, const FieldSystem *fieldSystem)
 {
-    sub_020521B8(battleParams, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->journal, fieldSystem->unk_98, fieldSystem->unk_BC);
+    sub_020521B8(battleParams, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->journal, fieldSystem->unk_98, fieldSystem->battleSubscreenCursorOn);
     sub_02052894(battleParams);
 }
 
@@ -341,7 +340,7 @@ void sub_02052348(FieldBattleDTO *param0, const FieldSystem *fieldSystem, int pa
     param0->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
     param0->timeOfDay = sub_02055BA8(fieldSystem);
     param0->bagCursor = fieldSystem->unk_98;
-    param0->unk_190 = fieldSystem->unk_BC;
+    param0->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
     param0->poketchData = SaveData_PoketchData(fieldSystem->saveData);
     param0->unk_104 = sub_0202C878(fieldSystem->saveData);
     param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
@@ -411,7 +410,7 @@ void sub_020524E4(FieldBattleDTO *param0, const FieldSystem *fieldSystem, const 
     param0->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
     param0->timeOfDay = sub_02055BA8(fieldSystem);
     param0->bagCursor = fieldSystem->unk_98;
-    param0->unk_190 = fieldSystem->unk_BC;
+    param0->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
     param0->unk_104 = sub_0202C878(fieldSystem->saveData);
     param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     param0->journal = fieldSystem->journal;

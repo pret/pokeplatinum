@@ -32,7 +32,7 @@ UnkStruct_ov104_02230BE4 *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
     v0->unk_08 = fieldSystem->saveData;
     v0->unk_0C = fieldSystem->journal;
     v0->unk_10 = fieldSystem->unk_98;
-    v0->unk_20 = fieldSystem->unk_BC;
+    v0->unk_20 = fieldSystem->battleSubscreenCursorOn;
     v0->unk_14 = 0;
     v0->unk_18 = 0;
     v0->unk_1C = fieldSystem->location->mapId;
