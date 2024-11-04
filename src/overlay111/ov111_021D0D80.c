@@ -29,6 +29,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -39,7 +40,6 @@
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
 #include "unk_0200C440.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
@@ -428,7 +428,7 @@ int ov111_021D0F40(OverlayManager *param0, int *param1)
 
     sub_0201E530();
     *(v1->unk_3D8) = v1->unk_0C;
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     ov111_021D1C0C(v1);
 
@@ -443,11 +443,11 @@ static BOOL ov111_021D0F7C(UnkStruct_ov111_021D0F7C *param0)
 {
     switch (param0->unk_08) {
     case 0:
-        sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 115);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 115);
         param0->unk_08++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_0E = 0;
             return 1;
         }
@@ -529,7 +529,7 @@ static BOOL ov111_021D10B8(UnkStruct_ov111_021D0F7C *param0)
             param0->unk_0E++;
 
             TouchScreen_GetHoldState(&v0, &v1);
-            sub_0200E084(&param0->unk_5C[15], 0);
+            Window_EraseMessageBox(&param0->unk_5C[15], 0);
             GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG0), 0);
             param0->unk_08 = 2;
         }
@@ -763,7 +763,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
             }
 
             if (ov111_021D2BBC(param0) == 1) {
-                sub_020057A4(1358, 0);
+                Sound_StopEffect(1358, 0);
                 ov111_021D345C(param0->unk_3A4, 1);
 
                 param0->unk_3DC[param0->unk_0E] = param0->unk_3CE[param0->unk_40B];
@@ -786,7 +786,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
             }
 
             if (param0->unk_40D >= 3) {
-                sub_020057A4(1358, 0);
+                Sound_StopEffect(1358, 0);
                 param0->unk_0F = 60;
                 ov111_021D345C(param0->unk_3A4, 1);
                 ov111_021D25BC(param0);
@@ -794,7 +794,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
                 return 0;
             }
         } else {
-            sub_020057A4(1358, 0);
+            Sound_StopEffect(1358, 0);
         }
 
         if (param0->unk_40C_0 == 1) {
@@ -889,14 +889,14 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
 
         if (v2 == 1) {
             ov111_021D350C(param0->unk_3A0, 0);
-            Window_Clear(&param0->unk_5C[0], 0);
+            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
             ov111_021D2E20(param0);
             ov111_021D1FB4(param0);
             return 1;
         } else if (v2 == 2) {
             ov111_021D350C(param0->unk_3A0, 0);
-            Window_Clear(&param0->unk_5C[0], 0);
+            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
             ov111_021D1FB4(param0);
             param0->unk_08 = 11;
@@ -907,14 +907,14 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
 
         if (v2 == 1) {
             ov111_021D350C(param0->unk_3A0, 0);
-            Window_Clear(&param0->unk_5C[0], 0);
+            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
             ov111_021D2E18(param0);
             ov111_021D1FB4(param0);
             return 1;
         } else if (v2 == 2) {
             ov111_021D350C(param0->unk_3A0, 0);
-            Window_Clear(&param0->unk_5C[0], 0);
+            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
             ov111_021D1FB4(param0);
             param0->unk_08 = 11;
@@ -997,13 +997,13 @@ static BOOL ov111_021D1A88(UnkStruct_ov111_021D0F7C *param0)
         param0->unk_0D--;
 
         if (param0->unk_0D == 0) {
-            sub_0200E084(&param0->unk_5C[0], 0);
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, 115);
+            Window_EraseMessageBox(&param0->unk_5C[0], 0);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 115);
             param0->unk_08++;
         }
         break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;

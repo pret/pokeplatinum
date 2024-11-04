@@ -44,6 +44,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "spl.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -52,7 +53,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_0201D15C.h"
@@ -2104,7 +2104,7 @@ void ov17_0224C5A0(UnkStruct_ov17_0224DF54 *param0, u32 param1, const UnkStruct_
         return;
     }
 
-    sub_0200E060(&param0->unk_14.unk_64[1], 1, 1, 14);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_14.unk_64[1], 1, 1, 14);
     Bg_ScheduleTilemapTransfer(param0->unk_14.unk_60, 1);
 
     v0 = Unk_ov17_0225470C[param1].unk_00;
@@ -2123,7 +2123,7 @@ void ov17_0224C5A0(UnkStruct_ov17_0224DF54 *param0, u32 param1, const UnkStruct_
 
 void ov17_0224C640(UnkStruct_ov17_0224DF54 *param0)
 {
-    sub_0200E084(&param0->unk_14.unk_64[1], 1);
+    Window_EraseMessageBox(&param0->unk_14.unk_64[1], 1);
     Bg_ScheduleTilemapTransfer(param0->unk_14.unk_60, 1);
     param0->unk_1B25 = 0;
 }

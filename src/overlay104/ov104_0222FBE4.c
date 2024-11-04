@@ -67,11 +67,13 @@
 #include "field_comm_manager.h"
 #include "game_records.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -80,11 +82,9 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
@@ -840,7 +840,7 @@ static BOOL ov104_0222FF90(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222EA48(param0);
     u16 v3 = ov104_0222EA48(param0);
 
-    sub_0200F174(0, v2, v2, v3, v0, v1, 11);
+    StartScreenTransition(0, v2, v2, v3, v0, v1, 11);
     sub_0200F32C(0);
     sub_0200F32C(1);
 
@@ -855,7 +855,7 @@ static BOOL ov104_0222FFD8(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_0222FFE8(UnkStruct_ov104_0222E930 *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         return 1;
     }
 
@@ -1009,7 +1009,7 @@ static BOOL ov104_02230260(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222EA48(param0);
     u8 v3 = (*((param0)->unk_1C++));
 
-    v0->unk_74 = sub_02002054(v1->unk_00, &Unk_ov104_0223F640, ((1024 - (18 + 12)) - 9), 12, v3, v0->unk_34);
+    v0->unk_74 = Menu_MakeYesNoChoiceWithCursorAt(v1->unk_00, &Unk_ov104_0223F640, ((1024 - (18 + 12)) - 9), 12, v3, v0->unk_34);
     param0->unk_78[0] = v2;
 
     ov104_0222E974(param0, ov104_022302B4);
@@ -1023,7 +1023,7 @@ static BOOL ov104_022302B4(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_022320B4 *v1 = param0->unk_00;
     u16 *v2 = ov104_0222FC14(param0, param0->unk_78[0]);
 
-    v0 = sub_02002114(v1->unk_74, v1->unk_34);
+    v0 = Menu_ProcessInputAndHandleExit(v1->unk_74, v1->unk_34);
 
     if (v0 == 0xffffffff) {
         return 0;
@@ -1774,7 +1774,7 @@ static BOOL ov104_02230CAC(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
 
-    v0->unk_7C = sub_0200E7FC(&v0->unk_64, (1024 - (18 + 12)));
+    v0->unk_7C = Window_AddWaitDial(&v0->unk_64, (1024 - (18 + 12)));
     return 0;
 }
 
@@ -1782,7 +1782,7 @@ static BOOL ov104_02230CC4(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
 
-    DeleteWaitDial(v0->unk_7C);
+    DestroyWaitDial(v0->unk_7C);
     return 0;
 }
 
@@ -2095,11 +2095,11 @@ static BOOL ov104_02231148(UnkStruct_ov104_02231148 *param0)
 
         sub_0200F32C(0);
         sub_0200F32C(1);
-        sub_0200F174(0, 32, 32, 0x0, 12, 1, 11);
+        StartScreenTransition(0, 32, 32, 0x0, 12, 1, 11);
         param0->unk_04++;
         break;
     default:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 0;
         }
         break;
@@ -2143,7 +2143,7 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
         }
     } break;
     default:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);
@@ -2198,7 +2198,7 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
     } break;
 
     default:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);

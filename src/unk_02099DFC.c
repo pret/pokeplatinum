@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -10,16 +9,16 @@
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02000C88.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 
@@ -34,7 +33,7 @@ typedef struct {
     BgConfig *unk_14;
     MessageLoader *unk_18;
     Window unk_1C;
-    UIControlData *unk_2C;
+    Menu *unk_2C;
     SaveData *unk_30;
     void *unk_34;
 } UnkStruct_02099DFC;
@@ -122,22 +121,22 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         sub_0209A098(v0);
         SetMainCallback(sub_02099F74, (void *)v0);
         GXLayers_TurnBothDispOn();
-        sub_0200F174(0, 1, 1, 0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 1, 1, 0, 6, 1, v0->unk_00);
         *param1 = 1;
         break;
     case 1:
-        if (ScreenWipe_Done() == TRUE) {
+        if (IsScreenTransitionDone() == TRUE) {
             *param1 = 2;
         }
         break;
     case 2:
         if (sub_0209A0F4(v0) == TRUE) {
-            sub_0200F174(0, 0, 0, 0, 6, 1, v0->unk_00);
+            StartScreenTransition(0, 0, 0, 0, 6, 1, v0->unk_00);
             *param1 = 3;
         }
         break;
     case 3:
-        if (ScreenWipe_Done() == TRUE) {
+        if (IsScreenTransitionDone() == TRUE) {
             sub_0209A0E0(v0);
             sub_0209A044(v0);
             SetMainCallback(NULL, NULL);
@@ -216,8 +215,8 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
         Bg_ClearTilemap(param0->unk_14, 0);
     }
 
-    sub_0200DD0C(param0->unk_14, 0, (512 - (18 + 12)), 2, 0, param0->unk_00);
-    sub_0200DAA4(param0->unk_14, 0, 512 - (18 + 12) - 9, 3, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_14, 0, (512 - (18 + 12)), 2, 0, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_14, 0, 512 - (18 + 12) - 9, 3, 0, param0->unk_00);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     Bg_ClearTilesRange(0, 32, 0, param0->unk_00);
     Bg_MaskPalette(0, 0x6c21);
@@ -260,12 +259,12 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     switch (param0->unk_04) {
     case 0:
         if (sub_0209A200(param0, 0, 1, 4) == TRUE) {
-            param0->unk_2C = sub_02002054(param0->unk_14, &Unk_020F89EC, 512 - (18 + 12) - 9, 3, 1, param0->unk_00);
+            param0->unk_2C = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_14, &Unk_020F89EC, 512 - (18 + 12) - 9, 3, 1, param0->unk_00);
             param0->unk_04 = 1;
         }
         break;
     case 1: {
-        u32 v1 = sub_02002114(param0->unk_2C, param0->unk_00);
+        u32 v1 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->unk_00);
 
         switch (v1) {
         case 0:
@@ -278,12 +277,12 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     } break;
     case 2:
         if (sub_0209A200(param0, 1, 1, 4) == TRUE) {
-            param0->unk_2C = sub_02002054(param0->unk_14, &Unk_020F89EC, (512 - (18 + 12)) - 9, 3, 1, param0->unk_00);
+            param0->unk_2C = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_14, &Unk_020F89EC, (512 - (18 + 12)) - 9, 3, 1, param0->unk_00);
             param0->unk_04 = 3;
         }
         break;
     case 3: {
-        u32 v2 = sub_02002114(param0->unk_2C, param0->unk_00);
+        u32 v2 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->unk_00);
 
         switch (v2) {
         case 0:
@@ -296,13 +295,13 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     } break;
     case 4:
         if (sub_0209A200(param0, 2, 1, 0) == TRUE) {
-            param0->unk_34 = sub_0200E7FC(&param0->unk_1C, 512 - (18 + 12));
+            param0->unk_34 = Window_AddWaitDial(&param0->unk_1C, 512 - (18 + 12));
             param0->unk_04 = 5;
         }
         break;
     case 5:
         SaveData_Erase(param0->unk_30);
-        DeleteWaitDial(param0->unk_34);
+        DestroyWaitDial(param0->unk_34);
         param0->unk_04 = 6;
         break;
     case 6:
@@ -321,7 +320,7 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
     switch (param0->unk_08) {
     case 0:
         Window_FillRectWithColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
-        sub_0200E060(&param0->unk_1C, 0, 512 - (18 + 12), 2);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 0, 512 - (18 + 12), 2);
 
         param0->unk_10 = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_18, param1, param0->unk_10);

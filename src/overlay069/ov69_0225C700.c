@@ -33,6 +33,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -45,7 +46,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
@@ -722,12 +722,12 @@ int ov69_0225C820(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 105);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 105);
         ov66_0222E31C(v1->unk_0C, 1);
         (*param1)++;
         break;
     case 1:
-        v2 = ScreenWipe_Done();
+        v2 = IsScreenTransitionDone();
 
         if (v2 == 1) {
             (*param1)++;
@@ -751,11 +751,11 @@ int ov69_0225C820(OverlayManager *param0, int *param1)
         }
         break;
     case 5:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 105);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 105);
         (*param1)++;
         break;
     case 6:
-        v2 = ScreenWipe_Done();
+        v2 = IsScreenTransitionDone();
 
         if (v2 == 1) {
             return 1;
@@ -1374,7 +1374,7 @@ static void ov69_0225D318(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
 {
     param0->unk_1A8 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTIMER, param2);
 
-    sub_0201DBEC(64, param2);
+    VRAMTransferManager_New(64, param2);
     GXLayers_SetBanks(&Unk_ov69_0225F0C0);
 
     ov69_0225D3A4(param0, param1, param2);
@@ -1385,7 +1385,7 @@ static void ov69_0225D318(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
 static void ov69_0225D35C(UnkStruct_ov69_0225D35C *param0)
 {
     NARC_dtor(param0->unk_1A8);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     ov69_0225D504(param0);
     ov69_0225D5D8(param0);
@@ -1437,14 +1437,14 @@ static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
 
     Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, param2);
     Font_LoadScreenIndicatorsPalette(4, 11 * 0x20, param2);
-    sub_0200DAA4(param0->unk_00, 1, (1 + (18 + 12)), 0, 0, param2);
-    sub_0200DAA4(param0->unk_00, 1, (1 + (18 + 12)), 0, 0, param2);
+    LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 0, 0, param2);
+    LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 0, 0, param2);
 
     {
         u8 v1 = Options_Frame(param1);
 
-        sub_0200DD0C(param0->unk_00, 4, 10, 10, v1, param2);
-        sub_0200DD0C(param0->unk_00, 1, 1, 2, v1, param2);
+        LoadMessageBoxGraphics(param0->unk_00, 4, 10, 10, v1, param2);
+        LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, param2);
     }
 
     Bg_MaskPalette(0, 0x72ca);
@@ -1843,7 +1843,7 @@ static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D3
         Font_Free(FONT_SUBSCREEN);
     }
 
-    Window_Show(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
+    Window_DrawStandardFrame(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
 }
 
 static void ov69_0225DC48(UnkStruct_ov69_0225DC48 *param0)
@@ -1926,14 +1926,14 @@ static int ov69_0225DD10(const UnkStruct_ov69_0225DC48 *param0, u32 param1)
 
 static void ov69_0225DD2C(UnkStruct_ov69_0225DC48 *param0)
 {
-    Window_Clear(&param0->unk_1C, 1);
+    Window_EraseStandardFrame(&param0->unk_1C, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_1C);
 }
 
 static void ov69_0225DD44(UnkStruct_ov69_0225DC48 *param0)
 {
     Window_ScheduleCopyToVRAM(&param0->unk_1C);
-    Window_Show(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
+    Window_DrawStandardFrame(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
 }
 
 static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *param3, u32 param4)
@@ -1971,7 +1971,7 @@ static void ov69_0225DDC8(UnkStruct_ov69_0225DDC8 *param0)
 static void ov69_0225DDFC(UnkStruct_ov69_0225DDC8 *param0)
 {
     Window_FillTilemap(&param0->unk_10, 15);
-    sub_0200E060(&param0->unk_10, 1, 1, 2);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_10, 1, 1, 2);
     Window_ScheduleCopyToVRAM(&param0->unk_10);
 
     param0->unk_04 = Text_AddPrinterWithParams(&param0->unk_10, FONT_MESSAGE, param0->unk_0C, 0, 0, param0->unk_08, NULL);
@@ -2006,7 +2006,7 @@ static u32 ov69_0225DE40(UnkStruct_ov69_0225DDC8 *param0)
 static void ov69_0225DEA0(UnkStruct_ov69_0225DDC8 *param0)
 {
     sub_02015A54(param0->unk_20);
-    sub_0200E084(&param0->unk_10, 1);
+    Window_EraseMessageBox(&param0->unk_10, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_10);
 }
 
@@ -2033,7 +2033,7 @@ static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D3
         v1 = ov69_0225EF74(param2, 0);
 
         Text_AddPrinterWithParams(&param0->unk_1A8, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-        sub_0200E060(&param0->unk_1A8, 0, 10, 10);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_1A8, 0, 10, 10);
     }
 
     ov69_0225E590(param0, param1, param3);
@@ -2102,14 +2102,14 @@ static void ov69_0225E00C(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225EF
 
 static void ov69_0225E084(UnkStruct_ov69_0225E084 *param0)
 {
-    sub_0200E084(&param0->unk_1A8, 1);
+    Window_EraseMessageBox(&param0->unk_1A8, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_1A8);
 }
 
 static void ov69_0225E0A0(UnkStruct_ov69_0225E084 *param0)
 {
     Window_ScheduleCopyToVRAM(&param0->unk_1A8);
-    sub_0200E060(&param0->unk_1A8, 1, 10, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_1A8, 1, 10, 10);
 }
 
 static BOOL ov69_0225E0C0(UnkStruct_ov69_0225E084 *param0, const UnkStruct_ov69_0225E0C0 *param1)
@@ -2666,7 +2666,7 @@ static void ov69_0225EAE8(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
 {
     int v0, v1;
 
-    sub_020057A4(1473, 0);
+    Sound_StopEffect(1473, 0);
 
     for (v0 = 0; v0 < 12; v0++) {
         CellActor_Delete(param0->unk_3C[v0]);
@@ -2749,7 +2749,7 @@ static void ov69_0225EC08(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225E4
             param0->unk_30--;
             ov69_0225EC70(param0, param0->unk_30, param1);
         } else {
-            sub_020057A4(1473, 0);
+            Sound_StopEffect(1473, 0);
             param0->unk_30 = 2;
             param0->unk_32 = 128;
         }

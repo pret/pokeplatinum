@@ -3,14 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/ov104_0223BCBC.h"
@@ -32,6 +28,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -41,6 +38,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
@@ -194,9 +192,9 @@ struct UnkStruct_ov108_02241DB0_t {
     u16 unk_80[8];
     BgConfig *unk_90;
     Window unk_94[2];
-    UnkStruct_02081CF4 unk_B4;
-    UIControlData *unk_C0;
-    ResourceMetadata unk_C4[2];
+    MenuTemplate unk_B4;
+    Menu *unk_C0;
+    StringList unk_C4[2];
     PaletteData *unk_D4;
     Options *unk_D8;
     SaveData *unk_DC;
@@ -410,7 +408,7 @@ int ov108_02241D70(OverlayManager *param0, int *param1)
 
     *(v1->unk_3C4) = v1->unk_0D;
 
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     ov108_02242238(v1);
     OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
@@ -479,7 +477,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
                 param0->unk_08++;
             }
         } else {
-            sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 103);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 103);
             param0->unk_08++;
         }
         break;
@@ -487,7 +485,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
         if (ov104_0223C000(param0->unk_09) == 1) {
             if (param0->unk_0F >= 2) {
                 param0->unk_0F = 0;
-                sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 103);
+                StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 103);
                 param0->unk_08++;
             }
         } else {
@@ -495,7 +493,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
         }
         break;
     case 9:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -710,11 +708,11 @@ static BOOL ov108_022421F0(UnkStruct_ov108_02241DB0 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 103);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 103);
         param0->unk_08++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -1610,7 +1608,7 @@ static BOOL ov108_02242FE8(UnkStruct_ov108_02241DB0 *param0)
 
 static void ov108_02243008(UnkStruct_ov108_02241DB0 *param0)
 {
-    sub_020057A4(1500, 0);
+    Sound_StopEffect(1500, 0);
     Sound_PlayEffect(1508);
     ov108_022435F4(param0->unk_3BC, 1);
 

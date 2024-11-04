@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
+
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02099F80.h"
@@ -24,24 +26,24 @@
 #include "heap.h"
 #include "item.h"
 #include "journal.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
+#include "render_window.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
@@ -261,7 +263,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 12);
     v0 = sub_0207ECC0(param0);
 
-    sub_0200F174(1, 3, 3, 0x0, 6, 1, 12);
+    StartScreenTransition(1, 3, 3, 0x0, 6, 1, 12);
     sub_0207EDC0(v0);
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
@@ -310,7 +312,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     }
 
     SetMainCallback(sub_0207E898, v0);
-    sub_020397E4();
+    DrawWifiConnectionIcon();
     NARC_dtor(v1);
 
     return 1;
@@ -437,7 +439,7 @@ static int sub_0207E2A8(OverlayManager *param0, int *param1)
         *param1 = 33;
         break;
     case 33:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             v0->unk_5A4->unk_22 = v0->unk_B11;
             return 1;
         }
@@ -454,7 +456,7 @@ static int sub_0207E2A8(OverlayManager *param0, int *param1)
 
 static int sub_0207E490(GameWindowLayout *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         if ((param0->unk_5A4->unk_20 == 5) || (param0->unk_5A4->unk_20 == 16)) {
             if (sub_020857A8(param0->unk_5A4->unk_24) == 1) {
                 param0->unk_B0E = 0;
@@ -548,17 +550,17 @@ static int sub_0207E5F4(GameWindowLayout *param0)
 
 static int sub_0207E634(GameWindowLayout *param0)
 {
-    u32 v0 = sub_02001BE0(param0->unk_700);
+    u32 v0 = Menu_ProcessInput(param0->unk_700);
 
     switch (v0) {
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        sub_0200E084(&param0->unk_04[33], 1);
-        Window_Clear(&param0->unk_04[35], 1);
+        Window_EraseMessageBox(&param0->unk_04[33], 1);
+        Window_EraseStandardFrame(&param0->unk_04[35], 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[35]);
-        sub_02001BC4(param0->unk_700, NULL);
-        sub_02013A3C(param0->unk_6FC);
+        Menu_Free(param0->unk_700, NULL);
+        StringList_Free(param0->unk_6FC);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
         return 1;
@@ -603,7 +605,7 @@ static int sub_0207E708(GameWindowLayout *param0)
 
 static int sub_0207E714(GameWindowLayout *param0)
 {
-    switch (sub_02002114(param0->unk_700, 12)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_700, 12)) {
     case 0:
         return param0->unk_B04.unk_00(param0);
     case 0xfffffffe:
@@ -647,7 +649,7 @@ static int sub_0207E7E0(OverlayManager *param0, int *param1)
     sub_02081B90(v0);
     sub_0207EA24(v0->unk_00);
     sub_0201E530();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     for (v1 = 0; v1 < 6; v1++) {
         Strbuf_Free(v0->unk_704[v1].unk_00);
@@ -680,7 +682,7 @@ static void sub_0207E898(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_00);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -926,8 +928,8 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
     }
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, 12);
-    sub_0200DAA4(param0->unk_00, 0, 1, 14, 0, 12);
-    sub_0200DD0C(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
+    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 14, 0, 12);
+    LoadMessageBoxGraphics(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_00, 4, 0, 0, 0, 12);
     Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, 12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 5, 0, 0, 0, 12);
@@ -1689,7 +1691,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     u8 *v0;
     u8 v1;
 
-    sub_0200E084(&param0->unk_04[32], 1);
+    Window_EraseMessageBox(&param0->unk_04[32], 1);
     v0 = Heap_AllocFromHeap(12, 8);
 
     switch (param0->unk_5A4->unk_20) {
@@ -2316,13 +2318,13 @@ static int GetValidWindowLayout(GameWindowLayout *param0)
 
 static u8 HandleWindowInputEvent(GameWindowLayout *param0, int *param1)
 {
-    u32 v0 = sub_02001BE0(param0->unk_700);
+    u32 v0 = Menu_ProcessInput(param0->unk_700);
 
     switch (v0) {
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        sub_0200E084(&param0->unk_04[33], 1);
+        Window_EraseMessageBox(&param0->unk_04[33], 1);
         sub_0208337C(param0);
 
         if ((param0->unk_5A4->unk_20 == 2) || (param0->unk_5A4->unk_20 == 17) || (param0->unk_5A4->unk_20 == 23) || (param0->unk_5A4->unk_20 == 22)) {
@@ -2426,7 +2428,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
     case 1:
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
-            sub_0200E084(&param0->unk_04[34], 1);
+            Window_EraseMessageBox(&param0->unk_04[34], 1);
             sub_0200D414(param0->unk_5B0[6], 0);
             sub_020826E0(param0, 36, 1);
             param0->unk_B14[1] = 0;
@@ -2466,7 +2468,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
     case 4:
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
-            sub_0200E084(&param0->unk_04[34], 1);
+            Window_EraseMessageBox(&param0->unk_04[34], 1);
             sub_0200D414(param0->unk_5B0[6], 0);
             sub_02083B88(param0);
             return 1;
@@ -2512,7 +2514,7 @@ static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 slot, s8 param2)
 
         mon = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, slot);
         v1 = param0->unk_704[slot].unk_06;
-        Pokemon_SetValue(mon, 163, &v1);
+        Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &v1);
         return 1;
     }
 
@@ -2684,7 +2686,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
         }
     }
 
-    sub_0200E060(v1, 1, (1 + 9), 15);
+    Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 15);
     Window_FillTilemap(v1, 15);
     sub_0208274C(param0);
 
@@ -2699,7 +2701,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *param1, int 
     fieldSystem = param0->unk_5A4->unk_1C;
 
     Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
-    Pokemon_SetValue(param1, 6, &v0);
+    Pokemon_SetValue(param1, MON_DATA_HELD_ITEM, &v0);
     Pokemon_SetArceusForm(param1);
 
     if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
@@ -2711,7 +2713,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *param1, int 
     param0->unk_704[param0->unk_B11].unk_0C = param0->unk_5A4->unk_24;
     sub_02083040(param0, param0->unk_B11, param0->unk_704[param0->unk_B11].unk_0C);
 
-    if ((v0 == 112) && ((*param2) != -1)) {
+    if ((v0 == ITEM_GRISEOUS_ORB) && ((*param2) != -1)) {
         return 12;
     }
 
@@ -2721,7 +2723,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *param1, int 
 static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *param1, u32 param2, u32 param3)
 {
     Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)param2, 1, 12);
-    Pokemon_SetValue(param1, 6, &param3);
+    Pokemon_SetValue(param1, MON_DATA_HELD_ITEM, &param3);
     Pokemon_SetArceusForm(param1);
     Pokemon_SetGiratinaForm(param1);
     param0->unk_704[param0->unk_B11].unk_0C = (u16)param3;
@@ -2743,7 +2745,7 @@ static int ProcessMessageResult(GameWindowLayout *param0)
 {
     if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_0200E084(&param0->unk_04[34], 1);
+            Window_EraseMessageBox(&param0->unk_04[34], 1);
             LoadOverlay118(param0);
             return 13;
         }
@@ -2777,7 +2779,7 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
 {
     int v0, v1;
 
-    switch (sub_02002114(param0->unk_700, 12)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_700, 12)) {
     case 0: {
         Pokemon *v2;
         Window *v3;
@@ -2828,7 +2830,7 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
 static int ResetWindowOnInput(GameWindowLayout *param0)
 {
     if (param0->unk_5A4->unk_20 == 10) {
-        sub_0200E084(&param0->unk_04[34], 1);
+        Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
         param0->unk_5A4->unk_20 = 0;
@@ -2870,7 +2872,7 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     }
 
-    sub_0200E060(v1, 1, (1 + 9), 15);
+    Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 15);
     Window_FillTilemap(v1, 15);
     sub_0208274C(param0);
 

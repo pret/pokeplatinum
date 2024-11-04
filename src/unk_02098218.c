@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "consts/game_records.h"
+#include "consts/species.h"
 
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0203E2FC.h"
@@ -79,7 +80,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 71);
     v1->unk_04.unk_00 = BgConfig_New(71);
 
-    sub_0201DBEC(64, 71);
+    VRAMTransferManager_New(64, 71);
 
     v1->unk_04.unk_54 = sub_02015F84(71, 1, 0);
     v1->unk_04.unk_04 = PaletteData_New(71);
@@ -111,7 +112,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             (*param1)++;
         }
 
@@ -122,7 +123,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
 
             PokeSprite_LoadCryDelay(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
 
-            if (v1 == 490) {
+            if (v1 == SPECIES_MANAPHY) {
                 v0->unk_5C = 1;
             } else {
                 v0->unk_5C = 0;
@@ -143,7 +144,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
         ov119_021D1004();
     } break;
     default:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
 
@@ -178,7 +179,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 4);
 
     Heap_FreeToHeap(v0->unk_04.unk_00);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_02007B6C(v0->unk_04.unk_38);
     sub_02015FB8(v0->unk_04.unk_54);
     NARC_dtor(v0->unk_04.unk_3C);
@@ -219,9 +220,9 @@ static BOOL sub_0209843C(TaskManager *param0)
             int v6 = 11;
             int v7 = 0;
 
-            Pokemon_SetValue(v2, 76, &v7);
+            Pokemon_SetValue(v2, MON_DATA_IS_EGG, &v7);
             sub_0209304C(v2, v3, v4, v5, v6);
-            Pokemon_SetValue(v2, 179, NULL);
+            Pokemon_SetValue(v2, MON_DATA_SPECIES_NAME, NULL);
         }
 
         {
@@ -248,7 +249,7 @@ static BOOL sub_0209843C(TaskManager *param0)
     } break;
     case 4:
         if (v0->unk_08->unk_14 == 0) {
-            Pokemon_SetValue(v0->unk_0C.unk_00, 120, v0->unk_08->unk_18);
+            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v0->unk_08->unk_18);
 
             {
                 FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);

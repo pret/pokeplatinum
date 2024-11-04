@@ -244,9 +244,9 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     ov71_0223C288();
 
     SetMainCallback(ov71_0223C18C, NULL);
-    sub_020397E4();
+    DrawWifiConnectionIcon();
     sub_0200544C(1, (127 / 3));
-    sub_0200F174(2, 3, 3, 0x0, 6, 1, 25);
+    StartScreenTransition(2, 3, 3, 0x0, 6, 1, 25);
     NARC_dtor(v1);
 
     return 1;
@@ -258,7 +258,7 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 1;
         }
 
@@ -316,7 +316,7 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
             } else if (v1 == 4) {
                 Sound_PlayEffect(1500);
 
-                sub_0200F174(1, 4, 4, 0x0, 6, 1, 25);
+                StartScreenTransition(1, 4, 4, 0x0, 6, 1, 25);
                 *param1 = 2;
             }
         }
@@ -324,7 +324,7 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
         ov71_0223C5A4(v0, v0->unk_B4->unk_04_1);
     } break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;

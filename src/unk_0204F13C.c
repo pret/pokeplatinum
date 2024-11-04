@@ -296,7 +296,7 @@ void sub_0204F470(TaskManager *param0, void **param1, u8 param2)
     v1->unk_04 = param2;
     v1->unk_08 = param1;
 
-    FieldTask_Start(fieldSystem->unk_10, sub_0204F4A4, v1);
+    FieldTask_Start(fieldSystem->taskManager, sub_0204F4A4, v1);
     return;
 }
 

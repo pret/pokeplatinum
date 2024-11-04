@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle/condition.h"
+#include "constants/items.h"
 
 #include "struct_decls/struct_party_decl.h"
 
@@ -41,11 +42,11 @@ BOOL sub_020548B0(int param0, SaveData *param1, u16 param2, u8 param3, u16 param
     v1 = Pokemon_New(param0);
 
     Pokemon_Init(v1);
-    Pokemon_InitWith(v1, param2, param3, 32, 0, 0, 0, 0);
-    Pokemon_SetCatchData(v1, v4, 4, param5, param6, param0);
+    Pokemon_InitWith(v1, param2, param3, 32, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_SetCatchData(v1, v4, ITEM_POKE_BALL, param5, param6, param0);
 
     v2 = param4;
-    Pokemon_SetValue(v1, 6, &v2);
+    Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v2);
     v0 = Party_AddPokemon(v3, v1);
 
     if (v0) {
@@ -187,14 +188,14 @@ int sub_02054B04(Party *param0, u16 param1)
         v4 = Party_GetPokemonBySlotIndex(param0, v2);
 
         if (Pokemon_CanBattle(v4)) {
-            if (Pokemon_GetValue(v4, MON_DATA_STATUS_CONDITION, NULL) & (0x80 | 0x8)) {
+            if (Pokemon_GetValue(v4, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)) {
                 u32 v5 = Pokemon_GetValue(v4, MON_DATA_CURRENT_HP, NULL);
 
                 if (v5 > 1) {
                     v5--;
                 }
 
-                Pokemon_SetValue(v4, 163, &v5);
+                Pokemon_SetValue(v4, MON_DATA_CURRENT_HP, &v5);
 
                 if (v5 == 1) {
                     v1++;

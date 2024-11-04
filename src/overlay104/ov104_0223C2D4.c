@@ -45,6 +45,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -52,7 +53,6 @@
 #include "unk_020041CC.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -163,7 +163,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
 
     v0->unk_00 = BgConfig_New(94);
 
-    sub_0201DBEC(64, 94);
+    VRAMTransferManager_New(64, 94);
     SetAutorepeat(4, 8);
 
     ov104_0223C948(v0->unk_00, v2);
@@ -223,7 +223,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
     ov104_0223D058(param0);
     ov104_0223D5F0(param0->unk_10);
 
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     PaletteData_FreeBuffer(param0->unk_04, 0);
     PaletteData_FreeBuffer(param0->unk_04, 1);
@@ -324,7 +324,7 @@ static void ov104_0223C6EC(void *param0)
     UnkStruct_ov104_0223C4CC *v0 = param0;
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_04);
     Bg_RunScheduledUpdates(v0->unk_00);
 
@@ -621,11 +621,11 @@ static void ov104_0223CB80(UnkStruct_ov104_0223C4CC *param0)
 
         v0 = sub_0209B970(param0->unk_08);
 
-        sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 11, Options_Frame(v0->unk_04), 94);
+        LoadMessageBoxGraphics(param0->unk_00, 1, (1024 - (18 + 12)), 11, Options_Frame(v0->unk_04), 94);
         PaletteData_LoadBufferFromHardware(param0->unk_04, 0, 11 * 16, 0x20);
     }
 
-    sub_0200DAA4(param0->unk_00, 1, ((1024 - (18 + 12)) - 9), 12, 0, 94);
+    LoadStandardWindowGraphics(param0->unk_00, 1, ((1024 - (18 + 12)) - 9), 12, 0, 94);
     PaletteData_LoadBufferFromHardware(param0->unk_04, 0, 12 * 16, 0x20);
 }
 

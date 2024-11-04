@@ -38,7 +38,7 @@ void ov6_02246F00(FieldSystem *fieldSystem, const u8 param1, const u8 param2)
         v1->unk_01 = param1;
         v1->unk_02 = 0;
 
-        FieldTask_Start(fieldSystem->unk_10, ov6_02246F40, v1);
+        FieldTask_Start(fieldSystem->taskManager, ov6_02246F40, v1);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -84,9 +84,9 @@ static BOOL ov6_02246F40(TaskManager *param0)
     case 2:
         if (ov5_021D42F0(fieldSystem->unk_54, 0x1)) {
             if (v1->unk_01 == 0) {
-                sub_020057A4(1554, 0);
+                Sound_StopEffect(1554, 0);
             } else {
-                sub_020057A4(1554, 0);
+                Sound_StopEffect(1554, 0);
             }
 
             Sound_PlayEffect(1521);

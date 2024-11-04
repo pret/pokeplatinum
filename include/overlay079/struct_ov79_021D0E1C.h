@@ -3,22 +3,21 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/struct_020158A8.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0209903C.h"
 #include "struct_defs/struct_0209916C.h"
 
 #include "overlay079/struct_ov79_021D0E1C_sub1.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
+#include "string_list.h"
 
 typedef struct UnkStruct_ov79_021D0E1C_t {
     int unk_00;
@@ -42,13 +41,13 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     UnkStruct_ov79_021D0E1C_sub1 unk_30;
     u16 unk_80;
     u16 unk_82;
-    UnkStruct_ov84_02240FA8 unk_84;
-    UnkStruct_ov84_02240FA8 unk_A4;
-    BmpList *unk_C4;
-    BmpList *unk_C8;
-    ResourceMetadata *unk_CC;
-    ResourceMetadata *unk_D0;
-    UIControlData *unk_D4;
+    ListMenuTemplate unk_84;
+    ListMenuTemplate unk_A4;
+    ListMenu *unk_C4;
+    ListMenu *unk_C8;
+    StringList *unk_CC;
+    StringList *unk_D0;
+    Menu *unk_D4;
     void *unk_D8;
     void *unk_DC;
     NNSG2dScreenData *unk_E0;

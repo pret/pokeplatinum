@@ -29,6 +29,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -38,7 +39,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -222,10 +222,10 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
         }
 
         v0->unk_04 = 0;
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->unk_00);
         break;
     case 3:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return 0;
         }
 
@@ -235,10 +235,10 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
             return 0;
         }
 
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->unk_00);
         break;
     case 5:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return 0;
         }
 
@@ -332,7 +332,7 @@ static void ov79_021D252C(void *param0)
     Bg_RunScheduledUpdates(v0->unk_68);
     sub_02008A94(v0->unk_40.unk_04);
 
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     sub_0201DCAC();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -475,7 +475,7 @@ static void ov79_021D270C(UnkStruct_ov79_021D2928 *param0)
 
     Window_AddFromTemplate(param0->unk_68, &(param0->unk_6C), &v0);
     Window_FillTilemap(&param0->unk_6C, ((0 << 4) | 0));
-    sub_0200DD0C(param0->unk_68, 1, 1, 14, param0->unk_10->unk_0B, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_68, 1, 1, 14, param0->unk_10->unk_0B, param0->unk_00);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, param0->unk_00);
 }
 
@@ -532,7 +532,7 @@ static void ov79_021D2858(UnkStruct_ov79_021D2928 *param0)
 
 static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
 {
-    sub_0201DBEC(32, param0->unk_00);
+    VRAMTransferManager_New(32, param0->unk_00);
 
     param0->unk_7C = sub_0200C6E4(param0->unk_00);
 
@@ -576,7 +576,7 @@ static void ov79_021D2908(UnkStruct_ov79_021D2928 *param0)
     sub_02099370(param0->unk_5C, param0->unk_60[0]);
     sub_0209903C(param0->unk_5C);
     sub_0200C8D4(param0->unk_7C);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 }
 
 static int ov79_021D2928(UnkStruct_ov79_021D2928 *param0)
@@ -732,7 +732,7 @@ static int ov79_021D2B84(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
 static int ov79_021D2B94(UnkStruct_ov79_021D2928 *param0)
 {
-    sub_0200E060(&param0->unk_6C, 1, 1, 14);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_6C, 1, 1, 14);
     Window_FillTilemap(&param0->unk_6C, ((15 << 4) | 15));
     Strbuf_Clear(param0->unk_1C.unk_04);
     StringTemplate_SetStrbuf(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
@@ -754,7 +754,7 @@ static int ov79_021D2C08(UnkStruct_ov79_021D2928 *param0)
         return 7;
     }
 
-    sub_0200E084(&param0->unk_6C, 1);
+    Window_EraseMessageBox(&param0->unk_6C, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_6C);
 
     return 8;

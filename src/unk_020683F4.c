@@ -17,9 +17,9 @@
 #include "functypes/funcptr_02069238.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021DFB54.h"
-#include "overlay005/ov5_021E1D20.h"
 #include "overlay005/ov5_021F007C.h"
 #include "overlay005/ov5_021F08CC.h"
+#include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021F0468_decl.h"
 #include "overlay006/ov6_02247100.h"
 #include "savedata/save_table.h"
@@ -40,10 +40,10 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "pokeradar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "strbuf.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
@@ -950,7 +950,7 @@ static BOOL sub_02068F48(TaskManager *param0)
     switch (v1->unk_16) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        FieldMessage_AddWindow(fieldSystem->unk_08, &v1->unk_00, 3);
+        FieldMessage_AddWindow(fieldSystem->bgConfig, &v1->unk_00, 3);
 
         {
             const Options *v2 = SaveData_Options(fieldSystem->saveData);
@@ -963,7 +963,7 @@ static BOOL sub_02068F48(TaskManager *param0)
     case 1:
         if (FieldMessage_FinishedPrinting(v1->unk_14) == 1) {
             if (gCoreSys.pressedKeys & (PAD_KEY | PAD_BUTTON_A | PAD_BUTTON_B)) {
-                sub_0200E084(&v1->unk_00, 0);
+                Window_EraseMessageBox(&v1->unk_00, 0);
                 v1->unk_16++;
             }
         }
@@ -1070,7 +1070,7 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (Pokedex_IsNationalUnlocked(SaveData_Pokedex(param0->fieldSystem->saveData)) == 0) {
+    if (Pokedex_IsNationalDexObtained(SaveData_Pokedex(param0->fieldSystem->saveData)) == FALSE) {
         return -1;
     }
 
@@ -1102,7 +1102,7 @@ static BOOL sub_020691BC(UnkStruct_02068870 *param0)
 
 static void *sub_020691CC(void *param0)
 {
-    ov5_021E2064(param0);
+    FieldSystem_SaveStateIfCommunicationOff(param0);
     sub_0203DE88(param0, ((FieldSystem *)param0)->saveData);
 
     return NULL;
@@ -1214,7 +1214,7 @@ static BOOL sub_0206932C(TaskManager *taskMan)
         v1->unk_2A = 1;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v1->unk_24 = v1->unk_20(fieldSystem);
             v1->unk_2A = 2;
         }
@@ -1243,7 +1243,7 @@ static BOOL sub_0206932C(TaskManager *taskMan)
         }
         break;
     case 4:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
             Heap_FreeToHeap(v1);
             return 1;

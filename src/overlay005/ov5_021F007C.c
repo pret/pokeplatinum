@@ -113,7 +113,7 @@ static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 {
     UnkStruct_ov5_021F013C *v0 = param2;
 
-    ov5_021F0260(fieldSystem->unk_08);
+    ov5_021F0260(fieldSystem->bgConfig);
     ov5_021F02B8(&v0->unk_00, 0, 10, 19);
 
     v0->unk_14 = 0;
@@ -129,7 +129,7 @@ static void ov5_021F0188(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 {
     UnkStruct_ov5_021F013C *v0 = param2;
 
-    ov5_021F0260(fieldSystem->unk_08);
+    ov5_021F0260(fieldSystem->bgConfig);
     ov5_021F02B8(&v0->unk_00, 10, 0, 15);
 
     v0->unk_14 = 0;
@@ -307,8 +307,8 @@ static void ov5_021F0310(FieldSystem *fieldSystem)
     G2_SetBG2Priority(3);
 
     Bg_LoadPalette(2, &v0, 2, ((6 * 32) + 4));
-    Bg_FillTilesRange(fieldSystem->unk_08, 2, 2, 1, 2);
-    Bg_FillTilemap(fieldSystem->unk_08, 2, ((6 << 12) | 2));
+    Bg_FillTilesRange(fieldSystem->bgConfig, 2, 2, 1, 2);
+    Bg_FillTilemap(fieldSystem->bgConfig, 2, ((6 << 12) | 2));
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 
     ov5_021F02F4(fieldSystem);
@@ -323,8 +323,8 @@ static void ov5_021F0374(FieldSystem *fieldSystem)
     G2_SetBG3Priority(3);
 
     Bg_LoadPalette(3, &v0, 2, ((6 * 32) + 4));
-    Bg_FillTilesRange(fieldSystem->unk_08, 3, 2, 1, 2);
-    Bg_FillTilemap(fieldSystem->unk_08, 3, ((6 << 12) | 2));
+    Bg_FillTilesRange(fieldSystem->bgConfig, 3, 2, 1, 2);
+    Bg_FillTilemap(fieldSystem->bgConfig, 3, ((6 << 12) | 2));
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
     ov5_021F02F4(fieldSystem);
@@ -524,7 +524,7 @@ BOOL ov5_021F0488(TaskManager *param0)
                 G2_BlendNone();
                 Bg_SetPriority(2, 3);
 
-                Bg_ClearTilemap(fieldSystem->unk_08, 2);
+                Bg_ClearTilemap(fieldSystem->bgConfig, 2);
             } else {
                 Bg_SetPriority(2, 1);
             }

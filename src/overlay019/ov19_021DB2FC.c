@@ -13,13 +13,13 @@
 #include "enums.h"
 #include "graphics.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
-#include "unk_0200DA60.h"
 
 static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
 static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 param2, u32 param3);
@@ -100,7 +100,7 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
 
     Graphics_LoadTilesToBgLayer(38, 0, param0->unk_00, 1, 512, 0, 0, 10);
     Graphics_LoadPalette(38, 24, 0, 7 * 0x20, 0x20, 10);
-    sub_0200DD0C(param0->unk_00, 1, 521, 8, param0->unk_20, 10);
+    LoadMessageBoxGraphics(param0->unk_00, 1, 521, 8, param0->unk_20, 10);
 }
 
 void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
@@ -255,7 +255,7 @@ void ov19_021DB748(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
     v1 = (8 - param1->unk_21) * 16;
 
     Window_FillRectWithColor(v0, 15, 0, v1, 10, param1->unk_21 * 16);
-    sub_02002180(v0, 0, v1 + (param1->unk_20 * 16));
+    Window_DrawMenuCursor(v0, 0, v1 + (param1->unk_20 * 16));
     Window_LoadTiles(v0);
 }
 

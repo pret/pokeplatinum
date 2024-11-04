@@ -67,8 +67,8 @@ static void ov5_021E139C(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C == 20) {
-            sub_0200F174(2, 0, 0, 0x0, 6, 1, 4);
-        } else if ((v0->unk_0C > 20) && ScreenWipe_Done()) {
+            StartScreenTransition(2, 0, 0, 0x0, 6, 1, 4);
+        } else if ((v0->unk_0C > 20) && IsScreenTransitionDone()) {
             *v0->unk_04 = 1;
             Heap_FreeToHeap(v0);
             SysTask_Done(param0);
@@ -109,7 +109,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C == 2) {
-            sub_0200F174(1, 1, 1, 0x0, 6, 1, 4);
+            StartScreenTransition(1, 1, 1, 0x0, 6, 1, 4);
         }
 
         if (v0->unk_0C > 20) {
@@ -117,7 +117,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             Player_SetDir(v0->fieldSystem->playerAvatar, 1);
             *v0->unk_04 = 1;
             Heap_FreeToHeap(v0);

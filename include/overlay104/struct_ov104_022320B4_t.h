@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_022320B4_T_H
 #define POKEPLATINUM_STRUCT_OV104_022320B4_T_H
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 
 #include "overlay104/struct_ov104_0222E8C8.h"
@@ -9,6 +8,7 @@
 #include "overlay104/struct_ov104_02232B5C_decl.h"
 
 #include "bg_window.h"
+#include "menu.h"
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -34,7 +34,7 @@ struct UnkStruct_ov104_022320B4_t {
     BOOL unk_5C;
     UnkStruct_ov104_02232B5C *unk_60;
     Window unk_64;
-    UIControlData *unk_74;
+    Menu *unk_74;
     u16 *unk_78;
     void *unk_7C;
     void *unk_80;

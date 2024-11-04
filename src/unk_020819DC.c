@@ -4,23 +4,22 @@
 #include <string.h>
 
 #include "struct_defs/struct_0207F248.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
+#include "menu.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
-#include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_0207E0B8.h"
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
@@ -195,39 +194,39 @@ void sub_02081CAC(GameWindowLayout *param0, u16 param1, u8 param2)
 
 void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     u16 v1, v2;
 
     Window_Add(param0->unk_00, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, (((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4));
 
-    param0->unk_6FC = sub_02013A04(param2, 12);
+    param0->unk_6FC = StringList_New(param2, 12);
     v2 = 0;
 
     for (v1 = 0; v1 < param2; v1++) {
         if (param1[v1] >= 16) {
-            sub_02013A6C(param0->unk_6FC, param0->unk_6AC[16 + v2], sub_02083370((u8)param1[v1]));
+            StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[16 + v2], sub_02083370((u8)param1[v1]));
             v2++;
         } else {
-            sub_02013A6C(param0->unk_6FC, param0->unk_6AC[param1[v1]], sub_02083370((u8)param1[v1]));
+            StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[param1[v1]], sub_02083370((u8)param1[v1]));
         }
     }
 
-    v0.unk_00 = param0->unk_6FC;
-    v0.unk_04 = &param0->unk_254[0];
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = param2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
+    v0.choices = param0->unk_6FC;
+    v0.window = &param0->unk_254[0];
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = param2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
 
     if (param2 >= 4) {
-        v0.unk_0B_6 = 1;
+        v0.loopAround = TRUE;
     } else {
-        v0.unk_0B_6 = 0;
+        v0.loopAround = FALSE;
     }
 
-    Window_Show(&param0->unk_254[0], 1, 1, 14);
-    param0->unk_700 = sub_02001B7C(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
+    Window_DrawStandardFrame(&param0->unk_254[0], 1, 1, 14);
+    param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
 }
 
 void sub_02081E08(GameWindowLayout *param0)
@@ -569,7 +568,7 @@ void sub_020825B4(GameWindowLayout *param0, u8 param1)
 static void sub_02082680(GameWindowLayout *param0, Window *param1, u32 param2, u8 param3)
 {
     if (param3 == 1) {
-        sub_0200E060(param1, 1, (1 + 9), 15);
+        Window_DrawMessageBoxWithScrollCursor(param1, 1, (1 + 9), 15);
     }
 
     Window_FillTilemap(param1, 15);
@@ -597,7 +596,7 @@ void sub_02082708(GameWindowLayout *param0, u32 param1, u8 param2)
     Window *v0 = &param0->unk_04[34];
 
     if (param2 == 1) {
-        sub_0200E060(v0, 1, (1 + 9), 15);
+        Window_DrawMessageBoxWithScrollCursor(v0, 1, (1 + 9), 15);
     }
 
     Window_FillTilemap(v0, 15);
@@ -639,7 +638,7 @@ static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
 
 void sub_020827EC(GameWindowLayout *param0)
 {
-    param0->unk_700 = sub_02002100(
+    param0->unk_700 = Menu_MakeYesNoChoice(
         param0->unk_00, &Unk_020F1E98, 1, 14, 12);
 }
 
@@ -751,7 +750,7 @@ void sub_020829DC(GameWindowLayout *param0)
     v3[5] = (u16)Pokemon_GetValue(v0, MON_DATA_SPEED, NULL);
 
     Window_Add(param0->unk_00, &param0->unk_254[0], 0, 1, 1, 14, 12, 0, 576);
-    Window_Show(&param0->unk_254[0], 1, 1, 14);
+    Window_DrawStandardFrame(&param0->unk_254[0], 1, 1, 14);
     Window_FillTilemap(&param0->unk_254[0], 15);
 
     for (v2 = 0; v2 < 6; v2++) {
@@ -800,6 +799,6 @@ void sub_02082B58(GameWindowLayout *param0)
 
 void sub_02082C10(GameWindowLayout *param0)
 {
-    Window_Clear(&param0->unk_254[0], 0);
+    Window_EraseStandardFrame(&param0->unk_254[0], 0);
     Window_Remove(&param0->unk_254[0]);
 }

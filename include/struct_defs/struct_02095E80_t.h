@@ -4,9 +4,6 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
@@ -24,11 +21,14 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 
@@ -83,9 +83,9 @@ struct UnkStruct_02095E80_t {
     CellActor *unk_47C;
     SysTask *unk_480[7];
     Window unk_49C[34];
-    UIControlData *unk_6BC;
-    ResourceMetadata *unk_6C0;
-    UIControlData *unk_6C4;
+    Menu *unk_6BC;
+    StringList *unk_6C0;
+    Menu *unk_6C4;
     int unk_6C8;
     int unk_6CC;
     int unk_6D0;
@@ -125,8 +125,8 @@ struct UnkStruct_02095E80_t {
     int unk_36C8;
     StringTemplate *unk_36CC;
     MessageLoader *unk_36D0;
-    ResourceMetadata *unk_36D4;
-    BmpList *unk_36D8;
+    StringList *unk_36D4;
+    ListMenu *unk_36D8;
     Window unk_36DC;
     UnkStruct_0202B370 *unk_36EC;
     int unk_36F0;

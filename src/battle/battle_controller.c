@@ -1481,7 +1481,7 @@ static void BattleController_CheckMonConditions(BattleSystem *battleSys, BattleC
             break;
 
         case MON_COND_CHECK_STATE_BAD_DREAMS:
-            battleCtx->scriptTemp = BattleSystem_CountAbility(battleSys, battleCtx, 4, battler, ABILITY_BAD_DREAMS);
+            battleCtx->scriptTemp = BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE_FLAG, battler, ABILITY_BAD_DREAMS);
 
             if ((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP)
                 && Battler_Ability(battleCtx, battler) != ABILITY_MAGIC_GUARD
@@ -2237,19 +2237,19 @@ static BOOL BattleController_DecrementPP(BattleSystem *battleSys, BattleContext 
     int ppCost = 1;
     if (ATTACKER_SELF_TURN_FLAGS.skipPressureCheck == FALSE && battleCtx->defender != BATTLER_NONE) {
         if (battleCtx->moveTemp == MOVE_IMPRISON) {
-            ppCost += BattleSystem_CountAbility(battleSys, battleCtx, 3, battleCtx->attacker, ABILITY_PRESSURE);
+            ppCost += BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battleCtx->attacker, ABILITY_PRESSURE);
         } else {
             switch (battleCtx->aiContext.moveTable[battleCtx->moveTemp].range) {
             case RANGE_ALL_ADJACENT:
             case RANGE_FIELD:
                 // Number of mons on the field with Pressure
-                ppCost += BattleSystem_CountAbility(battleSys, battleCtx, 9, battleCtx->attacker, ABILITY_PRESSURE);
+                ppCost += BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_EXCEPT_ME, battleCtx->attacker, ABILITY_PRESSURE);
                 break;
 
             case RANGE_ADJACENT_OPPONENTS:
             case RANGE_OPPONENT_SIDE:
                 // Number of mons on the enemy side with Pressure
-                ppCost += BattleSystem_CountAbility(battleSys, battleCtx, 3, battleCtx->attacker, ABILITY_PRESSURE);
+                ppCost += BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battleCtx->attacker, ABILITY_PRESSURE);
                 break;
 
             case RANGE_USER_SIDE:
@@ -4033,7 +4033,7 @@ static void BattleController_HandleResult(BattleSystem *battleSys, BattleContext
 
 static void BattleController_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (ScreenWipe_Done() == TRUE) {
+    if (IsScreenTransitionDone() == TRUE) {
         battleCtx->command = BATTLE_CONTROL_FIGHT_END;
     }
 }

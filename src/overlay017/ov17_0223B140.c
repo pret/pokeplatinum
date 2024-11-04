@@ -178,7 +178,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     v0->unk_0C.unk_24 = BgConfig_New(21);
 
-    sub_0201DBEC(64, 21);
+    VRAMTransferManager_New(64, 21);
     SetAutorepeat(4, 8);
 
     v0->unk_7E4 = ov17_0223F88C(v0->unk_00, &v0->unk_0C, &v0->unk_220);
@@ -236,7 +236,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
         u16 v3[4];
         int v4;
 
-        for (v4 = 0; v4 < 4; v4++) {
+        for (v4 = 0; v4 < LEARNED_MOVES_MAX; v4++) {
             v3[v4] = Pokemon_GetValue(v0->unk_00->unk_00.unk_00[v0->unk_00->unk_00.unk_113], MON_DATA_MOVE1 + v4, NULL);
         }
 
@@ -247,7 +247,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     ov17_022415E4(&v0->unk_0C);
 
     sub_02039734();
-    sub_0200F174(1, 31, 31, 0x0, 6, 1, 21);
+    StartScreenTransition(1, 31, 31, 0x0, 6, 1, 21);
 
     v0->unk_04 = SysTask_Start(ov17_0223B6F0, v0, 60000);
     v0->unk_7EC = 1;
@@ -271,7 +271,7 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             *param1 = 1;
         }
         break;
@@ -290,7 +290,7 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
             } else if ((v1 == 3) && (v0->unk_1614 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-                sub_0200F174(2, 32, 32, 0x0, 6, 1, 21);
+                StartScreenTransition(2, 32, 32, 0x0, 6, 1, 21);
                 break;
             }
         }
@@ -301,12 +301,12 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
         if ((v0->unk_1614 == 1) && (ov17_0224F3D0(&v0->unk_BF8) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-            sub_0200F174(2, 32, 32, 0x0, 6, 1, 21);
+            StartScreenTransition(2, 32, 32, 0x0, 6, 1, 21);
         }
         break;
     case 2:
         if (v0->unk_1614 == 1) {
-            if (ScreenWipe_Done() == 1) {
+            if (IsScreenTransitionDone() == 1) {
                 return 1;
             }
         }
@@ -344,7 +344,7 @@ int ov17_0223B580(OverlayManager *param0, int *param1)
 
     sub_0200D0B0(v0->unk_0C.unk_18, v0->unk_0C.unk_1C);
     sub_0200C8D4(v0->unk_0C.unk_18);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     ov17_022416E4(&v0->unk_0C);
 
@@ -390,7 +390,7 @@ static void ov17_0223B6BC(void *param0)
 
     sub_02008A94(v0->unk_0C.unk_04);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C.unk_50);
     Bg_RunScheduledUpdates(v0->unk_0C.unk_24);
 
@@ -603,7 +603,7 @@ static void ov17_0223BA10(UnkStruct_ov17_02246F24 *param0, NARC *param1)
     {
         int v0, v1, v2;
 
-        for (v0 = 0; v0 < 4; v0++) {
+        for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
             v2 = Pokemon_GetValue(param0->unk_00->unk_00.unk_00[param0->unk_00->unk_00.unk_113], MON_DATA_MOVE1 + v0, NULL);
 
             if (v2 != 0) {

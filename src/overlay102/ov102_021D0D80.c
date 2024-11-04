@@ -114,11 +114,11 @@ int ov102_021D0E2C(OverlayManager *param0, int *param1)
         ;
         Bg_ToggleLayer(7, 1);
         ;
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->unk_00);
         *param1 = 1;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             v0->unk_40 = 0;
             *param1 = 2;
         }
@@ -142,12 +142,12 @@ int ov102_021D0E2C(OverlayManager *param0, int *param1)
         break;
     case 4:
         if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B) || (gCoreSys.touchPressed)) {
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 5;
         }
         break;
     case 5:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             v1 = 1;
         }
         break;

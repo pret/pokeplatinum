@@ -418,8 +418,8 @@ static void ov6_0223E25C(SysTask *param0, void *param1)
     UnkStruct_ov6_0223E140 *v0 = param1;
 
     ov6_0223E1B0();
-    ov6_0223E2A4(v0->fieldSystem->unk_08);
-    ov6_0223E1D0(v0->fieldSystem->unk_08);
+    ov6_0223E2A4(v0->fieldSystem->bgConfig);
+    ov6_0223E1D0(v0->fieldSystem->bgConfig);
 
     SysTask_Done(param0);
 }
@@ -429,8 +429,8 @@ static void ov6_0223E280(SysTask *param0, void *param1)
     UnkStruct_ov6_0223E140 *v0 = param1;
 
     GXLayers_SetBanks(&v0->unk_04);
-    ov6_0223E2A4(v0->fieldSystem->unk_08);
-    ov6_0223E2AC(v0->fieldSystem->unk_08);
+    ov6_0223E2A4(v0->fieldSystem->bgConfig);
+    ov6_0223E2AC(v0->fieldSystem->bgConfig);
     SysTask_Done(param0);
 }
 
@@ -578,7 +578,7 @@ static BOOL ov6_0223E408(TaskManager *param0)
         ov6_0223E3D8(v1);
 
         if (ov6_0223FF6C(v1->unk_00) == 1) {
-            sub_020057A4(1628, 0);
+            Sound_StopEffect(1628, 0);
             v1->unk_0C++;
             v1->unk_04 = 16;
         }

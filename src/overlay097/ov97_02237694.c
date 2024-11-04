@@ -5,7 +5,6 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0202DF40.h"
 
@@ -25,10 +24,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
@@ -38,7 +39,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
@@ -149,9 +149,9 @@ void ov97_02237790(int param0, int param1, int *param2, int param3)
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
     if (v0->unk_10 == 0) {
-        sub_0200F174(0, param0, param0, 0x0, 6, 1, v0->unk_08);
+        StartScreenTransition(0, param0, param0, 0x0, 6, 1, v0->unk_08);
     } else {
-        sub_0200F174(0, param0, param0, 0x7fff, 6, 1, v0->unk_08);
+        StartScreenTransition(0, param0, param0, 0x7fff, 6, 1, v0->unk_08);
     }
 
     if (param2) {
@@ -165,7 +165,7 @@ void ov97_022377F0(int *param0)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         *param0 = v0->unk_0C;
     }
 }
@@ -284,9 +284,9 @@ int ov97_0223795C(BgConfig *param0, UnkStruct_ov97_02237808 *param1, int param2,
 
     if (param1->unk_04 == 1) {
         if (param1->unk_00 == 0) {
-            Window_Show(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
+            Window_DrawStandardFrame(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
         } else {
-            sub_0200E060(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
+            Window_DrawMessageBoxWithScrollCursor(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
         }
     }
 
@@ -784,7 +784,7 @@ void ov97_02238324(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *para
     Heap_FreeToHeap(v1);
 }
 
-void ov97_022383C4(BmpList *param0, u32 param1, u8 param2)
+void ov97_022383C4(ListMenu *param0, u32 param1, u8 param2)
 {
     switch (param2) {
     case 0:

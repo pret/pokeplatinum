@@ -311,7 +311,7 @@ static void sub_020599E4(void)
     }
 
     if (CommTiming_IsSyncState(92)) {
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
         sub_0200F32C(0);
         sub_0200F32C(1);
         CommPlayerMan_Restart();
@@ -389,7 +389,7 @@ static void sub_02059B10(void)
             CommSys_SendDataFixedSize(94, &v0);
         }
 
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
         sub_0200F32C(0);
         sub_0200F32C(1);
         FieldCommMan_SetTask(sub_02059CD8, 0);
@@ -403,7 +403,7 @@ static void sub_02059B74(void)
     for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
         if (v0 != CommSys_CurNetId()) {
             if (sub_02036564(v0) == 94) {
-                if (sFieldCommMan->fieldSystem->unk_10 == NULL) {
+                if (sFieldCommMan->fieldSystem->taskManager == NULL) {
                     for (v1 = 0; v1 < 4; v1++) {
                         if (sFieldCommMan->trainerCard[v1]) {
                             Heap_FreeToHeap(sFieldCommMan->trainerCard[v1]);
@@ -417,7 +417,7 @@ static void sub_02059B74(void)
         }
     }
 
-    sub_02038A1C(4, sFieldCommMan->fieldSystem->unk_08);
+    sub_02038A1C(4, sFieldCommMan->fieldSystem->bgConfig);
 }
 
 static void sub_02059BF4(void)

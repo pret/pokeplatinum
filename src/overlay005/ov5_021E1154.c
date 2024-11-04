@@ -141,7 +141,7 @@ static BOOL ov5_021E120C(TaskManager *param0)
                     MapObject_SetStatusFlagOff(v1, (1 << 8));
                     Player_SetDir(v0->playerAvatar, v0->unk_00);
                     ov5_021E1350(v0);
-                    sub_020057A4(1624, 0);
+                    Sound_StopEffect(1624, 0);
                     return 1;
                 }
             }

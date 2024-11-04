@@ -27,7 +27,7 @@ BOOL ov104_02239080(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02239090(UnkStruct_ov104_0222E930 *param0)
 {
-    sub_020057A4(ov104_0222FC00(param0), 0);
+    Sound_StopEffect(ov104_0222FC00(param0), 0);
     return 0;
 }
 

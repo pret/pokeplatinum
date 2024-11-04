@@ -27,10 +27,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -38,13 +40,11 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -195,7 +195,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
 
         sub_0200F338(0);
         sub_0200F338(1);
-        sub_0200F174(0, 17, 17, 0x0, 16, 1, 51);
+        StartScreenTransition(0, 17, 17, 0x0, 16, 1, 51);
 
         ov59_021D1388(v0, v1);
         SetMainCallback(ov59_021D1100, v0);
@@ -243,7 +243,7 @@ int ov59_021D0F00(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 1;
 
             if (CommSys_CurNetId() != 0) {
@@ -278,7 +278,7 @@ int ov59_021D0F00(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;
@@ -578,8 +578,8 @@ static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, 51);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 51);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 51);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), 51);
-    sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 51);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), 51);
+    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, 51);
 }
 
 static void ov59_021D1474(void)
@@ -853,7 +853,7 @@ static const WindowTemplate Unk_ov59_021D3288 = {
 
 static int ov59_021D1A14(UnkStruct_020961E8 *param0, int param1)
 {
-    param0->unk_384 = sub_02002100(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
+    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
     param0->unk_3A8 = 5;
 
     ov59_021D1994(param0);
@@ -891,7 +891,7 @@ static int ov59_021D1A44(UnkStruct_020961E8 *param0, int param1)
         return param1;
     }
 
-    v1 = sub_02002114(param0->unk_384, 51);
+    v1 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
 
     if (v1 != 0xffffffff) {
         if (v1 == 0xfffffffe) {
@@ -980,7 +980,7 @@ static int ov59_021D1C14(UnkStruct_020961E8 *param0, int param1)
 
 static int ov59_021D1C34(UnkStruct_020961E8 *param0, int param1)
 {
-    param0->unk_384 = sub_02002100(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
+    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
     param0->unk_3A8 = 23;
 
     ov59_021D1994(param0);
@@ -1002,7 +1002,7 @@ static int ov59_021D1C64(UnkStruct_020961E8 *param0, int param1)
         return param1;
     }
 
-    v1 = sub_02002114(param0->unk_384, 51);
+    v1 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
 
     if (v1 != 0xffffffff) {
         if (v1 == 0xfffffffe) {
@@ -1100,7 +1100,7 @@ static int ov59_021D1E0C(UnkStruct_020961E8 *param0, int param1)
     }
 
     if (sub_02038EDC(param0->unk_08->unk_00, 2, &param0->unk_404)) {
-        sub_020057A4(1624, 8);
+        Sound_StopEffect(1624, 8);
         ov59_021D2628(param0, 13, 0);
         ov59_021D19B0(param0, 29);
         CellActor_SetAnim(param0->unk_28C[0], 0);
@@ -1140,7 +1140,7 @@ static int ov59_021D1E98(UnkStruct_020961E8 *param0, int param1)
 static int ov59_021D1EB8(UnkStruct_020961E8 *param0, int param1)
 {
     if (++param0->unk_3B4 > 60) {
-        sub_0200F174(0, 16, 16, 0x0, 16, 1, 51);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 51);
         param1 = 3;
     }
 
@@ -1150,7 +1150,7 @@ static int ov59_021D1EB8(UnkStruct_020961E8 *param0, int param1)
 
 static int ov59_021D1EF4(UnkStruct_020961E8 *param0, int param1)
 {
-    param0->unk_384 = sub_02002100(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
+    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
     param0->unk_3A8 = 12;
 
     ov59_021D1994(param0);
@@ -1171,7 +1171,7 @@ static int ov59_021D1F24(UnkStruct_020961E8 *param0, int param1)
         return param1;
     }
 
-    v0 = sub_02002114(param0->unk_384, 51);
+    v0 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1236,7 +1236,7 @@ static int ov59_021D2064(UnkStruct_020961E8 *param0, int param1)
 {
     if (CommTiming_IsSyncState(201)) {
         CommMan_SetErrorHandling(0, 0);
-        sub_0200F174(0, 16, 16, 0x0, 16, 1, 51);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 51);
 
         param1 = 3;
     }
@@ -1333,7 +1333,7 @@ void ov59_021D2204(UnkStruct_020961E8 *param0, int param1, u8 param2)
         break;
     case 13:
         if (param0->unk_384 != NULL) {
-            sub_02002154(param0->unk_384, 51);
+            Menu_DestroyForExit(param0->unk_384, 51);
             param0->unk_384 = NULL;
         }
         break;
@@ -1345,7 +1345,7 @@ void ov59_021D2204(UnkStruct_020961E8 *param0, int param1, u8 param2)
         ov59_021D2628(param0, 12, 0);
 
         if (param0->unk_384 != NULL) {
-            sub_02002154(param0->unk_384, 51);
+            Menu_DestroyForExit(param0->unk_384, 51);
             param0->unk_384 = NULL;
         }
         break;
@@ -1361,7 +1361,7 @@ void ov59_021D2204(UnkStruct_020961E8 *param0, int param1, u8 param2)
         }
 
         if (param0->unk_384 != NULL) {
-            sub_02002154(param0->unk_384, 51);
+            Menu_DestroyForExit(param0->unk_384, 51);
             param0->unk_384 = NULL;
         }
 
@@ -1572,7 +1572,7 @@ static void ov59_021D2628(UnkStruct_020961E8 *param0, int param1, int param2)
     StringTemplate_Format(param0->unk_24, param0->unk_44, v0);
     Strbuf_Free(v0);
     Window_FillTilemap(&param0->unk_34C, 0xf0f);
-    sub_0200E060(&param0->unk_34C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_34C, 0, 1, 10);
 
     if (param2 == 0) {
         param0->unk_4C = Text_AddPrinterWithParams(&param0->unk_34C, FONT_MESSAGE, param0->unk_44, 0, 0, ov59_021D28D4(param0), NULL);
@@ -1597,7 +1597,7 @@ static int ov59_021D26B8(int param0)
 
 static void ov59_021D26D8(UnkStruct_020961E8 *param0)
 {
-    sub_0200E084(&param0->unk_34C, 0);
+    Window_EraseMessageBox(&param0->unk_34C, 0);
 }
 
 static void ov59_021D26E8(UnkStruct_020961E8 *param0)
@@ -1745,7 +1745,7 @@ static int ov59_021D292C(UnkStruct_020961E8 *param0, int param1)
         ov59_021D28D8(param0, -1);
 
         if (param0->unk_384 != NULL) {
-            sub_02002154(param0->unk_384, 51);
+            Menu_DestroyForExit(param0->unk_384, 51);
             param0->unk_384 = NULL;
         }
 

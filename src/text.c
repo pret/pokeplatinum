@@ -6,6 +6,8 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 
+#include "fonts/pl_font.naix"
+
 #include "bg_window.h"
 #include "font.h"
 #include "graphics.h"
@@ -324,7 +326,7 @@ static u8 *Text_LoadScreenIndicatorGfx(void)
     NNSG2dCharacterData *g2dCharData;
 
     u8 *gfx = Heap_AllocFromHeap(HEAP_ID_SYSTEM, 24 * 64); // These numbers are file dimensions. Curiously, this only loads the bottom-screen indicators.
-    void *ncgr = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_FONT, 5, FALSE, &g2dCharData, HEAP_ID_SYSTEM);
+    void *ncgr = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_FONT, screen_indicators_NCGR, FALSE, &g2dCharData, HEAP_ID_SYSTEM);
 
     MI_CpuCopy32(g2dCharData->pRawData, gfx, 24 * 64);
     Heap_FreeToHeap(ncgr);

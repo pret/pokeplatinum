@@ -126,12 +126,12 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        sub_0200F174(
+        StartScreenTransition(
             0, 5, 1, 0x0, 6, 1, 13);
         (*param1)++;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1)++;
         }
         break;
@@ -141,11 +141,11 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         }
         break;
     case 4:
-        sub_0200F174(0, 2, 0, 0x0, 6, 1, 13);
+        StartScreenTransition(0, 2, 0, 0x0, 6, 1, 13);
         (*param1)++;
         break;
     case 5:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;

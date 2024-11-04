@@ -27,6 +27,7 @@
 #include "message_util.h"
 #include "overlay_manager.h"
 #include "play_time.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -37,7 +38,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -196,7 +196,7 @@ static BOOL ov97_0222AE64(UnkStruct_0222AE60 *param0)
     } else {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
-            Window_Clear(&param0->unk_158, 0);
+            Window_EraseStandardFrame(&param0->unk_158, 0);
             Window_Remove(&param0->unk_158);
         }
 
@@ -239,7 +239,7 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
 
     sub_02017B70(v0);
 
-    if (Pokedex_IsNationalUnlocked(param0->unk_08) == 0) {
+    if (Pokedex_IsNationalDexObtained(param0->unk_08) == FALSE) {
         return;
     }
 
@@ -334,7 +334,7 @@ static BOOL ov97_0222B07C(UnkStruct_0222AE60 *param0)
 
         return 1;
     case 16:
-        sub_0200DAA4(param0->unk_00, 1, 1, 2, 0, 81);
+        LoadStandardWindowGraphics(param0->unk_00, 1, 1, 2, 0, 81);
         Bg_ClearTilemap(param0->unk_00, 1);
         *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
         param0->unk_12C = 17;
@@ -468,8 +468,8 @@ static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
     *((u16 *)HW_BG_PLTT + 0) = ((0 & 31) << 10 | (0 & 31) << 5 | (0 & 31));
     *((u16 *)HW_BG_PLTT + 31) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
 
-    sub_0200DAA4(param0->unk_00, 0, 1, 2, 0, 81);
-    sub_0200DAA4(param0->unk_00, 0, (1 + 9), 3, 1, 81);
+    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 2, 0, 81);
+    LoadStandardWindowGraphics(param0->unk_00, 0, (1 + 9), 3, 1, 81);
 
     *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
 }
@@ -600,11 +600,11 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 19, 16 * 3);
 
     if (v6->unk_4C) {
-        ov97_0222B590(v4, sub_02026E48(v6->unk_08));
+        ov97_0222B590(v4, Pokedex_CountSeen(v6->unk_08));
         ov97_0222B53C(param2->unk_10, v5, v4, v7, 18, 16 * 4);
     }
 
-    Window_Show(param2->unk_10, 0, param2->unk_38, param2->unk_3C);
+    Window_DrawStandardFrame(param2->unk_10, 0, param2->unk_38, param2->unk_3C);
 
     v6->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
 
@@ -771,7 +771,7 @@ static BOOL ov97_0222B9BC(UnkStruct_0222AE60 *param0)
             if (param0->unk_DC[v2]) {
                 Window_SetXPos(v1.unk_10, 3);
                 Window_SetYPos(v1.unk_10, v3);
-                Window_Show(v1.unk_10, 0, v1.unk_38, v1.unk_3C);
+                Window_DrawStandardFrame(v1.unk_10, 0, v1.unk_38, v1.unk_3C);
 
                 if (param0->unk_FC[v2]) {
                     ov97_0222B4AC(param0, 26, v3, param0->unk_FC[v2]);
@@ -807,10 +807,10 @@ static void ov97_0222BAD8(UnkStruct_0222AE60 *param0, int param1)
         }
 
         if (v0 == param1) {
-            Window_Show(&param0->unk_5C[v0], 1, (1 + 9), 3);
+            Window_DrawStandardFrame(&param0->unk_5C[v0], 1, (1 + 9), 3);
             Bg_ChangeTilemapRectPalette(param0->unk_00, 0, Window_GetXPos(&param0->unk_5C[v0]), Window_GetYPos(&param0->unk_5C[v0]), Window_GetWidth(&param0->unk_5C[v0]), Window_GetHeight(&param0->unk_5C[v0]), 0);
         } else {
-            Window_Show(&param0->unk_5C[v0], 1, 1, 2);
+            Window_DrawStandardFrame(&param0->unk_5C[v0], 1, 1, 2);
             Bg_ChangeTilemapRectPalette(param0->unk_00, 0, Window_GetXPos(&param0->unk_5C[v0]), Window_GetYPos(&param0->unk_5C[v0]), Window_GetWidth(&param0->unk_5C[v0]), Window_GetHeight(&param0->unk_5C[v0]), 1);
         }
     }
@@ -991,7 +991,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_04);
     v0->unk_08 = SaveData_Pokedex(v0->unk_04);
     v0->playTime = SaveData_GetPlayTime(v0->unk_04);
-    v0->unk_4C = sub_02027520(v0->unk_08);
+    v0->unk_4C = Pokedex_IsObtained(v0->unk_08);
     v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);
     v0->unk_12C = 15;
 

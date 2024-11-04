@@ -26,10 +26,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
@@ -38,13 +40,11 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -197,7 +197,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         SetAutorepeat(4, 8);
         ov109_021D40D0();
         ov109_021D40F0(v0->unk_14);
-        sub_0200F174(0, 17, 17, 0x0, 16, 1, 95);
+        StartScreenTransition(0, 17, 17, 0x0, 16, 1, 95);
         ov109_021D4300(v0, v1);
         SetMainCallback(ov109_021D40A8, v0);
         ov109_021D41F8(v0, v1);
@@ -237,7 +237,7 @@ int ov109_021D3EB0(OverlayManager *param0, int *param1)
 
     switch (v0->unk_00) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->unk_00 = 1;
 
             if (CommSys_CurNetId() != 0) {
@@ -277,7 +277,7 @@ int ov109_021D3EB0(OverlayManager *param0, int *param1)
 
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
 
@@ -574,8 +574,8 @@ static void ov109_021D4300(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, 95);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 95);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 95);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_0C->unk_14.unk_10), 95);
-    sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 95);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C->unk_14.unk_10), 95);
+    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, 95);
 }
 
 static void ov109_021D43EC(void)
@@ -838,7 +838,7 @@ static const WindowTemplate Unk_ov109_021D5D94 = {
 
 static int ov109_021D4950(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    param0->unk_394 = sub_02002100(param0->unk_14, &Unk_ov109_021D5D94, (1 + (18 + 12)), 11, 95);
+    param0->unk_394 = Menu_MakeYesNoChoice(param0->unk_14, &Unk_ov109_021D5D94, (1 + (18 + 12)), 11, 95);
     param0->unk_3B8 = 5;
 
     ov109_021D48D0(param0);
@@ -875,7 +875,7 @@ static int ov109_021D4980(UnkStruct_ov109_021D5140 *param0, int param1)
         return param1;
     }
 
-    v1 = sub_02002114(param0->unk_394, 95);
+    v1 = Menu_ProcessInputAndHandleExit(param0->unk_394, 95);
 
     if (v1 != 0xffffffff) {
         if (v1 == 0xfffffffe) {
@@ -962,7 +962,7 @@ static int ov109_021D4B44(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static int ov109_021D4B64(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    param0->unk_394 = sub_02002100(param0->unk_14, &Unk_ov109_021D5D94, (1 + (18 + 12)), 11, 95);
+    param0->unk_394 = Menu_MakeYesNoChoice(param0->unk_14, &Unk_ov109_021D5D94, (1 + (18 + 12)), 11, 95);
     param0->unk_3B8 = 23;
 
     ov109_021D48D0(param0);
@@ -984,7 +984,7 @@ static int ov109_021D4B94(UnkStruct_ov109_021D5140 *param0, int param1)
         return param1;
     }
 
-    v1 = sub_02002114(param0->unk_394, 95);
+    v1 = Menu_ProcessInputAndHandleExit(param0->unk_394, 95);
 
     if (v1 != 0xffffffff) {
         if (v1 == 0xfffffffe) {
@@ -1073,7 +1073,7 @@ static int ov109_021D4D20(UnkStruct_ov109_021D5140 *param0, int param1)
     }
 
     if (sub_02038EDC(param0->unk_0C->unk_14.unk_08, 2, &param0->unk_414)) {
-        sub_020057A4(1624, 8);
+        Sound_StopEffect(1624, 8);
         ov109_021D55A8(param0, 13, 0);
         ov109_021D48EC(param0, 29);
 
@@ -1112,7 +1112,7 @@ static int ov109_021D4D9C(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D4DBC(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (++param0->unk_3C4 > 60) {
-        sub_0200F174(0, 16, 16, 0x0, 16, 1, 95);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 95);
         param1 = 3;
     }
 
@@ -1122,7 +1122,7 @@ static int ov109_021D4DBC(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static int ov109_021D4DF8(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    param0->unk_394 = sub_02002100(param0->unk_14, &Unk_ov109_021D5D94, (1 + (18 + 12)), 11, 95);
+    param0->unk_394 = Menu_MakeYesNoChoice(param0->unk_14, &Unk_ov109_021D5D94, (1 + (18 + 12)), 11, 95);
     param0->unk_3B8 = 12;
 
     ov109_021D48D0(param0);
@@ -1142,7 +1142,7 @@ static int ov109_021D4E28(UnkStruct_ov109_021D5140 *param0, int param1)
         return param1;
     }
 
-    v0 = sub_02002114(param0->unk_394, 95);
+    v0 = Menu_ProcessInputAndHandleExit(param0->unk_394, 95);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1206,7 +1206,7 @@ static int ov109_021D4F6C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (CommTiming_IsSyncState(202)) {
         CommMan_SetErrorHandling(0, 0);
-        sub_0200F174(0, 16, 16, 0x0, 16, 1, 95);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 95);
         param1 = 3;
     }
 
@@ -1297,7 +1297,7 @@ static int ov109_021D5098(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D510C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     sub_0205BEA8(12);
-    sub_0200F174(0, 16, 16, 0x0, 16, 1, 95);
+    StartScreenTransition(0, 16, 16, 0x0, 16, 1, 95);
 
     param0->unk_08 = 1;
     param1 = 3;
@@ -1314,7 +1314,7 @@ void ov109_021D5140(UnkStruct_ov109_021D5140 *param0, int param1, u8 param2)
         break;
     case 13:
         if (param0->unk_394 != NULL) {
-            sub_02002154(param0->unk_394, 95);
+            Menu_DestroyForExit(param0->unk_394, 95);
             param0->unk_394 = NULL;
         }
 
@@ -1327,7 +1327,7 @@ void ov109_021D5140(UnkStruct_ov109_021D5140 *param0, int param1, u8 param2)
         ov109_021D55A8(param0, 12, 0);
 
         if (param0->unk_394 != NULL) {
-            sub_02002154(param0->unk_394, 95);
+            Menu_DestroyForExit(param0->unk_394, 95);
             param0->unk_394 = NULL;
         }
 
@@ -1344,7 +1344,7 @@ void ov109_021D5140(UnkStruct_ov109_021D5140 *param0, int param1, u8 param2)
         }
 
         if (param0->unk_394 != NULL) {
-            sub_02002154(param0->unk_394, 95);
+            Menu_DestroyForExit(param0->unk_394, 95);
             param0->unk_394 = NULL;
         }
 
@@ -1362,7 +1362,7 @@ void ov109_021D5140(UnkStruct_ov109_021D5140 *param0, int param1, u8 param2)
         }
 
         if (param0->unk_394 != NULL) {
-            sub_02002154(param0->unk_394, 95);
+            Menu_DestroyForExit(param0->unk_394, 95);
             param0->unk_394 = NULL;
         }
 
@@ -1573,7 +1573,7 @@ static void ov109_021D55A8(UnkStruct_ov109_021D5140 *param0, int param1, int par
     StringTemplate_Format(param0->unk_34, param0->unk_54, v0);
     Strbuf_Free(v0);
     Window_FillTilemap(&param0->unk_35C, 0xf0f);
-    sub_0200E060(&param0->unk_35C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_35C, 0, 1, 10);
 
     if (param2 == 0) {
         param0->unk_5C = Text_AddPrinterWithParams(&param0->unk_35C, FONT_MESSAGE, param0->unk_54, 0, 0, ov109_021D5854(param0), NULL);
@@ -1598,7 +1598,7 @@ static int ov109_021D5638(int param0)
 
 static void ov109_021D5658(UnkStruct_ov109_021D5140 *param0)
 {
-    sub_0200E084(&param0->unk_35C, 0);
+    Window_EraseMessageBox(&param0->unk_35C, 0);
 }
 
 static void ov109_021D5668(UnkStruct_ov109_021D5140 *param0)
@@ -1745,7 +1745,7 @@ static int ov109_021D58AC(UnkStruct_ov109_021D5140 *param0, int param1)
         ov109_021D5858(param0, -1);
 
         if (param0->unk_394 != NULL) {
-            sub_02002154(param0->unk_394, 95);
+            Menu_DestroyForExit(param0->unk_394, 95);
             param0->unk_394 = NULL;
         }
         return 2;

@@ -25,6 +25,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -32,7 +33,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
@@ -284,7 +284,7 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 
     Bg_FillTilesRange(param0->unk_58, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(param0->unk_58, 1, 0x0, 0, 0, 32, 32, 0);
-    sub_0200DD0C(param0->unk_58, 1, 109, 2, ov95_02247674(param0->unk_00), 58);
+    LoadMessageBoxGraphics(param0->unk_58, 1, 109, 2, ov95_02247674(param0->unk_00), 58);
 
     Window_Add(param0->unk_58, &(param0->unk_5C), 1, 2, 19, 27, 4, 1, 1);
     Window_FillTilemap(&(param0->unk_5C), 0xf);
@@ -315,7 +315,7 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2, 16, 0);
-    sub_0200F174(3, 1, 1, 0x0, 16, 1, 58);
+    StartScreenTransition(3, 1, 1, 0x0, 16, 1, 58);
 
     return 1;
 }
@@ -324,7 +324,7 @@ static int ov95_0224B6F0(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             CellActor_SetAnim(param0->unk_40[0], 1);
             CellActor_SetDrawFlag(param0->unk_40[0], 1);
             return 1;
@@ -407,7 +407,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
             StringTemplate_Format(v1, param0->unk_70, param0->unk_6C);
             Text_AddPrinterWithParams(&(param0->unk_5C), FONT_MESSAGE, param0->unk_70, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
-            sub_0200E010(&(param0->unk_5C), 109, 2);
+            Window_DrawMessageBox(&(param0->unk_5C), 109, 2);
             Window_CopyToVRAM(&(param0->unk_5C));
             sub_02006150(1156);
 
@@ -432,19 +432,19 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         break;
     case 3:
         if (ov95_0224B990(param0, 60)) {
-            sub_0200E084(&(param0->unk_5C), 0);
+            Window_EraseMessageBox(&(param0->unk_5C), 0);
             param0->unk_08 = 0;
             (*param1)++;
         }
         break;
     case 4:
         if (++(param0->unk_08) > 10) {
-            sub_0200F174(3, 0, 0, 0x0, 16, 1, 58);
+            StartScreenTransition(3, 0, 0, 0x0, 16, 1, 58);
             (*param1)++;
         }
         break;
     case 5:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;

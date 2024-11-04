@@ -3,25 +3,21 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "overlay023/funcptr_ov23_02248D20.h"
 #include "overlay023/struct_ov23_02248D20.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
 #include "heap.h"
-#include "unk_0200112C.h"
+#include "list_menu.h"
+#include "string_list.h"
 #include "unk_02005474.h"
-#include "unk_02013A04.h"
 #include "unk_0202854C.h"
 
-UnkStruct_ov23_02248D20 *ov23_02248C08(UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
+UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
 {
     UnkStruct_ov23_02248D20 *v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov23_02248D20));
 
@@ -39,20 +35,20 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(UnkStruct_ov84_02240FA8 *param0, u16 para
         v0->unk_1D = param3;
 
         {
-            ResourceMetadata *v1 = sub_02013A04(param0->unk_10, v0->unk_1D);
+            StringList *v1 = StringList_New(param0->count, v0->unk_1D);
             int v2;
 
-            for (v2 = 0; v2 < param0->unk_10; v2++) {
-                sub_02013A90(v1, &param0->unk_00[v2]);
+            for (v2 = 0; v2 < param0->count; v2++) {
+                StringList_AddFromEntry(v1, &param0->choices[v2]);
             }
 
-            param0->unk_00 = v1;
+            param0->choices = v1;
             v0->unk_08 = v1;
         }
     }
 
     v0->unk_20 = (param1 + param2);
-    v0->unk_0C = sub_0200112C(param0, param1, param2, param3);
+    v0->unk_0C = ListMenu_New(param0, param1, param2, param3);
 
     return v0;
 }
@@ -60,7 +56,7 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(UnkStruct_ov84_02240FA8 *param0, u16 para
 static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param2)
 {
     u16 v0 = param2->unk_14 + param2->unk_16;
-    u16 v1 = sub_02001504(param2->unk_0C, 3);
+    u16 v1 = ListMenu_GetAttribute(param2->unk_0C, 3);
 
     if ((param2->unk_18 != param0) || (param2->unk_1A != param1)) {
         param2->unk_18 = param0;
@@ -74,10 +70,10 @@ static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param
     }
 
     {
-        int v2 = sub_02001504(param2->unk_0C, 7);
-        u8 v3 = sub_02001504(param2->unk_0C, 9);
-        int v4 = (v0 - param0) * v3 + sub_02001504(param2->unk_0C, 8);
-        Window *v5 = (Window *)sub_02001504(param2->unk_0C, 18);
+        int v2 = ListMenu_GetAttribute(param2->unk_0C, 7);
+        u8 v3 = ListMenu_GetAttribute(param2->unk_0C, 9);
+        int v4 = (v0 - param0) * v3 + ListMenu_GetAttribute(param2->unk_0C, 8);
+        Window *v5 = (Window *)ListMenu_GetAttribute(param2->unk_0C, 18);
 
         ColoredArrow_Print(param2->unk_10, v5, v2, v4);
     }
@@ -85,16 +81,16 @@ static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param
 
 u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
 {
-    BmpList *v0 = param0->unk_0C;
+    ListMenu *v0 = param0->unk_0C;
     u16 v1, v2, v3;
     int v4, v5;
     u32 v6;
-    ResourceMetadata *v7;
+    StringList *v7;
 
     if (param0->unk_00) {
-        int v8 = sub_02001504(v0, 2);
+        int v8 = ListMenu_GetAttribute(v0, 2);
 
-        sub_020014DC(v0, &v1, &v2);
+        ListMenu_GetListAndCursorPos(v0, &v1, &v2);
 
         if (param0->unk_1C) {
             ov23_02248CA4(v1, v2, param0);
@@ -112,19 +108,19 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
 
                 param0->unk_00(param0->unk_04, param0->unk_14 + param0->unk_16, v1 + v2);
 
-                v7 = sub_02013A04(v8, param0->unk_1D);
+                v7 = StringList_New(v8, param0->unk_1D);
                 v5 = 0;
 
                 for (v4 = 0; v4 < v8; v4++) {
                     if (v4 == (param0->unk_14 + param0->unk_16)) {
                         v5++;
                     } else {
-                        sub_02013A90(v7, &param0->unk_08[v5]);
+                        StringList_AddFromEntry(v7, &param0->unk_08[v5]);
                         v5++;
                     }
 
                     if ((v4) == (v1 + v2)) {
-                        sub_02013A90(v7, &param0->unk_08[param0->unk_14 + param0->unk_16]);
+                        StringList_AddFromEntry(v7, &param0->unk_08[param0->unk_14 + param0->unk_16]);
                     }
                 }
 
@@ -142,24 +138,24 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                         }
 
                         v9 = (v4 << 1) + v10;
-                        v7[v4].unk_04 = v9;
+                        v7[v4].index = v9;
                     }
 
                     v9 = (v4 << 1) + 1;
-                    v7[v4].unk_04 = v9;
+                    v7[v4].index = v9;
                 } else {
                     for (v4 = 0; v4 < v8 - 1; v4++) {
-                        v7[v4].unk_04 = v4;
+                        v7[v4].index = v4;
                     }
                 }
 
                 Heap_FreeToHeap(param0->unk_08);
                 param0->unk_08 = v7;
 
-                sub_020015CC(v0, v7);
+                ListMenu_SetChoices(v0, v7);
                 param0->unk_1C = 0;
 
-                sub_020013AC(v0);
+                ListMenu_Draw(v0);
                 return 0xffffffff;
             }
         } else {
@@ -181,10 +177,10 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
         }
     }
 
-    v6 = sub_02001288(v0);
+    v6 = ListMenu_ProcessInput(v0);
     v3 = param0->unk_20;
 
-    sub_020014D0(v0, &param0->unk_20);
+    ListMenu_CalcTrueCursorPos(v0, &param0->unk_20);
 
     if (v3 != param0->unk_20) {
         Sound_PlayEffect(1500);
@@ -206,9 +202,9 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
 
 void ov23_02248EF8(UnkStruct_ov23_02248D20 *param0, u16 *param1, u16 *param2)
 {
-    BmpList *v0 = param0->unk_0C;
+    ListMenu *v0 = param0->unk_0C;
 
-    sub_02001384(v0, param1, param2);
+    ListMenu_Free(v0, param1, param2);
 
     if (param0->unk_00) {
         ColoredArrow_Free(param0->unk_10);

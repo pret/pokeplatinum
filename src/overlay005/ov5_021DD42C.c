@@ -133,7 +133,7 @@ static void ov5_021DD5D0(FieldSystem *fieldSystem, StringTemplate *param1, UnkSt
 static void ov5_021DD610(FieldSystem *fieldSystem, UnkStruct_ov5_021DD648 *param1)
 {
     if (*(param1->unk_10) == 0) {
-        FieldMessage_AddWindow(fieldSystem->unk_08, param1->unk_0C, 3);
+        FieldMessage_AddWindow(fieldSystem->bgConfig, param1->unk_0C, 3);
         FieldMessage_DrawWindow(param1->unk_0C, SaveData_Options(fieldSystem->saveData));
         *(param1->unk_10) = 1;
     }

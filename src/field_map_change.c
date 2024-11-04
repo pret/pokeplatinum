@@ -7,7 +7,6 @@
 #include "constants/overworld_weather.h"
 #include "consts/map.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/map_load_mode.h"
@@ -18,7 +17,7 @@
 #include "functypes/funcptr_02050904.h"
 #include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/ov5_021E135C.h"
-#include "overlay005/ov5_021E1D20.h"
+#include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
 #include "overlay006/ov6_02243258.h"
 #include "overlay006/ov6_02247100.h"
@@ -38,9 +37,11 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
+#include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
 #include "pokeradar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
@@ -48,11 +49,9 @@
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02027F50.h"
 #include "unk_0202854C.h"
@@ -122,11 +121,11 @@ typedef struct MapChangeUndergroundData {
     int unk_14;
     BOOL unk_18;
     u16 unk_1C;
-    void *unk_20;
+    SaveInfoWindow *saveInfoWin;
     Window unk_24;
     Strbuf *unk_34;
     u8 unk_38;
-    UIControlData *unk_3C;
+    Menu *unk_3C;
 } MapChangeUndergroundData;
 
 typedef struct MapChangeUnionData {
@@ -1144,7 +1143,7 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
         mapChangeUndergroundData->unk_34 = MessageLoader_GetNewStrbuf(msgLoader, 124);
         MessageLoader_Free(msgLoader);
 
-        FieldMessage_AddWindow(fieldSystem->unk_08, &mapChangeUndergroundData->unk_24, 3);
+        FieldMessage_AddWindow(fieldSystem->bgConfig, &mapChangeUndergroundData->unk_24, 3);
         FieldMessage_DrawWindow(&mapChangeUndergroundData->unk_24, SaveData_Options(fieldSystem->saveData));
         mapChangeUndergroundData->unk_38 = FieldMessage_Print(&mapChangeUndergroundData->unk_24, mapChangeUndergroundData->unk_34, SaveData_Options(fieldSystem->saveData), 1);
         mapChangeUndergroundData->state = 1;
@@ -1152,20 +1151,20 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
     case 1:
         if (FieldMessage_FinishedPrinting(mapChangeUndergroundData->unk_38) == 1) {
             Strbuf_Free(mapChangeUndergroundData->unk_34);
-            sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
-            mapChangeUndergroundData->unk_3C = sub_02002100(fieldSystem->unk_08, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
+            LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
+            mapChangeUndergroundData->unk_3C = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
             mapChangeUndergroundData->state = 2;
         }
         break;
     case 2:
-        switch (sub_02002114(mapChangeUndergroundData->unk_3C, 11)) {
+        switch (Menu_ProcessInputAndHandleExit(mapChangeUndergroundData->unk_3C, 11)) {
         case 0:
-            sub_0200E084(&mapChangeUndergroundData->unk_24, 0);
+            Window_EraseMessageBox(&mapChangeUndergroundData->unk_24, 0);
             Window_Remove(&mapChangeUndergroundData->unk_24);
             mapChangeUndergroundData->state = 3;
             break;
         case 0xfffffffe:
-            sub_0200E084(&mapChangeUndergroundData->unk_24, 0);
+            Window_EraseMessageBox(&mapChangeUndergroundData->unk_24, 0);
             Window_Remove(&mapChangeUndergroundData->unk_24);
             mapChangeUndergroundData->state = 5;
         }
@@ -1175,8 +1174,8 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
             ScriptManager_Start(taskMan, 2034, NULL, NULL);
         } else {
             sub_020287E0(fieldSystem->saveData);
-            mapChangeUndergroundData->unk_20 = ov5_021E1F98(fieldSystem, 11, 3);
-            ov5_021E1F04(mapChangeUndergroundData->unk_20);
+            mapChangeUndergroundData->saveInfoWin = SaveInfoWindow_New(fieldSystem, 11, BG_LAYER_MAIN_3);
+            SaveInfoWindow_Draw(mapChangeUndergroundData->saveInfoWin);
             mapChangeUndergroundData->unk_1C = 0;
             ScriptManager_Start(taskMan, 2005, NULL, &mapChangeUndergroundData->unk_1C);
         }
@@ -1187,8 +1186,8 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
         if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
             mapChangeUndergroundData->state = 5;
         } else {
-            ov5_021E1F7C(mapChangeUndergroundData->unk_20);
-            ov5_021E1FF4(mapChangeUndergroundData->unk_20);
+            SaveInfoWindow_Erase(mapChangeUndergroundData->saveInfoWin);
+            SaveInfoWindow_Free(mapChangeUndergroundData->saveInfoWin);
 
             if (mapChangeUndergroundData->unk_1C == 0) {
                 mapChangeUndergroundData->state = 5;
@@ -1573,5 +1572,5 @@ void sub_02054864(TaskManager *taskMan)
     Location *location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
-    FieldSystem_StartChangeMapTask(fieldSystem->unk_10, location);
+    FieldSystem_StartChangeMapTask(fieldSystem->taskManager, location);
 }

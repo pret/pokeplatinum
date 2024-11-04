@@ -328,11 +328,11 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
         }
         break;
     case 4:
-        sub_0200F174(3, 30, 0, 0x0, 8, 1, 4);
+        StartScreenTransition(3, 30, 0, 0x0, 8, 1, 4);
         encEffect->state++;
         break;
     case 5:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             encEffect->state++;
         }
         break;
@@ -386,11 +386,11 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
         }
         break;
     case 4:
-        sub_0200F174(3, 30, 0, 0x0, 8, 1, 4);
+        StartScreenTransition(3, 30, 0, 0x0, 8, 1, 4);
         encEffect->state++;
         break;
     case 5:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             encEffect->state++;
         }
         break;
@@ -484,7 +484,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         break;
     case 3:
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
-        sub_0200F174(3, 16, 16, 0x0, 12, 1, 4);
+        StartScreenTransition(3, 16, 16, 0x0, 12, 1, 4);
 
         caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
@@ -501,7 +501,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         QuadraticInterpolationTaskFX32_Update(&caveEffect->camInterpolation);
         Camera_SetDistance(caveEffect->camInterpolation.currentValue, caveEffect->camera);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             encEffect->state++;
         }
         break;
@@ -542,7 +542,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         break;
     case 3:
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
-        sub_0200F174(3, 16, 16, 0x0, 12, 1, 4);
+        StartScreenTransition(3, 16, 16, 0x0, 12, 1, 4);
 
         caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
@@ -559,7 +559,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         QuadraticInterpolationTaskFX32_Update(&caveEffect->camInterpolation);
         Camera_SetDistance(caveEffect->camInterpolation.currentValue, caveEffect->camera);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             encEffect->state++;
         }
         break;
@@ -1085,7 +1085,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         v4 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_230, v4, v4 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
-        sub_0200F174(3, 24, 0, 0x0, 8, 1, 4);
+        StartScreenTransition(3, 24, 0, 0x0, 8, 1, 4);
         v0->state++;
         break;
 
@@ -1103,7 +1103,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         QuadraticInterpolationTaskFX32_Update(&v1->unk_230);
         Camera_SetDistance(v1->unk_230.currentValue, v1->camera);
 
-        if ((v2 == 1) && (ScreenWipe_Done() == 1)) {
+        if ((v2 == 1) && (IsScreenTransitionDone() == 1)) {
             v0->state++;
         }
 
@@ -1175,7 +1175,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v1->unk_270 = Window_New(4, 1);
-        Window_Add(v0->fieldSystem->unk_08, v1->unk_270, 3, 0, 0, 32, 32, 0, 0);
+        Window_Add(v0->fieldSystem->bgConfig, v1->unk_270, 3, 0, 0, 32, 32, 0, 0);
 
         {
             GXRgb v6 = 0;
@@ -1311,7 +1311,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         Windows_Delete(v1->unk_270, 1);
 
         Bg_ClearTilesRange(3, 32, 0, 4);
-        Bg_ClearTilemap(v0->fieldSystem->unk_08, 3);
+        Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         EncounterEffect_Finish(v0, param0);
         return;
@@ -1440,7 +1440,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
         v3 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_238, v3, v3 + (-FX32_CONST(1000)), (FX32_CONST(10)), 8);
 
-        sub_0200F174(3, 18, 0, 0x0, 8, 1, 4);
+        StartScreenTransition(3, 18, 0, 0x0, 8, 1, 4);
         v0->state++;
         break;
 
@@ -1449,7 +1449,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
         QuadraticInterpolationTaskFX32_Update(&v1->unk_238);
         Camera_SetDistance(v1->unk_238.currentValue, v1->camera);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->state++;
         }
 
@@ -1507,7 +1507,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v1->unk_264 = Window_New(4, 1);
-        Window_Add(v0->fieldSystem->unk_08, v1->unk_264, 3, 0, 0, 32, 32, 0, 0);
+        Window_Add(v0->fieldSystem->bgConfig, v1->unk_264, 3, 0, 0, 32, 32, 0, 0);
 
         {
             GXRgb v6 = 0;
@@ -1658,7 +1658,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         Windows_Delete(v1->unk_264, 1);
 
         Bg_ClearTilesRange(3, 32, 0, 4);
-        Bg_ClearTilemap(v0->fieldSystem->unk_08, 3);
+        Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         EncounterEffect_Finish(v0, param0);
         break;
@@ -1778,7 +1778,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
         }
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        sub_0200F174(3, 16, 0, 0x0, 6, 1, 4);
+        StartScreenTransition(3, 16, 0, 0x0, 6, 1, 4);
         v0->state++;
         break;
 
@@ -1791,7 +1791,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
                 v1->unk_200, &v4);
         }
 
-        if ((v2 == 1) && (ScreenWipe_Done() == 1)) {
+        if ((v2 == 1) && (IsScreenTransitionDone() == 1)) {
             v0->state++;
         }
 
@@ -1902,12 +1902,12 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
     case 5:
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        sub_0200F174(3, 34, 0, 0x0, 8, 1, 4);
+        StartScreenTransition(3, 34, 0, 0x0, 8, 1, 4);
         v0->state++;
         break;
 
     case 6:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             v0->state++;
         }
 
@@ -2062,12 +2062,12 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
 
-        sub_0200F174(3, 34, 0, 0x0, 12, 1, 4);
+        StartScreenTransition(3, 34, 0, 0x0, 12, 1, 4);
         v0->state++;
         break;
 
     case 6:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->state++;
         }
 
@@ -2147,7 +2147,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         v1->unk_04 = ov5_021DEBEC(4);
 
         v1->unk_00 = Window_New(4, 1);
-        Window_Add(v0->fieldSystem->unk_08, v1->unk_00, 3, 0, 0, 32, 32, 0, 0);
+        Window_Add(v0->fieldSystem->bgConfig, v1->unk_00, 3, 0, 0, 32, 32, 0, 0);
 
         {
             GXRgb v3 = 0;
@@ -2235,7 +2235,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         Windows_Delete(v1->unk_00, 1);
 
         Bg_ClearTilesRange(3, 32, 0, 4);
-        Bg_ClearTilemap(v0->fieldSystem->unk_08, 3);
+        Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         G2_SetOBJMosaicSize(0, 0);
 
@@ -2452,12 +2452,12 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
         break;
 
     case 5:
-        sub_0200F174(3, 0, 0, 0x7fff, 10, 1, 4);
+        StartScreenTransition(3, 0, 0, 0x7fff, 10, 1, 4);
         encEffect->state++;
         break;
 
     case 6:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             encEffect->effectComplete = FALSE;
             encEffect->state++;
         }
@@ -2555,12 +2555,12 @@ void EncounterEffect_Legendary(SysTask *task, void *param)
         break;
 
     case 7:
-        sub_0200F174(3, 0, 0, 0x7fff, 60, 1, 4);
+        StartScreenTransition(3, 0, 0, 0x7fff, 60, 1, 4);
         encEffect->state++;
         break;
 
     case 8:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             encEffect->effectComplete = FALSE;
             encEffect->state++;
         }
@@ -2900,7 +2900,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
         Graphics_LoadPaletteFromOpenNARC(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        Window_Add(encEffect->fieldSystem->unk_08, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
+        Window_Add(encEffect->fieldSystem->bgConfig, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
         Window_FillTilemap(&v0->unk_2E0, 0);
         v7 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
         Text_AddPrinterWithParamsAndColor(&v0->unk_2E0, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
@@ -2942,7 +2942,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
     case 3:
 
         ov5_021DE3D0(
-            encEffect->narc, param->unk_12, param->unk_11, param->unk_10, 0, 1, encEffect->fieldSystem->unk_08, 3);
+            encEffect->narc, param->unk_12, param->unk_11, param->unk_10, 0, 1, encEffect->fieldSystem->bgConfig, 3);
         v0->unk_2F0 = 1;
 
         ov5_021DED20(encEffect, v0->unk_40, 6, 8, 16, (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ));
@@ -3029,7 +3029,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
             sub_0200AB4C(-14, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 1);
 
-            Bg_ScheduleScroll(encEffect->fieldSystem->unk_08, 2, 0, -((v0->unk_00.currentValue >> FX32_SHIFT) + -92));
+            Bg_ScheduleScroll(encEffect->fieldSystem->bgConfig, 2, 0, -((v0->unk_00.currentValue >> FX32_SHIFT) + -92));
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             Bg_SetPriority(2, 0);
             encEffect->state++;
@@ -3064,13 +3064,13 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
     case 13:
 
-        sub_0200F174(3, 0, 0, 0x7fff, 15, 1, 4);
+        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, 4);
         encEffect->state++;
         break;
 
     case 14:
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             encEffect->state++;
         }
 
@@ -3095,13 +3095,13 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
         sub_0200AB4C(0, GX_BLEND_PLANEMASK_NONE, 1);
 
-        Bg_SetOffset(encEffect->fieldSystem->unk_08, 2, 0, 0);
+        Bg_SetOffset(encEffect->fieldSystem->bgConfig, 2, 0, 0);
 
         return 1;
     }
 
     if (v0->unk_2F0 == 1) {
-        Bg_ScheduleScroll(encEffect->fieldSystem->unk_08, 3, 0, v0->unk_2F4);
+        Bg_ScheduleScroll(encEffect->fieldSystem->bgConfig, 3, 0, v0->unk_2F4);
 
         v0->unk_2F4 = (v0->unk_2F4 + 30) % 512;
     }
@@ -3335,7 +3335,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             Graphics_LoadPaletteFromOpenNARC(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-            Window_Add(encEffect->fieldSystem->unk_08, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);
+            Window_Add(encEffect->fieldSystem->bgConfig, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);
             Window_FillTilemap(&v0->unk_358, 0);
             v9 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
             Text_AddPrinterWithParamsAndColor(&v0->unk_358, FONT_SYSTEM, v9, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
@@ -3507,7 +3507,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             QuadraticInterpolationTaskFX32_Init(&v0->unk_00, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
             QuadraticInterpolationTaskFX32_Init(&v0->unk_18, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
 
-            sub_0200F174(3, 0, 0, 0x7fff, 8, 1, 4);
+            StartScreenTransition(3, 0, 0, 0x7fff, 8, 1, 4);
         }
 
         break;
@@ -3530,7 +3530,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         v3.x += (-16 * FX32_ONE);
         CellActor_SetPosition(v0->unk_2CC[3], &v3);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             encEffect->state++;
         }
 

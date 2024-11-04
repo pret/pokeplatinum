@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_0207CB08.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay084/ov84_022403F4.h"
@@ -18,20 +17,20 @@
 #include "game_options.h"
 #include "heap.h"
 #include "item.h"
+#include "menu.h"
 #include "message.h"
 #include "move_table.h"
 #include "narc.h"
 #include "poffin.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
-#include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
 static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);
@@ -400,7 +399,7 @@ void ov84_0223FB50(UnkStruct_ov84_0223B5A0 *param0)
 
 void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     UnkStruct_ov84_0223BE5C *v1;
     Strbuf *v2;
     Strbuf *v3;
@@ -415,27 +414,27 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         v5 = 3;
     }
 
-    param0->unk_154 = sub_02013A04(param2, 6);
+    param0->unk_154 = StringList_New(param2, 6);
 
     for (v4 = 0; v4 < param2; v4++) {
-        sub_02013A6C(param0->unk_154, param0->unk_124[param1[v4]], ov84_0223D84C(param1[v4]));
+        StringList_AddFromStrbuf(param0->unk_154, param0->unk_124[param1[v4]], ov84_0223D84C(param1[v4]));
     }
 
-    v0.unk_00 = param0->unk_154;
-    v0.unk_04 = &param0->unk_B4[0];
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = param2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
+    v0.choices = param0->unk_154;
+    v0.window = &param0->unk_B4[0];
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = param2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
 
     if (param2 >= 4) {
-        v0.unk_0B_6 = 1;
+        v0.loopAround = TRUE;
     } else {
-        v0.unk_0B_6 = 0;
+        v0.loopAround = FALSE;
     }
 
-    param0->unk_158 = sub_02001AF4(&v0, 8, 0, 0, 6, PAD_BUTTON_B);
+    param0->unk_158 = Menu_New(&v0, 8, 0, 0, 6, PAD_BUTTON_B);
 
     if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
         Window_FillTilemap(&param0->unk_04[1], 0);
@@ -443,7 +442,7 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
         ov84_02240D5C(param0, param0->unk_C4->unk_66, 1);
     } else {
-        sub_0200E060(&param0->unk_04[v5], 1, 1024 - 9 - (18 + 12), 12);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[v5], 1, 1024 - 9 - (18 + 12), 12);
         Window_FillTilemap(&param0->unk_04[v5], 15);
 
         v2 = MessageLoader_GetNewStrbuf(param0->unk_114, 42);
@@ -458,7 +457,7 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         Window_ScheduleCopyToVRAM(&param0->unk_04[v5]);
     }
 
-    Window_Show(&param0->unk_B4[0], 1, 1024 - 9, 14);
+    Window_DrawStandardFrame(&param0->unk_B4[0], 1, 1024 - 9, 14);
     Window_ScheduleCopyToVRAM(&param0->unk_B4[0]);
 }
 
@@ -473,14 +472,14 @@ void ov84_0223FD84(UnkStruct_ov84_0223B5A0 *param0)
     }
 
     if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 != 3) {
-        sub_0200E084(&param0->unk_04[v0], 1);
+        Window_EraseMessageBox(&param0->unk_04[v0], 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[v0]);
     }
 
-    Window_Clear(&param0->unk_B4[0], 1);
+    Window_EraseStandardFrame(&param0->unk_B4[0], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_B4[0]);
-    sub_02001BC4(param0->unk_158, NULL);
-    sub_02013A3C(param0->unk_154);
+    Menu_Free(param0->unk_158, NULL);
+    StringList_Free(param0->unk_154);
     Window_Remove(&param0->unk_B4[0]);
     Window_FillTilemap(&param0->unk_04[1], 0);
     ov84_0223F528(param0, param0->unk_C4->unk_66);
@@ -514,9 +513,9 @@ void ov84_0223FE94(UnkStruct_ov84_0223B5A0 *param0)
     Strbuf *v2;
     u16 v3;
 
-    Window_Show(&param0->unk_04[9], 1, 1024 - 9, 14);
+    Window_DrawStandardFrame(&param0->unk_04[9], 1, 1024 - 9, 14);
     ov84_0223FF44(param0);
-    sub_0200E060(&param0->unk_04[3], 1, 1024 - 9 - (18 + 12), 12);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[3], 1, 1024 - 9 - (18 + 12), 12);
     Window_FillTilemap(&param0->unk_04[3], 15);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 52);
@@ -551,8 +550,8 @@ void ov84_0223FF44(UnkStruct_ov84_0223B5A0 *param0)
 
 void ov84_0223FFC0(UnkStruct_ov84_0223B5A0 *param0)
 {
-    sub_0200E084(&param0->unk_04[3], 1);
-    Window_Clear(&param0->unk_04[9], 1);
+    Window_EraseMessageBox(&param0->unk_04[3], 1);
+    Window_EraseStandardFrame(&param0->unk_04[9], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[3]);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[9]);
     Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
@@ -564,7 +563,7 @@ void ov84_0223FFF0(UnkStruct_ov84_0223B5A0 *param0)
     Strbuf *v1;
     u16 v2;
 
-    sub_0200E060(&param0->unk_04[6], 1, 1024 - 9 - (18 + 12), 12);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 1, 1024 - 9 - (18 + 12), 12);
     Window_FillTilemap(&param0->unk_04[6], 15);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 54);
@@ -613,7 +612,7 @@ static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
 
 void ov84_02240120(UnkStruct_ov84_0223B5A0 *param0)
 {
-    param0->unk_158 = sub_02002100(param0->unk_00, &Unk_ov84_02241150, 1024 - 9, 14, 6);
+    param0->unk_158 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov84_02241150, 1024 - 9, 14, 6);
 }
 
 void ov84_02240148(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
@@ -625,7 +624,7 @@ void ov84_02240148(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
     v0 = &param0->unk_04[7];
 
     if (param1 == 0) {
-        Window_Show(v0, 1, 1024 - 9, 14);
+        Window_DrawStandardFrame(v0, 1, 1024 - 9, 14);
     }
 
     Window_FillTilemap(v0, 15);
@@ -659,7 +658,7 @@ void ov84_02240248(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 
     if (param1 == 0) {
         Window_FillTilemap(v0, 15);
-        Window_Show(v0, 1, 1024 - 9, 14);
+        Window_DrawStandardFrame(v0, 1, 1024 - 9, 14);
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 78);
 
@@ -689,7 +688,7 @@ void ov84_02240328(UnkStruct_ov84_0223B5A0 *param0)
 
     v0 = &param0->unk_04[10];
     Window_FillTilemap(v0, 15);
-    Window_Show(v0, 1, 1024 - 9, 14);
+    Window_DrawStandardFrame(v0, 1, 1024 - 9, 14);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 108);
     Text_AddPrinterWithParams(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);

@@ -25,13 +25,13 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0201D15C.h"
 #include "unk_020508D4.h"
 #include "unk_02050A74.h"
@@ -521,7 +521,7 @@ static void ov5_021F0DC4(UnkStruct_ov5_021F0D6C *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
 
-    FieldMessage_AddWindow(fieldSystem->unk_08, &param0->window, 3);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param0->window, 3);
     FieldMessage_DrawWindow(&param0->window, SaveData_Options(fieldSystem->saveData));
 }
 
@@ -542,7 +542,7 @@ static void ov5_021F0DE8(UnkStruct_ov5_021F0D6C *param0, u32 param1)
 static int ov5_021F0E24(UnkStruct_ov5_021F0D6C *param0)
 {
     if ((FieldMessage_FinishedPrinting(param0->unk_28) == 1) && (ov5_021F0D54() == 1)) {
-        sub_0200E084(&param0->window, 0);
+        Window_EraseMessageBox(&param0->window, 0);
         Window_Remove(&param0->window);
         return 1;
     }

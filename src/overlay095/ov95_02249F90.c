@@ -96,7 +96,7 @@ BOOL ov95_02249FC8(void *param0, int *param1)
 static int ov95_02249FF8(UnkStruct_ov95_02249FF8 *param0, int *param1)
 {
     ov95_0224A10C(param0);
-    sub_0200F174(0, 1, 1, 0x7fff, 8, 1, 58);
+    StartScreenTransition(0, 1, 1, 0x7fff, 8, 1, 58);
 
     return 1;
 }
@@ -105,7 +105,7 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             param0->unk_10 = UnkEnum_ov95_0224A020_02 << 12;
             param0->unk_14 = UnkEnum_ov95_0224A020_00 << 12;
             param0->unk_18 = ((UnkEnum_ov95_0224A020_03 - UnkEnum_ov95_0224A020_02) << 12) / UnkEnum_ov95_0224A020_04;
@@ -119,12 +119,12 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
     case 1:
         if (param0->unk_20) {
             Sound_PlayEffect(1705);
-            sub_0200F174(0, 0, 0, 0x7fff, 16, 1, 58);
+            StartScreenTransition(0, 0, 0, 0x7fff, 16, 1, 58);
             (*param1)++;
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;

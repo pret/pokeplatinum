@@ -31,6 +31,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -43,7 +44,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
@@ -134,7 +134,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         SetAutorepeat(4, 8);
         ov72_0223DA70();
         ov72_0223DA90(v0->unk_00);
-        sub_0200F174(0, 1, 1, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 1, 1, 0x0, 16, 1, 39);
 
         {
             SaveData *v2 = (SaveData *)OverlayManager_Args(param0);
@@ -178,7 +178,7 @@ int ov72_0223D920(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 1;
         }
         break;
@@ -191,7 +191,7 @@ int ov72_0223D920(OverlayManager *param0, int *param1)
         ov72_0223E8D0(&v0->unk_437C);
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;
@@ -451,8 +451,8 @@ static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, 39);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 4, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 5, 0, 32 * 24 * 2, 1, 39);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_0C), 39);
-    sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 39);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C), 39);
+    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, 39);
 }
 
 static void ov72_0223DDA8(void)
@@ -765,15 +765,15 @@ static int ov72_0223E488(UnkStruct_ov72_0223DB98 *param0, int param1)
     case 1:
         GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_UNK_04);
         GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_114);
-        sub_0200E084(&param0->unk_338, 1);
+        Window_EraseMessageBox(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
-        sub_0200F174(0, 0, 0, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 0, 0, 0x0, 16, 1, 39);
         return 2;
         break;
     case 2:
         param0->unk_370 = 4;
         ov72_0223E3A8(param0->unk_2B4, 0);
-        sub_0200E084(&param0->unk_338, 1);
+        Window_EraseMessageBox(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
         break;
     }
@@ -792,14 +792,14 @@ static int ov72_0223E528(UnkStruct_ov72_0223DB98 *param0, int param1)
     case 1:
         param0->unk_370 = 1;
 
-        sub_0200E084(&param0->unk_338, 1);
+        Window_EraseMessageBox(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
         Window_FillTilemap(&param0->unk_328, 0x202);
         Window_CopyToVRAM(&param0->unk_328);
         break;
     case 2:
         param0->unk_370 = 1;
-        sub_0200E084(&param0->unk_338, 1);
+        Window_EraseMessageBox(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
         break;
     }
@@ -1107,7 +1107,7 @@ static void ov72_0223E930(UnkStruct_ov72_0223DB98 *param0, int param1)
     StringTemplate_Format(param0->unk_10, param0->unk_34, v0);
     Strbuf_Free(v0);
     Window_FillTilemap(&param0->unk_338, 0xf0f);
-    sub_0200E060(&param0->unk_338, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_338, 0, 1, 10);
 
     param0->unk_38 = Text_AddPrinterWithParams(&param0->unk_338, FONT_MESSAGE, param0->unk_34, 0, 0, Options_TextFrameDelay(param0->unk_0C), NULL);
 }

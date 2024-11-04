@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_020961E8_sub1.h"
@@ -13,6 +12,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "menu.h"
 #include "message.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -48,7 +48,7 @@ struct UnkStruct_020961E8_t {
     Window unk_35C;
     Window unk_36C;
     Window *unk_37C[2];
-    UIControlData *unk_384;
+    Menu *unk_384;
     void *unk_388[2];
     NNSG2dCharacterData *unk_390[2];
     void *unk_398[2];

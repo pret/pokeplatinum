@@ -1583,7 +1583,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
     }
 
     {
-        ov5_021D143C(fieldSystem->unk_08);
+        ov5_021D143C(fieldSystem->bgConfig);
 
         {
             G2_SetBG3ControlDCBmp(GX_BG_SCRSIZE_DCBMP_256x256, GX_BG_AREAOVER_XLU, GX_BG_BMPSCRBASE_0x20000);
@@ -1616,9 +1616,9 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
                 0
             };
 
-            Bg_InitFromTemplate(fieldSystem->unk_08, 2, &v3, 0);
+            Bg_InitFromTemplate(fieldSystem->bgConfig, 2, &v3, 0);
             Bg_ClearTilesRange(2, 32, 0, 4);
-            Bg_ClearTilemap(fieldSystem->unk_08, 2);
+            Bg_ClearTilemap(fieldSystem->bgConfig, 2);
         }
     }
 
@@ -1627,8 +1627,8 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
 
 static void ov5_021DF3D4(FieldSystem *fieldSystem)
 {
-    Bg_FreeTilemapBuffer(fieldSystem->unk_08, 2);
-    ov5_021D1434(fieldSystem->unk_08);
+    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, 2);
+    ov5_021D1434(fieldSystem->bgConfig);
 }
 
 static u32 ov5_021DF3E8(u32 param0, BOOL param1)

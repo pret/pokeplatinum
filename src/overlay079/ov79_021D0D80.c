@@ -18,18 +18,18 @@
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020158A8.h"
 #include "unk_02017728.h"
@@ -144,12 +144,12 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
 
         param0->unk_0C = 0;
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, param0->unk_00);
         break;
     case 2:
         ov79_021D21F8(param0);
 
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return 0;
         }
         break;
@@ -161,12 +161,12 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
 
         param0->unk_0C = 0;
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param0->unk_00);
         break;
     case 4:
         ov79_021D21F8(param0);
 
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return 0;
         }
         break;
@@ -198,7 +198,7 @@ static void ov79_021D0F7C(void *param0)
     UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)param0;
 
     if (v0->unk_1B8 != NULL) {
-        sub_0200C800();
+        OAMManager_ApplyAndResetBuffers();
     }
 
     sub_0201DCAC();
@@ -251,7 +251,7 @@ static int ov79_021D0FEC(UnkStruct_ov79_021D0E1C *param0)
 
     if (gCoreSys.heldKeys != 0) {
         if (param0->unk_14 == 0) {
-            v0 = sub_02001288(param0->unk_C4);
+            v0 = ListMenu_ProcessInput(param0->unk_C4);
         }
     } else {
         if (v1 >= 0) {
@@ -307,7 +307,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
 {
     u32 v0;
 
-    v0 = sub_02001288(param0->unk_C8);
+    v0 = ListMenu_ProcessInput(param0->unk_C8);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
@@ -355,7 +355,7 @@ static int ov79_021D114C(UnkStruct_ov79_021D0E1C *param0)
 
 static int ov79_021D116C(UnkStruct_ov79_021D0E1C *param0)
 {
-    switch (sub_02002114(param0->unk_D4, param0->unk_00)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_D4, param0->unk_00)) {
     case 0:
         Sound_PlayEffect(1500);
         ov79_021D2008(param0);
@@ -363,7 +363,7 @@ static int ov79_021D116C(UnkStruct_ov79_021D0E1C *param0)
         return 0;
     case 0xfffffffe:
         Sound_PlayEffect(1500);
-        sub_0200E084(&param0->unk_E8[2], 0);
+        Window_EraseMessageBox(&param0->unk_E8[2], 0);
         param0->unk_18 = 1;
         return 0;
     }
@@ -381,7 +381,7 @@ static int ov79_021D11C0(UnkStruct_ov79_021D0E1C *param0)
         return 0;
     }
 
-    sub_0200E084(&param0->unk_E8[2], 1);
+    Window_EraseMessageBox(&param0->unk_E8[2], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_E8[2]);
 
     param0->unk_20->unk_1C[param0->unk_1A].unk_04_val1_6 = 1;
@@ -655,8 +655,8 @@ static void ov79_021D14A4(UnkStruct_ov79_021D0E1C *param0)
         { 0x4, 0xC, 0xD, 0x8, 0x3, 0xA, 0xB9 }
     };
 
-    sub_0200DAA4(param0->unk_24, 1, 1 + 18 + 12, 15, 0, param0->unk_00);
-    sub_0200DD0C(param0->unk_24, 1, 1, 14, Options_Frame(param0->unk_20->unk_18), param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_24, 1, 1 + 18 + 12, 15, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_24, 1, 1, 14, Options_Frame(param0->unk_20->unk_18), param0->unk_00);
     Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
     Font_LoadTextPalette(4, 13 * 32, param0->unk_00);

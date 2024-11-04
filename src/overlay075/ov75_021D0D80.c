@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -22,21 +21,21 @@
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon_icon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
@@ -88,7 +87,7 @@ typedef struct {
     NNSG2dScreenData *unk_3C;
     NNSG2dScreenData *unk_40;
     Window unk_44[6];
-    UIControlData *unk_A4;
+    Menu *unk_A4;
     SpriteRenderer *unk_A8;
     SpriteGfxHandler *unk_AC;
     CellActorData *unk_B0[3];
@@ -266,7 +265,7 @@ static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_0200E060(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         Window_FillTilemap(&(param0->unk_44[5]), ((15 << 4) | 15));
 
         v0 = Strbuf_Init((19 * 2 * 2), param0->unk_00);
@@ -281,7 +280,7 @@ static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
             return 0;
         }
 
-        sub_0200E084(&param0->unk_44[5], 1);
+        Window_EraseMessageBox(&param0->unk_44[5], 1);
         Window_ClearAndCopyToVRAM(&(param0->unk_44[5]));
 
         param0->unk_08 = 0;
@@ -300,12 +299,12 @@ static void ov75_021D1040(UnkStruct_ov75_021D1184 *param0)
         0, 25, 13, 6, 4, UnkEnum_ov75_021D1598_03, 555
     };
 
-    param0->unk_A4 = sub_02002100(param0->unk_18, &v0, 1, UnkEnum_ov75_021D1598_05, param0->unk_00);
+    param0->unk_A4 = Menu_MakeYesNoChoice(param0->unk_18, &v0, 1, UnkEnum_ov75_021D1598_05, param0->unk_00);
 }
 
 static int ov75_021D1064(UnkStruct_ov75_021D1184 *param0)
 {
-    switch (sub_02002114(param0->unk_A4, param0->unk_00)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_A4, param0->unk_00)) {
     case 0:
         return 1;
     case 0xfffffffe:
@@ -324,7 +323,7 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
     case 0:
         param0->unk_13 = 1;
 
-        sub_0200E060(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         Window_FillTilemap(&(param0->unk_44[5]), ((15 << 4) | 15));
 
         v1 = Strbuf_Init((19 * 2 * 2), param0->unk_00);
@@ -352,7 +351,7 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
             return 0;
         }
 
-        sub_0200E084(&param0->unk_44[5], 1);
+        Window_EraseMessageBox(&param0->unk_44[5], 1);
         Window_ClearAndCopyToVRAM(&(param0->unk_44[5]));
         param0->unk_08 = 0;
 
@@ -466,7 +465,7 @@ static void ov75_021D131C(void *param0)
     }
 
     if (v0->unk_A8 != NULL) {
-        sub_0200C800();
+        OAMManager_ApplyAndResetBuffers();
     }
 
     NNS_GfdDoVramTransfer();
@@ -706,8 +705,8 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     v8 = 0 + param0->unk_1C->unk_0F;
     v5 = NARC_ctor(NARC_INDEX_GRAPHIC__MAIL_GRA, param0->unk_00);
 
-    sub_0200DAA4(param0->unk_18, 0, 1, UnkEnum_ov75_021D1598_05, 0, param0->unk_00);
-    sub_0200DD0C(param0->unk_18, 0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_18, 0, 1, UnkEnum_ov75_021D1598_05, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_18, 0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->unk_00);
 
     v1 = NARC_GetMemberSize(v5, v6);
     v2 = Heap_AllocFromHeapAtEnd(param0->unk_00, v1);
@@ -864,13 +863,13 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
     int v0 = 0, v1 = 0;
     SpriteTemplate v2;
 
-    sub_020397E4();
+    DrawWifiConnectionIcon();
 
     if (param0->unk_0C == 1) {
         return;
     }
 
-    sub_0201DBEC(32, param0->unk_00);
+    VRAMTransferManager_New(32, param0->unk_00);
 
     param0->unk_A8 = sub_0200C6E4(param0->unk_00);
     param0->unk_AC = sub_0200C704(param0->unk_A8);
@@ -958,6 +957,6 @@ static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0)
 
         sub_0200D0B0(param0->unk_A8, param0->unk_AC);
         sub_0200C8D4(param0->unk_A8);
-        sub_0201DC3C();
+        VRAMTransferManager_Destroy();
     }
 }

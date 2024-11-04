@@ -25,6 +25,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -36,7 +37,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
@@ -912,7 +912,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_02087FC0(v0, param0, v1);
         sub_02088754(&v0->unk_41C[4], v0->unk_D8, v0->unk_158, v0->unk_15A, v0->unk_528, v0->unk_17C);
         sub_02004550(52, 0, 0);
-        sub_0200F174(0, 1, 1, 0x0, 16, 1, 18);
+        StartScreenTransition(0, 1, 1, 0x0, 16, 1, 18);
         sub_0208732C(1);
 
         {
@@ -956,7 +956,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 1;
             v0->unk_630 = 0;
         }
@@ -981,7 +981,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
         case 5:
             sub_02087544(v0, param0);
             Window_FillTilemap(&v0->unk_41C[9], 0xf0f);
-            sub_0200E060(&v0->unk_41C[9], 0, (32 * 8), 10);
+            Window_DrawMessageBoxWithScrollCursor(&v0->unk_41C[9], 0, (32 * 8), 10);
             v0->unk_4BC = Text_AddPrinterWithParams(&v0->unk_41C[9], FONT_MESSAGE, v0->unk_180, 0, 0, TEXT_SPEED_FAST, NULL);
             Window_CopyToVRAM(&v0->unk_41C[9]);
             v0->unk_4C0 = 6;
@@ -998,7 +998,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
             v0->unk_630++;
 
             if (v0->unk_630 > 30) {
-                sub_0200F174(2, 0, 0, 0x0, 16, 1, 18);
+                StartScreenTransition(2, 0, 0, 0x0, 16, 1, 18);
                 *param1 = 3;
             }
             break;
@@ -1009,7 +1009,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
         sub_02088514(&v0->unk_38);
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;
@@ -1512,7 +1512,7 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, 18);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, 18);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 18);
-    sub_0200DD0C(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), 18);
+    LoadMessageBoxGraphics(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), 18);
     Font_LoadScreenIndicatorsPalette(4, 12 * 32, 18);
 
     param0->unk_510 = Graphics_GetCharDataFromOpenNARC(param1, 16, 1, &param0->unk_514, 18);
@@ -1804,7 +1804,7 @@ static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int para
 
 static void sub_02087F48(Window *param0, int param1, Strbuf *param2)
 {
-    sub_0200E060(param0, 0, (32 * 8), 10);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, (32 * 8), 10);
     Text_AddPrinterWithParams(param0, FONT_MESSAGE, param2, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Window_CopyToVRAM(param0);
 }
@@ -2296,7 +2296,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
         if (param0->unk_14 == 0) {
             Sound_PlayEffect(1506);
             param0->unk_4F4[6]++;
-            sub_0200F174(2, 0, 0, 0x0, 16, 1, 18);
+            StartScreenTransition(2, 0, 0, 0x0, 16, 1, 18);
             return 3;
         } else {
             param0->unk_4C0 = 5;

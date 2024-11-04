@@ -143,7 +143,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     }
 
     v0->unk_D4.unk_10 = BgConfig_New(53);
-    sub_0201DBEC(64, 53);
+    VRAMTransferManager_New(64, 53);
     v0->unk_D4.unk_14 = PaletteData_New(53);
     PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
     PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, 53);
@@ -194,7 +194,7 @@ static int sub_02097D30(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             *param1 = 1;
         }
         break;
@@ -210,7 +210,7 @@ static int sub_02097D30(OverlayManager *param0, int *param1)
         ov76_0223BF50();
     } break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -254,7 +254,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     sub_02015FB8(v0->unk_D4.unk_188);
     ov76_0223B8C4(v0);
     ov76_0223C424(&v0->unk_D4);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_020242C4(v0->unk_D4.unk_15C);
     ov76_0223EB54(53);
     NARC_dtor(v0->unk_42C);
@@ -389,8 +389,8 @@ static BOOL sub_02097F38(TaskManager *param0)
         if (v7->unk_22 != 7) {
             v8 = sub_02097F00(v0->unk_08, v7->unk_22);
 
-            Pokemon_SetValue(v8, 162, (u8 *)&v13);
-            Pokemon_SetValue(v8, 171, sub_0202CA28(v1->unk_20, v13 - 1));
+            Pokemon_SetValue(v8, MON_DATA_MAIL_ID, (u8 *)&v13);
+            Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));
 
             v9 = sub_0202CA28(v1->unk_20, v13 - 1);
             v10 = sub_0202CA64(v9, 0);

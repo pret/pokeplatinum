@@ -15,12 +15,12 @@
 #include "core_sys.h"
 #include "heap.h"
 #include "message.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
@@ -169,7 +169,7 @@ static BOOL sub_0209AE14(TaskManager *param0)
         }
         break;
     case 5:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_02097500(v0->unk_50, &(v0->unk_48));
             sub_02097514(v0->unk_50);
             sub_0209ADBC(v0);
@@ -190,7 +190,7 @@ static BOOL sub_0209AE14(TaskManager *param0)
         }
         break;
     case 8:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (sub_02097528(v0->unk_50)) {
                 v0->unk_54 = 11;
             } else {
@@ -266,11 +266,11 @@ static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2)
     }
 
     if (Window_IsInUse(v0) == 0) {
-        FieldMessage_AddWindow(param0->fieldSystem->unk_08, v0, 3);
+        FieldMessage_AddWindow(param0->fieldSystem->bgConfig, v0, 3);
         FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
         sub_0205D988(v0);
-        sub_0200E060(v0, 0, 1024 - (18 + 12), 10);
+        Window_DrawMessageBoxWithScrollCursor(v0, 0, 1024 - (18 + 12), 10);
     }
 
     param0->unk_58 = FieldMessage_Print(v0, param0->unk_08, SaveData_Options(param0->fieldSystem->saveData), 1);
@@ -286,7 +286,7 @@ static void sub_0209B110(UnkStruct_0209AD84 *param0)
     Window *v0 = &(param0->unk_18);
 
     if (Window_IsInUse(v0)) {
-        sub_0200E084(v0, 0);
+        Window_EraseMessageBox(v0, 0);
     }
 }
 
@@ -297,8 +297,8 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        sub_0200DAA4(param0->fieldSystem->unk_08, 3, 155, 11, 0, 32);
-        Window_Add(param0->fieldSystem->unk_08, v0, 3, 1, 1, 13, 10, 13, 1);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, 32);
+        Window_Add(param0->fieldSystem->bgConfig, v0, 3, 1, 1, 13, 10, 13, 1);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 5; v1++) {
@@ -313,13 +313,13 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
     param0->unk_5C = 0;
     param0->unk_60 = 5;
 
-    Window_Show(v0, 0, 155, 11);
+    Window_DrawStandardFrame(v0, 0, 155, 11);
 }
 
 static void sub_0209B1CC(UnkStruct_0209AD84 *param0)
 {
     Window *v0 = &(param0->unk_28);
-    Window_Clear(v0, 1);
+    Window_EraseStandardFrame(v0, 1);
 }
 
 static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
@@ -329,8 +329,8 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        sub_0200DAA4(param0->fieldSystem->unk_08, 3, 155, 11, 0, 32);
-        Window_Add(param0->fieldSystem->unk_08, v0, 3, 25, 13, 6, 4, 13, 131);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, 32);
+        Window_Add(param0->fieldSystem->bgConfig, v0, 3, 25, 13, 6, 4, 13, 131);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 2; v1++) {
@@ -345,13 +345,13 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
     param0->unk_5C = 0;
     param0->unk_60 = 2;
 
-    Window_Show(v0, 0, 155, 11);
+    Window_DrawStandardFrame(v0, 0, 155, 11);
 }
 
 static void sub_0209B27C(UnkStruct_0209AD84 *param0)
 {
     Window *v0 = &(param0->unk_38);
-    Window_Clear(v0, 1);
+    Window_EraseStandardFrame(v0, 1);
 }
 
 static int sub_0209B288(UnkStruct_0209AD84 *param0)

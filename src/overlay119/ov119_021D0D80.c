@@ -10,7 +10,6 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/struct_ov104_022412F4.h"
@@ -24,22 +23,23 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "spl.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02014000.h"
 #include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
@@ -242,7 +242,7 @@ void ov119_021D0FD0(void *param0)
 
     sub_02008A94(v0->unk_04.unk_38);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_04.unk_04);
     Bg_RunScheduledUpdates(v0->unk_04.unk_00);
 
@@ -269,22 +269,22 @@ void ov119_021D1004(void)
 
 void ov119_021D1028(void)
 {
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 71);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 71);
 }
 
 void ov119_021D1048(void)
 {
-    sub_0200F174(0, 0, 0, 0x0, 6, 1, 71);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 71);
 }
 
 void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
 {
     int v0 = 71;
 
-    sub_0200DD0C(param0, 1, 20, 15, param2, v0);
-    PaletteData_LoadBufferFromFileStart(param1, 38, sub_0200DD08(param2), v0, 0, 0x20, 12 * 16);
-    sub_0200DAA4(param0, 1, (20 + (18 + 12)), 13, 0, v0);
-    PaletteData_LoadBufferFromFileStart(param1, 38, Window_FramePalette(), v0, 0, 0x20, 13 * 16);
+    LoadMessageBoxGraphics(param0, 1, 20, 15, param2, v0);
+    PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), v0, 0, 0x20, 12 * 16);
+    LoadStandardWindowGraphics(param0, 1, (20 + (18 + 12)), 13, 0, v0);
+    PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), v0, 0, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, v0, 0, 0x20, 14 * 16);
 }
 
@@ -292,7 +292,7 @@ void ov119_021D10F0(BgConfig *param0, Window *param1, int param2, int param3, in
 {
     Window_Init(param1);
     Window_Add(param0, param1, param2, param3, param4, param5, param6, param8, param7);
-    sub_0200E060(param1, 1, 20, 12);
+    Window_DrawMessageBoxWithScrollCursor(param1, 1, 20, 12);
     Window_FillTilemap(param1, 15);
     Window_CopyToVRAM(param1);
 }
@@ -329,12 +329,12 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
 
 void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
     Window_Init(param2);
     Window_Add(param1, param2, param3, param4, param5, param6, param7, param9, param8);
 
-    param0->unk_04.unk_44 = sub_02013A04(2, 71);
+    param0->unk_04.unk_44 = StringList_New(2, 71);
 
     {
         int v1;
@@ -343,33 +343,33 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
 
         for (v1 = 0; v1 < 2; v1++) {
             v2 = MessageLoader_GetNewStrbuf(v3, 2 + v1);
-            sub_02013A6C(param0->unk_04.unk_44, v2, v1);
+            StringList_AddFromStrbuf(param0->unk_04.unk_44, v2, v1);
             Strbuf_Free(v2);
         }
 
         MessageLoader_Free(v3);
     }
 
-    v0.unk_00 = param0->unk_04.unk_44;
-    v0.unk_08 = 0;
-    v0.unk_04 = param2;
-    v0.unk_09 = 1;
-    v0.unk_0A = 2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 1;
+    v0.choices = param0->unk_04.unk_44;
+    v0.fontID = FONT_SYSTEM;
+    v0.window = param2;
+    v0.xSize = 1;
+    v0.ySize = 2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = TRUE;
 
-    Window_Show(param2, 1, (20 + (18 + 12)), 13);
-    param0->unk_04.unk_48 = sub_02001B7C(&v0, 8, 0, 0, 71, PAD_BUTTON_B);
+    Window_DrawStandardFrame(param2, 1, (20 + (18 + 12)), 13);
+    param0->unk_04.unk_48 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 71, PAD_BUTTON_B);
 }
 
 void ov119_021D12CC(UnkStruct_ov119_021D0FD0 *param0)
 {
-    Window_Clear(&param0->unk_04.unk_14[1], 1);
+    Window_EraseStandardFrame(&param0->unk_04.unk_14[1], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_04.unk_14[1]);
     Window_Remove(&param0->unk_04.unk_14[1]);
-    sub_02001BC4(param0->unk_04.unk_48, NULL);
-    sub_02013A3C(param0->unk_04.unk_44);
+    Menu_Free(param0->unk_04.unk_48, NULL);
+    StringList_Free(param0->unk_04.unk_44);
 }
 
 void ov119_021D12F8(Window *param0)
@@ -766,7 +766,7 @@ void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
     {
         int v5 = 0;
 
-        Pokemon_SetValue(v2, 76, &v5);
+        Pokemon_SetValue(v2, MON_DATA_IS_EGG, &v5);
     }
 
     Pokemon_BuildArchivedSprite(&v0, v2, 2);

@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/struct_0200C738.h"
@@ -38,7 +37,9 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
+#include "menu.h"
 #include "narc.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -47,14 +48,12 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -147,7 +146,7 @@ typedef struct {
     CellActorResourceData unk_204[2];
     CellActor *unk_24C[8];
     UnkStruct_ov23_0223E6F8 unk_26C[250];
-    UIControlData *unk_848;
+    Menu *unk_848;
     UnkStruct_ov23_0223E6F8 *unk_84C[8];
     u8 unk_86C[8];
     UnkStruct_ov23_0223FC9C unk_874[8];
@@ -685,7 +684,7 @@ void ov23_0223E2F8(void)
             ov23_02254044(ov23_0224219C());
 
             if (Unk_ov23_02257740->unk_848) {
-                sub_02002154(Unk_ov23_02257740->unk_848, 4);
+                Menu_DestroyForExit(Unk_ov23_02257740->unk_848, 4);
             }
 
             sub_02059514();
@@ -994,7 +993,7 @@ static int ov23_0223E8CC(u16 param0, u16 param1)
 static void ov23_0223E99C(SysTask *param0, void *param1)
 {
     if (Unk_ov23_02257740->unk_848) {
-        sub_02002154(Unk_ov23_02257740->unk_848, 4);
+        Menu_DestroyForExit(Unk_ov23_02257740->unk_848, 4);
     }
 
     Unk_ov23_02257740->unk_848 = NULL;
@@ -1022,11 +1021,11 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
 
     if (Unk_ov23_02257740->unk_A24 != -1) {
         if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
-            Unk_ov23_02257740->unk_848 = sub_02002100(Unk_ov23_02257740->fieldSystem->unk_08, &Unk_ov23_0225630E, 1024 - (18 + 12) - 9, 11, 4);
+            Unk_ov23_02257740->unk_848 = Menu_MakeYesNoChoice(Unk_ov23_02257740->fieldSystem->bgConfig, &Unk_ov23_0225630E, 1024 - (18 + 12) - 9, 11, 4);
             Unk_ov23_02257740->unk_A24 = -1;
         }
     } else {
-        int v1 = sub_02002114(Unk_ov23_02257740->unk_848, 4);
+        int v1 = Menu_ProcessInputAndHandleExit(Unk_ov23_02257740->unk_848, 4);
 
         if (v1 == 0xffffffff) {
             return;
@@ -1318,7 +1317,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     Bg_ClearTilemap(v1, 0);
     Bg_ClearTilemap(v1, 1);
     Bg_ClearTilemap(v1, 2);
-    sub_0200DD0C(v1, 3, (512 - (18 + 12)), 10, 0, 29);
+    LoadMessageBoxGraphics(v1, 3, (512 - (18 + 12)), 10, 0, 29);
 
     {
         NARC *v6;
@@ -1399,7 +1398,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     Unk_ov23_02257740->unk_04 = NULL;
 
     Heap_Destroy(29);
-    ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->fieldSystem->unk_08, (1024 - (18 + 12)), (((1024 - (18 + 12)) - 73) - (27 * 4)));
+    ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->fieldSystem->bgConfig, (1024 - (18 + 12)), (((1024 - (18 + 12)) - 73) - (27 * 4)));
 }
 
 static void ov23_0223F118(SysTask *param0, void *param1)
@@ -1417,11 +1416,11 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 1:
         ov23_0224942C(fieldSystem->unk_6C);
-        sub_0200F174(2, 16, 18, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 16, 18, 0x0, 6, 1, 4);
         (v0->unk_00)++;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (fieldSystem->unk_6C == NULL) {
                 sub_0203CD44(fieldSystem);
                 (v0->unk_00)++;
@@ -1444,7 +1443,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 6:
         sub_02039734();
-        sub_0200F174(3, 17, 17, 0x0, 6, 1, 29);
+        StartScreenTransition(3, 17, 17, 0x0, 6, 1, 29);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -1452,7 +1451,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         (v0->unk_00)++;
         break;
     case 7:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->unk_08 = 0;
             Sound_PlayEffect(1354);
             v0->unk_00 = 8;
@@ -1559,13 +1558,13 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 18:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
         ov23_02254044(ov23_0224219C());
-        sub_0200F174(3, 16, 16, 0x0, 6, 1, 29);
+        StartScreenTransition(3, 16, 16, 0x0, 6, 1, 29);
         (v0->unk_00)++;
         break;
     case 19:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_02039794();
             ov23_0223F020(v0);
             sub_020509D4(fieldSystem);
@@ -1578,7 +1577,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             sub_02039734();
             sub_020594FC();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-            sub_0200F174(1, 17, 19, 0x0, 6, 1, 4);
+            StartScreenTransition(1, 17, 19, 0x0, 6, 1, 4);
             (v0->unk_00)++;
             break;
         }
@@ -1586,12 +1585,12 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 21:
         sub_0200F338(0);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
             Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-            sub_0200DAA4(v0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+            LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
             CommPlayerMan_Restart();
 
             ov23_0224B460();
@@ -1622,12 +1621,12 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 23:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
-        sub_0200F174(3, 2, 2, 0x0, 15, 1, 29);
+        StartScreenTransition(3, 2, 2, 0x0, 15, 1, 29);
         Sound_PlayEffect(1697);
         v0->unk_00 = 24;
         break;
     case 24:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             int v3;
 
             for (v3 = 0; v3 < 8; v3++) {
@@ -1781,7 +1780,7 @@ static int ov23_0223F970(UnkStruct_ov23_02256EB0 *param0)
     SaveData *v0 = FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem);
     UndergroundData *v1 = sub_020298B0(v0);
     BOOL v2 = TrainerInfo_ID(SaveData_GetTrainerInfo(v0)) % 2;
-    BOOL v3 = Pokedex_IsNationalUnlocked(SaveData_Pokedex(v0));
+    BOOL v3 = Pokedex_IsNationalDexObtained(SaveData_Pokedex(v0));
     int v4 = 0;
 
     if (v3) {

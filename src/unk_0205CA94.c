@@ -147,7 +147,7 @@ void sub_0205CA94(SysTask *param0, void *param1)
         }
 
         if (v1[0] == 2) {
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, 4);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 4);
         }
 
         for (v2 = 0; v2 < v0->unk_1E0; v2++) {
@@ -161,7 +161,7 @@ void sub_0205CA94(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->unk_1E4++;
         }
         break;
@@ -202,7 +202,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         sub_0205D274(v0, &v0->unk_1C0[0], 2);
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
         Sound_PlayEffect(1583);
         v0->unk_1E0 = 1;
         v0->unk_1E4++;
@@ -210,7 +210,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
     case 2:
         v1 = v0->unk_1C0[0].unk_0C(&v0->unk_1C0[0]);
 
-        if ((v1 == 0) && (ScreenWipe_Done())) {
+        if ((v1 == 0) && (IsScreenTransitionDone())) {
             Sound_PlayEffect(1585);
             v0->unk_1E4++;
             v0->unk_1E8 = -255;
@@ -272,7 +272,7 @@ void sub_0205CD3C(SysTask *param0, void *param1)
 
         if (v1 == 2) {
             v0->unk_1E8 = 0;
-            sub_0200F174(0, 0, 0, 0x7fff, 6, 1, 4);
+            StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, 4);
         }
 
         if (v1 == 0) {
@@ -280,7 +280,7 @@ void sub_0205CD3C(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->unk_1E8 = 0;
             v0->unk_1E4++;
         }
@@ -319,11 +319,11 @@ void sub_0205CE7C(SysTask *param0, void *param1)
         v0->unk_1E4++;
         break;
     case 1:
-        sub_0200F174(0, 1, 1, 0x7fff, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, 4);
         v0->unk_1E4++;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             Sound_PlayEffect(1586);
             v0->unk_1E4++;
         }

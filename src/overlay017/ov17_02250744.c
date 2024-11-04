@@ -25,6 +25,7 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -33,7 +34,6 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0201D15C.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
@@ -290,8 +290,8 @@ void ov17_022509AC(UnkStruct_ov17_0224FCA0 *param0)
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
 
-    sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
-    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
+    LoadMessageBoxGraphics(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, GetMessageBoxPaletteNARCMember(v0), 24, 0, 0x20, 14 * 16);
     Bg_ClearTilemap(param0->unk_10.unk_20, 2);
     NARC_dtor(v1);
 }
@@ -329,8 +329,8 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
 
-    sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
-    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
+    LoadMessageBoxGraphics(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, GetMessageBoxPaletteNARCMember(v0), 24, 0, 0x20, 14 * 16);
 
     {
         Strbuf *v2;

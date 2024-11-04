@@ -3,13 +3,13 @@
 
 #include "overlay023/struct_ov23_02253E2C_decl.h"
 #include "overlay023/struct_ov23_02253F60.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
+#include "list_menu.h"
 #include "message.h"
 #include "trainer_info.h"
 
-const UnkStruct_ov84_02240FA8 *ov23_02253D40(void);
+const ListMenuTemplate *ov23_02253D40(void);
 UnkStruct_ov23_02253E2C *ov23_02253D48(int param0, int param1, BgConfig *param2, int param3, int param4);
 void ov23_02253DD8(UnkStruct_ov23_02253E2C *param0);
 void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int param1, int param2);

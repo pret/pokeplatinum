@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -30,19 +29,19 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pokemon_icon.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -168,7 +167,7 @@ int ov94_0223BE2C(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 3;
         }
         break;
@@ -176,7 +175,7 @@ int ov94_0223BE2C(OverlayManager *param0, int *param1)
         *param1 = (*Unk_ov94_0224674C[v0->unk_14][1])(v0, *param1);
         break;
     case 4:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (v0->unk_104) {
                 ov94_0223C4E0(v0);
                 ov94_02243EF8(v0, TrainerInfo_Gender(v0->unk_00->unk_1C));
@@ -407,7 +406,7 @@ static const WindowTemplate Unk_ov94_022459F8 = {
     0x0
 };
 
-UIControlData *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
+Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 
@@ -415,7 +414,7 @@ UIControlData *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 62);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 62);
 }
 
 void ov94_0223C3F4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
@@ -550,13 +549,13 @@ static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0)
 
 void ov94_0223C5D8(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10DC = sub_0200E7FC(&param0->unk_F5C, 1);
+    param0->unk_10DC = Window_AddWaitDial(&param0->unk_F5C, 1);
 }
 
 void ov94_0223C5F4(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_10DC != NULL) {
-        DeleteWaitDial(param0->unk_10DC);
+        DestroyWaitDial(param0->unk_10DC);
         param0->unk_10DC = NULL;
     }
 }

@@ -11,10 +11,10 @@
 
 #include "cell_actor.h"
 #include "gx_layers.h"
+#include "menu.h"
 #include "palette.h"
 #include "pokemon.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
@@ -78,7 +78,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D1028();
         param0->unk_60++;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             sub_0200569C();
             sub_02004550(13, 1141, 1);
             param0->unk_60++;
@@ -176,7 +176,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         param0->unk_60++;
         break;
     case 12: {
-        u32 v9 = sub_02001BE0(param0->unk_04.unk_48);
+        u32 v9 = Menu_ProcessInput(param0->unk_04.unk_48);
 
         switch (v9) {
         case 0xfffffffe:
@@ -207,7 +207,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D1048();
         param0->unk_60++;
     case 16:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_60++;
         }
         break;
@@ -261,7 +261,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D1028();
         param0->unk_60++;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             sub_02004550(13, 1141, 1);
             param0->unk_60++;
         }
@@ -329,7 +329,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         param0->unk_60++;
         break;
     case 12: {
-        u32 v5 = sub_02001BE0(param0->unk_04.unk_48);
+        u32 v5 = Menu_ProcessInput(param0->unk_04.unk_48);
 
         switch (v5) {
         case 0xfffffffe:
@@ -360,7 +360,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D1048();
         param0->unk_60++;
     case 16:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_60++;
         }
         break;

@@ -31,13 +31,13 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200DA60.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
@@ -146,11 +146,11 @@ UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *param0, u16 param1, u8 param2
         v3 = Party_GetPokemonBySlotIndex(v9->unk_28, v7);
         v0 = 0;
 
-        Pokemon_SetValue(v3, 6, &v0);
+        Pokemon_SetValue(v3, MON_DATA_HELD_ITEM, &v0);
 
         if (Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL) > 50) {
             v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 50);
-            Pokemon_SetValue(v3, 8, &v1);
+            Pokemon_SetValue(v3, MON_DATA_EXP, &v1);
             Pokemon_CalcLevelAndStats(v3);
         }
     }
@@ -260,25 +260,25 @@ static void ov104_022366A4(UnkStruct_ov104_0223BA10 *param0)
         v5 = Party_GetPokemonBySlotIndex(param0->unk_28, v4);
 
         v2 = (u16)sub_02030398(param0->unk_08, 2, v4, 0, NULL);
-        Pokemon_SetValue(v5, 163, &v2);
+        Pokemon_SetValue(v5, MON_DATA_CURRENT_HP, &v2);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 0, NULL);
-        Pokemon_SetValue(v5, 58, &v3);
+        Pokemon_SetValue(v5, MON_DATA_MOVE1_CUR_PP, &v3);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 1, NULL);
-        Pokemon_SetValue(v5, 59, &v3);
+        Pokemon_SetValue(v5, MON_DATA_MOVE2_CUR_PP, &v3);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 2, NULL);
-        Pokemon_SetValue(v5, 60, &v3);
+        Pokemon_SetValue(v5, MON_DATA_MOVE3_CUR_PP, &v3);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 3, NULL);
-        Pokemon_SetValue(v5, 61, &v3);
+        Pokemon_SetValue(v5, MON_DATA_MOVE4_CUR_PP, &v3);
 
         v1 = (u32)sub_02030398(param0->unk_08, 4, v4, 0, NULL);
-        Pokemon_SetValue(v5, 160, &v1);
+        Pokemon_SetValue(v5, MON_DATA_STATUS_CONDITION, &v1);
 
         v2 = (u16)sub_02030398(param0->unk_08, 5, v4, 0, NULL);
-        Pokemon_SetValue(v5, 6, &v2);
+        Pokemon_SetValue(v5, MON_DATA_HELD_ITEM, &v2);
     }
 
     return;
@@ -729,7 +729,7 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 
 static void ov104_022370C0(BgConfig *param0, Window *param1)
 {
-    Window_Show(param1, 1, ((1024 - (18 + 12)) - 9), 12);
+    Window_DrawStandardFrame(param1, 1, ((1024 - (18 + 12)) - 9), 12);
     Window_FillTilemap(param1, 15);
 
     return;
@@ -743,7 +743,7 @@ void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     if (ov104_0223BA14(param1->unk_10) == 0) {
         GF_ASSERT(param0->unk_A8 != NULL);
         v0 = param0->unk_A8;
-        Window_Clear(v0, 0);
+        Window_EraseStandardFrame(v0, 0);
         Windows_Delete(v0, 1);
     } else {
         GF_ASSERT(param0->unk_A8 != NULL);
@@ -757,9 +757,9 @@ void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
             v1 = param0->unk_A8;
         }
 
-        Window_Clear(v0, 0);
+        Window_EraseStandardFrame(v0, 0);
         Windows_Delete(v0, 1);
-        Window_Clear(v1, 0);
+        Window_EraseStandardFrame(v1, 0);
         Windows_Delete(v1, 1);
     }
 

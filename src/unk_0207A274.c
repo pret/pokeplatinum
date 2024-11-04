@@ -21,7 +21,7 @@ u32 sub_0207A280(const PokedexData *param0)
 {
     BOOL v0;
 
-    v0 = Pokedex_IsNationalUnlocked(param0);
+    v0 = Pokedex_IsNationalDexObtained(param0);
 
     if (v0 == 1) {
         return 1;

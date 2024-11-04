@@ -931,7 +931,7 @@ BattleParams *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230BE
         if (Pokemon_GetValue(v6, MON_DATA_LEVEL, NULL) > v1) {
             v2 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL), v1);
 
-            Pokemon_SetValue(v6, 8, &v2);
+            Pokemon_SetValue(v6, MON_DATA_EXP, &v2);
             Pokemon_CalcLevelAndStats(v6);
         }
 

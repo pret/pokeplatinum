@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/species.h"
+
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "overlay019/ov19_021D0D80.h"
@@ -251,9 +253,9 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
                 if (BoxPokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
                     u16 v9 = BoxPokemon_GetValue(v1, MON_DATA_FORM, NULL);
 
-                    v6 = PokemonPersonalData_GetFormValue(v5, v9, 27);
+                    v6 = PokemonPersonalData_GetFormValue(v5, v9, MON_DATA_PERSONAL_COLOR);
                 } else {
-                    v6 = (v5 != 490) ? 8 : 1;
+                    v6 = (v5 != SPECIES_MANAPHY) ? 8 : 1;
                 }
 
                 {

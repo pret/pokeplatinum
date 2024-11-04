@@ -176,7 +176,7 @@ void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
         v2->unk_00 = ov6_02242E60;
     }
 
-    FieldTask_Start(fieldSystem->unk_10, ov6_02242C5C, v2);
+    FieldTask_Start(fieldSystem->taskManager, ov6_02242C5C, v2);
 }
 
 u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)

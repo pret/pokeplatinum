@@ -46,6 +46,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -54,7 +55,6 @@
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -4582,7 +4582,7 @@ void ov16_0226CEB0(UnkStruct_ov16_02268A14 *param0, int param1)
 
     GF_ASSERT(param0->unk_66B == 18);
 
-    sub_0200DAA4(v0, 5, 0x20, 1, 0, 5);
+    LoadStandardWindowGraphics(v0, 5, 0x20, 1, 0, 5);
     PaletteData_LoadBufferFromHardware(v1, 1, 1 * 16, 0x20);
 
     {

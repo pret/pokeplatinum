@@ -55,6 +55,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -65,7 +66,6 @@
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
@@ -380,7 +380,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_08 = BgConfig_New(118);
 
-    sub_0201DBEC(64, 118);
+    VRAMTransferManager_New(64, 118);
     SetAutorepeat(4, 8);
 
     ov113_0225CF58(v0->unk_08);
@@ -423,7 +423,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_24 = sub_02015920(118);
 
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 118);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 118);
 
     if (v0->unk_00->unk_00 != NULL) {
         ov66_0222E31C(v0->unk_00->unk_00, 1);
@@ -471,7 +471,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             v0->unk_9BC = 1;
             (*param1)++;
         }
@@ -506,7 +506,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         break;
     case 3:
         Window_FillTilemap(&v0->unk_B4, 0xf);
-        sub_0200E060(&v0->unk_B4, 0, 1, 14);
+        Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
         v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
         (*param1)++;
@@ -538,7 +538,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
             case 1:
                 sub_02015A54(v0->unk_24);
                 v0->unk_28 = 0;
-                sub_0200E084(&v0->unk_B4, 0);
+                Window_EraseMessageBox(&v0->unk_B4, 0);
                 v0->unk_168.unk_00 = 0;
                 v0->unk_9BC = 3;
                 *param1 = 9;
@@ -546,7 +546,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
             case 2:
                 sub_02015A54(v0->unk_24);
                 v0->unk_28 = 0;
-                sub_0200E084(&v0->unk_B4, 0);
+                Window_EraseMessageBox(&v0->unk_B4, 0);
                 PaletteData_Blend(v0->unk_0C, 0, (0 * 16 + 9), 1, 0, 0x0);
                 PaletteData_Blend(v0->unk_0C, 2, v0->unk_921 * 16, 16, 0, 0x0);
                 *param1 = 2;
@@ -556,7 +556,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         break;
     case 6:
         Window_FillTilemap(&v0->unk_B4, 0xf);
-        sub_0200E060(&v0->unk_B4, 0, 1, 14);
+        Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
         v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
         (*param1)++;
@@ -574,15 +574,15 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         }
         break;
     case 9:
-        if (ScreenWipe_Done() == 0) {
+        if (IsScreenTransitionDone() == 0) {
             sub_0200F2C0();
         }
 
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 118);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 118);
         (*param1)++;
         break;
     case 10:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             (*param1)++;
         }
         break;
@@ -661,7 +661,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_164);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_0201E530();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -692,7 +692,7 @@ static void ov113_0225CF18(void *param0)
     ov113_0225E65C(&v0->unk_194, v0->unk_9BC);
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);
 
@@ -911,8 +911,8 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
         int v2;
         v2 = Options_Frame(SaveData_Options(param0->unk_04));
 
-        PaletteData_LoadBufferFromFileStart(param0->unk_0C, 38, sub_0200DD08(v2), 118, 0, 0x20, 14 * 16);
-        sub_0200DD0C(param0->unk_08, 1, 1, 14, v2, 118);
+        PaletteData_LoadBufferFromFileStart(param0->unk_0C, 38, GetMessageBoxPaletteNARCMember(v2), 118, 0, 0x20, 14 * 16);
+        LoadMessageBoxGraphics(param0->unk_08, 1, 1, 14, v2, 118);
         PaletteData_LoadBufferFromFileStart(param0->unk_0C, 14, 6, 118, 0, 0x20, 13 * 16);
 
         if (param0->unk_00->unk_04 == 0) {

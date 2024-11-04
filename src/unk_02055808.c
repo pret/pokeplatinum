@@ -62,7 +62,7 @@ void FieldTask_StartFieldMap(TaskManager *param0)
 
 static BOOL sub_02055898(TaskManager *param0)
 {
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         return 1;
     }
 
@@ -79,7 +79,7 @@ void sub_020558AC(TaskManager *param0)
     }
 
     {
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 4);
         FieldTask_Start(param0, sub_02055898, NULL);
     }
 }
@@ -94,7 +94,7 @@ void sub_020558F0(TaskManager *param0)
     }
 
     {
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
         FieldTask_Start(param0, sub_02055898, NULL);
     }
 }

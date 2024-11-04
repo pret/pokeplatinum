@@ -344,7 +344,7 @@ void sub_020397C8(BOOL param0, u32 param1)
     }
 }
 
-void sub_020397E4(void)
+void DrawWifiConnectionIcon(void)
 {
     if (CommSys_IsInitialized()) {
         if ((CommSys_ConnectedCount() > 1) || sub_020389B8()) {

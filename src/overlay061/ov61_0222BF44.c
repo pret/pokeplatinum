@@ -4,12 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02017498.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -24,17 +20,19 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -67,14 +65,14 @@ typedef struct {
     Window unk_54;
     Window unk_64;
     Window unk_74;
-    UIControlData *unk_84;
+    Menu *unk_84;
     void *unk_88;
     int unk_8C;
     int unk_90;
     int unk_94;
     int unk_98;
-    ResourceMetadata *unk_9C;
-    BmpList *unk_A0;
+    StringList *unk_9C;
+    ListMenu *unk_A0;
     UnkStruct_ov61_0222C3B0 unk_A4;
 } UnkStruct_ov61_0222C664;
 
@@ -94,7 +92,7 @@ static void ov61_0222C7F8(UnkStruct_ov61_0222C664 *param0, int param1, int param
 static int ov61_0222C834(int param0);
 static void ov61_0222C850(UnkStruct_ov61_0222C664 *param0);
 static void ov61_0222C86C(UnkStruct_ov61_0222C664 *param0);
-static UIControlData *ov61_0222C884(BgConfig *param0, int param1, int param2);
+static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2);
 static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1, int param2, int param3, u16 param4);
 static void ov61_0222C920(UnkStruct_ov61_0222C664 *param0, int param1, int param2);
 static BOOL ov61_0222C928(int param0, int param1);
@@ -162,7 +160,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_04 = BgConfig_New(117);
 
-    sub_0201DBEC(64, 117);
+    VRAMTransferManager_New(64, 117);
     SetAutorepeat(4, 8);
     ov61_0222C224(v0->unk_04);
     sub_0201E3D8();
@@ -179,7 +177,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     ov61_0222C3B0(v0);
     ov61_0222C664(v0);
 
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 117);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 117);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -216,7 +214,7 @@ int ov61_0222C0F8(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             *param1 = 1;
         }
         break;
@@ -235,7 +233,7 @@ int ov61_0222C0F8(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -263,7 +261,7 @@ int ov61_0222C160(OverlayManager *param0, int *param1)
     ov61_0222C38C(v0->unk_04);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_0201E530();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -437,8 +435,8 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 117);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 117);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 117);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(SaveData_Options(param0->unk_00->unk_00->unk_04)), 117);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 117);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_Options(param0->unk_00->unk_00->unk_04)), 117);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, 117);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, 117);
@@ -502,7 +500,7 @@ static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_2C, param1, v0);
     StringTemplate_Format(param0->unk_20, param0->unk_3C, v0);
     Window_FillTilemap(&param0->unk_64, 15);
-    Window_Show(&param0->unk_64, 1, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(&param0->unk_64, 1, (1 + (18 + 12)), 11);
 
     param0->unk_40 = Text_AddPrinterWithParams(&param0->unk_64, FONT_MESSAGE, param0->unk_3C, 0, 0, TEXT_SPEED_INSTANT, NULL);
     param0->unk_40 = 0xff;
@@ -521,7 +519,7 @@ static void ov61_0222C7F8(UnkStruct_ov61_0222C664 *param0, int param1, int param
     }
 
     StringTemplate_SetNumber(param0->unk_20, 0, param2, 5, 2, 1);
-    sub_0200E084(&param0->unk_44, 1);
+    Window_EraseMessageBox(&param0->unk_44, 1);
 
     ov61_0222C794(param0, v0);
 }
@@ -538,19 +536,19 @@ static int ov61_0222C834(int param0)
 static void ov61_0222C850(UnkStruct_ov61_0222C664 *param0)
 {
     if (param0->unk_88 == NULL) {
-        param0->unk_88 = sub_0200E7FC(&param0->unk_44, 1);
+        param0->unk_88 = Window_AddWaitDial(&param0->unk_44, 1);
     }
 }
 
 static void ov61_0222C86C(UnkStruct_ov61_0222C664 *param0)
 {
     if (param0->unk_88 != NULL) {
-        DeleteWaitDial(param0->unk_88);
+        DestroyWaitDial(param0->unk_88);
         param0->unk_88 = NULL;
     }
 }
 
-static UIControlData *ov61_0222C884(BgConfig *param0, int param1, int param2)
+static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 
@@ -558,7 +556,7 @@ static UIControlData *ov61_0222C884(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 117);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 117);
 }
 
 static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1, int param2, int param3, u16 param4)
@@ -570,7 +568,7 @@ static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1
     StringTemplate_Format(param0->unk_20, param0->unk_34, v0);
     Strbuf_Free(v0);
     Window_FillTilemap(&param0->unk_44, 0xf0f);
-    sub_0200E060(&param0->unk_44, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_44, 0, 1, 10);
 
     param0->unk_40 = Text_AddPrinterWithParams(&param0->unk_44, FONT_MESSAGE, param0->unk_34, 0, 0, param3, NULL);
     param0->unk_8C = 0;
@@ -635,7 +633,7 @@ static int ov61_0222C960(UnkStruct_ov61_0222C664 *param0)
         param0->unk_90++;
         break;
     case 3: {
-        int v0 = sub_02002114(param0->unk_84, 117);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_84, 117);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -837,7 +835,7 @@ static int ov61_0222CC40(UnkStruct_ov61_0222C664 *param0)
 static int ov61_0222CC64(UnkStruct_ov61_0222C664 *param0)
 {
     if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        Window_Clear(&param0->unk_64, 0);
+        Window_EraseStandardFrame(&param0->unk_64, 0);
         param0->unk_90 = 0;
 
         if (ov61_0222C928(-param0->unk_18, param0->unk_1C) == 1) {
@@ -858,7 +856,7 @@ static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0)
 
     sub_02039794();
     ov61_0222C86C(param0);
-    sub_0200F174(0, 0, 0, 0x0, 6, 1, 117);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 117);
     param0->unk_08 = 0;
 
     return 1;

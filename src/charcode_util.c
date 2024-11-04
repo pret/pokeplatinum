@@ -8,22 +8,22 @@
 #include "charcode.h"
 
 static const charcode_t sHexadecimalDigits[] = {
-    CHAR_JP_0,
-    CHAR_JP_1,
-    CHAR_JP_2,
-    CHAR_JP_3,
-    CHAR_JP_4,
-    CHAR_JP_5,
-    CHAR_JP_6,
-    CHAR_JP_7,
-    CHAR_JP_8,
-    CHAR_JP_9,
-    CHAR_JP_A,
-    CHAR_JP_B,
-    CHAR_JP_C,
-    CHAR_JP_D,
-    CHAR_JP_E,
-    CHAR_JP_F,
+    CHAR_WIDE_0,
+    CHAR_WIDE_1,
+    CHAR_WIDE_2,
+    CHAR_WIDE_3,
+    CHAR_WIDE_4,
+    CHAR_WIDE_5,
+    CHAR_WIDE_6,
+    CHAR_WIDE_7,
+    CHAR_WIDE_8,
+    CHAR_WIDE_9,
+    CHAR_WIDE_A,
+    CHAR_WIDE_B,
+    CHAR_WIDE_C,
+    CHAR_WIDE_D,
+    CHAR_WIDE_E,
+    CHAR_WIDE_F,
 };
 
 static const int sPowersOfTen[] = {
@@ -129,14 +129,14 @@ charcode_t *CharCode_FromInt(charcode_t *str, s32 i, enum PaddingMode paddingMod
         diff = i - (j * digit);
 
         if (paddingMode == PADDING_MODE_ZEROES) {
-            *str = digit >= 10 ? CHAR_JP_QUESTION : sHexadecimalDigits[digit];
+            *str = digit >= 10 ? CHAR_WIDE_QUESTION : sHexadecimalDigits[digit];
             str++;
         } else if (digit != 0 || j == 1) {
             paddingMode = PADDING_MODE_ZEROES;
-            *str = digit >= 10 ? CHAR_JP_QUESTION : sHexadecimalDigits[digit];
+            *str = digit >= 10 ? CHAR_WIDE_QUESTION : sHexadecimalDigits[digit];
             str++;
         } else if (paddingMode == PADDING_MODE_SPACES) {
-            *str = CHAR_JP_SPACE;
+            *str = CHAR_WIDE_SPACE;
             str++;
         }
 

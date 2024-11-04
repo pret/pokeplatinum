@@ -3236,7 +3236,7 @@ static u32 sub_02099980(UnkStruct_020998EC *param0, const u16 *param1, u32 param
     v0 = sub_0209755C(param0->unk_00);
 
     for (v1 = 0; v1 < param2; v1++) {
-        if (Pokedex_HasEncountered(v0, param1[v1])) {
+        if (Pokedex_HasSeenSpecies(v0, param1[v1])) {
             inline_02099980(param0, param1[v1]);
             *param3++ = param1[v1];
             v2++;

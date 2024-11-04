@@ -7,9 +7,9 @@
 #include "font.h"
 #include "game_options.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_0200DA60.h"
 
 void sub_0205D8CC(u32 param0, u32 param1)
 {
@@ -32,9 +32,9 @@ void FieldMessage_AddWindow(BgConfig *param0, Window *param1, u32 param2)
 
 void FieldMessage_DrawWindow(Window *param0, const Options *param1)
 {
-    sub_0200DD0C(param0->bgConfig, Window_GetBgLayer(param0), 1024 - (18 + 12), 10, Options_Frame(param1), 4);
+    LoadMessageBoxGraphics(param0->bgConfig, Window_GetBgLayer(param0), 1024 - (18 + 12), 10, Options_Frame(param1), 4);
     sub_0205D988(param0);
-    sub_0200E060(param0, 0, 1024 - (18 + 12), 10);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, 1024 - (18 + 12), 10);
 }
 
 void sub_0205D988(Window *param0)
@@ -93,7 +93,7 @@ void sub_0205DA1C(BgConfig *param0, Window *param1, u16 param2, u16 param3)
 
 void sub_0205DA80(Window *param0, u16 param1, u16 param2)
 {
-    sub_0200E2A4(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, param1, param2, 4);
+    LoadSignpostContentGraphics(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, param1, param2, 4);
     Window_FillTilemap(param0, 15);
-    sub_0200E69C(param0, 0, ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, param1);
+    Window_DrawSignpost(param0, 0, ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, param1);
 }

@@ -44,6 +44,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -54,7 +55,6 @@
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -453,7 +453,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_24 = Party_GetFromSavedata(v0->unk_CC->unk_14.unk_08);
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, 95);
 
-    sub_0201DBEC(8, 95);
+    VRAMTransferManager_New(8, 95);
     sub_0201E3D8();
     sub_0201E450(4);
     ov109_021D1C28(v0);
@@ -489,7 +489,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     ov109_021D3584(v0);
     ov109_021D379C(v0);
     ov109_021D3884(v0);
-    sub_0200F174(0, 1, 1, 0x0, 8, 1, 95);
+    StartScreenTransition(0, 1, 1, 0x0, 8, 1, 95);
 
     return 1;
 }
@@ -513,7 +513,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     ov109_021D1C68(v0);
 
     SetMainCallback(NULL, NULL);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     NARC_dtor(v0->unk_D80);
     OverlayManager_FreeData(param0);
     Heap_Destroy(95);
@@ -560,7 +560,7 @@ static int ov109_021D0F78(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D0F8C(UnkStruct_ov109_021D0F70 *param0)
 {
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         if (CommSys_CurNetId() == 0) {
             param0->unk_00 = 2;
         } else {
@@ -1372,7 +1372,7 @@ static int ov109_021D1A6C(UnkStruct_ov109_021D0F70 *param0)
     if (CommTiming_IsSyncState(202)) {
         ov109_021D3B70(param0, param0->unk_28->unk_0C);
         sub_02038ED4(&param0->unk_04);
-        param0->unk_DC8 = sub_0200E7FC(&param0->unk_C9C.unk_0C[0], (1 + 9));
+        param0->unk_DC8 = Window_AddWaitDial(&param0->unk_C9C.unk_0C[0], (1 + 9));
         param0->unk_00 = 45;
     }
 
@@ -1386,7 +1386,7 @@ static int ov109_021D1AA8(UnkStruct_ov109_021D0F70 *param0)
 
     if (v0) {
         gCoreSys.inhibitReset = 0;
-        DeleteWaitDial(param0->unk_DC8);
+        DestroyWaitDial(param0->unk_DC8);
         param0->unk_00 = 48;
     }
 
@@ -1466,7 +1466,7 @@ static int ov109_021D1B8C(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
-    sub_0200F174(2, 0, 0, 0x0, 8, 1, 95);
+    StartScreenTransition(2, 0, 0, 0x0, 8, 1, 95);
 
     if (param0->unk_1C != sub_020041FC()) {
         sub_02004550(4, param0->unk_1C, 1);
@@ -1478,7 +1478,7 @@ static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BE4(UnkStruct_ov109_021D0F70 *param0)
 {
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         param0->unk_00 = 53;
         return 1;
     }
@@ -1553,7 +1553,7 @@ static void ov109_021D1C00(void *param0)
     UnkStruct_ov109_021D0F70 *v0 = param0;
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_D9C);
     Bg_RunScheduledUpdates(v0->unk_D84);
 }
@@ -2019,9 +2019,9 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
     int v0;
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
 
-    sub_0200DAA4(param0->unk_D84, 1, 1, 15, 0, 95);
-    sub_0200DD0C(param0->unk_D84, 1, (1 + 9), 14, param0->unk_CC->unk_14.unk_04, 95);
-    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, sub_0200DD08(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
+    LoadStandardWindowGraphics(param0->unk_D84, 1, 1, 15, 0, 95);
+    LoadMessageBoxGraphics(param0->unk_D84, 1, (1 + 9), 14, param0->unk_CC->unk_14.unk_04, 95);
+    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
     v1->unk_04 = MessageLoader_Init(0, 26, 376, 95);
@@ -2067,7 +2067,7 @@ static void ov109_021D2634(UnkStruct_ov109_021D0F70 *param0, u32 param1)
     Window *v1 = &v0->unk_0C[0];
 
     Window_FillTilemap(v1, 15);
-    sub_0200E060(v1, 1, (1 + 9), 14);
+    Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 14);
     Window_FillTilemap(v1, 15);
     MessageLoader_GetStrbuf(v0->unk_04, param1, v0->unk_6C);
     Text_AddPrinterWithParams(v1, FONT_MESSAGE, v0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -2088,7 +2088,7 @@ static void ov109_021D268C(UnkStruct_ov109_021D0F70 *param0, u32 param1, const T
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
-    sub_0200E060(v2, 1, (1 + 9), 14);
+    Window_DrawMessageBoxWithScrollCursor(v2, 1, (1 + 9), 14);
     Window_FillTilemap(v2, 15);
     Text_AddPrinterWithParams(v2, FONT_MESSAGE, v1->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(v2);
@@ -2107,7 +2107,7 @@ static void ov109_021D2714(UnkStruct_ov109_021D0F70 *param0, u32 param1, u32 par
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
-    sub_0200E060(v2, 1, (1 + 9), 14);
+    Window_DrawMessageBoxWithScrollCursor(v2, 1, (1 + 9), 14);
     Window_FillTilemap(v2, 15);
     Text_AddPrinterWithParams(v2, FONT_MESSAGE, v1->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(v2);
@@ -2118,7 +2118,7 @@ static void ov109_021D2788(UnkStruct_ov109_021D0F70 *param0)
     UnkStruct_ov109_021D24F8 *v0 = &param0->unk_C9C;
     Window *v1 = &v0->unk_0C[0];
 
-    sub_0200E084(v1, 1);
+    Window_EraseMessageBox(v1, 1);
     Window_FillTilemap(v1, 0);
     Window_ScheduleCopyToVRAM(v1);
 }
@@ -2151,7 +2151,7 @@ static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int
 {
     UnkStruct_ov109_021D24F8 *v0 = &param0->unk_C9C;
     Window *v1 = &v0->unk_1C[param2];
-    Window_Show(v1, 1, 1, 14);
+    Window_DrawStandardFrame(v1, 1, 1, 14);
     Window_FillTilemap(v1, 15);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param1, Font_CalcCenterAlignment(FONT_SYSTEM, param1, 0, 8 * 8), 0, TEXT_SPEED_NO_TRANSFER, param3, NULL);
     Window_ScheduleCopyToVRAM(v1);
@@ -2173,7 +2173,7 @@ static void ov109_021D28A0(UnkStruct_ov109_021D0F70 *param0, int param1)
     UnkStruct_ov109_021D24F8 *v0 = &param0->unk_C9C;
     Window *v1 = &v0->unk_1C[param1];
 
-    sub_0200E084(v1, 1);
+    Window_EraseMessageBox(v1, 1);
     Window_FillTilemap(v1, 0);
     Window_ScheduleCopyToVRAM(v1);
 }

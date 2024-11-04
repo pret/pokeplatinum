@@ -427,11 +427,11 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         ov62_02231B8C(param0);
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_022348B8(param0, 0, v1->unk_0C, v1->unk_04);
             param0->unk_08++;
         } else {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_02233704(param0, 47);
             Sound_PlayEffect(1375);
 
@@ -856,14 +856,14 @@ static BOOL ov62_02238B70(UnkStruct_0208C06C *param0)
         ov62_02231B8C(param0);
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_022348B8(param0, 1, v1->unk_0C, v1->unk_04);
             v0->unk_2E4 = 0;
             param0->unk_0C = 0;
             sub_0208B9E0(param0->unk_6F0, 0);
             ov62_0222FB60(param0, 3);
         } else {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             Sound_PlayEffect(1375);
             param0->unk_08++;
         }
@@ -1475,7 +1475,7 @@ static BOOL ov62_02239984(UnkStruct_0208C06C *param0, int param1)
         PokedexData *v10 = SaveData_Pokedex(param0->unk_830);
 
         for (v7 = v3; v7 < v4; v7++) {
-            v9 = Pokedex_HasEncountered(v10, v1[v7]);
+            v9 = Pokedex_HasSeenSpecies(v10, v1[v7]);
 
             if (v9 == 0) {
                 v1[v7] = 0xFFFF;
@@ -1521,7 +1521,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
         v4->unk_1D4.unk_00 = 0;
 
         for (v5 = v2; v5 < v3; v5++) {
-            v7 = Pokedex_HasEncountered(v8, v0[v5]);
+            v7 = Pokedex_HasSeenSpecies(v8, v0[v5]);
 
             if (v7 == 0) {
                 v0[v5] = 0xFFFF;

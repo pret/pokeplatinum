@@ -132,6 +132,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -141,7 +142,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
@@ -1356,7 +1356,7 @@ void ov16_0225E23C(BattleSystem *param0, BattlerData *param1)
         v1.tags = 0;
 
         BattleMessage_Print(param0, v0, &v1, NULL);
-        Battle_SetWaitDial(param0, sub_0200E7FC(BattleSystem_Window(param0, 0), 1));
+        Battle_SetWaitDial(param0, Window_AddWaitDial(BattleSystem_Window(param0, 0), 1));
     }
 
     ClearCommand(param0, param1->battler, 55);
@@ -4755,7 +4755,7 @@ static void ov16_022629DC(SysTask *param0, void *param1)
 
         if (v1 == -1) {
             if (v0->unk_4E >= 8) {
-                sub_020057A4(1803, 0);
+                Sound_StopEffect(1803, 0);
                 v0->state = 100;
             } else {
                 v0->state++;
@@ -4766,7 +4766,7 @@ static void ov16_022629DC(SysTask *param0, void *param1)
         v0->unk_4E++;
 
         if (v0->unk_4E >= 8) {
-            sub_020057A4(1803, 0);
+            Sound_StopEffect(1803, 0);
             v0->state = 100;
         }
         break;
@@ -5017,7 +5017,7 @@ static void WaitForBattleMessagePrint(SysTask *task, void *data)
     BattleMessageWaitTask *waitTask = data;
 
     if (Battle_WaitDial(waitTask->battleSys)) {
-        DeleteWaitDial(Battle_WaitDial(waitTask->battleSys));
+        DestroyWaitDial(Battle_WaitDial(waitTask->battleSys));
         Battle_SetWaitDial(waitTask->battleSys, NULL);
     }
 

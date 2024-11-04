@@ -60,6 +60,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -70,7 +71,6 @@
 #include "unk_0200679C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
@@ -245,12 +245,12 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
     case 1:
-        sub_0200F174(
+        StartScreenTransition(
             1, 5, 5, 0x0, 6, 1, 13);
         (*param1) = 2;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1)++;
         }
         break;
@@ -341,12 +341,12 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
         }
         break;
     case 11:
-        sub_0200F174(
+        StartScreenTransition(
             1, 0, 0, 0x0, 6, 1, 13);
         (*param1)++;
         break;
     case 12:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1) = 0;
             v0->unk_70C = 10;
             v1 = 1;
@@ -553,11 +553,11 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 11:
-        sub_0200F174(1, 17, 19, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 17, 19, 0x0, 6, 1, 13);
         (*param1)++;
         break;
     case 12:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_02004550(7, 1169, 0);
             (*param1)++;
         }
@@ -610,12 +610,12 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
             break;
         }
 
-        sub_0200F174(1, 26, 26, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 26, 26, 0x0, 6, 1, 13);
         Sound_PlayEffect(1668);
         (*param1)++;
         break;
     case 20:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1) = 0;
             v0->unk_70C = 10;
             v1 = 1;
@@ -1343,8 +1343,8 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     Font_LoadScreenIndicatorsPalette(0, 7 * 32, 14);
     Window_Add(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
     Window_FillTilemap(param0->unk_718, 15);
-    sub_0200DD0C(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, 14);
-    sub_0200E060(param0->unk_718, 0, (0 + (29 * 4)), 8);
+    LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, 14);
+    Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
     v0 = MessageLoader_Init(0, 26, 385, 13);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);

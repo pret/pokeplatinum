@@ -325,7 +325,7 @@ BOOL ScrCmd_1BA(ScriptContext *param0)
         v4 = 255;
     }
 
-    Pokemon_SetValue(v1, 9, &v4);
+    Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v4);
     return 0;
 }
 
@@ -346,7 +346,7 @@ BOOL ScrCmd_1BB(ScriptContext *param0)
         v4 -= v2;
     }
 
-    Pokemon_SetValue(v1, 9, &v4);
+    Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v4);
     return 0;
 }
 
@@ -608,7 +608,7 @@ BOOL ScrCmd_1F0(ScriptContext *param0)
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
     v3 = 0;
 
-    Pokemon_SetValue(v1, 6, &v3);
+    Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v3);
 
     return 0;
 }

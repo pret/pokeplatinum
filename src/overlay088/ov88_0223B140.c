@@ -12,12 +12,10 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02027F8C.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02095E80_t.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay022/struct_ov22_022559F8.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay088/ov88_0223E9C4.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
@@ -38,6 +36,8 @@
 #include "inlines.h"
 #include "item.h"
 #include "journal.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
@@ -46,16 +46,16 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "pokemon_summary_app.h"
+#include "render_window.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
@@ -63,10 +63,8 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
@@ -306,7 +304,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     ov88_0223C15C();
     ov88_0223C17C(v0->unk_174);
-    sub_0200F174(0, 1, 1, 0x0, 16, 1, 26);
+    StartScreenTransition(0, 1, 1, 0x0, 16, 1, 26);
     ov88_0223C504(v0, v1);
     SetMainCallback(ov88_0223C0E0, v0);
     ov88_0223C63C();
@@ -377,8 +375,8 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     ov88_0223B4F0(param0);
     ov88_0223B320(param0);
 
-    sub_0200DD0C(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), 26);
-    sub_0200DAA4(param0->unk_174, 0, (512 - 9), 11, 0, 26);
+    LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), 26);
+    LoadStandardWindowGraphics(param0->unk_174, 0, (512 - 9), 11, 0, 26);
 
     ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
 
@@ -421,7 +419,7 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 1;
 
             ov88_0223B320(v0);
@@ -437,15 +435,15 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
             ov88_0223CE74(v0);
             break;
         case 2:
-            sub_0200F174(0, 0, 0, 0x0, 8, 1, 26);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 26);
             *param1 = 2;
             break;
         case 3:
-            sub_0200F174(0, 0, 0, 0x0, 8, 1, 26);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 26);
             v0->unk_48 = 4;
             break;
         case 4:
-            if (ScreenWipe_Done()) {
+            if (IsScreenTransitionDone()) {
                 ov88_0223BFD8(v0);
                 ov88_0223BF7C(v0);
                 ov88_0223C44C(v0->unk_174);
@@ -472,18 +470,18 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
             }
             break;
         case 6:
-            sub_0200F174(0, 1, 1, 0x0, 8, 1, 26);
+            StartScreenTransition(0, 1, 1, 0x0, 8, 1, 26);
             v0->unk_48 = 7;
             break;
         case 7:
-            if (ScreenWipe_Done()) {
+            if (IsScreenTransitionDone()) {
                 v0->unk_48 = 1;
             }
             break;
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v1 = 1;
         }
         break;
@@ -737,7 +735,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         break;
     case 19:
         if (sub_0200AC1C(2)) {
-            sub_0200E084(&param0->unk_49C[23], 0);
+            Window_EraseMessageBox(&param0->unk_49C[23], 0);
             Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
             ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
             ResetUnlock(2);
@@ -1864,7 +1862,7 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
     int v0;
     TrainerInfo *v1;
 
-    v0 = sub_02001288(param0->unk_36D8);
+    v0 = ListMenu_ProcessInput(param0->unk_36D8);
 
     switch (v0) {
     case 0xffffffff:
@@ -1893,21 +1891,21 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
         break;
     }
 
-    Window_Clear(&param0->unk_36DC, 0);
+    Window_EraseStandardFrame(&param0->unk_36DC, 0);
     Window_Remove(&param0->unk_36DC);
-    sub_02001384(param0->unk_36D8, NULL, NULL);
-    sub_02013A3C(param0->unk_36D4);
+    ListMenu_Free(param0->unk_36D8, NULL, NULL);
+    StringList_Free(param0->unk_36D4);
 
     return 0;
 }
 
 static int ov88_0223D69C(UnkStruct_02095E80 *param0)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1 = sub_0202AF94(param0->unk_36EC);
     int v2 = 5;
 
-    param0->unk_36D4 = sub_02013A04(v1 + 1, 26);
+    param0->unk_36D4 = StringList_New(v1 + 1, 26);
 
     {
         MessageLoader *v3;
@@ -1917,11 +1915,11 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
         for (v5 = 0; v5 < 32; v5++) {
             if (sub_0202AF78(param0->unk_36EC, v5)) {
                 Strbuf_CopyChars(v4, sub_0202AEF0(param0->unk_36EC, v5));
-                sub_02013A6C(param0->unk_36D4, v4, v5);
+                StringList_AddFromStrbuf(param0->unk_36D4, v4, v5);
             }
         }
 
-        sub_02013A4C(param0->unk_36D4, param0->unk_36D0, 11, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_36D4, param0->unk_36D0, 11, 0xfffffffe);
         Strbuf_Free(v4);
     }
 
@@ -2077,31 +2075,31 @@ static int ov88_0223DA00(UnkStruct_02095E80 *param0)
 
 static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 3;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 3;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
     StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
-    param0->unk_6C0 = sub_02013A04(3, 26);
+    param0->unk_6C0 = StringList_New(3, 26);
 
-    sub_02013A4C(param0->unk_6C0, param0->unk_184, 17, 0);
-    sub_02013A4C(param0->unk_6C0, param0->unk_184, 18, 1);
-    sub_02013A4C(param0->unk_6C0, param0->unk_184, 19, 2);
+    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
+    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 18, 1);
+    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 2);
 
-    v0.unk_00 = param0->unk_6C0;
-    v0.unk_04 = &param0->unk_49C[24];
+    v0.choices = param0->unk_6C0;
+    v0.window = &param0->unk_49C[24];
 
     ov88_0223ED80(&param0->unk_49C[24]);
 
-    param0->unk_6C4 = sub_02001B7C(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
+    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
     param0->unk_226C = ov88_0223DB48;
 
     return 0;
@@ -2109,28 +2107,28 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
 
 static int ov88_0223DB48(UnkStruct_02095E80 *param0)
 {
-    switch (sub_02001BE0(param0->unk_6C4)) {
+    switch (Menu_ProcessInput(param0->unk_6C4)) {
     case 0:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        sub_02001BC4(param0->unk_6C4, NULL);
-        sub_02013A3C(param0->unk_6C0);
+        Menu_Free(param0->unk_6C4, NULL);
+        StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
         return 3;
         break;
     case 1:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        sub_02001BC4(param0->unk_6C4, NULL);
-        sub_02013A3C(param0->unk_6C0);
+        Menu_Free(param0->unk_6C4, NULL);
+        StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223DC84;
         break;
     case 2:
     case 0xfffffffe:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        sub_02001BC4(param0->unk_6C4, NULL);
-        sub_02013A3C(param0->unk_6C0);
+        Menu_Free(param0->unk_6C4, NULL);
+        StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
         break;
     }
@@ -2426,30 +2424,30 @@ static int ov88_0223E478(UnkStruct_02095E80 *param0)
 
 static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
     StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
-    param0->unk_6C0 = sub_02013A04(2, 26);
+    param0->unk_6C0 = StringList_New(2, 26);
 
-    sub_02013A4C(param0->unk_6C0, param0->unk_184, 17, 0);
-    sub_02013A4C(param0->unk_6C0, param0->unk_184, 19, 1);
+    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
+    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 1);
 
-    v0.unk_00 = param0->unk_6C0;
-    v0.unk_04 = &param0->unk_49C[25];
+    v0.choices = param0->unk_6C0;
+    v0.window = &param0->unk_49C[25];
 
     ov88_0223ED80(&param0->unk_49C[25]);
 
-    param0->unk_6C4 = sub_02001B7C(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
+    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
     param0->unk_226C = ov88_0223E5B8;
 
     return 0;
@@ -2457,13 +2455,13 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
 
 static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
 {
-    switch (sub_02001BE0(param0->unk_6C4)) {
+    switch (Menu_ProcessInput(param0->unk_6C4)) {
     case 0:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D150;
-        sub_02001BC4(param0->unk_6C4, NULL);
-        sub_02013A3C(param0->unk_6C0);
+        Menu_Free(param0->unk_6C4, NULL);
+        StringList_Free(param0->unk_6C0);
         return 3;
         break;
 
@@ -2471,8 +2469,8 @@ static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
     case 0xfffffffe:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        sub_02001BC4(param0->unk_6C4, NULL);
-        sub_02013A3C(param0->unk_6C0);
+        Menu_Free(param0->unk_6C4, NULL);
+        StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
         break;
     }
@@ -2500,11 +2498,11 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         }
     }
 
-    Pokemon_SetValue(v1, 111, NULL);
+    Pokemon_SetValue(v1, MON_DATA_GENDER, NULL);
 
     if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
         u8 v3 = 70;
-        Pokemon_SetValue(v1, 9, &v3);
+        Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v3);
     }
 
     sub_0209304C(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, 11);
@@ -2515,7 +2513,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
 
     param4->unk_2C = param2;
 
-    if (Party_HasSpecies(param0, 441) == 0) {
+    if (Party_HasSpecies(param0, SPECIES_CHATOT) == 0) {
         ChatotCry *v4 = GetChatotCryDataFromSave(param4->unk_10);
         ResetChatotCryDataStatus(v4);
     }
@@ -2559,13 +2557,13 @@ static void ov88_0223E87C(CellActor *param0, int param1, int param2)
 
 static void ov88_0223E894(UnkStruct_02095E80 *param0)
 {
-    param0->unk_3700 = sub_0200E7FC(&param0->unk_49C[23], (512 - (9 + (18 + 12))));
+    param0->unk_3700 = Window_AddWaitDial(&param0->unk_49C[23], (512 - (9 + (18 + 12))));
 }
 
 static void ov88_0223E8B4(UnkStruct_02095E80 *param0)
 {
     if (param0->unk_3700 != NULL) {
-        DeleteWaitDial(param0->unk_3700);
+        DestroyWaitDial(param0->unk_3700);
         param0->unk_3700 = NULL;
     }
 }

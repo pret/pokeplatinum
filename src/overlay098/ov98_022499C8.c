@@ -75,7 +75,7 @@ int ov98_02249A80(Strbuf *param0, int param1)
     Strbuf_ToChars(param0, v0, 100);
 
     for (v2 = 0; v0[v2] != CHAR_EOS; v2++) {
-        if (v0[v2] != CHAR_EN_0) {
+        if (v0[v2] != CHAR_0) {
             v1 = FALSE;
             break;
         }

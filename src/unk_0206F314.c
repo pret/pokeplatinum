@@ -3,21 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202E8C0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202EE10.h"
 #include "struct_defs/struct_0202EE10_sub1.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/struct_ov5_021D30A8.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "bg_window.h"
@@ -26,19 +21,19 @@
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_0202E840.h"
 #include "unk_020508D4.h"
 
@@ -96,10 +91,10 @@ typedef struct {
     u16 unk_26;
     u16 unk_28;
     UnkStruct_0206F7F8_sub1 unk_2C;
-    UnkStruct_ov84_02240FA8 unk_A0;
-    BmpList *unk_C0;
-    ResourceMetadata *unk_C4;
-    UIControlData *unk_C8;
+    ListMenuTemplate unk_A0;
+    ListMenu *unk_C0;
+    StringList *unk_C4;
+    Menu *unk_C8;
     FieldSystem *fieldSystem;
     BgConfig *unk_D0;
     Window unk_D4;
@@ -131,7 +126,7 @@ static void sub_0206FCC4(UnkStruct_0206F7F8 *param0);
 static void sub_0206FD94(UnkStruct_0206F7F8 *param0);
 static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2);
 static void sub_0206FF10(UnkStruct_0206F7F8 *param0);
-static void sub_0206FF60(BmpList *param0, u32 param1, u8 param2);
+static void sub_0206FF60(ListMenu *param0, u32 param1, u8 param2);
 static void sub_0206FFB4(UnkStruct_0206F7F8 *param0);
 static void sub_0206FFE4(UnkStruct_0206F7F8 *param0);
 static void sub_02070010(UnkStruct_0206F7F8 *param0);
@@ -139,7 +134,7 @@ static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1);
 static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1);
 static void sub_02070288(UnkStruct_0206F7F8 *param0);
 
-static const UnkStruct_ov84_02240FA8 Unk_020F02B0 = {
+static const ListMenuTemplate Unk_020F02B0 = {
     NULL,
     NULL,
     NULL,
@@ -205,7 +200,7 @@ static int sub_0206F314(UnkStruct_0206F314 *param0, FieldSystem *fieldSystem, u1
     v0->unk_18 = sub_0202E840(v0->unk_16);
     v0->unk_19 = sub_0202E84C(v0->unk_16);
     v0->fieldSystem = fieldSystem;
-    v0->unk_D0 = fieldSystem->unk_08;
+    v0->unk_D0 = fieldSystem->bgConfig;
     v0->unk_304 = sub_0202E8C0(v1);
     v0->unk_1A = Options_TextFrameDelay(SaveData_Options(v1));
     v0->unk_1C = Options_Frame(SaveData_Options(v1));
@@ -275,7 +270,7 @@ static int sub_0206F498(UnkStruct_0206F7F8 *param0)
 {
     s32 v0;
 
-    v0 = sub_02001288(param0->unk_C0);
+    v0 = ListMenu_ProcessInput(param0->unk_C0);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
@@ -381,7 +376,7 @@ static void sub_0206F62C(UnkStruct_0206F7F8 *param0)
         0x355
     };
 
-    param0->unk_C8 = sub_02002100(param0->unk_D0, &v0, (1024 - (18 + 12) - 9), 11, param0->unk_00);
+    param0->unk_C8 = Menu_MakeYesNoChoice(param0->unk_D0, &v0, (1024 - (18 + 12) - 9), 11, param0->unk_00);
 }
 
 static int sub_0206F658(UnkStruct_0206F7F8 *param0)
@@ -404,7 +399,7 @@ static int sub_0206F658(UnkStruct_0206F7F8 *param0)
         param0->unk_0C++;
         break;
     case 2:
-        switch (sub_02002114(param0->unk_C8, param0->unk_00)) {
+        switch (Menu_ProcessInputAndHandleExit(param0->unk_C8, param0->unk_00)) {
         case 0:
             param0->unk_0C++;
             break;
@@ -590,9 +585,9 @@ static void sub_0206FB38(UnkStruct_0206F7F8 *param0)
 
     Bg_SetPriority(0, 2);
     Bg_SetPriority(1, 1);
-    sub_0200DD0C(param0->unk_D0, 3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->unk_00);
-    sub_0200DAA4(param0->unk_D0, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
-    sub_0200DAA4(param0->unk_D0, 1, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_D0, 3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_D0, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_D0, 1, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
     Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
     Window_Add(param0->unk_D0, &param0->unk_E4, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
@@ -601,7 +596,7 @@ static void sub_0206FB38(UnkStruct_0206F7F8 *param0)
 
 static void sub_0206FC4C(UnkStruct_0206F7F8 *param0)
 {
-    sub_0200E084(&param0->unk_E4, 1);
+    Window_EraseMessageBox(&param0->unk_E4, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_E4);
     Window_Remove(&param0->unk_E4);
     Bg_ClearTilesRange(1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->unk_00);
@@ -685,30 +680,30 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
     int v0, v1;
 
     v1 = param0->unk_18 + 1;
-    param0->unk_C4 = sub_02013A04(v1, param0->unk_00);
+    param0->unk_C4 = StringList_New(v1, param0->unk_00);
 
     Window_Add(param0->unk_D0, &param0->unk_D4, 1, 4, 1, 24, v1 * 2, 13, 1);
     Window_FillTilemap(&param0->unk_D4, ((15 << 4) | 15));
 
     for (v0 = 0; v0 < param0->unk_18; v0++) {
-        sub_02013A6C(param0->unk_C4, param0->unk_2C.unk_38[v0], v0);
+        StringList_AddFromStrbuf(param0->unk_C4, param0->unk_2C.unk_38[v0], v0);
     }
 
-    sub_02013A6C(param0->unk_C4, param0->unk_2C.unk_0C, 0xFFFF);
+    StringList_AddFromStrbuf(param0->unk_C4, param0->unk_2C.unk_0C, 0xFFFF);
 
-    MI_CpuCopy8((void *)&Unk_020F02B0, (void *)&(param0->unk_A0), sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8((void *)&Unk_020F02B0, (void *)&(param0->unk_A0), sizeof(ListMenuTemplate));
 
-    param0->unk_A0.unk_0C = &(param0->unk_D4);
-    param0->unk_A0.unk_00 = param0->unk_C4;
-    param0->unk_A0.unk_1C = (void *)param0;
-    param0->unk_A0.unk_10 = v1;
-    param0->unk_A0.unk_17_0 = 0;
-    param0->unk_A0.unk_04 = sub_0206FF60;
-    param0->unk_A0.unk_08 = NULL;
-    param0->unk_C0 = sub_0200112C(&(param0->unk_A0), param1, param2, param0->unk_00);
+    param0->unk_A0.window = &(param0->unk_D4);
+    param0->unk_A0.choices = param0->unk_C4;
+    param0->unk_A0.tmp = (void *)param0;
+    param0->unk_A0.count = v1;
+    param0->unk_A0.yOffset = 0;
+    param0->unk_A0.cursorCallback = sub_0206FF60;
+    param0->unk_A0.printCallback = NULL;
+    param0->unk_C0 = ListMenu_New(&(param0->unk_A0), param1, param2, param0->unk_00);
 
-    Window_Show(&param0->unk_D4, 0, (1024 - (18 + 12) - 9), 11);
-    sub_0200E060(&param0->unk_E4, 1, (1024 - (18 + 12)), 10);
+    Window_DrawStandardFrame(&param0->unk_D4, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_E4, 1, (1024 - (18 + 12)), 10);
     Window_FillTilemap(&param0->unk_E4, ((15 << 4) | 15));
     Text_AddPrinterWithParamsAndColor(&param0->unk_E4, FONT_MESSAGE, param0->unk_2C.unk_10, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     SpriteActor_EnableObject(param0->unk_2FC[0], 1);
@@ -717,26 +712,26 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
 
 static void sub_0206FF10(UnkStruct_0206F7F8 *param0)
 {
-    sub_02001384(param0->unk_C0, &(param0->unk_22), &(param0->unk_24));
-    sub_02013A3C(param0->unk_C4);
+    ListMenu_Free(param0->unk_C0, &(param0->unk_22), &(param0->unk_24));
+    StringList_Free(param0->unk_C4);
     Window_ClearAndCopyToVRAM(&(param0->unk_D4));
-    Window_Clear(&(param0->unk_D4), 0);
+    Window_EraseStandardFrame(&(param0->unk_D4), 0);
     Window_Remove(&(param0->unk_D4));
     SpriteActor_EnableObject(param0->unk_2FC[0], 0);
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 3);
 }
 
-static void sub_0206FF60(BmpList *param0, u32 param1, u8 param2)
+static void sub_0206FF60(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0, v1, v2;
-    UnkStruct_0206F7F8 *v3 = (UnkStruct_0206F7F8 *)sub_02001504(param0, 19);
+    UnkStruct_0206F7F8 *v3 = (UnkStruct_0206F7F8 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(1500);
     }
 
-    sub_020014DC(param0, &v0, &v1);
-    v2 = sub_02001504(param0, 2);
+    ListMenu_GetListAndCursorPos(param0, &v0, &v1);
+    v2 = ListMenu_GetAttribute(param0, 2);
 
     SpriteActor_SetSpritePositionXY(v3->unk_2FC[0], 126, 16 + 16 * (v1 + v0));
 }
@@ -826,7 +821,7 @@ static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1)
 static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1)
 {
     Window_Add(param0->unk_D0, &param0->unk_D4, 1, 4, 1, 24, 12, 13, 1);
-    Window_Show(&param0->unk_D4, 1, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_D4, 1, (1024 - (18 + 12) - 9), 11);
     sub_02070050(param0, 0);
     SpriteActor_EnableObject(param0->unk_2FC[1], 1);
     Window_Add(param0->unk_D0, &param0->unk_F4, 3, 8, 14, 8, 2, 13, ((((1024 - (18 + 12) - 9) - 27 * 4) - 6 * 4) - (8 * 2)));
@@ -838,7 +833,7 @@ static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1)
 static void sub_02070288(UnkStruct_0206F7F8 *param0)
 {
     Window_ClearAndCopyToVRAM(&param0->unk_D4);
-    Window_Clear(&param0->unk_D4, 0);
+    Window_EraseStandardFrame(&param0->unk_D4, 0);
     Window_Remove(&param0->unk_D4);
     Window_ClearAndCopyToVRAM(&param0->unk_F4);
     Window_Remove(&param0->unk_F4);
@@ -917,5 +912,5 @@ void sub_020703FC(TaskManager *param0, u16 param1)
     v1->unk_04 = param1;
     v1->unk_08 = NULL;
 
-    FieldTask_Start(fieldSystem->unk_10, sub_020702D0, v1);
+    FieldTask_Start(fieldSystem->taskManager, sub_020702D0, v1);
 }

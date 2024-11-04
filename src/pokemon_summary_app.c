@@ -24,6 +24,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -34,7 +35,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
@@ -186,7 +186,7 @@ static int sub_0208C330(OverlayManager *param0, int *param1)
     SetMainCallback(sub_0208C604, v0);
     GXLayers_TurnBothDispOn();
     sub_02004550(61, 0, 0);
-    sub_020397E4();
+    DrawWifiConnectionIcon();
     NARC_dtor(v1);
 
     return 1;
@@ -281,7 +281,7 @@ static int sub_0208C5A0(OverlayManager *param0, int *param1)
     sub_0208FE88(v0);
     sub_0208C76C(v0->bgl);
     sub_0201E530();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_0208C950(v0);
     NARC_dtor(v0->narcPlPokeData);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
@@ -301,7 +301,7 @@ static void sub_0208C604(void *param0)
     Bg_RunScheduledUpdates(v0->bgl);
     sub_02008A94(v0->monSpriteData.spriteManager);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -511,7 +511,7 @@ static void sub_0208C950(PokemonSummaryApp *param0)
 
 static int sub_0208C9C8(PokemonSummaryApp *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         sub_02092028(param0);
         sub_0208D618(param0);
 
@@ -929,7 +929,7 @@ static int sub_0208CF78(PokemonSummaryApp *param0)
         }
 
         Font_LoadScreenIndicatorsPalette(0, 14 * 32, 19);
-        sub_0200DD0C(param0->bgl, 1, (1024 - (18 + 12)), 13, Options_Frame(param0->data->options), 19);
+        LoadMessageBoxGraphics(param0->bgl, 1, (1024 - (18 + 12)), 13, Options_Frame(param0->data->options), 19);
 
         if (param0->subscreen == 0) {
             sub_02091610(param0, 0xfe);
@@ -983,7 +983,7 @@ static u8 sub_0208D17C(PokemonSummaryApp *param0)
 
 static u8 sub_0208D18C(PokemonSummaryApp *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         return 1;
     }
 
@@ -1070,7 +1070,7 @@ static void sub_0208D200(PokemonSummaryApp *param0, Pokemon *param1, PokemonSumm
     param2->ability = (u8)Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
     param2->nature = Pokemon_GetNature(param1);
 
-    for (v1 = 0; v1 < 4; v1++) {
+    for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
         param2->moves[v1] = (u16)Pokemon_GetValue(param1, MON_DATA_MOVE1 + v1, NULL);
         param2->curPP[v1] = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_CUR_PP + v1, NULL);
         v2 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_PP_UPS + v1, NULL);
@@ -2157,7 +2157,7 @@ static int sub_0208E958(PokemonSummaryApp *param0)
 {
     if (param0->monData.sheen == 255) {
         Font_LoadScreenIndicatorsPalette(0, 14 * 32, 19);
-        sub_0200DD0C(param0->bgl, 1, (1024 - (18 + 12)), 13, Options_Frame(param0->data->options), 19);
+        LoadMessageBoxGraphics(param0->bgl, 1, (1024 - (18 + 12)), 13, Options_Frame(param0->data->options), 19);
         sub_02091610(param0, 0xff);
         param0->data->returnMode = 1;
 

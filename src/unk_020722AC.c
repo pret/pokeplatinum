@@ -1,13 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0206A844.h"
 #include "struct_defs/struct_02097728.h"
@@ -17,7 +13,6 @@
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay006/ov6_02247078.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -27,23 +22,23 @@
 #include "game_options.h"
 #include "heap.h"
 #include "item.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02028124.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
@@ -101,10 +96,10 @@ typedef struct {
     u8 unk_13B_6 : 2;
     u16 unk_13C;
     u16 unk_13E;
-    UnkStruct_ov84_02240FA8 unk_140;
-    BmpList *unk_160;
-    ResourceMetadata *unk_164;
-    UIControlData *unk_168;
+    ListMenuTemplate unk_140;
+    ListMenu *unk_160;
+    StringList *unk_164;
+    Menu *unk_168;
     FieldSystem *fieldSystem;
     BgConfig *unk_170;
     Window unk_174;
@@ -143,10 +138,10 @@ static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1);
 static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int param2);
 static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1);
 static void sub_020729B4(UnkStruct_02072334 *param0);
-static void sub_02072BBC(BmpList *param0, u32 param1, u8 param2);
-static void sub_02072C0C(BmpList *param0, u32 param1, u8 param2);
+static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2);
+static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2);
 static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2);
-static void sub_02072DA4(BmpList *param0, u32 param1, u8 param2);
+static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2);
 static void sub_02072DB8(UnkStruct_02072334 *param0);
 static void sub_02072E4C(UnkStruct_02072334 *param0);
 static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int param2);
@@ -168,7 +163,7 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1);
 static int sub_02073524(UnkStruct_02072334 *param0, int param1);
 static int sub_020735E8(UnkStruct_02072334 *param0);
 
-static const UnkStruct_ov84_02240FA8 Unk_020F0504 = {
+static const ListMenuTemplate Unk_020F0504 = {
     NULL,
     NULL,
     NULL,
@@ -254,7 +249,7 @@ static void sub_02072390(SysTask *param0, void *param1)
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
     s32 v1;
 
-    v1 = sub_02001288(v0->unk_160);
+    v1 = ListMenu_ProcessInput(v0->unk_160);
 
     if (v0->unk_1A4 != NULL) {
         sub_0206A870(v0->unk_1A4);
@@ -314,7 +309,7 @@ static void sub_02072470(SysTask *param0, void *param1)
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
     s32 v1;
 
-    v1 = sub_02001288(v0->unk_160);
+    v1 = ListMenu_ProcessInput(v0->unk_160);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072534, sub_02072370);
@@ -689,7 +684,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
     Window_FillTilemap(&param0->unk_194, ((15 << 4) | 15));
 
-    param0->unk_164 = sub_02013A04(param0->unk_1B + 1, param0->unk_00);
+    param0->unk_164 = StringList_New(param0->unk_1B + 1, param0->unk_00);
 
     for (v0 = 0; v0 < 20; v0++) {
         v2 = &(param0->unk_1C[v0]);
@@ -698,22 +693,22 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
             continue;
         }
 
-        sub_02013A6C(param0->unk_164, v2->unk_08, v2->unk_00);
+        StringList_AddFromStrbuf(param0->unk_164, v2->unk_08, v2->unk_00);
         v1++;
     }
 
-    sub_02013A6C(param0->unk_164, param0->unk_110.unk_08, 0xFFFF);
+    StringList_AddFromStrbuf(param0->unk_164, param0->unk_110.unk_08, 0xFFFF);
     v1++;
 
-    MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(ListMenuTemplate));
 
-    param0->unk_140.unk_0C = &(param0->unk_174);
-    param0->unk_140.unk_00 = param0->unk_164;
-    param0->unk_140.unk_1C = (void *)param0;
-    param0->unk_140.unk_10 = v1;
-    param0->unk_140.unk_17_0 = 6;
-    param0->unk_140.unk_04 = sub_02072C0C;
-    param0->unk_140.unk_08 = sub_02072BBC;
+    param0->unk_140.window = &(param0->unk_174);
+    param0->unk_140.choices = param0->unk_164;
+    param0->unk_140.tmp = (void *)param0;
+    param0->unk_140.count = v1;
+    param0->unk_140.yOffset = 6;
+    param0->unk_140.cursorCallback = sub_02072C0C;
+    param0->unk_140.printCallback = sub_02072BBC;
 
     if (param0->unk_13B_4) {
         if (param0->unk_13C == 0) {
@@ -729,38 +724,38 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
         param0->unk_13B_4 = 0;
     }
 
-    param0->unk_160 = sub_0200112C(&(param0->unk_140), param0->unk_13C, param0->unk_13E, param0->unk_00);
+    param0->unk_160 = ListMenu_New(&(param0->unk_140), param0->unk_13C, param0->unk_13E, param0->unk_00);
 
-    Window_Show(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
     Text_AddPrinterWithParamsAndColor(&param0->unk_194, FONT_SYSTEM, param0->unk_110.unk_0C, 2, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Window_Show(&param0->unk_194, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_194, 0, (1024 - (18 + 12) - 9), 11);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 
     param0->unk_13B_0 = 0;
 }
 
-static void sub_02072BBC(BmpList *param0, u32 param1, u8 param2)
+static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)sub_02001504(param0, 19);
+    UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)ListMenu_GetAttribute(param0, 19);
 
     if (param1 == 0xFFFF) {
-        sub_0200147C(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(param0, 1, 15, 2);
     } else {
         if (v0->unk_1C[param1].unk_04) {
-            sub_0200147C(param0, 3, 15, 4);
+            ListMenu_SetAltTextColors(param0, 3, 15, 4);
         } else {
-            sub_0200147C(param0, 7, 15, 8);
+            ListMenu_SetAltTextColors(param0, 7, 15, 8);
         }
     }
 }
 
-static void sub_02072C0C(BmpList *param0, u32 param1, u8 param2)
+static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0, v1, v2;
-    UnkStruct_02072334 *v3 = (UnkStruct_02072334 *)sub_02001504(param0, 19);
+    UnkStruct_02072334 *v3 = (UnkStruct_02072334 *)ListMenu_GetAttribute(param0, 19);
 
-    sub_020014DC(param0, &v0, &v1);
-    v2 = sub_02001504(param0, 2);
+    ListMenu_GetListAndCursorPos(param0, &v0, &v1);
+    v2 = ListMenu_GetAttribute(param0, 2);
 
     if (!param2) {
         Sound_PlayEffect(1500);
@@ -793,33 +788,33 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     };
 
     v1 = NELEMS(Unk_020F0524);
-    param0->unk_164 = sub_02013A04(v1, param0->unk_00);
+    param0->unk_164 = StringList_New(v1, param0->unk_00);
 
     Window_AddFromTemplate(param0->unk_170, &(param0->unk_174), &v2);
     Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
 
     for (v0 = 0; v0 < v1; v0++) {
-        sub_02013A4C(param0->unk_164, param0->unk_10C, Unk_020F0524[v0].unk_00, Unk_020F0524[v0].unk_04);
+        StringList_AddFromMessageBank(param0->unk_164, param0->unk_10C, Unk_020F0524[v0].unk_00, Unk_020F0524[v0].unk_04);
     }
 
-    MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(ListMenuTemplate));
 
-    param0->unk_140.unk_0C = &(param0->unk_174);
-    param0->unk_140.unk_00 = param0->unk_164;
-    param0->unk_140.unk_1C = (void *)param0;
-    param0->unk_140.unk_10 = v1;
-    param0->unk_140.unk_12 = 4;
-    param0->unk_140.unk_1A_7 = 0;
-    param0->unk_140.unk_04 = sub_02072DA4;
-    param0->unk_160 = sub_0200112C(&(param0->unk_140), param1, param2, param0->unk_00);
+    param0->unk_140.window = &(param0->unk_174);
+    param0->unk_140.choices = param0->unk_164;
+    param0->unk_140.tmp = (void *)param0;
+    param0->unk_140.count = v1;
+    param0->unk_140.maxDisplay = 4;
+    param0->unk_140.pagerMode = PAGER_MODE_NONE;
+    param0->unk_140.cursorCallback = sub_02072DA4;
+    param0->unk_160 = ListMenu_New(&(param0->unk_140), param1, param2, param0->unk_00);
 
-    Window_Show(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 
     param0->unk_13B_0 = 1;
 }
 
-static void sub_02072DA4(BmpList *param0, u32 param1, u8 param2)
+static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2)
 {
     if (!param2) {
         Sound_PlayEffect(1500);
@@ -830,15 +825,15 @@ static void sub_02072DB8(UnkStruct_02072334 *param0)
 {
     u16 v0, v1;
 
-    sub_02001384(param0->unk_160, &v0, &v1);
-    sub_02013A3C(param0->unk_164);
+    ListMenu_Free(param0->unk_160, &v0, &v1);
+    StringList_Free(param0->unk_164);
 
     Window_ClearAndCopyToVRAM(&(param0->unk_194));
-    Window_Clear(&(param0->unk_194), 0);
+    Window_EraseStandardFrame(&(param0->unk_194), 0);
     Window_Remove(&(param0->unk_194));
 
     Window_ClearAndCopyToVRAM(&(param0->unk_174));
-    Window_Clear(&(param0->unk_174), 0);
+    Window_EraseStandardFrame(&(param0->unk_174), 0);
     Window_Remove(&(param0->unk_174));
 
     param0->unk_13C = v0;
@@ -857,9 +852,9 @@ static void sub_02072E4C(UnkStruct_02072334 *param0)
     u16 v0, v1;
 
     Window_ClearAndCopyToVRAM(&(param0->unk_174));
-    Window_Clear(&(param0->unk_174), 0);
-    sub_02001384(param0->unk_160, &v0, &v1);
-    sub_02013A3C(param0->unk_164);
+    Window_EraseStandardFrame(&(param0->unk_174), 0);
+    ListMenu_Free(param0->unk_160, &v0, &v1);
+    StringList_Free(param0->unk_164);
     Window_Remove(&(param0->unk_174));
     sub_02073398(param0);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
@@ -1053,8 +1048,8 @@ static void sub_020731F4(UnkStruct_02072334 *param0)
 {
     param0->unk_170 = sub_0203D170(param0->fieldSystem);
 
-    sub_0200DD0C(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->unk_00);
-    sub_0200DAA4(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
 
     Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
@@ -1077,7 +1072,7 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
     Strbuf *v0;
 
     if (param4) {
-        sub_0200E060(&param0->unk_184, 1, (1024 - (18 + 12)), 10);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_184, 1, (1024 - (18 + 12)), 10);
     }
 
     Window_FillRectWithColor(&param0->unk_184, ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
@@ -1101,7 +1096,7 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
 
 static void sub_02073398(UnkStruct_02072334 *param0)
 {
-    sub_0200E084(&param0->unk_184, 1);
+    Window_EraseMessageBox(&param0->unk_184, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_184);
 }
 
@@ -1130,12 +1125,12 @@ static void sub_020733E0(UnkStruct_02072334 *param0)
         0x355
     };
 
-    param0->unk_168 = sub_02002100(param0->unk_170, &v0, (1024 - (18 + 12) - 9), 11, param0->unk_00);
+    param0->unk_168 = Menu_MakeYesNoChoice(param0->unk_170, &v0, (1024 - (18 + 12) - 9), 11, param0->unk_00);
 }
 
 static int sub_0207340C(UnkStruct_02072334 *param0)
 {
-    switch (sub_02002114(param0->unk_168, param0->unk_00)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_168, param0->unk_00)) {
     case 0:
         return 1;
     case 0xfffffffe:
@@ -1149,11 +1144,11 @@ static int sub_02073438(UnkStruct_02072334 *param0, int param1)
 {
     switch (param0->unk_12) {
     case 0:
-        sub_0200F174(0, param1, param1, 0x0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, param1, param1, 0x0, 6, 1, param0->unk_00);
         param0->unk_12++;
         break;
     case 1:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             break;
         }
 
@@ -1309,5 +1304,5 @@ void sub_020736D8(TaskManager *param0)
     v1->unk_00 = 0;
     v1->unk_04 = 0;
 
-    FieldTask_Start(fieldSystem->unk_10, sub_02073694, v1);
+    FieldTask_Start(fieldSystem->taskManager, sub_02073694, v1);
 }

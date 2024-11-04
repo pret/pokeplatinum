@@ -1,15 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0203CC84.h"
 
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
 #include "overlay097/ov97_02237694.h"
@@ -29,25 +25,25 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
 #include "pokemon_icon.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
-#include "unk_0200112C.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -84,8 +80,8 @@ typedef struct {
     UnkStruct_0202DBAC *unk_2C14[3];
     int unk_2C20;
     int unk_2C24;
-    BmpList *unk_2C28;
-    ResourceMetadata *unk_2C2C;
+    ListMenu *unk_2C28;
+    StringList *unk_2C2C;
     Window unk_2C30;
     Window unk_2C40;
     int unk_2C50;
@@ -210,7 +206,7 @@ UnkStruct_ov97_0223E640 Unk_ov97_0223E620[] = {
     { 0x41, (u32)ov97_02230834 }
 };
 
-static UnkStruct_ov84_02240FA8 Unk_ov97_0223E660 = {
+static ListMenuTemplate Unk_ov97_0223E660 = {
     NULL,
     ov97_022383C4,
     NULL,
@@ -280,46 +276,46 @@ static void ov97_022304AC(UnkStruct_ov97_02230868 *param0)
 static void ov97_02230500(Window *param0, u8 param1)
 {
     if (Window_IsInUse(param0) == 1) {
-        Window_Clear(param0, param1);
+        Window_EraseStandardFrame(param0, param1);
     }
 }
 
 static void ov97_02230518(Window *param0, u8 param1)
 {
     if (Window_IsInUse(param0) == 1) {
-        sub_0200E084(param0, param1);
+        Window_EraseMessageBox(param0, param1);
     }
 }
 
 static void ov97_02230530(UnkStruct_ov97_02230868 *param0, UnkStruct_ov97_0223E640 *param1, int param2, Window *param3, int param4)
 {
     int v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
 
     if (param0->unk_2C2C) {
-        sub_02013A3C(param0->unk_2C2C);
+        StringList_Free(param0->unk_2C2C);
     }
 
     if (param0->unk_2C28) {
-        sub_02001384(param0->unk_2C28, NULL, NULL);
+        ListMenu_Free(param0->unk_2C28, NULL, NULL);
     }
 
-    param0->unk_2C2C = sub_02013A04(param2, 87);
+    param0->unk_2C2C = StringList_New(param2, 87);
     param0->unk_2A64 = MessageLoader_Init(0, 26, 421, 87);
 
     for (v0 = 0; v0 < param2; v0++) {
-        sub_02013A4C(param0->unk_2C2C, param0->unk_2A64, param1[v0].unk_00, param1[v0].unk_04);
+        StringList_AddFromMessageBank(param0->unk_2C2C, param0->unk_2A64, param1[v0].unk_00, param1[v0].unk_04);
     }
 
     MessageLoader_Free(param0->unk_2A64);
 
     v1 = Unk_ov97_0223E660;
 
-    v1.unk_00 = param0->unk_2C2C;
-    v1.unk_10 = param2;
-    v1.unk_0C = param3;
+    v1.choices = param0->unk_2C2C;
+    v1.count = param2;
+    v1.window = param3;
 
-    param0->unk_2C28 = sub_0200112C(&v1, 0, param4, 87);
+    param0->unk_2C28 = ListMenu_New(&v1, 0, param4, 87);
 }
 
 static void ov97_022305EC(Window *param0, int param1)
@@ -383,7 +379,7 @@ static int ov97_02230778(OverlayManager *param0)
     ov97_02230868(v0);
     ov97_022305EC(&v0->unk_2C30, 63);
 
-    v0->unk_3E14 = sub_0200E7FC(&v0->unk_2C30, ((1 + 9) + 9));
+    v0->unk_3E14 = Window_AddWaitDial(&v0->unk_2C30, ((1 + 9) + 9));
 
     if (sub_0202DDA8(v0->unk_2C00, v0->unk_2C20) == 1) {
         sub_0202DC7C(v0->unk_2C00, v0->unk_2C20);
@@ -392,7 +388,7 @@ static int ov97_02230778(OverlayManager *param0)
     }
 
     SaveData_Save(v0->unk_2C04);
-    DeleteWaitDial(v0->unk_3E14);
+    DestroyWaitDial(v0->unk_3E14);
 
     if (sub_0202DD88(v0->unk_2C00) == 0) {
         return 26;
@@ -420,9 +416,9 @@ static int ov97_02230834(OverlayManager *param0)
 
 static void ov97_02230868(UnkStruct_ov97_02230868 *param0)
 {
-    sub_02013A3C(param0->unk_2C2C);
+    StringList_Free(param0->unk_2C2C);
     param0->unk_2C2C = NULL;
-    sub_02001384(param0->unk_2C28, NULL, NULL);
+    ListMenu_Free(param0->unk_2C28, NULL, NULL);
     param0->unk_2C28 = NULL;
     ov97_02230500(&param0->unk_2C40, 0);
     Window_ClearAndCopyToVRAM(&param0->unk_2C40);
@@ -567,7 +563,7 @@ static BOOL ov97_02230BF0(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 
 static void ov97_02230C10(UnkStruct_ov97_02230868 *param0, int param1, int param2, int *param3)
 {
-    sub_0200F174(0, param1, param1, 0x0, 6, 1, 87);
+    StartScreenTransition(0, param1, param1, 0x0, 6, 1, 87);
 
     if (param3) {
         *param3 = 27;
@@ -668,9 +664,9 @@ static int ov97_02230E04(UnkStruct_ov97_02230868 *param0, Window *param1, int pa
     }
 
     if (param1 == &param0->unk_2C30) {
-        sub_0200E060(param1, 0, ((1 + 9) + 9), 10);
+        Window_DrawMessageBoxWithScrollCursor(param1, 0, ((1 + 9) + 9), 10);
     } else {
-        Window_Show(param1, 0, (1 + 9), 14);
+        Window_DrawStandardFrame(param1, 0, (1 + 9), 14);
     }
 
     return param3 + v2->unk_0C * v2->unk_10;
@@ -744,7 +740,7 @@ static void ov97_02231088(OverlayManager *param0, int *param1, int (*param2)(Ove
     UnkStruct_ov97_02230868 *v2 = OverlayManager_Data(param0);
     static int (*v3)(OverlayManager *);
 
-    v0 = sub_02001288(v2->unk_2C28);
+    v0 = ListMenu_ProcessInput(v2->unk_2C28);
 
     switch (v0) {
     case 0xffffffff:
@@ -1017,7 +1013,7 @@ static void ov97_022314FC(UnkStruct_ov97_02230868 *param0, int param1, int *para
         param0->unk_2C94 = 1;
         *param2 = 21;
         ov97_02230E04(param0, &param0->unk_2C30, 17, 640);
-        param0->unk_3E14 = sub_0200E7FC(&param0->unk_2C30, ((1 + 9) + 9));
+        param0->unk_3E14 = Window_AddWaitDial(&param0->unk_2C30, ((1 + 9) + 9));
     }
 
     if (v0 == 2) {
@@ -1058,9 +1054,9 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         Text_ResetAllPrinters();
         ov97_02230F98(v4, 0);
         Font_LoadTextPalette(0, 15 * 32, 87);
-        sub_0200DAA4(v4->unk_2A5C, 0, 1, 13, 0, 87);
-        sub_0200DAA4(v4->unk_2A5C, 0, (1 + 9), 14, 1, 87);
-        sub_0200DD0C(v4->unk_2A5C, 0, ((1 + 9) + 9), 10, v4->unk_2C0C, 87);
+        LoadStandardWindowGraphics(v4->unk_2A5C, 0, 1, 13, 0, 87);
+        LoadStandardWindowGraphics(v4->unk_2A5C, 0, (1 + 9), 14, 1, 87);
+        LoadMessageBoxGraphics(v4->unk_2A5C, 0, ((1 + 9) + 9), 10, v4->unk_2C0C, 87);
 
         ov97_02230C44(v4, 1, 0);
         ov97_02230C10(v4, 1, 3, param1);
@@ -1133,8 +1129,8 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         break;
     case 10:
         if (ov97_02231354(v4)) {
-            sub_0200E060(&v4->unk_2C30, 0, ((1 + 9) + 9), 10);
-            Window_Show(&v4->unk_2C40, 0, (1 + 9), 14);
+            Window_DrawMessageBoxWithScrollCursor(&v4->unk_2C30, 0, ((1 + 9) + 9), 10);
+            Window_DrawStandardFrame(&v4->unk_2C40, 0, (1 + 9), 14);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
             ov97_02231318(v4);
             *param1 = 5;
@@ -1230,7 +1226,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         if ((ov97_02231C84(v4) == 0) || (CommTiming_IsSyncState(0x93) == 1)) {
             ov97_022384F4();
             ov97_02230E04(v4, &v4->unk_2C30, 17 + 1, 640);
-            DeleteWaitDial(v4->unk_3E14);
+            DestroyWaitDial(v4->unk_3E14);
             ov97_02231F1C(v4, param1, 25);
         }
         break;
@@ -1243,7 +1239,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         ov97_02230C10(v4, 0, 28, param1);
         break;
     case 27:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = v4->unk_2CA0;
         }
         break;

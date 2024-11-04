@@ -271,11 +271,11 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     BoxPokemon_SetValue(boxMon, MON_DATA_PERSONALITY, &monPersonality);
 
     // TODO likely should be an enum
-    if (monOTIDSource == 2) {
+    if (monOTIDSource == OTID_NOT_SHINY) {
         do {
             monOTID = (LCRNG_Next() | (LCRNG_Next() << 16));
         } while (Pokemon_InlineIsPersonalityShiny(monOTID, monPersonality));
-    } else if (monOTIDSource != 1) {
+    } else if (monOTIDSource != OTID_SET) {
         monOTID = 0;
     }
 
@@ -330,8 +330,7 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     v1 = PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_ABILITY_1);
     v2 = PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_ABILITY_2);
 
-    // TODO enum value
-    if (v2 != 0) {
+    if (v2 != ABILITY_NONE) {
         if (monPersonality & 1) {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &v2);
         } else {
@@ -357,10 +356,10 @@ void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNa
     } while (monNature != Pokemon_GetNatureOf(monPersonality));
 
     // TODO monOTIDSource probably an enum?
-    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
 }
 
-void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6)
+void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 gender, u8 param5, u8 param6)
 {
     u32 monPersonality;
     u16 unownLetter;
@@ -370,20 +369,13 @@ void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param
         do {
             monPersonality = (LCRNG_Next() | (LCRNG_Next() << 16));
             unownLetter = (((monPersonality & 0x3000000) >> 18) | ((monPersonality & 0x30000) >> 12) | ((monPersonality & 0x300) >> 6) | (monPersonality & 0x3)) % 28;
-        } while (param5 != Pokemon_GetNatureOf(monPersonality) || param4 != Pokemon_GetGenderOf(monSpecies, monPersonality) || unownLetter != param6 - 1);
+        } while (param5 != Pokemon_GetNatureOf(monPersonality) || gender != Pokemon_GetGenderOf(monSpecies, monPersonality) || unownLetter != param6 - 1);
     } else {
-        monPersonality = sub_02074128(monSpecies, param4, param5);
+        monPersonality = sub_02074128(monSpecies, gender, param5);
     }
 
-    // TODO monOTIDSource probably an enum?
-    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
 }
-
-static enum PokemonGenderRatio {
-    GENDER_ALWAYS_MALE = 0,
-    GENDER_ALWAYS_FEMALE = 254,
-    GENDER_UNKNOWN = 255
-};
 
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
 {
@@ -391,9 +383,9 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
 
     u32 result;
     switch (monGenderChance) {
-    case GENDER_ALWAYS_MALE:
-    case GENDER_ALWAYS_FEMALE:
-    case GENDER_UNKNOWN:
+    case GENDER_RATIO_MALE_ONLY:
+    case GENDER_RATIO_FEMALE_ONLY:
+    case GENDER_RATIO_NO_GENDER:
         result = param2;
         break;
     default:
@@ -412,8 +404,7 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
 
 void sub_02074158(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
 {
-    // TODO monOTIDSource probably an enum?
-    Pokemon_InitWith(mon, monSpecies, monLevel, 0, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, 0, TRUE, monPersonality, OTID_NOT_SET, 0);
     Pokemon_SetValue(mon, MON_DATA_COMBINED_IVS, &monCombinedIVs);
     Pokemon_CalcLevelAndStats(mon);
 }
@@ -2445,11 +2436,11 @@ u8 PokemonPersonalData_GetGenderOf(PokemonPersonalData *monPersonalData, u16 unu
     u8 monGender = PokemonPersonalData_GetValue(monPersonalData, MON_DATA_PERSONAL_GENDER);
 
     switch (monGender) {
-    case GENDER_ALWAYS_MALE:
+    case GENDER_RATIO_MALE_ONLY:
         return GENDER_MALE;
-    case GENDER_ALWAYS_FEMALE:
+    case GENDER_RATIO_FEMALE_ONLY:
         return GENDER_FEMALE;
-    case GENDER_UNKNOWN:
+    case GENDER_RATIO_NO_GENDER:
         return GENDER_NONE;
     }
 
@@ -3573,7 +3564,7 @@ static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID)
 
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         u16 slotMove;
         if ((slotMove = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL)) == 0) {
             BoxPokemon_SetMoveSlot(boxMon, moveID, i);
@@ -3602,9 +3593,9 @@ static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    u16 moveIDs[4];
-    u8 movePPs[4];
-    u8 movePPUps[4];
+    u16 moveIDs[LEARNED_MOVES_MAX];
+    u8 movePPs[LEARNED_MOVES_MAX];
+    u8 movePPUps[LEARNED_MOVES_MAX];
 
     for (int i = 0; i < 3; i++) {
         moveIDs[i] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE2 + i, NULL);
@@ -3616,7 +3607,7 @@ static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID)
     movePPs[3] = MoveTable_LoadParam(moveID, MOVEATTRIBUTE_PP);
     movePPUps[3] = 0;
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1 + i, &moveIDs[i]);
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + i, &movePPs[i]);
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP_UPS + i, &movePPUps[i]);
@@ -3747,7 +3738,7 @@ void Pokemon_ClearMoveSlot(Pokemon *mon, u32 moveSlot)
 static BOOL Pokemon_HasMove(Pokemon *mon, u16 moveID)
 {
     int i;
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL) == moveID) {
             break;
         }
@@ -4045,9 +4036,8 @@ void BoxPokemon_SetArceusForm(BoxPokemon *boxMon)
     int monAbility = BoxPokemon_GetValue(boxMon, MON_DATA_ABILITY, NULL);
     int monHeldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
 
-    // TODO enum values
-    if (monSpecies == SPECIES_ARCEUS && monAbility == 121) {
-        int monForm = Pokemon_GetArceusTypeOf(Item_LoadParam(monHeldItem, 1, 0));
+    if (monSpecies == SPECIES_ARCEUS && monAbility == ABILITY_MULTITYPE) {
+        int monForm = Pokemon_GetArceusTypeOf(Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, 0));
         BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &monForm);
     }
 }
@@ -4280,7 +4270,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot)
     int newFormMoveID = rotomFormMoves[monForm];
 
     int i;
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         int j;
         int moveID = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
 
@@ -4300,7 +4290,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot)
     }
 
     if (newFormMoveID != MOVE_NONE) {
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
             if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL) == MOVE_NONE) {
                 Pokemon_ResetMoveSlot(mon, newFormMoveID, i);
                 break;
@@ -4433,7 +4423,7 @@ void Pokemon_GiveHeldItem(Pokemon *mon, u32 param1, int param2)
     u16 monItem1 = PokemonPersonalData_GetFormValue(monSpecies, monForm, MON_DATA_PERSONAL_ITEM1);
     u16 monItem2 = PokemonPersonalData_GetFormValue(monSpecies, monForm, MON_DATA_PERSONAL_ITEM2);
 
-    if (monItem1 == monItem2 && monItem1 != 0) {
+    if (monItem1 == monItem2 && monItem1 != ITEM_NONE) {
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &monItem1);
         return;
     }
@@ -4500,7 +4490,7 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
     int monAbility2 = PokemonPersonalData_GetFormValue(monSpecies, monForm, MON_DATA_PERSONAL_ABILITY_2);
 
     // TODO enum value?
-    if (monAbility2 != 0) {
+    if (monAbility2 != ABILITY_NONE) {
         if (monPersonality & 1) {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility2);
         } else {
@@ -4741,24 +4731,24 @@ int LowestBit(u32 flag)
 }
 
 static const u16 Unk_020F05BE[18] = {
-    0x96,
-    0x97,
-    0xF9,
-    0xFA,
-    0xFB,
-    0x17E,
-    0x17F,
-    0x180,
-    0x181,
-    0x182,
-    0x1E3,
-    0x1E4,
-    0x1E7,
-    0x1E9,
-    0x1EA,
-    0x1EB,
-    0x1EC,
-    0x1ED
+    SPECIES_MEWTWO,
+    SPECIES_MEW,
+    SPECIES_LUGIA,
+    SPECIES_HO_OH,
+    SPECIES_CELEBI,
+    SPECIES_KYOGRE,
+    SPECIES_GROUDON,
+    SPECIES_RAYQUAZA,
+    SPECIES_JIRACHI,
+    SPECIES_DEOXYS,
+    SPECIES_DIALGA,
+    SPECIES_PALKIA,
+    SPECIES_GIRATINA,
+    SPECIES_PHIONE,
+    SPECIES_MANAPHY,
+    SPECIES_DARKRAI,
+    SPECIES_SHAYMIN,
+    SPECIES_ARCEUS
 };
 
 BOOL sub_02078804(u16 param0)
@@ -4858,7 +4848,7 @@ void sub_0207896C(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL)) {
             u8 moveMaxPP = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_MAX_PP + i, NULL);
 

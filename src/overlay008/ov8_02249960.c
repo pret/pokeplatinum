@@ -45,6 +45,7 @@
 #include "map_object_move.h"
 #include "message.h"
 #include "player_avatar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
@@ -53,7 +54,6 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0201D15C.h"
 #include "unk_02027F50.h"
 #include "unk_020508D4.h"
@@ -367,13 +367,13 @@ void ov8_0224997C(FieldSystem *fieldSystem)
         v6->unk_00 = 0;
 
         if (v4 == 239) {
-            FieldTask_Start(fieldSystem->unk_10, ov8_02249CD8, v6);
+            FieldTask_Start(fieldSystem->taskManager, ov8_02249CD8, v6);
             v8->unk_00 = 2;
         } else if (v4 == 240) {
-            FieldTask_Start(fieldSystem->unk_10, ov8_02249B74, v6);
+            FieldTask_Start(fieldSystem->taskManager, ov8_02249B74, v6);
             v8->unk_00 = 1;
         } else if (v4 == 241) {
-            FieldTask_Start(fieldSystem->unk_10, ov8_02249A94, v6);
+            FieldTask_Start(fieldSystem->taskManager, ov8_02249A94, v6);
             v8->unk_00 = 0;
         } else {
             GF_ASSERT(FALSE);
@@ -449,7 +449,7 @@ static BOOL ov8_02249A94(TaskManager *taskMan)
     } break;
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
-        sub_020057A4(1626, 0);
+        Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
     case 3:
@@ -536,7 +536,7 @@ static BOOL ov8_02249B74(TaskManager *taskMan)
         break;
     case 4:
         ov5_021EF388(0, (FX32_ONE * 16 * 2), fieldSystem->unk_A0);
-        sub_020057A4(1626, 0);
+        Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
     case 5:
@@ -587,7 +587,7 @@ static BOOL ov8_02249CD8(TaskManager *taskMan)
     } break;
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 4), fieldSystem->unk_A0);
-        sub_020057A4(1626, 0);
+        Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
     case 3:
@@ -762,10 +762,10 @@ void ov8_02249FB8(FieldSystem *fieldSystem)
         PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
 
         if (v1.y == (FX32_ONE * 16 * 0)) {
-            FieldTask_Start(fieldSystem->unk_10, ov8_0224A018, v0);
+            FieldTask_Start(fieldSystem->taskManager, ov8_0224A018, v0);
             v3->unk_00 = 1;
         } else {
-            FieldTask_Start(fieldSystem->unk_10, ov8_0224A0E8, v0);
+            FieldTask_Start(fieldSystem->taskManager, ov8_0224A0E8, v0);
             v3->unk_00 = 0;
         }
     }
@@ -795,7 +795,7 @@ static BOOL ov8_0224A018(TaskManager *taskMan)
             if (v3.y >= (FX32_ONE * 16 * 10)) {
                 v3.y = (FX32_ONE * 16 * 10);
 
-                sub_020057A4(1553, 0);
+                Sound_StopEffect(1553, 0);
                 (v2->unk_00)++;
             }
 
@@ -840,7 +840,7 @@ static BOOL ov8_0224A0E8(TaskManager *taskMan)
 
             if (v3.y <= (FX32_ONE * 0)) {
                 v3.y = (FX32_ONE * 0);
-                sub_020057A4(1553, 0);
+                Sound_StopEffect(1553, 0);
                 (v2->unk_00)++;
             }
 
@@ -1363,7 +1363,7 @@ static BOOL ov8_0224A4FC(TaskManager *taskMan)
                 if (v5.y >= v3->unk_EC) {
                     v5.y = v3->unk_EC;
                     v3->unk_10[v3->unk_E8] = Unk_ov8_0224CB68[v3->unk_E8].unk_0B;
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v2->unk_00)++;
                 }
             } else if (v3->unk_F0 == 1) {
@@ -1371,7 +1371,7 @@ static BOOL ov8_0224A4FC(TaskManager *taskMan)
 
                 if (v5.y <= v3->unk_EC) {
                     v5.y = v3->unk_EC;
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v2->unk_00)++;
                 }
             } else {
@@ -1434,7 +1434,7 @@ static BOOL ov8_0224A620(TaskManager *taskMan)
                 if (v6.x >= v4->unk_EC) {
                     v6.x = v4->unk_EC;
 
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
@@ -1445,7 +1445,7 @@ static BOOL ov8_0224A620(TaskManager *taskMan)
                 if (v6.x <= v4->unk_EC) {
                     v6.x = v4->unk_EC;
 
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
@@ -1516,7 +1516,7 @@ static BOOL ov8_0224A770(TaskManager *taskMan)
                 if (v6.z >= v4->unk_EC) {
                     v6.z = v4->unk_EC;
 
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
@@ -1527,7 +1527,7 @@ static BOOL ov8_0224A770(TaskManager *taskMan)
                 if (v6.z <= v4->unk_EC) {
                     v6.z = v4->unk_EC;
 
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
@@ -2207,7 +2207,7 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
         v1->unk_13 = v4;
 
         Sound_PlayEffect(1599);
-        FieldTask_Start(fieldSystem->unk_10, ov8_0224ADE8, v0);
+        FieldTask_Start(fieldSystem->taskManager, ov8_0224ADE8, v0);
     }
 }
 
@@ -2766,7 +2766,7 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
         ov8_0224AF84(v4);
 
         if (v0 == 1) {
-            sub_020057A4(1355, 0);
+            Sound_StopEffect(1355, 0);
             Sound_PlayEffect(1507);
             v2->unk_00++;
         }
@@ -2842,10 +2842,10 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
             v2->unk_04 = 0;
             v2->unk_00++;
 
-            sub_020057A4(1593, 0);
+            Sound_StopEffect(1593, 0);
             MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
-            FieldMessage_AddWindow(fieldSystem->unk_08, v2->unk_44, 3);
-            sub_0200E084(v2->unk_44, 0);
+            FieldMessage_AddWindow(fieldSystem->bgConfig, v2->unk_44, 3);
+            Window_EraseMessageBox(v2->unk_44, 0);
             FieldMessage_DrawWindow(v2->unk_44, SaveData_Options(fieldSystem->saveData));
 
             v2->unk_40 = FieldMessage_Print(v2->unk_44, v2->unk_4C, SaveData_Options(fieldSystem->saveData), 1);
@@ -2863,7 +2863,7 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
             int v10 = Player_GetZPos(fieldSystem->playerAvatar);
 
             ov8_0224B240(&v2->unk_1C, v9, v10);
-            sub_0200E084(v2->unk_44, 0);
+            Window_EraseMessageBox(v2->unk_44, 0);
             Window_Remove(v2->unk_44);
             v2->unk_04 = 0;
             v2->unk_00 = 5;
@@ -2906,7 +2906,7 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
         v2->unk_14 = v1;
         v2->unk_18 = v3;
 
-        FieldTask_Start(fieldSystem->unk_10, ov8_0224B3D4, v2);
+        FieldTask_Start(fieldSystem->taskManager, ov8_0224B3D4, v2);
     }
 
     return 1;
@@ -3368,7 +3368,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
             MapObject_SetZ(v0->unk_08.unk_08, v0->unk_08.unk_04);
             sub_02064208(v0->unk_08.unk_08);
             ov5_021F4714(v0->unk_08.unk_0C, FX32_ONE);
-            sub_020057A4(1356, 0);
+            Sound_StopEffect(1356, 0);
             Sound_PlayEffect(1367);
             Sound_PlayEffect(1357);
 

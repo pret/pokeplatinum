@@ -64,7 +64,7 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
         sub_02072014(param0, GAME_VERSION, v3, param2, TrainerInfo_RegionCode(v0), param5);
     }
 
-    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), sub_02026E48(SaveData_Pokedex(fieldSystem->saveData)), sub_02027520(SaveData_Pokedex(fieldSystem->saveData)), GameRecords_GetTrainerScore(v1), param5);
+    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), Pokedex_CountSeen(SaveData_Pokedex(fieldSystem->saveData)), Pokedex_IsObtained(SaveData_Pokedex(fieldSystem->saveData)), GameRecords_GetTrainerScore(v1), param5);
 
     {
         RTCDate v4;
@@ -282,7 +282,7 @@ void sub_02072204(FieldSystem *fieldSystem)
     v0->unk_00 = 0;
     v0->unk_04 = (TrainerCard *)sub_0205C17C(fieldSystem->unk_7C);
 
-    FieldTask_Start(fieldSystem->unk_10, sub_02072230, v0);
+    FieldTask_Start(fieldSystem->taskManager, sub_02072230, v0);
 }
 
 static BOOL sub_02072230(TaskManager *param0)

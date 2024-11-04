@@ -9,7 +9,6 @@
 #include "struct_defs/struct_0203CC84.h"
 
 #include "overlay077/const_ov77_021D742C.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
 #include "overlay097/ov97_02237520.h"
@@ -32,28 +31,28 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02000C88.h"
-#include "unk_0200112C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
 #include "unk_0202DAB4.h"
@@ -183,7 +182,7 @@ UnkStruct_ov97_0223E5B8 Unk_ov97_0223E588[] = {
     { 0x13, (u32)ov97_0222D9F0 }
 };
 
-static UnkStruct_ov84_02240FA8 Unk_ov97_0223E5D0 = {
+static ListMenuTemplate Unk_ov97_0223E5D0 = {
     NULL,
     ov97_022383C4,
     NULL,
@@ -212,11 +211,11 @@ static void ov97_0222D30C(UnkStruct_ov97_0222D04C *param0, int param1)
 {
     if (param1 == 1) {
         if (param0->unk_2A50 == NULL) {
-            param0->unk_2A50 = sub_0200E7FC(&param0->unk_18, 1);
+            param0->unk_2A50 = Window_AddWaitDial(&param0->unk_18, 1);
         }
     } else {
         if (param0->unk_2A50) {
-            DeleteWaitDial(param0->unk_2A50);
+            DestroyWaitDial(param0->unk_2A50);
         }
 
         param0->unk_2A50 = NULL;
@@ -236,11 +235,11 @@ static void ov97_0222D34C(OverlayManager *param0)
     ov97_02237DA0();
 
     if (v1->unk_7C) {
-        sub_02013A3C(v1->unk_7C);
+        StringList_Free(v1->unk_7C);
     }
 
     if (v1->unk_78) {
-        sub_02001384(v1->unk_78, NULL, NULL);
+        ListMenu_Free(v1->unk_78, NULL, NULL);
     }
 
     Window_ClearAndCopyToVRAM(&v1->unk_18);
@@ -284,14 +283,14 @@ static void ov97_0222D40C(UnkStruct_ov97_0222D04C *param0, int param1)
 static void ov97_0222D444(Window *param0, u8 param1)
 {
     if (Window_IsInUse(param0) == 1) {
-        Window_Clear(param0, param1);
+        Window_EraseStandardFrame(param0, param1);
     }
 }
 
 static void ov97_0222D45C(Window *param0, u8 param1)
 {
     if (Window_IsInUse(param0) == 1) {
-        sub_0200E084(param0, param1);
+        Window_EraseMessageBox(param0, param1);
     }
 }
 
@@ -482,7 +481,7 @@ static void ov97_0222D6F8(OverlayManager *param0, int param1)
         Window_Add(v2->unk_00, v1, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
-    Window_Show(v1, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v1, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E5A8, NELEMS(Unk_ov97_0223E5A8), v1, v0);
 }
 
@@ -521,7 +520,7 @@ static int ov97_0222D798(OverlayManager *param0)
         Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
-    Window_Show(v0, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E598, NELEMS(Unk_ov97_0223E598), v0, 2);
 
     return 5;
@@ -542,7 +541,7 @@ static int ov97_0222D814(OverlayManager *param0)
         Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
-    Window_Show(v0, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E568, NELEMS(Unk_ov97_0223E568), v0, 78);
 
     return 5;
@@ -563,7 +562,7 @@ static int ov97_0222D884(OverlayManager *param0)
         Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
-    Window_Show(v0, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E578, NELEMS(Unk_ov97_0223E578), v0, 77);
 
     return 5;
@@ -580,7 +579,7 @@ static void ov97_0222D8F4(OverlayManager *param0)
         Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
-    Window_Show(v0, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E588, NELEMS(Unk_ov97_0223E588), v0, 4);
 }
 
@@ -681,7 +680,7 @@ static int ov97_0222DA84(OverlayManager *param0)
         Window_Add(v2->unk_00, v0, 0, 15, 9, 16, 8, 0, ((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6));
     }
 
-    Window_Show(v0, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E5F0, 4, v0, 1);
 
     return 4;
@@ -779,33 +778,33 @@ static void ov97_0222DC9C(BgConfig *param0)
 static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param1, int param2, Window *param3, u32 param4)
 {
     int v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
 
     if (v2->unk_7C) {
-        sub_02013A3C(v2->unk_7C);
+        StringList_Free(v2->unk_7C);
     }
 
-    v2->unk_7C = sub_02013A04(param2, 86);
+    v2->unk_7C = StringList_New(param2, 86);
     v2->unk_10 = MessageLoader_Init(0, 26, 421, 86);
 
     for (v0 = 0; v0 < param2; v0++) {
-        sub_02013A4C(v2->unk_7C, v2->unk_10, param1[v0].unk_00, param1[v0].unk_04);
+        StringList_AddFromMessageBank(v2->unk_7C, v2->unk_10, param1[v0].unk_00, param1[v0].unk_04);
     }
 
     MessageLoader_Free(v2->unk_10);
 
     v1 = Unk_ov97_0223E5D0;
 
-    v1.unk_00 = v2->unk_7C;
-    v1.unk_10 = v1.unk_12 = param2;
-    v1.unk_0C = param3;
+    v1.choices = v2->unk_7C;
+    v1.count = v1.maxDisplay = param2;
+    v1.window = param3;
 
     if (v2->unk_78) {
-        sub_02001384(v2->unk_78, NULL, NULL);
+        ListMenu_Free(v2->unk_78, NULL, NULL);
     }
 
-    v2->unk_78 = sub_0200112C(&v1, 0, 0, 86);
+    v2->unk_78 = ListMenu_New(&v1, 0, 0, 86);
 
     if (param4 != -1) {
         ov97_0222DE78(param0, &v2->unk_18, param4);
@@ -833,7 +832,7 @@ static void ov97_0222DDD0(OverlayManager *param0, int param1, u32 param2)
         Window_Add(v0->unk_00, v1, 0, 8, 7, 16, v4 * 2, 0, param1);
     }
 
-    Window_Show(v1, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v1, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, v2, v4, v1, param2);
 }
 
@@ -859,7 +858,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
         Strbuf_Free(v0);
     }
 
-    sub_0200E060(param1, 0, 1, 2);
+    Window_DrawMessageBoxWithScrollCursor(param1, 0, 1, 2);
     MessageLoader_Free(v1->unk_10);
     StringTemplate_Free(v1->unk_0C);
 
@@ -876,7 +875,7 @@ static void ov97_0222DF10(OverlayManager *param0, Window *param1, u16 *param2)
     Strbuf_CopyNumChars(v0, param2, 36);
     Window_FillTilemap(param1, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Window_Show(param1, 0, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(param1, 0, (1 + (18 + 12)), 3);
     Strbuf_Free(v0);
 }
 
@@ -887,7 +886,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
     static int (*v3)(OverlayManager *);
 
-    v0 = sub_02001288(v2->unk_78);
+    v0 = ListMenu_ProcessInput(v2->unk_78);
 
     switch (v0) {
     case 0xffffffff:
@@ -928,8 +927,8 @@ static BOOL ov97_0222DFD4(OverlayManager *param0, UnkStruct_ov97_0222D04C *param
 
     v0 = Options_Frame(param1->unk_08);
 
-    sub_0200DD0C(param1->unk_00, 0, 1, 2, v0, 86);
-    sub_0200DAA4(param1->unk_00, 0, (1 + (18 + 12)), 3, 1, 86);
+    LoadMessageBoxGraphics(param1->unk_00, 0, 1, 2, v0, 86);
+    LoadStandardWindowGraphics(param1->unk_00, 0, (1 + (18 + 12)), 3, 1, 86);
 
     *((u16 *)HW_BG_PLTT) = ((31 & 31) << 10 | (12 & 31) << 5 | (12 & 31));
 

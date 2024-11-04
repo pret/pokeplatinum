@@ -201,30 +201,30 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
     sub_020780C4(v4, v9);
     v10 = Pokemon_GetGender(v4);
 
-    Pokemon_SetValue(v4, 111, (u8 *)&v10);
+    Pokemon_SetValue(v4, MON_DATA_GENDER, (u8 *)&v10);
     v10 = Pokemon_GetValue(v4, MON_DATA_HP_IV, 0) + Pokemon_GetValue(v4, MON_DATA_ATK_IV, 0) + Pokemon_GetValue(v4, MON_DATA_DEF_IV, 0) + Pokemon_GetValue(v4, MON_DATA_SPEED_IV, 0) + Pokemon_GetValue(v4, MON_DATA_SPATK_IV, 0) + Pokemon_GetValue(v4, MON_DATA_SPDEF_IV, 0);
 
     if (v10 == 0) {
         v8 = LCRNG_Next();
         v9 = (v8 & (0x1F << 0)) >> 0;
 
-        Pokemon_SetValue(v4, 70, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_HP_IV, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 5)) >> 5;
-        Pokemon_SetValue(v4, 71, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_ATK_IV, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 10)) >> 10;
-        Pokemon_SetValue(v4, 72, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_DEF_IV, (u8 *)&v9);
 
         v8 = LCRNG_Next();
         v9 = (v8 & (0x1F << 0)) >> 0;
-        Pokemon_SetValue(v4, 73, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_SPEED_IV, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 5)) >> 5;
-        Pokemon_SetValue(v4, 74, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_SPATK_IV, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 10)) >> 10;
-        Pokemon_SetValue(v4, 75, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_SPDEF_IV, (u8 *)&v9);
     }
 
     v13 = sub_0202D79C(fieldSystem->saveData);
@@ -277,9 +277,9 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
         v6 = Pokemon_New(32);
 
         Pokemon_Copy(v4, v6);
-        Pokemon_SetValue(v6, 145, v15);
-        Pokemon_SetValue(v6, 7, &v16);
-        Pokemon_SetValue(v6, 157, &v17);
+        Pokemon_SetValue(v6, MON_DATA_OTNAME_STRBUF, v15);
+        Pokemon_SetValue(v6, MON_DATA_OT_ID, &v16);
+        Pokemon_SetValue(v6, MON_DATA_OT_GENDER, &v17);
 
         v4 = v6;
         Strbuf_Free(v15);

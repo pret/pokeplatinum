@@ -224,11 +224,11 @@ static BOOL ov23_02254AD4(TaskManager *param0)
         ov23_02255EBC(1, v1);
         break;
     case 1:
-        sub_0200F174(1, 41, 41, 0x0, 6, 1, 4);
+        StartScreenTransition(1, 41, 41, 0x0, 6, 1, 4);
         ov23_02255EBC(2, v1);
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             ov23_02255EBC(3, v1);
         }
         break;
@@ -257,11 +257,11 @@ static BOOL ov23_02254AD4(TaskManager *param0)
         break;
     case 9:
         Sound_PlayEffect(1550);
-        sub_0200F174(2, 40, 40, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 40, 40, 0x0, 6, 1, 4);
         ov23_02255EBC(10, v1);
         break;
     case 10:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             ov23_022545D0(v1->unk_508);
             ov23_0225430C(v1->unk_504);
             ov5_021D1BEC(v1->unk_50C);

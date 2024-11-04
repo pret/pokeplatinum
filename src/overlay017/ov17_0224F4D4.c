@@ -170,7 +170,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     v0->unk_10.unk_20 = BgConfig_New(24);
 
-    sub_0201DBEC(64, 24);
+    VRAMTransferManager_New(64, 24);
     SetAutorepeat(4, 8);
 
     ov17_0224FB34(v0->unk_10.unk_20);
@@ -205,7 +205,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     ov17_02250744(v0);
 
     sub_02039734();
-    sub_0200F174(1, 33, 33, 0x0, 6, 1, 24);
+    StartScreenTransition(1, 33, 33, 0x0, 6, 1, 24);
 
     v0->unk_04 = SysTask_Start(ov17_0224FAFC, v0, 80000);
     v0->unk_850 = 1;
@@ -232,7 +232,7 @@ int ov17_0224F754(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             SetHBlankCallback(ov17_0224FAAC, v0);
             v0->unk_848 = ov17_0223F70C(24, v0->unk_10.unk_C0, Unk_ov17_02254AB4, NELEMS(Unk_ov17_02254AB4), 0xff, (50000 + 5000));
             *param1 = 1;
@@ -266,7 +266,7 @@ int ov17_0224F754(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -300,7 +300,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 4);
     sub_0200D0B0(v0->unk_10.unk_18, v0->unk_10.unk_1C);
     sub_0200C8D4(v0->unk_10.unk_18);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     ov17_022507C4(&v0->unk_10);
 
@@ -360,7 +360,7 @@ static void ov17_0224FA24(void *param0)
 
     sub_02008A94(v0->unk_10.unk_04);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_10.unk_C0);
     Bg_RunScheduledUpdates(v0->unk_10.unk_20);
 

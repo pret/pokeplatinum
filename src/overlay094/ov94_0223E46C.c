@@ -23,17 +23,17 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "text.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -141,7 +141,7 @@ int ov94_0223E46C(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_022422B8(&param0->unk_FCC[5], param0->unk_B90, ov94_02242970(param0->unk_B7A.unk_03, param0->unk_B7A.unk_04, 1), 0, 0, TEXT_COLOR(1, 2, 0), 1);
     ov94_0224218C(&param0->unk_10AC[1], param0->unk_BA0, param0->unk_B90, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
 
-    sub_0200F174(3, 1, 1, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
     param0->unk_2C = 0;
 
     return 2;
@@ -276,8 +276,8 @@ static void ov94_0223E6B8(UnkStruct_ov94_0223FD4C *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 16 * 3 * 2, 62);
     Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 13, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 26, v0, 1, 0, 32 * 24 * 2, 1, 62);
     NARC_dtor(v1);
@@ -576,7 +576,7 @@ static int ov94_0223ED94(UnkStruct_ov94_0223FD4C *param0)
         case 6:
         case 7:
             param0->unk_118 = v1;
-            sub_020057A4(1535, 0);
+            Sound_StopEffect(1535, 0);
             ov94_02244234(param0, v1, 1);
             param0->unk_2C = 20;
             break;
@@ -733,7 +733,7 @@ static void ov94_0223EFAC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223F0A8(UnkStruct_ov94_0223FD4C *param0)
 {
-    sub_0200F174(3, 0, 0, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 0, 0, 0x0, 6, 1, 62);
 
     param0->unk_2C = 0;
 
@@ -775,16 +775,16 @@ static int ov94_0223F190(UnkStruct_ov94_0223FD4C *param0)
     case 7:
     case 8:
     case 9:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
-        sub_02013A3C(param0->unk_10CC);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
+        StringList_Free(param0->unk_10CC);
         Sound_PlayEffect(1500);
         param0->unk_2C = 6;
         break;
     case 0xfffffffe:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
-        sub_02013A3C(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
+        StringList_Free(param0->unk_10CC);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
         Sound_PlayEffect(1500);
@@ -812,18 +812,18 @@ static int ov94_0223F2B0(UnkStruct_ov94_0223FD4C *param0)
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
-        sub_02013A3C(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[1], 0);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
+        StringList_Free(param0->unk_10CC);
+        Window_EraseStandardFrame(&param0->unk_F9C[1], 0);
         Sound_PlayEffect(1500);
         param0->unk_2C = 4;
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
         break;
     default:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
-        sub_02013A3C(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        Window_Clear(&param0->unk_F9C[1], 0);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
+        StringList_Free(param0->unk_10CC);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[1], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
 
@@ -873,10 +873,10 @@ static int ov94_0223F4B0(UnkStruct_ov94_0223FD4C *param0)
 
     switch (v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108)) {
     case 0xfffffffe:
-        sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
+        StringList_Free(param0->unk_10CC);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
@@ -884,9 +884,9 @@ static int ov94_0223F4B0(UnkStruct_ov94_0223FD4C *param0)
     case 0:
     case 1:
     case 2:
-        sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
+        StringList_Free(param0->unk_10CC);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
 
@@ -930,18 +930,18 @@ static int ov94_0223F638(UnkStruct_ov94_0223FD4C *param0)
         break;
     case 0xfffffffe:
     case 11:
-        sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
+        StringList_Free(param0->unk_10CC);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
         break;
     default:
-        sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
+        StringList_Free(param0->unk_10CC);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         ov94_02242934(&param0->unk_B7A, v0, 1);
@@ -985,17 +985,17 @@ static int ov94_0223F7C0(UnkStruct_ov94_0223FD4C *param0)
     if (v0 == 0xffffffff) {
         (void)0;
     } else if ((v0 == 0xfffffffe) || (v0 == (Unk_ov94_02245FD4 + 1))) {
-        sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
+        StringList_Free(param0->unk_10CC);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
     } else {
-        sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
+        StringList_Free(param0->unk_10CC);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
 
@@ -1018,7 +1018,7 @@ static int ov94_0223F8B4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223F8D8(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1077,7 +1077,7 @@ static void ov94_0223F9A4(UnkStruct_ov94_0223FD4C *param0, int param1, int param
 
     MessageLoader_GetStrbuf(param0->unk_B90, param1, param0->unk_BAC);
     Window_FillTilemap(&param0->unk_F5C, 0xf0f);
-    sub_0200E060(&param0->unk_F5C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_F5C, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 }

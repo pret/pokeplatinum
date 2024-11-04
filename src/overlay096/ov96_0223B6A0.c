@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -19,12 +18,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "sprite_resource.h"
 #include "string_template.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
@@ -140,7 +139,7 @@ int ov96_0223B7F8(OverlayManager *param0, int *param1)
         *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][0])(v0, *param1);
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 3;
         }
         break;
@@ -148,7 +147,7 @@ int ov96_0223B7F8(OverlayManager *param0, int *param1)
         *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][1])(v0, *param1);
         break;
     case 4:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][2])(v0, *param1);
         }
         break;
@@ -331,7 +330,7 @@ static const WindowTemplate Unk_ov96_0223DA78 = {
     0x0
 };
 
-UIControlData *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
+Menu *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 
@@ -339,7 +338,7 @@ UIControlData *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 68);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 68);
 }
 
 void ov96_0223BBFC(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)

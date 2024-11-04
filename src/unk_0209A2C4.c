@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -10,13 +9,14 @@
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02000C88.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 
@@ -32,7 +32,7 @@ typedef struct {
     BgConfig *unk_18;
     MessageLoader *unk_1C;
     Window unk_20;
-    UIControlData *unk_30;
+    Menu *unk_30;
     SaveData *unk_34;
     void *unk_38;
     u32 unk_3C;
@@ -182,8 +182,8 @@ static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
         Bg_InitFromTemplate(param0->unk_18, 0, &v2, 0);
         Bg_ClearTilemap(param0->unk_18, 0);
     }
-    sub_0200DD0C(param0->unk_18, 0, 512 - (18 + 12), 2, 0, param0->unk_00);
-    sub_0200DAA4(param0->unk_18, 0, (512 - (18 + 12)) - 9, 3, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_18, 0, 512 - (18 + 12), 2, 0, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_18, 0, (512 - (18 + 12)) - 9, 3, 0, param0->unk_00);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     Bg_ClearTilesRange(0, 32, 0, param0->unk_00);
     Bg_MaskPalette(0, 0);
@@ -262,22 +262,22 @@ static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
     case 2:
         Bg_MaskPalette(0, 0x6c21);
         Bg_MaskPalette(4, 0x6c21);
-        sub_0200F174(0, 1, 1, 0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, 1, 1, 0, 6, 1, param0->unk_00);
         param0->unk_04 = 3;
         break;
     case 3:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_04 = 4;
         }
         break;
     case 4:
         if (sub_0209A688(param0, param0->unk_08, 0, 4) == 1) {
-            sub_0200F174(0, 0, 0, 0, 6, 1, param0->unk_00);
+            StartScreenTransition(0, 0, 0, 0, 6, 1, param0->unk_00);
             param0->unk_04 = 5;
         }
         break;
     case 5:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             Bg_MaskPalette(0, 0);
             Bg_MaskPalette(4, 0);
             param0->unk_04 = 1;
@@ -298,7 +298,7 @@ static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int
     switch (param0->unk_0C) {
     case 0:
         Window_FillRectWithColor(&param0->unk_20, 15, 0, 0, 27 * 8, 4 * 8);
-        sub_0200E060(&param0->unk_20, 0, 512 - (18 + 12), 2);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_20, 0, 512 - (18 + 12), 2);
 
         param0->unk_14 = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_1C, param1, param0->unk_14);

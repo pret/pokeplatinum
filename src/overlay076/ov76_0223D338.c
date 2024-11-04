@@ -29,20 +29,20 @@
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "render_window.h"
+#include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02013A04.h"
 #include "unk_02015920.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
@@ -185,10 +185,10 @@ static void ov76_0223D494(UnkStruct_ov76_0223DE00 *param0, int param1, int param
 
 static int ov76_0223D4C4(UnkStruct_ov76_0223DE00 *param0)
 {
-    Window_Clear(&param0->unk_D4.unk_18[1], 1);
+    Window_EraseStandardFrame(&param0->unk_D4.unk_18[1], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_D4.unk_18[1]);
-    sub_02001BC4(param0->unk_D4.unk_CC, NULL);
-    sub_02013A3C(param0->unk_D4.unk_C8);
+    Menu_Free(param0->unk_D4.unk_CC, NULL);
+    StringList_Free(param0->unk_D4.unk_C8);
     Window_Remove(&param0->unk_D4.unk_18[1]);
 
     return 1;
@@ -350,7 +350,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         break;
 
     case 2:
-        if (ScreenWipe_Done() != 1) {
+        if (IsScreenTransitionDone() != 1) {
             break;
         }
 
@@ -397,7 +397,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
     } break;
     case 4: {
         UnkFuncPtr_ov76_0223D674 v4;
-        u32 v5 = sub_02001BE0(param0->unk_D4.unk_CC);
+        u32 v5 = Menu_ProcessInput(param0->unk_D4.unk_CC);
 
         switch (v5) {
         case 0xfffffffe:
@@ -429,7 +429,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 6:
-        if (ScreenWipe_Done() != 1) {
+        if (IsScreenTransitionDone() != 1) {
             break;
         }
         Window_Remove(&param0->unk_D4.unk_18[0]);
@@ -865,8 +865,8 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             v1 = param0->unk_3C4[0] + 1;
 
             ov76_0223B848(&v2, param0);
-            Pokemon_SetValue(param0->unk_428, 162, (u8 *)&v1);
-            Pokemon_SetValue(param0->unk_428, 171, &v2);
+            Pokemon_SetValue(param0->unk_428, MON_DATA_MAIL_ID, (u8 *)&v1);
+            Pokemon_SetValue(param0->unk_428, MON_DATA_171, &v2);
 
             param0->unk_D4.unk_154 = ov12_02236004(53, &v3);
             ov12_02236320(param0->unk_D4.unk_154);
@@ -993,7 +993,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             if (param0->unk_264[param0->unk_3C4[0]].unk_00 != 0xff) {
                 v8 = param0->unk_00->unk_04[param0->unk_264[param0->unk_3C4[0]].unk_00];
 
-                Pokemon_SetValue(v8, 171, sub_0202CA28(param0->unk_00->unk_20, param0->unk_3C4[0]));
+                Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(param0->unk_00->unk_20, param0->unk_3C4[0]));
             }
         }
         param0->unk_3D4 = 8;
@@ -1051,7 +1051,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 PaletteData_SetAutoTransparent(param0->unk_D4.unk_14, 1);
                 sub_02015A54(param0->unk_D4.unk_150);
                 sub_02015938(param0->unk_D4.unk_150);
-                sub_0200E084(&param0->unk_D4.unk_18[2], 1);
+                Window_EraseMessageBox(&param0->unk_D4.unk_18[2], 1);
                 Window_ClearAndCopyToVRAM(&param0->unk_D4.unk_18[2]);
                 Window_Remove(&param0->unk_D4.unk_18[2]);
                 param0->unk_3DC++;
@@ -1187,7 +1187,7 @@ static BOOL ov76_0223E8A4(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 2:
-        if (ScreenWipe_Done() != 1) {
+        if (IsScreenTransitionDone() != 1) {
             break;
         }
 
@@ -1218,7 +1218,7 @@ void ov76_0223E91C(UnkStruct_ov76_0223DE00 *param0, int param1)
     v1 = param0->unk_04[param1].unk_00;
 
     if (v1 != 0xff) {
-        Pokemon_SetValue(param0->unk_00->unk_04[v1], 162, (u8 *)&v2);
+        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_MAIL_ID, (u8 *)&v2);
     }
 
     param0->unk_04[param1].unk_00 = 0xff;
@@ -1503,7 +1503,7 @@ void ov76_0223ECB0(void *param0)
 
     sub_02008A94(v0->unk_D4.unk_D0);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_D4.unk_14);
     Bg_RunScheduledUpdates(v0->unk_D4.unk_10);
 

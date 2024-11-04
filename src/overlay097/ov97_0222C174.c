@@ -29,6 +29,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -39,7 +40,6 @@
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0202631C.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
@@ -542,11 +542,11 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
 
     Text_ResetAllPrinters();
     Font_LoadTextPalette(0, 0 * 32, param0->unk_00);
-    sub_0200DAA4(param0->unk_04, 0, 1, 1, 0, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 1, 0, param0->unk_00);
 
     v0 = Options_Frame(param0->unk_14);
 
-    sub_0200DD0C(param0->unk_04, 0, (1 + 9), 2, v0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 2, v0, param0->unk_00);
     Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->unk_00);
     Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->unk_00);
     Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
@@ -576,7 +576,7 @@ static BOOL ov97_0222C404(UnkStruct_ov97_0222C388 *param0)
         return 1;
     } else {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Window_Clear(&param0->unk_18, 0);
+            Window_EraseStandardFrame(&param0->unk_18, 0);
             Window_Remove(&param0->unk_18);
             return 0;
         }
@@ -708,7 +708,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
     case UnkEnum_ov97_0222C78C_00:
         ov97_0222C254(v0);
 
-        if (sub_02027520(v0->unk_0C) == 0) {
+        if (Pokedex_IsObtained(v0->unk_0C) == FALSE) {
             ov97_02237790(1, UnkEnum_ov97_0222C78C_01, param1, UnkEnum_ov97_0222C78C_13);
         } else {
             *param1 = UnkEnum_ov97_0222C78C_02;
@@ -900,7 +900,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     case UnkEnum_ov97_0222C6F8_02:
         ov97_02233120();
         ov97_0222CAAC(param0, 1600);
-        param0->unk_34D8 = sub_0200E7FC(&param0->unk_28, (1 + 9));
+        param0->unk_34D8 = Window_AddWaitDial(&param0->unk_28, (1 + 9));
         *v3 = UnkEnum_ov97_0222C6F8_03;
         break;
     case UnkEnum_ov97_0222C6F8_03:
@@ -933,7 +933,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     case UnkEnum_ov97_0222C6F8_29:
         ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 30);
         CellActor_SetDrawFlag(param0->unk_3170, 0);
-        DeleteWaitDial(param0->unk_34D8);
+        DestroyWaitDial(param0->unk_34D8);
         param0->unk_34D8 = NULL;
         Sound_PlayEffect(1500);
         param0->unk_160 = 1800;
@@ -993,7 +993,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     case UnkEnum_ov97_0222C6F8_13:
         if (--param0->unk_160 == 0) {
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 72);
-            param0->unk_34D8 = sub_0200E7FC(&param0->unk_28, (1 + 9));
+            param0->unk_34D8 = Window_AddWaitDial(&param0->unk_28, (1 + 9));
             ov97_0222C974(param0);
             ov97_0223846C(param0->unk_08);
             *v3 = UnkEnum_ov97_0222C6F8_14;
@@ -1064,7 +1064,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 73);
 
             CellActor_SetDrawFlag(param0->unk_3170, 0);
-            DeleteWaitDial(param0->unk_34D8);
+            DestroyWaitDial(param0->unk_34D8);
             Sound_PlayEffect(1500);
 
             param0->unk_34D8 = NULL;
@@ -1091,7 +1091,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         CellActor_SetDrawFlag(param0->unk_3170, 0);
 
         if (param0->unk_34D8) {
-            DeleteWaitDial(param0->unk_34D8);
+            DestroyWaitDial(param0->unk_34D8);
         }
 
         param0->unk_34D8 = NULL;
@@ -1118,7 +1118,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
                 param0->unk_148 = 0;
 
                 if (param0->unk_34D8) {
-                    DeleteWaitDial(param0->unk_34D8);
+                    DestroyWaitDial(param0->unk_34D8);
                 }
 
                 return 5;

@@ -9,7 +9,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
@@ -37,23 +36,23 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015064.h"
 #include "unk_02017728.h"
@@ -208,7 +207,7 @@ typedef struct ChooseStarterApp {
     int unk_A8;
     Strbuf *unk_AC;
     WindowTemplate unk_B0;
-    UIControlData *unk_B8;
+    Menu *unk_B8;
     UnkStruct_0200C738 unk_BC;
     CellActorCollection *unk_248;
     SpriteResourceCollection *unk_24C[6];
@@ -334,7 +333,7 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     app->messageFrame = Options_Frame(data->options);
     app->unk_704 = Options_TextFrameDelay(data->options);
 
-    sub_0201DBEC(8, HEAP_ID_CHOOSE_STARTER_APP);
+    VRAMTransferManager_New(8, HEAP_ID_CHOOSE_STARTER_APP);
     SetMainCallback(ChooseStarterAppMainCallback, app);
     DisableHBlank();
 
@@ -467,7 +466,7 @@ BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->bgl);
     ov78_021D10DC();
 
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     OverlayManager_FreeData(param0);
     Heap_Destroy(47);
 
@@ -486,17 +485,17 @@ static void ChooseStarterAppMainCallback(void *data)
 
 static void StartFadeIn(ChooseStarterApp *param0)
 {
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 47);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 47);
 }
 
 static void StartFadeOut(ChooseStarterApp *param0)
 {
-    sub_0200F174(0, 0, 0, 0x0, 6, 1, 47);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 47);
 }
 
 static BOOL IsFadeDone(ChooseStarterApp *param0)
 {
-    return ScreenWipe_Done();
+    return IsScreenTransitionDone();
 }
 
 static void SetupDrawing(ChooseStarterApp *app, enum HeapId heap)
@@ -670,9 +669,9 @@ static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID)
     Window_Add(app->bgl, app->messageWindow, BG_LAYER_MAIN_1, TEXT_POS_X, TEXT_POS_Y, TEXT_COLUMNS, TEXT_ROWS, FRAME_PALETTE_INDEX, TEXT_WINDOW_SIZE + 1);
 
     Window_FillTilemap(app->messageWindow, 15);
-    sub_0200DD0C(app->bgl, BG_LAYER_MAIN_1, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX, app->messageFrame, heapID);
+    LoadMessageBoxGraphics(app->bgl, BG_LAYER_MAIN_1, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX, app->messageFrame, heapID);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__EV_POKESELECT, 16, 0, FRAME_PALETTE_INDEX * 32, 32, heapID);
-    sub_0200E060(app->messageWindow, 0, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
+    Window_DrawMessageBoxWithScrollCursor(app->messageWindow, 0, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
 }
 
 static void ov78_021D13A0(ChooseStarterApp *param0)
@@ -1254,12 +1253,12 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
         break;
     case 2:
         ov78_021D1FB4(param0->messageWindow, param1, 360, 1 + param0->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
-        param0->unk_B8 = sub_02002100(param0->bgl, &param0->unk_B0, (512 + (18 + 12) + 128), 1, param1);
+        param0->unk_B8 = Menu_MakeYesNoChoice(param0->bgl, &param0->unk_B0, (512 + (18 + 12) + 128), 1, param1);
         param0->unk_08 = 0;
         param0->unk_04++;
         break;
     case 3:
-        v0 = sub_02002114(param0->unk_B8, param1);
+        v0 = Menu_ProcessInputAndHandleExit(param0->unk_B8, param1);
 
         switch (v0) {
         case 0xffffffff:
@@ -1297,7 +1296,7 @@ static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, Text
 
     Window_FillTilemap(param0, 15);
     v2 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v1, 0, 0, param5, param4, NULL);
-    sub_0200E060(param0, 0, 512, 0);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, 512, 0);
 
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
@@ -1319,7 +1318,7 @@ static u8 ov78_021D201C(Window *param0, int param1, int param2, int param3, u32 
     Window_FillTilemap(param0, 15);
     v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param6, 0, 0, param5, param4, NULL);
 
-    sub_0200E060(param0, 0, 512, 0);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, 512, 0);
     MessageLoader_Free(v0);
 
     return v1;
@@ -1341,7 +1340,7 @@ static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
     param0->unk_B0.palette = 3;
     param0->unk_B0.baseTile = ((18 + 12) + 9 + 128);
 
-    sub_0200DAA4(param0->bgl, 1, (512 + (18 + 12) + 128), 1, 0, param1);
+    LoadStandardWindowGraphics(param0->bgl, 1, (512 + (18 + 12) + 128), 1, 0, param1);
     Font_LoadTextPalette(0, 3 * 32, param1);
 }
 

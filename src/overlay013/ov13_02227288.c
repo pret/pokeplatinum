@@ -11,10 +11,10 @@
 #include "item.h"
 #include "message.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200DA60.h"
 
 static void ov13_022273CC(UnkStruct_ov13_02227244 *param0);
 static void ov13_02227888(UnkStruct_ov13_02227244 *param0);
@@ -374,7 +374,7 @@ static void ov13_02227974(UnkStruct_ov13_02227244 *param0)
 
 void ov13_022279F4(UnkStruct_ov13_02227244 *param0)
 {
-    sub_0200E060(&param0->unk_1C, 1, 1024 - (18 + 12), 14);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 1, 1024 - (18 + 12), 14);
     Window_FillTilemap(&param0->unk_1C, 15);
     ov13_02227A1C(param0);
 }

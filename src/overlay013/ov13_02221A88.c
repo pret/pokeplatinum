@@ -19,11 +19,11 @@
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200C440.h"
-#include "unk_0200DA60.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 
@@ -490,7 +490,7 @@ static void ov13_022221C8(UnkStruct_ov13_022213F0 *param0, u32 param1)
 {
     Strbuf *v0;
 
-    sub_0200E060(&param0->unk_204C[0], 1, 1, 14);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_204C[0], 1, 1, 14);
     Window_FillTilemap(&param0->unk_204C[0], 15);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, param1);
@@ -1538,7 +1538,7 @@ static void ov13_02223F7C(UnkStruct_ov13_022213F0 *param0)
 
 void ov13_022240E0(UnkStruct_ov13_022213F0 *param0)
 {
-    sub_0200E060(&param0->unk_204C[1], 1, 1, 14);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_204C[1], 1, 1, 14);
     Window_FillTilemap(&param0->unk_204C[1], 15);
     ov13_02224108(param0);
 }

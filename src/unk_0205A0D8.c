@@ -29,6 +29,7 @@
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -36,7 +37,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
@@ -550,7 +550,7 @@ static BOOL sub_0205A324(TaskManager *param0)
         }
         break;
     case 33:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_0205AAA0(v0, 0);
             sub_0205A0D8(v0, v0->fieldSystem, v0->unk_50, v0->unk_84, 1, 11);
             v0->unk_34 = 34;
@@ -605,7 +605,7 @@ static BOOL sub_0205A324(TaskManager *param0)
         break;
     case 44:
         if (CommTiming_IsSyncState(4)) {
-            sub_0200E084(&(v0->unk_14), 0);
+            Window_EraseMessageBox(&(v0->unk_14), 0);
             v0->unk_08(0, NULL);
             v0->unk_34 = 5;
         }
@@ -620,7 +620,7 @@ static int sub_0205AA50(UnkStruct_0205A0D8 *param0, const Strbuf *param1)
     Window *v0 = &(param0->unk_14);
 
     if (Window_IsInUse(v0) == 0) {
-        FieldMessage_AddWindow(param0->fieldSystem->unk_08, v0, 3);
+        FieldMessage_AddWindow(param0->fieldSystem->bgConfig, v0, 3);
         FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
         sub_0205D988(v0);
@@ -633,7 +633,7 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1)
 {
     if (Window_IsInUse(&(param0->unk_14))) {
         if (param1) {
-            sub_0200E084(&param0->unk_14, 0);
+            Window_EraseMessageBox(&param0->unk_14, 0);
             Window_ClearAndCopyToVRAM(&param0->unk_14);
         }
 
@@ -655,7 +655,7 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1)
 void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
 {
     UnkStruct_0205A0D8 *v0;
-    TaskManager *v1 = fieldSystem->unk_10;
+    TaskManager *v1 = fieldSystem->taskManager;
 
     if (v1) {
         return;
@@ -738,7 +738,7 @@ static void sub_0205AC28(UnkStruct_0205A0D8 *param0)
 
 static UnkStruct_0205A0D8 *sub_0205AC74(FieldSystem *fieldSystem)
 {
-    return TaskManager_Environment(fieldSystem->unk_10);
+    return TaskManager_Environment(fieldSystem->taskManager);
 }
 
 static void sub_0205AC80(UnkStruct_0205A0D8 *param0, BOOL param1)
@@ -874,8 +874,8 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         v4 = MessageLoader_Init(1, 26, 412, 4);
         v3 = Pokemon_GetStructSize();
 
-        Window_Add(param0->fieldSystem->unk_08, v0, 3, 21, 9, 10, 8, 13, 10);
-        sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
+        Window_Add(param0->fieldSystem->bgConfig, v0, 3, 21, 9, 10, 8, 13, 10);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, 4);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -892,7 +892,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
 
     Window_FillRectWithColor(v0, 15, 0, 0, 16, v0->height * 8);
     ColoredArrow_Print(param0->unk_78, &param0->unk_54, 0, param1 * 16);
-    Window_Show(&param0->unk_54, 0, 1, 11);
+    Window_DrawStandardFrame(&param0->unk_54, 0, 1, 11);
 
     param0->unk_81 = param1;
     param0->unk_80 = 3 + 1;
@@ -906,8 +906,8 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        Window_Add(param0->fieldSystem->unk_08, v0, 3, 20, 11, 11, 6, 13, 90);
-        sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
+        Window_Add(param0->fieldSystem->bgConfig, v0, 3, 20, 11, 11, 6, 13, 90);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, 4);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -922,7 +922,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
 
     Window_FillRectWithColor(v0, 15, 0, 0, 16, v0->height * 8);
     ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param1 * 16);
-    Window_Show(param0->unk_7C, 0, 1, 11);
+    Window_DrawStandardFrame(param0->unk_7C, 0, 1, 11);
 }
 
 static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
@@ -966,7 +966,7 @@ static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
 
 static void sub_0205B0B4(UnkStruct_0205A0D8 *param0)
 {
-    Window_Clear(param0->unk_7C, 1);
+    Window_EraseStandardFrame(param0->unk_7C, 1);
 }
 
 void sub_0205B0C0(int param0, int param1, void *param2, void *param3)
@@ -1020,7 +1020,7 @@ static BOOL sub_0205B140(TaskManager *param0)
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
         StringTemplate_Format(v1->unk_18, v1->unk_04, v1->unk_00);
-        FieldMessage_AddWindow(fieldSystem->unk_08, &v1->unk_08, 3);
+        FieldMessage_AddWindow(fieldSystem->bgConfig, &v1->unk_08, 3);
         FieldMessage_DrawWindow(&v1->unk_08, SaveData_Options(fieldSystem->saveData));
 
         v1->unk_20 = FieldMessage_Print(&v1->unk_08, v1->unk_04, SaveData_Options(fieldSystem->saveData), 1);
@@ -1033,7 +1033,7 @@ static BOOL sub_0205B140(TaskManager *param0)
                 StringTemplate_Free(v1->unk_18);
                 Strbuf_Free(v1->unk_00);
                 Strbuf_Free(v1->unk_04);
-                sub_0200E084(&v1->unk_08, 0);
+                Window_EraseMessageBox(&v1->unk_08, 0);
                 Window_Remove(&v1->unk_08);
                 ov5_021D1744(0);
                 v1->unk_28++;
@@ -1041,7 +1041,7 @@ static BOOL sub_0205B140(TaskManager *param0)
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v1->unk_28++;
         }
         break;

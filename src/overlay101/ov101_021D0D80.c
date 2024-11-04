@@ -25,6 +25,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -33,7 +34,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -106,7 +106,7 @@ int ov101_021D0D80(OverlayManager *param0, int *param1)
     ov101_021D5C28(v1);
     sub_02004550(66, 0, 0);
     ov101_021D18C0(v1);
-    sub_0200F174(0, 1, 1, 0x0, 8, 1, 79);
+    StartScreenTransition(0, 1, 1, 0x0, 8, 1, 79);
 
     return 1;
 }
@@ -118,19 +118,19 @@ int ov101_021D0E40(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1)++;
         }
         break;
     case 1:
         if (ov101_021D1AAC(v1) == 1) {
             (*param1)++;
-            sub_0200F174(2, 0, 0, 0x0, 8, 1, 79);
+            StartScreenTransition(2, 0, 0, 0x0, 8, 1, 79);
             ov101_021D1894(v1, UnkEnum_ov101_021D1894_00);
         }
         break;
     case 2:
-        if (ScreenWipe_Done() == 0) {
+        if (IsScreenTransitionDone() == 0) {
             break;
         }
         (*param1)++;
@@ -430,8 +430,8 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
     int v0;
     UnkStruct_ov101_021D148C *v1 = &param0->unk_408;
 
-    sub_0200DAA4(param0->unk_43C, 0, 1, 15, 0, 79);
-    sub_0200DD0C(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, 79);
+    LoadStandardWindowGraphics(param0->unk_43C, 0, 1, 15, 0, 79);
+    LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, 79);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, 79);
 
     v1->unk_00 = MessageLoader_Init(0, 26, 544, 79);
@@ -463,7 +463,7 @@ void ov101_021D148C(UnkStruct_ov101_021D13C8 *param0, u32 param1)
 {
     UnkStruct_ov101_021D148C *v0 = &param0->unk_408;
 
-    sub_0200E060(&v0->unk_08[0], 1, (1 + (18 + 12)), 14);
+    Window_DrawMessageBoxWithScrollCursor(&v0->unk_08[0], 1, (1 + (18 + 12)), 14);
     Window_FillTilemap(&v0->unk_08[0], 15);
     MessageLoader_GetStrbuf(v0->unk_00, param1, v0->unk_18);
     Text_AddPrinterWithParams(&v0->unk_08[0], FONT_MESSAGE, v0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -474,7 +474,7 @@ void ov101_021D14E4(UnkStruct_ov101_021D13C8 *param0)
 {
     UnkStruct_ov101_021D148C *v0 = &param0->unk_408;
 
-    sub_0200E084(&v0->unk_08[0], 1);
+    Window_EraseMessageBox(&v0->unk_08[0], 1);
     Window_FillTilemap(&v0->unk_08[0], 0);
     Window_ScheduleCopyToVRAM(&v0->unk_08[0]);
 }

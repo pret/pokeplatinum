@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_OV23_0224F294_H
 #define POKEPLATINUM_OV23_0224F294_H
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 
 #include "field/field_system_decl.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
 #include "overlay023/struct_ov23_02250CD4.h"
 
+#include "list_menu.h"
 #include "sys_task_manager.h"
 
 void ov23_0224F588(UndergroundData *param0);
@@ -26,16 +26,16 @@ BOOL ov23_0224F744(int param0);
 void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem);
 void ov23_0224FB7C(UnkStruct_ov23_02250CD4 *param0);
 void ov23_0224FD68(int param0);
-void ov23_0224FD84(BmpList *param0, u32 param1, u8 param2);
+void ov23_0224FD84(ListMenu *param0, u32 param1, u8 param2);
 void ov23_0224FDBC(UnkStruct_ov23_02250CD4 *param0);
 void ov23_0224FDE0(UnkStruct_ov23_02250CD4 *param0);
 void ov23_02250128(int param0);
 void ov23_02250184(UnkStruct_ov23_02250CD4 *param0);
-void ov23_02250540(BmpList *param0, u32 param1, u8 param2);
+void ov23_02250540(ListMenu *param0, u32 param1, u8 param2);
 void ov23_02250578(UnkStruct_ov23_02250CD4 *param0);
 void ov23_02250598(UnkStruct_ov23_02250CD4 *param0);
 void ov23_02250A50(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem);
-void ov23_02250C3C(BmpList *param0, u32 param1, u8 param2);
+void ov23_02250C3C(ListMenu *param0, u32 param1, u8 param2);
 void ov23_02250CB0(UnkStruct_ov23_02250CD4 *param0);
 void ov23_02250CD4(UnkStruct_ov23_02250CD4 *param0);
 void ov23_02250D2C(UnkStruct_ov23_02250CD4 *param0);

@@ -93,7 +93,7 @@ void sub_02003B60(ChatotCry *param0, Options *param1)
     Unk_02101DF4 = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;
     v0->unk_BCD98 = param0;
 
-    sub_02004FB8(param1->soundMode);
+    Sound_SetPlaybackMode(param1->soundMode);
 
     return;
 }

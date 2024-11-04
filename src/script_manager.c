@@ -52,7 +52,7 @@ void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object
 
 void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
 {
-    ScriptManager *scriptManager = TaskManager_Environment(fieldSystem->unk_10);
+    ScriptManager *scriptManager = TaskManager_Environment(fieldSystem->taskManager);
     ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
 
     trainer->sightRange = sightRange;
@@ -187,7 +187,7 @@ static void sub_0203EAF4(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scrip
 
     ScriptContext_Start(ctx, ctx->scripts);
     sub_0203F0E4(ctx, offsetID);
-    ScriptContext_SetTaskManager(ctx, fieldSystem->unk_10);
+    ScriptContext_SetTaskManager(ctx, fieldSystem->taskManager);
 }
 
 static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID)
@@ -408,8 +408,8 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &scriptManager->coinWindow;
     case SCRIPT_MANAGER_MONEY_WINDOW:
         return &scriptManager->moneyWindow;
-    case 40:
-        return &scriptManager->unk_D8;
+    case SCRIPT_MANAGER_SAVE_INFO_WINDOW:
+        return &scriptManager->saveInfoWin;
     case SCRIPT_DATA_PARAMETER_0:
     case SCRIPT_DATA_PARAMETER_1:
     case SCRIPT_DATA_PARAMETER_2:
@@ -434,7 +434,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
 
 void *FieldSystem_GetScriptMemberPtr(FieldSystem *fieldSystem, u32 member)
 {
-    ScriptManager *script = TaskManager_Environment(fieldSystem->unk_10);
+    ScriptManager *script = TaskManager_Environment(fieldSystem->taskManager);
 
     GF_ASSERT(script->magic == SCRIPT_MANAGER_MAGIC_NUMBER);
 
@@ -443,7 +443,7 @@ void *FieldSystem_GetScriptMemberPtr(FieldSystem *fieldSystem, u32 member)
 
 void sub_0203F0C0(FieldSystem *fieldSystem)
 {
-    ScriptManager *scriptManager = TaskManager_Environment(fieldSystem->unk_10);
+    ScriptManager *scriptManager = TaskManager_Environment(fieldSystem->taskManager);
 
     if (sub_0203A9C8(fieldSystem) == 1) {
         scriptManager->function = sub_0203AB00;

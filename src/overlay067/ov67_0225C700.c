@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -26,18 +25,18 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_020366A0.h"
@@ -64,7 +63,7 @@ typedef struct {
     UnkStruct_ov67_0225D210 unk_40;
     UnkStruct_ov67_0225D210 unk_70;
     UnkStruct_ov67_0225D210 unk_A0;
-    UIControlData *unk_D0;
+    Menu *unk_D0;
     UnkStruct_ov61_0222C3B0 unk_D4;
 } UnkStruct_ov67_0225D154;
 
@@ -203,18 +202,18 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F174(0, 1, 1, 0xffff, 6, 1, 112);
+        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, 112);
         (*param1)++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1)++;
         }
         break;
     case 2:
         if (v1->unk_08 == 0) {
             ov67_0225D210(&v0->unk_70, 17);
-            v0->unk_D0 = sub_02002100(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
+            v0->unk_D0 = Menu_MakeYesNoChoice(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
             (*param1)++;
         } else {
             (*param1) = 4;
@@ -222,7 +221,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
         break;
     case 3: {
         u32 v2;
-        v2 = sub_02002114(v0->unk_D0, 112);
+        v2 = Menu_ProcessInputAndHandleExit(v0->unk_D0, 112);
 
         switch (v2) {
         case 0:
@@ -325,12 +324,12 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
     case 11:
         ov67_0225D294(&v0->unk_A0);
         ov67_0225D210(&v0->unk_40, 88);
-        v0->unk_D0 = sub_02002100(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
+        v0->unk_D0 = Menu_MakeYesNoChoice(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
         (*param1)++;
         break;
     case 12: {
         u32 v11;
-        v11 = sub_02002114(v0->unk_D0, 112);
+        v11 = Menu_ProcessInputAndHandleExit(v0->unk_D0, 112);
 
         switch (v11) {
         case 0:
@@ -362,11 +361,11 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
         }
         break;
     case 7:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 112);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 112);
         (*param1)++;
         break;
     case 8:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;
@@ -441,11 +440,11 @@ int ov67_0225CC6C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F174(0, 1, 1, 0xffff, 6, 1, 112);
+        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, 112);
         (*param1)++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1) = 2;
         }
         break;
@@ -501,11 +500,11 @@ int ov67_0225CC6C(OverlayManager *param0, int *param1)
         }
         break;
     case 9:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 112);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 112);
         (*param1)++;
         break;
     case 10:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             ov67_0225D310(&v0->unk_40);
             return 1;
         }
@@ -582,8 +581,8 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
 
         Font_LoadTextPalette(0, 12 * 32, param1);
         Font_LoadScreenIndicatorsPalette(0, 11 * 32, param1);
-        sub_0200DAA4(param0->unk_0C, Unk_ov67_0225D3F4[1], (1 + (18 + 12)), 14, 0, param1);
-        sub_0200DD0C(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, param1);
+        LoadStandardWindowGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], (1 + (18 + 12)), 14, 0, param1);
+        LoadMessageBoxGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, param1);
     }
 
     {
@@ -651,9 +650,9 @@ static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1)
     Text_AddPrinterWithParams(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (param0->unk_20 == 0) {
-        Window_Show(&param0->unk_08, 1, (1 + (18 + 12)), 14);
+        Window_DrawStandardFrame(&param0->unk_08, 1, (1 + (18 + 12)), 14);
     } else {
-        sub_0200E060(&param0->unk_08, 1, 1, 13);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_08, 1, 1, 13);
     }
 
     Window_ScheduleCopyToVRAM(&param0->unk_08);
@@ -666,14 +665,14 @@ static void ov67_0225D294(UnkStruct_ov67_0225D210 *param0)
     }
 
     if (param0->unk_20 == 0) {
-        Window_Clear(&param0->unk_08, 1);
+        Window_EraseStandardFrame(&param0->unk_08, 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_08);
     } else {
         if (param0->unk_24) {
             ov67_0225D310(param0);
         }
 
-        sub_0200E084(&param0->unk_08, 1);
+        Window_EraseMessageBox(&param0->unk_08, 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_08);
     }
 }
@@ -682,7 +681,7 @@ static void ov67_0225D2EC(UnkStruct_ov67_0225D210 *param0)
 {
     if (param0->unk_20 == 1) {
         GF_ASSERT(param0->unk_24 == NULL);
-        param0->unk_24 = sub_0200E7FC(&param0->unk_08, 1);
+        param0->unk_24 = Window_AddWaitDial(&param0->unk_08, 1);
     }
 }
 
@@ -690,7 +689,7 @@ static void ov67_0225D310(UnkStruct_ov67_0225D210 *param0)
 {
     if (param0->unk_20 == 1) {
         GF_ASSERT(param0->unk_24 != NULL);
-        DeleteWaitDial(param0->unk_24);
+        DestroyWaitDial(param0->unk_24);
         param0->unk_24 = NULL;
     }
 }

@@ -22,11 +22,11 @@
 
 BOOL ScrCmd_157(ScriptContext *param0)
 {
-    const PokedexData *v0 = SaveData_Pokedex(param0->fieldSystem->saveData);
+    const PokedexData *pokedex = SaveData_Pokedex(param0->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(param0);
 
-    *v1 = sub_02027520(v0);
-    return 0;
+    *v1 = Pokedex_IsObtained(pokedex);
+    return FALSE;
 }
 
 BOOL ScrCmd_158(ScriptContext *param0)
