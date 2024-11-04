@@ -88,7 +88,7 @@ struct BattleSystem {
     PokemonAnimationSys *unk_1C4;
     NNSG2dCellTransferState *cellTransferState;
     UnkStruct_ov16_0223E0C8 unk_1CC[4];
-    FieldBattleDTO_sub1 unk_20C;
+    BattleRecords unusedBattleRecords;
     GameRecords *records;
     u8 *unk_21C;
     u16 *unk_220;

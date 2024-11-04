@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_FIELD_BATTLE_DATA_TRANSFER_H
 #define POKEPLATINUM_FIELD_BATTLE_DATA_TRANSFER_H
 
+#include "constants/battle.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -18,60 +19,61 @@
 #include "game_records.h"
 #include "journal.h"
 #include "poketch_data.h"
+#include "rtc.h"
 #include "savedata.h"
 #include "trainer_info.h"
 
-typedef struct FieldBattleDTO_sub1 {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-} FieldBattleDTO_sub1;
+typedef struct BattleRecords {
+    int totalTurns;
+    int totalFainted;
+    int totalDamage;
+} BattleRecords;
 
 typedef struct FieldBattleDTO {
     u32 battleType;
-    Party *parties[4];
-    int unk_14;
-    int trainerIDs[4];
-    TrainerData trainerData[4];
-    TrainerInfo *unk_D0[4];
-    Bag *unk_E0;
-    BagCursor *unk_E4;
-    PokedexData *unk_E8;
-    PCBoxes *unk_EC;
-    ChatotCry *unk_F0[4];
+    Party *parties[MAX_BATTLERS];
+    int resultMask;
+    int trainerIDs[MAX_BATTLERS];
+    TrainerData trainerData[MAX_BATTLERS];
+    TrainerInfo *trainerInfo[MAX_BATTLERS];
+    Bag *bag;
+    BagCursor *bagCursor;
+    PokedexData *pokedex;
+    PCBoxes *pcBoxes;
+    ChatotCry *chatotCries[MAX_BATTLERS];
     PoketchData *poketchData;
     UnkStruct_0202C878 *unk_104;
-    Options *unk_108;
+    Options *options;
     UnkStruct_0206D140 *unk_10C;
-    FieldBattleDTO_sub1 unk_110;
+    BattleRecords battleRecords;
     GameRecords *records;
-    Journal *unk_120;
+    Journal *journal;
     UnkStruct_02027F8C *unk_124;
-    int unk_128;
-    int unk_12C;
-    int unk_130;
+    int background;
+    enum Terrain terrain;
+    int mapLabelTextID;
     int mapHeaderID;
-    int unk_138;
-    int unk_13C;
-    int unk_140;
-    int unk_144;
-    int unk_148;
-    int unk_14C;
-    int unk_150;
-    u32 unk_154[4];
-    u32 unk_164;
-    int unk_168;
-    u32 unk_16C;
+    enum TimeOfDay timeOfDay;
+    int mapEvolutionMethod;
+    BOOL visitedContestHall;
+    BOOL metBebe;
+    int caughtBattlerIdx;
+    int fieldWeather;
+    int leveledUpMonsMask;
+    u32 systemVersion[MAX_BATTLERS];
+    u32 battleStatusMask;
+    int countSafariBalls;
+    u32 rulesetMask;
     void *unk_170;
-    u32 unk_174;
-    int unk_178[4];
-    u16 unk_188;
+    u32 seed;
+    int unk_178[MAX_BATTLERS];
+    u16 networkID;
     u8 unk_18A;
-    u8 unk_18B;
-    int unk_18C;
+    u8 dummy18B;
+    int totalTurnsElapsed;
     UnkStruct_0209C370 *unk_190;
     u8 unk_194[4];
-    SaveData *unk_198;
+    SaveData *saveData;
     u32 unk_19C;
 } FieldBattleDTO;
 

@@ -1227,7 +1227,7 @@ void ov6_02242034(FieldSystem *fieldSystem, FieldBattleDTO *battleParams)
     }
 
     ov5_021F0040(fieldSystem);
-    battleParams->unk_164 |= 0x2;
+    battleParams->battleStatusMask |= BATTLE_STATUS_HONEY_TREE;
     ov6_02241CC0(v1, v3, 1, &encounterFieldParams, v0, battleParams);
 
     return;

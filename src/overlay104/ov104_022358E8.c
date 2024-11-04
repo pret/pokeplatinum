@@ -188,7 +188,7 @@ BOOL ov104_02235A24(UnkStruct_ov104_0222E930 *param0)
         sub_0207A128(v1->unk_28, 3, v3);
     }
 
-    v1->unk_1C = FieldBattleDTO_PlayerWon(v2->unk_14);
+    v1->unk_1C = FieldBattleDTO_PlayerWon(v2->resultMask);
     sub_020520A4(v2);
 
     return 0;

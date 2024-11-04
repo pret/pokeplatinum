@@ -265,7 +265,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
             v0 = 1;
         }
 
-        param0->unk_10->unk_E4 = BagCursor_New(param1);
+        param0->unk_10->bagCursor = BagCursor_New(param1);
         param0->unk_10->records = SaveData_GetGameRecordsPtr(param0->saveData);
 
         if (Overlay_LoadByID(FS_OVERLAY_ID(overlay62), 2) == 1) {
@@ -276,7 +276,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
         param0->unk_14->unk_874 = 1;
 
         if (v0 != 1) {
-            Heap_FreeToHeap(param0->unk_10->unk_E4);
+            Heap_FreeToHeap(param0->unk_10->bagCursor);
             sub_020520A4(param0->unk_10);
             param0->unk_00 = 0;
             return 1;
@@ -310,7 +310,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
             }
         }
 
-        Heap_FreeToHeap(param0->unk_10->unk_E4);
+        Heap_FreeToHeap(param0->unk_10->bagCursor);
         sub_020520A4(param0->unk_10);
         OverlayManager_Free(param0->unk_08);
 

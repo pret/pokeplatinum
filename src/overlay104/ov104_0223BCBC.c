@@ -180,9 +180,9 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
     sub_020521B8(v5, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
 
-    v5->unk_128 = 20;
-    v5->unk_12C = 20;
-    v5->unk_14C = param0->unk_14;
+    v5->background = 20;
+    v5->terrain = TERRAIN_BATTLE_ARCADE;
+    v5->fieldWeather = param0->unk_14;
 
     v12 = param0->unk_70;
     v13 = param0->unk_74;
@@ -235,7 +235,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
         sub_02052894(v5);
 
         v11 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-        TrainerInfo_Copy(v11, v5->unk_D0[2]);
+        TrainerInfo_Copy(v11, v5->trainerInfo[2]);
 
         v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11 + 7], 11, 178);
         Heap_FreeToHeap(v8);

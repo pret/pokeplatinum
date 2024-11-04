@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/battle.h"
+
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
 
@@ -360,8 +362,8 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
     v4 = sub_02051D8C(11, ov104_0223AD74(param0->unk_04));
     sub_020521B8(v4, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
 
-    v4->unk_128 = 19;
-    v4->unk_12C = 19;
+    v4->background = 19;
+    v4->terrain = TERRAIN_BATTLE_FACTORY;
 
     Party_InitWithCapacity(v4->parties[0], v2);
     v5 = Pokemon_New(11);
@@ -399,7 +401,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
         sub_02052894(v4);
 
         v10 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-        TrainerInfo_Copy(v10, v4->unk_D0[2]);
+        TrainerInfo_Copy(v10, v4->trainerInfo[2]);
 
         v7 = ov104_0222DD04(&v6, param0->unk_18[param0->unk_06 + 7], 11, 178);
         Heap_FreeToHeap(v7);

@@ -964,14 +964,14 @@ u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2)
 
     v1 = 0;
 
-    if ((param0->unk_14 != 0x1) && (param0->unk_14 != 0x4) && (param0->unk_14 != 0x5)) {
+    if ((param0->resultMask != BATTLE_RESULT_WIN) && (param0->resultMask != BATTLE_RESULT_CAPTURED_MON) && (param0->resultMask != BATTLE_RESULT_PLAYER_FLED)) {
         return 0;
     }
 
-    while (param0->unk_150) {
+    while (param0->leveledUpMonsMask) {
         for (param1[0] = 0; param1[0] < 6; param1[0]++) {
-            if (param0->unk_150 & FlagIndex(param1[0])) {
-                param0->unk_150 &= (FlagIndex(param1[0]) ^ 0xffffffff);
+            if (param0->leveledUpMonsMask & FlagIndex(param1[0])) {
+                param0->leveledUpMonsMask &= (FlagIndex(param1[0]) ^ 0xffffffff);
                 break;
             }
         }
@@ -979,7 +979,7 @@ u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2)
         if (param1[0] < 6) {
             v0 = Party_GetPokemonBySlotIndex(param0->parties[0], param1[0]);
 
-            if ((v1 = sub_02076B94(param0->parties[0], v0, 0, param0->unk_13C, param2))) {
+            if ((v1 = sub_02076B94(param0->parties[0], v0, 0, param0->mapEvolutionMethod, param2))) {
                 return v1;
             }
         }

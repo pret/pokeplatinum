@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
 #include "constants/species.h"
 #include "consts/game_records.h"
 
@@ -260,11 +261,11 @@ static BOOL sub_02056554(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1, i
 
 static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, UnkStruct_020564B4 *param2)
 {
-    switch (param1->unk_14) {
-    case 0x4:
+    switch (param1->resultMask) {
+    case BATTLE_RESULT_CAPTURED_MON:
         param2->unk_30[param2->unk_3C] = sub_020564B4(param2) + 1;
         break;
-    case 0x5:
+    case BATTLE_RESULT_PLAYER_FLED:
         break;
     default:
         GF_ASSERT(0);

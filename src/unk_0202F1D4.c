@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
 #include "constants/species.h"
 
 #include "struct_defs/struct_0202F264.h"
@@ -455,34 +456,34 @@ void sub_0202F8AC(FieldBattleDTO *param0)
     v2 = &v1->unk_00;
 
     v2->unk_00 = param0->battleType;
-    v2->unk_04 = param0->unk_14;
-    v2->unk_E8 = param0->unk_128;
-    v2->unk_EC = param0->unk_12C;
-    v2->unk_F0 = param0->unk_130;
+    v2->unk_04 = param0->resultMask;
+    v2->unk_E8 = param0->background;
+    v2->unk_EC = param0->terrain;
+    v2->unk_F0 = param0->mapLabelTextID;
     v2->unk_F4 = param0->mapHeaderID;
-    v2->unk_F8 = param0->unk_138;
-    v2->unk_FC = param0->unk_13C;
-    v2->unk_100 = param0->unk_140;
-    v2->unk_104 = param0->unk_144;
-    v2->unk_108 = param0->unk_148;
-    v2->unk_10C = param0->unk_14C;
-    v2->unk_110 = param0->unk_150;
-    v2->unk_124 = param0->unk_164;
-    v2->unk_128 = param0->unk_168;
-    v2->unk_12C = param0->unk_16C;
-    v2->unk_130 = param0->unk_174;
-    v2->unk_144 = param0->unk_188;
-    v2->unk_146 = param0->unk_18B;
-    v2->unk_148 = param0->unk_18C;
+    v2->unk_F8 = param0->timeOfDay;
+    v2->unk_FC = param0->mapEvolutionMethod;
+    v2->unk_100 = param0->visitedContestHall;
+    v2->unk_104 = param0->metBebe;
+    v2->unk_108 = param0->caughtBattlerIdx;
+    v2->unk_10C = param0->fieldWeather;
+    v2->unk_110 = param0->leveledUpMonsMask;
+    v2->unk_124 = param0->battleStatusMask;
+    v2->unk_128 = param0->countSafariBalls;
+    v2->unk_12C = param0->rulesetMask;
+    v2->unk_130 = param0->seed;
+    v2->unk_144 = param0->networkID;
+    v2->unk_146 = param0->dummy18B;
+    v2->unk_148 = param0->totalTurnsElapsed;
 
     for (v0 = 0; v0 < 4; v0++) {
         v2->unk_08[v0] = param0->trainerIDs[v0];
         v2->unk_18[v0] = param0->trainerData[v0];
 
-        if (param0->unk_154[v0] == 0) {
+        if (param0->systemVersion[v0] == 0) {
             v2->unk_114[v0] = 0x140;
         } else {
-            v2->unk_114[v0] = param0->unk_154[v0];
+            v2->unk_114[v0] = param0->systemVersion[v0];
         }
 
         v2->unk_134[v0] = param0->unk_178[v0];
@@ -491,12 +492,12 @@ void sub_0202F8AC(FieldBattleDTO *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_0202FCE8(param0->parties[v0], &v1->unk_1150[v0]);
-        TrainerInfo_Copy(param0->unk_D0[v0], &v1->unk_1B68[v0]);
+        TrainerInfo_Copy(param0->trainerInfo[v0], &v1->unk_1B68[v0]);
 
-        v2->unk_14C[v0] = Sound_Chatter(param0->unk_F0[v0]);
+        v2->unk_14C[v0] = Sound_Chatter(param0->chatotCries[v0]);
     }
 
-    Options_Copy(param0->unk_108, &v1->unk_1BE8);
+    Options_Copy(param0->options, &v1->unk_1BE8);
 }
 
 void sub_0202FAA8(int param0, u32 param1)
@@ -542,43 +543,43 @@ void sub_0202FAFC(FieldBattleDTO *param0, SaveData *param1)
     UnkStruct_0202F298 *v1 = &Unk_021C07A4->unk_E8;
 
     param0->battleType = v1->unk_00.unk_00;
-    param0->unk_128 = v1->unk_00.unk_E8;
-    param0->unk_12C = v1->unk_00.unk_EC;
-    param0->unk_130 = v1->unk_00.unk_F0;
+    param0->background = v1->unk_00.unk_E8;
+    param0->terrain = v1->unk_00.unk_EC;
+    param0->mapLabelTextID = v1->unk_00.unk_F0;
     param0->mapHeaderID = v1->unk_00.unk_F4;
-    param0->unk_138 = v1->unk_00.unk_F8;
-    param0->unk_13C = v1->unk_00.unk_FC;
-    param0->unk_140 = v1->unk_00.unk_100;
-    param0->unk_144 = v1->unk_00.unk_104;
-    param0->unk_148 = v1->unk_00.unk_108;
-    param0->unk_14C = v1->unk_00.unk_10C;
-    param0->unk_164 = v1->unk_00.unk_124 | 0x10;
-    param0->unk_168 = v1->unk_00.unk_128;
-    param0->unk_16C = v1->unk_00.unk_12C;
-    param0->unk_174 = v1->unk_00.unk_130;
-    param0->unk_188 = v1->unk_00.unk_144;
-    param0->unk_14 = 0;
-    param0->unk_150 = 0;
+    param0->timeOfDay = v1->unk_00.unk_F8;
+    param0->mapEvolutionMethod = v1->unk_00.unk_FC;
+    param0->visitedContestHall = v1->unk_00.unk_100;
+    param0->metBebe = v1->unk_00.unk_104;
+    param0->caughtBattlerIdx = v1->unk_00.unk_108;
+    param0->fieldWeather = v1->unk_00.unk_10C;
+    param0->battleStatusMask = v1->unk_00.unk_124 | BATTLE_STATUS_RECORDING;
+    param0->countSafariBalls = v1->unk_00.unk_128;
+    param0->rulesetMask = v1->unk_00.unk_12C;
+    param0->seed = v1->unk_00.unk_130;
+    param0->networkID = v1->unk_00.unk_144;
+    param0->resultMask = BATTLE_IN_PROGRESS;
+    param0->leveledUpMonsMask = 0;
 
-    sub_02026338(SaveData_Pokedex(param1), param0->unk_E8);
+    sub_02026338(SaveData_Pokedex(param1), param0->pokedex);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->trainerIDs[v0] = v1->unk_00.unk_08[v0];
         param0->trainerData[v0] = v1->unk_00.unk_18[v0];
-        param0->unk_154[v0] = v1->unk_00.unk_114[v0];
+        param0->systemVersion[v0] = v1->unk_00.unk_114[v0];
         param0->unk_178[v0] = v1->unk_00.unk_134[v0];
 
         sub_0202FD30(&v1->unk_1150[v0], param0->parties[v0]);
-        TrainerInfo_Copy(&v1->unk_1B68[v0], param0->unk_D0[v0]);
+        TrainerInfo_Copy(&v1->unk_1B68[v0], param0->trainerInfo[v0]);
 
         param0->unk_194[v0] = v1->unk_00.unk_14C[v0];
     }
 
-    Options_Copy(SaveData_Options(param1), param0->unk_108);
-    param0->unk_108->frame = v1->unk_1BE8.frame;
+    Options_Copy(SaveData_Options(param1), param0->options);
+    param0->options->frame = v1->unk_1BE8.frame;
 
-    if (param0->unk_108->frame >= 20) {
-        param0->unk_108->frame = 0;
+    if (param0->options->frame >= 20) {
+        param0->options->frame = 0;
     }
 }
 

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
+
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0206C638.h"
@@ -41,10 +43,10 @@ void ov6_02246034(FieldSystem *fieldSystem, FieldBattleDTO *param1)
         v0 = (u16)(Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL));
         v1 = (u8)(Pokemon_GetValue(v6, MON_DATA_STATUS_CONDITION, NULL));
 
-        if ((param1->unk_14 == 0x1) && (v0 == 0)) {
+        if ((param1->resultMask == BATTLE_RESULT_WIN) && (v0 == 0)) {
             sub_0202D914(&v4);
             sub_0206B688(SaveData_GetVarsFlags(fieldSystem->saveData), v2, 2);
-        } else if (param1->unk_14 == 0x4) {
+        } else if (param1->resultMask == BATTLE_RESULT_CAPTURED_MON) {
             sub_0202D914(&v4);
             sub_0206B688(SaveData_GetVarsFlags(fieldSystem->saveData), v2, 1);
         } else {

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/battle.h"
+
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202D764.h"
 #include "struct_defs/struct_0204AFC4.h"
@@ -916,8 +918,8 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
 
     sub_020521B8(v3, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
 
-    v3->unk_128 = 18;
-    v3->unk_12C = 18;
+    v3->background = 18;
+    v3->terrain = TERRAIN_BATTLE_TOWER;
 
     v6 = Pokemon_New(param0->unk_04);
     v1 = 50;

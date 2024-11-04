@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/battle.h"
+
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204B184.h"
@@ -175,8 +177,8 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
     v5 = sub_02051D8C(11, ov104_0223B9E4(param0->unk_10));
     sub_020521B8(v5, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
 
-    v5->unk_128 = 21;
-    v5->unk_12C = 21;
+    v5->background = 21;
+    v5->terrain = TERRAIN_BATTLE_CASTLE;
 
     Party_InitWithCapacity(v5->parties[0], v2);
 
@@ -222,7 +224,7 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
         sub_02052894(v5);
 
         v11 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-        TrainerInfo_Copy(v11, v5->unk_D0[2]);
+        TrainerInfo_Copy(v11, v5->trainerInfo[2]);
 
         v8 = ov104_0222DD04(&v7, param0->unk_30[param0->unk_11 + 7], 11, 178);
         Heap_FreeToHeap(v8);

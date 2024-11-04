@@ -397,8 +397,8 @@ void ov10_0221F800(UnkStruct_ov10_0221F800 *param0)
     v0->unk_BBC = sub_0202FAC0();
 
     if (v0->unk_BBC == 1) {
-        if ((v0->unk_00->unk_00 != NULL) && (v0->unk_00->unk_00->unk_198 != NULL)) {
-            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->unk_00->unk_00->unk_198), 465, 1, param0->unk_24);
+        if ((v0->unk_00->unk_00 != NULL) && (v0->unk_00->unk_00->saveData != NULL)) {
+            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->unk_00->unk_00->saveData), 465, 1, param0->unk_24);
         }
     }
 }
@@ -655,7 +655,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
             BOOL v0;
             int v1;
 
-            v0 = sub_0202F330(param0->unk_00->unk_00->unk_198, param0->unk_00->unk_24, &v1, 0);
+            v0 = sub_0202F330(param0->unk_00->unk_00->saveData, param0->unk_00->unk_24, &v1, 0);
             param0->unk_BC0 = v1;
         }
         {
@@ -1022,7 +1022,7 @@ static u8 ov10_02220700(UnkStruct_ov10_0221FB28 *param0)
     case 1: {
         int v0;
 
-        v0 = sub_0202F41C(param0->unk_00->unk_00->unk_198, param0->unk_00->unk_2C, 0, 0, &param0->unk_B78, &param0->unk_B7A);
+        v0 = sub_0202F41C(param0->unk_00->unk_00->saveData, param0->unk_00->unk_2C, 0, 0, &param0->unk_B78, &param0->unk_B7A);
 
         if (v0 == 2) {
             MessageLoader_GetStrbuf(param0->unk_BA0, 6, param0->unk_BA8);
@@ -1445,8 +1445,8 @@ static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0)
 {
     int v0;
 
-    GF_ASSERT(param0->unk_B9C == GX_BG0_AS_2D && param0->unk_00 != NULL && param0->unk_00->unk_00 != NULL && param0->unk_00->unk_00->unk_108 != NULL);
-    v0 = Options_Frame(param0->unk_00->unk_00->unk_108);
+    GF_ASSERT(param0->unk_B9C == GX_BG0_AS_2D && param0->unk_00 != NULL && param0->unk_00->unk_00 != NULL && param0->unk_00->unk_00->options != NULL);
+    v0 = Options_Frame(param0->unk_00->unk_00->options);
 
     LoadMessageBoxGraphics(param0->unk_0C, 0, 1, 15, v0, param0->unk_00->unk_24);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 15 * 16, 0x20 * 1);
@@ -2470,7 +2470,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
         }
     }
 
-    Journal_SaveData(param0->unk_00->unk_120, v0, 4);
+    Journal_SaveData(param0->unk_00->journal, v0, 4);
 }
 
 static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)
@@ -2481,7 +2481,7 @@ static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)
 
 static BOOL ov10_02222A08(UnkStruct_ov10_0221FB28 *param0)
 {
-    if ((param0->unk_00->unk_00->unk_198 == NULL) || (sub_0202F250() == 0)) {
+    if ((param0->unk_00->unk_00->saveData == NULL) || (sub_0202F250() == 0)) {
         return 0;
     }
 

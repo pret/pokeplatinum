@@ -155,8 +155,8 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
     v9 = sub_0209B978(param0->unk_00->unk_00);
     v10 = v9->unk_0C;
 
-    v9->unk_1D = ov104_02238538(v9, v10->parties[0], v10->parties[2], v10->unk_18C);
-    v9->unk_28 = FieldBattleDTO_PlayerWon(v10->unk_14);
+    v9->unk_1D = ov104_02238538(v9, v10->parties[0], v10->parties[2], v10->totalTurnsElapsed);
+    v9->unk_28 = FieldBattleDTO_PlayerWon(v10->resultMask);
 
     if (v9->unk_13 == 27) {
         v2 = 1;

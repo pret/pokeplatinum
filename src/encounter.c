@@ -4,7 +4,9 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "consts/battle.h"
 #include "consts/game_records.h"
+#include "consts/map.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -129,10 +131,10 @@ static BOOL sub_02050B04(UnkStruct_02050ACC *param0)
     BOOL v0;
 
     if (param0->unk_00 != NULL) {
-        *(param0->unk_00) = param0->unk_10->unk_14;
+        *(param0->unk_00) = param0->unk_10->resultMask;
     }
 
-    v0 = FieldBattleDTO_PlayerWon(param0->unk_10->unk_14);
+    v0 = FieldBattleDTO_PlayerWon(param0->unk_10->resultMask);
     return v0;
 }
 
@@ -175,7 +177,7 @@ static BOOL sub_02050B30(FieldTask *taskMan)
         if ((v1->unk_10->battleType == BATTLE_TYPE_WILD_MON)
             || (v1->unk_10->battleType == BATTLE_TYPE_ROAMER)
             || (v1->unk_10->battleType == BATTLE_TYPE_AI_PARTNER)) {
-            sub_0206D1B8(fieldSystem, v1->unk_10->unk_10C, v1->unk_10->unk_14);
+            sub_0206D1B8(fieldSystem, v1->unk_10->unk_10C, v1->unk_10->resultMask);
         }
 
         if (sub_02050B04(v1) == 0) {
@@ -189,7 +191,7 @@ static BOOL sub_02050B30(FieldTask *taskMan)
 
         sub_020518B0(fieldSystem, v1->unk_10);
         sub_02051988(fieldSystem, v1->unk_10);
-        sub_0206B48C(SaveData_GetVarsFlags(fieldSystem->saveData), v1->unk_10->unk_18C);
+        sub_0206B48C(SaveData_GetVarsFlags(fieldSystem->saveData), v1->unk_10->totalTurnsElapsed);
         FieldTask_StartFieldMap(taskMan);
         (*v2)++;
         break;
@@ -253,7 +255,7 @@ static BOOL sub_02050CA8(FieldTask *taskMan)
         (*v2)++;
         break;
     case 3:
-        sub_02050C6C(v1->unk_10->unk_14, fieldSystem);
+        sub_02050C6C(v1->unk_10->resultMask, fieldSystem);
         sub_02052754(v1->unk_10, fieldSystem);
 
         {
@@ -292,7 +294,7 @@ static BOOL sub_02050D4C(FieldTask *taskMan)
         (*v2)++;
         break;
     case 1: {
-        sub_02050C6C(v1->unk_10->unk_14, fieldSystem);
+        sub_02050C6C(v1->unk_10->resultMask, fieldSystem);
         sub_02052754(v1->unk_10, fieldSystem);
     }
         {
@@ -391,9 +393,9 @@ static BOOL sub_02050EE0(FieldTask *taskMan)
         break;
     case 3:
         sub_02050B1C(v1->unk_10, fieldSystem);
-        sub_0206D1B8(fieldSystem, v1->unk_10->unk_10C, v1->unk_10->unk_14);
+        sub_0206D1B8(fieldSystem, v1->unk_10->unk_10C, v1->unk_10->resultMask);
 
-        if (FieldBattleDTO_PlayerWon(v1->unk_10->unk_14) == 0) {
+        if (FieldBattleDTO_PlayerWon(v1->unk_10->resultMask) == 0) {
             sub_02050DFC(v1);
             RadarChain_Clear(fieldSystem->chain);
             FieldTask_InitJump(taskMan, sub_02052B2C, NULL);
@@ -409,7 +411,7 @@ static BOOL sub_02050EE0(FieldTask *taskMan)
 
         if (GetRadarChainActive(fieldSystem->chain)) {
             if (sub_02069798(fieldSystem->chain)) {
-                if ((!(v1->unk_10->unk_14 == 0x1)) && (!(v1->unk_10->unk_14 == 0x4))) {
+                if ((!(v1->unk_10->resultMask == BATTLE_RESULT_WIN)) && (!(v1->unk_10->resultMask == BATTLE_RESULT_CAPTURED_MON))) {
                     RadarChain_Clear(fieldSystem->chain);
                 }
             } else {
@@ -427,7 +429,7 @@ static BOOL sub_02050EE0(FieldTask *taskMan)
         break;
     case 5:
         if (GetRadarChainActive(fieldSystem->chain)) {
-            SetupGrassPatches(fieldSystem, v1->unk_10->unk_14, fieldSystem->chain);
+            SetupGrassPatches(fieldSystem, v1->unk_10->resultMask, fieldSystem->chain);
             sub_02069638(fieldSystem, fieldSystem->chain);
         }
 
@@ -475,7 +477,7 @@ static BOOL sub_02051074(FieldTask *taskMan)
     case 3:
         sub_02050B1C(v1->unk_10, fieldSystem);
 
-        if (v1->unk_10->unk_14 == 0x4) {
+        if (v1->unk_10->resultMask == BATTLE_RESULT_CAPTURED_MON) {
             TVBroadcast *v4 = SaveData_TVBroadcast(fieldSystem->saveData);
             Pokemon *v5 = Party_GetPokemonBySlotIndex(v1->unk_10->parties[1], 0);
 
@@ -484,7 +486,7 @@ static BOOL sub_02051074(FieldTask *taskMan)
 
         sub_020518B0(fieldSystem, v1->unk_10);
 
-        if (((*v3) == 0) && (v1->unk_10->unk_14 != 0x4)) {
+        if (((*v3) == 0) && (v1->unk_10->resultMask != BATTLE_RESULT_CAPTURED_MON)) {
             Location *v6;
 
             v6 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
@@ -505,7 +507,7 @@ static BOOL sub_02051074(FieldTask *taskMan)
         break;
     case 6:
         if ((*v3) == 0) {
-            if (v1->unk_10->unk_14 == 0x4) {
+            if (v1->unk_10->resultMask == BATTLE_RESULT_CAPTURED_MON) {
                 ScriptManager_Start(taskMan, 8802, NULL, NULL);
             } else {
                 ScriptManager_Start(taskMan, 8809, NULL, NULL);
@@ -542,8 +544,8 @@ void sub_0205120C(FieldTask *taskMan, int *param1)
     v1 = sub_02051D8C(11, (0x0 | 0x0));
     sub_02052314(v1, fieldSystem);
 
-    v1->unk_128 = 0;
-    v1->unk_12C = 0;
+    v1->background = 0;
+    v1->terrain = TERRAIN_PLAIN;
 
     ov6_02242034(fieldSystem, v1);
 
@@ -566,7 +568,7 @@ void sub_02051270(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL p
     ov6_022420D4(fieldSystem, param1, param2, v1);
 
     if (param4) {
-        v1->unk_164 |= 0x8;
+        v1->battleStatusMask |= BATTLE_STATUS_LEGENDARY;
     }
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
@@ -595,7 +597,7 @@ void sub_020512E4(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL p
     Pokemon_SetValue(v3, MON_DATA_FATEFUL_ENCOUNTER, &v4);
 
     if (param4) {
-        v1->unk_164 |= 0x8;
+        v1->battleStatusMask |= BATTLE_STATUS_LEGENDARY;
     }
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
@@ -676,7 +678,7 @@ void sub_02051480(FieldTask *taskMan, int param1, int param2, int *param3)
 
     sub_02052314(v1, fieldSystem);
 
-    v1->unk_164 = 0x1;
+    v1->battleStatusMask = BATTLE_STATUS_FIRST_BATTLE;
     v1->trainerIDs[1] = param1;
     v1->trainerIDs[3] = 0;
     v1->trainerIDs[2] = 0;
@@ -764,8 +766,8 @@ void sub_020515CC(FieldTask *taskMan, int param1, int param2, int param3, int pa
     v2 = sub_02051D8C(11, v0);
     sub_02052314(v2, fieldSystem);
 
-    if ((fieldSystem->location->mapId >= 573) && (fieldSystem->location->mapId <= 583)) {
-        v2->unk_164 |= 0x80;
+    if ((fieldSystem->location->mapId >= MAP_HEADER_DISTORTION_WORLD_1F) && (fieldSystem->location->mapId <= MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM)) {
+        v2->battleStatusMask |= BATTLE_STATUS_DISTORTION;
     }
 
     v2->trainerIDs[1] = param1;
@@ -911,7 +913,7 @@ static void sub_020518B0(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     Pokemon *v0;
     u32 v1 = param1->battleType;
-    int v2 = param1->unk_14;
+    int v2 = param1->resultMask;
 
     if (v1 & 0x4) {
         return;
@@ -924,9 +926,9 @@ static void sub_020518B0(FieldSystem *fieldSystem, FieldBattleDTO *param1)
     if ((v1 == BATTLE_TYPE_WILD_MON)
         || (v1 == BATTLE_TYPE_ROAMER)
         || (v1 == BATTLE_TYPE_AI_PARTNER)) {
-        if (v2 == 0x1) {
+        if (v2 == BATTLE_RESULT_WIN) {
             GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_08);
-        } else if (v2 == 0x4) {
+        } else if (v2 == BATTLE_RESULT_CAPTURED_MON) {
             v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
 
             if (sub_0207A294(0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0))) {
@@ -936,11 +938,11 @@ static void sub_020518B0(FieldSystem *fieldSystem, FieldBattleDTO *param1)
             }
         }
     } else if ((v1 & BATTLE_TYPE_TRAINER) || (v1 & BATTLE_TYPE_TAG)) {
-        if (v2 == 0x1) {
+        if (v2 == BATTLE_RESULT_WIN) {
             GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_11);
         }
     } else if ((v1 & BATTLE_TYPE_SAFARI) || (v1 & BATTLE_TYPE_PAL_PARK)) {
-        if (v2 == 0x4) {
+        if (v2 == BATTLE_RESULT_CAPTURED_MON) {
             v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
 
             if (sub_0207A294(0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0))) {
@@ -956,7 +958,7 @@ static void sub_02051988(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     Pokemon *v0;
     u32 v1 = param1->battleType;
-    int v2 = param1->unk_14;
+    int v2 = param1->resultMask;
 
     if (v1 & BATTLE_TYPE_LINK) {
         return;
@@ -976,25 +978,25 @@ static void sub_02051988(FieldSystem *fieldSystem, FieldBattleDTO *param1)
         || (v1 == BATTLE_TYPE_SAFARI)) {
         UnkStruct_0202BE38 *v3;
 
-        if (v2 == 0x1) {
+        if (v2 == BATTLE_RESULT_WIN) {
             fieldSystem->unk_78.unk_02++;
 
             if (fieldSystem->unk_78.unk_02 >= 5) {
                 v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
-                v3 = sub_0202BECC(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_GENDER, 0), param1->unk_138, 11);
+                v3 = sub_0202BECC(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_GENDER, 0), param1->timeOfDay, 11);
                 Journal_SaveData(fieldSystem->journal, v3, 2);
             }
-        } else if (v2 == 0x4) {
+        } else if (v2 == BATTLE_RESULT_CAPTURED_MON) {
             int v4;
 
-            v4 = param1->unk_148;
+            v4 = param1->caughtBattlerIdx;
             v0 = Party_GetPokemonBySlotIndex(param1->parties[v4], 0);
-            v3 = sub_0202BE4C(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_GENDER, 0), param1->unk_138, 11);
+            v3 = sub_0202BE4C(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_GENDER, 0), param1->timeOfDay, 11);
 
             Journal_SaveData(fieldSystem->journal, v3, 2);
         }
     } else if ((v1 & BATTLE_TYPE_TRAINER) || (v1 & BATTLE_TYPE_TAG)) {
-        if (v2 == 0x1) {
+        if (v2 == BATTLE_RESULT_WIN) {
             sub_0202C720(fieldSystem->journal, fieldSystem->location->mapId, param1->trainerIDs[1], 11);
         }
     }
@@ -1022,11 +1024,11 @@ void sub_02051ABC(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL p
     }
 
     if (param4) {
-        v1->unk_164 |= 0x8;
+        v1->battleStatusMask |= BATTLE_STATUS_LEGENDARY;
     }
 
-    v1->unk_164 |= 0x40 | 0x80;
-    v1->unk_12C = 23;
+    v1->battleStatusMask |= BATTLE_STATUS_GIRATINA | BATTLE_STATUS_DISTORTION;
+    v1->terrain = TERRAIN_GIRATINA;
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);

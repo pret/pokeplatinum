@@ -1326,24 +1326,24 @@ u32 CutInEffects_ForBattle(const FieldBattleDTO *param0)
     v6 = Pokemon_GetValue(v4, MON_DATA_LEVEL, NULL);
     v0 = v6 - v5;
 
-    switch (param0->unk_12C) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 6:
-    case 8:
-    case 10:
-    case 11:
-    case 9:
-    case 24:
+    switch (param0->terrain) {
+    case TERRAIN_PLAIN:
+    case TERRAIN_SAND:
+    case TERRAIN_GRASS:
+    case TERRAIN_PUDDLE:
+    case TERRAIN_MOUNTAIN:
+    case TERRAIN_SNOW:
+    case TERRAIN_ICE:
+    case TERRAIN_BUILDING:
+    case TERRAIN_GREAT_MARSH:
+    case TERRAIN_BRIDGE:
+    case TERRAIN_MAX:
         v1 = 0 * 2;
         break;
-    case 7:
+    case TERRAIN_WATER:
         v1 = 1 * 2;
         break;
-    case 5:
+    case TERRAIN_CAVE:
         v1 = 2 * 2;
         break;
     }
