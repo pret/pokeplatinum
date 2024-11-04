@@ -139,7 +139,7 @@
     .long \arg1-.-4
     .endm
 
-    .macro ScrCmd_Unused018 arg0, arg1
+    .macro ScrCmd_018 arg0, arg1
     .short 24
     .byte \arg0
     .long \arg1-.-4

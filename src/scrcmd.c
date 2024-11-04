@@ -260,7 +260,7 @@ static BOOL ScrCmd_ReturnCommonScript(ScriptContext *ctx);
 static BOOL ScrCmd_GoTo(ScriptContext *ctx);
 static MapObject *sub_02040ED4(FieldSystem *fieldSystem, int param1);
 static BOOL ScrCmd_017(ScriptContext *ctx);
-static BOOL ScrCmd_Unused018(ScriptContext *ctx);
+static BOOL ScrCmd_018(ScriptContext *ctx);
 static BOOL ScrCmd_019(ScriptContext *ctx);
 static BOOL ScrCmd_Call(ScriptContext *ctx);
 static BOOL ScrCmd_Return(ScriptContext *ctx);
@@ -787,7 +787,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ReturnCommonScript,
     ScrCmd_GoTo,
     ScrCmd_017,
-    ScrCmd_Unused018,
+    ScrCmd_018,
     ScrCmd_019,
     ScrCmd_Call,
     ScrCmd_Return,
@@ -1896,7 +1896,7 @@ static BOOL ScrCmd_017(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_Unused018(ScriptContext *ctx)
+static BOOL ScrCmd_018(ScriptContext *ctx)
 {
     u32 taskVal = FieldTask_GetDummy1CVal(ctx->task);
     u8 val = ScriptContext_ReadByte(ctx);
