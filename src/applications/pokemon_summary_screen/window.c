@@ -1,4 +1,4 @@
-#include "unk_0208FCF8.h"
+#include "applications/pokemon_summary_screen/window.h"
 
 #include <nitro.h>
 #include <string.h>

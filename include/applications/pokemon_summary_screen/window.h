@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0208FCF8_H
-#define POKEPLATINUM_UNK_0208FCF8_H
+#ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_WINDOW_H
+#define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_WINDOW_H
 
 #include "applications/pokemon_summary_screen/main.h"
 
@@ -24,4 +24,4 @@ void PokemonSummaryScreen_PrintContestMoveInfo(PokemonSummaryScreen *summaryScre
 void PokemonSummaryScreen_ClearContestInfoWindows(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintContestStatChangeMsg(PokemonSummaryScreen *summaryScreen, u8 param1);
 
-#endif // POKEPLATINUM_UNK_0208FCF8_H
+#endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_WINDOW_H
