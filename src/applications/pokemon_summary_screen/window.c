@@ -7,6 +7,7 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/sprite.h"
+#include "text/gmm/message_bank_pokemon_summary_screen.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -758,7 +759,7 @@ void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summarySc
 {
     Window_FillTilemap(&summaryScreen->extraWindows[1], 0);
 
-    Strbuf *buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, 186); // ravetodo magic numbers here
+    Strbuf *buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, pss_ribbon_max_number);
 
     StringTemplate_SetNumber(summaryScreen->strFormatter, 0, summaryScreen->ribbonMax, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->strbuf, buf);
@@ -769,14 +770,14 @@ void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summarySc
 
     Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[1], FONT_SYSTEM, summaryScreen->strbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
-    buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, 185);
+    buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, pss_ribbon_number_slash);
     strWidth = Font_CalcStrbufWidth(FONT_SYSTEM, buf, 0);
     xOffset -= strWidth;
 
     Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[1], FONT_SYSTEM, buf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(buf);
 
-    buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, 184);
+    buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, pss_ribbon_index_number);
 
     StringTemplate_SetNumber(summaryScreen->strFormatter, 0, summaryScreen->ribbonCol + summaryScreen->ribbonRow * RIBBONS_PER_ROW + 1, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->strbuf, buf);
@@ -961,36 +962,36 @@ void PokemonSummaryScreen_ClearContestInfoWindows(PokemonSummaryScreen *param0)
     Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[5]);
 }
 
-void PokemonSummaryScreen_PrintContestStatChangeMsg(PokemonSummaryScreen *summaryScreen, u8 param1)
+void PokemonSummaryScreen_PrintPoffinFeedMsg(PokemonSummaryScreen *summaryScreen, enum PSSPoffinFeedMsg msg)
 {
     u32 entryID;
 
-    switch (param1) {
-    case 0:
-        entryID = 172;
+    switch (msg) {
+    case PSS_MSG_COOLNESS_ENHANCED:
+        entryID = pss_coolness_enhanced;
         break;
-    case 1:
-        entryID = 174;
+    case PSS_MSG_BEAUTY_ENHANCED:
+        entryID = pss_beauty_enhanced;
         break;
-    case 2:
-        entryID = 175;
+    case PSS_MSG_CUTENESS_ENHANCED:
+        entryID = pss_cuteness_enhanced;
         break;
-    case 3:
-        entryID = 176;
+    case PSS_MSG_SMARTNESS_ENHANCED:
+        entryID = pss_smartness_enhanced;
         break;
-    case 4:
-        entryID = 173;
+    case PSS_MSG_TOUGHNESS_ENHANCED:
+        entryID = pss_toughness_enhanced;
         break;
-    case 0xfe:
-        entryID = 177;
+    case PSS_MSG_NOTHING_CHANGED:
+        entryID = pss_nothing_changed;
         break;
     default:
-        entryID = 178;
+        entryID = pss_pokemon_wont_eat_more;
     }
 
     Window *window = &summaryScreen->extraWindows[2];
 
-    Window_DrawMessageBoxWithScrollCursor(window, 1, (1024 - (18 + 12)), 13);
+    Window_DrawMessageBoxWithScrollCursor(window, TRUE, (1024 - (18 + 12)), 13);
     Window_FillTilemap(window, 15);
     MessageLoader_GetStrbuf(summaryScreen->msgLoader, entryID, summaryScreen->strbuf);
     Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, summaryScreen->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);

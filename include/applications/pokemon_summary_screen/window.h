@@ -22,6 +22,6 @@ void sub_02091474(PokemonSummaryScreen *param0);
 void PokemonSummaryScreen_PrintHMMovesCantBeForgotten(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintContestMoveInfo(PokemonSummaryScreen *summaryScreen, u32 move);
 void PokemonSummaryScreen_ClearContestInfoWindows(PokemonSummaryScreen *summaryScreen);
-void PokemonSummaryScreen_PrintContestStatChangeMsg(PokemonSummaryScreen *summaryScreen, u8 param1);
+void PokemonSummaryScreen_PrintPoffinFeedMsg(PokemonSummaryScreen *summaryScreen, enum PSSPoffinFeedMsg msg);
 
 #endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_WINDOW_H

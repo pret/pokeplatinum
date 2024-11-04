@@ -134,11 +134,26 @@ enum PSSStaticWindow {
     PSS_STATIC_WINDOW_MAX
 };
 
+// somewhat bewilderingly, the message order does not follow the contest stat order
+enum PSSPoffinFeedMsg {
+    PSS_MSG_COOLNESS_ENHANCED = 0,
+    PSS_MSG_BEAUTY_ENHANCED,
+    PSS_MSG_CUTENESS_ENHANCED,
+    PSS_MSG_SMARTNESS_ENHANCED,
+    PSS_MSG_TOUGHNESS_ENHANCED,
+
+    PSS_MSG_NOTHING_CHANGED = 0xFE,
+    PSS_MSG_MON_WONT_EAT_MORE = 0xFF,
+};
+
 #define PSS_MOVE_NONE             0xFFFFFFFF
 #define PSS_SUBSCREEN_BUTTON_NONE 0xFF
 
 #define POINTS_PER_APPEAL_HEART 10
 #define MAX_APPEAL_HEARTS       6
+#define EMPTY_HEART_BASE_TILE   0x12E
+#define FILLED_HEART_BASE_TILE  0x12C
+
 #define RIBBONS_PER_ROW         4
 
 typedef struct PokemonSummary {

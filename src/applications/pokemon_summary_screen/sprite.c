@@ -173,13 +173,13 @@ void sub_0208EA44(PokemonSummaryScreen *param0)
         sub_0200C8F0(param0->renderer, param0->gfxHandler, &v2);
     }
 }
-// ravetodo FreeSpriteRenderer?
+
 void sub_0208EAF4(PokemonSummaryScreen *summaryScreen)
 {
     sub_0200C8B0(summaryScreen->renderer, summaryScreen->gfxHandler);
     sub_0200C8D4(summaryScreen->renderer);
 }
-// ravetodo UpdateSpriteAnims?
+
 void sub_0208EB14(PokemonSummaryScreen *summaryScreen)
 {
     CellActor_UpdateAnim(summaryScreen->unk_41C[21], FX32_ONE);
@@ -612,20 +612,19 @@ void sub_0208F574(PokemonSummaryScreen *param0)
     }
 }
 
-void sub_0208F600(PokemonSummaryScreen *param0)
+void sub_0208F600(PokemonSummaryScreen *summaryScreen)
 {
-    s16 v0, v1;
+    CellActor_SetDrawFlag(summaryScreen->unk_41C[41], TRUE);
+    SpriteActor_SetAnimFrame(summaryScreen->unk_41C[41], 0);
+    CellActor_SetAnim(summaryScreen->unk_41C[41], 0);
 
-    CellActor_SetDrawFlag(param0->unk_41C[41], 1);
-    SpriteActor_SetAnimFrame(param0->unk_41C[41], 0);
-    CellActor_SetAnim(param0->unk_41C[41], 0);
+    s16 x, y;
+    PokemonSummaryScreen_CalcSubscreenButtonCirclePos(summaryScreen, &x, &y);
 
-    sub_02092368(param0, &v0, &v1);
-
-    if (param0->subscreenType == PSS_SUBSCREEN_TYPE_NORMAL) {
-        SpriteActor_SetPositionXY(param0->unk_41C[41], v0, v1 + 192);
+    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NORMAL) {
+        SpriteActor_SetPositionXY(summaryScreen->unk_41C[41], x, y + 192);
     } else {
-        SpriteActor_SetPositionXY(param0->unk_41C[41], v0 - 4, v1 + 192);
+        SpriteActor_SetPositionXY(summaryScreen->unk_41C[41], x - 4, y + 192);
     }
 }
 

@@ -17,6 +17,7 @@
 #include "applications/pokemon_summary_screen/sprite.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "applications/pokemon_summary_screen/window.h"
+#include "text/gmm/message_bank_pokemon_summary_screen.h"
 #include "text/pl_msg.naix"
 
 #include "bg_window.h"
@@ -473,7 +474,6 @@ static void SetAlphaBlending(void)
 
 static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *summaryScreen)
 {
-    // ravetodo rename msg bank
     summaryScreen->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokemon_summary_screen, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->ribbonLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_ribbon_names, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->unk_684 = sub_0200C440(1, 2, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
@@ -927,7 +927,7 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
         LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, (1024 - (18 + 12)), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
         if (summaryScreen->subscreen == 0) {
-            PokemonSummaryScreen_PrintContestStatChangeMsg(summaryScreen, 0xfe);
+            PokemonSummaryScreen_PrintPoffinFeedMsg(summaryScreen, PSS_MSG_NOTHING_CHANGED);
             return PSS_STATE_WAIT_FINISH_POFFIN_FEED;
         } else {
             sub_02091D50(summaryScreen);
@@ -945,7 +945,7 @@ static int PrintContestStatChangeMsgs(PokemonSummaryScreen *summaryScreen)
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         for (u8 i = 0; i < CONTEST_TYPE_MAX; i++) {
             if (summaryScreen->subscreen & (1 << i)) {
-                PokemonSummaryScreen_PrintContestStatChangeMsg(summaryScreen, i);
+                PokemonSummaryScreen_PrintPoffinFeedMsg(summaryScreen, i);
                 summaryScreen->subscreen ^= (1 << i);
 
                 if (summaryScreen->subscreen == 0) {
@@ -999,22 +999,21 @@ static void SetMonDataFromBoxMon(PokemonSummaryScreen *summaryScreen, BoxPokemon
     Heap_FreeToHeap(mon);
 }
 
-// ravetodo entry IDs
 static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon, PokemonSummaryMonData *monData)
 {
     BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
     monData->species = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, 11, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, pss_species_name_template, summaryScreen->strbuf);
     StringTemplate_SetSpeciesName(summaryScreen->strFormatter, 0, boxMon);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.speciesName, summaryScreen->strbuf);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, 0, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, pss_nickname_template, summaryScreen->strbuf);
     StringTemplate_SetNickname(summaryScreen->strFormatter, 0, boxMon);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.nickname, summaryScreen->strbuf);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, 14, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, pss_otname_template, summaryScreen->strbuf);
     StringTemplate_SetOTName(summaryScreen->strFormatter, 0, boxMon);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.OTName, summaryScreen->strbuf);
 
@@ -1760,14 +1759,14 @@ static void SwapSelectedMoves(PokemonSummaryScreen *summaryScreen)
     summaryScreen->monData.maxPP[summaryScreen->cursor] = summaryScreen->monData.maxPP[summaryScreen->cursorTmp];
     summaryScreen->monData.maxPP[summaryScreen->cursorTmp] = maxPP;
 }
-// ravetodo switch move info?
+
 static void SetupMoveInfoNoTransition(PokemonSummaryScreen *summaryScreen)
 {
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_MON_LEVEL]);
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_LABEL]);
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_NAME]);
 
-    Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 0);
+    Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
 
     ShowMoveInfoOrCancel(summaryScreen);
     UpdateMoveInfo(summaryScreen);
@@ -1863,19 +1862,19 @@ static u8 HideContestMoveInfo(PokemonSummaryScreen *summaryScreen)
 
     return FALSE;
 }
-// ravetodo draw contest effect tiles or something?
-static void DrawAppealHeart(PokemonSummaryScreen *summaryScreen, u16 param1, u8 param2)
+
+static void DrawAppealHeart(PokemonSummaryScreen *summaryScreen, u16 baseTile, u8 heartIndex)
 {
-    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, param1, 2 + param2 * 2, (32 + 15), 1, 1, 16);
-    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, param1 + 1, 2 + param2 * 2 + 1, (32 + 15), 1, 1, 16);
-    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, param1 + 32, 2 + param2 * 2, (32 + 15) + 1, 1, 1, 16);
-    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, param1 + 33, 2 + param2 * 2 + 1, (32 + 15) + 1, 1, 1, 16);
+    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, baseTile, 2 + heartIndex * 2, (32 + 15), 1, 1, 16);
+    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, baseTile + 1, 2 + heartIndex * 2 + 1, (32 + 15), 1, 1, 16);
+    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, baseTile + 32, 2 + heartIndex * 2, (32 + 15) + 1, 1, 1, 16);
+    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, baseTile + 33, 2 + heartIndex * 2 + 1, (32 + 15) + 1, 1, 1, 16);
 }
 
 static void DrawEmptyHearts(PokemonSummaryScreen *summaryScreen)
 {
     for (u16 i = 0; i < MAX_APPEAL_HEARTS; i++) {
-        DrawAppealHeart(summaryScreen, 0x12e, i); // ravetodo magic number
+        DrawAppealHeart(summaryScreen, EMPTY_HEART_BASE_TILE, i);
     }
 
     Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_MAIN_2);
@@ -1894,7 +1893,7 @@ static void UpdateAppealHearts(PokemonSummaryScreen *summaryScreen, u32 move)
         numHearts = sub_02095734(effect) / POINTS_PER_APPEAL_HEART;
 
         for (i = 0; i < numHearts; i++) {
-            DrawAppealHeart(summaryScreen, 0x12c, i); // ravetodo magic number
+            DrawAppealHeart(summaryScreen, FILLED_HEART_BASE_TILE, i);
         }
     }
 
@@ -2113,10 +2112,10 @@ u8 PokemonSummaryScreen_RibbonNumAt(PokemonSummaryScreen *summaryScreen, u8 col)
 
 static int TryFeedPoffin(PokemonSummaryScreen *summaryScreen)
 {
-    if (summaryScreen->monData.sheen == 255) { // ravetodo magic number
+    if (summaryScreen->monData.sheen == MAX_POKEMON_SHEEN) {
         Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_POKEMON_SUMMARY_SCREEN);
         LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, (1024 - (18 + 12)), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
-        PokemonSummaryScreen_PrintContestStatChangeMsg(summaryScreen, 0xff);
+        PokemonSummaryScreen_PrintPoffinFeedMsg(summaryScreen, PSS_MSG_MON_WONT_EAT_MORE);
         summaryScreen->data->returnMode = 1;
 
         return PSS_STATE_WAIT_FINISH_POFFIN_FEED;
@@ -2132,7 +2131,7 @@ void PokemonSummary_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo 
     summary->OTID = TrainerInfo_ID(trainerInfo);
     summary->OTGender = (u8)TrainerInfo_Gender(trainerInfo);
 }
-// ravetodo consts
+
 u32 PokemonSummary_StatusIconChar(void)
 {
     return 64;

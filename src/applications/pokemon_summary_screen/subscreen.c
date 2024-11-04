@@ -16,8 +16,8 @@
 typedef struct PSSSubscreenButton {
     u8 page;
     u8 paletteNum;
-    u8 xPos;
-    u8 yPos;
+    u8 x;
+    u8 y;
 } PSSSubscreenButton;
 
 static void sub_0223D0BC(PokemonSummaryScreen *summaryScreen);
@@ -119,7 +119,7 @@ static void UpdateSubscreenButtonTilemap(PokemonSummaryScreen *summaryScreen, co
 
     for (v3 = 0; v3 < 5; v3++) {
         for (v4 = 0; v4 < 5; v4++) {
-            bgSub0Tilemap[(v3 + button->yPos) * 32 + v4 + button->xPos] = v1 + v3 * 30 + v4 + (button->paletteNum << 12);
+            bgSub0Tilemap[(v3 + button->y) * 32 + v4 + button->x] = v1 + v3 * 30 + v4 + (button->paletteNum << 12);
         }
     }
 }
@@ -229,13 +229,13 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
 
     return FALSE;
 }
-// ravetodo PokemonSummaryScreen_GetSubscreenButtonPos?
-void sub_02092368(PokemonSummaryScreen *summaryScreen, s16 *param1, s16 *param2)
+
+void PokemonSummaryScreen_CalcSubscreenButtonCirclePos(PokemonSummaryScreen *summaryScreen, s16 *outX, s16 *outY)
 {
     const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
 
-    *param1 = buttonList[summaryScreen->buttonPos].xPos * 8 + (5 * 8) / 2;
-    *param2 = buttonList[summaryScreen->buttonPos].yPos * 8 + (5 * 8) / 2;
+    *outX = buttonList[summaryScreen->buttonPos].x * 8 + (5 * 8) / 2;
+    *outY = buttonList[summaryScreen->buttonPos].y * 8 + (5 * 8) / 2;
 }
 
 u8 PokemonSummaryScreen_GetSubscreenButtonPage(PokemonSummaryScreen *summaryScreen, u8 button)
