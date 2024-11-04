@@ -3793,7 +3793,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
             v7.item = 0xff;
         } else {
             v7.item = v0->unk_04->unk_1C;
-            v7.pocket = v0->unk_04->unk_1E;
+            v7.category = v0->unk_04->unk_1E;
 
             if ((v0->unk_04->unk_1E == 1) || (v0->unk_04->unk_1E == 0)) {
                 v7.target = 1 + v0->unk_08->unk_04->unk_2C[v0->unk_08->unk_04->unk_11];
@@ -4154,7 +4154,7 @@ static void ov16_02261DE0(SysTask *param0, void *param1)
         ov16_0226474C(v0->unk_00);
     }
 
-    v1.pocket = v2 & 0xf;
+    v1.category = v2 & 0xf;
     v1.target = (v2 & 0xf0) >> 8;
 
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);

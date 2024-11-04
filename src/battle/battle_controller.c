@@ -1941,10 +1941,10 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
 
         battleCtx->msgItemTemp = battleCtx->aiContext.usedItem[battleCtx->attacker >> 1];
     } else {
-        switch (used->pocket) {
-        case BATTLE_POCKET_RECOVER_STATUS:
-        case BATTLE_POCKET_RECOVER_HP:
-        case BATTLE_POCKET_BATTLE_ITEMS:
+        switch (used->category) {
+        case BATTLE_ITEM_CATEGORY_RECOVER_STATUS:
+        case BATTLE_ITEM_CATEGORY_RECOVER_HP:
+        case BATTLE_ITEM_CATEGORY_BATTLE_ITEMS:
             if (used->item == ITEM_POKE_DOLL || used->item == ITEM_FLUFFY_TAIL) {
                 nextSeq = subscript_escape_item;
             } else {
@@ -1953,12 +1953,12 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
 
             break;
 
-        case BATTLE_POCKET_POKE_BALLS:
+        case BATTLE_ITEM_CATEGORY_POKE_BALLS:
             nextSeq = subscript_throw_pokeball;
             if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE
                 && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) == FALSE) {
                 Bag_TryRemoveItem(BattleSystem_Bag(battleSys), used->item, 1, HEAP_ID_BATTLE);
-                Bag_SetLastItemUsed(BattleSystem_BagCursor(battleSys), used->item, used->pocket);
+                Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), used->item, used->category);
             }
 
             break;

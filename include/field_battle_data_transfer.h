@@ -35,7 +35,7 @@ typedef struct FieldBattleDTO {
     TrainerData trainerData[4];
     TrainerInfo *unk_D0[4];
     Bag *unk_E0;
-    UnkStruct_0207D99C *unk_E4;
+    BagCursor *unk_E4;
     PokedexData *unk_E8;
     PCBoxes *unk_EC;
     ChatotCry *unk_F0[4];
@@ -84,7 +84,7 @@ void sub_0205213C(FieldBattleDTO *param0, Pokemon *param1, int param2);
 void sub_02052164(FieldBattleDTO *param0, const Party *param1, int param2);
 void sub_02052184(FieldBattleDTO *param0, const TrainerInfo *param1, int param2);
 void sub_020521A4(FieldBattleDTO *param0, const ChatotCry *param1, int param2);
-void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, UnkStruct_0207D99C *param5, UnkStruct_0209C370 *param6);
+void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, BagCursor *param5, UnkStruct_0209C370 *param6);
 void sub_02052314(FieldBattleDTO *param0, const FieldSystem *fieldSystem);
 void sub_02052348(FieldBattleDTO *param0, const FieldSystem *fieldSystem, int param2);
 void sub_020524E4(FieldBattleDTO *param0, const FieldSystem *fieldSystem, const Party *param2, const u8 *param3);

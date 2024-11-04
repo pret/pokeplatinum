@@ -108,7 +108,7 @@ u16 Battler_TrainerID(BattleSystem *param0, int param1);
 TrainerData *BattleSystem_TrainerData(BattleSystem *param0, int param1);
 TrainerInfo *BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler);
 Bag *BattleSystem_Bag(BattleSystem *param0);
-UnkStruct_0207D99C *BattleSystem_BagCursor(BattleSystem *param0);
+BagCursor *BattleSystem_BagCursor(BattleSystem *param0);
 u32 ov16_0223E1B4(BattleSystem *param0, int param1);
 int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
@@ -463,7 +463,7 @@ Bag *BattleSystem_Bag(BattleSystem *param0)
     return param0->unk_58;
 }
 
-UnkStruct_0207D99C *BattleSystem_BagCursor(BattleSystem *param0)
+BagCursor *BattleSystem_BagCursor(BattleSystem *param0)
 {
     return param0->unk_5C;
 }

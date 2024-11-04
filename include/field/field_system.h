@@ -92,7 +92,7 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021EB0E0 *unk_8C;
     int unk_90;
     RadarChain *chain;
-    UnkStruct_0207D99C *unk_98;
+    BagCursor *unk_98;
     Journal *journal;
     UnkStruct_ov5_021EF300 *unk_A0;
     UnkStruct_ov5_021E1608 *unk_A4;

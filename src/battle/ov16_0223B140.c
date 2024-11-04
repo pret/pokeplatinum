@@ -644,7 +644,7 @@ static void ov16_0223B790(OverlayManager *param0)
     v0->unk_2434 = -51;
 
     ov16_0223DD4C(v0);
-    sub_0207D9F8(BattleSystem_BagCursor(v0));
+    BagCursor_ResetBattle(BattleSystem_BagCursor(v0));
 
     v0->unk_1C4 = sub_02015F84(5, 4, 0);
     v0->cellTransferState = sub_0201DCC8(4, 5);

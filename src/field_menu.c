@@ -1684,7 +1684,7 @@ static void sub_0203C2D8(FieldTask *taskMan, u16 param1)
         }
     }
 
-    sub_0207D9B4(fieldSystem->unk_98, 4, &v5, &v4);
+    BagCursor_GetFieldPocketPosition(fieldSystem->unk_98, 4, &v5, &v4);
     sub_0209733C(menu->unk_25C, v4, v5, v6 + 3);
 
     sub_0203D2E4(fieldSystem, menu->unk_25C);
@@ -1701,7 +1701,7 @@ static BOOL sub_0203C390(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
 
     sub_02097390(menu->unk_25C, &v2, &v3);
-    sub_0207D9C8(fieldSystem->unk_98, 4, v3, v2);
+    BagCursor_SetFieldPocketPosition(fieldSystem->unk_98, 4, v3, v2);
     Heap_FreeToHeapExplicit(11, menu->unk_25C);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);

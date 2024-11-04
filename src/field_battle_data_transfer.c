@@ -244,7 +244,7 @@ void sub_020521A4(FieldBattleDTO *param0, const ChatotCry *param1, int param2)
     CopyChatotCryData(param0->unk_F0[param2], param1);
 }
 
-void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, UnkStruct_0207D99C *param5, UnkStruct_0209C370 *param6)
+void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, BagCursor *param5, UnkStruct_0209C370 *param6)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(param2);
     Party *v1 = Party_GetFromSavedata(param2);

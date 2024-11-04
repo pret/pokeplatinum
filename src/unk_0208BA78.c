@@ -265,7 +265,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
             v0 = 1;
         }
 
-        param0->unk_10->unk_E4 = sub_0207D99C(param1);
+        param0->unk_10->unk_E4 = BagCursor_New(param1);
         param0->unk_10->records = SaveData_GetGameRecordsPtr(param0->saveData);
 
         if (Overlay_LoadByID(FS_OVERLAY_ID(overlay62), 2) == 1) {

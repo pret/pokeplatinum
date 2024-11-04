@@ -15,7 +15,7 @@ typedef struct {
     const Options *unk_04;
     SaveData *unk_08;
     Journal *unk_0C;
-    UnkStruct_0207D99C *unk_10;
+    BagCursor *unk_10;
     int unk_14;
     int unk_18;
     int unk_1C;

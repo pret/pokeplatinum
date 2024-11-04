@@ -164,7 +164,7 @@ static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
 
     MapHeaderData_Init(fieldSystem, HEAP_ID_FIELDMAP);
 
-    fieldSystem->unk_98 = sub_0207D99C(HEAP_ID_FIELDMAP);
+    fieldSystem->unk_98 = BagCursor_New(HEAP_ID_FIELDMAP);
 
     fieldSystem->chain = RadarChain_Init(HEAP_ID_FIELDMAP);
     RadarChain_Clear(fieldSystem->chain);
