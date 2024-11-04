@@ -9,6 +9,7 @@
 #include "struct_defs/struct_02091850.h"
 
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/pokemon_summary_screen/sprite.h"
 #include "overlay115/camera_angle.h"
 
 #include "camera.h"
@@ -17,7 +18,6 @@
 #include "unk_0200762C.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
-#include "unk_0208EA44.h"
 
 typedef struct {
     VecFx16 unk_00;

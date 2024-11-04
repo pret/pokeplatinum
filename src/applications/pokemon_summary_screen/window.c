@@ -6,6 +6,7 @@
 #include "struct_defs/struct_02090800.h"
 
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/pokemon_summary_screen/sprite.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -20,7 +21,6 @@
 #include "text.h"
 #include "unk_0200C440.h"
 #include "unk_0207A274.h"
-#include "unk_0208EA44.h"
 #include "unk_02092494.h"
 #include "unk_02094EDC.h"
 

@@ -1,4 +1,4 @@
-#include "unk_0208EA44.h"
+#include "applications/pokemon_summary_screen/sprite.h"
 
 #include <nitro.h>
 #include <string.h>

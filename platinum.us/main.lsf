@@ -320,7 +320,7 @@ Static main
 	Object main.nef.p/src_unk_0208C010.c.o
 	Object main.nef.p/src_unk_0208C098.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_main.c.o
-	Object main.nef.p/src_unk_0208EA44.c.o
+	Object main.nef.p/src_applications_pokemon_summary_screen_sprite.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_window.c.o
 	Object main.nef.p/src_unk_020916B4.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_subscreen.c.o

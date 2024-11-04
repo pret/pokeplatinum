@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0208EA44_H
-#define POKEPLATINUM_UNK_0208EA44_H
+#ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITE_H
+#define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITE_H
 
 #include "applications/pokemon_summary_screen/main.h"
 
@@ -38,4 +38,4 @@ void sub_0208FB30(PokemonSummaryScreen *param0);
 void sub_0208FB54(PokemonSummaryScreen *param0, u8 param1);
 void sub_0208FCD4(PokemonSummaryScreen *param0);
 
-#endif // POKEPLATINUM_UNK_0208EA44_H
+#endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITE_H

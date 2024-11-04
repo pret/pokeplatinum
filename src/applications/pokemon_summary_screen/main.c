@@ -14,6 +14,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/pokemon_summary_screen/sprite.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "applications/pokemon_summary_screen/window.h"
 #include "text/pl_msg.naix"
@@ -53,7 +54,6 @@
 #include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
-#include "unk_0208EA44.h"
 #include "unk_020916B4.h"
 #include "unk_02094EDC.h"
 #include "unk_020989DC.h"
