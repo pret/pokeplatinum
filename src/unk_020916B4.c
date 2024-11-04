@@ -143,9 +143,9 @@ void sub_020916B4(PokemonSummaryScreen *param0)
     G2_SetBG0Priority(2);
 }
 
-void sub_02091750(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
 {
-    if (param0->page == 4) {
+    if (summaryScreen->page == PSS_PAGE_CONDITION) {
         sub_020241B4();
         Camera_ComputeViewMatrix();
 
@@ -155,23 +155,23 @@ void sub_02091750(PokemonSummaryScreen *param0)
         G3_Identity();
 
         NNS_G3dGlbFlush();
-        sub_02091850(param0->unk_2F0);
+        sub_02091850(summaryScreen->unk_2F0);
         NNS_G3dGlbFlush();
-        sub_020918EC(param0);
+        sub_020918EC(summaryScreen);
     }
 
     NNS_G2dSetupSoftwareSpriteCamera();
-    sub_02007768(param0->monSpriteData.spriteManager);
+    sub_02007768(summaryScreen->monSprite.spriteManager);
 
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
-void sub_020917B0(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_FreeCameraAndSpriteData(PokemonSummaryScreen *summaryScreen)
 {
-    Camera_Delete(param0->monSpriteData.camera);
-    sub_02016114(param0->monSpriteData.animationSys, 0);
-    sub_02015FB8(param0->monSpriteData.animationSys);
-    sub_02007B6C(param0->monSpriteData.spriteManager);
+    Camera_Delete(summaryScreen->monSprite.camera);
+    sub_02016114(summaryScreen->monSprite.animationSys, 0);
+    sub_02015FB8(summaryScreen->monSprite.animationSys);
+    sub_02007B6C(summaryScreen->monSprite.spriteManager);
 }
 
 void sub_020917E0(PokemonSummaryScreen *param0)
@@ -181,12 +181,12 @@ void sub_020917E0(PokemonSummaryScreen *param0)
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 
-    param0->monSpriteData.camera = Camera_Alloc(19);
+    param0->monSprite.camera = Camera_Alloc(19);
 
-    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->monSpriteData.camera);
-    Camera_SetClipping(0, FX32_CONST(100), param0->monSpriteData.camera);
-    Camera_ReleaseTarget(param0->monSpriteData.camera);
-    Camera_SetAsActive(param0->monSpriteData.camera);
+    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->monSprite.camera);
+    Camera_SetClipping(0, FX32_CONST(100), param0->monSprite.camera);
+    Camera_ReleaseTarget(param0->monSprite.camera);
+    Camera_SetAsActive(param0->monSprite.camera);
 }
 
 static void sub_02091850(UnkStruct_02091850 *param0)
@@ -340,7 +340,7 @@ void sub_02091F8C(PokemonSummaryScreen *param0)
     ArchivedSprite v0;
     void *v1;
 
-    param0->monSpriteData.spriteManager = sub_0200762C(19);
+    param0->monSprite.spriteManager = sub_0200762C(19);
 
     v1 = PokemonSummary_MonData(param0);
 
@@ -350,28 +350,28 @@ void sub_02091F8C(PokemonSummaryScreen *param0)
         Pokemon_BuildArchivedSprite(&v0, v1, 2);
     }
 
-    PokeSprite_LoadAnimationFrames(param0->narcPlPokeData, param0->monSpriteData.frames, param0->monData.species, 1);
+    PokeSprite_LoadAnimationFrames(param0->narcPlPokeData, param0->monSprite.frames, param0->monData.species, 1);
 
-    param0->monSpriteData.flip = PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1;
-    param0->monSpriteData.sprite = sub_02007C34(param0->monSpriteData.spriteManager, &v0, 52, 104, 0, 0, param0->monSpriteData.frames, NULL);
+    param0->monSprite.flip = PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1;
+    param0->monSprite.sprite = sub_02007C34(param0->monSprite.spriteManager, &v0, 52, 104, 0, 0, param0->monSprite.frames, NULL);
 
-    sub_02007DEC(param0->monSpriteData.sprite, 35, param0->monSpriteData.flip);
+    sub_02007DEC(param0->monSprite.sprite, 35, param0->monSprite.flip);
 }
 
 void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->monData.isEgg != FALSE) {
-        PokeSprite_LoadAnimation(summaryScreen->narcPlPokeData, summaryScreen->monSpriteData.animationSys, summaryScreen->monSpriteData.sprite, 0, 2, summaryScreen->monSpriteData.flip, 0);
+        PokeSprite_LoadAnimation(summaryScreen->narcPlPokeData, summaryScreen->monSprite.animationSys, summaryScreen->monSprite.sprite, 0, 2, summaryScreen->monSprite.flip, 0);
     } else {
-        sub_02007B98(summaryScreen->monSpriteData.sprite, 1);
-        PokeSprite_LoadAnimation(summaryScreen->narcPlPokeData, summaryScreen->monSpriteData.animationSys, summaryScreen->monSpriteData.sprite, summaryScreen->monData.species, 2, summaryScreen->monSpriteData.flip, 0);
+        sub_02007B98(summaryScreen->monSprite.sprite, 1);
+        PokeSprite_LoadAnimation(summaryScreen->narcPlPokeData, summaryScreen->monSprite.animationSys, summaryScreen->monSprite.sprite, summaryScreen->monData.species, 2, summaryScreen->monSprite.flip, 0);
     }
 }
 
 void sub_02092098(PokemonSummaryScreen *param0)
 {
-    sub_02016114(param0->monSpriteData.animationSys, 0);
-    sub_02007B6C(param0->monSpriteData.spriteManager);
+    sub_02016114(param0->monSprite.animationSys, 0);
+    sub_02007B6C(param0->monSprite.spriteManager);
     sub_02091F8C(param0);
     PokemonSummaryScreen_LoadMonAnimation(param0);
 }

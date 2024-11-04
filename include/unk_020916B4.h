@@ -4,8 +4,8 @@
 #include "applications/pokemon_summary_screen/main.h"
 
 void sub_020916B4(PokemonSummaryScreen *param0);
-void sub_02091750(PokemonSummaryScreen *param0);
-void sub_020917B0(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_FreeCameraAndSpriteData(PokemonSummaryScreen *summaryScreen);
 void sub_020917E0(PokemonSummaryScreen *param0);
 void sub_020919E8(PokemonSummaryScreen *param0);
 void sub_02091D50(PokemonSummaryScreen *param0);

@@ -44,7 +44,9 @@ enum PSSPage {
     PSS_PAGE_RIBBONS,
     PSS_PAGE_EXIT,
 
-    PSS_PAGE_MAX
+    PSS_PAGE_MAX,
+
+    PSS_PAGE_NONE = 0xFF
 };
 
 enum PSSState {
@@ -85,39 +87,82 @@ enum PSSTextAlignment {
 
 enum PSSSubscreenType {
     PSS_SUBSCREEN_TYPE_NORMAL = 0,
-    PSS_SUBSCREEN_TYPE_HIDE_CONTEST,
-    PSS_SUBSCREEN_TYPE_2, // ravetodo
+    PSS_SUBSCREEN_TYPE_NO_CONTEST_INFO,
+    PSS_SUBSCREEN_TYPE_UNUSED_MOVES_ONLY, // only shows battle and contest move pages, never used
 
-    PSS_SUBSCREEN_TYPE_NONE = 0xF,
+    PSS_SUBSCREEN_TYPE_NO_BUTTONS = 0xF,
 };
 
-#define SUMMARY_MOVE_NONE       0xFFFFFFFF
+enum PSSStaticWindow {
+    PSS_STATIC_WINDOW_0 = 0,
+    PSS_STATIC_WINDOW_1,
+    PSS_STATIC_WINDOW_2,
+    PSS_STATIC_WINDOW_3,
+    PSS_STATIC_WINDOW_4,
+    PSS_STATIC_WINDOW_5,
+    PSS_WINDOW_ITEM_LABEL,
+    PSS_STATIC_WINDOW_7,
+    PSS_STATIC_WINDOW_8,
+    PSS_STATIC_WINDOW_9,
+    PSS_STATIC_WINDOW_10,
+    PSS_STATIC_WINDOW_11,
+    PSS_STATIC_WINDOW_12,
+    PSS_STATIC_WINDOW_13,
+    PSS_STATIC_WINDOW_14,
+    PSS_STATIC_WINDOW_15,
+    PSS_STATIC_WINDOW_16,
+    PSS_STATIC_WINDOW_17,
+    PSS_STATIC_WINDOW_18,
+    PSS_STATIC_WINDOW_19,
+    PSS_STATIC_WINDOW_20,
+    PSS_STATIC_WINDOW_21,
+    PSS_STATIC_WINDOW_22,
+    PSS_STATIC_WINDOW_23,
+    PSS_STATIC_WINDOW_24,
+    PSS_STATIC_WINDOW_25,
+    PSS_WINDOW_MOVE_POWER,
+    PSS_WINDOW_MOVE_ACCURACY,
+    PSS_STATIC_WINDOW_28,
+    PSS_STATIC_WINDOW_29,
+    PSS_STATIC_WINDOW_30,
+    PSS_STATIC_WINDOW_31,
+    PSS_WINDOW_ITEM_NAME,
+    PSS_WINDOW_MON_LEVEL,
+    PSS_WINDOW_MON_NICKNAME,
+    PSS_STATIC_WINDOW_35,
+
+    PSS_STATIC_WINDOW_MAX
+};
+
+#define PSS_MOVE_NONE             0xFFFFFFFF
+#define PSS_SUBSCREEN_BUTTON_NONE 0xFF
+
 #define POINTS_PER_APPEAL_HEART 10
 #define MAX_APPEAL_HEARTS       6
 #define RIBBONS_PER_ROW         4
 
 typedef struct PokemonSummary {
-    void *monData; //!< Pointer to generic Pokemon data
-    Options *options; // unk_04
-    const u16 *OTName; // unk_08
-    u32 OTID; // unk_0C
-    u8 OTGender; // unk_10
-    u8 dataType; // unk_11
-    u8 mode; // unk_12
-    u8 max; // unk_13
-    u8 pos; // unk_14
-    u8 pageFlag; // unk_15
-    u8 selectedSlot; // unk_16
-    u8 returnMode; // unk_17
-    u16 move; // unk_18
+    void *monData;
+    Options *options;
+    const u16 *OTName;
+    u32 OTID;
+    u8 OTGender;
+    u8 dataType;
+    u8 mode;
+    u8 max;
+    u8 pos;
+    u8 pageFlag;
+    u8 selectedSlot;
+    u8 returnMode;
+    u16 move;
 
     u8 padding_1A[2];
 
-    u32 dexMode; // unk_1C
-    void *ribbons; // unk_20
-    void *poffin; // unk_24
-    ChatotCry *chatotCry; // unk_28
-    BOOL showContest; // unk_2C
+    u32 dexMode;
+    void *ribbons;
+    void *poffin;
+    ChatotCry *chatotCry;
+    BOOL showContest;
 } PokemonSummary;
 
 typedef struct PokemonSummaryMonData {
@@ -185,13 +230,13 @@ typedef struct PokemonSummaryMonSpriteData {
 
 typedef struct PokemonSummaryScreen {
     BgConfig *bgConfig;
-    Window staticWindows[36];
+    Window staticWindows[PSS_STATIC_WINDOW_MAX];
     Window *extraWindows;
     u32 numExtraWindows;
 
     PokemonSummary *data;
     PokemonSummaryMonData monData;
-    PokemonSummaryMonSpriteData monSpriteData;
+    PokemonSummaryMonSpriteData monSprite;
 
     UnkStruct_02091850 unk_2F0[4];
     UnkStruct_02091850 unk_350[4];

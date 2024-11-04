@@ -21,9 +21,9 @@ typedef struct PSSSubscreenButton {
 } PSSSubscreenButton;
 
 static void sub_0223D0BC(PokemonSummaryScreen *summaryScreen);
-static int sub_020921FC(PokemonSummaryScreen *summaryScreen);
+static int CheckSubscreenRectanglePress(PokemonSummaryScreen *summaryScreen);
 
-static const PSSSubscreenButton Unk_020F5164[] = {
+static const PSSSubscreenButton sSubscreenButtons_Normal[] = {
     { PSS_PAGE_INFO, 0x1, 0x1, 0x4 },
     { PSS_PAGE_MEMO, 0x1, 0x2, 0xA },
     { PSS_PAGE_SKILLS, 0x2, 0x5, 0xF },
@@ -32,31 +32,31 @@ static const PSSSubscreenButton Unk_020F5164[] = {
     { PSS_PAGE_CONTEST_MOVES, 0x3, 0x16, 0xF },
     { PSS_PAGE_RIBBONS, 0x4, 0x19, 0xA },
     { PSS_PAGE_EXIT, 0x4, 0x1A, 0x4 },
-    { 0xFF, 0xFF, 0xFF, 0xFF }
+    { PSS_PAGE_NONE, 0xFF, 0xFF, 0xFF }
 };
 
-static const PSSSubscreenButton Unk_020F514C[] = {
+static const PSSSubscreenButton sSubscreenButtons_NoContestInfo[] = {
     { PSS_PAGE_INFO, 0x1, 0x2, 0x9 },
     { PSS_PAGE_MEMO, 0x1, 0x6, 0xF },
     { PSS_PAGE_SKILLS, 0x2, 0xE, 0x12 },
     { PSS_PAGE_BATTLE_MOVES, 0x3, 0x16, 0xF },
     { PSS_PAGE_EXIT, 0x4, 0x1A, 0x9 },
-    { 0xFF, 0xFF, 0xFF, 0xFF }
+    { PSS_PAGE_NONE, 0xFF, 0xFF, 0xFF }
 };
 
-static const PSSSubscreenButton Unk_020F5128[] = {
+static const PSSSubscreenButton sSubscreenButtons_UnusedMovesOnly[] = {
     { PSS_PAGE_BATTLE_MOVES, 0x3, 0xA, 0x12 },
     { PSS_PAGE_CONTEST_MOVES, 0x3, 0x11, 0x12 },
-    { 0xFF, 0xFF, 0xFF, 0xFF }
+    { PSS_PAGE_NONE, 0xFF, 0xFF, 0xFF }
 };
 
 static const PSSSubscreenButton *sSubscreenButtonTypes[] = {
-    [PSS_SUBSCREEN_TYPE_NORMAL] = Unk_020F5164,
-    [PSS_SUBSCREEN_TYPE_HIDE_CONTEST] = Unk_020F514C,
-    [PSS_SUBSCREEN_TYPE_2] = Unk_020F5128
+    [PSS_SUBSCREEN_TYPE_NORMAL] = sSubscreenButtons_Normal,
+    [PSS_SUBSCREEN_TYPE_NO_CONTEST_INFO] = sSubscreenButtons_NoContestInfo,
+    [PSS_SUBSCREEN_TYPE_UNUSED_MOVES_ONLY] = sSubscreenButtons_UnusedMovesOnly
 };
 
-static const TouchScreenRect Unk_020F5188[] = {
+static const TouchScreenRect sSubscreenRectangles_Normal[] = {
     { 0x20, 0x47, 0x8, 0x2F },
     { 0x50, 0x77, 0x10, 0x37 },
     { 0x78, 0x9F, 0x28, 0x4F },
@@ -68,7 +68,7 @@ static const TouchScreenRect Unk_020F5188[] = {
     { 0xFF, 0x0, 0x0, 0x0 }
 };
 
-static const TouchScreenRect Unk_020F5134[] = {
+static const TouchScreenRect sSubscreenRectangles_NoContestInfo[] = {
     { 0x48, 0x6F, 0xC, 0x33 },
     { 0x78, 0x9F, 0x2C, 0x53 },
     { 0x90, 0xB7, 0x6C, 0x93 },
@@ -77,16 +77,16 @@ static const TouchScreenRect Unk_020F5134[] = {
     { 0xFF, 0x0, 0x0, 0x0 }
 };
 
-static const TouchScreenRect Unk_020F511C[] = {
+static const TouchScreenRect sSubscreenRectangles_UnusedMovesOnly[] = {
     { 0x90, 0xB7, 0x50, 0x77 },
     { 0x90, 0xB7, 0x88, 0xAF },
     { 0xFF, 0x0, 0x0, 0x0 }
 };
 
-static const TouchScreenRect *Unk_02100D78[] = {
-    Unk_020F5188,
-    Unk_020F5134,
-    Unk_020F511C
+static const TouchScreenRect *sSubscreenRectangles[] = {
+    [PSS_SUBSCREEN_TYPE_NORMAL] = sSubscreenRectangles_Normal,
+    [PSS_SUBSCREEN_TYPE_NO_CONTEST_INFO] = sSubscreenRectangles_NoContestInfo,
+    [PSS_SUBSCREEN_TYPE_UNUSED_MOVES_ONLY] = sSubscreenRectangles_UnusedMovesOnly
 };
 
 void PokemonSummaryScreen_SetSubscreenType(PokemonSummaryScreen *summaryScreen)
@@ -97,14 +97,14 @@ void PokemonSummaryScreen_SetSubscreenType(PokemonSummaryScreen *summaryScreen)
         if (summaryScreen->data->showContest != FALSE) {
             summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_NORMAL;
         } else {
-            summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_HIDE_CONTEST;
+            summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_NO_CONTEST_INFO;
             Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_SUB_0, BG_OFFSET_UPDATE_SET_X, 4);
         }
         break;
     case PSS_MODE_SELECT_MOVE:
     case PSS_MODE_POFFIN:
     default:
-        summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_NONE;
+        summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_NO_BUTTONS;
     }
 
     PokemonSummaryScreen_UpdateSubscreenButtonGfx(summaryScreen);
@@ -126,7 +126,7 @@ static void UpdateSubscreenButtonTilemap(PokemonSummaryScreen *summaryScreen, co
 
 void PokemonSummaryScreen_UpdateSubscreenButtonGfx(PokemonSummaryScreen *summaryScreen)
 {
-    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NONE) {
+    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NO_BUTTONS) {
         return;
     }
 
@@ -134,7 +134,7 @@ void PokemonSummaryScreen_UpdateSubscreenButtonGfx(PokemonSummaryScreen *summary
     u8 button = 0;
 
     while (TRUE) {
-        if (buttonList[button].page == 0xff) {
+        if (buttonList[button].page == PSS_PAGE_NONE) {
             break;
         }
 
@@ -145,41 +145,35 @@ void PokemonSummaryScreen_UpdateSubscreenButtonGfx(PokemonSummaryScreen *summary
     Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_SUB_0);
 }
 
-u8 sub_020921E4(PokemonSummaryScreen *summaryScreen)
+u8 PokemonSummaryScreen_CheckSubscreenButtonPress(PokemonSummaryScreen *summaryScreen)
 {
-    int v0;
+    int button = CheckSubscreenRectanglePress(summaryScreen);
 
-    v0 = sub_020921FC(summaryScreen);
-
-    if (v0 != 0xffffffff) {
-        return v0;
+    if (button != 0xffffffff) {
+        return button;
     }
 
-    return 0xff;
+    return PSS_SUBSCREEN_BUTTON_NONE;
 }
 
-static int sub_020921FC(PokemonSummaryScreen *summaryScreen)
+static int CheckSubscreenRectanglePress(PokemonSummaryScreen *summaryScreen)
 {
-    int v0;
-
-    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NONE) {
+    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NO_BUTTONS) {
         return 0xffffffff;
     }
 
-    v0 = sub_02022664(Unk_02100D78[summaryScreen->subscreenType]);
-
-    return v0;
+    return sub_02022664(sSubscreenRectangles[summaryScreen->subscreenType]);
 }
 
 static int sub_02092224(PokemonSummaryScreen *summaryScreen)
 {
     int v0;
 
-    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NONE) {
+    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NO_BUTTONS) {
         return 0xffffffff;
     }
 
-    v0 = sub_02022644(Unk_02100D78[summaryScreen->subscreenType]);
+    v0 = sub_02022644(sSubscreenRectangles[summaryScreen->subscreenType]);
 
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;

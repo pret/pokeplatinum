@@ -173,20 +173,20 @@ void sub_0208EA44(PokemonSummaryScreen *param0)
         sub_0200C8F0(param0->renderer, param0->gfxHandler, &v2);
     }
 }
-
-void sub_0208EAF4(PokemonSummaryScreen *param0)
+// ravetodo FreeSpriteRenderer?
+void sub_0208EAF4(PokemonSummaryScreen *summaryScreen)
 {
-    sub_0200C8B0(param0->renderer, param0->gfxHandler);
-    sub_0200C8D4(param0->renderer);
+    sub_0200C8B0(summaryScreen->renderer, summaryScreen->gfxHandler);
+    sub_0200C8D4(summaryScreen->renderer);
 }
-
-void sub_0208EB14(PokemonSummaryScreen *param0)
+// ravetodo UpdateSpriteAnims?
+void sub_0208EB14(PokemonSummaryScreen *summaryScreen)
 {
-    CellActor_UpdateAnim(param0->unk_41C[21], FX32_ONE);
-    CellActor_UpdateAnim(param0->unk_41C[22], FX32_ONE);
-    CellActor_UpdateAnim(param0->unk_41C[41], FX32_ONE);
-    CellActor_UpdateAnim(param0->unk_41C[68], FX32_ONE);
-    CellActor_UpdateAnim(param0->unk_41C[69], FX32_ONE);
+    CellActor_UpdateAnim(summaryScreen->unk_41C[21], FX32_ONE);
+    CellActor_UpdateAnim(summaryScreen->unk_41C[22], FX32_ONE);
+    CellActor_UpdateAnim(summaryScreen->unk_41C[41], FX32_ONE);
+    CellActor_UpdateAnim(summaryScreen->unk_41C[68], FX32_ONE);
+    CellActor_UpdateAnim(summaryScreen->unk_41C[69], FX32_ONE);
 }
 
 void sub_0208EB64(PokemonSummaryScreen *param0)
@@ -473,13 +473,13 @@ void PokemonSummaryScreen_UpdateMoveSelectorPos(PokemonSummaryScreen *summaryScr
     SpriteActor_SetPositionXY(summaryScreen->unk_41C[9], 194, 48 + summaryScreen->cursor * 32);
 }
 
-void sub_0208F310(PokemonSummaryScreen *param0)
+void sub_0208F310(PokemonSummaryScreen *summaryScreen)
 {
     s16 v0, v1;
 
-    sub_0200D50C(param0->unk_41C[9], &v0, &v1);
-    SpriteActor_SetPositionXY(param0->unk_41C[10], v0, v1);
-    CellActor_SetDrawFlag(param0->unk_41C[10], 1);
+    sub_0200D50C(summaryScreen->unk_41C[9], &v0, &v1);
+    SpriteActor_SetPositionXY(summaryScreen->unk_41C[10], v0, v1);
+    CellActor_SetDrawFlag(summaryScreen->unk_41C[10], TRUE);
 }
 
 void sub_0208F34C(PokemonSummaryScreen *param0)
@@ -504,85 +504,85 @@ void sub_0208F34C(PokemonSummaryScreen *param0)
     }
 }
 
-void sub_0208F3B0(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_DrawSheenSprites(PokemonSummaryScreen *summaryScreen)
 {
-    u32 v0;
-
-    if (param0->page != 4) {
+    if (summaryScreen->page != PSS_PAGE_CONDITION) {
         return;
     }
 
-    if (param0->sheenMax == 0) {
+    if (summaryScreen->sheenMax == 0) {
         return;
     }
 
-    switch (param0->sheenState) {
+    u32 i;
+
+    switch (summaryScreen->sheenState) {
     case 0:
-        param0->sheenCount++;
+        summaryScreen->sheenCount++;
 
-        if (param0->sheenCount == 8) {
-            param0->sheenState = 1;
-            param0->sheenCount = 0;
-            param0->sheenPos = 0;
+        if (summaryScreen->sheenCount == 8) {
+            summaryScreen->sheenState = 1;
+            summaryScreen->sheenCount = 0;
+            summaryScreen->sheenPos = 0;
         }
         break;
     case 1:
-        if (param0->sheenCount == 0) {
-            CellActor_SetDrawFlag(param0->unk_41C[29 + param0->sheenPos], 1);
-            SpriteActor_SetAnimFrame(param0->unk_41C[29 + param0->sheenPos], 0);
-            CellActor_SetAnim(param0->unk_41C[29 + param0->sheenPos], 0);
+        if (summaryScreen->sheenCount == 0) {
+            CellActor_SetDrawFlag(summaryScreen->unk_41C[29 + summaryScreen->sheenPos], TRUE);
+            SpriteActor_SetAnimFrame(summaryScreen->unk_41C[29 + summaryScreen->sheenPos], FALSE);
+            CellActor_SetAnim(summaryScreen->unk_41C[29 + summaryScreen->sheenPos], FALSE);
 
-            param0->sheenPos++;
+            summaryScreen->sheenPos++;
 
-            if (param0->sheenPos == param0->sheenMax) {
-                param0->sheenState = 2;
+            if (summaryScreen->sheenPos == summaryScreen->sheenMax) {
+                summaryScreen->sheenState = 2;
                 break;
             }
         }
 
-        param0->sheenCount = (param0->sheenCount + 1) % 10;
+        summaryScreen->sheenCount = (summaryScreen->sheenCount + 1) % 10;
         break;
     case 2:
-        if (CellActor_GetDrawFlag(param0->unk_41C[29 + param0->sheenMax - 1]) == 0) {
-            param0->sheenCount = 0;
-            param0->sheenState = 3;
+        if (CellActor_GetDrawFlag(summaryScreen->unk_41C[29 + summaryScreen->sheenMax - 1]) == FALSE) {
+            summaryScreen->sheenCount = 0;
+            summaryScreen->sheenState = 3;
             break;
         }
         break;
     case 3:
-        param0->sheenCount++;
+        summaryScreen->sheenCount++;
 
-        if (param0->sheenCount == 32) {
-            for (v0 = 29; v0 < 29 + param0->sheenMax; v0++) {
-                CellActor_SetDrawFlag(param0->unk_41C[v0], 1);
-                SpriteActor_SetAnimFrame(param0->unk_41C[v0], 0);
-                CellActor_SetAnim(param0->unk_41C[v0], 0);
+        if (summaryScreen->sheenCount == 32) {
+            for (i = 29; i < 29 + summaryScreen->sheenMax; i++) {
+                CellActor_SetDrawFlag(summaryScreen->unk_41C[i], TRUE);
+                SpriteActor_SetAnimFrame(summaryScreen->unk_41C[i], FALSE);
+                CellActor_SetAnim(summaryScreen->unk_41C[i], FALSE);
             }
 
-            param0->sheenCount = 0;
-            param0->sheenState = 4;
+            summaryScreen->sheenCount = 0;
+            summaryScreen->sheenState = 4;
         }
         break;
     case 4:
-        param0->sheenCount++;
+        summaryScreen->sheenCount++;
 
-        if (param0->sheenCount == 32) {
-            param0->sheenState = 0;
-            param0->sheenCount = 0;
-            param0->sheenPos = 0;
+        if (summaryScreen->sheenCount == 32) {
+            summaryScreen->sheenState = 0;
+            summaryScreen->sheenCount = 0;
+            summaryScreen->sheenPos = 0;
         }
         break;
     }
 
-    for (v0 = 29; v0 < 29 + param0->sheenMax; v0++) {
-        if (CellActor_GetDrawFlag(param0->unk_41C[v0]) == 0) {
+    for (i = 29; i < 29 + summaryScreen->sheenMax; i++) {
+        if (CellActor_GetDrawFlag(summaryScreen->unk_41C[i]) == FALSE) {
             continue;
         }
 
-        CellActor_UpdateAnim(param0->unk_41C[v0], FX32_ONE);
+        CellActor_UpdateAnim(summaryScreen->unk_41C[i], FX32_ONE);
 
-        if (CellActor_GetAnimFrame(param0->unk_41C[v0]) == 6) {
-            CellActor_SetDrawFlag(param0->unk_41C[v0], 0);
+        if (CellActor_GetAnimFrame(summaryScreen->unk_41C[i]) == 6) {
+            CellActor_SetDrawFlag(summaryScreen->unk_41C[i], FALSE);
         }
     }
 }
@@ -778,10 +778,10 @@ void PokemonSummaryScreen_UpdateRibbonCursorPos(PokemonSummaryScreen *summaryScr
         summaryScreen->unk_41C[67], 132 + (summaryScreen->ribbonCol & (RIBBONS_PER_ROW - 1)) * 32, 56 + (summaryScreen->ribbonCol / RIBBONS_PER_ROW) * 40);
 }
 
-void sub_0208FB30(PokemonSummaryScreen *param0)
+void sub_0208FB30(PokemonSummaryScreen *summaryScreen)
 {
-    if (CellActor_GetDrawFlag(param0->unk_41C[70]) == 1) {
-        CellActor_UpdateAnim(param0->unk_41C[70], FX32_ONE);
+    if (CellActor_GetDrawFlag(summaryScreen->unk_41C[70]) == TRUE) {
+        CellActor_UpdateAnim(summaryScreen->unk_41C[70], FX32_ONE);
     }
 }
 

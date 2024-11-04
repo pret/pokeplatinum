@@ -13,6 +13,8 @@ typedef struct {
     u16 descriptionID;
 } RibbonData;
 
+// the special ribbons are unobtainable in-game through normal means,
+// either unused or event-only
 #define SPECIAL_DESCRIPTION_MASK   0x8000
 #define SPECIAL_DESCRIPTIONS_START 146
 
