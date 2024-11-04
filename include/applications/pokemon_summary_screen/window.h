@@ -10,7 +10,7 @@ void PokemonSummaryScreen_RemoveWindows(PokemonSummaryScreen *summaryScreen);
 void sub_0208FEA4(PokemonSummaryScreen *param0);
 void sub_0208FF3C(PokemonSummaryScreen *param0);
 void sub_0208FFE0(PokemonSummaryScreen *param0);
-void PokemonSummaryScreen_ClearWindowAndPrintText(PokemonSummaryScreen *summaryScreen, u32 entryID);
+void PokemonSummaryScreen_ClearAndPrintButtonPrompt(PokemonSummaryScreen *summaryScreen, u32 entryID);
 void sub_020904C4(PokemonSummaryScreen *param0);
 void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintRibbonNameAndDesc(PokemonSummaryScreen *summaryScreen);

@@ -1585,7 +1585,7 @@ static u8 SetupBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_MON_LEVEL]);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_LABEL]);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_NAME]);
-        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, NULL);
 
         summaryScreen->cursor = 0;
@@ -1605,8 +1605,8 @@ static u8 SetupBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
         ShowMoveInfoOrCancel(summaryScreen);
 
         if (summaryScreen->data->mode != PSS_MODE_LOCK_MOVES) {
-            PokemonSummaryScreen_ClearWindowAndPrintText(summaryScreen, 152);
-            PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[35]);
+            PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, 152);
+            PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         }
 
         UpdateMoveInfo(summaryScreen);
@@ -1633,7 +1633,7 @@ static u8 HideBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
         SpriteActor_DrawSprite(summaryScreen->unk_41C[18], FALSE);
         SpriteActor_DrawSprite(summaryScreen->unk_41C[19], FALSE);
         CellActor_SetDrawFlag(summaryScreen->unk_41C[9], FALSE);
-        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, NULL);
         HideMoveCancelText(summaryScreen);
         PokemonSummaryScreen_ClearBattleInfoWindows(summaryScreen);
@@ -1653,9 +1653,9 @@ static u8 HideBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_MON_LEVEL]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_LABEL]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_NAME]);
-        PokemonSummaryScreen_ClearWindowAndPrintText(summaryScreen, 129);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, 129);
         PokemonSummaryScreen_UpdatePageArrows(summaryScreen, TRUE);
-        PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[35]);
+        PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         return TRUE;
     }
 
@@ -1793,7 +1793,7 @@ static u8 SetupContestMoveInfo(PokemonSummaryScreen *summaryScreen)
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_MON_LEVEL]);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_LABEL]);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_NAME]);
-        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, NULL);
         summaryScreen->cursor = 0;
         summaryScreen->subscreen = 1;
@@ -1812,8 +1812,8 @@ static u8 SetupContestMoveInfo(PokemonSummaryScreen *summaryScreen)
         ShowMoveInfoOrCancel(summaryScreen);
 
         if (summaryScreen->data->mode != PSS_MODE_LOCK_MOVES) {
-            PokemonSummaryScreen_ClearWindowAndPrintText(summaryScreen, 152);
-            PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[35]);
+            PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, 152);
+            PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         }
 
         UpdateMoveInfo(summaryScreen);
@@ -1835,7 +1835,7 @@ static u8 HideContestMoveInfo(PokemonSummaryScreen *summaryScreen)
         SpriteActor_DrawSprite(summaryScreen->unk_41C[19], FALSE);
         UpdateAppealHearts(summaryScreen, PSS_MOVE_NONE);
         CellActor_SetDrawFlag(summaryScreen->unk_41C[9], FALSE);
-        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, NULL);
         HideMoveCancelText(summaryScreen);
         PokemonSummaryScreen_ClearContestInfoWindows(summaryScreen);
@@ -1855,9 +1855,9 @@ static u8 HideContestMoveInfo(PokemonSummaryScreen *summaryScreen)
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_MON_LEVEL]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_LABEL]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_NAME]);
-        PokemonSummaryScreen_ClearWindowAndPrintText(summaryScreen, 158);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, 158);
         PokemonSummaryScreen_UpdatePageArrows(summaryScreen, TRUE);
-        PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[35]);
+        PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         return TRUE;
     }
 
@@ -1944,7 +1944,7 @@ static u8 SetupRibbonInfo(PokemonSummaryScreen *summaryScreen)
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_LABEL]);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_NAME]);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[30]);
-        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[0]);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, NULL);
 
@@ -1963,8 +1963,8 @@ static u8 SetupRibbonInfo(PokemonSummaryScreen *summaryScreen)
         }
     } break;
     case 2:
-        PokemonSummaryScreen_ClearWindowAndPrintText(summaryScreen, 181);
-        PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[35]);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, 181);
+        PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         CellActor_SetDrawFlag(summaryScreen->unk_41C[67], TRUE);
         CellActor_SetDrawFlag(summaryScreen->unk_41C[70], TRUE);
         CellActor_SetDrawFlag(summaryScreen->unk_41C[63], FALSE);
@@ -1988,7 +1988,7 @@ static u8 HideRibbonInfo(PokemonSummaryScreen *summaryScreen)
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[1]);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[2]);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[3]);
-        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, NULL);
         sub_0208FA04(summaryScreen);
         summaryScreen->subscreen = 1;
@@ -2007,11 +2007,11 @@ static u8 HideRibbonInfo(PokemonSummaryScreen *summaryScreen)
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_LABEL]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_ITEM_NAME]);
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[30]);
-        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
         Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[0]);
-        PokemonSummaryScreen_ClearWindowAndPrintText(summaryScreen, 180);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, 180);
         PokemonSummaryScreen_UpdatePageArrows(summaryScreen, TRUE);
-        PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[35]);
+        PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
 
         return TRUE;
     }

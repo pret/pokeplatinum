@@ -73,7 +73,7 @@ static const WindowTemplate sPSSStaticWindowTemplates[] = {
     [PSS_WINDOW_ITEM_NAME] = { 0x1, 0x1, 0x16, 0xC, 0x2, 0xF, 0x1F9 },
     [PSS_WINDOW_MON_LEVEL] = { 0x1, 0x1, 0x5, 0x6, 0x2, 0xF, 0x211 },
     [PSS_WINDOW_MON_NICKNAME] = { 0x1, 0x3, 0x3, 0x9, 0x2, 0xF, 0x21D },
-    [PSS_STATIC_WINDOW_35] = { 0x1, 0x1A, 0x0, 0x6, 0x2, 0xF, 0x22F }
+    [PSS_WINDOW_BUTTON_PROMPT] = { 0x1, 0x1A, 0x0, 0x6, 0x2, 0xF, 0x22F }
 };
 
 static const WindowTemplate Unk_020F4E20[] = {
@@ -225,7 +225,7 @@ void PokemonSummaryScreen_RemoveWindows(PokemonSummaryScreen *summaryScreen)
 {
     PokemonSummaryScreen_RemoveExtraWindows(summaryScreen);
 
-    for (u32 i = 0; i < 36; i++) { // ravetodo magic number
+    for (u32 i = 0; i < PSS_STATIC_WINDOW_MAX; i++) {
         Window_Remove(&summaryScreen->staticWindows[i]);
     }
 }
@@ -295,12 +295,12 @@ void sub_0208FFE0(PokemonSummaryScreen *param0)
     Window_ScheduleCopyToVRAM(&param0->staticWindows[6]);
     Window_ScheduleCopyToVRAM(&param0->staticWindows[32]);
 }
-// ravetodo WHICH window
-void PokemonSummaryScreen_ClearWindowAndPrintText(PokemonSummaryScreen *summaryScreen, u32 entryID)
+
+void PokemonSummaryScreen_ClearAndPrintButtonPrompt(PokemonSummaryScreen *summaryScreen, u32 entryID)
 {
-    Window_FillTilemap(&summaryScreen->staticWindows[35], 0);
+    Window_FillTilemap(&summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT], 0);
     sub_02090158(summaryScreen, 35, entryID, TEXT_COLOR(15, 14, 0), 0);
-    Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+    Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
 }
 
 static BOOL sub_02090098(PokemonSummaryScreen *param0)
@@ -666,12 +666,12 @@ static void sub_02090CD4(PokemonSummaryScreen *param0)
     Window_ScheduleCopyToVRAM(&param0->staticWindows[4]);
 
     if (param0->data->mode == 2) {
-        PokemonSummaryScreen_ClearWindowAndPrintText(param0, 155);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(param0, 155);
     } else {
-        PokemonSummaryScreen_ClearWindowAndPrintText(param0, 129);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(param0, 129);
     }
 
-    PokemonSummaryScreen_UpdateAButtonSprite(param0, &param0->staticWindows[35]);
+    PokemonSummaryScreen_UpdateAButtonSprite(param0, &param0->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
 
     Window_FillTilemap(&param0->extraWindows[0], 0);
     Window_FillTilemap(&param0->extraWindows[1], 0);
@@ -694,12 +694,12 @@ static void sub_02090D90(PokemonSummaryScreen *param0)
     Window_ScheduleCopyToVRAM(&param0->staticWindows[5]);
 
     if (param0->data->mode == 2) {
-        PokemonSummaryScreen_ClearWindowAndPrintText(param0, 159);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(param0, 159);
     } else {
-        PokemonSummaryScreen_ClearWindowAndPrintText(param0, 158);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(param0, 158);
     }
 
-    PokemonSummaryScreen_UpdateAButtonSprite(param0, &param0->staticWindows[35]);
+    PokemonSummaryScreen_UpdateAButtonSprite(param0, &param0->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
 
     Window_FillTilemap(&param0->extraWindows[0], 0);
     Window_FillTilemap(&param0->extraWindows[1], 0);
@@ -728,16 +728,16 @@ static void sub_02090E4C(PokemonSummaryScreen *param0)
     Window_ScheduleCopyToVRAM(&param0->extraWindows[0]);
 
     if (param0->ribbonMax != 0) {
-        PokemonSummaryScreen_ClearWindowAndPrintText(param0, 180);
-        PokemonSummaryScreen_UpdateAButtonSprite(param0, &param0->staticWindows[35]);
+        PokemonSummaryScreen_ClearAndPrintButtonPrompt(param0, 180);
+        PokemonSummaryScreen_UpdateAButtonSprite(param0, &param0->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
     }
 }
 
 static void sub_02090EC8(PokemonSummaryScreen *param0)
 {
     Window_ScheduleCopyToVRAM(&param0->staticWindows[28]);
-    PokemonSummaryScreen_ClearWindowAndPrintText(param0, 161);
-    PokemonSummaryScreen_UpdateAButtonSprite(param0, &param0->staticWindows[35]);
+    PokemonSummaryScreen_ClearAndPrintButtonPrompt(param0, 161);
+    PokemonSummaryScreen_UpdateAButtonSprite(param0, &param0->staticWindows[PSS_WINDOW_BUTTON_PROMPT]);
 
     if ((param0->data->mode != 3) && (param0->data->mode != 4)) {
         return;
