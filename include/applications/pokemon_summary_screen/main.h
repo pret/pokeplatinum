@@ -154,7 +154,7 @@ enum PSSPoffinFeedMsg {
 #define EMPTY_HEART_BASE_TILE   0x12E
 #define FILLED_HEART_BASE_TILE  0x12C
 
-#define RIBBONS_PER_ROW         4
+#define RIBBONS_PER_ROW 4
 
 typedef struct PokemonSummary {
     void *monData;
