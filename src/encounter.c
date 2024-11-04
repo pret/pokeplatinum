@@ -13,11 +13,11 @@
 #include "struct_defs/struct_0202BE38.h"
 
 #include "field/field_system.h"
-#include "overlay006/battle_params.h"
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay006/ov6_02246034.h"
 #include "savedata/save_table.h"
 
+#include "field_battle_data_transfer.h"
 #include "communication_information.h"
 #include "enc_effects.h"
 #include "enums.h"
@@ -41,7 +41,6 @@
 #include "unk_02026150.h"
 #include "unk_0202F1D4.h"
 #include "unk_0203D1B8.h"
-#include "unk_02051D8C.h"
 #include "unk_020528D0.h"
 #include "unk_0205578C.h"
 #include "unk_02055808.h"
@@ -58,7 +57,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    BattleParams *unk_10;
+    FieldBattleDTO *unk_10;
 } UnkStruct_02050ACC;
 
 typedef struct {
@@ -66,18 +65,18 @@ typedef struct {
     int unk_04;
     int unk_08;
     int *unk_0C;
-    BattleParams *unk_10;
+    FieldBattleDTO *unk_10;
 } UnkStruct_02050DD4;
 
-static void sub_020518B0(FieldSystem *fieldSystem, BattleParams *param1);
-static void sub_02051988(FieldSystem *fieldSystem, BattleParams *param1);
+static void sub_020518B0(FieldSystem *fieldSystem, FieldBattleDTO *param1);
+static void sub_02051988(FieldSystem *fieldSystem, FieldBattleDTO *param1);
 static BOOL sub_02050EE0(FieldTask *taskMan);
 static BOOL sub_02051074(FieldTask *taskMan);
 
 static BOOL sub_02050A74(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    BattleParams *v1 = FieldTask_GetEnv(taskMan);
+    FieldBattleDTO *v1 = FieldTask_GetEnv(taskMan);
     int *v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
@@ -96,12 +95,12 @@ static BOOL sub_02050A74(FieldTask *taskMan)
     return 0;
 }
 
-void sub_02050ABC(FieldTask *taskMan, BattleParams *param1)
+void sub_02050ABC(FieldTask *taskMan, FieldBattleDTO *param1)
 {
     FieldTask_InitCall(taskMan, sub_02050A74, param1);
 }
 
-static UnkStruct_02050ACC *sub_02050ACC(BattleParams *param0, int param1, int param2, int *param3)
+static UnkStruct_02050ACC *sub_02050ACC(FieldBattleDTO *param0, int param1, int param2, int *param3)
 {
     UnkStruct_02050ACC *v0;
 
@@ -133,11 +132,11 @@ static BOOL sub_02050B04(UnkStruct_02050ACC *param0)
         *(param0->unk_00) = param0->unk_10->unk_14;
     }
 
-    v0 = BattleParams_PlayerWon(param0->unk_10->unk_14);
+    v0 = FieldBattleDTO_PlayerWon(param0->unk_10->unk_14);
     return v0;
 }
 
-static void sub_02050B1C(const BattleParams *param0, FieldSystem *fieldSystem)
+static void sub_02050B1C(const FieldBattleDTO *param0, FieldSystem *fieldSystem)
 {
     if (param0->battleType & BATTLE_TYPE_DEBUG) {
         return;
@@ -208,7 +207,7 @@ static BOOL sub_02050B30(FieldTask *taskMan)
     return 0;
 }
 
-static void sub_02050C4C(FieldTask *taskMan, BattleParams *param1, int param2, int param3, int *param4)
+static void sub_02050C4C(FieldTask *taskMan, FieldBattleDTO *param1, int param2, int param3, int *param4)
 {
     UnkStruct_02050ACC *v0;
 
@@ -312,7 +311,7 @@ static BOOL sub_02050D4C(FieldTask *taskMan)
     return 0;
 }
 
-static UnkStruct_02050DD4 *sub_02050DD4(BattleParams *param0, int param1, int param2, int *param3)
+static UnkStruct_02050DD4 *sub_02050DD4(FieldBattleDTO *param0, int param1, int param2, int *param3)
 {
     UnkStruct_02050DD4 *v0;
 
@@ -337,7 +336,7 @@ static void sub_02050DFC(UnkStruct_02050DD4 *param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02050E10(FieldSystem *fieldSystem, BattleParams *param1)
+void sub_02050E10(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         UnkStruct_02050ACC *v0;
@@ -352,7 +351,7 @@ void sub_02050E10(FieldSystem *fieldSystem, BattleParams *param1)
     }
 }
 
-void sub_02050E78(FieldSystem *fieldSystem, FieldTask *param1, BattleParams *param2)
+void sub_02050E78(FieldSystem *fieldSystem, FieldTask *param1, FieldBattleDTO *param2)
 {
     if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         UnkStruct_02050ACC *v0;
@@ -394,7 +393,7 @@ static BOOL sub_02050EE0(FieldTask *taskMan)
         sub_02050B1C(v1->unk_10, fieldSystem);
         sub_0206D1B8(fieldSystem, v1->unk_10->unk_10C, v1->unk_10->unk_14);
 
-        if (BattleParams_PlayerWon(v1->unk_10->unk_14) == 0) {
+        if (FieldBattleDTO_PlayerWon(v1->unk_10->unk_14) == 0) {
             sub_02050DFC(v1);
             RadarChain_Clear(fieldSystem->chain);
             FieldTask_InitJump(taskMan, sub_02052B2C, NULL);
@@ -534,7 +533,7 @@ static BOOL sub_02051074(FieldTask *taskMan)
 void sub_0205120C(FieldTask *taskMan, int *param1)
 {
     UnkStruct_02050ACC *v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
     FieldSystem *fieldSystem;
 
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
@@ -555,7 +554,7 @@ void sub_0205120C(FieldTask *taskMan, int *param1)
 void sub_02051270(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL param4)
 {
     UnkStruct_02050ACC *v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
     FieldSystem *fieldSystem;
 
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
@@ -577,7 +576,7 @@ void sub_02051270(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL p
 void sub_020512E4(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL param4)
 {
     UnkStruct_02050ACC *v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
     FieldSystem *fieldSystem;
     Pokemon *v3;
     int v4;
@@ -658,7 +657,7 @@ static BOOL sub_0205136C(FieldTask *taskMan)
     return 0;
 }
 
-void sub_02051450(FieldSystem *fieldSystem, BattleParams *param1)
+void sub_02051450(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     UnkStruct_02050ACC *v0;
 
@@ -669,7 +668,7 @@ void sub_02051450(FieldSystem *fieldSystem, BattleParams *param1)
 void sub_02051480(FieldTask *taskMan, int param1, int param2, int *param3)
 {
     UnkStruct_02050ACC *v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
     FieldSystem *fieldSystem;
 
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
@@ -731,7 +730,7 @@ static BOOL sub_020514E8(FieldTask *taskMan)
 void sub_02051590(FieldTask *taskMan)
 {
     UnkStruct_02050ACC *v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     v1 = sub_02051F4C(11, fieldSystem);
@@ -744,7 +743,7 @@ void sub_020515CC(FieldTask *taskMan, int param1, int param2, int param3, int pa
 {
     u32 v0;
     UnkStruct_02050ACC *v1;
-    BattleParams *v2;
+    FieldBattleDTO *v2;
     FieldSystem *fieldSystem;
 
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
@@ -782,7 +781,7 @@ void sub_0205167C(FieldTask *taskMan, const u8 *param1, int param2)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02050ACC *v1;
-    BattleParams *v2;
+    FieldBattleDTO *v2;
 
     v2 = sub_02051D8C(11, param2);
     sub_020526CC(v2, fieldSystem, param1);
@@ -816,7 +815,7 @@ void sub_020516F4(FieldTask *taskMan, int param1, int param2, int param3)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02050ACC *v1;
-    BattleParams *v2;
+    FieldBattleDTO *v2;
     int v3;
     int v4, v5;
 
@@ -877,7 +876,7 @@ static BOOL sub_02051790(FieldTask *taskMan)
 void sub_020517E8(FieldSystem *fieldSystem, const u8 *param1, int param2)
 {
     UnkStruct_02050ACC *v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
     int v2;
 
     v1 = sub_02051D8C(11, param2);
@@ -894,7 +893,7 @@ void sub_020517E8(FieldSystem *fieldSystem, const u8 *param1, int param2)
 void sub_0205184C(FieldSystem *fieldSystem, const Party *param1, int param2)
 {
     UnkStruct_02050ACC *v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
     int v2;
 
     v1 = sub_02051D8C(11, param2);
@@ -908,7 +907,7 @@ void sub_0205184C(FieldSystem *fieldSystem, const Party *param1, int param2)
     FieldSystem_CreateTask(fieldSystem, sub_02051790, v0);
 }
 
-static void sub_020518B0(FieldSystem *fieldSystem, BattleParams *param1)
+static void sub_020518B0(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     Pokemon *v0;
     u32 v1 = param1->battleType;
@@ -953,7 +952,7 @@ static void sub_020518B0(FieldSystem *fieldSystem, BattleParams *param1)
     }
 }
 
-static void sub_02051988(FieldSystem *fieldSystem, BattleParams *param1)
+static void sub_02051988(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     Pokemon *v0;
     u32 v1 = param1->battleType;
@@ -1004,7 +1003,7 @@ static void sub_02051988(FieldSystem *fieldSystem, BattleParams *param1)
 void sub_02051ABC(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL param4)
 {
     UnkStruct_02050ACC *v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
     FieldSystem *fieldSystem;
 
     fieldSystem = FieldTask_GetFieldSystem(taskMan);

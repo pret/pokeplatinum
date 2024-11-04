@@ -6,6 +6,7 @@
 
 #include "field/field_system.h"
 
+#include "field_battle_data_transfer.h"
 #include "encounter.h"
 #include "field_script_context.h"
 #include "inlines.h"
@@ -15,7 +16,6 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "unk_020041CC.h"
-#include "unk_02051D8C.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
 #include "unk_020553DC.h"
@@ -266,7 +266,7 @@ BOOL ScrCmd_CheckWonBattle(ScriptContext *ctx)
     BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = BattleParams_PlayerWon(*battleResult);
+    *destVar = FieldBattleDTO_PlayerWon(*battleResult);
     return TRUE;
 }
 
@@ -275,7 +275,7 @@ BOOL ScrCmd_CheckLostBattle(ScriptContext *ctx)
     BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = BattleParams_PlayerLost(*battleResult);
+    *destVar = FieldBattleDTO_PlayerLost(*battleResult);
     return TRUE;
 }
 
@@ -284,7 +284,7 @@ BOOL ScrCmd_CheckDidNotCapture(ScriptContext *ctx)
     BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = BattleParams_PlayerDidNotCapture(*battleResult);
+    *destVar = FieldBattleDTO_PlayerDidNotCapture(*battleResult);
     return TRUE;
 }
 

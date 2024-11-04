@@ -208,7 +208,7 @@ pokeplatinum_c = files(
     'vars_flags.c',
     'field_task.c',
     'encounter.c',
-    'unk_02051D8C.c',
+    'field_battle_data_transfer.c',
     'unk_020528D0.c',
     'unk_02052C6C.c',
     'field_map_change.c',

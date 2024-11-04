@@ -1,4 +1,4 @@
-#include "unk_02051D8C.h"
+#include "field_battle_data_transfer.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -18,8 +18,6 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
-#include "overlay006/battle_params.h"
-#include "overlay006/struct_ov6_02240D5C_sub1.h"
 #include "savedata/save_table.h"
 
 #include "bag.h"
@@ -58,16 +56,16 @@
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
-static void sub_0205281C(BattleParams *param0, const FieldSystem *fieldSystem);
-void sub_02052894(BattleParams *param0);
+static void sub_0205281C(FieldBattleDTO *param0, const FieldSystem *fieldSystem);
+void sub_02052894(FieldBattleDTO *param0);
 
-BattleParams *sub_02051D8C(int param0, u32 param1)
+FieldBattleDTO *sub_02051D8C(int param0, u32 param1)
 {
     int v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
 
-    v1 = Heap_AllocFromHeap(param0, sizeof(BattleParams));
-    MI_CpuClear8(v1, sizeof(BattleParams));
+    v1 = Heap_AllocFromHeap(param0, sizeof(FieldBattleDTO));
+    MI_CpuClear8(v1, sizeof(FieldBattleDTO));
 
     v1->battleType = param1;
     v1->unk_164 = 0;
@@ -127,13 +125,13 @@ BattleParams *sub_02051D8C(int param0, u32 param1)
         v1->unk_188 = CommSys_CurNetId();
     }
 
-    MI_CpuClear8(&(v1->unk_110), sizeof(BattleParams_sub1));
+    MI_CpuClear8(&(v1->unk_110), sizeof(FieldBattleDTO_sub1));
     return v1;
 }
 
-BattleParams *sub_02051F24(int param0, int param1)
+FieldBattleDTO *sub_02051F24(int param0, int param1)
 {
-    BattleParams *v0;
+    FieldBattleDTO *v0;
 
     v0 = sub_02051D8C(param0, 0x20);
     v0->unk_168 = param1;
@@ -141,9 +139,9 @@ BattleParams *sub_02051F24(int param0, int param1)
     return v0;
 }
 
-BattleParams *sub_02051F38(int param0, int param1)
+FieldBattleDTO *sub_02051F38(int param0, int param1)
 {
-    BattleParams *v0;
+    FieldBattleDTO *v0;
 
     v0 = sub_02051D8C(param0, 0x200);
     v0->unk_168 = param1;
@@ -151,13 +149,13 @@ BattleParams *sub_02051F38(int param0, int param1)
     return v0;
 }
 
-BattleParams *sub_02051F4C(int param0, const FieldSystem *fieldSystem)
+FieldBattleDTO *sub_02051F4C(int param0, const FieldSystem *fieldSystem)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Options *v1 = SaveData_Options(fieldSystem->saveData);
     MessageLoader *v2;
     Strbuf *v3;
-    BattleParams *v4;
+    FieldBattleDTO *v4;
     Pokemon *v5;
 
     v4 = sub_02051D8C(param0, 0x400);
@@ -194,7 +192,7 @@ BattleParams *sub_02051F4C(int param0, const FieldSystem *fieldSystem)
     return v4;
 }
 
-void sub_020520A4(BattleParams *param0)
+void sub_020520A4(FieldBattleDTO *param0)
 {
     int v0;
 
@@ -220,7 +218,7 @@ void sub_020520A4(BattleParams *param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_0205213C(BattleParams *param0, Pokemon *param1, int param2)
+void sub_0205213C(FieldBattleDTO *param0, Pokemon *param1, int param2)
 {
     int v0;
 
@@ -229,24 +227,24 @@ void sub_0205213C(BattleParams *param0, Pokemon *param1, int param2)
     GF_ASSERT(v0);
 }
 
-void sub_02052164(BattleParams *param0, const Party *param1, int param2)
+void sub_02052164(FieldBattleDTO *param0, const Party *param1, int param2)
 {
     GF_ASSERT(param2 < 4);
     Party_cpy(param1, param0->parties[param2]);
 }
 
-void sub_02052184(BattleParams *param0, const TrainerInfo *param1, int param2)
+void sub_02052184(FieldBattleDTO *param0, const TrainerInfo *param1, int param2)
 {
     GF_ASSERT(param2 < 4);
     TrainerInfo_Copy(param1, param0->unk_D0[param2]);
 }
 
-void sub_020521A4(BattleParams *param0, const ChatotCry *param1, int param2)
+void sub_020521A4(FieldBattleDTO *param0, const ChatotCry *param1, int param2)
 {
     CopyChatotCryData(param0->unk_F0[param2], param1);
 }
 
-void sub_020521B8(BattleParams *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, UnkStruct_0207D99C *param5, UnkStruct_0209C370 *param6)
+void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, UnkStruct_0207D99C *param5, UnkStruct_0209C370 *param6)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(param2);
     Party *v1 = Party_GetFromSavedata(param2);
@@ -293,13 +291,13 @@ void sub_020521B8(BattleParams *param0, const FieldSystem *fieldSystem, SaveData
     param0->unk_198 = param2;
 }
 
-void sub_02052314(BattleParams *battleParams, const FieldSystem *fieldSystem)
+void sub_02052314(FieldBattleDTO *battleParams, const FieldSystem *fieldSystem)
 {
     sub_020521B8(battleParams, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->journal, fieldSystem->unk_98, fieldSystem->unk_BC);
     sub_02052894(battleParams);
 }
 
-void sub_02052348(BattleParams *param0, const FieldSystem *fieldSystem, int param2)
+void sub_02052348(FieldBattleDTO *param0, const FieldSystem *fieldSystem, int param2)
 {
     int v0;
     u32 v1;
@@ -352,7 +350,7 @@ void sub_02052348(BattleParams *param0, const FieldSystem *fieldSystem, int para
     sub_02052894(param0);
 }
 
-void sub_020524E4(BattleParams *param0, const FieldSystem *fieldSystem, const Party *param2, const u8 *param3)
+void sub_020524E4(FieldBattleDTO *param0, const FieldSystem *fieldSystem, const Party *param2, const u8 *param3)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Bag *v1 = SaveData_GetBag(fieldSystem->saveData);
@@ -430,12 +428,12 @@ void sub_020524E4(BattleParams *param0, const FieldSystem *fieldSystem, const Pa
     }
 }
 
-void sub_020526CC(BattleParams *param0, const FieldSystem *fieldSystem, const u8 *param2)
+void sub_020526CC(FieldBattleDTO *param0, const FieldSystem *fieldSystem, const u8 *param2)
 {
     sub_020524E4(param0, fieldSystem, Party_GetFromSavedata(fieldSystem->saveData), param2);
 }
 
-void sub_020526E8(const BattleParams *param0, FieldSystem *fieldSystem)
+void sub_020526E8(const FieldBattleDTO *param0, FieldSystem *fieldSystem)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Party *v1 = Party_GetFromSavedata(fieldSystem->saveData);
@@ -451,7 +449,7 @@ void sub_020526E8(const BattleParams *param0, FieldSystem *fieldSystem)
     *v4 = param0->unk_168;
 }
 
-void sub_02052754(const BattleParams *param0, FieldSystem *fieldSystem)
+void sub_02052754(const FieldBattleDTO *param0, FieldSystem *fieldSystem)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Party *v1 = Party_GetFromSavedata(fieldSystem->saveData);
@@ -517,7 +515,7 @@ static int sub_02052780(const FieldSystem *fieldSystem, int param1)
     return 24;
 }
 
-static void sub_0205281C(BattleParams *param0, const FieldSystem *fieldSystem)
+static void sub_0205281C(FieldBattleDTO *param0, const FieldSystem *fieldSystem)
 {
     PlayerData *v0 = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
@@ -530,12 +528,12 @@ static void sub_0205281C(BattleParams *param0, const FieldSystem *fieldSystem)
     param0->unk_12C = sub_02052780(fieldSystem, param0->unk_128);
 }
 
-void sub_0205285C(BattleParams *param0)
+void sub_0205285C(FieldBattleDTO *param0)
 {
     param0->unk_12C = 7;
 }
 
-BOOL BattleParams_PlayerWon(u32 battleResult)
+BOOL FieldBattleDTO_PlayerWon(u32 battleResult)
 {
     switch (battleResult) {
     case BATTLE_RESULT_LOSE:
@@ -546,7 +544,7 @@ BOOL BattleParams_PlayerWon(u32 battleResult)
     }
 }
 
-BOOL BattleParams_PlayerLost(u32 battleResult)
+BOOL FieldBattleDTO_PlayerLost(u32 battleResult)
 {
     switch (battleResult) {
     case BATTLE_RESULT_WIN:
@@ -557,7 +555,7 @@ BOOL BattleParams_PlayerLost(u32 battleResult)
     }
 }
 
-BOOL BattleParams_PlayerDidNotCapture(u32 battleResult)
+BOOL FieldBattleDTO_PlayerDidNotCapture(u32 battleResult)
 {
     switch (battleResult) {
     case BATTLE_RESULT_CAPTURED_MON:
@@ -567,7 +565,7 @@ BOOL BattleParams_PlayerDidNotCapture(u32 battleResult)
     }
 }
 
-void sub_02052894(BattleParams *param0)
+void sub_02052894(FieldBattleDTO *param0)
 {
     param0->trainerData[0].class = TrainerInfo_Gender(param0->unk_D0[0]);
     CharCode_Copy(&param0->trainerData[0].name[0], TrainerInfo_Name(param0->unk_D0[0]));

@@ -3,12 +3,11 @@
 
 #include "struct_decls/struct_party_decl.h"
 
-#include "overlay006/battle_params.h"
-
+#include "field_battle_data_transfer.h"
 #include "strbuf.h"
 
 typedef struct {
-    BattleParams *unk_00;
+    FieldBattleDTO *unk_00;
     Party *unk_04[4];
     Strbuf *unk_14[4];
     u32 unk_24;

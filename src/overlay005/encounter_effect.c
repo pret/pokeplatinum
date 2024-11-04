@@ -23,8 +23,8 @@
 #include "overlay005/struct_ov5_021DE47C.h"
 #include "overlay005/struct_ov5_021DE5A4.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
-#include "overlay006/battle_params.h"
 
+#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
@@ -1300,7 +1300,7 @@ static void ov5_021DEE84(UnkStruct_ov5_021DED04 *param0)
     param0->unk_E0 = NULL;
 }
 
-u32 CutInEffects_ForBattle(const BattleParams *param0)
+u32 CutInEffects_ForBattle(const FieldBattleDTO *param0)
 {
     int v0;
     int v1;

@@ -27,11 +27,11 @@
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
-#include "overlay006/struct_ov6_02240D5C_sub1.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "bag.h"
+#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "game_options.h"
 #include "message.h"
@@ -88,7 +88,7 @@ struct BattleSystem {
     PokemonAnimationSys *unk_1C4;
     NNSG2dCellTransferState *cellTransferState;
     UnkStruct_ov16_0223E0C8 unk_1CC[4];
-    BattleParams_sub1 unk_20C;
+    FieldBattleDTO_sub1 unk_20C;
     GameRecords *records;
     u8 *unk_21C;
     u16 *unk_220;

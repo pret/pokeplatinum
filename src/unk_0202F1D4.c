@@ -15,9 +15,9 @@
 #include "struct_defs/struct_02078B40.h"
 #include "struct_defs/struct_party.h"
 
-#include "overlay006/battle_params.h"
 #include "savedata/save_table.h"
 
+#include "field_battle_data_transfer.h"
 #include "enums.h"
 #include "game_options.h"
 #include "heap.h"
@@ -94,7 +94,7 @@ void *sub_0202F27C(void)
     return &v0[sizeof(u32)];
 }
 
-BOOL sub_0202F298(SaveData *param0, int param1, int *param2, BattleParams *param3, int param4)
+BOOL sub_0202F298(SaveData *param0, int param1, int *param2, FieldBattleDTO *param3, int param4)
 {
     UnkStruct_0202F298 *v0;
     UnkStruct_0202F41C *v1;
@@ -441,7 +441,7 @@ u8 sub_0202F884(int param0, int param1)
     return Unk_021C07A4->unk_E8.unk_150.unk_00[param0][param1];
 }
 
-void sub_0202F8AC(BattleParams *param0)
+void sub_0202F8AC(FieldBattleDTO *param0)
 {
     int v0;
     UnkStruct_0202F298 *v1;
@@ -536,7 +536,7 @@ BOOL sub_0202FAC0(void)
     return 1;
 }
 
-void sub_0202FAFC(BattleParams *param0, SaveData *param1)
+void sub_0202FAFC(FieldBattleDTO *param0, SaveData *param1)
 {
     int v0;
     UnkStruct_0202F298 *v1 = &Unk_021C07A4->unk_E8;
@@ -653,7 +653,7 @@ UnkStruct_0202F41C *sub_0202FE04(void)
     return &Unk_021C07A4->unk_84;
 }
 
-void sub_0202FE20(UnkStruct_02030A80 *param0, UnkStruct_0202F41C *param1, UnkStruct_0202F298 *param2, BattleParams *param3, SaveData *param4)
+void sub_0202FE20(UnkStruct_02030A80 *param0, UnkStruct_0202F41C *param1, UnkStruct_0202F298 *param2, FieldBattleDTO *param3, SaveData *param4)
 {
     GF_ASSERT(Unk_021C07A4 != NULL);
 

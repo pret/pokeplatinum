@@ -29,7 +29,6 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_022674C4.h"
-#include "overlay006/battle_params.h"
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/ov11_0221F840.h"
@@ -39,6 +38,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "bag.h"
+#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "communication_system.h"
 #include "flags.h"
@@ -115,14 +115,14 @@ static BOOL ov16_0223D98C(OverlayManager *param0);
 static BOOL ov16_0223DAD4(OverlayManager *param0);
 static BOOL ov16_0223DB1C(OverlayManager *param0);
 static BOOL ov16_0223DD10(OverlayManager *param0);
-static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1);
+static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1);
 static BOOL ov16_0223D354(OverlayManager *param0);
 static void ov16_0223D7B4(OverlayManager *param0);
 static void ov16_0223C004(BattleSystem *param0, BgConfig *param1);
 static void ov16_0223C210(BattleSystem *param0);
 static void ov16_0223C288(BgConfig *param0);
 static void ov16_0223C2BC(BattleSystem *param0);
-static void ov16_0223C2C0(BattleSystem *param0, BattleParams *param1);
+static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1);
 static void ov16_0223CE28(void);
 static void ov16_0223CE68(void *param0);
 static void ov16_0223CF1C(void *param0);
@@ -134,7 +134,7 @@ static void ov16_0223CD9C(void);
 static void ov16_0223DD4C(BattleSystem *param0);
 static void ov16_0223D0C4(SysTask *param0, void *param1);
 static BOOL ov16_0223CD3C(u16 param0);
-static void ov16_0223DD90(BattleSystem *param0, BattleParams *param1);
+static void ov16_0223DD90(BattleSystem *param0, FieldBattleDTO *param1);
 static void ov16_0223DECC(void);
 
 static const UnkStruct_ov104_0224133C Unk_ov16_0226E2E4 = {
@@ -167,7 +167,7 @@ const UnkStruct_ov104_02241308 Unk_ov16_0226E2B0 = {
 
 BOOL Battle_Main(OverlayManager *param0, int *param1)
 {
-    BattleParams *v0 = OverlayManager_Args(param0);
+    FieldBattleDTO *v0 = OverlayManager_Args(param0);
 
     switch (*param1) {
     case 0:
@@ -519,7 +519,7 @@ static const int Unk_ov16_0226E44C[][3] = {
 static void ov16_0223B790(OverlayManager *param0)
 {
     BattleSystem *v0 = OverlayManager_Data(param0);
-    BattleParams *v1 = OverlayManager_Args(param0);
+    FieldBattleDTO *v1 = OverlayManager_Args(param0);
     ArchivedSprite v2;
     int v3;
     RTCDate v4;
@@ -699,7 +699,7 @@ static int ov16_0223BBD0(OverlayManager *param0)
 static void ov16_0223BCB4(OverlayManager *param0)
 {
     BattleSystem *v0 = OverlayManager_Data(param0);
-    BattleParams *v1 = OverlayManager_Args(param0);
+    FieldBattleDTO *v1 = OverlayManager_Args(param0);
     int v2;
 
     v1->unk_174 = v0->unk_2448;
@@ -1056,7 +1056,7 @@ static const u8 Unk_ov16_0226E28C[][4] = {
     },
 };
 
-static void ov16_0223C2C0(BattleSystem *param0, BattleParams *param1)
+static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
 {
     int v0, v1;
     UnkStruct_ov16_0223C2C0 v2;
@@ -1642,7 +1642,7 @@ static void NitroStaticInit(void)
     }
 }
 
-static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
+static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
 {
     UnkStruct_0207A778 *v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0207A778), 5);
 
@@ -2001,7 +2001,7 @@ static void ov16_0223D7B4(OverlayManager *param0)
 static BOOL ov16_0223D800(OverlayManager *param0)
 {
     BattleSystem *v0 = OverlayManager_NewData(param0, sizeof(BattleSystem), 5);
-    BattleParams *v1 = OverlayManager_Args(param0);
+    FieldBattleDTO *v1 = OverlayManager_Args(param0);
     u8 v2;
 
     MI_CpuClearFast(v0, sizeof(BattleSystem));
@@ -2076,7 +2076,7 @@ static BOOL ov16_0223D944(OverlayManager *param0)
 static BOOL ov16_0223D98C(OverlayManager *param0)
 {
     BattleSystem *v0 = OverlayManager_Data(param0);
-    BattleParams *v1 = OverlayManager_Args(param0);
+    FieldBattleDTO *v1 = OverlayManager_Args(param0);
     u8 v2;
     int v3;
 
@@ -2135,7 +2135,7 @@ static BOOL ov16_0223DAD4(OverlayManager *param0)
 
 static BOOL ov16_0223DB1C(OverlayManager *param0)
 {
-    BattleParams *v0 = OverlayManager_Args(param0);
+    FieldBattleDTO *v0 = OverlayManager_Args(param0);
     UnkStruct_ov10_0221F800 *v1;
     u8 v2;
     int v3;
@@ -2220,7 +2220,7 @@ static BOOL ov16_0223DB1C(OverlayManager *param0)
 static BOOL ov16_0223DD10(OverlayManager *param0)
 {
     int v0;
-    BattleParams *v1 = OverlayManager_Args(param0);
+    FieldBattleDTO *v1 = OverlayManager_Args(param0);
     UnkStruct_ov10_0221F800 *v2 = v1->unk_170;
 
     if (v2->unk_2B) {
@@ -2250,7 +2250,7 @@ static void ov16_0223DD4C(BattleSystem *param0)
     }
 }
 
-static void ov16_0223DD90(BattleSystem *param0, BattleParams *param1)
+static void ov16_0223DD90(BattleSystem *param0, FieldBattleDTO *param1)
 {
     int v0, v1, v2;
     int v3, v4;

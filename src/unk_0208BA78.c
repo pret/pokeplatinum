@@ -8,10 +8,10 @@
 #include "struct_defs/struct_0208C06C.h"
 
 #include "field/field_system.h"
-#include "overlay006/battle_params.h"
 #include "overlay062/ov62_02248408.h"
 
 #include "bag.h"
+#include "field_battle_data_transfer.h"
 #include "game_overlay.h"
 #include "game_records.h"
 #include "heap.h"
@@ -22,7 +22,6 @@
 #include "system_flags.h"
 #include "unk_020041CC.h"
 #include "unk_0202F1D4.h"
-#include "unk_02051D8C.h"
 #include "unk_020553DC.h"
 #include "unk_0208C010.h"
 #include "unk_02099550.h"
@@ -41,7 +40,7 @@ typedef struct {
     int unk_04;
     OverlayManager *unk_08;
     SaveData *saveData;
-    BattleParams *unk_10;
+    FieldBattleDTO *unk_10;
     UnkStruct_0208C06C *unk_14;
     UnkStruct_0208BA84 unk_18;
     FieldSystem *fieldSystem;

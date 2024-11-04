@@ -8,8 +8,8 @@
 #include "struct_defs/struct_0206C638.h"
 
 #include "field/field_system.h"
-#include "overlay006/battle_params.h"
 
+#include "field_battle_data_transfer.h"
 #include "inlines.h"
 #include "party.h"
 #include "pokemon.h"
@@ -21,7 +21,7 @@
 static void ov6_02246110(UnkStruct_0202D7B0 *param0, const int param1);
 static UnkStruct_0206C638 *ov6_02246148(UnkStruct_0202D7B0 *param0, const int param1);
 
-void ov6_02246034(FieldSystem *fieldSystem, BattleParams *param1)
+void ov6_02246034(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     u16 v0;
     u8 v1;

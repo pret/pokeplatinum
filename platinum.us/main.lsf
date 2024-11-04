@@ -220,7 +220,7 @@ Static main
 	Object main.nef.p/src_field_task.c.o
 	Object main.nef.p/src_encounter.c.o
 	Object main.nef.p/src_enc_effects.c.o
-	Object main.nef.p/src_unk_02051D8C.c.o
+	Object main.nef.p/src_field_battle_data_transfer.c.o
 	Object main.nef.p/src_unk_020528D0.c.o
 	Object main.nef.p/src_unk_02052C6C.c.o
 	Object main.nef.p/src_field_map_change.c.o

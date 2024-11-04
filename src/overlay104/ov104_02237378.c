@@ -5,7 +5,6 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0200D0F4.h"
 
-#include "overlay006/battle_params.h"
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
@@ -28,6 +27,7 @@
 #include "overlay104/struct_ov104_0223C634.h"
 #include "overlay108/ov108_02241AE0.h"
 
+#include "field_battle_data_transfer.h"
 #include "cell_actor.h"
 #include "communication_information.h"
 #include "gx_layers.h"
@@ -42,7 +42,6 @@
 #include "trainer_info.h"
 #include "unk_02014000.h"
 #include "unk_02030494.h"
-#include "unk_02051D8C.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 
@@ -149,7 +148,7 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
     int v1, v2, v3, v4, v5;
     u32 v6, v7, v8;
     UnkStruct_ov104_0223BFFC *v9;
-    BattleParams *v10;
+    FieldBattleDTO *v10;
     Pokemon *v11;
     Pokemon *v12;
 
@@ -157,7 +156,7 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
     v10 = v9->unk_0C;
 
     v9->unk_1D = ov104_02238538(v9, v10->parties[0], v10->parties[2], v10->unk_18C);
-    v9->unk_28 = BattleParams_PlayerWon(v10->unk_14);
+    v9->unk_28 = FieldBattleDTO_PlayerWon(v10->unk_14);
 
     if (v9->unk_13 == 27) {
         v2 = 1;
@@ -222,7 +221,7 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_022375F8(UnkStruct_ov104_0222E930 *param0)
 {
-    BattleParams *v0;
+    FieldBattleDTO *v0;
     UnkStruct_ov104_0223BFFC *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 

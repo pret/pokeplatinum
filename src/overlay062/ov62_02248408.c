@@ -8,9 +8,9 @@
 #include "struct_defs/struct_0202F298_sub1.h"
 #include "struct_defs/struct_0202F41C.h"
 
-#include "overlay006/battle_params.h"
 #include "savedata/save_table.h"
 
+#include "field_battle_data_transfer.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
@@ -25,7 +25,7 @@ static void ov62_0224856C(Strbuf *param0, int param1);
 
 extern BattleRecording *Unk_021C07A4;
 
-void ov62_02248408(BattleRecording *param0, BattleParams *param1, int param2)
+void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int param2)
 {
     UnkStruct_0202F298 *v0 = &param0->unk_E8;
     UnkStruct_0202F41C *v1 = &param0->unk_84;

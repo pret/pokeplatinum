@@ -6,13 +6,13 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204B184.h"
 
-#include "overlay006/battle_params.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 #include "overlay104/struct_ov104_0223B5C0.h"
 
+#include "field_battle_data_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
@@ -21,7 +21,6 @@
 #include "trainer_info.h"
 #include "unk_0201D15C.h"
 #include "unk_02030108.h"
-#include "unk_02051D8C.h"
 #include "unk_02096420.h"
 
 typedef struct {
@@ -35,13 +34,13 @@ typedef struct {
     u16 unk_02;
 } UnkStruct_ov104_02240364;
 
-void sub_02052894(BattleParams *param0);
+void sub_02052894(FieldBattleDTO *param0);
 void ov104_0223AF58(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[]);
 void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 param5[]);
 void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 param5[], u8 param6);
 u8 ov104_0223B500(u8 param0);
 u8 ov104_0223B50C(u8 param0);
-BattleParams *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104_02230BE4 *param1);
 static u32 ov104_0223B4D4(u8 param0);
 static void ov104_0223B518(UnkStruct_ov104_0223A348_sub2 *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6);
 static u32 ov104_0223B57C(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
@@ -1568,14 +1567,14 @@ void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 
     return;
 }
 
-BattleParams *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104_02230BE4 *param1)
 {
     BOOL v0;
     int v1;
     u16 v2;
     u32 v3;
     u8 v4, v5, v6, v7;
-    BattleParams *v8;
+    FieldBattleDTO *v8;
     Pokemon *v9;
     UnkStruct_ov104_0223A348_sub1 v10;
     UnkStruct_0204B184 *v11;

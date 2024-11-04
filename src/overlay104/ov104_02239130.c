@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 
-#include "overlay006/battle_params.h"
 #include "overlay104/ov104_0222E930.h"
 #include "overlay104/ov104_0222FBE4.h"
 #include "overlay104/ov104_02231F74.h"
@@ -19,6 +18,7 @@
 #include "overlay104/struct_ov104_022320B4_t.h"
 #include "savedata/save_table.h"
 
+#include "field_battle_data_transfer.h"
 #include "communication_system.h"
 #include "game_records.h"
 #include "pokemon.h"
@@ -26,7 +26,6 @@
 #include "unk_020041CC.h"
 #include "unk_020363E8.h"
 #include "unk_02049D08.h"
-#include "unk_02051D8C.h"
 #include "unk_0206CCB0.h"
 #include "unk_0209B6F8.h"
 
@@ -190,7 +189,7 @@ BOOL ov104_02239300(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02239314(UnkStruct_ov104_0222E930 *param0)
 {
-    BattleParams *v0;
+    FieldBattleDTO *v0;
     UnkStruct_0204AFC4 *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
@@ -208,14 +207,14 @@ BOOL ov104_02239314(UnkStruct_ov104_0222E930 *param0)
 BOOL ov104_02239364(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_0204AFC4 *v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
     u16 *v2;
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
     v2 = ov104_0222FBE4(param0);
     v1 = v0->unk_8D0;
 
-    v0->unk_8CC = BattleParams_PlayerWon(v1->unk_14);
+    v0->unk_8CC = FieldBattleDTO_PlayerWon(v1->unk_14);
     *v2 = v0->unk_8CC;
 
     sub_020520A4(v1);

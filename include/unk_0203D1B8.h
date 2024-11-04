@@ -18,14 +18,14 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system_decl.h"
-#include "overlay006/battle_params.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
+#include "field_battle_data_transfer.h"
 #include "field_task.h"
 #include "pokemon.h"
 #include "savedata.h"
 
-void sub_0203D1D4(FieldSystem *fieldSystem, BattleParams *param1);
+void sub_0203D1D4(FieldSystem *fieldSystem, FieldBattleDTO *param1);
 void sub_0203D1E4(FieldSystem *fieldSystem, void *param1);
 void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1);
 void *sub_0203D264(FieldSystem *fieldSystem, int param1);

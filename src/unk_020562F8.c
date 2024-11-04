@@ -10,9 +10,9 @@
 #include "struct_decls/struct_020564B4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay006/battle_params.h"
 #include "savedata/save_table.h"
 
+#include "field_battle_data_transfer.h"
 #include "game_records.h"
 #include "heap.h"
 #include "inlines.h"
@@ -20,7 +20,6 @@
 #include "pokemon.h"
 #include "rtc.h"
 #include "unk_0202EEC0.h"
-#include "unk_02051D8C.h"
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 
@@ -43,9 +42,9 @@ struct UnkStruct_020564B4_t {
 };
 
 static void sub_0205642C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
-static void sub_02056624(FieldSystem *fieldSystem, BattleParams *param1, UnkStruct_020564B4 *param2);
+static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, UnkStruct_020564B4 *param2);
 static BOOL sub_02056554(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1, int param2, int param3);
-static BattleParams *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
+static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
 static sub_020564B4(UnkStruct_020564B4 *param0);
 static void sub_020564D0(UnkStruct_020564B4 *param0);
 static BOOL sub_020564F4(UnkStruct_020564B4 *param0);
@@ -93,12 +92,12 @@ BOOL sub_02056374(FieldSystem *fieldSystem, int param1, int param2)
     }
 }
 
-BattleParams *sub_0205639C(FieldSystem *fieldSystem)
+FieldBattleDTO *sub_0205639C(FieldSystem *fieldSystem)
 {
     return sub_0205664C(fieldSystem, &Unk_021C07FC);
 }
 
-void sub_020563AC(FieldSystem *fieldSystem, BattleParams *param1)
+void sub_020563AC(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     sub_02056624(fieldSystem, param1, &Unk_021C07FC);
 }
@@ -259,7 +258,7 @@ static BOOL sub_02056554(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1, i
     return 0;
 }
 
-static void sub_02056624(FieldSystem *fieldSystem, BattleParams *param1, UnkStruct_020564B4 *param2)
+static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, UnkStruct_020564B4 *param2)
 {
     switch (param1->unk_14) {
     case 0x4:
@@ -272,9 +271,9 @@ static void sub_02056624(FieldSystem *fieldSystem, BattleParams *param1, UnkStru
     }
 }
 
-static BattleParams *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1)
+static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1)
 {
-    BattleParams *v0;
+    FieldBattleDTO *v0;
     Pokemon *v1 = Pokemon_New(32);
     PalParkTransfer *v2 = SaveData_PalParkTransfer(fieldSystem->saveData);
     int v3 = sub_020563BC(fieldSystem);

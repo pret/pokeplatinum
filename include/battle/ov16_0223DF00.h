@@ -24,10 +24,10 @@
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
-#include "overlay006/battle_params.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "bag.h"
+#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "game_options.h"
 #include "message.h"
@@ -192,7 +192,7 @@ u32 BattleSystem_BattleStatus(BattleSystem *param0);
 enum Time BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem *param0);
 u8 ov16_0223EC58(BattleSystem *param0, int param1, u8 param2);
-u16 ov16_0223ECC4(BattleParams *param0, int *param1, int *param2);
+u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2);
 u8 ov16_0223ED60(BattleSystem *param0);
 u8 ov16_0223ED6C(BattleSystem *param0);
 int BattleSystem_NumSafariBalls(BattleSystem *param0);

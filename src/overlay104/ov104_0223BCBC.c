@@ -6,12 +6,12 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204B184.h"
 
-#include "overlay006/battle_params.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
+#include "field_battle_data_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
@@ -22,12 +22,11 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_0201D15C.h"
-#include "unk_02051D8C.h"
 #include "unk_02096420.h"
 
 u8 ov104_0223BD70(u8 param0, BOOL param1);
 u8 ov104_0223BDA4(u8 param0, BOOL param1);
-BattleParams *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_02230BE4 *param1);
 static u32 ov104_0223BFD0(u8 param0);
 u8 ov104_0223BFFC(UnkStruct_ov104_0223BFFC *param0);
 BOOL ov104_0223C000(u8 param0);
@@ -38,7 +37,7 @@ u16 ov104_0223C0BC(UnkStruct_ov104_0223BFFC *param0, u8 param1);
 static u16 ov104_0223C0D0(UnkStruct_ov104_0223BFFC *param0);
 u16 ov104_0223C124(UnkStruct_ov104_0223BFFC *param0);
 u8 ov104_0223C148(u8 param0);
-void sub_02052894(BattleParams *param0);
+void sub_02052894(FieldBattleDTO *param0);
 static int ov104_0223BCBC(u8 param0, int param1, int param2);
 void ov104_0223BD28(u8 param0, int param1, u16 param2[], u8 param3);
 
@@ -160,12 +159,12 @@ u8 ov104_0223BDA4(u8 param0, BOOL param1)
     return 3;
 }
 
-BattleParams *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_02230BE4 *param1)
 {
     int v0;
     u32 v1;
     u8 v2, v3, v4;
-    BattleParams *v5;
+    FieldBattleDTO *v5;
     Pokemon *v6;
     UnkStruct_ov104_0223A348_sub1 v7;
     UnkStruct_0204B184 *v8;

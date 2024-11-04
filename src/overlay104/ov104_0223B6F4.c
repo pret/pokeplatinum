@@ -7,12 +7,12 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204B184.h"
 
-#include "overlay006/battle_params.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
+#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -25,7 +25,6 @@
 #include "trainer_info.h"
 #include "unk_0201D15C.h"
 #include "unk_0203061C.h"
-#include "unk_02051D8C.h"
 #include "unk_0205DFC4.h"
 #include "unk_02096420.h"
 
@@ -33,7 +32,7 @@ static int ov104_0223B6F4(u8 param0, int param1, int param2);
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);
 u8 ov104_0223B7A8(u8 param0, BOOL param1);
 u8 ov104_0223B7DC(u8 param0, BOOL param1);
-BattleParams *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1);
 static u32 ov104_0223B9E4(u8 param0);
 u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 *param0);
 BOOL ov104_0223BA14(u8 param0);
@@ -44,7 +43,7 @@ void ov104_0223BAA0(UnkStruct_ov104_0223BA10 *param0, Party *param1, Pokemon *pa
 static u16 ov104_0223BB10(UnkStruct_ov104_0223BA10 *param0);
 u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 *param0);
 u16 ov104_0223BC24(u16 param0);
-void sub_02052894(BattleParams *param0);
+void sub_02052894(FieldBattleDTO *param0);
 void ov104_0223BB84(BgConfig *param0, UnkStruct_ov104_0223BA10 *param1, u32 param2);
 static void ov104_0223BBC4(u16 *param0, u16 param1);
 
@@ -156,12 +155,12 @@ u8 ov104_0223B7DC(u8 param0, BOOL param1)
     return 3;
 }
 
-BattleParams *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1)
 {
     int v0;
     u32 v1;
     u8 v2, v3, v4;
-    BattleParams *v5;
+    FieldBattleDTO *v5;
     Pokemon *v6;
     UnkStruct_ov104_0223A348_sub1 v7;
     UnkStruct_0204B184 *v8;

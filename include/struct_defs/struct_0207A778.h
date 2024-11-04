@@ -3,13 +3,12 @@
 
 #include "struct_decls/struct_02027F8C_decl.h"
 
-#include "overlay006/battle_params.h"
-
+#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "palette.h"
 
 typedef struct {
-    BattleParams *unk_00;
+    FieldBattleDTO *unk_00;
     BgConfig *unk_04;
     Window *unk_08;
     PaletteData *unk_0C;
