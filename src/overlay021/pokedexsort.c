@@ -101,7 +101,7 @@ void PokedexSort_PopulatepokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruc
     param0->dexData = param1->dexData;
     param0->timeOfDay = param1->timeOfDay;
 
-    if (Pokedex_IsNationalUnlocked(param0->dexData)) {
+    if (Pokedex_IsNationalDexObtained(param0->dexData)) {
         param0->isNationalDexUnlocked = TRUE;
     } else {
         param0->isNationalDexUnlocked = FALSE;
@@ -263,7 +263,7 @@ u32 ov21_021D341C(const UnkStruct_ov21_021D3320 *param0, u32 param1)
 
 BOOL PokedexSort_IsNationalUnlocked(const UnkStruct_ov21_021D3320 *param0)
 {
-    return Pokedex_IsNationalUnlocked(param0->dexData);
+    return Pokedex_IsNationalDexObtained(param0->dexData);
 }
 
 void ov21_021D3434(UnkStruct_ov21_021D3320 *param0, u32 param1)
@@ -658,7 +658,7 @@ static void FilterUnencountered(u16 *encounteredDex, int *caughtStatusLength, co
     *caughtStatusLength = 0;
 
     for (int species = 0; species < pokedexLength; species++) {
-        if (Pokedex_HasEncountered(dexData, fullDex[species])) {
+        if (Pokedex_HasSeenSpecies(dexData, fullDex[species])) {
             encounteredDex[*caughtStatusLength] = fullDex[species];
             (*caughtStatusLength)++;
         }
@@ -677,7 +677,7 @@ static void IntersectingPokedex(u16 *resultingPokedex, int *numResulting, const 
                 if (keepUncaught == TRUE) {
                     break;
                 } else {
-                    if (Pokedex_HasCaught(dexData, pokedex1[dexIndex1])) {
+                    if (Pokedex_HasCaughtSpecies(dexData, pokedex1[dexIndex1])) {
                         break;
                     }
                 }
@@ -696,7 +696,7 @@ static void UpdateCaughtStatus(SortedPokedex *sortedPokedex, const PokedexData *
     sortedPokedex->caughtStatusLength = 0;
 
     for (int dexIndex = 0; dexIndex < caughtStatusLength; dexIndex++) {
-        if (Pokedex_HasCaught(dexData, encounteredPokedex[dexIndex])) {
+        if (Pokedex_HasCaughtSpecies(dexData, encounteredPokedex[dexIndex])) {
             sortedPokedex->caughtStatusArray[sortedPokedex->caughtStatusLength].caughtStatus = CS_CAUGHT;
         } else {
             sortedPokedex->caughtStatusArray[sortedPokedex->caughtStatusLength].caughtStatus = CS_ENCOUNTERED;
