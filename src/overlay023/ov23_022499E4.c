@@ -391,7 +391,7 @@ static void ov23_02249E18(void)
 
     ov23_02242B14();
 
-    if (v0->fieldSystem->taskManager != NULL) {
+    if (v0->fieldSystem->task != NULL) {
         return;
     }
 
@@ -579,7 +579,7 @@ static void ov23_0224A09C(void)
     ov23_02242B14();
     sub_02059524();
 
-    if (v0->fieldSystem->taskManager != NULL) {
+    if (v0->fieldSystem->task != NULL) {
         return;
     }
 

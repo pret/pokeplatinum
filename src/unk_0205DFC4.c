@@ -331,7 +331,7 @@ void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, 
     v1->unk_10 = param3;
     v1->unk_00 = param1;
 
-    FieldTask_InitCall(fieldSystem->taskManager, sub_0205E268, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_0205E268, v1);
 }
 
 static BOOL sub_0205E3AC(FieldTask *param0)
@@ -366,7 +366,7 @@ void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3)
     v1->unk_00 = param1;
     v1->unk_09 = 0;
 
-    FieldTask_InitCall(fieldSystem->taskManager, sub_0205E3AC, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_0205E3AC, v1);
 }
 
 int sub_0205E430(u8 param0, u8 param1)

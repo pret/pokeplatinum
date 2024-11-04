@@ -1530,7 +1530,7 @@ void sub_0203E2FC(FieldSystem *fieldSystem)
     v0.unk_08 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0.unk_0C = sub_02055428(fieldSystem, fieldSystem->location->mapId);
 
-    sub_020985AC(fieldSystem->taskManager, &v0);
+    sub_020985AC(fieldSystem->task, &v0);
 }
 
 BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1)

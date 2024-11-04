@@ -471,7 +471,7 @@ void sub_020562AC(FieldSystem *fieldSystem)
     v0->unk_0C = NULL;
     v0->unk_04 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    FieldTask_InitCall(fieldSystem->taskManager, sub_02056124, v0);
+    FieldTask_InitCall(fieldSystem->task, sub_02056124, v0);
 }
 
 void sub_020562D8(FieldSystem *fieldSystem)

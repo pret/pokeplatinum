@@ -31,10 +31,10 @@ static FieldTask *CreateTaskManager(FieldSystem *fieldSys, FieldTaskFunc taskFun
 
 FieldTask *FieldSystem_CreateTask(FieldSystem *fieldSys, FieldTaskFunc taskFunc, void *taskEnv)
 {
-    GF_ASSERT(fieldSys->taskManager == NULL);
+    GF_ASSERT(fieldSys->task == NULL);
 
     FieldTask *task = CreateTaskManager(fieldSys, taskFunc, taskEnv);
-    fieldSys->taskManager = task;
+    fieldSys->task = task;
 
     return task;
 }
@@ -56,29 +56,29 @@ FieldTask *FieldTask_InitCall(FieldTask *task, FieldTaskFunc taskFunc, void *tas
 {
     FieldTask *next = CreateTaskManager(task->fieldSys, taskFunc, taskEnv);
     next->prev = task;
-    task->fieldSys->taskManager = next;
+    task->fieldSys->task = next;
 
     return next;
 }
 
 BOOL FieldTask_Run(FieldSystem *fieldSys)
 {
-    if (fieldSys->taskManager == NULL) {
+    if (fieldSys->task == NULL) {
         return FALSE;
     }
 
     // Run invocations through the call-stack until it is empty.
-    while (fieldSys->taskManager->func(fieldSys->taskManager) == TRUE) {
-        FieldTask *prev = fieldSys->taskManager->prev;
+    while (fieldSys->task->func(fieldSys->task) == TRUE) {
+        FieldTask *prev = fieldSys->task->prev;
 
-        if (fieldSys->taskManager->dummy14) {
-            Heap_FreeToHeap(fieldSys->taskManager->dummy14);
+        if (fieldSys->task->dummy14) {
+            Heap_FreeToHeap(fieldSys->task->dummy14);
         }
 
-        Heap_FreeToHeap(fieldSys->taskManager->dummy1C);
-        Heap_FreeToHeap(fieldSys->taskManager);
+        Heap_FreeToHeap(fieldSys->task->dummy1C);
+        Heap_FreeToHeap(fieldSys->task);
 
-        fieldSys->taskManager = prev;
+        fieldSys->task = prev;
         if (prev == NULL) {
             return TRUE;
         }
@@ -89,7 +89,7 @@ BOOL FieldTask_Run(FieldSystem *fieldSys)
 
 BOOL FieldSystem_IsRunningTask(FieldSystem *fieldSys)
 {
-    return fieldSys->taskManager != NULL;
+    return fieldSys->task != NULL;
 }
 
 BOOL FieldSystem_IsRunningApplication(FieldSystem *fieldSys)

@@ -21,7 +21,7 @@ struct ScriptContext {
     const ScrCmdFunc *cmdTable;
     u32 cmdTableSize;
     u32 data[4];
-    FieldTask *taskManager;
+    FieldTask *task;
     MessageLoader *loader;
     const u8 *scripts;
     FieldSystem *fieldSystem;
@@ -33,7 +33,7 @@ void ScriptContext_Init(ScriptContext *ctx, const ScrCmdFunc *cmdTable, u32 cmdT
 BOOL ScriptContext_Start(ScriptContext *ctx, const u8 *ptr);
 void ScriptContext_Pause(ScriptContext *ctx, ShouldResumeScriptFunc shouldResume);
 void ScriptContext_Stop(ScriptContext *ctx);
-void ScriptContext_SetTaskManager(ScriptContext *ctx, FieldTask *taskManager);
+void ScriptContext_SetTask(ScriptContext *ctx, FieldTask *taskManager);
 BOOL ScriptContext_Run(ScriptContext *ctx);
 void ScriptContext_Jump(ScriptContext *ctx, const u8 *ptr);
 void ScriptContext_Call(ScriptContext *ctx, const u8 *ptr);

@@ -366,13 +366,13 @@ void ov8_0224997C(FieldSystem *fieldSystem)
         v6->unk_00 = 0;
 
         if (v4 == 239) {
-            FieldTask_InitCall(fieldSystem->taskManager, ov8_02249CD8, v6);
+            FieldTask_InitCall(fieldSystem->task, ov8_02249CD8, v6);
             v8->unk_00 = 2;
         } else if (v4 == 240) {
-            FieldTask_InitCall(fieldSystem->taskManager, ov8_02249B74, v6);
+            FieldTask_InitCall(fieldSystem->task, ov8_02249B74, v6);
             v8->unk_00 = 1;
         } else if (v4 == 241) {
-            FieldTask_InitCall(fieldSystem->taskManager, ov8_02249A94, v6);
+            FieldTask_InitCall(fieldSystem->task, ov8_02249A94, v6);
             v8->unk_00 = 0;
         } else {
             GF_ASSERT(FALSE);
@@ -761,10 +761,10 @@ void ov8_02249FB8(FieldSystem *fieldSystem)
         PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
 
         if (v1.y == (FX32_ONE * 16 * 0)) {
-            FieldTask_InitCall(fieldSystem->taskManager, ov8_0224A018, v0);
+            FieldTask_InitCall(fieldSystem->task, ov8_0224A018, v0);
             v3->unk_00 = 1;
         } else {
-            FieldTask_InitCall(fieldSystem->taskManager, ov8_0224A0E8, v0);
+            FieldTask_InitCall(fieldSystem->task, ov8_0224A0E8, v0);
             v3->unk_00 = 0;
         }
     }
@@ -2206,7 +2206,7 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
         v1->unk_13 = v4;
 
         Sound_PlayEffect(1599);
-        FieldTask_InitCall(fieldSystem->taskManager, ov8_0224ADE8, v0);
+        FieldTask_InitCall(fieldSystem->task, ov8_0224ADE8, v0);
     }
 }
 
@@ -2905,7 +2905,7 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
         v2->unk_14 = v1;
         v2->unk_18 = v3;
 
-        FieldTask_InitCall(fieldSystem->taskManager, ov8_0224B3D4, v2);
+        FieldTask_InitCall(fieldSystem->task, ov8_0224B3D4, v2);
     }
 
     return 1;

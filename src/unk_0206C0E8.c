@@ -46,7 +46,7 @@ void sub_0206C0E8(FieldSystem *fieldSystem)
     v0->unk_0C = 0;
     v0->unk_0D = 0;
 
-    FieldTask_InitCall(fieldSystem->taskManager, sub_0206C120, v0);
+    FieldTask_InitCall(fieldSystem->task, sub_0206C120, v0);
 }
 
 static BOOL sub_0206C120(FieldTask *taskMan)

@@ -138,7 +138,7 @@ BOOL ScrCmd_2CC(ScriptContext *param0)
         }
 
         ;
-        sub_0204F470(param0->taskManager, v8, v0);
+        sub_0204F470(param0->task, v8, v0);
         return 1;
 
     default:;
@@ -232,7 +232,7 @@ BOOL ScrCmd_2CF(ScriptContext *param0)
     ;
     ;
 
-    sub_0204F3D0(param0->taskManager, v0, v1);
+    sub_0204F3D0(param0->task, v0, v1);
     return 1;
 }
 
@@ -295,7 +295,7 @@ void sub_0204F470(FieldTask *param0, void **param1, u8 param2)
     v1->unk_04 = param2;
     v1->unk_08 = param1;
 
-    FieldTask_InitCall(fieldSystem->taskManager, sub_0204F4A4, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_0204F4A4, v1);
     return;
 }
 

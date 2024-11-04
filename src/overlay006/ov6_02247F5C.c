@@ -33,7 +33,7 @@ void ov6_02247F5C(FieldSystem *fieldSystem)
 
 void ov6_02247FBC(FieldSystem *fieldSystem)
 {
-    FieldTask_InitCall(fieldSystem->taskManager, ov6_02247FD0, NULL);
+    FieldTask_InitCall(fieldSystem->task, ov6_02247FD0, NULL);
 }
 
 static BOOL ov6_02247FD0(FieldTask *param0)

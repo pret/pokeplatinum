@@ -465,7 +465,7 @@ static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0)
 void ov5_021EAF50(FieldSystem *fieldSystem)
 {
     UnkStruct_ov5_021EAE78 *v0;
-    FieldTask *v1 = fieldSystem->taskManager;
+    FieldTask *v1 = fieldSystem->task;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021EAE78));
     ov5_021EAEE0(v0);

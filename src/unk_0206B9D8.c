@@ -214,7 +214,7 @@ void sub_0206BBFC(FieldTask *param0, void **param1, u8 param2, u8 param3, u8 par
     v1->unk_0D = param7;
     v1->unk_14 = param1;
 
-    FieldTask_InitCall(fieldSystem->taskManager, sub_0206BB94, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_0206BB94, v1);
 }
 
 static int sub_0206BC48(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
@@ -279,7 +279,7 @@ void sub_0206BCE4(FieldTask *param0, u16 param1, u16 param2, u16 param3)
     v1->unk_14 = param3;
     v1->unk_10 = param2;
 
-    FieldTask_InitCall(fieldSystem->taskManager, sub_0206BC94, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_0206BC94, v1);
 }
 
 static BOOL sub_0206BD1C(FieldTask *param0)
@@ -322,7 +322,7 @@ void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2)
     v1->unk_00 = param1;
     v1->unk_02 = param2;
 
-    FieldTask_InitCall(fieldSystem->taskManager, sub_0206BD1C, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_0206BD1C, v1);
 }
 
 u16 sub_0206BDBC(SaveData *param0)

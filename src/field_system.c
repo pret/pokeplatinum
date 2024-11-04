@@ -158,7 +158,7 @@ static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
     fieldSystem->processManager->pause = FALSE;
     fieldSystem->processManager->kill = FALSE;
     fieldSystem->saveData = ((ApplicationArgs *)OverlayManager_Args(ovyManager))->saveData;
-    fieldSystem->taskManager = NULL;
+    fieldSystem->task = NULL;
     fieldSystem->location = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();
 
@@ -220,7 +220,7 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 
     // Does not match with return (expression)
     if (fieldSystem->processManager->kill
-        && !fieldSystem->taskManager
+        && !fieldSystem->task
         && !fieldSystem->processManager->parent
         && !fieldSystem->processManager->child) {
         return TRUE;

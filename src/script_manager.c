@@ -52,7 +52,7 @@ void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object
 
 void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
 {
-    ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->taskManager);
+    ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
     ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
 
     trainer->sightRange = sightRange;
@@ -187,7 +187,7 @@ static void sub_0203EAF4(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scrip
 
     ScriptContext_Start(ctx, ctx->scripts);
     sub_0203F0E4(ctx, offsetID);
-    ScriptContext_SetTaskManager(ctx, fieldSystem->taskManager);
+    ScriptContext_SetTask(ctx, fieldSystem->task);
 }
 
 static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID)
@@ -434,7 +434,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
 
 void *FieldSystem_GetScriptMemberPtr(FieldSystem *fieldSystem, u32 member)
 {
-    ScriptManager *script = FieldTask_GetEnv(fieldSystem->taskManager);
+    ScriptManager *script = FieldTask_GetEnv(fieldSystem->task);
 
     GF_ASSERT(script->magic == SCRIPT_MANAGER_MAGIC_NUMBER);
 
@@ -443,7 +443,7 @@ void *FieldSystem_GetScriptMemberPtr(FieldSystem *fieldSystem, u32 member)
 
 void sub_0203F0C0(FieldSystem *fieldSystem)
 {
-    ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->taskManager);
+    ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
 
     if (sub_0203A9C8(fieldSystem) == 1) {
         scriptManager->function = sub_0203AB00;

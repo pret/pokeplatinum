@@ -654,7 +654,7 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1)
 void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
 {
     UnkStruct_0205A0D8 *v0;
-    FieldTask *v1 = fieldSystem->taskManager;
+    FieldTask *v1 = fieldSystem->task;
 
     if (v1) {
         return;
@@ -737,7 +737,7 @@ static void sub_0205AC28(UnkStruct_0205A0D8 *param0)
 
 static UnkStruct_0205A0D8 *sub_0205AC74(FieldSystem *fieldSystem)
 {
-    return FieldTask_GetEnv(fieldSystem->taskManager);
+    return FieldTask_GetEnv(fieldSystem->task);
 }
 
 static void sub_0205AC80(UnkStruct_0205A0D8 *param0, BOOL param1)

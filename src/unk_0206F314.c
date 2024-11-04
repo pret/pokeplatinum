@@ -911,5 +911,5 @@ void sub_020703FC(FieldTask *param0, u16 param1)
     v1->unk_04 = param1;
     v1->unk_08 = NULL;
 
-    FieldTask_InitCall(fieldSystem->taskManager, sub_020702D0, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_020702D0, v1);
 }

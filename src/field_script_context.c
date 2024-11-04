@@ -27,7 +27,7 @@ void ScriptContext_Init(ScriptContext *ctx, const ScrCmdFunc *cmdTable, u32 cmdT
         ctx->stack[i] = NULL;
     }
 
-    ctx->taskManager = NULL;
+    ctx->task = NULL;
 }
 
 BOOL ScriptContext_Start(ScriptContext *ctx, const u8 *ptr)
@@ -50,9 +50,9 @@ void ScriptContext_Stop(ScriptContext *ctx)
     ctx->scriptPtr = NULL;
 }
 
-void ScriptContext_SetTaskManager(ScriptContext *ctx, FieldTask *taskManager)
+void ScriptContext_SetTask(ScriptContext *ctx, FieldTask *task)
 {
-    ctx->taskManager = taskManager;
+    ctx->task = task;
 }
 
 BOOL ScriptContext_Run(ScriptContext *ctx)

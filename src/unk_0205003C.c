@@ -103,7 +103,7 @@ BOOL ScrCmd_2D9(ScriptContext *param0)
             v0 = 2;
         }
 
-        sub_020502E0(param0->taskManager, v8, v0);
+        sub_020502E0(param0->task, v8, v0);
         return 1;
     default:
         GF_ASSERT(FALSE);
@@ -148,7 +148,7 @@ BOOL ScrCmd_2DA(ScriptContext *param0)
     u16 v1 = ScriptContext_GetVar(param0);
     u16 *v2 = ScriptContext_GetVarPointer(param0);
 
-    sub_02050224(param0->taskManager, v0, v1, v2);
+    sub_02050224(param0->task, v0, v1, v2);
     return 1;
 }
 
@@ -210,7 +210,7 @@ void sub_020502E0(FieldTask *param0, void **param1, u8 param2)
     v1->unk_04 = param2;
     v1->unk_0C = param1;
 
-    FieldTask_InitCall(fieldSystem->taskManager, sub_02050314, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_02050314, v1);
     return;
 }
 

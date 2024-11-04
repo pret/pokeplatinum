@@ -204,7 +204,7 @@ BOOL ScrCmd_101(ScriptContext *param0)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    sub_020933F8(param0->taskManager, *v0);
+    sub_020933F8(param0->task, *v0);
     return 1;
 }
 
@@ -428,6 +428,6 @@ BOOL ScrCmd_115(ScriptContext *param0)
 
 BOOL ScrCmd_116(ScriptContext *param0)
 {
-    ov6_02247A0C(param0->taskManager);
+    ov6_02247A0C(param0->task);
     return 1;
 }

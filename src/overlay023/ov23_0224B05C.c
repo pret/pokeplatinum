@@ -959,7 +959,7 @@ static UnkStruct_ov23_0224BA48 *ov23_0224BCC4(FieldSystem *fieldSystem, int para
 {
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
-    if (fieldSystem->taskManager == NULL) {
+    if (fieldSystem->task == NULL) {
         v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0224BA48));
         MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 

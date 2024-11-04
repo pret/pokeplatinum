@@ -295,7 +295,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         (param1->unk_00)++;
     } break;
     case 1:
-        sub_02056B30(fieldSystem->taskManager, 0, 9, 1, 0x0, 6, 1, 11);
+        sub_02056B30(fieldSystem->task, 0, 9, 1, 0x0, 6, 1, 11);
         {
             int v9;
             int v10;
@@ -813,7 +813,7 @@ void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1)
     u8 *v0 = Heap_AllocFromHeapAtEnd(4, sizeof(u8));
 
     *v0 = param1;
-    FieldTask_InitCall(fieldSystem->taskManager, ov5_021D4BC8, v0);
+    FieldTask_InitCall(fieldSystem->task, ov5_021D4BC8, v0);
 }
 
 void ov5_021D4D68(FieldSystem *fieldSystem, const u8 param1)

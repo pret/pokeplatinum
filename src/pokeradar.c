@@ -270,7 +270,7 @@ void sub_0206979C(FieldSystem *fieldSystem)
     GrassPatch *patch;
     int patchRing;
 
-    if (!fieldSystem->chain->active || fieldSystem->taskManager != NULL) {
+    if (!fieldSystem->chain->active || fieldSystem->task != NULL) {
         return;
     }
 
