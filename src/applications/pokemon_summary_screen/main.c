@@ -474,7 +474,7 @@ static void SetAlphaBlending(void)
 static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *summaryScreen)
 {
     // ravetodo rename msg bank
-    summaryScreen->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_unk_0455, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokemon_summary_screen, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->ribbonLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_ribbon_names, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->unk_684 = sub_0200C440(1, 2, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->strFormatter = StringTemplate_Default(HEAP_ID_POKEMON_SUMMARY_SCREEN);

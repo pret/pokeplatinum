@@ -452,7 +452,7 @@ message_bank_files = files(
     'message_bank_unk_0452.gmm',
     'message_bank_unk_0453.gmm',
     'message_bank_unk_0454.gmm',
-    'message_bank_unk_0455.gmm',
+    'message_bank_pokemon_summary_screen.gmm',
     'message_bank_unk_0456.gmm',
     'message_bank_poketch_app_names.gmm',
     'message_bank_unk_0458.gmm',
