@@ -498,7 +498,7 @@ static int sub_020855C4(void *param0)
     StringTemplate_Format(v0->unk_6A0, v0->unk_6A4, v2);
     Strbuf_Free(v2);
 
-    v4 = PokemonSummary_StatusIconAnimIdx(v1);
+    v4 = PokemonSummaryScreen_StatusIconAnimIdx(v1);
     sub_02083014(v0, v0->unk_B11, v4);
 
     if (v4 == 7) {
@@ -685,7 +685,7 @@ static int sub_02085A70(void *param0)
     StringTemplate_Format(v0->unk_6A0, v0->unk_6A4, v2);
     Strbuf_Free(v2);
 
-    v4 = PokemonSummary_StatusIconAnimIdx(v1);
+    v4 = PokemonSummaryScreen_StatusIconAnimIdx(v1);
     sub_02083014(v0, v0->unk_B11, v4);
 
     if (v4 == 7) {

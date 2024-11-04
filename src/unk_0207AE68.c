@@ -506,7 +506,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             param0->unk_3C->move = param0->unk_6C;
             param0->unk_3C->mode = 2;
             param0->unk_3C->chatotCry = NULL;
-            PokemonSummary_FlagVisiblePages(param0->unk_3C, Unk_020F0A2C);
+            PokemonSummaryScreen_FlagVisiblePages(param0->unk_3C, Unk_020F0A2C);
             sub_0207C624(param0);
             param0->unk_64++;
         }

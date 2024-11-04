@@ -128,10 +128,10 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     v0 = Heap_AllocFromHeapAtEnd(param5, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
-    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
 
     v0->dexMode = sub_0207A274(v1);
-    v0->showContest = PokemonSummary_ShowContestData(v1);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->options = SaveData_Options(v1);
     v0->monData = param2;
     v0->dataType = 1;
@@ -141,7 +141,7 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     v0->mode = param4;
     v0->ribbons = sub_0202D79C(v1);
 
-    PokemonSummary_FlagVisiblePages(v0, v2);
+    PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
 
     param0->unk_00 = v0;

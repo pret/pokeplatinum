@@ -1219,10 +1219,10 @@ static void ov106_02242CA4(UnkStruct_ov106_02243118 *param0)
     param0->unk_BC->pos = 0;
     param0->unk_BC->move = 0;
     param0->unk_BC->dexMode = sub_0207A274(param0->unk_B8);
-    param0->unk_BC->showContest = PokemonSummary_ShowContestData(param0->unk_B8);
+    param0->unk_BC->showContest = PokemonSummaryScreen_ShowContestData(param0->unk_B8);
 
-    PokemonSummary_FlagVisiblePages(param0->unk_BC, Unk_ov106_02243798);
-    PokemonSummary_SetPlayerProfile(param0->unk_BC, SaveData_GetTrainerInfo(param0->unk_B8));
+    PokemonSummaryScreen_FlagVisiblePages(param0->unk_BC, Unk_ov106_02243798);
+    PokemonSummaryScreen_SetPlayerProfile(param0->unk_BC, SaveData_GetTrainerInfo(param0->unk_B8));
 
     return;
 }

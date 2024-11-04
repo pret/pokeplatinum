@@ -342,7 +342,7 @@ void sub_02091F8C(PokemonSummaryScreen *param0)
 
     param0->monSprite.spriteManager = sub_0200762C(19);
 
-    v1 = PokemonSummary_MonData(param0);
+    v1 = PokemonSummaryScreen_MonData(param0);
 
     if (param0->data->dataType == 2) {
         BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);

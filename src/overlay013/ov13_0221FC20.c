@@ -880,7 +880,7 @@ static u8 ov13_022208A4(UnkStruct_ov13_022213F0 *param0)
             param0->unk_207C[0] = (u16)Pokemon_GetValue(param0->unk_04[v0->unk_11].unk_00, MON_DATA_MOVE1_CUR_PP + v0->unk_34, NULL);
             param0->unk_2078 = 2;
         } else {
-            param0->unk_04[v0->unk_11].unk_17_3 = PokemonSummary_StatusIconAnimIdx(param0->unk_04[v0->unk_11].unk_00);
+            param0->unk_04[v0->unk_11].unk_17_3 = PokemonSummaryScreen_StatusIconAnimIdx(param0->unk_04[v0->unk_11].unk_00);
 
             if (param0->unk_04[v0->unk_11].unk_17_3 == 7) {
                 SpriteActor_EnableObject(param0->unk_1FB4[13 + v0->unk_11], 0);
@@ -1220,7 +1220,7 @@ static void ov13_02220F98(UnkStruct_ov13_022213F0 *param0)
         }
 
         param0->unk_04[v0].unk_17_0 = Pokemon_GetGender(param0->unk_04[v0].unk_00);
-        param0->unk_04[v0].unk_17_3 = PokemonSummary_StatusIconAnimIdx(param0->unk_04[v0].unk_00);
+        param0->unk_04[v0].unk_17_3 = PokemonSummaryScreen_StatusIconAnimIdx(param0->unk_04[v0].unk_00);
         param0->unk_04[v0].unk_17_7 = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_IS_EGG, NULL);
         param0->unk_04[v0].unk_18 = (u16)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_ABILITY, NULL);
         param0->unk_04[v0].unk_1A = (u16)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_HELD_ITEM, NULL);

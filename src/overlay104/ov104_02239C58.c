@@ -201,7 +201,7 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_AC->options = SaveData_Options(param1->unk_00);
     param1->unk_AC->monData = Party_GetFromSavedata(param1->unk_00);
     param1->unk_AC->dexMode = sub_0207A274(param1->unk_00);
-    param1->unk_AC->showContest = PokemonSummary_ShowContestData(param1->unk_00);
+    param1->unk_AC->showContest = PokemonSummaryScreen_ShowContestData(param1->unk_00);
     param1->unk_AC->dataType = 1;
     param1->unk_AC->pos = param1->unk_9F;
     param1->unk_AC->max = (u8)Party_GetCurrentCount(param1->unk_AC->monData);
@@ -209,8 +209,8 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_AC->mode = 0;
     param1->unk_AC->ribbons = sub_0202D79C(param1->unk_00);
 
-    PokemonSummary_FlagVisiblePages(param1->unk_AC, v0);
-    PokemonSummary_SetPlayerProfile(param1->unk_AC, SaveData_GetTrainerInfo(param1->unk_00));
+    PokemonSummaryScreen_FlagVisiblePages(param1->unk_AC, v0);
+    PokemonSummaryScreen_SetPlayerProfile(param1->unk_AC, SaveData_GetTrainerInfo(param1->unk_00));
     sub_0209B988(param0, &Unk_020F410C, param1->unk_AC, 0, NULL);
 
     return;

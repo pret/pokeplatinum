@@ -1517,7 +1517,7 @@ static int ov91_021D261C(UnkStruct_ov91_021D0ED8 *param0)
     param0->unk_14C.showContest = 1;
     param0->unk_14C.chatotCry = NULL;
 
-    PokemonSummary_FlagVisiblePages(&param0->unk_14C, v0);
+    PokemonSummaryScreen_FlagVisiblePages(&param0->unk_14C, v0);
 
     param0->unk_17C = OverlayManager_New(&Unk_020F410C, &param0->unk_14C, 67);
     return 12;

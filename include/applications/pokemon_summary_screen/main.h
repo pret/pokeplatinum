@@ -286,7 +286,7 @@ typedef struct PokemonSummaryScreen {
 
     u8 buttonCount;
     u8 buttonState;
-    u8 buttonPos;
+    u8 buttonCurrent;
 
     u8 ribbonCol;
     u8 ribbonRow;
@@ -294,17 +294,17 @@ typedef struct PokemonSummaryScreen {
     u8 ribbonNum;
 } PokemonSummaryScreen;
 
-BOOL PokemonSummary_ShowContestData(SaveData *saveData);
-void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *pages);
-u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page);
-u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *summaryScreen);
-void *PokemonSummary_MonData(PokemonSummaryScreen *summaryScreen);
+BOOL PokemonSummaryScreen_ShowContestData(SaveData *saveData);
+void PokemonSummaryScreen_FlagVisiblePages(PokemonSummary *summary, const u8 *pages);
+u8 PokemonSummaryScreen_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page);
+u8 PokemonSummaryScreen_CountVisiblePages(PokemonSummaryScreen *summaryScreen);
+void *PokemonSummaryScreen_MonData(PokemonSummaryScreen *summaryScreen);
 u8 PokemonSummaryScreen_RibbonNumAt(PokemonSummaryScreen *summaryScreen, u8 col);
-void PokemonSummary_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo);
-u32 PokemonSummary_StatusIconChar(void);
-u32 PokemonSummary_StatusIconPltt(void);
-u32 PokemonSummary_StatusIconCell(void);
-u32 PokemonSummary_StatusIconAnim(void);
-u32 PokemonSummary_StatusIconAnimIdx(Pokemon *mon);
+void PokemonSummaryScreen_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo);
+u32 PokemonSummaryScreen_StatusIconChar(void);
+u32 PokemonSummaryScreen_StatusIconPltt(void);
+u32 PokemonSummaryScreen_StatusIconCell(void);
+u32 PokemonSummaryScreen_StatusIconAnim(void);
+u32 PokemonSummaryScreen_StatusIconAnimIdx(Pokemon *mon);
 
 #endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_MAIN_H

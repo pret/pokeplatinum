@@ -332,8 +332,8 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     v2->showContest = TRUE;
     v2->chatotCry = NULL;
 
-    PokemonSummary_FlagVisiblePages(v2, v3);
-    PokemonSummary_SetPlayerProfile(v2, param0->unk_0C->unk_0C);
+    PokemonSummaryScreen_FlagVisiblePages(v2, v3);
+    PokemonSummaryScreen_SetPlayerProfile(v2, param0->unk_0C->unk_0C);
 
     param0->unk_14 = OverlayManager_New(&Unk_020F410C, v1, param0->unk_00);
     param0->unk_10 = (void *)v2;
@@ -433,8 +433,8 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
     v1->showContest = TRUE;
     v1->chatotCry = NULL;
 
-    PokemonSummary_FlagVisiblePages(v1, v3);
-    PokemonSummary_SetPlayerProfile(v1, param0->unk_0C->unk_0C);
+    PokemonSummaryScreen_FlagVisiblePages(v1, v3);
+    PokemonSummaryScreen_SetPlayerProfile(v1, param0->unk_0C->unk_0C);
 
     param0->unk_14 = OverlayManager_New(&Unk_020F410C, v1, param0->unk_00);
     param0->unk_10 = (void *)v1;

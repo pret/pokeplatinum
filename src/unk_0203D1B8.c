@@ -555,11 +555,11 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
     v0->mode = 0;
     v0->ribbons = sub_0202D79C(fieldSystem->saveData);
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
-    v0->showContest = PokemonSummary_ShowContestData(fieldSystem->saveData);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->chatotCry = NULL;
 
-    PokemonSummary_FlagVisiblePages(v0, Unk_020EA02C);
-    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA02C);
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
 
     return v0;
@@ -596,11 +596,11 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2)
     v0->move = 0;
     v0->mode = param2;
     v0->dexMode = sub_0207A274(v1);
-    v0->showContest = PokemonSummary_ShowContestData(v1);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->ribbons = sub_0202D79C(v1);
 
-    PokemonSummary_FlagVisiblePages(v0, v2);
-    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
+    PokemonSummaryScreen_FlagVisiblePages(v0, v2);
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
 
     return v0;
 }
@@ -625,10 +625,10 @@ void *sub_0203D6E4(int param0, FieldSystem *fieldSystem, u8 param2)
     v0->move = 0;
     v0->mode = 2;
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
-    v0->showContest = PokemonSummary_ShowContestData(fieldSystem->saveData);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
 
-    PokemonSummary_FlagVisiblePages(v0, Unk_020EA160);
-    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA160);
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
     sub_0203D334(fieldSystem, v0);
 
     return v0;
@@ -1075,7 +1075,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
 
         if ((v4 = sub_02076B94(NULL, v2->unk_04.unk_40, 1, v3, &v5)) != 0) {
             Heap_Create(3, 26, 0x30000);
-            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_Options(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v5, 0x4, 26);
+            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v5, 0x4, 26);
             v2->unk_00 = 6;
         } else {
             v2->unk_00 = 7;
@@ -1373,7 +1373,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_24 = SaveData_Options(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v0->unk_2C = fieldSystem->journal;
-    v0->unk_3C = PokemonSummary_ShowContestData(fieldSystem->saveData);
+    v0->unk_3C = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->unk_20 = fieldSystem->saveData;
     v0->unk_34 = sub_0207A274(fieldSystem->saveData);
     v0->unk_38 = sub_02039058(v0->unk_14);
@@ -1777,8 +1777,8 @@ void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
     v0->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
     v0->chatotCry = NULL;
 
-    PokemonSummary_FlagVisiblePages(v0, Unk_020EA15C);
-    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA15C);
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
 
     return v0;

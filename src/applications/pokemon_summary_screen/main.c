@@ -137,7 +137,7 @@ const OverlayManagerTemplate Unk_020F410C = {
     FS_OVERLAY_ID_NONE
 };
 
-BOOL PokemonSummary_ShowContestData(SaveData *saveData)
+BOOL PokemonSummaryScreen_ShowContestData(SaveData *saveData)
 {
     return SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(saveData));
 }
@@ -846,7 +846,7 @@ static int HandleInput_Subscreen(PokemonSummaryScreen *summaryScreen)
     }
 
     if (summaryScreen->buttonState == 1) {
-        u8 page = PokemonSummaryScreen_GetSubscreenButtonPage(summaryScreen, summaryScreen->buttonPos);
+        u8 page = PokemonSummaryScreen_GetSubscreenButtonPage(summaryScreen, summaryScreen->buttonCurrent);
 
         if (page == PSS_PAGE_EXIT) {
             summaryScreen->subscreenExit = TRUE;
@@ -871,11 +871,11 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
         Pokemon *mon;
 
         if (summaryScreen->data->dataType == PSS_DATA_BOX_MON) {
-            boxMon = PokemonSummary_MonData(summaryScreen);
+            boxMon = PokemonSummaryScreen_MonData(summaryScreen);
             mon = Pokemon_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
             Pokemon_FromBoxPokemon(boxMon, mon);
         } else {
-            mon = PokemonSummary_MonData(summaryScreen);
+            mon = PokemonSummaryScreen_MonData(summaryScreen);
         }
 
         sub_02098EF8(summaryScreen->data->poffin, mon);
@@ -981,7 +981,7 @@ static u8 ScreenTransitionIsDone(PokemonSummaryScreen *dummy)
 
 static void SetMonData(PokemonSummaryScreen *summaryScreen)
 {
-    void *monData = PokemonSummary_MonData(summaryScreen);
+    void *monData = PokemonSummaryScreen_MonData(summaryScreen);
 
     if (summaryScreen->data->dataType == PSS_DATA_BOX_MON) {
         SetMonDataFromBoxMon(summaryScreen, monData, &summaryScreen->monData);
@@ -1078,7 +1078,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
 
     monData->markings = Pokemon_GetValue(mon, MON_DATA_MARKS, NULL);
     monData->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-    monData->status = PokemonSummary_StatusIconAnimIdx(mon);
+    monData->status = PokemonSummaryScreen_StatusIconAnimIdx(mon);
 
     if (Pokemon_CanSpreadPokerus(mon) == TRUE) {
         monData->pokerus = 2;
@@ -1167,7 +1167,7 @@ static void SetupInitialPageGfx(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *pages)
+void PokemonSummaryScreen_FlagVisiblePages(PokemonSummary *summary, const u8 *pages)
 {
     summary->pageFlag = 0;
 
@@ -1199,7 +1199,7 @@ static void TryHideContestPages(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page)
+u8 PokemonSummaryScreen_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page)
 {
     if (summaryScreen->monData.isEgg != FALSE && page != PSS_PAGE_MEMO && page != PSS_PAGE_EXIT) {
         return FALSE;
@@ -1208,7 +1208,7 @@ u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page)
     return summaryScreen->data->pageFlag & (1 << page);
 }
 
-u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *summaryScreen)
+u8 PokemonSummaryScreen_CountVisiblePages(PokemonSummaryScreen *summaryScreen)
 {
     u8 page;
     u8 countVisible = 0;
@@ -1302,7 +1302,7 @@ static u8 CheckSubscreenPressAndSetButton(PokemonSummaryScreen *summaryScreen)
     }
 
     summaryScreen->buttonCount = 0;
-    summaryScreen->buttonPos = button;
+    summaryScreen->buttonCurrent = button;
     summaryScreen->buttonState = 0;
 
     return TRUE;
@@ -1560,7 +1560,7 @@ static s8 TryAdvanceBoxMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
     return monIndex;
 }
 
-void *PokemonSummary_MonData(PokemonSummaryScreen *summaryScreen)
+void *PokemonSummaryScreen_MonData(PokemonSummaryScreen *summaryScreen)
 {
     switch (summaryScreen->data->dataType) {
     case PSS_DATA_MON:
@@ -1739,7 +1739,7 @@ static void UpdateContestMoveInfo(PokemonSummaryScreen *summaryScreen, u32 move)
 
 static void SwapSelectedMoves(PokemonSummaryScreen *summaryScreen)
 {
-    void *monData = PokemonSummary_MonData(summaryScreen);
+    void *monData = PokemonSummaryScreen_MonData(summaryScreen);
 
     if (summaryScreen->data->dataType == PSS_DATA_BOX_MON) {
         BoxPokemon_SwapMoveSlots(monData, summaryScreen->cursor, summaryScreen->cursorTmp);
@@ -2125,34 +2125,34 @@ static int TryFeedPoffin(PokemonSummaryScreen *summaryScreen)
     return PSS_STATE_TRANSITION_OUT;
 }
 
-void PokemonSummary_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo)
+void PokemonSummaryScreen_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo)
 {
     summary->OTName = TrainerInfo_Name(trainerInfo);
     summary->OTID = TrainerInfo_ID(trainerInfo);
     summary->OTGender = (u8)TrainerInfo_Gender(trainerInfo);
 }
 
-u32 PokemonSummary_StatusIconChar(void)
+u32 PokemonSummaryScreen_StatusIconChar(void)
 {
     return 64;
 }
 
-u32 PokemonSummary_StatusIconPltt(void)
+u32 PokemonSummaryScreen_StatusIconPltt(void)
 {
     return 65;
 }
 
-u32 PokemonSummary_StatusIconCell(void)
+u32 PokemonSummaryScreen_StatusIconCell(void)
 {
     return 63;
 }
 
-u32 PokemonSummary_StatusIconAnim(void)
+u32 PokemonSummaryScreen_StatusIconAnim(void)
 {
     return 62;
 }
 
-u32 PokemonSummary_StatusIconAnimIdx(Pokemon *mon)
+u32 PokemonSummaryScreen_StatusIconAnimIdx(Pokemon *mon)
 {
     u32 statusCondition = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
 

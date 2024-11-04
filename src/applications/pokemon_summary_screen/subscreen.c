@@ -194,7 +194,7 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         PokemonSummaryScreen_UpdateSubscreenButtonGfx(summaryScreen);
-        UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonPos], 2);
+        UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonCurrent], 2);
         Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, 4);
         sub_0208F600(summaryScreen);
         summaryScreen->buttonCount = 0;
@@ -213,13 +213,13 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
 
         sub_0208F684(summaryScreen);
 
-        if (sub_02092224(summaryScreen) != summaryScreen->buttonPos) {
+        if (sub_02092224(summaryScreen) != summaryScreen->buttonCurrent) {
             if (summaryScreen->monData.isEgg != FALSE
-                && buttonList[summaryScreen->buttonPos].page != PSS_PAGE_MEMO
-                && buttonList[summaryScreen->buttonPos].page != PSS_PAGE_EXIT) {
-                UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonPos], 0);
+                && buttonList[summaryScreen->buttonCurrent].page != PSS_PAGE_MEMO
+                && buttonList[summaryScreen->buttonCurrent].page != PSS_PAGE_EXIT) {
+                UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonCurrent], 0);
             } else {
-                UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonPos], 1);
+                UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonCurrent], 1);
             }
 
             Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, 4);
@@ -234,8 +234,8 @@ void PokemonSummaryScreen_CalcSubscreenButtonCirclePos(PokemonSummaryScreen *sum
 {
     const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
 
-    *outX = buttonList[summaryScreen->buttonPos].x * 8 + (5 * 8) / 2;
-    *outY = buttonList[summaryScreen->buttonPos].y * 8 + (5 * 8) / 2;
+    *outX = buttonList[summaryScreen->buttonCurrent].x * 8 + (5 * 8) / 2;
+    *outY = buttonList[summaryScreen->buttonCurrent].y * 8 + (5 * 8) / 2;
 }
 
 u8 PokemonSummaryScreen_GetSubscreenButtonPage(PokemonSummaryScreen *summaryScreen, u8 button)

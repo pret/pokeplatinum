@@ -555,7 +555,7 @@ static void sub_020908CC(PokemonSummaryScreen *param0)
     Window_FillTilemap(&param0->extraWindows[0], 0);
 
     {
-        void *v1 = PokemonSummary_MonData(param0);
+        void *v1 = PokemonSummaryScreen_MonData(param0);
         BOOL v2 = sub_02090098(param0);
 
         if (param0->data->dataType == 2) {

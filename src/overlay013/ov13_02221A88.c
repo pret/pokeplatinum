@@ -1136,7 +1136,7 @@ static void ov13_0222339C(UnkStruct_ov13_022213F0 *param0)
             ov13_02223448(param0, v0);
         }
 
-        if (PokemonSummary_StatusIconAnimIdx(param0->unk_04[v0].unk_00) != 7) {
+        if (PokemonSummaryScreen_StatusIconAnimIdx(param0->unk_04[v0].unk_00) != 7) {
             continue;
         }
 

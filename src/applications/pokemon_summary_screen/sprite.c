@@ -231,7 +231,7 @@ static u8 sub_0208ECB8(PokemonSummaryScreen *param0)
     u8 v0, v1 = 0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        if (PokemonSummary_PageIsVisble(param0, v0) != 0) {
+        if (PokemonSummaryScreen_PageIsVisble(param0, v0) != 0) {
             v1++;
         }
     }
@@ -253,7 +253,7 @@ void sub_0208ECF4(PokemonSummaryScreen *param0)
     v6 = 0;
 
     for (v5 = 0; v5 < 8; v5++) {
-        if (PokemonSummary_PageIsVisble(param0, v5) == 0) {
+        if (PokemonSummaryScreen_PageIsVisble(param0, v5) == 0) {
             CellActor_SetDrawFlag(v0[v5], 0);
             continue;
         }
@@ -289,7 +289,7 @@ void sub_0208EDC4(PokemonSummaryScreen *param0)
 {
     u8 v0;
 
-    if (PokemonSummary_CountVisiblePages(param0) <= 1) {
+    if (PokemonSummaryScreen_CountVisiblePages(param0) <= 1) {
         PokemonSummaryScreen_UpdatePageArrows(param0, FALSE);
     }
 
@@ -301,7 +301,7 @@ void sub_0208EDC4(PokemonSummaryScreen *param0)
 
 void PokemonSummaryScreen_UpdatePageArrows(PokemonSummaryScreen *summaryScreen, BOOL showArrows)
 {
-    if (PokemonSummary_CountVisiblePages(summaryScreen) <= 1) {
+    if (PokemonSummaryScreen_CountVisiblePages(summaryScreen) <= 1) {
         showArrows = FALSE;
     }
 
@@ -659,7 +659,7 @@ void PokemonSummaryScreen_UpdateAButtonSprite(PokemonSummaryScreen *summaryScree
 
 void sub_0208F71C(PokemonSummaryScreen *param0)
 {
-    void *v0 = PokemonSummary_MonData(param0);
+    void *v0 = PokemonSummaryScreen_MonData(param0);
     u32 v1;
 
     if (param0->data->dataType == 2) {

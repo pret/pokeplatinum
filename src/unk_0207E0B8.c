@@ -1069,7 +1069,7 @@ u8 sub_0207EF14(GameWindowLayout *param0, u8 param1)
 
     param0->unk_704[param1].unk_0E_13 = Pokemon_GetGender(v0);
     param0->unk_704[param1].unk_29 = 1;
-    param0->unk_704[param1].unk_0E_0 = (u8)PokemonSummary_StatusIconAnimIdx(v0);
+    param0->unk_704[param1].unk_0E_0 = (u8)PokemonSummaryScreen_StatusIconAnimIdx(v0);
 
     sub_0207F094(param0, v0, param1);
 

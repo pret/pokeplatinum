@@ -1732,24 +1732,24 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
         param0->unk_0C.max = Party_GetCurrentCount(param0->unk_08->unk_08);
 
         param0->unk_0C.chatotCry = NULL;
-        PokemonSummary_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId()));
+        PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId()));
     } else {
         param0->unk_0C.monData = param0->unk_2274;
         param0->unk_0C.max = Party_GetCurrentCount(param0->unk_2274);
         param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[CommSys_CurNetId() ^ 1];
-        PokemonSummary_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
+        PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
     }
 
     param0->unk_0C.dataType = 1;
     param0->unk_0C.pos = param0->unk_88[0] % 6;
     param0->unk_0C.mode = 1;
     param0->unk_0C.move = 0;
-    param0->unk_0C.showContest = PokemonSummary_ShowContestData(param0->unk_08->unk_10);
+    param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->unk_10);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
     param0->unk_0C.options = param0->unk_08->unk_18;
     param0->unk_0C.ribbons = sub_0202D79C(param0->unk_08->unk_10);
 
-    PokemonSummary_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
+    PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
     param0->unk_40 = OverlayManager_New(&Unk_020F410C, &param0->unk_0C, 26);
     param0->unk_3C = param1;
