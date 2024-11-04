@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_022515D8.h"
@@ -33,6 +32,7 @@
 #include "field_system.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "location.h"
 #include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
@@ -228,7 +228,7 @@ int ov23_02251414(void)
 
 static BOOL ov23_02251418(int param0, UnkStruct_ov23_02250CD4 *param1)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(param1->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(param1->fieldSystem));
     int v1;
 
     v1 = sub_02028B88(v0, param0);
@@ -243,7 +243,7 @@ static BOOL ov23_02251418(int param0, UnkStruct_ov23_02250CD4 *param1)
 
 static int ov23_0225144C(int param0, UnkStruct_ov23_02250CD4 *param1)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(param1->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(param1->fieldSystem));
     int v1;
 
     if (sub_02028AFC(v0, param0)) {
@@ -702,7 +702,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0->fieldSystem)), sub_020298B0(FieldSystem_SaveData(v0->fieldSystem)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(v0->fieldSystem)), sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:

@@ -4,13 +4,12 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "constants/heap.h"
+#include "consts/map.h"
 
-#include "struct_defs/struct_0203CC84.h"
-
-#include "field/field_system_sub1_decl.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay005/const_ov5_021F89B0.h"
 #include "overlay005/field_control.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1B08.h"
@@ -28,11 +27,11 @@
 #include "field_system.h"
 #include "game_overlay.h"
 #include "heap.h"
+#include "main.h"
 #include "map_header_data.h"
 #include "overlay_manager.h"
 #include "pokeradar.h"
 #include "savedata.h"
-#include "unk_02000C88.h"
 #include "unk_02039C80.h"
 #include "unk_020508D4.h"
 #include "unk_0205F180.h"
@@ -42,158 +41,143 @@
 FS_EXTERN_OVERLAY(overlay5);
 FS_EXTERN_OVERLAY(overlay77);
 
-typedef struct FieldSystem_sub1_t {
-    OverlayManager *unk_00;
-    OverlayManager *unk_04;
-    BOOL unk_08;
-    BOOL unk_0C;
-};
-
-static FieldSystem *FieldSystem_Init(OverlayManager *param0);
-static BOOL FieldSystem_Run(FieldSystem *fieldSystem);
-static void sub_0203CE6C(OverlayManager *param0);
-static void FieldSystem_Control(FieldSystem *fieldSystem);
+static BOOL InitFieldSystemContinue(OverlayManager *ovyManager, int *state);
+static BOOL InitFieldSystemNewGame(OverlayManager *ovyManager, int *state);
+static BOOL ExecuteFieldProcesses(OverlayManager *ovyManager, int *state);
+static BOOL ReturnToTitleScreen(OverlayManager *ovyManager, int *state);
+static FieldSystem *InitFieldSystem(OverlayManager *ovyManager);
+static void TeardownFieldSystem(OverlayManager *ovyManager);
+static void ExecuteAndCleanupIfDone(OverlayManager **ovyManagerPtr);
+static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem);
+static void HandleFieldInput(FieldSystem *fieldSystem);
 
 static FieldSystem *sFieldSystem;
 
-static int FieldSystem_InitContinue(OverlayManager *overlayMan, int *param1)
+static BOOL InitFieldSystemContinue(OverlayManager *ovyManager, int *state)
 {
-    UnkStruct_0203CC84 *v0 = OverlayManager_Args(overlayMan);
+    ApplicationArgs *argv = OverlayManager_Args(ovyManager);
+    sFieldSystem = InitFieldSystem(ovyManager);
 
-    sFieldSystem = FieldSystem_Init(overlayMan);
-
-    if (v0->unk_04) {
+    if (argv->error) {
         FieldSystem_StartLoadMapFromErrorTask(sFieldSystem);
     } else {
         FieldSystem_SetLoadSavedGameMapTask(sFieldSystem);
     }
 
-    v0->unk_04 = 0;
-    return 1;
+    argv->error = FALSE;
+    return TRUE;
 }
 
-static int FieldSystem_InitNewGame(OverlayManager *overlayMan, int *param1)
+static BOOL InitFieldSystemNewGame(OverlayManager *ovyManager, int *state)
 {
-    sFieldSystem = FieldSystem_Init(overlayMan);
+    sFieldSystem = InitFieldSystem(ovyManager);
     FieldSystem_SetLoadNewGameSpawnTask(sFieldSystem);
-    return 1;
+    return TRUE;
 }
 
-static int FieldSystem_Main(OverlayManager *overlayMan, int *param1)
+static BOOL ExecuteFieldProcesses(OverlayManager *ovyManager, int *state)
 {
-    FieldSystem *fieldSystem = OverlayManager_Data(overlayMan);
-
-    if (FieldSystem_Run(fieldSystem)) {
-        return 1;
+    if (HandleInputsEventsAndProcesses(OverlayManager_Data(ovyManager))) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-static int FieldSystem_Exit(OverlayManager *overlayMan, int *param1)
+static BOOL ReturnToTitleScreen(OverlayManager *ovyManager, int *state)
 {
-    sub_0203CE6C(overlayMan);
-    sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
-    return 1;
+    TeardownFieldSystem(ovyManager);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+    return TRUE;
 }
 
 const OverlayManagerTemplate gFieldSystemNewGameTemplate = {
-    FieldSystem_InitNewGame,
-    FieldSystem_Main,
-    FieldSystem_Exit,
-    0xffffffff
+    .init = InitFieldSystemNewGame,
+    .main = ExecuteFieldProcesses,
+    .exit = ReturnToTitleScreen,
+    .overlayID = FS_OVERLAY_ID_NONE,
 };
 
 const OverlayManagerTemplate gFieldSystemContinueTemplate = {
-    FieldSystem_InitContinue,
-    FieldSystem_Main,
-    FieldSystem_Exit,
-    0xffffffff
+    .init = InitFieldSystemContinue,
+    .main = ExecuteFieldProcesses,
+    .exit = ReturnToTitleScreen,
+    .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-void sub_0203CD00(FieldSystem *fieldSystem)
+void FieldSystem_StartFieldMap(FieldSystem *fieldSystem)
 {
-    GF_ASSERT(fieldSystem->unk_00->unk_04 == NULL);
-    GF_ASSERT(fieldSystem->unk_00->unk_00 == NULL);
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay5), 2);
+    GF_ASSERT(fieldSystem->processManager->child == NULL);
+    GF_ASSERT(fieldSystem->processManager->parent == NULL);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay5), OVERLAY_LOAD_ASYNC);
 
-    fieldSystem->unk_68 = 0;
-    fieldSystem->unk_00->unk_08 = 0;
-    fieldSystem->unk_00->unk_00 = OverlayManager_New(&gFieldMapTemplate, fieldSystem, 11);
+    fieldSystem->runningFieldMap = FALSE;
+    fieldSystem->processManager->pause = FALSE;
+    fieldSystem->processManager->parent = OverlayManager_New(&gFieldMapTemplate, fieldSystem, HEAP_ID_FIELDMAP);
 }
 
-void sub_0203CD44(FieldSystem *fieldSystem)
+void FieldSystem_FlagNotRunningFieldMap(FieldSystem *fieldSystem)
 {
-    fieldSystem->unk_68 = 0;
+    fieldSystem->runningFieldMap = FALSE;
 }
 
-BOOL sub_0203CD4C(FieldSystem *fieldSystem)
+BOOL FieldSystem_HasParentProcess(FieldSystem *fieldSystem)
 {
-    return fieldSystem->unk_00->unk_00 != NULL;
+    return fieldSystem->processManager->parent != NULL;
 }
 
-BOOL sub_0203CD5C(FieldSystem *fieldSystem)
+BOOL FieldSystem_IsRunningFieldMap(FieldSystem *fieldSystem)
 {
-    if ((fieldSystem->unk_00->unk_00 != NULL) && fieldSystem->unk_68) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return fieldSystem->processManager->parent != NULL && fieldSystem->runningFieldMap;
 }
 
-BOOL sub_0203CD74(FieldSystem *fieldSystem)
+BOOL FieldSystem_HasChildProcess(FieldSystem *fieldSystem)
 {
-    return fieldSystem->unk_00->unk_04 != NULL;
+    return fieldSystem->processManager->child != NULL;
 }
 
-void sub_0203CD84(FieldSystem *fieldSystem, const OverlayManagerTemplate *param1, void *param2)
+void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const OverlayManagerTemplate *overlayTemplate, void *overlayArgs)
 {
-    GF_ASSERT(fieldSystem->unk_00->unk_04 == NULL);
-    sub_0203CD44(fieldSystem);
-    fieldSystem->unk_00->unk_04 = OverlayManager_New(param1, param2, 11);
+    GF_ASSERT(fieldSystem->processManager->child == NULL);
+    FieldSystem_FlagNotRunningFieldMap(fieldSystem);
+    fieldSystem->processManager->child = OverlayManager_New(overlayTemplate, overlayArgs, HEAP_ID_FIELDMAP);
 }
 
-static FieldSystem *FieldSystem_Init(OverlayManager *overlayMan)
+static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
 {
-    UnkStruct_0203CC84 *v0;
-    FieldSystem *fieldSystem;
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELDMAP, HEAP_SIZE_FIELDMAP);
+    Heap_Create(HEAP_ID_APPLICATION, 32, 0x4000);
+    Heap_Create(HEAP_ID_SYSTEM, 91, 0x300);
 
-    Heap_Create(3, 11, 0x1c000);
-    Heap_Create(3, 32, 0x4000);
-    Heap_Create(0, 91, 0x300);
-
-    fieldSystem = OverlayManager_NewData(overlayMan, sizeof(FieldSystem), 11);
+    FieldSystem *fieldSystem = OverlayManager_NewData(ovyManager, sizeof(FieldSystem), HEAP_ID_FIELDMAP);
     MI_CpuClear8(fieldSystem, sizeof(FieldSystem));
 
-    fieldSystem->unk_00 = Heap_AllocFromHeap(11, sizeof(FieldSystem_sub1));
-    fieldSystem->unk_00->unk_00 = NULL;
-    fieldSystem->unk_00->unk_04 = NULL;
-    fieldSystem->unk_00->unk_08 = 0;
-    fieldSystem->unk_00->unk_0C = 0;
-
-    v0 = OverlayManager_Args(overlayMan);
-
-    fieldSystem->saveData = v0->unk_08;
+    fieldSystem->processManager = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(FieldProcessManager));
+    fieldSystem->processManager->parent = NULL;
+    fieldSystem->processManager->child = NULL;
+    fieldSystem->processManager->pause = FALSE;
+    fieldSystem->processManager->kill = FALSE;
+    fieldSystem->saveData = ((ApplicationArgs *)OverlayManager_Args(ovyManager))->saveData;
     fieldSystem->taskManager = NULL;
-    fieldSystem->location = sub_0203A720(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    fieldSystem->location = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();
 
-    MapHeaderData_Init(fieldSystem, 11);
+    MapHeaderData_Init(fieldSystem, HEAP_ID_FIELDMAP);
 
-    fieldSystem->unk_98 = sub_0207D99C(11);
-    fieldSystem->chain = RadarChain_Init(11);
+    fieldSystem->unk_98 = sub_0207D99C(HEAP_ID_FIELDMAP);
 
+    fieldSystem->chain = RadarChain_Init(HEAP_ID_FIELDMAP);
     RadarChain_Clear(fieldSystem->chain);
 
-    fieldSystem->unk_B4 = sub_0209ACBC(11);
-    fieldSystem->unk_BC = sub_0209C370(11);
+    fieldSystem->unk_B4 = sub_0209ACBC(HEAP_ID_FIELDMAP);
+    fieldSystem->unk_BC = sub_0209C370(HEAP_ID_FIELDMAP);
 
     return fieldSystem;
 }
 
-static void sub_0203CE6C(OverlayManager *overlayMan)
+static void TeardownFieldSystem(OverlayManager *ovyManager)
 {
-    FieldSystem *fieldSystem = OverlayManager_Data(overlayMan);
+    FieldSystem *fieldSystem = OverlayManager_Data(ovyManager);
 
     sub_02039DE4(fieldSystem->unk_2C);
     MapHeaderData_Free(fieldSystem);
@@ -202,108 +186,101 @@ static void sub_0203CE6C(OverlayManager *overlayMan)
     sub_0209ACDC(fieldSystem->unk_B4);
     sub_0209C388(fieldSystem->unk_BC);
 
-    Heap_FreeToHeap(fieldSystem->unk_00);
-    OverlayManager_FreeData(overlayMan);
+    Heap_FreeToHeap(fieldSystem->processManager);
+    OverlayManager_FreeData(ovyManager);
     Heap_Destroy(91);
-    Heap_Destroy(11);
+    Heap_Destroy(HEAP_ID_FIELDMAP);
     Heap_Destroy(32);
 }
 
-static void sub_0203CECC(OverlayManager **overlayMan)
+static void ExecuteAndCleanupIfDone(OverlayManager **ovyManagerPtr)
 {
-    if (*overlayMan) {
-        if (OverlayManager_Exec(*overlayMan)) {
-            OverlayManager_Free(*overlayMan);
-            *overlayMan = NULL;
-        }
+    if (*ovyManagerPtr && OverlayManager_Exec(*ovyManagerPtr)) {
+        OverlayManager_Free(*ovyManagerPtr);
+        *ovyManagerPtr = NULL;
     }
 }
 
-BOOL FieldSystem_Run(FieldSystem *fieldSystem)
+static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 {
-    BOOL v0;
-
-    FieldSystem_Control(fieldSystem);
-    v0 = sub_02050958(fieldSystem);
-
-    if ((v0 == 1) && (fieldSystem->unk_04 != NULL)) {
-        ov5_021EA714(fieldSystem, 0, 0);
+    HandleFieldInput(fieldSystem);
+    if (sub_02050958(fieldSystem) == TRUE && fieldSystem->unk_04 != NULL) {
+        ov5_021EA714(fieldSystem, POKETCH_EVENT_SLEEP, 0);
     }
 
-    if (fieldSystem->unk_00->unk_00) {
-        sub_0203CECC(&fieldSystem->unk_00->unk_00);
+    if (fieldSystem->processManager->parent) {
+        ExecuteAndCleanupIfDone(&fieldSystem->processManager->parent);
 
-        if (fieldSystem->unk_00->unk_00 == NULL) {
+        if (fieldSystem->processManager->parent == NULL) {
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay5));
         }
-    } else if (fieldSystem->unk_00->unk_04) {
-        sub_0203CECC(&fieldSystem->unk_00->unk_04);
+    } else if (fieldSystem->processManager->child) {
+        ExecuteAndCleanupIfDone(&fieldSystem->processManager->child);
     }
 
-    if (fieldSystem->unk_00->unk_0C && !fieldSystem->taskManager && !fieldSystem->unk_00->unk_00 && !fieldSystem->unk_00->unk_04) {
-        return 1;
+    // Does not match with return (expression)
+    if (fieldSystem->processManager->kill
+        && !fieldSystem->taskManager
+        && !fieldSystem->processManager->parent
+        && !fieldSystem->processManager->child) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void FieldSystem_Control(FieldSystem *fieldSystem)
+static void HandleFieldInput(FieldSystem *fieldSystem)
 {
-    int loadType;
-    FieldInput v1;
-    BOOL v2 = 0;
-
-    if (!fieldSystem->unk_00->unk_08 && fieldSystem->unk_68 && (sub_020509A4(fieldSystem) == 0)) {
-        v2 = 1;
+    BOOL processInput = FALSE;
+    if (!fieldSystem->processManager->pause && fieldSystem->runningFieldMap && sub_020509A4(fieldSystem) == FALSE) {
+        processInput = TRUE;
     }
 
-    if (v2) {
+    FieldInput fieldInput;
+    if (processInput) {
         sub_0205F490(fieldSystem->playerAvatar);
-        FieldInput_Update(&v1, fieldSystem, gCoreSys.pressedKeys, gCoreSys.heldKeys);
+        FieldInput_Update(&fieldInput, fieldSystem, gCoreSys.pressedKeys, gCoreSys.heldKeys);
     }
 
-    loadType = fieldSystem->mapLoadType;
-
-    if (fieldSystem->location->mapId == 326) {
+    enum MapLoadType loadType = fieldSystem->mapLoadType;
+    if (fieldSystem->location->mapId == MAP_HEADER_BATTLE_TOWER) {
         loadType = MAP_LOAD_TYPE_OVERWORLD;
     }
 
     switch (loadType) {
     case MAP_LOAD_TYPE_UNDERGROUND:
-        if (v2) {
-            if (sub_02058C40()) {
-                if (FieldInput_Process_Underground(&v1, fieldSystem) == 1) {
-                }
-            }
+        if (processInput && sub_02058C40()) {
+            FieldInput_Process_Underground(&fieldInput, fieldSystem);
         }
 
-        sub_0205805C(fieldSystem, v2);
+        sub_0205805C(fieldSystem, processInput);
         break;
+
     case MAP_LOAD_TYPE_COLOSSEUM:
-        if (v2) {
+        if (processInput) {
             if (sub_02058C40()) {
-                if (FieldInput_Process_Colosseum(&v1, fieldSystem) == 1) {
-                    v2 = 0;
+                if (FieldInput_Process_Colosseum(&fieldInput, fieldSystem) == TRUE) {
+                    processInput = FALSE;
                 }
             } else {
-                v2 = 0;
+                processInput = FALSE;
             }
         }
 
-        sub_0205805C(fieldSystem, v2);
+        sub_0205805C(fieldSystem, processInput);
         break;
+
     case MAP_LOAD_TYPE_UNION:
-        if (v2) {
-            if (FieldInput_Process_UnionRoom(&v1, fieldSystem) == 1) {
-
-            } else {
-                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, 0);
+        if (processInput) {
+            if (FieldInput_Process_UnionRoom(&fieldInput, fieldSystem) != TRUE) {
+                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, fieldInput.pressedKeys, fieldInput.heldKeys, 0);
             }
         }
         break;
+
     case MAP_LOAD_TYPE_BATTLE_TOWER:
-        if (v2) {
-            if (FieldInput_Process_BattleTower(&v1, fieldSystem) == 1) {
+        if (processInput) {
+            if (FieldInput_Process_BattleTower(&fieldInput, fieldSystem) == TRUE) {
                 ov5_021DDA78(fieldSystem->unk_04->unk_08);
                 ov5_021E1BCC(fieldSystem, 4);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
@@ -313,22 +290,20 @@ void FieldSystem_Control(FieldSystem *fieldSystem)
                     ov5_021DDA78(fieldSystem->unk_04->unk_08);
                 }
 
-                {
-                    BOOL v3 = 0;
-                    PoketchSystem *poketchSys = FieldSystem_GetPoketchSystem();
-
-                    if (poketchSys != NULL) {
-                        v3 = PoketchSystem_IsTapped(poketchSys);
-                    }
-
-                    PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v3);
+                BOOL tappedPoketch = FALSE;
+                PoketchSystem *poketchSys = FieldSystem_GetPoketchSystem();
+                if (poketchSys != NULL) {
+                    tappedPoketch = PoketchSystem_IsTapped(poketchSys);
                 }
+
+                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, fieldInput.pressedKeys, fieldInput.heldKeys, tappedPoketch);
             }
         }
         break;
+
     default:
-        if (v2) {
-            if (FieldInput_Process(&v1, fieldSystem) == 1) {
+        if (processInput) {
+            if (FieldInput_Process(&fieldInput, fieldSystem) == TRUE) {
                 ov5_021DDA78(fieldSystem->unk_04->unk_08);
                 ov5_021E1BCC(fieldSystem, 4);
                 sub_0205F56C(fieldSystem->playerAvatar);
@@ -339,31 +314,28 @@ void FieldSystem_Control(FieldSystem *fieldSystem)
                     ov5_021DDA78(fieldSystem->unk_04->unk_08);
                 }
 
-                {
-                    BOOL v5 = 0;
-                    PoketchSystem *poketchSys = FieldSystem_GetPoketchSystem();
-
-                    if (poketchSys != NULL) {
-                        v5 = PoketchSystem_IsTapped(poketchSys);
-                    }
-
-                    PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v5);
+                BOOL tappedPoketch = 0;
+                PoketchSystem *poketchSys = FieldSystem_GetPoketchSystem();
+                if (poketchSys != NULL) {
+                    tappedPoketch = PoketchSystem_IsTapped(poketchSys);
                 }
+
+                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, fieldInput.pressedKeys, fieldInput.heldKeys, tappedPoketch);
             }
         }
         break;
     }
 }
 
-void sub_0203D128(void)
+void FieldSystem_PauseProcessing(void)
 {
-    sFieldSystem->unk_00->unk_08 = 1;
+    sFieldSystem->processManager->pause = TRUE;
     CommSys_DisableSendMovementData();
 }
 
-void sub_0203D140(void)
+void FieldSystem_ResumeProcessing(void)
 {
-    sFieldSystem->unk_00->unk_08 = 0;
+    sFieldSystem->processManager->pause = FALSE;
     CommSys_EnableSendMovementData();
 }
 
@@ -376,13 +348,12 @@ struct PoketchSystem *FieldSystem_GetPoketchSystem(void)
     return sFieldSystem->unk_04->poketchSys;
 }
 
-BgConfig *sub_0203D170(void *param0)
+BgConfig *FieldSystem_GetBgConfig(void *fieldSystem)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param0;
-    return fieldSystem->bgConfig;
+    return ((FieldSystem *)fieldSystem)->bgConfig;
 }
 
-SaveData *FieldSystem_SaveData(void *param0)
+SaveData *FieldSystem_GetSaveData(void *fieldSystem)
 {
-    return ((FieldSystem *)param0)->saveData;
+    return ((FieldSystem *)fieldSystem)->saveData;
 }

@@ -4,20 +4,19 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
-
-#include "overlay057/const_ov57_021D0F80.h"
 
 #include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "game_start.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "main.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
@@ -33,7 +32,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -46,7 +44,7 @@
 
 #include "constdata/const_020F2DAC.h"
 
-FS_EXTERN_OVERLAY(overlay57);
+FS_EXTERN_OVERLAY(game_start);
 
 typedef struct {
     int unk_00;
@@ -91,7 +89,7 @@ typedef struct {
     u16 *unk_BC;
 } UnkStruct_ov73_021D1058;
 
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
 int ov73_021D0D80(OverlayManager *param0, int *param1);
 int ov73_021D0E20(OverlayManager *param0, int *param1);
 int ov73_021D0F7C(OverlayManager *param0, int *param1);
@@ -137,7 +135,7 @@ int ov73_021D0D80(OverlayManager *param0, int *param1)
     memset(v0, 0, sizeof(UnkStruct_ov73_021D1058));
 
     v0->unk_00 = v1;
-    v0->unk_04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_08 = SaveData_Options(v0->unk_04);
     v0->unk_0C = 0;
     v0->unk_10 = 0;
@@ -250,7 +248,7 @@ int ov73_021D0F7C(OverlayManager *param0, int *param1)
     sub_0208716C(v0->unk_74);
     OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
-    sub_02000EC4(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F80);
+    EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveOverlayTemplate);
 
     return 1;
 }

@@ -28,7 +28,7 @@
 #include "functypes/funcptr_0203BC5C.h"
 #include "functypes/funcptr_02050904.h"
 #include "gmm/message_bank_unk_0367.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
 #include "overlay021/struct_ov21_021D0D80.h"
@@ -370,7 +370,7 @@ static u32 sub_0203ABD0(FieldSystem *fieldSystem)
         v0 |= 0x2;
     }
 
-    if (sub_0206A938(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
+    if (VarsFlags_CheckBagAvailable(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
         v0 |= 0x4;
     }
 
@@ -1308,7 +1308,7 @@ static BOOL sub_0203BC5C(TaskManager *taskMan)
         v6->unk_24 = sub_0207CB94(v2);
         v6->unk_1C = fieldSystem;
 
-        sub_0203CD84(fieldSystem, &Unk_020F1E88, v6);
+        FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v6);
         menu->unk_25C = v6;
         sub_0203B674(menu, sub_0203B7C0);
     } break;
@@ -1355,7 +1355,7 @@ static BOOL sub_0203BC5C(TaskManager *taskMan)
                 v13->unk_20 = 10;
             }
 
-            sub_0203CD84(fieldSystem, &Unk_020F1E88, v13);
+            FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v13);
             menu->unk_25C = v13;
             sub_0203B674(menu, sub_0203B7C0);
         }
@@ -1647,7 +1647,7 @@ static BOOL sub_0203C1C8(TaskManager *taskMan)
         v3->unk_26 = v2->move;
         v3->unk_28 = v2->selectedSlot;
 
-        sub_0203CD84(fieldSystem, &Unk_020F1E88, v3);
+        FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v3);
         Heap_FreeToHeap(menu->unk_260);
         menu->unk_25C = v3;
         sub_0203B674(menu, sub_0203B7C0);
@@ -1862,7 +1862,7 @@ static void sub_0203C668(FieldSystem *fieldSystem, FieldMenu *param1, u8 param2)
 
     sub_02097750(param1->unk_25C, Party_GetPokemonBySlotIndex(partyMan->unk_00, v0->unk_02));
     sub_02097770(param1->unk_25C);
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
     param1->unk_25C = partyMan;
     sub_0203B674(param1, sub_0203B7C0);

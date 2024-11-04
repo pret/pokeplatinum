@@ -459,7 +459,7 @@ static void ov23_0224E124(UnkStruct_ov23_0224E280 *param0)
     ov23_022540F4(ov23_0224219C(), param0->unk_28.unk_02);
     ov23_02253F40(ov23_0224219C(), 14, 0, NULL);
 
-    sub_0202952C(SaveData_SecretBaseRecord(FieldSystem_SaveData(param0->fieldSystem)));
+    sub_0202952C(SaveData_SecretBaseRecord(FieldSystem_GetSaveData(param0->fieldSystem)));
     ov23_0224F634(param0->unk_28.unk_02);
     Sound_PlayEffect(1507);
 }
@@ -902,7 +902,7 @@ static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 
     if (v0 == 0) {
         if (ov23_0224F744(param1->unk_24.unk_02)) {
-            sub_0202977C(SaveData_SecretBaseRecord(FieldSystem_SaveData(param1->fieldSystem)));
+            sub_0202977C(SaveData_SecretBaseRecord(FieldSystem_GetSaveData(param1->fieldSystem)));
             Sound_PlayEffect(1507);
             ov23_0224DC40(param1, 22);
 

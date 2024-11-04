@@ -360,7 +360,7 @@ void ov8_0224997C(FieldSystem *fieldSystem)
         UnkStruct_02027860 *v7;
         UnkStruct_02071B10 *v8;
 
-        v7 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+        v7 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
         v8 = (UnkStruct_02071B10 *)sub_02027F6C(v7, 1);
 
         v6 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
@@ -608,7 +608,7 @@ void ov8_02249DBC(FieldSystem *fieldSystem)
     UnkStruct_02027860 *v7;
     UnkStruct_02071B10 *v8;
 
-    v7 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v7 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v8 = (UnkStruct_02071B10 *)sub_02027F6C(v7, 1);
 
     {
@@ -756,7 +756,7 @@ void ov8_02249FB8(FieldSystem *fieldSystem)
         UnkStruct_02027860 *v2;
         UnkStruct_ov8_02249FB8 *v3;
 
-        v2 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+        v2 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
         v3 = (UnkStruct_ov8_02249FB8 *)sub_02027F6C(v2, 2);
 
         PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
@@ -1244,7 +1244,7 @@ static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
     UnkStruct_02027860 *v3;
     UnkStruct_02071B30 *v4;
 
-    v3 = sub_02027860(FieldSystem_SaveData(param0->fieldSystem));
+    v3 = sub_02027860(FieldSystem_GetSaveData(param0->fieldSystem));
     v4 = (UnkStruct_02071B30 *)sub_02027F6C(v3, 3);
     v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
 
@@ -1572,7 +1572,7 @@ void ov8_0224A8C8(FieldSystem *fieldSystem)
     UnkStruct_02027860 *v1;
     UnkStruct_02071B30 *v2;
 
-    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v2 = (UnkStruct_02071B30 *)sub_02027F6C(v1, 3);
 
     fieldSystem->unk_04->unk_24 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov8_0224A1E4));
@@ -1655,7 +1655,7 @@ BOOL ov8_0224AAA8(FieldSystem *fieldSystem)
         int v2;
         UnkStruct_02027860 *v3;
 
-        v3 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+        v3 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
         v2 = sub_02027F80(v3);
 
         if (v2 != 3) {
@@ -2081,7 +2081,7 @@ void ov8_0224ABD4(FieldSystem *fieldSystem)
     UnkStruct_02027860 *v1;
     UnkStruct_02071B6C *v2;
 
-    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v2 = (UnkStruct_02071B6C *)sub_02027F6C(v1, 5);
 
     fieldSystem->unk_04->unk_24 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov8_0224ABD4));
@@ -2170,7 +2170,7 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
     UnkStruct_02027860 *v2;
     UnkStruct_02071B6C *v3;
 
-    v2 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v2 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v3 = (UnkStruct_02071B6C *)sub_02027F6C(v2, 5);
     v1 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
@@ -2432,7 +2432,7 @@ void ov8_0224B020(FieldSystem *fieldSystem)
     UnkStruct_02071BD0 *v1;
     UnkStruct_ov8_0224AF00 *v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 8);
     v2 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov8_0224AF00));
 
@@ -2495,7 +2495,7 @@ BOOL ov8_0224B110(FieldSystem *fieldSystem, const int param1, const int param2, 
     UnkStruct_02027860 *v4;
     UnkStruct_02071BD0 *v5;
 
-    v4 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v4 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v5 = sub_02027F6C(v4, 8);
     v1 = v5->unk_00;
     v0 = 0;
@@ -2879,7 +2879,7 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
     UnkStruct_02027860 *v0;
     UnkStruct_02071BD0 *v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 8);
 
     if (v1->unk_00 >= 4) {
@@ -2918,7 +2918,7 @@ BOOL ov8_0224B714(FieldSystem *fieldSystem, int param1, int param2, int param3)
     UnkStruct_02071BD0 *v1;
     const UnkStruct_ov8_0224C7F0 *v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 8);
     v2 = &Unk_ov8_0224C7F0[v1->unk_00];
 
@@ -2976,7 +2976,7 @@ void ov8_0224B764(FieldSystem *fieldSystem)
     UnkStruct_02071BF8 *v1;
     UnkStruct_ov8_0224B8D0 *v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 4);
     v2 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov8_0224B8D0));
 
@@ -3524,7 +3524,7 @@ BOOL ov8_0224BF4C(FieldSystem *fieldSystem)
 {
     UnkStruct_02027860 *v0;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
     if (sub_02027F80(v0) != 4) {
         return 0;
@@ -3729,7 +3729,7 @@ void ov8_0224C198(FieldSystem *fieldSystem)
     UnkStruct_02071C18 *v1;
     UnkStruct_ov8_0224C444 *v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 2);
     v2 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov8_0224C444));
 
@@ -3928,7 +3928,7 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
     MapObject *v7;
     MapObject *v8;
 
-    v4 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v4 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
     if (sub_02027F80(v4) != 2) {
         return 0;
@@ -3963,7 +3963,7 @@ BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
 {
     UnkStruct_02027860 *v0;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
     if (sub_02027F80(v0) != 2) {
         return 0;
@@ -3993,7 +3993,7 @@ BOOL ov8_0224C62C(FieldSystem *fieldSystem, int param1, int param2, int *param3)
     {
         UnkStruct_02027860 *v0;
 
-        v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+        v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
         if (sub_02027F80(v0) != 2) {
             return 0;

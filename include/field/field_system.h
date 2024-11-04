@@ -13,11 +13,9 @@
 #include "struct_decls/terrain_collision_manager_decl.h"
 #include "struct_defs/map_load_mode.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0209C370.h"
 
-#include "field/field_system_sub1_decl.h"
 #include "field/field_system_sub2_decl.h"
 #include "field/field_system_sub3.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
@@ -42,12 +40,21 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "journal.h"
+#include "location.h"
 #include "map_header_data.h"
+#include "overlay_manager.h"
 #include "pokeradar.h"
 #include "savedata.h"
 
+typedef struct FieldProcessManager {
+    OverlayManager *parent;
+    OverlayManager *child;
+    BOOL pause;
+    BOOL kill;
+} FieldProcessManager;
+
 typedef struct FieldSystem_t {
-    FieldSystem_sub1 *unk_00;
+    FieldProcessManager *processManager;
     FieldSystem_sub2 *unk_04;
     BgConfig *bgConfig;
     SaveData *saveData;
@@ -73,7 +80,7 @@ typedef struct FieldSystem_t {
     const TerrainCollisionManager *terrainCollisionMan;
     int unk_60;
     UnkStruct_ov5_021E1B20 *unk_64;
-    BOOL unk_68;
+    BOOL runningFieldMap;
     UnkStruct_ov23_0224942C *unk_6C;
     int mapLoadType;
     const MapLoadMode *mapLoadMode;

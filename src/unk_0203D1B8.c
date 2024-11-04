@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
@@ -101,20 +100,20 @@
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
 #include "poketch_data.h"
+#include "record_mixed_rng.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
 #include "strbuf.h"
+#include "system_data.h"
 #include "trainer_info.h"
 #include "unk_02017498.h"
 #include "unk_0201D15C.h"
-#include "unk_02025CB0.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202B37C.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
@@ -259,7 +258,7 @@ const OverlayManagerTemplate gBattleOverlayTemplate = {
 
 void sub_0203D1D4(FieldSystem *fieldSystem, BattleParams *param1)
 {
-    sub_0203CD84(fieldSystem, &gBattleOverlayTemplate, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gBattleOverlayTemplate, param1);
 }
 
 static const u8 Unk_020EA164[] = {
@@ -285,7 +284,7 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
         FS_OVERLAY_ID(overlay84)
     };
 
-    sub_0203CD84(fieldSystem, &Unk_ov84_02241130, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_ov84_02241130, param1);
 }
 
 void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
@@ -360,7 +359,7 @@ void sub_0203D2E4(FieldSystem *fieldSystem, void *param1)
         FS_OVERLAY_ID(overlay85)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
@@ -374,12 +373,12 @@ void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
         FS_OVERLAY_ID(overlay81)
     };
 
-    sub_0203CD84(fieldSystem, &v0, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, fieldSystem->saveData);
 }
 
 void sub_0203D334(FieldSystem *fieldSystem, void *param1)
 {
-    sub_0203CD84(fieldSystem, &Unk_020F410C, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, param1);
 }
 
 static PartyManagementData *sub_0203D344(int param0, FieldSystem *fieldSystem, int param2, int param3)
@@ -406,7 +405,7 @@ void *sub_0203D390(FieldSystem *fieldSystem, UnkStruct_02070950 *param1, u8 para
     v0->unk_18 = param1;
     v0->unk_22 = param2;
 
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
 
     return v0;
 }
@@ -415,7 +414,7 @@ void *sub_0203D3C0(int param0, FieldSystem *fieldSystem)
 {
     PartyManagementData *v0 = sub_0203D344(11, fieldSystem, 0, 3);
 
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
     return v0;
 }
 
@@ -423,7 +422,7 @@ void *sub_0203D3E4(int param0, FieldSystem *fieldSystem)
 {
     PartyManagementData *v0 = sub_0203D344(11, fieldSystem, 0, 19);
 
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
     return v0;
 }
 
@@ -438,7 +437,7 @@ void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
     PartyManagementData *v0 = sub_0203D344(11, fieldSystem, 0, 18);
 
     v0->unk_22 = param2;
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
 
     return v0;
 }
@@ -467,7 +466,7 @@ static BOOL sub_0203D444(TaskManager *param0)
 
     switch (*v2) {
     case 0:
-        sub_0203CD84(fieldSystem, &Unk_020F1E88, v1->unk_04);
+        FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v1->unk_04);
         *v2 = 1;
         break;
     case 1:
@@ -540,7 +539,7 @@ void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3,
         v0->unk_2B = 0;
     }
 
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
 
     return v0;
 }
@@ -563,7 +562,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
 
     PokemonSummary_FlagVisiblePages(v0, Unk_020EA02C);
     PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-    sub_0203CD84(fieldSystem, &Unk_020F410C, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
 
     return v0;
 }
@@ -573,7 +572,7 @@ void *sub_0203D644(FieldSystem *fieldSystem, int param1)
     PartyManagementData *v0 = sub_0203D344(11, fieldSystem, 0, 21);
 
     v0->unk_22 = param1;
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
 
     return v0;
 }
@@ -654,7 +653,7 @@ void sub_0203D754(FieldSystem *fieldSystem, UnkStruct_02042434 *param1)
         FS_OVERLAY_ID(overlay19)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 static BOOL sub_0203D764(TaskManager *taskMan)
@@ -731,7 +730,7 @@ void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1)
         FS_OVERLAY_ID(overlay20)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1)
@@ -745,7 +744,7 @@ void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1)
         FS_OVERLAY_ID(overlay80)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 void *sub_0203D8AC(FieldSystem *fieldSystem)
@@ -774,13 +773,13 @@ static void OpenOptionsMenu(FieldSystem *fieldSystem, Options *options)
         FS_OVERLAY_ID(options_menu)
     };
 
-    sub_0203CD84(fieldSystem, &template, options);
+    FieldSystem_StartChildProcess(fieldSystem, &template, options);
 }
 
 void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem)
 {
     OptionsMenu *optionsMenu = Heap_AllocFromHeapAtEnd(11, sizeof(OptionsMenu));
-    Options *options = SaveData_Options(FieldSystem_SaveData(fieldSystem));
+    Options *options = SaveData_Options(FieldSystem_GetSaveData(fieldSystem));
     OpenOptionsMenu(fieldSystem, options);
 
     return optionsMenu;
@@ -790,14 +789,14 @@ extern const OverlayManagerTemplate Unk_020F64B0;
 
 static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
 {
-    sub_0203CD84(fieldSystem, &Unk_020F64B0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F64B0, param1);
 }
 
 UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 param3, int param4)
 {
     UnkStruct_02097728 *v0;
 
-    v0 = sub_02097624(FieldSystem_SaveData(fieldSystem), param1, param2, param3, 11);
+    v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3, 11);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
@@ -808,9 +807,9 @@ UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2
     UnkStruct_02097728 *v0;
 
     if (param1 == 3) {
-        v0 = sub_020976F4(FieldSystem_SaveData(fieldSystem), param2, param3);
+        v0 = sub_020976F4(FieldSystem_GetSaveData(fieldSystem), param2, param3);
     } else {
-        v0 = sub_0209767C(FieldSystem_SaveData(fieldSystem), param1, param2, param3);
+        v0 = sub_0209767C(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3);
     }
 
     sub_0203D910(fieldSystem, v0);
@@ -822,7 +821,7 @@ UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int 
 {
     UnkStruct_02097728 *v0;
 
-    v0 = sub_020976BC(FieldSystem_SaveData(fieldSystem), param1, param2);
+    v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, param2);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
@@ -830,14 +829,14 @@ UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int 
 
 static void sub_0203D9A8(FieldSystem *fieldSystem, UnkStruct_0203D9B8 *param1)
 {
-    sub_0203CD84(fieldSystem, &Unk_020F6890, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F6890, param1);
 }
 
 UnkStruct_0203D9B8 *sub_0203D9B8(FieldSystem *fieldSystem, int param1)
 {
     UnkStruct_0203D9B8 *v0;
 
-    v0 = sub_020989DC(FieldSystem_SaveData(fieldSystem), param1);
+    v0 = sub_020989DC(FieldSystem_GetSaveData(fieldSystem), param1);
     sub_0203D9A8(fieldSystem, v0);
 
     return v0;
@@ -854,7 +853,7 @@ void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1)
         FS_OVERLAY_ID(overlay90)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 static UnkStruct_0203DA00 *sub_0203DA00(int param0, SaveData *param1, int param2, BOOL *param3, BOOL param4)
@@ -940,7 +939,7 @@ BOOL sub_0203DB10(FieldSystem *fieldSystem, void *param1)
         FS_OVERLAY_ID(overlay22)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 
     return 1;
 }
@@ -956,7 +955,7 @@ BOOL sub_0203DB24(FieldSystem *fieldSystem, void *param1)
         FS_OVERLAY_ID(overlay22)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 
     return 1;
 }
@@ -1140,7 +1139,7 @@ void sub_0203DDFC(FieldSystem *fieldSystem)
     v0->unk_04 = fieldSystem->journal;
     v0->unk_08 = SaveData_Options(fieldSystem->saveData);
 
-    sub_0203CD84(fieldSystem, &Unk_020EA258, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA258, v0);
 }
 
 void *sub_0203DE34(FieldSystem *fieldSystem)
@@ -1153,7 +1152,7 @@ void *sub_0203DE34(FieldSystem *fieldSystem)
     v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v0->unk_10 = fieldSystem->journal;
 
-    sub_0203CD84(fieldSystem, &Unk_020EA248, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA248, v0);
 
     return v0;
 }
@@ -1167,12 +1166,12 @@ const OverlayManagerTemplate Unk_020EA238 = {
 
 void sub_0203DE78(FieldSystem *fieldSystem, SaveData *param1)
 {
-    sub_0203CD84(fieldSystem, &Unk_020EA238, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA238, param1);
 }
 
 void sub_0203DE88(FieldSystem *fieldSystem, SaveData *param1)
 {
-    sub_0203CD84(fieldSystem, &Unk_020F2FCC, fieldSystem);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F2FCC, fieldSystem);
 }
 
 static BOOL sub_0203DE98(TaskManager *param0)
@@ -1201,9 +1200,9 @@ static BOOL sub_0203DE98(TaskManager *param0)
             }
         } else if (v2->unk_0C->unk_00 == 5) {
             const u16 *v3 = Strbuf_GetData(v2->unk_0C->unk_18);
-            UnkStruct_0202B4A0 *v4 = sub_0202B4A0(fieldSystem->saveData);
+            RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
-            if (sub_0202B4D8(v4, v3)) {
+            if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
                 v2->unk_0C->unk_14 = 2;
             }
         }
@@ -1244,8 +1243,8 @@ static void sub_0203DF68(TaskManager *param0)
         Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->unk_1C);
     } break;
     case 5: {
-        UnkStruct_0202B4A0 *v5 = sub_0202B4A0(fieldSystem->saveData);
-        sub_0202B444(v5, 0, 0, v1->unk_0C->unk_18);
+        RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
+        RecordMixedRNG_GetEntryNameAsStrbuf(v5, 0, 0, v1->unk_0C->unk_18);
     } break;
     case 6: {
         MiscSaveBlock *v6 = SaveData_MiscSaveBlock(fieldSystem->saveData);
@@ -1302,7 +1301,7 @@ void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1)
         FS_OVERLAY_ID(overlay71)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)
@@ -1316,7 +1315,7 @@ BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)
         FS_OVERLAY_ID(overlay21)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
     return 1;
 }
 
@@ -1331,7 +1330,7 @@ void sub_0203E0C0(FieldSystem *fieldSystem, ChooseStarterData *param1)
         FS_OVERLAY_ID(choose_starter)
     };
 
-    sub_0203CD84(fieldSystem, &template, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, param1);
 }
 
 void sub_0203E0D0(FieldSystem *fieldSystem)
@@ -1347,7 +1346,7 @@ void sub_0203E0D0(FieldSystem *fieldSystem)
         FS_OVERLAY_ID(overlay72)
     };
 
-    sub_0203CD84(fieldSystem, &v1, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &v1, fieldSystem->saveData);
 }
 
 void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
@@ -1366,7 +1365,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203E0FC));
 
     v0->unk_00 = sub_0202DA40(fieldSystem->saveData);
-    v0->unk_04 = sub_02025CCC(fieldSystem->saveData);
+    v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, 2);
     v0->unk_0C = SaveData_PCBoxes(fieldSystem->saveData);
     v0->unk_10 = SaveData_Pokedex(fieldSystem->saveData);
@@ -1383,7 +1382,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_30 = SaveData_GetBag(fieldSystem->saveData);
     v0->unk_40 = param1;
 
-    sub_0203CD84(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
 }
 
 void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
@@ -1403,7 +1402,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
 
     v0->unk_00 = sub_0202D750(fieldSystem->saveData);
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
-    v0->unk_08 = sub_02025CCC(fieldSystem->saveData);
+    v0->unk_08 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_10 = SaveData_Options(fieldSystem->saveData);
     v0->unk_14 = sub_0202AD28(sub_0202B370(fieldSystem->saveData));
     v0->unk_0C = fieldSystem->saveData;
@@ -1412,7 +1411,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
     v0->unk_24 = param2;
     v0->unk_20 = 1;
 
-    sub_0203CD84(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
 
     return (void *)v0;
 }
@@ -1426,7 +1425,7 @@ static const OverlayManagerTemplate Unk_020EA328 = {
 
 void sub_0203E224(FieldSystem *fieldSystem)
 {
-    sub_0203CD84(fieldSystem, &Unk_020EA328, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA328, fieldSystem->saveData);
 }
 
 void sub_0203E234(FieldSystem *fieldSystem, UnkStruct_0203E234 *param1)
@@ -1440,7 +1439,7 @@ void sub_0203E234(FieldSystem *fieldSystem, UnkStruct_0203E234 *param1)
         FS_OVERLAY_ID(overlay86)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 void *sub_0203E244(FieldSystem *fieldSystem)
@@ -1460,7 +1459,7 @@ void *sub_0203E244(FieldSystem *fieldSystem)
         Heap_FreeToHeap(v1);
         return NULL;
     } else {
-        sub_0203CD84(fieldSystem, &v0, v1);
+        FieldSystem_StartChildProcess(fieldSystem, &v0, v1);
         return v1;
     }
 }
@@ -1476,7 +1475,7 @@ void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1)
         FS_OVERLAY_ID(overlay99)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1)
@@ -1490,7 +1489,7 @@ void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1)
         FS_OVERLAY_ID(overlay91)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 void sub_0203E2AC(FieldSystem *fieldSystem, void *param1)
@@ -1504,7 +1503,7 @@ void sub_0203E2AC(FieldSystem *fieldSystem, void *param1)
         FS_OVERLAY_ID(overlay93)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 void sub_0203E2D4(FieldSystem *fieldSystem, void *param1)
@@ -1515,7 +1514,7 @@ void sub_0203E2D4(FieldSystem *fieldSystem, void *param1)
         ov93_021D111C, ov93_021D120C, ov93_021D12F0, FS_OVERLAY_ID(overlay93)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
 void sub_0203E2FC(FieldSystem *fieldSystem)
@@ -1546,7 +1545,7 @@ BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1)
         FS_OVERLAY_ID(overlay101)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
     return 1;
 }
 
@@ -1620,14 +1619,14 @@ static u8 sub_0203E484(SaveData *param0, u8 param1)
         3,
         3,
     };
-    UnkStruct_0202B4A0 *v1 = sub_0202B4A0(param0);
+    RecordMixedRNG *v1 = SaveData_GetRecordMixedRNG(param0);
     u32 v2;
     u8 v3[12];
     u8 v4, v5, v6, v7;
 
     v2 = LCRNG_GetSeed();
 
-    LCRNG_SetSeed(sub_0202B428(v1));
+    LCRNG_SetSeed(RecordMixedRNG_GetRand(v1));
     MI_CpuCopy8(v0, v3, sizeof(v3));
 
     for (v4 = 0; v4 < 12; v4++) {
@@ -1680,7 +1679,7 @@ void *sub_0203E53C(FieldSystem *fieldSystem, int param1, int param2)
         v1->unk_00 = fieldSystem->saveData;
     }
 
-    sub_0203CD84(fieldSystem, &v0, v1);
+    FieldSystem_StartChildProcess(fieldSystem, &v0, v1);
 
     return v1;
 }
@@ -1705,7 +1704,7 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
     v0->unk_06 = param3;
     v0->unk_00 = fieldSystem->saveData;
 
-    sub_0203CD84(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
 
     return v0;
 }
@@ -1729,7 +1728,7 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int param1, int para
     v0->unk_22 = 0;
     v0->unk_1C = fieldSystem;
 
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
 
     return v0;
 }
@@ -1751,7 +1750,7 @@ void *sub_0203E608(FieldSystem *fieldSystem, int param1)
     memset(v0, 0, sizeof(UnkStruct_0203E608));
 
     v0->unk_00 = fieldSystem->saveData;
-    sub_0203CD84(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
 
     return v0;
 }
@@ -1782,7 +1781,7 @@ void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
 
     PokemonSummary_FlagVisiblePages(v0, Unk_020EA15C);
     PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-    sub_0203CD84(fieldSystem, &Unk_020F410C, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
 
     return v0;
 }
@@ -1808,7 +1807,7 @@ void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2)
     v0->unk_08 = param1;
     v0->unk_0C = param2;
 
-    sub_0203CD84(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
 }
 
 FS_EXTERN_OVERLAY(library_tv);
@@ -1822,7 +1821,7 @@ static const OverlayManagerTemplate LibraryTV_template = {
 
 void sub_0203E704(FieldSystem *fieldSystem)
 {
-    sub_0203CD84(fieldSystem, &LibraryTV_template, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &LibraryTV_template, fieldSystem->saveData);
 }
 
 static const OverlayManagerTemplate Unk_020EA368 = {
@@ -1834,5 +1833,5 @@ static const OverlayManagerTemplate Unk_020EA368 = {
 
 void sub_0203E714(FieldSystem *fieldSystem)
 {
-    sub_0203CD84(fieldSystem, &Unk_020EA368, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA368, fieldSystem->saveData);
 }

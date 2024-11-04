@@ -341,7 +341,7 @@ static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u
 
     param0->unk_10 = v0;
 
-    sub_0203CD84(fieldSystem, &Unk_020F1B88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1B88, v0);
 }
 
 static u32 sub_0207DE40(UnkStruct_0207DE40 *param0)
@@ -396,7 +396,7 @@ static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 para
         v0->unk_34 = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
-        sub_0203CD84(fieldSystem, &v1, v0);
+        FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
     }
     return v0;
 }
@@ -430,7 +430,7 @@ static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 param
         v0->unk_34 = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
-        sub_0203CD84(fieldSystem, &v1, v0);
+        FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
     }
     return v0;
 }
@@ -466,7 +466,7 @@ static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 para
         v0->unk_34 = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
-        sub_0203CD84(fieldSystem, &v1, v0);
+        FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
     }
 
     return v0;

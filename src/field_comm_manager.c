@@ -125,7 +125,7 @@ void FieldCommMan_StartBattleServer(FieldSystem *fieldSystem, int param1, int pa
         return;
     }
 
-    CommMan_StartBattleServer(FieldSystem_SaveData(fieldSystem), param1, param2, fieldSystem->unk_B0, 0);
+    CommMan_StartBattleServer(FieldSystem_GetSaveData(fieldSystem), param1, param2, fieldSystem->unk_B0, 0);
     FieldCommMan_Init(fieldSystem);
     FieldCommMan_SetTask(Task_StartBattleServer, 0);
 }
@@ -136,7 +136,7 @@ void FieldCommMan_StartBattleClient(FieldSystem *fieldSystem, int param1, int pa
         return;
     }
 
-    CommMan_StartBattleClient(FieldSystem_SaveData(fieldSystem), param1, param2, fieldSystem->unk_B0, 0);
+    CommMan_StartBattleClient(FieldSystem_GetSaveData(fieldSystem), param1, param2, fieldSystem->unk_B0, 0);
     FieldCommMan_Init(fieldSystem);
     FieldCommMan_SetTask(Task_StartBattleClient, 0);
 }

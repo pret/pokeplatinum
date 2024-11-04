@@ -5,11 +5,11 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 
 #include "field_overworld_state.h"
+#include "location.h"
 #include "map_header.h"
 #include "player_avatar.h"
 #include "pokeradar.h"

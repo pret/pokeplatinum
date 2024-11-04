@@ -101,7 +101,7 @@ void Underground_Init(UndergroundData *param0)
     RTCTime v2;
 
     GetCurrentDateTime(&v1, &v2);
-    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + gCoreSys.frameCounter));
+    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + gCoreSys.vblankCounter));
 
     MI_CpuFill8(param0, 0, sizeof(UndergroundData));
 

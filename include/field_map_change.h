@@ -2,10 +2,11 @@
 #define POKEPLATINUM_FIELD_MAP_CHANGE_H
 
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system_decl.h"
 #include "functypes/funcptr_02050904.h"
+
+#include "location.h"
 
 void FieldMapChange_Set3DDisplay(FieldSystem *fieldSystem);
 void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL param1);

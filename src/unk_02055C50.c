@@ -3,11 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02055CBC_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02027BF4.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -17,6 +15,7 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 
 #include "bag.h"
+#include "berry_patches.h"
 #include "core_sys.h"
 #include "easy3d.h"
 #include "heap.h"
@@ -25,7 +24,6 @@
 #include "savedata_misc.h"
 #include "sys_task_manager.h"
 #include "unk_0201CED8.h"
-#include "unk_02027B70.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_020655F4.h"
@@ -34,7 +32,7 @@
 
 struct UnkStruct_02055CBC_t {
     int unk_00;
-    UnkStruct_02027BF4 *unk_04;
+    BerryGrowthData *unk_04;
     NNSG3dRenderObj unk_08;
     NNSG3dResMdl *unk_5C;
     NNSG3dResFileHeader *unk_60;
@@ -94,7 +92,7 @@ UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_02055CBC));
 
     v0->unk_00 = param1;
-    v0->unk_04 = sub_02027BF4(param1);
+    v0->unk_04 = BerryGrowthData_Init(param1);
 
     sub_02055D14(fieldSystem, v0);
     return v0;
@@ -109,18 +107,18 @@ void sub_02055CBC(UnkStruct_02055CBC *param0)
 
 void sub_02055CD4(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_02027854 *v0;
-    UnkStruct_02027BF4 *v1;
+    BerryPatch *v0;
+    BerryGrowthData *v1;
 
     if (fieldSystem->unk_04 == NULL) {
-        v1 = sub_02027BF4(11);
-        v0 = sub_02027854(fieldSystem->saveData);
-        sub_02027EAC(v0, v1, param1);
+        v1 = BerryGrowthData_Init(11);
+        v0 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+        BerryPatches_ElapseMinutes(v0, v1, param1);
         Heap_FreeToHeap(v1);
     } else {
         v1 = fieldSystem->unk_04->unk_18->unk_04;
-        v0 = sub_02027854(fieldSystem->saveData);
-        sub_02027EAC(v0, v1, param1);
+        v0 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
+        BerryPatches_ElapseMinutes(v0, v1, param1);
     }
 }
 
@@ -158,13 +156,13 @@ void sub_02055D94(FieldSystem *fieldSystem)
 {
     int v0 = 0;
     MapObject *v1;
-    UnkStruct_02027854 *v2 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v2 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     while (sub_020625B0(fieldSystem->mapObjMan, &v1, &v0, (1 << 0)) == 1) {
         if (sub_020677F4(sub_02062920(v1)) == 1) {
             if (sub_02055D54(fieldSystem, MapObject_PosVector(v1))) {
                 int v3 = sub_020629D8(v1, 0);
-                sub_02027D90(v2, v3, 1);
+                BerryPatches_SetIsPatchGrowing(v2, v3, 1);
             }
         }
     }
@@ -173,14 +171,14 @@ void sub_02055D94(FieldSystem *fieldSystem)
 BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
 {
     int v0, v1, v2;
-    UnkStruct_02027854 *v3 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v3 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
-    v2 = sub_02027D10(v3, v0);
-    v1 = sub_02027DB4(v3, v0);
+    v2 = BerryPatches_GetPatchBerryID(v3, v0);
+    v1 = BerryPatches_GetPatchYield(v3, v0);
 
-    sub_0206D914(fieldSystem, sub_02055C50(v2), sub_02027D34(v3, v0), v1);
-    sub_02027DC0(v3, v0);
+    sub_0206D914(fieldSystem, sub_02055C50(v2), BerryPatches_GetPatchYieldRating(v3, v0), v1);
+    BerryPatches_HarvestPatch(v3, v0);
     sub_02067834(param1);
 
     return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, 4);
@@ -189,82 +187,82 @@ BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
 void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
 {
     int v0;
-    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
-    sub_02027DA8(v1, v0, sub_02055C80(param2));
+    BerryPatches_SetPatchMulchType(v1, v0, sub_02055C80(param2));
 }
 
 void sub_02055EAC(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
 {
     int v0;
-    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
-    sub_02027D40(v1, v0, fieldSystem->unk_04->unk_18->unk_04, sub_02055C60(param2));
+    BerryPatches_PlantInPatch(v1, v0, fieldSystem->unk_04->unk_18->unk_04, sub_02055C60(param2));
 }
 
 void sub_02055EE0(FieldSystem *fieldSystem, MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
-    sub_02027D78(v1, v0);
+    BerryPatches_ResetPatchMoisture(v1, v0);
 }
 
 int sub_02055F00(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
-    return sub_02027D04(v1, v0);
+    return BerryPatches_GetPatchGrowthStage(v1, v0);
 }
 
 int sub_02055F20(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
-    return sub_02027D10(v1, v0);
+    return BerryPatches_GetPatchBerryID(v1, v0);
 }
 
 u16 sub_02055F40(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
-    return sub_02055C50(sub_02027D10(v1, v0));
+    return sub_02055C50(BerryPatches_GetPatchBerryID(v1, v0));
 }
 
 u16 sub_02055F64(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
-    return sub_02055C70(sub_02027D9C(v1, v0));
+    return sub_02055C70(BerryPatches_GetPatchMulchType(v1, v0));
 }
 
 int sub_02055F88(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
-    return sub_02027D18(v1, v0);
+    return BerryPatches_GetPatchMoisture(v1, v0);
 }
 
 int sub_02055FA8(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
-    return sub_02027DB4(v1, v0);
+    return BerryPatches_GetPatchYield(v1, v0);
 }
 
 u32 sub_02055FC8(const FieldSystem *fieldSystem, const MapObject *param1)

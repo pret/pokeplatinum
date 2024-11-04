@@ -28,9 +28,6 @@ static BOOL GetOverlayRamBounds(const FSOverlayID param0, u32 *param1, u32 *para
 static BOOL LoadOverlayNormal(MIProcessor param0, FSOverlayID param1);
 static BOOL LoadOverlayNoInit(MIProcessor param0, FSOverlayID param1);
 static BOOL LoadOverlayNoInitAsync(MIProcessor param0, FSOverlayID param1);
-void Overlay_UnloadByID(const FSOverlayID param0);
-int Overlay_GetLoadDestination(const FSOverlayID param0);
-BOOL Overlay_LoadByID(const FSOverlayID param0, int param1);
 
 static UnkStruct_021BF370 Unk_021BF370;
 
@@ -118,7 +115,7 @@ int Overlay_GetLoadDestination(const FSOverlayID overlayID)
     return OVERLAY_REGION_MAIN;
 }
 
-BOOL Overlay_LoadByID(const FSOverlayID overlayID, int loadType)
+BOOL Overlay_LoadByID(const FSOverlayID overlayID, enum OverlayLoadType loadType)
 {
     BOOL result;
     u32 dmaBak = FS_DMA_NOT_USE;
@@ -143,11 +140,11 @@ BOOL Overlay_LoadByID(const FSOverlayID overlayID, int loadType)
     }
 
     if (i >= 8) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return FALSE;
     }
 
-    if ((overlayRegion == 1) || (overlayRegion == 2)) {
+    if (overlayRegion == OVERLAY_REGION_ITCM || overlayRegion == OVERLAY_REGION_DTCM) {
         dmaBak = FS_SetDefaultDMA(FS_DMA_NOT_USE);
     }
 
@@ -166,16 +163,16 @@ BOOL Overlay_LoadByID(const FSOverlayID overlayID, int loadType)
         return 0;
     }
 
-    if ((overlayRegion == 1) || (overlayRegion == 2)) {
+    if (overlayRegion == OVERLAY_REGION_ITCM || overlayRegion == OVERLAY_REGION_DTCM) {
         FS_SetDefaultDMA(dmaBak);
     }
 
-    if (result == 0) {
-        GF_ASSERT(0);
-        return 0;
+    if (result == FALSE) {
+        GF_ASSERT(FALSE);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL CanOverlayBeLoaded(const FSOverlayID param0)

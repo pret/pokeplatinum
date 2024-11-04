@@ -11,7 +11,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
@@ -39,7 +38,6 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/struct_02042434.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -106,6 +104,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
+#include "location.h"
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
@@ -128,6 +127,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_data.h"
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
@@ -135,7 +135,6 @@
 #include "unk_0200F174.h"
 #include "unk_02014D38.h"
 #include "unk_0201D15C.h"
-#include "unk_02025CB0.h"
 #include "unk_020261E4.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
@@ -4945,10 +4944,10 @@ static BOOL ScrCmd_11B(ScriptContext *ctx)
     Location location;
 
     location.mapId = ScriptContext_GetVar(ctx);
-    location.unk_04 = ScriptContext_GetVar(ctx);
+    location.warpId = ScriptContext_GetVar(ctx);
     location.x = ScriptContext_GetVar(ctx);
     location.z = ScriptContext_GetVar(ctx);
-    location.unk_10 = ScriptContext_GetVar(ctx);
+    location.faceDirection = ScriptContext_GetVar(ctx);
 
     FieldOverworldState_SetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData), &location);
     return 0;
@@ -5287,8 +5286,8 @@ static BOOL ScrCmd_13C(ScriptContext *ctx)
     MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
-    TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
-    UnkStruct_02014EC4 *v4 = sub_02014EC4(FieldSystem_SaveData(ctx->fieldSystem));
+    TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    UnkStruct_02014EC4 *v4 = sub_02014EC4(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 v5;
 
     if (v2 == 0) {
@@ -5497,7 +5496,7 @@ static BOOL ScrCmd_153(ScriptContext *ctx)
 
 static BOOL ScrCmd_154(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
     sub_0205C980(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
@@ -5506,7 +5505,7 @@ static BOOL ScrCmd_154(ScriptContext *ctx)
 
 static BOOL ScrCmd_155(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
@@ -5518,7 +5517,7 @@ static BOOL ScrCmd_155(ScriptContext *ctx)
 
 static BOOL ScrCmd_29C(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
@@ -5529,7 +5528,7 @@ static BOOL ScrCmd_29C(ScriptContext *ctx)
 
 static BOOL ScrCmd_156(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 v1 = ScriptContext_GetVar(ctx);
 
     TrainerInfo_SetAppearance(v0, v1);
@@ -5553,7 +5552,7 @@ static BOOL ScrCmd_14C(ScriptContext *ctx)
 
 static BOOL ScrCmd_GetPlayerGender(ScriptContext *ctx)
 {
-    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     *destVar = TrainerInfo_Gender(trainerInfo);
@@ -6700,7 +6699,7 @@ static BOOL ScrCmd_246(ScriptContext *ctx)
 static BOOL ScrCmd_249(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    TrainerInfo *v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
+    TrainerInfo *v1 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
     PCBoxes *v3 = SaveData_PCBoxes(fieldSystem->saveData);
     u16 v4 = ScriptContext_GetVar(ctx);
@@ -7237,11 +7236,11 @@ static BOOL ScrCmd_282(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_02025CCC *v2;
+    SystemData *v2;
 
-    v2 = sub_02025CCC(ctx->fieldSystem->saveData);
+    v2 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
-    if ((sub_02025D5C(v2) == sub_02055BB8(fieldSystem)) && (sub_02025D60(v2) == sub_02055BC4(fieldSystem))) {
+    if ((SystemData_GetOwnerBirthMonth(v2) == sub_02055BB8(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == sub_02055BC4(fieldSystem))) {
         *v0 = 1;
     } else {
         *v0 = 0;
@@ -7663,9 +7662,9 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
 static BOOL ScrCmd_2AC(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_02025CCC *v1;
+    SystemData *v1;
 
-    v1 = sub_02025CCC(ctx->fieldSystem->saveData);
+    v1 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
     sub_02025D6C(v1, 1);
     return 0;
@@ -7710,8 +7709,8 @@ static BOOL ScrCmd_2B5(ScriptContext *ctx)
     location->mapId = mapId;
     location->x = v1;
     location->z = v2;
-    location->unk_04 = -1;
-    location->unk_10 = 1;
+    location->warpId = WARP_ID_NONE;
+    location->faceDirection = FACE_DOWN;
 
     return 0;
 }

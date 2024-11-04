@@ -16,7 +16,7 @@
 
 BOOL ScrCmd_06F(ScriptContext *param0)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     u32 v1;
 
     v1 = ScriptContext_ReadWord(param0);
@@ -27,7 +27,7 @@ BOOL ScrCmd_06F(ScriptContext *param0)
 
 BOOL ScrCmd_070(ScriptContext *param0)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     u32 v1;
 
     v1 = ScriptContext_ReadWord(param0);
@@ -38,7 +38,7 @@ BOOL ScrCmd_070(ScriptContext *param0)
 
 BOOL ScrCmd_1A3(ScriptContext *param0)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     u32 v1;
 
     v1 = ScriptContext_GetVar(param0);
@@ -49,7 +49,7 @@ BOOL ScrCmd_1A3(ScriptContext *param0)
 
 BOOL ScrCmd_071(ScriptContext *param0)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     u16 *v1;
     u32 v2, v3;
 
@@ -68,7 +68,7 @@ BOOL ScrCmd_071(ScriptContext *param0)
 
 BOOL ScrCmd_1AB(ScriptContext *param0)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     u16 *v1;
     u32 v2, v3;
 

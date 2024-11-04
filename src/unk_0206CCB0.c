@@ -8,10 +8,8 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0202E7D8.h"
@@ -34,6 +32,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "berry_patches.h"
 #include "charcode_util.h"
 #include "field_system.h"
 #include "heap.h"
@@ -42,6 +41,7 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "record_mixed_rng.h"
 #include "roaming_pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -51,9 +51,7 @@
 #include "trainer_info.h"
 #include "unk_0201D15C.h"
 #include "unk_0202631C.h"
-#include "unk_02027B70.h"
 #include "unk_020298BC.h"
-#include "unk_0202B37C.h"
 #include "unk_0202D7A8.h"
 #include "unk_0202E2CC.h"
 #include "unk_0203A944.h"
@@ -822,12 +820,12 @@ static void sub_0206D3E4(FieldSystem *fieldSystem, int param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D43C *v1 = &v0.val4;
-    UnkStruct_0202B4A0 *v2 = sub_0202B4A0(fieldSystem->saveData);
+    RecordMixedRNG *v2 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
     MI_CpuClearFast(&v0, 40);
 
-    CharCode_CopyNumChars(v1->unk_00, sub_0202B42C(v2, 1, 0), 10 + 1);
+    CharCode_CopyNumChars(v1->unk_00, RecordMixedRNG_GetEntryName(v2, 1, 0), 10 + 1);
     sub_0206CD70(fieldSystem, 2, param1, v1);
 }
 
@@ -2044,12 +2042,12 @@ static const u8 Unk_020EFD34[] = {
     0x5
 };
 
-static int sub_0206E848(UnkStruct_0202B4A0 *param0)
+static int sub_0206E848(RecordMixedRNG *param0)
 {
     int v0, v1;
 
     for (v0 = 0, v1 = 0; v0 < NELEMS(Unk_020EFD34); v0++) {
-        if (sub_0202B4AC(param0, Unk_020EFD34[v0])) {
+        if (RecordMixedRNG_IsEntryValid(param0, Unk_020EFD34[v0])) {
             v1++;
         }
     }
@@ -2061,7 +2059,7 @@ static int sub_0206E870(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 {
     int v0, v1, v2;
     int v3;
-    UnkStruct_0202B4A0 *v4 = sub_0202B4A0(fieldSystem->saveData);
+    RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
     v1 = sub_0206E848(v4);
     GF_ASSERT(v1 > 0);
@@ -2073,7 +2071,7 @@ static int sub_0206E870(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 
     for (v0 = 0; v0 < NELEMS(Unk_020EFD34); v0++) {
-        if (sub_0202B4AC(v4, Unk_020EFD34[v0])) {
+        if (RecordMixedRNG_IsEntryValid(v4, Unk_020EFD34[v0])) {
             if (v1 == 0) {
                 v2 = Unk_020EFD34[v0];
                 break;
@@ -2100,7 +2098,7 @@ static int sub_0206E870(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206E928(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    UnkStruct_0202B4A0 *v0 = sub_0202B4A0(fieldSystem->saveData);
+    RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
     if (sub_0206E848(v0) != 0) {
         return 1;
@@ -2167,7 +2165,7 @@ static BOOL sub_0206EA0C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 
 static int sub_0206EA10(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
     int v1 = fieldSystem->location->mapId;
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
@@ -2541,14 +2539,14 @@ static int sub_0206EBE8(FieldSystem *fieldSystem)
 
 static int sub_0206EC90(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    UnkStruct_02027854 *v0 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v0 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
     int v1, v2;
 
     v1 = sub_0206EBE8(fieldSystem);
     v2 = Unk_020F0074[v1 * 2 + 1];
     StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v2));
 
-    switch (sub_02027D04(v0, v1)) {
+    switch (BerryPatches_GetPatchGrowthStage(v0, v1)) {
     case 5:
         return 36;
     case 4:
@@ -2624,7 +2622,7 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     u16 v2, v3;
     u32 v4, v5;
     Strbuf *v6 = Strbuf_Init(22, 4);
-    TrainerInfo *v7 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
+    TrainerInfo *v7 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
 
     v1 = sub_0202D834(fieldSystem->saveData);
     v2 = (LCRNG_Next() % 29);

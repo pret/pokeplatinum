@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021E15F4.h"
@@ -40,6 +39,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "journal.h"
+#include "location.h"
 #include "map_object_move.h"
 #include "menu.h"
 #include "message.h"
@@ -378,7 +378,7 @@ void ov23_0224B2C8(FieldSystem *fieldSystem)
     UnkStruct_02029894 *v0;
     SecretBaseRecord *v1;
 
-    v0 = sub_02029894(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02029894(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_020298AC(v0);
 
     sub_020294D4(v1, GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData)));
@@ -1529,11 +1529,11 @@ static BOOL ov23_0224C708(TaskManager *param0)
 
     switch (v1->unk_10) {
     case 0:
-        sub_0203CD44(fieldSystem);
+        FieldSystem_FlagNotRunningFieldMap(fieldSystem);
         (v1->unk_10)++;
         break;
     case 1:
-        if (!sub_0203CD4C(fieldSystem)) {
+        if (!FieldSystem_HasParentProcess(fieldSystem)) {
             v1->unk_10 = 0;
             return 1;
         }
@@ -1550,7 +1550,7 @@ static BOOL ov23_0224C74C(TaskManager *param0)
 
     switch (v1->unk_10) {
     case 0:
-        sub_0203CD00(fieldSystem);
+        FieldSystem_StartFieldMap(fieldSystem);
         (v1->unk_10)++;
         break;
     case 1:
@@ -1606,10 +1606,10 @@ static BOOL ov23_0224C790(TaskManager *param0)
         break;
     case 4:
         v2.mapId = v1->unk_14;
-        v2.unk_04 = v1->unk_18;
+        v2.warpId = v1->unk_18;
         v2.x = v1->unk_1C;
         v2.z = v1->unk_20;
-        v2.unk_10 = v1->unk_24;
+        v2.faceDirection = v1->unk_24;
         sub_020544F0(param0, &v2);
         (v1->unk_0C)++;
         break;
@@ -1982,7 +1982,7 @@ static void ov23_0224CEC8(void)
 void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov23_0224CF18 *v0 = param2;
-    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_022577AC->fieldSystem));
+    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
 
     if (v0->unk_00 != CommSys_CurNetId()) {
         return;
@@ -2152,8 +2152,8 @@ BOOL ov23_0224D1A0(int param0, int param1)
 
 static void ov23_0224D238(void)
 {
-    UnkStruct_02029894 *v0 = sub_02029894(FieldSystem_SaveData(Unk_ov23_022577AC->fieldSystem));
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_022577AC->fieldSystem));
+    UnkStruct_02029894 *v0 = sub_02029894(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
     int v2 = CommPlayer_AddXServer(0);
     int v3 = CommPlayer_AddZServer(0);
     int v4 = CommPlayer_DirServer(0);

@@ -30,7 +30,7 @@ typedef struct LibraryTV {
     int waitTiming;
 } LibraryTV;
 
-extern void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+extern void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
 static void LibraryTV_VBlank(void *data);
 static void LibraryTV_SetVramBank(LibraryTV *ltv);
 static void LibraryTV_ReleaseVramBank(LibraryTV *ltv);

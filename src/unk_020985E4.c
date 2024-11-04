@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0209862C.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 #include "overlay100/ov100_021D0D80.h"
 
 #include "field_system.h"
@@ -64,7 +64,7 @@ BOOL sub_0209862C(TaskManager *param0)
                 FS_OVERLAY_ID(overlay100)
             };
 
-            sub_0203CD84(fieldSystem, &v2, v1->unk_04);
+            FieldSystem_StartChildProcess(fieldSystem, &v2, v1->unk_04);
             v1->unk_00++;
         }
         break;

@@ -6,7 +6,6 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0202E8C0_decl.h"
 
 #include "overlay059/ov59_021D2A2C.h"
@@ -18,9 +17,9 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "record_mixed_rng.h"
 #include "savedata.h"
 #include "unk_020298BC.h"
-#include "unk_0202B37C.h"
 #include "unk_0202D05C.h"
 #include "unk_0202E2CC.h"
 #include "unk_0202E840.h"
@@ -47,13 +46,13 @@ typedef struct {
 
 static u32 ov59_021D2F88(SaveData *param0)
 {
-    UnkStruct_0202B4A0 *v0 = sub_0202B4A0(param0);
+    RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(param0);
     return ov59_021D2A2C(v0);
 }
 
 static void *ov59_021D2F94(SaveData *param0, int param1, u32 param2)
 {
-    UnkStruct_0202B4A0 *v0 = sub_0202B4A0(param0);
+    RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(param0);
     void *v1 = Heap_AllocFromHeapAtEnd(param1, param2);
 
     MI_CpuCopyFast(ov59_021D2A30(v0), v1, param2);
@@ -63,7 +62,7 @@ static void *ov59_021D2F94(SaveData *param0, int param1, u32 param2)
 
 static void ov59_021D2FBC(const UnkStruct_ov59_021D2FBC *param0)
 {
-    UnkStruct_0202B4A0 *v0 = sub_0202B4A0(param0->unk_04);
+    RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(param0->unk_04);
     ov59_021D2AC4(param0->unk_08, param0->unk_0C, v0, param0->unk_10);
 }
 

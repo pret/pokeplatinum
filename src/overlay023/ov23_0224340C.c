@@ -617,7 +617,7 @@ static const UnkFuncPtr_ov23_022564CC Unk_ov23_022565E4[] = {
 static void ov23_0224340C(void)
 {
     int v0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257764->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     for (v0 = 0; v0 < 16; v0++) {
         Unk_ov23_02257764->unk_308[v0].unk_04 = sub_02029030(v1, v0);
@@ -646,7 +646,7 @@ void ov23_022434BC(void *param0, FieldSystem *fieldSystem)
     MI_CpuFill8(Unk_ov23_02257764, 0, sizeof(UnkStruct_ov23_02257764));
     Unk_ov23_02257764->fieldSystem = fieldSystem;
 
-    v1 = sub_020298B0(FieldSystem_SaveData(fieldSystem));
+    v1 = sub_020298B0(FieldSystem_GetSaveData(fieldSystem));
 
     Unk_ov23_02257764->unk_2F0 = NULL;
 
@@ -1151,7 +1151,7 @@ void ov23_02243CE8(void)
 
 static void ov23_02243D50(void)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257764->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
     int v1;
 
     for (v1 = 0; v1 < 16; v1++) {
@@ -1325,7 +1325,7 @@ BOOL ov23_02244080(int param0, UnkStruct_ov23_0224271C *param1, u8 param2)
     u8 v2 = param0;
     UnkStruct_ov23_02243DA8 *v3;
     UnkStruct_ov23_02244140 v4;
-    UndergroundData *v5 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257764->fieldSystem));
+    UndergroundData *v5 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     v0 = CommPlayer_AddXServer(param0);
     v1 = CommPlayer_AddZServer(param0);
@@ -1549,7 +1549,7 @@ void ov23_0224448C(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_02257764->fieldSystem));
+    v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     Sound_PlayEffect(1570);
     MI_CpuCopy8(v0, &Unk_ov23_02257764->unk_B28[v0->unk_07_0], sizeof(UnkStruct_ov23_02244140));
@@ -2547,7 +2547,7 @@ void ov23_02245560(int param0, int param1)
 void ov23_022455B4(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov23_02245560 *v0 = param2;
-    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_02257764->fieldSystem));
+    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     ov23_0224B024(v0->unk_01);
 

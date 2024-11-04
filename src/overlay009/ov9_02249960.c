@@ -18,8 +18,8 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/map_object_anim_cmd.h"
-#include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021E779C.h"
@@ -1172,7 +1172,7 @@ void ov9_02249960(FieldSystem *fieldSystem)
     UnkStruct_02071C5C *v1;
     UnkStruct_ov9_02249B04 *v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 9);
     v2 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov9_02249B04));
 
@@ -1604,7 +1604,7 @@ void ov9_02249FD0(FieldSystem *fieldSystem)
 
     GF_ASSERT(fieldSystem != NULL);
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 9);
 
     v1->unk_04 = 0;
@@ -2045,7 +2045,7 @@ BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
 {
     UnkStruct_02027860 *v0;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
     if (sub_02027F80(v0) == 9) {
         int v1, v2, v3, v4;
@@ -2129,7 +2129,7 @@ BOOL ov9_0224A71C(FieldSystem *fieldSystem)
 {
     UnkStruct_02027860 *v0;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
     if (sub_02027F80(v0) != 9) {
         return 0;
@@ -9486,7 +9486,7 @@ BOOL ov9_02250F74(FieldSystem *fieldSystem)
 {
     UnkStruct_02027860 *v0;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
     if (sub_02027F80(v0) != 9) {
         return 0;
@@ -9554,7 +9554,7 @@ BOOL ov9_02251044(FieldSystem *fieldSystem, int param1, int param2, int param3, 
 {
     UnkStruct_02027860 *v0;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
     if (sub_02027F80(v0) != 9) {
         GF_ASSERT(0);

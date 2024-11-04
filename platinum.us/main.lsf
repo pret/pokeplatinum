@@ -103,7 +103,7 @@ Static main
 	Object main.nef.p/src_unk_02024358.c.o
 	Object main.nef.p/src_savedata_save_table.c.o
 	Object main.nef.p/src_savedata.c.o
-	Object main.nef.p/src_unk_02025CB0.c.o
+	Object main.nef.p/src_system_data.c.o
 	Object main.nef.p/src_save_player.c.o
 	Object main.nef.p/src_trainer_info.c.o
 	Object main.nef.p/src_unk_0202602C.c.o
@@ -112,7 +112,7 @@ Static main
 	Object main.nef.p/src_unk_0202631C.c.o
 	Object main.nef.p/src_savedata_misc.c.o
 	Object main.nef.p/src_game_options.c.o
-	Object main.nef.p/src_unk_02027B70.c.o
+	Object main.nef.p/src_berry_patches.c.o
 	Object main.nef.p/src_unk_02027F50.c.o
 	Object main.nef.p/src_unk_02027F84.c.o
 	Object main.nef.p/src_unk_02028124.c.o
@@ -120,7 +120,7 @@ Static main
 	Object main.nef.p/src_unk_020298BC.c.o
 	Object main.nef.p/src_poffin.c.o
 	Object main.nef.p/src_unk_0202ACE0.c.o
-	Object main.nef.p/src_unk_0202B37C.c.o
+	Object main.nef.p/src_record_mixed_rng.c.o
 	Object main.nef.p/src_coins.c.o
 	Object main.nef.p/src_journal.c.o
 	Object main.nef.p/src_unk_0202C7FC.c.o
@@ -177,7 +177,7 @@ Static main
 	Object main.nef.p/src_field_menu.c.o
 	Object main.nef.p/src_unk_0203C954.c.o
 	Object main.nef.p/src_field_system.c.o
-	Object main.nef.p/src_unk_0203D178.c.o
+	Object main.nef.p/src_location.c.o
 	Object main.nef.p/src_unk_0203D1B8.c.o
 	Object main.nef.p/src_field_script_context.c.o
 	Object main.nef.p/src_script_manager.c.o
@@ -1096,11 +1096,10 @@ Overlay overlay56
 	Object main.nef.p/src_overlay056_ov56_022561C0.c.o
 }
 
-Overlay overlay57
+Overlay game_start
 {
 	After main
-	Object main.nef.p/src_overlay057_ov57_021D0D80.c.o
-	Object main.nef.p/src_overlay057_ov57_021D0F30.c.o
+	Object main.nef.p/src_game_start.c.o
 }
 
 Overlay overlay58

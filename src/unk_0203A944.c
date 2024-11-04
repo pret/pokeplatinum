@@ -5,14 +5,12 @@
 
 #include "constants/overworld_weather.h"
 
-#include "struct_defs/struct_02055BA8.h"
-
 #include "field/field_system.h"
 
 #include "inlines.h"
 #include "map_header.h"
 #include "rtc.h"
-#include "unk_02025CB0.h"
+#include "system_data.h"
 #include "unk_020559DC.h"
 
 static const u8 Unk_020E98F4[] = {
@@ -1860,12 +1858,12 @@ int FieldSystem_GetWeather(FieldSystem *fieldSystem, int param1)
 
     {
         int v1;
-        UnkStruct_02055BA8 *v2 = sub_02025CD8(fieldSystem->saveData);
+        GameTime *v2 = SaveData_GetGameTime(fieldSystem->saveData);
 
-        v1 = DayNumberForDate(&v2->unk_04) - 1;
+        v1 = DayNumberForDate(&v2->date) - 1;
         GF_ASSERT(v1 >= 0 && v1 < 366);
 
-        if ((v2->unk_04.month > 2) && !inline_0203A944(v2->unk_04.year)) {
+        if ((v2->date.month > 2) && !inline_0203A944(v2->date.year)) {
             v1++;
         }
 

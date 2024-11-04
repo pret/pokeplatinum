@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
@@ -9,6 +8,7 @@
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "main.h"
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
@@ -16,7 +16,6 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02000C88.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 
@@ -38,7 +37,6 @@ typedef struct {
     u32 unk_3C;
 } UnkStruct_0209A3D0;
 
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
 int sub_0209A2C4(OverlayManager *param0, int *param1);
 int sub_0209A300(OverlayManager *param0, int *param1);
 int sub_0209A3A4(OverlayManager *param0, int *param1);
@@ -80,7 +78,7 @@ int sub_0209A2C4(OverlayManager *param0, int *param1)
 
     v0->unk_00 = v1;
     v0->unk_04 = 0;
-    v0->unk_34 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    v0->unk_34 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
 
     return 1;
 }
@@ -129,7 +127,7 @@ int sub_0209A3A4(OverlayManager *param0, int *param1)
 
     OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
-    sub_02000EC4(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D674);
+    EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D674);
 
     return 1;
 }

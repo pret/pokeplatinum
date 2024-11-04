@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -19,6 +18,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "location.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
@@ -124,7 +124,7 @@ static void sub_02052914(FieldSystem *fieldSystem, TaskManager *param1)
     v0->unk_20 = StringTemplate_Default(11);
 
     Window_AddFromTemplate(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
-    StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem)));
+    StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem)));
 
     if (fieldSystem->location->mapId == 414) {
         sub_02052AA4(v0, 4, 0, 0);

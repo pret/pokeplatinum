@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0203CC84.h"
-
 #include "overlay097/ov97_0222D2F8.h"
 #include "overlay097/ov97_0222D30C.h"
 #include "overlay097/struct_ov97_0222D04C.h"
@@ -14,6 +12,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "main.h"
 #include "overlay_manager.h"
 #include "savedata.h"
 #include "sys_task.h"
@@ -186,7 +185,7 @@ void ov97_0222D200(UnkStruct_ov97_0222D04C *param0, int param1)
         return;
     }
 
-    v0 = ((UnkStruct_0203CC84 *)OverlayManager_Args(ov97_022301A4()))->unk_08;
+    v0 = ((ApplicationArgs *)OverlayManager_Args(ov97_022301A4()))->saveData;
     sub_02036C1C(v0, param1);
 
     ov97_0222D04C(param0);

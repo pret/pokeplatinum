@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_02017498.h"
 #include "struct_defs/struct_02099F80.h"
@@ -31,13 +30,13 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system_data.h"
 #include "text.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_02025CB0.h"
 #include "unk_0202ACE0.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
@@ -801,11 +800,11 @@ static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
 {
     DWCUserData *v0;
     s32 v1;
-    UnkStruct_02025CCC *v2;
+    SystemData *v2;
     UnkStruct_0202B370 *v3;
 
     v3 = sub_0202B370(param0->unk_00->unk_00->unk_04);
-    v2 = sub_02025CCC(param0->unk_00->unk_00->unk_04);
+    v2 = SaveData_GetSystemData(param0->unk_00->unk_00->unk_04);
     v0 = sub_0202AD28(v3);
     v1 = sub_02025D74(v2);
 

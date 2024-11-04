@@ -5,14 +5,13 @@
 
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "functypes/funcptr_020EC560.h"
 #include "functypes/funcptr_020EC57C.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/hblank_system.h"
-#include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
@@ -22,6 +21,7 @@
 #include "field_map_change.h"
 #include "heap.h"
 #include "inlines.h"
+#include "location.h"
 #include "map_header.h"
 #include "map_object.h"
 #include "player_avatar.h"

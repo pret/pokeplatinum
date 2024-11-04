@@ -203,7 +203,7 @@ void sub_020722AC(void *param0, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_02072334));
     v0->unk_04 = param1;
 
-    v1 = FieldSystem_SaveData(param0);
+    v1 = FieldSystem_GetSaveData(param0);
 
     v0->fieldSystem = (FieldSystem *)param0;
     v0->unk_00 = 43;
@@ -997,7 +997,7 @@ static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
         return;
     }
 
-    v1 = Party_GetFromSavedata(FieldSystem_SaveData(param0->fieldSystem));
+    v1 = Party_GetFromSavedata(FieldSystem_GetSaveData(param0->fieldSystem));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
     sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->unk_00);
@@ -1046,7 +1046,7 @@ static void sub_020731A4(UnkStruct_02072334 *param0)
 
 static void sub_020731F4(UnkStruct_02072334 *param0)
 {
-    param0->unk_170 = sub_0203D170(param0->fieldSystem);
+    param0->unk_170 = FieldSystem_GetBgConfig(param0->fieldSystem);
 
     LoadMessageBoxGraphics(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->unk_00);
     LoadStandardWindowGraphics(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
@@ -1210,9 +1210,9 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(PartyManagementData));
         MI_CpuClear8(v0, sizeof(PartyManagementData));
 
-        v0->unk_00 = Party_GetFromSavedata(FieldSystem_SaveData(param0->fieldSystem));
-        v0->unk_04 = SaveData_GetBag(FieldSystem_SaveData(param0->fieldSystem));
-        v0->unk_0C = SaveData_Options(FieldSystem_SaveData(param0->fieldSystem));
+        v0->unk_00 = Party_GetFromSavedata(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->unk_04 = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->unk_0C = SaveData_Options(FieldSystem_GetSaveData(param0->fieldSystem));
         v0->unk_08 = sub_02028430(param0->fieldSystem->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;
@@ -1222,7 +1222,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
             v0->unk_22 = param0->unk_17;
         }
 
-        sub_0203CD84(param0->fieldSystem, &Unk_020F1E88, v0);
+        FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, v0);
         param0->unk_1B4 = v0;
         param0->unk_12++;
         break;

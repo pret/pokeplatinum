@@ -16,12 +16,12 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "main.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -115,10 +115,10 @@ typedef struct {
 
 extern const OverlayManagerTemplate Unk_020F8A48;
 extern const OverlayManagerTemplate Unk_020F8AB4;
-extern const OverlayManagerTemplate Unk_ov77_021D788C;
+extern const OverlayManagerTemplate gOpeningCutsceneOverlayTemplate;
 
 static void ov77_021D1D48(BgConfig *param0, int param1);
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
 static int ov77_021D0D80(OverlayManager *param0, int *param1);
 static int ov77_021D0E3C(OverlayManager *param0, int *param1);
 static int ov77_021D10FC(OverlayManager *param0, int *param1);
@@ -146,7 +146,7 @@ static void ov77_021D2428(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 
 static void ov77_021D24C8(UnkStruct_ov77_021D1568 *param0);
 static void ov77_021D2438(UnkStruct_ov77_021D1568 *param0);
 
-const OverlayManagerTemplate Unk_ov77_021D742C = {
+const OverlayManagerTemplate gTitleScreenOverlayTemplate = {
     ov77_021D0D80,
     ov77_021D0E3C,
     ov77_021D10FC,
@@ -331,14 +331,14 @@ static int ov77_021D10FC(OverlayManager *param0, int *param1)
     switch (v2) {
     default:
     case 1:
-        sub_02000EC4(0xffffffff, &Unk_020F8AB4);
+        EnqueueApplication(0xffffffff, &Unk_020F8AB4);
         break;
     case 2:
-        sub_02000EC4(0xffffffff, &Unk_020F8A48);
+        EnqueueApplication(0xffffffff, &Unk_020F8A48);
         break;
     case 3:
         sub_02004234(0);
-        sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D788C);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneOverlayTemplate);
         break;
     }
 

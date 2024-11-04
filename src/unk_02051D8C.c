@@ -12,7 +12,6 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_02055BA8.h"
 #include "struct_defs/struct_0205EC34.h"
 #include "struct_defs/struct_0209C370.h"
 #include "struct_defs/trainer_data.h"
@@ -41,8 +40,8 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "system_data.h"
 #include "trainer_info.h"
-#include "unk_02025CB0.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"
 #include "unk_02027F84.h"
@@ -117,7 +116,7 @@ BattleParams *sub_02051D8C(int param0, u32 param1)
         RTCTime v3;
 
         GetCurrentDateTime(&v2, &v3);
-        v1->unk_174 = v2.year + v2.month * 0x100 * v2.day * 0x10000 + v3.hour * 0x10000 + (v3.minute + v3.second) * 0x1000000 + gCoreSys.frameCounter;
+        v1->unk_174 = v2.year + v2.month * 0x100 * v2.day * 0x10000 + v3.hour * 0x10000 + (v3.minute + v3.second) * 0x1000000 + gCoreSys.vblankCounter;
     }
 
     if (CommSys_IsInitialized() == 1) {
@@ -264,9 +263,9 @@ void sub_020521B8(BattleParams *param0, const FieldSystem *fieldSystem, SaveData
         param0->unk_128 = MapHeader_GetBattleBG(param3);
         param0->unk_12C = 9;
         {
-            UnkStruct_02055BA8 *v7 = sub_02025CD8(param2);
+            GameTime *v7 = SaveData_GetGameTime(param2);
 
-            param0->unk_138 = TimeOfDayForHour(v7->unk_14.hour);
+            param0->unk_138 = TimeOfDayForHour(v7->time.hour);
         }
     }
 

@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/union_0206B878.h"
 
@@ -15,6 +14,7 @@
 #include "field_system.h"
 #include "heap.h"
 #include "inlines.h"
+#include "location.h"
 #include "map_header.h"
 #include "player_avatar.h"
 #include "save_player.h"
@@ -85,7 +85,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     z = Player_GetZPos(fieldSystem->playerAvatar);
 
     int v11 = 10 - 1;
-    Location *location = sub_0203A720(v9);
+    Location *location = FieldOverworldState_GetPlayerLocation(v9);
 
     v6 = location->mapId;
 
@@ -109,7 +109,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
         param1->unk_04 = v10->z;
     }
 
-    v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
+    v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
     param1->unk_0C = TrainerInfo_Gender(v0);
     v7 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v2 = (v7->unk_00 - 2 + 6) % 6;

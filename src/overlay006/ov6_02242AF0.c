@@ -88,7 +88,7 @@ void ov6_02242AF0(FieldSystem *fieldSystem)
     UnkStruct_ov6_02242AF0 *v1;
     VecFx32 v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
 
     v2.x = ((FX32_ONE * 16) * (32 * 2 + 2));
@@ -115,7 +115,7 @@ void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
     UnkStruct_ov6_02242AF0 *v1;
     UnkStruct_ov6_02242B58 *v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
     v2 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02242B58));
 
@@ -184,7 +184,7 @@ u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)
     UnkStruct_02027860 *v0;
     UnkStruct_ov6_02242AF0 *v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
 
     if (v1->unk_00 == param1) {

@@ -22,11 +22,11 @@
 #include "heap.h"
 #include "party.h"
 #include "pokemon_summary_app.h"
+#include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
 #include "unk_0202854C.h"
-#include "unk_0202B37C.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_0203061C.h"
@@ -91,7 +91,7 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
         v2->unk_2C[v0] = param0->unk_0E[v0];
     }
 
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v2);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
 
     *(param0->unk_14) = v2;
     return 1;
@@ -152,7 +152,7 @@ static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
 
     PokemonSummary_FlagVisiblePages(v0, v2);
     PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
-    sub_0203CD84(fieldSystem, &Unk_020F410C, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
     *(param0->unk_14) = v0;
 
     return 3;
@@ -476,7 +476,7 @@ u32 sub_0206C008(SaveData *param0)
 {
     u32 v0;
 
-    v0 = sub_0202B428(sub_0202B4A0(param0));
+    v0 = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(param0));
     v0 = sub_0206BFFC(v0);
 
     sub_0202D470(sub_0202D750(param0), v0);

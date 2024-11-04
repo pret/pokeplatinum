@@ -123,7 +123,7 @@ void sub_0207160C(FieldSystem *fieldSystem)
     const UnkStruct_020F03F4 *v4;
     fx32 v5;
 
-    v2 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v2 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v3 = (UnkStruct_020716D4 *)sub_02027F6C(v2, 7);
     v4 = &Unk_020F03F4[v3->unk_02];
     v5 = v4->unk_00[v3->unk_00];
@@ -162,7 +162,7 @@ void sub_020716D4(FieldSystem *fieldSystem)
     UnkStruct_02027860 *v0;
     UnkStruct_020716D4 *v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     sub_02027F5C(v0, 7);
 
     v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
@@ -274,7 +274,7 @@ u8 sub_02071818(FieldSystem *fieldSystem)
     UnkStruct_02027860 *v0;
     UnkStruct_020716D4 *v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
 
     if (v1->unk_04) {
@@ -290,7 +290,7 @@ void sub_0207183C(FieldSystem *fieldSystem)
     UnkStruct_020716D4 *v1;
     UnkStruct_020718D8 *v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
 
     if ((Unk_020F03F4[v1->unk_02].unk_10) && (v1->unk_00 == 1)) {

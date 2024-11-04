@@ -420,7 +420,7 @@ static BOOL ov5_021EADB4(TaskManager *param0)
     case 12:
         ov5_021EAF1C(v0);
         Heap_FreeToHeap(v0);
-        sub_0203D140();
+        FieldSystem_ResumeProcessing();
         return 1;
     }
 

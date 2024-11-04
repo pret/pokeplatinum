@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_0202D7B0.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_0205EC34.h"
 
@@ -13,6 +12,7 @@
 #include "field_overworld_state.h"
 #include "inlines.h"
 #include "journal.h"
+#include "location.h"
 #include "map_header.h"
 #include "roaming_pokemon.h"
 #include "save_player.h"

@@ -2,20 +2,18 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02027854_decl.h"
-
 #include "overlay025/poketch_system.h"
 #include "overlay048/ov48_0225650C.h"
 #include "overlay048/struct_ov48_0225650C_1.h"
 #include "overlay048/struct_ov48_0225650C_decl.h"
 
+#include "berry_patches.h"
 #include "bg_window.h"
 #include "heap.h"
 #include "inlines.h"
 #include "savedata_misc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02027B70.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
@@ -311,11 +309,11 @@ static BOOL ov48_022563D0(UnkStruct_ov48_0225621C *param0)
 
 static int ov48_02256408(UnkStruct_ov48_0225621C *param0)
 {
-    UnkStruct_02027854 *v0 = sub_02027854(PoketchSystem_GetSaveData(param0->poketchSys));
+    BerryPatch *v0 = MiscSaveBlock_GetBerryPatches(PoketchSystem_GetSaveData(param0->poketchSys));
     int v1, v2;
 
     for (v1 = 0, v2 = 0; v1 < (NELEMS(Unk_ov48_02256A38)); v1++) {
-        if ((sub_02027D84(v0, v1) == 1) && (sub_02027D04(v0, v1) == 5)) {
+        if ((BerryPatches_IsPatchGrowing(v0, v1) == 1) && (BerryPatches_GetPatchGrowthStage(v0, v1) == 5)) {
             param0->unk_04.unk_0C[v2].unk_00 = Unk_ov48_02256A38[v1].unk_00;
             param0->unk_04.unk_0C[v2].unk_01 = Unk_ov48_02256A38[v1].unk_01;
 

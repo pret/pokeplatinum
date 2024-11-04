@@ -11,7 +11,6 @@
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -40,6 +39,7 @@
 #include "field_overworld_state.h"
 #include "game_records.h"
 #include "inlines.h"
+#include "location.h"
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
@@ -589,7 +589,7 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
                 ov8_0224C62C(fieldSystem, playerX, playerZ, &v6);
             }
 
-            sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, v6, 1);
+            sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, v6, 1);
 
             return TRUE;
         }
@@ -636,14 +636,14 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
     } else if (sub_0205DAF8(tileBehavior) || sub_0205DB28(tileBehavior)
         || sub_0205DB04(tileBehavior) || sub_0205DB34(tileBehavior)
         || sub_0205DB1C(tileBehavior) || sub_0205DB4C(tileBehavior)) {
-        sub_02056C18(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, input->transitionDir);
+        sub_02056C18(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, input->transitionDir);
         return TRUE;
     } else {
         return FALSE;
     }
 
     // these statements are unreachable, but required for matching
-    sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, input->transitionDir, transitionType);
+    sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, input->transitionDir, transitionType);
 
     return TRUE;
 }
@@ -797,7 +797,7 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
             return FALSE;
         }
 
-        sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, playerDir, 2);
+        sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, playerDir, 2);
         return TRUE;
     } else if (TileBehavior_IsEscalator(curTileBehavior) == TRUE) {
         int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
@@ -807,17 +807,17 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
             return FALSE;
         }
 
-        sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, playerDir, 2);
+        sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, playerDir, 2);
         return TRUE;
     }
 
     if (sub_0205DB10(curTileBehavior) || sub_0205DB40(curTileBehavior)) {
-        sub_02056C18(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, 0);
+        sub_02056C18(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, 0);
         return TRUE;
     }
 
     if (TileBehavior_IsWarp(curTileBehavior)) {
-        FieldSystem_StartMapChangeWarpTask(fieldSystem, nextMap.mapId, nextMap.unk_04);
+        FieldSystem_StartMapChangeWarpTask(fieldSystem, nextMap.mapId, nextMap.warpId);
         return TRUE;
     }
 
@@ -1029,7 +1029,7 @@ static void Field_SetMapConnection(FieldSystem *fieldSystem, const int playerX, 
     Location *nextMap = sub_0203A72C(v0);
 
     (*nextMap) = *(fieldSystem->location);
-    nextMap->unk_10 = playerDir;
+    nextMap->faceDirection = playerDir;
     nextMap->x = playerX;
     nextMap->z = playerZ;
 
@@ -1038,7 +1038,7 @@ static void Field_SetMapConnection(FieldSystem *fieldSystem, const int playerX, 
     }
 
     nextMap->mapId = fieldSystem->location->mapId;
-    nextMap->unk_04 = -1;
+    nextMap->warpId = WARP_ID_NONE;
 }
 
 static void Field_TrySetMapConnection(FieldSystem *fieldSystem)

@@ -98,7 +98,7 @@ static BOOL sub_0209C25C(UnkStruct_0209C1EC *param0)
 {
     param0->unk_28 = sub_0209C194(&param0->unk_08, 11);
     param0->unk_00 = 1;
-    sub_0203CD84(param0->fieldSystem, &Unk_020F94FC, param0->unk_28);
+    FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F94FC, param0->unk_28);
     return 0;
 }
 
@@ -134,7 +134,7 @@ static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
             param0->unk_00 = 3;
         } else {
             param0->unk_28->unk_04 = v0;
-            sub_0203CD84(param0->fieldSystem, &Unk_020F950C, param0->unk_28);
+            FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F950C, param0->unk_28);
             param0->unk_28->unk_00 = 3;
             param0->unk_00 = 4;
         }

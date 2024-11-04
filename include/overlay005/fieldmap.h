@@ -4,6 +4,9 @@
 #include "field/field_system_decl.h"
 
 #include "bg_window.h"
+#include "overlay_manager.h"
+
+extern const OverlayManagerTemplate gFieldMapTemplate;
 
 void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1);
 void ov5_021D1434(BgConfig *param0);

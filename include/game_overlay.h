@@ -3,15 +3,15 @@
 
 #include <nitro/fs.h>
 
-typedef enum PMOverlayLoadType {
+typedef enum OverlayLoadType {
     OVERLAY_LOAD_NORMAL,
     OVERLAY_LOAD_NOINIT,
     OVERLAY_LOAD_ASYNC
-} PMOverlayLoadType;
+} OverlayLoadType;
 
-void Overlay_UnloadByID(const FSOverlayID param0);
-int Overlay_GetLoadDestination(const FSOverlayID param0);
-BOOL Overlay_LoadByID(const FSOverlayID param0, int param1);
+void Overlay_UnloadByID(const FSOverlayID overlayID);
+int Overlay_GetLoadDestination(const FSOverlayID overlayID);
+BOOL Overlay_LoadByID(const FSOverlayID overlayID, enum OverlayLoadType loadType);
 
 #ifdef GDB_DEBUGGING
 // describes a single overlay entry, which GDB can inspect to determine which overlays are loaded.

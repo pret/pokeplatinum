@@ -16,7 +16,7 @@ static BOOL sub_02055808(TaskManager *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (!sub_0203CD4C(fieldSystem)) {
+    if (!FieldSystem_HasParentProcess(fieldSystem)) {
         return 1;
     }
 
@@ -27,12 +27,12 @@ void FieldTask_FinishFieldMap(TaskManager *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (!sub_0203CD4C(fieldSystem)) {
+    if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    sub_0203CD44(fieldSystem);
+    FieldSystem_FlagNotRunningFieldMap(fieldSystem);
     FieldTask_Start(param0, sub_02055808, NULL);
 }
 
@@ -51,7 +51,7 @@ void FieldTask_StartFieldMap(TaskManager *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (sub_0203CD4C(fieldSystem)) {
+    if (FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
@@ -73,7 +73,7 @@ void sub_020558AC(TaskManager *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (!sub_0203CD4C(fieldSystem)) {
+    if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
@@ -88,7 +88,7 @@ void sub_020558F0(TaskManager *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (!sub_0203CD4C(fieldSystem)) {
+    if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }

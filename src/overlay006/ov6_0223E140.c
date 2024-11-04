@@ -10,8 +10,8 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/motion_blur.h"
-#include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
@@ -2058,7 +2058,7 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 param0, FieldSystem *fieldSystem)
     ov6_02240260(&v0->unk_34, v0->unk_11C, &v0->unk_10C);
 
     {
-        BgConfig *v1 = sub_0203D170(v0->fieldSystem);
+        BgConfig *v1 = FieldSystem_GetBgConfig(v0->fieldSystem);
 
         Graphics_LoadTilesToBgLayer(172, 74, v1, 2, 0, 0, 0, param0);
         Graphics_LoadTilemapToBgLayer(172, 76, v1, 2, 0, 0, 0, param0);

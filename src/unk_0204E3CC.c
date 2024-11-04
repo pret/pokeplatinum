@@ -87,7 +87,7 @@ BOOL ScrCmd_15E(ScriptContext *param0)
 {
     u16 *v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206A938(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    *v0 = VarsFlags_CheckBagAvailable(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
@@ -119,7 +119,7 @@ BOOL ScrCmd_15D(ScriptContext *param0)
 
 BOOL ScrCmd_15F(ScriptContext *param0)
 {
-    sub_0206A92C(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    VarsFlags_SetBagAvailable(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
