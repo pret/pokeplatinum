@@ -12,11 +12,11 @@
 #include "overlay021/pokedexsort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
+#include "overlay021/struct_ov21_021D3320.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay021/struct_ov21_021d3320.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"

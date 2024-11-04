@@ -8,7 +8,7 @@
 #include "overlay021/STRUCT_OV21_021D3208.h"
 #include "overlay021/sortedpokedex.h"
 #include "overlay021/speciesCaughtStatus.h"
-#include "overlay021/struct_ov21_021d3320.h"
+#include "overlay021/struct_ov21_021D3320.h"
 
 #include "core_sys.h"
 #include "graphics.h"

@@ -169,10 +169,10 @@ BOOL sub_0206B16C(VarsFlags *param0, int param1)
 static int sub_0206B194(int param0)
 {
     static const u16 v0[] = {
-        520,
-        553,
-        786,
-        4136,
+        0x208,
+        0x229,
+        0x312,
+        0x1028,
     };
 
     GF_ASSERT(0 <= param0 && param0 < 4);

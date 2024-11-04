@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV21_021D5B68_H
 #define POKEPLATINUM_STRUCT_OV21_021D5B68_H
 
-#include "overlay021/struct_ov21_021d3320.h"
+#include "overlay021/struct_ov21_021D3320.h"
 
 typedef struct {
     int *unk_00;

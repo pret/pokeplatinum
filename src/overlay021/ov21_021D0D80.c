@@ -39,6 +39,7 @@
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"
 #include "overlay021/struct_ov21_021D22F8.h"
+#include "overlay021/struct_ov21_021D3320.h"
 #include "overlay021/struct_ov21_021D3FE0_decl.h"
 #include "overlay021/struct_ov21_021D423C_decl.h"
 #include "overlay021/struct_ov21_021D4660.h"
@@ -46,7 +47,6 @@
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E68F4.h"
-#include "overlay021/struct_ov21_021d3320.h"
 #include "overlay022/struct_ov22_022559F8.h"
 
 #include "bg_window.h"
@@ -713,7 +713,7 @@ Window *ov21_021D172C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2)
     return v0;
 }
 
-void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320 *param1, int param2, int dexIndex, fx32 param4, fx32 param5)
+void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320 *param1, int param2, int statusIndex, fx32 param4, fx32 param5)
 {
     CellActor *v0;
     CellActor *v1;
@@ -721,10 +721,10 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D332
     Window *v3;
     SpriteResource *v4;
     VecFx32 v5;
-    const SpeciesCaughtStatus *pokeCaughtStatus;
+    const SpeciesCaughtStatus *speciesCaughtStatus;
     u32 v7 = PokedexStatus_IsNationalDex(param1);
 
-    pokeCaughtStatus = PokedexSort_StatusIndexToCaughtStatus(param1, dexIndex);
+    speciesCaughtStatus = PokedexSort_StatusIndexToCaughtStatus(param1, statusIndex);
     v0 = ov21_021D22A8(param0);
     v1 = ov21_021D22C4(param0);
 
@@ -734,7 +734,7 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D332
     CellActor_SetPosition(v0, &v5);
     CellActor_SetDrawFlag(v0, 1);
 
-    if (pokeCaughtStatus->caughtStatus == CS_CAUGHT) {
+    if (speciesCaughtStatus->caughtStatus == CS_CAUGHT) {
         v5.x = param4 + (-54 * FX32_ONE);
         v5.y = param5;
 
@@ -756,10 +756,10 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D332
     v2.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
     v2.heapID = param2;
 
-    v3 = ov21_021D16D8(param0, param1, param2, pokeCaughtStatus->species);
+    v3 = ov21_021D16D8(param0, param1, param2, speciesCaughtStatus->species);
     v2.unk_04 = v3;
 
-    ov21_021D22E0(param0, &v2, 0, pokeCaughtStatus->species, v7);
+    ov21_021D22E0(param0, &v2, 0, speciesCaughtStatus->species, v7);
     ov21_021D4DA0(v3);
 }
 
