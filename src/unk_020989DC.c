@@ -335,7 +335,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     PokemonSummaryScreen_FlagVisiblePages(v2, v3);
     PokemonSummaryScreen_SetPlayerProfile(v2, param0->unk_0C->unk_0C);
 
-    param0->unk_14 = OverlayManager_New(&Unk_020F410C, v1, param0->unk_00);
+    param0->unk_14 = OverlayManager_New(&gPokemonSummaryScreenApp, v1, param0->unk_00);
     param0->unk_10 = (void *)v2;
 
     return 3;
@@ -436,7 +436,7 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
     PokemonSummaryScreen_FlagVisiblePages(v1, v3);
     PokemonSummaryScreen_SetPlayerProfile(v1, param0->unk_0C->unk_0C);
 
-    param0->unk_14 = OverlayManager_New(&Unk_020F410C, v1, param0->unk_00);
+    param0->unk_14 = OverlayManager_New(&gPokemonSummaryScreenApp, v1, param0->unk_00);
     param0->unk_10 = (void *)v1;
 
     return 7;

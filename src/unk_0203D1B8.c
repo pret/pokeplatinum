@@ -376,7 +376,7 @@ void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
 
 void sub_0203D334(FieldSystem *fieldSystem, void *param1)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, param1);
 }
 
 static PartyManagementData *sub_0203D344(int param0, FieldSystem *fieldSystem, int param2, int param3)
@@ -560,7 +560,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
 
     PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA02C);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 
     return v0;
 }
@@ -1779,7 +1779,7 @@ void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
 
     PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA15C);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 
     return v0;
 }

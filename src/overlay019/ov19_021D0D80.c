@@ -2383,7 +2383,7 @@ static void ov19_021D3C28(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             ov19_021D64A0(param0->unk_114);
             Heap_Destroy(10);
             ov19_021D1C84(param0);
-            param0->unk_210 = OverlayManager_New(&Unk_020F410C, &(param0->unk_12C), 9);
+            param0->unk_210 = OverlayManager_New(&gPokemonSummaryScreenApp, &(param0->unk_12C), 9);
             (*param1)++;
         }
         break;

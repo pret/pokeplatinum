@@ -211,7 +211,7 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 
     PokemonSummaryScreen_FlagVisiblePages(param1->unk_AC, v0);
     PokemonSummaryScreen_SetPlayerProfile(param1->unk_AC, SaveData_GetTrainerInfo(param1->unk_00));
-    sub_0209B988(param0, &Unk_020F410C, param1->unk_AC, 0, NULL);
+    sub_0209B988(param0, &gPokemonSummaryScreenApp, param1->unk_AC, 0, NULL);
 
     return;
 }

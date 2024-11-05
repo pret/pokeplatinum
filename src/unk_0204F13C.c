@@ -435,7 +435,7 @@ static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 
     *(param0->unk_08) = v0;
     return UnkEnum_0204F13C_4;

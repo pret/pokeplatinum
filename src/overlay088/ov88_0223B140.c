@@ -1751,7 +1751,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
-    param0->unk_40 = OverlayManager_New(&Unk_020F410C, &param0->unk_0C, 26);
+    param0->unk_40 = OverlayManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, 26);
     param0->unk_3C = param1;
 }
 

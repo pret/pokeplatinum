@@ -515,7 +515,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         if (IsScreenTransitionDone() == 1) {
             ov106_02242CA4(param0);
             ov106_022423E8(param0);
-            param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_BC, 98);
+            param0->unk_04 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_BC, 98);
             param0->unk_0B = 1;
             return 1;
         }

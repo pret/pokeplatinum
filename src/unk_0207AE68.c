@@ -1014,5 +1014,5 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
 
 static void sub_0207C624(UnkStruct_0207AE68 *param0)
 {
-    param0->unk_38 = OverlayManager_New(&Unk_020F410C, param0->unk_3C, param0->unk_5C);
+    param0->unk_38 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_3C, param0->unk_5C);
 }
