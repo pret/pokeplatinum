@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_OV5_021D431C_H
 #define POKEPLATINUM_OV5_021D431C_H
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
 #include "overlay005/struct_ov5_021D4E00_decl.h"
+
+#include "field_task.h"
 
 UnkStruct_ov5_021D432C *ov5_021D431C(void);
 void ov5_021D432C(UnkStruct_ov5_021D432C *param0);
@@ -21,10 +21,10 @@ void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1);
 void ov5_021D4D68(FieldSystem *fieldSystem, const u8 param1);
 void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSystem *param3);
 UnkStruct_ov5_021D4E00 *ov5_021D4E00(void);
-BOOL ov5_021D4E10(TaskManager *param0);
-BOOL ov5_021D4F14(TaskManager *param0);
-BOOL ov5_021D4FA0(TaskManager *param0);
-BOOL ov5_021D5020(TaskManager *param0);
-BOOL ov5_021D5150(TaskManager *param0);
+BOOL ov5_021D4E10(FieldTask *param0);
+BOOL ov5_021D4F14(FieldTask *param0);
+BOOL ov5_021D4FA0(FieldTask *param0);
+BOOL ov5_021D5020(FieldTask *param0);
+BOOL ov5_021D5150(FieldTask *param0);
 
 #endif // POKEPLATINUM_OV5_021D431C_H

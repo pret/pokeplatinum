@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -14,6 +13,7 @@
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -32,7 +32,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_0203A7D8.h"
-#include "unk_020508D4.h"
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
 #include "unk_02070428.h"
@@ -46,8 +45,8 @@ typedef struct {
     StringTemplate *unk_20;
 } UnkStruct_02052AA4;
 
-static void sub_02052914(FieldSystem *fieldSystem, TaskManager *param1);
-static BOOL sub_020529C4(TaskManager *param0);
+static void sub_02052914(FieldSystem *fieldSystem, FieldTask *param1);
+static BOOL sub_020529C4(FieldTask *param0);
 static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 param3);
 
 static const WindowTemplate Unk_020EC2F0 = {
@@ -102,7 +101,7 @@ static void sub_020528D0(BgConfig *param0)
     Graphics_LoadPalette(14, 6, 0, 13 * 0x20, 0x20, 11);
 }
 
-static void sub_02052914(FieldSystem *fieldSystem, TaskManager *param1)
+static void sub_02052914(FieldSystem *fieldSystem, FieldTask *param1)
 {
     UnkStruct_02052AA4 *v0;
 
@@ -133,14 +132,14 @@ static void sub_02052914(FieldSystem *fieldSystem, TaskManager *param1)
     }
 
     Window_CopyToVRAM(&v0->unk_0C);
-    FieldTask_Start(param1, sub_020529C4, v0);
+    FieldTask_InitCall(param1, sub_020529C4, v0);
 
     return;
 }
 
-static BOOL sub_020529C4(TaskManager *param0)
+static BOOL sub_020529C4(FieldTask *param0)
 {
-    UnkStruct_02052AA4 *v0 = TaskManager_Environment(param0);
+    UnkStruct_02052AA4 *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_00) {
     case 0:
@@ -200,12 +199,12 @@ static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 p
     return;
 }
 
-BOOL sub_02052B2C(TaskManager *param0)
+BOOL sub_02052B2C(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
     int *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
+    fieldSystem = FieldTask_GetFieldSystem(param0);
     v1 = FieldTask_GetState(param0);
 
     switch (*v1) {
@@ -266,7 +265,7 @@ BOOL sub_02052B2C(TaskManager *param0)
     return 0;
 }
 
-void sub_02052C5C(TaskManager *param0)
+void sub_02052C5C(FieldTask *param0)
 {
-    FieldTask_Start(param0, sub_02052B2C, NULL);
+    FieldTask_InitCall(param0, sub_02052B2C, NULL);
 }

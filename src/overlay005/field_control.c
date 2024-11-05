@@ -21,7 +21,6 @@
 #include "overlay005/ov5_021EF4BC.h"
 #include "overlay005/ov5_021EFB0C.h"
 #include "overlay005/ov5_021F8370.h"
-#include "overlay005/struct_ov5_021D219C.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay006/ov6_02246BF4.h"
@@ -33,6 +32,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
+#include "encounter.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
 #include "field_menu.h"
@@ -49,13 +49,13 @@
 #include "pokeradar.h"
 #include "save_player.h"
 #include "script_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_020261E4.h"
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
 #include "unk_0203C954.h"
-#include "unk_02050A74.h"
 #include "unk_02054884.h"
 #include "unk_02054D00.h"
 #include "unk_020562F8.h"
@@ -66,7 +66,6 @@
 #include "unk_0205F180.h"
 #include "unk_02067A84.h"
 #include "unk_020683F4.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_02071B10.h"
 #include "vars_flags.h"
@@ -182,7 +181,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     if (input->dummy5 == FALSE) {
         BOOL hasTwoAliveMons = Party_HasTwoAliveMons(Party_GetFromSavedata(fieldSystem->saveData));
 
-        if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
+        if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
             hasTwoAliveMons = TRUE;
         }
 
@@ -197,7 +196,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->movement) {
-        sub_0206A9A4(SaveData_GetVarsFlags(fieldSystem->saveData));
+        SystemFlag_ClearStep(SaveData_GetVarsFlags(fieldSystem->saveData));
 
         if (Field_ProcessStep(fieldSystem) == TRUE) {
             return TRUE;
@@ -208,7 +207,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         int playerEvent = PLAYER_EVENT_NONE;
         int direction = sub_02061308(fieldSystem->playerAvatar, input->pressedKeys, input->heldKeys);
 
-        if (inline_0204E650_2(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+        if (SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK)) {
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
@@ -547,7 +546,7 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
 
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
-    if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
+    if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
         if (sub_02056374(fieldSystem, playerX, playerZ) == TRUE) {
             sub_02051450(fieldSystem, sub_0205639C(fieldSystem));
             return TRUE;
@@ -923,7 +922,7 @@ static BOOL Field_UpdatePoison(FieldSystem *fieldSystem)
 
 static BOOL Field_UpdateSafari(FieldSystem *fieldSystem)
 {
-    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE) {
         return FALSE;
     }
 

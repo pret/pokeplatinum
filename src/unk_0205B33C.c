@@ -15,6 +15,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "journal.h"
 #include "message.h"
@@ -30,7 +31,6 @@
 #include "unk_0201D15C.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
-#include "unk_020508D4.h"
 #include "unk_0205C980.h"
 #include "unk_02071D40.h"
 #include "unk_02095E98.h"
@@ -355,7 +355,7 @@ static void sub_0205B634(UnkStruct_0205B43C *param0)
 
 static void sub_0205B694(UnkStruct_0205B43C *param0)
 {
-    if (!sub_020509A4(param0->fieldSystem)) {
+    if (!FieldSystem_IsRunningTask(param0->fieldSystem)) {
         sub_02036AC4();
         sub_0205C160(param0);
         sub_0205BEA8(0);

@@ -28,6 +28,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -41,7 +42,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
-#include "unk_0206A8DC.h"
 #include "unk_0208C098.h"
 #include "unk_0208EA44.h"
 #include "unk_0208FCF8.h"
@@ -130,7 +130,7 @@ const OverlayManagerTemplate Unk_020F410C = {
 
 BOOL PokemonSummary_ShowContestData(SaveData *param0)
 {
-    return ContestHall_IsVisited(SaveData_GetVarsFlags(param0));
+    return SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(param0));
 }
 
 static int sub_0208C330(OverlayManager *param0, int *param1)

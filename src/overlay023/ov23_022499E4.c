@@ -24,9 +24,9 @@
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 static void ov97_0222D19C(SysTask *param0, void *param1);
@@ -81,7 +81,7 @@ void ov23_022499E8(FieldSystem *fieldSystem)
     v0 = FieldCommMan_Get();
     Heap_Create(3, 33, 0xe800);
 
-    if (!sub_0206ADDC(SaveData_GetVarsFlags(v0->fieldSystem->saveData))) {
+    if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(v0->fieldSystem->saveData))) {
         sub_02036894();
     }
 }
@@ -273,7 +273,7 @@ static void ov23_02249C34(void)
     ov23_02243AF0();
     ov23_0224C21C();
 
-    if (!sub_0206ADDC(SaveData_GetVarsFlags(v0->fieldSystem->saveData))) {
+    if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(v0->fieldSystem->saveData))) {
         ov23_02249C24(ov23_02249C98, 0);
     } else {
         sub_02059524();
@@ -285,7 +285,7 @@ static void ov23_02249C98(void)
 {
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
-    if (!sub_0206ADDC(SaveData_GetVarsFlags(v0->fieldSystem->saveData))) {
+    if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(v0->fieldSystem->saveData))) {
         return;
     }
 
@@ -391,7 +391,7 @@ static void ov23_02249E18(void)
 
     ov23_02242B14();
 
-    if (v0->fieldSystem->taskManager != NULL) {
+    if (v0->fieldSystem->task != NULL) {
         return;
     }
 
@@ -579,7 +579,7 @@ static void ov23_0224A09C(void)
     ov23_02242B14();
     sub_02059524();
 
-    if (v0->fieldSystem->taskManager != NULL) {
+    if (v0->fieldSystem->task != NULL) {
         return;
     }
 

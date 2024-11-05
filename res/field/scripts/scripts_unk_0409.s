@@ -26,7 +26,7 @@ _0042:
     FacePlayer
     ScrCmd_09A 0x800C, 15
     GoToIfEq 0x800C, 6, _008E
-    CheckBadge BADGE_ID_FOREST, 0x800C
+    CheckBadgeAcquired BADGE_ID_FOREST, 0x800C
     GoToIfEq 0x800C, 0, _008E
     Message 0
     ScrCmd_03E 0x800C
@@ -131,7 +131,7 @@ _0223:
     ScrCmd_09A 0x800C, 249
     SetVar 0x8004, 0x800C
     GoToIfEq 0x800C, 6, _0275
-    CheckBadge BADGE_ID_COAL, 0x800C
+    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 0, _0275
     Message 3
     ScrCmd_03E 0x800C
@@ -184,11 +184,11 @@ _0314:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_1CF 2, 0x800C
+    Strength 2, 0x800C
     GoToIfEq 0x800C, 1, _03BD
     ScrCmd_09A 0x800C, 70
     GoToIfEq 0x800C, 6, _0372
-    CheckBadge BADGE_ID_MINE, 0x800C
+    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
     GoToIfEq 0x800C, 0, _0372
     Message 6
     ScrCmd_03E 0x800C
@@ -205,7 +205,7 @@ _0372:
     End
 
 _0381:
-    ScrCmd_1CF 1
+    Strength 1
     ScrCmd_09A 0x800C, 70
     SetVar 0x8004, 0x800C
     BufferPartyMonNickname 0, 0x800C
@@ -229,9 +229,9 @@ _03BD:
 
 _03CC:
     LockAll
-    ScrCmd_1CF 2, 0x800C
+    Strength 2, 0x800C
     GoToIfEq 0x800C, 1, _03BD
-    ScrCmd_1CF 1
+    Strength 1
     BufferPartyMonNickname 0, 0x8000
     Message 10
     CloseMessage
@@ -248,9 +248,9 @@ _040E:
     LockAll
     ScrCmd_09A 0x800C, 0x1AF
     GoToIfEq 0x800C, 6, _0469
-    CheckBadge BADGE_ID_ICICLE, 0x800C
+    CheckBadgeAcquired BADGE_ID_ICICLE, 0x800C
     GoToIfEq 0x800C, 0, _0469
-    ScrCmd_160 0x800C
+    CheckHasPartner 0x800C
     GoToIfEq 0x800C, 1, _0478
     Message 18
     ScrCmd_03E 0x800C
@@ -299,7 +299,7 @@ _04B9:
 _04DD:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_160 0x800C
+    CheckHasPartner 0x800C
     GoToIfEq 0x800C, 1, _0512
     Message 12
     ScrCmd_03E 0x800C
@@ -382,7 +382,7 @@ _060C:
     Message 16
     CloseMessage
     ScrCmd_0C5 0x8000
-    ScrCmd_1D1 1
+    Defog 1
     PlayFanfare SEQ_SE_DP_FBRADE
     ScrCmd_0C4
     ScrCmd_201 0x8004
@@ -397,7 +397,7 @@ _064C:
     Message 26
     CloseMessage
     ScrCmd_0C5 0x8000
-    ScrCmd_1D0 1
+    Flash 1
     ScrCmd_0C3
     WaitTime 42, 0x800C
     GoTo _0675
@@ -419,7 +419,7 @@ _0679:
     LockAll
     ScrCmd_09A 0x800C, 127
     GoToIfEq 0x800C, 6, _06C3
-    CheckBadge BADGE_ID_BEACON, 0x800C
+    CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
     GoToIfEq 0x800C, 0, _06C3
     Message 22
     ScrCmd_03E 0x800C

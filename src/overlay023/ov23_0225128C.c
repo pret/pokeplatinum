@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_022515D8.h"
@@ -30,6 +29,7 @@
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "list_menu.h"
 #include "location.h"
@@ -43,14 +43,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
-#include "unk_020508D4.h"
 #include "unk_0206A780.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -604,10 +603,10 @@ static void ov23_02251A84(BOOL param0, FieldSystem *fieldSystem)
     Camera_Move(&v0, fieldSystem->camera);
 }
 
-static BOOL ov23_02251ACC(TaskManager *param0)
+static BOOL ov23_02251ACC(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_02251ACC *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_02251ACC *v1 = FieldTask_GetEnv(param0);
     Location v2;
     u32 v3;
     BOOL v4 = 0;
@@ -643,7 +642,7 @@ static BOOL ov23_02251ACC(TaskManager *param0)
     case 5:
         if (IsScreenTransitionDone()) {
             ov23_0224B2C8(fieldSystem);
-            sub_0206AA30(SaveData_GetVarsFlags(fieldSystem->saveData));
+            SystemFlag_SetDecoratedSecretBase(SaveData_GetVarsFlags(fieldSystem->saveData));
             ov23_02251F94(fieldSystem);
             Heap_FreeToHeap(v1);
             return 1;
@@ -783,12 +782,12 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (v0->fieldSystem->taskManager == NULL) {
+        if (v0->fieldSystem->task == NULL) {
             v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02251ACC));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov23_02251ACC));
             v2->unk_00 = 0;
             v2->unk_04 = 0;
-            FieldTask_Set(v0->fieldSystem, ov23_02251ACC, v2);
+            FieldSystem_CreateTask(v0->fieldSystem, ov23_02251ACC, v2);
         }
 
         ov23_02251BB4(param0, v0);

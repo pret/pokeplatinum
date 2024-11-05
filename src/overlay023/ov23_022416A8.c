@@ -27,10 +27,10 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_02054D00.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -401,7 +401,7 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
         ov23_02250128(param0);
 
         Sound_PlayEffect(1585);
-        sub_0206AA14(SaveData_GetVarsFlags(Unk_ov23_02257744->fieldSystem->saveData));
+        SystemFlag_SetSphereAcquired(SaveData_GetVarsFlags(Unk_ov23_02257744->fieldSystem->saveData));
         GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(Unk_ov23_02257744->fieldSystem->saveData), RECORD_UNK_047);
 
         ov5_021F57C8(Unk_ov23_02257744->fieldSystem, param2, param3);

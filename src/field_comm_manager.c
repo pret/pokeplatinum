@@ -18,6 +18,7 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "encounter.h"
 #include "field_system.h"
 #include "heap.h"
 #include "party.h"
@@ -30,7 +31,6 @@
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_02050A74.h"
 #include "unk_0205A0D8.h"
 #include "unk_02071D40.h"
 #include "unk_02099500.h"
@@ -403,7 +403,7 @@ static void sub_02059B74(void)
     for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
         if (v0 != CommSys_CurNetId()) {
             if (sub_02036564(v0) == 94) {
-                if (sFieldCommMan->fieldSystem->taskManager == NULL) {
+                if (sFieldCommMan->fieldSystem->task == NULL) {
                     for (v1 = 0; v1 < 4; v1++) {
                         if (sFieldCommMan->trainerCard[v1]) {
                             Heap_FreeToHeap(sFieldCommMan->trainerCard[v1]);

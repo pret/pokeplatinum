@@ -3,13 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system.h"
 
 #include "bg_window.h"
 #include "core_sys.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
@@ -20,7 +19,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0202F108.h"
-#include "unk_020508D4.h"
 
 typedef struct {
     Window unk_00;
@@ -40,7 +38,7 @@ typedef struct {
 } UnkStruct_ov6_02247A0C;
 
 static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3);
-static BOOL ov6_02247A34(TaskManager *param0);
+static BOOL ov6_02247A34(FieldTask *param0);
 
 static const UnkStruct_ov6_022496F4 Unk_ov6_022496F4[] = {
     { 0x2, 0x8, 0x38 },
@@ -90,20 +88,20 @@ static const UnkStruct_ov6_022496F4 Unk_ov6_0224971C[][4] = {
     },
 };
 
-void ov6_02247A0C(TaskManager *param0)
+void ov6_02247A0C(FieldTask *param0)
 {
     UnkStruct_ov6_02247A0C *v0;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov6_02247A0C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A0C));
 
-    FieldTask_Start(param0, ov6_02247A34, v0);
+    FieldTask_InitCall(param0, ov6_02247A34, v0);
 }
 
-static BOOL ov6_02247A34(TaskManager *param0)
+static BOOL ov6_02247A34(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov6_02247A0C *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov6_02247A0C *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_04) {
     case 0:

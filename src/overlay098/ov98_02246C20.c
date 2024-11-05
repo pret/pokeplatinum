@@ -21,13 +21,13 @@
 #include "overlay_manager.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "system_flags.h"
 #include "unk_020041CC.h"
 #include "unk_02017728.h"
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"
 #include "unk_02038FFC.h"
 #include "unk_020393C8.h"
-#include "unk_0206A8DC.h"
 #include "unk_020890F4.h"
 #include "unk_02099550.h"
 #include "vars_flags.h"
@@ -445,7 +445,7 @@ static void ov98_02247198(UnkStruct_ov98_02246E88 *param0)
     v0 = param0->unk_98;
 
     if (sub_02039074(param0->unk_04)) {
-        sub_0206AF5C(SaveData_GetVarsFlags(param0->unk_04));
+        SystemFlag_SetConnectedToWiFi(SaveData_GetVarsFlags(param0->unk_04));
     }
 
     Heap_FreeToHeap(param0->unk_98);

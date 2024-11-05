@@ -22,7 +22,7 @@ _0012:
     End
 
 _008A:
-    ScrCmd_265
+    HidePoketch
     Return
 
 _008E:

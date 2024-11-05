@@ -34,11 +34,11 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
@@ -473,7 +473,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             u8 v6 = sub_0202958C(v5);
 
             sub_020295C0(v5);
-            sub_0206AA40(SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData));
+            SystemFlag_SetDeliveredStolenFlag(SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData));
 
             if (commPlayerMan->unk_290[v1->unk_01]) {
                 sub_0206DAB8(commPlayerMan->fieldSystem, commPlayerMan->unk_290[v1->unk_01]);

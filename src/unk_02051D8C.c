@@ -41,6 +41,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "system_data.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"
@@ -53,7 +54,6 @@
 #include "unk_020559DC.h"
 #include "unk_0205C980.h"
 #include "unk_0205DAC8.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
@@ -280,7 +280,7 @@ void sub_020521B8(BattleParams *param0, const FieldSystem *fieldSystem, SaveData
     param0->unk_130 = MapHeader_GetMapLabelTextID(param3);
     param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
     param0->unk_140 = PokemonSummary_ShowContestData(param2);
-    param0->unk_144 = sub_0206ADFC(SaveData_GetVarsFlags(param2));
+    param0->unk_144 = SystemFlag_CheckMetBebe(SaveData_GetVarsFlags(param2));
     param0->unk_14C = FieldOverworldState_GetWeather(v6);
     param0->unk_E4 = param5;
     param0->unk_190 = param6;

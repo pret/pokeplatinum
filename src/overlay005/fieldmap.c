@@ -56,6 +56,7 @@
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -79,7 +80,6 @@
 #include "unk_0202419C.h"
 #include "unk_02027F50.h"
 #include "unk_02039C80.h"
-#include "unk_020508D4.h"
 #include "unk_020553DC.h"
 #include "unk_020556C4.h"
 #include "unk_020559DC.h"
@@ -497,7 +497,7 @@ void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1)
 
 static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
 {
-    if (sub_020509A4(fieldSystem) == 0) {
+    if (FieldSystem_IsRunningTask(fieldSystem) == 0) {
         sub_020559DC(fieldSystem);
     }
 

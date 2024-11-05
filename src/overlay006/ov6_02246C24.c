@@ -3,18 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
+#include "field_task.h"
 #include "heap.h"
 #include "unk_02005474.h"
 #include "unk_02039C80.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 
 typedef struct {
@@ -26,7 +24,7 @@ typedef struct {
     u8 unk_10[6];
 } UnkStruct_ov6_02246C24;
 
-static BOOL ov6_02246C9C(TaskManager *param0);
+static BOOL ov6_02246C9C(FieldTask *param0);
 
 static VecFx32 Unk_ov6_0224989C[6] = {
     { -((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, -((FX32_ONE * 4) + (FX32_ONE / 2)) },
@@ -64,16 +62,16 @@ void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
             v4->unk_00.z += v5.z;
         }
 
-        FieldTask_Start(fieldSystem->taskManager, ov6_02246C9C, v4);
+        FieldTask_InitCall(fieldSystem->task, ov6_02246C9C, v4);
     } else {
         GF_ASSERT(FALSE);
     }
 }
 
-static BOOL ov6_02246C9C(TaskManager *param0)
+static BOOL ov6_02246C9C(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov6_02246C24 *v1 = (UnkStruct_ov6_02246C24 *)TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov6_02246C24 *v1 = (UnkStruct_ov6_02246C24 *)FieldTask_GetEnv(param0);
 
     switch (v1->unk_0F) {
     case 0: {

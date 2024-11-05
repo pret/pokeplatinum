@@ -55,7 +55,7 @@ _008E:
     WaitABXPadPress
     CloseMessage
     SetVar 0x403F, 0x260
-    ScrCmd_161
+    SetHasPartner
     ScrCmd_06D 0, 48
     ScrCmd_06C 0, 1
     ReleaseAll
@@ -87,7 +87,7 @@ _00F4:
 
 _0108:
     LockAll
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_06D 0, 15
     ScrCmd_06C 0, 0
     ApplyMovement 0, _0190
@@ -207,7 +207,7 @@ _02CB:
     ApplyMovement 0, _035C
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_065 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 227

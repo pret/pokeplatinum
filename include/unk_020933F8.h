@@ -1,15 +1,15 @@
 #ifndef POKEPLATINUM_UNK_020933F8_H
 #define POKEPLATINUM_UNK_020933F8_H
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02095C48.h"
 
+#include "field_task.h"
 #include "journal.h"
 #include "savedata.h"
 #include "string_template.h"
 
-void sub_020933F8(TaskManager *param0, UnkStruct_02095C48 *param1);
+void sub_020933F8(FieldTask *param0, UnkStruct_02095C48 *param1);
 UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0);
 void sub_02093AD4(UnkStruct_02095C48 *param0);
 BOOL sub_020943B0(UnkStruct_02095C48 *param0);

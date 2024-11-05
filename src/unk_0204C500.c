@@ -14,12 +14,12 @@
 #include "inlines.h"
 #include "pokemon.h"
 #include "save_player.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F180.h"
 #include "unk_020562F8.h"
-#include "unk_0206A8DC.h"
 #include "unk_020797C8.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
@@ -30,10 +30,10 @@ BOOL ScrCmd_253(ScriptContext *param0)
     u16 v1 = ScriptContext_GetVar(param0);
 
     if (v1 == 0) {
-        sub_0206AE6C(v0);
+        SystemFlag_SetInPalPark(v0);
         sub_020562F8(param0->fieldSystem);
     } else if (v1 == 1) {
-        sub_0206AE7C(v0);
+        SystemFlag_ClearInPalPark(v0);
         sub_02056328(param0->fieldSystem);
     } else {
         GF_ASSERT(0);

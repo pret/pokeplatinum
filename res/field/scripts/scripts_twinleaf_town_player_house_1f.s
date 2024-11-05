@@ -129,7 +129,7 @@ _017C:
     WaitTime 30, 0x800C
     BufferPlayerName 0
     Message 7
-    ScrCmd_15A
+    GiveRunningShoes
     BufferPlayerName 0
     Message 8
     PlaySound SEQ_FANFA4
@@ -269,7 +269,7 @@ _036C:
     SetVar 0x8004, 0x1B1
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    ScrCmd_1CC
+    GiveJournal
     Message 16
     ScrCmd_1BD 0x8007
     GoToIfEq 0x8007, 1, _03A6

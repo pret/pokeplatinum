@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02027860_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -39,6 +38,7 @@
 #include "camera.h"
 #include "core_sys.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object.h"
@@ -56,7 +56,6 @@
 #include "unk_02005474.h"
 #include "unk_0201D15C.h"
 #include "unk_02027F50.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_0205D8CC.h"
 #include "unk_0205DAC8.h"
@@ -302,16 +301,16 @@ void include_ov8_02249960(void);
 
 static u8 ov8_02249960(const u8 param0, const int param1);
 static void ov8_0224996C(const u8 param0, int *param1);
-static BOOL ov8_02249A94(TaskManager *param0);
-static BOOL ov8_02249B74(TaskManager *param0);
-static BOOL ov8_02249CD8(TaskManager *param0);
+static BOOL ov8_02249A94(FieldTask *param0);
+static BOOL ov8_02249B74(FieldTask *param0);
+static BOOL ov8_02249CD8(FieldTask *param0);
 static void ov8_02249F14(const u8 param0, UnkStruct_ov5_021D3CAC *param1);
-static BOOL ov8_0224A018(TaskManager *param0);
-static BOOL ov8_0224A0E8(TaskManager *param0);
-static BOOL ov8_0224A4FC(TaskManager *param0);
-static BOOL ov8_0224A620(TaskManager *param0);
-static BOOL ov8_0224A770(TaskManager *param0);
-static BOOL ov8_0224ADE8(TaskManager *param0);
+static BOOL ov8_0224A018(FieldTask *param0);
+static BOOL ov8_0224A0E8(FieldTask *param0);
+static BOOL ov8_0224A4FC(FieldTask *param0);
+static BOOL ov8_0224A620(FieldTask *param0);
+static BOOL ov8_0224A770(FieldTask *param0);
+static BOOL ov8_0224ADE8(FieldTask *param0);
 static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0);
 static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0);
 static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param1, UnkStruct_ov8_0224B80C *param2, int param3);
@@ -367,13 +366,13 @@ void ov8_0224997C(FieldSystem *fieldSystem)
         v6->unk_00 = 0;
 
         if (v4 == 239) {
-            FieldTask_Start(fieldSystem->taskManager, ov8_02249CD8, v6);
+            FieldTask_InitCall(fieldSystem->task, ov8_02249CD8, v6);
             v8->unk_00 = 2;
         } else if (v4 == 240) {
-            FieldTask_Start(fieldSystem->taskManager, ov8_02249B74, v6);
+            FieldTask_InitCall(fieldSystem->task, ov8_02249B74, v6);
             v8->unk_00 = 1;
         } else if (v4 == 241) {
-            FieldTask_Start(fieldSystem->taskManager, ov8_02249A94, v6);
+            FieldTask_InitCall(fieldSystem->task, ov8_02249A94, v6);
             v8->unk_00 = 0;
         } else {
             GF_ASSERT(FALSE);
@@ -408,11 +407,11 @@ BOOL ov8_02249A40(FieldSystem *fieldSystem, const int param1, const int param2, 
     return 0;
 }
 
-static BOOL ov8_02249A94(TaskManager *taskMan)
+static BOOL ov8_02249A94(FieldTask *taskMan)
 {
     UnkStruct_ov5_021E1890 *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -460,11 +459,11 @@ static BOOL ov8_02249A94(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL ov8_02249B74(TaskManager *taskMan)
+static BOOL ov8_02249B74(FieldTask *taskMan)
 {
     UnkStruct_ov5_021E1890 *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -547,11 +546,11 @@ static BOOL ov8_02249B74(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL ov8_02249CD8(TaskManager *taskMan)
+static BOOL ov8_02249CD8(FieldTask *taskMan)
 {
     UnkStruct_ov5_021E1890 *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -762,20 +761,20 @@ void ov8_02249FB8(FieldSystem *fieldSystem)
         PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
 
         if (v1.y == (FX32_ONE * 16 * 0)) {
-            FieldTask_Start(fieldSystem->taskManager, ov8_0224A018, v0);
+            FieldTask_InitCall(fieldSystem->task, ov8_0224A018, v0);
             v3->unk_00 = 1;
         } else {
-            FieldTask_Start(fieldSystem->taskManager, ov8_0224A0E8, v0);
+            FieldTask_InitCall(fieldSystem->task, ov8_0224A0E8, v0);
             v3->unk_00 = 0;
         }
     }
 }
 
-static BOOL ov8_0224A018(TaskManager *taskMan)
+static BOOL ov8_0224A018(FieldTask *taskMan)
 {
     UnkStruct_ov5_021E1890 *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -817,11 +816,11 @@ static BOOL ov8_0224A018(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL ov8_0224A0E8(TaskManager *taskMan)
+static BOOL ov8_0224A0E8(FieldTask *taskMan)
 {
     UnkStruct_ov5_021E1890 *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -1267,7 +1266,7 @@ static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
             param0->unk_40[param1] = Unk_ov8_0224CB68[param1].unk_07;
         }
 
-        FieldTask_Set(param0->fieldSystem, ov8_0224A620, v2);
+        FieldSystem_CreateTask(param0->fieldSystem, ov8_0224A620, v2);
     } else if (v0 == 294) {
         if (v1) {
             param0->unk_F0 = 2;
@@ -1279,7 +1278,7 @@ static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
             param0->unk_40[param1] = Unk_ov8_0224CB68[param1].unk_07;
         }
 
-        FieldTask_Set(param0->fieldSystem, ov8_0224A770, v2);
+        FieldSystem_CreateTask(param0->fieldSystem, ov8_0224A770, v2);
     } else {
         if (v1) {
             param0->unk_F0 = 1;
@@ -1292,7 +1291,7 @@ static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
             param0->unk_40[param1] = Unk_ov8_0224CB68[param1].unk_07;
         }
 
-        FieldTask_Set(param0->fieldSystem, ov8_0224A4FC, v2);
+        FieldSystem_CreateTask(param0->fieldSystem, ov8_0224A4FC, v2);
     }
 }
 
@@ -1331,11 +1330,11 @@ static void ov8_0224A434(UnkStruct_ov8_0224A1E4 *param0, const fx32 param1)
     }
 }
 
-static BOOL ov8_0224A4FC(TaskManager *taskMan)
+static BOOL ov8_0224A4FC(FieldTask *taskMan)
 {
     UnkStruct_ov5_021E1890 *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov8_0224A1E4 *v3;
 
     v3 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
@@ -1397,12 +1396,12 @@ static BOOL ov8_0224A4FC(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL ov8_0224A620(TaskManager *taskMan)
+static BOOL ov8_0224A620(FieldTask *taskMan)
 {
     UnkStruct_ov5_021E1890 *v0;
     MapObject *v1;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v3 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v3 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov8_0224A1E4 *v4;
 
     v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
@@ -1479,12 +1478,12 @@ static BOOL ov8_0224A620(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL ov8_0224A770(TaskManager *taskMan)
+static BOOL ov8_0224A770(FieldTask *taskMan)
 {
     UnkStruct_ov5_021E1890 *v0;
     MapObject *v1;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C *v3 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v3 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov8_0224A1E4 *v4;
 
     v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
@@ -2207,15 +2206,15 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
         v1->unk_13 = v4;
 
         Sound_PlayEffect(1599);
-        FieldTask_Start(fieldSystem->taskManager, ov8_0224ADE8, v0);
+        FieldTask_InitCall(fieldSystem->task, ov8_0224ADE8, v0);
     }
 }
 
-static BOOL ov8_0224ADE8(TaskManager *param0)
+static BOOL ov8_0224ADE8(FieldTask *param0)
 {
     UnkStruct_ov5_021E1890 *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(param0);
     UnkStruct_ov8_0224ABD4 *v3;
 
     v3 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
@@ -2712,11 +2711,11 @@ static BOOL ov8_0224B370(UnkStruct_ov8_0224AF00 *param0, const fx32 param1, cons
     return v0;
 }
 
-static BOOL ov8_0224B3D4(TaskManager *param0)
+static BOOL ov8_0224B3D4(FieldTask *param0)
 {
     BOOL v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov8_0224B67C *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov8_0224B67C *v2 = FieldTask_GetEnv(param0);
     UnkStruct_02071BD0 *v3 = v2->unk_14;
     UnkStruct_ov8_0224AF00 *v4 = v2->unk_18;
 
@@ -2906,7 +2905,7 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
         v2->unk_14 = v1;
         v2->unk_18 = v3;
 
-        FieldTask_Start(fieldSystem->taskManager, ov8_0224B3D4, v2);
+        FieldTask_InitCall(fieldSystem->task, ov8_0224B3D4, v2);
     }
 
     return 1;
@@ -3213,11 +3212,11 @@ static u32 ov8_0224BAA0(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, 
     return v0;
 }
 
-static BOOL ov8_0224BAF4(TaskManager *taskMan)
+static BOOL ov8_0224BAF4(FieldTask *taskMan)
 {
     MapObject *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224C098 *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov8_0224C098 *v2 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov8_0224B8D0 *v3 = v2->unk_3C;
 
     v0 = Player_MapObject(fieldSystem->playerAvatar);
@@ -3242,12 +3241,12 @@ static BOOL ov8_0224BAF4(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL ov8_0224BB78(TaskManager *taskMan)
+static BOOL ov8_0224BB78(FieldTask *taskMan)
 {
     int v0;
     UnkStruct_ov8_0224C098 *v1;
 
-    v1 = TaskManager_Environment(taskMan);
+    v1 = FieldTask_GetEnv(taskMan);
 
     do {
         v0 = Unk_ov8_0224C818[v1->unk_00](v1);
@@ -3511,13 +3510,13 @@ static UnkStruct_ov8_0224C098 *ov8_0224BED8(UnkStruct_ov8_0224B8D0 *param0, UnkS
 static void ov8_0224BF0C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param1, UnkStruct_ov8_0224BCA8 *param2, int param3)
 {
     UnkStruct_ov8_0224C098 *v0 = ov8_0224BED8(param1, param2, param3);
-    FieldTask_Set(fieldSystem, ov8_0224BAF4, v0);
+    FieldSystem_CreateTask(fieldSystem, ov8_0224BAF4, v0);
 }
 
 static void ov8_0224BF2C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param1, UnkStruct_ov8_0224BCA8 *param2, int param3)
 {
     UnkStruct_ov8_0224C098 *v0 = ov8_0224BED8(param1, param2, param3);
-    FieldTask_Set(fieldSystem, ov8_0224BB78, v0);
+    FieldSystem_CreateTask(fieldSystem, ov8_0224BB78, v0);
 }
 
 BOOL ov8_0224BF4C(FieldSystem *fieldSystem)

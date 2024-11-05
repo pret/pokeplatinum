@@ -17,11 +17,11 @@
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_020298BC.h"
 #include "unk_0202CC64.h"
-#include "unk_0206A8DC.h"
 #include "unk_020933F8.h"
 #include "vars_flags.h"
 
@@ -106,7 +106,7 @@ BOOL ScrCmd_0FA(ScriptContext *param0)
     v8.unk_00 = v5;
     v8.unk_01 = v4;
     v8.unk_02 = v6;
-    v8.unk_03 = sub_0206A954(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    v8.unk_03 = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     v8.unk_04 = Pokedex_IsNationalDexObtained(SaveData_Pokedex(param0->fieldSystem->saveData));
     v8.unk_05 = v7;
     v8.unk_08 = v1;
@@ -204,7 +204,7 @@ BOOL ScrCmd_101(ScriptContext *param0)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    sub_020933F8(param0->taskManager, *v0);
+    sub_020933F8(param0->task, *v0);
     return 1;
 }
 
@@ -428,6 +428,6 @@ BOOL ScrCmd_115(ScriptContext *param0)
 
 BOOL ScrCmd_116(ScriptContext *param0)
 {
-    ov6_02247A0C(param0->taskManager);
+    ov6_02247A0C(param0->task);
     return 1;
 }

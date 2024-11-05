@@ -10,7 +10,6 @@
 #include "struct_decls/struct_0203026C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0204AFC4.h"
@@ -23,6 +22,7 @@
 #include "communication_system.h"
 #include "field_script_context.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
 #include "inlines.h"
@@ -40,7 +40,6 @@
 #include "unk_0203061C.h"
 #include "unk_02030880.h"
 #include "unk_0204FA34.h"
-#include "unk_020508D4.h"
 #include "unk_0205DFC4.h"
 #include "unk_0207A274.h"
 #include "unk_02099500.h"
@@ -69,11 +68,11 @@ static BOOL sub_0204F268(u16 param0, SaveData *param1);
 BOOL ScrCmd_2D1(ScriptContext *param0);
 
 BOOL ScrCmd_2CF(ScriptContext *param0);
-void sub_0204F3D0(TaskManager *param0, u16 param1, u16 *param2);
-static BOOL sub_0204F414(TaskManager *param0);
+void sub_0204F3D0(FieldTask *param0, u16 param1, u16 *param2);
+static BOOL sub_0204F414(FieldTask *param0);
 
-void sub_0204F470(TaskManager *param0, void **param1, u8 param2);
-static BOOL sub_0204F4A4(TaskManager *param0);
+void sub_0204F470(FieldTask *param0, void **param1, u8 param2);
+static BOOL sub_0204F4A4(FieldTask *param0);
 static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int param2);
 static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem);
 static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int param2);
@@ -139,7 +138,7 @@ BOOL ScrCmd_2CC(ScriptContext *param0)
         }
 
         ;
-        sub_0204F470(param0->taskManager, v8, v0);
+        sub_0204F470(param0->task, v8, v0);
         return 1;
 
     default:;
@@ -233,11 +232,11 @@ BOOL ScrCmd_2CF(ScriptContext *param0)
     ;
     ;
 
-    sub_0204F3D0(param0->taskManager, v0, v1);
+    sub_0204F3D0(param0->task, v0, v1);
     return 1;
 }
 
-void sub_0204F3D0(TaskManager *param0, u16 param1, u16 *param2)
+void sub_0204F3D0(FieldTask *param0, u16 param1, u16 *param2)
 {
     UnkStruct_0204F3D0 *v0;
 
@@ -249,13 +248,13 @@ void sub_0204F3D0(TaskManager *param0, u16 param1, u16 *param2)
 
     CommFieldCmd_Init(v0);
 
-    FieldTask_Start(param0, sub_0204F414, v0);
+    FieldTask_InitCall(param0, sub_0204F414, v0);
     return;
 }
 
-static BOOL sub_0204F414(TaskManager *param0)
+static BOOL sub_0204F414(FieldTask *param0)
 {
-    UnkStruct_0204F3D0 *v0 = TaskManager_Environment(param0);
+    UnkStruct_0204F3D0 *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_00) {
     case 0:
@@ -287,23 +286,23 @@ static BOOL sub_0204F414(TaskManager *param0)
     return 0;
 }
 
-void sub_0204F470(TaskManager *param0, void **param1, u8 param2)
+void sub_0204F470(FieldTask *param0, void **param1, u8 param2)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0204F470 *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0204F470));
     MI_CpuClear8(v1, sizeof(UnkStruct_0204F470));
 
     v1->unk_04 = param2;
     v1->unk_08 = param1;
 
-    FieldTask_Start(fieldSystem->taskManager, sub_0204F4A4, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_0204F4A4, v1);
     return;
 }
 
-static BOOL sub_0204F4A4(TaskManager *param0)
+static BOOL sub_0204F4A4(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0204F470 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0204F470 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case UnkEnum_0204F13C_1:
@@ -375,7 +374,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
     int v0;
     PartyManagementData *v1;
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return UnkEnum_0204F13C_2;
     }
 
@@ -447,7 +446,7 @@ static int sub_0204F6B0(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 {
     PokemonSummary *v0;
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return UnkEnum_0204F13C_4;
     }
 

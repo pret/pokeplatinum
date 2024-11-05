@@ -61,6 +61,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system_flags.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
@@ -387,7 +388,7 @@ static const WindowTemplate Unk_ov65_0223894C = {
 
 static BOOL ov65_0222DCE0 (UnkStruct_ov65_0222EBE0 * param0)
 {
-    return inline_0208BE68(SaveData_GetVarsFlags(param0->unk_160), 53);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(param0->unk_160), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_BATTLE_PARK);
 }
 
 static BOOL ov65_0222DCF8 (UnkStruct_ov65_0222EBE0 * param0)

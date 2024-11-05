@@ -117,7 +117,7 @@ _0148:
 _014A:
     CallIfEq 0x40CC, 0, _0168
     GoToIfEq 0x40CC, 0, _0166
-    ScrCmd_265
+    HidePoketch
 _0166:
     End
 
@@ -131,7 +131,7 @@ _0168:
     Return
 
 _0184:
-    ScrCmd_266
+    ShowPoketch
     Call _01B1
     Call _0168
     ScrCmd_238 7, 0x4000

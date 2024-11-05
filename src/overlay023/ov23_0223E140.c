@@ -32,6 +32,7 @@
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -46,6 +47,7 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -64,9 +66,7 @@
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
 #include "unk_02039C80.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
@@ -1567,12 +1567,12 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         if (IsScreenTransitionDone()) {
             sub_02039794();
             ov23_0223F020(v0);
-            sub_020509D4(fieldSystem);
+            FieldSystem_StartFieldMap(fieldSystem);
             (v0->unk_00)++;
         }
         break;
     case 20:
-        if (sub_020509DC(fieldSystem)) {
+        if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             fieldSystem->unk_6C = ov23_02249404(fieldSystem);
             sub_02039734();
             sub_020594FC();
@@ -1675,7 +1675,7 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
 
     HBlankSystem_Stop(fieldSystem->unk_04->hBlankSystem);
-    sub_0206AA04(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemFlag_SetDiggingForFossils(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }

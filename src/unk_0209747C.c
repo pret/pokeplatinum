@@ -12,10 +12,10 @@
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "system_flags.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_0202631C.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 struct UnkStruct_0209747C_t {
@@ -41,7 +41,7 @@ UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *param2, u32 p
     v0->unk_01 = param1;
     v0->unk_0C = SaveData_Pokedex(param2);
     v0->unk_10 = sub_02014EC4(param2);
-    v0->unk_04 = sub_0206A954(SaveData_GetVarsFlags(param2));
+    v0->unk_04 = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(param2));
     v0->unk_05 = 0;
     v0->unk_02 = 1;
     v0->unk_03 = 0;

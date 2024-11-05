@@ -6,7 +6,6 @@
 #include "consts/game_records.h"
 #include "consts/species.h"
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0209843C.h"
 
@@ -18,6 +17,7 @@
 
 #include "bg_window.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -37,7 +37,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_02024220.h"
 #include "unk_0202F180.h"
-#include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0208694C.h"
 #include "unk_02092494.h"
@@ -195,9 +194,9 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static BOOL sub_0209843C(TaskManager *param0)
+static BOOL sub_0209843C(FieldTask *param0)
 {
-    UnkStruct_0209843C *v0 = TaskManager_Environment(param0);
+    UnkStruct_0209843C *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_00) {
     case 0:
@@ -206,11 +205,11 @@ static BOOL sub_0209843C(TaskManager *param0)
         v0->unk_00++;
         break;
     case 1:
-        sub_02050A38(param0, &Unk_020F67FC, v0);
+        FieldTask_RunApplication(param0, &Unk_020F67FC, v0);
         v0->unk_00++;
         break;
     case 2: {
-        FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+        FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
         {
             Pokemon *v2 = v0->unk_0C.unk_00;
@@ -236,7 +235,7 @@ static BOOL sub_0209843C(TaskManager *param0)
         }
     } break;
     case 3: {
-        FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+        FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
         int v9;
 
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
@@ -244,7 +243,7 @@ static BOOL sub_0209843C(TaskManager *param0)
         v0->unk_08 = sub_0208712C(11, 1, v9, 10, SaveData_Options(FieldSystem_GetSaveData(fieldSystem)));
         v0->unk_08->unk_10 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
         v0->unk_08->unk_08 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
-        sub_02050A38(param0, &Unk_020F2DAC, v0->unk_08);
+        FieldTask_RunApplication(param0, &Unk_020F2DAC, v0->unk_08);
         v0->unk_00++;
     } break;
     case 4:
@@ -252,7 +251,7 @@ static BOOL sub_0209843C(TaskManager *param0)
             Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v0->unk_08->unk_18);
 
             {
-                FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+                FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
                 GameRecords *v11 = SaveData_GetGameRecordsPtr(FieldSystem_GetSaveData(fieldSystem));
 
                 GameRecords_IncrementRecordValue(v11, RECORD_UNK_049);
@@ -274,7 +273,7 @@ static BOOL sub_0209843C(TaskManager *param0)
     return 0;
 }
 
-void sub_020985AC(TaskManager *param0, void *param1)
+void sub_020985AC(FieldTask *param0, void *param1)
 {
     UnkStruct_0209843C *v0;
     UnkStruct_0203E2FC *v1;
@@ -285,5 +284,5 @@ void sub_020985AC(TaskManager *param0, void *param1)
     v1 = (UnkStruct_0203E2FC *)param1;
     v0->unk_0C = *v1;
 
-    FieldTask_Start(param0, sub_0209843C, v0);
+    FieldTask_InitCall(param0, sub_0209843C, v0);
 }

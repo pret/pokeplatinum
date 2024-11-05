@@ -13,6 +13,7 @@
 #include "overlay109/ov109_021D3D50.h"
 
 #include "field_system.h"
+#include "field_task.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
@@ -20,7 +21,6 @@
 #include "save_player.h"
 #include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_0209BDF8.h"
 
 FS_EXTERN_OVERLAY(overlay109);
@@ -104,7 +104,7 @@ static BOOL sub_0209C25C(UnkStruct_0209C1EC *param0)
 
 static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
 {
-    if (sub_020509B4(param0->fieldSystem) == 0) {
+    if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         if (sub_0209C1E8(param0->unk_28) == 0) {
             param0->unk_00 = 5;
         } else {
@@ -121,7 +121,7 @@ static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
 
 static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
 {
-    if (sub_020509B4(param0->fieldSystem) == 0) {
+    if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         int v0 = param0->unk_30->unk_22;
 
         Heap_FreeToHeap(param0->unk_30);
@@ -145,7 +145,7 @@ static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
 
 static BOOL sub_0209C324(UnkStruct_0209C1EC *param0)
 {
-    if (sub_020509B4(param0->fieldSystem) == 0) {
+    if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         Heap_FreeToHeap(param0->unk_34);
         param0->unk_30 = sub_0203D644(param0->fieldSystem, param0->unk_04);
         param0->unk_00 = 2;
@@ -156,7 +156,7 @@ static BOOL sub_0209C324(UnkStruct_0209C1EC *param0)
 
 static BOOL sub_0209C34C(UnkStruct_0209C1EC *param0)
 {
-    if (sub_020509B4(param0->fieldSystem) == 0) {
+    if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         param0->unk_00 = 5;
     }
 

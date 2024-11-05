@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -18,6 +17,8 @@
 
 #include "bg_window.h"
 #include "core_sys.h"
+#include "encounter.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
 #include "map_object.h"
@@ -33,8 +34,6 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0201D15C.h"
-#include "unk_020508D4.h"
-#include "unk_02050A74.h"
 #include "unk_02051D8C.h"
 #include "unk_0205D8CC.h"
 #include "unk_020655F4.h"
@@ -95,10 +94,10 @@ void *ov5_021F08CC(FieldSystem *fieldSystem, u32 param1, int param2)
     return v0;
 }
 
-BOOL ov5_021F08F8(TaskManager *taskMan)
+BOOL ov5_021F08F8(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov5_021F08CC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov5_021F08CC *v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_00) {
     case 0:

@@ -15,8 +15,8 @@
 #include "heap.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "system_flags.h"
 #include "unk_02027F50.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 typedef struct UnkStruct_ov5_021F8480_t UnkStruct_ov5_021F8480;
@@ -174,7 +174,7 @@ static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const u32 param1)
 
 static BOOL ov5_021F8508(FieldSystem *fieldSystem, u32 param1)
 {
-    return sub_0206AF6C(SaveData_GetVarsFlags(fieldSystem->saveData), 2, param1);
+    return SystemFlag_HandleOwnsVillaFurniture(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, param1);
 }
 
 static BOOL ov5_021F851C(int param0, int param1, const UnkStruct_ov5_0220192C *param2, FieldSystem *fieldSystem)

@@ -3,19 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system.h"
 #include "overlay006/ov6_02243258.h"
 
 #include "field_map_change.h"
+#include "field_task.h"
 #include "heap.h"
 #include "location.h"
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "sys_task_manager.h"
 #include "unk_0203A7D8.h"
-#include "unk_020508D4.h"
 
 typedef struct {
     FieldSystem *fieldSystem;
@@ -42,10 +40,10 @@ void *sub_0207064C(u32 param0, FieldSystem *fieldSystem, Pokemon *param2, u16 pa
     return v0;
 }
 
-BOOL sub_02070680(TaskManager *param0)
+BOOL sub_02070680(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0207064C *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0207064C *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_04) {
     case 0:

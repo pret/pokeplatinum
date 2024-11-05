@@ -9,28 +9,27 @@
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02072014.h"
 
 #include "field/field_system.h"
 
 #include "charcode_util.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
 #include "play_time.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_0202C7FC.h"
 #include "unk_0203061C.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -43,7 +42,7 @@ static void sub_02072038(const u16 param0, const u8 param1, const u16 *param2, c
 static void sub_0207207C(const u8 param0, const PlayTime *playTime, const RTCDate *param2, const RTCDate *param3, const RTCTime *param4, const u8 param5, TrainerCard *param6);
 static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 *param4, TrainerCard *param5);
 static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *param2);
-static BOOL sub_02072230(TaskManager *param0);
+static BOOL sub_02072230(FieldTask *param0);
 
 void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem *fieldSystem, TrainerCard *param5)
 {
@@ -76,7 +75,7 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
 
         sub_02055BF4(fieldSystem, &v4, &v6);
         sub_02055C10(fieldSystem, &v5, &v6);
-        sub_0207207C(sub_0206A954(SaveData_GetVarsFlags(fieldSystem->saveData)), playTime, &v4, &v5, &v6, param1, param5);
+        sub_0207207C(SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(fieldSystem->saveData)), playTime, &v4, &v5, &v6, param1, param5);
     }
 
     {
@@ -137,7 +136,7 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
     v5 = sub_0203068C(v1);
     v0 = 0;
 
-    if (sub_0206A954(v3)) {
+    if (SystemFlag_CheckGameCompleted(v3)) {
         v0++;
     }
 
@@ -149,7 +148,7 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
         v0++;
     }
 
-    if (sub_0206AAA8(v3, 0) || sub_0206AAA8(v3, 1) || sub_0206AAA8(v3, 3) || sub_0206AAA8(v3, 4) || sub_0206AAA8(v3, 2)) {
+    if (SystemFlag_CheckContestMaster(v3, 0) || SystemFlag_CheckContestMaster(v3, 1) || SystemFlag_CheckContestMaster(v3, 3) || SystemFlag_CheckContestMaster(v3, 4) || SystemFlag_CheckContestMaster(v3, 2)) {
         v0++;
     }
 
@@ -282,13 +281,13 @@ void sub_02072204(FieldSystem *fieldSystem)
     v0->unk_00 = 0;
     v0->unk_04 = (TrainerCard *)sub_0205C17C(fieldSystem->unk_7C);
 
-    FieldTask_Start(fieldSystem->taskManager, sub_02072230, v0);
+    FieldTask_InitCall(fieldSystem->task, sub_02072230, v0);
 }
 
-static BOOL sub_02072230(TaskManager *param0)
+static BOOL sub_02072230(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_02072204 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_02072204 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -304,7 +303,7 @@ static BOOL sub_02072230(TaskManager *param0)
         v1->unk_00 = 11;
         break;
     case 11:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             sub_0205C1F0(fieldSystem->unk_7C);
             Heap_FreeToHeap(v1);
             return 1;

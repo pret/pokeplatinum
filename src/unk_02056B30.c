@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -19,6 +18,7 @@
 
 #include "camera.h"
 #include "field_map_change.h"
+#include "field_task.h"
 #include "heap.h"
 #include "inlines.h"
 #include "location.h"
@@ -27,7 +27,6 @@
 #include "player_avatar.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
@@ -53,19 +52,19 @@ typedef struct {
     int unk_1C;
 } UnkStruct_02056B30;
 
-static BOOL sub_02056B70(TaskManager *taskMan);
-static BOOL sub_02056CFC(TaskManager *taskMan);
-static BOOL sub_02056DE4(TaskManager *taskMan);
-static BOOL sub_02056E20(TaskManager *taskMan);
-static BOOL sub_02056EA4(TaskManager *taskMan);
-static BOOL sub_02056F1C(TaskManager *taskMan);
-static BOOL sub_02056FC0(TaskManager *taskMan);
-static BOOL sub_02057008(TaskManager *taskMan);
-static BOOL sub_02057050(TaskManager *taskMan);
-static BOOL sub_0205711C(TaskManager *taskMan);
-static BOOL sub_020571A0(TaskManager *taskMan);
-static BOOL sub_02057218(TaskManager *taskMan);
-static BOOL sub_020572B8(TaskManager *taskMan);
+static BOOL sub_02056B70(FieldTask *taskMan);
+static BOOL sub_02056CFC(FieldTask *taskMan);
+static BOOL sub_02056DE4(FieldTask *taskMan);
+static BOOL sub_02056E20(FieldTask *taskMan);
+static BOOL sub_02056EA4(FieldTask *taskMan);
+static BOOL sub_02056F1C(FieldTask *taskMan);
+static BOOL sub_02056FC0(FieldTask *taskMan);
+static BOOL sub_02057008(FieldTask *taskMan);
+static BOOL sub_02057050(FieldTask *taskMan);
+static BOOL sub_0205711C(FieldTask *taskMan);
+static BOOL sub_020571A0(FieldTask *taskMan);
+static BOOL sub_02057218(FieldTask *taskMan);
+static BOOL sub_020572B8(FieldTask *taskMan);
 static void sub_02057300(FieldSystem *fieldSystem);
 static void sub_02057368(FieldSystem *fieldSystem);
 
@@ -99,7 +98,7 @@ static const UnkFuncPtr_020EC57C Unk_020EC57C[7] = {
     NULL
 };
 
-void sub_02056B30(TaskManager *taskMan, int param1, int param2, int param3, u16 param4, int param5, int param6, int param7)
+void sub_02056B30(FieldTask *taskMan, int param1, int param2, int param3, u16 param4, int param5, int param6, int param7)
 {
     UnkStruct_02056B30 *v0 = Heap_AllocFromHeap(param7, sizeof(UnkStruct_02056B30));
 
@@ -112,13 +111,13 @@ void sub_02056B30(TaskManager *taskMan, int param1, int param2, int param3, u16 
     v0->unk_1C = param7;
     v0->unk_00 = 0;
 
-    FieldTask_Start(taskMan, sub_02056B70, v0);
+    FieldTask_InitCall(taskMan, sub_02056B70, v0);
 }
 
-static BOOL sub_02056B70(TaskManager *taskMan)
+static BOOL sub_02056B70(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056B30 *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056B30 *v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_00) {
     case 0:
@@ -148,7 +147,7 @@ void sub_02056BDC(FieldSystem *fieldSystem, const int param1, const int param2, 
 
     v0->unk_20 = param6;
 
-    FieldTask_Set(fieldSystem, sub_02056CFC, v0);
+    FieldSystem_CreateTask(fieldSystem, sub_02056CFC, v0);
 }
 
 void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5)
@@ -199,20 +198,20 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
 
     v2->unk_20 = v1;
 
-    FieldTask_Set(fieldSystem, sub_02056CFC, v2);
+    FieldSystem_CreateTask(fieldSystem, sub_02056CFC, v2);
 }
 
-static BOOL sub_02056CFC(TaskManager *taskMan)
+static BOOL sub_02056CFC(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     Location *v2 = &v1->unk_08;
 
     switch (v1->unk_00) {
     case 0:
         v1->unk_04 = 0;
         Sound_TryFadeInBGM(fieldSystem, v2->mapId);
-        FieldTask_Start(taskMan, Unk_020EC560[v1->unk_20], v1);
+        FieldTask_InitCall(taskMan, Unk_020EC560[v1->unk_20], v1);
         (v1->unk_00)++;
         break;
     case 1:
@@ -243,7 +242,7 @@ static BOOL sub_02056CFC(TaskManager *taskMan)
         FieldSystem_RequestLocationName(fieldSystem);
 
         v1->unk_04 = 0;
-        FieldTask_Start(taskMan, Unk_020EC544[v1->unk_20], v1);
+        FieldTask_InitCall(taskMan, Unk_020EC544[v1->unk_20], v1);
         (v1->unk_00)++;
         break;
     case 6:
@@ -254,10 +253,10 @@ static BOOL sub_02056CFC(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02056DE4(TaskManager *taskMan)
+static BOOL sub_02056DE4(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_04) {
     case 0:
@@ -273,10 +272,10 @@ static BOOL sub_02056DE4(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02056E20(TaskManager *taskMan)
+static BOOL sub_02056E20(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov5_021D432C *v2;
 
     switch (v1->unk_04) {
@@ -305,10 +304,10 @@ static BOOL sub_02056E20(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02056EA4(TaskManager *taskMan)
+static BOOL sub_02056EA4(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov5_021D432C *v2;
 
     switch (v1->unk_04) {
@@ -333,10 +332,10 @@ static BOOL sub_02056EA4(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02056F1C(TaskManager *taskMan)
+static BOOL sub_02056F1C(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     MapObject *v2;
 
     switch (v1->unk_04) {
@@ -378,10 +377,10 @@ static BOOL sub_02056F1C(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02056FC0(TaskManager *taskMan)
+static BOOL sub_02056FC0(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
 
     switch (v1->unk_04) {
@@ -389,7 +388,7 @@ static BOOL sub_02056FC0(TaskManager *taskMan)
         UnkStruct_ov5_021D4E00 *v3;
 
         v3 = ov5_021D4E00();
-        FieldTask_Start(taskMan, ov5_021D4FA0, v3);
+        FieldTask_InitCall(taskMan, ov5_021D4FA0, v3);
         v1->unk_04++;
     } break;
     case 1:
@@ -399,10 +398,10 @@ static BOOL sub_02056FC0(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02057008(TaskManager *taskMan)
+static BOOL sub_02057008(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
 
     switch (v1->unk_04) {
@@ -410,7 +409,7 @@ static BOOL sub_02057008(TaskManager *taskMan)
         UnkStruct_ov5_021D4E00 *v3;
 
         v3 = ov5_021D4E00();
-        FieldTask_Start(taskMan, ov5_021D4F14, v3);
+        FieldTask_InitCall(taskMan, ov5_021D4F14, v3);
         v1->unk_04++;
     } break;
     case 1:
@@ -420,11 +419,11 @@ static BOOL sub_02057008(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02057050(TaskManager *taskMan)
+static BOOL sub_02057050(FieldTask *taskMan)
 {
     MapObject *mapObj;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v2 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov5_021D432C *v3;
 
     switch (v2->unk_04) {
@@ -441,7 +440,7 @@ static BOOL sub_02057050(TaskManager *taskMan)
             UnkStruct_ov5_021D4E00 *v6;
 
             v6 = ov5_021D4E00();
-            FieldTask_Start(taskMan, ov5_021D5020, v6);
+            FieldTask_InitCall(taskMan, ov5_021D5020, v6);
             (v2->unk_04) = 3;
         }
     } break;
@@ -471,11 +470,11 @@ static BOOL sub_02057050(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_0205711C(TaskManager *taskMan)
+static BOOL sub_0205711C(FieldTask *taskMan)
 {
     MapObject *mapObj;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v2 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov5_021D432C *v3;
 
     switch (v2->unk_04) {
@@ -488,12 +487,12 @@ static BOOL sub_0205711C(TaskManager *taskMan)
         if (sub_0205DAEC(v4)) {
             MapObject_SetHidden(v5, 1);
             v2->unk_04 = 1;
-            FieldTask_Change(taskMan, sub_02057050, v2);
+            FieldTask_InitJump(taskMan, sub_02057050, v2);
         } else {
             UnkStruct_ov5_021D4E00 *v6;
 
             v6 = ov5_021D4E00();
-            FieldTask_Start(taskMan, ov5_021D5150, v6);
+            FieldTask_InitCall(taskMan, ov5_021D5150, v6);
             (v2->unk_04)++;
         }
     } break;
@@ -504,10 +503,10 @@ static BOOL sub_0205711C(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_020571A0(TaskManager *taskMan)
+static BOOL sub_020571A0(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov5_021D432C *v2;
 
     switch (v1->unk_04) {
@@ -532,10 +531,10 @@ static BOOL sub_020571A0(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02057218(TaskManager *taskMan)
+static BOOL sub_02057218(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     MapObject *v2;
 
     switch (v1->unk_04) {
@@ -582,10 +581,10 @@ static BOOL sub_02057218(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_020572B8(TaskManager *taskMan)
+static BOOL sub_020572B8(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
 
     switch (v1->unk_04) {
@@ -593,7 +592,7 @@ static BOOL sub_020572B8(TaskManager *taskMan)
         UnkStruct_ov5_021D4E00 *v3;
 
         v3 = ov5_021D4E00();
-        FieldTask_Start(taskMan, ov5_021D4E10, v3);
+        FieldTask_InitCall(taskMan, ov5_021D4E10, v3);
         v1->unk_04++;
     } break;
     case 1:

@@ -11,7 +11,7 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadge BADGE_ID_RELIC, 0x800C
+    CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
     GoToIfEq 0x800C, 1, _006A
     Message 1
     ScrCmd_03E 0x800C
@@ -44,7 +44,7 @@ _006A:
 _0078:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckBadge BADGE_ID_RELIC, 0x800C
+    CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
     GoToIfEq 0x800C, 1, _00A2
     BufferRivalName 0
     BufferRivalName 1

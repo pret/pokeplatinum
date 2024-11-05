@@ -1183,10 +1183,10 @@ BOOL Pokedex_IsObtained(const PokedexData *pokedex)
     return pokedex->pokedexObtained;
 }
 
-void sub_02027540(PokedexData *param0)
+void Pokedex_FlagObtained(PokedexData *pokedex)
 {
-    CheckPokedexIntegrity(param0);
-    param0->pokedexObtained = 1;
+    CheckPokedexIntegrity(pokedex);
+    pokedex->pokedexObtained = TRUE;
 }
 
 PokedexData *SaveData_Pokedex(SaveData *saveData)

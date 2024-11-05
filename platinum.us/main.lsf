@@ -203,7 +203,7 @@ Static main
 	Object main.nef.p/src_unk_0204CFFC.c.o
 	Object main.nef.p/src_unk_0204E240.c.o
 	Object main.nef.p/src_unk_0204E378.c.o
-	Object main.nef.p/src_unk_0204E3CC.c.o
+	Object main.nef.p/src_scrcmd_system_flags.c.o
 	Object main.nef.p/src_unk_0204E75C.c.o
 	Object main.nef.p/src_unk_0204E974.c.o
 	Object main.nef.p/src_unk_0204EDA4.c.o
@@ -217,8 +217,8 @@ Static main
 	Object main.nef.p/src_unk_02050548.c.o
 	Object main.nef.p/src_unk_02050568.c.o
 	Object main.nef.p/src_vars_flags.c.o
-	Object main.nef.p/src_unk_020508D4.c.o
-	Object main.nef.p/src_unk_02050A74.c.o
+	Object main.nef.p/src_field_task.c.o
+	Object main.nef.p/src_encounter.c.o
 	Object main.nef.p/src_enc_effects.c.o
 	Object main.nef.p/src_unk_02051D8C.c.o
 	Object main.nef.p/src_unk_020528D0.c.o
@@ -263,7 +263,7 @@ Static main
 	Object main.nef.p/src_pokeradar.c.o
 	Object main.nef.p/src_unk_02069BE0.c.o
 	Object main.nef.p/src_unk_0206A780.c.o
-	Object main.nef.p/src_unk_0206A8DC.c.o
+	Object main.nef.p/src_system_flags.c.o
 	Object main.nef.p/src_unk_0206AFE0.c.o
 	Object main.nef.p/src_unk_0206B70C.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o

@@ -25,6 +25,7 @@
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_overlay.h"
 #include "heap.h"
 #include "main.h"
@@ -33,7 +34,6 @@
 #include "pokeradar.h"
 #include "savedata.h"
 #include "unk_02039C80.h"
-#include "unk_020508D4.h"
 #include "unk_0205F180.h"
 #include "unk_0209ACBC.h"
 #include "unk_0209C370.h"
@@ -105,7 +105,7 @@ const OverlayManagerTemplate gFieldSystemContinueTemplate = {
     .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-void FieldSystem_StartFieldMap(FieldSystem *fieldSystem)
+void FieldSystem_StartFieldMapInner(FieldSystem *fieldSystem)
 {
     GF_ASSERT(fieldSystem->processManager->child == NULL);
     GF_ASSERT(fieldSystem->processManager->parent == NULL);
@@ -126,7 +126,7 @@ BOOL FieldSystem_HasParentProcess(FieldSystem *fieldSystem)
     return fieldSystem->processManager->parent != NULL;
 }
 
-BOOL FieldSystem_IsRunningFieldMap(FieldSystem *fieldSystem)
+BOOL FieldSystem_IsRunningFieldMapInner(FieldSystem *fieldSystem)
 {
     return fieldSystem->processManager->parent != NULL && fieldSystem->runningFieldMap;
 }
@@ -146,7 +146,7 @@ void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const OverlayManage
 static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELDMAP, HEAP_SIZE_FIELDMAP);
-    Heap_Create(HEAP_ID_APPLICATION, 32, 0x4000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD_TASK, HEAP_SIZE_FIELD_TASK);
     Heap_Create(HEAP_ID_SYSTEM, 91, 0x300);
 
     FieldSystem *fieldSystem = OverlayManager_NewData(ovyManager, sizeof(FieldSystem), HEAP_ID_FIELDMAP);
@@ -158,7 +158,7 @@ static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
     fieldSystem->processManager->pause = FALSE;
     fieldSystem->processManager->kill = FALSE;
     fieldSystem->saveData = ((ApplicationArgs *)OverlayManager_Args(ovyManager))->saveData;
-    fieldSystem->taskManager = NULL;
+    fieldSystem->task = NULL;
     fieldSystem->location = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();
 
@@ -204,7 +204,7 @@ static void ExecuteAndCleanupIfDone(OverlayManager **ovyManagerPtr)
 static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 {
     HandleFieldInput(fieldSystem);
-    if (sub_02050958(fieldSystem) == TRUE && fieldSystem->unk_04 != NULL) {
+    if (FieldTask_Run(fieldSystem) == TRUE && fieldSystem->unk_04 != NULL) {
         ov5_021EA714(fieldSystem, POKETCH_EVENT_SLEEP, 0);
     }
 
@@ -220,7 +220,7 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 
     // Does not match with return (expression)
     if (fieldSystem->processManager->kill
-        && !fieldSystem->taskManager
+        && !fieldSystem->task
         && !fieldSystem->processManager->parent
         && !fieldSystem->processManager->child) {
         return TRUE;
@@ -232,7 +232,7 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 static void HandleFieldInput(FieldSystem *fieldSystem)
 {
     BOOL processInput = FALSE;
-    if (!fieldSystem->processManager->pause && fieldSystem->runningFieldMap && sub_020509A4(fieldSystem) == FALSE) {
+    if (!fieldSystem->processManager->pause && fieldSystem->runningFieldMap && FieldSystem_IsRunningTask(fieldSystem) == FALSE) {
         processInput = TRUE;
     }
 

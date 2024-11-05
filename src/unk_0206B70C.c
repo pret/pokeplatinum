@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/savedata/vars_flags.h"
+
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_020556C4.h"
@@ -19,6 +21,7 @@
 #include "player_avatar.h"
 #include "save_player.h"
 #include "script_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02039C80.h"
 #include "unk_0206AFE0.h"
@@ -47,26 +50,26 @@ static const int Unk_020EFA98[10][4] = {
 };
 
 static const u8 Unk_020EFA84[20] = {
-    0x0,
-    0x1,
-    0x2,
-    0x3,
-    0x4,
-    0x5,
-    0x6,
-    0x7,
-    0x8,
-    0x9,
-    0xA,
-    0xB,
-    0xC,
-    0xD,
-    0xE,
-    0xF,
-    0x11,
-    0x43,
-    0x10,
-    0x44
+    FIRST_ARRIVAL_TWINLEAF_TOWN,
+    FIRST_ARRIVAL_SANDGEM_TOWN,
+    FIRST_ARRIVAL_FLOAROMA_TOWN,
+    FIRST_ARRIVAL_SOLACEON_TOWN,
+    FIRST_ARRIVAL_CELESTIC_TOWN,
+    FIRST_ARRIVAL_SURVIVAL_AREA,
+    FIRST_ARRIVAL_RESORT_AREA,
+    FIRST_ARRIVAL_JUBILIFE_CITY,
+    FIRST_ARRIVAL_CANALAVE_CITY,
+    FIRST_ARRIVAL_OREBURGH_CITY,
+    FIRST_ARRIVAL_ETERNA_CITY,
+    FIRST_ARRIVAL_HEARTHOME_CITY,
+    FIRST_ARRIVAL_PASTORIA_CITY,
+    FIRST_ARRIVAL_VEILSTONE_CITY,
+    FIRST_ARRIVAL_SUNYSHORE_CITY,
+    FIRST_ARRIVAL_SNOWPOINT_CITY,
+    FIRST_ARRIVAL_FIGHT_AREA,
+    FIRST_ARRIVAL_POKE_PARK_FRONT_GATE,
+    FIRST_ARRIVAL_OUTSIDE_VICTORY_ROAD,
+    FIRST_ARRIVAL_POKEMON_LEAGUE,
 };
 
 void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int param2)
@@ -139,7 +142,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     }
 
     for (v1 = 0; v1 < 20; v1++) {
-        param1->unk_124[v1] = inline_0208BE68(v8, Unk_020EFA84[v1]);
+        param1->unk_124[v1] = SystemFlag_HandleFirstArrivalToZone(v8, HANDLE_FLAG_CHECK, Unk_020EFA84[v1]);
     }
 
     sub_0206B878(fieldSystem, param1, "data/tmap_flags.dat");
@@ -177,7 +180,7 @@ static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, c
 
         switch (v4->unk_00) {
         case 1:
-            v5->val1_2 = inline_0208BE68(v6, v4->unk_01);
+            v5->val1_2 = SystemFlag_HandleFirstArrivalToZone(v6, HANDLE_FLAG_CHECK, v4->unk_01);
             v5->val1_0 = 1;
             break;
         case 2:
@@ -188,7 +191,7 @@ static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, c
 
         switch (v4->unk_02) {
         case 1:
-            v5->val1_6 = inline_0208BE68(v6, v4->unk_03);
+            v5->val1_6 = SystemFlag_HandleFirstArrivalToZone(v6, HANDLE_FLAG_CHECK, v4->unk_03);
             v5->val1_4 = 1;
             break;
         case 2:

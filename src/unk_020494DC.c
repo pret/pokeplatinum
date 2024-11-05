@@ -115,11 +115,11 @@ BOOL ScrCmd_1DD(ScriptContext *param0)
         *v3 = sub_0204A100(param0->fieldSystem->saveData);
         break;
     case 16:
-        sub_0206BCE4(param0->taskManager, v1, v2, *v3);
+        sub_0206BCE4(param0->task, v1, v2, *v3);
         return 1;
     case (30 + 0):
         v5 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-        sub_0204A358(v6, param0->taskManager, v5);
+        sub_0204A358(v6, param0->task, v5);
         return 1;
     case (30 + 1):
         v5 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
@@ -299,7 +299,7 @@ BOOL ScrCmd_1E2(ScriptContext *param0)
     v0 = ScriptContext_ReadHalfWord(param0);
 
     if (sub_0205E6D8(param0->fieldSystem->saveData) == 1) {
-        sub_0206BD88(param0->fieldSystem->taskManager, v1, v0);
+        sub_0206BD88(param0->fieldSystem->task, v1, v0);
     } else {
         v2->unk_8DA = v0;
         v2->unk_8D5 = v1;

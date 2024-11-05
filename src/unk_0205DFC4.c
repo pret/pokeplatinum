@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -12,6 +11,7 @@
 
 #include "communication_information.h"
 #include "communication_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
 #include "party.h"
@@ -20,7 +20,6 @@
 #include "savedata.h"
 #include "trainer_info.h"
 #include "unk_0201D15C.h"
-#include "unk_020508D4.h"
 
 typedef struct {
     MapObject *unk_00;
@@ -288,11 +287,11 @@ BOOL HasAllLegendaryTitansInParty(SaveData *param0)
     return 0;
 }
 
-static BOOL sub_0205E268(TaskManager *param0)
+static BOOL sub_0205E268(FieldTask *param0)
 {
     VecFx32 v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205E268 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0205E268 *v2 = FieldTask_GetEnv(param0);
 
     v0.x = FX32_CONST(8);
     v0.z = FX32_CONST(8);
@@ -319,9 +318,9 @@ static BOOL sub_0205E268(TaskManager *param0)
     return 0;
 }
 
-void sub_0205E318(TaskManager *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5)
+void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205E268 *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E268));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E268));
@@ -332,13 +331,13 @@ void sub_0205E318(TaskManager *param0, MapObject *param1, u16 param2, u16 param3
     v1->unk_10 = param3;
     v1->unk_00 = param1;
 
-    FieldTask_Start(fieldSystem->taskManager, sub_0205E268, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_0205E268, v1);
 }
 
-static BOOL sub_0205E3AC(TaskManager *param0)
+static BOOL sub_0205E3AC(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205E3AC *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0205E3AC *v1 = FieldTask_GetEnv(param0);
 
     MapObject_SetHidden(v1->unk_00, v1->unk_09);
 
@@ -355,9 +354,9 @@ static BOOL sub_0205E3AC(TaskManager *param0)
     return 0;
 }
 
-void sub_0205E3F4(TaskManager *param0, MapObject *param1, u16 param2, u16 param3)
+void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205E3AC *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E3AC));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));
@@ -367,7 +366,7 @@ void sub_0205E3F4(TaskManager *param0, MapObject *param1, u16 param2, u16 param3
     v1->unk_00 = param1;
     v1->unk_09 = 0;
 
-    FieldTask_Start(fieldSystem->taskManager, sub_0205E3AC, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_0205E3AC, v1);
 }
 
 int sub_0205E430(u8 param0, u8 param1)

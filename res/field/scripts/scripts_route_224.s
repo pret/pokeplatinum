@@ -13,7 +13,7 @@
 _001A:
     CallIfEq 0x4057, 1, _00AA
     GoToIfSet 0x12D, _0080
-    ScrCmd_166 0x4000
+    CheckGameCompleted 0x4000
     GoToIfEq 0x4000, 0, _0080
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _0080

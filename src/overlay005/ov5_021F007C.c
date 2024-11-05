@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/ov5_021D1A94.h"
@@ -14,6 +12,7 @@
 #include "overlay006/struct_ov6_0223E6EC.h"
 
 #include "bg_window.h"
+#include "field_task.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -22,7 +21,6 @@
 #include "player_avatar.h"
 #include "script_manager.h"
 #include "unk_02005474.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 
 typedef struct {
@@ -431,10 +429,10 @@ u32 ov5_021F0484(void)
     return sizeof(UnkStruct_ov5_021F0468);
 }
 
-BOOL ov5_021F0488(TaskManager *param0)
+BOOL ov5_021F0488(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021F0468 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021F0468 *v1 = FieldTask_GetEnv(param0);
     BOOL v2;
 
     switch (v1->unk_0C) {

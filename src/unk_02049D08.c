@@ -10,7 +10,6 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
@@ -20,6 +19,7 @@
 #include "savedata/save_table.h"
 
 #include "field_overworld_state.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
 #include "inlines.h"
@@ -30,13 +30,13 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0201D15C.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "unk_0204AEE8.h"
 #include "unk_0205DFC4.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"
@@ -227,14 +227,14 @@ void sub_02049FA8(FieldSystem *fieldSystem)
     Location *v0 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     Location_Set(v0, fieldSystem->location->mapId, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 0);
-    sub_0206AD9C(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemFlag_SetCommunicationClubAccessible(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     return;
 }
 
 void sub_02049FE8(FieldSystem *fieldSystem)
 {
-    CommClub_ResetAvailable(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemFlag_ClearCommunicationClubAccessible(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
 u16 sub_02049FF8(SaveData *param0, u16 param1)
@@ -422,7 +422,7 @@ void sub_0204A32C(UnkStruct_0204AFC4 *param0)
     param0 = NULL;
 }
 
-void sub_0204A358(UnkStruct_0204AFC4 *param0, TaskManager *param1, void **param2)
+void sub_0204A358(UnkStruct_0204AFC4 *param0, FieldTask *param1, void **param2)
 {
     sub_0206BBFC(param1, param2, 17, 0, param0->unk_0E, param0->unk_0E, 100, 0);
 }

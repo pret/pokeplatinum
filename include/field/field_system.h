@@ -2,7 +2,6 @@
 #define POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 
 #include "struct_decls/struct_02039E30_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02054C18_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
@@ -39,6 +38,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
+#include "field_task.h"
 #include "journal.h"
 #include "location.h"
 #include "map_header_data.h"
@@ -58,7 +58,7 @@ typedef struct FieldSystem_t {
     FieldSystem_sub2 *unk_04;
     BgConfig *bgConfig;
     SaveData *saveData;
-    TaskManager *taskManager;
+    FieldTask *task;
     MapHeaderData *mapHeaderData;
     int bottomScreen;
     Location *location;

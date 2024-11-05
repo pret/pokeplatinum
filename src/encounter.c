@@ -1,4 +1,4 @@
-#include "unk_02050A74.h"
+#include "encounter.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -7,7 +7,6 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202610C.h"
@@ -25,6 +24,7 @@
 #include "field_comm_manager.h"
 #include "field_map_change.h"
 #include "field_overworld_state.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
 #include "journal.h"
@@ -35,18 +35,17 @@
 #include "pokeradar.h"
 #include "save_player.h"
 #include "script_manager.h"
+#include "system_flags.h"
 #include "trainer_data.h"
 #include "unk_020041CC.h"
 #include "unk_02026150.h"
 #include "unk_0202F1D4.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_02051D8C.h"
 #include "unk_020528D0.h"
 #include "unk_0205578C.h"
 #include "unk_02055808.h"
 #include "unk_020562F8.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020797C8.h"
@@ -72,13 +71,13 @@ typedef struct {
 
 static void sub_020518B0(FieldSystem *fieldSystem, BattleParams *param1);
 static void sub_02051988(FieldSystem *fieldSystem, BattleParams *param1);
-static BOOL sub_02050EE0(TaskManager *taskMan);
-static BOOL sub_02051074(TaskManager *taskMan);
+static BOOL sub_02050EE0(FieldTask *taskMan);
+static BOOL sub_02051074(FieldTask *taskMan);
 
-static BOOL sub_02050A74(TaskManager *taskMan)
+static BOOL sub_02050A74(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    BattleParams *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    BattleParams *v1 = FieldTask_GetEnv(taskMan);
     int *v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
@@ -87,7 +86,7 @@ static BOOL sub_02050A74(TaskManager *taskMan)
         (*v2)++;
         break;
     case 1:
-        if (sub_020509B4(fieldSystem)) {
+        if (FieldSystem_IsRunningApplication(fieldSystem)) {
             break;
         }
 
@@ -97,9 +96,9 @@ static BOOL sub_02050A74(TaskManager *taskMan)
     return 0;
 }
 
-void sub_02050ABC(TaskManager *taskMan, BattleParams *param1)
+void sub_02050ABC(FieldTask *taskMan, BattleParams *param1)
 {
-    FieldTask_Start(taskMan, sub_02050A74, param1);
+    FieldTask_InitCall(taskMan, sub_02050A74, param1);
 }
 
 static UnkStruct_02050ACC *sub_02050ACC(BattleParams *param0, int param1, int param2, int *param3)
@@ -147,14 +146,14 @@ static void sub_02050B1C(const BattleParams *param0, FieldSystem *fieldSystem)
     sub_020526E8(param0, fieldSystem);
 }
 
-static BOOL sub_02050B30(TaskManager *taskMan)
+static BOOL sub_02050B30(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem;
     UnkStruct_02050ACC *v1;
     int *v2;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
-    v1 = TaskManager_Environment(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    v1 = FieldTask_GetEnv(taskMan);
     v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
@@ -185,7 +184,7 @@ static BOOL sub_02050B30(TaskManager *taskMan)
             return 1;
         }
 
-        if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+        if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
             HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
         }
 
@@ -209,12 +208,12 @@ static BOOL sub_02050B30(TaskManager *taskMan)
     return 0;
 }
 
-static void sub_02050C4C(TaskManager *taskMan, BattleParams *param1, int param2, int param3, int *param4)
+static void sub_02050C4C(FieldTask *taskMan, BattleParams *param1, int param2, int param3, int *param4)
 {
     UnkStruct_02050ACC *v0;
 
     v0 = sub_02050ACC(param1, param2, param3, param4);
-    FieldTask_Start(taskMan, sub_02050B30, v0);
+    FieldTask_InitCall(taskMan, sub_02050B30, v0);
 }
 
 static void sub_02050C6C(int param0, FieldSystem *fieldSystem)
@@ -231,14 +230,14 @@ static void sub_02050C6C(int param0, FieldSystem *fieldSystem)
     }
 }
 
-static BOOL sub_02050CA8(TaskManager *taskMan)
+static BOOL sub_02050CA8(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem;
     UnkStruct_02050ACC *v1;
     int *v2;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
-    v1 = TaskManager_Environment(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    v1 = FieldTask_GetEnv(taskMan);
     v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
@@ -276,14 +275,14 @@ static BOOL sub_02050CA8(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02050D4C(TaskManager *taskMan)
+static BOOL sub_02050D4C(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem;
     UnkStruct_02050ACC *v1;
     int *v2;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
-    v1 = TaskManager_Environment(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    v1 = FieldTask_GetEnv(taskMan);
     v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
@@ -340,41 +339,41 @@ static void sub_02050DFC(UnkStruct_02050DD4 *param0)
 
 void sub_02050E10(FieldSystem *fieldSystem, BattleParams *param1)
 {
-    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         UnkStruct_02050ACC *v0;
 
         v0 = sub_02050ACC(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
-        FieldTask_Set(fieldSystem, sub_02051074, v0);
+        FieldSystem_CreateTask(fieldSystem, sub_02051074, v0);
     } else {
         UnkStruct_02050DD4 *v1;
 
         v1 = sub_02050DD4(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
-        FieldTask_Set(fieldSystem, sub_02050EE0, v1);
+        FieldSystem_CreateTask(fieldSystem, sub_02050EE0, v1);
     }
 }
 
-void sub_02050E78(FieldSystem *fieldSystem, TaskManager *param1, BattleParams *param2)
+void sub_02050E78(FieldSystem *fieldSystem, FieldTask *param1, BattleParams *param2)
 {
-    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         UnkStruct_02050ACC *v0;
 
         v0 = sub_02050ACC(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
-        FieldTask_Change(param1, sub_02051074, v0);
+        FieldTask_InitJump(param1, sub_02051074, v0);
     } else {
         UnkStruct_02050DD4 *v1;
 
         v1 = sub_02050DD4(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
-        FieldTask_Change(param1, sub_02050EE0, v1);
+        FieldTask_InitJump(param1, sub_02050EE0, v1);
     }
 }
 
-static BOOL sub_02050EE0(TaskManager *taskMan)
+static BOOL sub_02050EE0(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem;
     UnkStruct_02050DD4 *v1;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
-    v1 = TaskManager_Environment(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_00) {
     case 0:
@@ -398,11 +397,11 @@ static BOOL sub_02050EE0(TaskManager *taskMan)
         if (BattleParams_PlayerWon(v1->unk_10->unk_14) == 0) {
             sub_02050DFC(v1);
             RadarChain_Clear(fieldSystem->chain);
-            FieldTask_Change(taskMan, sub_02052B2C, NULL);
+            FieldTask_InitJump(taskMan, sub_02052B2C, NULL);
             return 0;
         }
 
-        if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+        if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
             HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
         }
 
@@ -447,15 +446,15 @@ static BOOL sub_02050EE0(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02051074(TaskManager *taskMan)
+static BOOL sub_02051074(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem;
     UnkStruct_02050ACC *v1;
     int *v2;
     u16 *v3;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
-    v1 = TaskManager_Environment(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    v1 = FieldTask_GetEnv(taskMan);
     v2 = FieldTask_GetState(taskMan);
     v3 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
@@ -532,13 +531,13 @@ static BOOL sub_02051074(TaskManager *taskMan)
     return 0;
 }
 
-void sub_0205120C(TaskManager *taskMan, int *param1)
+void sub_0205120C(FieldTask *taskMan, int *param1)
 {
     UnkStruct_02050ACC *v0;
     BattleParams *v1;
     FieldSystem *fieldSystem;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
     RadarChain_Clear(fieldSystem->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
@@ -553,13 +552,13 @@ void sub_0205120C(TaskManager *taskMan, int *param1)
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param1);
 }
 
-void sub_02051270(TaskManager *taskMan, u16 param1, u8 param2, int *param3, BOOL param4)
+void sub_02051270(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL param4)
 {
     UnkStruct_02050ACC *v0;
     BattleParams *v1;
     FieldSystem *fieldSystem;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
     RadarChain_Clear(fieldSystem->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
@@ -575,7 +574,7 @@ void sub_02051270(TaskManager *taskMan, u16 param1, u8 param2, int *param3, BOOL
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
-void sub_020512E4(TaskManager *taskMan, u16 param1, u8 param2, int *param3, BOOL param4)
+void sub_020512E4(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL param4)
 {
     UnkStruct_02050ACC *v0;
     BattleParams *v1;
@@ -583,7 +582,7 @@ void sub_020512E4(TaskManager *taskMan, u16 param1, u8 param2, int *param3, BOOL
     Pokemon *v3;
     int v4;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
     RadarChain_Clear(fieldSystem->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
@@ -604,14 +603,14 @@ void sub_020512E4(TaskManager *taskMan, u16 param1, u8 param2, int *param3, BOOL
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
-static BOOL sub_0205136C(TaskManager *taskMan)
+static BOOL sub_0205136C(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem;
     UnkStruct_02050ACC *v1;
     int *v2;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
-    v1 = TaskManager_Environment(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    v1 = FieldTask_GetEnv(taskMan);
     v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
@@ -664,16 +663,16 @@ void sub_02051450(FieldSystem *fieldSystem, BattleParams *param1)
     UnkStruct_02050ACC *v0;
 
     v0 = sub_02050ACC(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
-    FieldTask_Set(fieldSystem, sub_0205136C, v0);
+    FieldSystem_CreateTask(fieldSystem, sub_0205136C, v0);
 }
 
-void sub_02051480(TaskManager *taskMan, int param1, int param2, int *param3)
+void sub_02051480(FieldTask *taskMan, int param1, int param2, int *param3)
 {
     UnkStruct_02050ACC *v0;
     BattleParams *v1;
     FieldSystem *fieldSystem;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
     v1 = sub_02051D8C(11, 0x1);
 
     sub_02052314(v1, fieldSystem);
@@ -688,10 +687,10 @@ void sub_02051480(TaskManager *taskMan, int param1, int param2, int *param3)
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
-static BOOL sub_020514E8(TaskManager *taskMan)
+static BOOL sub_020514E8(FieldTask *taskMan)
 {
-    UnkStruct_02050ACC *v0 = TaskManager_Environment(taskMan);
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_02050ACC *v0 = FieldTask_GetEnv(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     int *v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
@@ -729,26 +728,26 @@ static BOOL sub_020514E8(TaskManager *taskMan)
     return 0;
 }
 
-void sub_02051590(TaskManager *taskMan)
+void sub_02051590(FieldTask *taskMan)
 {
     UnkStruct_02050ACC *v0;
     BattleParams *v1;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     v1 = sub_02051F4C(11, fieldSystem);
     v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
 
-    FieldTask_Start(taskMan, sub_020514E8, v0);
+    FieldTask_InitCall(taskMan, sub_020514E8, v0);
 }
 
-void sub_020515CC(TaskManager *taskMan, int param1, int param2, int param3, int param4, int *param5)
+void sub_020515CC(FieldTask *taskMan, int param1, int param2, int param3, int param4, int *param5)
 {
     u32 v0;
     UnkStruct_02050ACC *v1;
     BattleParams *v2;
     FieldSystem *fieldSystem;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     if ((param2 != 0) && (param1 != param2)) {
         if (param3 == 0) {
@@ -779,9 +778,9 @@ void sub_020515CC(TaskManager *taskMan, int param1, int param2, int param3, int 
     sub_02050C4C(taskMan, v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), param5);
 }
 
-void sub_0205167C(TaskManager *taskMan, const u8 *param1, int param2)
+void sub_0205167C(FieldTask *taskMan, const u8 *param1, int param2)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02050ACC *v1;
     BattleParams *v2;
 
@@ -789,7 +788,7 @@ void sub_0205167C(TaskManager *taskMan, const u8 *param1, int param2)
     sub_020526CC(v2, fieldSystem, param1);
 
     v1 = sub_02050ACC(v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), NULL);
-    FieldTask_Start(taskMan, sub_02050CA8, v1);
+    FieldTask_InitCall(taskMan, sub_02050CA8, v1);
 }
 
 static int sub_020516C8(const BattleRegulation *param0, int param1)
@@ -813,9 +812,9 @@ static int sub_020516C8(const BattleRegulation *param0, int param1)
     return v0;
 }
 
-void sub_020516F4(TaskManager *taskMan, int param1, int param2, int param3)
+void sub_020516F4(FieldTask *taskMan, int param1, int param2, int param3)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02050ACC *v1;
     BattleParams *v2;
     int v3;
@@ -849,18 +848,18 @@ void sub_020516F4(TaskManager *taskMan, int param1, int param2, int param3)
     v1 = sub_02050ACC(v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), NULL);
     v1->unk_0C = param1;
 
-    FieldTask_Start(taskMan, sub_02050D4C, v1);
+    FieldTask_InitCall(taskMan, sub_02050D4C, v1);
 }
 
-static BOOL sub_02051790(TaskManager *taskMan)
+static BOOL sub_02051790(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02050ACC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02050ACC *v1 = FieldTask_GetEnv(taskMan);
     int *v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
-        FieldTask_Start(taskMan, sub_02050CA8, v1);
+        FieldTask_InitCall(taskMan, sub_02050CA8, v1);
         (*v2)++;
         break;
     case 1:
@@ -889,7 +888,7 @@ void sub_020517E8(FieldSystem *fieldSystem, const u8 *param1, int param2)
     v1->unk_18A = sub_020516C8(fieldSystem->unk_B0, param2);
     v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
 
-    FieldTask_Set(fieldSystem, sub_02051790, v0);
+    FieldSystem_CreateTask(fieldSystem, sub_02051790, v0);
 }
 
 void sub_0205184C(FieldSystem *fieldSystem, const Party *param1, int param2)
@@ -906,7 +905,7 @@ void sub_0205184C(FieldSystem *fieldSystem, const Party *param1, int param2)
     v1->unk_18A = sub_020516C8(fieldSystem->unk_B0, param2);
     v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
 
-    FieldTask_Set(fieldSystem, sub_02051790, v0);
+    FieldSystem_CreateTask(fieldSystem, sub_02051790, v0);
 }
 
 static void sub_020518B0(FieldSystem *fieldSystem, BattleParams *param1)
@@ -1002,13 +1001,13 @@ static void sub_02051988(FieldSystem *fieldSystem, BattleParams *param1)
     }
 }
 
-void sub_02051ABC(TaskManager *taskMan, u16 param1, u8 param2, int *param3, BOOL param4)
+void sub_02051ABC(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL param4)
 {
     UnkStruct_02050ACC *v0;
     BattleParams *v1;
     FieldSystem *fieldSystem;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
     RadarChain_Clear(fieldSystem->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));

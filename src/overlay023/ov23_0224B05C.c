@@ -8,7 +8,6 @@
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021E15F4.h"
@@ -34,6 +33,7 @@
 #include "core_sys.h"
 #include "field_map_change.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "font.h"
 #include "game_records.h"
 #include "graphics.h"
@@ -50,6 +50,7 @@
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -57,12 +58,10 @@
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_020573FC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -960,7 +959,7 @@ static UnkStruct_ov23_0224BA48 *ov23_0224BCC4(FieldSystem *fieldSystem, int para
 {
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
-    if (fieldSystem->taskManager == NULL) {
+    if (fieldSystem->task == NULL) {
         v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0224BA48));
         MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
@@ -1522,10 +1521,10 @@ static void ov23_0224C6E8(void)
     }
 }
 
-static BOOL ov23_0224C708(TaskManager *param0)
+static BOOL ov23_0224C708(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_0224BA48 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_10) {
     case 0:
@@ -1543,18 +1542,18 @@ static BOOL ov23_0224C708(TaskManager *param0)
     return 0;
 }
 
-static BOOL ov23_0224C74C(TaskManager *param0)
+static BOOL ov23_0224C74C(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_0224BA48 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_10) {
     case 0:
-        FieldSystem_StartFieldMap(fieldSystem);
+        FieldSystem_StartFieldMapInner(fieldSystem);
         (v1->unk_10)++;
         break;
     case 1:
-        if (sub_020509DC(fieldSystem)) {
+        if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             v1->unk_10 = 0;
             return 1;
         }
@@ -1564,10 +1563,10 @@ static BOOL ov23_0224C74C(TaskManager *param0)
     return 0;
 }
 
-static BOOL ov23_0224C790(TaskManager *param0)
+static BOOL ov23_0224C790(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_0224BA48 *v1 = FieldTask_GetEnv(param0);
     Location v2;
     int v3 = 0, v4 = 0;
 
@@ -1736,7 +1735,7 @@ static void ov23_0224CAF0(FieldSystem *fieldSystem, int param1, int param2, int 
 
     if (v0) {
         v0->unk_2D = param5;
-        FieldTask_Set(fieldSystem, ov23_0224C790, v0);
+        FieldSystem_CreateTask(fieldSystem, ov23_0224C790, v0);
     }
 }
 
@@ -2165,7 +2164,7 @@ static void ov23_0224D238(void)
     v16[0][0] = 16;
     v16[0][1] = 12;
 
-    sub_0206AA20(SaveData_GetVarsFlags(Unk_ov23_022577AC->fieldSystem->saveData));
+    SystemFlag_SetCreatedSecretBase(SaveData_GetVarsFlags(Unk_ov23_022577AC->fieldSystem->saveData));
     sub_020292CC(v0);
     sub_02028B34(v1);
     CommSys_Seed(&v15);

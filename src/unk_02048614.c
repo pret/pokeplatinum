@@ -6,20 +6,20 @@
 
 #include "field/field_system.h"
 
+#include "encounter.h"
 #include "field_script_context.h"
 #include "inlines.h"
 #include "map_object.h"
 #include "party.h"
 #include "script_manager.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_020041CC.h"
-#include "unk_02050A74.h"
 #include "unk_02051D8C.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
 #include "unk_020553DC.h"
 #include "unk_02067A84.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
@@ -148,11 +148,11 @@ BOOL ScrCmd_0E5(ScriptContext *param0)
 
     v6 = 0;
 
-    if (sub_0206A984(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) {
         v6 = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
     }
 
-    sub_020515CC(param0->taskManager, v4, v5, v6, 11, v3);
+    sub_020515CC(param0->task, v4, v5, v6, 11, v3);
     return 1;
 }
 
@@ -164,7 +164,7 @@ BOOL ScrCmd_2A0(ScriptContext *param0)
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
 
-    sub_020515CC(param0->taskManager, v3, v4, v2, 11, v1);
+    sub_020515CC(param0->task, v3, v4, v2, 11, v1);
     return 1;
 }
 
@@ -257,7 +257,7 @@ BOOL ScrCmd_0EA(ScriptContext *param0)
 
 BOOL ScrCmd_0EB(ScriptContext *param0)
 {
-    sub_02052C5C(param0->taskManager);
+    sub_02052C5C(param0->task);
     return 1;
 }
 
@@ -301,7 +301,7 @@ BOOL ScrCmd_0EF(ScriptContext *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
     BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
 
-    sub_020515CC(param0->taskManager, 1, 0, 0, 11, v1);
+    sub_020515CC(param0->task, 1, 0, 0, 11, v1);
 
     return 1;
 }
