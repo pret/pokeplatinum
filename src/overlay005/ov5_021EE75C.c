@@ -10,9 +10,9 @@
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 
+#include "map_tile_behavior.h"
 #include "player_avatar.h"
 #include "unk_02054D00.h"
-#include "unk_0205DAC8.h"
 
 typedef struct {
     int unk_00;

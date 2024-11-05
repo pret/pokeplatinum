@@ -234,7 +234,7 @@ pokeplatinum_c = files(
     'unk_0205C980.c',
     'unk_0205CA94.c',
     'unk_0205D8CC.c',
-    'unk_0205DAC8.c',
+    'map_tile_behavior.c',
     'unk_0205DFC4.c',
     'player_avatar.c',
     'unk_0205F180.c',

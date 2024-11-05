@@ -14,9 +14,9 @@
 
 #include "map_object.h"
 #include "map_object_move.h"
+#include "map_tile_behavior.h"
 #include "player_avatar.h"
 #include "unk_02054D00.h"
-#include "unk_0205DAC8.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
 

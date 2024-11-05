@@ -17,12 +17,12 @@
 #include "game_records.h"
 #include "heap.h"
 #include "inlines.h"
+#include "map_tile_behavior.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "rtc.h"
 #include "unk_0202EEC0.h"
 #include "unk_02054D00.h"
-#include "unk_0205DAC8.h"
 
 typedef struct {
     u16 unk_00;

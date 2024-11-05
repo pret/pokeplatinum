@@ -1,4 +1,4 @@
-#include "unk_0205DAC8.h"
+#include "map_tile_behavior.h"
 
 #include <nitro.h>
 #include <string.h>

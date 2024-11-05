@@ -26,8 +26,8 @@
 #include "overlay006/ov6_022477B8.h"
 #include "overlay006/wild_encounters.h"
 
-#include "field_battle_data_transfer.h"
 #include "encounter.h"
+#include "field_battle_data_transfer.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -35,6 +35,7 @@
 #include "inlines.h"
 #include "map_header.h"
 #include "map_header_data.h"
+#include "map_tile_behavior.h"
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -52,7 +53,6 @@
 #include "unk_02054884.h"
 #include "unk_02054D00.h"
 #include "unk_020559DC.h"
-#include "unk_0205DAC8.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 

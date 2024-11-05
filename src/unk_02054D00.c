@@ -15,9 +15,9 @@
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021EF13C_decl.h"
 
+#include "map_tile_behavior.h"
 #include "unk_02039C80.h"
 #include "unk_02054BD0.h"
-#include "unk_0205DAC8.h"
 #include "unk_02068344.h"
 
 static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4);

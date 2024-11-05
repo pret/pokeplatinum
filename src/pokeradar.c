@@ -19,6 +19,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "map_object.h"
+#include "map_tile_behavior.h"
 #include "player_avatar.h"
 #include "scrcmd.h"
 #include "script_manager.h"
@@ -28,7 +29,6 @@
 #include "unk_02039C80.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
-#include "unk_0205DAC8.h"
 #include "unk_020711EC.h"
 
 typedef struct {

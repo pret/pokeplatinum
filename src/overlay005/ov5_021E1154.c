@@ -11,9 +11,9 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
+#include "map_tile_behavior.h"
 #include "player_avatar.h"
 #include "unk_02005474.h"
-#include "unk_0205DAC8.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 
