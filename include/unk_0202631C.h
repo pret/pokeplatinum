@@ -8,7 +8,7 @@
 
 int Pokedex_SaveSize(void);
 PokedexData *sub_02026324(u32 param0);
-void sub_02026338(const PokedexData *param0, PokedexData *param1);
+void Pokedex_Copy(const PokedexData *src, PokedexData *dest);
 void Pokedex_Init(PokedexData *param0);
 u16 sub_02026DD0(const PokedexData *param0);
 u16 Pokedex_CountSeenNational(const PokedexData *pokedex);

@@ -688,7 +688,7 @@ int sub_02064004(const MapObject *mapObj, int param1, int param2, int param3)
     if (sub_02062FDC(mapObj) == 0) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         u8 v1 = sub_02062BE8(mapObj);
-        u8 v2 = sub_02054F94(fieldSystem, param1, param2);
+        u8 v2 = FieldSystem_GetTileAttributes(fieldSystem, param1, param2);
 
         if (v2 == sub_0205DF98()) {
             return 1;
@@ -855,7 +855,7 @@ u32 sub_02064238(MapObject *mapObj, int param1)
     int v0 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param1);
     int v1 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param1);
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-    u8 v3 = sub_02054F94(fieldSystem, v0, v1);
+    u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v0, v1);
 
     return v3;
 }
@@ -937,10 +937,10 @@ int sub_02064390(MapObject *mapObj)
         int z = MapObject_ZPosPrev(mapObj);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        v0 = sub_02054F94(fieldSystem, v2, z);
+        v0 = FieldSystem_GetTileAttributes(fieldSystem, v2, z);
         v2 = MapObject_GetXPos(mapObj);
         z = MapObject_GetZPos(mapObj);
-        v1 = sub_02054F94(fieldSystem, v2, z);
+        v1 = FieldSystem_GetTileAttributes(fieldSystem, v2, z);
     }
 
     sub_02062BF0(mapObj, v0);

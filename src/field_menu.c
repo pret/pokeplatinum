@@ -954,7 +954,7 @@ static BOOL FieldMenu_Pokedex(FieldTask *taskMan)
 
     v2->unk_00 = v3;
     v2->unk_04 = v4;
-    v2->timeOfDay = sub_02055BA8(fieldSystem);
+    v2->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     v2->fullmoonIslandVisible = VarFlags_HiddenLocationsUnlocked(v5, HL_FULLMOONISLAND);
     v2->newmoonIslandVisible = VarFlags_HiddenLocationsUnlocked(v5, HL_NEWMOONISLAND);
     v2->springPathVisible = VarFlags_HiddenLocationsUnlocked(v5, HL_SPRINGPATH);

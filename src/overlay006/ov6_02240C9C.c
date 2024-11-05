@@ -241,7 +241,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    v4 = sub_02054F94(fieldSystem, playerX, playerZ);
+    v4 = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
 
     u8 encounterRate = ov6_02241874(fieldSystem, v4, &encounterType);
 
@@ -296,9 +296,9 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
 
         if (ov6_02242440(fieldSystem, &v17)) {
             if (!ov6_02242388(sub_0202D93C(v17, 6), &encounterFieldParams)) {
-                battleParams = sub_02051D8C(11, BATTLE_TYPE_ROAMER);
+                battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_ROAMER);
 
-                sub_02052314(battleParams, fieldSystem);
+                FieldBattleDTO_Init(battleParams, fieldSystem);
                 ov6_0224239C(encounterFieldParams.trainerID, v17, battleParams);
                 RadarChain_Clear(fieldSystem->chain);
                 sub_02050E10(fieldSystem, battleParams);
@@ -313,10 +313,10 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
         v9 = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         ov6_02242328(fieldSystem, v9, &battleParams);
     } else {
-        battleParams = sub_02051D8C(11, BATTLE_TYPE_AI_PARTNER);
+        battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_AI_PARTNER);
     }
 
-    sub_02052314(battleParams, fieldSystem);
+    FieldBattleDTO_Init(battleParams, fieldSystem);
 
     if (encounterType == ENCOUNTER_TYPE_GRASS) {
         for (int i = 0; i < MAX_GRASS_ENCOUNTERS; i++) {
@@ -353,7 +353,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
         v7 = ov6_02241790(fieldSystem, firstPartyMon, battleParams, v13, &encounterFieldParams);
     } else {
         GF_ASSERT(FALSE);
-        sub_020520A4(battleParams);
+        FieldBattleDTO_Free(battleParams);
         return FALSE;
     }
 
@@ -367,7 +367,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
     GF_ASSERT(GF_heap_c_dummy_return_true(11));
 
     if (!v6) {
-        sub_020520A4(battleParams);
+        FieldBattleDTO_Free(battleParams);
     }
 
     fieldSystem->unk_78.unk_00 = 0;
@@ -399,8 +399,8 @@ BOOL ov6_0224106C(FieldSystem *fieldSystem, const int fishingRodType, FieldBattl
 
     ov6_02242328(fieldSystem, v2, battleParams);
 
-    sub_02052314(*battleParams, fieldSystem);
-    sub_0205285C(*battleParams);
+    FieldBattleDTO_Init(*battleParams, fieldSystem);
+    FieldBattleDTO_SetWaterTerrain(*battleParams);
 
     if (MapHeader_HasFeebasTiles(fieldSystem->location->mapId) && ov6_02247660(fieldSystem)) {
         int species;
@@ -458,7 +458,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    u8 v4 = sub_02054F94(fieldSystem, playerX, playerZ);
+    u8 v4 = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
 
     u8 encounterRate = ov6_02241874(fieldSystem, v4, &encounterType);
 
@@ -487,9 +487,9 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
         UnkStruct_0206C638 *v15;
 
         if (ov6_02242440(fieldSystem, &v15)) {
-            battleParams = sub_02051D8C(11, BATTLE_TYPE_ROAMER);
+            battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_ROAMER);
 
-            sub_02052314(battleParams, fieldSystem);
+            FieldBattleDTO_Init(battleParams, fieldSystem);
             ov6_0224239C(encounterFieldParams.trainerID, v15, battleParams);
             RadarChain_Clear(fieldSystem->chain);
             sub_02050E78(fieldSystem, param1, battleParams);
@@ -501,10 +501,10 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
         v7 = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         ov6_02242328(fieldSystem, v7, &battleParams);
     } else {
-        battleParams = sub_02051D8C(11, BATTLE_TYPE_AI_PARTNER);
+        battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_AI_PARTNER);
     }
 
-    sub_02052314(battleParams, fieldSystem);
+    FieldBattleDTO_Init(battleParams, fieldSystem);
 
     if (encounterType == ENCOUNTER_TYPE_GRASS) {
         for (int i = 0; i < MAX_GRASS_ENCOUNTERS; i++) {
@@ -568,7 +568,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    u8 v3 = sub_02054F94(fieldSystem, playerX, playerZ);
+    u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
 
     u8 encounterRate = ov6_02241874(fieldSystem, v3, &encounterType);
 
@@ -614,9 +614,9 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
 
         if (ov6_02242440(fieldSystem, &v16)) {
             if (!ov6_02242388(sub_0202D93C(v16, 6), &encounterFieldParams)) {
-                *battleParams = sub_02051D8C(11, BATTLE_TYPE_ROAMER);
+                *battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_ROAMER);
 
-                sub_02052314(*battleParams, fieldSystem);
+                FieldBattleDTO_Init(*battleParams, fieldSystem);
                 ov6_0224239C(encounterFieldParams.trainerID, v16, *battleParams);
                 RadarChain_Clear(fieldSystem->chain);
                 return TRUE;
@@ -630,10 +630,10 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
         v8 = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         ov6_02242328(fieldSystem, v8, battleParams);
     } else {
-        *battleParams = sub_02051D8C(11, BATTLE_TYPE_AI_PARTNER);
+        *battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_AI_PARTNER);
     }
 
-    sub_02052314(*battleParams, fieldSystem);
+    FieldBattleDTO_Init(*battleParams, fieldSystem);
 
     if (encounterType == ENCOUNTER_TYPE_GRASS) {
         for (int i = 0; i < MAX_GRASS_ENCOUNTERS; i++) {
@@ -662,7 +662,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
         }
     } else {
         GF_ASSERT(FALSE);
-        sub_020520A4(*battleParams);
+        FieldBattleDTO_Free(*battleParams);
         return FALSE;
     }
 
@@ -674,7 +674,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
     GF_ASSERT(GF_heap_c_dummy_return_true(11));
 
     if (!v5) {
-        sub_020520A4(*battleParams);
+        FieldBattleDTO_Free(*battleParams);
     } else {
         fieldSystem->unk_78.unk_00 = 0;
     }
@@ -1387,10 +1387,10 @@ static BOOL ov6_022422D0(const WildEncounters_FieldParams *encounterFieldParams,
 static void ov6_02242328(FieldSystem *fieldSystem, const BOOL param1, FieldBattleDTO **param2)
 {
     if (!param1) {
-        *param2 = sub_02051D8C(11, (0x0 | 0x0));
+        *param2 = FieldBattleDTO_New(11, (0x0 | 0x0));
     } else {
         u16 *v0 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-        *param2 = sub_02051F24(11, *v0);
+        *param2 = FieldBattleDTO_NewSafari(11, *v0);
     }
 }
 

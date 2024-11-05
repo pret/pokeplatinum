@@ -122,7 +122,7 @@ static UnkStruct_02050ACC *sub_02050ACC(FieldBattleDTO *param0, int param1, int 
 
 static void sub_02050AF0(UnkStruct_02050ACC *param0)
 {
-    sub_020520A4(param0->unk_10);
+    FieldBattleDTO_Free(param0->unk_10);
     Heap_FreeToHeap(param0);
 }
 
@@ -134,7 +134,7 @@ static BOOL sub_02050B04(UnkStruct_02050ACC *param0)
         *(param0->unk_00) = param0->unk_10->resultMask;
     }
 
-    v0 = FieldBattleDTO_PlayerWon(param0->unk_10->resultMask);
+    v0 = CheckPlayerWonBattle(param0->unk_10->resultMask);
     return v0;
 }
 
@@ -144,7 +144,7 @@ static void sub_02050B1C(const FieldBattleDTO *param0, FieldSystem *fieldSystem)
         return;
     }
 
-    sub_020526E8(param0, fieldSystem);
+    FieldBattleDTO_UpdateFieldSystem(param0, fieldSystem);
 }
 
 static BOOL sub_02050B30(FieldTask *taskMan)
@@ -256,7 +256,7 @@ static BOOL sub_02050CA8(FieldTask *taskMan)
         break;
     case 3:
         sub_02050C6C(v1->unk_10->resultMask, fieldSystem);
-        sub_02052754(v1->unk_10, fieldSystem);
+        FieldBattleDTO_UpdatePokedex(v1->unk_10, fieldSystem);
 
         {
             GameRecords *v3 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
@@ -295,7 +295,7 @@ static BOOL sub_02050D4C(FieldTask *taskMan)
         break;
     case 1: {
         sub_02050C6C(v1->unk_10->resultMask, fieldSystem);
-        sub_02052754(v1->unk_10, fieldSystem);
+        FieldBattleDTO_UpdatePokedex(v1->unk_10, fieldSystem);
     }
         {
             GameRecords *v3 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
@@ -334,7 +334,7 @@ static UnkStruct_02050DD4 *sub_02050DD4(FieldBattleDTO *param0, int param1, int 
 
 static void sub_02050DFC(UnkStruct_02050DD4 *param0)
 {
-    sub_020520A4(param0->unk_10);
+    FieldBattleDTO_Free(param0->unk_10);
     Heap_FreeToHeap(param0);
 }
 
@@ -395,7 +395,7 @@ static BOOL sub_02050EE0(FieldTask *taskMan)
         sub_02050B1C(v1->unk_10, fieldSystem);
         sub_0206D1B8(fieldSystem, v1->unk_10->unk_10C, v1->unk_10->resultMask);
 
-        if (FieldBattleDTO_PlayerWon(v1->unk_10->resultMask) == 0) {
+        if (CheckPlayerWonBattle(v1->unk_10->resultMask) == 0) {
             sub_02050DFC(v1);
             RadarChain_Clear(fieldSystem->chain);
             FieldTask_InitJump(taskMan, sub_02052B2C, NULL);
@@ -541,8 +541,8 @@ void sub_0205120C(FieldTask *taskMan, int *param1)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     RadarChain_Clear(fieldSystem->chain);
 
-    v1 = sub_02051D8C(11, (0x0 | 0x0));
-    sub_02052314(v1, fieldSystem);
+    v1 = FieldBattleDTO_New(11, (0x0 | 0x0));
+    FieldBattleDTO_Init(v1, fieldSystem);
 
     v1->background = 0;
     v1->terrain = TERRAIN_PLAIN;
@@ -562,8 +562,8 @@ void sub_02051270(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL p
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     RadarChain_Clear(fieldSystem->chain);
 
-    v1 = sub_02051D8C(11, (0x0 | 0x0));
-    sub_02052314(v1, fieldSystem);
+    v1 = FieldBattleDTO_New(11, (0x0 | 0x0));
+    FieldBattleDTO_Init(v1, fieldSystem);
 
     ov6_022420D4(fieldSystem, param1, param2, v1);
 
@@ -586,8 +586,8 @@ void sub_020512E4(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL p
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     RadarChain_Clear(fieldSystem->chain);
 
-    v1 = sub_02051D8C(11, (0x0 | 0x0));
-    sub_02052314(v1, fieldSystem);
+    v1 = FieldBattleDTO_New(11, (0x0 | 0x0));
+    FieldBattleDTO_Init(v1, fieldSystem);
 
     ov6_022420D4(fieldSystem, param1, param2, v1);
 
@@ -674,9 +674,9 @@ void sub_02051480(FieldTask *taskMan, int param1, int param2, int *param3)
     FieldSystem *fieldSystem;
 
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    v1 = sub_02051D8C(11, 0x1);
+    v1 = FieldBattleDTO_New(11, 0x1);
 
-    sub_02052314(v1, fieldSystem);
+    FieldBattleDTO_Init(v1, fieldSystem);
 
     v1->battleStatusMask = BATTLE_STATUS_FIRST_BATTLE;
     v1->trainerIDs[1] = param1;
@@ -735,7 +735,7 @@ void sub_02051590(FieldTask *taskMan)
     FieldBattleDTO *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    v1 = sub_02051F4C(11, fieldSystem);
+    v1 = FieldBattleDTO_NewCatchingTutorial(11, fieldSystem);
     v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
 
     FieldTask_InitCall(taskMan, sub_020514E8, v0);
@@ -763,8 +763,8 @@ void sub_020515CC(FieldTask *taskMan, int param1, int param2, int param3, int pa
     }
 
     RadarChain_Clear(fieldSystem->chain);
-    v2 = sub_02051D8C(11, v0);
-    sub_02052314(v2, fieldSystem);
+    v2 = FieldBattleDTO_New(11, v0);
+    FieldBattleDTO_Init(v2, fieldSystem);
 
     if ((fieldSystem->location->mapId >= MAP_HEADER_DISTORTION_WORLD_1F) && (fieldSystem->location->mapId <= MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM)) {
         v2->battleStatusMask |= BATTLE_STATUS_DISTORTION;
@@ -785,8 +785,8 @@ void sub_0205167C(FieldTask *taskMan, const u8 *param1, int param2)
     UnkStruct_02050ACC *v1;
     FieldBattleDTO *v2;
 
-    v2 = sub_02051D8C(11, param2);
-    sub_020526CC(v2, fieldSystem, param1);
+    v2 = FieldBattleDTO_New(11, param2);
+    FieldBattleDTO_InitWithPartyOrderFromSave(v2, fieldSystem, param1);
 
     v1 = sub_02050ACC(v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), NULL);
     FieldTask_InitCall(taskMan, sub_02050CA8, v1);
@@ -823,15 +823,15 @@ void sub_020516F4(FieldTask *taskMan, int param1, int param2, int param3)
 
     if (param3 == 0) {
         v4 = (0x4 | 0x1);
-        v2 = sub_02051D8C(11, (0x4 | 0x1));
+        v2 = FieldBattleDTO_New(11, (0x4 | 0x1));
         v5 = (UnkEnum_0202F510_00);
     } else if (param3 == 1) {
         v4 = ((0x4 | 0x1) | 0x2);
-        v2 = sub_02051D8C(11, ((0x4 | 0x1) | 0x2));
+        v2 = FieldBattleDTO_New(11, ((0x4 | 0x1) | 0x2));
         v5 = (UnkEnum_0202F510_07);
     } else {
         v4 = ((((0x4 | 0x1) | 0x2) | 0x8) | 0x80);
-        v2 = sub_02051D8C(11, ((((0x4 | 0x1) | 0x2) | 0x8) | 0x80));
+        v2 = FieldBattleDTO_New(11, ((((0x4 | 0x1) | 0x2) | 0x8) | 0x80));
 
         v2->trainerIDs[1] = 1;
         v2->trainerIDs[3] = 2;
@@ -841,7 +841,7 @@ void sub_020516F4(FieldTask *taskMan, int param1, int param2, int param3)
         v5 = (UnkEnum_0202F510_14);
     }
 
-    sub_02052348(v2, fieldSystem, param2);
+    FieldBattleDTO_InitWithNormalizedMonLevels(v2, fieldSystem, param2);
     sub_0202F1F8(fieldSystem->saveData, 11, &v3);
 
     v2->unk_18A = v5;
@@ -881,9 +881,9 @@ void sub_020517E8(FieldSystem *fieldSystem, const u8 *param1, int param2)
     FieldBattleDTO *v1;
     int v2;
 
-    v1 = sub_02051D8C(11, param2);
+    v1 = FieldBattleDTO_New(11, param2);
 
-    sub_020526CC(v1, fieldSystem, param1);
+    FieldBattleDTO_InitWithPartyOrderFromSave(v1, fieldSystem, param1);
     sub_0202F1F8(fieldSystem->saveData, 11, &v2);
 
     v1->unk_18A = sub_020516C8(fieldSystem->unk_B0, param2);
@@ -898,9 +898,9 @@ void sub_0205184C(FieldSystem *fieldSystem, const Party *param1, int param2)
     FieldBattleDTO *v1;
     int v2;
 
-    v1 = sub_02051D8C(11, param2);
+    v1 = FieldBattleDTO_New(11, param2);
 
-    sub_020524E4(v1, fieldSystem, param1, NULL);
+    FieldBattleDTO_InitWithPartyOrder(v1, fieldSystem, param1, NULL);
     sub_0202F1F8(fieldSystem->saveData, 11, &v2);
 
     v1->unk_18A = sub_020516C8(fieldSystem->unk_B0, param2);
@@ -1011,8 +1011,8 @@ void sub_02051ABC(FieldTask *taskMan, u16 param1, u8 param2, int *param3, BOOL p
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     RadarChain_Clear(fieldSystem->chain);
 
-    v1 = sub_02051D8C(11, (0x0 | 0x0));
-    sub_02052314(v1, fieldSystem);
+    v1 = FieldBattleDTO_New(11, (0x0 | 0x0));
+    FieldBattleDTO_Init(v1, fieldSystem);
 
     ov6_022420D4(fieldSystem, param1, param2, v1);
 

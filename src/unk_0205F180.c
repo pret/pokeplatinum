@@ -1778,7 +1778,7 @@ static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         }
 
         {
-            u8 v3 = sub_02054F94(fieldSystem, v1, v2);
+            u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
 
             switch (param2) {
             case 0:
@@ -1816,7 +1816,7 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v2 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
         int v3 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
-        u8 v4 = sub_02054F94(fieldSystem, v2, v3);
+        u8 v4 = FieldSystem_GetTileAttributes(fieldSystem, v2, v3);
 
         switch (param2) {
         case 0:
@@ -1851,7 +1851,7 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetXPos(mapObj);
         int v2 = MapObject_GetZPos(mapObj);
-        u8 v3 = sub_02054F94(fieldSystem, v1, v2);
+        u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
 
         switch (param2) {
         case 0:
@@ -1878,7 +1878,7 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
         v1 += MapObject_GetDxFromDir(param2);
         v2 += MapObject_GetDyFromDir(param2);
-        v3 = sub_02054F94(fieldSystem, v1, v2);
+        v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
 
         if (sub_0205DAEC(v3) == 1) {
             return 1;
@@ -1894,7 +1894,7 @@ static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
-        u8 v3 = sub_02054F94(fieldSystem, v1, v2);
+        u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
 
         if ((param2 == 3) && sub_0205DD90(v3)) {
             return 1;
@@ -1914,7 +1914,7 @@ static int sub_02060F4C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
-        u8 v3 = sub_02054F94(fieldSystem, v1, v2);
+        u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
 
         if (sub_0206406C(mapObj, v3)) {
             return 1;
@@ -1930,7 +1930,7 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
-        u8 v3 = sub_02054F94(fieldSystem, v1, v2);
+        u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
 
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
             if (sub_0206415C(mapObj, v3) == 1) {
@@ -1964,7 +1964,7 @@ static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
-        u8 v3 = sub_02054F94(fieldSystem, v1, v2);
+        u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
 
         if (sub_0206406C(mapObj, v3)) {
             return 1;
@@ -2468,7 +2468,7 @@ u32 sub_02061760(PlayerAvatar *playerAvatar)
     int z = MapObject_GetZPos(mapObj);
 
     if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
-        v0 = sub_02054F94(fieldSystem, x, z);
+        v0 = FieldSystem_GetTileAttributes(fieldSystem, x, z);
     } else {
         ov9_02251044(fieldSystem, x, y, z, &v0);
     }

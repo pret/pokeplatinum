@@ -561,7 +561,7 @@ void sub_0202FAFC(FieldBattleDTO *param0, SaveData *param1)
     param0->resultMask = BATTLE_IN_PROGRESS;
     param0->leveledUpMonsMask = 0;
 
-    sub_02026338(SaveData_Pokedex(param1), param0->pokedex);
+    Pokedex_Copy(SaveData_Pokedex(param1), param0->pokedex);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->trainerIDs[v0] = v1->unk_00.unk_08[v0];

@@ -201,7 +201,7 @@ static BOOL sub_020564F4(UnkStruct_020564B4 *param0)
 
 static int sub_0205650C(FieldSystem *fieldSystem, int param1, int param2)
 {
-    u16 v0 = sub_02054F94(fieldSystem, param1, param2);
+    u16 v0 = FieldSystem_GetTileAttributes(fieldSystem, param1, param2);
     int v1;
 
     v1 = (param1 < 32) ? 0 : 1;
@@ -279,11 +279,11 @@ static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4
     PalParkTransfer *v2 = SaveData_PalParkTransfer(fieldSystem->saveData);
     int v3 = sub_020563BC(fieldSystem);
 
-    v0 = sub_02051F38(11, v3);
+    v0 = FieldBattleDTO_NewPalPark(11, v3);
 
-    sub_02052314(v0, fieldSystem);
+    FieldBattleDTO_Init(v0, fieldSystem);
     sub_0202F000(v2, param1->unk_3C, v1);
-    sub_0205213C(v0, v1, 1);
+    FieldBattleDTO_AddPokemonToBattler(v0, v1, 1);
     Heap_FreeToHeap(v1);
 
     return v0;

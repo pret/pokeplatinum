@@ -156,7 +156,7 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
     v10 = v9->unk_0C;
 
     v9->unk_1D = ov104_02238538(v9, v10->parties[0], v10->parties[2], v10->totalTurnsElapsed);
-    v9->unk_28 = FieldBattleDTO_PlayerWon(v10->resultMask);
+    v9->unk_28 = CheckPlayerWonBattle(v10->resultMask);
 
     if (v9->unk_13 == 27) {
         v2 = 1;
@@ -215,7 +215,7 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
         Pokemon_SetValue(v11, MON_DATA_SP_DEF, &v5);
     }
 
-    sub_020520A4(v10);
+    FieldBattleDTO_Free(v10);
     return 0;
 }
 

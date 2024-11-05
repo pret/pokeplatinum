@@ -222,7 +222,7 @@ void sub_0206842C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
-    param1->unk_0E = sub_02054F94(fieldSystem, v0, v1);
+    param1->unk_0E = FieldSystem_GetTileAttributes(fieldSystem, v0, v1);
 
     v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
@@ -241,7 +241,7 @@ void sub_0206842C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
         break;
     }
 
-    param1->unk_0C = sub_02054F94(fieldSystem, v0, v1);
+    param1->unk_0C = FieldSystem_GetTileAttributes(fieldSystem, v0, v1);
     sub_0203C9D4(fieldSystem, &v3);
 
     param1->unk_10 = sub_02055FC8(fieldSystem, v3);

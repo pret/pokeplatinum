@@ -431,7 +431,7 @@ static BOOL sub_02057050(FieldTask *taskMan)
         u8 v4;
         MapObject *v5 = Player_MapObject(fieldSystem->playerAvatar);
 
-        v4 = sub_02054F94(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
+        v4 = FieldSystem_GetTileAttributes(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
 
         if (sub_0205DAEC(v4)) {
             MapObject_SetHidden(v5, 1);
@@ -482,7 +482,7 @@ static BOOL sub_0205711C(FieldTask *taskMan)
         u8 v4;
         MapObject *v5 = Player_MapObject(fieldSystem->playerAvatar);
 
-        v4 = sub_02054F94(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
+        v4 = FieldSystem_GetTileAttributes(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
 
         if (sub_0205DAEC(v4)) {
             MapObject_SetHidden(v5, 1);
@@ -634,7 +634,7 @@ static void sub_02057368(FieldSystem *fieldSystem)
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
-    v4 = sub_02054F94(fieldSystem, v0, v1);
+    v4 = FieldSystem_GetTileAttributes(fieldSystem, v0, v1);
 
     if (sub_0205DC44(v4)) {
         v3.x += (FX32_ONE * 16);

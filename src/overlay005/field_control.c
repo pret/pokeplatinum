@@ -579,7 +579,7 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
     Location nextMap;
 
     if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap) && input->transitionDir != DIR_NONE) {
-        tileBehavior = sub_02054F94(fieldSystem, playerX, playerZ);
+        tileBehavior = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
 
         if (sub_0205DAEC(tileBehavior)) {
             int v6 = input->transitionDir;
@@ -596,7 +596,7 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
 
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
-    tileBehavior = sub_02054F94(fieldSystem, playerX, playerZ);
+    tileBehavior = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
 
     if (sub_0205DAF8(tileBehavior) || sub_0205DB28(tileBehavior)) {
         if (input->transitionDir != DIR_EAST) {
@@ -715,7 +715,7 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    u8 tileBehavior = sub_02054F94(fieldSystem, playerX, playerZ);
+    u8 tileBehavior = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
 
     if (Field_CheckCoordEvent(fieldSystem) == TRUE) {
         return TRUE;
@@ -982,14 +982,14 @@ static u8 Field_CurrentTileBehavior(const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
-    return sub_02054F94(fieldSystem, playerX, playerZ);
+    return FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
 }
 
 static u8 Field_NextTileBehavior(const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
     Field_Step(fieldSystem, &playerX, &playerZ);
-    return sub_02054F94(fieldSystem, playerX, playerZ);
+    return FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
 }
 
 static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap)

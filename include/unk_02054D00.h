@@ -11,7 +11,7 @@
 
 void sub_02054F44(const TerrainCollisionManager **param0, int param1);
 BOOL FieldSystem_CheckCollision(const FieldSystem *fieldSystem, const int param1, const int param2);
-u8 sub_02054F94(const FieldSystem *fieldSystem, const int param1, const int param2);
+u8 FieldSystem_GetTileAttributes(const FieldSystem *fieldSystem, const int x, const int z);
 const fx32 sub_02054FBC(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4);
 BOOL sub_02055024(const FieldSystem *fieldSystem, const VecFx32 *param1, const int param2, const int param3, s8 *param4);
 BOOL sub_0205507C(FieldSystem *fieldSystem, const VecFx32 *param1, const int param2, const int param3, s8 *param4);

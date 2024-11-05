@@ -628,7 +628,7 @@ static const UnkStruct_ov104_0223FCB4 Unk_ov104_0223FCB4[] = {
     },
 };
 
-void sub_02052894(FieldBattleDTO *param0);
+void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
 BOOL ov104_0223A0C4(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, int param3, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int param7);
 void ov104_0223A30C(SaveData *param0, UnkStruct_ov104_0223A348 *param1, const u8 param2);
 FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230BE4 *param1);
@@ -912,11 +912,11 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
     Party *v5;
     Pokemon *v6;
 
-    v3 = sub_02051D8C(param0->unk_04, ov104_0223A700(param0->unk_0F));
+    v3 = FieldBattleDTO_New(param0->unk_04, ov104_0223A700(param0->unk_0F));
     v4 = param1->unk_08;
     v5 = Party_GetFromSavedata(v4);
 
-    sub_020521B8(v3, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
+    FieldBattleDTO_InitFromGameState(v3, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
 
     v3->background = 18;
     v3->terrain = TERRAIN_BATTLE_TOWER;
@@ -936,11 +936,11 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
             Pokemon_CalcLevelAndStats(v6);
         }
 
-        sub_0205213C(v3, v6, 0);
+        FieldBattleDTO_AddPokemonToBattler(v3, v6, 0);
     }
 
     Heap_FreeToHeap(v6);
-    sub_02052894(v3);
+    FieldBattleDTO_CopyPlayerInfoToTrainerData(v3);
 
     ov104_0223A6AC(v3, &(param0->unk_78[0]), param0->unk_0E, 1, param0->unk_04);
 

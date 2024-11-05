@@ -541,6 +541,35 @@
                 "TERRAIN_MAX"
             ]
         },
+        "@BattleBackground": {
+            "type": "enum",
+            "values": [
+                "BACKGROUND_PLAIN",
+                "BACKGROUND_WATER",
+                "BACKGROUND_CITY",
+                "BACKGROUND_FOREST",
+                "BACKGROUND_MOUNTAIN",
+                "BACKGROUND_SNOW",
+                "BACKGROUND_INDOORS_1",
+                "BACKGROUND_INDOORS_2",
+                "BACKGROUND_INDOORS_3",
+                "BACKGROUND_CAVE_1",
+                "BACKGROUND_CAVE_2",
+                "BACKGROUND_CAVE_3",
+                "BACKGROUND_AARON",
+                "BACKGROUND_BERTHA",
+                "BACKGROUND_FLINT",
+                "BACKGROUND_LUCIAN",
+                "BACKGROUND_CYNTHIA",
+                "BACKGROUND_DISTORTION_WORLD",
+                "BACKGROUND_BATTLE_TOWER",
+                "BACKGROUND_BATTLE_FACTORY",
+                "BACKGROUND_BATTLE_ARCADE",
+                "BACKGROUND_BATTLE_CASTLE",
+                "BACKGROUND_BATTLE_HALL",
+                "BACKGROUND_MAX"
+            ]
+        },
         "@BattleAnimation": {
             "type": "enum",
             "values": [

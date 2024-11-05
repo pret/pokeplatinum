@@ -2,6 +2,7 @@
 #define POKEPLATINUM_FIELD_BATTLE_DATA_TRANSFER_H
 
 #include "constants/battle.h"
+#include "consts/map.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
@@ -77,25 +78,26 @@ typedef struct FieldBattleDTO {
     u32 unk_19C;
 } FieldBattleDTO;
 
-FieldBattleDTO *sub_02051D8C(int param0, u32 param1);
-FieldBattleDTO *sub_02051F24(int param0, int param1);
-FieldBattleDTO *sub_02051F38(int param0, int param1);
-FieldBattleDTO *sub_02051F4C(int param0, const FieldSystem *fieldSystem);
-void sub_020520A4(FieldBattleDTO *param0);
-void sub_0205213C(FieldBattleDTO *param0, Pokemon *param1, int param2);
-void sub_02052164(FieldBattleDTO *param0, const Party *param1, int param2);
-void sub_02052184(FieldBattleDTO *param0, const TrainerInfo *param1, int param2);
-void sub_020521A4(FieldBattleDTO *param0, const ChatotCry *param1, int param2);
-void sub_020521B8(FieldBattleDTO *param0, const FieldSystem *fieldSystem, SaveData *param2, int param3, Journal *param4, BagCursor *param5, u8 *param6);
-void sub_02052314(FieldBattleDTO *param0, const FieldSystem *fieldSystem);
-void sub_02052348(FieldBattleDTO *param0, const FieldSystem *fieldSystem, int param2);
-void sub_020524E4(FieldBattleDTO *param0, const FieldSystem *fieldSystem, const Party *param2, const u8 *param3);
-void sub_020526CC(FieldBattleDTO *param0, const FieldSystem *fieldSystem, const u8 *param2);
-void sub_020526E8(const FieldBattleDTO *param0, FieldSystem *fieldSystem);
-void sub_02052754(const FieldBattleDTO *param0, FieldSystem *fieldSystem);
-void sub_0205285C(FieldBattleDTO *param0);
-BOOL FieldBattleDTO_PlayerWon(u32 battleResult);
-BOOL FieldBattleDTO_PlayerLost(u32 battleResult);
-BOOL FieldBattleDTO_PlayerDidNotCapture(u32 battleResult);
+FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType);
+FieldBattleDTO *FieldBattleDTO_NewSafari(enum HeapId heapID, int countSafariBalls);
+FieldBattleDTO *FieldBattleDTO_NewPalPark(enum HeapId heapID, int countParkBalls);
+FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const FieldSystem *fieldSystem);
+void FieldBattleDTO_Free(FieldBattleDTO *dto);
+void FieldBattleDTO_AddPokemonToBattler(FieldBattleDTO *dto, Pokemon *src, int battler);
+void FieldBattleDTO_CopyPartyToBattler(FieldBattleDTO *dto, const Party *src, int battler);
+void FieldBattleDTO_CopyTrainerInfoToBattler(FieldBattleDTO *dto, const TrainerInfo *src, int battler);
+void FieldBattleDTO_CopyChatotCryToBattler(FieldBattleDTO *dto, const ChatotCry *src, int battler);
+void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *save, enum MapHeader mapHeaderID, Journal *journal, BagCursor *bagCursor, u8 *subscreenCursorOn);
+void FieldBattleDTO_Init(FieldBattleDTO *dto, const FieldSystem *fieldSystem);
+void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const FieldSystem *fieldSystem, int level);
+void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *fieldSystem, const Party *party, const u8 *partyOrder);
+void FieldBattleDTO_InitWithPartyOrderFromSave(FieldBattleDTO *dto, const FieldSystem *fieldSystem, const u8 *partyOrder);
+void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fieldSystem);
+void FieldBattleDTO_UpdatePokedex(const FieldBattleDTO *dto, FieldSystem *fieldSystem);
+void FieldBattleDTO_SetWaterTerrain(FieldBattleDTO *dto);
+BOOL CheckPlayerWonBattle(u32 battleResult);
+BOOL CheckPlayerLostBattle(u32 battleResult);
+BOOL CheckPlayerDidNotCaptureWildMon(u32 battleResult);
+void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto);
 
 #endif // POKEPLATINUM_FIELD_BATTLE_DATA_TRANSFER_H

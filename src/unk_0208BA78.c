@@ -256,7 +256,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
     case 1: {
         int v0;
 
-        param0->unk_10 = sub_02051D8C(param1, 0x0);
+        param0->unk_10 = FieldBattleDTO_New(param1, 0x0);
 
         if (sub_0202F250() == 0) {
             sub_0202F298(param0->saveData, param1, &v0, param0->unk_10, param0->unk_14->unk_86C);
@@ -277,7 +277,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
 
         if (v0 != 1) {
             Heap_FreeToHeap(param0->unk_10->bagCursor);
-            sub_020520A4(param0->unk_10);
+            FieldBattleDTO_Free(param0->unk_10);
             param0->unk_00 = 0;
             return 1;
         } else {
@@ -311,7 +311,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
         }
 
         Heap_FreeToHeap(param0->unk_10->bagCursor);
-        sub_020520A4(param0->unk_10);
+        FieldBattleDTO_Free(param0->unk_10);
         OverlayManager_Free(param0->unk_08);
 
         {

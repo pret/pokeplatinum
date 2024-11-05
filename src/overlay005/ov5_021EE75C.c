@@ -49,7 +49,7 @@ static void ov5_021EE768(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     v4->unk_00 = v1;
     v4->unk_04 = v2;
 
-    v0 = sub_02054F94(fieldSystem, v1, v2);
+    v0 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
 
     if (sub_0205DD84(v0)) {
         v3 = 0;

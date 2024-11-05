@@ -130,7 +130,7 @@ BOOL ov5_021F08F8(FieldTask *taskMan)
             }
 
             if (v1->unk_10 != NULL) {
-                sub_020520A4(v1->unk_10);
+                FieldBattleDTO_Free(v1->unk_10);
             }
 
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);

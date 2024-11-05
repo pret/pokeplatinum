@@ -37,7 +37,7 @@ u16 ov104_0223C0BC(UnkStruct_ov104_0223BFFC *param0, u8 param1);
 static u16 ov104_0223C0D0(UnkStruct_ov104_0223BFFC *param0);
 u16 ov104_0223C124(UnkStruct_ov104_0223BFFC *param0);
 u8 ov104_0223C148(u8 param0);
-void sub_02052894(FieldBattleDTO *param0);
+void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
 static int ov104_0223BCBC(u8 param0, int param1, int param2);
 void ov104_0223BD28(u8 param0, int param1, u16 param2[], u8 param3);
 
@@ -176,9 +176,9 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
     v2 = ov104_0223BD70(param0->unk_10, 0);
     v3 = ov104_0223BDA4(param0->unk_10, 0);
-    v5 = sub_02051D8C(11, ov104_0223BFD0(param0->unk_10));
+    v5 = FieldBattleDTO_New(11, ov104_0223BFD0(param0->unk_10));
 
-    sub_020521B8(v5, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
+    FieldBattleDTO_InitFromGameState(v5, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
 
     v5->background = 20;
     v5->terrain = TERRAIN_BATTLE_ARCADE;
@@ -204,11 +204,11 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
     for (v0 = 0; v0 < v2; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(v12, (v4 + v0)), v6);
-        sub_0205213C(v5, v6, 0);
+        FieldBattleDTO_AddPokemonToBattler(v5, v6, 0);
     }
 
     Heap_FreeToHeap(v6);
-    sub_02052894(v5);
+    FieldBattleDTO_CopyPlayerInfoToTrainerData(v5);
 
     v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11], 11, 178);
 
@@ -224,7 +224,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
     for (v0 = 0; v0 < v3; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(v13, v0), v6);
-        sub_0205213C(v5, v6, 1);
+        FieldBattleDTO_AddPokemonToBattler(v5, v6, 1);
     }
 
     Heap_FreeToHeap(v6);
@@ -232,7 +232,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
     switch (param0->unk_10) {
     case 2:
     case 3:
-        sub_02052894(v5);
+        FieldBattleDTO_CopyPlayerInfoToTrainerData(v5);
 
         v11 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
         TrainerInfo_Copy(v11, v5->trainerInfo[2]);
@@ -247,7 +247,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
         for (v0 = 0; v0 < v3; v0++) {
             Pokemon_Copy(Party_GetPokemonBySlotIndex(v13, (v3 + v0)), v6);
-            sub_0205213C(v5, v6, 3);
+            FieldBattleDTO_AddPokemonToBattler(v5, v6, 3);
         }
 
         Heap_FreeToHeap(v6);

@@ -731,7 +731,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     sub_02015760(v0->unk_1AC);
     Bag_Copy(v0->unk_58, v1->bag);
     Heap_FreeToHeap(v0->unk_58);
-    sub_02026338(v0->pokedex, v1->pokedex);
+    Pokedex_Copy(v0->pokedex, v1->pokedex);
     Heap_FreeToHeap(v0->pokedex);
 
     v1->pcBoxes = v0->pcBoxes;
@@ -1085,7 +1085,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
 
     Bag_Copy(param1->bag, param0->unk_58);
     param0->pokedex = sub_02026324(5);
-    sub_02026338(param1->pokedex, param0->pokedex);
+    Pokedex_Copy(param1->pokedex, param0->pokedex);
 
     param0->pcBoxes = param1->pcBoxes;
     param0->unk_1B0 = param1->options;

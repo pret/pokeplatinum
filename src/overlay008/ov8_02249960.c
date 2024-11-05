@@ -384,7 +384,7 @@ BOOL ov8_02249A40(FieldSystem *fieldSystem, const int param1, const int param2, 
 {
     u8 v0;
 
-    v0 = sub_02054F94(fieldSystem, param1, param2);
+    v0 = FieldSystem_GetTileAttributes(fieldSystem, param1, param2);
 
     if (sub_0205DBFC(v0)) {
         if (param3 != 0) {

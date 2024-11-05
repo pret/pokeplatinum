@@ -6020,7 +6020,7 @@ static BOOL ScrCmd_1B5(ScriptContext *ctx)
 static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx)
 {
     u16 *timeOfDay = ScriptContext_GetVarPointer(ctx);
-    *timeOfDay = sub_02055BA8(ctx->fieldSystem);
+    *timeOfDay = FieldSystem_GetTimeOfDay(ctx->fieldSystem);
     return FALSE;
 }
 
