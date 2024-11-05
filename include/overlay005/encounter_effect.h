@@ -13,10 +13,10 @@
 #include "overlay005/struct_ov5_021DE47C.h"
 #include "overlay005/struct_ov5_021DE5A4.h"
 
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "enc_effects.h"
+#include "field_battle_data_transfer.h"
 #include "narc.h"
 #include "sys_task_manager.h"
 

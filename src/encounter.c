@@ -19,10 +19,10 @@
 #include "overlay006/ov6_02246034.h"
 #include "savedata/save_table.h"
 
-#include "field_battle_data_transfer.h"
 #include "communication_information.h"
 #include "enc_effects.h"
 #include "enums.h"
+#include "field_battle_data_transfer.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
 #include "field_overworld_state.h"

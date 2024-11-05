@@ -17,8 +17,8 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay105/ov105_02241AE0.h"
 
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
+#include "field_battle_data_transfer.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"

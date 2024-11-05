@@ -44,10 +44,10 @@
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "bag.h"
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
 #include "game_options.h"

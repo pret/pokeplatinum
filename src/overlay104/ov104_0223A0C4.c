@@ -18,8 +18,8 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "field_battle_data_transfer.h"
 #include "communication_information.h"
+#include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "heap.h"
 #include "message.h"

@@ -9,8 +9,8 @@
 
 #include "data/trainer_class_genders.h"
 
-#include "field_battle_data_transfer.h"
 #include "charcode_util.h"
+#include "field_battle_data_transfer.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"

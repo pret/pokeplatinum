@@ -38,9 +38,9 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "bag.h"
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "communication_system.h"
+#include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
 #include "game_options.h"

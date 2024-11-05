@@ -14,10 +14,10 @@
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "core_sys.h"
 #include "encounter.h"
+#include "field_battle_data_transfer.h"
 #include "field_task.h"
 #include "game_records.h"
 #include "heap.h"

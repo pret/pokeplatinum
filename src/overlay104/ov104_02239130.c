@@ -18,8 +18,8 @@
 #include "overlay104/struct_ov104_022320B4_t.h"
 #include "savedata/save_table.h"
 
-#include "field_battle_data_transfer.h"
 #include "communication_system.h"
+#include "field_battle_data_transfer.h"
 #include "game_records.h"
 #include "pokemon.h"
 #include "savedata.h"

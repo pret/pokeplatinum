@@ -14,9 +14,9 @@
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 #include "overlay104/struct_ov104_0223B5C0.h"
 
-#include "field_battle_data_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "field_battle_data_transfer.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"

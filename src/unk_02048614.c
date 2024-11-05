@@ -6,8 +6,8 @@
 
 #include "field/field_system.h"
 
-#include "field_battle_data_transfer.h"
 #include "encounter.h"
+#include "field_battle_data_transfer.h"
 #include "field_script_context.h"
 #include "inlines.h"
 #include "map_object.h"

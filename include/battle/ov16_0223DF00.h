@@ -27,8 +27,8 @@
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "bag.h"
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
+#include "field_battle_data_transfer.h"
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"

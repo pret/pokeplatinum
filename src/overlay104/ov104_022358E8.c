@@ -20,8 +20,8 @@
 #include "overlay107/ov107_02241AE0.h"
 #include "overlay107/ov107_02245EB0.h"
 
-#include "field_battle_data_transfer.h"
 #include "communication_system.h"
+#include "field_battle_data_transfer.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"

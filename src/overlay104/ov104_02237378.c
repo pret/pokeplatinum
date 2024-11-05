@@ -27,9 +27,9 @@
 #include "overlay104/struct_ov104_0223C634.h"
 #include "overlay108/ov108_02241AE0.h"
 
-#include "field_battle_data_transfer.h"
 #include "cell_actor.h"
 #include "communication_information.h"
+#include "field_battle_data_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "palette.h"

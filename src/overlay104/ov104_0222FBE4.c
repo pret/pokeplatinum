@@ -58,12 +58,12 @@
 #include "overlay104/struct_ov104_0223F1B4.h"
 #include "savedata/save_table.h"
 
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
 #include "enums.h"
+#include "field_battle_data_transfer.h"
 #include "field_comm_manager.h"
 #include "game_records.h"
 #include "heap.h"

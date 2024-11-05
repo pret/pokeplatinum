@@ -86,8 +86,8 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
-#include "field_battle_data_transfer.h"
 #include "coins.h"
+#include "field_battle_data_transfer.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"

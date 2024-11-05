@@ -7,8 +7,8 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
+#include "field_battle_data_transfer.h"
 #include "pokemon.h"
 
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);

@@ -3,8 +3,8 @@
 
 #include "struct_decls/struct_02027F8C_decl.h"
 
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
+#include "field_battle_data_transfer.h"
 #include "palette.h"
 
 typedef struct {

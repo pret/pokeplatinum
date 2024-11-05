@@ -24,11 +24,11 @@
 #include "overlay005/struct_ov5_021DE5A4.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
 
-#include "field_battle_data_transfer.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "enc_effects.h"
+#include "field_battle_data_transfer.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"

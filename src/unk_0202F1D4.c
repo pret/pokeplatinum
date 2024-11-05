@@ -18,8 +18,8 @@
 
 #include "savedata/save_table.h"
 
-#include "field_battle_data_transfer.h"
 #include "enums.h"
+#include "field_battle_data_transfer.h"
 #include "game_options.h"
 #include "heap.h"
 #include "party.h"

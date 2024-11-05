@@ -15,9 +15,9 @@
 #include "overlay104/struct_ov104_0223ADA0.h"
 #include "overlay104/struct_ov104_0224028C.h"
 
-#include "field_battle_data_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "field_battle_data_transfer.h"
 #include "heap.h"
 #include "message.h"
 #include "party.h"

@@ -9,8 +9,8 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "field_battle_data_transfer.h"
 #include "cell_actor.h"
+#include "field_battle_data_transfer.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "string_template.h"
