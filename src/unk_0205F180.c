@@ -274,29 +274,29 @@ static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
             }
         }
 
-        if ((MapObject_IsOnSnow(mapObj, v2) == 1) || (sub_0205DFAC(v2) == 1)) {
+        if ((MapObject_IsOnSnow(mapObj, v2) == 1) || (TileBehavior_IsSnowWithShadows(v2) == 1)) {
             Sound_PlayEffect(1353);
         }
 
-        if (sub_0205DE5C(v2) == 1) {
+        if (TileBehavior_IsPuddle(v2) == 1) {
             Sound_PlayEffect(1601);
         }
 
-        if (sub_0205DB78(v2) == 1) {
+        if (TileBehavior_IsShallowWater(v2) == 1) {
             Sound_PlayEffect(1602);
         }
 
-        if (sub_0205DB6C(v2) == 1) {
+        if (TileBehavior_IsSand(v2) == 1) {
         }
 
-        if ((sub_0205DCE0(v2) == 1) && (sub_0205DCF0(v2) != 1)) {
+        if ((TileBehavior_IsMud(v2) == 1) && (TileBehavior_IsDeepMud(v2) != 1)) {
             Sound_PlayEffect(1621);
         }
 
         int code = MapObject_AnimationCode(mapObj);
 
         if (sub_020613D8(code) == 0) {
-            if ((sub_0205DAD4(v2) == 1) || (sub_0205DAD4(v1) == 1)) {
+            if ((TileBehavior_IsVeryTallGrass(v2) == 1) || (TileBehavior_IsVeryTallGrass(v1) == 1)) {
                 Sound_PlayEffect(1619);
             }
         }
@@ -471,10 +471,10 @@ static u32 sub_0205F644(PlayerAvatar *playerAvatar, int param1)
 }
 
 static const UnkStruct_020EDB84 Unk_020EDB84[] = {
-    { sub_0205DC5C, 0x1 },
-    { sub_0205DD68, 0x2 },
-    { sub_0205DD90, 0x3 },
-    { sub_0205DD9C, 0x4 },
+    { TileBehavior_IsIce, 0x1 },
+    { TileBehavior_IsBikeSlope, 0x2 },
+    { TileBehavior_IsBikeRampWestToEast, 0x3 },
+    { TileBehavior_IsBikeRampEastToWest, 0x4 },
     { NULL, 0x6 }
 };
 
@@ -829,15 +829,15 @@ static int sub_0205FC64(int param0)
 
 static int sub_0205FC88(MapObject *mapObj, u8 param1, int param2)
 {
-    if (sub_0205DD5C(param1) == 1) {
+    if (TileBehavior_IsDeepestSnow(param1) == 1) {
         return 0x4;
     }
 
-    if (sub_0205DD50(param1) == 1) {
+    if (TileBehavior_IsDeeperSnow(param1) == 1) {
         return 0x8;
     }
 
-    if (sub_0205DD44(param1) == 1) {
+    if (TileBehavior_IsDeepSnow(param1) == 1) {
         return 0xc;
     }
 
@@ -1172,7 +1172,7 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pa
     if (pad & PAD_BUTTON_B) {
         u32 v0 = sub_02062BE8(Player_MapObject(playerAvatar));
 
-        if (sub_0205DD90(v0) || sub_0205DD9C(v0)) {
+        if (TileBehavior_IsBikeRampWestToEast(v0) || TileBehavior_IsBikeRampEastToWest(v0)) {
             return;
         }
 
@@ -1778,26 +1778,26 @@ static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         }
 
         {
-            u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
+            u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
             switch (param2) {
             case 0:
-                if (sub_0205DB84(v3) == 1) {
+                if (TileBehavior_IsJumpNorth(v3) == 1) {
                     return 1;
                 }
                 break;
             case 1:
-                if (sub_0205DB90(v3) == 1) {
+                if (TileBehavior_IsJumpSouth(v3) == 1) {
                     return 1;
                 }
                 break;
             case 2:
-                if (sub_0205DB9C(v3) == 1) {
+                if (TileBehavior_IsJumpWest(v3) == 1) {
                     return 1;
                 }
                 break;
             case 3:
-                if (sub_0205DBA8(v3) == 1) {
+                if (TileBehavior_IsJumpEast(v3) == 1) {
                     return 1;
                 }
                 break;
@@ -1816,20 +1816,20 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v2 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
         int v3 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
-        u8 v4 = FieldSystem_GetTileAttributes(fieldSystem, v2, v3);
+        u8 v4 = FieldSystem_GetTileBehavior(fieldSystem, v2, v3);
 
         switch (param2) {
         case 0:
-            v0 = sub_0205DBB4(v4);
+            v0 = TileBehavior_IsJumpNorthTwice(v4);
             break;
         case 1:
-            v0 = sub_0205DBC0(v4);
+            v0 = TileBehavior_IsJumpSouthTwice(v4);
             break;
         case 2:
-            v0 = sub_0205DBCC(v4);
+            v0 = TileBehavior_IsJumpWestTwice(v4);
             break;
         case 3:
-            v0 = sub_0205DBD8(v4);
+            v0 = TileBehavior_IsJumpEastTwice(v4);
             break;
         }
 
@@ -1851,26 +1851,26 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetXPos(mapObj);
         int v2 = MapObject_GetZPos(mapObj);
-        u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
+        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
         switch (param2) {
         case 0:
-            if (sub_0205DB10(v3) == 1) {
+            if (TileBehavior_IsNorthWarpEntrance(v3) == 1) {
                 return 1;
             }
             break;
         case 1:
-            if (sub_0205DB1C(v3) == 1) {
+            if (TileBehavior_IsSouthWarpEntrance(v3) == 1) {
                 return 1;
             }
             break;
         case 2:
-            if (sub_0205DB04(v3) == 1) {
+            if (TileBehavior_IsWestWarpEntrance(v3) == 1) {
                 return 1;
             }
             break;
         case 3:
-            if (sub_0205DAF8(v3) == 1) {
+            if (TileBehavior_IsEastWarpEntrance(v3) == 1) {
                 return 1;
             }
             break;
@@ -1878,9 +1878,9 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
         v1 += MapObject_GetDxFromDir(param2);
         v2 += MapObject_GetDyFromDir(param2);
-        v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
+        v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
-        if (sub_0205DAEC(v3) == 1) {
+        if (TileBehavior_IsDoor(v3) == 1) {
             return 1;
         }
     }
@@ -1894,13 +1894,13 @@ static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
-        u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
+        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
-        if ((param2 == 3) && sub_0205DD90(v3)) {
+        if ((param2 == 3) && TileBehavior_IsBikeRampWestToEast(v3)) {
             return 1;
         }
 
-        if ((param2 == 2) && sub_0205DD9C(v3)) {
+        if ((param2 == 2) && TileBehavior_IsBikeRampEastToWest(v3)) {
             return 1;
         }
     }
@@ -1914,7 +1914,7 @@ static int sub_02060F4C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
-        u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
+        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
         if (sub_0206406C(mapObj, v3)) {
             return 1;
@@ -1930,7 +1930,7 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
-        u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
+        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
             if (sub_0206415C(mapObj, v3) == 1) {
@@ -1964,7 +1964,7 @@ static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
         int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
-        u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, v1, v2);
+        u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
         if (sub_0206406C(mapObj, v3)) {
             return 1;
@@ -1974,15 +1974,15 @@ static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
             return 1;
         }
 
-        if (sub_0205DAD4(v3)) {
+        if (TileBehavior_IsVeryTallGrass(v3)) {
             return 1;
         }
 
-        if (sub_0205DCE0(v3)) {
+        if (TileBehavior_IsMud(v3)) {
             return 1;
         }
 
-        if (sub_0205DCFC(v3)) {
+        if (TileBehavior_IsMudWithGrass(v3)) {
             return 1;
         }
     }
@@ -2032,7 +2032,7 @@ static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
             v1 = ov9_02251044(fieldSystem, x, y, z, &v2);
 
-            if (sub_0205DB58(v2)) {
+            if (TileBehavior_IsSurfable(v2)) {
                 return 1;
             }
         }
@@ -2084,16 +2084,16 @@ static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
             switch (param2) {
             case 0:
-                v0 = sub_0205DBB4(v2);
+                v0 = TileBehavior_IsJumpNorthTwice(v2);
                 break;
             case 1:
-                v0 = sub_0205DBC0(v2);
+                v0 = TileBehavior_IsJumpSouthTwice(v2);
                 break;
             case 2:
-                v0 = sub_0205DBCC(v2);
+                v0 = TileBehavior_IsJumpWestTwice(v2);
                 break;
             case 3:
-                v0 = sub_0205DBD8(v2);
+                v0 = TileBehavior_IsJumpEastTwice(v2);
                 break;
             }
         }
@@ -2468,7 +2468,7 @@ u32 sub_02061760(PlayerAvatar *playerAvatar)
     int z = MapObject_GetZPos(mapObj);
 
     if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
-        v0 = FieldSystem_GetTileAttributes(fieldSystem, x, z);
+        v0 = FieldSystem_GetTileBehavior(fieldSystem, x, z);
     } else {
         ov9_02251044(fieldSystem, x, y, z, &v0);
     }

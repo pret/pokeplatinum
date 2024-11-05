@@ -644,7 +644,7 @@ static u32 sub_0206A354(MapObject *mapObj, int param1)
 {
     u32 v0 = sub_02064238(mapObj, param1);
 
-    if (sub_0205DAD4(v0) == 0) {
+    if (TileBehavior_IsVeryTallGrass(v0) == 0) {
         v0 = (1 << 1);
     }
 

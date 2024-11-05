@@ -307,9 +307,9 @@ static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const 
     int v1 = (param3 - (9 / 2)) + param5;
     patch->unk_00 = v0;
     patch->unk_04 = v1;
-    u8 v2 = FieldSystem_GetTileAttributes(fieldSystem, v0, v1);
+    u8 v2 = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
 
-    if (sub_0205DAC8(v2)) {
+    if (TileBehavior_IsTallGrass(v2)) {
         u8 v3;
         patch->position.x = FX32_ONE * 16 * v0;
         patch->position.z = FX32_ONE * 16 * v1;

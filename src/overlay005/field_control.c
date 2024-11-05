@@ -389,7 +389,7 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
 {
     if (input->mapTransition
         && input->transitionDir == DIR_SOUTH
-        && sub_0205DB1C(Field_CurrentTileBehavior(fieldSystem))) {
+        && TileBehavior_IsSouthWarpEntrance(Field_CurrentTileBehavior(fieldSystem))) {
 
         ScriptManager_Set(fieldSystem, 9101, NULL);
         return TRUE;
@@ -469,7 +469,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
         }
     }
 
-    if (input->movement && TileBehavior_IsWarp(Field_CurrentTileBehavior(fieldSystem))) {
+    if (input->movement && TileBehavior_IsWarpPanel(Field_CurrentTileBehavior(fieldSystem))) {
         sub_020545EC(fieldSystem);
         return TRUE;
     }
@@ -579,9 +579,9 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
     Location nextMap;
 
     if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap) && input->transitionDir != DIR_NONE) {
-        tileBehavior = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
+        tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 
-        if (sub_0205DAEC(tileBehavior)) {
+        if (TileBehavior_IsDoor(tileBehavior)) {
             int v6 = input->transitionDir;
 
             if (sub_02071CB4(fieldSystem, 2) == TRUE) {
@@ -596,25 +596,25 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
 
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
-    tileBehavior = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
+    tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 
-    if (sub_0205DAF8(tileBehavior) || sub_0205DB28(tileBehavior)) {
+    if (TileBehavior_IsEastWarpEntrance(tileBehavior) || TileBehavior_IsEastWarp(tileBehavior)) {
         if (input->transitionDir != DIR_EAST) {
             return FALSE;
         }
-    } else if (sub_0205DB04(tileBehavior) || sub_0205DB34(tileBehavior)) {
+    } else if (TileBehavior_IsWestWarpEntrance(tileBehavior) || TileBehavior_IsWestWarp(tileBehavior)) {
         if (input->transitionDir != DIR_WEST) {
             return FALSE;
         }
-    } else if (sub_0205DB1C(tileBehavior) || sub_0205DB4C(tileBehavior)) {
+    } else if (TileBehavior_IsSouthWarpEntrance(tileBehavior) || TileBehavior_IsSouthWarp(tileBehavior)) {
         if (input->transitionDir != DIR_SOUTH) {
             return FALSE;
         }
-    } else if (sub_0205DC44(tileBehavior)) {
+    } else if (TileBehavior_IsEastStairsWarp(tileBehavior)) {
         if (input->transitionDir != DIR_EAST) {
             return FALSE;
         }
-    } else if (sub_0205DC50(tileBehavior)) {
+    } else if (TileBehavior_IsWestStairsWarp(tileBehavior)) {
         if (input->transitionDir != DIR_WEST) {
             return FALSE;
         }
@@ -626,15 +626,15 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
 
     int transitionType;
 
-    if (sub_0205DAEC(tileBehavior)) {
+    if (TileBehavior_IsDoor(tileBehavior)) {
         transitionType = 1;
-    } else if (sub_0205DC44(tileBehavior)) {
+    } else if (TileBehavior_IsEastStairsWarp(tileBehavior)) {
         transitionType = 3;
-    } else if (sub_0205DC50(tileBehavior)) {
+    } else if (TileBehavior_IsWestStairsWarp(tileBehavior)) {
         transitionType = 3;
-    } else if (sub_0205DAF8(tileBehavior) || sub_0205DB28(tileBehavior)
-        || sub_0205DB04(tileBehavior) || sub_0205DB34(tileBehavior)
-        || sub_0205DB1C(tileBehavior) || sub_0205DB4C(tileBehavior)) {
+    } else if (TileBehavior_IsEastWarpEntrance(tileBehavior) || TileBehavior_IsEastWarp(tileBehavior)
+        || TileBehavior_IsWestWarpEntrance(tileBehavior) || TileBehavior_IsWestWarp(tileBehavior)
+        || TileBehavior_IsSouthWarpEntrance(tileBehavior) || TileBehavior_IsSouthWarp(tileBehavior)) {
         sub_02056C18(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, input->transitionDir);
         return TRUE;
     } else {
@@ -651,31 +651,31 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
 {
     int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    if (sub_0205DBE4(behavior) && playerDir == DIR_NORTH) {
+    if (TileBehavior_IsPC(behavior) && playerDir == DIR_NORTH) {
         return 2018;
-    } else if (sub_0205DC80(behavior)) {
+    } else if (TileBehavior_IsSmallBookshelf1(behavior)) {
         return 2500;
-    } else if (sub_0205DC8C(behavior)) {
+    } else if (TileBehavior_IsSmallBookshelf2(behavior)) {
         return 2501;
-    } else if (sub_0205DC98(behavior)) {
+    } else if (TileBehavior_IsBookshelf1(behavior)) {
         return 2502;
-    } else if (sub_0205DCA4(behavior)) {
+    } else if (TileBehavior_IsBookshelf2(behavior)) {
         return 2503;
-    } else if (sub_0205DCB0(behavior)) {
+    } else if (TileBehavior_IsTrashCan(behavior)) {
         return 2504;
-    } else if (sub_0205DCBC(behavior)) {
+    } else if (TileBehavior_IsStoreShelf1(behavior)) {
         return 2505;
-    } else if (sub_0205DCC8(behavior)) {
+    } else if (TileBehavior_IsStoreShelf2(behavior)) {
         return 2506;
-    } else if (sub_0205DCD4(behavior)) {
+    } else if (TileBehavior_IsStoreShelf3(behavior)) {
         return 2507;
-    } else if (sub_0205DDB4(behavior)) {
+    } else if (TileBehavior_IsWaterfall(behavior)) {
         return 10006;
-    } else if (sub_0205DBF0(behavior)) {
+    } else if (TileBehavior_IsTownMap(behavior)) {
         return 2508;
-    } else if (sub_0205DDC0(behavior)) {
+    } else if (TileBehavior_IsBikeParking(behavior)) {
         return 2030;
-    } else if (sub_0205DE84(behavior) && playerDir == DIR_NORTH) {
+    } else if (TileBehavior_IsTV(behavior) && playerDir == DIR_NORTH) {
         return 10100;
     }
 
@@ -715,7 +715,7 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    u8 tileBehavior = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
+    u8 tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 
     if (Field_CheckCoordEvent(fieldSystem) == TRUE) {
         return TRUE;
@@ -784,7 +784,7 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
         return FALSE;
     }
 
-    if (sub_0205DC2C(curTileBehavior) == TRUE) {
+    if (TileBehavior_IsEscalatorInvertPlayerFace(curTileBehavior) == TRUE) {
         int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         if (playerDir == DIR_WEST) {
@@ -810,12 +810,12 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
         return TRUE;
     }
 
-    if (sub_0205DB10(curTileBehavior) || sub_0205DB40(curTileBehavior)) {
+    if (TileBehavior_IsNorthWarpEntrance(curTileBehavior) || TileBehavior_IsNorthWarp(curTileBehavior)) {
         sub_02056C18(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, 0);
         return TRUE;
     }
 
-    if (TileBehavior_IsWarp(curTileBehavior)) {
+    if (TileBehavior_IsWarpPanel(curTileBehavior)) {
         FieldSystem_StartMapChangeWarpTask(fieldSystem, nextMap.mapId, nextMap.warpId);
         return TRUE;
     }
@@ -982,14 +982,14 @@ static u8 Field_CurrentTileBehavior(const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
-    return FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
+    return FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 }
 
 static u8 Field_NextTileBehavior(const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
     Field_Step(fieldSystem, &playerX, &playerZ);
-    return FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
+    return FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 }
 
 static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap)

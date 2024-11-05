@@ -431,9 +431,9 @@ static BOOL sub_02057050(FieldTask *taskMan)
         u8 v4;
         MapObject *v5 = Player_MapObject(fieldSystem->playerAvatar);
 
-        v4 = FieldSystem_GetTileAttributes(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
+        v4 = FieldSystem_GetTileBehavior(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
 
-        if (sub_0205DAEC(v4)) {
+        if (TileBehavior_IsDoor(v4)) {
             MapObject_SetHidden(v5, 1);
             (v2->unk_04) = 1;
         } else {
@@ -482,9 +482,9 @@ static BOOL sub_0205711C(FieldTask *taskMan)
         u8 v4;
         MapObject *v5 = Player_MapObject(fieldSystem->playerAvatar);
 
-        v4 = FieldSystem_GetTileAttributes(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
+        v4 = FieldSystem_GetTileBehavior(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
 
-        if (sub_0205DAEC(v4)) {
+        if (TileBehavior_IsDoor(v4)) {
             MapObject_SetHidden(v5, 1);
             v2->unk_04 = 1;
             FieldTask_InitJump(taskMan, sub_02057050, v2);
@@ -634,12 +634,12 @@ static void sub_02057368(FieldSystem *fieldSystem)
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
-    v4 = FieldSystem_GetTileAttributes(fieldSystem, v0, v1);
+    v4 = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
 
-    if (sub_0205DC44(v4)) {
+    if (TileBehavior_IsEastStairsWarp(v4)) {
         v3.x += (FX32_ONE * 16);
         v2 = 2;
-    } else if (sub_0205DC50(v4)) {
+    } else if (TileBehavior_IsWestStairsWarp(v4)) {
         v3.x -= (FX32_ONE * 16);
         v2 = 3;
     } else {

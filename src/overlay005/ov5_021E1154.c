@@ -37,13 +37,13 @@ int ov5_021E1154(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param
     u8 v1 = sub_02062BE8(v0);
     int v2;
 
-    if (sub_0205DEB4(v1) == 1) {
+    if (TileBehavior_IsEastSlide(v1) == 1) {
         v2 = 3;
-    } else if (sub_0205DEC0(v1) == 1) {
+    } else if (TileBehavior_IsWestSlide(v1) == 1) {
         v2 = 2;
-    } else if (sub_0205DECC(v1) == 1) {
+    } else if (TileBehavior_IsNorthSlide(v1) == 1) {
         v2 = 0;
-    } else if (sub_0205DED8(v1) == 1) {
+    } else if (TileBehavior_IsSouthSlide(v1) == 1) {
         v2 = 1;
     } else {
         return 0;
@@ -118,13 +118,13 @@ static BOOL ov5_021E120C(FieldTask *param0)
         v0->unk_04--;
 
         if (v0->unk_04 == 0) {
-            if (sub_0205DEB4(v2) == 1) {
+            if (TileBehavior_IsEastSlide(v2) == 1) {
                 v0->unk_00 = 3;
-            } else if (sub_0205DEC0(v2) == 1) {
+            } else if (TileBehavior_IsWestSlide(v2) == 1) {
                 v0->unk_00 = 2;
-            } else if (sub_0205DECC(v2) == 1) {
+            } else if (TileBehavior_IsNorthSlide(v2) == 1) {
                 v0->unk_00 = 0;
-            } else if (sub_0205DED8(v2) == 1) {
+            } else if (TileBehavior_IsSouthSlide(v2) == 1) {
                 v0->unk_00 = 1;
             } else {
                 v0->unk_00 = ov5_021E11E0(v0->unk_00);

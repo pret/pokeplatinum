@@ -241,7 +241,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    v4 = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
+    v4 = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 
     u8 encounterRate = ov6_02241874(fieldSystem, v4, &encounterType);
 
@@ -458,7 +458,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    u8 v4 = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
+    u8 v4 = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 
     u8 encounterRate = ov6_02241874(fieldSystem, v4, &encounterType);
 
@@ -568,7 +568,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, playerX, playerZ);
+    u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 
     u8 encounterRate = ov6_02241874(fieldSystem, v3, &encounterType);
 
@@ -758,7 +758,7 @@ static BOOL ov6_022417C8(FieldSystem *fieldSystem, const u32 encounterRate, cons
 
     u8 v0 = 40;
 
-    if (sub_0205DAD4(param2)) {
+    if (TileBehavior_IsVeryTallGrass(param2)) {
         v0 += 30;
     } else if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == PLAYER_STATE_CYCLING) {
         v0 += 30;
@@ -775,8 +775,8 @@ static BOOL ov6_022417C8(FieldSystem *fieldSystem, const u32 encounterRate, cons
 
 static u8 ov6_02241874(FieldSystem *fieldSystem, u8 param1, u8 *encounterType)
 {
-    if (sub_0205DE6C(param1)) {
-        if (sub_0205DB58(param1)) {
+    if (TileBehavior_HasEncounters(param1)) {
+        if (TileBehavior_IsSurfable(param1)) {
             *encounterType = ENCOUNTER_TYPE_SURF;
             return GetSurfEncounterRate(fieldSystem);
         } else {
@@ -1249,8 +1249,8 @@ BOOL ov6_02242110(FieldSystem *fieldSystem, u8 param1)
 {
     int encounterRate = 0;
 
-    if (sub_0205DE6C(param1)) {
-        if (sub_0205DB58(param1)) {
+    if (TileBehavior_HasEncounters(param1)) {
+        if (TileBehavior_IsSurfable(param1)) {
             encounterRate = GetSurfEncounterRate(fieldSystem);
         } else {
             encounterRate = GetGrassEncounterRate(fieldSystem);

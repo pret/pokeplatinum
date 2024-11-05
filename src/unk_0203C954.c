@@ -61,9 +61,9 @@ void sub_0203C9D4(FieldSystem *fieldSystem, MapObject **param1)
     u8 v3;
 
     v2 = sub_0203C954(fieldSystem, &v0, &v1);
-    v3 = FieldSystem_GetTileAttributes(fieldSystem, v0, v1);
+    v3 = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
 
-    if (sub_0205DAE0(v3) == 1) {
+    if (TileBehavior_IsTable(v3) == 1) {
         switch (v2) {
         case 0:
             v1 -= 1;

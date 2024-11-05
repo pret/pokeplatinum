@@ -9567,7 +9567,7 @@ BOOL ov9_02251044(FieldSystem *fieldSystem, int param1, int param2, int param3, 
         v1 = ov9_0224C55C(v2, param1, param2, param3);
 
         if ((v1 == 65535) || (v1 == 65534)) {
-            *param4 = sub_0205DF98();
+            *param4 = GetNoTileAttributesID();
             return 0;
         }
 

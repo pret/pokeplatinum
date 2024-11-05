@@ -201,15 +201,15 @@ static BOOL sub_020564F4(UnkStruct_020564B4 *param0)
 
 static int sub_0205650C(FieldSystem *fieldSystem, int param1, int param2)
 {
-    u16 v0 = FieldSystem_GetTileAttributes(fieldSystem, param1, param2);
+    u16 v0 = FieldSystem_GetTileBehavior(fieldSystem, param1, param2);
     int v1;
 
     v1 = (param1 < 32) ? 0 : 1;
     v1 += (param2 < 32) ? 0 : 2;
 
-    if (sub_0205DAC8(v0)) {
+    if (TileBehavior_IsTallGrass(v0)) {
         return 1 + v1;
-    } else if (sub_0205DB58(v0)) {
+    } else if (TileBehavior_IsSurfable(v0)) {
         return 5 + v1;
     }
 

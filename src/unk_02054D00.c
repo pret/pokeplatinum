@@ -285,15 +285,13 @@ BOOL FieldSystem_CheckCollision(const FieldSystem *fieldSystem, const int param1
     return 0;
 }
 
-u8 FieldSystem_GetTileAttributes(const FieldSystem *fieldSystem, const int x, const int z)
+u8 FieldSystem_GetTileBehavior(const FieldSystem *fieldSystem, const int x, const int z)
 {
-    u16 metaAttributes;
-    BOOL hasAttributes = fieldSystem->terrainCollisionMan->getAttrFunc(fieldSystem, x, z, &metaAttributes);
-
-    if (hasAttributes) {
-        u8 attributes = metaAttributes;
-        attributes &= 0xFF;
-        return attributes;
+    u16 attributes;
+    if (fieldSystem->terrainCollisionMan->getAttrFunc(fieldSystem, x, z, &attributes)) {
+        u8 behavior = attributes;
+        behavior &= 0xFF;
+        return behavior;
     }
 
     return 0xFF;
@@ -360,9 +358,9 @@ BOOL sub_02055024(const FieldSystem *fieldSystem, const VecFx32 *param1, const i
         v2 = FieldSystem_CheckCollision(fieldSystem, param2, param3);
 
         if ((!v2) && (v1 == 2)) {
-            u8 v3 = FieldSystem_GetTileAttributes(fieldSystem, param2, param3);
+            u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, param2, param3);
 
-            if (sub_0205DC20(v3)) {
+            if (TileBehavior_IsPastoriaGymWaterEmpty(v3)) {
                 return 1;
             }
         }
@@ -394,9 +392,9 @@ BOOL sub_0205507C(FieldSystem *fieldSystem, const VecFx32 *param1, const int par
             v2 = FieldSystem_CheckCollision(fieldSystem, param2, param3);
 
             if ((!v2) && (v1 == 2)) {
-                u8 v4 = FieldSystem_GetTileAttributes(fieldSystem, param2, param3);
+                u8 v4 = FieldSystem_GetTileBehavior(fieldSystem, param2, param3);
 
-                if (sub_0205DC20(v4)) {
+                if (TileBehavior_IsPastoriaGymWaterEmpty(v4)) {
                     return 1;
                 }
             }

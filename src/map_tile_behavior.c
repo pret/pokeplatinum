@@ -1,697 +1,736 @@
 #include "map_tile_behavior.h"
 
-#include <nitro.h>
-#include <string.h>
+#define TILE_BEHAVIOR_FLAG_NONE      0
+#define TILE_BEHAVIOR_FLAG_SURFABLE  (1 << 0)
+#define TILE_BEHAVIOR_FLAG_ENCOUNTER (1 << 1)
 
-static const u8 Unk_020ED8C4[] = {
-    0x0,
-    0x0,
-    0x2,
-    0x2,
-    0x0,
-    0x2,
-    0x2,
-    0x0,
-    0x2,
-    0x0,
-    0x0,
-    0x2,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x3,
-    0x3,
-    0x3,
-    0x1,
-    0x1,
-    0x3,
-    0x0,
-    0x0,
-    0x0,
-    0x1,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x3,
-    0x0,
-    0x2,
-    0x2,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x3,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x1,
-    0x1,
-    0x1,
-    0x1,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x2,
-    0x1,
-    0x0,
-    0x0,
-    0x0,
-    0x2,
-    0x1,
-    0x0,
-    0x0,
-    0x2,
-    0x1,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x2,
-    0x2,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0
+#define TILE_BEHAVIOR_FLAG_SURFABLE_ENCOUNTER (TILE_BEHAVIOR_FLAG_ENCOUNTER | TILE_BEHAVIOR_FLAG_SURFABLE)
+
+static const u8 sTileBehaviorFlags[] = {
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_SURFABLE_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_SURFABLE_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_SURFABLE_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_SURFABLE,
+    TILE_BEHAVIOR_FLAG_SURFABLE,
+    TILE_BEHAVIOR_FLAG_SURFABLE_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_SURFABLE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_SURFABLE_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_SURFABLE_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_SURFABLE,
+    TILE_BEHAVIOR_FLAG_SURFABLE,
+    TILE_BEHAVIOR_FLAG_SURFABLE,
+    TILE_BEHAVIOR_FLAG_SURFABLE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_SURFABLE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_SURFABLE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_SURFABLE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_ENCOUNTER,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE,
+    TILE_BEHAVIOR_FLAG_NONE
 };
 
-BOOL sub_0205DAC8(u8 param0)
+BOOL TileBehavior_IsTallGrass(u8 behavior)
 {
-    return param0 == 0x2;
+    return behavior == 0x02;
 }
 
-BOOL sub_0205DAD4(u8 param0)
+BOOL TileBehavior_IsVeryTallGrass(u8 behavior)
 {
-    return param0 == 0x3;
+    return behavior == 0x03;
 }
 
-BOOL sub_0205DAE0(u8 param0)
+BOOL TileBehavior_IsTable(u8 behavior)
 {
-    return param0 == 0x80;
+    return behavior == 0x80;
 }
 
-BOOL sub_0205DAEC(u8 param0)
+BOOL TileBehavior_IsDoor(u8 behavior)
 {
-    return param0 == 0x69;
+    return behavior == 0x69;
 }
 
-BOOL sub_0205DAF8(u8 param0)
+BOOL TileBehavior_IsEastWarpEntrance(u8 behavior)
 {
-    return param0 == 0x62;
+    return behavior == 0x62;
 }
 
-BOOL sub_0205DB04(u8 param0)
+BOOL TileBehavior_IsWestWarpEntrance(u8 behavior)
 {
-    return param0 == 0x63;
+    return behavior == 0x63;
 }
 
-BOOL sub_0205DB10(u8 param0)
+BOOL TileBehavior_IsNorthWarpEntrance(u8 behavior)
 {
-    return param0 == 0x64;
+    return behavior == 0x64;
 }
 
-BOOL sub_0205DB1C(u8 param0)
+BOOL TileBehavior_IsSouthWarpEntrance(u8 behavior)
 {
-    return param0 == 0x65;
+    return behavior == 0x65;
 }
 
-BOOL sub_0205DB28(u8 param0)
+BOOL TileBehavior_IsEastWarp(u8 behavior)
 {
-    return param0 == 0x6c;
+    return behavior == 0x6c;
 }
 
-BOOL sub_0205DB34(u8 param0)
+BOOL TileBehavior_IsWestWarp(u8 behavior)
 {
-    return param0 == 0x6d;
+    return behavior == 0x6d;
 }
 
-BOOL sub_0205DB40(u8 param0)
+BOOL TileBehavior_IsNorthWarp(u8 behavior)
 {
-    return param0 == 0x6e;
+    return behavior == 0x6e;
 }
 
-BOOL sub_0205DB4C(u8 param0)
+BOOL TileBehavior_IsSouthWarp(u8 behavior)
 {
-    return param0 == 0x6f;
+    return behavior == 0x6f;
 }
 
-BOOL sub_0205DB58(u8 param0)
+BOOL TileBehavior_IsSurfable(u8 behavior)
 {
-    return (Unk_020ED8C4[param0] & 0x1) != 0;
+    return (sTileBehaviorFlags[behavior] & 0x1) != 0;
 }
 
-BOOL sub_0205DB6C(u8 param0)
+BOOL TileBehavior_IsSand(u8 behavior)
 {
-    return param0 == 0x21;
+    return behavior == 0x21;
 }
 
-BOOL sub_0205DB78(u8 param0)
+BOOL TileBehavior_IsShallowWater(u8 behavior)
 {
-    return param0 == 0x17;
+    return behavior == 0x17;
 }
 
-BOOL sub_0205DB84(u8 param0)
+BOOL TileBehavior_IsJumpNorth(u8 behavior)
 {
-    return param0 == 0x3a;
+    return behavior == 0x3a;
 }
 
-BOOL sub_0205DB90(u8 param0)
+BOOL TileBehavior_IsJumpSouth(u8 behavior)
 {
-    return param0 == 0x3b;
+    return behavior == 0x3b;
 }
 
-BOOL sub_0205DB9C(u8 param0)
+BOOL TileBehavior_IsJumpWest(u8 behavior)
 {
-    return param0 == 0x39;
+    return behavior == 0x39;
 }
 
-BOOL sub_0205DBA8(u8 param0)
+BOOL TileBehavior_IsJumpEast(u8 behavior)
 {
-    return param0 == 0x38;
+    return behavior == 0x38;
 }
 
-BOOL sub_0205DBB4(u8 param0)
+BOOL TileBehavior_IsJumpNorthTwice(u8 behavior)
 {
-    return param0 == 0x5a;
+    return behavior == 0x5a;
 }
 
-BOOL sub_0205DBC0(u8 param0)
+BOOL TileBehavior_IsJumpSouthTwice(u8 behavior)
 {
-    return param0 == 0x5b;
+    return behavior == 0x5b;
 }
 
-BOOL sub_0205DBCC(u8 param0)
+BOOL TileBehavior_IsJumpWestTwice(u8 behavior)
 {
-    return param0 == 0x5c;
+    return behavior == 0x5c;
 }
 
-BOOL sub_0205DBD8(u8 param0)
+BOOL TileBehavior_IsJumpEastTwice(u8 behavior)
 {
-    return param0 == 0x5d;
+    return behavior == 0x5d;
 }
 
-BOOL sub_0205DBE4(u8 param0)
+BOOL TileBehavior_IsPC(u8 behavior)
 {
-    return param0 == 0x83;
+    return behavior == 0x83;
 }
 
-BOOL sub_0205DBF0(u8 param0)
+BOOL TileBehavior_IsTownMap(u8 behavior)
 {
-    return param0 == 0x85;
+    return behavior == 0x85;
 }
 
-BOOL sub_0205DBFC(u8 param0)
+BOOL TileBehavior_IsPastoriaGymWaterLevel1(u8 behavior)
 {
-    return param0 == 0x56;
+    return behavior == 0x56;
 }
 
-BOOL sub_0205DC08(u8 param0)
+BOOL TileBehavior_IsPastoriaGymWaterLevel2(u8 behavior)
 {
-    return param0 == 0x57;
+    return behavior == 0x57;
 }
 
-BOOL sub_0205DC14(u8 param0)
+BOOL TileBehavior_IsPastoriaGymWaterLevel3(u8 behavior)
 {
-    return param0 == 0x58;
+    return behavior == 0x58;
 }
 
-BOOL sub_0205DC20(u8 param0)
+BOOL TileBehavior_IsPastoriaGymWaterEmpty(u8 behavior)
 {
-    return param0 == 0x59;
+    return behavior == 0x59;
 }
 
-BOOL sub_0205DC2C(u8 param0)
+BOOL TileBehavior_IsEscalatorInvertPlayerFace(u8 behavior)
 {
-    return param0 == 0x6a;
+    return behavior == 0x6a;
 }
 
-BOOL TileBehavior_IsEscalator(u8 param0)
+BOOL TileBehavior_IsEscalator(u8 behavior)
 {
-    return param0 == 0x6b;
+    return behavior == 0x6b;
 }
 
-BOOL sub_0205DC44(u8 param0)
+BOOL TileBehavior_IsEastStairsWarp(u8 behavior)
 {
-    return param0 == 0x5e;
+    return behavior == 0x5e;
 }
 
-BOOL sub_0205DC50(u8 param0)
+BOOL TileBehavior_IsWestStairsWarp(u8 behavior)
 {
-    return param0 == 0x5f;
+    return behavior == 0x5f;
 }
 
-BOOL sub_0205DC5C(u8 param0)
+BOOL TileBehavior_IsIce(u8 behavior)
 {
-    return param0 == 0x20;
+    return behavior == 0x20;
 }
 
-BOOL sub_0205DC68(u8 param0)
+BOOL TileBehavior_IsRockClimbNorthSouth(u8 behavior)
 {
-    return param0 == 0x4b;
+    return behavior == 0x4b;
 }
 
-BOOL sub_0205DC74(u8 param0)
+BOOL TileBehavior_IsRockClimbEastWest(u8 behavior)
 {
-    return param0 == 0x4c;
+    return behavior == 0x4c;
 }
 
-BOOL sub_0205DC80(u8 param0)
+BOOL TileBehavior_IsSmallBookshelf1(u8 behavior)
 {
-    return param0 == 0xe0;
+    return behavior == 0xe0;
 }
 
-BOOL sub_0205DC8C(u8 param0)
+BOOL TileBehavior_IsSmallBookshelf2(u8 behavior)
 {
-    return param0 == 0xea;
+    return behavior == 0xea;
 }
 
-BOOL sub_0205DC98(u8 param0)
+BOOL TileBehavior_IsBookshelf1(u8 behavior)
 {
-    return param0 == 0xe1;
+    return behavior == 0xe1;
 }
 
-BOOL sub_0205DCA4(u8 param0)
+BOOL TileBehavior_IsBookshelf2(u8 behavior)
 {
-    return param0 == 0xe2;
+    return behavior == 0xe2;
 }
 
-BOOL sub_0205DCB0(u8 param0)
+BOOL TileBehavior_IsTrashCan(u8 behavior)
 {
-    return param0 == 0xe4;
+    return behavior == 0xe4;
 }
 
-BOOL sub_0205DCBC(u8 param0)
+BOOL TileBehavior_IsStoreShelf1(u8 behavior)
 {
-    return param0 == 0xe5;
+    return behavior == 0xe5;
 }
 
-BOOL sub_0205DCC8(u8 param0)
+BOOL TileBehavior_IsStoreShelf2(u8 behavior)
 {
-    return param0 == 0xeb;
+    return behavior == 0xeb;
 }
 
-BOOL sub_0205DCD4(u8 param0)
+BOOL TileBehavior_IsStoreShelf3(u8 behavior)
 {
-    return param0 == 0xec;
+    return behavior == 0xec;
 }
 
-BOOL sub_0205DCE0(u8 param0)
+BOOL TileBehavior_IsMud(u8 behavior)
 {
-    return (param0 == 0xa4) || (param0 == 0xa5);
+    return (behavior == 0xa4) || (behavior == 0xa5);
 }
 
-BOOL sub_0205DCF0(u8 param0)
+BOOL TileBehavior_IsDeepMud(u8 behavior)
 {
-    return param0 == 0xa5;
+    return behavior == 0xa5;
 }
 
-BOOL sub_0205DCFC(u8 param0)
+BOOL TileBehavior_IsMudWithGrass(u8 behavior)
 {
-    return (param0 == 0xa6) || (param0 == 0xa7);
+    return (behavior == 0xa6) || (behavior == 0xa7);
 }
 
-BOOL sub_0205DD0C(u8 param0)
+BOOL TileBehavior_IsDeepMudWithGrass(u8 behavior)
 {
-    return param0 == 0xa7;
+    return behavior == 0xa7;
 }
 
-BOOL sub_0205DD18(u8 param0)
+BOOL TileBehavior_IsSnow(u8 behavior)
 {
-    return (param0 == 0xa1) || (param0 == 0xa2) || (param0 == 0xa3) || (param0 == 0xa8);
+    return behavior == 0xa1
+        || behavior == 0xa2
+        || behavior == 0xa3
+        || behavior == 0xa8;
 }
 
-BOOL sub_0205DD38(u8 param0)
+BOOL TileBehavior_IsShallowSnow(u8 behavior)
 {
-    return param0 == 0xa8;
+    return behavior == 0xa8;
 }
 
-BOOL sub_0205DD44(u8 param0)
+BOOL TileBehavior_IsDeepSnow(u8 behavior)
 {
-    return param0 == 0xa1;
+    return behavior == 0xa1;
 }
 
-BOOL sub_0205DD50(u8 param0)
+BOOL TileBehavior_IsDeeperSnow(u8 behavior)
 {
-    return param0 == 0xa2;
+    return behavior == 0xa2;
 }
 
-BOOL sub_0205DD5C(u8 param0)
+BOOL TileBehavior_IsDeepestSnow(u8 behavior)
 {
-    return param0 == 0xa3;
+    return behavior == 0xa3;
 }
 
-BOOL sub_0205DD68(u8 param0)
+BOOL TileBehavior_IsBikeSlope(u8 behavior)
 {
-    return (param0 == 0xd9) || (param0 == 0xda);
+    return (behavior == 0xd9) || (behavior == 0xda);
 }
 
-BOOL sub_0205DD78(u8 param0)
+BOOL TileBehavior_IsBikeSlopeTop(u8 behavior)
 {
-    return param0 == 0xd9;
+    return behavior == 0xd9;
 }
 
-BOOL sub_0205DD84(u8 param0)
+BOOL TileBehavior_IsBikeSlopeBottom(u8 behavior)
 {
-    return param0 == 0xda;
+    return behavior == 0xda;
 }
 
-BOOL sub_0205DD90(u8 param0)
+BOOL TileBehavior_IsBikeRampWestToEast(u8 behavior)
 {
-    return param0 == 0xd7;
+    return behavior == 0xd7;
 }
 
-BOOL sub_0205DD9C(u8 param0)
+BOOL TileBehavior_IsBikeRampEastToWest(u8 behavior)
 {
-    return param0 == 0xd8;
+    return behavior == 0xd8;
 }
 
-BOOL sub_0205DDA8(u8 param0)
+BOOL TileBehavior_IsCaveFloor(u8 behavior)
 {
-    return param0 == 0x8;
+    return behavior == 0x8;
 }
 
-BOOL sub_0205DDB4(u8 param0)
+BOOL TileBehavior_IsWaterfall(u8 behavior)
 {
-    return param0 == 0x13;
+    return behavior == 0x13;
 }
 
-BOOL sub_0205DDC0(u8 param0)
+BOOL TileBehavior_IsBikeParking(u8 behavior)
 {
-    return param0 == 0xdb;
+    return behavior == 0xdb;
 }
 
-BOOL sub_0205DDCC(u8 param0)
+BOOL TileBehavior_BlocksMovementNorth(u8 behavior)
 {
-    return (param0 == 0x32) || (param0 == 0x34) || (param0 == 0x35) || (param0 == 0x49);
+    return behavior == 0x32
+        || behavior == 0x34
+        || behavior == 0x35
+        || behavior == 0x49;
 }
 
-BOOL sub_0205DDF0(u8 param0)
+BOOL TileBehavior_BlocksMovementSouth(u8 behavior)
 {
-    return (param0 == 0x33) || (param0 == 0x36) || (param0 == 0x37) || (param0 == 0x49);
+    return behavior == 0x33
+        || behavior == 0x36
+        || behavior == 0x37
+        || behavior == 0x49;
 }
 
-BOOL sub_0205DE14(u8 param0)
+BOOL TileBehavior_BlocksMovementWest(u8 behavior)
 {
-    return (param0 == 0x31) || (param0 == 0x35) || (param0 == 0x37) || (param0 == 0x4a);
+    return behavior == 0x31
+        || behavior == 0x35
+        || behavior == 0x37
+        || behavior == 0x4a;
 }
 
-BOOL sub_0205DE38(u8 param0)
+BOOL TileBehavior_BlocksMovementEast(u8 behavior)
 {
-    return (param0 == 0x30) || (param0 == 0x34) || (param0 == 0x36) || (param0 == 0x4a);
+    return behavior == 0x30
+        || behavior == 0x34
+        || behavior == 0x36
+        || behavior == 0x4a;
 }
 
-BOOL sub_0205DE5C(u8 param0)
+BOOL TileBehavior_IsPuddle(u8 behavior)
 {
-    return (param0 == 0x16) || (param0 == 0x1d);
+    return behavior == 0x16 || behavior == 0x1d;
 }
 
-BOOL sub_0205DE6C(u8 param0)
+BOOL TileBehavior_HasEncounters(u8 behavior)
 {
-    if ((Unk_020ED8C4[param0] & 0x2) != 0) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return (sTileBehaviorFlags[behavior] & TILE_BEHAVIOR_FLAG_ENCOUNTER) != 0;
 }
 
-BOOL sub_0205DE84(u8 param0)
+BOOL TileBehavior_IsTV(u8 behavior)
 {
-    return param0 == 0x86;
+    return behavior == 0x86;
 }
 
-BOOL sub_0205DE90(u8 param0)
+BOOL TileBehavior_HasReflectiveSurface(u8 behavior)
 {
-    return (param0 == 0x16) || (param0 == 0x10) || (param0 == 0x1d) || (param0 == 0x2c);
+    return behavior == 0x16
+        || behavior == 0x10
+        || behavior == 0x1d
+        || behavior == 0x2c;
 }
 
-BOOL sub_0205DEB4(u8 param0)
+BOOL TileBehavior_IsEastSlide(u8 behavior)
 {
-    return param0 == 0x40;
+    return behavior == 0x40;
 }
 
-BOOL sub_0205DEC0(u8 param0)
+BOOL TileBehavior_IsWestSlide(u8 behavior)
 {
-    return param0 == 0x41;
+    return behavior == 0x41;
 }
 
-BOOL sub_0205DECC(u8 param0)
+BOOL TileBehavior_IsNorthSlide(u8 behavior)
 {
-    return param0 == 0x42;
+    return behavior == 0x42;
 }
 
-BOOL sub_0205DED8(u8 param0)
+BOOL TileBehavior_IsSouthSlide(u8 behavior)
 {
-    return param0 == 0x43;
+    return behavior == 0x43;
 }
 
-BOOL TileBehavior_IsWarp(u8 param0)
+BOOL TileBehavior_IsWarpPanel(u8 behavior)
 {
-    return param0 == 0x67;
+    return behavior == 0x67;
 }
 
-BOOL sub_0205DEF0(u8 param0)
+BOOL TileBehavior_IsBridgeStart(u8 behavior)
 {
-    return param0 == 0x70;
+    return behavior == 0x70;
 }
 
-BOOL sub_0205DEFC(u8 param0)
+BOOL TileBehavior_IsBridge(u8 behavior)
 {
-    return (param0 == 0x71) || (param0 == 0x72) || (param0 == 0x73) || (param0 == 0x74) || (param0 == 0x75) || (param0 == 0x76) || (param0 == 0x77) || (param0 == 0x78) || (param0 == 0x79) || (param0 == 0x7a) || (param0 == 0x7b) || (param0 == 0x7c) || (param0 == 0x7d);
+    return behavior == 0x71
+        || behavior == 0x72
+        || behavior == 0x73
+        || behavior == 0x74
+        || behavior == 0x75
+        || behavior == 0x76
+        || behavior == 0x77
+        || behavior == 0x78
+        || behavior == 0x79
+        || behavior == 0x7a
+        || behavior == 0x7b
+        || behavior == 0x7c
+        || behavior == 0x7d;
 }
 
-BOOL sub_0205DF10(u8 param0)
+BOOL TileBehavior_IsBridgeOverWater(u8 behavior)
 {
-    return (param0 == 0x73) || (param0 == 0x78) || (param0 == 0x7c);
+    return behavior == 0x73
+        || behavior == 0x78
+        || behavior == 0x7c;
 }
 
-BOOL sub_0205DF34(u8 param0)
+BOOL TileBehavior_IsBridgeOverSand(u8 behavior)
 {
-    return (param0 == 0x74) || (param0 == 0x79) || (param0 == 0x7d);
+    return behavior == 0x74
+        || behavior == 0x79
+        || behavior == 0x7d;
 }
 
-BOOL sub_0205DF58(u8 param0)
+BOOL TileBehavior_IsBridgeOverSnow(u8 behavior)
 {
-    return param0 == 0x75;
+    return behavior == 0x75;
 }
 
-BOOL sub_0205DF64(u8 param0)
+BOOL TileBehavior_IsBikeBridgeNorthSouth(u8 behavior)
 {
-    return (param0 == 0x76) || (param0 == 0x77) || (param0 == 0x78) || (param0 == 0x79);
+    return behavior == 0x76
+        || behavior == 0x77
+        || behavior == 0x78
+        || behavior == 0x79;
 }
 
-BOOL sub_0205DF78(u8 param0)
+BOOL TileBehavior_IsBikeBridgeEastWest(u8 behavior)
 {
-    return (param0 == 0x7a) || (param0 == 0x7b) || (param0 == 0x7c) || (param0 == 0x7d);
+    return behavior == 0x7a
+        || behavior == 0x7b
+        || behavior == 0x7c
+        || behavior == 0x7d;
 }
 
-BOOL sub_0205DF8C(u8 param0)
+BOOL TileBehavior_HasNoAttributes(u8 behavior)
 {
-    return param0 == 0xff;
+    return behavior == 0xff;
 }
 
-u8 sub_0205DF98(void)
+u8 GetNoTileAttributesID(void)
 {
     return 0xff;
 }
 
-BOOL sub_0205DF9C(u8 param0)
+BOOL TileBehavior_IsReflective(u8 behavior)
 {
-    return (param0 == 0x2c) || (param0 == 0x1d);
+    return behavior == 0x2c || behavior == 0x1d;
 }
 
-BOOL sub_0205DFAC(u8 param0)
+BOOL TileBehavior_IsSnowWithShadows(u8 behavior)
 {
-    return param0 == 0xa9;
+    return behavior == 0xa9;
 }
 
-BOOL sub_0205DFB8(u8 param0)
+BOOL TileBehavior_ForbidsExplorationKit(u8 behavior)
 {
-    return param0 == 0x2d;
+    return behavior == 0x2d;
 }

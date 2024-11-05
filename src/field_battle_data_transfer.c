@@ -477,22 +477,22 @@ static const enum Terrain sTerrainForBackground[] = {
 
 static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background)
 {
-    u8 tileAttr = FieldSystem_GetTileAttributes(fieldSystem, fieldSystem->location->x, fieldSystem->location->z);
-    if (sub_0205DC5C(tileAttr)) {
+    u8 behavior = FieldSystem_GetTileBehavior(fieldSystem, fieldSystem->location->x, fieldSystem->location->z);
+    if (TileBehavior_IsIce(behavior)) {
         return TERRAIN_ICE;
-    } else if (sub_0205DAC8(tileAttr) || sub_0205DAD4(tileAttr)) {
+    } else if (TileBehavior_IsTallGrass(behavior) || TileBehavior_IsVeryTallGrass(behavior)) {
         return TERRAIN_GRASS;
-    } else if (sub_0205DB6C(tileAttr)) {
+    } else if (TileBehavior_IsSand(behavior)) {
         return TERRAIN_SAND;
-    } else if (sub_0205DD18(tileAttr)) {
+    } else if (TileBehavior_IsSnow(behavior)) {
         return TERRAIN_SNOW;
-    } else if (sub_0205DCE0(tileAttr) || sub_0205DCFC(tileAttr)) {
+    } else if (TileBehavior_IsMud(behavior) || TileBehavior_IsMudWithGrass(behavior)) {
         return TERRAIN_GREAT_MARSH;
-    } else if (sub_0205DDA8(tileAttr)) {
+    } else if (TileBehavior_IsCaveFloor(behavior)) {
         return TERRAIN_CAVE;
     }
 
-    if (sub_0205DB58(tileAttr)) {
+    if (TileBehavior_IsSurfable(behavior)) {
         return TERRAIN_WATER;
     }
 
