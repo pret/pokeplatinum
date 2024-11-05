@@ -33,6 +33,7 @@
 #include "move_table.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
@@ -529,33 +530,33 @@ static int HandleInput_Main(PokemonSummaryScreen *summaryScreen)
         return PSS_STATE_TRANSITION_OUT;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+    if (JOY_REPEAT(PAD_KEY_LEFT)) {
         ChangePage(summaryScreen, -1);
         return PSS_STATE_HANDLE_INPUT;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+    if (JOY_REPEAT(PAD_KEY_RIGHT)) {
         ChangePage(summaryScreen, 1);
         return PSS_STATE_HANDLE_INPUT;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (JOY_REPEAT(PAD_KEY_UP)) {
         ChangeSummaryMon(summaryScreen, -1);
         return PSS_STATE_HANDLE_INPUT;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    if (JOY_REPEAT(PAD_KEY_DOWN)) {
         ChangeSummaryMon(summaryScreen, 1);
         return PSS_STATE_HANDLE_INPUT;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         summaryScreen->data->returnMode = 1;
         return PSS_STATE_TRANSITION_OUT;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (JOY_NEW(PAD_BUTTON_A)) {
         if (summaryScreen->data->mode == PSS_MODE_POFFIN && summaryScreen->page == PSS_MODE_CONDITION) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             return TryFeedPoffin(summaryScreen);
@@ -628,7 +629,7 @@ static int WaitHideContestMoveInfo(PokemonSummaryScreen *summaryScreen)
 
 static int HandleInput_MoveSelect(PokemonSummaryScreen *summaryScreen)
 {
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (JOY_NEW(PAD_KEY_UP)) {
         if (TryChangeSelectedMove(summaryScreen, -1) == TRUE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             UpdateMoveInfo(summaryScreen);
@@ -637,7 +638,7 @@ static int HandleInput_MoveSelect(PokemonSummaryScreen *summaryScreen)
         return PSS_STATE_MOVE_SELECT;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    if (JOY_NEW(PAD_KEY_DOWN)) {
         if (TryChangeSelectedMove(summaryScreen, 1) == TRUE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             UpdateMoveInfo(summaryScreen);
@@ -646,7 +647,7 @@ static int HandleInput_MoveSelect(PokemonSummaryScreen *summaryScreen)
         return PSS_STATE_MOVE_SELECT;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (JOY_NEW(PAD_BUTTON_A)) {
         if (summaryScreen->cursor == LEARNED_MOVES_MAX) {
             Sound_PlayEffect(SEQ_SE_DP_SYU01);
             summaryScreen->subscreen = 0;
@@ -664,7 +665,7 @@ static int HandleInput_MoveSelect(PokemonSummaryScreen *summaryScreen)
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_SYU01);
         summaryScreen->subscreen = 0;
 
@@ -680,7 +681,7 @@ static int HandleInput_MoveSelect(PokemonSummaryScreen *summaryScreen)
 
 static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
 {
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (JOY_NEW(PAD_KEY_UP)) {
         if (TryChangeSelectedMove(summaryScreen, -1) == TRUE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             UpdateMoveInfo(summaryScreen);
@@ -689,7 +690,7 @@ static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
         return PSS_STATE_MOVE_SWAP;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    if (JOY_NEW(PAD_KEY_DOWN)) {
         if (TryChangeSelectedMove(summaryScreen, 1) == TRUE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             UpdateMoveInfo(summaryScreen);
@@ -698,7 +699,7 @@ static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
         return PSS_STATE_MOVE_SWAP;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (JOY_NEW(PAD_BUTTON_A)) {
         CellActor_SetDrawFlag(summaryScreen->unk_41C[10], FALSE);
 
         if (summaryScreen->cursor != LEARNED_MOVES_MAX && summaryScreen->cursor != summaryScreen->cursorTmp) {
@@ -714,7 +715,7 @@ static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
         return PSS_STATE_MOVE_SELECT;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         CellActor_SetDrawFlag(summaryScreen->unk_41C[10], FALSE);
         return PSS_STATE_MOVE_SELECT;
@@ -725,17 +726,17 @@ static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
 
 static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
 {
-    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    if (JOY_NEW(PAD_KEY_LEFT)) {
         ChangePage(summaryScreen, -1);
         return PSS_STATE_LEARN_MOVE;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    if (JOY_NEW(PAD_KEY_RIGHT)) {
         ChangePage(summaryScreen, 1);
         return PSS_STATE_LEARN_MOVE;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (JOY_NEW(PAD_KEY_UP)) {
         if (TryChangeSelectedMove(summaryScreen, -1) == TRUE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             UpdateMoveInfo(summaryScreen);
@@ -744,7 +745,7 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
         return PSS_STATE_LEARN_MOVE;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    if (JOY_NEW(PAD_KEY_DOWN)) {
         if (TryChangeSelectedMove(summaryScreen, 1) == TRUE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             UpdateMoveInfo(summaryScreen);
@@ -753,7 +754,7 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
         return PSS_STATE_LEARN_MOVE;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (JOY_NEW(PAD_BUTTON_A)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
         if (summaryScreen->cursor != LEARNED_MOVES_MAX) {
@@ -770,7 +771,7 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
         return PSS_STATE_TRANSITION_OUT;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         summaryScreen->data->selectedSlot = 4;
         summaryScreen->data->returnMode = 1;
@@ -782,7 +783,7 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
 
 static int WaitForHMMsgInput(PokemonSummaryScreen *summaryScreen)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
         UpdateMoveInfo(summaryScreen);
         return PSS_STATE_LEARN_MOVE;
     }
@@ -810,27 +811,27 @@ static int WaitHideRibbonInfo(PokemonSummaryScreen *summaryScreen)
 
 static int HandleInput_RibbonSelect(PokemonSummaryScreen *summaryScreen)
 {
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+    if (JOY_REPEAT(PAD_KEY_LEFT)) {
         ChangeSelectedRibbon(summaryScreen, -1);
         return PSS_STATE_RIBBON_SELECT;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+    if (JOY_REPEAT(PAD_KEY_RIGHT)) {
         ChangeSelectedRibbon(summaryScreen, 1);
         return PSS_STATE_RIBBON_SELECT;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (JOY_REPEAT(PAD_KEY_UP)) {
         ChangeSelectedRibbon(summaryScreen, -1 * RIBBONS_PER_ROW);
         return PSS_STATE_RIBBON_SELECT;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    if (JOY_REPEAT(PAD_KEY_DOWN)) {
         ChangeSelectedRibbon(summaryScreen, RIBBONS_PER_ROW);
         return PSS_STATE_RIBBON_SELECT;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (JOY_NEW(PAD_BUTTON_B | PAD_BUTTON_A)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         summaryScreen->subscreen = 0;
         return PSS_STATE_HIDE_RIBBON_INFO;
@@ -866,7 +867,7 @@ static int HandleInput_Subscreen(PokemonSummaryScreen *summaryScreen)
 
 static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
         BoxPokemon *boxMon;
         Pokemon *mon;
 
@@ -923,7 +924,7 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
             Heap_FreeToHeap(mon);
         }
 
-        Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+        Font_LoadScreenIndicatorsPalette(0, PLTT_OFFSET(14), HEAP_ID_POKEMON_SUMMARY_SCREEN);
         LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, (1024 - (18 + 12)), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
         if (summaryScreen->subscreen == 0) {
@@ -942,7 +943,7 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
 
 static int PrintContestStatChangeMsgs(PokemonSummaryScreen *summaryScreen)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
         for (u8 i = 0; i < CONTEST_TYPE_MAX; i++) {
             if (summaryScreen->subscreen & (1 << i)) {
                 PokemonSummaryScreen_PrintPoffinFeedMsg(summaryScreen, i);
@@ -961,7 +962,7 @@ static int PrintContestStatChangeMsgs(PokemonSummaryScreen *summaryScreen)
 
 static int WaitForPoffinFeedMsgInput(PokemonSummaryScreen *dummy)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
         return PSS_STATE_TRANSITION_OUT;
     }
 
@@ -1002,7 +1003,7 @@ static void SetMonDataFromBoxMon(PokemonSummaryScreen *summaryScreen, BoxPokemon
 static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon, PokemonSummaryMonData *monData)
 {
     BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
-    monData->species = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    monData->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
     MessageLoader_GetStrbuf(summaryScreen->msgLoader, pss_species_name_template, summaryScreen->strbuf);
@@ -1104,7 +1105,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->ribbons[3] = 0;
     summaryScreen->ribbonMax = 0;
 
-    for (i = 0; i < 80; i++) {
+    for (i = 0; i < RIBBON_MAX; i++) {
         if (Pokemon_GetValue(mon, Ribbon_GetData(i, RIBBON_DATA_RIBBON_ID), NULL) != 0) {
             monData->ribbons[i / 32] |= (1 << (i & 0x1f));
             summaryScreen->ribbonMax++;
@@ -1338,33 +1339,33 @@ static void LoadCurrentPageTilemap(PokemonSummaryScreen *summaryScreen)
 
 static void DrawHealthBar(PokemonSummaryScreen *summaryScreen)
 {
-    u16 v0;
+    u16 baseTile;
 
     switch (HealthBar_Color(summaryScreen->monData.curHP, summaryScreen->monData.maxHP, 48)) {
     case BARCOLOR_MAX:
     case BARCOLOR_GREEN:
     case BARCOLOR_EMPTY:
-        v0 = 0xc0 | 0xa000;
+        baseTile = GREEN_HEALTHBAR_BASE_TILE | PALETTE_SLOT_10_MASK;
         break;
     case BARCOLOR_YELLOW:
-        v0 = 0xe0 | 0xa000;
+        baseTile = YELLOW_HEALTHBAR_BASE_TILE | PALETTE_SLOT_10_MASK;
         break;
     case BARCOLOR_RED:
-        v0 = 0x100 | 0xa000;
+        baseTile = RED_HEALTHBAR_BASE_TILE | PALETTE_SLOT_10_MASK;
         break;
     }
 
     u8 pixelCount = App_PixelCount(summaryScreen->monData.curHP, summaryScreen->monData.maxHP, 48);
-    u16 v1;
+    u16 tile;
 
     for (u8 i = 0; i < 6; i++) {
         if (pixelCount >= 8) {
-            v1 = v0 + 8;
+            tile = baseTile + 8;
         } else {
-            v1 = v0 + pixelCount;
+            tile = baseTile + pixelCount;
         }
 
-        Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_3, v1, 24 + i, 6, 1, 1, 17);
+        Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_3, tile, 24 + i, 6, 1, 1, TILEMAP_FILL_VAL_INCLUDES_PALETTE);
 
         if (pixelCount < 8) {
             pixelCount = 0;
@@ -1564,11 +1565,11 @@ void *PokemonSummaryScreen_MonData(PokemonSummaryScreen *summaryScreen)
 {
     switch (summaryScreen->data->dataType) {
     case PSS_DATA_MON:
-        return (void *)((u32)summaryScreen->data->monData + (Pokemon_GetStructSize() * summaryScreen->data->pos));
+        return summaryScreen->data->monData + (Pokemon_GetStructSize() * summaryScreen->data->pos);
     case PSS_DATA_PARTY_MON:
-        return (void *)Party_GetPokemonBySlotIndex(summaryScreen->data->monData, summaryScreen->data->pos);
+        return Party_GetPokemonBySlotIndex(summaryScreen->data->monData, summaryScreen->data->pos);
     case PSS_DATA_BOX_MON:
-        return (void *)((u32)summaryScreen->data->monData + (BoxPokemon_GetStructSize() * summaryScreen->data->pos));
+        return summaryScreen->data->monData + (BoxPokemon_GetStructSize() * summaryScreen->data->pos);
     }
 
     return NULL;
@@ -2113,7 +2114,7 @@ u8 PokemonSummaryScreen_RibbonNumAt(PokemonSummaryScreen *summaryScreen, u8 col)
 static int TryFeedPoffin(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->monData.sheen == MAX_POKEMON_SHEEN) {
-        Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+        Font_LoadScreenIndicatorsPalette(0, PLTT_OFFSET(14), HEAP_ID_POKEMON_SUMMARY_SCREEN);
         LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, (1024 - (18 + 12)), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
         PokemonSummaryScreen_PrintPoffinFeedMsg(summaryScreen, PSS_MSG_MON_WONT_EAT_MORE);
         summaryScreen->data->returnMode = 1;

@@ -602,11 +602,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CATEGORY</language>
 	</row>
-	<row id="pl_msg_00000455_00150" index="150">
+	<row id="pss_move_power_template" index="150">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00151" index="151">
+	<row id="pss_move_accuracy_template" index="151">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>

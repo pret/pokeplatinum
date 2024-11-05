@@ -24,30 +24,30 @@ static void sub_0223D0BC(PokemonSummaryScreen *summaryScreen);
 static int CheckSubscreenRectanglePress(PokemonSummaryScreen *summaryScreen);
 
 static const PSSSubscreenButton sSubscreenButtons_Normal[] = {
-    { PSS_PAGE_INFO, 0x1, 0x1, 0x4 },
-    { PSS_PAGE_MEMO, 0x1, 0x2, 0xA },
-    { PSS_PAGE_SKILLS, 0x2, 0x5, 0xF },
-    { PSS_PAGE_BATTLE_MOVES, 0x3, 0xA, 0x12 },
-    { PSS_PAGE_CONDITION, 0x2, 0x11, 0x12 },
-    { PSS_PAGE_CONTEST_MOVES, 0x3, 0x16, 0xF },
-    { PSS_PAGE_RIBBONS, 0x4, 0x19, 0xA },
-    { PSS_PAGE_EXIT, 0x4, 0x1A, 0x4 },
-    { PSS_PAGE_NONE, 0xFF, 0xFF, 0xFF }
+    { PSS_PAGE_INFO, 1, 1, 4 },
+    { PSS_PAGE_MEMO, 1, 2, 10 },
+    { PSS_PAGE_SKILLS, 2, 5, 15 },
+    { PSS_PAGE_BATTLE_MOVES, 3, 10, 18 },
+    { PSS_PAGE_CONDITION, 2, 17, 18 },
+    { PSS_PAGE_CONTEST_MOVES, 3, 22, 15 },
+    { PSS_PAGE_RIBBONS, 4, 25, 10 },
+    { PSS_PAGE_EXIT, 4, 26, 4 },
+    { PSS_PAGE_NONE, 255, 255, 255 }
 };
 
 static const PSSSubscreenButton sSubscreenButtons_NoContestInfo[] = {
-    { PSS_PAGE_INFO, 0x1, 0x2, 0x9 },
-    { PSS_PAGE_MEMO, 0x1, 0x6, 0xF },
-    { PSS_PAGE_SKILLS, 0x2, 0xE, 0x12 },
-    { PSS_PAGE_BATTLE_MOVES, 0x3, 0x16, 0xF },
-    { PSS_PAGE_EXIT, 0x4, 0x1A, 0x9 },
-    { PSS_PAGE_NONE, 0xFF, 0xFF, 0xFF }
+    { PSS_PAGE_INFO, 1, 2, 9 },
+    { PSS_PAGE_MEMO, 1, 6, 15 },
+    { PSS_PAGE_SKILLS, 2, 14, 18 },
+    { PSS_PAGE_BATTLE_MOVES, 3, 22, 15 },
+    { PSS_PAGE_EXIT, 4, 26, 9 },
+    { PSS_PAGE_NONE, 255, 255, 255 }
 };
 
 static const PSSSubscreenButton sSubscreenButtons_UnusedMovesOnly[] = {
-    { PSS_PAGE_BATTLE_MOVES, 0x3, 0xA, 0x12 },
-    { PSS_PAGE_CONTEST_MOVES, 0x3, 0x11, 0x12 },
-    { PSS_PAGE_NONE, 0xFF, 0xFF, 0xFF }
+    { PSS_PAGE_BATTLE_MOVES, 3, 10, 18 },
+    { PSS_PAGE_CONTEST_MOVES, 3, 17, 18 },
+    { PSS_PAGE_NONE, 255, 255, 255 }
 };
 
 static const PSSSubscreenButton *sSubscreenButtonTypes[] = {
@@ -57,30 +57,30 @@ static const PSSSubscreenButton *sSubscreenButtonTypes[] = {
 };
 
 static const TouchScreenRect sSubscreenRectangles_Normal[] = {
-    { 0x20, 0x47, 0x8, 0x2F },
-    { 0x50, 0x77, 0x10, 0x37 },
-    { 0x78, 0x9F, 0x28, 0x4F },
-    { 0x90, 0xB7, 0x50, 0x77 },
-    { 0x90, 0xB7, 0x88, 0xAF },
-    { 0x78, 0x9F, 0xB0, 0xD7 },
-    { 0x50, 0x77, 0xC8, 0xEF },
-    { 0x20, 0x47, 0xD0, 0xF7 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+    { 32, 71, 8, 47 },
+    { 80, 119, 16, 55 },
+    { 120, 159, 40, 79 },
+    { 144, 183, 80, 119 },
+    { 144, 183, 136, 175 },
+    { 120, 159, 176, 215 },
+    { 80, 119, 200, 239 },
+    { 32, 71, 208, 247 },
+    { 255, 0, 0, 0 }
 };
 
 static const TouchScreenRect sSubscreenRectangles_NoContestInfo[] = {
-    { 0x48, 0x6F, 0xC, 0x33 },
-    { 0x78, 0x9F, 0x2C, 0x53 },
-    { 0x90, 0xB7, 0x6C, 0x93 },
-    { 0x78, 0x9F, 0xAC, 0xD3 },
-    { 0x48, 0x6F, 0xCC, 0xF3 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+    { 72, 111, 12, 51 },
+    { 120, 159, 44, 83 },
+    { 144, 183, 108, 147 },
+    { 120, 159, 172, 211 },
+    { 72, 111, 204, 243 },
+    { 255, 0, 0, 0 }
 };
 
 static const TouchScreenRect sSubscreenRectangles_UnusedMovesOnly[] = {
-    { 0x90, 0xB7, 0x50, 0x77 },
-    { 0x90, 0xB7, 0x88, 0xAF },
-    { 0xFF, 0x0, 0x0, 0x0 }
+    { 144, 183, 80, 119 },
+    { 144, 183, 136, 175 },
+    { 255, 0, 0, 0 }
 };
 
 static const TouchScreenRect *sSubscreenRectangles[] = {
@@ -148,7 +148,7 @@ u8 PokemonSummaryScreen_CheckSubscreenButtonPress(PokemonSummaryScreen *summaryS
 {
     int button = CheckSubscreenRectanglePress(summaryScreen);
 
-    if (button != 0xffffffff) {
+    if (button != TOUCHSCREEN_INPUT_NONE) {
         return button;
     }
 
@@ -158,7 +158,7 @@ u8 PokemonSummaryScreen_CheckSubscreenButtonPress(PokemonSummaryScreen *summaryS
 static int CheckSubscreenRectanglePress(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NO_BUTTONS) {
-        return 0xffffffff;
+        return TOUCHSCREEN_INPUT_NONE;
     }
 
     return sub_02022664(sSubscreenRectangles[summaryScreen->subscreenType]);
@@ -169,16 +169,16 @@ static int sub_02092224(PokemonSummaryScreen *summaryScreen)
     int v0;
 
     if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NO_BUTTONS) {
-        return 0xffffffff;
+        return TOUCHSCREEN_INPUT_NONE;
     }
 
     v0 = sub_02022644(sSubscreenRectangles[summaryScreen->subscreenType]);
 
-    if (v0 != 0xffffffff) {
+    if (v0 != TOUCHSCREEN_INPUT_NONE) {
         u16 v1 = 0xfffe;
 
-        if (Bg_DoesPixelAtXYMatchVal(summaryScreen->bgConfig, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
-            return 0xffffffff;
+        if (Bg_DoesPixelAtXYMatchVal(summaryScreen->bgConfig, BG_LAYER_SUB_0, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+            return TOUCHSCREEN_INPUT_NONE;
         }
     }
 
@@ -194,7 +194,7 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
         Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         PokemonSummaryScreen_UpdateSubscreenButtonGfx(summaryScreen);
         UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonCurrent], 2);
-        Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, 4);
+        Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_SUB_0);
         sub_0208F600(summaryScreen);
         summaryScreen->buttonCount = 0;
         summaryScreen->buttonState = 1;
@@ -221,7 +221,7 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
                 UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonCurrent], 1);
             }
 
-            Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, 4);
+            Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_SUB_0);
             return TRUE;
         }
     }

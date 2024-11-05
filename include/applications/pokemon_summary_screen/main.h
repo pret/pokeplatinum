@@ -154,6 +154,11 @@ enum PSSPoffinFeedMsg {
 #define EMPTY_HEART_BASE_TILE   0x12E
 #define FILLED_HEART_BASE_TILE  0x12C
 
+#define GREEN_HEALTHBAR_BASE_TILE  0xC0
+#define YELLOW_HEALTHBAR_BASE_TILE 0xE0
+#define RED_HEALTHBAR_BASE_TILE    0x100
+#define PALETTE_SLOT_10_MASK       0xA000
+
 #define RIBBONS_PER_ROW 4
 
 typedef struct PokemonSummary {

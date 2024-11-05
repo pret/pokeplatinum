@@ -19,7 +19,7 @@ static int sub_02022594(const TouchScreenRect *rect, u32 param1, u32 param2)
         }
     }
 
-    return 0xffffffff;
+    return TOUCHSCREEN_INPUT_NONE;
 }
 
 static BOOL sub_020225E0(const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
@@ -49,7 +49,7 @@ int sub_02022644(const TouchScreenRect *rect)
         return sub_02022594(rect, gCoreSys.touchX, gCoreSys.touchY);
     }
 
-    return 0xffffffff;
+    return TOUCHSCREEN_INPUT_NONE;
 }
 
 int sub_02022664(const TouchScreenRect *rect)
@@ -58,7 +58,7 @@ int sub_02022664(const TouchScreenRect *rect)
         return sub_02022594(rect, gCoreSys.touchX, gCoreSys.touchY);
     }
 
-    return 0xffffffff;
+    return TOUCHSCREEN_INPUT_NONE;
 }
 
 int sub_02022684(const TouchScreenHitTable *hitTable)
@@ -79,7 +79,7 @@ int sub_02022684(const TouchScreenHitTable *hitTable)
         }
     }
 
-    return 0xffffffff;
+    return TOUCHSCREEN_INPUT_NONE;
 }
 
 int sub_020226DC(const TouchScreenHitTable *hitTable)
@@ -100,7 +100,7 @@ int sub_020226DC(const TouchScreenHitTable *hitTable)
         }
     }
 
-    return 0xffffffff;
+    return TOUCHSCREEN_INPUT_NONE;
 }
 
 BOOL TouchScreen_LocationHeld(const TouchScreenHitTable *hitTable)
@@ -177,7 +177,7 @@ int sub_020227DC(const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
         }
     }
 
-    return 0xffffffff;
+    return TOUCHSCREEN_INPUT_NONE;
 }
 
 BOOL sub_02022830(const TouchScreenHitTable *hitTable, u32 param1, u32 param2)

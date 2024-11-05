@@ -847,22 +847,22 @@ void PokemonSummaryScreen_PrintBattleMoveInfo(PokemonSummaryScreen *summaryScree
     Window_FillTilemap(&summaryScreen->extraWindows[6], 0);
     Window_FillTilemap(&summaryScreen->extraWindows[7], 0);
 
-    u32 power = MoveTable_LoadParam(move, MOVEATTRIBUTE_POWER);
+    u32 moveAttribute = MoveTable_LoadParam(move, MOVEATTRIBUTE_POWER);
 
-    if (power <= 1) {
+    if (moveAttribute <= 1) {
         MessageLoader_GetStrbuf(summaryScreen->msgLoader, pss_three_dashes, summaryScreen->strbuf);
     } else {
-        SetAndFormatNumberBuf(summaryScreen, 150, power, 3, PADDING_MODE_SPACES);
+        SetAndFormatNumberBuf(summaryScreen, pss_move_power_template, moveAttribute, 3, PADDING_MODE_SPACES);
     }
 
     PrintTextToWindow(summaryScreen, &summaryScreen->extraWindows[5], TEXT_COLOR(1, 2, 0), PSS_ALIGNMENT_CENTER);
 
-    power = MoveTable_LoadParam(move, MOVEATTRIBUTE_ACCURACY);
+    moveAttribute = MoveTable_LoadParam(move, MOVEATTRIBUTE_ACCURACY);
 
-    if (power == 0) {
+    if (moveAttribute == 0) {
         MessageLoader_GetStrbuf(summaryScreen->msgLoader, pss_three_dashes, summaryScreen->strbuf);
     } else {
-        SetAndFormatNumberBuf(summaryScreen, 151, power, 3, PADDING_MODE_SPACES);
+        SetAndFormatNumberBuf(summaryScreen, pss_move_accuracy_template, moveAttribute, 3, PADDING_MODE_SPACES);
     }
 
     PrintTextToWindow(summaryScreen, &summaryScreen->extraWindows[6], TEXT_COLOR(1, 2, 0), PSS_ALIGNMENT_CENTER);
