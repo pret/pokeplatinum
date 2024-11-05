@@ -146,7 +146,7 @@ enum PSSPoffinFeedMsg {
     PSS_MSG_MON_WONT_EAT_MORE = 0xFF,
 };
 
-#define PSS_MOVE_NONE             0xFFFFFFFF
+#define PSS_MOVE_NONE             -1
 #define PSS_SUBSCREEN_BUTTON_NONE 0xFF
 
 #define POINTS_PER_APPEAL_HEART 10

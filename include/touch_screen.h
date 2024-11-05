@@ -2,7 +2,7 @@
 #define POKEPLATINUM_TOUCH_SCREEN_H
 
 #define TOUCHSCREEN_USE_CIRCLE 0xfe
-#define TOUCHSCREEN_INPUT_NONE 0xFFFFFFFF
+#define TOUCHSCREEN_INPUT_NONE -1
 
 /**
  * These two structs represent regions that can be checked on the touch screen.

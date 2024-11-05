@@ -32,7 +32,7 @@ static const PSSSubscreenButton sSubscreenButtons_Normal[] = {
     { PSS_PAGE_CONTEST_MOVES, 3, 22, 15 },
     { PSS_PAGE_RIBBONS, 4, 25, 10 },
     { PSS_PAGE_EXIT, 4, 26, 4 },
-    { PSS_PAGE_NONE, 255, 255, 255 }
+    { PSS_PAGE_NONE, -1, -1, -1 }
 };
 
 static const PSSSubscreenButton sSubscreenButtons_NoContestInfo[] = {
@@ -41,13 +41,13 @@ static const PSSSubscreenButton sSubscreenButtons_NoContestInfo[] = {
     { PSS_PAGE_SKILLS, 2, 14, 18 },
     { PSS_PAGE_BATTLE_MOVES, 3, 22, 15 },
     { PSS_PAGE_EXIT, 4, 26, 9 },
-    { PSS_PAGE_NONE, 255, 255, 255 }
+    { PSS_PAGE_NONE, -1, -1, -1 }
 };
 
 static const PSSSubscreenButton sSubscreenButtons_UnusedMovesOnly[] = {
     { PSS_PAGE_BATTLE_MOVES, 3, 10, 18 },
     { PSS_PAGE_CONTEST_MOVES, 3, 17, 18 },
-    { PSS_PAGE_NONE, 255, 255, 255 }
+    { PSS_PAGE_NONE, -1, -1, -1 }
 };
 
 static const PSSSubscreenButton *sSubscreenButtonTypes[] = {
@@ -65,7 +65,7 @@ static const TouchScreenRect sSubscreenRectangles_Normal[] = {
     { 120, 159, 176, 215 },
     { 80, 119, 200, 239 },
     { 32, 71, 208, 247 },
-    { 255, 0, 0, 0 }
+    { -1, 0, 0, 0 }
 };
 
 static const TouchScreenRect sSubscreenRectangles_NoContestInfo[] = {
@@ -74,13 +74,13 @@ static const TouchScreenRect sSubscreenRectangles_NoContestInfo[] = {
     { 144, 183, 108, 147 },
     { 120, 159, 172, 211 },
     { 72, 111, 204, 243 },
-    { 255, 0, 0, 0 }
+    { -1, 0, 0, 0 }
 };
 
 static const TouchScreenRect sSubscreenRectangles_UnusedMovesOnly[] = {
     { 144, 183, 80, 119 },
     { 144, 183, 136, 175 },
-    { 255, 0, 0, 0 }
+    { -1, 0, 0, 0 }
 };
 
 static const TouchScreenRect *sSubscreenRectangles[] = {
