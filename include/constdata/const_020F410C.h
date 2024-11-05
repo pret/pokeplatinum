@@ -3,6 +3,6 @@
 
 #include "overlay_manager.h"
 
-extern const OverlayManagerTemplate Unk_020F410C;
+extern const OverlayManagerTemplate gPokemonSummaryScreenApp;
 
 #endif // POKEPLATINUM_CONST_020F410C_H

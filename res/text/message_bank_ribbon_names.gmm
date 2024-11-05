@@ -1,323 +1,323 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="53609" />
-	<row id="pl_msg_00000535_00000" index="0">
+	<row id="ribbon_name_hoenn_champion" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Champion Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00001" index="1">
+	<row id="ribbon_name_hoenn_cool" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00002" index="2">
+	<row id="ribbon_name_hoenn_cool_super" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Super</language>
 	</row>
-	<row id="pl_msg_00000535_00003" index="3">
+	<row id="ribbon_name_hoenn_cool_hyper" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Hyper</language>
 	</row>
-	<row id="pl_msg_00000535_00004" index="4">
+	<row id="ribbon_name_hoenn_cool_master" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Master</language>
 	</row>
-	<row id="pl_msg_00000535_00005" index="5">
+	<row id="ribbon_name_hoenn_beauty" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00006" index="6">
+	<row id="ribbon_name_hoenn_beauty_super" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Super</language>
 	</row>
-	<row id="pl_msg_00000535_00007" index="7">
+	<row id="ribbon_name_hoenn_beauty_hyper" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Hyper</language>
 	</row>
-	<row id="pl_msg_00000535_00008" index="8">
+	<row id="ribbon_name_hoenn_beauty_master" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Master</language>
 	</row>
-	<row id="pl_msg_00000535_00009" index="9">
+	<row id="ribbon_name_hoenn_cute" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00010" index="10">
+	<row id="ribbon_name_hoenn_cute_super" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Super</language>
 	</row>
-	<row id="pl_msg_00000535_00011" index="11">
+	<row id="ribbon_name_hoenn_cute_hyper" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Hyper</language>
 	</row>
-	<row id="pl_msg_00000535_00012" index="12">
+	<row id="ribbon_name_hoenn_cute_master" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Master</language>
 	</row>
-	<row id="pl_msg_00000535_00013" index="13">
+	<row id="ribbon_name_hoenn_smart" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00014" index="14">
+	<row id="ribbon_name_hoenn_smart_super" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Super</language>
 	</row>
-	<row id="pl_msg_00000535_00015" index="15">
+	<row id="ribbon_name_hoenn_smart_hyper" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Hyper</language>
 	</row>
-	<row id="pl_msg_00000535_00016" index="16">
+	<row id="ribbon_name_hoenn_smart_master" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Master</language>
 	</row>
-	<row id="pl_msg_00000535_00017" index="17">
+	<row id="ribbon_name_hoenn_tough" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00018" index="18">
+	<row id="ribbon_name_hoenn_tough_super" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Super</language>
 	</row>
-	<row id="pl_msg_00000535_00019" index="19">
+	<row id="ribbon_name_hoenn_tough_hyper" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Hyper</language>
 	</row>
-	<row id="pl_msg_00000535_00020" index="20">
+	<row id="ribbon_name_hoenn_tough_master" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Master</language>
 	</row>
-	<row id="pl_msg_00000535_00021" index="21">
+	<row id="ribbon_name_hoenn_winning" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Winning Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00022" index="22">
+	<row id="ribbon_name_hoenn_victory" index="22">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Victory Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00023" index="23">
+	<row id="ribbon_name_hoenn_artist" index="23">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Artist Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00024" index="24">
+	<row id="ribbon_name_hoenn_effort" index="24">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Effort Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00025" index="25">
+	<row id="ribbon_name_hoenn_marine" index="25">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Marine Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00026" index="26">
+	<row id="ribbon_name_hoenn_land" index="26">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Land Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00027" index="27">
+	<row id="ribbon_name_hoenn_sky" index="27">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sky Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00028" index="28">
+	<row id="ribbon_name_hoenn_country" index="28">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Country Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00029" index="29">
+	<row id="ribbon_name_hoenn_national" index="29">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">National Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00030" index="30">
+	<row id="ribbon_name_hoenn_earth" index="30">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Earth Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00031" index="31">
+	<row id="ribbon_name_hoenn_world" index="31">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">World Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00032" index="32">
+	<row id="ribbon_name_sinnoh_champ" index="32">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sinnoh Champ Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00033" index="33">
+	<row id="ribbon_name_cool" index="33">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00034" index="34">
+	<row id="ribbon_name_cool_great" index="34">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Great</language>
 	</row>
-	<row id="pl_msg_00000535_00035" index="35">
+	<row id="ribbon_name_cool_ultra" index="35">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Ultra</language>
 	</row>
-	<row id="pl_msg_00000535_00036" index="36">
+	<row id="ribbon_name_cool_master" index="36">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cool Ribbon Master</language>
 	</row>
-	<row id="pl_msg_00000535_00037" index="37">
+	<row id="ribbon_name_beauty" index="37">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00038" index="38">
+	<row id="ribbon_name_beauty_great" index="38">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Great</language>
 	</row>
-	<row id="pl_msg_00000535_00039" index="39">
+	<row id="ribbon_name_beauty_ultra" index="39">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Ultra</language>
 	</row>
-	<row id="pl_msg_00000535_00040" index="40">
+	<row id="ribbon_name_beauty_master" index="40">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty Ribbon Master</language>
 	</row>
-	<row id="pl_msg_00000535_00041" index="41">
+	<row id="ribbon_name_cute" index="41">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00042" index="42">
+	<row id="ribbon_name_cute_great" index="42">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Great</language>
 	</row>
-	<row id="pl_msg_00000535_00043" index="43">
+	<row id="ribbon_name_cute_ultra" index="43">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Ultra</language>
 	</row>
-	<row id="pl_msg_00000535_00044" index="44">
+	<row id="ribbon_name_cute_master" index="44">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cute Ribbon Master</language>
 	</row>
-	<row id="pl_msg_00000535_00045" index="45">
+	<row id="ribbon_name_smart" index="45">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00046" index="46">
+	<row id="ribbon_name_smart_great" index="46">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Great</language>
 	</row>
-	<row id="pl_msg_00000535_00047" index="47">
+	<row id="ribbon_name_smart_ultra" index="47">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Ultra</language>
 	</row>
-	<row id="pl_msg_00000535_00048" index="48">
+	<row id="ribbon_name_smart_master" index="48">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smart Ribbon Master</language>
 	</row>
-	<row id="pl_msg_00000535_00049" index="49">
+	<row id="ribbon_name_tough" index="49">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00050" index="50">
+	<row id="ribbon_name_tough_great" index="50">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Great</language>
 	</row>
-	<row id="pl_msg_00000535_00051" index="51">
+	<row id="ribbon_name_tough_ultra" index="51">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Ultra</language>
 	</row>
-	<row id="pl_msg_00000535_00052" index="52">
+	<row id="ribbon_name_tough_master" index="52">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tough Ribbon Master</language>
 	</row>
-	<row id="pl_msg_00000535_00053" index="53">
+	<row id="ribbon_name_ability" index="53">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ability Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00054" index="54">
+	<row id="ribbon_name_great_ability" index="54">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Great Ability Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00055" index="55">
+	<row id="ribbon_name_double_ability" index="55">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Double Ability Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00056" index="56">
+	<row id="ribbon_name_multi_ability" index="56">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Multi Ability Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00057" index="57">
+	<row id="ribbon_name_pair_ability" index="57">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pair Ability Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00058" index="58">
+	<row id="ribbon_name_world_ability" index="58">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">World Ability Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00059" index="59">
+	<row id="ribbon_name_alert" index="59">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Alert Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00060" index="60">
+	<row id="ribbon_name_shock" index="60">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Shock Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00061" index="61">
+	<row id="ribbon_name_downcast" index="61">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Downcast Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00062" index="62">
+	<row id="ribbon_name_careless" index="62">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Careless Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00063" index="63">
+	<row id="ribbon_name_relax" index="63">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Relax Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00064" index="64">
+	<row id="ribbon_name_snooze" index="64">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Snooze Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00065" index="65">
+	<row id="ribbon_name_smile" index="65">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smile Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00066" index="66">
+	<row id="ribbon_name_gorgeous" index="66">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Gorgeous Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00067" index="67">
+	<row id="ribbon_name_royal" index="67">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Royal Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00068" index="68">
+	<row id="ribbon_name_gorgeous_royal" index="68">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Gorgeous Royal Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00069" index="69">
+	<row id="ribbon_name_footprint" index="69">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Footprint Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00070" index="70">
+	<row id="ribbon_name_record" index="70">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Record Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00071" index="71">
+	<row id="ribbon_name_history" index="71">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">History Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00072" index="72">
+	<row id="ribbon_name_legend" index="72">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Legend Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00073" index="73">
+	<row id="ribbon_name_red" index="73">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Red Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00074" index="74">
+	<row id="ribbon_name_green" index="74">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Green Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00075" index="75">
+	<row id="ribbon_name_blue" index="75">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Blue Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00076" index="76">
+	<row id="ribbon_name_festival" index="76">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Festival Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00077" index="77">
+	<row id="ribbon_name_carnival" index="77">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Carnival Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00078" index="78">
+	<row id="ribbon_name_classic" index="78">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Classic Ribbon</language>
 	</row>
-	<row id="pl_msg_00000535_00079" index="79">
+	<row id="ribbon_name_premier" index="79">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Premier Ribbon</language>
 	</row>

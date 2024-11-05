@@ -18,6 +18,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "poketch_data.h"
+#include "ribbon.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "strbuf.h"
@@ -34,7 +35,6 @@
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
 #include "unk_0206AFE0.h"
-#include "unk_020923C0.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
 
@@ -230,43 +230,43 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
     v13 = sub_0202D79C(fieldSystem->saveData);
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_RED_RIBBON, 0)) {
-        v13[sub_02092444(73)] = v14[0];
+        v13[Ribbon_TryGetSpecialDescriptionID(73)] = v14[0];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_GREEN_RIBBON, 0)) {
-        v13[sub_02092444(74)] = v14[1];
+        v13[Ribbon_TryGetSpecialDescriptionID(74)] = v14[1];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_BLUE_RIBBON, 0)) {
-        v13[sub_02092444(75)] = v14[2];
+        v13[Ribbon_TryGetSpecialDescriptionID(75)] = v14[2];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_FESTIVAL_RIBBON, 0)) {
-        v13[sub_02092444(76)] = v14[3];
+        v13[Ribbon_TryGetSpecialDescriptionID(76)] = v14[3];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_CARNIVAL_RIBBON, 0)) {
-        v13[sub_02092444(77)] = v14[4];
+        v13[Ribbon_TryGetSpecialDescriptionID(77)] = v14[4];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_CLASSIC_RIBBON, 0)) {
-        v13[sub_02092444(78)] = v14[5];
+        v13[Ribbon_TryGetSpecialDescriptionID(78)] = v14[5];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_PREMIER_RIBBON, 0)) {
-        v13[sub_02092444(79)] = v14[6];
+        v13[Ribbon_TryGetSpecialDescriptionID(79)] = v14[6];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_HOENN_MARINE_RIBBON, 0)) {
-        v13[sub_02092444(25)] = v14[7];
+        v13[Ribbon_TryGetSpecialDescriptionID(25)] = v14[7];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_HOENN_LAND_RIBBON, 0)) {
-        v13[sub_02092444(26)] = v14[8];
+        v13[Ribbon_TryGetSpecialDescriptionID(26)] = v14[8];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_HOENN_SKY_RIBBON, 0)) {
-        v13[sub_02092444(27)] = v14[9];
+        v13[Ribbon_TryGetSpecialDescriptionID(27)] = v14[9];
     }
 
     if (v0->val1.unk_00 == 0) {

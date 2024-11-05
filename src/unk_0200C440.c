@@ -28,15 +28,15 @@ static const struct {
     { 0x2A0, 0x10 }
 };
 
-UnkStruct_0200C440 *sub_0200C440(u32 param0, u32 param1, u32 param2, u32 param3)
+UnkStruct_0200C440 *sub_0200C440(u32 param0, u32 param1, u32 param2, u32 heapID)
 {
-    UnkStruct_0200C440 *v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_0200C440));
+    UnkStruct_0200C440 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0200C440));
 
     if (v0) {
         u32 v1;
         u8 *v2;
 
-        v0->unk_00 = Graphics_GetCharData(14, 4, 1, &v0->unk_04, param3);
+        v0->unk_00 = Graphics_GetCharData(14, 4, 1, &v0->unk_04, heapID);
         v2 = v0->unk_04->pRawData;
 
         for (v1 = 0; v1 < v0->unk_04->szByte; v1++) {

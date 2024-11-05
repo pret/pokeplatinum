@@ -10,7 +10,6 @@
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -22,6 +21,7 @@
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "functypes/funcptr_0203B7C0.h"
 #include "functypes/funcptr_0203BC5C.h"
@@ -52,7 +52,6 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "poketch_data.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -1043,11 +1042,11 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v3->mode = 0;
         v3->ribbons = sub_0202D79C(fieldSystem->saveData);
         v3->dexMode = sub_0207A274(fieldSystem->saveData);
-        v3->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
+        v3->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         v3->chatotCry = NULL;
 
-        PokemonSummary_FlagVisiblePages(v3, Unk_020EA02C);
-        PokemonSummary_SetPlayerProfile(v3, SaveData_GetTrainerInfo(fieldSystem->saveData));
+        PokemonSummaryScreen_FlagVisiblePages(v3, Unk_020EA02C);
+        PokemonSummaryScreen_SetPlayerProfile(v3, SaveData_GetTrainerInfo(fieldSystem->saveData));
         sub_0203D334(fieldSystem, v3);
 
         menu->unk_25C = v3;
@@ -1064,11 +1063,11 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v4->move = partyMan->unk_26;
         v4->mode = 2;
         v4->dexMode = sub_0207A274(fieldSystem->saveData);
-        v4->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
+        v4->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         v4->chatotCry = NULL;
 
-        PokemonSummary_FlagVisiblePages(v4, Unk_020EA01C);
-        PokemonSummary_SetPlayerProfile(v4, SaveData_GetTrainerInfo(fieldSystem->saveData));
+        PokemonSummaryScreen_FlagVisiblePages(v4, Unk_020EA01C);
+        PokemonSummaryScreen_SetPlayerProfile(v4, SaveData_GetTrainerInfo(fieldSystem->saveData));
         sub_0203D334(fieldSystem, v4);
 
         {
@@ -1093,11 +1092,11 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v6->move = partyMan->unk_26;
         v6->mode = 2;
         v6->dexMode = sub_0207A274(fieldSystem->saveData);
-        v6->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
+        v6->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         v6->chatotCry = NULL;
 
-        PokemonSummary_FlagVisiblePages(v6, Unk_020EA01C);
-        PokemonSummary_SetPlayerProfile(v6, SaveData_GetTrainerInfo(fieldSystem->saveData));
+        PokemonSummaryScreen_FlagVisiblePages(v6, Unk_020EA01C);
+        PokemonSummaryScreen_SetPlayerProfile(v6, SaveData_GetTrainerInfo(fieldSystem->saveData));
         sub_0203D334(fieldSystem, v6);
 
         {
@@ -1930,9 +1929,9 @@ static void FieldMenu_EvolveInit(FieldTask *taskMan)
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
 
     if (v2->unk_01 == 0) {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, 0x1, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, 0x1, 73);
     } else {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, NULL, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, NULL, 73);
     }
 
     {

@@ -36,6 +36,7 @@
 #include "journal.h"
 #include "party.h"
 #include "pokemon.h"
+#include "ribbon.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -54,7 +55,6 @@
 #include "unk_020363E8.h"
 #include "unk_02055808.h"
 #include "unk_0206CCB0.h"
-#include "unk_020923C0.h"
 #include "unk_02094EDC.h"
 #include "unk_02095AF0.h"
 #include "vars_flags.h"
@@ -1341,7 +1341,7 @@ void sub_02094898(UnkStruct_02095C48 *param0, StringTemplate *param1, u32 param2
         return;
     }
 
-    v1 = sub_020923C0(v0, 3);
+    v1 = Ribbon_GetData(v0, RIBBON_DATA_NAME_ID);
     StringTemplate_SetRibbonName(param1, param2, v1);
 }
 

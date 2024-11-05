@@ -10,6 +10,7 @@
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/struct_020F1DB8.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "functypes/funcptr_0207E634.h"
 #include "overlay118/ov118_021D0D80.h"
@@ -32,7 +33,6 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -1069,7 +1069,7 @@ u8 sub_0207EF14(GameWindowLayout *param0, u8 param1)
 
     param0->unk_704[param1].unk_0E_13 = Pokemon_GetGender(v0);
     param0->unk_704[param1].unk_29 = 1;
-    param0->unk_704[param1].unk_0E_0 = (u8)PokemonSummary_StatusIconAnimIdx(v0);
+    param0->unk_704[param1].unk_0E_0 = (u8)PokemonSummaryScreen_StatusIconAnimIdx(v0);
 
     sub_0207F094(param0, v0, param1);
 

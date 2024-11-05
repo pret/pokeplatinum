@@ -11,13 +11,14 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207AE68_t.h"
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_02099F80.h"
+
+#include "applications/pokemon_summary_screen/main.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -35,7 +36,6 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "poketch_data.h"
 #include "render_text.h"
 #include "render_window.h"
@@ -145,7 +145,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
 
     MI_CpuClearFast(v0->unk_3C, sizeof(PokemonSummary));
 
-    v0->unk_3C->contest = param4;
+    v0->unk_3C->showContest = param4;
     v0->unk_48 = param5;
     v0->unk_4C = param6;
     v0->records = records;
@@ -506,7 +506,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             param0->unk_3C->move = param0->unk_6C;
             param0->unk_3C->mode = 2;
             param0->unk_3C->chatotCry = NULL;
-            PokemonSummary_FlagVisiblePages(param0->unk_3C, Unk_020F0A2C);
+            PokemonSummaryScreen_FlagVisiblePages(param0->unk_3C, Unk_020F0A2C);
             sub_0207C624(param0);
             param0->unk_64++;
         }
@@ -1014,5 +1014,5 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
 
 static void sub_0207C624(UnkStruct_0207AE68 *param0)
 {
-    param0->unk_38 = OverlayManager_New(&Unk_020F410C, param0->unk_3C, param0->unk_5C);
+    param0->unk_38 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_3C, param0->unk_5C);
 }

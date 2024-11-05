@@ -6,10 +6,10 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223A7F4.h"
 #include "overlay104/struct_ov104_02234130.h"
@@ -43,7 +43,6 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -974,7 +973,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         if (IsScreenTransitionDone() == 1) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
-            param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_140, 93);
+            param0->unk_04 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
             param0->unk_13_1 = 1;
             return 1;
         }
@@ -1491,7 +1490,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         if (IsScreenTransitionDone() == 1) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
-            param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_140, 93);
+            param0->unk_04 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
             param0->unk_13_1 = 1;
             return 1;
         }
@@ -2902,10 +2901,10 @@ static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
     param0->unk_140->pos = ov105_022461A0(param0->unk_30C);
     param0->unk_140->move = 0;
     param0->unk_140->dexMode = sub_0207A274(param0->unk_13C);
-    param0->unk_140->contest = 0;
+    param0->unk_140->showContest = FALSE;
 
-    PokemonSummary_FlagVisiblePages(param0->unk_140, Unk_ov105_022462DC);
-    PokemonSummary_SetPlayerProfile(param0->unk_140, SaveData_GetTrainerInfo(param0->unk_13C));
+    PokemonSummaryScreen_FlagVisiblePages(param0->unk_140, Unk_ov105_022462DC);
+    PokemonSummaryScreen_SetPlayerProfile(param0->unk_140, SaveData_GetTrainerInfo(param0->unk_13C));
 
     return;
 }

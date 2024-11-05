@@ -5,9 +5,9 @@
 
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223AF58.h"
 #include "overlay104/struct_ov104_02235208.h"
@@ -35,7 +35,6 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -516,7 +515,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         if (IsScreenTransitionDone() == 1) {
             ov106_02242CA4(param0);
             ov106_022423E8(param0);
-            param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_BC, 98);
+            param0->unk_04 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_BC, 98);
             param0->unk_0B = 1;
             return 1;
         }
@@ -1220,10 +1219,10 @@ static void ov106_02242CA4(UnkStruct_ov106_02243118 *param0)
     param0->unk_BC->pos = 0;
     param0->unk_BC->move = 0;
     param0->unk_BC->dexMode = sub_0207A274(param0->unk_B8);
-    param0->unk_BC->contest = PokemonSummary_ShowContestData(param0->unk_B8);
+    param0->unk_BC->showContest = PokemonSummaryScreen_ShowContestData(param0->unk_B8);
 
-    PokemonSummary_FlagVisiblePages(param0->unk_BC, Unk_ov106_02243798);
-    PokemonSummary_SetPlayerProfile(param0->unk_BC, SaveData_GetTrainerInfo(param0->unk_B8));
+    PokemonSummaryScreen_FlagVisiblePages(param0->unk_BC, Unk_ov106_02243798);
+    PokemonSummaryScreen_SetPlayerProfile(param0->unk_BC, SaveData_GetTrainerInfo(param0->unk_B8));
 
     return;
 }

@@ -16,6 +16,7 @@
 #include "struct_defs/struct_0209C370.h"
 #include "struct_defs/trainer_data.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "overlay006/battle_params.h"
 #include "overlay006/struct_ov6_02240D5C_sub1.h"
@@ -34,7 +35,6 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "poketch_data.h"
 #include "rtc.h"
 #include "save_player.h"
@@ -279,7 +279,7 @@ void sub_020521B8(BattleParams *param0, const FieldSystem *fieldSystem, SaveData
     param0->unk_EC = SaveData_PCBoxes(param2);
     param0->unk_130 = MapHeader_GetMapLabelTextID(param3);
     param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
-    param0->unk_140 = PokemonSummary_ShowContestData(param2);
+    param0->unk_140 = PokemonSummaryScreen_ShowContestData(param2);
     param0->unk_144 = SystemFlag_CheckMetBebe(SaveData_GetVarsFlags(param2));
     param0->unk_14C = FieldOverworldState_GetWeather(v6);
     param0->unk_E4 = param5;

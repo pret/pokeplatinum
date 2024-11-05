@@ -6,11 +6,11 @@
 
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02050224.h"
 #include "struct_defs/struct_02098C44.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 
 #include "bag.h"
@@ -21,7 +21,6 @@
 #include "heap.h"
 #include "inlines.h"
 #include "party.h"
-#include "pokemon_summary_app.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
@@ -319,7 +318,7 @@ static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
     v0->options = SaveData_Options(v1);
     v0->monData = Party_GetFromSavedata(v1);
     v0->dexMode = sub_0207A274(v1);
-    v0->contest = PokemonSummary_ShowContestData(v1);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->dataType = 1;
     v0->pos = param0->unk_05;
     v0->max = (u8)Party_GetCurrentCount(v0->monData);
@@ -327,9 +326,9 @@ static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
     v0->mode = 0;
     v0->ribbons = sub_0202D79C(v1);
 
-    PokemonSummary_FlagVisiblePages(v0, v2);
-    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
+    PokemonSummaryScreen_FlagVisiblePages(v0, v2);
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 
     *(param0->unk_0C) = v0;
     return 3;

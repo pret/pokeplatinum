@@ -4,7 +4,6 @@
 #include "struct_decls/struct_02070950_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203E234.h"
@@ -17,6 +16,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system_decl.h"
 #include "overlay006/battle_params.h"
 #include "overlay090/struct_ov90_021D0D80.h"

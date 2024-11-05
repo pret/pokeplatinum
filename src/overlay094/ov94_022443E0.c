@@ -4,12 +4,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223FB48.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "overlay_manager.h"
-#include "pokemon_summary_app.h"
 #include "unk_0202D778.h"
 
 #include "constdata/const_020F410C.h"
@@ -34,15 +34,15 @@ int ov94_022443E0(UnkStruct_ov94_0223FD4C *param0, int param1)
     param0->unk_B8.pos = 0;
     param0->unk_B8.mode = 1;
     param0->unk_B8.move = 0;
-    param0->unk_B8.contest = PokemonSummary_ShowContestData(param0->unk_00->unk_20);
+    param0->unk_B8.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_00->unk_20);
     param0->unk_B8.dexMode = param0->unk_00->unk_34;
     param0->unk_B8.options = param0->unk_00->unk_24;
     param0->unk_B8.ribbons = sub_0202D79C(param0->unk_00->unk_20);
 
-    PokemonSummary_FlagVisiblePages(&param0->unk_B8, Unk_ov94_02246360);
-    PokemonSummary_SetPlayerProfile(&param0->unk_B8, param0->unk_00->unk_1C);
+    PokemonSummaryScreen_FlagVisiblePages(&param0->unk_B8, Unk_ov94_02246360);
+    PokemonSummaryScreen_SetPlayerProfile(&param0->unk_B8, param0->unk_00->unk_1C);
 
-    param0->unk_B4 = OverlayManager_New(&Unk_020F410C, &param0->unk_B8, 62);
+    param0->unk_B4 = OverlayManager_New(&gPokemonSummaryScreenApp, &param0->unk_B8, 62);
     param0->unk_104 = 1;
 
     return 2;

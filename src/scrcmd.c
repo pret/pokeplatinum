@@ -30,7 +30,6 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0202A93C.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0202DF8C.h"
@@ -41,6 +40,7 @@
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/map_object_anim_cmd.h"

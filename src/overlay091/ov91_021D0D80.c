@@ -5,12 +5,12 @@
 
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -30,7 +30,6 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -1515,12 +1514,12 @@ static int ov91_021D261C(UnkStruct_ov91_021D0ED8 *param0)
     param0->unk_14C.max = 1;
     param0->unk_14C.move = ov91_021D1DD0(param0);
     param0->unk_14C.mode = 2;
-    param0->unk_14C.contest = 1;
+    param0->unk_14C.showContest = 1;
     param0->unk_14C.chatotCry = NULL;
 
-    PokemonSummary_FlagVisiblePages(&param0->unk_14C, v0);
+    PokemonSummaryScreen_FlagVisiblePages(&param0->unk_14C, v0);
 
-    param0->unk_17C = OverlayManager_New(&Unk_020F410C, &param0->unk_14C, 67);
+    param0->unk_17C = OverlayManager_New(&gPokemonSummaryScreenApp, &param0->unk_14C, 67);
     return 12;
 }
 

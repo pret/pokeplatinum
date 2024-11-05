@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="45127" />
-	<row id="pl_msg_00000455_00000" index="0">
+	<row id="pss_nickname_template" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 1, 0, 0}</language>
 	</row>
@@ -45,7 +45,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Name</language>
 	</row>
-	<row id="pl_msg_00000455_00011" index="11">
+	<row id="pss_species_name_template" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 0, 0, 0}</language>
 	</row>
@@ -57,7 +57,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OT</language>
 	</row>
-	<row id="pl_msg_00000455_00014" index="14">
+	<row id="pss_otname_template" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 0, 0}</language>
 	</row>
@@ -602,11 +602,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CATEGORY</language>
 	</row>
-	<row id="pl_msg_00000455_00150" index="150">
+	<row id="pss_move_power_template" index="150">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00151" index="151">
+	<row id="pss_move_accuracy_template" index="151">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
@@ -618,7 +618,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">--</language>
 	</row>
-	<row id="pl_msg_00000455_00154" index="154">
+	<row id="pss_three_dashes" index="154">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">---</language>
 	</row>
@@ -691,31 +691,31 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Eats anything.</language>
 	</row>
-	<row id="pl_msg_00000455_00172" index="172">
+	<row id="pss_coolness_enhanced" index="172">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Coolness was enhanced!</language>
 	</row>
-	<row id="pl_msg_00000455_00173" index="173">
+	<row id="pss_toughness_enhanced" index="173">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Toughness was enhanced!</language>
 	</row>
-	<row id="pl_msg_00000455_00174" index="174">
+	<row id="pss_beauty_enhanced" index="174">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Beauty was enhanced!</language>
 	</row>
-	<row id="pl_msg_00000455_00175" index="175">
+	<row id="pss_cuteness_enhanced" index="175">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Cuteness was enhanced!</language>
 	</row>
-	<row id="pl_msg_00000455_00176" index="176">
+	<row id="pss_smartness_enhanced" index="176">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smartness was enhanced!</language>
 	</row>
-	<row id="pl_msg_00000455_00177" index="177">
+	<row id="pss_nothing_changed" index="177">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Nothing changed!</language>
 	</row>
-	<row id="pl_msg_00000455_00178" index="178">
+	<row id="pss_pokemon_wont_eat_more" index="178">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It won’t eat any more...</language>
 	</row>
@@ -739,15 +739,15 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00184" index="184">
+	<row id="pss_ribbon_index_number" index="184">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00185" index="185">
+	<row id="pss_ribbon_number_slash" index="185">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">/</language>
 	</row>
-	<row id="pl_msg_00000455_00186" index="186">
+	<row id="pss_ribbon_max_number" index="186">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
