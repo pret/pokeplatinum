@@ -113,7 +113,7 @@ void ov16_0226DF80(UnkStruct_ov16_0226DEEC *param0, int param1, int param2, fx32
     param0->unk_0C = param2;
     param0->unk_14 = param3;
 
-    sub_0200D500(param0->unk_00, param1, param2, param3);
+    CellActorData_SetPositionWithOffsetXY(param0->unk_00, param1, param2, param3);
     CellActorData_DrawSprite(param0->unk_00, 1);
 }
 
@@ -174,7 +174,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
 
         if (v0->unk_1C == 0) {
             v1 = FX_Mul(sub_0201D15C(v0->unk_10 / 100), 14 << FX32_SHIFT) / FX32_ONE;
-            sub_0200D500(v0->unk_00, v0->unk_08, v0->unk_0C - v1, v0->unk_14);
+            CellActorData_SetPositionWithOffsetXY(v0->unk_00, v0->unk_08, v0->unk_0C - v1, v0->unk_14);
         }
     }
 
@@ -189,7 +189,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
             }
             break;
         case 1:
-            sub_0200D500(v0->unk_00, v0->unk_08, v0->unk_0C + 8, v0->unk_14);
+            CellActorData_SetPositionWithOffsetXY(v0->unk_00, v0->unk_08, v0->unk_0C + 8, v0->unk_14);
             v0->unk_1B = 1;
             v0->unk_1D++;
             break;
@@ -197,7 +197,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
             v0->unk_1E++;
 
             if (v0->unk_1E > 2) {
-                sub_0200D500(v0->unk_00, v0->unk_08, v0->unk_0C + 2, v0->unk_14);
+                CellActorData_SetPositionWithOffsetXY(v0->unk_00, v0->unk_08, v0->unk_0C + 2, v0->unk_14);
                 v0->unk_1E = 0;
                 v0->unk_1D++;
             }

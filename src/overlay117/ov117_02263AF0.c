@@ -599,7 +599,7 @@ static int ov117_02263E1C(UnkStruct_ov117_02261280 *param0, const UnkStruct_ov11
         s16 v3, v4;
         s32 v5 = 0;
 
-        sub_0200D5A0(param2->unk_10, &v3, &v4, ((192 + 160) << FX32_SHIFT));
+        CellActorData_GetPositionWithOffsetXY(param2->unk_10, &v3, &v4, ((192 + 160) << FX32_SHIFT));
 
         switch (v1->unk_07) {
         case 0:
@@ -658,14 +658,14 @@ static BOOL ov117_02263F80(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
     f32 v7;
     fx32 v8;
 
-    sub_0200D5A0(param1->unk_10, &v2, &v3, ((192 + 160) << FX32_SHIFT));
+    CellActorData_GetPositionWithOffsetXY(param1->unk_10, &v2, &v3, ((192 + 160) << FX32_SHIFT));
 
     switch (param1->unk_14->unk_07) {
     case 0:
         v6 = Unk_ov117_02266BB4[1].unk_02 - v3;
 
-        sub_0200D5E8(param1->unk_10, 0, (FX32_CONST(5.0)));
-        sub_0200D5A0(param1->unk_10, &v0, &v1, ((192 + 160) << FX32_SHIFT));
+        CellActorData_AddPositionXYFx32(param1->unk_10, 0, (FX32_CONST(5.0)));
+        CellActorData_GetPositionWithOffsetXY(param1->unk_10, &v0, &v1, ((192 + 160) << FX32_SHIFT));
 
         v5 = Unk_ov117_02266BB4[1].unk_02 - v1;
 
@@ -676,8 +676,8 @@ static BOOL ov117_02263F80(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
     case 1:
         v6 = v2 - Unk_ov117_02266BB4[3].unk_00;
 
-        sub_0200D5E8(param1->unk_10, -(FX32_CONST(5.0)), 0);
-        sub_0200D5A0(param1->unk_10, &v0, &v1, ((192 + 160) << FX32_SHIFT));
+        CellActorData_AddPositionXYFx32(param1->unk_10, -(FX32_CONST(5.0)), 0);
+        CellActorData_GetPositionWithOffsetXY(param1->unk_10, &v0, &v1, ((192 + 160) << FX32_SHIFT));
 
         v5 = v0 - Unk_ov117_02266BB4[3].unk_00;
 
@@ -688,8 +688,8 @@ static BOOL ov117_02263F80(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
     case 2:
         v6 = v3 - Unk_ov117_02266BB4[0].unk_02;
 
-        sub_0200D5E8(param1->unk_10, 0, -(FX32_CONST(5.0)));
-        sub_0200D5A0(param1->unk_10, &v0, &v1, ((192 + 160) << FX32_SHIFT));
+        CellActorData_AddPositionXYFx32(param1->unk_10, 0, -(FX32_CONST(5.0)));
+        CellActorData_GetPositionWithOffsetXY(param1->unk_10, &v0, &v1, ((192 + 160) << FX32_SHIFT));
 
         v5 = v1 - Unk_ov117_02266BB4[0].unk_02;
 
@@ -700,8 +700,8 @@ static BOOL ov117_02263F80(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
     case 3:
         v6 = Unk_ov117_02266BB4[2].unk_00 - v2;
 
-        sub_0200D5E8(param1->unk_10, (FX32_CONST(5.0)), 0);
-        sub_0200D5A0(param1->unk_10, &v0, &v1, ((192 + 160) << FX32_SHIFT));
+        CellActorData_AddPositionXYFx32(param1->unk_10, (FX32_CONST(5.0)), 0);
+        CellActorData_GetPositionWithOffsetXY(param1->unk_10, &v0, &v1, ((192 + 160) << FX32_SHIFT));
 
         v5 = Unk_ov117_02266BB4[2].unk_00 - v0;
 
@@ -719,7 +719,7 @@ static BOOL ov117_02263F80(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
             }
 
             v7 = FX_FX32_TO_F32(v8);
-            sub_0200D6E8(param1->unk_10, v7, v7);
+            CellActorData_SetAffineScaleXYFx32(param1->unk_10, v7, v7);
         }
     } else {
         if (v5 > -(24 / 2 + 2)) {
@@ -730,7 +730,7 @@ static BOOL ov117_02263F80(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
             }
 
             v7 = FX_FX32_TO_F32(v8);
-            sub_0200D6E8(param1->unk_10, v7, v7);
+            CellActorData_SetAffineScaleXYFx32(param1->unk_10, v7, v7);
         }
     }
     if ((param1->unk_04 == CommSys_CurNetId()) && (v6 >= 0) && (v5 <= 0)) {
@@ -787,9 +787,9 @@ static CellActorData *ov117_0226417C(UnkStruct_ov117_02261280 *param0, const Unk
     v1.plttIdx = param1->unk_06;
     v0 = CellActor_LoadResources(param0->unk_24, param0->unk_28, &v1);
 
-    sub_0200D500(v0, param1->unk_00, param1->unk_02, ((192 + 160) << FX32_SHIFT));
+    CellActorData_SetPositionWithOffsetXY(v0, param1->unk_00, param1->unk_02, ((192 + 160) << FX32_SHIFT));
     CellActorData_SetAnim(v0, param1->unk_04);
-    sub_0200D6A4(v0, 2);
+    CellActorData_SetAffineOverwriteMode(v0, 2);
     CellActor_UpdateObject(v0->cellActor);
 
     return v0;
@@ -834,7 +834,7 @@ static void ov117_02264214(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
                 break;
             }
 
-            sub_0200D500(v1, 128, 96, ((192 + 160) << FX32_SHIFT));
+            CellActorData_SetPositionWithOffsetXY(v1, 128, 96, ((192 + 160) << FX32_SHIFT));
             CellActorData_SetAnim(v1, v6);
             CellActor_UpdateObject(v1->cellActor);
 
@@ -862,7 +862,7 @@ static void ov117_02264214(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
             break;
         }
 
-        sub_0200D500(v1, 128, 96, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(v1, 128, 96, ((192 + 160) << FX32_SHIFT));
         CellActorData_SetAnim(v1, 28 + LCRNG_Next() % 3);
         CellActor_UpdateObject(v1->cellActor);
 
@@ -887,7 +887,7 @@ static void ov117_02264214(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
             break;
         }
 
-        sub_0200D500(v1, 128, 96, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(v1, 128, 96, ((192 + 160) << FX32_SHIFT));
         CellActorData_SetAnim(v1, 11);
         CellActor_UpdateObject(v1->cellActor);
 
@@ -963,7 +963,7 @@ BOOL ov117_02264560(UnkStruct_ov117_02261280 *param0)
             v4 = 128 + (FX_Mul(sub_0201D2B8(v1->unk_0C), v1->unk_04)) / FX32_ONE;
             v5 = 96 + (-FX_Mul(sub_0201D2C4(v1->unk_0C), v1->unk_04)) / FX32_ONE;
 
-            sub_0200D500(v1->unk_00, v4, v5, ((192 + 160) << FX32_SHIFT));
+            CellActorData_SetPositionWithOffsetXY(v1->unk_00, v4, v5, ((192 + 160) << FX32_SHIFT));
 
             v1->unk_14--;
             v6++;
@@ -990,7 +990,7 @@ BOOL ov117_02264560(UnkStruct_ov117_02261280 *param0)
             v4 = 128 + (FX_Mul(sub_0201D2B8(v2->unk_0C), v2->unk_04)) / FX32_ONE;
             v5 = 96 + (-FX_Mul(sub_0201D2C4(v2->unk_0C), v2->unk_04)) / FX32_ONE;
 
-            sub_0200D500(v2->unk_00, v4, v5, ((192 + 160) << FX32_SHIFT));
+            CellActorData_SetPositionWithOffsetXY(v2->unk_00, v4, v5, ((192 + 160) << FX32_SHIFT));
 
             v2->unk_14--;
             v6++;
@@ -1017,7 +1017,7 @@ BOOL ov117_02264560(UnkStruct_ov117_02261280 *param0)
             v4 = 128 + (FX_Mul(sub_0201D2B8(v3->unk_0C), v3->unk_04)) / FX32_ONE;
             v5 = 96 + (-FX_Mul(sub_0201D2C4(v3->unk_0C), v3->unk_04)) / FX32_ONE;
 
-            sub_0200D500(v3->unk_00, v4, v5, ((192 + 160) << FX32_SHIFT));
+            CellActorData_SetPositionWithOffsetXY(v3->unk_00, v4, v5, ((192 + 160) << FX32_SHIFT));
 
             v3->unk_14--;
             v6++;
@@ -1067,7 +1067,7 @@ static CellActorData *ov117_02264884(UnkStruct_ov117_02261280 *param0, int param
     v1 = Unk_ov117_02266D34;
     v0 = CellActor_LoadResources(param0->unk_24, param0->unk_28, &v1);
 
-    sub_0200D500(v0, (9 * 8) - param2 * 16, (4 * 8), ((192 + 160) << FX32_SHIFT));
+    CellActorData_SetPositionWithOffsetXY(v0, (9 * 8) - param2 * 16, (4 * 8), ((192 + 160) << FX32_SHIFT));
     CellActorData_SetAnim(v0, 0 + param1);
     CellActor_UpdateObject(v0->cellActor);
     CellActorData_SetAnimateFlag(v0, 1);
@@ -1131,7 +1131,7 @@ static void ov117_0226498C(UnkStruct_ov117_02264930 *param0)
 
     v0 = (9 * 8) - param0->unk_06 * 16;
 
-    sub_0200D5A0(param0->unk_00, &v1, &v2, ((192 + 160) << FX32_SHIFT));
+    CellActorData_GetPositionWithOffsetXY(param0->unk_00, &v1, &v2, ((192 + 160) << FX32_SHIFT));
 
     if (v0 > v1) {
         v1 += 2;
@@ -1139,7 +1139,7 @@ static void ov117_0226498C(UnkStruct_ov117_02264930 *param0)
             v1 = v0;
         }
 
-        sub_0200D500(param0->unk_00, v1, v2, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param0->unk_00, v1, v2, ((192 + 160) << FX32_SHIFT));
     }
 }
 
@@ -1160,7 +1160,7 @@ static void ov117_022649D8(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
             param1->unk_05 = 1;
 
             CellActorData_SetAnim(param1->unk_00, 0 + param1->unk_04);
-            sub_0200D500(param1->unk_00, (9 * 8) - 5 * 16, (4 * 8), ((192 + 160) << FX32_SHIFT));
+            CellActorData_SetPositionWithOffsetXY(param1->unk_00, (9 * 8) - 5 * 16, (4 * 8), ((192 + 160) << FX32_SHIFT));
 
             for (v1 = 0; v1 < 5; v1++) {
                 v2 = &param0->unk_3D10[v1];
@@ -1456,7 +1456,7 @@ void ov117_02264FB0(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226504C *
 
     for (v2 = 0; v2 < 4; v2++) {
         param1->unk_00[v2] = CellActor_LoadResources(param0->unk_24, param0->unk_28, &v1);
-        sub_0200D500(param1->unk_00[v2], Unk_ov117_02266BB4[v2].unk_00, Unk_ov117_02266BB4[v2].unk_02, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param1->unk_00[v2], Unk_ov117_02266BB4[v2].unk_00, Unk_ov117_02266BB4[v2].unk_02, ((192 + 160) << FX32_SHIFT));
         CellActorData_SetAnim(param1->unk_00[v2], 31 + v2 / 2);
         CellActor_UpdateObject(param1->unk_00[v2]->cellActor);
     }
@@ -1494,22 +1494,22 @@ void ov117_02265064(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022653F4 *
         v4 = 196 / 2 + (-FX_Mul(sub_0201D2C4(param1->unk_E4 + param1->unk_00[v1].unk_0C), (64 + 4)));
 
         param1->unk_00[v1].unk_00 = CellActor_LoadResources(param0->unk_24, param0->unk_28, &v0);
-        sub_0200D500(param1->unk_00[v1].unk_00, v3, v4 + -24, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param1->unk_00[v1].unk_00, v3, v4 + -24, ((192 + 160) << FX32_SHIFT));
         CellActorData_SetAnim(param1->unk_00[v1].unk_00, Unk_ov117_02266B7A[v1 + 1]);
         CellActor_UpdateObject(param1->unk_00[v1].unk_00->cellActor);
         CellActorData_DrawSprite(param1->unk_00[v1].unk_00, 0);
 
         param1->unk_00[v1].unk_04 = CellActor_LoadResources(param0->unk_24, param0->unk_28, &Unk_ov117_02266DD0);
-        sub_0200D500(param1->unk_00[v1].unk_04, 0, 0, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param1->unk_00[v1].unk_04, 0, 0, ((192 + 160) << FX32_SHIFT));
         CellActorData_SetAnim(param1->unk_00[v1].unk_04, 33);
         CellActor_UpdateObject(param1->unk_00[v1].unk_04->cellActor);
         CellActorData_DrawSprite(param1->unk_00[v1].unk_04, 0);
 
         param1->unk_00[v1].unk_08 = CellActor_LoadResources(param0->unk_24, param0->unk_28, &Unk_ov117_02266E04);
-        sub_0200D500(param1->unk_00[v1].unk_08, v3, v4 + -24 + 24, ((192 + 160) << FX32_SHIFT));
-        SpriteActor_SetOAMMode(param1->unk_00[v1].unk_08, GX_OAM_MODE_XLU);
-        sub_0200D6A4(param1->unk_00[v1].unk_08, 1);
-        sub_0200D6E8(param1->unk_00[v1].unk_08, 1.0f, 1.0f);
+        CellActorData_SetPositionWithOffsetXY(param1->unk_00[v1].unk_08, v3, v4 + -24 + 24, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetExplicitOAMMode(param1->unk_00[v1].unk_08, GX_OAM_MODE_XLU);
+        CellActorData_SetAffineOverwriteMode(param1->unk_00[v1].unk_08, 1);
+        CellActorData_SetAffineScaleXYFx32(param1->unk_00[v1].unk_08, 1.0f, 1.0f);
         CellActorData_SetAnim(param1->unk_00[v1].unk_08, 34 + v1);
         CellActor_UpdateObject(param1->unk_00[v1].unk_08->cellActor);
         CellActorData_DrawSprite(param1->unk_00[v1].unk_08, 0);
@@ -1662,7 +1662,7 @@ static int ov117_02265454(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
     case 0:
         CellActorData_DrawSprite(param2->unk_00, 1);
         CellActorData_DrawSprite(param2->unk_08, 1);
-        sub_0200D5A0(param2->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
+        CellActorData_GetPositionWithOffsetXY(param2->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
         param2->unk_1C = v0;
         param2->unk_1E = v1;
         param2->unk_11++;
@@ -1694,8 +1694,8 @@ static int ov117_02265454(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
             break;
         }
         if (param2->unk_12 >= 15) {
-            sub_0200D500(param2->unk_00, param2->unk_1C, param2->unk_1E, ((192 + 160) << FX32_SHIFT));
-            sub_0200D500(param2->unk_08, param2->unk_1C, param2->unk_1E + 24, ((192 + 160) << FX32_SHIFT));
+            CellActorData_SetPositionWithOffsetXY(param2->unk_00, param2->unk_1C, param2->unk_1E, ((192 + 160) << FX32_SHIFT));
+            CellActorData_SetPositionWithOffsetXY(param2->unk_08, param2->unk_1C, param2->unk_1E + 24, ((192 + 160) << FX32_SHIFT));
             ov117_02265428(param2, 2);
             ov117_0226639C(param0, param2, &param2->unk_30);
 
@@ -1705,13 +1705,13 @@ static int ov117_02265454(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
         v6 = ((180 * param2->unk_12) << FX32_SHIFT) / 15;
         v7 = -(FX_Mul(sub_0201D2B8(v6), (24 << FX32_SHIFT))) / FX32_ONE;
 
-        sub_0200D500(param2->unk_00, v0, v1 + v7, ((192 + 160) << FX32_SHIFT));
-        sub_0200D500(param2->unk_08, v0, v1 + 24, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param2->unk_00, v0, v1 + v7, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param2->unk_08, v0, v1 + 24, ((192 + 160) << FX32_SHIFT));
 
         v8 = FX32_ONE - (FX32_ONE * (-v7 / 3) / ((24 << FX32_SHIFT) >> FX32_SHIFT));
         v9 = FX_FX32_TO_F32(v8);
 
-        sub_0200D6E8(param2->unk_08, v9, v9);
+        CellActorData_SetAffineScaleXYFx32(param2->unk_08, v9, v9);
         break;
     }
 
@@ -1738,13 +1738,13 @@ static int ov117_02265644(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
     v0 = 256 / 2 + FX_Mul(sub_0201D2B8(param1->unk_E4 + param2->unk_0C), 76);
     v1 = 196 / 2 + (-FX_Mul(sub_0201D2C4(param1->unk_E4 + param2->unk_0C), (64 + 4)));
 
-    sub_0200D500(param2->unk_00, v0, v1 + -24 + v3, ((192 + 160) << FX32_SHIFT));
-    sub_0200D500(param2->unk_08, v0, v1 + -24 + 24, ((192 + 160) << FX32_SHIFT));
+    CellActorData_SetPositionWithOffsetXY(param2->unk_00, v0, v1 + -24 + v3, ((192 + 160) << FX32_SHIFT));
+    CellActorData_SetPositionWithOffsetXY(param2->unk_08, v0, v1 + -24 + 24, ((192 + 160) << FX32_SHIFT));
 
     v4 = FX32_ONE - (FX32_ONE * (-v3 / 3) / ((12 << FX32_SHIFT) >> FX32_SHIFT));
     v5 = FX_FX32_TO_F32(v4);
 
-    sub_0200D6E8(param2->unk_08, v5, v5);
+    CellActorData_SetAffineScaleXYFx32(param2->unk_08, v5, v5);
 
     if (param1->unk_F3 == Unk_ov117_02266BC4[param1->unk_F4].unk_00 - 1) {
         ov117_0226639C(param0, param2, &param2->unk_30);
@@ -1770,8 +1770,8 @@ static int ov117_022657C4(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
     switch (param2->unk_11) {
     case 0:
         Sound_PlayEffect(1403);
-        sub_0200D5A0(param2->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
-        sub_0200D500(param2->unk_04, v0, v1 + -32, ((192 + 160) << FX32_SHIFT));
+        CellActorData_GetPositionWithOffsetXY(param2->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param2->unk_04, v0, v1 + -32, ((192 + 160) << FX32_SHIFT));
         CellActorData_SetAnim(param2->unk_04, 33);
         CellActorData_DrawSprite(param2->unk_04, 1);
         CellActorData_SetAnim(param2->unk_00, Unk_ov117_02266B7A[param2->unk_14] + 2);
@@ -1824,7 +1824,7 @@ static int ov117_022657C4(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
         v4 = 256 / 2 + FX_Mul(sub_0201D2B8((360 << FX32_SHIFT) / 12 * v3), 76);
         v5 = 196 / 2 + (-FX_Mul(sub_0201D2C4((360 << FX32_SHIFT) / 12 * v3), (64 + 4)));
 
-        sub_0200D5A0(param2->unk_00, &v6, &v7, ((192 + 160) << FX32_SHIFT));
+        CellActorData_GetPositionWithOffsetXY(param2->unk_00, &v6, &v7, ((192 + 160) << FX32_SHIFT));
 
         v7 -= -24;
 
@@ -1843,9 +1843,9 @@ static int ov117_022657C4(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
         v8 = ((180 * param2->unk_12) << FX32_SHIFT) / param2->unk_18;
         v9 = -(FX_Mul(sub_0201D2B8(v8), (12 << FX32_SHIFT))) / FX32_ONE;
 
-        sub_0200D500(param2->unk_00, param2->unk_28 / FX32_ONE, param2->unk_2C / FX32_ONE + -24 + v9, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param2->unk_00, param2->unk_28 / FX32_ONE, param2->unk_2C / FX32_ONE + -24 + v9, ((192 + 160) << FX32_SHIFT));
         CellActorData_UpdateNFrames(param2->unk_00, ((8 + 8 + 12 + 8 + 8) << FX32_SHIFT) / param2->unk_18);
-        sub_0200D500(param2->unk_08, param2->unk_28 / FX32_ONE, param2->unk_2C / FX32_ONE + -24 + 24, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param2->unk_08, param2->unk_28 / FX32_ONE, param2->unk_2C / FX32_ONE + -24 + 24, ((192 + 160) << FX32_SHIFT));
 
         param2->unk_12--;
 
@@ -1872,12 +1872,12 @@ void ov117_02265ABC(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02265C3C *
     for (v1 = 0; v1 < 3; v1++) {
         param1->unk_00[v1].unk_00 = CellActor_LoadResources(param0->unk_24, param0->unk_28, &v0);
 
-        sub_0200D500(param1->unk_00[v1].unk_00, 0, 0, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param1->unk_00[v1].unk_00, 0, 0, ((192 + 160) << FX32_SHIFT));
         CellActorData_DrawSprite(param1->unk_00[v1].unk_00, 0);
 
         param1->unk_00[v1].unk_04 = CellActor_LoadResources(param0->unk_24, param0->unk_28, &Unk_ov117_02266DD0);
 
-        sub_0200D500(param1->unk_00[v1].unk_04, 0, 0, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param1->unk_00[v1].unk_04, 0, 0, ((192 + 160) << FX32_SHIFT));
         CellActorData_SetAnim(param1->unk_00[v1].unk_04, 33);
         CellActor_UpdateObject(param1->unk_00[v1].unk_04->cellActor);
         CellActorData_DrawSprite(param1->unk_00[v1].unk_04, 0);
@@ -1923,7 +1923,7 @@ void ov117_02265B58(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02265C3C *
     v3 = Unk_ov117_02266BD8[param0->unk_00->unk_30][v2];
     v4->unk_10 = Unk_ov117_02266BB4[v3].unk_02 + -24;
 
-    sub_0200D500(v4->unk_00, Unk_ov117_02266BB4[v3].unk_00, v4->unk_10 + -96, ((192 + 160) << FX32_SHIFT));
+    CellActorData_SetPositionWithOffsetXY(v4->unk_00, Unk_ov117_02266BB4[v3].unk_00, v4->unk_10 + -96, ((192 + 160) << FX32_SHIFT));
     CellActor_UpdateObject(v4->unk_00->cellActor);
 
     v4->unk_12 = param2;
@@ -1951,7 +1951,7 @@ static BOOL ov117_02265C3C(UnkStruct_ov117_02265C3C *param0, UnkStruct_ov117_022
 
     switch (param1->unk_13) {
     case 0:
-        sub_0200D5A0(param1->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
+        CellActorData_GetPositionWithOffsetXY(param1->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
         param1->unk_08 = v0 * FX32_ONE;
         param1->unk_0C = v1 * FX32_ONE;
         param1->unk_13++;
@@ -1970,8 +1970,8 @@ static BOOL ov117_02265C3C(UnkStruct_ov117_02265C3C *param0, UnkStruct_ov117_022
         }
         break;
     case 2:
-        sub_0200D5A0(param1->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
-        sub_0200D500(param1->unk_04, v0, v1 + -32, ((192 + 160) << FX32_SHIFT));
+        CellActorData_GetPositionWithOffsetXY(param1->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param1->unk_04, v0, v1 + -32, ((192 + 160) << FX32_SHIFT));
         CellActorData_SetAnim(param1->unk_04, 33);
         CellActorData_DrawSprite(param1->unk_04, 1);
         Sound_PlayEffect(1403);
@@ -2005,7 +2005,7 @@ static BOOL ov117_02265C3C(UnkStruct_ov117_02265C3C *param0, UnkStruct_ov117_022
         break;
     }
 
-    sub_0200D500(param1->unk_00, param1->unk_08 / FX32_ONE, param1->unk_0C / FX32_ONE, ((192 + 160) << FX32_SHIFT));
+    CellActorData_SetPositionWithOffsetXY(param1->unk_00, param1->unk_08 / FX32_ONE, param1->unk_0C / FX32_ONE, ((192 + 160) << FX32_SHIFT));
     return 1;
 }
 
@@ -2045,7 +2045,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_020127
 
     v0.unk_00 = param2;
     v0.unk_04 = &v1;
-    v0.unk_08 = sub_0200D9B0(param1);
+    v0.unk_08 = SpriteGfxHandler_GetCellActorCollection(param1);
     v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(param1, param8);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.unk_04;
@@ -2291,7 +2291,7 @@ BOOL ov117_02266274(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02266274 *
     switch (param1->unk_04) {
     case 0:
     case 5:
-        sub_0200D500(param1->unk_00, 128, 16, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param1->unk_00, 128, 16, ((192 + 160) << FX32_SHIFT));
         CellActorData_DrawSprite(param1->unk_00, 1);
         param1->unk_04++;
         break;
@@ -2314,7 +2314,7 @@ BOOL ov117_02266274(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02266274 *
         param1->unk_18 = 0;
         param1->unk_10 += 6;
 
-        sub_0200D5DC(param1->unk_00, 0, 6);
+        CellActorData_AddPositionXY(param1->unk_00, 0, 6);
 
         if (param1->unk_10 > 192 - 96) {
             param1->unk_04++;
@@ -2353,7 +2353,7 @@ static void ov117_02266344(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
         v0 = CellActor_LoadResources(param0->unk_24, param0->unk_28, &Unk_ov117_02266E38);
 
         CellActorData_SetAnim(v0, 27);
-        SpriteActor_SetOAMMode(v0, GX_OAM_MODE_XLU);
+        CellActorData_SetExplicitOAMMode(v0, GX_OAM_MODE_XLU);
         CellActorData_DrawSprite(v0, 0);
         CellActor_UpdateObject(v0->cellActor);
 
@@ -2375,12 +2375,12 @@ static void ov117_0226639C(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
     s16 v0, v1;
     int v2;
 
-    sub_0200D5A0(param1->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
+    CellActorData_GetPositionWithOffsetXY(param1->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
 
     for (v2 = 0; v2 < 2; v2++) {
-        sub_0200D500(param2->unk_00[v2], v0, v1 + 28, ((192 + 160) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param2->unk_00[v2], v0, v1 + 28, ((192 + 160) << FX32_SHIFT));
         CellActorData_SetAnim(param2->unk_00[v2], 27);
-        SpriteActor_SetOAMMode(param2->unk_00[v2], GX_OAM_MODE_XLU);
+        CellActorData_SetExplicitOAMMode(param2->unk_00[v2], GX_OAM_MODE_XLU);
         CellActorData_DrawSprite(param2->unk_00[v2], 1);
 
         param2->unk_08[v2] = LCRNG_Next() % 0x1000 + 0x1000;
@@ -2404,7 +2404,7 @@ static void ov117_02266440(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
         break;
     case 1:
         for (v0 = 0; v0 < 2; v0++) {
-            sub_0200D5E8(param2->unk_00[v0], param2->unk_08[v0], -param2->unk_10[v0]);
+            CellActorData_AddPositionXYFx32(param2->unk_00[v0], param2->unk_08[v0], -param2->unk_10[v0]);
             CellActor_UpdateObject(param2->unk_00[v0]->cellActor);
         }
 

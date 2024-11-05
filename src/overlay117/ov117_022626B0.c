@@ -958,7 +958,7 @@ static void ov117_02263A6C(UnkStruct_ov117_022626B0 *param0, CellActorData *para
         v0 = ov117_022637AC(param0, 0) + 1;
     }
 
-    sub_0200D500(param1, param0->unk_21C, (param0->unk_230 >> FX32_SHIFT) + Unk_ov117_02266B05[param0->unk_270].unk_02, ((192 + 160) << FX32_SHIFT));
+    CellActorData_SetPositionWithOffsetXY(param1, param0->unk_21C, (param0->unk_230 >> FX32_SHIFT) + Unk_ov117_02266B05[param0->unk_270].unk_02, ((192 + 160) << FX32_SHIFT));
     CellActorData_SetAnim(param1, v0);
     CellActor_UpdateObject(param1->cellActor);
 }

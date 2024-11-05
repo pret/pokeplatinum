@@ -2213,7 +2213,7 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
         }
 
         if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(ov12_022232D0(param0, v7), v10) == 1)) {
-            sub_0200D7D4(v1, 1);
+            CellActorData_SetFlipMode(v1, 1);
         }
     }
 

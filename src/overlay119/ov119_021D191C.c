@@ -565,18 +565,18 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
         s16 v3, v4;
         int v5 = 0;
 
-        SpriteActor_GetSpritePositionXY(param0->unk_78, &v3, &v4);
+        CellActorData_GetPositionXY(param0->unk_78, &v3, &v4);
 
         if (v4 > -48) {
-            sub_0200D5DC(param0->unk_78, 0, -4);
+            CellActorData_AddPositionXY(param0->unk_78, 0, -4);
         } else {
             v5++;
         }
 
-        SpriteActor_GetSpritePositionXY(param0->unk_7C, &v3, &v4);
+        CellActorData_GetPositionXY(param0->unk_7C, &v3, &v4);
 
         if (v4 < 192) {
-            sub_0200D5DC(param0->unk_7C, 0, +4);
+            CellActorData_AddPositionXY(param0->unk_7C, 0, +4);
         } else {
             v5++;
         }
@@ -671,18 +671,18 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
         s16 v2, v3;
         int v4 = 0;
 
-        SpriteActor_GetSpritePositionXY(param0->unk_78, &v2, &v3);
+        CellActorData_GetPositionXY(param0->unk_78, &v2, &v3);
 
         if (v3 > -48) {
-            sub_0200D5DC(param0->unk_78, 0, -4);
+            CellActorData_AddPositionXY(param0->unk_78, 0, -4);
         } else {
             v4++;
         }
 
-        SpriteActor_GetSpritePositionXY(param0->unk_7C, &v2, &v3);
+        CellActorData_GetPositionXY(param0->unk_7C, &v2, &v3);
 
         if (v3 < 192) {
-            sub_0200D5DC(param0->unk_7C, 0, +4);
+            CellActorData_AddPositionXY(param0->unk_7C, 0, +4);
         } else {
             v4++;
         }

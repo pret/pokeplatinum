@@ -1373,7 +1373,7 @@ static BOOL ov104_02230760(UnkStruct_ov104_0222E930 *param0)
     v3 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v3 != NULL);
-    sub_0200D7CC(v3->cellActor, 1);
+    thunk_CellActor_SetFlipMode(v3->cellActor, 1);
 
     return 0;
 }
@@ -1390,9 +1390,9 @@ static BOOL ov104_02230790(UnkStruct_ov104_0222E930 *param0)
     GF_ASSERT(v0 != NULL);
 
     if (v4 == 0) {
-        sub_0200D808(v0->cellActor, GX_OAM_MODE_NORMAL);
+        thunk_CellActor_SetExplicitOAMMode(v0->cellActor, GX_OAM_MODE_NORMAL);
     } else {
-        sub_0200D808(v0->cellActor, GX_OAM_MODE_XLU);
+        thunk_CellActor_SetExplicitOAMMode(v0->cellActor, GX_OAM_MODE_XLU);
     }
 
     return 0;

@@ -203,7 +203,7 @@ static void ov12_0223507C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02234E
         G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 1);
         GX_SetVisibleWnd(GX_WNDMASK_OW);
 
-        SpriteActor_SetOAMMode(v0->unk_38, GX_OAM_MODE_OBJWND);
+        CellActorData_SetExplicitOAMMode(v0->unk_38, GX_OAM_MODE_OBJWND);
     }
 
     v0->unk_00.unk_10 = 0;

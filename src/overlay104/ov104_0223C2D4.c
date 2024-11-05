@@ -648,7 +648,7 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
 
     ov63_0222D19C(&param0->unk_1C);
 
-    param0->unk_20 = ov63_0222CD2C(sub_0200D9B0(param0->unk_34.unk_04), param0->unk_04, 32, ov104_0222E5F0(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 94);
+    param0->unk_20 = ov63_0222CD2C(SpriteGfxHandler_GetCellActorCollection(param0->unk_34.unk_04), param0->unk_04, 32, ov104_0222E5F0(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 94);
 
     {
         UnkStruct_ov65_0223582C v0 = {
@@ -1083,7 +1083,7 @@ static void ov104_0223D3B0(UnkStruct_ov104_0223C4CC *param0)
             v1->unk_10[v0].unk_06_13 = ov104_0223D3A4(param0, v0);
             v1->unk_10[v0].unk_06_14 = CellActorData_GetDrawFlag(v2->unk_00[v0]);
             v1->unk_10[v0].unk_04 = v2->unk_20[v0];
-            SpriteActor_GetSpritePositionXY(v2->unk_00[v0], &v1->unk_10[v0].unk_00, &v1->unk_10[v0].unk_02);
+            CellActorData_GetPositionXY(v2->unk_00[v0], &v1->unk_10[v0].unk_00, &v1->unk_10[v0].unk_02);
             v1->unk_10[v0].unk_06_15 = 1;
         }
     }

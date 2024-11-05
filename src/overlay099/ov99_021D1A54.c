@@ -526,7 +526,7 @@ static void ov99_021D1F70(UnkStruct_ov99_021D2CB0 *param0)
     for (v0 = 2; v0 <= 4; v0++) {
         param0->unk_10E0[v0] = CellActor_LoadResources(param0->unk_18, param0->unk_1C, &Unk_ov99_021D499C);
 
-        sub_0200D6A4(param0->unk_10E0[v0], 2);
+        CellActorData_SetAffineOverwriteMode(param0->unk_10E0[v0], 2);
         CellActorData_SetAnimateFlag(param0->unk_10E0[v0], 1);
         CellActor_UpdateObject(param0->unk_10E0[v0]->cellActor);
     }

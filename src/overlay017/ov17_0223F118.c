@@ -147,7 +147,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
 
     v0.unk_00 = param3;
     v0.unk_04 = &v1;
-    v0.unk_08 = sub_0200D9B0(param2);
+    v0.unk_08 = SpriteGfxHandler_GetCellActorCollection(param2);
     v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(param2, param9);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.unk_04;
@@ -374,7 +374,7 @@ void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteRenderer *param1, Spri
 
         CellActorData_SetPositionXY(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
         CellActorData_SetAnim(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
-        sub_0200D6A4(param0->unk_00[v0], 1);
+        CellActorData_SetAffineOverwriteMode(param0->unk_00[v0], 1);
         CellActor_UpdateObject(param0->unk_00[v0]->cellActor);
     }
 
@@ -399,7 +399,7 @@ static void ov17_0223F6E8(SysTask *param0, void *param1)
     int v1;
 
     for (v1 = 0; v1 < 6; v1++) {
-        sub_0200D7C0(v0->unk_00[v1], Unk_ov17_022531CC[v1].unk_04);
+        CellActorData_AddAffineZRotation(v0->unk_00[v1], Unk_ov17_022531CC[v1].unk_04);
     }
 }
 

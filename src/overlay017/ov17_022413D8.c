@@ -753,7 +753,7 @@ void ov17_02241B3C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, u8 *
     v0->unk_00 = param0;
     v0->unk_08 = param1;
 
-    SpriteActor_GetSpritePositionXY(param0->unk_0C.unk_A8[param1], &v0->unk_0C, &v0->unk_0E);
+    CellActorData_GetPositionXY(param0->unk_0C.unk_A8[param1], &v0->unk_0C, &v0->unk_0E);
 
     switch (param2) {
     case 0:
@@ -992,7 +992,7 @@ static void ov17_0224207C(SysTask *param0, void *param1)
 
     switch (v0->unk_0C) {
     case 0:
-        sub_0200D6A4(v0->unk_00, 2);
+        CellActorData_SetAffineOverwriteMode(v0->unk_00, 2);
         v0->unk_04 = (0.1f);
         v0->unk_08 = (0.1f);
         CellActorData_DrawSprite(v0->unk_00, 1);
@@ -1001,8 +1001,8 @@ static void ov17_0224207C(SysTask *param0, void *param1)
         v0->unk_04 += (0.3f);
         v0->unk_08 += (0.3f);
 
-        sub_0200D6E8(v0->unk_00, v0->unk_04, v0->unk_08);
-        sub_0200D7C0(v0->unk_00, 0);
+        CellActorData_SetAffineScaleXYFx32(v0->unk_00, v0->unk_04, v0->unk_08);
+        CellActorData_AddAffineZRotation(v0->unk_00, 0);
 
         if (v0->unk_04 >= (1.5f)) {
             v0->unk_0C++;
@@ -1012,17 +1012,17 @@ static void ov17_0224207C(SysTask *param0, void *param1)
         v0->unk_04 -= (0.3f);
         v0->unk_08 -= (0.3f);
 
-        sub_0200D6E8(v0->unk_00, v0->unk_04, v0->unk_08);
-        sub_0200D7C0(v0->unk_00, 0);
+        CellActorData_SetAffineScaleXYFx32(v0->unk_00, v0->unk_04, v0->unk_08);
+        CellActorData_AddAffineZRotation(v0->unk_00, 0);
 
         if (v0->unk_04 <= (1.0f)) {
-            sub_0200D6E8(v0->unk_00, (1.0f), (1.0f));
-            sub_0200D79C(v0->unk_00, 0);
+            CellActorData_SetAffineScaleXYFx32(v0->unk_00, (1.0f), (1.0f));
+            CellActorData_SetAffineZRotation(v0->unk_00, 0);
             v0->unk_0C++;
         }
         break;
     default:
-        sub_0200D6A4(v0->unk_00, 0);
+        CellActorData_SetAffineOverwriteMode(v0->unk_00, 0);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         return;
@@ -1105,7 +1105,7 @@ static void ov17_022422B8(SysTask *param0, void *param1)
 
     switch (v0->unk_2E) {
     case 0:
-        sub_0200D6A4(v0->unk_04, 1);
+        CellActorData_SetAffineOverwriteMode(v0->unk_04, 1);
 
         v0->unk_20 = v0->unk_10 + (32 << 8);
         v0->unk_24 = v0->unk_14 + (72 << 8);
@@ -1161,7 +1161,7 @@ static void ov17_022422B8(SysTask *param0, void *param1)
         return;
     }
 
-    sub_0200D7C0(v0->unk_04, 0x2000);
+    CellActorData_AddAffineZRotation(v0->unk_04, 0x2000);
     CellActorData_SetPositionXY(v0->unk_04, v0->unk_10 / 0x100, v0->unk_14 / 0x100);
 }
 
@@ -1233,13 +1233,13 @@ static void ov17_0224262C(UnkStruct_ov17_02246F24 *param0, GXOamMode param1, int
     for (v0 = 0; v0 < 4; v0++) {
         for (v1 = 0; v1 < 6; v1++) {
             if (param0->unk_0C.unk_C4[v0][v1] != NULL) {
-                SpriteActor_SetOAMMode(param0->unk_0C.unk_C4[v0][v1], param1);
+                CellActorData_SetExplicitOAMMode(param0->unk_0C.unk_C4[v0][v1], param1);
                 CellActorData_DrawSprite(param0->unk_0C.unk_C4[v0][v1], v2);
             }
         }
 
         if (param0->unk_0C.unk_160[v0] != NULL) {
-            SpriteActor_SetOAMMode(param0->unk_0C.unk_160[v0], param1);
+            CellActorData_SetExplicitOAMMode(param0->unk_0C.unk_160[v0], param1);
             CellActorData_DrawSprite(param0->unk_0C.unk_160[v0], v2);
         }
 
@@ -1836,7 +1836,7 @@ void ov17_0224331C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, u8 *
         }
 
         if (*param3 == 0) {
-            SpriteActor_GetSpritePositionXY(param0->unk_0C.unk_C4[param1][v7], &v3, &v4);
+            CellActorData_GetPositionXY(param0->unk_0C.unk_C4[param1][v7], &v3, &v4);
             v8 = sub_0208C0A4(
                      MATH_IAbs(v3 - v1), MATH_IAbs(v4 - v2))
                 * 0x100;
@@ -1865,7 +1865,7 @@ void ov17_0224331C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, u8 *
         v0->unk_23 = v3;
         v0->unk_24 = v4;
 
-        SpriteActor_GetSpritePositionXY(param0->unk_0C.unk_C4[param1][v7], &v5, &v6);
+        CellActorData_GetPositionXY(param0->unk_0C.unk_C4[param1][v7], &v5, &v6);
 
         v0->unk_1C = (MATH_IAbs(v3 - v5) << 8) / (3 * (*param3));
         v0->unk_18 = v5 << 8;
@@ -1890,7 +1890,7 @@ static void ov17_022434E0(SysTask *param0, void *param1)
             v0->unk_20++;
         }
 
-        SpriteActor_GetSpritePositionXY(v0->unk_08, &v4, &v5);
+        CellActorData_GetPositionXY(v0->unk_08, &v4, &v5);
         v4 = v0->unk_18 >> 8;
         CellActorData_SetPositionXY(v0->unk_08, v4, v5);
         break;
@@ -2008,7 +2008,7 @@ static void ov17_02243750(SysTask *param0, void *param1)
             break;
         }
 
-        SpriteActor_GetSpritePositionXY(v0->unk_04, &v1, &v2);
+        CellActorData_GetPositionXY(v0->unk_04, &v1, &v2);
 
         v2 += (6 << FX32_SHIFT) >> FX32_SHIFT;
         v0->unk_1C = v1 << 8;
@@ -2032,7 +2032,7 @@ static void ov17_02243750(SysTask *param0, void *param1)
 
         if (v0->unk_24 > 80) {
             v0->unk_24 = 0;
-            SpriteActor_GetSpritePositionXY(v0->unk_04, &v1, &v2);
+            CellActorData_GetPositionXY(v0->unk_04, &v1, &v2);
             v0->unk_1C = v1 << 8;
             v0->unk_20 = v2 << 8;
             {

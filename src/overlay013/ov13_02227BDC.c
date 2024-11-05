@@ -109,7 +109,7 @@ static void ov13_02227C54(UnkStruct_ov13_02227244 *param0)
 static void ov13_02227D10(UnkStruct_ov13_02227244 *param0, u16 param1, u32 param2)
 {
     SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_00);
-    sub_0200D948(v0, param0->unk_30C, 16, Item_FileID(param1, 1), 0, param2);
+    SpriteRenderer_ModifyTiles(v0, param0->unk_30C, 16, Item_FileID(param1, 1), 0, param2);
 }
 
 static void ov13_02227D48(UnkStruct_ov13_02227244 *param0, u16 param1, u16 param2, u32 param3)

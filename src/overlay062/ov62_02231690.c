@@ -1752,7 +1752,7 @@ void ov62_0223331C(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
     CellActorData_SetAnim(param0->unk_2C[1], 0);
     CellActorData_UpdateObject(param0->unk_2C[0]);
     CellActorData_UpdateObject(param0->unk_2C[1]);
-    sub_0200D7D4(param0->unk_2C[1], 2);
+    CellActorData_SetFlipMode(param0->unk_2C[1], 2);
 
     if (param2 == 1) {
         CellActorData_SetPositionXY(param0->unk_2C[0], 256 / 2, 24);

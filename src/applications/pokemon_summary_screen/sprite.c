@@ -272,7 +272,7 @@ void sub_0208ECF4(PokemonSummaryScreen *param0)
             }
         }
 
-        sub_0200D50C(v0[v5], &v1, &v2);
+        CellActor_GetPositionXY(v0[v5], &v1, &v2);
 
         if (param0->page >= v5) {
             v1 = v3 + v6 * 16;
@@ -321,8 +321,8 @@ void sub_0208EE3C(PokemonSummaryScreen *param0)
         v0 = 21 + param0->monData.caughtBall - 1;
     }
 
-    sub_0200D948(param0->renderer, param0->gfxHandler, 39, v0, 0, 0);
-    sub_0200D97C(param0->renderer, param0->gfxHandler, 39, 37 + Unk_020F411C[param0->monData.caughtBall], 0, 6);
+    SpriteRenderer_ModifyTiles(param0->renderer, param0->gfxHandler, 39, v0, 0, 0);
+    SpriteRenderer_ModifyPalette(param0->renderer, param0->gfxHandler, 39, 37 + Unk_020F411C[param0->monData.caughtBall], 0, 6);
 }
 
 void sub_0208EE9C(PokemonSummaryScreen *param0)
@@ -431,7 +431,7 @@ void sub_0208F16C(PokemonSummaryScreen *param0)
 
 static void sub_0208F194(PokemonSummaryScreen *param0, u8 param1, u8 param2, u8 param3)
 {
-    sub_0200D948(param0->renderer, param0->gfxHandler, sub_0207C944(), sub_0207C908(param3), 1, param2);
+    SpriteRenderer_ModifyTiles(param0->renderer, param0->gfxHandler, sub_0207C944(), sub_0207C908(param3), 1, param2);
     thunk_CellActor_SetExplicitPalette(param0->unk_41C[param1], sub_0207C92C(param3) + RESDAT_PST_PAL_NARC_27_MEMBER_74_1_OFFSET);
 }
 
@@ -442,7 +442,7 @@ static void sub_0208F1E4(PokemonSummaryScreen *param0, u8 *param1, s16 *param2, 
     v1 = 42 + *param1 * 32;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200D50C(param0->unk_41C[13 + v0], param2, param3);
+        CellActor_GetPositionXY(param0->unk_41C[13 + v0], param2, param3);
 
         if (v1 == *param3) {
             *param1 = (u8)v0;
@@ -466,7 +466,7 @@ void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summarySc
 {
     u32 category = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, sub_0207CAC0(), sub_0207CA90(category), 1, 10);
+    SpriteRenderer_ModifyTiles(summaryScreen->renderer, summaryScreen->gfxHandler, sub_0207CAC0(), sub_0207CA90(category), 1, 10);
     thunk_CellActor_SetExplicitPalette(summaryScreen->unk_41C[18], sub_0207CAA8(category) + RESDAT_PST_PAL_NARC_27_MEMBER_74_1_OFFSET);
 }
 
@@ -479,7 +479,7 @@ void sub_0208F310(PokemonSummaryScreen *summaryScreen)
 {
     s16 v0, v1;
 
-    sub_0200D50C(summaryScreen->unk_41C[9], &v0, &v1);
+    CellActor_GetPositionXY(summaryScreen->unk_41C[9], &v0, &v1);
     CellActor_SetPositionXY(summaryScreen->unk_41C[10], v0, v1);
     CellActor_SetDrawFlag(summaryScreen->unk_41C[10], TRUE);
 }
@@ -670,14 +670,14 @@ void sub_0208F71C(PokemonSummaryScreen *param0)
         v1 = Pokemon_IconSpriteIndex(v0);
     }
 
-    sub_0200D948(param0->renderer, param0->gfxHandler, 19, v1, 0, 11);
+    SpriteRenderer_ModifyTiles(param0->renderer, param0->gfxHandler, 19, v1, 0, 11);
     thunk_CellActor_SetExplicitPalette(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.species, param0->monData.form, param0->monData.isEgg) + RESDAT_PST_PAL_NARC_20_MEMBER_23_3_OFFSET);
     CellActor_SetFlipMode(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1));
 }
 
 void PokemonSummaryScreen_ShowMonIcon(PokemonSummaryScreen *summaryScreen)
 {
-    sub_0200D97C(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 5);
+    SpriteRenderer_ModifyPalette(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 5);
 
     if (summaryScreen->page == PSS_PAGE_BATTLE_MOVES) {
         CellActor_SetPositionXY(summaryScreen->unk_41C[19], 24, 48);
@@ -733,7 +733,7 @@ void PokemonSummaryScreen_HideContestStatDots(PokemonSummaryScreen *summaryScree
 
 static void sub_0208F9B0(PokemonSummaryScreen *summaryScreen, u8 ribbonNum, u8 param2)
 {
-    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, 39, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + param2);
+    SpriteRenderer_ModifyTiles(summaryScreen->renderer, summaryScreen->gfxHandler, 39, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + param2);
     thunk_CellActor_SetExplicitPalette(summaryScreen->unk_41C[55 + param2], Ribbon_GetData(ribbonNum, RIBBON_DATA_PALETTE_NUM) + RESDAT_PST_PAL_NARC_20_MEMBER_23_3_OFFSET);
 }
 
@@ -749,7 +749,7 @@ void sub_0208FA04(PokemonSummaryScreen *summaryScreen)
         return;
     }
 
-    sub_0200D97C(summaryScreen->renderer, summaryScreen->gfxHandler, 39, 136, 0, 5);
+    SpriteRenderer_ModifyPalette(summaryScreen->renderer, summaryScreen->gfxHandler, 39, 136, 0, 5);
 
     for (i = 0; i < 12; i++) {
         if (i < summaryScreen->ribbonMax) {

@@ -87,7 +87,7 @@ void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, N
     param0->unk_704[param1].unk_16 = param2;
     param0->unk_704[param1].unk_18 = param3;
 
-    sub_0200D9B4(param0->unk_5A8, param0->unk_5AC, param4, Pokemon_IconSpriteIndex(v0), 0, 4 + param1);
+    SpriteRenderer_ModifyTilesFromOpenNarc(param0->unk_5A8, param0->unk_5AC, param4, Pokemon_IconSpriteIndex(v0), 0, 4 + param1);
 
     v2 = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
 

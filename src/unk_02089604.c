@@ -189,16 +189,16 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
                     continue;
                 }
 
-                sub_0200D5DC(param0->unk_00[v0].unk_0C, param0->unk_00[v0].unk_14.unk_00, param0->unk_00[v0].unk_14.unk_02);
+                CellActorData_AddPositionXY(param0->unk_00[v0].unk_0C, param0->unk_00[v0].unk_14.unk_00, param0->unk_00[v0].unk_14.unk_02);
                 param0->unk_00[v0].unk_14.unk_04--;
 
                 if ((v0 >= param0->unk_2B0) && (v0 < param0->unk_2B4)) {
-                    sub_0200D6E8(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
+                    CellActorData_SetAffineScaleXYFx32(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
                 }
 
                 if ((v0 >= param0->unk_2B8) && (v0 < param0->unk_2BC)) {
-                    sub_0200D6E8(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
+                    CellActorData_SetAffineScaleXYFx32(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
                 }
             }
@@ -208,7 +208,7 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
                     continue;
                 }
 
-                sub_0200D5DC(param0->unk_1A0[v0].unk_0C, param0->unk_1A0[v0].unk_14.unk_00, param0->unk_1A0[v0].unk_14.unk_02);
+                CellActorData_AddPositionXY(param0->unk_1A0[v0].unk_0C, param0->unk_1A0[v0].unk_14.unk_00, param0->unk_1A0[v0].unk_14.unk_02);
                 param0->unk_1A0[v0].unk_14.unk_04--;
             }
 
@@ -235,7 +235,7 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
                 continue;
             }
 
-            sub_0200D6E8(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
+            CellActorData_SetAffineScaleXYFx32(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
             param0->unk_00[v0].unk_14.unk_05++;
         }
 
@@ -244,7 +244,7 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
                 continue;
             }
 
-            sub_0200D6E8(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
+            CellActorData_SetAffineScaleXYFx32(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
             param0->unk_00[v0].unk_14.unk_05++;
         }
 

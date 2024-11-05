@@ -321,8 +321,8 @@ void ov84_02240ABC(UnkStruct_ov84_0223B5A0 *param0)
 
 void ov84_02240AD8(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 {
-    sub_0200D948(param0->unk_D8, param0->unk_DC, 16, Item_FileID(param1, 1), 0, 49407);
-    sub_0200D97C(param0->unk_D8, param0->unk_DC, 16, Item_FileID(param1, 2), 0, 49404);
+    SpriteRenderer_ModifyTiles(param0->unk_D8, param0->unk_DC, 16, Item_FileID(param1, 1), 0, 49407);
+    SpriteRenderer_ModifyPalette(param0->unk_D8, param0->unk_DC, 16, Item_FileID(param1, 2), 0, 49404);
 }
 
 void ov84_02240B34(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
@@ -448,9 +448,9 @@ void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
     v1 = MoveTable_LoadParam(v0, MOVEATTRIBUTE_TYPE);
     v2 = MoveTable_LoadParam(v0, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->unk_D8, param0->unk_DC, sub_0207C944(), sub_0207C908(v1), 1, 49409);
+    SpriteRenderer_ModifyTiles(param0->unk_D8, param0->unk_DC, sub_0207C944(), sub_0207C908(v1), 1, 49409);
     CellActorData_SetExplicitPalette(param0->unk_E0[10], sub_0207C92C(v1) + 6);
-    sub_0200D948(param0->unk_D8, param0->unk_DC, sub_0207CAC0(), sub_0207CA90(v2), 1, 49410);
+    SpriteRenderer_ModifyTiles(param0->unk_D8, param0->unk_DC, sub_0207CAC0(), sub_0207CA90(v2), 1, 49410);
     CellActorData_SetExplicitPalette(param0->unk_E0[11], sub_0207CAA8(v2) + 6);
 }
 

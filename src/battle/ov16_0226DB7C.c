@@ -104,10 +104,10 @@ void ov16_0226DCCC(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int 
 {
     int v0;
 
-    sub_0200D500(param0->unk_00[0], param1, param2, param9);
-    sub_0200D500(param0->unk_00[1], param3, param4, param9);
-    sub_0200D500(param0->unk_00[2], param5, param6, param9);
-    sub_0200D500(param0->unk_00[3], param7, param8, param9);
+    CellActorData_SetPositionWithOffsetXY(param0->unk_00[0], param1, param2, param9);
+    CellActorData_SetPositionWithOffsetXY(param0->unk_00[1], param3, param4, param9);
+    CellActorData_SetPositionWithOffsetXY(param0->unk_00[2], param5, param6, param9);
+    CellActorData_SetPositionWithOffsetXY(param0->unk_00[3], param7, param8, param9);
 
     CellActorData_SetAnim(param0->unk_00[0], 0);
     CellActorData_SetAnim(param0->unk_00[1], 1);
@@ -136,7 +136,7 @@ void ov16_0226DD9C(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int 
 
 void ov16_0226DDC0(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, fx32 param4)
 {
-    sub_0200D500(param0->unk_00[4], param1, param2, param4);
+    CellActorData_SetPositionWithOffsetXY(param0->unk_00[4], param1, param2, param4);
     CellActorData_SetAnim(param0->unk_00[4], param3);
     CellActorData_DrawSprite(param0->unk_00[4], 1);
 }

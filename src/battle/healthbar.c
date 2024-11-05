@@ -1007,7 +1007,7 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbar->type);
 
     s16 x, y;
-    SpriteActor_GetSpritePositionXY(healthbar->mainActor, &x, &y);
+    CellActorData_GetPositionXY(healthbar->mainActor, &x, &y);
 
     // Determine new X and Y based on the type of healthbar
     switch (healthbar->type) {

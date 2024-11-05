@@ -57,10 +57,10 @@ void ov76_0223B184(TouchScreenRect *rect, CellActorData *param1, BOOL param2)
 
     if (param2 == 1) {
         CellActorData_SetPositionXY(param1, gCoreSys.touchX, gCoreSys.touchY);
-        SpriteActor_GetSpritePositionXY(param1, &v0, &v1);
+        CellActorData_GetPositionXY(param1, &v0, &v1);
         ov76_0223B174(rect);
     } else {
-        SpriteActor_GetSpritePositionXY(param1, &v0, &v1);
+        CellActorData_GetPositionXY(param1, &v0, &v1);
         ov76_0223B15C(rect, v0, v1);
     }
 }
@@ -74,7 +74,7 @@ void ov76_0223B1E0(UnkStruct_ov76_0223DE00 *param0)
             continue;
         }
 
-        sub_0200D5DC(param0->unk_324[v0].unk_08, -(+7 * 8), -(-2 * 8));
+        CellActorData_AddPositionXY(param0->unk_324[v0].unk_08, -(+7 * 8), -(-2 * 8));
     }
 }
 
@@ -398,7 +398,7 @@ BOOL ov76_0223B6C4(UnkStruct_ov76_0223DE00 *param0, int param1)
         return 1;
     }
 
-    SpriteActor_GetSpritePositionXY(param0->unk_324[param1].unk_08, &v1, &v2);
+    CellActorData_GetPositionXY(param0->unk_324[param1].unk_08, &v1, &v2);
     v0 = ov12_02237E54(v1, v2, 190, 70);
 
     if (v0 > 60) {
@@ -435,9 +435,9 @@ void ov76_0223B758(UnkStruct_ov76_0223DE00 *param0, int param1)
     v0 = ov76_0223B6C4(param0, param1);
 
     if (v0 == 0) {
-        SpriteActor_SetOAMMode(param0->unk_324[param1].unk_08, GX_OAM_MODE_XLU);
+        CellActorData_SetExplicitOAMMode(param0->unk_324[param1].unk_08, GX_OAM_MODE_XLU);
     } else {
-        SpriteActor_SetOAMMode(param0->unk_324[param1].unk_08, GX_OAM_MODE_NORMAL);
+        CellActorData_SetExplicitOAMMode(param0->unk_324[param1].unk_08, GX_OAM_MODE_NORMAL);
     }
 }
 
@@ -463,7 +463,7 @@ void ov76_0223B7D4(UnkStruct_ov76_0223DE00 *param0, int param1)
 {
     s16 v0, v1;
 
-    SpriteActor_GetSpritePositionXY(param0->unk_324[param1].unk_08, &v0, &v1);
+    CellActorData_GetPositionXY(param0->unk_324[param1].unk_08, &v0, &v1);
 
     param0->unk_324[param1].unk_05 = (u8)v0;
     param0->unk_324[param1].unk_06 = (u8)v1;

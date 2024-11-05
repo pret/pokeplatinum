@@ -207,19 +207,19 @@ BOOL ov62_02246DF8(UnkStruct_ov62_02246BF4 *param0)
                     continue;
                 }
 
-                sub_0200D5DC(param0->unk_00[v0].unk_0C, param0->unk_00[v0].unk_14.unk_00, param0->unk_00[v0].unk_14.unk_02);
+                CellActorData_AddPositionXY(param0->unk_00[v0].unk_0C, param0->unk_00[v0].unk_14.unk_00, param0->unk_00[v0].unk_14.unk_02);
                 param0->unk_00[v0].unk_14.unk_04--;
 
                 if ((v0 >= param0->unk_210) && (v0 < param0->unk_214)) {
-                    sub_0200D6E8(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
+                    CellActorData_SetAffineScaleXYFx32(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
-                    sub_0200D6A4(param0->unk_00[v0].unk_0C, 2);
+                    CellActorData_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, 2);
                 }
 
                 if ((v0 >= param0->unk_218) && (v0 < param0->unk_21C)) {
-                    sub_0200D6E8(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
+                    CellActorData_SetAffineScaleXYFx32(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
-                    sub_0200D6A4(param0->unk_00[v0].unk_0C, 2);
+                    CellActorData_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, 2);
                 }
             }
 
@@ -228,7 +228,7 @@ BOOL ov62_02246DF8(UnkStruct_ov62_02246BF4 *param0)
                     continue;
                 }
 
-                sub_0200D5DC(param0->unk_150[v0].unk_0C, param0->unk_150[v0].unk_14.unk_00, param0->unk_150[v0].unk_14.unk_02);
+                CellActorData_AddPositionXY(param0->unk_150[v0].unk_0C, param0->unk_150[v0].unk_14.unk_00, param0->unk_150[v0].unk_14.unk_02);
                 param0->unk_150[v0].unk_14.unk_04--;
             }
 
@@ -250,21 +250,21 @@ BOOL ov62_02246DF8(UnkStruct_ov62_02246BF4 *param0)
     case 1:
         for (v0 = param0->unk_210; v0 < param0->unk_214; v0++) {
             if (param0->unk_00[v0].unk_14.unk_05 == 6) {
-                sub_0200D6A4(param0->unk_00[v0].unk_0C, 1);
+                CellActorData_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, 1);
                 continue;
             }
 
-            sub_0200D6E8(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
+            CellActorData_SetAffineScaleXYFx32(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
             param0->unk_00[v0].unk_14.unk_05++;
         }
 
         for (v0 = param0->unk_218; v0 < param0->unk_21C; v0++) {
             if (param0->unk_00[v0].unk_14.unk_05 == 6) {
-                sub_0200D6A4(param0->unk_00[v0].unk_0C, 1);
+                CellActorData_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, 1);
                 continue;
             }
 
-            sub_0200D6E8(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
+            CellActorData_SetAffineScaleXYFx32(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
             param0->unk_00[v0].unk_14.unk_05++;
         }
 
@@ -673,7 +673,7 @@ void ov62_02247754(UnkStruct_ov62_02246BF4 *param0)
             param0->unk_00[v1].unk_0C = CellActor_LoadResources(v4, v5, &v3);
             CellActorData_SetPositionXY(param0->unk_00[v1].unk_0C, 72 + (v0 * 8) + 4, 24);
             CellActorData_SetAnim(param0->unk_00[v1].unk_0C, ov62_02247B3C(param0->unk_00[v1].unk_00, param0->unk_00[v1].unk_08));
-            sub_0200D6A4(param0->unk_00[v1].unk_0C, 0);
+            CellActorData_SetAffineOverwriteMode(param0->unk_00[v1].unk_0C, 0);
             CellActorData_UpdateObject(param0->unk_00[v1].unk_0C);
             v1++;
         }
@@ -722,7 +722,7 @@ void ov62_0224784C(UnkStruct_ov62_02246BF4 *param0)
     ov62_022479D4(param0, 0);
     CellActorData_SetAnim(param0->unk_188[1].unk_0C, param0->unk_188[1].unk_00);
     CellActorData_UpdateObject(param0->unk_188[1].unk_0C);
-    SpriteActor_SetOAMMode(param0->unk_188[1].unk_0C, GX_OAM_MODE_XLU);
+    CellActorData_SetExplicitOAMMode(param0->unk_188[1].unk_0C, GX_OAM_MODE_XLU);
 
     param0->unk_188[2].unk_14.unk_00 = 0;
     param0->unk_188[2].unk_14.unk_02 = 0;
@@ -731,7 +731,7 @@ void ov62_0224784C(UnkStruct_ov62_02246BF4 *param0)
     ov62_022479D4(param0, 0);
     CellActorData_SetAnim(param0->unk_188[2].unk_0C, param0->unk_188[2].unk_00);
     CellActorData_UpdateObject(param0->unk_188[2].unk_0C);
-    SpriteActor_SetOAMMode(param0->unk_188[2].unk_0C, GX_OAM_MODE_XLU);
+    CellActorData_SetExplicitOAMMode(param0->unk_188[2].unk_0C, GX_OAM_MODE_XLU);
     ov62_02247968(param0, 1, 0);
     ov62_02247968(param0, 2, 0);
 }
@@ -753,7 +753,7 @@ void ov62_02247998(UnkStruct_ov62_02246BF4 *param0, int param1)
     v2 = param0->unk_00[param1].unk_0C;
     param0->unk_188[0].unk_00 = param1;
 
-    SpriteActor_GetSpritePositionXY(v2, &v0, &v1);
+    CellActorData_GetPositionXY(v2, &v0, &v1);
     CellActorData_SetPositionXY(param0->unk_188[0].unk_0C, v0, v1 + 16);
 }
 
@@ -876,7 +876,7 @@ void ov62_02247B88(UnkStruct_ov62_02246BF4 *param0, int param1)
             }
         }
 
-        SpriteActor_GetSpritePositionXY(param0->unk_00[v0].unk_0C, &v3, &v4);
+        CellActorData_GetPositionXY(param0->unk_00[v0].unk_0C, &v3, &v4);
 
         if (param1 == 0) {
             CellActorData_SetPositionXY(param0->unk_00[v0].unk_0C, v2, v4);
@@ -888,7 +888,7 @@ void ov62_02247B88(UnkStruct_ov62_02246BF4 *param0, int param1)
         }
 
         if ((v0 == param0->unk_150[v1].unk_00) && (v1 != 3 - 1)) {
-            SpriteActor_GetSpritePositionXY(param0->unk_150[v1].unk_0C, &v3, &v4);
+            CellActorData_GetPositionXY(param0->unk_150[v1].unk_0C, &v3, &v4);
 
             if (param0->unk_210 == param0->unk_214) {
                 v2 += 8;
@@ -920,7 +920,7 @@ static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 *param0, int par
 
     v2 = &param0->unk_00[param1];
 
-    SpriteActor_GetSpritePositionXY(v2->unk_0C, &v0, &v1);
+    CellActorData_GetPositionXY(v2->unk_0C, &v0, &v1);
 
     v2->unk_10->rect.top = v1 - param3;
     v2->unk_10->rect.left = v0 - param2;

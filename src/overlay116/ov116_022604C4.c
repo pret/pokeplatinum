@@ -226,7 +226,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
         }
     }
 
-    param0->unk_7C = ov114_0225CAD4(sub_0200D9B0(param0->unk_48.unk_0C), 106);
+    param0->unk_7C = ov114_0225CAD4(SpriteGfxHandler_GetCellActorCollection(param0->unk_48.unk_0C), 106);
     PaletteData_LoadBufferFromHardware(param0->unk_48.unk_14, 2, 0 * 16, 16 * 0x20);
 
     if (param0->unk_80->unk_3C) {

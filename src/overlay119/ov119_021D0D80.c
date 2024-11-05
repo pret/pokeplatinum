@@ -576,7 +576,7 @@ void ov119_021D161C(UnkStruct_ov119_021D0FD0 *param0)
     param0->unk_74 = CellActor_LoadResources(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
 
     CellActorData_UpdateObject(param0->unk_74);
-    sub_0200D6A4(param0->unk_74, 2);
+    CellActorData_SetAffineOverwriteMode(param0->unk_74, 2);
 
     v0.x = 0;
     v0.y = 0 - (2 * 8);
@@ -653,10 +653,10 @@ BOOL ov119_021D16C0(UnkStruct_ov119_021D0FD0 *param0, int param1)
                 v5++;
             }
 
-            sub_0200D5DC(param0->unk_74, v1, v2);
+            CellActorData_AddPositionXY(param0->unk_74, v1, v2);
 
             if (v3 != 0.0f) {
-                sub_0200D6E8(param0->unk_74, v3, v4);
+                CellActorData_SetAffineScaleXYFx32(param0->unk_74, v3, v4);
             } else {
                 v5++;
             }

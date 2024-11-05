@@ -295,8 +295,8 @@ BOOL ov62_02235008(UnkStruct_0208C06C *param0)
                 v0->unk_00[v1].unk_08 = (25 + (36 * (v1)) + (16 * (5 - (param0->unk_534.unk_1AC))));
 
                 ov62_02230E68(param0->unk_534.unk_C8[v1].unk_00, 42, (25 + (36 * (5 - 1)) + (16 * (5 - (param0->unk_534.unk_1AC)))));
-                sub_0200D638(param0->unk_534.unk_C8[v1].unk_00, &v0->unk_00[v1].unk_0C, &v2);
-                sub_0200D614(param0->unk_534.unk_C8[v1].unk_00, v0->unk_00[v1].unk_0C, (25 + (36 * (5 - 1)) + (16 * (5 - (param0->unk_534.unk_1AC)))) * FX32_ONE);
+                CellActorData_GetPositionFx32(param0->unk_534.unk_C8[v1].unk_00, &v0->unk_00[v1].unk_0C, &v2);
+                CellActorData_SetPositionFx32(param0->unk_534.unk_C8[v1].unk_00, v0->unk_00[v1].unk_0C, (25 + (36 * (5 - 1)) + (16 * (5 - (param0->unk_534.unk_1AC)))) * FX32_ONE);
                 sub_020128C4(param0->unk_534.unk_C8[v1].unk_14, 36, -8);
                 sub_020129D0(param0->unk_534.unk_C8[v1].unk_14, 1);
             }
@@ -339,7 +339,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C *param0)
                 v7 = v0->unk_00[v3].unk_0C + (sub_0201D250((v0->unk_00[v3].unk_04 * 0xffff) / 360) * 16);
                 v0->unk_00[v3].unk_04 += (-4 * 1);
 
-                sub_0200D614(param0->unk_534.unk_C8[v3].unk_00, v7, v8);
+                CellActorData_SetPositionFx32(param0->unk_534.unk_C8[v3].unk_00, v7, v8);
                 sub_020128C4(param0->unk_534.unk_C8[v3].unk_14, 36, -8);
             }
             if (v4 == param0->unk_534.unk_1AC) {

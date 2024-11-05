@@ -712,7 +712,7 @@ void ov62_0222FF7C(UnkStruct_0208C06C *param0)
             continue;
         }
 
-        SpriteActor_GetSpritePositionXY(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
+        CellActorData_GetPositionXY(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
 
         param0->unk_534.unk_C8[v0].unk_10->rect.top = v2 - 16;
         param0->unk_534.unk_C8[v0].unk_10->rect.bottom = v2 + 16;
@@ -727,7 +727,7 @@ void ov62_02230014(UnkStruct_0208C06C *param0)
     s16 v1, v2;
 
     for (v0 = 0; v0 < 5; v0++) {
-        SpriteActor_GetSpritePositionXY(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
+        CellActorData_GetPositionXY(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
         param0->unk_534.unk_C8[v0].unk_10->rect.top = 0;
         param0->unk_534.unk_C8[v0].unk_10->rect.bottom = 0;
         param0->unk_534.unk_C8[v0].unk_10->rect.left = 0;

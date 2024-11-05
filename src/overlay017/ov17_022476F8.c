@@ -119,7 +119,7 @@ void ov17_022477B8(UnkStruct_ov17_02247A48 *param0, int param1, int param2, fx32
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022477B8));
 
     v0->unk_04 = CellActor_LoadResources(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
-    sub_0200D500(v0->unk_04, param1, param2, (256 * FX32_ONE));
+    CellActorData_SetPositionWithOffsetXY(v0->unk_04, param1, param2, (256 * FX32_ONE));
 
     if (param4 == 1) {
         CellActorData_SetAnim(v0->unk_04, 1);
@@ -147,7 +147,7 @@ static void ov17_02247840(SysTask *param0, void *param1)
         v0->unk_10 += (6 << FX32_SHIFT);
         v0->unk_0C -= 0x100;
 
-        sub_0200D500(v0->unk_04, v0->unk_08 / 0x100 + v1, v0->unk_0C / 0x100, (256 * FX32_ONE));
+        CellActorData_SetPositionWithOffsetXY(v0->unk_04, v0->unk_08 / 0x100 + v1, v0->unk_0C / 0x100, (256 * FX32_ONE));
 
         v0->unk_16++;
 

@@ -158,9 +158,9 @@ static void ov12_0223483C(CellActorData *param0, UnkStruct_ov12_02225F6C *param1
 {
     s16 v0, v1;
 
-    sub_0200D6A4(param0, 2);
+    CellActorData_SetAffineOverwriteMode(param0, 2);
     CellActorData_DrawSprite(param0, 1);
-    SpriteActor_GetSpritePositionXY(param0, &v0, &v1);
+    CellActorData_GetPositionXY(param0, &v0, &v1);
 
     ov12_02225BC8(param1, v0, v0 + (16 * param3), v1, v1 + -32, 32);
     ov12_02225E68(param2, 2, 10, 10, 32);
@@ -193,7 +193,7 @@ void ov12_022348C8(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, Spri
     v0->unk_10 = param3;
 
     CellActorData_DrawSprite(v0->unk_10, 0);
-    SpriteActor_SetOAMMode(v0->unk_10, GX_OAM_MODE_XLU);
+    CellActorData_SetExplicitOAMMode(v0->unk_10, GX_OAM_MODE_XLU);
     CellActorData_SetPriority(v0->unk_10, 100);
     CellActorData_SetExplicitPriority(v0->unk_10, 1);
 
@@ -296,7 +296,7 @@ static void ov12_02234AE0(CellActorData *param0, int *param1, int *param2, int p
     *param2 = param3 * 2;
     *param1 = 16;
 
-    SpriteActor_GetSpritePositionXY(param0, &v0, &v1);
+    CellActorData_GetPositionXY(param0, &v0, &v1);
 
     v0 += (40 + (-12 * param3)) * param4;
     v1 += 40;
@@ -464,7 +464,7 @@ void ov12_02234D98(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, Spri
         }
 
         CellActorData_SetPriority(v0->unk_18[v1], 100);
-        SpriteActor_SetOAMMode(v0->unk_18[v1], GX_OAM_MODE_XLU);
+        CellActorData_SetExplicitOAMMode(v0->unk_18[v1], GX_OAM_MODE_XLU);
         CellActorData_SetAnimateFlag(v0->unk_18[v1], 1);
     }
 

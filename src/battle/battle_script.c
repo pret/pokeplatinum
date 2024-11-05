@@ -12268,7 +12268,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
 
     v12.unk_00 = param1->tmpPtr[0];
     v12.unk_04 = &v9;
-    v12.unk_08 = sub_0200D9B0(v2);
+    v12.unk_08 = SpriteGfxHandler_GetCellActorCollection(v2);
     v12.unk_0C = SpriteGfxHandler_GetPaletteProxy(v2, 20016);
     v12.unk_10 = NULL;
     v12.unk_14 = v11.unk_04;

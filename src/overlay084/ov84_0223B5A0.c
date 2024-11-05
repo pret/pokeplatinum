@@ -1760,22 +1760,22 @@ static void ov84_0223D0FC(UnkStruct_ov84_0223B5A0 *param0)
         switch (param0->unk_480) {
         case 0:
         case 1:
-            SpriteActor_GetSpritePositionXY(param0->unk_E0[2], &v0, &v1);
+            CellActorData_GetPositionXY(param0->unk_E0[2], &v0, &v1);
 
             v0 -= 1;
             CellActorData_SetPositionXY(param0->unk_E0[2], v0, v1);
-            SpriteActor_GetSpritePositionXY(param0->unk_E0[3], &v0, &v1);
+            CellActorData_GetPositionXY(param0->unk_E0[3], &v0, &v1);
 
             v0 += 1;
             CellActorData_SetPositionXY(param0->unk_E0[3], v0, v1);
             break;
         case 2:
         case 3:
-            SpriteActor_GetSpritePositionXY(param0->unk_E0[2], &v0, &v1);
+            CellActorData_GetPositionXY(param0->unk_E0[2], &v0, &v1);
 
             v0 += 1;
             CellActorData_SetPositionXY(param0->unk_E0[2], v0, v1);
-            SpriteActor_GetSpritePositionXY(param0->unk_E0[3], &v0, &v1);
+            CellActorData_GetPositionXY(param0->unk_E0[3], &v0, &v1);
 
             v0 -= 1;
             CellActorData_SetPositionXY(param0->unk_E0[3], v0, v1);

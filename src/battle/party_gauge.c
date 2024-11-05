@@ -344,7 +344,7 @@ static void ShowArrowTask(SysTask *task, void *data)
     case SHOW_ARROW_INIT:
         s16 x, y;
 
-        SpriteActor_GetSpritePositionXY(arrow->cells, &x, &y);
+        CellActorData_GetPositionXY(arrow->cells, &x, &y);
         arrow->x = x << 8;
         arrow->state++;
         // fall-through
@@ -405,10 +405,10 @@ static void HideArrowTask(SysTask *task, void *data)
     case HIDE_ARROW_INIT:
         s16 x, y;
 
-        SpriteActor_GetSpritePositionXY(arrow->cells, &x, &y);
+        CellActorData_GetPositionXY(arrow->cells, &x, &y);
         arrow->x = x << 8;
 
-        SpriteActor_SetOAMMode(arrow->cells, GX_OAM_MODE_XLU);
+        CellActorData_SetExplicitOAMMode(arrow->cells, GX_OAM_MODE_XLU);
         arrow->alpha = 16 << 8;
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, (arrow->alpha >> 8), 16 - (arrow->alpha >> 8));
@@ -513,7 +513,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
     switch (pokeballs->state) {
     case SHOW_POKEBALLS_INIT:
         s16 x, y;
-        SpriteActor_GetSpritePositionXY(pokeballs->cells, &x, &y);
+        CellActorData_GetPositionXY(pokeballs->cells, &x, &y);
         pokeballs->xStart = x << 8;
 
         pokeballs->state++;
@@ -617,7 +617,7 @@ static void ShowPokeballsMidBattleTask(SysTask *task, void *data)
     switch (pokeballs->state) {
     case SHOW_POKEBALLS_INIT:
         s16 x, y;
-        SpriteActor_GetSpritePositionXY(pokeballs->cells, &x, &y);
+        CellActorData_GetPositionXY(pokeballs->cells, &x, &y);
         pokeballs->xStart = x << 8;
 
         SpriteActor_SetAnimFrame(pokeballs->cells->cellActor, 0);
@@ -697,10 +697,10 @@ static void HidePokeballsStartOfBattleTask(SysTask *task, void *data)
     case HIDE_POKEBALLS_INIT:
         s16 x, y;
 
-        SpriteActor_GetSpritePositionXY(pokeballs->cells, &x, &y);
+        CellActorData_GetPositionXY(pokeballs->cells, &x, &y);
         pokeballs->xStart = x << 8;
 
-        SpriteActor_SetOAMMode(pokeballs->cells, GX_OAM_MODE_XLU);
+        CellActorData_SetExplicitOAMMode(pokeballs->cells, GX_OAM_MODE_XLU);
         pokeballs->state++;
         // fall-through
     case HIDE_POKEBALLS_DELAY:
@@ -749,7 +749,7 @@ static void HidePokeballsMidBattleTask(SysTask *task, void *data)
 
     switch (pokeballs->state) {
     case HIDE_POKEBALLS_INIT:
-        SpriteActor_SetOAMMode(pokeballs->cells, GX_OAM_MODE_XLU);
+        CellActorData_SetExplicitOAMMode(pokeballs->cells, GX_OAM_MODE_XLU);
         pokeballs->state++;
         // fall-through
     case HIDE_POKEBALLS_DELAY:

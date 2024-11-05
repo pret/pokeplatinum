@@ -1518,17 +1518,17 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         v0->unk_12++;
     case 2:
         if (v0->unk_13 == 2) {
-            SpriteActor_GetSpritePositionXY(v0->unk_0C->unk_00, &v2, &v3);
+            CellActorData_GetPositionXY(v0->unk_0C->unk_00, &v2, &v3);
 
             if ((v0->unk_1C == 1) || (v0->unk_1C == 3)) {
                 if (v2 < (24 * 8)) {
-                    sub_0200D5DC(v0->unk_0C->unk_00, 8, 0);
+                    CellActorData_AddPositionXY(v0->unk_0C->unk_00, 8, 0);
                 } else {
                     CellActorData_SetPositionXY(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
                 }
             }
 
-            SpriteActor_GetSpritePositionXY(v0->unk_0C->unk_00, &v2, &v3);
+            CellActorData_GetPositionXY(v0->unk_0C->unk_00, &v2, &v3);
 
             if (v0->unk_1C == 1) {
                 sub_02007DEC(v0->unk_08, 0, v2);
@@ -1565,17 +1565,17 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                 v0->unk_12++;
             }
         } else {
-            SpriteActor_GetSpritePositionXY(v0->unk_0C->unk_00, &v2, &v3);
+            CellActorData_GetPositionXY(v0->unk_0C->unk_00, &v2, &v3);
 
             if ((v0->unk_1C == 0) || (v0->unk_1C == 2)) {
                 if (v2 > 64) {
-                    sub_0200D5DC(v0->unk_0C->unk_00, -8, 0);
+                    CellActorData_AddPositionXY(v0->unk_0C->unk_00, -8, 0);
                 } else {
                     CellActorData_SetPositionXY(v0->unk_0C->unk_00, 64, (128 + 8));
                 }
             }
 
-            SpriteActor_GetSpritePositionXY(v0->unk_0C->unk_00, &v2, &v3);
+            CellActorData_GetPositionXY(v0->unk_0C->unk_00, &v2, &v3);
 
             if (v0->unk_1C == 0) {
                 sub_02007DEC(v0->unk_08, 0, v2);
@@ -1657,17 +1657,17 @@ static void ov16_0225E894(SysTask *param0, void *param1)
 
         v0->unk_12++;
     case 2:
-        SpriteActor_GetSpritePositionXY(v0->unk_0C->unk_00, &v2, &v3);
+        CellActorData_GetPositionXY(v0->unk_0C->unk_00, &v2, &v3);
 
         if ((v0->unk_1C == 1) || (v0->unk_1C == 3)) {
             if (v2 < (24 * 8)) {
-                sub_0200D5DC(v0->unk_0C->unk_00, 8, 0);
+                CellActorData_AddPositionXY(v0->unk_0C->unk_00, 8, 0);
             } else {
                 CellActorData_SetPositionXY(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
             }
         }
 
-        SpriteActor_GetSpritePositionXY(v0->unk_0C->unk_00, &v2, &v3);
+        CellActorData_GetPositionXY(v0->unk_0C->unk_00, &v2, &v3);
         sub_02008274(v0->unk_08, 1, 8 / 2);
 
         if (sub_020080C0(v0->unk_08, 1) >= v0->unk_14) {
@@ -2333,19 +2333,19 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
 
         v0->unk_0E = 2;
     case 2:
-        SpriteActor_GetSpritePositionXY(v0->unk_04->unk_00, &v1, &v2);
-        SpriteActor_GetSpritePositionXY(v0->unk_08, &v3, &v4);
+        CellActorData_GetPositionXY(v0->unk_04->unk_00, &v1, &v2);
+        CellActorData_GetPositionXY(v0->unk_08, &v3, &v4);
 
         if (v0->unk_0F == 2) {
             if ((v0->unk_14 == 1) || (v0->unk_14 == 3)) {
                 if (v1 < (24 * 8)) {
-                    sub_0200D5DC(v0->unk_04->unk_00, 8, 0);
+                    CellActorData_AddPositionXY(v0->unk_04->unk_00, 8, 0);
                 } else {
                     CellActorData_SetPositionXY(v0->unk_04->unk_00, (24 * 8), (8 * 11));
                 }
             }
 
-            SpriteActor_GetSpritePositionXY(v0->unk_04->unk_00, &v1, &v2);
+            CellActorData_GetPositionXY(v0->unk_04->unk_00, &v1, &v2);
 
             if ((v0->unk_14 == 1) || ((v0->unk_14 == 3) && ((v5 == (0x2 | 0x1)) || (v5 == ((0x2 | 0x1) | 0x80)) || (v5 == ((0x4 | 0x1) | 0x2))))) {
                 CellActorData_SetPositionXY(v0->unk_08, v1, v4);
@@ -2353,15 +2353,15 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
                 v1 = v3 - v1;
                 v1 -= 24;
 
-                sub_0200D5DC(v0->unk_08, -v1, 0);
+                CellActorData_AddPositionXY(v0->unk_08, -v1, 0);
             } else if (v0->unk_14 == 5) {
                 v1 = v1 - v3;
                 v1 -= 16;
 
-                sub_0200D5DC(v0->unk_08, v1, 0);
+                CellActorData_AddPositionXY(v0->unk_08, v1, 0);
             }
 
-            SpriteActor_GetSpritePositionXY(v0->unk_08, &v3, &v4);
+            CellActorData_GetPositionXY(v0->unk_08, &v3, &v4);
 
             if (v3 >= v0->unk_10) {
                 CellActorData_SetPositionXY(v0->unk_08, v0->unk_10, v4);
@@ -2382,13 +2382,13 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
         } else {
             if ((v0->unk_14 == 0) || (v0->unk_14 == 2)) {
                 if (v1 > 64) {
-                    sub_0200D5DC(v0->unk_04->unk_00, -8, 0);
+                    CellActorData_AddPositionXY(v0->unk_04->unk_00, -8, 0);
                 } else {
                     CellActorData_SetPositionXY(v0->unk_04->unk_00, 64, (128 + 8));
                 }
             }
 
-            SpriteActor_GetSpritePositionXY(v0->unk_04->unk_00, &v1, &v2);
+            CellActorData_GetPositionXY(v0->unk_04->unk_00, &v1, &v2);
 
             if ((v0->unk_14 == 0) || ((v0->unk_14 == 2) && ((v5 == (0x2 | 0x1)) || (v5 == ((0x2 | 0x1) | 0x80)) || (v5 == ((0x2 | 0x1) | 0x10)) || (v5 == ((0x4 | 0x1) | 0x2))))) {
                 CellActorData_SetPositionXY(v0->unk_08, v1, v4);
@@ -2396,15 +2396,15 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
                 v1 = v1 - v3;
                 v1 -= 24;
 
-                sub_0200D5DC(v0->unk_08, v1, 0);
+                CellActorData_AddPositionXY(v0->unk_08, v1, 0);
             } else if (v0->unk_14 == 4) {
                 v1 = v3 - v1;
                 v1 -= 16;
 
-                sub_0200D5DC(v0->unk_08, -v1, 0);
+                CellActorData_AddPositionXY(v0->unk_08, -v1, 0);
             }
 
-            SpriteActor_GetSpritePositionXY(v0->unk_08, &v3, &v4);
+            CellActorData_GetPositionXY(v0->unk_08, &v3, &v4);
 
             if (v3 <= v0->unk_10) {
                 CellActorData_SetPositionXY(v0->unk_08, v0->unk_10, v4);
@@ -2579,8 +2579,8 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
         break;
     case 1:
         if (v0->unk_0B == 2) {
-            sub_0200D5DC(v0->unk_04->unk_18, 5, 0);
-            SpriteActor_GetSpritePositionXY(v0->unk_04->unk_18, &v1, &v2);
+            CellActorData_AddPositionXY(v0->unk_04->unk_18, 5, 0);
+            CellActorData_GetPositionXY(v0->unk_04->unk_18, &v1, &v2);
 
             if ((v1 >= (256 - 48) - 48) && (ov12_02237890(v0->unk_04->unk_84) != 0)) {
                 ov12_02237E0C(v0->unk_04->unk_84, 1);
@@ -2620,8 +2620,8 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        sub_0200D5DC(v0->unk_04->unk_18, -5, 0);
-        SpriteActor_GetSpritePositionXY(v0->unk_04->unk_18, &v1, &v2);
+        CellActorData_AddPositionXY(v0->unk_04->unk_18, -5, 0);
+        CellActorData_GetPositionXY(v0->unk_04->unk_18, &v1, &v2);
 
         if (v0->unk_04->unk_84) {
             v3 = CellActorData_GetAnimFrame(v0->unk_04->unk_18);
@@ -2668,7 +2668,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        SpriteActor_GetSpritePositionXY(v0->unk_04->unk_18, &v1, &v2);
+        CellActorData_GetPositionXY(v0->unk_04->unk_18, &v1, &v2);
         v3 = CellActorData_GetAnimFrame(v0->unk_04->unk_18);
 
         if (v3 == 4) {
@@ -2726,15 +2726,15 @@ static void ov16_02260284(SysTask *param0, void *param1)
     switch (v0->unk_0A) {
     case 0:
         if (v0->unk_0B == 2) {
-            sub_0200D5DC(v0->unk_04->unk_18, 5, 0);
-            SpriteActor_GetSpritePositionXY(v0->unk_04->unk_18, &v1, &v2);
+            CellActorData_AddPositionXY(v0->unk_04->unk_18, 5, 0);
+            CellActorData_GetPositionXY(v0->unk_04->unk_18, &v1, &v2);
 
             if (v1 >= (256 + 40)) {
                 v0->unk_0A++;
             }
         } else {
-            sub_0200D5DC(v0->unk_04->unk_18, -5, 0);
-            SpriteActor_GetSpritePositionXY(v0->unk_04->unk_18, &v1, &v2);
+            CellActorData_AddPositionXY(v0->unk_04->unk_18, -5, 0);
+            CellActorData_GetPositionXY(v0->unk_04->unk_18, &v1, &v2);
 
             if (v1 <= -40) {
                 v0->unk_0A++;
@@ -2767,7 +2767,7 @@ static void ov16_02260384(SysTask *param0, void *param1)
 
     switch (v0->unk_0A) {
     case 0:
-        SpriteActor_GetSpritePositionXY(v0->unk_04, &v1, &v2);
+        CellActorData_GetPositionXY(v0->unk_04, &v1, &v2);
 
         if (v0->unk_0B == 0) {
             v1 += 5;
@@ -6268,7 +6268,7 @@ static BOOL ov16_02264650(UnkStruct_ov16_02264650_1 *param0, CellActorData *para
     int v1;
     BOOL v2 = 0;
 
-    v1 = sub_0200D81C(param0->unk_08);
+    v1 = CellActorData_GetUserAttrForCurrentAnimFrame(param0->unk_08);
 
     switch (v1) {
     case 1:

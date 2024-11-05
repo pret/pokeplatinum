@@ -1011,7 +1011,7 @@ static void sub_0207EE14(GameWindowLayout *param0)
         {
             s16 v1, v2;
 
-            sub_0200D50C(param0->unk_5B0[9], &v1, &v2);
+            CellActor_GetPositionXY(param0->unk_5B0[9], &v1, &v2);
             CellActor_SetPositionXY(param0->unk_5B0[9], v1, v2 - 8);
         }
 

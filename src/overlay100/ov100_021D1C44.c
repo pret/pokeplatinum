@@ -224,8 +224,8 @@ static void ov100_021D2250(UnkStruct_ov100_021D1C98 *param0)
         param0->unk_08.unk_0C[v0].unk_00 = CellActor_LoadResources(v3, v4, &v6);
 
         CellActorData_UpdateObject(param0->unk_08.unk_0C[v0].unk_00);
-        sub_0200D6A4(param0->unk_08.unk_0C[v0].unk_00, 2);
-        sub_0200D6E8(param0->unk_08.unk_0C[v0].unk_00, 0.5f, 0.5f);
+        CellActorData_SetAffineOverwriteMode(param0->unk_08.unk_0C[v0].unk_00, 2);
+        CellActorData_SetAffineScaleXYFx32(param0->unk_08.unk_0C[v0].unk_00, 0.5f, 0.5f);
         CellActorData_SetExplicitPaletteOffset(param0->unk_08.unk_0C[v0].unk_00, v0);
         CellActorData_SetPositionXY(param0->unk_08.unk_0C[v0].unk_00, 16 + (v0 * 64), 64);
 

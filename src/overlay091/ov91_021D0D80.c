@@ -1365,7 +1365,7 @@ static void ov91_021D22A0(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param
         v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_TYPE) + 18;
     }
 
-    sub_0200D948(param0->unk_110, param0->unk_114, sub_0207C944(), sub_0207C908(v0), 1, 47276 + param2);
+    SpriteRenderer_ModifyTiles(param0->unk_110, param0->unk_114, sub_0207C944(), sub_0207C908(v0), 1, 47276 + param2);
     CellActorData_SetExplicitPalette(param0->unk_118[6 + param2], sub_0207C92C(v0) + 2);
 }
 
@@ -1393,7 +1393,7 @@ static void ov91_021D237C(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param
 
     if (param1 < param2) {
         for (v0 = 0; v0 < 7; v0++) {
-            SpriteActor_GetSpritePositionXY(param0->unk_118[6 + v0], &v1, &v2);
+            CellActorData_GetPositionXY(param0->unk_118[6 + v0], &v1, &v2);
 
             if (v2 == 32) {
                 v2 = ((((((32 + 16) + 16) + 16) + 16) + 16) + 16);
@@ -1409,7 +1409,7 @@ static void ov91_021D237C(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param
         }
     } else if (param1 > param2) {
         for (v0 = 0; v0 < 7; v0++) {
-            SpriteActor_GetSpritePositionXY(param0->unk_118[6 + v0], &v1, &v2);
+            CellActorData_GetPositionXY(param0->unk_118[6 + v0], &v1, &v2);
 
             if (v2 == ((((((32 + 16) + 16) + 16) + 16) + 16) + 16)) {
                 v2 = 32;
@@ -1428,7 +1428,7 @@ static void ov91_021D237C(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param
     }
 
     for (v0 = 0; v0 < 7; v0++) {
-        SpriteActor_GetSpritePositionXY(param0->unk_118[6 + v0], &v1, &v2);
+        CellActorData_GetPositionXY(param0->unk_118[6 + v0], &v1, &v2);
         v2 = (v2 - 32) / 16;
 
         if (param2 + v2 >= param0->unk_184 - 1) {
@@ -1443,7 +1443,7 @@ static void ov91_021D24B4(UnkStruct_ov91_021D0ED8 *param0, u16 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->unk_110, param0->unk_114, sub_0207CAC0(), sub_0207CA90(v0), 1, 47275);
+    SpriteRenderer_ModifyTiles(param0->unk_110, param0->unk_114, sub_0207CAC0(), sub_0207CA90(v0), 1, 47275);
     CellActorData_SetExplicitPalette(param0->unk_118[5], sub_0207CAA8(v0) + 2);
 }
 

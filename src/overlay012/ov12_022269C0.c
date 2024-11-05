@@ -138,9 +138,9 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
         CellActor_UpdateObject(v0->unk_14[1]->cellActor);
         CellActor_UpdateObject(v0->unk_14[2]->cellActor);
 
-        sub_0200D5AC(v0->unk_14[0]->cellActor, 1, 0);
-        sub_0200D5AC(v0->unk_14[1]->cellActor, -1, 0);
-        sub_0200D5AC(v0->unk_14[2]->cellActor, 1, 1);
+        CellActor_AddPositionXY(v0->unk_14[0]->cellActor, 1, 0);
+        CellActor_AddPositionXY(v0->unk_14[1]->cellActor, -1, 0);
+        CellActor_AddPositionXY(v0->unk_14[2]->cellActor, 1, 1);
 
         SpriteGfxHandler_UpdateCellActorCollection(v0->unk_0C);
         break;

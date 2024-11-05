@@ -1060,7 +1060,7 @@ static void ov113_0225D6F8(UnkStruct_ov113_0225DBCC *param0)
         v1.resources[0] = 10010 + v0;
         param0->unk_970[v0] = CellActor_LoadResources(param0->unk_1C, param0->unk_20, &v1);
 
-        sub_0200D500(param0->unk_970[v0], Unk_ov113_02260934[v0][0], Unk_ov113_02260934[v0][1], ((192 + 80) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param0->unk_970[v0], Unk_ov113_02260934[v0][0], Unk_ov113_02260934[v0][1], ((192 + 80) << FX32_SHIFT));
         CellActor_UpdateObject(param0->unk_970[v0]->cellActor);
         CellActorData_DrawSprite(param0->unk_970[v0], 0);
     }
@@ -1414,7 +1414,7 @@ static int ov113_0225DE98(UnkStruct_ov113_0225DBCC *param0)
             }
 
             if (v0.unk_04[v1] == param0->unk_168.unk_04) {
-                sub_0200D500(param0->unk_96C, Unk_ov113_02260914[v1][0], Unk_ov113_02260914[v1][1], ((192 + 80) << FX32_SHIFT));
+                CellActorData_SetPositionWithOffsetXY(param0->unk_96C, Unk_ov113_02260914[v1][0], Unk_ov113_02260914[v1][1], ((192 + 80) << FX32_SHIFT));
                 CellActorData_DrawSprite(param0->unk_96C, 1);
             }
         }
@@ -1534,7 +1534,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
 
     v0.unk_00 = param0->unk_10;
     v0.unk_04 = &v1;
-    v0.unk_08 = sub_0200D9B0(v6);
+    v0.unk_08 = SpriteGfxHandler_GetCellActorCollection(v6);
     v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.unk_04;
@@ -1600,7 +1600,7 @@ static void ov113_0225E294(UnkStruct_ov113_0225DBCC *param0)
     v0 = 32 - (param0->unk_19D8 >> 8);
 
     for (v1 = 0; v1 < 6; v1++) {
-        sub_0200D500(param0->unk_924[v1], 16 + 32 * v1, 176 + v0, ((192 + 80) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(param0->unk_924[v1], 16 + 32 * v1, 176 + v0, ((192 + 80) << FX32_SHIFT));
     }
 }
 

@@ -758,7 +758,7 @@ void ov116_02262724(UnkStruct_ov116_02262A8C *param0)
         CellActorData_SetAnim(param0->unk_D0[v0], 0);
         CellActorData_UpdateObject(param0->unk_D0[v0]);
         CellActorData_SetExplicitPaletteOffset(param0->unk_D0[v0], 4);
-        SpriteActor_SetOAMMode(param0->unk_D0[v0], GX_OAM_MODE_XLU);
+        CellActorData_SetExplicitOAMMode(param0->unk_D0[v0], GX_OAM_MODE_XLU);
         CellActorData_DrawSprite(param0->unk_D0[v0], 0);
 
         ov116_02261CD8(&v2, 0, 0, 2, 0, 9000);
@@ -770,7 +770,7 @@ void ov116_02262724(UnkStruct_ov116_02262A8C *param0)
         CellActorData_SetAnim(param0->unk_C8[v0], 6);
         CellActorData_UpdateObject(param0->unk_C8[v0]);
         CellActorData_SetExplicitPaletteOffset(param0->unk_C8[v0], 0);
-        SpriteActor_SetOAMMode(param0->unk_C8[v0], GX_OAM_MODE_XLU);
+        CellActorData_SetExplicitOAMMode(param0->unk_C8[v0], GX_OAM_MODE_XLU);
         CellActorData_DrawSprite(param0->unk_C8[v0], 0);
     }
 }

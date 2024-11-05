@@ -410,10 +410,10 @@ static void ov13_022287A4(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
     switch (param2) {
     case 0:
     case 2:
-        sub_0200D5DC(v0, 0, 2);
+        CellActorData_AddPositionXY(v0, 0, 2);
         break;
     case 1:
-        sub_0200D5DC(v0, 0, -4);
+        CellActorData_AddPositionXY(v0, 0, -4);
         break;
     }
 }

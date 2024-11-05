@@ -440,7 +440,7 @@ static void sub_02083AD0(GameWindowLayout *param0, int *param1)
     param0->unk_B0F_0 = param0->unk_B11;
 
     thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], 0);
-    sub_0200D50C(param0->unk_5B0[6], &v0, &v1);
+    CellActor_GetPositionXY(param0->unk_5B0[6], &v0, &v1);
     CellActor_SetPositionXY(param0->unk_5B0[7], v0, v1);
     CellActor_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
     CellActor_SetDrawFlag(param0->unk_5B0[7], 1);
@@ -599,7 +599,7 @@ static void sub_02083FDC(GameWindowLayout *param0, u8 param1, u8 param2)
 
     v0 = &param0->unk_7F8;
 
-    sub_0200D50C(param0->unk_5B0[0 + v0->unk_300[param1]], &v1, &v2);
+    CellActor_GetPositionXY(param0->unk_5B0[0 + v0->unk_300[param1]], &v1, &v2);
 
     if (param2 == 0) {
         param0->unk_704[v0->unk_300[param1]].unk_16 -= 8;
@@ -1019,7 +1019,7 @@ static int sub_02084A18(GameWindowLayout *param0)
         param0->unk_B0F_0 = param0->unk_B11;
 
         thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], 0);
-        sub_0200D50C(param0->unk_5B0[6], &v0, &v1);
+        CellActor_GetPositionXY(param0->unk_5B0[6], &v0, &v1);
         CellActor_SetPositionXY(param0->unk_5B0[7], v0, v1);
         CellActor_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
         CellActor_SetDrawFlag(param0->unk_5B0[7], 1);

@@ -97,7 +97,7 @@ static void ov76_0223B870(TouchScreenRect *rect, CellActorData *param1, int para
 {
     s16 v0, v1;
 
-    SpriteActor_GetSpritePositionXY(param1, &v0, &v1);
+    CellActorData_GetPositionXY(param1, &v0, &v1);
 
     rect->rect.top = v1 - param3;
     rect->rect.bottom = v1 + param3;
@@ -163,7 +163,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
 
     v0.unk_00 = param0->unk_D4.unk_160;
     v0.unk_04 = &v5;
-    v0.unk_08 = sub_0200D9B0(param0->unk_D4.unk_0C);
+    v0.unk_08 = SpriteGfxHandler_GetCellActorCollection(param0->unk_D4.unk_0C);
     v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(param0->unk_D4.unk_0C, v2);
     v0.unk_10 = NULL;
     v0.unk_14 = param0->unk_D4.unk_16C[param1].unk_04;
@@ -363,7 +363,7 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
 
             v0->unk_144[v1] = param0->unk_324[v1].unk_08;
 
-            SpriteActor_GetSpritePositionXY(v0->unk_144[v1], &v2, &v3);
+            CellActorData_GetPositionXY(v0->unk_144[v1], &v2, &v3);
             ov12_02225BC8(&v0->unk_00[v1], v2, v2 + ((+7 * 8) * param1), v3, v3 + ((-2 * 8) * param1), param2);
             ov12_02225C50(&v0->unk_00[v1], v0->unk_144[v1]);
             ov12_02225C50(&v0->unk_00[v1], v0->unk_144[v1]);
@@ -739,7 +739,7 @@ void ov76_0223C4AC(UnkStruct_ov76_0223DE00 *param0)
         v1.resources[5] = SPRITE_RESOURCE_NONE;
         param0->unk_314[v0] = CellActor_LoadResources(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, &v1);
 
-        sub_0200D7D4(param0->unk_314[v0], v2[v0][2]);
+        CellActorData_SetFlipMode(param0->unk_314[v0], v2[v0][2]);
     }
 }
 

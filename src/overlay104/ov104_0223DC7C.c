@@ -461,7 +461,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
 
     v0.unk_00 = param0->unk_30;
     v0.unk_04 = &v1;
-    v0.unk_08 = sub_0200D9B0(v6);
+    v0.unk_08 = SpriteGfxHandler_GetCellActorCollection(v6);
     v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.unk_04;
@@ -747,7 +747,7 @@ static BOOL ov104_0223E804(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
 
     switch (param2->unk_04) {
     case 0:
-        sub_0200D500(param1->unk_90, 256 + param0->unk_28, 80 + param0->unk_2A, (512 * FX32_ONE));
+        CellActorData_SetPositionWithOffsetXY(param1->unk_90, 256 + param0->unk_28, 80 + param0->unk_2A, (512 * FX32_ONE));
         CellActorData_DrawSprite(param1->unk_90, 1);
         param2->unk_00 = 256 << 8;
         param2->unk_04++;
@@ -760,7 +760,7 @@ static BOOL ov104_0223E804(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
             param2->unk_04++;
         }
 
-        sub_0200D500(param1->unk_90, param2->unk_00 >> 8, 80 + param0->unk_2A, (512 * FX32_ONE));
+        CellActorData_SetPositionWithOffsetXY(param1->unk_90, param2->unk_00 >> 8, 80 + param0->unk_2A, (512 * FX32_ONE));
         break;
     default:
         return 1;

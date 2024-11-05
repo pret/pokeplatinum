@@ -1132,7 +1132,7 @@ static BOOL ov12_02236918(BallRotation *param0)
             v0.unk_0C = 0xFF;
             v0.unk_10 = 0;
 
-            SpriteActor_GetSpritePositionXY(param0->unk_30, &v0.unk_00, &v0.unk_02);
+            CellActorData_GetPositionXY(param0->unk_30, &v0.unk_00, &v0.unk_02);
 
             param0->unk_D8 = ov12_02223764(param0->unk_90.battleSys, param0->unk_90.heapID);
             param0->unk_D0 = ov12_02236690(&v0);
@@ -1178,7 +1178,7 @@ static BOOL ov12_022369FC(BallRotation *param0)
 
     switch (param0->unk_0C) {
     case 0:
-        SpriteActor_GetSpritePositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
+        CellActorData_GetPositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
         param0->unk_B8.unk_04 = 60;
         param0->unk_B8.unk_06 = 180;
         param0->unk_B8.unk_08 = 10;
@@ -1270,7 +1270,7 @@ static BOOL ov12_02236B20(BallRotation *param0)
         {
             s16 v0, v1;
 
-            SpriteActor_GetSpritePositionXY(param0->unk_30, &v0, &v1);
+            CellActorData_GetPositionXY(param0->unk_30, &v0, &v1);
             ov12_02225BC8(&param0->unk_48[0], v0, v0, v1, v1 + 32, 32 / 3);
 
             param0->unk_08++;
@@ -1359,7 +1359,7 @@ static BOOL ov12_02236B98(BallRotation *param0)
         if ((param0->unk_0C > 20) || (v0 == 0xFF) || (v1 == 0xFF)) {
             param0->unk_08++;
         } else {
-            sub_0200D5DC(param0->unk_30, v0, v1);
+            CellActorData_AddPositionXY(param0->unk_30, v0, v1);
         }
     } break;
     default:
@@ -1415,7 +1415,7 @@ static BOOL ov12_02236C64(BallRotation *param0)
         if ((param0->unk_0C > 11) || (v0 == 0xFF)) {
             param0->unk_08++;
             param0->unk_18++;
-            sub_0200D79C(param0->unk_30, 0);
+            CellActorData_SetAffineZRotation(param0->unk_30, 0);
             ov12_022368E4(param0, 18);
             return 1;
         } else {
@@ -1423,8 +1423,8 @@ static BOOL ov12_02236C64(BallRotation *param0)
                 sub_02005728(1534, 117);
             }
 
-            sub_0200D5DC(param0->unk_30, v0, 0);
-            sub_0200D7C0(param0->unk_30, ((((v0) * 2) * 0xffff) / 360));
+            CellActorData_AddPositionXY(param0->unk_30, v0, 0);
+            CellActorData_AddAffineZRotation(param0->unk_30, ((((v0) * 2) * 0xffff) / 360));
         }
     } break;
     default:
@@ -1477,7 +1477,7 @@ static BOOL ov12_02236D18(BallRotation *param0)
             v1.unk_0C = ov12_02235FB4(v1.unk_04);
             v1.unk_10 = 0;
 
-            SpriteActor_GetSpritePositionXY(param0->unk_30, &v1.unk_00, &v1.unk_02);
+            CellActorData_GetPositionXY(param0->unk_30, &v1.unk_00, &v1.unk_02);
             param0->unk_D0 = ov12_02236690(&v1);
         }
         param0->unk_08++;
@@ -1546,7 +1546,7 @@ static BOOL ov12_02236E7C(BallRotation *param0)
 {
     switch (param0->unk_08) {
     case 0:
-        SpriteActor_SetOAMMode(param0->unk_30, GX_OAM_MODE_XLU);
+        CellActorData_SetExplicitOAMMode(param0->unk_30, GX_OAM_MODE_XLU);
         param0->unk_08++;
     case 1:
         if (param0->unk_20 > 0) {
@@ -1635,16 +1635,16 @@ static BOOL ov12_02236F24(BallRotation *param0)
             if (ov12_02235EB0(param0->unk_90.type) == 1) {
                 v0 = (LCRNG_Next() % 20) + 10;
 
-                sub_0200D7C0(param0->unk_30, 0x2000 * v0);
+                CellActorData_AddAffineZRotation(param0->unk_30, 0x2000 * v0);
             }
         }
         break;
     case 1:
         if (ov12_02235EB0(param0->unk_90.type) == 1) {
-            sub_0200D7C0(param0->unk_30, 0x2000);
+            CellActorData_AddAffineZRotation(param0->unk_30, 0x2000);
 
             if (param0->unk_B8.unk_0C > ((param0->unk_B8.unk_08 / 2) + 10)) {
-                sub_0200D7C0(param0->unk_30, 0x2000);
+                CellActorData_AddAffineZRotation(param0->unk_30, 0x2000);
             }
 
             if (ov12_02235EF0(param0->unk_90.type) == 1) {
@@ -1746,16 +1746,16 @@ static BOOL ov12_022371E4(BallRotation *param0)
             if (ov12_02235EB0(param0->unk_90.type) == 1) {
                 v0 = (LCRNG_Next() % 20) + 10;
 
-                sub_0200D7C0(param0->unk_30, 0x2000 * v0);
+                CellActorData_AddAffineZRotation(param0->unk_30, 0x2000 * v0);
             }
         }
         break;
     case 1:
         if (ov12_02235EB0(param0->unk_90.type) == 1) {
-            sub_0200D7C0(param0->unk_30, 0x2000);
+            CellActorData_AddAffineZRotation(param0->unk_30, 0x2000);
 
             if (param0->unk_B8.unk_0C > ((param0->unk_B8.unk_08 / 2) + 10)) {
-                sub_0200D7C0(param0->unk_30, 0x2000);
+                CellActorData_AddAffineZRotation(param0->unk_30, 0x2000);
             }
 
             if (ov12_02235EF0(param0->unk_90.type) == 1) {
@@ -1876,7 +1876,7 @@ static BOOL ov12_02237474(BallRotation *param0)
         v0.unk_0C = 0xFF;
         v0.unk_10 = 1;
 
-        SpriteActor_GetSpritePositionXY(param0->unk_30, &v0.unk_00, &v0.unk_02);
+        CellActorData_GetPositionXY(param0->unk_30, &v0.unk_00, &v0.unk_02);
         param0->unk_D0 = ov12_02236690(&v0);
     }
         param0->unk_08++;
@@ -1941,7 +1941,7 @@ static BOOL ov12_02237608(BallRotation *param0)
         param0->unk_08++;
         break;
     case 1:
-        sub_0200D79C(param0->unk_30, param0->unk_34.unk_00);
+        CellActorData_SetAffineZRotation(param0->unk_30, param0->unk_34.unk_00);
 
         if (ov12_02225DA0(&param0->unk_34) == 0) {
             if (param0->unk_0C >= 1) {
@@ -1970,7 +1970,7 @@ static BOOL ov12_02237694(BallRotation *param0)
     if (param0->unk_30 != NULL) {
         s16 v0, v1;
 
-        SpriteActor_GetSpritePositionXY(param0->unk_30, &v0, &v1);
+        CellActorData_GetPositionXY(param0->unk_30, &v0, &v1);
 
         param0->unk_B8.unk_00 = v0;
         param0->unk_B8.unk_02 = v1;
@@ -2098,7 +2098,7 @@ void ov12_0223786C(BallRotation *param0, int param1)
     param0->unk_10 = 0;
     param0->unk_1C = 1;
 
-    SpriteActor_GetSpritePositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
+    CellActorData_GetPositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
 }
 
 int ov12_02237890(BallRotation *param0)
@@ -2110,7 +2110,7 @@ int ov12_02237890(BallRotation *param0)
 
 static void ov12_022378A0(BallRotation *param0)
 {
-    SpriteActor_GetSpritePositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
+    CellActorData_GetPositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
 
     switch (param0->unk_90.type) {
     case 0:
@@ -2119,7 +2119,7 @@ static void ov12_022378A0(BallRotation *param0)
     case 3:
     case 4:
     case 5:
-        SpriteActor_GetSpritePositionXY(param0->unk_30, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        CellActorData_GetPositionXY(param0->unk_30, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 0;
         param0->unk_B8.unk_08 = 12;
         return;
@@ -2129,7 +2129,7 @@ static void ov12_022378A0(BallRotation *param0)
         param0->unk_B8.unk_06 += 32;
         break;
     case 7:
-        SpriteActor_GetSpritePositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
+        CellActorData_GetPositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
         ov12_02225864(1, 4, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 48;
         param0->unk_B8.unk_06 += 32;
@@ -2335,7 +2335,7 @@ static void ov12_02237D8C(BallRotation *param0)
     param0->unk_30 = CellActor_LoadResources(param0->unk_90.cellActorSys, param0->unk_2C, &v1);
 
     CellActorData_DrawSprite(param0->unk_30, 1);
-    sub_0200D6A4(param0->unk_30, 2);
+    CellActorData_SetAffineOverwriteMode(param0->unk_30, 2);
     CellActorData_SetAnimFrame(param0->unk_30, 0);
     CellActorData_SetAnim(param0->unk_30, 0);
     CellActorData_UpdateObject(param0->unk_30);
@@ -2355,7 +2355,7 @@ void ov12_02237E18(BallRotation *param0, s16 param1, s16 param2)
 
 void ov12_02237E24(BallRotation *param0, u16 param1)
 {
-    sub_0200D79C(param0->unk_30, param1);
+    CellActorData_SetAffineZRotation(param0->unk_30, param1);
 }
 
 void ov12_02237E30(BallRotation *param0, BOOL param1)

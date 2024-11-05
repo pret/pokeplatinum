@@ -272,7 +272,7 @@ asm void sub_0208A758 (UnkStruct_02089688 * param0)
     bl CellActorData_SetAnim
     ldr r0, [r5, #0xc]
     mov r1, #2
-    bl sub_0200D6A4
+    bl CellActorData_SetAffineOverwriteMode
     ldr r0, [r5, #0xc]
     bl CellActorData_UpdateObject
     add r5, #0x1c
@@ -337,7 +337,7 @@ void sub_0208A8A0 (UnkStruct_02089688 * param0)
     sub_0208AB2C(param0, 0);
     CellActorData_SetAnim(param0->unk_1F0[1].unk_0C, param0->unk_1F0[1].unk_00);
     CellActorData_UpdateObject(param0->unk_1F0[1].unk_0C);
-    SpriteActor_SetOAMMode(param0->unk_1F0[1].unk_0C, GX_OAM_MODE_XLU);
+    CellActorData_SetExplicitOAMMode(param0->unk_1F0[1].unk_0C, GX_OAM_MODE_XLU);
 
     param0->unk_1F0[2].unk_14.unk_00 = 0;
     param0->unk_1F0[2].unk_14.unk_02 = 0;
@@ -346,7 +346,7 @@ void sub_0208A8A0 (UnkStruct_02089688 * param0)
     sub_0208AB2C(param0, 0);
     CellActorData_SetAnim(param0->unk_1F0[2].unk_0C, param0->unk_1F0[2].unk_00);
     CellActorData_UpdateObject(param0->unk_1F0[2].unk_0C);
-    SpriteActor_SetOAMMode(param0->unk_1F0[2].unk_0C, GX_OAM_MODE_XLU);
+    CellActorData_SetExplicitOAMMode(param0->unk_1F0[2].unk_0C, GX_OAM_MODE_XLU);
     sub_0208AAB4(param0, 1, 0);
     sub_0208AAB4(param0, 2, 0);
 }
@@ -422,7 +422,7 @@ void sub_0208AAE4 (UnkStruct_02089688 * param0, int param1)
     v2 = param0->unk_00[param1].unk_0C;
     param0->unk_1F0[0].unk_00 = param1;
 
-    SpriteActor_GetSpritePositionXY(v2, &v0, &v1);
+    CellActorData_GetPositionXY(v2, &v0, &v1);
     CellActorData_SetPositionXY(param0->unk_1F0[0].unk_0C, v0, v1 + 16);
 }
 
@@ -595,7 +595,7 @@ void sub_0208ADE4 (UnkStruct_02089688 * param0, int param1)
             }
         }
 
-        SpriteActor_GetSpritePositionXY(param0->unk_00[v0].unk_0C, &v3, &v4);
+        CellActorData_GetPositionXY(param0->unk_00[v0].unk_0C, &v3, &v4);
 
         if (param1 == 0) {
             CellActorData_SetPositionXY(param0->unk_00[v0].unk_0C, v2, v4);
@@ -607,7 +607,7 @@ void sub_0208ADE4 (UnkStruct_02089688 * param0, int param1)
         }
 
         if ((v0 == param0->unk_1A0[v1].unk_00) && (v1 != param0->unk_3C0)) {
-            SpriteActor_GetSpritePositionXY(param0->unk_1A0[v1].unk_0C, &v3, &v4);
+            CellActorData_GetPositionXY(param0->unk_1A0[v1].unk_0C, &v3, &v4);
 
             if (param0->unk_2B0 == param0->unk_2B4) {
                 v2 += 8;
@@ -639,7 +639,7 @@ static inline void inline_0208AF44 (UnkStruct_02089688 * param0, int param1, s16
 
     v2 = &param0->unk_00[param1];
 
-    SpriteActor_GetSpritePositionXY(v2->unk_0C, &v0, &v1);
+    CellActorData_GetPositionXY(v2->unk_0C, &v0, &v1);
 
     v2->unk_10->rect.top = v1 - param3;
     v2->unk_10->rect.left = v0 - param2;
@@ -725,7 +725,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
 
     v2.unk_00 = param0->unk_2C0.unk_8C;
     v2.unk_04 = &v7;
-    v2.unk_08 = sub_0200D9B0(param0->unk_2C0.unk_08);
+    v2.unk_08 = SpriteGfxHandler_GetCellActorCollection(param0->unk_2C0.unk_08);
     v2.unk_0C = SpriteGfxHandler_GetPaletteProxy(param0->unk_2C0.unk_08, v4);
     v2.unk_10 = NULL;
     v2.unk_14 = param0->unk_2C0.unk_98[param1].unk_04;

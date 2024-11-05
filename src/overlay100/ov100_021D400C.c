@@ -75,7 +75,7 @@ static BOOL ov100_021D4104(UnkStruct_ov100_021D4104 *param0, s16 param1, s16 par
     BOOL v6;
     fx32 v7, v8;
 
-    sub_0200D67C(param0->unk_00, &v2, &v3, FX32_CONST(192));
+    CellActorData_GetPositionFx32WithOffset(param0->unk_00, &v2, &v3, FX32_CONST(192));
 
     v0 = FX_FX32_TO_F32(v2);
     v1 = FX_FX32_TO_F32(v3);
@@ -92,7 +92,7 @@ static BOOL ov100_021D4104(UnkStruct_ov100_021D4104 *param0, s16 param1, s16 par
         v7 += (sub_0201D250(param0->unk_20) * 1);
         v8 += (sub_0201D264(param0->unk_20) * 1);
 
-        sub_0200D5E8(param0->unk_00, v7, v8);
+        CellActorData_AddPositionXYFx32(param0->unk_00, v7, v8);
     }
 
     return v6;
@@ -113,7 +113,7 @@ static void ov100_021D4214(UnkStruct_ov100_021D4104 *param0)
     v0 = (128 << FX32_SHIFT) + (sub_0201D250(param0->unk_1C) * 64);
     v1 = (48 << FX32_SHIFT) + (sub_0201D264(param0->unk_1C) * 24);
 
-    sub_0200D650(param0->unk_00, v0, v1, FX32_CONST(192));
+    CellActorData_SetPositionWithOffsetFx32(param0->unk_00, v0, v1, FX32_CONST(192));
 
     param0->unk_14 = v1 / FX32_ONE;
 }
@@ -128,7 +128,7 @@ static void ov100_021D4264(UnkStruct_ov100_021D4104 *param0, int param1, int par
     v0 = (param1 << FX32_SHIFT) + (sub_0201D250(param0->unk_1C) * param3);
     v1 = (param2 << FX32_SHIFT) + (sub_0201D264(param0->unk_1C) * param4);
 
-    sub_0200D650(param0->unk_00, v0, v1, FX32_CONST(192));
+    CellActorData_SetPositionWithOffsetFx32(param0->unk_00, v0, v1, FX32_CONST(192));
 }
 
 static void ov100_021D42B0(UnkStruct_ov100_021D4104 *param0)
@@ -157,7 +157,7 @@ static void ov100_021D42B0(UnkStruct_ov100_021D4104 *param0)
         param0->unk_0C = 3;
     }
 
-    sub_0200D67C(param0->unk_00, &v0, &v1, FX32_CONST(192));
+    CellActorData_GetPositionFx32WithOffset(param0->unk_00, &v0, &v1, FX32_CONST(192));
 
     param0->unk_14 = (v1 / FX32_ONE);
 }
@@ -177,12 +177,12 @@ static void ov100_021D4318(UnkStruct_ov100_021D4104 *param0)
         param0->unk_0C = 2;
     }
 
-    sub_0200D67C(param0->unk_00, &v0, &v1, FX32_CONST(192));
+    CellActorData_GetPositionFx32WithOffset(param0->unk_00, &v0, &v1, FX32_CONST(192));
 
     v0 += (sub_0201D250(param0->unk_20) * (3 * param0->unk_28[0]));
     v1 += (sub_0201D264(param0->unk_20) * (3 * param0->unk_28[1]));
 
-    sub_0200D650(param0->unk_00, v0, v1, FX32_CONST(192));
+    CellActorData_SetPositionWithOffsetFx32(param0->unk_00, v0, v1, FX32_CONST(192));
 
     param0->unk_14 = v1 / FX32_ONE;
 }
@@ -203,7 +203,7 @@ static void ov100_021D43BC(UnkStruct_ov100_021D4104 *param0)
         v0 = 0.6f;
     }
 
-    sub_0200D6E8(param0->unk_00, v0, v0);
+    CellActorData_SetAffineScaleXYFx32(param0->unk_00, v0, v0);
     CellActorData_SetPriority(param0->unk_00, param0->unk_14);
 }
 
@@ -228,20 +228,20 @@ void ov100_021D4438(SysTask *param0, void *param1)
         BOOL v3;
 
         if (v0->unk_04 && v0->unk_3C) {
-            SpriteActor_GetSpritePositionXY(v0->unk_04, &v1, &v2);
+            CellActorData_GetPositionXY(v0->unk_04, &v1, &v2);
 
             v3 = ov100_021D4104(v0, v1, v2, 3.0f, 1);
 
             {
                 f32 v4, v5;
 
-                sub_0200D788(v0->unk_00, &v4, &v5);
+                CellActorData_GetAffineScaleF32(v0->unk_00, &v4, &v5);
 
                 if (v4 > 0.10f) {
                     v4 = v4 - 0.002f;
                 }
 
-                sub_0200D6E8(v0->unk_00, v4, v4);
+                CellActorData_SetAffineScaleXYFx32(v0->unk_00, v4, v4);
             }
         }
     }

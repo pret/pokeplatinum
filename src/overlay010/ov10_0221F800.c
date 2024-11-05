@@ -1574,7 +1574,7 @@ static void ov10_0222130C(UnkStruct_ov10_0221FB28 *param0, u32 param1, Strbuf *p
 
     v1.unk_00 = param0->unk_B38;
     v1.unk_04 = v0;
-    v1.unk_08 = sub_0200D9B0(param0->unk_194);
+    v1.unk_08 = SpriteGfxHandler_GetCellActorCollection(param0->unk_194);
     v1.unk_0C = SpriteGfxHandler_GetPaletteProxy(param0->unk_194, 47111);
     v1.unk_10 = NULL;
     v1.unk_14 = ((1024 - (8 * 2) - (4 * 4)) - (8 * 2) * param1) * 0x20;

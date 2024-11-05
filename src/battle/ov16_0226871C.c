@@ -1350,7 +1350,7 @@ void ov16_02268D40(NARC *param0, UnkStruct_ov16_02268A14 *param1)
     for (v0 = 0; v0 < 6; v0++) {
         param1->unk_5BC[v0] = CellActor_LoadResources(v1, v2, &Unk_ov16_02270414);
         CellActor_SetPositionWithOffsetXY(param1->unk_5BC[v0]->cellActor, 12 + 19 * v0, 13, ((192 + 80) << FX32_SHIFT));
-        sub_0200D6A4(param1->unk_5BC[v0], 1);
+        CellActorData_SetAffineOverwriteMode(param1->unk_5BC[v0], 1);
 
         param1->unk_5D4[v0] = CellActor_LoadResources(v1, v2, &Unk_ov16_02270448);
         CellActor_SetPositionWithOffsetXY(param1->unk_5D4[v0]->cellActor, 246 + -12 * v0, 9, ((192 + 80) << FX32_SHIFT));
@@ -1441,10 +1441,10 @@ static void ov16_02268FCC(SysTask *param0, void *param1)
             break;
         case 2:
         case 4:
-            sub_0200D7C0(v0->unk_5BC[v1], 0x800);
+            CellActorData_AddAffineZRotation(v0->unk_5BC[v1], 0x800);
             v2->unk_00 += 0x180;
 
-            sub_0200D500(v0->unk_5BC[v1], 12 + 19 * v1 + v2->unk_00 / 0x100, 13, ((192 + 80) << FX32_SHIFT));
+            CellActorData_SetPositionWithOffsetXY(v0->unk_5BC[v1], 12 + 19 * v1 + v2->unk_00 / 0x100, 13, ((192 + 80) << FX32_SHIFT));
             v2->unk_06++;
 
             if (v2->unk_06 >= v2->unk_07) {
@@ -1453,8 +1453,8 @@ static void ov16_02268FCC(SysTask *param0, void *param1)
                 if (v2->unk_03 == 2) {
                     v2->unk_03++;
                 } else {
-                    sub_0200D79C(v0->unk_5BC[v1], 0);
-                    sub_0200D500(v0->unk_5BC[v1], 12 + 19 * v1, 13, ((192 + 80) << FX32_SHIFT));
+                    CellActorData_SetAffineZRotation(v0->unk_5BC[v1], 0);
+                    CellActorData_SetPositionWithOffsetXY(v0->unk_5BC[v1], 12 + 19 * v1, 13, ((192 + 80) << FX32_SHIFT));
 
                     v2->unk_00 = 0;
 
@@ -1475,10 +1475,10 @@ static void ov16_02268FCC(SysTask *param0, void *param1)
 
             break;
         case 3:
-            sub_0200D7C0(v0->unk_5BC[v1], -0x800);
+            CellActorData_AddAffineZRotation(v0->unk_5BC[v1], -0x800);
             v2->unk_00 -= 0x180;
 
-            sub_0200D500(v0->unk_5BC[v1], 12 + 19 * v1 + v2->unk_00 / 0x100, 13, ((192 + 80) << FX32_SHIFT));
+            CellActorData_SetPositionWithOffsetXY(v0->unk_5BC[v1], 12 + 19 * v1 + v2->unk_00 / 0x100, 13, ((192 + 80) << FX32_SHIFT));
             v2->unk_06++;
 
             if (v2->unk_06 >= v2->unk_07 * 2) {
@@ -1805,7 +1805,7 @@ static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int param1, int param
             v9 -= 32 / 2;
         }
 
-        sub_0200D500(v8, v9, v10 - (((192 + 80) << FX32_SHIFT) >> FX32_SHIFT), ((192 + 80) << FX32_SHIFT));
+        CellActorData_SetPositionWithOffsetXY(v8, v9, v10 - (((192 + 80) << FX32_SHIFT) >> FX32_SHIFT), ((192 + 80) << FX32_SHIFT));
     }
 }
 
@@ -2520,7 +2520,7 @@ static CellActorData *ov16_0226A7A4(UnkStruct_ov16_02268A14 *param0, Pokemon *pa
     v3.y = Unk_ov16_02270304[v5][1];
     v4 = CellActor_LoadResources(v0, v1, &v3);
 
-    sub_0200D500(v4, v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
+    CellActorData_SetPositionWithOffsetXY(v4, v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
     CellActor_SetExplicitPaletteOffsetAutoAdjust(v4->cellActor, Pokemon_IconPaletteIndex(param1));
 
     {
@@ -2644,7 +2644,7 @@ static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A9
 
     v0.unk_00 = param0->unk_4C8;
     v0.unk_04 = &v1;
-    v0.unk_08 = sub_0200D9B0(v6);
+    v0.unk_08 = SpriteGfxHandler_GetCellActorCollection(v6);
     v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.unk_04;
@@ -2881,7 +2881,7 @@ static void ov16_0226AF0C(UnkStruct_ov16_02268A14 *param0)
 
             param0->unk_5EC[v0] = sub_0207CA58(v1, v2, v5, &v3);
 
-            sub_0200D500(param0->unk_5EC[v0], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
+            CellActorData_SetPositionWithOffsetXY(param0->unk_5EC[v0], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
 
             {
                 void *v8;
@@ -3232,7 +3232,7 @@ static void ov16_0226B390(SysTask *param0, void *param1)
         sub_020128C4(v0->unk_4CC[v0->unk_67C.unk_04_val3.unk_0D].unk_00, v2, v3 + -2);
 
         if ((v0->unk_67C.unk_04_val3.unk_0E != 0xff) && (v0->unk_60C[v0->unk_67C.unk_04_val3.unk_0E] != NULL)) {
-            sub_0200D5DC(v0->unk_60C[v0->unk_67C.unk_04_val3.unk_0E], 0, -2);
+            CellActorData_AddPositionXY(v0->unk_60C[v0->unk_67C.unk_04_val3.unk_0E], 0, -2);
         }
 
         v0->unk_67C.unk_00++;
@@ -3252,7 +3252,7 @@ static void ov16_0226B390(SysTask *param0, void *param1)
         sub_020128C4(v0->unk_4CC[v0->unk_67C.unk_04_val3.unk_0D].unk_00, v2, v3 + 1);
 
         if ((v0->unk_67C.unk_04_val3.unk_0E != 0xff) && (v0->unk_60C[v0->unk_67C.unk_04_val3.unk_0E] != NULL)) {
-            sub_0200D5DC(v0->unk_60C[v0->unk_67C.unk_04_val3.unk_0E], 0, 1);
+            CellActorData_AddPositionXY(v0->unk_60C[v0->unk_67C.unk_04_val3.unk_0E], 0, 1);
         }
 
         v0->unk_67C.unk_00++;
@@ -3338,10 +3338,10 @@ static void ov16_0226B4E0(SysTask *param0, void *param1)
             sub_020128C4(v0->unk_4CC[v6].unk_00, v2, v3 + -2);
 
             if (v9 != 0) {
-                sub_0200D5AC(v0->unk_5EC[v7]->cellActor, 0, -2);
+                CellActor_AddPositionXY(v0->unk_5EC[v7]->cellActor, 0, -2);
 
                 if (v0->unk_5FC[v7] != NULL) {
-                    sub_0200D5AC(v0->unk_5FC[v7]->cellActor, 0, -2);
+                    CellActor_AddPositionXY(v0->unk_5FC[v7]->cellActor, 0, -2);
                 }
             }
         } else {
@@ -3372,10 +3372,10 @@ static void ov16_0226B4E0(SysTask *param0, void *param1)
             sub_020128C4(v0->unk_4CC[v6].unk_00, v2, v3 + 1);
 
             if (v9 != 0) {
-                sub_0200D5AC(v0->unk_5EC[v7]->cellActor, 0, 1);
+                CellActor_AddPositionXY(v0->unk_5EC[v7]->cellActor, 0, 1);
 
                 if (v0->unk_5FC[v7] != NULL) {
-                    sub_0200D5AC(v0->unk_5FC[v7]->cellActor, 0, 1);
+                    CellActor_AddPositionXY(v0->unk_5FC[v7]->cellActor, 0, 1);
                 }
             }
         } else {
@@ -3421,7 +3421,7 @@ static void ov16_0226B780(SysTask *param0, void *param1)
                 }
 
                 if (v0->unk_60C[v5] != NULL) {
-                    sub_0200D5DC(v0->unk_60C[v5], 0, -2);
+                    CellActorData_AddPositionXY(v0->unk_60C[v5], 0, -2);
                 }
             }
         }
@@ -3450,7 +3450,7 @@ static void ov16_0226B780(SysTask *param0, void *param1)
                 }
 
                 if (v0->unk_60C[v5] != NULL) {
-                    sub_0200D5DC(v0->unk_60C[v5], 0, 1);
+                    CellActorData_AddPositionXY(v0->unk_60C[v5], 0, 1);
                 }
             }
         }

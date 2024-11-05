@@ -401,7 +401,7 @@ static void ov13_02224A0C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1
 {
     SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0200D948(v0, param0->unk_1FB0, sub_0207C944(), sub_0207C908(param3), 1, param2);
+    SpriteRenderer_ModifyTiles(v0, param0->unk_1FB0, sub_0207C944(), sub_0207C908(param3), 1, param2);
     CellActorData_SetExplicitPalette(param1, sub_0207C92C(param3) + 4);
 }
 
@@ -409,7 +409,7 @@ static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1
 {
     SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0200D948(v0, param0->unk_1FB0, sub_0207CAC0(), sub_0207CA90(param2), 1, 45077);
+    SpriteRenderer_ModifyTiles(v0, param0->unk_1FB0, sub_0207CAC0(), sub_0207CA90(param2), 1, 45077);
     CellActorData_SetExplicitPalette(param1, sub_0207CAA8(param2) + 4);
 }
 

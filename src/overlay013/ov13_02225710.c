@@ -497,32 +497,32 @@ static void ov13_02225EB8(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2)
     case 3:
     case 4:
     case 5:
-        sub_0200D5DC(param0->unk_1FB4[13 + param1 - 0], 0, Unk_ov13_02229896[param2]);
-        sub_0200D5DC(param0->unk_1FB4[0 + param1 - 0], 0, Unk_ov13_02229896[param2]);
-        sub_0200D5DC(param0->unk_1FB4[7 + param1 - 0], 0, Unk_ov13_02229896[param2]);
+        CellActorData_AddPositionXY(param0->unk_1FB4[13 + param1 - 0], 0, Unk_ov13_02229896[param2]);
+        CellActorData_AddPositionXY(param0->unk_1FB4[0 + param1 - 0], 0, Unk_ov13_02229896[param2]);
+        CellActorData_AddPositionXY(param0->unk_1FB4[7 + param1 - 0], 0, Unk_ov13_02229896[param2]);
         break;
     case 7:
-        sub_0200D5DC(param0->unk_1FB4[0 + param0->unk_00->unk_11], 0, Unk_ov13_02229890[param2]);
-        sub_0200D5DC(param0->unk_1FB4[7 + param0->unk_00->unk_11], 0, Unk_ov13_02229890[param2]);
+        CellActorData_AddPositionXY(param0->unk_1FB4[0 + param0->unk_00->unk_11], 0, Unk_ov13_02229890[param2]);
+        CellActorData_AddPositionXY(param0->unk_1FB4[7 + param0->unk_00->unk_11], 0, Unk_ov13_02229890[param2]);
         break;
     case 14:
     case 15:
     case 16:
     case 17:
-        sub_0200D5DC(param0->unk_1FB4[21 + param1 - 14], 0, Unk_ov13_02229890[param2]);
+        CellActorData_AddPositionXY(param0->unk_1FB4[21 + param1 - 14], 0, Unk_ov13_02229890[param2]);
         break;
     case 19:
     case 20:
     case 21:
     case 22:
-        sub_0200D5DC(param0->unk_1FB4[21 + param1 - 19], 0, Unk_ov13_02229890[param2]);
+        CellActorData_AddPositionXY(param0->unk_1FB4[21 + param1 - 19], 0, Unk_ov13_02229890[param2]);
         break;
     case 23:
     case 24:
     case 25:
     case 26:
     case 27:
-        sub_0200D5DC(param0->unk_1FB4[21 + param1 - 23], 0, Unk_ov13_02229890[param2]);
+        CellActorData_AddPositionXY(param0->unk_1FB4[21 + param1 - 23], 0, Unk_ov13_02229890[param2]);
         break;
     }
 }

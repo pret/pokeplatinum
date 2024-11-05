@@ -127,7 +127,7 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
                 v0->unk_24[v1].unk_06 = v0->unk_24[v1 - 1].unk_06;
             }
 
-            sub_0200D67C(v0->unk_24[v1].unk_00, &v5, &v6, v0->unk_10.unk_10);
+            CellActorData_GetPositionFx32WithOffset(v0->unk_24[v1].unk_00, &v5, &v6, v0->unk_10.unk_10);
 
             v3 = FX_FX32_TO_F32(v5);
             v4 = FX_FX32_TO_F32(v6);
@@ -135,7 +135,7 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
             v9 = sub_0208B2DC(v0->unk_24[v1].unk_04, v0->unk_24[v1].unk_06, v3, v4, &v7, &v8, (8.0f - ((v1 - v2) * 0.5f)) / 2, 16);
 
             if (v9 && (v0->unk_24[v1].unk_08 == 0)) {
-                sub_0200D5E8(v0->unk_24[v1].unk_00, FX_F32_TO_FX32(v7), FX_F32_TO_FX32(v8));
+                CellActorData_AddPositionXYFx32(v0->unk_24[v1].unk_00, FX_F32_TO_FX32(v7), FX_F32_TO_FX32(v8));
             } else {
                 {
                     int v10;
@@ -145,7 +145,7 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
 
                     switch (v0->unk_24[v1].unk_08) {
                     case 0:
-                        sub_0200D5A0(v0->unk_24[v1].unk_00, &v12, &v13, v0->unk_10.unk_10);
+                        CellActorData_GetPositionWithOffsetXY(v0->unk_24[v1].unk_00, &v12, &v13, v0->unk_10.unk_10);
 
                         if (v0->unk_E8 == 0xFF) {
                             v0->unk_E8 = v1;
@@ -164,7 +164,7 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
                         v0->unk_24[v1].unk_0C %= 720;
                         v14 = (v0->unk_24[0].unk_04 << FX32_SHIFT) + (sub_0201D250(v0->unk_24[v1].unk_0C) * v0->unk_FC);
                         v15 = (v0->unk_24[0].unk_06 << FX32_SHIFT) + (sub_0201D264(v0->unk_24[v1].unk_0C) * v0->unk_100);
-                        sub_0200D650(v0->unk_24[v1].unk_00, v14, v15, v0->unk_10.unk_10);
+                        CellActorData_SetPositionWithOffsetFx32(v0->unk_24[v1].unk_00, v14, v15, v0->unk_10.unk_10);
                         break;
                     default:
                         break;
@@ -355,7 +355,7 @@ BOOL sub_0208B948(UnkStruct_0208B878 *param0, s16 param1, s16 param2)
         for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
             param0->unk_24[v0].unk_04 = param1;
             param0->unk_24[v0].unk_06 = param2;
-            sub_0200D500(param0->unk_24[v0].unk_00, param1, param2, param0->unk_10.unk_10);
+            CellActorData_SetPositionWithOffsetXY(param0->unk_24[v0].unk_00, param1, param2, param0->unk_10.unk_10);
         }
     }
 

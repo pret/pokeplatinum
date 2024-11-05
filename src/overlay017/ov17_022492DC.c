@@ -715,7 +715,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
 
     v0.unk_00 = param0->unk_18;
     v0.unk_04 = &v1;
-    v0.unk_08 = sub_0200D9B0(v6);
+    v0.unk_08 = SpriteGfxHandler_GetCellActorCollection(v6);
     v0.unk_0C = SpriteGfxHandler_GetPaletteProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.unk_04;
@@ -822,7 +822,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_8C.unk_04_val1.unk_10[v4] != NULL) {
-                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->cellActor, 0, 16);
+                CellActor_AddPositionXY(v0->unk_8C.unk_04_val1.unk_10[v4]->cellActor, 0, 16);
             }
         }
 
@@ -851,7 +851,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_8C.unk_04_val1.unk_10[v4] != NULL) {
-                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->cellActor, 0, -4);
+                CellActor_AddPositionXY(v0->unk_8C.unk_04_val1.unk_10[v4]->cellActor, 0, -4);
             }
         }
 
@@ -880,7 +880,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_8C.unk_04_val1.unk_10[v4] != NULL) {
-                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->cellActor, 0, (-(16 + -4)));
+                CellActor_AddPositionXY(v0->unk_8C.unk_04_val1.unk_10[v4]->cellActor, 0, (-(16 + -4)));
             }
         }
 

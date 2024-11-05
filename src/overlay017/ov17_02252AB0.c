@@ -97,10 +97,10 @@ void ov17_02252BF0(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int 
 {
     int v0;
 
-    sub_0200D500(param0->unk_00[0], param1, param2, param9);
-    sub_0200D500(param0->unk_00[1], param3, param4, param9);
-    sub_0200D500(param0->unk_00[2], param5, param6, param9);
-    sub_0200D500(param0->unk_00[3], param7, param8, param9);
+    CellActorData_SetPositionWithOffsetXY(param0->unk_00[0], param1, param2, param9);
+    CellActorData_SetPositionWithOffsetXY(param0->unk_00[1], param3, param4, param9);
+    CellActorData_SetPositionWithOffsetXY(param0->unk_00[2], param5, param6, param9);
+    CellActorData_SetPositionWithOffsetXY(param0->unk_00[3], param7, param8, param9);
 
     CellActorData_SetAnim(param0->unk_00[0], 0);
     CellActorData_SetAnim(param0->unk_00[1], 1);

@@ -47,7 +47,7 @@ static void ov12_0222E784(SysTask *param0, void *param1)
             f32 v1, v2;
 
             ov12_02225FA4(&v0->unk_60, &v1, &v2);
-            sub_0200D6E8(v0->unk_1C.unk_0C, v1, v2);
+            CellActorData_SetAffineScaleXYFx32(v0->unk_1C.unk_0C, v1, v2);
             ov12_0222605C(v0->unk_1C.unk_0C, v0->unk_58, v0->unk_5A, v0->unk_60.unk_04[4], 0);
         }
         break;
@@ -75,7 +75,7 @@ void ov12_0222E810(UnkStruct_ov12_0221FCDC *param0)
     v0->unk_30[0].unk_0C = ov12_022202C0(param0, 1);
     v0->unk_30[1].unk_0C = ov12_022202C0(param0, 2);
 
-    sub_0200D6A4(v0->unk_1C.unk_0C, 2);
+    CellActorData_SetAffineOverwriteMode(v0->unk_1C.unk_0C, 2);
     CellActorData_SetExplicitPriority(v0->unk_1C.unk_0C, ov12_0222339C(param0));
     CellActorData_SetExplicitPriority(v0->unk_30[0].unk_0C, ov12_0222339C(param0));
     CellActorData_SetExplicitPriority(v0->unk_30[1].unk_0C, ov12_0222339C(param0));
