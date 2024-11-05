@@ -867,7 +867,7 @@ void PokemonSummaryScreen_PrintBattleMoveInfo(PokemonSummaryScreen *summaryScree
 
     PrintTextToWindow(summaryScreen, &summaryScreen->extraWindows[6], TEXT_COLOR(1, 2, 0), PSS_ALIGNMENT_CENTER);
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_unk_0646, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_move_descriptions, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     MessageLoader_GetStrbuf(msgLoader, move, summaryScreen->strbuf);
     PrintTextToWindow(summaryScreen, &summaryScreen->extraWindows[7], TEXT_COLOR(1, 2, 0), PSS_ALIGNMENT_LEFT);

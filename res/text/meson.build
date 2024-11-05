@@ -643,7 +643,7 @@ message_bank_files = files(
     'message_bank_route_226_house.gmm',
     'message_bank_route_230.gmm',
     'message_bank_unk_0645.gmm',
-    'message_bank_unk_0646.gmm',
+    'message_bank_move_descriptions.gmm',
     'message_bank_move_names.gmm',
     'message_bank_unk_0648.gmm',
     'message_bank_plaza_event_names.gmm',
