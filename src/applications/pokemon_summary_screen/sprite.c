@@ -705,7 +705,7 @@ static s16 sub_0208F800(u32 param0, s16 param1, s16 param2)
     return param2 + (s16)v0;
 }
 
-void DrawContestStatDots(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_DrawContestStatDots(PokemonSummaryScreen *summaryScreen)
 {
     SpriteActor_SetPositionXY(summaryScreen->unk_41C[48], sub_0208F800(summaryScreen->monData.cool, 88, 88), sub_0208F800(summaryScreen->monData.cool, 49, 73));
     SpriteActor_SetPositionXY(summaryScreen->unk_41C[49], sub_0208F800(summaryScreen->monData.beauty, 110, 88), sub_0208F800(summaryScreen->monData.beauty, 65, 73));
@@ -720,7 +720,7 @@ void DrawContestStatDots(PokemonSummaryScreen *summaryScreen)
     CellActor_SetDrawFlag(summaryScreen->unk_41C[52], TRUE);
 }
 
-void HideContestStatDots(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_HideContestStatDots(PokemonSummaryScreen *summaryScreen)
 {
     CellActor_SetDrawFlag(summaryScreen->unk_41C[48], FALSE);
     CellActor_SetDrawFlag(summaryScreen->unk_41C[49], FALSE);

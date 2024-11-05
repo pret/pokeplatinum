@@ -113,13 +113,12 @@ void PokemonSummaryScreen_SetSubscreenType(PokemonSummaryScreen *summaryScreen)
 static void UpdateSubscreenButtonTilemap(PokemonSummaryScreen *summaryScreen, const PSSSubscreenButton *button, u8 animID)
 {
     u16 *bgSub0Tilemap = (u16 *)Bg_GetTilemapBuffer(summaryScreen->bgConfig, BG_LAYER_SUB_0);
-    u16 v1 = (button->page & 1) * 15 + (button->page / 2) * (30 * 5) + animID * 5 + 30;
-    u8 v2;
-    u8 v3, v4;
+    u16 baseTile = (button->page & 1) * 15 + (button->page / 2) * (30 * 5) + animID * 5 + 30;
+    u8 y, x;
 
-    for (v3 = 0; v3 < 5; v3++) {
-        for (v4 = 0; v4 < 5; v4++) {
-            bgSub0Tilemap[(v3 + button->y) * 32 + v4 + button->x] = v1 + v3 * 30 + v4 + (button->paletteNum << 12);
+    for (y = 0; y < 5; y++) {
+        for (x = 0; x < 5; x++) {
+            bgSub0Tilemap[(y + button->y) * 32 + x + button->x] = baseTile + y * 30 + x + (button->paletteNum << 12);
         }
     }
 }

@@ -8,6 +8,7 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/sprite.h"
 #include "text/gmm/message_bank_pokemon_summary_screen.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "font.h"
@@ -849,7 +850,7 @@ void PokemonSummaryScreen_PrintBattleMoveInfo(PokemonSummaryScreen *summaryScree
     u32 power = MoveTable_LoadParam(move, MOVEATTRIBUTE_POWER);
 
     if (power <= 1) {
-        MessageLoader_GetStrbuf(summaryScreen->msgLoader, 154, summaryScreen->strbuf);
+        MessageLoader_GetStrbuf(summaryScreen->msgLoader, pss_three_dashes, summaryScreen->strbuf);
     } else {
         SetAndFormatNumberBuf(summaryScreen, 150, power, 3, PADDING_MODE_SPACES);
     }
@@ -859,14 +860,14 @@ void PokemonSummaryScreen_PrintBattleMoveInfo(PokemonSummaryScreen *summaryScree
     power = MoveTable_LoadParam(move, MOVEATTRIBUTE_ACCURACY);
 
     if (power == 0) {
-        MessageLoader_GetStrbuf(summaryScreen->msgLoader, 154, summaryScreen->strbuf);
+        MessageLoader_GetStrbuf(summaryScreen->msgLoader, pss_three_dashes, summaryScreen->strbuf);
     } else {
         SetAndFormatNumberBuf(summaryScreen, 151, power, 3, PADDING_MODE_SPACES);
     }
 
     PrintTextToWindow(summaryScreen, &summaryScreen->extraWindows[6], TEXT_COLOR(1, 2, 0), PSS_ALIGNMENT_CENTER);
 
-    MessageLoader *msgLoader = MessageLoader_Init(1, 26, 646, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_unk_0646, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     MessageLoader_GetStrbuf(msgLoader, move, summaryScreen->strbuf);
     PrintTextToWindow(summaryScreen, &summaryScreen->extraWindows[7], TEXT_COLOR(1, 2, 0), PSS_ALIGNMENT_LEFT);

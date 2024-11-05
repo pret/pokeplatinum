@@ -159,7 +159,7 @@ enum PSSPoffinFeedMsg {
 typedef struct PokemonSummary {
     void *monData;
     Options *options;
-    const u16 *OTName;
+    const charcode_t *OTName;
     u32 OTID;
     u8 OTGender;
     u8 dataType;

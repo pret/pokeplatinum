@@ -1817,7 +1817,7 @@ static u8 SetupContestMoveInfo(PokemonSummaryScreen *summaryScreen)
 
         UpdateMoveInfo(summaryScreen);
         PokemonSummaryScreen_ShowMonIcon(summaryScreen);
-        DrawContestStatDots(summaryScreen);
+        PokemonSummaryScreen_DrawContestStatDots(summaryScreen);
         CellActor_SetDrawFlag(summaryScreen->unk_41C[9], TRUE);
 
         return TRUE;
@@ -1830,7 +1830,7 @@ static u8 HideContestMoveInfo(PokemonSummaryScreen *summaryScreen)
 {
     switch (summaryScreen->subscreen) {
     case 0:
-        HideContestStatDots(summaryScreen);
+        PokemonSummaryScreen_HideContestStatDots(summaryScreen);
         SpriteActor_DrawSprite(summaryScreen->unk_41C[19], FALSE);
         UpdateAppealHearts(summaryScreen, PSS_MOVE_NONE);
         CellActor_SetDrawFlag(summaryScreen->unk_41C[9], FALSE);
@@ -1918,7 +1918,7 @@ static void SetupMoveInfoFromSubscreenButton(PokemonSummaryScreen *summaryScreen
     PokemonSummaryScreen_ShowMonIcon(summaryScreen);
 
     if (summaryScreen->page == PSS_PAGE_BATTLE_MOVES) {
-        HideContestStatDots(summaryScreen);
+        PokemonSummaryScreen_HideContestStatDots(summaryScreen);
         SpriteActor_DrawSprite(summaryScreen->unk_41C[11], TRUE);
 
         if (summaryScreen->monData.type1 != summaryScreen->monData.type2) {
@@ -1927,7 +1927,7 @@ static void SetupMoveInfoFromSubscreenButton(PokemonSummaryScreen *summaryScreen
 
         Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 0);
     } else {
-        DrawContestStatDots(summaryScreen);
+        PokemonSummaryScreen_DrawContestStatDots(summaryScreen);
         Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 256);
     }
 }
