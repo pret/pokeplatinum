@@ -10,7 +10,6 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_sub1.h"
 
@@ -26,8 +25,8 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
-#include "sprite_renderer.h"
 #include "sprite_resource.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"

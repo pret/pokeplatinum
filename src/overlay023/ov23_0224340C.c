@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EAFA4.h"

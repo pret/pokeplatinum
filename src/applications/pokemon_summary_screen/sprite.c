@@ -19,7 +19,6 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "ribbon.h"
-#include "pokemon_summary_app.h"
 #include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "unk_0201DBEC.h"
