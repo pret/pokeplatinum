@@ -14,7 +14,7 @@ UNAME_S := $(shell uname -s)
 CWD := $(shell realpath .)
 
 ifneq (,$(findstring Microsoft,$(UNAME_R)))
-ifneq (,$(findstring /mnt/,$(CWD)))
+ifneq (,$(filter /mnt/%,$(CWD)))
 WSL_ACCESSING_WINDOWS := 0
 else
 WSL_ACCESSING_WINDOWS := 1
