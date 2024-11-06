@@ -48,6 +48,17 @@ typedef struct SpriteResourceTableEntryNARC {
     int paletteCount;
 } SpriteResourceTableEntryNARC;
 
+typedef struct SpriteTemplateTableEntry {
+    int tileIndex;
+    int paletteIndex;
+    int cellsIndex;
+    int animIndex;
+    int multiCellsIndex;
+    int multiAnimIndex;
+    BOOL vramTransfer;
+    int priority;
+} SpriteTemplateTableEntry;
+
 typedef struct SpriteResourceTable {
     void *entries;
     int count;

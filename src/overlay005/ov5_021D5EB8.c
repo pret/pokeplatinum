@@ -1593,7 +1593,7 @@ static void ov5_021D6F4C(CellActorResourceData *param0, UnkStruct_ov5_021D6594 *
         v0[v1] = SpriteResource_GetID(param2->unk_00[v1]);
     }
 
-    sub_020093B4(param0, v0[0], v0[1], v0[2], v0[3], 0xffffffff, 0xffffffff, param3, param4, param1->unk_08.unk_00[0], param1->unk_08.unk_00[1], param1->unk_08.unk_00[2], param1->unk_08.unk_00[3], NULL, NULL);
+    CellActorResourceData_Init(param0, v0[0], v0[1], v0[2], v0[3], 0xffffffff, 0xffffffff, param3, param4, param1->unk_08.unk_00[0], param1->unk_08.unk_00[1], param1->unk_08.unk_00[2], param1->unk_08.unk_00[3], NULL, NULL);
 }
 
 static void ov5_021D6FA8(UnkStruct_ov5_021D6FA8 *param0)

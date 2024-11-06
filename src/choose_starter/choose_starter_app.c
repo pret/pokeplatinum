@@ -1455,7 +1455,7 @@ static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor 
     CellActorResourceData v0;
     CellActorInitParams v1;
 
-    sub_020093B4(&v0, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, param0->unk_24C[0], param0->unk_24C[1], param0->unk_24C[2], param0->unk_24C[3], NULL, NULL);
+    CellActorResourceData_Init(&v0, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, param0->unk_24C[0], param0->unk_24C[1], param0->unk_24C[2], param0->unk_24C[3], NULL, NULL);
 
     v1.collection = param0->unk_248;
     v1.resourceData = &v0;

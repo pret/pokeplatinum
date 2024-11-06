@@ -508,8 +508,8 @@ static void ov72_0223DF58(UnkStruct_ov72_0223DB98 *param0)
 {
     int v0;
 
-    sub_020093B4(&param0->unk_1FC, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1CC[0], param0->unk_1CC[1], param0->unk_1CC[2], param0->unk_1CC[3], NULL, NULL);
-    sub_020093B4(&param0->unk_220, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1CC[0], param0->unk_1CC[1], param0->unk_1CC[2], param0->unk_1CC[3], NULL, NULL);
+    CellActorResourceData_Init(&param0->unk_1FC, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1CC[0], param0->unk_1CC[1], param0->unk_1CC[2], param0->unk_1CC[3], NULL, NULL);
+    CellActorResourceData_Init(&param0->unk_220, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1CC[0], param0->unk_1CC[1], param0->unk_1CC[2], param0->unk_1CC[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v1;

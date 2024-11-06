@@ -2745,7 +2745,7 @@ static CellActor *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *pa
     CellActorInitParams v1;
     CellActor *v2;
 
-    sub_020093B4(&v0, ((param2) + 0xff), ((param3) + 0xff), ((param4) + 0xff), ((param5) + 0xff), 0xffffffff, 0xffffffff, 0, param6, param0->unk_190, param0->unk_194, param0->unk_198, param0->unk_19C, NULL, NULL);
+    CellActorResourceData_Init(&v0, ((param2) + 0xff), ((param3) + 0xff), ((param4) + 0xff), ((param5) + 0xff), 0xffffffff, 0xffffffff, 0, param6, param0->unk_190, param0->unk_194, param0->unk_198, param0->unk_19C, NULL, NULL);
 
     v1.collection = param0->unk_00;
     v1.resourceData = &v0;

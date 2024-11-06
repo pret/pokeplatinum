@@ -455,7 +455,7 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     sub_0200A684(param0->unk_18[1]);
 
     v1 = LoadMemberFromNARC(177, 4, 0, 4, 0);
-    param0->unk_04 = sub_02009508(v1, 4, param0->unk_08[0], param0->unk_08[1], param0->unk_08[2], param0->unk_08[3], NULL, NULL);
+    param0->unk_04 = CellActorResourceDataList_FromTemplate(v1, 4, param0->unk_08[0], param0->unk_08[1], param0->unk_08[2], param0->unk_08[3], NULL, NULL);
 
     Heap_FreeToHeap(v1);
 }

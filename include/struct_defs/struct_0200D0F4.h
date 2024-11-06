@@ -6,8 +6,8 @@
 
 typedef struct CellActorData {
     CellActor *cellActor;
-    CellActorResourceData *cellActorResource;
-    CellActorResourceDataList *cellActorResourceList;
+    CellActorResourceData *resourceListHead;
+    CellActorResourceDataList *resourceList;
     BOOL vramTransfer;
 } CellActorData;
 

@@ -540,7 +540,7 @@ static CellActor *ov6_02243740(UnkStruct_ov6_02243258 *param0, const VecFx32 *pa
         param5 = 0xffffffff;
     }
 
-    sub_020093B4(
+    CellActorResourceData_Init(
         &v0, param2, param3, param4, param5, 0xffffffff, 0xffffffff, 0, param6, param0->unk_198, param0->unk_19C, param0->unk_1A0, param0->unk_1A4, NULL, NULL);
 
     v1.collection = param0->unk_08;
@@ -1842,10 +1842,10 @@ static CellActor *ov6_02244C20(UnkStruct_ov6_02243FFC *param0, const VecFx32 *pa
     CellActor *v2;
 
     if (param5 == 4) {
-        sub_020093B4(
+        CellActorResourceData_Init(
             &v0, param2, param3, param4, 0xffffffff, 0xffffffff, 0xffffffff, 0, param6, param0->unk_200, param0->unk_204, param0->unk_208, NULL, NULL, NULL);
     } else {
-        sub_020093B4(
+        CellActorResourceData_Init(
             &v0, param2, param3, param4, param5, 0xffffffff, 0xffffffff, 0, param6, param0->unk_200, param0->unk_204, param0->unk_208, param0->unk_20C, NULL, NULL);
     }
 

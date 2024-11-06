@@ -73,7 +73,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPath *
     sub_0200A684(param0->unk_1AC[1]);
 
     v2 = ReadFileToHeap(param3, param1->paths.combinedResourceDataPath);
-    param0->unk_190 = sub_02009508(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
+    param0->unk_190 = CellActorResourceDataList_FromTemplate(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     Heap_FreeToHeap(v2);
 }
@@ -338,9 +338,9 @@ CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
 
     v2 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorData));
 
-    v2->cellActorResourceList = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorResourceDataList));
-    v2->cellActorResourceList->resourceDataList = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorResourceData));
-    v2->cellActorResource = v2->cellActorResourceList->resourceDataList;
+    v2->resourceList = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorResourceDataList));
+    v2->resourceList->resourceDataList = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorResourceData));
+    v2->resourceListHead = v2->resourceList->resourceDataList;
 
     for (v0 = 0; v0 < 6; v0++) {
         v4[v0] = param1->resources[v0];
@@ -359,10 +359,10 @@ CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
         }
     }
 
-    sub_020093B4(v2->cellActorResource, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->transferToVRAM, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
+    CellActorResourceData_Init(v2->resourceListHead, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->transferToVRAM, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     v3.collection = param0->unk_00;
-    v3.resourceData = v2->cellActorResource;
+    v3.resourceData = v2->resourceListHead;
     v3.position.x = FX32_CONST(param1->x);
     v3.position.y = FX32_CONST(param1->y);
     v3.position.z = FX32_CONST(param1->z);

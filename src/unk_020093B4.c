@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02009508_1.h"
-
 #include "cell_actor.h"
 #include "heap.h"
 #include "sprite_renderer.h"
@@ -15,79 +13,79 @@
 #include "unk_0201F834.h"
 #include "unk_0202309C.h"
 
-void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, SpriteResourceCollection *param9, SpriteResourceCollection *param10, SpriteResourceCollection *param11, SpriteResourceCollection *param12, SpriteResourceCollection *param13, SpriteResourceCollection *param14)
+void CellActorResourceData_Init(CellActorResourceData *resourceData, int tileIndex, int paletteIndex, int cellIndex, int animIndex, int multiCellIndex, int multiAnimIndex, BOOL vramTransfer, int priority, SpriteResourceCollection *tileCollection, SpriteResourceCollection *paletteCollection, SpriteResourceCollection *cellCollection, SpriteResourceCollection *animCollection, SpriteResourceCollection *multiCellCollection, SpriteResourceCollection *multiAnimCollection)
 {
-    SpriteResource *v0;
-    SpriteResource *v1;
-    SpriteResource *v2;
-    SpriteResource *v3 = NULL;
-    SpriteResource *v4 = NULL;
-    SpriteResource *v5 = NULL;
-    NNSG2dImageProxy *v6;
+    SpriteResource *tileResource;
+    SpriteResource *paletteResource;
+    SpriteResource *cellResource;
+    SpriteResource *animResource = NULL;
+    SpriteResource *multiCellResource = NULL;
+    SpriteResource *multiAnimResource = NULL;
+    NNSG2dImageProxy *imageProxy;
 
-    GF_ASSERT(param9);
-    GF_ASSERT(param10);
-    GF_ASSERT(param12);
-    GF_ASSERT(param11);
-    GF_ASSERT(param0);
+    GF_ASSERT(tileCollection);
+    GF_ASSERT(paletteCollection);
+    GF_ASSERT(animCollection);
+    GF_ASSERT(cellCollection);
+    GF_ASSERT(resourceData);
 
-    v0 = SpriteResourceCollection_Find(param9, param1);
-    GF_ASSERT(v0);
+    tileResource = SpriteResourceCollection_Find(tileCollection, tileIndex);
+    GF_ASSERT(tileResource);
 
-    v1 = SpriteResourceCollection_Find(param10, param2);
-    GF_ASSERT(v1);
+    paletteResource = SpriteResourceCollection_Find(paletteCollection, paletteIndex);
+    GF_ASSERT(paletteResource);
 
-    v2 = SpriteResourceCollection_Find(param11, param3);
-    GF_ASSERT(v2);
+    cellResource = SpriteResourceCollection_Find(cellCollection, cellIndex);
+    GF_ASSERT(cellResource);
 
-    if (param12) {
-        if (param4 != 0xffffffff) {
-            v3 = SpriteResourceCollection_Find(param12, param4);
-            GF_ASSERT(v3);
+    if (animCollection) {
+        if (animIndex != -1) {
+            animResource = SpriteResourceCollection_Find(animCollection, animIndex);
+            GF_ASSERT(animResource);
         }
     }
 
-    if (param13 != NULL) {
-        if (param5 != 0xffffffff) {
-            v4 = SpriteResourceCollection_Find(param13, param5);
+    if (multiCellCollection != NULL) {
+        if (multiCellIndex != -1) {
+            multiCellResource = SpriteResourceCollection_Find(multiCellCollection, multiCellIndex);
         }
 
-        if (param6 != 0xffffffff) {
-            v5 = SpriteResourceCollection_Find(param14, param6);
+        if (multiAnimIndex != -1) {
+            multiAnimResource = SpriteResourceCollection_Find(multiAnimCollection, multiAnimIndex);
         }
     }
 
-    if (param7) {
-        v6 = sub_0200A558(v0, v2);
-        GF_ASSERT(v6);
+    if (vramTransfer) {
+        imageProxy = sub_0200A558(tileResource, cellResource);
+        GF_ASSERT(imageProxy);
 
-        param0->charData = SpriteResource_GetTileData(v0);
+        resourceData->charData = SpriteResource_GetTileData(tileResource);
     } else {
-        v6 = sub_0200A534(v0);
-        GF_ASSERT(v6);
-        param0->charData = NULL;
+        imageProxy = sub_0200A534(tileResource);
+        GF_ASSERT(imageProxy);
+        resourceData->charData = NULL;
     }
 
-    param0->paletteProxy = sub_0200A72C(v1, v6);
-    param0->imageProxy = v6;
-    param0->cellBank = SpriteResource_GetSpriteData(v2);
+    resourceData->paletteProxy = sub_0200A72C(paletteResource, imageProxy);
+    resourceData->imageProxy = imageProxy;
+    resourceData->cellBank = SpriteResource_GetSpriteData(cellResource);
 
-    if (v3) {
-        param0->cellAnimBank = SpriteResource_GetSpriteAnimData(v3);
+    if (animResource) {
+        resourceData->cellAnimBank = SpriteResource_GetSpriteAnimData(animResource);
     } else {
-        param0->cellAnimBank = NULL;
+        resourceData->cellAnimBank = NULL;
     }
 
-    if (v4) {
-        param0->multiCellBank = SpriteResource_GetMultiSpriteData(v4);
-        param0->multiCellAnimBank = SpriteResource_GetMultiSpriteAnimData(v5);
+    if (multiCellResource) {
+        resourceData->multiCellBank = SpriteResource_GetMultiSpriteData(multiCellResource);
+        resourceData->multiCellAnimBank = SpriteResource_GetMultiSpriteAnimData(multiAnimResource);
     } else {
-        param0->multiCellBank = NULL;
-        param0->multiCellAnimBank = NULL;
+        resourceData->multiCellBank = NULL;
+        resourceData->multiCellAnimBank = NULL;
     }
 
-    param0->isVRamTransfer = param7;
-    param0->priority = param8;
+    resourceData->isVRamTransfer = vramTransfer;
+    resourceData->priority = priority;
 }
 
 void sub_020094F0(CellActorResourceData *param0)
@@ -96,28 +94,37 @@ void sub_020094F0(CellActorResourceData *param0)
     memset(param0, 0, sizeof(CellActorResourceData));
 }
 
-CellActorResourceDataList *sub_02009508(const UnkStruct_02009508_1 *param0, int param1, SpriteResourceCollection *param2, SpriteResourceCollection *param3, SpriteResourceCollection *param4, SpriteResourceCollection *param5, SpriteResourceCollection *param6, SpriteResourceCollection *param7)
+CellActorResourceDataList *CellActorResourceDataList_FromTemplate(const SpriteTemplateTableEntry *template, int heapId, SpriteResourceCollection *tilesCollection, SpriteResourceCollection *paletteCollection, SpriteResourceCollection *cellsCollection, SpriteResourceCollection *animCollection, SpriteResourceCollection *multiCellCollection, SpriteResourceCollection *multiAnimCollection)
 {
-    int v0;
-    int v1;
-    CellActorResourceDataList *v2;
-    int v3, v4;
-
-    v1 = 0;
-
-    while (param0[v1].unk_00 != 0xfffffffe) {
-        v1++;
+    int resourceCount = 0;
+    while (template[resourceCount].tileIndex != -2) {
+        resourceCount++;
     }
 
-    v2 = Heap_AllocFromHeap(param1, sizeof(CellActorResourceDataList));
-    v2->resourceDataList = Heap_AllocFromHeap(param1, sizeof(CellActorResourceData) * v1);
-    v2->numEntries = v1;
+    CellActorResourceDataList *resources = Heap_AllocFromHeap(heapId, sizeof(CellActorResourceDataList));
+    resources->resourceDataList = Heap_AllocFromHeap(heapId, sizeof(CellActorResourceData) * resourceCount);
+    resources->numEntries = resourceCount;
 
-    for (v0 = 0; v0 < v2->numEntries; v0++) {
-        sub_020093B4(v2->resourceDataList + v0, param0[v0].unk_00, param0[v0].unk_04, param0[v0].unk_08, param0[v0].unk_0C, param0[v0].unk_10, param0[v0].unk_14, param0[v0].unk_18, param0[v0].unk_1C, param2, param3, param4, param5, param6, param7);
+    for (int i = 0; i < resources->numEntries; i++) {
+        CellActorResourceData_Init(
+            resources->resourceDataList + i, 
+            template[i].tileIndex, 
+            template[i].paletteIndex, 
+            template[i].cellsIndex, 
+            template[i].animIndex, 
+            template[i].multiCellsIndex, 
+            template[i].multiAnimIndex, 
+            template[i].vramTransfer, 
+            template[i].priority, 
+            tilesCollection, 
+            paletteCollection, 
+            cellsCollection, 
+            animCollection, 
+            multiCellCollection, 
+            multiAnimCollection);
     }
 
-    return v2;
+    return resources;
 }
 
 void sub_020095A8(CellActorResourceDataList *param0)

@@ -97,7 +97,7 @@ static void ov77_021D6670()
 
 static void ov77_021D66A0(UnkStruct_ov77_021D6800 *param0, CellActorInitParamsEx *param1, CellActorResourceData *param2)
 {
-    sub_020093B4(param2, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    CellActorResourceData_Init(param2, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         param1->collection = param0->unk_00;

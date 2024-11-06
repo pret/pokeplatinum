@@ -2807,7 +2807,7 @@ static void ov23_0224108C(void)
     CellActorInitParamsEx v2;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_020093B4(&Unk_ov23_02257740->unk_204[v0], v0, v0, v0, v0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257740->unk_1B0[0], Unk_ov23_02257740->unk_1B0[1], Unk_ov23_02257740->unk_1B0[2], Unk_ov23_02257740->unk_1B0[3], NULL, NULL);
+        CellActorResourceData_Init(&Unk_ov23_02257740->unk_204[v0], v0, v0, v0, v0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257740->unk_1B0[0], Unk_ov23_02257740->unk_1B0[1], Unk_ov23_02257740->unk_1B0[2], Unk_ov23_02257740->unk_1B0[3], NULL, NULL);
 
         v2.collection = Unk_ov23_02257740->unk_20;
         v2.resourceData = &Unk_ov23_02257740->unk_204[v0];

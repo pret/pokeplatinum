@@ -244,7 +244,7 @@ BOOL SpriteRenderer_LoadSpriteResourceData(SpriteRenderer *renderer, SpriteGfxHa
     sub_0200A60C(gfxHandler->spriteResourceList[SPRITE_RESOURCE_PALETTE]);
 
     void *resourceEntryData = ReadFileToHeap(renderer->heapID, resourcePaths->paths.combinedResourceDataPath);
-    gfxHandler->cellActorDataList = sub_02009508(
+    gfxHandler->cellActorDataList = CellActorResourceDataList_FromTemplate(
         resourceEntryData,
         renderer->heapID,
         gfxHandler->spriteResourceCollectionList[SPRITE_RESOURCE_TILES],
@@ -462,18 +462,18 @@ CellActorData *CellActor_LoadResources(SpriteRenderer *renderer, SpriteGfxHandle
         return NULL;
     }
 
-    cellActorData->cellActorResourceList = Heap_AllocFromHeap(renderer->heapID, sizeof(CellActorResourceDataList));
+    cellActorData->resourceList = Heap_AllocFromHeap(renderer->heapID, sizeof(CellActorResourceDataList));
 
-    if (cellActorData->cellActorResourceList == NULL) {
+    if (cellActorData->resourceList == NULL) {
         return NULL;
     }
 
-    cellActorData->cellActorResourceList->resourceDataList = Heap_AllocFromHeap(renderer->heapID, sizeof(CellActorResourceData));
-    cellActorData->cellActorResource = cellActorData->cellActorResourceList->resourceDataList;
+    cellActorData->resourceList->resourceDataList = Heap_AllocFromHeap(renderer->heapID, sizeof(CellActorResourceData));
+    cellActorData->resourceListHead = cellActorData->resourceList->resourceDataList;
 
-    if (cellActorData->cellActorResourceList->resourceDataList == NULL) {
-        if (cellActorData->cellActorResourceList) {
-            Heap_FreeToHeap(cellActorData->cellActorResourceList);
+    if (cellActorData->resourceList->resourceDataList == NULL) {
+        if (cellActorData->resourceList) {
+            Heap_FreeToHeap(cellActorData->resourceList);
         }
 
         return NULL;
@@ -496,8 +496,8 @@ CellActorData *CellActor_LoadResources(SpriteRenderer *renderer, SpriteGfxHandle
         }
     }
 
-    sub_020093B4(
-        cellActorData->cellActorResource,
+    CellActorResourceData_Init(
+        cellActorData->resourceListHead,
         resourceIDList[SPRITE_RESOURCE_TILES],
         resourceIDList[SPRITE_RESOURCE_PALETTE],
         resourceIDList[SPRITE_RESOURCE_SPRITE],
@@ -514,7 +514,7 @@ CellActorData *CellActor_LoadResources(SpriteRenderer *renderer, SpriteGfxHandle
         gfxHandler->spriteResourceCollectionList[SPRITE_RESOURCE_MULTI_SPRITE_ANIM]);
 
     cellActorParams.collection = gfxHandler->cellActorCollection;
-    cellActorParams.resourceData = cellActorData->cellActorResource;
+    cellActorParams.resourceData = cellActorData->resourceListHead;
     cellActorParams.position.x = FX32_CONST(template->x);
     cellActorParams.position.y = FX32_CONST(template->y);
     cellActorParams.position.z = FX32_CONST(template->z);
@@ -592,11 +592,11 @@ void SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(SpriteRenderer *spriteRen
 void CellActorData_Delete(CellActorData *cellActorData)
 {
     if (cellActorData->vramTransfer) {
-        sub_0200A5B4(cellActorData->cellActorResource->imageProxy);
+        sub_0200A5B4(cellActorData->resourceListHead->imageProxy);
     }
 
     CellActor_Delete(cellActorData->cellActor);
-    sub_020095A8(cellActorData->cellActorResourceList);
+    sub_020095A8(cellActorData->resourceList);
     Heap_FreeToHeap(cellActorData);
 }
 

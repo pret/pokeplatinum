@@ -1152,12 +1152,12 @@ static void ov97_0222E398(UnkStruct_ov97_0222E398 *param0)
     v6 = NNS_G2D_VRAM_TYPE_2DMAIN;
     v7 = 20000 + v6;
 
-    sub_020093B4(&param0->unk_10[v9 + 0], v7, v7, v7, v7, 0xffffffff, 0xffffffff, 0, 0, param0->unk_0C->unk_190[0], param0->unk_0C->unk_190[1], param0->unk_0C->unk_190[2], param0->unk_0C->unk_190[3], NULL, NULL);
+    CellActorResourceData_Init(&param0->unk_10[v9 + 0], v7, v7, v7, v7, 0xffffffff, 0xffffffff, 0, 0, param0->unk_0C->unk_190[0], param0->unk_0C->unk_190[1], param0->unk_0C->unk_190[2], param0->unk_0C->unk_190[3], NULL, NULL);
 
     v6 = NNS_G2D_VRAM_TYPE_2DSUB;
     v7 = 20000 + v6;
 
-    sub_020093B4(&param0->unk_10[v9 + 1], v7, v7, v7, v7, 0xffffffff, 0xffffffff, 0, 0, param0->unk_0C->unk_190[0], param0->unk_0C->unk_190[1], param0->unk_0C->unk_190[2], param0->unk_0C->unk_190[3], NULL, NULL);
+    CellActorResourceData_Init(&param0->unk_10[v9 + 1], v7, v7, v7, v7, 0xffffffff, 0xffffffff, 0, 0, param0->unk_0C->unk_190[0], param0->unk_0C->unk_190[1], param0->unk_0C->unk_190[2], param0->unk_0C->unk_190[3], NULL, NULL);
 }
 
 static CellActor *ov97_0222E538(UnkStruct_ov97_0222E398 *param0, int param1)

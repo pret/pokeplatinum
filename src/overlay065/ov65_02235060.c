@@ -659,7 +659,7 @@ static void ov65_02235960(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *par
 
     SpriteResource_ReleaseData(param0->unk_1A0.unk_00[0]);
     SpriteResource_ReleaseData(param0->unk_1A0.unk_00[1]);
-    sub_020093B4(&param0->unk_1A0.unk_10, 50, 50, 50, 50, 0xffffffff, 0xffffffff, 0, 2, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    CellActorResourceData_Init(&param0->unk_1A0.unk_10, 50, 50, 50, 50, 0xffffffff, 0xffffffff, 0, 2, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 }
 
 static void ov65_02235A60(UnkStruct_ov65_022358CC *param0)

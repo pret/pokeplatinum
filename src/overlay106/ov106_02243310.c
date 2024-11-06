@@ -75,7 +75,7 @@ CellActor *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 para
     CellActorResourceData v1;
     CellActor *v2;
 
-    sub_020093B4(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 1, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    CellActorResourceData_Init(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 1, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v3;

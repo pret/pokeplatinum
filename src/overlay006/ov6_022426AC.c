@@ -193,7 +193,7 @@ static void ov6_022428F8(UnkStruct_ov6_022426B8 *param0)
     int v0;
     CellActorResourceData v1;
 
-    sub_020093B4(&v1, 0, 1, 2, 3, 0xffffffff, 0xffffffff, 0, 0, param0->unk_00[0], param0->unk_00[1], param0->unk_00[2], param0->unk_00[3], NULL, NULL);
+    CellActorResourceData_Init(&v1, 0, 1, 2, 3, 0xffffffff, 0xffffffff, 0, 0, param0->unk_00[0], param0->unk_00[1], param0->unk_00[2], param0->unk_00[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v2;

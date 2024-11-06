@@ -325,7 +325,7 @@ void ov101_021D84A4(UnkStruct_ov101_021D7E48 *param0, UnkStruct_ov101_021D8544 *
         param8 = 0xffffffff;
     }
 
-    sub_020093B4(
+    CellActorResourceData_Init(
         &v0, param5, param6, param7, param8, 0xffffffff, 0xffffffff, param4, param9, param0->unk_1A0, param0->unk_1A4, param0->unk_1A8, param0->unk_1AC, NULL, NULL);
 
     if (param4 == 1) {

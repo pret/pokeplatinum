@@ -853,7 +853,7 @@ static void ov21_021D2C8C(UnkStruct_ov21_021D13FC *param0, int param1)
     CellActorResourceData v0;
     CellActorInitParams v1;
 
-    sub_020093B4(&v0, 3000, 3000, 3000, 3000, 0xffffffff, 0xffffffff, 0, 0, param0->unk_13C[0], param0->unk_13C[1], param0->unk_13C[2], param0->unk_13C[3], NULL, NULL);
+    CellActorResourceData_Init(&v0, 3000, 3000, 3000, 3000, 0xffffffff, 0xffffffff, 0, 0, param0->unk_13C[0], param0->unk_13C[1], param0->unk_13C[2], param0->unk_13C[3], NULL, NULL);
 
     v1.collection = param0->unk_138;
     v1.resourceData = &v0;
@@ -900,7 +900,7 @@ void ov21_021D2D88(UnkStruct_ov21_021D22F8 *param0, CellActorCollection *param1,
     CellActorResourceData v0;
     CellActorInitParams v1;
 
-    sub_020093B4(&v0, 3000, 3000, 3000, 3000, 0xffffffff, 0xffffffff, 0, param4, param2[0], param2[1], param2[2], param2[3], NULL, NULL);
+    CellActorResourceData_Init(&v0, 3000, 3000, 3000, 3000, 0xffffffff, 0xffffffff, 0, param4, param2[0], param2[1], param2[2], param2[3], NULL, NULL);
 
     v1.collection = param1;
     v1.resourceData = &v0;
@@ -996,7 +996,7 @@ static void ov21_021D2F5C(UnkStruct_ov21_021D13FC *param0, int param1)
     int v2;
     UnkStruct_ov21_021D2584 *v3 = &param0->unk_1E0;
 
-    sub_020093B4(&v0, 12000, 12000, 12000, 12000, 0xffffffff, 0xffffffff, 0, 0, param0->unk_13C[0], param0->unk_13C[1], param0->unk_13C[2], param0->unk_13C[3], NULL, NULL);
+    CellActorResourceData_Init(&v0, 12000, 12000, 12000, 12000, 0xffffffff, 0xffffffff, 0, 0, param0->unk_13C[0], param0->unk_13C[1], param0->unk_13C[2], param0->unk_13C[3], NULL, NULL);
 
     v1.collection = param0->unk_138;
     v1.resourceData = &v0;

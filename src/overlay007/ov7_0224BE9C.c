@@ -724,7 +724,7 @@ static void ov7_0224CA54(CellActorResourceData *param0, UnkStruct_ov7_0224C768 *
     NARC_dtor(v0);
     sub_0200A3DC(param1->unk_148[0]);
     sub_0200A640(param1->unk_148[1]);
-    sub_020093B4(param0, 5000, 5000, 5000, 5000, 0xffffffff, 0xffffffff, 0, 0, param1->unk_138[0], param1->unk_138[1], param1->unk_138[2], param1->unk_138[3], NULL, NULL);
+    CellActorResourceData_Init(param0, 5000, 5000, 5000, 5000, 0xffffffff, 0xffffffff, 0, 0, param1->unk_138[0], param1->unk_138[1], param1->unk_138[2], param1->unk_138[3], NULL, NULL);
 }
 
 static void ov7_0224CB40(UnkStruct_ov7_0224C768 *param0)
