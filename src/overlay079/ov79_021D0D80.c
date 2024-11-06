@@ -6,7 +6,6 @@
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay079/ov79_021D183C.h"
 #include "overlay079/ov79_021D20F4.h"
 #include "overlay079/struct_ov79_021D0E1C.h"
@@ -739,7 +738,7 @@ static void ov79_021D1618(UnkStruct_ov79_021D0E1C *param0)
 static void ov79_021D167C(UnkStruct_ov79_021D0E1C *param0)
 {
     int v0;
-    static const UnkStruct_ov7_0224F358 v1[] = {
+    static const CellActorPropsTemplate v1[] = {
         { 0x0, 0x69, 0x28, 0x0, 0x0, 0x1, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
         { 0x0, 0x50, 0x12, 0x0, 0x1, 0x2, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
         { 0x0, 0x50, 0x8C, 0x0, 0x2, 0x2, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },

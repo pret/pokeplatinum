@@ -6,7 +6,6 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
@@ -258,9 +257,9 @@ BOOL SpriteRenderer_LoadSpriteResourceData(SpriteRenderer *renderer, SpriteGfxHa
     return 1;
 }
 
-CellActor *SpriteRenderer_CreateCellActorFromTemplate(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, const UnkStruct_ov7_0224F358 *template)
+CellActor *SpriteRenderer_CreateCellActorFromTemplate(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, const CellActorPropsTemplate *template)
 {
-    return SpriteRenderer_CreateCellActor(renderer, gfxHandler, template->unk_00, template->unk_04, template->unk_06, template->unk_04, template->unk_0A, template->unk_0C, template->unk_10, template->unk_14, template->unk_18, template->unk_1C, template->unk_20, template->unk_24);
+    return SpriteRenderer_CreateCellActor(renderer, gfxHandler, template->resourceIndex, template->x, template->y, template->x, template->anim, template->priority, template->palette, template->vramType, template->unk_18, template->unk_1C, template->unk_20, template->unk_24);
 }
 
 CellActor *SpriteRenderer_CreateCellActor(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, int resourceIndex, s16 x, s16 y, s16 z, u16 anim, int priority, int palette, int vramType, int param10, int param11, int param12, int param13)

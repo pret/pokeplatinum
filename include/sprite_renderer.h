@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
 
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -47,6 +46,21 @@ typedef struct AnimationResourceCollection_t {
     int numSpriteResourceTypes;
 } SpriteGfxHandler;
 
+typedef struct CellActorPropsTemplate {
+    int resourceIndex;
+    s16 x;
+    s16 y;
+    s16 z;
+    u16 anim;
+    int priority;
+    int palette;
+    int vramType;
+    int unk_18;
+    int unk_1C;
+    int unk_20;
+    int unk_24;
+} CellActorPropsTemplate;
+
 SpriteRenderer *SpriteRenderer_Create(int heapID);
 SpriteGfxHandler *SpriteRenderer_CreateGfxHandler(SpriteRenderer *renderer);
 GF_G2dRenderer *SpriteRenderer_GetG2dRenderer(SpriteRenderer *renderer);
@@ -64,7 +78,7 @@ void SpriteRenderer_RemoveGfxHandler(SpriteRenderer *renderer, SpriteGfxHandler 
 void SpriteRenderer_DeleteGfxHandler(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler);
 void SpriteRenderer_Free(SpriteRenderer *renderer);
 BOOL SpriteRenderer_LoadSpriteResourceData(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, const SpriteResourceDataPath *resourcePaths);
-CellActor *SpriteRenderer_CreateCellActorFromTemplate(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, const UnkStruct_ov7_0224F358 *template);
+CellActor *SpriteRenderer_CreateCellActorFromTemplate(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, const CellActorPropsTemplate *template);
 CellActor *SpriteRenderer_CreateCellActor(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, int resourceIndex, s16 x, s16 y, s16 z, u16 anim, int priority, int palette, int vramType, int param10, int param11, int param12, int param13);
 BOOL SpriteRenderer_InitGfxResourceList(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, const UnkStruct_ov104_02241308 *param2);
 BOOL SpriteRenderer_LoadCharResObj(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, int narcIndex, int memberIndex, BOOL compressed, int vramType, int resourceID);

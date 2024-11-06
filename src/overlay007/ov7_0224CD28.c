@@ -9,7 +9,6 @@
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay007/struct_ov7_0224D008.h"
-#include "overlay007/struct_ov7_0224F358.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -1447,7 +1446,7 @@ static const SpriteResourceDataPath Unk_ov7_0224F2EC = {
     "data/shop_h.cldat"
 };
 
-static const UnkStruct_ov7_0224F358 Unk_ov7_0224F358[] = {
+static const CellActorPropsTemplate Unk_ov7_0224F358[] = {
     { 0, 0xB1, 0x8, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     { 0, 0xB1, 0x84, 0x0, 0x1, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     { 1, 0xAC, 0x18, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },

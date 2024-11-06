@@ -7,7 +7,6 @@
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay005/struct_ov5_021D30A8.h"
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "cell_actor.h"
@@ -93,31 +92,31 @@ void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)
     }
 }
 
-CellActor *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F358 *param1)
+CellActor *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const CellActorPropsTemplate *param1)
 {
     CellActorInitParamsEx v0;
     CellActor *v1;
     VecFx32 v2 = { FX32_ONE, FX32_ONE, FX32_ONE };
     VecFx32 v3;
 
-    v3.x = param1->unk_04 * FX32_ONE;
-    v3.y = param1->unk_06 * FX32_ONE;
-    v3.z = param1->unk_08 * FX32_ONE;
+    v3.x = param1->x * FX32_ONE;
+    v3.y = param1->y * FX32_ONE;
+    v3.z = param1->z * FX32_ONE;
 
     v0.collection = param0->unk_00;
-    v0.resourceData = &param0->unk_190->resourceDataList[param1->unk_00];
+    v0.resourceData = &param0->unk_190->resourceDataList[param1->resourceIndex];
     v0.position = v3;
     v0.affineScale = v2;
     v0.affineZRotation = 0;
-    v0.priority = param1->unk_0C;
-    v0.vramType = param1->unk_14;
+    v0.priority = param1->priority;
+    v0.vramType = param1->vramType;
     v0.heapID = param0->unk_1C6;
 
     v1 = CellActorCollection_AddEx(&v0);
     GF_ASSERT(v1);
 
-    CellActor_SetAnim(v1, param1->unk_0A);
-    CellActor_SetExplicitPaletteWithOffset(v1, param1->unk_10);
+    CellActor_SetAnim(v1, param1->anim);
+    CellActor_SetExplicitPaletteWithOffset(v1, param1->palette);
 
     return v1;
 }

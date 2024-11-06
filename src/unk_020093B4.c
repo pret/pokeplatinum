@@ -94,10 +94,10 @@ void sub_020094F0(CellActorResourceData *param0)
     memset(param0, 0, sizeof(CellActorResourceData));
 }
 
-CellActorResourceDataList *CellActorResourceDataList_FromTemplate(const SpriteTemplateTableEntry *template, int heapId, SpriteResourceCollection *tilesCollection, SpriteResourceCollection *paletteCollection, SpriteResourceCollection *cellsCollection, SpriteResourceCollection *animCollection, SpriteResourceCollection *multiCellCollection, SpriteResourceCollection *multiAnimCollection)
+CellActorResourceDataList *CellActorResourceDataList_FromTemplate(const SpriteTemplateTableEntry *templateList, int heapId, SpriteResourceCollection *tilesCollection, SpriteResourceCollection *paletteCollection, SpriteResourceCollection *cellsCollection, SpriteResourceCollection *animCollection, SpriteResourceCollection *multiCellCollection, SpriteResourceCollection *multiAnimCollection)
 {
     int resourceCount = 0;
-    while (template[resourceCount].tileIndex != -2) {
+    while (templateList[resourceCount].tileIndex != -2) {
         resourceCount++;
     }
 
@@ -108,14 +108,14 @@ CellActorResourceDataList *CellActorResourceDataList_FromTemplate(const SpriteTe
     for (int i = 0; i < resources->numEntries; i++) {
         CellActorResourceData_Init(
             resources->resourceDataList + i, 
-            template[i].tileIndex, 
-            template[i].paletteIndex, 
-            template[i].cellsIndex, 
-            template[i].animIndex, 
-            template[i].multiCellsIndex, 
-            template[i].multiAnimIndex, 
-            template[i].vramTransfer, 
-            template[i].priority, 
+            templateList[i].tileIndex, 
+            templateList[i].paletteIndex, 
+            templateList[i].cellsIndex, 
+            templateList[i].animIndex, 
+            templateList[i].multiCellsIndex, 
+            templateList[i].multiAnimIndex, 
+            templateList[i].vramTransfer, 
+            templateList[i].priority, 
             tilesCollection, 
             paletteCollection, 
             cellsCollection, 

@@ -12,7 +12,6 @@
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D1750.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -925,7 +924,7 @@ static void ov90_021D1BA4(void)
 static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0;
-    static const UnkStruct_ov7_0224F358 v1[] = {
+    static const CellActorPropsTemplate v1[] = {
         { 0, 54, 68, 0, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
         { 0, 204, 114, 0, 1, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
         { 0, 128, 52, 0, 2, 3, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },

@@ -6,7 +6,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/struct_ov80_021D2AF4.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
@@ -46,7 +45,7 @@ UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteRenderer *param0, SpriteGfxHandler 
     UnkStruct_ov80_021D2C5C *v1;
     const UnkStruct_ov80_021D2C5C_sub1 *v2;
     short v3;
-    static const UnkStruct_ov7_0224F358 v4 = {
+    static const CellActorPropsTemplate v4 = {
         4, 0, 0, 0, 0, 10, 5, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
     };
 

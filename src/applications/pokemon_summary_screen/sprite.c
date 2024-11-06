@@ -8,7 +8,6 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "data/pst_pal.naix"
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
@@ -28,7 +27,7 @@ static void sub_0208F194(PokemonSummaryScreen *param0, u8 param1, u8 param2, u8 
 static void sub_0208EF0C(PokemonSummaryScreen *param0);
 static void sub_0208FC30(CellActor *param0, u32 param1, u32 param2, const s16 *param3);
 
-static const UnkStruct_ov7_0224F358 Unk_020F41A8[] = {
+static const CellActorPropsTemplate Unk_020F41A8[] = {
     { 0x1, 0x80, 0x18, 0x0, 0x0, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     { 0x1, 0x90, 0x18, 0x0, 0x1, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     { 0x1, 0xA0, 0x18, 0x0, 0x2, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
