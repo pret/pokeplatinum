@@ -10,7 +10,7 @@ env:
   CALCROM_DISCORD_WEBHOOK_AVATAR_URL: "https://i.imgur.com/38BQHdd.png"
   CALCROM_DISCORD_WEBHOOK_USERNAME: "OK"
   CALCROM_WEBHOOK_URL: "${{ secrets.WEBHOOKURL }}"
-  POKEPLATINUM_BUILD: /var/tmp/pokeplatinum
+  BUILD: /var/tmp/pokeplatinum
 
 jobs:
   build:
@@ -39,7 +39,7 @@ jobs:
       - name: Webhook
         if: ${{ github.event_name == 'push' }}
         env:
-          arm9name: ${{ vars.POKEPLATINUM_BUILD }}
+          arm9name: ${{ vars.BUILD }}
         run: |
           .github/calcrom/webhook.sh "$CALCROM_WEBHOOK_URL"
         continue-on-error: true
@@ -47,7 +47,7 @@ jobs:
       - name: Post error archive
         if: failure()
         continue-on-error: true
-        run: tar czf failure.tar.gz "$POKEPLATINUM_BUILD"
+        run: tar czf failure.tar.gz "$BUILD"
 
       - name: Post error upload
         if: failure()
@@ -68,7 +68,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         run: |
           mkdir -p xmap
-          cp "$POKEPLATINUM_BUILD/*.xMAP" xmap/platinumus.xMAP
+          cp "$BUILD/*.xMAP" xmap/platinumus.xMAP
           echo "XMAP_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
 
       - name: Update xMAP
