@@ -34,7 +34,7 @@
 #include "overlay021/ov21_021E737C.h"
 #include "overlay021/ov21_021E8484.h"
 #include "overlay021/pokedexsort.h"
-#include "overlay021/speciesCaughtStatus.h"
+#include "overlay021/speciescaughtstatus.h"
 #include "overlay021/struct_ov21_021D0D80.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"
@@ -327,7 +327,7 @@ UnkStruct_ov21_021D0F60 *ov21_021D0F60(int param0, const UnkStruct_ov21_021D0D80
     v2.unk_1C = sub_0209ACE4(param1->unk_1C);
     v2.unk_20 = sub_0209ACEC(param1->unk_1C);
 
-    PokedexSort_PopulatepokedexStatus(&v0->unk_0C, &v2, param0);
+    PokedexSort_PopulatePokedexStatus(&v0->unk_0C, &v2, param0);
     ov21_021D1FA4(&v0->unk_177C, param0);
 
     for (v1 = 0; v1 < 10; v1++) {

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_POKEDEXSORT_H
 
 #include "overlay021/STRUCT_OV21_021D3208.h"
-#include "overlay021/speciesCaughtStatus.h"
+#include "overlay021/speciescaughtstatus.h"
 #include "overlay021/struct_ov21_021D3320.h"
 
 #include "strbuf.h"
@@ -68,7 +68,7 @@ enum FilterForm { // called form in game, but refers to body shape
     FF_MULTIBODY
 };
 
-void PokedexSort_PopulatepokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, int heapID);
+void PokedexSort_PopulatePokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, int heapID);
 void PokedexSort_PokedexStatusFreeHWData(UnkStruct_ov21_021D3320 *param0);
 u32 ov21_021D334C(const UnkStruct_ov21_021D3320 *param0, int param1, int param2);
 u32 ov21_021D335C(const UnkStruct_ov21_021D3320 *param0, int param1);

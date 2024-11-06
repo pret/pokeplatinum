@@ -7,7 +7,7 @@
 
 #include "overlay021/STRUCT_OV21_021D3208.h"
 #include "overlay021/sortedpokedex.h"
-#include "overlay021/speciesCaughtStatus.h"
+#include "overlay021/speciescaughtstatus.h"
 #include "overlay021/struct_ov21_021D3320.h"
 
 #include "core_sys.h"
@@ -75,18 +75,18 @@ enum PokedexDataSortIndex {
 };
 
 static void FilterUnencountered(u16 *encounteredDex, int *caughtStatusLength, const PokedexData *dexData, const u16 *fullDex, int pokedexLength);
-static void IntersectingPokedex(u16 *resultingPokedex, int *numResulting, const u16 *pokedex1, int dexLen1, const u16 *pokedex2, int dexLen2, BOOL keepUncaught, const PokedexData *dexData);
+static void IntersectPokedexes(u16 *resultingPokedex, int *numResulting, const u16 *pokedex1, int dexLen1, const u16 *pokedex2, int dexLen2, BOOL keepUncaught, const PokedexData *dexData);
 static void UpdateCaughtStatus(SortedPokedex *sortedPokedex, const PokedexData *dexData, const u16 *encounteredPokedex, int caughtStatusLength);
 static void PopulateDisplayPokedex_Blanks(SortedPokedex *sortedPokedex, const u16 *fullDex, int pokedexLength);
 static void PopulateDisplayPokedex(SortedPokedex *sortedPokedex);
 static void NumEncounteredAndCaught(SortedPokedex *sortedPokedex, int *caughtStatusLength, int *numCaught);
 static u16 *PokedexFromNARC(int heapID, int pokedexSort, int *pokedexLength);
 static void DexSortOrder(int sortOrder, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const PokedexData *dexData);
-static void FilternByName(int filterName, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const PokedexData *dexData);
+static void FilterByName(int filterName, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const PokedexData *dexData);
 static void FilterByType(int typeFilter, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const PokedexData *dexData);
 static void FilterByForm(int filterForm, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const PokedexData *dexData);
 
-void PokedexSort_PopulatepokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, int heapID)
+void PokedexSort_PopulatePokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, int heapID)
 {
     int sortOrder;
     int filterName;
@@ -326,7 +326,7 @@ BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filter
     numResulting = 0;
 
     do {
-        FilternByName(filterName, resultingPokedex, &numResulting, encounteredPokedex, caughtStatusLength, heapID, param0->dexData);
+        FilterByName(filterName, resultingPokedex, &numResulting, encounteredPokedex, caughtStatusLength, heapID, param0->dexData);
 
         if (numResulting == 0) {
             dexExists = FALSE;
@@ -665,7 +665,7 @@ static void FilterUnencountered(u16 *encounteredDex, int *caughtStatusLength, co
     }
 }
 
-static void IntersectingPokedex(u16 *resultingPokedex, int *numResulting, const u16 *pokedex1, int dexLen1, const u16 *pokedex2, int dexLen2, BOOL keepUncaught, const PokedexData *dexData)
+static void IntersectPokedexes(u16 *resultingPokedex, int *numResulting, const u16 *pokedex1, int dexLen1, const u16 *pokedex2, int dexLen2, BOOL keepUncaught, const PokedexData *dexData)
 {
     int dexIndex2;
 
@@ -781,7 +781,7 @@ static void DexSortOrder(int sortOrder, u16 *resultingPokedex, int *numResulting
     }
 
     if (pokedexFromFile != NULL) {
-        IntersectingPokedex(resultingPokedex, numResulting, pokedexFromFile, pokedexLength, encounteredPokedex, caughtStatusLength, keepUncaught, dexData);
+        IntersectPokedexes(resultingPokedex, numResulting, pokedexFromFile, pokedexLength, encounteredPokedex, caughtStatusLength, keepUncaught, dexData);
         Heap_FreeToHeap(pokedexFromFile);
     } else {
         memcpy(resultingPokedex, encounteredPokedex, (sizeof(u16)) * caughtStatusLength);
@@ -789,7 +789,7 @@ static void DexSortOrder(int sortOrder, u16 *resultingPokedex, int *numResulting
     }
 }
 
-static void FilternByName(int filterName, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const PokedexData *dexData)
+static void FilterByName(int filterName, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const PokedexData *dexData)
 {
     u16 *pokedexFromFile;
     int pokedexLength;
@@ -831,7 +831,7 @@ static void FilternByName(int filterName, u16 *resultingPokedex, int *numResulti
     }
 
     if (pokedexFromFile != NULL) {
-        IntersectingPokedex(resultingPokedex, numResulting, encounteredPokedex, caughtStatusLength, pokedexFromFile, pokedexLength, TRUE, dexData);
+        IntersectPokedexes(resultingPokedex, numResulting, encounteredPokedex, caughtStatusLength, pokedexFromFile, pokedexLength, TRUE, dexData);
         Heap_FreeToHeap(pokedexFromFile);
     } else {
         memcpy(resultingPokedex, encounteredPokedex, (sizeof(u16)) * caughtStatusLength);
@@ -905,7 +905,7 @@ static void FilterByType(int typeFilter, u16 *resultingPokedex, int *numResultin
     }
 
     if (pokedexFromFile != NULL) {
-        IntersectingPokedex(resultingPokedex, numResulting, encounteredPokedex, caughtStatusLength, pokedexFromFile, pokedexLength, FALSE, dexData);
+        IntersectPokedexes(resultingPokedex, numResulting, encounteredPokedex, caughtStatusLength, pokedexFromFile, pokedexLength, FALSE, dexData);
         Heap_FreeToHeap(pokedexFromFile);
     } else {
         memcpy(resultingPokedex, encounteredPokedex, (sizeof(u16)) * caughtStatusLength);
@@ -970,7 +970,7 @@ static void FilterByForm(int filterForm, u16 *resultingPokedex, int *numResultin
     }
 
     if (pokedexFromFile != NULL) {
-        IntersectingPokedex(resultingPokedex, numResulting, encounteredPokedex, caughtStatusLength, pokedexFromFile, pokedexLength, TRUE, dexData);
+        IntersectPokedexes(resultingPokedex, numResulting, encounteredPokedex, caughtStatusLength, pokedexFromFile, pokedexLength, TRUE, dexData);
         Heap_FreeToHeap(pokedexFromFile);
     } else {
         memcpy(resultingPokedex, encounteredPokedex, (sizeof(u16)) * caughtStatusLength);

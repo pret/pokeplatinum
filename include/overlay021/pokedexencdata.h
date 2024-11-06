@@ -5,7 +5,7 @@
 
 #include "cell_actor.h"
 
-typedef struct {
+typedef struct EncounterLocations {
     int *locations;
     int numLocations;
 } EncounterLocations;
@@ -26,16 +26,16 @@ typedef struct {
 } FieldCoordinates;
 
 enum PokedexEncFileCatgegory {
-    PEFC_DUNGEONMORNING = 0,
-    PEFC_DUNGEONDAY = 1,
-    PEFC_DUNGEONNIGHT = 2,
-    PEFC_DUNGEONSPECIAL = 3,
-    PEFC_DUNGEONSPECIALNATDEX = 4,
-    PEFC_FIELDMORNING = 5,
-    PEFC_FIELDDAY = 6,
-    PEFC_FIELDNIGHT = 7,
-    PEFC_FIELDSPECIAL = 8,
-    PEFC_FIELDSPECIALNATDEX = 9,
+    PEFC_DUNGEONMORNING,
+    PEFC_DUNGEONDAY,
+    PEFC_DUNGEONNIGHT,
+    PEFC_DUNGEONSPECIAL,
+    PEFC_DUNGEONSPECIALNATDEX,
+    PEFC_FIELDMORNING,
+    PEFC_FIELDDAY,
+    PEFC_FIELDNIGHT,
+    PEFC_FIELDSPECIAL,
+    PEFC_FIELDSPECIALNATDEX,
 };
 
 /**

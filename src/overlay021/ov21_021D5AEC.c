@@ -10,7 +10,7 @@
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/pokedexsort.h"
-#include "overlay021/speciesCaughtStatus.h"
+#include "overlay021/speciescaughtstatus.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"

@@ -99,25 +99,25 @@ static void FindNeighboringFields(u8 *pokedexFieldMap, int *neighbors, int y, in
         *neighbors |= FN_NORTH;
     }
 
-    if ((((*neighbors) & FN_WEST) == 0) && (((*neighbors) & FN_SOUTH) == 0)) {
+    if ((*neighbors & FN_WEST) == 0 && (*neighbors & FN_SOUTH) == 0) {
         if (XYToValue(pokedexFieldMap, y - 1, x - 1, mapHeight, mapWidth) == 1) {
             *neighbors |= FN_SOUTHWEST;
         }
     }
 
-    if ((((*neighbors) & FN_WEST) == 0) && (((*neighbors) & FN_NORTH) == 0)) {
+    if ((*neighbors & FN_WEST) == 0 && (*neighbors & FN_NORTH) == 0) {
         if (XYToValue(pokedexFieldMap, y + 1, x - 1, mapHeight, mapWidth) == 1) {
             *neighbors |= FN_NORTHWEST;
         }
     }
 
-    if ((((*neighbors) & FN_EAST) == 0) && (((*neighbors) & FN_SOUTH) == 0)) {
+    if ((*neighbors & FN_EAST) == 0 && (*neighbors & FN_SOUTH) == 0) {
         if (XYToValue(pokedexFieldMap, y - 1, x + 1, mapHeight, mapWidth) == 1) {
             *neighbors |= FN_SOUTHEAST;
         }
     }
 
-    if ((((*neighbors) & FN_EAST) == 0) && (((*neighbors) & FN_NORTH) == 0)) {
+    if ((*neighbors & FN_EAST) == 0 && (*neighbors & FN_NORTH) == 0) {
         if (XYToValue(pokedexFieldMap, y + 1, x + 1, mapHeight, mapWidth) == 1) {
             *neighbors |= FN_NORTHEAST;
         }
@@ -132,16 +132,16 @@ static int GetNeighborType(int neighbors)
     case FN_ALONE:
         fieldType = 0;
         break;
-    case (FN_WEST):
+    case FN_WEST:
         fieldType = 2;
         break;
-    case (FN_EAST):
+    case FN_EAST:
         fieldType = 3;
         break;
-    case (FN_SOUTH):
+    case FN_SOUTH:
         fieldType = 4;
         break;
-    case (FN_NORTH):
+    case FN_NORTH:
         fieldType = 5;
         break;
     case (FN_WEST | FN_EAST):
