@@ -46,6 +46,7 @@ CROSS := cross.ini
 endif
 endif
 
+export LM_LICENSE_FILE ?= $(WRAP)/license.dat
 export NINJA_STATUS := [%p %f/%t] 
 
 all: release check
