@@ -107,20 +107,20 @@ CellActorResourceDataList *CellActorResourceDataList_FromTemplate(const SpriteTe
 
     for (int i = 0; i < resources->numEntries; i++) {
         CellActorResourceData_Init(
-            resources->resourceDataList + i, 
-            templateList[i].tileIndex, 
-            templateList[i].paletteIndex, 
-            templateList[i].cellsIndex, 
-            templateList[i].animIndex, 
-            templateList[i].multiCellsIndex, 
-            templateList[i].multiAnimIndex, 
-            templateList[i].vramTransfer, 
-            templateList[i].priority, 
-            tilesCollection, 
-            paletteCollection, 
-            cellsCollection, 
-            animCollection, 
-            multiCellCollection, 
+            resources->resourceDataList + i,
+            templateList[i].tileIndex,
+            templateList[i].paletteIndex,
+            templateList[i].cellsIndex,
+            templateList[i].animIndex,
+            templateList[i].multiCellsIndex,
+            templateList[i].multiAnimIndex,
+            templateList[i].vramTransfer,
+            templateList[i].priority,
+            tilesCollection,
+            paletteCollection,
+            cellsCollection,
+            animCollection,
+            multiCellCollection,
             multiAnimCollection);
     }
 
