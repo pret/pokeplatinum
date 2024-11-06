@@ -1,17 +1,21 @@
 .PHONY: all release debug check rom target format clean distclean setup_release setup_debug configure
 
-SHELL := /bin/bash
-BUILD ?= build
-TOOLS := tools
 MESON ?= meson
 NINJA ?= ninja
+WINELOADER ?= wine
+
+BUILD ?= build
 ROOT_INI := $(BUILD)/root.ini
 DOT_MWCONFIG := $(BUILD)/.mwconfig
-WINELOADER ?= wine
+
+TOOLS := tools
+WRAP := $(TOOLS)/cw
+WRAP_BUILD := $(WRAP)/build
+MWRAP := $(WRAP)/mwrap
 
 UNAME_R := $(shell uname -r)
 UNAME_S := $(shell uname -s)
-CWD := $(shell realpath .)
+CWD := $(shell pwd)
 
 ifneq (,$(findstring Microsoft,$(UNAME_R)))
 ifneq (,$(filter /mnt/%,$(CWD)))
@@ -42,10 +46,6 @@ CROSS := cross.ini
 endif
 endif
 
-WRAP := $(TOOLS)/cw
-WRAP_BUILD := $(WRAP)/build
-MWRAP := $(WRAP)/mwrap
-
 export NINJA_STATUS := [%p %f/%t] 
 
 all: release check
@@ -53,13 +53,13 @@ all: release check
 release: setup_release .WAIT rom
 
 debug: setup_debug .WAIT rom
-	$(MESON) compile -C $(BUILD) "debug.nef" "overlay.map"
+	$(MESON) compile -C $(BUILD) debug.nef overlay.map
 
 check: rom
 	$(MESON) test -C $(BUILD)
 
 rom: $(BUILD)/build.ninja
-	$(MESON) compile -C $(BUILD) "pokeplatinum.us.nds"
+	$(MESON) compile -C $(BUILD) pokeplatinum.us.nds
 
 target: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) $(MESON_TARGET)
