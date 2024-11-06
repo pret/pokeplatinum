@@ -51,9 +51,11 @@ export NINJA_STATUS := [%p %f/%t]
 
 all: release check
 
-release: setup_release .WAIT rom
+.NOTPARALLEL: release
+release: setup_release rom
 
-debug: setup_debug .WAIT rom
+.NOTPARALLEL: debug
+debug: setup_debug rom
 	$(MESON) compile -C $(BUILD) debug.nef overlay.map
 
 check: rom
