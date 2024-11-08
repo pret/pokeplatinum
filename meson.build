@@ -83,27 +83,27 @@ link_args = [
 ############################################################
 nitrosdk_dep = dependency('NitroSDK',
     default_options: {
-        'mwrap_ver': '2.0/sp1p2',
+        'mwrap_ver': '3.0-126',
         'sp1p3_conditionals': true
     }
 )
 
 nitrosystem_dep = dependency('NitroSystem',
     default_options: {
-        'mwrap_ver': '2.0/sp2'
+        'mwrap_ver': '3.0-136'
     }
 )
 
 nitrowifi_dep = dependency('NitroWiFi',
     default_options: {
-        'mwrap_ver': '2.0/sp1p2',
+        'mwrap_ver': '3.0-126',
         'sp1p3_conditionals': true
     }
 )
 
 nitrodwc_dep = dependency('NitroDWC',
     default_options: {
-        'mwrap_ver': '2.0/sp2p2',
+        'mwrap_ver': '3.0-137',
         'link_ppwlobby': true
     }
 )

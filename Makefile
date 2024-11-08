@@ -48,6 +48,7 @@ endif
 
 export LM_LICENSE_FILE ?= $(WRAP)/license.dat
 export NINJA_STATUS := [%p %f/%t] 
+export MWCIncludes := $(PWD)/tools/cw/include/MSL_C;$(PWD)/tools/cw/include/MSL_Extras
 
 all: release check
 
@@ -87,8 +88,8 @@ setup_debug: $(BUILD)/build.ninja
 
 configure: $(BUILD)/build.ninja
 
-$(BUILD)/build.ninja: $(ROOT_INI) $(DOT_MWCONFIG) | $(BUILD)
-	MWCONFIG=$(abspath $(DOT_MWCONFIG)) $(MESON) setup \
+$(BUILD)/build.ninja: $(ROOT_INI) | $(BUILD)
+	$(MESON) setup \
 	         --wrap-mode=nopromote \
 	         --native-file=meson/$(NATIVE) \
 	         --native-file=$(ROOT_INI) \
