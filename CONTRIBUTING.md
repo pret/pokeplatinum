@@ -24,17 +24,12 @@ locally, a `check` target is included in the `Makefile`:
 make check
 ```
 
-If your pull request does not produce a matching ROM, then it will not be merged
-without changes.
+This target is run automatically as part of the default `make` command defined
+in the provided `Makefile`.
 
-## My Build is Failing After Merging from Main
-
-It is likely that your subprojects are out of date; update them with the following
-command and re-build:
-
-```bash
-meson subprojects update
-```
+> [!IMPORTANT]
+> If your pull request does not produce a matching ROM, then it will not be
+> considered for merge until it has been updated to do so.
 
 ## Editor Enhancements
 

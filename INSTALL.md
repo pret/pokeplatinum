@@ -260,12 +260,11 @@ A `Dockerfile` is provided with the repository should you choose to build the
 project as a container. If you do not have `docker` installed on your machine
 and wish to make use of this feature, follow the instructions [here](https://docs.docker.com/desktop/).
 
-Once `docker` is installed, to setup the build environment, run:
+Once `docker` is installed, to the build environment, run:
 
 ```bash
 make clean # only if you have an existing development environment
 docker build . -t pret/pokeplatinum
-docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum make configure
 ```
 
 Then, run the following to build the ROM:
@@ -326,15 +325,6 @@ Users of MacOS should replace `~/.bashrc` above with `~/.zshrc`.
 
 ## 4. Building the Repository
 
-To set up the build system, run:
-
-```bash
-make configure
-```
-
-This is only required once. If the process is successful, you will see a new
-`build` folder in the repository folder.
-
 To build the ROM, run:
 
 ```bash
@@ -366,3 +356,16 @@ is insufficient. A fork of `binutils-gdb` which supports the overlay system
 employed by the console is available [here](https://github.com/joshua-smith-12/binutils-gdb-nds).
 
 For installation instructions, refer to [the `README.md`](https://github.com/joshua-smith-12/binutils-gdb-nds/blob/master/README.md).
+
+## Troubleshooting FAQ
+
+### My Build is Failing After Merging from Main
+
+It is likely that your subprojects are out of date; update them with the following
+command:
+
+```bash
+make update
+```
+
+And then try rebuilding.
