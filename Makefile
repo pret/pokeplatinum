@@ -73,6 +73,9 @@ format: $(BUILD)/build.ninja
 clean: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) --clean
 
+update: $(BUILD)/build.ninja
+	$(MESON) subprojects update
+
 distclean:
 	rm -rf $(BUILD) $(MWRAP)
 
