@@ -3,7 +3,7 @@
 
 #include "constants/species.h"
 
-#include "overlay021/speciescaughtstatus.h"
+#include "overlay021/species_caught_status.h"
 
 typedef struct {
     SpeciesCaughtStatus caughtStatusArray[NATIONAL_DEX_COUNT];

@@ -1,4 +1,4 @@
-#include "overlay021/pokedexsort.h"
+#include "overlay021/pokedex_sort.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -6,8 +6,8 @@
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "overlay021/STRUCT_OV21_021D3208.h"
-#include "overlay021/sortedpokedex.h"
-#include "overlay021/speciescaughtstatus.h"
+#include "overlay021/sorted_pokedex.h"
+#include "overlay021/species_caught_status.h"
 #include "overlay021/struct_ov21_021D3320.h"
 
 #include "core_sys.h"

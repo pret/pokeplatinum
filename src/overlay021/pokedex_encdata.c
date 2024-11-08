@@ -1,4 +1,4 @@
-#include "overlay021/pokedexencdata.h"
+#include "overlay021/pokedex_encdata.h"
 
 #include <nitro.h>
 #include <string.h>

@@ -1,4 +1,4 @@
-#include "overlay021/pokedexfieldmap.h"
+#include "overlay021/pokedex_fieldmap.h"
 
 #include <nitro.h>
 #include <string.h>

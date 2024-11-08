@@ -4,7 +4,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 
-#include "overlay021/sortedpokedex.h"
+#include "overlay021/sorted_pokedex.h"
 
 #include "strbuf.h"
 
