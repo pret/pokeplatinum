@@ -11,6 +11,9 @@
       - [Install Build Dependencies](#install-build-dependencies)
     - [MacOS](#macos)
     - [Linux](#linux)
+      - [Ubuntu (and other Debian derivatives)](#ubuntu-and-other-debian-derivatives)
+      - [Arch Linux (and derivatives)](#arch-linux-and-derivatives)
+      - [Fedora (and derivatives)](#fedora-and-derivatives)
     - [Docker](#docker)
   - [2. Downloading the Repository](#2-downloading-the-repository)
   - [3. Specifying a Compiler License](#3-specifying-a-compiler-license)
@@ -18,6 +21,8 @@
     - [Unix Systems](#unix-systems)
   - [4. Building the Repository](#4-building-the-repository)
   - [5. Debugger Support](#5-debugger-support)
+  - [Troubleshooting FAQ](#troubleshooting-faq)
+    - [My Build is Failing After Merging from Main](#my-build-is-failing-after-merging-from-main)
 <!--toc:end-->
 
 This document details the steps necessary to build a copy of Pokémon Platinum

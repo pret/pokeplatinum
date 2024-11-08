@@ -3,7 +3,6 @@
 <!--toc:start-->
 - [Contributing to pret/pokeplatinum](#contributing-to-pretpokeplatinum)
   - [Preliminaries](#preliminaries)
-  - [My Build is Failing After Merging from Main](#my-build-is-failing-after-merging-from-main)
   - [Editor Enhancements](#editor-enhancements)
   - [Code Formatting](#code-formatting)
 <!--toc:end-->
