@@ -18,6 +18,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "poketch_data.h"
+#include "ribbon.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "strbuf.h"
@@ -34,7 +35,6 @@
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
 #include "unk_0206AFE0.h"
-#include "unk_020923C0.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
 
@@ -201,72 +201,72 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
     sub_020780C4(v4, v9);
     v10 = Pokemon_GetGender(v4);
 
-    Pokemon_SetValue(v4, 111, (u8 *)&v10);
+    Pokemon_SetValue(v4, MON_DATA_GENDER, (u8 *)&v10);
     v10 = Pokemon_GetValue(v4, MON_DATA_HP_IV, 0) + Pokemon_GetValue(v4, MON_DATA_ATK_IV, 0) + Pokemon_GetValue(v4, MON_DATA_DEF_IV, 0) + Pokemon_GetValue(v4, MON_DATA_SPEED_IV, 0) + Pokemon_GetValue(v4, MON_DATA_SPATK_IV, 0) + Pokemon_GetValue(v4, MON_DATA_SPDEF_IV, 0);
 
     if (v10 == 0) {
         v8 = LCRNG_Next();
         v9 = (v8 & (0x1F << 0)) >> 0;
 
-        Pokemon_SetValue(v4, 70, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_HP_IV, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 5)) >> 5;
-        Pokemon_SetValue(v4, 71, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_ATK_IV, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 10)) >> 10;
-        Pokemon_SetValue(v4, 72, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_DEF_IV, (u8 *)&v9);
 
         v8 = LCRNG_Next();
         v9 = (v8 & (0x1F << 0)) >> 0;
-        Pokemon_SetValue(v4, 73, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_SPEED_IV, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 5)) >> 5;
-        Pokemon_SetValue(v4, 74, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_SPATK_IV, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 10)) >> 10;
-        Pokemon_SetValue(v4, 75, (u8 *)&v9);
+        Pokemon_SetValue(v4, MON_DATA_SPDEF_IV, (u8 *)&v9);
     }
 
     v13 = sub_0202D79C(fieldSystem->saveData);
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_RED_RIBBON, 0)) {
-        v13[sub_02092444(73)] = v14[0];
+        v13[Ribbon_TryGetSpecialDescriptionID(73)] = v14[0];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_GREEN_RIBBON, 0)) {
-        v13[sub_02092444(74)] = v14[1];
+        v13[Ribbon_TryGetSpecialDescriptionID(74)] = v14[1];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_BLUE_RIBBON, 0)) {
-        v13[sub_02092444(75)] = v14[2];
+        v13[Ribbon_TryGetSpecialDescriptionID(75)] = v14[2];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_FESTIVAL_RIBBON, 0)) {
-        v13[sub_02092444(76)] = v14[3];
+        v13[Ribbon_TryGetSpecialDescriptionID(76)] = v14[3];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_CARNIVAL_RIBBON, 0)) {
-        v13[sub_02092444(77)] = v14[4];
+        v13[Ribbon_TryGetSpecialDescriptionID(77)] = v14[4];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_CLASSIC_RIBBON, 0)) {
-        v13[sub_02092444(78)] = v14[5];
+        v13[Ribbon_TryGetSpecialDescriptionID(78)] = v14[5];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_PREMIER_RIBBON, 0)) {
-        v13[sub_02092444(79)] = v14[6];
+        v13[Ribbon_TryGetSpecialDescriptionID(79)] = v14[6];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_HOENN_MARINE_RIBBON, 0)) {
-        v13[sub_02092444(25)] = v14[7];
+        v13[Ribbon_TryGetSpecialDescriptionID(25)] = v14[7];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_HOENN_LAND_RIBBON, 0)) {
-        v13[sub_02092444(26)] = v14[8];
+        v13[Ribbon_TryGetSpecialDescriptionID(26)] = v14[8];
     }
 
     if (Pokemon_GetValue(v4, MON_DATA_HOENN_SKY_RIBBON, 0)) {
-        v13[sub_02092444(27)] = v14[9];
+        v13[Ribbon_TryGetSpecialDescriptionID(27)] = v14[9];
     }
 
     if (v0->val1.unk_00 == 0) {
@@ -277,9 +277,9 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
         v6 = Pokemon_New(32);
 
         Pokemon_Copy(v4, v6);
-        Pokemon_SetValue(v6, 145, v15);
-        Pokemon_SetValue(v6, 7, &v16);
-        Pokemon_SetValue(v6, 157, &v17);
+        Pokemon_SetValue(v6, MON_DATA_OTNAME_STRBUF, v15);
+        Pokemon_SetValue(v6, MON_DATA_OT_ID, &v16);
+        Pokemon_SetValue(v6, MON_DATA_OT_GENDER, &v17);
 
         v4 = v6;
         Strbuf_Free(v15);

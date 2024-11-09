@@ -288,7 +288,7 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
 
     sub_02039734();
     sub_020397C8(1, 57);
-    sub_0200F174(0, 1, 1, 0x0, 16, 1, 58);
+    StartScreenTransition(0, 1, 1, 0x0, 16, 1, 58);
 
     return 1;
 }
@@ -297,7 +297,7 @@ static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             CellActor_SetAnim(param0->unk_3C[0], 1);
             CellActor_SetDrawFlag(param0->unk_3C[0], 1);
             return 1;
@@ -408,12 +408,12 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
         break;
     case 3:
         if ((ov95_0224847C(param0) >= 2) || (ov95_0224846C(param0) == 1)) {
-            sub_0200F174(0, 0, 0, 0x0, 24, 1, 58);
+            StartScreenTransition(0, 0, 0, 0x0, 24, 1, 58);
             (*param1)++;
         }
         break;
     case 4:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (ov95_0224846C(param0)) {
                 return 1;
             }

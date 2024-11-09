@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
 #include "constants/species.h"
 
 #include "struct_decls/struct_02023FCC_decl.h"
@@ -10,10 +11,10 @@
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay019/ov19_021D603C.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DF964.h"
@@ -44,7 +45,6 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -878,11 +878,11 @@ static void ov19_021D1C84(UnkStruct_ov19_021D5DF8 *param0)
 
     param0->unk_12C.chatotCry = NULL;
     param0->unk_12C.dexMode = sub_0207A274(param0->unk_11C);
-    param0->unk_12C.contest = PokemonSummary_ShowContestData(param0->unk_11C);
+    param0->unk_12C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_11C);
     param0->unk_12C.ribbons = sub_0202D79C(param0->unk_11C);
 
-    PokemonSummary_FlagVisiblePages(&(param0->unk_12C), v0);
-    PokemonSummary_SetPlayerProfile(&(param0->unk_12C), SaveData_GetTrainerInfo(param0->unk_11C));
+    PokemonSummaryScreen_FlagVisiblePages(&(param0->unk_12C), v0);
+    PokemonSummaryScreen_SetPlayerProfile(&(param0->unk_12C), SaveData_GetTrainerInfo(param0->unk_11C));
 }
 
 static int ov19_021D1DAC(UnkStruct_ov19_021D5DF8 *param0)
@@ -1197,8 +1197,8 @@ static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 3:
         switch (param0->unk_1B8) {
         case UnkEnum_021DFB94_46:
-            if ((ov19_021D5F7C(&param0->unk_00) == 112) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != 487)) {
-                StringTemplate_SetItemName(param0->unk_19C, 0, 112);
+            if ((ov19_021D5F7C(&param0->unk_00) == ITEM_GRISEOUS_ORB) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
+                StringTemplate_SetItemName(param0->unk_19C, 0, ITEM_GRISEOUS_ORB);
                 ov19_021D5408(&param0->unk_00, 45);
                 ov19_021D6594(param0->unk_114, 24);
                 *param1 = 7;
@@ -1237,8 +1237,8 @@ static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 ov19_021D5408(&param0->unk_00, 24);
                 ov19_021D6594(param0->unk_114, 24);
                 (*param1) = 7;
-            } else if ((param0->unk_00.unk_112 == 112) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != 487)) {
-                StringTemplate_SetItemName(param0->unk_19C, 0, 112);
+            } else if ((param0->unk_00.unk_112 == ITEM_GRISEOUS_ORB) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
+                StringTemplate_SetItemName(param0->unk_19C, 0, ITEM_GRISEOUS_ORB);
                 ov19_021D5408(&param0->unk_00, 45);
                 ov19_021D6594(param0->unk_114, 24);
                 *param1 = 7;
@@ -2310,7 +2310,7 @@ static BOOL ov19_021D3AC8(BoxPokemon *param0, u16 param1)
     if (BoxPokemon_GetValue(param0, MON_DATA_EGG_EXISTS, NULL) == 0) {
         int v2;
 
-        for (v2 = 0; v2 < 4; v2++) {
+        for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
             if (BoxPokemon_GetValue(param0, MON_DATA_MOVE1 + v2, NULL) == param1) {
                 v0 = 1;
                 break;
@@ -2383,7 +2383,7 @@ static void ov19_021D3C28(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             ov19_021D64A0(param0->unk_114);
             Heap_Destroy(10);
             ov19_021D1C84(param0);
-            param0->unk_210 = OverlayManager_New(&Unk_020F410C, &(param0->unk_12C), 9);
+            param0->unk_210 = OverlayManager_New(&gPokemonSummaryScreenApp, &(param0->unk_12C), 9);
             (*param1)++;
         }
         break;
@@ -2462,7 +2462,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             Heap_FreeToHeap(param0->unk_214);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay84));
 
-            if ((v1 == 112) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != 487)) {
+            if ((v1 == ITEM_GRISEOUS_ORB) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
                 (void)0;
             } else if (v1 != 0) {
                 Bag_TryRemoveItem(SaveData_GetBag(param0->unk_11C), v1, 1, 9);
@@ -2486,7 +2486,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         if (ov19_021D6600(param0->unk_114, 2)) {
             if (v1 == 0) {
                 ov19_021D0EC0(param0);
-            } else if ((v1 == 112) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != 487)) {
+            } else if ((v1 == ITEM_GRISEOUS_ORB) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
                 StringTemplate_SetItemName(param0->unk_19C, 0, v1);
                 ov19_021D5408(&param0->unk_00, 45);
                 ov19_021D6594(param0->unk_114, 24);
@@ -3793,7 +3793,7 @@ static void ov19_021D55C4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
         sub_02079914(param0->unk_120, 0xffffffff, v1->unk_07, v0->unk_00);
         v2 = sub_02079C9C(param0->unk_120, 0xffffffff, v1->unk_07);
 
-        if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == 492) && (v4 == 1)) {
+        if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_SHAYMIN) && (v4 == 1)) {
             v3 = 1;
         }
     } else {
@@ -4075,7 +4075,7 @@ static void ov19_021D5BAC(UnkStruct_ov19_021D4DF0 *param0)
     v1 = param0->unk_74.unk_22;
     v0->unk_0B = v1;
 
-    BoxPokemon_SetValue(v0->unk_00, 11, &(v1));
+    BoxPokemon_SetValue(v0->unk_00, MON_DATA_MARKS, &(v1));
 
     if ((ov19_021D5E10(param0) == 0) && (ov19_021D5E38(param0) == 1)) {
         SaveData_SetFullSaveRequired();
@@ -4100,7 +4100,7 @@ static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct
         sub_02079C50(param2->unk_120, 0xffffffff, v1, 6, &param1);
     }
 
-    BoxPokemon_SetValue(v0->unk_00, 6, &param1);
+    BoxPokemon_SetValue(v0->unk_00, MON_DATA_HELD_ITEM, &param1);
 
     {
         int v2 = BoxPokemon_GetValue(v0->unk_00, MON_DATA_SPECIES, NULL);
@@ -4109,7 +4109,7 @@ static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct
             BoxPokemon_SetArceusForm(v0->unk_00);
             v0->unk_0C = BoxPokemon_GetValue(v0->unk_00, MON_DATA_TYPE_1, NULL);
             v0->unk_0D = BoxPokemon_GetValue(v0->unk_00, MON_DATA_TYPE_2, NULL);
-        } else if (v2 == 487) {
+        } else if (v2 == SPECIES_GIRATINA) {
             int v3;
 
             BoxPokemon_SetGiratinaForm(v0->unk_00);

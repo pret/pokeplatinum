@@ -80,7 +80,7 @@ static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16
     *v0 = v1;
 
     v1->unk_00 = param2;
-    v1->unk_04 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    v1->unk_04 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     v1->unk_08 = SaveData_Options(param0->fieldSystem->saveData);
     v1->unk_0C = param3;
     v1->unk_15 = param1;
@@ -117,7 +117,7 @@ BOOL ScrCmd_224(ScriptContext *param0)
     u16 *v3;
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
-    v3 = Heap_AllocFromHeap(32, (1 + 1) * 2);
+    v3 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, (1 + 1) * 2);
 
     *(v3 + 0) = v2;
     *(v3 + 1) = 0xffff;

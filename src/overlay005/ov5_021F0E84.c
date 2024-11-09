@@ -515,7 +515,7 @@ u16 ov5_021F0E84(u16 param0)
 
 u16 ov5_021F0E90(u16 param0, u16 param1)
 {
-    if ((param0 == 487) && (param1 == 1)) {
+    if ((param0 == SPECIES_GIRATINA) && (param1 == 1)) {
         return 0;
     }
 

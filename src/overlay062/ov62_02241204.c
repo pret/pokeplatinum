@@ -1771,12 +1771,12 @@ static BOOL ov62_02242BB8 (UnkStruct_0208C06C * param0)
     break;
     case 2:
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_022345B8(param0, 7, v1->unk_0C, v1->unk_04);
             param0->unk_8B4.unk_3900 = 0;
             param0->unk_08++;
         } else {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             param0->unk_14.unk_4F0.unk_0C = 118;
             param0->unk_08++;
         }
@@ -2404,13 +2404,13 @@ static BOOL ov62_0224391C (UnkStruct_0208C06C * param0)
         break;
     case 4:
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_02231B8C(param0);
             ov62_022348B8(param0, 8, v1->unk_0C, v1->unk_04);
             param0->unk_08++;
             v0->unk_4B8 = 0;
         } else {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             param0->unk_08 = 0xFF;
             v0->unk_4B8 = 1;
             param0->unk_878 = &param0->unk_8B4.unk_3904[param0->unk_14.unk_48C.unk_38.unk_00];
@@ -2513,11 +2513,11 @@ static BOOL ov62_02243B1C (UnkStruct_0208C06C * param0)
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 4:
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 102);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 102);
         param0->unk_08++;
         break;
     case 5:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_08++;
         }
         break;
@@ -2861,14 +2861,14 @@ static BOOL ov62_02244258 (UnkStruct_0208C06C * param0)
         ov62_02231A1C(param0);
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v2) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             G2_BlendNone();
             ov62_022348B8(param0, 8, v2->unk_0C, v2->unk_04);
             ov62_0223376C(param0, 0);
             param0->unk_08++;
             v0->unk_4B8 = 0;
         } else {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             param0->unk_08 = 0xFF;
             v0->unk_4B8 = 1;
             Sound_PlayEffect(1375);
@@ -3543,11 +3543,11 @@ static BOOL ov62_02245018 (UnkStruct_0208C06C * param0)
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 4:
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 102);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 102);
         param0->unk_08++;
         break;
     case 5:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_08++;
         }
         break;
@@ -3610,7 +3610,7 @@ static BOOL ov62_0224536C (UnkStruct_0208C06C * param0)
         ov62_02231B8C(param0);
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_022348B8(param0, 6, v1->unk_0C, v1->unk_04);
             sub_0208B9E0(param0->unk_6F0, 0);
             sub_0208BA08(param0->unk_6F0, 0, 0);
@@ -3619,7 +3619,7 @@ static BOOL ov62_0224536C (UnkStruct_0208C06C * param0)
         } else {
             ov62_02231AAC(param0, 119);
             ov62_022469A0(v0, param0);
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             Sound_PlayEffect(1375);
             param0->unk_08++;
         }
@@ -4374,10 +4374,10 @@ static BOOL ov62_0224613C (UnkStruct_0208C06C * param0)
         }
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             param0->unk_08++;
         } else {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             Sound_PlayEffect(1375);
             param0->unk_08++;
         }
@@ -4606,11 +4606,11 @@ static BOOL ov62_02246850 (UnkStruct_0208C06C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_0200F174(0, 0, 0, 0, 6, 1, 102);
+        StartScreenTransition(0, 0, 0, 0, 6, 1, 102);
         param0->unk_08++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_08++;
         }
         break;

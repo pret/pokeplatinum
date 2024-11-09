@@ -3,13 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0202A93C.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_02098DE8.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay079/ov79_021D0D80.h"
 #include "overlay079/ov79_021D2268.h"
 
@@ -21,7 +21,6 @@
 #include "party.h"
 #include "poffin.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "string_template.h"
@@ -330,13 +329,13 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     v2->max = (u8)Party_GetCurrentCount(v2->monData);
     v2->move = 0;
     v2->mode = 3;
-    v2->contest = 1;
+    v2->showContest = TRUE;
     v2->chatotCry = NULL;
 
-    PokemonSummary_FlagVisiblePages(v2, v3);
-    PokemonSummary_SetPlayerProfile(v2, param0->unk_0C->unk_0C);
+    PokemonSummaryScreen_FlagVisiblePages(v2, v3);
+    PokemonSummaryScreen_SetPlayerProfile(v2, param0->unk_0C->unk_0C);
 
-    param0->unk_14 = OverlayManager_New(&Unk_020F410C, v1, param0->unk_00);
+    param0->unk_14 = OverlayManager_New(&gPokemonSummaryScreenApp, v1, param0->unk_00);
     param0->unk_10 = (void *)v2;
 
     return 3;
@@ -431,13 +430,13 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
     v1->move = 0;
     v1->mode = 4;
     v1->poffin = v2;
-    v1->contest = 1;
+    v1->showContest = TRUE;
     v1->chatotCry = NULL;
 
-    PokemonSummary_FlagVisiblePages(v1, v3);
-    PokemonSummary_SetPlayerProfile(v1, param0->unk_0C->unk_0C);
+    PokemonSummaryScreen_FlagVisiblePages(v1, v3);
+    PokemonSummaryScreen_SetPlayerProfile(v1, param0->unk_0C->unk_0C);
 
-    param0->unk_14 = OverlayManager_New(&Unk_020F410C, v1, param0->unk_00);
+    param0->unk_14 = OverlayManager_New(&gPokemonSummaryScreenApp, v1, param0->unk_00);
     param0->unk_10 = (void *)v1;
 
     return 7;
@@ -537,6 +536,6 @@ void sub_02098EF8(Poffin *param0, Pokemon *param1)
 
     if (v3 < 255) {
         ++v3;
-        Pokemon_SetValue(param1, 9, &v3);
+        Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &v3);
     }
 }

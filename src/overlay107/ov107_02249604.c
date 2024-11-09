@@ -45,7 +45,7 @@ void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2)
     NARC *v1;
     Pokemon *v2;
 
-    sub_0201DBEC(32, 100);
+    VRAMTransferManager_New(32, 100);
     ov107_02249A3C();
 
     NNS_G2dInitOamManagerModule();

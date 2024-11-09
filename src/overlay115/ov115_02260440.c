@@ -92,7 +92,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         switch (v0->unk_78) {
         case 0:
 
-            if (ScreenWipe_Done() == 1) {
+            if (IsScreenTransitionDone() == 1) {
                 sub_0200F2C0();
             }
 
@@ -143,7 +143,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         v0->unk_40 = 0;
         memset(v0->unk_84, 0, sizeof(u8) * 4);
 
-        sub_0201DBEC(32, 99);
+        VRAMTransferManager_New(32, 99);
         ov115_02265A24(v0);
 
         v0->unk_80 = 1;
@@ -199,13 +199,13 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
             break;
         }
 
-        sub_0200F174(0, 27, 27, 0xffff, 6, 1, 99);
+        StartScreenTransition(0, 27, 27, 0xffff, 6, 1, 99);
         (*param1)++;
         break;
     case 4:
         ov115_02260DAC(v0->unk_34, 0);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (v0->unk_44 == 0) {
                 v2 = CommSys_SendData(22, NULL, 0);
 
@@ -303,14 +303,14 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         }
         break;
     case 11:
-        sub_0200F174(0, 26, 26, 0xffff, 6, 1, 99);
+        StartScreenTransition(0, 26, 26, 0xffff, 6, 1, 99);
         ov115_02260F70(v0->unk_34, 1);
         (*param1)++;
         break;
     case 12:
         ov115_02260F70(v0->unk_34, 1);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             CommTiming_StartSync(3);
             (*param1)++;
         }
@@ -333,7 +333,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         v0->unk_34 = NULL;
         SetMainCallback(NULL, NULL);
         DisableHBlank();
-        sub_0201DC3C();
+        VRAMTransferManager_Destroy();
         (*param1)++;
         break;
     case 14: {
@@ -561,7 +561,7 @@ static void ov115_02260B44(UnkStruct_ov115_0226095C *param0, UnkStruct_ov115_022
         }
 
         ov115_02260D78(param0->unk_34);
-        sub_0201DC3C();
+        VRAMTransferManager_Destroy();
     }
 
     if (param1->unk_38) {

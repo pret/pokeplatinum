@@ -4,7 +4,6 @@
 #include <nitro/rtc.h>
 
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -14,14 +13,15 @@
 #include "field_script_context.h"
 #include "graphics.h"
 #include "heap.h"
+#include "location.h"
 #include "map_header.h"
 #include "narc.h"
 #include "palette.h"
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_0201D15C.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *);
@@ -150,15 +150,6 @@ static inline void inline_ov47_0225621C(FieldSystem *fieldSystem, int *param1, i
     *param2 /= 32;
 }
 
-static inline void Location_Set(Location *location, int mapId, int param2, int param3, int param4, int param5)
-{
-    location->mapId = mapId;
-    location->unk_04 = param2;
-    location->x = param3;
-    location->z = param4;
-    location->unk_10 = param5;
-}
-
 static inline u16 *ScriptContext_GetVarPointer(ScriptContext *ctx)
 {
     return FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
@@ -167,41 +158,6 @@ static inline u16 *ScriptContext_GetVarPointer(ScriptContext *ctx)
 static inline u16 ScriptContext_GetVar(ScriptContext *ctx)
 {
     return FieldSystem_TryGetVar(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
-}
-
-static inline void inline_0204E650(VarsFlags *param0)
-{
-    sub_0206AEAC(param0, 1);
-}
-
-static inline void inline_0204E650_1(VarsFlags *param0)
-{
-    sub_0206AEAC(param0, 0);
-}
-
-static inline BOOL inline_0204E650_2(VarsFlags *param0)
-{
-    return sub_0206AEAC(param0, 2);
-}
-
-static inline void inline_02044528(VarsFlags *param0)
-{
-    sub_0206AF2C(param0, 1);
-}
-
-static inline BOOL inline_020535E8(VarsFlags *param0)
-{
-    return sub_0206AF2C(param0, 2);
-}
-
-static inline void inline_0203A8E8(VarsFlags *param0, u32 param1)
-{
-    sub_0206AF3C(param0, 1, param1);
-}
-
-static inline BOOL inline_0208BE68(VarsFlags *param0, u32 param1)
-{
-    return sub_0206AF3C(param0, 2, param1);
 }
 
 inline u16 inline_020564D0(const u16 param0)

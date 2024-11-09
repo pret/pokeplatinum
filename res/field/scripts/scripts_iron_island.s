@@ -97,7 +97,7 @@ _00FC:
     SetVar 0x8004, 0x1A7
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    CheckBadge BADGE_ID_MINE, 0x800C
+    CheckBadgeAcquired BADGE_ID_MINE, 0x800C
     GoToIfEq 0x800C, 0, _0140
     GoTo _0135
     End

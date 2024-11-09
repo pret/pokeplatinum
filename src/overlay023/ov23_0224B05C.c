@@ -8,8 +8,6 @@
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021E15F4.h"
@@ -35,11 +33,13 @@
 #include "core_sys.h"
 #include "field_map_change.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "font.h"
 #include "game_records.h"
 #include "graphics.h"
 #include "heap.h"
 #include "journal.h"
+#include "location.h"
 #include "map_object_move.h"
 #include "menu.h"
 #include "message.h"
@@ -50,6 +50,7 @@
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -57,12 +58,10 @@
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_020573FC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -378,7 +377,7 @@ void ov23_0224B2C8(FieldSystem *fieldSystem)
     UnkStruct_02029894 *v0;
     SecretBaseRecord *v1;
 
-    v0 = sub_02029894(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02029894(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_020298AC(v0);
 
     sub_020294D4(v1, GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData)));
@@ -960,7 +959,7 @@ static UnkStruct_ov23_0224BA48 *ov23_0224BCC4(FieldSystem *fieldSystem, int para
 {
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
-    if (fieldSystem->taskManager == NULL) {
+    if (fieldSystem->task == NULL) {
         v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0224BA48));
         MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
@@ -1522,18 +1521,18 @@ static void ov23_0224C6E8(void)
     }
 }
 
-static BOOL ov23_0224C708(TaskManager *param0)
+static BOOL ov23_0224C708(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_0224BA48 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_10) {
     case 0:
-        sub_0203CD44(fieldSystem);
+        FieldSystem_FlagNotRunningFieldMap(fieldSystem);
         (v1->unk_10)++;
         break;
     case 1:
-        if (!sub_0203CD4C(fieldSystem)) {
+        if (!FieldSystem_HasParentProcess(fieldSystem)) {
             v1->unk_10 = 0;
             return 1;
         }
@@ -1543,18 +1542,18 @@ static BOOL ov23_0224C708(TaskManager *param0)
     return 0;
 }
 
-static BOOL ov23_0224C74C(TaskManager *param0)
+static BOOL ov23_0224C74C(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_0224BA48 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_10) {
     case 0:
-        sub_0203CD00(fieldSystem);
+        FieldSystem_StartFieldMapInner(fieldSystem);
         (v1->unk_10)++;
         break;
     case 1:
-        if (sub_020509DC(fieldSystem)) {
+        if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             v1->unk_10 = 0;
             return 1;
         }
@@ -1564,10 +1563,10 @@ static BOOL ov23_0224C74C(TaskManager *param0)
     return 0;
 }
 
-static BOOL ov23_0224C790(TaskManager *param0)
+static BOOL ov23_0224C790(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_0224BA48 *v1 = FieldTask_GetEnv(param0);
     Location v2;
     int v3 = 0, v4 = 0;
 
@@ -1587,13 +1586,13 @@ static BOOL ov23_0224C790(TaskManager *param0)
         break;
     case 1:
         sub_0200F2C0();
-        sub_0200F174(2, 16, 18, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 16, 18, 0x0, 6, 1, 4);
         ov23_0224942C(fieldSystem->unk_6C);
         Sound_PlayEffect(1539);
         v1->unk_0C++;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (fieldSystem->unk_6C == NULL) {
                 (v1->unk_0C)++;
             }
@@ -1606,10 +1605,10 @@ static BOOL ov23_0224C790(TaskManager *param0)
         break;
     case 4:
         v2.mapId = v1->unk_14;
-        v2.unk_04 = v1->unk_18;
+        v2.warpId = v1->unk_18;
         v2.x = v1->unk_1C;
         v2.z = v1->unk_20;
-        v2.unk_10 = v1->unk_24;
+        v2.faceDirection = v1->unk_24;
         sub_020544F0(param0, &v2);
         (v1->unk_0C)++;
         break;
@@ -1621,11 +1620,11 @@ static BOOL ov23_0224C790(TaskManager *param0)
     case 6:
         fieldSystem->unk_6C = ov23_02249404(fieldSystem);
         sub_0200F2C0();
-        sub_0200F174(1, 17, 19, 0x0, 6, 1, 4);
+        StartScreenTransition(1, 17, 19, 0x0, 6, 1, 4);
         (v1->unk_0C)++;
         break;
     case 7:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             break;
         }
 
@@ -1736,7 +1735,7 @@ static void ov23_0224CAF0(FieldSystem *fieldSystem, int param1, int param2, int 
 
     if (v0) {
         v0->unk_2D = param5;
-        FieldTask_Set(fieldSystem, ov23_0224C790, v0);
+        FieldSystem_CreateTask(fieldSystem, ov23_0224C790, v0);
     }
 }
 
@@ -1982,7 +1981,7 @@ static void ov23_0224CEC8(void)
 void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov23_0224CF18 *v0 = param2;
-    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_022577AC->fieldSystem));
+    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
 
     if (v0->unk_00 != CommSys_CurNetId()) {
         return;
@@ -2152,8 +2151,8 @@ BOOL ov23_0224D1A0(int param0, int param1)
 
 static void ov23_0224D238(void)
 {
-    UnkStruct_02029894 *v0 = sub_02029894(FieldSystem_SaveData(Unk_ov23_022577AC->fieldSystem));
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_022577AC->fieldSystem));
+    UnkStruct_02029894 *v0 = sub_02029894(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
     int v2 = CommPlayer_AddXServer(0);
     int v3 = CommPlayer_AddZServer(0);
     int v4 = CommPlayer_DirServer(0);
@@ -2165,7 +2164,7 @@ static void ov23_0224D238(void)
     v16[0][0] = 16;
     v16[0][1] = 12;
 
-    sub_0206AA20(SaveData_GetVarsFlags(Unk_ov23_022577AC->fieldSystem->saveData));
+    SystemFlag_SetCreatedSecretBase(SaveData_GetVarsFlags(Unk_ov23_022577AC->fieldSystem->saveData));
     sub_020292CC(v0);
     sub_02028B34(v1);
     CommSys_Seed(&v15);
@@ -2384,7 +2383,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        sub_0200F174(2, 0, 0, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 0, 0, 0x0, 6, 1, 4);
         break;
     case 4:
         Heap_FreeToHeap(param1);

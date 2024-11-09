@@ -301,20 +301,20 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         param0->unk_00++;
         break;
     case 1:
-        sub_0200F174(0, 0, 0, 0x7fff, 3, 1, param1);
+        StartScreenTransition(0, 0, 0, 0x7fff, 3, 1, param1);
         param0->unk_00++;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             param0->unk_00++;
         }
         break;
     case 3:
-        sub_0200F174(3, 1, 1, 0x7fff, 3, 1, param1);
+        StartScreenTransition(3, 1, 1, 0x7fff, 3, 1, param1);
         param0->unk_00++;
         break;
     case 4:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             param0->unk_00++;
         }
         break;
@@ -362,11 +362,11 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
             break;
         }
 
-        sub_0200F174(3, 0, 0, 0x7fff, 3, 1, param1);
+        StartScreenTransition(3, 0, 0, 0x7fff, 3, 1, param1);
         param0->unk_00++;
         break;
     case 12:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             PaletteData_BlendMulti(param0->unk_1C, 2, param0->unk_164 ^ 0x3fff, 14, 0x0);
             PaletteData_Blend(param0->unk_1C, 2, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
             sub_0200AB4C(-14, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, 1);
@@ -375,11 +375,11 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         }
         break;
     case 13:
-        sub_0200F174(3, 1, 1, 0x7fff, 3, 1, param1);
+        StartScreenTransition(3, 1, 1, 0x7fff, 3, 1, param1);
         param0->unk_00++;
         break;
     case 14:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->unk_78 = 26;
             param0->unk_00++;
         }
@@ -392,11 +392,11 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         }
         break;
     case 16:
-        sub_0200F174(3, 0, 0, 0x7fff, 15, 1, 94);
+        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, 94);
         param0->unk_00++;
         break;
     case 17:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             param0->unk_00++;
         }
         break;

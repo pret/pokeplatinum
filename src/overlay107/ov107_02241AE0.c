@@ -582,7 +582,7 @@ int ov107_02241D2C (OverlayManager * param0, int * param1)
 
     *(v1->unk_438) = v1->unk_0D;
 
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     ov107_02242E14(v1);
 
     OverlayManager_FreeData(param0);
@@ -621,7 +621,7 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
             }
         } else {
             ov107_02241E70(param0);
-            sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 100);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 100);
             param0->unk_08++;
         }
         break;
@@ -630,7 +630,7 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
             if (param0->unk_0F >= 2) {
                 param0->unk_0F = 0;
                 ov107_02241E70(param0);
-                sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 100);
+                StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 100);
                 param0->unk_08++;
             }
         } else {
@@ -638,7 +638,7 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
         }
         break;
     case 4:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -811,7 +811,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             v2 = ov107_02249CAC(param0->unk_1CC, param0->unk_09, 0);
 
             if (v2 == 3) {
-                sub_020057A4(1500, 0);
+                Sound_StopEffect(1500, 0);
                 Sound_PlayEffect(1523);
             } else {
                 param0->unk_13 = v6;
@@ -997,7 +997,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             v2 = ov107_02249CAC(param0->unk_1CC, param0->unk_09, 1);
 
             if (v2 == 3) {
-                sub_020057A4(1500, 0);
+                Sound_StopEffect(1500, 0);
                 Sound_PlayEffect(1523);
             } else {
                 param0->unk_13 = v6;
@@ -1349,11 +1349,11 @@ static BOOL ov107_02242DCC (UnkStruct_ov107_02241D6C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 100);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 100);
         param0->unk_08++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -3629,7 +3629,7 @@ static void ov107_022455A0 (UnkStruct_ov107_02241D6C * param0, u8 param1, u16 pa
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
 
-    Pokemon_SetValue(v0, 6, &param2);
+    Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &param2);
 
     ov107_02249BAC(param0->unk_404[ov107_02249C98(param0->unk_14, param1)], 1);
     ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v0));

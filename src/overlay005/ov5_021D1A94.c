@@ -74,7 +74,7 @@ static void ov5_021D1B24(SysTask *param0, void *param1)
 {
     UnkStruct_ov5_021D1BEC *v0 = param1;
 
-    if (sub_0203CD5C(v0->unk_00->fieldSystem)) {
+    if (FieldSystem_IsRunningFieldMapInner(v0->unk_00->fieldSystem)) {
         if (v0->unk_0C->unk_10) {
             v0->unk_0C->unk_10(v0, v0->unk_00->fieldSystem, v0->unk_10);
         }
@@ -85,7 +85,7 @@ static void ov5_021D1B48(SysTask *param0, void *param1)
 {
     UnkStruct_ov5_021D1BEC *v0 = param1;
 
-    if (sub_0203CD5C(v0->unk_00->fieldSystem)) {
+    if (FieldSystem_IsRunningFieldMapInner(v0->unk_00->fieldSystem)) {
         if (v0->unk_0C->unk_14) {
             v0->unk_0C->unk_14(v0, v0->unk_00->fieldSystem, v0->unk_10);
         }

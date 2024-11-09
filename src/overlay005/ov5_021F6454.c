@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "consts/game_records.h"
+#include "consts/items.h"
+#include "consts/species.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -378,7 +380,7 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
         return;
     }
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return;
     }
 
@@ -508,13 +510,13 @@ BOOL ScrCmd_31D(ScriptContext *param0)
         v0 = Party_GetPokemonBySlotIndex(v1, v3);
         v8[v3] = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
 
-        if (v8[v3] == 112) {
+        if (v8[v3] == ITEM_GRISEOUS_ORB) {
             v9++;
         }
     }
 
     if (v9 > 0) {
-        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), 112, v9, 4);
+        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, v9, 4);
 
         if (v4 == 0) {
             *v11 = 0xff;
@@ -524,9 +526,9 @@ BOOL ScrCmd_31D(ScriptContext *param0)
         v7 = 0;
 
         for (v3 = 0; v3 < v2; v3++) {
-            if (v8[v3] == 112) {
+            if (v8[v3] == ITEM_GRISEOUS_ORB) {
                 v0 = Party_GetPokemonBySlotIndex(v1, v3);
-                Pokemon_SetValue(v0, 6, &v7);
+                Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v7);
             }
         }
     }
@@ -539,13 +541,13 @@ BOOL ScrCmd_31D(ScriptContext *param0)
             v5 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
 
             switch (v5) {
-            case 487:
+            case SPECIES_GIRATINA:
                 Pokemon_SetGiratinaForm(v0);
                 break;
-            case 479:
+            case SPECIES_ROTOM:
                 Pokemon_SetRotomForm(v0, 0, 0);
                 break;
-            case 492:
+            case SPECIES_SHAYMIN:
                 Pokemon_SetShayminForm(v0, 0);
                 break;
             }
@@ -578,8 +580,8 @@ BOOL ScrCmd_31E(ScriptContext *param0)
 
     v5 = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
 
-    if (v5 == 112) {
-        v6 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), 112, 1, 4);
+    if (v5 == ITEM_GRISEOUS_ORB) {
+        v6 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, 4);
 
         if (v6 == 0) {
             *v9 = 0xff;
@@ -587,7 +589,7 @@ BOOL ScrCmd_31E(ScriptContext *param0)
         }
 
         v4 = 0;
-        Pokemon_SetValue(v0, 6, &v4);
+        Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v4);
     }
 
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
@@ -596,13 +598,13 @@ BOOL ScrCmd_31E(ScriptContext *param0)
         v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
 
         switch (v2) {
-        case 487:
+        case SPECIES_GIRATINA:
             Pokemon_SetGiratinaForm(v0);
             break;
-        case 479:
+        case SPECIES_ROTOM:
             Pokemon_SetRotomForm(v0, 0, 0);
             break;
-        case 492:
+        case SPECIES_SHAYMIN:
             Pokemon_SetShayminForm(v0, 0);
             break;
         }
@@ -619,7 +621,7 @@ BOOL ScrCmd_2F1(ScriptContext *param0)
     u16 v3 = ScriptContext_GetVar(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
-    Pokemon_SetValue(v0, 112, &v3);
+    Pokemon_SetValue(v0, MON_DATA_FORM, &v3);
 
     return 0;
 }
@@ -645,7 +647,7 @@ BOOL ScrCmd_303(ScriptContext *param0)
         v1 = Pokemon_GetValue(v6, MON_DATA_FORM, NULL);
         v2 = Pokemon_GetValue(v6, MON_DATA_IS_EGG, NULL);
 
-        if ((v0 == 479) && (v1 != 0) && (v2 == 0)) {
+        if ((v0 == SPECIES_ROTOM) && (v1 != 0) && (v2 == 0)) {
             if (*v10 == 0xff) {
                 *v10 = v4;
             }
@@ -693,22 +695,22 @@ BOOL ScrCmd_2FF(ScriptContext *param0)
 
     if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
         switch (v0) {
-        case 10:
-        case 11:
-        case 13:
-        case 14:
-        case 129:
-        case 132:
-        case 202:
-        case 235:
-        case 265:
-        case 266:
-        case 268:
-        case 360:
-        case 374:
-        case 412:
-        case 415:
-        case 401:
+        case SPECIES_CATERPIE:
+        case SPECIES_METAPOD:
+        case SPECIES_WEEDLE:
+        case SPECIES_KAKUNA:
+        case SPECIES_MAGIKARP:
+        case SPECIES_DITTO:
+        case SPECIES_WOBBUFFET:
+        case SPECIES_SMEARGLE:
+        case SPECIES_WURMPLE:
+        case SPECIES_SILCOON:
+        case SPECIES_CASCOON:
+        case SPECIES_WYNAUT:
+        case SPECIES_BELDUM:
+        case SPECIES_BURMY:
+        case SPECIES_COMBEE:
+        case SPECIES_KRICKETOT:
             *v6 = 0xffff;
             return 0;
         }

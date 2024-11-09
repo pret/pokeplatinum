@@ -39,7 +39,7 @@ UnkStruct_ov104_02230BE4 *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
     v0->unk_24 = (((((((((((0 + 1) + 1) + 1) + 1) + 1) + 3) + 1) + 1) + 1) + 2) + 1);
     v0->fieldSystem = fieldSystem;
 
-    sub_0203CD84(fieldSystem, &Unk_020F8BE0, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F8BE0, v0);
 
     return v0;
 }

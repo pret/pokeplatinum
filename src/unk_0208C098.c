@@ -82,9 +82,9 @@ u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize)
 void sub_0208C120(u8 param0, u32 param1)
 {
     if (param0 == 0) {
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, param1);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, param1);
     } else {
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, param1);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param1);
     }
 }
 

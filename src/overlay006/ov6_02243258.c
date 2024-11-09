@@ -1011,12 +1011,12 @@ static NARC *ov6_02243F20(void)
 
 static void ov6_02243F2C(void)
 {
-    sub_0200F174(0, 1, 1, 0x7fff, 6, 1, 4);
+    StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, 4);
 }
 
 static void ov6_02243F50(void)
 {
-    sub_0200F174(0, 0, 0, 0x7fff, 6, 1, 4);
+    StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, 4);
 }
 
 static void ov6_02243F74(FieldSystem *fieldSystem, int param1)
@@ -1532,7 +1532,7 @@ static int ov6_022445EC(UnkStruct_ov6_02243FFC *param0)
 
 static int ov6_02244634(UnkStruct_ov6_02243FFC *param0)
 {
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         param0->unk_00++;
     }
 

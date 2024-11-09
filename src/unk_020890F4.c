@@ -352,7 +352,7 @@ static void sub_020895CC(void *param0)
     UnkStruct_02089688 *v0 = param0;
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_2C0.unk_10);
     Bg_RunScheduledUpdates(v0->unk_2C0.unk_0C);
 

@@ -284,7 +284,7 @@ static u16 ov5_021F7B60(Pokemon *param0, u16 param1)
 
     v5 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
-    for (v2 = 0; v2 < 4; v2++) {
+    for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
         v6[v2] = Pokemon_GetValue(param0, MON_DATA_MOVE1 + v2, NULL);
     }
 
@@ -295,7 +295,7 @@ static u16 ov5_021F7B60(Pokemon *param0, u16 param1)
             v4 = ((v3 >> v1) & 0x1);
 
             if ((v4 == 1) && (param1 == sTeachableMoves[v0 * 8 + v1].location)) {
-                for (v2 = 0; v2 < 4; v2++) {
+                for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
                     if (v6[v2] == sTeachableMoves[v0 * 8 + v1].moveID) {
                         break;
                     }
@@ -343,8 +343,8 @@ BOOL ScrCmd_2E6(ScriptContext *param0)
     v3 = 0;
 
     if (v14 != 0xff) {
-        for (v5 = 0; v5 < 4; v5++) {
-            v11[v5] = Pokemon_GetValue(v6, (54 + v5), NULL);
+        for (v5 = 0; v5 < LEARNED_MOVES_MAX; v5++) {
+            v11[v5] = Pokemon_GetValue(v6, (MON_DATA_MOVE1 + v5), NULL);
         }
 
         for (v2 = 0; v2 < MOVESET_MASK_SIZE; v2++) {
@@ -354,7 +354,7 @@ BOOL ScrCmd_2E6(ScriptContext *param0)
                 v1 = ((v0 >> v4) & 0x1);
 
                 if ((v1 == 1) && (v15 == sTeachableMoves[v2 * 8 + v4].location)) {
-                    for (v5 = 0; v5 < 4; v5++) {
+                    for (v5 = 0; v5 < LEARNED_MOVES_MAX; v5++) {
                         if (v11[v5] == sTeachableMoves[v2 * 8 + v4].moveID) {
                             break;
                         }
@@ -560,7 +560,7 @@ static void ov5_021F81A8(SysTask *param0, void *param1)
         return;
     }
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return;
     }
 

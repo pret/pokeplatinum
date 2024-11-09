@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02027860_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -13,12 +12,12 @@
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
 #include "field_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "player_avatar.h"
 #include "savedata_misc.h"
 #include "unk_02005474.h"
 #include "unk_02027F50.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 
 typedef struct {
@@ -43,8 +42,8 @@ typedef struct {
     int unk_0C;
 } UnkStruct_020718D8;
 
-static BOOL sub_020718D8(TaskManager *taskMan);
-static BOOL sub_020719D8(TaskManager *taskMan);
+static BOOL sub_020718D8(FieldTask *taskMan);
+static BOOL sub_020719D8(FieldTask *taskMan);
 static void sub_02071ACC(const int param0);
 static void sub_02071AEC(const int param0);
 
@@ -123,7 +122,7 @@ void sub_0207160C(FieldSystem *fieldSystem)
     const UnkStruct_020F03F4 *v4;
     fx32 v5;
 
-    v2 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v2 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v3 = (UnkStruct_020716D4 *)sub_02027F6C(v2, 7);
     v4 = &Unk_020F03F4[v3->unk_02];
     v5 = v4->unk_00[v3->unk_00];
@@ -162,7 +161,7 @@ void sub_020716D4(FieldSystem *fieldSystem)
     UnkStruct_02027860 *v0;
     UnkStruct_020716D4 *v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     sub_02027F5C(v0, 7);
 
     v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
@@ -274,7 +273,7 @@ u8 sub_02071818(FieldSystem *fieldSystem)
     UnkStruct_02027860 *v0;
     UnkStruct_020716D4 *v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
 
     if (v1->unk_04) {
@@ -290,7 +289,7 @@ void sub_0207183C(FieldSystem *fieldSystem)
     UnkStruct_020716D4 *v1;
     UnkStruct_020718D8 *v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
 
     if ((Unk_020F03F4[v1->unk_02].unk_10) && (v1->unk_00 == 1)) {
@@ -306,21 +305,21 @@ void sub_0207183C(FieldSystem *fieldSystem)
 
         if (v1->unk_00 == 0) {
             v2->unk_04 = Unk_020F03F4[v1->unk_02].unk_00[1];
-            FieldTask_Start(fieldSystem->taskManager, sub_020718D8, v2);
+            FieldTask_InitCall(fieldSystem->task, sub_020718D8, v2);
             v1->unk_00 = 1;
         } else {
             v2->unk_04 = Unk_020F03F4[v1->unk_02].unk_00[0];
-            FieldTask_Start(fieldSystem->taskManager, sub_020719D8, v2);
+            FieldTask_InitCall(fieldSystem->task, sub_020719D8, v2);
             v1->unk_00 = 0;
         }
     }
 }
 
-static BOOL sub_020718D8(TaskManager *taskMan)
+static BOOL sub_020718D8(FieldTask *taskMan)
 {
     UnkStruct_ov5_021E1890 *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_020718D8 *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_020718D8 *v2 = FieldTask_GetEnv(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -377,11 +376,11 @@ static BOOL sub_020718D8(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_020719D8(TaskManager *taskMan)
+static BOOL sub_020719D8(FieldTask *taskMan)
 {
     UnkStruct_ov5_021E1890 *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_020718D8 *v2 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_020718D8 *v2 = FieldTask_GetEnv(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -442,8 +441,8 @@ static void sub_02071ACC(const int param0)
 static void sub_02071AEC(const int param0)
 {
     if (param0 == 0) {
-        sub_020057A4(1553, 0);
+        Sound_StopEffect(1553, 0);
     } else {
-        sub_020057A4(1556, 0);
+        Sound_StopEffect(1556, 0);
     }
 }

@@ -73,7 +73,7 @@ void sub_02004F68(int param0, u16 param1, int param2);
 void sub_02004F7C(u16 param0, u16 param1, int param2);
 void sub_02004F94(int param0, u16 param1, int param2);
 void sub_02004FA8(int param0, int param1);
-void sub_02004FB8(BOOL param0);
+void Sound_SetPlaybackMode(BOOL param0);
 void sub_02004FCC(int param0);
 void sub_02004FDC(int param0);
 int sub_02004FEC(void);
@@ -1188,7 +1188,7 @@ void sub_02004FA8(int param0, int param1)
     return;
 }
 
-void sub_02004FB8(BOOL param0)
+void Sound_SetPlaybackMode(BOOL param0)
 {
     NNS_SndSetMonoFlag(param0);
     Unk_021BEB80 = param0;

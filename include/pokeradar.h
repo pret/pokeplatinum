@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_POKERADAR_H
 #define POKEPLATINUM_POKERADAR_H
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system_decl.h"
+
+#include "field_task.h"
 
 typedef struct RadarChain RadarChain;
 
@@ -28,7 +28,7 @@ void GetRadarMon(RadarChain *chain, int *species, int *level);
 const BOOL sub_02069798(const RadarChain *chain);
 void sub_0206979C(FieldSystem *fieldSystem);
 BOOL GetRadarChainActive(const RadarChain *chain);
-BOOL RefreshRadarChain(TaskManager *param0);
+BOOL RefreshRadarChain(FieldTask *param0);
 void sub_02069B74(FieldSystem *fieldSystem);
 int GetChainCount(FieldSystem *fieldSystem);
 void RadarChargeStep(FieldSystem *fieldSystem);

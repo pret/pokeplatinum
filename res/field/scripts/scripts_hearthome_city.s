@@ -337,7 +337,7 @@ _03AC:
 
 _03F4:
     GoToIfSet 0x14B, _0442
-    ScrCmd_15D 0x800C
+    CountBadgesAcquired 0x800C
     GoToIfLt 0x800C, 8, _0442
     Message 34
     SetVar 0x8004, 47

@@ -428,7 +428,7 @@ int ov111_021D0F40(OverlayManager *param0, int *param1)
 
     sub_0201E530();
     *(v1->unk_3D8) = v1->unk_0C;
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     ov111_021D1C0C(v1);
 
@@ -443,11 +443,11 @@ static BOOL ov111_021D0F7C(UnkStruct_ov111_021D0F7C *param0)
 {
     switch (param0->unk_08) {
     case 0:
-        sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 115);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 115);
         param0->unk_08++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_0E = 0;
             return 1;
         }
@@ -763,7 +763,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
             }
 
             if (ov111_021D2BBC(param0) == 1) {
-                sub_020057A4(1358, 0);
+                Sound_StopEffect(1358, 0);
                 ov111_021D345C(param0->unk_3A4, 1);
 
                 param0->unk_3DC[param0->unk_0E] = param0->unk_3CE[param0->unk_40B];
@@ -786,7 +786,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
             }
 
             if (param0->unk_40D >= 3) {
-                sub_020057A4(1358, 0);
+                Sound_StopEffect(1358, 0);
                 param0->unk_0F = 60;
                 ov111_021D345C(param0->unk_3A4, 1);
                 ov111_021D25BC(param0);
@@ -794,7 +794,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
                 return 0;
             }
         } else {
-            sub_020057A4(1358, 0);
+            Sound_StopEffect(1358, 0);
         }
 
         if (param0->unk_40C_0 == 1) {
@@ -998,12 +998,12 @@ static BOOL ov111_021D1A88(UnkStruct_ov111_021D0F7C *param0)
 
         if (param0->unk_0D == 0) {
             Window_EraseMessageBox(&param0->unk_5C[0], 0);
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, 115);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 115);
             param0->unk_08++;
         }
         break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;

@@ -11,7 +11,7 @@ _000A:
     End
 
 _0012:
-    ScrCmd_166 0x4000
+    CheckGameCompleted 0x4000
     GoToIfEq 0x4000, 0, _0075
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _0075

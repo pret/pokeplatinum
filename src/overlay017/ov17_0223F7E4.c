@@ -766,7 +766,7 @@ static void ov17_0223FBD4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
 
 static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
 {
-    u16 v0[4], v1[4];
+    u16 v0[LEARNED_MOVES_MAX], v1[4];
     int v2;
     Strbuf *v3;
     Strbuf *v4, *v5;
@@ -776,7 +776,7 @@ static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
     v8 = &param0->unk_18C;
     param0->unk_2C9 = 0xff;
 
-    for (v2 = 0; v2 < 4; v2++) {
+    for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
         v0[v2] = Pokemon_GetValue(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v2, NULL);
 
         if (v0[v2] != 0) {
@@ -1229,12 +1229,12 @@ static void ov17_02240658(SysTask *param0, void *param1)
     int v2, v3;
     int v4, v5, v6;
     int v7, v8;
-    u16 v9[4];
+    u16 v9[LEARNED_MOVES_MAX];
     int v10, v11;
 
     v1 = v0->unk_04->unk_24;
 
-    for (v10 = 0; v10 < 4; v10++) {
+    for (v10 = 0; v10 < LEARNED_MOVES_MAX; v10++) {
         v9[v10] = Pokemon_GetValue(v0->unk_04->unk_00->unk_00[v0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v10, NULL);
     }
 
@@ -1561,13 +1561,13 @@ static int ov17_02240D04(UnkStruct_ov17_0223F7E4 *param0, int param1)
     int v3, v4;
     u8 v5[2][2];
     UnkStruct_ov17_02240E68 *v6;
-    u16 v7[4];
+    u16 v7[LEARNED_MOVES_MAX];
 
     v6 = &param0->unk_2F6;
     v0 = &param0->unk_300;
     v2 = &Unk_ov17_02253558[param0->unk_2C8];
 
-    for (v4 = 0; v4 < 4; v4++) {
+    for (v4 = 0; v4 < LEARNED_MOVES_MAX; v4++) {
         v7[v4] = Pokemon_GetValue(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v4, NULL);
     }
 

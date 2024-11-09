@@ -5,19 +5,19 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 
 #include "field_overworld_state.h"
+#include "location.h"
 #include "map_header.h"
 #include "player_avatar.h"
 #include "pokeradar.h"
 #include "rtc.h"
+#include "system_flags.h"
 #include "trainer_data.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 const static u16 Unk_020EC3E0[][2] = {
@@ -191,7 +191,7 @@ u16 sub_020554A4(FieldSystem *fieldSystem, int headerID)
         sdatID = MapHeader_GetNightMusicID(headerID);
     }
 
-    u16 v1 = sub_0206AB68(SaveData_GetVarsFlags(fieldSystem->saveData), headerID);
+    u16 v1 = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), headerID);
 
     if (v1 != 0) {
         sdatID = v1;

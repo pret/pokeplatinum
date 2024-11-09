@@ -7,19 +7,18 @@
 #include "constants/heap.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
 #include "communication_system.h"
 #include "heap.h"
+#include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_0202854C.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202B37C.h"
 #include "unk_0202C858.h"
 #include "unk_02033200.h"
 #include "unk_0203909C.h"
@@ -118,7 +117,7 @@ void CommInfo_SendBattleRegulation(void)
     u16 netId = CommSys_CurNetId();
     TrainerInfo *trainerInfo;
     const u16 *v2;
-    UnkStruct_0202B4A0 *v3 = sub_0202B4A0(sCommInfo->saveData);
+    RecordMixedRNG *v3 = SaveData_GetRecordMixedRNG(sCommInfo->saveData);
     UnkStruct_0202B370 *v4 = sub_0202B370(sCommInfo->saveData);
     UnkStruct_0202C878 *v5 = sub_0202C878(sCommInfo->saveData);
 
@@ -131,7 +130,7 @@ void CommInfo_SendBattleRegulation(void)
     TrainerInfo_Copy(trainerInfo, sCommInfo->trainerInfo[netId]);
     OS_GetMacAddress(&sCommInfo->playerInfo[netId].macAddress[0]);
 
-    v2 = sub_0202B42C(v3, 1, 0);
+    v2 = RecordMixedRNG_GetEntryName(v3, 1, 0);
 
     MI_CpuCopy8(v2, sCommInfo->playerInfo[netId].unk_4C, sizeof(sCommInfo->playerInfo[netId].unk_4C));
 

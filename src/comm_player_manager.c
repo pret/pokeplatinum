@@ -922,8 +922,8 @@ void CommPlayer_RecvLocationAndInit(int netId, int size, void *src, void *unused
 
 static void sub_02058644(int netId)
 {
-    UndergroundData *underground = sub_020298B0(FieldSystem_SaveData(sCommPlayerManager->fieldSystem));
-    SaveData_SecretBaseRecord(FieldSystem_SaveData(sCommPlayerManager->fieldSystem));
+    UndergroundData *underground = sub_020298B0(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
+    SaveData_SecretBaseRecord(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
 
     if (sCommPlayerManager->isUnderground) {
         if (netId == CommSys_CurNetId()) {
@@ -1683,7 +1683,7 @@ void sub_02059464(int param0)
         sCommPlayerManager->unk_00 |= param0;
     }
 
-    sub_0203D128();
+    FieldSystem_PauseProcessing();
     sCommPlayerManager->unk_2BC = 0;
 }
 
@@ -1700,10 +1700,10 @@ void sub_0205948C(int param0)
 
     if (sCommPlayerManager->unk_00 == 0) {
         if (0x10 != param0) {
-            sub_0203D140();
+            FieldSystem_ResumeProcessing();
             sub_02057FC4(1);
         } else {
-            sub_0203D140();
+            FieldSystem_ResumeProcessing();
             sCommPlayerManager->unk_2BC = 1;
         }
     }
@@ -1716,13 +1716,13 @@ void sub_020594EC(void)
 
 void sub_020594FC(void)
 {
-    sub_0203D128();
+    FieldSystem_PauseProcessing();
     sCommPlayerManager->unk_2BC = 0;
 }
 
 void sub_02059514(void)
 {
-    sub_0203D140();
+    FieldSystem_ResumeProcessing();
     sub_02057FC4(1);
 }
 

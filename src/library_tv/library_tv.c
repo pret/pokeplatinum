@@ -30,7 +30,7 @@ typedef struct LibraryTV {
     int waitTiming;
 } LibraryTV;
 
-extern void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+extern void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
 static void LibraryTV_VBlank(void *data);
 static void LibraryTV_SetVramBank(LibraryTV *ltv);
 static void LibraryTV_ReleaseVramBank(LibraryTV *ltv);
@@ -107,14 +107,14 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            sub_0200F174(0, 1, 1, 0x0, 6, 1, ltv->heapID);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1, ltv->heapID);
             *state = STATE_FADE_WAIT;
         }
         break;
     case STATE_FADE_WAIT:
         LibraryTV_UpdateScanLines(ltv);
 
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ltv->waitTiming = LIBRARY_TV_DURATION;
             *state = STATE_MAIN;
         }
@@ -126,14 +126,14 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, ltv->heapID);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, ltv->heapID);
             *state = STATE_EXIT;
         }
         break;
     case STATE_EXIT:
         LibraryTV_UpdateScanLines(ltv);
 
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             LibraryTV_ReleaseMsgLdr(ltv);
             LibraryTV_ReleaseVramBank(ltv);
             SetMainCallback(NULL, NULL);

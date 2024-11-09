@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 #include "struct_defs/struct_02097F18.h"
@@ -19,6 +18,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "field_task.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -41,7 +41,6 @@
 #include "unk_02024220.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
-#include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0206CCB0.h"
 
@@ -143,7 +142,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     }
 
     v0->unk_D4.unk_10 = BgConfig_New(53);
-    sub_0201DBEC(64, 53);
+    VRAMTransferManager_New(64, 53);
     v0->unk_D4.unk_14 = PaletteData_New(53);
     PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
     PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, 53);
@@ -194,7 +193,7 @@ static int sub_02097D30(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             *param1 = 1;
         }
         break;
@@ -210,7 +209,7 @@ static int sub_02097D30(OverlayManager *param0, int *param1)
         ov76_0223BF50();
     } break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -254,7 +253,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     sub_02015FB8(v0->unk_D4.unk_188);
     ov76_0223B8C4(v0);
     ov76_0223C424(&v0->unk_D4);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_020242C4(v0->unk_D4.unk_15C);
     ov76_0223EB54(53);
     NARC_dtor(v0->unk_42C);
@@ -309,11 +308,11 @@ void sub_02097F30(UnkStruct_02097F18 *param0, u8 param1)
     param0->unk_2D = param1;
 }
 
-static BOOL sub_02097F38(TaskManager *param0)
+static BOOL sub_02097F38(FieldTask *param0)
 {
-    UnkStruct_02097F38 *v0 = TaskManager_Environment(param0);
+    UnkStruct_02097F38 *v0 = FieldTask_GetEnv(param0);
     UnkStruct_02097F18 *v1 = v0->unk_08;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
     switch (v0->unk_14) {
     case 0:
@@ -341,7 +340,7 @@ static BOOL sub_02097F38(TaskManager *param0)
         v0->unk_14 = 1;
         break;
     case 1:
-        sub_02050A38(param0, &Unk_020F64C0, v1);
+        FieldTask_RunApplication(param0, &Unk_020F64C0, v1);
         v0->unk_14 = 2;
         break;
     case 2: {
@@ -372,7 +371,7 @@ static BOOL sub_02097F38(TaskManager *param0)
         v6->unk_20 = 15;
         v6->unk_0C = v1->unk_24;
 
-        sub_02050A38(param0, &Unk_020F1E88, v6);
+        FieldTask_RunApplication(param0, &Unk_020F1E88, v6);
         v0->unk_14 = 4;
     } break;
     case 4: {
@@ -389,8 +388,8 @@ static BOOL sub_02097F38(TaskManager *param0)
         if (v7->unk_22 != 7) {
             v8 = sub_02097F00(v0->unk_08, v7->unk_22);
 
-            Pokemon_SetValue(v8, 162, (u8 *)&v13);
-            Pokemon_SetValue(v8, 171, sub_0202CA28(v1->unk_20, v13 - 1));
+            Pokemon_SetValue(v8, MON_DATA_MAIL_ID, (u8 *)&v13);
+            Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));
 
             v9 = sub_0202CA28(v1->unk_20, v13 - 1);
             v10 = sub_0202CA64(v9, 0);
@@ -417,7 +416,7 @@ static BOOL sub_02097F38(TaskManager *param0)
     return 0;
 }
 
-void sub_020980DC(TaskManager *param0, SaveData *param1)
+void sub_020980DC(FieldTask *param0, SaveData *param1)
 {
     UnkStruct_02097F38 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
 
@@ -430,7 +429,7 @@ void sub_020980DC(TaskManager *param0, SaveData *param1)
     v0->unk_0C = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
     memset(v0->unk_0C, 0, sizeof(PartyManagementData));
 
-    FieldTask_Start(param0, sub_02097F38, v0);
+    FieldTask_InitCall(param0, sub_02097F38, v0);
 }
 
 typedef struct {

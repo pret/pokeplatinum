@@ -3,10 +3,11 @@
 
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204B404.h"
 
 #include "overlay104/struct_ov104_0223A348.h"
+
+#include "location.h"
 
 typedef struct UnkStruct_0204AFC4_t {
     int unk_00;

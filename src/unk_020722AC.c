@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02028430_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0206A844.h"
@@ -18,6 +17,7 @@
 #include "bg_window.h"
 #include "core_sys.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
@@ -41,7 +41,6 @@
 #include "unk_0200F174.h"
 #include "unk_02028124.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_0206A780.h"
 #include "unk_02097624.h"
 
@@ -117,7 +116,7 @@ typedef struct {
     int unk_04;
 } UnkStruct_020736D8;
 
-void sub_020736D8(TaskManager *param0);
+void sub_020736D8(FieldTask *param0);
 void sub_020722AC(void *param0, int *param1);
 static void sub_02072334(UnkStruct_02072334 *param0);
 static void sub_02072364(SysTask *param0, void *param1);
@@ -203,7 +202,7 @@ void sub_020722AC(void *param0, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_02072334));
     v0->unk_04 = param1;
 
-    v1 = FieldSystem_SaveData(param0);
+    v1 = FieldSystem_GetSaveData(param0);
 
     v0->fieldSystem = (FieldSystem *)param0;
     v0->unk_00 = 43;
@@ -997,7 +996,7 @@ static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
         return;
     }
 
-    v1 = Party_GetFromSavedata(FieldSystem_SaveData(param0->fieldSystem));
+    v1 = Party_GetFromSavedata(FieldSystem_GetSaveData(param0->fieldSystem));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
     sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->unk_00);
@@ -1046,7 +1045,7 @@ static void sub_020731A4(UnkStruct_02072334 *param0)
 
 static void sub_020731F4(UnkStruct_02072334 *param0)
 {
-    param0->unk_170 = sub_0203D170(param0->fieldSystem);
+    param0->unk_170 = FieldSystem_GetBgConfig(param0->fieldSystem);
 
     LoadMessageBoxGraphics(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->unk_00);
     LoadStandardWindowGraphics(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
@@ -1144,11 +1143,11 @@ static int sub_02073438(UnkStruct_02072334 *param0, int param1)
 {
     switch (param0->unk_12) {
     case 0:
-        sub_0200F174(0, param1, param1, 0x0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, param1, param1, 0x0, 6, 1, param0->unk_00);
         param0->unk_12++;
         break;
     case 1:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             break;
         }
 
@@ -1163,11 +1162,11 @@ static int sub_02073480(UnkStruct_02072334 *param0)
 {
     switch (param0->unk_12) {
     case 0:
-        sub_020509D4(param0->fieldSystem);
+        FieldSystem_StartFieldMap(param0->fieldSystem);
         param0->unk_12++;
         break;
     case 1:
-        if (!sub_020509DC(param0->fieldSystem)) {
+        if (!FieldSystem_IsRunningFieldMap(param0->fieldSystem)) {
             break;
         }
 
@@ -1210,9 +1209,9 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(PartyManagementData));
         MI_CpuClear8(v0, sizeof(PartyManagementData));
 
-        v0->unk_00 = Party_GetFromSavedata(FieldSystem_SaveData(param0->fieldSystem));
-        v0->unk_04 = SaveData_GetBag(FieldSystem_SaveData(param0->fieldSystem));
-        v0->unk_0C = SaveData_Options(FieldSystem_SaveData(param0->fieldSystem));
+        v0->unk_00 = Party_GetFromSavedata(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->unk_04 = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
+        v0->unk_0C = SaveData_Options(FieldSystem_GetSaveData(param0->fieldSystem));
         v0->unk_08 = sub_02028430(param0->fieldSystem->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;
@@ -1222,12 +1221,12 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
             v0->unk_22 = param0->unk_17;
         }
 
-        sub_0203CD84(param0->fieldSystem, &Unk_020F1E88, v0);
+        FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, v0);
         param0->unk_1B4 = v0;
         param0->unk_12++;
         break;
     case 1:
-        if (sub_020509B4(param0->fieldSystem)) {
+        if (FieldSystem_IsRunningApplication(param0->fieldSystem)) {
             break;
         }
 
@@ -1253,7 +1252,7 @@ static int sub_020735E8(UnkStruct_02072334 *param0)
         param0->unk_12++;
         break;
     case 1:
-        if (sub_020509B4(param0->fieldSystem)) {
+        if (FieldSystem_IsRunningApplication(param0->fieldSystem)) {
             break;
         }
 
@@ -1274,10 +1273,10 @@ static int sub_020735E8(UnkStruct_02072334 *param0)
     return 0;
 }
 
-static BOOL sub_02073694(TaskManager *param0)
+static BOOL sub_02073694(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_020736D8 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_020736D8 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -1296,13 +1295,13 @@ static BOOL sub_02073694(TaskManager *param0)
     return 0;
 }
 
-void sub_020736D8(TaskManager *param0)
+void sub_020736D8(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_020736D8 *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020736D8));
 
     v1->unk_00 = 0;
     v1->unk_04 = 0;
 
-    FieldTask_Start(fieldSystem->taskManager, sub_02073694, v1);
+    FieldTask_InitCall(fieldSystem->task, sub_02073694, v1);
 }

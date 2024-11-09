@@ -54,7 +54,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
-    sub_0201DBEC(4, 102);
+    VRAMTransferManager_New(4, 102);
 
     param0->unk_14.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, 102);
     param0->unk_14.unk_10 = BgConfig_New(102);
@@ -209,7 +209,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
     ov62_022411EC(param0);
 
     SetMainCallback(NULL, NULL);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 }
 
 static const BgTemplate Unk_ov62_022487B0[] = {

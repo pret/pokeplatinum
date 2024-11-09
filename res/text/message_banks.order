@@ -218,7 +218,7 @@ message_bank_unk_0216
 message_bank_unk_0217
 message_bank_unk_0218
 message_bank_status_condition_names
-message_bank_unk_0220
+message_bank_options_menu
 message_bank_unk_0221
 message_bank_oreburgh_mine_b1f
 message_bank_oreburgh_mine_b2f
@@ -421,8 +421,8 @@ message_bank_unk_0419
 message_bank_unk_0420
 message_bank_unk_0421
 message_bank_unk_0422
-message_bank_unk_0423
-message_bank_unk_0424
+message_bank_berry_descriptions
+message_bank_berry_names
 message_bank_unk_0425
 message_bank_unk_0426
 message_bank_unk_0427
@@ -453,7 +453,7 @@ message_bank_unk_0451
 message_bank_unk_0452
 message_bank_unk_0453
 message_bank_unk_0454
-message_bank_unk_0455
+message_bank_pokemon_summary_screen
 message_bank_unk_0456
 message_bank_poketch_app_names
 message_bank_unk_0458
@@ -644,7 +644,7 @@ message_bank_route_226
 message_bank_route_226_house
 message_bank_route_230
 message_bank_unk_0645
-message_bank_unk_0646
+message_bank_move_descriptions
 message_bank_move_names
 message_bank_unk_0648
 message_bank_plaza_event_names

@@ -327,7 +327,7 @@ void ov104_0223C04C(UnkStruct_ov104_0223BFFC *param0)
         v6 = Party_GetPokemonBySlotIndex(param0->unk_74, v1);
         v0 = 0;
 
-        Pokemon_SetValue(v6, 6, &v0);
+        Pokemon_SetValue(v6, MON_DATA_HELD_ITEM, &v0);
     }
 
     Heap_FreeToHeap(v5);

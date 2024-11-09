@@ -6,7 +6,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0207DE04.h"
 
 #include "field/field_system.h"
@@ -22,15 +21,15 @@
 #include "overlay117/struct_ov117_02260440.h"
 
 #include "communication_system.h"
+#include "encounter.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_overlay.h"
 #include "game_records.h"
 #include "heap.h"
+#include "system_flags.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
-#include "unk_02050A74.h"
-#include "unk_0206A8DC.h"
 #include "unk_02099550.h"
 #include "unk_02099604.h"
 #include "unk_0209BA18.h"
@@ -53,7 +52,7 @@ typedef struct {
 } UnkStruct_0207DE40;
 
 void sub_02099570(void);
-static BOOL sub_0207DA28(TaskManager *param0);
+static BOOL sub_0207DA28(FieldTask *param0);
 static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 param2, u32 param3);
 static u32 sub_0207DE40(UnkStruct_0207DE40 *param0);
 static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 param1, u32 param2);
@@ -85,11 +84,11 @@ static const u8 Unk_020F1B64[4] = {
     0x4
 };
 
-static BOOL sub_0207DA28(TaskManager *param0)
+static BOOL sub_0207DA28(FieldTask *param0)
 {
     int v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0207DE40 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0207DE40 *v2 = FieldTask_GetEnv(param0);
 
     switch (v2->unk_04) {
     case 0:
@@ -105,12 +104,12 @@ static BOOL sub_0207DA28(TaskManager *param0)
         }
         break;
     case 2:
-        sub_02050A38(param0, &Unk_020F1B98, v2->unk_00);
+        FieldTask_RunApplication(param0, &Unk_020F1B98, v2->unk_00);
         v2->unk_04++;
         break;
     case 3:
         if (sub_02039074(fieldSystem->saveData)) {
-            sub_0206AF5C(SaveData_GetVarsFlags(fieldSystem->saveData));
+            SystemFlag_SetConnectedToWiFi(SaveData_GetVarsFlags(fieldSystem->saveData));
         }
 
         switch (v2->unk_00->unk_04) {
@@ -206,7 +205,7 @@ static BOOL sub_0207DA28(TaskManager *param0)
         v2->unk_04++;
         break;
     case 13:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
@@ -215,7 +214,7 @@ static BOOL sub_0207DA28(TaskManager *param0)
         v2->unk_04++;
         break;
     case 15:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_FreeToHeap(v2->unk_10);
             v2->unk_04 = 2;
         }
@@ -226,7 +225,7 @@ static BOOL sub_0207DA28(TaskManager *param0)
         v2->unk_04++;
         break;
     case 17:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_FreeToHeap(v2->unk_10);
             v2->unk_04 = 2;
         }
@@ -236,7 +235,7 @@ static BOOL sub_0207DA28(TaskManager *param0)
         v2->unk_04++;
         break;
     case 19:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
@@ -246,7 +245,7 @@ static BOOL sub_0207DA28(TaskManager *param0)
         v2->unk_04++;
         break;
     case 21:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = 2;
             sub_0207DED8(v2->unk_10);
         }
@@ -256,7 +255,7 @@ static BOOL sub_0207DA28(TaskManager *param0)
         v2->unk_04++;
         break;
     case 23:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
@@ -266,7 +265,7 @@ static BOOL sub_0207DA28(TaskManager *param0)
         v2->unk_04++;
         break;
     case 25:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = 2;
             sub_0207DF2C(v2->unk_10);
         }
@@ -276,7 +275,7 @@ static BOOL sub_0207DA28(TaskManager *param0)
         v2->unk_04++;
         break;
     case 27:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
@@ -286,7 +285,7 @@ static BOOL sub_0207DA28(TaskManager *param0)
         v2->unk_04++;
         break;
     case 29:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = 2;
             sub_0207DF88(v2->unk_10);
         }
@@ -308,22 +307,22 @@ static UnkStruct_0207DE40 *sub_0207DD94(void)
     return v0;
 }
 
-void sub_0207DDC0(TaskManager *param0)
+void sub_0207DDC0(FieldTask *param0)
 {
     UnkStruct_0207DE40 *v0 = sub_0207DD94();
 
     v0->unk_00->unk_04 = 2;
-    FieldTask_Start(param0, sub_0207DA28, v0);
+    FieldTask_InitCall(param0, sub_0207DA28, v0);
 }
 
-void sub_0207DDE0(TaskManager *param0, u16 *param1)
+void sub_0207DDE0(FieldTask *param0, u16 *param1)
 {
     UnkStruct_0207DE40 *v0 = sub_0207DD94();
 
     v0->unk_00->unk_04 = 1;
     v0->unk_08 = param1;
 
-    FieldTask_Start(param0, sub_0207DA28, v0);
+    FieldTask_InitCall(param0, sub_0207DA28, v0);
 }
 
 static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 param2, u32 param3)
@@ -341,7 +340,7 @@ static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u
 
     param0->unk_10 = v0;
 
-    sub_0203CD84(fieldSystem, &Unk_020F1B88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1B88, v0);
 }
 
 static u32 sub_0207DE40(UnkStruct_0207DE40 *param0)
@@ -396,7 +395,7 @@ static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 para
         v0->unk_34 = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
-        sub_0203CD84(fieldSystem, &v1, v0);
+        FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
     }
     return v0;
 }
@@ -430,7 +429,7 @@ static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 param
         v0->unk_34 = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
-        sub_0203CD84(fieldSystem, &v1, v0);
+        FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
     }
     return v0;
 }
@@ -466,7 +465,7 @@ static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 para
         v0->unk_34 = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
-        sub_0203CD84(fieldSystem, &v1, v0);
+        FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
     }
 
     return v0;

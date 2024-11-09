@@ -912,7 +912,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_02087FC0(v0, param0, v1);
         sub_02088754(&v0->unk_41C[4], v0->unk_D8, v0->unk_158, v0->unk_15A, v0->unk_528, v0->unk_17C);
         sub_02004550(52, 0, 0);
-        sub_0200F174(0, 1, 1, 0x0, 16, 1, 18);
+        StartScreenTransition(0, 1, 1, 0x0, 16, 1, 18);
         sub_0208732C(1);
 
         {
@@ -956,7 +956,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 1;
             v0->unk_630 = 0;
         }
@@ -998,7 +998,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
             v0->unk_630++;
 
             if (v0->unk_630 > 30) {
-                sub_0200F174(2, 0, 0, 0x0, 16, 1, 18);
+                StartScreenTransition(2, 0, 0, 0x0, 16, 1, 18);
                 *param1 = 3;
             }
             break;
@@ -1009,7 +1009,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
         sub_02088514(&v0->unk_38);
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;
@@ -2296,7 +2296,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
         if (param0->unk_14 == 0) {
             Sound_PlayEffect(1506);
             param0->unk_4F4[6]++;
-            sub_0200F174(2, 0, 0, 0x0, 16, 1, 18);
+            StartScreenTransition(2, 0, 0, 0x0, 16, 1, 18);
             return 3;
         } else {
             param0->unk_4C0 = 5;

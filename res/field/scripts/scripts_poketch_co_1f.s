@@ -25,7 +25,7 @@ _0042:
     LockAll
     FacePlayer
     Message 0
-    ScrCmd_15D 0x8000
+    CountBadgesAcquired 0x8000
     GoToIfEq 0x8000, 0, _0181
     ScrCmd_134 2, 0x800C
     GoToIfEq 0x800C, 0, _00C5
@@ -40,22 +40,22 @@ _0042:
     GoTo _01AD
 
 _00C5:
-    ScrCmd_15D 0x800C
+    CountBadgesAcquired 0x800C
     GoToIfGe 0x800C, 1, _0121
     GoTo _0181
 
 _00DC:
-    ScrCmd_15D 0x800C
+    CountBadgesAcquired 0x800C
     GoToIfGe 0x800C, 3, _0139
     GoTo _018C
 
 _00F3:
-    ScrCmd_15D 0x800C
+    CountBadgesAcquired 0x800C
     GoToIfGe 0x800C, 5, _0151
     GoTo _0197
 
 _010A:
-    ScrCmd_15D 0x800C
+    CountBadgesAcquired 0x800C
     GoToIfGe 0x800C, 7, _0169
     GoTo _01A2
 

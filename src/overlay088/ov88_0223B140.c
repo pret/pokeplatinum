@@ -15,6 +15,7 @@
 #include "struct_defs/struct_02095E80_t.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay088/ov88_0223E9C4.h"
 #include "overlay088/struct_ov88_0223C370.h"
@@ -45,7 +46,6 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "pokemon_summary_app.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "savedata.h"
@@ -304,7 +304,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     ov88_0223C15C();
     ov88_0223C17C(v0->unk_174);
-    sub_0200F174(0, 1, 1, 0x0, 16, 1, 26);
+    StartScreenTransition(0, 1, 1, 0x0, 16, 1, 26);
     ov88_0223C504(v0, v1);
     SetMainCallback(ov88_0223C0E0, v0);
     ov88_0223C63C();
@@ -419,7 +419,7 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 1;
 
             ov88_0223B320(v0);
@@ -435,15 +435,15 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
             ov88_0223CE74(v0);
             break;
         case 2:
-            sub_0200F174(0, 0, 0, 0x0, 8, 1, 26);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 26);
             *param1 = 2;
             break;
         case 3:
-            sub_0200F174(0, 0, 0, 0x0, 8, 1, 26);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 26);
             v0->unk_48 = 4;
             break;
         case 4:
-            if (ScreenWipe_Done()) {
+            if (IsScreenTransitionDone()) {
                 ov88_0223BFD8(v0);
                 ov88_0223BF7C(v0);
                 ov88_0223C44C(v0->unk_174);
@@ -470,18 +470,18 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
             }
             break;
         case 6:
-            sub_0200F174(0, 1, 1, 0x0, 8, 1, 26);
+            StartScreenTransition(0, 1, 1, 0x0, 8, 1, 26);
             v0->unk_48 = 7;
             break;
         case 7:
-            if (ScreenWipe_Done()) {
+            if (IsScreenTransitionDone()) {
                 v0->unk_48 = 1;
             }
             break;
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v1 = 1;
         }
         break;
@@ -1732,26 +1732,26 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
         param0->unk_0C.max = Party_GetCurrentCount(param0->unk_08->unk_08);
 
         param0->unk_0C.chatotCry = NULL;
-        PokemonSummary_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId()));
+        PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId()));
     } else {
         param0->unk_0C.monData = param0->unk_2274;
         param0->unk_0C.max = Party_GetCurrentCount(param0->unk_2274);
         param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[CommSys_CurNetId() ^ 1];
-        PokemonSummary_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
+        PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
     }
 
     param0->unk_0C.dataType = 1;
     param0->unk_0C.pos = param0->unk_88[0] % 6;
     param0->unk_0C.mode = 1;
     param0->unk_0C.move = 0;
-    param0->unk_0C.contest = PokemonSummary_ShowContestData(param0->unk_08->unk_10);
+    param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->unk_10);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
     param0->unk_0C.options = param0->unk_08->unk_18;
     param0->unk_0C.ribbons = sub_0202D79C(param0->unk_08->unk_10);
 
-    PokemonSummary_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
+    PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
-    param0->unk_40 = OverlayManager_New(&Unk_020F410C, &param0->unk_0C, 26);
+    param0->unk_40 = OverlayManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, 26);
     param0->unk_3C = param1;
 }
 
@@ -2498,11 +2498,11 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         }
     }
 
-    Pokemon_SetValue(v1, 111, NULL);
+    Pokemon_SetValue(v1, MON_DATA_GENDER, NULL);
 
     if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
         u8 v3 = 70;
-        Pokemon_SetValue(v1, 9, &v3);
+        Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v3);
     }
 
     sub_0209304C(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, 11);
@@ -2513,7 +2513,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
 
     param4->unk_2C = param2;
 
-    if (Party_HasSpecies(param0, 441) == 0) {
+    if (Party_HasSpecies(param0, SPECIES_CHATOT) == 0) {
         ChatotCry *v4 = GetChatotCryDataFromSave(param4->unk_10);
         ResetChatotCryDataStatus(v4);
     }

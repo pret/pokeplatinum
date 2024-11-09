@@ -19,6 +19,7 @@
 #include "journal.h"
 #include "overlay_manager.h"
 #include "savedata.h"
+#include "system_flags.h"
 #include "unk_020041CC.h"
 #include "unk_0202F1D4.h"
 #include "unk_02051D8C.h"
@@ -411,7 +412,7 @@ BOOL sub_0208BE68(UnkStruct_0208C06C *param0)
     VarsFlags *v0;
 
     v0 = SaveData_GetVarsFlags(param0->unk_830);
-    return inline_0208BE68(v0, 53);
+    return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_BATTLE_PARK);
 }
 
 static BOOL sub_0208BE80(int param0)

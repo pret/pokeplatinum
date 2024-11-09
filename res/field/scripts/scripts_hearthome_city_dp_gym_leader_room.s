@@ -40,7 +40,7 @@ _0086:
     GoTo _0096
 
 _0096:
-    CheckBadge BADGE_ID_RELIC, 0x800C
+    CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
     GoToIfEq 0x800C, 1, _0173
     ScrCmd_1CD 9, 100, 0, 0, 0
     Message 0
@@ -53,7 +53,7 @@ _0096:
     Message 2
     PlaySound SEQ_BADGE
     WaitSound
-    ScrCmd_15C 4
+    GiveBadge BADGE_ID_RELIC
     ScrCmd_260 23
     SetTrainerFlag 0x10A
     SetTrainerFlag 0x118

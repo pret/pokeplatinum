@@ -158,7 +158,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
 
     v0->unk_0C.unk_24 = BgConfig_New(22);
 
-    sub_0201DBEC(64, 22);
+    VRAMTransferManager_New(64, 22);
     SetAutorepeat(4, 8);
 
     ov17_0223D1B8(v0->unk_0C.unk_24);
@@ -208,7 +208,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     PaletteData_FillBufferRange(v0->unk_0C.unk_44, 2, 0, 0x7fff, 0, ((16 - 2) * 16));
     PaletteData_FillBufferRange(v0->unk_0C.unk_44, 3, 0, 0x7fff, 0, 16 * 16);
     sub_02039734();
-    sub_0200F174(1, 27, 27, 0x0, 6, 1, 22);
+    StartScreenTransition(1, 27, 27, 0x0, 6, 1, 22);
 
     v0->unk_04 = SysTask_Start(ov17_0223D164, v0, 60000);
     v0->unk_4F6 = 1;
@@ -234,7 +234,7 @@ int ov17_0223CDDC(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x1, 0xffff, 6, 16, 0, 0x7fff);
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x2, 0xffff, 6, 16, 0, 0x7fff);
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x4, 0x3fff, 6, 16, 0, 0x7fff);
@@ -258,7 +258,7 @@ int ov17_0223CDDC(OverlayManager *param0, int *param1)
             } else if ((v1 == 3) && (v0->unk_F14 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_F0C, sizeof(UnkStruct_ov17_0223D60C));
-                sub_0200F174(2, 16, 36, 0x0, 6, 1, 22);
+                StartScreenTransition(2, 16, 36, 0x0, 6, 1, 22);
                 break;
             }
         }
@@ -269,12 +269,12 @@ int ov17_0223CDDC(OverlayManager *param0, int *param1)
         if ((v0->unk_F14 == 1) && (ov17_0224F3D0(&v0->unk_4F8) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_F0C, sizeof(UnkStruct_ov17_0223D60C));
-            sub_0200F174(2, 16, 36, 0x0, 6, 1, 22);
+            StartScreenTransition(2, 16, 36, 0x0, 6, 1, 22);
         }
         break;
     case 2:
         if (v0->unk_F14 == 1) {
-            if (ScreenWipe_Done() == 1) {
+            if (IsScreenTransitionDone() == 1) {
                 return 1;
             }
         }
@@ -309,7 +309,7 @@ int ov17_0223CF8C(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_0C.unk_24, 4);
     sub_0200D0B0(v0->unk_0C.unk_1C, v0->unk_0C.unk_20);
     sub_0200C8D4(v0->unk_0C.unk_1C);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     for (v1 = 0; v1 < 4; v1++) {
         if (v0->unk_F18[v1].unk_00 != NULL) {
@@ -371,7 +371,7 @@ static void ov17_0223D0C8(void *param0)
     }
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C.unk_44);
     Bg_RunScheduledUpdates(v0->unk_0C.unk_24);
 

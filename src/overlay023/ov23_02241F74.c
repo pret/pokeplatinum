@@ -44,12 +44,12 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
 #include "unk_02054D00.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 typedef BOOL (*UnkFuncPtr_ov23_02242540)(int, int);
@@ -153,7 +153,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
         sCommManUnderground->unk_DC[v1] = NULL;
     }
 
-    sub_0206A9F4(SaveData_GetVarsFlags(sCommManUnderground->fieldSystem->saveData));
+    SystemFlag_SetEnteredUnderground(SaveData_GetVarsFlags(sCommManUnderground->fieldSystem->saveData));
     sCommManUnderground->unk_14 = SysTask_Start(ov23_02243310, NULL, 0);
     sub_02032110(ov23_022433F4);
 }
@@ -789,8 +789,8 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
         ov23_0223E1E4(v0, fieldSystem);
 
         v0 = Heap_AllocFromHeap(15, ov23_02253608());
-        ov23_02253598(v0, SaveData_SecretBaseRecord(FieldSystem_SaveData(fieldSystem)), FieldSystem_SaveData(fieldSystem));
-        ov23_0224F588(sub_020298B0(FieldSystem_SaveData(fieldSystem)));
+        ov23_02253598(v0, SaveData_SecretBaseRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
+        ov23_0224F588(sub_020298B0(FieldSystem_GetSaveData(fieldSystem)));
     }
 }
 
@@ -1192,7 +1192,7 @@ BOOL ov23_02243298(int param0)
         return 0;
     }
 
-    if (sCommManUnderground->fieldSystem->taskManager) {
+    if (sCommManUnderground->fieldSystem->task) {
         sCommManUnderground->unk_130++;
 
         if (sCommManUnderground->unk_130 > 100) {

@@ -245,12 +245,12 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
     case 1:
-        sub_0200F174(
+        StartScreenTransition(
             1, 5, 5, 0x0, 6, 1, 13);
         (*param1) = 2;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1)++;
         }
         break;
@@ -341,12 +341,12 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
         }
         break;
     case 11:
-        sub_0200F174(
+        StartScreenTransition(
             1, 0, 0, 0x0, 6, 1, 13);
         (*param1)++;
         break;
     case 12:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1) = 0;
             v0->unk_70C = 10;
             v1 = 1;
@@ -553,11 +553,11 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 11:
-        sub_0200F174(1, 17, 19, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 17, 19, 0x0, 6, 1, 13);
         (*param1)++;
         break;
     case 12:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_02004550(7, 1169, 0);
             (*param1)++;
         }
@@ -610,12 +610,12 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
             break;
         }
 
-        sub_0200F174(1, 26, 26, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 26, 26, 0x0, 6, 1, 13);
         Sound_PlayEffect(1668);
         (*param1)++;
         break;
     case 20:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1) = 0;
             v0->unk_70C = 10;
             v1 = 1;

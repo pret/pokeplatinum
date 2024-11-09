@@ -21,11 +21,11 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "main.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
@@ -136,7 +136,7 @@ typedef struct {
     u8 unk_2A8;
 } UnkStruct_ov77_021D2E9C;
 
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
 static int ov77_021D2D08(OverlayManager *param0, int *param1);
 static int ov77_021D2D94(OverlayManager *param0, int *param1);
 static int ov77_021D2E60(OverlayManager *param0, int *param1);
@@ -178,9 +178,9 @@ static void ov77_021D5308(UnkStruct_ov77_021D5308 *param0);
 static BOOL ov77_021D5390(UnkStruct_ov77_021D5308 *param0, const int param1);
 static void ov77_021D5478(UnkStruct_ov77_021D2E9C *param0);
 
-extern const OverlayManagerTemplate Unk_ov77_021D742C;
+extern const OverlayManagerTemplate gTitleScreenOverlayTemplate;
 
-const OverlayManagerTemplate Unk_ov77_021D788C = {
+const OverlayManagerTemplate gOpeningCutsceneOverlayTemplate = {
     ov77_021D2D08,
     ov77_021D2D94,
     ov77_021D2E60,
@@ -1010,14 +1010,14 @@ static int ov77_021D2E60(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov77_021D2E9C *v0 = OverlayManager_Data(param0);
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         sub_0200F2C0();
     }
 
     LCRNG_SetSeed(v0->unk_14);
     OverlayManager_FreeData(param0);
     Heap_Destroy(76);
-    sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
 
     return 1;
 }
@@ -1153,12 +1153,12 @@ static BOOL ov77_021D30D0(UnkStruct_ov77_021D2F38 *param0, const int param1)
         break;
     case 4:
         if ((param0->unk_08) && (param1 >= 490)) {
-            sub_0200F174(2, 0, 0, 0x0, 18, 1, 76);
+            StartScreenTransition(2, 0, 0, 0x0, 18, 1, 76);
             (*v0)++;
         }
         break;
     case 5:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
     }
@@ -1871,14 +1871,14 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         break;
     case 2:
         if (param2 == 785) {
-            sub_0200F174(3, 0, 0, 0x7fff, 4, 1, 76);
+            StartScreenTransition(3, 0, 0, 0x7fff, 4, 1, 76);
         }
 
         if (param2 == (785 + 5)) {
-            GF_ASSERT(ScreenWipe_Done() == 1);
+            GF_ASSERT(IsScreenTransitionDone() == 1);
             param1->unk_247 = (1 << 2);
             param1->unk_248 = (1 << 3);
-            sub_0200F174(3, 1, 1, 0x7fff, 4, 1, 76);
+            StartScreenTransition(3, 1, 1, 0x7fff, 4, 1, 76);
         }
 
         if (param2 == 945 - 1) {
@@ -1895,7 +1895,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
         if (param2 >= 975) {
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-            sub_0200F174(3, 1, 1, 0x7fff, 18, 1, 76);
+            StartScreenTransition(3, 1, 1, 0x7fff, 18, 1, 76);
             param1->unk_08 = 16;
             (*v0)++;
         }
@@ -1918,7 +1918,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
             ov77_021D61B8(param1->unk_14, param2);
 
             if (param2 >= 1576) {
-                sub_0200F174(0, 0, 0, 0x7fff, 18, 1, 76);
+                StartScreenTransition(0, 0, 0, 0x7fff, 18, 1, 76);
                 (*v0)++;
             }
         }
@@ -1930,7 +1930,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         ov77_021D60E0(param1->unk_14, param2);
         ov77_021D61B8(param1->unk_14, param2);
 
-        if (ScreenWipe_Done() && (param2 >= 1600)) {
+        if (IsScreenTransitionDone() && (param2 >= 1600)) {
             Bg_ToggleLayer(4, 0);
             ov77_021D6000(param1->unk_14, param1->unk_18);
             param1->unk_244 = 1;
@@ -1972,7 +1972,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
             G2_BlendNone();
             G2S_BlendNone();
-            sub_0200F174(0, 1, 1, 0x7fff, 18, 1, 76);
+            StartScreenTransition(0, 1, 1, 0x7fff, 18, 1, 76);
             (*v0)++;
         }
         break;
@@ -1980,7 +1980,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         ov77_021D4B70(param1);
         ov77_021D607C(param1->unk_14);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (param2 >= (62 * 30 - 15 - 15)) {
                 Bg_ScheduleScroll(param1->unk_10, 3, 0, 0);
                 Bg_ScheduleScroll(param1->unk_10, 3, 3, 256);
@@ -2005,7 +2005,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         ov77_021D4C04(param1, param2);
 
         if (param2 == (64 * 30 - 15 - 15 - 45)) {
-            sub_0200F174(0, 0, 0, 0x0, 4, 1, 76);
+            StartScreenTransition(0, 0, 0, 0x0, 4, 1, 76);
             (*v0)++;
         }
         break;
@@ -2013,14 +2013,14 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         ov77_021D4BE4(param1);
         ov77_021D4C04(param1, param2);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             param1->unk_247 = (1 << 1) | (1 << 5);
             param1->unk_248 = (1 << 2) | (1 << 6);
             Bg_ScheduleScroll(param1->unk_10, 1, 0, 0);
             Bg_ScheduleScroll(param1->unk_10, 1, 3, 0);
             Bg_ScheduleScroll(param1->unk_10, 5, 0, 0);
             Bg_ScheduleScroll(param1->unk_10, 5, 3, 0);
-            sub_0200F174(0, 1, 1, 0x0, 4, 1, 76);
+            StartScreenTransition(0, 1, 1, 0x0, 4, 1, 76);
             (*v0)++;
         }
         break;
@@ -2029,7 +2029,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         ov77_021D4C04(param1, param2);
         ov77_021D6470(param1->unk_14, param2);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (param2 == (65 * 30 - 15 - 15 - 45 - 15)) {
                 Bg_ScheduleScroll(param1->unk_10, 1, 0, 0);
                 Bg_ScheduleScroll(param1->unk_10, 1, 3, 256);
@@ -2038,7 +2038,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
                 ov77_021D603C(param1->unk_14, 11, 1);
                 ov77_021D603C(param1->unk_14, 12, 1);
             } else if (param2 >= (1935 - 15)) {
-                sub_0200F174(0, 0, 0, 0x7fff, 4, 1, 76);
+                StartScreenTransition(0, 0, 0, 0x7fff, 4, 1, 76);
                 (*v0)++;
             }
         }
@@ -2046,8 +2046,8 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     case 9:
         ov77_021D6470(param1->unk_14, param2);
 
-        if (ScreenWipe_Done()) {
-            sub_0200F174(0, 1, 1, 0x7fff, 64, 1, 76);
+        if (IsScreenTransitionDone()) {
+            StartScreenTransition(0, 1, 1, 0x7fff, 64, 1, 76);
             ov77_021D603C(param1->unk_14, 11, 0);
             ov77_021D603C(param1->unk_14, 12, 0);
             ov77_021D603C(param1->unk_14, 13, 1);
@@ -2070,9 +2070,9 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
         ov77_021D4DC8(param1, param2);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (param2 >= (1995 + 15)) {
-                sub_0200F174(3, 0, 0, 0x0, 4, 1, 76);
+                StartScreenTransition(3, 0, 0, 0x0, 4, 1, 76);
                 (*v0)++;
             }
         }
@@ -2080,19 +2080,19 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     case 11:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 0, 0);
             MI_CpuClear16((void *)HW_BG_PLTT, 0x200);
-            sub_0200F174(3, 1, 1, 0x0, 4, 1, 76);
+            StartScreenTransition(3, 1, 1, 0x0, 4, 1, 76);
             (*v0)++;
         }
         break;
     case 12:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (ov77_021D6E78(param1->unk_1C, 0, param2)) {
-                sub_0200F174(0, 0, 0, 0x0, 4, 1, 76);
+                StartScreenTransition(0, 0, 0, 0x0, 4, 1, 76);
                 (*v0)++;
             }
         }
@@ -2100,13 +2100,13 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     case 13:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (1) {
                 gCoreSys.unk_65 = 1;
                 GXLayers_SwapDisplay();
                 ov77_021D3DC4(param1);
 
-                sub_0200F174(0, 1, 1, 0x0, 4, 1, 76);
+                StartScreenTransition(0, 1, 1, 0x0, 4, 1, 76);
                 (*v0)++;
             }
         }
@@ -2114,10 +2114,10 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     case 14:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (param2 >= (2085 + 15 + 30)) {
                 if (ov77_021D6E78(param1->unk_1C, 1, param2)) {
-                    sub_0200F174(0, 0, 0, 0x0, 4, 1, 76);
+                    StartScreenTransition(0, 0, 0, 0x0, 4, 1, 76);
                     param1->unk_0C = 0;
                     (*v0)++;
                 }
@@ -2127,7 +2127,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     case 15:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             MI_CpuCopy16(param1->unk_240, (void *)HW_BG_PLTT, 0x200);
 
             gCoreSys.unk_65 = 0;
@@ -2143,22 +2143,22 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
             Bg_ScheduleScroll(param1->unk_10, 5, 0, 60);
             Bg_ScheduleScroll(param1->unk_10, 6, 0, 60);
             Bg_ScheduleScroll(param1->unk_10, 7, 0, 60);
-            sub_0200F174(3, 1, 1, 0x0, 16, 1, 76);
+            StartScreenTransition(3, 1, 1, 0x0, 16, 1, 76);
             (*v0)++;
         }
         break;
     case 16:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (ScreenWipe_Done()) {
-            sub_0200F174(4, 1, 1, 0x0, 16, 1, 76);
+        if (IsScreenTransitionDone()) {
+            StartScreenTransition(4, 1, 1, 0x0, 16, 1, 76);
             (*v0)++;
         }
         break;
     case 17:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (param2 >= (2200 + 15)) {
                 ov77_021D4E90(param1);
             }
@@ -2166,7 +2166,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
             if (param2 >= ((2200 + 15) + 1)) {
                 param1->unk_247 |= (1 << 0) | (1 << 4);
 
-                sub_0200F174(0, 0, 0, 0x7fff, 6, 1, 76);
+                StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, 76);
                 (*v0)++;
             }
         }
@@ -2175,7 +2175,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         ov77_021D4E90(param1);
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             gCoreSys.unk_65 = 1;
             GXLayers_SwapDisplay();
             (*v0)++;
@@ -2452,10 +2452,10 @@ static void ov77_021D513C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
     switch (param2) {
     case (40 * 30 - 15):
-        sub_0200F174(3, 0, 0, 0x0, 4, 1, 76);
+        StartScreenTransition(3, 0, 0, 0x0, 4, 1, 76);
         break;
     case ((40 * 30 - 15) + 6):
-        GF_ASSERT(ScreenWipe_Done() == 1);
+        GF_ASSERT(IsScreenTransitionDone() == 1);
         ov77_021D35B8(param0);
         ov77_021D40DC(param1, 1);
         break;
@@ -2468,16 +2468,16 @@ static void ov77_021D513C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     case (((40 * 30 - 15) + 6) + 3):
         v0 = ov77_021D40DC(param1, 1);
         GF_ASSERT(v0 == 1);
-        sub_0200F174(3, 1, 1, 0x0, 4, 1, 76);
+        StartScreenTransition(3, 1, 1, 0x0, 4, 1, 76);
         break;
     case (47 * 30 - 15):
-        sub_0200F174(3, 0, 0, 0x0, 4, 1, 76);
+        StartScreenTransition(3, 0, 0, 0x0, 4, 1, 76);
         break;
     case ((47 * 30 - 15) + 6):
-        GF_ASSERT(ScreenWipe_Done() == 1);
+        GF_ASSERT(IsScreenTransitionDone() == 1);
         ov77_021D35B8(param0);
         ov77_021D40B8(param1, 2);
-        sub_0200F174(3, 1, 1, 0x0, 4, 1, 76);
+        StartScreenTransition(3, 1, 1, 0x0, 4, 1, 76);
         break;
     }
 }
@@ -2555,31 +2555,31 @@ static BOOL ov77_021D5390(UnkStruct_ov77_021D5308 *param0, const int param1)
     switch (*v0) {
     case 0:
         if (param1 >= (2285 - 15 - 65)) {
-            sub_0200F174(0, 1, 1, 0x7fff, 30, 1, 76);
+            StartScreenTransition(0, 1, 1, 0x7fff, 30, 1, 76);
             (*v0)++;
         }
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-            sub_0200F174(0, 1, 1, 0x0, 90, 1, 76);
+            StartScreenTransition(0, 1, 1, 0x0, 90, 1, 76);
             (*v0)++;
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*v0)++;
         }
         break;
     case 3:
         if (param1 >= (2500 - 15 - 65)) {
-            sub_0200F174(0, 0, 0, 0x0, 8, 1, 76);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 76);
 
             (*v0)++;
         }
         break;
     case 4:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
     }

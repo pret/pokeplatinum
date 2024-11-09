@@ -3,17 +3,17 @@
 
 #include <dwc.h>
 
-#include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 
 #include "game_options.h"
 #include "savedata.h"
+#include "system_data.h"
 
 typedef struct {
     UnkStruct_0202D750 *unk_00;
     UnkStruct_0202D764 *unk_04;
-    UnkStruct_02025CCC *unk_08;
+    SystemData *unk_08;
     SaveData *unk_0C;
     Options *unk_10;
     DWCUserData *unk_14;

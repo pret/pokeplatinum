@@ -81,7 +81,7 @@ void ov62_02248408(BattleRecording *param0, BattleParams *param1, int param2)
             Strbuf_CopyChars(v6, v8);
 
             if (Font_AreAllCharsValid(FONT_SYSTEM, v6, v7) == 0) {
-                Pokemon_SetValue(v13, 179, NULL);
+                Pokemon_SetValue(v13, MON_DATA_SPECIES_NAME, NULL);
                 continue;
             }
         }

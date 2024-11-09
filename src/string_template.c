@@ -11,7 +11,6 @@
 #include "consts/gender.h"
 #include "consts/moves.h"
 
-#include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/trainer_data.h"
 
@@ -26,6 +25,7 @@
 #include "heap.h"
 #include "message.h"
 #include "pokemon.h"
+#include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
@@ -33,7 +33,6 @@
 #include "trainer_info.h"
 #include "unk_02014D38.h"
 #include "unk_02017038.h"
-#include "unk_0202B37C.h"
 #include "unk_020797C8.h"
 #include "unk_020996D0.h"
 
@@ -526,13 +525,13 @@ void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *save, 
 {
     int gender, countryCode;
     Strbuf *groupName;
-    UnkStruct_0202B4A0 *group = sub_0202B4A0(save);
+    RecordMixedRNG *group = SaveData_GetRecordMixedRNG(save);
 
-    gender = sub_0202B47C(group, groupID);
-    countryCode = sub_0202B488(group, groupID);
+    gender = RecordMixedRNG_GetEntryGender(group, groupID);
+    countryCode = RecordMixedRNG_GetEntryCountryCode(group, groupID);
     groupName = Strbuf_Init(64, HEAP_ID_FIELD);
 
-    Strbuf_CopyChars(groupName, sub_0202B42C(group, groupID, nameType));
+    Strbuf_CopyChars(groupName, RecordMixedRNG_GetEntryName(group, groupID, nameType));
     StringTemplate_SetStrbuf(template, idx, groupName, gender, 1, countryCode);
     Strbuf_Free(groupName);
 }

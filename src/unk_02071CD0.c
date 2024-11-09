@@ -18,7 +18,7 @@ void sub_02071CD0(FieldSystem *fieldSystem)
     UnkStruct_02027860 *v1;
     UnkStruct_ov6_02242AF0 *v2;
 
-    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 != 6) {

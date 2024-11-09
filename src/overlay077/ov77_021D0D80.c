@@ -16,12 +16,12 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "main.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -115,10 +115,10 @@ typedef struct {
 
 extern const OverlayManagerTemplate Unk_020F8A48;
 extern const OverlayManagerTemplate Unk_020F8AB4;
-extern const OverlayManagerTemplate Unk_ov77_021D788C;
+extern const OverlayManagerTemplate gOpeningCutsceneOverlayTemplate;
 
 static void ov77_021D1D48(BgConfig *param0, int param1);
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
 static int ov77_021D0D80(OverlayManager *param0, int *param1);
 static int ov77_021D0E3C(OverlayManager *param0, int *param1);
 static int ov77_021D10FC(OverlayManager *param0, int *param1);
@@ -146,7 +146,7 @@ static void ov77_021D2428(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 
 static void ov77_021D24C8(UnkStruct_ov77_021D1568 *param0);
 static void ov77_021D2438(UnkStruct_ov77_021D1568 *param0);
 
-const OverlayManagerTemplate Unk_ov77_021D742C = {
+const OverlayManagerTemplate gTitleScreenOverlayTemplate = {
     ov77_021D0D80,
     ov77_021D0E3C,
     ov77_021D10FC,
@@ -253,7 +253,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
 
         if ((gCoreSys.heldKeys & (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) == (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) {
             v0->unk_4E8 = 2;
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 6;
             break;
         }
@@ -274,10 +274,10 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         ov77_021D20E4(&v0->unk_238, v0->unk_04, v0->unk_00);
 
         if ((++v0->unk_4FC) == 10) {
-            sub_0200F174(0, 0, 0, 0x7fff, 6, 1, v0->unk_00);
+            StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, v0->unk_00);
         }
 
-        if ((sub_0200598C() == 0) && (ScreenWipe_Done() == 1) && (v0->unk_4FC >= 10)) {
+        if ((sub_0200598C() == 0) && (IsScreenTransitionDone() == 1) && (v0->unk_4FC >= 10)) {
             sub_020055D0(1173, 0);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
@@ -288,7 +288,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-            sub_0200F174(0, 1, 1, 0x7fff, 6, 1, v0->unk_00);
+            StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, v0->unk_00);
             *param1 = 6;
         }
         break;
@@ -298,12 +298,12 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
 
         if (Sound_CheckFade() == 0) {
             sub_020055D0(1173, 0);
-            sub_0200F174(0, 0, 0, 0x7fff, 6, 1, v0->unk_00);
+            StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, v0->unk_00);
             *param1 = 6;
         }
         break;
     case 6:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             if (ov77_021D21C0(&v0->unk_238, v0->unk_04, v0->unk_00) == 1) {
                 return 1;
             }
@@ -331,14 +331,14 @@ static int ov77_021D10FC(OverlayManager *param0, int *param1)
     switch (v2) {
     default:
     case 1:
-        sub_02000EC4(0xffffffff, &Unk_020F8AB4);
+        EnqueueApplication(0xffffffff, &Unk_020F8AB4);
         break;
     case 2:
-        sub_02000EC4(0xffffffff, &Unk_020F8A48);
+        EnqueueApplication(0xffffffff, &Unk_020F8A48);
         break;
     case 3:
         sub_02004234(0);
-        sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D788C);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneOverlayTemplate);
         break;
     }
 
@@ -1013,11 +1013,11 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         param0->unk_296 = 0;
         param0->unk_22A = 15 + 252;
-        sub_0200F174(0, 1, 1, 0x0, 15, 3, param2);
+        StartScreenTransition(0, 1, 1, 0x0, 15, 3, param2);
         param0->unk_00 = 1;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             if (param0->unk_22A) {
                 param0->unk_22A--;
             } else {
@@ -1057,9 +1057,9 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         }
         break;
     case 5:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             if (param0->unk_22A) {
-                sub_0200F174(0, 0, 0, 0x7fff, 5, 2, param2);
+                StartScreenTransition(0, 0, 0, 0x7fff, 5, 2, param2);
                 param0->unk_296 = 2;
                 param0->unk_22A--;
                 param0->unk_00 = 6;
@@ -1072,13 +1072,13 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         }
         break;
     case 6:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_2A0 = 0;
             {
                 GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
             }
             param0->unk_04.unk_AC = 2;
-            sub_0200F174(3, 1, 1, 0x7fff, 16, 3, param2);
+            StartScreenTransition(3, 1, 1, 0x7fff, 16, 3, param2);
             param0->unk_00 = 5;
         }
         break;
@@ -1090,7 +1090,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         }
         break;
     case 7:
-        sub_0200F174(3, 1, 1, 0x0, 48, 1, param2);
+        StartScreenTransition(3, 1, 1, 0x0, 48, 1, param2);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         param0->unk_00 = 9;
         param0->unk_2A4 = 0;
@@ -1109,7 +1109,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
             {
                 ov77_021D1CC0(param1, param2);
             }
-            sub_0200F174(4, 1, 1, 0x7fff, 16, 3, param2);
+            StartScreenTransition(4, 1, 1, 0x7fff, 16, 3, param2);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
             param0->unk_22A = 90;
@@ -1120,7 +1120,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         if (param0->unk_22A) {
             param0->unk_22A--;
         } else {
-            if (ScreenWipe_Done() == 1) {
+            if (IsScreenTransitionDone() == 1) {
                 v0 = 1;
             }
         }

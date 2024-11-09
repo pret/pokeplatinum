@@ -126,7 +126,7 @@ BOOL ScrCmd_PlayFanfare(ScriptContext *ctx)
 
 BOOL ScrCmd_04A(ScriptContext *param0)
 {
-    sub_020057A4(ScriptContext_GetVar(param0), 0);
+    Sound_StopEffect(ScriptContext_GetVar(param0), 0);
     return 0;
 }
 

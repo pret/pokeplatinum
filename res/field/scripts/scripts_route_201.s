@@ -778,7 +778,7 @@ _0967:
     BufferPlayerName 1
     Message 53
     CloseMessage
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_06D 2, 15
     Return
 
@@ -788,7 +788,7 @@ _097C:
     End
 
 _0986:
-    ScrCmd_161
+    SetHasPartner
     ScrCmd_06D 2, 48
     ScrCmd_06C 2, 1
     Return
@@ -852,7 +852,7 @@ _09E0:
     End
 
 _0A3B:
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_06D 2, 15
     ApplyMovement 0xFF, _0A7C
     ApplyMovement 2, _0A68
@@ -1074,7 +1074,7 @@ _0CF1:
     ScrCmd_065 5
     SetVar 0x4086, 3
     ScrCmd_06C 254, 0
-    ScrCmd_162
+    ClearHasPartner
     SetFlag 0x172
     SetFlag 0x195
     SetVar 0x4082, 4
@@ -1296,8 +1296,8 @@ _0F4F:
     WaitABXPadPress
     CloseMessage
     SetVar 0x4086, 3
-    ScrCmd_164
-    ScrCmd_161
+    SetStepFlag
+    SetHasPartner
     ScrCmd_06D 2, 48
     ScrCmd_06C 2, 1
     SetFlag 0x172

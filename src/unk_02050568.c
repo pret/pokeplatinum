@@ -4,10 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -16,15 +14,16 @@
 #include "camera.h"
 #include "core_sys.h"
 #include "field_map_change.h"
+#include "field_task.h"
 #include "heap.h"
 #include "inlines.h"
+#include "location.h"
 #include "map_object.h"
 #include "player_avatar.h"
+#include "system_flags.h"
 #include "unk_02005474.h"
-#include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_02056B30.h"
-#include "unk_0206A8DC.h"
 #include "unk_02070428.h"
 #include "vars_flags.h"
 
@@ -36,7 +35,7 @@ typedef struct {
     u8 unk_09[3];
 } UnkStruct_02050568;
 
-static BOOL sub_020505A0(TaskManager *taskMan);
+static BOOL sub_020505A0(FieldTask *taskMan);
 static void sub_0205074C(PlayerAvatar *playerAvatar, BOOL param1);
 static void sub_0205075C(FieldSystem *fieldSystem);
 
@@ -45,13 +44,13 @@ void sub_02050568(FieldSystem *fieldSystem)
     UnkStruct_02050568 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050568));
 
     memset(v0, 0, sizeof(UnkStruct_02050568));
-    FieldTask_Start(fieldSystem->taskManager, sub_020505A0, v0);
+    FieldTask_InitCall(fieldSystem->task, sub_020505A0, v0);
 }
 
-static BOOL sub_020505A0(TaskManager *taskMan)
+static BOOL sub_020505A0(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02050568 *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02050568 *v1 = FieldTask_GetEnv(taskMan);
     VarsFlags *v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     switch (v1->unk_08) {
@@ -67,7 +66,7 @@ static BOOL sub_020505A0(TaskManager *taskMan)
         v1->unk_08++;
         break;
     case 2:
-        sub_0206AE0C(v2);
+        SystemFlag_SetPoketchHidden(v2);
 
         {
             Location v3;
@@ -103,7 +102,7 @@ static BOOL sub_020505A0(TaskManager *taskMan)
         v1->unk_08++;
         break;
     case 8:
-        sub_0206AE1C(v2);
+        SystemFlag_ClearPoketchHidden(v2);
 
         {
             Location v4;

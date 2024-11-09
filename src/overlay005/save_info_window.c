@@ -8,7 +8,6 @@
 #include "consts/map.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/save_info_window.h"
@@ -18,6 +17,7 @@
 #include "bg_window.h"
 #include "field_overworld_state.h"
 #include "font.h"
+#include "location.h"
 #include "map_header.h"
 #include "message_util.h"
 #include "player_avatar.h"
@@ -50,7 +50,7 @@ static const int sSaveInfoValues[] = {
 static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSystem)
 {
     SaveData *saveData = fieldSystem->saveData;
-    Location *curLocation = sub_0203A720(SaveData_GetFieldOverworldState(saveData));
+    Location *curLocation = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(saveData));
     PokedexData *pokedex = SaveData_Pokedex(saveData);
 
     saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
@@ -201,8 +201,8 @@ static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem)
 
     fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
     fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
-    fieldSystem->location->unk_04 = -1;
-    fieldSystem->location->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    fieldSystem->location->warpId = WARP_ID_NONE;
+    fieldSystem->location->faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 }
 
 void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem)

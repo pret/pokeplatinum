@@ -3,25 +3,24 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_020985E4.h"
 #include "struct_defs/struct_0209862C.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 #include "overlay100/ov100_021D0D80.h"
 
 #include "field_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
-#include "unk_020508D4.h"
 
 FS_EXTERN_OVERLAY(overlay100);
 
-void sub_020985E4(TaskManager *param0, SaveData *param1)
+void sub_020985E4(FieldTask *param0, SaveData *param1)
 {
     UnkStruct_0209862C *v0;
     UnkStruct_020985E4 *v1;
@@ -36,23 +35,23 @@ void sub_020985E4(TaskManager *param0, SaveData *param1)
     v0->unk_00 = 0;
     v0->unk_04 = v1;
 
-    FieldTask_Start(param0, sub_0209862C, v0);
+    FieldTask_InitCall(param0, sub_0209862C, v0);
 }
 
-BOOL sub_0209862C(TaskManager *param0)
+BOOL sub_0209862C(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
     UnkStruct_0209862C *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = TaskManager_Environment(param0);
+    fieldSystem = FieldTask_GetFieldSystem(param0);
+    v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:
         ov5_021D1744(0);
         v1->unk_00++;
     case 1:
-        if (ScreenWipe_Done() == 0) {
+        if (IsScreenTransitionDone() == 0) {
             break;
         }
 
@@ -64,18 +63,18 @@ BOOL sub_0209862C(TaskManager *param0)
                 FS_OVERLAY_ID(overlay100)
             };
 
-            sub_0203CD84(fieldSystem, &v2, v1->unk_04);
+            FieldSystem_StartChildProcess(fieldSystem, &v2, v1->unk_04);
             v1->unk_00++;
         }
         break;
     case 2:
-        if (sub_020509B4(fieldSystem) == 0) {
-            sub_020509D4(fieldSystem);
+        if (FieldSystem_IsRunningApplication(fieldSystem) == 0) {
+            FieldSystem_StartFieldMap(fieldSystem);
             v1->unk_00++;
         }
         break;
     case 3:
-        if (sub_020509DC(fieldSystem) == 0) {
+        if (FieldSystem_IsRunningFieldMap(fieldSystem) == 0) {
             v1->unk_00++;
         }
         break;

@@ -152,7 +152,7 @@ void sub_0200C7EC(SpriteGfxHandler *param0)
     CellActorCollection_Update(param0->unk_00);
 }
 
-void sub_0200C800(void)
+void OAMManager_ApplyAndResetBuffers(void)
 {
     sub_0200A858();
 }

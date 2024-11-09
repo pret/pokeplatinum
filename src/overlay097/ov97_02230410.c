@@ -4,7 +4,6 @@
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0202DBAC.h"
-#include "struct_defs/struct_0203CC84.h"
 
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
@@ -26,6 +25,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "main.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
@@ -41,7 +41,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02000C88.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0202DAB4.h"
@@ -563,7 +562,7 @@ static BOOL ov97_02230BF0(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 
 static void ov97_02230C10(UnkStruct_ov97_02230868 *param0, int param1, int param2, int *param3)
 {
-    sub_0200F174(0, param1, param1, 0x0, 6, 1, 87);
+    StartScreenTransition(0, param1, param1, 0x0, 6, 1, 87);
 
     if (param3) {
         *param3 = 27;
@@ -1033,7 +1032,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        v4->unk_2C04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+        v4->unk_2C04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
         v4->unk_2C00 = SaveData_MysteryGift(v4->unk_2C04);
         v4->unk_2C08 = SaveData_Options(v4->unk_2C04);
         v4->unk_2C0C = Options_Frame(v4->unk_2C08);
@@ -1239,7 +1238,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         ov97_02230C10(v4, 0, 28, param1);
         break;
     case 27:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = v4->unk_2CA0;
         }
         break;
@@ -1462,7 +1461,7 @@ static int ov97_02231F38(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v1->unk_2A5C, 2);
     Bg_FreeTilemapBuffer(v1->unk_2A5C, 3);
     Heap_FreeToHeap(v1->unk_2A5C);
-    sub_02000EC4(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
     Heap_Destroy(91);
     OverlayManager_FreeData(param0);
     Heap_Destroy(87);

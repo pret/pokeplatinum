@@ -16,6 +16,7 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -44,7 +45,6 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "pokemon_summary_app.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -703,7 +703,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_0221FE10(UnkStruct_ov10_0221FB28 *param0)
 {
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return 0;
     }
 
@@ -826,10 +826,10 @@ static u8 ov10_02220014(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_02220228(UnkStruct_ov10_0221FB28 *param0)
 {
     if (param0->unk_B76 == 8) {
-        sub_0200F174(0, 0, 0, 0x7fff, 6, 1, param0->unk_00->unk_24);
+        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, param0->unk_00->unk_24);
     }
 
-    if ((param0->unk_B76 >= 8) && (ScreenWipe_Done() == 1)) {
+    if ((param0->unk_B76 >= 8) && (IsScreenTransitionDone() == 1)) {
         param0->unk_B73 = 2;
         return 1;
     }
@@ -1144,7 +1144,7 @@ static u8 ov10_02220A34(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
 {
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return 0;
     }
 
@@ -1164,7 +1164,7 @@ static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
 
     ov10_02220BE8(param1);
 
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     PaletteData_FreeBuffer(param1->unk_08, 0);
     PaletteData_Free(param1->unk_08);
 
@@ -1190,7 +1190,7 @@ static BOOL ov10_02220AD0(void)
 
 static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, UnkStruct_ov104_02241308 *param1, int param2)
 {
-    sub_0201DBEC(64, param0->unk_00->unk_24);
+    VRAMTransferManager_New(64, param0->unk_00->unk_24);
 
     param0->unk_190 = sub_0200C6E4(param0->unk_00->unk_24);
     param0->unk_194 = sub_0200C704(param0->unk_190);
@@ -1267,7 +1267,7 @@ static void ov10_02220C64(void *param0)
     Bg_RunScheduledUpdates(v0->unk_0C);
     PaletteData_CommitFadedBuffers(v0->unk_08);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -1535,7 +1535,7 @@ static void ov10_022211F0(UnkStruct_ov10_0221FB28 *param0, Party *param1, u16 pa
                 continue;
             }
 
-            v2 = PokemonSummary_StatusIconAnimIdx(v0);
+            v2 = PokemonSummaryScreen_StatusIconAnimIdx(v0);
 
             if (v2 == 6) {
                 sub_0200D364(param0->unk_198[v4 + param3], 3);
@@ -2055,7 +2055,7 @@ static void ov10_02221D14(UnkStruct_ov10_0221FB28 *param0, Party *param1, u8 par
         }
 
         param0->unk_214[v1 + param2].unk_0D = Pokemon_GetGender(v0);
-        param0->unk_214[v1 + param2].unk_14 = (u8)PokemonSummary_StatusIconAnimIdx(v0);
+        param0->unk_214[v1 + param2].unk_14 = (u8)PokemonSummaryScreen_StatusIconAnimIdx(v0);
     }
 }
 

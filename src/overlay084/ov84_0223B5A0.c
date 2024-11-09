@@ -408,7 +408,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     v0->unk_00 = BgConfig_New(6);
     v0->unk_425 = TrainerInfo_Gender(v0->unk_CC);
 
-    sub_0200F174(1, 3, 3, 0x0, 6, 1, 6);
+    StartScreenTransition(1, 3, 3, 0x0, 6, 1, 6);
     SetAutorepeat(3, 8);
 
     ov84_0223BEAC(v0);
@@ -444,7 +444,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
 
     SetMainCallback(ov84_0223BA14, v0);
     sub_02004550(51, 0, 0);
-    sub_020397E4();
+    DrawWifiConnectionIcon();
 
     return 1;
 }
@@ -455,7 +455,7 @@ int ov84_0223B76C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             if (v0->unk_C4->unk_65 == 2) {
                 *param1 = 16;
             } else if (v0->unk_C4->unk_65 == 1) {
@@ -548,7 +548,7 @@ int ov84_0223B76C(OverlayManager *param0, int *param1)
         *param1 = ov84_0223EA18(v0);
         break;
     case 24:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -573,7 +573,7 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
     ov84_0223BBC4(v0->unk_00);
 
     sub_0201E530();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     ov84_0223FB50(v0);
     ov84_0223F238(v0);
@@ -626,7 +626,7 @@ static void ov84_0223BA14(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_00);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 

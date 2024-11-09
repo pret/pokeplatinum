@@ -32,6 +32,7 @@
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -46,6 +47,7 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -64,9 +66,7 @@
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
 #include "unk_02039C80.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
@@ -1416,19 +1416,19 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 1:
         ov23_0224942C(fieldSystem->unk_6C);
-        sub_0200F174(2, 16, 18, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 16, 18, 0x0, 6, 1, 4);
         (v0->unk_00)++;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (fieldSystem->unk_6C == NULL) {
-                sub_0203CD44(fieldSystem);
+                FieldSystem_FlagNotRunningFieldMap(fieldSystem);
                 (v0->unk_00)++;
             }
         }
         break;
     case 3:
-        if (!sub_0203CD4C(fieldSystem)) {
+        if (!FieldSystem_HasParentProcess(fieldSystem)) {
             sub_02039794();
             (v0->unk_00)++;
         }
@@ -1443,7 +1443,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 6:
         sub_02039734();
-        sub_0200F174(3, 17, 17, 0x0, 6, 1, 29);
+        StartScreenTransition(3, 17, 17, 0x0, 6, 1, 29);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -1451,7 +1451,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         (v0->unk_00)++;
         break;
     case 7:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->unk_08 = 0;
             Sound_PlayEffect(1354);
             v0->unk_00 = 8;
@@ -1474,7 +1474,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         v0->unk_08++;
 
         if (v0->unk_08 > 80) {
-            UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+            UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
             ov23_02254044(ov23_0224219C());
 
@@ -1558,26 +1558,26 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 18:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
         ov23_02254044(ov23_0224219C());
-        sub_0200F174(3, 16, 16, 0x0, 6, 1, 29);
+        StartScreenTransition(3, 16, 16, 0x0, 6, 1, 29);
         (v0->unk_00)++;
         break;
     case 19:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_02039794();
             ov23_0223F020(v0);
-            sub_020509D4(fieldSystem);
+            FieldSystem_StartFieldMap(fieldSystem);
             (v0->unk_00)++;
         }
         break;
     case 20:
-        if (sub_020509DC(fieldSystem)) {
+        if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             fieldSystem->unk_6C = ov23_02249404(fieldSystem);
             sub_02039734();
             sub_020594FC();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-            sub_0200F174(1, 17, 19, 0x0, 6, 1, 4);
+            StartScreenTransition(1, 17, 19, 0x0, 6, 1, 4);
             (v0->unk_00)++;
             break;
         }
@@ -1585,7 +1585,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 21:
         sub_0200F338(0);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -1621,12 +1621,12 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 23:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
-        sub_0200F174(3, 2, 2, 0x0, 15, 1, 29);
+        StartScreenTransition(3, 2, 2, 0x0, 15, 1, 29);
         Sound_PlayEffect(1697);
         v0->unk_00 = 24;
         break;
     case 24:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             int v3;
 
             for (v3 = 0; v3 < 8; v3++) {
@@ -1675,7 +1675,7 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
 
     HBlankSystem_Stop(fieldSystem->unk_04->hBlankSystem);
-    sub_0206AA04(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemFlag_SetDiggingForFossils(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }
@@ -1777,7 +1777,7 @@ static BOOL ov23_0223F838(int param0, int param1, int param2)
 
 static int ov23_0223F970(UnkStruct_ov23_02256EB0 *param0)
 {
-    SaveData *v0 = FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem);
+    SaveData *v0 = FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem);
     UndergroundData *v1 = sub_020298B0(v0);
     BOOL v2 = TrainerInfo_ID(SaveData_GetTrainerInfo(v0)) % 2;
     BOOL v3 = Pokedex_IsNationalDexObtained(SaveData_Pokedex(v0));
@@ -1850,7 +1850,7 @@ static int ov23_0223FA20(void)
 
 static void ov23_0223FA3C(BgConfig *param0, int param1, UnkStruct_ov23_0223EE80 *param2)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     int v1, v2, v3 = ov23_0223F9C8();
     int v4, v5, v6, v7, v8 = 0, v9, v10;
     int v11 = ov23_0223FA20();
@@ -2497,8 +2497,8 @@ static int ov23_0224080C(int param0)
 static void ov23_022408A0(int param0, int param1)
 {
     int v0 = param0;
-    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
-    UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (ov23_02241CF4(v0)) {
         ov23_0224F6E0(v0, param1);
@@ -2510,7 +2510,7 @@ static void ov23_022408A0(int param0, int param1)
 
 static BOOL ov23_022408EC(int param0)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (ov23_02241CF4(param0)) {
         if (40 == sub_02028C3C(v0)) {
@@ -2683,7 +2683,7 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
 {
     u8 v0[2];
     int v1;
-    UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (Unk_ov23_02257740->unk_A29 == 1) {
         Unk_ov23_02257740->unk_A29 = 0;

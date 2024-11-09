@@ -3308,7 +3308,7 @@ static void ov12_02222968(UnkStruct_ov12_0221FCDC *param0)
     v0 = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    sub_020057A4(v0, 0);
+    Sound_StopEffect(v0, 0);
 }
 
 static void ov12_02222984(UnkStruct_ov12_0221FCDC *param0)

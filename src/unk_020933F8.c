@@ -4,13 +4,14 @@
 #include <string.h>
 
 #include "consts/game_records.h"
+#include "consts/map.h"
+#include "consts/pokemon.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02093BBC.h"
 #include "struct_defs/struct_02094A58.h"
@@ -29,17 +30,20 @@
 #include "assert.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
 #include "journal.h"
 #include "party.h"
 #include "pokemon.h"
+#include "ribbon.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -49,11 +53,8 @@
 #include "unk_0202CC64.h"
 #include "unk_0202F108.h"
 #include "unk_020363E8.h"
-#include "unk_020508D4.h"
 #include "unk_02055808.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206CCB0.h"
-#include "unk_020923C0.h"
 #include "unk_02094EDC.h"
 #include "unk_02095AF0.h"
 #include "vars_flags.h"
@@ -84,8 +85,8 @@ void sub_02093AD4(UnkStruct_02095C48 *param0);
 void sub_02094630(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3);
 void sub_02094648(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3);
 void sub_02094680(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3);
-static BOOL sub_02093448(TaskManager *param0);
-static BOOL sub_020935EC(TaskManager *param0);
+static BOOL sub_02093448(FieldTask *param0);
+static BOOL sub_020935EC(FieldTask *param0);
 void sub_02093BBC(UnkStruct_02095C48 *param0);
 void sub_02093C54(UnkStruct_02095C48 *param0);
 static void sub_020944E8(UnkStruct_02095C48 *param0);
@@ -150,7 +151,7 @@ __attribute__((aligned(4))) static const u8 Unk_020F55D0[][6] = {
     { 0xF, 0xF, 0x8, 0x8, 0x14, 0xFF }
 };
 
-void sub_020933F8(TaskManager *param0, UnkStruct_02095C48 *param1)
+void sub_020933F8(FieldTask *param0, UnkStruct_02095C48 *param1)
 {
     UnkStruct_020933F8 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020933F8));
 
@@ -161,18 +162,18 @@ void sub_020933F8(TaskManager *param0, UnkStruct_02095C48 *param1)
     case 0:
     case 1:
     case 2:
-        FieldTask_Start(param0, sub_02093448, v0);
+        FieldTask_InitCall(param0, sub_02093448, v0);
         break;
     default:
-        FieldTask_Start(param0, sub_020935EC, v0);
+        FieldTask_InitCall(param0, sub_020935EC, v0);
         break;
     }
 }
 
-static BOOL sub_02093448(TaskManager *param0)
+static BOOL sub_02093448(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_020933F8 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_020933F8 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -202,7 +203,7 @@ static BOOL sub_02093448(TaskManager *param0)
         break;
     case 4:
         sub_02093BBC(v1->unk_00);
-        sub_02050A38(param0, &Unk_020F55FC, v1->unk_00->unk_199C);
+        FieldTask_RunApplication(param0, &Unk_020F55FC, v1->unk_00->unk_199C);
         v1->unk_04++;
         break;
     case 5:
@@ -221,25 +222,25 @@ static BOOL sub_02093448(TaskManager *param0)
         }
         break;
     case 7:
-        sub_02050A38(param0, &Unk_020F55EC, v1->unk_00);
+        FieldTask_RunApplication(param0, &Unk_020F55EC, v1->unk_00);
         v1->unk_04++;
         break;
     case 8:
         if ((v1->unk_00->unk_00.unk_111 == 1) || (v1->unk_00->unk_00.unk_111 == 2)) {
-            sub_02050A38(param0, &Unk_020F561C, v1->unk_00);
+            FieldTask_RunApplication(param0, &Unk_020F561C, v1->unk_00);
         }
 
         v1->unk_04++;
         break;
     case 9:
         if ((v1->unk_00->unk_00.unk_111 == 0) || (v1->unk_00->unk_00.unk_111 == 2)) {
-            sub_02050A38(param0, &Unk_020F560C, v1->unk_00);
+            FieldTask_RunApplication(param0, &Unk_020F560C, v1->unk_00);
         }
 
         v1->unk_04++;
         break;
     case 10:
-        sub_02050A38(param0, &Unk_020F55DC, v1->unk_00);
+        FieldTask_RunApplication(param0, &Unk_020F55DC, v1->unk_00);
         v1->unk_04++;
         break;
     case 11:
@@ -259,10 +260,10 @@ static BOOL sub_02093448(TaskManager *param0)
     return 0;
 }
 
-static BOOL sub_020935EC(TaskManager *param0)
+static BOOL sub_020935EC(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_020933F8 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_020933F8 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -274,7 +275,7 @@ static BOOL sub_020935EC(TaskManager *param0)
         case 3:
         case 4:
             sub_02093BBC(v1->unk_00);
-            sub_02050A38(param0, &Unk_020F55FC, v1->unk_00->unk_199C);
+            FieldTask_RunApplication(param0, &Unk_020F55FC, v1->unk_00->unk_199C);
             break;
         }
 
@@ -297,7 +298,7 @@ static BOOL sub_020935EC(TaskManager *param0)
         switch (v1->unk_00->unk_00.unk_111) {
         case 3:
         case 4:
-            sub_02050A38(param0, &Unk_020F55EC, v1->unk_00);
+            FieldTask_RunApplication(param0, &Unk_020F55EC, v1->unk_00);
             break;
         }
 
@@ -308,7 +309,7 @@ static BOOL sub_020935EC(TaskManager *param0)
         case 5:
         case 6:
             sub_02095338(v1->unk_00);
-            sub_02050A38(param0, &Unk_020F561C, v1->unk_00);
+            FieldTask_RunApplication(param0, &Unk_020F561C, v1->unk_00);
             break;
         }
 
@@ -318,7 +319,7 @@ static BOOL sub_020935EC(TaskManager *param0)
         switch (v1->unk_00->unk_00.unk_111) {
         case 7:
         case 8:
-            sub_02050A38(param0, &Unk_020F560C, v1->unk_00);
+            FieldTask_RunApplication(param0, &Unk_020F560C, v1->unk_00);
             break;
         }
 
@@ -1340,7 +1341,7 @@ void sub_02094898(UnkStruct_02095C48 *param0, StringTemplate *param1, u32 param2
         return;
     }
 
-    v1 = sub_020923C0(v0, 3);
+    v1 = Ribbon_GetData(v0, RIBBON_DATA_NAME_ID);
     StringTemplate_SetRibbonName(param1, param2, v1);
 }
 
@@ -1595,8 +1596,8 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
             v1 = SaveData_GetVarsFlags(param0->unk_1970);
 
             if ((param0->unk_00.unk_111 == 2) && (param0->unk_00.unk_110 >= 3) && (sub_02094790(param0) == 0)) {
-                if (sub_0206AAA8(v1, param0->unk_00.unk_10F) == 0) {
-                    sub_0206AA50(v1, param0->unk_00.unk_10F);
+                if (SystemFlag_CheckContestMaster(v1, param0->unk_00.unk_10F) == 0) {
+                    SystemFlag_SetContestMaster(v1, param0->unk_00.unk_10F);
                 }
             }
         }

@@ -167,7 +167,7 @@ int ov94_0223BE2C(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 3;
         }
         break;
@@ -175,7 +175,7 @@ int ov94_0223BE2C(OverlayManager *param0, int *param1)
         *param1 = (*Unk_ov94_0224674C[v0->unk_14][1])(v0, *param1);
         break;
     case 4:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (v0->unk_104) {
                 ov94_0223C4E0(v0);
                 ov94_02243EF8(v0, TrainerInfo_Gender(v0->unk_00->unk_1C));

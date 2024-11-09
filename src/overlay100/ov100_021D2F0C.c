@@ -413,7 +413,7 @@ BOOL ov100_021D39E4(void *param0)
 
     switch (v0->unk_00) {
     case 0:
-        if (ScreenWipe_Done() == 0) {
+        if (IsScreenTransitionDone() == 0) {
             break;
         }
 
@@ -648,12 +648,12 @@ BOOL ov100_021D39E4(void *param0)
             Easy3DObject_SetScale(&v0->unk_0C.unk_934[0].unk_00, v0->unk_0C.unk_934[0].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[0].unk_150);
             Easy3DObject_SetScale(&v0->unk_0C.unk_934[1].unk_00, v0->unk_0C.unk_934[1].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[1].unk_150);
         } else {
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, 111);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 111);
             v0->unk_00++;
         }
         break;
     case 16:
-        if (ScreenWipe_Done() == 0) {
+        if (IsScreenTransitionDone() == 0) {
             break;
         }
 

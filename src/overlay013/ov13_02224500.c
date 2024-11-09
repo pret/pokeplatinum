@@ -8,6 +8,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020F1DB8.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "battle/battle_icon.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
@@ -23,7 +24,6 @@
 #include "narc.h"
 #include "party.h"
 #include "pokemon_icon.h"
-#include "pokemon_summary_app.h"
 #include "unk_0200C6E4.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
@@ -277,10 +277,10 @@ static void ov13_02224670(UnkStruct_ov13_022213F0 *param0)
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_0C);
 
-    SpriteRenderer_LoadPalette(param0->unk_1E4, 3, v0, param0->unk_1FB0, v1, PokemonSummary_StatusIconPltt(), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummary_StatusIconCell(), 0, 45064);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummary_StatusIconAnim(), 0, 45064);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummary_StatusIconChar(), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45069);
+    SpriteRenderer_LoadPalette(param0->unk_1E4, 3, v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconPltt(), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconCell(), 0, 45064);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconAnim(), 0, 45064);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconChar(), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45069);
     NARC_dtor(v1);
 }
 

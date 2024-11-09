@@ -3,15 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_02098C44.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "functypes/funcptr_0205AB10.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -22,13 +21,13 @@
 #include "core_sys.h"
 #include "field_comm_manager.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
 #include "message.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -43,7 +42,6 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
 #include "unk_020655F4.h"
 #include "unk_0207A274.h"
@@ -130,10 +128,10 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     v0 = Heap_AllocFromHeapAtEnd(param5, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
-    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
 
     v0->dexMode = sub_0207A274(v1);
-    v0->contest = PokemonSummary_ShowContestData(v1);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->options = SaveData_Options(v1);
     v0->monData = param2;
     v0->dataType = 1;
@@ -143,8 +141,8 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     v0->mode = param4;
     v0->ribbons = sub_0202D79C(v1);
 
-    PokemonSummary_FlagVisiblePages(v0, v2);
-    sub_0203CD84(fieldSystem, &Unk_020F410C, v0);
+    PokemonSummaryScreen_FlagVisiblePages(v0, v2);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 
     param0->unk_00 = v0;
 }
@@ -178,7 +176,7 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, int param1)
         v1->unk_2C[v0] = param0->unk_3D[v0];
     }
 
-    sub_0203CD84(param0->fieldSystem, &Unk_020F1E88, v1);
+    FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, v1);
     param0->unk_04 = v1;
 }
 
@@ -186,7 +184,7 @@ static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 {
     int v0;
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 0;
     }
 
@@ -215,7 +213,7 @@ static BOOL sub_0205A2B0(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 {
     PokemonSummary *v0;
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 0;
     }
 
@@ -228,7 +226,7 @@ static BOOL sub_0205A2B0(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 
 static BOOL sub_0205A2DC(UnkStruct_0205A0D8 *param0)
 {
-    if (sub_020509DC(param0->fieldSystem)) {
+    if (FieldSystem_IsRunningFieldMap(param0->fieldSystem)) {
         ov5_021D1744(1);
         CommPlayerMan_Restart();
         return 1;
@@ -252,10 +250,10 @@ static BOOL sub_0205A2FC(void)
     return 0;
 }
 
-static BOOL sub_0205A324(TaskManager *param0)
+static BOOL sub_0205A324(FieldTask *param0)
 {
-    UnkStruct_0205A0D8 *v0 = TaskManager_Environment(param0);
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0205A0D8 *v0 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
     switch (v0->unk_34) {
     case 0:
@@ -386,7 +384,7 @@ static BOOL sub_0205A324(TaskManager *param0)
         }
         break;
     case 19:
-        sub_020509D4(v0->fieldSystem);
+        FieldSystem_StartFieldMap(v0->fieldSystem);
 
         if (v0->unk_88 != 3) {
             v0->unk_43 = 5;
@@ -404,7 +402,7 @@ static BOOL sub_0205A324(TaskManager *param0)
         }
         break;
     case 20:
-        sub_020509D4(v0->fieldSystem);
+        FieldSystem_StartFieldMap(v0->fieldSystem);
 
         if (v0->unk_88 != 3) {
             v0->unk_34 = 22;
@@ -550,7 +548,7 @@ static BOOL sub_0205A324(TaskManager *param0)
         }
         break;
     case 33:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_0205AAA0(v0, 0);
             sub_0205A0D8(v0, v0->fieldSystem, v0->unk_50, v0->unk_84, 1, 11);
             v0->unk_34 = 34;
@@ -558,7 +556,7 @@ static BOOL sub_0205A324(TaskManager *param0)
         break;
     case 34:
         if (sub_0205A2B0(v0, v0->fieldSystem)) {
-            sub_020509D4(v0->fieldSystem);
+            FieldSystem_StartFieldMap(v0->fieldSystem);
             v0->unk_34 = 35;
         }
         break;
@@ -655,7 +653,7 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1)
 void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
 {
     UnkStruct_0205A0D8 *v0;
-    TaskManager *v1 = fieldSystem->taskManager;
+    FieldTask *v1 = fieldSystem->task;
 
     if (v1) {
         return;
@@ -710,7 +708,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
         break;
     }
 
-    FieldTask_Set(fieldSystem, sub_0205A324, v0);
+    FieldSystem_CreateTask(fieldSystem, sub_0205A324, v0);
 }
 
 static void sub_0205AC28(UnkStruct_0205A0D8 *param0)
@@ -738,7 +736,7 @@ static void sub_0205AC28(UnkStruct_0205A0D8 *param0)
 
 static UnkStruct_0205A0D8 *sub_0205AC74(FieldSystem *fieldSystem)
 {
-    return TaskManager_Environment(fieldSystem->taskManager);
+    return FieldTask_GetEnv(fieldSystem->task);
 }
 
 static void sub_0205AC80(UnkStruct_0205A0D8 *param0, BOOL param1)
@@ -1004,10 +1002,10 @@ void sub_0205B110(int param0, int param1, void *param2, void *param3)
     }
 }
 
-static BOOL sub_0205B140(TaskManager *param0)
+static BOOL sub_0205B140(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205B2D4 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0205B2D4 *v1 = FieldTask_GetEnv(param0);
     TrainerCard *v2 = (TrainerCard *)sub_02059EBC(v1->unk_24, NULL, 0);
 
     switch (v1->unk_28) {
@@ -1041,7 +1039,7 @@ static BOOL sub_0205B140(TaskManager *param0)
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v1->unk_28++;
         }
         break;
@@ -1050,16 +1048,16 @@ static BOOL sub_0205B140(TaskManager *param0)
         v1->unk_28++;
         break;
     case 4:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v1->unk_28++;
         }
         break;
     case 5:
-        sub_020509D4(fieldSystem);
+        FieldSystem_StartFieldMap(fieldSystem);
         v1->unk_28++;
         break;
     case 6:
-        if (!sub_020509DC(fieldSystem)) {
+        if (!FieldSystem_IsRunningFieldMap(fieldSystem)) {
             ov5_021D1744(1);
             CommPlayerMan_Restart();
             v1->unk_28++;
@@ -1094,8 +1092,8 @@ void sub_0205B2D4(FieldSystem *fieldSystem)
             v4->unk_24 = v0;
             v4->unk_28 = 0;
 
-            FieldTask_Set(fieldSystem, sub_0205B140, v4);
-            sub_0203D128();
+            FieldSystem_CreateTask(fieldSystem, sub_0205B140, v4);
+            FieldSystem_PauseProcessing();
             break;
         }
     }

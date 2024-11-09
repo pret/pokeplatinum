@@ -5,12 +5,12 @@
 
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "battle/battle_icon.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
@@ -31,7 +31,6 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -475,7 +474,7 @@ static void ov91_021D0F6C(UnkStruct_ov91_021D0ED8 *param0)
     ov91_021D11F0(param0);
     ov91_021D20B4(param0);
 
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     SetMainCallback(NULL, NULL);
 }
 
@@ -485,7 +484,7 @@ static void ov91_021D0F9C(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_04);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -646,7 +645,7 @@ static void ov91_021D11F0(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D1214(UnkStruct_ov91_021D0ED8 *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         return param0->unk_180;
     }
 
@@ -740,13 +739,13 @@ static int ov91_021D13E4(UnkStruct_ov91_021D0ED8 *param0)
     u32 v0;
 
     v0 = ov91_021D1DD0(param0);
-    Pokemon_SetValue(param0->unk_00->unk_00, 54 + param0->unk_00->unk_17, &v0);
+    Pokemon_SetValue(param0->unk_00->unk_00, MON_DATA_MOVE1 + param0->unk_00->unk_17, &v0);
 
     v0 = 0;
-    Pokemon_SetValue(param0->unk_00->unk_00, 62 + param0->unk_00->unk_17, &v0);
+    Pokemon_SetValue(param0->unk_00->unk_00, MON_DATA_MOVE1_PP_UPS + param0->unk_00->unk_17, &v0);
 
     v0 = MoveTable_CalcMaxPP(ov91_021D1DD0(param0), 0);
-    Pokemon_SetValue(param0->unk_00->unk_00, 58 + param0->unk_00->unk_17, &v0);
+    Pokemon_SetValue(param0->unk_00->unk_00, MON_DATA_MOVE1_CUR_PP + param0->unk_00->unk_17, &v0);
 
     param0->unk_00->unk_16 = 0;
 
@@ -1142,7 +1141,7 @@ static u16 ov91_021D1DD0(UnkStruct_ov91_021D0ED8 *param0)
 
 static u16 ov91_021D1DE0(UnkStruct_ov91_021D0ED8 *param0)
 {
-    return (u16)Pokemon_GetValue(param0->unk_00->unk_00, 54 + param0->unk_00->unk_17, NULL);
+    return (u16)Pokemon_GetValue(param0->unk_00->unk_00, MON_DATA_MOVE1 + param0->unk_00->unk_17, NULL);
 }
 
 static void ov91_021D1DF8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
@@ -1179,7 +1178,7 @@ static u8 ov91_021D1EA0(UnkStruct_ov91_021D0ED8 *param0)
 {
     u8 v0;
 
-    for (v0 = 0; v0 < 4; v0++) {
+    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
         if (Pokemon_GetValue(param0->unk_00->unk_00, MON_DATA_MOVE1 + v0, NULL) == 0) {
             break;
         }
@@ -1283,7 +1282,7 @@ static void ov91_021D2014(UnkStruct_ov91_021D0ED8 *param0)
         11, 2, 4, 4, 0, 0
     };
 
-    sub_0201DBEC(64, 67);
+    VRAMTransferManager_New(64, 67);
 
     param0->unk_110 = sub_0200C6E4(67);
     param0->unk_114 = sub_0200C704(param0->unk_110);
@@ -1515,12 +1514,12 @@ static int ov91_021D261C(UnkStruct_ov91_021D0ED8 *param0)
     param0->unk_14C.max = 1;
     param0->unk_14C.move = ov91_021D1DD0(param0);
     param0->unk_14C.mode = 2;
-    param0->unk_14C.contest = 1;
+    param0->unk_14C.showContest = 1;
     param0->unk_14C.chatotCry = NULL;
 
-    PokemonSummary_FlagVisiblePages(&param0->unk_14C, v0);
+    PokemonSummaryScreen_FlagVisiblePages(&param0->unk_14C, v0);
 
-    param0->unk_17C = OverlayManager_New(&Unk_020F410C, &param0->unk_14C, 67);
+    param0->unk_17C = OverlayManager_New(&gPokemonSummaryScreenApp, &param0->unk_14C, 67);
     return 12;
 }
 

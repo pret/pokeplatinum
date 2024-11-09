@@ -34,11 +34,11 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
@@ -93,7 +93,7 @@ static void ov23_0224A204(int param0)
             }
 
             commPlayerMan->unk_27C[0] = commPlayerMan->unk_290[param0];
-            sub_02028830(sub_020298B0(FieldSystem_SaveData(commPlayerMan->fieldSystem)), commPlayerMan->unk_290[param0]);
+            sub_02028830(sub_020298B0(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), commPlayerMan->unk_290[param0]);
 
             commPlayerMan->unk_290[param0] = NULL;
             commPlayerMan->unk_14A[param0].unk_20 = 0xff;
@@ -227,7 +227,7 @@ void ov23_0224A410(int param0, int param1, void *param2, void *param3)
         commPlayerMan->unk_58.unk_00_9 = 0;
 
         if (commPlayerMan->unk_5A[v1->unk_02] == 0) {
-            sub_020294F4(SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSystem)), v1->unk_02);
+            sub_020294F4(SaveData_SecretBaseRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), v1->unk_02);
             sub_0206B364(v2, sub_0206B354(v2) + 1);
             sub_0206B384(v2, sub_0206B374(v2) + 1);
 
@@ -395,7 +395,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
     UnkStruct_ov23_0224A570 *v1 = param2;
     BOOL v2;
     int v3 = 0;
-    SecretBaseRecord *v4 = SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSystem));
+    SecretBaseRecord *v4 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
 
     switch (v1->unk_00) {
     case 0:
@@ -469,11 +469,11 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
         ov23_0224B040(v1->unk_01);
 
         if (v1->unk_01 == CommSys_CurNetId()) {
-            SecretBaseRecord *v5 = SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSystem));
+            SecretBaseRecord *v5 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
             u8 v6 = sub_0202958C(v5);
 
             sub_020295C0(v5);
-            sub_0206AA40(SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData));
+            SystemFlag_SetDeliveredStolenFlag(SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData));
 
             if (commPlayerMan->unk_290[v1->unk_01]) {
                 sub_0206DAB8(commPlayerMan->fieldSystem, commPlayerMan->unk_290[v1->unk_01]);

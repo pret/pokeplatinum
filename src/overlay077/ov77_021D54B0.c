@@ -104,7 +104,7 @@ static void ov77_021D54B0()
     sub_0201F834(11, v0);
     sub_0201E994();
     sub_0201F8E4();
-    sub_0201DBEC((3 * 2), v0);
+    VRAMTransferManager_New((3 * 2), v0);
 }
 
 static void ov77_021D54E8(const int param0, UnkStruct_ov77_021D5564 *param1, const int param2, CellActorInitParamsEx *param3, CellActorResourceData *param4, int param5, int param6)
@@ -231,7 +231,7 @@ void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 }
 
 void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)

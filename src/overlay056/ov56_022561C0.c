@@ -18,6 +18,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "field_task.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -40,7 +41,6 @@
 #include "unk_02017728.h"
 #include "unk_02027F84.h"
 #include "unk_02033200.h"
-#include "unk_020508D4.h"
 #include "unk_0205B33C.h"
 #include "unk_0205D8CC.h"
 
@@ -703,7 +703,7 @@ static void ov56_02256D04(UnkStruct_ov56_02256468 *param0)
 {
     int v0 = 0xffffffff;
 
-    if (!sub_020509A4(param0->fieldSystem)) {
+    if (!FieldSystem_IsRunningTask(param0->fieldSystem)) {
         int v1;
 
         v1 = ov56_02256A68(param0);
@@ -880,7 +880,7 @@ static void ov56_02257098(UnkStruct_ov56_02256468 *param0)
     TrainerInfo *v5;
     Sentence v6;
 
-    if (sub_020509A4(param0->fieldSystem)) {
+    if (FieldSystem_IsRunningTask(param0->fieldSystem)) {
         return;
     }
 

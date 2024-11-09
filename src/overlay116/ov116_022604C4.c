@@ -64,7 +64,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     ov116_022612CC(param0);
     SetMainCallback(ov116_02261794, param0);
     DisableHBlank();
-    sub_0201DBEC(32, 106);
+    VRAMTransferManager_New(32, 106);
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
     sub_02039734();
@@ -469,7 +469,7 @@ int ov116_02260CF4(OverlayManager *param0, int *param1)
         ov116_0226178C(v0, v1, 4, param1);
         break;
     case 4:
-        v1 = ScreenWipe_Done();
+        v1 = IsScreenTransitionDone();
         ov116_0226178C(v0, v1, 5, param1);
         break;
     case 5:
@@ -528,7 +528,7 @@ int ov116_02260CF4(OverlayManager *param0, int *param1)
         if (v1 == 0) {
             if (ov116_022617C4(v0) == 1) {
                 if (ov116_02262A74(v0->unk_00) == 0) {
-                    sub_020057A4(1393, 0);
+                    Sound_StopEffect(1393, 0);
                     CommSys_SendData(23, NULL, 0);
                 }
             }
@@ -538,8 +538,8 @@ int ov116_02260CF4(OverlayManager *param0, int *param1)
         break;
     case 11:
         v1 = 1;
-        sub_020057A4(1395, 0);
-        sub_020057A4(1393, 0);
+        Sound_StopEffect(1395, 0);
+        Sound_StopEffect(1393, 0);
         ov114_0225CBB0(v0->unk_7C);
         ov116_0226178C(v0, v1, 12, param1);
         break;
@@ -585,7 +585,7 @@ int ov116_02260CF4(OverlayManager *param0, int *param1)
         ov116_0226178C(v0, v1, 16, param1);
         break;
     case 16:
-        v1 = ScreenWipe_Done();
+        v1 = IsScreenTransitionDone();
 
         if (v1) {
             ov116_022610FC(v0);
@@ -669,7 +669,7 @@ static void ov116_022610FC(UnkStruct_ov116_0226139C *param0)
 {
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     {
         u32 v0;
@@ -1092,7 +1092,7 @@ static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
 
 static BOOL ov116_02261768(int param0)
 {
-    sub_0200F174(0, param0, param0, 0, 6, 1, 106);
+    StartScreenTransition(0, param0, param0, 0, 6, 1, 106);
     return 1;
 }
 
@@ -1108,7 +1108,7 @@ static void ov116_02261794(void *param0)
     UnkStruct_ov116_0226139C *v0 = param0;
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_48.unk_14);
     Bg_RunScheduledUpdates(v0->unk_48.unk_10);
 
@@ -1134,7 +1134,7 @@ static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0)
 {
     if (ov114_0225CA54(&param0->unk_84) == 1) {
         if (param0->unk_48.unk_2C.unk_00 == 0) {
-            if (ScreenWipe_Done() == 1) {
+            if (IsScreenTransitionDone() == 1) {
                 sub_0200F2C0();
             }
 

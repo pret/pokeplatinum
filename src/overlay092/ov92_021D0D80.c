@@ -376,7 +376,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
 
         v0->unk_BAEC = 0;
 
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->unk_00);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
@@ -384,7 +384,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         *param1 = 1;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             *param1 = 2;
         }
         break;
@@ -645,11 +645,11 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
     } break;
     case 17:
         v0->unk_BAEC = 0;
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->unk_00);
         *param1 = 18;
         break;
     case 18:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             v0->unk_BAE8 = 1;
 
             ov92_021D1B24(v0);

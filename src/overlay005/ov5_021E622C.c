@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
 #include "constants/species.h"
 #include "consts/game_records.h"
 
@@ -2111,12 +2112,12 @@ static int ov5_021E6444(Party *param0, UnkStruct_02026218 *param1, StringTemplat
     if (Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL) != 100) {
         v3 = Pokemon_GetValue(v0, MON_DATA_EXP, NULL);
         v3 += sub_02026228(param1);
-        Pokemon_SetValue(v0, 8, (u8 *)&v3);
+        Pokemon_SetValue(v0, MON_DATA_EXP, (u8 *)&v3);
         ov5_021E63E0(v0);
     }
 
     if (ov5_021E62B0(v1)) {
-        Pokemon_SetValue(v0, 170, sub_02026230(v2));
+        Pokemon_SetValue(v0, MON_DATA_170, sub_02026230(v2));
     }
 
     Party_AddPokemon(param0, v0);
@@ -2150,7 +2151,7 @@ int ov5_021E6520(BoxPokemon *param0, u32 param1)
     v3 = BoxPokemon_GetValue(v1, MON_DATA_EXP, NULL);
     v3 += param1;
 
-    BoxPokemon_SetValue(v1, 8, (u8 *)&v3);
+    BoxPokemon_SetValue(v1, MON_DATA_EXP, (u8 *)&v3);
     v2 = BoxPokemon_GetLevel(v1);
     Heap_FreeToHeap(v0);
 
@@ -2250,7 +2251,7 @@ static int ov5_021E6684(UnkStruct_02026310 *param0)
     }
 
     for (v3 = 0, v0 = 0; v0 < 2; v0++) {
-        if ((v1[v0] = BoxPokemon_GetValue(v4[v0], MON_DATA_SPECIES, NULL)) == 132) {
+        if ((v1[v0] = BoxPokemon_GetValue(v4[v0], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
             v3++;
             v2 = v0;
         }
@@ -2264,7 +2265,7 @@ static int ov5_021E6684(UnkStruct_02026310 *param0)
         }
     }
 
-    if (BoxPokemon_GetValue(v4[v2], MON_DATA_HELD_ITEM, NULL) == 229) {
+    if (BoxPokemon_GetValue(v4[v2], MON_DATA_HELD_ITEM, NULL) == ITEM_EVERSTONE) {
         if (LCRNG_Next() >= (0xffff / 2)) {
             return -1;
         }
@@ -2348,27 +2349,27 @@ static void ov5_021E67B0(Pokemon *param0, UnkStruct_02026310 *param1)
         switch (v0[v1]) {
         case 0:
             v4 = BoxPokemon_GetValue(v5, MON_DATA_HP_IV, NULL);
-            Pokemon_SetValue(param0, 70, (u8 *)&v4);
+            Pokemon_SetValue(param0, MON_DATA_HP_IV, (u8 *)&v4);
             break;
         case 1:
             v4 = BoxPokemon_GetValue(v5, MON_DATA_ATK_IV, NULL);
-            Pokemon_SetValue(param0, 71, (u8 *)&v4);
+            Pokemon_SetValue(param0, MON_DATA_ATK_IV, (u8 *)&v4);
             break;
         case 2:
             v4 = BoxPokemon_GetValue(v5, MON_DATA_DEF_IV, NULL);
-            Pokemon_SetValue(param0, 72, (u8 *)&v4);
+            Pokemon_SetValue(param0, MON_DATA_DEF_IV, (u8 *)&v4);
             break;
         case 3:
             v4 = BoxPokemon_GetValue(v5, MON_DATA_SPEED_IV, NULL);
-            Pokemon_SetValue(param0, 73, (u8 *)&v4);
+            Pokemon_SetValue(param0, MON_DATA_SPEED_IV, (u8 *)&v4);
             break;
         case 4:
             v4 = BoxPokemon_GetValue(v5, MON_DATA_SPATK_IV, NULL);
-            Pokemon_SetValue(param0, 74, (u8 *)&v4);
+            Pokemon_SetValue(param0, MON_DATA_SPATK_IV, (u8 *)&v4);
             break;
         case 5:
             v4 = BoxPokemon_GetValue(v5, MON_DATA_SPDEF_IV, NULL);
-            Pokemon_SetValue(param0, 75, (u8 *)&v4);
+            Pokemon_SetValue(param0, MON_DATA_SPDEF_IV, (u8 *)&v4);
             break;
         }
     }
@@ -2414,9 +2415,9 @@ static void ov5_021E6948(Pokemon *param0, BoxPokemon *param1, BoxPokemon *param2
     v6 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
     v4 = Pokemon_LoadLevelUpMoveIdsOf(v3, v6, v7->unk_30);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v7->unk_00[v0] = BoxPokemon_GetValue(param1, 54 + v0, NULL);
-        v7->unk_20[v0] = BoxPokemon_GetValue(param2, 54 + v0, NULL);
+    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
+        v7->unk_00[v0] = BoxPokemon_GetValue(param1, MON_DATA_MOVE1 + v0, NULL);
+        v7->unk_20[v0] = BoxPokemon_GetValue(param2, MON_DATA_MOVE1 + v0, NULL);
     }
 
     v5 = ov5_021E68D8(param0, v7->unk_94);
@@ -2600,27 +2601,27 @@ void ov5_021E6CF0(Pokemon *param0, u16 param1, u8 param2, TrainerInfo *param3, i
 {
     u8 v0, v1, v2;
     u16 v3;
-    u8 v4 = PokemonPersonalData_GetSpeciesValue(param1, 19);
+    u8 v4 = PokemonPersonalData_GetSpeciesValue(param1, MON_DATA_PERSONAL_HATCH_CYCLE);
     Strbuf *v5;
 
-    Pokemon_InitWith(param0, param1, 1, 32, 0, 0, 0, 0);
+    Pokemon_InitWith(param0, param1, 1, 32, FALSE, 0, OTID_NOT_SET, 0);
 
     v0 = 0;
-    v3 = 4;
+    v3 = ITEM_POKE_BALL;
 
-    Pokemon_SetValue(param0, 155, &v3);
-    Pokemon_SetValue(param0, 9, &v4);
-    Pokemon_SetValue(param0, 156, &v0);
+    Pokemon_SetValue(param0, MON_DATA_POKEBALL, &v3);
+    Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &v4);
+    Pokemon_SetValue(param0, MON_DATA_MET_LEVEL, &v0);
 
     if (param2) {
-        Pokemon_SetValue(param0, 152, &param2);
+        Pokemon_SetValue(param0, MON_DATA_MET_LOCATION, &param2);
     }
 
     v2 = 1;
-    Pokemon_SetValue(param0, 76, &v2);
+    Pokemon_SetValue(param0, MON_DATA_IS_EGG, &v2);
 
     v5 = MessageUtil_SpeciesName(SPECIES_EGG, 4);
-    Pokemon_SetValue(param0, 119, v5);
+    Pokemon_SetValue(param0, MON_DATA_NICKNAME_STRBUF, v5);
     Strbuf_Free(v5);
 
     if (param4 == 4) {
@@ -2628,9 +2629,9 @@ void ov5_021E6CF0(Pokemon *param0, u16 param1, u8 param2, TrainerInfo *param3, i
         u32 v7 = TrainerInfo_Gender(param3);
         Strbuf *v8 = TrainerInfo_NameNewStrbuf(param3, 32);
 
-        Pokemon_SetValue(param0, 145, v8);
-        Pokemon_SetValue(param0, 7, &v6);
-        Pokemon_SetValue(param0, 157, &v7);
+        Pokemon_SetValue(param0, MON_DATA_OTNAME_STRBUF, v8);
+        Pokemon_SetValue(param0, MON_DATA_OT_ID, &v6);
+        Pokemon_SetValue(param0, MON_DATA_OT_GENDER, &v7);
         Strbuf_Free(v8);
     }
 
@@ -2643,7 +2644,7 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, UnkStruct_02026310 *param2, u32 p
     u16 v1;
     u32 v2;
     Strbuf *v3;
-    u8 v4 = PokemonPersonalData_GetSpeciesValue(param1, 19);
+    u8 v4 = PokemonPersonalData_GetSpeciesValue(param1, MON_DATA_PERSONAL_HATCH_CYCLE);
 
     v2 = sub_02026248(param2);
 
@@ -2663,19 +2664,19 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, UnkStruct_02026310 *param2, u32 p
         }
     }
 
-    Pokemon_InitWith(param0, param1, 1, 32, 1, v2, 0, 0);
+    Pokemon_InitWith(param0, param1, 1, 32, TRUE, v2, OTID_NOT_SET, 0);
 
     v0 = 0;
-    v1 = 4;
+    v1 = ITEM_POKE_BALL;
 
-    Pokemon_SetValue(param0, 155, &v1);
-    Pokemon_SetValue(param0, 9, &v4);
-    Pokemon_SetValue(param0, 156, &v0);
-    Pokemon_SetValue(param0, 112, &param4);
+    Pokemon_SetValue(param0, MON_DATA_POKEBALL, &v1);
+    Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &v4);
+    Pokemon_SetValue(param0, MON_DATA_MET_LEVEL, &v0);
+    Pokemon_SetValue(param0, MON_DATA_FORM, &param4);
 
     v3 = MessageUtil_SpeciesName(SPECIES_EGG, 4);
 
-    Pokemon_SetValue(param0, 119, v3);
+    Pokemon_SetValue(param0, MON_DATA_NICKNAME_STRBUF, v3);
     Strbuf_Free(v3);
 }
 
@@ -2706,7 +2707,7 @@ void ov5_021E6EA8(UnkStruct_02026310 *param0, Party *param1, TrainerInfo *param2
     }
 
     v2 = 1;
-    Pokemon_SetValue(v3, 76, &v2);
+    Pokemon_SetValue(v3, MON_DATA_IS_EGG, &v2);
 
     Party_AddPokemon(param1, v3);
     ov5_021E6B40(param0);
@@ -2903,7 +2904,7 @@ BOOL ov5_021E7154(UnkStruct_02026310 *param0, Party *param1, FieldSystem *fieldS
                         v1--;
                     }
 
-                    Pokemon_SetValue(v9, 9, (u8 *)&v1);
+                    Pokemon_SetValue(v9, MON_DATA_FRIENDSHIP, (u8 *)&v1);
                 } else {
                     return 1;
                 }
@@ -2968,7 +2969,7 @@ void ov5_021E7308(UnkStruct_02026310 *param0, u32 param1, u32 param2, u32 param3
     if (v3 != 2) {
         v4 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
 
-        if (((v4 == 29) || (v4 == 32)) && (BoxPokemon_GetValue(v1, MON_DATA_HAS_NICKNAME, NULL) == 0)) {
+        if (((v4 == SPECIES_NIDORAN_F) || (v4 == SPECIES_NIDORAN_M)) && (BoxPokemon_GetValue(v1, MON_DATA_HAS_NICKNAME, NULL) == 0)) {
             v3 = 2;
         }
     }
@@ -3038,7 +3039,7 @@ static void ov5_021E742C(Pokemon *param0, int param1)
 
     v0 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
-    for (v7 = 0; v7 < 4; v7++) {
+    for (v7 = 0; v7 < LEARNED_MOVES_MAX; v7++) {
         v1[v7] = Pokemon_GetValue(param0, MON_DATA_MOVE1 + v7, NULL);
         v2[v7] = Pokemon_GetValue(param0, MON_DATA_MOVE1_CUR_PP + v7, NULL);
     }
@@ -3061,7 +3062,7 @@ static void ov5_021E742C(Pokemon *param0, int param1)
     v4 = Pokemon_GetValue(param0, MON_DATA_OT_ID, NULL);
     v13 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
 
-    if (v0 == 490) {
+    if (v0 == SPECIES_MANAPHY) {
         int v17 = Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL);
 
         if (v17 == sub_02017070(2, 1)) {
@@ -3071,30 +3072,30 @@ static void ov5_021E742C(Pokemon *param0, int param1)
         }
     }
 
-    Pokemon_InitWith(v16, v0, 1, 32, 1, v3, 0, 0);
+    Pokemon_InitWith(v16, v0, 1, 32, TRUE, v3, OTID_NOT_SET, 0);
 
-    for (v7 = 0; v7 < 4; v7++) {
-        Pokemon_SetValue(v16, 54 + v7, &(v1[v7]));
-        Pokemon_SetValue(v16, 58 + v7, &(v2[v7]));
+    for (v7 = 0; v7 < LEARNED_MOVES_MAX; v7++) {
+        Pokemon_SetValue(v16, MON_DATA_MOVE1 + v7, &(v1[v7]));
+        Pokemon_SetValue(v16, MON_DATA_MOVE1_CUR_PP + v7, &(v2[v7]));
     }
 
     for (v7 = 0; v7 < 6; v7++) {
-        Pokemon_SetValue(v16, 70 + v7, &(v5[v7]));
+        Pokemon_SetValue(v16, MON_DATA_HP_IV + v7, &(v5[v7]));
     }
 
-    Pokemon_SetValue(v16, 12, &v8);
-    Pokemon_SetValue(v16, 122, &v9);
-    Pokemon_SetValue(v16, 11, &v10);
+    Pokemon_SetValue(v16, MON_DATA_LANGUAGE, &v8);
+    Pokemon_SetValue(v16, MON_DATA_MET_GAME, &v9);
+    Pokemon_SetValue(v16, MON_DATA_MARKS, &v10);
 
     v11 = 120;
 
-    Pokemon_SetValue(v16, 9, &v11);
-    Pokemon_SetValue(v16, 154, &v6);
-    Pokemon_SetValue(v16, 110, &v12);
-    Pokemon_SetValue(v16, 145, v15);
-    Pokemon_SetValue(v16, 157, &v14);
-    Pokemon_SetValue(v16, 7, &v4);
-    Pokemon_SetValue(v16, 112, &v13);
+    Pokemon_SetValue(v16, MON_DATA_FRIENDSHIP, &v11);
+    Pokemon_SetValue(v16, MON_DATA_POKERUS, &v6);
+    Pokemon_SetValue(v16, MON_DATA_FATEFUL_ENCOUNTER, &v12);
+    Pokemon_SetValue(v16, MON_DATA_OTNAME_STRBUF, v15);
+    Pokemon_SetValue(v16, MON_DATA_OT_GENDER, &v14);
+    Pokemon_SetValue(v16, MON_DATA_OT_ID, &v4);
+    Pokemon_SetValue(v16, MON_DATA_FORM, &v13);
 
     {
         u16 v18;
@@ -3105,20 +3106,20 @@ static void ov5_021E742C(Pokemon *param0, int param1)
         v20 = Pokemon_GetValue(param0, MON_DATA_MET_MONTH, NULL);
         v21 = Pokemon_GetValue(param0, MON_DATA_MET_DAY, NULL);
 
-        Pokemon_SetValue(v16, 152, &v18);
-        Pokemon_SetValue(v16, 146, &v19);
-        Pokemon_SetValue(v16, 147, &v20);
-        Pokemon_SetValue(v16, 148, &v21);
+        Pokemon_SetValue(v16, MON_DATA_MET_LOCATION, &v18);
+        Pokemon_SetValue(v16, MON_DATA_MET_YEAR, &v19);
+        Pokemon_SetValue(v16, MON_DATA_MET_MONTH, &v20);
+        Pokemon_SetValue(v16, MON_DATA_MET_DAY, &v21);
 
         v18 = Pokemon_GetValue(param0, MON_DATA_HATCH_LOCATION, NULL);
         v19 = Pokemon_GetValue(param0, MON_DATA_HATCH_YEAR, NULL);
         v20 = Pokemon_GetValue(param0, MON_DATA_HATCH_MONTH, NULL);
         v21 = Pokemon_GetValue(param0, MON_DATA_HATCH_DAY, NULL);
 
-        Pokemon_SetValue(v16, 153, &v18);
-        Pokemon_SetValue(v16, 149, &v19);
-        Pokemon_SetValue(v16, 150, &v20);
-        Pokemon_SetValue(v16, 151, &v21);
+        Pokemon_SetValue(v16, MON_DATA_HATCH_LOCATION, &v18);
+        Pokemon_SetValue(v16, MON_DATA_HATCH_YEAR, &v19);
+        Pokemon_SetValue(v16, MON_DATA_HATCH_MONTH, &v20);
+        Pokemon_SetValue(v16, MON_DATA_HATCH_DAY, &v21);
     }
 
     Pokemon_Copy(v16, param0);
@@ -3139,15 +3140,15 @@ void ov5_021E771C(Pokemon *param0, int param1)
     v3 = 0;
 
     ov5_021E742C(param0, param1);
-    Pokemon_SetValue(param0, 76, &v0);
+    Pokemon_SetValue(param0, MON_DATA_IS_EGG, &v0);
 
     v4 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
     MessageLoader_GetSpeciesName(v4, 0, v5);
-    Pokemon_SetValue(param0, 117, v5);
-    Pokemon_SetValue(param0, 77, &v1);
-    Pokemon_SetValue(param0, 155, &v2);
-    Pokemon_SetValue(param0, 156, &v3);
+    Pokemon_SetValue(param0, MON_DATA_NICKNAME, v5);
+    Pokemon_SetValue(param0, MON_DATA_HAS_NICKNAME, &v1);
+    Pokemon_SetValue(param0, MON_DATA_POKEBALL, &v2);
+    Pokemon_SetValue(param0, MON_DATA_MET_LEVEL, &v3);
     Pokemon_CalcLevelAndStats(param0);
 }
 

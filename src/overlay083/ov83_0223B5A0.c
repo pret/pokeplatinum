@@ -115,7 +115,7 @@ int ov83_0223B5B0(OverlayManager *param0, int *param1)
     v0->unk_18 = v1;
     v1->unk_00 = 56;
 
-    sub_0201DBEC(16, v1->unk_00);
+    VRAMTransferManager_New(16, v1->unk_00);
 
     if (v0->unk_06_0 == 1) {
         v1->unk_1490 = 1;
@@ -223,7 +223,7 @@ int ov83_0223B710(OverlayManager *param0, int *param1)
 
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     MI_CpuClear8(v2, sizeof(UnkStruct_ov83_0223B784));
     OverlayManager_FreeData(param0);
 
@@ -288,11 +288,11 @@ static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         (*param2)++;
         break;
     case 1:
-        sub_0200F174(0, 1, 1, 0xffff, 6, 1, param1->unk_00);
+        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, param1->unk_00);
         (*param2)++;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return param1->unk_0C + 1;
         }
         break;
@@ -532,10 +532,10 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         ov83_0223F3D0(&param1->unk_AEC, 3);
         ov83_0223E2E4(&param1->unk_5F0);
 
-        sub_020057A4(1722, 0);
-        sub_020057A4(1723, 0);
-        sub_020057A4(1727, 0);
-        sub_020057A4(1729, 0);
+        Sound_StopEffect(1722, 0);
+        Sound_StopEffect(1723, 0);
+        Sound_StopEffect(1727, 0);
+        Sound_StopEffect(1729, 0);
         Sound_PlayEffect(1730);
 
         ov83_0223E484(&param1->unk_608, 0, 0);
@@ -548,11 +548,11 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             break;
         }
 
-        sub_0200F174(3, 0, 0, 0x0, 6, 1, param1->unk_00);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, param1->unk_00);
         (*param2)++;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (param0->unk_26) {
                 sub_0203632C(0);
             }
@@ -648,11 +648,11 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         param1->unk_31C = 0;
 
         ov83_0223F730(&param1->unk_1478, 128, 144, param1->unk_1494.unk_58.unk_0C, param1->unk_00);
-        sub_0200F174(3, 1, 0, 0x0, 6, 1, param1->unk_00);
+        StartScreenTransition(3, 1, 0, 0x0, 6, 1, param1->unk_00);
         (*param2)++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param2)++;
             param1->unk_1C = (30 * 1);
         }
@@ -816,11 +816,11 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         }
         break;
     case 2:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, param1->unk_00);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param1->unk_00);
         (*param2)++;
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param2)++;
         }
         break;

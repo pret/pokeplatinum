@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "field/field_system.h"
@@ -31,6 +30,7 @@
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -122,7 +122,7 @@ typedef struct {
     CellActorResourceData unk_238;
     CellActor *unk_25C[32];
     CellActor *unk_2DC[4];
-    TaskManager *unk_2EC;
+    FieldTask *unk_2EC;
     SysTask *unk_2F0;
     SysTask *unk_2F4;
     SysTask *unk_2F8;
@@ -617,7 +617,7 @@ static const UnkFuncPtr_ov23_022564CC Unk_ov23_022565E4[] = {
 static void ov23_0224340C(void)
 {
     int v0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257764->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     for (v0 = 0; v0 < 16; v0++) {
         Unk_ov23_02257764->unk_308[v0].unk_04 = sub_02029030(v1, v0);
@@ -646,7 +646,7 @@ void ov23_022434BC(void *param0, FieldSystem *fieldSystem)
     MI_CpuFill8(Unk_ov23_02257764, 0, sizeof(UnkStruct_ov23_02257764));
     Unk_ov23_02257764->fieldSystem = fieldSystem;
 
-    v1 = sub_020298B0(FieldSystem_SaveData(fieldSystem));
+    v1 = sub_020298B0(FieldSystem_GetSaveData(fieldSystem));
 
     Unk_ov23_02257764->unk_2F0 = NULL;
 
@@ -1151,7 +1151,7 @@ void ov23_02243CE8(void)
 
 static void ov23_02243D50(void)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257764->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
     int v1;
 
     for (v1 = 0; v1 < 16; v1++) {
@@ -1325,7 +1325,7 @@ BOOL ov23_02244080(int param0, UnkStruct_ov23_0224271C *param1, u8 param2)
     u8 v2 = param0;
     UnkStruct_ov23_02243DA8 *v3;
     UnkStruct_ov23_02244140 v4;
-    UndergroundData *v5 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257764->fieldSystem));
+    UndergroundData *v5 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     v0 = CommPlayer_AddXServer(param0);
     v1 = CommPlayer_AddZServer(param0);
@@ -1549,7 +1549,7 @@ void ov23_0224448C(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_02257764->fieldSystem));
+    v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     Sound_PlayEffect(1570);
     MI_CpuCopy8(v0, &Unk_ov23_02257764->unk_B28[v0->unk_07_0], sizeof(UnkStruct_ov23_02244140));
@@ -2071,7 +2071,7 @@ static void ov23_02244C70(SysTask *param0, void *param1)
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
 
-        sub_020057A4(1631, 0);
+        Sound_StopEffect(1631, 0);
         break;
     }
 }
@@ -2105,7 +2105,7 @@ static void ov23_02244DE0(int param0, BOOL param1)
         v0->unk_00 = 7;
         Unk_ov23_02257764->unk_300 = NULL;
 
-        sub_020057A4(1631, 0);
+        Sound_StopEffect(1631, 0);
     }
 }
 
@@ -2123,7 +2123,7 @@ static void ov23_02244E10(int param0, BOOL param1)
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
 
-        sub_020057A4(1631, 0);
+        Sound_StopEffect(1631, 0);
     }
 }
 
@@ -2547,7 +2547,7 @@ void ov23_02245560(int param0, int param1)
 void ov23_022455B4(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov23_02245560 *v0 = param2;
-    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_02257764->fieldSystem));
+    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     ov23_0224B024(v0->unk_01);
 
@@ -3588,7 +3588,7 @@ static void ov23_02246A80(SysTask *param0, void *param1)
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 14, 7);
 
         if (ov23_02246F20(Unk_ov23_02257764->fieldSystem->bgConfig, v0)) {
-            sub_020057A4(1632, 0);
+            Sound_StopEffect(1632, 0);
 
             if (v0->unk_15E) {
                 v0->unk_00 = 11;
@@ -3607,7 +3607,7 @@ static void ov23_02246A80(SysTask *param0, void *param1)
         }
         break;
     case 8:
-        sub_020057A4(1632, 0);
+        Sound_StopEffect(1632, 0);
         ov23_02254044(ov23_0224219C());
         break;
     case 9:
@@ -3806,7 +3806,7 @@ static void ov23_02247144(int param0, BOOL param1)
     if (Unk_ov23_02257764->unk_300) {
         UnkStruct_ov23_022468DC *v0 = Unk_ov23_02257764->unk_300;
 
-        sub_020057A4(1632, 0);
+        Sound_StopEffect(1632, 0);
 
         if (v0->unk_15E && param1) {
             ov23_022448FC(v0->unk_15D);

@@ -16,7 +16,7 @@ _0035:
 
 _0037:
     GoToIfSet 0x12C, _0035
-    ScrCmd_166 0x4000
+    CheckGameCompleted 0x4000
     GoToIfEq 0x4000, 0, _0035
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _0035

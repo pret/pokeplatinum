@@ -5,7 +5,6 @@
 
 #include "consts/sdat.h"
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -13,6 +12,7 @@
 #include "overlay005/ov5_021DFB54.h"
 
 #include "bag.h"
+#include "field_task.h"
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object.h"
@@ -21,11 +21,10 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_02005474.h"
 #include "unk_0201D15C.h"
-#include "unk_020508D4.h"
 #include "unk_020655F4.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
@@ -100,7 +99,7 @@ typedef struct VsSeekerAnimationTask {
 } VsSeekerAnimationTask;
 
 static BOOL VsSeeker_IsMoveCodeHidden(u32 moveCode);
-static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan);
+static BOOL VsSeeker_ExecuteTask(FieldTask *taskMan);
 static enum VsSeekerUsability VsSeekerSystem_CheckUsability(VsSeekerSystem *vsSeeker);
 static void VsSeekerSystem_SetState(VsSeekerSystem *vsSeeker, enum VsSeekerState state);
 static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker);
@@ -375,9 +374,9 @@ static const MapObjectAnimCmd sVsSeekerAnimSingleExclamationMark[] = {
     { 0xfe, 0x0 }
 };
 
-void VsSeeker_Start(TaskManager *taskMan, StringTemplate *template, u16 *outResult)
+void VsSeeker_Start(FieldTask *taskMan, StringTemplate *template, u16 *outResult)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     VsSeekerSystem *vsSeeker = Heap_AllocFromHeap(4, sizeof(VsSeekerSystem));
 
     if (vsSeeker == NULL) {
@@ -392,15 +391,15 @@ void VsSeeker_Start(TaskManager *taskMan, StringTemplate *template, u16 *outResu
     vsSeeker->result = outResult;
     vsSeeker->template = template;
 
-    FieldTask_Start(taskMan, VsSeeker_ExecuteTask, vsSeeker);
+    FieldTask_InitCall(taskMan, VsSeeker_ExecuteTask, vsSeeker);
     return;
 }
 
-static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan)
+static BOOL VsSeeker_ExecuteTask(FieldTask *taskMan)
 {
     s32 missingBattery, numDigits;
     enum VsSeekerUsability usability;
-    VsSeekerSystem *vsSeeker = TaskManager_Environment(taskMan);
+    VsSeekerSystem *vsSeeker = FieldTask_GetEnv(taskMan);
 
     switch (vsSeeker->state) {
     case VS_SEEKER_STATE_WAIT_FOR_NPCS:
@@ -582,7 +581,7 @@ BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem)
         VsSeeker_SetBattery(varsFlags, battery);
     }
 
-    if (VsSeeker_GetUsedFlag(varsFlags) == TRUE) {
+    if (SystemFlag_CheckVsSeekerUsed(varsFlags) == TRUE) {
         if (activeStepCount < VS_SEEKER_MAX_NUM_ACTIVE_STEPS) {
             activeStepCount++;
             VsSeeker_SetActiveStepCount(varsFlags, activeStepCount);
@@ -682,7 +681,7 @@ static BOOL VsSeekerSystem_PickRematchTrainers(VsSeekerSystem *vsSeeker)
                 }
 
                 anyAvailable = TRUE;
-                VsSeeker_SetUsedFlag(varsFlags);
+                SystemFlag_SetVsSeekerUsed(varsFlags);
             }
         }
     }
@@ -748,7 +747,7 @@ static u16 VsSeeker_AdjustRematchLevel(FieldSystem *fieldSystem, u16 rematchData
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (level != 0 && VsSeeker_HasUnlockedLevel(varsFlags, level) == FALSE) {
+    if (level != 0 && SystemFlag_CheckUnlockedVsSeekerLevel(varsFlags, level) == FALSE) {
         level = VsSeeker_GetNextLowerRematchLevel(rematchDataIndex, level);
     }
 

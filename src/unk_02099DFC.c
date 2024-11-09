@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
@@ -9,6 +8,7 @@
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "main.h"
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
@@ -16,7 +16,6 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -38,7 +37,7 @@ typedef struct {
     void *unk_34;
 } UnkStruct_02099DFC;
 
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
 int sub_02099DFC(OverlayManager *param0, int *param1);
 int sub_02099E38(OverlayManager *param0, int *param1);
 int sub_02099F54(OverlayManager *param0, int *param1);
@@ -50,7 +49,7 @@ static void sub_0209A0E0(UnkStruct_02099DFC *param0);
 static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0);
 static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int param3);
 
-extern const OverlayManagerTemplate Unk_ov77_021D742C;
+extern const OverlayManagerTemplate gTitleScreenOverlayTemplate;
 
 const OverlayManagerTemplate Unk_020F8A48 = {
     sub_02099DFC,
@@ -91,7 +90,7 @@ int sub_02099DFC(OverlayManager *param0, int *param1)
 
     v0->unk_00 = v1;
     v0->unk_04 = 0;
-    v0->unk_30 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    v0->unk_30 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
 
     return 1;
 }
@@ -121,22 +120,22 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         sub_0209A098(v0);
         SetMainCallback(sub_02099F74, (void *)v0);
         GXLayers_TurnBothDispOn();
-        sub_0200F174(0, 1, 1, 0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 1, 1, 0, 6, 1, v0->unk_00);
         *param1 = 1;
         break;
     case 1:
-        if (ScreenWipe_Done() == TRUE) {
+        if (IsScreenTransitionDone() == TRUE) {
             *param1 = 2;
         }
         break;
     case 2:
         if (sub_0209A0F4(v0) == TRUE) {
-            sub_0200F174(0, 0, 0, 0, 6, 1, v0->unk_00);
+            StartScreenTransition(0, 0, 0, 0, 6, 1, v0->unk_00);
             *param1 = 3;
         }
         break;
     case 3:
-        if (ScreenWipe_Done() == TRUE) {
+        if (IsScreenTransitionDone() == TRUE) {
             sub_0209A0E0(v0);
             sub_0209A044(v0);
             SetMainCallback(NULL, NULL);

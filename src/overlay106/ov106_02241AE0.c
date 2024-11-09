@@ -5,9 +5,9 @@
 
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223AF58.h"
 #include "overlay104/struct_ov104_02235208.h"
@@ -35,7 +35,6 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -347,11 +346,11 @@ static BOOL ov106_02241D28(UnkStruct_ov106_02243118 *param0)
         break;
     case 2:
         ov106_02241DD4(param0);
-        sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 98);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 98);
         param0->unk_08++;
         break;
     case 3:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -411,7 +410,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {
                 Sound_PlayEffect(1501);
-                sub_0200F174(0, 0, 0, 0x0, 6, 1, 98);
+                StartScreenTransition(0, 0, 0, 0x0, 6, 1, 98);
 
                 param0->unk_10 = 1;
                 param0->unk_08 = 6;
@@ -476,7 +475,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
                 param0->unk_1F = param0->unk_0D;
                 param0->unk_08 = 4;
             } else {
-                sub_020057A4(1500, 0);
+                Sound_StopEffect(1500, 0);
                 Sound_PlayEffect(1572);
 
                 if (param0->unk_1F != 0x75) {
@@ -513,10 +512,10 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         }
         break;
     case 6:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov106_02242CA4(param0);
             ov106_022423E8(param0);
-            param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_BC, 98);
+            param0->unk_04 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_BC, 98);
             param0->unk_0B = 1;
             return 1;
         }
@@ -616,7 +615,7 @@ static BOOL ov106_02242108(UnkStruct_ov106_02243118 *param0)
         case 0xffffffff:
             break;
         case 0:
-            sub_020057A4(1500, 0);
+            Sound_StopEffect(1500, 0);
             Sound_PlayEffect(1572);
             ov106_02243200(param0);
             param0->unk_08 = 6;
@@ -695,12 +694,12 @@ static BOOL ov106_02242344(UnkStruct_ov106_02243118 *param0)
 
         if (param0->unk_1B == 0) {
             ov106_022432D4(param0);
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, 98);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 98);
             param0->unk_08++;
         }
         break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -1220,10 +1219,10 @@ static void ov106_02242CA4(UnkStruct_ov106_02243118 *param0)
     param0->unk_BC->pos = 0;
     param0->unk_BC->move = 0;
     param0->unk_BC->dexMode = sub_0207A274(param0->unk_B8);
-    param0->unk_BC->contest = PokemonSummary_ShowContestData(param0->unk_B8);
+    param0->unk_BC->showContest = PokemonSummaryScreen_ShowContestData(param0->unk_B8);
 
-    PokemonSummary_FlagVisiblePages(param0->unk_BC, Unk_ov106_02243798);
-    PokemonSummary_SetPlayerProfile(param0->unk_BC, SaveData_GetTrainerInfo(param0->unk_B8));
+    PokemonSummaryScreen_FlagVisiblePages(param0->unk_BC, Unk_ov106_02243798);
+    PokemonSummaryScreen_SetPlayerProfile(param0->unk_BC, SaveData_GetTrainerInfo(param0->unk_B8));
 
     return;
 }

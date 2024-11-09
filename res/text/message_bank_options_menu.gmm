@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="47375" />
+	<row id="options_menu_title" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OPTIONS</language>
+	</row>
+	<row id="pl_msg_00000220_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKéMON DIAMOND</language>
+	</row>
+	<row id="pl_msg_00000220_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKéMON PEARL</language>
+	</row>
+	<row id="options_menu_text_speed_label" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TEXT SPEED</language>
+	</row>
+	<row id="options_menu_battle_scene_label" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BATTLE SCENE</language>
+	</row>
+	<row id="options_menu_battle_style_label" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BATTLE STYLE</language>
+	</row>
+	<row id="options_menu_sound_mode_label" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SOUND</language>
+	</row>
+	<row id="options_menu_button_mode_label" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BUTTON MODE</language>
+	</row>
+	<row id="options_menu_message_box_style_label" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">FRAME</language>
+	</row>
+	<row id="options_menu_confirm_label" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CONFIRM</language>
+	</row>
+	<row id="options_menu_text_speed_slow" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SLOW</language>
+	</row>
+	<row id="options_menu_text_speed_mid" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MID</language>
+	</row>
+	<row id="options_menu_text_speed_fast" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">FAST</language>
+	</row>
+	<row id="options_menu_battle_scene_on" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ON</language>
+	</row>
+	<row id="options_menu_battle_scene_off" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OFF</language>
+	</row>
+	<row id="options_menu_battle_style_shift" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SHIFT</language>
+	</row>
+	<row id="options_menu_battle_style_set" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SET</language>
+	</row>
+	<row id="options_menu_sound_mode_stereo" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">STEREO</language>
+	</row>
+	<row id="options_menu_sound_mode_mono" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MONO</language>
+	</row>
+	<row id="options_menu_button_mode_normal" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NORMAL</language>
+	</row>
+	<row id="options_menu_button_mode_start_is_x" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">START = X</language>
+	</row>
+	<row id="options_menu_button_mode_l_is_a" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">L = A</language>
+	</row>
+	<row id="options_menu_message_box_style_01" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 1</language>
+	</row>
+	<row id="options_menu_message_box_style_02" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 2</language>
+	</row>
+	<row id="options_menu_message_box_style_03" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 3</language>
+	</row>
+	<row id="options_menu_message_box_style_04" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 4</language>
+	</row>
+	<row id="options_menu_message_box_style_05" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 5</language>
+	</row>
+	<row id="options_menu_message_box_style_06" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 6</language>
+	</row>
+	<row id="options_menu_message_box_style_07" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 7</language>
+	</row>
+	<row id="options_menu_message_box_style_08" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 8</language>
+	</row>
+	<row id="options_menu_message_box_style_09" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 9</language>
+	</row>
+	<row id="options_menu_message_box_style_10" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 10</language>
+	</row>
+	<row id="options_menu_message_box_style_11" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 11</language>
+	</row>
+	<row id="options_menu_message_box_style_12" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 12</language>
+	</row>
+	<row id="options_menu_message_box_style_13" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 13</language>
+	</row>
+	<row id="options_menu_message_box_style_14" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 14</language>
+	</row>
+	<row id="options_menu_message_box_style_15" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 15</language>
+	</row>
+	<row id="options_menu_message_box_style_16" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 16</language>
+	</row>
+	<row id="options_menu_message_box_style_17" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 17</language>
+	</row>
+	<row id="options_menu_message_box_style_18" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 18</language>
+	</row>
+	<row id="options_menu_message_box_style_19" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 19</language>
+	</row>
+	<row id="options_menu_message_box_style_20" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPE 20</language>
+	</row>
+	<row id="options_menu_close_label" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLOSE</language>
+	</row>
+	<row id="options_menu_text_speed_description" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose one of three text-display\nspeeds.</language>
+	</row>
+	<row id="options_menu_battle_scene_description" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose between seeing or not seeing\nPokémon battle animations.</language>
+	</row>
+	<row id="options_menu_battle_style_description" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose between battle rules on\nreplacing a fallen Pokémon.</language>
+	</row>
+	<row id="options_menu_sound_mode_description" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the game’s sound mode.</language>
+	</row>
+	<row id="options_menu_button_mode_description" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose one of three sets of button\nsettings.</language>
+	</row>
+	<row id="options_menu_message_box_style_description" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the text-window design.</language>
+	</row>
+	<row id="options_menu_confirm_dialog" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Switch to the selected settings?</language>
+	</row>
+	<row id="options_menu_confirm_dialog_yes" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="options_menu_confirm_dialog_no" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="options_menu_close_description" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Return to the game.</language>
+	</row>
+</body>

@@ -5,17 +5,18 @@
 
 #include "constants/battle.h"
 #include "constants/pokemon.h"
+#include "consts/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_02055BA8.h"
 #include "struct_defs/struct_0205EC34.h"
 #include "struct_defs/struct_0209C370.h"
 #include "struct_defs/trainer_data.h"
 
+#include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "overlay006/battle_params.h"
 #include "overlay006/struct_ov6_02240D5C_sub1.h"
@@ -34,14 +35,14 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
 #include "poketch_data.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "system_data.h"
+#include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_02025CB0.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"
 #include "unk_02027F84.h"
@@ -53,7 +54,6 @@
 #include "unk_020559DC.h"
 #include "unk_0205C980.h"
 #include "unk_0205DAC8.h"
-#include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
@@ -116,7 +116,7 @@ BattleParams *sub_02051D8C(int param0, u32 param1)
         RTCTime v3;
 
         GetCurrentDateTime(&v2, &v3);
-        v1->unk_174 = v2.year + v2.month * 0x100 * v2.day * 0x10000 + v3.hour * 0x10000 + (v3.minute + v3.second) * 0x1000000 + gCoreSys.frameCounter;
+        v1->unk_174 = v2.year + v2.month * 0x100 * v2.day * 0x10000 + v3.hour * 0x10000 + (v3.minute + v3.second) * 0x1000000 + gCoreSys.vblankCounter;
     }
 
     if (CommSys_IsInitialized() == 1) {
@@ -176,9 +176,9 @@ BattleParams *sub_02051F4C(int param0, const FieldSystem *fieldSystem)
     Bag_TryAddItem(v4->unk_E0, 4, 20, param0);
     v5 = Pokemon_New(param0);
 
-    Pokemon_InitWith(v5, sub_0206B08C(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, 32, 0, 0, 2, 0);
+    Pokemon_InitWith(v5, sub_0206B08C(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, 32, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(v4->parties[0], v5);
-    Pokemon_InitWith(v5, 399, 2, 32, 0, 0, 2, 0);
+    Pokemon_InitWith(v5, SPECIES_BIDOOF, 2, 32, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(v4->parties[1], v5);
     Heap_FreeToHeap(v5);
 
@@ -263,9 +263,9 @@ void sub_020521B8(BattleParams *param0, const FieldSystem *fieldSystem, SaveData
         param0->unk_128 = MapHeader_GetBattleBG(param3);
         param0->unk_12C = 9;
         {
-            UnkStruct_02055BA8 *v7 = sub_02025CD8(param2);
+            GameTime *v7 = SaveData_GetGameTime(param2);
 
-            param0->unk_138 = TimeOfDayForHour(v7->unk_14.hour);
+            param0->unk_138 = TimeOfDayForHour(v7->time.hour);
         }
     }
 
@@ -279,8 +279,8 @@ void sub_020521B8(BattleParams *param0, const FieldSystem *fieldSystem, SaveData
     param0->unk_EC = SaveData_PCBoxes(param2);
     param0->unk_130 = MapHeader_GetMapLabelTextID(param3);
     param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
-    param0->unk_140 = PokemonSummary_ShowContestData(param2);
-    param0->unk_144 = sub_0206ADFC(SaveData_GetVarsFlags(param2));
+    param0->unk_140 = PokemonSummaryScreen_ShowContestData(param2);
+    param0->unk_144 = SystemFlag_CheckMetBebe(SaveData_GetVarsFlags(param2));
     param0->unk_14C = FieldOverworldState_GetWeather(v6);
     param0->unk_E4 = param5;
     param0->unk_190 = param6;
@@ -324,7 +324,7 @@ void sub_02052348(BattleParams *param0, const FieldSystem *fieldSystem, int para
         if ((Pokemon_GetValue(v8, MON_DATA_LEVEL, NULL) != param2) && (param2 != 0)) {
             v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v8, MON_DATA_SPECIES, NULL), param2);
 
-            Pokemon_SetValue(v8, 8, &v1);
+            Pokemon_SetValue(v8, MON_DATA_EXP, &v1);
             Pokemon_CalcLevelAndStats(v8);
         }
 

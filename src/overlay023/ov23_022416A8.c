@@ -27,10 +27,10 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_02054D00.h"
-#include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -97,7 +97,7 @@ void ov23_022416E0(void *param0, FieldSystem *fieldSystem)
     MI_CpuFill8(Unk_ov23_02257744, 0, sizeof(UnkStruct_ov23_02257744));
     Unk_ov23_02257744->fieldSystem = fieldSystem;
 
-    v1 = sub_020298B0(FieldSystem_SaveData(fieldSystem));
+    v1 = sub_020298B0(FieldSystem_GetSaveData(fieldSystem));
 
     for (v0 = 0; v0 < 100; v0++) {
         Unk_ov23_02257744->unk_00[v0].unk_06 = sub_020290DC(v1, v0);
@@ -114,7 +114,7 @@ void ov23_022416E0(void *param0, FieldSystem *fieldSystem)
 
 static void ov23_02241778(void)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257744->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
     int v1;
 
     for (v1 = 0; v1 < 100; v1++) {
@@ -401,7 +401,7 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
         ov23_02250128(param0);
 
         Sound_PlayEffect(1585);
-        sub_0206AA14(SaveData_GetVarsFlags(Unk_ov23_02257744->fieldSystem->saveData));
+        SystemFlag_SetSphereAcquired(SaveData_GetVarsFlags(Unk_ov23_02257744->fieldSystem->saveData));
         GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(Unk_ov23_02257744->fieldSystem->saveData), RECORD_UNK_047);
 
         ov5_021F57C8(Unk_ov23_02257744->fieldSystem, param2, param3);
@@ -527,7 +527,7 @@ BOOL ov23_02241D58(Strbuf *param0)
 
 int ov23_02241DF8(MATHRandContext16 *param0)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257744->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
     int v1, v2, v3;
 
     for (v3 = 0; v3 < 100; v3++) {

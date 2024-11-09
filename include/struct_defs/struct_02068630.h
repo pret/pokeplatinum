@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_02068630_H
 #define POKEPLATINUM_STRUCT_02068630_H
 
-#include "struct_decls/struct_020508D4_decl.h"
+#include "field_task.h"
 
 typedef struct {
-    TaskManager *unk_00;
+    FieldTask *unk_00;
     u16 unk_04;
     u8 unk_06;
     u8 padding_07;

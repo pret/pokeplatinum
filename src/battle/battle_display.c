@@ -4755,7 +4755,7 @@ static void ov16_022629DC(SysTask *param0, void *param1)
 
         if (v1 == -1) {
             if (v0->unk_4E >= 8) {
-                sub_020057A4(1803, 0);
+                Sound_StopEffect(1803, 0);
                 v0->state = 100;
             } else {
                 v0->state++;
@@ -4766,7 +4766,7 @@ static void ov16_022629DC(SysTask *param0, void *param1)
         v0->unk_4E++;
 
         if (v0->unk_4E >= 8) {
-            sub_020057A4(1803, 0);
+            Sound_StopEffect(1803, 0);
             v0->state = 100;
         }
         break;

@@ -327,7 +327,7 @@ static void ov81_021D115C(UnkStruct_ov81_021D1610 *param0)
 
 static int ov81_021D1174(UnkStruct_ov81_021D1610 *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         return 1;
     }
 
@@ -425,7 +425,7 @@ static int ov81_021D12E8(UnkStruct_ov81_021D1610 *param0)
 
 static int ov81_021D1358(UnkStruct_ov81_021D1610 *param0)
 {
-    return ScreenWipe_Done();
+    return IsScreenTransitionDone();
 }
 
 static void ov81_021D1360(UnkStruct_ov81_021D1610 *param0)

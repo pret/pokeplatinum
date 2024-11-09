@@ -320,7 +320,7 @@ void ov16_0223B3E4(BattleSystem *param0)
 
     sub_0200D0B0(param0->unk_90, param0->unk_94);
     sub_0200C8D4(param0->unk_90);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     Font_Free(FONT_SUBSCREEN);
 }
 
@@ -555,7 +555,7 @@ static void ov16_0223B790(OverlayManager *param0)
         v0->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(5, (32 * 10 * 10));
     }
 
-    sub_0201DBEC(64, 5);
+    VRAMTransferManager_New(64, 5);
 
     {
         NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
@@ -796,7 +796,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     LCRNG_SetSeed(v0->unk_2430);
 
     if (ov16_0223F450(v0)) {
-        sub_020057A4(1796, 0);
+        Sound_StopEffect(1796, 0);
     }
 
     sub_0201DCF0(v0->cellTransferState);
@@ -1126,7 +1126,7 @@ static void ov16_0223C2C0(BattleSystem *param0, BattleParams *param1)
             for (v1 = 0; v1 < Party_GetCurrentCount(param1->parties[v0]); v1++) {
                 v3 = Party_GetPokemonBySlotIndex(param1->parties[v0], v1);
                 v5 = Pokemon_GetGender(v3);
-                Pokemon_SetValue(v3, 111, &v5);
+                Pokemon_SetValue(v3, MON_DATA_GENDER, &v5);
             }
         }
     }
@@ -1522,7 +1522,7 @@ static void ov16_0223CE68(void *param0)
 
     sub_02008A94(v0->unk_88);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_28);
     Bg_RunScheduledUpdates(v0->unk_04);
 
@@ -1579,7 +1579,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
 
     if (v6 & 2) {
         if (v6 & 1) {
-            sub_020057A4(1796, 0);
+            Sound_StopEffect(1796, 0);
             BattleSystem_SetRedHPSoundFlag(v0, 2);
         }
 
@@ -1605,7 +1605,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
         BattleSystem_SetRedHPSoundFlag(v0, 1);
         ov16_0223F48C(v0, 4);
     } else if ((v5 == 0) && (ov16_0223F450(v0))) {
-        sub_020057A4(1796, 0);
+        Sound_StopEffect(1796, 0);
         BattleSystem_SetRedHPSoundFlag(v0, 0);
     }
 

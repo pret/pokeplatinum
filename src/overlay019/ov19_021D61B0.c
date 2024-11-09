@@ -453,11 +453,11 @@ static void ov19_021D671C(SysTask *param0, void *param1)
     case 0:
         Sound_PlayEffect(1549);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        sub_0200F174(0, 1, 1, 0x0, 8, 1, 10);
+        StartScreenTransition(0, 1, 1, 0x0, 8, 1, 10);
         v2->unk_06++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             ov19_021D6640(v2);
         }
         break;
@@ -477,11 +477,11 @@ static void ov19_021D6780(SysTask *param0, void *param1)
     switch (v2->unk_06) {
     case 0:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 10);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 10);
         v2->unk_06++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             ov19_021D6640(v2);
         }
         break;
@@ -500,11 +500,11 @@ static void ov19_021D67DC(SysTask *param0, void *param1)
 
     switch (v2->unk_06) {
     case 0:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 10);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 10);
         v2->unk_06++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             ov19_021D6640(v2);
         }
         break;
@@ -1575,11 +1575,11 @@ static void ov19_021D7460(SysTask *param0, void *param1)
     switch (v2->unk_06) {
     case 0:
         Sound_PlayEffect(1550);
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 10);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 10);
         v2->unk_06++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             ov19_021D6640(v2);
         }
         break;

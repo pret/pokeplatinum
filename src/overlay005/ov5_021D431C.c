@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02055130.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
@@ -16,12 +15,12 @@
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
 #include "camera.h"
+#include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_02056B30.h"
 #include "unk_020655F4.h"
@@ -296,7 +295,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         (param1->unk_00)++;
     } break;
     case 1:
-        sub_02056B30(fieldSystem->taskManager, 0, 9, 1, 0x0, 6, 1, 11);
+        sub_02056B30(fieldSystem->task, 0, 9, 1, 0x0, 6, 1, 11);
         {
             int v9;
             int v10;
@@ -386,13 +385,13 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
 
         v16 = ov5_021D42F0(fieldSystem->unk_54, 1);
 
-        if (v16 && ScreenWipe_Done() && (param1->unk_24 == Camera_GetFOV(fieldSystem->camera))) {
+        if (v16 && IsScreenTransitionDone() && (param1->unk_24 == Camera_GetFOV(fieldSystem->camera))) {
             ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 1);
             return 1;
         }
     } break;
     case 6:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;
@@ -579,9 +578,9 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
 
         v10 = ov5_021D42F0(fieldSystem->unk_54, 2);
 
-        if (v10 && ScreenWipe_Done()) {
+        if (v10 && IsScreenTransitionDone()) {
             ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 2);
-            sub_020057A4(1557, 0);
+            Sound_StopEffect(1557, 0);
             return 1;
         }
     } break;
@@ -675,10 +674,10 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
 
         v9 = ov5_021D42F0(fieldSystem->unk_54, 2);
 
-        if (v9 && ScreenWipe_Done()) {
+        if (v9 && IsScreenTransitionDone()) {
             ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 2);
 
-            sub_020057A4(1557, 0);
+            Sound_StopEffect(1557, 0);
             return 1;
         }
     } break;
@@ -687,11 +686,11 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     return 0;
 }
 
-static BOOL ov5_021D4BC8(TaskManager *param0)
+static BOOL ov5_021D4BC8(FieldTask *param0)
 {
     BOOL v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    u8 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    u8 *v2 = FieldTask_GetEnv(param0);
 
     v0 = ov5_021D42F0(fieldSystem->unk_54, *v2);
 
@@ -814,7 +813,7 @@ void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1)
     u8 *v0 = Heap_AllocFromHeapAtEnd(4, sizeof(u8));
 
     *v0 = param1;
-    FieldTask_Start(fieldSystem->taskManager, ov5_021D4BC8, v0);
+    FieldTask_InitCall(fieldSystem->task, ov5_021D4BC8, v0);
 }
 
 void ov5_021D4D68(FieldSystem *fieldSystem, const u8 param1)
@@ -863,11 +862,11 @@ UnkStruct_ov5_021D4E00 *ov5_021D4E00(void)
     return v0;
 }
 
-BOOL ov5_021D4E10(TaskManager *param0)
+BOOL ov5_021D4E10(FieldTask *param0)
 {
     MapObject *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021D4E00 *v2 = FieldTask_GetEnv(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -889,7 +888,7 @@ BOOL ov5_021D4E10(TaskManager *param0)
             Camera_AdjustFOV(-96, fieldSystem->camera);
         }
 
-        sub_0200F174(0, 1, 1, 0x7fff, 6, 1, 11);
+        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, 11);
         v2->unk_08 = 1;
         break;
     case 1:
@@ -907,7 +906,7 @@ BOOL ov5_021D4E10(TaskManager *param0)
         }
         break;
     case 3:
-        if (ScreenWipe_Done() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
+        if (IsScreenTransitionDone() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
             Heap_FreeToHeap(v2);
             return 1;
         }
@@ -921,10 +920,10 @@ BOOL ov5_021D4E10(TaskManager *param0)
     return 0;
 }
 
-BOOL ov5_021D4F14(TaskManager *param0)
+BOOL ov5_021D4F14(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021D4E00 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0: {
@@ -938,13 +937,13 @@ BOOL ov5_021D4F14(TaskManager *param0)
         v1->unk_04 = 0;
 
         Sound_PlayEffect(1539);
-        sub_0200F174(0, 0, 0, 0x7fff, 6, 1, 11);
+        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, 11);
 
         v1->unk_08 = 1;
         (v1->unk_00)++;
     } break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             Heap_FreeToHeap(v1);
             return 1;
         }
@@ -958,10 +957,10 @@ BOOL ov5_021D4F14(TaskManager *param0)
     return 0;
 }
 
-BOOL ov5_021D4FA0(TaskManager *param0)
+BOOL ov5_021D4FA0(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021D4E00 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0: {
@@ -975,7 +974,7 @@ BOOL ov5_021D4FA0(TaskManager *param0)
         (v1->unk_00)++;
     } break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             Heap_FreeToHeap(v1);
             return 1;
         }
@@ -989,11 +988,11 @@ BOOL ov5_021D4FA0(TaskManager *param0)
     return 0;
 }
 
-BOOL ov5_021D5020(TaskManager *param0)
+BOOL ov5_021D5020(FieldTask *param0)
 {
     MapObject *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021D4E00 *v2 = FieldTask_GetEnv(param0);
 
     switch (v2->unk_00) {
     case 0: {
@@ -1054,7 +1053,7 @@ BOOL ov5_021D5020(TaskManager *param0)
         }
         break;
     case 3:
-        if (ScreenWipe_Done() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
+        if (IsScreenTransitionDone() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
             Heap_FreeToHeap(v2);
             return 1;
         }
@@ -1068,11 +1067,11 @@ BOOL ov5_021D5020(TaskManager *param0)
     return 0;
 }
 
-BOOL ov5_021D5150(TaskManager *param0)
+BOOL ov5_021D5150(FieldTask *param0)
 {
     MapObject *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021D4E00 *v2 = FieldTask_GetEnv(param0);
 
     switch (v2->unk_00) {
     case 0: {
@@ -1107,7 +1106,7 @@ BOOL ov5_021D5150(TaskManager *param0)
         }
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             Heap_FreeToHeap(v2);
             return 1;
         }

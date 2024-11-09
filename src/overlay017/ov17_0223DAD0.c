@@ -258,7 +258,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     ov17_0224CDB4(v0, 1);
     v0->unk_14.unk_60 = BgConfig_New(23);
 
-    sub_0201DBEC(64, 23);
+    VRAMTransferManager_New(64, 23);
     SetAutorepeat(4, 8);
 
     v0->unk_1074 = ov17_02249380(v0->unk_00, &v0->unk_14);
@@ -314,7 +314,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     ov17_0224B59C(v0);
 
     sub_02039734();
-    sub_0200F174(1, 17, 37, 0x0, 6, 1, 23);
+    StartScreenTransition(1, 17, 37, 0x0, 6, 1, 23);
 
     v0->unk_04 = SysTask_Start(ov17_0223E1FC, v0, 80000);
     v0->unk_1098 = 1;
@@ -342,7 +342,7 @@ int ov17_0223DDD4(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             *param1 = 1;
         }
         break;
@@ -361,7 +361,7 @@ int ov17_0223DDD4(OverlayManager *param0, int *param1)
             } else if ((v1 == 3) && (v0->unk_1B24 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_1B1C, sizeof(UnkStruct_ov17_0223E838));
-                sub_0200F174(2, 30, 30, 0x0, 6, 1, 23);
+                StartScreenTransition(2, 30, 30, 0x0, 6, 1, 23);
                 break;
             }
         }
@@ -372,12 +372,12 @@ int ov17_0223DDD4(OverlayManager *param0, int *param1)
         if ((v0->unk_1B24 == 1) && (ov17_0224F3D0(&v0->unk_109C) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_1B1C, sizeof(UnkStruct_ov17_0223E838));
-            sub_0200F174(2, 30, 30, 0x0, 6, 1, 23);
+            StartScreenTransition(2, 30, 30, 0x0, 6, 1, 23);
         }
         break;
     case 2:
         if (v0->unk_1B24 == 1) {
-            if (ScreenWipe_Done() == 1) {
+            if (IsScreenTransitionDone() == 1) {
                 return 1;
             }
         }
@@ -421,7 +421,7 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
 
     sub_0200D0B0(v0->unk_14.unk_58, v0->unk_14.unk_5C);
     sub_0200C8D4(v0->unk_14.unk_58);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     ov17_0224A1EC(&v0->unk_14);
 
@@ -496,7 +496,7 @@ static void ov17_0223E09C(void *param0)
     }
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_14.unk_90);
     Bg_RunScheduledUpdates(v0->unk_14.unk_60);
 

@@ -2,11 +2,12 @@
 #define POKEPLATINUM_OV9_02249960_H
 
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system_decl.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
+
+#include "field_task.h"
 
 void ov9_02249960(FieldSystem *fieldSystem);
 void ov9_02249A60(FieldSystem *fieldSystem);
@@ -28,7 +29,7 @@ void ov9_0224F158(FieldSystem *fieldSystem, u16 param1);
 void ov9_0224F16C(FieldSystem *fieldSystem, u16 param1);
 BOOL ov9_0224F240(const MapObject *param0, int param1);
 BOOL ov9_0224F2B0(const MapObject *param0);
-UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, TaskManager *param1, MapObject *param2);
+UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1, MapObject *param2);
 BOOL ov9_0224F6EC(UnkStruct_ov9_0224F6EC *param0);
 void ov9_02250780(FieldSystem *fieldSystem);
 BOOL ov9_02250F74(FieldSystem *fieldSystem);

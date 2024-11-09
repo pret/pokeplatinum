@@ -3,16 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
+#include "field_task.h"
 #include "heap.h"
 #include "message.h"
 #include "render_window.h"
@@ -25,7 +25,6 @@
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
 #include "unk_0209747C.h"
 
@@ -51,7 +50,7 @@ typedef struct {
 
 static void sub_0209AD84(UnkStruct_0209AD84 *param0);
 static void sub_0209ADBC(UnkStruct_0209AD84 *param0);
-static BOOL sub_0209AE14(TaskManager *param0);
+static BOOL sub_0209AE14(FieldTask *param0);
 static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2);
 static BOOL sub_0209B100(UnkStruct_0209AD84 *param0);
 static void sub_0209B110(UnkStruct_0209AD84 *param0);
@@ -61,10 +60,10 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0);
 static void sub_0209B27C(UnkStruct_0209AD84 *param0);
 static int sub_0209B288(UnkStruct_0209AD84 *param0);
 
-void sub_0209ACF4(TaskManager *param0)
+void sub_0209ACF4(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0209AD84 *v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209AD84));
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0209AD84 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209AD84));
 
     v1->fieldSystem = fieldSystem;
     v1->unk_04 = Strbuf_Init(400, 32);
@@ -81,7 +80,7 @@ void sub_0209ACF4(TaskManager *param0)
 
     v1->unk_54 = 0;
 
-    FieldTask_Start(param0, sub_0209AE14, v1);
+    FieldTask_InitCall(param0, sub_0209AE14, v1);
 }
 
 static void sub_0209AD84(UnkStruct_0209AD84 *param0)
@@ -114,9 +113,9 @@ static void sub_0209ADBC(UnkStruct_0209AD84 *param0)
     }
 }
 
-static BOOL sub_0209AE14(TaskManager *param0)
+static BOOL sub_0209AE14(FieldTask *param0)
 {
-    UnkStruct_0209AD84 *v0 = TaskManager_Environment(param0);
+    UnkStruct_0209AD84 *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_54) {
     case 0:
@@ -169,7 +168,7 @@ static BOOL sub_0209AE14(TaskManager *param0)
         }
         break;
     case 5:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_02097500(v0->unk_50, &(v0->unk_48));
             sub_02097514(v0->unk_50);
             sub_0209ADBC(v0);
@@ -178,19 +177,19 @@ static BOOL sub_0209AE14(TaskManager *param0)
         }
         break;
     case 6:
-        if (sub_020509B4(v0->fieldSystem) == 0) {
-            sub_020509D4(v0->fieldSystem);
+        if (FieldSystem_IsRunningApplication(v0->fieldSystem) == 0) {
+            FieldSystem_StartFieldMap(v0->fieldSystem);
             v0->unk_54 = 7;
         }
         break;
     case 7:
-        if (sub_020509DC(v0->fieldSystem)) {
+        if (FieldSystem_IsRunningFieldMap(v0->fieldSystem)) {
             ov5_021D1744(1);
             v0->unk_54 = 8;
         }
         break;
     case 8:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (sub_02097528(v0->unk_50)) {
                 v0->unk_54 = 11;
             } else {

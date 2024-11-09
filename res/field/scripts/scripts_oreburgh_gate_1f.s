@@ -15,7 +15,7 @@ _0014:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadge BADGE_ID_COAL, 0x800C
+    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 0, _003A
     Message 2
     WaitABXPadPress

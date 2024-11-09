@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202610C.h"
@@ -12,6 +11,7 @@
 
 #include "bg_window.h"
 #include "core_sys.h"
+#include "field_task.h"
 #include "font.h"
 #include "heap.h"
 #include "list_menu.h"
@@ -26,7 +26,6 @@
 #include "unk_02005474.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
-#include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
 #include "unk_0207A2A8.h"
 
@@ -450,10 +449,10 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
     return 0;
 }
 
-static BOOL ov7_0224BC74(TaskManager *param0)
+static BOOL ov7_0224BC74(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov7_0224B4E8 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov7_0224B4E8 *v1 = FieldTask_GetEnv(param0);
     int v2;
 
     switch (v1->unk_7C) {
@@ -569,11 +568,11 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
     return v0;
 }
 
-void ov7_0224BE7C(TaskManager *param0, u16 *param1)
+void ov7_0224BE7C(FieldTask *param0, u16 *param1)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov7_0224B4E8 *v1 = ov7_0224BE10(fieldSystem);
 
     v1->unk_70 = param1;
-    FieldTask_Start(param0, ov7_0224BC74, v1);
+    FieldTask_InitCall(param0, ov7_0224BC74, v1);
 }

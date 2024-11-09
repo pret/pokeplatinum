@@ -33,7 +33,7 @@ _0031:
     WaitABXPadPress
     CloseMessage
     SetVar 0x403F, 0x263
-    ScrCmd_161
+    SetHasPartner
     ScrCmd_06D 14, 48
     ReleaseAll
     End
@@ -101,7 +101,7 @@ _00FC:
     Message 4
     CloseMessage
     SetVar 0x4094, 0
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_06D 14, 15
     ApplyMovement 14, _013C
     WaitMovement
@@ -130,7 +130,7 @@ _014C:
 
 _0154:
     LockAll
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_06D 14, 15
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _0177

@@ -130,7 +130,7 @@ int ov21_021D0D80(OverlayManager *param0, int *param1)
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D0F18));
 
-    sub_0201DBEC(8, 37);
+    VRAMTransferManager_New(8, 37);
 
     v1 = OverlayManager_Args(param0);
 
@@ -214,7 +214,7 @@ int ov21_021D0EC8(OverlayManager *param0, int *param1)
     GF_ASSERT(v1 == 1);
 
     ov21_021D12C4();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     OverlayManager_FreeData(param0);
     Heap_Destroy(37);
     sub_0200544C(1, 127);
@@ -235,17 +235,17 @@ static void ov21_021D0F04(void *param0)
 
 static void ov21_021D0F18(UnkStruct_ov21_021D0F18 *param0)
 {
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 37);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 37);
 }
 
 static void ov21_021D0F38(UnkStruct_ov21_021D0F18 *param0)
 {
-    sub_0200F174(0, 0, 0, 0x0, 6, 1, 37);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 37);
 }
 
 static BOOL ov21_021D0F58(UnkStruct_ov21_021D0F18 *param0)
 {
-    return ScreenWipe_Done();
+    return IsScreenTransitionDone();
 }
 
 const static UnkFuncPtr_ov21_021E9B74 Unk_ov21_021E9B74[10] = {

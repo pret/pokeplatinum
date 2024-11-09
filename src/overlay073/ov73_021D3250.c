@@ -29,7 +29,7 @@ typedef struct {
     int unk_24;
 } UnkStruct_ov73_021D342C;
 
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
+void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
 int ov73_021D3250(OverlayManager * param0, int * param1);
 int ov73_021D3280(OverlayManager * param0, int * param1);
 int ov73_021D3404(OverlayManager * param0, int * param1);
@@ -108,14 +108,14 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
             v0->unk_24--;
         } else {
             v0->unk_24 = 0;
-            sub_0200F174(0, 1, 1, 0x0, 6, 1, v0->unk_00);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->unk_00);
             *param1 = 3;
         }
         break;
     case 3:
         ov73_021D37AC(v0);
 
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             *param1 = 4;
         }
         break;
@@ -123,14 +123,14 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         ov73_021D37AC(v0);
 
         if (ov73_021D3698(v0, 0, 5 * 8, 6 * 8) == 1) {
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 5;
         }
         break;
     case 5:
         ov73_021D37AC(v0);
 
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov73_021D368C(v0);
             ov73_021D35F4(v0);
             SetMainCallback(NULL, NULL);

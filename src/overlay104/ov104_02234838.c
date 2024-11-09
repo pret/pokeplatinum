@@ -256,7 +256,7 @@ BOOL ov104_02234A1C(UnkStruct_ov104_0222E930 *param0)
 
         for (v7 = 0; v7 < v5; v7++) {
             v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_260[v7]);
-            Pokemon_SetValue(v1, 6, &v3->unk_728[v7]);
+            Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v3->unk_728[v7]);
         }
         break;
     case 28:

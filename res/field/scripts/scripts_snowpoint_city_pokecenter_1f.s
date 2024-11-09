@@ -51,7 +51,7 @@ _0067:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadge BADGE_ID_ICICLE, 0x800C
+    CheckBadgeAcquired BADGE_ID_ICICLE, 0x800C
     GoToIfEq 0x800C, 1, _00EC
     ScrCmd_1BD 0x8000
     CallIfEq 0x8000, 0, _00C8
