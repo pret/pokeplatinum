@@ -3,7 +3,11 @@ name: build
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - '**.md'
   pull_request:
+    paths-ignore:
+      - '**.md'
 
 env:
   LM_LICENSE_FILE: "${{ github.workspace }}/tools/cw/license.dat"
@@ -14,8 +18,9 @@ env:
 
 jobs:
   build:
+    permissions:
+      contents: write
     runs-on: ubuntu-22.04
-
     steps:
       - name: Install Software
         run: |
@@ -41,8 +46,30 @@ jobs:
         env:
           arm9name: ${{ vars.BUILD }}
         run: |
-          .github/calcrom/webhook.sh "$CALCROM_WEBHOOK_URL"
+          .github/calcrom/webhook.sh "$CALCROM_WEBHOOK_URL" "$BUILD"
         continue-on-error: true
+
+      - name: Checkout xMAP
+        if: ${{ github.event_name == 'push' }}
+        uses: actions/checkout@v4
+        with:
+          path: 'xmap'
+          ref: 'xmap'
+
+      - name: Move xMAP
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          mkdir -p xmap
+          cp "$BUILD"/*.xMAP xmap/platinumus.xMAP
+          echo "XMAP_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
+
+      - name: Update xMAP
+        if: ${{ github.event_name == 'push' }}
+        uses: EndBug/add-and-commit@v9
+        with:
+          cwd: "./xmap"
+          add: "*.xMAP"
+          message: ${{ env.XMAP_COMMIT_MSG }}
 
       - name: Post error archive
         if: failure()
@@ -56,25 +83,3 @@ jobs:
           name: pokeplatinum-failure-${{ github.run_id }}
           path: failure.tar.gz
           retention-days: 1
-
-      - name: Checkout xMAP
-        if: ${{ github.event_name == 'push' }}
-        uses: actions/checkout@v4
-        with:
-          path: 'xmap'
-          ref: 'xmap'
-
-      - name: Move xMAP
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          mkdir -p xmap
-          cp "$BUILD/*.xMAP" xmap/platinumus.xMAP
-          echo "XMAP_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
-
-      - name: Update xMAP
-        if: ${{ github.event_name == 'push' }}
-        uses: EndBug/add-and-commit@v9
-        with:
-          cwd: "./xmap"
-          add: "*.xMAP"
-          message: ${{ env.XMAP_COMMIT_MSG }}
