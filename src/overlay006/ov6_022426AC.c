@@ -4,12 +4,12 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -25,7 +25,7 @@ typedef struct UnkStruct_ov6_022426B8_t {
     void *unk_24;
     ArchivedSprite unk_28;
     CellActorCollection *unk_38;
-    UnkStruct_0200C738 unk_3C;
+    GF_G2dRenderer unk_3C;
     CellActor *unk_1C8;
     BOOL unk_1CC;
     BOOL unk_1D0;
@@ -193,7 +193,7 @@ static void ov6_022428F8(UnkStruct_ov6_022426B8 *param0)
     int v0;
     CellActorResourceData v1;
 
-    sub_020093B4(&v1, 0, 1, 2, 3, 0xffffffff, 0xffffffff, 0, 0, param0->unk_00[0], param0->unk_00[1], param0->unk_00[2], param0->unk_00[3], NULL, NULL);
+    CellActorResourceData_Init(&v1, 0, 1, 2, 3, 0xffffffff, 0xffffffff, 0, 0, param0->unk_00[0], param0->unk_00[1], param0->unk_00[2], param0->unk_00[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v2;

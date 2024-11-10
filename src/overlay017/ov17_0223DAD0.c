@@ -37,6 +37,7 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -45,7 +46,6 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -269,17 +269,17 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     sub_0201E450(4);
     Font_InitManager(FONT_SUBSCREEN, 23);
 
-    v0->unk_14.unk_58 = sub_0200C6E4(23);
+    v0->unk_14.unk_58 = SpriteRenderer_Create(23);
 
-    sub_0200C73C(v0->unk_14.unk_58, &Unk_ov17_02253008, &Unk_ov17_02252FDC, (16 + 16));
+    SpriteRenderer_CreateOamCharPlttManagers(v0->unk_14.unk_58, &Unk_ov17_02253008, &Unk_ov17_02252FDC, (16 + 16));
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_14.unk_5C = sub_0200C704(v0->unk_14.unk_58);
+    v0->unk_14.unk_5C = SpriteRenderer_CreateGfxHandler(v0->unk_14.unk_58);
 
-    sub_0200C7C0(v0->unk_14.unk_58, v0->unk_14.unk_5C, (64 + 64));
-    sub_0200CB30(v0->unk_14.unk_58, v0->unk_14.unk_5C, &Unk_ov17_02252FF0);
-    sub_0200964C(sub_0200C738(v0->unk_14.unk_58), 0, (256 * FX32_ONE));
+    SpriteRenderer_CreateCellActorList(v0->unk_14.unk_58, v0->unk_14.unk_5C, (64 + 64));
+    SpriteRenderer_InitGfxResourceList(v0->unk_14.unk_58, v0->unk_14.unk_5C, &Unk_ov17_02252FF0);
+    sub_0200964C(SpriteRenderer_GetG2dRenderer(v0->unk_14.unk_58), 0, (256 * FX32_ONE));
 
     v0->unk_14.unk_44 = sub_0200762C(23);
     ov17_0223E450();
@@ -419,8 +419,8 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
     ov17_02249358(v0->unk_14.unk_60);
     ov17_022493A4(v0->unk_1074);
 
-    sub_0200D0B0(v0->unk_14.unk_58, v0->unk_14.unk_5C);
-    sub_0200C8D4(v0->unk_14.unk_58);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(v0->unk_14.unk_58, v0->unk_14.unk_5C);
+    SpriteRenderer_Free(v0->unk_14.unk_58);
     VRAMTransferManager_Destroy();
 
     ov17_0224A1EC(&v0->unk_14);
@@ -556,7 +556,7 @@ static void ov17_0223E1FC(SysTask *param0, void *param1)
         }
 
         ov11_0221F8F0();
-        sub_0200C7EC(v0->unk_14.unk_5C);
+        SpriteGfxHandler_UpdateCellActorCollection(v0->unk_14.unk_5C);
         sub_0200C808();
 
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
@@ -723,7 +723,7 @@ static void ov17_0223E458(UnkStruct_ov17_0224DF54 *param0)
 
 static void ov17_0223E4B0(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadPalette(param0->unk_14.unk_90, 2, param0->unk_14.unk_58, param0->unk_14.unk_5C, param1, 6, 0, 8, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param0->unk_14.unk_90, 2, param0->unk_14.unk_58, param0->unk_14.unk_5C, param1, 6, 0, 8, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
 
     ov17_0224A20C(param0->unk_14.unk_58, param0->unk_14.unk_5C);
     ov17_0224A390(param0->unk_14.unk_58, param0->unk_14.unk_5C, param1);
@@ -768,8 +768,8 @@ static void ov17_0223E588(UnkStruct_ov17_0224DF54 *param0)
 
 static void ov17_0223E60C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 {
-    sub_0200CD7C(param0->unk_14.unk_90, 3, param0->unk_14.unk_58, param0->unk_14.unk_5C, 46, 6, 0, 2, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
-    sub_0200CD7C(param0->unk_14.unk_90, 3, param0->unk_14.unk_58, param0->unk_14.unk_5C, 46, 9, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33003);
+    SpriteRenderer_LoadPalette(param0->unk_14.unk_90, 3, param0->unk_14.unk_58, param0->unk_14.unk_5C, 46, 6, 0, 2, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
+    SpriteRenderer_LoadPalette(param0->unk_14.unk_90, 3, param0->unk_14.unk_58, param0->unk_14.unk_5C, 46, 9, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33003);
 
     ov17_022493C4(param0->unk_1074);
 }

@@ -3,8 +3,6 @@
 
 #include <dwc.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "overlay097/struct_ov97_0223829C.h"
 #include "overlay097/union_ov97_0222D2B0.h"
 
@@ -14,6 +12,7 @@
 #include "list_menu.h"
 #include "message.h"
 #include "savedata.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -44,7 +43,7 @@ typedef struct {
     int unk_43C;
     int unk_440;
     CellActorCollection *unk_444;
-    UnkStruct_0200C738 unk_448;
+    GF_G2dRenderer unk_448;
     SpriteResourceCollection *unk_5D4[6];
     SpriteResource *unk_5EC[6];
     CellActorResourceData unk_604;

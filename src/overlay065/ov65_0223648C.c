@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207DE04.h"
 #include "struct_defs/struct_0207DFAC.h"
 #include "struct_defs/struct_0207E060.h"
@@ -41,6 +40,7 @@
 #include "overlay_manager.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -104,7 +104,7 @@ typedef struct {
     u8 unk_15;
     u16 unk_16;
     CellActorCollection *unk_18;
-    UnkStruct_0200C738 unk_1C;
+    GF_G2dRenderer unk_1C;
     SpriteResourceCollection *unk_1A8[4];
     UnkStruct_ov63_0222BE18 *unk_1B8;
     UnkStruct_ov63_0222CD2C *unk_1BC;

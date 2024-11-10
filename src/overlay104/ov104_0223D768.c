@@ -10,7 +10,7 @@
 
 #include "narc.h"
 #include "palette.h"
-#include "unk_0200C6E4.h"
+#include "sprite_renderer.h"
 
 static const SpriteTemplate Unk_ov104_022417D8[] = {
     {
@@ -71,7 +71,7 @@ void ov104_0223D768(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *para
     v0 = &Unk_ov104_022417D8[param4];
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->resources[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[0]);
-    SpriteRenderer_LoadPalette(param3, 2, param0, param1, param2, v0->resources[1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[1]);
+    SpriteRenderer_LoadPaletteFromOpenNarc(param3, 2, param0, param1, param2, v0->resources[1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[1]);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->resources[2], 1, v0->resources[2]);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->resources[3], 1, v0->resources[3]);
 }
@@ -95,12 +95,12 @@ CellActorData *ov104_0223D828(SpriteRenderer *param0, SpriteGfxHandler *param1, 
 
     GF_ASSERT(param2 < NELEMS(Unk_ov104_022417D8));
 
-    v0 = SpriteActor_LoadResources(param0, param1, &Unk_ov104_022417D8[param2]);
-    SpriteActor_UpdateObject(v0->unk_00);
+    v0 = CellActor_LoadResources(param0, param1, &Unk_ov104_022417D8[param2]);
+    CellActor_UpdateObject(v0->cellActor);
     return v0;
 }
 
 void ov104_0223D858(CellActorData *param0)
 {
-    sub_0200D0F4(param0);
+    CellActorData_Delete(param0);
 }

@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -40,6 +39,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -121,7 +121,7 @@ typedef struct {
     BgConfig *unk_20;
     int unk_24;
     CellActorCollection *unk_28;
-    UnkStruct_0200C738 unk_2C;
+    GF_G2dRenderer unk_2C;
     SpriteResourceCollection *unk_1B8[6];
     SpriteResource *unk_1D0[6];
     CellActorResourceData unk_1E8;
@@ -532,7 +532,7 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_022340B0(UnkStruct_ov97_02234A2C *param0)
 {
-    sub_020093B4(&param0->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
+    CellActorResourceData_Init(&param0->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 

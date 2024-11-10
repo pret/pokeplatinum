@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02087A10_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -26,6 +25,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -86,7 +86,7 @@ struct UnkStruct_02087A10_t {
     Strbuf *unk_180;
     Strbuf *unk_184;
     CellActorCollection *unk_188;
-    UnkStruct_0200C738 unk_18C;
+    GF_G2dRenderer unk_18C;
     SpriteResourceCollection *unk_318[4];
     SpriteResource *unk_328[2][4];
     CellActorResourceData unk_348;
@@ -1590,8 +1590,8 @@ static void sub_02087A10(UnkStruct_02087A10 *param0)
 {
     int v0;
 
-    sub_020093B4(&param0->unk_348, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 1, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
-    sub_020093B4(&param0->unk_36C, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
+    CellActorResourceData_Init(&param0->unk_348, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 1, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
+    CellActorResourceData_Init(&param0->unk_36C, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v1;

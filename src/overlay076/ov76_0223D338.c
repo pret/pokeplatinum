@@ -34,13 +34,13 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
@@ -244,7 +244,7 @@ BOOL ov76_0223D550(UnkStruct_ov76_0223DE00 *param0)
     BOOL v0;
 
     v0 = Unk_ov76_0223EE04[param0->unk_3CC](param0);
-    sub_0200C7EC(param0->unk_D4.unk_0C);
+    SpriteGfxHandler_UpdateCellActorCollection(param0->unk_D4.unk_0C);
 
     return v0;
 }
@@ -293,12 +293,12 @@ static void ov76_0223D600(UnkStruct_ov76_0223DE00 *param0, int param1, BOOL para
     }
 
     ov76_0223C0EC(param0->unk_3C4[param1], &v0, &v1);
-    SpriteActor_SetSpritePositionXY(param0->unk_2F4[param1], v0, v1);
+    CellActorData_SetPositionXY(param0->unk_2F4[param1], v0, v1);
 
     if (param2 == 1) {
         param0->unk_3C4[v2] = param0->unk_3C4[param1];
         ov76_0223C0EC(param0->unk_3C4[v2], &v0, &v1);
-        SpriteActor_SetSpritePositionXY(param0->unk_2F4[v2], v0, v1);
+        CellActorData_SetPositionXY(param0->unk_2F4[v2], v0, v1);
     }
 }
 
@@ -452,14 +452,14 @@ void ov76_0223D94C(CellActorData *param0, int param1)
 {
     switch (param1) {
     case 0:
-        sub_0200D3CC(param0, 1);
+        CellActorData_SetAnimFrame(param0, 1);
         break;
     case 2:
-        sub_0200D3CC(param0, 2);
+        CellActorData_SetAnimFrame(param0, 2);
         break;
     case 1:
     case 3:
-        sub_0200D3CC(param0, 0);
+        CellActorData_SetAnimFrame(param0, 0);
         break;
     default:
         GF_ASSERT(0);
@@ -485,12 +485,12 @@ static void ov76_0223D9AC(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 3:
         ov76_0223D984(v0->unk_08, 0, -1);
-        sub_0200D3CC(v0->unk_04, 2);
+        CellActorData_SetAnimFrame(v0->unk_04, 2);
         v0->unk_00++;
         break;
     case 6:
         ov76_0223D984(v0->unk_08, 0, +2);
-        sub_0200D3CC(v0->unk_04, 0);
+        CellActorData_SetAnimFrame(v0->unk_04, 0);
         SysTask_Done(param0);
         Heap_FreeToHeap(v0);
         break;
@@ -1125,7 +1125,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             break;
         }
 
-        SpriteActor_EnableObject(param0->unk_2F4[1], 0);
+        CellActorData_DrawSprite(param0->unk_2F4[1], 0);
         ov76_0223D494(param0, 0, 0xff, 0);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 7);
         ov76_0223CDA4(param0);
@@ -1148,7 +1148,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
 
             v15 = sub_02098164(param0->unk_324[v13].unk_04);
             ov76_0223CDC4(&param0->unk_D4.unk_18[0], v15);
-            SpriteActor_SetSpritePositionXY(param0->unk_324[v13].unk_08, v11, v12);
+            CellActorData_SetPositionXY(param0->unk_324[v13].unk_08, v11, v12);
             ov76_0223B758(param0, v13);
             ov76_0223B7D4(param0, v13);
         } else {
@@ -1254,11 +1254,11 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
 {
     switch (param0->unk_3D4) {
     case 0:
-        sub_0200D474(param0->unk_2F4[0], 25);
-        sub_0200D474(param0->unk_2F4[1], 20);
-        sub_0200D364(param0->unk_2F4[0], 1);
+        CellActorData_SetPriority(param0->unk_2F4[0], 25);
+        CellActorData_SetPriority(param0->unk_2F4[1], 20);
+        CellActorData_SetAnim(param0->unk_2F4[0], 1);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 10);
-        SpriteActor_EnableObject(param0->unk_2F4[1], 1);
+        CellActorData_DrawSprite(param0->unk_2F4[1], 1);
         param0->unk_3D4++;
     case 1: {
         BOOL v0;
@@ -1276,7 +1276,7 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
             param0->unk_3D4 = 2;
             Sound_PlayEffect(1500);
         } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
-            SpriteActor_EnableObject(param0->unk_2F4[1], 0);
+            CellActorData_DrawSprite(param0->unk_2F4[1], 0);
             ov76_0223D600(param0, 0, 1);
             param0->unk_3D4 = 3;
             Sound_PlayEffect(1501);
@@ -1288,10 +1288,10 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
         }
         break;
     case 3:
-        sub_0200D474(param0->unk_2F4[0], 20);
-        sub_0200D474(param0->unk_2F4[1], 25);
+        CellActorData_SetPriority(param0->unk_2F4[0], 20);
+        CellActorData_SetPriority(param0->unk_2F4[1], 25);
         ov76_0223D494(param0, 0, 0xff, 0);
-        sub_0200D364(param0->unk_2F4[0], 0);
+        CellActorData_SetAnim(param0->unk_2F4[0], 0);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 7);
         break;
     }

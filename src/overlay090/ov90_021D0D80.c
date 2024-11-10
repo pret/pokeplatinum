@@ -12,8 +12,6 @@
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay007/struct_ov7_0224F2EC.h"
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D1750.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -31,12 +29,13 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "save_player.h"
+#include "sprite_renderer.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
@@ -856,8 +855,8 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 {
     VRAMTransferManager_New(32, param0->unk_00);
 
-    param0->unk_29C = sub_0200C6E4(param0->unk_00);
-    param0->unk_2A0 = sub_0200C704(param0->unk_29C);
+    param0->unk_29C = SpriteRenderer_Create(param0->unk_00);
+    param0->unk_2A0 = SpriteRenderer_CreateGfxHandler(param0->unk_29C);
 
     {
         UnkStruct_ov104_0224133C v0 = {
@@ -879,14 +878,14 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
             GX_OBJVRAMMODE_CHAR_1D_32K,
         };
 
-        sub_0200C73C(param0->unk_29C, &v0, &v1, 32);
-        sub_0200C7C0(param0->unk_29C, param0->unk_2A0, 4);
+        SpriteRenderer_CreateOamCharPlttManagers(param0->unk_29C, &v0, &v1, 32);
+        SpriteRenderer_CreateCellActorList(param0->unk_29C, param0->unk_2A0, 4);
         sub_0200A93C(param0->unk_00);
         sub_0200A944(param0->unk_00);
     }
 
     {
-        UnkStruct_ov7_0224F2EC v2 = {
+        SpriteResourceDataPath v2 = {
             "data/btower_chr.resdat",
             "data/btower_pal.resdat",
             "data/btower_cell.resdat",
@@ -896,15 +895,15 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
             "data/btower_celact.cldat"
         };
 
-        sub_0200C8F0(param0->unk_29C, param0->unk_2A0, &v2);
+        SpriteRenderer_LoadSpriteResourceData(param0->unk_29C, param0->unk_2A0, &v2);
     }
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov90_021D1B6C(UnkStruct_ov90_021D0ECC *param0)
 {
-    sub_0200C8B0(param0->unk_29C, param0->unk_2A0);
-    sub_0200C8D4(param0->unk_29C);
+    SpriteRenderer_DeleteGfxHandler(param0->unk_29C, param0->unk_2A0);
+    SpriteRenderer_Free(param0->unk_29C);
     VRAMTransferManager_Destroy();
 }
 
@@ -914,7 +913,7 @@ static void ov90_021D1B90(UnkStruct_ov90_021D0ECC *param0)
         return;
     }
 
-    sub_0200C7EC(param0->unk_2A0);
+    SpriteGfxHandler_UpdateCellActorCollection(param0->unk_2A0);
 }
 
 static void ov90_021D1BA4(void)
@@ -925,7 +924,7 @@ static void ov90_021D1BA4(void)
 static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0;
-    static const UnkStruct_ov7_0224F358 v1[] = {
+    static const CellActorPropsTemplate v1[] = {
         { 0, 54, 68, 0, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
         { 0, 204, 114, 0, 1, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
         { 0, 128, 52, 0, 2, 3, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
@@ -933,7 +932,7 @@ static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
     };
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_2A4[v0] = sub_0200CA08(param0->unk_29C, param0->unk_2A0, &v1[v0]);
+        param0->unk_2A4[v0] = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_29C, param0->unk_2A0, &v1[v0]);
     }
 
     CellActor_SetDrawFlag(param0->unk_2A4[2], 0);
@@ -949,7 +948,7 @@ static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200C7E4(param0->unk_2A4[v0]);
+        thunk_CellActor_Delete(param0->unk_2A4[v0]);
     }
 }
 
@@ -1002,5 +1001,5 @@ static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2,
         break;
     }
 
-    SpriteActor_SetPositionXY(param0->unk_2A4[0], param2 * 72 + 54, param3 * 24 + 68);
+    CellActor_SetPositionXY(param0->unk_2A4[0], param2 * 72 + 54, param3 * 24 + 68);
 }

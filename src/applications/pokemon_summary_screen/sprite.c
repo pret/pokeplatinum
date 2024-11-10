@@ -7,8 +7,7 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
-#include "overlay007/struct_ov7_0224F2EC.h"
-#include "overlay007/struct_ov7_0224F358.h"
+#include "data/pst_pal.naix"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
@@ -19,7 +18,8 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "ribbon.h"
-#include "unk_0200C6E4.h"
+#include "sprite_renderer.h"
+#include "sprite_resource.h"
 #include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
 
@@ -27,7 +27,7 @@ static void sub_0208F194(PokemonSummaryScreen *param0, u8 param1, u8 param2, u8 
 static void sub_0208EF0C(PokemonSummaryScreen *param0);
 static void sub_0208FC30(CellActor *param0, u32 param1, u32 param2, const s16 *param3);
 
-static const UnkStruct_ov7_0224F358 Unk_020F41A8[] = {
+static const CellActorPropsTemplate Unk_020F41A8[] = {
     { 0x1, 0x80, 0x18, 0x0, 0x0, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     { 0x1, 0x90, 0x18, 0x0, 0x1, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     { 0x1, 0xA0, 0x18, 0x0, 0x2, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
@@ -133,8 +133,8 @@ void sub_0208EA44(PokemonSummaryScreen *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     VRAMTransferManager_New(32, 19);
 
-    param0->renderer = sub_0200C6E4(19);
-    param0->gfxHandler = sub_0200C704(param0->renderer);
+    param0->renderer = SpriteRenderer_Create(19);
+    param0->gfxHandler = SpriteRenderer_CreateGfxHandler(param0->renderer);
 
     {
         UnkStruct_ov104_0224133C v0 = {
@@ -155,12 +155,12 @@ void sub_0208EA44(PokemonSummaryScreen *param0)
             GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
-        sub_0200C73C(param0->renderer, &v0, &v1, 32);
-        sub_0200C7C0(param0->renderer, param0->gfxHandler, 77);
+        SpriteRenderer_CreateOamCharPlttManagers(param0->renderer, &v0, &v1, 32);
+        SpriteRenderer_CreateCellActorList(param0->renderer, param0->gfxHandler, 77);
     }
 
     {
-        UnkStruct_ov7_0224F2EC v2 = {
+        SpriteResourceDataPath v2 = {
             "data/pst_chr.resdat",
             "data/pst_pal.resdat",
             "data/pst_cell.resdat",
@@ -170,14 +170,14 @@ void sub_0208EA44(PokemonSummaryScreen *param0)
             "data/pst_h.cldat"
         };
 
-        sub_0200C8F0(param0->renderer, param0->gfxHandler, &v2);
+        SpriteRenderer_LoadSpriteResourceData(param0->renderer, param0->gfxHandler, &v2);
     }
 }
 
 void sub_0208EAF4(PokemonSummaryScreen *summaryScreen)
 {
-    sub_0200C8B0(summaryScreen->renderer, summaryScreen->gfxHandler);
-    sub_0200C8D4(summaryScreen->renderer);
+    SpriteRenderer_DeleteGfxHandler(summaryScreen->renderer, summaryScreen->gfxHandler);
+    SpriteRenderer_Free(summaryScreen->renderer);
 }
 
 void sub_0208EB14(PokemonSummaryScreen *summaryScreen)
@@ -194,7 +194,7 @@ void sub_0208EB64(PokemonSummaryScreen *param0)
     u16 v0;
 
     for (v0 = 0; v0 < 77; v0++) {
-        param0->unk_41C[v0] = sub_0200CA08(param0->renderer, param0->gfxHandler, &Unk_020F41A8[v0]);
+        param0->unk_41C[v0] = SpriteRenderer_CreateCellActorFromTemplate(param0->renderer, param0->gfxHandler, &Unk_020F41A8[v0]);
     }
 
     sub_0208EF0C(param0);
@@ -270,7 +270,7 @@ void sub_0208ECF4(PokemonSummaryScreen *param0)
             }
         }
 
-        sub_0200D50C(v0[v5], &v1, &v2);
+        CellActor_GetPositionXY(v0[v5], &v1, &v2);
 
         if (param0->page >= v5) {
             v1 = v3 + v6 * 16;
@@ -278,7 +278,7 @@ void sub_0208ECF4(PokemonSummaryScreen *param0)
             v1 = v3 + 24 + (v6 - 1) * 16;
         }
 
-        SpriteActor_SetPositionXY(param0->unk_41C[v5], v1, v2);
+        CellActor_SetPositionXY(param0->unk_41C[v5], v1, v2);
         CellActor_SetDrawFlag(v0[v5], 1);
 
         v6++;
@@ -295,8 +295,8 @@ void sub_0208EDC4(PokemonSummaryScreen *param0)
 
     v0 = sub_0208ECB8(param0);
 
-    SpriteActor_SetPositionXY(param0->unk_41C[21], v0 + -12, 24);
-    SpriteActor_SetPositionXY(param0->unk_41C[22], (23 * 8 + 4) + ((23 * 8 + 4) - v0) + -4, 24);
+    CellActor_SetPositionXY(param0->unk_41C[21], v0 + -12, 24);
+    CellActor_SetPositionXY(param0->unk_41C[22], (23 * 8 + 4) + ((23 * 8 + 4) - v0) + -4, 24);
 }
 
 void PokemonSummaryScreen_UpdatePageArrows(PokemonSummaryScreen *summaryScreen, BOOL showArrows)
@@ -319,8 +319,8 @@ void sub_0208EE3C(PokemonSummaryScreen *param0)
         v0 = 21 + param0->monData.caughtBall - 1;
     }
 
-    sub_0200D948(param0->renderer, param0->gfxHandler, 39, v0, 0, 0);
-    sub_0200D97C(param0->renderer, param0->gfxHandler, 39, 37 + Unk_020F411C[param0->monData.caughtBall], 0, 6);
+    SpriteRenderer_ModifyTiles(param0->renderer, param0->gfxHandler, 39, v0, 0, 0);
+    SpriteRenderer_ModifyPalette(param0->renderer, param0->gfxHandler, 39, 37 + Unk_020F411C[param0->monData.caughtBall], 0, 6);
 }
 
 void sub_0208EE9C(PokemonSummaryScreen *param0)
@@ -360,19 +360,19 @@ void sub_0208EF58(PokemonSummaryScreen *param0)
     u16 v0;
 
     for (v0 = 11; v0 <= 19; v0++) {
-        SpriteActor_DrawSprite(param0->unk_41C[v0], 0);
+        CellActor_DrawSprite(param0->unk_41C[v0], 0);
     }
 
     switch (param0->page) {
     case 0:
-        SpriteActor_DrawSprite(param0->unk_41C[11], 1);
+        CellActor_DrawSprite(param0->unk_41C[11], 1);
 
         if (param0->monData.type1 == param0->monData.type2) {
-            SpriteActor_SetPositionXY(param0->unk_41C[11], 216, 80);
+            CellActor_SetPositionXY(param0->unk_41C[11], 216, 80);
         } else {
-            SpriteActor_SetPositionXY(param0->unk_41C[11], 199, 80);
-            SpriteActor_DrawSprite(param0->unk_41C[12], 1);
-            SpriteActor_SetPositionXY(
+            CellActor_SetPositionXY(param0->unk_41C[11], 199, 80);
+            CellActor_DrawSprite(param0->unk_41C[12], 1);
+            CellActor_SetPositionXY(
                 param0->unk_41C[12], 233, 80);
         }
         break;
@@ -383,19 +383,19 @@ void sub_0208EF58(PokemonSummaryScreen *param0)
             }
 
             sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.moves[v0], MOVEATTRIBUTE_TYPE));
-            SpriteActor_DrawSprite(param0->unk_41C[13 + v0], 1);
-            SpriteActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
+            CellActor_DrawSprite(param0->unk_41C[13 + v0], 1);
+            CellActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
         if (param0->data->move != 0) {
             sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->data->move, MOVEATTRIBUTE_TYPE));
-            SpriteActor_DrawSprite(param0->unk_41C[13 + 4], 1);
-            SpriteActor_SetPositionXY(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
+            CellActor_DrawSprite(param0->unk_41C[13 + 4], 1);
+            CellActor_SetPositionXY(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
 
-        SpriteActor_SetPositionXY(param0->unk_41C[11], 63, 52);
-        SpriteActor_SetPositionXY(param0->unk_41C[12], 63 + 34, 52);
-        SpriteActor_SetPositionXY(param0->unk_41C[18], (92 + 16), 72);
+        CellActor_SetPositionXY(param0->unk_41C[11], 63, 52);
+        CellActor_SetPositionXY(param0->unk_41C[12], 63 + 34, 52);
+        CellActor_SetPositionXY(param0->unk_41C[18], (92 + 16), 72);
         break;
     case 5:
         for (v0 = 0; v0 < 4; v0++) {
@@ -404,19 +404,19 @@ void sub_0208EF58(PokemonSummaryScreen *param0)
             }
 
             sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.moves[v0], MOVEATTRIBUTE_CONTEST_TYPE) + 18);
-            SpriteActor_DrawSprite(param0->unk_41C[13 + v0], 1);
-            SpriteActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
+            CellActor_DrawSprite(param0->unk_41C[13 + v0], 1);
+            CellActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
         if (param0->data->move != 0) {
             sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->data->move, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
-            SpriteActor_DrawSprite(param0->unk_41C[13 + 4], 1);
-            SpriteActor_SetPositionXY(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
+            CellActor_DrawSprite(param0->unk_41C[13 + 4], 1);
+            CellActor_SetPositionXY(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
 
-        SpriteActor_SetPositionXY(param0->unk_41C[11], 63, 52);
-        SpriteActor_SetPositionXY(param0->unk_41C[12], 63 + 34, 52);
-        SpriteActor_SetPositionXY(param0->unk_41C[18], (92 + 16), 72);
+        CellActor_SetPositionXY(param0->unk_41C[11], 63, 52);
+        CellActor_SetPositionXY(param0->unk_41C[12], 63 + 34, 52);
+        CellActor_SetPositionXY(param0->unk_41C[18], (92 + 16), 72);
         break;
     }
 }
@@ -429,8 +429,8 @@ void sub_0208F16C(PokemonSummaryScreen *param0)
 
 static void sub_0208F194(PokemonSummaryScreen *param0, u8 param1, u8 param2, u8 param3)
 {
-    sub_0200D948(param0->renderer, param0->gfxHandler, sub_0207C944(), sub_0207C908(param3), 1, param2);
-    sub_0200D414(param0->unk_41C[param1], sub_0207C92C(param3) + 3);
+    SpriteRenderer_ModifyTiles(param0->renderer, param0->gfxHandler, sub_0207C944(), sub_0207C908(param3), 1, param2);
+    thunk_CellActor_SetExplicitPalette(param0->unk_41C[param1], sub_0207C92C(param3) + RESDAT_PST_PAL_NARC_27_MEMBER_74_1_OFFSET);
 }
 
 static void sub_0208F1E4(PokemonSummaryScreen *param0, u8 *param1, s16 *param2, s16 *param3)
@@ -440,7 +440,7 @@ static void sub_0208F1E4(PokemonSummaryScreen *param0, u8 *param1, s16 *param2, 
     v1 = 42 + *param1 * 32;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200D50C(param0->unk_41C[13 + v0], param2, param3);
+        CellActor_GetPositionXY(param0->unk_41C[13 + v0], param2, param3);
 
         if (v1 == *param3) {
             *param1 = (u8)v0;
@@ -456,29 +456,29 @@ void sub_0208F22C(PokemonSummaryScreen *param0, u8 param1, u8 param2)
     sub_0208F1E4(param0, &param1, &v0, &v1);
     sub_0208F1E4(param0, &param2, &v2, &v3);
 
-    SpriteActor_SetPositionXY(param0->unk_41C[13 + param1], v2, v3);
-    SpriteActor_SetPositionXY(param0->unk_41C[13 + param2], v0, v1);
+    CellActor_SetPositionXY(param0->unk_41C[13 + param1], v2, v3);
+    CellActor_SetPositionXY(param0->unk_41C[13 + param2], v0, v1);
 }
 
 void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summaryScreen, u32 move)
 {
     u32 category = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, sub_0207CAC0(), sub_0207CA90(category), 1, 10);
-    sub_0200D414(summaryScreen->unk_41C[18], sub_0207CAA8(category) + 3);
+    SpriteRenderer_ModifyTiles(summaryScreen->renderer, summaryScreen->gfxHandler, sub_0207CAC0(), sub_0207CA90(category), 1, 10);
+    thunk_CellActor_SetExplicitPalette(summaryScreen->unk_41C[18], sub_0207CAA8(category) + RESDAT_PST_PAL_NARC_27_MEMBER_74_1_OFFSET);
 }
 
 void PokemonSummaryScreen_UpdateMoveSelectorPos(PokemonSummaryScreen *summaryScreen)
 {
-    SpriteActor_SetPositionXY(summaryScreen->unk_41C[9], 194, 48 + summaryScreen->cursor * 32);
+    CellActor_SetPositionXY(summaryScreen->unk_41C[9], 194, 48 + summaryScreen->cursor * 32);
 }
 
 void sub_0208F310(PokemonSummaryScreen *summaryScreen)
 {
     s16 v0, v1;
 
-    sub_0200D50C(summaryScreen->unk_41C[9], &v0, &v1);
-    SpriteActor_SetPositionXY(summaryScreen->unk_41C[10], v0, v1);
+    CellActor_GetPositionXY(summaryScreen->unk_41C[9], &v0, &v1);
+    CellActor_SetPositionXY(summaryScreen->unk_41C[10], v0, v1);
     CellActor_SetDrawFlag(summaryScreen->unk_41C[10], TRUE);
 }
 
@@ -600,15 +600,15 @@ void sub_0208F574(PokemonSummaryScreen *param0)
     }
 
     if ((param0->monData.isShiny == 1) && (param0->monData.isEgg == 0)) {
-        SpriteActor_DrawSprite(param0->unk_41C[53], 1);
+        CellActor_DrawSprite(param0->unk_41C[53], 1);
     } else {
-        SpriteActor_DrawSprite(param0->unk_41C[53], 0);
+        CellActor_DrawSprite(param0->unk_41C[53], 0);
     }
 
     if (param0->monData.pokerus == 2) {
-        SpriteActor_DrawSprite(param0->unk_41C[54], 1);
+        CellActor_DrawSprite(param0->unk_41C[54], 1);
     } else {
-        SpriteActor_DrawSprite(param0->unk_41C[54], 0);
+        CellActor_DrawSprite(param0->unk_41C[54], 0);
     }
 }
 
@@ -622,9 +622,9 @@ void sub_0208F600(PokemonSummaryScreen *summaryScreen)
     PokemonSummaryScreen_CalcSubscreenButtonCirclePos(summaryScreen, &x, &y);
 
     if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NORMAL) {
-        SpriteActor_SetPositionXY(summaryScreen->unk_41C[41], x, y + 192);
+        CellActor_SetPositionXY(summaryScreen->unk_41C[41], x, y + 192);
     } else {
-        SpriteActor_SetPositionXY(summaryScreen->unk_41C[41], x - 4, y + 192);
+        CellActor_SetPositionXY(summaryScreen->unk_41C[41], x - 4, y + 192);
     }
 }
 
@@ -653,7 +653,7 @@ void PokemonSummaryScreen_UpdateAButtonSprite(PokemonSummaryScreen *summaryScree
         return;
     }
 
-    SpriteActor_SetPositionXY(summaryScreen->unk_41C[47], Window_GetXPos(window) * 8 - 10, 8);
+    CellActor_SetPositionXY(summaryScreen->unk_41C[47], Window_GetXPos(window) * 8 - 10, 8);
     CellActor_SetDrawFlag(summaryScreen->unk_41C[47], TRUE);
 }
 
@@ -668,22 +668,22 @@ void sub_0208F71C(PokemonSummaryScreen *param0)
         v1 = Pokemon_IconSpriteIndex(v0);
     }
 
-    sub_0200D948(param0->renderer, param0->gfxHandler, 19, v1, 0, 11);
-    sub_0200D414(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.species, param0->monData.form, param0->monData.isEgg) + 7);
+    SpriteRenderer_ModifyTiles(param0->renderer, param0->gfxHandler, 19, v1, 0, 11);
+    thunk_CellActor_SetExplicitPalette(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.species, param0->monData.form, param0->monData.isEgg) + RESDAT_PST_PAL_NARC_20_MEMBER_23_3_OFFSET);
     CellActor_SetFlipMode(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1));
 }
 
 void PokemonSummaryScreen_ShowMonIcon(PokemonSummaryScreen *summaryScreen)
 {
-    sub_0200D97C(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 5);
+    SpriteRenderer_ModifyPalette(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 5);
 
     if (summaryScreen->page == PSS_PAGE_BATTLE_MOVES) {
-        SpriteActor_SetPositionXY(summaryScreen->unk_41C[19], 24, 48);
+        CellActor_SetPositionXY(summaryScreen->unk_41C[19], 24, 48);
     } else {
-        SpriteActor_SetPositionXY(summaryScreen->unk_41C[19], 32, 68);
+        CellActor_SetPositionXY(summaryScreen->unk_41C[19], 32, 68);
     }
 
-    SpriteActor_DrawSprite(summaryScreen->unk_41C[19], TRUE);
+    CellActor_DrawSprite(summaryScreen->unk_41C[19], TRUE);
 }
 
 static s16 sub_0208F800(u32 param0, s16 param1, s16 param2)
@@ -707,11 +707,11 @@ static s16 sub_0208F800(u32 param0, s16 param1, s16 param2)
 
 void PokemonSummaryScreen_DrawContestStatDots(PokemonSummaryScreen *summaryScreen)
 {
-    SpriteActor_SetPositionXY(summaryScreen->unk_41C[48], sub_0208F800(summaryScreen->monData.cool, 88, 88), sub_0208F800(summaryScreen->monData.cool, 49, 73));
-    SpriteActor_SetPositionXY(summaryScreen->unk_41C[49], sub_0208F800(summaryScreen->monData.beauty, 110, 88), sub_0208F800(summaryScreen->monData.beauty, 65, 73));
-    SpriteActor_SetPositionXY(summaryScreen->unk_41C[50], sub_0208F800(summaryScreen->monData.cute, 103, 88), sub_0208F800(summaryScreen->monData.cute, 92, 73));
-    SpriteActor_SetPositionXY(summaryScreen->unk_41C[51], sub_0208F800(summaryScreen->monData.smart, 72, 87), sub_0208F800(summaryScreen->monData.smart, 92, 73));
-    SpriteActor_SetPositionXY(summaryScreen->unk_41C[52], sub_0208F800(summaryScreen->monData.tough, 65, 87), sub_0208F800(summaryScreen->monData.tough, 65, 73));
+    CellActor_SetPositionXY(summaryScreen->unk_41C[48], sub_0208F800(summaryScreen->monData.cool, 88, 88), sub_0208F800(summaryScreen->monData.cool, 49, 73));
+    CellActor_SetPositionXY(summaryScreen->unk_41C[49], sub_0208F800(summaryScreen->monData.beauty, 110, 88), sub_0208F800(summaryScreen->monData.beauty, 65, 73));
+    CellActor_SetPositionXY(summaryScreen->unk_41C[50], sub_0208F800(summaryScreen->monData.cute, 103, 88), sub_0208F800(summaryScreen->monData.cute, 92, 73));
+    CellActor_SetPositionXY(summaryScreen->unk_41C[51], sub_0208F800(summaryScreen->monData.smart, 72, 87), sub_0208F800(summaryScreen->monData.smart, 92, 73));
+    CellActor_SetPositionXY(summaryScreen->unk_41C[52], sub_0208F800(summaryScreen->monData.tough, 65, 87), sub_0208F800(summaryScreen->monData.tough, 65, 73));
 
     CellActor_SetDrawFlag(summaryScreen->unk_41C[48], TRUE);
     CellActor_SetDrawFlag(summaryScreen->unk_41C[49], TRUE);
@@ -731,8 +731,8 @@ void PokemonSummaryScreen_HideContestStatDots(PokemonSummaryScreen *summaryScree
 
 static void sub_0208F9B0(PokemonSummaryScreen *summaryScreen, u8 ribbonNum, u8 param2)
 {
-    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, 39, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + param2);
-    sub_0200D414(summaryScreen->unk_41C[55 + param2], Ribbon_GetData(ribbonNum, RIBBON_DATA_PALETTE_NUM) + 7);
+    SpriteRenderer_ModifyTiles(summaryScreen->renderer, summaryScreen->gfxHandler, 39, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + param2);
+    thunk_CellActor_SetExplicitPalette(summaryScreen->unk_41C[55 + param2], Ribbon_GetData(ribbonNum, RIBBON_DATA_PALETTE_NUM) + RESDAT_PST_PAL_NARC_20_MEMBER_23_3_OFFSET);
 }
 
 void sub_0208FA04(PokemonSummaryScreen *summaryScreen)
@@ -747,7 +747,7 @@ void sub_0208FA04(PokemonSummaryScreen *summaryScreen)
         return;
     }
 
-    sub_0200D97C(summaryScreen->renderer, summaryScreen->gfxHandler, 39, 136, 0, 5);
+    SpriteRenderer_ModifyPalette(summaryScreen->renderer, summaryScreen->gfxHandler, 39, 136, 0, 5);
 
     for (i = 0; i < 12; i++) {
         if (i < summaryScreen->ribbonMax) {
@@ -773,7 +773,7 @@ void PokemonSummaryScreen_UpdateShownRibbonRows(PokemonSummaryScreen *summaryScr
 
 void PokemonSummaryScreen_UpdateRibbonCursorPos(PokemonSummaryScreen *summaryScreen)
 {
-    SpriteActor_SetPositionXY(
+    CellActor_SetPositionXY(
         summaryScreen->unk_41C[67], 132 + (summaryScreen->ribbonCol & (RIBBONS_PER_ROW - 1)) * 32, 56 + (summaryScreen->ribbonCol / RIBBONS_PER_ROW) * 40);
 }
 
@@ -850,7 +850,7 @@ static void sub_0208FC30(CellActor *param0, u32 param1, u32 param2, const s16 *p
         v1 = param3[3] - (((((param3[3] - param3[1]) << 8) / 256) * param1) >> 8);
     }
 
-    SpriteActor_SetPositionXY(param0, v0, v1);
+    CellActor_SetPositionXY(param0, v0, v1);
     SpriteActor_SetAnimFrame(param0, 0);
     CellActor_SetAnim(param0, 0);
 }

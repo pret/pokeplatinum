@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay019/funcptr_ov19_021D79B8.h"
@@ -43,6 +42,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite_renderer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
@@ -57,7 +57,7 @@ struct UnkStruct_ov19_021D61B0_t {
     SysTask *unk_04;
     SysTask *unk_08[4];
     CellActorCollection *unk_18;
-    UnkStruct_0200C738 unk_1C;
+    GF_G2dRenderer unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
     UnkStruct_02007768 *unk_1BC;
     BgConfig *unk_1C0;

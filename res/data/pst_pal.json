@@ -1,0 +1,53 @@
+{
+    "kind": "pltt",
+    "graphics": [
+        {
+            "narc": 39,
+            "file": 69,
+            "compressed": false,
+            "id": 0,
+            "vramType": 1,
+            "paletteCount": 3
+        },
+        {
+            "narc": 27,
+            "file": 74,
+            "compressed": false,
+            "id": 1,
+            "vramType": 1,
+            "paletteCount": 3
+        },
+        {
+            "narc": 39,
+            "file": 65,
+            "compressed": false,
+            "id": 3,
+            "vramType": 1,
+            "paletteCount": 1
+        },
+        {
+            "narc": 20,
+            "file": 23,
+            "compressed": false,
+            "id": 4,
+            "vramType": 2,
+            "paletteCount": 1
+        },
+        {
+            "narc": 39,
+            "file": 136,
+            "compressed": false,
+            "id": 5,
+            "vramType": 1,
+            "paletteCount": 5
+        },
+        {
+            "narc": 39,
+            "file": 37,
+            "compressed": false,
+            "id": 6,
+            "vramType": 1,
+            "paletteCount": 1
+        }
+    ]
+}

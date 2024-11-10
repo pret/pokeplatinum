@@ -14,7 +14,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "palette.h"
-#include "unk_0200C6E4.h"
+#include "sprite_renderer.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -219,7 +219,7 @@ void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)
             param0->unk_1114.unk_00--;
         } else {
             v0 = G2_GetOBJCharPtr();
-            v2 = SpriteActor_ImageProxy(param1->unk_00);
+            v2 = SpriteActor_ImageProxy(param1->cellActor);
 
             if (param0->unk_00->unk_00 == 0) {
                 MI_CpuCopy32(&param0->unk_10F4[param0->unk_1114.unk_02 * ((0x20 * 8) / 2)], (void *)((u32)v0 + 0x1d * 0x20 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
@@ -253,7 +253,7 @@ void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)
         }
     }
 
-    if (sub_0200D3B8(param1) == 0) {
+    if (CellActorData_IsAnimated(param1) == 0) {
         if (param0->unk_1114.unk_04 != -1) {
             param0->unk_1114.unk_04++;
 
@@ -264,10 +264,10 @@ void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)
                 v1 = 0;
             }
 
-            sub_0200D364(param1, v1);
+            CellActorData_SetAnim(param1, v1);
         } else {
             param0->unk_1114.unk_04 = 0;
-            sub_0200D364(param1, 0);
+            CellActorData_SetAnim(param1, 0);
         }
     }
 }

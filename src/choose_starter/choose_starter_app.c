@@ -16,7 +16,6 @@
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay021/struct_ov21_021E7F40.h"
@@ -42,6 +41,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -208,7 +208,7 @@ typedef struct ChooseStarterApp {
     Strbuf *unk_AC;
     WindowTemplate unk_B0;
     Menu *unk_B8;
-    UnkStruct_0200C738 unk_BC;
+    GF_G2dRenderer unk_BC;
     CellActorCollection *unk_248;
     SpriteResourceCollection *unk_24C[6];
     UnkStruct_02007768 *spriteManager;
@@ -1455,7 +1455,7 @@ static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor 
     CellActorResourceData v0;
     CellActorInitParams v1;
 
-    sub_020093B4(&v0, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, param0->unk_24C[0], param0->unk_24C[1], param0->unk_24C[2], param0->unk_24C[3], NULL, NULL);
+    CellActorResourceData_Init(&v0, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, param0->unk_24C[0], param0->unk_24C[1], param0->unk_24C[2], param0->unk_24C[3], NULL, NULL);
 
     v1.collection = param0->unk_248;
     v1.resourceData = &v0;

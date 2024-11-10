@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_defs/struct_0200C738.h"
+#include "sprite_renderer.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
@@ -121,7 +121,7 @@ typedef struct {
     BgConfig *unk_00;
     CellActorCollection * unk_04;
     NNSG2dRenderSurface unk_08;
-    UnkStruct_0200C738 unk_78;
+    GF_G2dRenderer unk_78;
     SpriteResourceCollection * unk_204[4];
     StringTemplate * unk_214;
     MessageLoader * unk_218;
@@ -986,7 +986,7 @@ static void ov64_0222E3D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
     param0->unk_04 = sub_020095C4(64, &param0->unk_78, param1);
 
-    sub_0200A8B0(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.unk_00);
+    sub_0200A8B0(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.rendererInstance);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_204[v0] = SpriteResourceCollection_New(64, v0, param1);
@@ -1005,7 +1005,7 @@ static void ov64_0222E3D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
     SpriteResource_ReleaseData(param0->unk_260[0]);
     SpriteResource_ReleaseData(param0->unk_260[1]);
-    sub_020093B4(&param0->unk_23C, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param0->unk_204[0], param0->unk_204[1], param0->unk_204[2], param0->unk_204[3], NULL, NULL);
+    CellActorResourceData_Init(&param0->unk_23C, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param0->unk_204[0], param0->unk_204[1], param0->unk_204[2], param0->unk_204[3], NULL, NULL);
 }
 
 static void ov64_0222E570 (UnkStruct_ov64_0222E21C * param0)

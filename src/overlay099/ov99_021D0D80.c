@@ -26,12 +26,12 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020041CC.h"
 #include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -133,17 +133,17 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     ov99_021D1918(v0);
 
-    v0->unk_18 = sub_0200C6E4(75);
+    v0->unk_18 = SpriteRenderer_Create(75);
 
-    sub_0200C73C(v0->unk_18, &Unk_ov99_021D4760, &Unk_ov99_021D4718, (16 + 16));
+    SpriteRenderer_CreateOamCharPlttManagers(v0->unk_18, &Unk_ov99_021D4760, &Unk_ov99_021D4718, (16 + 16));
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_1C = sub_0200C704(v0->unk_18);
+    v0->unk_1C = SpriteRenderer_CreateGfxHandler(v0->unk_18);
 
-    sub_0200C7C0(v0->unk_18, v0->unk_1C, (64 + 64));
-    sub_0200CB30(v0->unk_18, v0->unk_1C, &Unk_ov99_021D472C);
-    sub_0200964C(sub_0200C738(v0->unk_18), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteRenderer_CreateCellActorList(v0->unk_18, v0->unk_1C, (64 + 64));
+    SpriteRenderer_InitGfxResourceList(v0->unk_18, v0->unk_1C, &Unk_ov99_021D472C);
+    sub_0200964C(SpriteRenderer_GetG2dRenderer(v0->unk_18), 0, ((192 + 80) << FX32_SHIFT));
 
     ov99_021D16E4(v0);
 
@@ -269,8 +269,8 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     }
 
     MessageLoader_Free(v0->unk_20);
-    sub_0200D0B0(v0->unk_18, v0->unk_1C);
-    sub_0200C8D4(v0->unk_18);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(v0->unk_18, v0->unk_1C);
+    SpriteRenderer_Free(v0->unk_18);
     PaletteData_FreeBuffer(v0->unk_0C, 0);
     PaletteData_FreeBuffer(v0->unk_0C, 1);
     PaletteData_FreeBuffer(v0->unk_0C, 2);
@@ -299,7 +299,7 @@ static void ov99_021D1244(SysTask *param0, void *param1)
         G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 
-    sub_0200C7EC(v0->unk_1C);
+    SpriteGfxHandler_UpdateCellActorCollection(v0->unk_1C);
     sub_0200C808();
 }
 

@@ -25,6 +25,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -33,7 +34,6 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -179,15 +179,15 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     sub_0201E450(4);
     Font_InitManager(FONT_SUBSCREEN, 24);
 
-    v0->unk_10.unk_18 = sub_0200C6E4(24);
+    v0->unk_10.unk_18 = SpriteRenderer_Create(24);
 
-    sub_0200C73C(v0->unk_10.unk_18, &Unk_ov17_02254B0C, &Unk_ov17_02254AC4, (16 + 16));
+    SpriteRenderer_CreateOamCharPlttManagers(v0->unk_10.unk_18, &Unk_ov17_02254B0C, &Unk_ov17_02254AC4, (16 + 16));
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_10.unk_1C = sub_0200C704(v0->unk_10.unk_18);
-    sub_0200C7C0(v0->unk_10.unk_18, v0->unk_10.unk_1C, (64 + 64));
-    sub_0200CB30(v0->unk_10.unk_18, v0->unk_10.unk_1C, &Unk_ov17_02254AD8);
+    v0->unk_10.unk_1C = SpriteRenderer_CreateGfxHandler(v0->unk_10.unk_18);
+    SpriteRenderer_CreateCellActorList(v0->unk_10.unk_18, v0->unk_10.unk_1C, (64 + 64));
+    SpriteRenderer_InitGfxResourceList(v0->unk_10.unk_18, v0->unk_10.unk_1C, &Unk_ov17_02254AD8);
     v0->unk_10.unk_04 = sub_0200762C(24);
 
     ov17_0224FDDC();
@@ -298,8 +298,8 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 3);
     Bg_ToggleLayer(4, 0);
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 4);
-    sub_0200D0B0(v0->unk_10.unk_18, v0->unk_10.unk_1C);
-    sub_0200C8D4(v0->unk_10.unk_18);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(v0->unk_10.unk_18, v0->unk_10.unk_1C);
+    SpriteRenderer_Free(v0->unk_10.unk_18);
     VRAMTransferManager_Destroy();
 
     ov17_022507C4(&v0->unk_10);
@@ -399,7 +399,7 @@ static void ov17_0224FAFC(SysTask *param0, void *param1)
     if (v0->unk_850 == 1) {
         sub_02007768(v0->unk_10.unk_04);
         ov11_0221F8F0();
-        sub_0200C7EC(v0->unk_10.unk_1C);
+        SpriteGfxHandler_UpdateCellActorCollection(v0->unk_10.unk_1C);
         sub_0200C808();
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }

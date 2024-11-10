@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F0EB0.h"
@@ -21,6 +20,7 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -64,7 +64,7 @@ typedef struct {
     NNSG2dCharacterData *unk_68;
     NNSG2dPaletteData *unk_6C;
     CellActorCollection *unk_70;
-    UnkStruct_0200C738 unk_74;
+    GF_G2dRenderer unk_74;
     SpriteResourceCollection *unk_200;
     SpriteResourceCollection *unk_204;
     SpriteResourceCollection *unk_208;
@@ -151,7 +151,7 @@ typedef struct {
     s8 unk_06;
     s8 unk_07;
     CellActorCollection *unk_08;
-    UnkStruct_0200C738 unk_0C;
+    GF_G2dRenderer unk_0C;
     SpriteResourceCollection *unk_198;
     SpriteResourceCollection *unk_19C;
     SpriteResourceCollection *unk_1A0;
@@ -540,7 +540,7 @@ static CellActor *ov6_02243740(UnkStruct_ov6_02243258 *param0, const VecFx32 *pa
         param5 = 0xffffffff;
     }
 
-    sub_020093B4(
+    CellActorResourceData_Init(
         &v0, param2, param3, param4, param5, 0xffffffff, 0xffffffff, 0, param6, param0->unk_198, param0->unk_19C, param0->unk_1A0, param0->unk_1A4, NULL, NULL);
 
     v1.collection = param0->unk_08;
@@ -1842,10 +1842,10 @@ static CellActor *ov6_02244C20(UnkStruct_ov6_02243FFC *param0, const VecFx32 *pa
     CellActor *v2;
 
     if (param5 == 4) {
-        sub_020093B4(
+        CellActorResourceData_Init(
             &v0, param2, param3, param4, 0xffffffff, 0xffffffff, 0xffffffff, 0, param6, param0->unk_200, param0->unk_204, param0->unk_208, NULL, NULL, NULL);
     } else {
-        sub_020093B4(
+        CellActorResourceData_Init(
             &v0, param2, param3, param4, param5, 0xffffffff, 0xffffffff, 0, param6, param0->unk_200, param0->unk_204, param0->unk_208, param0->unk_20C, NULL, NULL);
     }
 

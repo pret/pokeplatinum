@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02039EBC_decl.h"
 
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/ov80_021D2AF4.h"
 #include "overlay080/struct_ov80_021D1478_sub1.h"
 #include "overlay080/struct_ov80_021D259C.h"
@@ -19,13 +18,13 @@
 #include "heap.h"
 #include "message.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02039C80.h"
 #include "unk_02071CFC.h"
@@ -622,7 +621,7 @@ static void ov80_021D1C24(UnkStruct_ov80_021D2A08 *param0)
     }
 
     if (v1->unk_13-- == 3) {
-        SpriteActor_SetPositionXY(v1->unk_104, v1->unk_18 * 7 + (48 - 23), v1->unk_1C * 7 + (6 - 40));
+        CellActor_SetPositionXY(v1->unk_104, v1->unk_18 * 7 + (48 - 23), v1->unk_1C * 7 + (6 - 40));
         CellActor_UpdateAnim(v1->unk_104, FX32_ONE);
 
         ov80_021D1A30(param0);
@@ -860,7 +859,7 @@ static void ov80_021D225C(UnkStruct_ov80_021D2A08 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_28, 7);
 }
 
-static const UnkStruct_ov7_0224F358 Unk_ov80_021D30E8[] = {
+static const CellActorPropsTemplate Unk_ov80_021D30E8[] = {
     {
         0,
         0,
@@ -908,32 +907,32 @@ static const UnkStruct_ov7_0224F358 Unk_ov80_021D30E8[] = {
 static void ov80_021D2398(UnkStruct_ov80_021D2A08 *param0)
 {
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
-    UnkStruct_ov7_0224F358 v1 = Unk_ov80_021D30E8[2];
+    CellActorPropsTemplate v1 = Unk_ov80_021D30E8[2];
 
-    v0->unk_100 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[0]);
+    v0->unk_100 = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[0]);
 
     CellActor_SetDrawFlag(v0->unk_100, 0);
     CellActor_SetAnimSpeed(v0->unk_100, FX32_ONE);
-    SpriteActor_SetPositionXY(v0->unk_100, 128, 108);
+    CellActor_SetPositionXY(v0->unk_100, 128, 108);
 
-    v0->unk_104 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[1]);
+    v0->unk_104 = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[1]);
 
     CellActor_SetDrawFlag(v0->unk_104, 1);
     CellActor_SetAnimSpeed(v0->unk_104, FX32_CONST(2));
     CellActor_SetAnimateFlag(v0->unk_104, 1);
-    SpriteActor_SetPositionXY(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
+    CellActor_SetPositionXY(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 
     if (param0->unk_2C->unk_0C == 0) {
-        v1.unk_10 = 1;
+        v1.palette = 1;
     } else {
-        v1.unk_10 = 0;
+        v1.palette = 0;
     }
 
-    v0->unk_108 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &v1);
+    v0->unk_108 = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_D8, param0->unk_DC, &v1);
 
     CellActor_SetDrawFlag(v0->unk_108, 1);
     SpriteActor_SetAnimFrame(v0->unk_108, param0->unk_2C->unk_0C);
-    SpriteActor_SetPositionXY(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
+    CellActor_SetPositionXY(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 }
 
 static void ov80_021D24BC(UnkStruct_ov80_021D2A08 *param0, int param1, int param2)
@@ -981,7 +980,7 @@ static void ov80_021D259C(UnkStruct_ov80_021D2A08 *param0)
     UnkStruct_ov80_021D1744 *v2;
     int v3 = 0, v4, v5;
     static const u16 v6[4] = { 0, 2, 3, 1 };
-    static const UnkStruct_ov7_0224F358 Unk_ov80_021D30E8 = {
+    static const CellActorPropsTemplate Unk_ov80_021D30E8 = {
         3, 0, 0, 0, 0, 2, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
     };
 
@@ -1020,9 +1019,9 @@ static void ov80_021D259C(UnkStruct_ov80_021D2A08 *param0)
         v2->unk_0A = v3;
         v2->unk_0B = 1;
 
-        v2->unk_0C = sub_0200CA08(param0->unk_D8, param0->unk_DC, &(Unk_ov80_021D30E8));
+        v2->unk_0C = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_D8, param0->unk_DC, &(Unk_ov80_021D30E8));
 
-        SpriteActor_SetPositionXY(v2->unk_0C, v2->unk_00 * 7 + 25, v2->unk_04 * 7 + -34);
+        CellActor_SetPositionXY(v2->unk_0C, v2->unk_00 * 7 + 25, v2->unk_04 * 7 + -34);
         CellActor_SetPriority(v2->unk_0C, 2);
         CellActor_SetDrawFlag(v2->unk_0C, 0);
     }
@@ -1066,7 +1065,7 @@ static void ov80_021D2700(UnkStruct_ov80_021D2A08 *param0)
 
     for (v2 = 0; v2 < v0->unk_A4.unk_00; v2++) {
         v1 = &(v0->unk_A4.unk_0C[v2]);
-        sub_0200C7E4(v1->unk_0C);
+        thunk_CellActor_Delete(v1->unk_0C);
     }
 }
 

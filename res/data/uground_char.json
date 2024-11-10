@@ -1,0 +1,19 @@
+{
+    "kind": "char",
+    "graphics": [
+        {
+            "narc": 47,
+            "file": 0,
+            "compressed": false,
+            "id": 0,
+            "vramType": 3
+        },
+        {
+            "narc": 47,
+            "file": 8,
+            "compressed": false,
+            "id": 1,
+            "vramType": 1
+        }
+    ]
+}

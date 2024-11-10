@@ -3,13 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "overlay101/struct_ov101_021D8544.h"
 
 #include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
@@ -32,7 +31,7 @@ typedef struct UnkStruct_ov101_021D7E48_t {
     u8 unk_0A;
     u8 unk_0B;
     CellActorCollection *unk_0C;
-    UnkStruct_0200C738 unk_10;
+    GF_G2dRenderer unk_10;
     NNSG2dCellTransferState *unk_19C;
     SpriteResourceCollection *unk_1A0;
     SpriteResourceCollection *unk_1A4;
@@ -326,7 +325,7 @@ void ov101_021D84A4(UnkStruct_ov101_021D7E48 *param0, UnkStruct_ov101_021D8544 *
         param8 = 0xffffffff;
     }
 
-    sub_020093B4(
+    CellActorResourceData_Init(
         &v0, param5, param6, param7, param8, 0xffffffff, 0xffffffff, param4, param9, param0->unk_1A0, param0->unk_1A4, param0->unk_1A8, param0->unk_1AC, NULL, NULL);
 
     if (param4 == 1) {

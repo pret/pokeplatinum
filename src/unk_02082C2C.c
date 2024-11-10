@@ -3,12 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_020831B4.h"
 
-#include "overlay007/struct_ov7_0224F2EC.h"
-#include "overlay007/struct_ov7_0224F358.h"
+#include "data/plist_pal.naix"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
@@ -21,8 +19,9 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "sprite_renderer.h"
+#include "sprite_resource.h"
 #include "unk_020093B4.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "unk_0207E0B8.h"
@@ -34,8 +33,8 @@ void sub_02082C2C(GameWindowLayout *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     VRAMTransferManager_New(32, 12);
 
-    param0->unk_5A8 = sub_0200C6E4(12);
-    param0->unk_5AC = sub_0200C704(param0->unk_5A8);
+    param0->unk_5A8 = SpriteRenderer_Create(12);
+    param0->unk_5AC = SpriteRenderer_CreateGfxHandler(param0->unk_5A8);
 
     {
         UnkStruct_ov104_0224133C v0 = {
@@ -52,17 +51,17 @@ void sub_02082C2C(GameWindowLayout *param0)
             29 + 6, 1024, 1024, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
-        sub_0200C73C(param0->unk_5A8, &v0, &v1, 32);
-        sub_0200C7C0(param0->unk_5A8, param0->unk_5AC, 29 + 6);
+        SpriteRenderer_CreateOamCharPlttManagers(param0->unk_5A8, &v0, &v1, 32);
+        SpriteRenderer_CreateCellActorList(param0->unk_5A8, param0->unk_5AC, 29 + 6);
     }
 
     {
-        UnkStruct_0200C738 *v2 = sub_0200C738(param0->unk_5A8);
+        GF_G2dRenderer *v2 = SpriteRenderer_GetG2dRenderer(param0->unk_5A8);
         sub_0200964C(v2, 0, (256 * FX32_ONE));
     }
 
     {
-        UnkStruct_ov7_0224F2EC v3 = {
+        SpriteResourceDataPath v3 = {
             "data/plist_chr.resdat",
             "data/plist_pal.resdat",
             "data/plist_cell.resdat",
@@ -72,14 +71,14 @@ void sub_02082C2C(GameWindowLayout *param0)
             "data/plist_h.cldat"
         };
 
-        sub_0200C8F0(param0->unk_5A8, param0->unk_5AC, &v3);
+        SpriteRenderer_LoadSpriteResourceData(param0->unk_5A8, param0->unk_5AC, &v3);
     }
 }
 
 void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, NARC *param4)
 {
     Pokemon *v0;
-    UnkStruct_ov7_0224F358 v1;
+    CellActorPropsTemplate v1;
     u32 v2;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
@@ -87,24 +86,24 @@ void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, N
     param0->unk_704[param1].unk_16 = param2;
     param0->unk_704[param1].unk_18 = param3;
 
-    sub_0200D9B4(param0->unk_5A8, param0->unk_5AC, param4, Pokemon_IconSpriteIndex(v0), 0, 4 + param1);
+    SpriteRenderer_ModifyTilesFromOpenNarc(param0->unk_5A8, param0->unk_5AC, param4, Pokemon_IconSpriteIndex(v0), 0, 4 + param1);
 
     v2 = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
 
-    v1.unk_00 = 4 + param1;
-    v1.unk_04 = param2;
-    v1.unk_06 = param3;
-    v1.unk_08 = 0;
-    v1.unk_0A = 0;
-    v1.unk_0C = 0;
-    v1.unk_10 = PokeIconPaletteIndex(param0->unk_704[param1].unk_04, param0->unk_704[param1].unk_11, v2) + 3;
-    v1.unk_14 = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.resourceIndex = 4 + param1;
+    v1.x = param2;
+    v1.y = param3;
+    v1.z = 0;
+    v1.anim = 0;
+    v1.priority = 0;
+    v1.palette = PokeIconPaletteIndex(param0->unk_704[param1].unk_04, param0->unk_704[param1].unk_11, v2) + RESDAT_PLIST_PAL_NARC_19_MEMBER_0_2_OFFSET;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.unk_18 = 0;
     v1.unk_1C = 0;
     v1.unk_20 = 0;
     v1.unk_24 = 0;
 
-    param0->unk_704[param1].unk_24 = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &v1);
+    param0->unk_704[param1].unk_24 = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_5A8, param0->unk_5AC, &v1);
 }
 
 void sub_02082DA8(GameWindowLayout *param0, u8 param1)
@@ -131,11 +130,11 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     }
 
     Heap_FreeToHeap(v5);
-    sub_0200D414(param0->unk_704[param1].unk_24, PokeIconPaletteIndex(v2, v3, 0) + 3);
+    thunk_CellActor_SetExplicitPalette(param0->unk_704[param1].unk_24, PokeIconPaletteIndex(v2, v3, 0) + RESDAT_PLIST_PAL_NARC_19_MEMBER_0_2_OFFSET);
     NARC_dtor(v1);
 }
 
-static const UnkStruct_ov7_0224F358 Unk_020F20C0[] = {
+static const CellActorPropsTemplate Unk_020F20C0[] = {
     { 0x1, 0x40, 0x18, 0x0, 0x1, 0x3, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     { 0x1, 0x40, 0x48, 0x0, 0x2, 0x2, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     { 0x2, 0xE8, 0xA8, 0x0, 0x2, 0x1, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
@@ -165,19 +164,19 @@ void sub_02082E58(GameWindowLayout *param0)
 {
     u32 v0;
 
-    param0->unk_5B0[6] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[0]);
-    param0->unk_5B0[7] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[1]);
-    param0->unk_5B0[8] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[2]);
-    param0->unk_5B0[9] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[3]);
-    param0->unk_5B0[28] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[22]);
+    param0->unk_5B0[6] = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[0]);
+    param0->unk_5B0[7] = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[1]);
+    param0->unk_5B0[8] = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[2]);
+    param0->unk_5B0[9] = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[3]);
+    param0->unk_5B0[28] = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[22]);
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_5B0[10 + v0] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[4 + v0]);
-        param0->unk_704[v0].unk_1A = Unk_020F20C0[4 + v0].unk_04;
-        param0->unk_704[v0].unk_1C = Unk_020F20C0[4 + v0].unk_06;
+        param0->unk_5B0[10 + v0] = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[4 + v0]);
+        param0->unk_704[v0].unk_1A = Unk_020F20C0[4 + v0].x;
+        param0->unk_704[v0].unk_1C = Unk_020F20C0[4 + v0].y;
         CellActor_SetDrawFlag(param0->unk_5B0[10 + v0], 0);
-        param0->unk_5B0[16 + v0] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[10 + v0]);
-        param0->unk_5B0[22 + v0] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[16 + v0]);
+        param0->unk_5B0[16 + v0] = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[10 + v0]);
+        param0->unk_5B0[22 + v0] = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[16 + v0]);
     }
 
     CellActor_SetDrawFlag(param0->unk_5B0[7], 0);
@@ -186,28 +185,28 @@ void sub_02082E58(GameWindowLayout *param0)
 
 void sub_02082FAC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3)
 {
-    UnkStruct_ov7_0224F358 v0;
+    CellActorPropsTemplate v0;
 
-    v0.unk_00 = 0;
-    v0.unk_04 = param2;
-    v0.unk_06 = param3;
-    v0.unk_08 = 0;
-    v0.unk_0A = 0;
-    v0.unk_0C = 1;
-    v0.unk_10 = 0;
-    v0.unk_14 = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.resourceIndex = 0;
+    v0.x = param2;
+    v0.y = param3;
+    v0.z = 0;
+    v0.anim = 0;
+    v0.priority = 1;
+    v0.palette = 0;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.unk_18 = 0;
     v0.unk_1C = 0;
     v0.unk_20 = 0;
     v0.unk_24 = 0;
 
-    param0->unk_5B0[0 + param1] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &v0);
+    param0->unk_5B0[0 + param1] = SpriteRenderer_CreateCellActorFromTemplate(param0->unk_5A8, param0->unk_5AC, &v0);
 }
 
 void sub_02082FF4(GameWindowLayout *param0)
 {
-    sub_0200C8B0(param0->unk_5A8, param0->unk_5AC);
-    sub_0200C8D4(param0->unk_5A8);
+    SpriteRenderer_DeleteGfxHandler(param0->unk_5A8, param0->unk_5AC);
+    SpriteRenderer_Free(param0->unk_5A8);
 }
 
 void sub_02083014(GameWindowLayout *param0, u8 param1, u8 param2)
@@ -256,12 +255,12 @@ void sub_020830A0(GameWindowLayout *param0, u8 param1, s16 param2, s16 param3)
     param0->unk_704[param1].unk_1E = param2 + 8;
     param0->unk_704[param1].unk_20 = param3 + 8;
 
-    SpriteActor_SetPositionXY(*v0, param0->unk_704[param1].unk_1E, param0->unk_704[param1].unk_20);
+    CellActor_SetPositionXY(*v0, param0->unk_704[param1].unk_1E, param0->unk_704[param1].unk_20);
 }
 
 void sub_020830D4(GameWindowLayout *param0, u8 param1)
 {
-    SpriteActor_SetPositionXY(param0->unk_5B0[22 + param1], param0->unk_704[param1].unk_1E + 8, param0->unk_704[param1].unk_20);
+    CellActor_SetPositionXY(param0->unk_5B0[22 + param1], param0->unk_704[param1].unk_1E + 8, param0->unk_704[param1].unk_20);
 }
 
 void sub_02083104(GameWindowLayout *param0, u8 param1)
@@ -334,15 +333,15 @@ void sub_020831B4(GameWindowLayout *param0)
 
         if ((param0->unk_B11 == v1) && (v2 != 0) && (v2 != 5)) {
             if (CellActor_GetAnimFrame(v0->unk_24) == 0) {
-                SpriteActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 - 3);
+                CellActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 - 3);
             } else {
-                SpriteActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 + 1);
+                CellActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 + 1);
             }
 
             continue;
         }
 
-        SpriteActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18);
+        CellActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18);
     }
 }
 
@@ -353,8 +352,8 @@ void sub_0208327C(GameWindowLayout *param0, u8 param1, u8 param2)
     sub_0201E010(&param0->unk_7F4[param1], &v0, &v1);
     CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
     CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
-    SpriteActor_SetPositionXY(param0->unk_5B0[6], v0, v1);
-    sub_0200D414(param0->unk_5B0[6], param2);
+    CellActor_SetPositionXY(param0->unk_5B0[6], v0, v1);
+    thunk_CellActor_SetExplicitPalette(param0->unk_5B0[6], param2);
 }
 
 void sub_020832E4(GameWindowLayout *param0, s16 param1, s16 param2)

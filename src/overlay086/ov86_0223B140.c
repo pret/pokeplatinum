@@ -6,7 +6,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02008900.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_02099F80.h"
@@ -30,6 +29,7 @@
 #include "party.h"
 #include "play_time.h"
 #include "pokemon.h"
+#include "sprite_renderer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -62,7 +62,7 @@ typedef struct {
     BgConfig *unk_10;
     Window unk_14;
     CellActorCollection *unk_24;
-    UnkStruct_0200C738 unk_28;
+    GF_G2dRenderer unk_28;
     CellActor *unk_1B4[6];
     CellActor *unk_1CC;
     void *unk_1D0;

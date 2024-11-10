@@ -1,0 +1,107 @@
+{
+    "kind": "anim",
+    "graphics": [
+        {
+            "narc": 39,
+            "file": 47,
+            "compressed": false,
+            "id": 0
+        },
+        {
+            "narc": 39,
+            "file": 127,
+            "compressed": false,
+            "id": 1
+        },
+        {
+            "narc": 39,
+            "file": 130,
+            "compressed": false,
+            "id": 2
+        },
+        {
+            "narc": 27,
+            "file": 243,
+            "compressed": true,
+            "id": 3
+        },
+        {
+            "narc": 19,
+            "file": 1,
+            "compressed": false,
+            "id": 4
+        },
+        {
+            "narc": 39,
+            "file": 62,
+            "compressed": false,
+            "id": 5
+        },
+        {
+            "narc": 39,
+            "file": 66,
+            "compressed": false,
+            "id": 6
+        },
+        {
+            "narc": 39,
+            "file": 59,
+            "compressed": false,
+            "id": 7
+        },
+        {
+            "narc": 39,
+            "file": 50,
+            "compressed": false,
+            "id": 8
+        },
+        {
+            "narc": 13,
+            "file": 34,
+            "compressed": false,
+            "id": 9
+        },
+        {
+            "narc": 39,
+            "file": 17,
+            "compressed": false,
+            "id": 10
+        },
+        {
+            "narc": 39,
+            "file": 44,
+            "compressed": false,
+            "id": 11
+        },
+        {
+            "narc": 39,
+            "file": 70,
+            "compressed": false,
+            "id": 12
+        },
+        {
+            "narc": 39,
+            "file": 122,
+            "compressed": false,
+            "id": 13
+        },
+        {
+            "narc": 39,
+            "file": 41,
+            "compressed": false,
+            "id": 14
+        },
+        {
+            "narc": 39,
+            "file": 126,
+            "compressed": false,
+            "id": 15
+        },
+        {
+            "narc": 39,
+            "file": 133,
+            "compressed": false,
+            "id": 16
+        }
+    ]
+}

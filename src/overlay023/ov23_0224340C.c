@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EAFA4.h"
@@ -38,6 +37,7 @@
 #include "map_object_move.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -115,7 +115,7 @@ typedef struct {
     SysTask *unk_20[8];
     FieldSystem *fieldSystem;
     CellActorCollection *unk_44;
-    UnkStruct_0200C738 unk_48;
+    GF_G2dRenderer unk_48;
     SpriteResourceCollection *unk_1D4[2][4];
     SpriteResource *unk_1F4[2][4];
     CellActorResourceData unk_214;
@@ -3303,7 +3303,7 @@ static void ov23_02246370(int param0)
 
 static void ov23_0224644C(int param0)
 {
-    sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
+    CellActorResourceData_Init(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
         CellActorInitParamsEx v0;
@@ -3653,7 +3653,7 @@ static void ov23_02246D44(UnkStruct_ov23_022468DC *param0)
 {
     sub_0200A450(Unk_ov23_02257764->unk_1F4[0][0]);
     sub_0200A640(Unk_ov23_02257764->unk_1F4[0][1]);
-    sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
+    CellActorResourceData_Init(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
         CellActorInitParamsEx v0;
@@ -3831,7 +3831,7 @@ static void ov23_022471D8(UnkStruct_ov23_022471D8 *param0)
 {
     sub_0200A450(Unk_ov23_02257764->unk_1F4[0][0]);
     sub_0200A640(Unk_ov23_02257764->unk_1F4[0][1]);
-    sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
+    CellActorResourceData_Init(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
         CellActorInitParamsEx v0;
@@ -4305,7 +4305,7 @@ static void ov23_02247E38(UnkStruct_ov23_02247E38 *param0)
 {
     sub_0200A450(Unk_ov23_02257764->unk_1F4[0][0]);
     sub_0200A640(Unk_ov23_02257764->unk_1F4[0][1]);
-    sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
+    CellActorResourceData_Init(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
         CellActorInitParamsEx v0;
@@ -4765,7 +4765,7 @@ static void ov23_02248748(UnkStruct_ov23_02248748 *param0)
 {
     sub_0200A450(Unk_ov23_02257764->unk_1F4[1][0]);
     sub_0200A640(Unk_ov23_02257764->unk_1F4[1][1]);
-    sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[1][0], Unk_ov23_02257764->unk_1D4[1][1], Unk_ov23_02257764->unk_1D4[1][2], Unk_ov23_02257764->unk_1D4[1][3], NULL, NULL);
+    CellActorResourceData_Init(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[1][0], Unk_ov23_02257764->unk_1D4[1][1], Unk_ov23_02257764->unk_1D4[1][2], Unk_ov23_02257764->unk_1D4[1][3], NULL, NULL);
 
     {
         CellActorInitParamsEx v0;

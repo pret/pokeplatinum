@@ -14,7 +14,7 @@
 
 #include "narc.h"
 #include "palette.h"
-#include "unk_0200C6E4.h"
+#include "sprite_renderer.h"
 
 static const SpriteTemplate Unk_ov16_022700CC[] = {
     {
@@ -204,7 +204,7 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     }
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    SpriteRenderer_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    SpriteRenderer_LoadPaletteFromOpenNarc(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
     PaletteData_LoadBufferFromFileStart(BattleSystem_PaletteSys(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, 1, v6);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, 1, v8);
@@ -221,8 +221,8 @@ void ov16_0226862C(UnkStruct_ov16_02268520 *param0)
     v1 = ov16_0223E018(param0->unk_04);
     v2 = &Unk_ov16_022700CC[param0->unk_08];
 
-    param0->unk_00 = SpriteActor_LoadResources(v0, v1, v2);
-    SpriteActor_UpdateObject(param0->unk_00->unk_00);
+    param0->unk_00 = CellActor_LoadResources(v0, v1, v2);
+    CellActor_UpdateObject(param0->unk_00->cellActor);
 }
 
 void ov16_02268660(UnkStruct_ov16_02268520 *param0)
@@ -231,7 +231,7 @@ void ov16_02268660(UnkStruct_ov16_02268520 *param0)
         return;
     }
 
-    sub_0200D0F4(param0->unk_00);
+    CellActorData_Delete(param0->unk_00);
     param0->unk_00 = NULL;
 }
 
@@ -264,7 +264,7 @@ void ov16_022686BC(UnkStruct_ov16_02268520 *param0, int param1)
         return;
     }
 
-    SpriteActor_EnableObject(param0->unk_00, param1);
+    CellActorData_DrawSprite(param0->unk_00, param1);
 }
 
 void ov16_022686CC(UnkStruct_ov16_02268520 *param0, BattleSystem *param1, u16 param2, int param3)

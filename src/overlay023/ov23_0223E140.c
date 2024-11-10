@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -43,6 +42,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -139,7 +139,7 @@ typedef struct {
     BgConfig *unk_04;
     MATHRandContext32 unk_08;
     CellActorCollection *unk_20;
-    UnkStruct_0200C738 unk_24;
+    GF_G2dRenderer unk_24;
     SpriteResourceCollection *unk_1B0[4];
     SpriteResource *unk_1C0[8];
     CellActorResourceData unk_1E0;
@@ -2807,7 +2807,7 @@ static void ov23_0224108C(void)
     CellActorInitParamsEx v2;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_020093B4(&Unk_ov23_02257740->unk_204[v0], v0, v0, v0, v0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257740->unk_1B0[0], Unk_ov23_02257740->unk_1B0[1], Unk_ov23_02257740->unk_1B0[2], Unk_ov23_02257740->unk_1B0[3], NULL, NULL);
+        CellActorResourceData_Init(&Unk_ov23_02257740->unk_204[v0], v0, v0, v0, v0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257740->unk_1B0[0], Unk_ov23_02257740->unk_1B0[1], Unk_ov23_02257740->unk_1B0[2], Unk_ov23_02257740->unk_1B0[3], NULL, NULL);
 
         v2.collection = Unk_ov23_02257740->unk_20;
         v2.resourceData = &Unk_ov23_02257740->unk_204[v0];

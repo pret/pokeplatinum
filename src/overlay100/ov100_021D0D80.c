@@ -26,8 +26,8 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "render_window.h"
+#include "sprite_renderer.h"
 #include "unk_020041CC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -131,7 +131,7 @@ int ov100_021D0EA8(OverlayManager *param0, int *param1)
         break;
     }
 
-    sub_0200C7EC(v0->unk_0C.unk_08);
+    SpriteGfxHandler_UpdateCellActorCollection(v0->unk_0C.unk_08);
 
     return 0;
 }
@@ -161,7 +161,7 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
 
 static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
 {
-    param0->unk_04 = sub_0200C6E4(111);
+    param0->unk_04 = SpriteRenderer_Create(111);
 
     {
         const UnkStruct_ov104_0224133C v0 = {
@@ -181,7 +181,7 @@ static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
             GX_OBJVRAMMODE_CHAR_1D_64K,
             GX_OBJVRAMMODE_CHAR_1D_32K
         };
-        BOOL v2 = sub_0200C73C(param0->unk_04, &v0, &v1, 16 + 16);
+        BOOL v2 = SpriteRenderer_CreateOamCharPlttManagers(param0->unk_04, &v0, &v1, 16 + 16);
 
         GF_ASSERT(v2);
     }
@@ -197,12 +197,12 @@ static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
             16,
         };
 
-        param0->unk_08 = sub_0200C704(param0->unk_04);
+        param0->unk_08 = SpriteRenderer_CreateGfxHandler(param0->unk_04);
 
-        v3 = sub_0200C7C0(param0->unk_04, param0->unk_08, 64 + 64);
+        v3 = SpriteRenderer_CreateCellActorList(param0->unk_04, param0->unk_08, 64 + 64);
         GF_ASSERT(v3);
 
-        v3 = sub_0200CB30(param0->unk_04, param0->unk_08, &v4);
+        v3 = SpriteRenderer_InitGfxResourceList(param0->unk_04, param0->unk_08, &v4);
         GF_ASSERT(v3);
     }
 }
@@ -265,8 +265,8 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)
     NARC_dtor(param0->unk_00);
     sub_020242C4(param0->unk_14);
     Camera_Delete(param0->camera);
-    sub_0200D0B0(param0->unk_04, param0->unk_08);
-    sub_0200C8D4(param0->unk_04);
+    SpriteRenderer_UnloadResourcesAndRemoveGfxHandler(param0->unk_04, param0->unk_08);
+    SpriteRenderer_Free(param0->unk_04);
     MessageLoader_Free(param0->unk_2C);
 
     G3X_AlphaBlend(0);

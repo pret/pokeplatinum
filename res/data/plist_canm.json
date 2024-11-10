@@ -1,0 +1,47 @@
+{
+    "kind": "anim",
+    "graphics": [
+        {
+            "narc": 20,
+            "file": 0,
+            "compressed": false,
+            "id": 0
+        },
+        {
+            "narc": 20,
+            "file": 5,
+            "compressed": false,
+            "id": 1
+        },
+        {
+            "narc": 20,
+            "file": 9,
+            "compressed": false,
+            "id": 2
+        },
+        {
+            "narc": 39,
+            "file": 62,
+            "compressed": false,
+            "id": 3
+        },
+        {
+            "narc": 19,
+            "file": 3,
+            "compressed": false,
+            "id": 4
+        },
+        {
+            "narc": 20,
+            "file": 18,
+            "compressed": false,
+            "id": 5
+        },
+        {
+            "narc": 13,
+            "file": 34,
+            "compressed": false,
+            "id": 6
+        }
+    ]
+}

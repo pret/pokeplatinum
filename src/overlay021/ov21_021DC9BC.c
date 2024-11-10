@@ -575,7 +575,7 @@ static void ov21_021DD1A8(UnkStruct_ov21_021DD420 *param0, UnkStruct_ov21_021DCA
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int v3;
 
-    sub_020093B4(&v0, 93 + 6000, 14 + 6000, 91 + 6000, 92 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    CellActorResourceData_Init(&v0, 93 + 6000, 14 + 6000, 91 + 6000, 92 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;
@@ -588,7 +588,7 @@ static void ov21_021DD1A8(UnkStruct_ov21_021DD420 *param0, UnkStruct_ov21_021DCA
     param0->unk_C8 = CellActorCollection_Add(&v1);
 
     CellActor_SetAnim(param0->unk_C8, 2);
-    sub_020093B4(&v0, 108 + 6000, 14 + 6000, 106 + 6000, 107 + 6000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    CellActorResourceData_Init(&v0, 108 + 6000, 14 + 6000, 106 + 6000, 107 + 6000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;

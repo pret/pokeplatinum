@@ -15,6 +15,7 @@ enum SpriteResourceType {
     SPRITE_RESOURCE_SPRITE_ANIM,
     SPRITE_RESOURCE_MULTI_SPRITE,
     SPRITE_RESOURCE_MULTI_SPRITE_ANIM,
+    SPRITE_RESOURCE_TYPE_MAX
 };
 
 typedef struct SpriteResource {
@@ -35,7 +36,7 @@ typedef struct SpriteResourceTableEntryFile {
     int id;
     char filename[64];
     NNS_G2D_VRAM_TYPE vramType;
-    int paletteIndex;
+    int paletteCount;
 } SpriteResourceTableEntryFile;
 
 typedef struct SpriteResourceTableEntryNARC {
@@ -44,8 +45,19 @@ typedef struct SpriteResourceTableEntryNARC {
     BOOL compressed;
     int id;
     NNS_G2D_VRAM_TYPE vramType;
-    int paletteIndex;
+    int paletteCount;
 } SpriteResourceTableEntryNARC;
+
+typedef struct SpriteTemplateTableEntry {
+    int tileIndex;
+    int paletteIndex;
+    int cellsIndex;
+    int animIndex;
+    int multiCellsIndex;
+    int multiAnimIndex;
+    BOOL vramTransfer;
+    int priority;
+} SpriteTemplateTableEntry;
 
 typedef struct SpriteResourceTable {
     void *entries;
@@ -60,6 +72,19 @@ typedef struct SpriteResourceList {
     int capacity;
     int count;
 } SpriteResourceList;
+
+typedef union {
+    const char *val1[7];
+    struct {
+        const char *tilesDataPath;
+        const char *palettesDataPath;
+        const char *cellsDataPath;
+        const char *animsDataPath;
+        const char *multiCellsDataPath;
+        const char *multiAnimsDataPath;
+        const char *combinedResourceDataPath;
+    } paths;
+} SpriteResourceDataPath;
 
 SpriteResourceCollection *SpriteResourceCollection_New(int capacity, enum SpriteResourceType type, enum HeapId heapID);
 void SpriteResourceCollection_Delete(SpriteResourceCollection *spriteResources);

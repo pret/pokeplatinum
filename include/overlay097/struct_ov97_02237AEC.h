@@ -1,14 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_OV97_02237AEC_H
 #define POKEPLATINUM_STRUCT_OV97_02237AEC_H
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "cell_actor.h"
+#include "sprite_renderer.h"
 #include "sprite_resource.h"
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
+    GF_G2dRenderer unk_04;
     SpriteResourceCollection *unk_190[6];
     SpriteResource *unk_1A8[2][6];
     CellActorResourceData unk_1D8[2];

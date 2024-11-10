@@ -407,19 +407,19 @@ BOOL ov104_02237748(UnkStruct_ov104_0222E930 *param0)
                 CellActor *v24;
 
                 for (v11 = 0; v11 < v4; v11++) {
-                    v23 = v3->unk_30[v11]->unk_00;
+                    v23 = v3->unk_30[v11]->cellActor;
                     v21 = *(CellActor_GetPosition((const CellActor *)v23));
 
-                    v24 = v3->unk_40[v11]->unk_00;
+                    v24 = v3->unk_40[v11]->cellActor;
                     v22 = *(CellActor_GetPosition((const CellActor *)v24));
 
                     CellActor_SetPosition(v23, &v22);
                     CellActor_SetPosition(v24, &v21);
 
-                    v23 = v3->unk_50[v11]->unk_00;
+                    v23 = v3->unk_50[v11]->cellActor;
                     v21 = *(CellActor_GetPosition((const CellActor *)v23));
 
-                    v24 = v3->unk_60[v11]->unk_00;
+                    v24 = v3->unk_60[v11]->cellActor;
                     v22 = *(CellActor_GetPosition((const CellActor *)v24));
 
                     CellActor_SetPosition(v23, &v22);
@@ -451,11 +451,11 @@ BOOL ov104_02237748(UnkStruct_ov104_0222E930 *param0)
 
         if (v18 == 0) {
             for (v11 = 0; v11 < v4; v11++) {
-                CellActor_SetExplicitPriority(v3->unk_30[v11]->unk_00, 2);
+                CellActor_SetExplicitPriority(v3->unk_30[v11]->cellActor, 2);
             }
         } else {
             for (v11 = 0; v11 < v5; v11++) {
-                CellActor_SetExplicitPriority(v3->unk_40[v11]->unk_00, 2);
+                CellActor_SetExplicitPriority(v3->unk_40[v11]->cellActor, 2);
             }
         }
         break;

@@ -8,7 +8,7 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
-#include "unk_0200C6E4.h"
+#include "sprite_renderer.h"
 
 __attribute__((aligned(4))) static const u32 Unk_ov17_02254A90[] = {
     0x30,
@@ -55,13 +55,13 @@ u32 ov17_0224F0B8(void)
 
 void ov17_0224F0BC(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
-    sub_0200CBDC(param0, param1, ov17_0224F0B8(), ov17_0224F080(param3), 1, param2, param4);
+    SpriteRenderer_LoadCharResObj(param0, param1, ov17_0224F0B8(), ov17_0224F080(param3), 1, param2, param4);
 }
 
 void ov17_0224F0F0(SpriteRenderer *param0, SpriteGfxHandler *param1, u32 param2, u32 param3)
 {
-    sub_0200CE0C(param0, param1, ov17_0224F0B8(), ov17_0224F098(), 1, param2);
-    sub_0200CE3C(param0, param1, ov17_0224F0B8(), ov17_0224F09C(), 1, param3);
+    SpriteRenderer_LoadCellResObj(param0, param1, ov17_0224F0B8(), ov17_0224F098(), 1, param2);
+    SpriteRenderer_LoadAnimResObj(param0, param1, ov17_0224F0B8(), ov17_0224F09C(), 1, param3);
 }
 
 void ov17_0224F138(SpriteGfxHandler *param0, u32 param1)
@@ -82,12 +82,12 @@ CellActorData *ov17_0224F154(SpriteRenderer *param0, SpriteGfxHandler *param1, i
 
     v1 = *param3;
     v1.plttIdx = ov17_0224F0A0(param2);
-    v0 = SpriteActor_LoadResources(param0, param1, &v1);
+    v0 = CellActor_LoadResources(param0, param1, &v1);
 
     return v0;
 }
 
 void ov17_0224F184(CellActorData *param0)
 {
-    sub_0200D0F4(param0);
+    CellActorData_Delete(param0);
 }

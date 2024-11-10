@@ -1,0 +1,13 @@
+{
+    "kind": "pltt",
+    "graphics": [
+        {
+            "narc": 47,
+            "file": 1,
+            "compressed": false,
+            "id": 0,
+            "vramType": 3,
+            "paletteCount": 1
+        }
+    ]
+}

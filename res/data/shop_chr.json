@@ -1,0 +1,26 @@
+{
+    "kind": "char",
+    "graphics": [
+        {
+            "narc": 62,
+            "file": 4,
+            "compressed": false,
+            "id": 0,
+            "vramType": 1
+        },
+        {
+            "narc": 62,
+            "file": 7,
+            "compressed": false,
+            "id": 1,
+            "vramType": 1
+        },
+        {
+            "narc": 16,
+            "file": 2,
+            "compressed": false,
+            "id": 2,
+            "vramType": 1
+        }
+    ]
+}

@@ -382,7 +382,7 @@ void ov97_02237B0C(int param0, int param1, int param2, int param3, int param4, i
 
     sub_0200A328(v0->unk_34.unk_1A8[param5][0]);
     sub_0200A640(v0->unk_34.unk_1A8[param5][1]);
-    sub_020093B4(&v0->unk_34.unk_1D8[param5], param5, param5, param5, param5, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34.unk_190[0], v0->unk_34.unk_190[1], v0->unk_34.unk_190[2], v0->unk_34.unk_190[3], NULL, NULL);
+    CellActorResourceData_Init(&v0->unk_34.unk_1D8[param5], param5, param5, param5, param5, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34.unk_190[0], v0->unk_34.unk_190[1], v0->unk_34.unk_190[2], v0->unk_34.unk_190[3], NULL, NULL);
 
     if (param5 == 0) {
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
