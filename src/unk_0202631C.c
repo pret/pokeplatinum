@@ -55,9 +55,9 @@ PokedexData *sub_02026324(u32 param0)
     return v0;
 }
 
-void sub_02026338(const PokedexData *param0, PokedexData *param1)
+void Pokedex_Copy(const PokedexData *src, PokedexData *dest)
 {
-    MI_CpuCopy8(param0, param1, sizeof(PokedexData));
+    MI_CpuCopy8(src, dest, sizeof(PokedexData));
 }
 
 static inline void CheckPokedexIntegrity(const PokedexData *param0)

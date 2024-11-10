@@ -39,6 +39,7 @@
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "map_tile_behavior.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokeradar.h"
@@ -56,7 +57,6 @@
 #include "unk_020553DC.h"
 #include "unk_02055C50.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205DAC8.h"
 #include "unk_0205F180.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
@@ -222,7 +222,7 @@ void sub_0206842C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
-    param1->unk_0E = sub_02054F94(fieldSystem, v0, v1);
+    param1->unk_0E = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
 
     v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
@@ -241,7 +241,7 @@ void sub_0206842C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
         break;
     }
 
-    param1->unk_0C = sub_02054F94(fieldSystem, v0, v1);
+    param1->unk_0C = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
     sub_0203C9D4(fieldSystem, &v3);
 
     param1->unk_10 = sub_02055FC8(fieldSystem, v3);
@@ -430,11 +430,11 @@ static u32 sub_0206877C(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (sub_0205DEFC(param0->unk_0E) == 1) {
+    if (TileBehavior_IsBridge(param0->unk_0E) == 1) {
         return -1;
     }
 
-    if (sub_0205DFB8(param0->unk_0E) == 1) {
+    if (TileBehavior_ForbidsExplorationKit(param0->unk_0E) == 1) {
         return -1;
     }
 
@@ -542,7 +542,7 @@ static u32 sub_02068948(const UnkStruct_020684D0 *param0)
         }
     }
 
-    if ((sub_0205DAD4(param0->unk_0E) == 1) || (sub_0205DCE0(param0->unk_0E) == 1) || (sub_0205DCFC(param0->unk_0E) == 1)) {
+    if ((TileBehavior_IsVeryTallGrass(param0->unk_0E) == 1) || (TileBehavior_IsMud(param0->unk_0E) == 1) || (TileBehavior_IsMudWithGrass(param0->unk_0E) == 1)) {
         return -1;
     }
 
@@ -744,7 +744,7 @@ static u32 sub_02068C5C(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (!sub_0205DAC8(param0->unk_0E)) {
+    if (!TileBehavior_IsTallGrass(param0->unk_0E)) {
         return -1;
     }
 
@@ -912,8 +912,8 @@ static u32 sub_02068E94(const UnkStruct_020684D0 *param0)
         return 3;
     }
 
-    if (sub_0205DB58(param0->unk_0C) == 1) {
-        if ((sub_0205DEFC(param0->unk_0E) == 1) || (sub_0205DEF0(param0->unk_0E) == 1)) {
+    if (TileBehavior_IsSurfable(param0->unk_0C) == 1) {
+        if ((TileBehavior_IsBridge(param0->unk_0E) == 1) || (TileBehavior_IsBridgeStart(param0->unk_0E) == 1)) {
             MapObject *v0 = Player_MapObject(param0->playerAvatar);
 
             if (sub_02062F30(v0) == 1) {

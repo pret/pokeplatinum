@@ -149,7 +149,7 @@ static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *pa
     }
 }
 
-int sub_02055BA8(const FieldSystem *fieldSystem)
+enum TimeOfDay FieldSystem_GetTimeOfDay(const FieldSystem *fieldSystem)
 {
     GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
     return TimeOfDayForHour(v0->time.hour);

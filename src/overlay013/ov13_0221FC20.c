@@ -1733,5 +1733,5 @@ static void ov13_02221A54(BattleSystem *param0, u16 param1, u16 param2, u32 para
         Bag_TryRemoveItem(BattleSystem_Bag(param0), param1, 1, param3);
     }
 
-    Bag_SetLastItemUsed(BattleSystem_BagCursor(param0), param1, param2);
+    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(param0), param1, param2);
 }

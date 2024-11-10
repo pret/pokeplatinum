@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_ENC_EFFECTS_H
 #define POKEPLATINUM_ENC_EFFECTS_H
 
-#include "overlay006/battle_params.h"
+#include "field_battle_data_transfer.h"
 
 enum EncEffectCutIn {
     ENCEFF_CUTIN_TALL_GRASS_LOWER_LEVEL = 0,
@@ -52,7 +52,7 @@ enum EncEffectCutIn {
  * @param battleParams
  * @return Cut-in effect ID
  */
-u32 EncEffects_CutInEffect(const BattleParams *battleParams);
+u32 EncEffects_CutInEffect(const FieldBattleDTO *battleParams);
 
 /**
  * Get the SEQ ID pointing to this encounter's background music.
@@ -60,6 +60,6 @@ u32 EncEffects_CutInEffect(const BattleParams *battleParams);
  * @param battleParams
  * @return SEQ ID
  */
-u32 EncEffects_BGM(const BattleParams *battleParams);
+u32 EncEffects_BGM(const FieldBattleDTO *battleParams);
 
 #endif // POKEPLATINUM_ENC_EFFECTS_H

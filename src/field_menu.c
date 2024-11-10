@@ -954,7 +954,7 @@ static BOOL FieldMenu_Pokedex(FieldTask *taskMan)
 
     v2->unk_00 = v3;
     v2->unk_04 = v4;
-    v2->timeOfDay = sub_02055BA8(fieldSystem);
+    v2->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     v2->fullmoonIslandVisible = VarFlags_HiddenLocationsUnlocked(v5, HL_FULLMOONISLAND);
     v2->newmoonIslandVisible = VarFlags_HiddenLocationsUnlocked(v5, HL_NEWMOONISLAND);
     v2->springPathVisible = VarFlags_HiddenLocationsUnlocked(v5, HL_SPRINGPATH);
@@ -1684,7 +1684,7 @@ static void sub_0203C2D8(FieldTask *taskMan, u16 param1)
         }
     }
 
-    sub_0207D9B4(fieldSystem->unk_98, 4, &v5, &v4);
+    BagCursor_GetFieldPocketPosition(fieldSystem->unk_98, 4, &v5, &v4);
     sub_0209733C(menu->unk_25C, v4, v5, v6 + 3);
 
     sub_0203D2E4(fieldSystem, menu->unk_25C);
@@ -1701,7 +1701,7 @@ static BOOL sub_0203C390(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
 
     sub_02097390(menu->unk_25C, &v2, &v3);
-    sub_0207D9C8(fieldSystem->unk_98, 4, v3, v2);
+    BagCursor_SetFieldPocketPosition(fieldSystem->unk_98, 4, v3, v2);
     Heap_FreeToHeapExplicit(11, menu->unk_25C);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);

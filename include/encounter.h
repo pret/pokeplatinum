@@ -4,17 +4,17 @@
 #include "struct_decls/struct_party_decl.h"
 
 #include "field/field_system_decl.h"
-#include "overlay006/battle_params.h"
 
+#include "field_battle_data_transfer.h"
 #include "field_task.h"
 
-void sub_02050ABC(FieldTask *param0, BattleParams *param1);
-void sub_02050E10(FieldSystem *fieldSystem, BattleParams *param1);
-void sub_02050E78(FieldSystem *fieldSystem, FieldTask *param1, BattleParams *param2);
+void sub_02050ABC(FieldTask *param0, FieldBattleDTO *param1);
+void sub_02050E10(FieldSystem *fieldSystem, FieldBattleDTO *param1);
+void sub_02050E78(FieldSystem *fieldSystem, FieldTask *param1, FieldBattleDTO *param2);
 void sub_0205120C(FieldTask *param0, int *param1);
 void sub_02051270(FieldTask *param0, u16 param1, u8 param2, int *param3, BOOL param4);
 void sub_020512E4(FieldTask *param0, u16 param1, u8 param2, int *param3, BOOL param4);
-void sub_02051450(FieldSystem *fieldSystem, BattleParams *param1);
+void sub_02051450(FieldSystem *fieldSystem, FieldBattleDTO *param1);
 void sub_02051480(FieldTask *param0, int param1, int param2, int *param3);
 void sub_02051590(FieldTask *param0);
 void sub_020515CC(FieldTask *param0, int param1, int param2, int param3, int param4, int *param5);

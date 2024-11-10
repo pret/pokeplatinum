@@ -15,9 +15,9 @@
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021EF13C_decl.h"
 
+#include "map_tile_behavior.h"
 #include "unk_02039C80.h"
 #include "unk_02054BD0.h"
-#include "unk_0205DAC8.h"
 #include "unk_02068344.h"
 
 static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4);
@@ -285,23 +285,16 @@ BOOL FieldSystem_CheckCollision(const FieldSystem *fieldSystem, const int param1
     return 0;
 }
 
-u8 sub_02054F94(const FieldSystem *fieldSystem, const int param1, const int param2)
+u8 FieldSystem_GetTileBehavior(const FieldSystem *fieldSystem, const int x, const int z)
 {
-    BOOL v0;
-    u16 v1;
-
-    v0 = fieldSystem->terrainCollisionMan->getAttrFunc(fieldSystem, param1, param2, &v1);
-
-    if (v0) {
-        u8 v2;
-
-        v2 = v1;
-        v2 &= 0xff;
-
-        return v2;
+    u16 attributes;
+    if (fieldSystem->terrainCollisionMan->getAttrFunc(fieldSystem, x, z, &attributes)) {
+        u8 behavior = attributes;
+        behavior &= 0xFF;
+        return behavior;
     }
 
-    return 0xff;
+    return 0xFF;
 }
 
 const fx32 sub_02054FBC(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4)
@@ -365,9 +358,9 @@ BOOL sub_02055024(const FieldSystem *fieldSystem, const VecFx32 *param1, const i
         v2 = FieldSystem_CheckCollision(fieldSystem, param2, param3);
 
         if ((!v2) && (v1 == 2)) {
-            u8 v3 = sub_02054F94(fieldSystem, param2, param3);
+            u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, param2, param3);
 
-            if (sub_0205DC20(v3)) {
+            if (TileBehavior_IsPastoriaGymWater(v3)) {
                 return 1;
             }
         }
@@ -399,9 +392,9 @@ BOOL sub_0205507C(FieldSystem *fieldSystem, const VecFx32 *param1, const int par
             v2 = FieldSystem_CheckCollision(fieldSystem, param2, param3);
 
             if ((!v2) && (v1 == 2)) {
-                u8 v4 = sub_02054F94(fieldSystem, param2, param3);
+                u8 v4 = FieldSystem_GetTileBehavior(fieldSystem, param2, param3);
 
-                if (sub_0205DC20(v4)) {
+                if (TileBehavior_IsPastoriaGymWater(v4)) {
                     return 1;
                 }
             }

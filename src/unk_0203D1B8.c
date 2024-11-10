@@ -47,7 +47,6 @@
 #include "field/field_system.h"
 #include "library_tv/library_tv.h"
 #include "overlay005/ov5_021E622C.h"
-#include "overlay006/battle_params.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay007/ov7_0224BE9C.h"
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
@@ -88,6 +87,7 @@
 
 #include "bag.h"
 #include "coins.h"
+#include "field_battle_data_transfer.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -254,7 +254,7 @@ const OverlayManagerTemplate gBattleOverlayTemplate = {
     FS_OVERLAY_ID(battle)
 };
 
-void sub_0203D1D4(FieldSystem *fieldSystem, BattleParams *param1)
+void sub_0203D1D4(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     FieldSystem_StartChildProcess(fieldSystem, &gBattleOverlayTemplate, param1);
 }
@@ -1046,7 +1046,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
         v2->unk_48.unk_14 = SaveData_Options(fieldSystem->saveData);
         v2->unk_48.unk_10 = 1;
 
-        switch (sub_02055BA8(fieldSystem)) {
+        switch (FieldSystem_GetTimeOfDay(fieldSystem)) {
         case 0:
         case 1:
         default:

@@ -14,7 +14,6 @@
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay004/ov4_021D0D80.h"
-#include "overlay006/battle_params.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
@@ -64,6 +63,7 @@
 #include "communication_system.h"
 #include "core_sys.h"
 #include "enums.h"
+#include "field_battle_data_transfer.h"
 #include "field_comm_manager.h"
 #include "game_records.h"
 #include "heap.h"
@@ -1674,11 +1674,11 @@ static int ov104_02230A2C(u16 param0, u16 param1)
 static BOOL ov104_02230B50(UnkStruct_ov104_0222E930 *param0)
 {
     int v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
-    v1 = Heap_AllocFromHeap(11, sizeof(BattleParams));
-    MI_CpuClear8(v1, sizeof(BattleParams));
+    v1 = Heap_AllocFromHeap(11, sizeof(FieldBattleDTO));
+    MI_CpuClear8(v1, sizeof(FieldBattleDTO));
 
     sub_0202F298(v2->unk_08, 11, &v0, v1, 0);
     sub_02004550(5, 1119, 1);

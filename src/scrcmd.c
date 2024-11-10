@@ -6020,7 +6020,7 @@ static BOOL ScrCmd_1B5(ScriptContext *ctx)
 static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx)
 {
     u16 *timeOfDay = ScriptContext_GetVarPointer(ctx);
-    *timeOfDay = sub_02055BA8(ctx->fieldSystem);
+    *timeOfDay = FieldSystem_GetTimeOfDay(ctx->fieldSystem);
     return FALSE;
 }
 
@@ -7788,7 +7788,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
     v2->unk_1C = ctx->fieldSystem->location->mapId;
     v2->unk_0C = ctx->fieldSystem->journal;
     v2->unk_10 = ctx->fieldSystem->unk_98;
-    v2->unk_20 = ctx->fieldSystem->unk_BC;
+    v2->unk_20 = ctx->fieldSystem->battleSubscreenCursorOn;
 
     FieldTask_RunApplication(ctx->task, &Unk_020F8BE0, v2);
     ScriptContext_Pause(ctx, sub_02041CC8);

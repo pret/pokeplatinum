@@ -29,7 +29,6 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_022674C4.h"
-#include "overlay006/battle_params.h"
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/ov11_0221F840.h"
@@ -41,6 +40,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "communication_system.h"
+#include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
 #include "game_options.h"
@@ -115,14 +115,14 @@ static BOOL ov16_0223D98C(OverlayManager *param0);
 static BOOL ov16_0223DAD4(OverlayManager *param0);
 static BOOL ov16_0223DB1C(OverlayManager *param0);
 static BOOL ov16_0223DD10(OverlayManager *param0);
-static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1);
+static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1);
 static BOOL ov16_0223D354(OverlayManager *param0);
 static void ov16_0223D7B4(OverlayManager *param0);
 static void ov16_0223C004(BattleSystem *param0, BgConfig *param1);
 static void ov16_0223C210(BattleSystem *param0);
 static void ov16_0223C288(BgConfig *param0);
 static void ov16_0223C2BC(BattleSystem *param0);
-static void ov16_0223C2C0(BattleSystem *param0, BattleParams *param1);
+static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1);
 static void ov16_0223CE28(void);
 static void ov16_0223CE68(void *param0);
 static void ov16_0223CF1C(void *param0);
@@ -134,7 +134,7 @@ static void ov16_0223CD9C(void);
 static void ov16_0223DD4C(BattleSystem *param0);
 static void ov16_0223D0C4(SysTask *param0, void *param1);
 static BOOL ov16_0223CD3C(u16 param0);
-static void ov16_0223DD90(BattleSystem *param0, BattleParams *param1);
+static void ov16_0223DD90(BattleSystem *param0, FieldBattleDTO *param1);
 static void ov16_0223DECC(void);
 
 static const UnkStruct_ov104_0224133C Unk_ov16_0226E2E4 = {
@@ -167,13 +167,13 @@ const UnkStruct_ov104_02241308 Unk_ov16_0226E2B0 = {
 
 BOOL Battle_Main(OverlayManager *param0, int *param1)
 {
-    BattleParams *v0 = OverlayManager_Args(param0);
+    FieldBattleDTO *v0 = OverlayManager_Args(param0);
 
     switch (*param1) {
     case 0:
         Heap_Create(3, 5, 0xb0000);
 
-        if ((v0->battleType & BATTLE_TYPE_LINK) && ((v0->unk_164 & 0x10) == 0)) {
+        if ((v0->battleType & BATTLE_TYPE_LINK) && ((v0->battleStatusMask & BATTLE_STATUS_RECORDING) == 0)) {
             *param1 = 1;
         } else {
             *param1 = 3;
@@ -268,7 +268,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
         if (v2) {
             Heap_Create(3, 73, 0x30000);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
-            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->unk_108, v0->unk_140, v0->unk_E8, v0->unk_E0, v0->records, v0->poketchData, v3, 0x1 | 0x2, 73);
+            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketchData, v3, 0x1 | 0x2, 73);
             *param1 = 14;
         } else {
             *param1 = 15;
@@ -519,7 +519,7 @@ static const int Unk_ov16_0226E44C[][3] = {
 static void ov16_0223B790(OverlayManager *param0)
 {
     BattleSystem *v0 = OverlayManager_Data(param0);
-    BattleParams *v1 = OverlayManager_Args(param0);
+    FieldBattleDTO *v1 = OverlayManager_Args(param0);
     ArchivedSprite v2;
     int v3;
     RTCDate v4;
@@ -644,7 +644,7 @@ static void ov16_0223B790(OverlayManager *param0)
     v0->unk_2434 = -51;
 
     ov16_0223DD4C(v0);
-    sub_0207D9F8(BattleSystem_BagCursor(v0));
+    BagCursor_ResetBattle(BattleSystem_BagCursor(v0));
 
     v0->unk_1C4 = sub_02015F84(5, 4, 0);
     v0->cellTransferState = sub_0201DCC8(4, 5);
@@ -699,11 +699,11 @@ static int ov16_0223BBD0(OverlayManager *param0)
 static void ov16_0223BCB4(OverlayManager *param0)
 {
     BattleSystem *v0 = OverlayManager_Data(param0);
-    BattleParams *v1 = OverlayManager_Args(param0);
+    FieldBattleDTO *v1 = OverlayManager_Args(param0);
     int v2;
 
-    v1->unk_174 = v0->unk_2448;
-    v1->unk_164 = v0->battleStatusMask;
+    v1->seed = v0->unk_2448;
+    v1->battleStatusMask = v0->battleStatusMask;
 
     if ((v0->battleStatusMask & 0x10) == 0) {
         sub_0202F8AC(v1);
@@ -724,29 +724,29 @@ static void ov16_0223BCB4(OverlayManager *param0)
     for (v2 = 0; v2 < 4; v2++) {
         Party_cpy(v0->parties[v2], v1->parties[v2]);
         Heap_FreeToHeap(v0->parties[v2]);
-        TrainerInfo_Copy(v0->trainerInfo[v2], v1->unk_D0[v2]);
+        TrainerInfo_Copy(v0->trainerInfo[v2], v1->trainerInfo[v2]);
         Heap_FreeToHeap(v0->trainerInfo[v2]);
     }
 
     sub_02015760(v0->unk_1AC);
-    Bag_Copy(v0->unk_58, v1->unk_E0);
+    Bag_Copy(v0->unk_58, v1->bag);
     Heap_FreeToHeap(v0->unk_58);
-    sub_02026338(v0->pokedex, v1->unk_E8);
+    Pokedex_Copy(v0->pokedex, v1->pokedex);
     Heap_FreeToHeap(v0->pokedex);
 
-    v1->unk_EC = v0->pcBoxes;
-    v1->unk_E4 = v0->unk_5C;
-    v1->unk_190 = v0->unk_1BC;
+    v1->pcBoxes = v0->pcBoxes;
+    v1->bagCursor = v0->unk_5C;
+    v1->subscreenCursorOn = v0->unk_1BC;
     v1->poketchData = v0->poketchData;
     v1->unk_10C = v0->unk_9C;
-    v1->unk_168 = v0->safariBalls;
-    v1->unk_14 = v0->resultMask & (0xc0 ^ 0xff);
-    v1->unk_148 = v0->unk_2438;
-    v1->unk_150 = BattleContext_Get(v0, v0->battleCtx, 4, NULL);
-    v1->unk_110.unk_00 += BattleContext_Get(v0, v0->battleCtx, 3, NULL);
-    v1->unk_110.unk_04 += (BattleContext_Get(v0, v0->battleCtx, 6, 0) + BattleContext_Get(v0, v0->battleCtx, 6, 2));
-    v1->unk_110.unk_08 += (BattleContext_Get(v0, v0->battleCtx, 7, 0) + BattleContext_Get(v0, v0->battleCtx, 7, 2));
-    v1->unk_18C = BattleContext_Get(v0, v0->battleCtx, 3, NULL);
+    v1->countSafariBalls = v0->safariBalls;
+    v1->resultMask = v0->resultMask & (0xc0 ^ 0xff);
+    v1->caughtBattlerIdx = v0->unk_2438;
+    v1->leveledUpMonsMask = BattleContext_Get(v0, v0->battleCtx, 4, NULL);
+    v1->battleRecords.totalTurns += BattleContext_Get(v0, v0->battleCtx, 3, NULL);
+    v1->battleRecords.totalFainted += (BattleContext_Get(v0, v0->battleCtx, 6, 0) + BattleContext_Get(v0, v0->battleCtx, 6, 2));
+    v1->battleRecords.totalDamage += (BattleContext_Get(v0, v0->battleCtx, 7, 0) + BattleContext_Get(v0, v0->battleCtx, 7, 2));
+    v1->totalTurnsElapsed = BattleContext_Get(v0, v0->battleCtx, 3, NULL);
     v1->unk_19C = v0->unk_2474_0;
 
     for (v2 = 0; v2 < 4; v2++) {
@@ -1056,7 +1056,7 @@ static const u8 Unk_ov16_0226E28C[][4] = {
     },
 };
 
-static void ov16_0223C2C0(BattleSystem *param0, BattleParams *param1)
+static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
 {
     int v0, v1;
     UnkStruct_ov16_0223C2C0 v2;
@@ -1067,43 +1067,43 @@ static void ov16_0223C2C0(BattleSystem *param0, BattleParams *param1)
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->trainerInfo[v0] = TrainerInfo_New(5);
-        TrainerInfo_Copy(param1->unk_D0[v0], param0->trainerInfo[v0]);
-        param0->unk_78[v0] = param1->unk_F0[v0];
+        TrainerInfo_Copy(param1->trainerInfo[v0], param0->trainerInfo[v0]);
+        param0->unk_78[v0] = param1->chatotCries[v0];
     }
 
-    param0->unk_2442 = param1->unk_188;
+    param0->unk_2442 = param1->networkID;
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_2464[v0] = param1->unk_178[v0];
     }
 
     param0->unk_2430 = LCRNG_GetSeed();
-    param0->unk_2444 = param1->unk_174;
-    param0->unk_2448 = param1->unk_174;
-    param0->battleStatusMask = param1->unk_164;
+    param0->unk_2444 = param1->seed;
+    param0->unk_2448 = param1->seed;
+    param0->battleStatusMask = param1->battleStatusMask;
     param0->unk_58 = Bag_New(5);
 
-    Bag_Copy(param1->unk_E0, param0->unk_58);
+    Bag_Copy(param1->bag, param0->unk_58);
     param0->pokedex = sub_02026324(5);
-    sub_02026338(param1->unk_E8, param0->pokedex);
+    Pokedex_Copy(param1->pokedex, param0->pokedex);
 
-    param0->pcBoxes = param1->unk_EC;
-    param0->unk_1B0 = param1->unk_108;
+    param0->pcBoxes = param1->pcBoxes;
+    param0->unk_1B0 = param1->options;
     param0->unk_1B4 = param1->unk_124;
-    param0->unk_5C = param1->unk_E4;
-    param0->unk_1BC = param1->unk_190;
+    param0->unk_5C = param1->bagCursor;
+    param0->unk_1BC = param1->subscreenCursorOn;
     param0->poketchData = param1->poketchData;
-    param0->unk_2420 = param1->unk_13C;
+    param0->unk_2420 = param1->mapEvolutionMethod;
     param0->unk_9C = param1->unk_10C;
-    param0->safariBalls = param1->unk_168;
-    param0->terrain = param1->unk_12C;
-    param0->unk_2400 = param1->unk_128;
-    param0->unk_2404 = param1->unk_130;
-    param0->time = param1->unk_138;
-    param0->unk_2418 = param1->unk_16C;
-    param0->unk_2424 = param1->unk_140;
-    param0->unk_242C = param1->unk_144;
-    param0->fieldWeather = param1->unk_14C;
+    param0->safariBalls = param1->countSafariBalls;
+    param0->terrain = param1->terrain;
+    param0->unk_2400 = param1->background;
+    param0->unk_2404 = param1->mapLabelTextID;
+    param0->time = param1->timeOfDay;
+    param0->unk_2418 = param1->rulesetMask;
+    param0->unk_2424 = param1->visitedContestHall;
+    param0->unk_242C = param1->metBebe;
+    param0->fieldWeather = param1->fieldWeather;
     param0->records = param1->records;
 
     GF_ASSERT(param1->records != NULL);
@@ -1642,7 +1642,7 @@ static void NitroStaticInit(void)
     }
 }
 
-static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
+static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
 {
     UnkStruct_0207A778 *v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0207A778), 5);
 
@@ -1720,7 +1720,7 @@ static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
     {
         int v4;
 
-        v4 = Options_Frame(param1->unk_108);
+        v4 = Options_Frame(param1->options);
 
         ReplaceTransparentTiles(v0->unk_04, 1, 1, 10, v4, 5);
         PaletteData_LoadBufferFromFileStart(v0->unk_0C, 14, 7, 5, 0, 0x20, 0xb * 0x10);
@@ -2001,7 +2001,7 @@ static void ov16_0223D7B4(OverlayManager *param0)
 static BOOL ov16_0223D800(OverlayManager *param0)
 {
     BattleSystem *v0 = OverlayManager_NewData(param0, sizeof(BattleSystem), 5);
-    BattleParams *v1 = OverlayManager_Args(param0);
+    FieldBattleDTO *v1 = OverlayManager_Args(param0);
     u8 v2;
 
     MI_CpuClearFast(v0, sizeof(BattleSystem));
@@ -2076,7 +2076,7 @@ static BOOL ov16_0223D944(OverlayManager *param0)
 static BOOL ov16_0223D98C(OverlayManager *param0)
 {
     BattleSystem *v0 = OverlayManager_Data(param0);
-    BattleParams *v1 = OverlayManager_Args(param0);
+    FieldBattleDTO *v1 = OverlayManager_Args(param0);
     u8 v2;
     int v3;
 
@@ -2135,13 +2135,13 @@ static BOOL ov16_0223DAD4(OverlayManager *param0)
 
 static BOOL ov16_0223DB1C(OverlayManager *param0)
 {
-    BattleParams *v0 = OverlayManager_Args(param0);
+    FieldBattleDTO *v0 = OverlayManager_Args(param0);
     UnkStruct_ov10_0221F800 *v1;
     u8 v2;
     int v3;
 
     if (((v0->battleType & BATTLE_TYPE_LINK) == 0)
-        || (v0->unk_164 & 0x10)
+        || (v0->battleStatusMask & BATTLE_STATUS_RECORDING)
         || (v0->battleType & BATTLE_TYPE_FRONTIER)) {
         return 0;
     }
@@ -2154,23 +2154,23 @@ static BOOL ov16_0223DB1C(OverlayManager *param0)
     MI_CpuClearFast(v1, sizeof(UnkStruct_ov10_0221F800));
     v1->unk_00 = v0;
 
-    switch (v0->unk_14) {
-    case 0x1:
+    switch (v0->resultMask) {
+    case BATTLE_RESULT_WIN:
         if (!sub_020389B8()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_021);
         } else {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_026);
         }
         break;
-    case 0x2:
+    case BATTLE_RESULT_LOSE:
         if (!sub_020389B8()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_022);
         } else {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_027);
         }
         break;
-    case 0x3:
-    case 0x5:
+    case BATTLE_RESULT_DRAW:
+    case BATTLE_RESULT_PLAYER_FLED:
         if (!sub_020389B8()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_023);
         } else {
@@ -2182,29 +2182,29 @@ static BOOL ov16_0223DB1C(OverlayManager *param0)
     if (v0->battleType & BATTLE_TYPE_2vs2) {
         for (v3 = 0; v3 < 4; v3++) {
             v1->unk_04[sub_020362F4(v3)] = v0->parties[v3];
-            v1->unk_14[sub_020362F4(v3)] = TrainerInfo_NameNewStrbuf(v0->unk_D0[v3], 5);
+            v1->unk_14[sub_020362F4(v3)] = TrainerInfo_NameNewStrbuf(v0->trainerInfo[v3], 5);
         }
 
         v1->unk_24 = 5;
         v1->unk_28 = 2;
         v1->unk_29 = 1;
 
-        if (v0->unk_14 != 0x5) {
-            v1->unk_2A = v0->unk_14;
+        if (v0->resultMask != BATTLE_RESULT_PLAYER_FLED) {
+            v1->unk_2A = v0->resultMask;
         } else {
             v1->unk_2A = 3;
         }
     } else {
         v1->unk_04[sub_020362F4(v2)] = v0->parties[v2];
         v1->unk_04[sub_020362F4(v2 ^ 1)] = v0->parties[v2 ^ 1];
-        v1->unk_14[sub_020362F4(v2)] = TrainerInfo_NameNewStrbuf(v0->unk_D0[v2], 5);
-        v1->unk_14[sub_020362F4(v2 ^ 1)] = TrainerInfo_NameNewStrbuf(v0->unk_D0[v2 ^ 1], 5);
+        v1->unk_14[sub_020362F4(v2)] = TrainerInfo_NameNewStrbuf(v0->trainerInfo[v2], 5);
+        v1->unk_14[sub_020362F4(v2 ^ 1)] = TrainerInfo_NameNewStrbuf(v0->trainerInfo[v2 ^ 1], 5);
         v1->unk_24 = 5;
         v1->unk_28 = 2;
         v1->unk_29 = 0;
 
-        if (v0->unk_14 != 0x5) {
-            v1->unk_2A = v0->unk_14;
+        if (v0->resultMask != BATTLE_RESULT_PLAYER_FLED) {
+            v1->unk_2A = v0->resultMask;
         } else {
             v1->unk_2A = 3;
         }
@@ -2220,7 +2220,7 @@ static BOOL ov16_0223DB1C(OverlayManager *param0)
 static BOOL ov16_0223DD10(OverlayManager *param0)
 {
     int v0;
-    BattleParams *v1 = OverlayManager_Args(param0);
+    FieldBattleDTO *v1 = OverlayManager_Args(param0);
     UnkStruct_ov10_0221F800 *v2 = v1->unk_170;
 
     if (v2->unk_2B) {
@@ -2250,7 +2250,7 @@ static void ov16_0223DD4C(BattleSystem *param0)
     }
 }
 
-static void ov16_0223DD90(BattleSystem *param0, BattleParams *param1)
+static void ov16_0223DD90(BattleSystem *param0, FieldBattleDTO *param1)
 {
     int v0, v1, v2;
     int v3, v4;
@@ -2264,7 +2264,7 @@ static void ov16_0223DD90(BattleSystem *param0, BattleParams *param1)
 
     for (v0 = 0; v0 < 4; v0++) {
         v5[v0] = v0;
-        v6[v0] = param1->unk_154[v0];
+        v6[v0] = param1->systemVersion[v0];
     }
 
     v3 = CommSys_CurNetId();

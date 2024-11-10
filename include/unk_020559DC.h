@@ -5,8 +5,10 @@
 
 #include "field/field_system_decl.h"
 
+#include "rtc.h"
+
 void sub_020559DC(FieldSystem *fieldSystem);
-int sub_02055BA8(const FieldSystem *fieldSystem);
+enum TimeOfDay FieldSystem_GetTimeOfDay(const FieldSystem *fieldSystem);
 int sub_02055BB8(const FieldSystem *fieldSystem);
 int sub_02055BC4(const FieldSystem *fieldSystem);
 int sub_02055BD0(const FieldSystem *fieldSystem);

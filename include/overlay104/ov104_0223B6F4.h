@@ -4,17 +4,17 @@
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "overlay006/battle_params.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
 #include "bg_window.h"
+#include "field_battle_data_transfer.h"
 #include "pokemon.h"
 
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);
 u8 ov104_0223B7A8(u8 param0, BOOL param1);
 u8 ov104_0223B7DC(u8 param0, BOOL param1);
-BattleParams *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1);
 u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 *param0);
 BOOL ov104_0223BA14(u8 param0);
 void ov104_0223BA24(Party *param0);

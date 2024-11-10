@@ -5,9 +5,9 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 
-#include "overlay021/STRUCT_OV21_021D3208.h"
 #include "overlay021/sorted_pokedex.h"
 #include "overlay021/species_caught_status.h"
+#include "overlay021/struct_ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D3320.h"
 
 #include "core_sys.h"

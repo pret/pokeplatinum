@@ -68,7 +68,7 @@ target: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) $(MESON_TARGET)
 
 format: $(BUILD)/build.ninja
-	$(MESON) compile -C $(BUILD) clang-format
+	$(NINJA) -C $(BUILD) clang-format
 
 clean: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) --clean

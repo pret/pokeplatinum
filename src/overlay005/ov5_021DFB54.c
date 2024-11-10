@@ -19,7 +19,6 @@
 #include "overlay005/ov5_021F2850.h"
 #include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
-#include "overlay006/battle_params.h"
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay006/ov6_02243258.h"
 #include "overlay006/ov6_02248050.h"
@@ -29,11 +28,13 @@
 
 #include "core_sys.h"
 #include "encounter.h"
+#include "field_battle_data_transfer.h"
 #include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "map_tile_behavior.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
@@ -41,7 +42,6 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_020553DC.h"
-#include "unk_0205DAC8.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_02071B10.h"
@@ -604,8 +604,8 @@ int ov5_021E0118(PlayerAvatar *playerAvatar, u32 param1, u32 param2)
 {
     MapObject *v0 = Player_MapObject(playerAvatar);
 
-    if (sub_0205DB58(param2) == 1) {
-        if ((sub_0205DEFC(param1) == 1) || (sub_0205DEF0(param1) == 1)) {
+    if (TileBehavior_IsSurfable(param2) == 1) {
+        if ((TileBehavior_IsBridge(param1) == 1) || (TileBehavior_IsBridgeStart(param1) == 1)) {
             if (sub_02062F30(v0) == 1) {
                 return 0;
             }
@@ -807,7 +807,7 @@ static int ov5_021E04A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     {
         u8 v0 = sub_0206156C(playerAvatar, param2);
 
-        if (sub_0205DDB4(v0) == 0) {
+        if (TileBehavior_IsWaterfall(v0) == 0) {
             return 0;
         }
     }
@@ -826,7 +826,7 @@ static int ov5_021E04EC(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
         MapObject *v0 = Player_MapObject(playerAvatar);
         u8 v1 = sub_02062BE8(v0);
 
-        if ((sub_0205DCF0(v1) != 1) && (sub_0205DD0C(v1) != 1)) {
+        if ((TileBehavior_IsDeepMud(v1) != 1) && (TileBehavior_IsDeepMudWithGrass(v1) != 1)) {
             return 0;
         }
     }
@@ -885,9 +885,9 @@ static BOOL ov5_021E0560(FieldTask *param0)
         {
             u8 v7 = sub_02062BE8(v1);
 
-            if (sub_0205DD0C(v7) == 1) {
+            if (TileBehavior_IsDeepMudWithGrass(v7) == 1) {
                 FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-                BattleParams *v9;
+                FieldBattleDTO *v9;
 
                 if (ov6_022413E4(fieldSystem, &v9) == 1) {
                     PlayerAvatar_SetInDeepSwamp(v0->playerAvatar, 1);
@@ -986,13 +986,13 @@ int ov5_021E0760(u32 param0, int param1)
     switch (param1) {
     case 0:
     case 1:
-        if (sub_0205DC68(param0) == 1) {
+        if (TileBehavior_IsRockClimbNorthSouth(param0) == 1) {
             return 1;
         }
         break;
     case 2:
     case 3:
-        if (sub_0205DC74(param0) == 1) {
+        if (TileBehavior_IsRockClimbEastWest(param0) == 1) {
             return 1;
         }
         break;

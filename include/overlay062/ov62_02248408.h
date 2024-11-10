@@ -3,11 +3,10 @@
 
 #include "struct_decls/struct_0202F264_decl.h"
 
-#include "overlay006/battle_params.h"
-
+#include "field_battle_data_transfer.h"
 #include "savedata.h"
 
-void ov62_02248408(BattleRecording *param0, BattleParams *param1, int param2);
+void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int param2);
 int ov62_02248598(SaveData *param0, int param1, u8 param2, u16 *param3, u16 *param4);
 void ov62_02248624(SaveData *param0);
 int ov62_02248658(SaveData *param0, u64 param1, u16 *param2, u16 *param3);
