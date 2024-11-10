@@ -7,10 +7,10 @@
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/ov21_021D3208.h"
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D5AEC.h"
+#include "overlay021/pokedex_sort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D3320.h"
@@ -234,7 +234,7 @@ static int ov21_021D7818(UnkStruct_ov21_021E6A68 *param0, void *param1)
     UnkStruct_ov21_021D7A64 *v1;
     int v2;
 
-    param0->unk_08 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021D7A64));
+    param0->unk_08 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021D7A64));
 
     GF_ASSERT(param0->unk_08);
     memset(param0->unk_08, 0, sizeof(UnkStruct_ov21_021D7A64));
@@ -246,7 +246,7 @@ static int ov21_021D7818(UnkStruct_ov21_021E6A68 *param0, void *param1)
         v0->unk_00[v2] = (3 + 1);
     }
 
-    ov21_021D7A64(param0->unk_08, v0, param0->unk_04);
+    ov21_021D7A64(param0->unk_08, v0, param0->heapID);
     return 1;
 }
 
@@ -294,13 +294,13 @@ static int ov21_021D78C0(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
     switch (param1->unk_00) {
     case 0:
-        param1->unk_08 = Heap_AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021D7C64));
+        param1->unk_08 = Heap_AllocFromHeap(param1->heapID, sizeof(UnkStruct_ov21_021D7C64));
         GF_ASSERT(param1->unk_08);
         memset(param1->unk_08, 0, sizeof(UnkStruct_ov21_021D7C64));
         param1->unk_00++;
         break;
     case 1:
-        ov21_021D7C64(v3, v2, v0, param1->unk_04);
+        ov21_021D7C64(v3, v2, v0, param1->heapID);
         param1->unk_00++;
         break;
     case 2:
@@ -366,7 +366,7 @@ static int ov21_021D79E4(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
         }
         break;
     case 2:
-        ov21_021D7CAC(v3, v2, param1->unk_04);
+        ov21_021D7CAC(v3, v2, param1->heapID);
         param1->unk_00++;
         break;
     case 3:
@@ -473,7 +473,7 @@ static void ov21_021D7B8C(u32 param0, u32 param1, void *param2)
             break;
         case 4:
             if (v2->unk_20 == 0) {
-                v4 = ov21_021D3768(v3);
+                v4 = PokedexSort_CaughtStatusLength(v3);
                 ov21_021D853C(v1, v4 - 1);
             }
             break;
@@ -541,7 +541,7 @@ static void ov21_021D7CD8(UnkStruct_ov21_021D77E8 *param0, const UnkStruct_ov21_
     if (param1->unk_1C->unk_04->unk_1740 == 1) {
         ov21_021D276C(param0->unk_00, 1, 4, 3 * 32, 32, param2);
     } else {
-        if (ov21_021D36D8(param1->unk_1C->unk_04) == 1) {
+        if (PokedexStatus_IsNationalDex(param1->unk_1C->unk_04) == 1) {
             ov21_021D276C(param0->unk_00, 25, 4, 3 * 32, 32, param2);
         }
     }
@@ -686,7 +686,7 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     v1.unk_18 = 0;
     v1.unk_1C = 0;
     v1.unk_20 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v1.unk_24 = param3;
+    v1.heapID = param3;
 
     v4 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(v3->unk_14C, 10, 4);
@@ -950,7 +950,7 @@ static BOOL ov21_021D84E0(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D33
             v0 = -1;
         }
 
-        if (ov21_021D387C(param1, v0) == 0) {
+        if (PokedexSort_IsValidStep(param1, v0) == 0) {
             return 0;
         }
     }
@@ -969,7 +969,7 @@ static BOOL ov21_021D8508(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D33
             v0 = -1;
         }
 
-        if (ov21_021D3844(param1, v0) == 0) {
+        if (PokedexSort_TakeStep(param1, v0) == 0) {
             return 0;
         }
     }
@@ -990,7 +990,7 @@ static void ov21_021D853C(UnkStruct_ov21_021D77D4 *param0, int param1)
         return;
     }
 
-    ov21_021D36FC(param0->unk_1C->unk_04, param1);
+    PokedexSort_SetCurrentStatusIndex(param0->unk_1C->unk_04, param1);
 
     (*param0->unk_20) |= (0x1 << 0);
 

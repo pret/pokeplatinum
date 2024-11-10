@@ -6576,7 +6576,7 @@ static BOOL ScrCmd_22B(ScriptContext *ctx)
 
 static BOOL ScrCmd_22C(ScriptContext *ctx)
 {
-    sub_020274B0(SaveData_Pokedex(ctx->fieldSystem->saveData));
+    Pokedex_TurnOnFormDetection(SaveData_Pokedex(ctx->fieldSystem->saveData));
     return 0;
 }
 

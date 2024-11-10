@@ -110,14 +110,14 @@ static inline void inline_020267B8(u8 *param0, u8 param1, u16 param2)
     param0[param2 >> 2] |= param1 << ((param2 & 3) * 2);
 }
 
-static inline void inline_0202736C(PokedexData *param0, u16 param1)
+static inline void Write_SeenSpecies(PokedexData *param0, u16 species)
 {
-    WriteBit((u8 *)param0->seenPokemon, param1);
+    WriteBit((u8 *)param0->seenPokemon, species);
 }
 
-static inline void inline_sub_0202736C_1(PokedexData *param0, u16 param1)
+static inline void Write_CaughtSpecies(PokedexData *param0, u16 species)
 {
-    WriteBit((u8 *)param0->caughtPokemon, param1);
+    WriteBit((u8 *)param0->caughtPokemon, species);
 }
 
 static void sub_02026360(PokedexData *param0, u8 param1, u8 param2, u16 param3)
@@ -957,19 +957,19 @@ u32 sub_0202702C(const PokedexData *param0, u8 param1)
     return v0;
 }
 
-u32 sub_02027058(const PokedexData *param0, u16 param1, int param2)
+u32 sub_02027058(const PokedexData *param0, u16 species, int param2)
 {
     CheckPokedexIntegrity(param0);
 
-    if (IsSpeciesOutOfBounds(param1)) {
+    if (IsSpeciesOutOfBounds(species)) {
         return -1;
     }
 
-    if (!CheckSeenMask(param0, param1)) {
+    if (!CheckSeenMask(param0, species)) {
         return -1;
     }
 
-    return sub_02026BAC(param0, param1, param2);
+    return sub_02026BAC(param0, species, param2);
 }
 
 u32 sub_020270AC(const PokedexData *param0, int param1)
@@ -1071,35 +1071,35 @@ u32 sub_02027288(const PokedexData *param0)
 
 void sub_020272A4(PokedexData *param0, Pokemon *pokemon)
 {
-    u16 v0 = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    u16 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
     u32 v1 = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
     u32 v2 = Pokemon_GetGender(pokemon);
     u32 v3;
 
     CheckPokedexIntegrity(param0);
 
-    if (IsSpeciesOutOfBounds(v0)) {
+    if (IsSpeciesOutOfBounds(species)) {
         return;
     }
 
-    if (!CheckSeenMask(param0, v0)) {
-        inline_0202736C_1(param0, v0, v1);
-        sub_020263D8(param0, v2, 0, v0);
+    if (!CheckSeenMask(param0, species)) {
+        inline_0202736C_1(param0, species, v1);
+        sub_020263D8(param0, v2, 0, species);
     } else {
-        v3 = inline_02026BAC(param0, v0, 0);
+        v3 = inline_02026BAC(param0, species, 0);
 
         if (v3 != v2) {
-            sub_020263D8(param0, v2, 1, v0);
+            sub_020263D8(param0, v2, 1, species);
         }
     }
 
-    sub_02026A60(param0, v0, pokemon);
-    inline_0202736C(param0, v0);
+    sub_02026A60(param0, species, pokemon);
+    Write_SeenSpecies(param0, species);
 }
 
 void sub_0202736C(PokedexData *param0, Pokemon *param1)
 {
-    u16 v0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    u16 species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     u32 v1 = Pokemon_GetValue(param1, MON_DATA_LANGUAGE, NULL);
     u32 v2 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
     u32 v3 = Pokemon_GetGender(param1);
@@ -1107,26 +1107,26 @@ void sub_0202736C(PokedexData *param0, Pokemon *param1)
 
     CheckPokedexIntegrity(param0);
 
-    if (IsSpeciesOutOfBounds(v0)) {
+    if (IsSpeciesOutOfBounds(species)) {
         return;
     }
 
-    if (!CheckSeenMask(param0, v0)) {
-        inline_0202736C_1(param0, v0, v2);
-        sub_020263D8(param0, v3, 0, v0);
+    if (!CheckSeenMask(param0, species)) {
+        inline_0202736C_1(param0, species, v2);
+        sub_020263D8(param0, v3, 0, species);
     } else {
-        v4 = inline_02026BAC(param0, v0, 0);
+        v4 = inline_02026BAC(param0, species, 0);
 
         if (v4 != v3) {
-            sub_020263D8(param0, v3, 1, v0);
+            sub_020263D8(param0, v3, 1, species);
         }
     }
 
-    sub_02026A60(param0, v0, param1);
-    sub_02026B88(param0, v0, v1);
+    sub_02026A60(param0, species, param1);
+    sub_02026B88(param0, species, v1);
 
-    inline_sub_0202736C_1(param0, v0);
-    inline_0202736C(param0, v0);
+    Write_CaughtSpecies(param0, species);
+    Write_SeenSpecies(param0, species);
 }
 
 void sub_02027454(PokedexData *param0)
@@ -1141,30 +1141,30 @@ BOOL Pokedex_IsNationalDexObtained(const PokedexData *pokedex)
     return pokedex->nationalDexObtained;
 }
 
-BOOL sub_02027494(const PokedexData *param0)
+BOOL Pokedex_CanDetectForms(const PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     return param0->canDetectForms;
 }
 
-void sub_020274B0(PokedexData *param0)
+void Pokedex_TurnOnFormDetection(PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     param0->canDetectForms = 1;
 }
 
-BOOL sub_020274D0(const PokedexData *param0, u16 param1, u32 param2)
+BOOL sub_020274D0(const PokedexData *param0, u16 species, u32 param2)
 {
-    int v0;
+    int speciesInt;
 
     GF_ASSERT(param2 < 8);
 
     CheckPokedexIntegrity(param0);
 
-    v0 = param1;
+    speciesInt = species;
     param2 = sub_020986CC(param2);
 
-    return param0->recordedLanguages[v0] & (1 << param2);
+    return param0->recordedLanguages[speciesInt] & (1 << param2);
 }
 
 void sub_02027508(PokedexData *param0)
@@ -1195,54 +1195,54 @@ PokedexData *SaveData_Pokedex(SaveData *saveData)
     return pokedex;
 }
 
-u32 sub_0202756C(const PokedexData *param0, int param1, int param2)
+u32 sub_0202756C(const PokedexData *param0, int species, int param2)
 {
     CheckPokedexIntegrity(param0);
 
-    switch (param1) {
-    case 201:
+    switch (species) {
+    case SPECIES_UNOWN:
         if (param2 < sub_020270DC(param0)) {
             return sub_020270AC(param0, param2);
         }
         break;
-    case 422:
+    case SPECIES_SHELLOS:
         if (param2 < sub_02027130(param0)) {
             return sub_020270F8(param0, param2);
         }
         break;
-    case 423:
+    case SPECIES_GASTRODON:
         if (param2 < sub_0202718C(param0)) {
             return sub_02027154(param0, param2);
         }
         break;
-    case 412:
+    case SPECIES_BURMY:
         if (param2 < sub_020271E8(param0)) {
             return sub_020271B0(param0, param2);
         }
         break;
-    case 413:
+    case SPECIES_WORMADAM:
         if (param2 < sub_02027240(param0)) {
             return sub_02027208(param0, param2);
         }
         break;
-    case 386:
+    case SPECIES_DEOXYS:
         if (param2 < sub_02027288(param0)) {
             return sub_02027264(param0, param2);
         }
         break;
-    case 492:
-        if (param2 < sub_02026464(param0, 492)) {
-            return sub_02026C24(param0, 492, param2);
+    case SPECIES_SHAYMIN:
+        if (param2 < sub_02026464(param0, SPECIES_SHAYMIN)) {
+            return sub_02026C24(param0, SPECIES_SHAYMIN, param2);
         }
         break;
-    case 487:
-        if (param2 < sub_02026464(param0, 487)) {
-            return sub_02026C24(param0, 487, param2);
+    case SPECIES_GIRATINA:
+        if (param2 < sub_02026464(param0, SPECIES_GIRATINA)) {
+            return sub_02026C24(param0, SPECIES_GIRATINA, param2);
         }
         break;
-    case 479:
-        if (param2 < sub_02026958(param0, 479)) {
-            return sub_02026CCC(param0, 479, param2);
+    case SPECIES_ROTOM:
+        if (param2 < sub_02026958(param0, SPECIES_ROTOM)) {
+            return sub_02026CCC(param0, SPECIES_ROTOM, param2);
         }
         break;
     default:

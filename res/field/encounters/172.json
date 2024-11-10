@@ -205,5 +205,11 @@
             "level_min": 40,
             "species": "SPECIES_WHISCASH"
         }
-    ]
+    ],
+    "special_encounters": [],
+    "specialnatdex_encounters": [],
+    "map_category": {
+        "map_type": "field",
+        "map_number": 39
+    }
 }

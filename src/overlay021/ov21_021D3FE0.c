@@ -19,7 +19,7 @@ typedef struct UnkStruct_ov21_021D3FE0_t {
     UnkFuncPtr_ov21_021D41EC unk_20[3];
     UnkStruct_ov21_021E6B20 unk_2C;
     UnkFuncPtr_ov21_021D420C unk_38[3];
-    int unk_44;
+    int heapID;
 } UnkStruct_ov21_021D3FE0;
 
 static void ov21_021D41D8(UnkStruct_ov21_021E6A68 *param0);
@@ -37,7 +37,7 @@ UnkStruct_ov21_021D3FE0 *ov21_021D3FE0(int param0)
     memset(v0, 0, sizeof(UnkStruct_ov21_021D3FE0));
 
     v0->unk_08 = 5;
-    v0->unk_44 = param0;
+    v0->heapID = param0;
 
     return v0;
 }
@@ -53,10 +53,10 @@ void ov21_021D4008(UnkStruct_ov21_021D3FE0 *param0, const UnkStruct_ov21_021D400
     param0->unk_08 = 0;
 
     ov21_021D41D8(&param0->unk_0C);
-    param0->unk_0C.unk_04 = param0->unk_44;
+    param0->unk_0C.heapID = param0->heapID;
 
     ov21_021D41E4(&param0->unk_2C);
-    param0->unk_2C.unk_04 = param0->unk_44;
+    param0->unk_2C.heapID = param0->heapID;
 
     param0->unk_20[0] = param1->unk_08[0];
     param0->unk_20[1] = param1->unk_08[1];

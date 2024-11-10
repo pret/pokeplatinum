@@ -7,8 +7,8 @@
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/ov21_021D3208.h"
 #include "overlay021/ov21_021D4340.h"
+#include "overlay021/pokedex_sort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"
@@ -327,7 +327,7 @@ static int ov21_021D87CC(UnkStruct_ov21_021E6A68 *param0, void *param1)
     UnkStruct_ov21_021D8788 *v0 = param1;
     UnkStruct_ov21_021D87CC *v1;
 
-    v1 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021D87CC));
+    v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021D87CC));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021D87CC));
@@ -400,11 +400,11 @@ static int ov21_021D8804(UnkStruct_ov21_021E6A68 *param0, void *param1)
         break;
     case 3:
         v2 = 1;
-        v2 = ov21_021D3464(v0->unk_04, v0->unk_10, v0->unk_14, v0->unk_18, v0->unk_1C, v0->unk_20, ov21_021D36D8(v0->unk_04), param0->unk_04, 1);
+        v2 = PokedexSort_Sort(v0->unk_04, v0->unk_10, v0->unk_14, v0->unk_18, v0->unk_1C, v0->unk_20, PokedexStatus_IsNationalDex(v0->unk_04), param0->heapID, 1);
 
         if (v2 == 1) {
             *v0->unk_00 |= (0x1 << 1);
-            ov21_021D3810(v0->unk_04, 0);
+            PokedexSort_SetCurrentValues(v0->unk_04, 0);
             v0->unk_04->unk_1740 = 1;
             v0->unk_08->unk_18 = 1;
         } else {
@@ -455,12 +455,12 @@ static int ov21_021D893C(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
     switch (param1->unk_00) {
     case 0:
-        param1->unk_08 = Heap_AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021D9320));
+        param1->unk_08 = Heap_AllocFromHeap(param1->heapID, sizeof(UnkStruct_ov21_021D9320));
         memset(param1->unk_08, 0, sizeof(UnkStruct_ov21_021D9320));
         param1->unk_00++;
         break;
     case 1:
-        ov21_021D8A7C(v3, v2, v0, v1, param1->unk_04);
+        ov21_021D8A7C(v3, v2, v0, v1, param1->heapID);
         sub_0200AAE0(1, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
         param1->unk_00++;
         break;
@@ -484,11 +484,11 @@ static int ov21_021D89B8(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
     UnkStruct_ov21_021D9320 *v3 = param1->unk_08;
 
     if (v0->unk_30 == 0) {
-        ov21_021D8ED4(v3, v2, v0, param1->unk_04);
+        ov21_021D8ED4(v3, v2, v0, param1->heapID);
     } else if ((v0->unk_30 == 1) || (v0->unk_30 == 3)) {
-        ov21_021D9320(v3, v2, v0, param1->unk_04);
+        ov21_021D9320(v3, v2, v0, param1->heapID);
     } else if (v0->unk_30 != 4) {
-        ov21_021D9390(v3, v2, v0, param1->unk_04);
+        ov21_021D9390(v3, v2, v0, param1->heapID);
     }
 
     return 0;
@@ -541,7 +541,7 @@ static void ov21_021D8A7C(UnkStruct_ov21_021D9320 *param0, UnkStruct_ov21_021D87
 
     ov21_021D8C00(param1);
     ov21_021D8B8C(param1, param2, param4);
-    ov21_021D8BC4(param0, param1, param2, param4, ov21_021D36D8(param2->unk_04));
+    ov21_021D8BC4(param0, param1, param2, param4, PokedexStatus_IsNationalDex(param2->unk_04));
     ov21_021D8C1C(param0, param1, param4);
     ov21_021D8D0C(param0, param1, param2, param4);
 

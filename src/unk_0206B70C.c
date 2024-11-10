@@ -136,7 +136,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     }
 
     for (v1 = 0; v1 < 4; v1++) {
-        if (sub_0206B1F0(v8, v1)) {
+        if (VarFlags_HiddenLocationsUnlocked(v8, v1)) {
             param1->unk_13C |= (0x1 << v1);
         }
     }
