@@ -206,22 +206,6 @@
             "species": "SPECIES_WHISCASH"
         }
     ],
-    "special_encounters": [
-        "SPECIES_AIPOM",
-        "SPECIES_HERACROSS",
-        "SPECIES_WURMPLE",
-        "SPECIES_BURMY",
-        "SPECIES_COMBEE",
-        "SPECIES_CHERUBI"
-    ],
-    "specialnatdex_encounters": [
-        "SPECIES_AIPOM",
-        "SPECIES_HERACROSS",
-        "SPECIES_WURMPLE",
-        "SPECIES_BURMY",
-        "SPECIES_COMBEE",
-        "SPECIES_CHERUBI"
-    ],
     "map_category": {
         "map_type": "field",
         "map_number": 18

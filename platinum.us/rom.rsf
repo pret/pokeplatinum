@@ -408,8 +408,14 @@ RomSpec
 	File fielddata/land_data/land_data.narc
 	File contest/data/contest_data.narc
 	File particledata/particledata.narc
-	File application/zukanlist/zkn_data/zukan_data.narc
-	File application/zukanlist/zkn_data/zukan_data_gira.narc
+
+	Root /application/zukanlist/zkn_data
+	HostRoot res/pokemon
+	File zukan_data.narc
+	File zukan_data_gira.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File application/wifi_earth/wifi_earth.narc
 	File application/wifi_earth/wifi_earth_place.narc
 	File application/custom_ball/data/cb_data.narc
@@ -426,7 +432,13 @@ RomSpec
 	File arc/codein_gra.narc
 	File arc/demo_tengan_gra.narc
 	File arc/email_gra.narc
-	File arc/encdata_ex.narc
+
+	Root /arc
+	HostRoot res/field/encounters_ex
+	File encdata_ex.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File arc/manene.narc
 	File arc/plgym_ghost.narc
 	File arc/ppark.narc
@@ -453,7 +465,10 @@ RomSpec
 	File battle/b_tower/btdtr.narc
 	File application/zukanlist/zkn_data/zukan_enc_diamond.narc
 	File application/zukanlist/zkn_data/zukan_enc_pearl.narc
-	File application/zukanlist/zkn_data/zukan_enc_platinum.narc
+
+	Root /application/zukanlist/zkn_data
+	HostRoot res/field
+	File zukan_enc_platinum.narc
 
 	Root /poketool/poke_edit
 	HostRoot res/pokemon

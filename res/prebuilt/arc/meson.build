@@ -6,7 +6,6 @@ prebuilt_files = [
     'codein_gra.narc',
     'demo_tengan_gra.narc',
     'email_gra.narc',
-    'encdata_ex.narc',
     'manene.narc',
     'plgym_ghost.narc',
     'ppark.narc',

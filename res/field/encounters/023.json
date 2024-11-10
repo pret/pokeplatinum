@@ -206,30 +206,6 @@
             "species": "SPECIES_CARVANHA"
         }
     ],
-    "special_encounters": [
-        "SPECIES_TANGELA",
-        "SPECIES_YANMA",
-        "SPECIES_WOOPER",
-        "SPECIES_QUAGSIRE",
-        "SPECIES_TROPIUS",
-        "SPECIES_SKORUPI",
-        "SPECIES_CROAGUNK",
-        "SPECIES_CARNIVINE"
-    ],
-    "specialnatdex_encounters": [
-        "SPECIES_PARAS",
-        "SPECIES_EXEGGCUTE",
-        "SPECIES_KANGASKHAN",
-        "SPECIES_SHROOMISH",
-        "SPECIES_GULPIN",
-        "SPECIES_KECLEON",
-        "SPECIES_TROPIUS",
-        "SPECIES_SKORUPI",
-        "SPECIES_DRAPION",
-        "SPECIES_CROAGUNK",
-        "SPECIES_TOXICROAK",
-        "SPECIES_CARNIVINE"
-    ],
     "map_category": {
         "map_type": "dungeon",
         "map_number": 4

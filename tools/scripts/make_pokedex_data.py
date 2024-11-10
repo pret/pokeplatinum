@@ -18,7 +18,7 @@ argparser.add_argument('-k', '--knarc',
                        help='Path to knarc executable')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
-                       help='Path to the source directory (res/prebuilt/application/zukanlist/zkn_data)')
+                       help='Path to the source directory (res/pokemon)')
 argparser.add_argument('-p', '--private-dir',
                        required=True,
                        help='Path to the private directory (where binaries will be made)')

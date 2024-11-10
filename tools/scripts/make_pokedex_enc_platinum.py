@@ -5,8 +5,6 @@ import pathlib
 import subprocess
 
 from consts.species import PokemonSpecies
-from consts.pokemon import PokemonType
-from consts.pokemon import PokemonBodyShape
 
 
 argparser = argparse.ArgumentParser(
@@ -18,7 +16,7 @@ argparser.add_argument('-k', '--knarc',
                        help='Path to knarc executable')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
-                       help='Path to the source directory (res/prebuilt/application/zukanlist/zkn_data)')
+                       help='Path to the source directory (res/field)')
 argparser.add_argument('-p', '--private-dir',
                        required=True,
                        help='Path to the private directory (where binaries will be made)')
@@ -30,6 +28,8 @@ args = argparser.parse_args()
 source_dir = pathlib.Path(args.source_dir)
 private_dir = pathlib.Path(args.private_dir)
 output_dir = pathlib.Path(args.output_dir)
+encounter_dir = source_dir / "encounters"
+encounter_ex_dir = source_dir / "encounters_ex"
 
 output_name = 'zukan_enc_platinum'
 
@@ -192,18 +192,8 @@ file_3 = [
     [202, 0, 0, 0]
 ]
 
-honeyTrees = [
-    "SPECIES_AIPOM",
-    "SPECIES_HERACROSS",
-    "SPECIES_WURMPLE",
-    "SPECIES_BURMY",
-    "SPECIES_COMBEE",
-    "SPECIES_CHERUBI"
-]
-
 NUM_POKEMON = len(PokemonSpecies) - 1
 NUM_FILES = NUM_POKEMON * 10 + 4
-NUM_MAPS = 183
 
 numDigits = len(str(NUM_FILES))
 
@@ -254,115 +244,174 @@ fieldNight = [set() for species in range(NUM_POKEMON)]
 fieldSpecial = [set() for species in range(NUM_POKEMON)]
 fieldSpecialNatDex = [set() for species in range(NUM_POKEMON)]
 
-for archiveID in range(NUM_MAPS):
-            with open(source_dir / f"{archiveID:03}.json", encoding='utf-8') as encounter_file:
-                encounterData = json.load(encounter_file)
+for file in encounter_dir.glob("*.json"):
+    with open(file, encoding='utf-8') as encounter_file:
+        encounterData = json.load(encounter_file)
 
-            mapData = encounterData["map_category"]
-            mapType = mapData["map_type"]
-            mapNum = mapData["map_number"]
+    mapData = encounterData["map_category"]
+    mapType = mapData["map_type"]
+    mapNum = mapData["map_number"]
 
-            if (mapType == 'dungeon'):
-                for i, slot in enumerate(encounterData["land_encounters"]):
-                    species = slot["species"]
-                    dungeonMorning[PokemonSpecies[species].value].add(mapNum)
+    if (mapType == 'dungeon'):
+        for i, slot in enumerate(encounterData["land_encounters"]):
+            species = slot["species"]
+            dungeonMorning[PokemonSpecies[species].value].add(mapNum)
 
-                    if ((i == 2) or (i == 3)):
-                        species = encounterData["morning"][i - 2]
-                        dungeonDay[PokemonSpecies[species].value].add(mapNum)
+            if ((i == 2) or (i == 3)):
+                species = encounterData["morning"][i - 2]
+                dungeonDay[PokemonSpecies[species].value].add(mapNum)
 
-                        species = encounterData["night"][i - 2]
-                        dungeonNight[PokemonSpecies[species].value].add(mapNum)
-                    else:
-                        dungeonDay[PokemonSpecies[species].value].add(mapNum)
-                        dungeonNight[PokemonSpecies[species].value].add(mapNum)
+                species = encounterData["night"][i - 2]
+                dungeonNight[PokemonSpecies[species].value].add(mapNum)
+            else:
+                dungeonDay[PokemonSpecies[species].value].add(mapNum)
+                dungeonNight[PokemonSpecies[species].value].add(mapNum)
 
-                for slot in encounterData["surf_encounters"]:
-                    species = slot["species"]
-                    dungeonMorning[PokemonSpecies[species].value].add(mapNum)
-                    dungeonDay[PokemonSpecies[species].value].add(mapNum)
-                    dungeonNight[PokemonSpecies[species].value].add(mapNum)
+        for slot in encounterData["surf_encounters"]:
+            species = slot["species"]
+            dungeonMorning[PokemonSpecies[species].value].add(mapNum)
+            dungeonDay[PokemonSpecies[species].value].add(mapNum)
+            dungeonNight[PokemonSpecies[species].value].add(mapNum)
 
-                for slot in encounterData["old_rod_encounters"]:
-                    species = slot["species"]
-                    dungeonMorning[PokemonSpecies[species].value].add(mapNum)
-                    dungeonDay[PokemonSpecies[species].value].add(mapNum)
-                    dungeonNight[PokemonSpecies[species].value].add(mapNum)
+        for slot in encounterData["old_rod_encounters"]:
+            species = slot["species"]
+            dungeonMorning[PokemonSpecies[species].value].add(mapNum)
+            dungeonDay[PokemonSpecies[species].value].add(mapNum)
+            dungeonNight[PokemonSpecies[species].value].add(mapNum)
 
-                for slot in encounterData["good_rod_encounters"]:
-                    species = slot["species"]
-                    dungeonMorning[PokemonSpecies[species].value].add(mapNum)
-                    dungeonDay[PokemonSpecies[species].value].add(mapNum)
-                    dungeonNight[PokemonSpecies[species].value].add(mapNum)
+        for slot in encounterData["good_rod_encounters"]:
+            species = slot["species"]
+            dungeonMorning[PokemonSpecies[species].value].add(mapNum)
+            dungeonDay[PokemonSpecies[species].value].add(mapNum)
+            dungeonNight[PokemonSpecies[species].value].add(mapNum)
 
-                for slot in encounterData["super_rod_encounters"]:
-                    species = slot["species"]
-                    dungeonMorning[PokemonSpecies[species].value].add(mapNum)
-                    dungeonDay[PokemonSpecies[species].value].add(mapNum)
-                    dungeonNight[PokemonSpecies[species].value].add(mapNum)
+        for slot in encounterData["super_rod_encounters"]:
+            species = slot["species"]
+            dungeonMorning[PokemonSpecies[species].value].add(mapNum)
+            dungeonDay[PokemonSpecies[species].value].add(mapNum)
+            dungeonNight[PokemonSpecies[species].value].add(mapNum)
 
-                for species in encounterData["special_encounters"]:
-                    dungeonSpecial[PokemonSpecies[species].value].add(mapNum)
-                dungeonSpecial[0].add(mapNum)
+        dungeonSpecial[0].add(mapNum)
 
-                for species in encounterData["radar"]:
-                    dungeonSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
-                for species in encounterData["specialnatdex_encounters"]:
-                    dungeonSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
+        for species in encounterData["radar"]:
+            dungeonSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
 
-            if (mapType == 'field'):
-                for i, slot in enumerate(encounterData["land_encounters"]):
-                    species = slot["species"]
-                    fieldMorning[PokemonSpecies[species].value].add(mapNum)
+    if (mapType == 'field'):
+        for i, slot in enumerate(encounterData["land_encounters"]):
+            species = slot["species"]
+            fieldMorning[PokemonSpecies[species].value].add(mapNum)
 
-                    if ((i == 2) or (i == 3)):
-                        species = encounterData["morning"][i - 2]
-                        fieldDay[PokemonSpecies[species].value].add(mapNum)
+            if ((i == 2) or (i == 3)):
+                species = encounterData["morning"][i - 2]
+                fieldDay[PokemonSpecies[species].value].add(mapNum)
 
-                        species = encounterData["night"][i - 2]
-                        fieldNight[PokemonSpecies[species].value].add(mapNum)
-                    else:
-                        fieldDay[PokemonSpecies[species].value].add(mapNum)
-                        fieldNight[PokemonSpecies[species].value].add(mapNum)
+                species = encounterData["night"][i - 2]
+                fieldNight[PokemonSpecies[species].value].add(mapNum)
+            else:
+                fieldDay[PokemonSpecies[species].value].add(mapNum)
+                fieldNight[PokemonSpecies[species].value].add(mapNum)
 
-                for slot in encounterData["surf_encounters"]:
-                    species = slot["species"]
-                    fieldMorning[PokemonSpecies[species].value].add(mapNum)
-                    fieldDay[PokemonSpecies[species].value].add(mapNum)
-                    fieldNight[PokemonSpecies[species].value].add(mapNum)
+        for slot in encounterData["surf_encounters"]:
+            species = slot["species"]
+            fieldMorning[PokemonSpecies[species].value].add(mapNum)
+            fieldDay[PokemonSpecies[species].value].add(mapNum)
+            fieldNight[PokemonSpecies[species].value].add(mapNum)
 
-                for slot in encounterData["old_rod_encounters"]:
-                    species = slot["species"]
-                    fieldMorning[PokemonSpecies[species].value].add(mapNum)
-                    fieldDay[PokemonSpecies[species].value].add(mapNum)
-                    fieldNight[PokemonSpecies[species].value].add(mapNum)
+        for slot in encounterData["old_rod_encounters"]:
+            species = slot["species"]
+            fieldMorning[PokemonSpecies[species].value].add(mapNum)
+            fieldDay[PokemonSpecies[species].value].add(mapNum)
+            fieldNight[PokemonSpecies[species].value].add(mapNum)
 
-                for slot in encounterData["good_rod_encounters"]:
-                    species = slot["species"]
-                    fieldMorning[PokemonSpecies[species].value].add(mapNum)
-                    fieldDay[PokemonSpecies[species].value].add(mapNum)
-                    fieldNight[PokemonSpecies[species].value].add(mapNum)
+        for slot in encounterData["good_rod_encounters"]:
+            species = slot["species"]
+            fieldMorning[PokemonSpecies[species].value].add(mapNum)
+            fieldDay[PokemonSpecies[species].value].add(mapNum)
+            fieldNight[PokemonSpecies[species].value].add(mapNum)
 
-                for slot in encounterData["super_rod_encounters"]:
-                    species = slot["species"]
-                    fieldMorning[PokemonSpecies[species].value].add(mapNum)
-                    fieldDay[PokemonSpecies[species].value].add(mapNum)
-                    fieldNight[PokemonSpecies[species].value].add(mapNum)
+        for slot in encounterData["super_rod_encounters"]:
+            species = slot["species"]
+            fieldMorning[PokemonSpecies[species].value].add(mapNum)
+            fieldDay[PokemonSpecies[species].value].add(mapNum)
+            fieldNight[PokemonSpecies[species].value].add(mapNum)
 
-                for species in encounterData["special_encounters"]:
-                    fieldSpecial[PokemonSpecies[species].value].add(mapNum)
-                fieldSpecial[0].add(mapNum)
+        fieldSpecial[0].add(mapNum)
 
-                for species in encounterData["radar"]:
-                    fieldSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
-                for species in encounterData["specialnatdex_encounters"]:
-                    fieldSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
+        for species in encounterData["radar"]:
+            fieldSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
 
-for species in honeyTrees:
-    dungeonSpecial[PokemonSpecies[species].value].add(21)
-    dungeonSpecialNatDex[PokemonSpecies[species].value].add(21)
-    fieldSpecial[PokemonSpecies[species].value].add(50)
-    fieldSpecialNatDex[PokemonSpecies[species].value].add(50)
+honeyTreeDungeons = [
+    21
+]
+honeyTreeFields = [
+    6,
+    7,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    34,
+    36,
+    37,
+    50
+]
+
+with open(encounter_ex_dir / "honey_tree_common.json", encoding='utf-8') as encounter_file:
+    encounterData = json.load(encounter_file)
+for species in encounterData["honey_tree_encounters"]:
+    for mapNum in honeyTreeDungeons:
+        dungeonSpecial[PokemonSpecies[species].value].add(mapNum)
+        dungeonSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
+    for mapNum in honeyTreeFields:
+        fieldSpecial[PokemonSpecies[species].value].add(mapNum)
+        fieldSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
+
+with open(encounter_ex_dir / "honey_tree_uncommon.json", encoding='utf-8') as encounter_file:
+    encounterData = json.load(encounter_file)
+for species in encounterData["honey_tree_encounters"]:
+    for mapNum in honeyTreeDungeons:
+        dungeonSpecial[PokemonSpecies[species].value].add(mapNum)
+        dungeonSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
+    for mapNum in honeyTreeFields:
+        fieldSpecial[PokemonSpecies[species].value].add(mapNum)
+        fieldSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
+
+mtCoronetDungeon = 3
+
+with open(encounter_ex_dir / "mt_coronet_lake.json", encoding='utf-8') as encounter_file:
+    encounterData = json.load(encounter_file)
+dungeonSpecial[PokemonSpecies[encounterData["species"]].value].add(mtCoronetDungeon)
+dungeonSpecialNatDex[PokemonSpecies[encounterData["species"]].value].add(mtCoronetDungeon)
+
+greatMarshDungeon = 4
+
+with open(encounter_ex_dir / "great_marsh_dailies.json", encoding='utf-8') as encounter_file:
+    encounterData = json.load(encounter_file)
+for species in encounterData["daily_encounters"]:
+    dungeonSpecial[PokemonSpecies[species].value].add(greatMarshDungeon)
+
+with open(encounter_ex_dir / "great_marsh_dailies_natdex.json", encoding='utf-8') as encounter_file:
+    encounterData = json.load(encounter_file)
+for species in encounterData["daily_encounters"]:
+    dungeonSpecialNatDex[PokemonSpecies[species].value].add(greatMarshDungeon)
+
+trophyGardenDungeon = 14
+
+with open(encounter_ex_dir / "trophy_garden_dailies.json", encoding='utf-8') as encounter_file:
+    encounterData = json.load(encounter_file)
+for species in encounterData["daily_encounters"]:
+    dungeonSpecialNatDex[PokemonSpecies[species].value].add(trophyGardenDungeon)
+
 
 for species in range(NUM_POKEMON):
     speciesSets = [dungeonMorning[species],
