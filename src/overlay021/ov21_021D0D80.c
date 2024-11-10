@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0209ACBC_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay021/STRUCT_OV21_021D3208.h"
 #include "overlay021/funcptr_ov21_021E9B74.h"
 #include "overlay021/funcptr_ov21_021E9B9C.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -39,6 +38,7 @@
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"
 #include "overlay021/struct_ov21_021D22F8.h"
+#include "overlay021/struct_ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D3320.h"
 #include "overlay021/struct_ov21_021D3FE0_decl.h"
 #include "overlay021/struct_ov21_021D423C_decl.h"
