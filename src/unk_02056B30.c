@@ -636,10 +636,10 @@ static void sub_02057368(FieldSystem *fieldSystem)
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
     v4 = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
 
-    if (TileBehavior_IsEastStairsWarp(v4)) {
+    if (TileBehavior_IsWarpStairsEast(v4)) {
         v3.x += (FX32_ONE * 16);
         v2 = 2;
-    } else if (TileBehavior_IsWestStairsWarp(v4)) {
+    } else if (TileBehavior_IsWarpStairsWest(v4)) {
         v3.x -= (FX32_ONE * 16);
         v2 = 3;
     } else {

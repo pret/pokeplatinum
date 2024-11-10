@@ -220,19 +220,19 @@ static void ov5_021F636C(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
 static int ov5_021F6414(u8 param0)
 {
-    if (TileBehavior_IsNorthWarpEntrance(param0)) {
+    if (TileBehavior_IsWarpEntranceNorth(param0)) {
         return 0;
     }
 
-    if (TileBehavior_IsSouthWarpEntrance(param0)) {
+    if (TileBehavior_IsWarpEntranceSouth(param0)) {
         return 1;
     }
 
-    if (TileBehavior_IsWestWarpEntrance(param0)) {
+    if (TileBehavior_IsWarpEntranceWest(param0)) {
         return 2;
     }
 
-    if (TileBehavior_IsEastWarpEntrance(param0)) {
+    if (TileBehavior_IsWarpEntranceEast(param0)) {
         return 3;
     }
 

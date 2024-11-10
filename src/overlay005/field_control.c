@@ -389,7 +389,7 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
 {
     if (input->mapTransition
         && input->transitionDir == DIR_SOUTH
-        && TileBehavior_IsSouthWarpEntrance(Field_CurrentTileBehavior(fieldSystem))) {
+        && TileBehavior_IsWarpEntranceSouth(Field_CurrentTileBehavior(fieldSystem))) {
 
         ScriptManager_Set(fieldSystem, 9101, NULL);
         return TRUE;
@@ -598,23 +598,23 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
 
     tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 
-    if (TileBehavior_IsEastWarpEntrance(tileBehavior) || TileBehavior_IsEastWarp(tileBehavior)) {
+    if (TileBehavior_IsWarpEntranceEast(tileBehavior) || TileBehavior_IsWarpEast(tileBehavior)) {
         if (input->transitionDir != DIR_EAST) {
             return FALSE;
         }
-    } else if (TileBehavior_IsWestWarpEntrance(tileBehavior) || TileBehavior_IsWestWarp(tileBehavior)) {
+    } else if (TileBehavior_IsWarpEntranceWest(tileBehavior) || TileBehavior_IsWarpWest(tileBehavior)) {
         if (input->transitionDir != DIR_WEST) {
             return FALSE;
         }
-    } else if (TileBehavior_IsSouthWarpEntrance(tileBehavior) || TileBehavior_IsSouthWarp(tileBehavior)) {
+    } else if (TileBehavior_IsWarpEntranceSouth(tileBehavior) || TileBehavior_IsWarpSouth(tileBehavior)) {
         if (input->transitionDir != DIR_SOUTH) {
             return FALSE;
         }
-    } else if (TileBehavior_IsEastStairsWarp(tileBehavior)) {
+    } else if (TileBehavior_IsWarpStairsEast(tileBehavior)) {
         if (input->transitionDir != DIR_EAST) {
             return FALSE;
         }
-    } else if (TileBehavior_IsWestStairsWarp(tileBehavior)) {
+    } else if (TileBehavior_IsWarpStairsWest(tileBehavior)) {
         if (input->transitionDir != DIR_WEST) {
             return FALSE;
         }
@@ -628,13 +628,13 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
 
     if (TileBehavior_IsDoor(tileBehavior)) {
         transitionType = 1;
-    } else if (TileBehavior_IsEastStairsWarp(tileBehavior)) {
+    } else if (TileBehavior_IsWarpStairsEast(tileBehavior)) {
         transitionType = 3;
-    } else if (TileBehavior_IsWestStairsWarp(tileBehavior)) {
+    } else if (TileBehavior_IsWarpStairsWest(tileBehavior)) {
         transitionType = 3;
-    } else if (TileBehavior_IsEastWarpEntrance(tileBehavior) || TileBehavior_IsEastWarp(tileBehavior)
-        || TileBehavior_IsWestWarpEntrance(tileBehavior) || TileBehavior_IsWestWarp(tileBehavior)
-        || TileBehavior_IsSouthWarpEntrance(tileBehavior) || TileBehavior_IsSouthWarp(tileBehavior)) {
+    } else if (TileBehavior_IsWarpEntranceEast(tileBehavior) || TileBehavior_IsWarpEast(tileBehavior)
+        || TileBehavior_IsWarpEntranceWest(tileBehavior) || TileBehavior_IsWarpWest(tileBehavior)
+        || TileBehavior_IsWarpEntranceSouth(tileBehavior) || TileBehavior_IsWarpSouth(tileBehavior)) {
         sub_02056C18(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, input->transitionDir);
         return TRUE;
     } else {
@@ -663,11 +663,11 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
         return 2503;
     } else if (TileBehavior_IsTrashCan(behavior)) {
         return 2504;
-    } else if (TileBehavior_IsStoreShelf1(behavior)) {
+    } else if (TileBehavior_IsMartShelf1(behavior)) {
         return 2505;
-    } else if (TileBehavior_IsStoreShelf2(behavior)) {
+    } else if (TileBehavior_IsMartShelf2(behavior)) {
         return 2506;
-    } else if (TileBehavior_IsStoreShelf3(behavior)) {
+    } else if (TileBehavior_IsMartShelf3(behavior)) {
         return 2507;
     } else if (TileBehavior_IsWaterfall(behavior)) {
         return 10006;
@@ -784,7 +784,7 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
         return FALSE;
     }
 
-    if (TileBehavior_IsEscalatorInvertPlayerFace(curTileBehavior) == TRUE) {
+    if (TileBehavior_IsEscalatorFlipFace(curTileBehavior) == TRUE) {
         int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         if (playerDir == DIR_WEST) {
@@ -810,7 +810,7 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
         return TRUE;
     }
 
-    if (TileBehavior_IsNorthWarpEntrance(curTileBehavior) || TileBehavior_IsNorthWarp(curTileBehavior)) {
+    if (TileBehavior_IsWarpEntranceNorth(curTileBehavior) || TileBehavior_IsWarpNorth(curTileBehavior)) {
         sub_02056C18(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, 0);
         return TRUE;
     }

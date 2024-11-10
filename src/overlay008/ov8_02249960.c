@@ -386,17 +386,17 @@ BOOL ov8_02249A40(FieldSystem *fieldSystem, const int param1, const int param2, 
 
     v0 = FieldSystem_GetTileBehavior(fieldSystem, param1, param2);
 
-    if (TileBehavior_IsPastoriaGymWaterLevel1(v0)) {
+    if (TileBehavior_IsPastoriaGymHighGround(v0)) {
         if (param3 != 0) {
             (*param4) = 1;
             return 1;
         }
-    } else if (TileBehavior_IsPastoriaGymWaterLevel2(v0)) {
+    } else if (TileBehavior_IsPastoriaGymMiddleGround(v0)) {
         if (param3 != FX32_ONE * 16 * 2) {
             (*param4) = 1;
             return 1;
         }
-    } else if (TileBehavior_IsPastoriaGymWaterLevel3(v0)) {
+    } else if (TileBehavior_IsPastoriaGymLowGround(v0)) {
         if (param3 != FX32_ONE * 16 * 4) {
             (*param4) = 1;
             return 1;

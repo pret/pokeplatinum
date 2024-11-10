@@ -486,7 +486,7 @@ static void sub_02063D30(MapObject *mapObj, u8 param1, u8 param2, const UnkStruc
     }
 
     if (sub_02062F64(mapObj) == 0) {
-        u8 v0 = GetNoTileAttributesID();
+        u8 v0 = GetNullTileBehaviorID();
 
         if (TileBehavior_HasReflectiveSurface(param1) == 1) {
             v0 = param1;
@@ -498,7 +498,7 @@ static void sub_02063D30(MapObject *mapObj, u8 param1, u8 param2, const UnkStruc
             }
         }
 
-        if (v0 != GetNoTileAttributesID()) {
+        if (v0 != GetNullTileBehaviorID()) {
             int v2;
 
             sub_02062F48(mapObj, 1);
@@ -690,7 +690,7 @@ int sub_02064004(const MapObject *mapObj, int param1, int param2, int param3)
         u8 v1 = sub_02062BE8(mapObj);
         u8 v2 = FieldSystem_GetTileBehavior(fieldSystem, param1, param2);
 
-        if (v2 == GetNoTileAttributesID()) {
+        if (v2 == GetNullTileBehaviorID()) {
             return 1;
         }
 
@@ -703,17 +703,17 @@ int sub_02064004(const MapObject *mapObj, int param1, int param2, int param3)
 }
 
 static BOOL (*const Unk_020EE76C[4])(u8) = {
-    TileBehavior_BlocksMovementNorth,
-    TileBehavior_BlocksMovementSouth,
-    TileBehavior_BlocksMovementWest,
-    TileBehavior_BlocksMovementEast
+    TileBehavior_BlocksMovementNorthward,
+    TileBehavior_BlocksMovementSouthward,
+    TileBehavior_BlocksMovementWestward,
+    TileBehavior_BlocksMovementEastward
 };
 
 static BOOL (*const Unk_020EE77C[4])(u8) = {
-    TileBehavior_BlocksMovementSouth,
-    TileBehavior_BlocksMovementNorth,
-    TileBehavior_BlocksMovementEast,
-    TileBehavior_BlocksMovementWest
+    TileBehavior_BlocksMovementSouthward,
+    TileBehavior_BlocksMovementNorthward,
+    TileBehavior_BlocksMovementEastward,
+    TileBehavior_BlocksMovementWestward
 };
 
 int sub_0206406C(MapObject *mapObj, u32 param1)
@@ -929,7 +929,7 @@ int sub_020642F8(MapObject *mapObj)
 
 int sub_02064390(MapObject *mapObj)
 {
-    u8 v0 = GetNoTileAttributesID();
+    u8 v0 = GetNullTileBehaviorID();
     u8 v1 = v0;
 
     if (sub_02062FDC(mapObj) == 0) {
@@ -946,7 +946,7 @@ int sub_02064390(MapObject *mapObj)
     sub_02062BF0(mapObj, v0);
     sub_02062BE0(mapObj, v1);
 
-    if (TileBehavior_HasNoAttributes(v1) == 1) {
+    if (TileBehavior_IsNull(v1) == 1) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_11);
         return 0;
     }

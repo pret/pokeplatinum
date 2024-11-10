@@ -360,7 +360,7 @@ BOOL sub_02055024(const FieldSystem *fieldSystem, const VecFx32 *param1, const i
         if ((!v2) && (v1 == 2)) {
             u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, param2, param3);
 
-            if (TileBehavior_IsPastoriaGymWaterEmpty(v3)) {
+            if (TileBehavior_IsPastoriaGymWater(v3)) {
                 return 1;
             }
         }
@@ -394,7 +394,7 @@ BOOL sub_0205507C(FieldSystem *fieldSystem, const VecFx32 *param1, const int par
             if ((!v2) && (v1 == 2)) {
                 u8 v4 = FieldSystem_GetTileBehavior(fieldSystem, param2, param3);
 
-                if (TileBehavior_IsPastoriaGymWaterEmpty(v4)) {
+                if (TileBehavior_IsPastoriaGymWater(v4)) {
                     return 1;
                 }
             }

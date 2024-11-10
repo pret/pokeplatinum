@@ -473,8 +473,8 @@ static u32 sub_0205F644(PlayerAvatar *playerAvatar, int param1)
 static const UnkStruct_020EDB84 Unk_020EDB84[] = {
     { TileBehavior_IsIce, 0x1 },
     { TileBehavior_IsBikeSlope, 0x2 },
-    { TileBehavior_IsBikeRampWestToEast, 0x3 },
-    { TileBehavior_IsBikeRampEastToWest, 0x4 },
+    { TileBehavior_IsBikeRampEastward, 0x3 },
+    { TileBehavior_IsBikeRampWestward, 0x4 },
     { NULL, 0x6 }
 };
 
@@ -1172,7 +1172,7 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pa
     if (pad & PAD_BUTTON_B) {
         u32 v0 = sub_02062BE8(Player_MapObject(playerAvatar));
 
-        if (TileBehavior_IsBikeRampWestToEast(v0) || TileBehavior_IsBikeRampEastToWest(v0)) {
+        if (TileBehavior_IsBikeRampEastward(v0) || TileBehavior_IsBikeRampWestward(v0)) {
             return;
         }
 
@@ -1855,22 +1855,22 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
         switch (param2) {
         case 0:
-            if (TileBehavior_IsNorthWarpEntrance(v3) == 1) {
+            if (TileBehavior_IsWarpEntranceNorth(v3) == 1) {
                 return 1;
             }
             break;
         case 1:
-            if (TileBehavior_IsSouthWarpEntrance(v3) == 1) {
+            if (TileBehavior_IsWarpEntranceSouth(v3) == 1) {
                 return 1;
             }
             break;
         case 2:
-            if (TileBehavior_IsWestWarpEntrance(v3) == 1) {
+            if (TileBehavior_IsWarpEntranceWest(v3) == 1) {
                 return 1;
             }
             break;
         case 3:
-            if (TileBehavior_IsEastWarpEntrance(v3) == 1) {
+            if (TileBehavior_IsWarpEntranceEast(v3) == 1) {
                 return 1;
             }
             break;
@@ -1896,11 +1896,11 @@ static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
         u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
-        if ((param2 == 3) && TileBehavior_IsBikeRampWestToEast(v3)) {
+        if ((param2 == 3) && TileBehavior_IsBikeRampEastward(v3)) {
             return 1;
         }
 
-        if ((param2 == 2) && TileBehavior_IsBikeRampEastToWest(v3)) {
+        if ((param2 == 2) && TileBehavior_IsBikeRampWestward(v3)) {
             return 1;
         }
     }
