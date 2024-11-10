@@ -48,6 +48,7 @@
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "map_tile_behavior.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "resource_collection.h"
@@ -66,7 +67,6 @@
 #include "unk_02020AEC.h"
 #include "unk_02027F50.h"
 #include "unk_02039C80.h"
-#include "unk_0205DAC8.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_0206AFE0.h"
@@ -9567,7 +9567,7 @@ BOOL ov9_02251044(FieldSystem *fieldSystem, int param1, int param2, int param3, 
         v1 = ov9_0224C55C(v2, param1, param2, param3);
 
         if ((v1 == 65535) || (v1 == 65534)) {
-            *param4 = sub_0205DF98();
+            *param4 = GetNullTileBehaviorID();
             return 0;
         }
 

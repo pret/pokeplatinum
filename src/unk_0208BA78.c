@@ -8,10 +8,10 @@
 #include "struct_defs/struct_0208C06C.h"
 
 #include "field/field_system.h"
-#include "overlay006/battle_params.h"
 #include "overlay062/ov62_02248408.h"
 
 #include "bag.h"
+#include "field_battle_data_transfer.h"
 #include "game_overlay.h"
 #include "game_records.h"
 #include "heap.h"
@@ -22,7 +22,6 @@
 #include "system_flags.h"
 #include "unk_020041CC.h"
 #include "unk_0202F1D4.h"
-#include "unk_02051D8C.h"
 #include "unk_020553DC.h"
 #include "unk_0208C010.h"
 #include "unk_02099550.h"
@@ -41,7 +40,7 @@ typedef struct {
     int unk_04;
     OverlayManager *unk_08;
     SaveData *saveData;
-    BattleParams *unk_10;
+    FieldBattleDTO *unk_10;
     UnkStruct_0208C06C *unk_14;
     UnkStruct_0208BA84 unk_18;
     FieldSystem *fieldSystem;
@@ -257,7 +256,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
     case 1: {
         int v0;
 
-        param0->unk_10 = sub_02051D8C(param1, 0x0);
+        param0->unk_10 = FieldBattleDTO_New(param1, 0x0);
 
         if (sub_0202F250() == 0) {
             sub_0202F298(param0->saveData, param1, &v0, param0->unk_10, param0->unk_14->unk_86C);
@@ -266,7 +265,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
             v0 = 1;
         }
 
-        param0->unk_10->unk_E4 = sub_0207D99C(param1);
+        param0->unk_10->bagCursor = BagCursor_New(param1);
         param0->unk_10->records = SaveData_GetGameRecordsPtr(param0->saveData);
 
         if (Overlay_LoadByID(FS_OVERLAY_ID(overlay62), 2) == 1) {
@@ -277,8 +276,8 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
         param0->unk_14->unk_874 = 1;
 
         if (v0 != 1) {
-            Heap_FreeToHeap(param0->unk_10->unk_E4);
-            sub_020520A4(param0->unk_10);
+            Heap_FreeToHeap(param0->unk_10->bagCursor);
+            FieldBattleDTO_Free(param0->unk_10);
             param0->unk_00 = 0;
             return 1;
         } else {
@@ -311,8 +310,8 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
             }
         }
 
-        Heap_FreeToHeap(param0->unk_10->unk_E4);
-        sub_020520A4(param0->unk_10);
+        Heap_FreeToHeap(param0->unk_10->bagCursor);
+        FieldBattleDTO_Free(param0->unk_10);
         OverlayManager_Free(param0->unk_08);
 
         {

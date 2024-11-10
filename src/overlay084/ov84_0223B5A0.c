@@ -903,7 +903,7 @@ static void ov84_0223BEAC(UnkStruct_ov84_0223B5A0 *param0)
             break;
         }
 
-        sub_0207D9B4(param0->unk_C4->unk_6C, v0[v1].unk_08, &v3, &v4);
+        BagCursor_GetFieldPocketPosition(param0->unk_C4->unk_6C, v0[v1].unk_08, &v3, &v4);
 
         if (v3 == 0) {
             v3 = 1;
@@ -913,7 +913,7 @@ static void ov84_0223BEAC(UnkStruct_ov84_0223B5A0 *param0)
         v0[v1].unk_06 = v4;
     }
 
-    v2 = sub_0207D9C4(param0->unk_C4->unk_6C);
+    v2 = BagCursor_GetFieldPocket(param0->unk_C4->unk_6C);
 
     for (v1 = 0; v1 < 8; v1++) {
         if (v0[v1].unk_00 == NULL) {
@@ -942,10 +942,10 @@ static void ov84_0223BF68(UnkStruct_ov84_0223B5A0 *param0)
             break;
         }
 
-        sub_0207D9C8(param0->unk_C4->unk_6C, v0[v1].unk_08, (u8)v0[v1].unk_04, (u8)v0[v1].unk_06);
+        BagCursor_SetFieldPocketPosition(param0->unk_C4->unk_6C, v0[v1].unk_08, (u8)v0[v1].unk_04, (u8)v0[v1].unk_06);
     }
 
-    sub_0207D9D4(param0->unk_C4->unk_6C, v0[param0->unk_C4->unk_64].unk_08);
+    BagCursor_SetFieldPocket(param0->unk_C4->unk_6C, v0[param0->unk_C4->unk_64].unk_08);
 }
 
 static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)

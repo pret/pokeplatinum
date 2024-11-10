@@ -8,9 +8,9 @@
 #include "constants/trainer.h"
 
 #include "data/trainer_class_genders.h"
-#include "overlay006/battle_params.h"
 
 #include "charcode_util.h"
+#include "field_battle_data_transfer.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
@@ -22,9 +22,9 @@
 #include "trainer_data.h"
 #include "unk_0201D15C.h"
 
-static void TrainerData_BuildParty(BattleParams *battleParams, int battler, int heapID);
+static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, int heapID);
 
-void TrainerData_Encounter(BattleParams *battleParams, const SaveData *save, int heapID)
+void TrainerData_Encounter(FieldBattleDTO *battleParams, const SaveData *save, int heapID)
 {
     TrainerData trdata;
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 618, heapID);
@@ -168,13 +168,13 @@ u8 TrainerClass_Gender(int trclass)
 }
 
 /**
- * @brief Build the party for a trainer as loaded in the BattleParams struct.
+ * @brief Build the party for a trainer as loaded in the FieldBattleDTO struct.
  *
- * @param battleParams  The parent BattleParams struct containing trainer data.
+ * @param battleParams  The parent FieldBattleDTO struct containing trainer data.
  * @param battler       Which battler's party is to be loaded.
  * @param heapID        Heap on which to perform any allocations.
  */
-static void TrainerData_BuildParty(BattleParams *battleParams, int battler, int heapID)
+static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, int heapID)
 {
     // must make declarations C89-style to match
     void *buf;

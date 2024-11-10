@@ -27,6 +27,7 @@
 #include "journal.h"
 #include "map_header.h"
 #include "map_object.h"
+#include "map_tile_behavior.h"
 #include "player_avatar.h"
 #include "save_player.h"
 #include "script_manager.h"
@@ -35,7 +36,6 @@
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054D00.h"
-#include "unk_0205DAC8.h"
 #include "unk_0205F180.h"
 #include "unk_0206B70C.h"
 #include "unk_020711C8.h"
@@ -198,10 +198,10 @@ void sub_02070728(FieldSystem *fieldSystem, UnkStruct_02070950 *param1)
 
     v1 = Player_GetXPos(fieldSystem->playerAvatar);
     v2 = Player_GetZPos(fieldSystem->playerAvatar);
-    v4 = sub_02054F94(fieldSystem, v1, v2);
+    v4 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
     sub_020615AC(fieldSystem->playerAvatar, &v1, &v2);
-    v3 = sub_02054F94(fieldSystem, v1, v2);
+    v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
     if (ov5_021E0118(fieldSystem->playerAvatar, v4, v3)) {
         param1->unk_0C |= (1 << 2);
@@ -211,7 +211,7 @@ void sub_02070728(FieldSystem *fieldSystem, UnkStruct_02070950 *param1)
         param1->unk_0C |= (1 << 7);
     }
 
-    if (sub_0205DDB4(v3)) {
+    if (TileBehavior_IsWaterfall(v3)) {
         param1->unk_0C |= (1 << 6);
     }
 

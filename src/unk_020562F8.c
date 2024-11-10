@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
 #include "constants/species.h"
 #include "consts/game_records.h"
 
@@ -10,19 +11,18 @@
 #include "struct_decls/struct_020564B4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay006/battle_params.h"
 #include "savedata/save_table.h"
 
+#include "field_battle_data_transfer.h"
 #include "game_records.h"
 #include "heap.h"
 #include "inlines.h"
+#include "map_tile_behavior.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "rtc.h"
 #include "unk_0202EEC0.h"
-#include "unk_02051D8C.h"
 #include "unk_02054D00.h"
-#include "unk_0205DAC8.h"
 
 typedef struct {
     u16 unk_00;
@@ -43,9 +43,9 @@ struct UnkStruct_020564B4_t {
 };
 
 static void sub_0205642C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
-static void sub_02056624(FieldSystem *fieldSystem, BattleParams *param1, UnkStruct_020564B4 *param2);
+static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, UnkStruct_020564B4 *param2);
 static BOOL sub_02056554(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1, int param2, int param3);
-static BattleParams *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
+static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
 static sub_020564B4(UnkStruct_020564B4 *param0);
 static void sub_020564D0(UnkStruct_020564B4 *param0);
 static BOOL sub_020564F4(UnkStruct_020564B4 *param0);
@@ -93,12 +93,12 @@ BOOL sub_02056374(FieldSystem *fieldSystem, int param1, int param2)
     }
 }
 
-BattleParams *sub_0205639C(FieldSystem *fieldSystem)
+FieldBattleDTO *sub_0205639C(FieldSystem *fieldSystem)
 {
     return sub_0205664C(fieldSystem, &Unk_021C07FC);
 }
 
-void sub_020563AC(FieldSystem *fieldSystem, BattleParams *param1)
+void sub_020563AC(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     sub_02056624(fieldSystem, param1, &Unk_021C07FC);
 }
@@ -201,15 +201,15 @@ static BOOL sub_020564F4(UnkStruct_020564B4 *param0)
 
 static int sub_0205650C(FieldSystem *fieldSystem, int param1, int param2)
 {
-    u16 v0 = sub_02054F94(fieldSystem, param1, param2);
+    u16 v0 = FieldSystem_GetTileBehavior(fieldSystem, param1, param2);
     int v1;
 
     v1 = (param1 < 32) ? 0 : 1;
     v1 += (param2 < 32) ? 0 : 2;
 
-    if (sub_0205DAC8(v0)) {
+    if (TileBehavior_IsTallGrass(v0)) {
         return 1 + v1;
-    } else if (sub_0205DB58(v0)) {
+    } else if (TileBehavior_IsSurfable(v0)) {
         return 5 + v1;
     }
 
@@ -259,31 +259,31 @@ static BOOL sub_02056554(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1, i
     return 0;
 }
 
-static void sub_02056624(FieldSystem *fieldSystem, BattleParams *param1, UnkStruct_020564B4 *param2)
+static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, UnkStruct_020564B4 *param2)
 {
-    switch (param1->unk_14) {
-    case 0x4:
+    switch (param1->resultMask) {
+    case BATTLE_RESULT_CAPTURED_MON:
         param2->unk_30[param2->unk_3C] = sub_020564B4(param2) + 1;
         break;
-    case 0x5:
+    case BATTLE_RESULT_PLAYER_FLED:
         break;
     default:
         GF_ASSERT(0);
     }
 }
 
-static BattleParams *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1)
+static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1)
 {
-    BattleParams *v0;
+    FieldBattleDTO *v0;
     Pokemon *v1 = Pokemon_New(32);
     PalParkTransfer *v2 = SaveData_PalParkTransfer(fieldSystem->saveData);
     int v3 = sub_020563BC(fieldSystem);
 
-    v0 = sub_02051F38(11, v3);
+    v0 = FieldBattleDTO_NewPalPark(11, v3);
 
-    sub_02052314(v0, fieldSystem);
+    FieldBattleDTO_Init(v0, fieldSystem);
     sub_0202F000(v2, param1->unk_3C, v1);
-    sub_0205213C(v0, v1, 1);
+    FieldBattleDTO_AddPokemonToBattler(v0, v1, 1);
     Heap_FreeToHeap(v1);
 
     return v0;

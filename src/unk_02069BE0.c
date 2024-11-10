@@ -14,9 +14,9 @@
 
 #include "map_object.h"
 #include "map_object_move.h"
+#include "map_tile_behavior.h"
 #include "player_avatar.h"
 #include "unk_02054D00.h"
-#include "unk_0205DAC8.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
 
@@ -644,7 +644,7 @@ static u32 sub_0206A354(MapObject *mapObj, int param1)
 {
     u32 v0 = sub_02064238(mapObj, param1);
 
-    if (sub_0205DAD4(v0) == 0) {
+    if (TileBehavior_IsVeryTallGrass(v0) == 0) {
         v0 = (1 << 1);
     }
 

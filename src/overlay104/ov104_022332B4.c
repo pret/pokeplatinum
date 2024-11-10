@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay006/battle_params.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0222E930.h"
@@ -19,6 +18,7 @@
 #include "overlay105/ov105_02241AE0.h"
 
 #include "bg_window.h"
+#include "field_battle_data_transfer.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
@@ -27,7 +27,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0202FF4C.h"
-#include "unk_02051D8C.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 
@@ -130,20 +129,20 @@ BOOL ov104_02233324(UnkStruct_ov104_0222E930 *param0)
 BOOL ov104_0223338C(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_0223ADA0 *v0;
-    BattleParams *v1;
+    FieldBattleDTO *v1;
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
     v1 = v0->unk_4FC;
 
-    v0->unk_14 = BattleParams_PlayerWon(v1->unk_14);
+    v0->unk_14 = CheckPlayerWonBattle(v1->resultMask);
 
-    sub_020520A4(v1);
+    FieldBattleDTO_Free(v1);
     return 0;
 }
 
 BOOL ov104_022333B4(UnkStruct_ov104_0222E930 *param0)
 {
-    BattleParams *v0;
+    FieldBattleDTO *v0;
     UnkStruct_ov104_0223ADA0 *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 

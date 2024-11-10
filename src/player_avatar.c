@@ -43,6 +43,9 @@ static void sub_0205EB9C(PlayerAvatar *playerAvatar, u32 param1);
 static void sub_0205EBA4(PlayerAvatar *playerAvatar, u32 param1);
 static u32 sub_0205EBB0(PlayerAvatar *playerAvatar, u32 param1);
 static void PlayerAvatar_SetPlayerData(PlayerAvatar *playerAvatar, PlayerData *param1);
+static u32 GetPlayerForm(PlayerData *player);
+static void SetPlayerForm(PlayerData *player, u32 form);
+static void SetAvatarForm(PlayerAvatar *playerAvatar, u32 form);
 
 PlayerAvatar *PlayerAvatar_Init(const MapObjectManager *mapObjMan, int x, int z, int dir, int param4, int param5, int param6, PlayerData *param7)
 {
@@ -73,7 +76,7 @@ PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *param1
     MapObject *mapObj;
 
     playerAvatar = PlayerAvatar_Alloc();
-    v0 = sub_0205EC94(param1);
+    v0 = GetPlayerForm(param1);
 
     sub_0205E91C(playerAvatar, v0, gender, param1);
     mapObj = sub_0205EA64(mapObjMan);
@@ -293,12 +296,12 @@ const MapObject *PlayerAvatar_ConstMapObject(const PlayerAvatar *playerAvatar)
     return playerAvatar->mapObject;
 }
 
-void PlayerAvatar_SetPlayerState(PlayerAvatar *playerAvatar, int param1)
+void PlayerAvatar_SetPlayerState(PlayerAvatar *playerAvatar, int form)
 {
-    GF_ASSERT(param1 < 0x6);
-    playerAvatar->unk_1C = param1;
+    GF_ASSERT(form < 0x6);
+    playerAvatar->unk_1C = form;
 
-    sub_0205ECA8(playerAvatar, param1);
+    SetAvatarForm(playerAvatar, form);
 }
 
 int PlayerAvatar_GetPlayerState(PlayerAvatar *playerAvatar)
@@ -450,7 +453,7 @@ void PlayerData_Init(PlayerData *playerData)
 {
     playerData->unk_00 = 0;
     playerData->runningShoes = FALSE;
-    playerData->unk_04 = 0x0;
+    playerData->form = 0x0;
 }
 
 int PlayerData_HasRunningShoes(PlayerData *playerData)
@@ -501,26 +504,26 @@ int PlayerAvatar_CyclingGear(PlayerAvatar *playerAvatar)
     return PlayerData_CyclingGear(player);
 }
 
-u32 sub_0205EC94(PlayerData *player)
+u32 GetPlayerForm(PlayerData *player)
 {
     if (player != NULL) {
-        return player->unk_04;
+        return player->form;
     }
 
     return 0x0;
 }
 
-void sub_0205ECA0(PlayerData *player, u32 param1)
+void SetPlayerForm(PlayerData *player, u32 form)
 {
     if (player != NULL) {
-        player->unk_04 = param1;
+        player->form = form;
     }
 }
 
-void sub_0205ECA8(PlayerAvatar *playerAvatar, u32 param1)
+void SetAvatarForm(PlayerAvatar *playerAvatar, u32 form)
 {
     PlayerData *player = PlayerAvatar_PlayerData(playerAvatar);
-    sub_0205ECA0(player, param1);
+    SetPlayerForm(player, form);
 }
 
 void sub_0205ECB8(PlayerAvatar *playerAvatar, const VecFx32 *param1, int param2)

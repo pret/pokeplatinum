@@ -44,13 +44,13 @@
 #include "heap.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "map_tile_behavior.h"
 #include "narc.h"
 #include "resource_collection.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02020AEC.h"
 #include "unk_0202414C.h"
-#include "unk_0205DAC8.h"
 #include "unk_020677F4.h"
 #include "unk_020711EC.h"
 
@@ -2036,9 +2036,9 @@ static UnkStruct_020216E0 *ov5_021EE454(MapObject *param0, int param1, UnkFuncPt
             int v14 = sub_02062758(param0, 2);
             u8 v15 = sub_02064238(param0, 1);
 
-            if (sub_0205DF9C(v15) == 1) {
+            if (TileBehavior_IsReflective(v15) == 1) {
                 v13 = 2;
-            } else if (sub_0205DE5C(v15) == 1) {
+            } else if (TileBehavior_IsPuddle(v15) == 1) {
                 v13 = 0;
             } else {
                 v13 = 1;

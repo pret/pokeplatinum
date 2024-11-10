@@ -132,7 +132,7 @@ void ov6_02246254(FieldSystem *fieldSystem, UnkStruct_ov6_02246204 *param1, int 
     param3->unk_10 = 1;
     param3->unk_14 = SaveData_Options(fieldSystem->saveData);
 
-    v4 = sub_02055BA8(fieldSystem);
+    v4 = FieldSystem_GetTimeOfDay(fieldSystem);
 
     if ((v4 == 0) || (v4 == 1)) {
         param3->unk_0C = 0;

@@ -13,7 +13,6 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0209C370.h"
 
 #include "battle/battle_display.h"
 #include "battle/ov16_0223DF00.h"
@@ -197,7 +196,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov16_02268A14_t {
     BattleSystem *unk_00;
-    UnkStruct_0209C370 *unk_04;
+    u8 *unk_04;
     SysTask *unk_08;
     SysTask *unk_0C;
     SysTask *unk_10;
@@ -1050,7 +1049,7 @@ void ov16_022687A0(BgConfig *param0)
     }
 }
 
-void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3, UnkStruct_0209C370 *param4)
+void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3, u8 *param4)
 {
     UnkStruct_ov16_02268A14 *v0;
     PaletteData *v1;
@@ -1062,7 +1061,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
     v0->unk_04 = param4;
 
     if (v0->unk_04 != NULL) {
-        v0->unk_6C0 = param4->unk_00;
+        v0->unk_6C0 = *param4;
     } else {
         (void)0;
     }
@@ -1177,7 +1176,7 @@ void ov16_02268A14(UnkStruct_ov16_02268A14 *param0)
     int v0;
 
     if (param0->unk_04 != NULL) {
-        param0->unk_04->unk_00 = param0->unk_6C0;
+        *param0->unk_04 = param0->unk_6C0;
     }
 
     ov16_0226B1E8(param0);

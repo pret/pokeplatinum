@@ -13,7 +13,6 @@
 #include "struct_defs/map_load_mode.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0204AFC4.h"
-#include "struct_defs/struct_0209C370.h"
 
 #include "field/field_system_sub2_decl.h"
 #include "field/field_system_sub3.h"
@@ -92,7 +91,7 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021EB0E0 *unk_8C;
     int unk_90;
     RadarChain *chain;
-    UnkStruct_0207D99C *unk_98;
+    BagCursor *unk_98;
     Journal *journal;
     UnkStruct_ov5_021EF300 *unk_A0;
     UnkStruct_ov5_021E1608 *unk_A4;
@@ -101,7 +100,7 @@ typedef struct FieldSystem_t {
     const BattleRegulation *unk_B0;
     UnkStruct_0209ACBC *unk_B4;
     BOOL unk_B8;
-    UnkStruct_0209C370 *unk_BC;
+    u8 *battleSubscreenCursorOn;
     u32 unk_C0;
     UnkStruct_ov66_0222DCE0_sub1 unk_C4;
 } FieldSystem;

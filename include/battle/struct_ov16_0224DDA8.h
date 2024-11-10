@@ -3,7 +3,7 @@
 
 typedef struct {
     u16 item;
-    u8 pocket;
+    u8 category;
     u8 target;
 } BattleItemUse;
 

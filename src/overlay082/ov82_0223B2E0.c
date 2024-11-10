@@ -183,7 +183,7 @@ static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
         }
     }
 
-    sub_0207D9B4(param0->unk_0C, 4, &v2, &v1);
+    BagCursor_GetFieldPocketPosition(param0->unk_0C, 4, &v2, &v1);
     sub_0209733C(param0->unk_18, v1, v2, v3 + 2);
 
     param0->unk_1C = OverlayManager_New(&v6, param0->unk_18, param0->unk_00);
@@ -199,7 +199,7 @@ static int ov82_0223B510(UnkStruct_ov83_0223C344 *param0)
     }
 
     sub_02097390(param0->unk_18, &v0, &v1);
-    sub_0207D9C8(param0->unk_0C, 4, v1, v0);
+    BagCursor_SetFieldPocketPosition(param0->unk_0C, 4, v1, v0);
 
     Heap_FreeToHeap(param0->unk_18);
     param0->unk_18 = NULL;

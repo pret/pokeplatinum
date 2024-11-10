@@ -14,6 +14,7 @@
 #include "journal.h"
 #include "location.h"
 #include "map_header.h"
+#include "player_avatar.h"
 #include "roaming_pokemon.h"
 #include "save_player.h"
 #include "system_flags.h"
@@ -89,10 +90,10 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     {
         PlayerData *v2 = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-        if ((v2->unk_04 == 0x1) && (MapHeader_IsBikeAllowed(fieldSystem->location->mapId) == 0)) {
-            v2->unk_04 = 0x0;
-        } else if (v2->unk_04 == 0x2) {
-            v2->unk_04 = 0x0;
+        if ((v2->form == PLAYER_AVATAR_BIKING) && (MapHeader_IsBikeAllowed(fieldSystem->location->mapId) == 0)) {
+            v2->form = PLAYER_AVATAR_WALKING;
+        } else if (v2->form == PLAYER_AVATAR_SURFING) {
+            v2->form = PLAYER_AVATAR_WALKING;
         }
     }
 

@@ -47,7 +47,7 @@ int ov82_0223B164(OverlayManager *param0, int *param1)
 
     v0->unk_26 = v1->unk_20;
     v0->unk_27 = v1->unk_24;
-    v0->unk_0C = sub_0207D99C(v0->unk_00);
+    v0->unk_0C = BagCursor_New(v0->unk_00);
 
     if (v1->unk_04 == 1) {
         v0->unk_06_0 = 1;
