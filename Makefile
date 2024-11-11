@@ -17,21 +17,18 @@ UNAME_R := $(shell uname -r)
 UNAME_S := $(shell uname -s)
 CWD := $(shell pwd)
 
-ifneq (,$(findstring Microsoft,$(UNAME_R)))
-ifneq (,$(filter /mnt/%,$(CWD)))
 WSL_ACCESSING_WINDOWS := 0
-else
+ifeq (,$(findstring Microsoft,$(UNAME_R)))
+ifeq (,$(filter /mnt/%,$(CWD)))
 WSL_ACCESSING_WINDOWS := 1
 endif
-else
-WSL_ACCESSING_WINDOWS := 1
 endif
 
 WRAP_CONFIG := 0
 ifneq (,$(findstring Linux,$(UNAME_S)))
-ifeq (0,$(WSL_ACCESSING_WINDOWS))
+ifeq (1,$(WSL_ACCESSING_WINDOWS))
 NATIVE := native.ini
-CROSS := cross_unix.ini
+CROSS := cross.ini
 else
 NATIVE := native_unix.ini
 CROSS := cross_unix.ini
