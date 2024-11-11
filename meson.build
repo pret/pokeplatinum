@@ -31,7 +31,8 @@ c_args = [
     '-char', 'signed',
     '-nosyspath',
     '-stdinc',
-    '-sym', 'on'
+    '-sym', 'on',
+    '-D_MSL_RESTRICT='
 ]
 
 if get_option('gdb_debugging')
