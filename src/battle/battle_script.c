@@ -38,7 +38,7 @@
 #include "battle/battle_mon.h"
 #include "battle/btlcmd.h"
 #include "battle/common.h"
-#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+#include "battle/graphic/objects/pl_batt_obj.naix"
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02268520.h"

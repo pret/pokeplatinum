@@ -1343,7 +1343,7 @@ static void ov91_021D2110(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
         BattleIcon_MakeTypeSpriteTiles(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, v0);
     }
 
-    BattleIcon_MakeMoveTypeSpriteTiles(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 47275);
+    BattleIcon_MakeMoveClassSpriteTiles(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 47275);
     sub_0200CD0C(param0->unk_110, param0->unk_114, param1, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47272);
     BattleIcon_MakeTypeSpritePalette(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 47273);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 4, 0, 47272);
@@ -1352,7 +1352,7 @@ static void ov91_021D2110(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 3, 0, 47272);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 6, 0, 47273);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 0, 0, 47274);
-    sub_0207C9EC(param0->unk_110, param0->unk_114, 47275, 47275);
+    BattleIcon_MakeTypeSpriteCellsAnim(param0->unk_110, param0->unk_114, 47275, 47275);
 }
 
 static void ov91_021D22A0(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param2)
@@ -1443,7 +1443,7 @@ static void ov91_021D24B4(UnkStruct_ov91_021D0ED8 *param0, u16 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->unk_110, param0->unk_114, BattleIcon_GetMoveClassPalettteFileIndex(), BattleIcon_GetMoveClassTiles(v0), 1, 47275);
+    sub_0200D948(param0->unk_110, param0->unk_114, BattleIcon_GetMoveClassNARCIndex(), BattleIcon_GetMoveClassTiles(v0), 1, 47275);
     sub_0200D41C(param0->unk_118[5], BattleIcon_GetMoveClassPaletteIndex(v0) + 2);
 }
 

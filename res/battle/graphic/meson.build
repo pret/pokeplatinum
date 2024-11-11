@@ -1,1 +1,1 @@
-subdir('pl_batt_obj')
+subdir('objects')

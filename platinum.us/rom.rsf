@@ -249,7 +249,7 @@ RomSpec
 	File battle/graphic/pl_batt_bg.narc
 
 	Root /battle/graphic
-	HostRoot res/battle/graphic/pl_batt_obj
+	HostRoot res/battle/graphic/objects
 	File pl_batt_obj.narc
 
 	Root /

@@ -17,7 +17,7 @@
 
 #include "battle/battle_display.h"
 #include "battle/battle_icon.h"
-#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+#include "battle/graphic/objects/pl_batt_obj.naix"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
@@ -1225,8 +1225,8 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
         Graphics_LoadTilesToBgLayer(7, v5, v0, 4, 0, 0x6000, 1, 5);
     }
 
-    sub_0207C9EC(v1, v2, 20017, 20017);
-    sub_0207C9B0(BattleSystem_PaletteSys(param0->unk_00), 3, v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
+    BattleIcon_MakeTypeSpriteCellsAnim(v1, v2, 20017, 20017);
+    BattleIcon_LoadTypeSpritePalette(BattleSystem_PaletteSys(param0->unk_00), 3, v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
 
     for (v4 = 0; v4 < 4; v4++) {
         BattleIcon_MakeTypeSpriteTiles(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + v4);
@@ -1248,11 +1248,11 @@ void ov16_02268B8C(UnkStruct_ov16_02268A14 *param0)
     v2 = ov16_0223E018(param0->unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0207CA34(v2, 20025 + v0);
+        BattleIcon_UnloadTypeSpriteTiles(v2, 20025 + v0);
     }
 
-    sub_0207CA3C(v2, 20020);
-    sub_0207CA44(v2, 20017, 20017);
+    BattleIcon_UnloadTypeSpritePalette(v2, 20020);
+    BattleIcon_UnloadTypeSpriteCellsAnim(v2, 20017, 20017);
 
     if (BattleSystem_BattleType(param0->unk_00) & 0x400) {
         ov16_0226DF68(param0->unk_6C4.unk_00);
@@ -2880,7 +2880,7 @@ static void ov16_0226AF0C(UnkStruct_ov16_02268A14 *param0)
             v3.x = Unk_ov16_022702B4[v0][0];
             v3.y = Unk_ov16_022702B4[v0][1];
 
-            param0->unk_5EC[v0] = sub_0207CA58(v1, v2, v5, &v3);
+            param0->unk_5EC[v0] = BattleIcon_CreateCellActorForTypeSprite(v1, v2, v5, &v3);
 
             sub_0200D500(param0->unk_5EC[v0], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
 
@@ -2908,7 +2908,7 @@ static void ov16_0226AFF4(UnkStruct_ov16_02268A14 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_5EC[v0] != NULL) {
-            sub_0207CA88(param0->unk_5EC[v0]);
+            BattleIcon_DeleteMoveTypeCellActorData(param0->unk_5EC[v0]);
             param0->unk_5EC[v0] = NULL;
         }
     }
@@ -2925,8 +2925,8 @@ static void ov16_0226B028(UnkStruct_ov16_02268A14 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_5FC[v0] != NULL) {
-            sub_0207CB00(param0->unk_5FC[v0]);
-            sub_0207CAF8(v2, 20029 + v0);
+            BattleIcon_DeleteMoveClassCellActorData(param0->unk_5FC[v0]);
+            BattleIcon_UnloadMoveClassSpriteTiles(v2, 20029 + v0);
             param0->unk_5FC[v0] = NULL;
         }
     }

@@ -11,7 +11,7 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
-#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+#include "battle/graphic/objects/pl_batt_obj.naix"
 
 #include "palette.h"
 #include "unk_0200C6E4.h"
@@ -94,9 +94,9 @@ __attribute__((aligned(4))) static const u32 sMoveClassIconTiles[] = {
  * Maps move classes (Physical, Special, Status) to the corresponding palette index in NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ__TYPE_PALETTE.
  */
 __attribute__((aligned(4))) static const u8 sMoveClassIconPaletteIndex[] = {
-    [CLASS_PHYSICAL] = 0x0,
-    [CLASS_SPECIAL] = 0x1,
-    [CLASS_STATUS] = 0x0
+    [CLASS_PHYSICAL] = 0,
+    [CLASS_SPECIAL] = 1,
+    [CLASS_STATUS] = 0
 };
 
 /*
@@ -118,14 +118,22 @@ u32 BattleIcon_GetMoveTypePaletteFileIndex(void)
     return icon_palettes_NCLR;
 }
 
-u32 sub_0207C924(void)
+/*
+ * Returns the NARC member within pl_batt_obj containing cells for battle icons.
+ * See also BattleIcon_GetNARCIndex.
+ */
+u32 BattleIcon_GetMoveTypeCellsFileIndex(void)
 {
-    return 242;
+    return move_type_icon_NCER_lz;
 }
 
-u32 sub_0207C928(void)
+/*
+ * Returns the NARC member within pl_batt_obj containing animations for battle icons.
+ * See also BattleIcon_GetNARCIndex.
+ */
+u32 BattleIcon_GetMoveTypeAnimFileIndex(void)
 {
-    return 243;
+    return move_type_icon_NANR_lz;
 }
 
 /*
@@ -146,58 +154,54 @@ u32 BattleIcon_GetNARCIndex(void)
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
-void BattleIcon_MakeTypeSpriteTiles(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, int typeIndex, u32 param4)
+void BattleIcon_MakeTypeSpriteTiles(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NNS_G2D_VRAM_TYPE vramType, int typeIndex, u32 resourceID)
 {
-    sub_0200CBDC(param0, param1, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeTiles(typeIndex), 1, param2, param4);
+    sub_0200CBDC(renderer, gfxHandler, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeTiles(typeIndex), TRUE, vramType, resourceID);
 }
 
-void BattleIcon_MakeTypeSpritePalette(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, u32 param3)
+void BattleIcon_MakeTypeSpritePalette(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NNS_G2D_VRAM_TYPE vramType, u32 resourceID)
 {
-    sub_0200CC9C(param0, param1, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypePaletteFileIndex(), 0, 3, param2, param3);
+    sub_0200CC9C(renderer, gfxHandler, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypePaletteFileIndex(), FALSE, 3, vramType, resourceID);
 }
 
-void sub_0207C9B0(PaletteData *param0, int param1, SpriteRenderer *param2, SpriteGfxHandler *param3, NNS_G2D_VRAM_TYPE param4, u32 param5)
+void BattleIcon_LoadTypeSpritePalette(PaletteData *palette, enum PaletteBufferID bufferID, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NNS_G2D_VRAM_TYPE vramType, u32 resourceID)
 {
-    sub_0200CD7C(param0, param1, param2, param3, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypePaletteFileIndex(), 0, 3, param4, param5);
+    sub_0200CD7C(palette, bufferID, renderer, gfxHandler, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypePaletteFileIndex(), FALSE, 3, vramType, resourceID);
 }
 
-void sub_0207C9EC(SpriteRenderer *param0, SpriteGfxHandler *param1, u32 param2, u32 param3)
+void BattleIcon_MakeTypeSpriteCellsAnim(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, u32 cellResourceID, u32 animResourceID)
 {
-    sub_0200CE0C(param0, param1, BattleIcon_GetNARCIndex(), sub_0207C924(), 1, param2);
-    sub_0200CE3C(param0, param1, BattleIcon_GetNARCIndex(), sub_0207C928(), 1, param3);
+    sub_0200CE0C(renderer, gfxHandler, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeCellsFileIndex(), TRUE, cellResourceID);
+    sub_0200CE3C(renderer, gfxHandler, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeAnimFileIndex(), TRUE, animResourceID);
 }
 
-void sub_0207CA34(SpriteGfxHandler *param0, u32 param1)
+void BattleIcon_UnloadTypeSpriteTiles(SpriteGfxHandler *gfxHandler, u32 resourceID)
 {
-    SpriteGfxHandler_UnloadCharObjById(param0, param1);
+    SpriteGfxHandler_UnloadCharObjById(gfxHandler, resourceID);
 }
 
-void sub_0207CA3C(SpriteGfxHandler *param0, u32 param1)
+void BattleIcon_UnloadTypeSpritePalette(SpriteGfxHandler *gfxHandler, u32 resourceID)
 {
-    SpriteGfxHandler_UnloadPlttObjById(param0, param1);
+    SpriteGfxHandler_UnloadPlttObjById(gfxHandler, resourceID);
 }
 
-void sub_0207CA44(SpriteGfxHandler *param0, u32 param1, u32 param2)
+void BattleIcon_UnloadTypeSpriteCellsAnim(SpriteGfxHandler *gfxHandler, u32 cellResourceID, u32 animResourceID)
 {
-    SpriteGfxHandler_UnloadCellObjById(param0, param1);
-    SpriteGfxHandler_UnloadAnimObjById(param0, param2);
+    SpriteGfxHandler_UnloadCellObjById(gfxHandler, cellResourceID);
+    SpriteGfxHandler_UnloadAnimObjById(gfxHandler, animResourceID);
 }
 
-CellActorData *sub_0207CA58(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, const SpriteTemplate *param3)
+CellActorData *BattleIcon_CreateCellActorForTypeSprite(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, int typeIndex, const SpriteTemplate *template)
 {
-    CellActorData *v0;
-    SpriteTemplate v1;
+    SpriteTemplate overrideTemplate = *template;
+    overrideTemplate.plttIdx = BattleIcon_GetMoveTypePaletteIndex(typeIndex);
 
-    v1 = *param3;
-    v1.plttIdx = BattleIcon_GetMoveTypePaletteIndex(param2);
-    v0 = SpriteActor_LoadResources(param0, param1, &v1);
-
-    return v0;
+    return SpriteActor_LoadResources(renderer, gfxHandler, &overrideTemplate);
 }
 
-void sub_0207CA88(CellActorData *param0)
+void BattleIcon_DeleteMoveTypeCellActorData(CellActorData *data)
 {
-    sub_0200D0F4(param0);
+    sub_0200D0F4(data);
 }
 
 /*
@@ -224,22 +228,22 @@ u8 BattleIcon_GetMoveClassPaletteIndex(int moveClassIndex)
  * Returns the index of the NARC for pl_batt_obj.
  * (This is identical to BattleIcon_GetNARCIndex).
  */
-u32 BattleIcon_GetMoveClassPalettteFileIndex(void)
+u32 BattleIcon_GetMoveClassNARCIndex(void)
 {
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
-void BattleIcon_MakeMoveTypeSpriteTiles(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, int moveTypeIndex, u32 param4)
+void BattleIcon_MakeMoveClassSpriteTiles(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NNS_G2D_VRAM_TYPE vramType, int moveTypeIndex, u32 resourceID)
 {
-    sub_0200CBDC(param0, param1, BattleIcon_GetMoveClassPalettteFileIndex(), BattleIcon_GetMoveClassTiles(moveTypeIndex), 1, param2, param4);
+    sub_0200CBDC(renderer, gfxHandler, BattleIcon_GetMoveClassNARCIndex(), BattleIcon_GetMoveClassTiles(moveTypeIndex), TRUE, vramType, resourceID);
 }
 
-void sub_0207CAF8(SpriteGfxHandler *param0, u32 param1)
+void BattleIcon_UnloadMoveClassSpriteTiles(SpriteGfxHandler *gfxHandler, u32 resourceID)
 {
-    SpriteGfxHandler_UnloadCharObjById(param0, param1);
+    SpriteGfxHandler_UnloadCharObjById(gfxHandler, resourceID);
 }
 
-void sub_0207CB00(CellActorData *param0)
+void BattleIcon_DeleteMoveClassCellActorData(CellActorData *data)
 {
-    sub_0200D0F4(param0);
+    sub_0200D0F4(data);
 }

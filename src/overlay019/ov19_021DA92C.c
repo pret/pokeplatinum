@@ -37,8 +37,8 @@ typedef struct {
 
 u32 BattleIcon_GetMoveTypeTiles(int param0);
 u32 BattleIcon_GetMoveTypePaletteFileIndex(void);
-u32 sub_0207C924(void);
-u32 sub_0207C928(void);
+u32 BattleIcon_GetMoveTypeCellsFileIndex(void);
+u32 BattleIcon_GetMoveTypeAnimFileIndex(void);
 u8 BattleIcon_GetMoveTypePaletteIndex(int param0);
 u32 BattleIcon_GetNARCIndex(void);
 void Window_PutRectToTilemap(Window *param0, u32 param1, u32 param2);
@@ -78,7 +78,7 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_30 = NULL;
     param0->unk_44 = MessageLoader_GetNewStrbuf(param5, 21);
     param0->unk_48 = MessageLoader_GetNewStrbuf(param5, 22);
-    param0->unk_34 = Graphics_GetCellBank(BattleIcon_GetNARCIndex(), sub_0207C924(), 1, &(param0->unk_38), 10);
+    param0->unk_34 = Graphics_GetCellBank(BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeCellsFileIndex(), 1, &(param0->unk_38), 10);
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_3C[v0] = NULL;

@@ -238,7 +238,7 @@ static void ov84_022404C0(UnkStruct_ov84_0223B5A0 *param0)
     sub_0200CBDC(param0->unk_D8, param0->unk_DC, 62, 4, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
     sub_0200CBDC(param0->unk_D8, param0->unk_DC, 16, Item_FileID(0, 1), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
     BattleIcon_MakeTypeSpriteTiles(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49409);
-    BattleIcon_MakeMoveTypeSpriteTiles(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49410);
+    BattleIcon_MakeMoveClassSpriteTiles(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49410);
     sub_0200CD0C(param0->unk_D8, param0->unk_DC, param0->unk_D4, v1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
     sub_0200CD0C(param0->unk_D8, param0->unk_DC, param0->unk_D4, 20, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
     sub_0200CC9C(param0->unk_D8, param0->unk_DC, 16, Item_FileID(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
@@ -261,7 +261,7 @@ static void ov84_022404C0(UnkStruct_ov84_0223B5A0 *param0)
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 34, 0, 49406);
     sub_0200CE3C(param0->unk_D8, param0->unk_DC, 16, Item_IconNANRFile(), 0, 49407);
     sub_0200CE3C(param0->unk_D8, param0->unk_DC, 62, 6, 0, 49408);
-    sub_0207C9EC(param0->unk_D8, param0->unk_DC, 49409, 49409);
+    BattleIcon_MakeTypeSpriteCellsAnim(param0->unk_D8, param0->unk_DC, 49409, 49409);
 }
 
 static void ov84_02240950(UnkStruct_ov84_0223B5A0 *param0)
@@ -450,7 +450,7 @@ void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
 
     sub_0200D948(param0->unk_D8, param0->unk_DC, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeTiles(v1), 1, 49409);
     sub_0200D41C(param0->unk_E0[10], BattleIcon_GetMoveTypePaletteIndex(v1) + 6);
-    sub_0200D948(param0->unk_D8, param0->unk_DC, BattleIcon_GetMoveClassPalettteFileIndex(), BattleIcon_GetMoveClassTiles(v2), 1, 49410);
+    sub_0200D948(param0->unk_D8, param0->unk_DC, BattleIcon_GetMoveClassNARCIndex(), BattleIcon_GetMoveClassTiles(v2), 1, 49410);
     sub_0200D41C(param0->unk_E0[11], BattleIcon_GetMoveClassPaletteIndex(v2) + 6);
 }
 

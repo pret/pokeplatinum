@@ -11,7 +11,7 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
-#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+#include "battle/graphic/objects/pl_batt_obj.naix"
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "gmm/message_bank_battle_strings.h"

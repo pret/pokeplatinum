@@ -464,7 +464,7 @@ void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summarySc
 {
     u32 category = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, BattleIcon_GetMoveClassPalettteFileIndex(), BattleIcon_GetMoveClassTiles(category), 1, 10);
+    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, BattleIcon_GetMoveClassNARCIndex(), BattleIcon_GetMoveClassTiles(category), 1, 10);
     sub_0200D414(summaryScreen->unk_41C[18], BattleIcon_GetMoveClassPaletteIndex(category) + 3);
 }
 

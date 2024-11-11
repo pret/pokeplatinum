@@ -291,14 +291,14 @@ static void ov13_02224720(UnkStruct_ov13_022213F0 *param0)
 
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0207C9B0(param0->unk_1E4, 3, v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 45065);
-    sub_0207C9EC(v0, param0->unk_1FB0, 45065, 45065);
+    BattleIcon_LoadTypeSpritePalette(param0->unk_1E4, 3, v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 45065);
+    BattleIcon_MakeTypeSpriteCellsAnim(v0, param0->unk_1FB0, 45065, 45065);
 
     for (v1 = 45070; v1 <= 45076; v1++) {
         BattleIcon_MakeTypeSpriteTiles(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, v1);
     }
 
-    BattleIcon_MakeMoveTypeSpriteTiles(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 45077);
+    BattleIcon_MakeMoveClassSpriteTiles(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 45077);
 }
 
 static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
@@ -408,7 +408,7 @@ static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1
 {
     SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0200D948(v0, param0->unk_1FB0, BattleIcon_GetMoveClassPalettteFileIndex(), BattleIcon_GetMoveClassTiles(param2), 1, 45077);
+    sub_0200D948(v0, param0->unk_1FB0, BattleIcon_GetMoveClassNARCIndex(), BattleIcon_GetMoveClassTiles(param2), 1, 45077);
     sub_0200D41C(param1, BattleIcon_GetMoveClassPaletteIndex(param2) + 4);
 }
 

@@ -8,7 +8,7 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
-#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+#include "battle/graphic/objects/pl_batt_obj.naix"
 
 #include "heap.h"
 #include "narc.h"
