@@ -1,3 +1,9 @@
+event_bin_gen = generator(
+    event_py,
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@BASENAME@.bin'
+)
+
 events_files = files(
     'events_0000.json',
     'events_0001.json',
@@ -537,15 +543,12 @@ events_files = files(
 
 events_narc = custom_target('zone_event.narc',
     output: 'zone_event.narc',
-    input: events_files,
-    env: json2bin_env,
+    input: event_bin_gen.process(events_files, env: json2bin_env),
     depends: [ py_consts_generators ],
     command: [
-        events_py,
-        '--knarc', knarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
+        knarc_exe,
+        '-d', '@PRIVATE_DIR@',
+        '-p', '@OUTPUT@',
     ]
 )
 

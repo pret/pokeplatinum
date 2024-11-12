@@ -1,5 +1,5 @@
 enc_bin_gen = generator(
-    encounters_new_py,
+    encounter_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
     output: '@BASENAME@.bin'
 )
