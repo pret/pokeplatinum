@@ -160,7 +160,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     SetAutorepeat(4, 8);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKEMON_SUMMARY_SCREEN, HEAP_ALLOCATION_SIZE);
 
-    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__POKEMON_SUMMARY_SCREEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     PokemonSummaryScreen *summaryScreen = OverlayManager_NewData(ovyManager, sizeof(PokemonSummaryScreen), HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     memset(summaryScreen, 0, sizeof(PokemonSummaryScreen));
@@ -1322,7 +1322,7 @@ static void LoadCurrentPageTilemap(PokemonSummaryScreen *summaryScreen)
         memberIndex = 3 + summaryScreen->page;
     }
 
-    void *memberBuffer = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__POKEMON_SUMMARY_SCREEN, memberIndex, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    void *memberBuffer = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__PL_PST_GRA, memberIndex, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     NNSG2dScreenData *tilemap;
     NNS_G2dGetUnpackedScreenData(memberBuffer, &tilemap);
 

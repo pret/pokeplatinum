@@ -275,7 +275,7 @@ static void ov13_02224670(UnkStruct_ov13_022213F0 *param0)
     SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
     NARC *v1;
 
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__POKEMON_SUMMARY_SCREEN, param0->unk_00->unk_0C);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_0C);
 
     SpriteRenderer_LoadPalette(param0->unk_1E4, 3, v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconPltt(), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconCell(), 0, 45064);

@@ -2186,7 +2186,7 @@ static void ov10_02222208(UnkStruct_ov10_0221FB28 *param0)
 {
     NARC *v0;
 
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__POKEMON_SUMMARY_SCREEN, param0->unk_00->unk_24);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_24);
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 64, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47120);
     sub_0200CD0C(param0->unk_190, param0->unk_194, v0, 65, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47114);
