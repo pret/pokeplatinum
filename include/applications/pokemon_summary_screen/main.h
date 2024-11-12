@@ -134,6 +134,60 @@ enum PSSStaticWindow {
     PSS_STATIC_WINDOW_MAX
 };
 
+enum PSSSprite {
+    PSS_SPRITE_TAB_INFO = 0,
+    PSS_SPRITE_TAB_MEMO,
+    PSS_SPRITE_TAB_SKILLS,
+    PSS_SPRITE_TAB_BATTLE_MOVES,
+    PSS_SPRITE_TAB_CONDITION,
+    PSS_SPRITE_TAB_CONTEST_MOVES,
+    PSS_SPRITE_TAB_RIBBONS,
+    PSS_SPRITE_TAB_EXIT,
+
+    PSS_SPRITE_MOVE_SELECTOR_1 = 9,
+    PSS_SPRITE_MOVE_SELECTOR_2,
+    PSS_SPRITE_MON_TYPE_ICON_1,
+    PSS_SPRITE_MON_TYPE_ICON_2,
+    PSS_SPRITE_MOVE_TYPE_ICON_1,
+    PSS_SPRITE_MOVE_TYPE_ICON_2,
+    PSS_SPRITE_MOVE_TYPE_ICON_3,
+    PSS_SPRITE_MOVE_TYPE_ICON_4,
+    PSS_SPRITE_MOVE_TYPE_ICON_5,
+    PSS_SPRITE_MOVE_CATEGORY_ICON,
+    PSS_SPRITE_MON_ICON,
+    PSS_SPRITE_STATUS_ICON,
+    PSS_SPRITE_PAGE_ARROW_LEFT,
+    PSS_SPRITE_PAGE_ARROW_RIGHT,
+    PSS_SPRITE_MARKING_CIRCLE, // ravetodo double check order
+    PSS_SPRITE_MARKING_TRIANGLE,
+    PSS_SPRITE_MARKING_SQUARE,
+    PSS_SPRITE_MARKING_HEART,
+    PSS_SPRITE_MARKING_STAR,
+    PSS_SPRITE_MARKING_DIAMOND,
+
+    PSS_SPRITE_A_BUTTON = 47,
+
+    PSS_SPRITE_SHINY_ICON = 53,
+    PSS_SPRITE_POKERUS_CURED_ICON,
+    PSS_SPRITE_RIBBON_1,
+    PSS_SPRITE_RIBBON_2,
+    PSS_SPRITE_RIBBON_3,
+    PSS_SPRITE_RIBBON_4,
+    PSS_SPRITE_RIBBON_5,
+    PSS_SPRITE_RIBBON_6,
+    PSS_SPRITE_RIBBON_7,
+    PSS_SPRITE_RIBBON_8,
+    PSS_SPRITE_RIBBON_9,
+    PSS_SPRITE_RIBBON_10,
+    PSS_SPRITE_RIBBON_11,
+    PSS_SPRITE_RIBBON_12,
+    PSS_SPRITE_RIBBON_CURSOR,
+
+    PSS_SPRITE_RIBBON_FLASH = 70,
+
+    PSS_SPRITE_MAX = 77,
+};
+
 // somewhat bewilderingly, the message order does not follow the contest stat order
 enum PSSPoffinFeedMsg {
     PSS_MSG_COOLNESS_ENHANCED = 0,
@@ -149,6 +203,8 @@ enum PSSPoffinFeedMsg {
 #define PSS_MOVE_NONE             -1
 #define PSS_SUBSCREEN_BUTTON_NONE 0xFF
 
+#define MAX_MARKINGS 6
+
 #define POINTS_PER_APPEAL_HEART 10
 #define MAX_APPEAL_HEARTS       6
 #define EMPTY_HEART_BASE_TILE   0x12E
@@ -159,7 +215,8 @@ enum PSSPoffinFeedMsg {
 #define RED_HEALTHBAR_BASE_TILE    0x100
 #define PALETTE_SLOT_10_MASK       0xA000
 
-#define RIBBONS_PER_ROW 4
+#define RIBBONS_PER_ROW  4
+#define RIBBONS_PER_PAGE 12
 
 typedef struct PokemonSummary {
     void *monData;
@@ -265,8 +322,8 @@ typedef struct PokemonSummaryScreen {
 
     SpriteRenderer *renderer;
     SpriteGfxHandler *gfxHandler;
-    CellActor *unk_41C[77];
-    CellActorData *actor[77];
+    CellActor *sprites[PSS_SPRITE_MAX];
+    CellActorData *actor[PSS_SPRITE_MAX];
 
     UnkStruct_0200C440 *unk_684;
     MessageLoader *msgLoader;
