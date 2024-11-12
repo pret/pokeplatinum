@@ -130,19 +130,11 @@ sprites_ncgr_sopc = ncgr_gen.process(sprites_png_sopc,
         '-sopc',
     ],
 )
-sprites_ncgr_clobbersize = ncgr_gen.process(sprites_png_clobbersize,
-    extra_args: [
-        '-version101',
-        '-clobbersize',
-    ],
-)
-balls_ncgr = ncgr_gen.process(balls_png,
-    extra_args: [
-        '-version101',
-        '-clobbersize',
-    ],
-)
-ribbons_ncgr = ncgr_gen.process(ribbons_png,
+
+sprites_ncgr_clobbersize = ncgr_gen.process(
+    sprites_png_clobbersize,
+    balls_png,
+    ribbons_png,
     extra_args: [
         '-version101',
         '-clobbersize',
@@ -228,8 +220,6 @@ pokemon_summary_screen_narc = custom_target('pl_pst_gra.narc',
         tilemaps_nscr,
         sprites_ncgr_sopc,
         sprites_ncgr_clobbersize,
-        balls_ncgr,
-        ribbons_ncgr,
         sprites_ncer,
         sprites_nanr,
         palettes_nclr_4bpp,
