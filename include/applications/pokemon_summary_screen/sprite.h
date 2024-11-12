@@ -20,7 +20,7 @@ void sub_0208F22C(PokemonSummaryScreen *param0, u8 param1, u8 param2);
 void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summaryScreen, u32 move);
 void PokemonSummaryScreen_UpdateMoveSelectorPos(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_SetMoveSelector2Pos(PokemonSummaryScreen *summaryScreen);
-void sub_0208F34C(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_InitSheenSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_DrawSheenSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdateMiscMonDataSprites(PokemonSummaryScreen *summaryScreen);
 void sub_0208F600(PokemonSummaryScreen *param0);

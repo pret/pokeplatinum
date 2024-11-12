@@ -150,53 +150,52 @@ void sub_0208FCF8(PokemonSummaryScreen *param0)
     sub_0208FFE0(param0);
 }
 
-void sub_0208FD40(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_AddExtraWindows(PokemonSummaryScreen *summaryScreen)
 {
-    const WindowTemplate *v0;
-    u32 v1;
+    const WindowTemplate *extraWindows;
 
-    switch (param0->page) {
-    case 0:
-        v0 = Unk_020F4E20;
-        param0->numExtraWindows = 6;
+    switch (summaryScreen->page) {
+    case PSS_PAGE_INFO:
+        extraWindows = Unk_020F4E20;
+        summaryScreen->numExtraWindows = 6;
         break;
-    case 1:
-        v0 = Unk_020F4DB0;
-        param0->numExtraWindows = 1;
+    case PSS_PAGE_MEMO:
+        extraWindows = Unk_020F4DB0;
+        summaryScreen->numExtraWindows = 1;
         break;
-    case 2:
-        v0 = Unk_020F4E50;
-        param0->numExtraWindows = 8;
+    case PSS_PAGE_SKILLS:
+        extraWindows = Unk_020F4E50;
+        summaryScreen->numExtraWindows = 8;
         break;
-    case 3:
-        v0 = Unk_020F4E90;
-        param0->numExtraWindows = 8;
+    case PSS_PAGE_BATTLE_MOVES:
+        extraWindows = Unk_020F4E90;
+        summaryScreen->numExtraWindows = 8;
         break;
-    case 5:
-        v0 = Unk_020F4DF0;
-        param0->numExtraWindows = 6;
+    case PSS_PAGE_CONTEST_MOVES:
+        extraWindows = Unk_020F4DF0;
+        summaryScreen->numExtraWindows = 6;
         break;
-    case 6:
-        v0 = Unk_020F4DD0;
-        param0->numExtraWindows = 4;
+    case PSS_PAGE_RIBBONS:
+        extraWindows = Unk_020F4DD0;
+        summaryScreen->numExtraWindows = 4;
         break;
-    case 4:
-    case 7:
-        if ((param0->data->mode != 3) && (param0->data->mode != 4)) {
+    case PSS_PAGE_CONDITION:
+    case PSS_PAGE_EXIT:
+        if (summaryScreen->data->mode != PSS_MODE_POFFIN && summaryScreen->data->mode != PSS_MODE_CONDITION) {
             return;
         }
 
-        v0 = Unk_020F4DB8;
-        param0->numExtraWindows = 3;
+        extraWindows = Unk_020F4DB8;
+        summaryScreen->numExtraWindows = 3;
         break;
     default:
         return;
     }
 
-    param0->extraWindows = Window_New(19, param0->numExtraWindows);
+    summaryScreen->extraWindows = Window_New(HEAP_ID_POKEMON_SUMMARY_SCREEN, summaryScreen->numExtraWindows);
 
-    for (v1 = 0; v1 < param0->numExtraWindows; v1++) {
-        Window_AddFromTemplate(param0->bgConfig, &param0->extraWindows[v1], &v0[v1]);
+    for (u32 i = 0; i < summaryScreen->numExtraWindows; i++) {
+        Window_AddFromTemplate(summaryScreen->bgConfig, &summaryScreen->extraWindows[i], &extraWindows[i]);
     }
 }
 
@@ -412,36 +411,36 @@ static void sub_020902B0(PokemonSummaryScreen *param0)
     sub_02090158(param0, 30, 182, TEXT_COLOR(1, 2, 0), 0);
     sub_02090158(param0, 31, 179, TEXT_COLOR(15, 14, 0), 0);
 }
-
-void sub_020904C4(PokemonSummaryScreen *param0)
+// ravetodo PokemonSummaryScreen_DrawPageWindows?
+void sub_020904C4(PokemonSummaryScreen *summaryScreen)
 {
-    Bg_FillTilemapRect(param0->bgConfig, 1, 0, 0, 0, 32, 2, 16);
-    Bg_FillTilemapRect(param0->bgConfig, 1, 0, 14, 2, 18, 22, 16);
+    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, 32, 2, 16);
+    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_1, 0, 14, 2, 18, 22, 16);
 
-    switch (param0->page) {
-    case 0:
-        sub_02090578(param0);
+    switch (summaryScreen->page) {
+    case PSS_PAGE_INFO:
+        sub_02090578(summaryScreen);
         break;
-    case 1:
-        sub_020908CC(param0);
+    case PSS_PAGE_MEMO:
+        sub_020908CC(summaryScreen);
         break;
-    case 2:
-        sub_0209093C(param0);
+    case PSS_PAGE_SKILLS:
+        sub_0209093C(summaryScreen);
         break;
-    case 4:
-        sub_02090BDC(param0);
+    case PSS_PAGE_CONDITION:
+        sub_02090BDC(summaryScreen);
         break;
-    case 3:
-        sub_02090CD4(param0);
+    case PSS_PAGE_BATTLE_MOVES:
+        sub_02090CD4(summaryScreen);
         break;
-    case 5:
-        sub_02090D90(param0);
+    case PSS_PAGE_CONTEST_MOVES:
+        sub_02090D90(summaryScreen);
         break;
-    case 6:
-        sub_02090E4C(param0);
+    case PSS_PAGE_RIBBONS:
+        sub_02090E4C(summaryScreen);
         break;
-    case 7:
-        sub_02090EC8(param0);
+    case PSS_PAGE_EXIT:
+        sub_02090EC8(summaryScreen);
         break;
     }
 }

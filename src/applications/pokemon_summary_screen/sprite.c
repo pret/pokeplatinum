@@ -494,25 +494,23 @@ void PokemonSummaryScreen_SetMoveSelector2Pos(PokemonSummaryScreen *summaryScree
     CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_MOVE_SELECTOR_2], TRUE);
 }
 
-void sub_0208F34C(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_InitSheenSprites(PokemonSummaryScreen *summaryScreen)
 {
-    u32 v0;
+    summaryScreen->sheenState = 0;
+    summaryScreen->sheenCount = 0;
+    summaryScreen->sheenPos = 0;
 
-    param0->sheenState = 0;
-    param0->sheenCount = 0;
-    param0->sheenPos = 0;
-
-    if (param0->monData.sheen == 0) {
-        param0->sheenMax = 0;
-    } else if (param0->monData.sheen == 255) {
-        param0->sheenMax = 12;
+    if (summaryScreen->monData.sheen == 0) {
+        summaryScreen->sheenMax = 0;
+    } else if (summaryScreen->monData.sheen == MAX_POKEMON_SHEEN) {
+        summaryScreen->sheenMax = MAX_SHEEN_SPRITES;
     } else {
-        param0->sheenMax = (((12 << 8) / 255) * param0->monData.sheen) >> 8;
+        summaryScreen->sheenMax = (((MAX_SHEEN_SPRITES << 8) / MAX_POKEMON_SHEEN) * summaryScreen->monData.sheen) >> 8;
     }
 
-    for (v0 = 29; v0 <= 40; v0++) {
-        CellActor_SetDrawFlag(param0->sprites[v0], 0);
-        SpriteActor_SetAnimFrame(param0->sprites[v0], 0);
+    for (u32 spriteIndex = PSS_SHEEN_SPRITES_START; spriteIndex <= PSS_SHEEN_SPRITES_END; spriteIndex++) {
+        CellActor_SetDrawFlag(summaryScreen->sprites[spriteIndex], FALSE);
+        SpriteActor_SetAnimFrame(summaryScreen->sprites[spriteIndex], 0);
     }
 }
 
@@ -540,9 +538,9 @@ void PokemonSummaryScreen_DrawSheenSprites(PokemonSummaryScreen *summaryScreen)
         break;
     case 1:
         if (summaryScreen->sheenCount == 0) {
-            CellActor_SetDrawFlag(summaryScreen->sprites[29 + summaryScreen->sheenPos], TRUE);
-            SpriteActor_SetAnimFrame(summaryScreen->sprites[29 + summaryScreen->sheenPos], FALSE);
-            CellActor_SetAnim(summaryScreen->sprites[29 + summaryScreen->sheenPos], FALSE);
+            CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SHEEN_SPRITES_START + summaryScreen->sheenPos], TRUE);
+            SpriteActor_SetAnimFrame(summaryScreen->sprites[PSS_SHEEN_SPRITES_START + summaryScreen->sheenPos], FALSE);
+            CellActor_SetAnim(summaryScreen->sprites[PSS_SHEEN_SPRITES_START + summaryScreen->sheenPos], FALSE);
 
             summaryScreen->sheenPos++;
 
@@ -555,7 +553,7 @@ void PokemonSummaryScreen_DrawSheenSprites(PokemonSummaryScreen *summaryScreen)
         summaryScreen->sheenCount = (summaryScreen->sheenCount + 1) % 10;
         break;
     case 2:
-        if (CellActor_GetDrawFlag(summaryScreen->sprites[29 + summaryScreen->sheenMax - 1]) == FALSE) {
+        if (CellActor_GetDrawFlag(summaryScreen->sprites[PSS_SHEEN_SPRITES_START + summaryScreen->sheenMax - 1]) == FALSE) {
             summaryScreen->sheenCount = 0;
             summaryScreen->sheenState = 3;
             break;
@@ -565,7 +563,7 @@ void PokemonSummaryScreen_DrawSheenSprites(PokemonSummaryScreen *summaryScreen)
         summaryScreen->sheenCount++;
 
         if (summaryScreen->sheenCount == 32) {
-            for (i = 29; i < 29 + summaryScreen->sheenMax; i++) {
+            for (i = PSS_SHEEN_SPRITES_START; i < PSS_SHEEN_SPRITES_START + summaryScreen->sheenMax; i++) {
                 CellActor_SetDrawFlag(summaryScreen->sprites[i], TRUE);
                 SpriteActor_SetAnimFrame(summaryScreen->sprites[i], FALSE);
                 CellActor_SetAnim(summaryScreen->sprites[i], FALSE);
@@ -586,7 +584,7 @@ void PokemonSummaryScreen_DrawSheenSprites(PokemonSummaryScreen *summaryScreen)
         break;
     }
 
-    for (i = 29; i < 29 + summaryScreen->sheenMax; i++) {
+    for (i = PSS_SHEEN_SPRITES_START; i < PSS_SHEEN_SPRITES_START + summaryScreen->sheenMax; i++) {
         if (CellActor_GetDrawFlag(summaryScreen->sprites[i]) == FALSE) {
             continue;
         }

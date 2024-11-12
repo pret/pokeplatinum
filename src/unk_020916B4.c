@@ -250,35 +250,33 @@ static void sub_020918EC(PokemonSummaryScreen *param0)
     }
 }
 
-void sub_020919E8(PokemonSummaryScreen *param0)
+void sub_020919E8(PokemonSummaryScreen *summaryScreen)
 {
-    u32 v0;
-
-    if (param0->page != 4) {
+    if (summaryScreen->page != PSS_PAGE_CONDITION) {
         return;
     }
 
-    param0->unk_2F0[0].unk_00 = Unk_020F4FFC[0][3].unk_06;
-    param0->unk_2F0[0].unk_06 = Unk_020F4FFC[0][3].unk_06;
-    param0->unk_2F0[0].unk_0C = Unk_020F4FFC[0][3].unk_06;
-    param0->unk_2F0[0].unk_12 = Unk_020F4FFC[0][3].unk_06;
+    summaryScreen->unk_2F0[0].unk_00 = Unk_020F4FFC[0][3].unk_06;
+    summaryScreen->unk_2F0[0].unk_06 = Unk_020F4FFC[0][3].unk_06;
+    summaryScreen->unk_2F0[0].unk_0C = Unk_020F4FFC[0][3].unk_06;
+    summaryScreen->unk_2F0[0].unk_12 = Unk_020F4FFC[0][3].unk_06;
 
-    param0->unk_2F0[1].unk_00 = Unk_020F4FFC[1][2].unk_06;
-    param0->unk_2F0[1].unk_06 = Unk_020F4FFC[1][2].unk_06;
-    param0->unk_2F0[1].unk_0C = Unk_020F4FFC[1][2].unk_06;
-    param0->unk_2F0[1].unk_12 = Unk_020F4FFC[1][2].unk_06;
+    summaryScreen->unk_2F0[1].unk_00 = Unk_020F4FFC[1][2].unk_06;
+    summaryScreen->unk_2F0[1].unk_06 = Unk_020F4FFC[1][2].unk_06;
+    summaryScreen->unk_2F0[1].unk_0C = Unk_020F4FFC[1][2].unk_06;
+    summaryScreen->unk_2F0[1].unk_12 = Unk_020F4FFC[1][2].unk_06;
 
-    param0->unk_2F0[2].unk_00 = Unk_020F4FFC[2][1].unk_06;
-    param0->unk_2F0[2].unk_06 = Unk_020F4FFC[2][1].unk_06;
-    param0->unk_2F0[2].unk_0C = Unk_020F4FFC[2][1].unk_06;
-    param0->unk_2F0[2].unk_12 = Unk_020F4FFC[2][1].unk_06;
+    summaryScreen->unk_2F0[2].unk_00 = Unk_020F4FFC[2][1].unk_06;
+    summaryScreen->unk_2F0[2].unk_06 = Unk_020F4FFC[2][1].unk_06;
+    summaryScreen->unk_2F0[2].unk_0C = Unk_020F4FFC[2][1].unk_06;
+    summaryScreen->unk_2F0[2].unk_12 = Unk_020F4FFC[2][1].unk_06;
 
-    param0->unk_2F0[3].unk_00 = Unk_020F4FFC[3][0].unk_06;
-    param0->unk_2F0[3].unk_06 = Unk_020F4FFC[3][0].unk_06;
-    param0->unk_2F0[3].unk_0C = Unk_020F4FFC[3][0].unk_06;
-    param0->unk_2F0[3].unk_12 = Unk_020F4FFC[3][0].unk_06;
+    summaryScreen->unk_2F0[3].unk_00 = Unk_020F4FFC[3][0].unk_06;
+    summaryScreen->unk_2F0[3].unk_06 = Unk_020F4FFC[3][0].unk_06;
+    summaryScreen->unk_2F0[3].unk_0C = Unk_020F4FFC[3][0].unk_06;
+    summaryScreen->unk_2F0[3].unk_12 = Unk_020F4FFC[3][0].unk_06;
 
-    sub_02091D50(param0);
+    sub_02091D50(summaryScreen);
 }
 
 static void sub_02091B78(const UnkStruct_02091B78 *param0, VecFx16 *param1, u8 param2)

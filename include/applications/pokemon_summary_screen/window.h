@@ -4,7 +4,7 @@
 #include "applications/pokemon_summary_screen/main.h"
 
 void sub_0208FCF8(PokemonSummaryScreen *param0);
-void sub_0208FD40(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_AddExtraWindows(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_RemoveExtraWindows(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_RemoveWindows(PokemonSummaryScreen *summaryScreen);
 void sub_0208FEA4(PokemonSummaryScreen *param0);
