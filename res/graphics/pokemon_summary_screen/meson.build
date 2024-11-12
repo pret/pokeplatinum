@@ -1,34 +1,25 @@
 # Tiles and tilemaps
-tiles_main_ncgr = ncgr_gen.process(files('tiles_main.png'),
-    extra_args: [
-        '-sopc',
-        '-version101',
-    ],
-)
-tiles_sub_ncgr = ncgr_gen.process(files('tiles_sub.png'),
+tiles_ncgr = ncgr_gen.process(files('tiles_main.png','tiles_sub.png'),
     extra_args: [
         '-sopc',
         '-version101',
     ],
 )
 
-tiles_sub_nscr = copy_gen.process(files('tiles_sub.bin'))
-
-page_tilemap_bins = files(
-    'page_info.bin',
-    'page_memo.bin',
-    'page_skills.bin',
-    'page_battle_moves.bin',
-    'page_condition.bin',
-    'page_contest_moves.bin',
-    'page_ribbons.bin',
-    'page_exit.bin',
-    'move_info.bin',
-    'page_battle_moves_select_mode.bin',
-    'page_contest_moves_select_mode.bin',
-)
-
-pages_nscr = copy_gen.process(page_tilemap_bins)
+tilemaps_nscr = copy_gen.process(files(
+    'tiles_sub.NSCR',
+    'page_info.NSCR',
+    'page_memo.NSCR',
+    'page_skills.NSCR',
+    'page_battle_moves.NSCR',
+    'page_condition.NSCR',
+    'page_contest_moves.NSCR',
+    'page_ribbons.NSCR',
+    'page_exit.NSCR',
+    'move_info.NSCR',
+    'page_battle_moves_select_mode.NSCR',
+    'page_contest_moves_select_mode.NSCR',
+))
 
 # Sprite images
 sprites_png_sopc = files(
@@ -233,10 +224,8 @@ pokemon_summary_screen_narc = custom_target('pl_pst_gra.narc',
         'pl_pst_gra.naix',
     ],
     input: [
-        tiles_main_ncgr,
-        tiles_sub_ncgr,
-        tiles_sub_nscr,
-        pages_nscr,
+        tiles_ncgr,
+        tilemaps_nscr,
         sprites_ncgr_sopc,
         sprites_ncgr_clobbersize,
         balls_ncgr,
