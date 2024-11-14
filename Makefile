@@ -18,8 +18,8 @@ UNAME_S := $(shell uname -s)
 CWD := $(shell pwd)
 
 WSL_ACCESSING_WINDOWS := 0
-ifeq (,$(findstring Microsoft,$(UNAME_R)))
-ifeq (,$(filter /mnt/%,$(CWD)))
+ifneq (,$(findstring Microsoft,$(UNAME_R)))
+ifneq (,$(filter /mnt/%,$(CWD)))
 WSL_ACCESSING_WINDOWS := 1
 endif
 endif
