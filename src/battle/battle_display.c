@@ -23,6 +23,7 @@
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/healthbar.h"
+#include "battle/move_display_info.h"
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02264798.h"
@@ -97,7 +98,6 @@
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_02269668.h"
-#include "battle/struct_ov16_0226AC98.h"
 #include "battle/struct_ov16_0226C378.h"
 #include "battle/struct_ov16_0226D160_decl.h"
 #include "battle/trainer_ai.h"
@@ -2895,13 +2895,13 @@ static void ov16_022604C8(SysTask *param0, void *param1)
     case 0:
 
     {
-        UnkStruct_ov16_0226AC98 v7;
+        MoveDisplayInfo v7;
         int v8;
 
         for (v8 = 0; v8 < 4; v8++) {
-            v7.unk_00[v8] = v0->unk_24[v8];
-            v7.unk_08[v8] = v0->unk_2C[v8];
-            v7.unk_10[v8] = v0->unk_30[v8];
+            v7.move[v8] = v0->unk_24[v8];
+            v7.curPP[v8] = v0->unk_2C[v8];
+            v7.maxPP[v8] = v0->unk_30[v8];
         }
 
         ov16_0226AC98(ov16_0223E02C(v0->unk_00), v0->unk_34, &v7);

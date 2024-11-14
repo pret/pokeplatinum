@@ -15,6 +15,7 @@
 #include "struct_defs/struct_020127E8.h"
 
 #include "battle/battle_display.h"
+#include "battle/move_display_info.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
@@ -22,7 +23,6 @@
 #include "battle/struct_ov16_02260F14.h"
 #include "battle/struct_ov16_022623F0.h"
 #include "battle/struct_ov16_02269668.h"
-#include "battle/struct_ov16_0226AC98.h"
 #include "battle/struct_ov16_0226C378.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle/struct_ov16_0226DEEC_decl.h"
@@ -187,7 +187,7 @@ typedef struct {
 } UnkStruct_ov16_0226AEA0;
 
 typedef struct {
-    UnkStruct_ov16_0226AC98 unk_00;
+    MoveDisplayInfo unk_00;
     u16 *unk_18[4];
     UnkStruct_ov16_0226AEA0 unk_28[4];
     UnkStruct_ov16_0226AEA0 unk_78[4];
@@ -1120,7 +1120,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
         int v9, v10;
 
         for (v10 = 0; v10 < 4; v10++) {
-            MI_CpuFill8(&v0->unk_68[v10].unk_00, 0xff, sizeof(UnkStruct_ov16_0226AC98));
+            MI_CpuFill8(&v0->unk_68[v10].unk_00, 0xff, sizeof(MoveDisplayInfo));
         }
     }
 
@@ -2774,7 +2774,7 @@ static void ov16_0226ABE8(UnkStruct_ov16_02268A14 *param0)
     }
 }
 
-void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const UnkStruct_ov16_0226AC98 *param2)
+void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDisplayInfo *param2)
 {
     UnkStruct_ov16_0226ABD4 *v0;
     void *v1;
@@ -2797,31 +2797,31 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const UnkStruct_
     v8 = MessageLoader_GetNewStrbuf(v12, 937);
 
     for (v4 = 0; v4 < 4; v4++) {
-        if ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0)) {
-            v5 = MoveTable_LoadParam(param2->unk_00[v4], MOVEATTRIBUTE_TYPE);
+        if ((param2->move[v4] != v0->unk_00.move[v4]) && (param2->move[v4] != 0)) {
+            v5 = MoveTable_LoadParam(param2->move[v4], MOVEATTRIBUTE_TYPE);
             v1 = Graphics_GetCharData(sub_0207C944(), sub_0207C908(v5), 1, &v2, 5);
             MI_CpuCopy32(v2->pRawData, v0->unk_18[v4], v3);
             Heap_FreeToHeap(v1);
         }
 
-        if ((v0->unk_28[v4].unk_00.pixels == NULL) || ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0))) {
-            v6 = MessageUtil_MoveName(param2->unk_00[v4], 5);
+        if ((v0->unk_28[v4].unk_00.pixels == NULL) || ((param2->move[v4] != v0->unk_00.move[v4]) && (param2->move[v4] != 0))) {
+            v6 = MessageUtil_MoveName(param2->move[v4], 5);
             ov16_0226AEA0(param0, v6, FONT_SUBSCREEN, &v0->unk_28[v4], TEXT_COLOR(7, 8, 9));
             Strbuf_Free(v6);
         }
 
-        if ((v0->unk_78[v4].unk_00.pixels == NULL) || (v0->unk_C8[v4].unk_00.pixels == NULL) || (param2->unk_00[v4] != 0) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4]) || (param2->unk_10[v4] != v0->unk_00.unk_10[v4])) {
-            StringTemplate_SetNumber(v10, 0, param2->unk_08[v4], 2, 1, 0);
-            StringTemplate_SetNumber(v10, 1, param2->unk_10[v4], 2, 1, 0);
+        if ((v0->unk_78[v4].unk_00.pixels == NULL) || (v0->unk_C8[v4].unk_00.pixels == NULL) || (param2->move[v4] != 0) || (param2->move[v4] != v0->unk_00.move[v4]) || (param2->curPP[v4] != v0->unk_00.curPP[v4]) || (param2->maxPP[v4] != v0->unk_00.maxPP[v4])) {
+            StringTemplate_SetNumber(v10, 0, param2->curPP[v4], 2, 1, 0);
+            StringTemplate_SetNumber(v10, 1, param2->maxPP[v4], 2, 1, 0);
             StringTemplate_Format(v10, v7, v8);
 
-            v11 = ov16_0226B924(param2->unk_08[v4], param2->unk_10[v4]);
+            v11 = ov16_0226B924(param2->curPP[v4], param2->maxPP[v4]);
 
-            if ((v0->unk_78[v4].unk_00.pixels == NULL) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4])) {
+            if ((v0->unk_78[v4].unk_00.pixels == NULL) || (param2->move[v4] != v0->unk_00.move[v4]) || (param2->curPP[v4] != v0->unk_00.curPP[v4])) {
                 ov16_0226AEA0(param0, v7, FONT_SYSTEM, &v0->unk_78[v4], v11);
             }
 
-            if ((v0->unk_C8[v4].unk_00.pixels == NULL) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4])) {
+            if ((v0->unk_C8[v4].unk_00.pixels == NULL) || (param2->move[v4] != v0->unk_00.move[v4]) || (param2->curPP[v4] != v0->unk_00.curPP[v4])) {
                 ov16_0226AEA0(param0, v9, FONT_SYSTEM, &v0->unk_C8[v4], v11);
             }
         }
