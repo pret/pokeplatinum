@@ -1,0 +1,714 @@
+{
+	"labelEnabled":	true,
+	"extended":	true,
+	"vramTransferEnabled":	false,
+	"cellCount":	16,
+	"mappingType":	0,
+	"cells":	[{
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	3
+			},
+			"maxX":	7,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	0,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	3
+			},
+			"maxX":	7,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	4,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	3
+			},
+			"maxX":	7,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	8,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	3
+			},
+			"maxX":	7,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	12,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	3
+			},
+			"maxX":	7,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	16,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	3
+			},
+			"maxX":	7,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	20,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	3
+			},
+			"maxX":	7,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	24,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	3
+			},
+			"maxX":	7,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	28,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	5
+			},
+			"maxX":	15,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	2,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	32,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	2
+					},
+					"Attr1":	{
+						"XCoordinate":	8,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	36,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	5
+			},
+			"maxX":	15,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	2,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	38,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	2
+					},
+					"Attr1":	{
+						"XCoordinate":	8,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	42,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	5
+			},
+			"maxX":	15,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	2,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	44,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	2
+					},
+					"Attr1":	{
+						"XCoordinate":	8,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	48,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	5
+			},
+			"maxX":	15,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	2,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	50,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	2
+					},
+					"Attr1":	{
+						"XCoordinate":	8,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	54,
+						"Priority":	0,
+						"Palette":	1
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	5
+			},
+			"maxX":	15,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	2,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	56,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	2
+					},
+					"Attr1":	{
+						"XCoordinate":	8,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	60,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	5
+			},
+			"maxX":	15,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	2,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	62,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	2
+					},
+					"Attr1":	{
+						"XCoordinate":	8,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	66,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	5
+			},
+			"maxX":	15,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	2,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	68,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	2
+					},
+					"Attr1":	{
+						"XCoordinate":	8,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	72,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	true,
+				"boundingSphereRadius":	5
+			},
+			"maxX":	15,
+			"maxY":	7,
+			"minX":	-8,
+			"minY":	-8,
+			"oamCount":	2,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	504,
+						"RotationScaling":	0,
+						"Size":	1
+					},
+					"Attr2":	{
+						"CharName":	74,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}, {
+					"Attr0":	{
+						"YCoordinate":	248,
+						"Rotation":	false,
+						"SizeDisable":	false,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	2
+					},
+					"Attr1":	{
+						"XCoordinate":	8,
+						"RotationScaling":	0,
+						"Size":	0
+					},
+					"Attr2":	{
+						"CharName":	78,
+						"Priority":	0,
+						"Palette":	2
+					}
+				}]
+		}],
+	"labels":	["CellAnime0", "CellAnime1", "CellAnime2", "CellAnime4", "CellAnime3", "CellAnime5", "CellAnime6", "CellAnime14", "CellAnime7", "CellAnime8", "CellAnime9", "CellAnime11", "CellAnime10", "CellAnime12", "CellAnime13", "CellAnime15"],
+	"labelCount":	16
+}
