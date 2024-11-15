@@ -65,7 +65,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ID No.</language>
 	</row>
-	<row id="pl_msg_00000455_00016" index="16">
+	<row id="pss_template_ot_id" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 54, 0, 0}</language>
 	</row>
@@ -73,7 +73,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Exp. Points</language>
 	</row>
-	<row id="pl_msg_00000455_00018" index="18">
+	<row id="pss_template_exp" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 56, 0, 0}</language>
 	</row>
@@ -86,7 +86,7 @@
 		<language name="English"></language>
 		<language name="日本語">XX</language>
 	</row>
-	<row id="pl_msg_00000455_00021" index="21">
+	<row id="pss_template_exp_next_lv" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 55, 0, 0}</language>
 	</row>
@@ -470,39 +470,39 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ability</language>
 	</row>
-	<row id="pl_msg_00000455_00117" index="117">
+	<row id="pss_slash" index="117">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">/</language>
 	</row>
-	<row id="pl_msg_00000455_00118" index="118">
+	<row id="pss_template_max_hp" index="118">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00119" index="119">
+	<row id="pss_template_current_hp" index="119">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00120" index="120">
+	<row id="pss_template_attack" index="120">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00121" index="121">
+	<row id="pss_template_defense" index="121">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00122" index="122">
+	<row id="pss_template_sp_attack" index="122">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00123" index="123">
+	<row id="pss_template_sp_defense" index="123">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00124" index="124">
+	<row id="pss_template_speed" index="124">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00125" index="125">
+	<row id="pss_template_ability" index="125">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 5, 0, 0}</language>
 	</row>
@@ -518,7 +518,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">BATTLE MOVES</language>
 	</row>
-	<row id="pl_msg_00000455_00129" index="129">
+	<row id="pss_select_battle_move_info" index="129">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">INFO</language>
 	</row>
@@ -622,7 +622,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">---</language>
 	</row>
-	<row id="pl_msg_00000455_00155" index="155">
+	<row id="pss_select_battle_move_ok" index="155">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK</language>
 	</row>
@@ -634,11 +634,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CONTEST MOVES</language>
 	</row>
-	<row id="pl_msg_00000455_00158" index="158">
+	<row id="pss_select_contest_move_info" index="158">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">INFO</language>
 	</row>
-	<row id="pl_msg_00000455_00159" index="159">
+	<row id="pss_select_contest_move_ok" index="159">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK</language>
 	</row>
@@ -646,7 +646,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">APPEAL POINTS</language>
 	</row>
-	<row id="pl_msg_00000455_00161" index="161">
+	<row id="pss_prompt_exit" index="161">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">EXIT</language>
 	</row>
@@ -654,7 +654,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Close window.</language>
 	</row>
-	<row id="pl_msg_00000455_00163" index="163">
+	<row id="pss_poffin_feed_ok" index="163">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK</language>
 	</row>
@@ -663,27 +663,27 @@
 		<language name="English"></language>
 		<language name="日本語">XXX</language>
 	</row>
-	<row id="pl_msg_00000455_00165" index="165">
+	<row id="pss_favorite_food" index="165">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">FAVORITE FOOD</language>
 	</row>
-	<row id="pl_msg_00000455_00166" index="166">
+	<row id="pss_template_likes_spicy" index="166">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}spicy{COLOR 0}.</language>
 	</row>
-	<row id="pl_msg_00000455_00167" index="167">
+	<row id="pss_template_likes_dry" index="167">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}dry{COLOR 0}.</language>
 	</row>
-	<row id="pl_msg_00000455_00168" index="168">
+	<row id="pss_template_likes_sweet" index="168">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}sweet{COLOR 0}.</language>
 	</row>
-	<row id="pl_msg_00000455_00169" index="169">
+	<row id="pss_template_likes_bitter" index="169">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}bitter{COLOR 0}.</language>
 	</row>
-	<row id="pl_msg_00000455_00170" index="170">
+	<row id="pss_template_likes_sour" index="170">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}sour{COLOR 0}.</language>
 	</row>
@@ -723,7 +723,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">RIBBONS</language>
 	</row>
-	<row id="pl_msg_00000455_00180" index="180">
+	<row id="pss_ribbon_select_info" index="180">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">INFO</language>
 	</row>
@@ -735,7 +735,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">No. of Ribbons:</language>
 	</row>
-	<row id="pl_msg_00000455_00183" index="183">
+	<row id="pss_template_ribbon_count" index="183">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
