@@ -609,7 +609,7 @@ message_bank_files = files(
     'message_bank_unk_0609.gmm',
     'message_bank_ability_names.gmm',
     'message_bank_unk_0611.gmm',
-    'message_bank_unk_0612.gmm',
+    'message_bank_ability_descriptions.gmm',
     'message_bank_unk_0613.gmm',
     'message_bank_unk_0614.gmm',
     'message_bank_unk_0615.gmm',

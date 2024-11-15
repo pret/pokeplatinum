@@ -1172,8 +1172,7 @@ static void DrawSkillsPageWindows(PokemonSummaryScreen *summaryScreen)
     Strbuf_Free(buf);
     // ravetodo name text colors
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[PSS_WINDOW_ABILITY], TEXT_COLOR(1, 2, 0), PSS_ALIGNMENT_LEFT);
-    // ravetodo name ability desc bank
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 612, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_ability_descriptions, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     MessageLoader_GetStrbuf(msgLoader, summaryScreen->monData.ability, summaryScreen->strbuf);
     MessageLoader_Free(msgLoader);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[PSS_WINDOW_ABILITY_DESCRIPTION], TEXT_COLOR(1, 2, 0), PSS_ALIGNMENT_LEFT);
