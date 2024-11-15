@@ -5,15 +5,15 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 1, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00001" index="1">
+	<row id="pss_male_symbol" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">♂</language>
 	</row>
-	<row id="pl_msg_00000455_00002" index="2">
+	<row id="pss_female_symbol" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">♀</language>
 	</row>
-	<row id="pl_msg_00000455_00003" index="3">
+	<row id="pss_template_mon_level" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
@@ -21,11 +21,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Item</language>
 	</row>
-	<row id="pl_msg_00000455_00005" index="5">
+	<row id="pss_template_item_name" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 8, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00006" index="6">
+	<row id="pss_none" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">None</language>
 	</row>
@@ -37,7 +37,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokédex No.</language>
 	</row>
-	<row id="pl_msg_00000455_00009" index="9">
+	<row id="pss_dex_number_template" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
@@ -90,7 +90,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 55, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00022" index="22">
+	<row id="pss_three_question_marks" index="22">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">???</language>
 	</row>

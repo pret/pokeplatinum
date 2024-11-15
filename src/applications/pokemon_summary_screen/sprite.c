@@ -446,31 +446,29 @@ static void sub_0208F194(PokemonSummaryScreen *summaryScreen, u8 spriteIndex, u8
     sub_0200D414(summaryScreen->sprites[spriteIndex], sub_0207C92C(type) + 3);
 }
 
-static void sub_0208F1E4(PokemonSummaryScreen *param0, u8 *param1, s16 *param2, s16 *param3)
+static void GetMoveTypeIconPos(PokemonSummaryScreen *summaryScreen, u8 *moveIndex, s16 *outX, s16 *outY)
 {
-    s16 v0, v1;
+    s16 newYPos = MOVE_TYPE_ICON_BASE_Y + *moveIndex * PIXELS_BETWEEN_MOVES;
 
-    v1 = 42 + *param1 * 32;
+    for (s16 i = 0; i < LEARNED_MOVES_MAX; i++) {
+        sub_0200D50C(summaryScreen->sprites[PSS_SPRITE_MOVE_TYPE_ICON_1 + i], outX, outY);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        sub_0200D50C(param0->sprites[13 + v0], param2, param3);
-
-        if (v1 == *param3) {
-            *param1 = (u8)v0;
+        if (newYPos == *outY) {
+            *moveIndex = i;
             break;
         }
     }
 }
 
-void sub_0208F22C(PokemonSummaryScreen *param0, u8 param1, u8 param2)
+void PokemonSummaryScreen_SwapMoveTypeIcons(PokemonSummaryScreen *summaryScreen, u8 moveIndex1, u8 moveIndex2)
 {
-    s16 v0, v1, v2, v3;
+    s16 xPos1, yPos1, xPos2, yPos2;
 
-    sub_0208F1E4(param0, &param1, &v0, &v1);
-    sub_0208F1E4(param0, &param2, &v2, &v3);
+    GetMoveTypeIconPos(summaryScreen, &moveIndex1, &xPos1, &yPos1);
+    GetMoveTypeIconPos(summaryScreen, &moveIndex2, &xPos2, &yPos2);
 
-    SpriteActor_SetPositionXY(param0->sprites[13 + param1], v2, v3);
-    SpriteActor_SetPositionXY(param0->sprites[13 + param2], v0, v1);
+    SpriteActor_SetPositionXY(summaryScreen->sprites[PSS_SPRITE_MOVE_TYPE_ICON_1 + moveIndex1], xPos2, yPos2);
+    SpriteActor_SetPositionXY(summaryScreen->sprites[PSS_SPRITE_MOVE_TYPE_ICON_1 + moveIndex2], xPos1, yPos1);
 }
 
 void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summaryScreen, u32 move)
@@ -478,7 +476,7 @@ void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summarySc
     u32 category = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
     sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, sub_0207CAC0(), sub_0207CA90(category), 1, 10);
-    sub_0200D414(summaryScreen->sprites[18], sub_0207CAA8(category) + 3);
+    sub_0200D414(summaryScreen->sprites[PSS_SPRITE_MOVE_CATEGORY_ICON], sub_0207CAA8(category) + 3);
 }
 
 void PokemonSummaryScreen_UpdateMoveSelectorPos(PokemonSummaryScreen *summaryScreen)

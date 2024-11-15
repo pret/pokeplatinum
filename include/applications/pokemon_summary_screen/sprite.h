@@ -16,7 +16,7 @@ void sub_0208EE3C(PokemonSummaryScreen *param0);
 void sub_0208EE9C(PokemonSummaryScreen *param0);
 void PokemonSummaryScreen_UpdateTypeIcons(PokemonSummaryScreen *summaryScreen);
 void sub_0208F16C(PokemonSummaryScreen *param0);
-void sub_0208F22C(PokemonSummaryScreen *param0, u8 param1, u8 param2);
+void PokemonSummaryScreen_SwapMoveTypeIcons(PokemonSummaryScreen *param0, u8 moveIndex1, u8 moveIndex2);
 void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summaryScreen, u32 move);
 void PokemonSummaryScreen_UpdateMoveSelectorPos(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_SetMoveSelector2Pos(PokemonSummaryScreen *summaryScreen);

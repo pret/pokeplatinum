@@ -3,22 +3,22 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 
-void sub_0208FCF8(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_DrawStaticWindows(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_AddExtraWindows(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_RemoveExtraWindows(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_RemoveWindows(PokemonSummaryScreen *summaryScreen);
-void sub_0208FEA4(PokemonSummaryScreen *param0);
-void sub_0208FF3C(PokemonSummaryScreen *param0);
-void sub_0208FFE0(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_PrintGenderSymbol(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_PrintLevel(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_PrintItemName(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_ClearAndPrintButtonPrompt(PokemonSummaryScreen *summaryScreen, u32 entryID);
 void sub_020904C4(PokemonSummaryScreen *param0);
 void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintRibbonNameAndDesc(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintBattleMoveInfo(PokemonSummaryScreen *summaryScreen, u32 move);
 void PokemonSummaryScreen_ClearBattleInfoWindows(PokemonSummaryScreen *summaryScreen);
-void ShowMoveInfoOrCancel(PokemonSummaryScreen *summaryScreen);
-void HideMoveCancelText(PokemonSummaryScreen *summaryScreen);
-void sub_02091474(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_ShowMoveInfoOrCancel(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_HideMoveCancelText(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_SwapMoveNameAndPP(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintHMMovesCantBeForgotten(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintContestMoveInfo(PokemonSummaryScreen *summaryScreen, u32 move);
 void PokemonSummaryScreen_ClearContestInfoWindows(PokemonSummaryScreen *summaryScreen);
