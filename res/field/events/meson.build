@@ -543,16 +543,20 @@ events_files = files(
 
 events_order = files('zone_event.order')
 events_narc = custom_target('zone_event.narc',
-    output: 'zone_event.narc',
+    output: [
+        'zone_event.narc',
+        'zone_event.naix',
+    ],
     input: event_bin_gen.process(events_files, env: json2bin_env),
     depends: [ py_consts_generators ],
     command: [
         knarc_exe,
         '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT@',
+        '-p', '@OUTPUT0@',
         '--order', events_order,
         '--naix',
     ]
 )
 
-nitrofs_files += events_narc
+nitrofs_files += events_narc[0]
+naix_headers += events_narc[1]
