@@ -526,7 +526,7 @@ static int WaitSummaryScreenTransition(PokemonSummaryScreen *summaryScreen)
 static int HandleInput_Main(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->subscreenExit == TRUE) {
-        summaryScreen->data->returnMode = 1;
+        summaryScreen->data->returnMode = PSS_RETURN_CANCEL;
         return PSS_STATE_TRANSITION_OUT;
     }
 
@@ -552,7 +552,7 @@ static int HandleInput_Main(PokemonSummaryScreen *summaryScreen)
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-        summaryScreen->data->returnMode = 1;
+        summaryScreen->data->returnMode = PSS_RETURN_CANCEL;
         return PSS_STATE_TRANSITION_OUT;
     }
 
@@ -578,7 +578,7 @@ static int HandleInput_Main(PokemonSummaryScreen *summaryScreen)
             }
         } else if (summaryScreen->page == PSS_PAGE_EXIT) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-            summaryScreen->data->returnMode = 1;
+            summaryScreen->data->returnMode = PSS_RETURN_CANCEL;
             return PSS_STATE_TRANSITION_OUT;
         }
     }
@@ -767,14 +767,14 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
         }
 
         summaryScreen->data->selectedSlot = summaryScreen->cursor;
-        summaryScreen->data->returnMode = 0;
+        summaryScreen->data->returnMode = PSS_RETURN_SELECT;
         return PSS_STATE_TRANSITION_OUT;
     }
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         summaryScreen->data->selectedSlot = 4;
-        summaryScreen->data->returnMode = 1;
+        summaryScreen->data->returnMode = PSS_RETURN_CANCEL;
         return PSS_STATE_TRANSITION_OUT;
     }
 
@@ -1358,14 +1358,14 @@ static void DrawHealthBar(PokemonSummaryScreen *summaryScreen)
     u8 pixelCount = App_PixelCount(summaryScreen->monData.curHP, summaryScreen->monData.maxHP, 48);
     u16 tile;
 
-    for (u8 i = 0; i < 6; i++) {
+    for (u8 i = 0; i < HEALTHBAR_TILES_MAX; i++) {
         if (pixelCount >= 8) {
             tile = baseTile + 8;
         } else {
             tile = baseTile + pixelCount;
         }
 
-        Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_3, tile, 24 + i, 6, 1, 1, TILEMAP_FILL_VAL_INCLUDES_PALETTE);
+        Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_3, tile, HEALTHBAR_BASE_X + i, HEALTHBAR_Y, 1, 1, TILEMAP_FILL_VAL_INCLUDES_PALETTE);
 
         if (pixelCount < 8) {
             pixelCount = 0;
@@ -1379,28 +1379,28 @@ static void DrawHealthBar(PokemonSummaryScreen *summaryScreen)
 
 static void DrawExperienceProgressBar(PokemonSummaryScreen *summaryScreen)
 {
-    u32 v0;
-    u32 v1;
+    u32 maxExp;
+    u32 curExp;
 
     if (summaryScreen->monData.level < MAX_POKEMON_LEVEL) {
-        v0 = summaryScreen->monData.nextLevelExp - summaryScreen->monData.curLevelExp;
-        v1 = summaryScreen->monData.curExp - summaryScreen->monData.curLevelExp;
+        maxExp = summaryScreen->monData.nextLevelExp - summaryScreen->monData.curLevelExp;
+        curExp = summaryScreen->monData.curExp - summaryScreen->monData.curLevelExp;
     } else {
-        v0 = 0;
-        v1 = 0;
+        maxExp = 0;
+        curExp = 0;
     }
 
-    u8 pixelCount = App_PixelCount(v1, v0, 56);
-    u16 v2;
+    u8 pixelCount = App_PixelCount(curExp, maxExp, 56);
+    u16 tile;
 
-    for (u8 i = 0; i < 7; i++) {
+    for (u8 i = 0; i < EXPBAR_TILES_MAX; i++) {
         if (pixelCount >= 8) {
-            v2 = 0xac + 8;
+            tile = EXPBAR_BASE_TILE + 8;
         } else {
-            v2 = 0xac + pixelCount;
+            tile = EXPBAR_BASE_TILE + pixelCount;
         }
 
-        Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_3, v2, 23 + i, 23, 1, 1, 17);
+        Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_3, tile, EXPBAR_BASE_X + i, EXPBAR_Y, 1, 1, TILEMAP_FILL_VAL_INCLUDES_PALETTE);
 
         if (pixelCount < 8) {
             pixelCount = 0;
@@ -1508,7 +1508,7 @@ static s8 TryAdvanceMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 
 static s8 TryAdvancePartyMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 {
-    s8 monIndex = (s8)summaryScreen->data->pos;
+    s8 monIndex = summaryScreen->data->pos;
 
     while (TRUE) {
         monIndex += delta;
@@ -2117,12 +2117,12 @@ static int TryFeedPoffin(PokemonSummaryScreen *summaryScreen)
         Font_LoadScreenIndicatorsPalette(0, PLTT_OFFSET(14), HEAP_ID_POKEMON_SUMMARY_SCREEN);
         LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, (1024 - (18 + 12)), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
         PokemonSummaryScreen_PrintPoffinFeedMsg(summaryScreen, PSS_MSG_MON_WONT_EAT_MORE);
-        summaryScreen->data->returnMode = 1;
+        summaryScreen->data->returnMode = PSS_RETURN_CANCEL;
 
         return PSS_STATE_WAIT_FINISH_POFFIN_FEED;
     }
 
-    summaryScreen->data->returnMode = 0;
+    summaryScreen->data->returnMode = PSS_RETURN_SELECT;
     return PSS_STATE_TRANSITION_OUT;
 }
 

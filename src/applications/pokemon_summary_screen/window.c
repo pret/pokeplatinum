@@ -1083,10 +1083,10 @@ static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[PSS_WINDOW_EXP]);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[PSS_WINDOW_EXP_NEXT_LV]);
 }
-// ravetodo PrintTrainerMemo
+// ravetodo PrintTrainerMemo?
 static void sub_02090800(Window *window, Pokemon *mon, BOOL monOTMatches)
 {
-    PokemonInfoDisplayStruct *infoDisplay = sub_02092494(mon, monOTMatches, 19);
+    PokemonInfoDisplayStruct *infoDisplay = sub_02092494(mon, monOTMatches, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     if (infoDisplay->unk_14.unk_04 != NULL) {
         Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->unk_14.unk_04, 0, 0 + (infoDisplay->unk_14.unk_00 - 1) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -1170,6 +1170,7 @@ static void DrawSkillsPageWindows(PokemonSummaryScreen *summaryScreen)
     Strbuf *buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, pss_template_ability);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->strbuf, buf);
     Strbuf_Free(buf);
+    // ravetodo name text colors
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[PSS_WINDOW_ABILITY], TEXT_COLOR(1, 2, 0), PSS_ALIGNMENT_LEFT);
     // ravetodo name ability desc bank
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 612, HEAP_ID_POKEMON_SUMMARY_SCREEN);

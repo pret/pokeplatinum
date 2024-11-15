@@ -78,6 +78,11 @@ enum PSSDataType {
     PSS_DATA_BOX_MON,
 };
 
+enum PSSReturnMode {
+    PSS_RETURN_SELECT = 0,
+    PSS_RETURN_CANCEL,
+};
+
 // todo: consolidate this with more generic ones if this scheme is used elsewhere
 enum PSSTextAlignment {
     PSS_ALIGNMENT_LEFT = 0,
@@ -284,6 +289,7 @@ enum PSSPoffinFeedMsg {
     PSS_MSG_MON_WONT_EAT_MORE = 0xFF,
 };
 
+// ravetodo move any of these that I can to C file instead
 #define PSS_MOVE_NONE             -1
 #define PSS_SUBSCREEN_BUTTON_NONE 0xFF
 
@@ -295,10 +301,18 @@ enum PSSPoffinFeedMsg {
 #define EMPTY_HEART_BASE_TILE   0x12E
 #define FILLED_HEART_BASE_TILE  0x12C
 
+#define HEALTHBAR_BASE_X           24
+#define HEALTHBAR_Y                6
 #define GREEN_HEALTHBAR_BASE_TILE  0xC0
 #define YELLOW_HEALTHBAR_BASE_TILE 0xE0
 #define RED_HEALTHBAR_BASE_TILE    0x100
+#define HEALTHBAR_TILES_MAX        6
 #define PALETTE_SLOT_10_MASK       0xA000
+
+#define EXPBAR_BASE_X    23
+#define EXPBAR_Y         23
+#define EXPBAR_BASE_TILE 0xAC
+#define EXPBAR_TILES_MAX 7
 
 #define RIBBONS_PER_ROW  4
 #define RIBBONS_PER_PAGE 12
