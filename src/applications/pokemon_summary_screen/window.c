@@ -42,101 +42,679 @@ static void DrawContestMovesPageWindows(PokemonSummaryScreen *summaryScreen);
 static void DrawRibbonsPageWindows(PokemonSummaryScreen *summaryScreen);
 static void DrawExitPageWindows(PokemonSummaryScreen *summaryScreen);
 
+// clang-format off
 static const WindowTemplate sStaticWindowTemplates[] = {
-    [PSS_WINDOW_LABEL_INFO] = { 0x1, 0x1, 0x0, 0xD, 0x2, 0xF, 0x1 },
-    [PSS_WINDOW_LABEL_MEMO] = { 0x1, 0x1, 0x0, 0xB, 0x2, 0xF, 0x1B },
-    [PSS_WINDOW_LABEL_SKILLS] = { 0x1, 0x1, 0x0, 0xE, 0x2, 0xF, 0x31 },
-    [PSS_WINDOW_LABEL_CONDITION] = { 0x1, 0x1, 0x0, 0xB, 0x2, 0xF, 0x4D },
-    [PSS_WINDOW_LABEL_BATTLE_MOVES] = { 0x1, 0x1, 0x0, 0x9, 0x2, 0xF, 0x63 },
-    [PSS_WINDOW_LABEL_CONTEST_MOVES] = { 0x1, 0x1, 0x0, 0xB, 0x2, 0xF, 0x75 },
-    [PSS_WINDOW_LABEL_ITEM] = { 0x1, 0x1, 0x14, 0x6, 0x2, 0xF, 0x8B },
-    [PSS_WINDOW_LABEL_DEX_NUM] = { 0x1, 0xE, 0x5, 0x9, 0x2, 0xF, 0x97 },
-    [PSS_WINDOW_LABEL_SPECIES_NAME] = { 0x1, 0xE, 0x7, 0x5, 0x2, 0xF, 0xA9 },
-    [PSS_WINDOW_LABEL_TYPE] = { 0x1, 0xE, 0x9, 0x5, 0x2, 0xF, 0xB3 },
-    [PSS_WINDOW_LABEL_OT_NAME] = { 0x1, 0xE, 0xB, 0x5, 0x2, 0xF, 0xBD },
-    [PSS_WINDOW_LABEL_OT_ID] = { 0x1, 0xE, 0xD, 0x5, 0x2, 0xF, 0xC7 },
-    [PSS_WINDOW_LABEL_EXP] = { 0x1, 0xE, 0xF, 0xF, 0x2, 0xF, 0xD1 },
-    [PSS_WINDOW_LABEL_EXP_NEXT_LV] = { 0x1, 0xE, 0x13, 0xC, 0x2, 0xF, 0xEF },
-    [PSS_WINDOW_DUMMY_14] = { 0x1, 0x13, 0x15, 0x3, 0x2, 0xF, 0x107 },
-    [PSS_WINDOW_LABEL_HP] = { 0x1, 0x12, 0x4, 0x2, 0x2, 0xF, 0x10D },
-    [PSS_WINDOW_LABEL_ATTACK] = { 0x1, 0x10, 0x7, 0x6, 0x2, 0xF, 0x111 },
-    [PSS_WINDOW_LABEL_DEFENSE] = { 0x1, 0x10, 0x9, 0x6, 0x2, 0xF, 0x11D },
-    [PSS_WINDOW_LABEL_SP_ATTACK] = { 0x1, 0x10, 0xB, 0x6, 0x2, 0xF, 0x129 },
-    [PSS_WINDOW_LABEL_SP_DEFENSE] = { 0x1, 0x10, 0xD, 0x6, 0x2, 0xF, 0x135 },
-    [PSS_WINDOW_LABEL_SPEED] = { 0x1, 0x10, 0xF, 0x6, 0x2, 0xF, 0x141 },
-    [PSS_WINDOW_LABEL_ABILITY] = { 0x1, 0xE, 0x12, 0x6, 0x2, 0xF, 0x14D },
-    [PSS_WINDOW_LABEL_SHEEN] = { 0x1, 0xE, 0x14, 0x5, 0x2, 0xF, 0x159 },
-    [PSS_WINDOW_DUMMY_23] = { 0x1, 0x1, 0x16, 0x6, 0x2, 0xF, 0x163 },
-    [PSS_WINDOW_LABEL_MOVE_CANCEL] = { 0x1, 0x15, 0x14, 0x5, 0x2, 0xF, 0x16F },
-    [PSS_WINDOW_LABEL_MOVE_CATEGORY] = { 0x1, 0x1, 0x8, 0x6, 0x2, 0xF, 0x179 },
-    [PSS_WINDOW_LABEL_MOVE_POWER] = { 0x1, 0x1, 0xA, 0x6, 0x2, 0xF, 0x185 },
-    [PSS_WINDOW_LABEL_MOVE_ACCURACY] = { 0x1, 0x1, 0xC, 0x8, 0x2, 0xF, 0x191 },
-    [PSS_WINDOW_LABEL_CLOSE_WINDOW] = { 0x1, 0x12, 0xB, 0x9, 0x2, 0xF, 0x1A1 },
-    [PSS_WINDOW_LABEL_APPEAL_POINTS] = { 0x1, 0x2, 0xD, 0xC, 0x2, 0xF, 0x1B3 },
-    [PSS_WINDOW_LABEL_RIBBON_COUNT] = { 0x1, 0xE, 0x15, 0xC, 0x2, 0xF, 0x1CB },
-    [PSS_WINDOW_LABEL_RIBBONS] = { 0x1, 0x1, 0x0, 0xB, 0x2, 0xF, 0x1E3 },
-    [PSS_WINDOW_ITEM_NAME] = { 0x1, 0x1, 0x16, 0xC, 0x2, 0xF, 0x1F9 },
-    [PSS_WINDOW_MON_LEVEL] = { 0x1, 0x1, 0x5, 0x6, 0x2, 0xF, 0x211 },
-    [PSS_WINDOW_MON_NICKNAME_GENDER] = { 0x1, 0x3, 0x3, 0x9, 0x2, 0xF, 0x21D },
-    [PSS_WINDOW_BUTTON_PROMPT] = { 0x1, 0x1A, 0x0, 0x6, 0x2, 0xF, 0x22F }
+    [PSS_WINDOW_LABEL_INFO] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 0,
+        .width = 13,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x1 
+    },
+    [PSS_WINDOW_LABEL_MEMO] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 0,
+        .width = 11,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x1B 
+    },
+    [PSS_WINDOW_LABEL_SKILLS] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 0,
+        .width = 14,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x31 
+    },
+    [PSS_WINDOW_LABEL_CONDITION] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 0,
+        .width = 11,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x4D 
+    },
+    [PSS_WINDOW_LABEL_BATTLE_MOVES] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 0,
+        .width = 9,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x63 
+    },
+    [PSS_WINDOW_LABEL_CONTEST_MOVES] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 0,
+        .width = 11,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x75 
+    },
+    [PSS_WINDOW_LABEL_ITEM] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 20,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x8B 
+    },
+    [PSS_WINDOW_LABEL_DEX_NUM] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 5,
+        .width = 9,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x97 
+    },
+    [PSS_WINDOW_LABEL_SPECIES_NAME] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 7,
+        .width = 5,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0xA9 
+    },
+    [PSS_WINDOW_LABEL_TYPE] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 9,
+        .width = 5,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0xB3 
+    },
+    [PSS_WINDOW_LABEL_OT_NAME] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 11,
+        .width = 5,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0xBD 
+    },
+    [PSS_WINDOW_LABEL_OT_ID] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 13,
+        .width = 5,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0xC7 
+    },
+    [PSS_WINDOW_LABEL_EXP] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 15,
+        .width = 15,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0xD1 
+    },
+    [PSS_WINDOW_LABEL_EXP_NEXT_LV] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 19,
+        .width = 12,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0xEF 
+    },
+    [PSS_WINDOW_DUMMY_14] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 19,
+        .tilemapTop = 21,
+        .width = 3,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x107 
+    },
+    [PSS_WINDOW_LABEL_HP] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 18,
+        .tilemapTop = 4,
+        .width = 2,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x10D 
+    },
+    [PSS_WINDOW_LABEL_ATTACK] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 16,
+        .tilemapTop = 7,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x111 
+    },
+    [PSS_WINDOW_LABEL_DEFENSE] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 16,
+        .tilemapTop = 9,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x11D 
+    },
+    [PSS_WINDOW_LABEL_SP_ATTACK] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 16,
+        .tilemapTop = 11,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x129 
+    },
+    [PSS_WINDOW_LABEL_SP_DEFENSE] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 16,
+        .tilemapTop = 13,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x135 
+    },
+    [PSS_WINDOW_LABEL_SPEED] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 16,
+        .tilemapTop = 15,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x141 
+    },
+    [PSS_WINDOW_LABEL_ABILITY] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 18,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x14D 
+    },
+    [PSS_WINDOW_LABEL_SHEEN] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 20,
+        .width = 5,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x159 
+    },
+    [PSS_WINDOW_DUMMY_23] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 22,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x163 
+    },
+    [PSS_WINDOW_LABEL_MOVE_CANCEL] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 20,
+        .width = 5,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x16F 
+    },
+    [PSS_WINDOW_LABEL_MOVE_CATEGORY] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 8,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x179 
+    },
+    [PSS_WINDOW_LABEL_MOVE_POWER] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 10,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x185 
+    },
+    [PSS_WINDOW_LABEL_MOVE_ACCURACY] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 12,
+        .width = 8,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x191 
+    },
+    [PSS_WINDOW_LABEL_CLOSE_WINDOW] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 18,
+        .tilemapTop = 11,
+        .width = 9,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x1A1 
+    },
+    [PSS_WINDOW_LABEL_APPEAL_POINTS] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 2,
+        .tilemapTop = 13,
+        .width = 12,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x1B3 
+    },
+    [PSS_WINDOW_LABEL_RIBBON_COUNT] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 21,
+        .width = 12,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x1CB 
+    },
+    [PSS_WINDOW_LABEL_RIBBONS] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 0,
+        .width = 11,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x1E3 
+    },
+    [PSS_WINDOW_ITEM_NAME] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 22,
+        .width = 12,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x1F9 
+    },
+    [PSS_WINDOW_MON_LEVEL] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 5,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x211 
+    },
+    [PSS_WINDOW_MON_NICKNAME_GENDER] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 3,
+        .tilemapTop = 3,
+        .width = 9,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x21D 
+    },
+    [PSS_WINDOW_BUTTON_PROMPT] = { 
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 26,
+        .tilemapTop = 0,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x22F 
+    }
 };
 
 static const WindowTemplate sExtraWindowTemplates_Info[] = {
-    [PSS_WINDOW_DEX_NUM] = { 0x1, 0x18, 0x5, 0x6, 0x2, 0xF, 0x23B },
-    [PSS_WINDOW_SPECIES_NAME] = { 0x1, 0x17, 0x7, 0x8, 0x2, 0xF, 0x247 },
-    [PSS_WINDOW_OT_NAME] = { 0x1, 0x17, 0xB, 0x8, 0x2, 0xF, 0x257 },
-    [PSS_WINDOW_OT_ID] = { 0x1, 0x19, 0xD, 0x4, 0x2, 0xF, 0x267 },
-    [PSS_WINDOW_EXP] = { 0x1, 0x18, 0x11, 0x6, 0x2, 0xF, 0x271 },
-    [PSS_WINDOW_EXP_NEXT_LV] = { 0x1, 0x18, 0x15, 0x6, 0x2, 0xF, 0x27F }
+    [PSS_WINDOW_DEX_NUM] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 24,
+        .tilemapTop = 5,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x23B
+    },
+    [PSS_WINDOW_SPECIES_NAME] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 23,
+        .tilemapTop = 7,
+        .width = 8,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x247
+    },
+    [PSS_WINDOW_OT_NAME] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 23,
+        .tilemapTop = 11,
+        .width = 8,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x257
+    },
+    [PSS_WINDOW_OT_ID] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 25,
+        .tilemapTop = 13,
+        .width = 4,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x267
+    },
+    [PSS_WINDOW_EXP] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 24,
+        .tilemapTop = 17,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x271
+    },
+    [PSS_WINDOW_EXP_NEXT_LV] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 24,
+        .tilemapTop = 21,
+        .width = 6,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x27F
+    },
 };
 
 static const WindowTemplate sExtraWindowTemplates_Memo[] = {
-    [PSS_WINDOW_MEMO] = { 0x1, 0xE, 0x5, 0x11, 0x12, 0xF, 0x23B }
+    [PSS_WINDOW_MEMO] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 5,
+        .width = 17,
+        .height = 18,
+        .palette = 15,
+        .baseTile = 0x23B
+    },
 };
 
 static const WindowTemplate sExtraWindowTemplates_Skills[] = {
-    [PSS_WINDOW_HP] = { 0x1, 0x17, 0x4, 0x7, 0x2, 0xF, 0x23B },
-    [PSS_WINDOW_ATTACK] = { 0x1, 0x19, 0x7, 0x3, 0x2, 0xF, 0x249 },
-    [PSS_WINDOW_DEFENSE] = { 0x1, 0x19, 0x9, 0x3, 0x2, 0xF, 0x24F },
-    [PSS_WINDOW_SP_ATTACK] = { 0x1, 0x19, 0xB, 0x3, 0x2, 0xF, 0x255 },
-    [PSS_WINDOW_SP_DEFENSE] = { 0x1, 0x19, 0xD, 0x3, 0x2, 0xF, 0x25B },
-    [PSS_WINDOW_SPEED] = { 0x1, 0x19, 0xF, 0x3, 0x2, 0xF, 0x261 },
-    [PSS_WINDOW_ABILITY] = { 0x1, 0x15, 0x12, 0xB, 0x2, 0xF, 0x267 },
-    [PSS_WINDOW_ABILITY_DESCRIPTION] = { 0x1, 0xE, 0x14, 0x12, 0x4, 0xF, 0x27D }
+    [PSS_WINDOW_HP] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 23,
+        .tilemapTop = 4,
+        .width = 7,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x23B
+    },
+    [PSS_WINDOW_ATTACK] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 25,
+        .tilemapTop = 7,
+        .width = 3,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x249
+    },
+    [PSS_WINDOW_DEFENSE] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 25,
+        .tilemapTop = 9,
+        .width = 3,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x24F
+    },
+    [PSS_WINDOW_SP_ATTACK] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 25,
+        .tilemapTop = 11,
+        .width = 3,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x255
+    },
+    [PSS_WINDOW_SP_DEFENSE] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 25,
+        .tilemapTop = 13,
+        .width = 3,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x25B
+    },
+    [PSS_WINDOW_SPEED] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 25,
+        .tilemapTop = 15,
+        .width = 3,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x261
+    },
+    [PSS_WINDOW_ABILITY] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 18,
+        .width = 11,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x267
+    },
+    [PSS_WINDOW_ABILITY_DESCRIPTION] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 14,
+        .tilemapTop = 20,
+        .width = 18,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x27D
+    },
 };
 
 static const WindowTemplate sExtraWindowTemplates_BattleMoves[] = {
-    [PSS_WINDOW_BATTLE_MOVE_1] = { 0x1, 0x15, 0x4, 0xB, 0x4, 0xF, 0x23B },
-    [PSS_WINDOW_BATTLE_MOVE_2] = { 0x1, 0x15, 0x8, 0xB, 0x4, 0xF, 0x267 },
-    [PSS_WINDOW_BATTLE_MOVE_3] = { 0x1, 0x15, 0xC, 0xB, 0x4, 0xF, 0x293 },
-    [PSS_WINDOW_BATTLE_MOVE_4] = { 0x1, 0x15, 0x10, 0xB, 0x4, 0xF, 0x2BF },
-    [PSS_WINDOW_BATTLE_MOVE_5] = { 0x1, 0x15, 0x14, 0xB, 0x4, 0xF, 0x2EB },
-    [PSS_WINDOW_BATTLE_MOVE_POWER] = { 0x1, 0xC, 0xA, 0x3, 0x2, 0xF, 0x317 },
-    [PSS_WINDOW_BATTLE_MOVE_ACCURACY] = { 0x1, 0xC, 0xC, 0x3, 0x2, 0xF, 0x31D },
-    [PSS_WINDOW_BATTLE_MOVE_DESCRIPTION] = { 0x1, 0x1, 0xE, 0xF, 0xA, 0xF, 0x323 }
+    [PSS_WINDOW_BATTLE_MOVE_1] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 4,
+        .width = 11,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x23B
+    },
+    [PSS_WINDOW_BATTLE_MOVE_2] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 8,
+        .width = 11,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x267
+    },
+    [PSS_WINDOW_BATTLE_MOVE_3] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 12,
+        .width = 11,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x293
+    },
+    [PSS_WINDOW_BATTLE_MOVE_4] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 16,
+        .width = 11,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x2BF
+    },
+    [PSS_WINDOW_BATTLE_MOVE_5] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 20,
+        .width = 11,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x2EB
+    },
+    [PSS_WINDOW_BATTLE_MOVE_POWER] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 12,
+        .tilemapTop = 10,
+        .width = 3,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x317
+    },
+    [PSS_WINDOW_BATTLE_MOVE_ACCURACY] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 12,
+        .tilemapTop = 12,
+        .width = 3,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x31D
+    },
+    [PSS_WINDOW_BATTLE_MOVE_DESCRIPTION] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 14,
+        .width = 15,
+        .height = 10,
+        .palette = 15,
+        .baseTile = 0x323
+    },
 };
 
 static const WindowTemplate sExtraWindowTemplates_ContestMoves[] = {
-    [PSS_WINDOW_CONTEST_MOVE_1] = { 0x1, 0x15, 0x4, 0xB, 0x4, 0xF, 0x23B },
-    [PSS_WINDOW_CONTEST_MOVE_2] = { 0x1, 0x15, 0x8, 0xB, 0x4, 0xF, 0x267 },
-    [PSS_WINDOW_CONTEST_MOVE_3] = { 0x1, 0x15, 0xC, 0xB, 0x4, 0xF, 0x293 },
-    [PSS_WINDOW_CONTEST_MOVE_4] = { 0x1, 0x15, 0x10, 0xB, 0x4, 0xF, 0x2BF },
-    [PSS_WINDOW_CONTEST_MOVE_5] = { 0x1, 0x15, 0x14, 0xB, 0x4, 0xF, 0x2EB },
-    [PSS_WINDOW_CONTEST_MOVE_DESCRIPTION] = { 0x1, 0x1, 0x12, 0xF, 0x6, 0xF, 0x317 }
+    [PSS_WINDOW_CONTEST_MOVE_1] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 4,
+        .width = 11,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x23B
+    },
+    [PSS_WINDOW_CONTEST_MOVE_2] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 8,
+        .width = 11,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x267
+    },
+    [PSS_WINDOW_CONTEST_MOVE_3] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 12,
+        .width = 11,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x293
+    },
+    [PSS_WINDOW_CONTEST_MOVE_4] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 16,
+        .width = 11,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x2BF
+    },
+    [PSS_WINDOW_CONTEST_MOVE_5] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 21,
+        .tilemapTop = 20,
+        .width = 11,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x2EB
+    },
+    [PSS_WINDOW_CONTEST_MOVE_DESCRIPTION] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 18,
+        .width = 15,
+        .height = 6,
+        .palette = 15,
+        .baseTile = 0x317
+    },
 };
 
 static const WindowTemplate sExtraWindowTemplates_Ribbons[] = {
-    [PSS_WINDOW_RIBBON_COUNT] = { 0x1, 0x1A, 0x15, 0x5, 0x2, 0xF, 0x23B },
-    [PSS_WINDOW_RIBBON_INDEX] = { 0x1, 0x18, 0xF, 0x7, 0x2, 0xF, 0x245 },
-    [PSS_WINDOW_RIBBON_NAME] = { 0x1, 0x1, 0x12, 0x15, 0x2, 0xF, 0x253 },
-    [PSS_WINDOW_RIBBON_DESCRIPTION] = { 0x1, 0x1, 0x14, 0x1E, 0x4, 0xF, 0x27D }
+    [PSS_WINDOW_RIBBON_COUNT] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 26,
+        .tilemapTop = 21,
+        .width = 5,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x23B
+    },
+    [PSS_WINDOW_RIBBON_INDEX] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 24,
+        .tilemapTop = 15,
+        .width = 7,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x245
+    },
+    [PSS_WINDOW_RIBBON_NAME] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 18,
+        .width = 21,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x253
+    },
+    [PSS_WINDOW_RIBBON_DESCRIPTION] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 20,
+        .width = 30,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x27D
+    },
 };
 
 static const WindowTemplate sExtraWindowTemplates_Condition[] = {
-    [PSS_WINDOW_POFFIN_BUTTON_PROMPT] = { 0x1, 0x1A, 0x0, 0x5, 0x2, 0xF, 0x23B },
-    [PSS_WINDOW_FAVORITE_FOOD] = { 0x1, 0x1, 0x14, 0xC, 0x4, 0xF, 0x24D },
-    [PSS_WINDOW_POFFIN_FEED_MSG] = { 0x1, 0x2, 0x15, 0x1B, 0x2, 0xE, 0x27D }
+    [PSS_WINDOW_POFFIN_BUTTON_PROMPT] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 26,
+        .tilemapTop = 0,
+        .width = 5,
+        .height = 2,
+        .palette = 15,
+        .baseTile = 0x23B
+    },
+    [PSS_WINDOW_FAVORITE_FOOD] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 1,
+        .tilemapTop = 20,
+        .width = 12,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 0x24D
+    },
+    [PSS_WINDOW_POFFIN_FEED_MSG] = {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 2,
+        .tilemapTop = 21,
+        .width = 27,
+        .height = 2,
+        .palette = 14,
+        .baseTile = 0x27D
+    },
 };
+// clang-format on
 
 void PokemonSummaryScreen_DrawStaticWindows(PokemonSummaryScreen *summaryScreen)
 {
