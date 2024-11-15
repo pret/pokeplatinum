@@ -209,7 +209,7 @@ message_bank_files = files(
     'message_bank_contest_judge_names.gmm',
     'message_bank_unk_0208.gmm',
     'message_bank_unk_0209.gmm',
-    'message_bank_unk_0210.gmm',
+    'message_bank_contest_effects.gmm',
     'message_bank_unk_0211.gmm',
     'message_bank_unk_0212.gmm',
     'message_bank_common_strings.gmm',
