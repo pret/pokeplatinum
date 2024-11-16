@@ -18,6 +18,7 @@
 #include "bg_window.h"
 #include "field_system.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -37,7 +38,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_02024220.h"
 #include "unk_0202F180.h"
-#include "unk_02055808.h"
 #include "unk_0208694C.h"
 #include "unk_02092494.h"
 

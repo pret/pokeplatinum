@@ -19,6 +19,7 @@
 #include "camera.h"
 #include "field_map_change.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "heap.h"
 #include "inlines.h"
 #include "location.h"
@@ -30,7 +31,6 @@
 #include "unk_0200F174.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
-#include "unk_02055808.h"
 #include "unk_020655F4.h"
 
 typedef struct {

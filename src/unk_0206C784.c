@@ -17,6 +17,7 @@
 #include "camera.h"
 #include "field_map_change.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "heap.h"
 #include "player_avatar.h"
 #include "unk_020041CC.h"
@@ -25,7 +26,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
-#include "unk_02055808.h"
 
 typedef struct {
     u8 unk_00;

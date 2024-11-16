@@ -10,9 +10,9 @@
 #include "overlay095/ov95_02246C20.h"
 
 #include "field_task.h"
+#include "field_transition.h"
 #include "heap.h"
 #include "pokemon.h"
-#include "unk_02055808.h"
 
 FS_EXTERN_OVERLAY(overlay95);
 

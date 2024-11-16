@@ -14,6 +14,7 @@
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -33,7 +34,6 @@
 #include "unk_0200F174.h"
 #include "unk_0203A7D8.h"
 #include "unk_020553DC.h"
-#include "unk_02055808.h"
 #include "unk_02070428.h"
 
 typedef struct {

@@ -3,6 +3,7 @@
 
 #include "field_task.h"
 
+void sub_020557DC(FieldTask *param0, int param1, int param2);
 void FieldTask_FinishFieldMap(FieldTask *param0);
 void FieldTask_StartFieldMap(FieldTask *param0);
 void sub_020558AC(FieldTask *param0);

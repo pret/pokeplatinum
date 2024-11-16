@@ -19,6 +19,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -41,7 +42,6 @@
 #include "unk_02024220.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
-#include "unk_02055808.h"
 #include "unk_0206CCB0.h"
 
 #include "constdata/const_020F1E88.h"
