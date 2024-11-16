@@ -230,7 +230,7 @@ _032F:
     CloseMessage
     IncrementGameRecord RECORD_UNK_057
     Call _0605
-    ScrCmd_0E5 0x4005, 0
+    StartTrainerBattle 0x4005, 0
     CheckWonBattle 0x8000
     Return
 

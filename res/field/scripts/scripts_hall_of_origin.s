@@ -41,7 +41,7 @@ _0056:
     Message 0
     CloseMessage
     SetFlag 142
-    ScrCmd_2BD 0x1ED, 80
+    StartLegendaryBattle SPECIES_ARCEUS, 80
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00DF

@@ -66,7 +66,7 @@ _00C4:
     ScrCmd_04D
     CloseMessage
     SetFlag 142
-    ScrCmd_319 0x1E7, 47
+    StartGiratinaOriginBattle SPECIES_GIRATINA, 47
     ClearFlag 142
     CheckWonBattle 0x800C
     ScrCmd_314 0x800C

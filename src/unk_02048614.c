@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -28,15 +30,15 @@ BOOL ScrCmd_0B7(ScriptContext *param0);
 BOOL ScrCmd_0B8(ScriptContext *param0);
 BOOL ScrCmd_0B9(ScriptContext *param0);
 BOOL ScrCmd_0E4(ScriptContext *param0);
-BOOL ScrCmd_0E5(ScriptContext *param0);
-BOOL ScrCmd_2A0(ScriptContext *param0);
+BOOL ScrCmd_StartTrainerBattle(ScriptContext *ctx);
+BOOL ScrCmd_StartTagBattle(ScriptContext *ctx);
 BOOL ScrCmd_0E7(ScriptContext *param0);
 BOOL ScrCmd_0E8(ScriptContext *param0);
 BOOL ScrCmd_0E9(ScriptContext *param0);
 BOOL ScrCmd_0EA(ScriptContext *param0);
 BOOL ScrCmd_0EB(ScriptContext *param0);
 BOOL ScrCmd_0EE(ScriptContext *param0);
-BOOL ScrCmd_0EF(ScriptContext *param0);
+BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *ctx);
 BOOL ScrCmd_0F0(ScriptContext *param0);
 BOOL ScrCmd_0F1(ScriptContext *param0);
 BOOL ScrCmd_314(ScriptContext *param0);
@@ -136,36 +138,43 @@ BOOL ScrCmd_0E4(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0E5(ScriptContext *param0)
+BOOL ScrCmd_StartTrainerBattle(ScriptContext *ctx)
 {
-    u32 v0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
-    BOOL *v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
-    u16 v4 = ScriptContext_GetVar(param0);
-    u16 v5 = ScriptContext_GetVar(param0);
-    u16 v6;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *scriptIDPtr = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
+    int *battleResultMaskPtr = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
+    u16 enemyTrainer1 = ScriptContext_GetVar(ctx);
+    u16 enemyTrainer2 = ScriptContext_GetVar(ctx);
+    u16 partnerTrainer = 0;
 
-    v6 = 0;
-
-    if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) {
-        v6 = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
+    if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(ctx->fieldSystem->saveData)) == TRUE) {
+        partnerTrainer = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
     }
 
-    sub_020515CC(param0->task, v4, v5, v6, 11, v3);
-    return 1;
+    Encounter_NewVsTrainer(ctx->task,
+        enemyTrainer1,
+        enemyTrainer2,
+        partnerTrainer,
+        HEAP_ID_FIELDMAP,
+        battleResultMaskPtr);
+    return TRUE;
 }
 
-BOOL ScrCmd_2A0(ScriptContext *param0)
+BOOL ScrCmd_StartTagBattle(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
-    u16 v2 = ScriptContext_GetVar(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 v4 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    int *battleResultMaskPtr = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
+    u16 partnerTrainer = ScriptContext_GetVar(ctx);
+    u16 enemyTrainer1 = ScriptContext_GetVar(ctx);
+    u16 enemyTrainer2 = ScriptContext_GetVar(ctx);
 
-    sub_020515CC(param0->task, v3, v4, v2, 11, v1);
-    return 1;
+    Encounter_NewVsTrainer(ctx->task,
+        enemyTrainer1,
+        enemyTrainer2,
+        partnerTrainer,
+        HEAP_ID_FIELDMAP,
+        battleResultMaskPtr);
+    return TRUE;
 }
 
 BOOL ScrCmd_0E7(ScriptContext *param0)
@@ -296,14 +305,12 @@ BOOL ScrCmd_0EE(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0EF(ScriptContext *param0)
+BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
-
-    sub_020515CC(param0->task, 1, 0, 0, 11, v1);
-
-    return 1;
+    int *battleResultMaskPtr = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
+    Encounter_NewVsTrainer(param0->task, 1, 0, 0, HEAP_ID_FIELDMAP, battleResultMaskPtr);
+    return TRUE;
 }
 
 BOOL ScrCmd_0F0(ScriptContext *param0)

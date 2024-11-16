@@ -108,7 +108,7 @@ _00E6:
     Message 15
     CloseMessage
     SetFlag 142
-    ScrCmd_2BD 0x1E5, 50
+    StartLegendaryBattle SPECIES_HEATRAN, 50
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0168

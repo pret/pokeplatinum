@@ -123,7 +123,7 @@ BOOL ov5_021F08F8(FieldTask *taskMan)
                     GameRecords_IncrementRecordValue(v4, RECORD_UNK_010);
                 }
 
-                sub_02050E78(fieldSystem, taskMan, v1->unk_10);
+                Encounter_StartVsWild(fieldSystem, taskMan, v1->unk_10);
                 Heap_FreeToHeap(v1);
 
                 return 0;

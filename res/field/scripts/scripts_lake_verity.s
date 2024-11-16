@@ -194,7 +194,7 @@ _0230:
     WaitMovement
     Message 9
     CloseMessage
-    ScrCmd_0E5 0x195, 0
+    StartTrainerBattle 0x195, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02DB
     Message 10

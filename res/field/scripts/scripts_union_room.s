@@ -163,7 +163,7 @@ _02A4:
     ScrCmd_2BA 0x800C
     GoToIfEq 0x800C, 1, _0B63
     GoToIfEq 0x800C, 2, _0B63
-    ScrCmd_0F6
+    StartLinkBattle
     Call _0BB2
     GoTo _00D0
     End
@@ -616,7 +616,7 @@ _095C:
     ScrCmd_2BA 0x800C
     GoToIfEq 0x800C, 1, _0B63
     GoToIfEq 0x800C, 2, _0B63
-    ScrCmd_0F6
+    StartLinkBattle
     ScrCmd_139 11
     Call _0BB2
     GoTo _07D4

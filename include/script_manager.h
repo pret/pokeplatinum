@@ -35,8 +35,8 @@ enum ScriptManagerMember {
     SCRIPT_MANAGER_MESSAGE_BUF,
     SCRIPT_MANAGER_TEMPORARY_BUF,
     SCRIPT_MANAGER_SAVING_ICON,
-
-    SCRIPT_MANAGER_DATA_PTR = 20,
+    SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA,
+    SCRIPT_MANAGER_DATA_PTR,
 
     SCRIPT_MANAGER_PLAYER_TASK = 22,
     SCRIPT_MANAGER_BATTLE_RESULT,
@@ -130,7 +130,7 @@ typedef struct ScriptManager {
     ApproachingTrainer trainers[2];
     u16 data[SCRIPT_DATA_MAX - SCRIPT_DATA_START];
     FieldSysFunc function;
-    void *unk_A8;
+    void *partyManagementDataPtr;
     void *dataPtr; // used as a generic pointer to data in many different script commands
     UnkStruct_ov101_021D5D90 *unk_B0;
     SysTask *playerTask; // used to set player sprite animations while saving

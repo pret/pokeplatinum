@@ -28,11 +28,11 @@ enum TrainerDataParam {
  * This routine is responsible for loading the name of a trainer and building
  * their party from the data archives.
  *
- * @param battleParams  The parent FieldBattleDTO struct for the encounter.
+ * @param dto  The parent FieldBattleDTO struct for the encounter.
  * @param save          Save data; used to pull out the rival's name, if needed.
  * @param heapID        Heap on which to allocate message bank access.
  */
-void TrainerData_Encounter(FieldBattleDTO *battleParams, const SaveData *save, int heapID);
+void TrainerData_Encounter(FieldBattleDTO *dto, const SaveData *save, int heapID);
 
 /**
  * @brief Get a parameter for the given trainer ID from the data archive.
