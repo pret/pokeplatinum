@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "field/field_system.h"
 #include "overlay005/encounter_effect.h"
 #include "overlay005/ov5_021DD6FC.h"
@@ -13,185 +15,177 @@
 #include "unk_020041CC.h"
 #include "unk_0200F174.h"
 
-typedef struct {
-    int unk_00;
-    BOOL unk_04;
-    int unk_08;
-    int unk_0C;
-} UnkStruct_0205578C;
+typedef struct EncounterEffectTaskData {
+    int taskState;
+    BOOL done;
+    int encEffectID;
+    int battleBGM;
+} EncounterEffectTaskData;
 
-static BOOL sub_0205578C(FieldTask *param0)
+static BOOL FieldTask_RunEncounterEffect(FieldTask *task)
 {
-    FieldSystem *fieldSystem;
-    UnkStruct_0205578C *v1;
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    EncounterEffectTaskData *data = FieldTask_GetEnv(task);
 
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetEnv(param0);
-
-    switch (v1->unk_00) {
+    switch (data->taskState) {
     case 0:
-        EncounterEffect_Start(v1->unk_08, fieldSystem, &v1->unk_04);
-        sub_02004550(5, v1->unk_0C, 1);
-        v1->unk_00++;
+        EncounterEffect_Start(data->encEffectID, fieldSystem, &data->done);
+        sub_02004550(5, data->battleBGM, 1);
+        data->taskState++;
         break;
+
     case 1:
-        if (v1->unk_04 == 1) {
-            Heap_FreeToHeap(v1);
-            return 1;
+        if (data->done == TRUE) {
+            Heap_FreeToHeap(data);
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_020557DC(FieldTask *param0, int param1, int param2)
+void FieldTransition_StartEncounterEffect(FieldTask *task, int encEffectID, int battleBGM)
 {
-    UnkStruct_0205578C *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205578C));
+    EncounterEffectTaskData *data = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(EncounterEffectTaskData));
 
-    v0->unk_00 = 0;
-    v0->unk_04 = 0;
-    v0->unk_08 = param1;
-    v0->unk_0C = param2;
+    data->taskState = 0;
+    data->done = FALSE;
+    data->encEffectID = encEffectID;
+    data->battleBGM = battleBGM;
 
-    FieldTask_InitCall(param0, sub_0205578C, v0);
+    FieldTask_InitCall(task, FieldTask_RunEncounterEffect, data);
 }
 
-static BOOL sub_02055808(FieldTask *param0)
+static BOOL FieldTask_WaitUntilMapFinished(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (!FieldSystem_HasParentProcess(fieldSystem)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void FieldTask_FinishFieldMap(FieldTask *param0)
+void FieldTransition_FinishMap(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
 
     FieldSystem_FlagNotRunningFieldMap(fieldSystem);
-    FieldTask_InitCall(param0, sub_02055808, NULL);
+    FieldTask_InitCall(task, FieldTask_WaitUntilMapFinished, NULL);
 }
 
-static BOOL sub_02055850(FieldTask *param0)
+static BOOL FieldTask_WaitUntilMapStarted(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void FieldTask_StartFieldMap(FieldTask *param0)
+void FieldTransition_StartMap(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
 
     FieldSystem_StartFieldMap(fieldSystem);
-    FieldTask_InitCall(param0, sub_02055850, NULL);
+    FieldTask_InitCall(task, FieldTask_WaitUntilMapStarted, NULL);
 }
 
-static BOOL sub_02055898(FieldTask *param0)
+static BOOL FieldTask_WaitUntilScreenTransitionDone(FieldTask *task)
 {
     if (IsScreenTransitionDone()) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_020558AC(FieldTask *param0)
+void FieldTransition_FadeOut(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 4);
-        FieldTask_InitCall(param0, sub_02055898, NULL);
-    }
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 4);
+    FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 
-void sub_020558F0(FieldTask *param0)
+void FieldTransition_FadeIn(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
-        FieldTask_InitCall(param0, sub_02055898, NULL);
-    }
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
+    FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 
-static BOOL sub_02055934(FieldTask *param0)
+static BOOL FieldTask_FadeOutAndFinishMap(FieldTask *task)
 {
-    int *v0 = FieldTask_GetState(param0);
+    int *state = FieldTask_GetState(task);
 
-    switch (*v0) {
+    switch (*state) {
     case 0:
-        sub_020558AC(param0);
-        (*v0)++;
+        FieldTransition_FadeOut(task);
+        (*state)++;
         break;
+
     case 1:
-        FieldTask_FinishFieldMap(param0);
-        (*v0)++;
+        FieldTransition_FinishMap(task);
+        (*state)++;
         break;
+
     case 2:
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void FieldTask_FinishFadeOut(FieldTask *param0)
+void FieldTransition_FadeOutAndFinishMap(FieldTask *task)
 {
-    FieldTask_InitCall(param0, sub_02055934, NULL);
+    FieldTask_InitCall(task, FieldTask_FadeOutAndFinishMap, NULL);
 }
 
-static BOOL sub_02055984(FieldTask *param0)
+static BOOL FieldTask_StartMapAndFadeIn(FieldTask *task)
 {
-    int *v0 = FieldTask_GetState(param0);
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    int *state = FieldTask_GetState(task);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
 
-    switch (*v0) {
+    switch (*state) {
     case 0:
-        FieldTask_StartFieldMap(param0);
-        (*v0)++;
+        FieldTransition_StartMap(task);
+        (*state)++;
         break;
+
     case 1:
         FieldSystem_RequestLocationName(fieldSystem);
-        sub_020558F0(param0);
-        (*v0)++;
+        FieldTransition_FadeIn(task);
+        (*state)++;
         break;
+
     case 2:
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void FieldTask_StartFadeIn(FieldTask *param0)
+void FieldTransition_StartMapAndFadeIn(FieldTask *task)
 {
-    FieldTask_InitCall(param0, sub_02055984, NULL);
+    FieldTask_InitCall(task, FieldTask_StartMapAndFadeIn, NULL);
 }

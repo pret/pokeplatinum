@@ -177,7 +177,7 @@ static BOOL sub_02093448(FieldTask *param0)
 
     switch (v1->unk_04) {
     case 0:
-        FieldTask_FinishFieldMap(param0);
+        FieldTransition_FinishMap(param0);
         v1->unk_04++;
         break;
     case 1:
@@ -247,7 +247,7 @@ static BOOL sub_02093448(FieldTask *param0)
         v1->unk_04++;
         break;
     case 12:
-        FieldTask_StartFieldMap(param0);
+        FieldTransition_StartMap(param0);
         v1->unk_04++;
         break;
     default:
@@ -267,7 +267,7 @@ static BOOL sub_020935EC(FieldTask *param0)
 
     switch (v1->unk_04) {
     case 0:
-        FieldTask_FinishFieldMap(param0);
+        FieldTransition_FinishMap(param0);
         v1->unk_04++;
         break;
     case 1:
@@ -364,7 +364,7 @@ static BOOL sub_020935EC(FieldTask *param0)
         v1->unk_04++;
         break;
     case 8:
-        FieldTask_StartFieldMap(param0);
+        FieldTransition_StartMap(param0);
         v1->unk_04++;
         break;
     default:

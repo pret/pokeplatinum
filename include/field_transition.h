@@ -1,14 +1,14 @@
-#ifndef POKEPLATINUM_UNK_02055808_H
-#define POKEPLATINUM_UNK_02055808_H
+#ifndef POKEPLATINUM_FIELD_TRANSITION_H
+#define POKEPLATINUM_FIELD_TRANSITION_H
 
 #include "field_task.h"
 
-void sub_020557DC(FieldTask *param0, int param1, int param2);
-void FieldTask_FinishFieldMap(FieldTask *param0);
-void FieldTask_StartFieldMap(FieldTask *param0);
-void sub_020558AC(FieldTask *param0);
-void sub_020558F0(FieldTask *param0);
-void FieldTask_FinishFadeOut(FieldTask *param0);
-void FieldTask_StartFadeIn(FieldTask *param0);
+void FieldTransition_StartEncounterEffect(FieldTask *task, int encEffectID, int battleBGM);
+void FieldTransition_FinishMap(FieldTask *task);
+void FieldTransition_StartMap(FieldTask *task);
+void FieldTransition_FadeOut(FieldTask *task);
+void FieldTransition_FadeIn(FieldTask *task);
+void FieldTransition_FadeOutAndFinishMap(FieldTask *task);
+void FieldTransition_StartMapAndFadeIn(FieldTask *task);
 
-#endif // POKEPLATINUM_UNK_02055808_H
+#endif // POKEPLATINUM_FIELD_TRANSITION_H

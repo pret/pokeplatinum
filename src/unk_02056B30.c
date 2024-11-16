@@ -215,7 +215,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
         (v1->unk_00)++;
         break;
     case 1:
-        FieldTask_FinishFieldMap(taskMan);
+        FieldTransition_FinishMap(taskMan);
         (v1->unk_00)++;
         break;
     case 2:
@@ -223,7 +223,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
         (v1->unk_00)++;
         break;
     case 3:
-        FieldTask_StartFieldMap(taskMan);
+        FieldTransition_StartMap(taskMan);
         (v1->unk_00)++;
         break;
     case 4:
@@ -262,7 +262,7 @@ static BOOL sub_02056DE4(FieldTask *taskMan)
     case 0:
         Sound_PlayEffect(1539);
 
-        sub_020558AC(taskMan);
+        FieldTransition_FadeOut(taskMan);
         (v1->unk_04)++;
         break;
     case 1:
@@ -294,7 +294,7 @@ static BOOL sub_02056E20(FieldTask *taskMan)
         }
         break;
     case 2:
-        sub_020558AC(taskMan);
+        FieldTransition_FadeOut(taskMan);
         (v1->unk_04)++;
         break;
     case 3:

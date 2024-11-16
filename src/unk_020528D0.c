@@ -243,7 +243,7 @@ BOOL sub_02052B2C(FieldTask *param0)
         (*v1)++;
         break;
     case 4:
-        FieldTask_StartFieldMap(param0);
+        FieldTransition_StartMap(param0);
         (*v1)++;
         break;
     case 5:

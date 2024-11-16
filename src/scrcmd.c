@@ -3921,13 +3921,13 @@ BOOL sub_02041D60(ScriptContext *ctx)
 
 static BOOL ScrCmd_0A1(ScriptContext *ctx)
 {
-    FieldTask_StartFieldMap(ctx->fieldSystem->task);
+    FieldTransition_StartMap(ctx->fieldSystem->task);
     return 1;
 }
 
 static BOOL ScrCmd_1F8(ScriptContext *ctx)
 {
-    FieldTask_FinishFieldMap(ctx->fieldSystem->task);
+    FieldTransition_FinishMap(ctx->fieldSystem->task);
     return 1;
 }
 

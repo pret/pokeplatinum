@@ -171,12 +171,12 @@ static BOOL FieldTask_Encounter(FieldTask *task)
     switch (*state) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        sub_020557DC(task, encounter->introEffectID, encounter->battleBGM);
+        FieldTransition_StartEncounterEffect(task, encounter->introEffectID, encounter->battleBGM);
         (*state)++;
         break;
 
     case 1:
-        FieldTask_FinishFieldMap(task);
+        FieldTransition_FinishMap(task);
         (*state)++;
         break;
 
@@ -206,13 +206,13 @@ static BOOL FieldTask_Encounter(FieldTask *task)
         UpdateGameRecords(fieldSystem, encounter->dto);
         UpdateJournal(fieldSystem, encounter->dto);
         sub_0206B48C(SaveData_GetVarsFlags(fieldSystem->saveData), encounter->dto->totalTurnsElapsed);
-        FieldTask_StartFieldMap(task);
+        FieldTransition_StartMap(task);
         (*state)++;
         break;
 
     case 4:
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-        sub_020558F0(task);
+        FieldTransition_FadeIn(task);
         (*state)++;
         break;
 
@@ -254,12 +254,12 @@ static BOOL FieldTask_LinkEncounter(FieldTask *task)
 
     switch (*state) {
     case 0:
-        sub_020557DC(task, encounter->introEffectID, encounter->battleBGM);
+        FieldTransition_StartEncounterEffect(task, encounter->introEffectID, encounter->battleBGM);
         (*state)++;
         break;
 
     case 1:
-        FieldTask_FinishFieldMap(task);
+        FieldTransition_FinishMap(task);
         (*state)++;
         break;
 
@@ -275,7 +275,7 @@ static BOOL FieldTask_LinkEncounter(FieldTask *task)
         GameRecords *records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
         GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_UNK_21);
 
-        FieldTask_StartFieldMap(task);
+        FieldTransition_StartMap(task);
         (*state)++;
         break;
 
@@ -386,12 +386,12 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
         GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
-        sub_020557DC(task, encounter->introEffectID, encounter->battleBGM);
+        FieldTransition_StartEncounterEffect(task, encounter->introEffectID, encounter->battleBGM);
         encounter->state++;
         break;
 
     case 1:
-        FieldTask_FinishFieldMap(task);
+        FieldTransition_FinishMap(task);
         encounter->state++;
         break;
 
@@ -428,13 +428,13 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
             }
         }
 
-        FieldTask_StartFieldMap(task);
+        FieldTransition_StartMap(task);
         encounter->state++;
         break;
 
     case 4:
         ov6_02246034(fieldSystem, encounter->dto);
-        sub_020558F0(task);
+        FieldTransition_FadeIn(task);
         encounter->state++;
         break;
 
@@ -470,12 +470,12 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
         GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
-        sub_020557DC(task, encounter->introEffectID, encounter->battleBGM);
+        FieldTransition_StartEncounterEffect(task, encounter->introEffectID, encounter->battleBGM);
         (*state)++;
         break;
 
     case 1:
-        FieldTask_FinishFieldMap(task);
+        FieldTransition_FinishMap(task);
         (*state)++;
         break;
 
@@ -506,13 +506,13 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
         break;
 
     case 4:
-        FieldTask_StartFieldMap(task);
+        FieldTransition_StartMap(task);
         (*state)++;
         break;
 
     case 5:
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-        sub_020558F0(task);
+        FieldTransition_FadeIn(task);
         (*state)++;
         break;
 
@@ -625,12 +625,12 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
         GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
-        sub_020557DC(task, encounter->introEffectID, encounter->battleBGM);
+        FieldTransition_StartEncounterEffect(task, encounter->introEffectID, encounter->battleBGM);
         (*state)++;
         break;
 
     case 1:
-        FieldTask_FinishFieldMap(task);
+        FieldTransition_FinishMap(task);
         (*state)++;
         break;
 
@@ -647,13 +647,13 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
         break;
 
     case 4:
-        FieldTask_StartFieldMap(task);
+        FieldTransition_StartMap(task);
         (*state)++;
         break;
 
     case 5:
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-        sub_020558F0(task);
+        FieldTransition_FadeIn(task);
         (*state)++;
         break;
 
@@ -709,12 +709,12 @@ static BOOL FieldTask_CatchingTutorialEncounter(FieldTask *task)
     switch (*state) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        sub_020557DC(task, encounter->introEffectID, encounter->battleBGM);
+        FieldTransition_StartEncounterEffect(task, encounter->introEffectID, encounter->battleBGM);
         (*state)++;
         break;
 
     case 1:
-        FieldTask_FinishFieldMap(task);
+        FieldTransition_FinishMap(task);
         (*state)++;
         break;
 
@@ -728,13 +728,13 @@ static BOOL FieldTask_CatchingTutorialEncounter(FieldTask *task)
         break;
 
     case 4:
-        FieldTask_StartFieldMap(task);
+        FieldTransition_StartMap(task);
         (*state)++;
         break;
 
     case 5:
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-        sub_020558F0(task);
+        FieldTransition_FadeIn(task);
         (*state)++;
         break;
 

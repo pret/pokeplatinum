@@ -59,11 +59,11 @@ static BOOL sub_0206C120(FieldTask *taskMan)
         sub_02070428(fieldSystem, 1);
         ov6_02242A94(v1->unk_0D, v1->unk_04);
         v1->unk_08 = ov6_02242AEC(v1->unk_04);
-        sub_020558AC(taskMan);
+        FieldTransition_FadeOut(taskMan);
         v1->unk_0C = 1;
         break;
     case 1:
-        FieldTask_FinishFieldMap(taskMan);
+        FieldTransition_FinishMap(taskMan);
         v1->unk_0C = 2;
         break;
     case 2: {
@@ -80,7 +80,7 @@ static BOOL sub_0206C120(FieldTask *taskMan)
         v1->unk_0C = 3;
         break;
     case 3:
-        FieldTask_StartFieldMap(taskMan);
+        FieldTransition_StartMap(taskMan);
         v1->unk_0C = 4;
         break;
     case 4: {
@@ -101,7 +101,7 @@ static BOOL sub_0206C120(FieldTask *taskMan)
             v1->unk_0C = 5;
         } else {
             MapObject_SetHidden(v3, 0);
-            sub_020558F0(taskMan);
+            FieldTransition_FadeIn(taskMan);
             v1->unk_0C = 8;
         }
     } break;

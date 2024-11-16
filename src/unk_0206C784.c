@@ -215,7 +215,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
             ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 2);
         }
 
-        FieldTask_FinishFieldMap(taskMan);
+        FieldTransition_FinishMap(taskMan);
         v1->unk_00 = 4;
         break;
     case 4:
@@ -228,7 +228,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         break;
     case 6:
         Sound_PlayMapBGM(fieldSystem, v1->unk_18);
-        FieldTask_StartFadeIn(taskMan);
+        FieldTransition_StartMapAndFadeIn(taskMan);
         v1->unk_00 = 7;
         break;
     case 7:
