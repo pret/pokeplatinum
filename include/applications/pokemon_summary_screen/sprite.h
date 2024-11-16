@@ -12,7 +12,7 @@ void sub_0208EB64(PokemonSummaryScreen *param0);
 void PokemonSummaryScreen_UpdatePageTabSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_SetPageArrowsPos(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdatePageArrows(PokemonSummaryScreen *summaryScreen, BOOL showArrows);
-void sub_0208EE3C(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_SetCaughtBallGfx(PokemonSummaryScreen *summaryScreen);
 void sub_0208EE9C(PokemonSummaryScreen *param0);
 void PokemonSummaryScreen_UpdateTypeIcons(PokemonSummaryScreen *summaryScreen);
 void sub_0208F16C(PokemonSummaryScreen *param0);

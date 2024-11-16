@@ -185,7 +185,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     sub_0208EA44(summaryScreen);
     sub_0208EB64(summaryScreen);
     sub_02091F8C(summaryScreen);
-    sub_0208EE3C(summaryScreen);
+    PokemonSummaryScreen_SetCaughtBallGfx(summaryScreen);
     sub_0208EE9C(summaryScreen);
     PokemonSummaryScreen_DrawStaticWindows(summaryScreen);
     SetupInitialPageGfx(summaryScreen);
@@ -1445,7 +1445,7 @@ static void ChangeSummaryMon(PokemonSummaryScreen *summaryScreen, s8 delta)
     PokemonSummaryScreen_UpdateTypeIcons(summaryScreen);
     PokemonSummaryScreen_UpdateRibbonSprites(summaryScreen);
     sub_0208F71C(summaryScreen);
-    sub_0208EE3C(summaryScreen);
+    PokemonSummaryScreen_SetCaughtBallGfx(summaryScreen);
     sub_0208EE9C(summaryScreen);
     PokemonSummaryScreen_InitSheenSprites(summaryScreen);
     PokemonSummaryScreen_UpdateMiscMonDataSprites(summaryScreen);

@@ -4,9 +4,11 @@
 #include <string.h>
 
 #include "constants/narc.h"
+#include "consts/items.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
+#include "graphics/pokemon_summary_screen/pl_pst_gra.naix"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -136,24 +138,24 @@ static const UnkStruct_ov7_0224F358 Unk_020F41A8[] = {
     { 0x2A, 0x4C, 0x30, 0x0, 0x0, 0x0, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 }
 };
 
-static const u8 Unk_020F411C[] = {
-    0x2,
-    0x0,
-    0x2,
-    0x2,
-    0x0,
-    0x1,
-    0x1,
-    0x1,
-    0x1,
-    0x2,
-    0x2,
-    0x2,
-    0x2,
-    0x3,
-    0x3,
-    0x2,
-    0x0
+static const u8 sBallIDToPaletteNum[] = {
+    [ITEM_NONE] = 2,
+    [ITEM_MASTER_BALL] = 0,
+    [ITEM_ULTRA_BALL] = 2,
+    [ITEM_GREAT_BALL] = 2,
+    [ITEM_POKE_BALL] = 0,
+    [ITEM_SAFARI_BALL] = 1,
+    [ITEM_NET_BALL] = 1,
+    [ITEM_DIVE_BALL] = 1,
+    [ITEM_NEST_BALL] = 1,
+    [ITEM_REPEAT_BALL] = 2,
+    [ITEM_TIMER_BALL] = 2,
+    [ITEM_LUXURY_BALL] = 2,
+    [ITEM_PREMIER_BALL] = 2,
+    [ITEM_DUSK_BALL] = 3,
+    [ITEM_HEAL_BALL] = 3,
+    [ITEM_QUICK_BALL] = 2,
+    [ITEM_CHERISH_BALL] = 0
 };
 
 void sub_0208EA44(PokemonSummaryScreen *param0)
@@ -326,18 +328,18 @@ void PokemonSummaryScreen_UpdatePageArrows(PokemonSummaryScreen *summaryScreen, 
     CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_PAGE_ARROW_RIGHT], showArrows);
 }
 
-void sub_0208EE3C(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_SetCaughtBallGfx(PokemonSummaryScreen *summaryScreen)
 {
-    u32 v0;
+    u32 ballMember;
 
-    if (param0->monData.caughtBall == 0) {
-        v0 = 21;
+    if (summaryScreen->monData.caughtBall == ITEM_NONE) {
+        ballMember = master_ball_NCGR;
     } else {
-        v0 = 21 + param0->monData.caughtBall - 1;
+        ballMember = master_ball_NCGR + summaryScreen->monData.caughtBall - 1;
     }
 
-    sub_0200D948(param0->renderer, param0->gfxHandler, 39, v0, 0, 0);
-    sub_0200D97C(param0->renderer, param0->gfxHandler, 39, 37 + Unk_020F411C[param0->monData.caughtBall], 0, 6);
+    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_GRAPHIC__PL_PST_GRA, ballMember, FALSE, 0);
+    sub_0200D97C(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_GRAPHIC__PL_PST_GRA, balls_0_NCLR + sBallIDToPaletteNum[summaryScreen->monData.caughtBall], FALSE, 6);
 }
 
 void sub_0208EE9C(PokemonSummaryScreen *param0)
@@ -737,7 +739,7 @@ void PokemonSummaryScreen_HideContestStatDots(PokemonSummaryScreen *summaryScree
 
 static void SetRibbonSpriteGfx(PokemonSummaryScreen *summaryScreen, u8 ribbonNum, u8 ribbonIndex)
 {
-    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, 39, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + ribbonIndex);
+    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_GRAPHIC__PL_PST_GRA, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + ribbonIndex);
     sub_0200D414(summaryScreen->sprites[PSS_SPRITE_RIBBON_1 + ribbonIndex], Ribbon_GetData(ribbonNum, RIBBON_DATA_PALETTE_NUM) + 7);
 }
 
@@ -753,7 +755,7 @@ void PokemonSummaryScreen_UpdateRibbonSprites(PokemonSummaryScreen *summaryScree
         return;
     }
 
-    sub_0200D97C(summaryScreen->renderer, summaryScreen->gfxHandler, 39, 136, 0, 5);
+    sub_0200D97C(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_GRAPHIC__PL_PST_GRA, ribbons_NCLR, FALSE, 5);
 
     for (i = 0; i < RIBBONS_PER_PAGE; i++) {
         if (i < summaryScreen->ribbonMax) {
