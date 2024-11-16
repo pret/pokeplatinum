@@ -381,6 +381,8 @@ enum PSSPoffinFeedMsg {
 #define RIBBONS_PER_ROW  4
 #define RIBBONS_PER_PAGE 12
 
+#define CONDITION_VTX_COUNT 4
+
 typedef struct PokemonSummary {
     void *monData;
     Options *options;
@@ -478,10 +480,10 @@ typedef struct PokemonSummaryScreen {
     PokemonSummaryMonData monData;
     PokemonSummaryMonSpriteData monSprite;
 
-    UnkStruct_02091850 unk_2F0[4];
-    UnkStruct_02091850 unk_350[4];
-    UnkStruct_02091850 unk_3B0[4];
-    u32 unk_410;
+    ConditionVtx currVtxs[CONDITION_VTX_COUNT];
+    ConditionVtx deltaVtxs[CONDITION_VTX_COUNT];
+    ConditionVtx maxVtxs[CONDITION_VTX_COUNT];
+    u32 conditionState;
 
     SpriteRenderer *renderer;
     SpriteGfxHandler *gfxHandler;

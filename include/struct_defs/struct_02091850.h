@@ -3,11 +3,11 @@
 
 #include <nitro/fx/fx.h>
 
-typedef struct {
+typedef struct ConditionVtx {
     VecFx16 unk_00;
     VecFx16 unk_06;
     VecFx16 unk_0C;
     VecFx16 unk_12;
-} UnkStruct_02091850;
+} ConditionVtx;
 
 #endif // POKEPLATINUM_STRUCT_02091850_H

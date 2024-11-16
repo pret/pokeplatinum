@@ -20,18 +20,25 @@
 #include "unk_0202419C.h"
 
 typedef struct {
-    VecFx16 unk_00;
-    VecFx16 unk_06;
-    VecFx16 unk_0C;
-} UnkStruct_02091B78;
+    VecFx16 max;
+    VecFx16 min;
+    VecFx16 valueLength;
+} ConditionVtxBounds;
 
-static void sub_02091850(UnkStruct_02091850 *param0);
-static void sub_020918CC(VecFx16 *param0, VecFx16 *param1);
-static void sub_020918EC(PokemonSummaryScreen *param0);
-static void sub_02091B78(const UnkStruct_02091B78 *param0, VecFx16 *param1, u8 param2);
-static void sub_02091BD4(VecFx16 *param0, VecFx16 *param1, VecFx16 *param2);
+enum ConditionState {
+    CONDITION_STATE_INITIAL = 0,
 
-static const UnkStruct_02091B78 Unk_020F4FFC[][4] = {
+    CONDITION_STATE_FINISH_DRAW = 3,
+    CONDITION_STATE_FLASH,
+};
+
+static void DrawConditionShape(ConditionVtx *vtx);
+static void UpdateConditionVec(VecFx16 *currVec, VecFx16 *deltaVec);
+static void UpdateConditionShapeOrFlash(PokemonSummaryScreen *summaryScreen);
+static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *vector, u8 statValue);
+static void SetConditionVecDifference(VecFx16 *startVec, VecFx16 *endVec, VecFx16 *outVec);
+
+static const ConditionVtxBounds sVtxBounds[][CONDITION_VTX_COUNT] = {
     {
         {
             { 0x1412, 0xEC8, 0x0 },
@@ -122,7 +129,7 @@ static const UnkStruct_02091B78 Unk_020F4FFC[][4] = {
     },
 };
 
-void sub_020916B4(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_Setup3DGfx(PokemonSummaryScreen *summaryScreen)
 {
     NNS_G3dInit();
 
@@ -155,9 +162,9 @@ void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
         G3_Identity();
 
         NNS_G3dGlbFlush();
-        sub_02091850(summaryScreen->unk_2F0);
+        DrawConditionShape(summaryScreen->currVtxs);
         NNS_G3dGlbFlush();
-        sub_020918EC(summaryScreen);
+        UpdateConditionShapeOrFlash(summaryScreen);
     }
 
     NNS_G2dSetupSoftwareSpriteCamera();
@@ -174,186 +181,179 @@ void PokemonSummaryScreen_FreeCameraAndSpriteData(PokemonSummaryScreen *summaryS
     sub_02007B6C(summaryScreen->monSprite.spriteManager);
 }
 
-void sub_020917E0(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_SetupCamera(PokemonSummaryScreen *summaryScreen)
 {
-    VecFx32 v0 = { 0, 0, 0x10000 };
-    CameraAngle v1 = { 0, 0, 0 };
-    fx32 v2 = 0x10000;
-    u16 v3 = 0x5c1;
+    VecFx32 pos = { 0, 0, 0x10000 };
+    CameraAngle angle = { 0, 0, 0 };
+    fx32 distance = 0x10000;
+    u16 fovY = 0x5C1;
 
-    param0->monSprite.camera = Camera_Alloc(19);
+    summaryScreen->monSprite.camera = Camera_Alloc(HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->monSprite.camera);
-    Camera_SetClipping(0, FX32_CONST(100), param0->monSprite.camera);
-    Camera_ReleaseTarget(param0->monSprite.camera);
-    Camera_SetAsActive(param0->monSprite.camera);
+    Camera_InitWithPosition(&pos, distance, &angle, fovY, 1, summaryScreen->monSprite.camera);
+    Camera_SetClipping(0, FX32_CONST(100), summaryScreen->monSprite.camera);
+    Camera_ReleaseTarget(summaryScreen->monSprite.camera);
+    Camera_SetAsActive(summaryScreen->monSprite.camera);
 }
 
-static void sub_02091850(UnkStruct_02091850 *param0)
+static void DrawConditionShape(ConditionVtx *vtx)
 {
     G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, 18, 20, 0);
     G3_Begin(GX_BEGIN_QUADS);
 
-    {
-        u32 v0;
-
-        for (v0 = 0; v0 < 4; v0++) {
-            G3_Color(GX_RGB(8, 31, 15));
-            G3_Vtx(param0[v0].unk_00.x, param0[v0].unk_00.y, param0[v0].unk_00.z);
-            G3_Color(GX_RGB(8, 31, 15));
-            G3_Vtx(param0[v0].unk_06.x, param0[v0].unk_06.y, param0[v0].unk_06.z);
-            G3_Color(GX_RGB(8, 31, 15));
-            G3_Vtx(param0[v0].unk_12.x, param0[v0].unk_12.y, param0[v0].unk_12.z);
-            G3_Color(GX_RGB(8, 31, 15));
-            G3_Vtx(param0[v0].unk_0C.x, param0[v0].unk_0C.y, param0[v0].unk_0C.z);
-        }
+    for (u32 i = 0; i < CONDITION_VTX_COUNT; i++) {
+        G3_Color(GX_RGB(8, 31, 15));
+        G3_Vtx(vtx[i].unk_00.x, vtx[i].unk_00.y, vtx[i].unk_00.z);
+        G3_Color(GX_RGB(8, 31, 15));
+        G3_Vtx(vtx[i].unk_06.x, vtx[i].unk_06.y, vtx[i].unk_06.z);
+        G3_Color(GX_RGB(8, 31, 15));
+        G3_Vtx(vtx[i].unk_12.x, vtx[i].unk_12.y, vtx[i].unk_12.z);
+        G3_Color(GX_RGB(8, 31, 15));
+        G3_Vtx(vtx[i].unk_0C.x, vtx[i].unk_0C.y, vtx[i].unk_0C.z);
     }
 
     G3_End();
 }
 
-static void sub_020918CC(VecFx16 *param0, VecFx16 *param1)
+static void UpdateConditionVec(VecFx16 *currVec, VecFx16 *deltaVec)
 {
-    param0->x += param1->x;
-    param0->y += param1->y;
-    param0->z += param1->z;
+    currVec->x += deltaVec->x;
+    currVec->y += deltaVec->y;
+    currVec->z += deltaVec->z;
 }
 
-static void sub_020918EC(PokemonSummaryScreen *param0)
+static void UpdateConditionShapeOrFlash(PokemonSummaryScreen *summaryScreen)
 {
-    u32 v0;
+    u32 i;
 
-    if (param0->unk_410 == 4) {
-        PokemonSummaryScreen_UpdateConditionFlashAnim(param0);
+    if (summaryScreen->conditionState == CONDITION_STATE_FLASH) {
+        PokemonSummaryScreen_UpdateConditionFlashAnim(summaryScreen);
         return;
     }
 
-    if (param0->unk_410 == 3) {
-        for (v0 = 0; v0 < 4; v0++) {
-            param0->unk_2F0[v0] = param0->unk_3B0[v0];
+    if (summaryScreen->conditionState == CONDITION_STATE_FINISH_DRAW) {
+        for (i = 0; i < CONDITION_VTX_COUNT; i++) {
+            summaryScreen->currVtxs[i] = summaryScreen->maxVtxs[i];
         }
     } else {
-        for (v0 = 0; v0 < 4; v0++) {
-            sub_020918CC(&param0->unk_2F0[v0].unk_00, &param0->unk_350[v0].unk_00);
-            sub_020918CC(&param0->unk_2F0[v0].unk_06, &param0->unk_350[v0].unk_06);
-            sub_020918CC(&param0->unk_2F0[v0].unk_0C, &param0->unk_350[v0].unk_0C);
-            sub_020918CC(&param0->unk_2F0[v0].unk_12, &param0->unk_350[v0].unk_12);
+        for (i = 0; i < CONDITION_VTX_COUNT; i++) {
+            UpdateConditionVec(&summaryScreen->currVtxs[i].unk_00, &summaryScreen->deltaVtxs[i].unk_00);
+            UpdateConditionVec(&summaryScreen->currVtxs[i].unk_06, &summaryScreen->deltaVtxs[i].unk_06);
+            UpdateConditionVec(&summaryScreen->currVtxs[i].unk_0C, &summaryScreen->deltaVtxs[i].unk_0C);
+            UpdateConditionVec(&summaryScreen->currVtxs[i].unk_12, &summaryScreen->deltaVtxs[i].unk_12);
         }
     }
 
-    param0->unk_410++;
+    summaryScreen->conditionState++;
 
-    if (param0->unk_410 == 4) {
-        PokemonSummaryScreen_UpdateConditionFlashSprites(param0, TRUE);
+    if (summaryScreen->conditionState == CONDITION_STATE_FLASH) {
+        PokemonSummaryScreen_UpdateConditionFlashSprites(summaryScreen, TRUE);
     } else {
-        PokemonSummaryScreen_UpdateConditionFlashSprites(param0, FALSE);
+        PokemonSummaryScreen_UpdateConditionFlashSprites(summaryScreen, FALSE);
     }
 }
 
-void sub_020919E8(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_InitConditionShape(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->page != PSS_PAGE_CONDITION) {
         return;
     }
 
-    summaryScreen->unk_2F0[0].unk_00 = Unk_020F4FFC[0][3].unk_06;
-    summaryScreen->unk_2F0[0].unk_06 = Unk_020F4FFC[0][3].unk_06;
-    summaryScreen->unk_2F0[0].unk_0C = Unk_020F4FFC[0][3].unk_06;
-    summaryScreen->unk_2F0[0].unk_12 = Unk_020F4FFC[0][3].unk_06;
+    summaryScreen->currVtxs[0].unk_00 = sVtxBounds[0][3].min;
+    summaryScreen->currVtxs[0].unk_06 = sVtxBounds[0][3].min;
+    summaryScreen->currVtxs[0].unk_0C = sVtxBounds[0][3].min;
+    summaryScreen->currVtxs[0].unk_12 = sVtxBounds[0][3].min;
 
-    summaryScreen->unk_2F0[1].unk_00 = Unk_020F4FFC[1][2].unk_06;
-    summaryScreen->unk_2F0[1].unk_06 = Unk_020F4FFC[1][2].unk_06;
-    summaryScreen->unk_2F0[1].unk_0C = Unk_020F4FFC[1][2].unk_06;
-    summaryScreen->unk_2F0[1].unk_12 = Unk_020F4FFC[1][2].unk_06;
+    summaryScreen->currVtxs[1].unk_00 = sVtxBounds[1][2].min;
+    summaryScreen->currVtxs[1].unk_06 = sVtxBounds[1][2].min;
+    summaryScreen->currVtxs[1].unk_0C = sVtxBounds[1][2].min;
+    summaryScreen->currVtxs[1].unk_12 = sVtxBounds[1][2].min;
 
-    summaryScreen->unk_2F0[2].unk_00 = Unk_020F4FFC[2][1].unk_06;
-    summaryScreen->unk_2F0[2].unk_06 = Unk_020F4FFC[2][1].unk_06;
-    summaryScreen->unk_2F0[2].unk_0C = Unk_020F4FFC[2][1].unk_06;
-    summaryScreen->unk_2F0[2].unk_12 = Unk_020F4FFC[2][1].unk_06;
+    summaryScreen->currVtxs[2].unk_00 = sVtxBounds[2][1].min;
+    summaryScreen->currVtxs[2].unk_06 = sVtxBounds[2][1].min;
+    summaryScreen->currVtxs[2].unk_0C = sVtxBounds[2][1].min;
+    summaryScreen->currVtxs[2].unk_12 = sVtxBounds[2][1].min;
 
-    summaryScreen->unk_2F0[3].unk_00 = Unk_020F4FFC[3][0].unk_06;
-    summaryScreen->unk_2F0[3].unk_06 = Unk_020F4FFC[3][0].unk_06;
-    summaryScreen->unk_2F0[3].unk_0C = Unk_020F4FFC[3][0].unk_06;
-    summaryScreen->unk_2F0[3].unk_12 = Unk_020F4FFC[3][0].unk_06;
+    summaryScreen->currVtxs[3].unk_00 = sVtxBounds[3][0].min;
+    summaryScreen->currVtxs[3].unk_06 = sVtxBounds[3][0].min;
+    summaryScreen->currVtxs[3].unk_0C = sVtxBounds[3][0].min;
+    summaryScreen->currVtxs[3].unk_12 = sVtxBounds[3][0].min;
 
-    sub_02091D50(summaryScreen);
+    PokemonSummaryScreen_InitMaxAndDeltaConditionShape(summaryScreen);
 }
 
-static void sub_02091B78(const UnkStruct_02091B78 *param0, VecFx16 *param1, u8 param2)
+static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *vec, u8 statValue)
 {
-    if (param2 == 0xff) {
-        *param1 = param0->unk_00;
-    } else if (param2 == 0) {
-        *param1 = param0->unk_06;
+    if (statValue == 0xFF) {
+        *vec = bounds->max;
+    } else if (statValue == 0) {
+        *vec = bounds->min;
     } else {
-        param1->x = param0->unk_06.x + param0->unk_0C.x * param2;
-        param1->y = param0->unk_06.y + param0->unk_0C.y * param2;
-        param1->z = param0->unk_06.z + param0->unk_0C.z * param2;
+        vec->x = bounds->min.x + bounds->valueLength.x * statValue;
+        vec->y = bounds->min.y + bounds->valueLength.y * statValue;
+        vec->z = bounds->min.z + bounds->valueLength.z * statValue;
     }
 }
 
-static void sub_02091BD4(VecFx16 *param0, VecFx16 *param1, VecFx16 *param2)
+static void SetConditionVecDifference(VecFx16 *startVec, VecFx16 *endVec, VecFx16 *outVec)
 {
-    param2->x = FX_F32_TO_FX16(FX_FX16_TO_F32(param1->x - param0->x) / 4);
-    param2->y = FX_F32_TO_FX16(FX_FX16_TO_F32(param1->y - param0->y) / 4);
-    param2->z = FX_F32_TO_FX16(FX_FX16_TO_F32(param1->z - param0->z) / 4);
+    outVec->x = FX_F32_TO_FX16(FX_FX16_TO_F32(endVec->x - startVec->x) / 4);
+    outVec->y = FX_F32_TO_FX16(FX_FX16_TO_F32(endVec->y - startVec->y) / 4);
+    outVec->z = FX_F32_TO_FX16(FX_FX16_TO_F32(endVec->z - startVec->z) / 4);
 }
 
-void sub_02091D50(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_InitMaxAndDeltaConditionShape(PokemonSummaryScreen *summaryScreen)
 {
-    u32 v0;
+    SetConditionVecFromStat(&sVtxBounds[0][0], &summaryScreen->maxVtxs[0].unk_00, summaryScreen->monData.cool);
+    SetConditionVecFromStat(&sVtxBounds[0][1], &summaryScreen->maxVtxs[0].unk_06, summaryScreen->monData.beauty);
+    SetConditionVecFromStat(&sVtxBounds[0][2], &summaryScreen->maxVtxs[0].unk_12, summaryScreen->monData.cute);
+    SetConditionVecFromStat(&sVtxBounds[0][3], &summaryScreen->maxVtxs[0].unk_0C, 0);
 
-    sub_02091B78(&Unk_020F4FFC[0][0], &param0->unk_3B0[0].unk_00, param0->monData.cool);
-    sub_02091B78(&Unk_020F4FFC[0][1], &param0->unk_3B0[0].unk_06, param0->monData.beauty);
-    sub_02091B78(&Unk_020F4FFC[0][2], &param0->unk_3B0[0].unk_12, param0->monData.cute);
-    sub_02091B78(&Unk_020F4FFC[0][3], &param0->unk_3B0[0].unk_0C, 0);
+    SetConditionVecFromStat(&sVtxBounds[1][0], &summaryScreen->maxVtxs[1].unk_00, summaryScreen->monData.tough);
+    SetConditionVecFromStat(&sVtxBounds[1][1], &summaryScreen->maxVtxs[1].unk_06, summaryScreen->monData.cool);
+    SetConditionVecFromStat(&sVtxBounds[1][2], &summaryScreen->maxVtxs[1].unk_12, 0);
+    SetConditionVecFromStat(&sVtxBounds[1][3], &summaryScreen->maxVtxs[1].unk_0C, summaryScreen->monData.smart);
 
-    sub_02091B78(&Unk_020F4FFC[1][0], &param0->unk_3B0[1].unk_00, param0->monData.tough);
-    sub_02091B78(&Unk_020F4FFC[1][1], &param0->unk_3B0[1].unk_06, param0->monData.cool);
-    sub_02091B78(&Unk_020F4FFC[1][2], &param0->unk_3B0[1].unk_12, 0);
-    sub_02091B78(&Unk_020F4FFC[1][3], &param0->unk_3B0[1].unk_0C, param0->monData.smart);
+    SetConditionVecFromStat(&sVtxBounds[2][0], &summaryScreen->maxVtxs[2].unk_00, summaryScreen->monData.tough);
+    SetConditionVecFromStat(&sVtxBounds[2][1], &summaryScreen->maxVtxs[2].unk_06, 0);
+    SetConditionVecFromStat(&sVtxBounds[2][2], &summaryScreen->maxVtxs[2].unk_12, summaryScreen->monData.cute);
+    SetConditionVecFromStat(&sVtxBounds[2][3], &summaryScreen->maxVtxs[2].unk_0C, summaryScreen->monData.smart);
 
-    sub_02091B78(&Unk_020F4FFC[2][0], &param0->unk_3B0[2].unk_00, param0->monData.tough);
-    sub_02091B78(&Unk_020F4FFC[2][1], &param0->unk_3B0[2].unk_06, 0);
-    sub_02091B78(&Unk_020F4FFC[2][2], &param0->unk_3B0[2].unk_12, param0->monData.cute);
-    sub_02091B78(&Unk_020F4FFC[2][3], &param0->unk_3B0[2].unk_0C, param0->monData.smart);
+    SetConditionVecFromStat(&sVtxBounds[3][0], &summaryScreen->maxVtxs[3].unk_00, 0);
+    SetConditionVecFromStat(&sVtxBounds[3][1], &summaryScreen->maxVtxs[3].unk_06, summaryScreen->monData.beauty);
+    SetConditionVecFromStat(&sVtxBounds[3][2], &summaryScreen->maxVtxs[3].unk_12, summaryScreen->monData.cute);
+    SetConditionVecFromStat(&sVtxBounds[3][3], &summaryScreen->maxVtxs[3].unk_0C, summaryScreen->monData.smart);
 
-    sub_02091B78(&Unk_020F4FFC[3][0], &param0->unk_3B0[3].unk_00, 0);
-    sub_02091B78(&Unk_020F4FFC[3][1], &param0->unk_3B0[3].unk_06, param0->monData.beauty);
-    sub_02091B78(&Unk_020F4FFC[3][2], &param0->unk_3B0[3].unk_12, param0->monData.cute);
-    sub_02091B78(&Unk_020F4FFC[3][3], &param0->unk_3B0[3].unk_0C, param0->monData.smart);
-
-    for (v0 = 0; v0 < 4; v0++) {
-        sub_02091BD4(&param0->unk_2F0[v0].unk_00, &param0->unk_3B0[v0].unk_00, &param0->unk_350[v0].unk_00);
-        sub_02091BD4(&param0->unk_2F0[v0].unk_06, &param0->unk_3B0[v0].unk_06, &param0->unk_350[v0].unk_06);
-        sub_02091BD4(&param0->unk_2F0[v0].unk_0C, &param0->unk_3B0[v0].unk_0C, &param0->unk_350[v0].unk_0C);
-        sub_02091BD4(&param0->unk_2F0[v0].unk_12, &param0->unk_3B0[v0].unk_12, &param0->unk_350[v0].unk_12);
+    for (u32 i = 0; i < CONDITION_VTX_COUNT; i++) {
+        SetConditionVecDifference(&summaryScreen->currVtxs[i].unk_00, &summaryScreen->maxVtxs[i].unk_00, &summaryScreen->deltaVtxs[i].unk_00);
+        SetConditionVecDifference(&summaryScreen->currVtxs[i].unk_06, &summaryScreen->maxVtxs[i].unk_06, &summaryScreen->deltaVtxs[i].unk_06);
+        SetConditionVecDifference(&summaryScreen->currVtxs[i].unk_0C, &summaryScreen->maxVtxs[i].unk_0C, &summaryScreen->deltaVtxs[i].unk_0C);
+        SetConditionVecDifference(&summaryScreen->currVtxs[i].unk_12, &summaryScreen->maxVtxs[i].unk_12, &summaryScreen->deltaVtxs[i].unk_12);
     }
 
-    param0->unk_410 = 0;
+    summaryScreen->conditionState = CONDITION_STATE_INITIAL;
 }
 
-void sub_02091F8C(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
 {
-    ArchivedSprite v0;
-    void *v1;
+    summaryScreen->monSprite.spriteManager = sub_0200762C(HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    param0->monSprite.spriteManager = sub_0200762C(19);
+    void *monData = PokemonSummaryScreen_MonData(summaryScreen);
 
-    v1 = PokemonSummaryScreen_MonData(param0);
+    ArchivedSprite sprite;
 
-    if (param0->data->dataType == 2) {
-        BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);
+    if (summaryScreen->data->dataType == PSS_DATA_BOX_MON) {
+        BoxPokemon_BuildArchivedSprite(&sprite, monData, 2, 0);
     } else {
-        Pokemon_BuildArchivedSprite(&v0, v1, 2);
+        Pokemon_BuildArchivedSprite(&sprite, monData, 2);
     }
 
-    PokeSprite_LoadAnimationFrames(param0->narcPlPokeData, param0->monSprite.frames, param0->monData.species, 1);
+    PokeSprite_LoadAnimationFrames(summaryScreen->narcPlPokeData, summaryScreen->monSprite.frames, summaryScreen->monData.species, 1);
 
-    param0->monSprite.flip = PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1;
-    param0->monSprite.sprite = sub_02007C34(param0->monSprite.spriteManager, &v0, 52, 104, 0, 0, param0->monSprite.frames, NULL);
+    summaryScreen->monSprite.flip = PokemonPersonalData_GetFormValue(summaryScreen->monData.species, summaryScreen->monData.form, 28) ^ 1;
+    summaryScreen->monSprite.sprite = sub_02007C34(summaryScreen->monSprite.spriteManager, &sprite, 52, 104, 0, 0, summaryScreen->monSprite.frames, NULL);
 
-    sub_02007DEC(param0->monSprite.sprite, 35, param0->monSprite.flip);
+    sub_02007DEC(summaryScreen->monSprite.sprite, 35, summaryScreen->monSprite.flip);
 }
 
 void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen)
@@ -366,10 +366,10 @@ void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-void sub_02092098(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_ChangeMonSprite(PokemonSummaryScreen *summaryScreen)
 {
-    sub_02016114(param0->monSprite.animationSys, 0);
-    sub_02007B6C(param0->monSprite.spriteManager);
-    sub_02091F8C(param0);
-    PokemonSummaryScreen_LoadMonAnimation(param0);
+    sub_02016114(summaryScreen->monSprite.animationSys, 0);
+    sub_02007B6C(summaryScreen->monSprite.spriteManager);
+    PokemonSummaryScreen_LoadMonSprite(summaryScreen);
+    PokemonSummaryScreen_LoadMonAnimation(summaryScreen);
 }
