@@ -8,7 +8,6 @@
 #include "field_battle_data_transfer.h"
 #include "field_task.h"
 
-void sub_02050ABC(FieldTask *param0, FieldBattleDTO *param1);
 void sub_02050E10(FieldSystem *fieldSystem, FieldBattleDTO *param1);
 void sub_02050E78(FieldSystem *fieldSystem, FieldTask *param1, FieldBattleDTO *param2);
 void sub_0205120C(FieldTask *param0, int *param1);

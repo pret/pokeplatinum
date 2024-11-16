@@ -254,9 +254,9 @@ const OverlayManagerTemplate gBattleOverlayTemplate = {
     FS_OVERLAY_ID(battle)
 };
 
-void sub_0203D1D4(FieldSystem *fieldSystem, FieldBattleDTO *param1)
+void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &gBattleOverlayTemplate, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gBattleOverlayTemplate, dto);
 }
 
 static const u8 Unk_020EA164[] = {
