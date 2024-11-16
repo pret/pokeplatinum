@@ -17,6 +17,7 @@
 #include "applications/pokemon_summary_screen/sprite.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "applications/pokemon_summary_screen/window.h"
+#include "graphics/pokemon_summary_screen/pl_pst_gra.naix"
 #include "text/gmm/message_bank_pokemon_summary_screen.h"
 #include "text/pl_msg.naix"
 
@@ -456,16 +457,16 @@ static void TeardownBgs(BgConfig *bgConfig)
 
 static void LoadBgGraphics(PokemonSummaryScreen *summaryScreen, NARC *narc)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 0, summaryScreen->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 3, summaryScreen->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    Graphics_LoadPaletteFromOpenNARC(narc, 1, PAL_LOAD_MAIN_BG, 0, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, tiles_main_NCGR, summaryScreen->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, page_info_NSCR, summaryScreen->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadPaletteFromOpenNARC(narc, tiles_main_NCLR, PAL_LOAD_MAIN_BG, 0, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 11, summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, move_info_NSCR, summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 2, summaryScreen->bgConfig, BG_LAYER_SUB_0, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 16, summaryScreen->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 15, summaryScreen->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    Graphics_LoadPaletteFromOpenNARC(narc, 14, PAL_LOAD_SUB_BG, 0, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, sub_buttons_NCGR, summaryScreen->bgConfig, BG_LAYER_SUB_0, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, tiles_sub_NCGR, summaryScreen->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, tiles_sub_NSCR, summaryScreen->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadPaletteFromOpenNARC(narc, tiles_sub_NCLR, PAL_LOAD_SUB_BG, 0, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 }
 
 static void SetAlphaBlending(void)
@@ -1314,12 +1315,12 @@ static void LoadCurrentPageTilemap(PokemonSummaryScreen *summaryScreen)
     u32 memberIndex;
     if (summaryScreen->data->mode == PSS_MODE_SELECT_MOVE && summaryScreen->data->move != MOVE_NONE) {
         if (summaryScreen->page == PSS_PAGE_BATTLE_MOVES) {
-            memberIndex = 12;
+            memberIndex = page_battle_moves_select_mode_NSCR;
         } else {
-            memberIndex = 13;
+            memberIndex = page_contest_moves_select_mode_NSCR;
         }
     } else {
-        memberIndex = 3 + summaryScreen->page;
+        memberIndex = page_info_NSCR + summaryScreen->page;
     }
 
     void *memberBuffer = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__PL_PST_GRA, memberIndex, HEAP_ID_POKEMON_SUMMARY_SCREEN);
