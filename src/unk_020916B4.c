@@ -224,7 +224,7 @@ static void sub_020918EC(PokemonSummaryScreen *param0)
     u32 v0;
 
     if (param0->unk_410 == 4) {
-        sub_0208FCD4(param0);
+        PokemonSummaryScreen_UpdateConditionFlashAnim(param0);
         return;
     }
 
@@ -244,9 +244,9 @@ static void sub_020918EC(PokemonSummaryScreen *param0)
     param0->unk_410++;
 
     if (param0->unk_410 == 4) {
-        sub_0208FB54(param0, 1);
+        PokemonSummaryScreen_UpdateConditionFlashSprites(param0, TRUE);
     } else {
-        sub_0208FB54(param0, 0);
+        PokemonSummaryScreen_UpdateConditionFlashSprites(param0, FALSE);
     }
 }
 

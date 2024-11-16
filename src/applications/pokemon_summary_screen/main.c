@@ -186,7 +186,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     sub_0208EB64(summaryScreen);
     sub_02091F8C(summaryScreen);
     PokemonSummaryScreen_SetCaughtBallGfx(summaryScreen);
-    sub_0208EE9C(summaryScreen);
+    PokemonSummaryScreen_UpdateStatusIcon(summaryScreen);
     PokemonSummaryScreen_DrawStaticWindows(summaryScreen);
     SetupInitialPageGfx(summaryScreen);
     PokemonSummaryScreen_SetSubscreenType(summaryScreen);
@@ -272,7 +272,7 @@ static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state)
 
     sub_0208EB14(summaryScreen);
     PokemonSummaryScreen_DrawSheenSprites(summaryScreen);
-    sub_0208FB30(summaryScreen);
+    PokemonSummaryScreen_UpdateRibbonFlashAnim(summaryScreen);
     sub_0200C7EC(summaryScreen->gfxHandler);
     PokemonSummaryScreen_Update3DGfx(summaryScreen);
 
@@ -934,7 +934,7 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
         } else {
             sub_02091D50(summaryScreen);
             PokemonSummaryScreen_InitSheenSprites(summaryScreen);
-            sub_0208F6A4(summaryScreen);
+            PokemonSummaryScreen_UpdateConditionArrowSprites(summaryScreen);
             return PSS_STATE_PRINT_CONTEST_STAT_MSGS;
         }
     }
@@ -1246,7 +1246,7 @@ static void SetupPageFromSubscreenButton(PokemonSummaryScreen *summaryScreen, u8
     PokemonSummaryScreen_UpdateRibbonSprites(summaryScreen);
     PokemonSummaryScreen_InitSheenSprites(summaryScreen);
     PokemonSummaryScreen_AddExtraWindows(summaryScreen);
-    sub_0208FB54(summaryScreen, 0);
+    PokemonSummaryScreen_UpdateConditionFlashSprites(summaryScreen, FALSE);
 
     Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_1, 0, 14, 4, 19, 20, 0);
     Bg_CopyTilemapBufferToVRAM(summaryScreen->bgConfig, BG_LAYER_MAIN_1);
@@ -1291,7 +1291,7 @@ static void ChangePage(PokemonSummaryScreen *summaryScreen, s8 delta)
 
     Sound_PlayEffect(SEQ_SE_DP_SELECT5);
     PokemonSummaryScreen_UpdateSubscreenButtonGfx(summaryScreen);
-    sub_0208FB54(summaryScreen, 0);
+    PokemonSummaryScreen_UpdateConditionFlashSprites(summaryScreen, FALSE);
     SetupPageFromSubscreenButton(summaryScreen, page);
 }
 
@@ -1441,12 +1441,12 @@ static void ChangeSummaryMon(PokemonSummaryScreen *summaryScreen, s8 delta)
     PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, NULL);
     PokemonSummaryScreen_UpdatePageTabSprites(summaryScreen);
     PokemonSummaryScreen_SetPageArrowsPos(summaryScreen);
-    sub_0208F16C(summaryScreen);
+    PokemonSummaryScreen_SetMonTypeIcons(summaryScreen);
     PokemonSummaryScreen_UpdateTypeIcons(summaryScreen);
     PokemonSummaryScreen_UpdateRibbonSprites(summaryScreen);
-    sub_0208F71C(summaryScreen);
+    PokemonSummaryScreen_SetMonIcon(summaryScreen);
     PokemonSummaryScreen_SetCaughtBallGfx(summaryScreen);
-    sub_0208EE9C(summaryScreen);
+    PokemonSummaryScreen_UpdateStatusIcon(summaryScreen);
     PokemonSummaryScreen_InitSheenSprites(summaryScreen);
     PokemonSummaryScreen_UpdateMiscMonDataSprites(summaryScreen);
     PokemonSummaryScreen_DrawExtraWindows(summaryScreen);
