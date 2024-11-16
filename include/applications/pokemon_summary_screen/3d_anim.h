@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020916B4_H
-#define POKEPLATINUM_UNK_020916B4_H
+#ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_3D_ANIM_H
+#define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_3D_ANIM_H
 
 #include "applications/pokemon_summary_screen/main.h"
 
@@ -13,4 +13,4 @@ void sub_02091F8C(PokemonSummaryScreen *param0);
 void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen);
 void sub_02092098(PokemonSummaryScreen *param0);
 
-#endif // POKEPLATINUM_UNK_020916B4_H
+#endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_3D_ANIM_H

@@ -1,6 +1,6 @@
 
 
-#include "unk_020916B4.h"
+#include "applications/pokemon_summary_screen/3d_anim.h"
 
 #include <nitro.h>
 #include <string.h>
