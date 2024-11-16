@@ -336,7 +336,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C *param0)
                 }
 
                 v8 = v6 * FX32_ONE;
-                v7 = v0->unk_00[v3].unk_0C + (sub_0201D250((v0->unk_00[v3].unk_04 * 0xffff) / 360) * 16);
+                v7 = v0->unk_00[v3].unk_0C + (CalcSineDegrees_Wraparound((v0->unk_00[v3].unk_04 * 0xffff) / 360) * 16);
                 v0->unk_00[v3].unk_04 += (-4 * 1);
 
                 sub_0200D614(param0->unk_534.unk_C8[v3].unk_00, v7, v8);

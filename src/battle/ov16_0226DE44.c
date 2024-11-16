@@ -173,7 +173,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
         }
 
         if (v0->unk_1C == 0) {
-            v1 = FX_Mul(sub_0201D15C(v0->unk_10 / 100), 14 << FX32_SHIFT) / FX32_ONE;
+            v1 = FX_Mul(CalcSineDegrees(v0->unk_10 / 100), 14 << FX32_SHIFT) / FX32_ONE;
             sub_0200D500(v0->unk_00, v0->unk_08, v0->unk_0C - v1, v0->unk_14);
         }
     }

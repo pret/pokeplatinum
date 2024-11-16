@@ -1017,7 +1017,7 @@ static void ov21_021E5A44(UnkStruct_ov21_021E51DC *param0)
     v0 = param0->unk_58 - 157;
     v3 = gCoreSys.touchX - 51;
     v2 = gCoreSys.touchY - 157;
-    v4 = sub_0201D4CC(v1, v0, v3, v2, 0);
+    v4 = CalcDotProduct2D(v1, v0, v3, v2, 0);
 
     if (MATH_IAbs(v4) < 1) {
         return;
@@ -1101,7 +1101,7 @@ static void ov21_021E5AD8(UnkStruct_ov21_021E51DC *param0)
 
 static void ov21_021E5B50(UnkStruct_ov21_021E5004 *param0, const UnkStruct_ov21_021E51DC *param1)
 {
-    CellActor_SetAffineZRotation(param0->unk_00, sub_0201D580(14, param1->unk_5C));
+    CellActor_SetAffineZRotation(param0->unk_00, CalcRadialAngle(14, param1->unk_5C));
 }
 
 static void ov21_021E5B6C(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4DA4 *param1, const UnkStruct_ov21_021E51DC *param2)

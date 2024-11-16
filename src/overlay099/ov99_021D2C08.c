@@ -140,7 +140,7 @@ static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
         v0->unk_08 -= 360 << FX32_SHIFT;
     }
 
-    v2 = FX_Mul(sub_0201D2B8(v0->unk_08), v1->unk_18);
+    v2 = FX_Mul(CalcSineDegrees_FX32(v0->unk_08), v1->unk_18);
 
     v0->unk_00 += v1->unk_0C;
     v0->unk_04 += v1->unk_10;

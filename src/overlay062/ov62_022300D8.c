@@ -551,7 +551,7 @@ void ov62_02230C28(SysTask *param0, void *param1)
             sub_0200D638(v0->unk_00[0], &v1, &v2);
             sub_0200D638(v0->unk_00[1], &v3, &v4);
 
-            v1 = v1 + ((sub_0201D250((v0->unk_20 * 0xffff) / 360) * 1) * (v0->unk_18 * -1));
+            v1 = v1 + ((CalcSineDegrees_Wraparound((v0->unk_20 * 0xffff) / 360) * 1) * (v0->unk_18 * -1));
             v3 = v1;
 
             v0->unk_20 += 32;
@@ -607,7 +607,7 @@ void ov62_02230C28(SysTask *param0, void *param1)
         sub_0200D638(v0->unk_00[0], &v9, &v10);
         sub_0200D638(v0->unk_00[1], &v11, &v12);
 
-        v9 = v0->unk_0C + ((sub_0201D250((v0->unk_20 * 0xffff) / 360) * 3) * (v0->unk_18 * -1));
+        v9 = v0->unk_0C + ((CalcSineDegrees_Wraparound((v0->unk_20 * 0xffff) / 360) * 3) * (v0->unk_18 * -1));
         v11 = v9;
 
         if (v0->unk_19 % 2) {

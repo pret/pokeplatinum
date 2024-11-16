@@ -2912,7 +2912,7 @@ static void ov12_02229A6C(SysTask *param0, void *param1)
 
         if (v0->unk_30) {
             v0->unk_2C += (360 / (v0->unk_06));
-            SPLEmitter_SetPosY(v0->unk_38, (v0->unk_A8[0].unk_02 * 172) + sub_0201D250(v0->unk_2C));
+            SPLEmitter_SetPosY(v0->unk_38, (v0->unk_A8[0].unk_02 * 172) + CalcSineDegrees_Wraparound(v0->unk_2C));
         }
     }
 }

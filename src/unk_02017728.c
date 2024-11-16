@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_defs/struct_02017E74.h"
 
 #include "core_sys.h"
@@ -183,7 +185,7 @@ void sub_0201789C(void)
 
     CARD_SetCacheFlushThreshold(0x500, 0x2400);
 
-    sub_0201D640(0);
+    InitCRC16Table(HEAP_ID_SYSTEM);
 }
 
 void InitGraphics(void)

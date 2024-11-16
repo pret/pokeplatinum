@@ -939,7 +939,7 @@ static void ov65_02235EF8(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354
     v0.unk_02 = ov63_0222BF90(param1->unk_00, 1);
 
     v1 = v0;
-    v0.unk_02 += FX_Mul(sub_0201D15C(param1->unk_08), -192 * FX32_ONE) >> FX32_SHIFT;
+    v0.unk_02 += FX_Mul(CalcSineDegrees(param1->unk_08), -192 * FX32_ONE) >> FX32_SHIFT;
 
     ov63_0222CFE0(param1->unk_04, v0);
     ov63_0222D060(param1->unk_04, v1);
@@ -960,7 +960,7 @@ static void ov65_02235F94(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354
     if (v3 > 0) {
         v3 = v3 % 6;
         v0 = (180 * v3) / 6;
-        v1.unk_02 -= FX_Mul(sub_0201D15C(v0), 4 * FX32_ONE) >> FX32_SHIFT;
+        v1.unk_02 -= FX_Mul(CalcSineDegrees(v0), 4 * FX32_ONE) >> FX32_SHIFT;
     }
 
     ov63_0222CFE0(param1->unk_04, v1);

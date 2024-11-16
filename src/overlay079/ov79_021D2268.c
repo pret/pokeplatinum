@@ -840,7 +840,7 @@ static void ov79_021D2E74(SysTask *param0, void *param1)
     v3.y = v2->unk_00.y + FX_Mul(v2->unk_18.y, v0->unk_0C);
 
     v4 = FX_Mul(v2->unk_48, v0->unk_0C);
-    v4 = FX_Mul(sub_0201D250(v4 >> 12), FX32_CONST(-64));
+    v4 = FX_Mul(CalcSineDegrees_Wraparound(v4 >> 12), FX32_CONST(-64));
     v5 = FX32_ONE;
     v3.y += FX_Mul(v4, v5);
 
@@ -1063,7 +1063,7 @@ static void ov79_021D34A8(SysTask *param0, void *param1)
     sub_02007DEC(v1->unk_C8, 1, v3.y >> 12);
 
     v4 = FX_Mul(v2->unk_48, v0->unk_0C);
-    v4 = FX_Mul(sub_0201D250(v4 >> 12), FX32_CONST(-6));
+    v4 = FX_Mul(CalcSineDegrees_Wraparound(v4 >> 12), FX32_CONST(-6));
 
     sub_02007DEC(v1->unk_C8, 4, v4 >> 12);
 
@@ -1161,7 +1161,7 @@ static void ov79_021D36F0(SysTask *param0, void *param1)
     VecFx32 v3;
     fx32 v4, v5;
 
-    v4 = sub_0201D250(v2->unk_50);
+    v4 = CalcSineDegrees_Wraparound(v2->unk_50);
     v5 = FX_Mul(v4, FX32_CONST(2));
 
     if (v2->unk_50 > 359) {

@@ -64,10 +64,10 @@ void sub_0201E2E0(MtxFx33 *param0, u16 param1, u16 param2, u16 param3)
 {
     MtxFx33 v0;
 
-    MTX_RotX33(param0, sub_0201D15C(param1), sub_0201D1D4(param1));
-    MTX_RotY33(&v0, sub_0201D15C(param2), sub_0201D1D4(param2));
+    MTX_RotX33(param0, CalcSineDegrees(param1), CalcCosineDegrees(param1));
+    MTX_RotY33(&v0, CalcSineDegrees(param2), CalcCosineDegrees(param2));
     MTX_Concat33(param0, &v0, param0);
-    MTX_RotZ33(&v0, sub_0201D15C(param3), sub_0201D1D4(param3));
+    MTX_RotZ33(&v0, CalcSineDegrees(param3), CalcCosineDegrees(param3));
     MTX_Concat33(param0, &v0, param0);
 }
 

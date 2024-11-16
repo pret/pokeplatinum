@@ -473,8 +473,8 @@ static BOOL ov62_022375A4(UnkStruct_0208C06C *param0)
             v0->unk_04[v1] = 1.0f;
         }
 
-        v4 = (128 << FX32_SHIFT) + sub_0201D250(v0->unk_2C[v1]) * v0->unk_18[v1];
-        v5 = (106 << FX32_SHIFT) - sub_0201D264(v0->unk_2C[v1]) * v0->unk_18[v1];
+        v4 = (128 << FX32_SHIFT) + CalcSineDegrees_Wraparound(v0->unk_2C[v1]) * v0->unk_18[v1];
+        v5 = (106 << FX32_SHIFT) - CalcCosineDegrees_Wraparound(v0->unk_2C[v1]) * v0->unk_18[v1];
 
         sub_0200D614(v0->unk_68[v1], v4, v5);
         SpriteActor_GetSpritePositionXY(v0->unk_68[v1], &v2, &v3);
@@ -523,8 +523,8 @@ static BOOL ov62_022376C4(UnkStruct_0208C06C *param0)
             SpriteActor_EnableObject(v0->unk_54[v1], 0);
         }
 
-        v4 = (128 << FX32_SHIFT) - sub_0201D250(v0->unk_2C[v1]) * v0->unk_18[v1];
-        v5 = (106 << FX32_SHIFT) - sub_0201D264(v0->unk_2C[v1]) * v0->unk_18[v1];
+        v4 = (128 << FX32_SHIFT) - CalcSineDegrees_Wraparound(v0->unk_2C[v1]) * v0->unk_18[v1];
+        v5 = (106 << FX32_SHIFT) - CalcCosineDegrees_Wraparound(v0->unk_2C[v1]) * v0->unk_18[v1];
 
         sub_0200D614(v0->unk_68[v1], v4, v5);
         SpriteActor_GetSpritePositionXY(v0->unk_68[v1], &v2, &v3);

@@ -530,7 +530,7 @@ static void ov77_021D1568(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D12
         param0->unk_2A8 += 2;
         param0->unk_2A8 %= 360;
 
-        v1 = sub_0201D250((param0->unk_2A8 * 0xffff) / 360);
+        v1 = CalcSineDegrees_Wraparound((param0->unk_2A8 * 0xffff) / 360);
         v1 *= 0.30;
 
         param1->unk_80.y -= v1;

@@ -1539,11 +1539,11 @@ static u32 ov92_021D28C0(const UnkStruct_ov92_021D28C0 *param0, const UnkStruct_
     v0 = MATH_ABS(param0->unk_00 - param1->unk_00);
     v1 = MATH_ABS(param0->unk_04 - param1->unk_04);
 
-    if (v0 > sub_0201D278(180)) {
+    if (v0 > CalcAngleRotationIdx(180)) {
         v0 = 0xffff - v0;
     }
 
-    if (v1 > sub_0201D278(180)) {
+    if (v1 > CalcAngleRotationIdx(180)) {
         v1 = 0xffff - v1;
     }
 

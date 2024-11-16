@@ -295,8 +295,8 @@ static BOOL sub_0205E268(FieldTask *param0)
 
     v0.x = FX32_CONST(8);
     v0.z = FX32_CONST(8);
-    v0.x = FX_Mul(sub_0201D15C(v2->unk_0E), v2->unk_04);
-    v0.z = FX_Mul(sub_0201D15C(v2->unk_0E), v2->unk_08);
+    v0.x = FX_Mul(CalcSineDegrees(v2->unk_0E), v2->unk_04);
+    v0.z = FX_Mul(CalcSineDegrees(v2->unk_0E), v2->unk_08);
     v0.y = 0;
 
     sub_020630AC(v2->unk_00, &v0);

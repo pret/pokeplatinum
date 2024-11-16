@@ -1427,7 +1427,7 @@ static void ov109_021D5314(u16 *param0)
         *param0 = 0;
     }
 
-    v0 = sub_0201D250(*param0);
+    v0 = CalcSineDegrees_Wraparound(*param0);
     v3 = 15 + (v0 * 10) / FX32_ONE;
     v1 = GX_RGB(29, v3, 0);
 

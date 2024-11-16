@@ -37,7 +37,7 @@ s32 ov83_0223F7F4(int param0, int param1, int param2, int param3, int param4, in
     param2 -= param4;
     param3 -= param5;
 
-    v3 = sub_0201D4CC(param2, param3, param0, param1, 0);
+    v3 = CalcDotProduct2D(param2, param3, param0, param1, 0);
     v3 = ((v3) * 160);
 
     return v3;
@@ -195,7 +195,7 @@ u16 ov83_0223F900(UnkStruct_ov83_0223F8AC *param0, const UnkStruct_ov83_0223FE50
     }
 
     v5 = param0->unk_08;
-    param0->unk_08 += sub_0201D580(68, ((param0->unk_0C) / 160));
+    param0->unk_08 += CalcRadialAngle(68, ((param0->unk_0C) / 160));
 
     if (((param3 == 0) && (param0->unk_0C >= 0)) || ((param3 == 1) && (param0->unk_0C < 0))) {
         if (param3 == 0) {

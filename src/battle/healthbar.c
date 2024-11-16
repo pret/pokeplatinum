@@ -1855,6 +1855,6 @@ static void ov16_022684BC(SysTask *param0, void *param1)
         v0->unk_54 -= 360;
     }
 
-    v1 = FX_Mul(sub_0201D15C(v0->unk_54), 0x1800) / FX32_ONE;
+    v1 = FX_Mul(CalcSineDegrees(v0->unk_54), 0x1800) / FX32_ONE;
     Healthbar_OffsetPositionXY(v0, 0, v1);
 }

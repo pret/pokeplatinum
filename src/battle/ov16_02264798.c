@@ -55,6 +55,6 @@ static void ov16_02264800(SysTask *param0, void *param1)
         v0->unk_198 -= 360;
     }
 
-    v1 = FX_Mul(sub_0201D15C(v0->unk_198), 0x1800) / FX32_ONE;
+    v1 = FX_Mul(CalcSineDegrees(v0->unk_198), 0x1800) / FX32_ONE;
     sub_02007DEC(v0->unk_20, 4, v1);
 }

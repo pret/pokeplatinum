@@ -162,8 +162,8 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
                     case 1:
                         v0->unk_24[v1].unk_0C += (8 / 2);
                         v0->unk_24[v1].unk_0C %= 720;
-                        v14 = (v0->unk_24[0].unk_04 << FX32_SHIFT) + (sub_0201D250(v0->unk_24[v1].unk_0C) * v0->unk_FC);
-                        v15 = (v0->unk_24[0].unk_06 << FX32_SHIFT) + (sub_0201D264(v0->unk_24[v1].unk_0C) * v0->unk_100);
+                        v14 = (v0->unk_24[0].unk_04 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v0->unk_24[v1].unk_0C) * v0->unk_FC);
+                        v15 = (v0->unk_24[0].unk_06 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(v0->unk_24[v1].unk_0C) * v0->unk_100);
                         sub_0200D650(v0->unk_24[v1].unk_00, v14, v15, v0->unk_10.unk_10);
                         break;
                     default:

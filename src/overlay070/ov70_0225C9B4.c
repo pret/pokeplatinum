@@ -1133,8 +1133,8 @@ static void ov70_0225D81C(UnkStruct_ov70_0225CC54 *param0, UnkStruct_ov70_0225CA
                 v2 = v2 % 6;
                 v0 = (180 * v2) / 6;
 
-                v1.z += FX_Mul(sub_0201D15C(v0), -2 * FX32_ONE);
-                v1.y += FX_Mul(sub_0201D15C(v0), 10 * FX32_ONE);
+                v1.z += FX_Mul(CalcSineDegrees(v0), -2 * FX32_ONE);
+                v1.y += FX_Mul(CalcSineDegrees(v0), 10 * FX32_ONE);
             }
 
             ov66_022347F8(param0->unk_04, &v1);

@@ -960,8 +960,8 @@ BOOL ov117_02264560(UnkStruct_ov117_02261280 *param0)
                 v1->unk_04 = (128 + 32) << FX32_SHIFT;
             }
 
-            v4 = 128 + (FX_Mul(sub_0201D2B8(v1->unk_0C), v1->unk_04)) / FX32_ONE;
-            v5 = 96 + (-FX_Mul(sub_0201D2C4(v1->unk_0C), v1->unk_04)) / FX32_ONE;
+            v4 = 128 + (FX_Mul(CalcSineDegrees_FX32(v1->unk_0C), v1->unk_04)) / FX32_ONE;
+            v5 = 96 + (-FX_Mul(CalcCosineDegrees_FX32(v1->unk_0C), v1->unk_04)) / FX32_ONE;
 
             sub_0200D500(v1->unk_00, v4, v5, ((192 + 160) << FX32_SHIFT));
 
@@ -987,8 +987,8 @@ BOOL ov117_02264560(UnkStruct_ov117_02261280 *param0)
                 v2->unk_04 = (128 + 32) << FX32_SHIFT;
             }
 
-            v4 = 128 + (FX_Mul(sub_0201D2B8(v2->unk_0C), v2->unk_04)) / FX32_ONE;
-            v5 = 96 + (-FX_Mul(sub_0201D2C4(v2->unk_0C), v2->unk_04)) / FX32_ONE;
+            v4 = 128 + (FX_Mul(CalcSineDegrees_FX32(v2->unk_0C), v2->unk_04)) / FX32_ONE;
+            v5 = 96 + (-FX_Mul(CalcCosineDegrees_FX32(v2->unk_0C), v2->unk_04)) / FX32_ONE;
 
             sub_0200D500(v2->unk_00, v4, v5, ((192 + 160) << FX32_SHIFT));
 
@@ -1014,8 +1014,8 @@ BOOL ov117_02264560(UnkStruct_ov117_02261280 *param0)
                 v3->unk_04 = (128 + 32) << FX32_SHIFT;
             }
 
-            v4 = 128 + (FX_Mul(sub_0201D2B8(v3->unk_0C), v3->unk_04)) / FX32_ONE;
-            v5 = 96 + (-FX_Mul(sub_0201D2C4(v3->unk_0C), v3->unk_04)) / FX32_ONE;
+            v4 = 128 + (FX_Mul(CalcSineDegrees_FX32(v3->unk_0C), v3->unk_04)) / FX32_ONE;
+            v5 = 96 + (-FX_Mul(CalcCosineDegrees_FX32(v3->unk_0C), v3->unk_04)) / FX32_ONE;
 
             sub_0200D500(v3->unk_00, v4, v5, ((192 + 160) << FX32_SHIFT));
 
@@ -1490,8 +1490,8 @@ void ov117_02265064(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022653F4 *
     v0 = Unk_ov117_02266D9C;
 
     for (v1 = 0; v1 < 3; v1++) {
-        v3 = 256 / 2 + FX_Mul(sub_0201D2B8(param1->unk_E4 + param1->unk_00[v1].unk_0C), 76);
-        v4 = 196 / 2 + (-FX_Mul(sub_0201D2C4(param1->unk_E4 + param1->unk_00[v1].unk_0C), (64 + 4)));
+        v3 = 256 / 2 + FX_Mul(CalcSineDegrees_FX32(param1->unk_E4 + param1->unk_00[v1].unk_0C), 76);
+        v4 = 196 / 2 + (-FX_Mul(CalcCosineDegrees_FX32(param1->unk_E4 + param1->unk_00[v1].unk_0C), (64 + 4)));
 
         param1->unk_00[v1].unk_00 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &v0);
         sub_0200D500(param1->unk_00[v1].unk_00, v3, v4 + -24, ((192 + 160) << FX32_SHIFT));
@@ -1703,7 +1703,7 @@ static int ov117_02265454(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
         }
 
         v6 = ((180 * param2->unk_12) << FX32_SHIFT) / 15;
-        v7 = -(FX_Mul(sub_0201D2B8(v6), (24 << FX32_SHIFT))) / FX32_ONE;
+        v7 = -(FX_Mul(CalcSineDegrees_FX32(v6), (24 << FX32_SHIFT))) / FX32_ONE;
 
         sub_0200D500(param2->unk_00, v0, v1 + v7, ((192 + 160) << FX32_SHIFT));
         sub_0200D500(param2->unk_08, v0, v1 + 24, ((192 + 160) << FX32_SHIFT));
@@ -1734,9 +1734,9 @@ static int ov117_02265644(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
     }
 
     v2 = ((180 * param1->unk_F3) << FX32_SHIFT) / Unk_ov117_02266BC4[param1->unk_F4].unk_00;
-    v3 = -(FX_Mul(sub_0201D2B8(v2), (12 << FX32_SHIFT))) / FX32_ONE;
-    v0 = 256 / 2 + FX_Mul(sub_0201D2B8(param1->unk_E4 + param2->unk_0C), 76);
-    v1 = 196 / 2 + (-FX_Mul(sub_0201D2C4(param1->unk_E4 + param2->unk_0C), (64 + 4)));
+    v3 = -(FX_Mul(CalcSineDegrees_FX32(v2), (12 << FX32_SHIFT))) / FX32_ONE;
+    v0 = 256 / 2 + FX_Mul(CalcSineDegrees_FX32(param1->unk_E4 + param2->unk_0C), 76);
+    v1 = 196 / 2 + (-FX_Mul(CalcCosineDegrees_FX32(param1->unk_E4 + param2->unk_0C), (64 + 4)));
 
     sub_0200D500(param2->unk_00, v0, v1 + -24 + v3, ((192 + 160) << FX32_SHIFT));
     sub_0200D500(param2->unk_08, v0, v1 + -24 + 24, ((192 + 160) << FX32_SHIFT));
@@ -1821,8 +1821,8 @@ static int ov117_022657C4(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
 
         v3 += param2->unk_0C / ((360 / 12) << FX32_SHIFT);
         v3 %= 12;
-        v4 = 256 / 2 + FX_Mul(sub_0201D2B8((360 << FX32_SHIFT) / 12 * v3), 76);
-        v5 = 196 / 2 + (-FX_Mul(sub_0201D2C4((360 << FX32_SHIFT) / 12 * v3), (64 + 4)));
+        v4 = 256 / 2 + FX_Mul(CalcSineDegrees_FX32((360 << FX32_SHIFT) / 12 * v3), 76);
+        v5 = 196 / 2 + (-FX_Mul(CalcCosineDegrees_FX32((360 << FX32_SHIFT) / 12 * v3), (64 + 4)));
 
         sub_0200D5A0(param2->unk_00, &v6, &v7, ((192 + 160) << FX32_SHIFT));
 
@@ -1841,7 +1841,7 @@ static int ov117_022657C4(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
         param2->unk_2C += param2->unk_24;
 
         v8 = ((180 * param2->unk_12) << FX32_SHIFT) / param2->unk_18;
-        v9 = -(FX_Mul(sub_0201D2B8(v8), (12 << FX32_SHIFT))) / FX32_ONE;
+        v9 = -(FX_Mul(CalcSineDegrees_FX32(v8), (12 << FX32_SHIFT))) / FX32_ONE;
 
         sub_0200D500(param2->unk_00, param2->unk_28 / FX32_ONE, param2->unk_2C / FX32_ONE + -24 + v9, ((192 + 160) << FX32_SHIFT));
         sub_0200D34C(param2->unk_00, ((8 + 8 + 12 + 8 + 8) << FX32_SHIFT) / param2->unk_18);

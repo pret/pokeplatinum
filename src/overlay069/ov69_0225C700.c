@@ -1283,11 +1283,11 @@ static u32 ov69_0225D194(const VecFx32 *param0, const VecFx32 *param1)
     v0 = MATH_ABS(param0->x - param1->x);
     v1 = MATH_ABS(param0->y - param1->y);
 
-    if (v0 > sub_0201D278(180)) {
+    if (v0 > CalcAngleRotationIdx(180)) {
         v0 = 0xffff - v0;
     }
 
-    if (v1 > sub_0201D278(180)) {
+    if (v1 > CalcAngleRotationIdx(180)) {
         v1 = 0xffff - v1;
     }
 

@@ -346,7 +346,7 @@ static void ov70_0226D31C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E
 {
     param0->unk_04.val1.unk_00 = 0;
     param0->unk_04.val1.unk_02 = 8;
-    param0->unk_04.val1.unk_04 = (sub_0201D2A4(5));
+    param0->unk_04.val1.unk_04 = (CalcAngleRotationIdx_Wraparound(5));
     param0->unk_04.val1.unk_06 = 2;
     param0->unk_04.val1.unk_08 = 4;
 }
@@ -355,7 +355,7 @@ static void ov70_0226D33C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E
 {
     param0->unk_04.val1.unk_00 = 0;
     param0->unk_04.val1.unk_02 = 16;
-    param0->unk_04.val1.unk_04 = (sub_0201D2A4(10));
+    param0->unk_04.val1.unk_04 = (CalcAngleRotationIdx_Wraparound(10));
     param0->unk_04.val1.unk_06 = 4;
     param0->unk_04.val1.unk_08 = 2;
 }

@@ -3,27 +3,39 @@
 
 #include <nitro/fx/fx.h>
 
-fx32 sub_0201D15C(u16 param0);
-fx32 sub_0201D1D4(u16 param0);
-fx32 sub_0201D250(u16 param0);
-fx32 sub_0201D264(u16 param0);
-u16 sub_0201D278(u16 param0);
-u16 sub_0201D2A4(u16 param0);
-fx32 sub_0201D2B8(fx32 param0);
-fx32 sub_0201D2C4(fx32 param0);
+#include "constants/heap.h"
+
+enum AffineTransformationMatrixMode {
+    AFFINE_MODE_NORMAL = 0,
+    AFFINE_MODE_MAX_256,
+    AFFINE_MODE_MAX_360,
+};
+
+fx32 CalcSineDegrees(u16 degrees);
+fx32 CalcCosineDegrees(u16 degrees);
+fx32 CalcSineDegrees_Wraparound(u16 degrees);
+fx32 CalcCosineDegrees_Wraparound(u16 degrees);
+u16 CalcAngleRotationIdx(u16 degrees);
+u16 CalcAngleRotationIdx_Wraparound(u16 degrees);
+fx32 CalcSineDegrees_FX32(fx32 degrees);
+fx32 CalcCosineDegrees_FX32(fx32 degrees);
+
 u32 LCRNG_GetSeed(void);
 void LCRNG_SetSeed(u32 seed);
 u16 LCRNG_Next(void);
 u32 ARNG_Next(u32 seed);
 void MTRNG_SetSeed(u32 seed);
 u32 MTRNG_Next(void);
-void sub_0201D470(MtxFx22 *param0, u16 param1, fx32 param2, fx32 param3, u8 param4);
-s32 sub_0201D4CC(s32 param0, s32 param1, s32 param2, s32 param3, u32 param4);
-s32 sub_0201D580(u16 param0, s32 param1);
+
+void CreateAffineTransformationMatrix(MtxFx22 *matrix, u16 degrees, fx32 xScale, fx32 yScale, u8 mode);
+
+s32 CalcDotProduct2D(s32 x0, s32 y0, s32 x1, s32 y1, u32 unused);
+s32 CalcRadialAngle(u16 radius, s32 distance);
+
 u32 SumBytes(const void *data, u32 size);
 void EncodeData(void *data, u32 size, u32 seed);
 void DecodeData(void *data, u32 size, u32 seed);
-u16 sub_0201D628(const void *param0, u32 param1);
-void sub_0201D640(int param0);
+u16 CalcCRC16Checksum(const void *data, u32 dataLen);
+void InitCRC16Table(enum HeapId heapID);
 
 #endif // POKEPLATINUM_MATH_H

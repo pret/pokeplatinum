@@ -2844,12 +2844,12 @@ static void ov9_0224B2CC(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     v3 = v4->unk_08.unk_04.unk_18;
 
-    v3.x += (FX32_ONE * 0) + (sub_0201D1D4((v4->unk_00) / FX32_ONE) * v4->unk_08.unk_04.unk_10);
-    v3.y += (FX32_ONE * -512) + (sub_0201D15C((v4->unk_00) / FX32_ONE) * v4->unk_08.unk_04.unk_10);
+    v3.x += (FX32_ONE * 0) + (CalcCosineDegrees((v4->unk_00) / FX32_ONE) * v4->unk_08.unk_04.unk_10);
+    v3.y += (FX32_ONE * -512) + (CalcSineDegrees((v4->unk_00) / FX32_ONE) * v4->unk_08.unk_04.unk_10);
 
     sub_020715D4(param0, &v3);
     CellActor_SetPosition(v4->unk_40, &v3);
-    CellActor_SetAffineZRotation(v4->unk_40, sub_0201D2A4((v0) / FX32_ONE));
+    CellActor_SetAffineZRotation(v4->unk_40, CalcAngleRotationIdx_Wraparound((v0) / FX32_ONE));
 }
 
 static void ov9_0224B3A4(UnkStruct_ov101_021D5D90 *param0, void *param1)

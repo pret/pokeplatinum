@@ -288,12 +288,12 @@ static void SaveData_CheckInfoInit(SaveCheckInfo *checkInfo)
 
 u16 SaveData_CalculateChecksum(const SaveData *saveData, const void *startAddress, u32 size)
 {
-    return sub_0201D628(startAddress, size);
+    return CalcCRC16Checksum(startAddress, size);
 }
 
 static u16 SaveData_CalculateFooterChecksum(const SaveData *saveData, void *startAddress, u32 size)
 {
-    return sub_0201D628(startAddress, size - sizeof(SaveBlockFooter));
+    return CalcCRC16Checksum(startAddress, size - sizeof(SaveBlockFooter));
 }
 
 static u32 SaveData_SaveOffset(int sectorID, const SaveBlockInfo *blockInfo)
@@ -593,7 +593,7 @@ static BOOL SaveDataState_Load(SaveData *saveData)
     }
 
     for (i = 0; i < SAVE_TABLE_ENTRY_MAX; i++) {
-        saveData->pageInfo[i].checksum = sub_0201D628(SaveData_SaveTable(saveData, i), saveData->pageInfo[i].size);
+        saveData->pageInfo[i].checksum = CalcCRC16Checksum(SaveData_SaveTable(saveData, i), saveData->pageInfo[i].size);
     }
 
     return TRUE;
@@ -931,7 +931,7 @@ static void SaveCheckFooter_Set(const SaveData *saveData, void *saveBody, int ex
     footer->saveCounter = saveData->sectorCounter + 1;
     footer->size = size;
     footer->id = extraSaveID;
-    footer->checksum = sub_0201D628(saveBody, size + sizeof(SaveCheckFooter) - 2);
+    footer->checksum = CalcCRC16Checksum(saveBody, size + sizeof(SaveCheckFooter) - 2);
 }
 
 static BOOL SaveCheckFooter_Validate(const SaveData *saveData, void *saveBody, int extraSaveID, u32 size)
@@ -950,7 +950,7 @@ static BOOL SaveCheckFooter_Validate(const SaveData *saveData, void *saveBody, i
         return FALSE;
     }
 
-    if (footer->checksum != sub_0201D628(saveBody, size + sizeof(SaveCheckFooter) - 2)) {
+    if (footer->checksum != CalcCRC16Checksum(saveBody, size + sizeof(SaveCheckFooter) - 2)) {
         return FALSE;
     }
 
@@ -1331,7 +1331,7 @@ BOOL SaveData_Checksum(int saveTableID)
     void *table = SaveData_SaveTable(saveData, saveTableID);
     int size = SaveTableEntry_BodySize(saveTableID) - 4;
 
-    u16 checkResult = sub_0201D628(table, size);
+    u16 checkResult = CalcCRC16Checksum(table, size);
 
     int halfSize = size / 2;
     u16 *halfTable = table;
@@ -1355,7 +1355,7 @@ void SaveData_SetChecksum(int saveTableID)
     int halfSize = size / 2;
     u16 *halfTable = table;
 
-    u16 checksum = sub_0201D628(table, size);
+    u16 checksum = CalcCRC16Checksum(table, size);
 
     halfTable[halfSize] = checksum;
 

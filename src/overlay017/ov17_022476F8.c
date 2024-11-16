@@ -143,7 +143,7 @@ static void ov17_02247840(SysTask *param0, void *param1)
 
     switch (v0->unk_14) {
     case 0:
-        v1 = sub_0201D2B8(v0->unk_10) * 8 / FX32_ONE;
+        v1 = CalcSineDegrees_FX32(v0->unk_10) * 8 / FX32_ONE;
         v0->unk_10 += (6 << FX32_SHIFT);
         v0->unk_0C -= 0x100;
 

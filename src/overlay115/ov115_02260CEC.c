@@ -3482,7 +3482,7 @@ static void ov115_0226414C(UnkStruct_ov115_02263DF8 *param0, u32 param1)
     fx32 v0;
 
     param1 -= ((20 * 0xffff) / 360);
-    v0 = (param1 * 90) / sub_0201D2A4(90 - ((20 * 0xffff) / 360));
+    v0 = (param1 * 90) / CalcAngleRotationIdx_Wraparound(90 - ((20 * 0xffff) / 360));
     v0 = (v0 * (FX32_CONST(180))) / 90;
     v0 = (FX32_CONST(180)) - v0;
 
@@ -4102,8 +4102,8 @@ static void ov115_02264DD8(int param0, int param1, int param2, int param3, int p
     v1 = param4 - param3;
     v0 = param3 + ((param0 * v1) / param1);
 
-    *param5 = FX_Mul(sub_0201D1D4(v0), param2 << FX32_SHIFT) >> FX32_SHIFT;
-    *param6 = FX_Mul(sub_0201D15C(v0), param2 << FX32_SHIFT) >> FX32_SHIFT;
+    *param5 = FX_Mul(CalcCosineDegrees(v0), param2 << FX32_SHIFT) >> FX32_SHIFT;
+    *param6 = FX_Mul(CalcSineDegrees(v0), param2 << FX32_SHIFT) >> FX32_SHIFT;
 }
 
 static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, int param3, u32 param4, u32 param5, NNSFndAllocator *param6)
@@ -4148,7 +4148,7 @@ static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_022
         if ((v4 == 0) || (v4 == 1)) {
             Easy3DObject_SetRotation(&param0->unk_00[v4], Unk_ov115_02265C5C[param3 - 1][param4], 1);
         } else {
-            Easy3DObject_SetRotation(&param0->unk_00[v4], (sub_0201D278(180)), 1);
+            Easy3DObject_SetRotation(&param0->unk_00[v4], (CalcAngleRotationIdx(180)), 1);
         }
     }
 

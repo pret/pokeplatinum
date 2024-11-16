@@ -511,8 +511,8 @@ static void ov95_02249D38(UnkStruct_ov95_02249C28 *param0)
         param0->unk_5C--;
     }
 
-    param0->unk_1C.x = FX_Mul(sub_0201D1D4(v0), param0->unk_44);
-    param0->unk_1C.y = FX_Mul(sub_0201D15C(v0), param0->unk_48);
+    param0->unk_1C.x = FX_Mul(CalcCosineDegrees(v0), param0->unk_44);
+    param0->unk_1C.y = FX_Mul(CalcSineDegrees(v0), param0->unk_48);
     param0->unk_1C.z = 0;
     param0->unk_34.x += 0x300;
 

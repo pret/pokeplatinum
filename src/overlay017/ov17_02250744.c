@@ -562,7 +562,7 @@ static void ov17_02251140(SysTask *param0, void *param1)
         v0->unk_1C -= 360 << 8;
     }
 
-    v0->unk_10 = FX_Mul(sub_0201D15C(v0->unk_1C / 0x100), v0->unk_12 << FX32_SHIFT) / FX32_ONE;
+    v0->unk_10 = FX_Mul(CalcSineDegrees(v0->unk_1C / 0x100), v0->unk_12 << FX32_SHIFT) / FX32_ONE;
     v0->unk_08 -= v0->unk_14;
     v0->unk_0C += 0x280;
 

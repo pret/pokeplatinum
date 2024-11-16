@@ -573,7 +573,7 @@ static CellActor *ov6_022437DC(UnkStruct_ov6_02243258 *param0)
     CellActor_SetAffineOverwriteMode(v0, 2);
     CellActor_SetAffineTranslation(v0, &v2);
     CellActor_SetAffineScale(v0, &v3);
-    CellActor_SetAffineZRotation(v0, sub_0201D2A4(0));
+    CellActor_SetAffineZRotation(v0, CalcAngleRotationIdx_Wraparound(0));
 
     return v0;
 }
@@ -704,15 +704,15 @@ static void ov6_02243950(UnkStruct_ov101_021D5D90 *param0)
     v2->unk_40 = (FX32_ONE * 45);
     v2->unk_48 = (FX32_ONE * (128 + 64));
     v2->unk_4C = (FX32_ONE * 32);
-    v2->unk_14.x = sub_0201D264(45) * ((v2->unk_48) / FX32_ONE);
-    v2->unk_14.y = sub_0201D250((v2->unk_40) / FX32_ONE) * ((v2->unk_48) / FX32_ONE);
+    v2->unk_14.x = CalcCosineDegrees_Wraparound(45) * ((v2->unk_48) / FX32_ONE);
+    v2->unk_14.y = CalcSineDegrees_Wraparound((v2->unk_40) / FX32_ONE) * ((v2->unk_48) / FX32_ONE);
 
     v0.x = v2->unk_08.x + v2->unk_14.x;
     v0.y = v2->unk_08.y + v2->unk_14.y;
 
     CellActor_SetPosition(v2->unk_68, &v0);
     CellActor_SetAffineScale(v2->unk_68, &v1);
-    CellActor_SetAffineZRotation(v2->unk_68, sub_0201D2A4((v2->unk_38) / FX32_ONE));
+    CellActor_SetAffineZRotation(v2->unk_68, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
     CellActor_SetPriority(v2->unk_68, 132);
     CellActor_SetDrawFlag(v2->unk_68, 1);
 
@@ -731,7 +731,7 @@ static void ov6_02243950(UnkStruct_ov101_021D5D90 *param0)
         CellActor_SetAffineOverwriteMode(v3, 2);
         CellActor_SetAffineTranslation(v3, &v4);
         CellActor_SetAffineScale(v3, &v5);
-        CellActor_SetAffineZRotation(v3, sub_0201D2A4(0));
+        CellActor_SetAffineZRotation(v3, CalcAngleRotationIdx_Wraparound(0));
         CellActor_SetAnim(v3, 2);
     }
 
@@ -758,8 +758,8 @@ static int ov6_02243AB8(UnkStruct_ov6_02249110 *param0)
         param0->unk_4C = 0x1000;
     }
 
-    param0->unk_14.x = sub_0201D264(45) * ((param0->unk_48) / FX32_ONE);
-    param0->unk_14.y = sub_0201D250((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.x = CalcCosineDegrees_Wraparound(45) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.y = CalcSineDegrees_Wraparound((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
 
     if (((param0->unk_40) / FX32_ONE) < 90) {
         param0->unk_40 += 0x4000;
@@ -823,15 +823,15 @@ static int ov6_02243BEC(UnkStruct_ov6_02249110 *param0)
         param0->unk_4C = (FX32_ONE * 16);
     }
 
-    param0->unk_14.x = sub_0201D264((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
-    param0->unk_14.y = sub_0201D250(128) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.x = CalcCosineDegrees_Wraparound((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.y = CalcSineDegrees_Wraparound(128) * ((param0->unk_48) / FX32_ONE);
 
     if (param0->unk_40 < (FX32_ONE * 160)) {
         param0->unk_40 += 0x1000;
     }
 
     param0->unk_38 += 0x2000;
-    CellActor_SetAffineZRotation(v1, sub_0201D2A4((param0->unk_38) / FX32_ONE));
+    CellActor_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
     param0->unk_2C.x += param0->unk_50;
 
     if (param0->unk_2C.x > 0x1000) {
@@ -895,7 +895,7 @@ static int ov6_02243CFC(UnkStruct_ov6_02249110 *param0)
 
         CellActor_SetPosition(param0->unk_68, &v0);
         CellActor_SetAffineScale(param0->unk_68, &v1);
-        CellActor_SetAffineZRotation(param0->unk_68, sub_0201D2A4((param0->unk_38) / FX32_ONE));
+        CellActor_SetAffineZRotation(param0->unk_68, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
         CellActor_SetDrawFlag(param0->unk_68, 1);
         CellActor_SetAnim(param0->unk_58.unk_08, 6);
         CellActor_SetAnimateFlag(param0->unk_58.unk_08, 1);
@@ -920,8 +920,8 @@ static int ov6_02243DC0(UnkStruct_ov6_02249110 *param0)
         param0->unk_48 = 0;
     }
 
-    param0->unk_14.x = sub_0201D264(315) * ((param0->unk_48) / FX32_ONE);
-    param0->unk_14.y = sub_0201D250((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.x = CalcCosineDegrees_Wraparound(315) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.y = CalcSineDegrees_Wraparound((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
 
     if (((param0->unk_40) / FX32_ONE) < 180) {
         param0->unk_40 -= 0x4000;
@@ -946,7 +946,7 @@ static int ov6_02243DC0(UnkStruct_ov6_02249110 *param0)
         param0->unk_38 = (FX32_ONE * 60);
     }
 
-    CellActor_SetAffineZRotation(v1, sub_0201D2A4((param0->unk_38) / FX32_ONE));
+    CellActor_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
@@ -1906,7 +1906,7 @@ static CellActor *ov6_02244D4C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *pa
     CellActor_SetAffineOverwriteMode(v0, 2);
     CellActor_SetAffineTranslation(v0, &v1);
     CellActor_SetAffineScale(v0, &v2);
-    CellActor_SetAffineZRotation(v0, sub_0201D2A4(0));
+    CellActor_SetAffineZRotation(v0, CalcAngleRotationIdx_Wraparound(0));
 
     return v0;
 }
@@ -2411,7 +2411,7 @@ static void ov6_0224551C(UnkStruct_ov6_02243FFC *param0)
 
     CellActor_SetPosition(v2->unk_58, &v0);
     CellActor_SetAffineScale(v2->unk_58, &v1);
-    CellActor_SetAffineZRotation(v2->unk_58, sub_0201D2A4((v2->unk_38) / FX32_ONE));
+    CellActor_SetAffineZRotation(v2->unk_58, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
     CellActor_SetDrawFlag(v2->unk_58, 1);
 }
 
@@ -2426,8 +2426,8 @@ static int ov6_022455C4(UnkStruct_ov6_02249198 *param0)
         param0->unk_4C += 0x4000;
     }
 
-    param0->unk_14.x = sub_0201D264(315) * ((param0->unk_48) / FX32_ONE);
-    param0->unk_14.y = sub_0201D250((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.x = CalcCosineDegrees_Wraparound(315) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.y = CalcSineDegrees_Wraparound((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
 
     if (((param0->unk_40) / FX32_ONE) < 270) {
         param0->unk_40 += 0x4000;
@@ -2452,7 +2452,7 @@ static int ov6_022455C4(UnkStruct_ov6_02249198 *param0)
         param0->unk_38 = 0;
     }
 
-    CellActor_SetAffineZRotation(v1, sub_0201D2A4((param0->unk_38) / FX32_ONE));
+    CellActor_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
@@ -2498,15 +2498,15 @@ static void ov6_022456D4(UnkStruct_ov6_02243FFC *param0)
     v2->unk_40 = (FX32_ONE * 225);
     v2->unk_48 = (FX32_ONE * (128 + 64));
     v2->unk_4C = (FX32_ONE * 32);
-    v2->unk_14.x = sub_0201D264(315) * ((v2->unk_48) / FX32_ONE);
-    v2->unk_14.y = sub_0201D250((v2->unk_40) / FX32_ONE) * ((v2->unk_48) / FX32_ONE);
+    v2->unk_14.x = CalcCosineDegrees_Wraparound(315) * ((v2->unk_48) / FX32_ONE);
+    v2->unk_14.y = CalcSineDegrees_Wraparound((v2->unk_40) / FX32_ONE) * ((v2->unk_48) / FX32_ONE);
 
     v0.x = v2->unk_08.x + v2->unk_14.x;
     v0.y = v2->unk_08.y + v2->unk_14.y;
 
     CellActor_SetPosition(v2->unk_58, &v0);
     CellActor_SetAffineScale(v2->unk_58, &v1);
-    CellActor_SetAffineZRotation(v2->unk_58, sub_0201D2A4((v2->unk_38) / FX32_ONE));
+    CellActor_SetAffineZRotation(v2->unk_58, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
     CellActor_SetDrawFlag(v2->unk_58, 1);
 
     v2->unk_60 = ov6_02245B4C(param0->unk_244, param0->unk_248);
@@ -2525,7 +2525,7 @@ static void ov6_022456D4(UnkStruct_ov6_02243FFC *param0)
         CellActor_SetAffineOverwriteMode(v3, 2);
         CellActor_SetAffineTranslation(v3, &v4);
         CellActor_SetAffineScale(v3, &v5);
-        CellActor_SetAffineZRotation(v3, sub_0201D2A4(0));
+        CellActor_SetAffineZRotation(v3, CalcAngleRotationIdx_Wraparound(0));
     }
 }
 
@@ -2548,8 +2548,8 @@ static int ov6_02245840(UnkStruct_ov6_02249198 *param0)
         param0->unk_4C = 0x1000;
     }
 
-    param0->unk_14.x = sub_0201D264(315) * ((param0->unk_48) / FX32_ONE);
-    param0->unk_14.y = sub_0201D250((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.x = CalcCosineDegrees_Wraparound(315) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.y = CalcSineDegrees_Wraparound((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
 
     if (((param0->unk_40) / FX32_ONE) < 270) {
         param0->unk_40 += 0x4000;
@@ -2574,7 +2574,7 @@ static int ov6_02245840(UnkStruct_ov6_02249198 *param0)
         param0->unk_38 = (FX32_ONE * 360);
     }
 
-    CellActor_SetAffineZRotation(v1, sub_0201D2A4((param0->unk_38) / FX32_ONE));
+    CellActor_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
@@ -2657,8 +2657,8 @@ static int ov6_02245A0C(UnkStruct_ov6_02249198 *param0)
         param0->unk_4C = (FX32_ONE * 16);
     }
 
-    param0->unk_14.x = sub_0201D264((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
-    param0->unk_14.y = sub_0201D250(128) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.x = CalcCosineDegrees_Wraparound((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
+    param0->unk_14.y = CalcSineDegrees_Wraparound(128) * ((param0->unk_48) / FX32_ONE);
 
     if (param0->unk_40 < (FX32_ONE * 135)) {
         param0->unk_40 += 0x1000;
