@@ -14,12 +14,12 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
+#include "math.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     MapObject *unk_00;

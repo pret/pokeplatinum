@@ -7,8 +7,8 @@
 
 #include "core_sys.h"
 #include "heap.h"
+#include "math.h"
 #include "sys_task_manager.h"
-#include "unk_0201D15C.h"
 #include "unk_02024358.h"
 
 typedef struct {

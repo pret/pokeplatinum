@@ -15,6 +15,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "math.h"
 #include "message.h"
 #include "palette.h"
 #include "strbuf.h"
@@ -24,7 +25,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_0201D15C.h"
 #include "unk_0208B284.h"
 
 static void ov62_02234A10(UnkStruct_0208C06C *param0);

@@ -15,14 +15,12 @@
 #include "heap.h"
 #include "location.h"
 #include "map_header.h"
+#include "math.h"
 #include "narc.h"
 #include "palette.h"
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "system_flags.h"
-#include "unk_0201D15C.h"
-#include "vars_flags.h"
 
 static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *);
 static inline void inline_ov61_0222C3B0_sub(SysTask *, void *);

@@ -5,7 +5,7 @@
 
 #include "gx_layers.h"
 #include "heap.h"
-#include "unk_0201D15C.h"
+#include "math.h"
 
 static u8 ConvertToGxBgScreenSize(u8 bgScreenSize, u8 bgType);
 static void GetBgScreenTileDimensions(u8 bgScreenSize, u8 *outXTiles, u8 *outYTiles);

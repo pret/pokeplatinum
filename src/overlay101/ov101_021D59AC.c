@@ -14,10 +14,10 @@
 
 #include "cell_actor.h"
 #include "enums.h"
+#include "math.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0201D15C.h"
 #include "unk_020711EC.h"
 
 typedef struct {

@@ -26,6 +26,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "sprite_resource.h"
 #include "touch_screen.h"
@@ -34,7 +35,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
-#include "unk_0201D15C.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
 

@@ -18,6 +18,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object.h"
+#include "math.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "pokemon.h"
@@ -29,7 +30,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_0201D15C.h"
 #include "unk_0205D8CC.h"
 #include "unk_020711EC.h"
 

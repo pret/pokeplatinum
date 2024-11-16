@@ -22,8 +22,8 @@
 
 #include "core_sys.h"
 #include "heap.h"
+#include "math.h"
 #include "unk_02005474.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     fx32 unk_00;

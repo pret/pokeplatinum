@@ -9,12 +9,12 @@
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201D15C.h"
 
 typedef struct UnkStruct_ov16_0226DEEC_t {
     CellActorData *unk_00;

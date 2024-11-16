@@ -10,9 +10,9 @@
 #include "overlay006/struct_ov6_022465F4_decl.h"
 #include "savedata/save_table.h"
 
+#include "math.h"
 #include "narc.h"
 #include "rtc.h"
-#include "unk_0201D15C.h"
 #include "unk_0202E2CC.h"
 #include "unk_020559DC.h"
 #include "unk_0206CCB0.h"

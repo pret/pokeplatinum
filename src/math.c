@@ -1,10 +1,6 @@
-#include "unk_0201D15C.h"
-
-#include <nitro.h>
-#include <string.h>
+#include "math.h"
 
 #include "heap.h"
-#include "inlines.h"
 
 typedef struct {
     MATHCRC16Table unk_00;

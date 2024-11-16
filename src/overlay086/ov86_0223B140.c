@@ -24,6 +24,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -44,7 +45,6 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     fx32 unk_00;

@@ -30,12 +30,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object.h"
+#include "math.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0201D15C.h"
 #include "unk_020655F4.h"
 
 void include_unk_ov6_02248F30();

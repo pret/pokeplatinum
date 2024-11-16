@@ -5,7 +5,7 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "unk_0201D15C.h"
+#include "math.h"
 
 #define F32_PI               ((f32)3.14159265358979323846)
 #define FX_F32_RAD_TO_IDX(f) ((u16)(FX_RAD_TO_IDX(FX32_CONST(f))))

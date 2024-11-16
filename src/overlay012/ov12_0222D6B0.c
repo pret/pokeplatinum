@@ -22,10 +22,10 @@
 
 #include "bg_window.h"
 #include "heap.h"
+#include "math.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     u8 unk_00;

@@ -5,9 +5,9 @@
 
 #include "overlay100/struct_ov100_021D4104.h"
 
+#include "math.h"
 #include "sys_task_manager.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     f32 unk_00;

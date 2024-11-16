@@ -5,6 +5,7 @@
 
 #include "field_script_context.h"
 #include "inlines.h"
+#include "math.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -12,7 +13,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_0201D15C.h"
 #include "unk_0203D1B8.h"
 #include "unk_0206CCB0.h"
 

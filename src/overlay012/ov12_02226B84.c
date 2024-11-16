@@ -28,13 +28,13 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math.h"
 #include "palette.h"
 #include "spl.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
-#include "unk_0201D15C.h"
 #include "unk_0201F834.h"
 
 typedef struct {

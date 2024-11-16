@@ -21,11 +21,11 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "math.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_0201D15C.h"
 #include "unk_0202419C.h"
 
 enum {

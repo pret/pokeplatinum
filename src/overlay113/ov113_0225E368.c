@@ -29,11 +29,11 @@
 #include "easy3d_object.h"
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_0201D15C.h"
 
 __attribute__((aligned(4))) static const s16 Unk_ov113_02260BCC[] = {
     0xFF,

@@ -14,8 +14,8 @@
 #include "overlay070/struct_ov70_02261E10_decl.h"
 
 #include "heap.h"
+#include "math.h"
 #include "unk_02005474.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     u16 unk_00;

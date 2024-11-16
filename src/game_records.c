@@ -3,7 +3,7 @@
 #include <nitro.h>
 
 #include "game_records.h"
-#include "unk_0201D15C.h"
+#include "math.h"
 #include "unk_0202631C.h"
 
 #define START_ENCODED_RECORDS RECORD_TRAINER_SCORE

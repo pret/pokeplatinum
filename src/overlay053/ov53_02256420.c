@@ -19,9 +19,9 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
-#include "unk_0201D15C.h"
 
 struct UnkStruct_ov53_02256420_t {
     const UnkStruct_ov53_02256420_1 *unk_00;

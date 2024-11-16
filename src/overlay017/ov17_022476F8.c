@@ -17,6 +17,7 @@
 #include "bg_window.h"
 #include "game_options.h"
 #include "heap.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
@@ -28,7 +29,6 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     u8 *unk_00;

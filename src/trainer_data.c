@@ -12,6 +12,7 @@
 #include "charcode_util.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
@@ -20,7 +21,6 @@
 #include "savedata_misc.h"
 #include "strbuf.h"
 #include "trainer_data.h"
-#include "unk_0201D15C.h"
 
 static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID);
 

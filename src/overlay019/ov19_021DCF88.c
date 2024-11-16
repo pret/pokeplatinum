@@ -16,12 +16,12 @@
 #include "enums.h"
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0201D15C.h"
 #include "unk_020797C8.h"
 
 typedef struct {

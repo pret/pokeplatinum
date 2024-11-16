@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0201D15C_H
-#define POKEPLATINUM_UNK_0201D15C_H
+#ifndef POKEPLATINUM_MATH_H
+#define POKEPLATINUM_MATH_H
 
 #include <nitro/fx/fx.h>
 
@@ -26,4 +26,4 @@ void DecodeData(void *data, u32 size, u32 seed);
 u16 sub_0201D628(const void *param0, u32 param1);
 void sub_0201D640(int param0);
 
-#endif // POKEPLATINUM_UNK_0201D15C_H
+#endif // POKEPLATINUM_MATH_H

@@ -21,8 +21,8 @@
 #include "berry_data.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "math.h"
 #include "poffin.h"
-#include "unk_0201D15C.h"
 #include "unk_0201E3BC.h"
 
 s32 ov83_0223F7F4(int param0, int param1, int param2, int param3, int param4, int param5)

@@ -36,6 +36,7 @@
 #include "error_handling.h"
 #include "font.h"
 #include "graphics.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -44,7 +45,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_0201D15C.h"
 #include "unk_0201E86C.h"
 
 typedef struct {

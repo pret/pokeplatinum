@@ -21,12 +21,12 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     UnkStruct_ov25_022558C4 *unk_00;
