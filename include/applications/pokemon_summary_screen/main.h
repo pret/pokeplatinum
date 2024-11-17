@@ -346,6 +346,15 @@ enum PSSPoffinFeedMsg {
     PSS_MSG_MON_WONT_EAT_MORE = 0xFF,
 };
 
+enum ConditionRect {
+    CONDITION_RECT_Q1 = 0,
+    CONDITION_RECT_Q2,
+    CONDITION_RECT_Q3,
+    CONDITION_RECT_Q4,
+
+    MAX_CONDITION_RECT
+};
+
 // ravetodo move any of these that I can to C file instead
 #define PSS_MOVE_NONE             -1
 #define PSS_SUBSCREEN_BUTTON_NONE 0xFF
@@ -380,8 +389,6 @@ enum PSSPoffinFeedMsg {
 
 #define RIBBONS_PER_ROW  4
 #define RIBBONS_PER_PAGE 12
-
-#define CONDITION_VTX_COUNT 4
 
 typedef struct PokemonSummary {
     void *monData;
@@ -480,9 +487,9 @@ typedef struct PokemonSummaryScreen {
     PokemonSummaryMonData monData;
     PokemonSummaryMonSpriteData monSprite;
 
-    ConditionVtx currVtxs[CONDITION_VTX_COUNT];
-    ConditionVtx deltaVtxs[CONDITION_VTX_COUNT];
-    ConditionVtx maxVtxs[CONDITION_VTX_COUNT];
+    ConditionRectangle currRects[MAX_CONDITION_RECT];
+    ConditionRectangle deltaRects[MAX_CONDITION_RECT];
+    ConditionRectangle maxRects[MAX_CONDITION_RECT];
     u32 conditionState;
 
     SpriteRenderer *renderer;

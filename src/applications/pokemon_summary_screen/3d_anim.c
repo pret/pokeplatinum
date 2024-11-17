@@ -5,6 +5,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/pokemon.h"
+
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02091850.h"
 
@@ -27,104 +29,113 @@ typedef struct {
 
 enum ConditionState {
     CONDITION_STATE_INITIAL = 0,
-
+    // the states inbetween are never referred to directly, but involve drawing the rectangles
     CONDITION_STATE_FINISH_DRAW = 3,
     CONDITION_STATE_FLASH,
 };
 
-static void DrawConditionShape(ConditionVtx *vtx);
+enum ConditionRectVertices {
+    VTX_TOP_LEFT = 0,
+    VTX_TOP_RIGHT,
+    VTX_BOTTOM_LEFT,
+    VTX_BOTTOM_RIGHT,
+
+    MAX_CONDITION_RECT_VTX
+};
+
+static void DrawConditionRects(ConditionRectangle *rect);
 static void UpdateConditionVec(VecFx16 *currVec, VecFx16 *deltaVec);
-static void UpdateConditionShapeOrFlash(PokemonSummaryScreen *summaryScreen);
-static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *vector, u8 statValue);
+static void UpdateConditionRectsOrFlash(PokemonSummaryScreen *summaryScreen);
+static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *outVec, u8 statValue);
 static void SetConditionVecDifference(VecFx16 *startVec, VecFx16 *endVec, VecFx16 *outVec);
 
-static const ConditionVtxBounds sVtxBounds[][CONDITION_VTX_COUNT] = {
-    {
-        {
-            { 0x1412, 0xEC8, 0x0 },
-            { 0x1412, 0x2DF, 0x0 },
-            { 0x0, 0xC, 0x0 },
+static const ConditionVtxBounds sConditionRectBounds[][MAX_CONDITION_RECT_VTX] = {
+    [CONDITION_RECT_Q1] = {
+        [VTX_TOP_LEFT] = {
+            .max = { 5138, 3784, 0 },
+            .min = { 5138, 735, 0 },
+            .valueLength = { 0, 12, 0 },
         },
-        {
-            { 0x2098, 0x3C5, 0x0 },
-            { 0x15A2, 0x17F, 0x0 },
-            { 0xB, 0x2, 0x0 },
+        [VTX_TOP_RIGHT] = {
+            .max = { 8344, 965, 0 },
+            .min = { 5538, 383, 0 },
+            .valueLength = { 11, 2, 0 },
         },
-        {
-            { 0x1BA7, 0xFFFFFFFFFFFFF475, 0x0 },
-            { 0x1504, 0xFFFFFFFFFFFFFF96, 0x0 },
-            { 0x7, 0xFFFFFFFFFFFFFFF5, 0x0 },
+        [VTX_BOTTOM_LEFT] = {
+            .max = { 7079, -2955, 0 },
+            .min = { 5380, -106, 0 },
+            .valueLength = { 7, -11, 0 },
         },
-        {
-            { 0x1412, 0x12C, 0x0 },
-            { 0x1412, 0x12C, 0x0 },
-            { 0x0, 0x0, 0x0 },
-        },
-    },
-    {
-        {
-            { 0x733, 0x3C5, 0x0 },
-            { 0x1225, 0x17F, 0x0 },
-            { 0xFFFFFFFFFFFFFFF5, 0x2, 0x0 },
-        },
-        {
-            { 0x13B5, 0xEC8, 0x0 },
-            { 0x13B5, 0x2DF, 0x0 },
-            { 0x0, 0xC, 0x0 },
-        },
-        {
-            { 0x13B5, 0x12C, 0x0 },
-            { 0x13B5, 0x12C, 0x0 },
-            { 0x0, 0x0, 0x0 },
-        },
-        {
-            { 0xC22, 0xFFFFFFFFFFFFF475, 0x0 },
-            { 0x12C3, 0xFFFFFFFFFFFFFF96, 0x0 },
-            { 0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFF5, 0x0 },
+        [VTX_BOTTOM_RIGHT] = {
+            .max = { 5138, 300, 0 },
+            .min = { 5138, 300, 0 },
+            .valueLength = { 0, 0, 0 },
         },
     },
-    {
-        {
-            { 0x733, 0x3C5, 0x0 },
-            { 0x1225, 0x17F, 0x0 },
-            { 0xFFFFFFFFFFFFFFF5, 0x2, 0x0 },
+    [CONDITION_RECT_Q2] = {
+        [VTX_TOP_LEFT] = {
+            .max = { 1843, 965, 0 },
+            .min = { 4645, 383, 0 },
+            .valueLength = { -11, 2, 0 },
         },
-        {
-            { 0x13B5, 0x12C, 0x0 },
-            { 0x13B5, 0x12C, 0x0 },
-            { 0x0, 0x0, 0x0 },
+        [VTX_TOP_RIGHT] = {
+            .max = { 5045, 3784, 0 },
+            .min = { 5045, 735, 0 },
+            .valueLength = { 0, 12, 0 },
         },
-        {
-            { 0x1BA7, 0xFFFFFFFFFFFFF475, 0x0 },
-            { 0x14B3, 0xFFFFFFFFFFFFFF96, 0x0 },
-            { 0x7, 0xFFFFFFFFFFFFFFF5, 0x0 },
+        [VTX_BOTTOM_LEFT] = {
+            .max = { 5045, 300, 0 },
+            .min = { 5045, 300, 0 },
+            .valueLength = { 0, 0, 0 },
         },
-        {
-            { 0xC22, 0xFFFFFFFFFFFFF475, 0x0 },
-            { 0x12C3, 0xFFFFFFFFFFFFFF96, 0x0 },
-            { 0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFF5, 0x0 },
+        [VTX_BOTTOM_RIGHT] = {
+            .max = { 3106, -2955, 0 },
+            .min = { 4803, -106, 0 },
+            .valueLength = { -7, -11, 0 },
         },
     },
-    {
-        {
-            { 0x1412, 0x12C, 0x0 },
-            { 0x1412, 0x12C, 0x0 },
-            { 0x0, 0x0, 0x0 },
+    [CONDITION_RECT_Q3] = {
+        [VTX_TOP_LEFT] = {
+            .max = { 1843, 965, 0 },
+            .min = { 4645, 383, 0 },
+            .valueLength = { -11, 2, 0 },
         },
-        {
-            { 0x2098, 0x3C5, 0x0 },
-            { 0x15A2, 0x17F, 0x0 },
-            { 0xB, 0x2, 0x0 },
+        [VTX_TOP_RIGHT] = {
+            .max = { 5045, 300, 0 },
+            .min = { 5045, 300, 0 },
+            .valueLength = { 0, 0, 0 },
         },
-        {
-            { 0x1BA7, 0xFFFFFFFFFFFFF475, 0x0 },
-            { 0x1504, 0xFFFFFFFFFFFFFF96, 0x0 },
-            { 0x7, 0xFFFFFFFFFFFFFFF5, 0x0 },
+        [VTX_BOTTOM_LEFT] = {
+            .max = { 7079, -2955, 0 },
+            .min = { 5299, -106, 0 },
+            .valueLength = { 7, -11, 0 },
         },
-        {
-            { 0xC22, 0xFFFFFFFFFFFFF475, 0x0 },
-            { 0x1314, 0xFFFFFFFFFFFFFF96, 0x0 },
-            { 0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFF5, 0x0 },
+        [VTX_BOTTOM_RIGHT] = {
+            .max = { 3106, -2955, 0 },
+            .min = { 4803, -106, 0 },
+            .valueLength = { -7, -11, 0 },
+        },
+    },
+    [CONDITION_RECT_Q4] = {
+        [VTX_TOP_LEFT] = {
+            .max = { 5138, 300, 0 },
+            .min = { 5138, 300, 0 },
+            .valueLength = { 0, 0, 0 },
+        },
+        [VTX_TOP_RIGHT] = {
+            .max = { 8344, 965, 0 },
+            .min = { 5538, 383, 0 },
+            .valueLength = { 11, 2, 0 },
+        },
+        [VTX_BOTTOM_LEFT] = {
+            .max = { 7079, -2955, 0 },
+            .min = { 5380, -106, 0 },
+            .valueLength = { 7, -11, 0 },
+        },
+        [VTX_BOTTOM_RIGHT] = {
+            .max = { 3106, -2955, 0 },
+            .min = { 4884, -106, 0 },
+            .valueLength = { -7, -11, 0 },
         },
     },
 };
@@ -162,9 +173,9 @@ void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
         G3_Identity();
 
         NNS_G3dGlbFlush();
-        DrawConditionShape(summaryScreen->currVtxs);
+        DrawConditionRects(summaryScreen->currRects);
         NNS_G3dGlbFlush();
-        UpdateConditionShapeOrFlash(summaryScreen);
+        UpdateConditionRectsOrFlash(summaryScreen);
     }
 
     NNS_G2dSetupSoftwareSpriteCamera();
@@ -196,20 +207,20 @@ void PokemonSummaryScreen_SetupCamera(PokemonSummaryScreen *summaryScreen)
     Camera_SetAsActive(summaryScreen->monSprite.camera);
 }
 
-static void DrawConditionShape(ConditionVtx *vtx)
+static void DrawConditionRects(ConditionRectangle *rects)
 {
     G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, 18, 20, 0);
     G3_Begin(GX_BEGIN_QUADS);
 
-    for (u32 i = 0; i < CONDITION_VTX_COUNT; i++) {
+    for (u32 i = 0; i < MAX_CONDITION_RECT; i++) {
         G3_Color(GX_RGB(8, 31, 15));
-        G3_Vtx(vtx[i].unk_00.x, vtx[i].unk_00.y, vtx[i].unk_00.z);
+        G3_Vtx(rects[i].topLeft.x, rects[i].topLeft.y, rects[i].topLeft.z);
         G3_Color(GX_RGB(8, 31, 15));
-        G3_Vtx(vtx[i].unk_06.x, vtx[i].unk_06.y, vtx[i].unk_06.z);
+        G3_Vtx(rects[i].topRight.x, rects[i].topRight.y, rects[i].topRight.z);
         G3_Color(GX_RGB(8, 31, 15));
-        G3_Vtx(vtx[i].unk_12.x, vtx[i].unk_12.y, vtx[i].unk_12.z);
+        G3_Vtx(rects[i].bottomRight.x, rects[i].bottomRight.y, rects[i].bottomRight.z);
         G3_Color(GX_RGB(8, 31, 15));
-        G3_Vtx(vtx[i].unk_0C.x, vtx[i].unk_0C.y, vtx[i].unk_0C.z);
+        G3_Vtx(rects[i].bottomLeft.x, rects[i].bottomLeft.y, rects[i].bottomLeft.z);
     }
 
     G3_End();
@@ -222,25 +233,25 @@ static void UpdateConditionVec(VecFx16 *currVec, VecFx16 *deltaVec)
     currVec->z += deltaVec->z;
 }
 
-static void UpdateConditionShapeOrFlash(PokemonSummaryScreen *summaryScreen)
+static void UpdateConditionRectsOrFlash(PokemonSummaryScreen *summaryScreen)
 {
-    u32 i;
-
     if (summaryScreen->conditionState == CONDITION_STATE_FLASH) {
         PokemonSummaryScreen_UpdateConditionFlashAnim(summaryScreen);
         return;
     }
 
+    u32 i;
+
     if (summaryScreen->conditionState == CONDITION_STATE_FINISH_DRAW) {
-        for (i = 0; i < CONDITION_VTX_COUNT; i++) {
-            summaryScreen->currVtxs[i] = summaryScreen->maxVtxs[i];
+        for (i = 0; i < MAX_CONDITION_RECT; i++) {
+            summaryScreen->currRects[i] = summaryScreen->maxRects[i];
         }
     } else {
-        for (i = 0; i < CONDITION_VTX_COUNT; i++) {
-            UpdateConditionVec(&summaryScreen->currVtxs[i].unk_00, &summaryScreen->deltaVtxs[i].unk_00);
-            UpdateConditionVec(&summaryScreen->currVtxs[i].unk_06, &summaryScreen->deltaVtxs[i].unk_06);
-            UpdateConditionVec(&summaryScreen->currVtxs[i].unk_0C, &summaryScreen->deltaVtxs[i].unk_0C);
-            UpdateConditionVec(&summaryScreen->currVtxs[i].unk_12, &summaryScreen->deltaVtxs[i].unk_12);
+        for (i = 0; i < MAX_CONDITION_RECT; i++) {
+            UpdateConditionVec(&summaryScreen->currRects[i].topLeft, &summaryScreen->deltaRects[i].topLeft);
+            UpdateConditionVec(&summaryScreen->currRects[i].topRight, &summaryScreen->deltaRects[i].topRight);
+            UpdateConditionVec(&summaryScreen->currRects[i].bottomLeft, &summaryScreen->deltaRects[i].bottomLeft);
+            UpdateConditionVec(&summaryScreen->currRects[i].bottomRight, &summaryScreen->deltaRects[i].bottomRight);
         }
     }
 
@@ -253,45 +264,45 @@ static void UpdateConditionShapeOrFlash(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-void PokemonSummaryScreen_InitConditionShape(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_InitConditionRects(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->page != PSS_PAGE_CONDITION) {
         return;
     }
 
-    summaryScreen->currVtxs[0].unk_00 = sVtxBounds[0][3].min;
-    summaryScreen->currVtxs[0].unk_06 = sVtxBounds[0][3].min;
-    summaryScreen->currVtxs[0].unk_0C = sVtxBounds[0][3].min;
-    summaryScreen->currVtxs[0].unk_12 = sVtxBounds[0][3].min;
+    summaryScreen->currRects[CONDITION_RECT_Q1].topLeft = sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_RIGHT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q1].topRight = sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_RIGHT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q1].bottomLeft = sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_RIGHT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q1].bottomRight = sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_RIGHT].min;
 
-    summaryScreen->currVtxs[1].unk_00 = sVtxBounds[1][2].min;
-    summaryScreen->currVtxs[1].unk_06 = sVtxBounds[1][2].min;
-    summaryScreen->currVtxs[1].unk_0C = sVtxBounds[1][2].min;
-    summaryScreen->currVtxs[1].unk_12 = sVtxBounds[1][2].min;
+    summaryScreen->currRects[CONDITION_RECT_Q2].topLeft = sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_LEFT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q2].topRight = sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_LEFT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q2].bottomLeft = sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_LEFT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q2].bottomRight = sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_LEFT].min;
 
-    summaryScreen->currVtxs[2].unk_00 = sVtxBounds[2][1].min;
-    summaryScreen->currVtxs[2].unk_06 = sVtxBounds[2][1].min;
-    summaryScreen->currVtxs[2].unk_0C = sVtxBounds[2][1].min;
-    summaryScreen->currVtxs[2].unk_12 = sVtxBounds[2][1].min;
+    summaryScreen->currRects[CONDITION_RECT_Q3].topLeft = sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_RIGHT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q3].topRight = sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_RIGHT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q3].bottomLeft = sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_RIGHT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q3].bottomRight = sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_RIGHT].min;
 
-    summaryScreen->currVtxs[3].unk_00 = sVtxBounds[3][0].min;
-    summaryScreen->currVtxs[3].unk_06 = sVtxBounds[3][0].min;
-    summaryScreen->currVtxs[3].unk_0C = sVtxBounds[3][0].min;
-    summaryScreen->currVtxs[3].unk_12 = sVtxBounds[3][0].min;
+    summaryScreen->currRects[CONDITION_RECT_Q4].topLeft = sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_LEFT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q4].topRight = sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_LEFT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q4].bottomLeft = sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_LEFT].min;
+    summaryScreen->currRects[CONDITION_RECT_Q4].bottomRight = sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_LEFT].min;
 
-    PokemonSummaryScreen_InitMaxAndDeltaConditionShape(summaryScreen);
+    PokemonSummaryScreen_InitMaxAndDeltaConditionRects(summaryScreen);
 }
 
-static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *vec, u8 statValue)
+static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *outVec, u8 statValue)
 {
-    if (statValue == 0xFF) {
-        *vec = bounds->max;
+    if (statValue == MAX_CONTEST_STAT) {
+        *outVec = bounds->max;
     } else if (statValue == 0) {
-        *vec = bounds->min;
+        *outVec = bounds->min;
     } else {
-        vec->x = bounds->min.x + bounds->valueLength.x * statValue;
-        vec->y = bounds->min.y + bounds->valueLength.y * statValue;
-        vec->z = bounds->min.z + bounds->valueLength.z * statValue;
+        outVec->x = bounds->min.x + bounds->valueLength.x * statValue;
+        outVec->y = bounds->min.y + bounds->valueLength.y * statValue;
+        outVec->z = bounds->min.z + bounds->valueLength.z * statValue;
     }
 }
 
@@ -302,33 +313,33 @@ static void SetConditionVecDifference(VecFx16 *startVec, VecFx16 *endVec, VecFx1
     outVec->z = FX_F32_TO_FX16(FX_FX16_TO_F32(endVec->z - startVec->z) / 4);
 }
 
-void PokemonSummaryScreen_InitMaxAndDeltaConditionShape(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_InitMaxAndDeltaConditionRects(PokemonSummaryScreen *summaryScreen)
 {
-    SetConditionVecFromStat(&sVtxBounds[0][0], &summaryScreen->maxVtxs[0].unk_00, summaryScreen->monData.cool);
-    SetConditionVecFromStat(&sVtxBounds[0][1], &summaryScreen->maxVtxs[0].unk_06, summaryScreen->monData.beauty);
-    SetConditionVecFromStat(&sVtxBounds[0][2], &summaryScreen->maxVtxs[0].unk_12, summaryScreen->monData.cute);
-    SetConditionVecFromStat(&sVtxBounds[0][3], &summaryScreen->maxVtxs[0].unk_0C, 0);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_TOP_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q1].topLeft, summaryScreen->monData.cool);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_TOP_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q1].topRight, summaryScreen->monData.beauty);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q1].bottomRight, summaryScreen->monData.cute);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q1].bottomLeft, 0);
 
-    SetConditionVecFromStat(&sVtxBounds[1][0], &summaryScreen->maxVtxs[1].unk_00, summaryScreen->monData.tough);
-    SetConditionVecFromStat(&sVtxBounds[1][1], &summaryScreen->maxVtxs[1].unk_06, summaryScreen->monData.cool);
-    SetConditionVecFromStat(&sVtxBounds[1][2], &summaryScreen->maxVtxs[1].unk_12, 0);
-    SetConditionVecFromStat(&sVtxBounds[1][3], &summaryScreen->maxVtxs[1].unk_0C, summaryScreen->monData.smart);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q2][VTX_TOP_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q2].topLeft, summaryScreen->monData.tough);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q2][VTX_TOP_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q2].topRight, summaryScreen->monData.cool);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q2].bottomRight, 0);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q2].bottomLeft, summaryScreen->monData.smart);
 
-    SetConditionVecFromStat(&sVtxBounds[2][0], &summaryScreen->maxVtxs[2].unk_00, summaryScreen->monData.tough);
-    SetConditionVecFromStat(&sVtxBounds[2][1], &summaryScreen->maxVtxs[2].unk_06, 0);
-    SetConditionVecFromStat(&sVtxBounds[2][2], &summaryScreen->maxVtxs[2].unk_12, summaryScreen->monData.cute);
-    SetConditionVecFromStat(&sVtxBounds[2][3], &summaryScreen->maxVtxs[2].unk_0C, summaryScreen->monData.smart);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q3].topLeft, summaryScreen->monData.tough);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q3].topRight, 0);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q3][VTX_BOTTOM_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q3].bottomRight, summaryScreen->monData.cute);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q3][VTX_BOTTOM_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q3].bottomLeft, summaryScreen->monData.smart);
 
-    SetConditionVecFromStat(&sVtxBounds[3][0], &summaryScreen->maxVtxs[3].unk_00, 0);
-    SetConditionVecFromStat(&sVtxBounds[3][1], &summaryScreen->maxVtxs[3].unk_06, summaryScreen->monData.beauty);
-    SetConditionVecFromStat(&sVtxBounds[3][2], &summaryScreen->maxVtxs[3].unk_12, summaryScreen->monData.cute);
-    SetConditionVecFromStat(&sVtxBounds[3][3], &summaryScreen->maxVtxs[3].unk_0C, summaryScreen->monData.smart);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q4].topLeft, 0);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q4].topRight, summaryScreen->monData.beauty);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q4][VTX_BOTTOM_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q4].bottomRight, summaryScreen->monData.cute);
+    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q4][VTX_BOTTOM_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q4].bottomLeft, summaryScreen->monData.smart);
 
-    for (u32 i = 0; i < CONDITION_VTX_COUNT; i++) {
-        SetConditionVecDifference(&summaryScreen->currVtxs[i].unk_00, &summaryScreen->maxVtxs[i].unk_00, &summaryScreen->deltaVtxs[i].unk_00);
-        SetConditionVecDifference(&summaryScreen->currVtxs[i].unk_06, &summaryScreen->maxVtxs[i].unk_06, &summaryScreen->deltaVtxs[i].unk_06);
-        SetConditionVecDifference(&summaryScreen->currVtxs[i].unk_0C, &summaryScreen->maxVtxs[i].unk_0C, &summaryScreen->deltaVtxs[i].unk_0C);
-        SetConditionVecDifference(&summaryScreen->currVtxs[i].unk_12, &summaryScreen->maxVtxs[i].unk_12, &summaryScreen->deltaVtxs[i].unk_12);
+    for (u32 i = 0; i < MAX_CONDITION_RECT; i++) {
+        SetConditionVecDifference(&summaryScreen->currRects[i].topLeft, &summaryScreen->maxRects[i].topLeft, &summaryScreen->deltaRects[i].topLeft);
+        SetConditionVecDifference(&summaryScreen->currRects[i].topRight, &summaryScreen->maxRects[i].topRight, &summaryScreen->deltaRects[i].topRight);
+        SetConditionVecDifference(&summaryScreen->currRects[i].bottomLeft, &summaryScreen->maxRects[i].bottomLeft, &summaryScreen->deltaRects[i].bottomLeft);
+        SetConditionVecDifference(&summaryScreen->currRects[i].bottomRight, &summaryScreen->maxRects[i].bottomRight, &summaryScreen->deltaRects[i].bottomRight);
     }
 
     summaryScreen->conditionState = CONDITION_STATE_INITIAL;

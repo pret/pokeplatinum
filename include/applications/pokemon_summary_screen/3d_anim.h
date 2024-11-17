@@ -3,12 +3,12 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 
-void PokemonSummaryScreen_Setup3DGfx(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_Setup3DGfx(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_FreeCameraAndSpriteData(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_SetupCamera(PokemonSummaryScreen *summaryScreen);
-void PokemonSummaryScreen_InitConditionShape(PokemonSummaryScreen *summaryScreen);
-void PokemonSummaryScreen_InitMaxAndDeltaConditionShape(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_InitConditionRects(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_InitMaxAndDeltaConditionRects(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_ChangeMonSprite(PokemonSummaryScreen *summaryScreen);

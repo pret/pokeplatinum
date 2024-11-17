@@ -932,7 +932,7 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
             PokemonSummaryScreen_PrintPoffinFeedMsg(summaryScreen, PSS_MSG_NOTHING_CHANGED);
             return PSS_STATE_WAIT_FINISH_POFFIN_FEED;
         } else {
-            PokemonSummaryScreen_InitMaxAndDeltaConditionShape(summaryScreen);
+            PokemonSummaryScreen_InitMaxAndDeltaConditionRects(summaryScreen);
             PokemonSummaryScreen_InitSheenSprites(summaryScreen);
             PokemonSummaryScreen_UpdateConditionArrowSprites(summaryScreen);
             return PSS_STATE_PRINT_CONTEST_STAT_MSGS;
@@ -1162,7 +1162,7 @@ static void SetupInitialPageGfx(PokemonSummaryScreen *summaryScreen)
     PokemonSummaryScreen_AddExtraWindows(summaryScreen);
     PokemonSummaryScreen_DrawExtraWindows(summaryScreen);
     LoadCurrentPageTilemap(summaryScreen);
-    PokemonSummaryScreen_InitConditionShape(summaryScreen);
+    PokemonSummaryScreen_InitConditionRects(summaryScreen);
 
     if (summaryScreen->data->mode == PSS_MODE_SELECT_MOVE) {
         SetupMoveInfoNoTransition(summaryScreen);
@@ -1252,7 +1252,7 @@ static void SetupPageFromSubscreenButton(PokemonSummaryScreen *summaryScreen, u8
     Bg_CopyTilemapBufferToVRAM(summaryScreen->bgConfig, BG_LAYER_MAIN_1);
     PokemonSummaryScreen_DrawExtraWindows(summaryScreen);
     LoadCurrentPageTilemap(summaryScreen);
-    PokemonSummaryScreen_InitConditionShape(summaryScreen);
+    PokemonSummaryScreen_InitConditionRects(summaryScreen);
 
     // this code path is also never reached
     if (summaryScreen->data->mode == PSS_MODE_SELECT_MOVE) {
@@ -1434,7 +1434,7 @@ static void ChangeSummaryMon(PokemonSummaryScreen *summaryScreen, s8 delta)
     } else if (summaryScreen->page == PSS_PAGE_SKILLS) {
         DrawHealthBar(summaryScreen);
     } else if (summaryScreen->page == PSS_PAGE_CONDITION) {
-        PokemonSummaryScreen_InitMaxAndDeltaConditionShape(summaryScreen);
+        PokemonSummaryScreen_InitMaxAndDeltaConditionRects(summaryScreen);
     }
 
     PokemonSummaryScreen_ChangeMonSprite(summaryScreen);
