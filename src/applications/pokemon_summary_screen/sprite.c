@@ -87,6 +87,35 @@ enum ConditionFlashBounds {
 #define MOVE_CATEGORY_ICON_X 108
 #define MOVE_CATEGORY_ICON_Y 72
 
+// contest stat dot position info for the contest move info
+#define COOL_MAX_X 88
+#define COOL_MIN_X 88
+#define COOL_MAX_Y 49
+#define COOL_MIN_Y 73
+
+#define BEAUTY_MAX_X 110
+#define BEAUTY_MIN_X 88
+#define BEAUTY_MAX_Y 65
+#define BEAUTY_MIN_Y 73
+
+#define CUTE_MAX_X 103
+#define CUTE_MIN_X 88
+#define CUTE_MAX_Y 92
+#define CUTE_MIN_Y 73
+
+#define SMART_MAX_X 72
+#define SMART_MIN_X 87
+#define SMART_MAX_Y 92
+#define SMART_MIN_Y 73
+
+#define TOUGH_MAX_X 65
+#define TOUGH_MIN_X 87
+#define TOUGH_MAX_Y 65
+#define TOUGH_MIN_Y 73
+
+#define DOT_MAX_POS 300
+#define DOT_MIN_POS 44
+
 static const UnkStruct_ov7_0224F358 Unk_020F41A8[] = {
     [PSS_SPRITE_TAB_INFO] = { 0x1, 0x80, 0x18, 0x0, 0x0, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     [PSS_SPRITE_TAB_MEMO] = { 0x1, 0x90, 0x18, 0x0, 0x1, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
@@ -717,34 +746,6 @@ void PokemonSummaryScreen_ShowMonIcon(PokemonSummaryScreen *summaryScreen)
 
     SpriteActor_DrawSprite(summaryScreen->sprites[PSS_SPRITE_MON_ICON], TRUE);
 }
-
-#define COOL_MAX_X 88
-#define COOL_MIN_X 88
-#define COOL_MAX_Y 49
-#define COOL_MIN_Y 73
-
-#define BEAUTY_MAX_X 110
-#define BEAUTY_MIN_X 88
-#define BEAUTY_MAX_Y 65
-#define BEAUTY_MIN_Y 73
-
-#define CUTE_MAX_X 103
-#define CUTE_MIN_X 88
-#define CUTE_MAX_Y 92
-#define CUTE_MIN_Y 73
-
-#define SMART_MAX_X 72
-#define SMART_MIN_X 87
-#define SMART_MAX_Y 92
-#define SMART_MIN_Y 73
-
-#define TOUGH_MAX_X 65
-#define TOUGH_MIN_X 87
-#define TOUGH_MAX_Y 65
-#define TOUGH_MIN_Y 73
-
-#define DOT_MAX_POS 300
-#define DOT_MIN_POS 44
 
 static s16 CalcContestStatDotPos(u32 statValue, s16 max, s16 min)
 {
