@@ -24,6 +24,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 
 enum PSSMode {
@@ -49,29 +50,6 @@ enum PSSPage {
     PSS_PAGE_NONE = 0xFF
 };
 
-enum PSSState {
-    PSS_STATE_TRANSITION_IN = 0,
-    PSS_STATE_WAIT_TRANSITION,
-    PSS_STATE_HANDLE_INPUT,
-    PSS_STATE_SETUP_BATTLE_MOVE_INFO,
-    PSS_STATE_HIDE_BATTLE_MOVE_INFO,
-    PSS_STATE_SETUP_CONTEST_MOVE_INFO,
-    PSS_STATE_HIDE_CONTEST_MOVE_INFO,
-    PSS_STATE_MOVE_SELECT,
-    PSS_STATE_MOVE_SWAP,
-    PSS_STATE_LEARN_MOVE,
-    PSS_STATE_WAIT_HM_MSG_INPUT,
-    PSS_STATE_SETUP_RIBBON_INFO,
-    PSS_STATE_HIDE_RIBBON_INFO,
-    PSS_STATE_RIBBON_SELECT,
-    PSS_STATE_SUBSCREEN_INPUT,
-    PSS_STATE_SETUP_POFFIN_FEED,
-    PSS_STATE_PRINT_CONTEST_STAT_MSGS,
-    PSS_STATE_WAIT_FINISH_POFFIN_FEED,
-    PSS_STATE_TRANSITION_OUT,
-    PSS_STATE_WAIT_EXIT,
-};
-
 enum PSSDataType {
     PSS_DATA_MON = 0,
     PSS_DATA_PARTY_MON,
@@ -81,13 +59,6 @@ enum PSSDataType {
 enum PSSReturnMode {
     PSS_RETURN_SELECT = 0,
     PSS_RETURN_CANCEL,
-};
-
-// todo: consolidate this with more generic ones if this scheme is used elsewhere
-enum PSSTextAlignment {
-    PSS_ALIGNMENT_LEFT = 0,
-    PSS_ALIGNMENT_RIGHT,
-    PSS_ALIGNMENT_CENTER,
 };
 
 enum PSSSubscreenType {
@@ -274,15 +245,11 @@ enum PSSSprite {
     PSS_CONDITION_ARROW_SPRITES_END = PSS_SPRITE_CONDITION_ARROW_TOUGH,
 
     PSS_SPRITE_A_BUTTON,
-
-    PSS_CONTEST_STAT_DOT_START,
-    PSS_SPRITE_CONTEST_STAT_DOT_COOL = PSS_CONTEST_STAT_DOT_START,
+    PSS_SPRITE_CONTEST_STAT_DOT_COOL,
     PSS_SPRITE_CONTEST_STAT_DOT_BEAUTY,
     PSS_SPRITE_CONTEST_STAT_DOT_CUTE,
     PSS_SPRITE_CONTEST_STAT_DOT_SMART,
     PSS_SPRITE_CONTEST_STAT_DOT_TOUGH,
-    PSS_CONTEST_STAT_DOT_END = PSS_SPRITE_CONTEST_STAT_DOT_TOUGH,
-
     PSS_SPRITE_SHINY_ICON,
     PSS_SPRITE_POKERUS_CURED_ICON,
 
@@ -325,27 +292,6 @@ enum PSSPokerusState {
     PSS_POKERUS_CURED,
 };
 
-// the summary screen refers to the contest stats in the order they appear in the condition
-// screen clock-wise, not the order used elsewhere
-enum PSSContestType {
-    PSS_CONTEST_TYPE_COOL = 0,
-    PSS_CONTEST_TYPE_BEAUTY,
-    PSS_CONTEST_TYPE_CUTE,
-    PSS_CONTEST_TYPE_SMART,
-    PSS_CONTEST_TYPE_TOUGH,
-};
-
-enum PSSPoffinFeedMsg {
-    PSS_MSG_COOLNESS_ENHANCED = 0,
-    PSS_MSG_BEAUTY_ENHANCED,
-    PSS_MSG_CUTENESS_ENHANCED,
-    PSS_MSG_SMARTNESS_ENHANCED,
-    PSS_MSG_TOUGHNESS_ENHANCED,
-
-    PSS_MSG_NOTHING_CHANGED = 0xFE,
-    PSS_MSG_MON_WONT_EAT_MORE = 0xFF,
-};
-
 enum ConditionRect {
     CONDITION_RECT_Q1 = 0,
     CONDITION_RECT_Q2,
@@ -355,40 +301,16 @@ enum ConditionRect {
     MAX_CONDITION_RECT
 };
 
-// ravetodo move any of these that I can to C file instead
-#define PSS_MOVE_NONE             -1
 #define PSS_SUBSCREEN_BUTTON_NONE 0xFF
-
-#define MAX_MARKINGS      6
-#define MAX_SHEEN_SPRITES PSS_SHEEN_SPRITES_END - PSS_SHEEN_SPRITES_START + 1
-#define MAX_CONDITION_ARROW_SPRITES PSS_CONDITION_ARROW_SPRITES_END - PSS_CONDITION_ARROW_SPRITES_START + 1
-#define MAX_CONDITION_FLASH_SPRITES PSS_CONDITION_FLASH_SPRITES_END - PSS_CONDITION_FLASH_SPRITES_START + 1
-
-#define POINTS_PER_APPEAL_HEART 10
-#define MAX_APPEAL_HEARTS       6
-#define EMPTY_HEART_BASE_TILE   0x12E
-#define FILLED_HEART_BASE_TILE  0x12C
-
-#define HEALTHBAR_BASE_X           24
-#define HEALTHBAR_Y                6
-#define GREEN_HEALTHBAR_BASE_TILE  0xC0
-#define YELLOW_HEALTHBAR_BASE_TILE 0xE0
-#define RED_HEALTHBAR_BASE_TILE    0x100
-#define HEALTHBAR_TILES_MAX        6
-#define PALETTE_SLOT_10_MASK       0xA000
-
-#define EXPBAR_BASE_X    23
-#define EXPBAR_Y         23
-#define EXPBAR_BASE_TILE 0xAC
-#define EXPBAR_TILES_MAX 7
-
-#define RIBBON_CURSOR_BASE_X 132
-#define RIBBON_CURSOR_BASE_Y 56
-#define RIBBON_SPACING_X     32
-#define RIBBON_SPACING_Y     40
 
 #define RIBBONS_PER_ROW  4
 #define RIBBONS_PER_PAGE 12
+
+#define PSS_TEXT_BLACK             TEXT_COLOR(1, 2, 0)
+#define PSS_TEXT_WHITE             TEXT_COLOR(15, 14, 0)
+#define PSS_TEXT_BLUE              TEXT_COLOR(3, 4, 0)
+#define PSS_TEXT_RED               TEXT_COLOR(5, 6, 0)
+#define PSS_TEXT_BLACK_DARK_SHADOW TEXT_COLOR(1, 2, 15)
 
 typedef struct PokemonSummary {
     void *monData;
@@ -400,7 +322,7 @@ typedef struct PokemonSummary {
     u8 mode;
     u8 max;
     u8 pos;
-    u8 pageFlag;
+    u8 pageFlags;
     u8 selectedSlot;
     u8 returnMode;
     u16 move;
@@ -509,7 +431,8 @@ typedef struct PokemonSummaryScreen {
     s8 page;
     u8 cursor : 4;
     u8 cursorTmp : 4;
-    u8 subscreen; // ravetodo this isn't right I think
+    u8 pageState;
+
     u8 subscreenType : 4;
     u8 subscreenExit : 4;
 

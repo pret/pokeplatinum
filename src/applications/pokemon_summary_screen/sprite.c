@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/narc.h"
+#include "constants/pokemon.h"
 #include "consts/items.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -28,6 +29,34 @@
 static void SetTypeIcon(PokemonSummaryScreen *summaryScreen, u8 spriteIndex, u8 param2, u8 type);
 static void SetMonAndTypeIcons(PokemonSummaryScreen *summaryScreen);
 static void DrawConditionFlash(CellActor *sprite, u32 statValue, u32 highestValue, const s16 *bounds);
+
+// the summary screen refers to the contest stats in the order they appear in the condition
+// screen clock-wise, not the order used elsewhere
+enum PSSContestType {
+    PSS_CONTEST_TYPE_COOL = 0,
+    PSS_CONTEST_TYPE_BEAUTY,
+    PSS_CONTEST_TYPE_CUTE,
+    PSS_CONTEST_TYPE_SMART,
+    PSS_CONTEST_TYPE_TOUGH,
+};
+
+enum ConditionFlashBounds {
+    FLASH_MAX_X = 0,
+    FLASH_MAX_Y,
+    FLASH_MIN_X,
+    FLASH_MIN_Y,
+
+    FLASH_BOUNDS_MAX,
+};
+
+#define MAX_SHEEN_SPRITES           PSS_SHEEN_SPRITES_END - PSS_SHEEN_SPRITES_START + 1
+#define MAX_CONDITION_ARROW_SPRITES PSS_CONDITION_ARROW_SPRITES_END - PSS_CONDITION_ARROW_SPRITES_START + 1
+#define MAX_CONDITION_FLASH_SPRITES PSS_CONDITION_FLASH_SPRITES_END - PSS_CONDITION_FLASH_SPRITES_START + 1
+
+#define RIBBON_CURSOR_BASE_X 132
+#define RIBBON_CURSOR_BASE_Y 56
+#define RIBBON_SPACING_X     32
+#define RIBBON_SPACING_Y     40
 
 #define MOVE_SELECTOR_X      194
 #define MOVE_SELECTOR_BASE_Y 48
@@ -158,7 +187,7 @@ static const u8 sBallIDToPaletteNum[] = {
     [ITEM_CHERISH_BALL] = 0,
 };
 
-void sub_0208EA44(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScreen)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
@@ -187,7 +216,7 @@ void sub_0208EA44(PokemonSummaryScreen *summaryScreen)
     };
 
     sub_0200C73C(summaryScreen->renderer, &v0, &v1, 32);
-    sub_0200C7C0(summaryScreen->renderer, summaryScreen->gfxHandler, 77);
+    sub_0200C7C0(summaryScreen->renderer, summaryScreen->gfxHandler, PSS_SPRITE_MAX);
 
     UnkStruct_ov7_0224F2EC v2 = {
         "data/pst_chr.resdat",
@@ -202,13 +231,13 @@ void sub_0208EA44(PokemonSummaryScreen *summaryScreen)
     sub_0200C8F0(summaryScreen->renderer, summaryScreen->gfxHandler, &v2);
 }
 
-void sub_0208EAF4(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_FreeSpriteResources(PokemonSummaryScreen *summaryScreen)
 {
     sub_0200C8B0(summaryScreen->renderer, summaryScreen->gfxHandler);
     sub_0200C8D4(summaryScreen->renderer);
 }
 
-void sub_0208EB14(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_UpdateArrowAndPulseAnims(PokemonSummaryScreen *summaryScreen)
 {
     CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_PAGE_ARROW_LEFT], FX32_ONE);
     CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_PAGE_ARROW_RIGHT], FX32_ONE);
@@ -216,8 +245,8 @@ void sub_0208EB14(PokemonSummaryScreen *summaryScreen)
     CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_RIBBON_ARROW_UP], FX32_ONE);
     CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_RIBBON_ARROW_DOWN], FX32_ONE);
 }
-// ravetodo PokemonSummaryScreen_InitSprites?
-void sub_0208EB64(PokemonSummaryScreen *summaryScreen)
+
+void PokemonSummaryScreen_SetDefaultSpriteStates(PokemonSummaryScreen *summaryScreen)
 {
     for (u16 i = 0; i < PSS_SPRITE_MAX; i++) {
         summaryScreen->sprites[i] = sub_0200CA08(summaryScreen->renderer, summaryScreen->gfxHandler, &Unk_020F41A8[i]);
@@ -593,10 +622,10 @@ void PokemonSummaryScreen_DrawSheenSprites(PokemonSummaryScreen *summaryScreen)
         }
     }
 }
-// ravetodo better name
+
 void PokemonSummaryScreen_UpdateMiscMonDataSprites(PokemonSummaryScreen *summaryScreen)
 {
-    for (u32 marking = 0; marking < MAX_MARKINGS; marking++) {
+    for (u32 marking = 0; marking < MAX_POKEMON_MARKINGS; marking++) {
         if (summaryScreen->monData.markings & (1 << marking)) {
             CellActor_SetAnim(summaryScreen->sprites[PSS_MARKING_SPRITES_START + marking], TRUE);
         } else {
@@ -643,7 +672,7 @@ void PokemonSummaryScreen_HideButtonPulse(PokemonSummaryScreen *summaryScreen)
 void PokemonSummaryScreen_UpdateConditionArrowSprites(PokemonSummaryScreen *summaryScreen)
 {
     for (u8 i = 0; i < MAX_CONDITION_ARROW_SPRITES; i++) {
-        if (summaryScreen->subscreen & (1 << i)) {
+        if (summaryScreen->pageState & (1 << i)) {
             CellActor_SetDrawFlag(summaryScreen->sprites[PSS_CONDITION_ARROW_SPRITES_START + i], TRUE);
         }
     }
@@ -812,15 +841,6 @@ void PokemonSummaryScreen_UpdateRibbonFlashAnim(PokemonSummaryScreen *summaryScr
         CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_RIBBON_FLASH], FX32_ONE);
     }
 }
-
-enum ConditionFlashBounds {
-    FLASH_MAX_X = 0,
-    FLASH_MAX_Y,
-    FLASH_MIN_X,
-    FLASH_MIN_Y,
-
-    FLASH_BOUNDS_MAX,
-};
 
 static const s16 sConditionFlashCoordBounds[][FLASH_BOUNDS_MAX] = {
     [PSS_CONTEST_TYPE_COOL] = { 180, 57, 180, 90 },

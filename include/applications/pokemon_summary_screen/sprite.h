@@ -5,10 +5,10 @@
 
 #include "bg_window.h"
 
-void sub_0208EA44(PokemonSummaryScreen *param0);
-void sub_0208EAF4(PokemonSummaryScreen *param0);
-void sub_0208EB14(PokemonSummaryScreen *param0);
-void sub_0208EB64(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_FreeSpriteResources(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateArrowAndPulseAnims(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_SetDefaultSpriteStates(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdatePageTabSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_SetPageArrowsPos(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdatePageArrows(PokemonSummaryScreen *summaryScreen, BOOL showArrows);

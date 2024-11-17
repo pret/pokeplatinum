@@ -184,7 +184,7 @@ void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
-void PokemonSummaryScreen_FreeCameraAndSpriteData(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_FreeCameraAndMonSprite(PokemonSummaryScreen *summaryScreen)
 {
     Camera_Delete(summaryScreen->monSprite.camera);
     sub_02016114(summaryScreen->monSprite.animationSys, 0);

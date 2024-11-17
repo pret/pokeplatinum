@@ -3,6 +3,17 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 
+enum PSSPoffinFeedMsg {
+    PSS_MSG_COOLNESS_ENHANCED = 0,
+    PSS_MSG_BEAUTY_ENHANCED,
+    PSS_MSG_CUTENESS_ENHANCED,
+    PSS_MSG_SMARTNESS_ENHANCED,
+    PSS_MSG_TOUGHNESS_ENHANCED,
+
+    PSS_MSG_NOTHING_CHANGED = 0xFE,
+    PSS_MSG_MON_WONT_EAT_MORE = 0xFF,
+};
+
 void PokemonSummaryScreen_DrawStaticWindows(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_AddExtraWindows(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_RemoveExtraWindows(PokemonSummaryScreen *summaryScreen);
