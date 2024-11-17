@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_MAIN_H
 #define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_MAIN_H
 
+#include <nitro/fx/fx.h>
+
 #include "constants/moves.h"
 
 #include "struct_decls/cell_actor_data.h"
@@ -12,7 +14,6 @@
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_02091850.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -311,6 +312,13 @@ enum ConditionRect {
 #define PSS_TEXT_BLUE              TEXT_COLOR(3, 4, 0)
 #define PSS_TEXT_RED               TEXT_COLOR(5, 6, 0)
 #define PSS_TEXT_BLACK_DARK_SHADOW TEXT_COLOR(1, 2, 15)
+
+typedef struct ConditionRectangle {
+    VecFx16 topLeft;
+    VecFx16 topRight;
+    VecFx16 bottomLeft;
+    VecFx16 bottomRight;
+} ConditionRectangle;
 
 typedef struct PokemonSummary {
     void *monData;
