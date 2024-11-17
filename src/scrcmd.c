@@ -4918,9 +4918,8 @@ static BOOL ScrCmd_0F5(ScriptContext *ctx)
 
 static BOOL ScrCmd_StartLinkBattle(ScriptContext *ctx)
 {
-    PartyManagementData *partyManagementData;
     void **partyManagementDataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    partyManagementData = *partyManagementDataPtr;
+    PartyManagementData *partyManagementData = *partyManagementDataPtr;
 
     Encounter_NewVsLink(ctx->fieldSystem->task, partyManagementData->unk_2C, BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER);
     Heap_FreeToHeap(partyManagementData);

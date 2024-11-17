@@ -412,7 +412,8 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
 
         if (GetRadarChainActive(fieldSystem->chain)) {
             if (sub_02069798(fieldSystem->chain)) {
-                if ((!(encounter->dto->resultMask == BATTLE_RESULT_WIN)) && (!(encounter->dto->resultMask == BATTLE_RESULT_CAPTURED_MON))) {
+                if (encounter->dto->resultMask != BATTLE_RESULT_WIN
+                    && encounter->dto->resultMask != BATTLE_RESULT_CAPTURED_MON) {
                     RadarChain_Clear(fieldSystem->chain);
                 }
             } else {
@@ -519,7 +520,7 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
             PCBoxes *boxes = SaveData_PCBoxes(fieldSystem->saveData);
             Party *party = Party_GetFromSavedata(fieldSystem->saveData);
 
-            if (PCBoxes_FirstEmptyBox(boxes) == 18 && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
+            if (PCBoxes_FirstEmptyBox(boxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
                 ScriptManager_Start(task, 8822, NULL, NULL);
             }
         }

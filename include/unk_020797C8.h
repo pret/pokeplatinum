@@ -6,6 +6,8 @@
 #include "pokemon.h"
 #include "strbuf.h"
 
+#define MAX_PC_BOXES 18
+
 void PCBoxes_Init(PCBoxes *param0);
 u32 PCBoxes_SaveSize(void);
 BOOL sub_02079868(PCBoxes *param0, BoxPokemon *param1);
