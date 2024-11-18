@@ -1747,7 +1747,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->unk_10);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
     param0->unk_0C.options = param0->unk_08->unk_18;
-    param0->unk_0C.ribbons = sub_0202D79C(param0->unk_08->unk_10);
+    param0->unk_0C.specialRibbons = sub_0202D79C(param0->unk_08->unk_10);
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 

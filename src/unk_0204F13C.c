@@ -430,7 +430,7 @@ static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     v0->max = (u8)Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = 0;
-    v0->ribbons = sub_0202D79C(v1);
+    v0->specialRibbons = sub_0202D79C(v1);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));

@@ -338,7 +338,7 @@ typedef struct PokemonSummary {
     u8 padding_1A[2];
 
     u32 dexMode;
-    void *ribbons;
+    void *specialRibbons;
     void *poffin;
     ChatotCry *chatotCry;
     BOOL showContest;
