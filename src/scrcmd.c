@@ -6381,8 +6381,8 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
     TVBroadcast *v4 = SaveData_TVBroadcast(ctx->fieldSystem->saveData);
     int v5 = ScriptContext_ReadByte(ctx);
 
-    v0 = sub_0203A784(v2);
-    v1 = sub_0203A788(v2);
+    v0 = FieldOverworldState_GetSafariBallCount(v2);
+    v1 = FieldOverworldState_GetSafariStepCount(v2);
 
     switch (v5) {
     case 0:

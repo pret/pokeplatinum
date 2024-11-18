@@ -16,7 +16,7 @@
 #include "unk_0203A7D8.h"
 #include "unk_020556C4.h"
 
-typedef struct UnkStruct_0203A790_t {
+typedef struct FieldOverworldState {
     Location player;
     Location entrance;
     Location previous;
@@ -28,9 +28,9 @@ typedef struct UnkStruct_0203A790_t {
     u8 cameraType;
     UnkStruct_020556C4 unk_6C;
     PlayerData playerData;
-    u16 unk_94;
-    u16 unk_96;
-    u16 unk_98;
+    u16 poisonSteps;
+    u16 safariSteps;
+    u16 safariBalls;
     u16 unk_9A;
     u16 unk_9C;
 } FieldOverworldState;
@@ -140,19 +140,19 @@ PlayerData *FieldOverworldState_GetPlayerData(FieldOverworldState *fieldState)
     return &fieldState->playerData;
 }
 
-u16 *sub_0203A784(FieldOverworldState *fieldState)
+u16 *FieldOverworldState_GetSafariBallCount(FieldOverworldState *fieldState)
 {
-    return &fieldState->unk_98;
+    return &fieldState->safariBalls;
 }
 
-u16 *sub_0203A788(FieldOverworldState *fieldState)
+u16 *FieldOverworldState_GetSafariStepCount(FieldOverworldState *fieldState)
 {
-    return &fieldState->unk_96;
+    return &fieldState->safariSteps;
 }
 
-u16 *sub_0203A78C(FieldOverworldState *fieldState)
+u16 *FieldOverworldState_GetPoisonStepCount(FieldOverworldState *fieldState)
 {
-    return &fieldState->unk_94;
+    return &fieldState->poisonSteps;
 }
 
 FieldOverworldState *SaveData_GetFieldOverworldState(SaveData *saveData)

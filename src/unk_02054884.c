@@ -175,41 +175,41 @@ void Party_GiveChampionRibbons(Party *party)
     }
 }
 
-int sub_02054B04(Party *param0, u16 param1)
+int Pokemon_DoPoisonDamage(Party *param0, u16 param1)
 {
-    int v0 = 0;
-    int v1 = 0;
-    int v2, v3;
-    Pokemon *v4;
+    int numPoisoned = 0;
+    int numFainted = 0;
+    int i, partyCount;
+    Pokemon *mon;
 
-    v3 = Party_GetCurrentCount(param0);
+    partyCount = Party_GetCurrentCount(param0);
 
-    for (v2 = 0; v2 < v3; v2++) {
-        v4 = Party_GetPokemonBySlotIndex(param0, v2);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(param0, i);
 
-        if (Pokemon_CanBattle(v4)) {
-            if (Pokemon_GetValue(v4, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)) {
-                u32 v5 = Pokemon_GetValue(v4, MON_DATA_CURRENT_HP, NULL);
+        if (Pokemon_CanBattle(mon)) {
+            if (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)) {
+                u32 hp = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
 
-                if (v5 > 1) {
-                    v5--;
+                if (hp > 1) {
+                    hp--;
                 }
 
-                Pokemon_SetValue(v4, MON_DATA_CURRENT_HP, &v5);
+                Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &hp);
 
-                if (v5 == 1) {
-                    v1++;
-                    Pokemon_UpdateFriendship(v4, 7, param1);
+                if (hp == 1) {
+                    numFainted++;
+                    Pokemon_UpdateFriendship(mon, 7, param1);
                 }
 
-                v0++;
+                numPoisoned++;
             }
         }
     }
 
-    if (v1) {
+    if (numFainted) {
         return 2;
-    } else if (v0) {
+    } else if (numPoisoned) {
         return 1;
     } else {
         return 0;
