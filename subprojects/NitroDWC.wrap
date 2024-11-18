@@ -1,8 +1,9 @@
 [wrap-git]
 url = https://github.com/Nomura-RH/NitroDWC.git
-revision = main
+revision = 8220c8bdec2e8b5252ee710cf3cc0c148228a03a
 depth = 1
 directory = NitroDWC-2.2.30008
 
 [provide]
 dependency_names = NitroDWC
+

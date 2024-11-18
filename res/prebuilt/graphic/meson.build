@@ -28,7 +28,6 @@ prebuilt_files = [
     'opening.narc',
     'pl_bag_gra.narc',
     'pl_plist_gra.narc',
-    'pl_pst_gra.narc',
     'pl_wifinote.narc',
     'plist_gra.narc',
     'pmsi.narc',
