@@ -19,18 +19,18 @@
 #include "camera.h"
 #include "field_map_change.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "heap.h"
 #include "inlines.h"
 #include "location.h"
 #include "map_header.h"
 #include "map_object.h"
+#include "map_tile_behavior.h"
 #include "player_avatar.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
-#include "unk_02055808.h"
-#include "unk_0205DAC8.h"
 #include "unk_020655F4.h"
 
 typedef struct {
@@ -215,7 +215,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
         (v1->unk_00)++;
         break;
     case 1:
-        FieldTask_FinishFieldMap(taskMan);
+        FieldTransition_FinishMap(taskMan);
         (v1->unk_00)++;
         break;
     case 2:
@@ -223,7 +223,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
         (v1->unk_00)++;
         break;
     case 3:
-        FieldTask_StartFieldMap(taskMan);
+        FieldTransition_StartMap(taskMan);
         (v1->unk_00)++;
         break;
     case 4:
@@ -262,7 +262,7 @@ static BOOL sub_02056DE4(FieldTask *taskMan)
     case 0:
         Sound_PlayEffect(1539);
 
-        sub_020558AC(taskMan);
+        FieldTransition_FadeOut(taskMan);
         (v1->unk_04)++;
         break;
     case 1:
@@ -294,7 +294,7 @@ static BOOL sub_02056E20(FieldTask *taskMan)
         }
         break;
     case 2:
-        sub_020558AC(taskMan);
+        FieldTransition_FadeOut(taskMan);
         (v1->unk_04)++;
         break;
     case 3:
@@ -431,9 +431,9 @@ static BOOL sub_02057050(FieldTask *taskMan)
         u8 v4;
         MapObject *v5 = Player_MapObject(fieldSystem->playerAvatar);
 
-        v4 = sub_02054F94(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
+        v4 = FieldSystem_GetTileBehavior(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
 
-        if (sub_0205DAEC(v4)) {
+        if (TileBehavior_IsDoor(v4)) {
             MapObject_SetHidden(v5, 1);
             (v2->unk_04) = 1;
         } else {
@@ -482,9 +482,9 @@ static BOOL sub_0205711C(FieldTask *taskMan)
         u8 v4;
         MapObject *v5 = Player_MapObject(fieldSystem->playerAvatar);
 
-        v4 = sub_02054F94(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
+        v4 = FieldSystem_GetTileBehavior(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
 
-        if (sub_0205DAEC(v4)) {
+        if (TileBehavior_IsDoor(v4)) {
             MapObject_SetHidden(v5, 1);
             v2->unk_04 = 1;
             FieldTask_InitJump(taskMan, sub_02057050, v2);
@@ -634,12 +634,12 @@ static void sub_02057368(FieldSystem *fieldSystem)
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
-    v4 = sub_02054F94(fieldSystem, v0, v1);
+    v4 = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
 
-    if (sub_0205DC44(v4)) {
+    if (TileBehavior_IsWarpStairsEast(v4)) {
         v3.x += (FX32_ONE * 16);
         v2 = 2;
-    } else if (sub_0205DC50(v4)) {
+    } else if (TileBehavior_IsWarpStairsWest(v4)) {
         v3.x -= (FX32_ONE * 16);
         v2 = 3;
     } else {

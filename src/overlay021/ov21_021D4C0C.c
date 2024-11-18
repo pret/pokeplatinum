@@ -72,7 +72,7 @@ UnkStruct_ov21_021D4CA0 *ov21_021D4CA0(const UnkStruct_ov21_021D4CB8 *param0)
 {
     int v0;
 
-    v0 = sub_02012898(param0->unk_04, param0->unk_20, param0->unk_24);
+    v0 = sub_02012898(param0->unk_04, param0->unk_20, param0->heapID);
     return ov21_021D4CB8(param0, v0);
 }
 
@@ -97,7 +97,7 @@ UnkStruct_ov21_021D4CA0 *ov21_021D4CB8(const UnkStruct_ov21_021D4CB8 *param0, in
     v0.unk_20 = param0->unk_18;
     v0.unk_24 = param0->unk_1C;
     v0.unk_28 = param0->unk_20;
-    v0.unk_2C = param0->unk_24;
+    v0.unk_2C = param0->heapID;
 
     v1->unk_00 = sub_020127E8(&v0);
 

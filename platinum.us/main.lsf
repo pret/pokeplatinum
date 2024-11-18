@@ -220,7 +220,7 @@ Static main
 	Object main.nef.p/src_field_task.c.o
 	Object main.nef.p/src_encounter.c.o
 	Object main.nef.p/src_enc_effects.c.o
-	Object main.nef.p/src_unk_02051D8C.c.o
+	Object main.nef.p/src_field_battle_data_transfer.c.o
 	Object main.nef.p/src_unk_020528D0.c.o
 	Object main.nef.p/src_unk_02052C6C.c.o
 	Object main.nef.p/src_field_map_change.c.o
@@ -229,8 +229,7 @@ Static main
 	Object main.nef.p/src_unk_02054D00.c.o
 	Object main.nef.p/src_unk_020553DC.c.o
 	Object main.nef.p/src_unk_020556C4.c.o
-	Object main.nef.p/src_unk_0205578C.c.o
-	Object main.nef.p/src_unk_02055808.c.o
+	Object main.nef.p/src_field_transition.c.o
 	Object main.nef.p/src_unk_020559DC.c.o
 	Object main.nef.p/src_unk_02055C50.c.o
 	Object main.nef.p/src_unk_020562F8.c.o
@@ -246,7 +245,7 @@ Static main
 	Object main.nef.p/src_unk_0205C980.c.o
 	Object main.nef.p/src_unk_0205CA94.c.o
 	Object main.nef.p/src_unk_0205D8CC.c.o
-	Object main.nef.p/src_unk_0205DAC8.c.o
+	Object main.nef.p/src_map_tile_behavior.c.o
 	Object main.nef.p/src_unk_0205DFC4.c.o
 	Object main.nef.p/src_player_avatar.c.o
 	Object main.nef.p/src_unk_0205F180.c.o
@@ -786,15 +785,15 @@ Overlay overlay21
 	Object main.nef.p/src_overlay021_ov21_021D0D80.c.o
 	Object main.nef.p/src_overlay021_ov21_021D1F90.c.o
 	Object main.nef.p/src_overlay021_ov21_021D1FA4.c.o
-	Object main.nef.p/src_overlay021_ov21_021D3208.c.o
+	Object main.nef.p/src_overlay021_pokedex_sort.c.o
 	Object main.nef.p/src_overlay021_ov21_021D3FE0.c.o
 	Object main.nef.p/src_overlay021_ov21_021D423C.c.o
 	Object main.nef.p/src_overlay021_ov21_021D4340.c.o
 	Object main.nef.p/src_overlay021_ov21_021D4C0C.c.o
 	Object main.nef.p/src_overlay021_ov21_021D4EE4.c.o
-	Object main.nef.p/src_overlay021_ov21_021D517C.c.o
+	Object main.nef.p/src_overlay021_pokedex_field_map.c.o
 	Object main.nef.p/src_overlay021_ov21_021D5600.c.o
-	Object main.nef.p/src_overlay021_ov21_021D57B4.c.o
+	Object main.nef.p/src_overlay021_pokedex_enc_data.c.o
 	Object main.nef.p/src_overlay021_ov21_021D5AEC.c.o
 	Object main.nef.p/src_overlay021_ov21_021D76B0.c.o
 	Object main.nef.p/src_overlay021_ov21_021D85B0.c.o

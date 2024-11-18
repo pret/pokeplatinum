@@ -1,8 +1,9 @@
 [wrap-git]
 url = https://github.com/Nomura-RH/NitroSystem.git
-revision = main
+revision = 507acff1585505bdac3f996551ca5123f8408073
 depth = 1
 directory = NitroSystem-071126.1
 
 [provide]
 dependency_names = NitroSystem
+

@@ -11,13 +11,13 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F5A10.h"
-#include "overlay006/battle_params.h"
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
 #include "core_sys.h"
 #include "encounter.h"
+#include "field_battle_data_transfer.h"
 #include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
@@ -34,7 +34,6 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0201D15C.h"
-#include "unk_02051D8C.h"
 #include "unk_0205D8CC.h"
 #include "unk_020655F4.h"
 #include "unk_0206CCB0.h"
@@ -45,7 +44,7 @@ typedef struct {
     u32 unk_04;
     BOOL unk_08;
     int unk_0C;
-    BattleParams *unk_10;
+    FieldBattleDTO *unk_10;
     SysTask *unk_14;
 } UnkStruct_ov5_021F08CC;
 
@@ -124,14 +123,14 @@ BOOL ov5_021F08F8(FieldTask *taskMan)
                     GameRecords_IncrementRecordValue(v4, RECORD_UNK_010);
                 }
 
-                sub_02050E78(fieldSystem, taskMan, v1->unk_10);
+                Encounter_StartVsWild(fieldSystem, taskMan, v1->unk_10);
                 Heap_FreeToHeap(v1);
 
                 return 0;
             }
 
             if (v1->unk_10 != NULL) {
-                sub_020520A4(v1->unk_10);
+                FieldBattleDTO_Free(v1->unk_10);
             }
 
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);

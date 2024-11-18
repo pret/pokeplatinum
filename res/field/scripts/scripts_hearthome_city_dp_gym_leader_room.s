@@ -45,7 +45,7 @@ _0096:
     ScrCmd_1CD 9, 100, 0, 0, 0
     Message 0
     CloseMessage
-    ScrCmd_0E5 0x13E, 0
+    StartTrainerBattle 0x13E, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01DC
     Message 1

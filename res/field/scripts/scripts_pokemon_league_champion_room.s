@@ -59,11 +59,11 @@ _00F0:
     Return
 
 _00F5:
-    ScrCmd_0E5 0x10B, 0
+    StartTrainerBattle 0x10B, 0
     Return
 
 _00FD:
-    ScrCmd_0E5 0x366, 0
+    StartTrainerBattle 0x366, 0
     Return
 
 _0105:

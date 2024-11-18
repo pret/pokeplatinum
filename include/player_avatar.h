@@ -13,6 +13,12 @@
 #include "field/field_system_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
+enum PlayerAvatarForm {
+    PLAYER_AVATAR_WALKING = 0,
+    PLAYER_AVATAR_BIKING,
+    PLAYER_AVATAR_SURFING,
+};
+
 PlayerAvatar *PlayerAvatar_Init(const MapObjectManager *param0, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData *param7);
 PlayerAvatar *sub_0205E820(const MapObjectManager *param0, PlayerData *param1, int gender);
 void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int param1);
@@ -68,9 +74,6 @@ int PlayerData_CyclingGear(PlayerData *param0);
 void PlayerData_SetCyclingGear(PlayerData *param0, int param1);
 void PlayerAvatar_SetCyclingGear(PlayerAvatar *playerAvatar, int param1);
 int PlayerAvatar_CyclingGear(PlayerAvatar *playerAvatar);
-u32 sub_0205EC94(PlayerData *param0);
-void sub_0205ECA0(PlayerData *param0, u32 param1);
-void sub_0205ECA8(PlayerAvatar *playerAvatar, u32 param1);
 void sub_0205ECB8(PlayerAvatar *playerAvatar, const VecFx32 *param1, int param2);
 void sub_0205ECE0(PlayerAvatar *playerAvatar, int param1, int param2, int param3);
 void sub_0205ED0C(PlayerAvatar *playerAvatar, fx32 param1);

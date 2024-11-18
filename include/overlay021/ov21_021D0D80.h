@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "overlay021/struct_ov21_021D0D80_1.h"
+#include "overlay021/struct_ov21_021D0D80.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"
@@ -24,7 +24,7 @@
 int ov21_021D0D80(OverlayManager *param0, int *param1);
 int ov21_021D0E3C(OverlayManager *param0, int *param1);
 int ov21_021D0EC8(OverlayManager *param0, int *param1);
-UnkStruct_ov21_021D0F60 *ov21_021D0F60(int param0, const UnkStruct_ov21_021D0D80_1 *param1);
+UnkStruct_ov21_021D0F60 *ov21_021D0F60(int param0, const UnkStruct_ov21_021D0D80 *param1);
 BOOL ov21_021D10B8(UnkStruct_ov21_021D0F60 *param0);
 void ov21_021D12B0(int param0);
 void ov21_021D12C4(void);

@@ -7,9 +7,9 @@
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/ov21_021D3208.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/ov21_021E4CA4.h"
+#include "overlay021/pokedex_sort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
@@ -217,16 +217,16 @@ static int ov21_021E4120(UnkStruct_ov21_021E6A68 *param0, void *param1)
 {
     UnkStruct_ov21_021E40F4 *v0 = param1;
     UnkStruct_ov21_021E4898 *v1;
-    int v2 = ov21_021D37BC(v0->unk_04);
+    int species = PokedexSort_CurrentSpecies(v0->unk_04);
 
-    v1 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021E4898));
+    v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021E4898));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021E4898));
 
     param0->unk_08 = v1;
 
-    v1->unk_00 = sub_020050F8(v2);
+    v1->unk_00 = sub_020050F8(species);
     v1->unk_08 = sub_020050EC(v1->unk_00);
 
     ov21_021E4898(v1, v0);
@@ -273,12 +273,12 @@ static int ov21_021E41A8(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
     switch (param1->unk_00) {
     case 0:
-        param1->unk_08 = Heap_AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021E4360));
+        param1->unk_08 = Heap_AllocFromHeap(param1->heapID, sizeof(UnkStruct_ov21_021E4360));
         memset(param1->unk_08, 0, sizeof(UnkStruct_ov21_021E4360));
         param1->unk_00++;
         break;
     case 1:
-        ov21_021E4590(v3, v2, v0, v1, param1->unk_04);
+        ov21_021E4590(v3, v2, v0, v1, param1->heapID);
 
         if (v2->unk_0C == 0) {
             ov21_021E43C8(v3, v2, v0, 1);
@@ -372,9 +372,9 @@ static int ov21_021E4288(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 static void ov21_021E4328(UnkStruct_ov21_021E4108 *param0, const UnkStruct_ov21_021E40F4 *param1)
 {
     Sprite *v0 = ov21_021D2170(param0->unk_00);
-    int v1 = ov21_021D37BC(param1->unk_04);
+    int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
-    ov21_021D1890(param0->unk_00, param1->unk_04, v1, 2, 48, 64);
+    ov21_021D1890(param0->unk_00, param1->unk_04, species, 2, 48, 64);
     sub_02007DEC(v0, 6, 0);
 }
 

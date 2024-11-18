@@ -34,7 +34,7 @@ _0064:
     GoTo _0074
 
 _0074:
-    ScrCmd_0E5 0x193, 0
+    StartTrainerBattle 0x193, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00E1
     Message 2

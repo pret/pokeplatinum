@@ -15,9 +15,9 @@
 
 #include "map_object.h"
 #include "map_object_move.h"
+#include "map_tile_behavior.h"
 #include "player_avatar.h"
 #include "unk_0201E190.h"
-#include "unk_0205DAC8.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 
@@ -220,19 +220,19 @@ static void ov5_021F636C(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
 static int ov5_021F6414(u8 param0)
 {
-    if (sub_0205DB10(param0)) {
+    if (TileBehavior_IsWarpEntranceNorth(param0)) {
         return 0;
     }
 
-    if (sub_0205DB1C(param0)) {
+    if (TileBehavior_IsWarpEntranceSouth(param0)) {
         return 1;
     }
 
-    if (sub_0205DB04(param0)) {
+    if (TileBehavior_IsWarpEntranceWest(param0)) {
         return 2;
     }
 
-    if (sub_0205DAF8(param0)) {
+    if (TileBehavior_IsWarpEntranceEast(param0)) {
         return 3;
     }
 

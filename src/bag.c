@@ -408,83 +408,78 @@ Bag *SaveData_GetBag(SaveData *saveData)
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_BAG);
 }
 
-UnkStruct_0207D99C *sub_0207D99C(u32 param0)
+BagCursor *BagCursor_New(u32 heapID)
 {
-    UnkStruct_0207D99C *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0207D99C));
-    MI_CpuClear16(v0, sizeof(UnkStruct_0207D99C));
-
-    return v0;
+    BagCursor *cursor = Heap_AllocFromHeap(heapID, sizeof(BagCursor));
+    MI_CpuClear16(cursor, sizeof(BagCursor));
+    return cursor;
 }
 
-void sub_0207D9B4(UnkStruct_0207D99C *param0, u32 param1, u8 *param2, u8 *param3)
+void BagCursor_GetFieldPocketPosition(BagCursor *cursor, u32 pocket, u8 *outIndex, u8 *outScroll)
 {
-    *param2 = param0->unk_00.unk_08[param1];
-    *param3 = param0->unk_00.unk_00[param1];
+    *outIndex = cursor->field.index[pocket];
+    *outScroll = cursor->field.scroll[pocket];
 }
 
-u16 sub_0207D9C4(UnkStruct_0207D99C *param0)
+u16 BagCursor_GetFieldPocket(BagCursor *cursor)
 {
-    return param0->unk_00.unk_10;
+    return cursor->field.pocket;
 }
 
-void sub_0207D9C8(UnkStruct_0207D99C *param0, u32 param1, u8 param2, u8 param3)
+void BagCursor_SetFieldPocketPosition(BagCursor *cursor, u32 pocket, u8 index, u8 scroll)
 {
-    param0->unk_00.unk_08[param1] = param2;
-    param0->unk_00.unk_00[param1] = param3;
+    cursor->field.index[pocket] = index;
+    cursor->field.scroll[pocket] = scroll;
 }
 
-void sub_0207D9D4(UnkStruct_0207D99C *param0, u16 param1)
+void BagCursor_SetFieldPocket(BagCursor *cursor, u16 pocket)
 {
-    param0->unk_00.unk_10 = param1;
+    cursor->field.pocket = pocket;
 }
 
-void sub_0207D9D8(UnkStruct_0207D99C *param0, u32 param1, u8 *param2, u8 *param3)
+void BagCursor_GetBattleCategoryPosition(BagCursor *cursor, u32 category, u8 *outIndex, u8 *outScroll)
 {
-    *param2 = param0->unk_14.unk_05[param1];
-    *param3 = param0->unk_14.unk_00[param1];
+    *outIndex = cursor->battle.index[category];
+    *outScroll = cursor->battle.scroll[category];
 }
 
-u16 sub_0207D9E4(UnkStruct_0207D99C *param0)
+u16 BagCursor_GetLastUsedBattleItem(BagCursor *cursor)
 {
-    return param0->unk_14.unk_0A;
+    return cursor->battle.lastUsedItemID;
 }
 
-u16 sub_0207D9E8(UnkStruct_0207D99C *param0)
+u16 BagCursor_GetLastUsedBattleItemCategory(BagCursor *cursor)
 {
-    return param0->unk_14.unk_0C;
+    return cursor->battle.lastUsedCategory;
 }
 
-u16 sub_0207D9EC(UnkStruct_0207D99C *param0)
+u16 BagCursor_GetBattleCurrentCategory(BagCursor *cursor)
 {
-    return param0->unk_14.unk_0E;
+    return cursor->battle.currentCategory;
 }
 
-void sub_0207D9F0(UnkStruct_0207D99C *param0, u32 param1, u8 param2, u8 param3)
+void BagCursor_SetBattleCategoryPosition(BagCursor *cursor, u32 category, u8 index, u8 scroll)
 {
-    param0->unk_14.unk_05[param1] = param2;
-    param0->unk_14.unk_00[param1] = param3;
+    cursor->battle.index[category] = index;
+    cursor->battle.scroll[category] = scroll;
 }
 
-void sub_0207D9F8(UnkStruct_0207D99C *param0)
+void BagCursor_ResetBattle(BagCursor *cursor)
 {
-    u32 v0;
-
-    for (v0 = 0; v0 < 5; v0++) {
-        sub_0207D9F0(param0, v0, 0, 0);
+    for (u32 i = 0; i < BATTLE_ITEM_CATEGORY_MAX + 1; i++) {
+        BagCursor_SetBattleCategoryPosition(cursor, i, 0, 0);
     }
 
-    sub_0207DA24(param0, 0);
+    BagCursor_SetBattleCurrentCategory(cursor, BATTLE_ITEM_CATEGORY_RECOVER_HP);
 }
 
-void Bag_SetLastItemUsed(UnkStruct_0207D99C *param0, u16 param1, u16 param2)
+void Bag_SetLastBattleItemUsed(BagCursor *cursor, u16 itemID, u16 category)
 {
-    param0->unk_14.unk_0A = param1;
-    param0->unk_14.unk_0C = param2;
+    cursor->battle.lastUsedItemID = itemID;
+    cursor->battle.lastUsedCategory = category;
 }
 
-void sub_0207DA24(UnkStruct_0207D99C *param0, u16 param1)
+void BagCursor_SetBattleCurrentCategory(BagCursor *cursor, u16 category)
 {
-    param0->unk_14.unk_0E = param1;
+    cursor->battle.currentCategory = category;
 }

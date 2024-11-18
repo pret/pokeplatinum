@@ -29,7 +29,7 @@ _002F:
     Message 0
     CloseMessage
     SetFlag 142
-    ScrCmd_2BD 0x1E0, 50
+    StartLegendaryBattle SPECIES_UXIE, 50
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0085

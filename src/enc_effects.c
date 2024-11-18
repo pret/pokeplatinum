@@ -12,8 +12,8 @@
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay005/encounter_effect.h"
-#include "overlay006/battle_params.h"
 
+#include "field_battle_data_transfer.h"
 #include "pokemon.h"
 #include "unk_02054884.h"
 
@@ -109,9 +109,9 @@ static const EncEffectsPair sEncEffectsTable[35] = {
     [ENCEFF_NORMAL_WILD] = { ENCEFF_CUTIN_USE_LOCAL, SEQ_BATTLE_WILD_POKEMON }
 };
 
-static u32 EncEffects_GetEffectPair(const BattleParams *battleParams);
-static u32 EncEffects_CutInEffectForPair(u32 effectPairID, const BattleParams *battleParams);
-static u32 EncEffects_BGMForPair(u32 effectPairID, const BattleParams *battleParams);
+static u32 EncEffects_GetEffectPair(const FieldBattleDTO *dto);
+static u32 EncEffects_CutInEffectForPair(u32 effectPairID, const FieldBattleDTO *dto);
+static u32 EncEffects_BGMForPair(u32 effectPairID, const FieldBattleDTO *dto);
 static u32 EncEffects_TrainerClassEffect(u32 trainerClass);
 static u32 EncEffects_WildPokemonEffect(Party *wildParty, int mapHeaderID);
 
@@ -122,12 +122,12 @@ inline BOOL EncEffects_Galactic(u32 effect)
         || (effect == ENCEFF_GALACTIC_CYRUS);
 }
 
-static u32 EncEffects_GetEffectPair(const BattleParams *battleParams)
+static u32 EncEffects_GetEffectPair(const FieldBattleDTO *dto)
 {
-    u32 battleType = battleParams->battleType;
+    u32 battleType = dto->battleType;
 
     if (battleType & BATTLE_TYPE_TRAINER) {
-        u32 trainerEffect = EncEffects_TrainerClassEffect(battleParams->trainerData[1].class);
+        u32 trainerEffect = EncEffects_TrainerClassEffect(dto->trainerData[1].class);
 
         if (battleType & BATTLE_TYPE_FRONTIER) {
             if (trainerEffect == ENCEFF_FRONTIER_BRAIN) {
@@ -164,7 +164,7 @@ static u32 EncEffects_GetEffectPair(const BattleParams *battleParams)
         return trainerEffect;
     }
 
-    u32 pokemonEffect = EncEffects_WildPokemonEffect(battleParams->parties[1], battleParams->mapHeaderID);
+    u32 pokemonEffect = EncEffects_WildPokemonEffect(dto->parties[1], dto->mapHeaderID);
 
     if (pokemonEffect < ENCEFF_NORMAL_WILD) {
         return pokemonEffect;
@@ -177,34 +177,34 @@ static u32 EncEffects_GetEffectPair(const BattleParams *battleParams)
     return pokemonEffect;
 }
 
-static u32 EncEffects_CutInEffectForPair(u32 effectPairID, const BattleParams *battleParams)
+static u32 EncEffects_CutInEffectForPair(u32 effectPairID, const FieldBattleDTO *dto)
 {
     GF_ASSERT(effectPairID < ENCEFF_MAX);
 
     // If the cut-in effect specifies, determine what effect to use
     // based on the encounter locale.
     if (sEncEffectsTable[effectPairID].cutInEffect == ENCEFF_CUTIN_USE_LOCAL) {
-        return CutInEffects_ForBattle(battleParams);
+        return CutInEffects_ForBattle(dto);
     }
 
     return sEncEffectsTable[effectPairID].cutInEffect;
 }
 
-static u32 EncEffects_BGMForPair(u32 effectPairID, const BattleParams *battleParams)
+static u32 EncEffects_BGMForPair(u32 effectPairID, const FieldBattleDTO *dto)
 {
     GF_ASSERT(effectPairID < ENCEFF_MAX);
 
     return sEncEffectsTable[effectPairID].sdatBGMusic;
 }
 
-u32 EncEffects_CutInEffect(const BattleParams *battleParams)
+u32 EncEffects_CutInEffect(const FieldBattleDTO *dto)
 {
-    return EncEffects_CutInEffectForPair(EncEffects_GetEffectPair(battleParams), battleParams);
+    return EncEffects_CutInEffectForPair(EncEffects_GetEffectPair(dto), dto);
 }
 
-u32 EncEffects_BGM(const BattleParams *battleParams)
+u32 EncEffects_BGM(const FieldBattleDTO *dto)
 {
-    return EncEffects_BGMForPair(EncEffects_GetEffectPair(battleParams), battleParams);
+    return EncEffects_BGMForPair(EncEffects_GetEffectPair(dto), dto);
 }
 
 static u32 EncEffects_TrainerClassEffect(u32 trainerClass)

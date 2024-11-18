@@ -529,7 +529,7 @@ _06D5:
 
 _06F4:
     IncrementGameRecord RECORD_UNK_117
-    ScrCmd_129
+    StartHoneyTreeBattle
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0713
     ScrCmd_12A

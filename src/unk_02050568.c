@@ -15,6 +15,7 @@
 #include "core_sys.h"
 #include "field_map_change.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "heap.h"
 #include "inlines.h"
 #include "location.h"
@@ -22,7 +23,6 @@
 #include "player_avatar.h"
 #include "system_flags.h"
 #include "unk_02005474.h"
-#include "unk_02055808.h"
 #include "unk_02056B30.h"
 #include "unk_02070428.h"
 #include "vars_flags.h"
@@ -58,11 +58,11 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         v1->unk_04 = Player_GetXPos(fieldSystem->playerAvatar);
         v1->unk_06 = Player_GetZPos(fieldSystem->playerAvatar);
         sub_02070428(fieldSystem, 1);
-        sub_020558AC(taskMan);
+        FieldTransition_FadeOut(taskMan);
         v1->unk_08++;
         break;
     case 1:
-        FieldTask_FinishFieldMap(taskMan);
+        FieldTransition_FinishMap(taskMan);
         v1->unk_08++;
         break;
     case 2:
@@ -77,7 +77,7 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         v1->unk_08++;
         break;
     case 3:
-        FieldTask_StartFieldMap(taskMan);
+        FieldTransition_StartMap(taskMan);
         v1->unk_08++;
         break;
     case 4:
@@ -98,7 +98,7 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         v1->unk_08++;
         break;
     case 7:
-        FieldTask_FinishFieldMap(taskMan);
+        FieldTransition_FinishMap(taskMan);
         v1->unk_08++;
         break;
     case 8:
@@ -113,12 +113,12 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         v1->unk_08++;
         break;
     case 9:
-        FieldTask_StartFieldMap(taskMan);
+        FieldTransition_StartMap(taskMan);
         v1->unk_08++;
         break;
     case 10:
         sub_0205074C(fieldSystem->playerAvatar, 0);
-        sub_020558F0(taskMan);
+        FieldTransition_FadeIn(taskMan);
         v1->unk_08++;
         break;
     case 11:

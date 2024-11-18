@@ -31,6 +31,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "game_records.h"
 #include "heap.h"
 #include "journal.h"
@@ -53,7 +54,6 @@
 #include "unk_0202CC64.h"
 #include "unk_0202F108.h"
 #include "unk_020363E8.h"
-#include "unk_02055808.h"
 #include "unk_0206CCB0.h"
 #include "unk_02094EDC.h"
 #include "unk_02095AF0.h"
@@ -177,7 +177,7 @@ static BOOL sub_02093448(FieldTask *param0)
 
     switch (v1->unk_04) {
     case 0:
-        FieldTask_FinishFieldMap(param0);
+        FieldTransition_FinishMap(param0);
         v1->unk_04++;
         break;
     case 1:
@@ -247,7 +247,7 @@ static BOOL sub_02093448(FieldTask *param0)
         v1->unk_04++;
         break;
     case 12:
-        FieldTask_StartFieldMap(param0);
+        FieldTransition_StartMap(param0);
         v1->unk_04++;
         break;
     default:
@@ -267,7 +267,7 @@ static BOOL sub_020935EC(FieldTask *param0)
 
     switch (v1->unk_04) {
     case 0:
-        FieldTask_FinishFieldMap(param0);
+        FieldTransition_FinishMap(param0);
         v1->unk_04++;
         break;
     case 1:
@@ -364,7 +364,7 @@ static BOOL sub_020935EC(FieldTask *param0)
         v1->unk_04++;
         break;
     case 8:
-        FieldTask_StartFieldMap(param0);
+        FieldTransition_StartMap(param0);
         v1->unk_04++;
         break;
     default:

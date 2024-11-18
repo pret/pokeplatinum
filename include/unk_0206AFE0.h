@@ -4,6 +4,13 @@
 #include "savedata.h"
 #include "vars_flags.h"
 
+enum HiddenLocations {
+    HL_FULLMOONISLAND = 0,
+    HL_NEWMOONISLAND = 1,
+    HL_SPRINGPATH = 2,
+    HL_SEABREAKPATH = 3,
+};
+
 BOOL sub_0206B024(VarsFlags *param0, u16 param1);
 u16 sub_0206B034(VarsFlags *param0);
 BOOL sub_0206B044(VarsFlags *param0, u16 param1);
@@ -21,7 +28,7 @@ void sub_0206B144(VarsFlags *param0, int param1);
 BOOL sub_0206B16C(VarsFlags *param0, int param1);
 void sub_0206B1B0(VarsFlags *param0, int param1);
 void sub_0206B1D8(VarsFlags *param0, int param1);
-BOOL sub_0206B1F0(VarsFlags *param0, int param1);
+BOOL VarFlags_HiddenLocationsUnlocked(VarsFlags *varsFlags, int hiddenLocation);
 BOOL sub_0206B218(VarsFlags *param0);
 u16 sub_0206B228(VarsFlags *param0);
 BOOL sub_0206B238(VarsFlags *param0);

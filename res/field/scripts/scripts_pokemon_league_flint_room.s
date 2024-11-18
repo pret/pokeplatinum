@@ -32,11 +32,11 @@ _000A:
     End
 
 _00A0:
-    ScrCmd_0E5 0x107, 0
+    StartTrainerBattle 0x107, 0
     Return
 
 _00A8:
-    ScrCmd_0E5 0x364, 0
+    StartTrainerBattle 0x364, 0
     Return
 
 _00B0:

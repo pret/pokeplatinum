@@ -112,17 +112,17 @@ void ov13_022264F4(UnkStruct_ov13_022264F4 *param0)
     v0->unk_114A = 0;
 
     {
-        UnkStruct_0207D99C *v1;
+        BagCursor *v1;
         u8 v2;
 
         v1 = BattleSystem_BagCursor(param0->unk_00);
 
         for (v2 = 0; v2 < 5; v2++) {
-            sub_0207D9D8(v1, v2, &v0->unk_00->unk_27[v2], &v0->unk_00->unk_2C[v2]);
+            BagCursor_GetBattleCategoryPosition(v1, v2, &v0->unk_00->unk_27[v2], &v0->unk_00->unk_2C[v2]);
         }
 
-        v0->unk_00->unk_20 = sub_0207D9E4(v1);
-        v0->unk_00->unk_1F = sub_0207D9E8(v1);
+        v0->unk_00->unk_20 = BagCursor_GetLastUsedBattleItem(v1);
+        v0->unk_00->unk_1F = BagCursor_GetLastUsedBattleItemCategory(v1);
     }
 
     ov13_02227A4C(v0);
@@ -200,7 +200,7 @@ static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
     ov13_022270B8(param0);
     Font_InitManager(FONT_SUBSCREEN, param0->unk_00->unk_0C);
 
-    param0->unk_114D = (u8)sub_0207D9EC(BattleSystem_BagCursor(param0->unk_00->unk_00));
+    param0->unk_114D = (u8)BagCursor_GetBattleCurrentCategory(BattleSystem_BagCursor(param0->unk_00->unk_00));
 
     ov13_02227AC8(param0);
     ov13_02228924(param0, param0->unk_114C);
@@ -555,16 +555,16 @@ static u8 ov13_02226CFC(SysTask *param0, UnkStruct_ov13_02227244 *param1)
     Font_Free(FONT_SUBSCREEN);
 
     if (param1->unk_00->unk_1C != 0) {
-        UnkStruct_0207D99C *v0;
+        BagCursor *v0;
         u8 v1;
 
         v0 = BattleSystem_BagCursor(param1->unk_00->unk_00);
 
         for (v1 = 0; v1 < 5; v1++) {
-            sub_0207D9F0(v0, v1, param1->unk_00->unk_27[v1], param1->unk_00->unk_2C[v1]);
+            BagCursor_SetBattleCategoryPosition(v0, v1, param1->unk_00->unk_27[v1], param1->unk_00->unk_2C[v1]);
         }
 
-        sub_0207DA24(v0, param1->unk_114D);
+        BagCursor_SetBattleCurrentCategory(v0, param1->unk_114D);
     }
 
     param1->unk_00->unk_26 = 1;
@@ -834,5 +834,5 @@ int ov13_02227244(UnkStruct_ov13_02227244 *param0)
 static void ov13_02227260(BattleSystem *param0, u16 param1, u16 param2, u32 param3)
 {
     Bag_TryRemoveItem(BattleSystem_Bag(param0), param1, 1, param3);
-    Bag_SetLastItemUsed(BattleSystem_BagCursor(param0), param1, param2);
+    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(param0), param1, param2);
 }

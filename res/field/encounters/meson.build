@@ -1,3 +1,9 @@
+enc_bin_gen = generator(
+    encounter_py,
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@BASENAME@.bin'
+)
+
 pl_enc_data_srcs = files(
     '000.json',
     '001.json',
@@ -181,20 +187,17 @@ pl_enc_data_srcs = files(
     '179.json',
     '180.json',
     '181.json',
-    '182.json'
+    '182.json',
 )
 
 pl_enc_tbl_narc = custom_target('pl_enc_data.narc',
     output: 'pl_enc_data.narc',
-    input: pl_enc_data_srcs,
-    env: json2bin_env,
+    input: enc_bin_gen.process(pl_enc_data_srcs, env: json2bin_env),
     depends: [ py_consts_generators ],
     command: [
-        encounters_py,
-        '--knarc', knarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
+        knarc_exe,
+        '-d', '@PRIVATE_DIR@',
+        '-p', '@OUTPUT@',
     ]
 )
 

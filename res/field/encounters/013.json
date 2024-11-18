@@ -205,5 +205,15 @@
             "level_min": 0,
             "species": "SPECIES_NONE"
         }
-    ]
+    ],
+    "special_encounters": [
+        "SPECIES_FEEBAS"
+    ],
+    "specialnatdex_encounters": [
+        "SPECIES_FEEBAS"
+    ],
+    "map_category": {
+        "map_type": "dungeon",
+        "map_number": 3
+    }
 }

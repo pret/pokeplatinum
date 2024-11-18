@@ -39,7 +39,7 @@ _0077:
     Message 1
     ScrCmd_04D
     CloseMessage
-    ScrCmd_2BD 0x1E4, 70
+    StartLegendaryBattle SPECIES_PALKIA, 70
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00E8
     SetVar 0x40C5, 1

@@ -159,9 +159,9 @@ static u8 *sub_0207A778(int param0, void *param1, int param2)
     UnkStruct_0207A778 *v0 = param1;
 
     if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        return (u8 *)v0->unk_00->unk_D0[param0 * 2];
+        return (u8 *)v0->unk_00->trainerInfo[param0 * 2];
     } else {
-        return (u8 *)v0->unk_00->unk_D0[param0];
+        return (u8 *)v0->unk_00->trainerInfo[param0];
     }
 }
 
@@ -192,9 +192,9 @@ static u8 *sub_0207A7D4(int param0, void *param1, int param2)
     UnkStruct_0207A778 *v0 = param1;
 
     if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        return (u8 *)v0->unk_00->unk_F0[param0 * 2];
+        return (u8 *)v0->unk_00->chatotCries[param0 * 2];
     } else {
-        return (u8 *)v0->unk_00->unk_F0[param0];
+        return (u8 *)v0->unk_00->chatotCries[param0];
     }
 }
 
@@ -307,8 +307,8 @@ static void sub_0207A934(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
 
-    v0->unk_00->unk_154[param0] = *((u32 *)param2);
-    sub_0202FAA8(param0, v0->unk_00->unk_154[param0]);
+    v0->unk_00->systemVersion[param0] = *((u32 *)param2);
+    sub_0202FAA8(param0, v0->unk_00->systemVersion[param0]);
     v0->unk_1020++;
 }
 
@@ -321,7 +321,7 @@ BOOL sub_0207A960(UnkStruct_0207A778 *param0)
     }
 
     v0 = (TrainerInfo *)&param0->unk_20[0];
-    TrainerInfo_Copy(param0->unk_00->unk_D0[0], v0);
+    TrainerInfo_Copy(param0->unk_00->trainerInfo[0], v0);
 
     return 1;
 }
@@ -421,7 +421,7 @@ BOOL sub_0207AAA0(UnkStruct_0207A778 *param0)
     }
 
     v0 = (ChatotCry *)&param0->unk_20[0];
-    CopyChatotCryData(v0, param0->unk_00->unk_F0[0]);
+    CopyChatotCryData(v0, param0->unk_00->chatotCries[0]);
 
     return 1;
 }
@@ -451,9 +451,9 @@ BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
     v0 = (UnkStruct_02027F8C *)&param0->unk_20[0];
 
     if (param0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        v1 = param0->unk_00->unk_D0[CommSys_CurNetId() * 2];
+        v1 = param0->unk_00->trainerInfo[CommSys_CurNetId() * 2];
     } else {
-        v1 = param0->unk_00->unk_D0[CommSys_CurNetId()];
+        v1 = param0->unk_00->trainerInfo[CommSys_CurNetId()];
     }
 
     sub_0207ADD4(v1, param0->unk_00->unk_124, (UnkStruct_02027F8C *)param0->unk_20);

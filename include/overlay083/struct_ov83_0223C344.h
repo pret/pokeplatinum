@@ -13,7 +13,7 @@ typedef struct {
     u16 unk_06_8 : 4;
     u16 unk_06_12 : 4;
     int unk_08;
-    UnkStruct_0207D99C *unk_0C;
+    BagCursor *unk_0C;
     UnkStruct_ov82_0223B164 *unk_10;
     int unk_14;
     void *unk_18;

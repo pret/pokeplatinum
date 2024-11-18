@@ -174,7 +174,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         }
         break;
     case 4:
-        sub_020516F4(param0, v2->unk_00->unk_08, v2->unk_0C, v2->unk_0D);
+        Encounter_NewVsWiFi(param0, v2->unk_00->unk_08, v2->unk_0C, v2->unk_0D);
         v2->unk_04++;
         break;
     case 5:

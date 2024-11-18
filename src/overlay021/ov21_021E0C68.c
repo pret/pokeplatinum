@@ -7,10 +7,10 @@
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/ov21_021D3208.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D5600.h"
 #include "overlay021/ov21_021E29DC.h"
+#include "overlay021/pokedex_sort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
@@ -255,12 +255,12 @@ static int ov21_021E0DAC(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
     switch (param1->unk_00) {
     case 0:
-        param1->unk_08 = Heap_AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021E14D4));
+        param1->unk_08 = Heap_AllocFromHeap(param1->heapID, sizeof(UnkStruct_ov21_021E14D4));
         memset(param1->unk_08, 0, sizeof(UnkStruct_ov21_021E14D4));
         param1->unk_00++;
         break;
     case 1:
-        ov21_021E0F4C(v2, v1, v0, param1->unk_04);
+        ov21_021E0F4C(v2, v1, v0, param1->heapID);
 
         switch (v0->unk_14) {
         case 0:
@@ -418,12 +418,12 @@ static void ov21_021E10D0(UnkStruct_ov21_021E0D7C *param0, const UnkStruct_ov21_
 {
     Strbuf *v0 = Strbuf_Init(64, param2);
     MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param2);
-    int v2 = ov21_021D37BC(param1->unk_04);
+    int species = PokedexSort_CurrentSpecies(param1->unk_04);
     int v3;
     int v4;
 
-    if (ov21_021D37CC(param1->unk_04) != 2) {
-        v2 = 0;
+    if (PokedexSort_CurrentCaughtStatus(param1->unk_04) != 2) {
+        species = 0;
         GF_ASSERT(0);
     }
 
@@ -438,9 +438,9 @@ static void ov21_021E10D0(UnkStruct_ov21_021E0D7C *param0, const UnkStruct_ov21_
     Strbuf_Free(v0);
     MessageLoader_Free(v1);
 
-    ov21_021E1188(param0, param2, v2, param1->unk_18, param1->unk_1C);
-    ov21_021E18A0(param0, param2, v2, param1->unk_18);
-    ov21_021E18DC(param0, param2, v2, param1->unk_18);
+    ov21_021E1188(param0, param2, species, param1->unk_18, param1->unk_1C);
+    ov21_021E18A0(param0, param2, species, param1->unk_18);
+    ov21_021E18DC(param0, param2, species, param1->unk_18);
 }
 
 static void ov21_021E1188(UnkStruct_ov21_021E0D7C *param0, int param1, int param2, int param3, int param4)
@@ -455,7 +455,7 @@ static void ov21_021E1188(UnkStruct_ov21_021E0D7C *param0, int param1, int param
 
 static void ov21_021E11DC(UnkStruct_ov21_021E0D7C *param0, const UnkStruct_ov21_021E0D68 *param1, int param2)
 {
-    ov21_021D1778(param0->unk_00, param1->unk_04, param2, ov21_021D375C(param1->unk_04), (172 * FX32_ONE), (32 * FX32_ONE));
+    ov21_021D1778(param0->unk_00, param1->unk_04, param2, PokedexSort_CurrentStatusIndex(param1->unk_04), (172 * FX32_ONE), (32 * FX32_ONE));
     ov21_021D238C(param0->unk_00, 0);
 }
 
@@ -468,9 +468,9 @@ static void ov21_021E1210(UnkStruct_ov21_021E0D7C *param0)
 static void ov21_021E1228(UnkStruct_ov21_021E0D7C *param0, const UnkStruct_ov21_021E0D68 *param1)
 {
     Sprite *v0 = ov21_021D2170(param0->unk_00);
-    int v1 = ov21_021D37BC(param1->unk_04);
+    int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
-    ov21_021D1890(param0->unk_00, param1->unk_04, v1, 2, 48, 72);
+    ov21_021D1890(param0->unk_00, param1->unk_04, species, 2, 48, 72);
     sub_02007DEC(v0, 6, 0);
 }
 
@@ -519,7 +519,7 @@ static void ov21_021E136C(UnkStruct_ov21_021E14D4 *param0, UnkStruct_ov21_021E0D
     CellActorResourceData v0;
     CellActorInitParams v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
-    int v3 = ov21_021D37BC(param2->unk_04);
+    int species = PokedexSort_CurrentSpecies(param2->unk_04);
     Window *v4;
     UnkStruct_ov21_021D4CB8 v5;
     SpriteResource *v6;
@@ -538,11 +538,11 @@ static void ov21_021E136C(UnkStruct_ov21_021E14D4 *param0, UnkStruct_ov21_021E0D
 
     CellActor_SetAnim(param0->unk_00, 0x11);
 
-    if (ov21_021D37CC(param2->unk_04) != 2) {
-        v3 = 0;
+    if (PokedexSort_CurrentCaughtStatus(param2->unk_04) != 2) {
+        species = 0;
     }
 
-    v4 = ov21_021E1460(param1, v3, param3);
+    v4 = ov21_021E1460(param1, species, param3);
     v6 = ov21_021D2344(param1->unk_00, 1);
 
     v5.unk_00 = param1->unk_00->unk_14C;
@@ -553,7 +553,7 @@ static void ov21_021E136C(UnkStruct_ov21_021E14D4 *param0, UnkStruct_ov21_021E0D
     v5.unk_18 = 0;
     v5.unk_1C = 32 - 1;
     v5.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v5.unk_24 = param3;
+    v5.heapID = param3;
     v5.unk_04 = v4;
 
     param0->unk_04 = ov21_021D4CA0(&v5);
