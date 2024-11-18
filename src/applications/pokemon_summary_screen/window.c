@@ -953,39 +953,39 @@ static void PrintCurrentAndMaxInfo(PokemonSummaryScreen *summaryScreen, u32 move
 
 static void PrintStaticWindows(PokemonSummaryScreen *summaryScreen)
 {
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_INFO, 7, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_MEMO, 23, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SKILLS, 109, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_CONDITION, 126, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_BATTLE_MOVES, 128, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_CONTEST_MOVES, 157, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_ITEM, 4, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_DEX_NUM, 8, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SPECIES_NAME, 10, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_TYPE, 12, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_OT_NAME, 13, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_OT_ID, 15, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_EXP, 17, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_EXP_NEXT_LV, 19, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_HP, 110, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_ATTACK, 111, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_DEFENSE, 112, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SP_ATTACK, 113, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SP_DEFENSE, 114, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SPEED, 115, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_ABILITY, 116, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SHEEN, 127, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_INFO, pss_page_title_info, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_MEMO, pss_page_title_memo, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SKILLS, pss_page_title_skills, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_CONDITION, pss_page_title_condition, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_BATTLE_MOVES, pss_page_title_battle_moves, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_CONTEST_MOVES, pss_page_title_contest_moves, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_ITEM, pss_label_item, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_DEX_NUM, pss_label_dex_num, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SPECIES_NAME, pss_label_species_name, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_TYPE, pss_label_type, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_OT_NAME, pss_label_ot_name, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_OT_ID, pss_label_ot_id, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_EXP, pss_label_exp, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_EXP_NEXT_LV, pss_label_exp_next_lv, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_HP, pss_label_hp, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_ATTACK, pss_label_attack, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_DEFENSE, pss_label_defense, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SP_ATTACK, pss_label_sp_attack, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SP_DEFENSE, pss_label_sp_defense, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SPEED, pss_label_speed, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_ABILITY, pss_label_ability, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_SHEEN, pss_label_sheen, PSS_TEXT_WHITE, ALIGN_LEFT);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, 146, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, pss_move_cancel, summaryScreen->strbuf);
     Text_AddPrinterWithParamsAndColor(&summaryScreen->staticWindows[PSS_WINDOW_LABEL_MOVE_CANCEL], FONT_SYSTEM, summaryScreen->strbuf, 0, 2, TEXT_SPEED_NO_TRANSFER, PSS_TEXT_WHITE, NULL);
 
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_MOVE_CATEGORY, 149, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_MOVE_POWER, 147, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_MOVE_ACCURACY, 148, PSS_TEXT_WHITE, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_CLOSE_WINDOW, 162, PSS_TEXT_WHITE, ALIGN_CENTER);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_APPEAL_POINTS, 160, PSS_TEXT_BLACK, ALIGN_CENTER);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_RIBBON_COUNT, 182, PSS_TEXT_BLACK, ALIGN_LEFT);
-    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_RIBBONS, 179, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_MOVE_CATEGORY, pss_label_move_category, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_MOVE_POWER, pss_label_move_power, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_MOVE_ACCURACY, pss_label_move_accuracy, PSS_TEXT_WHITE, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_CLOSE_WINDOW, pss_close_window, PSS_TEXT_WHITE, ALIGN_CENTER);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_APPEAL_POINTS, pss_label_appeal_points, PSS_TEXT_BLACK, ALIGN_CENTER);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_RIBBON_COUNT, pss_label_ribbon_count, PSS_TEXT_BLACK, ALIGN_LEFT);
+    PrintTextToStaticWindow(summaryScreen, PSS_WINDOW_LABEL_RIBBONS, pss_page_title_ribbons, PSS_TEXT_WHITE, ALIGN_LEFT);
 }
 
 void PokemonSummaryScreen_DrawExtraWindows(PokemonSummaryScreen *summaryScreen)

@@ -17,7 +17,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00004" index="4">
+	<row id="pss_label_item" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Item</language>
 	</row>
@@ -29,11 +29,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">None</language>
 	</row>
-	<row id="pl_msg_00000455_00007" index="7">
+	<row id="pss_page_title_info" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">POKéMON INFO</language>
 	</row>
-	<row id="pl_msg_00000455_00008" index="8">
+	<row id="pss_label_dex_num" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokédex No.</language>
 	</row>
@@ -41,7 +41,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00010" index="10">
+	<row id="pss_label_species_name" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Name</language>
 	</row>
@@ -49,11 +49,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 0, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00012" index="12">
+	<row id="pss_label_type" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Type</language>
 	</row>
-	<row id="pl_msg_00000455_00013" index="13">
+	<row id="pss_label_ot_name" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OT</language>
 	</row>
@@ -61,7 +61,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00015" index="15">
+	<row id="pss_label_ot_id" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ID No.</language>
 	</row>
@@ -69,7 +69,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 54, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00017" index="17">
+	<row id="pss_label_exp" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Exp. Points</language>
 	</row>
@@ -77,7 +77,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 56, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00019" index="19">
+	<row id="pss_label_exp_next_lv" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">To Next Lv.</language>
 	</row>
@@ -94,7 +94,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">???</language>
 	</row>
-	<row id="pl_msg_00000455_00023" index="23">
+	<row id="pss_page_title_memo" index="23">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">TRAINER MEMO</language>
 	</row>
@@ -438,35 +438,35 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">“The Egg Watch”\nIt looks like this Egg\nwill take a long time to\nhatch.</language>
 	</row>
-	<row id="pl_msg_00000455_00109" index="109">
+	<row id="pss_page_title_skills" index="109">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">POKéMON SKILLS</language>
 	</row>
-	<row id="pl_msg_00000455_00110" index="110">
+	<row id="pss_label_hp" index="110">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">HP</language>
 	</row>
-	<row id="pl_msg_00000455_00111" index="111">
+	<row id="pss_label_attack" index="111">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Attack</language>
 	</row>
-	<row id="pl_msg_00000455_00112" index="112">
+	<row id="pss_label_defense" index="112">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Defense</language>
 	</row>
-	<row id="pl_msg_00000455_00113" index="113">
+	<row id="pss_label_sp_attack" index="113">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sp. Atk</language>
 	</row>
-	<row id="pl_msg_00000455_00114" index="114">
+	<row id="pss_label_sp_defense" index="114">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sp. Def</language>
 	</row>
-	<row id="pl_msg_00000455_00115" index="115">
+	<row id="pss_label_speed" index="115">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Speed</language>
 	</row>
-	<row id="pl_msg_00000455_00116" index="116">
+	<row id="pss_label_ability" index="116">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ability</language>
 	</row>
@@ -506,15 +506,15 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 5, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00126" index="126">
+	<row id="pss_page_title_condition" index="126">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CONDITION</language>
 	</row>
-	<row id="pl_msg_00000455_00127" index="127">
+	<row id="pss_label_sheen" index="127">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SHEEN</language>
 	</row>
-	<row id="pl_msg_00000455_00128" index="128">
+	<row id="pss_page_title_battle_moves" index="128">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">BATTLE MOVES</language>
 	</row>
@@ -586,19 +586,19 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00146" index="146">
+	<row id="pss_move_cancel" index="146">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CANCEL</language>
 	</row>
-	<row id="pl_msg_00000455_00147" index="147">
+	<row id="pss_label_move_power" index="147">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">POWER</language>
 	</row>
-	<row id="pl_msg_00000455_00148" index="148">
+	<row id="pss_label_move_accuracy" index="148">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ACCURACY</language>
 	</row>
-	<row id="pl_msg_00000455_00149" index="149">
+	<row id="pss_label_move_category" index="149">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CATEGORY</language>
 	</row>
@@ -630,7 +630,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">HM moves can’t be\nforgotten now.</language>
 	</row>
-	<row id="pl_msg_00000455_00157" index="157">
+	<row id="pss_page_title_contest_moves" index="157">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CONTEST MOVES</language>
 	</row>
@@ -642,7 +642,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK</language>
 	</row>
-	<row id="pl_msg_00000455_00160" index="160">
+	<row id="pss_label_appeal_points" index="160">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">APPEAL POINTS</language>
 	</row>
@@ -650,7 +650,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">EXIT</language>
 	</row>
-	<row id="pl_msg_00000455_00162" index="162">
+	<row id="pss_close_window" index="162">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Close window.</language>
 	</row>
@@ -719,7 +719,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It won’t eat any more...</language>
 	</row>
-	<row id="pl_msg_00000455_00179" index="179">
+	<row id="pss_page_title_ribbons" index="179">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">RIBBONS</language>
 	</row>
@@ -731,7 +731,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CANCEL</language>
 	</row>
-	<row id="pl_msg_00000455_00182" index="182">
+	<row id="pss_label_ribbon_count" index="182">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">No. of Ribbons:</language>
 	</row>
