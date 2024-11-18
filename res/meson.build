@@ -1,6 +1,8 @@
 nitrofs_files = []
 naix_headers = []
 
+subdir('pokemon')
+
 ### PREBUILT FILES ###
 subdir('prebuilt')
 
@@ -65,6 +67,5 @@ subdir('field')
 subdir('fonts')
 subdir('graphics')
 subdir('items')
-subdir('pokemon')
 subdir('sound')
 subdir('trainers')

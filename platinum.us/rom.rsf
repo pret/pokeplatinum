@@ -434,7 +434,7 @@ RomSpec
 	File arc/email_gra.narc
 
 	Root /arc
-	HostRoot res/field/encounters_ex
+	HostRoot res/field/encounters
 	File encdata_ex.narc
 
 	Root /
@@ -467,7 +467,7 @@ RomSpec
 	File application/zukanlist/zkn_data/zukan_enc_pearl.narc
 
 	Root /application/zukanlist/zkn_data
-	HostRoot res/field
+	HostRoot res/field/encounters
 	File zukan_enc_platinum.narc
 
 	Root /poketool/poke_edit

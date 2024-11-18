@@ -23,6 +23,18 @@ argparser.add_argument('-p', '--private-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
+argparser.add_argument('-c', '--coronet-file',
+                       required=True,
+                       help='encounter file for MtCoronet B1F')
+argparser.add_argument('-t', '--honey-file',
+                       required=True,
+                       help='encounter file for honey trees')
+argparser.add_argument('-g', '--trophy-file',
+                       required=True,
+                       help='encounter file for the Trophy Garden')
+argparser.add_argument('-m', '--marsh-file',
+                       required=True,
+                       help='encounter file for the Great Marsh Lookout')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -35,63 +47,74 @@ private_dir.mkdir(parents=True, exist_ok=True)
 
 NUM_FILES = 12
 
-numDigits = len(str(NUM_FILES))
+NUM_DIGITS = len(str(NUM_FILES))
 
-def WriteBin(binData, fileNum):
-    target_fname = str(private_dir / output_name) + f'_{fileNum:0{numDigits}}.bin'
+def Write_Binary(bin_data, fileNum):
+    target_fname = str(private_dir / output_name) + f'_{fileNum:0{NUM_DIGITS}}.bin'
     with open(target_fname, 'wb+') as target_file:
-        target_file.write(binData)
+        target_file.write(bin_data)
+
+def as_species(s: str) -> bytes:
+    return PokemonSpecies[s].value.to_bytes(4, 'little')
 
 
-with open(source_dir / "mt_coronet_lake.json", encoding='utf-8') as encounter_ex_file:
-    encData = json.load(encounter_ex_file)
+with open(args.coronet_file, encoding='utf-8') as encounter_file:
+    enc_data = json.load(encounter_file)
+enc_data = enc_data["elusive_rod_encounter"]
 
-species = PokemonSpecies[encData["species"]].value
-binData = species.to_bytes(4, 'little')
-WriteBin(binData, 0)
+bin_data = as_species(enc_data["species"])
+Write_Binary(bin_data, 0)
 
-mapDimensions = encData["map_dimensions"]
-binData = len(mapDimensions).to_bytes(4, 'little')
-for dim in mapDimensions:
-    binData = binData + dim.to_bytes(4, 'little')
-for tile in encData["tiles"]:
-    binData = binData + tile.to_bytes(2, 'little')
-WriteBin(binData, 1)
+map_dimensions = enc_data["map_dimensions"]
+bin_data = len(map_dimensions).to_bytes(4, 'little')
+for dim in map_dimensions:
+    bin_data = bin_data + dim.to_bytes(4, 'little')
+for tile in enc_data["tiles"]:
+    bin_data = bin_data + tile.to_bytes(2, 'little')
+Write_Binary(bin_data, 1)
 
-honeyTreeFiles = [
-    "honey_tree_common",
-    "honey_tree_uncommon",
-    "honey_tree_rare"
+
+with open(args.honey_file, encoding='utf-8') as encounter_file:
+    enc_data = json.load(encounter_file)
+honey_tree_types = [
+    "common",
+    "uncommon",
+    "rare"
 ]
-for i, sourceFile in enumerate(honeyTreeFiles):
-    with open(source_dir / (sourceFile + ".json"), encoding='utf-8') as encounter_ex_file:
-        encData = json.load(encounter_ex_file)
-    binData = bytes()
-    for species in encData["honey_tree_encounters"]:
-        binData = binData + PokemonSpecies[species].value.to_bytes(4, 'little')
-    WriteBin(binData, i+2)
-    WriteBin(binData, i+5)
+for i, encounter_type in enumerate(honey_tree_types):
+    bin_data = bytes()
+    for species in enc_data[encounter_type]:
+        bin_data = bin_data + as_species(species)
+    Write_Binary(bin_data, i+2)
+    Write_Binary(bin_data, i+5)
 
-dailyFiles = [
-    "trophy_garden_dailies",
-    "great_marsh_dailies_natdex",
-    "great_marsh_dailies"
+
+with open(args.trophy_file, encoding='utf-8') as encounter_file:
+    enc_data = json.load(encounter_file)
+bin_data = bytes()
+for species in enc_data["daily_encounters"]:
+    bin_data = bin_data + as_species(species)
+Write_Binary(bin_data, 8)
+
+
+with open(args.marsh_file, encoding='utf-8') as encounter_file:
+    enc_data = json.load(encounter_file)
+
+daily_types = [
+    "after_national_dex",
+    "before_national_dex"
 ]
-for i, sourceFile in enumerate(dailyFiles):
-    with open(source_dir / (sourceFile + ".json"), encoding='utf-8') as encounter_ex_file:
-        encData = json.load(encounter_ex_file)
-    binData = bytes()
-    for species in encData["daily_encounters"]:
-        binData = binData + PokemonSpecies[species].value.to_bytes(4, 'little')
-    WriteBin(binData, i+8)
+for i, encounter_type in enumerate(daily_types):
+    bin_data = bytes()
+    for species in enc_data[encounter_type]:
+        bin_data = bin_data + as_species(species)
+    Write_Binary(bin_data, i+9)
 
-with open(source_dir / "great_marsh_binocular_coords.json", encoding='utf-8') as encounter_ex_file:
-    encData = json.load(encounter_ex_file)
-binData = bytes()
-for coordinates in encData["binocular_coords"]:
-    binData = binData + coordinates["x"].to_bytes(2, 'little')
-    binData = binData + coordinates["y"].to_bytes(2, 'little')
-WriteBin(binData, 11)
+bin_data = bytes()
+for coordinates in enc_data["binocular_coords"]:
+    bin_data = bin_data + coordinates["x"].to_bytes(2, 'little')
+    bin_data = bin_data + coordinates["y"].to_bytes(2, 'little')
+Write_Binary(bin_data, 11)
 
 
 subprocess.run([args.knarc, '-d', private_dir, '-p', str(output_dir / output_name) + '.narc'])

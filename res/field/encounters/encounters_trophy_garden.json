@@ -206,6 +206,24 @@
             "species": "SPECIES_NONE"
         }
     ],
+    "daily_encounters": [
+        "SPECIES_EEVEE",
+        "SPECIES_BONSLY",
+        "SPECIES_HAPPINY",
+        "SPECIES_MEOWTH",
+        "SPECIES_CLEFFA",
+        "SPECIES_CLEFAIRY",
+        "SPECIES_IGGLYBUFF",
+        "SPECIES_PLUSLE",
+        "SPECIES_JIGGLYPUFF",
+        "SPECIES_DITTO",
+        "SPECIES_CASTFORM",
+        "SPECIES_MINUN",
+        "SPECIES_MIME_JR",
+        "SPECIES_MARILL",
+        "SPECIES_CHANSEY",
+        "SPECIES_AZURILL"
+    ],
     "map_category": {
         "map_type": "dungeon",
         "map_number": 14

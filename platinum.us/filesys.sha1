@@ -288,7 +288,7 @@ afd2be309c09733b33ec9b73b793518b41153828 *res/prebuilt/arc/bm_anime_list.narc
 6a403c707b8737e4f19644ffe51606838fe43456 *res/prebuilt/arc/codein_gra.narc
 f1ef036922af5a593650d6a52f56fb3ec59d3d83 *res/prebuilt/arc/demo_tengan_gra.narc
 adcb9634923530fd7f217a131a3949f556f4f324 *res/prebuilt/arc/email_gra.narc
-0832d441d7e543e14d68e9df7e9118b472d67833 *res/field/encounters_ex/encdata_ex.narc
+0832d441d7e543e14d68e9df7e9118b472d67833 *res/field/encounters/encdata_ex.narc
 d534f791217a311610812b18ef674a326ecdd2ac *res/prebuilt/arc/manene.narc
 ad5fefc4758eba86f6f647e506531d6cfe9c9ce5 *res/prebuilt/arc/plgym_ghost.narc
 89b24d0c67f2cb089800613d5a0254a124d98ba6 *res/prebuilt/arc/ppark.narc
@@ -309,7 +309,7 @@ e5b1a6b28919a947ae2d2e73306abdaf91499aff *res/prebuilt/battle/b_tower/btdpm.narc
 b0344401b36411ecad92e706059cc9a0d8fc2365 *res/prebuilt/battle/b_tower/btdtr.narc
 2bc5d3a3f60966591593cc441ab6bd2eb9cfcaa1 *res/prebuilt/application/zukanlist/zkn_data/zukan_enc_diamond.narc
 ebb8d95aa9e03304b587861e9f912b8f2304fd48 *res/prebuilt/application/zukanlist/zkn_data/zukan_enc_pearl.narc
-00d042c278d7a76bff49d4f317dd522604887368 *res/field/zukan_enc_platinum.narc
+00d042c278d7a76bff49d4f317dd522604887368 *res/field/encounters/zukan_enc_platinum.narc
 231228a02a80612dbe2036e2296a59e2c5a8b681 *res/pokemon/pl_poke_data.narc
 fdded15baac71b1bcfc285a6b7d6008336873e12 *res/prebuilt/debug/cb_edit/d_test.narc
 8088363d46d621357a33956f8e03cb4e5c779734 *res/prebuilt/application/custom_ball/edit/pl_cb_data.narc
