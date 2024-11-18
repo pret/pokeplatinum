@@ -16,13 +16,25 @@ argparser.add_argument('-k', '--knarc',
                        help='Path to knarc executable')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
-                       help='Path to the source directory (res/field)')
+                       help='Path to the source directory (res/field/encounters)')
 argparser.add_argument('-p', '--private-dir',
                        required=True,
                        help='Path to the private directory (where binaries will be made)')
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
+argparser.add_argument('-c', '--coronet-file',
+                       required=True,
+                       help='encounter file for MtCoronet B1F')
+argparser.add_argument('-t', '--honey-file',
+                       required=True,
+                       help='encounter file for honey trees')
+argparser.add_argument('-g', '--trophy-file',
+                       required=True,
+                       help='encounter file for the Trophy Garden')
+argparser.add_argument('-m', '--marsh-file',
+                       required=True,
+                       help='encounter file for the Great Marsh Lookout')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -273,7 +285,9 @@ for file in source_dir.glob('encounters_*.json'):
     with open(file, encoding='utf-8') as encounter_file:
         enc_data = json.load(encounter_file)
 
-    if (file.stem == 'encounters_honey_tree'):
+    file = str(file)
+
+    if (file == args.honey_file):
         for species in enc_data['common']:
             for map_num in honey_tree_dungeons:
                 dungeon_special[PokemonSpecies[species].value].add(map_num)
@@ -289,7 +303,7 @@ for file in source_dir.glob('encounters_*.json'):
                 field_special[PokemonSpecies[species].value].add(map_num)
                 field_special_natdex[PokemonSpecies[species].value].add(map_num)
     
-    elif (file.stem == 'encounters_great_marsh_lookout'):
+    elif (file == args.marsh_file):
         for species in enc_data['before_national_dex']:
             dungeon_special[PokemonSpecies[species].value].add(great_marsh_dungeon)
         for species in enc_data['after_national_dex']:
@@ -344,12 +358,12 @@ for file in source_dir.glob('encounters_*.json'):
             for species in enc_data['radar']:
                 dungeon_special_natdex[PokemonSpecies[species].value].add(map_num)
 
-            if (file.stem == 'encounters_mt_coronet_b1f'):
+            if (file == args.coronet_file):
                 species = enc_data['elusive_rod_encounter']['species']
                 dungeon_special[PokemonSpecies[species].value].add(map_num)
                 dungeon_special_natdex[PokemonSpecies[species].value].add(map_num)
 
-            if (file.stem == 'encounters_trophy_garden'):
+            if (file == args.trophy_file):
                 for species in enc_data['daily_encounters']:
                     dungeon_special_natdex[PokemonSpecies[species].value].add(map_num)
 

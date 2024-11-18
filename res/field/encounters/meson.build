@@ -232,11 +232,8 @@ encdata_ex_narc = custom_target('encdata_ex.narc',
     ]
 )
 
-zukan_enc_platinum_srcs = pl_enc_data_srcs
-zukan_enc_platinum_srcs += files(
-    'encounters_honey_tree.json',
-    'encounters_great_marsh_lookout.json'
-)
+zukan_enc_platinum_srcs = endata_ex_srcs
+zukan_enc_platinum_srcs += pl_enc_data_srcs
 
 pokedex_enc_platinum_narc = custom_target('zukan_enc_platinum.narc',
     output: 'zukan_enc_platinum.narc',
@@ -248,7 +245,11 @@ pokedex_enc_platinum_narc = custom_target('zukan_enc_platinum.narc',
         '--knarc', knarc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@'
+        '--output-dir', '@OUTDIR@',
+        '--coronet-file', '@INPUT0@',
+        '--honey-file', '@INPUT1@',
+        '--trophy-file', '@INPUT2@',
+        '--marsh-file', '@INPUT3@',
     ]
 )
 
