@@ -49,7 +49,6 @@ static void DrawContestMovesPageWindows(PokemonSummaryScreen *summaryScreen);
 static void DrawRibbonsPageWindows(PokemonSummaryScreen *summaryScreen);
 static void DrawExitPageWindows(PokemonSummaryScreen *summaryScreen);
 
-// clang-format off
 static const WindowTemplate sStaticWindowTemplates[] = {
     [PSS_WINDOW_LABEL_INFO] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -58,7 +57,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 13,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x1 
+        .baseTile = 0x1,
     },
     [PSS_WINDOW_LABEL_MEMO] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -67,7 +66,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 11,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x1B 
+        .baseTile = 0x1B,
     },
     [PSS_WINDOW_LABEL_SKILLS] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -76,7 +75,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 14,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x31 
+        .baseTile = 0x31,
     },
     [PSS_WINDOW_LABEL_CONDITION] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -85,7 +84,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 11,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x4D 
+        .baseTile = 0x4D,
     },
     [PSS_WINDOW_LABEL_BATTLE_MOVES] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -94,7 +93,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 9,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x63 
+        .baseTile = 0x63,
     },
     [PSS_WINDOW_LABEL_CONTEST_MOVES] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -103,7 +102,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 11,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x75 
+        .baseTile = 0x75,
     },
     [PSS_WINDOW_LABEL_ITEM] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -112,7 +111,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x8B 
+        .baseTile = 0x8B,
     },
     [PSS_WINDOW_LABEL_DEX_NUM] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -121,7 +120,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 9,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x97 
+        .baseTile = 0x97,
     },
     [PSS_WINDOW_LABEL_SPECIES_NAME] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -130,7 +129,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 5,
         .height = 2,
         .palette = 15,
-        .baseTile = 0xA9 
+        .baseTile = 0xA9,
     },
     [PSS_WINDOW_LABEL_TYPE] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -139,7 +138,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 5,
         .height = 2,
         .palette = 15,
-        .baseTile = 0xB3 
+        .baseTile = 0xB3,
     },
     [PSS_WINDOW_LABEL_OT_NAME] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -148,7 +147,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 5,
         .height = 2,
         .palette = 15,
-        .baseTile = 0xBD 
+        .baseTile = 0xBD,
     },
     [PSS_WINDOW_LABEL_OT_ID] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -157,7 +156,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 5,
         .height = 2,
         .palette = 15,
-        .baseTile = 0xC7 
+        .baseTile = 0xC7,
     },
     [PSS_WINDOW_LABEL_EXP] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -166,7 +165,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 15,
         .height = 2,
         .palette = 15,
-        .baseTile = 0xD1 
+        .baseTile = 0xD1,
     },
     [PSS_WINDOW_LABEL_EXP_NEXT_LV] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -175,7 +174,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 12,
         .height = 2,
         .palette = 15,
-        .baseTile = 0xEF 
+        .baseTile = 0xEF,
     },
     [PSS_WINDOW_DUMMY_14] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -184,7 +183,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 3,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x107 
+        .baseTile = 0x107,
     },
     [PSS_WINDOW_LABEL_HP] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -193,7 +192,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 2,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x10D 
+        .baseTile = 0x10D,
     },
     [PSS_WINDOW_LABEL_ATTACK] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -202,7 +201,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x111 
+        .baseTile = 0x111,
     },
     [PSS_WINDOW_LABEL_DEFENSE] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -211,7 +210,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x11D 
+        .baseTile = 0x11D,
     },
     [PSS_WINDOW_LABEL_SP_ATTACK] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -220,7 +219,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x129 
+        .baseTile = 0x129,
     },
     [PSS_WINDOW_LABEL_SP_DEFENSE] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -229,7 +228,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x135 
+        .baseTile = 0x135,
     },
     [PSS_WINDOW_LABEL_SPEED] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -238,7 +237,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x141 
+        .baseTile = 0x141,
     },
     [PSS_WINDOW_LABEL_ABILITY] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -247,7 +246,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x14D 
+        .baseTile = 0x14D,
     },
     [PSS_WINDOW_LABEL_SHEEN] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -256,7 +255,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 5,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x159 
+        .baseTile = 0x159,
     },
     [PSS_WINDOW_DUMMY_23] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -265,7 +264,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x163 
+        .baseTile = 0x163,
     },
     [PSS_WINDOW_LABEL_MOVE_CANCEL] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -274,7 +273,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 5,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x16F 
+        .baseTile = 0x16F,
     },
     [PSS_WINDOW_LABEL_MOVE_CATEGORY] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -283,7 +282,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x179 
+        .baseTile = 0x179,
     },
     [PSS_WINDOW_LABEL_MOVE_POWER] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -292,7 +291,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x185 
+        .baseTile = 0x185,
     },
     [PSS_WINDOW_LABEL_MOVE_ACCURACY] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -301,7 +300,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 8,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x191 
+        .baseTile = 0x191,
     },
     [PSS_WINDOW_LABEL_CLOSE_WINDOW] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -310,7 +309,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 9,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x1A1 
+        .baseTile = 0x1A1,
     },
     [PSS_WINDOW_LABEL_APPEAL_POINTS] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -319,7 +318,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 12,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x1B3 
+        .baseTile = 0x1B3,
     },
     [PSS_WINDOW_LABEL_RIBBON_COUNT] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -328,7 +327,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 12,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x1CB 
+        .baseTile = 0x1CB,
     },
     [PSS_WINDOW_LABEL_RIBBONS] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -337,7 +336,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 11,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x1E3 
+        .baseTile = 0x1E3,
     },
     [PSS_WINDOW_ITEM_NAME] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -346,7 +345,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 12,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x1F9 
+        .baseTile = 0x1F9,
     },
     [PSS_WINDOW_MON_LEVEL] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -355,7 +354,7 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x211 
+        .baseTile = 0x211,
     },
     [PSS_WINDOW_MON_NICKNAME_GENDER] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -364,17 +363,17 @@ static const WindowTemplate sStaticWindowTemplates[] = {
         .width = 9,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x21D 
+        .baseTile = 0x21D,
     },
-    [PSS_WINDOW_BUTTON_PROMPT] = { 
+    [PSS_WINDOW_BUTTON_PROMPT] = {
         .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 26,
         .tilemapTop = 0,
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x22F 
-    }
+        .baseTile = 0x22F,
+    },
 };
 
 static const WindowTemplate sExtraWindowTemplates_Info[] = {
@@ -385,7 +384,7 @@ static const WindowTemplate sExtraWindowTemplates_Info[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x23B
+        .baseTile = 0x23B,
     },
     [PSS_WINDOW_SPECIES_NAME] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -394,7 +393,7 @@ static const WindowTemplate sExtraWindowTemplates_Info[] = {
         .width = 8,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x247
+        .baseTile = 0x247,
     },
     [PSS_WINDOW_OT_NAME] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -403,7 +402,7 @@ static const WindowTemplate sExtraWindowTemplates_Info[] = {
         .width = 8,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x257
+        .baseTile = 0x257,
     },
     [PSS_WINDOW_OT_ID] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -412,7 +411,7 @@ static const WindowTemplate sExtraWindowTemplates_Info[] = {
         .width = 4,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x267
+        .baseTile = 0x267,
     },
     [PSS_WINDOW_EXP] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -421,7 +420,7 @@ static const WindowTemplate sExtraWindowTemplates_Info[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x271
+        .baseTile = 0x271,
     },
     [PSS_WINDOW_EXP_NEXT_LV] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -430,7 +429,7 @@ static const WindowTemplate sExtraWindowTemplates_Info[] = {
         .width = 6,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x27F
+        .baseTile = 0x27F,
     },
 };
 
@@ -442,7 +441,7 @@ static const WindowTemplate sExtraWindowTemplates_Memo[] = {
         .width = 17,
         .height = 18,
         .palette = 15,
-        .baseTile = 0x23B
+        .baseTile = 0x23B,
     },
 };
 
@@ -454,7 +453,7 @@ static const WindowTemplate sExtraWindowTemplates_Skills[] = {
         .width = 7,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x23B
+        .baseTile = 0x23B,
     },
     [PSS_WINDOW_ATTACK] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -463,7 +462,7 @@ static const WindowTemplate sExtraWindowTemplates_Skills[] = {
         .width = 3,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x249
+        .baseTile = 0x249,
     },
     [PSS_WINDOW_DEFENSE] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -472,7 +471,7 @@ static const WindowTemplate sExtraWindowTemplates_Skills[] = {
         .width = 3,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x24F
+        .baseTile = 0x24F,
     },
     [PSS_WINDOW_SP_ATTACK] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -481,7 +480,7 @@ static const WindowTemplate sExtraWindowTemplates_Skills[] = {
         .width = 3,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x255
+        .baseTile = 0x255,
     },
     [PSS_WINDOW_SP_DEFENSE] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -490,7 +489,7 @@ static const WindowTemplate sExtraWindowTemplates_Skills[] = {
         .width = 3,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x25B
+        .baseTile = 0x25B,
     },
     [PSS_WINDOW_SPEED] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -499,7 +498,7 @@ static const WindowTemplate sExtraWindowTemplates_Skills[] = {
         .width = 3,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x261
+        .baseTile = 0x261,
     },
     [PSS_WINDOW_ABILITY] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -508,7 +507,7 @@ static const WindowTemplate sExtraWindowTemplates_Skills[] = {
         .width = 11,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x267
+        .baseTile = 0x267,
     },
     [PSS_WINDOW_ABILITY_DESCRIPTION] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -517,7 +516,7 @@ static const WindowTemplate sExtraWindowTemplates_Skills[] = {
         .width = 18,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x27D
+        .baseTile = 0x27D,
     },
 };
 
@@ -529,7 +528,7 @@ static const WindowTemplate sExtraWindowTemplates_BattleMoves[] = {
         .width = 11,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x23B
+        .baseTile = 0x23B,
     },
     [PSS_WINDOW_BATTLE_MOVE_2] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -538,7 +537,7 @@ static const WindowTemplate sExtraWindowTemplates_BattleMoves[] = {
         .width = 11,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x267
+        .baseTile = 0x267,
     },
     [PSS_WINDOW_BATTLE_MOVE_3] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -547,7 +546,7 @@ static const WindowTemplate sExtraWindowTemplates_BattleMoves[] = {
         .width = 11,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x293
+        .baseTile = 0x293,
     },
     [PSS_WINDOW_BATTLE_MOVE_4] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -556,7 +555,7 @@ static const WindowTemplate sExtraWindowTemplates_BattleMoves[] = {
         .width = 11,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x2BF
+        .baseTile = 0x2BF,
     },
     [PSS_WINDOW_BATTLE_MOVE_5] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -565,7 +564,7 @@ static const WindowTemplate sExtraWindowTemplates_BattleMoves[] = {
         .width = 11,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x2EB
+        .baseTile = 0x2EB,
     },
     [PSS_WINDOW_BATTLE_MOVE_POWER] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -574,7 +573,7 @@ static const WindowTemplate sExtraWindowTemplates_BattleMoves[] = {
         .width = 3,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x317
+        .baseTile = 0x317,
     },
     [PSS_WINDOW_BATTLE_MOVE_ACCURACY] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -583,7 +582,7 @@ static const WindowTemplate sExtraWindowTemplates_BattleMoves[] = {
         .width = 3,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x31D
+        .baseTile = 0x31D,
     },
     [PSS_WINDOW_BATTLE_MOVE_DESCRIPTION] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -592,7 +591,7 @@ static const WindowTemplate sExtraWindowTemplates_BattleMoves[] = {
         .width = 15,
         .height = 10,
         .palette = 15,
-        .baseTile = 0x323
+        .baseTile = 0x323,
     },
 };
 
@@ -604,7 +603,7 @@ static const WindowTemplate sExtraWindowTemplates_ContestMoves[] = {
         .width = 11,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x23B
+        .baseTile = 0x23B,
     },
     [PSS_WINDOW_CONTEST_MOVE_2] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -613,7 +612,7 @@ static const WindowTemplate sExtraWindowTemplates_ContestMoves[] = {
         .width = 11,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x267
+        .baseTile = 0x267,
     },
     [PSS_WINDOW_CONTEST_MOVE_3] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -622,7 +621,7 @@ static const WindowTemplate sExtraWindowTemplates_ContestMoves[] = {
         .width = 11,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x293
+        .baseTile = 0x293,
     },
     [PSS_WINDOW_CONTEST_MOVE_4] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -631,7 +630,7 @@ static const WindowTemplate sExtraWindowTemplates_ContestMoves[] = {
         .width = 11,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x2BF
+        .baseTile = 0x2BF,
     },
     [PSS_WINDOW_CONTEST_MOVE_5] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -640,7 +639,7 @@ static const WindowTemplate sExtraWindowTemplates_ContestMoves[] = {
         .width = 11,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x2EB
+        .baseTile = 0x2EB,
     },
     [PSS_WINDOW_CONTEST_MOVE_DESCRIPTION] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -649,7 +648,7 @@ static const WindowTemplate sExtraWindowTemplates_ContestMoves[] = {
         .width = 15,
         .height = 6,
         .palette = 15,
-        .baseTile = 0x317
+        .baseTile = 0x317,
     },
 };
 
@@ -661,7 +660,7 @@ static const WindowTemplate sExtraWindowTemplates_Ribbons[] = {
         .width = 5,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x23B
+        .baseTile = 0x23B,
     },
     [PSS_WINDOW_RIBBON_INDEX] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -670,7 +669,7 @@ static const WindowTemplate sExtraWindowTemplates_Ribbons[] = {
         .width = 7,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x245
+        .baseTile = 0x245,
     },
     [PSS_WINDOW_RIBBON_NAME] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -679,7 +678,7 @@ static const WindowTemplate sExtraWindowTemplates_Ribbons[] = {
         .width = 21,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x253
+        .baseTile = 0x253,
     },
     [PSS_WINDOW_RIBBON_DESCRIPTION] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -688,7 +687,7 @@ static const WindowTemplate sExtraWindowTemplates_Ribbons[] = {
         .width = 30,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x27D
+        .baseTile = 0x27D,
     },
 };
 
@@ -700,7 +699,7 @@ static const WindowTemplate sExtraWindowTemplates_Condition[] = {
         .width = 5,
         .height = 2,
         .palette = 15,
-        .baseTile = 0x23B
+        .baseTile = 0x23B,
     },
     [PSS_WINDOW_FAVORITE_FOOD] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -709,7 +708,7 @@ static const WindowTemplate sExtraWindowTemplates_Condition[] = {
         .width = 12,
         .height = 4,
         .palette = 15,
-        .baseTile = 0x24D
+        .baseTile = 0x24D,
     },
     [PSS_WINDOW_POFFIN_FEED_MSG] = {
         .bgLayer = BG_LAYER_MAIN_1,
@@ -718,10 +717,9 @@ static const WindowTemplate sExtraWindowTemplates_Condition[] = {
         .width = 27,
         .height = 2,
         .palette = 14,
-        .baseTile = 0x27D
+        .baseTile = 0x27D,
     },
 };
-// clang-format on
 
 void PokemonSummaryScreen_DrawStaticWindows(PokemonSummaryScreen *summaryScreen)
 {
@@ -1070,7 +1068,7 @@ static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
         Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[PSS_WINDOW_OT_NAME], FONT_SYSTEM, summaryScreen->monData.OTName, OTNameX, 0, TEXT_SPEED_NO_TRANSFER, PSS_TEXT_RED, NULL);
     }
 
-    SetAndFormatNumberBuf(summaryScreen, pss_template_ot_id, (summaryScreen->monData.OTID & 0xffff), 5, PADDING_MODE_ZEROES);
+    SetAndFormatNumberBuf(summaryScreen, pss_template_ot_id, (summaryScreen->monData.OTID & 0xFFFF), 5, PADDING_MODE_ZEROES);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[PSS_WINDOW_OT_ID], PSS_TEXT_BLACK, ALIGN_CENTER);
 
     SetAndFormatNumberBuf(summaryScreen, pss_template_exp, summaryScreen->monData.curExp, 7, PADDING_MODE_SPACES);

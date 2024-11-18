@@ -1,5 +1,3 @@
-
-
 #include "applications/pokemon_summary_screen/3d_anim.h"
 
 #include <nitro.h>
@@ -151,7 +149,7 @@ void PokemonSummaryScreen_Setup3DGfx(PokemonSummaryScreen *summaryScreen)
     G3X_AntiAlias(1);
     G3X_EdgeMarking(0);
     G3X_SetFog(0, 0, 0, 0);
-    G3X_SetClearColor(0, 0, 0x7fff, 63, 0);
+    G3X_SetClearColor(0, 0, 0x7FFF, 63, 0);
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     G3_ViewPort(0, 0, 255, 191);
 

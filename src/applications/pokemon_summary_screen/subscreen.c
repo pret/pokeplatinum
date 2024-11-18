@@ -175,7 +175,7 @@ static int sub_02092224(PokemonSummaryScreen *summaryScreen)
     v0 = sub_02022644(sSubscreenRectangles[summaryScreen->subscreenType]);
 
     if (v0 != TOUCHSCREEN_INPUT_NONE) {
-        u16 v1 = 0xfffe;
+        u16 v1 = 0xFFFE;
 
         if (Bg_DoesPixelAtXYMatchVal(summaryScreen->bgConfig, BG_LAYER_SUB_0, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
             return TOUCHSCREEN_INPUT_NONE;

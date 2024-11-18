@@ -4018,11 +4018,11 @@ static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon)
 {
     u8 monPokerus = BoxPokemon_GetValue(boxMon, MON_DATA_POKERUS, NULL);
 
-    if (monPokerus & 0xf) {
+    if (monPokerus & 0xF) {
         return FALSE;
     }
 
-    return (monPokerus & 0xf0) != 0;
+    return (monPokerus & 0xF0) != 0;
 }
 
 void Pokemon_SetArceusForm(Pokemon *mon)
