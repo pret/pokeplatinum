@@ -119,23 +119,23 @@ void sub_020553DC()
     return;
 }
 
-void sub_020553F0(FieldSystem *fieldSystem, u16 param1)
+void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 param1)
 {
-    u16 *v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *v0 = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     *v0 = param1;
     return;
 }
 
-u16 sub_02055404(FieldSystem *fieldSystem)
+u16 Sound_GetSpecialBGM(FieldSystem *fieldSystem)
 {
-    u16 *v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *v0 = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     return *v0;
 }
 
 void Sound_ClearSpecialBGM(FieldSystem *fieldSystem)
 {
-    u16 *v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *v0 = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     *v0 = 0;
     return;
@@ -174,8 +174,8 @@ u16 sub_02055428(FieldSystem *fieldSystem, int param1)
 
     v2 = sub_020554A4(fieldSystem, param1);
 
-    if (sub_02055404(fieldSystem) != 0) {
-        v2 = sub_02055404(fieldSystem);
+    if (Sound_GetSpecialBGM(fieldSystem) != 0) {
+        v2 = Sound_GetSpecialBGM(fieldSystem);
     }
 
     return v2;

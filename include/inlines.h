@@ -132,7 +132,7 @@ static inline void inline_ov61_0222C3B0_sub(SysTask *param0, void *param1)
 static inline void inline_ov47_0225621C_sub(FieldSystem *fieldSystem, int *param1, int *param2)
 {
     FieldOverworldState *v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    Location *location = sub_0203A72C(v0);
+    Location *location = FieldOverworldState_GetExitLocation(v0);
 
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
         *param1 = fieldSystem->location->x;

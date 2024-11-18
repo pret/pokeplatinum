@@ -220,7 +220,7 @@ BOOL sub_02052B2C(FieldTask *param0)
             u16 v4 = FieldOverworldState_GetWarpId(v3);
 
             sub_0203A824(v4, &v2);
-            sub_0203A7F0(v4, sub_0203A72C(v3));
+            sub_0203A7F0(v4, FieldOverworldState_GetExitLocation(v3));
             FieldTask_ChangeMapByLocation(param0, &v2);
             sub_020705B4(fieldSystem);
         }

@@ -154,7 +154,7 @@ static int ov6_02247288(FieldTask *taskMan, FieldSystem *fieldSystem, UnkStruct_
         sub_0203A7F0(v1, &v2);
         FieldTask_ChangeMapChangeByDig(taskMan, &v2, param2->unk_08);
     } else {
-        Location *v3 = sub_0203A72C(v0);
+        Location *v3 = FieldOverworldState_GetExitLocation(v0);
         FieldTask_ChangeMapChangeByDig(taskMan, v3, param2->unk_08);
     }
 

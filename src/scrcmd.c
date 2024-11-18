@@ -4753,14 +4753,14 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
     u8 rideBike = ScriptContext_ReadByte(ctx);
 
     if (rideBike == TRUE) {
-        sub_020553F0(ctx->fieldSystem, 1152);
+        Sound_SetSpecialBGM(ctx->fieldSystem, 1152);
         sub_02055554(ctx->fieldSystem, 1152, 1);
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 1));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
     } else {
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
-        sub_020553F0(ctx->fieldSystem, 0);
+        Sound_SetSpecialBGM(ctx->fieldSystem, 0);
         sub_02055554(ctx->fieldSystem, sub_02055428(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
     }
 
@@ -4769,7 +4769,7 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
 
 static BOOL ScrCmd_2BF(ScriptContext *ctx)
 {
-    sub_020553F0(ctx->fieldSystem, 1189);
+    Sound_SetSpecialBGM(ctx->fieldSystem, 1189);
     return 0;
 }
 
@@ -7694,7 +7694,7 @@ static BOOL ScrCmd_2B5(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
     FieldOverworldState *v3 = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
-    Location *location = sub_0203A72C(v3);
+    Location *location = FieldOverworldState_GetExitLocation(v3);
 
     location->mapId = mapId;
     location->x = v1;

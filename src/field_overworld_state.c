@@ -21,8 +21,8 @@ typedef struct FieldOverworldState {
     Location entrance;
     Location previous;
     Location special;
-    Location unk_50;
-    u16 unk_64;
+    Location exit;
+    u16 bgm;
     u16 weather;
     u16 warpId;
     u8 cameraType;
@@ -31,8 +31,8 @@ typedef struct FieldOverworldState {
     u16 poisonSteps;
     u16 safariSteps;
     u16 safariBalls;
-    u16 unk_9A;
-    u16 unk_9C;
+    u16 padding_9A; // unused
+    u16 padding_9C; // unused
 } FieldOverworldState;
 
 typedef struct UnkStruct_0203A79C_t {
@@ -79,9 +79,9 @@ Location *FieldOverworldState_GetPrevLocation(FieldOverworldState *fieldState)
     return &fieldState->previous;
 }
 
-Location *sub_0203A72C(FieldOverworldState *fieldState)
+Location *FieldOverworldState_GetExitLocation(FieldOverworldState *fieldState)
 {
-    return &fieldState->unk_50;
+    return &fieldState->exit;
 }
 
 Location *FieldOverworldState_GetSpecialLocation(FieldOverworldState *fieldState)
@@ -95,9 +95,9 @@ void FieldOverworldState_SetSpecialLocation(FieldOverworldState *fieldState, Loc
     return;
 }
 
-u16 *sub_0203A748(FieldOverworldState *fieldState)
+u16 *FieldOverworldState_GetSpecialBGM(FieldOverworldState *fieldState)
 {
-    return &fieldState->unk_64;
+    return &fieldState->bgm;
 }
 
 u16 FieldOverworldState_GetWeather(const FieldOverworldState *fieldState)

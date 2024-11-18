@@ -80,7 +80,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     UnkStruct_020556C4 *v7;
     VarsFlags *v8 = SaveData_GetVarsFlags(fieldSystem->saveData);
     FieldOverworldState *v9 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    Location *v10 = sub_0203A72C(v9);
+    Location *v10 = FieldOverworldState_GetExitLocation(v9);
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
 

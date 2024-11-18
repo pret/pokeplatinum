@@ -491,11 +491,11 @@ static BOOL sub_02068884(FieldTask *param0)
             PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 0));
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
-            sub_020553F0(fieldSystem, 0);
+            Sound_SetSpecialBGM(fieldSystem, 0);
             sub_02055554(
                 fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
         } else {
-            sub_020553F0(fieldSystem, 1152);
+            Sound_SetSpecialBGM(fieldSystem, 1152);
             sub_02055554(fieldSystem, 1152, 1);
             sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
 
