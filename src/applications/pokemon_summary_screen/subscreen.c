@@ -195,7 +195,7 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
         PokemonSummaryScreen_UpdateSubscreenButtonGfx(summaryScreen);
         UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonCurrent], 2);
         Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_SUB_0);
-        PokemonSummaryScreen_ButtonPulseAnim(summaryScreen);
+        PokemonSummaryScreen_ButtonTapAnim(summaryScreen);
         summaryScreen->buttonCount = 0;
         summaryScreen->buttonState = 1;
         break;
@@ -210,7 +210,7 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
             break;
         }
 
-        PokemonSummaryScreen_HideButtonPulse(summaryScreen);
+        PokemonSummaryScreen_HideButtonTapCircle(summaryScreen);
 
         if (sub_02092224(summaryScreen) != summaryScreen->buttonCurrent) {
             if (summaryScreen->monData.isEgg != FALSE
@@ -229,7 +229,7 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
     return FALSE;
 }
 
-void PokemonSummaryScreen_CalcSubscreenButtonPulsePos(PokemonSummaryScreen *summaryScreen, s16 *outX, s16 *outY)
+void PokemonSummaryScreen_CalcSubscreenButtonTapAnimPos(PokemonSummaryScreen *summaryScreen, s16 *outX, s16 *outY)
 {
     const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
 

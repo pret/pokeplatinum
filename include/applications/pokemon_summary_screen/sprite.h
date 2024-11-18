@@ -7,7 +7,7 @@
 
 void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_FreeSpriteResources(PokemonSummaryScreen *summaryScreen);
-void PokemonSummaryScreen_UpdateArrowAndPulseAnims(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateArrowAndTapAnims(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_SetDefaultSpriteStates(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdatePageTabSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_SetPageArrowsPos(PokemonSummaryScreen *summaryScreen);
@@ -23,8 +23,8 @@ void PokemonSummaryScreen_SetMoveSelector2Pos(PokemonSummaryScreen *summaryScree
 void PokemonSummaryScreen_InitSheenSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_DrawSheenSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdateMiscMonDataSprites(PokemonSummaryScreen *summaryScreen);
-void PokemonSummaryScreen_ButtonPulseAnim(PokemonSummaryScreen *summaryScreen);
-void PokemonSummaryScreen_HideButtonPulse(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_ButtonTapAnim(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_HideButtonTapCircle(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdateConditionArrowSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdateAButtonSprite(PokemonSummaryScreen *summaryScreen, Window *window);
 void PokemonSummaryScreen_SetMonIcon(PokemonSummaryScreen *summaryScreen);

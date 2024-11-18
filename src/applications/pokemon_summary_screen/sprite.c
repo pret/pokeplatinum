@@ -158,7 +158,7 @@ static const UnkStruct_ov7_0224F358 Unk_020F41A8[] = {
     [PSS_SPRITE_SHEEN_10] = { 0xD, 0xE0, 0xA8, 0x0, 0x0, 0x0, 0x2, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     [PSS_SPRITE_SHEEN_11] = { 0xD, 0xE8, 0xA8, 0x0, 0x0, 0x0, 0x2, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     [PSS_SPRITE_SHEEN_12] = { 0xD, 0xF0, 0xA8, 0x0, 0x0, 0x0, 0x2, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    [PSS_SPRITE_BUTTON_PULSE] = { 0xF, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
+    [PSS_SPRITE_BUTTON_TAP_CIRCLE] = { 0xF, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     [PSS_SPRITE_CONDITION_ARROW_COOL] = { 0x10, 0xD0, 0x30, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     [PSS_SPRITE_CONDITION_ARROW_BEAUTY] = { 0x10, 0xE0, 0x58, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     [PSS_SPRITE_CONDITION_ARROW_CUTE] = { 0x10, 0xD8, 0x78, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
@@ -266,11 +266,11 @@ void PokemonSummaryScreen_FreeSpriteResources(PokemonSummaryScreen *summaryScree
     sub_0200C8D4(summaryScreen->renderer);
 }
 
-void PokemonSummaryScreen_UpdateArrowAndPulseAnims(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_UpdateArrowAndTapAnims(PokemonSummaryScreen *summaryScreen)
 {
     CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_PAGE_ARROW_LEFT], FX32_ONE);
     CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_PAGE_ARROW_RIGHT], FX32_ONE);
-    CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_BUTTON_PULSE], FX32_ONE);
+    CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_BUTTON_TAP_CIRCLE], FX32_ONE);
     CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_RIBBON_ARROW_UP], FX32_ONE);
     CellActor_UpdateAnim(summaryScreen->sprites[PSS_SPRITE_RIBBON_ARROW_DOWN], FX32_ONE);
 }
@@ -285,7 +285,7 @@ void PokemonSummaryScreen_SetDefaultSpriteStates(PokemonSummaryScreen *summarySc
 
     CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_MOVE_SELECTOR_1], FALSE);
     CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_MOVE_SELECTOR_2], FALSE);
-    CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_BUTTON_PULSE], FALSE);
+    CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_BUTTON_TAP_CIRCLE], FALSE);
     CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_CONDITION_ARROW_COOL], FALSE);
     CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_CONDITION_ARROW_BEAUTY], FALSE);
     CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_CONDITION_ARROW_CUTE], FALSE);
@@ -675,26 +675,26 @@ void PokemonSummaryScreen_UpdateMiscMonDataSprites(PokemonSummaryScreen *summary
     }
 }
 
-void PokemonSummaryScreen_ButtonPulseAnim(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_ButtonTapAnim(PokemonSummaryScreen *summaryScreen)
 {
-    CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_BUTTON_PULSE], TRUE);
-    SpriteActor_SetAnimFrame(summaryScreen->sprites[PSS_SPRITE_BUTTON_PULSE], 0);
-    CellActor_SetAnim(summaryScreen->sprites[PSS_SPRITE_BUTTON_PULSE], 0);
+    CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_BUTTON_TAP_CIRCLE], TRUE);
+    SpriteActor_SetAnimFrame(summaryScreen->sprites[PSS_SPRITE_BUTTON_TAP_CIRCLE], 0);
+    CellActor_SetAnim(summaryScreen->sprites[PSS_SPRITE_BUTTON_TAP_CIRCLE], 0);
 
     s16 x, y;
-    PokemonSummaryScreen_CalcSubscreenButtonPulsePos(summaryScreen, &x, &y);
+    PokemonSummaryScreen_CalcSubscreenButtonTapAnimPos(summaryScreen, &x, &y);
 
     if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NORMAL) {
-        SpriteActor_SetPositionXY(summaryScreen->sprites[PSS_SPRITE_BUTTON_PULSE], x, y + 192);
+        SpriteActor_SetPositionXY(summaryScreen->sprites[PSS_SPRITE_BUTTON_TAP_CIRCLE], x, y + 192);
     } else {
-        SpriteActor_SetPositionXY(summaryScreen->sprites[PSS_SPRITE_BUTTON_PULSE], x - 4, y + 192);
+        SpriteActor_SetPositionXY(summaryScreen->sprites[PSS_SPRITE_BUTTON_TAP_CIRCLE], x - 4, y + 192);
     }
 }
 
-void PokemonSummaryScreen_HideButtonPulse(PokemonSummaryScreen *summaryScreen)
+void PokemonSummaryScreen_HideButtonTapCircle(PokemonSummaryScreen *summaryScreen)
 {
-    if (CellActor_GetAnimFrame(summaryScreen->sprites[PSS_SPRITE_BUTTON_PULSE]) == 2) {
-        CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_BUTTON_PULSE], FALSE);
+    if (CellActor_GetAnimFrame(summaryScreen->sprites[PSS_SPRITE_BUTTON_TAP_CIRCLE]) == 2) {
+        CellActor_SetDrawFlag(summaryScreen->sprites[PSS_SPRITE_BUTTON_TAP_CIRCLE], FALSE);
     }
 }
 
