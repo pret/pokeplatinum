@@ -31,55 +31,55 @@ BOOL Pokemon_CanBattle(Pokemon *mon)
 
 BOOL sub_020548B0(int param0, SaveData *param1, u16 param2, u8 param3, u16 param4, int param5, int param6)
 {
-    BOOL v0;
-    Pokemon *v1;
+    BOOL result;
+    Pokemon *mon;
     u32 v2;
-    Party *v3;
-    TrainerInfo *v4;
+    Party *party;
+    TrainerInfo *trainerInfo;
 
-    v4 = SaveData_GetTrainerInfo(param1);
-    v3 = Party_GetFromSavedata(param1);
-    v1 = Pokemon_New(param0);
+    trainerInfo = SaveData_GetTrainerInfo(param1);
+    party = Party_GetFromSavedata(param1);
+    mon = Pokemon_New(param0);
 
-    Pokemon_Init(v1);
-    Pokemon_InitWith(v1, param2, param3, 32, FALSE, 0, OTID_NOT_SET, 0);
-    Pokemon_SetCatchData(v1, v4, ITEM_POKE_BALL, param5, param6, param0);
+    Pokemon_Init(mon);
+    Pokemon_InitWith(mon, param2, param3, 32, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, param5, param6, param0);
 
     v2 = param4;
-    Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v2);
-    v0 = Party_AddPokemon(v3, v1);
+    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v2);
+    result = Party_AddPokemon(party, mon);
 
-    if (v0) {
-        sub_0202F180(param1, v1);
+    if (result) {
+        sub_0202F180(param1, mon);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_FreeToHeap(mon);
 
-    return v0;
+    return result;
 }
 
 BOOL sub_02054930(int param0, SaveData *param1, u16 param2, u8 param3, int param4, int param5)
 {
     int v0;
-    BOOL v1;
-    TrainerInfo *v2 = SaveData_GetTrainerInfo(param1);
-    Party *v3 = Party_GetFromSavedata(param1);
-    Pokemon *v4 = Pokemon_New(32);
+    BOOL result;
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(param1);
+    Party *party = Party_GetFromSavedata(param1);
+    Pokemon *mon = Pokemon_New(32);
 
-    Pokemon_Init(v4);
+    Pokemon_Init(mon);
 
     v0 = sub_02017070(param4, param5);
-    ov5_021E6CF0(v4, param2, param3, v2, 4, v0);
+    ov5_021E6CF0(mon, param2, param3, trainerInfo, 4, v0);
 
-    v1 = Party_AddPokemon(v3, v4);
-    Heap_FreeToHeap(v4);
+    result = Party_AddPokemon(party, mon);
+    Heap_FreeToHeap(mon);
 
-    return v1;
+    return result;
 }
 
-void sub_02054988(Party *param0, int param1, int param2, u16 param3)
+void sub_02054988(Party *party, int param1, int param2, u16 param3)
 {
-    Pokemon_ResetMoveSlot(Party_GetPokemonBySlotIndex(param0, param1), param3, param2);
+    Pokemon_ResetMoveSlot(Party_GetPokemonBySlotIndex(party, param1), param3, param2);
 }
 
 // In many of the functions below, C99-style iterator declaration doesn't match
@@ -175,17 +175,17 @@ void Party_GiveChampionRibbons(Party *party)
     }
 }
 
-int Pokemon_DoPoisonDamage(Party *param0, u16 param1)
+int Pokemon_DoPoisonDamage(Party *party, u16 param1)
 {
     int numPoisoned = 0;
     int numFainted = 0;
     int i, partyCount;
     Pokemon *mon;
 
-    partyCount = Party_GetCurrentCount(param0);
+    partyCount = Party_GetCurrentCount(party);
 
     for (i = 0; i < partyCount; i++) {
-        mon = Party_GetPokemonBySlotIndex(param0, i);
+        mon = Party_GetPokemonBySlotIndex(party, i);
 
         if (Pokemon_CanBattle(mon)) {
             if (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)) {
