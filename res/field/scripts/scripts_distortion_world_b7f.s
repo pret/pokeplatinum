@@ -54,7 +54,7 @@ _0096:
     FacePlayer
     Message 5
     CloseMessage
-    ScrCmd_0E5 0x194, 0
+    StartTrainerBattle 0x194, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01CE
     SetVar 0x4055, 10

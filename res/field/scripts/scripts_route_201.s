@@ -364,15 +364,15 @@ _057A:
     End
 
 _05B1:
-    ScrCmd_125 0x352
+    StartFirstBattle 0x352
     GoTo _05CF
 
 _05BB:
-    ScrCmd_125 0x353
+    StartFirstBattle 0x353
     GoTo _05CF
 
 _05C5:
-    ScrCmd_125 0x354
+    StartFirstBattle 0x354
     GoTo _05CF
 
 _05CF:

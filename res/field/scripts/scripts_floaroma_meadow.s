@@ -18,11 +18,11 @@ _001E:
 _0024:
     LockAll
     Call _00CC
-    ScrCmd_0E5 0x128, 0
+    StartTrainerBattle 0x128, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _006E
     Call _00EE
-    ScrCmd_0E5 0x129, 0
+    StartTrainerBattle 0x129, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _006E
     Call _010E

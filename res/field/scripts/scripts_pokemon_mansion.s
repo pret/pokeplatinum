@@ -95,7 +95,7 @@ _00FF:
     WaitMovement
     Message 15
     CloseMessage
-    ScrCmd_0E5 0x381, 0
+    StartTrainerBattle 0x381, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
@@ -107,7 +107,7 @@ _00FF:
     WaitMovement
     Message 17
     CloseMessage
-    ScrCmd_0E5 0x382, 0
+    StartTrainerBattle 0x382, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
@@ -119,7 +119,7 @@ _00FF:
     WaitMovement
     Message 19
     CloseMessage
-    ScrCmd_0E5 0x383, 0
+    StartTrainerBattle 0x383, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
@@ -131,7 +131,7 @@ _00FF:
     WaitMovement
     Message 21
     CloseMessage
-    ScrCmd_0E5 0x384, 0
+    StartTrainerBattle 0x384, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
@@ -151,7 +151,7 @@ _00FF:
     WaitMovement
     Message 23
     CloseMessage
-    ScrCmd_0E5 0x385, 0
+    StartTrainerBattle 0x385, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
@@ -179,7 +179,7 @@ _00FF:
     CallIfEq 0x8006, 0, _03CD
     CallIfEq 0x8006, 1, _03D2
     CloseMessage
-    ScrCmd_0E5 0x8007, 0
+    StartTrainerBattle 0x8007, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     SetTrainerFlag 0x37C

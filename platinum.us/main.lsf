@@ -229,8 +229,7 @@ Static main
 	Object main.nef.p/src_unk_02054D00.c.o
 	Object main.nef.p/src_unk_020553DC.c.o
 	Object main.nef.p/src_unk_020556C4.c.o
-	Object main.nef.p/src_unk_0205578C.c.o
-	Object main.nef.p/src_unk_02055808.c.o
+	Object main.nef.p/src_field_transition.c.o
 	Object main.nef.p/src_unk_020559DC.c.o
 	Object main.nef.p/src_unk_02055C50.c.o
 	Object main.nef.p/src_unk_020562F8.c.o

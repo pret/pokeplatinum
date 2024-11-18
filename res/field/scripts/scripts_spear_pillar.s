@@ -136,7 +136,7 @@ _01A6:
 _01CA:
     Message 0
     CloseMessage
-    ScrCmd_0E5 0x209, 0x20F
+    StartTrainerBattle 0x209, 0x20F
     CheckWonBattle 0x800C
     Return
 
@@ -215,7 +215,7 @@ _0249:
     Message 9
     CloseMessage
     Call _0424
-    ScrCmd_2A0 0x8004, 0x210, 0x197
+    StartTagBattle 0x8004, 0x210, 0x197
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02D0
     Call _0456

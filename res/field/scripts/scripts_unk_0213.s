@@ -399,7 +399,7 @@ _0513:
     Return
 
 _051E:
-    ScrCmd_0F6
+    StartLinkBattle
     ScrCmd_151
     End
 

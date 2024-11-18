@@ -30,11 +30,11 @@ _000A:
     End
 
 _007A:
-    ScrCmd_0E5 0x105, 0
+    StartTrainerBattle 0x105, 0
     Return
 
 _0082:
-    ScrCmd_0E5 0x362, 0
+    StartTrainerBattle 0x362, 0
     Return
 
 _008A:
