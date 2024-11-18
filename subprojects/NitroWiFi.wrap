@@ -1,8 +1,9 @@
 [wrap-git]
 url = https://github.com/Nomura-RH/NitroWiFi.git
-revision = main
+revision = 0d74e5de275952680962237da9d592e80815679a
 depth = 1
 directory = NitroWiFi-2.1.30003
 
 [provide]
 dependency_names = NitroWiFi
+
