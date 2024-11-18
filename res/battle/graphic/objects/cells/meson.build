@@ -5,15 +5,11 @@ cells_uncompressed = files(
 
 cells_compressed = files(
     'pl_batt_obj_00000116.json',
-    'pl_batt_obj_00000122.json',
-    'pl_batt_obj_00000125.json',
     'battle_terrain_player.json',
-    'pl_batt_obj_00000181.json',
     'pl_batt_obj_00000184.json',
     'ball_status_indicator_opponent.json',
     'ball_status_indicator_player.json',
     'pl_batt_obj_00000210.json',
-    'pl_batt_obj_00000213.json',
     'pl_batt_obj_00000216.json',
     'pl_batt_obj_00000248.json',
     'battle_subscreen_cursor_corner.json',
@@ -43,18 +39,25 @@ cells_compressed = files(
     'cherish_ball_throw.json',
     'park_ball_throw.json',
     'bait_throw.json',
-    'mud_throw.json',
-    'party_gauge.json',
     'pl_batt_obj_00000119.json',
     'battle_terrain_opponent.json',
-    'pl_batt_obj_00000178.json',
     'healthbox_singles_opponent.json',
     'healthbox_singles_player.json',
     'healthbox_doubles_opponent_1.json',
     'healthbox_doubles_opponent_2.json',
     'healthbox_doubles_player_1.json',
     'healthbox_doubles_player_2.json',
-    'move_type_icon.json',
     'healthbox_safari.json',
     'bg_party_level_up.json'
+)
+
+cells_compressed_unpadded = files(
+    'pl_batt_obj_00000122.json',
+    'pl_batt_obj_00000125.json',
+    'pl_batt_obj_00000178.json',
+    'pl_batt_obj_00000181.json',
+    'pl_batt_obj_00000213.json',
+    'move_type_icon.json',
+    'mud_throw.json',
+    'party_gauge.json'
 )

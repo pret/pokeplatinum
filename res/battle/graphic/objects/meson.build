@@ -34,6 +34,9 @@ ncgr_compressed_vram = lz_gen.process(ncgr_gen.process(tiles_compressed_vram_tra
 
 ncer_uncompressed = ncer_gen.process(cells_uncompressed)
 ncer_compressed = lz_gen.process(ncer_gen.process(cells_compressed))
+ncer_compressed_nopad = lz_gen.process(ncer_gen.process(cells_compressed_unpadded, 
+    extra_args: [ '-nopadoam' ]
+))
 
 nanr_uncompressed = nanr_gen.process(anims_uncompressed)
 nanr_compressed = lz_gen.process(nanr_gen.process(anims_compressed))
@@ -57,9 +60,11 @@ pl_batt_obj_narc = custom_target('pl_batt_obj.narc',
         ncgr_compressed_vram,
         ncer_uncompressed,
         ncer_compressed,
+        ncer_compressed_nopad,
         nanr_uncompressed,
         nanr_compressed,
-        pl_batt_obj_order
+        pl_batt_obj_order,
+        pl_batt_obj_ignore
     ],
     command: [
         knarc_exe,

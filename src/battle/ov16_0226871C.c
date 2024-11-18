@@ -2922,19 +2922,11 @@ static void ov16_0226B028(UnkStruct_ov16_02268A14 *param0)
     v1 = ov16_0223E010(param0->unk_00);
     v2 = ov16_0223E018(param0->unk_00);
 
-<<<<<<< HEAD
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_5FC[v0] != NULL) {
-            BattleIcon_DeleteMoveClassCellActorData(param0->unk_5FC[v0]);
-            BattleIcon_UnloadMoveClassSpriteTiles(v2, 20029 + v0);
-            param0->unk_5FC[v0] = NULL;
-=======
     for (i = 0; i < 4; i++) {
         if (param0->unk_5FC[i] != NULL) {
-            sub_0207CB00(param0->unk_5FC[i]);
-            sub_0207CAF8(v2, 20029 + i);
+            BattleIcon_DeleteMoveClassCellActorData(param0->unk_5FC[i]);
+            BattleIcon_UnloadMoveClassSpriteTiles(v2, 20029 + i);
             param0->unk_5FC[i] = NULL;
->>>>>>> upstream/main
         }
     }
 }
