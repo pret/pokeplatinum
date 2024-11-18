@@ -507,7 +507,7 @@ _0656:
     CallIfEq 0x800C, 1, _09B3
     CallIfEq 0x800C, 0, _09C7
     Call _0919
-    ScrCmd_2A0 0x8004, 0x350, 0x351
+    StartTagBattle 0x8004, 0x350, 0x351
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0A73
     Message 16

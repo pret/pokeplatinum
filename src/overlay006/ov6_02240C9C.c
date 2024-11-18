@@ -301,7 +301,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
                 FieldBattleDTO_Init(battleParams, fieldSystem);
                 ov6_0224239C(encounterFieldParams.trainerID, v17, battleParams);
                 RadarChain_Clear(fieldSystem->chain);
-                sub_02050E10(fieldSystem, battleParams);
+                Encounter_NewVsWild(fieldSystem, battleParams);
                 return TRUE;
             } else {
                 return FALSE;
@@ -358,7 +358,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
     }
 
     if (v7) {
-        sub_02050E10(fieldSystem, battleParams);
+        Encounter_NewVsWild(fieldSystem, battleParams);
     } else {
         v6 = FALSE;
     }
@@ -492,7 +492,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
             FieldBattleDTO_Init(battleParams, fieldSystem);
             ov6_0224239C(encounterFieldParams.trainerID, v15, battleParams);
             RadarChain_Clear(fieldSystem->chain);
-            sub_02050E78(fieldSystem, param1, battleParams);
+            Encounter_StartVsWild(fieldSystem, param1, battleParams);
             return TRUE;
         }
     }
@@ -543,7 +543,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
     }
 
     if (v8) {
-        sub_02050E78(fieldSystem, param1, battleParams);
+        Encounter_StartVsWild(fieldSystem, param1, battleParams);
     } else {
         GF_ASSERT(FALSE);
     }

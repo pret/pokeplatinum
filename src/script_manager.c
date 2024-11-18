@@ -352,8 +352,8 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &scriptManager->tmpBuf;
     case SCRIPT_MANAGER_SAVING_ICON:
         return &scriptManager->savingIcon;
-    case 19:
-        return &scriptManager->unk_A8;
+    case SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA:
+        return &scriptManager->partyManagementDataPtr;
     case SCRIPT_MANAGER_DATA_PTR:
         return &scriptManager->dataPtr;
     case 21:

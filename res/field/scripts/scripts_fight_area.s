@@ -145,7 +145,7 @@ _014E:
     Message 8
     CloseMessage
     Call _030C
-    ScrCmd_2A0 0x8004, 0x399, 0x39A
+    StartTagBattle 0x8004, 0x399, 0x39A
     CheckWonBattle 0x800C
     Return
 

@@ -3,8 +3,8 @@
 
 #include "struct_decls/battle_system.h"
 
+#include "battle/move_display_info.h"
 #include "battle/struct_ov16_02268A14_decl.h"
-#include "battle/struct_ov16_0226AC98.h"
 
 #include "bg_window.h"
 #include "narc.h"
@@ -26,7 +26,7 @@ BOOL ov16_02269348(UnkStruct_ov16_02268A14 *param0);
 int ov16_02269368(int param0, int param1);
 void ov16_0226940C(UnkStruct_ov16_02268A14 *param0);
 void ov16_0226947C(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
-void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const UnkStruct_ov16_0226AC98 *param2);
+void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDisplayInfo *param2);
 void ov16_0226BCCC(UnkStruct_ov16_02268A14 *param0, int param1);
 BOOL ov16_0226BCD0(UnkStruct_ov16_02268A14 *param0);
 int ov16_0226CD08(UnkStruct_ov16_02268A14 *param0);

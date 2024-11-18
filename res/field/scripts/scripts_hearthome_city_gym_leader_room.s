@@ -59,7 +59,7 @@ _00BB:
     Message 0
     CloseMessage
     SetFlag 142
-    ScrCmd_0E5 0x13E, 0
+    StartTrainerBattle 0x13E, 0
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0248

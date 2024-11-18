@@ -47,7 +47,7 @@ _0081:
     ScrCmd_04C 0x1E6, 0
     ScrCmd_04D
     SetFlag 142
-    ScrCmd_2BD 0x1E6, 1
+    StartLegendaryBattle SPECIES_REGIGIGAS, 1
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00D1

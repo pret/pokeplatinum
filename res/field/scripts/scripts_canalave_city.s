@@ -161,15 +161,15 @@ _028A:
     GoTo _02DF
 
 _02DF:
-    ScrCmd_0E5 0x1DC, 0
+    StartTrainerBattle 0x1DC, 0
     GoTo _0303
 
 _02EB:
-    ScrCmd_0E5 0x1DD, 0
+    StartTrainerBattle 0x1DD, 0
     GoTo _0303
 
 _02F7:
-    ScrCmd_0E5 0x1DE, 0
+    StartTrainerBattle 0x1DE, 0
     GoTo _0303
 
 _0303:

@@ -18,6 +18,7 @@
 #include "bg_window.h"
 #include "field_system.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -37,7 +38,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_02024220.h"
 #include "unk_0202F180.h"
-#include "unk_02055808.h"
 #include "unk_0208694C.h"
 #include "unk_02092494.h"
 
@@ -201,7 +201,7 @@ static BOOL sub_0209843C(FieldTask *param0)
     switch (v0->unk_00) {
     case 0:
         ov5_021E771C(v0->unk_0C.unk_00, 11);
-        FieldTask_FinishFieldMap(param0);
+        FieldTransition_FinishMap(param0);
         v0->unk_00++;
         break;
     case 1:
@@ -262,7 +262,7 @@ static BOOL sub_0209843C(FieldTask *param0)
         v0->unk_00++;
         break;
     case 5:
-        FieldTask_StartFieldMap(param0);
+        FieldTransition_StartMap(param0);
         v0->unk_00++;
         break;
     case 6:

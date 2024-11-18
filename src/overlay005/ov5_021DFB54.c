@@ -892,7 +892,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
                 if (ov6_022413E4(fieldSystem, &v9) == 1) {
                     PlayerAvatar_SetInDeepSwamp(v0->playerAvatar, 1);
                     ov5_021E1134(v0);
-                    sub_02050E78(fieldSystem, param0, v9);
+                    Encounter_StartVsWild(fieldSystem, param0, v9);
                     return 0;
                 }
             }

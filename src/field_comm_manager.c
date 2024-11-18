@@ -536,9 +536,9 @@ static void sub_02059D58(void)
     sub_020389A0(v2);
 
     if (sFieldCommMan->party == NULL) {
-        sub_020517E8(sFieldCommMan->fieldSystem, v2, v1);
+        Encounter_NewVsLinkWithRecording(sFieldCommMan->fieldSystem, v2, v1);
     } else {
-        sub_0205184C(sFieldCommMan->fieldSystem, sFieldCommMan->party, v1);
+        Encounter_NewVsLinkWithRecordingAndParty(sFieldCommMan->fieldSystem, sFieldCommMan->party, v1);
         Heap_FreeToHeap(sFieldCommMan->party);
         sFieldCommMan->party = NULL;
     }

@@ -44,7 +44,7 @@ _00AE:
     Message 2
     ScrCmd_04D
     CloseMessage
-    ScrCmd_2BD 0x17B, 30
+    StartLegendaryBattle SPECIES_REGISTEEL, 30
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0109
     CheckDidNotCapture 0x800C

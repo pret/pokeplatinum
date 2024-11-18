@@ -175,17 +175,17 @@ _01E7:
     End
 
 _0212:
-    ScrCmd_0E5 0x156, 0
+    StartTrainerBattle 0x156, 0
     GoTo _023C
     End
 
 _0220:
-    ScrCmd_0E5 0x156, 0
+    StartTrainerBattle 0x156, 0
     GoTo _023C
     End
 
 _022E:
-    ScrCmd_0E5 0x156, 0
+    StartTrainerBattle 0x156, 0
     GoTo _023C
     End
 
@@ -269,17 +269,17 @@ _031A:
     End
 
 _0345:
-    ScrCmd_0E5 0x159, 0
+    StartTrainerBattle 0x159, 0
     GoTo _036F
     End
 
 _0353:
-    ScrCmd_0E5 0x159, 0
+    StartTrainerBattle 0x159, 0
     GoTo _036F
     End
 
 _0361:
-    ScrCmd_0E5 0x159, 0
+    StartTrainerBattle 0x159, 0
     GoTo _036F
     End
 

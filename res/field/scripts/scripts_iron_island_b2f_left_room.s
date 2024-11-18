@@ -172,7 +172,7 @@ _01AA:
     Message 8
     CloseMessage
     SetHasPartner
-    ScrCmd_0E5 0x343, 0x344
+    StartTrainerBattle 0x343, 0x344
     ClearHasPartner
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _037D
