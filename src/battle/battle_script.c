@@ -38,6 +38,7 @@
 #include "battle/battle_mon.h"
 #include "battle/btlcmd.h"
 #include "battle/common.h"
+#include "battle/graphic/objects/pl_batt_obj.naix"
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02268520.h"
@@ -12221,10 +12222,10 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     v2 = ov16_0223E018(param0);
     v3 = BattleSystem_PaletteSys(param0);
 
-    sub_0200CBDC(v1, v2, 27, 256, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
-    sub_0200CD7C(v3, 2, v1, v2, 27, 82, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
-    sub_0200CE0C(v1, v2, 27, 257, 1, 20013);
-    sub_0200CE3C(v1, v2, 27, 258, 1, 20013);
+    sub_0200CBDC(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, bg_party_level_up_NCGR_lz, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
+    sub_0200CD7C(v3, 2, v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, bg_party_level_up_NCLR, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
+    sub_0200CE0C(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, bg_party_level_up_NCER_lz, 1, 20013);
+    sub_0200CE3C(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, bg_party_level_up_NANR_lz, 1, 20013);
 
     param1->cellActorData[0] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6C4);
 

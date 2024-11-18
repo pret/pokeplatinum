@@ -10,6 +10,7 @@
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 
+#include "battle/graphic/objects/pl_batt_obj.naix"
 #include "functypes/funcptr_020146F4.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_022237EC.h"
@@ -128,27 +129,31 @@ static BOOL ov12_02236F10(BallRotation *param0);
 static BOOL ov12_02237694(BallRotation *param0);
 static BOOL ov12_02237474(BallRotation *param0);
 
-static const int Unk_ov12_0223AF00[][4] = {
-    { 0x120, 0x5C, 0x11F, 0x11E },
-    { 0x123, 0x5D, 0x122, 0x121 },
-    { 0x126, 0x5E, 0x125, 0x124 },
-    { 0x11D, 0x5B, 0x11C, 0x11B },
-    { 0x129, 0x5F, 0x128, 0x127 },
-    { 0x12C, 0x60, 0x12B, 0x12A },
-    { 0x12F, 0x61, 0x12E, 0x12D },
-    { 0x132, 0x62, 0x131, 0x130 },
-    { 0x135, 0x63, 0x134, 0x133 },
-    { 0x138, 0x64, 0x137, 0x136 },
-    { 0x13B, 0x65, 0x13A, 0x139 },
-    { 0x13E, 0x66, 0x13D, 0x13C },
-    { 0x144, 0x68, 0x143, 0x142 },
-    { 0x147, 0x69, 0x146, 0x145 },
-    { 0x141, 0x67, 0x140, 0x13F },
-    { 0x14A, 0x6A, 0x149, 0x148 },
-    { 0x14D, 0x6B, 0x14C, 0x14B },
-    { 0x153, 0x6D, 0x152, 0x151 },
-    { 0x150, 0x6C, 0x14F, 0x14E },
-    { 0x150, 0x6C, 0x14F, 0x14E }
+/*
+ * Maps a ball index (produced by ov12_02235E94) to NARC members in pl_batt_obj.
+ * These NARC members describe the sprite, palette, cell, and anim to use for that ball.
+ */
+static const int sThrownBallSpriteResources[][4] = {
+    { master_ball_throw_NCGR_lz, master_ball_throw_NCLR, master_ball_throw_NCER_lz, master_ball_throw_NANR_lz },
+    { ultra_ball_throw_NCGR_lz, ultra_ball_throw_NCLR, ultra_ball_throw_NCER_lz, ultra_ball_throw_NANR_lz },
+    { great_ball_throw_NCGR_lz, great_ball_throw_NCLR, great_ball_throw_NCER_lz, great_ball_throw_NANR_lz },
+    { poke_ball_throw_NCGR_lz, poke_ball_throw_NCLR, poke_ball_throw_NCER_lz, poke_ball_throw_NANR_lz },
+    { safari_ball_throw_NCGR_lz, safari_ball_throw_NCLR, safari_ball_throw_NCER_lz, safari_ball_throw_NANR_lz },
+    { net_ball_throw_NCGR_lz, net_ball_throw_NCLR, net_ball_throw_NCER_lz, net_ball_throw_NANR_lz },
+    { dive_ball_throw_NCGR_lz, dive_ball_throw_NCLR, dive_ball_throw_NCER_lz, dive_ball_throw_NANR_lz },
+    { nest_ball_throw_NCGR_lz, nest_ball_throw_NCLR, nest_ball_throw_NCER_lz, nest_ball_throw_NANR_lz },
+    { repeat_ball_throw_NCGR_lz, repeat_ball_throw_NCLR, repeat_ball_throw_NCER_lz, repeat_ball_throw_NANR_lz },
+    { timer_ball_throw_NCGR_lz, timer_ball_throw_NCLR, timer_ball_throw_NCER_lz, timer_ball_throw_NANR_lz },
+    { luxury_ball_throw_NCGR_lz, luxury_ball_throw_NCLR, luxury_ball_throw_NCER_lz, luxury_ball_throw_NANR_lz },
+    { premier_ball_throw_NCGR_lz, premier_ball_throw_NCLR, premier_ball_throw_NCER_lz, premier_ball_throw_NANR_lz },
+    { dusk_ball_throw_NCGR_lz, dusk_ball_throw_NCLR, dusk_ball_throw_NCER_lz, dusk_ball_throw_NANR_lz },
+    { heal_ball_throw_NCGR_lz, heal_ball_throw_NCLR, heal_ball_throw_NCER_lz, heal_ball_throw_NANR_lz },
+    { quick_ball_throw_NCGR_lz, quick_ball_throw_NCLR, quick_ball_throw_NCER_lz, quick_ball_throw_NANR_lz },
+    { cherish_ball_throw_NCGR_lz, cherish_ball_throw_NCLR, cherish_ball_throw_NCER_lz, cherish_ball_throw_NANR_lz },
+    { park_ball_throw_NCGR_lz, park_ball_throw_NCLR, park_ball_throw_NCER_lz, park_ball_throw_NANR_lz },
+    { mud_throw_NCGR_lz, mud_throw_NCLR, mud_throw_NCER_lz, mud_throw_NANR_lz },
+    { bait_throw_NCGR_lz, bait_throw_NCLR, bait_throw_NCER_lz, bait_throw_NANR_lz },
+    { bait_throw_NCGR_lz, bait_throw_NCLR, bait_throw_NCER_lz, bait_throw_NANR_lz }
 };
 
 static const int Unk_ov12_0223AD70[][2] = {
@@ -340,7 +345,7 @@ static int ov12_02235FC8(int param0, int param1)
     int v0;
 
     v0 = ov12_02235E94(param0);
-    return Unk_ov12_0223AF00[v0][param1];
+    return sThrownBallSpriteResources[v0][param1];
 }
 
 UnkStruct_ov12_02235FE0 *ov12_02235FE0(int param0)
