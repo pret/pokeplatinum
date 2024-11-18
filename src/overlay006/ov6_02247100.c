@@ -144,18 +144,18 @@ static int ov6_02247244(FieldTask *taskMan, FieldSystem *fieldSystem, UnkStruct_
 
 static int ov6_02247288(FieldTask *taskMan, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
-    FieldOverworldState *v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
     if (param2->unk_08 == 2) {
-        u16 v1;
-        Location v2;
+        u16 warpId;
+        Location location;
 
-        v1 = FieldOverworldState_GetWarpId(v0);
-        sub_0203A7F0(v1, &v2);
-        FieldTask_ChangeMapChangeByDig(taskMan, &v2, param2->unk_08);
+        warpId = FieldOverworldState_GetWarpId(fieldState);
+        sub_0203A7F0(warpId, &location);
+        FieldTask_ChangeMapChangeByDig(taskMan, &location, param2->unk_08);
     } else {
-        Location *v3 = FieldOverworldState_GetExitLocation(v0);
-        FieldTask_ChangeMapChangeByDig(taskMan, v3, param2->unk_08);
+        Location *location = FieldOverworldState_GetExitLocation(fieldState);
+        FieldTask_ChangeMapChangeByDig(taskMan, location, param2->unk_08);
     }
 
     return 2;

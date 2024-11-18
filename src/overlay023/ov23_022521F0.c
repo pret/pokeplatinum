@@ -937,17 +937,17 @@ void ov23_022534A0(FieldSystem *fieldSystem)
     ov23_022431EC(v4, v4->unk_04, ov23_02251270);
 
     {
-        int v8, v9;
-        const ObjectEvent *v10;
-        MapObject *v11;
+        int npcCount, i;
+        const ObjectEvent *npcList;
+        MapObject *mapObj;
 
-        v8 = MapHeaderData_GetNumObjectEvents(v4->fieldSystem);
-        v10 = MapHeaderData_GetObjectEvents(v4->fieldSystem);
+        npcCount = MapHeaderData_GetNumObjectEvents(v4->fieldSystem);
+        npcList = MapHeaderData_GetObjectEvents(v4->fieldSystem);
 
-        for (v9 = 0; v9 < v8; v9++) {
-            if ((v10[v9].x == v1) && (v10[v9].z == v2)) {
-                v11 = MapObjMan_LocalMapObjByIndex(v4->fieldSystem->mapObjMan, v9);
-                MapObject_SetDir(v11, v3);
+        for (i = 0; i < npcCount; i++) {
+            if ((npcList[i].x == v1) && (npcList[i].z == v2)) {
+                mapObj = MapObjMan_LocalMapObjByIndex(v4->fieldSystem->mapObjMan, i);
+                MapObject_SetDir(mapObj, v3);
             }
         }
     }

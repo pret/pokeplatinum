@@ -208,27 +208,27 @@ u16 sub_020554A4(FieldSystem *fieldSystem, int headerID)
 
 static u16 sub_020554E8(FieldSystem *fieldSystem, int param1)
 {
-    int v0, v1;
-    FieldOverworldState *v2 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    Location *location = FieldOverworldState_GetPrevLocation(v2);
+    int x, y;
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    Location *location = FieldOverworldState_GetPrevLocation(fieldState);
 
-    v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    v1 = Player_GetZPos(fieldSystem->playerAvatar);
+    x = Player_GetXPos(fieldSystem->playerAvatar);
+    y = Player_GetZPos(fieldSystem->playerAvatar);
 
     if (param1 != 350) {
         return 0;
     }
 
     if ((location->mapId == 80) || (location->mapId == 351)) {
-        if (v0 < 299) {
+        if (x < 299) {
             return 0;
         }
 
-        if (v0 > 306) {
+        if (x > 306) {
             return 0;
         }
 
-        if ((v1 == 576) || (v1 == 681)) {
+        if ((y == 576) || (y == 681)) {
             return 1189;
         }
     }

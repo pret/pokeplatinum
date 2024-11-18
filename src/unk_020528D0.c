@@ -202,12 +202,12 @@ static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 p
 BOOL sub_02052B2C(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
-    int *v1;
+    int *state;
 
     fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetState(param0);
+    state = FieldTask_GetState(param0);
 
-    switch (*v1) {
+    switch (*state) {
     case 0: {
         if ((fieldSystem != NULL) && (fieldSystem->saveData != NULL)) {
             Party_SetGiratinaForm(Party_GetFromSavedata(fieldSystem->saveData), 0);
@@ -215,36 +215,36 @@ BOOL sub_02052B2C(FieldTask *param0)
     }
 
         {
-            Location v2;
-            FieldOverworldState *v3 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-            u16 v4 = FieldOverworldState_GetWarpId(v3);
+            Location location;
+            FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+            u16 warpId = FieldOverworldState_GetWarpId(fieldState);
 
-            sub_0203A824(v4, &v2);
-            sub_0203A7F0(v4, FieldOverworldState_GetExitLocation(v3));
-            FieldTask_ChangeMapByLocation(param0, &v2);
+            sub_0203A824(warpId, &location);
+            sub_0203A7F0(warpId, FieldOverworldState_GetExitLocation(fieldState));
+            FieldTask_ChangeMapByLocation(param0, &location);
             sub_020705B4(fieldSystem);
         }
-        (*v1)++;
+        (*state)++;
         break;
     case 1:
         sub_0200564C(0, 20);
-        (*v1)++;
+        (*state)++;
         break;
     case 2:
         if (Sound_CheckFade() == 0) {
             sub_020553DC();
-            (*v1)++;
+            (*state)++;
         }
         break;
     case 3:
         sub_0200AB4C(-16, ((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) ^ GX_BLEND_PLANEMASK_BG3), 1);
         sub_0200AB4C(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
         sub_02052914(fieldSystem, param0);
-        (*v1)++;
+        (*state)++;
         break;
     case 4:
         FieldTransition_StartMap(param0);
-        (*v1)++;
+        (*state)++;
         break;
     case 5:
         sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
@@ -256,7 +256,7 @@ BOOL sub_02052B2C(FieldTask *param0)
             ScriptManager_Start(param0, 2021, NULL, NULL);
         }
 
-        (*v1)++;
+        (*state)++;
         break;
     case 6:
         return 1;

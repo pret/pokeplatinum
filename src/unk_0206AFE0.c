@@ -455,10 +455,10 @@ static u8 sub_0206B4A4(VarsFlags *param0)
 
 void sub_0206B514(SaveData *param0)
 {
-    u32 v0;
+    u32 unused;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0);
-    FieldOverworldState *v2 = SaveData_GetFieldOverworldState(param0);
-    Location *location = FieldOverworldState_GetPlayerLocation(v2);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(param0);
+    Location *location = FieldOverworldState_GetPlayerLocation(fieldState);
 
     if ((location->mapId != MAP_HEADER_RESORT_AREA) && (location->mapId != MAP_HEADER_VILLA)) {
         SystemFlag_ClearVillaVisitorInside(v1);

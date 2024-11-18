@@ -79,8 +79,8 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     int x, z, v6;
     UnkStruct_020556C4 *v7;
     VarsFlags *v8 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    FieldOverworldState *v9 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    Location *v10 = FieldOverworldState_GetExitLocation(v9);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    Location *v10 = FieldOverworldState_GetExitLocation(fieldState);
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
 
@@ -88,7 +88,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     z = Player_GetZPos(fieldSystem->playerAvatar);
 
     int v11 = 10 - 1;
-    Location *location = FieldOverworldState_GetPlayerLocation(v9);
+    Location *location = FieldOverworldState_GetPlayerLocation(fieldState);
 
     v6 = location->mapId;
 

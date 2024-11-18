@@ -1024,8 +1024,8 @@ static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int
 
 static void Field_SetMapConnection(FieldSystem *fieldSystem, const int playerX, const int playerZ, const int playerDir)
 {
-    FieldOverworldState *v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    Location *nextMap = FieldOverworldState_GetExitLocation(v0);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    Location *nextMap = FieldOverworldState_GetExitLocation(fieldState);
 
     (*nextMap) = *(fieldSystem->location);
     nextMap->faceDirection = playerDir;
