@@ -154,7 +154,7 @@ int CommPlayerInfo_Size(void)
     return sizeof(CommPlayerInfo);
 }
 
-void CommunicatitonInformaion_FinishReading(int param0, int param1, void *param2, void *param3)
+void CommunicatitonInformaion_FinishReading(int unused0, int unused1, void *unused2, void *unused3)
 {
     if (sCommInfo) {
         sCommInfo->dataFinishedReading = TRUE;

@@ -33,6 +33,7 @@
 #include "field_system.h"
 #include "game_records.h"
 #include "heap.h"
+#include "location.h"
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
@@ -48,15 +49,15 @@
 #include "unk_0206CCB0.h"
 
 static int sub_020581CC(int param0, int param1);
-static BOOL CommPlayer_MoveBlow(int param0, int param1);
-static BOOL CommPlayer_BlowAnimation(int param0, int param1, int param2, int param3);
-static void CommPlayer_SendDataTask(void *param0);
-static void sub_02057C2C(void *param0);
-static void CommPlayer_Add(u8 param0);
-static void CommPlayer_Move(SysTask *param0, void *param1);
-static void Task_CommPlayerManagerRun(SysTask *param0, void *param1);
-static void sub_02057EF8(void *param0);
-static void CommPlayer_MoveClient(int param0);
+static BOOL CommPlayer_MoveBlow(int netId, int param1);
+static BOOL CommPlayer_BlowAnimation(int netId, int param1, int unused, int animSpeed);
+static void CommPlayer_SendDataTask(void *data);
+static void sub_02057C2C(void *data);
+static void CommPlayer_Add(u8 netId);
+static void CommPlayer_Move(SysTask *unused0, void *unused1);
+static void Task_CommPlayerManagerRun(SysTask *task, void *data);
+static void sub_02057EF8(void *unused);
+static void CommPlayer_MoveClient(int netId);
 static void sub_020591A8(void);
 
 static CommPlayerManager *sCommPlayerManager = NULL;
@@ -509,7 +510,7 @@ static void Task_CommPlayerManagerRun(SysTask *task, void *data)
     }
 }
 
-static void sub_02057EF8(void *param0)
+static void sub_02057EF8(void *unused)
 {
     for (int netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
         if (!CommSys_IsPlayerConnected(netId)) {
@@ -568,7 +569,7 @@ static void sub_02057FF0(BOOL param0)
     }
 }
 
-void sub_02058018(int netId, int param1, void *param2, void *param3)
+void sub_02058018(int netId, int param1, void *param2, void *unused)
 {
     u8 *buffer = (u8 *)param2;
 
@@ -630,11 +631,8 @@ static int CommPlayer_Direction(u16 unused, u16 keys)
 
 BOOL CommPlayer_CheckNPCCollision(int x, int z)
 {
-    int npcCnt, i;
-    const ObjectEvent *npcList;
-
-    npcCnt = MapHeaderData_GetNumObjectEvents(sCommPlayerManager->fieldSystem);
-    npcList = MapHeaderData_GetObjectEvents(sCommPlayerManager->fieldSystem);
+    int npcCnt = MapHeaderData_GetNumObjectEvents(sCommPlayerManager->fieldSystem), i;
+    const ObjectEvent *npcList = MapHeaderData_GetObjectEvents(sCommPlayerManager->fieldSystem);
 
     for (i = 0; i < npcCnt; i++) {
         if ((npcList[i].x == x) && (npcList[i].z == z)) {
@@ -691,7 +689,7 @@ static int sub_020581E0(int param0)
     return v0[param0];
 }
 
-static void CommPlayer_Move(SysTask *param0, void *param1)
+static void CommPlayer_Move(SysTask *unused0, void *unused1)
 {
     u16 keys;
     int dir, x, z, netId, v6;
@@ -814,7 +812,7 @@ static void CommPlayer_Move(SysTask *param0, void *param1)
     }
 }
 
-void CommPlayer_RecvLocation(int netId, int param1, void *src, void *param3)
+void CommPlayer_RecvLocation(int netId, int unused0, void *src, void *unused1)
 {
     u8 *buffer = (u8 *)src;
     CommPlayerLocation *playerLocation;
@@ -854,7 +852,7 @@ void CommPlayer_RecvLocation(int netId, int param1, void *src, void *param3)
     }
 }
 
-void CommPlayer_RecvDelete(int unused0, int unused2, void *src, void *param3)
+void CommPlayer_RecvDelete(int unused0, int unused1, void *src, void *unused2)
 {
     u8 *buffer = (u8 *)src;
     u8 netId = buffer[0];
@@ -888,9 +886,7 @@ void CommPlayer_RecvLocationAndInit(int netId, int size, void *src, void *unused
 {
     u8 *buffer = (u8 *)src;
     CommPlayerLocation *playerLocation;
-    int netJd;
-
-    netJd = buffer[0] & 0xf;
+    int netJd = buffer[0] & 0xf;
 
     if (sCommPlayerManager == NULL) {
         return;
@@ -936,7 +932,7 @@ static void sub_02058644(int netId)
     }
 }
 
-static BOOL CommPlayer_BlowAnimation(int netId, int param1, int param2, int animSpeed)
+static BOOL CommPlayer_BlowAnimation(int netId, int param1, int unused, int animSpeed)
 {
     MapObject *obj;
     u8 walkAnimationCode[] = {
@@ -983,11 +979,9 @@ static BOOL CommPlayer_BlowAnimation(int netId, int param1, int param2, int anim
 static void CommPlayer_MoveClient(int netId)
 {
     u16 pad = 0;
-    CommPlayerLocation *playerLocation;
+    CommPlayerLocation *playerLocation = &sCommPlayerManager->playerLocation[netId];
     PlayerAvatar *playerAvatar;
     int moveSpeed;
-
-    playerLocation = &sCommPlayerManager->playerLocation[netId];
 
     if (sCommPlayerManager->moveTimer[netId] != 0) {
         sCommPlayerManager->moveTimer[netId]--;
@@ -1199,7 +1193,7 @@ void sub_02058B94(int netId)
     sCommPlayerManager->unk_10A[netId] = 0xff;
 }
 
-void CommPlayer_StartBlowAnimation(int netId, int param1, BOOL param2)
+void CommPlayer_StartBlowAnimation(int netId, int param1, BOOL unused)
 {
     MapObject *obj;
 
@@ -1514,7 +1508,7 @@ BOOL sub_020590C4(void)
     return v8;
 }
 
-void sub_02059180(int netId, int unused1, void *src, void *unused3)
+void sub_02059180(int netId, int unused0, void *src, void *unused3)
 {
     u8 *buffer = src;
 
@@ -1609,18 +1603,18 @@ BOOL sub_0205928C(void)
 
 int CommPlayer_GetOppositeDir(int dir)
 {
-    if (dir == 0) {
-        return 1;
-    } else if (dir == 1) {
-        return 0;
-    } else if (dir == 2) {
-        return 3;
-    } else if (dir == 3) {
-        return 2;
+    if (dir == FACE_UP) {
+        return FACE_DOWN;
+    } else if (dir == FACE_DOWN) {
+        return FACE_UP;
+    } else if (dir == FACE_LEFT) {
+        return FACE_RIGHT;
+    } else if (dir == FACE_RIGHT) {
+        return FACE_LEFT;
     }
 
     GF_ASSERT(FALSE);
-    return 2;
+    return FACE_LEFT;
 }
 
 void sub_02059354(int netId, int param1)
