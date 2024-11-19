@@ -10,9 +10,9 @@
 #include "overlay095/ov95_02246C20.h"
 
 #include "field_task.h"
+#include "field_transition.h"
 #include "heap.h"
 #include "pokemon.h"
-#include "unk_02055808.h"
 
 FS_EXTERN_OVERLAY(overlay95);
 
@@ -59,11 +59,11 @@ static BOOL sub_0206C680(FieldTask *param0)
         v1->unk_04++;
         break;
     case 1:
-        sub_020558AC(param0);
+        FieldTransition_FadeOut(param0);
         v1->unk_04++;
         break;
     case 2:
-        FieldTask_FinishFieldMap(param0);
+        FieldTransition_FinishMap(param0);
         v1->unk_04++;
         break;
     case 3:
@@ -71,11 +71,11 @@ static BOOL sub_0206C680(FieldTask *param0)
         v1->unk_04++;
         break;
     case 4:
-        FieldTask_StartFieldMap(param0);
+        FieldTransition_StartMap(param0);
         v1->unk_04++;
         break;
     case 5:
-        sub_020558F0(param0);
+        FieldTransition_FadeIn(param0);
         v1->unk_04++;
         break;
     case 6:

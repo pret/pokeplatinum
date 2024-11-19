@@ -17,6 +17,7 @@
 #include "camera.h"
 #include "field_map_change.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "heap.h"
 #include "player_avatar.h"
 #include "unk_020041CC.h"
@@ -25,7 +26,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
-#include "unk_02055808.h"
 
 typedef struct {
     u8 unk_00;
@@ -215,7 +215,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
             ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 2);
         }
 
-        FieldTask_FinishFieldMap(taskMan);
+        FieldTransition_FinishMap(taskMan);
         v1->unk_00 = 4;
         break;
     case 4:
@@ -228,7 +228,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         break;
     case 6:
         Sound_PlayMapBGM(fieldSystem, v1->unk_18);
-        FieldTask_StartFadeIn(taskMan);
+        FieldTransition_StartMapAndFadeIn(taskMan);
         v1->unk_00 = 7;
         break;
     case 7:

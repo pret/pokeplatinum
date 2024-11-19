@@ -16,7 +16,7 @@ _000E:
     ScrCmd_1CD 9, 47, 0, 0, 0
     Message 0
     CloseMessage
-    ScrCmd_0E5 246, 0
+    StartTrainerBattle 246, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0119
     Message 1

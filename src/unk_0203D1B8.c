@@ -91,6 +91,7 @@
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
@@ -122,7 +123,6 @@
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_020553DC.h"
-#include "unk_02055808.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0206AFE0.h"
@@ -254,9 +254,9 @@ const OverlayManagerTemplate gBattleOverlayTemplate = {
     FS_OVERLAY_ID(battle)
 };
 
-void sub_0203D1D4(FieldSystem *fieldSystem, FieldBattleDTO *param1)
+void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &gBattleOverlayTemplate, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gBattleOverlayTemplate, dto);
 }
 
 static const u8 Unk_020EA164[] = {
@@ -1018,7 +1018,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
     switch (v2->unk_00) {
     case 0:
         if (!sub_020389B8()) {
-            FieldTask_FinishFieldMap(param0);
+            FieldTransition_FinishMap(param0);
         }
 
         v2->unk_00++;
@@ -1180,7 +1180,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
 
     switch (v2->unk_00) {
     case 0:
-        FieldTask_FinishFieldMap(param0);
+        FieldTransition_FinishMap(param0);
         v2->unk_00++;
         break;
     case 1:
@@ -1188,7 +1188,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
         v2->unk_00++;
         break;
     case 2:
-        FieldTask_StartFieldMap(param0);
+        FieldTransition_StartMap(param0);
         v2->unk_00++;
         break;
     case 3:

@@ -19,6 +19,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "field_task.h"
+#include "field_transition.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -41,7 +42,6 @@
 #include "unk_02024220.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
-#include "unk_02055808.h"
 #include "unk_0206CCB0.h"
 
 #include "constdata/const_020F1E88.h"
@@ -317,7 +317,7 @@ static BOOL sub_02097F38(FieldTask *param0)
     switch (v0->unk_14) {
     case 0:
 
-        FieldTask_FinishFieldMap(param0);
+        FieldTransition_FinishMap(param0);
         v1->unk_20 = sub_0202CA1C(v0->unk_10);
         sub_02097F20(v1, 0);
 
@@ -403,7 +403,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         v0->unk_14 = 1;
         break;
     case 5:
-        FieldTask_StartFieldMap(param0);
+        FieldTransition_StartMap(param0);
         v0->unk_14 = 6;
         break;
     case 6:

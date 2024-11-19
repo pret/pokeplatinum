@@ -101,7 +101,7 @@ _0181:
 _019D:
     Message 8
     CloseMessage
-    ScrCmd_0E5 0x391, 0
+    StartTrainerBattle 0x391, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0393
     Call _01C3
@@ -466,7 +466,7 @@ _0538:
     GoToIfEq 0x800C, 1, _057A
     Message 8
     CloseMessage
-    ScrCmd_0E5 0x391, 0
+    StartTrainerBattle 0x391, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0393
     Call _01C3

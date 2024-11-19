@@ -21,7 +21,7 @@ _0006:
     ScrCmd_04C 0x1DF, 0
     ScrCmd_04D
     SetFlag 0xAB0
-    ScrCmd_124 0x1DF, 20
+    StartWildBattle SPECIES_ROTOM, 20
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00A7
     CheckDidNotCapture 0x800C

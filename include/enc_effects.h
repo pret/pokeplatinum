@@ -49,17 +49,17 @@ enum EncEffectCutIn {
  * Get the cut-in effect ID applied as a transition from the overworld
  * to the battle UI.
  *
- * @param battleParams
+ * @param dto
  * @return Cut-in effect ID
  */
-u32 EncEffects_CutInEffect(const FieldBattleDTO *battleParams);
+u32 EncEffects_CutInEffect(const FieldBattleDTO *dto);
 
 /**
  * Get the SEQ ID pointing to this encounter's background music.
  *
- * @param battleParams
+ * @param dto
  * @return SEQ ID
  */
-u32 EncEffects_BGM(const FieldBattleDTO *battleParams);
+u32 EncEffects_BGM(const FieldBattleDTO *dto);
 
 #endif // POKEPLATINUM_ENC_EFFECTS_H

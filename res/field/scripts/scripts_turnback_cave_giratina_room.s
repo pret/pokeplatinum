@@ -31,7 +31,7 @@ _0037:
     Message 0
     CloseMessage
     SetFlag 142
-    ScrCmd_2BD 0x1E7, 47
+    StartLegendaryBattle SPECIES_GIRATINA, 47
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _009B

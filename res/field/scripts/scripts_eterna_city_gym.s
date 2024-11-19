@@ -67,7 +67,7 @@ _0094:
     ScrCmd_1CD 9, 67, 0, 0, 0
     Message 0
     CloseMessage
-    ScrCmd_0E5 0x13B, 0
+    StartTrainerBattle 0x13B, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 1
@@ -152,7 +152,7 @@ _01C9:
     ScrCmd_0EA 0x144
     Message 6
     CloseMessage
-    ScrCmd_0E5 0x144, 0
+    StartTrainerBattle 0x144, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 7
@@ -180,7 +180,7 @@ _021C:
     Call _02DA
     Message 8
     CloseMessage
-    ScrCmd_0E5 0x103, 0
+    StartTrainerBattle 0x103, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 9
@@ -208,7 +208,7 @@ _027B:
     Call _02DA
     Message 10
     CloseMessage
-    ScrCmd_0E5 0x104, 0
+    StartTrainerBattle 0x104, 0
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 11

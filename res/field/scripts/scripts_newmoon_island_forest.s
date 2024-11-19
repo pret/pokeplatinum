@@ -39,7 +39,7 @@ _0079:
     Message 0
     CloseMessage
     SetFlag 142
-    ScrCmd_2BD 0x1EB, 50
+    StartLegendaryBattle SPECIES_DARKRAI, 50
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _014C
