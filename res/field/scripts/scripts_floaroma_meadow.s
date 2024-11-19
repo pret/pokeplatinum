@@ -18,11 +18,11 @@ _001E:
 _0024:
     LockAll
     Call _00CC
-    StartTrainerBattle 0x128, 0
+    StartTrainerBattle trainer_galactic_grunt_floaroma_meadow_1
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _006E
     Call _00EE
-    StartTrainerBattle 0x129, 0
+    StartTrainerBattle trainer_galactic_grunt_floaroma_meadow_2
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _006E
     Call _010E

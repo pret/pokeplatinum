@@ -39,7 +39,7 @@ _0059:
     GoToIfSet 173, _0114
     Message 0
     CloseMessage
-    StartTrainerBattle 0x199, 0
+    StartTrainerBattle trainer_commander_saturn_galactic_hq
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _011F
     SetFlag 173
