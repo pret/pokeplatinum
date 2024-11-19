@@ -5,33 +5,37 @@ foreach i : range(928)
     trainer_data_files += i_fname
 endforeach
 
+trainer_data_gen = generator(
+    trainer_data_py,
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@BASENAME@.bin',
+)
+
+trainer_party_gen = generator(
+    trainer_party_py,
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@BASENAME@.bin',
+)
+
 trdata_narc = custom_target('trdata.narc',
     output: 'trdata.narc',
-    input: trainer_data_files,
-    env: json2bin_env,
+    input: trainer_data_gen.process(trainer_data_files, env: json2bin_env),
     depends: [ py_consts_generators ],
     command: [
-        trainer_data_py,
-        '--mode', 'data',
-        '--knarc', knarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
-    ]
+        knarc_exe,
+        '-d', '@PRIVATE_DIR@',
+        '-p', '@OUTPUT@',
+    ],
 )
 
 trpoke_narc = custom_target('trpoke.narc',
     output: 'trpoke.narc',
-    input: trainer_data_files,
-    env: json2bin_env,
+    input: trainer_party_gen.process(trainer_data_files, env: json2bin_env),
     depends: [ py_consts_generators ],
     command: [
-        trainer_data_py,
-        '--mode', 'poke',
-        '--knarc', knarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
+        knarc_exe,
+        '-d', '@PRIVATE_DIR@',
+        '-p', '@OUTPUT@',
     ]
 )
 
