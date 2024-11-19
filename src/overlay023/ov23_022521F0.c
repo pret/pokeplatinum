@@ -937,15 +937,15 @@ void ov23_022534A0(FieldSystem *fieldSystem)
     ov23_022431EC(v4, v4->unk_04, ov23_02251270);
 
     {
-        int npcCount, i;
-        const ObjectEvent *npcList;
+        int objEventCount, i;
+        const ObjectEvent *objEventList;
         MapObject *mapObj;
 
-        npcCount = MapHeaderData_GetNumObjectEvents(v4->fieldSystem);
-        npcList = MapHeaderData_GetObjectEvents(v4->fieldSystem);
+        objEventCount = MapHeaderData_GetNumObjectEvents(v4->fieldSystem);
+        objEventList = MapHeaderData_GetObjectEvents(v4->fieldSystem);
 
-        for (i = 0; i < npcCount; i++) {
-            if ((npcList[i].x == v1) && (npcList[i].z == v2)) {
+        for (i = 0; i < objEventCount; i++) {
+            if (objEventList[i].x == v1 && objEventList[i].z == v2) {
                 mapObj = MapObjMan_LocalMapObjByIndex(v4->fieldSystem->mapObjMan, i);
                 MapObject_SetDir(mapObj, v3);
             }

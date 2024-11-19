@@ -45,8 +45,8 @@ typedef struct {
     StringTemplate *unk_20;
 } UnkStruct_02052AA4;
 
-static void sub_02052914(FieldSystem *fieldSystem, FieldTask *param1);
-static BOOL sub_020529C4(FieldTask *param0);
+static void sub_02052914(FieldSystem *fieldSystem, FieldTask *taskMan);
+static BOOL sub_020529C4(FieldTask *taskMan);
 static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 param3);
 
 static const WindowTemplate Unk_020EC2F0 = {
@@ -101,11 +101,9 @@ static void sub_020528D0(BgConfig *param0)
     Graphics_LoadPalette(14, 6, 0, 13 * 0x20, 0x20, 11);
 }
 
-static void sub_02052914(FieldSystem *fieldSystem, FieldTask *param1)
+static void sub_02052914(FieldSystem *fieldSystem, FieldTask *taskMan)
 {
-    UnkStruct_02052AA4 *v0;
-
-    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02052AA4));
+    UnkStruct_02052AA4 *v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02052AA4));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -132,14 +130,14 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *param1)
     }
 
     Window_CopyToVRAM(&v0->unk_0C);
-    FieldTask_InitCall(param1, sub_020529C4, v0);
+    FieldTask_InitCall(taskMan, sub_020529C4, v0);
 
     return;
 }
 
-static BOOL sub_020529C4(FieldTask *param0)
+static BOOL sub_020529C4(FieldTask *taskMan)
 {
-    UnkStruct_02052AA4 *v0 = FieldTask_GetEnv(param0);
+    UnkStruct_02052AA4 *v0 = FieldTask_GetEnv(taskMan);
 
     switch (v0->unk_00) {
     case 0:
@@ -199,13 +197,10 @@ static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 p
     return;
 }
 
-BOOL sub_02052B2C(FieldTask *param0)
+BOOL sub_02052B2C(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem;
-    int *state;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    state = FieldTask_GetState(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    int *state = FieldTask_GetState(taskMan);
 
     switch (*state) {
     case 0: {
@@ -221,7 +216,7 @@ BOOL sub_02052B2C(FieldTask *param0)
 
             sub_0203A824(warpId, &location);
             sub_0203A7F0(warpId, FieldOverworldState_GetExitLocation(fieldState));
-            FieldTask_ChangeMapByLocation(param0, &location);
+            FieldTask_ChangeMapByLocation(taskMan, &location);
             sub_020705B4(fieldSystem);
         }
         (*state)++;
@@ -239,11 +234,11 @@ BOOL sub_02052B2C(FieldTask *param0)
     case 3:
         sub_0200AB4C(-16, ((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) ^ GX_BLEND_PLANEMASK_BG3), 1);
         sub_0200AB4C(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
-        sub_02052914(fieldSystem, param0);
+        sub_02052914(fieldSystem, taskMan);
         (*state)++;
         break;
     case 4:
-        FieldTransition_StartMap(param0);
+        FieldTransition_StartMap(taskMan);
         (*state)++;
         break;
     case 5:
@@ -251,9 +246,9 @@ BOOL sub_02052B2C(FieldTask *param0)
 
         if (sub_0203A7EC()
             == FieldOverworldState_GetWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {
-            ScriptManager_Start(param0, 2020, NULL, NULL);
+            ScriptManager_Start(taskMan, 2020, NULL, NULL);
         } else {
-            ScriptManager_Start(param0, 2021, NULL, NULL);
+            ScriptManager_Start(taskMan, 2021, NULL, NULL);
         }
 
         (*state)++;
@@ -265,7 +260,7 @@ BOOL sub_02052B2C(FieldTask *param0)
     return 0;
 }
 
-void sub_02052C5C(FieldTask *param0)
+void sub_02052C5C(FieldTask *taskMan)
 {
-    FieldTask_InitCall(param0, sub_02052B2C, NULL);
+    FieldTask_InitCall(taskMan, sub_02052B2C, NULL);
 }

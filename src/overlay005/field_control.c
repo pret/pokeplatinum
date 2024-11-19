@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field_poison.h"
 #include "constants/player_avatar.h"
 #include "consts/game_records.h"
 #include "consts/sdat.h"
@@ -906,12 +907,12 @@ static BOOL Field_UpdatePoison(FieldSystem *fieldSystem)
     }
 
     switch (Pokemon_DoPoisonDamage(party, MapHeader_GetMapLabelTextID(fieldSystem->location->mapId))) {
-    case 0:
+    case FLDPSN_NONE:
         return FALSE;
-    case 1:
+    case FLDPSN_POISONED:
         Field_DoPoisonEffect(fieldSystem->unk_04->unk_20);
         return FALSE;
-    case 2:
+    case FLDPSN_FAINTED:
         Field_DoPoisonEffect(fieldSystem->unk_04->unk_20);
         ScriptManager_Set(fieldSystem, 2003, NULL);
         return TRUE;

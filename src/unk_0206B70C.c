@@ -87,7 +87,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     x = Player_GetXPos(fieldSystem->playerAvatar);
     z = Player_GetZPos(fieldSystem->playerAvatar);
 
-    int v11 = 10 - 1;
+    int v11 = 9;
     Location *location = FieldOverworldState_GetPlayerLocation(fieldState);
 
     v6 = location->mapId;
@@ -153,7 +153,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
 static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, const char *param2)
 {
     FSFile v0;
-    int v1, v2;
+    int v1, i;
     int v3;
     UnkStruct_0206B878 *v4;
     UnkUnion_0206B878 *v5;
@@ -174,8 +174,8 @@ static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, c
 
     param1->unk_13A = v3;
 
-    for (v2 = 0; v2 < v3; v2++) {
-        v5 = &(param1->unk_5C[v2]);
+    for (i = 0; i < v3; i++) {
+        v5 = &(param1->unk_5C[i]);
         v1 = FS_ReadFile(&v0, v4, sizeof(UnkStruct_0206B878));
 
         switch (v4->unk_00) {
@@ -203,6 +203,4 @@ static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, c
 
     (void)FS_CloseFile(&v0);
     Heap_FreeToHeap(v4);
-
-    return;
 }

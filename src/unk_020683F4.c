@@ -157,12 +157,12 @@ static u32 sub_02068D68(const UnkStruct_020684D0 *param0);
 static u32 sub_02068E94(const UnkStruct_020684D0 *param0);
 static u32 sub_020690C4(const UnkStruct_020684D0 *param0);
 static u32 sub_02069130(const UnkStruct_020684D0 *param0);
-static BOOL sub_02068884(FieldTask *param0);
-static BOOL sub_02068F48(FieldTask *param0);
+static BOOL sub_02068884(FieldTask *taskMan);
+static BOOL sub_02068F48(FieldTask *taskMan);
 static void sub_020693F8(UnkStruct_02068870 *param0, UnkFuncPtr_02068870 param1);
-static BOOL sub_0206932C(FieldTask *param0);
-static BOOL sub_020690F0(FieldTask *param0);
-static BOOL sub_020685AC(FieldTask *param0);
+static BOOL sub_0206932C(FieldTask *taskMan);
+static BOOL sub_020690F0(FieldTask *taskMan);
+static BOOL sub_020685AC(FieldTask *taskMan);
 static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1);
 
 static const UnkStruct_020EF79C Unk_020EF79C[] = {
@@ -473,17 +473,14 @@ static BOOL sub_02068870(UnkStruct_02068870 *param0)
     return 0;
 }
 
-static BOOL sub_02068884(FieldTask *param0)
+static BOOL sub_02068884(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem;
-    int *v1;
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    int *state = FieldTask_GetState(taskMan);
 
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetState(param0);
-
-    switch (*v1) {
+    switch (*state) {
     case 0:
-        (*v1)++;
+        (*state)++;
         break;
     case 1:
         if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
@@ -505,10 +502,10 @@ static BOOL sub_02068884(FieldTask *param0)
             RadarChain_Clear(fieldSystem->chain);
         }
 
-        (*v1)++;
+        (*state)++;
         break;
     case 2:
-        (*v1)++;
+        (*state)++;
         break;
     case 3:
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
@@ -940,13 +937,10 @@ static BOOL sub_02068EFC(UnkStruct_02068870 *param0)
     return 0;
 }
 
-static BOOL sub_02068F48(FieldTask *param0)
+static BOOL sub_02068F48(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem;
-    UnkStruct_02068EFC *v1;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02068EFC *v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_16) {
     case 0:
@@ -1039,12 +1033,12 @@ static u32 sub_020690C4(const UnkStruct_020684D0 *param0)
     return -1;
 }
 
-static BOOL sub_020690F0(FieldTask *param0)
+static BOOL sub_020690F0(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     void *v1 = ov6_02247100(fieldSystem, 11);
 
-    FieldTask_InitJump(param0, ov6_02247120, v1);
+    FieldTask_InitJump(taskMan, ov6_02247120, v1);
     return 0;
 }
 
@@ -1202,11 +1196,8 @@ static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1)
 
 static BOOL sub_0206932C(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem;
-    UnkStruct_02068870 *v1;
-
-    fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    v1 = FieldTask_GetEnv(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02068870 *v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_2A) {
     case 0:

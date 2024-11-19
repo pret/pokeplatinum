@@ -115,39 +115,34 @@ void sub_020553DC()
     sub_0200569C();
     sub_02004A3C();
     sub_02004234(0);
-
-    return;
 }
 
-void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 param1)
+void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 sdatID)
 {
-    u16 *v0 = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    *v0 = param1;
-    return;
+    *bgm = sdatID;
 }
 
 u16 Sound_GetSpecialBGM(FieldSystem *fieldSystem)
 {
-    u16 *v0 = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    return *v0;
+    u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    return *bgm;
 }
 
 void Sound_ClearSpecialBGM(FieldSystem *fieldSystem)
 {
-    u16 *v0 = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    *v0 = 0;
-    return;
+    *bgm = 0;
 }
 
 u16 sub_02055428(FieldSystem *fieldSystem, int param1)
 {
-    PlayerAvatar *playerAvatar;
+    PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int v1;
     u16 v2, v3;
 
-    playerAvatar = fieldSystem->playerAvatar;
     v1 = PlayerAvatar_GetPlayerState(playerAvatar);
 
     if (v1 == 0x2) {
@@ -284,21 +279,16 @@ static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int 
         *param3 = 0;
         break;
     }
-
-    return;
 }
 
 u16 sub_0205560C(int param0)
 {
-    u8 v0;
-    u16 v1, v2;
+    u8 v0 = (u8)TrainerData_LoadParam(param0, 1);
+    u16 i, v1 = 1101;
 
-    v0 = (u8)TrainerData_LoadParam(param0, 1);
-    v1 = 1101;
-
-    for (v2 = 0; v2 < 79; v2++) {
-        if (Unk_020EC3E0[v2][0] == v0) {
-            v1 = Unk_020EC3E0[v2][1];
+    for (i = 0; i < 79; i++) {
+        if (Unk_020EC3E0[i][0] == v0) {
+            v1 = Unk_020EC3E0[i][1];
             break;
         }
     }
@@ -315,8 +305,6 @@ void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int param1)
     if (sub_020041FC() != sub_020554A4(fieldSystem, param1)) {
         sub_0200564C(0, 40);
     }
-
-    return;
 }
 
 void Sound_PlayMapBGM(FieldSystem *fieldSystem, int param1)
@@ -333,18 +321,12 @@ void Sound_PlayMapBGM(FieldSystem *fieldSystem, int param1)
 
     sub_02004224(v0);
     sub_02004550(4, v0, 1);
-
-    return;
 }
 
 void sub_020556A0(FieldSystem *fieldSystem, int param1)
 {
-    u16 v0;
-
-    v0 = sub_02055428(fieldSystem, param1);
+    u16 v0 = sub_02055428(fieldSystem, param1);
 
     sub_02004224(sub_020554A4(fieldSystem, param1));
     sub_02004550(4, v0, 1);
-
-    return;
 }

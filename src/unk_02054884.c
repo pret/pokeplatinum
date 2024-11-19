@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "constants/battle/condition.h"
+#include "constants/field_poison.h"
+#include "constants/heap.h"
 #include "constants/items.h"
 
 #include "struct_decls/struct_party_decl.h"
@@ -29,28 +31,27 @@ BOOL Pokemon_CanBattle(Pokemon *mon)
     return !Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 }
 
-BOOL sub_020548B0(int param0, SaveData *param1, u16 param2, u8 param3, u16 param4, int param5, int param6)
+BOOL sub_020548B0(int heapID, SaveData *saveData, u16 param2, u8 param3, u16 param4, int param5, int param6)
 {
     BOOL result;
     Pokemon *mon;
     u32 v2;
     Party *party;
-    TrainerInfo *trainerInfo;
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
-    trainerInfo = SaveData_GetTrainerInfo(param1);
-    party = Party_GetFromSavedata(param1);
-    mon = Pokemon_New(param0);
+    party = Party_GetFromSavedata(saveData);
+    mon = Pokemon_New(heapID);
 
     Pokemon_Init(mon);
     Pokemon_InitWith(mon, param2, param3, 32, FALSE, 0, OTID_NOT_SET, 0);
-    Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, param5, param6, param0);
+    Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, param5, param6, heapID);
 
     v2 = param4;
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v2);
     result = Party_AddPokemon(party, mon);
 
     if (result) {
-        sub_0202F180(param1, mon);
+        sub_0202F180(saveData, mon);
     }
 
     Heap_FreeToHeap(mon);
@@ -58,13 +59,13 @@ BOOL sub_020548B0(int param0, SaveData *param1, u16 param2, u8 param3, u16 param
     return result;
 }
 
-BOOL sub_02054930(int param0, SaveData *param1, u16 param2, u8 param3, int param4, int param5)
+BOOL sub_02054930(int unused, SaveData *saveData, u16 param2, u8 param3, int param4, int param5)
 {
     int v0;
     BOOL result;
-    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(param1);
-    Party *party = Party_GetFromSavedata(param1);
-    Pokemon *mon = Pokemon_New(32);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
+    Party *party = Party_GetFromSavedata(saveData);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
 
     Pokemon_Init(mon);
 
@@ -175,44 +176,41 @@ void Party_GiveChampionRibbons(Party *party)
     }
 }
 
-int Pokemon_DoPoisonDamage(Party *party, u16 param1)
+int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID)
 {
     int numPoisoned = 0;
     int numFainted = 0;
-    int i, partyCount;
+    int i, partyCount = Party_GetCurrentCount(party);
     Pokemon *mon;
-
-    partyCount = Party_GetCurrentCount(party);
 
     for (i = 0; i < partyCount; i++) {
         mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (Pokemon_CanBattle(mon)) {
-            if (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)) {
-                u32 hp = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+        if (Pokemon_CanBattle(mon)
+            && (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON))) {
+            u32 hp = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
 
-                if (hp > 1) {
-                    hp--;
-                }
-
-                Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &hp);
-
-                if (hp == 1) {
-                    numFainted++;
-                    Pokemon_UpdateFriendship(mon, 7, param1);
-                }
-
-                numPoisoned++;
+            if (hp > 1) {
+                hp--;
             }
+
+            Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &hp);
+
+            if (hp == 1) {
+                numFainted++;
+                Pokemon_UpdateFriendship(mon, 7, mapLabelTextID);
+            }
+
+            numPoisoned++;
         }
     }
 
     if (numFainted) {
-        return 2;
+        return FLDPSN_FAINTED;
     } else if (numPoisoned) {
-        return 1;
+        return FLDPSN_POISONED;
     } else {
-        return 0;
+        return FLDPSN_NONE;
     }
 }
 

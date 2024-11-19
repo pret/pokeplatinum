@@ -418,29 +418,26 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     }
 
     fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    {
-        fieldSystem->location->mapId = v0;
 
-        MapHeaderData_Load(fieldSystem, v0);
-        FieldMapChange_UpdateGameData(fieldSystem, 1);
+    fieldSystem->location->mapId = v0;
+
+    MapHeaderData_Load(fieldSystem, v0);
+    FieldMapChange_UpdateGameData(fieldSystem, 1);
+
+    {
+        int objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
+        const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(fieldSystem);
+
+        sub_0206184C(fieldSystem->mapObjMan, mapId, v0, objEventCount, objEventList);
     }
 
-    {
-        int npcCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
-        const ObjectEvent *npcList = MapHeaderData_GetObjectEvents(fieldSystem);
+    RadarChain_Clear(fieldSystem->chain);
+    sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+    sub_0203A418(fieldSystem);
 
-        sub_0206184C(fieldSystem->mapObjMan, mapId, v0, npcCount, npcList);
-    }
-
-    {
-        RadarChain_Clear(fieldSystem->chain);
-        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
-        sub_0203A418(fieldSystem);
-
-        if (fieldSystem->unk_04->unk_0C != NULL) {
-            ov5_021D5F7C(
-                fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
-        }
+    if (fieldSystem->unk_04->unk_0C != NULL) {
+        ov5_021D5F7C(
+            fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
     }
 
     {
@@ -479,10 +476,10 @@ void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1)
     }
 
     {
-        int npcCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
-        const ObjectEvent *npcList = MapHeaderData_GetObjectEvents(fieldSystem);
+        int objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
+        const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(fieldSystem);
 
-        sub_0206184C(fieldSystem->mapObjMan, mapId, param1, npcCount, npcList);
+        sub_0206184C(fieldSystem->mapObjMan, mapId, param1, objEventCount, objEventList);
     }
 
     {

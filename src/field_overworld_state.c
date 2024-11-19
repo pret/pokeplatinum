@@ -49,9 +49,9 @@ int FieldOverworldSave_Size(void)
     return sizeof(FieldOverworldSave);
 }
 
-void FieldOverworldSave_Init(FieldOverworldSave *fieldState)
+void FieldOverworldSave_Init(FieldOverworldSave *fieldSave)
 {
-    MI_CpuClear32(fieldState, sizeof(FieldOverworldSave));
+    MI_CpuClear32(fieldSave, sizeof(FieldOverworldSave));
 }
 
 void FieldOverworldState_Init(FieldOverworldState *fieldState)
