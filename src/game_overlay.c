@@ -21,10 +21,10 @@ typedef struct {
     PMiLoadedOverlay unk_80[8];
 } UnkStruct_021BF370;
 
-static void FreeOverlayAllocation(PMiLoadedOverlay *param0);
-static BOOL CanOverlayBeLoaded(const FSOverlayID param0);
+static void FreeOverlayAllocation(PMiLoadedOverlay *loadedOverlays);
+static BOOL CanOverlayBeLoaded(const FSOverlayID overlayID);
 static PMiLoadedOverlay *GetLoadedOverlaysInRegion(int param0);
-static BOOL GetOverlayRamBounds(const FSOverlayID param0, u32 *param1, u32 *param2);
+static BOOL GetOverlayRamBounds(const FSOverlayID overlayID, u32 *param1, u32 *param2);
 static BOOL LoadOverlayNormal(MIProcessor param0, FSOverlayID param1);
 static BOOL LoadOverlayNoInit(MIProcessor param0, FSOverlayID param1);
 static BOOL LoadOverlayNoInitAsync(MIProcessor param0, FSOverlayID param1);
@@ -72,24 +72,22 @@ void LoadOverlayGDB(const FSOverlayID overlayID)
 }
 #endif // GDB_DEBUGGING
 
-static void FreeOverlayAllocation(PMiLoadedOverlay *param0)
+static void FreeOverlayAllocation(PMiLoadedOverlay *loadedOverlays)
 {
-    GF_ASSERT(param0->isActive == 1);
-    GF_ASSERT(FS_UnloadOverlay(MI_PROCESSOR_ARM9, param0->id) == TRUE);
+    GF_ASSERT(loadedOverlays->isActive == 1);
+    GF_ASSERT(FS_UnloadOverlay(MI_PROCESSOR_ARM9, loadedOverlays->id) == TRUE);
 
-    param0->isActive = 0;
+    loadedOverlays->isActive = 0;
 }
 
 void Overlay_UnloadByID(const FSOverlayID overlayID)
 {
-    PMiLoadedOverlay *table;
+    PMiLoadedOverlay *loadedOverlays = GetLoadedOverlaysInRegion(Overlay_GetLoadDestination(overlayID));
     int i;
 
-    table = GetLoadedOverlaysInRegion(Overlay_GetLoadDestination(overlayID));
-
     for (i = 0; i < 8; i++) {
-        if ((table[i].isActive == 1) && (table[i].id == overlayID)) {
-            FreeOverlayAllocation(&table[i]);
+        if ((loadedOverlays[i].isActive == 1) && (loadedOverlays[i].id == overlayID)) {
+            FreeOverlayAllocation(&loadedOverlays[i]);
 #ifdef GDB_DEBUGGING
             UnloadOverlayGDB(overlayID);
 #endif
@@ -175,20 +173,20 @@ BOOL Overlay_LoadByID(const FSOverlayID overlayID, enum OverlayLoadType loadType
     return TRUE;
 }
 
-static BOOL CanOverlayBeLoaded(const FSOverlayID param0)
+static BOOL CanOverlayBeLoaded(const FSOverlayID overlayID)
 {
     u32 myStart, myEnd, theirStart, theirEnd;
-    PMiLoadedOverlay *loadedOverlay;
+    PMiLoadedOverlay *loadedOverlays;
     int i;
 
-    if (!GetOverlayRamBounds(param0, &myStart, &myEnd)) {
+    if (!GetOverlayRamBounds(overlayID, &myStart, &myEnd)) {
         return FALSE;
     }
 
-    loadedOverlay = GetLoadedOverlaysInRegion(Overlay_GetLoadDestination(param0));
+    loadedOverlays = GetLoadedOverlaysInRegion(Overlay_GetLoadDestination(overlayID));
 
     for (i = 0; i < 8; i++) {
-        if (loadedOverlay[i].isActive == TRUE && GetOverlayRamBounds(loadedOverlay[i].id, &theirStart, &theirEnd) == TRUE) {
+        if (loadedOverlays[i].isActive == TRUE && GetOverlayRamBounds(loadedOverlays[i].id, &theirStart, &theirEnd) == TRUE) {
             if (((myStart >= theirStart) && (myStart < theirEnd)) || ((myEnd > theirStart) && (myEnd <= theirEnd)) || ((myStart <= theirStart) && (myEnd >= theirEnd))) {
                 GF_ASSERT(0);
                 return FALSE;

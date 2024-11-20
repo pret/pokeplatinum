@@ -162,31 +162,29 @@ void Heap_Destroy(u32 heapID)
 {
     GF_ASSERT(OS_GetProcMode() != OS_PROCMODE_IRQ);
 
-    {
-        u8 index = sHeapInfo.heapIdxs[heapID];
-        NNSFndHeapHandle handle = sHeapInfo.heapHandles[index];
+    u8 index = sHeapInfo.heapIdxs[heapID];
+    NNSFndHeapHandle handle = sHeapInfo.heapHandles[index];
 
-        if (handle != NNS_FND_HEAP_INVALID_HANDLE) {
-            NNSFndHeapHandle parentHeap;
-            void *childRaw;
+    if (handle != NNS_FND_HEAP_INVALID_HANDLE) {
+        NNSFndHeapHandle parentHeap;
+        void *childRaw;
 
-            NNS_FndDestroyExpHeap(handle);
+        NNS_FndDestroyExpHeap(handle);
 
-            parentHeap = sHeapInfo.parentHeapHandles[sHeapInfo.heapIdxs[heapID]];
-            childRaw = sHeapInfo.subHeapRawPtrs[sHeapInfo.heapIdxs[heapID]];
+        parentHeap = sHeapInfo.parentHeapHandles[sHeapInfo.heapIdxs[heapID]];
+        childRaw = sHeapInfo.subHeapRawPtrs[sHeapInfo.heapIdxs[heapID]];
 
-            if ((parentHeap != NNS_FND_HEAP_INVALID_HANDLE) && (childRaw != NULL)) {
-                NNS_FndFreeToExpHeap(parentHeap, childRaw);
-            } else {
-                GF_ASSERT(0);
-            }
-
-            sHeapInfo.heapHandles[sHeapInfo.heapIdxs[heapID]] = (void *)0;
-            sHeapInfo.parentHeapHandles[sHeapInfo.heapIdxs[heapID]] = (void *)0;
-            sHeapInfo.subHeapRawPtrs[sHeapInfo.heapIdxs[heapID]] = (void *)0;
-
-            sHeapInfo.heapIdxs[heapID] = sHeapInfo.unallocatedHeapID;
+        if ((parentHeap != NNS_FND_HEAP_INVALID_HANDLE) && (childRaw != NULL)) {
+            NNS_FndFreeToExpHeap(parentHeap, childRaw);
+        } else {
+            GF_ASSERT(0);
         }
+
+        sHeapInfo.heapHandles[sHeapInfo.heapIdxs[heapID]] = (void *)0;
+        sHeapInfo.parentHeapHandles[sHeapInfo.heapIdxs[heapID]] = (void *)0;
+        sHeapInfo.subHeapRawPtrs[sHeapInfo.heapIdxs[heapID]] = (void *)0;
+
+        sHeapInfo.heapIdxs[heapID] = sHeapInfo.unallocatedHeapID;
     }
 }
 
@@ -355,5 +353,5 @@ void Heap_ReallocFromHeap(void *ptr, u32 newSize)
 BOOL GF_heap_c_dummy_return_true(u32 heapID)
 #pragma unused(heapID)
 {
-    return 1;
+    return TRUE;
 }
