@@ -5,15 +5,15 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
-typedef struct Journal_t Journal;
+typedef struct Journal Journal;
 
 int Journal_SaveSize(void);
-void Journal_Init10(Journal *param0);
-Journal *SaveData_GetJournal(SaveData *param0);
-Journal *Journal_GetSavedPage(Journal *param0, BOOL param1);
-BOOL Journal_CheckOpenOnContinue(Journal *param0, BOOL param1);
-void Journal_SaveData(Journal *param0, void *param1, u8 param2);
-void *sub_0202BC58(u16 param0, u32 param1);
+void Journal_Init10(Journal *journal);
+Journal *SaveData_GetJournal(SaveData *saveData);
+Journal *Journal_GetSavedPage(Journal *journal, BOOL param1);
+BOOL Journal_CheckOpenOnContinue(Journal *journal, BOOL param1);
+void Journal_SaveData(Journal *journal, void *journalDate, u8 param2);
+void *Journal_CreateJournalDate(u16 mapID, u32 heapID);
 void *sub_0202BCE4(u32 param0);
 void *sub_0202BCF0(u32 param0);
 void *sub_0202BCFC(u32 param0);
@@ -55,10 +55,10 @@ void *sub_0202C238(u32 param0);
 void *sub_0202C244(u32 param0, u32 param1);
 void *sub_0202C250(const u16 *param0, u8 param1, u32 param2, u32 param3);
 void *sub_0202C280(int param0, u32 param1, u32 param2);
-void sub_0202C2A4(Journal *param0, void *param1, u8 param2, u8 param3);
-void sub_0202C5C4(TrainerInfo *param0, Journal *param1, u32 param2, u32 param3, u32 param4);
+void sub_0202C2A4(Journal *journal, void *param1, u8 param2, u8 param3);
+void sub_0202C5C4(TrainerInfo *param0, Journal *journal, u32 param2, u32 param3, u32 param4);
 u32 sub_0202C6A4(u32 param0);
-void sub_0202C704(Journal *param0, u32 param1, u32 param2);
-void sub_0202C720(Journal *param0, u16 param1, u16 param2, u32 param3);
+void sub_0202C704(Journal *journal, u32 param1, u32 param2);
+void sub_0202C720(Journal *journal, u16 param1, u16 param2, u32 param3);
 
 #endif // POKEPLATINUM_JOURNAL_H

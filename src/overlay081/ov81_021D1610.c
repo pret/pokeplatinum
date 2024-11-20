@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202BC58.h"
+#include "struct_defs/journal_date.h"
 #include "struct_defs/struct_0202BCC8.h"
 #include "struct_defs/struct_0202BE38.h"
 #include "struct_defs/struct_0202BF4C.h"
@@ -143,31 +143,31 @@ void ov81_021D164C(UnkStruct_ov81_021D1610 *param0, u32 param1)
 
 static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window *param2)
 {
-    UnkStruct_0202BC58 v0;
+    JournalDate v0;
     Strbuf *v1;
     u32 v2;
 
     sub_0202C2A4(param0->unk_44, &v0, 0, param0->unk_105C);
 
-    if ((v0.unk_00_0 == 0) && (v0.unk_00_7 == 0) && (v0.unk_00_14 == 0)) {
+    if ((v0.year == 0) && (v0.month == 0) && (v0.day == 0)) {
         return 0;
     }
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 1);
 
-    StringTemplate_SetMonthName(param0->unk_54, 0, v0.unk_00_7);
-    StringTemplate_SetNumber(param0->unk_54, 1, v0.unk_00_14, 2, 0, 1);
+    StringTemplate_SetMonthName(param0->unk_54, 0, v0.month);
+    StringTemplate_SetNumber(param0->unk_54, 1, v0.day, 2, 0, 1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
     Strbuf_Free(v1);
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_58, 0);
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 2 + v0.unk_00_11);
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 2 + v0.week);
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v1, v2 + 12, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 0);
-    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_00_19));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.mapID));
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
     Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_58, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

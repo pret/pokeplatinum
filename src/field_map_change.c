@@ -410,7 +410,7 @@ static void FieldMapChange_RemoveTerrainCollisionManager(FieldSystem *fieldSyste
 void sub_02053494(FieldSystem *fieldSystem)
 {
     if (fieldSystem->journal != NULL) {
-        void *v0 = sub_0202BC58(fieldSystem->location->mapId, 11);
+        void *v0 = Journal_CreateJournalDate(fieldSystem->location->mapId, 11);
         Journal_SaveData(fieldSystem->journal, v0, 0);
     }
 }
@@ -420,7 +420,7 @@ static void sub_020534BC(FieldSystem *fieldSystem)
     if (fieldSystem->journal != NULL) {
         FieldOverworldState *owState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
         Location *location = FieldOverworldState_GetSpecialLocation(owState);
-        void *v2 = sub_0202BC58(location->mapId, 11);
+        void *v2 = Journal_CreateJournalDate(location->mapId, 11);
         Journal_SaveData(fieldSystem->journal, v2, 0);
     }
 }
