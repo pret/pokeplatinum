@@ -74,10 +74,10 @@ void LoadOverlayGDB(const FSOverlayID overlayID)
 
 static void FreeOverlayAllocation(PMiLoadedOverlay *loadedOverlays)
 {
-    GF_ASSERT(loadedOverlays->isActive == 1);
+    GF_ASSERT(loadedOverlays->isActive == TRUE);
     GF_ASSERT(FS_UnloadOverlay(MI_PROCESSOR_ARM9, loadedOverlays->id) == TRUE);
 
-    loadedOverlays->isActive = 0;
+    loadedOverlays->isActive = FALSE;
 }
 
 void Overlay_UnloadByID(const FSOverlayID overlayID)
@@ -86,7 +86,7 @@ void Overlay_UnloadByID(const FSOverlayID overlayID)
     int i;
 
     for (i = 0; i < 8; i++) {
-        if ((loadedOverlays[i].isActive == 1) && (loadedOverlays[i].id == overlayID)) {
+        if ((loadedOverlays[i].isActive == TRUE) && (loadedOverlays[i].id == overlayID)) {
             FreeOverlayAllocation(&loadedOverlays[i]);
 #ifdef GDB_DEBUGGING
             UnloadOverlayGDB(overlayID);
