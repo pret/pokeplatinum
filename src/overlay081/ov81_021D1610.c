@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/journal_date.h"
 #include "struct_defs/struct_0202BCC8.h"
-#include "struct_defs/struct_0202BE38.h"
 #include "struct_defs/struct_0202BF4C.h"
 #include "struct_defs/struct_0202BFCC.h"
 
@@ -63,8 +61,8 @@ static void ov81_021D27A8(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 static void ov81_021D27E4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BCC8 *param2, u8 param3);
 static void ov81_021D2820(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BCC8 *param2, u8 param3);
 static void ov81_021D285C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BCC8 *param2, u8 param3, int param4);
-static void ov81_021D2908(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BE38 *param2);
-static void ov81_021D29B4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BE38 *param2);
+static void ov81_021D2908(UnkStruct_ov81_021D1610 *param0, Window *param1, JournalEntryMon *journalEntryMon);
+static void ov81_021D29B4(UnkStruct_ov81_021D1610 *param0, Window *param1, JournalEntryMon *journalEntryMon);
 static void ov81_021D2A9C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3);
 static void ov81_021D2B20(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3);
 static void ov81_021D2BA4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3);
@@ -143,11 +141,11 @@ void ov81_021D164C(UnkStruct_ov81_021D1610 *param0, u32 param1)
 
 static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window *param2)
 {
-    JournalDate v0;
+    JournalEntryTitle v0;
     Strbuf *v1;
     u32 v2;
 
-    sub_0202C2A4(param0->unk_44, &v0, 0, param0->unk_105C);
+    JournalEntry_GetData(param0->unk_44, &v0, 0, param0->unk_105C);
 
     if ((v0.year == 0) && (v0.month == 0) && (v0.day == 0)) {
         return 0;
@@ -181,7 +179,7 @@ static void ov81_021D17C8(UnkStruct_ov81_021D1610 *param0, Window *param1)
     UnkStruct_0202BCC8 v0[4];
     u32 v1;
 
-    sub_0202C2A4(param0->unk_44, &v0[0], 1, param0->unk_105C);
+    JournalEntry_GetData(param0->unk_44, &v0[0], 1, param0->unk_105C);
 
     for (v1 = 0; v1 < 4; v1++) {
         switch (v0[v1].unk_00) {
@@ -302,20 +300,20 @@ static void ov81_021D17C8(UnkStruct_ov81_021D1610 *param0, Window *param1)
 
 static void ov81_021D1A90(UnkStruct_ov81_021D1610 *param0, Window *param1)
 {
-    UnkStruct_0202BE38 v0;
+    JournalEntryMon journalEntryMon;
 
-    sub_0202C2A4(param0->unk_44, &v0, 2, param0->unk_105C);
+    JournalEntry_GetData(param0->unk_44, &journalEntryMon, 2, param0->unk_105C);
 
-    switch (v0.unk_00) {
+    switch (journalEntryMon.battleResult) {
     case 0:
         return;
 
-    case 1:
-        ov81_021D2908(param0, param1, &v0);
+    case POKEMON_CAUGHT:
+        ov81_021D2908(param0, param1, &journalEntryMon);
         break;
 
-    case 2:
-        ov81_021D29B4(param0, param1, &v0);
+    case POKEMON_DEFEATED:
+        ov81_021D29B4(param0, param1, &journalEntryMon);
         break;
     }
 }
@@ -326,7 +324,7 @@ static void ov81_021D1AD4(UnkStruct_ov81_021D1610 *param0, Window *param1)
     Strbuf *v1;
     u32 v2;
 
-    sub_0202C2A4(param0->unk_44, &v0, 3, param0->unk_105C);
+    JournalEntry_GetData(param0->unk_44, &v0, 3, param0->unk_105C);
 
     if (v0.unk_00_0 == 0) {
         return;
@@ -374,7 +372,7 @@ static void ov81_021D1C10(UnkStruct_ov81_021D1610 *param0, Window *param1)
     UnkStruct_0202BFCC v0[2];
     u32 v1;
 
-    sub_0202C2A4(param0->unk_44, &v0[0], 4, param0->unk_105C);
+    JournalEntry_GetData(param0->unk_44, &v0[0], 4, param0->unk_105C);
 
     for (v1 = 0; v1 < 2; v1++) {
         switch (v0[v1].unk_00) {
@@ -826,58 +824,58 @@ static void ov81_021D28C8(UnkStruct_ov81_021D1610 *param0, u16 param1, u8 param2
     Heap_FreeToHeap(v0);
 }
 
-static void ov81_021D2908(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BE38 *param2)
+static void ov81_021D2908(UnkStruct_ov81_021D1610 *param0, Window *param1, JournalEntryMon *journalEntryMon)
 {
     Strbuf *v0;
 
-    switch (param2->unk_01_0) {
+    switch (journalEntryMon->stringVariant) {
     case 0:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 49);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 49); // Caught [species] ([time]).
         break;
     case 1:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 50);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 50); // [species] was caught ([time]).
         break;
     default:
-        if (param2->unk_01_6 == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 51);
-        } else if (param2->unk_01_6 == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 52);
+        if (journalEntryMon->gender == 0) {
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 51); // Caught a male [species].
+        } else if (journalEntryMon->gender == 1) {
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 52); // Caught a female [species].
         } else {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 49);
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 49); // Caught [species] ([time]).
         }
     }
 
-    ov81_021D28C8(param0, param2->unk_02, param2->unk_01_6, 0);
-    StringTemplate_SetTimeOfDay(param0->unk_54, 1, param2->unk_01_2);
+    ov81_021D28C8(param0, journalEntryMon->species, journalEntryMon->gender, 0);
+    StringTemplate_SetTimeOfDay(param0->unk_54, 1, journalEntryMon->timeOfDay);
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (16 * 4 + 16), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void ov81_021D29B4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BE38 *param2)
+static void ov81_021D29B4(UnkStruct_ov81_021D1610 *param0, Window *param1, JournalEntryMon *journalEntryMon)
 {
     Strbuf *v0;
 
-    switch (param2->unk_01_0) {
+    switch (journalEntryMon->stringVariant) {
     case 0:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 53);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 53); // [species] was defeated ([time]).
         break;
     case 1:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 54);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 54); // Defeated [species] ([time]).
         break;
     default:
-        if (param2->unk_01_6 == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 55);
-        } else if (param2->unk_01_6 == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 56);
+        if (journalEntryMon->gender == 0) {
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 55); // Defeated a male [species].
+        } else if (journalEntryMon->gender == 1) {
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 56); // Defeated a female [species].
         } else {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 53);
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 53); // [species] was defeated ([time]).
         }
     }
 
-    ov81_021D28C8(param0, param2->unk_02, param2->unk_01_6, 0);
-    StringTemplate_SetTimeOfDay(param0->unk_54, 1, param2->unk_01_2);
+    ov81_021D28C8(param0, journalEntryMon->species, journalEntryMon->gender, 0);
+    StringTemplate_SetTimeOfDay(param0->unk_54, 1, journalEntryMon->timeOfDay);
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (16 * 4 + 16), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

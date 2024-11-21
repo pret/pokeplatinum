@@ -48,7 +48,7 @@ typedef struct FieldBattleDTO {
     UnkStruct_0206D140 *unk_10C;
     BattleRecords battleRecords;
     GameRecords *records;
-    Journal *journal;
+    JournalEntry *journalEntry;
     UnkStruct_02027F8C *unk_124;
     int background;
     enum Terrain terrain;
@@ -87,7 +87,7 @@ void FieldBattleDTO_AddPokemonToBattler(FieldBattleDTO *dto, Pokemon *src, int b
 void FieldBattleDTO_CopyPartyToBattler(FieldBattleDTO *dto, const Party *src, int battler);
 void FieldBattleDTO_CopyTrainerInfoToBattler(FieldBattleDTO *dto, const TrainerInfo *src, int battler);
 void FieldBattleDTO_CopyChatotCryToBattler(FieldBattleDTO *dto, const ChatotCry *src, int battler);
-void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *save, enum MapHeader mapHeaderID, Journal *journal, BagCursor *bagCursor, u8 *subscreenCursorOn);
+void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *save, enum MapHeader mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn);
 void FieldBattleDTO_Init(FieldBattleDTO *dto, const FieldSystem *fieldSystem);
 void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const FieldSystem *fieldSystem, int level);
 void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *fieldSystem, const Party *party, const u8 *partyOrder);

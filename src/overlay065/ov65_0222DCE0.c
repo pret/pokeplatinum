@@ -3838,12 +3838,12 @@ static BOOL ov65_02231A54 (void)
 static void ov65_02231A74 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 {
     void * v0;
-    Journal * v1;
+    JournalEntry * v1;
 
     v1 = SaveData_GetJournal(param0->unk_160);
     v0 = sub_0202C244(54, 29);
 
-    Journal_SaveData(v1, v0, 4);
+    JournalEntry_SaveData(v1, v0, 4);
 }
 
 static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)

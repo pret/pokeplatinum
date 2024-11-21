@@ -3885,7 +3885,7 @@ static BOOL sub_02041CF4(ScriptContext *ctx)
         void *v3;
 
         v3 = sub_0202BCFC(11);
-        Journal_SaveData(fieldSystem->journal, v3, 1);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v3, 1);
     }
 
     Heap_FreeToHeap(*v0);
@@ -6099,7 +6099,7 @@ static BOOL ScrCmd_GiveJournal(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     SystemFlag_HandleJournalAcquired(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_SET);
-    fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), 1);
+    fieldSystem->journalEntry = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), 1);
     sub_02053494(fieldSystem);
 
     return FALSE;
@@ -6150,7 +6150,7 @@ static BOOL ScrCmd_1CD(ScriptContext *ctx)
         return 1;
     }
 
-    Journal_SaveData(ctx->fieldSystem->journal, *v6, v0);
+    JournalEntry_SaveData(ctx->fieldSystem->journalEntry, *v6, v0);
     return 1;
 }
 
@@ -6397,7 +6397,7 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
         {
             void *v6 = sub_0202BDE0(4);
 
-            Journal_SaveData(ctx->fieldSystem->journal, v6, 1);
+            JournalEntry_SaveData(ctx->fieldSystem->journalEntry, v6, 1);
         }
         *v0 = 0;
         *v1 = 0;
@@ -7782,7 +7782,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
     v2->unk_24 = v1;
     v2->unk_08 = ctx->fieldSystem->saveData;
     v2->unk_1C = ctx->fieldSystem->location->mapId;
-    v2->unk_0C = ctx->fieldSystem->journal;
+    v2->unk_0C = ctx->fieldSystem->journalEntry;
     v2->unk_10 = ctx->fieldSystem->unk_98;
     v2->unk_20 = ctx->fieldSystem->battleSubscreenCursorOn;
 

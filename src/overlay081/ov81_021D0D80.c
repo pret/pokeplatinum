@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/journal_date.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay081/ov81_021D1610.h"
@@ -445,9 +444,9 @@ static void ov81_021D1360(UnkStruct_ov81_021D1610 *param0)
 
 static u8 ov81_021D13A0(UnkStruct_ov81_021D1610 *param0, u8 param1)
 {
-    JournalDate v0;
+    JournalEntryTitle v0;
 
-    sub_0202C2A4(param0->unk_44, &v0, 0, param1);
+    JournalEntry_GetData(param0->unk_44, &v0, 0, param1);
 
     if ((v0.year == 0) && (v0.month == 0) && (v0.day == 0)) {
         return 0;

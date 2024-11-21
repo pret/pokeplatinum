@@ -58,7 +58,7 @@ static void ov94_02242D38(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242D74(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242D84(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242D98(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02243E48(Journal *param0, UnkStruct_ov94_0223BA88 *param1);
+static void ov94_02243E48(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2);
@@ -1392,7 +1392,7 @@ static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *p
     sub_02038FDC(param0, param1->unk_11E, param1->unk_11F, param1->unk_123);
 }
 
-static void ov94_02243E48(Journal *param0, UnkStruct_ov94_0223BA88 *param1)
+static void ov94_02243E48(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1)
 {
     void *v0;
     u16 v1[10 + 1];
@@ -1400,7 +1400,7 @@ static void ov94_02243E48(Journal *param0, UnkStruct_ov94_0223BA88 *param1)
 
     Pokemon_GetValue(v2, MON_DATA_NICKNAME, v1);
     v0 = sub_0202C1EC(param1->unk_10C, param1->unk_F6, v1, Pokemon_GetGender(v2), 62);
-    Journal_SaveData(param0, v0, 4);
+    JournalEntry_SaveData(param0, v0, 4);
 }
 
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1)

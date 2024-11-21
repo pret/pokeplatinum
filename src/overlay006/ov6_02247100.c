@@ -208,7 +208,7 @@ static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param
         return;
     }
 
-    Journal_SaveData(fieldSystem->journal, v0, 1);
+    JournalEntry_SaveData(fieldSystem->journalEntry, v0, 1);
 }
 
 static int ov6_02247354(FieldTask *taskMan, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)

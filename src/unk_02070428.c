@@ -140,7 +140,7 @@ static BOOL sub_020705DC(FieldSystem *fieldSystem)
     int v0 = sub_0203A87C(fieldSystem->location->mapId);
 
     if ((v0 != 0) && (sub_0203A920(fieldSystem, v0) == 0)) {
-        sub_0202C704(fieldSystem->journal, fieldSystem->location->mapId, 32);
+        sub_0202C704(fieldSystem->journalEntry, fieldSystem->location->mapId, 32);
         return TRUE;
     }
 
@@ -152,7 +152,7 @@ static BOOL sub_02070610(FieldSystem *fieldSystem)
     Location *location = FieldOverworldState_GetPrevLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     if (location->mapId != fieldSystem->location->mapId) {
-        sub_0202C5C4(SaveData_GetTrainerInfo(fieldSystem->saveData), fieldSystem->journal, fieldSystem->location->mapId, location->mapId, 32);
+        sub_0202C5C4(SaveData_GetTrainerInfo(fieldSystem->saveData), fieldSystem->journalEntry, fieldSystem->location->mapId, location->mapId, 32);
         return TRUE;
     }
 

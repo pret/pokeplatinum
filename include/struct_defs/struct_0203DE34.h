@@ -13,7 +13,7 @@ typedef struct {
     UnkStruct_0205C22C *unk_04;
     Options *unk_08;
     GameRecords *records;
-    Journal *unk_10;
+    JournalEntry *unk_10;
 } UnkStruct_0203DE34;
 
 #endif // POKEPLATINUM_STRUCT_0203DE34_H
