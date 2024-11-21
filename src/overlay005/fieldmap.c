@@ -424,12 +424,10 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     MapHeaderData_Load(fieldSystem, v0);
     FieldMapChange_UpdateGameData(fieldSystem, 1);
 
-    {
-        int objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
-        const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(fieldSystem);
+    int objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
+    const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(fieldSystem);
 
-        sub_0206184C(fieldSystem->mapObjMan, mapId, v0, objEventCount, objEventList);
-    }
+    sub_0206184C(fieldSystem->mapObjMan, mapId, v0, objEventCount, objEventList);
 
     RadarChain_Clear(fieldSystem->chain);
     sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
@@ -440,21 +438,19 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
             fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
     }
 
-    {
-        int v7, v8;
-        int v9;
+    int v7, v8;
+    int v9;
 
-        v7 = MapHeader_GetMapLabelTextID(mapId);
-        v8 = MapHeader_GetMapLabelTextID(v0);
-        v9 = MapHeader_GetMapLabelWindowID(v0);
+    v7 = MapHeader_GetMapLabelTextID(mapId);
+    v8 = MapHeader_GetMapLabelTextID(v0);
+    v9 = MapHeader_GetMapLabelWindowID(v0);
 
-        if (v7 != v8) {
-            if (v9 != 0) {
-                v9--;
-            }
-
-            ov5_021DD9E8(fieldSystem->unk_04->unk_08, v8, v9);
+    if (v7 != v8) {
+        if (v9 != 0) {
+            v9--;
         }
+
+        ov5_021DD9E8(fieldSystem->unk_04->unk_08, v8, v9);
     }
 
     return TRUE;
@@ -468,27 +464,21 @@ void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1)
     mapId = fieldSystem->location->mapId;
     fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
-    {
-        fieldSystem->location->mapId = param1;
+    fieldSystem->location->mapId = param1;
 
-        MapHeaderData_Load(fieldSystem, param1);
-        FieldMapChange_UpdateGameDataDistortionWorld(fieldSystem, 1);
-    }
+    MapHeaderData_Load(fieldSystem, param1);
+    FieldMapChange_UpdateGameDataDistortionWorld(fieldSystem, 1);
 
-    {
-        int objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
-        const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(fieldSystem);
+    int objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
+    const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(fieldSystem);
 
-        sub_0206184C(fieldSystem->mapObjMan, mapId, param1, objEventCount, objEventList);
-    }
+    sub_0206184C(fieldSystem->mapObjMan, mapId, param1, objEventCount, objEventList);
 
-    {
-        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
-        sub_0203A418(fieldSystem);
+    sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
+    sub_0203A418(fieldSystem);
 
-        if (fieldSystem->unk_04->unk_0C != NULL) {
-            ov5_021D5F7C(fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
-        }
+    if (fieldSystem->unk_04->unk_0C != NULL) {
+        ov5_021D5F7C(fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
     }
 }
 
