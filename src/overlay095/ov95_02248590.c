@@ -21,11 +21,11 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "math.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_0201D15C.h"
 #include "unk_0202419C.h"
 
 enum {
@@ -923,8 +923,8 @@ static void ov95_022492DC(UnkStruct_ov95_0224922C *param0)
         }
     }
 
-    param0->unk_14.x = param0->unk_08.x + FX_Mul(sub_0201D1D4(v0), param0->unk_38);
-    param0->unk_14.z = param0->unk_08.z + FX_Mul(sub_0201D15C(v0), param0->unk_3C);
+    param0->unk_14.x = param0->unk_08.x + FX_Mul(CalcCosineDegrees(v0), param0->unk_38);
+    param0->unk_14.z = param0->unk_08.z + FX_Mul(CalcSineDegrees(v0), param0->unk_3C);
     param0->unk_20.y += param0->unk_56;
 
     for (v1 = 0; v1 < 3; v1++) {

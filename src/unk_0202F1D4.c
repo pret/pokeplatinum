@@ -22,6 +22,7 @@
 #include "field_battle_data_transfer.h"
 #include "game_options.h"
 #include "heap.h"
+#include "math.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
@@ -29,7 +30,6 @@
 #include "trainer_info.h"
 #include "unk_02006224.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_02026150.h"
 #include "unk_0202631C.h"
 

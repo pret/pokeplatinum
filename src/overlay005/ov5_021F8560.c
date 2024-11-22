@@ -16,8 +16,8 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "map_object.h"
+#include "math.h"
 #include "player_avatar.h"
-#include "unk_0201D15C.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 
@@ -220,8 +220,8 @@ static void ov5_021F86E4(UnkStruct_ov101_021D5D90 *param0, void *param1)
                 v4 = &v0->unk_20;
             }
 
-            v3.x += ((FX32_ONE * 0) + v4->x) + sub_0201D1D4(v0->unk_08) * v0->unk_0A;
-            v3.y += ((FX32_ONE * (+8)) + v4->y) + sub_0201D15C(v0->unk_08) * v0->unk_0A;
+            v3.x += ((FX32_ONE * 0) + v4->x) + CalcCosineDegrees(v0->unk_08) * v0->unk_0A;
+            v3.y += ((FX32_ONE * (+8)) + v4->y) + CalcSineDegrees(v0->unk_08) * v0->unk_0A;
             v3.z += ((FX32_ONE * 0) + v4->z);
         }
 

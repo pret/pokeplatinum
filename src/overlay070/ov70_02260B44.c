@@ -13,8 +13,8 @@
 #include "easy3d_object.h"
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     BOOL unk_00;

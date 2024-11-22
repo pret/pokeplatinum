@@ -28,6 +28,7 @@
 #include "heap.h"
 #include "item.h"
 #include "list_menu.h"
+#include "math.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
@@ -47,7 +48,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202D7A8.h"
@@ -2968,8 +2968,8 @@ static BOOL ov84_0223EB84(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
         if (ov84_0223EB6C() == 1) {
             s32 v0, v1;
 
-            v0 = sub_0201D4CC(128 - param0->unk_49E, 80 - param0->unk_4A0, 128 - gCoreSys.touchX, 80 - gCoreSys.touchY, 80);
-            v1 = sub_0201D580(80, v0 * 2);
+            v0 = CalcDotProduct2D(128 - param0->unk_49E, 80 - param0->unk_4A0, 128 - gCoreSys.touchX, 80 - gCoreSys.touchY, 80);
+            v1 = CalcRadialAngle(80, v0 * 2);
             v1 = ((v1 << 8) / 182) >> 8;
             param0->unk_49A += v1;
 

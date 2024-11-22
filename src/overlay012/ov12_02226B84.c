@@ -28,13 +28,13 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math.h"
 #include "palette.h"
 #include "spl.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
-#include "unk_0201D15C.h"
 #include "unk_0201F834.h"
 
 typedef struct {
@@ -2912,7 +2912,7 @@ static void ov12_02229A6C(SysTask *param0, void *param1)
 
         if (v0->unk_30) {
             v0->unk_2C += (360 / (v0->unk_06));
-            SPLEmitter_SetPosY(v0->unk_38, (v0->unk_A8[0].unk_02 * 172) + sub_0201D250(v0->unk_2C));
+            SPLEmitter_SetPosY(v0->unk_38, (v0->unk_A8[0].unk_02 * 172) + CalcSineDegrees_Wraparound(v0->unk_2C));
         }
     }
 }

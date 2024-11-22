@@ -29,11 +29,11 @@
 #include "easy3d_object.h"
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_0201D15C.h"
 
 __attribute__((aligned(4))) static const s16 Unk_ov113_02260BCC[] = {
     0xFF,
@@ -1324,7 +1324,7 @@ static int ov113_0225F368(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
             v0->unk_04 -= 360 << FX32_SHIFT;
         }
 
-        v5 = FX_Mul(sub_0201D2B8(v0->unk_04), 0x8000);
+        v5 = FX_Mul(CalcSineDegrees_FX32(v0->unk_04), 0x8000);
         Easy3DObject_SetPosition(&param1->unk_1C, v2 - 0x1000, v0->unk_0C + v5, v4);
         break;
     }
@@ -1463,7 +1463,7 @@ static int ov113_0225F728(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
             v0->unk_04 -= 360 << FX32_SHIFT;
         }
 
-        v5 = FX_Mul(sub_0201D2B8(v0->unk_04), 0x8000);
+        v5 = FX_Mul(CalcSineDegrees_FX32(v0->unk_04), 0x8000);
         Easy3DObject_SetPosition(&param1->unk_1C, v0->unk_08 + v5, v3 - 0x1000, v4);
         break;
     }
@@ -1558,7 +1558,7 @@ static int ov113_0225F890(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
             v0->unk_F0 -= 360 << FX32_SHIFT;
         }
 
-        v4 = FX_Mul(sub_0201D2B8(v0->unk_F0), 0x10000);
+        v4 = FX_Mul(CalcSineDegrees_FX32(v0->unk_F0), 0x10000);
 
         Easy3DObject_GetPosition(&param1->unk_1C, &v1, &v2, &v3);
 
@@ -1656,7 +1656,7 @@ static int ov113_0225FAB0(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
             v0->unk_F0 -= 360 << FX32_SHIFT;
         }
 
-        v4 = FX_Mul(sub_0201D2B8(v0->unk_F0), 0x10000);
+        v4 = FX_Mul(CalcSineDegrees_FX32(v0->unk_F0), 0x10000);
 
         Easy3DObject_GetPosition(&param1->unk_1C, &v1, &v2, &v3);
 
@@ -2055,7 +2055,7 @@ static BOOL ov113_02260218(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
             }
         }
 
-        v1 = FX_Mul(sub_0201D2B8(v0->unk_08), 0x1000);
+        v1 = FX_Mul(CalcSineDegrees_FX32(v0->unk_08), 0x1000);
         v2 = v0->cameraAngle;
         v2.y = v1;
         Camera_SetAngleAroundSelf(&v2, camera);
@@ -2133,7 +2133,7 @@ static BOOL ov113_02260394(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
             }
         }
 
-        v2 = FX_Mul(sub_0201D2B8(v0->unk_18), 0x10000);
+        v2 = FX_Mul(CalcSineDegrees_FX32(v0->unk_18), 0x10000);
         v1.x = v2;
 
         Camera_SetTarget(&v0->unk_00, camera);
@@ -2172,7 +2172,7 @@ static BOOL ov113_0226046C(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_022
             }
         }
 
-        v2 = FX_Mul(sub_0201D2B8(v0->unk_18), 0x8000);
+        v2 = FX_Mul(CalcSineDegrees_FX32(v0->unk_18), 0x8000);
         v1.y = v2;
 
         Camera_SetTarget(&v0->unk_00, camera);

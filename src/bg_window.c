@@ -5,7 +5,7 @@
 
 #include "gx_layers.h"
 #include "heap.h"
-#include "unk_0201D15C.h"
+#include "math.h"
 
 static u8 ConvertToGxBgScreenSize(u8 bgScreenSize, u8 bgType);
 static void GetBgScreenTileDimensions(u8 bgScreenSize, u8 *outXTiles, u8 *outYTiles);
@@ -747,7 +747,7 @@ void Bg_SetAffineParams(BgConfig *bgConfig, u8 bgLayer, const MtxFx22 *mtx, int 
 static void ResetBgAffineTransforms(BgConfig *bgConfig, u8 bgLayer)
 {
     MtxFx22 mtx;
-    sub_0201D470(&mtx, 0, FX32_ONE, FX32_ONE, 0);
+    CreateAffineTransformationMatrix(&mtx, 0, FX32_ONE, FX32_ONE, AFFINE_MODE_NORMAL);
     Bg_SetAffineParams(bgConfig, bgLayer, &mtx, 0, 0);
 }
 
@@ -2460,7 +2460,7 @@ static void RunScheduledScrolls(BgConfig *bgConfig)
             G2_SetBG2Offset(bgConfig->bgs[BG_LAYER_MAIN_2].xOffset, bgConfig->bgs[BG_LAYER_MAIN_2].yOffset);
         } else {
             MtxFx22 mtx;
-            sub_0201D470(&mtx, bgConfig->bgs[BG_LAYER_MAIN_2].rotation, bgConfig->bgs[BG_LAYER_MAIN_2].xScale, bgConfig->bgs[BG_LAYER_MAIN_2].yScale, 2);
+            CreateAffineTransformationMatrix(&mtx, bgConfig->bgs[BG_LAYER_MAIN_2].rotation, bgConfig->bgs[BG_LAYER_MAIN_2].xScale, bgConfig->bgs[BG_LAYER_MAIN_2].yScale, AFFINE_MODE_MAX_360);
             G2_SetBG2Affine(&mtx, bgConfig->bgs[BG_LAYER_MAIN_2].xCenter, bgConfig->bgs[BG_LAYER_MAIN_2].yCenter, bgConfig->bgs[BG_LAYER_MAIN_2].xOffset, bgConfig->bgs[BG_LAYER_MAIN_2].yOffset);
         }
     }
@@ -2470,7 +2470,7 @@ static void RunScheduledScrolls(BgConfig *bgConfig)
             G2_SetBG3Offset(bgConfig->bgs[BG_LAYER_MAIN_3].xOffset, bgConfig->bgs[BG_LAYER_MAIN_3].yOffset);
         } else {
             MtxFx22 mtx;
-            sub_0201D470(&mtx, bgConfig->bgs[BG_LAYER_MAIN_3].rotation, bgConfig->bgs[BG_LAYER_MAIN_3].xScale, bgConfig->bgs[BG_LAYER_MAIN_3].yScale, 2);
+            CreateAffineTransformationMatrix(&mtx, bgConfig->bgs[BG_LAYER_MAIN_3].rotation, bgConfig->bgs[BG_LAYER_MAIN_3].xScale, bgConfig->bgs[BG_LAYER_MAIN_3].yScale, AFFINE_MODE_MAX_360);
             G2_SetBG3Affine(&mtx, bgConfig->bgs[BG_LAYER_MAIN_3].xCenter, bgConfig->bgs[BG_LAYER_MAIN_3].yCenter, bgConfig->bgs[BG_LAYER_MAIN_3].xOffset, bgConfig->bgs[BG_LAYER_MAIN_3].yOffset);
         }
     }
@@ -2488,7 +2488,7 @@ static void RunScheduledScrolls(BgConfig *bgConfig)
             G2S_SetBG2Offset(bgConfig->bgs[BG_LAYER_SUB_2].xOffset, bgConfig->bgs[BG_LAYER_SUB_2].yOffset);
         } else {
             MtxFx22 mtx;
-            sub_0201D470(&mtx, bgConfig->bgs[BG_LAYER_SUB_2].rotation, bgConfig->bgs[BG_LAYER_SUB_2].xScale, bgConfig->bgs[BG_LAYER_SUB_2].yScale, 2);
+            CreateAffineTransformationMatrix(&mtx, bgConfig->bgs[BG_LAYER_SUB_2].rotation, bgConfig->bgs[BG_LAYER_SUB_2].xScale, bgConfig->bgs[BG_LAYER_SUB_2].yScale, AFFINE_MODE_MAX_360);
             G2S_SetBG2Affine(&mtx, bgConfig->bgs[BG_LAYER_SUB_2].xCenter, bgConfig->bgs[BG_LAYER_SUB_2].yCenter, bgConfig->bgs[BG_LAYER_SUB_2].xOffset, bgConfig->bgs[BG_LAYER_SUB_2].yOffset);
         }
     }
@@ -2498,7 +2498,7 @@ static void RunScheduledScrolls(BgConfig *bgConfig)
             G2S_SetBG3Offset(bgConfig->bgs[BG_LAYER_SUB_3].xOffset, bgConfig->bgs[BG_LAYER_SUB_3].yOffset);
         } else {
             MtxFx22 mtx;
-            sub_0201D470(&mtx, bgConfig->bgs[BG_LAYER_SUB_3].rotation, bgConfig->bgs[BG_LAYER_SUB_3].xScale, bgConfig->bgs[BG_LAYER_SUB_3].yScale, 2);
+            CreateAffineTransformationMatrix(&mtx, bgConfig->bgs[BG_LAYER_SUB_3].rotation, bgConfig->bgs[BG_LAYER_SUB_3].xScale, bgConfig->bgs[BG_LAYER_SUB_3].yScale, AFFINE_MODE_MAX_360);
             G2S_SetBG3Affine(&mtx, bgConfig->bgs[BG_LAYER_SUB_3].xCenter, bgConfig->bgs[BG_LAYER_SUB_3].yCenter, bgConfig->bgs[BG_LAYER_SUB_3].xOffset, bgConfig->bgs[BG_LAYER_SUB_3].yOffset);
         }
     }

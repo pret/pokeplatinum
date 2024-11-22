@@ -21,10 +21,10 @@
 
 #include "game_records.h"
 #include "heap.h"
+#include "math.h"
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
-#include "unk_0201D15C.h"
 #include "unk_0202FF4C.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"

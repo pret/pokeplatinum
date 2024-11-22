@@ -7,7 +7,7 @@
 
 #include "field_script_context.h"
 #include "inlines.h"
-#include "unk_0201D15C.h"
+#include "math.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
