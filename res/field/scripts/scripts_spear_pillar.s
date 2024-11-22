@@ -136,7 +136,7 @@ _01A6:
 _01CA:
     Message 0
     CloseMessage
-    StartTrainerBattle 0x209, 0x20F
+    StartTrainerBattle trainer_galactic_grunt_spear_pillar_1, trainer_galactic_grunt_spear_pillar_2
     CheckWonBattle 0x800C
     Return
 

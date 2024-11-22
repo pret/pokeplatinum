@@ -63,7 +63,7 @@ _00CF:
     FacePlayer
     Message 0
     CloseMessage
-    StartTrainerBattle 0x34B, 0
+    StartTrainerBattle trainer_galactic_grunt_valley_windworks_1
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0133
     Message 1

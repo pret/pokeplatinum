@@ -11,7 +11,7 @@ _000A:
     LockAll
     FacePlayer
     GoToIfSet 176, _00AC
-    ScrCmd_0EA 0x105
+    ScrCmd_0EA trainer_elite_four_aaron
     Message 0
     CloseMessage
     CallIfUnset 214, _007A
@@ -30,19 +30,19 @@ _000A:
     End
 
 _007A:
-    StartTrainerBattle 0x105, 0
+    StartTrainerBattle trainer_elite_four_aaron
     Return
 
 _0082:
-    StartTrainerBattle 0x362, 0
+    StartTrainerBattle trainer_elite_four_aaron_rematch
     Return
 
 _008A:
-    ScrCmd_1CD 11, 0x105, 0, 0, 0
+    ScrCmd_1CD 11, trainer_elite_four_aaron, 0, 0, 0
     Return
 
 _0098:
-    ScrCmd_1CD 11, 0x362, 0, 0, 0
+    ScrCmd_1CD 11, trainer_elite_four_aaron_rematch, 0, 0, 0
     Return
 
 _00A6:

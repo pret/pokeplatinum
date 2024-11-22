@@ -48,7 +48,7 @@ _0076:
     ScrCmd_1CD 9, 122, 0, 0, 0
     Message 0
     CloseMessage
-    StartTrainerBattle 0x13C, 0
+    StartTrainerBattle trainer_leader_wake
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _016B
     Message 1
@@ -58,16 +58,16 @@ _0076:
     WaitSound
     GiveBadge BADGE_ID_FEN
     ScrCmd_260 23
-    SetTrainerFlag 0x125
-    SetTrainerFlag 0x153
-    SetTrainerFlag 0x191
-    SetTrainerFlag 0x1E3
-    SetTrainerFlag 0x1F1
-    SetTrainerFlag 0x1F2
+    SetTrainerFlag trainer_fisherman_erick
+    SetTrainerFlag trainer_sailor_damian
+    SetTrainerFlag trainer_fisherman_walter
+    SetTrainerFlag trainer_sailor_samson
+    SetTrainerFlag trainer_tuber_jacky
+    SetTrainerFlag trainer_tuber_caitlyn
     SetVar 0x407C, 3
     SetFlag 0x20C
     SetFlag 0x156
-    ScrCmd_1CD 10, 122, 0x13C, 0, 0
+    ScrCmd_1CD 10, 122, trainer_leader_wake, 0, 0
     Message 3
     GoTo _010D
     End

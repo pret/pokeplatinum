@@ -175,17 +175,17 @@ _01E7:
     End
 
 _0212:
-    StartTrainerBattle 0x156, 0
+    StartTrainerBattle trainer_school_kid_harrison
     GoTo _023C
     End
 
 _0220:
-    StartTrainerBattle 0x156, 0
+    StartTrainerBattle trainer_school_kid_harrison
     GoTo _023C
     End
 
 _022E:
-    StartTrainerBattle 0x156, 0
+    StartTrainerBattle trainer_school_kid_harrison
     GoTo _023C
     End
 
@@ -269,17 +269,17 @@ _031A:
     End
 
 _0345:
-    StartTrainerBattle 0x159, 0
+    StartTrainerBattle trainer_school_kid_christine
     GoTo _036F
     End
 
 _0353:
-    StartTrainerBattle 0x159, 0
+    StartTrainerBattle trainer_school_kid_christine
     GoTo _036F
     End
 
 _0361:
-    StartTrainerBattle 0x159, 0
+    StartTrainerBattle trainer_school_kid_christine
     GoTo _036F
     End
 

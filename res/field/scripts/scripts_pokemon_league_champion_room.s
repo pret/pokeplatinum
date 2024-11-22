@@ -13,7 +13,7 @@ _000A:
 _000E:
     ApplyMovement 0xFF, _012C
     WaitMovement
-    ScrCmd_0EA 0x10B
+    ScrCmd_0EA trainer_champion_cynthia
     CallIfUnset 0x964, _00EB
     CallIfSet 0x964, _00F0
     CloseMessage
@@ -59,19 +59,19 @@ _00F0:
     Return
 
 _00F5:
-    StartTrainerBattle 0x10B, 0
+    StartTrainerBattle trainer_champion_cynthia
     Return
 
 _00FD:
-    StartTrainerBattle 0x366, 0
+    StartTrainerBattle trainer_champion_cynthia_rematch
     Return
 
 _0105:
-    ScrCmd_1CD 12, 0x10B, 0, 0, 0
+    ScrCmd_1CD 12, trainer_champion_cynthia, 0, 0, 0
     Return
 
 _0113:
-    ScrCmd_1CD 12, 0x366, 0, 0, 0
+    ScrCmd_1CD 12, trainer_champion_cynthia_rematch, 0, 0, 0
     Return
 
 _0121:
