@@ -704,7 +704,7 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, JournalEntry *pa
 
     if (param0->unk_0F == 4) {
         v2 = sub_0202C238(param0->unk_04);
-        JournalEntry_SaveData(param2, v2, 4);
+        JournalEntry_SaveData(param2, v2, JOURNAL_UNK_1C);
     }
 }
 

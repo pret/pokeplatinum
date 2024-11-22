@@ -2459,7 +2459,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
 
             v2 = sub_0202BE00((u8)param0->unk_B14[3], 0, 12);
             fieldSystem = param0->unk_5A4->unk_1C;
-            JournalEntry_SaveData(fieldSystem->journalEntry, v2, 1);
+            JournalEntry_SaveData(fieldSystem->journalEntry, v2, JOURNAL_UNK_04);
             param0->unk_B14[1] = 4;
             param0->unk_B0E = 30;
             return 24;

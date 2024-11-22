@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_0202BCC8.h"
-#include "struct_defs/struct_0202BF4C.h"
 #include "struct_defs/struct_0202BFCC.h"
 
 #include "heap.h"
@@ -20,25 +19,25 @@ typedef struct JournalEntry {
     JournalEntryTitle title;
     u32 unk_04[4];
     JournalEntryMon mon;
-    UnkStruct_0202BF4C unk_18;
+    JournalEntryTrainer trainer;
     u8 unk_1C[2][42];
 } JournalEntry;
 
 typedef struct {
-    u32 unk_00;
+    u32 mapLabelTextID;
     u32 unk_04;
 } UnkStruct_020E5B90;
 
 typedef struct {
-    u32 unk_00;
-    u16 unk_04;
-    u16 unk_06;
-} UnkStruct_020E5B50;
+    u32 leader;
+    u16 mapID;
+    u16 badge;
+} GymInfo;
 
 static void JournalEntry_SaveTitle(JournalEntry *journalEntry, JournalEntryTitle *journalEntryTitle);
 static void sub_0202B7E0(JournalEntry *journalEntry, UnkStruct_0202BCC8 *param1);
 static void JournalEntry_SaveMon(JournalEntry *journalEntry, JournalEntryMon *journalEntryMon);
-static void JournalEntry_SaveUnk18(JournalEntry *journalEntry, UnkStruct_0202BF4C *param1);
+static void JournalEntry_SaveTrainer(JournalEntry *journalEntry, JournalEntryTrainer *journalEntryTrainer);
 static void sub_0202B898(JournalEntry *journalEntry, UnkStruct_0202BFCC *param1);
 static u32 *sub_0202B91C(u32 *param0);
 static u8 *sub_0202B954(JournalEntry *journalEntry);
@@ -58,7 +57,7 @@ static void sub_0202BF94(const u16 *param0, u16 *param1, u32 param2);
 static void sub_0202C2FC(JournalEntry *journalEntry, JournalEntryTitle *journalEntryTitle);
 static void sub_0202C304(JournalEntry *journalEntry, UnkStruct_0202BCC8 *param1);
 static void JournalEntry_GetMon(JournalEntry *journalEntry, JournalEntryMon *journalEntryMon);
-static void sub_0202C3C4(JournalEntry *journalEntry, UnkStruct_0202BF4C *param1);
+static void JournalEntry_GetTrainer(JournalEntry *journalEntry, JournalEntryTrainer *journalEntryTrainer);
 static void sub_0202C3D0(JournalEntry *journalEntry, UnkStruct_0202BFCC *param1);
 static void sub_0202C474(u32 param0, UnkStruct_0202BCC8 *param1);
 static void sub_0202C47C(u32 param0, UnkStruct_0202BCC8 *param1);
@@ -71,7 +70,7 @@ static void sub_0202C54C(u8 *param0, UnkStruct_0202BFCC *param1);
 static void sub_0202C5A4(u8 *param0, UnkStruct_0202BFCC *param1);
 static void sub_0202C5AC(u8 *param0, UnkStruct_0202BFCC *param1);
 static u8 sub_0202C6CC(TrainerInfo *param0, u32 param1);
-static u8 sub_0202C78C(u32 param0);
+static u8 JournalEntry_TrainerType(u32 param0);
 
 static const UnkStruct_020E5B90 Unk_020E5B90[] = {
     { 0x5A, 0x1 },
@@ -103,7 +102,7 @@ static const UnkStruct_020E5B90 Unk_020E5B90[] = {
     { 0x46, 0x0 }
 };
 
-static const UnkStruct_020E5B50 Unk_020E5B50[] = {
+static const GymInfo sGymsInfo[] = {
     { 0xF6, 0x2F, 0x0 },
     { 0x13B, 0x43, 0x1 },
     { 0x13C, 0x7A, 0x3 },
@@ -192,23 +191,23 @@ BOOL Journal_CheckOpenOnContinue(JournalEntry *journalEntry, BOOL journalAcquire
     return FALSE;
 }
 
-void JournalEntry_SaveData(JournalEntry *journalEntry, void *data, u8 param2)
+void JournalEntry_SaveData(JournalEntry *journalEntry, void *data, u8 dataType)
 {
     if (journalEntry != NULL) {
-        switch (param2) {
-        case 0:
+        switch (dataType) {
+        case JOURNAL_TITLE:
             JournalEntry_SaveTitle(journalEntry, data);
             break;
-        case 1:
+        case JOURNAL_UNK_04:
             sub_0202B7E0(journalEntry, data);
             break;
-        case 2:
+        case JOURNAL_MON:
             JournalEntry_SaveMon(journalEntry, data);
             break;
-        case 3:
-            JournalEntry_SaveUnk18(journalEntry, data);
+        case JOURNAL_TRAINER:
+            JournalEntry_SaveTrainer(journalEntry, data);
             break;
-        case 4:
+        case JOURNAL_UNK_1C:
             sub_0202B898(journalEntry, data);
             break;
         }
@@ -290,9 +289,9 @@ static void JournalEntry_SaveMon(JournalEntry *journalEntry, JournalEntryMon *jo
     journalEntry->mon = *journalEntryMon;
 }
 
-static void JournalEntry_SaveUnk18(JournalEntry *journalEntry, UnkStruct_0202BF4C *param1)
+static void JournalEntry_SaveTrainer(JournalEntry *journalEntry, JournalEntryTrainer *journalEntryTrainer)
 {
-    journalEntry->unk_18 = *param1;
+    journalEntry->trainer = *journalEntryTrainer;
 }
 
 static void sub_0202B898(JournalEntry *journalEntry, UnkStruct_0202BFCC *param1)
@@ -581,102 +580,102 @@ void *JournalEntry_CreateTitle(u16 mapID, u32 heapID)
     return journalEntryTitle;
 }
 
-static UnkStruct_0202BCC8 *sub_0202BCC8(u32 param0)
+static UnkStruct_0202BCC8 *sub_0202BCC8(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202BCC8));
+    UnkStruct_0202BCC8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202BCC8));
 
     memset(v0, 0, sizeof(UnkStruct_0202BCC8));
     return v0;
 }
 
-void *sub_0202BCE4(u32 param0)
+void *sub_0202BCE4(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 1;
     return v0;
 }
 
-void *sub_0202BCF0(u32 param0)
+void *sub_0202BCF0(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 2;
     return v0;
 }
 
-void *sub_0202BCFC(u32 param0)
+void *sub_0202BCFC(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 3;
     return v0;
 }
 
-void *sub_0202BD08(u32 param0)
+void *sub_0202BD08(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 4;
     return v0;
 }
 
-void *sub_0202BD14(u32 param0)
+void *sub_0202BD14(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 5;
     return v0;
 }
 
-void *sub_0202BD20(u32 param0)
+void *sub_0202BD20(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 6;
     return v0;
 }
 
-void *sub_0202BD2C(u32 param0)
+void *sub_0202BD2C(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 7;
     return v0;
 }
 
-void *sub_0202BD38(u32 param0)
+void *sub_0202BD38(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 8;
     return v0;
 }
 
-void *sub_0202BD44(u16 param0, u32 param1)
+void *sub_0202BD44(u16 defeatedGym, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 9;
-    v0->unk_02 = param0;
+    v0->unk_02 = defeatedGym;
 
     return v0;
 }
 
-void *sub_0202BD58(u16 param0, u16 param1, u32 param2)
+void *sub_0202BD58(u16 trainerType, u16 trainerID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param2);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 10;
-    v0->unk_02 = param0;
-    v0->unk_04 = param1;
+    v0->unk_02 = trainerType;
+    v0->unk_04 = trainerID;
 
     return v0;
 }
 
-void *sub_0202BD70(u16 param0, u32 param1)
+void *sub_0202BD70(u16 param0, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 11;
     v0->unk_04 = param0;
@@ -684,9 +683,9 @@ void *sub_0202BD70(u16 param0, u32 param1)
     return v0;
 }
 
-void *sub_0202BD84(u16 param0, u32 param1)
+void *sub_0202BD84(u16 param0, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 12;
     v0->unk_04 = param0;
@@ -694,9 +693,9 @@ void *sub_0202BD84(u16 param0, u32 param1)
     return v0;
 }
 
-void *sub_0202BD98(u16 param0, u32 param1)
+void *sub_0202BD98(u16 param0, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 13;
     v0->unk_02 = param0;
@@ -704,45 +703,45 @@ void *sub_0202BD98(u16 param0, u32 param1)
     return v0;
 }
 
-void *sub_0202BDAC(u16 param0, u32 param1)
+void *sub_0202BDAC(u16 mapLabelTextID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 14;
-    v0->unk_02 = param0;
+    v0->unk_02 = mapLabelTextID;
 
     return v0;
 }
 
-void *sub_0202BDC0(u16 param0, u32 param1)
+void *sub_0202BDC0(u16 mapLabelTextID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 15;
-    v0->unk_02 = param0;
+    v0->unk_02 = mapLabelTextID;
 
     return v0;
 }
 
-void *sub_0202BDD4(u32 param0)
+void *sub_0202BDD4(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 16;
     return v0;
 }
 
-void *sub_0202BDE0(u32 param0)
+void *sub_0202BDE0(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 17;
     return v0;
 }
 
-void *sub_0202BDEC(u16 param0, u32 param1)
+void *sub_0202BDEC(u16 param0, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 18;
     v0->unk_06 = param0;
@@ -750,9 +749,9 @@ void *sub_0202BDEC(u16 param0, u32 param1)
     return v0;
 }
 
-void *sub_0202BE00(u8 param0, u16 param1, u32 param2)
+void *sub_0202BE00(u8 param0, u16 param1, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param2);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 19 + param0;
     v0->unk_02 = param1;
@@ -760,25 +759,25 @@ void *sub_0202BE00(u8 param0, u16 param1, u32 param2)
     return v0;
 }
 
-void *sub_0202BE14(u32 param0)
+void *sub_0202BE14(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 34;
     return v0;
 }
 
-void *sub_0202BE20(u32 param0)
+void *sub_0202BE20(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 35;
     return v0;
 }
 
-void *sub_0202BE2C(u32 param0, u32 param1)
+void *sub_0202BE2C(u32 heapID, u32 param1)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = param1;
     return v0;
@@ -838,20 +837,20 @@ void *JournalEntry_CreateMonDefeated(const PlayTime *playTime, u16 species, u8 g
     return journalEntryMon;
 }
 
-void *sub_0202BF4C(u16 param0, u16 param1, u32 param2)
+void *JournalEntry_InitTrainer(u16 mapID, u16 trainerID, u32 heapID)
 {
-    UnkStruct_0202BF4C *v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0202BF4C));
+    JournalEntryTrainer *journalEntryTrainer = Heap_AllocFromHeap(heapID, sizeof(JournalEntryTrainer));
 
-    v0->unk_00_0 = 1;
-    v0->unk_02 = param0;
-    v0->unk_00_1 = param1;
+    journalEntryTrainer->unk_00_0 = 1;
+    journalEntryTrainer->mapID = mapID;
+    journalEntryTrainer->trainerID = trainerID;
 
-    return v0;
+    return journalEntryTrainer;
 }
 
-static UnkStruct_0202BFCC *sub_0202BF7C(u32 param0)
+static UnkStruct_0202BFCC *sub_0202BF7C(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202BFCC));
+    UnkStruct_0202BFCC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202BFCC));
 
     memset(v0, 0, sizeof(UnkStruct_0202BFCC));
     return v0;
@@ -1047,23 +1046,23 @@ void *sub_0202C280(int param0, u32 param1, u32 param2)
     return v0;
 }
 
-void JournalEntry_GetData(JournalEntry *journalEntry, void *param1, u8 param2, u8 param3)
+void JournalEntry_GetData(JournalEntry *journalEntry, void *dest, u8 dataType, u8 page)
 {
-    switch (param2) {
-    case 0:
-        sub_0202C2FC(&journalEntry[param3], param1);
+    switch (dataType) {
+    case JOURNAL_TITLE:
+        sub_0202C2FC(&journalEntry[page], dest);
         break;
-    case 1:
-        sub_0202C304(&journalEntry[param3], param1);
+    case JOURNAL_UNK_04:
+        sub_0202C304(&journalEntry[page], dest);
         break;
-    case 2:
-        JournalEntry_GetMon(&journalEntry[param3], param1);
+    case JOURNAL_MON:
+        JournalEntry_GetMon(&journalEntry[page], dest);
         break;
-    case 3:
-        sub_0202C3C4(&journalEntry[param3], param1);
+    case JOURNAL_TRAINER:
+        JournalEntry_GetTrainer(&journalEntry[page], dest);
         break;
-    case 4:
-        sub_0202C3D0(&journalEntry[param3], param1);
+    case JOURNAL_UNK_1C:
+        sub_0202C3D0(&journalEntry[page], dest);
         break;
     }
 }
@@ -1139,9 +1138,9 @@ static void JournalEntry_GetMon(JournalEntry *journalEntry, JournalEntryMon *jou
     *journalEntryMon = journalEntry->mon;
 }
 
-static void sub_0202C3C4(JournalEntry *journalEntry, UnkStruct_0202BF4C *param1)
+static void JournalEntry_GetTrainer(JournalEntry *journalEntry, JournalEntryTrainer *journalEntryTrainer)
 {
-    *param1 = journalEntry->unk_18;
+    *journalEntryTrainer = journalEntry->trainer;
 }
 
 static void sub_0202C3D0(JournalEntry *journalEntry, UnkStruct_0202BFCC *param1)
@@ -1265,45 +1264,45 @@ static void sub_0202C5AC(u8 *param0, UnkStruct_0202BFCC *param1)
     param1->unk_01_0 = param0[1];
 }
 
-void sub_0202C5C4(TrainerInfo *param0, JournalEntry *journalEntry, u32 param2, u32 param3, u32 param4)
+void sub_0202C5C4(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 currMapID, u32 prevMapID, u32 heapID)
 {
-    void *v0 = NULL;
+    void *data = NULL;
     u32 i;
 
-    if (MapHeader_IsCave(param3) == 1) {
-        if (MapHeader_IsOutdoors(param2) == 1) {
-            v0 = sub_0202BDAC((u16)MapHeader_GetMapLabelTextID(param3), param4);
+    if (MapHeader_IsCave(prevMapID) == TRUE) {
+        if (MapHeader_IsOutdoors(currMapID) == TRUE) {
+            data = sub_0202BDAC((u16)MapHeader_GetMapLabelTextID(prevMapID), heapID);
         }
-    } else if (sub_0203A288(param3) == 1) {
-        if (MapHeader_IsOutdoors(param2) == 1) {
-            if (param3 == 414) {
-                v0 = sub_0202BCE4(param4);
-            } else if (param3 == 422) {
-                v0 = sub_0202BCF0(param4);
+    } else if (MapHeader_IsBuilding(prevMapID) == TRUE) {
+        if (MapHeader_IsOutdoors(currMapID) == TRUE) {
+            if (prevMapID == 414) {
+                data = sub_0202BCE4(heapID);
+            } else if (prevMapID == 422) {
+                data = sub_0202BCF0(heapID);
             } else {
-                u32 v2 = MapHeader_GetMapLabelTextID(param3);
+                u32 mapLabelTextID = MapHeader_GetMapLabelTextID(prevMapID);
 
                 for (i = 0; i < NELEMS(Unk_020E5B90); i++) {
-                    if (v2 != Unk_020E5B90[i].unk_00) {
+                    if (mapLabelTextID != Unk_020E5B90[i].mapLabelTextID) {
                         continue;
                     }
 
-                    v0 = sub_0202BDC0((u16)v2, param4);
+                    data = sub_0202BDC0((u16)mapLabelTextID, heapID);
                 }
             }
         }
-    } else if (MapHeader_IsOutdoors(param3) == 1) {
-        if (sub_0203A288(param2) == 1) {
-            u8 v3 = sub_0202C6CC(param0, param2);
+    } else if (MapHeader_IsOutdoors(prevMapID) == TRUE) {
+        if (MapHeader_IsBuilding(currMapID) == TRUE) {
+            u8 defeatedGym = sub_0202C6CC(trainerInfo, currMapID);
 
-            if (v3 != 0xff) {
-                v0 = sub_0202BD44(v3, param4);
+            if (defeatedGym != 0xff) {
+                data = sub_0202BD44(defeatedGym, heapID);
             }
         }
     }
 
-    if (v0 != NULL) {
-        JournalEntry_SaveData(journalEntry, v0, 1);
+    if (data != NULL) {
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
     }
 }
 
@@ -1312,7 +1311,7 @@ u32 sub_0202C6A4(u32 param0)
     u32 i;
 
     for (i = 0; i < NELEMS(Unk_020E5B90); i++) {
-        if (param0 != Unk_020E5B90[i].unk_00) {
+        if (param0 != Unk_020E5B90[i].mapLabelTextID) {
             continue;
         }
 
@@ -1322,13 +1321,13 @@ u32 sub_0202C6A4(u32 param0)
     return 0;
 }
 
-static u8 sub_0202C6CC(TrainerInfo *param0, u32 param1)
+static u8 sub_0202C6CC(TrainerInfo *trainerInfo, u32 mapID)
 {
     u8 i;
 
-    for (i = 0; i < NELEMS(Unk_020E5B50); i++) {
-        if (Unk_020E5B50[i].unk_04 == param1) {
-            if (TrainerInfo_HasBadge(param0, Unk_020E5B50[i].unk_06) == 0) {
+    for (i = 0; i < NELEMS(sGymsInfo); i++) {
+        if (sGymsInfo[i].mapID == mapID) {
+            if (TrainerInfo_HasBadge(trainerInfo, sGymsInfo[i].badge) == 0) {
                 return i;
             }
 
@@ -1339,38 +1338,38 @@ static u8 sub_0202C6CC(TrainerInfo *param0, u32 param1)
     return 0xff;
 }
 
-void sub_0202C704(JournalEntry *journalEntry, u32 param1, u32 param2)
+void sub_0202C704(JournalEntry *journalEntry, u32 param1, u32 heapID)
 {
-    void *v0 = sub_0202BD98((u16)param1, param2);
-    JournalEntry_SaveData(journalEntry, v0, 1);
+    void *data = sub_0202BD98((u16)param1, heapID);
+    JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
 }
 
-void sub_0202C720(JournalEntry *journalEntry, u16 param1, u16 param2, u32 param3)
+void sub_0202C720(JournalEntry *journalEntry, u16 mapID, u16 trainerID, u32 heapID)
 {
-    void *v0;
-    u8 v1 = sub_0202C78C(param2);
+    void *data;
+    u8 trainerType = JournalEntry_TrainerType(trainerID);
 
-    if (v1 < 8) {
-        v0 = sub_0202BD58(v1, param2, param3);
-        JournalEntry_SaveData(journalEntry, v0, 1);
-    } else if (v1 == 8) {
-        v0 = sub_0202BD70(param2, param3);
-        JournalEntry_SaveData(journalEntry, v0, 1);
-    } else if (v1 == 9) {
-        v0 = sub_0202BD84(param2, param3);
-        JournalEntry_SaveData(journalEntry, v0, 1);
+    if (trainerType < 8) {
+        data = sub_0202BD58(trainerType, trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
+    } else if (trainerType == 8) {
+        data = sub_0202BD70(trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
+    } else if (trainerType == 9) {
+        data = sub_0202BD84(trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
     } else {
-        v0 = sub_0202BF4C(param1, param2, param3);
-        JournalEntry_SaveData(journalEntry, v0, 3);
+        data = JournalEntry_InitTrainer(mapID, trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_TRAINER);
     }
 }
 
-static u8 sub_0202C78C(u32 param0)
+static u8 JournalEntry_TrainerType(u32 param0)
 {
     u8 i;
 
-    for (i = 0; i < NELEMS(Unk_020E5B50); i++) {
-        if (Unk_020E5B50[i].unk_00 == param0) {
+    for (i = 0; i < NELEMS(sGymsInfo); i++) {
+        if (sGymsInfo[i].leader == param0) {
             return i;
         }
     }

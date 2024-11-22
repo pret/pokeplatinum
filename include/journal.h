@@ -8,6 +8,14 @@
 #define POKEMON_CAUGHT   1
 #define POKEMON_DEFEATED 2
 
+enum JournalDataType {
+    JOURNAL_TITLE = 0,
+    JOURNAL_UNK_04,
+    JOURNAL_MON,
+    JOURNAL_TRAINER,
+    JOURNAL_UNK_1C,
+};
+
 typedef struct {
     u32 year : 7;
     u32 month : 4;
@@ -23,6 +31,12 @@ typedef struct {
     u8 gender : 2;
     u16 species;
 } JournalEntryMon;
+
+typedef struct {
+    u16 unk_00_0 : 1;
+    u16 trainerID : 15;
+    u16 mapID;
+} JournalEntryTrainer;
 
 typedef struct JournalEntry JournalEntry;
 
@@ -57,7 +71,7 @@ void *sub_0202BE20(u32 param0);
 void *sub_0202BE2C(u32 param0, u32 param1);
 void *JournalEntry_CreateMonCaught(const PlayTime *playTime, u16 param1, u8 param2, u8 param3, u32 param4);
 void *JournalEntry_CreateMonDefeated(const PlayTime *playTime, u16 param1, u8 param2, u8 param3, u32 param4);
-void *sub_0202BF4C(u16 param0, u16 param1, u32 param2);
+void *JournalEntry_InitTrainer(u16 param0, u16 param1, u32 param2);
 void *sub_0202BFCC(u16 *param0, u8 param1, u8 param2, u32 param3);
 void *sub_0202C00C(u16 *param0, u8 param1, u8 param2, u32 param3);
 void *sub_0202C04C(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u32 param5);

@@ -411,7 +411,7 @@ void sub_02053494(FieldSystem *fieldSystem)
 {
     if (fieldSystem->journalEntry != NULL) {
         void *v0 = JournalEntry_CreateTitle(fieldSystem->location->mapId, 11);
-        JournalEntry_SaveData(fieldSystem->journalEntry, v0, 0);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v0, JOURNAL_TITLE);
     }
 }
 
@@ -421,7 +421,7 @@ static void sub_020534BC(FieldSystem *fieldSystem)
         FieldOverworldState *owState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
         Location *location = FieldOverworldState_GetSpecialLocation(owState);
         void *v2 = JournalEntry_CreateTitle(location->mapId, 11);
-        JournalEntry_SaveData(fieldSystem->journalEntry, v2, 0);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v2, JOURNAL_TITLE);
     }
 }
 

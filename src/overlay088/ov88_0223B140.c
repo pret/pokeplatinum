@@ -2535,7 +2535,7 @@ static void ov88_0223E7F0(JournalEntry *param0, Pokemon *param1)
 
     Pokemon_GetValue(param1, MON_DATA_NICKNAME, v2);
     v0 = sub_0202C11C((u16 *)TrainerInfo_Name(v1), TrainerInfo_Gender(v1), v2, Pokemon_GetGender(param1), 26);
-    JournalEntry_SaveData(param0, v0, 4);
+    JournalEntry_SaveData(param0, v0, JOURNAL_UNK_1C);
 }
 
 static void ov88_0223E848(UnkStruct_02095E80 *param0)

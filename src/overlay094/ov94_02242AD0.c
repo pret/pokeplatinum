@@ -1400,7 +1400,7 @@ static void ov94_02243E48(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1)
 
     Pokemon_GetValue(v2, MON_DATA_NICKNAME, v1);
     v0 = sub_0202C1EC(param1->unk_10C, param1->unk_F6, v1, Pokemon_GetGender(v2), 62);
-    JournalEntry_SaveData(param0, v0, 4);
+    JournalEntry_SaveData(param0, v0, JOURNAL_UNK_1C);
 }
 
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1)

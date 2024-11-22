@@ -444,11 +444,11 @@ static void ov81_021D1360(UnkStruct_ov81_021D1610 *param0)
 
 static u8 ov81_021D13A0(UnkStruct_ov81_021D1610 *param0, u8 param1)
 {
-    JournalEntryTitle v0;
+    JournalEntryTitle journalEntryTitle;
 
-    JournalEntry_GetData(param0->unk_44, &v0, 0, param1);
+    JournalEntry_GetData(param0->unk_44, &journalEntryTitle, JOURNAL_TITLE, param1);
 
-    if ((v0.year == 0) && (v0.month == 0) && (v0.day == 0)) {
+    if ((journalEntryTitle.year == 0) && (journalEntryTitle.month == 0) && (journalEntryTitle.day == 0)) {
         return 0;
     }
 
