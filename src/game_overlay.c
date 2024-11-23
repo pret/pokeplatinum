@@ -86,7 +86,7 @@ void Overlay_UnloadByID(const FSOverlayID overlayID)
     int i;
 
     for (i = 0; i < 8; i++) {
-        if ((loadedOverlays[i].isActive == TRUE) && (loadedOverlays[i].id == overlayID)) {
+        if (loadedOverlays[i].isActive == TRUE && loadedOverlays[i].id == overlayID) {
             FreeOverlayAllocation(&loadedOverlays[i]);
 #ifdef GDB_DEBUGGING
             UnloadOverlayGDB(overlayID);
