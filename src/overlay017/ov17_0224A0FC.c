@@ -40,6 +40,7 @@
 #include "game_options.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -55,7 +56,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
-#include "unk_0201D15C.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -1878,7 +1878,7 @@ static void ov17_0224BF58(UnkStruct_ov17_0224BE50 *param0)
     }
 
     v2 = (param0->unk_19 == 0) ? 3 : 3;
-    v1 = sub_0201D1D4(param0->unk_14 >> 8) * v2 / FX32_ONE;
+    v1 = CalcCosineDegrees(param0->unk_14 >> 8) * v2 / FX32_ONE;
 
     param0->unk_0C->unk_04 = v1 + Unk_ov17_022546F4[param0->unk_19][0] - v2;
     ov22_0225B100(param0->unk_0C->unk_00, param0->unk_0C->unk_04, param0->unk_0C->unk_08);
@@ -2063,7 +2063,7 @@ void ov17_0224C49C(UnkStruct_ov17_0224C384 *param0, u32 param1, u32 param2, int 
     v7 = (256 - v6) / 2;
     v3 = v0 + v7;
     v4 = (0x12 * 8);
-    v4 -= sub_0201D15C(v5) * 10 / FX32_ONE;
+    v4 -= CalcSineDegrees(v5) * 10 / FX32_ONE;
 
     sub_0200D500(param0->unk_04, v3, v4, (256 * FX32_ONE));
     SpriteActor_EnableObject(param0->unk_04, 1);
@@ -2217,7 +2217,7 @@ static void ov17_0224C7B8(SysTask *param0, void *param1)
         v0->unk_24 = v0->unk_28;
         v0->unk_10++;
     case 1:
-        v1 = sub_0201D2B8(v0->unk_20) * 4 / FX32_ONE;
+        v1 = CalcSineDegrees_FX32(v0->unk_20) * 4 / FX32_ONE;
         v2 = v0->unk_20;
         v0->unk_20 += (50 << FX32_SHIFT);
 

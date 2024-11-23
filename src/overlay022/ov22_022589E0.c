@@ -20,10 +20,10 @@
 
 #include "core_sys.h"
 #include "heap.h"
+#include "math.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     UnkStruct_ov22_0225A0E4 *unk_00;

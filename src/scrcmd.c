@@ -113,6 +113,7 @@
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "math.h"
 #include "menu.h"
 #include "message.h"
 #include "message_util.h"
@@ -141,7 +142,6 @@
 #include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02014D38.h"
-#include "unk_0201D15C.h"
 #include "unk_020261E4.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
@@ -4631,8 +4631,8 @@ static BOOL ScrCmd_204(ScriptContext *ctx)
 
 static BOOL ScrCmd_200(ScriptContext *ctx)
 {
-    FieldOverworldState *v0 = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
-    Location *location = FieldOverworldState_GetPrevLocation(v0);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
+    Location *location = FieldOverworldState_GetPrevLocation(fieldState);
     u16 *mapId = ScriptContext_GetVarPointer(ctx);
 
     *mapId = location->mapId;
@@ -4692,20 +4692,20 @@ static BOOL ScrCmd_0C2(ScriptContext *ctx)
 
 static BOOL ScrCmd_0C3(ScriptContext *ctx)
 {
-    FieldOverworldState *v0 = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
 
-    FieldOverworldState_SetWeather(v0, OVERWORLD_WEATHER_CLEAR);
-    ov5_021D5F7C(ctx->fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(v0));
+    FieldOverworldState_SetWeather(fieldState, OVERWORLD_WEATHER_CLEAR);
+    ov5_021D5F7C(ctx->fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
 
     return 1;
 }
 
 static BOOL ScrCmd_0C4(ScriptContext *ctx)
 {
-    FieldOverworldState *v0 = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
 
-    FieldOverworldState_SetWeather(v0, OVERWORLD_WEATHER_CLEAR);
-    ov5_021D5F7C(ctx->fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(v0));
+    FieldOverworldState_SetWeather(fieldState, OVERWORLD_WEATHER_CLEAR);
+    ov5_021D5F7C(ctx->fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
 
     return 1;
 }
@@ -4753,14 +4753,14 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
     u8 rideBike = ScriptContext_ReadByte(ctx);
 
     if (rideBike == TRUE) {
-        sub_020553F0(ctx->fieldSystem, 1152);
+        Sound_SetSpecialBGM(ctx->fieldSystem, 1152);
         sub_02055554(ctx->fieldSystem, 1152, 1);
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 1));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
     } else {
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
-        sub_020553F0(ctx->fieldSystem, 0);
+        Sound_SetSpecialBGM(ctx->fieldSystem, 0);
         sub_02055554(ctx->fieldSystem, sub_02055428(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
     }
 
@@ -4769,7 +4769,7 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
 
 static BOOL ScrCmd_2BF(ScriptContext *ctx)
 {
-    sub_020553F0(ctx->fieldSystem, 1189);
+    Sound_SetSpecialBGM(ctx->fieldSystem, 1189);
     return 0;
 }
 
@@ -6376,13 +6376,13 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
 {
     u16 *v0;
     u16 *v1;
-    FieldOverworldState *v2 = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
     VarsFlags *v3 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     TVBroadcast *v4 = SaveData_TVBroadcast(ctx->fieldSystem->saveData);
     int v5 = ScriptContext_ReadByte(ctx);
 
-    v0 = sub_0203A784(v2);
-    v1 = sub_0203A788(v2);
+    v0 = FieldOverworldState_GetSafariBallCount(fieldState);
+    v1 = FieldOverworldState_GetSafariStepCount(fieldState);
 
     switch (v5) {
     case 0:
@@ -7693,8 +7693,8 @@ static BOOL ScrCmd_2B5(ScriptContext *ctx)
     u16 mapId = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
-    FieldOverworldState *v3 = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
-    Location *location = sub_0203A72C(v3);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
+    Location *location = FieldOverworldState_GetExitLocation(fieldState);
 
     location->mapId = mapId;
     location->x = v1;

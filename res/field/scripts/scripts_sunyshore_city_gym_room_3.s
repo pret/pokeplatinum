@@ -30,7 +30,7 @@ _0027:
     ScrCmd_1CD 9, 156, 0, 0, 0
     Message 0
     CloseMessage
-    StartTrainerBattle 0x140, 0
+    StartTrainerBattle trainer_leader_volkner
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _011A
     Message 1
@@ -40,16 +40,17 @@ _0027:
     WaitSound
     GiveBadge BADGE_ID_BEACON
     ScrCmd_260 23
-    SetTrainerFlag 0x119
-    SetTrainerFlag 0x11D
-    SetTrainerFlag 0x12D
-    SetTrainerFlag 0x12E
-    SetTrainerFlag 0x12F
-    SetTrainerFlag 0x14B
-    SetTrainerFlag 0x155
-    SetTrainerFlag 0x158
+    SetTrainerFlag trainer_ace_trainer_zachery
+    SetTrainerFlag trainer_ace_trainer_destiny
+    SetTrainerFlag trainer_guitarist_jerry
+    SetTrainerFlag trainer_guitarist_preston
+    SetTrainerFlag trainer_guitarist_lonnie
+    SetTrainerFlag trainer_poke_kid_meghan
+    SetTrainerFlag trainer_school_kid_forrest
+    SetTrainerFlag trainer_school_kid_tiera
     SetVar 0x407E, 2
-    ScrCmd_1CD 10, 156, 246, 0, 0
+    // BUG: trainer_leader_roark should be trainer_leader_volkner
+    ScrCmd_1CD 10, 156, trainer_leader_roark, 0, 0
     Message 3
     GoTo _00BC
 

@@ -19,7 +19,7 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "map_object.h"
-#include "unk_0201D15C.h"
+#include "math.h"
 #include "unk_02020AEC.h"
 
 typedef struct {

@@ -19,6 +19,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "math.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
@@ -34,7 +35,6 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0202419C.h"
 #include "unk_0202C858.h"
 #include "unk_020996D0.h"
@@ -1539,11 +1539,11 @@ static u32 ov92_021D28C0(const UnkStruct_ov92_021D28C0 *param0, const UnkStruct_
     v0 = MATH_ABS(param0->unk_00 - param1->unk_00);
     v1 = MATH_ABS(param0->unk_04 - param1->unk_04);
 
-    if (v0 > sub_0201D278(180)) {
+    if (v0 > CalcAngleRotationIdx(180)) {
         v0 = 0xffff - v0;
     }
 
-    if (v1 > sub_0201D278(180)) {
+    if (v1 > CalcAngleRotationIdx(180)) {
         v1 = 0xffff - v1;
     }
 

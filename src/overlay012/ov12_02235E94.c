@@ -26,6 +26,7 @@
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
@@ -36,7 +37,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
-#include "unk_0201D15C.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 

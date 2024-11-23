@@ -12,7 +12,7 @@
 #include "overlay116/struct_ov116_02260498.h"
 #include "overlay116/struct_ov116_0226139C.h"
 
-#include "unk_0201D15C.h"
+#include "math.h"
 #include "unk_02032798.h"
 
 static void ov116_02260440(int param0, int param1, void *param2, void *param3);

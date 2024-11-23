@@ -21,12 +21,12 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     UnkStruct_ov25_022558C4 *unk_00;
@@ -789,7 +789,7 @@ static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             v0->unk_34_val3[2] = 2;
         }
 
-        VEC_Set(&v0->unk_20, 0, -20 * sub_0201D15C(v0->unk_34_val3[1]), 0);
+        VEC_Set(&v0->unk_20, 0, -20 * CalcSineDegrees(v0->unk_34_val3[1]), 0);
         VEC_Add(&v0->unk_14, &v0->unk_20, &param0->unk_A4);
 
         ov25_02255900(v0->unk_00, param0->unk_A4.x, param0->unk_A4.y);

@@ -7,8 +7,8 @@
 #include "struct_defs/struct_0202AB28.h"
 
 #include "heap.h"
+#include "math.h"
 #include "savedata.h"
-#include "unk_0201D15C.h"
 
 int Poffin_sizeof(void)
 {

@@ -6,9 +6,9 @@
 
 #include "charcode.h"
 #include "charcode_util.h"
+#include "math.h"
 #include "savedata.h"
 #include "strbuf.h"
-#include "unk_0201D15C.h"
 
 RecordMixedRNG *sRNGCollection;
 

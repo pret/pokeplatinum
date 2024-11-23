@@ -632,10 +632,10 @@ static int CommPlayer_Direction(u16 unused, u16 keys)
 BOOL CommPlayer_CheckNPCCollision(int x, int z)
 {
     int npcCnt = MapHeaderData_GetNumObjectEvents(sCommPlayerManager->fieldSystem), i;
-    const ObjectEvent *npcList = MapHeaderData_GetObjectEvents(sCommPlayerManager->fieldSystem);
+    const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(sCommPlayerManager->fieldSystem);
 
     for (i = 0; i < npcCnt; i++) {
-        if ((npcList[i].x == x) && (npcList[i].z == z)) {
+        if ((objEventList[i].x == x) && (objEventList[i].z == z)) {
             return 1;
         }
     }

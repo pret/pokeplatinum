@@ -1148,9 +1148,11 @@ scr_seq_narc = custom_target('scr_seq.narc',
         '-p', '@OUTPUT0@',
         '-o', scr_seq_narc_order,
         '-n'
-    ]
+    ],
+    depends: [
+        trdata_narc,
+    ],
 )
 
-nitrofs_files += scr_seq_narc
-
+nitrofs_files += scr_seq_narc[0]
 naix_headers += scr_seq_narc[1]

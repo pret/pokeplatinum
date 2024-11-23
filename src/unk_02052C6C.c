@@ -184,7 +184,7 @@ void sub_02052E58(FieldTask *param0)
     v3 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v1 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    v2 = sub_0203A72C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    v2 = FieldOverworldState_GetExitLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     v5->unk_00 = SystemFlag_CheckGameCompleted(v3);
     v5->unk_04.unk_00 = SaveData_GetTrainerInfo(fieldSystem->saveData);

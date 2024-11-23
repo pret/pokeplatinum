@@ -251,7 +251,7 @@ _0631:
 
 _0687:
     CloseMessage
-    StartTrainerBattle 0x8005, 0
+    StartTrainerBattle 0x8005
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0822
     GoTo _06A8

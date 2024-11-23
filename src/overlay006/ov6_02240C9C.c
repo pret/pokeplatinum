@@ -36,6 +36,7 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_tile_behavior.h"
+#include "math.h"
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -47,7 +48,6 @@
 #include "system_flags.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_0201D15C.h"
 #include "unk_0202631C.h"
 #include "unk_0202D7A8.h"
 #include "unk_02054884.h"
@@ -1389,7 +1389,7 @@ static void ov6_02242328(FieldSystem *fieldSystem, const BOOL param1, FieldBattl
     if (!param1) {
         *param2 = FieldBattleDTO_New(11, (0x0 | 0x0));
     } else {
-        u16 *v0 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+        u16 *v0 = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
         *param2 = FieldBattleDTO_NewSafari(11, *v0);
     }
 }

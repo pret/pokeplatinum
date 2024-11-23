@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/species.h"
 
 #include "struct_decls/struct_party_decl.h"
@@ -15,6 +16,7 @@
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math.h"
 #include "party.h"
 #include "pokemon.h"
 #include "poketch_data.h"
@@ -25,7 +27,6 @@
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
-#include "unk_0201D15C.h"
 #include "unk_0202602C.h"
 #include "unk_0202854C.h"
 #include "unk_020298BC.h"
@@ -155,7 +156,7 @@ static BOOL sub_0204BA50(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204BA68(FieldSystem *fieldSystem, void *param1)
 {
-    sub_02054930(32, fieldSystem->saveData, 490, 1, 2, 1);
+    sub_02054930(HEAP_ID_FIELD_TASK, fieldSystem->saveData, 490, 1, 2, 1);
 }
 
 static void sub_0204BA88(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)

@@ -76,7 +76,7 @@ _00D3:
     WaitTime 30, 0x800C
     Message 1
     CloseMessage
-    StartTrainerBattle 0x198, 0
+    StartTrainerBattle trainer_commander_saturn_valor_cavern
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0144
     Message 2

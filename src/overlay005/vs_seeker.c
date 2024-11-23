@@ -16,6 +16,7 @@
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object.h"
+#include "math.h"
 #include "player_avatar.h"
 #include "script_manager.h"
 #include "string_template.h"
@@ -23,7 +24,6 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "unk_02005474.h"
-#include "unk_0201D15C.h"
 #include "unk_020655F4.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
@@ -500,11 +500,11 @@ static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker)
     int trainerX, trainerZ;
     int numVisibleTrainers;
     int xMin, xMax, zMin, zMax;
-    u32 npcCount = MapHeaderData_GetNumObjectEvents(vsSeeker->fieldSystem);
+    u32 objEventCount = MapHeaderData_GetNumObjectEvents(vsSeeker->fieldSystem);
 
     numVisibleTrainers = 0;
 
-    for (int i = 0; i < npcCount; i++) {
+    for (int i = 0; i < objEventCount; i++) {
         vsSeeker->trainers[i] = NULL;
     }
 
@@ -523,7 +523,7 @@ static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker)
         zMin = 0;
     }
 
-    for (int i = 0; i < npcCount; i++) {
+    for (int i = 0; i < objEventCount; i++) {
         MapObject *mapObj = MapObjMan_LocalMapObjByIndex(vsSeeker->fieldSystem->mapObjMan, i);
 
         if (mapObj == NULL) {
@@ -598,9 +598,9 @@ BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem)
 
 static void VsSeeker_ClearRematchMoveCode(FieldSystem *fieldSystem)
 {
-    u32 npcCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
+    u32 objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
 
-    for (int i = 0; i < npcCount; i++) {
+    for (int i = 0; i < objEventCount; i++) {
         MapObject *mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, i);
 
         if (mapObj == NULL) {
@@ -812,10 +812,10 @@ void VsSeeker_SetMoveCodeForFacingDirection(FieldSystem *fieldSystem, MapObject 
 
 static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem)
 {
-    u32 npcCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
+    u32 objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
     BOOL anyMoving = FALSE;
 
-    for (int i = 0; i < npcCount; i++) {
+    for (int i = 0; i < objEventCount; i++) {
         MapObject *mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, i);
 
         if (mapObj == NULL) {
@@ -836,7 +836,7 @@ static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem)
 static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem, MapObject *trainerObj, enum VsSeeker2v2TrainerSearchMode mode)
 {
     u32 secondTrainerEventID, secondTrainerID;
-    u32 npcCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
+    u32 objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
     u16 eventID = MapObject_GetEventID(trainerObj);
     u16 trainerID = Script_GetTrainerID(eventID);
 
@@ -844,7 +844,7 @@ static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem
         return NULL;
     }
 
-    for (u32 i = 0; i < npcCount; i++) {
+    for (u32 i = 0; i < objEventCount; i++) {
         MapObject *mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, i);
 
         if (mapObj == NULL) {
