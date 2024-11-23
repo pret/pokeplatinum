@@ -1050,7 +1050,7 @@ static void sub_020353CC(void)
             return;
         }
 
-        if ((Unk_02100A1D == 2) || (Unk_02100A1D == 0)) {
+        if (Unk_02100A1D == 2 || Unk_02100A1D == 0) {
             if (CommSys_CurNetId() != 0) {
                 Unk_02100A1D++;
 
