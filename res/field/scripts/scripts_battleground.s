@@ -428,23 +428,23 @@ _06E8:
     Return
 
 _06F0:
-    SetVar 0x4005, trainer_trainer_cheryl_battleground
+    SetVar 0x4005, trainer_cheryl_battleground
     Return
 
 _06F8:
-    SetVar 0x4005, trainer_trainer_riley_battleground
+    SetVar 0x4005, trainer_riley_battleground
     Return
 
 _0700:
-    SetVar 0x4005, trainer_trainer_marley_battleground
+    SetVar 0x4005, trainer_marley_battleground
     Return
 
 _0708:
-    SetVar 0x4005, trainer_trainer_buck_battleground
+    SetVar 0x4005, trainer_buck_battleground
     Return
 
 _0710:
-    SetVar 0x4005, trainer_trainer_mira_battleground
+    SetVar 0x4005, trainer_mira_battleground
     Return
 
 _0718:
