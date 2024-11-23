@@ -32,15 +32,15 @@ static BOOL sub_0206AFE0(VarsFlags *param0, u16 param1, u16 param2)
 
     if ((param1 < VARS_START) || (param1 > SPECIAL_VARS_START)) {
         GF_ASSERT(FALSE);
-        return 0;
+        return FALSE;
     }
 
     if (v0 == NULL) {
-        return 0;
+        return FALSE;
     }
 
     *v0 = param2;
-    return 1;
+    return TRUE;
 }
 
 static u16 sub_0206B010(VarsFlags *param0, u16 param1)
@@ -162,11 +162,7 @@ void sub_0206B144(VarsFlags *param0, int param1)
 
 BOOL sub_0206B16C(VarsFlags *param0, int param1)
 {
-    if (sub_0206B010(param0, (19 + (((0 + VARS_START) + 32) + 16)) + param1) == sub_0206B128(param1)) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return sub_0206B010(param0, (19 + (((0 + VARS_START) + 32) + 16)) + param1) == sub_0206B128(param1);
 }
 
 static int sub_0206B194(int param0)
@@ -194,11 +190,7 @@ void sub_0206B1D8(VarsFlags *param0, int param1)
 
 BOOL VarFlags_HiddenLocationsUnlocked(VarsFlags *varFlags, int hiddenLocation)
 {
-    if (sub_0206B010(varFlags, (6 + (((0 + VARS_START) + 32) + 16)) + hiddenLocation) == sub_0206B194(hiddenLocation)) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return sub_0206B010(varFlags, (6 + (((0 + VARS_START) + 32) + 16)) + hiddenLocation) == sub_0206B194(hiddenLocation);
 }
 
 BOOL sub_0206B218(VarsFlags *param0)
@@ -213,9 +205,7 @@ u16 sub_0206B228(VarsFlags *param0)
 
 BOOL sub_0206B238(VarsFlags *param0)
 {
-    u16 v0;
-
-    v0 = sub_0206B010(param0, (10 + (((0 + VARS_START) + 32) + 16)));
+    u16 v0 = sub_0206B010(param0, (10 + (((0 + VARS_START) + 32) + 16)));
 
     if (v0 < 10000) {
         v0++;
@@ -238,30 +228,24 @@ BOOL sub_0206B270(VarsFlags *param0, u16 param1)
 
 void sub_0206B280(VarsFlags *param0, u32 param1)
 {
-    u16 v0, v1;
-
-    v1 = (param1 >> 16) & 0xffff;
-    v0 = param1 & 0xffff;
+    u16 v1 = (param1 >> 16) & 0xffff;
+    u16 v0 = param1 & 0xffff;
     sub_0206AFE0(param0, (12 + (((0 + VARS_START) + 32) + 16)), v0);
     sub_0206AFE0(param0, (12 + (((0 + VARS_START) + 32) + 16)), v1);
 }
 
 u32 sub_0206B2A4(VarsFlags *param0)
 {
-    u16 v0, v1;
-
-    v0 = sub_0206B010(param0, (12 + (((0 + VARS_START) + 32) + 16)));
-    v1 = sub_0206B010(param0, (13 + (((0 + VARS_START) + 32) + 16)));
+    u16 v0 = sub_0206B010(param0, (12 + (((0 + VARS_START) + 32) + 16)));
+    u16 v1 = sub_0206B010(param0, (13 + (((0 + VARS_START) + 32) + 16)));
 
     return (v1 << 16) | v0;
 }
 
 void sub_0206B2C8(VarsFlags *param0)
 {
-    u16 v0, v1;
-
-    v0 = LCRNG_Next();
-    v1 = LCRNG_Next();
+    u16 v0 = LCRNG_Next();
+    u16 v1 = LCRNG_Next();
 
     sub_0206B280(param0, (v1 << 16) | v0);
 }
@@ -269,10 +253,7 @@ void sub_0206B2C8(VarsFlags *param0)
 void sub_0206B2E4(SaveData *param0, u16 param1)
 {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0);
-    u32 v1;
-
-    v1 = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(param0));
-    v1 = v1 * 1103515245L + 12345;
+    u32 v1 = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(param0)) * 1103515245L + 12345;
 
     sub_0206B280(v0, v1);
 }
@@ -290,18 +271,13 @@ BOOL sub_0206B324(VarsFlags *param0, u16 param1)
 void sub_0206B334(SaveData *param0)
 {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0);
-    u32 v1;
-
-    v1 = (LCRNG_Next() % 98) + 2;
+    u32 v1 = (LCRNG_Next() % 98) + 2;
     sub_0206B324(v0, v1);
 }
 
 u16 sub_0206B354(VarsFlags *param0)
 {
-    u16 v0;
-
-    v0 = sub_0206B010(param0, (14 + (((0 + VARS_START) + 32) + 16)));
-    return v0;
+    return sub_0206B010(param0, (14 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B364(VarsFlags *param0, u16 param1)
@@ -311,10 +287,7 @@ BOOL sub_0206B364(VarsFlags *param0, u16 param1)
 
 u16 sub_0206B374(VarsFlags *param0)
 {
-    u16 v0;
-
-    v0 = sub_0206B010(param0, (25 + (((0 + VARS_START) + 32) + 16)));
-    return v0;
+    return sub_0206B010(param0, (25 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B384(VarsFlags *param0, u16 param1)
@@ -324,10 +297,7 @@ BOOL sub_0206B384(VarsFlags *param0, u16 param1)
 
 u16 sub_0206B394(VarsFlags *param0)
 {
-    u16 v0;
-
-    v0 = sub_0206B010(param0, (16 + (((0 + VARS_START) + 32) + 16)));
-    return v0;
+    return sub_0206B010(param0, (16 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B3A4(VarsFlags *param0, u16 param1)
@@ -337,9 +307,7 @@ BOOL sub_0206B3A4(VarsFlags *param0, u16 param1)
 
 BOOL sub_0206B3B4(VarsFlags *param0)
 {
-    u16 v0;
-
-    v0 = sub_0206B010(param0, (18 + (((0 + VARS_START) + 32) + 16)));
+    u16 v0 = sub_0206B010(param0, (18 + (((0 + VARS_START) + 32) + 16)));
 
     if (v0 < 10000) {
         v0++;
@@ -425,9 +393,7 @@ static const u8 Unk_020EFA6C[] = {
 static u8 sub_0206B4A4(VarsFlags *param0)
 {
     int v0;
-    u16 v1, v2, v3;
-
-    v1 = 0;
+    u16 v1 = 0, v2, v3;
 
     for (v0 = 0; v0 < VILLA_FURNITURE_MAX; v0++) {
         if (SystemFlag_HandleOwnsVillaFurniture(param0, HANDLE_FLAG_CHECK, v0) == TRUE) {
@@ -455,10 +421,9 @@ static u8 sub_0206B4A4(VarsFlags *param0)
 
 void sub_0206B514(SaveData *param0)
 {
-    u32 v0;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0);
-    FieldOverworldState *v2 = SaveData_GetFieldOverworldState(param0);
-    Location *location = FieldOverworldState_GetPlayerLocation(v2);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(param0);
+    Location *location = FieldOverworldState_GetPlayerLocation(fieldState);
 
     if ((location->mapId != MAP_HEADER_RESORT_AREA) && (location->mapId != MAP_HEADER_VILLA)) {
         SystemFlag_ClearVillaVisitorInside(v1);

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -39,7 +41,7 @@ BOOL ScrCmd_096(ScriptContext *param0)
     u16 *v7 = ScriptContext_GetVarPointer(param0);
 
     v2 = Party_GetFromSavedata(fieldSystem->saveData);
-    *v7 = sub_020548B0(11, fieldSystem->saveData, v4, v5, v6, v0, v1);
+    *v7 = sub_020548B0(HEAP_ID_FIELDMAP, fieldSystem->saveData, v4, v5, v6, v0, v1);
 
     return 0;
 }

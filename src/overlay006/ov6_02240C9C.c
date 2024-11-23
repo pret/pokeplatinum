@@ -1389,7 +1389,7 @@ static void ov6_02242328(FieldSystem *fieldSystem, const BOOL param1, FieldBattl
     if (!param1) {
         *param2 = FieldBattleDTO_New(11, (0x0 | 0x0));
     } else {
-        u16 *v0 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+        u16 *v0 = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
         *param2 = FieldBattleDTO_NewSafari(11, *v0);
     }
 }

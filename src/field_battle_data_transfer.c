@@ -429,7 +429,7 @@ void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fi
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     PokedexData *pokedex = SaveData_Pokedex(fieldSystem->saveData);
-    u16 *fieldSysSafariBalls = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *fieldSysSafariBalls = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     TrainerInfo_Copy(dto->trainerInfo[BATTLER_PLAYER_SLOT_1], trainerInfo);
     Party_cpy(dto->parties[BATTLER_PLAYER_SLOT_1], party);

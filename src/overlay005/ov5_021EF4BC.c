@@ -60,7 +60,7 @@ void ov5_021EF4F8(UnkStruct_ov5_021EF4F8 *param0)
     Heap_FreeToHeap(param0);
 }
 
-void ov5_021EF518(UnkStruct_ov5_021EF4F8 *param0)
+void Field_DoPoisonEffect(UnkStruct_ov5_021EF4F8 *param0)
 {
     GF_ASSERT(param0->unk_00 == 0);
 

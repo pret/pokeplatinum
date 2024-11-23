@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field_poison.h"
 #include "constants/player_avatar.h"
 #include "consts/game_records.h"
 #include "consts/sdat.h"
@@ -896,7 +897,7 @@ static void Field_CalculateFriendship(FieldSystem *fieldSystem)
 static BOOL Field_UpdatePoison(FieldSystem *fieldSystem)
 {
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
-    u16 *poisonSteps = sub_0203A78C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *poisonSteps = FieldOverworldState_GetPoisonStepCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     (*poisonSteps)++;
     (*poisonSteps) %= 4;
@@ -905,14 +906,14 @@ static BOOL Field_UpdatePoison(FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    switch (sub_02054B04(party, MapHeader_GetMapLabelTextID(fieldSystem->location->mapId))) {
-    case 0:
+    switch (Pokemon_DoPoisonDamage(party, MapHeader_GetMapLabelTextID(fieldSystem->location->mapId))) {
+    case FLDPSN_NONE:
         return FALSE;
-    case 1:
-        ov5_021EF518(fieldSystem->unk_04->unk_20);
+    case FLDPSN_POISONED:
+        Field_DoPoisonEffect(fieldSystem->unk_04->unk_20);
         return FALSE;
-    case 2:
-        ov5_021EF518(fieldSystem->unk_04->unk_20);
+    case FLDPSN_FAINTED:
+        Field_DoPoisonEffect(fieldSystem->unk_04->unk_20);
         ScriptManager_Set(fieldSystem, 2003, NULL);
         return TRUE;
     }
@@ -926,14 +927,14 @@ static BOOL Field_UpdateSafari(FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    u16 *balls = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *balls = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     if (*balls == 0) {
         ScriptManager_Set(fieldSystem, 8802, NULL);
         return TRUE;
     }
 
-    u16 *steps = sub_0203A788(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *steps = FieldOverworldState_GetSafariStepCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     (*steps)++;
 
     if (*steps >= 500) {
@@ -1024,8 +1025,8 @@ static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int
 
 static void Field_SetMapConnection(FieldSystem *fieldSystem, const int playerX, const int playerZ, const int playerDir)
 {
-    FieldOverworldState *v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    Location *nextMap = sub_0203A72C(v0);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    Location *nextMap = FieldOverworldState_GetExitLocation(fieldState);
 
     (*nextMap) = *(fieldSystem->location);
     nextMap->faceDirection = playerDir;

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/species.h"
 
 #include "struct_decls/struct_party_decl.h"
@@ -155,7 +156,7 @@ static BOOL sub_0204BA50(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204BA68(FieldSystem *fieldSystem, void *param1)
 {
-    sub_02054930(32, fieldSystem->saveData, 490, 1, 2, 1);
+    sub_02054930(HEAP_ID_FIELD_TASK, fieldSystem->saveData, 490, 1, 2, 1);
 }
 
 static void sub_0204BA88(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)

@@ -686,7 +686,7 @@ static void sub_0203B094(FieldTask *taskMan)
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {
-        u16 *v7 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+        u16 *v7 = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
         StringTemplate_SetNumber(v3, 0, *v7, 2, 0, 1);
     } else {
