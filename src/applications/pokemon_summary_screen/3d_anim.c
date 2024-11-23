@@ -160,7 +160,7 @@ void PokemonSummaryScreen_Setup3DGfx(PokemonSummaryScreen *summaryScreen)
 
 void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
 {
-    if (summaryScreen->page == PSS_PAGE_CONDITION) {
+    if (summaryScreen->page == SUMMARY_PAGE_CONDITION) {
         sub_020241B4();
         Camera_ComputeViewMatrix();
 
@@ -263,7 +263,7 @@ static void UpdateConditionRectsOrFlash(PokemonSummaryScreen *summaryScreen)
 
 void PokemonSummaryScreen_InitConditionRects(PokemonSummaryScreen *summaryScreen)
 {
-    if (summaryScreen->page != PSS_PAGE_CONDITION) {
+    if (summaryScreen->page != SUMMARY_PAGE_CONDITION) {
         return;
     }
 
@@ -350,7 +350,7 @@ void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
 
     ArchivedSprite sprite;
 
-    if (summaryScreen->data->dataType == PSS_DATA_BOX_MON) {
+    if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
         BoxPokemon_BuildArchivedSprite(&sprite, monData, 2, 0);
     } else {
         Pokemon_BuildArchivedSprite(&sprite, monData, 2);

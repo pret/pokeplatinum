@@ -3,15 +3,15 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 
-enum PSSPoffinFeedMsg {
-    PSS_MSG_COOLNESS_ENHANCED = 0,
-    PSS_MSG_BEAUTY_ENHANCED,
-    PSS_MSG_CUTENESS_ENHANCED,
-    PSS_MSG_SMARTNESS_ENHANCED,
-    PSS_MSG_TOUGHNESS_ENHANCED,
+enum SummaryPoffinFeedMsg {
+    SUMMARY_MSG_COOLNESS_ENHANCED = 0,
+    SUMMARY_MSG_BEAUTY_ENHANCED,
+    SUMMARY_MSG_CUTENESS_ENHANCED,
+    SUMMARY_MSG_SMARTNESS_ENHANCED,
+    SUMMARY_MSG_TOUGHNESS_ENHANCED,
 
-    PSS_MSG_NOTHING_CHANGED = 0xFE,
-    PSS_MSG_MON_WONT_EAT_MORE = 0xFF,
+    SUMMARY_MSG_NOTHING_CHANGED = 0xFE,
+    SUMMARY_MSG_MON_WONT_EAT_MORE = 0xFF,
 };
 
 void PokemonSummaryScreen_DrawStaticWindows(PokemonSummaryScreen *summaryScreen);
@@ -33,6 +33,6 @@ void PokemonSummaryScreen_SwapMoveNameAndPP(PokemonSummaryScreen *summaryScreen)
 void PokemonSummaryScreen_PrintHMMovesCantBeForgotten(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintContestMoveAttributes(PokemonSummaryScreen *summaryScreen, u32 move);
 void PokemonSummaryScreen_ClearContestAttributeWindows(PokemonSummaryScreen *summaryScreen);
-void PokemonSummaryScreen_PrintPoffinFeedMsg(PokemonSummaryScreen *summaryScreen, enum PSSPoffinFeedMsg msg);
+void PokemonSummaryScreen_PrintPoffinFeedMsg(PokemonSummaryScreen *summaryScreen, enum SummaryPoffinFeedMsg msg);
 
 #endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_WINDOW_H

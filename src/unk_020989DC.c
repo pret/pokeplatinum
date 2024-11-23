@@ -356,7 +356,7 @@ static int sub_02098D38(UnkStruct_02098BE4 *param0)
 
     Heap_FreeToHeap(param0->unk_10);
 
-    if (returnMode == PSS_RETURN_CANCEL) {
+    if (returnMode == SUMMARY_RETURN_CANCEL) {
         return 0;
     }
 

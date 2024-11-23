@@ -13,47 +13,47 @@
 #include "touch_screen.h"
 #include "unk_02005474.h"
 
-typedef struct PSSSubscreenButton {
+typedef struct SummarySubscreenButton {
     u8 page;
     u8 paletteNum;
     u8 x;
     u8 y;
-} PSSSubscreenButton;
+} SummarySubscreenButton;
 
 static void sub_0223D0BC(PokemonSummaryScreen *summaryScreen);
 static int CheckSubscreenRectanglePress(PokemonSummaryScreen *summaryScreen);
 
-static const PSSSubscreenButton sSubscreenButtons_Normal[] = {
-    { PSS_PAGE_INFO, 1, 1, 4 },
-    { PSS_PAGE_MEMO, 1, 2, 10 },
-    { PSS_PAGE_SKILLS, 2, 5, 15 },
-    { PSS_PAGE_BATTLE_MOVES, 3, 10, 18 },
-    { PSS_PAGE_CONDITION, 2, 17, 18 },
-    { PSS_PAGE_CONTEST_MOVES, 3, 22, 15 },
-    { PSS_PAGE_RIBBONS, 4, 25, 10 },
-    { PSS_PAGE_EXIT, 4, 26, 4 },
-    { PSS_PAGE_NONE, -1, -1, -1 }
+static const SummarySubscreenButton sSubscreenButtons_Normal[] = {
+    { SUMMARY_PAGE_INFO, 1, 1, 4 },
+    { SUMMARY_PAGE_MEMO, 1, 2, 10 },
+    { SUMMARY_PAGE_SKILLS, 2, 5, 15 },
+    { SUMMARY_PAGE_BATTLE_MOVES, 3, 10, 18 },
+    { SUMMARY_PAGE_CONDITION, 2, 17, 18 },
+    { SUMMARY_PAGE_CONTEST_MOVES, 3, 22, 15 },
+    { SUMMARY_PAGE_RIBBONS, 4, 25, 10 },
+    { SUMMARY_PAGE_EXIT, 4, 26, 4 },
+    { SUMMARY_PAGE_NONE, -1, -1, -1 }
 };
 
-static const PSSSubscreenButton sSubscreenButtons_NoContestInfo[] = {
-    { PSS_PAGE_INFO, 1, 2, 9 },
-    { PSS_PAGE_MEMO, 1, 6, 15 },
-    { PSS_PAGE_SKILLS, 2, 14, 18 },
-    { PSS_PAGE_BATTLE_MOVES, 3, 22, 15 },
-    { PSS_PAGE_EXIT, 4, 26, 9 },
-    { PSS_PAGE_NONE, -1, -1, -1 }
+static const SummarySubscreenButton sSubscreenButtons_NoContestInfo[] = {
+    { SUMMARY_PAGE_INFO, 1, 2, 9 },
+    { SUMMARY_PAGE_MEMO, 1, 6, 15 },
+    { SUMMARY_PAGE_SKILLS, 2, 14, 18 },
+    { SUMMARY_PAGE_BATTLE_MOVES, 3, 22, 15 },
+    { SUMMARY_PAGE_EXIT, 4, 26, 9 },
+    { SUMMARY_PAGE_NONE, -1, -1, -1 }
 };
 
-static const PSSSubscreenButton sSubscreenButtons_UnusedMovesOnly[] = {
-    { PSS_PAGE_BATTLE_MOVES, 3, 10, 18 },
-    { PSS_PAGE_CONTEST_MOVES, 3, 17, 18 },
-    { PSS_PAGE_NONE, -1, -1, -1 }
+static const SummarySubscreenButton sSubscreenButtons_UnusedMovesOnly[] = {
+    { SUMMARY_PAGE_BATTLE_MOVES, 3, 10, 18 },
+    { SUMMARY_PAGE_CONTEST_MOVES, 3, 17, 18 },
+    { SUMMARY_PAGE_NONE, -1, -1, -1 }
 };
 
-static const PSSSubscreenButton *sSubscreenButtonTypes[] = {
-    [PSS_SUBSCREEN_TYPE_NORMAL] = sSubscreenButtons_Normal,
-    [PSS_SUBSCREEN_TYPE_NO_CONTEST_INFO] = sSubscreenButtons_NoContestInfo,
-    [PSS_SUBSCREEN_TYPE_UNUSED_MOVES_ONLY] = sSubscreenButtons_UnusedMovesOnly
+static const SummarySubscreenButton *sSubscreenButtonTypes[] = {
+    [SUMMARY_SUBSCREEN_TYPE_NORMAL] = sSubscreenButtons_Normal,
+    [SUMMARY_SUBSCREEN_TYPE_NO_CONTEST_INFO] = sSubscreenButtons_NoContestInfo,
+    [SUMMARY_SUBSCREEN_TYPE_UNUSED_MOVES_ONLY] = sSubscreenButtons_UnusedMovesOnly
 };
 
 static const TouchScreenRect sSubscreenRectangles_Normal[] = {
@@ -84,33 +84,33 @@ static const TouchScreenRect sSubscreenRectangles_UnusedMovesOnly[] = {
 };
 
 static const TouchScreenRect *sSubscreenRectangles[] = {
-    [PSS_SUBSCREEN_TYPE_NORMAL] = sSubscreenRectangles_Normal,
-    [PSS_SUBSCREEN_TYPE_NO_CONTEST_INFO] = sSubscreenRectangles_NoContestInfo,
-    [PSS_SUBSCREEN_TYPE_UNUSED_MOVES_ONLY] = sSubscreenRectangles_UnusedMovesOnly
+    [SUMMARY_SUBSCREEN_TYPE_NORMAL] = sSubscreenRectangles_Normal,
+    [SUMMARY_SUBSCREEN_TYPE_NO_CONTEST_INFO] = sSubscreenRectangles_NoContestInfo,
+    [SUMMARY_SUBSCREEN_TYPE_UNUSED_MOVES_ONLY] = sSubscreenRectangles_UnusedMovesOnly
 };
 
 void PokemonSummaryScreen_SetSubscreenType(PokemonSummaryScreen *summaryScreen)
 {
     switch (summaryScreen->data->mode) {
-    case PSS_MODE_NORMAL:
-    case PSS_MODE_LOCK_MOVES:
+    case SUMMARY_MODE_NORMAL:
+    case SUMMARY_MODE_LOCK_MOVES:
         if (summaryScreen->data->showContest != FALSE) {
-            summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_NORMAL;
+            summaryScreen->subscreenType = SUMMARY_SUBSCREEN_TYPE_NORMAL;
         } else {
-            summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_NO_CONTEST_INFO;
+            summaryScreen->subscreenType = SUMMARY_SUBSCREEN_TYPE_NO_CONTEST_INFO;
             Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_SUB_0, BG_OFFSET_UPDATE_SET_X, 4);
         }
         break;
-    case PSS_MODE_SELECT_MOVE:
-    case PSS_MODE_POFFIN:
+    case SUMMARY_MODE_SELECT_MOVE:
+    case SUMMARY_MODE_POFFIN:
     default:
-        summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_NO_BUTTONS;
+        summaryScreen->subscreenType = SUMMARY_SUBSCREEN_TYPE_NO_BUTTONS;
     }
 
     PokemonSummaryScreen_UpdateSubscreenButtonGfx(summaryScreen);
 }
 
-static void UpdateSubscreenButtonTilemap(PokemonSummaryScreen *summaryScreen, const PSSSubscreenButton *button, u8 animID)
+static void UpdateSubscreenButtonTilemap(PokemonSummaryScreen *summaryScreen, const SummarySubscreenButton *button, u8 animID)
 {
     u16 *bgSub0Tilemap = (u16 *)Bg_GetTilemapBuffer(summaryScreen->bgConfig, BG_LAYER_SUB_0);
     u16 baseTile = (button->page & 1) * 15 + (button->page / 2) * (30 * 5) + animID * 5 + 30;
@@ -125,15 +125,15 @@ static void UpdateSubscreenButtonTilemap(PokemonSummaryScreen *summaryScreen, co
 
 void PokemonSummaryScreen_UpdateSubscreenButtonGfx(PokemonSummaryScreen *summaryScreen)
 {
-    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NO_BUTTONS) {
+    if (summaryScreen->subscreenType == SUMMARY_SUBSCREEN_TYPE_NO_BUTTONS) {
         return;
     }
 
-    const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
+    const SummarySubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
     u8 button = 0;
 
     while (TRUE) {
-        if (buttonList[button].page == PSS_PAGE_NONE) {
+        if (buttonList[button].page == SUMMARY_PAGE_NONE) {
             break;
         }
 
@@ -152,12 +152,12 @@ u8 PokemonSummaryScreen_CheckSubscreenButtonPress(PokemonSummaryScreen *summaryS
         return button;
     }
 
-    return PSS_SUBSCREEN_BUTTON_NONE;
+    return SUMMARY_SUBSCREEN_BUTTON_NONE;
 }
 
 static int CheckSubscreenRectanglePress(PokemonSummaryScreen *summaryScreen)
 {
-    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NO_BUTTONS) {
+    if (summaryScreen->subscreenType == SUMMARY_SUBSCREEN_TYPE_NO_BUTTONS) {
         return TOUCHSCREEN_INPUT_NONE;
     }
 
@@ -168,7 +168,7 @@ static int sub_02092224(PokemonSummaryScreen *summaryScreen)
 {
     int v0;
 
-    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NO_BUTTONS) {
+    if (summaryScreen->subscreenType == SUMMARY_SUBSCREEN_TYPE_NO_BUTTONS) {
         return TOUCHSCREEN_INPUT_NONE;
     }
 
@@ -187,7 +187,7 @@ static int sub_02092224(PokemonSummaryScreen *summaryScreen)
 
 u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScreen)
 {
-    const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
+    const SummarySubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
 
     switch (summaryScreen->buttonState) {
     case 0:
@@ -214,8 +214,8 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
 
         if (sub_02092224(summaryScreen) != summaryScreen->buttonCurrent) {
             if (summaryScreen->monData.isEgg != FALSE
-                && buttonList[summaryScreen->buttonCurrent].page != PSS_PAGE_MEMO
-                && buttonList[summaryScreen->buttonCurrent].page != PSS_PAGE_EXIT) {
+                && buttonList[summaryScreen->buttonCurrent].page != SUMMARY_PAGE_MEMO
+                && buttonList[summaryScreen->buttonCurrent].page != SUMMARY_PAGE_EXIT) {
                 UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonCurrent], 0);
             } else {
                 UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonCurrent], 1);
@@ -231,7 +231,7 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
 
 void PokemonSummaryScreen_CalcSubscreenButtonTapAnimPos(PokemonSummaryScreen *summaryScreen, s16 *outX, s16 *outY)
 {
-    const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
+    const SummarySubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
 
     *outX = buttonList[summaryScreen->buttonCurrent].x * 8 + (5 * 8) / 2;
     *outY = buttonList[summaryScreen->buttonCurrent].y * 8 + (5 * 8) / 2;
@@ -239,6 +239,6 @@ void PokemonSummaryScreen_CalcSubscreenButtonTapAnimPos(PokemonSummaryScreen *su
 
 u8 PokemonSummaryScreen_GetSubscreenButtonPage(PokemonSummaryScreen *summaryScreen, u8 button)
 {
-    const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
+    const SummarySubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
     return buttonList[button].page;
 }
