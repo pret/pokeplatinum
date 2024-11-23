@@ -317,7 +317,7 @@ static void sub_02034734(void)
     int netId;
 
     for (netId = 1; netId < (7 + 1); netId++) {
-        if ((!CommSys_IsPlayerConnected(netId)) && !sCommunicationSystem->unk_697[netId] && !CommSys_IsAlone()) {
+        if (!CommSys_IsPlayerConnected(netId) && !sCommunicationSystem->unk_697[netId] && !CommSys_IsAlone()) {
             CommSys_ClearServerRecvData(netId);
         }
     }
