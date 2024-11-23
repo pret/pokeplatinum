@@ -1030,7 +1030,7 @@ static void sub_020353CC(void)
     int v4 = CommLocal_MaxMachines(sub_0203895C()) + 1;
 
     if (CommSys_IsAlone()) {
-        if ((Unk_02100A1D == 2) || (Unk_02100A1D == 0)) {
+        if (Unk_02100A1D == 2 || Unk_02100A1D == 0) {
             Unk_02100A1D++;
             sub_02035394(1);
 
