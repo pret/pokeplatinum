@@ -518,7 +518,7 @@ BOOL CommSys_Update(void)
                 CommSys_RecvData();
             }
 
-            if (((CommSys_CurNetId() == 0) && (CommSys_IsPlayerConnected(0)) || CommSys_IsAlone()) && !sub_0203272C(sub_0203895C())) {
+            if ((CommSys_CurNetId() == 0 && CommSys_IsPlayerConnected(0) || CommSys_IsAlone()) && !sub_0203272C(sub_0203895C())) {
                 sub_02034F68();
             }
 
