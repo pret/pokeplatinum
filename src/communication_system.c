@@ -735,7 +735,9 @@ static void CommSys_UpdateServerClient(void)
             Unk_021C07C4 = 1;
         }
 
-        if ((sub_02031934() == 4) && !CommSys_IsAlone() && !sub_02031E9C(sCommunicationSystem->sendBufferServer[sCommunicationSystem->unk_6A8], 192, 14, sub_020353B0)) {
+        if (sub_02031934() == 4
+            && !CommSys_IsAlone()
+            && !sub_02031E9C(sCommunicationSystem->sendBufferServer[sCommunicationSystem->unk_6A8], 192, 14, sub_020353B0)) {
             Unk_02100A1C--;
         }
 
