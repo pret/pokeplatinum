@@ -1501,12 +1501,12 @@ static int ov91_021D261C(UnkStruct_ov91_021D0ED8 *param0)
 
     param0->unk_14C.monData = param0->unk_00->unk_00;
     param0->unk_14C.options = param0->unk_00->unk_08;
-    param0->unk_14C.dataType = 0;
+    param0->unk_14C.dataType = SUMMARY_DATA_MON;
     param0->unk_14C.monIndex = 0;
     param0->unk_14C.monMax = 1;
     param0->unk_14C.move = ov91_021D1DD0(param0);
-    param0->unk_14C.mode = 2;
-    param0->unk_14C.showContest = 1;
+    param0->unk_14C.mode = SUMMARY_MODE_SELECT_MOVE;
+    param0->unk_14C.showContest = TRUE;
     param0->unk_14C.chatotCry = NULL;
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_14C, v0);
