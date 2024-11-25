@@ -1476,7 +1476,7 @@ static void ChangeSummaryMon(PokemonSummaryScreen *summaryScreen, s8 delta)
         return;
     }
 
-    summaryScreen->data->pos = monIndex;
+    summaryScreen->data->monIndex = monIndex;
 
     SetMonData(summaryScreen);
     PlayMonCry(summaryScreen);
@@ -1536,13 +1536,13 @@ static BOOL CanAdvanceToEgg(PokemonSummaryScreen *summaryScreen)
 
 static s8 TryAdvanceMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 {
-    s8 monIndex = (s8)summaryScreen->data->pos;
+    s8 monIndex = (s8)summaryScreen->data->monIndex;
     Pokemon *mon = (Pokemon *)summaryScreen->data->monData;
 
     while (TRUE) {
         monIndex += delta;
 
-        if (monIndex < 0 || monIndex >= summaryScreen->data->max) {
+        if (monIndex < 0 || monIndex >= summaryScreen->data->monMax) {
             return -1;
         }
 
@@ -1564,12 +1564,12 @@ static s8 TryAdvanceMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 
 static s8 TryAdvancePartyMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 {
-    s8 monIndex = summaryScreen->data->pos;
+    s8 monIndex = summaryScreen->data->monIndex;
 
     while (TRUE) {
         monIndex += delta;
 
-        if (monIndex < 0 || monIndex >= summaryScreen->data->max) {
+        if (monIndex < 0 || monIndex >= summaryScreen->data->monMax) {
             return -1;
         }
 
@@ -1591,13 +1591,13 @@ static s8 TryAdvancePartyMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 
 static s8 TryAdvanceBoxMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 {
-    s8 monIndex = summaryScreen->data->pos;
+    s8 monIndex = summaryScreen->data->monIndex;
     BoxPokemon *boxMon = (BoxPokemon *)summaryScreen->data->monData;
 
     while (TRUE) {
         monIndex += delta;
 
-        if (monIndex < 0 || monIndex >= summaryScreen->data->max) {
+        if (monIndex < 0 || monIndex >= summaryScreen->data->monMax) {
             return -1;
         }
 
@@ -1621,11 +1621,11 @@ void *PokemonSummaryScreen_MonData(PokemonSummaryScreen *summaryScreen)
 {
     switch (summaryScreen->data->dataType) {
     case SUMMARY_DATA_MON:
-        return summaryScreen->data->monData + (Pokemon_GetStructSize() * summaryScreen->data->pos);
+        return summaryScreen->data->monData + (Pokemon_GetStructSize() * summaryScreen->data->monIndex);
     case SUMMARY_DATA_PARTY_MON:
-        return Party_GetPokemonBySlotIndex(summaryScreen->data->monData, summaryScreen->data->pos);
+        return Party_GetPokemonBySlotIndex(summaryScreen->data->monData, summaryScreen->data->monIndex);
     case SUMMARY_DATA_BOX_MON:
-        return summaryScreen->data->monData + (BoxPokemon_GetStructSize() * summaryScreen->data->pos);
+        return summaryScreen->data->monData + (BoxPokemon_GetStructSize() * summaryScreen->data->monIndex);
     }
 
     return NULL;

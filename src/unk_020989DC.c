@@ -324,8 +324,8 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     v2->monData = param0->unk_0C->unk_10;
     v2->options = param0->unk_0C->unk_18;
     v2->dataType = SUMMARY_DATA_PARTY_MON;
-    v2->pos = v0;
-    v2->max = Party_GetCurrentCount(v2->monData);
+    v2->monIndex = v0;
+    v2->monMax = Party_GetCurrentCount(v2->monData);
     v2->move = 0;
     v2->mode = SUMMARY_MODE_FEED_POFFIN;
     v2->showContest = TRUE;
@@ -351,7 +351,7 @@ static int sub_02098D38(UnkStruct_02098BE4 *param0)
     summaryScreen = (PokemonSummary *)param0->unk_10;
     u8 returnMode = summaryScreen->returnMode;
 
-    param0->unk_08 = summaryScreen->pos;
+    param0->unk_08 = summaryScreen->monIndex;
 
     Heap_FreeToHeap(param0->unk_10);
 
@@ -423,8 +423,8 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
     v1->monData = param0->unk_0C->unk_10;
     v1->options = param0->unk_0C->unk_18;
     v1->dataType = SUMMARY_DATA_PARTY_MON;
-    v1->pos = param0->unk_08;
-    v1->max = Party_GetCurrentCount(v1->monData);
+    v1->monIndex = param0->unk_08;
+    v1->monMax = Party_GetCurrentCount(v1->monData);
     v1->move = 0;
     v1->mode = SUMMARY_MODE_SHOW_CONDITION_CHANGE;
     v1->poffin = v2;

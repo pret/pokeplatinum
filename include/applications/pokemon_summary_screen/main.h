@@ -326,8 +326,8 @@ typedef struct PokemonSummary {
     u8 OTGender;
     u8 dataType;
     u8 mode;
-    u8 max;
-    u8 pos;
+    u8 monMax;
+    u8 monIndex;
     u8 pageFlags;
     u8 selectedSlot;
     u8 returnMode;

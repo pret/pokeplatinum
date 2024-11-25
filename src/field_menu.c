@@ -1034,8 +1034,8 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
         summary->options = SaveData_Options(fieldSystem->saveData);
         summary->dataType = SUMMARY_DATA_PARTY_MON;
-        summary->pos = partyMan->unk_22;
-        summary->max = Party_GetCurrentCount(summary->monData);
+        summary->monIndex = partyMan->unk_22;
+        summary->monMax = Party_GetCurrentCount(summary->monData);
         summary->move = 0;
         summary->mode = SUMMARY_MODE_NORMAL;
         summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
@@ -1056,8 +1056,8 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v4->monData = Party_GetFromSavedata(fieldSystem->saveData);
         v4->options = SaveData_Options(fieldSystem->saveData);
         v4->dataType = SUMMARY_DATA_PARTY_MON;
-        v4->pos = partyMan->unk_22;
-        v4->max = 1;
+        v4->monIndex = partyMan->unk_22;
+        v4->monMax = 1;
         v4->move = partyMan->unk_26;
         v4->mode = SUMMARY_MODE_SELECT_MOVE;
         v4->dexMode = sub_0207A274(fieldSystem->saveData);
@@ -1083,8 +1083,8 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v6->monData = Party_GetFromSavedata(fieldSystem->saveData);
         v6->options = SaveData_Options(fieldSystem->saveData);
         v6->dataType = SUMMARY_DATA_PARTY_MON;
-        v6->pos = partyMan->unk_22;
-        v6->max = 1;
+        v6->monIndex = partyMan->unk_22;
+        v6->monMax = 1;
         v6->move = partyMan->unk_26;
         v6->mode = SUMMARY_MODE_SELECT_MOVE;
         v6->dexMode = sub_0207A274(fieldSystem->saveData);
@@ -1633,7 +1633,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         }
 
         v3->unk_24 = v4->unk_00;
-        v3->unk_22 = v2->pos;
+        v3->unk_22 = v2->monIndex;
         v3->unk_26 = v2->move;
         v3->unk_28 = v2->selectedSlot;
 
@@ -1643,7 +1643,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         sub_0203B674(menu, sub_0203B7C0);
     } break;
     default:
-        menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, v2->pos);
+        menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, v2->monIndex);
         sub_0203B674(menu, sub_0203B7C0);
     }
 

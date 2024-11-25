@@ -861,7 +861,7 @@ static BOOL ov105_02242698(UnkStruct_ov105_02241FF4 *param0)
     case 0:
 
         if (OverlayManager_Exec(param0->unk_04) == 1) {
-            param0->unk_334 = param0->unk_140->pos;
+            param0->unk_334 = param0->unk_140->monIndex;
             Heap_FreeToHeap(param0->unk_140);
             Heap_FreeToHeap(param0->unk_04);
             param0->unk_04 = NULL;
@@ -2895,8 +2895,8 @@ static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
     param0->unk_140->options = param0->unk_138;
     param0->unk_140->dataType = SUMMARY_DATA_PARTY_MON;
     param0->unk_140->mode = SUMMARY_MODE_LOCK_MOVES;
-    param0->unk_140->max = param0->unk_12;
-    param0->unk_140->pos = ov105_022461A0(param0->unk_30C);
+    param0->unk_140->monMax = param0->unk_12;
+    param0->unk_140->monIndex = ov105_022461A0(param0->unk_30C);
     param0->unk_140->move = 0;
     param0->unk_140->dexMode = sub_0207A274(param0->unk_13C);
     param0->unk_140->showContest = FALSE;
