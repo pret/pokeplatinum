@@ -499,11 +499,11 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             sub_02007DEC(param0->unk_1C[1], 6, 1);
             param0->unk_3C->monData = param0->unk_28;
             param0->unk_3C->options = param0->unk_2C;
-            param0->unk_3C->dataType = 0;
+            param0->unk_3C->dataType = SUMMARY_DATA_MON;
             param0->unk_3C->pos = 0;
             param0->unk_3C->max = 1;
             param0->unk_3C->move = param0->unk_6C;
-            param0->unk_3C->mode = 2;
+            param0->unk_3C->mode = SUMMARY_MODE_SELECT_MOVE;
             param0->unk_3C->chatotCry = NULL;
             PokemonSummaryScreen_FlagVisiblePages(param0->unk_3C, Unk_020F0A2C);
             sub_0207C624(param0);

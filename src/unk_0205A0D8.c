@@ -133,9 +133,9 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->options = SaveData_Options(v1);
     v0->monData = param2;
-    v0->dataType = 1;
+    v0->dataType = SUMMARY_DATA_PARTY_MON;
     v0->pos = param3;
-    v0->max = (u8)Party_GetCurrentCount(v0->monData);
+    v0->max = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = param4;
     v0->specialRibbons = sub_0202D79C(v1);

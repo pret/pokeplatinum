@@ -1210,9 +1210,9 @@ static void ov106_02242CA4(UnkStruct_ov106_02243118 *param0)
     memset(param0->unk_BC, 0, sizeof(PokemonSummary));
 
     param0->unk_BC->monData = param0->unk_290;
-    param0->unk_BC->dataType = 1;
+    param0->unk_BC->dataType = SUMMARY_DATA_PARTY_MON;
     param0->unk_BC->options = param0->unk_B4;
-    param0->unk_BC->mode = 1;
+    param0->unk_BC->mode = SUMMARY_MODE_LOCK_MOVES;
     param0->unk_BC->max = Party_GetCurrentCount(param0->unk_290);
     param0->unk_BC->pos = 0;
     param0->unk_BC->move = 0;
