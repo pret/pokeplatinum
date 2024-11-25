@@ -2893,8 +2893,8 @@ static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
 
     param0->unk_140->monData = param0->unk_31C;
     param0->unk_140->options = param0->unk_138;
-    param0->unk_140->dataType = 1;
-    param0->unk_140->mode = 1;
+    param0->unk_140->dataType = SUMMARY_DATA_PARTY_MON;
+    param0->unk_140->mode = SUMMARY_MODE_LOCK_MOVES;
     param0->unk_140->max = param0->unk_12;
     param0->unk_140->pos = ov105_022461A0(param0->unk_30C);
     param0->unk_140->move = 0;

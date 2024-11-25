@@ -1027,16 +1027,16 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     Heap_FreeToHeap(menu->unk_25C);
 
     switch (partyMan->unk_23) {
-    case 1: {
-        PokemonSummary *summary = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
+    case 1:
+        PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
         summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
         summary->options = SaveData_Options(fieldSystem->saveData);
-        summary->dataType = 1;
+        summary->dataType = SUMMARY_DATA_PARTY_MON;
         summary->pos = partyMan->unk_22;
-        summary->max = (u8)Party_GetCurrentCount(summary->monData);
+        summary->max = Party_GetCurrentCount(summary->monData);
         summary->move = 0;
-        summary->mode = 0;
+        summary->mode = SUMMARY_MODE_NORMAL;
         summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
         summary->dexMode = sub_0207A274(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
@@ -1048,17 +1048,17 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         menu->unk_25C = summary;
         sub_0203B674(menu, sub_0203C1C8);
-    } break;
-    case 4: {
-        PokemonSummary *v4 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
+        break;
+    case 4:
+        PokemonSummary *v4 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
         v4->monData = Party_GetFromSavedata(fieldSystem->saveData);
         v4->options = SaveData_Options(fieldSystem->saveData);
-        v4->dataType = 1;
+        v4->dataType = SUMMARY_DATA_PARTY_MON;
         v4->pos = partyMan->unk_22;
         v4->max = 1;
         v4->move = partyMan->unk_26;
-        v4->mode = 2;
+        v4->mode = SUMMARY_MODE_SELECT_MOVE;
         v4->dexMode = sub_0207A274(fieldSystem->saveData);
         v4->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         v4->chatotCry = NULL;
@@ -1067,27 +1067,25 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         PokemonSummaryScreen_SetPlayerProfile(v4, SaveData_GetTrainerInfo(fieldSystem->saveData));
         sub_0203D334(fieldSystem, v4);
 
-        {
-            UnkStruct_0203C1C8 *v5 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203C1C8));
+        UnkStruct_0203C1C8 *v5 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203C1C8));
 
-            v5->unk_00 = partyMan->unk_24;
-            v5->unk_02 = 0;
-            menu->unk_260 = v5;
-        }
+        v5->unk_00 = partyMan->unk_24;
+        v5->unk_02 = 0;
+        menu->unk_260 = v5;
 
         menu->unk_25C = v4;
         sub_0203B674(menu, sub_0203C1C8);
-    } break;
-    case 5: {
-        PokemonSummary *v6 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
+        break;
+    case 5:
+        PokemonSummary *v6 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
         v6->monData = Party_GetFromSavedata(fieldSystem->saveData);
         v6->options = SaveData_Options(fieldSystem->saveData);
-        v6->dataType = 1;
+        v6->dataType = SUMMARY_DATA_PARTY_MON;
         v6->pos = partyMan->unk_22;
         v6->max = 1;
         v6->move = partyMan->unk_26;
-        v6->mode = 2;
+        v6->mode = SUMMARY_MODE_SELECT_MOVE;
         v6->dexMode = sub_0207A274(fieldSystem->saveData);
         v6->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         v6->chatotCry = NULL;
@@ -1096,18 +1094,16 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         PokemonSummaryScreen_SetPlayerProfile(v6, SaveData_GetTrainerInfo(fieldSystem->saveData));
         sub_0203D334(fieldSystem, v6);
 
-        {
-            UnkStruct_0203C1C8 *v7 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203C1C8));
+        UnkStruct_0203C1C8 *v7 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203C1C8));
 
-            v7->unk_00 = 0;
-            v7->unk_02 = (u16)partyMan->unk_34;
-            menu->unk_260 = v7;
-        }
+        v7->unk_00 = 0;
+        v7->unk_02 = (u16)partyMan->unk_34;
+        menu->unk_260 = v7;
 
         menu->unk_25C = v6;
         sub_0203B674(menu, sub_0203C1C8);
-    } break;
-    case 6: {
+        break;
+    case 6:
         UnkStruct_02097728 *v8;
 
         v8 = sub_0203D920(fieldSystem, 2, partyMan->unk_22, Item_MailNumber(partyMan->unk_24), 11);
@@ -1122,8 +1118,8 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         }
 
         sub_0203B674(menu, sub_0203C558);
-    } break;
-    case 7: {
+        break;
+    case 7:
         UnkStruct_02097728 *v9;
         Pokemon *v10;
 
@@ -1134,8 +1130,8 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         menu->unk_260 = sub_0203C540(partyMan->unk_24, 2, partyMan->unk_22);
 
         sub_0203B674(menu, sub_0203C558);
-    } break;
-    case 3: {
+        break;
+    case 3:
         Bag *v11;
         void *v12;
         u32 *v13;
@@ -1149,12 +1145,11 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         menu->unk_25C = sub_0207D824(v11, Unk_020EA020, 11);
 
         sub_0207CB2C(menu->unk_25C, fieldSystem->saveData, 1, fieldSystem->unk_98);
-    }
 
         sub_0203D1E4(fieldSystem, menu->unk_25C);
         sub_0203B674(menu, sub_0203BC5C);
         break;
-    case 8: {
+    case 8:
         UnkStruct_0203C7B8 *v14 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203C7B8));
 
         v14->unk_02 = partyMan->unk_24;
@@ -1165,8 +1160,8 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         menu->unk_25C = v14;
         menu->state = FIELD_MENU_STATE_EVOLVE_INIT;
-    } break;
-    case 9: {
+        break;
+    case 9:
         UnkStruct_0203C7B8 *v15 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203C7B8));
 
         v15->unk_02 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
@@ -1176,7 +1171,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v15->unk_08 = partyMan->unk_3C;
         menu->unk_25C = v15;
         menu->state = FIELD_MENU_STATE_EVOLVE_INIT;
-    } break;
+        break;
     case 16:
     case 11:
     case 12:
@@ -1189,7 +1184,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     case 20:
     case 21:
     case 22:
-    case 23: {
+    case 23:
         UnkFuncPtr_0203B7C0 v16;
         UnkStruct_020709CC v17;
 
@@ -1199,7 +1194,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         v16 = (UnkFuncPtr_0203B7C0)sub_0207070C(0, v17.unk_06);
         v16(&v17, &menu->unk_24C);
-    } break;
+        break;
     case 10:
         menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
         sub_0203B674(menu, sub_0203BC5C);
@@ -1611,7 +1606,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
     Heap_FreeToHeap(menu->unk_25C);
 
     switch (v2->mode) {
-    case 2: {
+    case SUMMARY_MODE_SELECT_MOVE: {
         PartyManagementData *v3;
         UnkStruct_0203C1C8 *v4;
 

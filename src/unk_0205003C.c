@@ -323,7 +323,7 @@ static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
     v0->pos = param0->unk_05;
     v0->max = (u8)Party_GetCurrentCount(v0->monData);
     v0->move = 0;
-    v0->mode = 0;
+    v0->mode = SUMMARY_MODE_NORMAL;
     v0->specialRibbons = sub_0202D79C(v1);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
