@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02032188_H
-#define POKEPLATINUM_UNK_02032188_H
+#ifndef POKEPLATINUM_COMM_RING_H
+#define POKEPLATINUM_COMM_RING_H
 
 typedef struct {
     u8 *buffer;
@@ -9,13 +9,13 @@ typedef struct {
     s16 size;
 } CommRing;
 
-void CommRing_Init(CommRing *ring, u8 *param1, int param2);
-void CommRring_Write(CommRing *ring, u8 *param1, int param2, int param3);
-int CommRing_Read(CommRing *ring, u8 *param1, int param2);
+void CommRing_Init(CommRing *ring, u8 *buffer, int size);
+void CommRring_Write(CommRing *ring, u8 *buffer, int size, int unused);
+int CommRing_Read(CommRing *ring, u8 *buffer, int size);
 u8 CommRing_ReadByte(CommRing *ring);
-int CommRing_Peek(CommRing *ring, u8 *param1, int param2);
+int CommRing_Peek(CommRing *ring, u8 *buffer, int size);
 int CommRing_DataSize(CommRing *ring);
 int CommRing_RemainingSize(CommRing *ring);
 void CommRing_UpdateEndPos(CommRing *ring);
 
-#endif // POKEPLATINUM_UNK_02032188_H
+#endif // POKEPLATINUM_COMM_RING_H
