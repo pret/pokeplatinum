@@ -6,7 +6,10 @@
 #include "pokemon.h"
 #include "strbuf.h"
 
-#define MAX_PC_BOXES 18
+#define MAX_PC_BOXES     18
+#define MAX_PC_ROWS      5
+#define MAX_PC_COLS      6
+#define MAX_MONS_PER_BOX (MAX_PC_ROWS * MAX_PC_COLS)
 
 void PCBoxes_Init(PCBoxes *param0);
 u32 PCBoxes_SaveSize(void);
