@@ -102,7 +102,7 @@ void PokemonSummaryScreen_SetSubscreenType(PokemonSummaryScreen *summaryScreen)
         }
         break;
     case SUMMARY_MODE_SELECT_MOVE:
-    case SUMMARY_MODE_POFFIN:
+    case SUMMARY_MODE_FEED_POFFIN:
     default:
         summaryScreen->subscreenType = SUMMARY_SUBSCREEN_TYPE_NO_BUTTONS;
     }

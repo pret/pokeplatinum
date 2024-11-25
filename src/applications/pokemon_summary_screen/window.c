@@ -767,7 +767,7 @@ void PokemonSummaryScreen_AddExtraWindows(PokemonSummaryScreen *summaryScreen)
     case SUMMARY_PAGE_CONDITION:
     case SUMMARY_PAGE_EXIT:
         // the exit page shows the "favorite food" condition extra window when feeding poffins
-        if (summaryScreen->data->mode != SUMMARY_MODE_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_CONDITION) {
+        if (summaryScreen->data->mode != SUMMARY_MODE_FEED_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
             return;
         }
 
@@ -798,7 +798,7 @@ void PokemonSummaryScreen_RemoveExtraWindows(PokemonSummaryScreen *summaryScreen
     case SUMMARY_PAGE_CONDITION:
     case SUMMARY_PAGE_EXIT:
         // the exit page shows the "favorite food" condition extra window when feeding poffins
-        if (summaryScreen->data->mode != SUMMARY_MODE_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_CONDITION) {
+        if (summaryScreen->data->mode != SUMMARY_MODE_FEED_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
             return;
         }
         break;
@@ -1198,7 +1198,7 @@ static void DrawConditionPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_CONDITION]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_SHEEN]);
 
-    if (summaryScreen->data->mode != SUMMARY_MODE_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_CONDITION) {
+    if (summaryScreen->data->mode != SUMMARY_MODE_FEED_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
         return;
     }
 
@@ -1209,7 +1209,7 @@ static void DrawConditionPageWindows(PokemonSummaryScreen *summaryScreen)
     Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], FONT_SYSTEM, summaryScreen->strbuf, 0, 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD]);
 
-    if (summaryScreen->data->mode == SUMMARY_MODE_POFFIN) {
+    if (summaryScreen->data->mode == SUMMARY_MODE_FEED_POFFIN) {
         Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_POFFIN_BUTTON_PROMPT], 0);
         MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_poffin_feed_ok, summaryScreen->strbuf);
         PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_POFFIN_BUTTON_PROMPT], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
@@ -1297,7 +1297,7 @@ static void DrawExitPageWindows(PokemonSummaryScreen *summaryScreen)
     PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
 
     // the exit page shows the "favorite food" condition extra window when feeding poffins
-    if (summaryScreen->data->mode != SUMMARY_MODE_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_CONDITION) {
+    if (summaryScreen->data->mode != SUMMARY_MODE_FEED_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
         return;
     }
 

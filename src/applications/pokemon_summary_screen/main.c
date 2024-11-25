@@ -569,7 +569,7 @@ static int WaitSummaryScreenTransition(PokemonSummaryScreen *summaryScreen)
 
         if (summaryScreen->data->mode == SUMMARY_MODE_SELECT_MOVE) {
             return SUMMARY_STATE_LEARN_MOVE;
-        } else if (summaryScreen->data->mode == SUMMARY_MODE_CONDITION) {
+        } else if (summaryScreen->data->mode == SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
             return SUMMARY_STATE_SETUP_POFFIN_FEED;
         } else {
             return SUMMARY_STATE_HANDLE_INPUT;
@@ -613,7 +613,7 @@ static int HandleInput_Main(PokemonSummaryScreen *summaryScreen)
     }
 
     if (JOY_NEW(PAD_BUTTON_A)) {
-        if (summaryScreen->data->mode == SUMMARY_MODE_POFFIN && summaryScreen->page == SUMMARY_MODE_CONDITION) {
+        if (summaryScreen->data->mode == SUMMARY_MODE_FEED_POFFIN && summaryScreen->page == SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             return TryFeedPoffin(summaryScreen);
         }
@@ -1201,8 +1201,8 @@ static void SetupInitialPageGfx(PokemonSummaryScreen *summaryScreen)
     case SUMMARY_MODE_SELECT_MOVE:
         summaryScreen->page = SUMMARY_PAGE_BATTLE_MOVES;
         break;
-    case SUMMARY_MODE_POFFIN:
-    case SUMMARY_MODE_CONDITION:
+    case SUMMARY_MODE_FEED_POFFIN:
+    case SUMMARY_MODE_SHOW_CONDITION_CHANGE:
         summaryScreen->page = SUMMARY_PAGE_CONDITION;
         break;
     }
@@ -1523,7 +1523,7 @@ static s8 TryAdvanceSummaryMonIndex(PokemonSummaryScreen *summaryScreen, s8 delt
 
 static BOOL CanAdvanceToEgg(PokemonSummaryScreen *summaryScreen)
 {
-    if (summaryScreen->data->mode == SUMMARY_MODE_POFFIN) {
+    if (summaryScreen->data->mode == SUMMARY_MODE_FEED_POFFIN) {
         return FALSE;
     }
 

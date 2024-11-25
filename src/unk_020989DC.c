@@ -327,7 +327,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     v2->pos = v0;
     v2->max = Party_GetCurrentCount(v2->monData);
     v2->move = 0;
-    v2->mode = SUMMARY_MODE_POFFIN;
+    v2->mode = SUMMARY_MODE_FEED_POFFIN;
     v2->showContest = TRUE;
     v2->chatotCry = NULL;
 
@@ -426,7 +426,7 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
     v1->pos = param0->unk_08;
     v1->max = Party_GetCurrentCount(v1->monData);
     v1->move = 0;
-    v1->mode = SUMMARY_MODE_CONDITION;
+    v1->mode = SUMMARY_MODE_SHOW_CONDITION_CHANGE;
     v1->poffin = v2;
     v1->showContest = TRUE;
     v1->chatotCry = NULL;
