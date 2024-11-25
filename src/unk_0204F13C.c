@@ -425,8 +425,8 @@ static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     v0->dexMode = sub_0207A274(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->dataType = SUMMARY_DATA_PARTY_MON;
-    v0->pos = param0->unk_05;
-    v0->max = Party_GetCurrentCount(v0->monData);
+    v0->monIndex = param0->unk_05;
+    v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
     v0->specialRibbons = sub_0202D79C(v1);
@@ -450,7 +450,7 @@ static int sub_0204F6B0(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 
     v0 = *(param0->unk_08);
 
-    param0->unk_05 = v0->pos;
+    param0->unk_05 = v0->monIndex;
 
     Heap_FreeToHeap(v0);
     *(param0->unk_08) = NULL;

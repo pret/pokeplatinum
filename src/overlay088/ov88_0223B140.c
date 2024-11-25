@@ -457,7 +457,7 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
                 ov88_0223B3C0(v0);
 
                 v0->unk_44 = 0;
-                v0->unk_88[0] = v0->unk_0C.pos + v0->unk_3C * 6;
+                v0->unk_88[0] = v0->unk_0C.monIndex + v0->unk_3C * 6;
 
                 ov88_0223BE28(v0);
                 ov88_0223CF68(v0->unk_88[0], v0->unk_39C[0], 0);
@@ -1726,19 +1726,19 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
 {
     if (param1 == 0) {
         param0->unk_0C.monData = param0->unk_2270;
-        param0->unk_0C.max = Party_GetCurrentCount(param0->unk_08->unk_08);
+        param0->unk_0C.monMax = Party_GetCurrentCount(param0->unk_08->unk_08);
 
         param0->unk_0C.chatotCry = NULL;
         PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId()));
     } else {
         param0->unk_0C.monData = param0->unk_2274;
-        param0->unk_0C.max = Party_GetCurrentCount(param0->unk_2274);
+        param0->unk_0C.monMax = Party_GetCurrentCount(param0->unk_2274);
         param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[CommSys_CurNetId() ^ 1];
         PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
     }
 
     param0->unk_0C.dataType = 1;
-    param0->unk_0C.pos = param0->unk_88[0] % 6;
+    param0->unk_0C.monIndex = param0->unk_88[0] % 6;
     param0->unk_0C.mode = 1;
     param0->unk_0C.move = 0;
     param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->unk_10);
