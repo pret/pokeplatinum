@@ -1040,7 +1040,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v3->max = (u8)Party_GetCurrentCount(v3->monData);
         v3->move = 0;
         v3->mode = 0;
-        v3->ribbons = sub_0202D79C(fieldSystem->saveData);
+        v3->specialRibbons = sub_0202D79C(fieldSystem->saveData);
         v3->dexMode = sub_0207A274(fieldSystem->saveData);
         v3->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         v3->chatotCry = NULL;
