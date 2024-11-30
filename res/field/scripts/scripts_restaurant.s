@@ -57,24 +57,24 @@ _00B3:
     SetFlag 0x24A
     SetFlag 0x24B
     SetFlag 0x24C
-    ClearTrainerFlag 0x218
-    ClearTrainerFlag 0x227
-    ClearTrainerFlag 0x221
-    ClearTrainerFlag 0x222
-    ClearTrainerFlag 0x21E
-    ClearTrainerFlag 0x21F
-    ClearTrainerFlag 0x21B
-    ClearTrainerFlag 0x217
-    ClearTrainerFlag 0x224
-    ClearTrainerFlag 0x21C
-    ClearTrainerFlag 0x228
-    ClearTrainerFlag 0x220
-    ClearTrainerFlag 0x21A
-    ClearTrainerFlag 0x223
-    ClearTrainerFlag 0x21D
-    ClearTrainerFlag 0x226
-    ClearTrainerFlag 0x225
-    ClearTrainerFlag 0x219
+    ClearTrainerFlag trainer_artist_ismael
+    ClearTrainerFlag trainer_beauty_harley
+    ClearTrainerFlag trainer_rich_boy_roman
+    ClearTrainerFlag trainer_lady_kylie
+    ClearTrainerFlag trainer_gentleman_leonardo
+    ClearTrainerFlag trainer_socialite_rebecca
+    ClearTrainerFlag trainer_collector_eugene
+    ClearTrainerFlag trainer_aroma_lady_alison
+    ClearTrainerFlag trainer_school_kid_esteban
+    ClearTrainerFlag trainer_pokefan_meredith
+    ClearTrainerFlag trainer_veteran_emanuel
+    ClearTrainerFlag trainer_lass_blythe
+    ClearTrainerFlag trainer_cameraman_darryl
+    ClearTrainerFlag trainer_reporters_valerie
+    ClearTrainerFlag trainer_pi_kendrick
+    ClearTrainerFlag trainer_beauty_gabriella
+    ClearTrainerFlag trainer_scientist_emilio
+    ClearTrainerFlag trainer_breeder_kaylee
     SetVar 0x4104, 0
     ScrCmd_1B7 0x4001, 1
     SetVar 0x4000, 5
@@ -191,8 +191,8 @@ _031E:
 _0331:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x218
-    GoToIfDefeated 0x218, _046C
+    CheckTrainerFlag trainer_artist_ismael
+    GoToIfDefeated trainer_artist_ismael, _046C
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _04BC
     SetVar 0x8008, 0x40FB
@@ -228,11 +228,11 @@ _03C8:
 
 _03E7:
     CloseMessage
-    ScrCmd_0E5 0x218, 0x227
+    StartTrainerBattle trainer_artist_ismael, trainer_beauty_harley
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x218
-    SetTrainerFlag 0x227
+    SetTrainerFlag trainer_artist_ismael
+    SetTrainerFlag trainer_beauty_harley
     Call _04CF
     SetVar 0x8008, 0x40FB
     GoToIfEq 0x8008, 0, _043F
@@ -313,8 +313,8 @@ _04CF:
 _04DB:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x227
-    GoToIfDefeated 0x227, _0616
+    CheckTrainerFlag trainer_beauty_harley
+    GoToIfDefeated trainer_beauty_harley, _0616
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _0666
     SetVar 0x8008, 0x40FB
@@ -350,11 +350,11 @@ _0572:
 
 _0591:
     CloseMessage
-    ScrCmd_0E5 0x218, 0x227
+    StartTrainerBattle trainer_artist_ismael, trainer_beauty_harley
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x218
-    SetTrainerFlag 0x227
+    SetTrainerFlag trainer_artist_ismael
+    SetTrainerFlag trainer_beauty_harley
     Call _0679
     SetVar 0x8008, 0x40FB
     GoToIfEq 0x8008, 0, _05E9
@@ -435,8 +435,8 @@ _0679:
 _0685:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x221
-    GoToIfDefeated 0x221, _07C0
+    CheckTrainerFlag trainer_rich_boy_roman
+    GoToIfDefeated trainer_rich_boy_roman, _07C0
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _0810
     SetVar 0x8008, 0x40FC
@@ -472,11 +472,11 @@ _071C:
 
 _073B:
     CloseMessage
-    ScrCmd_0E5 0x221, 0x222
+    StartTrainerBattle trainer_rich_boy_roman, trainer_lady_kylie
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x221
-    SetTrainerFlag 0x222
+    SetTrainerFlag trainer_rich_boy_roman
+    SetTrainerFlag trainer_lady_kylie
     Call _0823
     SetVar 0x8008, 0x40FC
     GoToIfEq 0x8008, 0, _0793
@@ -557,8 +557,8 @@ _0823:
 _082F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x222
-    GoToIfDefeated 0x222, _096A
+    CheckTrainerFlag trainer_lady_kylie
+    GoToIfDefeated trainer_lady_kylie, _096A
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _09BA
     SetVar 0x8008, 0x40FC
@@ -594,11 +594,11 @@ _08C6:
 
 _08E5:
     CloseMessage
-    ScrCmd_0E5 0x221, 0x222
+    StartTrainerBattle trainer_rich_boy_roman, trainer_lady_kylie
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x221
-    SetTrainerFlag 0x222
+    SetTrainerFlag trainer_rich_boy_roman
+    SetTrainerFlag trainer_lady_kylie
     Call _09CD
     SetVar 0x8008, 0x40FC
     GoToIfEq 0x8008, 0, _093D
@@ -679,8 +679,8 @@ _09CD:
 _09D9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x21E
-    GoToIfDefeated 0x21E, _0B14
+    CheckTrainerFlag trainer_gentleman_leonardo
+    GoToIfDefeated trainer_gentleman_leonardo, _0B14
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _0B64
     SetVar 0x8008, 0x40FD
@@ -716,11 +716,11 @@ _0A70:
 
 _0A8F:
     CloseMessage
-    ScrCmd_0E5 0x21E, 0x21F
+    StartTrainerBattle trainer_gentleman_leonardo, trainer_socialite_rebecca
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x21E
-    SetTrainerFlag 0x21F
+    SetTrainerFlag trainer_gentleman_leonardo
+    SetTrainerFlag trainer_socialite_rebecca
     Call _0B77
     SetVar 0x8008, 0x40FD
     GoToIfEq 0x8008, 0, _0AE7
@@ -801,8 +801,8 @@ _0B77:
 _0B83:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x21F
-    GoToIfDefeated 0x21F, _0CBE
+    CheckTrainerFlag trainer_socialite_rebecca
+    GoToIfDefeated trainer_socialite_rebecca, _0CBE
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _0D0E
     SetVar 0x8008, 0x40FD
@@ -838,11 +838,11 @@ _0C1A:
 
 _0C39:
     CloseMessage
-    ScrCmd_0E5 0x21E, 0x21F
+    StartTrainerBattle trainer_gentleman_leonardo, trainer_socialite_rebecca
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x21E
-    SetTrainerFlag 0x21F
+    SetTrainerFlag trainer_gentleman_leonardo
+    SetTrainerFlag trainer_socialite_rebecca
     Call _0D21
     SetVar 0x8008, 0x40FD
     GoToIfEq 0x8008, 0, _0C91
@@ -923,8 +923,8 @@ _0D21:
 _0D2D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x21B
-    GoToIfDefeated 0x21B, _0E68
+    CheckTrainerFlag trainer_collector_eugene
+    GoToIfDefeated trainer_collector_eugene, _0E68
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _0EB8
     SetVar 0x8008, 0x40FE
@@ -960,11 +960,11 @@ _0DC4:
 
 _0DE3:
     CloseMessage
-    ScrCmd_0E5 0x21B, 0x217
+    StartTrainerBattle trainer_collector_eugene, trainer_aroma_lady_alison
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x21B
-    SetTrainerFlag 0x217
+    SetTrainerFlag trainer_collector_eugene
+    SetTrainerFlag trainer_aroma_lady_alison
     Call _0ECB
     SetVar 0x8008, 0x40FE
     GoToIfEq 0x8008, 0, _0E3B
@@ -1045,8 +1045,8 @@ _0ECB:
 _0ED7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x217
-    GoToIfDefeated 0x217, _1012
+    CheckTrainerFlag trainer_aroma_lady_alison
+    GoToIfDefeated trainer_aroma_lady_alison, _1012
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1062
     SetVar 0x8008, 0x40FE
@@ -1082,11 +1082,11 @@ _0F6E:
 
 _0F8D:
     CloseMessage
-    ScrCmd_0E5 0x21B, 0x217
+    StartTrainerBattle trainer_collector_eugene, trainer_aroma_lady_alison
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x21B
-    SetTrainerFlag 0x217
+    SetTrainerFlag trainer_collector_eugene
+    SetTrainerFlag trainer_aroma_lady_alison
     Call _1075
     SetVar 0x8008, 0x40FE
     GoToIfEq 0x8008, 0, _0FE5
@@ -1167,8 +1167,8 @@ _1075:
 _1081:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x224
-    GoToIfDefeated 0x224, _11BC
+    CheckTrainerFlag trainer_school_kid_esteban
+    GoToIfDefeated trainer_school_kid_esteban, _11BC
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _120C
     SetVar 0x8008, 0x40FF
@@ -1204,11 +1204,11 @@ _1118:
 
 _1137:
     CloseMessage
-    ScrCmd_0E5 0x224, 0x21C
+    StartTrainerBattle trainer_school_kid_esteban, trainer_pokefan_meredith
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x224
-    SetTrainerFlag 0x21C
+    SetTrainerFlag trainer_school_kid_esteban
+    SetTrainerFlag trainer_pokefan_meredith
     Call _121F
     SetVar 0x8008, 0x40FF
     GoToIfEq 0x8008, 0, _118F
@@ -1289,8 +1289,8 @@ _121F:
 _122B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x21C
-    GoToIfDefeated 0x21C, _1366
+    CheckTrainerFlag trainer_pokefan_meredith
+    GoToIfDefeated trainer_pokefan_meredith, _1366
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _13B6
     SetVar 0x8008, 0x40FF
@@ -1326,11 +1326,11 @@ _12C2:
 
 _12E1:
     CloseMessage
-    ScrCmd_0E5 0x224, 0x21C
+    StartTrainerBattle trainer_school_kid_esteban, trainer_pokefan_meredith
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x224
-    SetTrainerFlag 0x21C
+    SetTrainerFlag trainer_school_kid_esteban
+    SetTrainerFlag trainer_pokefan_meredith
     Call _13C9
     SetVar 0x8008, 0x40FF
     GoToIfEq 0x8008, 0, _1339
@@ -1411,8 +1411,8 @@ _13C9:
 _13D5:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x228
-    GoToIfDefeated 0x228, _1510
+    CheckTrainerFlag trainer_veteran_emanuel
+    GoToIfDefeated trainer_veteran_emanuel, _1510
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1560
     SetVar 0x8008, 0x4100
@@ -1448,11 +1448,11 @@ _146C:
 
 _148B:
     CloseMessage
-    ScrCmd_0E5 0x228, 0x220
+    StartTrainerBattle trainer_veteran_emanuel, trainer_lass_blythe
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x228
-    SetTrainerFlag 0x220
+    SetTrainerFlag trainer_veteran_emanuel
+    SetTrainerFlag trainer_lass_blythe
     Call _1573
     SetVar 0x8008, 0x4100
     GoToIfEq 0x8008, 0, _14E3
@@ -1533,8 +1533,8 @@ _1573:
 _157F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x220
-    GoToIfDefeated 0x220, _16BA
+    CheckTrainerFlag trainer_lass_blythe
+    GoToIfDefeated trainer_lass_blythe, _16BA
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _170A
     SetVar 0x8008, 0x4100
@@ -1570,11 +1570,11 @@ _1616:
 
 _1635:
     CloseMessage
-    ScrCmd_0E5 0x228, 0x220
+    StartTrainerBattle trainer_veteran_emanuel, trainer_lass_blythe
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x228
-    SetTrainerFlag 0x220
+    SetTrainerFlag trainer_veteran_emanuel
+    SetTrainerFlag trainer_lass_blythe
     Call _171D
     SetVar 0x8008, 0x4100
     GoToIfEq 0x8008, 0, _168D
@@ -1655,8 +1655,8 @@ _171D:
 _1729:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x21A
-    GoToIfDefeated 0x21A, _1864
+    CheckTrainerFlag trainer_cameraman_darryl
+    GoToIfDefeated trainer_cameraman_darryl, _1864
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _18B4
     SetVar 0x8008, 0x4101
@@ -1692,11 +1692,11 @@ _17C0:
 
 _17DF:
     CloseMessage
-    ScrCmd_0E5 0x21A, 0x223
+    StartTrainerBattle trainer_cameraman_darryl, trainer_reporters_valerie
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x21A
-    SetTrainerFlag 0x223
+    SetTrainerFlag trainer_cameraman_darryl
+    SetTrainerFlag trainer_reporters_valerie
     Call _18C7
     SetVar 0x8008, 0x4101
     GoToIfEq 0x8008, 0, _1837
@@ -1777,8 +1777,8 @@ _18C7:
 _18D3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x223
-    GoToIfDefeated 0x223, _1A0E
+    CheckTrainerFlag trainer_reporters_valerie
+    GoToIfDefeated trainer_reporters_valerie, _1A0E
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1A5E
     SetVar 0x8008, 0x4101
@@ -1814,11 +1814,11 @@ _196A:
 
 _1989:
     CloseMessage
-    ScrCmd_0E5 0x21A, 0x223
+    StartTrainerBattle trainer_cameraman_darryl, trainer_reporters_valerie
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x21A
-    SetTrainerFlag 0x223
+    SetTrainerFlag trainer_cameraman_darryl
+    SetTrainerFlag trainer_reporters_valerie
     Call _1A71
     SetVar 0x8008, 0x4101
     GoToIfEq 0x8008, 0, _19E1
@@ -1899,8 +1899,8 @@ _1A71:
 _1A7D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x21D
-    GoToIfDefeated 0x21D, _1BB8
+    CheckTrainerFlag trainer_pi_kendrick
+    GoToIfDefeated trainer_pi_kendrick, _1BB8
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1C08
     SetVar 0x8008, 0x4102
@@ -1936,11 +1936,11 @@ _1B14:
 
 _1B33:
     CloseMessage
-    ScrCmd_0E5 0x21D, 0x226
+    StartTrainerBattle trainer_pi_kendrick, trainer_beauty_gabriella
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x21D
-    SetTrainerFlag 0x226
+    SetTrainerFlag trainer_pi_kendrick
+    SetTrainerFlag trainer_beauty_gabriella
     Call _1C1B
     SetVar 0x8008, 0x4102
     GoToIfEq 0x8008, 0, _1B8B
@@ -2021,8 +2021,8 @@ _1C1B:
 _1C27:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x226
-    GoToIfDefeated 0x226, _1D62
+    CheckTrainerFlag trainer_beauty_gabriella
+    GoToIfDefeated trainer_beauty_gabriella, _1D62
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1DB2
     SetVar 0x8008, 0x4102
@@ -2058,11 +2058,11 @@ _1CBE:
 
 _1CDD:
     CloseMessage
-    ScrCmd_0E5 0x21D, 0x226
+    StartTrainerBattle trainer_pi_kendrick, trainer_beauty_gabriella
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x21D
-    SetTrainerFlag 0x226
+    SetTrainerFlag trainer_pi_kendrick
+    SetTrainerFlag trainer_beauty_gabriella
     Call _1DC5
     SetVar 0x8008, 0x4102
     GoToIfEq 0x8008, 0, _1D35
@@ -2143,8 +2143,8 @@ _1DC5:
 _1DD1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x225
-    GoToIfDefeated 0x225, _1F0C
+    CheckTrainerFlag trainer_scientist_emilio
+    GoToIfDefeated trainer_scientist_emilio, _1F0C
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1F5C
     SetVar 0x8008, 0x4103
@@ -2180,11 +2180,11 @@ _1E68:
 
 _1E87:
     CloseMessage
-    ScrCmd_0E5 0x225, 0x219
+    StartTrainerBattle trainer_scientist_emilio, trainer_breeder_kaylee
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x225
-    SetTrainerFlag 0x219
+    SetTrainerFlag trainer_scientist_emilio
+    SetTrainerFlag trainer_breeder_kaylee
     Call _1F6F
     SetVar 0x8008, 0x4103
     GoToIfEq 0x8008, 0, _1EDF
@@ -2265,8 +2265,8 @@ _1F6F:
 _1F7B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckTrainerFlag 0x219
-    GoToIfDefeated 0x219, _20B6
+    CheckTrainerFlag trainer_breeder_kaylee
+    GoToIfDefeated trainer_breeder_kaylee, _20B6
     CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _2106
     SetVar 0x8008, 0x4103
@@ -2302,11 +2302,11 @@ _2012:
 
 _2031:
     CloseMessage
-    ScrCmd_0E5 0x225, 0x219
+    StartTrainerBattle trainer_scientist_emilio, trainer_breeder_kaylee
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
-    SetTrainerFlag 0x225
-    SetTrainerFlag 0x219
+    SetTrainerFlag trainer_scientist_emilio
+    SetTrainerFlag trainer_breeder_kaylee
     Call _2119
     SetVar 0x8008, 0x4103
     GoToIfEq 0x8008, 0, _2089

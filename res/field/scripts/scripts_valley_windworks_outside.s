@@ -63,7 +63,7 @@ _00CF:
     FacePlayer
     Message 0
     CloseMessage
-    ScrCmd_0E5 0x34B, 0
+    StartTrainerBattle trainer_galactic_grunt_valley_windworks_1
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0133
     Message 1
@@ -146,7 +146,7 @@ _01BF:
     CloseMessage
     ScrCmd_04D
     SetFlag 142
-    ScrCmd_2BD 0x1A9, 15
+    StartLegendaryBattle SPECIES_DRIFLOON, 15
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01FB

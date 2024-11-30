@@ -13,9 +13,9 @@
 #include "easy3d_object.h"
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "palette.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     u16 unk_00;

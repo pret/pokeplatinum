@@ -161,15 +161,15 @@ _028A:
     GoTo _02DF
 
 _02DF:
-    ScrCmd_0E5 0x1DC, 0
+    StartTrainerBattle trainer_rival_canalave_city_piplup
     GoTo _0303
 
 _02EB:
-    ScrCmd_0E5 0x1DD, 0
+    StartTrainerBattle trainer_rival_canalave_city_turtwig
     GoTo _0303
 
 _02F7:
-    ScrCmd_0E5 0x1DE, 0
+    StartTrainerBattle trainer_rival_canalave_city_chimchar
     GoTo _0303
 
 _0303:

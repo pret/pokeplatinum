@@ -11,7 +11,7 @@ _000A:
     LockAll
     FacePlayer
     GoToIfSet 177, _00AC
-    ScrCmd_0EA 0x106
+    ScrCmd_0EA trainer_elite_four_bertha
     Message 0
     CloseMessage
     CallIfUnset 214, _007A
@@ -30,19 +30,19 @@ _000A:
     End
 
 _007A:
-    ScrCmd_0E5 0x106, 0
+    StartTrainerBattle trainer_elite_four_bertha
     Return
 
 _0082:
-    ScrCmd_0E5 0x363, 0
+    StartTrainerBattle trainer_elite_four_bertha_rematch
     Return
 
 _008A:
-    ScrCmd_1CD 11, 0x106, 0, 0, 0
+    ScrCmd_1CD 11, trainer_elite_four_bertha, 0, 0, 0
     Return
 
 _0098:
-    ScrCmd_1CD 11, 0x363, 0, 0, 0
+    ScrCmd_1CD 11, trainer_elite_four_bertha_rematch, 0, 0, 0
     Return
 
 _00A6:

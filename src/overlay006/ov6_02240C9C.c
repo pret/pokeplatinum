@@ -36,6 +36,7 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_tile_behavior.h"
+#include "math.h"
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -47,7 +48,6 @@
 #include "system_flags.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_0201D15C.h"
 #include "unk_0202631C.h"
 #include "unk_0202D7A8.h"
 #include "unk_02054884.h"
@@ -301,7 +301,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
                 FieldBattleDTO_Init(battleParams, fieldSystem);
                 ov6_0224239C(encounterFieldParams.trainerID, v17, battleParams);
                 RadarChain_Clear(fieldSystem->chain);
-                sub_02050E10(fieldSystem, battleParams);
+                Encounter_NewVsWild(fieldSystem, battleParams);
                 return TRUE;
             } else {
                 return FALSE;
@@ -358,7 +358,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
     }
 
     if (v7) {
-        sub_02050E10(fieldSystem, battleParams);
+        Encounter_NewVsWild(fieldSystem, battleParams);
     } else {
         v6 = FALSE;
     }
@@ -492,7 +492,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
             FieldBattleDTO_Init(battleParams, fieldSystem);
             ov6_0224239C(encounterFieldParams.trainerID, v15, battleParams);
             RadarChain_Clear(fieldSystem->chain);
-            sub_02050E78(fieldSystem, param1, battleParams);
+            Encounter_StartVsWild(fieldSystem, param1, battleParams);
             return TRUE;
         }
     }
@@ -543,7 +543,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
     }
 
     if (v8) {
-        sub_02050E78(fieldSystem, param1, battleParams);
+        Encounter_StartVsWild(fieldSystem, param1, battleParams);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -1389,7 +1389,7 @@ static void ov6_02242328(FieldSystem *fieldSystem, const BOOL param1, FieldBattl
     if (!param1) {
         *param2 = FieldBattleDTO_New(11, (0x0 | 0x0));
     } else {
-        u16 *v0 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+        u16 *v0 = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
         *param2 = FieldBattleDTO_NewSafari(11, *v0);
     }
 }

@@ -54,7 +54,7 @@ _0096:
     FacePlayer
     Message 5
     CloseMessage
-    ScrCmd_0E5 0x194, 0
+    StartTrainerBattle trainer_galactic_boss_cyrus_distortion_world
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01CE
     SetVar 0x4055, 10

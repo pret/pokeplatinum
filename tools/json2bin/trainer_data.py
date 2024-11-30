@@ -1,128 +1,61 @@
 #!/usr/bin/env python3
-from collections.abc import Mapping, Sequence
-import pathlib, functools
+import functools
+import json
+import pathlib
+import sys
 
-from consts import (
-    items,
-    moves,
-    species,
-    trainer,
-    trainer_ai
+from consts import items
+from convert import (
+    TrainerDataFlags,
+    derive_data_flags,
+    from_trainer_class,
+    pad,
+    u8,
+    u16,
+    u32,
+    from_item,
+    from_trainer_ai_flag,
 )
 
-import json2bin as j2b
+
+def parse_trainer_items(item_list: list[str]) -> bytes:
+    item_list += [items.Item.ITEM_NONE.name] * (4 - len(item_list))
+    return b"".join([u16(from_item(item_str)) for item_str in item_list])
 
 
-def derive_data_flags(party: Sequence[Mapping], *args) -> bytes:
-    defined_moves = False
-    defined_items = False
-    for mon in party:
-        defined_moves |= functools.reduce(lambda x, y: x or y,
-                                          map(lambda move: move != moves.Move.MOVE_NONE.name,
-                                              mon.get('moves', []) if mon.get('moves', []) else []),
-                                          False)
-        defined_items |= bool(mon.get('item', None))
-
-    return (int(defined_moves) | (int(defined_items) << 1)).to_bytes(1, 'little')
+def pack_data_flags(flags: TrainerDataFlags) -> bytes:
+    return u8(int(flags.has_moves) | (int(flags.has_items) << 1))
 
 
-def parse_trainer_items(item_list: Sequence[str], *args) -> bytes:
-    item_bin = bytearray([])
-    for item_str in item_list:
-        item_bin.extend(items.Item[item_str].value.to_bytes(2, 'little'))
-    
-    for _ in range(4 - len(item_list)):
-        item_bin.extend(items.Item.ITEM_NONE.value.to_bytes(2, 'little'))
-    return item_bin
+def parse_ai_flags(flags: list[str]) -> bytes:
+    return u32(
+        functools.reduce(
+            lambda x, y: x | y,
+            [from_trainer_ai_flag(s) for s in flags],
+            0,
+        )
+    )
 
 
-def parse_poke_moves(move_list: Sequence[str], *args) -> bytes:
-    move_bin = bytearray([])
-    for move_str in move_list:
-        move_bin.extend(moves.Move[move_str].value.to_bytes(2, 'little'))
+input_path = pathlib.Path(sys.argv[1])
+output_path = pathlib.Path(sys.argv[2])
 
-    for _ in range(4 - len(move_list)):
-        move_bin.extend(moves.Move.MOVE_NONE.value.to_bytes(2, 'little'))
-    return move_bin
+data = {}
+with open(input_path, "r", encoding="utf-8") as input_file:
+    data = json.load(input_file)
 
+packed = b"".join(
+    [
+        pack_data_flags(derive_data_flags(data["party"])),
+        u8(from_trainer_class(data["class"])),
+        pad(1),
+        u8(len(data["party"])),
+        parse_trainer_items(data["items"]),
+        parse_ai_flags(data["ai_flags"]),
+        u8(2 if data["double_battle"] else 0),
+        pad(3),
+    ]
+)
 
-def parse_party_mon(mon: dict, has_moves: bool, has_items: bool) -> bytes:
-    binary_mon = bytearray([])
-    binary_mon.extend(j2b.parse_int(mon['power'], 2))
-    binary_mon.extend(j2b.parse_int(mon['level'], 2))
-
-    species_and_form = (species.PokemonSpecies[mon['species']].value & 0x3FF) | (mon['form'] << 10)
-    binary_mon.extend(j2b.parse_int(species_and_form, 2))
-
-    if has_items:
-        binary_mon.extend(j2b.parse_const(mon['item'], 2, items.Item))
-    if has_moves:
-        binary_mon.extend(parse_poke_moves(mon['moves']))
-    
-    binary_mon.extend(j2b.parse_int(mon['ball_seal'], 2))
-    return binary_mon
-
-
-# Parties are a complicated and variable structure, so just process them wholly
-# independently
-def parse_party_mons(party_list: Sequence[Mapping], *args) -> bytes:
-    if len(party_list) == 0: # special case, pads to 2 words instead of 1 word
-        return (0).to_bytes(8, 'little')
-
-    data_flags = int.from_bytes(derive_data_flags(party_list, args), 'little')
-    has_moves = data_flags & 1
-    has_items = data_flags & 2
-
-    binary_party = bytearray(b''.join([parse_party_mon(mon, has_moves, has_items) for mon in party_list]))
-
-    # word-align
-    if len(binary_party) % 4 != 0:
-        target_len = len(binary_party) + (4 - (len(binary_party) % 4))
-        binary_party.extend([0] * (target_len - len(binary_party)))
-
-    return binary_party
-
-
-DATA_SCHEMA = j2b.Parser() \
-    .register('party', 1, derive_data_flags) \
-    .register('class', 1, j2b.parse_const, trainer.TrainerClass) \
-    .pad(1) \
-    .register('party', 1,
-              lambda party, size, _: j2b.parse_int(len(party), size, _)) \
-    .register('items', 8, parse_trainer_items) \
-    .register('ai_flags', 4, j2b.pack_flags, trainer_ai.AIFlag) \
-    .register('double_battle', 1,
-              lambda val, size, _: j2b.parse_int(2 if val else 0, size, _)) \
-    .pad(3)
-
-
-POKE_SCHEMA = j2b.Parser().register('party', 18, parse_party_mons)
-
-
-def indexer(file_path: pathlib.Path) -> int:
-    return int(file_path.stem)
-
-
-j2b.ARGPARSER.add_argument('--mode', required=True,
-                           choices=['data', 'poke'],
-                           help='Determines which data archive to compile')
-
-args = j2b.ARGPARSER.parse_args()
-if args.mode == 'data':
-    j2b.json2bin(args.source_dir,
-                DATA_SCHEMA,
-                args.private_dir,
-                args.output_dir,
-                indexer,
-                glob_pattern='*.json',
-                narc_name='trdata',
-                narc_packer=args.knarc)
-elif args.mode == 'poke':
-    j2b.json2bin(args.source_dir,
-                POKE_SCHEMA,
-                args.private_dir,
-                args.output_dir,
-                indexer,
-                glob_pattern='*.json',
-                narc_name='trpoke',
-                narc_packer=args.knarc)
+with open(output_path, "wb") as output_file:
+    output_file.write(packed)

@@ -230,7 +230,7 @@ _032F:
     CloseMessage
     IncrementGameRecord RECORD_UNK_057
     Call _0605
-    ScrCmd_0E5 0x4005, 0
+    StartTrainerBattle 0x4005
     CheckWonBattle 0x8000
     Return
 
@@ -396,55 +396,55 @@ _0605:
     Return
 
 _06B0:
-    SetVar 0x4005, 0x35A
+    SetVar 0x4005, trainer_leader_roark_rematch 
     Return
 
 _06B8:
-    SetVar 0x4005, 0x359
+    SetVar 0x4005, trainer_leader_gardenia_rematch
     Return
 
 _06C0:
-    SetVar 0x4005, 0x35B
+    SetVar 0x4005, trainer_leader_wake_rematch
     Return
 
 _06C8:
-    SetVar 0x4005, 0x356
+    SetVar 0x4005, trainer_leader_maylene_rematch
     Return
 
 _06D0:
-    SetVar 0x4005, 0x35C
+    SetVar 0x4005, trainer_leader_fantina_rematch
     Return
 
 _06D8:
-    SetVar 0x4005, 0x355
+    SetVar 0x4005, trainer_leader_candice_rematch
     Return
 
 _06E0:
-    SetVar 0x4005, 0x358
+    SetVar 0x4005, trainer_leader_byron_rematch
     Return
 
 _06E8:
-    SetVar 0x4005, 0x357
+    SetVar 0x4005, trainer_leader_volkner_rematch
     Return
 
 _06F0:
-    SetVar 0x4005, 0x361
+    SetVar 0x4005, trainer_cheryl_battleground
     Return
 
 _06F8:
-    SetVar 0x4005, 0x35D
+    SetVar 0x4005, trainer_riley_battleground
     Return
 
 _0700:
-    SetVar 0x4005, 0x35F
+    SetVar 0x4005, trainer_marley_battleground
     Return
 
 _0708:
-    SetVar 0x4005, 0x35E
+    SetVar 0x4005, trainer_buck_battleground
     Return
 
 _0710:
-    SetVar 0x4005, 0x360
+    SetVar 0x4005, trainer_mira_battleground
     Return
 
 _0718:

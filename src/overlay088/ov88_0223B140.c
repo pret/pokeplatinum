@@ -38,6 +38,7 @@
 #include "item.h"
 #include "journal.h"
 #include "list_menu.h"
+#include "math.h"
 #include "menu.h"
 #include "message.h"
 #include "message_util.h"
@@ -66,7 +67,6 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -1545,7 +1545,7 @@ static void ov88_0223CEF0(u16 *param0)
         *param0 = 0;
     }
 
-    v0 = sub_0201D250(*param0);
+    v0 = CalcSineDegrees_Wraparound(*param0);
     v3 = 15 + (v0 * 10) / FX32_ONE;
     v1 = GX_RGB(29, v3, 0);
 
@@ -1747,7 +1747,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->unk_10);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
     param0->unk_0C.options = param0->unk_08->unk_18;
-    param0->unk_0C.ribbons = sub_0202D79C(param0->unk_08->unk_10);
+    param0->unk_0C.specialRibbons = sub_0202D79C(param0->unk_08->unk_10);
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 

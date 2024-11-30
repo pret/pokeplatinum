@@ -59,7 +59,7 @@ _00BB:
     Message 0
     CloseMessage
     SetFlag 142
-    ScrCmd_0E5 0x13E, 0
+    StartTrainerBattle trainer_leader_fantina
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0248
@@ -70,15 +70,15 @@ _00BB:
     WaitSound
     GiveBadge BADGE_ID_RELIC
     ScrCmd_260 23
-    SetTrainerFlag 0x10A
-    SetTrainerFlag 0x118
-    SetTrainerFlag 0x11C
-    SetTrainerFlag 0x145
-    SetTrainerFlag 0x14A
-    SetTrainerFlag 0x154
-    SetTrainerFlag 0x157
-    SetTrainerFlag 0x165
-    ScrCmd_1CD 10, 91, 0x13E, 0, 0
+    SetTrainerFlag trainer_camper_drew
+    SetTrainerFlag trainer_ace_trainer_allen
+    SetTrainerFlag trainer_ace_trainer_catherine
+    SetTrainerFlag trainer_lass_molly
+    SetTrainerFlag trainer_picnicker_cheyenne
+    SetTrainerFlag trainer_school_kid_chance
+    SetTrainerFlag trainer_school_kid_mackenzie
+    SetTrainerFlag trainer_youngster_donny
+    ScrCmd_1CD 10, 91, trainer_leader_fantina, 0, 0
     SetVar 0x407B, 1
     SetFlag 0x206
     ClearFlag 0x207

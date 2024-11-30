@@ -30,6 +30,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -49,7 +50,6 @@
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -1283,11 +1283,11 @@ static u32 ov69_0225D194(const VecFx32 *param0, const VecFx32 *param1)
     v0 = MATH_ABS(param0->x - param1->x);
     v1 = MATH_ABS(param0->y - param1->y);
 
-    if (v0 > sub_0201D278(180)) {
+    if (v0 > CalcAngleRotationIdx(180)) {
         v0 = 0xffff - v0;
     }
 
-    if (v1 > sub_0201D278(180)) {
+    if (v1 > CalcAngleRotationIdx(180)) {
         v1 = 0xffff - v1;
     }
 

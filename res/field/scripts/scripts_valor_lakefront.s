@@ -84,7 +84,7 @@ _013A:
     FacePlayer
     Message 2
     CloseMessage
-    ScrCmd_0E5 0x34F, 0
+    StartTrainerBattle trainer_galactic_grunt_valor_lakefront
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01D9
     Message 3

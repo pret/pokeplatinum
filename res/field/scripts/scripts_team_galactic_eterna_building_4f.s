@@ -27,7 +27,7 @@ _0022:
     WaitMovement
     Message 0
     CloseMessage
-    ScrCmd_0E5 0x196, 0
+    StartTrainerBattle trainer_commander_jupiter_team_galactic_eterna_building
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0135
     Message 1

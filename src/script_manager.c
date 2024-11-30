@@ -16,12 +16,12 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "strbuf.h"
 #include "trainer_data.h"
-#include "unk_0201D15C.h"
 #include "vars_flags.h"
 
 #include "constdata/const_020EAB80.h"
@@ -352,8 +352,8 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &scriptManager->tmpBuf;
     case SCRIPT_MANAGER_SAVING_ICON:
         return &scriptManager->savingIcon;
-    case 19:
-        return &scriptManager->unk_A8;
+    case SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA:
+        return &scriptManager->partyManagementDataPtr;
     case SCRIPT_MANAGER_DATA_PTR:
         return &scriptManager->dataPtr;
     case 21:

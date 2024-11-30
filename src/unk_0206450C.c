@@ -10,8 +10,8 @@
 
 #include "map_object.h"
 #include "map_object_move.h"
+#include "math.h"
 #include "player_avatar.h"
-#include "unk_0201D15C.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"

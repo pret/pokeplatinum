@@ -28,6 +28,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -48,7 +49,6 @@
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
@@ -1069,7 +1069,7 @@ static void ov72_0223E8D0(u16 *param0)
         *param0 = 0;
     }
 
-    v0 = sub_0201D250(*param0);
+    v0 = CalcSineDegrees_Wraparound(*param0);
     v3 = 15 + (v0 * 10) / FX32_ONE;
     v1 = GX_RGB(29, v3, 0);
 

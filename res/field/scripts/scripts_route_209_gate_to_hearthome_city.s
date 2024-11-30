@@ -38,17 +38,17 @@ _001D:
     End
 
 _00A5:
-    ScrCmd_0E5 0x1D6, 0
+    StartTrainerBattle trainer_rival_route_209_piplup
     GoTo _00CF
     End
 
 _00B3:
-    ScrCmd_0E5 0x1D7, 0
+    StartTrainerBattle trainer_rival_route_209_turtwig
     GoTo _00CF
     End
 
 _00C1:
-    ScrCmd_0E5 0x1D8, 0
+    StartTrainerBattle trainer_rival_route_209_chimchar
     GoTo _00CF
     End
 

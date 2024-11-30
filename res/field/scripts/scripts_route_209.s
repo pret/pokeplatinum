@@ -84,7 +84,7 @@ _014D:
     Message 9
     ScrCmd_04D
     CloseMessage
-    ScrCmd_124 0x1BA, 25
+    StartWildBattle SPECIES_SPIRITOMB, 25
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _017F
     SetVar 0x408A, 0

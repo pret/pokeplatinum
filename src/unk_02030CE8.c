@@ -9,10 +9,10 @@
 #include "overlay096/struct_ov96_0223B574.h"
 
 #include "charcode_util.h"
+#include "math.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0201D15C.h"
 #include "unk_0202C858.h"
 
 static void sub_02030DD0(SaveData *param0, UnkStruct_ov96_0223B574 *param1);

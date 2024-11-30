@@ -95,15 +95,15 @@ _0111:
     GoTo _0140
 
 _0140:
-    ScrCmd_0E5 247, 0
+    StartTrainerBattle trainer_rival_route_203_piplup
     GoTo _0164
 
 _014C:
-    ScrCmd_0E5 248, 0
+    StartTrainerBattle trainer_rival_route_203_turtwig
     GoTo _0164
 
 _0158:
-    ScrCmd_0E5 249, 0
+    StartTrainerBattle trainer_rival_route_203_chimchar
     GoTo _0164
 
 _0164:

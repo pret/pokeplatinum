@@ -41,7 +41,7 @@ _007D:
     Message 0
     CloseMessage
     SetFlag 142
-    ScrCmd_318 0x1EC, 30
+    StartFatefulEncounter SPECIES_SHAYMIN, 30
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00D7

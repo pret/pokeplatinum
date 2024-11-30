@@ -5,9 +5,9 @@
 
 #include "overlay100/struct_ov100_021D4104.h"
 
+#include "math.h"
 #include "sys_task_manager.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     f32 unk_00;
@@ -89,8 +89,8 @@ static BOOL ov100_021D4104(UnkStruct_ov100_021D4104 *param0, s16 param1, s16 par
         param0->unk_20 += 8;
         param0->unk_20 %= 360;
 
-        v7 += (sub_0201D250(param0->unk_20) * 1);
-        v8 += (sub_0201D264(param0->unk_20) * 1);
+        v7 += (CalcSineDegrees_Wraparound(param0->unk_20) * 1);
+        v8 += (CalcCosineDegrees_Wraparound(param0->unk_20) * 1);
 
         sub_0200D5E8(param0->unk_00, v7, v8);
     }
@@ -110,8 +110,8 @@ static void ov100_021D4214(UnkStruct_ov100_021D4104 *param0)
     param0->unk_1C += 8;
     param0->unk_1C %= 360;
 
-    v0 = (128 << FX32_SHIFT) + (sub_0201D250(param0->unk_1C) * 64);
-    v1 = (48 << FX32_SHIFT) + (sub_0201D264(param0->unk_1C) * 24);
+    v0 = (128 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(param0->unk_1C) * 64);
+    v1 = (48 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(param0->unk_1C) * 24);
 
     sub_0200D650(param0->unk_00, v0, v1, FX32_CONST(192));
 
@@ -125,8 +125,8 @@ static void ov100_021D4264(UnkStruct_ov100_021D4104 *param0, int param1, int par
     param0->unk_1C += 8;
     param0->unk_1C %= 360;
 
-    v0 = (param1 << FX32_SHIFT) + (sub_0201D250(param0->unk_1C) * param3);
-    v1 = (param2 << FX32_SHIFT) + (sub_0201D264(param0->unk_1C) * param4);
+    v0 = (param1 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(param0->unk_1C) * param3);
+    v1 = (param2 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(param0->unk_1C) * param4);
 
     sub_0200D650(param0->unk_00, v0, v1, FX32_CONST(192));
 }
@@ -179,8 +179,8 @@ static void ov100_021D4318(UnkStruct_ov100_021D4104 *param0)
 
     sub_0200D67C(param0->unk_00, &v0, &v1, FX32_CONST(192));
 
-    v0 += (sub_0201D250(param0->unk_20) * (3 * param0->unk_28[0]));
-    v1 += (sub_0201D264(param0->unk_20) * (3 * param0->unk_28[1]));
+    v0 += (CalcSineDegrees_Wraparound(param0->unk_20) * (3 * param0->unk_28[0]));
+    v1 += (CalcCosineDegrees_Wraparound(param0->unk_20) * (3 * param0->unk_28[1]));
 
     sub_0200D650(param0->unk_00, v0, v1, FX32_CONST(192));
 

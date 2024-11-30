@@ -19,9 +19,9 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
-#include "unk_0201D15C.h"
 
 struct UnkStruct_ov53_02256420_t {
     const UnkStruct_ov53_02256420_1 *unk_00;
@@ -195,7 +195,7 @@ static void ov53_022565E0(SysTask *param0, void *param1)
         fx32 v4;
 
         v3 = ((((180 << FX32_SHIFT) / 16) * v2) + FX32_HALF) >> FX32_SHIFT;
-        v4 = sub_0201D15C(v3) * 24;
+        v4 = CalcSineDegrees(v3) * 24;
         ov25_02255900(v0->unk_9C, v0->unk_A4, v0->unk_A0 - v4);
     }
         ov25_0225524C(param1);

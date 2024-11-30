@@ -4,10 +4,10 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02004CB4.h"
 
+#include "math.h"
 #include "unk_02003B60.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0201D15C.h"
 #include "unk_0202CC64.h"
 
 BOOL CheckMicRecordingStatus(void);

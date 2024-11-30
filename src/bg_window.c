@@ -5,7 +5,7 @@
 
 #include "gx_layers.h"
 #include "heap.h"
-#include "unk_0201D15C.h"
+#include "math.h"
 
 static u8 ConvertToGxBgScreenSize(u8 bgScreenSize, u8 bgType);
 static void GetBgScreenTileDimensions(u8 bgScreenSize, u8 *outXTiles, u8 *outYTiles);
@@ -747,7 +747,7 @@ void Bg_SetAffineParams(BgConfig *bgConfig, u8 bgLayer, const MtxFx22 *mtx, int 
 static void ResetBgAffineTransforms(BgConfig *bgConfig, u8 bgLayer)
 {
     MtxFx22 mtx;
-    sub_0201D470(&mtx, 0, FX32_ONE, FX32_ONE, 0);
+    CreateAffineTransformationMatrix(&mtx, 0, FX32_ONE, FX32_ONE, AFFINE_MODE_NORMAL);
     Bg_SetAffineParams(bgConfig, bgLayer, &mtx, 0, 0);
 }
 
@@ -1840,13 +1840,12 @@ static void ClearWindowTilemapText(Window *window)
         return;
     }
 
-    u32 x, y, tilemapRight, tilemapBottom, idx, tilemapWidth;
-    u16 *tilemap;
+    u32 x, y, tilemapBottom, idx;
+    u32 tilemapWidth = sScreenSizeToTilemapWidth[window->bgConfig->bgs[window->bgLayer].screenSize];
+    u16 *tilemap = window->bgConfig->bgs[window->bgLayer].tilemapBuffer;
+    u32 tilemapRight = window->tilemapLeft + window->width;
 
-    tilemapWidth = sScreenSizeToTilemapWidth[window->bgConfig->bgs[window->bgLayer].screenSize];
-    tilemap = window->bgConfig->bgs[window->bgLayer].tilemapBuffer;
-    tilemapRight = window->tilemapLeft + window->width;
-    tilemapBottom = window->tilemapTop + window->height;
+    tilemapBottom = window->tilemapTop + window->height; // required this way to match
 
     for (y = window->tilemapTop; y < tilemapBottom; y++) {
         for (x = window->tilemapLeft; x < tilemapRight; x++) {
@@ -1862,11 +1861,8 @@ static void ClearWindowTilemapAffine(Window *window)
         return;
     }
 
-    int x, y, tilemapWidth;
-    u8 *tilemap;
-
-    tilemapWidth = sScreenSizeToTilemapWidth[window->bgConfig->bgs[window->bgLayer].screenSize];
-    tilemap = (u8 *)(window->bgConfig->bgs[window->bgLayer].tilemapBuffer) + window->tilemapTop * tilemapWidth + window->tilemapLeft;
+    int x, y, tilemapWidth = sScreenSizeToTilemapWidth[window->bgConfig->bgs[window->bgLayer].screenSize];
+    u8 *tilemap = (u8 *)(window->bgConfig->bgs[window->bgLayer].tilemapBuffer) + window->tilemapTop * tilemapWidth + window->tilemapLeft;
 
     for (y = 0; y < window->height; y++) {
         for (x = 0; x < window->width; x++) {
@@ -2118,14 +2114,10 @@ void Window_FillRectWithColor(Window *window, u8 color, u16 x, u16 y, u16 width,
 
 void Window_CopyGlyph(Window *window, const u8 *glyphPixels, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 table)
 {
-    u8 *windowPixels;
-    u16 destWidth, destHeight;
+    u8 *windowPixels = window->pixels;
+    u16 destWidth = window->width * 8, destHeight = window->height * 8;
     int srcRight, srcBottom;
     u8 glyphSizeParam;
-
-    windowPixels = window->pixels;
-    destWidth = window->width * 8;
-    destHeight = window->height * 8;
 
     if (destWidth - destX < srcWidth) {
         srcRight = destWidth - destX;
@@ -2208,16 +2200,12 @@ void Window_Scroll(Window *window, u8 direction, u8 distance, u8 fillVal)
 
 static void ScrollWindow4bpp(Window *window, u8 direction, u8 distance, u8 fillVal)
 {
-    u8 *pixels;
+    u8 *pixels = window->pixels;
     int y0, y1, y2;
-    int fill, size;
-    u32 width;
+    int fill = (fillVal << 24) | (fillVal << 16) | (fillVal << 8) | (fillVal << 0);
+    int size = window->height * window->width * TILE_SIZE_4BPP;
+    u32 width = window->width;
     int i, j;
-
-    pixels = window->pixels;
-    fill = (fillVal << 24) | (fillVal << 16) | (fillVal << 8) | (fillVal << 0);
-    size = window->height * window->width * TILE_SIZE_4BPP;
-    width = window->width;
 
     switch (direction) {
     case SCROLL_DIRECTION_UP:
@@ -2269,16 +2257,12 @@ static void ScrollWindow4bpp(Window *window, u8 direction, u8 distance, u8 fillV
 
 static void ScrollWindow8bpp(Window *window, u8 direction, u8 distance, u8 fillVal)
 {
-    u8 *pixels;
+    u8 *pixels = window->pixels;
     int y0, y1, y2;
-    int fill, size;
-    u32 width;
+    int fill = (fillVal << 24) | (fillVal << 16) | (fillVal << 8) | fillVal;
+    int size = window->height * window->width * TILE_SIZE_8BPP;
+    u32 width = window->width;
     int i, j;
-
-    pixels = window->pixels;
-    fill = (fillVal << 24) | (fillVal << 16) | (fillVal << 8) | fillVal;
-    size = window->height * window->width * TILE_SIZE_8BPP;
-    width = window->width;
 
     switch (direction) {
     case SCROLL_DIRECTION_UP:
@@ -2460,7 +2444,7 @@ static void RunScheduledScrolls(BgConfig *bgConfig)
             G2_SetBG2Offset(bgConfig->bgs[BG_LAYER_MAIN_2].xOffset, bgConfig->bgs[BG_LAYER_MAIN_2].yOffset);
         } else {
             MtxFx22 mtx;
-            sub_0201D470(&mtx, bgConfig->bgs[BG_LAYER_MAIN_2].rotation, bgConfig->bgs[BG_LAYER_MAIN_2].xScale, bgConfig->bgs[BG_LAYER_MAIN_2].yScale, 2);
+            CreateAffineTransformationMatrix(&mtx, bgConfig->bgs[BG_LAYER_MAIN_2].rotation, bgConfig->bgs[BG_LAYER_MAIN_2].xScale, bgConfig->bgs[BG_LAYER_MAIN_2].yScale, AFFINE_MODE_MAX_360);
             G2_SetBG2Affine(&mtx, bgConfig->bgs[BG_LAYER_MAIN_2].xCenter, bgConfig->bgs[BG_LAYER_MAIN_2].yCenter, bgConfig->bgs[BG_LAYER_MAIN_2].xOffset, bgConfig->bgs[BG_LAYER_MAIN_2].yOffset);
         }
     }
@@ -2470,7 +2454,7 @@ static void RunScheduledScrolls(BgConfig *bgConfig)
             G2_SetBG3Offset(bgConfig->bgs[BG_LAYER_MAIN_3].xOffset, bgConfig->bgs[BG_LAYER_MAIN_3].yOffset);
         } else {
             MtxFx22 mtx;
-            sub_0201D470(&mtx, bgConfig->bgs[BG_LAYER_MAIN_3].rotation, bgConfig->bgs[BG_LAYER_MAIN_3].xScale, bgConfig->bgs[BG_LAYER_MAIN_3].yScale, 2);
+            CreateAffineTransformationMatrix(&mtx, bgConfig->bgs[BG_LAYER_MAIN_3].rotation, bgConfig->bgs[BG_LAYER_MAIN_3].xScale, bgConfig->bgs[BG_LAYER_MAIN_3].yScale, AFFINE_MODE_MAX_360);
             G2_SetBG3Affine(&mtx, bgConfig->bgs[BG_LAYER_MAIN_3].xCenter, bgConfig->bgs[BG_LAYER_MAIN_3].yCenter, bgConfig->bgs[BG_LAYER_MAIN_3].xOffset, bgConfig->bgs[BG_LAYER_MAIN_3].yOffset);
         }
     }
@@ -2488,7 +2472,7 @@ static void RunScheduledScrolls(BgConfig *bgConfig)
             G2S_SetBG2Offset(bgConfig->bgs[BG_LAYER_SUB_2].xOffset, bgConfig->bgs[BG_LAYER_SUB_2].yOffset);
         } else {
             MtxFx22 mtx;
-            sub_0201D470(&mtx, bgConfig->bgs[BG_LAYER_SUB_2].rotation, bgConfig->bgs[BG_LAYER_SUB_2].xScale, bgConfig->bgs[BG_LAYER_SUB_2].yScale, 2);
+            CreateAffineTransformationMatrix(&mtx, bgConfig->bgs[BG_LAYER_SUB_2].rotation, bgConfig->bgs[BG_LAYER_SUB_2].xScale, bgConfig->bgs[BG_LAYER_SUB_2].yScale, AFFINE_MODE_MAX_360);
             G2S_SetBG2Affine(&mtx, bgConfig->bgs[BG_LAYER_SUB_2].xCenter, bgConfig->bgs[BG_LAYER_SUB_2].yCenter, bgConfig->bgs[BG_LAYER_SUB_2].xOffset, bgConfig->bgs[BG_LAYER_SUB_2].yOffset);
         }
     }
@@ -2498,7 +2482,7 @@ static void RunScheduledScrolls(BgConfig *bgConfig)
             G2S_SetBG3Offset(bgConfig->bgs[BG_LAYER_SUB_3].xOffset, bgConfig->bgs[BG_LAYER_SUB_3].yOffset);
         } else {
             MtxFx22 mtx;
-            sub_0201D470(&mtx, bgConfig->bgs[BG_LAYER_SUB_3].rotation, bgConfig->bgs[BG_LAYER_SUB_3].xScale, bgConfig->bgs[BG_LAYER_SUB_3].yScale, 2);
+            CreateAffineTransformationMatrix(&mtx, bgConfig->bgs[BG_LAYER_SUB_3].rotation, bgConfig->bgs[BG_LAYER_SUB_3].xScale, bgConfig->bgs[BG_LAYER_SUB_3].yScale, AFFINE_MODE_MAX_360);
             G2S_SetBG3Affine(&mtx, bgConfig->bgs[BG_LAYER_SUB_3].xCenter, bgConfig->bgs[BG_LAYER_SUB_3].yCenter, bgConfig->bgs[BG_LAYER_SUB_3].xOffset, bgConfig->bgs[BG_LAYER_SUB_3].yOffset);
         }
     }

@@ -62,10 +62,11 @@ lz_gen = generator(nitrogfx_exe,
     output: '@PLAINNAME@.lz',
 )
 
+subdir('trainers')
+
 subdir('battle')
 subdir('field')
 subdir('fonts')
 subdir('graphics')
 subdir('items')
 subdir('sound')
-subdir('trainers')

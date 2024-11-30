@@ -88,7 +88,7 @@ _00F5:
 _0107:
     Message 2
     CloseMessage
-    ScrCmd_0E5 0x127, 0
+    StartTrainerBattle trainer_commander_mars_valley_windworks
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02B9
     Message 3

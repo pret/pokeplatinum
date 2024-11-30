@@ -43,7 +43,7 @@ _0077:
     Message 3
     CloseMessage
     SetFlag 142
-    ScrCmd_2BD 0x1E2, 50
+    StartLegendaryBattle SPECIES_AZELF, 50
     ClearFlag 142
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00CD
@@ -76,7 +76,7 @@ _00D3:
     WaitTime 30, 0x800C
     Message 1
     CloseMessage
-    ScrCmd_0E5 0x198, 0
+    StartTrainerBattle trainer_commander_saturn_valor_cavern
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0144
     Message 2

@@ -38,6 +38,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "item.h"
+#include "math.h"
 #include "message.h"
 #include "message_util.h"
 #include "move_table.h"
@@ -54,7 +55,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
-#include "unk_0201D15C.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "unk_02092494.h"
@@ -130,7 +130,7 @@ static void BoxPokemon_SetMoveSlot(BoxPokemon *boxMon, u16 moveID, u8 moveSlot);
 static BOOL Pokemon_HasMove(Pokemon *mon, u16 moveID);
 static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, int flavor);
 static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
-static BOOL CanBoxPokemonSpreadPokerus(BoxPokemon *boxMon);
+static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon);
 static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
@@ -4009,20 +4009,20 @@ static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon)
     return (BoxPokemon_GetValue(boxMon, MON_DATA_POKERUS, NULL) & 0xf) != 0;
 }
 
-BOOL Pokemon_CanSpreadPokerus(Pokemon *mon)
+BOOL Pokemon_HasCuredPokerus(Pokemon *mon)
 {
-    return CanBoxPokemonSpreadPokerus(&mon->box);
+    return BoxPokemonHasCuredPokerus(&mon->box);
 }
 
-static BOOL CanBoxPokemonSpreadPokerus(BoxPokemon *boxMon)
+static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon)
 {
     u8 monPokerus = BoxPokemon_GetValue(boxMon, MON_DATA_POKERUS, NULL);
 
-    if (monPokerus & 0xf) {
-        return 0;
+    if (monPokerus & 0xF) {
+        return FALSE;
     }
 
-    return (monPokerus & 0xf0) != 0;
+    return (monPokerus & 0xF0) != 0;
 }
 
 void Pokemon_SetArceusForm(Pokemon *mon)

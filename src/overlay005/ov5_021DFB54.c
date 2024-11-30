@@ -624,7 +624,7 @@ static BOOL ov5_021E0160(FieldTask *taskMan)
     switch (v0->unk_00) {
     case 0:
         if (PlayerAvatar_MapDistortionState(v0->playerAvatar) == AVATAR_DISTORTION_STATE_NONE) {
-            sub_020553F0(v0->fieldSystem, 0);
+            Sound_SetSpecialBGM(v0->fieldSystem, 0);
             sub_02055554(v0->fieldSystem, 1151, 1);
         }
 
@@ -892,7 +892,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
                 if (ov6_022413E4(fieldSystem, &v9) == 1) {
                     PlayerAvatar_SetInDeepSwamp(v0->playerAvatar, 1);
                     ov5_021E1134(v0);
-                    sub_02050E78(fieldSystem, param0, v9);
+                    Encounter_StartVsWild(fieldSystem, param0, v9);
                     return 0;
                 }
             }

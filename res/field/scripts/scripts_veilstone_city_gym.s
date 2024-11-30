@@ -24,7 +24,7 @@ _0022:
     ScrCmd_1CD 9, 133, 0, 0, 0
     Message 0
     CloseMessage
-    ScrCmd_0E5 0x13D, 0
+    StartTrainerBattle trainer_leader_maylene
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0118
     Message 1
@@ -34,11 +34,11 @@ _0022:
     WaitSound
     GiveBadge BADGE_ID_COBBLE
     ScrCmd_260 23
-    SetTrainerFlag 0x135
-    SetTrainerFlag 0x136
-    SetTrainerFlag 0x137
-    SetTrainerFlag 0x138
-    ScrCmd_1CD 10, 133, 0x13D, 0, 0
+    SetTrainerFlag trainer_black_belt_colby
+    SetTrainerFlag trainer_black_belt_darren
+    SetTrainerFlag trainer_black_belt_rafael
+    SetTrainerFlag trainer_black_belt_jeffery
+    ScrCmd_1CD 10, 133, trainer_leader_maylene, 0, 0
     SetFlag 0x1A3
     ClearFlag 0x1A8
     SetVar 0x407D, 1

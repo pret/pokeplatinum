@@ -12,6 +12,7 @@
 #include "charcode_util.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
@@ -20,36 +21,35 @@
 #include "savedata_misc.h"
 #include "strbuf.h"
 #include "trainer_data.h"
-#include "unk_0201D15C.h"
 
-static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, int heapID);
+static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID);
 
-void TrainerData_Encounter(FieldBattleDTO *battleParams, const SaveData *save, int heapID)
+void TrainerData_Encounter(FieldBattleDTO *dto, const SaveData *save, int heapID)
 {
     TrainerData trdata;
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 618, heapID);
     const charcode_t *rivalName = MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(save));
 
     for (int i = 0; i < MAX_BATTLERS; i++) {
-        if (!battleParams->trainerIDs[i]) {
+        if (!dto->trainerIDs[i]) {
             continue;
         }
 
-        TrainerData_Load(battleParams->trainerIDs[i], &trdata);
-        battleParams->trainerData[i] = trdata;
+        TrainerData_Load(dto->trainerIDs[i], &trdata);
+        dto->trainerData[i] = trdata;
 
         if (trdata.class == TRAINER_CLASS_RIVAL) {
-            CharCode_Copy(battleParams->trainerData[i].name, rivalName);
+            CharCode_Copy(dto->trainerData[i].name, rivalName);
         } else {
-            Strbuf *trainerName = MessageLoader_GetNewStrbuf(msgLoader, battleParams->trainerIDs[i]);
-            Strbuf_ToChars(trainerName, battleParams->trainerData[i].name, TRAINER_NAME_LEN + 1);
+            Strbuf *trainerName = MessageLoader_GetNewStrbuf(msgLoader, dto->trainerIDs[i]);
+            Strbuf_ToChars(trainerName, dto->trainerData[i].name, TRAINER_NAME_LEN + 1);
             Strbuf_Free(trainerName);
         }
 
-        TrainerData_BuildParty(battleParams, i, heapID);
+        TrainerData_BuildParty(dto, i, heapID);
     }
 
-    battleParams->battleType |= trdata.battleType;
+    dto->battleType |= trdata.battleType;
     MessageLoader_Free(msgLoader);
 }
 
@@ -170,11 +170,11 @@ u8 TrainerClass_Gender(int trclass)
 /**
  * @brief Build the party for a trainer as loaded in the FieldBattleDTO struct.
  *
- * @param battleParams  The parent FieldBattleDTO struct containing trainer data.
+ * @param dto  The parent FieldBattleDTO struct containing trainer data.
  * @param battler       Which battler's party is to be loaded.
  * @param heapID        Heap on which to perform any allocations.
  */
-static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, int heapID)
+static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
 {
     // must make declarations C89-style to match
     void *buf;
@@ -186,28 +186,28 @@ static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, in
     oldSeed = LCRNG_GetSeed();
 
     // alloc enough space to support the maximum possible data size
-    Party_InitWithCapacity(battleParams->parties[battler], MAX_PARTY_SIZE);
+    Party_InitWithCapacity(dto->parties[battler], MAX_PARTY_SIZE);
     buf = Heap_AllocFromHeap(heapID, sizeof(TrainerMonWithMovesAndItem) * MAX_PARTY_SIZE);
     mon = Pokemon_New(heapID);
 
-    TrainerData_LoadParty(battleParams->trainerIDs[battler], buf);
+    TrainerData_LoadParty(dto->trainerIDs[battler], buf);
 
     // determine which magic gender-specific modifier to use for the RNG function
-    genderMod = TrainerClass_Gender(battleParams->trainerData[battler].class) == GENDER_FEMALE
+    genderMod = TrainerClass_Gender(dto->trainerData[battler].class) == GENDER_FEMALE
         ? 120
         : 136;
 
-    switch (battleParams->trainerData[battler].type) {
+    switch (dto->trainerData[battler].type) {
     case TRDATATYPE_BASE: {
         TrainerMonBase *trmon = (TrainerMonBase *)buf;
-        for (i = 0; i < battleParams->trainerData[battler].partySize; i++) {
+        for (i = 0; i < dto->trainerData[battler].partySize; i++) {
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> 10;
 
-            rnd = trmon[i].dv + trmon[i].level + species + battleParams->trainerIDs[battler];
+            rnd = trmon[i].dv + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
 
-            for (j = 0; j < battleParams->trainerData[battler].class; j++) {
+            for (j = 0; j < dto->trainerData[battler].class; j++) {
                 rnd = LCRNG_Next();
             }
 
@@ -217,7 +217,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, in
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
-            Party_AddPokemon(battleParams->parties[battler], mon);
+            Party_AddPokemon(dto->parties[battler], mon);
         }
 
         break;
@@ -225,14 +225,14 @@ static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, in
 
     case TRDATATYPE_WITH_MOVES: {
         TrainerMonWithMoves *trmon = (TrainerMonWithMoves *)buf;
-        for (i = 0; i < battleParams->trainerData[battler].partySize; i++) {
+        for (i = 0; i < dto->trainerData[battler].partySize; i++) {
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> 10;
 
-            rnd = trmon[i].dv + trmon[i].level + species + battleParams->trainerIDs[battler];
+            rnd = trmon[i].dv + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
 
-            for (j = 0; j < battleParams->trainerData[battler].class; j++) {
+            for (j = 0; j < dto->trainerData[battler].class; j++) {
                 rnd = LCRNG_Next();
             }
 
@@ -247,7 +247,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, in
 
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
-            Party_AddPokemon(battleParams->parties[battler], mon);
+            Party_AddPokemon(dto->parties[battler], mon);
         }
 
         break;
@@ -255,14 +255,14 @@ static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, in
 
     case TRDATATYPE_WITH_ITEM: {
         TrainerMonWithItem *trmon = (TrainerMonWithItem *)buf;
-        for (i = 0; i < battleParams->trainerData[battler].partySize; i++) {
+        for (i = 0; i < dto->trainerData[battler].partySize; i++) {
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> 10;
 
-            rnd = trmon[i].dv + trmon[i].level + species + battleParams->trainerIDs[battler];
+            rnd = trmon[i].dv + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
 
-            for (j = 0; j < battleParams->trainerData[battler].class; j++) {
+            for (j = 0; j < dto->trainerData[battler].class; j++) {
                 rnd = LCRNG_Next();
             }
 
@@ -273,7 +273,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, in
             Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &trmon[i].item);
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
-            Party_AddPokemon(battleParams->parties[battler], mon);
+            Party_AddPokemon(dto->parties[battler], mon);
         }
 
         break;
@@ -281,14 +281,14 @@ static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, in
 
     case TRDATATYPE_WITH_MOVES_AND_ITEM: {
         TrainerMonWithMovesAndItem *trmon = (TrainerMonWithMovesAndItem *)buf;
-        for (i = 0; i < battleParams->trainerData[battler].partySize; i++) {
+        for (i = 0; i < dto->trainerData[battler].partySize; i++) {
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> 10;
 
-            rnd = trmon[i].dv + trmon[i].level + species + battleParams->trainerIDs[battler];
+            rnd = trmon[i].dv + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
 
-            for (j = 0; j < battleParams->trainerData[battler].class; j++) {
+            for (j = 0; j < dto->trainerData[battler].class; j++) {
                 rnd = LCRNG_Next();
             }
 
@@ -304,7 +304,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *battleParams, int battler, in
 
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
-            Party_AddPokemon(battleParams->parties[battler], mon);
+            Party_AddPokemon(dto->parties[battler], mon);
         }
 
         break;

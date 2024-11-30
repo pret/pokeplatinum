@@ -30,19 +30,19 @@ _000A:
     End
 
 _007A:
-    ScrCmd_0E5 0x108, 0
+    StartTrainerBattle trainer_elite_four_lucian
     Return
 
 _0082:
-    ScrCmd_0E5 0x365, 0
+    StartTrainerBattle trainer_elite_four_lucian_rematch
     Return
 
 _008A:
-    ScrCmd_1CD 11, 0x108, 0, 0, 0
+    ScrCmd_1CD 11, trainer_elite_four_lucian, 0, 0, 0
     Return
 
 _0098:
-    ScrCmd_1CD 11, 0x365, 0, 0, 0
+    ScrCmd_1CD 11, trainer_elite_four_lucian_rematch, 0, 0, 0
     Return
 
 _00A6:

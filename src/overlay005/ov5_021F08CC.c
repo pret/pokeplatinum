@@ -22,6 +22,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "map_object.h"
+#include "math.h"
 #include "message.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -33,7 +34,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0201D15C.h"
 #include "unk_0205D8CC.h"
 #include "unk_020655F4.h"
 #include "unk_0206CCB0.h"
@@ -123,7 +123,7 @@ BOOL ov5_021F08F8(FieldTask *taskMan)
                     GameRecords_IncrementRecordValue(v4, RECORD_UNK_010);
                 }
 
-                sub_02050E78(fieldSystem, taskMan, v1->unk_10);
+                Encounter_StartVsWild(fieldSystem, taskMan, v1->unk_10);
                 Heap_FreeToHeap(v1);
 
                 return 0;

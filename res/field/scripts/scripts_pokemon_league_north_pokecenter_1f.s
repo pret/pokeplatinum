@@ -154,15 +154,15 @@ _01C1:
     GoTo _01F7
 
 _01F7:
-    ScrCmd_0E5 0x1DF, 0
+    StartTrainerBattle trainer_rival_pokemon_league_piplup
     GoTo _021B
 
 _0203:
-    ScrCmd_0E5 0x1E0, 0
+    StartTrainerBattle trainer_rival_pokemon_league_turtwig
     GoTo _021B
 
 _020F:
-    ScrCmd_0E5 0x1E1, 0
+    StartTrainerBattle trainer_rival_pokemon_league_chimchar
     GoTo _021B
 
 _021B:

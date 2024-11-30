@@ -17,6 +17,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "main.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -27,7 +28,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0201E190.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -530,7 +530,7 @@ static void ov77_021D1568(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D12
         param0->unk_2A8 += 2;
         param0->unk_2A8 %= 360;
 
-        v1 = sub_0201D250((param0->unk_2A8 * 0xffff) / 360);
+        v1 = CalcSineDegrees_Wraparound((param0->unk_2A8 * 0xffff) / 360);
         v1 *= 0.30;
 
         param1->unk_80.y -= v1;

@@ -130,7 +130,7 @@ _01C5:
     ApplyMovement 3, _0488
     ApplyMovement 0xFF, _04BC
     WaitMovement
-    ScrCmd_126
+    StartCatchingTutorial
     ApplyMovement 3, _0490
     WaitMovement
     GetPlayerGender 0x800C

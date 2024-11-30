@@ -11,10 +11,10 @@
 
 #include "core_sys.h"
 #include "heap.h"
+#include "math.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0201D15C.h"
 
 static void sub_02028B48(UndergroundData *param0, int param1, int param2);
 

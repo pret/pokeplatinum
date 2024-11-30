@@ -30,6 +30,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -44,7 +45,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_0201D15C.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 
@@ -1913,8 +1913,8 @@ static void ov17_022434E0(SysTask *param0, void *param1)
         }
 
         v3 = v0->unk_10 / 0x100;
-        v1 = FX_Mul(sub_0201D1D4(v0->unk_1E / 100), v3 << FX32_SHIFT) / FX32_ONE;
-        v2 = FX_Mul(sub_0201D15C(v0->unk_1E / 100), v3 << FX32_SHIFT) / FX32_ONE;
+        v1 = FX_Mul(CalcCosineDegrees(v0->unk_1E / 100), v3 << FX32_SHIFT) / FX32_ONE;
+        v2 = FX_Mul(CalcSineDegrees(v0->unk_1E / 100), v3 << FX32_SHIFT) / FX32_ONE;
         SpriteActor_SetSpritePositionXY(v0->unk_08, v0->unk_21 + v1, v0->unk_22 + v2);
         break;
     default:
@@ -2023,8 +2023,8 @@ static void ov17_02243750(SysTask *param0, void *param1)
             v0->unk_0C -= 360 * 100;
         }
 
-        v3 = FX_Mul(sub_0201D15C(v0->unk_0C / 100), (12 << FX32_SHIFT)) / FX32_ONE;
-        v4 = FX_Mul(sub_0201D1D4(v0->unk_0C / 100), (6 << FX32_SHIFT)) / FX32_ONE;
+        v3 = FX_Mul(CalcSineDegrees(v0->unk_0C / 100), (12 << FX32_SHIFT)) / FX32_ONE;
+        v4 = FX_Mul(CalcCosineDegrees(v0->unk_0C / 100), (6 << FX32_SHIFT)) / FX32_ONE;
 
         v0->unk_20 += 0x80;
         SpriteActor_SetSpritePositionXY(v0->unk_04, (v0->unk_1C >> 8) + v3, (v0->unk_20 >> 8) + v4);

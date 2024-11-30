@@ -154,14 +154,10 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Options *options = SaveData_Options(fieldSystem->saveData);
-    MessageLoader *msgLoader;
-    Strbuf *strbuf;
-    FieldBattleDTO *dto;
+    FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_CATCH_TUTORIAL);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_counterpart_names, heapID);
+    Strbuf *strbuf = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
     Pokemon *mon;
-
-    dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_CATCH_TUTORIAL);
-    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_counterpart_names, heapID);
-    strbuf = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
 
     MessageLoader_GetStrbuf(msgLoader, TrainerInfo_Gender(trainerInfo) ^ 1, strbuf);
     TrainerInfo_SetName(dto->trainerInfo[BATTLER_PLAYER_SLOT_1], Strbuf_GetData(strbuf));
@@ -429,7 +425,7 @@ void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fi
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     PokedexData *pokedex = SaveData_Pokedex(fieldSystem->saveData);
-    u16 *fieldSysSafariBalls = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *fieldSysSafariBalls = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     TrainerInfo_Copy(dto->trainerInfo[BATTLER_PLAYER_SLOT_1], trainerInfo);
     Party_cpy(dto->parties[BATTLER_PLAYER_SLOT_1], party);

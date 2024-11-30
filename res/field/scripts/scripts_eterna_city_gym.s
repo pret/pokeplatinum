@@ -67,7 +67,7 @@ _0094:
     ScrCmd_1CD 9, 67, 0, 0, 0
     Message 0
     CloseMessage
-    ScrCmd_0E5 0x13B, 0
+    StartTrainerBattle trainer_leader_gardenia
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 1
@@ -77,12 +77,12 @@ _0094:
     WaitSound
     GiveBadge BADGE_ID_FOREST
     ScrCmd_260 23
-    SetTrainerFlag 0x103
-    SetTrainerFlag 0x104
-    SetTrainerFlag 0x144
-    SetTrainerFlag 0x15C
+    SetTrainerFlag trainer_aroma_lady_jenna
+    SetTrainerFlag trainer_aroma_lady_angela
+    SetTrainerFlag trainer_lass_caroline
+    SetTrainerFlag trainer_beauty_lindsay
     ClearFlag 0x1FC
-    ScrCmd_1CD 10, 67, 0x13B, 0, 0
+    ScrCmd_1CD 10, 67, trainer_leader_gardenia, 0, 0
     Message 3
     GoTo _0177
     End
@@ -149,10 +149,10 @@ _01C9:
     LockAll
     FacePlayer
     GoToIfGe 0x40AE, 1, _0211
-    ScrCmd_0EA 0x144
+    ScrCmd_0EA trainer_lass_caroline
     Message 6
     CloseMessage
-    ScrCmd_0E5 0x144, 0
+    StartTrainerBattle trainer_lass_caroline
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 7
@@ -175,12 +175,12 @@ _021C:
     LockAll
     FacePlayer
     GoToIfGe 0x40AE, 2, _0270
-    ScrCmd_0EA 0x103
+    ScrCmd_0EA trainer_aroma_lady_jenna
     SetVar 0x8007, 3
     Call _02DA
     Message 8
     CloseMessage
-    ScrCmd_0E5 0x103, 0
+    StartTrainerBattle trainer_aroma_lady_jenna
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 9
@@ -203,12 +203,12 @@ _027B:
     LockAll
     FacePlayer
     GoToIfGe 0x40AE, 3, _02CF
-    ScrCmd_0EA 0x104
+    ScrCmd_0EA trainer_aroma_lady_angela
     SetVar 0x8007, 4
     Call _02DA
     Message 10
     CloseMessage
-    ScrCmd_0E5 0x104, 0
+    StartTrainerBattle trainer_aroma_lady_angela
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 11

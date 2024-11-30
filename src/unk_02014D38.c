@@ -5,11 +5,11 @@
 
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "savedata.h"
 #include "strbuf.h"
-#include "unk_0201D15C.h"
 
 static const u16 Unk_020E5522[] = {
     0x1F0,
