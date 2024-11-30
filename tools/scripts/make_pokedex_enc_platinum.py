@@ -35,6 +35,9 @@ argparser.add_argument('-g', '--trophy-file',
 argparser.add_argument('-m', '--marsh-file',
                        required=True,
                        help='encounter file for the Great Marsh Lookout')
+argparser.add_argument('src_files',
+                       nargs='+',
+                       help='List of files to process in-order')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -281,11 +284,9 @@ field_night = [set() for species in range(NUM_POKEMON)]
 field_special = [set() for species in range(NUM_POKEMON)]
 field_special_natdex = [set() for species in range(NUM_POKEMON)]
 
-for file in source_dir.glob('encounters_*.json'):
+for file in args.src_files:
     with open(file, encoding='utf-8') as encounter_file:
         enc_data = json.load(encounter_file)
-
-    file = str(file)
 
     if (file == args.honey_file):
         for species in enc_data['common']:

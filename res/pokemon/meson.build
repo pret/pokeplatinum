@@ -799,7 +799,8 @@ pokedex_data_narc = custom_target('zukan_data.narc',
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
-        'giratina_origin'
+        'giratina_origin',
+        pokedex_data_srcs
     ]
 )
 
@@ -814,7 +815,8 @@ pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
-        'giratina_altered'
+        'giratina_altered',
+        pokedex_data_srcs
     ]
 )
 

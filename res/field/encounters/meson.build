@@ -250,6 +250,7 @@ pokedex_enc_platinum_narc = custom_target('zukan_enc_platinum.narc',
         '--honey-file', '@INPUT1@',
         '--trophy-file', '@INPUT2@',
         '--marsh-file', '@INPUT3@',
+        zukan_enc_platinum_srcs
     ]
 )
 

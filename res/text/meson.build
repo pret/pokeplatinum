@@ -756,16 +756,14 @@ pokedex_message_banks = custom_target('pokedex_message_banks',
         'message_bank_species_name_number_3.gmm',
         'message_bank_species_category.gmm'
     ],
-    input: [
-        message_banks_narc_order,
-        pokedex_data_srcs
-    ],
+    input: pokedex_data_srcs,
     env: json2bin_env,
     depends: [ py_consts_generators ],
     command: [
         make_pokedex_message_banks_py,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--output-dir', '@OUTDIR@'
+        '--output-dir', '@OUTDIR@',
+        pokedex_data_srcs
     ]
 )
 
