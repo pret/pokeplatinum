@@ -221,8 +221,8 @@ static int sub_02069D8C(MapObject *mapObj)
 {
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
     PlayerAvatar *playerAvatar = sub_0205EF3C(fieldSystem);
-    int v2 = MapObject_GetXPos(mapObj);
-    int v3 = MapObject_GetZPos(mapObj);
+    int v2 = MapObject_GetX(mapObj);
+    int v3 = MapObject_GetZ(mapObj);
     int v4 = PlayerAvatar_XPosPrev(playerAvatar);
     int v5 = PlayerAvatar_ZPosPrev(playerAvatar);
 
@@ -309,7 +309,7 @@ static int (*const Unk_020EF8EC[])(MapObject *, UnkStruct_02069F48 *) = {
 MapObject *sub_02069EB8(MapObject *mapObj)
 {
     int v0 = 0;
-    int v1 = MapObject_GetEventType(mapObj);
+    int v1 = MapObject_GetTrainerType(mapObj);
     int v2 = sub_02062918(mapObj);
     u32 v3 = sub_02067F24(mapObj);
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
@@ -364,8 +364,8 @@ static int sub_02069F48(MapObject *mapObj, UnkStruct_02069F48 *param1)
 static void sub_02069FC4(MapObject *mapObj, UnkStruct_02069F48 *param1, MapObject *param2)
 {
     param1->unk_01 = 1;
-    param1->unk_02 = MapObject_GetXPos(param2);
-    param1->unk_04 = MapObject_GetZPos(param2);
+    param1->unk_02 = MapObject_GetX(param2);
+    param1->unk_04 = MapObject_GetZ(param2);
     param1->unk_06 = 0xff;
     param1->unk_08 = param2;
 }
@@ -373,12 +373,12 @@ static void sub_02069FC4(MapObject *mapObj, UnkStruct_02069F48 *param1, MapObjec
 static int sub_02069FE8(MapObject *mapObj, UnkStruct_02069F48 *param1)
 {
     MapObject *v0 = param1->unk_08;
-    int v1 = MapObject_GetXPos(mapObj);
-    int v2 = MapObject_GetZPos(mapObj);
-    int v3 = MapObject_XPosPrev(v0);
-    int v4 = MapObject_ZPosPrev(v0);
+    int v1 = MapObject_GetX(mapObj);
+    int v2 = MapObject_GetZ(mapObj);
+    int v3 = MapObject_GetXPrev(v0);
+    int v4 = MapObject_GetZPrev(v0);
 
-    if (((v1 != v3) || (v2 != v4)) && ((MapObject_IsMoving(v0) == 1) || (MapObject_CheckStatus(v0, ((1 << 11) | (1 << 12) | (1 << 6))) == 0))) {
+    if (((v1 != v3) || (v2 != v4)) && ((MapObject_IsMoving(v0) == 1) || (!MapObject_CheckStatus(v0, (MAP_OBJ_STATUS_11 | MAP_OBJ_STATUS_12 | MAP_OBJ_STATUS_PAUSE_MOVEMENT))))) {
         return 1;
     }
 
@@ -387,12 +387,12 @@ static int sub_02069FE8(MapObject *mapObj, UnkStruct_02069F48 *param1)
 
 static int sub_0206A034(MapObject *mapObj, UnkStruct_02069F48 *param1)
 {
-    int v0 = MapObject_GetXPos(mapObj);
-    int v1 = MapObject_GetZPos(mapObj);
-    int v2 = MapObject_GetXPos(param1->unk_08);
-    int v3 = MapObject_GetZPos(param1->unk_08);
-    int v4 = MapObject_XPosPrev(param1->unk_08);
-    int v5 = MapObject_ZPosPrev(param1->unk_08);
+    int v0 = MapObject_GetX(mapObj);
+    int v1 = MapObject_GetZ(mapObj);
+    int v2 = MapObject_GetX(param1->unk_08);
+    int v3 = MapObject_GetZ(param1->unk_08);
+    int v4 = MapObject_GetXPrev(param1->unk_08);
+    int v5 = MapObject_GetZPrev(param1->unk_08);
     int v6;
 
     if ((v0 == v2) && (v1 == v3)) {
@@ -549,7 +549,7 @@ static void sub_0206A23C(MapObject *mapObj, int param1, u32 param2)
     v0->unk_01 = -1;
     v0->unk_02 = param2;
 
-    MapObject_SetDir(mapObj, 0);
+    MapObject_TryFace(mapObj, 0);
 }
 
 void sub_0206A25C(MapObject *mapObj)
@@ -603,7 +603,7 @@ void sub_0206A2BC(MapObject *mapObj)
 
 static int sub_0206A2E0(MapObject *mapObj, UnkStruct_0206A23C *param1)
 {
-    int v0 = MapObject_Dir(mapObj);
+    int v0 = MapObject_GetFacingDir(mapObj);
 
     v0 = sub_02065838(v0, 0x0);
 
@@ -868,8 +868,8 @@ static BOOL sub_0206A54C(FieldSystem *fieldSystem, int param1, int param2, int p
 static int sub_0206A574(MapObject *mapObj, int param1, int param2)
 {
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-    int v1 = MapObject_GetXPos(mapObj);
-    int v2 = MapObject_GetZPos(mapObj);
+    int v1 = MapObject_GetX(mapObj);
+    int v2 = MapObject_GetZ(mapObj);
     BOOL v3 = sub_0206A524(fieldSystem, v1, v2, param1, param2);
 
     return v3;
@@ -878,8 +878,8 @@ static int sub_0206A574(MapObject *mapObj, int param1, int param2)
 static int sub_0206A5A4(MapObject *mapObj, int param1, int param2)
 {
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-    int v1 = MapObject_GetXPos(mapObj);
-    int v2 = MapObject_GetZPos(mapObj);
+    int v1 = MapObject_GetX(mapObj);
+    int v2 = MapObject_GetZ(mapObj);
     BOOL v3 = sub_0206A54C(fieldSystem, v1, v2, param1, param2);
 
     return v3;
@@ -916,12 +916,12 @@ static int sub_0206A630(MapObject *mapObj, UnkStruct_0206A47C *param1, int param
 {
     u32 v0;
     int v1 = param1->unk_08;
-    int v2 = MapObject_Dir(mapObj);
+    int v2 = MapObject_GetFacingDir(mapObj);
 
     v0 = sub_0206A60C(mapObj, &v2, v1);
 
     if (v2 == -1) {
-        v2 = MapObject_Dir(mapObj);
+        v2 = MapObject_GetFacingDir(mapObj);
         param2 = sub_02065838(v2, 0x1c);
         sub_02065668(mapObj, param2);
         return 0;
@@ -935,14 +935,14 @@ static int sub_0206A630(MapObject *mapObj, UnkStruct_0206A47C *param1, int param
     }
 
     if ((v0 & (1 << 0)) && (param1->unk_04 == 2)) {
-        v2 = Direction_GetOpposite(MapObject_Dir(mapObj));
+        v2 = Direction_GetOpposite(MapObject_GetFacingDir(mapObj));
         v1 = Unk_020EF8E4[v1];
         param1->unk_08 = v1;
 
         v0 = sub_0206A60C(mapObj, &v2, v1);
 
         if (v2 == -1) {
-            v2 = MapObject_Dir(mapObj);
+            v2 = MapObject_GetFacingDir(mapObj);
             param2 = sub_02065838(v2, 0x1c);
             sub_02065668(mapObj, param2);
             return 0;
@@ -961,7 +961,7 @@ static int sub_0206A630(MapObject *mapObj, UnkStruct_0206A47C *param1, int param
         v0 = sub_0206A60C(mapObj, &v2, v1);
 
         if (v2 == -1) {
-            v2 = MapObject_Dir(mapObj);
+            v2 = MapObject_GetFacingDir(mapObj);
             param2 = sub_02065838(v2, 0x1c);
             sub_02065668(mapObj, param2);
             return 0;
@@ -975,7 +975,7 @@ static int sub_0206A630(MapObject *mapObj, UnkStruct_0206A47C *param1, int param
         }
     }
 
-    v2 = MapObject_Dir(mapObj);
+    v2 = MapObject_GetFacingDir(mapObj);
     param2 = sub_02065838(v2, 0x1c);
 
     sub_02065668(mapObj, param2);

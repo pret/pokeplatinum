@@ -102,8 +102,8 @@ UnkStruct_ov101_021D5D90 *ov5_021F3D90(MapObject *param0, int param1)
 
     {
         FieldSystem *fieldSystem = ov5_021DF574(v3);
-        int v5 = MapObject_GetXPos(param0);
-        int v6 = MapObject_GetZPos(param0);
+        int v5 = MapObject_GetX(param0);
+        int v6 = MapObject_GetZ(param0);
 
         sub_02064450(v5, v6, &v0);
         sub_020644A4(fieldSystem, &v0);
@@ -132,7 +132,7 @@ static int ov5_021F3E00(UnkStruct_ov101_021D5D90 *param0, void *param1)
     MapObject *v2 = v1->unk_0C;
 
     v0->unk_10 = *v1;
-    v0->unk_08 = MapObject_Id(v2);
+    v0->unk_08 = MapObject_GetLocalID(v2);
     v0->unk_0C = sub_02062918(v2);
 
     return 1;

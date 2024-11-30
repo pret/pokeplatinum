@@ -191,7 +191,7 @@ UnkStruct_ov101_021D5D90 *ov5_021F121C(const MapObject *param0, const VecFx32 *p
     UnkStruct_021F121C v2;
     UnkStruct_ov5_021DF47C *v3 = ov5_021DF578(param0);
 
-    v2.unk_00 = sub_02062920(param0);
+    v2.unk_00 = MapObject_GetGraphicsID(param0);
     v2.unk_04 = v3;
     v2.unk_08 = param0;
 
@@ -209,7 +209,7 @@ static int ov5_021F1258(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v1 = sub_020715BC(param0);
 
     v0->unk_1C = *v1;
-    v0->unk_04 = MapObject_Id(v0->unk_1C.unk_08);
+    v0->unk_04 = MapObject_GetLocalID(v0->unk_1C.unk_08);
     v0->unk_18 = ov5_021F11FC(v0->unk_1C.unk_04, v0->unk_1C.unk_00);
 
     if (sub_02062E94(v0->unk_1C.unk_08) == 1) {
@@ -240,7 +240,7 @@ static void ov5_021F12AC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     {
         VecFx32 v2, v3;
 
-        MapObject_PosVectorOut(v1, &v2);
+        MapObject_GetPosPtr(v1, &v2);
         sub_02063078(v1, &v3);
 
         v2.x += v3.x + v0->unk_0C.x;

@@ -412,7 +412,7 @@ static void CommPlayer_Add(u8 netId)
         GF_ASSERT(playerAvatar != NULL);
         sCommPlayerManager->playerAvatar[netId] = playerAvatar;
 
-        MapObject_SetId(Player_MapObject(playerAvatar), 0xff + netId + 1);
+        MapObject_SetLocalID(Player_MapObject(playerAvatar), 0xff + netId + 1);
 
         if (sCommPlayerManager->isUnderground) {
             UndergroundMan_SetReturnLog(netId);

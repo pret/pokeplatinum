@@ -2566,7 +2566,7 @@ static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param
     sub_02062D80(param1->unk_20, 0);
     sub_02062E28(param1->unk_20, 1);
 
-    v4 = MapObject_PosVector(param1->unk_20);
+    v4 = MapObject_GetPos(param1->unk_20);
 
     ov5_021E931C(v4, fieldSystem->unk_28);
     Camera_TrackTarget(v4, fieldSystem->camera);
@@ -2644,8 +2644,8 @@ static BOOL ov8_0224B2E8(UnkStruct_ov8_0224B28C *param0)
 
     if (LocalMapObj_IsAnimationSet(param0->unk_20) == 1) {
         int v1 = 0x9a;
-        int v2 = MapObject_GetXPos(v0);
-        int v3 = MapObject_GetZPos(v0);
+        int v2 = MapObject_GetX(v0);
+        int v3 = MapObject_GetZ(v0);
 
         if ((v2 == param0->unk_08) && (v3 == param0->unk_0C)) {
             return 1;
@@ -3015,8 +3015,8 @@ static MapObject *ov8_0224B7D8(FieldSystem *fieldSystem, int param1, int param2,
 
     v0 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
-    MapObject_SetId(v0, 0xfd);
-    sub_020629B4(v0, param3, 0);
+    MapObject_SetLocalID(v0, 0xfd);
+    MapObject_SetDataAt(v0, param3, 0);
 
     return v0;
 }
@@ -3024,10 +3024,10 @@ static MapObject *ov8_0224B7D8(FieldSystem *fieldSystem, int param1, int param2,
 static void ov8_0224B80C(UnkStruct_ov8_0224B80C *param0, MapObject *param1, FieldSystem *fieldSystem)
 {
     param0->unk_08 = param1;
-    param0->unk_00 = MapObject_GetXPos(param1);
-    param0->unk_04 = MapObject_GetZPos(param1);
+    param0->unk_00 = MapObject_GetX(param1);
+    param0->unk_04 = MapObject_GetZ(param1);
 
-    if (sub_020629D8(param1, 0) == 0) {
+    if (MapObject_GetDataAt(param1, 0) == 0) {
         param0->unk_0C = ov5_021F4474(fieldSystem, param0->unk_00, param0->unk_04, 0);
     } else {
         param0->unk_0C = ov5_021F4668(fieldSystem, param0->unk_00, param0->unk_04, 0);
@@ -3117,8 +3117,8 @@ static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0)
     UnkStruct_ov8_0224BCA8 *v6 = param0->unk_10C;
 
     while (sub_020625B0(mapObjMan, &v2, &v0, (1 << 0)) == 1) {
-        if (MapObject_Id(v2) == 0xfd) {
-            if (sub_020629D8(v2, 0) == 0) {
+        if (MapObject_GetLocalID(v2) == 0xfd) {
+            if (MapObject_GetDataAt(v2, 0) == 0) {
                 ov8_0224B80C(&v5->unk_08, v2, fieldSystem);
                 v5->unk_00 = 1;
                 v5++;
@@ -3589,7 +3589,7 @@ static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param
     sub_02062D80(v3->unk_30, 0);
     sub_02062E28(v3->unk_30, 1);
 
-    v2 = MapObject_PosVector(v3->unk_30);
+    v2 = MapObject_GetPos(v3->unk_30);
 
     ov5_021E931C(v2, fieldSystem->unk_28);
     Camera_TrackTarget(v2, fieldSystem->camera);
@@ -3876,12 +3876,12 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
     v3 = sub_02062858(mapObjMan) + 2;
 
     while (sub_020625B0(mapObjMan, &v5, &v0, (1 << 0))) {
-        v4 = MapObject_Id(v5);
-        v6->unk_08 = sub_020629D8(v5, 0);
+        v4 = MapObject_GetLocalID(v5);
+        v6->unk_08 = MapObject_GetDataAt(v5, 0);
 
-        if ((v4 == 0xff) || ((MapObject_GetEventType(v5) == 0x1) && v6->unk_08)) {
+        if ((v4 == 0xff) || ((MapObject_GetTrainerType(v5) == 0x1) && v6->unk_08)) {
             v6->unk_00 = 1;
-            v6->unk_04 = MapObject_Dir(v5);
+            v6->unk_04 = MapObject_GetFacingDir(v5);
             v6->unk_14 = v5;
             v6->unk_18 = param0;
 
@@ -3939,14 +3939,14 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
     playerAvatar = fieldSystem->playerAvatar;
     v8 = Player_MapObject(playerAvatar);
     v2 = 2;
-    v1 = Direction_GetOpposite(MapObject_Dir(v8));
+    v1 = Direction_GetOpposite(MapObject_GetFacingDir(v8));
 
     while (sub_020625B0(mapObjMan, &v7, &v0, (1 << 0))) {
         if ((v7 != v8) && (sub_02067F88(fieldSystem, v7) == 1)) {
             v3 = sub_02067D58(v7, playerAvatar, v1, v2);
 
             if (v3 != -1) {
-                int v9 = MapObject_GetEventID(v7);
+                int v9 = MapObject_GetScript(v7);
 
                 ScriptManager_Set(fieldSystem, 3928, v7);
                 ScriptManager_SetApproachingTrainer(fieldSystem, v7, v3, v1, v9, Script_GetTrainerID(v9), 0, 0);
@@ -3971,10 +3971,10 @@ BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
     {
         MapObject *v1 = param1;
 
-        MapObject_SetXInitial(v1, MapObject_GetXPos(v1));
-        MapObject_SetZInitial(v1, MapObject_GetZPos(v1));
-        sub_020629FC(v1, 2);
-        sub_02062A04(v1, 2);
+        MapObject_SetXInitial(v1, MapObject_GetX(v1));
+        MapObject_SetZInitial(v1, MapObject_GetZ(v1));
+        MapObject_SetMovementRangeX(v1, 2);
+        MapObject_SetMovementRangeZ(v1, 2);
         MapObject_SetMoveCode(v1, 0x3);
 
         return 1;

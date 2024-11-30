@@ -268,8 +268,8 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
-            if (MapObject_GetEventType(object) != 0x9) {
-                ScriptManager_Set(fieldSystem, MapObject_GetEventID(object), object);
+            if (MapObject_GetTrainerType(object) != 0x9) {
+                ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
             } else {
                 ScriptManager_Set(fieldSystem, 0, object);
             }
@@ -343,7 +343,7 @@ static BOOL Field_CheckSign(FieldSystem *fieldSystem)
     MapObject *object;
 
     if (sub_0203CBE0(fieldSystem, &object) == TRUE) {
-        ScriptManager_Set(fieldSystem, MapObject_GetEventID(object), object);
+        ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
         return TRUE;
     }
 
@@ -403,12 +403,12 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
     if (input->interact) {
         MapObject *object;
 
-        if (sub_0203CA40(fieldSystem, &object) == TRUE && MapObject_GetMoveCode(object) != 0x1) {
+        if (sub_0203CA40(fieldSystem, &object) == TRUE && MapObject_GetMovementType(object) != 0x1) {
             if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
-            ScriptManager_Set(fieldSystem, MapObject_GetEventID(object), object);
+            ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
             return TRUE;
         }
     }
@@ -464,7 +464,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
             }
 
             sub_02036B84();
-            ScriptManager_Set(fieldSystem, MapObject_GetEventID(object), object);
+            ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
 
             return TRUE;
         }
@@ -500,8 +500,8 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
-            if (MapObject_GetEventType(object) != 0x9) {
-                ScriptManager_Set(fieldSystem, MapObject_GetEventID(object), object);
+            if (MapObject_GetTrainerType(object) != 0x9) {
+                ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
             } else {
                 ScriptManager_Set(fieldSystem, 0, object);
             }
@@ -1072,9 +1072,9 @@ static BOOL Field_DistortionInteract(FieldSystem *fieldSystem, MapObject **objec
     sub_020617BC(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
 
     while (sub_020625B0(fieldSystem->mapObjMan, object, &objectIndex, (1 << 0))) {
-        objectX = MapObject_GetXPos(*object);
-        objectY = MapObject_GetYPos(*object) / 2;
-        objectZ = MapObject_GetZPos(*object);
+        objectX = MapObject_GetX(*object);
+        objectY = MapObject_GetY(*object) / 2;
+        objectZ = MapObject_GetZ(*object);
 
         if (playerY == objectY && playerX == objectX && playerZ == objectZ) {
             return TRUE;
