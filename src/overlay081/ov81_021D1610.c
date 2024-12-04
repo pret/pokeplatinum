@@ -7,7 +7,6 @@
 #include "struct_defs/struct_0202BFCC.h"
 
 #include "overlay081/struct_ov81_021D1610.h"
-
 #include "text/gmm/message_bank_journal_entries.h"
 
 #include "bg_window.h"
