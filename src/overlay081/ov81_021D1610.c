@@ -8,6 +8,8 @@
 
 #include "overlay081/struct_ov81_021D1610.h"
 
+#include "text/gmm/message_bank_journal_entries.h"
+
 #include "bg_window.h"
 #include "font.h"
 #include "heap.h"
@@ -825,18 +827,18 @@ static void ov81_021D2908(UnkStruct_ov81_021D1610 *param0, Window *param1, Journ
 
     switch (journalEntryMon->stringVariant) {
     case 0:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 49); // Caught [species] ([time]).
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_caught_pokemon);
         break;
     case 1:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 50); // [species] was caught ([time]).
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_pokemon_was_caught);
         break;
     default:
         if (journalEntryMon->gender == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 51); // Caught a male [species].
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_caught_male_pokemon);
         } else if (journalEntryMon->gender == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 52); // Caught a female [species].
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_caught_female_pokemon);
         } else {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 49); // Caught [species] ([time]).
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_caught_pokemon);
         }
     }
 
@@ -854,18 +856,18 @@ static void ov81_021D29B4(UnkStruct_ov81_021D1610 *param0, Window *param1, Journ
 
     switch (journalEntryMon->stringVariant) {
     case 0:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 53); // [species] was defeated ([time]).
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_pokemon_was_defeated);
         break;
     case 1:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 54); // Defeated [species] ([time]).
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_defeated_pokemon);
         break;
     default:
         if (journalEntryMon->gender == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 55); // Defeated a male [species].
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_defeated_male_pokemon);
         } else if (journalEntryMon->gender == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 56); // Defeated a female [species].
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_defeated_female_pokemon);
         } else {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 53); // [species] was defeated ([time]).
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_pokemon_was_defeated);
         }
     }
 
