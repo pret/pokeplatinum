@@ -141,7 +141,7 @@ JournalEntry *Journal_GetSavedPage(JournalEntry *journalEntry, BOOL journalAcqui
 
     if (journalEntry[0].title.month != 0
         && (journalEntry[0].title.year != currDate.year || journalEntry[0].title.month != currDate.month
-        || journalEntry[0].title.day != currDate.day || journalEntry[0].title.week != currDate.week)) {
+            || journalEntry[0].title.day != currDate.day || journalEntry[0].title.week != currDate.week)) {
         for (i = MAX_JOURNAL_ENTRIES - 1; i >= 1; i--) {
             journalEntry[i] = journalEntry[i - 1];
         }

@@ -38,7 +38,6 @@ typedef struct {
     u16 mapID;
 } JournalEntryTrainer;
 
-
 typedef struct {
     JournalEntryTitle title;
     u32 unk_04[4];
