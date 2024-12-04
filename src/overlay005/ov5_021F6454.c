@@ -985,23 +985,23 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
     MapObject *v6 = Player_MapObject(fieldSystem->playerAvatar);
     MapObject *v7;
 
-    MapObject_PosVectorOut(v6, &v1);
+    MapObject_GetPosPtr(v6, &v1);
     v0 = v1.y;
 
-    while (sub_020625B0(mapObjMan, &v7, &v3, (1 << 0)) == 1) {
+    while (sub_020625B0(mapObjMan, &v7, &v3, MAP_OBJ_STATUS_0) == 1) {
         if (v7 != v6) {
-            MapObject_SetStatusFlagOn(v7, (1 << 13));
+            MapObject_SetStatusFlagOn(v7, MAP_OBJ_STATUS_13);
 
-            if (MapObject_GetStateFlag(v7, (1 << 12)) == 1) {
-                MapObject_PosVectorOut(v7, &v1);
+            if (MapObject_CheckStatusFlag(v7, MAP_OBJ_STATUS_12) == 1) {
+                MapObject_GetPosPtr(v7, &v1);
                 v1.y = v0;
-                MapObject_SetPosVec(v7, &v1);
+                MapObject_SetPos(v7, &v1);
                 MapObject_SetY(v7, (((v0) >> 3) / FX32_ONE));
             }
 
             v2 = ov5_021EB1A0(v7);
 
-            if ((v2 == NULL) && sub_020677F4(sub_02062920(v7))) {
+            if ((v2 == NULL) && sub_020677F4(MapObject_GetGraphicsID(v7))) {
                 if (sub_02062D4C(v7)) {
                     sub_02062B68(v7);
                     v2 = sub_02067A58(v7);
@@ -1026,9 +1026,9 @@ BOOL ScrCmd_32E(ScriptContext *ctx)
     MapObject *v3 = Player_MapObject(fieldSystem->playerAvatar);
     MapObject *v4;
 
-    while (sub_020625B0(mapObjMan, &v4, &v0, (1 << 0)) == 1) {
+    while (sub_020625B0(mapObjMan, &v4, &v0, MAP_OBJ_STATUS_0) == 1) {
         if (v4 != v3) {
-            MapObject_SetStatusFlagOff(v4, (1 << 13));
+            MapObject_SetStatusFlagOff(v4, MAP_OBJ_STATUS_13);
         }
     }
 
@@ -1040,12 +1040,12 @@ static void ov5_021F7654(MapObject *param0, int param1)
     VecFx32 v0;
     UnkStruct_020216E0 *v1;
 
-    MapObject_SetStatusFlagOn(param0, (1 << 13));
-    MapObject_PosVectorOut(param0, &v0);
+    MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_13);
+    MapObject_GetPosPtr(param0, &v0);
 
     v0.y = (((param1) << 4) * FX32_ONE);
 
-    MapObject_SetPosVec(param0, &v0);
+    MapObject_SetPos(param0, &v0);
     MapObject_SetY(param0, ((param1) * 2));
 
     v1 = ov5_021EB1A0(param0);
@@ -1085,13 +1085,13 @@ BOOL ScrCmd_332(ScriptContext *ctx)
     v0 = MapObjMan_LocalMapObjByIndex(v1, 32);
 
     if (v0 != NULL) {
-        MapObject_SetStatusFlagOff(v0, (1 << 13));
+        MapObject_SetStatusFlagOff(v0, MAP_OBJ_STATUS_13);
     }
 
     v0 = MapObjMan_LocalMapObjByIndex(v1, 2);
 
     if (v0 != NULL) {
-        MapObject_SetStatusFlagOff(v0, (1 << 13));
+        MapObject_SetStatusFlagOff(v0, MAP_OBJ_STATUS_13);
     }
 
     return 0;
@@ -1102,7 +1102,7 @@ BOOL ScrCmd_338(ScriptContext *ctx)
     int v0;
     MapObject *v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 15);
     if (v1 != NULL) {
-        switch (MapObject_GetXPos(v1)) {
+        switch (MapObject_GetX(v1)) {
         case 28:
             v0 = 6;
             break;
