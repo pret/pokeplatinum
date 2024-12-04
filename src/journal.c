@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/badges.h"
+#include "consts/map.h"
+
 #include "struct_defs/struct_0202BCC8.h"
 #include "struct_defs/struct_0202BFCC.h"
 
@@ -14,14 +17,6 @@
 #include "trainer_info.h"
 
 #define MAX_JOURNAL_ENTRIES 10
-
-typedef struct JournalEntry {
-    JournalEntryTitle title;
-    u32 unk_04[4];
-    JournalEntryMon mon;
-    JournalEntryTrainer trainer;
-    u8 unk_1C[2][42];
-} JournalEntry;
 
 typedef struct {
     u32 mapLabelTextID;
@@ -103,14 +98,14 @@ static const MapInfo sMapsInfo[] = {
 };
 
 static const GymInfo sGymsInfo[] = {
-    { 0xF6, 0x2F, 0x0 },
-    { 0x13B, 0x43, 0x1 },
-    { 0x13C, 0x7A, 0x3 },
-    { 0x13D, 0x85, 0x2 },
-    { 0x13E, 0x58, 0x4 },
-    { 0x13F, 0xA7, 0x6 },
-    { 0xFA, 0x23, 0x5 },
-    { 0x140, 0x9A, 0x7 }
+    { 0xF6, MAP_HEADER_OREBURGH_CITY_GYM, BADGE_ID_COAL },
+    { 0x13B, MAP_HEADER_ETERNA_CITY_GYM, BADGE_ID_FOREST },
+    { 0x13C, MAP_HEADER_PASTORIA_CITY_GYM, BADGE_ID_FEN },
+    { 0x13D, MAP_HEADER_VEILSTONE_CITY_GYM, BADGE_ID_COBBLE },
+    { 0x13E, MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM, BADGE_ID_RELIC },
+    { 0x13F, MAP_HEADER_SNOWPOINT_CITY_GYM, BADGE_ID_ICICLE },
+    { 0xFA, MAP_HEADER_CANALAVE_CITY_GYM, BADGE_ID_MINE },
+    { 0x140, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1, BADGE_ID_BEACON }
 };
 
 int Journal_SaveSize(void)
@@ -144,7 +139,9 @@ JournalEntry *Journal_GetSavedPage(JournalEntry *journalEntry, BOOL journalAcqui
 
     GetCurrentDate(&currDate);
 
-    if ((journalEntry[0].title.month != 0) && ((journalEntry[0].title.year != currDate.year) || (journalEntry[0].title.month != currDate.month) || (journalEntry[0].title.day != currDate.day) || (journalEntry[0].title.week != currDate.week))) {
+    if (journalEntry[0].title.month != 0
+        && (journalEntry[0].title.year != currDate.year || journalEntry[0].title.month != currDate.month
+        || journalEntry[0].title.day != currDate.day || journalEntry[0].title.week != currDate.week)) {
         for (i = MAX_JOURNAL_ENTRIES - 1; i >= 1; i--) {
             journalEntry[i] = journalEntry[i - 1];
         }
@@ -174,13 +171,14 @@ BOOL Journal_CheckOpenOnContinue(JournalEntry *journalEntry, BOOL journalAcquire
 
     daysDiff = DayNumberForDate(&currDate) - DayNumberForDate(&journalEntryTitle);
 
-    if (((currDate.month == 12) && (currDate.day == 31) && (journalEntryTitle.month == 1) && (journalEntryTitle.day == 1)) || ((currDate.month == 1) && (currDate.day == 1) && (journalEntryTitle.month == 12) && (journalEntryTitle.day == 31))) {
+    if ((currDate.month == 12 && currDate.day == 31 && journalEntryTitle.month == 1 && journalEntryTitle.day == 1)
+        || (currDate.month == 1 && currDate.day == 1 && journalEntryTitle.month == 12 && journalEntryTitle.day == 31)) {
         s32 yearsDiff = (s32)currDate.year - (s32)journalEntryTitle.year;
 
-        if ((yearsDiff >= 2) || (yearsDiff <= -2)) {
+        if (yearsDiff >= 2 || yearsDiff <= -2) {
             return TRUE;
         }
-    } else if ((daysDiff <= -2) || (daysDiff >= 2)) {
+    } else if (daysDiff <= -2 || daysDiff >= 2) {
         return TRUE;
     } else {
         if (currDate.year != journalEntryTitle.year) {
@@ -218,7 +216,8 @@ void JournalEntry_SaveData(JournalEntry *journalEntry, void *data, u8 dataType)
 
 static void JournalEntry_SaveTitle(JournalEntry *journalEntry, JournalEntryTitle *journalEntryTitle)
 {
-    if ((journalEntry->title.year == journalEntryTitle->year) && (journalEntry->title.month == journalEntryTitle->month) && (journalEntry->title.day == journalEntryTitle->day) && (journalEntry->title.week == journalEntryTitle->week)) {
+    if (journalEntry->title.year == journalEntryTitle->year && journalEntry->title.month == journalEntryTitle->month
+        && journalEntry->title.day == journalEntryTitle->day && journalEntry->title.week == journalEntryTitle->week) {
         return;
     }
 
@@ -793,9 +792,9 @@ void *JournalEntry_CreateMonCaught(const PlayTime *playTime, u16 species, u8 gen
 
     v1 = PlayTime_GetMinutes(playTime) / 10;
 
-    if ((v1 == 0) || (v1 == 2) || (v1 == 4)) {
+    if (v1 == 0 || v1 == 2 || v1 == 4) {
         journalEntryMon->stringVariant = 0;
-    } else if ((v1 == 1) || (v1 == 3)) {
+    } else if (v1 == 1 || v1 == 3) {
         journalEntryMon->stringVariant = 1;
     } else {
         journalEntryMon->stringVariant = 2;
@@ -816,9 +815,9 @@ void *JournalEntry_CreateMonDefeated(const PlayTime *playTime, u16 species, u8 g
 
     v1 = PlayTime_GetMinutes(playTime) / 10;
 
-    if ((v1 == 1) || (v1 == 3) || (v1 == 5)) {
+    if (v1 == 1 || v1 == 3 || v1 == 5) {
         journalEntryMon->stringVariant = 0;
-    } else if ((v1 == 2) || (v1 == 4)) {
+    } else if (v1 == 2 || v1 == 4) {
         journalEntryMon->stringVariant = 1;
     } else {
         journalEntryMon->stringVariant = 2;
@@ -1265,9 +1264,9 @@ void sub_0202C5C4(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 curr
         }
     } else if (MapHeader_IsBuilding(prevMapID) == TRUE) {
         if (MapHeader_IsOutdoors(currMapID) == TRUE) {
-            if (prevMapID == 414) {
+            if (prevMapID == MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F) {
                 data = sub_0202BCE4(heapID);
-            } else if (prevMapID == 422) {
+            } else if (prevMapID == MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB) {
                 data = sub_0202BCF0(heapID);
             } else {
                 u32 mapLabelTextID = MapHeader_GetMapLabelTextID(prevMapID);
@@ -1364,11 +1363,12 @@ static u8 JournalEntry_TrainerType(u32 trainerID)
         }
     }
 
-    if ((trainerID == 261) || (trainerID == 866) || (trainerID == 262) || (trainerID == 867) || (trainerID == 263) || (trainerID == 868) || (trainerID == 264) || (trainerID == 869)) {
+    if (trainerID == 261 || trainerID == 866 || trainerID == 262 || trainerID == 867
+        || trainerID == 263 || trainerID == 868 || trainerID == 264 || trainerID == 869) {
         return 8;
     }
 
-    if ((trainerID == 267) || (trainerID == 870)) {
+    if (trainerID == 267 || trainerID == 870) {
         return 9;
     }
 

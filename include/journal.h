@@ -38,7 +38,14 @@ typedef struct {
     u16 mapID;
 } JournalEntryTrainer;
 
-typedef struct JournalEntry JournalEntry;
+
+typedef struct {
+    JournalEntryTitle title;
+    u32 unk_04[4];
+    JournalEntryMon mon;
+    JournalEntryTrainer trainer;
+    u8 unk_1C[2][42];
+} JournalEntry;
 
 int Journal_SaveSize(void);
 void Journal_Init10(JournalEntry *journalEntry);
