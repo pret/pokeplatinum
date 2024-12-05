@@ -1753,7 +1753,7 @@ BOOL sub_0203C434(FieldTask *taskMan)
         v5 = sub_0207064C(11, fieldSystem, v4, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
         v6 = sub_0202BE00((20 - 19), v2->unk_1C, 11);
 
-        Journal_SaveData(fieldSystem->journal, v6, 1);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v6, JOURNAL_UNK_04);
         Heap_FreeToHeapExplicit(11, menu->unk_25C);
         FieldSystem_StartFieldMap(fieldSystem);
 

@@ -113,7 +113,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
     dto->countSafariBalls = 0;
     dto->unk_104 = NULL;
     dto->records = NULL;
-    dto->journal = NULL;
+    dto->journalEntry = NULL;
     dto->rulesetMask = 0;
 
     RTCDate date;
@@ -181,7 +181,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
     dto->bagCursor = fieldSystem->unk_98;
     dto->subscreenCursorOn = NULL;
     dto->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    dto->journal = fieldSystem->journal;
+    dto->journalEntry = fieldSystem->journalEntry;
     dto->mapHeaderID = fieldSystem->location->mapId;
 
     FieldBattleDTO_CopyPlayerInfoToTrainerData(dto);
@@ -238,7 +238,7 @@ void FieldBattleDTO_CopyChatotCryToBattler(FieldBattleDTO *dto, const ChatotCry 
     CopyChatotCryData(dto->chatotCries[battler], src);
 }
 
-void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *save, enum MapHeader mapHeaderID, Journal *journal, BagCursor *bagCursor, u8 *subscreenCursorOn)
+void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *save, enum MapHeader mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(save);
     Party *party = Party_GetFromSavedata(save);
@@ -277,7 +277,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     dto->poketchData = SaveData_PoketchData(save);
     dto->unk_104 = sub_0202C878(save);
     dto->records = SaveData_GetGameRecordsPtr(save);
-    dto->journal = journal;
+    dto->journalEntry = journalEntry;
     dto->unk_124 = sub_02027F8C(save);
     dto->mapHeaderID = mapHeaderID;
     dto->saveData = save;
@@ -285,7 +285,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
 
 void FieldBattleDTO_Init(FieldBattleDTO *dto, const FieldSystem *fieldSystem)
 {
-    FieldBattleDTO_InitFromGameState(dto, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->journal, fieldSystem->unk_98, fieldSystem->battleSubscreenCursorOn);
+    FieldBattleDTO_InitFromGameState(dto, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->journalEntry, fieldSystem->unk_98, fieldSystem->battleSubscreenCursorOn);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(dto);
 }
 
@@ -332,7 +332,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     dto->poketchData = SaveData_PoketchData(fieldSystem->saveData);
     dto->unk_104 = sub_0202C878(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    dto->journal = fieldSystem->journal;
+    dto->journalEntry = fieldSystem->journalEntry;
     dto->unk_124 = sub_02027F8C(fieldSystem->saveData);
     dto->mapHeaderID = fieldSystem->location->mapId;
     dto->saveData = fieldSystem->saveData;
@@ -397,7 +397,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     dto->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
     dto->unk_104 = sub_0202C878(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    dto->journal = fieldSystem->journal;
+    dto->journalEntry = fieldSystem->journalEntry;
     dto->mapHeaderID = fieldSystem->location->mapId;
     dto->unk_124 = sub_02027F8C(fieldSystem->saveData);
     dto->saveData = fieldSystem->saveData;

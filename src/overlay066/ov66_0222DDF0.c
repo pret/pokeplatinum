@@ -1736,7 +1736,7 @@ void ov66_0222EEF4(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
     UnkStruct_ov66_0222E71C *v0;
     TrainerInfo *v1;
     void *v2;
-    Journal *v3;
+    JournalEntry *v3;
 
     v3 = SaveData_GetJournal(param0->unk_00);
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
@@ -1746,7 +1746,7 @@ void ov66_0222EEF4(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
         ov66_0222E640(v0, v1, 112);
         v2 = sub_0202C250(TrainerInfo_Name(v1), v0->unk_38, 112, 22);
 
-        Journal_SaveData(v3, v2, 4);
+        JournalEntry_SaveData(v3, v2, JOURNAL_UNK_1C);
         Heap_FreeToHeap(v1);
     }
 }
@@ -1756,7 +1756,7 @@ void ov66_0222EF44(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
     UnkStruct_ov66_0222E71C *v0;
     TrainerInfo *v1;
     void *v2;
-    Journal *v3;
+    JournalEntry *v3;
 
     v3 = SaveData_GetJournal(param0->unk_00);
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
@@ -1767,7 +1767,7 @@ void ov66_0222EF44(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 
         v2 = sub_0202C250(TrainerInfo_Name(v1), v0->unk_38, 112, 23);
 
-        Journal_SaveData(v3, v2, 4);
+        JournalEntry_SaveData(v3, v2, JOURNAL_UNK_1C);
         Heap_FreeToHeap(v1);
     }
 }
@@ -1775,7 +1775,7 @@ void ov66_0222EF44(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 void ov66_0222EF94(UnkStruct_ov66_0222DFF8 *param0, enum PlazaMinigame param1)
 {
     void *v0;
-    Journal *v1;
+    JournalEntry *v1;
 
     v1 = SaveData_GetJournal(param0->unk_00);
 
@@ -1801,19 +1801,19 @@ void ov66_0222EF94(UnkStruct_ov66_0222DFF8 *param0, enum PlazaMinigame param1)
     }
 
     if (v0) {
-        Journal_SaveData(v1, v0, 4);
+        JournalEntry_SaveData(v1, v0, JOURNAL_UNK_1C);
     }
 }
 
 void ov66_0222F000(UnkStruct_ov66_0222DFF8 *param0)
 {
     void *v0;
-    Journal *v1;
+    JournalEntry *v1;
 
     v1 = SaveData_GetJournal(param0->unk_00);
     v0 = sub_0202C244(112, 28);
 
-    Journal_SaveData(v1, v0, 4);
+    JournalEntry_SaveData(v1, v0, JOURNAL_UNK_1C);
 }
 
 void ov66_0222F020(UnkStruct_ov66_0222DFF8 *param0)

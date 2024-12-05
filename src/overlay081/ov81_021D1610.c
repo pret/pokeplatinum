@@ -3,13 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202BC58.h"
 #include "struct_defs/struct_0202BCC8.h"
-#include "struct_defs/struct_0202BE38.h"
-#include "struct_defs/struct_0202BF4C.h"
 #include "struct_defs/struct_0202BFCC.h"
 
 #include "overlay081/struct_ov81_021D1610.h"
+#include "text/gmm/message_bank_journal_entries.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -63,8 +61,8 @@ static void ov81_021D27A8(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 static void ov81_021D27E4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BCC8 *param2, u8 param3);
 static void ov81_021D2820(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BCC8 *param2, u8 param3);
 static void ov81_021D285C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BCC8 *param2, u8 param3, int param4);
-static void ov81_021D2908(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BE38 *param2);
-static void ov81_021D29B4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BE38 *param2);
+static void ov81_021D2908(UnkStruct_ov81_021D1610 *param0, Window *param1, JournalEntryMon *journalEntryMon);
+static void ov81_021D29B4(UnkStruct_ov81_021D1610 *param0, Window *param1, JournalEntryMon *journalEntryMon);
 static void ov81_021D2A9C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3);
 static void ov81_021D2B20(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3);
 static void ov81_021D2BA4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3);
@@ -143,31 +141,31 @@ void ov81_021D164C(UnkStruct_ov81_021D1610 *param0, u32 param1)
 
 static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window *param2)
 {
-    UnkStruct_0202BC58 v0;
+    JournalEntryTitle journalEntryTitle;
     Strbuf *v1;
     u32 v2;
 
-    sub_0202C2A4(param0->unk_44, &v0, 0, param0->unk_105C);
+    JournalEntry_GetData(param0->unk_44, &journalEntryTitle, JOURNAL_TITLE, param0->unk_105C);
 
-    if ((v0.unk_00_0 == 0) && (v0.unk_00_7 == 0) && (v0.unk_00_14 == 0)) {
+    if ((journalEntryTitle.year == 0) && (journalEntryTitle.month == 0) && (journalEntryTitle.day == 0)) {
         return 0;
     }
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 1);
 
-    StringTemplate_SetMonthName(param0->unk_54, 0, v0.unk_00_7);
-    StringTemplate_SetNumber(param0->unk_54, 1, v0.unk_00_14, 2, 0, 1);
+    StringTemplate_SetMonthName(param0->unk_54, 0, journalEntryTitle.month);
+    StringTemplate_SetNumber(param0->unk_54, 1, journalEntryTitle.day, 2, 0, 1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
     Strbuf_Free(v1);
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_58, 0);
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 2 + v0.unk_00_11);
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 2 + journalEntryTitle.week);
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v1, v2 + 12, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 0);
-    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_00_19));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(journalEntryTitle.mapID));
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
     Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_58, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -181,7 +179,7 @@ static void ov81_021D17C8(UnkStruct_ov81_021D1610 *param0, Window *param1)
     UnkStruct_0202BCC8 v0[4];
     u32 v1;
 
-    sub_0202C2A4(param0->unk_44, &v0[0], 1, param0->unk_105C);
+    JournalEntry_GetData(param0->unk_44, &v0[0], JOURNAL_UNK_04, param0->unk_105C);
 
     for (v1 = 0; v1 < 4; v1++) {
         switch (v0[v1].unk_00) {
@@ -302,55 +300,51 @@ static void ov81_021D17C8(UnkStruct_ov81_021D1610 *param0, Window *param1)
 
 static void ov81_021D1A90(UnkStruct_ov81_021D1610 *param0, Window *param1)
 {
-    UnkStruct_0202BE38 v0;
+    JournalEntryMon journalEntryMon;
 
-    sub_0202C2A4(param0->unk_44, &v0, 2, param0->unk_105C);
+    JournalEntry_GetData(param0->unk_44, &journalEntryMon, JOURNAL_MON, param0->unk_105C);
 
-    switch (v0.unk_00) {
+    switch (journalEntryMon.battleResult) {
     case 0:
         return;
 
-    case 1:
-        ov81_021D2908(param0, param1, &v0);
+    case POKEMON_CAUGHT:
+        ov81_021D2908(param0, param1, &journalEntryMon);
         break;
 
-    case 2:
-        ov81_021D29B4(param0, param1, &v0);
+    case POKEMON_DEFEATED:
+        ov81_021D29B4(param0, param1, &journalEntryMon);
         break;
     }
 }
 
 static void ov81_021D1AD4(UnkStruct_ov81_021D1610 *param0, Window *param1)
 {
-    UnkStruct_0202BF4C v0;
+    JournalEntryTrainer journalEntryTrainer;
     Strbuf *v1;
     u32 v2;
 
-    sub_0202C2A4(param0->unk_44, &v0, 3, param0->unk_105C);
+    JournalEntry_GetData(param0->unk_44, &journalEntryTrainer, JOURNAL_TRAINER, param0->unk_105C);
 
-    if (v0.unk_00_0 == 0) {
+    if (journalEntryTrainer.unk_00_0 == 0) {
         return;
     }
 
-    {
-        Strbuf *v3;
+    Strbuf *v3 = MessageBank_GetNewStrbufFromNARC(26, 433, MapHeader_GetMapLabelTextID(journalEntryTrainer.mapID), 42);
+    v2 = Strbuf_Length(v3);
+    Strbuf_Free(v3);
 
-        v3 = MessageBank_GetNewStrbufFromNARC(26, 433, MapHeader_GetMapLabelTextID(v0.unk_02), 42);
-        v2 = Strbuf_Length(v3);
+    if (TrainerData_LoadParam(journalEntryTrainer.trainerID, 1) == 63) {
+        v3 = MessageLoader_GetNewStrbuf(param0->unk_50, 61);
+        StringTemplate_SetRivalName(param0->unk_54, 1, param0->unk_4C);
+        StringTemplate_Format(param0->unk_54, param0->unk_58, v3);
+        v2 += Strbuf_Length(param0->unk_58);
         Strbuf_Free(v3);
-
-        if (TrainerData_LoadParam(v0.unk_00_1, 1) == 63) {
-            v3 = MessageLoader_GetNewStrbuf(param0->unk_50, 61);
-            StringTemplate_SetRivalName(param0->unk_54, 1, param0->unk_4C);
-            StringTemplate_Format(param0->unk_54, param0->unk_58, v3);
-            v2 += Strbuf_Length(param0->unk_58);
-            Strbuf_Free(v3);
-        } else {
-            v3 = MessageBank_GetNewStrbufFromNARC(26, 618, v0.unk_00_1, 42);
-            v2 += Strbuf_Length(v3);
-            Strbuf_Free(v3);
-            StringTemplate_SetTrainerName(param0->unk_54, 1, v0.unk_00_1);
-        }
+    } else {
+        v3 = MessageBank_GetNewStrbufFromNARC(26, 618, journalEntryTrainer.trainerID, 42);
+        v2 += Strbuf_Length(v3);
+        Strbuf_Free(v3);
+        StringTemplate_SetTrainerName(param0->unk_54, 1, journalEntryTrainer.trainerID);
     }
 
     if (v2 <= 14) {
@@ -363,7 +357,7 @@ static void ov81_021D1AD4(UnkStruct_ov81_021D1610 *param0, Window *param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 60);
     }
 
-    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(journalEntryTrainer.mapID));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, ((16 * 4 + 16) + 16), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v1);
@@ -374,7 +368,7 @@ static void ov81_021D1C10(UnkStruct_ov81_021D1610 *param0, Window *param1)
     UnkStruct_0202BFCC v0[2];
     u32 v1;
 
-    sub_0202C2A4(param0->unk_44, &v0[0], 4, param0->unk_105C);
+    JournalEntry_GetData(param0->unk_44, &v0[0], JOURNAL_UNK_1C, param0->unk_105C);
 
     for (v1 = 0; v1 < 2; v1++) {
         switch (v0[v1].unk_00) {
@@ -826,58 +820,58 @@ static void ov81_021D28C8(UnkStruct_ov81_021D1610 *param0, u16 param1, u8 param2
     Heap_FreeToHeap(v0);
 }
 
-static void ov81_021D2908(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BE38 *param2)
+static void ov81_021D2908(UnkStruct_ov81_021D1610 *param0, Window *param1, JournalEntryMon *journalEntryMon)
 {
     Strbuf *v0;
 
-    switch (param2->unk_01_0) {
+    switch (journalEntryMon->stringVariant) {
     case 0:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 49);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_caught_pokemon);
         break;
     case 1:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 50);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_pokemon_was_caught);
         break;
     default:
-        if (param2->unk_01_6 == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 51);
-        } else if (param2->unk_01_6 == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 52);
+        if (journalEntryMon->gender == 0) {
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_caught_male_pokemon);
+        } else if (journalEntryMon->gender == 1) {
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_caught_female_pokemon);
         } else {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 49);
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_caught_pokemon);
         }
     }
 
-    ov81_021D28C8(param0, param2->unk_02, param2->unk_01_6, 0);
-    StringTemplate_SetTimeOfDay(param0->unk_54, 1, param2->unk_01_2);
+    ov81_021D28C8(param0, journalEntryMon->species, journalEntryMon->gender, 0);
+    StringTemplate_SetTimeOfDay(param0->unk_54, 1, journalEntryMon->timeOfDay);
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (16 * 4 + 16), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void ov81_021D29B4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BE38 *param2)
+static void ov81_021D29B4(UnkStruct_ov81_021D1610 *param0, Window *param1, JournalEntryMon *journalEntryMon)
 {
     Strbuf *v0;
 
-    switch (param2->unk_01_0) {
+    switch (journalEntryMon->stringVariant) {
     case 0:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 53);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_pokemon_was_defeated);
         break;
     case 1:
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 54);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_defeated_pokemon);
         break;
     default:
-        if (param2->unk_01_6 == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 55);
-        } else if (param2->unk_01_6 == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 56);
+        if (journalEntryMon->gender == 0) {
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_defeated_male_pokemon);
+        } else if (journalEntryMon->gender == 1) {
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_defeated_female_pokemon);
         } else {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 53);
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_50, journal_entries_pokemon_was_defeated);
         }
     }
 
-    ov81_021D28C8(param0, param2->unk_02, param2->unk_01_6, 0);
-    StringTemplate_SetTimeOfDay(param0->unk_54, 1, param2->unk_01_2);
+    ov81_021D28C8(param0, journalEntryMon->species, journalEntryMon->gender, 0);
+    StringTemplate_SetTimeOfDay(param0->unk_54, 1, journalEntryMon->timeOfDay);
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (16 * 4 + 16), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

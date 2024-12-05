@@ -1055,10 +1055,10 @@ static int ov109_021D4CC8(UnkStruct_ov109_021D5140 *param0, int param1)
     gCoreSys.inhibitReset = 1;
 
     v0 = sub_0202C1B4(95);
-    Journal_SaveData(param0->unk_0C->unk_14.unk_18, v0, 4);
+    JournalEntry_SaveData(param0->unk_0C->unk_14.unk_18, v0, JOURNAL_UNK_1C);
 
     v0 = sub_0202C244(95, 17);
-    Journal_SaveData(param0->unk_0C->unk_14.unk_18, v0, 4);
+    JournalEntry_SaveData(param0->unk_0C->unk_14.unk_18, v0, JOURNAL_UNK_1C);
     GameRecords_IncrementTrainerScore(param0->unk_0C->unk_14.records, TRAINER_SCORE_EVENT_UNK_20);
     sub_02038ED4(&param0->unk_414);
     param0->unk_3B8 = 28;

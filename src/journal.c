@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202BC58.h"
+#include "consts/badges.h"
+#include "consts/map.h"
+
 #include "struct_defs/struct_0202BCC8.h"
-#include "struct_defs/struct_0202BE38.h"
-#include "struct_defs/struct_0202BF4C.h"
 #include "struct_defs/struct_0202BFCC.h"
 
 #include "heap.h"
@@ -16,50 +16,44 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
-typedef struct Journal_t {
-    UnkStruct_0202BC58 unk_00;
-    u32 unk_04[4];
-    UnkStruct_0202BE38 unk_14;
-    UnkStruct_0202BF4C unk_18;
-    u8 unk_1C[2][42];
-} Journal;
+#define MAX_JOURNAL_ENTRIES 10
 
 typedef struct {
-    u32 unk_00;
+    u32 mapLabelTextID;
     u32 unk_04;
-} UnkStruct_020E5B90;
+} MapInfo;
 
 typedef struct {
-    u32 unk_00;
-    u16 unk_04;
-    u16 unk_06;
-} UnkStruct_020E5B50;
+    u32 trainerID;
+    u16 mapID;
+    u16 badge;
+} GymInfo;
 
-static void sub_0202B7A0(Journal *journal, UnkStruct_0202BC58 *param1);
-static void sub_0202B7E0(Journal *journal, UnkStruct_0202BCC8 *param1);
-static void sub_0202B880(Journal *journal, UnkStruct_0202BE38 *param1);
-static void sub_0202B88C(Journal *journal, UnkStruct_0202BF4C *param1);
-static void sub_0202B898(Journal *journal, UnkStruct_0202BFCC *param1);
+static void JournalEntry_SaveTitle(JournalEntry *journalEntry, JournalEntryTitle *journalEntryTitle);
+static void sub_0202B7E0(JournalEntry *journalEntry, UnkStruct_0202BCC8 *data);
+static void JournalEntry_SaveMon(JournalEntry *journalEntry, JournalEntryMon *journalEntryMon);
+static void JournalEntry_SaveTrainer(JournalEntry *journalEntry, JournalEntryTrainer *journalEntryTrainer);
+static void sub_0202B898(JournalEntry *journalEntry, UnkStruct_0202BFCC *data);
 static u32 *sub_0202B91C(u32 *param0);
-static u8 *sub_0202B954(Journal *journal);
-static void sub_0202B994(u32 *param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202B9D0(u32 *param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202B9F0(u32 *param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202BA48(u32 *param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202BAB0(u32 *param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202BAF8(u32 *param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202BB40(u32 *param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202BB88(u8 *param0, UnkStruct_0202BFCC *param1);
-static void sub_0202BBC4(u8 *param0, UnkStruct_0202BFCC *param1);
-static void sub_0202BBE0(u8 *param0, UnkStruct_0202BFCC *param1);
-static void sub_0202BC14(Journal *journal, UnkStruct_0202BFCC *param1);
-static void sub_0202BC48(u8 *param0, UnkStruct_0202BFCC *param1);
+static u8 *sub_0202B954(JournalEntry *journalEntry);
+static void sub_0202B994(u32 *param0, UnkStruct_0202BCC8 *data);
+static void sub_0202B9D0(u32 *param0, UnkStruct_0202BCC8 *data);
+static void sub_0202B9F0(u32 *param0, UnkStruct_0202BCC8 *data);
+static void sub_0202BA48(u32 *param0, UnkStruct_0202BCC8 *data);
+static void sub_0202BAB0(u32 *param0, UnkStruct_0202BCC8 *data);
+static void sub_0202BAF8(u32 *param0, UnkStruct_0202BCC8 *data);
+static void sub_0202BB40(u32 *param0, UnkStruct_0202BCC8 *data);
+static void sub_0202BB88(u8 *param0, UnkStruct_0202BFCC *data);
+static void sub_0202BBC4(u8 *param0, UnkStruct_0202BFCC *data);
+static void sub_0202BBE0(u8 *param0, UnkStruct_0202BFCC *data);
+static void sub_0202BC14(JournalEntry *journalEntry, UnkStruct_0202BFCC *data);
+static void sub_0202BC48(u8 *param0, UnkStruct_0202BFCC *data);
 static void sub_0202BF94(const u16 *param0, u16 *param1, u32 param2);
-static void sub_0202C2FC(Journal *journal, UnkStruct_0202BC58 *param1);
-static void sub_0202C304(Journal *journal, UnkStruct_0202BCC8 *param1);
-static void sub_0202C3B8(Journal *journal, UnkStruct_0202BE38 *param1);
-static void sub_0202C3C4(Journal *journal, UnkStruct_0202BF4C *param1);
-static void sub_0202C3D0(Journal *journal, UnkStruct_0202BFCC *param1);
+static void JournalEntry_GetTitle(JournalEntry *journalEntry, JournalEntryTitle *journalEntryTitle);
+static void sub_0202C304(JournalEntry *journalEntry, UnkStruct_0202BCC8 *param1);
+static void JournalEntry_GetMon(JournalEntry *journalEntry, JournalEntryMon *journalEntryMon);
+static void JournalEntry_GetTrainer(JournalEntry *journalEntry, JournalEntryTrainer *journalEntryTrainer);
+static void sub_0202C3D0(JournalEntry *journalEntry, UnkStruct_0202BFCC *param1);
 static void sub_0202C474(u32 param0, UnkStruct_0202BCC8 *param1);
 static void sub_0202C47C(u32 param0, UnkStruct_0202BCC8 *param1);
 static void sub_0202C494(u32 param0, UnkStruct_0202BCC8 *param1);
@@ -70,10 +64,10 @@ static void sub_0202C528(u8 *param0, UnkStruct_0202BFCC *param1);
 static void sub_0202C54C(u8 *param0, UnkStruct_0202BFCC *param1);
 static void sub_0202C5A4(u8 *param0, UnkStruct_0202BFCC *param1);
 static void sub_0202C5AC(u8 *param0, UnkStruct_0202BFCC *param1);
-static u8 sub_0202C6CC(TrainerInfo *param0, u32 param1);
-static u8 sub_0202C78C(u32 param0);
+static u8 JournalEntry_GetDefeatedGym(TrainerInfo *trainerInfo, u32 mapID);
+static u8 JournalEntry_TrainerType(u32 trainerID);
 
-static const UnkStruct_020E5B90 Unk_020E5B90[] = {
+static const MapInfo sMapsInfo[] = {
     { 0x5A, 0x1 },
     { 0x5B, 0x0 },
     { 0x5C, 0x1 },
@@ -103,132 +97,136 @@ static const UnkStruct_020E5B90 Unk_020E5B90[] = {
     { 0x46, 0x0 }
 };
 
-static const UnkStruct_020E5B50 Unk_020E5B50[] = {
-    { 0xF6, 0x2F, 0x0 },
-    { 0x13B, 0x43, 0x1 },
-    { 0x13C, 0x7A, 0x3 },
-    { 0x13D, 0x85, 0x2 },
-    { 0x13E, 0x58, 0x4 },
-    { 0x13F, 0xA7, 0x6 },
-    { 0xFA, 0x23, 0x5 },
-    { 0x140, 0x9A, 0x7 }
+static const GymInfo sGymsInfo[] = {
+    { 0xF6, MAP_HEADER_OREBURGH_CITY_GYM, BADGE_ID_COAL },
+    { 0x13B, MAP_HEADER_ETERNA_CITY_GYM, BADGE_ID_FOREST },
+    { 0x13C, MAP_HEADER_PASTORIA_CITY_GYM, BADGE_ID_FEN },
+    { 0x13D, MAP_HEADER_VEILSTONE_CITY_GYM, BADGE_ID_COBBLE },
+    { 0x13E, MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM, BADGE_ID_RELIC },
+    { 0x13F, MAP_HEADER_SNOWPOINT_CITY_GYM, BADGE_ID_ICICLE },
+    { 0xFA, MAP_HEADER_CANALAVE_CITY_GYM, BADGE_ID_MINE },
+    { 0x140, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1, BADGE_ID_BEACON }
 };
 
 int Journal_SaveSize(void)
 {
-    return sizeof(Journal) * 10;
+    return sizeof(JournalEntry) * MAX_JOURNAL_ENTRIES;
 }
 
-static void Journal_Init(Journal *journal)
+static void Journal_Init(JournalEntry *journalEntry)
 {
-    memset(journal, 0, sizeof(Journal));
+    memset(journalEntry, 0, sizeof(JournalEntry));
 }
 
-void Journal_Init10(Journal *journal)
+void Journal_Init10(JournalEntry *journalEntry)
 {
-    memset(journal, 0, sizeof(Journal) * 10);
+    memset(journalEntry, 0, sizeof(JournalEntry) * MAX_JOURNAL_ENTRIES);
 }
 
-Journal *SaveData_GetJournal(SaveData *param0)
+JournalEntry *SaveData_GetJournal(SaveData *saveData)
 {
-    return SaveData_SaveTable(param0, 18);
+    return SaveData_SaveTable(saveData, 18);
 }
 
-Journal *Journal_GetSavedPage(Journal *journal, BOOL param1)
+JournalEntry *Journal_GetSavedPage(JournalEntry *journalEntry, BOOL journalAcquired)
 {
-    RTCDate v0;
-    s32 v1;
+    RTCDate currDate;
+    s32 i;
 
-    if (param1 != 1) {
+    if (journalAcquired != TRUE) {
         return NULL;
     }
 
-    GetCurrentDate(&v0);
+    GetCurrentDate(&currDate);
 
-    if ((journal[0].unk_00.unk_00_7 != 0) && ((journal[0].unk_00.unk_00_0 != v0.year) || (journal[0].unk_00.unk_00_7 != v0.month) || (journal[0].unk_00.unk_00_14 != v0.day) || (journal[0].unk_00.unk_00_11 != v0.week))) {
-        for (v1 = 10 - 1; v1 >= 1; v1--) {
-            journal[v1] = journal[v1 - 1];
+    if (journalEntry[0].title.month != 0
+        && (journalEntry[0].title.year != currDate.year || journalEntry[0].title.month != currDate.month
+            || journalEntry[0].title.day != currDate.day || journalEntry[0].title.week != currDate.week)) {
+        for (i = MAX_JOURNAL_ENTRIES - 1; i >= 1; i--) {
+            journalEntry[i] = journalEntry[i - 1];
         }
 
-        Journal_Init(&journal[0]);
+        Journal_Init(&journalEntry[0]);
     }
 
-    return &journal[0];
+    return &journalEntry[0];
 }
 
-BOOL Journal_CheckOpenOnContinue(Journal *journal, BOOL param1)
+BOOL Journal_CheckOpenOnContinue(JournalEntry *journalEntry, BOOL journalAcquired)
 {
-    RTCDate v0;
-    RTCDate v1;
-    int v2;
+    RTCDate journalEntryTitle;
+    RTCDate currDate;
+    int daysDiff;
 
-    if (param1 != 1) {
-        return 0;
+    if (journalAcquired != TRUE) {
+        return FALSE;
     }
 
-    GetCurrentDate(&v1);
+    GetCurrentDate(&currDate);
 
-    v0.year = journal[0].unk_00.unk_00_0;
-    v0.month = journal[0].unk_00.unk_00_7;
-    v0.day = journal[0].unk_00.unk_00_14;
-    v0.week = journal[0].unk_00.unk_00_11;
+    journalEntryTitle.year = journalEntry[0].title.year;
+    journalEntryTitle.month = journalEntry[0].title.month;
+    journalEntryTitle.day = journalEntry[0].title.day;
+    journalEntryTitle.week = journalEntry[0].title.week;
 
-    v2 = DayNumberForDate(&v1) - DayNumberForDate(&v0);
+    daysDiff = DayNumberForDate(&currDate) - DayNumberForDate(&journalEntryTitle);
 
-    if (((v1.month == 12) && (v1.day == 31) && (v0.month == 1) && (v0.day == 1)) || ((v1.month == 1) && (v1.day == 1) && (v0.month == 12) && (v0.day == 31))) {
-        s32 v3 = (s32)v1.year - (s32)v0.year;
+    if ((currDate.month == 12 && currDate.day == 31 && journalEntryTitle.month == 1 && journalEntryTitle.day == 1)
+        || (currDate.month == 1 && currDate.day == 1 && journalEntryTitle.month == 12 && journalEntryTitle.day == 31)) {
+        s32 yearsDiff = (s32)currDate.year - (s32)journalEntryTitle.year;
 
-        if ((v3 >= 2) || (v3 <= -2)) {
-            return 1;
+        if (yearsDiff >= 2 || yearsDiff <= -2) {
+            return TRUE;
         }
-    } else if ((v2 <= -2) || (v2 >= 2)) {
-        return 1;
+    } else if (daysDiff <= -2 || daysDiff >= 2) {
+        return TRUE;
     } else {
-        if (v1.year != v0.year) {
-            return 1;
+        if (currDate.year != journalEntryTitle.year) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void Journal_SaveData(Journal *journal, void *param1, u8 param2)
+void JournalEntry_SaveData(JournalEntry *journalEntry, void *data, u8 dataType)
 {
-    if (journal != NULL) {
-        switch (param2) {
-        case 0:
-            sub_0202B7A0(journal, param1);
+    if (journalEntry != NULL) {
+        switch (dataType) {
+        case JOURNAL_TITLE:
+            JournalEntry_SaveTitle(journalEntry, data);
             break;
-        case 1:
-            sub_0202B7E0(journal, param1);
+        case JOURNAL_UNK_04:
+            sub_0202B7E0(journalEntry, data);
             break;
-        case 2:
-            sub_0202B880(journal, param1);
+        case JOURNAL_MON:
+            JournalEntry_SaveMon(journalEntry, data);
             break;
-        case 3:
-            sub_0202B88C(journal, param1);
+        case JOURNAL_TRAINER:
+            JournalEntry_SaveTrainer(journalEntry, data);
             break;
-        case 4:
-            sub_0202B898(journal, param1);
+        case JOURNAL_UNK_1C:
+            sub_0202B898(journalEntry, data);
             break;
         }
     }
 
-    Heap_FreeToHeap(param1);
+    Heap_FreeToHeap(data);
 }
 
-static void sub_0202B7A0(Journal *journal, UnkStruct_0202BC58 *param1)
+static void JournalEntry_SaveTitle(JournalEntry *journalEntry, JournalEntryTitle *journalEntryTitle)
 {
-    if ((journal->unk_00.unk_00_0 == param1->unk_00_0) && (journal->unk_00.unk_00_7 == param1->unk_00_7) && (journal->unk_00.unk_00_14 == param1->unk_00_14) && (journal->unk_00.unk_00_11 == param1->unk_00_11)) {
+    if (journalEntry->title.year == journalEntryTitle->year && journalEntry->title.month == journalEntryTitle->month
+        && journalEntry->title.day == journalEntryTitle->day && journalEntry->title.week == journalEntryTitle->week) {
         return;
     }
 
-    journal->unk_00 = *param1;
+    journalEntry->title = *journalEntryTitle;
 }
 
-static void sub_0202B7E0(Journal *journal, UnkStruct_0202BCC8 *param1)
+static void sub_0202B7E0(JournalEntry *journalEntry, UnkStruct_0202BCC8 *data)
 {
-    switch (param1->unk_00) {
+    switch (data->unk_00) {
     case 1:
     case 2:
     case 3:
@@ -246,25 +244,25 @@ static void sub_0202B7E0(Journal *journal, UnkStruct_0202BCC8 *param1)
     case 38:
     case 39:
     case 40:
-        sub_0202B994(journal->unk_04, param1);
+        sub_0202B994(journalEntry->unk_04, data);
         break;
     case 9:
     case 10:
-        sub_0202BA48(journal->unk_04, param1);
+        sub_0202BA48(journalEntry->unk_04, data);
         break;
     case 11:
-        sub_0202B9F0(journal->unk_04, param1);
+        sub_0202B9F0(journalEntry->unk_04, data);
         break;
     case 12:
-        sub_0202B9D0(journal->unk_04, param1);
+        sub_0202B9D0(journalEntry->unk_04, data);
         break;
     case 13:
     case 14:
     case 15:
-        sub_0202BAB0(journal->unk_04, param1);
+        sub_0202BAB0(journalEntry->unk_04, data);
         break;
     case 18:
-        sub_0202BAF8(journal->unk_04, param1);
+        sub_0202BAF8(journalEntry->unk_04, data);
         break;
     case 19:
     case 20:
@@ -280,43 +278,43 @@ static void sub_0202B7E0(Journal *journal, UnkStruct_0202BCC8 *param1)
     case 28:
     case 33:
     case 32:
-        sub_0202BB40(journal->unk_04, param1);
+        sub_0202BB40(journalEntry->unk_04, data);
         break;
     }
 }
 
-static void sub_0202B880(Journal *journal, UnkStruct_0202BE38 *param1)
+static void JournalEntry_SaveMon(JournalEntry *journalEntry, JournalEntryMon *journalEntryMon)
 {
-    journal->unk_14 = *param1;
+    journalEntry->mon = *journalEntryMon;
 }
 
-static void sub_0202B88C(Journal *journal, UnkStruct_0202BF4C *param1)
+static void JournalEntry_SaveTrainer(JournalEntry *journalEntry, JournalEntryTrainer *journalEntryTrainer)
 {
-    journal->unk_18 = *param1;
+    journalEntry->trainer = *journalEntryTrainer;
 }
 
-static void sub_0202B898(Journal *journal, UnkStruct_0202BFCC *param1)
+static void sub_0202B898(JournalEntry *journalEntry, UnkStruct_0202BFCC *data)
 {
-    u8 *v0 = sub_0202B954(journal);
+    u8 *v0 = sub_0202B954(journalEntry);
 
-    switch (param1->unk_00) {
+    switch (data->unk_00) {
     case 1:
     case 2:
     case 3:
     case 4:
     case 5:
     case 11:
-        sub_0202BB88(v0, param1);
+        sub_0202BB88(v0, data);
         break;
     case 6:
     case 22:
     case 23:
-        sub_0202BBC4(v0, param1);
+        sub_0202BBC4(v0, data);
         break;
     case 7:
     case 9:
     case 15:
-        sub_0202BBE0(v0, param1);
+        sub_0202BBE0(v0, data);
         break;
     case 8:
     case 10:
@@ -333,95 +331,90 @@ static void sub_0202B898(Journal *journal, UnkStruct_0202BFCC *param1)
     case 27:
     case 28:
     case 29:
-        sub_0202BC14(journal, param1);
+        sub_0202BC14(journalEntry, data);
         break;
     case 13:
     case 24:
-        sub_0202BC48(v0, param1);
+        sub_0202BC48(v0, data);
         break;
     }
 }
 
 static u32 *sub_0202B91C(u32 *param0)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if ((param0[v0] & 0x3f) == 0) {
-            return &param0[v0];
+    for (i = 0; i < 4; i++) {
+        if ((param0[i] & 0x3f) == 0) {
+            return &param0[i];
         }
     }
 
-    for (v0 = 0; v0 < 4 - 1; v0++) {
-        param0[v0] = param0[v0 + 1];
+    for (i = 0; i < 4 - 1; i++) {
+        param0[i] = param0[i + 1];
     }
 
-    param0[v0] = 0;
+    param0[i] = 0;
 
-    return &param0[v0];
+    return &param0[i];
 }
 
-static u8 *sub_0202B954(Journal *journal)
+static u8 *sub_0202B954(JournalEntry *journalEntry)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < 2; v0++) {
-        if (journal->unk_1C[v0][0] == 0) {
-            return &journal->unk_1C[v0][0];
+    for (i = 0; i < 2; i++) {
+        if (journalEntry->unk_1C[i][0] == 0) {
+            return &journalEntry->unk_1C[i][0];
         }
     }
 
-    for (v0 = 0; v0 < 2 - 1; v0++) {
-        memcpy(&journal->unk_1C[v0][0], &journal->unk_1C[v0 + 1][0], 42);
+    for (i = 0; i < 2 - 1; i++) {
+        memcpy(&journalEntry->unk_1C[i][0], &journalEntry->unk_1C[i + 1][0], 42);
     }
 
-    memset(&journal->unk_1C[v0][0], 0, 42);
+    memset(&journalEntry->unk_1C[i][0], 0, 42);
 
-    return &journal->unk_1C[v0][0];
+    return &journalEntry->unk_1C[i][0];
 }
 
-static void sub_0202B994(u32 *param0, UnkStruct_0202BCC8 *param1)
+static void sub_0202B994(u32 *param0, UnkStruct_0202BCC8 *data)
 {
     u32 *v0;
-    u32 v1;
+    u32 i;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (param0[v1] == 0) {
+    for (i = 0; i < 4; i++) {
+        if (param0[i] == 0) {
             break;
         }
     }
 
-    if (v1 != 0) {
-        if ((param0[v1 - 1] & 0x3f) == param1->unk_00) {
-            return;
-        }
+    if (i != 0 && (param0[i - 1] & 0x3f) == data->unk_00) {
+        return;
     }
 
     v0 = sub_0202B91C(param0);
-    *v0 = (param1->unk_00 & 0x3f);
+    *v0 = (data->unk_00 & 0x3f);
 }
 
-static void sub_0202B9D0(u32 *param0, UnkStruct_0202BCC8 *param1)
+static void sub_0202B9D0(u32 *param0, UnkStruct_0202BCC8 *data)
 {
     u32 *v0 = sub_0202B91C(param0);
-    *v0 = (param1->unk_02 << 16) | ((param1->unk_04 & 0x3ff) << 6) | (param1->unk_00 & 0x3f);
+    *v0 = (data->unk_02 << 16) | ((data->unk_04 & 0x3ff) << 6) | (data->unk_00 & 0x3f);
 }
 
-static void sub_0202B9F0(u32 *param0, UnkStruct_0202BCC8 *param1)
+static void sub_0202B9F0(u32 *param0, UnkStruct_0202BCC8 *data)
 {
-    u32 *v0;
-    u16 v1;
-    u16 v2;
+    u32 *v0 = NULL;
+    u16 i;
 
-    v0 = NULL;
+    for (i = 0; i < 4; i++) {
+        if ((param0[i] & 0x3f) == 11) {
+            param0[i] = 0;
 
-    for (v2 = 0; v2 < 4; v2++) {
-        if ((param0[v2] & 0x3f) == 11) {
-            param0[v2] = 0;
-
-            for (v2 = v2; v2 < 4 - 1; v2++) {
-                param0[v2] = param0[v2 + 1];
-                param0[v2 + 1] = 0;
+            for (i = i; i < 4 - 1; i++) {
+                param0[i] = param0[i + 1];
+                param0[i + 1] = 0;
             }
 
             break;
@@ -429,327 +422,315 @@ static void sub_0202B9F0(u32 *param0, UnkStruct_0202BCC8 *param1)
     }
 
     v0 = sub_0202B91C(param0);
-    *v0 = (param1->unk_02 << 16) | ((param1->unk_04 & 0x3ff) << 6) | (param1->unk_00 & 0x3f);
+    *v0 = (data->unk_02 << 16) | ((data->unk_04 & 0x3ff) << 6) | (data->unk_00 & 0x3f);
 }
 
-static void sub_0202BA48(u32 *param0, UnkStruct_0202BCC8 *param1)
+static void sub_0202BA48(u32 *param0, UnkStruct_0202BCC8 *data)
 {
-    u32 *v0;
-    u16 v1;
-    u16 v2;
+    u32 *v0 = NULL;
+    u16 i;
 
-    v0 = NULL;
+    for (i = 0; i < 4; i++) {
+        if (((param0[i] & 0x3f) == 9) && (((param0[i] >> 16) & 0xffff) == data->unk_02)) {
+            param0[i] = 0;
 
-    for (v2 = 0; v2 < 4; v2++) {
-        if (((param0[v2] & 0x3f) == 9) && (((param0[v2] >> 16) & 0xffff) == param1->unk_02)) {
-            param0[v2] = 0;
-
-            for (v2 = v2; v2 < 4 - 1; v2++) {
-                param0[v2] = param0[v2 + 1];
-                param0[v2 + 1] = 0;
+            for (i = i; i < 4 - 1; i++) {
+                param0[i] = param0[i + 1];
+                param0[i + 1] = 0;
             }
             break;
         }
     }
 
     v0 = sub_0202B91C(param0);
-    *v0 = (param1->unk_02 << 16) | ((param1->unk_04 & 0x3ff) << 6) | (param1->unk_00 & 0x3f);
+    *v0 = (data->unk_02 << 16) | ((data->unk_04 & 0x3ff) << 6) | (data->unk_00 & 0x3f);
 }
 
-static void sub_0202BAB0(u32 *param0, UnkStruct_0202BCC8 *param1)
+static void sub_0202BAB0(u32 *param0, UnkStruct_0202BCC8 *data)
 {
     u32 *v0;
-    u32 v1;
+    u32 i;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (param0[v1] == 0) {
+    for (i = 0; i < 4; i++) {
+        if (param0[i] == 0) {
             break;
         }
     }
 
-    if (v1 != 0) {
-        if (((param0[v1 - 1] & 0x3f) == param1->unk_00) && ((param0[v1 - 1] >> 16) == param1->unk_02)) {
-            return;
-        }
+    if (i != 0 && ((param0[i - 1] & 0x3f) == data->unk_00) && ((param0[i - 1] >> 16) == data->unk_02)) {
+        return;
     }
 
     v0 = sub_0202B91C(param0);
-    *v0 = (param1->unk_02 << 16) | (param1->unk_00 & 0x3f);
+    *v0 = (data->unk_02 << 16) | (data->unk_00 & 0x3f);
 }
 
-static void sub_0202BAF8(u32 *param0, UnkStruct_0202BCC8 *param1)
+static void sub_0202BAF8(u32 *param0, UnkStruct_0202BCC8 *data)
 {
     u32 *v0;
-    u32 v1;
+    u32 i;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (param0[v1] == 0) {
+    for (i = 0; i < 4; i++) {
+        if (param0[i] == 0) {
             break;
         }
     }
 
-    if (v1 != 0) {
-        if (((param0[v1 - 1] & 0x3f) == param1->unk_00) && ((param0[v1 - 1] >> 16) == param1->unk_06)) {
-            return;
-        }
+    if (i != 0 && ((param0[i - 1] & 0x3f) == data->unk_00) && ((param0[i - 1] >> 16) == data->unk_06)) {
+        return;
     }
 
     v0 = sub_0202B91C(param0);
-    *v0 = (param1->unk_06 << 16) | (param1->unk_00 & 0x3f);
+    *v0 = (data->unk_06 << 16) | (data->unk_00 & 0x3f);
 }
 
-static void sub_0202BB40(u32 *param0, UnkStruct_0202BCC8 *param1)
+static void sub_0202BB40(u32 *param0, UnkStruct_0202BCC8 *data)
 {
     u32 *v0;
-    u32 v1;
+    u32 i;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (param0[v1] == 0) {
+    for (i = 0; i < 4; i++) {
+        if (param0[i] == 0) {
             break;
         }
     }
 
-    if (v1 != 0) {
-        if (((param0[v1 - 1] & 0x3f) == param1->unk_00) && ((param0[v1 - 1] >> 16) == param1->unk_02)) {
-            return;
-        }
+    if (i != 0 && ((param0[i - 1] & 0x3f) == data->unk_00) && ((param0[i - 1] >> 16) == data->unk_02)) {
+        return;
     }
 
     v0 = sub_0202B91C(param0);
-    *v0 = (param1->unk_02 << 16) | (param1->unk_00 & 0x3f);
+    *v0 = (data->unk_02 << 16) | (data->unk_00 & 0x3f);
 }
 
-static void sub_0202BB88(u8 *param0, UnkStruct_0202BFCC *param1)
+static void sub_0202BB88(u8 *param0, UnkStruct_0202BFCC *data)
 {
-    param0[0] = param1->unk_00;
-    param0[1] = (param1->unk_01_0 << 2) | (param1->unk_01_4 << 1) | (param1->unk_01_5);
-    sub_0202BF94(param1->unk_02, (u16 *)&param0[2], 8);
-    sub_0202BF94(param1->unk_12, (u16 *)&param0[18], 8);
+    param0[0] = data->unk_00;
+    param0[1] = (data->unk_01_0 << 2) | (data->unk_01_4 << 1) | (data->unk_01_5);
+    sub_0202BF94(data->unk_02, (u16 *)&param0[2], 8);
+    sub_0202BF94(data->unk_12, (u16 *)&param0[18], 8);
 }
 
-static void sub_0202BBC4(u8 *param0, UnkStruct_0202BFCC *param1)
+static void sub_0202BBC4(u8 *param0, UnkStruct_0202BFCC *data)
 {
-    param0[0] = param1->unk_00;
-    param0[1] = param1->unk_01_4;
+    param0[0] = data->unk_00;
+    param0[1] = data->unk_01_4;
 
-    sub_0202BF94(param1->unk_02, (u16 *)&param0[2], 8);
+    sub_0202BF94(data->unk_02, (u16 *)&param0[2], 8);
 }
 
-static void sub_0202BBE0(u8 *param0, UnkStruct_0202BFCC *param1)
+static void sub_0202BBE0(u8 *param0, UnkStruct_0202BFCC *data)
 {
-    param0[0] = param1->unk_00;
-    param0[1] = (param1->unk_01_4 << 2) | (param1->unk_01_6);
+    param0[0] = data->unk_00;
+    param0[1] = (data->unk_01_4 << 2) | (data->unk_01_6);
 
-    sub_0202BF94(param1->unk_02, (u16 *)&param0[2], 8);
-    sub_0202BF94(param1->unk_22, (u16 *)&param0[18], 12);
+    sub_0202BF94(data->unk_02, (u16 *)&param0[2], 8);
+    sub_0202BF94(data->unk_22, (u16 *)&param0[18], 12);
 }
 
-static void sub_0202BC14(Journal *param0, UnkStruct_0202BFCC *param1)
+static void sub_0202BC14(JournalEntry *journalEntry, UnkStruct_0202BFCC *data)
 {
-    u32 v0;
+    u32 i;
     u8 *v1;
 
-    for (v0 = 0; v0 < 2; v0++) {
-        if (param0->unk_1C[v0][0] == 0) {
+    for (i = 0; i < 2; i++) {
+        if (journalEntry->unk_1C[i][0] == 0) {
             break;
         }
     }
 
-    if (v0 != 0) {
-        if (param0->unk_1C[v0 - 1][0] == param1->unk_00) {
-            return;
-        }
+    if (i != 0 && journalEntry->unk_1C[i - 1][0] == data->unk_00) {
+        return;
     }
 
-    v1 = sub_0202B954(param0);
-    v1[0] = param1->unk_00;
+    v1 = sub_0202B954(journalEntry);
+    v1[0] = data->unk_00;
 }
 
-static void sub_0202BC48(u8 *param0, UnkStruct_0202BFCC *param1)
+static void sub_0202BC48(u8 *param0, UnkStruct_0202BFCC *data)
 {
-    param0[0] = param1->unk_00;
-    param0[1] = param1->unk_01_0;
+    param0[0] = data->unk_00;
+    param0[1] = data->unk_01_0;
 }
 
-void *sub_0202BC58(u16 param0, u32 param1)
+void *JournalEntry_CreateTitle(u16 mapID, u32 heapID)
 {
-    UnkStruct_0202BC58 *v0;
-    RTCDate v1;
+    JournalEntryTitle *journalEntryTitle = Heap_AllocFromHeap(heapID, sizeof(JournalEntryTitle));
+    RTCDate currDate;
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0202BC58));
-    GetCurrentDate(&v1);
+    GetCurrentDate(&currDate);
 
-    v0->unk_00_0 = v1.year;
-    v0->unk_00_7 = v1.month;
-    v0->unk_00_14 = v1.day;
-    v0->unk_00_11 = v1.week;
-    v0->unk_00_19 = param0;
+    journalEntryTitle->year = currDate.year;
+    journalEntryTitle->month = currDate.month;
+    journalEntryTitle->day = currDate.day;
+    journalEntryTitle->week = currDate.week;
+    journalEntryTitle->mapID = mapID;
 
-    return v0;
+    return journalEntryTitle;
 }
 
-static UnkStruct_0202BCC8 *sub_0202BCC8(u32 param0)
+static UnkStruct_0202BCC8 *sub_0202BCC8(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202BCC8));
+    UnkStruct_0202BCC8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202BCC8));
 
     memset(v0, 0, sizeof(UnkStruct_0202BCC8));
     return v0;
 }
 
-void *sub_0202BCE4(u32 param0)
+void *sub_0202BCE4(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 1;
     return v0;
 }
 
-void *sub_0202BCF0(u32 param0)
+void *sub_0202BCF0(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 2;
     return v0;
 }
 
-void *sub_0202BCFC(u32 param0)
+void *sub_0202BCFC(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 3;
     return v0;
 }
 
-void *sub_0202BD08(u32 param0)
+void *sub_0202BD08(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 4;
     return v0;
 }
 
-void *sub_0202BD14(u32 param0)
+void *sub_0202BD14(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 5;
     return v0;
 }
 
-void *sub_0202BD20(u32 param0)
+void *sub_0202BD20(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 6;
     return v0;
 }
 
-void *sub_0202BD2C(u32 param0)
+void *sub_0202BD2C(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 7;
     return v0;
 }
 
-void *sub_0202BD38(u32 param0)
+void *sub_0202BD38(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 8;
     return v0;
 }
 
-void *sub_0202BD44(u16 param0, u32 param1)
+void *sub_0202BD44(u16 defeatedGym, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 9;
-    v0->unk_02 = param0;
+    v0->unk_02 = defeatedGym;
 
     return v0;
 }
 
-void *sub_0202BD58(u16 param0, u16 param1, u32 param2)
+void *sub_0202BD58(u16 trainerType, u16 trainerID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param2);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 10;
-    v0->unk_02 = param0;
-    v0->unk_04 = param1;
+    v0->unk_02 = trainerType;
+    v0->unk_04 = trainerID;
 
     return v0;
 }
 
-void *sub_0202BD70(u16 param0, u32 param1)
+void *sub_0202BD70(u16 trainerID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 11;
-    v0->unk_04 = param0;
+    v0->unk_04 = trainerID;
 
     return v0;
 }
 
-void *sub_0202BD84(u16 param0, u32 param1)
+void *sub_0202BD84(u16 trainerID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 12;
-    v0->unk_04 = param0;
+    v0->unk_04 = trainerID;
 
     return v0;
 }
 
-void *sub_0202BD98(u16 param0, u32 param1)
+void *sub_0202BD98(u16 mapID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 13;
-    v0->unk_02 = param0;
+    v0->unk_02 = mapID;
 
     return v0;
 }
 
-void *sub_0202BDAC(u16 param0, u32 param1)
+void *sub_0202BDAC(u16 mapLabelTextID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 14;
-    v0->unk_02 = param0;
+    v0->unk_02 = mapLabelTextID;
 
     return v0;
 }
 
-void *sub_0202BDC0(u16 param0, u32 param1)
+void *sub_0202BDC0(u16 mapLabelTextID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 15;
-    v0->unk_02 = param0;
+    v0->unk_02 = mapLabelTextID;
 
     return v0;
 }
 
-void *sub_0202BDD4(u32 param0)
+void *sub_0202BDD4(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 16;
     return v0;
 }
 
-void *sub_0202BDE0(u32 param0)
+void *sub_0202BDE0(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 17;
     return v0;
 }
 
-void *sub_0202BDEC(u16 param0, u32 param1)
+void *sub_0202BDEC(u16 param0, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param1);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 18;
     v0->unk_06 = param0;
@@ -757,9 +738,9 @@ void *sub_0202BDEC(u16 param0, u32 param1)
     return v0;
 }
 
-void *sub_0202BE00(u8 param0, u16 param1, u32 param2)
+void *sub_0202BE00(u8 param0, u16 param1, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param2);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 19 + param0;
     v0->unk_02 = param1;
@@ -767,102 +748,98 @@ void *sub_0202BE00(u8 param0, u16 param1, u32 param2)
     return v0;
 }
 
-void *sub_0202BE14(u32 param0)
+void *sub_0202BE14(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 34;
     return v0;
 }
 
-void *sub_0202BE20(u32 param0)
+void *sub_0202BE20(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = 35;
     return v0;
 }
 
-void *sub_0202BE2C(u32 param0, u32 param1)
+void *sub_0202BE2C(u32 heapID, u32 param1)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(param0);
+    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
 
     v0->unk_00 = param1;
     return v0;
 }
 
-static UnkStruct_0202BE38 *sub_0202BE38(u32 param0)
+static JournalEntryMon *JournalEntry_InitMon(u32 heapID)
 {
-    UnkStruct_0202BE38 *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202BE38));
+    JournalEntryMon *journalEntryMon = Heap_AllocFromHeap(heapID, sizeof(JournalEntryMon));
 
-    memset(v0, 0, sizeof(UnkStruct_0202BE38));
-    return v0;
+    memset(journalEntryMon, 0, sizeof(JournalEntryMon));
+    return journalEntryMon;
 }
 
-void *sub_0202BE4C(const PlayTime *playTime, u16 param1, u8 param2, u8 param3, u32 param4)
+void *JournalEntry_CreateMonCaught(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID)
 {
-    UnkStruct_0202BE38 *v0;
+    JournalEntryMon *journalEntryMon = JournalEntry_InitMon(heapID);
     u8 v1;
 
-    v0 = sub_0202BE38(param4);
-
-    v0->unk_00 = 1;
-    v0->unk_02 = param1;
-    v0->unk_01_6 = param2;
-    v0->unk_01_2 = param3;
+    journalEntryMon->battleResult = POKEMON_CAUGHT;
+    journalEntryMon->species = species;
+    journalEntryMon->gender = gender;
+    journalEntryMon->timeOfDay = timeOfDay;
 
     v1 = PlayTime_GetMinutes(playTime) / 10;
 
-    if ((v1 == 0) || (v1 == 2) || (v1 == 4)) {
-        v0->unk_01_0 = 0;
-    } else if ((v1 == 1) || (v1 == 3)) {
-        v0->unk_01_0 = 1;
+    if (v1 == 0 || v1 == 2 || v1 == 4) {
+        journalEntryMon->stringVariant = 0;
+    } else if (v1 == 1 || v1 == 3) {
+        journalEntryMon->stringVariant = 1;
     } else {
-        v0->unk_01_0 = 2;
+        journalEntryMon->stringVariant = 2;
     }
 
-    return v0;
+    return journalEntryMon;
 }
 
-void *sub_0202BECC(const PlayTime *playTime, u16 param1, u8 param2, u8 param3, u32 param4)
+void *JournalEntry_CreateMonDefeated(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID)
 {
-    UnkStruct_0202BE38 *v0;
+    JournalEntryMon *journalEntryMon = JournalEntry_InitMon(heapID);
     u8 v1;
 
-    v0 = sub_0202BE38(param4);
-
-    v0->unk_00 = 2;
-    v0->unk_02 = param1;
-    v0->unk_01_6 = param2;
-    v0->unk_01_2 = param3;
+    journalEntryMon->battleResult = POKEMON_DEFEATED;
+    journalEntryMon->species = species;
+    journalEntryMon->gender = gender;
+    journalEntryMon->timeOfDay = timeOfDay;
 
     v1 = PlayTime_GetMinutes(playTime) / 10;
 
-    if ((v1 == 1) || (v1 == 3) || (v1 == 5)) {
-        v0->unk_01_0 = 0;
-    } else if ((v1 == 2) || (v1 == 4)) {
-        v0->unk_01_0 = 1;
+    if (v1 == 1 || v1 == 3 || v1 == 5) {
+        journalEntryMon->stringVariant = 0;
+    } else if (v1 == 2 || v1 == 4) {
+        journalEntryMon->stringVariant = 1;
     } else {
-        v0->unk_01_0 = 2;
+        journalEntryMon->stringVariant = 2;
     }
 
-    return v0;
+    return journalEntryMon;
 }
 
-void *sub_0202BF4C(u16 param0, u16 param1, u32 param2)
+void *JournalEntry_InitTrainer(u16 mapID, u16 trainerID, u32 heapID)
 {
-    UnkStruct_0202BF4C *v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0202BF4C));
+    JournalEntryTrainer *journalEntryTrainer = Heap_AllocFromHeap(heapID, sizeof(JournalEntryTrainer));
 
-    v0->unk_00_0 = 1;
-    v0->unk_02 = param0;
-    v0->unk_00_1 = param1;
+    journalEntryTrainer->unk_00_0 = 1;
+    journalEntryTrainer->mapID = mapID;
+    journalEntryTrainer->trainerID = trainerID;
 
-    return v0;
+    return journalEntryTrainer;
 }
 
-static UnkStruct_0202BFCC *sub_0202BF7C(u32 param0)
+static UnkStruct_0202BFCC *sub_0202BF7C(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202BFCC));
+    UnkStruct_0202BFCC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202BFCC));
 
     memset(v0, 0, sizeof(UnkStruct_0202BFCC));
     return v0;
@@ -870,24 +847,24 @@ static UnkStruct_0202BFCC *sub_0202BF7C(u32 param0)
 
 static void sub_0202BF94(const u16 *param0, u16 *param1, u32 param2)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < param2; v0++) {
-        param1[v0] = 0xffff;
+    for (i = 0; i < param2; i++) {
+        param1[i] = 0xffff;
     }
 
-    for (v0 = 0; v0 < param2; v0++) {
-        if (param0[v0] == 0xffff) {
+    for (i = 0; i < param2; i++) {
+        if (param0[i] == 0xffff) {
             break;
         }
 
-        param1[v0] = param0[v0];
+        param1[i] = param0[i];
     }
 }
 
-void *sub_0202BFCC(u16 *param0, u8 param1, u8 param2, u32 param3)
+void *sub_0202BFCC(u16 *param0, u8 param1, u8 param2, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param3);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 1;
     v0->unk_01_0 = param2;
@@ -897,9 +874,9 @@ void *sub_0202BFCC(u16 *param0, u8 param1, u8 param2, u32 param3)
     return v0;
 }
 
-void *sub_0202C00C(u16 *param0, u8 param1, u8 param2, u32 param3)
+void *sub_0202C00C(u16 *param0, u8 param1, u8 param2, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param3);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 2;
     v0->unk_01_0 = param2;
@@ -909,9 +886,9 @@ void *sub_0202C00C(u16 *param0, u8 param1, u8 param2, u32 param3)
     return v0;
 }
 
-void *sub_0202C04C(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u32 param5)
+void *sub_0202C04C(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param5);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 3;
     v0->unk_01_0 = param4;
@@ -924,9 +901,9 @@ void *sub_0202C04C(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u3
     return v0;
 }
 
-void *sub_0202C0AC(u16 *param0, u8 param1, u8 param2, u32 param3)
+void *sub_0202C0AC(u16 *param0, u8 param1, u8 param2, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param3);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 4;
     v0->unk_01_0 = param2;
@@ -936,20 +913,20 @@ void *sub_0202C0AC(u16 *param0, u8 param1, u8 param2, u32 param3)
     return v0;
 }
 
-void *sub_0202C0EC(u16 *param0, u8 param1, u32 param2)
+void *sub_0202C0EC(u16 *trainerName, u8 trainerGender, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param2);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 6;
-    v0->unk_01_4 = param1;
+    v0->unk_01_4 = trainerGender;
 
-    sub_0202BF94(param0, v0->unk_02, 8);
+    sub_0202BF94(trainerName, v0->unk_02, 8);
     return v0;
 }
 
-void *sub_0202C11C(u16 *param0, u8 param1, u16 *param2, u8 param3, u32 param4)
+void *sub_0202C11C(u16 *param0, u8 param1, u16 *param2, u8 param3, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param4);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 7;
     v0->unk_01_4 = param1;
@@ -961,17 +938,17 @@ void *sub_0202C11C(u16 *param0, u8 param1, u16 *param2, u8 param3, u32 param4)
     return v0;
 }
 
-void *sub_0202C168(u32 param0)
+void *sub_0202C168(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param0);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 8;
     return v0;
 }
 
-void *sub_0202C174(u16 *param0, u8 param1, u8 param2, u32 param3)
+void *sub_0202C174(u16 *param0, u8 param1, u8 param2, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param3);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 11;
     v0->unk_01_0 = param2;
@@ -981,17 +958,17 @@ void *sub_0202C174(u16 *param0, u8 param1, u8 param2, u32 param3)
     return v0;
 }
 
-void *sub_0202C1B4(u32 param0)
+void *sub_0202C1B4(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param0);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 12;
     return v0;
 }
 
-void *sub_0202C1C0(u8 param0, u32 param1)
+void *sub_0202C1C0(u8 param0, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param1);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 13;
     v0->unk_01_0 = param0;
@@ -999,17 +976,17 @@ void *sub_0202C1C0(u8 param0, u32 param1)
     return v0;
 }
 
-void *sub_0202C1E0(u32 param0)
+void *sub_0202C1E0(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param0);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 14;
     return v0;
 }
 
-void *sub_0202C1EC(u16 *param0, u8 param1, u16 *param2, u8 param3, u32 param4)
+void *sub_0202C1EC(u16 *param0, u8 param1, u16 *param2, u8 param3, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param4);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 15;
     v0->unk_01_4 = param1;
@@ -1021,25 +998,25 @@ void *sub_0202C1EC(u16 *param0, u8 param1, u16 *param2, u8 param3, u32 param4)
     return v0;
 }
 
-void *sub_0202C238(u32 param0)
+void *sub_0202C238(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param0);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = 16;
     return v0;
 }
 
-void *sub_0202C244(u32 param0, u32 param1)
+void *sub_0202C244(u32 heapID, u32 param1)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param0);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = param1;
     return v0;
 }
 
-void *sub_0202C250(const u16 *param0, u8 param1, u32 param2, u32 param3)
+void *sub_0202C250(const u16 *param0, u8 param1, u32 heapID, u32 param3)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param2);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = param3;
     v0->unk_01_4 = param1;
@@ -1048,9 +1025,9 @@ void *sub_0202C250(const u16 *param0, u8 param1, u32 param2, u32 param3)
     return v0;
 }
 
-void *sub_0202C280(int param0, u32 param1, u32 param2)
+void *sub_0202C280(int param0, u32 heapID, u32 param2)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(param1);
+    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
 
     v0->unk_00 = param2;
     v0->unk_01_0 = param0;
@@ -1058,40 +1035,40 @@ void *sub_0202C280(int param0, u32 param1, u32 param2)
     return v0;
 }
 
-void sub_0202C2A4(Journal *param0, void *param1, u8 param2, u8 param3)
+void JournalEntry_GetData(JournalEntry *journalEntry, void *dest, u8 dataType, u8 page)
 {
-    switch (param2) {
-    case 0:
-        sub_0202C2FC(&param0[param3], param1);
+    switch (dataType) {
+    case JOURNAL_TITLE:
+        JournalEntry_GetTitle(&journalEntry[page], dest);
         break;
-    case 1:
-        sub_0202C304(&param0[param3], param1);
+    case JOURNAL_UNK_04:
+        sub_0202C304(&journalEntry[page], dest);
         break;
-    case 2:
-        sub_0202C3B8(&param0[param3], param1);
+    case JOURNAL_MON:
+        JournalEntry_GetMon(&journalEntry[page], dest);
         break;
-    case 3:
-        sub_0202C3C4(&param0[param3], param1);
+    case JOURNAL_TRAINER:
+        JournalEntry_GetTrainer(&journalEntry[page], dest);
         break;
-    case 4:
-        sub_0202C3D0(&param0[param3], param1);
+    case JOURNAL_UNK_1C:
+        sub_0202C3D0(&journalEntry[page], dest);
         break;
     }
 }
 
-static void sub_0202C2FC(Journal *param0, UnkStruct_0202BC58 *param1)
+static void JournalEntry_GetTitle(JournalEntry *journalEntry, JournalEntryTitle *journalEntryTitle)
 {
-    *param1 = param0->unk_00;
+    *journalEntryTitle = journalEntry->title;
 }
 
-static void sub_0202C304(Journal *param0, UnkStruct_0202BCC8 *param1)
+static void sub_0202C304(JournalEntry *journalEntry, UnkStruct_0202BCC8 *param1)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        memset(&param1[v0], 0, sizeof(UnkStruct_0202BCC8));
+    for (i = 0; i < 4; i++) {
+        memset(&param1[i], 0, sizeof(UnkStruct_0202BCC8));
 
-        switch (param0->unk_04[v0] & 0x3f) {
+        switch (journalEntry->unk_04[i] & 0x3f) {
         case 1:
         case 2:
         case 3:
@@ -1109,21 +1086,21 @@ static void sub_0202C304(Journal *param0, UnkStruct_0202BCC8 *param1)
         case 38:
         case 39:
         case 40:
-            sub_0202C474(param0->unk_04[v0], &param1[v0]);
+            sub_0202C474(journalEntry->unk_04[i], &param1[i]);
             break;
         case 9:
         case 10:
         case 11:
         case 12:
-            sub_0202C47C(param0->unk_04[v0], &param1[v0]);
+            sub_0202C47C(journalEntry->unk_04[i], &param1[i]);
             break;
         case 13:
         case 14:
         case 15:
-            sub_0202C494(param0->unk_04[v0], &param1[v0]);
+            sub_0202C494(journalEntry->unk_04[i], &param1[i]);
             break;
         case 18:
-            sub_0202C4A0(param0->unk_04[v0], &param1[v0]);
+            sub_0202C4A0(journalEntry->unk_04[i], &param1[i]);
             break;
         case 19:
         case 20:
@@ -1139,47 +1116,47 @@ static void sub_0202C304(Journal *param0, UnkStruct_0202BCC8 *param1)
         case 28:
         case 33:
         case 32:
-            sub_0202C4AC(param0->unk_04[v0], &param1[v0]);
+            sub_0202C4AC(journalEntry->unk_04[i], &param1[i]);
             break;
         }
     }
 }
 
-static void sub_0202C3B8(Journal *param0, UnkStruct_0202BE38 *param1)
+static void JournalEntry_GetMon(JournalEntry *journalEntry, JournalEntryMon *journalEntryMon)
 {
-    *param1 = param0->unk_14;
+    *journalEntryMon = journalEntry->mon;
 }
 
-static void sub_0202C3C4(Journal *param0, UnkStruct_0202BF4C *param1)
+static void JournalEntry_GetTrainer(JournalEntry *journalEntry, JournalEntryTrainer *journalEntryTrainer)
 {
-    *param1 = param0->unk_18;
+    *journalEntryTrainer = journalEntry->trainer;
 }
 
-static void sub_0202C3D0(Journal *param0, UnkStruct_0202BFCC *param1)
+static void sub_0202C3D0(JournalEntry *journalEntry, UnkStruct_0202BFCC *param1)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < 2; v0++) {
-        memset(&param1[v0], 0, sizeof(UnkStruct_0202BFCC));
+    for (i = 0; i < 2; i++) {
+        memset(&param1[i], 0, sizeof(UnkStruct_0202BFCC));
 
-        switch (param0->unk_1C[v0][0]) {
+        switch (journalEntry->unk_1C[i][0]) {
         case 1:
         case 2:
         case 3:
         case 4:
         case 5:
         case 11:
-            sub_0202C4B8(&param0->unk_1C[v0][0], &param1[v0]);
+            sub_0202C4B8(&journalEntry->unk_1C[i][0], &param1[i]);
             break;
         case 6:
         case 22:
         case 23:
-            sub_0202C528(&param0->unk_1C[v0][0], &param1[v0]);
+            sub_0202C528(&journalEntry->unk_1C[i][0], &param1[i]);
             break;
         case 7:
         case 9:
         case 15:
-            sub_0202C54C(&param0->unk_1C[v0][0], &param1[v0]);
+            sub_0202C54C(&journalEntry->unk_1C[i][0], &param1[i]);
             break;
         case 8:
         case 10:
@@ -1196,11 +1173,11 @@ static void sub_0202C3D0(Journal *param0, UnkStruct_0202BFCC *param1)
         case 27:
         case 28:
         case 29:
-            sub_0202C5A4(&param0->unk_1C[v0][0], &param1[v0]);
+            sub_0202C5A4(&journalEntry->unk_1C[i][0], &param1[i]);
             break;
         case 13:
         case 24:
-            sub_0202C5AC(&param0->unk_1C[v0][0], &param1[v0]);
+            sub_0202C5AC(&journalEntry->unk_1C[i][0], &param1[i]);
             break;
         }
     }
@@ -1276,73 +1253,71 @@ static void sub_0202C5AC(u8 *param0, UnkStruct_0202BFCC *param1)
     param1->unk_01_0 = param0[1];
 }
 
-void sub_0202C5C4(TrainerInfo *param0, Journal *param1, u32 param2, u32 param3, u32 param4)
+void sub_0202C5C4(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 currMapID, u32 prevMapID, u32 heapID)
 {
-    void *v0;
-    u32 v1;
+    void *data = NULL;
+    u32 i;
 
-    v0 = NULL;
-
-    if (MapHeader_IsCave(param3) == 1) {
-        if (MapHeader_IsOutdoors(param2) == 1) {
-            v0 = sub_0202BDAC((u16)MapHeader_GetMapLabelTextID(param3), param4);
+    if (MapHeader_IsCave(prevMapID) == TRUE) {
+        if (MapHeader_IsOutdoors(currMapID) == TRUE) {
+            data = sub_0202BDAC((u16)MapHeader_GetMapLabelTextID(prevMapID), heapID);
         }
-    } else if (sub_0203A288(param3) == 1) {
-        if (MapHeader_IsOutdoors(param2) == 1) {
-            if (param3 == 414) {
-                v0 = sub_0202BCE4(param4);
-            } else if (param3 == 422) {
-                v0 = sub_0202BCF0(param4);
+    } else if (MapHeader_IsBuilding(prevMapID) == TRUE) {
+        if (MapHeader_IsOutdoors(currMapID) == TRUE) {
+            if (prevMapID == MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F) {
+                data = sub_0202BCE4(heapID);
+            } else if (prevMapID == MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB) {
+                data = sub_0202BCF0(heapID);
             } else {
-                u32 v2 = MapHeader_GetMapLabelTextID(param3);
+                u32 mapLabelTextID = MapHeader_GetMapLabelTextID(prevMapID);
 
-                for (v1 = 0; v1 < NELEMS(Unk_020E5B90); v1++) {
-                    if (v2 != Unk_020E5B90[v1].unk_00) {
+                for (i = 0; i < NELEMS(sMapsInfo); i++) {
+                    if (mapLabelTextID != sMapsInfo[i].mapLabelTextID) {
                         continue;
                     }
 
-                    v0 = sub_0202BDC0((u16)v2, param4);
+                    data = sub_0202BDC0((u16)mapLabelTextID, heapID);
                 }
             }
         }
-    } else if (MapHeader_IsOutdoors(param3) == 1) {
-        if (sub_0203A288(param2) == 1) {
-            u8 v3 = sub_0202C6CC(param0, param2);
+    } else if (MapHeader_IsOutdoors(prevMapID) == TRUE) {
+        if (MapHeader_IsBuilding(currMapID) == TRUE) {
+            u8 defeatedGym = JournalEntry_GetDefeatedGym(trainerInfo, currMapID);
 
-            if (v3 != 0xff) {
-                v0 = sub_0202BD44(v3, param4);
+            if (defeatedGym != 0xff) {
+                data = sub_0202BD44(defeatedGym, heapID);
             }
         }
     }
 
-    if (v0 != NULL) {
-        Journal_SaveData(param1, v0, 1);
+    if (data != NULL) {
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
     }
 }
 
 u32 sub_0202C6A4(u32 param0)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < NELEMS(Unk_020E5B90); v0++) {
-        if (param0 != Unk_020E5B90[v0].unk_00) {
+    for (i = 0; i < NELEMS(sMapsInfo); i++) {
+        if (param0 != sMapsInfo[i].mapLabelTextID) {
             continue;
         }
 
-        return Unk_020E5B90[v0].unk_04;
+        return sMapsInfo[i].unk_04;
     }
 
     return 0;
 }
 
-static u8 sub_0202C6CC(TrainerInfo *param0, u32 param1)
+static u8 JournalEntry_GetDefeatedGym(TrainerInfo *trainerInfo, u32 mapID)
 {
-    u8 v0;
+    u8 i;
 
-    for (v0 = 0; v0 < NELEMS(Unk_020E5B50); v0++) {
-        if (Unk_020E5B50[v0].unk_04 == param1) {
-            if (TrainerInfo_HasBadge(param0, Unk_020E5B50[v0].unk_06) == 0) {
-                return v0;
+    for (i = 0; i < NELEMS(sGymsInfo); i++) {
+        if (sGymsInfo[i].mapID == mapID) {
+            if (TrainerInfo_HasBadge(trainerInfo, sGymsInfo[i].badge) == 0) {
+                return i;
             }
 
             break;
@@ -1352,49 +1327,48 @@ static u8 sub_0202C6CC(TrainerInfo *param0, u32 param1)
     return 0xff;
 }
 
-void sub_0202C704(Journal *param0, u32 param1, u32 param2)
+void sub_0202C704(JournalEntry *journalEntry, u32 mapID, u32 heapID)
 {
-    void *v0 = sub_0202BD98((u16)param1, param2);
-    Journal_SaveData(param0, v0, 1);
+    void *data = sub_0202BD98((u16)mapID, heapID);
+    JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
 }
 
-void sub_0202C720(Journal *param0, u16 param1, u16 param2, u32 param3)
+void sub_0202C720(JournalEntry *journalEntry, u16 mapID, u16 trainerID, u32 heapID)
 {
-    void *v0;
-    u8 v1;
+    void *data;
+    u8 trainerType = JournalEntry_TrainerType(trainerID);
 
-    v1 = sub_0202C78C(param2);
-
-    if (v1 < 8) {
-        v0 = sub_0202BD58(v1, param2, param3);
-        Journal_SaveData(param0, v0, 1);
-    } else if (v1 == 8) {
-        v0 = sub_0202BD70(param2, param3);
-        Journal_SaveData(param0, v0, 1);
-    } else if (v1 == 9) {
-        v0 = sub_0202BD84(param2, param3);
-        Journal_SaveData(param0, v0, 1);
+    if (trainerType < 8) {
+        data = sub_0202BD58(trainerType, trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
+    } else if (trainerType == 8) {
+        data = sub_0202BD70(trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
+    } else if (trainerType == 9) {
+        data = sub_0202BD84(trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
     } else {
-        v0 = sub_0202BF4C(param1, param2, param3);
-        Journal_SaveData(param0, v0, 3);
+        data = JournalEntry_InitTrainer(mapID, trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_TRAINER);
     }
 }
 
-static u8 sub_0202C78C(u32 param0)
+static u8 JournalEntry_TrainerType(u32 trainerID)
 {
-    u8 v0;
+    u8 i;
 
-    for (v0 = 0; v0 < NELEMS(Unk_020E5B50); v0++) {
-        if (Unk_020E5B50[v0].unk_00 == param0) {
-            return v0;
+    for (i = 0; i < NELEMS(sGymsInfo); i++) {
+        if (sGymsInfo[i].trainerID == trainerID) {
+            return i;
         }
     }
 
-    if ((param0 == 261) || (param0 == 866) || (param0 == 262) || (param0 == 867) || (param0 == 263) || (param0 == 868) || (param0 == 264) || (param0 == 869)) {
+    if (trainerID == 261 || trainerID == 866 || trainerID == 262 || trainerID == 867
+        || trainerID == 263 || trainerID == 868 || trainerID == 264 || trainerID == 869) {
         return 8;
     }
 
-    if ((param0 == 267) || (param0 == 870)) {
+    if (trainerID == 267 || trainerID == 870) {
         return 9;
     }
 

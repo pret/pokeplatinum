@@ -705,7 +705,7 @@ void sub_0205BA08(int param0, int param1, void *param2, void *param3)
 
     if (param0 != CommSys_CurNetId()) {
         v3 = sub_0202C0EC((u16 *)TrainerInfo_Name(v2), TrainerInfo_Gender(v2), 31);
-        Journal_SaveData(fieldSystem->journal, v3, 4);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v3, JOURNAL_UNK_1C);
     }
 }
 
