@@ -64,7 +64,7 @@ BOOL ScrCmd_255(ScriptContext *param0)
     PCBoxes *v1 = SaveData_PCBoxes(param0->fieldSystem->saveData);
     Pokemon *v2 = Pokemon_New(32);
     TrainerInfo *v3 = SaveData_GetTrainerInfo(param0->fieldSystem->saveData);
-    PokedexData *v4 = SaveData_Pokedex(param0->fieldSystem->saveData);
+    Pokedex *v4 = SaveData_Pokedex(param0->fieldSystem->saveData);
     BOOL v5;
     int v6;
 

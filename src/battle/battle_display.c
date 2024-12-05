@@ -553,11 +553,9 @@ void ov16_0225D360(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
         v0->unk_0C = 0;
     } else {
         {
-            TrainerData *v1;
-
-            v1 = BattleSystem_TrainerData(param0, param1->battler);
+            Trainer *trainer = BattleSystem_GetTrainer(param0, param1->battler);
             v0->unk_0B = 0;
-            v0->unk_0C = sub_020788D0(ov16_02264768(param0, param1->battler, v1->class));
+            v0->unk_0C = sub_020788D0(ov16_02264768(param0, param1->battler, trainer->class));
         }
     }
 
@@ -1549,7 +1547,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                 sub_02007DEC(v0->unk_08, 44, 0);
                 sub_02007DEC(v0->unk_08, 45, 0);
                 sub_02007DEC(v0->unk_08, 0, v0->unk_14);
-                PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, ov16_0223EE28(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
+                PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
 
                 {
                     u8 v4;
@@ -1591,7 +1589,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
 
             if (sub_020080C0(v0->unk_08, 0) <= v0->unk_14) {
                 sub_02007DEC(v0->unk_08, 0, v0->unk_14);
-                PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, ov16_0223EE28(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
+                PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
 
                 {
                     u8 v5;
@@ -1609,7 +1607,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if ((sub_020160F4(ov16_0223EE28(v0->unk_00), v0->unk_11) == 1) && (sub_02007C24(v0->unk_08) == 0)) {
+        if ((sub_020160F4(BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_11) == 1) && (sub_02007C24(v0->unk_08) == 0)) {
             if (v0->unk_28) {
                 {
                     UnkStruct_ov16_02265BBC v6;
@@ -1675,7 +1673,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
             sub_02007DEC(v0->unk_08, 44, 0);
             sub_02007DEC(v0->unk_08, 45, 0);
             sub_02007DEC(v0->unk_08, 1, v0->unk_14);
-            PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, ov16_0223EE28(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
+            PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_08, v0->unk_16, v0->unk_13, 0, v0->unk_11);
 
             {
                 u8 v4;
@@ -1691,7 +1689,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if ((sub_020160F4(ov16_0223EE28(v0->unk_00), v0->unk_11) == 1) && (sub_02007C24(v0->unk_08) == 0)) {
+        if ((sub_020160F4(BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_11) == 1) && (sub_02007C24(v0->unk_08) == 0)) {
             if (v0->unk_28) {
                 {
                     UnkStruct_ov16_02265BBC v5;
@@ -1854,7 +1852,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                 }
             }
 
-            PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, ov16_0223EE28(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
+            PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
             sub_020086FC(v0->unk_04->unk_20, 16, 0, 0, Unk_ov16_0226F1AE[v0->unk_8E]);
 
             v0->unk_83 = 5;
@@ -1883,7 +1881,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                 }
             }
 
-            PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, ov16_0223EE28(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
+            PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
             sub_020086FC(v0->unk_04->unk_20, 16, 0, 1, Unk_ov16_0226F1AE[v0->unk_8E]);
 
             v0->unk_83 = 5;
@@ -1899,7 +1897,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
         }
         break;
     case 6:
-        if ((sub_020160F4(ov16_0223EE28(v0->unk_00), v0->unk_81) == 1) && (sub_02007C24(v0->unk_04->unk_20) == 0)) {
+        if ((sub_020160F4(BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_81) == 1) && (sub_02007C24(v0->unk_04->unk_20) == 0)) {
             ov12_0223783C(v0->unk_04->unk_84);
             v0->unk_04->unk_84 = NULL;
             ov12_02236428(v0->unk_08);
@@ -2048,7 +2046,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
                 }
             }
 
-            PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, ov16_0223EE28(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
+            PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
             sub_020086FC(v0->unk_04->unk_20, 16, 0, 0, Unk_ov16_0226F1AE[v0->unk_8E]);
             v0->unk_83 = 5;
         } else if (sub_020080C0(v0->unk_04->unk_20, 12) >= 0x100) {
@@ -2076,7 +2074,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
                 }
             }
 
-            PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, ov16_0223EE28(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
+            PokeSprite_LoadAnimation(v0->unk_04->unk_1A0, BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_04->unk_20, v0->unk_86, v0->unk_84, 0, v0->unk_81);
             sub_020086FC(v0->unk_04->unk_20, 16, 0, 1, Unk_ov16_0226F1AE[v0->unk_8E]);
             v0->unk_83 = 5;
         } else {
@@ -2091,7 +2089,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         }
         break;
     case 6:
-        if ((sub_020160F4(ov16_0223EE28(v0->unk_00), v0->unk_81) == 1) && (sub_02007C24(v0->unk_04->unk_20) == 0)) {
+        if ((sub_020160F4(BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_81) == 1) && (sub_02007C24(v0->unk_04->unk_20) == 0)) {
             ov12_0223783C(v0->unk_0C);
             ov12_02236428(v0->unk_08);
 
@@ -2925,7 +2923,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 break;
             case 1:
                 v10.tags = 0;
-                v10.id = 1226 + ov16_0223E1B4(v0->unk_00, 0);
+                v10.id = 1226 + BattleSystem_GetTrainerGender(v0->unk_00, 0);
                 v0->unk_35 = BattleMessage_Print(v0->unk_00, v9, &v10, BattleSystem_TextSpeed(v0->unk_00));
                 v0->unk_0A = 2;
                 break;

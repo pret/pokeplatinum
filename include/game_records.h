@@ -37,6 +37,6 @@ u32 GameRecords_AddToRecordValue(GameRecords *records, int id, u32 toAdd);
 u32 GameRecords_GetRecordValue(GameRecords *records, int id);
 void GameRecords_IncrementTrainerScore(GameRecords *records, int scoreID);
 u32 GameRecords_GetTrainerScore(GameRecords *records);
-void GameRecords_IncrementTrainerScoreOnCatch(GameRecords *records, const PokedexData *pokedex, const u16 species);
+void GameRecords_IncrementTrainerScoreOnCatch(GameRecords *records, const Pokedex *pokedex, const u16 species);
 
 #endif // POKEPLATINUM_GAME_RECORDS_H

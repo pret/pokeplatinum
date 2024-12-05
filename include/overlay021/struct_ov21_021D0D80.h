@@ -7,7 +7,7 @@
 #include "trainer_info.h"
 
 typedef struct {
-    const PokedexData *unk_00;
+    const Pokedex *unk_00;
     const TrainerInfo *unk_04;
     int timeOfDay;
     BOOL fullmoonIslandVisible;

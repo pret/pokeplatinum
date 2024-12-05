@@ -339,7 +339,7 @@ static void ov81_021D1AD4(UnkStruct_ov81_021D1610 *param0, Window *param1)
         v2 = Strbuf_Length(v3);
         Strbuf_Free(v3);
 
-        if (TrainerData_LoadParam(v0.unk_00_1, 1) == 63) {
+        if (Trainer_LoadParam(v0.unk_00_1, 1) == 63) {
             v3 = MessageLoader_GetNewStrbuf(param0->unk_50, 61);
             StringTemplate_SetRivalName(param0->unk_54, 1, param0->unk_4C);
             StringTemplate_Format(param0->unk_54, param0->unk_58, v3);

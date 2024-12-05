@@ -123,8 +123,8 @@ int DayNumberForDate(const RTCDate *date)
 BOOL IsNight(void)
 {
     switch (GetTimeOfDay()) {
-    case TOD_LATE_NIGHT:
-    case TOD_NIGHT:
+    case TIMEOFDAY_LATE_NIGHT:
+    case TIMEOFDAY_NIGHT:
         return 1;
     }
 
@@ -142,30 +142,30 @@ enum TimeOfDay GetTimeOfDay(void)
 enum TimeOfDay TimeOfDayForHour(int hour)
 {
     static const u8 lookup[24] = {
-        TOD_LATE_NIGHT,
-        TOD_LATE_NIGHT,
-        TOD_LATE_NIGHT,
-        TOD_LATE_NIGHT,
-        TOD_MORNING,
-        TOD_MORNING,
-        TOD_MORNING,
-        TOD_MORNING,
-        TOD_MORNING,
-        TOD_MORNING,
-        TOD_DAY,
-        TOD_DAY,
-        TOD_DAY,
-        TOD_DAY,
-        TOD_DAY,
-        TOD_DAY,
-        TOD_DAY,
-        TOD_TWILIGHT,
-        TOD_TWILIGHT,
-        TOD_TWILIGHT,
-        TOD_NIGHT,
-        TOD_NIGHT,
-        TOD_NIGHT,
-        TOD_NIGHT,
+        TIMEOFDAY_LATE_NIGHT,
+        TIMEOFDAY_LATE_NIGHT,
+        TIMEOFDAY_LATE_NIGHT,
+        TIMEOFDAY_LATE_NIGHT,
+        TIMEOFDAY_MORNING,
+        TIMEOFDAY_MORNING,
+        TIMEOFDAY_MORNING,
+        TIMEOFDAY_MORNING,
+        TIMEOFDAY_MORNING,
+        TIMEOFDAY_MORNING,
+        TIMEOFDAY_DAY,
+        TIMEOFDAY_DAY,
+        TIMEOFDAY_DAY,
+        TIMEOFDAY_DAY,
+        TIMEOFDAY_DAY,
+        TIMEOFDAY_DAY,
+        TIMEOFDAY_DAY,
+        TIMEOFDAY_TWILIGHT,
+        TIMEOFDAY_TWILIGHT,
+        TIMEOFDAY_TWILIGHT,
+        TIMEOFDAY_NIGHT,
+        TIMEOFDAY_NIGHT,
+        TIMEOFDAY_NIGHT,
+        TIMEOFDAY_NIGHT,
     };
 
     GF_ASSERT(0 <= hour && hour < 24);

@@ -444,15 +444,15 @@ void ov104_0222E284(FieldBattleDTO *param0, UnkStruct_ov104_0223A348_sub1 *param
     Pokemon *v1;
 
     param0->trainerIDs[param3] = param1->unk_00;
-    param0->trainerData[param3].class = param1->unk_04;
+    param0->trainer[param3].class = param1->unk_04;
 
-    CharCode_Copy(&param0->trainerData[param3].name[0], &param1->unk_08[0]);
+    CharCode_Copy(&param0->trainer[param3].name[0], &param1->unk_08[0]);
 
     v0 = (Sentence *)&param1->unk_20[0];
-    param0->trainerData[param3].winMsg = *v0;
+    param0->trainer[param3].winMsg = *v0;
 
     v0 = (Sentence *)&param1->unk_28[0];
-    param0->trainerData[param3].loseMsg = *v0;
+    param0->trainer[param3].loseMsg = *v0;
 
     return;
 }

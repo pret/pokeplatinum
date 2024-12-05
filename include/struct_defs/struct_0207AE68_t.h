@@ -42,7 +42,7 @@ struct UnkStruct_0207AE68_t {
     PokemonSummary *unk_3C;
     void *unk_40;
     PokemonAnimationSys *unk_44;
-    PokedexData *unk_48;
+    Pokedex *unk_48;
     Bag *unk_4C;
     GameRecords *records;
     PoketchData *poketchData;

@@ -82,7 +82,7 @@ typedef struct {
 typedef struct {
     BgConfig *unk_00;
     SaveData *unk_04;
-    PokedexData *unk_08;
+    Pokedex *unk_08;
     TrainerInfo *unk_0C;
     PlayTime *playTime;
     MysteryGift *unk_14;

@@ -31,7 +31,7 @@ u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength);
 u8 *ov94_02242548(int param0);
 void ov94_022425A8(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *param1);
 ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3);
-ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3, MessageLoader *param4, UnkStruct_ov94_0223FD4C_sub3 *param5, PokedexData *param6);
+ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3, MessageLoader *param4, UnkStruct_ov94_0223FD4C_sub3 *param5, Pokedex *param6);
 ListMenu *ov94_02242840(StringList **param0, Window *param1, MessageLoader *param2);
 ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *param2, int param3);
 void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2);

@@ -770,7 +770,7 @@ static int sub_0206D2E0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206D320(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    PokedexData *v0 = SaveData_Pokedex(fieldSystem->saveData);
+    Pokedex *v0 = SaveData_Pokedex(fieldSystem->saveData);
     UnkStruct_0206D140 *v1 = ov6_02246498(param1);
 
     return Pokedex_HasSeenSpecies(v0, v1->unk_06);
@@ -961,7 +961,7 @@ static int sub_0206D644(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206D6A8(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    PokedexData *v0 = SaveData_Pokedex(fieldSystem->saveData);
+    Pokedex *v0 = SaveData_Pokedex(fieldSystem->saveData);
     UnkStruct_0206D644 *v1 = (UnkStruct_0206D644 *)ov6_02246498(param1);
 
     return Pokedex_HasSeenSpecies(v0, v1->unk_00);
@@ -1022,7 +1022,7 @@ static int sub_0206D75C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206D7A4(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    PokedexData *v0 = SaveData_Pokedex(fieldSystem->saveData);
+    Pokedex *v0 = SaveData_Pokedex(fieldSystem->saveData);
     UnkStruct_0206D75C *v1 = (UnkStruct_0206D75C *)ov6_02246498(param1);
 
     return Pokedex_HasSeenSpecies(v0, v1->unk_00);
@@ -2754,7 +2754,7 @@ static int sub_0206F01C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 {
     Strbuf *v0;
     u16 v1, v2, v3;
-    const PokedexData *v4 = SaveData_Pokedex(fieldSystem->saveData);
+    const Pokedex *v4 = SaveData_Pokedex(fieldSystem->saveData);
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 1)) + 1;
 
@@ -2803,7 +2803,7 @@ static Strbuf *sub_0206F0D8(u16 param0, u32 param1)
 
 static BOOL sub_0206F100(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    const PokedexData *pokedex = SaveData_Pokedex(fieldSystem->saveData);
+    const Pokedex *pokedex = SaveData_Pokedex(fieldSystem->saveData);
 
     if (Pokedex_IsObtained(pokedex) == TRUE) {
         return TRUE;
@@ -2849,7 +2849,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     Pokemon *v3;
     Party *v4;
     TrainerInfo *v5 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    PokedexData *v6 = SaveData_Pokedex(fieldSystem->saveData);
+    Pokedex *v6 = SaveData_Pokedex(fieldSystem->saveData);
 
     v4 = Party_GetFromSavedata(fieldSystem->saveData);
     v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(fieldSystem->saveData));
@@ -2881,7 +2881,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206F260(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    const PokedexData *pokedex = SaveData_Pokedex(fieldSystem->saveData);
+    const Pokedex *pokedex = SaveData_Pokedex(fieldSystem->saveData);
 
     if (Pokedex_IsObtained(pokedex) == TRUE) {
         return TRUE;

@@ -945,7 +945,7 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
     ov104_0223A6AC(v3, &(param0->unk_78[0]), param0->unk_0E, 1, param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
-        v3->trainerData[v0].aiMask = (0x1 | 0x2 | 0x4);
+        v3->trainer[v0].aiMask = (0x1 | 0x2 | 0x4);
     }
 
     switch (param0->unk_0F) {

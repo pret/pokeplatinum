@@ -23,7 +23,7 @@ void sub_02097540(const UnkStruct_0209747C *param0, Sentence *param1);
 u32 sub_02097550(const UnkStruct_0209747C *param0);
 u32 sub_02097554(const UnkStruct_0209747C *param0);
 int sub_02097558(const UnkStruct_0209747C *param0);
-const PokedexData *sub_0209755C(const UnkStruct_0209747C *param0);
+const Pokedex *sub_0209755C(const UnkStruct_0209747C *param0);
 const UnkStruct_02014EC4 *sub_02097560(const UnkStruct_0209747C *param0);
 BOOL sub_02097564(const UnkStruct_0209747C *param0);
 BOOL sub_02097568(const UnkStruct_0209747C *param0);

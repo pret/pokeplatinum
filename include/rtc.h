@@ -4,11 +4,11 @@
 #include <nitro/rtc.h>
 
 enum TimeOfDay {
-    TOD_MORNING = 0,
-    TOD_DAY = 1,
-    TOD_TWILIGHT = 2,
-    TOD_NIGHT = 3,
-    TOD_LATE_NIGHT = 4,
+    TIMEOFDAY_MORNING = 0,
+    TIMEOFDAY_DAY = 1,
+    TIMEOFDAY_TWILIGHT = 2,
+    TIMEOFDAY_NIGHT = 3,
+    TIMEOFDAY_LATE_NIGHT = 4,
 };
 
 void InitRTC(void);

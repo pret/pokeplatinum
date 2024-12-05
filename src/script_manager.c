@@ -552,7 +552,7 @@ int Script_GetTrainerBattlerIndex(u16 scriptID)
 
 BOOL Script_IsTrainerDoubleBattle(u16 trainerID)
 {
-    return TrainerData_LoadParam(trainerID, TRDATA_BATTLE_TYPE) != BATTLE_TYPE_SINGLES;
+    return Trainer_LoadParam(trainerID, TRDATA_BATTLE_TYPE) != BATTLE_TYPE_SINGLES;
 }
 
 BOOL Script_IsTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)

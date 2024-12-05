@@ -439,7 +439,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     }
 
     for (v2 = 0; v2 < 4; v2++) {
-        v0->unk_14C[v2] = AllocateAndInitializeChatotCryData(20);
+        v0->unk_14C[v2] = ChatotCry_New(20);
     }
 
     CopyChatotCryData(v0->unk_14C[0], param0->unk_20);
@@ -1641,7 +1641,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
 
         {
             int v6;
-            PokedexData *v7;
+            Pokedex *v7;
 
             v7 = SaveData_Pokedex(param0->unk_1970);
 

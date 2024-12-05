@@ -180,10 +180,10 @@ void WildEncounters_ReplaceTimedEncounters(const WildEncounters *encounterData, 
 {
     int timeOfDay = GetTimeOfDay();
 
-    if (timeOfDay == TOD_DAY || timeOfDay == TOD_TWILIGHT) {
+    if (timeOfDay == TIMEOFDAY_DAY || timeOfDay == TIMEOFDAY_TWILIGHT) {
         *timedSlot1 = encounterData->dayEncounters[0];
         *timedSlot2 = encounterData->dayEncounters[1];
-    } else if (timeOfDay == TOD_NIGHT || timeOfDay == TOD_LATE_NIGHT) {
+    } else if (timeOfDay == TIMEOFDAY_NIGHT || timeOfDay == TIMEOFDAY_LATE_NIGHT) {
         *timedSlot1 = encounterData->nightEncounters[0];
         *timedSlot2 = encounterData->nightEncounters[1];
     }
@@ -339,7 +339,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
         } else {
             {
                 battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
-                TrainerData_Encounter(battleParams, fieldSystem->saveData, 11);
+                Trainer_Encounter(battleParams, fieldSystem->saveData, 11);
             }
             v7 = ov6_0224174C(fieldSystem, firstPartyMon, battleParams, v13, &encounterFieldParams);
         }
@@ -526,7 +526,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
             v8 = ov6_02241674(fieldSystem, firstPartyMon, battleParams, encounterData, v12, &encounterFieldParams, &v9);
         } else {
             battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
-            TrainerData_Encounter(battleParams, fieldSystem->saveData, 11);
+            Trainer_Encounter(battleParams, fieldSystem->saveData, 11);
             v8 = ov6_0224174C(fieldSystem, firstPartyMon, battleParams, v12, &encounterFieldParams);
         }
     } else if (encounterType == ENCOUNTER_TYPE_SURF) {
@@ -656,7 +656,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
         } else {
             {
                 (*battleParams)->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
-                TrainerData_Encounter(*battleParams, fieldSystem->saveData, 11);
+                Trainer_Encounter(*battleParams, fieldSystem->saveData, 11);
             }
             v6 = ov6_0224174C(fieldSystem, firstPartyMon, *battleParams, v12, &encounterFieldParams);
         }

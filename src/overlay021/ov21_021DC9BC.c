@@ -296,10 +296,10 @@ static int PokedexEncounters_PopulateEncounterCollection(UnkStruct_ov21_021E6A68
 
     param0->unk_08 = encounterCollection;
 
-    if (v0->unk_00->timeOfDay == TOD_MORNING) {
+    if (v0->unk_00->timeOfDay == TIMEOFDAY_MORNING) {
         v0->encounterTime = ENCTIME_MORNING;
     } else {
-        if ((v0->unk_00->timeOfDay == TOD_DAY) || (v0->unk_00->timeOfDay == TOD_TWILIGHT)) {
+        if ((v0->unk_00->timeOfDay == TIMEOFDAY_DAY) || (v0->unk_00->timeOfDay == TIMEOFDAY_TWILIGHT)) {
             v0->encounterTime = ENCTIME_DAY;
         } else {
             v0->encounterTime = ENCTIME_NIGHT;

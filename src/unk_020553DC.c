@@ -283,7 +283,7 @@ static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int 
 
 u16 sub_0205560C(int param0)
 {
-    u8 v0 = (u8)TrainerData_LoadParam(param0, 1);
+    u8 v0 = (u8)Trainer_LoadParam(param0, 1);
     u16 i, v1 = 1101;
 
     for (i = 0; i < 79; i++) {

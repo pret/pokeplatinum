@@ -21,7 +21,7 @@ static u16 sub_0206B010(VarsFlags *param0, u16 param1);
 BOOL sub_0206B044(VarsFlags *param0, u16 param1);
 u16 sub_0206B054(VarsFlags *param0);
 u16 sub_0206B064(VarsFlags *param0);
-u16 sub_0206B08C(VarsFlags *param0);
+u16 VarsFlags_GetProfessorAssistantStarterSpecies(VarsFlags *param0);
 void sub_0206B558(VarsFlags *param0, u16 param1);
 void sub_0206B514(SaveData *param0);
 static u8 sub_0206B4A4(VarsFlags *param0);
@@ -90,7 +90,7 @@ u16 sub_0206B064(VarsFlags *param0)
     return v0;
 }
 
-u16 sub_0206B08C(VarsFlags *param0)
+u16 VarsFlags_GetProfessorAssistantStarterSpecies(VarsFlags *param0)
 {
     u16 v0;
     u16 v1 = sub_0206B010(param0, (0 + (((0 + VARS_START) + 32) + 16)));
