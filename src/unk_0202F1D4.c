@@ -478,7 +478,7 @@ void sub_0202F8AC(FieldBattleDTO *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         v2->unk_08[v0] = param0->trainerIDs[v0];
-        v2->unk_18[v0] = param0->trainerData[v0];
+        v2->unk_18[v0] = param0->trainer[v0];
 
         if (param0->systemVersion[v0] == 0) {
             v2->unk_114[v0] = 0x140;
@@ -565,7 +565,7 @@ void sub_0202FAFC(FieldBattleDTO *param0, SaveData *param1)
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->trainerIDs[v0] = v1->unk_00.unk_08[v0];
-        param0->trainerData[v0] = v1->unk_00.unk_18[v0];
+        param0->trainer[v0] = v1->unk_00.unk_18[v0];
         param0->systemVersion[v0] = v1->unk_00.unk_114[v0];
         param0->unk_178[v0] = v1->unk_00.unk_134[v0];
 

@@ -349,7 +349,7 @@ typedef struct {
     int unk_00;
     BgConfig *unk_04;
     SaveData *unk_08;
-    PokedexData *unk_0C;
+    Pokedex *unk_0C;
     TrainerInfo *unk_10;
     Options *unk_14;
     Window unk_18;

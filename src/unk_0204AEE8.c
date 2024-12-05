@@ -106,7 +106,7 @@ StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3
     u8 v0;
     u16 v1;
     Strbuf *v2, *v3;
-    PokedexData *v4;
+    Pokedex *v4;
     StringTemplate *v5;
     MessageLoader *v6;
 

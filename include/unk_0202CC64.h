@@ -7,7 +7,7 @@
 
 int ChatotCry_SaveSize(void);
 void ChatotCry_Init(ChatotCry *param0);
-ChatotCry *AllocateAndInitializeChatotCryData(int param0);
+ChatotCry *ChatotCry_New(int param0);
 ChatotCry *GetChatotCryDataFromSave(SaveData *param0);
 BOOL IsChatotCryDataValid(const ChatotCry *param0);
 void ResetChatotCryDataStatus(ChatotCry *param0);

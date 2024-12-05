@@ -2310,7 +2310,7 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *param1, u32
     TrainerInfo *v0;
     Party *v1;
     UnkStruct_0202C878 *v2;
-    PokedexData *v3;
+    Pokedex *v3;
     GameTime *v4;
 
     {

@@ -35,11 +35,11 @@ typedef struct FieldBattleDTO {
     Party *parties[MAX_BATTLERS];
     int resultMask;
     int trainerIDs[MAX_BATTLERS];
-    TrainerData trainerData[MAX_BATTLERS];
+    Trainer trainer[MAX_BATTLERS];
     TrainerInfo *trainerInfo[MAX_BATTLERS];
     Bag *bag;
     BagCursor *bagCursor;
-    PokedexData *pokedex;
+    Pokedex *pokedex;
     PCBoxes *pcBoxes;
     ChatotCry *chatotCries[MAX_BATTLERS];
     PoketchData *poketchData;

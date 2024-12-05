@@ -26,7 +26,7 @@ struct UnkStruct_0209747C_t {
     u8 unk_04;
     u8 unk_05;
     int unk_08;
-    const PokedexData *unk_0C;
+    const Pokedex *unk_0C;
     const UnkStruct_02014EC4 *unk_10;
     Sentence unk_14;
     u16 unk_1C[2];
@@ -133,7 +133,7 @@ int sub_02097558(const UnkStruct_0209747C *param0)
     return param0->unk_08;
 }
 
-const PokedexData *sub_0209755C(const UnkStruct_0209747C *param0)
+const Pokedex *sub_0209755C(const UnkStruct_0209747C *param0)
 {
     return param0->unk_0C;
 }

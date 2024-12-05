@@ -144,13 +144,13 @@ static BOOL ov6_02246AB0(FieldSystem *fieldSystem)
 
 static BOOL ov6_02246AC8(FieldSystem *fieldSystem)
 {
-    PokedexData *v0 = SaveData_Pokedex(fieldSystem->saveData);
+    Pokedex *v0 = SaveData_Pokedex(fieldSystem->saveData);
     return sub_02026F0C(v0);
 }
 
 static BOOL ov6_02246AD8(FieldSystem *fieldSystem)
 {
-    PokedexData *pokedex = SaveData_Pokedex(fieldSystem->saveData);
+    Pokedex *pokedex = SaveData_Pokedex(fieldSystem->saveData);
     return Pokedex_IsObtained(pokedex);
 }
 

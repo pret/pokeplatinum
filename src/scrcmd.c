@@ -4829,7 +4829,7 @@ static BOOL ScrCmd_0E6(ScriptContext *ctx)
     u16 v5 = ScriptContext_GetVar(ctx);
     u16 v6 = ScriptContext_GetVar(ctx);
 
-    TrainerData_LoadMessage(v5, v6, *v2, 11);
+    Trainer_LoadMessage(v5, v6, *v2, 11);
     Window_FillTilemap(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SCRIPT_MANAGER_STR_TEMPLATE);
 
     *v4 = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *v2, SaveData_Options(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
@@ -4974,7 +4974,7 @@ static BOOL ScrCmd_11D(ScriptContext *ctx)
 
 static BOOL ScrCmd_11E(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = Pokedex_CountSeenSinnoh(v0);
@@ -4983,7 +4983,7 @@ static BOOL ScrCmd_11E(ScriptContext *ctx)
 
 static BOOL ScrCmd_11F(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_02026E64(v0);
@@ -4992,7 +4992,7 @@ static BOOL ScrCmd_11F(ScriptContext *ctx)
 
 static BOOL ScrCmd_120(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = Pokedex_CountSeenNational(v0);
@@ -5001,7 +5001,7 @@ static BOOL ScrCmd_120(ScriptContext *ctx)
 
 static BOOL ScrCmd_121(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_02026DD0(v0);
@@ -5017,7 +5017,7 @@ static BOOL ScrCmd_122(ScriptContext *ctx)
 
 static BOOL ScrCmd_123(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     const TrainerInfo *v1 = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
     u8 v2 = ScriptContext_ReadByte(ctx);
     u16 *v3 = ScriptContext_GetVarPointer(ctx);
@@ -6237,7 +6237,7 @@ static BOOL ScrCmd_1D6(ScriptContext *ctx)
 
 static BOOL ScrCmd_1E8(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = 0;
@@ -6251,7 +6251,7 @@ static BOOL ScrCmd_1E8(ScriptContext *ctx)
 
 static BOOL ScrCmd_1E9(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = 0;
@@ -6467,7 +6467,7 @@ static BOOL ScrCmd_214(ScriptContext *ctx)
 
 static BOOL ScrCmd_218(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     u16 v2, v3, v4, v5;
 
@@ -6769,7 +6769,7 @@ static BOOL ScrCmd_24D(ScriptContext *ctx)
 
 static void sub_020451B4(FieldSystem *fieldSystem, u16 param1)
 {
-    PokedexData *v0 = SaveData_Pokedex(fieldSystem->saveData);
+    Pokedex *v0 = SaveData_Pokedex(fieldSystem->saveData);
     Pokemon *v1 = Pokemon_New(32);
 
     Pokemon_Init(v1);
@@ -6888,7 +6888,7 @@ static BOOL ScrCmd_263(ScriptContext *ctx)
     int v3;
     int v4 = Party_GetCurrentCount(v1);
     Pokemon *v5;
-    PokedexData *v6 = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    Pokedex *v6 = SaveData_Pokedex(ctx->fieldSystem->saveData);
 
     for (v2 = 0; v2 < v4; v2++) {
         v5 = Party_GetPokemonBySlotIndex(v1, v2);
@@ -7241,7 +7241,7 @@ static BOOL ScrCmd_282(ScriptContext *ctx)
 
 static BOOL ScrCmd_284(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_020270DC(v0);

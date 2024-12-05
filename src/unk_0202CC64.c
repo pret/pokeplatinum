@@ -19,7 +19,7 @@ void ChatotCry_Init(ChatotCry *param0)
     param0->exists = FALSE;
 }
 
-ChatotCry *AllocateAndInitializeChatotCryData(int param0)
+ChatotCry *ChatotCry_New(int param0)
 {
     ChatotCry *v0 = Heap_AllocFromHeap(param0, sizeof(ChatotCry));
 

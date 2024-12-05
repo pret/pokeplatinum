@@ -941,7 +941,7 @@ static BOOL FieldMenu_Pokedex(FieldTask *taskMan)
     FieldSystem *fieldSystem;
     FieldMenu *menu;
     UnkStruct_ov21_021D0D80 *v2;
-    PokedexData *v3;
+    Pokedex *v3;
     TrainerInfo *v4;
     VarsFlags *v5;
 

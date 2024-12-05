@@ -2407,7 +2407,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
     v5 = param0->unk_2A - 1;
 
     if (MapHeader_IsUnionRoom(param0->unk_00->mapHeaderID) == 1) {
-        v3 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+        v3 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].class);
         v1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
 
         Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
@@ -2416,7 +2416,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
     } else {
         switch (sub_0203895C()) {
         case 1:
-            v3 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+            v3 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].class);
             v1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
 
             Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
@@ -2425,7 +2425,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             Heap_FreeToHeap(v1);
             break;
         case 2:
-            v3 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+            v3 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].class);
             v1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
 
             Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
@@ -2434,7 +2434,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             Heap_FreeToHeap(v1);
             break;
         case 3:
-            v3 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+            v3 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].class);
             v1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
 
             Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
@@ -2447,14 +2447,14 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             v2 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
 
             if (ov10_02220AD0() == 1) {
-                v3 = TrainerClass_Gender(param0->unk_00->trainerData[1].class);
-                v4 = TrainerClass_Gender(param0->unk_00->trainerData[3].class);
+                v3 = TrainerClass_Gender(param0->unk_00->trainer[1].class);
+                v4 = TrainerClass_Gender(param0->unk_00->trainer[3].class);
 
                 Strbuf_ToChars(param0->unk_14[1], v1, 8);
                 Strbuf_ToChars(param0->unk_14[3], v2, 8);
             } else {
-                v3 = TrainerClass_Gender(param0->unk_00->trainerData[0].class);
-                v4 = TrainerClass_Gender(param0->unk_00->trainerData[2].class);
+                v3 = TrainerClass_Gender(param0->unk_00->trainer[0].class);
+                v4 = TrainerClass_Gender(param0->unk_00->trainer[2].class);
 
                 Strbuf_ToChars(param0->unk_14[0], v1, 8);
                 Strbuf_ToChars(param0->unk_14[2], v2, 8);

@@ -90,7 +90,7 @@ BOOL ScrCmd_337(ScriptContext *param0)
 {
     u16 v0 = FieldSystem_TryGetVar(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
     u16 *v1 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    PokedexData *v2 = SaveData_Pokedex(param0->fieldSystem->saveData);
+    Pokedex *v2 = SaveData_Pokedex(param0->fieldSystem->saveData);
 
     *v1 = Pokedex_HasSeenSpecies(v2, v0);
     return 0;

@@ -21,7 +21,7 @@ typedef struct {
     SystemData *unk_04;
     Party *unk_08;
     PCBoxes *unk_0C;
-    PokedexData *unk_10;
+    Pokedex *unk_10;
     UnkStruct_0202B370 *unk_14;
     UnkStruct_0202C878 *unk_18;
     TrainerInfo *unk_1C;
