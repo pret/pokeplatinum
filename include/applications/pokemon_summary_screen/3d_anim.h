@@ -1,0 +1,16 @@
+#ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_3D_ANIM_H
+#define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_3D_ANIM_H
+
+#include "applications/pokemon_summary_screen/main.h"
+
+void PokemonSummaryScreen_Setup3DGfx(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_FreeCameraAndMonSprite(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_SetupCamera(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_InitConditionRects(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_InitMaxAndDeltaConditionRects(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_ChangeMonSprite(PokemonSummaryScreen *summaryScreen);
+
+#endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_3D_ANIM_H

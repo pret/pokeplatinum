@@ -947,7 +947,7 @@ void ov23_022534A0(FieldSystem *fieldSystem)
         for (i = 0; i < objEventCount; i++) {
             if (objEventList[i].x == v1 && objEventList[i].z == v2) {
                 mapObj = MapObjMan_LocalMapObjByIndex(v4->fieldSystem->mapObjMan, i);
-                MapObject_SetDir(mapObj, v3);
+                MapObject_TryFace(mapObj, v3);
             }
         }
     }

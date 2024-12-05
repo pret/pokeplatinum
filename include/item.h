@@ -173,7 +173,7 @@ u16 Item_FileID(u16 item, enum ItemFileType type);
  * @param gbaID     GBA-era item ID.
  * @return ID of the item which corresponds to the given GBA-era ID.
  */
-u16 Item_FromGBAID(u16 param0);
+u16 Item_FromGBAID(u16 gbaID);
 
 /**
  * @brief Get the file index of the global NCER file used by all item icons.

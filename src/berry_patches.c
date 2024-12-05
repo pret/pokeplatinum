@@ -53,9 +53,7 @@ BerryGrowthData *BerryGrowthData_Init(enum HeapId heapID)
 {
     BerryGrowthData *growthData;
     BerryData *berryData;
-    NARC *narc;
-
-    narc = BerryData_NARC_ctor(heapID);
+    NARC *narc = BerryData_NARC_ctor(heapID);
     growthData = Heap_AllocFromHeap(heapID, sizeof(BerryGrowthData) * NUM_BERRIES);
 
     for (int i = 0; i < NUM_BERRIES; i++) {

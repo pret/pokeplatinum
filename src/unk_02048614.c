@@ -319,7 +319,7 @@ BOOL ScrCmd_0F0(ScriptContext *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
 
     v0 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    Script_SetTrainerDefeated(MapObject_FieldSystem(*v0), MapObject_Id(*v0));
+    Script_SetTrainerDefeated(MapObject_FieldSystem(*v0), MapObject_GetLocalID(*v0));
 
     return 0;
 }
@@ -333,7 +333,7 @@ BOOL ScrCmd_0F1(ScriptContext *param0)
 
     v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
     v1 = (s32)ScriptContext_ReadWord(param0);
-    v0 = Script_IsTrainerDefeated(MapObject_FieldSystem(*v2), MapObject_Id(*v2));
+    v0 = Script_IsTrainerDefeated(MapObject_FieldSystem(*v2), MapObject_GetLocalID(*v2));
 
     if (v0 == 1) {
         ScriptContext_Jump(param0, (u8 *)(param0->scriptPtr + v1));

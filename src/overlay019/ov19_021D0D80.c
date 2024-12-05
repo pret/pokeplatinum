@@ -879,7 +879,7 @@ static void ov19_021D1C84(UnkStruct_ov19_021D5DF8 *param0)
     param0->unk_12C.chatotCry = NULL;
     param0->unk_12C.dexMode = sub_0207A274(param0->unk_11C);
     param0->unk_12C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_11C);
-    param0->unk_12C.ribbons = sub_0202D79C(param0->unk_11C);
+    param0->unk_12C.specialRibbons = sub_0202D79C(param0->unk_11C);
 
     PokemonSummaryScreen_FlagVisiblePages(&(param0->unk_12C), v0);
     PokemonSummaryScreen_SetPlayerProfile(&(param0->unk_12C), SaveData_GetTrainerInfo(param0->unk_11C));

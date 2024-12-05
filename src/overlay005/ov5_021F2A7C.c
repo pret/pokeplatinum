@@ -83,7 +83,7 @@ void ov5_021F2AE4(MapObject *param0, int param1, int param2, int param3)
     sub_02064450(param1, param3, &v3);
 
     v3.z += ((param2) << 3) + (FX32_ONE * 1);
-    v3.y = (((MapObject_YPosPrev(param0)) << 3) * FX32_ONE) + (-FX32_ONE * 8);
+    v3.y = (((MapObject_GetYPrev(param0)) << 3) * FX32_ONE) + (-FX32_ONE * 8);
 
     v1 = 0;
     v0 = sub_02062758(param0, 2);

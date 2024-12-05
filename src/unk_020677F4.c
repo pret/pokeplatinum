@@ -162,7 +162,7 @@ void sub_02067968(MapObject *param0)
     }
 
     ov5_021ECFD8(param0, &v0->unk_08, v0->unk_00);
-    MapObject_SetStatusFlagOn(param0, (1 << 21));
+    MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_21);
 }
 
 void sub_02067998(MapObject *param0)
@@ -177,7 +177,7 @@ void sub_02067998(MapObject *param0)
         if (v0->unk_00 != 0xffff) {
             ov5_021ECEB4(param0, &v0->unk_08, v0->unk_00);
         } else {
-            MapObject_SetStatusFlagOff(param0, (1 << 21));
+            MapObject_SetStatusFlagOff(param0, MAP_OBJ_STATUS_21);
         }
 
         ov5_021F20D4(param0);
@@ -186,7 +186,7 @@ void sub_02067998(MapObject *param0)
     if (v0->unk_08 != NULL) {
         ov5_021ED03C(v0->unk_08, &v0->unk_0C);
         ov5_021EDEB4(param0, v0->unk_08);
-        MapObject_SetStatusFlagOff(param0, (1 << 21));
+        MapObject_SetStatusFlagOff(param0, MAP_OBJ_STATUS_21);
     }
 }
 
@@ -225,7 +225,7 @@ UnkStruct_020216E0 *sub_02067A58(MapObject *param0)
 {
     UnkStruct_020216E0 *v0 = NULL;
 
-    GF_ASSERT(sub_020677F4(sub_02062920(param0)));
+    GF_ASSERT(sub_020677F4(MapObject_GetGraphicsID(param0)));
 
     if (sub_02062D4C(param0) == 1) {
         UnkStruct_02067870 *v1 = sub_02062AF0(param0);

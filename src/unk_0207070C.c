@@ -183,7 +183,7 @@ void sub_02070728(FieldSystem *fieldSystem, UnkStruct_02070950 *param1)
     param1->unk_08 = mapObj;
 
     if (mapObj != NULL) {
-        switch (sub_02062920(mapObj)) {
+        switch (MapObject_GetGraphicsID(mapObj)) {
         case 0x54:
             param1->unk_0C |= (1 << 3);
             break;

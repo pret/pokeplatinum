@@ -192,7 +192,7 @@ static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int d
         return 0;
     }
 
-    v0 = MapObject_AnimationCode(mapObj);
+    v0 = MapObject_GetMovementAction(mapObj);
 
     if (sub_020613D8(v0) == 1) {
         u32 v2;
@@ -202,9 +202,9 @@ static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int d
 
             if ((v2 & (~(1 << 7))) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
                 FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-                int xOut, x = MapObject_GetXPos(mapObj);
-                int yOut, y = MapObject_GetYPos(mapObj);
-                int zOut, z = MapObject_GetZPos(mapObj);
+                int xOut, x = MapObject_GetX(mapObj);
+                int yOut, y = MapObject_GetY(mapObj);
+                int zOut, z = MapObject_GetZ(mapObj);
 
                 y = y / 2;
                 xOut = x;
@@ -264,7 +264,7 @@ static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
         u8 v1, v2 = sub_02062BE8(mapObj);
 
         {
-            int animationCode = MapObject_AnimationCode(mapObj);
+            int animationCode = MapObject_GetMovementAction(mapObj);
             int v4 = sub_0206587C(animationCode);
 
             if (v4 == -1) {
@@ -293,7 +293,7 @@ static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
             Sound_PlayEffect(1621);
         }
 
-        int code = MapObject_AnimationCode(mapObj);
+        int code = MapObject_GetMovementAction(mapObj);
 
         if (sub_020613D8(code) == 0) {
             if ((TileBehavior_IsVeryTallGrass(v2) == 1) || (TileBehavior_IsVeryTallGrass(v1) == 1)) {
@@ -326,7 +326,7 @@ void sub_0205F490(PlayerAvatar *playerAvatar)
         case PLAYER_STATE_WALKING:
             break;
         case PLAYER_STATE_CYCLING:
-            v2 = MapObject_AnimationCode(mapObj);
+            v2 = MapObject_GetMovementAction(mapObj);
 
             if (sub_020613D8(v2) == 1) {
                 break;
@@ -412,7 +412,7 @@ int sub_0205F588(PlayerAvatar *playerAvatar)
             return 1;
         }
 
-        v2 = MapObject_AnimationCode(mapObj);
+        v2 = MapObject_GetMovementAction(mapObj);
 
         if (sub_020613D8(v2) == 1) {
             return 1;
@@ -431,7 +431,7 @@ void sub_0205F5E4(PlayerAvatar *playerAvatar, int param1)
 
     mapObj = Player_MapObject(playerAvatar);
 
-    MapObject_SetDir(mapObj, param1);
+    MapObject_TryFace(mapObj, param1);
     sub_02062A0C(mapObj, 0x0);
     sub_02064208(mapObj);
     sub_020656DC(mapObj);
@@ -496,7 +496,7 @@ static int sub_0205F6C4(PlayerAvatar *playerAvatar, int param1)
 static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
-    int v1 = MapObject_GetMoveDir(mapObj);
+    int v1 = MapObject_GetMovingDir(mapObj);
     int v2 = sub_0205FAB0(playerAvatar, v1);
     u32 v3 = sub_02060B7C(playerAvatar, mapObj, v1);
 
@@ -518,7 +518,7 @@ static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1)
             return 0;
         }
 
-        MapObject_SetStatusFlagOn(mapObj, (1 << 7) | (1 << 8));
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
         sub_02060B64(playerAvatar, mapObj, sub_02065838(v1, 0x8), 3);
         sub_0205EF6C(playerAvatar, 1);
         sub_0205EF40(playerAvatar, 1);
@@ -538,13 +538,13 @@ static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1)
             return 0;
         }
 
-        MapObject_SetStatusFlagOn(mapObj, (1 << 7) | (1 << 8));
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
         sub_02060B64(playerAvatar, mapObj, sub_02065838(v1, 0x8), 3);
         sub_0205EF6C(playerAvatar, 1);
         sub_0205EF40(playerAvatar, 1);
         sub_0205EBEC(playerAvatar, -1, -1);
     } else {
-        MapObject_SetStatusFlagOn(mapObj, (1 << 7) | (1 << 8));
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
         sub_0205FB40(playerAvatar, v1);
     }
 
@@ -556,7 +556,7 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
 {
     u32 v0;
     MapObject *mapObj = Player_MapObject(playerAvatar);
-    int v2 = MapObject_GetMoveDir(mapObj);
+    int v2 = MapObject_GetMovingDir(mapObj);
 
     Sound_PlayEffect(1620);
 
@@ -576,7 +576,7 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
             return 0;
         }
 
-        MapObject_SetStatusFlagOn(mapObj, (1 << 7) | (1 << 8));
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
         sub_02060B64(playerAvatar, mapObj, sub_02065838(v2, 0x8), 3);
         PlayerAvatar_ClearSpeed(playerAvatar);
         sub_0205EF40(playerAvatar, 1);
@@ -596,7 +596,7 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
             sub_0205EBEC(playerAvatar, -1, -1);
             return 1;
         } else {
-            MapObject_SetStatusFlagOn(mapObj, (1 << 7) | (1 << 8));
+            MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
             sub_02060B64(playerAvatar, mapObj, sub_02065838(v2, 0x8), 3);
             sub_0205EF40(playerAvatar, 1);
             sub_0205EB08(playerAvatar, 1);
@@ -612,7 +612,7 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
 static int sub_0205F95C(PlayerAvatar *playerAvatar, int param1)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
-    int v1 = MapObject_GetMoveDir(mapObj);
+    int v1 = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
         Sound_PlayEffect(1622);
@@ -630,7 +630,7 @@ static int sub_0205F95C(PlayerAvatar *playerAvatar, int param1)
 static int sub_0205F9AC(PlayerAvatar *playerAvatar, int param1)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
-    int v1 = MapObject_GetMoveDir(mapObj);
+    int v1 = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
         Sound_PlayEffect(1622);
@@ -681,7 +681,7 @@ static void sub_0205FA6C(PlayerAvatar *playerAvatar)
     if (sub_0205EF58(playerAvatar) == 1) {
         MapObject *v0 = Player_MapObject(playerAvatar);
 
-        MapObject_SetStatusFlagOff(v0, (1 << 7) | (1 << 8));
+        MapObject_SetStatusFlagOff(v0, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
 
         if (sub_0205F08C(playerAvatar) == 0) {
             PlayerAvatar_ClearSpeed(playerAvatar);
@@ -700,7 +700,7 @@ static int sub_0205FAB0(PlayerAvatar *playerAvatar, int param1)
     MapObject *mapObj = Player_MapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-    MapObject_PosVectorOut(mapObj, &v1);
+    MapObject_GetPosPtr(mapObj, &v1);
     v2 = v1;
 
     VecFx32_StepDirection(param1, &v2, ((16 * FX32_ONE) >> 1) / 2);
@@ -881,7 +881,7 @@ static void sub_0205FD20(PlayerAvatar *playerAvatar, MapObject *param1, int para
 {
     int v0;
 
-    v0 = sub_02065838(MapObject_Dir(param1), 0x0);
+    v0 = sub_02065838(MapObject_GetFacingDir(param1), 0x0);
     sub_02060B64(playerAvatar, param1, v0, 1);
 }
 
@@ -930,7 +930,7 @@ static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int para
                 Sound_PlayEffect(1537);
             }
 
-            sub_02062994(param1, param2);
+            MapObject_Turn(param1, param2);
         } else {
             v1 = 0xc;
             v2 = 4;
@@ -967,7 +967,7 @@ static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int para
                 Sound_PlayEffect(1537);
             }
 
-            sub_02062994(param1, param2);
+            MapObject_Turn(param1, param2);
         }
     }
 
@@ -985,9 +985,9 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
 
     if (v0 & (~(1 << 7))) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(param1);
-        int x = MapObject_GetXPos(param1);
-        int y = MapObject_GetYPos(param1);
-        int z = MapObject_GetZPos(param1);
+        int x = MapObject_GetX(param1);
+        int y = MapObject_GetY(param1);
+        int z = MapObject_GetZ(param1);
 
         y = ((y) / 2);
         sub_02061674(playerAvatar, param2, &x, &y, &z);
@@ -1010,7 +1010,7 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
             v1 = 0x1c;
             v2 = 1;
             Sound_PlayEffect(1537);
-            sub_02062994(param1, param2);
+            MapObject_Turn(param1, param2);
         } else {
             PlayerData *player;
 
@@ -1036,7 +1036,7 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
             v1 = 0x1c;
             v2 = 1;
             Sound_PlayEffect(1537);
-            sub_02062994(param1, param2);
+            MapObject_Turn(param1, param2);
         }
     }
 
@@ -1057,7 +1057,7 @@ static void sub_0206000C(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             v1 = param8[param2];
             v2 = 1;
             Sound_PlayEffect(1537);
-            sub_02062994(mapObj, param9[param2]);
+            MapObject_Turn(mapObj, param9[param2]);
         } else {
             PlayerData *v3;
 
@@ -1084,7 +1084,7 @@ static void sub_0206000C(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             v2 = 1;
 
             Sound_PlayEffect(1537);
-            sub_02062994(mapObj, param9[param2]);
+            MapObject_Turn(mapObj, param9[param2]);
         }
     }
 
@@ -1149,7 +1149,7 @@ static void sub_02060258(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     v0 = sub_02065838(v1, 0x28);
 
     sub_02060B64(playerAvatar, mapObj, v0, 1);
-    sub_02062994(mapObj, param2);
+    MapObject_Turn(mapObj, param2);
 }
 
 static void sub_020602DC(PlayerAvatar *playerAvatar, MapObject *mapObj, const UnkStruct_ov5_021E8F60 *param2, int param3, u16 param4, u16 param5)
@@ -1332,7 +1332,7 @@ static void sub_02060548(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
 {
     int v0;
 
-    v0 = sub_02065838(MapObject_Dir(mapObj), 0x0);
+    v0 = sub_02065838(MapObject_GetFacingDir(mapObj), 0x0);
 
     sub_02060B64(playerAvatar, mapObj, v0, 1);
     PlayerAvatar_ClearSpeed(playerAvatar);
@@ -1365,8 +1365,8 @@ static void sub_02060570(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     } else if (v0 & (1 << 6)) {
         v1 = 0x0;
         v2 = 1;
-        param2 = MapObject_GetMoveDir(mapObj);
-        sub_02062994(mapObj, param2);
+        param2 = MapObject_GetMovingDir(mapObj);
+        MapObject_Turn(mapObj, param2);
         PlayerAvatar_ClearSpeed(playerAvatar);
         sub_0205EBEC(playerAvatar, -1, -1);
     } else if (v0 != 0) {
@@ -1378,13 +1378,13 @@ static void sub_02060570(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
                 Sound_PlayEffect(1537);
             }
 
-            sub_02062994(mapObj, param2);
+            MapObject_Turn(mapObj, param2);
             PlayerAvatar_ClearSpeed(playerAvatar);
         } else {
             v1 = 0x0;
             v2 = 1;
-            param2 = MapObject_GetMoveDir(mapObj);
-            sub_02062994(mapObj, param2);
+            param2 = MapObject_GetMovingDir(mapObj);
+            MapObject_Turn(mapObj, param2);
             PlayerAvatar_ClearSpeed(playerAvatar);
             sub_0205EBEC(playerAvatar, -1, -1);
         }
@@ -1408,7 +1408,7 @@ static void sub_02060688(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
         int v0 = sub_02065838(param2, 0x28);
 
         sub_02060B64(playerAvatar, mapObj, v0, 1);
-        sub_02062994(mapObj, param2);
+        MapObject_Turn(mapObj, param2);
         PlayerAvatar_ClearSpeed(playerAvatar);
     }
 }
@@ -1441,7 +1441,7 @@ static void sub_020606C8(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir,
             Sound_PlayEffect(1537);
         }
 
-        sub_02062994(mapObj, dir);
+        MapObject_Turn(mapObj, dir);
         PlayerAvatar_ClearSpeed(playerAvatar);
     } else {
         v2 = sub_02060390(playerAvatar, dir);
@@ -1537,7 +1537,7 @@ static void sub_020608BC(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
 {
     int v0;
 
-    v0 = sub_02065838(MapObject_Dir(mapObj), 0x0);
+    v0 = sub_02065838(MapObject_GetFacingDir(mapObj), 0x0);
 
     sub_02060B64(playerAvatar, mapObj, v0, 1);
     PlayerAvatar_ClearSpeed(playerAvatar);
@@ -1577,14 +1577,14 @@ static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
                 Sound_PlayEffect(1537);
             }
 
-            sub_02062994(mapObj, param2);
+            MapObject_Turn(mapObj, param2);
             PlayerAvatar_ClearSpeed(playerAvatar);
         }
     } else if (v0 & (1 << 6)) {
-        param2 = MapObject_GetMoveDir(mapObj);
+        param2 = MapObject_GetMovingDir(mapObj);
         v1 = sub_02065838(param2, 0x0);
         v2 = 1;
-        sub_02062994(mapObj, param2);
+        MapObject_Turn(mapObj, param2);
         PlayerAvatar_ClearSpeed(playerAvatar);
         sub_0205EBEC(playerAvatar, -1, -1);
     } else if (v0 != 0) {
@@ -1596,13 +1596,13 @@ static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
                 Sound_PlayEffect(1537);
             }
 
-            sub_02062994(mapObj, param2);
+            MapObject_Turn(mapObj, param2);
             PlayerAvatar_ClearSpeed(playerAvatar);
         } else {
             v2 = 1;
-            param2 = MapObject_GetMoveDir(mapObj);
+            param2 = MapObject_GetMovingDir(mapObj);
             v1 = sub_02065838(param2, 0x0);
-            sub_02062994(mapObj, param2);
+            MapObject_Turn(mapObj, param2);
             PlayerAvatar_ClearSpeed(playerAvatar);
             sub_0205EBEC(playerAvatar, -1, -1);
         }
@@ -1627,7 +1627,7 @@ static void sub_02060A60(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
         int v0 = sub_02065838(param2, 0x28);
 
         sub_02060B64(playerAvatar, mapObj, v0, 1);
-        sub_02062994(mapObj, param2);
+        MapObject_Turn(mapObj, param2);
         PlayerAvatar_ClearSpeed(playerAvatar);
     }
 }
@@ -1660,7 +1660,7 @@ static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             Sound_PlayEffect(1537);
         }
 
-        sub_02062994(mapObj, param2);
+        MapObject_Turn(mapObj, param2);
         PlayerAvatar_ClearSpeed(playerAvatar);
     } else {
         v2 = sub_02060390(playerAvatar, param2);
@@ -1730,11 +1730,11 @@ static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 {
     VecFx32 v0;
     u32 v1, v2;
-    int x = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
-    int y = MapObject_GetYPos(mapObj);
-    int z = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
+    int x = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
+    int y = MapObject_GetY(mapObj);
+    int z = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param2);
 
-    MapObject_PosVectorOut(mapObj, &v0);
+    MapObject_GetPosPtr(mapObj, &v0);
 
     v1 = 0;
 
@@ -1770,8 +1770,8 @@ static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
-        int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
+        int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
+        int v2 = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param2);
 
         if (sub_020683D8(fieldSystem, v1, v2, 0, param2) == 1) {
             return 1;
@@ -1814,8 +1814,8 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        int v2 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
-        int v3 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
+        int v2 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
+        int v3 = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param2);
         u8 v4 = FieldSystem_GetTileBehavior(fieldSystem, v2, v3);
 
         switch (param2) {
@@ -1849,8 +1849,8 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_GetXPos(mapObj);
-        int v2 = MapObject_GetZPos(mapObj);
+        int v1 = MapObject_GetX(mapObj);
+        int v2 = MapObject_GetZ(mapObj);
         u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
         switch (param2) {
@@ -1892,8 +1892,8 @@ static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
-        int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
+        int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
+        int v2 = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param2);
         u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
         if ((param2 == 3) && TileBehavior_IsBikeRampEastward(v3)) {
@@ -1912,8 +1912,8 @@ static int sub_02060F4C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
-        int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
+        int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
+        int v2 = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param2);
         u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
         if (sub_0206406C(mapObj, v3)) {
@@ -1928,8 +1928,8 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
-        int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
+        int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
+        int v2 = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param2);
         u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
@@ -1962,8 +1962,8 @@ static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 {
     if ((param2 != -1) && PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param2);
-        int v2 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param2);
+        int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
+        int v2 = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param2);
         u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
         if (sub_0206406C(mapObj, v3)) {
@@ -1996,9 +1996,9 @@ static int sub_02061100(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
     if (sub_02071CB4(fieldSystem, 9) == 1) {
-        int x = MapObject_GetXPos(mapObj);
-        int y = MapObject_GetYPos(mapObj) / 2;
-        int z = MapObject_GetZPos(mapObj);
+        int x = MapObject_GetX(mapObj);
+        int y = MapObject_GetY(mapObj) / 2;
+        int z = MapObject_GetZ(mapObj);
 
         sub_02061674(playerAvatar, param2, &x, &y, &z);
 
@@ -2024,9 +2024,9 @@ static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         if (sub_02071CB4(fieldSystem, 9) == 1) {
             BOOL v1;
             u32 v2;
-            int x = MapObject_GetXPos(mapObj);
-            int y = MapObject_GetYPos(mapObj) / 2;
-            int z = MapObject_GetZPos(mapObj);
+            int x = MapObject_GetX(mapObj);
+            int y = MapObject_GetY(mapObj) / 2;
+            int z = MapObject_GetZ(mapObj);
 
             sub_02061674(playerAvatar, param2, &x, &y, &z);
 
@@ -2074,9 +2074,9 @@ static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
         if (sub_02071CB4(fieldSystem, 9) == 1) {
             u32 v2;
-            int x = MapObject_GetXPos(mapObj);
-            int y = MapObject_GetYPos(mapObj) / 2;
-            int z = MapObject_GetZPos(mapObj);
+            int x = MapObject_GetX(mapObj);
+            int y = MapObject_GetY(mapObj) / 2;
+            int z = MapObject_GetZ(mapObj);
 
             sub_02061674(playerAvatar, param2, &x, &y, &z);
 
@@ -2178,7 +2178,7 @@ int sub_020613AC(PlayerAvatar *playerAvatar)
     }
 
     {
-        int v1 = MapObject_AnimationCode(mapObj);
+        int v1 = MapObject_GetMovementAction(mapObj);
 
         if (sub_020613D8(v1) == 1) {
             return 1;
@@ -2447,9 +2447,9 @@ u32 sub_020616F0(PlayerAvatar *playerAvatar, int param1)
     } else {
         MapObject *mapObj = Player_MapObject(playerAvatar);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        int x = MapObject_GetXPos(mapObj);
-        int y = MapObject_GetYPos(mapObj) / 2;
-        int z = MapObject_GetZPos(mapObj);
+        int x = MapObject_GetX(mapObj);
+        int y = MapObject_GetY(mapObj) / 2;
+        int z = MapObject_GetZ(mapObj);
 
         sub_02061674(playerAvatar, param1, &x, &y, &z);
         ov9_02251044(fieldSystem, x, y, z, &v0);
@@ -2463,9 +2463,9 @@ u32 sub_02061760(PlayerAvatar *playerAvatar)
     u32 v0;
     MapObject *mapObj = Player_MapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-    int x = MapObject_GetXPos(mapObj);
-    int y = MapObject_GetYPos(mapObj) / 2;
-    int z = MapObject_GetZPos(mapObj);
+    int x = MapObject_GetX(mapObj);
+    int y = MapObject_GetY(mapObj) / 2;
+    int z = MapObject_GetZ(mapObj);
 
     if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
         v0 = FieldSystem_GetTileBehavior(fieldSystem, x, z);
@@ -2481,9 +2481,9 @@ void sub_020617BC(PlayerAvatar *const playerAvatar, int *xOut, int *yOut, int *z
     int v0 = sub_0205EAA0(playerAvatar);
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
-    *xOut = MapObject_GetXPos(mapObj);
-    *yOut = MapObject_GetYPos(mapObj) / 2;
-    *zOut = MapObject_GetZPos(mapObj);
+    *xOut = MapObject_GetX(mapObj);
+    *yOut = MapObject_GetY(mapObj) / 2;
+    *zOut = MapObject_GetZ(mapObj);
 
     sub_02061674(playerAvatar, v0, xOut, yOut, zOut);
 }

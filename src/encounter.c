@@ -368,11 +368,8 @@ void Encounter_StartVsWild(FieldSystem *fieldSystem, FieldTask *task, FieldBattl
 
 static BOOL FieldTask_WildEncounter(FieldTask *task)
 {
-    FieldSystem *fieldSystem;
-    WildEncounter *encounter;
-
-    fieldSystem = FieldTask_GetFieldSystem(task);
-    encounter = FieldTask_GetEnv(task);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    WildEncounter *encounter = FieldTask_GetEnv(task);
 
     switch (encounter->state) {
     case 0:
@@ -660,10 +657,8 @@ void Encounter_NewVsPalParkTransfer(FieldSystem *fieldSystem, FieldBattleDTO *dt
 
 void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, int heapID, int *resultMaskPtr)
 {
-    FieldBattleDTO *dto;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-
-    dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_TRAINER);
+    FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_TRAINER);
     FieldBattleDTO_Init(dto, fieldSystem);
 
     dto->battleStatusMask = BATTLE_STATUS_FIRST_BATTLE;
@@ -724,12 +719,9 @@ static BOOL FieldTask_CatchingTutorialEncounter(FieldTask *task)
 
 void Encounter_NewCatchingTutorial(FieldTask *task)
 {
-    Encounter *encounter;
-    FieldBattleDTO *dto;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-
-    dto = FieldBattleDTO_NewCatchingTutorial(HEAP_ID_FIELDMAP, fieldSystem);
-    encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
+    FieldBattleDTO *dto = FieldBattleDTO_NewCatchingTutorial(HEAP_ID_FIELDMAP, fieldSystem);
+    Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
 
     FieldTask_InitCall(task, FieldTask_CatchingTutorialEncounter, encounter);
 }

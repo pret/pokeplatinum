@@ -72,34 +72,34 @@ int sub_020673C0(MapObject *param0)
 
 static void sub_020673E4(MapObject *param0)
 {
-    int v0 = MapObject_GetEventType(param0);
+    int v0 = MapObject_GetTrainerType(param0);
 
     Unk_020EF630[v0](param0);
 }
 
 static int sub_02067400(MapObject *param0)
 {
-    int v0 = MapObject_GetEventType(param0);
+    int v0 = MapObject_GetTrainerType(param0);
     return Unk_020EF660[v0](param0);
 }
 
 static int sub_0206741C(MapObject *param0)
 {
-    int v0 = MapObject_GetEventType(param0);
+    int v0 = MapObject_GetTrainerType(param0);
     return Unk_020EF690[v0](param0);
 }
 
 static int sub_02067438(MapObject *param0)
 {
-    int v0 = MapObject_GetXPos(param0);
-    int v1 = MapObject_XPosPrev(param0);
+    int v0 = MapObject_GetX(param0);
+    int v1 = MapObject_GetXPrev(param0);
 
     if (v0 != v1) {
         return 1;
     }
 
-    v0 = MapObject_GetZPos(param0);
-    v1 = MapObject_ZPosPrev(param0);
+    v0 = MapObject_GetZ(param0);
+    v1 = MapObject_GetZPrev(param0);
 
     if (v0 != v1) {
         return 1;
@@ -110,15 +110,15 @@ static int sub_02067438(MapObject *param0)
 
 static int sub_0206746C(MapObject *param0)
 {
-    int v0 = MapObject_GetXPos(param0);
-    int v1 = MapObject_XPosPrev(param0);
+    int v0 = MapObject_GetX(param0);
+    int v1 = MapObject_GetXPrev(param0);
 
     if (v0 != v1) {
         return 0;
     }
 
-    v0 = MapObject_GetZPos(param0);
-    v1 = MapObject_ZPosPrev(param0);
+    v0 = MapObject_GetZ(param0);
+    v1 = MapObject_GetZPrev(param0);
 
     if (v0 != v1) {
         return 0;
@@ -147,7 +147,7 @@ static void sub_020674AC(MapObject *param0)
     UnkStruct_020674AC *v0;
 
     v0 = sub_02062A7C(param0, (sizeof(UnkStruct_020674AC)));
-    v0->unk_03 = sub_020629D8(param0, 1);
+    v0->unk_03 = MapObject_GetDataAt(param0, 1);
 }
 
 static int sub_020674C4(MapObject *param0)
@@ -199,7 +199,7 @@ static int sub_02067540(MapObject *param0)
     switch (v0->unk_01) {
     case 0: {
         int v1[4] = { 0, 0, 1, 1 };
-        int v2 = MapObject_Dir(param0);
+        int v2 = MapObject_GetFacingDir(param0);
 
         v0->unk_04 = v2;
         v0->unk_05 = v1[v2];
@@ -239,7 +239,7 @@ static int sub_02067540(MapObject *param0)
             return 1;
         }
 
-        MapObject_SetDir(param0, v0->unk_04);
+        MapObject_TryFace(param0, v0->unk_04);
 
         v0->unk_01++;
         v0->unk_07 = 0;
@@ -256,9 +256,9 @@ static void sub_0206762C(MapObject *param0)
     UnkStruct_0206762C *v1;
 
     v1 = sub_02062A7C(param0, (sizeof(UnkStruct_0206762C)));
-    v1->unk_03 = sub_020629D8(param0, 1);
+    v1->unk_03 = MapObject_GetDataAt(param0, 1);
 
-    v0 = MapObject_GetEventType(param0);
+    v0 = MapObject_GetTrainerType(param0);
 
     if (v0 == 0x5) {
         v0 = 0;
@@ -322,7 +322,7 @@ static int sub_020676D4(MapObject *param0)
 
     switch (v0->unk_01) {
     case 0: {
-        int v2, v3 = MapObject_Dir(param0);
+        int v2, v3 = MapObject_GetFacingDir(param0);
 
         for (v2 = 0; (v2 < 4 && v3 != v1[v0->unk_05][v2]); v2++) {
             (void)0;
@@ -364,7 +364,7 @@ static int sub_020676D4(MapObject *param0)
             return 1;
         }
 
-        MapObject_SetDir(param0, v0->unk_04);
+        MapObject_TryFace(param0, v0->unk_04);
         v0->unk_01++;
         v0->unk_07 = 0;
         v0->unk_00 = 0;
