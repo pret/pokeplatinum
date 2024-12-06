@@ -10,14 +10,14 @@
 #include "trainer_info.h"
 
 typedef struct {
-    BgConfig *unk_00;
-    Window unk_04[4];
-    JournalEntry *unk_44;
-    TrainerInfo *unk_48;
-    SaveData *unk_4C;
-    MessageLoader *unk_50;
-    StringTemplate *unk_54;
-    Strbuf *unk_58;
+    BgConfig *bgConfig;
+    Window window[4];
+    JournalEntry *journalEntry;
+    TrainerInfo *trainerInfo;
+    SaveData *saveData;
+    MessageLoader *loader;
+    StringTemplate *template;
+    Strbuf *strbuf;
     u16 unk_5C[1024];
     u16 unk_85C[1024];
     s8 unk_105C;

@@ -82,17 +82,17 @@ int ov81_021D0D80(OverlayManager *param0, int *param1)
     v1 = OverlayManager_Args(param0);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov81_021D1610), 42);
     memset(v0, 0, sizeof(UnkStruct_ov81_021D1610));
-    v0->unk_00 = BgConfig_New(42);
+    v0->bgConfig = BgConfig_New(42);
 
-    v0->unk_4C = v1;
-    v0->unk_44 = SaveData_GetJournal(v1);
-    v0->unk_48 = SaveData_GetTrainerInfo(v1);
+    v0->saveData = v1;
+    v0->journalEntry = SaveData_GetJournal(v1);
+    v0->trainerInfo = SaveData_GetTrainerInfo(v1);
 
     sub_0208C120(0, 42);
     Font_UseImmediateGlyphAccess(FONT_SYSTEM, 42);
 
     ov81_021D0F20();
-    ov81_021D0F40(v0->unk_00);
+    ov81_021D0F40(v0->bgConfig);
     ov81_021D1050(v0);
     ov81_021D1130(v0);
     ov81_021D1610(v0);
@@ -141,7 +141,7 @@ int ov81_021D0EC4(OverlayManager *param0, int *param1)
     SetMainCallback(NULL, NULL);
 
     ov81_021D1634(v0);
-    ov81_021D101C(v0->unk_00);
+    ov81_021D101C(v0->bgConfig);
     ov81_021D115C(v0);
 
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
@@ -155,7 +155,7 @@ static void ov81_021D0F00(void *param0)
 {
     UnkStruct_ov81_021D1610 *v0 = param0;
 
-    Bg_RunScheduledUpdates(v0->unk_00);
+    Bg_RunScheduledUpdates(v0->bgConfig);
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
@@ -179,95 +179,88 @@ static void ov81_021D0F20(void)
 
 static void ov81_021D0F40(BgConfig *param0)
 {
-    {
-        GraphicsModes v0 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D,
-        };
+    GraphicsModes v0 = {
+        GX_DISPMODE_GRAPHICS,
+        GX_BGMODE_0,
+        GX_BGMODE_0,
+        GX_BG0_AS_2D,
+    };
 
-        SetAllGraphicsModes(&v0);
-    }
+    SetAllGraphicsModes(&v0);
 
-    {
-        BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
-        };
+    BgTemplate v1 = {
+        0,
+        0,
+        0x800,
+        0,
+        1,
+        GX_BG_COLORMODE_16,
+        GX_BG_SCRBASE_0xf800,
+        GX_BG_CHARBASE_0x10000,
+        GX_BG_EXTPLTT_01,
+        0,
+        0,
+        0,
+        0
+    };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilemap(param0, 0);
-    }
-    {
-        BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x20000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
-        };
+    Bg_InitFromTemplate(param0, 0, &v1, 0);
+    Bg_ClearTilemap(param0, 0);
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilemap(param0, 1);
-    }
-    {
-        BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
-        };
+    BgTemplate v2 = {
+        0,
+        0,
+        0x800,
+        0,
+        1,
+        GX_BG_COLORMODE_16,
+        GX_BG_SCRBASE_0xf000,
+        GX_BG_CHARBASE_0x20000,
+        GX_BG_EXTPLTT_01,
+        2,
+        0,
+        0,
+        0
+    };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-    }
-    {
-        BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
-        };
+    Bg_InitFromTemplate(param0, 1, &v2, 0);
+    Bg_ClearTilemap(param0, 1);
 
-        Bg_InitFromTemplate(param0, 3, &v4, 0);
-    }
+    BgTemplate v3 = {
+        0,
+        0,
+        0x800,
+        0,
+        1,
+        GX_BG_COLORMODE_16,
+        GX_BG_SCRBASE_0xe800,
+        GX_BG_CHARBASE_0x00000,
+        GX_BG_EXTPLTT_01,
+        1,
+        0,
+        0,
+        0
+    };
+
+    Bg_InitFromTemplate(param0, 2, &v3, 0);
+
+    BgTemplate v4 = {
+        0,
+        0,
+        0x800,
+        0,
+        1,
+        GX_BG_COLORMODE_16,
+        GX_BG_SCRBASE_0xe000,
+        GX_BG_CHARBASE_0x00000,
+        GX_BG_EXTPLTT_01,
+        3,
+        0,
+        0,
+        0
+    };
+
+    Bg_InitFromTemplate(param0, 3, &v4, 0);
 
     Bg_ClearTilesRange(0, 32, 0, 42);
     Bg_ClearTilesRange(1, 32, 0, 42);
@@ -286,25 +279,23 @@ static void ov81_021D101C(BgConfig *param0)
 static void ov81_021D1050(UnkStruct_ov81_021D1610 *param0)
 {
     u16 *v0;
-    NARC *v1;
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__F_NOTE_GRA, 42);
 
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__F_NOTE_GRA, 42);
-
-    if (TrainerInfo_Gender(param0->unk_48) == 0) {
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, param0->unk_00, 2, 0, 0, 0, 42);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 0, param0->unk_00, 2, 0, 0, 0, 42);
+    if (TrainerInfo_Gender(param0->trainerInfo) == 0) {
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, param0->bgConfig, 2, 0, 0, 0, 42);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 0, param0->bgConfig, 2, 0, 0, 0, 42);
         Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 0, 42);
     } else {
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 3, param0->unk_00, 2, 0, 0, 0, 42);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 1, param0->unk_00, 2, 0, 0, 0, 42);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 3, param0->bgConfig, 2, 0, 0, 0, 42);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 1, param0->bgConfig, 2, 0, 0, 0, 42);
         Graphics_LoadPaletteFromOpenNARC(v1, 5, 0, 0, 0, 42);
     }
 
     NARC_dtor(v1);
 
-    v0 = Bg_GetTilemapBuffer(param0->unk_00, 2);
+    v0 = Bg_GetTilemapBuffer(param0->bgConfig, 2);
     MI_CpuCopy16(v0, param0->unk_5C, 0x800);
-    Bg_LoadTilemapBuffer(param0->unk_00, 3, param0->unk_5C, 0x800);
+    Bg_LoadTilemapBuffer(param0->bgConfig, 3, param0->unk_5C, 0x800);
 
     Font_LoadTextPalette(0, 15 * 32, 42);
     Bg_MaskPalette(4, 0);
@@ -312,21 +303,21 @@ static void ov81_021D1050(UnkStruct_ov81_021D1610 *param0)
 
 static void ov81_021D1130(UnkStruct_ov81_021D1610 *param0)
 {
-    param0->unk_50 = MessageLoader_Init(0, 26, 366, 42);
-    param0->unk_54 = StringTemplate_Default(42);
-    param0->unk_58 = Strbuf_Init(128, 42);
+    param0->loader = MessageLoader_Init(0, 26, 366, 42);
+    param0->template = StringTemplate_Default(42);
+    param0->strbuf = Strbuf_Init(128, 42);
 }
 
 static void ov81_021D115C(UnkStruct_ov81_021D1610 *param0)
 {
-    MessageLoader_Free(param0->unk_50);
-    StringTemplate_Free(param0->unk_54);
-    Strbuf_Free(param0->unk_58);
+    MessageLoader_Free(param0->loader);
+    StringTemplate_Free(param0->template);
+    Strbuf_Free(param0->strbuf);
 }
 
 static int ov81_021D1174(UnkStruct_ov81_021D1610 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenTransitionDone() == TRUE) {
         return 1;
     }
 
@@ -387,10 +378,10 @@ static int ov81_021D120C(UnkStruct_ov81_021D1610 *param0)
             param0->unk_105E = 0;
             param0->unk_1060 ^= 1;
 
-            Bg_LoadToTilemapRect(param0->unk_00, param0->unk_1062, param0->unk_85C, 0, 0, 32, 32);
-            Bg_LoadToTilemapRect(param0->unk_00, param0->unk_1061, param0->unk_5C, 0, 0, 32, 32);
-            Bg_ScheduleTilemapTransfer(param0->unk_00, param0->unk_1062);
-            Bg_ScheduleTilemapTransfer(param0->unk_00, param0->unk_1061);
+            Bg_LoadToTilemapRect(param0->bgConfig, param0->unk_1062, param0->unk_85C, 0, 0, 32, 32);
+            Bg_LoadToTilemapRect(param0->bgConfig, param0->unk_1061, param0->unk_5C, 0, 0, 32, 32);
+            Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->unk_1062);
+            Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->unk_1061);
 
             return 1;
         }
@@ -446,9 +437,9 @@ static u8 ov81_021D13A0(UnkStruct_ov81_021D1610 *param0, u8 param1)
 {
     JournalEntryTitle journalEntryTitle;
 
-    JournalEntry_GetData(param0->unk_44, &journalEntryTitle, JOURNAL_TITLE, param1);
+    JournalEntry_GetData(param0->journalEntry, &journalEntryTitle, JOURNAL_TITLE, param1);
 
-    if ((journalEntryTitle.year == 0) && (journalEntryTitle.month == 0) && (journalEntryTitle.day == 0)) {
+    if (journalEntryTitle.year == 0 && journalEntryTitle.month == 0 && journalEntryTitle.day == 0) {
         return 0;
     }
 
@@ -458,17 +449,11 @@ static u8 ov81_021D13A0(UnkStruct_ov81_021D1610 *param0, u8 param1)
 static u8 ov81_021D13CC(UnkStruct_ov81_021D1610 *param0, s8 param1)
 {
     if (param1 == 1) {
-        if (param0->unk_105C != 9) {
-            if (ov81_021D13A0(param0, param0->unk_105C + 1) == 1) {
-                return 1;
-            }
+        if (param0->unk_105C != 9 && ov81_021D13A0(param0, param0->unk_105C + 1) == 1) {
+            return 1;
         }
-    } else {
-        if (param0->unk_105C != 0) {
-            if (ov81_021D13A0(param0, param0->unk_105C - 1) == 1) {
-                return 1;
-            }
-        }
+    } else if (param0->unk_105C != 0 && ov81_021D13A0(param0, param0->unk_105C - 1) == 1) {
+        return 1;
     }
 
     return 0;
@@ -476,37 +461,33 @@ static u8 ov81_021D13CC(UnkStruct_ov81_021D1610 *param0, s8 param1)
 
 static void ov81_021D140C(UnkStruct_ov81_021D1610 *param0, u8 param1, u8 param2)
 {
-    Bg_ChangeTilemapRectPalette(param0->unk_00, param1, 0, 0, 32, 32, param2);
-    Bg_ScheduleTilemapTransfer(param0->unk_00, param1);
+    Bg_ChangeTilemapRectPalette(param0->bgConfig, param1, 0, 0, 32, 32, param2);
+    Bg_ScheduleTilemapTransfer(param0->bgConfig, param1);
 }
 
 static void ov81_021D1434(UnkStruct_ov81_021D1610 *param0)
 {
-    u16 *v0;
-
-    v0 = Bg_GetTilemapBuffer(param0->unk_00, 0);
+    u16 *v0 = Bg_GetTilemapBuffer(param0->bgConfig, 0);
     MI_CpuCopy16(v0, param0->unk_85C, 0x800);
 }
 
 static void ov81_021D1450(UnkStruct_ov81_021D1610 *param0, u16 *param1, u16 param2, u16 param3)
 {
-    u16 *v0;
-    u16 v1, v2;
+    u16 *v0 = Bg_GetTilemapBuffer(param0->bgConfig, param2);
+    u16 j, i;
 
-    v0 = Bg_GetTilemapBuffer(param0->unk_00, param2);
-
-    for (v2 = 0; v2 < 32; v2++) {
-        if (Unk_ov81_021D33E8[param3][v2] == 0xff) {
-            Bg_FillTilemapRect(param0->unk_00, param2, 0, v2, 0, 1, 32, 0);
+    for (i = 0; i < 32; i++) {
+        if (Unk_ov81_021D33E8[param3][i] == 0xff) {
+            Bg_FillTilemapRect(param0->bgConfig, param2, 0, i, 0, 1, 32, 0);
             continue;
         }
 
-        for (v1 = 0; v1 < 32; v1++) {
-            v0[v1 * 32 + v2] = param1[v1 * 32 + Unk_ov81_021D33E8[param3][v2]];
+        for (j = 0; j < 32; j++) {
+            v0[j * 32 + i] = param1[j * 32 + Unk_ov81_021D33E8[param3][i]];
         }
     }
 
-    Bg_ScheduleTilemapTransfer(param0->unk_00, param2);
+    Bg_ScheduleTilemapTransfer(param0->bgConfig, param2);
 }
 
 static u8 ov81_021D14E0(UnkStruct_ov81_021D1610 *param0)

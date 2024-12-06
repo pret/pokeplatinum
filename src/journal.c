@@ -16,6 +16,8 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
+#include "res/trainers/trdata.naix"
+
 #define MAX_JOURNAL_ENTRIES 10
 
 typedef struct {
@@ -98,14 +100,14 @@ static const MapInfo sMapsInfo[] = {
 };
 
 static const GymInfo sGymsInfo[] = {
-    { 0xF6, MAP_HEADER_OREBURGH_CITY_GYM, BADGE_ID_COAL },
-    { 0x13B, MAP_HEADER_ETERNA_CITY_GYM, BADGE_ID_FOREST },
-    { 0x13C, MAP_HEADER_PASTORIA_CITY_GYM, BADGE_ID_FEN },
-    { 0x13D, MAP_HEADER_VEILSTONE_CITY_GYM, BADGE_ID_COBBLE },
-    { 0x13E, MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM, BADGE_ID_RELIC },
-    { 0x13F, MAP_HEADER_SNOWPOINT_CITY_GYM, BADGE_ID_ICICLE },
-    { 0xFA, MAP_HEADER_CANALAVE_CITY_GYM, BADGE_ID_MINE },
-    { 0x140, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1, BADGE_ID_BEACON }
+    { trainer_leader_roark, MAP_HEADER_OREBURGH_CITY_GYM, BADGE_ID_COAL },
+    { trainer_leader_gardenia, MAP_HEADER_ETERNA_CITY_GYM, BADGE_ID_FOREST },
+    { trainer_leader_wake, MAP_HEADER_PASTORIA_CITY_GYM, BADGE_ID_FEN },
+    { trainer_leader_maylene, MAP_HEADER_VEILSTONE_CITY_GYM, BADGE_ID_COBBLE },
+    { trainer_leader_fantina, MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM, BADGE_ID_RELIC },
+    { trainer_leader_candice, MAP_HEADER_SNOWPOINT_CITY_GYM, BADGE_ID_ICICLE },
+    { trainer_leader_byron, MAP_HEADER_CANALAVE_CITY_GYM, BADGE_ID_MINE },
+    { trainer_leader_volkner, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1, BADGE_ID_BEACON }
 };
 
 int Journal_SaveSize(void)
@@ -1363,12 +1365,14 @@ static u8 JournalEntry_TrainerType(u32 trainerID)
         }
     }
 
-    if (trainerID == 261 || trainerID == 866 || trainerID == 262 || trainerID == 867
-        || trainerID == 263 || trainerID == 868 || trainerID == 264 || trainerID == 869) {
+    if (trainerID == trainer_elite_four_aaron || trainerID == trainer_elite_four_aaron_rematch
+        || trainerID == trainer_elite_four_bertha || trainerID == trainer_elite_four_bertha_rematch
+        || trainerID == trainer_elite_four_flint || trainerID == trainer_elite_four_flint_rematch
+        || trainerID == trainer_elite_four_lucian || trainerID == trainer_elite_four_lucian_rematch) {
         return 8;
     }
 
-    if (trainerID == 267 || trainerID == 870) {
+    if (trainerID == trainer_champion_cynthia || trainerID == trainer_champion_cynthia_rematch) {
         return 9;
     }
 
