@@ -20,7 +20,7 @@ typedef struct {
     Strbuf *strbuf;
     u16 unk_5C[1024];
     u16 unk_85C[1024];
-    s8 unk_105C;
+    s8 page;
     u8 padding_105D;
     s8 unk_105E;
     s8 unk_105F;

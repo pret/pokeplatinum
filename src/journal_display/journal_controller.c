@@ -1,12 +1,12 @@
-#include "overlay081/ov81_021D0D80.h"
+#include "journal_display/journal_controller.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay081/ov81_021D1610.h"
-#include "overlay081/struct_ov81_021D1610.h"
+#include "journal_display/journal_printer.h"
+#include "journal_display/struct_ov81_021D1610.h"
 
 #include "bg_window.h"
 #include "core_sys.h"
@@ -343,7 +343,7 @@ static int ov81_021D1188(UnkStruct_ov81_021D1610 *param0)
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        if (param0->unk_105C != 0) {
+        if (param0->page != 0) {
             if (ov81_021D13CC(param0, -1) == 1) {
                 return 2;
             }
@@ -366,8 +366,8 @@ static int ov81_021D120C(UnkStruct_ov81_021D1610 *param0)
     switch (param0->unk_105E) {
     case 0:
         ov81_021D1360(param0);
-        ov81_021D140C(param0, param0->unk_1063, param0->unk_105C - 1);
-        param0->unk_105C--;
+        ov81_021D140C(param0, param0->unk_1063, param0->page - 1);
+        param0->page--;
         ov81_021D164C(param0, param0->unk_1060 ^ 1);
         param0->unk_105E = 1;
         Sound_PlayEffect(1681);
@@ -395,7 +395,7 @@ static int ov81_021D12E8(UnkStruct_ov81_021D1610 *param0)
     switch (param0->unk_105E) {
     case 0:
         ov81_021D1360(param0);
-        param0->unk_105C++;
+        param0->page++;
         ov81_021D164C(param0, param0->unk_1060 ^ 1);
         param0->unk_105E = 1;
         Sound_PlayEffect(1681);
@@ -449,20 +449,20 @@ static u8 ov81_021D13A0(UnkStruct_ov81_021D1610 *param0, u8 param1)
 static u8 ov81_021D13CC(UnkStruct_ov81_021D1610 *param0, s8 param1)
 {
     if (param1 == 1) {
-        if (param0->unk_105C != 9 && ov81_021D13A0(param0, param0->unk_105C + 1) == 1) {
+        if (param0->page != 9 && ov81_021D13A0(param0, param0->page + 1) == 1) {
             return 1;
         }
-    } else if (param0->unk_105C != 0 && ov81_021D13A0(param0, param0->unk_105C - 1) == 1) {
+    } else if (param0->page != 0 && ov81_021D13A0(param0, param0->page - 1) == 1) {
         return 1;
     }
 
     return 0;
 }
 
-static void ov81_021D140C(UnkStruct_ov81_021D1610 *param0, u8 param1, u8 param2)
+static void ov81_021D140C(UnkStruct_ov81_021D1610 *param0, u8 bgLayer, u8 palette)
 {
-    Bg_ChangeTilemapRectPalette(param0->bgConfig, param1, 0, 0, 32, 32, param2);
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, param1);
+    Bg_ChangeTilemapRectPalette(param0->bgConfig, bgLayer, 0, 0, 32, 32, palette);
+    Bg_ScheduleTilemapTransfer(param0->bgConfig, bgLayer);
 }
 
 static void ov81_021D1434(UnkStruct_ov81_021D1610 *param0)
@@ -494,7 +494,7 @@ static u8 ov81_021D14E0(UnkStruct_ov81_021D1610 *param0)
 {
     ov81_021D1450(param0, param0->unk_85C, param0->unk_1062, param0->unk_105F);
     ov81_021D1450(param0, param0->unk_5C, param0->unk_1061, param0->unk_105F);
-    ov81_021D140C(param0, param0->unk_1061, param0->unk_105C + 1);
+    ov81_021D140C(param0, param0->unk_1061, param0->page + 1);
 
     param0->unk_105F++;
 
@@ -513,7 +513,7 @@ static u8 ov81_021D156C(UnkStruct_ov81_021D1610 *param0)
 {
     ov81_021D1450(param0, param0->unk_85C, param0->unk_1064, 8 - param0->unk_105F);
     ov81_021D1450(param0, param0->unk_5C, param0->unk_1063, 8 - param0->unk_105F);
-    ov81_021D140C(param0, param0->unk_1063, param0->unk_105C);
+    ov81_021D140C(param0, param0->unk_1063, param0->page);
 
     if (param0->unk_105F == 1) {
         Bg_SetPriority(param0->unk_1064, 0);
