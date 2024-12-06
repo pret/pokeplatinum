@@ -2470,7 +2470,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
         }
     }
 
-    JournalEntry_SaveData(param0->unk_00->journalEntry, v0, JOURNAL_UNK_1C);
+    JournalEntry_SaveData(param0->unk_00->journalEntry, v0, JOURNAL_ONLINE_EVENT);
 }
 
 static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)

@@ -3885,7 +3885,7 @@ static BOOL sub_02041CF4(ScriptContext *ctx)
         void *v3;
 
         v3 = sub_0202BCFC(11);
-        JournalEntry_SaveData(fieldSystem->journalEntry, v3, JOURNAL_UNK_04);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v3, JOURNAL_LOCATION);
     }
 
     Heap_FreeToHeap(*v0);
@@ -6117,15 +6117,15 @@ static BOOL ScrCmd_1CD(ScriptContext *ctx)
 
     switch (v1) {
     case 16:
-        v0 = JOURNAL_UNK_04;
+        v0 = JOURNAL_LOCATION;
         *v6 = sub_0202BDD4(4);
         break;
     case 17:
-        v0 = JOURNAL_UNK_04;
+        v0 = JOURNAL_LOCATION;
         *v6 = sub_0202BDE0(4);
         break;
     case 18:
-        v0 = JOURNAL_UNK_04;
+        v0 = JOURNAL_LOCATION;
         *v6 = sub_0202BDEC(v2, 4);
         break;
     case 19:
@@ -6135,7 +6135,7 @@ static BOOL ScrCmd_1CD(ScriptContext *ctx)
     case 24:
     case 25:
     case 26:
-        v0 = JOURNAL_UNK_04;
+        v0 = JOURNAL_LOCATION;
         *v6 = sub_0202BE00(v1 - 19, v2, 4);
         break;
     case 36:
@@ -6143,7 +6143,7 @@ static BOOL ScrCmd_1CD(ScriptContext *ctx)
     case 39:
     case 38:
     case 40:
-        v0 = JOURNAL_UNK_04;
+        v0 = JOURNAL_LOCATION;
         *v6 = sub_0202BE2C(4, v1);
         break;
     default:
@@ -6396,7 +6396,7 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
         sub_0206D720(ctx->fieldSystem);
         void *v6 = sub_0202BDE0(4);
 
-        JournalEntry_SaveData(ctx->fieldSystem->journalEntry, v6, JOURNAL_UNK_04);
+        JournalEntry_SaveData(ctx->fieldSystem->journalEntry, v6, JOURNAL_LOCATION);
         *v0 = 0;
         *v1 = 0;
         break;

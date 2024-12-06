@@ -364,14 +364,14 @@ void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(journal_display);
 
-    const OverlayManagerTemplate v0 = {
-        ov81_021D0D80,
-        ov81_021D0E70,
-        ov81_021D0EC4,
+    const OverlayManagerTemplate template = {
+        JournalController_Init,
+        JournalController_Main,
+        JournalController_Exit,
         FS_OVERLAY_ID(journal_display)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &template, fieldSystem->saveData);
 }
 
 void sub_0203D334(FieldSystem *fieldSystem, void *param1)

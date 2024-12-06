@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "journal_display/journal_printer.h"
@@ -30,21 +32,21 @@
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 
-static void ov81_021D0F00(void *param0);
-static void ov81_021D0F20(void);
-static void ov81_021D0F40(BgConfig *param0);
-static void ov81_021D101C(BgConfig *param0);
+static void JournalController_MainCallback(void *data);
+static void JournalController_SetVRAMBanks(void);
+static void JournalController_SetupBgs(BgConfig *param0);
+static void JournalController_TeardownBgs(BgConfig *param0);
 static void ov81_021D1050(UnkStruct_ov81_021D1610 *param0);
 static void ov81_021D1130(UnkStruct_ov81_021D1610 *param0);
 static void ov81_021D115C(UnkStruct_ov81_021D1610 *param0);
-static int ov81_021D1174(UnkStruct_ov81_021D1610 *param0);
-static int ov81_021D1188(UnkStruct_ov81_021D1610 *param0);
-static int ov81_021D120C(UnkStruct_ov81_021D1610 *param0);
-static int ov81_021D12E8(UnkStruct_ov81_021D1610 *param0);
-static int ov81_021D1358(UnkStruct_ov81_021D1610 *param0);
-static u8 ov81_021D13CC(UnkStruct_ov81_021D1610 *param0, s8 param1);
+static int JournalController_IsOpeningTransitionDone(UnkStruct_ov81_021D1610 *param0);
+static int JournalController_HandleInput(UnkStruct_ov81_021D1610 *param0);
+static int JournalController_TurnPageLeft(UnkStruct_ov81_021D1610 *param0);
+static int JournalController_TurnPageRight(UnkStruct_ov81_021D1610 *param0);
+static int JournalController_IsClosingTransitionDone(UnkStruct_ov81_021D1610 *param0);
+static u8 JournalController_NewDirectionPageExists(UnkStruct_ov81_021D1610 *param0, s8 pageChance);
 static void ov81_021D1360(UnkStruct_ov81_021D1610 *param0);
-static void ov81_021D140C(UnkStruct_ov81_021D1610 *param0, u8 param1, u8 param2);
+static void ov81_021D140C(UnkStruct_ov81_021D1610 *param0, u8 bgLayer, u8 palette);
 static void ov81_021D1434(UnkStruct_ov81_021D1610 *param0);
 static u8 ov81_021D14E0(UnkStruct_ov81_021D1610 *param0);
 static u8 ov81_021D156C(UnkStruct_ov81_021D1610 *param0);
@@ -61,7 +63,7 @@ static const u8 Unk_ov81_021D33E8[9][32] = {
     { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
 };
 
-int ov81_021D0D80(OverlayManager *param0, int *param1)
+int JournalController_Init(OverlayManager *ovyManager, int *state)
 {
     UnkStruct_ov81_021D1610 *v0;
     SaveData *v1;
@@ -79,8 +81,8 @@ int ov81_021D0D80(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     Heap_Create(3, 42, 0x20000);
 
-    v1 = OverlayManager_Args(param0);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov81_021D1610), 42);
+    v1 = OverlayManager_Args(ovyManager);
+    v0 = OverlayManager_NewData(ovyManager, sizeof(UnkStruct_ov81_021D1610), 42);
     memset(v0, 0, sizeof(UnkStruct_ov81_021D1610));
     v0->bgConfig = BgConfig_New(42);
 
@@ -91,15 +93,15 @@ int ov81_021D0D80(OverlayManager *param0, int *param1)
     sub_0208C120(0, 42);
     Font_UseImmediateGlyphAccess(FONT_SYSTEM, 42);
 
-    ov81_021D0F20();
-    ov81_021D0F40(v0->bgConfig);
+    JournalController_SetVRAMBanks();
+    JournalController_SetupBgs(v0->bgConfig);
     ov81_021D1050(v0);
     ov81_021D1130(v0);
     ov81_021D1610(v0);
     ov81_021D164C(v0, 0);
     ov81_021D1434(v0);
 
-    SetMainCallback(ov81_021D0F00, v0);
+    SetMainCallback(JournalController_MainCallback, v0);
     GXLayers_TurnBothDispOn();
     sub_02039734();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -108,25 +110,25 @@ int ov81_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov81_021D0E70(OverlayManager *param0, int *param1)
+int JournalController_Main(OverlayManager *ovyManager, int *state)
 {
-    UnkStruct_ov81_021D1610 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov81_021D1610 *v0 = OverlayManager_Data(ovyManager);
 
-    switch (*param1) {
-    case 0:
-        *param1 = ov81_021D1174(v0);
+    switch (*state) {
+    case JOURNAL_STATE_OPEN:
+        *state = JournalController_IsOpeningTransitionDone(v0);
         break;
-    case 1:
-        *param1 = ov81_021D1188(v0);
+    case JOURNAL_STATE_HANDLE_INPUT:
+        *state = JournalController_HandleInput(v0);
         break;
-    case 2:
-        *param1 = ov81_021D120C(v0);
+    case JOURNAL_STATE_TURN_LEFT:
+        *state = JournalController_TurnPageLeft(v0);
         break;
-    case 3:
-        *param1 = ov81_021D12E8(v0);
+    case JOURNAL_STATE_TURN_RIGHT:
+        *state = JournalController_TurnPageRight(v0);
         break;
-    case 4:
-        if (ov81_021D1358(v0) == 1) {
+    case JOURNAL_STATE_CLOSE:
+        if (JournalController_IsClosingTransitionDone(v0) == 1) {
             return 1;
         }
     }
@@ -134,32 +136,32 @@ int ov81_021D0E70(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov81_021D0EC4(OverlayManager *param0, int *param1)
+int JournalController_Exit(OverlayManager *ovyManager, int *state)
 {
-    UnkStruct_ov81_021D1610 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov81_021D1610 *v0 = OverlayManager_Data(ovyManager);
 
     SetMainCallback(NULL, NULL);
 
     ov81_021D1634(v0);
-    ov81_021D101C(v0->bgConfig);
+    JournalController_TeardownBgs(v0->bgConfig);
     ov81_021D115C(v0);
 
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(ovyManager);
     Heap_Destroy(42);
 
     return 1;
 }
 
-static void ov81_021D0F00(void *param0)
+static void JournalController_MainCallback(void *data)
 {
-    UnkStruct_ov81_021D1610 *v0 = param0;
+    UnkStruct_ov81_021D1610 *v0 = data;
 
     Bg_RunScheduledUpdates(v0->bgConfig);
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov81_021D0F20(void)
+static void JournalController_SetVRAMBanks(void)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_256_AB,
@@ -177,7 +179,7 @@ static void ov81_021D0F20(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov81_021D0F40(BgConfig *param0)
+static void JournalController_SetupBgs(BgConfig *bgConfig)
 {
     GraphicsModes v0 = {
         GX_DISPMODE_GRAPHICS,
@@ -204,8 +206,8 @@ static void ov81_021D0F40(BgConfig *param0)
         0
     };
 
-    Bg_InitFromTemplate(param0, 0, &v1, 0);
-    Bg_ClearTilemap(param0, 0);
+    Bg_InitFromTemplate(bgConfig, 0, &v1, 0);
+    Bg_ClearTilemap(bgConfig, 0);
 
     BgTemplate v2 = {
         0,
@@ -223,8 +225,8 @@ static void ov81_021D0F40(BgConfig *param0)
         0
     };
 
-    Bg_InitFromTemplate(param0, 1, &v2, 0);
-    Bg_ClearTilemap(param0, 1);
+    Bg_InitFromTemplate(bgConfig, 1, &v2, 0);
+    Bg_ClearTilemap(bgConfig, 1);
 
     BgTemplate v3 = {
         0,
@@ -242,7 +244,7 @@ static void ov81_021D0F40(BgConfig *param0)
         0
     };
 
-    Bg_InitFromTemplate(param0, 2, &v3, 0);
+    Bg_InitFromTemplate(bgConfig, 2, &v3, 0);
 
     BgTemplate v4 = {
         0,
@@ -260,20 +262,20 @@ static void ov81_021D0F40(BgConfig *param0)
         0
     };
 
-    Bg_InitFromTemplate(param0, 3, &v4, 0);
+    Bg_InitFromTemplate(bgConfig, 3, &v4, 0);
 
     Bg_ClearTilesRange(0, 32, 0, 42);
     Bg_ClearTilesRange(1, 32, 0, 42);
 }
 
-static void ov81_021D101C(BgConfig *param0)
+static void JournalController_TeardownBgs(BgConfig *bgConfig)
 {
     GXLayers_DisableEngineALayers();
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
-    Heap_FreeToHeapExplicit(42, param0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
+    Heap_FreeToHeapExplicit(HEAP_ID_JOURNAL, bgConfig);
 }
 
 static void ov81_021D1050(UnkStruct_ov81_021D1610 *param0)
@@ -315,53 +317,53 @@ static void ov81_021D115C(UnkStruct_ov81_021D1610 *param0)
     Strbuf_Free(param0->strbuf);
 }
 
-static int ov81_021D1174(UnkStruct_ov81_021D1610 *param0)
+static int JournalController_IsOpeningTransitionDone(UnkStruct_ov81_021D1610 *param0)
 {
     if (IsScreenTransitionDone() == TRUE) {
-        return 1;
+        return JOURNAL_STATE_HANDLE_INPUT;
     }
 
-    return 0;
+    return JOURNAL_STATE_OPEN;
 }
 
-static int ov81_021D1188(UnkStruct_ov81_021D1610 *param0)
+static int JournalController_HandleInput(UnkStruct_ov81_021D1610 *param0)
 {
     if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
-        if (ov81_021D13CC(param0, -1) == 1) {
-            return 2;
+        if (JournalController_NewDirectionPageExists(param0, -1) == 1) {
+            return JOURNAL_STATE_TURN_LEFT;
         }
 
-        return 1;
+        return JOURNAL_STATE_HANDLE_INPUT;
     }
 
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
-        if (ov81_021D13CC(param0, 1) == 1) {
-            return 3;
+        if (JournalController_NewDirectionPageExists(param0, 1) == 1) {
+            return JOURNAL_STATE_TURN_RIGHT;
         }
 
-        return 1;
+        return JOURNAL_STATE_HANDLE_INPUT;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         if (param0->page != 0) {
-            if (ov81_021D13CC(param0, -1) == 1) {
-                return 2;
+            if (JournalController_NewDirectionPageExists(param0, -1) == 1) {
+                return JOURNAL_STATE_TURN_LEFT;
             }
         } else {
             sub_0208C120(1, 42);
-            return 4;
+            return JOURNAL_STATE_CLOSE;
         }
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
         sub_0208C120(1, 42);
-        return 4;
+        return JOURNAL_STATE_CLOSE;
     }
 
-    return 1;
+    return JOURNAL_STATE_HANDLE_INPUT;
 }
 
-static int ov81_021D120C(UnkStruct_ov81_021D1610 *param0)
+static int JournalController_TurnPageLeft(UnkStruct_ov81_021D1610 *param0)
 {
     switch (param0->unk_105E) {
     case 0:
@@ -383,14 +385,14 @@ static int ov81_021D120C(UnkStruct_ov81_021D1610 *param0)
             Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->unk_1062);
             Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->unk_1061);
 
-            return 1;
+            return JOURNAL_STATE_HANDLE_INPUT;
         }
     }
 
-    return 2;
+    return JOURNAL_STATE_TURN_LEFT;
 }
 
-static int ov81_021D12E8(UnkStruct_ov81_021D1610 *param0)
+static int JournalController_TurnPageRight(UnkStruct_ov81_021D1610 *param0)
 {
     switch (param0->unk_105E) {
     case 0:
@@ -406,14 +408,14 @@ static int ov81_021D12E8(UnkStruct_ov81_021D1610 *param0)
             param0->unk_105E = 0;
             param0->unk_1060 ^= 1;
 
-            return 1;
+            return JOURNAL_STATE_HANDLE_INPUT;
         }
     }
 
-    return 3;
+    return JOURNAL_STATE_TURN_RIGHT;
 }
 
-static int ov81_021D1358(UnkStruct_ov81_021D1610 *param0)
+static int JournalController_IsClosingTransitionDone(UnkStruct_ov81_021D1610 *param0)
 {
     return IsScreenTransitionDone();
 }
@@ -433,7 +435,7 @@ static void ov81_021D1360(UnkStruct_ov81_021D1610 *param0)
     }
 }
 
-static u8 ov81_021D13A0(UnkStruct_ov81_021D1610 *param0, u8 param1)
+static u8 JournalController_PageExists(UnkStruct_ov81_021D1610 *param0, u8 param1)
 {
     JournalEntryTitle journalEntryTitle;
 
@@ -446,13 +448,13 @@ static u8 ov81_021D13A0(UnkStruct_ov81_021D1610 *param0, u8 param1)
     return 1;
 }
 
-static u8 ov81_021D13CC(UnkStruct_ov81_021D1610 *param0, s8 param1)
+static u8 JournalController_NewDirectionPageExists(UnkStruct_ov81_021D1610 *param0, s8 pageChange)
 {
-    if (param1 == 1) {
-        if (param0->page != 9 && ov81_021D13A0(param0, param0->page + 1) == 1) {
+    if (pageChange == 1) {
+        if (param0->page != 9 && JournalController_PageExists(param0, param0->page + 1) == 1) {
             return 1;
         }
-    } else if (param0->page != 0 && ov81_021D13A0(param0, param0->page - 1) == 1) {
+    } else if (param0->page != 0 && JournalController_PageExists(param0, param0->page - 1) == 1) {
         return 1;
     }
 

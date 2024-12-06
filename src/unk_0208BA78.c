@@ -79,7 +79,7 @@ static void sub_0208BA8C(SaveData *param0, int param1, u32 param2)
     JournalEntry *v0 = SaveData_GetJournal(param0);
     void *v1 = sub_0202C244(param1, param2);
 
-    JournalEntry_SaveData(v0, v1, JOURNAL_UNK_1C);
+    JournalEntry_SaveData(v0, v1, JOURNAL_ONLINE_EVENT);
 }
 
 static void sub_0208BAAC(OverlayManager *param0, int param1)

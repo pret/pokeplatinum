@@ -6,9 +6,6 @@
 #include "constants/trainer.h"
 #include "consts/gender.h"
 
-#include "struct_defs/struct_0202BCC8.h"
-#include "struct_defs/struct_0202BFCC.h"
-
 #include "journal_display/struct_ov81_021D1610.h"
 #include "text/gmm/message_bank_journal_entries.h"
 
@@ -29,66 +26,66 @@ static void JournalDisplay_PrintLocationEvents(UnkStruct_ov81_021D1610 *param0, 
 static void JournalDisplay_PrintPokemonEvent(UnkStruct_ov81_021D1610 *param0, Window *window);
 static void JournalDisplay_PrintTrainerEvent(UnkStruct_ov81_021D1610 *param0, Window *window);
 static void JournalDisplay_PrintOnlineEvents(UnkStruct_ov81_021D1610 *param0, Window *window);
-static void JournalDisplay_PrintRestedAtHome(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintLeftResearchLab(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedPCBox(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintShoppedAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintLotsOfShoppingAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintSoldALittleAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintSoldALotAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintDidBusinessAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintGymWasTooTough(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintBeatGymLeader(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintBeatEliteFourMember(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintBeatChampion(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintArrivedInLocation(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintLeftOutsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintLeftInsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintGameCorner(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintSafariGame(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintItemWasObtained(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedRockSmash(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedCut(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedFly(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedDefog(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedStrength(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedSurf(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedRockClimb(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedWaterfall(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedFlash(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintWarpedToLocation(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedDig(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintLuredPokemon(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedSoftboiled(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintUsedMilkDrink(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintDugUnderground(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintBuiltSecretBase(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3);
-static void JournalDisplay_PrintPlayedAtBattleFacility(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3, int param4);
+static void JournalDisplay_PrintRestedAtHome(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintLeftResearchLab(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedPCBox(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintShoppedAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintLotsOfShoppingAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintSoldALittleAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintSoldALotAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintDidBusinessAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintGymWasTooTough(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintBeatGymLeader(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintBeatEliteFourMember(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintBeatChampion(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintArrivedInLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintLeftOutsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintLeftInsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintGameCorner(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintSafariGame(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintItemWasObtained(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedRockSmash(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedCut(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintFlewToLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedDefog(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedStrength(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedSurf(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedRockClimb(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedWaterfall(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedFlash(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintWarpedToLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedDig(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintLuredPokemon(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedSoftboiled(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintUsedMilkDrink(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintDugUnderground(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintBuiltSecretBase(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintPlayedAtBattleFacility(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row, int eventType);
 static void JournalDisplay_PrintPokemonCaught(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryMon *journalEntryMon);
 static void JournalDisplay_PrintPokemonDefeated(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryMon *journalEntryMon);
-static void JournalDisplay_PrintSingleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintDoubleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintMultiBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintMixSingleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintMixDoubleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintGreetedInUnionRoom(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintGotPokemonTrade(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintDrewPictures(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintGotPokemonFriendTrade(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintChattedWithOthers(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintUnionBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintMixedRecords(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintPlacedInContest(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintMadePoffins(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintGotPokemonGTS(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintBattleRoom(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintSpinTrade(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintMiscEvent1(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3, int param4);
-static void JournalDisplay_PrintChattedInPlaza(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintTapToy(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintPlazaMiniGame(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
-static void JournalDisplay_PrintMiscEvent2(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3, int param4);
-static void JournalDisplay_PrintWiFiClub(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3);
+static void JournalDisplay_PrintSingleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintDoubleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintMultiBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintMixSingleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintMixMultiBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintGreetedInUnionRoom(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintGotPokemonFromTrade(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintDrewPictures(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintGotPokemonInFriendTrade(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintChattedWithOthers(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintUnionBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintMixedRecords(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintPlacedInContest(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintMadePoffins(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintGotPokemonGTS(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintBattleRoom(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintSpinTrade(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintMiscEvent1(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row, int eventType);
+static void JournalDisplay_PrintChattedInPlaza(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintGotTapToy(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintPlazaMinigame(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
+static void JournalDisplay_PrintMiscEvent2(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row, int eventType);
+static void JournalDisplay_PrintWiFiClub(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row);
 
 static const WindowTemplate Unk_ov81_021D3508[] = {
     { 0x0, 0x2, 0x2, 0x18, 0x2, 0xF, 0x1 },
@@ -179,123 +176,123 @@ static u8 JournalDisplay_PrintTitle(UnkStruct_ov81_021D1610 *param0, Window *win
 
 static void JournalDisplay_PrintLocationEvents(UnkStruct_ov81_021D1610 *param0, Window *window)
 {
-    UnkStruct_0202BCC8 v0[4];
+    JournalEntryLocationEvent journalEntryLocationEvent[MAX_JOURNAL_LOCATION_EVENTS];
     u32 i;
 
-    JournalEntry_GetData(param0->journalEntry, &v0[0], JOURNAL_UNK_04, param0->page);
+    JournalEntry_GetData(param0->journalEntry, &journalEntryLocationEvent[0], JOURNAL_LOCATION, param0->page);
 
-    for (i = 0; i < 4; i++) {
-        switch (v0[i].unk_00) {
-        case 0:
+    for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
+        switch (journalEntryLocationEvent[i].eventType) {
+        case LOCATION_EVENT_NONE:
             return;
-        case 1:
-            JournalDisplay_PrintRestedAtHome(param0, window, &v0[i], i);
+        case LOCATION_EVENT_RESTED_AT_HOME:
+            JournalDisplay_PrintRestedAtHome(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 2:
-            JournalDisplay_PrintLeftResearchLab(param0, window, &v0[i], i);
+        case LOCATION_EVENT_LEFT_RESEARCH_LAB:
+            JournalDisplay_PrintLeftResearchLab(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 3:
-            JournalDisplay_PrintUsedPCBox(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_PC_BOX:
+            JournalDisplay_PrintUsedPCBox(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 4:
-            JournalDisplay_PrintShoppedAtMart(param0, window, &v0[i], i);
+        case LOCATION_EVENT_SHOPPED_AT_MART:
+            JournalDisplay_PrintShoppedAtMart(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 5:
-            JournalDisplay_PrintLotsOfShoppingAtMart(param0, window, &v0[i], i);
+        case LOCATION_EVENT_LOTS_OF_SHOPPING:
+            JournalDisplay_PrintLotsOfShoppingAtMart(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 6:
-            JournalDisplay_PrintSoldALittleAtMart(param0, window, &v0[i], i);
+        case LOCATION_EVENT_SOLD_A_LITTLE:
+            JournalDisplay_PrintSoldALittleAtMart(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 7:
-            JournalDisplay_PrintSoldALotAtMart(param0, window, &v0[i], i);
+        case LOCATION_EVENT_SOLD_A_LOT:
+            JournalDisplay_PrintSoldALotAtMart(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 8:
-            JournalDisplay_PrintDidBusinessAtMart(param0, window, &v0[i], i);
+        case LOCATION_EVENT_BUSINESS_AT_MART:
+            JournalDisplay_PrintDidBusinessAtMart(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 9:
-            JournalDisplay_PrintGymWasTooTough(param0, window, &v0[i], i);
+        case LOCATION_EVENT_GYM_WAS_TOO_TOUGH:
+            JournalDisplay_PrintGymWasTooTough(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 10:
-            JournalDisplay_PrintBeatGymLeader(param0, window, &v0[i], i);
+        case LOCATION_EVENT_BEAT_GYM_LEADER:
+            JournalDisplay_PrintBeatGymLeader(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 11:
-            JournalDisplay_PrintBeatEliteFourMember(param0, window, &v0[i], i);
+        case LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER:
+            JournalDisplay_PrintBeatEliteFourMember(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 12:
-            JournalDisplay_PrintBeatChampion(param0, window, &v0[i], i);
+        case LOCATION_EVENT_BEAT_CHAMPION:
+            JournalDisplay_PrintBeatChampion(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 13:
-            JournalDisplay_PrintArrivedInLocation(param0, window, &v0[i], i);
+        case LOCATION_EVENT_ARRIVED_IN_LOCATION:
+            JournalDisplay_PrintArrivedInLocation(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 14:
-            JournalDisplay_PrintLeftOutsideLocation(param0, window, &v0[i], i);
+        case LOCATION_EVENT_LEFT_OUTSIDE_LOCATION:
+            JournalDisplay_PrintLeftOutsideLocation(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 15:
-            JournalDisplay_PrintLeftInsideLocation(param0, window, &v0[i], i);
+        case LOCATION_EVENT_LEFT_INSIDE_LOCATION:
+            JournalDisplay_PrintLeftInsideLocation(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 16:
-            JournalDisplay_PrintGameCorner(param0, window, &v0[i], i);
+        case LOCATION_EVENT_GAME_CORNER:
+            JournalDisplay_PrintGameCorner(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 17:
-            JournalDisplay_PrintSafariGame(param0, window, &v0[i], i);
+        case LOCATION_EVENT_SAFARI_GAME:
+            JournalDisplay_PrintSafariGame(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 18:
-            JournalDisplay_PrintItemWasObtained(param0, window, &v0[i], i);
+        case LOCATION_EVENT_ITEM_WAS_OBTAINED:
+            JournalDisplay_PrintItemWasObtained(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 24:
-            JournalDisplay_PrintUsedRockSmash(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_ROCK_SMASH:
+            JournalDisplay_PrintUsedRockSmash(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 19:
-            JournalDisplay_PrintUsedCut(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_CUT:
+            JournalDisplay_PrintUsedCut(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 20:
-            JournalDisplay_PrintUsedFly(param0, window, &v0[i], i);
+        case LOCATION_EVENT_FLEW_TO_LOCATION:
+            JournalDisplay_PrintFlewToLocation(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 23:
-            JournalDisplay_PrintUsedDefog(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_DEFOG:
+            JournalDisplay_PrintUsedDefog(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 22:
-            JournalDisplay_PrintUsedStrength(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_STRENGTH:
+            JournalDisplay_PrintUsedStrength(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 21:
-            JournalDisplay_PrintUsedSurf(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_SURF:
+            JournalDisplay_PrintUsedSurf(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 26:
-            JournalDisplay_PrintUsedRockClimb(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_ROCK_CLIMB:
+            JournalDisplay_PrintUsedRockClimb(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 25:
-            JournalDisplay_PrintUsedWaterfall(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_WATERFALL:
+            JournalDisplay_PrintUsedWaterfall(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 27:
-            JournalDisplay_PrintUsedFlash(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_FLASH:
+            JournalDisplay_PrintUsedFlash(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 28:
-            JournalDisplay_PrintWarpedToLocation(param0, window, &v0[i], i);
+        case LOCATION_EVENT_WARPED_TO_LOCATION:
+            JournalDisplay_PrintWarpedToLocation(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 29:
-            JournalDisplay_PrintUsedDig(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_DIG:
+            JournalDisplay_PrintUsedDig(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 30:
-            JournalDisplay_PrintLuredPokemon(param0, window, &v0[i], i);
+        case LOCATION_EVENT_LURED_POKEMON:
+            JournalDisplay_PrintLuredPokemon(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 33:
-            JournalDisplay_PrintUsedSoftboiled(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_SOFTBOILED:
+            JournalDisplay_PrintUsedSoftboiled(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 32:
-            JournalDisplay_PrintUsedMilkDrink(param0, window, &v0[i], i);
+        case LOCATION_EVENT_USED_MILK_DRINK:
+            JournalDisplay_PrintUsedMilkDrink(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 34:
-            JournalDisplay_PrintDugUnderground(param0, window, &v0[i], i);
+        case LOCATION_EVENT_DUG_UNDERGROUND:
+            JournalDisplay_PrintDugUnderground(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 35:
-            JournalDisplay_PrintBuiltSecretBase(param0, window, &v0[i], i);
+        case LOCATION_EVENT_BUILT_SECRET_BASE:
+            JournalDisplay_PrintBuiltSecretBase(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case 36:
-        case 37:
-        case 38:
-        case 39:
-        case 40:
-            JournalDisplay_PrintPlayedAtBattleFacility(param0, window, &v0[i], i, v0[i].unk_00);
+        case LOCATION_EVENT_BATTLE_TOWER:
+        case LOCATION_EVENT_BATTLE_FACTORY:
+        case LOCATION_EVENT_BATTLE_CASTLE:
+        case LOCATION_EVENT_BATTLE_HALL:
+        case LOCATION_EVENT_BATTLE_ARCADE:
+            JournalDisplay_PrintPlayedAtBattleFacility(param0, window, &journalEntryLocationEvent[i], i, journalEntryLocationEvent[i].eventType);
             break;
         }
     }
@@ -329,7 +326,7 @@ static void JournalDisplay_PrintTrainerEvent(UnkStruct_ov81_021D1610 *param0, Wi
 
     JournalEntry_GetData(param0->journalEntry, &journalEntryTrainer, JOURNAL_TRAINER, param0->page);
 
-    if (journalEntryTrainer.unk_00_0 == 0) {
+    if (journalEntryTrainer.initialized == 0) {
         return;
     }
 
@@ -368,213 +365,213 @@ static void JournalDisplay_PrintTrainerEvent(UnkStruct_ov81_021D1610 *param0, Wi
 
 static void JournalDisplay_PrintOnlineEvents(UnkStruct_ov81_021D1610 *param0, Window *window)
 {
-    UnkStruct_0202BFCC v0[2];
+    JournalEntryOnlineEvent journalEntryOnlineEvent[MAX_JOURNAL_ONLINE_EVENTS];
     u32 i;
 
-    JournalEntry_GetData(param0->journalEntry, &v0[0], JOURNAL_UNK_1C, param0->page);
+    JournalEntry_GetData(param0->journalEntry, &journalEntryOnlineEvent[0], JOURNAL_ONLINE_EVENT, param0->page);
 
-    for (i = 0; i < 2; i++) {
-        switch (v0[i].unk_00) {
-        case 0:
+    for (i = 0; i < MAX_JOURNAL_ONLINE_EVENTS; i++) {
+        switch (journalEntryOnlineEvent[i].eventType) {
+        case ONLINE_EVENT_NONE:
             return;
-        case 1:
-            JournalDisplay_PrintSingleBattleEvent(param0, window, &v0[i], i);
+        case ONLINE_EVENT_SINGLE_BATTLE:
+            JournalDisplay_PrintSingleBattleEvent(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 2:
-            JournalDisplay_PrintDoubleBattleEvent(param0, window, &v0[i], i);
+        case ONLINE_EVENT_DOUBLE_BATTLE:
+            JournalDisplay_PrintDoubleBattleEvent(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 3:
-            JournalDisplay_PrintMultiBattleEvent(param0, window, &v0[i], i);
+        case ONLINE_EVENT_MULTI_BATTLE:
+            JournalDisplay_PrintMultiBattleEvent(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 4:
-            JournalDisplay_PrintMixSingleBattleEvent(param0, window, &v0[i], i);
+        case ONLINE_EVENT_MIX_SINGLE_BATTLE:
+            JournalDisplay_PrintMixSingleBattleEvent(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 5:
-            JournalDisplay_PrintMixDoubleBattleEvent(param0, window, &v0[i], i);
+        case ONLINE_EVENT_MIX_MULTI_BATTLE:
+            JournalDisplay_PrintMixMultiBattleEvent(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 6:
-            JournalDisplay_PrintGreetedInUnionRoom(param0, window, &v0[i], i);
+        case ONLINE_EVENT_GREETED_IN_UNION_ROOM:
+            JournalDisplay_PrintGreetedInUnionRoom(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 7:
-            JournalDisplay_PrintGotPokemonTrade(param0, window, &v0[i], i);
+        case ONLINE_EVENT_GOT_POKEMON_FROM_TRADE:
+            JournalDisplay_PrintGotPokemonFromTrade(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 8:
-            JournalDisplay_PrintDrewPictures(param0, window, &v0[i], i);
+        case ONLINE_EVENT_DREW_PICTURES:
+            JournalDisplay_PrintDrewPictures(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 9:
-            JournalDisplay_PrintGotPokemonFriendTrade(param0, window, &v0[i], i);
+        case ONLINE_EVENT_GOT_POKEMON_IN_FRIEND_TRADE:
+            JournalDisplay_PrintGotPokemonInFriendTrade(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 10:
-            JournalDisplay_PrintChattedWithOthers(param0, window, &v0[i], i);
+        case ONLINE_EVENT_CHATTED_WITH_OTHERS:
+            JournalDisplay_PrintChattedWithOthers(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 11:
-            JournalDisplay_PrintUnionBattleEvent(param0, window, &v0[i], i);
+        case ONLINE_EVENT_UNION_BATTLE:
+            JournalDisplay_PrintUnionBattleEvent(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 12:
-            JournalDisplay_PrintMixedRecords(param0, window, &v0[i], i);
+        case ONLINE_EVENT_MIXED_RECORDS:
+            JournalDisplay_PrintMixedRecords(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 13:
-            JournalDisplay_PrintPlacedInContest(param0, window, &v0[i], i);
+        case ONLINE_EVENT_PLACED_IN_CONTEST:
+            JournalDisplay_PrintPlacedInContest(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 14:
-            JournalDisplay_PrintMadePoffins(param0, window, &v0[i], i);
+        case ONLINE_EVENT_MADE_POFFINS:
+            JournalDisplay_PrintMadePoffins(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 15:
-            JournalDisplay_PrintGotPokemonGTS(param0, window, &v0[i], i);
+        case ONLINE_EVENT_GOT_POKEMON_GTS:
+            JournalDisplay_PrintGotPokemonGTS(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 16:
-            JournalDisplay_PrintBattleRoom(param0, window, &v0[i], i);
+        case ONLINE_EVENT_BATTLE_ROOM:
+            JournalDisplay_PrintBattleRoom(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 17:
-            JournalDisplay_PrintSpinTrade(param0, window, &v0[i], i);
+        case ONLINE_EVENT_SPIN_TRADE:
+            JournalDisplay_PrintSpinTrade(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 18:
-        case 19:
-        case 20:
-        case 21:
-            JournalDisplay_PrintMiscEvent1(param0, window, &v0[i], i, v0[i].unk_00);
+        case ONLINE_EVENT_WATCHED_BATTLE_VIDEOS:
+        case ONLINE_EVENT_CHECKED_RANKINGS:
+        case ONLINE_EVENT_CHECKED_DRESS_UP_DATA:
+        case ONLINE_EVENT_CHECKED_BOX_DATA:
+            JournalDisplay_PrintMiscEvent1(param0, window, &journalEntryOnlineEvent[i], i, journalEntryOnlineEvent[i].eventType);
             break;
-        case 22:
-            JournalDisplay_PrintChattedInPlaza(param0, window, &v0[i], i);
+        case ONLINE_EVENT_CHATTED_IN_PLAZA:
+            JournalDisplay_PrintChattedInPlaza(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 23:
-            JournalDisplay_PrintTapToy(param0, window, &v0[i], i);
+        case ONLINE_EVENT_GOT_TAP_TOY:
+            JournalDisplay_PrintGotTapToy(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 24:
-            JournalDisplay_PrintPlazaMiniGame(param0, window, &v0[i], i);
+        case ONLINE_EVENT_PLAZA_MINIGAME:
+            JournalDisplay_PrintPlazaMinigame(param0, window, &journalEntryOnlineEvent[i], i);
             break;
-        case 25:
-        case 26:
-        case 27:
-        case 28:
-            JournalDisplay_PrintMiscEvent2(param0, window, &v0[i], i, v0[i].unk_00);
+        case ONLINE_EVENT_PLAYED_WITH_FOOTPRINT_STAMP:
+        case ONLINE_EVENT_VIEWED_PLAZA_VISITOR_PROFILES:
+        case ONLINE_EVENT_READ_PLAZA_NEWS:
+        case ONLINE_EVENT_JOINED_PARADE:
+            JournalDisplay_PrintMiscEvent2(param0, window, &journalEntryOnlineEvent[i], i, journalEntryOnlineEvent[i].eventType);
             break;
-        case 29:
-            JournalDisplay_PrintWiFiClub(param0, window, &v0[i], i);
+        case ONLINE_EVENT_WIFI_CLUB:
+            JournalDisplay_PrintWiFiClub(param0, window, &journalEntryOnlineEvent[i], i);
             break;
         }
     }
 }
 
-static void JournalDisplay_PrintRestedAtHome(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintRestedAtHome(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_rested_at_home);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintLeftResearchLab(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintLeftResearchLab(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_left_research_lab);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedPCBox(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedPCBox(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_pc_box);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintShoppedAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintShoppedAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_shopped_at_poke_mart);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintLotsOfShoppingAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintLotsOfShoppingAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_lots_of_shopping_at_poke_mart);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintSoldALittleAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintSoldALittleAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_sold_a_little_at_poke_mart);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintSoldALotAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintSoldALotAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_sold_a_lot_at_poke_mart);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintDidBusinessAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintDidBusinessAtMart(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_did_business_at_poke_mart);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintGymWasTooTough(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintGymWasTooTough(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_gym_was_too_tough);
 
-    StringTemplate_SetGymName(param0->template, 0, param2->unk_02);
+    StringTemplate_SetGymName(param0->template, 0, journalEntryLocationEvent->locationID);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintBeatGymLeader(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintBeatGymLeader(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_beat_locations_gym_leader);
 
-    StringTemplate_SetGymName(param0->template, 0, param2->unk_02);
-    StringTemplate_SetTrainerName(param0->template, 1, param2->unk_04);
+    StringTemplate_SetGymName(param0->template, 0, journalEntryLocationEvent->locationID);
+    StringTemplate_SetTrainerName(param0->template, 1, journalEntryLocationEvent->trainerID);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintBeatEliteFourMember(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintBeatEliteFourMember(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_beat_elite_four_member);
 
-    StringTemplate_SetTrainerName(param0->template, 0, param2->unk_04);
+    StringTemplate_SetTrainerName(param0->template, 0, journalEntryLocationEvent->trainerID);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintBeatChampion(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintBeatChampion(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_beat_champion);
 
-    StringTemplate_SetTrainerName(param0->template, 0, param2->unk_04);
+    StringTemplate_SetTrainerName(param0->template, 0, journalEntryLocationEvent->trainerID);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintArrivedInLocation(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintArrivedInLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_arrived_in_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintLeftOutsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintLeftOutsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0;
-    u32 v1 = param2->unk_02;
+    u32 v1 = journalEntryLocationEvent->locationID;
 
     if (v1 == 47 || v1 == 64 || v1 == 49) {
         v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_departed_from_location);
@@ -584,14 +581,14 @@ static void JournalDisplay_PrintLeftOutsideLocation(UnkStruct_ov81_021D1610 *par
 
     StringTemplate_SetLocationName(param0->template, 0, v1);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintLeftInsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintLeftInsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0;
-    u32 v1 = param2->unk_02;
+    u32 v1 = journalEntryLocationEvent->locationID;
 
     if (sub_0202C6A4(v1) == 0) {
         v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_departed_from_location);
@@ -601,212 +598,212 @@ static void JournalDisplay_PrintLeftInsideLocation(UnkStruct_ov81_021D1610 *para
 
     StringTemplate_SetLocationName(param0->template, 0, v1);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintGameCorner(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintGameCorner(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_played_at_game_corner);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintSafariGame(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintSafariGame(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_played_safari_game);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintItemWasObtained(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintItemWasObtained(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_item_was_obtained);
 
-    StringTemplate_SetItemName(param0->template, 0, param2->unk_06);
+    StringTemplate_SetItemName(param0->template, 0, journalEntryLocationEvent->item);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedRockSmash(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedRockSmash(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_rock_smash_at_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedCut(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedCut(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_cut_at_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedFly(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintFlewToLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_flew_to_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedDefog(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedDefog(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_defog_at_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedStrength(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedStrength(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_strength_at_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedSurf(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedSurf(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_surf_at_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedRockClimb(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedRockClimb(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_rock_climb_at_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedWaterfall(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedWaterfall(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_waterfall_at_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedFlash(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedFlash(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_flash_at_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintWarpedToLocation(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintWarpedToLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_warped_to_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedDig(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedDig(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_dig_at_location);
 
-    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintLuredPokemon(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintLuredPokemon(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_lured_pokemon);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedSoftboiled(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedSoftboiled(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_softboiled);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUsedMilkDrink(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintUsedMilkDrink(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_used_milk_drink);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintDugUnderground(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintDugUnderground(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_dug_underground);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintBuiltSecretBase(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3)
+static void JournalDisplay_PrintBuiltSecretBase(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_built_secret_base);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintPlayedAtBattleFacility(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BCC8 *param2, u8 param3, int param4)
+static void JournalDisplay_PrintPlayedAtBattleFacility(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row, int eventType)
 {
     u32 message;
     Strbuf *v1;
 
-    switch (param4) {
-    case 36:
+    switch (eventType) {
+    case LOCATION_EVENT_BATTLE_TOWER:
         message = journal_entries_played_at_battle_tower;
         break;
-    case 37:
+    case LOCATION_EVENT_BATTLE_FACTORY:
         message = journal_entries_played_at_battle_factory;
         break;
-    case 38:
+    case LOCATION_EVENT_BATTLE_CASTLE:
         message = journal_entries_played_at_battle_castle;
         break;
-    case 39:
+    case LOCATION_EVENT_BATTLE_HALL:
         message = journal_entries_played_at_battle_hall;
         break;
-    case 40:
+    case LOCATION_EVENT_BATTLE_ARCADE:
     default:
         message = journal_entries_played_at_battle_arcade;
         break;
     }
 
     v1 = MessageLoader_GetNewStrbuf(param0->loader, message);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v1, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v1, 0, 16 + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v1);
 }
 
@@ -877,20 +874,20 @@ static void JournalDisplay_PrintPokemonDefeated(UnkStruct_ov81_021D1610 *param0,
     Strbuf_Free(v0);
 }
 
-static void ov81_021D2A60(UnkStruct_ov81_021D1610 *param0, u16 *param1, u8 param2, u8 param3)
+static void ov81_021D2A60(UnkStruct_ov81_021D1610 *param0, u16 *name, u8 param2, u8 idx)
 {
     Strbuf *v0 = Strbuf_Init(32, 42);
 
-    Strbuf_CopyChars(v0, param1);
-    StringTemplate_SetStrbuf(param0->template, param3, v0, param2, 1, GAME_LANGUAGE);
+    Strbuf_CopyChars(v0, name);
+    StringTemplate_SetStrbuf(param0->template, idx, v0, param2, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintSingleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintSingleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0;
 
-    switch (param2->unk_01_0) {
+    switch (journalEntryOnlineEvent->result) {
     case 0:
         v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_beat_player_single);
         break;
@@ -903,17 +900,17 @@ static void JournalDisplay_PrintSingleBattleEvent(UnkStruct_ov81_021D1610 *param
         break;
     }
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintDoubleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintDoubleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0;
 
-    switch (param2->unk_01_0) {
+    switch (journalEntryOnlineEvent->result) {
     case 0:
         v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_beat_player_double);
         break;
@@ -926,17 +923,17 @@ static void JournalDisplay_PrintDoubleBattleEvent(UnkStruct_ov81_021D1610 *param
         break;
     }
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintMultiBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintMultiBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0;
 
-    switch (param2->unk_01_0) {
+    switch (journalEntryOnlineEvent->result) {
     case 0:
         v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_beat_players_multi);
         break;
@@ -949,18 +946,18 @@ static void JournalDisplay_PrintMultiBattleEvent(UnkStruct_ov81_021D1610 *param0
         break;
     }
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
-    ov81_021D2A60(param0, param2->unk_12, param2->unk_01_5, 1);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName2, journalEntryOnlineEvent->unused2, 1);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintMixSingleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintMixSingleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0;
 
-    switch (param2->unk_01_0) {
+    switch (journalEntryOnlineEvent->result) {
     case 0:
         v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_beat_player_mix);
         break;
@@ -973,17 +970,17 @@ static void JournalDisplay_PrintMixSingleBattleEvent(UnkStruct_ov81_021D1610 *pa
         break;
     }
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintMixDoubleBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintMixMultiBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0;
 
-    switch (param2->unk_01_0) {
+    switch (journalEntryOnlineEvent->result) {
     case 0:
         v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_beat_players_mix);
         break;
@@ -996,65 +993,65 @@ static void JournalDisplay_PrintMixDoubleBattleEvent(UnkStruct_ov81_021D1610 *pa
         break;
     }
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
-    ov81_021D2A60(param0, param2->unk_12, param2->unk_01_5, 1);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName2, journalEntryOnlineEvent->unused2, 1);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintGreetedInUnionRoom(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintGreetedInUnionRoom(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_greeted_player_in_union_room);
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintGotPokemonTrade(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintGotPokemonFromTrade(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_got_pokemon_from_player);
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
-    ov81_021D2A60(param0, param2->unk_22, param2->unk_01_6, 1);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->pokemonName, journalEntryOnlineEvent->unused3, 1);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintDrewPictures(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintDrewPictures(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_drew_pictures_with_others);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintGotPokemonFriendTrade(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintGotPokemonInFriendTrade(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_got_pokemon_in_friend_trade);
 
-    ov81_021D2A60(param0, param2->unk_22, param2->unk_01_6, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->pokemonName, journalEntryOnlineEvent->unused3, 0);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintChattedWithOthers(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintChattedWithOthers(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_chatted_with_others);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintUnionBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintUnionBattleEvent(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0;
 
-    switch (param2->unk_01_0) {
+    switch (journalEntryOnlineEvent->result) {
     case 0:
         v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_beat_player_union);
         break;
@@ -1067,151 +1064,151 @@ static void JournalDisplay_PrintUnionBattleEvent(UnkStruct_ov81_021D1610 *param0
         break;
     }
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintMixedRecords(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintMixedRecords(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_mixed_records);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintPlacedInContest(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintPlacedInContest(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_placed_number_in_contest);
 
-    StringTemplate_SetNumber(param0->template, 0, param2->unk_01_0, 1, 0, 1);
+    StringTemplate_SetNumber(param0->template, 0, journalEntryOnlineEvent->result, 1, 0, 1);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintMadePoffins(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintMadePoffins(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_made_poffins_in_group);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintGotPokemonGTS(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintGotPokemonGTS(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_got_players_pokemon_gts);
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
-    ov81_021D2A60(param0, param2->unk_22, param2->unk_01_6, 1);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->pokemonName, journalEntryOnlineEvent->unused3, 1);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintBattleRoom(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintBattleRoom(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_won_in_battle_room);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintSpinTrade(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintSpinTrade(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_did_spin_trade);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintMiscEvent1(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3, int param4)
+static void JournalDisplay_PrintMiscEvent1(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row, int eventType)
 {
     Strbuf *v0;
     u32 message;
 
-    switch (param4) {
-    case 18:
+    switch (eventType) {
+    case ONLINE_EVENT_WATCHED_BATTLE_VIDEOS:
         message = journal_entries_watched_battle_videos;
         break;
-    case 19:
+    case ONLINE_EVENT_CHECKED_RANKINGS:
         message = journal_entries_checked_rankings;
         break;
-    case 20:
+    case ONLINE_EVENT_CHECKED_DRESS_UP_DATA:
         message = journal_entries_checked_dress_up_data;
         break;
-    case 21:
+    case ONLINE_EVENT_CHECKED_BOX_DATA:
     default:
         message = journal_entries_checked_box_data;
         break;
     }
 
     v0 = MessageLoader_GetNewStrbuf(param0->loader, message);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintChattedInPlaza(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintChattedInPlaza(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_chatted_with_player_in_plaza);
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintTapToy(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintGotTapToy(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_got_tap_toy_from_player);
 
-    ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
+    ov81_021D2A60(param0, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintPlazaMiniGame(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintPlazaMinigame(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_played_plaza_mini_game);
 
-    StringTemplate_SetPlazaMinigameName(param0->template, 0, param2->unk_01_0);
+    StringTemplate_SetPlazaMinigameName(param0->template, 0, journalEntryOnlineEvent->result);
     StringTemplate_Format(param0->template, param0->strbuf, v0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->strbuf, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintMiscEvent2(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3, int param4)
+static void JournalDisplay_PrintMiscEvent2(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row, int eventType)
 {
     Strbuf *v0;
     u32 message;
 
-    switch (param4) {
-    case 25:
+    switch (eventType) {
+    case ONLINE_EVENT_PLAYED_WITH_FOOTPRINT_STAMP:
         message = journal_entries_played_with_footprint_stamp;
         break;
-    case 26:
+    case ONLINE_EVENT_VIEWED_PLAZA_VISITOR_PROFILES:
         message = journal_entries_viewed_plaza_visitor_profiles;
         break;
-    case 27:
+    case ONLINE_EVENT_READ_PLAZA_NEWS:
         message = journal_entries_read_plaza_news;
         break;
-    case 28:
+    case ONLINE_EVENT_JOINED_PARADE:
     default:
         message = journal_entries_joined_parade;
         break;
     }
 
     v0 = MessageLoader_GetNewStrbuf(param0->loader, message);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintWiFiClub(UnkStruct_ov81_021D1610 *param0, Window *window, UnkStruct_0202BFCC *param2, u8 param3)
+static void JournalDisplay_PrintWiFiClub(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->loader, journal_entries_played_at_wi_fi_club);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + row * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }

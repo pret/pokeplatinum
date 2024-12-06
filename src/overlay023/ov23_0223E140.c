@@ -1668,7 +1668,7 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     UnkStruct_ov23_0223EE80 *v0;
     void *v1 = sub_0202BE14(11);
 
-    JournalEntry_SaveData(fieldSystem->journalEntry, v1, JOURNAL_UNK_04);
+    JournalEntry_SaveData(fieldSystem->journalEntry, v1, JOURNAL_LOCATION);
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0223EE80));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0223EE80));
