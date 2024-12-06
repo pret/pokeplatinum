@@ -453,7 +453,7 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Encounter *encounter = FieldTask_GetEnv(task);
     int *state = FieldTask_GetState(task);
-    u16 *ballCount = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *ballCount = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     switch (*state) {
     case 0:

@@ -40,7 +40,7 @@ _0063:
 _006E:
     Message 2
     CloseMessage
-    StartTrainerBattle 0x1A0, 0
+    StartTrainerBattle trainer_galactic_grunt_celestic_town
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0191
     Message 4

@@ -122,15 +122,15 @@ static const fx32 Unk_020EECEC[3];
 
 int LocalMapObj_IsAnimationSet(const MapObject *mapObj)
 {
-    if (MapObject_GetStateFlag(mapObj, (1 << 0)) == 0) {
+    if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_0)) {
         return 0;
     }
 
-    if (MapObject_GetStateFlag(mapObj, (1 << 1)) == 1) {
+    if (MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_1) == 1) {
         return 0;
     }
 
-    if ((MapObject_GetStateFlag(mapObj, (1 << 4)) == 1) && (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0)) {
+    if (MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_4) == 1 && !MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_5)) {
         return 0;
     }
 
@@ -141,26 +141,26 @@ void LocalMapObj_SetAnimationCode(MapObject *mapObj, int param1)
 {
     GF_ASSERT(param1 < 0x9a);
 
-    MapObject_SetAnimationCode(mapObj, param1);
+    MapObject_SetMovementAction(mapObj, param1);
     sub_02062BC0(mapObj, 0);
-    MapObject_SetStatusFlagOn(mapObj, (1 << 4));
-    MapObject_SetStatusFlagOff(mapObj, (1 << 5));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_4);
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_5);
 }
 
 void sub_02065668(MapObject *mapObj, int param1)
 {
-    MapObject_SetAnimationCode(mapObj, param1);
+    MapObject_SetMovementAction(mapObj, param1);
     sub_02062BC0(mapObj, 0);
-    MapObject_SetStatusFlagOff(mapObj, (1 << 5));
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_5);
 }
 
 int LocalMapObj_CheckAnimationFinished(const MapObject *mapObj)
 {
-    if (MapObject_GetStateFlag(mapObj, (1 << 4)) == 0) {
+    if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_4)) {
         return 1;
     }
 
-    if (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0) {
+    if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_5)) {
         return 0;
     }
 
@@ -169,24 +169,24 @@ int LocalMapObj_CheckAnimationFinished(const MapObject *mapObj)
 
 int sub_020656AC(MapObject *mapObj)
 {
-    if (MapObject_GetStateFlag(mapObj, (1 << 4)) == 0) {
+    if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_4)) {
         return 1;
     }
 
-    if (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0) {
+    if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_5)) {
         return 0;
     }
 
-    MapObject_SetStatusFlagOff(mapObj, (1 << 4) | (1 << 5));
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_4 | MAP_OBJ_STATUS_5);
 
     return 1;
 }
 
 void sub_020656DC(MapObject *mapObj)
 {
-    MapObject_SetStatusFlagOff(mapObj, (1 << 4));
-    MapObject_SetStatusFlagOn(mapObj, (1 << 5));
-    MapObject_SetAnimationCode(mapObj, 0xff);
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_4);
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_5);
+    MapObject_SetMovementAction(mapObj, 0xff);
     sub_02062BC0(mapObj, 0);
 }
 
@@ -387,7 +387,7 @@ void sub_020658B4(MapObject *mapObj)
     int v0, v1;
 
     do {
-        v0 = MapObject_AnimationCode(mapObj);
+        v0 = MapObject_GetMovementAction(mapObj);
 
         if (v0 == 0xff) {
             break;
@@ -401,12 +401,12 @@ int sub_020658DC(MapObject *mapObj)
 {
     sub_020658B4(mapObj);
 
-    if (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0) {
+    if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_5)) {
         return 0;
     }
 
-    MapObject_SetStatusFlagOff(mapObj, (1 << 5));
-    MapObject_SetAnimationCode(mapObj, 0xff);
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_5);
+    MapObject_SetMovementAction(mapObj, 0xff);
     sub_02062BC0(mapObj, 0);
 
     return 1;
@@ -419,13 +419,13 @@ static int sub_02065910(MapObject *mapObj, int param1, int param2)
 
 static int sub_02065924(MapObject *mapObj)
 {
-    MapObject_SetStatusFlagOn(mapObj, (1 << 5));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_5);
     return 0;
 }
 
 static void sub_02065930(MapObject *mapObj, int param1)
 {
-    MapObject_SetDir(mapObj, param1);
+    MapObject_TryFace(mapObj, param1);
     sub_02062A0C(mapObj, 0x0);
     sub_02064208(mapObj);
     sub_02062BC8(mapObj);
@@ -467,9 +467,9 @@ static void sub_02065980(MapObject *mapObj, int param1, fx32 param2, s16 param3,
     v0->unk_08 = param2;
 
     sub_020641B4(mapObj, param1);
-    sub_020629A0(mapObj, param1);
+    MapObject_TryFaceAndTurn(mapObj, param1);
     sub_02062A0C(mapObj, param4);
-    MapObject_SetStatusFlagOn(mapObj, (1 << 2));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT);
     sub_02062BC8(mapObj);
 }
 
@@ -488,7 +488,7 @@ static int sub_020659C8(MapObject *mapObj)
         return 0;
     }
 
-    MapObject_SetStatusFlagOn(mapObj, (1 << 3) | (1 << 5));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_5);
     sub_02064208(mapObj);
     sub_02062B68(mapObj);
     sub_02062A0C(mapObj, 0x0);
@@ -674,7 +674,7 @@ static void sub_02065C64(MapObject *mapObj, int param1, s16 param2, u16 param3)
     v0->unk_00 = param3;
     v0->unk_02 = param2 + 1;
 
-    MapObject_SetDir(mapObj, param1);
+    MapObject_TryFace(mapObj, param1);
     sub_02062A0C(mapObj, param3);
     sub_02064208(mapObj);
     sub_02062BC8(mapObj);
@@ -691,7 +691,7 @@ static int sub_02065C98(MapObject *mapObj)
         return 0;
     }
 
-    MapObject_SetStatusFlagOn(mapObj, (1 << 5));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_5);
     sub_02062A0C(mapObj, 0x0);
     sub_02062BC8(mapObj);
 
@@ -837,8 +837,8 @@ static void sub_02065E0C(MapObject *mapObj, int param1, fx32 param2, s16 param3,
         sub_020641B4(mapObj, param1);
     }
 
-    MapObject_SetStatusFlagOn(mapObj, (1 << 2) | (1 << 16));
-    sub_020629A0(mapObj, param1);
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT | MAP_OBJ_STATUS_16);
+    MapObject_TryFaceAndTurn(mapObj, param1);
     sub_02062A0C(mapObj, param4);
     sub_02062BC8(mapObj);
 
@@ -865,7 +865,7 @@ static int sub_02065EA0(MapObject *mapObj)
         if (v0->unk_04 >= (16 * FX32_ONE)) {
             v0->unk_04 = 0;
             sub_020641B4(mapObj, v0->unk_0C);
-            MapObject_SetStatusFlagOn(mapObj, (1 << 2));
+            MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT);
         }
 
         {
@@ -910,7 +910,7 @@ static int sub_02065EA0(MapObject *mapObj)
         sub_02063088(mapObj, &v5);
     }
 
-    MapObject_SetStatusFlagOn(mapObj, (1 << 3) | (1 << 17) | (1 << 5));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_17 | MAP_OBJ_STATUS_5);
     sub_02064208(mapObj);
     sub_02062B68(mapObj);
     sub_02062A0C(mapObj, 0x0);
@@ -1213,7 +1213,7 @@ static int sub_020663D0(MapObject *mapObj)
 
 static int sub_02066418(MapObject *mapObj)
 {
-    MapObject_SetStatusFlagOn(mapObj, (1 << 9));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_HIDE);
     sub_02062BC8(mapObj);
 
     return 1;
@@ -1229,7 +1229,7 @@ static int sub_02066430(MapObject *mapObj)
 
 static int sub_02066448(MapObject *mapObj)
 {
-    MapObject_SetStatusFlagOn(mapObj, (1 << 7));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR);
     sub_02062BC8(mapObj);
 
     return 1;
@@ -1237,7 +1237,7 @@ static int sub_02066448(MapObject *mapObj)
 
 static int sub_0206645C(MapObject *mapObj)
 {
-    MapObject_SetStatusFlagOff(mapObj, (1 << 7));
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR);
     sub_02062BC8(mapObj);
 
     return 1;
@@ -1245,7 +1245,7 @@ static int sub_0206645C(MapObject *mapObj)
 
 static int sub_02066470(MapObject *mapObj)
 {
-    MapObject_SetStatusFlagOn(mapObj, (1 << 8));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_PAUSE_ANIMATION);
     sub_02062BC8(mapObj);
 
     return 1;
@@ -1253,7 +1253,7 @@ static int sub_02066470(MapObject *mapObj)
 
 static int sub_02066488(MapObject *mapObj)
 {
-    MapObject_SetStatusFlagOff(mapObj, (1 << 8));
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_PAUSE_ANIMATION);
     sub_02062BC8(mapObj);
 
     return 1;
@@ -1315,9 +1315,9 @@ static void sub_02066520(MapObject *mapObj, int param1, s16 param2, u16 param3)
     v0->unk_04 = param2;
 
     sub_020641B4(mapObj, param1);
-    sub_020629A0(mapObj, param1);
+    MapObject_TryFaceAndTurn(mapObj, param1);
     sub_02062A0C(mapObj, param3);
-    MapObject_SetStatusFlagOn(mapObj, (1 << 2));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT);
     sub_02062BC8(mapObj);
 }
 
@@ -1336,7 +1336,7 @@ static int sub_02066560(MapObject *mapObj, const fx32 *param1)
         return 0;
     }
 
-    MapObject_SetStatusFlagOn(mapObj, (1 << 3) | (1 << 5));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_5);
     sub_02064208(mapObj);
     sub_02062B68(mapObj);
     sub_02062A0C(mapObj, 0x0);
@@ -1461,7 +1461,7 @@ static int sub_020666E4(MapObject *mapObj)
     v0->unk_00++;
 
     if (v0->unk_00 >= 8) {
-        MapObject_SetDir(mapObj, 1);
+        MapObject_TryFace(mapObj, 1);
         sub_02062A0C(mapObj, 0x0);
         sub_02062BC8(mapObj);
     }
@@ -1488,8 +1488,8 @@ static int sub_02066710(MapObject *mapObj)
 
     ov5_021F3F10(mapObj);
 
-    MapObject_SetStatusFlagOn(mapObj, (1 << 2) | (1 << 16));
-    MapObject_SetStatusFlagOff(mapObj, (1 << 20));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT | MAP_OBJ_STATUS_16);
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_HIDE_SHADOW);
     sub_02062BC8(mapObj);
 
     return 0;
@@ -1513,7 +1513,7 @@ static int sub_02066764(MapObject *mapObj)
     v2.y = 0;
 
     sub_02063088(mapObj, &v2);
-    MapObject_SetStatusFlagOn(mapObj, (1 << 3) | (1 << 17) | (1 << 5));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_17 | MAP_OBJ_STATUS_5);
     sub_0206A230(mapObj);
     sub_02062BC8(mapObj);
 
@@ -1562,14 +1562,14 @@ static void sub_02066824(MapObject *mapObj, const VecFx32 *param1, int param2, i
     v0->unk_00 = param4;
     v0->unk_04 = *param1;
 
-    MapObject_SetDir(mapObj, param2);
-    sub_02062994(mapObj, param3);
+    MapObject_TryFace(mapObj, param2);
+    MapObject_Turn(mapObj, param3);
     sub_02062A0C(mapObj, param5);
     sub_02062D28(mapObj);
 
-    MapObject_SetXPosPrev(mapObj, MapObject_GetXPos(mapObj));
-    MapObject_SetYPosPrev(mapObj, MapObject_GetYPos(mapObj));
-    MapObject_SetZPosPrev(mapObj, MapObject_GetZPos(mapObj));
+    MapObject_SetXPrev(mapObj, MapObject_GetX(mapObj));
+    MapObject_SetYPrev(mapObj, MapObject_GetY(mapObj));
+    MapObject_SetZPrev(mapObj, MapObject_GetZ(mapObj));
 
     if (param1->x < 0) {
         MapObject_AddX(mapObj, -1);
@@ -1606,7 +1606,7 @@ static int sub_020668EC(MapObject *mapObj)
     }
 
     MapObject_SetStatusFlagOn(
-        mapObj, (1 << 3) | (1 << 5));
+        mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_5);
 
     sub_02064208(mapObj);
     sub_02062B68(mapObj);
@@ -1886,14 +1886,14 @@ static void sub_02066F88(MapObject *mapObj, fx32 param1, int param2, int param3,
     v1->unk_03 = param8;
     v1->unk_0E = (0x100 * 16) / v1->unk_00;
 
-    MapObject_SetDir(mapObj, param2);
-    sub_02062994(mapObj, param3);
+    MapObject_TryFace(mapObj, param2);
+    MapObject_Turn(mapObj, param3);
     sub_02062A0C(mapObj, param5);
     sub_02062D28(mapObj);
 
-    MapObject_SetXPosPrev(mapObj, MapObject_GetXPos(mapObj));
-    MapObject_SetYPosPrev(mapObj, MapObject_GetYPos(mapObj));
-    MapObject_SetZPosPrev(mapObj, MapObject_GetZPos(mapObj));
+    MapObject_SetXPrev(mapObj, MapObject_GetX(mapObj));
+    MapObject_SetYPrev(mapObj, MapObject_GetY(mapObj));
+    MapObject_SetZPrev(mapObj, MapObject_GetZ(mapObj));
 
     GF_ASSERT(param6 <= 2);
 
@@ -1933,7 +1933,7 @@ static int sub_02067068(MapObject *mapObj)
     UnkStruct_02066F88 *v2;
 
     v2 = sub_02062AC8(mapObj);
-    MapObject_PosVectorOut(mapObj, &v1);
+    MapObject_GetPosPtr(mapObj, &v1);
 
     switch (v2->unk_02) {
     case 0:
@@ -1947,7 +1947,7 @@ static int sub_02067068(MapObject *mapObj)
         break;
     }
 
-    MapObject_SetPosVec(mapObj, &v1);
+    MapObject_SetPos(mapObj, &v1);
 
     v0 = v2->unk_04;
 
@@ -1996,9 +1996,9 @@ static int sub_02067068(MapObject *mapObj)
         v2->unk_08 -= (16 * FX32_ONE);
         v0 = v2->unk_04;
 
-        MapObject_SetXPosPrev(mapObj, MapObject_GetXPos(mapObj));
-        MapObject_SetYPosPrev(mapObj, MapObject_GetYPos(mapObj));
-        MapObject_SetZPosPrev(mapObj, MapObject_GetZPos(mapObj));
+        MapObject_SetXPrev(mapObj, MapObject_GetX(mapObj));
+        MapObject_SetYPrev(mapObj, MapObject_GetY(mapObj));
+        MapObject_SetZPrev(mapObj, MapObject_GetZ(mapObj));
 
         switch (v2->unk_02) {
         case 0:
@@ -2034,7 +2034,7 @@ static int sub_02067068(MapObject *mapObj)
         sub_02063088(mapObj, &v7);
     }
 
-    MapObject_SetStatusFlagOn(mapObj, (1 << 3) | (1 << 17) | (1 << 5));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_17 | MAP_OBJ_STATUS_5);
     sub_02064208(mapObj);
     sub_02062B68(mapObj);
     sub_02062A0C(mapObj, 0x0);

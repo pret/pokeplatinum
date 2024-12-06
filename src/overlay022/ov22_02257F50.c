@@ -18,10 +18,10 @@
 #include "overlay022/struct_ov22_022599A0.h"
 
 #include "heap.h"
+#include "math.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_0200679C.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     UnkStruct_ov22_02259560 *unk_00;

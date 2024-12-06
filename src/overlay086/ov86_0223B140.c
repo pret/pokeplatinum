@@ -24,6 +24,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -44,7 +45,6 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     fx32 unk_00;
@@ -1607,8 +1607,8 @@ static void inline inline_ov86_0223CB74(UnkStruct_ov86_0223CAE4 *param0)
         int v0 = param0->unk_808 >> FX32_SHIFT;
         fx32 v1, v2;
 
-        v1 = param0->unk_818 + FX_Mul(sub_0201D1D4(v0), 10240);
-        v2 = FX_Mul(sub_0201D15C(v0), 10240) - FX16_ONE;
+        v1 = param0->unk_818 + FX_Mul(CalcCosineDegrees(v0), 10240);
+        v2 = FX_Mul(CalcSineDegrees(v0), 10240) - FX16_ONE;
 
         VEC_Fx16Set(&(param0->unk_826), v1 - 576, v2, 0);
         VEC_Fx16Set(&(param0->unk_82C), v1 + 576, v2, 0);

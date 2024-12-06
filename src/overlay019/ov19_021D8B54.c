@@ -18,10 +18,10 @@
 #include "cell_actor.h"
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     CellActor *unk_00;
@@ -592,7 +592,7 @@ static void ov19_021D9600(SysTask *param0, void *param1)
         v0->unk_0C += v0->unk_1C;
         v1.y = v0->unk_0C;
         v0->unk_18 += v0->unk_20;
-        v2 = v0->unk_24 * sub_0201D15C(v0->unk_18 >> FX32_SHIFT);
+        v2 = v0->unk_24 * CalcSineDegrees(v0->unk_18 >> FX32_SHIFT);
         v1.x = v0->unk_14 + v2;
 
         CellActor_SetPosition(v0->unk_00, &v1);

@@ -16,6 +16,7 @@
 #include "communication_system.h"
 #include "graphics.h"
 #include "gx_layers.h"
+#include "math.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "render_window.h"
@@ -27,7 +28,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
-#include "unk_0201D15C.h"
 #include "unk_0205D8CC.h"
 
 typedef struct {

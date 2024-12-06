@@ -101,7 +101,7 @@ _0181:
 _019D:
     Message 8
     CloseMessage
-    StartTrainerBattle 0x391, 0
+    StartTrainerBattle trainer_galactic_boss_cyrus_celestic_town_ruins
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0393
     Call _01C3
@@ -466,7 +466,7 @@ _0538:
     GoToIfEq 0x800C, 1, _057A
     Message 8
     CloseMessage
-    StartTrainerBattle 0x391, 0
+    StartTrainerBattle trainer_galactic_boss_cyrus_celestic_town_ruins
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0393
     Call _01C3

@@ -74,11 +74,11 @@ static void ov6_02248050(MapObjectManager *param0, u32 param1, Easy3DObject *par
 
     v4 = MapObjMan_LocalMapObjByIndex(param0, param1);
 
-    MapObject_PosVectorOut(v4, &v3);
+    MapObject_GetPosPtr(v4, &v3);
 
-    v1 = MapObject_GetXPos(v4);
-    v2 = MapObject_GetZPos(v4);
-    v0 = MapObject_Dir(v4);
+    v1 = MapObject_GetX(v4);
+    v2 = MapObject_GetZ(v4);
+    v0 = MapObject_GetFacingDir(v4);
 
     switch (v0) {
     case 0:

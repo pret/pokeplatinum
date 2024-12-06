@@ -36,9 +36,9 @@
 #include "core_sys.h"
 #include "enums.h"
 #include "list_menu.h"
+#include "math.h"
 #include "strbuf.h"
 #include "unk_02005474.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     fx32 unk_00;

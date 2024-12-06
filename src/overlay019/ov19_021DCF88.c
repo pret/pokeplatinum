@@ -16,12 +16,12 @@
 #include "enums.h"
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0201D15C.h"
 #include "unk_020797C8.h"
 
 typedef struct {
@@ -356,7 +356,7 @@ static void ov19_021DD024(UnkStruct_ov19_021DCF88 *param0)
 
     for (v3 = 1; v3 < (16 - 1); v3++) {
         v0 += v2;
-        param0->unk_D4[v3] = (sub_0201D15C(v0 >> FX32_SHIFT) * 16) >> FX32_SHIFT;
+        param0->unk_D4[v3] = (CalcSineDegrees(v0 >> FX32_SHIFT) * 16) >> FX32_SHIFT;
         param0->unk_E4[v3] = 16 - param0->unk_D4[v3];
     }
 

@@ -158,9 +158,9 @@ void sub_02055D94(FieldSystem *fieldSystem)
     BerryPatch *v2 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
     while (sub_020625B0(fieldSystem->mapObjMan, &v1, &v0, (1 << 0)) == 1) {
-        if (sub_020677F4(sub_02062920(v1)) == 1) {
-            if (sub_02055D54(fieldSystem, MapObject_PosVector(v1))) {
-                int v3 = sub_020629D8(v1, 0);
+        if (sub_020677F4(MapObject_GetGraphicsID(v1)) == 1) {
+            if (sub_02055D54(fieldSystem, MapObject_GetPos(v1))) {
+                int v3 = MapObject_GetDataAt(v1, 0);
                 BerryPatches_SetIsPatchGrowing(v2, v3, 1);
             }
         }
@@ -172,7 +172,7 @@ BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
     int v0, v1, v2;
     BerryPatch *v3 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = sub_020629D8(param1, 0);
+    v0 = MapObject_GetDataAt(param1, 0);
     v2 = BerryPatches_GetPatchBerryID(v3, v0);
     v1 = BerryPatches_GetPatchYield(v3, v0);
 
@@ -188,7 +188,7 @@ void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = sub_020629D8(param1, 0);
+    v0 = MapObject_GetDataAt(param1, 0);
     BerryPatches_SetPatchMulchType(v1, v0, sub_02055C80(param2));
 }
 
@@ -197,7 +197,7 @@ void sub_02055EAC(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = sub_020629D8(param1, 0);
+    v0 = MapObject_GetDataAt(param1, 0);
     BerryPatches_PlantInPatch(v1, v0, fieldSystem->unk_04->unk_18->unk_04, sub_02055C60(param2));
 }
 
@@ -206,7 +206,7 @@ void sub_02055EE0(FieldSystem *fieldSystem, MapObject *param1)
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = sub_020629D8(param1, 0);
+    v0 = MapObject_GetDataAt(param1, 0);
     BerryPatches_ResetPatchMoisture(v1, v0);
 }
 
@@ -215,7 +215,7 @@ int sub_02055F00(const FieldSystem *fieldSystem, const MapObject *param1)
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = sub_020629D8(param1, 0);
+    v0 = MapObject_GetDataAt(param1, 0);
     return BerryPatches_GetPatchGrowthStage(v1, v0);
 }
 
@@ -224,7 +224,7 @@ int sub_02055F20(const FieldSystem *fieldSystem, const MapObject *param1)
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = sub_020629D8(param1, 0);
+    v0 = MapObject_GetDataAt(param1, 0);
     return BerryPatches_GetPatchBerryID(v1, v0);
 }
 
@@ -233,7 +233,7 @@ u16 sub_02055F40(const FieldSystem *fieldSystem, const MapObject *param1)
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = sub_020629D8(param1, 0);
+    v0 = MapObject_GetDataAt(param1, 0);
     return sub_02055C50(BerryPatches_GetPatchBerryID(v1, v0));
 }
 
@@ -242,7 +242,7 @@ u16 sub_02055F64(const FieldSystem *fieldSystem, const MapObject *param1)
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = sub_020629D8(param1, 0);
+    v0 = MapObject_GetDataAt(param1, 0);
     return sub_02055C70(BerryPatches_GetPatchMulchType(v1, v0));
 }
 
@@ -251,7 +251,7 @@ int sub_02055F88(const FieldSystem *fieldSystem, const MapObject *param1)
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = sub_020629D8(param1, 0);
+    v0 = MapObject_GetDataAt(param1, 0);
     return BerryPatches_GetPatchMoisture(v1, v0);
 }
 
@@ -260,7 +260,7 @@ int sub_02055FA8(const FieldSystem *fieldSystem, const MapObject *param1)
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    v0 = sub_020629D8(param1, 0);
+    v0 = MapObject_GetDataAt(param1, 0);
     return BerryPatches_GetPatchYield(v1, v0);
 }
 
@@ -268,7 +268,7 @@ u32 sub_02055FC8(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     u32 v0 = 0;
 
-    if ((param1 == NULL) || (sub_02062920(param1) != 0x64)) {
+    if ((param1 == NULL) || (MapObject_GetGraphicsID(param1) != 0x64)) {
         return 0x0;
     }
 
@@ -361,7 +361,7 @@ static MapObject *sub_020560A8(FieldSystem *fieldSystem, UnkStruct_020562AC *par
 
 static BOOL sub_020560E4(MapObject *mapObj)
 {
-    return sub_02062920(mapObj) == 0x64;
+    return MapObject_GetGraphicsID(mapObj) == 0x64;
 }
 
 static void sub_020560F8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1)

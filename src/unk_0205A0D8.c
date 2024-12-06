@@ -139,7 +139,7 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     v0->max = (u8)Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = param4;
-    v0->ribbons = sub_0202D79C(v1);
+    v0->specialRibbons = sub_0202D79C(v1);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);

@@ -194,7 +194,7 @@ u8 sub_0203CBE0(FieldSystem *fieldSystem, MapObject **param1)
     }
 
     if (sub_0203CA40(fieldSystem, param1) == 1) {
-        u32 v0 = sub_02062920(*param1);
+        u32 v0 = MapObject_GetGraphicsID(*param1);
 
         if ((v0 == 0x5b) || (v0 == 0x5c) || (v0 == 0x5d) || (v0 == 0x5e) || (v0 == 0x5f) || (v0 == 0x60)) {
             return 1;

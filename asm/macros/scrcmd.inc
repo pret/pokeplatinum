@@ -9,6 +9,8 @@
     .include "consts/sdat.inc"
     .include "consts/species.inc"
 
+#include "res/trainers/trdata.naix"
+
     .macro Noop
     .short 0
     .endm
@@ -1263,7 +1265,7 @@
     .short \arg0
     .endm
 
-    .macro StartTrainerBattle enemyTrainer1, enemyTrainer2
+    .macro StartTrainerBattle enemyTrainer1, enemyTrainer2=0
     .short 229
     .short \enemyTrainer1
     .short \enemyTrainer2

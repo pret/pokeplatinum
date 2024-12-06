@@ -15,14 +15,12 @@
 #include "heap.h"
 #include "location.h"
 #include "map_header.h"
+#include "math.h"
 #include "narc.h"
 #include "palette.h"
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "system_flags.h"
-#include "unk_0201D15C.h"
-#include "vars_flags.h"
 
 static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *);
 static inline void inline_ov61_0222C3B0_sub(SysTask *, void *);
@@ -131,8 +129,8 @@ static inline void inline_ov61_0222C3B0_sub(SysTask *param0, void *param1)
 
 static inline void inline_ov47_0225621C_sub(FieldSystem *fieldSystem, int *param1, int *param2)
 {
-    FieldOverworldState *v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    Location *location = sub_0203A72C(v0);
+    FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    Location *location = FieldOverworldState_GetExitLocation(fieldState);
 
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
         *param1 = fieldSystem->location->x;

@@ -94,15 +94,15 @@ void ov5_021F3844(MapObject *param0, int param1)
 
     v3 = ov5_021DF578(param0);
 
-    v2.unk_00 = MapObject_GetXPos(param0);
-    v2.unk_04 = MapObject_GetYPos(param0);
-    v2.unk_08 = MapObject_GetZPos(param0);
+    v2.unk_00 = MapObject_GetX(param0);
+    v2.unk_04 = MapObject_GetY(param0);
+    v2.unk_08 = MapObject_GetZ(param0);
     v2.unk_10 = v3;
     v2.fieldSystem = ov5_021DF574(v3);
     v2.unk_14 = ov5_021DF55C(v3, 24);
     v2.unk_18 = param0;
 
-    MapObject_PosVectorOut(param0, &v1);
+    MapObject_GetPosPtr(param0, &v1);
 
     v0 = sub_02062758(param0, 2);
     v4 = ov5_021DF72C(v3, &Unk_ov5_02200620, &v1, param1, &v2, v0);
@@ -120,12 +120,12 @@ static int ov5_021F38AC(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     v3->unk_18 = *v4;
     v3->unk_04 = sub_02062924(v3->unk_18.unk_18);
-    v3->unk_08 = MapObject_Id(v3->unk_18.unk_18);
+    v3->unk_08 = MapObject_GetLocalID(v3->unk_18.unk_18);
     v3->unk_0C = sub_02062918(v3->unk_18.unk_18);
 
     v2.x = (((v3->unk_18.unk_00) << 4) * FX32_ONE);
     v2.z = (((v3->unk_18.unk_08) << 4) * FX32_ONE);
-    v2.y = sub_02063074(v3->unk_18.unk_18);
+    v2.y = MapObject_GetPosY(v3->unk_18.unk_18);
 
     v3->unk_14 = sub_020644A4(v3->unk_18.fieldSystem, &v2);
 
@@ -195,8 +195,8 @@ static void ov5_021F394C(UnkStruct_ov101_021D5D90 *param0, void *param1)
         sub_02021368(v1->unk_34, 0);
         v1->unk_00 = 2;
     case 2: {
-        int v5 = MapObject_GetXPos(v2);
-        int v6 = MapObject_GetZPos(v2);
+        int v5 = MapObject_GetX(v2);
+        int v6 = MapObject_GetZ(v2);
 
         if ((v1->unk_18.unk_00 != v5) || (v1->unk_18.unk_08 != v6)) {
             ov5_021DF74C(param0);
