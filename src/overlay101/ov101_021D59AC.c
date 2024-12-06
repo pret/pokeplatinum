@@ -14,10 +14,10 @@
 
 #include "cell_actor.h"
 #include "enums.h"
+#include "math.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0201D15C.h"
 #include "unk_020711EC.h"
 
 typedef struct {
@@ -845,7 +845,7 @@ static void ov101_021D6410(UnkStruct_ov101_021D13C8 *param0, UnkStruct_ov101_021
     CellActor_SetAffineOverwriteMode(param1->unk_04, 2);
     CellActor_SetAffineTranslation(param1->unk_04, &v0);
     CellActor_SetAffineScale(param1->unk_04, &v1);
-    CellActor_SetAffineZRotation(param1->unk_04, sub_0201D2A4(0));
+    CellActor_SetAffineZRotation(param1->unk_04, CalcAngleRotationIdx_Wraparound(0));
     CellActor_SetAnimateFlag(param1->unk_04, 1);
 }
 
@@ -1105,7 +1105,7 @@ static int ov101_021D682C(UnkStruct_ov101_021D66D0 *param0)
         ov101_021D84A4(param0->unk_20->unk_450, &param0->unk_24, &v0, (NNS_G2D_VRAM_TYPE_2DSUB), 1, 4, 4, 4, 4, 2, 6);
         CellActor_SetAffineOverwriteMode(param0->unk_24.unk_04, 2);
         CellActor_SetAffineTranslation(param0->unk_24.unk_04, &v1);
-        CellActor_SetAffineZRotation(param0->unk_24.unk_04, sub_0201D2A4(0));
+        CellActor_SetAffineZRotation(param0->unk_24.unk_04, CalcAngleRotationIdx_Wraparound(0));
 
         param0->unk_0C = 1;
         param0->unk_08++;
@@ -1749,7 +1749,7 @@ static int ov101_021D7304(UnkStruct_ov101_021D5D90 *param0, void *param1)
     CellActor_SetAffineOverwriteMode(v3->unk_08.unk_04, 2);
     CellActor_SetAffineTranslation(v3->unk_08.unk_04, &v1);
     CellActor_SetAffineScale(v3->unk_08.unk_04, &v2);
-    CellActor_SetAffineZRotation(v3->unk_08.unk_04, sub_0201D2A4(0));
+    CellActor_SetAffineZRotation(v3->unk_08.unk_04, CalcAngleRotationIdx_Wraparound(0));
     CellActor_SetAnimateFlag(v3->unk_08.unk_04, 1);
 
     return 1;
@@ -1862,7 +1862,7 @@ static int ov101_021D74A0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     CellActor_SetAffineOverwriteMode(v3->unk_08.unk_04, 2);
     CellActor_SetAffineTranslation(v3->unk_08.unk_04, &v1);
     CellActor_SetAffineScale(v3->unk_08.unk_04, &v2);
-    CellActor_SetAffineZRotation(v3->unk_08.unk_04, sub_0201D2A4(0));
+    CellActor_SetAffineZRotation(v3->unk_08.unk_04, CalcAngleRotationIdx_Wraparound(0));
     CellActor_SetAnimateFlag(v3->unk_08.unk_04, 1);
 
     return 1;
@@ -2136,7 +2136,7 @@ static int ov101_021D7810(UnkStruct_ov101_021D5D90 *param0, void *param1)
         CellActor_SetAffineOverwriteMode(v6->unk_18[v0].unk_04, 2);
         CellActor_SetAffineTranslation(v6->unk_18[v0].unk_04, &v4);
         CellActor_SetAffineScale(v6->unk_18[v0].unk_04, &v5);
-        CellActor_SetAffineZRotation(v6->unk_18[v0].unk_04, sub_0201D2A4(0));
+        CellActor_SetAffineZRotation(v6->unk_18[v0].unk_04, CalcAngleRotationIdx_Wraparound(0));
 
         v2 = (v6->unk_04 % (v1 * 10)) / v1;
 

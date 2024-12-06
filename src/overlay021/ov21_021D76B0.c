@@ -26,6 +26,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "sprite_resource.h"
 #include "touch_screen.h"
@@ -34,7 +35,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
-#include "unk_0201D15C.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
 
@@ -337,7 +337,7 @@ static int ov21_021D7950(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
     ov21_021D84A8(v3->unk_00[2], v3->unk_0C[2], -14, 2, 5);
 
     if (v0->unk_1C->unk_20 == 0) {
-        ov21_021D8354(v3, v2, sub_0201D580(524, v1->unk_0C), v1->unk_1C);
+        ov21_021D8354(v3, v2, CalcRadialAngle(524, v1->unk_0C), v1->unk_1C);
     } else if (v0->unk_1C->unk_20 == 1) {
         ov21_021D83C0(v3, v2, v0);
     } else {
@@ -831,7 +831,7 @@ static void ov21_021D8324(UnkStruct_ov21_021D7A64 *param0)
     v3 = gCoreSys.touchX - (128 + 120);
     v2 = gCoreSys.touchY - (104 + -0);
 
-    param0->unk_0C = sub_0201D4CC(v1, v0, v3, v2, 524);
+    param0->unk_0C = CalcDotProduct2D(v1, v0, v3, v2, 524);
     param0->unk_0C *= 10;
 }
 

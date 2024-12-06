@@ -38,6 +38,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -57,7 +58,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -1355,7 +1355,7 @@ static int ov109_021D1A14(UnkStruct_ov109_021D0F70 *param0)
 
     v0 = sub_0202C244(95, 17);
 
-    Journal_SaveData(param0->unk_CC->unk_14.unk_18, v0, 4);
+    JournalEntry_SaveData(param0->unk_CC->unk_14.unk_18, v0, JOURNAL_UNK_1C);
     GameRecords_IncrementRecordValue(param0->unk_CC->unk_14.records, RECORD_UNK_119);
     GameRecords_IncrementTrainerScore(param0->unk_CC->unk_14.records, TRAINER_SCORE_EVENT_UNK_45);
     ov109_021D2634(param0, 11);
@@ -2482,9 +2482,9 @@ static void ov109_021D2D78(UnkStruct_ov109_021D2D78 *param0, const VecFx32 *para
     ov109_021D39D4(&v1, param0->unk_20);
     v0 = (u16)((v1) / FX32_ONE);
 
-    param0->unk_44.x = (FX32_ONE * 0) + param0->unk_50.x + param1->x + (sub_0201D1D4(v0) * 22);
+    param0->unk_44.x = (FX32_ONE * 0) + param0->unk_50.x + param1->x + (CalcCosineDegrees(v0) * 22);
     param0->unk_44.y = (FX32_ONE * -6) + param0->unk_50.y + param1->y;
-    param0->unk_44.z = (FX32_ONE * 0) + param0->unk_50.z + param1->z + (sub_0201D15C(v0) * 22);
+    param0->unk_44.z = (FX32_ONE * 0) + param0->unk_50.z + param1->z + (CalcSineDegrees(v0) * 22);
 
     param0->unk_24.unk_00 = ((param0->unk_2C.x) / FX32_ONE);
     param0->unk_24.unk_02 = ((param0->unk_2C.y) / FX32_ONE);
@@ -2902,7 +2902,7 @@ static void ov109_021D3370(UnkStruct_ov109_021D3370 *param0)
         param0->unk_0C = (FX32_ONE * 20);
         param0->unk_04++;
     case 1:
-        v0 = sub_0201D15C((param0->unk_10) / FX32_ONE) * ((param0->unk_08) / FX32_ONE);
+        v0 = CalcSineDegrees((param0->unk_10) / FX32_ONE) * ((param0->unk_08) / FX32_ONE);
         v1->unk_2C.z = 0;
         ov109_021D39D4(&v1->unk_2C.z, v0);
 

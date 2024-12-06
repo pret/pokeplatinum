@@ -309,7 +309,7 @@ void FieldSystem_RequestLocationName(FieldSystem *fieldSystem)
         return;
     }
 
-    if (!sub_0203A288(fieldSystem->location->mapId)) {
+    if (!MapHeader_IsBuilding(fieldSystem->location->mapId)) {
         v0 = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
         v1 = MapHeader_GetMapLabelWindowID(fieldSystem->location->mapId);
 

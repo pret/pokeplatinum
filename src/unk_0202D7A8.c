@@ -9,8 +9,8 @@
 #include "struct_defs/struct_020698E4.h"
 #include "struct_defs/struct_0206C638.h"
 
+#include "math.h"
 #include "savedata.h"
-#include "unk_0201D15C.h"
 
 int SpecialEncounter_SaveSize(void)
 {

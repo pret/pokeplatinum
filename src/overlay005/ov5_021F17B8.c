@@ -110,7 +110,7 @@ void ov5_021F1800(MapObject *param0, int param1)
     v2.unk_08 = ov5_021DF55C(v2.unk_04, 1);
     v2.unk_0C = param0;
 
-    MapObject_PosVectorOut(param0, &v1);
+    MapObject_GetPosPtr(param0, &v1);
 
     v0 = sub_02062758(param0, 2);
     v3 = ov5_021DF72C(v2.unk_04, &Unk_ov5_02200338, &v1, param1, &v2, v0);
@@ -127,9 +127,9 @@ static int ov5_021F184C(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     v1->unk_14 = *v2;
     v1->unk_10 = sub_020715B4(param0);
-    v1->unk_00 = MapObject_Id(v1->unk_14.unk_0C);
+    v1->unk_00 = MapObject_GetLocalID(v1->unk_14.unk_0C);
     v1->unk_04 = sub_02062918(v1->unk_14.unk_0C);
-    v1->unk_08 = sub_02062920(v1->unk_14.unk_0C);
+    v1->unk_08 = MapObject_GetGraphicsID(v1->unk_14.unk_0C);
 
     if (sub_020677F4(v1->unk_08) == 1) {
         v1->unk_08 = sub_02067800(v1->unk_14.unk_0C);
@@ -170,7 +170,7 @@ static void ov5_021F18E0(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     v1 = param1;
     v2 = v1->unk_14.unk_0C;
-    v0 = sub_02062920(v2);
+    v0 = MapObject_GetGraphicsID(v2);
 
     if (sub_020677F4(v0) == 1) {
         v0 = sub_02067800(v1->unk_14.unk_0C);
@@ -211,7 +211,7 @@ static void ov5_021F1978(UnkStruct_ov101_021D5D90 *param0, void *param1)
     MapObject *v1 = v0->unk_14.unk_0C;
 
     {
-        int v2 = sub_02062920(v1);
+        int v2 = MapObject_GetGraphicsID(v1);
 
         if (sub_020677F4(v2) == 1) {
             v2 = sub_02067800(v0->unk_14.unk_0C);
@@ -273,7 +273,7 @@ static void ov5_021F1A24(UnkStruct_ov5_021F1A24 *param0, MapObject *param1, VecF
     v1 = param2->x;
     v2 = -param2->z;
 
-    MapObject_PosVectorOut(param1, param2);
+    MapObject_GetPosPtr(param1, param2);
     v0 = sub_020644A4(param0->unk_14.fieldSystem, param2);
 
     param2->x += v1;

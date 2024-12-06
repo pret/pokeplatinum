@@ -28,7 +28,7 @@ typedef struct {
     SaveData *unk_20;
     Options *unk_24;
     GameRecords *records;
-    Journal *unk_2C;
+    JournalEntry *unk_2C;
     Bag *unk_30;
     int unk_34;
     int unk_38;

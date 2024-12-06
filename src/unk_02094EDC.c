@@ -16,6 +16,7 @@
 
 #include "graphics.h"
 #include "heap.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
@@ -23,7 +24,6 @@
 #include "strbuf.h"
 #include "unk_0200762C.h"
 #include "unk_020131EC.h"
-#include "unk_0201D15C.h"
 #include "unk_020298BC.h"
 #include "unk_020933F8.h"
 

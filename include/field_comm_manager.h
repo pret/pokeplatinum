@@ -36,11 +36,11 @@ void FieldCommMan_ReconnectBattleClient(void);
 void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem);
 void FieldCommMan_EndBattle(void);
 void sub_020598A0(void);
-void sub_02059D0C(int param0, int param1, void *param2, void *param3);
+void sub_02059D0C(int unused0, int unused1, void *param2, void *unused3);
 BOOL sub_02059D2C(void);
-void sub_02059EAC(int param0, int param1, void *param2, void *param3);
-u8 *sub_02059EBC(int param0, void *param1, int param2);
-UnkStruct_02029894 *sub_0205A080(SaveData *param0);
+void sub_02059EAC(int param0, int unused1, void *unused2, void *unused3);
+u8 *sub_02059EBC(int param0, void *unused1, int unused2);
+UnkStruct_02029894 *sub_0205A080(SaveData *saveData);
 void sub_0205A0A0(void);
 void sub_0205A0BC(void);
 

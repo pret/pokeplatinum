@@ -12,9 +12,9 @@
 #include "overlay099/struct_ov99_021D3A40.h"
 
 #include "bg_window.h"
+#include "math.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201D15C.h"
 
 typedef struct {
     s32 unk_00;
@@ -140,7 +140,7 @@ static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
         v0->unk_08 -= 360 << FX32_SHIFT;
     }
 
-    v2 = FX_Mul(sub_0201D2B8(v0->unk_08), v1->unk_18);
+    v2 = FX_Mul(CalcSineDegrees_FX32(v0->unk_08), v1->unk_18);
 
     v0->unk_00 += v1->unk_0C;
     v0->unk_04 += v1->unk_10;

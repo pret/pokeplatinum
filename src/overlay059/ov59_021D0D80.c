@@ -27,6 +27,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
+#include "math.h"
 #include "menu.h"
 #include "message.h"
 #include "message_util.h"
@@ -47,7 +48,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -1085,7 +1085,7 @@ static int ov59_021D1DC8(UnkStruct_020961E8 *param0, int param1)
     gCoreSys.inhibitReset = 1;
     v0 = sub_0202C1B4(51);
 
-    Journal_SaveData(param0->unk_08->unk_10, v0, 4);
+    JournalEntry_SaveData(param0->unk_08->unk_10, v0, JOURNAL_UNK_1C);
     GameRecords_IncrementTrainerScore(param0->unk_08->records, TRAINER_SCORE_EVENT_UNK_20);
     sub_02038ED4(&param0->unk_404);
 
@@ -1434,7 +1434,7 @@ static void ov59_021D23B0(u16 *param0)
         *param0 = 0;
     }
 
-    v0 = sub_0201D250(*param0);
+    v0 = CalcSineDegrees_Wraparound(*param0);
     v3 = 15 + (v0 * 10) / FX32_ONE;
     v1 = GX_RGB(29, v3, 0);
 

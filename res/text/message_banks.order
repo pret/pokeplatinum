@@ -208,7 +208,7 @@ message_bank_unk_0206
 message_bank_contest_judge_names
 message_bank_unk_0208
 message_bank_unk_0209
-message_bank_unk_0210
+message_bank_contest_effects
 message_bank_unk_0211
 message_bank_unk_0212
 message_bank_common_strings
@@ -364,7 +364,7 @@ message_bank_unk_0362
 message_bank_unk_0363
 message_bank_unk_0364
 message_bank_unk_0365
-message_bank_unk_0366
+message_bank_journal_entries
 message_bank_unk_0367
 message_bank_battle_strings
 message_bank_unk_0369
@@ -610,7 +610,7 @@ message_bank_times_of_day
 message_bank_unk_0609
 message_bank_ability_names
 message_bank_unk_0611
-message_bank_unk_0612
+message_bank_ability_descriptions
 message_bank_unk_0613
 message_bank_unk_0614
 message_bank_unk_0615

@@ -343,21 +343,20 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
 
 static int sub_02098D38(UnkStruct_02098BE4 *param0)
 {
-    PokemonSummary *v0;
-    u8 v1;
+    PokemonSummary *summaryScreen;
 
     if (!sub_02098AF8(&param0->unk_14)) {
         return 3;
     }
 
-    v0 = (PokemonSummary *)param0->unk_10;
-    v1 = v0->returnMode;
+    summaryScreen = (PokemonSummary *)param0->unk_10;
+    u8 returnMode = summaryScreen->returnMode;
 
-    param0->unk_08 = v0->pos;
+    param0->unk_08 = summaryScreen->pos;
 
     Heap_FreeToHeap(param0->unk_10);
 
-    if (v1 == 1) {
+    if (returnMode == SUMMARY_RETURN_CANCEL) {
         return 0;
     }
 

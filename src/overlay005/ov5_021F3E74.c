@@ -95,8 +95,8 @@ void ov5_021F3F10(MapObject *param0)
     v0.unk_08 = ov5_021DF55C(v1, 27);
     v0.unk_0C = param0;
 
-    MapObject_PosVectorOut(param0, &v3);
-    sub_02064450(MapObject_GetXPos(param0), MapObject_GetZPos(param0), &v3);
+    MapObject_GetPosPtr(param0, &v3);
+    sub_02064450(MapObject_GetX(param0), MapObject_GetZ(param0), &v3);
 
     v4 = sub_02062758(param0, 2);
     v2 = ov5_021DF72C(v1, &Unk_ov5_0220069C, &v3, 0, &v0, v4);
@@ -112,7 +112,7 @@ static int ov5_021F3F74(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v2 = sub_020715BC(param0);
 
     v1->unk_10 = *v2;
-    v1->unk_04 = MapObject_Id(v1->unk_10.unk_0C);
+    v1->unk_04 = MapObject_GetLocalID(v1->unk_10.unk_0C);
     v1->unk_08 = sub_02062918(v1->unk_10.unk_0C);
 
     sub_020715E4(param0, &v0);

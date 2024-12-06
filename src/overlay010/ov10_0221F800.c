@@ -37,6 +37,7 @@
 #include "item.h"
 #include "journal.h"
 #include "map_header.h"
+#include "math.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
@@ -59,7 +60,6 @@
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -2470,7 +2470,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
         }
     }
 
-    Journal_SaveData(param0->unk_00->journal, v0, 4);
+    JournalEntry_SaveData(param0->unk_00->journalEntry, v0, JOURNAL_UNK_1C);
 }
 
 static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)

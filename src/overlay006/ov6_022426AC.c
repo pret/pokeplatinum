@@ -8,6 +8,7 @@
 
 #include "cell_actor.h"
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
@@ -16,7 +17,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_020131EC.h"
-#include "unk_0201D15C.h"
 
 typedef struct UnkStruct_ov6_022426B8_t {
     SpriteResourceCollection *unk_00[4];

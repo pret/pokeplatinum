@@ -43,6 +43,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "math.h"
 #include "narc.h"
 #include "render_window.h"
 #include "sprite_resource.h"
@@ -56,7 +57,6 @@
 #include "unk_0200A328.h"
 #include "unk_02015064.h"
 #include "unk_02015920.h"
-#include "unk_0201D15C.h"
 #include "unk_0201E3BC.h"
 #include "unk_02098FFC.h"
 

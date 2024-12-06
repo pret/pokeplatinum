@@ -38,6 +38,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
+#include "math.h"
 #include "menu.h"
 #include "narc.h"
 #include "render_window.h"
@@ -58,7 +59,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -1668,7 +1668,7 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     UnkStruct_ov23_0223EE80 *v0;
     void *v1 = sub_0202BE14(11);
 
-    Journal_SaveData(fieldSystem->journal, v1, 1);
+    JournalEntry_SaveData(fieldSystem->journalEntry, v1, JOURNAL_UNK_04);
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0223EE80));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0223EE80));

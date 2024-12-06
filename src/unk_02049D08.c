@@ -25,6 +25,7 @@
 #include "inlines.h"
 #include "journal.h"
 #include "location.h"
+#include "math.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
@@ -32,7 +33,6 @@
 #include "savedata.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0201D15C.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "unk_0204AEE8.h"
@@ -652,7 +652,7 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *param1)
     sub_0204A5EC(param0, param1, 0, v0);
 }
 
-void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, Journal *param2)
+void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, JournalEntry *param2)
 {
     u32 v0 = 0;
     int v1;
@@ -704,7 +704,7 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, Journal *param2)
 
     if (param0->unk_0F == 4) {
         v2 = sub_0202C238(param0->unk_04);
-        Journal_SaveData(param2, v2, 4);
+        JournalEntry_SaveData(param2, v2, JOURNAL_UNK_1C);
     }
 }
 

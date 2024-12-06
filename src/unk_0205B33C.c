@@ -18,6 +18,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "journal.h"
+#include "math.h"
 #include "message.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -28,7 +29,6 @@
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
-#include "unk_0201D15C.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_0205C980.h"
@@ -705,7 +705,7 @@ void sub_0205BA08(int param0, int param1, void *param2, void *param3)
 
     if (param0 != CommSys_CurNetId()) {
         v3 = sub_0202C0EC((u16 *)TrainerInfo_Name(v2), TrainerInfo_Gender(v2), 31);
-        Journal_SaveData(fieldSystem->journal, v3, 4);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v3, JOURNAL_UNK_1C);
     }
 }
 

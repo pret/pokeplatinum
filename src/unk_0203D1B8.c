@@ -95,6 +95,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
+#include "math.h"
 #include "overlay_manager.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -110,7 +111,6 @@
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02017498.h"
-#include "unk_0201D15C.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
@@ -553,7 +553,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
     v0->max = (u8)Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = 0;
-    v0->ribbons = sub_0202D79C(fieldSystem->saveData);
+    v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
     v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->chatotCry = NULL;
@@ -597,7 +597,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2)
     v0->mode = param2;
     v0->dexMode = sub_0207A274(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
-    v0->ribbons = sub_0202D79C(v1);
+    v0->specialRibbons = sub_0202D79C(v1);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
@@ -982,7 +982,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_24 = SaveData_Pokedex(fieldSystem->saveData);
     param0->unk_30 = sub_0207A274(fieldSystem->saveData);
     param0->unk_10 = fieldSystem->saveData;
-    param0->unk_1C = fieldSystem->journal;
+    param0->unk_1C = fieldSystem->journalEntry;
     param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     param0->unk_38 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, TrainerInfo_Size());
     param0->unk_3C = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, Pokemon_GetStructSize());
@@ -1134,7 +1134,7 @@ void sub_0203DDFC(FieldSystem *fieldSystem)
     UnkStruct_0203DDFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DDFC));
 
     v0->unk_00 = fieldSystem->unk_80;
-    v0->unk_04 = fieldSystem->journal;
+    v0->unk_04 = fieldSystem->journalEntry;
     v0->unk_08 = SaveData_Options(fieldSystem->saveData);
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA258, v0);
@@ -1148,7 +1148,7 @@ void *sub_0203DE34(FieldSystem *fieldSystem)
     v0->unk_04 = fieldSystem->unk_80;
     v0->unk_08 = SaveData_Options(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    v0->unk_10 = fieldSystem->journal;
+    v0->unk_10 = fieldSystem->journalEntry;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA248, v0);
 
@@ -1372,7 +1372,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_24 = SaveData_Options(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    v0->unk_2C = fieldSystem->journal;
+    v0->unk_2C = fieldSystem->journalEntry;
     v0->unk_3C = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->unk_20 = fieldSystem->saveData;
     v0->unk_34 = sub_0207A274(fieldSystem->saveData);
@@ -1772,7 +1772,7 @@ void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
     v0->max = 1;
     v0->move = param3;
     v0->mode = 2;
-    v0->ribbons = sub_0202D79C(fieldSystem->saveData);
+    v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
     v0->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
     v0->chatotCry = NULL;

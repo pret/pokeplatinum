@@ -14,7 +14,6 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_0202BE38.h"
 
 #include "field/field_system.h"
 #include "overlay006/ov6_02240C9C.h"
@@ -368,11 +367,8 @@ void Encounter_StartVsWild(FieldSystem *fieldSystem, FieldTask *task, FieldBattl
 
 static BOOL FieldTask_WildEncounter(FieldTask *task)
 {
-    FieldSystem *fieldSystem;
-    WildEncounter *encounter;
-
-    fieldSystem = FieldTask_GetFieldSystem(task);
-    encounter = FieldTask_GetEnv(task);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    WildEncounter *encounter = FieldTask_GetEnv(task);
 
     switch (encounter->state) {
     case 0:
@@ -457,7 +453,7 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Encounter *encounter = FieldTask_GetEnv(task);
     int *state = FieldTask_GetState(task);
-    u16 *ballCount = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *ballCount = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     switch (*state) {
     case 0:
@@ -660,10 +656,8 @@ void Encounter_NewVsPalParkTransfer(FieldSystem *fieldSystem, FieldBattleDTO *dt
 
 void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, int heapID, int *resultMaskPtr)
 {
-    FieldBattleDTO *dto;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-
-    dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_TRAINER);
+    FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_TRAINER);
     FieldBattleDTO_Init(dto, fieldSystem);
 
     dto->battleStatusMask = BATTLE_STATUS_FIRST_BATTLE;
@@ -724,12 +718,9 @@ static BOOL FieldTask_CatchingTutorialEncounter(FieldTask *task)
 
 void Encounter_NewCatchingTutorial(FieldTask *task)
 {
-    Encounter *encounter;
-    FieldBattleDTO *dto;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-
-    dto = FieldBattleDTO_NewCatchingTutorial(HEAP_ID_FIELDMAP, fieldSystem);
-    encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
+    FieldBattleDTO *dto = FieldBattleDTO_NewCatchingTutorial(HEAP_ID_FIELDMAP, fieldSystem);
+    Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
 
     FieldTask_InitCall(task, FieldTask_CatchingTutorialEncounter, encounter);
 }
@@ -956,26 +947,26 @@ static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto)
         || battleType == BATTLE_TYPE_ROAMER
         || battleType == BATTLE_TYPE_AI_PARTNER
         || battleType == BATTLE_TYPE_SAFARI) {
-        UnkStruct_0202BE38 *journalMon;
+        JournalEntryMon *journalEntryMon;
 
         if (resultMask == BATTLE_RESULT_WIN) {
             fieldSystem->unk_78.unk_02++;
 
             if (fieldSystem->unk_78.unk_02 >= 5) {
                 caughtMon = Party_GetPokemonBySlotIndex(dto->parties[1], 0);
-                journalMon = sub_0202BECC(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
-                Journal_SaveData(fieldSystem->journal, journalMon, 2);
+                journalEntryMon = JournalEntry_CreateMonDefeated(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
+                JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryMon, JOURNAL_MON);
             }
         } else if (resultMask == BATTLE_RESULT_CAPTURED_MON) {
             int caughtBattlerIdx = dto->caughtBattlerIdx;
             caughtMon = Party_GetPokemonBySlotIndex(dto->parties[caughtBattlerIdx], 0);
-            journalMon = sub_0202BE4C(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
+            journalEntryMon = JournalEntry_CreateMonCaught(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
 
-            Journal_SaveData(fieldSystem->journal, journalMon, 2);
+            JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryMon, JOURNAL_MON);
         }
     } else if ((battleType & BATTLE_TYPE_TRAINER) || (battleType & BATTLE_TYPE_TAG)) {
         if (resultMask == BATTLE_RESULT_WIN) {
-            sub_0202C720(fieldSystem->journal, fieldSystem->location->mapId, dto->trainerIDs[BATTLER_ENEMY_SLOT_1], HEAP_ID_FIELDMAP);
+            sub_0202C720(fieldSystem->journalEntry, fieldSystem->location->mapId, dto->trainerIDs[BATTLER_ENEMY_SLOT_1], HEAP_ID_FIELDMAP);
         }
     }
 }

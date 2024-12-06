@@ -67,6 +67,7 @@
 #include "field_comm_manager.h"
 #include "game_records.h"
 #include "heap.h"
+#include "math.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
@@ -88,7 +89,6 @@
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_0201D15C.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
@@ -2252,7 +2252,7 @@ static void ov104_022313FC(SysTask *param0, void *param1)
                 v10 = v4->unk_00[v0].unk_0C & 0xffff;
                 v11 = v4->unk_00[v0].unk_0C >> 16;
 
-                sub_0201D470(&v5, 0, FX32_ONE, FX32_ONE, 0);
+                CreateAffineTransformationMatrix(&v5, 0, FX32_ONE, FX32_ONE, AFFINE_MODE_NORMAL);
 
                 v12 = v6 + v4->unk_00[v0].unk_08;
                 v13 = v7 + v4->unk_00[v0].unk_0A;
@@ -2317,7 +2317,7 @@ static void ov104_022313FC(SysTask *param0, void *param1)
             v14 = v4->unk_00[v0].unk_0C & 0xffff;
             v15 = v4->unk_00[v0].unk_0C >> 16;
 
-            sub_0201D470(&v5, 0, FX32_ONE, FX32_ONE, 0);
+            CreateAffineTransformationMatrix(&v5, 0, FX32_ONE, FX32_ONE, AFFINE_MODE_NORMAL);
 
             v16 = v6 + v4->unk_00[v0].unk_08;
             v17 = v7 + v4->unk_00[v0].unk_0A;

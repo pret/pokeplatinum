@@ -8,7 +8,7 @@
 
 typedef struct {
     UnkStruct_0205C22C *unk_00;
-    Journal *unk_04;
+    JournalEntry *unk_04;
     Options *unk_08;
 } UnkStruct_0203DDFC;
 

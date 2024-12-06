@@ -686,7 +686,7 @@ static void sub_0203B094(FieldTask *taskMan)
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {
-        u16 *v7 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+        u16 *v7 = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
         StringTemplate_SetNumber(v3, 0, *v7, 2, 0, 1);
     } else {
@@ -1040,7 +1040,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v3->max = (u8)Party_GetCurrentCount(v3->monData);
         v3->move = 0;
         v3->mode = 0;
-        v3->ribbons = sub_0202D79C(fieldSystem->saveData);
+        v3->specialRibbons = sub_0202D79C(fieldSystem->saveData);
         v3->dexMode = sub_0207A274(fieldSystem->saveData);
         v3->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         v3->chatotCry = NULL;
@@ -1753,7 +1753,7 @@ BOOL sub_0203C434(FieldTask *taskMan)
         v5 = sub_0207064C(11, fieldSystem, v4, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
         v6 = sub_0202BE00((20 - 19), v2->unk_1C, 11);
 
-        Journal_SaveData(fieldSystem->journal, v6, 1);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v6, JOURNAL_UNK_04);
         Heap_FreeToHeapExplicit(11, menu->unk_25C);
         FieldSystem_StartFieldMap(fieldSystem);
 

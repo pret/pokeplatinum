@@ -12,7 +12,7 @@ typedef struct {
     void *unk_00;
     const Options *unk_04;
     SaveData *unk_08;
-    Journal *unk_0C;
+    JournalEntry *unk_0C;
     BagCursor *unk_10;
     int unk_14;
     int unk_18;

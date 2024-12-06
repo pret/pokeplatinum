@@ -16,12 +16,12 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
+#include "math.h"
 #include "message.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "strbuf.h"
 #include "trainer_data.h"
-#include "unk_0201D15C.h"
 #include "vars_flags.h"
 
 #include "constdata/const_020EAB80.h"
@@ -160,7 +160,7 @@ static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager,
     scriptManager->saveType = saveType;
 
     if (object != NULL) {
-        *targetID = MapObject_Id(object);
+        *targetID = MapObject_GetLocalID(object);
     }
 
     if (scriptID >= SCRIPT_ID_OFFSET_HIDDEN_ITEMS && scriptID <= SCRIPT_ID_OFFSET_SAFARI_ZONE - 1) {

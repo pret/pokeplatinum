@@ -11,8 +11,8 @@
 #include "overlay059/struct_ov59_021D30E0.h"
 
 #include "communication_system.h"
+#include "math.h"
 #include "unk_02005474.h"
-#include "unk_0201D15C.h"
 #include "unk_02030EE0.h"
 #include "unk_02032798.h"
 #include "unk_020366A0.h"

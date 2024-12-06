@@ -89,7 +89,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
 
     switch (v0->unk_08) {
     case 0:
-        MapObject_SetStatusFlagOn(v1, (1 << 8));
+        MapObject_SetStatusFlagOn(v1, MAP_OBJ_STATUS_PAUSE_ANIMATION);
         v0->unk_08++;
         break;
     case 1:
@@ -136,8 +136,8 @@ static BOOL ov5_021E120C(FieldTask *param0)
                 if (v4 == 0) {
                     v0->unk_08 = 1;
                 } else {
-                    MapObject_SetStatusFlagOff(v1, (1 << 7));
-                    MapObject_SetStatusFlagOff(v1, (1 << 8));
+                    MapObject_SetStatusFlagOff(v1, MAP_OBJ_STATUS_LOCK_DIR);
+                    MapObject_SetStatusFlagOff(v1, MAP_OBJ_STATUS_PAUSE_ANIMATION);
                     Player_SetDir(v0->playerAvatar, v0->unk_00);
                     ov5_021E1350(v0);
                     Sound_StopEffect(1624, 0);

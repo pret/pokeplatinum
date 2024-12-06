@@ -18,10 +18,10 @@
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
+#include "math.h"
 #include "party.h"
 #include "pokemon.h"
 #include "trainer_info.h"
-#include "unk_0201D15C.h"
 #include "unk_02030108.h"
 #include "unk_02096420.h"
 
