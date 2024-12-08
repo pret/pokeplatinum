@@ -475,7 +475,7 @@ int ov5_021EFFE4(FieldSystem *fieldSystem)
         v3 = sub_0202D840(sub_0202D834(fieldSystem->saveData));
         v4 = sub_0202D84C(v0, v3);
 
-        if ((GAME_VERSION == 10) || (GAME_VERSION == 12)) {
+        if ((GAME_VERSION == DIAMOND) || (GAME_VERSION == PLATINUM)) {
             v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, Unk_ov5_021FF5A8[v4->unk_05], 4);
         } else {
             v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, dummy[v4->unk_05], 4);

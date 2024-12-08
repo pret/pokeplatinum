@@ -18,7 +18,7 @@ typedef struct TeachableMove {
     enum TutorLocation location;
 } TeachableMove;
 
-#include "res/field/tutorable_moves.h"
+#include "res/pokemon/tutorable_moves.h"
 
 #define MOVESET_MASK_SIZE (s32)((NELEMS(sTeachableMoves) + 7) / 8)
 
