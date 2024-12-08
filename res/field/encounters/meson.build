@@ -207,32 +207,68 @@ pl_enc_tbl_narc = custom_target('pl_enc_data.narc',
     ]
 )
 
-endata_ex_srcs = files(
-    'encounters_mt_coronet_b1f.json',
-    'encounters_honey_tree.json',
-    'encounters_trophy_garden.json',
-    'encounters_great_marsh_lookout.json'
+enc_ex_er_bin_gen = generator(
+    encdata_ex_elusive_rod_py,
+    arguments: [ '@INPUT@', '@OUTPUT0@', '@OUTPUT1@', ],
+    output: [
+        '@BASENAME@_species.bin',
+        '@BASENAME@_tiles.bin',
+    ]
 )
-
-encdata_ex_narc = custom_target('encdata_ex.narc',
-    output: 'encdata_ex.narc',
-    input: endata_ex_srcs,
-    env: json2bin_env,
-    depends: [ py_consts_generators ],
-    command: [
-        make_encdata_ex_py,
-        '--knarc', knarc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
-        '--coronet-file', '@INPUT0@',
-        '--honey-file', '@INPUT1@',
-        '--trophy-file', '@INPUT2@',
-        '--marsh-file', '@INPUT3@',
+enc_ex_ht_bin_gen = generator(
+    encdata_ex_honey_trees_py,
+    arguments: [ '@INPUT@', '@OUTPUT0@', '@OUTPUT1@', '@OUTPUT2@', ],
+    output: [
+        '@BASENAME@_common.bin',
+        '@BASENAME@_uncommon.bin',
+        '@BASENAME@_rare.bin',
+    ]
+)
+enc_ex_tg_bin_gen = generator(
+    encdata_ex_trophy_garden_py,
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@BASENAME@_dailies.bin'
+)
+enc_ex_gm_bin_gen = generator(
+    encdata_ex_great_marsh_py,
+    arguments: [ '@INPUT@', '@OUTPUT0@', '@OUTPUT1@', '@OUTPUT2@', ],
+    output: [
+        '@BASENAME@_natdex.bin',
+        '@BASENAME@_local.bin',
+        '@BASENAME@_coords.bin',
     ]
 )
 
-zukan_enc_platinum_srcs = endata_ex_srcs
+encdata_ex_elusive_rod_src = files('encounters_mt_coronet_b1f.json')
+encdata_ex_honey_trees_src = files('encounters_honey_tree.json')
+encdata_ex_trophy_garden_src = files('encounters_trophy_garden.json')
+encdata_ex_great_marsh_src = files('encounters_great_marsh_lookout.json')
+
+encdata_ex_order = files('encdata_ex.order')
+
+encdata_ex_narc = custom_target('encdata_ex.narc',
+    output: 'encdata_ex.narc',
+    input: [
+        enc_ex_er_bin_gen.process(encdata_ex_elusive_rod_src, env: json2bin_env),
+        enc_ex_ht_bin_gen.process(encdata_ex_honey_trees_src, env: json2bin_env),
+        enc_ex_tg_bin_gen.process(encdata_ex_trophy_garden_src, env: json2bin_env),
+        enc_ex_gm_bin_gen.process(encdata_ex_great_marsh_src, env: json2bin_env),
+        encdata_ex_order
+    ],
+    env: json2bin_env,
+    depends: [ py_consts_generators ],
+    command: [
+        knarc_exe,
+        '-d', '@PRIVATE_DIR@',
+        '-p', '@OUTPUT@',
+        '-o', encdata_ex_order,
+    ]
+)
+
+zukan_enc_platinum_srcs = encdata_ex_elusive_rod_src
+zukan_enc_platinum_srcs += encdata_ex_honey_trees_src
+zukan_enc_platinum_srcs += encdata_ex_trophy_garden_src
+zukan_enc_platinum_srcs += encdata_ex_great_marsh_src
 zukan_enc_platinum_srcs += pl_enc_data_srcs
 
 pokedex_enc_platinum_narc = custom_target('zukan_enc_platinum.narc',
