@@ -393,7 +393,7 @@ static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
     }
 
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        void *v0;
+        void *journalEntryLocationEvent;
 
         Window_EraseMessageBox(&param1->unk_08[1], 0);
         Window_Remove(&param1->unk_08[1]);
@@ -401,24 +401,24 @@ static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
         StringTemplate_Free(param1->unk_8C);
         Strbuf_Free(param1->unk_298);
 
-        if (param1->unk_2A9 == 0) {
-            if ((MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != 101) && (fieldSystem->location->mapId != 81) && (fieldSystem->location->mapId != 446)) {
-                if ((param1->unk_2A7 != 0) && (param1->unk_2A8 != 0)) {
-                    v0 = sub_0202BD38(11);
-                    JournalEntry_SaveData(param1->unk_27C, v0, JOURNAL_UNK_04);
-                } else if (param1->unk_2A7 > 1) {
-                    v0 = sub_0202BD14(11);
-                    JournalEntry_SaveData(param1->unk_27C, v0, JOURNAL_UNK_04);
-                } else if (param1->unk_2A8 > 1) {
-                    v0 = sub_0202BD2C(11);
-                    JournalEntry_SaveData(param1->unk_27C, v0, JOURNAL_UNK_04);
-                } else if (param1->unk_2A7 != 0) {
-                    v0 = sub_0202BD08(11);
-                    JournalEntry_SaveData(param1->unk_27C, v0, JOURNAL_UNK_04);
-                } else if (param1->unk_2A8 != 0) {
-                    v0 = sub_0202BD20(11);
-                    JournalEntry_SaveData(param1->unk_27C, v0, JOURNAL_UNK_04);
-                }
+        if (param1->unk_2A9 == 0 && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != 101
+            && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_NORTH_HOUSE
+            && fieldSystem->location->mapId != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
+            if (param1->unk_2A7 != 0 && param1->unk_2A8 != 0) {
+                journalEntryLocationEvent = JournalEntry_CreateEventBusinessAtMart(HEAP_ID_FIELDMAP);
+                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
+            } else if (param1->unk_2A7 > 1) {
+                journalEntryLocationEvent = JournalEntry_CreateEventLotsOfShopping(HEAP_ID_FIELDMAP);
+                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
+            } else if (param1->unk_2A8 > 1) {
+                journalEntryLocationEvent = JournalEntry_CreateEventSoldALot(HEAP_ID_FIELDMAP);
+                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
+            } else if (param1->unk_2A7 != 0) {
+                journalEntryLocationEvent = JournalEntry_CreateEventShoppedAtMart(HEAP_ID_FIELDMAP);
+                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
+            } else if (param1->unk_2A8 != 0) {
+                journalEntryLocationEvent = JournalEntry_CreateEventSoldALittle(HEAP_ID_FIELDMAP);
+                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
             }
         }
 

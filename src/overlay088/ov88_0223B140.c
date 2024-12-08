@@ -107,7 +107,7 @@ static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC *param2
 static void ov88_0223CF68(int param0, CellActor *param1, int param2);
 static int ov88_0223CFF4(u32 *param0, int *param1, CellActor *param2, UnkStruct_ov88_0223C8AC *param3, int param4);
 static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite *param3);
-static void ov88_0223E7F0(JournalEntry *param0, Pokemon *param1);
+static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon);
 static void ov88_0223D140(ChatotCry *param0);
 static void ov88_0223E894(UnkStruct_02095E80 *param0);
 static void ov88_0223E8B4(UnkStruct_02095E80 *param0);
@@ -2527,15 +2527,15 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
     Heap_FreeToHeap(v1);
 }
 
-static void ov88_0223E7F0(JournalEntry *param0, Pokemon *param1)
+static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon)
 {
-    void *v0;
-    TrainerInfo *v1 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
-    u16 v2[10 + 1];
+    void *journalEntryOnlineEvent;
+    TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    u16 nickname[MON_NAME_LEN + 1];
 
-    Pokemon_GetValue(param1, MON_DATA_NICKNAME, v2);
-    v0 = sub_0202C11C((u16 *)TrainerInfo_Name(v1), TrainerInfo_Gender(v1), v2, Pokemon_GetGender(param1), 26);
-    JournalEntry_SaveData(param0, v0, JOURNAL_UNK_1C);
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
+    journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonFromTrade((u16 *)TrainerInfo_Name(trainerInfo), TrainerInfo_Gender(trainerInfo), nickname, Pokemon_GetGender(mon), 26);
+    JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
 static void ov88_0223E848(UnkStruct_02095E80 *param0)

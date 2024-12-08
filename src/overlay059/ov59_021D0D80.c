@@ -1080,12 +1080,11 @@ static int ov59_021D1DA0(UnkStruct_020961E8 *param0, int param1)
 
 static int ov59_021D1DC8(UnkStruct_020961E8 *param0, int param1)
 {
-    void *v0;
-
     gCoreSys.inhibitReset = 1;
-    v0 = sub_0202C1B4(51);
 
-    JournalEntry_SaveData(param0->unk_08->unk_10, v0, JOURNAL_UNK_1C);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventMixedRecords(51);
+
+    JournalEntry_SaveData(param0->unk_08->unk_10, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     GameRecords_IncrementTrainerScore(param0->unk_08->records, TRAINER_SCORE_EVENT_UNK_20);
     sub_02038ED4(&param0->unk_404);
 

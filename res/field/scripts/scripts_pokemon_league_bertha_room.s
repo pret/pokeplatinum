@@ -38,11 +38,11 @@ _0082:
     Return
 
 _008A:
-    ScrCmd_1CD 11, trainer_elite_four_bertha, 0, 0, 0
+    ScrCmd_CreateJournalEvent 11, trainer_elite_four_bertha, 0, 0, 0
     Return
 
 _0098:
-    ScrCmd_1CD 11, trainer_elite_four_bertha_rematch, 0, 0, 0
+    ScrCmd_CreateJournalEvent 11, trainer_elite_four_bertha_rematch, 0, 0, 0
     Return
 
 _00A6:

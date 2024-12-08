@@ -18,7 +18,7 @@ _0016:
     FacePlayer
     CheckBadgeAcquired BADGE_ID_MINE, 0x800C
     GoToIfEq 0x800C, 1, _0107
-    ScrCmd_1CD 9, 35, 0, 0, 0
+    ScrCmd_CreateJournalEvent 9, 35, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle trainer_leader_byron
@@ -38,7 +38,7 @@ _0016:
     SetTrainerFlag trainer_ace_trainer_breanna
     SetTrainerFlag trainer_black_belt_ricky
     SetTrainerFlag trainer_worker_gerardo
-    ScrCmd_1CD 10, 35, trainer_leader_byron, 0, 0
+    ScrCmd_CreateJournalEvent 10, 35, trainer_leader_byron, 0, 0
     ClearFlag 0x1B2
     ClearFlag 0x2CC
     ClearFlag 0x1B8
