@@ -559,7 +559,7 @@ static BOOL ScrCmd_1C3(ScriptContext *ctx);
 static BOOL ScrCmd_1C4(ScriptContext *ctx);
 static BOOL ScrCmd_1C5(ScriptContext *ctx);
 static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
-static BOOL ScrCmd_1CD(ScriptContext *ctx);
+static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx);
 static BOOL ScrCmd_1CE(ScriptContext *ctx);
 static BOOL ScrCmd_1D2(ScriptContext *ctx);
 static BOOL ScrCmd_1D3(ScriptContext *ctx);
@@ -1226,7 +1226,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1CA,
     ScrCmd_1CB,
     ScrCmd_GiveJournal,
-    ScrCmd_1CD,
+    ScrCmd_CreateJournalEvent,
     ScrCmd_1CE,
     ScrCmd_Strength,
     ScrCmd_Flash,
@@ -3878,20 +3878,20 @@ static BOOL sub_02041CF4(ScriptContext *ctx)
     v2 = *v0;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
-        return 0;
+        return FALSE;
     }
 
     if (v2->unk_08 == 1) {
-        void *v3;
+        void *journalEntryLocationEvent;
 
-        v3 = sub_0202BCFC(11);
-        JournalEntry_SaveData(fieldSystem->journalEntry, v3, JOURNAL_LOCATION);
+        journalEntryLocationEvent = JournalEntry_CreateEventUsedPCBox(HEAP_ID_FIELDMAP);
+        JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
     }
 
     Heap_FreeToHeap(*v0);
     *v0 = NULL;
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL sub_02041D3C(ScriptContext *ctx)
@@ -6105,53 +6105,53 @@ static BOOL ScrCmd_GiveJournal(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1CD(ScriptContext *ctx)
+static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx)
 {
-    u8 v0;
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 v4 = ScriptContext_GetVar(ctx);
-    u16 v5 = ScriptContext_GetVar(ctx);
-    void **v6 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    u8 dataType;
+    u16 eventType = ScriptContext_GetVar(ctx);
+    u16 eventParam = ScriptContext_GetVar(ctx);
+    u16 unused1 = ScriptContext_GetVar(ctx);
+    u16 unused2 = ScriptContext_GetVar(ctx);
+    u16 unused3 = ScriptContext_GetVar(ctx);
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    switch (v1) {
-    case 16:
-        v0 = JOURNAL_LOCATION;
-        *v6 = sub_0202BDD4(4);
+    switch (eventType) {
+    case LOCATION_EVENT_GAME_CORNER:
+        dataType = JOURNAL_LOCATION;
+        *data = JournalEntry_CreateEventGameCorner(HEAP_ID_FIELD);
         break;
-    case 17:
-        v0 = JOURNAL_LOCATION;
-        *v6 = sub_0202BDE0(4);
+    case LOCATION_EVENT_SAFARI_GAME:
+        dataType = JOURNAL_LOCATION;
+        *data = JournalEntry_CreateEventSafariGame(HEAP_ID_FIELD);
         break;
-    case 18:
-        v0 = JOURNAL_LOCATION;
-        *v6 = sub_0202BDEC(v2, 4);
+    case LOCATION_EVENT_ITEM_WAS_OBTAINED:
+        dataType = JOURNAL_LOCATION;
+        *data = JournalEntry_CreateEventObtainedItem(eventParam, HEAP_ID_FIELD);
         break;
-    case 19:
-    case 21:
-    case 22:
-    case 23:
-    case 24:
-    case 25:
-    case 26:
-        v0 = JOURNAL_LOCATION;
-        *v6 = sub_0202BE00(v1 - 19, v2, 4);
+    case LOCATION_EVENT_USED_CUT:
+    case LOCATION_EVENT_USED_SURF:
+    case LOCATION_EVENT_USED_STRENGTH:
+    case LOCATION_EVENT_USED_DEFOG:
+    case LOCATION_EVENT_USED_ROCK_SMASH:
+    case LOCATION_EVENT_USED_WATERFALL:
+    case LOCATION_EVENT_USED_ROCK_CLIMB:
+        dataType = JOURNAL_LOCATION;
+        *data = JournalEntry_CreateEventUsedMove(eventType - LOCATION_EVENT_USED_CUT, eventParam, HEAP_ID_FIELD);
         break;
-    case 36:
-    case 37:
-    case 39:
-    case 38:
-    case 40:
-        v0 = JOURNAL_LOCATION;
-        *v6 = sub_0202BE2C(4, v1);
+    case LOCATION_EVENT_BATTLE_TOWER:
+    case LOCATION_EVENT_BATTLE_FACTORY:
+    case LOCATION_EVENT_BATTLE_CASTLE:
+    case LOCATION_EVENT_BATTLE_HALL:
+    case LOCATION_EVENT_BATTLE_ARCADE:
+        dataType = JOURNAL_LOCATION;
+        *data = JournalEntry_CreateEventBattleFacility(HEAP_ID_FIELD, eventType);
         break;
     default:
-        return 1;
+        return TRUE;
     }
 
-    JournalEntry_SaveData(ctx->fieldSystem->journalEntry, *v6, v0);
-    return 1;
+    JournalEntry_SaveData(ctx->fieldSystem->journalEntry, *data, dataType);
+    return TRUE;
 }
 
 static BOOL ScrCmd_1CE(ScriptContext *ctx)
@@ -6394,15 +6394,15 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
     case 1:
         SystemFlag_ClearSafariGameActive(v3);
         sub_0206D720(ctx->fieldSystem);
-        void *v6 = sub_0202BDE0(4);
+        void *journalEntryLocationEvent = JournalEntry_CreateEventSafariGame(HEAP_ID_FIELD);
 
-        JournalEntry_SaveData(ctx->fieldSystem->journalEntry, v6, JOURNAL_LOCATION);
+        JournalEntry_SaveData(ctx->fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
         *v0 = 0;
         *v1 = 0;
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_206(ScriptContext *ctx)

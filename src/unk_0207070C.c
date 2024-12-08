@@ -760,15 +760,13 @@ static BOOL sub_02071050(FieldTask *param0)
     UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
     void *v2 = ov6_02247488(fieldSystem, v1->unk_00, 11);
 
-    {
-        void *v3 = sub_0202BE00((29 - 19), fieldSystem->location->mapId, 4);
-        JournalEntry_SaveData(fieldSystem->journalEntry, v3, JOURNAL_LOCATION);
-    }
+    void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove((LOCATION_EVENT_USED_DIG - LOCATION_EVENT_USED_CUT), fieldSystem->location->mapId, HEAP_ID_FIELD);
+    JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 
     Heap_FreeToHeap(v1);
     FieldTask_InitJump(param0, ov6_022474AC, v2);
 
-    return 0;
+    return FALSE;
 }
 
 static int sub_020710A4(const UnkStruct_02070950 *param0)
@@ -802,7 +800,7 @@ static void sub_020710D4(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     v1->unk_25C = v2;
     v1->state = FIELD_MENU_STATE_10;
 
-    v4 = sub_0202BE00((30 - 19), fieldSystem->location->mapId, 11);
+    v4 = JournalEntry_CreateEventUsedMove((30 - 19), fieldSystem->location->mapId, 11);
     JournalEntry_SaveData(fieldSystem->journalEntry, v4, JOURNAL_LOCATION);
 }
 

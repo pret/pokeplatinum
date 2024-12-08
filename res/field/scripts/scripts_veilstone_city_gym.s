@@ -21,7 +21,7 @@ _0022:
     FacePlayer
     CheckBadgeAcquired BADGE_ID_COBBLE, 0x800C
     GoToIfEq 0x800C, 1, _00FF
-    ScrCmd_1CD 9, 133, 0, 0, 0
+    ScrCmd_CreateJournalEvent 9, 133, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle trainer_leader_maylene
@@ -38,7 +38,7 @@ _0022:
     SetTrainerFlag trainer_black_belt_darren
     SetTrainerFlag trainer_black_belt_rafael
     SetTrainerFlag trainer_black_belt_jeffery
-    ScrCmd_1CD 10, 133, trainer_leader_maylene, 0, 0
+    ScrCmd_CreateJournalEvent 10, 133, trainer_leader_maylene, 0, 0
     SetFlag 0x1A3
     ClearFlag 0x1A8
     SetVar 0x407D, 1

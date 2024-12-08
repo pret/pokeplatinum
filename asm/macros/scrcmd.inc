@@ -2464,7 +2464,7 @@
     .short 460
     .endm
 
-    .macro ScrCmd_1CD arg0, arg1, arg2, arg3, arg4
+    .macro ScrCmd_CreateJournalEvent arg0, arg1, arg2, arg3, arg4
     .short 461
     .short \arg0
     .short \arg1

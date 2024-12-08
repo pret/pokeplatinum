@@ -966,7 +966,7 @@ static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto)
         }
     } else if ((battleType & BATTLE_TYPE_TRAINER) || (battleType & BATTLE_TYPE_TAG)) {
         if (resultMask == BATTLE_RESULT_WIN) {
-            sub_0202C720(fieldSystem->journalEntry, fieldSystem->location->mapId, dto->trainerIDs[BATTLER_ENEMY_SLOT_1], HEAP_ID_FIELDMAP);
+            JournalEntry_CreateAndSaveEventTrainer(fieldSystem->journalEntry, fieldSystem->location->mapId, dto->trainerIDs[BATTLER_ENEMY_SLOT_1], HEAP_ID_FIELDMAP);
         }
     }
 }

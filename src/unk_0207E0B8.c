@@ -2443,23 +2443,23 @@ static int ProcessWindowInput(GameWindowLayout *param0)
         break;
     case 3:
         if (UpdatePokemonStatus(param0, param0->unk_B11, 1) == 1) {
-            Pokemon *v0;
+            Pokemon *mon;
             Strbuf *v1;
-            void *v2;
+            void *journalEntryLocationEvent;
             FieldSystem *fieldSystem;
 
-            v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+            mon = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
             v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 64);
 
-            StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+            StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(mon));
             StringTemplate_SetNumber(param0->unk_6A0, 1, param0->unk_B14[2], 3, 0, 1);
             StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
             Strbuf_Free(v1);
             sub_02082708(param0, 0xffffffff, 1);
 
-            v2 = sub_0202BE00((u8)param0->unk_B14[3], 0, 12);
+            journalEntryLocationEvent = JournalEntry_CreateEventUsedMove((u8)param0->unk_B14[3], 0, 12);
             fieldSystem = param0->unk_5A4->unk_1C;
-            JournalEntry_SaveData(fieldSystem->journalEntry, v2, JOURNAL_LOCATION);
+            JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
             param0->unk_B14[1] = 4;
             param0->unk_B0E = 30;
             return 24;

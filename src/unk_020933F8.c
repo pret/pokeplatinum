@@ -1573,11 +1573,9 @@ void sub_02094BB4(UnkStruct_02095C48 *param0, int *param1, int *param2, int *par
     }
 }
 
-void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, JournalEntry *param3)
+void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, JournalEntry *journalEntry)
 {
-    int v0;
-
-    v0 = 0;
+    int v0 = 0;
 
     switch (param0->unk_00.unk_111) {
     case 3:
@@ -1590,23 +1588,16 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
     }
 
     if (param0->unk_155 == 0) {
-        {
-            VarsFlags *v1;
+        VarsFlags *v1 = SaveData_GetVarsFlags(param0->unk_1970);
 
-            v1 = SaveData_GetVarsFlags(param0->unk_1970);
-
-            if ((param0->unk_00.unk_111 == 2) && (param0->unk_00.unk_110 >= 3) && (sub_02094790(param0) == 0)) {
-                if (SystemFlag_CheckContestMaster(v1, param0->unk_00.unk_10F) == 0) {
-                    SystemFlag_SetContestMaster(v1, param0->unk_00.unk_10F);
-                }
-            }
+        if (param0->unk_00.unk_111 == 2 && param0->unk_00.unk_110 >= 3 && sub_02094790(param0) == 0
+            && SystemFlag_CheckContestMaster(v1, param0->unk_00.unk_10F) == 0) {
+            SystemFlag_SetContestMaster(v1, param0->unk_00.unk_10F);
         }
 
         if (sub_02094790(param0) == 0) {
-            int v2;
             u8 v3 = 1;
-
-            v2 = sub_02095A3C(param0->unk_00.unk_110, param0->unk_00.unk_10F);
+            int v2 = sub_02095A3C(param0->unk_00.unk_110, param0->unk_00.unk_10F);
 
             if (Pokemon_GetValue(param0->unk_1974, v2, NULL) == 0) {
                 v0 = 1;
@@ -1616,71 +1607,47 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
             sub_0206DDB8(param0->unk_1970, param0->unk_1974, v2);
         }
 
-        {
-            TVBroadcast *v4;
+        TVBroadcast *v4 = SaveData_TVBroadcast(param0->unk_1970);
+        sub_0206CF14(v4, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
 
-            v4 = SaveData_TVBroadcast(param0->unk_1970);
-            sub_0206CF14(v4, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
+        GameRecords *v5 = SaveData_GetGameRecordsPtr(param0->unk_1970);
+        GameRecords_IncrementRecordValue(v5, RECORD_UNK_090);
+
+        if (sub_02094790(param0) == 0) {
+            GameRecords_IncrementRecordValue(v5, RECORD_UNK_092);
+            GameRecords_IncrementTrainerScore(v5, TRAINER_SCORE_EVENT_UNK_13);
         }
 
-        {
-            GameRecords *v5;
-
-            v5 = SaveData_GetGameRecordsPtr(param0->unk_1970);
-            GameRecords_IncrementRecordValue(v5, RECORD_UNK_090);
-
-            if (sub_02094790(param0) == 0) {
-                GameRecords_IncrementRecordValue(v5, RECORD_UNK_092);
-                GameRecords_IncrementTrainerScore(v5, TRAINER_SCORE_EVENT_UNK_13);
-            }
-
-            if (v0 == 1) {
-                GameRecords_IncrementRecordValue(v5, RECORD_UNK_094);
-            }
+        if (v0 == 1) {
+            GameRecords_IncrementRecordValue(v5, RECORD_UNK_094);
         }
 
-        {
-            int v6;
-            PokedexData *v7;
+        int i;
+        PokedexData *v7 = SaveData_Pokedex(param0->unk_1970);
 
-            v7 = SaveData_Pokedex(param0->unk_1970);
-
-            for (v6 = param0->unk_00.unk_117; v6 < 4; v6++) {
-                sub_020272A4(v7, param0->unk_00.unk_00[v6]);
-            }
+        for (i = param0->unk_00.unk_117; i < 4; i++) {
+            sub_020272A4(v7, param0->unk_00.unk_00[i]);
         }
     } else {
         sub_0202F134(param0->unk_1970, param0->unk_00.unk_10F, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08);
 
-        {
-            GameRecords *v8;
+        GameRecords *records = SaveData_GetGameRecordsPtr(param0->unk_1970);
+        GameRecords_IncrementRecordValue(records, RECORD_UNK_091);
 
-            v8 = SaveData_GetGameRecordsPtr(param0->unk_1970);
-            GameRecords_IncrementRecordValue(v8, RECORD_UNK_091);
-
-            if (sub_02094790(param0) == 0) {
-                GameRecords_IncrementRecordValue(v8, RECORD_UNK_093);
-                GameRecords_IncrementTrainerScore(v8, TRAINER_SCORE_EVENT_UNK_19);
-            }
+        if (sub_02094790(param0) == 0) {
+            GameRecords_IncrementRecordValue(records, RECORD_UNK_093);
+            GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_UNK_19);
         }
 
-        {
-            void *v9;
-            JournalEntry *v10;
+        void *journalEntryOnlineEvent = JournalEntry_CreateEventPlacedInContest(param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1, 11);
+        JournalEntry *unused = SaveData_GetJournal(param0->unk_1970);
 
-            v9 = sub_0202C1C0(param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1, 11);
-            v10 = SaveData_GetJournal(param0->unk_1970);
-
-            JournalEntry_SaveData(param3, v9, JOURNAL_ONLINE_EVENT);
-        }
+        JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     }
 
     if (sub_02094790(param0) == 0) {
-        UnkStruct_0202A750 *v11;
-        UnkStruct_02029C88 *v12;
-
-        v11 = sub_0202A750(param0->unk_1970);
-        v12 = sub_02029CD0(v11, param0->unk_00.unk_10F);
+        UnkStruct_0202A750 *v11 = sub_0202A750(param0->unk_1970);
+        UnkStruct_02029C88 *v12 = sub_02029CD0(v11, param0->unk_00.unk_10F);
 
         sub_0202A25C(v12);
         sub_0202A390(v12, param0->unk_00.unk_E8[param0->unk_00.unk_113]);

@@ -42,7 +42,7 @@ _0086:
 _0096:
     CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
     GoToIfEq 0x800C, 1, _0173
-    ScrCmd_1CD 9, 100, 0, 0, 0
+    ScrCmd_CreateJournalEvent 9, 100, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle trainer_leader_fantina
@@ -63,7 +63,7 @@ _0096:
     SetTrainerFlag trainer_school_kid_chance
     SetTrainerFlag trainer_school_kid_mackenzie
     SetTrainerFlag trainer_youngster_donny
-    ScrCmd_1CD 10, 100, trainer_leader_fantina, 0, 0
+    ScrCmd_CreateJournalEvent 10, 100, trainer_leader_fantina, 0, 0
     SetVar 0x407B, 1
     SetFlag 0x206
     ClearFlag 0x207

@@ -301,13 +301,13 @@ int ov58_021D1018(OverlayManager *param0, int *param1)
     UnkStruct_02095EAC *v0 = OverlayManager_Data(param0);
     UnkStruct_0203DDFC *v1 = (UnkStruct_0203DDFC *)OverlayManager_Args(param0);
     int v2;
-    void *v3;
+    void *journalEntryOnlineEvent;
 
     switch (*param1) {
     case 0:
-        v3 = sub_0202C168(39);
+        journalEntryOnlineEvent = JournalEntry_CreateEventDrewPictures(39);
 
-        JournalEntry_SaveData(v1->unk_04, v3, JOURNAL_ONLINE_EVENT);
+        JournalEntry_SaveData(v1->unk_04, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
         SetMainCallback(NULL, NULL);
         sub_0200A4E4(v0->unk_1D4[0][0]);
         sub_0200A4E4(v0->unk_1D4[1][0]);

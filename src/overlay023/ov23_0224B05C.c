@@ -2015,10 +2015,10 @@ void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
             sub_02029824(v1);
         }
 
-        if ((v0->unk_01 == 3) || (v0->unk_01 == 4)) {
-            void *v6 = sub_0202BE20(11);
+        if (v0->unk_01 == 3 || v0->unk_01 == 4) {
+            void *journalEntryLocationEvent = JournalEntry_CreateEventBuiltSecretBase(HEAP_ID_FIELDMAP);
 
-            JournalEntry_SaveData(Unk_ov23_022577AC->fieldSystem->journalEntry, v6, JOURNAL_LOCATION);
+            JournalEntry_SaveData(Unk_ov23_022577AC->fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
             GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_35);
         }
     }

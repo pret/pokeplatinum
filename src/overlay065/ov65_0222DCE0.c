@@ -187,7 +187,7 @@ static void ov65_02232DC0(UnkStruct_ov65_0222EBE0 * param0, int param1);
 static u32 ov65_022319B8(UnkStruct_ov65_0222EBE0 * param0);
 static void ov65_02231A0C(void);
 static BOOL ov65_02231A54(void);
-static void ov65_02231A74(UnkStruct_ov65_0222EBE0 * param0, u32 param1);
+static void ov65_02231A74(UnkStruct_ov65_0222EBE0 * param0, u32 unused);
 static void ov65_0222F6EC(UnkStruct_ov65_0222EBE0 * param0);
 static void ov65_0223500C(UnkStruct_ov65_0222EBE0 * param0, BOOL param1);
 static void ov65_0223503C(UnkStruct_ov65_0222EBE0 * param0);
@@ -3835,15 +3835,15 @@ static BOOL ov65_02231A54 (void)
     return 1;
 }
 
-static void ov65_02231A74 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
+static void ov65_02231A74(UnkStruct_ov65_0222EBE0 * param0, u32 unused)
 {
-    void * v0;
-    JournalEntry * v1;
+    void *journalEntryOnlineEvent;
+    JournalEntry *journalEntry;
 
-    v1 = SaveData_GetJournal(param0->unk_160);
-    v0 = sub_0202C244(54, 29);
+    journalEntry = SaveData_GetJournal(param0->unk_160);
+    journalEntryOnlineEvent = JournalEntry_CreateEventMisc(54, ONLINE_EVENT_WIFI_CLUB);
 
-    JournalEntry_SaveData(v1, v0, JOURNAL_ONLINE_EVENT);
+    JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
 static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)

@@ -1392,15 +1392,15 @@ static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *p
     sub_02038FDC(param0, param1->unk_11E, param1->unk_11F, param1->unk_123);
 }
 
-static void ov94_02243E48(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1)
+static void ov94_02243E48(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *param1)
 {
-    void *v0;
-    u16 v1[10 + 1];
-    Pokemon *v2 = (Pokemon *)param1->unk_00.unk_00;
+    void *journalEntryOnlineEvent;
+    u16 nickname[MON_NAME_LEN + 1];
+    Pokemon *mon = (Pokemon *)param1->unk_00.unk_00;
 
-    Pokemon_GetValue(v2, MON_DATA_NICKNAME, v1);
-    v0 = sub_0202C1EC(param1->unk_10C, param1->unk_F6, v1, Pokemon_GetGender(v2), 62);
-    JournalEntry_SaveData(param0, v0, JOURNAL_ONLINE_EVENT);
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
+    journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonGTS(param1->unk_10C, param1->unk_F6, nickname, Pokemon_GetGender(mon), 62);
+    JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1)

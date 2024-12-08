@@ -39,8 +39,8 @@ static void JournalDisplay_PrintBeatGymLeader(UnkStruct_ov81_021D1610 *param0, W
 static void JournalDisplay_PrintBeatEliteFourMember(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
 static void JournalDisplay_PrintBeatChampion(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
 static void JournalDisplay_PrintArrivedInLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
-static void JournalDisplay_PrintLeftOutsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
-static void JournalDisplay_PrintLeftInsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintLeftCave(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
+static void JournalDisplay_PrintLeftBuilding(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
 static void JournalDisplay_PrintGameCorner(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
 static void JournalDisplay_PrintSafariGame(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
 static void JournalDisplay_PrintItemWasObtained(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row);
@@ -224,11 +224,11 @@ static void JournalDisplay_PrintLocationEvents(UnkStruct_ov81_021D1610 *param0, 
         case LOCATION_EVENT_ARRIVED_IN_LOCATION:
             JournalDisplay_PrintArrivedInLocation(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case LOCATION_EVENT_LEFT_OUTSIDE_LOCATION:
-            JournalDisplay_PrintLeftOutsideLocation(param0, window, &journalEntryLocationEvent[i], i);
+        case LOCATION_EVENT_LEFT_CAVE:
+            JournalDisplay_PrintLeftCave(param0, window, &journalEntryLocationEvent[i], i);
             break;
-        case LOCATION_EVENT_LEFT_INSIDE_LOCATION:
-            JournalDisplay_PrintLeftInsideLocation(param0, window, &journalEntryLocationEvent[i], i);
+        case LOCATION_EVENT_LEFT_BUILDING:
+            JournalDisplay_PrintLeftBuilding(param0, window, &journalEntryLocationEvent[i], i);
             break;
         case LOCATION_EVENT_GAME_CORNER:
             JournalDisplay_PrintGameCorner(param0, window, &journalEntryLocationEvent[i], i);
@@ -326,7 +326,7 @@ static void JournalDisplay_PrintTrainerEvent(UnkStruct_ov81_021D1610 *param0, Wi
 
     JournalEntry_GetData(param0->journalEntry, &journalEntryTrainer, JOURNAL_TRAINER, param0->page);
 
-    if (journalEntryTrainer.initialized == 0) {
+    if (journalEntryTrainer.standard == 0) {
         return;
     }
 
@@ -568,7 +568,7 @@ static void JournalDisplay_PrintArrivedInLocation(UnkStruct_ov81_021D1610 *param
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintLeftOutsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
+static void JournalDisplay_PrintLeftCave(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0;
     u32 v1 = journalEntryLocationEvent->locationID;
@@ -585,7 +585,7 @@ static void JournalDisplay_PrintLeftOutsideLocation(UnkStruct_ov81_021D1610 *par
     Strbuf_Free(v0);
 }
 
-static void JournalDisplay_PrintLeftInsideLocation(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
+static void JournalDisplay_PrintLeftBuilding(UnkStruct_ov81_021D1610 *param0, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
 {
     Strbuf *v0;
     u32 v1 = journalEntryLocationEvent->locationID;

@@ -11,6 +11,19 @@
 #define MAX_JOURNAL_LOCATION_EVENTS 4
 #define MAX_JOURNAL_ONLINE_EVENTS   2
 
+#define EVENT_TYPE  0x3f
+#define TRAINER_ID  0x3ff
+#define LOCATION_ID 0xffff
+#define ITEM        0xffff
+
+#define CHAR_NONE 0xffff
+
+#define GYM_NONE 0xff
+
+#define TRAINER_TYPE_ELITE_FOUR 8
+#define TRAINER_TYPE_CHAMPION   9
+#define TRAINER_TYPE_STANDARD   10
+
 enum JournalDataType {
     JOURNAL_TITLE = 0,
     JOURNAL_LOCATION,
@@ -34,8 +47,8 @@ enum JournalLocationEventType {
     LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER,
     LOCATION_EVENT_BEAT_CHAMPION,
     LOCATION_EVENT_ARRIVED_IN_LOCATION,
-    LOCATION_EVENT_LEFT_OUTSIDE_LOCATION,
-    LOCATION_EVENT_LEFT_INSIDE_LOCATION,
+    LOCATION_EVENT_LEFT_CAVE,
+    LOCATION_EVENT_LEFT_BUILDING,
     LOCATION_EVENT_GAME_CORNER,
     LOCATION_EVENT_SAFARI_GAME,
     LOCATION_EVENT_ITEM_WAS_OBTAINED,
@@ -107,7 +120,7 @@ typedef struct {
 typedef struct {
     u8 eventType;
     u8 padding_01;
-    u16 locationID; // can either be a mapID or an index refering to a gym
+    u16 locationID; // can be a mapID, a mapLabelTextID, or an index refering to a gym
     u16 trainerID;
     u16 item;
 } JournalEntryLocationEvent;
@@ -121,19 +134,19 @@ typedef struct {
 } JournalEntryMon;
 
 typedef struct {
-    u16 initialized : 1;
+    u16 standard : 1;
     u16 trainerID : 15;
     u16 mapID;
 } JournalEntryTrainer;
 
 typedef struct {
     u8 eventType;
-    u8 result : 4;
+    u8 result : 4; // can be a battle result, the placement in a contest, or an index refering to a plaza minigame
     u8 unused1 : 1;
     u8 unused2 : 1;
     u8 unused3 : 2;
-    u16 playerName1[8];
-    u16 playerName2[8];
+    u16 playerName1[TRAINER_NAME_LEN + 1];
+    u16 playerName2[TRAINER_NAME_LEN + 1];
     u16 pokemonName[12];
 } JournalEntryOnlineEvent;
 
@@ -152,51 +165,51 @@ JournalEntry *Journal_GetSavedPage(JournalEntry *journalEntry, BOOL journalAcqui
 BOOL Journal_CheckOpenOnContinue(JournalEntry *journalEntry, BOOL journalAcquired);
 void JournalEntry_SaveData(JournalEntry *journalEntry, void *data, u8 dataType);
 void *JournalEntry_CreateTitle(u16 mapID, u32 heapID);
-void *sub_0202BCE4(u32 heapID);
-void *sub_0202BCF0(u32 heapID);
-void *sub_0202BCFC(u32 heapID);
-void *sub_0202BD08(u32 heapID);
-void *sub_0202BD14(u32 heapID);
-void *sub_0202BD20(u32 heapID);
-void *sub_0202BD2C(u32 heapID);
-void *sub_0202BD38(u32 heapID);
-void *sub_0202BD44(u16 defeatedGym, u32 heapID);
-void *sub_0202BD58(u16 trainerType, u16 trainerID, u32 heapID);
-void *sub_0202BD70(u16 trainerID, u32 heapID);
-void *sub_0202BD84(u16 trainerID, u32 heapID);
-void *sub_0202BD98(u16 mapID, u32 heapID);
-void *sub_0202BDAC(u16 mapLabelTextID, u32 heapID);
-void *sub_0202BDC0(u16 mapLabelTextID, u32 heapID);
-void *sub_0202BDD4(u32 heapID);
-void *sub_0202BDE0(u32 heapID);
-void *sub_0202BDEC(u16 param0, u32 heapID);
-void *sub_0202BE00(u8 param0, u16 mapID, u32 heapID);
-void *sub_0202BE14(u32 heapID);
-void *sub_0202BE20(u32 heapID);
-void *sub_0202BE2C(u32 heapID, u32 param1);
+void *JournalEntry_CreateEventRestedAtHome(u32 heapID);
+void *JournalEntry_CreateEventLeftResearchLab(u32 heapID);
+void *JournalEntry_CreateEventUsedPCBox(u32 heapID);
+void *JournalEntry_CreateEventShoppedAtMart(u32 heapID);
+void *JournalEntry_CreateEventLotsOfShopping(u32 heapID);
+void *JournalEntry_CreateEventSoldALittle(u32 heapID);
+void *JournalEntry_CreateEventSoldALot(u32 heapID);
+void *JournalEntry_CreateEventBusinessAtMart(u32 heapID);
+void *JournalEntry_CreateEventGymTooTough(u16 defeatedGym, u32 heapID);
+void *JournalEntry_CreateEventGymLeader(u16 trainerType, u16 trainerID, u32 heapID);
+void *JournalEntry_CreateEventEliteFour(u16 trainerID, u32 heapID);
+void *JournalEntry_CreateEventChampion(u16 trainerID, u32 heapID);
+void *JournalEntry_CreateEventArrivedInLocation(u16 mapID, u32 heapID);
+void *JournalEntry_CreateEventLeftCave(u16 mapLabelTextID, u32 heapID);
+void *JournalEntry_CreateEventLeftBuilding(u16 mapLabelTextID, u32 heapID);
+void *JournalEntry_CreateEventGameCorner(u32 heapID);
+void *JournalEntry_CreateEventSafariGame(u32 heapID);
+void *JournalEntry_CreateEventObtainedItem(u16 item, u32 heapID);
+void *JournalEntry_CreateEventUsedMove(u8 moveIndex, u16 mapID, u32 heapID);
+void *JournalEntry_CreateEventDugUnderground(u32 heapID);
+void *JournalEntry_CreateEventBuiltSecretBase(u32 heapID);
+void *JournalEntry_CreateEventBattleFacility(u32 heapID, u32 eventType);
 void *JournalEntry_CreateMonCaught(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID);
 void *JournalEntry_CreateMonDefeated(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID);
-void *JournalEntry_InitTrainer(u16 mapID, u16 trainerID, u32 heapID);
-void *sub_0202BFCC(u16 *param0, u8 param1, u8 param2, u32 heapID);
-void *sub_0202C00C(u16 *param0, u8 param1, u8 param2, u32 heapID);
-void *sub_0202C04C(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u32 heapID);
-void *sub_0202C0AC(u16 *param0, u8 param1, u8 param2, u32 heapID);
-void *sub_0202C0EC(u16 *trainerName, u8 trainerGender, u32 heapID);
-void *sub_0202C11C(u16 *param0, u8 param1, u16 *param2, u8 param3, u32 heapID);
-void *sub_0202C168(u32 heapID);
-void *sub_0202C174(u16 *param0, u8 param1, u8 param2, u32 heapID);
-void *sub_0202C1B4(u32 heapID);
-void *sub_0202C1C0(u8 param0, u32 heapID);
-void *sub_0202C1E0(u32 heapID);
-void *sub_0202C1EC(u16 *param0, u8 param1, u16 *param2, u8 param3, u32 heapID);
-void *sub_0202C238(u32 heapID);
-void *sub_0202C244(u32 heapID, u32 param1);
-void *sub_0202C250(const u16 *param0, u8 param1, u32 heapID, u32 param3);
-void *sub_0202C280(int param0, u32 heapID, u32 param2);
+void *JournalEntry_CreateEventStandardTrainer(u16 mapID, u16 trainerID, u32 heapID);
+void *JournalEntry_CreateEventSingleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID);
+void *JournalEntry_CreateEventDoubleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID);
+void *JournalEntry_CreateEventMultiBattle(u16 *opponentName1, u16 *opponentName2, u8 opponentGender1, u8 opponentGender2, u8 battleResult, u32 heapID);
+void *JournalEntry_CreateEventMixSingleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID);
+void *JournalEntry_CreateEventGreetedInUnionRoom(u16 *trainerName, u8 trainerGender, u32 heapID);
+void *JournalEntry_CreateEventGotPokemonFromTrade(u16 *otName, u8 otGender, u16 *pokemonName, u8 pokemonGender, u32 heapID);
+void *JournalEntry_CreateEventDrewPictures(u32 heapID);
+void *JournalEntry_CreateEventUnionBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID);
+void *JournalEntry_CreateEventMixedRecords(u32 heapID);
+void *JournalEntry_CreateEventPlacedInContest(u8 placement, u32 heapID);
+void *JournalEntry_CreateEventMadePoffins(u32 heapID);
+void *JournalEntry_CreateEventGotPokemonGTS(u16 *otName, u8 otGender, u16 *pokemonName, u8 pokemonGender, u32 heapID);
+void *JournalEntry_CreateEventBattleRoom(u32 heapID);
+void *JournalEntry_CreateEventMisc(u32 heapID, u32 eventType);
+void *JournalEntry_CreateEventInteraction(const u16 *playerName, u8 playerGender, u32 heapID, u32 eventType);
+void *JournalEntry_CreateEventPlazaMinigame(int minigame, u32 heapID, u32 eventType);
 void JournalEntry_GetData(JournalEntry *journalEntry, void *dest, u8 dataType, u8 page);
-void sub_0202C5C4(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 currMapID, u32 prevMapID, u32 heapID);
-u32 sub_0202C6A4(u32 param0);
-void sub_0202C704(JournalEntry *journalEntry, u32 mapID, u32 heapID);
-void sub_0202C720(JournalEntry *journalEntry, u16 mapID, u16 trainerID, u32 heapID);
+void JournalEntry_CreateAndSaveEventMapTransition(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 currMapID, u32 prevMapID, u32 heapID);
+u32 sub_0202C6A4(u32 mapLabelTextID);
+void JournalEntry_CreateAndSaveEventArrivedInLocation(JournalEntry *journalEntry, u32 mapID, u32 heapID);
+void JournalEntry_CreateAndSaveEventTrainer(JournalEntry *journalEntry, u16 mapID, u16 trainerID, u32 heapID);
 
 #endif // POKEPLATINUM_JOURNAL_H
