@@ -53,7 +53,7 @@ the following commands to install necessary build dependencies:
     ```bash
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
-    pacman -S git meson gcc flex bison mingw-w64-x86_64-arm-none-eabi-{binutils,gcc}
+    pacman -S git meson gcc flex bison base-devel mingw-w64-x86_64-arm-none-eabi-{binutils,gcc}
     ```
 
     Press 'Y' when prompted to confirm the installation.
