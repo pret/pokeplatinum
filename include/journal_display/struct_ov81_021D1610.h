@@ -22,14 +22,14 @@ typedef struct {
     u16 unk_85C[1024];
     s8 page;
     u8 padding_105D;
-    s8 unk_105E;
+    s8 state;
     s8 unk_105F;
     s8 unk_1060;
-    u8 unk_1061;
-    u8 unk_1062;
-    u8 unk_1063;
-    u8 unk_1064;
-    u8 unk_1065[3];
+    u8 bgLayer1;
+    u8 bgLayer2;
+    u8 bgLayer3;
+    u8 bgLayer4;
+    u8 unused[3];
 } UnkStruct_ov81_021D1610;
 
 #endif // POKEPLATINUM_STRUCT_OV81_021D1610_H

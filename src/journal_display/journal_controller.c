@@ -365,25 +365,25 @@ static int JournalController_HandleInput(UnkStruct_ov81_021D1610 *param0)
 
 static int JournalController_TurnPageLeft(UnkStruct_ov81_021D1610 *param0)
 {
-    switch (param0->unk_105E) {
+    switch (param0->state) {
     case 0:
         ov81_021D1360(param0);
-        ov81_021D140C(param0, param0->unk_1063, param0->page - 1);
+        ov81_021D140C(param0, param0->bgLayer3, param0->page - 1);
         param0->page--;
         ov81_021D164C(param0, param0->unk_1060 ^ 1);
-        param0->unk_105E = 1;
+        param0->state = 1;
         Sound_PlayEffect(1681);
         break;
     case 1:
         if (ov81_021D14E0(param0) == 1) {
             param0->unk_105F = 0;
-            param0->unk_105E = 0;
+            param0->state = 0;
             param0->unk_1060 ^= 1;
 
-            Bg_LoadToTilemapRect(param0->bgConfig, param0->unk_1062, param0->unk_85C, 0, 0, 32, 32);
-            Bg_LoadToTilemapRect(param0->bgConfig, param0->unk_1061, param0->unk_5C, 0, 0, 32, 32);
-            Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->unk_1062);
-            Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->unk_1061);
+            Bg_LoadToTilemapRect(param0->bgConfig, param0->bgLayer2, param0->unk_85C, 0, 0, 32, 32);
+            Bg_LoadToTilemapRect(param0->bgConfig, param0->bgLayer1, param0->unk_5C, 0, 0, 32, 32);
+            Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->bgLayer2);
+            Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->bgLayer1);
 
             return JOURNAL_STATE_HANDLE_INPUT;
         }
@@ -394,18 +394,18 @@ static int JournalController_TurnPageLeft(UnkStruct_ov81_021D1610 *param0)
 
 static int JournalController_TurnPageRight(UnkStruct_ov81_021D1610 *param0)
 {
-    switch (param0->unk_105E) {
+    switch (param0->state) {
     case 0:
         ov81_021D1360(param0);
         param0->page++;
         ov81_021D164C(param0, param0->unk_1060 ^ 1);
-        param0->unk_105E = 1;
+        param0->state = 1;
         Sound_PlayEffect(1681);
         break;
     case 1:
         if (ov81_021D156C(param0) == 1) {
             param0->unk_105F = 0;
-            param0->unk_105E = 0;
+            param0->state = 0;
             param0->unk_1060 ^= 1;
 
             return JOURNAL_STATE_HANDLE_INPUT;
@@ -423,15 +423,15 @@ static int JournalController_IsClosingTransitionDone(UnkStruct_ov81_021D1610 *pa
 static void ov81_021D1360(UnkStruct_ov81_021D1610 *param0)
 {
     if (param0->unk_1060 == 0) {
-        param0->unk_1062 = 0;
-        param0->unk_1061 = 2;
-        param0->unk_1064 = 1;
-        param0->unk_1063 = 3;
+        param0->bgLayer2 = 0;
+        param0->bgLayer1 = 2;
+        param0->bgLayer4 = 1;
+        param0->bgLayer3 = 3;
     } else {
-        param0->unk_1062 = 1;
-        param0->unk_1061 = 3;
-        param0->unk_1064 = 0;
-        param0->unk_1063 = 2;
+        param0->bgLayer2 = 1;
+        param0->bgLayer1 = 3;
+        param0->bgLayer4 = 0;
+        param0->bgLayer3 = 2;
     }
 }
 
@@ -494,17 +494,17 @@ static void ov81_021D1450(UnkStruct_ov81_021D1610 *param0, u16 *param1, u16 para
 
 static u8 ov81_021D14E0(UnkStruct_ov81_021D1610 *param0)
 {
-    ov81_021D1450(param0, param0->unk_85C, param0->unk_1062, param0->unk_105F);
-    ov81_021D1450(param0, param0->unk_5C, param0->unk_1061, param0->unk_105F);
-    ov81_021D140C(param0, param0->unk_1061, param0->page + 1);
+    ov81_021D1450(param0, param0->unk_85C, param0->bgLayer2, param0->unk_105F);
+    ov81_021D1450(param0, param0->unk_5C, param0->bgLayer1, param0->unk_105F);
+    ov81_021D140C(param0, param0->bgLayer1, param0->page + 1);
 
     param0->unk_105F++;
 
     if (param0->unk_105F == 9) {
-        Bg_SetPriority(param0->unk_1064, 0);
-        Bg_SetPriority(param0->unk_1063, 1);
-        Bg_SetPriority(param0->unk_1062, 2);
-        Bg_SetPriority(param0->unk_1061, 3);
+        Bg_SetPriority(param0->bgLayer4, 0);
+        Bg_SetPriority(param0->bgLayer3, 1);
+        Bg_SetPriority(param0->bgLayer2, 2);
+        Bg_SetPriority(param0->bgLayer1, 3);
         return 1;
     }
 
@@ -513,15 +513,15 @@ static u8 ov81_021D14E0(UnkStruct_ov81_021D1610 *param0)
 
 static u8 ov81_021D156C(UnkStruct_ov81_021D1610 *param0)
 {
-    ov81_021D1450(param0, param0->unk_85C, param0->unk_1064, 8 - param0->unk_105F);
-    ov81_021D1450(param0, param0->unk_5C, param0->unk_1063, 8 - param0->unk_105F);
-    ov81_021D140C(param0, param0->unk_1063, param0->page);
+    ov81_021D1450(param0, param0->unk_85C, param0->bgLayer4, 8 - param0->unk_105F);
+    ov81_021D1450(param0, param0->unk_5C, param0->bgLayer3, 8 - param0->unk_105F);
+    ov81_021D140C(param0, param0->bgLayer3, param0->page);
 
     if (param0->unk_105F == 1) {
-        Bg_SetPriority(param0->unk_1064, 0);
-        Bg_SetPriority(param0->unk_1063, 1);
-        Bg_SetPriority(param0->unk_1062, 2);
-        Bg_SetPriority(param0->unk_1061, 3);
+        Bg_SetPriority(param0->bgLayer4, 0);
+        Bg_SetPriority(param0->bgLayer3, 1);
+        Bg_SetPriority(param0->bgLayer2, 2);
+        Bg_SetPriority(param0->bgLayer1, 3);
     }
 
     param0->unk_105F++;
