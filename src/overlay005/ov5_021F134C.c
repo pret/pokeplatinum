@@ -210,7 +210,7 @@ void ov5_021F1570(MapObject *param0)
     v2.unk_04 = ov5_021DF55C(v3, 0);
     v2.unk_08 = param0;
 
-    MapObject_PosVectorOut(param0, &v4);
+    MapObject_GetPosPtr(param0, &v4);
 
     v0 = 0;
     v1 = sub_02062758(param0, 2);
@@ -228,8 +228,8 @@ static int ov5_021F15B4(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     v0->unk_14 = *v1;
     v0->unk_10 = sub_020715B4(param0);
-    v0->unk_00 = sub_02062920(v0->unk_14.unk_08);
-    v0->unk_04 = MapObject_Id(v0->unk_14.unk_08);
+    v0->unk_00 = MapObject_GetGraphicsID(v0->unk_14.unk_08);
+    v0->unk_04 = MapObject_GetLocalID(v0->unk_14.unk_08);
 
     if (sub_02062E94(v0->unk_14.unk_08) == 1) {
         v0->unk_08 = sub_02062C18(v0->unk_14.unk_08);
@@ -265,7 +265,7 @@ static void ov5_021F1604(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     v0->unk_0C = 0;
 
-    if (MapObject_GetStateFlag(v1, (1 << 9) | (1 << 20)) == 1) {
+    if (MapObject_CheckStatusFlag(v1, MAP_OBJ_STATUS_HIDE | MAP_OBJ_STATUS_HIDE_SHADOW) == 1) {
         v0->unk_0C = 1;
         return;
     }
@@ -273,7 +273,7 @@ static void ov5_021F1604(UnkStruct_ov101_021D5D90 *param0, void *param1)
     {
         VecFx32 v2;
 
-        MapObject_PosVectorOut(v1, &v2);
+        MapObject_GetPosPtr(v1, &v2);
         sub_020715D4(param0, &v2);
     }
 }
@@ -319,7 +319,7 @@ UnkStruct_ov101_021D5D90 *ov5_021F16D4(MapObject *param0, int param1)
     v1.unk_04 = ov5_021DF55C(v2, 0);
     v1.unk_08 = param0;
 
-    MapObject_PosVectorOut(param0, &v3);
+    MapObject_GetPosPtr(param0, &v3);
 
     v0 = sub_02062758(param0, 2);
     return ov5_021DF72C(v2, &Unk_ov5_02200298, &v3, param1, &v1, v0);
@@ -340,7 +340,7 @@ static void ov5_021F1718(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     v0->unk_0C = 0;
 
-    if (MapObject_GetStateFlag(v1, (1 << 9) | (1 << 20)) == 1) {
+    if (MapObject_CheckStatusFlag(v1, MAP_OBJ_STATUS_HIDE | MAP_OBJ_STATUS_HIDE_SHADOW) == 1) {
         v0->unk_0C = 1;
         return;
     }
@@ -348,7 +348,7 @@ static void ov5_021F1718(UnkStruct_ov101_021D5D90 *param0, void *param1)
     {
         VecFx32 v2;
 
-        MapObject_PosVectorOut(v1, &v2);
+        MapObject_GetPosPtr(v1, &v2);
         sub_020715D4(param0, &v2);
     }
 }

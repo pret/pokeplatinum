@@ -365,7 +365,7 @@ message_bank_files = files(
     'message_bank_unk_0363.gmm',
     'message_bank_unk_0364.gmm',
     'message_bank_unk_0365.gmm',
-    'message_bank_unk_0366.gmm',
+    'message_bank_journal_entries.gmm',
     'message_bank_unk_0367.gmm',
     'message_bank_battle_strings.gmm',
     'message_bank_unk_0369.gmm',

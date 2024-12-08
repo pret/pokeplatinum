@@ -12,7 +12,7 @@
 typedef struct {
     BgConfig *unk_00;
     Window unk_04[4];
-    Journal *unk_44;
+    JournalEntry *unk_44;
     TrainerInfo *unk_48;
     SaveData *unk_4C;
     MessageLoader *unk_50;

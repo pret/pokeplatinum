@@ -192,7 +192,7 @@ void ov7_0224CDA4(FieldTask *param0, FieldSystem *fieldSystem, u16 *param2, u8 p
     v0->unk_288 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v0->unk_28C = param4;
     v0->unk_2A6 = ov7_0224CE90(fieldSystem);
-    v0->unk_27C = fieldSystem->journal;
+    v0->unk_27C = fieldSystem->journalEntry;
     v0->unk_2A9 = param3;
     v0->unk_284 = fieldSystem->saveData;
     v0->unk_2B4 = sub_0200C440(1, 2, 0, 11);
@@ -405,19 +405,19 @@ static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
             if ((MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != 101) && (fieldSystem->location->mapId != 81) && (fieldSystem->location->mapId != 446)) {
                 if ((param1->unk_2A7 != 0) && (param1->unk_2A8 != 0)) {
                     v0 = sub_0202BD38(11);
-                    Journal_SaveData(param1->unk_27C, v0, 1);
+                    JournalEntry_SaveData(param1->unk_27C, v0, JOURNAL_UNK_04);
                 } else if (param1->unk_2A7 > 1) {
                     v0 = sub_0202BD14(11);
-                    Journal_SaveData(param1->unk_27C, v0, 1);
+                    JournalEntry_SaveData(param1->unk_27C, v0, JOURNAL_UNK_04);
                 } else if (param1->unk_2A8 > 1) {
                     v0 = sub_0202BD2C(11);
-                    Journal_SaveData(param1->unk_27C, v0, 1);
+                    JournalEntry_SaveData(param1->unk_27C, v0, JOURNAL_UNK_04);
                 } else if (param1->unk_2A7 != 0) {
                     v0 = sub_0202BD08(11);
-                    Journal_SaveData(param1->unk_27C, v0, 1);
+                    JournalEntry_SaveData(param1->unk_27C, v0, JOURNAL_UNK_04);
                 } else if (param1->unk_2A8 != 0) {
                     v0 = sub_0202BD20(11);
-                    Journal_SaveData(param1->unk_27C, v0, 1);
+                    JournalEntry_SaveData(param1->unk_27C, v0, JOURNAL_UNK_04);
                 }
             }
         }

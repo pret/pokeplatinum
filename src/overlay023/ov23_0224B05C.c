@@ -2018,7 +2018,7 @@ void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
         if ((v0->unk_01 == 3) || (v0->unk_01 == 4)) {
             void *v6 = sub_0202BE20(11);
 
-            Journal_SaveData(Unk_ov23_022577AC->fieldSystem->journal, v6, 1);
+            JournalEntry_SaveData(Unk_ov23_022577AC->fieldSystem->journalEntry, v6, JOURNAL_UNK_04);
             GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_35);
         }
     }

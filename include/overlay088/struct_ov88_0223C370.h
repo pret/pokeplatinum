@@ -23,7 +23,7 @@ typedef struct {
     SaveData *unk_10;
     UnkStruct_0202C878 *unk_14;
     Options *unk_18;
-    Journal *unk_1C;
+    JournalEntry *unk_1C;
     GameRecords *records;
     PokedexData *unk_24;
     int unk_28;

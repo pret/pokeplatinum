@@ -1891,7 +1891,7 @@ static BOOL ScrCmd_017(ScriptContext *ctx)
     v0 = ScriptContext_ReadByte(ctx);
     v1 = (s32)ScriptContext_ReadWord(ctx);
 
-    if (MapObject_Id(*v2) == v0) {
+    if (MapObject_GetLocalID(*v2) == v0) {
         ScriptContext_Jump(ctx, (u8 *)(ctx->scriptPtr + v1));
     }
 
@@ -2244,7 +2244,7 @@ static BOOL ScrCmd_02E(ScriptContext *ctx)
 static BOOL ScrCmd_20C(ScriptContext *ctx)
 {
     MapObject **mapObj = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    u8 v1 = MapObject_GetEventType(*mapObj);
+    u8 v1 = MapObject_GetTrainerType(*mapObj);
 
     ov5_021DD444(ctx, ctx->loader, (u8)v1, 1, NULL);
     ScriptContext_Pause(ctx, sub_02040014);
@@ -2471,7 +2471,7 @@ static BOOL ScrCmd_036(ScriptContext *ctx)
     if (v4 == 0) {
         MapObject **v8 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
 
-        v4 = sub_020629D8(*v8, 0);
+        v4 = MapObject_GetDataAt(*v8, 0);
     }
 
     ov5_021E1B38(fieldSystem->unk_64, v6, v4);
@@ -2973,8 +2973,8 @@ static BOOL ScrCmd_2A1(ScriptContext *ctx)
     }
 
     v10 = Heap_AllocFromHeap(4, sizeof(MapObjectAnimCmd) * 64);
-    v8 = MapObject_GetXPos(v4);
-    v9 = MapObject_GetZPos(v4);
+    v8 = MapObject_GetX(v4);
+    v9 = MapObject_GetZ(v4);
     v11 = 0;
 
     if (v8 < v6) {
@@ -3311,7 +3311,7 @@ static BOOL ScrCmd_066(ScriptContext *ctx)
     {
         const VecFx32 *v3;
 
-        v3 = MapObject_PosVector(*v2);
+        v3 = MapObject_GetPos(*v2);
         ov5_021E931C(v3, ctx->fieldSystem->unk_28);
         Camera_TrackTarget(v3, ctx->fieldSystem->camera);
     }
@@ -3330,7 +3330,7 @@ static BOOL ScrCmd_067(ScriptContext *ctx)
         const VecFx32 *v2;
 
         v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 0xff);
-        v2 = MapObject_PosVector(v1);
+        v2 = MapObject_GetPos(v1);
 
         ov5_021E931C(v2, ctx->fieldSystem->unk_28);
         Camera_TrackTarget(v2, ctx->fieldSystem->camera);
@@ -3400,8 +3400,8 @@ static BOOL ScrCmd_06A(ScriptContext *ctx)
     mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
     v1 = ScriptContext_GetVarPointer(ctx);
     v2 = ScriptContext_GetVarPointer(ctx);
-    *v1 = MapObject_GetXPos(mapObj);
-    *v2 = MapObject_GetZPos(mapObj);
+    *v1 = MapObject_GetX(mapObj);
+    *v2 = MapObject_GetZ(mapObj);
 
     return 0;
 }
@@ -3469,7 +3469,7 @@ static BOOL ScrCmd_2AD(ScriptContext *ctx)
     mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
 
     if (mapObj != NULL) {
-        *v1 = MapObject_GetMoveCode(mapObj);
+        *v1 = MapObject_GetMovementType(mapObj);
     }
 
     return 0;
@@ -3885,7 +3885,7 @@ static BOOL sub_02041CF4(ScriptContext *ctx)
         void *v3;
 
         v3 = sub_0202BCFC(11);
-        Journal_SaveData(fieldSystem->journal, v3, 1);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v3, JOURNAL_UNK_04);
     }
 
     Heap_FreeToHeap(*v0);
@@ -5283,7 +5283,7 @@ static BOOL ScrCmd_13C(ScriptContext *ctx)
     u16 v5;
 
     if (v2 == 0) {
-        v5 = MapObject_Id(*v0);
+        v5 = MapObject_GetLocalID(*v0);
     } else {
         v5 = 0;
     }
@@ -5321,7 +5321,7 @@ static BOOL ScrCmd_13F(ScriptContext *ctx)
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
     StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    *v2 = sub_0205BCF4(ctx->fieldSystem->unk_7C, MapObject_Id(*v0), v1, *v3);
+    *v2 = sub_0205BCF4(ctx->fieldSystem->unk_7C, MapObject_GetLocalID(*v0), v1, *v3);
     return 0;
 }
 
@@ -5348,7 +5348,7 @@ static BOOL ScrCmd_140(ScriptContext *ctx)
     MapObject **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0205B780(fieldSystem->unk_7C, MapObject_Id(*v1));
+    *v2 = sub_0205B780(fieldSystem->unk_7C, MapObject_GetLocalID(*v1));
     return 0;
 }
 
@@ -5359,7 +5359,7 @@ static BOOL ScrCmd_146(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 *v3 = ScriptContext_GetVarPointer(ctx);
 
-    *v3 = sub_0205B804(fieldSystem->unk_7C, MapObject_Id(*v1), v2);
+    *v3 = sub_0205B804(fieldSystem->unk_7C, MapObject_GetLocalID(*v1), v2);
     return 0;
 }
 
@@ -5873,9 +5873,9 @@ static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx)
 
     MapObject *player = Player_MapObject(fieldSystem->playerAvatar);
 
-    *destVarX = MapObject_GetXPos(player);
-    *destVarY = MapObject_GetYPos(player) / 2;
-    *destVarZ = MapObject_GetZPos(player);
+    *destVarX = MapObject_GetX(player);
+    *destVarY = MapObject_GetY(player) / 2;
+    *destVarZ = MapObject_GetZ(player);
 
     return FALSE;
 }
@@ -5894,7 +5894,7 @@ static BOOL ScrCmd_19E(ScriptContext *ctx)
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
 
     ctx->data[0] = v3;
-    *v0 = ov23_02252C98(v2, ctx->fieldSystem, MapObject_Id(*v1));
+    *v0 = ov23_02252C98(v2, ctx->fieldSystem, MapObject_GetLocalID(*v1));
 
     ScriptContext_Pause(ctx, sub_020441C8);
     return 1;
@@ -6099,7 +6099,7 @@ static BOOL ScrCmd_GiveJournal(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     SystemFlag_HandleJournalAcquired(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_SET);
-    fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), 1);
+    fieldSystem->journalEntry = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), 1);
     sub_02053494(fieldSystem);
 
     return FALSE;
@@ -6117,15 +6117,15 @@ static BOOL ScrCmd_1CD(ScriptContext *ctx)
 
     switch (v1) {
     case 16:
-        v0 = 1;
+        v0 = JOURNAL_UNK_04;
         *v6 = sub_0202BDD4(4);
         break;
     case 17:
-        v0 = 1;
+        v0 = JOURNAL_UNK_04;
         *v6 = sub_0202BDE0(4);
         break;
     case 18:
-        v0 = 1;
+        v0 = JOURNAL_UNK_04;
         *v6 = sub_0202BDEC(v2, 4);
         break;
     case 19:
@@ -6135,7 +6135,7 @@ static BOOL ScrCmd_1CD(ScriptContext *ctx)
     case 24:
     case 25:
     case 26:
-        v0 = 1;
+        v0 = JOURNAL_UNK_04;
         *v6 = sub_0202BE00(v1 - 19, v2, 4);
         break;
     case 36:
@@ -6143,14 +6143,14 @@ static BOOL ScrCmd_1CD(ScriptContext *ctx)
     case 39:
     case 38:
     case 40:
-        v0 = 1;
+        v0 = JOURNAL_UNK_04;
         *v6 = sub_0202BE2C(4, v1);
         break;
     default:
         return 1;
     }
 
-    Journal_SaveData(ctx->fieldSystem->journal, *v6, v0);
+    JournalEntry_SaveData(ctx->fieldSystem->journalEntry, *v6, v0);
     return 1;
 }
 
@@ -6394,11 +6394,9 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
     case 1:
         SystemFlag_ClearSafariGameActive(v3);
         sub_0206D720(ctx->fieldSystem);
-        {
-            void *v6 = sub_0202BDE0(4);
+        void *v6 = sub_0202BDE0(4);
 
-            Journal_SaveData(ctx->fieldSystem->journal, v6, 1);
-        }
+        JournalEntry_SaveData(ctx->fieldSystem->journalEntry, v6, JOURNAL_UNK_04);
         *v0 = 0;
         *v1 = 0;
         break;
@@ -7782,7 +7780,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
     v2->unk_24 = v1;
     v2->unk_08 = ctx->fieldSystem->saveData;
     v2->unk_1C = ctx->fieldSystem->location->mapId;
-    v2->unk_0C = ctx->fieldSystem->journal;
+    v2->unk_0C = ctx->fieldSystem->journalEntry;
     v2->unk_10 = ctx->fieldSystem->unk_98;
     v2->unk_20 = ctx->fieldSystem->battleSubscreenCursorOn;
 

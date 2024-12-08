@@ -76,10 +76,10 @@ void sub_0208BA84(UnkStruct_0208BA84 *param0, BOOL param1, int param2)
 
 static void sub_0208BA8C(SaveData *param0, int param1, u32 param2)
 {
-    Journal *v0 = SaveData_GetJournal(param0);
+    JournalEntry *v0 = SaveData_GetJournal(param0);
     void *v1 = sub_0202C244(param1, param2);
 
-    Journal_SaveData(v0, v1, 4);
+    JournalEntry_SaveData(v0, v1, JOURNAL_UNK_1C);
 }
 
 static void sub_0208BAAC(OverlayManager *param0, int param1)
