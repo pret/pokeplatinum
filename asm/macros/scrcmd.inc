@@ -2464,13 +2464,13 @@
     .short 460
     .endm
 
-    .macro ScrCmd_CreateJournalEvent arg0, arg1, arg2, arg3, arg4
+    .macro ScrCmd_CreateJournalEvent eventType, eventParam, unused1, unused2, unused3
     .short 461
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \eventType
+    .short \eventParam
+    .short \unused1
+    .short \unused2
+    .short \unused3
     .endm
 
     .macro ScrCmd_1CE

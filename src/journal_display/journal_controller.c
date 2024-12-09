@@ -79,19 +79,19 @@ int JournalController_Init(OverlayManager *ovyManager, int *state)
     G2S_BlendNone();
 
     SetAutorepeat(4, 8);
-    Heap_Create(3, 42, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_JOURNAL, 0x20000);
 
     v1 = OverlayManager_Args(ovyManager);
-    v0 = OverlayManager_NewData(ovyManager, sizeof(UnkStruct_ov81_021D1610), 42);
+    v0 = OverlayManager_NewData(ovyManager, sizeof(UnkStruct_ov81_021D1610), HEAP_ID_JOURNAL);
     memset(v0, 0, sizeof(UnkStruct_ov81_021D1610));
-    v0->bgConfig = BgConfig_New(42);
+    v0->bgConfig = BgConfig_New(HEAP_ID_JOURNAL);
 
     v0->saveData = v1;
     v0->journalEntry = SaveData_GetJournal(v1);
     v0->trainerInfo = SaveData_GetTrainerInfo(v1);
 
-    sub_0208C120(0, 42);
-    Font_UseImmediateGlyphAccess(FONT_SYSTEM, 42);
+    sub_0208C120(0, HEAP_ID_JOURNAL);
+    Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_JOURNAL);
 
     JournalController_SetVRAMBanks();
     JournalController_SetupBgs(v0->bgConfig);
@@ -107,7 +107,7 @@ int JournalController_Init(OverlayManager *ovyManager, int *state)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(67, 0, 0);
 
-    return 1;
+    return TRUE;
 }
 
 int JournalController_Main(OverlayManager *ovyManager, int *state)
@@ -129,11 +129,11 @@ int JournalController_Main(OverlayManager *ovyManager, int *state)
         break;
     case JOURNAL_STATE_CLOSE:
         if (JournalController_IsClosingTransitionDone(v0) == 1) {
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 int JournalController_Exit(OverlayManager *ovyManager, int *state)
@@ -148,9 +148,9 @@ int JournalController_Exit(OverlayManager *ovyManager, int *state)
 
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
     OverlayManager_FreeData(ovyManager);
-    Heap_Destroy(42);
+    Heap_Destroy(HEAP_ID_JOURNAL);
 
-    return 1;
+    return TRUE;
 }
 
 static void JournalController_MainCallback(void *data)
@@ -264,8 +264,8 @@ static void JournalController_SetupBgs(BgConfig *bgConfig)
 
     Bg_InitFromTemplate(bgConfig, 3, &v4, 0);
 
-    Bg_ClearTilesRange(0, 32, 0, 42);
-    Bg_ClearTilesRange(1, 32, 0, 42);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_JOURNAL);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_JOURNAL);
 }
 
 static void JournalController_TeardownBgs(BgConfig *bgConfig)
@@ -281,16 +281,16 @@ static void JournalController_TeardownBgs(BgConfig *bgConfig)
 static void ov81_021D1050(UnkStruct_ov81_021D1610 *param0)
 {
     u16 *v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__F_NOTE_GRA, 42);
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__F_NOTE_GRA, HEAP_ID_JOURNAL);
 
     if (TrainerInfo_Gender(param0->trainerInfo) == 0) {
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, param0->bgConfig, 2, 0, 0, 0, 42);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 0, param0->bgConfig, 2, 0, 0, 0, 42);
-        Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 0, 42);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, param0->bgConfig, 2, 0, 0, 0, HEAP_ID_JOURNAL);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 0, param0->bgConfig, 2, 0, 0, 0, HEAP_ID_JOURNAL);
+        Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 0, HEAP_ID_JOURNAL);
     } else {
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 3, param0->bgConfig, 2, 0, 0, 0, 42);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 1, param0->bgConfig, 2, 0, 0, 0, 42);
-        Graphics_LoadPaletteFromOpenNARC(v1, 5, 0, 0, 0, 42);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 3, param0->bgConfig, 2, 0, 0, 0, HEAP_ID_JOURNAL);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 1, param0->bgConfig, 2, 0, 0, 0, HEAP_ID_JOURNAL);
+        Graphics_LoadPaletteFromOpenNARC(v1, 5, 0, 0, 0, HEAP_ID_JOURNAL);
     }
 
     NARC_dtor(v1);
@@ -299,15 +299,15 @@ static void ov81_021D1050(UnkStruct_ov81_021D1610 *param0)
     MI_CpuCopy16(v0, param0->unk_5C, 0x800);
     Bg_LoadTilemapBuffer(param0->bgConfig, 3, param0->unk_5C, 0x800);
 
-    Font_LoadTextPalette(0, 15 * 32, 42);
+    Font_LoadTextPalette(0, 15 * 32, HEAP_ID_JOURNAL);
     Bg_MaskPalette(4, 0);
 }
 
 static void ov81_021D1130(UnkStruct_ov81_021D1610 *param0)
 {
-    param0->loader = MessageLoader_Init(0, 26, 366, 42);
-    param0->template = StringTemplate_Default(42);
-    param0->strbuf = Strbuf_Init(128, 42);
+    param0->loader = MessageLoader_Init(0, 26, 366, HEAP_ID_JOURNAL);
+    param0->template = StringTemplate_Default(HEAP_ID_JOURNAL);
+    param0->strbuf = Strbuf_Init(128, HEAP_ID_JOURNAL);
 }
 
 static void ov81_021D115C(UnkStruct_ov81_021D1610 *param0)
@@ -350,13 +350,13 @@ static int JournalController_HandleInput(UnkStruct_ov81_021D1610 *param0)
                 return JOURNAL_STATE_TURN_LEFT;
             }
         } else {
-            sub_0208C120(1, 42);
+            sub_0208C120(1, HEAP_ID_JOURNAL);
             return JOURNAL_STATE_CLOSE;
         }
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
-        sub_0208C120(1, 42);
+        sub_0208C120(1, HEAP_ID_JOURNAL);
         return JOURNAL_STATE_CLOSE;
     }
 
@@ -442,23 +442,23 @@ static u8 JournalController_PageExists(UnkStruct_ov81_021D1610 *param0, u8 param
     JournalEntry_GetData(param0->journalEntry, &journalEntryTitle, JOURNAL_TITLE, param1);
 
     if (journalEntryTitle.year == 0 && journalEntryTitle.month == 0 && journalEntryTitle.day == 0) {
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 static u8 JournalController_NewDirectionPageExists(UnkStruct_ov81_021D1610 *param0, s8 pageChange)
 {
     if (pageChange == 1) {
         if (param0->page != 9 && JournalController_PageExists(param0, param0->page + 1) == 1) {
-            return 1;
+            return TRUE;
         }
     } else if (param0->page != 0 && JournalController_PageExists(param0, param0->page - 1) == 1) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void ov81_021D140C(UnkStruct_ov81_021D1610 *param0, u8 bgLayer, u8 palette)
@@ -505,10 +505,10 @@ static u8 ov81_021D14E0(UnkStruct_ov81_021D1610 *param0)
         Bg_SetPriority(param0->bgLayer3, 1);
         Bg_SetPriority(param0->bgLayer2, 2);
         Bg_SetPriority(param0->bgLayer1, 3);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static u8 ov81_021D156C(UnkStruct_ov81_021D1610 *param0)
@@ -527,8 +527,8 @@ static u8 ov81_021D156C(UnkStruct_ov81_021D1610 *param0)
     param0->unk_105F++;
 
     if (param0->unk_105F == 9) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }

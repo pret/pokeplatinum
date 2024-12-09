@@ -109,7 +109,7 @@ enum JournalOnlineEventType {
     ONLINE_EVENT_WIFI_CLUB,
 };
 
-typedef struct {
+typedef struct JournalEntryTitle {
     u32 year : 7;
     u32 month : 4;
     u32 week : 3;
@@ -117,7 +117,7 @@ typedef struct {
     u32 mapID : 13;
 } JournalEntryTitle;
 
-typedef struct {
+typedef struct JournalEntryLocationEvent {
     u8 eventType;
     u8 padding_01;
     u16 locationID; // can be a mapID, a mapLabelTextID, or an index refering to a gym
@@ -125,7 +125,7 @@ typedef struct {
     u16 item;
 } JournalEntryLocationEvent;
 
-typedef struct {
+typedef struct JournalEntryMon {
     u8 battleResult;
     u8 stringVariant : 2;
     u8 timeOfDay : 4;
@@ -133,13 +133,13 @@ typedef struct {
     u16 species;
 } JournalEntryMon;
 
-typedef struct {
+typedef struct JournalEntryTrainer {
     u16 standard : 1;
     u16 trainerID : 15;
     u16 mapID;
 } JournalEntryTrainer;
 
-typedef struct {
+typedef struct JournalEntryOnlineEvent {
     u8 eventType;
     u8 result : 4; // can be a battle result, the placement in a contest, or an index refering to a plaza minigame
     u8 unused1 : 1;
@@ -150,7 +150,7 @@ typedef struct {
     u16 pokemonName[12];
 } JournalEntryOnlineEvent;
 
-typedef struct {
+typedef struct JournalEntry {
     JournalEntryTitle title;
     u32 locationEvents[MAX_JOURNAL_LOCATION_EVENTS];
     JournalEntryMon mon;
@@ -187,8 +187,8 @@ void *JournalEntry_CreateEventUsedMove(u8 moveIndex, u16 mapID, u32 heapID);
 void *JournalEntry_CreateEventDugUnderground(u32 heapID);
 void *JournalEntry_CreateEventBuiltSecretBase(u32 heapID);
 void *JournalEntry_CreateEventBattleFacility(u32 heapID, u32 eventType);
-void *JournalEntry_CreateMonCaught(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID);
-void *JournalEntry_CreateMonDefeated(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID);
+void *JournalEntry_CreateEventMonCaught(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID);
+void *JournalEntry_CreateEventMonDefeated(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID);
 void *JournalEntry_CreateEventStandardTrainer(u16 mapID, u16 trainerID, u32 heapID);
 void *JournalEntry_CreateEventSingleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID);
 void *JournalEntry_CreateEventDoubleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID);

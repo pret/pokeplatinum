@@ -780,7 +780,7 @@ static JournalEntryMon *JournalEntry_CreateMon(u32 heapID)
     return journalEntryMon;
 }
 
-void *JournalEntry_CreateMonCaught(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID)
+void *JournalEntry_CreateEventMonCaught(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID)
 {
     JournalEntryMon *journalEntryMon = JournalEntry_CreateMon(heapID);
     u8 v1;
@@ -796,14 +796,14 @@ void *JournalEntry_CreateMonCaught(const PlayTime *playTime, u16 species, u8 gen
         journalEntryMon->stringVariant = 0;
     } else if (v1 == 1 || v1 == 3) {
         journalEntryMon->stringVariant = 1;
-    } else { // v1 == 5
+    } else {
         journalEntryMon->stringVariant = 2;
     }
 
     return journalEntryMon;
 }
 
-void *JournalEntry_CreateMonDefeated(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID)
+void *JournalEntry_CreateEventMonDefeated(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID)
 {
     JournalEntryMon *journalEntryMon = JournalEntry_CreateMon(heapID);
     u8 v1;
@@ -819,7 +819,7 @@ void *JournalEntry_CreateMonDefeated(const PlayTime *playTime, u16 species, u8 g
         journalEntryMon->stringVariant = 0;
     } else if (v1 == 2 || v1 == 4) {
         journalEntryMon->stringVariant = 1;
-    } else { // v1 == 0
+    } else {
         journalEntryMon->stringVariant = 2;
     }
 
