@@ -16,7 +16,22 @@
 #include "res/text/gmm/message_bank_location_names.h"
 #include "res/trainers/trdata.naix"
 
+#define LOCATION_EVENT(locationID, trainerID, eventType) ((locationID << 16) | ((trainerID & 0x3ff) << 6) | (eventType & 0x3f))
+
+#define LOCATION_EVENT_TYPE(locationEvent) (locationEvent & 0x3f)
+#define LOCATION_EVENT_TRAINER_ID(locationEvent) ((locationEvent >> 6) & 0x3ff)
+#define LOCATION_EVENT_LOCATION_ID(locationEvent) ((locationEvent >> 16) & 0xffff)
+#define LOCATION_EVENT_ITEM(locationEvent) ((locationEvent >> 16) & 0xffff)
+
 #define MAX_JOURNAL_ENTRIES 10
+
+#define CHAR_NONE 0xffff
+
+#define GYM_NONE 0xff
+
+#define TRAINER_TYPE_ELITE_FOUR 8
+#define TRAINER_TYPE_CHAMPION   9
+#define TRAINER_TYPE_STANDARD   10
 
 typedef struct {
     u32 mapLabelTextID;
@@ -125,7 +140,7 @@ void Journal_Init10(JournalEntry *journalEntry)
 
 JournalEntry *SaveData_GetJournal(SaveData *saveData)
 {
-    return SaveData_SaveTable(saveData, 18);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_JOURNAL);
 }
 
 JournalEntry *Journal_GetSavedPage(JournalEntry *journalEntry, BOOL journalAcquired)
@@ -345,7 +360,7 @@ static u32 *JournalEntry_GetEmptyLocationEvent(u32 *locationEvents)
     u32 i;
 
     for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
-        if ((locationEvents[i] & EVENT_TYPE) == LOCATION_EVENT_NONE) {
+        if (LOCATION_EVENT_TYPE(locationEvents[i]) == LOCATION_EVENT_NONE) {
             return &locationEvents[i];
         }
     }
@@ -389,18 +404,18 @@ static void JournalEntry_SaveLocationEventMisc(u32 *locationEvents, JournalEntry
         }
     }
 
-    if (i != 0 && (locationEvents[i - 1] & EVENT_TYPE) == journalEntryLocationEvent->eventType) {
+    if (i != 0 && LOCATION_EVENT_TYPE(locationEvents[i - 1]) == journalEntryLocationEvent->eventType) {
         return;
     }
 
     locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
-    *locationEvent = (journalEntryLocationEvent->eventType & EVENT_TYPE);
+    *locationEvent = LOCATION_EVENT(0, 0, journalEntryLocationEvent->eventType);
 }
 
 static void JournalEntry_SaveLocationEventChampion(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
     u32 *locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
-    *locationEvent = (journalEntryLocationEvent->locationID << 16) | ((journalEntryLocationEvent->trainerID & TRAINER_ID) << 6) | (journalEntryLocationEvent->eventType & EVENT_TYPE);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->locationID, journalEntryLocationEvent->trainerID, journalEntryLocationEvent->eventType);
 }
 
 static void JournalEntry_SaveLocationEventEliteFour(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
@@ -409,7 +424,7 @@ static void JournalEntry_SaveLocationEventEliteFour(u32 *locationEvents, Journal
     u16 i;
 
     for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
-        if ((locationEvents[i] & EVENT_TYPE) == LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER) {
+        if (LOCATION_EVENT_TYPE(locationEvents[i]) == LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER) {
             locationEvents[i] = 0;
 
             for (i = i; i < MAX_JOURNAL_LOCATION_EVENTS - 1; i++) {
@@ -422,7 +437,7 @@ static void JournalEntry_SaveLocationEventEliteFour(u32 *locationEvents, Journal
     }
 
     locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
-    *locationEvent = (journalEntryLocationEvent->locationID << 16) | ((journalEntryLocationEvent->trainerID & TRAINER_ID) << 6) | (journalEntryLocationEvent->eventType & EVENT_TYPE);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->locationID, journalEntryLocationEvent->trainerID, journalEntryLocationEvent->eventType);
 }
 
 static void JournalEntry_SaveLocationEventGym(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
@@ -431,8 +446,8 @@ static void JournalEntry_SaveLocationEventGym(u32 *locationEvents, JournalEntryL
     u16 i;
 
     for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
-        if ((locationEvents[i] & EVENT_TYPE) == LOCATION_EVENT_GYM_WAS_TOO_TOUGH
-            && ((locationEvents[i] >> 16) & LOCATION_ID) == journalEntryLocationEvent->locationID) {
+        if (LOCATION_EVENT_TYPE(locationEvents[i]) == LOCATION_EVENT_GYM_WAS_TOO_TOUGH
+            && LOCATION_EVENT_LOCATION_ID(locationEvents[i]) == journalEntryLocationEvent->locationID) {
             locationEvents[i] = 0;
 
             for (i = i; i < MAX_JOURNAL_LOCATION_EVENTS - 1; i++) {
@@ -444,7 +459,7 @@ static void JournalEntry_SaveLocationEventGym(u32 *locationEvents, JournalEntryL
     }
 
     locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
-    *locationEvent = (journalEntryLocationEvent->locationID << 16) | ((journalEntryLocationEvent->trainerID & TRAINER_ID) << 6) | (journalEntryLocationEvent->eventType & EVENT_TYPE);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->locationID, journalEntryLocationEvent->trainerID, journalEntryLocationEvent->eventType);
 }
 
 static void JournalEntry_SaveLocationEventTravel(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
@@ -458,12 +473,14 @@ static void JournalEntry_SaveLocationEventTravel(u32 *locationEvents, JournalEnt
         }
     }
 
-    if (i != 0 && ((locationEvents[i - 1] & EVENT_TYPE) == journalEntryLocationEvent->eventType) && ((locationEvents[i - 1] >> 16) == journalEntryLocationEvent->locationID)) {
+    if (i != 0
+        && LOCATION_EVENT_TYPE(locationEvents[i - 1]) == journalEntryLocationEvent->eventType
+        && (locationEvents[i - 1] >> 16) == journalEntryLocationEvent->locationID) {
         return;
     }
 
     locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
-    *locationEvent = (journalEntryLocationEvent->locationID << 16) | (journalEntryLocationEvent->eventType & EVENT_TYPE);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->locationID, 0, journalEntryLocationEvent->eventType);
 }
 
 static void JournalEntry_SaveLocationEventItem(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
@@ -478,13 +495,13 @@ static void JournalEntry_SaveLocationEventItem(u32 *locationEvents, JournalEntry
     }
 
     if (i != 0
-        && (locationEvents[i - 1] & EVENT_TYPE) == journalEntryLocationEvent->eventType
+        && LOCATION_EVENT_TYPE(locationEvents[i - 1]) == journalEntryLocationEvent->eventType
         && (locationEvents[i - 1] >> 16) == journalEntryLocationEvent->item) {
         return;
     }
 
     locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
-    *locationEvent = (journalEntryLocationEvent->item << 16) | (journalEntryLocationEvent->eventType & EVENT_TYPE);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->item, 0, journalEntryLocationEvent->eventType);
 }
 
 static void JournalEntry_SaveLocationEventMove(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
@@ -498,12 +515,14 @@ static void JournalEntry_SaveLocationEventMove(u32 *locationEvents, JournalEntry
         }
     }
 
-    if (i != 0 && ((locationEvents[i - 1] & EVENT_TYPE) == journalEntryLocationEvent->eventType) && ((locationEvents[i - 1] >> 16) == journalEntryLocationEvent->locationID)) {
+    if (i != 0
+        && LOCATION_EVENT_TYPE(locationEvents[i - 1]) == journalEntryLocationEvent->eventType
+        && (locationEvents[i - 1] >> 16) == journalEntryLocationEvent->locationID) {
         return;
     }
 
     locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
-    *locationEvent = (journalEntryLocationEvent->locationID << 16) | (journalEntryLocationEvent->eventType & EVENT_TYPE);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->locationID, 0, journalEntryLocationEvent->eventType);
 }
 
 static void JournalEntry_SaveOnlineEventBattle(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)
@@ -1071,7 +1090,7 @@ static void JournalEntry_GetLocationEvent(JournalEntry *journalEntry, JournalEnt
     for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
         memset(&journalEntryLocationEvent[i], 0, sizeof(JournalEntryLocationEvent));
 
-        switch (journalEntry->locationEvents[i] & EVENT_TYPE) {
+        switch (LOCATION_EVENT_TYPE(journalEntry->locationEvents[i])) {
         case LOCATION_EVENT_RESTED_AT_HOME:
         case LOCATION_EVENT_LEFT_RESEARCH_LAB:
         case LOCATION_EVENT_USED_PC_BOX:
@@ -1188,32 +1207,32 @@ static void JournalEntry_GetOnlineEvent(JournalEntry *journalEntry, JournalEntry
 
 static void JournalEntry_GetLocationEventMisc(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    journalEntryLocationEvent->eventType = locationEvent & EVENT_TYPE;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_TYPE(locationEvent);
 }
 
 static void JournalEntry_GetLocationEventTrainer(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    journalEntryLocationEvent->eventType = locationEvent & EVENT_TYPE;
-    journalEntryLocationEvent->trainerID = (locationEvent >> 6) & TRAINER_ID;
-    journalEntryLocationEvent->locationID = (locationEvent >> 16) & LOCATION_ID;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_TYPE(locationEvent);
+    journalEntryLocationEvent->trainerID = LOCATION_EVENT_TRAINER_ID(locationEvent);
+    journalEntryLocationEvent->locationID = LOCATION_EVENT_LOCATION_ID(locationEvent);
 }
 
 static void JournalEntry_GetLocationEventTravel(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    journalEntryLocationEvent->eventType = locationEvent & EVENT_TYPE;
-    journalEntryLocationEvent->locationID = (locationEvent >> 16) & LOCATION_ID;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_TYPE(locationEvent);
+    journalEntryLocationEvent->locationID = LOCATION_EVENT_LOCATION_ID(locationEvent);
 }
 
 static void JournalEntry_GetLocationEventItem(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    journalEntryLocationEvent->eventType = locationEvent & EVENT_TYPE;
-    journalEntryLocationEvent->item = (locationEvent >> 16) & ITEM;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_TYPE(locationEvent);
+    journalEntryLocationEvent->item = LOCATION_EVENT_ITEM(locationEvent);
 }
 
 static void JournalEntry_GetLocationEventMove(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    journalEntryLocationEvent->eventType = locationEvent & EVENT_TYPE;
-    journalEntryLocationEvent->locationID = (locationEvent >> 16) & LOCATION_ID;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_TYPE(locationEvent);
+    journalEntryLocationEvent->locationID = LOCATION_EVENT_LOCATION_ID(locationEvent);
 }
 
 static void JournalEntry_GetOnlineEventBattle(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)

@@ -11,19 +11,6 @@
 #define MAX_JOURNAL_LOCATION_EVENTS 4
 #define MAX_JOURNAL_ONLINE_EVENTS   2
 
-#define EVENT_TYPE  0x3f
-#define TRAINER_ID  0x3ff
-#define LOCATION_ID 0xffff
-#define ITEM        0xffff
-
-#define CHAR_NONE 0xffff
-
-#define GYM_NONE 0xff
-
-#define TRAINER_TYPE_ELITE_FOUR 8
-#define TRAINER_TYPE_CHAMPION   9
-#define TRAINER_TYPE_STANDARD   10
-
 enum JournalDataType {
     JOURNAL_TITLE = 0,
     JOURNAL_LOCATION,
