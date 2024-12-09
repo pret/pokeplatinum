@@ -1040,12 +1040,14 @@ static void BattleController_CheckFieldConditions(BattleSystem *battleSys, Battl
                 side = battleCtx->fieldConditionCheckTemp;
 
                 if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_TAILWIND) {
-                    battleCtx->sideConditionsMask[side] -= SIDE_CONDITION_TAILWIND_SHIFT;
+                    if((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_TAILWIND)!=SIDE_CONDITION_TAILWIND){
+                        battleCtx->sideConditionsMask[side] -= SIDE_CONDITION_TAILWIND_SHIFT;
 
-                    if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_TAILWIND) == FALSE) {
-                        PrepareSubroutineSequence(battleCtx, subscript_tailwind_end);
-                        battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
-                        state = STATE_BREAK_OUT;
+                        if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_TAILWIND) == FALSE) {
+                            PrepareSubroutineSequence(battleCtx, subscript_tailwind_end);
+                            battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
+                            state = STATE_BREAK_OUT;
+                        }
                     }
                 }
 
@@ -1225,11 +1227,13 @@ static void BattleController_CheckFieldConditions(BattleSystem *battleSys, Battl
 
         case FIELD_COND_CHECK_STATE_GRAVITY:
             if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
-                battleCtx->fieldConditionsMask -= (1 << FIELD_CONDITION_GRAVITY_SHIFT);
+                if((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) != FIELD_CONDITION_GRAVITY){
+                    battleCtx->fieldConditionsMask -= (1 << FIELD_CONDITION_GRAVITY_SHIFT);
 
-                if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == 0) {
-                    PrepareSubroutineSequence(battleCtx, subscript_gravity_end);
-                    state = STATE_BREAK_OUT;
+                    if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == 0) {
+                        PrepareSubroutineSequence(battleCtx, subscript_gravity_end);
+                        state = STATE_BREAK_OUT;
+                    }
                 }
             }
 
@@ -1820,10 +1824,12 @@ static void BattleController_CheckSideConditions(BattleSystem *battleSys, Battle
 
     case SIDE_COND_CHECK_STATE_TRICK_ROOM:
         if (battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM) {
-            battleCtx->fieldConditionsMask -= (1 << FIELD_CONDITION_TRICK_ROOM_SHIFT);
-            if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM) == FALSE) {
-                PrepareSubroutineSequence(battleCtx, subscript_trick_room_end);
-                return;
+            if (!((battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM)==FIELD_CONDITION_TRICK_ROOM)) {
+                battleCtx->fieldConditionsMask -= (1 << FIELD_CONDITION_TRICK_ROOM_SHIFT);
+                if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM) == FALSE) {
+                    PrepareSubroutineSequence(battleCtx, subscript_trick_room_end);
+                    return;
+                }
             }
         }
 
@@ -2137,16 +2143,16 @@ static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContex
         return OBEY_CHECK_SUCCESS;
     }
 
-    maxLevel = 10;
-    if (TrainerInfo_BadgeCount(trInfo) >= 2) {
-        maxLevel = 30;
-    }
-    if (TrainerInfo_BadgeCount(trInfo) >= 4) {
-        maxLevel = 50;
-    }
-    if (TrainerInfo_BadgeCount(trInfo) >= 6) {
-        maxLevel = 70;
-    }
+    maxLevel = 100;
+    //if (TrainerInfo_BadgeCount(trInfo) >= 2) {
+    //    maxLevel = 30;
+    // }
+    // if (TrainerInfo_BadgeCount(trInfo) >= 4) {
+    //     maxLevel = 50;
+    // }
+    // if (TrainerInfo_BadgeCount(trInfo) >= 6) {
+    //     maxLevel = 70;
+    // }
 
     if (ATTACKING_MON.level <= maxLevel) {
         return OBEY_CHECK_SUCCESS;
@@ -2912,7 +2918,7 @@ static int BattleController_CheckMoveHitAccuracy(BattleSystem *battleSys, Battle
         return 0;
     }
 
-    if (NO_CLOUD_NINE && WEATHER_IS_SUN && MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER) {
+    if (NO_CLOUD_NINE && WEATHER_IS_SUN && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE)) {
         hitRate = 50;
     }
 
@@ -2921,20 +2927,6 @@ static int BattleController_CheckMoveHitAccuracy(BattleSystem *battleSys, Battle
 
     if (Battler_Ability(battleCtx, attacker) == ABILITY_COMPOUND_EYES) {
         hitRate = hitRate * 130 / 100;
-    }
-
-    if (NO_CLOUD_NINE) {
-        if (WEATHER_IS_SAND && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SAND_VEIL) == TRUE) {
-            hitRate = hitRate * 80 / 100;
-        }
-
-        if (WEATHER_IS_HAIL && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SNOW_CLOAK) == TRUE) {
-            hitRate = hitRate * 80 / 100;
-        }
-
-        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_DEEP_FOG) {
-            hitRate = hitRate * 6 / 10;
-        }
     }
 
     if (Battler_Ability(battleCtx, attacker) == ABILITY_HUSTLE && moveClass == CLASS_PHYSICAL) {
@@ -3022,7 +3014,7 @@ static int BattleController_CheckMoveHitOverrides(BattleSystem *battleSys, Battl
     }
 
     if (NO_CLOUD_NINE) {
-        if (WEATHER_IS_RAIN && MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER) {
+        if (WEATHER_IS_RAIN && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE)) {
             battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
         }
 

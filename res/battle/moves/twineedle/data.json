@@ -1,13 +1,13 @@
 {
     "name": "Twineedle",
     "class": "CLASS_PHYSICAL",
-    "type": "TYPE_BUG",
-    "power": 25,
+    "type": "TYPE_PSYCHIC",
+    "power": 85,
     "accuracy": 100,
-    "pp": 20,
+    "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_POISON_MULTI_HIT",
-        "chance": 20
+        "type": "BATTLE_EFFECT_REMOVE_SCREENS",
+        "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

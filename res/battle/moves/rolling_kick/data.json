@@ -1,13 +1,13 @@
 {
     "name": "Rolling Kick",
     "class": "CLASS_PHYSICAL",
-    "type": "TYPE_FIGHTING",
-    "power": 60,
-    "accuracy": 85,
-    "pp": 15,
+    "type": "TYPE_FLYING",
+    "power": 40,
+    "accuracy": 100,
+    "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_FLINCH_HIT",
-        "chance": 30
+        "type": "BATTLE_EFFECT_HIT_TWICE",
+        "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

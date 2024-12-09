@@ -1,15 +1,15 @@
 {
     "name": "Memento",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_DARK",
-    "power": 0,
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_DRAGON",
+    "power": 60,
     "accuracy": 100,
-    "pp": 10,
+    "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_FAINT_AND_ATK_SP_ATK_DOWN_2",
-        "chance": 0
+        "type": "BATTLE_EFFECT_LOWER_ATTACK_HIT",
+        "chance": 100
     },
-    "range": "RANGE_SINGLE_TARGET",
+    "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_PROTECT",

@@ -7,7 +7,7 @@
     "pp": 15,
     "effect": {
         "type": "BATTLE_EFFECT_LOWER_DEFENSE_HIT",
-        "chance": 50
+        "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

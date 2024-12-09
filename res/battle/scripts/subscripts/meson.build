@@ -298,4 +298,8 @@ subscript_files = files(
     'subscript_overworld_sun.s',
     'subscript_overworld_trick_room.s',
     'subscript_giratina_form_change.s',
+    'subscript_permanent_trick_room.s',
+    'subscript_permanent_tailwind.s',
+    'subscript_permanent_gravity.s',
+    'subscript_quiver_dance.s',
 )

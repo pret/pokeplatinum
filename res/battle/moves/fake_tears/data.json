@@ -1,24 +1,19 @@
 {
     "name": "Fake Tears",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_DARK",
-    "power": 0,
-    "accuracy": 100,
-    "pp": 20,
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_POISON",
+    "power": 50,
+    "accuracy": 0,
+    "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_SP_DEF_DOWN_2",
-        "chance": 0
+        "type": "BATTLE_EFFECT_RESET_STAT_CHANGES",
+        "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
-    "flags": [
-        "MOVE_FLAG_CAN_PROTECT",
-        "MOVE_FLAG_CAN_MAGIC_COAT",
-        "MOVE_FLAG_CAN_MIRROR_MOVE",
-        "MOVE_FLAG_HIDES_HP_GAUGES"
-    ],
+    "flags": [],
     "contest": {
-        "effect": 19,
-        "type": "CONTEST_TYPE_SMART"
+        "effect": 13,
+        "type": "CONTEST_TYPE_CUTE"
     }
 }

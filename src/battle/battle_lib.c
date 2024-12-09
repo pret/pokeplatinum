@@ -1223,12 +1223,18 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
 
     if (NO_CLOUD_NINE) {
         if ((battler1Ability == ABILITY_SWIFT_SWIM && WEATHER_IS_RAIN)
-            || (battler1Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)) {
+            || (battler1Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)
+            || (battler1Ability == ABILITY_SAND_VEIL && WEATHER_IS_SAND)
+            || (battler1Ability == ABILITY_SNOW_CLOAK && WEATHER_IS_HAIL)
+            ) {
             battler1Speed *= 2;
         }
 
         if ((battler2Ability == ABILITY_SWIFT_SWIM && WEATHER_IS_RAIN)
-            || (battler2Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)) {
+            || (battler2Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)
+            || (battler2Ability == ABILITY_SAND_VEIL && WEATHER_IS_SAND)
+            || (battler2Ability == ABILITY_SNOW_CLOAK && WEATHER_IS_HAIL)
+            ) {
             battler2Speed *= 2;
         }
     }
@@ -3688,17 +3694,55 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     subscript = subscript_overworld_fog;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
-
+                case 28:
                 case OVERWORLD_WEATHER_HARSH_SUN:
                     subscript = subscript_overworld_sun;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
-
+                case 38:
                 case OVERWORLD_WEATHER_TRICK_ROOM:
                     subscript = subscript_overworld_trick_room;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
-
+                case 40:    // Rocks on both sides
+                    subscript = NULL;
+                    battleCtx->sideConditionsMask[0] += SIDE_CONDITION_STEALTH_ROCK;
+                    battleCtx->sideConditionsMask[1] += SIDE_CONDITION_STEALTH_ROCK;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                case 41:    // 2 layers Toxic Spikes on both sides
+                    subscript = NULL;
+                    battleCtx->sideConditions[0].toxicSpikesLayers = 2;
+                    battleCtx->sideConditions[1].toxicSpikesLayers = 2;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                case 42:    // 3 layers Spikes on both sides
+                    subscript = NULL;
+                    battleCtx->sideConditions[0].spikesLayers = 3;
+                    battleCtx->sideConditions[1].spikesLayers = 3;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                case 43:    // Enemy Tailwind
+                    subscript = NULL;
+                    battleCtx->sideConditionsMask[1] += SIDE_CONDITION_TAILWIND;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                case 44:    // Enemy 5 turns Reflect + Light Screen
+                    subscript = NULL;
+                    battleCtx->sideConditionsMask[1] += SIDE_CONDITION_REFLECT;
+                    battleCtx->sideConditionsMask[1] += SIDE_CONDITION_LIGHT_SCREEN;
+                    battleCtx->sideConditions[1].reflectTurns = 5;
+                    battleCtx->sideConditions[1].lightScreenTurns = 5;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                case 45:    // Permanent Trick Room
+                    subscript = subscript_permanent_trick_room;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                case 46:    // Permanent Gravity
+                    subscript = subscript_permanent_gravity;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
                 default:
                     break;
                 }

@@ -1,22 +1,23 @@
 {
     "name": "Spite",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_GHOST",
-    "power": 0,
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIRE",
+    "power": 50,
     "accuracy": 100,
-    "pp": 10,
+    "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_DECREASE_LAST_MOVE_PP",
-        "chance": 0
+        "type": "BATTLE_EFFECT_RAISE_SPD_HIT",
+        "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
         "MOVE_FLAG_CAN_PROTECT",
         "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {
-        "effect": 19,
-        "type": "CONTEST_TYPE_TOUGH"
+        "effect": 7,
+        "type": "CONTEST_TYPE_CUTE"
     }
 }

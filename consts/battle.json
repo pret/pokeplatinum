@@ -279,7 +279,10 @@
                 "BATTLE_EFFECT_FLINCH_BURN_HIT",
                 "BATTLE_EFFECT_FLINCH_FREEZE_HIT",
                 "BATTLE_EFFECT_FLINCH_PARALYZE_HIT",
-                "BATTLE_EFFECT_RAISE_SP_ATK_HIT"
+                "BATTLE_EFFECT_RAISE_SP_ATK_HIT",
+                "BATTLE_EFFECT_HURRICANE",
+                "BATTLE_EFFECT_QUIVER_DANCE",
+                "BATTLE_EFFECT_RAISE_SPD_HIT"
             ]
         },
         "@MessageTag": {
@@ -495,7 +498,8 @@
                 "MOVE_SUBSCRIPT_PTR_PARALYZE_OR_FLINCH",
                 "MOVE_SUBSCRIPT_PTR_CHATTER",
                 "MOVE_SUBSCRIPT_PTR_LUNAR_DANCE",
-                "MOVE_SUBSCRIPT_PTR_GIVE_TARGET_OWN_STATUS"
+                "MOVE_SUBSCRIPT_PTR_GIVE_TARGET_OWN_STATUS",
+                "MOVE_SUBSCRIPT_PTR_QUIVER_DANCE"
             ]
         },
         "@SideEffectType": {

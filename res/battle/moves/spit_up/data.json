@@ -1,22 +1,24 @@
 {
     "name": "Spit Up",
     "class": "CLASS_SPECIAL",
-    "type": "TYPE_NORMAL",
-    "power": 1,
+    "type": "TYPE_FIRE",
+    "power": 120,
     "accuracy": 100,
-    "pp": 10,
+    "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_SPIT_UP",
+        "type": "BATTLE_EFFECT_DEF_SPD_DOWN_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_PROTECT",
-        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_SHADOWS"
     ],
     "contest": {
-        "effect": 18,
-        "type": "CONTEST_TYPE_TOUGH"
+        "effect": 22,
+        "type": "CONTEST_TYPE_SMART"
     }
 }

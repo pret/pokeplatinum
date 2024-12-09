@@ -1,22 +1,23 @@
 {
     "name": "Stockpile",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_NORMAL",
-    "power": 0,
-    "accuracy": 0,
-    "pp": 20,
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 70,
+    "accuracy": 100,
+    "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_STOCKPILE",
+        "type": "BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING",
         "chance": 0
     },
-    "range": "RANGE_USER",
-    "priority": 0,
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 1,
     "flags": [
-        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
         "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
-        "effect": 11,
-        "type": "CONTEST_TYPE_TOUGH"
+        "effect": 1,
+        "type": "CONTEST_TYPE_SMART"
     }
 }

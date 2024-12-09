@@ -1,23 +1,24 @@
 {
     "name": "Pay Day",
     "class": "CLASS_PHYSICAL",
-    "type": "TYPE_NORMAL",
-    "power": 40,
+    "type": "TYPE_ELECTRIC",
+    "power": 120,
     "accuracy": 100,
-    "pp": 20,
+    "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_INCREASE_PRIZE_MONEY",
-        "chance": 0
+        "type": "BATTLE_EFFECT_RECOIL_PARALYZE_HIT",
+        "chance": 10
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
         "MOVE_FLAG_CAN_PROTECT",
         "MOVE_FLAG_CAN_MIRROR_MOVE",
-        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+        "MOVE_FLAG_HIDES_SHADOWS"
     ],
     "contest": {
-        "effect": 23,
+        "effect": 22,
         "type": "CONTEST_TYPE_SMART"
     }
 }

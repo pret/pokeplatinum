@@ -1,13 +1,13 @@
 {
     "name": "Thief",
-    "class": "CLASS_PHYSICAL",
-    "type": "TYPE_DARK",
-    "power": 40,
-    "accuracy": 100,
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FLYING",
+    "power": 110,
+    "accuracy": 70,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_STEAL_HELD_ITEM",
-        "chance": 0
+        "type": "BATTLE_EFFECT_HURRICANE",
+        "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

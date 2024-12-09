@@ -1,19 +1,23 @@
 {
     "name": "Water Sport",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_WATER",
-    "power": 0,
-    "accuracy": 0,
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIRE",
+    "power": 80,
+    "accuracy": 100,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_HALVE_FIRE_DAMAGE",
-        "chance": 0
+        "type": "BATTLE_EFFECT_LOWER_DEFENSE_HIT",
+        "chance": 100
     },
-    "range": "RANGE_FIELD",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
-    "flags": [],
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
     "contest": {
-        "effect": 13,
-        "type": "CONTEST_TYPE_BEAUTY"
+        "effect": 18,
+        "type": "CONTEST_TYPE_TOUGH"
     }
 }

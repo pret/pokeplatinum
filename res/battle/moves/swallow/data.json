@@ -1,22 +1,23 @@
 {
     "name": "Swallow",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_NORMAL",
-    "power": 0,
-    "accuracy": 0,
-    "pp": 10,
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 65,
+    "accuracy": 100,
+    "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_SWALLOW",
+        "type": "BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT",
         "chance": 0
     },
-    "range": "RANGE_USER",
+    "range": "RANGE_ALL_ADJACENT",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_CAN_SNATCH",
-        "MOVE_FLAG_HIDES_HP_GAUGES"
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
     ],
     "contest": {
-        "effect": 8,
-        "type": "CONTEST_TYPE_TOUGH"
+        "effect": 17,
+        "type": "CONTEST_TYPE_COOL"
     }
 }

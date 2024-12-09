@@ -1,22 +1,24 @@
 {
     "name": "Defense Curl",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_NORMAL",
-    "power": 0,
-    "accuracy": 0,
-    "pp": 40,
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_WATER",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_DEF_UP_DOUBLE_ROLLOUT_POWER",
+        "type": "BATTLE_EFFECT_RECOIL_THIRD",
         "chance": 0
     },
-    "range": "RANGE_USER",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_CAN_SNATCH",
-        "MOVE_FLAG_HIDES_HP_GAUGES"
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
     ],
     "contest": {
-        "effect": 13,
-        "type": "CONTEST_TYPE_BEAUTY"
+        "effect": 18,
+        "type": "CONTEST_TYPE_TOUGH"
     }
 }

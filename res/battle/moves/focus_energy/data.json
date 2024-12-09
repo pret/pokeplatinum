@@ -1,15 +1,15 @@
 {
     "name": "Focus Energy",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_NORMAL",
-    "power": 0,
-    "accuracy": 0,
-    "pp": 30,
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_WATER",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_CRIT_UP_2",
-        "chance": 0
+        "type": "BATTLE_EFFECT_BURN_HIT",
+        "chance": 30
     },
-    "range": "RANGE_USER",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_SNATCH",

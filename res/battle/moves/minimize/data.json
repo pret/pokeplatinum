@@ -1,15 +1,15 @@
 {
     "name": "Minimize",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_NORMAL",
-    "power": 0,
-    "accuracy": 0,
-    "pp": 20,
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GROUND",
+    "power": 70,
+    "accuracy": 100,
+    "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_EVA_UP_2_MINIMIZE",
-        "chance": 0
+        "type": "BATTLE_EFFECT_BURN_HIT",
+        "chance": 30
     },
-    "range": "RANGE_USER",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_SNATCH"

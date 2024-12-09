@@ -1,22 +1,21 @@
 {
     "name": "Double Team",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_NORMAL",
-    "power": 0,
-    "accuracy": 0,
-    "pp": 15,
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_POISON",
+    "power": 95,
+    "accuracy": 100,
+    "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_EVA_UP",
-        "chance": 0
+        "type": "BATTLE_EFFECT_POISON_HIT",
+        "chance": 10
     },
-    "range": "RANGE_USER",
+    "range": "RANGE_ALL_ADJACENT",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_CAN_SNATCH",
-        "MOVE_FLAG_HIDES_HP_GAUGES"
+        "MOVE_FLAG_CAN_SNATCH"
     ],
     "contest": {
-        "effect": 1,
-        "type": "CONTEST_TYPE_COOL"
+        "effect": 13,
+        "type": "CONTEST_TYPE_BEAUTY"
     }
 }

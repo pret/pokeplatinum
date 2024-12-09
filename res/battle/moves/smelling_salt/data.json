@@ -1,12 +1,12 @@
 {
     "name": "SmellingSalt",
     "class": "CLASS_PHYSICAL",
-    "type": "TYPE_NORMAL",
-    "power": 60,
-    "accuracy": 100,
+    "type": "TYPE_STEEL",
+    "power": 70,
+    "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_DOUBLE_POWER_AND_CURE_PARALYSIS",
+        "type": "BATTLE_EFFECT_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

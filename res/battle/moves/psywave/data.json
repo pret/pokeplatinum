@@ -1,13 +1,13 @@
 {
     "name": "Psywave",
     "class": "CLASS_SPECIAL",
-    "type": "TYPE_PSYCHIC",
-    "power": 1,
-    "accuracy": 80,
-    "pp": 15,
+    "type": "TYPE_FIRE",
+    "power": 75,
+    "accuracy": 100,
+    "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL",
-        "chance": 0
+        "type": "BATTLE_EFFECT_LOWER_SP_ATK_HIT",
+        "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

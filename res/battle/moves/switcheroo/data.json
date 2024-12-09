@@ -1,12 +1,12 @@
 {
     "name": "Switcheroo",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_DARK",
-    "power": 0,
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GROUND",
+    "power": 80,
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_SWITCH_HELD_ITEMS",
+        "type": "BATTLE_EFFECT_HIGH_CRITICAL",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

@@ -1,12 +1,12 @@
 {
     "name": "SonicBoom",
-    "class": "CLASS_SPECIAL",
-    "type": "TYPE_NORMAL",
-    "power": 1,
-    "accuracy": 90,
-    "pp": 20,
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GRASS",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_10_DAMAGE_FLAT",
+        "type": "BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

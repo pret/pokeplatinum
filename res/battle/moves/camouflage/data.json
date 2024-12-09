@@ -1,15 +1,15 @@
 {
     "name": "Camouflage",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_NORMAL",
-    "power": 0,
-    "accuracy": 0,
-    "pp": 20,
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_WATER",
+    "power": 85,
+    "accuracy": 100,
+    "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_CAMOUFLAGE",
-        "chance": 0
+        "type": "BATTLE_EFFECT_LOWER_DEFENSE_HIT",
+        "chance": 20
     },
-    "range": "RANGE_USER",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_SNATCH",

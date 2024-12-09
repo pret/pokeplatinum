@@ -1,15 +1,15 @@
 {
     "name": "Grudge",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_GHOST",
-    "power": 0,
-    "accuracy": 0,
-    "pp": 5,
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GROUND",
+    "power": 95,
+    "accuracy": 100,
+    "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_REMOVE_ALL_PP_ON_DEFEAT",
+        "type": "BATTLE_EFFECT_HIT",
         "chance": 0
     },
-    "range": "RANGE_USER",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [],
     "contest": {

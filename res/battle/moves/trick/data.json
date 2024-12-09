@@ -1,13 +1,13 @@
 {
     "name": "Trick",
-    "class": "CLASS_STATUS",
-    "type": "TYPE_PSYCHIC",
-    "power": 0,
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ICE",
+    "power": 85,
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_SWITCH_HELD_ITEMS",
-        "chance": 0
+        "type": "BATTLE_EFFECT_FLINCH_HIT",
+        "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

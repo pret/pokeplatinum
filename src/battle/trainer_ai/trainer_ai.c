@@ -1282,34 +1282,6 @@ static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *bat
 
     if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) {
         AI_CONTEXT.calcTemp = ABILITY_NONE;
-    } else if (AI_CONTEXT.attacker != battler && inBattler != AI_BATTLER_ATTACKER_PARTNER) {
-        // If we already know an opponent's ability, load that ability
-        if (AI_CONTEXT.battlerAbilities[battler]) {
-            AI_CONTEXT.calcTemp = AI_CONTEXT.battlerAbilities[battler];
-        } else {
-            // If the opponent has an ability that traps us, we should already know about it (because it self-announces)
-            if (battleCtx->battleMons[battler].ability == ABILITY_SHADOW_TAG
-                || battleCtx->battleMons[battler].ability == ABILITY_MAGNET_PULL
-                || battleCtx->battleMons[battler].ability == ABILITY_ARENA_TRAP) {
-                AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].ability;
-            } else {
-                // Try to guess the opponent's ability (flip a coin)
-                int ability1 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_1);
-                int ability2 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_2);
-
-                if (ability1 && ability2) {
-                    if (BattleSystem_RandNext(battleSys) & 1) {
-                        AI_CONTEXT.calcTemp = ability1;
-                    } else {
-                        AI_CONTEXT.calcTemp = ability2;
-                    }
-                } else if (ability1) {
-                    AI_CONTEXT.calcTemp = ability1;
-                } else {
-                    AI_CONTEXT.calcTemp = ability2;
-                }
-            }
-        }
     } else {
         AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].ability;
     }
@@ -1326,38 +1298,6 @@ static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *ba
 
     if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) {
         tmpAbility = ABILITY_NONE;
-    } else if (inBattler == AI_BATTLER_DEFENDER || inBattler == AI_BATTLER_DEFENDER_PARTNER) {
-        // If we already know an opponent's ability, load that ability
-        if (AI_CONTEXT.battlerAbilities[battler]) {
-            tmpAbility = AI_CONTEXT.battlerAbilities[battler];
-            AI_CONTEXT.calcTemp = AI_CONTEXT.battlerAbilities[battler];
-        } else {
-            // If the opponent has an ability that traps us, we should already know about it (because it self-announces)
-            if (battleCtx->battleMons[battler].ability == ABILITY_SHADOW_TAG
-                || battleCtx->battleMons[battler].ability == ABILITY_MAGNET_PULL
-                || battleCtx->battleMons[battler].ability == ABILITY_ARENA_TRAP) {
-                tmpAbility = battleCtx->battleMons[battler].ability;
-            } else {
-                // Try to guess the opponent's ability (flip a coin)
-                int ability1 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_1);
-                int ability2 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_2);
-
-                if (ability1 && ability2) {
-                    // If the opponent has two abilities, but neither are the expected one,
-                    // prefer ability 1 for the final check
-                    if (ability1 != expected && ability2 != expected) {
-                        tmpAbility = ability1;
-                        // Otherwise, pretend that we don't know about it
-                    } else {
-                        tmpAbility = ABILITY_NONE;
-                    }
-                } else if (ability1) {
-                    tmpAbility = ability1;
-                } else {
-                    tmpAbility = ability2;
-                }
-            }
-        }
     } else {
         tmpAbility = battleCtx->battleMons[battler].ability;
     }
@@ -1635,19 +1575,23 @@ static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *bat
     BOOL useDamageRoll = AIScript_Read(battleCtx);
     int jump = AIScript_Read(battleCtx);
 
-    int roll;
+    int roll = 80;
+    /*
     if (useDamageRoll == TRUE) {
         roll = AI_CONTEXT.moveDamageRolls[AI_CONTEXT.moveSlot];
     } else {
         roll = 100;
     }
+    */
 
+   
     int riskyIdx;
     for (riskyIdx = 0; sRiskyMoves[riskyIdx] != 0xFFFF; riskyIdx++) {
         if (MOVE_DATA(AI_CONTEXT.move).effect == sRiskyMoves[riskyIdx]) {
             break;
         }
     }
+    
 
     int altPowerIdx;
     for (altPowerIdx = 0; sAltPowerCalcMoves[altPowerIdx] != 0xFFFF; altPowerIdx++) {
@@ -1686,19 +1630,21 @@ static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContex
     BOOL useDamageRoll = AIScript_Read(battleCtx);
     int jump = AIScript_Read(battleCtx);
 
-    int roll;
+    int roll = 80;
+    /*
     if (useDamageRoll == TRUE) {
         roll = AI_CONTEXT.moveDamageRolls[AI_CONTEXT.moveSlot];
     } else {
         roll = 100;
     }
-
+    */
     int riskyIdx;
     for (riskyIdx = 0; sRiskyMoves[riskyIdx] != 0xFFFF; riskyIdx++) {
         if (MOVE_DATA(AI_CONTEXT.move).effect == sRiskyMoves[riskyIdx]) {
             break;
         }
     }
+    
 
     int altPowerIdx;
     for (altPowerIdx = 0; sAltPowerCalcMoves[altPowerIdx] != 0xFFFF; altPowerIdx++) {
@@ -1771,7 +1717,7 @@ static void AICmd_IfMoveKnown(BattleSystem *battleSys, BattleContext *battleCtx)
 
     case AI_BATTLER_DEFENDER:
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-            if (AI_CONTEXT.battlerMoves[battler][i] == move) {
+            if (battleCtx->battleMons[battler].moves[i] == move) {
                 break;
             }
         }
@@ -1827,7 +1773,7 @@ static void AICmd_IfMoveNotKnown(BattleSystem *battleSys, BattleContext *battleC
 
     case AI_BATTLER_DEFENDER:
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-            if (AI_CONTEXT.battlerMoves[battler][i] == move) {
+            if (battleCtx->battleMons[battler].moves[i] == move) {
                 break;
             }
         }
@@ -1868,8 +1814,8 @@ static void AICmd_IfMoveEffectKnown(BattleSystem *battleSys, BattleContext *batt
 
     case AI_BATTLER_DEFENDER:
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-            if (AI_CONTEXT.battlerMoves[battler][i]
-                && MOVE_DATA(AI_CONTEXT.battlerMoves[battler][i]).effect == effect) {
+            if (battleCtx->battleMons[battler].moves[i]
+                && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == effect) {
                 break;
             }
         }
@@ -1910,8 +1856,8 @@ static void AICmd_IfMoveEffectNotKnown(BattleSystem *battleSys, BattleContext *b
 
     case AI_BATTLER_DEFENDER:
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-            if (AI_CONTEXT.battlerMoves[battler][i]
-                && MOVE_DATA(AI_CONTEXT.battlerMoves[battler][i]).effect == effect) {
+            if (battleCtx->battleMons[battler].moves[i]
+                && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == effect) {
                 break;
             }
         }
@@ -2012,7 +1958,7 @@ static void AICmd_LoadHeldItemEffect(BattleSystem *battleSys, BattleContext *bat
     u8 battler = AIScript_Battler(battleCtx, inBattler);
 
     if (AI_CONTEXT.attacker != battler) {
-        AI_CONTEXT.calcTemp = BattleSystem_GetItemData(battleCtx, AI_CONTEXT.battlerHeldItems[battler], ITEM_PARAM_HOLD_EFFECT);
+        AI_CONTEXT.calcTemp = BattleSystem_GetItemData(battleCtx, battleCtx->battleMons[battler].heldItem, ITEM_PARAM_HOLD_EFFECT);
     } else {
         AI_CONTEXT.calcTemp = BattleSystem_GetItemData(battleCtx, battleCtx->battleMons[battler].heldItem, ITEM_PARAM_HOLD_EFFECT);
     }
@@ -2031,7 +1977,7 @@ static void AICmd_IfHeldItemEqualTo(BattleSystem *battleSys, BattleContext *batt
     if ((battler & 1) == (AI_CONTEXT.attacker & 1)) {
         heldItem = battleCtx->battleMons[battler].heldItem;
     } else {
-        heldItem = AI_CONTEXT.battlerHeldItems[battler];
+        heldItem = battleCtx->battleMons[battler].heldItem;
     }
 
     if (heldItem == expected) {
@@ -4138,10 +4084,6 @@ int TrainerAI_PickCommand(BattleSystem *battleSys, int battler)
             return PLAYER_INPUT_PARTY;
         }
 
-        // Check if the AI determines that it should use an item
-        if (TrainerAI_ShouldUseItem(battleSys, battler)) {
-            return PLAYER_INPUT_ITEM;
-        }
     }
 
     return PLAYER_INPUT_FIGHT;
