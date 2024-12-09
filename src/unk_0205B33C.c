@@ -688,24 +688,22 @@ int sub_0205B9EC(UnkStruct_0205B43C *param0, int param1)
 void sub_0205BA08(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
-    TrainerCard *v1 = (TrainerCard *)param2;
-    TrainerInfo *v2 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
-    void *v3;
+    TrainerCard *trainerCard = (TrainerCard *)param2;
+    TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    void *journalEntryOnlineEvent;
 
-    {
-        int v4, v5 = 0;
-        u8 *v6 = (u8 *)param2;
+    int i, v5 = 0;
+    u8 *v6 = (u8 *)param2;
 
-        for (v4 = 0; v4 < sizeof(TrainerCard); v4++) {
-            v5 ^= v6[v4];
-        }
+    for (i = 0; i < sizeof(TrainerCard); i++) {
+        v5 ^= v6[i];
     }
 
-    v1->unk_66A = 1;
+    trainerCard->unk_66A = 1;
 
     if (param0 != CommSys_CurNetId()) {
-        v3 = sub_0202C0EC((u16 *)TrainerInfo_Name(v2), TrainerInfo_Gender(v2), 31);
-        JournalEntry_SaveData(fieldSystem->journalEntry, v3, JOURNAL_UNK_1C);
+        journalEntryOnlineEvent = JournalEntry_CreateEventGreetedInUnionRoom((u16 *)TrainerInfo_Name(trainerInfo), TrainerInfo_Gender(trainerInfo), 31);
+        JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     }
 }
 
