@@ -476,7 +476,9 @@ static void JournalEntry_SaveLocationEventItem(u32 *locationEvents, JournalEntry
         }
     }
 
-    if (i != 0 && ((locationEvents[i - 1] & EVENT_TYPE) == journalEntryLocationEvent->eventType) && ((locationEvents[i - 1] >> 16) == journalEntryLocationEvent->item)) {
+    if (i != 0
+        && (locationEvents[i - 1] & EVENT_TYPE) == journalEntryLocationEvent->eventType
+        && (locationEvents[i - 1] >> 16) == journalEntryLocationEvent->item) {
         return;
     }
 
