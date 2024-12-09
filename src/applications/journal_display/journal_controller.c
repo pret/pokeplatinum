@@ -1,4 +1,4 @@
-#include "journal_display/journal_controller.h"
+#include "applications/journal_display/journal_controller.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -7,8 +7,8 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "journal_display/journal_printer.h"
-#include "journal_display/struct_ov81_021D1610.h"
+#include "applications/journal_display/journal_printer.h"
+#include "applications/journal_display/struct_ov81_021D1610.h"
 
 #include "bg_window.h"
 #include "core_sys.h"

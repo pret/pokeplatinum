@@ -1324,8 +1324,8 @@ Overlay overlay80
 Overlay journal_display
 {
 	After main
-	Object main.nef.p/src_journal_display_journal_controller.c.o
-	Object main.nef.p/src_journal_display_journal_printer.c.o
+	Object main.nef.p/src_applications_journal_display_journal_controller.c.o
+	Object main.nef.p/src_applications_journal_display_journal_printer.c.o
 }
 
 Overlay overlay82

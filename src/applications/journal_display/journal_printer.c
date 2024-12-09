@@ -1,4 +1,4 @@
-#include "journal_display/journal_printer.h"
+#include "applications/journal_display/journal_printer.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -6,7 +6,7 @@
 #include "constants/trainer.h"
 #include "consts/gender.h"
 
-#include "journal_display/struct_ov81_021D1610.h"
+#include "applications/journal_display/struct_ov81_021D1610.h"
 #include "text/gmm/message_bank_journal_entries.h"
 
 #include "bg_window.h"
