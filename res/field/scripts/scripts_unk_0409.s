@@ -55,7 +55,7 @@ _00AE:
     WaitTime 7, 0x800C
     ScrCmd_065 0x800D
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 19, 0x8004, 0, 0, 0
+    CreateJournalEvent 19, 0x8004, 0, 0, 0
 _00E8:
     WaitTime 1, 0x800C
     GoToIfEq 0x8005, 0, _00E8
@@ -72,7 +72,7 @@ _0103:
     WaitTime 7, 0x800C
     ScrCmd_065 0x800D
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 19, 0x8004, 0, 0, 0
+    CreateJournalEvent 19, 0x8004, 0, 0, 0
 _0133:
     WaitTime 1, 0x800C
     GoToIfEq 0x8005, 0, _0133
@@ -156,7 +156,7 @@ _0284:
     WaitTime 10, 0x800C
     ScrCmd_065 0x800D
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 24, 0x8004, 0, 0, 0
+    CreateJournalEvent 24, 0x8004, 0, 0, 0
 _02B2:
     WaitTime 1, 0x800C
     GoToIfEq 0x8005, 0, _02B2
@@ -173,7 +173,7 @@ _02CD:
     WaitTime 10, 0x800C
     ScrCmd_065 0x800D
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 24, 0x8004, 0, 0, 0
+    CreateJournalEvent 24, 0x8004, 0, 0, 0
 _02FD:
     WaitTime 1, 0x800C
     GoToIfEq 0x8005, 0, _02FD
@@ -216,7 +216,7 @@ _0381:
     WaitABXPadPress
     CloseMessage
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 22, 0x8004, 0, 0, 0
+    CreateJournalEvent 22, 0x8004, 0, 0, 0
     GoTo _066D
     End
 
@@ -240,7 +240,7 @@ _03CC:
     WaitABXPadPress
     CloseMessage
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 22, 0x8004, 0, 0, 0
+    CreateJournalEvent 22, 0x8004, 0, 0, 0
     GoTo _0675
 
 _040E:
@@ -281,7 +281,7 @@ _0487:
     CloseMessage
     ScrCmd_0BF 0x8004
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 26, 0x8004, 0, 0, 0
+    CreateJournalEvent 26, 0x8004, 0, 0, 0
     GoTo _0671
     End
 
@@ -292,7 +292,7 @@ _04B9:
     CloseMessage
     ScrCmd_0BF 0x8000
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 26, 0x8004, 0, 0, 0
+    CreateJournalEvent 26, 0x8004, 0, 0, 0
     ReleaseAll
     End
 
@@ -322,7 +322,7 @@ _051F:
     CloseMessage
     ScrCmd_0C0 0x8004
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 21, 0x8004, 0, 0, 0
+    CreateJournalEvent 21, 0x8004, 0, 0, 0
     GoTo _0671
     End
 
@@ -335,7 +335,7 @@ _0551:
     ScrCmd_0C0 0x8000
     ScrCmd_062 0xFF
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 21, 0x8004, 0, 0, 0
+    CreateJournalEvent 21, 0x8004, 0, 0, 0
     ReleaseAll
     End
 
@@ -366,7 +366,7 @@ _05C3:
     CloseMessage
     ScrCmd_0C5 0x8004
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 23, 0x8004, 0, 0, 0
+    CreateJournalEvent 23, 0x8004, 0, 0, 0
     ScrCmd_201 0x8004
     CallIfEq 0x8004, 0x169, _0606
     GoTo _0671
@@ -386,7 +386,7 @@ _060C:
     PlayFanfare SEQ_SE_DP_FBRADE
     ScrCmd_0C4
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 23, 0x8004, 0, 0, 0
+    CreateJournalEvent 23, 0x8004, 0, 0, 0
     ScrCmd_201 0x8004
     CallIfEq 0x8004, 0x169, _0606
     GoTo _0675
@@ -443,7 +443,7 @@ _06D2:
     CloseMessage
     ScrCmd_0C1 0x8004
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 25, 0x8004, 0, 0, 0
+    CreateJournalEvent 25, 0x8004, 0, 0, 0
     GoTo _0671
     End
 
@@ -456,7 +456,7 @@ _0704:
     ScrCmd_0C1 0x8000
     ScrCmd_062 0xFF
     ScrCmd_201 0x8004
-    ScrCmd_CreateJournalEvent 25, 0x8004, 0, 0, 0
+    CreateJournalEvent 25, 0x8004, 0, 0, 0
     ReleaseAll
     End
 

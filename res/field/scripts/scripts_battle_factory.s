@@ -236,7 +236,7 @@ _03C1:
     CallIfEq 0x40B8, 1, _049E
     CallIfEq 0x40B8, 2, _04B2
     IncrementGameRecord RECORD_UNK_058
-    ScrCmd_CreateJournalEvent 37, 0, 0, 0, 0
+    CreateJournalEvent 37, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 3
     CallIfEq 0x40B8, 2, _042A

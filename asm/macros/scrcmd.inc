@@ -2464,7 +2464,7 @@
     .short 460
     .endm
 
-    .macro ScrCmd_CreateJournalEvent eventType, eventParam, unused1, unused2, unused3
+    .macro CreateJournalEvent eventType, eventParam, unused1, unused2, unused3
     .short 461
     .short \eventType
     .short \eventParam

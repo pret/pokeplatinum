@@ -67,11 +67,11 @@ _00FD:
     Return
 
 _0105:
-    ScrCmd_CreateJournalEvent 12, trainer_champion_cynthia, 0, 0, 0
+    CreateJournalEvent 12, trainer_champion_cynthia, 0, 0, 0
     Return
 
 _0113:
-    ScrCmd_CreateJournalEvent 12, trainer_champion_cynthia_rematch, 0, 0, 0
+    CreateJournalEvent 12, trainer_champion_cynthia_rematch, 0, 0, 0
     Return
 
 _0121:

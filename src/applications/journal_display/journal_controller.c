@@ -375,7 +375,7 @@ static int JournalController_TurnPageLeft(UnkStruct_ov81_021D1610 *param0)
         Sound_PlayEffect(1681);
         break;
     case 1:
-        if (ov81_021D14E0(param0) == 1) {
+        if (ov81_021D14E0(param0) == TRUE) {
             param0->unk_105F = 0;
             param0->state = 0;
             param0->unk_1060 ^= 1;
@@ -403,7 +403,7 @@ static int JournalController_TurnPageRight(UnkStruct_ov81_021D1610 *param0)
         Sound_PlayEffect(1681);
         break;
     case 1:
-        if (ov81_021D156C(param0) == 1) {
+        if (ov81_021D156C(param0) == TRUE) {
             param0->unk_105F = 0;
             param0->state = 0;
             param0->unk_1060 ^= 1;
@@ -451,10 +451,10 @@ static u8 JournalController_PageExists(UnkStruct_ov81_021D1610 *param0, u8 param
 static u8 JournalController_NewDirectionPageExists(UnkStruct_ov81_021D1610 *param0, s8 pageChange)
 {
     if (pageChange == 1) {
-        if (param0->page != 9 && JournalController_PageExists(param0, param0->page + 1) == 1) {
+        if (param0->page != 9 && JournalController_PageExists(param0, param0->page + 1) == TRUE) {
             return TRUE;
         }
-    } else if (param0->page != 0 && JournalController_PageExists(param0, param0->page - 1) == 1) {
+    } else if (param0->page != 0 && JournalController_PageExists(param0, param0->page - 1) == TRUE) {
         return TRUE;
     }
 

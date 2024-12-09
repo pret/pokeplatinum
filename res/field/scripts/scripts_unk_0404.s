@@ -2389,7 +2389,7 @@ _204B:
     End
 
 _205E:
-    ScrCmd_CreateJournalEvent 18, 0x8004, 0, 0, 0
+    CreateJournalEvent 18, 0x8004, 0, 0, 0
     Message 9
     WaitABXPadPress
     SetVar 0x800C, 1

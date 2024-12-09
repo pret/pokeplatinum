@@ -13,6 +13,7 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
+#include "res/text/gmm/message_bank_location_names.h"
 #include "res/trainers/trdata.naix"
 
 #define MAX_JOURNAL_ENTRIES 10
@@ -67,33 +68,33 @@ static u8 JournalEntry_GetGymTooTough(TrainerInfo *trainerInfo, u32 mapID);
 static u8 JournalEntry_TrainerType(u32 trainerID);
 
 static const MapInfo sMapsInfo[] = {
-    { 0x5A, 0x1 }, // Jubilife TV
-    { 0x5B, 0x0 }, // Jubilife Poketch
-    { 0x5C, 0x1 }, // ???
-    { 0x5D, 0x1 }, // Jubilife Trainer School
-    { 0x5E, 0x0 }, // Oreburgh Museum
-    { 0x5F, 0x1 }, // Floaroma Flower Shop
-    { 0x60, 0x1 }, // Eterna Flower Shop
-    { 0x61, 0x1 }, // Hearthome Contest Hall
-    { 0x62, 0x1 }, // Hearthome Poffin House
-    { 0x63, 0x0 }, // Hearthome Foreign Building
-    { 0x64, 0x1 }, // Solaceon Day Care
-    { 0x65, 0x0 }, // Veilstone Department Store
-    { 0x66, 0x1 }, // Veilstone Game Corner
-    { 0x47, 0x0 }, // Galactic HQ
-    { 0x67, 0x0 }, // Canalave Library
-    { 0x40, 0x0 }, // Snowpoint Temple
-    { 0x68, 0x0 }, // Sunyshore Lighthouse
-    { 0x69, 0x1 }, // Sunyshore Market
-    { 0x50, 0x1 }, // Battle Tower
-    { 0x6A, 0x0 }, // Pokemon Mansion
-    { 0x6B, 0x1 }, // Footstep House
-    { 0x6C, 0x0 }, // ??? Cafe
-    { 0x6D, 0x0 }, // Grand Lake
-    { 0x6E, 0x0 }, // ??? Restaurant
-    { 0x2F, 0x0 }, // Valley Windworks
-    { 0x31, 0x0 }, // Fuego Ironworks
-    { 0x46, 0x0 } // Old Chateau
+    { location_names_00090, 0x1 },
+    { location_names_00091, 0x0 },
+    { location_names_00092, 0x1 },
+    { location_names_00093, 0x1 },
+    { location_names_00094, 0x0 },
+    { location_names_00095, 0x1 },
+    { location_names_00096, 0x1 },
+    { location_names_00097, 0x1 },
+    { location_names_00098, 0x1 },
+    { location_names_00099, 0x0 },
+    { location_names_00100, 0x1 },
+    { location_names_00101, 0x0 },
+    { location_names_00102, 0x1 },
+    { location_names_00071, 0x0 },
+    { location_names_00103, 0x0 },
+    { location_names_00064, 0x0 },
+    { location_names_00104, 0x0 },
+    { location_names_00105, 0x1 },
+    { location_names_00080, 0x1 },
+    { location_names_00106, 0x0 },
+    { location_names_00107, 0x1 },
+    { location_names_00108, 0x0 },
+    { location_names_00109, 0x0 },
+    { location_names_00110, 0x0 },
+    { location_names_00047, 0x0 },
+    { location_names_00049, 0x0 },
+    { location_names_00070, 0x0 }
 };
 
 static const GymInfo sGymsInfo[] = {

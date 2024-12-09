@@ -445,7 +445,7 @@ _0734:
 
 _0746:
     IncrementGameRecord RECORD_UNK_058
-    ScrCmd_CreateJournalEvent 36, 0, 0, 0, 0
+    CreateJournalEvent 36, 0, 0, 0, 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
