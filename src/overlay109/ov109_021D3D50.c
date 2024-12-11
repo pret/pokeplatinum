@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "consts/game_records.h"
+#include "consts/journal.h"
 
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/struct_0209BF64.h"

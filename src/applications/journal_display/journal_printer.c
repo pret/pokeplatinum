@@ -5,6 +5,7 @@
 
 #include "constants/trainer.h"
 #include "consts/gender.h"
+#include "consts/journal.h"
 
 #include "applications/journal_display/struct_ov81_021D1610.h"
 #include "text/gmm/message_bank_journal_entries.h"

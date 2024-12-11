@@ -8,6 +8,7 @@
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
+#include "consts/journal.h"
 #include "consts/scrcmd.h"
 
 #include "struct_decls/pokedexdata_decl.h"
@@ -559,7 +560,7 @@ static BOOL ScrCmd_1C3(ScriptContext *ctx);
 static BOOL ScrCmd_1C4(ScriptContext *ctx);
 static BOOL ScrCmd_1C5(ScriptContext *ctx);
 static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
-static BOOL CreateJournalEvent(ScriptContext *ctx);
+static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx);
 static BOOL ScrCmd_1CE(ScriptContext *ctx);
 static BOOL ScrCmd_1D2(ScriptContext *ctx);
 static BOOL ScrCmd_1D3(ScriptContext *ctx);
@@ -1226,7 +1227,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1CA,
     ScrCmd_1CB,
     ScrCmd_GiveJournal,
-    CreateJournalEvent,
+    ScrCmd_CreateJournalEvent,
     ScrCmd_1CE,
     ScrCmd_Strength,
     ScrCmd_Flash,
@@ -6105,7 +6106,7 @@ static BOOL ScrCmd_GiveJournal(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL CreateJournalEvent(ScriptContext *ctx)
+static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx)
 {
     u8 dataType;
     u16 eventType = ScriptContext_GetVar(ctx);

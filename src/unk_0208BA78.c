@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/journal.h"
+
 #include "struct_defs/struct_0208BA84.h"
 #include "struct_defs/struct_0208C06C.h"
 

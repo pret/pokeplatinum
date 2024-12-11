@@ -7,6 +7,7 @@
 
 #include "constants/species.h"
 #include "consts/game_records.h"
+#include "consts/journal.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014FB0_decl.h"

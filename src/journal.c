@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "consts/badges.h"
+#include "consts/journal.h"
 #include "consts/map.h"
 
 #include "heap.h"
