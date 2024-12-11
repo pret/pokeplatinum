@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/journal.h"
+
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207DE04.h"
 #include "struct_defs/struct_0207DFAC.h"
@@ -191,7 +193,7 @@ static void ov65_02237940(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_022379
 static void ov65_0223796C(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_02237908 *param1);
 static void ov65_02237970(UnkStruct_ov65_022367A8 *param0);
 static BOOL ov65_02237A10(UnkStruct_ov65_022367A8 *param0);
-static void ov65_02237A24(UnkStruct_0207DE04 *param0, u32 param1);
+static void ov65_02237A24(UnkStruct_0207DE04 *param0, u32 heapID);
 static void ov65_02237A44(UnkStruct_ov65_022367A8 *param0);
 static BOOL ov65_02237A54(UnkStruct_ov65_022367A8 *param0);
 static BOOL ov65_02237A70(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 param2);
@@ -1602,16 +1604,16 @@ static BOOL ov65_02237A10(UnkStruct_ov65_022367A8 *param0)
     return 0;
 }
 
-static void ov65_02237A24(UnkStruct_0207DE04 *param0, u32 param1)
+static void ov65_02237A24(UnkStruct_0207DE04 *param0, u32 heapID)
 {
-    void *v0;
-    JournalEntry *v1;
+    void *journalEntryOnlineEvent;
+    JournalEntry *journalEntry;
     UnkStruct_0207E060 *v2;
 
-    v1 = SaveData_GetJournal(param0->unk_08);
-    v0 = sub_0202C244(param1, 29);
+    journalEntry = SaveData_GetJournal(param0->unk_08);
+    journalEntryOnlineEvent = JournalEntry_CreateEventMisc(heapID, ONLINE_EVENT_WIFI_CLUB);
 
-    JournalEntry_SaveData(v1, v0, JOURNAL_UNK_1C);
+    JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
 static void ov65_02237A44(UnkStruct_ov65_022367A8 *param0)

@@ -7,6 +7,7 @@
 
 #include "constants/species.h"
 #include "consts/game_records.h"
+#include "consts/journal.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014FB0_decl.h"
@@ -1734,86 +1735,80 @@ void ov66_0222EEE4(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 void ov66_0222EEF4(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 {
     UnkStruct_ov66_0222E71C *v0;
-    TrainerInfo *v1;
-    void *v2;
-    JournalEntry *v3;
+    TrainerInfo *trainerInfo;
+    void *journalEntryOnlineEvent;
+    JournalEntry *journalEntry;
 
-    v3 = SaveData_GetJournal(param0->unk_00);
+    journalEntry = SaveData_GetJournal(param0->unk_00);
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
-        v1 = TrainerInfo_New(112);
-        ov66_0222E640(v0, v1, 112);
-        v2 = sub_0202C250(TrainerInfo_Name(v1), v0->unk_38, 112, 22);
+        trainerInfo = TrainerInfo_New(112);
+        ov66_0222E640(v0, trainerInfo, 112);
+        journalEntryOnlineEvent = JournalEntry_CreateEventInteraction(TrainerInfo_Name(trainerInfo), v0->unk_38, 112, ONLINE_EVENT_CHATTED_IN_PLAZA);
 
-        JournalEntry_SaveData(v3, v2, JOURNAL_UNK_1C);
-        Heap_FreeToHeap(v1);
+        JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
+        Heap_FreeToHeap(trainerInfo);
     }
 }
 
 void ov66_0222EF44(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 {
     UnkStruct_ov66_0222E71C *v0;
-    TrainerInfo *v1;
-    void *v2;
-    JournalEntry *v3;
+    TrainerInfo *trainerInfo;
+    void *journalEntryOnlineEvent;
+    JournalEntry *journalEntry;
 
-    v3 = SaveData_GetJournal(param0->unk_00);
+    journalEntry = SaveData_GetJournal(param0->unk_00);
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
-        v1 = TrainerInfo_New(112);
-        ov66_0222E640(v0, v1, 112);
+        trainerInfo = TrainerInfo_New(112);
+        ov66_0222E640(v0, trainerInfo, 112);
+        journalEntryOnlineEvent = JournalEntry_CreateEventInteraction(TrainerInfo_Name(trainerInfo), v0->unk_38, 112, ONLINE_EVENT_GOT_TAP_TOY);
 
-        v2 = sub_0202C250(TrainerInfo_Name(v1), v0->unk_38, 112, 23);
-
-        JournalEntry_SaveData(v3, v2, JOURNAL_UNK_1C);
-        Heap_FreeToHeap(v1);
+        JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
+        Heap_FreeToHeap(trainerInfo);
     }
 }
 
-void ov66_0222EF94(UnkStruct_ov66_0222DFF8 *param0, enum PlazaMinigame param1)
+void ov66_0222EF94(UnkStruct_ov66_0222DFF8 *param0, enum PlazaMinigame minigame)
 {
-    void *v0;
-    JournalEntry *v1;
+    void *journalEntryOnlineEvent;
+    JournalEntry *journalEntry = SaveData_GetJournal(param0->unk_00);
 
-    v1 = SaveData_GetJournal(param0->unk_00);
-
-    switch (param1) {
+    switch (minigame) {
     case UnkEnum_ov66_022324D0_00:
     case UnkEnum_ov66_022324D0_01:
     case UnkEnum_ov66_022324D0_02:
-        v0 = sub_0202C280(param1, 112, 24);
+        journalEntryOnlineEvent = JournalEntry_CreateEventPlazaMinigame(minigame, 112, ONLINE_EVENT_PLAZA_MINIGAME);
         break;
     case UnkEnum_ov66_022324D0_03:
     case UnkEnum_ov66_022324D0_04:
-        v0 = sub_0202C244(112, 25);
+        journalEntryOnlineEvent = JournalEntry_CreateEventMisc(112, ONLINE_EVENT_PLAYED_WITH_FOOTPRINT_STAMP);
         break;
     case UnkEnum_ov66_022324D0_05:
-        v0 = sub_0202C244(112, 26);
+        journalEntryOnlineEvent = JournalEntry_CreateEventMisc(112, ONLINE_EVENT_VIEWED_PLAZA_VISITOR_PROFILES);
         break;
     case UnkEnum_ov66_022324D0_06:
-        v0 = sub_0202C244(112, 27);
+        journalEntryOnlineEvent = JournalEntry_CreateEventMisc(112, ONLINE_EVENT_READ_PLAZA_NEWS);
         break;
     default:
-        v0 = NULL;
+        journalEntryOnlineEvent = NULL;
         break;
     }
 
-    if (v0) {
-        JournalEntry_SaveData(v1, v0, JOURNAL_UNK_1C);
+    if (journalEntryOnlineEvent) {
+        JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     }
 }
 
 void ov66_0222F000(UnkStruct_ov66_0222DFF8 *param0)
 {
-    void *v0;
-    JournalEntry *v1;
+    JournalEntry *journalEntry = SaveData_GetJournal(param0->unk_00);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(112, ONLINE_EVENT_JOINED_PARADE);
 
-    v1 = SaveData_GetJournal(param0->unk_00);
-    v0 = sub_0202C244(112, 28);
-
-    JournalEntry_SaveData(v1, v0, JOURNAL_UNK_1C);
+    JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
 void ov66_0222F020(UnkStruct_ov66_0222DFF8 *param0)

@@ -39,6 +39,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
+#include "applications/journal_display/journal_controller.h"
 #include "applications/options_menu.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223B140.h"
@@ -61,7 +62,6 @@
 #include "overlay071/ov71_0223B140.h"
 #include "overlay072/ov72_0223D7A0.h"
 #include "overlay080/ov80_021D0D80.h"
-#include "overlay081/ov81_021D0D80.h"
 #include "overlay084/const_ov84_02241130.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
@@ -161,7 +161,7 @@ FS_EXTERN_OVERLAY(overlay72);
 FS_EXTERN_OVERLAY(options_menu);
 FS_EXTERN_OVERLAY(choose_starter);
 FS_EXTERN_OVERLAY(overlay80);
-FS_EXTERN_OVERLAY(overlay81);
+FS_EXTERN_OVERLAY(journal_display);
 FS_EXTERN_OVERLAY(overlay84);
 FS_EXTERN_OVERLAY(overlay85);
 FS_EXTERN_OVERLAY(overlay86);
@@ -362,16 +362,16 @@ void sub_0203D2E4(FieldSystem *fieldSystem, void *param1)
 
 void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
 {
-    FS_EXTERN_OVERLAY(overlay81);
+    FS_EXTERN_OVERLAY(journal_display);
 
-    const OverlayManagerTemplate v0 = {
-        ov81_021D0D80,
-        ov81_021D0E70,
-        ov81_021D0EC4,
-        FS_OVERLAY_ID(overlay81)
+    const OverlayManagerTemplate template = {
+        JournalController_Init,
+        JournalController_Main,
+        JournalController_Exit,
+        FS_OVERLAY_ID(journal_display)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &template, fieldSystem->saveData);
 }
 
 void sub_0203D334(FieldSystem *fieldSystem, void *param1)

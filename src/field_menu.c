@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "consts/journal.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
@@ -1736,25 +1737,25 @@ BOOL sub_0203C434(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
     v3 = *((u32 *)menu->unk_260);
 
-    Heap_FreeToHeapExplicit(11, menu->unk_260);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_260);
 
     v2 = (UnkStruct_0203D8AC *)menu->unk_25C;
 
     if (!(v2->unk_10)) {
-        Heap_FreeToHeapExplicit(11, menu->unk_25C);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
         menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, v3);
         sub_0203B674(menu, sub_0203B7C0);
     } else {
-        Pokemon *v4;
+        Pokemon *mon;
         void *v5;
-        void *v6;
+        void *journalEntryLocationEvent;
 
-        v4 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
-        v5 = sub_0207064C(11, fieldSystem, v4, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
-        v6 = sub_0202BE00((20 - 19), v2->unk_1C, 11);
+        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
+        v5 = sub_0207064C(HEAP_ID_FIELDMAP, fieldSystem, mon, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
+        journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_FLEW_TO_LOCATION - LOCATION_EVENT_USED_CUT, v2->unk_1C, HEAP_ID_FIELDMAP);
 
-        JournalEntry_SaveData(fieldSystem->journalEntry, v6, JOURNAL_UNK_04);
-        Heap_FreeToHeapExplicit(11, menu->unk_25C);
+        JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
         FieldSystem_StartFieldMap(fieldSystem);
 
         menu->unk_22C = sub_02070680;
@@ -1762,7 +1763,7 @@ BOOL sub_0203C434(FieldTask *taskMan)
         menu->state = FIELD_MENU_STATE_10;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL sub_0203C50C(FieldTask *taskMan)

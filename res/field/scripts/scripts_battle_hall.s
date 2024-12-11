@@ -403,7 +403,7 @@ _06C3:
     CallIfEq 0x40BB, 1, _07A0
     CallIfEq 0x40BB, 2, _07B4
     IncrementGameRecord RECORD_UNK_058
-    ScrCmd_1CD 39, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_HALL, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 9
     CallIfEq 0x40BB, 2, _072C

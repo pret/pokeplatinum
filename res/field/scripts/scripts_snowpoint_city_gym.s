@@ -22,7 +22,7 @@ _0025:
     FacePlayer
     CheckBadgeAcquired BADGE_ID_ICICLE, 0x800C
     GoToIfEq 0x800C, 1, _00F8
-    ScrCmd_1CD 9, 167, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 167, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle trainer_leader_candice
@@ -41,7 +41,7 @@ _0025:
     SetTrainerFlag trainer_ace_trainer_savannah
     SetTrainerFlag trainer_ace_trainer_alicia
     SetTrainerFlag trainer_ace_trainer_brenna
-    ScrCmd_1CD 10, 167, trainer_leader_candice, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 167, trainer_leader_candice, 0, 0
     SetFlag 0x1BF
     Message 3
     GoTo _00B0

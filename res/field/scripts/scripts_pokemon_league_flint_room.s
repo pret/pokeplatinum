@@ -40,11 +40,11 @@ _00A8:
     Return
 
 _00B0:
-    ScrCmd_1CD 11, trainer_elite_four_flint, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_flint, 0, 0, 0
     Return
 
 _00BE:
-    ScrCmd_1CD 11, trainer_elite_four_flint_rematch, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_flint_rematch, 0, 0, 0
     Return
 
 _00CC:

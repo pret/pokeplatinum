@@ -795,13 +795,11 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
                 ov83_0223EC8C(&param1->unk_6A0, 4);
             }
 
-            {
-                void *v0;
+            void *journalEntryOnlineEvent;
 
-                if (param1->unk_1490 == 1) {
-                    v0 = sub_0202C1E0(param1->unk_00);
-                    JournalEntry_SaveData(param0->unk_10->unk_1C, v0, JOURNAL_UNK_1C);
-                }
+            if (param1->unk_1490 == 1) {
+                journalEntryOnlineEvent = JournalEntry_CreateEventMadePoffins(param1->unk_00);
+                JournalEntry_SaveData(param0->unk_10->unk_1C, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
             }
         }
 
