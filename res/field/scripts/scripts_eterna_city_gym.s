@@ -64,7 +64,7 @@ _0094:
     FacePlayer
     CheckBadgeAcquired BADGE_ID_FOREST, 0x800C
     GoToIfEq 0x800C, 1, _0161
-    CreateJournalEvent 9, 67, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 67, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle trainer_leader_gardenia
@@ -82,7 +82,7 @@ _0094:
     SetTrainerFlag trainer_lass_caroline
     SetTrainerFlag trainer_beauty_lindsay
     ClearFlag 0x1FC
-    CreateJournalEvent 10, 67, trainer_leader_gardenia, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 67, trainer_leader_gardenia, 0, 0
     Message 3
     GoTo _0177
     End

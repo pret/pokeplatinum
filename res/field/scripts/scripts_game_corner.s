@@ -81,7 +81,7 @@ _00EA:
     GoToIfEq 0x800C, 0, _0133
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    CreateJournalEvent 16, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GAME_CORNER, 0, 0, 0, 0
     ScrCmd_267 0x8004
     ScrCmd_0A1
     FadeScreen 6, 1, 1, 0

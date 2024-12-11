@@ -55,7 +55,7 @@ _00AB:
 _00BB:
     CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
     GoToIfEq 0x800C, 1, _01A0
-    CreateJournalEvent 9, 91, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 91, 0, 0, 0
     Message 0
     CloseMessage
     SetFlag 142
@@ -78,7 +78,7 @@ _00BB:
     SetTrainerFlag trainer_school_kid_chance
     SetTrainerFlag trainer_school_kid_mackenzie
     SetTrainerFlag trainer_youngster_donny
-    CreateJournalEvent 10, 91, trainer_leader_fantina, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 91, trainer_leader_fantina, 0, 0
     SetVar 0x407B, 1
     SetFlag 0x206
     ClearFlag 0x207

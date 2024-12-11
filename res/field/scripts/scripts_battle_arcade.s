@@ -287,7 +287,7 @@ _04DC:
     CallIfEq 0x40BE, 1, _05B9
     CallIfEq 0x40BE, 2, _05CD
     IncrementGameRecord RECORD_UNK_058
-    CreateJournalEvent 40, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_ARCADE, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 15
     CallIfEq 0x40BE, 2, _0545

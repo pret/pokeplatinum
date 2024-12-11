@@ -45,7 +45,7 @@ _0076:
     FacePlayer
     CheckBadgeAcquired BADGE_ID_FEN, 0x800C
     GoToIfEq 0x800C, 1, _0155
-    CreateJournalEvent 9, 122, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 122, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle trainer_leader_wake
@@ -67,7 +67,7 @@ _0076:
     SetVar 0x407C, 3
     SetFlag 0x20C
     SetFlag 0x156
-    CreateJournalEvent 10, 122, trainer_leader_wake, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 122, trainer_leader_wake, 0, 0
     Message 3
     GoTo _010D
     End

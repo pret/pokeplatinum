@@ -2,6 +2,7 @@
     .include "consts/badges.inc"
     .include "consts/game_records.inc"
     .include "consts/items.inc"
+    .include "consts/journal.inc"
     .include "consts/map.inc"
     .include "consts/moves.inc"
     .include "consts/poketch.inc"

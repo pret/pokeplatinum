@@ -67,11 +67,11 @@ _00FD:
     Return
 
 _0105:
-    CreateJournalEvent 12, trainer_champion_cynthia, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, trainer_champion_cynthia, 0, 0, 0
     Return
 
 _0113:
-    CreateJournalEvent 12, trainer_champion_cynthia_rematch, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, trainer_champion_cynthia_rematch, 0, 0, 0
     Return
 
 _0121:

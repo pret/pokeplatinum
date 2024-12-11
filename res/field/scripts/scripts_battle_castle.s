@@ -284,7 +284,7 @@ _04D0:
     CallIfEq 0x40BD, 1, _05AD
     CallIfEq 0x40BD, 2, _05C1
     IncrementGameRecord RECORD_UNK_058
-    CreateJournalEvent 38, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_CASTLE, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 11
     CallIfEq 0x40BD, 2, _0539
