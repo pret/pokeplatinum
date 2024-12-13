@@ -158,7 +158,8 @@
                 "MOVEMENT_ACTION_152",
                 "MOVEMENT_ACTION_153",
                 "MAX_MOVEMENT_ACTION",
-                "MOVEMENT_ACTION_END"
+                "MOVEMENT_ACTION_END",
+                "MOVEMENT_ACTION_NONE"
             ],
             "overrides": {
                 "MOVEMENT_ACTION_END": 254

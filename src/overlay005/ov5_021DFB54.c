@@ -1303,7 +1303,7 @@ static int ov5_021E0B64(UnkStruct_ov5_021F9B10 *param0)
     MapObject_SetX(param0->unk_3C, param0->unk_0C);
     MapObject_SetY(param0->unk_3C, param0->unk_10);
     MapObject_SetZ(param0->unk_3C, param0->unk_14);
-    sub_02064208(param0->unk_3C);
+    MapObject_UpdateCoords(param0->unk_3C);
 
     ov6_02248608(param0->unk_50);
     return 1;
@@ -1433,7 +1433,7 @@ static int ov5_021E0D40(UnkStruct_ov5_021F9B10 *param0)
     MapObject_SetX(param0->unk_3C, param0->unk_0C);
     MapObject_SetY(param0->unk_3C, param0->unk_10);
     MapObject_SetZ(param0->unk_3C, param0->unk_14);
-    sub_02064208(param0->unk_3C);
+    MapObject_UpdateCoords(param0->unk_3C);
 
     ov6_02248608(param0->unk_50);
 

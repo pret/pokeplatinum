@@ -433,7 +433,7 @@ void sub_0205F5E4(PlayerAvatar *playerAvatar, int param1)
 
     MapObject_TryFace(mapObj, param1);
     sub_02062A0C(mapObj, 0x0);
-    sub_02064208(mapObj);
+    MapObject_UpdateCoords(mapObj);
     sub_020656DC(mapObj);
     LocalMapObj_SetAnimationCode(mapObj, sub_02065838(param1, 0x0));
 }
