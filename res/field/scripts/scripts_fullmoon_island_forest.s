@@ -48,7 +48,7 @@ _007E:
 
     .balign 4, 0
 _0094:
-    MoveAction_047
-    MoveAction_00C
-    MoveAction_048
+    MoveAction_071
+    MoveAction_012
+    MoveAction_072
     EndMovement

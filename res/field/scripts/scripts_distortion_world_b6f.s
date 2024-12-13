@@ -100,21 +100,21 @@ _00F6:
 
     .balign 4, 0
 _0108:
-    MoveAction_042
-    MoveAction_021
-    MoveAction_04B
-    MoveAction_042
+    MoveAction_066
+    MoveAction_033
+    MoveAction_075
+    MoveAction_066
     EndMovement
 
     .balign 4, 0
 _011C:
-    MoveAction_00D
-    MoveAction_076
-    MoveAction_00E
-    MoveAction_023
+    MoveAction_013
+    MoveAction_118
+    MoveAction_014
+    MoveAction_035
     EndMovement
 
     .balign 4, 0
 _0130:
-    MoveAction_043
+    MoveAction_067
     EndMovement

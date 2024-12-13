@@ -149,5 +149,5 @@ _0283:
 
     .balign 4, 0
 _029C:
-    MoveAction_021
+    MoveAction_033
     EndMovement

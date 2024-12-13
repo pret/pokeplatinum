@@ -205,25 +205,25 @@ _02AC:
 
     .balign 4, 0
 _02B4:
-    MoveAction_00C 2
-    MoveAction_00F 2
+    MoveAction_012 2
+    MoveAction_015 2
     EndMovement
 
     .balign 4, 0
 _02C0:
     MoveAction_000
-    MoveAction_047
-    MoveAction_00D
-    MoveAction_048
+    MoveAction_071
+    MoveAction_013
+    MoveAction_072
     EndMovement
 
     .balign 4, 0
 _02D4:
-    MoveAction_00F
+    MoveAction_015
     EndMovement
 
     .balign 4, 0
 _02DC:
-    MoveAction_00E 3
-    MoveAction_00D 2
+    MoveAction_014 3
+    MoveAction_013 2
     EndMovement

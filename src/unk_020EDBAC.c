@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/movement.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020EDF0C.h"
 
@@ -783,7 +785,7 @@ const UnkStruct_020EDF0C *const Unk_020EE3A8[] = {
     &Unk_020EE2B8
 };
 
-int (*const *const Unk_020EE4B8[0x9a])(MapObject *) = {
+int (*const *const Unk_020EE4B8[MAX_MOVEMENT_ACTION])(MapObject *) = {
     Unk_020EEC78,
     Unk_020EEC48,
     Unk_020EEC88,

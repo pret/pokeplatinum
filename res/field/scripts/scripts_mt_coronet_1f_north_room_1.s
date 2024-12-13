@@ -34,15 +34,15 @@ _001D:
 
     .balign 4, 0
 _0058:
-    MoveAction_021
+    MoveAction_033
     EndMovement
 
     .balign 4, 0
 _0060:
-    MoveAction_020
+    MoveAction_032
     EndMovement
 
     .balign 4, 0
 _0068:
-    MoveAction_022
+    MoveAction_034
     EndMovement

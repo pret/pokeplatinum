@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/movement.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "overlay005/map_object_anim_cmd.h"
@@ -139,7 +141,7 @@ int LocalMapObj_IsAnimationSet(const MapObject *mapObj)
 
 void LocalMapObj_SetAnimationCode(MapObject *mapObj, int param1)
 {
-    GF_ASSERT(param1 < 0x9a);
+    GF_ASSERT(param1 < MAX_MOVEMENT_ACTION);
 
     MapObject_SetMovementAction(mapObj, param1);
     sub_02062BC0(mapObj, 0);

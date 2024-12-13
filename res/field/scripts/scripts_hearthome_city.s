@@ -215,61 +215,61 @@ _0225:
 
     .balign 4, 0
 _0240:
-    MoveAction_00E 20
-    MoveAction_00C 13
-    MoveAction_00F 12
-    MoveAction_00C 4
-    MoveAction_021
+    MoveAction_014 20
+    MoveAction_012 13
+    MoveAction_015 12
+    MoveAction_012 4
+    MoveAction_033
     EndMovement
 
     .balign 4, 0
 _0258:
-    MoveAction_00C
-    MoveAction_00E 2
-    MoveAction_00D
-    MoveAction_00E 18
-    MoveAction_00C 13
-    MoveAction_00F 12
-    MoveAction_00C 4
-    MoveAction_021
+    MoveAction_012
+    MoveAction_014 2
+    MoveAction_013
+    MoveAction_014 18
+    MoveAction_012 13
+    MoveAction_015 12
+    MoveAction_012 4
+    MoveAction_033
     EndMovement
 
     .balign 4, 0
 _027C:
-    MoveAction_00C
-    MoveAction_00E 20
-    MoveAction_00C 13
-    MoveAction_00F 12
-    MoveAction_00C 3
+    MoveAction_012
+    MoveAction_014 20
+    MoveAction_012 13
+    MoveAction_015 12
+    MoveAction_012 3
     EndMovement
 
     .balign 4, 0
 _0294:
-    MoveAction_00D
-    MoveAction_00E 20
-    MoveAction_00C 13
-    MoveAction_00F 12
-    MoveAction_00C 3
+    MoveAction_013
+    MoveAction_014 20
+    MoveAction_012 13
+    MoveAction_015 12
+    MoveAction_012 3
     EndMovement
 
     .balign 4, 0
 _02AC:
-    MoveAction_00E
-    MoveAction_00E 20
-    MoveAction_00C 13
-    MoveAction_00F 12
-    MoveAction_00C 3
+    MoveAction_014
+    MoveAction_014 20
+    MoveAction_012 13
+    MoveAction_015 12
+    MoveAction_012 3
     EndMovement
 
     .balign 4, 0
 _02C4:
-    MoveAction_03F 2
-    MoveAction_03E
-    MoveAction_022
-    MoveAction_00E 19
-    MoveAction_00C 13
-    MoveAction_00F 12
-    MoveAction_00C 3
+    MoveAction_063 2
+    MoveAction_062
+    MoveAction_034
+    MoveAction_014 19
+    MoveAction_012 13
+    MoveAction_015 12
+    MoveAction_012 3
     EndMovement
 
 _02E4:
@@ -612,12 +612,12 @@ _0820:
 
     .balign 4, 0
 _087C:
-    MoveAction_04B
+    MoveAction_075
     EndMovement
 
     .balign 4, 0
 _0884:
-    MoveAction_012 9
+    MoveAction_018 9
     EndMovement
 
     .byte 19
@@ -631,12 +631,12 @@ _0884:
 
     .balign 4, 0
 _0894:
-    MoveAction_012 8
+    MoveAction_018 8
     EndMovement
 
     .balign 4, 0
 _089C:
-    MoveAction_00F 8
+    MoveAction_015 8
     EndMovement
 
 _08A4:
