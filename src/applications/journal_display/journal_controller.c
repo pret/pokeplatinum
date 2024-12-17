@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "consts/sdat.h"
 
 #include "struct_defs/struct_02099F80.h"
 
@@ -372,7 +373,7 @@ static int JournalController_TurnPageLeft(UnkStruct_ov81_021D1610 *param0)
         param0->page--;
         ov81_021D164C(param0, param0->unk_1060 ^ 1);
         param0->state = 1;
-        Sound_PlayEffect(1681);
+        Sound_PlayEffect(SEQ_SE_DP_MEKURU3);
         break;
     case 1:
         if (ov81_021D14E0(param0) == TRUE) {
@@ -400,7 +401,7 @@ static int JournalController_TurnPageRight(UnkStruct_ov81_021D1610 *param0)
         param0->page++;
         ov81_021D164C(param0, param0->unk_1060 ^ 1);
         param0->state = 1;
-        Sound_PlayEffect(1681);
+        Sound_PlayEffect(SEQ_SE_DP_MEKURU3);
         break;
     case 1:
         if (ov81_021D156C(param0) == TRUE) {
