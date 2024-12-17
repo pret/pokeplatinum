@@ -14,8 +14,8 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
-#include "res/text/gmm/message_bank_location_names.h"
-#include "res/trainers/trdata.naix"
+#include "text/gmm/message_bank_location_names.h"
+#include "trainers/trdata.naix"
 
 #define LOCATION_EVENT(locationID, trainerID, eventType) ((locationID << 16) | ((trainerID & 0x3ff) << 6) | (eventType & 0x3f))
 
@@ -23,8 +23,6 @@
 #define LOCATION_EVENT_TRAINER_ID(locationEvent)  ((locationEvent >> 6) & 0x3ff)
 #define LOCATION_EVENT_LOCATION_ID(locationEvent) ((locationEvent >> 16) & 0xffff)
 #define LOCATION_EVENT_ITEM(locationEvent)        ((locationEvent >> 16) & 0xffff)
-
-#define MAX_JOURNAL_ENTRIES 10
 
 #define CHAR_NONE 0xffff
 
