@@ -27,7 +27,7 @@ _0027:
     FacePlayer
     CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
     GoToIfEq 0x800C, 1, _0104
-    ScrCmd_1CD 9, 156, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 156, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle trainer_leader_volkner
@@ -50,7 +50,7 @@ _0027:
     SetTrainerFlag trainer_school_kid_tiera
     SetVar 0x407E, 2
     // BUG: trainer_leader_roark should be trainer_leader_volkner
-    ScrCmd_1CD 10, 156, trainer_leader_roark, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 156, trainer_leader_roark, 0, 0
     Message 3
     GoTo _00BC
 

@@ -2391,12 +2391,12 @@ static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
 {
-    void *v0;
-    u16 *v1;
-    u16 *v2;
-    u8 v3;
-    u8 v4;
-    u8 v5;
+    void *journalEntryOnlineEvent;
+    u16 *opponentName1;
+    u16 *opponentName2;
+    u8 opponentGender1;
+    u8 opponentGender2;
+    u8 battleResult;
     u8 v6;
 
     if (param0->unk_00 == NULL) {
@@ -2404,73 +2404,73 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
     }
 
     v6 = CommSys_CurNetId();
-    v5 = param0->unk_2A - 1;
+    battleResult = param0->unk_2A - 1;
 
     if (MapHeader_IsUnionRoom(param0->unk_00->mapHeaderID) == 1) {
-        v3 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
-        v1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
+        opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+        opponentName1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-        Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
-        v0 = sub_0202C174(v1, v3, v5, param0->unk_24);
-        Heap_FreeToHeap(v1);
+        Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+        journalEntryOnlineEvent = JournalEntry_CreateEventUnionBattle(opponentName1, opponentGender1, battleResult, param0->unk_24);
+        Heap_FreeToHeap(opponentName1);
     } else {
         switch (sub_0203895C()) {
         case 1:
-            v3 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
-            v1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
+            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+            opponentName1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
+            Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
-            v0 = sub_0202BFCC(v1, v3, v5, param0->unk_24);
-            Heap_FreeToHeap(v1);
+            journalEntryOnlineEvent = JournalEntry_CreateEventSingleBattle(opponentName1, opponentGender1, battleResult, param0->unk_24);
+            Heap_FreeToHeap(opponentName1);
             break;
         case 2:
-            v3 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
-            v1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
+            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+            opponentName1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
+            Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
-            v0 = sub_0202C00C(v1, v3, v5, param0->unk_24);
-            Heap_FreeToHeap(v1);
+            journalEntryOnlineEvent = JournalEntry_CreateEventDoubleBattle(opponentName1, opponentGender1, battleResult, param0->unk_24);
+            Heap_FreeToHeap(opponentName1);
             break;
         case 3:
-            v3 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
-            v1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
+            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+            opponentName1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
+            Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
-            v0 = sub_0202C0AC(v1, v3, v5, param0->unk_24);
-            Heap_FreeToHeap(v1);
+            journalEntryOnlineEvent = JournalEntry_CreateEventMixSingleBattle(opponentName1, opponentGender1, battleResult, param0->unk_24);
+            Heap_FreeToHeap(opponentName1);
             break;
         case 4:
-            v1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
-            v2 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
+            opponentName1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
+            opponentName2 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
             if (ov10_02220AD0() == 1) {
-                v3 = TrainerClass_Gender(param0->unk_00->trainerData[1].class);
-                v4 = TrainerClass_Gender(param0->unk_00->trainerData[3].class);
+                opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[1].class);
+                opponentGender2 = TrainerClass_Gender(param0->unk_00->trainerData[3].class);
 
-                Strbuf_ToChars(param0->unk_14[1], v1, 8);
-                Strbuf_ToChars(param0->unk_14[3], v2, 8);
+                Strbuf_ToChars(param0->unk_14[1], opponentName1, TRAINER_NAME_LEN + 1);
+                Strbuf_ToChars(param0->unk_14[3], opponentName2, TRAINER_NAME_LEN + 1);
             } else {
-                v3 = TrainerClass_Gender(param0->unk_00->trainerData[0].class);
-                v4 = TrainerClass_Gender(param0->unk_00->trainerData[2].class);
+                opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[0].class);
+                opponentGender2 = TrainerClass_Gender(param0->unk_00->trainerData[2].class);
 
-                Strbuf_ToChars(param0->unk_14[0], v1, 8);
-                Strbuf_ToChars(param0->unk_14[2], v2, 8);
+                Strbuf_ToChars(param0->unk_14[0], opponentName1, TRAINER_NAME_LEN + 1);
+                Strbuf_ToChars(param0->unk_14[2], opponentName2, TRAINER_NAME_LEN + 1);
             }
 
-            v0 = sub_0202C04C(v1, v2, v3, v4, v5, param0->unk_24);
+            journalEntryOnlineEvent = JournalEntry_CreateEventMultiBattle(opponentName1, opponentName2, opponentGender1, opponentGender2, battleResult, param0->unk_24);
 
-            Heap_FreeToHeap(v1);
-            Heap_FreeToHeap(v2);
+            Heap_FreeToHeap(opponentName1);
+            Heap_FreeToHeap(opponentName2);
             break;
         default:
             return;
         }
     }
 
-    JournalEntry_SaveData(param0->unk_00->journalEntry, v0, JOURNAL_UNK_1C);
+    JournalEntry_SaveData(param0->unk_00->journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
 static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)

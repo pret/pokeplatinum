@@ -2,6 +2,7 @@
     .include "consts/badges.inc"
     .include "consts/game_records.inc"
     .include "consts/items.inc"
+    .include "consts/journal.inc"
     .include "consts/map.inc"
     .include "consts/moves.inc"
     .include "consts/poketch.inc"
@@ -2464,13 +2465,13 @@
     .short 460
     .endm
 
-    .macro ScrCmd_1CD arg0, arg1, arg2, arg3, arg4
+    .macro CreateJournalEvent eventType, eventParam, unused1, unused2, unused3
     .short 461
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \eventType
+    .short \eventParam
+    .short \unused1
+    .short \unused2
+    .short \unused3
     .endm
 
     .macro ScrCmd_1CE
