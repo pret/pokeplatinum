@@ -28,6 +28,18 @@ otherpoke_shared = files(
 
 sinnoh_pokedex = files('sinnoh_pokedex.json')
 
+move_tutors_json = files('move_tutors.json')
+
+tutorable_moves_h = custom_target('tutorable_moves.h',
+    input: move_tutors_json,
+    output: 'tutorable_moves.h',
+    command: [
+        make_tutorable_moves_py,
+        '--schema', move_tutors_json,
+        '--output-dir', meson.current_build_dir(),
+    ]
+)
+
 pl_growtbl_files = files('.shared/exp_tables.csv')
 
 # Process mons in national dex order
@@ -771,6 +783,43 @@ pl_growtbl_narc = custom_target('pl_growtbl.narc',
     ]
 )
 
+pokedex_data_srcs = files()
+foreach pokemon : pokemon_subdirs
+    pokedex_data_srcs += files(pokemon / 'data.json')
+endforeach
+
+pokedex_data_narc = custom_target('zukan_data.narc',
+    output: 'zukan_data.narc',
+    input: pokedex_data_srcs,
+    env: json2bin_env,
+    depends: [ py_consts_generators ],
+    command: [
+        make_pokedex_data_py,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        'giratina_origin',
+        pokedex_data_srcs
+    ]
+)
+
+pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
+    output: 'zukan_data_gira.narc',
+    input: pokedex_data_srcs,
+    env: json2bin_env,
+    depends: [ py_consts_generators ],
+    command: [
+        make_pokedex_data_py,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        'giratina_altered',
+        pokedex_data_srcs
+    ]
+)
+
 species_header_target = meson.current_build_dir()
 
 gen_species_headers = custom_target('gen_species_headers',
@@ -800,3 +849,5 @@ nitrofs_files += pl_poke_data_narc
 nitrofs_files += pl_pokezukan_narc
 nitrofs_files += shinzukan_narc
 nitrofs_files += pl_growtbl_narc
+nitrofs_files += pokedex_data_narc
+nitrofs_files += pokedex_data_giratina_altered_narc

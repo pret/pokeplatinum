@@ -7,6 +7,7 @@ consts_manifest_basenames = [
     'game_records',
     'gender',
     'items',
+    'journal',
     'map',
     'movement',
     'moves',

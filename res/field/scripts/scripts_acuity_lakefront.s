@@ -66,17 +66,17 @@ _009A:
 
     .balign 4, 0
 _00E8:
-    MoveAction_00C 6
+    MoveAction_012 6
     EndMovement
 
     .balign 4, 0
 _00F0:
-    MoveAction_00D 6
+    MoveAction_013 6
     EndMovement
 
     .balign 4, 0
 _00F8:
-    MoveAction_00C 3
-    MoveAction_00E
-    MoveAction_00C 4
+    MoveAction_012 3
+    MoveAction_014
+    MoveAction_012 4
     EndMovement

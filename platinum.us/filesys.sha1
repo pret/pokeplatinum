@@ -270,8 +270,8 @@ a2cd6f636960544440b489e827e5e16dcaa7f014 *res/prebuilt/fielddata/areadata/area_b
 fa044bf2e0599ed2bf42d3b632776af3b7e8452e *res/prebuilt/fielddata/land_data/land_data.narc
 f477dce1ffaf2db070ef0f31f422b51433463485 *res/prebuilt/contest/data/contest_data.narc
 e03ff29bc200e233217ad7a8f068ec77b33e6472 *res/prebuilt/particledata/particledata.narc
-5ab40a1a509372d16f6e3b678820c0932cce9d03 *res/prebuilt/application/zukanlist/zkn_data/zukan_data.narc
-285382cf40985e52e30f07471ee477203a4a5304 *res/prebuilt/application/zukanlist/zkn_data/zukan_data_gira.narc
+5ab40a1a509372d16f6e3b678820c0932cce9d03 *res/pokemon/zukan_data.narc
+285382cf40985e52e30f07471ee477203a4a5304 *res/pokemon/zukan_data_gira.narc
 a8171d59d53db11ef6fd8ca89d1bbf439bb24a58 *res/prebuilt/application/wifi_earth/wifi_earth.narc
 e171ea4a5b54d4e68fe7e0031a2edc0d561c7e7c *res/prebuilt/application/wifi_earth/wifi_earth_place.narc
 3e420c904e49c441a22210726e7017e4ee0f607f *res/prebuilt/application/custom_ball/data/cb_data.narc
@@ -288,7 +288,7 @@ afd2be309c09733b33ec9b73b793518b41153828 *res/prebuilt/arc/bm_anime_list.narc
 6a403c707b8737e4f19644ffe51606838fe43456 *res/prebuilt/arc/codein_gra.narc
 f1ef036922af5a593650d6a52f56fb3ec59d3d83 *res/prebuilt/arc/demo_tengan_gra.narc
 adcb9634923530fd7f217a131a3949f556f4f324 *res/prebuilt/arc/email_gra.narc
-0832d441d7e543e14d68e9df7e9118b472d67833 *res/prebuilt/arc/encdata_ex.narc
+0832d441d7e543e14d68e9df7e9118b472d67833 *res/field/encounters/encdata_ex.narc
 d534f791217a311610812b18ef674a326ecdd2ac *res/prebuilt/arc/manene.narc
 ad5fefc4758eba86f6f647e506531d6cfe9c9ce5 *res/prebuilt/arc/plgym_ghost.narc
 89b24d0c67f2cb089800613d5a0254a124d98ba6 *res/prebuilt/arc/ppark.narc
@@ -309,7 +309,7 @@ e5b1a6b28919a947ae2d2e73306abdaf91499aff *res/prebuilt/battle/b_tower/btdpm.narc
 b0344401b36411ecad92e706059cc9a0d8fc2365 *res/prebuilt/battle/b_tower/btdtr.narc
 2bc5d3a3f60966591593cc441ab6bd2eb9cfcaa1 *res/prebuilt/application/zukanlist/zkn_data/zukan_enc_diamond.narc
 ebb8d95aa9e03304b587861e9f912b8f2304fd48 *res/prebuilt/application/zukanlist/zkn_data/zukan_enc_pearl.narc
-00d042c278d7a76bff49d4f317dd522604887368 *res/prebuilt/application/zukanlist/zkn_data/zukan_enc_platinum.narc
+00d042c278d7a76bff49d4f317dd522604887368 *res/field/encounters/zukan_enc_platinum.narc
 231228a02a80612dbe2036e2296a59e2c5a8b681 *res/pokemon/pl_poke_data.narc
 fdded15baac71b1bcfc285a6b7d6008336873e12 *res/prebuilt/debug/cb_edit/d_test.narc
 8088363d46d621357a33956f8e03cb4e5c779734 *res/prebuilt/application/custom_ball/edit/pl_cb_data.narc

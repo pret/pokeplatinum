@@ -30,18 +30,18 @@ _002E:
 
     .balign 4, 0
 _0054:
-    MoveAction_00C
-    MoveAction_042
+    MoveAction_012
+    MoveAction_066
     MoveAction_002
     EndMovement
 
     .balign 4, 0
 _0064:
-    MoveAction_03F
+    MoveAction_063
     MoveAction_002
-    MoveAction_041
-    MoveAction_049
-    MoveAction_00E 10
-    MoveAction_04A
-    MoveAction_045
+    MoveAction_065
+    MoveAction_073
+    MoveAction_014 10
+    MoveAction_074
+    MoveAction_069
     EndMovement

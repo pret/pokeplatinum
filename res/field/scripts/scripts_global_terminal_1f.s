@@ -67,7 +67,7 @@ _00CD:
 
     .balign 4, 0
 _00D8:
-    MoveAction_00D
+    MoveAction_013
     EndMovement
 
     .byte 13
@@ -81,7 +81,7 @@ _00D8:
 
     .balign 4, 0
 _00E8:
-    MoveAction_00D 2
+    MoveAction_013 2
     EndMovement
 
 _00F0:
@@ -240,18 +240,18 @@ _0338:
 
     .balign 4, 0
 _0344:
-    MoveAction_00F
-    MoveAction_020
+    MoveAction_015
+    MoveAction_032
     EndMovement
 
     .balign 4, 0
 _0350:
-    MoveAction_00C
+    MoveAction_012
     EndMovement
 
     .balign 4, 0
 _0358:
-    MoveAction_00C 2
+    MoveAction_012 2
     EndMovement
 
     .balign 4, 0

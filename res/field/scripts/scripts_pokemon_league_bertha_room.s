@@ -38,11 +38,11 @@ _0082:
     Return
 
 _008A:
-    ScrCmd_1CD 11, trainer_elite_four_bertha, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_bertha, 0, 0, 0
     Return
 
 _0098:
-    ScrCmd_1CD 11, trainer_elite_four_bertha_rematch, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_bertha_rematch, 0, 0, 0
     Return
 
 _00A6:
@@ -70,5 +70,5 @@ _00B7:
 
     .balign 4, 0
 _00DC:
-    MoveAction_00C 2
+    MoveAction_012 2
     EndMovement

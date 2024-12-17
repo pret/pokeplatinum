@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/journal.h"
+
 #include "struct_defs/struct_0208BA84.h"
 #include "struct_defs/struct_0208C06C.h"
 
@@ -76,10 +78,10 @@ void sub_0208BA84(UnkStruct_0208BA84 *param0, BOOL param1, int param2)
 
 static void sub_0208BA8C(SaveData *param0, int param1, u32 param2)
 {
-    JournalEntry *v0 = SaveData_GetJournal(param0);
-    void *v1 = sub_0202C244(param1, param2);
+    JournalEntry *journalEntry = SaveData_GetJournal(param0);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(param1, param2);
 
-    JournalEntry_SaveData(v0, v1, JOURNAL_UNK_1C);
+    JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
 static void sub_0208BAAC(OverlayManager *param0, int param1)
@@ -102,31 +104,29 @@ static void sub_0208BAAC(OverlayManager *param0, int param1)
     v0->unk_14->unk_00 = param1;
     v0->unk_14->unk_81C[v0->unk_14->unk_534.unk_1A4] = sub_0208C034(v0->unk_14, v0->unk_14->unk_00);
 
-    {
-        int v1;
+    int eventType;
 
-        switch (param1) {
-        case 2:
-            v1 = 18;
-            break;
-        case 3:
-            v1 = 19;
-            break;
-        case 4:
-            v1 = 19;
-            break;
-        case 5:
-            v1 = 20;
-            break;
-        case 6:
-            v1 = 21;
-            break;
-        default:
-            return;
-        }
-
-        sub_0208BA8C(v0->saveData, 119, v1);
+    switch (param1) {
+    case 2:
+        eventType = ONLINE_EVENT_WATCHED_BATTLE_VIDEOS;
+        break;
+    case 3:
+        eventType = ONLINE_EVENT_CHECKED_RANKINGS;
+        break;
+    case 4:
+        eventType = ONLINE_EVENT_CHECKED_RANKINGS;
+        break;
+    case 5:
+        eventType = ONLINE_EVENT_CHECKED_DRESS_UP_DATA;
+        break;
+    case 6:
+        eventType = ONLINE_EVENT_CHECKED_BOX_DATA;
+        break;
+    default:
+        return;
     }
+
+    sub_0208BA8C(v0->saveData, 119, eventType);
 }
 
 static int sub_0208BB6C(OverlayManager *param0, int *param1)

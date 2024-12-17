@@ -140,12 +140,12 @@ _015E:
 
     .balign 4, 0
 _0164:
-    MoveAction_012
+    MoveAction_018
     EndMovement
 
     .balign 4, 0
 _016C:
-    MoveAction_013
+    MoveAction_019
     EndMovement
 
 _0174:

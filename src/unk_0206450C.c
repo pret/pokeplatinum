@@ -242,7 +242,7 @@ void sub_020645C0(MapObject *mapObj)
         }
     }
 
-    sub_02064208(mapObj);
+    MapObject_UpdateCoords(mapObj);
 }
 
 void sub_02064624(MapObject *mapObj)
@@ -455,7 +455,7 @@ static void sub_020648F4(MapObject *mapObj, int param1)
 
     sub_02062A0C(mapObj, 0x0);
     sub_02062D10(mapObj);
-    sub_02064208(mapObj);
+    MapObject_UpdateCoords(mapObj);
 }
 
 void sub_02064918(MapObject *mapObj)
@@ -503,7 +503,7 @@ static void sub_0206496C(MapObject *mapObj, int param1)
 
     sub_02062A0C(mapObj, 0x0);
     sub_02062D10(mapObj);
-    sub_02064208(mapObj);
+    MapObject_UpdateCoords(mapObj);
 }
 
 void sub_02064990(MapObject *mapObj)
