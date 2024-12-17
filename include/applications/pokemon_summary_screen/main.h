@@ -447,7 +447,7 @@ typedef struct PokemonSummaryScreen {
     u8 sheenPos;
     u8 sheenCount;
 
-    u8 buttonCount;
+    u8 buttonAnimFrame;
     u8 buttonState;
     u8 buttonCurrent;
 
