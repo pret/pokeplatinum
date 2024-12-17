@@ -91,6 +91,8 @@ enum SummaryPageState {
     PAGE_STATE_SCROLL_FINISHED,
 };
 
+#define SUMMARY_STRBUF_LEN 128
+
 // also used by pageState, specifically for the condition page
 #define STAT_INCREASE_NONE 0
 #define COOL_INCREASED     (1 << 0)
@@ -535,10 +537,10 @@ static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *summaryScreen)
     summaryScreen->ribbonLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_RIBBON_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->unk_684 = sub_0200C440(1, 2, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->strFormatter = StringTemplate_Default(HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->monData.speciesName = Strbuf_Init(12, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->monData.nickname = Strbuf_Init(12, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->monData.speciesName = Strbuf_Init(MAX_POKEMON_NAME_LEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->monData.nickname = Strbuf_Init(MAX_POKEMON_NAME_LEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->monData.OTName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->strbuf = Strbuf_Init(128, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->strbuf = Strbuf_Init(SUMMARY_STRBUF_LEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->moveNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->playerName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
@@ -829,7 +831,7 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-        summaryScreen->data->selectedSlot = 4;
+        summaryScreen->data->selectedSlot = LEARNED_MOVES_MAX;
         summaryScreen->data->returnMode = SUMMARY_RETURN_CANCEL;
         return SUMMARY_STATE_TRANSITION_OUT;
     }
@@ -902,7 +904,7 @@ static int HandleInput_Subscreen(PokemonSummaryScreen *summaryScreen)
         return summaryScreen->pageState;
     }
 
-    if (summaryScreen->buttonState == 1) {
+    if (summaryScreen->buttonState == SUMMARY_BUTTON_STATE_SETUP_PAGE) {
         u8 page = PokemonSummaryScreen_GetSubscreenButtonPage(summaryScreen, summaryScreen->buttonCurrent);
 
         if (page == SUMMARY_PAGE_EXIT) {
@@ -1358,9 +1360,9 @@ static u8 CheckSubscreenPressAndSetButton(PokemonSummaryScreen *summaryScreen)
         return FALSE;
     }
 
-    summaryScreen->buttonCount = 0;
+    summaryScreen->buttonAnimFrame = 0;
     summaryScreen->buttonCurrent = button;
-    summaryScreen->buttonState = 0;
+    summaryScreen->buttonState = SUMMARY_BUTTON_STATE_INIT_ANIM;
 
     return TRUE;
 }

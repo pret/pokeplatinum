@@ -23,7 +23,7 @@ void PokemonSummaryScreen_SetMoveSelector2Pos(PokemonSummaryScreen *summaryScree
 void PokemonSummaryScreen_InitSheenSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_DrawSheenSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdateMiscMonDataSprites(PokemonSummaryScreen *summaryScreen);
-void PokemonSummaryScreen_ButtonTapAnim(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_InitButtonTapAnim(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_HideButtonTapCircle(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdateConditionArrowSprites(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_UpdateAButtonSprite(PokemonSummaryScreen *summaryScreen, Window *window);
