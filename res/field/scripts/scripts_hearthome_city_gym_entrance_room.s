@@ -78,15 +78,15 @@ _00B6:
 
     .balign 4, 0
 _00DC:
-    MoveAction_04B
-    MoveAction_03F
-    MoveAction_00E
-    MoveAction_00D
+    MoveAction_075
+    MoveAction_063
+    MoveAction_014
+    MoveAction_013
     EndMovement
 
     .balign 4, 0
 _00F0:
-    MoveAction_00C
-    MoveAction_00F
-    MoveAction_021
+    MoveAction_012
+    MoveAction_015
+    MoveAction_033
     EndMovement

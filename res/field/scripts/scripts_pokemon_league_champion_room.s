@@ -82,26 +82,26 @@ _0121:
 
     .balign 4, 0
 _012C:
-    MoveAction_00C 4
+    MoveAction_012 4
     EndMovement
 
     .balign 4, 0
 _0134:
-    MoveAction_00C 6
+    MoveAction_012 6
     EndMovement
 
     .balign 4, 0
 _013C:
-    MoveAction_00C 6
+    MoveAction_012 6
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_00E
-    MoveAction_021
+    MoveAction_014
+    MoveAction_033
     EndMovement
 
     .balign 4, 0
 _0150:
-    MoveAction_020
+    MoveAction_032
     EndMovement

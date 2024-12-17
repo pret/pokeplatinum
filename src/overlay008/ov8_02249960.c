@@ -3365,7 +3365,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
             sub_02064450(v0->unk_08.unk_00, v0->unk_08.unk_04, &param0->unk_20);
             MapObject_SetX(v0->unk_08.unk_08, v0->unk_08.unk_00);
             MapObject_SetZ(v0->unk_08.unk_08, v0->unk_08.unk_04);
-            sub_02064208(v0->unk_08.unk_08);
+            MapObject_UpdateCoords(v0->unk_08.unk_08);
             ov5_021F4714(v0->unk_08.unk_0C, FX32_ONE);
             Sound_StopEffect(1356, 0);
             Sound_PlayEffect(1367);

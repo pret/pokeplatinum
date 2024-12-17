@@ -101,5 +101,5 @@ _0150:
 
     .balign 4, 0
 _0158:
-    MoveAction_04B
+    MoveAction_075
     EndMovement

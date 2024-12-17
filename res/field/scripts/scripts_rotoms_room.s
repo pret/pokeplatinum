@@ -555,8 +555,8 @@ _08AA:
 
     .balign 4, 0
 _08AC:
-    MoveAction_021
-    MoveAction_04B
+    MoveAction_033
+    MoveAction_075
     EndMovement
 
     .byte 34
@@ -590,27 +590,27 @@ _08AC:
 
     .balign 4, 0
 _08D4:
-    MoveAction_00C 2
+    MoveAction_012 2
     EndMovement
 
     .balign 4, 0
 _08DC:
-    MoveAction_00E 2
-    MoveAction_020
-    MoveAction_03F 2
-    MoveAction_00F 4
-    MoveAction_020
+    MoveAction_014 2
+    MoveAction_032
+    MoveAction_063 2
+    MoveAction_015 4
+    MoveAction_032
     EndMovement
 
     .balign 4, 0
 _08F4:
-    MoveAction_00E 2
-    MoveAction_020
+    MoveAction_014 2
+    MoveAction_032
     EndMovement
 
     .balign 4, 0
 _0900:
-    MoveAction_00D 2
+    MoveAction_013 2
     EndMovement
 
 _0908:

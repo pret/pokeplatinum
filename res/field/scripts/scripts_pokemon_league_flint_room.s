@@ -90,11 +90,11 @@ _0118:
 
     .balign 4, 0
 _0120:
-    MoveAction_047
-    MoveAction_021 3
-    MoveAction_025 4
-    MoveAction_029 2
-    MoveAction_048
+    MoveAction_071
+    MoveAction_033 3
+    MoveAction_037 4
+    MoveAction_041 2
+    MoveAction_072
     EndMovement
 
 _0138:
@@ -110,5 +110,5 @@ _0138:
 
     .balign 4, 0
 _015C:
-    MoveAction_00C 2
+    MoveAction_012 2
     EndMovement

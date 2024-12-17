@@ -68,7 +68,7 @@ _00DC:
 
     .balign 4, 0
 _00E4:
-    MoveAction_06A
+    MoveAction_106
     MoveAction_002
     EndMovement
 
@@ -79,7 +79,7 @@ _00F0:
 
     .balign 4, 0
 _00F8:
-    MoveAction_06A
+    MoveAction_106
     MoveAction_002
     EndMovement
 
@@ -100,6 +100,6 @@ _0114:
 
     .balign 4, 0
 _011C:
-    MoveAction_06B
+    MoveAction_107
     MoveAction_000
     EndMovement

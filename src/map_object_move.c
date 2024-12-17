@@ -80,7 +80,7 @@ void MapObject_Move(MapObject *mapObj)
     sub_02063518(mapObj);
 
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_4)) {
-        sub_020658B4(mapObj);
+        MapObject_DoMovementAction(mapObj);
     } else if (MapObject_IsMovementPaused(mapObj) == FALSE && sub_02063478(mapObj) == 1 && sub_020673C0(mapObj) == 0) {
         sub_02062B14(mapObj);
     }
@@ -830,18 +830,18 @@ int MapObject_GetDyFromDir(int param0)
     return sMapObjectDyDir[param0];
 }
 
-void sub_020641B4(MapObject *mapObj, int param1)
+void MapObject_StepDir(MapObject *mapObj, int dir)
 {
     MapObject_SetXPrev(mapObj, MapObject_GetX(mapObj));
     MapObject_SetYPrev(mapObj, MapObject_GetY(mapObj));
     MapObject_SetZPrev(mapObj, MapObject_GetZ(mapObj));
 
-    MapObject_AddX(mapObj, MapObject_GetDxFromDir(param1));
+    MapObject_AddX(mapObj, MapObject_GetDxFromDir(dir));
     MapObject_AddY(mapObj, 0);
-    MapObject_AddZ(mapObj, MapObject_GetDyFromDir(param1));
+    MapObject_AddZ(mapObj, MapObject_GetDyFromDir(dir));
 }
 
-void sub_02064208(MapObject *mapObj)
+void MapObject_UpdateCoords(MapObject *mapObj)
 {
     MapObject_SetXPrev(mapObj, MapObject_GetX(mapObj));
     MapObject_SetYPrev(mapObj, MapObject_GetY(mapObj));
@@ -871,8 +871,7 @@ void MapObject_AddVecToPos(MapObject *mapObj, const VecFx32 *vec)
     MapObject_SetPos(mapObj, &pos);
 }
 
-// TODO: This could really use a better name
-void MapObject_StepDirection(MapObject *mapObj, int dir, fx32 param2)
+void MapObject_MovePosInDir(MapObject *mapObj, int dir, fx32 distance)
 {
     VecFx32 pos;
 
@@ -880,16 +879,16 @@ void MapObject_StepDirection(MapObject *mapObj, int dir, fx32 param2)
 
     switch (dir) {
     case DIR_NORTH:
-        pos.z -= param2;
+        pos.z -= distance;
         break;
     case DIR_SOUTH:
-        pos.z += param2;
+        pos.z += distance;
         break;
     case DIR_WEST:
-        pos.x -= param2;
+        pos.x -= distance;
         break;
     case DIR_EAST:
-        pos.x += param2;
+        pos.x += distance;
         break;
     }
 

@@ -1096,26 +1096,26 @@ _1205:
 
     .balign 4, 0
 _1248:
-    MoveAction_03E
-    MoveAction_00C 2
+    MoveAction_062
+    MoveAction_012 2
     EndMovement
 
     .balign 4, 0
 _1254:
-    MoveAction_00C
-    MoveAction_045
+    MoveAction_012
+    MoveAction_069
     EndMovement
 
     .balign 4, 0
 _1260:
-    MoveAction_03E
-    MoveAction_00C 2
+    MoveAction_062
+    MoveAction_012 2
     EndMovement
 
     .balign 4, 0
 _126C:
-    MoveAction_00C 2
-    MoveAction_045
+    MoveAction_012 2
+    MoveAction_069
     EndMovement
 
     .balign 4, 0
