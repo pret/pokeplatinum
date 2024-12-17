@@ -255,81 +255,81 @@ _0393:
 
     .balign 4, 0
 _039C:
-    MoveAction_00C 6
-    MoveAction_00F
-    MoveAction_00C
-    MoveAction_00F 5
-    MoveAction_020
+    MoveAction_012 6
+    MoveAction_015
+    MoveAction_012
+    MoveAction_015 5
+    MoveAction_032
     EndMovement
 
     .balign 4, 0
 _03B4:
-    MoveAction_00C 6
-    MoveAction_00F
-    MoveAction_00C
-    MoveAction_00F 4
-    MoveAction_020
+    MoveAction_012 6
+    MoveAction_015
+    MoveAction_012
+    MoveAction_015 4
+    MoveAction_032
     EndMovement
 
     .balign 4, 0
 _03CC:
-    MoveAction_00E
-    MoveAction_00C
+    MoveAction_014
+    MoveAction_012
     EndMovement
 
     .balign 4, 0
 _03D8:
-    MoveAction_00F
-    MoveAction_00C
+    MoveAction_015
+    MoveAction_012
     EndMovement
 
     .balign 4, 0
 _03E4:
-    MoveAction_023
+    MoveAction_035
     EndMovement
 
     .balign 4, 0
 _03EC:
-    MoveAction_022
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _03F4:
-    MoveAction_03F
+    MoveAction_063
     MoveAction_003
-    MoveAction_047
-    MoveAction_012
-    MoveAction_048
+    MoveAction_071
+    MoveAction_018
+    MoveAction_072
     EndMovement
 
     .balign 4, 0
 _040C:
-    MoveAction_03F
+    MoveAction_063
     MoveAction_002
-    MoveAction_047
-    MoveAction_013
-    MoveAction_048
+    MoveAction_071
+    MoveAction_019
+    MoveAction_072
     EndMovement
 
     .balign 4, 0
 _0424:
-    MoveAction_021
+    MoveAction_033
     EndMovement
 
     .balign 4, 0
 _042C:
-    MoveAction_00F
+    MoveAction_015
     EndMovement
 
     .balign 4, 0
 _0434:
-    MoveAction_023
+    MoveAction_035
     EndMovement
 
     .balign 4, 0
 _043C:
-    MoveAction_00C
-    MoveAction_023
+    MoveAction_012
+    MoveAction_035
     EndMovement
 
     .byte 12
@@ -347,13 +347,13 @@ _043C:
 
     .balign 4, 0
 _0454:
-    MoveAction_022
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _045C:
-    MoveAction_00C
-    MoveAction_022
+    MoveAction_012
+    MoveAction_034
     EndMovement
 
     .byte 12
@@ -371,90 +371,90 @@ _045C:
 
     .balign 4, 0
 _0474:
-    MoveAction_00E
+    MoveAction_014
     EndMovement
 
     .balign 4, 0
 _047C:
-    MoveAction_03F
-    MoveAction_021
+    MoveAction_063
+    MoveAction_033
     EndMovement
 
     .balign 4, 0
 _0488:
-    MoveAction_00C 6
-    MoveAction_00F
-    MoveAction_00C
-    MoveAction_00F 5
-    MoveAction_00C
+    MoveAction_012 6
+    MoveAction_015
+    MoveAction_012
+    MoveAction_015 5
+    MoveAction_012
     EndMovement
 
     .balign 4, 0
 _04A0:
-    MoveAction_00C 6
-    MoveAction_00F
-    MoveAction_00C
-    MoveAction_00F 4
-    MoveAction_00C
+    MoveAction_012 6
+    MoveAction_015
+    MoveAction_012
+    MoveAction_015 4
+    MoveAction_012
     EndMovement
 
     .balign 4, 0
 _04B8:
-    MoveAction_021
+    MoveAction_033
     EndMovement
 
     .balign 4, 0
 _04C0:
-    MoveAction_03F
-    MoveAction_022
+    MoveAction_063
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _04CC:
-    MoveAction_03F
-    MoveAction_023
+    MoveAction_063
+    MoveAction_035
     EndMovement
 
     .balign 4, 0
 _04D8:
-    MoveAction_022
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _04E0:
-    MoveAction_023
+    MoveAction_035
     EndMovement
 
     .balign 4, 0
 _04E8:
-    MoveAction_023
+    MoveAction_035
     EndMovement
 
     .balign 4, 0
 _04F0:
-    MoveAction_00D
-    MoveAction_00E 5
-    MoveAction_00D
-    MoveAction_00E
-    MoveAction_00D 6
+    MoveAction_013
+    MoveAction_014 5
+    MoveAction_013
+    MoveAction_014
+    MoveAction_013 6
     EndMovement
 
     .balign 4, 0
 _0508:
-    MoveAction_00D
-    MoveAction_00E 4
-    MoveAction_00D
-    MoveAction_00E
-    MoveAction_00D 6
+    MoveAction_013
+    MoveAction_014 4
+    MoveAction_013
+    MoveAction_014
+    MoveAction_013 6
     EndMovement
 
     .balign 4, 0
 _0520:
-    MoveAction_00D
-    MoveAction_00E 5
-    MoveAction_00D
-    MoveAction_00E
-    MoveAction_00D 6
+    MoveAction_013
+    MoveAction_014 5
+    MoveAction_013
+    MoveAction_014
+    MoveAction_013 6
     EndMovement
 
 _0538:
@@ -609,108 +609,108 @@ _079C:
 
     .balign 4, 0
 _07B0:
-    MoveAction_00C 6
-    MoveAction_00F
-    MoveAction_00C
-    MoveAction_00F 5
-    MoveAction_00C
+    MoveAction_012 6
+    MoveAction_015
+    MoveAction_012
+    MoveAction_015 5
+    MoveAction_012
     EndMovement
 
     .balign 4, 0
 _07C8:
-    MoveAction_00C 6
-    MoveAction_00F
-    MoveAction_00C
-    MoveAction_00F 4
-    MoveAction_00C
+    MoveAction_012 6
+    MoveAction_015
+    MoveAction_012
+    MoveAction_015 4
+    MoveAction_012
     EndMovement
 
     .balign 4, 0
 _07E0:
-    MoveAction_022
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _07E8:
-    MoveAction_023
+    MoveAction_035
     EndMovement
 
     .balign 4, 0
 _07F0:
-    MoveAction_020
+    MoveAction_032
     EndMovement
 
     .balign 4, 0
 _07F8:
-    MoveAction_00D
+    MoveAction_013
     EndMovement
 
     .balign 4, 0
 _0800:
-    MoveAction_00C
-    MoveAction_022
+    MoveAction_012
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _080C:
-    MoveAction_00C
-    MoveAction_023
+    MoveAction_012
+    MoveAction_035
     EndMovement
 
     .balign 4, 0
 _0818:
-    MoveAction_00D
-    MoveAction_00E 5
-    MoveAction_00D
-    MoveAction_00E
-    MoveAction_00D 6
+    MoveAction_013
+    MoveAction_014 5
+    MoveAction_013
+    MoveAction_014
+    MoveAction_013 6
     EndMovement
 
     .balign 4, 0
 _0830:
-    MoveAction_00D
-    MoveAction_00E 4
-    MoveAction_00D
-    MoveAction_00E
-    MoveAction_00D 6
+    MoveAction_013
+    MoveAction_014 4
+    MoveAction_013
+    MoveAction_014
+    MoveAction_013 6
     EndMovement
 
     .balign 4, 0
 _0848:
-    MoveAction_023
+    MoveAction_035
     EndMovement
 
     .balign 4, 0
 _0850:
-    MoveAction_022
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _0858:
-    MoveAction_03F
-    MoveAction_020
+    MoveAction_063
+    MoveAction_032
     EndMovement
 
     .balign 4, 0
 _0864:
-    MoveAction_03F
-    MoveAction_021
+    MoveAction_063
+    MoveAction_033
     EndMovement
 
     .balign 4, 0
 _0870:
-    MoveAction_03F
-    MoveAction_023
+    MoveAction_063
+    MoveAction_035
     EndMovement
 
     .balign 4, 0
 _087C:
-    MoveAction_03F
-    MoveAction_022
+    MoveAction_063
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _0888:
-    MoveAction_03F 2
+    MoveAction_063 2
     MoveAction_002
     EndMovement

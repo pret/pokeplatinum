@@ -68,13 +68,13 @@ _00D0:
 
     .balign 4, 0
 _00F0:
-    MoveAction_00E
-    MoveAction_00D 3
+    MoveAction_014
+    MoveAction_013 3
     EndMovement
 
     .balign 4, 0
 _00FC:
-    MoveAction_00D 2
-    MoveAction_00E
-    MoveAction_00D
+    MoveAction_013 2
+    MoveAction_014
+    MoveAction_013
     EndMovement

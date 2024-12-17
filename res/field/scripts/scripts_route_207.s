@@ -106,7 +106,7 @@ _0156:
 
     .balign 4, 0
 _0174:
-    MoveAction_022
+    MoveAction_034
     EndMovement
 
     .byte 63
@@ -136,18 +136,18 @@ _0174:
 
     .balign 4, 0
 _0194:
-    MoveAction_00F 3
-    MoveAction_04B
+    MoveAction_015 3
+    MoveAction_075
     EndMovement
 
     .balign 4, 0
 _01A0:
-    MoveAction_00F 5
+    MoveAction_015 5
     EndMovement
 
     .balign 4, 0
 _01A8:
-    MoveAction_00E 8
+    MoveAction_014 8
     EndMovement
 
 _01B0:
