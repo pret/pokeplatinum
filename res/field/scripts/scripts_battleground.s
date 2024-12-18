@@ -140,45 +140,45 @@ _01FD:
 
     .balign 4, 0
 _0214:
-    MoveAction_03F 2
-    MoveAction_022
+    MoveAction_063 2
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _0220:
-    MoveAction_03F
-    MoveAction_021
-    MoveAction_03F
-    MoveAction_022
+    MoveAction_063
+    MoveAction_033
+    MoveAction_063
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _0234:
-    MoveAction_03F 2
-    MoveAction_022
+    MoveAction_063 2
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _0240:
-    MoveAction_00E
-    MoveAction_00D
-    MoveAction_00E 3
-    MoveAction_00D 2
+    MoveAction_014
+    MoveAction_013
+    MoveAction_014 3
+    MoveAction_013 2
     EndMovement
 
     .balign 4, 0
 _0254:
-    MoveAction_00D
-    MoveAction_00E 4
-    MoveAction_00D 2
+    MoveAction_013
+    MoveAction_014 4
+    MoveAction_013 2
     EndMovement
 
     .balign 4, 0
 _0264:
-    MoveAction_00E
-    MoveAction_00D
-    MoveAction_00E 3
-    MoveAction_00D 2
+    MoveAction_014
+    MoveAction_013
+    MoveAction_014 3
+    MoveAction_013 2
     EndMovement
 
 _0278:
@@ -196,13 +196,13 @@ _0278:
 
     .balign 4, 0
 _02A0:
-    MoveAction_04B
+    MoveAction_075
     EndMovement
 
     .balign 4, 0
 _02A8:
-    MoveAction_00C 2
-    MoveAction_00F 4
+    MoveAction_012 2
+    MoveAction_015 4
     EndMovement
 
 _02B4:
@@ -428,23 +428,23 @@ _06E8:
     Return
 
 _06F0:
-    SetVar 0x4005, trainer_trainer_cheryl_battleground
+    SetVar 0x4005, trainer_cheryl_battleground
     Return
 
 _06F8:
-    SetVar 0x4005, trainer_trainer_riley_battleground
+    SetVar 0x4005, trainer_riley_battleground
     Return
 
 _0700:
-    SetVar 0x4005, trainer_trainer_marley_battleground
+    SetVar 0x4005, trainer_marley_battleground
     Return
 
 _0708:
-    SetVar 0x4005, trainer_trainer_buck_battleground
+    SetVar 0x4005, trainer_buck_battleground
     Return
 
 _0710:
-    SetVar 0x4005, trainer_trainer_mira_battleground
+    SetVar 0x4005, trainer_mira_battleground
     Return
 
 _0718:

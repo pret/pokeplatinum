@@ -169,7 +169,7 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
             v1 = 6;
         } else if (MapHeader_IsOutdoors(param1)) {
             v1 = 5;
-        } else if (sub_0203A288(param1)) {
+        } else if (MapHeader_IsBuilding(param1)) {
             v1 = 6;
         } else {
             GF_ASSERT(0);
@@ -177,15 +177,15 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
     } else if (MapHeader_IsOutdoors(v0)) {
         if (MapHeader_IsCave(param1)) {
             v1 = 4;
-        } else if (sub_0203A288(param1)) {
+        } else if (MapHeader_IsBuilding(param1)) {
             v1 = 6;
         } else {
             GF_ASSERT(0);
         }
-    } else if (sub_0203A288(v0)) {
+    } else if (MapHeader_IsBuilding(v0)) {
         if (MapHeader_IsOutdoors(param1)) {
             v1 = 0;
-        } else if (sub_0203A288(param1)) {
+        } else if (MapHeader_IsBuilding(param1)) {
             v1 = 6;
         } else if (MapHeader_IsCave(param1)) {
             v1 = 0;

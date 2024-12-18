@@ -24,6 +24,8 @@ enum HeapId {
 
     HEAP_ID_OPTIONS_MENU = 38,
 
+    HEAP_ID_JOURNAL = 42,
+
     HEAP_ID_CHOOSE_STARTER_APP = 47,
 
     HEAP_ID_GAME_START = 77,

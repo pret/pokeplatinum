@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "consts/game_records.h"
+#include "consts/journal.h"
 
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/struct_0209BF64.h"
@@ -1050,15 +1051,15 @@ static int ov109_021D4CA8(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static int ov109_021D4CC8(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    void *v0;
+    void *journalEntryOnlineEvent;
 
     gCoreSys.inhibitReset = 1;
 
-    v0 = sub_0202C1B4(95);
-    Journal_SaveData(param0->unk_0C->unk_14.unk_18, v0, 4);
+    journalEntryOnlineEvent = JournalEntry_CreateEventMixedRecords(95);
+    JournalEntry_SaveData(param0->unk_0C->unk_14.unk_18, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 
-    v0 = sub_0202C244(95, 17);
-    Journal_SaveData(param0->unk_0C->unk_14.unk_18, v0, 4);
+    journalEntryOnlineEvent = JournalEntry_CreateEventMisc(95, ONLINE_EVENT_SPIN_TRADE);
+    JournalEntry_SaveData(param0->unk_0C->unk_14.unk_18, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     GameRecords_IncrementTrainerScore(param0->unk_0C->unk_14.records, TRAINER_SCORE_EVENT_UNK_20);
     sub_02038ED4(&param0->unk_414);
     param0->unk_3B8 = 28;

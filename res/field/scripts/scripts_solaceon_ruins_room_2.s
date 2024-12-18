@@ -68,5 +68,5 @@ _00C7:
 
     .balign 4, 0
 _00D4:
-    MoveAction_04B
+    MoveAction_075
     EndMovement

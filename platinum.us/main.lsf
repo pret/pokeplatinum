@@ -321,7 +321,7 @@ Static main
 	Object main.nef.p/src_applications_pokemon_summary_screen_main.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_sprite.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_window.c.o
-	Object main.nef.p/src_unk_020916B4.c.o
+	Object main.nef.p/src_applications_pokemon_summary_screen_3d_anim.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_subscreen.c.o
 	Object main.nef.p/src_ribbon.c.o
 	Object main.nef.p/src_unk_02092494.c.o
@@ -1321,11 +1321,11 @@ Overlay overlay80
 	Object main.nef.p/src_overlay080_ov80_021D2AF4.c.o
 }
 
-Overlay overlay81
+Overlay journal_display
 {
 	After main
-	Object main.nef.p/src_overlay081_ov81_021D0D80.c.o
-	Object main.nef.p/src_overlay081_ov81_021D1610.c.o
+	Object main.nef.p/src_applications_journal_display_journal_controller.c.o
+	Object main.nef.p/src_applications_journal_display_journal_printer.c.o
 }
 
 Overlay overlay82

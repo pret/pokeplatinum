@@ -471,7 +471,7 @@ static int ov5_021DFF1C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
         }
 
         {
-            int v1 = sub_02062920(mapObj);
+            int v1 = MapObject_GetGraphicsID(mapObj);
 
             if (v1 != 0x54) {
                 return 0;
@@ -646,9 +646,9 @@ static BOOL ov5_021E0160(FieldTask *taskMan)
             int v2 = Player_GetZPos(v0->playerAvatar) + MapObject_GetDyFromDir(v0->unk_04);
             v0->unk_28 = ov5_021F261C(v0->unk_24, v1, v2, v0->unk_04, 0);
         } else {
-            int v3 = MapObject_GetXPos(v0->unk_24);
-            int v4 = (MapObject_GetYPos(v0->unk_24) / 2);
-            int v5 = MapObject_GetZPos(v0->unk_24);
+            int v3 = MapObject_GetX(v0->unk_24);
+            int v4 = (MapObject_GetY(v0->unk_24) / 2);
+            int v5 = MapObject_GetZ(v0->unk_24);
             enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(v0->playerAvatar);
 
             sub_02061674(v0->playerAvatar, v0->unk_04, &v3, &v4, &v5);
@@ -943,7 +943,7 @@ static int ov5_021E06A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
         }
 
         {
-            int v2 = sub_02062920(v1);
+            int v2 = MapObject_GetGraphicsID(v1);
 
             if (v2 != 0x76) {
                 return 0;
@@ -1089,7 +1089,7 @@ static int ov5_021E08C0(UnkStruct_ov5_021F9B54 *param0)
     }
 
     {
-        int v0 = MapObject_GetMoveDir(param0->unk_14);
+        int v0 = MapObject_GetMovingDir(param0->unk_14);
         u8 v1 = sub_02064238(param0->unk_14, v0);
 
         if (ov5_021E0760(v1, v0) == 1) {
@@ -1219,8 +1219,8 @@ static int ov5_021E0A68(UnkStruct_ov5_021F9B10 *param0)
     int v0, v1;
     VecFx32 v2, v3;
 
-    v0 = MapObject_GetXPos(param0->unk_3C) + (MapObject_GetDxFromDir(0) << 1);
-    v1 = MapObject_GetZPos(param0->unk_3C) + (MapObject_GetDyFromDir(0) << 1);
+    v0 = MapObject_GetX(param0->unk_3C) + (MapObject_GetDxFromDir(0) << 1);
+    v1 = MapObject_GetZ(param0->unk_3C) + (MapObject_GetDyFromDir(0) << 1);
 
     sub_02064450(v0, v1, &param0->unk_28);
     sub_020644A4(param0->fieldSystem, &param0->unk_28);
@@ -1229,7 +1229,7 @@ static int ov5_021E0A68(UnkStruct_ov5_021F9B10 *param0)
     param0->unk_10 = (((param0->unk_28.y) >> 3) / FX32_ONE);
     param0->unk_14 = v1;
 
-    MapObject_PosVectorOut(param0->unk_3C, &v2);
+    MapObject_GetPosPtr(param0->unk_3C, &v2);
 
     GF_ASSERT(v2.z > param0->unk_28.z);
     GF_ASSERT(v2.y < param0->unk_28.y);
@@ -1251,7 +1251,7 @@ static int ov5_021E0B24(UnkStruct_ov5_021F9B10 *param0)
 {
     VecFx32 v0;
 
-    MapObject_PosVectorOut(param0->unk_3C, &v0);
+    MapObject_GetPosPtr(param0->unk_3C, &v0);
 
     v0.y += param0->unk_1C.y;
 
@@ -1259,7 +1259,7 @@ static int ov5_021E0B24(UnkStruct_ov5_021F9B10 *param0)
         v0.y = param0->unk_28.y;
     }
 
-    MapObject_SetPosVec(param0->unk_3C, &v0);
+    MapObject_SetPos(param0->unk_3C, &v0);
 
     param0->unk_08++;
 
@@ -1275,7 +1275,7 @@ static int ov5_021E0B64(UnkStruct_ov5_021F9B10 *param0)
 {
     VecFx32 v0;
 
-    MapObject_PosVectorOut(param0->unk_3C, &v0);
+    MapObject_GetPosPtr(param0->unk_3C, &v0);
 
     v0.y += param0->unk_1C.y;
 
@@ -1289,7 +1289,7 @@ static int ov5_021E0B64(UnkStruct_ov5_021F9B10 *param0)
         v0.z = param0->unk_28.z;
     }
 
-    MapObject_SetPosVec(param0->unk_3C, &v0);
+    MapObject_SetPos(param0->unk_3C, &v0);
 
     param0->unk_08++;
 
@@ -1303,7 +1303,7 @@ static int ov5_021E0B64(UnkStruct_ov5_021F9B10 *param0)
     MapObject_SetX(param0->unk_3C, param0->unk_0C);
     MapObject_SetY(param0->unk_3C, param0->unk_10);
     MapObject_SetZ(param0->unk_3C, param0->unk_14);
-    sub_02064208(param0->unk_3C);
+    MapObject_UpdateCoords(param0->unk_3C);
 
     ov6_02248608(param0->unk_50);
     return 1;
@@ -1344,8 +1344,8 @@ static int ov5_021E0C34(UnkStruct_ov5_021F9B10 *param0)
     int v0, v1;
     VecFx32 v2, v3;
 
-    v0 = MapObject_GetXPos(param0->unk_3C) + (MapObject_GetDxFromDir(1) << 1);
-    v1 = MapObject_GetZPos(param0->unk_3C) + (MapObject_GetDyFromDir(1) << 1);
+    v0 = MapObject_GetX(param0->unk_3C) + (MapObject_GetDxFromDir(1) << 1);
+    v1 = MapObject_GetZ(param0->unk_3C) + (MapObject_GetDyFromDir(1) << 1);
 
     sub_02064450(v0, v1, &param0->unk_28);
     sub_020644A4(param0->fieldSystem, &param0->unk_28);
@@ -1355,7 +1355,7 @@ static int ov5_021E0C34(UnkStruct_ov5_021F9B10 *param0)
     param0->unk_10 = (((param0->unk_28.y) >> 3) / FX32_ONE);
     param0->unk_14 = v1;
 
-    MapObject_PosVectorOut(param0->unk_3C, &v2);
+    MapObject_GetPosPtr(param0->unk_3C, &v2);
 
     GF_ASSERT(v2.z < param0->unk_28.z);
     GF_ASSERT(v2.y > param0->unk_28.y);
@@ -1377,7 +1377,7 @@ static int ov5_021E0CF4(UnkStruct_ov5_021F9B10 *param0)
 {
     VecFx32 v0;
 
-    MapObject_PosVectorOut(param0->unk_3C, &v0);
+    MapObject_GetPosPtr(param0->unk_3C, &v0);
 
     v0.z += param0->unk_1C.z;
 
@@ -1387,7 +1387,7 @@ static int ov5_021E0CF4(UnkStruct_ov5_021F9B10 *param0)
         param0->unk_18 += param0->unk_1C.z;
     }
 
-    MapObject_SetPosVec(param0->unk_3C, &v0);
+    MapObject_SetPos(param0->unk_3C, &v0);
 
     param0->unk_08++;
 
@@ -1403,7 +1403,7 @@ static int ov5_021E0D40(UnkStruct_ov5_021F9B10 *param0)
 {
     VecFx32 v0;
 
-    MapObject_PosVectorOut(param0->unk_3C, &v0);
+    MapObject_GetPosPtr(param0->unk_3C, &v0);
 
     v0.y += param0->unk_1C.y;
 
@@ -1419,7 +1419,7 @@ static int ov5_021E0D40(UnkStruct_ov5_021F9B10 *param0)
         param0->unk_18 += param0->unk_1C.z;
     }
 
-    MapObject_SetPosVec(param0->unk_3C, &v0);
+    MapObject_SetPos(param0->unk_3C, &v0);
 
     param0->unk_08++;
 
@@ -1433,7 +1433,7 @@ static int ov5_021E0D40(UnkStruct_ov5_021F9B10 *param0)
     MapObject_SetX(param0->unk_3C, param0->unk_0C);
     MapObject_SetY(param0->unk_3C, param0->unk_10);
     MapObject_SetZ(param0->unk_3C, param0->unk_14);
-    sub_02064208(param0->unk_3C);
+    MapObject_UpdateCoords(param0->unk_3C);
 
     ov6_02248608(param0->unk_50);
 
@@ -1572,7 +1572,7 @@ void ov5_021E0E94(PlayerAvatar *playerAvatar)
     }
 
     {
-        int v2 = sub_02062920(v0);
+        int v2 = MapObject_GetGraphicsID(v0);
 
         if ((v2 == 0xc4) || (v2 == 0xc5) || (v2 == 0x10e) || (v2 == 0x10f)) {
             return;
@@ -1605,7 +1605,7 @@ void ov5_021E0EEC(PlayerAvatar *playerAvatar)
     }
 
     {
-        int v2 = sub_02062920(v0);
+        int v2 = MapObject_GetGraphicsID(v0);
 
         if ((v2 != 0xc4) && (v2 != 0xc5) && (v2 != 0x10e) && (v2 != 0x10f) && (v2 != 0x112) && (v2 != 0x113)) {
             return;

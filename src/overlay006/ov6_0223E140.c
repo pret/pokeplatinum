@@ -492,9 +492,9 @@ static void ov6_0223E318(FieldSystem *fieldSystem, u32 param1, BOOL param2)
     v0 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, param1);
 
     if (param2 == 1) {
-        MapObject_SetStatusFlagOn(v0, (1 << 20));
+        MapObject_SetStatusFlagOn(v0, MAP_OBJ_STATUS_HIDE_SHADOW);
     } else {
-        MapObject_SetStatusFlagOff(v0, (1 << 20));
+        MapObject_SetStatusFlagOff(v0, MAP_OBJ_STATUS_HIDE_SHADOW);
     }
 }
 
@@ -829,9 +829,9 @@ static void ov6_0223E7B4(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     v1 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, 0);
     GF_ASSERT(v1);
 
-    v2 = MapObject_GetXPos(v1);
+    v2 = MapObject_GetX(v1);
     v3 = 0;
-    v4 = MapObject_GetZPos(v1);
+    v4 = MapObject_GetZ(v1);
 
     v0->unk_00 = ov6_02240768(4);
     ov6_0224077C(v0->unk_00, v2, v3, v4);
@@ -1261,7 +1261,7 @@ static BOOL ov6_0223EE5C(UnkStruct_ov6_0223EA98 *param0)
         break;
     case 8:
         param0->unk_D0 = 0;
-        sub_0206296C(param0->unk_10C, 2);
+        MapObject_Face(param0->unk_10C, 2);
         LocalMapObj_SetAnimationCode(param0->unk_110, 0x2);
         Easy3DObject_GetPosition(&param0->unk_24, &v1, &v2, &param0->unk_D8);
         param0->unk_18++;
@@ -1424,17 +1424,17 @@ static BOOL ov6_0223EE5C(UnkStruct_ov6_0223EA98 *param0)
 
     if (param0->unk_1C != 0) {
         if (param0->unk_1C == 20) {
-            sub_0206296C(param0->unk_10C, 1);
+            MapObject_Face(param0->unk_10C, 1);
             LocalMapObj_SetAnimationCode(param0->unk_110, 0x1);
         }
 
         if (param0->unk_1C == 40) {
-            sub_0206296C(param0->unk_10C, 2);
+            MapObject_Face(param0->unk_10C, 2);
             LocalMapObj_SetAnimationCode(param0->unk_110, 0x3);
         }
 
         if (param0->unk_1C == 50) {
-            sub_0206296C(param0->unk_10C, 0);
+            MapObject_Face(param0->unk_10C, 0);
             LocalMapObj_SetAnimationCode(param0->unk_110, 0x0);
         }
 
@@ -2084,10 +2084,10 @@ void ov6_022401D0(UnkStruct_ov6_022401B8 *param0, u32 param1)
     VecFx32 v0;
 
     ov6_02240240(&param0->unk_08, param0->fieldSystem, 1);
-    MapObject_PosVectorOut(param0->unk_08.unk_00, &v0);
+    MapObject_GetPosPtr(param0->unk_08.unk_00, &v0);
     ov6_022402E4(&param0->unk_34, v0.x, v0.y, v0.z);
     ov6_02240240(&param0->unk_08, param0->fieldSystem, param1);
-    MapObject_PosVectorOut(param0->unk_08.unk_00, &v0);
+    MapObject_GetPosPtr(param0->unk_08.unk_00, &v0);
 
     param0->unk_00 = 1;
 }
@@ -2811,7 +2811,7 @@ void ov6_02240C44(UnkStruct_ov6_02240C44 *param0, u32 param1)
 
     v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSystem->mapObjMan, param1);
 
-    MapObject_PosVectorOut(v1, &v0);
+    MapObject_GetPosPtr(v1, &v0);
 
     ov6_0223FDCC(&param0->unk_00, v0.x, v0.y, v0.z);
     ov6_0223FDC4(&param0->unk_00, 1);

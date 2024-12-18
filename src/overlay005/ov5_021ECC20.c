@@ -69,7 +69,7 @@ void MapObject_Draw(MapObject *param0)
         return;
     }
 
-    if (MapObject_CheckStatus(param0, (1 << 14)) == 0) {
+    if (!MapObject_CheckStatus(param0, MAP_OBJ_STATUS_14)) {
         return;
     }
 
@@ -80,7 +80,7 @@ void MapObject_Draw(MapObject *param0)
 
 const UnkStruct_ov5_021ECD10 *ov5_021ECD04(const MapObject *param0)
 {
-    int v0 = sub_02062920(param0);
+    int v0 = MapObject_GetGraphicsID(param0);
     const UnkStruct_ov5_021ECD10 *v1 = ov5_021ECD10(v0);
 
     return v1;
@@ -110,7 +110,7 @@ int ov5_021ECD38(const MapObject *param0)
         }
     }
 
-    if (MapObject_CheckStatus(param0, (1 << 8))) {
+    if (MapObject_CheckStatus(param0, MAP_OBJ_STATUS_PAUSE_ANIMATION)) {
         return 1;
     }
 
@@ -138,7 +138,7 @@ void ov5_021ECDA0(const MapObject *param0, VecFx32 *param1)
 {
     VecFx32 v0, v1, v2, v3;
 
-    MapObject_PosVectorOut(param0, &v0);
+    MapObject_GetPosPtr(param0, &v0);
     sub_02063078(param0, &v1);
     sub_0206309C(param0, &v2);
     sub_020630BC(param0, &v3);
@@ -150,7 +150,7 @@ void ov5_021ECDA0(const MapObject *param0, VecFx32 *param1)
 
 void ov5_021ECDFC(MapObject *param0, int param1)
 {
-    MapObject_SetDir(param0, param1);
+    MapObject_TryFace(param0, param1);
 
     if (sub_02062D4C(param0) == 1) {
         sub_02062B68(param0);
@@ -160,7 +160,7 @@ void ov5_021ECDFC(MapObject *param0, int param1)
 void ov5_021ECE18(MapObject *param0)
 {
     MapObject_SetHidden(param0, 1);
-    MapObject_SetStatusFlagOn(param0, (1 << 20));
+    MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_HIDE_SHADOW);
 }
 
 void ov5_021ECE30(MapObject *param0)

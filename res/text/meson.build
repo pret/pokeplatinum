@@ -209,7 +209,7 @@ message_bank_files = files(
     'message_bank_contest_judge_names.gmm',
     'message_bank_unk_0208.gmm',
     'message_bank_unk_0209.gmm',
-    'message_bank_unk_0210.gmm',
+    'message_bank_contest_effects.gmm',
     'message_bank_unk_0211.gmm',
     'message_bank_unk_0212.gmm',
     'message_bank_common_strings.gmm',
@@ -365,7 +365,7 @@ message_bank_files = files(
     'message_bank_unk_0363.gmm',
     'message_bank_unk_0364.gmm',
     'message_bank_unk_0365.gmm',
-    'message_bank_unk_0366.gmm',
+    'message_bank_journal_entries.gmm',
     'message_bank_unk_0367.gmm',
     'message_bank_battle_strings.gmm',
     'message_bank_unk_0369.gmm',
@@ -609,7 +609,7 @@ message_bank_files = files(
     'message_bank_unk_0609.gmm',
     'message_bank_ability_names.gmm',
     'message_bank_unk_0611.gmm',
-    'message_bank_unk_0612.gmm',
+    'message_bank_ability_descriptions.gmm',
     'message_bank_unk_0613.gmm',
     'message_bank_unk_0614.gmm',
     'message_bank_unk_0615.gmm',
@@ -756,13 +756,14 @@ pokedex_message_banks = custom_target('pokedex_message_banks',
         'message_bank_species_name_number_3.gmm',
         'message_bank_species_category.gmm'
     ],
-    input: message_banks_narc_order,
+    input: pokedex_data_srcs,
     env: json2bin_env,
     depends: [ py_consts_generators ],
     command: [
         make_pokedex_message_banks_py,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--output-dir', '@OUTDIR@'
+        '--output-dir', '@OUTDIR@',
+        pokedex_data_srcs
     ]
 )
 

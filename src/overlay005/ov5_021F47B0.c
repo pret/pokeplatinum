@@ -139,7 +139,7 @@ static int ov5_021F487C(UnkStruct_ov101_021D5D90 *param0, void *param1)
     const UnkStruct_ov5_021F4840 *v1 = sub_020715BC(param0);
 
     v0->unk_24 = *v1;
-    v0->unk_00 = MapObject_Dir(v1->unk_0C);
+    v0->unk_00 = MapObject_GetFacingDir(v1->unk_0C);
     v0->unk_88 = ov5_021DF528(v1->unk_04, sizeof(UnkStruct_02073974), 0);
 
     sub_02073B70(&v0->unk_34, &v0->unk_24.unk_08->unk_04[0]);
@@ -165,9 +165,9 @@ static void ov5_021F4908(UnkStruct_ov101_021D5D90 *param0, void *param1)
     const VecFx32 *v3;
     UnkStruct_021F487C *v4 = param1;
     const MapObject *v5 = v4->unk_24.unk_0C;
-    int v6 = MapObject_Dir(v5);
+    int v6 = MapObject_GetFacingDir(v5);
 
-    MapObject_PosVectorOut(v5, &v2);
+    MapObject_GetPosPtr(v5, &v2);
 
     v0 = ov5_021F4AB4(v5, v4->unk_24.unk_00, &v1);
 
@@ -222,7 +222,7 @@ static void ov5_021F49D0(UnkStruct_ov101_021D5D90 *param0, UnkStruct_021F487C *p
     const MapObject *v1 = param1->unk_24.unk_0C;
 
     param1->unk_1C = Unk_ov5_0220077C[param1->unk_00];
-    MapObject_PosVectorOut(param1->unk_24.unk_0C, &v0);
+    MapObject_GetPosPtr(param1->unk_24.unk_0C, &v0);
 
     v0.x += param1->unk_04.x;
     v0.y += param1->unk_04.y;
@@ -263,12 +263,12 @@ static int ov5_021F4AB4(const MapObject *param0, int param1, VecFx32 *param2)
 
     GF_ASSERT(param1);
 
-    v4 = MapObject_GetXPos(param0);
-    v5 = MapObject_GetYPos(param0);
-    v6 = MapObject_GetZPos(param0);
-    v3 = MapObject_Dir(param0);
+    v4 = MapObject_GetX(param0);
+    v5 = MapObject_GetY(param0);
+    v6 = MapObject_GetZ(param0);
+    v3 = MapObject_GetFacingDir(param0);
 
-    MapObject_PosVectorOut(param0, &v1);
+    MapObject_GetPosPtr(param0, &v1);
 
     for (v2 = 0; v2 < param1; v2++) {
         v4 += MapObject_GetDxFromDir(v3);
@@ -282,7 +282,7 @@ static int ov5_021F4AB4(const MapObject *param0, int param1, VecFx32 *param2)
 
                 v7 = sub_0206326C(MapObject_MapObjectManager(param0), v4, v6, 1);
                 GF_ASSERT(v7 != NULL);
-                MapObject_PosVectorOut(v7, param2);
+                MapObject_GetPosPtr(v7, param2);
             } else {
                 sub_02064450(v4, v6, param2);
             }
