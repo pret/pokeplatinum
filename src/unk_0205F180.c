@@ -261,7 +261,7 @@ static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
 {
     if (PlayerAvatar_MoveState(playerAvatar) == 1) {
         MapObject *mapObj = Player_MapObject(playerAvatar);
-        u8 v1, v2 = sub_02062BE8(mapObj);
+        u8 v1, v2 = MapObject_GetCurrTileBehavior(mapObj);
 
         {
             int animationCode = MapObject_GetMovementAction(mapObj);
@@ -270,7 +270,7 @@ static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
             if (v4 == -1) {
                 v1 = v2;
             } else {
-                v1 = sub_02064238(mapObj, v4);
+                v1 = MapObject_GetTileBehaviorFromDir(mapObj, v4);
             }
         }
 
@@ -449,7 +449,7 @@ static int sub_0205F62C(PlayerAvatar *playerAvatar, int param1)
 static u32 sub_0205F644(PlayerAvatar *playerAvatar, int param1)
 {
     int v0 = 0;
-    u32 v1 = sub_02062BE8(Player_MapObject(playerAvatar));
+    u32 v1 = MapObject_GetCurrTileBehavior(Player_MapObject(playerAvatar));
 
     if (PlayerAvatar_IsUnderCyclingRoad(playerAvatar, v1, param1) == 1) {
         return 5;
@@ -946,7 +946,7 @@ static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int para
                 }
             }
 
-            v1 = sub_0205FC88(param1, sub_02062BE8(param1), v1);
+            v1 = sub_0205FC88(param1, MapObject_GetCurrTileBehavior(param1), v1);
 
             sub_020615C8(playerAvatar);
             sub_0205F048(playerAvatar);
@@ -955,7 +955,7 @@ static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int para
         if ((v0 == 0) || (v0 == (1 << 5))) {
             v2 = 5;
             v1 = 0x10;
-            v1 = sub_0205FCBC(param1, sub_02062BE8(param1), v1);
+            v1 = sub_0205FCBC(param1, MapObject_GetCurrTileBehavior(param1), v1);
 
             sub_020615C8(playerAvatar);
             sub_0205F048(playerAvatar);
@@ -1170,7 +1170,7 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pa
     }
 
     if (pad & PAD_BUTTON_B) {
-        u32 v0 = sub_02062BE8(Player_MapObject(playerAvatar));
+        u32 v0 = MapObject_GetCurrTileBehavior(Player_MapObject(playerAvatar));
 
         if (TileBehavior_IsBikeRampEastward(v0) || TileBehavior_IsBikeRampWestward(v0)) {
             return;
@@ -1916,7 +1916,7 @@ static int sub_02060F4C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param2);
         u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
-        if (sub_0206406C(mapObj, v3)) {
+        if (MapObject_IsOnWater(mapObj, v3)) {
             return 1;
         }
     }
@@ -1966,7 +1966,7 @@ static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         int v2 = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param2);
         u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
-        if (sub_0206406C(mapObj, v3)) {
+        if (MapObject_IsOnWater(mapObj, v3)) {
             return 1;
         }
 
@@ -2337,7 +2337,7 @@ void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, u32 param1, int p
 u32 sub_0206156C(PlayerAvatar *playerAvatar, int param1)
 {
     MapObject *v0 = Player_MapObject(playerAvatar);
-    return sub_02064238(v0, param1);
+    return MapObject_GetTileBehaviorFromDir(v0, param1);
 }
 
 void sub_0206157C(PlayerAvatar *playerAvatar, int param1, int *param2, int *param3)
@@ -2364,7 +2364,7 @@ static void sub_020615C8(PlayerAvatar *playerAvatar)
 static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
 {
     if (param2 != -1) {
-        u8 v0 = sub_02062BE8(mapObj);
+        u8 v0 = MapObject_GetCurrTileBehavior(mapObj);
 
         if (sub_0206415C(mapObj, v0) == 1) {
             if ((param2 == 0) || (param2 == 1)) {

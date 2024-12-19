@@ -642,7 +642,7 @@ static int sub_0206A324(MapObject *mapObj, UnkStruct_0206A23C *param1)
 
 static u32 sub_0206A354(MapObject *mapObj, int param1)
 {
-    u32 v0 = sub_02064238(mapObj, param1);
+    u32 v0 = MapObject_GetTileBehaviorFromDir(mapObj, param1);
 
     if (TileBehavior_IsVeryTallGrass(v0) == 0) {
         v0 = (1 << 1);

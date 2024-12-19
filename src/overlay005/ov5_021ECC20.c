@@ -52,7 +52,7 @@ void ov5_021ECC78(MapObjectManager *param0)
 static void ov5_021ECCA4(MapObjectManager *param0)
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_DATA__MMODEL__MMODEL, 4);
-    sub_0206289C(param0, v0);
+    MapObjectMan_GetNARC(param0, v0);
 }
 
 static void ov5_021ECCBC(MapObjectManager *param0)

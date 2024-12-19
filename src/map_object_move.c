@@ -37,28 +37,28 @@ static void sub_0206363C(MapObject *mapObj);
 static void sub_020636F0(MapObject *mapObj);
 static void sub_0206375C(MapObject *mapObj);
 static void sub_020637D4(MapObject *mapObj);
-static void sub_02063864(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063964(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_0206397C(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063994(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063A30(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063A64(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063A70(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063A78(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063B20(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063BB4(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C00(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C18(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C30(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C48(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C60(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C94(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063CC8(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063CFC(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063D30(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063DA8(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063DDC(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063E14(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063864(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063964(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_0206397C(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063994(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063A30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063A64(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063A70(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063A78(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063B20(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063BB4(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063C00(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063C18(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063C30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063C48(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063C60(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063C94(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063CC8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063CFC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063D30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063DA8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063DDC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void sub_02063E14(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
 
 static BOOL (*const Unk_020EE76C[4])(u8);
 static BOOL (*const Unk_020EE77C[4])(u8);
@@ -81,7 +81,7 @@ void MapObject_Move(MapObject *mapObj)
 
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_4)) {
         MapObject_DoMovementAction(mapObj);
-    } else if (MapObject_IsMovementPaused(mapObj) == FALSE && sub_02063478(mapObj) == 1 && sub_020673C0(mapObj) == 0) {
+    } else if (MapObject_IsMovementPaused(mapObj) == FALSE && sub_02063478(mapObj) == TRUE && sub_020673C0(mapObj) == FALSE) {
         sub_02062B14(mapObj);
     }
 
@@ -91,7 +91,7 @@ void MapObject_Move(MapObject *mapObj)
 
 static BOOL sub_02063478(const MapObject *mapObj)
 {
-    if (MapObject_IsMoving(mapObj) == 1) {
+    if (MapObject_IsMoving(mapObj) == TRUE) {
         return TRUE;
     }
 
@@ -101,13 +101,13 @@ static BOOL sub_02063478(const MapObject *mapObj)
         return TRUE;
     }
 
-    u32 v0 = MapObject_GetStatus(mapObj);
+    u32 status = MapObject_GetStatus(mapObj);
 
-    if ((v0 & (1 << 12)) && ((v0 & (1 << 23)) == 0)) {
+    if (status & (1 << 12) && (status & (1 << 23)) == 0) {
         return FALSE;
     }
 
-    if ((v0 & (1 << 11)) && (sub_02062FDC(mapObj) == 0)) {
+    if (status & (1 << 11) && sub_02062FDC(mapObj) == 0) {
         return FALSE;
     }
 
@@ -123,10 +123,8 @@ static void sub_020634DC(MapObject *mapObj)
 
 static void sub_020634F4(MapObject *mapObj)
 {
-    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_11)) {
-        if (sub_02064390(mapObj) == 1) {
-            sub_02062D28(mapObj);
-        }
+    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_11) && MapObject_SetTileBehaviors(mapObj) == 1) {
+        sub_02062D28(mapObj);
     }
 }
 
@@ -163,135 +161,135 @@ static void MapObject_EndMove(MapObject *mapObj)
 
 static void sub_020635AC(MapObject *mapObj)
 {
-    sub_02064390(mapObj);
+    MapObject_SetTileBehaviors(mapObj);
 
     if (sub_02062DFC(mapObj) == 1) {
-        u8 v0 = sub_02062BE8(mapObj);
-        u8 v1 = sub_02062BF8(mapObj);
+        u8 currTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
+        u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
         const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
 
-        sub_02063DDC(mapObj, v0, v1, v2);
-        sub_02063964(mapObj, v0, v1, v2);
-        sub_02063A30(mapObj, v0, v1, v2);
-        sub_02063A70(mapObj, v0, v1, v2);
-        sub_02063864(mapObj, v0, v1, v2);
-        sub_02063C00(mapObj, v0, v1, v2);
-        sub_02063C30(mapObj, v0, v1, v2);
-        sub_02063D30(mapObj, v0, v1, v2);
+        sub_02063DDC(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063964(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063A30(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063A70(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063864(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063C00(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063C30(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063D30(mapObj, currTileBehavior, prevTileBehavior, v2);
     }
 }
 
 static void sub_0206363C(MapObject *mapObj)
 {
-    sub_02064390(mapObj);
+    MapObject_SetTileBehaviors(mapObj);
 
     if (sub_02062DFC(mapObj) == 1) {
-        u8 v0 = sub_02062BE8(mapObj);
-        u8 v1 = sub_02062BF8(mapObj);
+        u8 currTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
+        u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
         const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
 
-        sub_02063DDC(mapObj, v0, v1, v2);
-        sub_0206397C(mapObj, v0, v1, v2);
-        sub_02063994(mapObj, v0, v1, v2);
-        sub_02063A30(mapObj, v0, v1, v2);
-        sub_02063A78(mapObj, v0, v1, v2);
-        sub_02063C18(mapObj, v0, v1, v2);
-        sub_02063C48(mapObj, v0, v1, v2);
-        sub_02063C60(mapObj, v0, v1, v2);
-        sub_02063CC8(mapObj, v0, v1, v2);
-        sub_02063D30(mapObj, v0, v1, v2);
+        sub_02063DDC(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_0206397C(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063994(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063A30(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063A78(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063C18(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063C48(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063C60(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063CC8(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063D30(mapObj, currTileBehavior, prevTileBehavior, v2);
 
-        sub_02063E14(mapObj, v0, v1, v2);
+        sub_02063E14(mapObj, currTileBehavior, prevTileBehavior, v2);
     }
 }
 
 static void sub_020636F0(MapObject *mapObj)
 {
-    sub_02064390(mapObj);
+    MapObject_SetTileBehaviors(mapObj);
 
     if (sub_02062DFC(mapObj) == 1) {
-        u8 v0 = sub_02062BE8(mapObj);
-        u8 v1 = sub_02062BF8(mapObj);
+        u8 currTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
+        u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
         const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
 
-        sub_02063DDC(mapObj, v0, v1, v2);
-        sub_02063A78(mapObj, v0, v1, v2);
-        sub_02063D30(mapObj, v0, v1, v2);
-        sub_02063A64(mapObj, v0, v1, v2);
-        sub_02063E14(mapObj, v0, v1, v2);
+        sub_02063DDC(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063A78(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063D30(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063A64(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063E14(mapObj, currTileBehavior, prevTileBehavior, v2);
     }
 }
 
 static void sub_0206375C(MapObject *mapObj)
 {
-    sub_02064390(mapObj);
+    MapObject_SetTileBehaviors(mapObj);
 
     if (sub_02062DFC(mapObj) == 1) {
-        u8 v0 = sub_02062BE8(mapObj);
-        u8 v1 = sub_02062BF8(mapObj);
+        u8 currTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
+        u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
         const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
 
-        sub_02063864(mapObj, v0, v1, v2);
-        sub_02063C94(mapObj, v0, v1, v2);
-        sub_02063CFC(mapObj, v0, v1, v2);
-        sub_02063A30(mapObj, v0, v1, v2);
-        sub_02063DA8(mapObj, v0, v1, v2);
-        sub_02063B20(mapObj, v0, v1, v2);
+        sub_02063864(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063C94(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063CFC(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063A30(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063DA8(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063B20(mapObj, currTileBehavior, prevTileBehavior, v2);
     }
 }
 
 static void sub_020637D4(MapObject *mapObj)
 {
-    sub_02064390(mapObj);
+    MapObject_SetTileBehaviors(mapObj);
 
     if (sub_02062DFC(mapObj) == 1) {
-        u8 v0 = sub_02062BE8(mapObj);
-        u8 v1 = sub_02062BF8(mapObj);
+        u8 currTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
+        u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
         const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
 
-        sub_02063864(mapObj, v0, v1, v2);
-        sub_02063C94(mapObj, v0, v1, v2);
-        sub_02063CFC(mapObj, v0, v1, v2);
-        sub_02063A30(mapObj, v0, v1, v2);
-        sub_02063DA8(mapObj, v0, v1, v2);
-        sub_02063B20(mapObj, v0, v1, v2);
-        sub_0206397C(mapObj, v0, v1, v2);
-        sub_02063BB4(mapObj, v0, v1, v2);
+        sub_02063864(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063C94(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063CFC(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063A30(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063DA8(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063B20(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_0206397C(mapObj, currTileBehavior, prevTileBehavior, v2);
+        sub_02063BB4(mapObj, currTileBehavior, prevTileBehavior, v2);
     }
 }
 
-static void sub_02063864(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063864(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
     if (sub_02062EFC(mapObj) == 0) {
-        if ((TileBehavior_IsDeepMud(param1) == 1) || (TileBehavior_IsDeepMudWithGrass(param1) == 1)) {
+        if (TileBehavior_IsDeepMud(currTileBehavior) == TRUE || TileBehavior_IsDeepMudWithGrass(currTileBehavior) == TRUE) {
             VecFx32 v0 = { 0, (FX32_ONE * -14), 0 };
 
             sub_020630CC(mapObj, &v0);
             return;
         }
 
-        if ((TileBehavior_IsMud(param1) == 1) || (TileBehavior_IsMudWithGrass(param1) == 1)) {
+        if (TileBehavior_IsMud(currTileBehavior) == TRUE || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE) {
             VecFx32 v1 = { 0, (FX32_ONE * -12), 0 };
 
             sub_020630CC(mapObj, &v1);
             return;
         }
 
-        if (TileBehavior_IsDeepestSnow(param1) == 1) {
+        if (TileBehavior_IsDeepestSnow(currTileBehavior) == TRUE) {
             VecFx32 v2 = { 0, (FX32_ONE * -16), 0 };
 
             sub_020630CC(mapObj, &v2);
             return;
         }
 
-        if (TileBehavior_IsDeeperSnow(param1) == 1) {
+        if (TileBehavior_IsDeeperSnow(currTileBehavior) == TRUE) {
             VecFx32 v3 = { 0, (FX32_ONE * -14), 0 };
 
             sub_020630CC(mapObj, &v3);
             return;
         }
 
-        if (TileBehavior_IsDeepSnow(param1) == 1) {
+        if (TileBehavior_IsDeepSnow(currTileBehavior) == TRUE) {
             VecFx32 v4 = { 0, (FX32_ONE * -12), 0 };
 
             sub_020630CC(mapObj, &v4);
@@ -303,27 +301,27 @@ static void sub_02063864(MapObject *mapObj, u8 param1, u8 param2, const UnkStruc
     sub_020630CC(mapObj, &v5);
 }
 
-static void sub_02063964(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063964(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsTallGrass(param1) == 1) {
+    if (TileBehavior_IsTallGrass(currTileBehavior) == TRUE) {
         ov5_021F2EA4(mapObj, 0);
     }
 }
 
-static void sub_0206397C(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_0206397C(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsTallGrass(param1) == 1) {
+    if (TileBehavior_IsTallGrass(currTileBehavior) == TRUE) {
         ov5_021F2EA4(mapObj, 1);
     }
 }
 
-static void sub_02063994(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063994(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
     if (param3->unk_04_6 == 0) {
         return;
     }
 
-    if (TileBehavior_IsSnowWithShadows(param2) == 1) {
+    if (TileBehavior_IsSnowWithShadows(prevTileBehavior) == TRUE) {
         if (param3->unk_04_6 == 1) {
             ov5_021F1EBC(mapObj);
         } else if (param3->unk_04_6 == 2) {
@@ -331,7 +329,7 @@ static void sub_02063994(MapObject *mapObj, u8 param1, u8 param2, const UnkStruc
         }
     }
 
-    if (sub_020640A0(mapObj, param2) == 1) {
+    if (MapObject_IsOnSand(mapObj, prevTileBehavior) == TRUE) {
         if (param3->unk_04_6 == 1) {
             ov5_021F1E8C(mapObj);
         } else if (param3->unk_04_6 == 2) {
@@ -340,20 +338,22 @@ static void sub_02063994(MapObject *mapObj, u8 param1, u8 param2, const UnkStruc
         return;
     }
 
-    if ((TileBehavior_IsDeeperSnow(param2) == 1) || (TileBehavior_IsDeepestSnow(param2) == 1) || TileBehavior_IsDeepSnow(param2)) {
+    if (TileBehavior_IsDeeperSnow(prevTileBehavior) == TRUE
+        || TileBehavior_IsDeepestSnow(prevTileBehavior) == TRUE
+        || TileBehavior_IsDeepSnow(prevTileBehavior)) {
         ov5_021F1EB0(mapObj);
         return;
     }
 
-    if (sub_02064108(mapObj, param2) == 1) {
+    if (MapObject_IsOnShallowSnow(mapObj, prevTileBehavior) == TRUE) {
         ov5_021F1EA4(mapObj);
         return;
     }
 }
 
-static void sub_02063A30(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063A30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsShallowWater(param1) == 1) {
+    if (TileBehavior_IsShallowWater(currTileBehavior) == TRUE) {
         if (sub_02062EC8(mapObj) == 0) {
             ov5_021F331C(mapObj, 1);
             sub_02062EAC(mapObj, 1);
@@ -363,17 +363,17 @@ static void sub_02063A30(MapObject *mapObj, u8 param1, u8 param2, const UnkStruc
     }
 }
 
-static void sub_02063A64(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063A64(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
     sub_02062EAC(mapObj, 0);
 }
 
-static void sub_02063A70(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063A70(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    sub_02063A78(mapObj, param1, param2, param3);
+    sub_02063A78(mapObj, currTileBehavior, prevTileBehavior, param3);
 }
 
-static void sub_02063A78(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063A78(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
@@ -385,7 +385,11 @@ static void sub_02063A78(MapObject *mapObj, u8 param1, u8 param2, const UnkStruc
         return;
     }
 
-    if ((TileBehavior_IsTallGrass(param1) == 1) || (TileBehavior_IsVeryTallGrass(param1) == 1) || (sub_0206406C(mapObj, param1) == 1) || (TileBehavior_IsPuddle(param1) == 1) || (TileBehavior_IsShallowWater(param1) == 1) || (MapObject_IsOnSnow(mapObj, param1) == 1) || (TileBehavior_IsMud(param1) == 1) || (TileBehavior_IsMudWithGrass(param1) == 1) || TileBehavior_IsReflective(param1)) {
+    if (TileBehavior_IsTallGrass(currTileBehavior) == TRUE || TileBehavior_IsVeryTallGrass(currTileBehavior) == TRUE
+        || MapObject_IsOnWater(mapObj, currTileBehavior) == TRUE || TileBehavior_IsPuddle(currTileBehavior) == TRUE
+        || TileBehavior_IsShallowWater(currTileBehavior) == TRUE || MapObject_IsOnSnow(mapObj, currTileBehavior) == TRUE
+        || TileBehavior_IsMud(currTileBehavior) == TRUE || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE
+        || TileBehavior_IsReflective(currTileBehavior)) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_HIDE_SHADOW);
     } else {
         if (!MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_15)) {
@@ -395,7 +399,7 @@ static void sub_02063A78(MapObject *mapObj, u8 param1, u8 param2, const UnkStruc
     }
 }
 
-static void sub_02063B20(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063B20(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
@@ -407,105 +411,111 @@ static void sub_02063B20(MapObject *mapObj, u8 param1, u8 param2, const UnkStruc
         return;
     }
 
-    if ((TileBehavior_IsTallGrass(param1) == 1) || (TileBehavior_IsVeryTallGrass(param1) == 1) || (sub_0206406C(mapObj, param1) == 1) || (TileBehavior_IsPuddle(param1) == 1) || (TileBehavior_IsShallowWater(param1) == 1) || (MapObject_IsOnSnow(mapObj, param1) == 1) || (TileBehavior_IsMud(param1) == 1) || (TileBehavior_IsMudWithGrass(param1) == 1) || TileBehavior_IsReflective(param1)) {
+    if (TileBehavior_IsTallGrass(currTileBehavior) == TRUE || TileBehavior_IsVeryTallGrass(currTileBehavior) == TRUE
+        || MapObject_IsOnWater(mapObj, currTileBehavior) == TRUE || TileBehavior_IsPuddle(currTileBehavior) == TRUE
+        || TileBehavior_IsShallowWater(currTileBehavior) == TRUE || MapObject_IsOnSnow(mapObj, currTileBehavior) == TRUE
+        || TileBehavior_IsMud(currTileBehavior) == TRUE || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE
+        || TileBehavior_IsReflective(currTileBehavior)) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_HIDE_SHADOW);
     } else {
         MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_HIDE_SHADOW);
     }
 }
 
-static void sub_02063BB4(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063BB4(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if ((sub_0206406C(mapObj, param1) == 1) || (TileBehavior_IsShallowWater(param1) == 1) || (TileBehavior_IsIce(param1) == 1) || (TileBehavior_IsMud(param1) == 1) || (TileBehavior_IsMudWithGrass(param1) == 1) || (MapObject_IsOnSnow(mapObj, param1) == 1)) {
+    if (MapObject_IsOnWater(mapObj, currTileBehavior) == TRUE || TileBehavior_IsShallowWater(currTileBehavior) == TRUE
+        || TileBehavior_IsIce(currTileBehavior) == TRUE || TileBehavior_IsMud(currTileBehavior) == TRUE
+        || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE || MapObject_IsOnSnow(mapObj, currTileBehavior) == TRUE) {
         return;
     }
 
     ov5_021F3638(mapObj);
 }
 
-static void sub_02063C00(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C00(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsVeryTallGrass(param1) == 1) {
+    if (TileBehavior_IsVeryTallGrass(currTileBehavior) == TRUE) {
         ov5_021F3844(mapObj, 0);
     }
 }
 
-static void sub_02063C18(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C18(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsVeryTallGrass(param1) == 1) {
+    if (TileBehavior_IsVeryTallGrass(currTileBehavior) == TRUE) {
         ov5_021F3844(mapObj, 1);
     }
 }
 
-static void sub_02063C30(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsMudWithGrass(param1) == 1) {
+    if (TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE) {
         ov5_021F3AEC(mapObj, 0);
     }
 }
 
-static void sub_02063C48(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C48(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsMudWithGrass(param1) == 1) {
+    if (TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE) {
         ov5_021F3AEC(mapObj, 1);
     }
 }
 
-static void sub_02063C60(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C60(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsPuddle(param2) == 1) {
+    if (TileBehavior_IsPuddle(prevTileBehavior) == TRUE) {
         ov5_021F2AE4(mapObj, MapObject_GetXPrev(mapObj), MapObject_GetYPrev(mapObj), MapObject_GetZPrev(mapObj));
     }
 }
 
-static void sub_02063C94(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C94(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsPuddle(param1) == 1) {
+    if (TileBehavior_IsPuddle(currTileBehavior) == TRUE) {
         ov5_021F2AE4(mapObj, MapObject_GetX(mapObj), MapObject_GetY(mapObj), MapObject_GetZ(mapObj));
     }
 }
 
-static void sub_02063CC8(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063CC8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsMud(param2) == 1) {
+    if (TileBehavior_IsMud(prevTileBehavior) == TRUE) {
         ov5_021F2C38(mapObj, MapObject_GetXPrev(mapObj), MapObject_GetYPrev(mapObj), MapObject_GetZPrev(mapObj));
     }
 }
 
-static void sub_02063CFC(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063CFC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsMud(param1) == 1) {
+    if (TileBehavior_IsMud(currTileBehavior) == TRUE) {
         ov5_021F2C38(mapObj, MapObject_GetX(mapObj), MapObject_GetY(mapObj), MapObject_GetZ(mapObj));
     }
 }
 
-static void sub_02063D30(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063D30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
     if (param3->unk_04_10 == 0) {
         return;
     }
 
     if (sub_02062F64(mapObj) == 0) {
-        u8 v0 = GetNullTileBehaviorID();
+        u8 tileBehavior = GetNullTileBehaviorID();
 
-        if (TileBehavior_HasReflectiveSurface(param1) == 1) {
-            v0 = param1;
+        if (TileBehavior_HasReflectiveSurface(currTileBehavior) == TRUE) {
+            tileBehavior = currTileBehavior;
         } else {
-            u8 v1 = sub_02064238(mapObj, 1);
+            u8 southTileBehavior = MapObject_GetTileBehaviorFromDir(mapObj, DIR_SOUTH);
 
-            if (TileBehavior_HasReflectiveSurface(v1) == 1) {
-                v0 = v1;
+            if (TileBehavior_HasReflectiveSurface(southTileBehavior) == TRUE) {
+                tileBehavior = southTileBehavior;
             }
         }
 
-        if (v0 != GetNullTileBehaviorID()) {
+        if (tileBehavior != GetNullTileBehaviorID()) {
             int v2;
 
             sub_02062F48(mapObj, 1);
 
-            if (TileBehavior_IsReflective(v0) == 1) {
+            if (TileBehavior_IsReflective(tileBehavior) == TRUE) {
                 v2 = 2;
-            } else if (TileBehavior_IsPuddle(v0) == 1) {
+            } else if (TileBehavior_IsPuddle(tileBehavior) == TRUE) {
                 v2 = 0;
             } else {
                 v2 = 1;
@@ -516,40 +526,36 @@ static void sub_02063D30(MapObject *mapObj, u8 param1, u8 param2, const UnkStruc
     }
 }
 
-static void sub_02063DA8(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063DA8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if ((param3->unk_04_10 == 0) || (sub_02062F64(mapObj) == 0)) {
+    if (param3->unk_04_10 == 0 || sub_02062F64(mapObj) == 0) {
         return;
     }
 
-    u8 v0 = sub_02064238(mapObj, 1);
+    u8 southTileBehavior = MapObject_GetTileBehaviorFromDir(mapObj, DIR_SOUTH);
 
-    if (TileBehavior_HasReflectiveSurface(v0) == 0) {
+    if (TileBehavior_HasReflectiveSurface(southTileBehavior) == FALSE) {
         sub_02062F48(mapObj, 0);
     }
 }
 
-static void sub_02063DDC(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063DDC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (TileBehavior_IsBridgeStart(param1) == 1) {
+    if (TileBehavior_IsBridgeStart(currTileBehavior) == TRUE) {
         sub_02062F14(mapObj, 1);
-    } else if (sub_02062F30(mapObj) == 1) {
-        if (TileBehavior_IsBridge(param1) == 0) {
-            sub_02062F14(mapObj, 0);
-        }
+    } else if (sub_02062F30(mapObj) == 1 && TileBehavior_IsBridge(currTileBehavior) == FALSE) {
+        sub_02062F14(mapObj, 0);
     }
 }
 
-static void sub_02063E14(MapObject *mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063E14(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
     return;
 }
 
 u32 sub_02063E18(const MapObject *mapObj, const VecFx32 *param1, int param2, int param3, int param4, int param5)
 {
-    u32 v0;
-
-    v0 = 0;
+    u32 v0 = 0;
 
     if (sub_02063FAC(mapObj, param2, param3, param4) == 1) {
         v0 |= (1 << 0);
@@ -587,33 +593,29 @@ u32 sub_02063E94(const MapObject *mapObj, int param1, int param2, int param3, in
 
 u32 sub_02063EBC(const MapObject *mapObj, int param1)
 {
-    int x, y, z;
-
-    x = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param1);
-    y = MapObject_GetY(mapObj);
-    z = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param1);
+    int x = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param1);
+    int y = MapObject_GetY(mapObj);
+    int z = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param1);
 
     return sub_02063E94(mapObj, x, y, z, param1);
 }
 
 int sub_02063F00(const MapObject *mapObj, int param1, int param2, int param3)
 {
-    int v0, v1, v2;
-    const MapObjectManager *mapObjMan;
-    const MapObject *v4;
+    int maxObjects, x, z;
+    const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
+    const MapObject *v4 = MapObjectMan_GetMapObjectConst(mapObjMan);
 
-    mapObjMan = MapObject_MapObjectManager(mapObj);
-    v4 = sub_02062868(mapObjMan);
-    v0 = MapObjectMan_GetMaxObjects(mapObjMan);
+    maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
 
     do {
         if (v4 != mapObj
             && MapObject_CheckStatus(v4, MAP_OBJ_STATUS_0)
             && !MapObject_CheckStatus(v4, MAP_OBJ_STATUS_18)) {
-            v1 = MapObject_GetX(v4);
-            v2 = MapObject_GetZ(v4);
+            x = MapObject_GetX(v4);
+            z = MapObject_GetZ(v4);
 
-            if ((v1 == param1) && (v2 == param3)) {
+            if ((x == param1) && (z == param3)) {
                 int v5 = MapObject_GetY(v4);
                 int v6 = v5 - param2;
 
@@ -626,10 +628,10 @@ int sub_02063F00(const MapObject *mapObj, int param1, int param2, int param3)
                 }
             }
 
-            v1 = MapObject_GetXPrev(v4);
-            v2 = MapObject_GetZPrev(v4);
+            x = MapObject_GetXPrev(v4);
+            z = MapObject_GetZPrev(v4);
 
-            if ((v1 == param1) && (v2 == param3)) {
+            if (x == param1 && z == param3) {
                 int v7 = MapObject_GetY(v4);
                 int v8 = v7 - param2;
 
@@ -644,8 +646,8 @@ int sub_02063F00(const MapObject *mapObj, int param1, int param2, int param3)
         }
 
         sub_02062880(&v4);
-        v0--;
-    } while (v0);
+        maxObjects--;
+    } while (maxObjects);
 
     return 0;
 }
@@ -661,7 +663,7 @@ int sub_02063FAC(const MapObject *mapObj, int param1, int param2, int param3)
         v2 = v0 - v1;
         v3 = v0 + v1;
 
-        if ((v2 > param1) || (v3 < param1)) {
+        if (v2 > param1 || v3 < param1) {
             return 1;
         }
     }
@@ -673,7 +675,7 @@ int sub_02063FAC(const MapObject *mapObj, int param1, int param2, int param3)
         v2 = v0 - v1;
         v3 = v0 + v1;
 
-        if ((v2 > param3) || (v3 < param3)) {
+        if (v2 > param3 || v3 < param3) {
             return 1;
         }
     }
@@ -685,14 +687,14 @@ int sub_02064004(const MapObject *mapObj, int param1, int param2, int param3)
 {
     if (sub_02062FDC(mapObj) == 0) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-        u8 v1 = sub_02062BE8(mapObj);
+        u8 v1 = MapObject_GetCurrTileBehavior(mapObj);
         u8 v2 = FieldSystem_GetTileBehavior(fieldSystem, param1, param2);
 
         if (v2 == GetNullTileBehaviorID()) {
             return 1;
         }
 
-        if ((Unk_020EE76C[param3](v1) == 1) || (Unk_020EE77C[param3](v2) == 1)) {
+        if (Unk_020EE76C[param3](v1) == 1 || Unk_020EE77C[param3](v2) == 1) {
             return 1;
         }
     }
@@ -714,89 +716,83 @@ static BOOL (*const Unk_020EE77C[4])(u8) = {
     TileBehavior_BlocksMovementWestward
 };
 
-int sub_0206406C(MapObject *mapObj, u32 param1)
+int MapObject_IsOnWater(MapObject *mapObj, u32 param1)
 {
     if (TileBehavior_IsBridgeOverWater(param1)) {
-        if (sub_02062F30(mapObj) == 0) {
-            return 1;
+        if (sub_02062F30(mapObj) == FALSE) {
+            return TRUE;
         }
     } else if (TileBehavior_IsSurfable(param1)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-int sub_020640A0(MapObject *mapObj, u32 param1)
+int MapObject_IsOnSand(MapObject *mapObj, u32 param1)
 {
     if (TileBehavior_IsBridgeOverSand(param1)) {
-        if (sub_02062F30(mapObj) == 0) {
-            return 1;
+        if (sub_02062F30(mapObj) == FALSE) {
+            return TRUE;
         }
     } else if (TileBehavior_IsSand(param1)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 int MapObject_IsOnSnow(MapObject *mapObj, u32 param1)
 {
     if (TileBehavior_IsBridgeOverSnow(param1)) {
-        if (sub_02062F30(mapObj) == 0) {
-            return 1;
+        if (sub_02062F30(mapObj) == FALSE) {
+            return TRUE;
         }
     } else if (TileBehavior_IsSnow(param1)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-int sub_02064108(MapObject *mapObj, u32 param1)
+int MapObject_IsOnShallowSnow(MapObject *mapObj, u32 param1)
 {
     if (TileBehavior_IsBridgeOverSnow(param1)) {
-        if (sub_02062F30(mapObj) == 0) {
-            return 1;
+        if (sub_02062F30(mapObj) == FALSE) {
+            return TRUE;
         }
     } else if (TileBehavior_IsShallowSnow(param1)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 int sub_0206413C(MapObject *mapObj, u32 param1)
 {
-    if (sub_02062F30(mapObj) == 1) {
-        if (TileBehavior_IsBridge(param1) == 1) {
-            return 1;
-        }
+    if (sub_02062F30(mapObj) == TRUE && TileBehavior_IsBridge(param1) == TRUE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 int sub_0206415C(MapObject *mapObj, u32 param1)
 {
-    if (sub_02062F30(mapObj) == 1) {
-        if (TileBehavior_IsBikeBridgeNorthSouth(param1) == 1) {
-            return 1;
-        }
+    if (sub_02062F30(mapObj) == TRUE && TileBehavior_IsBikeBridgeNorthSouth(param1) == TRUE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 int sub_0206417C(MapObject *mapObj, u32 param1)
 {
-    if (sub_02062F30(mapObj) == 1) {
-        if (TileBehavior_IsBikeBridgeEastWest(param1) == 1) {
-            return 1;
-        }
+    if (sub_02062F30(mapObj) == TRUE && TileBehavior_IsBikeBridgeEastWest(param1) == TRUE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static const int sMapObjectDxDir[] = {
@@ -848,7 +844,7 @@ void MapObject_UpdateCoords(MapObject *mapObj)
     MapObject_SetZPrev(mapObj, MapObject_GetZ(mapObj));
 }
 
-u32 sub_02064238(MapObject *mapObj, int param1)
+u32 MapObject_GetTileBehaviorFromDir(MapObject *mapObj, int param1)
 {
     int v0 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param1);
     int v1 = MapObject_GetZ(mapObj) + MapObject_GetDyFromDir(param1);
@@ -924,26 +920,26 @@ int sub_020642F8(MapObject *mapObj)
     return v4;
 }
 
-int sub_02064390(MapObject *mapObj)
+int MapObject_SetTileBehaviors(MapObject *mapObj)
 {
-    u8 v0 = GetNullTileBehaviorID();
-    u8 v1 = v0;
+    u8 prevTileBehavior = GetNullTileBehaviorID();
+    u8 currTileBehavior = prevTileBehavior;
 
     if (sub_02062FDC(mapObj) == 0) {
-        int v2 = MapObject_GetXPrev(mapObj);
+        int x = MapObject_GetXPrev(mapObj);
         int z = MapObject_GetZPrev(mapObj);
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
-        v0 = FieldSystem_GetTileBehavior(fieldSystem, v2, z);
-        v2 = MapObject_GetX(mapObj);
+        prevTileBehavior = FieldSystem_GetTileBehavior(fieldSystem, x, z);
+        x = MapObject_GetX(mapObj);
         z = MapObject_GetZ(mapObj);
-        v1 = FieldSystem_GetTileBehavior(fieldSystem, v2, z);
+        currTileBehavior = FieldSystem_GetTileBehavior(fieldSystem, x, z);
     }
 
-    sub_02062BF0(mapObj, v0);
-    sub_02062BE0(mapObj, v1);
+    MapObject_SetPrevTileBehavior(mapObj, prevTileBehavior);
+    MapObject_SetCurrTileBehavior(mapObj, currTileBehavior);
 
-    if (TileBehavior_IsNull(v1) == 1) {
+    if (TileBehavior_IsNull(currTileBehavior) == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_11);
         return 0;
     }
@@ -980,12 +976,12 @@ void sub_02064464(MapObject *mapObj)
 {
     int v0 = MapObject_GetMovementType(mapObj);
 
-    if ((v0 == 0x33) || (v0 == 0x34) || (v0 == 0x35) || (v0 == 0x36)) {
+    if (v0 == 0x33 || v0 == 0x34 || v0 == 0x35 || v0 == 0x36) {
         sub_02062B14(mapObj);
     }
 }
 
-static const int Unk_020EE79C[] = {
+static const int sOppositeDirections[] = {
     DIR_SOUTH,
     DIR_NORTH,
     DIR_EAST,
@@ -994,7 +990,7 @@ static const int Unk_020EE79C[] = {
 
 int Direction_GetOpposite(int dir)
 {
-    return Unk_020EE79C[dir];
+    return sOppositeDirections[dir];
 }
 
 int sub_02064488(int param0, int param1, int param2, int param3)
@@ -1040,7 +1036,7 @@ int sub_020644D0(FieldSystem *fieldSystem, VecFx32 *param1, int param2)
         return 0;
     }
 
-    if ((v1 == 2) && (param2 == 0)) {
+    if (v1 == 2 && param2 == 0) {
         return 0;
     }
 

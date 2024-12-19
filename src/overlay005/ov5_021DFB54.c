@@ -824,7 +824,7 @@ static int ov5_021E04EC(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
 
     {
         MapObject *v0 = Player_MapObject(playerAvatar);
-        u8 v1 = sub_02062BE8(v0);
+        u8 v1 = MapObject_GetCurrTileBehavior(v0);
 
         if ((TileBehavior_IsDeepMud(v1) != 1) && (TileBehavior_IsDeepMudWithGrass(v1) != 1)) {
             return 0;
@@ -883,7 +883,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
         v0->unk_04++;
 
         {
-            u8 v7 = sub_02062BE8(v1);
+            u8 v7 = MapObject_GetCurrTileBehavior(v1);
 
             if (TileBehavior_IsDeepMudWithGrass(v7) == 1) {
                 FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
@@ -1090,7 +1090,7 @@ static int ov5_021E08C0(UnkStruct_ov5_021F9B54 *param0)
 
     {
         int v0 = MapObject_GetMovingDir(param0->unk_14);
-        u8 v1 = sub_02064238(param0->unk_14, v0);
+        u8 v1 = MapObject_GetTileBehaviorFromDir(param0->unk_14, v0);
 
         if (ov5_021E0760(v1, v0) == 1) {
             param0->unk_00 = 5;
