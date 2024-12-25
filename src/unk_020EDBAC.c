@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/movement.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020EDF0C.h"
 
@@ -9,164 +11,160 @@
 #include "unk_020677F4.h"
 #include "unk_02069BE0.h"
 
-#include "constdata/const_020EE31C.h"
-#include "constdata/const_020EE3A8.h"
-#include "constdata/const_020EE4B8.h"
-
-extern int (*const Unk_020EEC78[])(MapObject *);
-extern int (*const Unk_020EEC48[])(MapObject *);
-extern int (*const Unk_020EEC88[])(MapObject *);
-extern int (*const Unk_020EEC80[])(MapObject *);
-extern int (*const Unk_020EF59C[])(MapObject *);
-extern int (*const Unk_020EF590[])(MapObject *);
-extern int (*const Unk_020EF584[])(MapObject *);
-extern int (*const Unk_020EF578[])(MapObject *);
-extern int (*const Unk_020EF56C[])(MapObject *);
-extern int (*const Unk_020EF560[])(MapObject *);
-extern int (*const Unk_020EF554[])(MapObject *);
-extern int (*const Unk_020EF548[])(MapObject *);
-extern int (*const Unk_020EF53C[])(MapObject *);
-extern int (*const Unk_020EF530[])(MapObject *);
-extern int (*const Unk_020EF524[])(MapObject *);
-extern int (*const Unk_020EF518[])(MapObject *);
-extern int (*const Unk_020EF50C[])(MapObject *);
-extern int (*const Unk_020EF500[])(MapObject *);
-extern int (*const Unk_020EF4F4[])(MapObject *);
-extern int (*const Unk_020EF4E8[])(MapObject *);
-extern int (*const Unk_020EF4DC[])(MapObject *);
-extern int (*const Unk_020EF4D0[])(MapObject *);
-extern int (*const Unk_020EF4C4[])(MapObject *);
-extern int (*const Unk_020EF4B8[])(MapObject *);
-extern int (*const Unk_020EF4AC[])(MapObject *);
-extern int (*const Unk_020EF4A0[])(MapObject *);
-extern int (*const Unk_020EF494[])(MapObject *);
-extern int (*const Unk_020EF488[])(MapObject *);
-extern int (*const Unk_020EF194[])(MapObject *);
-extern int (*const Unk_020EF224[])(MapObject *);
-extern int (*const Unk_020EF440[])(MapObject *);
-extern int (*const Unk_020EF470[])(MapObject *);
-extern int (*const Unk_020EF47C[])(MapObject *);
-extern int (*const Unk_020EF230[])(MapObject *);
-extern int (*const Unk_020EF458[])(MapObject *);
-extern int (*const Unk_020EF464[])(MapObject *);
-extern int (*const Unk_020EF5A8[])(MapObject *);
-extern int (*const Unk_020EF5B4[])(MapObject *);
-extern int (*const Unk_020EF434[])(MapObject *);
-extern int (*const Unk_020EF428[])(MapObject *);
-extern int (*const Unk_020EF41C[])(MapObject *);
-extern int (*const Unk_020EF410[])(MapObject *);
-extern int (*const Unk_020EF404[])(MapObject *);
-extern int (*const Unk_020EF3F8[])(MapObject *);
-extern int (*const Unk_020EF3EC[])(MapObject *);
-extern int (*const Unk_020EF3E0[])(MapObject *);
-extern int (*const Unk_020EF3D4[])(MapObject *);
-extern int (*const Unk_020EF3C8[])(MapObject *);
-extern int (*const Unk_020EF3BC[])(MapObject *);
-extern int (*const Unk_020EF3B0[])(MapObject *);
-extern int (*const Unk_020EF3A4[])(MapObject *);
-extern int (*const Unk_020EF398[])(MapObject *);
-extern int (*const Unk_020EF38C[])(MapObject *);
-extern int (*const Unk_020EF380[])(MapObject *);
-extern int (*const Unk_020EF374[])(MapObject *);
-extern int (*const Unk_020EF368[])(MapObject *);
-extern int (*const Unk_020EF35C[])(MapObject *);
-extern int (*const Unk_020EF350[])(MapObject *);
-extern int (*const Unk_020EF344[])(MapObject *);
-extern int (*const Unk_020EF338[])(MapObject *);
-extern int (*const Unk_020EF32C[])(MapObject *);
-extern int (*const Unk_020EF320[])(MapObject *);
-extern int (*const Unk_020EF314[])(MapObject *);
-extern int (*const Unk_020EF308[])(MapObject *);
-extern int (*const Unk_020EF2FC[])(MapObject *);
-extern int (*const Unk_020EF2F0[])(MapObject *);
-extern int (*const Unk_020EF2E4[])(MapObject *);
-extern int (*const Unk_020EF2D8[])(MapObject *);
-extern int (*const Unk_020EEC98[])(MapObject *);
-extern int (*const Unk_020EF2C0[])(MapObject *);
-extern int (*const Unk_020EF2B4[])(MapObject *);
-extern int (*const Unk_020EF2A8[])(MapObject *);
-extern int (*const Unk_020EF020[])(MapObject *);
-extern int (*const Unk_020EF17C[])(MapObject *);
-extern int (*const Unk_020EF1A0[])(MapObject *);
-extern int (*const Unk_020EF44C[])(MapObject *);
-extern int (*const Unk_020EF29C[])(MapObject *);
-extern int (*const Unk_020EF290[])(MapObject *);
-extern int (*const Unk_020EF284[])(MapObject *);
-extern int (*const Unk_020EF278[])(MapObject *);
-extern int (*const Unk_020EF26C[])(MapObject *);
-extern int (*const Unk_020EF260[])(MapObject *);
-extern int (*const Unk_020EF254[])(MapObject *);
-extern int (*const Unk_020EF248[])(MapObject *);
-extern int (*const Unk_020EF23C[])(MapObject *);
-extern int (*const Unk_020EEC70[])(MapObject *);
-extern int (*const Unk_020EEC68[])(MapObject *);
-extern int (*const Unk_020EEC50[])(MapObject *);
-extern int (*const Unk_020EEC90[])(MapObject *);
-extern int (*const Unk_020EEC58[])(MapObject *);
-extern int (*const Unk_020EEC60[])(MapObject *);
-extern int (*const Unk_020EF218[])(MapObject *);
-extern int (*const Unk_020EF20C[])(MapObject *);
-extern int (*const Unk_020EF200[])(MapObject *);
-extern int (*const Unk_020EF1F4[])(MapObject *);
-extern int (*const Unk_020EF1E8[])(MapObject *);
-extern int (*const Unk_020EF1DC[])(MapObject *);
-extern int (*const Unk_020EF1D0[])(MapObject *);
-extern int (*const Unk_020EF1C4[])(MapObject *);
-extern int (*const Unk_020EF1B8[])(MapObject *);
-extern int (*const Unk_020EF188[])(MapObject *);
-extern int (*const Unk_020EF5C0[])(MapObject *);
-extern int (*const Unk_020EF164[])(MapObject *);
-extern int (*const Unk_020EF158[])(MapObject *);
-extern int (*const Unk_020EF14C[])(MapObject *);
-extern int (*const Unk_020EF140[])(MapObject *);
-extern int (*const Unk_020EF134[])(MapObject *);
-extern int (*const Unk_020EF128[])(MapObject *);
-extern int (*const Unk_020EF11C[])(MapObject *);
-extern int (*const Unk_020EF110[])(MapObject *);
-extern int (*const Unk_020EF104[])(MapObject *);
-extern int (*const Unk_020EF0F8[])(MapObject *);
-extern int (*const Unk_020EF0EC[])(MapObject *);
-extern int (*const Unk_020EF0E0[])(MapObject *);
-extern int (*const Unk_020EF0D4[])(MapObject *);
-extern int (*const Unk_020EF0C8[])(MapObject *);
-extern int (*const Unk_020EF0BC[])(MapObject *);
-extern int (*const Unk_020EF2CC[])(MapObject *);
-extern int (*const Unk_020EF0A4[])(MapObject *);
-extern int (*const Unk_020EF098[])(MapObject *);
-extern int (*const Unk_020EF08C[])(MapObject *);
-extern int (*const Unk_020EF080[])(MapObject *);
-extern int (*const Unk_020EF074[])(MapObject *);
-extern int (*const Unk_020EF068[])(MapObject *);
-extern int (*const Unk_020EF05C[])(MapObject *);
-extern int (*const Unk_020EF050[])(MapObject *);
-extern int (*const Unk_020EF044[])(MapObject *);
-extern int (*const Unk_020EF038[])(MapObject *);
-extern int (*const Unk_020EF014[])(MapObject *);
-extern int (*const Unk_020EF5CC[])(MapObject *);
-extern int (*const Unk_020EEFF0[])(MapObject *);
-extern int (*const Unk_020EEFE4[])(MapObject *);
-extern int (*const Unk_020EEFD8[])(MapObject *);
-extern int (*const Unk_020EEFCC[])(MapObject *);
-extern int (*const Unk_020EEFC0[])(MapObject *);
-extern int (*const Unk_020EEFB4[])(MapObject *);
-extern int (*const Unk_020EEFA8[])(MapObject *);
-extern int (*const Unk_020EF0B0[])(MapObject *);
-extern int (*const Unk_020EEF90[])(MapObject *);
-extern int (*const Unk_020EEF84[])(MapObject *);
-extern int (*const Unk_020EEF6C[])(MapObject *);
-extern int (*const Unk_020EEF78[])(MapObject *);
-extern int (*const Unk_020EF008[])(MapObject *);
-extern int (*const Unk_020EF02C[])(MapObject *);
-extern int (*const Unk_020EF1AC[])(MapObject *);
-extern int (*const Unk_020EF5D8[])(MapObject *);
-extern int (*const Unk_020EECBC[])(MapObject *);
-extern int (*const Unk_020EECB0[])(MapObject *);
-extern int (*const Unk_020EECA4[])(MapObject *);
-extern int (*const Unk_020EEF9C[])(MapObject *);
-extern int (*const Unk_020EEF60[])(MapObject *);
-extern int (*const Unk_020EEFFC[])(MapObject *);
-extern int (*const Unk_020EF170[])(MapObject *);
-extern int (*const Unk_020EF5E4[])(MapObject *);
+extern int (*const gMovementActionFuncs_000[])(MapObject *);
+extern int (*const gMovementActionFuncs_001[])(MapObject *);
+extern int (*const gMovementActionFuncs_002[])(MapObject *);
+extern int (*const gMovementActionFuncs_003[])(MapObject *);
+extern int (*const gMovementActionFuncs_004[])(MapObject *);
+extern int (*const gMovementActionFuncs_005[])(MapObject *);
+extern int (*const gMovementActionFuncs_006[])(MapObject *);
+extern int (*const gMovementActionFuncs_007[])(MapObject *);
+extern int (*const gMovementActionFuncs_008[])(MapObject *);
+extern int (*const gMovementActionFuncs_009[])(MapObject *);
+extern int (*const gMovementActionFuncs_010[])(MapObject *);
+extern int (*const gMovementActionFuncs_011[])(MapObject *);
+extern int (*const gMovementActionFuncs_012[])(MapObject *);
+extern int (*const gMovementActionFuncs_013[])(MapObject *);
+extern int (*const gMovementActionFuncs_014[])(MapObject *);
+extern int (*const gMovementActionFuncs_015[])(MapObject *);
+extern int (*const gMovementActionFuncs_016[])(MapObject *);
+extern int (*const gMovementActionFuncs_017[])(MapObject *);
+extern int (*const gMovementActionFuncs_018[])(MapObject *);
+extern int (*const gMovementActionFuncs_019[])(MapObject *);
+extern int (*const gMovementActionFuncs_020[])(MapObject *);
+extern int (*const gMovementActionFuncs_021[])(MapObject *);
+extern int (*const gMovementActionFuncs_022[])(MapObject *);
+extern int (*const gMovementActionFuncs_023[])(MapObject *);
+extern int (*const gMovementActionFuncs_084[])(MapObject *);
+extern int (*const gMovementActionFuncs_085[])(MapObject *);
+extern int (*const gMovementActionFuncs_086[])(MapObject *);
+extern int (*const gMovementActionFuncs_087[])(MapObject *);
+extern int (*const gMovementActionFuncs_088[])(MapObject *);
+extern int (*const gMovementActionFuncs_089[])(MapObject *);
+extern int (*const gMovementActionFuncs_090[])(MapObject *);
+extern int (*const gMovementActionFuncs_091[])(MapObject *);
+extern int (*const gMovementActionFuncs_024[])(MapObject *);
+extern int (*const gMovementActionFuncs_025[])(MapObject *);
+extern int (*const gMovementActionFuncs_026[])(MapObject *);
+extern int (*const gMovementActionFuncs_027[])(MapObject *);
+extern int (*const gMovementActionFuncs_028[])(MapObject *);
+extern int (*const gMovementActionFuncs_029[])(MapObject *);
+extern int (*const gMovementActionFuncs_030[])(MapObject *);
+extern int (*const gMovementActionFuncs_031[])(MapObject *);
+extern int (*const gMovementActionFuncs_032[])(MapObject *);
+extern int (*const gMovementActionFuncs_033[])(MapObject *);
+extern int (*const gMovementActionFuncs_034[])(MapObject *);
+extern int (*const gMovementActionFuncs_035[])(MapObject *);
+extern int (*const gMovementActionFuncs_036[])(MapObject *);
+extern int (*const gMovementActionFuncs_037[])(MapObject *);
+extern int (*const gMovementActionFuncs_038[])(MapObject *);
+extern int (*const gMovementActionFuncs_039[])(MapObject *);
+extern int (*const gMovementActionFuncs_040[])(MapObject *);
+extern int (*const gMovementActionFuncs_041[])(MapObject *);
+extern int (*const gMovementActionFuncs_042[])(MapObject *);
+extern int (*const gMovementActionFuncs_043[])(MapObject *);
+extern int (*const gMovementActionFuncs_044[])(MapObject *);
+extern int (*const gMovementActionFuncs_045[])(MapObject *);
+extern int (*const gMovementActionFuncs_046[])(MapObject *);
+extern int (*const gMovementActionFuncs_047[])(MapObject *);
+extern int (*const gMovementActionFuncs_048[])(MapObject *);
+extern int (*const gMovementActionFuncs_049[])(MapObject *);
+extern int (*const gMovementActionFuncs_050[])(MapObject *);
+extern int (*const gMovementActionFuncs_051[])(MapObject *);
+extern int (*const gMovementActionFuncs_052[])(MapObject *);
+extern int (*const gMovementActionFuncs_053[])(MapObject *);
+extern int (*const gMovementActionFuncs_054[])(MapObject *);
+extern int (*const gMovementActionFuncs_055[])(MapObject *);
+extern int (*const gMovementActionFuncs_056[])(MapObject *);
+extern int (*const gMovementActionFuncs_057[])(MapObject *);
+extern int (*const gMovementActionFuncs_058[])(MapObject *);
+extern int (*const gMovementActionFuncs_059[])(MapObject *);
+extern int (*const gMovementActionFuncs_092[])(MapObject *);
+extern int (*const gMovementActionFuncs_093[])(MapObject *);
+extern int (*const gMovementActionFuncs_094[])(MapObject *);
+extern int (*const gMovementActionFuncs_095[])(MapObject *);
+extern int (*const gMovementActionFuncs_117[])(MapObject *);
+extern int (*const gMovementActionFuncs_118[])(MapObject *);
+extern int (*const gMovementActionFuncs_119[])(MapObject *);
+extern int (*const gMovementActionFuncs_120[])(MapObject *);
+extern int (*const gMovementActionFuncs_060[])(MapObject *);
+extern int (*const gMovementActionFuncs_061[])(MapObject *);
+extern int (*const gMovementActionFuncs_062[])(MapObject *);
+extern int (*const gMovementActionFuncs_063[])(MapObject *);
+extern int (*const gMovementActionFuncs_064[])(MapObject *);
+extern int (*const gMovementActionFuncs_065[])(MapObject *);
+extern int (*const gMovementActionFuncs_066[])(MapObject *);
+extern int (*const gMovementActionFuncs_067[])(MapObject *);
+extern int (*const gMovementActionFuncs_068[])(MapObject *);
+extern int (*const gMovementActionFuncs_069[])(MapObject *);
+extern int (*const gMovementActionFuncs_070[])(MapObject *);
+extern int (*const gMovementActionFuncs_071[])(MapObject *);
+extern int (*const gMovementActionFuncs_072[])(MapObject *);
+extern int (*const gMovementActionFuncs_073[])(MapObject *);
+extern int (*const gMovementActionFuncs_074[])(MapObject *);
+extern int (*const gMovementActionFuncs_075[])(MapObject *);
+extern int (*const gMovementActionFuncs_103[])(MapObject *);
+extern int (*const gMovementActionFuncs_076[])(MapObject *);
+extern int (*const gMovementActionFuncs_077[])(MapObject *);
+extern int (*const gMovementActionFuncs_078[])(MapObject *);
+extern int (*const gMovementActionFuncs_079[])(MapObject *);
+extern int (*const gMovementActionFuncs_080[])(MapObject *);
+extern int (*const gMovementActionFuncs_081[])(MapObject *);
+extern int (*const gMovementActionFuncs_082[])(MapObject *);
+extern int (*const gMovementActionFuncs_083[])(MapObject *);
+extern int (*const gMovementActionFuncs_096[])(MapObject *);
+extern int (*const gMovementActionFuncs_097[])(MapObject *);
+extern int (*const gMovementActionFuncs_098[])(MapObject *);
+extern int (*const gMovementActionFuncs_099[])(MapObject *);
+extern int (*const gMovementActionFuncs_100[])(MapObject *);
+extern int (*const gMovementActionFuncs_101[])(MapObject *);
+extern int (*const gMovementActionFuncs_102[])(MapObject *);
+extern int (*const gMovementActionFuncs_104[])(MapObject *);
+extern int (*const gMovementActionFuncs_105[])(MapObject *);
+extern int (*const gMovementActionFuncs_106[])(MapObject *);
+extern int (*const gMovementActionFuncs_107[])(MapObject *);
+extern int (*const gMovementActionFuncs_108[])(MapObject *);
+extern int (*const gMovementActionFuncs_109[])(MapObject *);
+extern int (*const gMovementActionFuncs_110[])(MapObject *);
+extern int (*const gMovementActionFuncs_111[])(MapObject *);
+extern int (*const gMovementActionFuncs_112[])(MapObject *);
+extern int (*const gMovementActionFuncs_113[])(MapObject *);
+extern int (*const gMovementActionFuncs_114[])(MapObject *);
+extern int (*const gMovementActionFuncs_115[])(MapObject *);
+extern int (*const gMovementActionFuncs_116[])(MapObject *);
+extern int (*const gMovementActionFuncs_145[])(MapObject *);
+extern int (*const gMovementActionFuncs_146[])(MapObject *);
+extern int (*const gMovementActionFuncs_147[])(MapObject *);
+extern int (*const gMovementActionFuncs_148[])(MapObject *);
+extern int (*const gMovementActionFuncs_149[])(MapObject *);
+extern int (*const gMovementActionFuncs_150[])(MapObject *);
+extern int (*const gMovementActionFuncs_151[])(MapObject *);
+extern int (*const gMovementActionFuncs_152[])(MapObject *);
+extern int (*const gMovementActionFuncs_121[])(MapObject *);
+extern int (*const gMovementActionFuncs_122[])(MapObject *);
+extern int (*const gMovementActionFuncs_123[])(MapObject *);
+extern int (*const gMovementActionFuncs_124[])(MapObject *);
+extern int (*const gMovementActionFuncs_125[])(MapObject *);
+extern int (*const gMovementActionFuncs_126[])(MapObject *);
+extern int (*const gMovementActionFuncs_127[])(MapObject *);
+extern int (*const gMovementActionFuncs_128[])(MapObject *);
+extern int (*const gMovementActionFuncs_129[])(MapObject *);
+extern int (*const gMovementActionFuncs_130[])(MapObject *);
+extern int (*const gMovementActionFuncs_131[])(MapObject *);
+extern int (*const gMovementActionFuncs_132[])(MapObject *);
+extern int (*const gMovementActionFuncs_133[])(MapObject *);
+extern int (*const gMovementActionFuncs_134[])(MapObject *);
+extern int (*const gMovementActionFuncs_135[])(MapObject *);
+extern int (*const gMovementActionFuncs_136[])(MapObject *);
+extern int (*const gMovementActionFuncs_137[])(MapObject *);
+extern int (*const gMovementActionFuncs_138[])(MapObject *);
+extern int (*const gMovementActionFuncs_139[])(MapObject *);
+extern int (*const gMovementActionFuncs_140[])(MapObject *);
+extern int (*const gMovementActionFuncs_141[])(MapObject *);
+extern int (*const gMovementActionFuncs_142[])(MapObject *);
+extern int (*const gMovementActionFuncs_143[])(MapObject *);
+extern int (*const gMovementActionFuncs_144[])(MapObject *);
+extern int (*const gMovementActionFuncs_153[])(MapObject *);
 
 static const UnkStruct_020EDF0C Unk_020EDF0C = {
     0x0,
@@ -783,161 +781,161 @@ const UnkStruct_020EDF0C *const Unk_020EE3A8[] = {
     &Unk_020EE2B8
 };
 
-int (*const *const Unk_020EE4B8[0x9a])(MapObject *) = {
-    Unk_020EEC78,
-    Unk_020EEC48,
-    Unk_020EEC88,
-    Unk_020EEC80,
-    Unk_020EF59C,
-    Unk_020EF590,
-    Unk_020EF584,
-    Unk_020EF578,
-    Unk_020EF56C,
-    Unk_020EF560,
-    Unk_020EF554,
-    Unk_020EF548,
-    Unk_020EF53C,
-    Unk_020EF530,
-    Unk_020EF524,
-    Unk_020EF518,
-    Unk_020EF50C,
-    Unk_020EF500,
-    Unk_020EF4F4,
-    Unk_020EF4E8,
-    Unk_020EF4DC,
-    Unk_020EF4D0,
-    Unk_020EF4C4,
-    Unk_020EF4B8,
-    Unk_020EF47C,
-    Unk_020EF230,
-    Unk_020EF458,
-    Unk_020EF464,
-    Unk_020EF5A8,
-    Unk_020EF5B4,
-    Unk_020EF434,
-    Unk_020EF428,
-    Unk_020EF41C,
-    Unk_020EF410,
-    Unk_020EF404,
-    Unk_020EF3F8,
-    Unk_020EF3EC,
-    Unk_020EF3E0,
-    Unk_020EF3D4,
-    Unk_020EF3C8,
-    Unk_020EF3BC,
-    Unk_020EF3B0,
-    Unk_020EF3A4,
-    Unk_020EF398,
-    Unk_020EF38C,
-    Unk_020EF380,
-    Unk_020EF374,
-    Unk_020EF368,
-    Unk_020EF35C,
-    Unk_020EF350,
-    Unk_020EF344,
-    Unk_020EF338,
-    Unk_020EF32C,
-    Unk_020EF320,
-    Unk_020EF314,
-    Unk_020EF308,
-    Unk_020EF2FC,
-    Unk_020EF2F0,
-    Unk_020EF2E4,
-    Unk_020EF2D8,
-    Unk_020EF29C,
-    Unk_020EF290,
-    Unk_020EF284,
-    Unk_020EF278,
-    Unk_020EF26C,
-    Unk_020EF260,
-    Unk_020EF254,
-    Unk_020EF248,
-    Unk_020EF23C,
-    Unk_020EEC70,
-    Unk_020EEC68,
-    Unk_020EEC50,
-    Unk_020EEC90,
-    Unk_020EEC58,
-    Unk_020EEC60,
-    Unk_020EF218,
-    Unk_020EF200,
-    Unk_020EF1F4,
-    Unk_020EF1E8,
-    Unk_020EF1DC,
-    Unk_020EF1D0,
-    Unk_020EF1C4,
-    Unk_020EF1B8,
-    Unk_020EF188,
-    Unk_020EF4AC,
-    Unk_020EF4A0,
-    Unk_020EF494,
-    Unk_020EF488,
-    Unk_020EF194,
-    Unk_020EF224,
-    Unk_020EF440,
-    Unk_020EF470,
-    Unk_020EEC98,
-    Unk_020EF2C0,
-    Unk_020EF2B4,
-    Unk_020EF2A8,
-    Unk_020EF5C0,
-    Unk_020EF164,
-    Unk_020EF158,
-    Unk_020EF14C,
-    Unk_020EF140,
-    Unk_020EF134,
-    Unk_020EF128,
-    Unk_020EF20C,
-    Unk_020EF11C,
-    Unk_020EF110,
-    Unk_020EF104,
-    Unk_020EF0F8,
-    Unk_020EF0EC,
-    Unk_020EF0E0,
-    Unk_020EF0D4,
-    Unk_020EF0C8,
-    Unk_020EF0BC,
-    Unk_020EF2CC,
-    Unk_020EF0A4,
-    Unk_020EF098,
-    Unk_020EF08C,
-    Unk_020EF020,
-    Unk_020EF17C,
-    Unk_020EF1A0,
-    Unk_020EF44C,
-    Unk_020EF5CC,
-    Unk_020EEFF0,
-    Unk_020EEFE4,
-    Unk_020EEFD8,
-    Unk_020EEFCC,
-    Unk_020EEFC0,
-    Unk_020EEFB4,
-    Unk_020EEFA8,
-    Unk_020EF0B0,
-    Unk_020EEF90,
-    Unk_020EEF84,
-    Unk_020EEF6C,
-    Unk_020EEF78,
-    Unk_020EF008,
-    Unk_020EF02C,
-    Unk_020EF1AC,
-    Unk_020EF5D8,
-    Unk_020EECBC,
-    Unk_020EECB0,
-    Unk_020EECA4,
-    Unk_020EEF9C,
-    Unk_020EEF60,
-    Unk_020EEFFC,
-    Unk_020EF170,
-    Unk_020EF080,
-    Unk_020EF074,
-    Unk_020EF068,
-    Unk_020EF05C,
-    Unk_020EF050,
-    Unk_020EF044,
-    Unk_020EF038,
-    Unk_020EF014,
-    Unk_020EF5E4
+int (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
+    gMovementActionFuncs_000,
+    gMovementActionFuncs_001,
+    gMovementActionFuncs_002,
+    gMovementActionFuncs_003,
+    gMovementActionFuncs_004,
+    gMovementActionFuncs_005,
+    gMovementActionFuncs_006,
+    gMovementActionFuncs_007,
+    gMovementActionFuncs_008,
+    gMovementActionFuncs_009,
+    gMovementActionFuncs_010,
+    gMovementActionFuncs_011,
+    gMovementActionFuncs_012,
+    gMovementActionFuncs_013,
+    gMovementActionFuncs_014,
+    gMovementActionFuncs_015,
+    gMovementActionFuncs_016,
+    gMovementActionFuncs_017,
+    gMovementActionFuncs_018,
+    gMovementActionFuncs_019,
+    gMovementActionFuncs_020,
+    gMovementActionFuncs_021,
+    gMovementActionFuncs_022,
+    gMovementActionFuncs_023,
+    gMovementActionFuncs_024,
+    gMovementActionFuncs_025,
+    gMovementActionFuncs_026,
+    gMovementActionFuncs_027,
+    gMovementActionFuncs_028,
+    gMovementActionFuncs_029,
+    gMovementActionFuncs_030,
+    gMovementActionFuncs_031,
+    gMovementActionFuncs_032,
+    gMovementActionFuncs_033,
+    gMovementActionFuncs_034,
+    gMovementActionFuncs_035,
+    gMovementActionFuncs_036,
+    gMovementActionFuncs_037,
+    gMovementActionFuncs_038,
+    gMovementActionFuncs_039,
+    gMovementActionFuncs_040,
+    gMovementActionFuncs_041,
+    gMovementActionFuncs_042,
+    gMovementActionFuncs_043,
+    gMovementActionFuncs_044,
+    gMovementActionFuncs_045,
+    gMovementActionFuncs_046,
+    gMovementActionFuncs_047,
+    gMovementActionFuncs_048,
+    gMovementActionFuncs_049,
+    gMovementActionFuncs_050,
+    gMovementActionFuncs_051,
+    gMovementActionFuncs_052,
+    gMovementActionFuncs_053,
+    gMovementActionFuncs_054,
+    gMovementActionFuncs_055,
+    gMovementActionFuncs_056,
+    gMovementActionFuncs_057,
+    gMovementActionFuncs_058,
+    gMovementActionFuncs_059,
+    gMovementActionFuncs_060,
+    gMovementActionFuncs_061,
+    gMovementActionFuncs_062,
+    gMovementActionFuncs_063,
+    gMovementActionFuncs_064,
+    gMovementActionFuncs_065,
+    gMovementActionFuncs_066,
+    gMovementActionFuncs_067,
+    gMovementActionFuncs_068,
+    gMovementActionFuncs_069,
+    gMovementActionFuncs_070,
+    gMovementActionFuncs_071,
+    gMovementActionFuncs_072,
+    gMovementActionFuncs_073,
+    gMovementActionFuncs_074,
+    gMovementActionFuncs_075,
+    gMovementActionFuncs_076,
+    gMovementActionFuncs_077,
+    gMovementActionFuncs_078,
+    gMovementActionFuncs_079,
+    gMovementActionFuncs_080,
+    gMovementActionFuncs_081,
+    gMovementActionFuncs_082,
+    gMovementActionFuncs_083,
+    gMovementActionFuncs_084,
+    gMovementActionFuncs_085,
+    gMovementActionFuncs_086,
+    gMovementActionFuncs_087,
+    gMovementActionFuncs_088,
+    gMovementActionFuncs_089,
+    gMovementActionFuncs_090,
+    gMovementActionFuncs_091,
+    gMovementActionFuncs_092,
+    gMovementActionFuncs_093,
+    gMovementActionFuncs_094,
+    gMovementActionFuncs_095,
+    gMovementActionFuncs_096,
+    gMovementActionFuncs_097,
+    gMovementActionFuncs_098,
+    gMovementActionFuncs_099,
+    gMovementActionFuncs_100,
+    gMovementActionFuncs_101,
+    gMovementActionFuncs_102,
+    gMovementActionFuncs_103,
+    gMovementActionFuncs_104,
+    gMovementActionFuncs_105,
+    gMovementActionFuncs_106,
+    gMovementActionFuncs_107,
+    gMovementActionFuncs_108,
+    gMovementActionFuncs_109,
+    gMovementActionFuncs_110,
+    gMovementActionFuncs_111,
+    gMovementActionFuncs_112,
+    gMovementActionFuncs_113,
+    gMovementActionFuncs_114,
+    gMovementActionFuncs_115,
+    gMovementActionFuncs_116,
+    gMovementActionFuncs_117,
+    gMovementActionFuncs_118,
+    gMovementActionFuncs_119,
+    gMovementActionFuncs_120,
+    gMovementActionFuncs_121,
+    gMovementActionFuncs_122,
+    gMovementActionFuncs_123,
+    gMovementActionFuncs_124,
+    gMovementActionFuncs_125,
+    gMovementActionFuncs_126,
+    gMovementActionFuncs_127,
+    gMovementActionFuncs_128,
+    gMovementActionFuncs_129,
+    gMovementActionFuncs_130,
+    gMovementActionFuncs_131,
+    gMovementActionFuncs_132,
+    gMovementActionFuncs_133,
+    gMovementActionFuncs_134,
+    gMovementActionFuncs_135,
+    gMovementActionFuncs_136,
+    gMovementActionFuncs_137,
+    gMovementActionFuncs_138,
+    gMovementActionFuncs_139,
+    gMovementActionFuncs_140,
+    gMovementActionFuncs_141,
+    gMovementActionFuncs_142,
+    gMovementActionFuncs_143,
+    gMovementActionFuncs_144,
+    gMovementActionFuncs_145,
+    gMovementActionFuncs_146,
+    gMovementActionFuncs_147,
+    gMovementActionFuncs_148,
+    gMovementActionFuncs_149,
+    gMovementActionFuncs_150,
+    gMovementActionFuncs_151,
+    gMovementActionFuncs_152,
+    gMovementActionFuncs_153,
 };
 
 static const int Unk_020EDD5C[] = {

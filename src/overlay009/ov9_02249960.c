@@ -2552,7 +2552,7 @@ static BOOL ov9_0224AC58(UnkStruct_ov9_0224AC58 *param0, MapObject *param1)
 
         if (param0->unk_04 <= 0) {
             *v4 = 0;
-            sub_02064208(param1);
+            MapObject_UpdateCoords(param1);
             sub_02062B68(param1);
             MapObject_TryFace(param1, v0->unk_22);
             sub_02062A0C(param1, 0x0);
@@ -5216,11 +5216,11 @@ static int ov9_0224D4C4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
             MapObject_SetX(v5, param1->unk_0A);
             MapObject_SetY(v5, param1->unk_0C);
             MapObject_SetZ(v5, param1->unk_0E);
-            sub_02064208(v5);
+            MapObject_UpdateCoords(v5);
 
             if (param1->unk_68 != NULL) {
                 MapObject_SetY(param1->unk_68, param1->unk_0C);
-                sub_02064208(param1->unk_68);
+                MapObject_UpdateCoords(param1->unk_68);
             }
 
             {
@@ -5247,12 +5247,12 @@ static int ov9_0224D5E8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
         MapObject_SetX(v0, param1->unk_0A);
         MapObject_SetY(v0, param1->unk_0C);
         MapObject_SetZ(v0, param1->unk_0E);
-        sub_02064208(v0);
+        MapObject_UpdateCoords(v0);
         sub_0205ED48(param0->fieldSystem->playerAvatar, 1);
 
         if (param1->unk_68 != NULL) {
             MapObject_SetY(param1->unk_68, param1->unk_0C);
-            sub_02064208(param1->unk_68);
+            MapObject_UpdateCoords(param1->unk_68);
         }
 
         if (param1->unk_00 == 1) {
@@ -6503,7 +6503,7 @@ static int ov9_0224E798(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         MapObject_SetX(v1, v2);
         MapObject_SetY(v1, v3);
         MapObject_SetZ(v1, v4);
-        sub_02064208(v1);
+        MapObject_UpdateCoords(v1);
 
         {
             u32 v5;
@@ -7493,7 +7493,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
         MapObject_GetPosPtr(v1, &v0);
         v0.y -= FX32_ONE * 2;
         MapObject_SetPos(v1, &v0);
-        MapObject_StepDirection(v1, MapObject_GetMovingDir(v1), (FX32_ONE * 2));
+        MapObject_MovePosInDir(v1, MapObject_GetMovingDir(v1), (FX32_ONE * 2));
     }
 
         param0->unk_18++;
@@ -7561,7 +7561,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
                 MapObject_SetX(v6, v8);
                 MapObject_SetY(v6, v9);
                 MapObject_SetZ(v6, v10);
-                sub_02064208(v6);
+                MapObject_UpdateCoords(v6);
             }
         }
 
@@ -7658,7 +7658,7 @@ static BOOL ov9_0224F5D8(UnkStruct_ov9_0224F6EC *param0)
         MapObject_GetPosPtr(v1, &v0);
         v0.y -= FX32_ONE * 2;
         MapObject_SetPos(v1, &v0);
-        MapObject_StepDirection(v1, MapObject_GetMovingDir(v1), (FX32_ONE * 2));
+        MapObject_MovePosInDir(v1, MapObject_GetMovingDir(v1), (FX32_ONE * 2));
     }
 
         param0->unk_18++;
@@ -8286,7 +8286,7 @@ static int ov9_0224FEDC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         MapObject_SetX(v2, v8);
         MapObject_SetY(v2, v9);
         MapObject_SetZ(v2, v10);
-        sub_02064208(v2);
+        MapObject_UpdateCoords(v2);
         MapObject_TryFace(v2, 2);
         MapObject_Turn(v2, 2);
         sub_02063088(v2, &v13);
@@ -8604,7 +8604,7 @@ static int ov9_02250468(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         MapObject_SetX(v2, v8);
         MapObject_SetY(v2, v9);
         MapObject_SetZ(v2, v10);
-        sub_02064208(v2);
+        MapObject_UpdateCoords(v2);
         MapObject_TryFace(v2, 3);
         MapObject_Turn(v2, 3);
         sub_02063088(v2, &v13);

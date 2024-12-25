@@ -4,10 +4,8 @@
 #include <string.h>
 
 #include "consts/badges.h"
+#include "consts/journal.h"
 #include "consts/map.h"
-
-#include "struct_defs/struct_0202BCC8.h"
-#include "struct_defs/struct_0202BFCC.h"
 
 #include "heap.h"
 #include "map_header.h"
@@ -16,7 +14,25 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
+#include "res/text/gmm/message_bank_location_names.h"
+#include "res/trainers/trdata.naix"
+
+#define LOCATION_EVENT(locationID, trainerID, eventType) ((locationID << 16) | ((trainerID & 0x3ff) << 6) | (eventType & 0x3f))
+
+#define LOCATION_EVENT_TYPE(locationEvent)        (locationEvent & 0x3f)
+#define LOCATION_EVENT_TRAINER_ID(locationEvent)  ((locationEvent >> 6) & 0x3ff)
+#define LOCATION_EVENT_LOCATION_ID(locationEvent) ((locationEvent >> 16) & 0xffff)
+#define LOCATION_EVENT_ITEM(locationEvent)        ((locationEvent >> 16) & 0xffff)
+
 #define MAX_JOURNAL_ENTRIES 10
+
+#define CHAR_NONE 0xffff
+
+#define GYM_NONE 0xff
+
+#define TRAINER_TYPE_ELITE_FOUR 8
+#define TRAINER_TYPE_CHAMPION   9
+#define TRAINER_TYPE_STANDARD   10
 
 typedef struct {
     u32 mapLabelTextID;
@@ -30,82 +46,82 @@ typedef struct {
 } GymInfo;
 
 static void JournalEntry_SaveTitle(JournalEntry *journalEntry, JournalEntryTitle *journalEntryTitle);
-static void sub_0202B7E0(JournalEntry *journalEntry, UnkStruct_0202BCC8 *data);
+static void JournalEntry_SaveLocationEvent(JournalEntry *journalEntry, JournalEntryLocationEvent *journalEntryLocationEvent);
 static void JournalEntry_SaveMon(JournalEntry *journalEntry, JournalEntryMon *journalEntryMon);
 static void JournalEntry_SaveTrainer(JournalEntry *journalEntry, JournalEntryTrainer *journalEntryTrainer);
-static void sub_0202B898(JournalEntry *journalEntry, UnkStruct_0202BFCC *data);
-static u32 *sub_0202B91C(u32 *param0);
-static u8 *sub_0202B954(JournalEntry *journalEntry);
-static void sub_0202B994(u32 *param0, UnkStruct_0202BCC8 *data);
-static void sub_0202B9D0(u32 *param0, UnkStruct_0202BCC8 *data);
-static void sub_0202B9F0(u32 *param0, UnkStruct_0202BCC8 *data);
-static void sub_0202BA48(u32 *param0, UnkStruct_0202BCC8 *data);
-static void sub_0202BAB0(u32 *param0, UnkStruct_0202BCC8 *data);
-static void sub_0202BAF8(u32 *param0, UnkStruct_0202BCC8 *data);
-static void sub_0202BB40(u32 *param0, UnkStruct_0202BCC8 *data);
-static void sub_0202BB88(u8 *param0, UnkStruct_0202BFCC *data);
-static void sub_0202BBC4(u8 *param0, UnkStruct_0202BFCC *data);
-static void sub_0202BBE0(u8 *param0, UnkStruct_0202BFCC *data);
-static void sub_0202BC14(JournalEntry *journalEntry, UnkStruct_0202BFCC *data);
-static void sub_0202BC48(u8 *param0, UnkStruct_0202BFCC *data);
-static void sub_0202BF94(const u16 *param0, u16 *param1, u32 param2);
+static void JournalEntry_SaveOnlineEvent(JournalEntry *journalEntry, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static u32 *JournalEntry_GetEmptyLocationEvent(u32 *locationEvents);
+static u8 *JournalEntry_GetEmptyOnlineEvent(JournalEntry *journalEntry);
+static void JournalEntry_SaveLocationEventMisc(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_SaveLocationEventChampion(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_SaveLocationEventEliteFour(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_SaveLocationEventGym(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_SaveLocationEventTravel(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_SaveLocationEventItem(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_SaveLocationEventMove(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_SaveOnlineEventBattle(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static void JournalEntry_SaveOnlineEventInteraction(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static void JournalEntry_SaveOnlineEventTrade(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static void JournalEntry_SaveOnlineEventMisc(JournalEntry *journalEntry, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static void JournalEntry_SaveOnlineEventMinigame(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static void JournalEntry_StringCopy(const u16 *src, u16 *dst, u32 strLength);
 static void JournalEntry_GetTitle(JournalEntry *journalEntry, JournalEntryTitle *journalEntryTitle);
-static void sub_0202C304(JournalEntry *journalEntry, UnkStruct_0202BCC8 *param1);
+static void JournalEntry_GetLocationEvent(JournalEntry *journalEntry, JournalEntryLocationEvent *journalEntryLocationEvent);
 static void JournalEntry_GetMon(JournalEntry *journalEntry, JournalEntryMon *journalEntryMon);
 static void JournalEntry_GetTrainer(JournalEntry *journalEntry, JournalEntryTrainer *journalEntryTrainer);
-static void sub_0202C3D0(JournalEntry *journalEntry, UnkStruct_0202BFCC *param1);
-static void sub_0202C474(u32 param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202C47C(u32 param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202C494(u32 param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202C4A0(u32 param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202C4AC(u32 param0, UnkStruct_0202BCC8 *param1);
-static void sub_0202C4B8(u8 *param0, UnkStruct_0202BFCC *param1);
-static void sub_0202C528(u8 *param0, UnkStruct_0202BFCC *param1);
-static void sub_0202C54C(u8 *param0, UnkStruct_0202BFCC *param1);
-static void sub_0202C5A4(u8 *param0, UnkStruct_0202BFCC *param1);
-static void sub_0202C5AC(u8 *param0, UnkStruct_0202BFCC *param1);
-static u8 JournalEntry_GetDefeatedGym(TrainerInfo *trainerInfo, u32 mapID);
+static void JournalEntry_GetOnlineEvent(JournalEntry *journalEntry, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static void JournalEntry_GetLocationEventMisc(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_GetLocationEventTrainer(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_GetLocationEventTravel(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_GetLocationEventItem(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_GetLocationEventMove(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent);
+static void JournalEntry_GetOnlineEventBattle(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static void JournalEntry_GetOnlineEventInteraction(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static void JournalEntry_GetOnlineEventTrade(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static void JournalEntry_GetOnlineEventMisc(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static void JournalEntry_GetOnlineEventMinigame(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent);
+static u8 JournalEntry_GetGymTooTough(TrainerInfo *trainerInfo, u32 mapID);
 static u8 JournalEntry_TrainerType(u32 trainerID);
 
 static const MapInfo sMapsInfo[] = {
-    { 0x5A, 0x1 },
-    { 0x5B, 0x0 },
-    { 0x5C, 0x1 },
-    { 0x5D, 0x1 },
-    { 0x5E, 0x0 },
-    { 0x5F, 0x1 },
-    { 0x60, 0x1 },
-    { 0x61, 0x1 },
-    { 0x62, 0x1 },
-    { 0x63, 0x0 },
-    { 0x64, 0x1 },
-    { 0x65, 0x0 },
-    { 0x66, 0x1 },
-    { 0x47, 0x0 },
-    { 0x67, 0x0 },
-    { 0x40, 0x0 },
-    { 0x68, 0x0 },
-    { 0x69, 0x1 },
-    { 0x50, 0x1 },
-    { 0x6A, 0x0 },
-    { 0x6B, 0x1 },
-    { 0x6C, 0x0 },
-    { 0x6D, 0x0 },
-    { 0x6E, 0x0 },
-    { 0x2F, 0x0 },
-    { 0x31, 0x0 },
-    { 0x46, 0x0 }
+    { location_names_00090, 0x1 },
+    { location_names_00091, 0x0 },
+    { location_names_00092, 0x1 },
+    { location_names_00093, 0x1 },
+    { location_names_00094, 0x0 },
+    { location_names_00095, 0x1 },
+    { location_names_00096, 0x1 },
+    { location_names_00097, 0x1 },
+    { location_names_00098, 0x1 },
+    { location_names_00099, 0x0 },
+    { location_names_00100, 0x1 },
+    { location_names_00101, 0x0 },
+    { location_names_00102, 0x1 },
+    { location_names_00071, 0x0 },
+    { location_names_00103, 0x0 },
+    { location_names_00064, 0x0 },
+    { location_names_00104, 0x0 },
+    { location_names_00105, 0x1 },
+    { location_names_00080, 0x1 },
+    { location_names_00106, 0x0 },
+    { location_names_00107, 0x1 },
+    { location_names_00108, 0x0 },
+    { location_names_00109, 0x0 },
+    { location_names_00110, 0x0 },
+    { location_names_00047, 0x0 },
+    { location_names_00049, 0x0 },
+    { location_names_00070, 0x0 }
 };
 
 static const GymInfo sGymsInfo[] = {
-    { 0xF6, MAP_HEADER_OREBURGH_CITY_GYM, BADGE_ID_COAL },
-    { 0x13B, MAP_HEADER_ETERNA_CITY_GYM, BADGE_ID_FOREST },
-    { 0x13C, MAP_HEADER_PASTORIA_CITY_GYM, BADGE_ID_FEN },
-    { 0x13D, MAP_HEADER_VEILSTONE_CITY_GYM, BADGE_ID_COBBLE },
-    { 0x13E, MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM, BADGE_ID_RELIC },
-    { 0x13F, MAP_HEADER_SNOWPOINT_CITY_GYM, BADGE_ID_ICICLE },
-    { 0xFA, MAP_HEADER_CANALAVE_CITY_GYM, BADGE_ID_MINE },
-    { 0x140, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1, BADGE_ID_BEACON }
+    { trainer_leader_roark, MAP_HEADER_OREBURGH_CITY_GYM, BADGE_ID_COAL },
+    { trainer_leader_gardenia, MAP_HEADER_ETERNA_CITY_GYM, BADGE_ID_FOREST },
+    { trainer_leader_wake, MAP_HEADER_PASTORIA_CITY_GYM, BADGE_ID_FEN },
+    { trainer_leader_maylene, MAP_HEADER_VEILSTONE_CITY_GYM, BADGE_ID_COBBLE },
+    { trainer_leader_fantina, MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM, BADGE_ID_RELIC },
+    { trainer_leader_candice, MAP_HEADER_SNOWPOINT_CITY_GYM, BADGE_ID_ICICLE },
+    { trainer_leader_byron, MAP_HEADER_CANALAVE_CITY_GYM, BADGE_ID_MINE },
+    { trainer_leader_volkner, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1, BADGE_ID_BEACON }
 };
 
 int Journal_SaveSize(void)
@@ -125,7 +141,7 @@ void Journal_Init10(JournalEntry *journalEntry)
 
 JournalEntry *SaveData_GetJournal(SaveData *saveData)
 {
-    return SaveData_SaveTable(saveData, 18);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_JOURNAL);
 }
 
 JournalEntry *Journal_GetSavedPage(JournalEntry *journalEntry, BOOL journalAcquired)
@@ -196,8 +212,8 @@ void JournalEntry_SaveData(JournalEntry *journalEntry, void *data, u8 dataType)
         case JOURNAL_TITLE:
             JournalEntry_SaveTitle(journalEntry, data);
             break;
-        case JOURNAL_UNK_04:
-            sub_0202B7E0(journalEntry, data);
+        case JOURNAL_LOCATION:
+            JournalEntry_SaveLocationEvent(journalEntry, data);
             break;
         case JOURNAL_MON:
             JournalEntry_SaveMon(journalEntry, data);
@@ -205,8 +221,8 @@ void JournalEntry_SaveData(JournalEntry *journalEntry, void *data, u8 dataType)
         case JOURNAL_TRAINER:
             JournalEntry_SaveTrainer(journalEntry, data);
             break;
-        case JOURNAL_UNK_1C:
-            sub_0202B898(journalEntry, data);
+        case JOURNAL_ONLINE_EVENT:
+            JournalEntry_SaveOnlineEvent(journalEntry, data);
             break;
         }
     }
@@ -224,61 +240,61 @@ static void JournalEntry_SaveTitle(JournalEntry *journalEntry, JournalEntryTitle
     journalEntry->title = *journalEntryTitle;
 }
 
-static void sub_0202B7E0(JournalEntry *journalEntry, UnkStruct_0202BCC8 *data)
+static void JournalEntry_SaveLocationEvent(JournalEntry *journalEntry, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    switch (data->unk_00) {
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 16:
-    case 17:
-    case 34:
-    case 35:
-    case 36:
-    case 37:
-    case 38:
-    case 39:
-    case 40:
-        sub_0202B994(journalEntry->unk_04, data);
+    switch (journalEntryLocationEvent->eventType) {
+    case LOCATION_EVENT_RESTED_AT_HOME:
+    case LOCATION_EVENT_LEFT_RESEARCH_LAB:
+    case LOCATION_EVENT_USED_PC_BOX:
+    case LOCATION_EVENT_SHOPPED_AT_MART:
+    case LOCATION_EVENT_LOTS_OF_SHOPPING:
+    case LOCATION_EVENT_SOLD_A_LITTLE:
+    case LOCATION_EVENT_SOLD_A_LOT:
+    case LOCATION_EVENT_BUSINESS_AT_MART:
+    case LOCATION_EVENT_GAME_CORNER:
+    case LOCATION_EVENT_SAFARI_GAME:
+    case LOCATION_EVENT_DUG_UNDERGROUND:
+    case LOCATION_EVENT_BUILT_SECRET_BASE:
+    case LOCATION_EVENT_BATTLE_TOWER:
+    case LOCATION_EVENT_BATTLE_FACTORY:
+    case LOCATION_EVENT_BATTLE_CASTLE:
+    case LOCATION_EVENT_BATTLE_HALL:
+    case LOCATION_EVENT_BATTLE_ARCADE:
+        JournalEntry_SaveLocationEventMisc(journalEntry->locationEvents, journalEntryLocationEvent);
         break;
-    case 9:
-    case 10:
-        sub_0202BA48(journalEntry->unk_04, data);
+    case LOCATION_EVENT_GYM_WAS_TOO_TOUGH:
+    case LOCATION_EVENT_BEAT_GYM_LEADER:
+        JournalEntry_SaveLocationEventGym(journalEntry->locationEvents, journalEntryLocationEvent);
         break;
-    case 11:
-        sub_0202B9F0(journalEntry->unk_04, data);
+    case LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER:
+        JournalEntry_SaveLocationEventEliteFour(journalEntry->locationEvents, journalEntryLocationEvent);
         break;
-    case 12:
-        sub_0202B9D0(journalEntry->unk_04, data);
+    case LOCATION_EVENT_BEAT_CHAMPION:
+        JournalEntry_SaveLocationEventChampion(journalEntry->locationEvents, journalEntryLocationEvent);
         break;
-    case 13:
-    case 14:
-    case 15:
-        sub_0202BAB0(journalEntry->unk_04, data);
+    case LOCATION_EVENT_ARRIVED_IN_LOCATION:
+    case LOCATION_EVENT_LEFT_CAVE:
+    case LOCATION_EVENT_LEFT_BUILDING:
+        JournalEntry_SaveLocationEventTravel(journalEntry->locationEvents, journalEntryLocationEvent);
         break;
-    case 18:
-        sub_0202BAF8(journalEntry->unk_04, data);
+    case LOCATION_EVENT_ITEM_WAS_OBTAINED:
+        JournalEntry_SaveLocationEventItem(journalEntry->locationEvents, journalEntryLocationEvent);
         break;
-    case 19:
-    case 20:
-    case 21:
-    case 22:
-    case 27:
-    case 23:
-    case 24:
-    case 25:
-    case 26:
-    case 29:
-    case 30:
-    case 28:
-    case 33:
-    case 32:
-        sub_0202BB40(journalEntry->unk_04, data);
+    case LOCATION_EVENT_USED_CUT:
+    case LOCATION_EVENT_FLEW_TO_LOCATION:
+    case LOCATION_EVENT_USED_SURF:
+    case LOCATION_EVENT_USED_STRENGTH:
+    case LOCATION_EVENT_USED_FLASH:
+    case LOCATION_EVENT_USED_DEFOG:
+    case LOCATION_EVENT_USED_ROCK_SMASH:
+    case LOCATION_EVENT_USED_WATERFALL:
+    case LOCATION_EVENT_USED_ROCK_CLIMB:
+    case LOCATION_EVENT_USED_DIG:
+    case LOCATION_EVENT_LURED_POKEMON:
+    case LOCATION_EVENT_WARPED_TO_LOCATION:
+    case LOCATION_EVENT_USED_SOFTBOILED:
+    case LOCATION_EVENT_USED_MILK_DRINK:
+        JournalEntry_SaveLocationEventMove(journalEntry->locationEvents, journalEntryLocationEvent);
         break;
     }
 }
@@ -293,264 +309,271 @@ static void JournalEntry_SaveTrainer(JournalEntry *journalEntry, JournalEntryTra
     journalEntry->trainer = *journalEntryTrainer;
 }
 
-static void sub_0202B898(JournalEntry *journalEntry, UnkStruct_0202BFCC *data)
+static void JournalEntry_SaveOnlineEvent(JournalEntry *journalEntry, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
-    u8 *v0 = sub_0202B954(journalEntry);
+    u8 *onlineEvent = JournalEntry_GetEmptyOnlineEvent(journalEntry);
 
-    switch (data->unk_00) {
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 11:
-        sub_0202BB88(v0, data);
+    switch (journalEntryOnlineEvent->eventType) {
+    case ONLINE_EVENT_SINGLE_BATTLE:
+    case ONLINE_EVENT_DOUBLE_BATTLE:
+    case ONLINE_EVENT_MULTI_BATTLE:
+    case ONLINE_EVENT_MIX_SINGLE_BATTLE:
+    case ONLINE_EVENT_MIX_MULTI_BATTLE:
+    case ONLINE_EVENT_UNION_BATTLE:
+        JournalEntry_SaveOnlineEventBattle(onlineEvent, journalEntryOnlineEvent);
         break;
-    case 6:
-    case 22:
-    case 23:
-        sub_0202BBC4(v0, data);
+    case ONLINE_EVENT_GREETED_IN_UNION_ROOM:
+    case ONLINE_EVENT_CHATTED_IN_PLAZA:
+    case ONLINE_EVENT_GOT_TAP_TOY:
+        JournalEntry_SaveOnlineEventInteraction(onlineEvent, journalEntryOnlineEvent);
         break;
-    case 7:
-    case 9:
-    case 15:
-        sub_0202BBE0(v0, data);
+    case ONLINE_EVENT_GOT_POKEMON_FROM_TRADE:
+    case ONLINE_EVENT_GOT_POKEMON_IN_FRIEND_TRADE:
+    case ONLINE_EVENT_GOT_POKEMON_GTS:
+        JournalEntry_SaveOnlineEventTrade(onlineEvent, journalEntryOnlineEvent);
         break;
-    case 8:
-    case 10:
-    case 12:
-    case 14:
-    case 16:
-    case 17:
-    case 18:
-    case 19:
-    case 20:
-    case 21:
-    case 25:
-    case 26:
-    case 27:
-    case 28:
-    case 29:
-        sub_0202BC14(journalEntry, data);
+    case ONLINE_EVENT_DREW_PICTURES:
+    case ONLINE_EVENT_CHATTED_WITH_OTHERS:
+    case ONLINE_EVENT_MIXED_RECORDS:
+    case ONLINE_EVENT_MADE_POFFINS:
+    case ONLINE_EVENT_BATTLE_ROOM:
+    case ONLINE_EVENT_SPIN_TRADE:
+    case ONLINE_EVENT_WATCHED_BATTLE_VIDEOS:
+    case ONLINE_EVENT_CHECKED_RANKINGS:
+    case ONLINE_EVENT_CHECKED_DRESS_UP_DATA:
+    case ONLINE_EVENT_CHECKED_BOX_DATA:
+    case ONLINE_EVENT_PLAYED_WITH_FOOTPRINT_STAMP:
+    case ONLINE_EVENT_VIEWED_PLAZA_VISITOR_PROFILES:
+    case ONLINE_EVENT_READ_PLAZA_NEWS:
+    case ONLINE_EVENT_JOINED_PARADE:
+    case ONLINE_EVENT_WIFI_CLUB:
+        JournalEntry_SaveOnlineEventMisc(journalEntry, journalEntryOnlineEvent);
         break;
-    case 13:
-    case 24:
-        sub_0202BC48(v0, data);
+    case ONLINE_EVENT_PLACED_IN_CONTEST:
+    case ONLINE_EVENT_PLAZA_MINIGAME:
+        JournalEntry_SaveOnlineEventMinigame(onlineEvent, journalEntryOnlineEvent);
         break;
     }
 }
 
-static u32 *sub_0202B91C(u32 *param0)
+static u32 *JournalEntry_GetEmptyLocationEvent(u32 *locationEvents)
 {
     u32 i;
 
-    for (i = 0; i < 4; i++) {
-        if ((param0[i] & 0x3f) == 0) {
-            return &param0[i];
+    for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
+        if (LOCATION_EVENT_TYPE(locationEvents[i]) == LOCATION_EVENT_NONE) {
+            return &locationEvents[i];
         }
     }
 
-    for (i = 0; i < 4 - 1; i++) {
-        param0[i] = param0[i + 1];
+    for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS - 1; i++) {
+        locationEvents[i] = locationEvents[i + 1];
     }
 
-    param0[i] = 0;
+    locationEvents[i] = 0;
 
-    return &param0[i];
+    return &locationEvents[i];
 }
 
-static u8 *sub_0202B954(JournalEntry *journalEntry)
+static u8 *JournalEntry_GetEmptyOnlineEvent(JournalEntry *journalEntry)
 {
     u32 i;
 
-    for (i = 0; i < 2; i++) {
-        if (journalEntry->unk_1C[i][0] == 0) {
-            return &journalEntry->unk_1C[i][0];
+    for (i = 0; i < MAX_JOURNAL_ONLINE_EVENTS; i++) {
+        if (journalEntry->onlineEvents[i][0] == ONLINE_EVENT_NONE) {
+            return &journalEntry->onlineEvents[i][0];
         }
     }
 
-    for (i = 0; i < 2 - 1; i++) {
-        memcpy(&journalEntry->unk_1C[i][0], &journalEntry->unk_1C[i + 1][0], 42);
+    for (i = 0; i < MAX_JOURNAL_ONLINE_EVENTS - 1; i++) {
+        memcpy(&journalEntry->onlineEvents[i][0], &journalEntry->onlineEvents[i + 1][0], 42);
     }
 
-    memset(&journalEntry->unk_1C[i][0], 0, 42);
+    memset(&journalEntry->onlineEvents[i][0], 0, 42);
 
-    return &journalEntry->unk_1C[i][0];
+    return &journalEntry->onlineEvents[i][0];
 }
 
-static void sub_0202B994(u32 *param0, UnkStruct_0202BCC8 *data)
+static void JournalEntry_SaveLocationEventMisc(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    u32 *v0;
+    u32 *locationEvent;
     u32 i;
 
-    for (i = 0; i < 4; i++) {
-        if (param0[i] == 0) {
+    for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
+        if (locationEvents[i] == 0) {
             break;
         }
     }
 
-    if (i != 0 && (param0[i - 1] & 0x3f) == data->unk_00) {
+    if (i != 0 && LOCATION_EVENT_TYPE(locationEvents[i - 1]) == journalEntryLocationEvent->eventType) {
         return;
     }
 
-    v0 = sub_0202B91C(param0);
-    *v0 = (data->unk_00 & 0x3f);
+    locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
+    *locationEvent = LOCATION_EVENT(0, 0, journalEntryLocationEvent->eventType);
 }
 
-static void sub_0202B9D0(u32 *param0, UnkStruct_0202BCC8 *data)
+static void JournalEntry_SaveLocationEventChampion(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    u32 *v0 = sub_0202B91C(param0);
-    *v0 = (data->unk_02 << 16) | ((data->unk_04 & 0x3ff) << 6) | (data->unk_00 & 0x3f);
+    u32 *locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->locationID, journalEntryLocationEvent->trainerID, journalEntryLocationEvent->eventType);
 }
 
-static void sub_0202B9F0(u32 *param0, UnkStruct_0202BCC8 *data)
+static void JournalEntry_SaveLocationEventEliteFour(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    u32 *v0 = NULL;
+    u32 *locationEvent = NULL;
     u16 i;
 
-    for (i = 0; i < 4; i++) {
-        if ((param0[i] & 0x3f) == 11) {
-            param0[i] = 0;
+    for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
+        if (LOCATION_EVENT_TYPE(locationEvents[i]) == LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER) {
+            locationEvents[i] = 0;
 
-            for (i = i; i < 4 - 1; i++) {
-                param0[i] = param0[i + 1];
-                param0[i + 1] = 0;
+            for (i = i; i < MAX_JOURNAL_LOCATION_EVENTS - 1; i++) {
+                locationEvents[i] = locationEvents[i + 1];
+                locationEvents[i + 1] = 0;
             }
 
             break;
         }
     }
 
-    v0 = sub_0202B91C(param0);
-    *v0 = (data->unk_02 << 16) | ((data->unk_04 & 0x3ff) << 6) | (data->unk_00 & 0x3f);
+    locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->locationID, journalEntryLocationEvent->trainerID, journalEntryLocationEvent->eventType);
 }
 
-static void sub_0202BA48(u32 *param0, UnkStruct_0202BCC8 *data)
+static void JournalEntry_SaveLocationEventGym(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    u32 *v0 = NULL;
+    u32 *locationEvent = NULL;
     u16 i;
 
-    for (i = 0; i < 4; i++) {
-        if (((param0[i] & 0x3f) == 9) && (((param0[i] >> 16) & 0xffff) == data->unk_02)) {
-            param0[i] = 0;
+    for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
+        if (LOCATION_EVENT_TYPE(locationEvents[i]) == LOCATION_EVENT_GYM_WAS_TOO_TOUGH
+            && LOCATION_EVENT_LOCATION_ID(locationEvents[i]) == journalEntryLocationEvent->locationID) {
+            locationEvents[i] = 0;
 
-            for (i = i; i < 4 - 1; i++) {
-                param0[i] = param0[i + 1];
-                param0[i + 1] = 0;
+            for (i = i; i < MAX_JOURNAL_LOCATION_EVENTS - 1; i++) {
+                locationEvents[i] = locationEvents[i + 1];
+                locationEvents[i + 1] = 0;
             }
             break;
         }
     }
 
-    v0 = sub_0202B91C(param0);
-    *v0 = (data->unk_02 << 16) | ((data->unk_04 & 0x3ff) << 6) | (data->unk_00 & 0x3f);
+    locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->locationID, journalEntryLocationEvent->trainerID, journalEntryLocationEvent->eventType);
 }
 
-static void sub_0202BAB0(u32 *param0, UnkStruct_0202BCC8 *data)
+static void JournalEntry_SaveLocationEventTravel(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    u32 *v0;
+    u32 *locationEvent;
     u32 i;
 
-    for (i = 0; i < 4; i++) {
-        if (param0[i] == 0) {
+    for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
+        if (locationEvents[i] == 0) {
             break;
         }
     }
 
-    if (i != 0 && ((param0[i - 1] & 0x3f) == data->unk_00) && ((param0[i - 1] >> 16) == data->unk_02)) {
+    if (i != 0
+        && LOCATION_EVENT_TYPE(locationEvents[i - 1]) == journalEntryLocationEvent->eventType
+        && (locationEvents[i - 1] >> 16) == journalEntryLocationEvent->locationID) {
         return;
     }
 
-    v0 = sub_0202B91C(param0);
-    *v0 = (data->unk_02 << 16) | (data->unk_00 & 0x3f);
+    locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->locationID, 0, journalEntryLocationEvent->eventType);
 }
 
-static void sub_0202BAF8(u32 *param0, UnkStruct_0202BCC8 *data)
+static void JournalEntry_SaveLocationEventItem(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    u32 *v0;
+    u32 *locationEvent;
     u32 i;
 
-    for (i = 0; i < 4; i++) {
-        if (param0[i] == 0) {
+    for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
+        if (locationEvents[i] == 0) {
             break;
         }
     }
 
-    if (i != 0 && ((param0[i - 1] & 0x3f) == data->unk_00) && ((param0[i - 1] >> 16) == data->unk_06)) {
+    if (i != 0
+        && LOCATION_EVENT_TYPE(locationEvents[i - 1]) == journalEntryLocationEvent->eventType
+        && (locationEvents[i - 1] >> 16) == journalEntryLocationEvent->item) {
         return;
     }
 
-    v0 = sub_0202B91C(param0);
-    *v0 = (data->unk_06 << 16) | (data->unk_00 & 0x3f);
+    locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->item, 0, journalEntryLocationEvent->eventType);
 }
 
-static void sub_0202BB40(u32 *param0, UnkStruct_0202BCC8 *data)
+static void JournalEntry_SaveLocationEventMove(u32 *locationEvents, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    u32 *v0;
+    u32 *locationEvent;
     u32 i;
 
-    for (i = 0; i < 4; i++) {
-        if (param0[i] == 0) {
+    for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
+        if (locationEvents[i] == 0) {
             break;
         }
     }
 
-    if (i != 0 && ((param0[i - 1] & 0x3f) == data->unk_00) && ((param0[i - 1] >> 16) == data->unk_02)) {
+    if (i != 0
+        && LOCATION_EVENT_TYPE(locationEvents[i - 1]) == journalEntryLocationEvent->eventType
+        && (locationEvents[i - 1] >> 16) == journalEntryLocationEvent->locationID) {
         return;
     }
 
-    v0 = sub_0202B91C(param0);
-    *v0 = (data->unk_02 << 16) | (data->unk_00 & 0x3f);
+    locationEvent = JournalEntry_GetEmptyLocationEvent(locationEvents);
+    *locationEvent = LOCATION_EVENT(journalEntryLocationEvent->locationID, 0, journalEntryLocationEvent->eventType);
 }
 
-static void sub_0202BB88(u8 *param0, UnkStruct_0202BFCC *data)
+static void JournalEntry_SaveOnlineEventBattle(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
-    param0[0] = data->unk_00;
-    param0[1] = (data->unk_01_0 << 2) | (data->unk_01_4 << 1) | (data->unk_01_5);
-    sub_0202BF94(data->unk_02, (u16 *)&param0[2], 8);
-    sub_0202BF94(data->unk_12, (u16 *)&param0[18], 8);
+    onlineEvent[0] = journalEntryOnlineEvent->eventType;
+    onlineEvent[1] = (journalEntryOnlineEvent->result << 2) | (journalEntryOnlineEvent->unused1 << 1) | (journalEntryOnlineEvent->unused2);
+    JournalEntry_StringCopy(journalEntryOnlineEvent->playerName1, (u16 *)&onlineEvent[2], TRAINER_NAME_LEN + 1);
+    JournalEntry_StringCopy(journalEntryOnlineEvent->playerName2, (u16 *)&onlineEvent[18], TRAINER_NAME_LEN + 1);
 }
 
-static void sub_0202BBC4(u8 *param0, UnkStruct_0202BFCC *data)
+static void JournalEntry_SaveOnlineEventInteraction(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
-    param0[0] = data->unk_00;
-    param0[1] = data->unk_01_4;
+    onlineEvent[0] = journalEntryOnlineEvent->eventType;
+    onlineEvent[1] = journalEntryOnlineEvent->unused1;
 
-    sub_0202BF94(data->unk_02, (u16 *)&param0[2], 8);
+    JournalEntry_StringCopy(journalEntryOnlineEvent->playerName1, (u16 *)&onlineEvent[2], TRAINER_NAME_LEN + 1);
 }
 
-static void sub_0202BBE0(u8 *param0, UnkStruct_0202BFCC *data)
+static void JournalEntry_SaveOnlineEventTrade(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
-    param0[0] = data->unk_00;
-    param0[1] = (data->unk_01_4 << 2) | (data->unk_01_6);
+    onlineEvent[0] = journalEntryOnlineEvent->eventType;
+    onlineEvent[1] = (journalEntryOnlineEvent->unused1 << 2) | (journalEntryOnlineEvent->unused3);
 
-    sub_0202BF94(data->unk_02, (u16 *)&param0[2], 8);
-    sub_0202BF94(data->unk_22, (u16 *)&param0[18], 12);
+    JournalEntry_StringCopy(journalEntryOnlineEvent->playerName1, (u16 *)&onlineEvent[2], TRAINER_NAME_LEN + 1);
+    JournalEntry_StringCopy(journalEntryOnlineEvent->pokemonName, (u16 *)&onlineEvent[18], 12);
 }
 
-static void sub_0202BC14(JournalEntry *journalEntry, UnkStruct_0202BFCC *data)
+static void JournalEntry_SaveOnlineEventMisc(JournalEntry *journalEntry, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
     u32 i;
-    u8 *v1;
+    u8 *onlineEvent;
 
-    for (i = 0; i < 2; i++) {
-        if (journalEntry->unk_1C[i][0] == 0) {
+    for (i = 0; i < MAX_JOURNAL_ONLINE_EVENTS; i++) {
+        if (journalEntry->onlineEvents[i][0] == ONLINE_EVENT_NONE) {
             break;
         }
     }
 
-    if (i != 0 && journalEntry->unk_1C[i - 1][0] == data->unk_00) {
+    if (i != 0 && journalEntry->onlineEvents[i - 1][0] == journalEntryOnlineEvent->eventType) {
         return;
     }
 
-    v1 = sub_0202B954(journalEntry);
-    v1[0] = data->unk_00;
+    onlineEvent = JournalEntry_GetEmptyOnlineEvent(journalEntry);
+    onlineEvent[0] = journalEntryOnlineEvent->eventType;
 }
 
-static void sub_0202BC48(u8 *param0, UnkStruct_0202BFCC *data)
+static void JournalEntry_SaveOnlineEventMinigame(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
-    param0[0] = data->unk_00;
-    param0[1] = data->unk_01_0;
+    onlineEvent[0] = journalEntryOnlineEvent->eventType;
+    onlineEvent[1] = journalEntryOnlineEvent->result;
 }
 
 void *JournalEntry_CreateTitle(u16 mapID, u32 heapID)
@@ -569,210 +592,210 @@ void *JournalEntry_CreateTitle(u16 mapID, u32 heapID)
     return journalEntryTitle;
 }
 
-static UnkStruct_0202BCC8 *sub_0202BCC8(u32 heapID)
+static JournalEntryLocationEvent *JournalEntry_CreateLocationEvent(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202BCC8));
+    JournalEntryLocationEvent *journalEntryLocationEvent = Heap_AllocFromHeap(heapID, sizeof(JournalEntryLocationEvent));
 
-    memset(v0, 0, sizeof(UnkStruct_0202BCC8));
-    return v0;
+    memset(journalEntryLocationEvent, 0, sizeof(JournalEntryLocationEvent));
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BCE4(u32 heapID)
+void *JournalEntry_CreateEventRestedAtHome(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 1;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_RESTED_AT_HOME;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BCF0(u32 heapID)
+void *JournalEntry_CreateEventLeftResearchLab(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 2;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_LEFT_RESEARCH_LAB;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BCFC(u32 heapID)
+void *JournalEntry_CreateEventUsedPCBox(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 3;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_USED_PC_BOX;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BD08(u32 heapID)
+void *JournalEntry_CreateEventShoppedAtMart(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 4;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_SHOPPED_AT_MART;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BD14(u32 heapID)
+void *JournalEntry_CreateEventLotsOfShopping(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 5;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_LOTS_OF_SHOPPING;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BD20(u32 heapID)
+void *JournalEntry_CreateEventSoldALittle(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 6;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_SOLD_A_LITTLE;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BD2C(u32 heapID)
+void *JournalEntry_CreateEventSoldALot(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 7;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_SOLD_A_LOT;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BD38(u32 heapID)
+void *JournalEntry_CreateEventBusinessAtMart(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 8;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_BUSINESS_AT_MART;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BD44(u16 defeatedGym, u32 heapID)
+void *JournalEntry_CreateEventGymTooTough(u16 gymTooTough, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 9;
-    v0->unk_02 = defeatedGym;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_GYM_WAS_TOO_TOUGH;
+    journalEntryLocationEvent->locationID = gymTooTough;
 
-    return v0;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BD58(u16 trainerType, u16 trainerID, u32 heapID)
+void *JournalEntry_CreateEventGymLeader(u16 gymDefeated, u16 trainerID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 10;
-    v0->unk_02 = trainerType;
-    v0->unk_04 = trainerID;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_BEAT_GYM_LEADER;
+    journalEntryLocationEvent->locationID = gymDefeated;
+    journalEntryLocationEvent->trainerID = trainerID;
 
-    return v0;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BD70(u16 trainerID, u32 heapID)
+void *JournalEntry_CreateEventEliteFour(u16 trainerID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 11;
-    v0->unk_04 = trainerID;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER;
+    journalEntryLocationEvent->trainerID = trainerID;
 
-    return v0;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BD84(u16 trainerID, u32 heapID)
+void *JournalEntry_CreateEventChampion(u16 trainerID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 12;
-    v0->unk_04 = trainerID;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_BEAT_CHAMPION;
+    journalEntryLocationEvent->trainerID = trainerID;
 
-    return v0;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BD98(u16 mapID, u32 heapID)
+void *JournalEntry_CreateEventArrivedInLocation(u16 mapID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 13;
-    v0->unk_02 = mapID;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_ARRIVED_IN_LOCATION;
+    journalEntryLocationEvent->locationID = mapID;
 
-    return v0;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BDAC(u16 mapLabelTextID, u32 heapID)
+void *JournalEntry_CreateEventLeftCave(u16 mapLabelTextID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 14;
-    v0->unk_02 = mapLabelTextID;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_LEFT_CAVE;
+    journalEntryLocationEvent->locationID = mapLabelTextID;
 
-    return v0;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BDC0(u16 mapLabelTextID, u32 heapID)
+void *JournalEntry_CreateEventLeftBuilding(u16 mapLabelTextID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 15;
-    v0->unk_02 = mapLabelTextID;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_LEFT_BUILDING;
+    journalEntryLocationEvent->locationID = mapLabelTextID;
 
-    return v0;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BDD4(u32 heapID)
+void *JournalEntry_CreateEventGameCorner(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 16;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_GAME_CORNER;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BDE0(u32 heapID)
+void *JournalEntry_CreateEventSafariGame(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 17;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_SAFARI_GAME;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BDEC(u16 param0, u32 heapID)
+void *JournalEntry_CreateEventObtainedItem(u16 item, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 18;
-    v0->unk_06 = param0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_ITEM_WAS_OBTAINED;
+    journalEntryLocationEvent->item = item;
 
-    return v0;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BE00(u8 param0, u16 param1, u32 heapID)
+void *JournalEntry_CreateEventUsedMove(u8 moveIndex, u16 mapID, u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 19 + param0;
-    v0->unk_02 = param1;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_USED_CUT + moveIndex;
+    journalEntryLocationEvent->locationID = mapID;
 
-    return v0;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BE14(u32 heapID)
+void *JournalEntry_CreateEventDugUnderground(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 34;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_DUG_UNDERGROUND;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BE20(u32 heapID)
+void *JournalEntry_CreateEventBuiltSecretBase(u32 heapID)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = 35;
-    return v0;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_BUILT_SECRET_BASE;
+    return journalEntryLocationEvent;
 }
 
-void *sub_0202BE2C(u32 heapID, u32 param1)
+void *JournalEntry_CreateEventBattleFacility(u32 heapID, u32 eventType)
 {
-    UnkStruct_0202BCC8 *v0 = sub_0202BCC8(heapID);
+    JournalEntryLocationEvent *journalEntryLocationEvent = JournalEntry_CreateLocationEvent(heapID);
 
-    v0->unk_00 = param1;
-    return v0;
+    journalEntryLocationEvent->eventType = eventType;
+    return journalEntryLocationEvent;
 }
 
-static JournalEntryMon *JournalEntry_InitMon(u32 heapID)
+static JournalEntryMon *JournalEntry_CreateMon(u32 heapID)
 {
     JournalEntryMon *journalEntryMon = Heap_AllocFromHeap(heapID, sizeof(JournalEntryMon));
 
@@ -780,9 +803,9 @@ static JournalEntryMon *JournalEntry_InitMon(u32 heapID)
     return journalEntryMon;
 }
 
-void *JournalEntry_CreateMonCaught(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID)
+void *JournalEntry_CreateEventMonCaught(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID)
 {
-    JournalEntryMon *journalEntryMon = JournalEntry_InitMon(heapID);
+    JournalEntryMon *journalEntryMon = JournalEntry_CreateMon(heapID);
     u8 v1;
 
     journalEntryMon->battleResult = POKEMON_CAUGHT;
@@ -803,9 +826,9 @@ void *JournalEntry_CreateMonCaught(const PlayTime *playTime, u16 species, u8 gen
     return journalEntryMon;
 }
 
-void *JournalEntry_CreateMonDefeated(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID)
+void *JournalEntry_CreateEventMonDefeated(const PlayTime *playTime, u16 species, u8 gender, u8 timeOfDay, u32 heapID)
 {
-    JournalEntryMon *journalEntryMon = JournalEntry_InitMon(heapID);
+    JournalEntryMon *journalEntryMon = JournalEntry_CreateMon(heapID);
     u8 v1;
 
     journalEntryMon->battleResult = POKEMON_DEFEATED;
@@ -826,213 +849,213 @@ void *JournalEntry_CreateMonDefeated(const PlayTime *playTime, u16 species, u8 g
     return journalEntryMon;
 }
 
-void *JournalEntry_InitTrainer(u16 mapID, u16 trainerID, u32 heapID)
+void *JournalEntry_CreateEventStandardTrainer(u16 mapID, u16 trainerID, u32 heapID)
 {
     JournalEntryTrainer *journalEntryTrainer = Heap_AllocFromHeap(heapID, sizeof(JournalEntryTrainer));
 
-    journalEntryTrainer->unk_00_0 = 1;
+    journalEntryTrainer->standard = 1;
     journalEntryTrainer->mapID = mapID;
     journalEntryTrainer->trainerID = trainerID;
 
     return journalEntryTrainer;
 }
 
-static UnkStruct_0202BFCC *sub_0202BF7C(u32 heapID)
+static JournalEntryOnlineEvent *JournalEntry_CreateOnlineEvent(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202BFCC));
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = Heap_AllocFromHeap(heapID, sizeof(JournalEntryOnlineEvent));
 
-    memset(v0, 0, sizeof(UnkStruct_0202BFCC));
-    return v0;
+    memset(journalEntryOnlineEvent, 0, sizeof(JournalEntryOnlineEvent));
+    return journalEntryOnlineEvent;
 }
 
-static void sub_0202BF94(const u16 *param0, u16 *param1, u32 param2)
+static void JournalEntry_StringCopy(const u16 *src, u16 *dst, u32 strLength)
 {
     u32 i;
 
-    for (i = 0; i < param2; i++) {
-        param1[i] = 0xffff;
+    for (i = 0; i < strLength; i++) {
+        dst[i] = CHAR_NONE;
     }
 
-    for (i = 0; i < param2; i++) {
-        if (param0[i] == 0xffff) {
+    for (i = 0; i < strLength; i++) {
+        if (src[i] == CHAR_NONE) {
             break;
         }
 
-        param1[i] = param0[i];
+        dst[i] = src[i];
     }
 }
 
-void *sub_0202BFCC(u16 *param0, u8 param1, u8 param2, u32 heapID)
+void *JournalEntry_CreateEventSingleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 1;
-    v0->unk_01_0 = param2;
-    v0->unk_01_4 = param1;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_SINGLE_BATTLE;
+    journalEntryOnlineEvent->result = battleResult;
+    journalEntryOnlineEvent->unused1 = opponentGender;
 
-    sub_0202BF94(param0, v0->unk_02, 8);
-    return v0;
+    JournalEntry_StringCopy(opponentName, journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C00C(u16 *param0, u8 param1, u8 param2, u32 heapID)
+void *JournalEntry_CreateEventDoubleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 2;
-    v0->unk_01_0 = param2;
-    v0->unk_01_4 = param1;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_DOUBLE_BATTLE;
+    journalEntryOnlineEvent->result = battleResult;
+    journalEntryOnlineEvent->unused1 = opponentGender;
 
-    sub_0202BF94(param0, v0->unk_02, 8);
-    return v0;
+    JournalEntry_StringCopy(opponentName, journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C04C(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u32 heapID)
+void *JournalEntry_CreateEventMultiBattle(u16 *opponentName1, u16 *opponentName2, u8 opponentGender1, u8 opponentGender2, u8 battleResult, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 3;
-    v0->unk_01_0 = param4;
-    v0->unk_01_4 = param2;
-    v0->unk_01_5 = param3;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_MULTI_BATTLE;
+    journalEntryOnlineEvent->result = battleResult;
+    journalEntryOnlineEvent->unused1 = opponentGender1;
+    journalEntryOnlineEvent->unused2 = opponentGender2;
 
-    sub_0202BF94(param0, v0->unk_02, 8);
-    sub_0202BF94(param1, v0->unk_12, 8);
+    JournalEntry_StringCopy(opponentName1, journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    JournalEntry_StringCopy(opponentName2, journalEntryOnlineEvent->playerName2, TRAINER_NAME_LEN + 1);
 
-    return v0;
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C0AC(u16 *param0, u8 param1, u8 param2, u32 heapID)
+void *JournalEntry_CreateEventMixSingleBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 4;
-    v0->unk_01_0 = param2;
-    v0->unk_01_4 = param1;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_MIX_SINGLE_BATTLE;
+    journalEntryOnlineEvent->result = battleResult;
+    journalEntryOnlineEvent->unused1 = opponentGender;
 
-    sub_0202BF94(param0, v0->unk_02, 8);
-    return v0;
+    JournalEntry_StringCopy(opponentName, journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C0EC(u16 *trainerName, u8 trainerGender, u32 heapID)
+void *JournalEntry_CreateEventGreetedInUnionRoom(u16 *playerName, u8 playerGender, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 6;
-    v0->unk_01_4 = trainerGender;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_GREETED_IN_UNION_ROOM;
+    journalEntryOnlineEvent->unused1 = playerGender;
 
-    sub_0202BF94(trainerName, v0->unk_02, 8);
-    return v0;
+    JournalEntry_StringCopy(playerName, journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C11C(u16 *param0, u8 param1, u16 *param2, u8 param3, u32 heapID)
+void *JournalEntry_CreateEventGotPokemonFromTrade(u16 *otName, u8 otGender, u16 *pokemonName, u8 pokemonGender, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 7;
-    v0->unk_01_4 = param1;
-    v0->unk_01_6 = param3;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_GOT_POKEMON_FROM_TRADE;
+    journalEntryOnlineEvent->unused1 = otGender;
+    journalEntryOnlineEvent->unused3 = pokemonGender;
 
-    sub_0202BF94(param0, v0->unk_02, 8);
-    sub_0202BF94(param2, v0->unk_22, 12);
+    JournalEntry_StringCopy(otName, journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    JournalEntry_StringCopy(pokemonName, journalEntryOnlineEvent->pokemonName, 12);
 
-    return v0;
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C168(u32 heapID)
+void *JournalEntry_CreateEventDrewPictures(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 8;
-    return v0;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_DREW_PICTURES;
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C174(u16 *param0, u8 param1, u8 param2, u32 heapID)
+void *JournalEntry_CreateEventUnionBattle(u16 *opponentName, u8 opponentGender, u8 battleResult, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 11;
-    v0->unk_01_0 = param2;
-    v0->unk_01_4 = param1;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_UNION_BATTLE;
+    journalEntryOnlineEvent->result = battleResult;
+    journalEntryOnlineEvent->unused1 = opponentGender;
 
-    sub_0202BF94(param0, v0->unk_02, 8);
-    return v0;
+    JournalEntry_StringCopy(opponentName, journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C1B4(u32 heapID)
+void *JournalEntry_CreateEventMixedRecords(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 12;
-    return v0;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_MIXED_RECORDS;
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C1C0(u8 param0, u32 heapID)
+void *JournalEntry_CreateEventPlacedInContest(u8 placement, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 13;
-    v0->unk_01_0 = param0;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_PLACED_IN_CONTEST;
+    journalEntryOnlineEvent->result = placement;
 
-    return v0;
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C1E0(u32 heapID)
+void *JournalEntry_CreateEventMadePoffins(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 14;
-    return v0;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_MADE_POFFINS;
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C1EC(u16 *param0, u8 param1, u16 *param2, u8 param3, u32 heapID)
+void *JournalEntry_CreateEventGotPokemonGTS(u16 *otName, u8 otGender, u16 *pokemonName, u8 pokemonGender, u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 15;
-    v0->unk_01_4 = param1;
-    v0->unk_01_6 = param3;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_GOT_POKEMON_GTS;
+    journalEntryOnlineEvent->unused1 = otGender;
+    journalEntryOnlineEvent->unused3 = pokemonGender;
 
-    sub_0202BF94(param0, v0->unk_02, 8);
-    sub_0202BF94(param2, v0->unk_22, 12);
+    JournalEntry_StringCopy(otName, journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    JournalEntry_StringCopy(pokemonName, journalEntryOnlineEvent->pokemonName, 12);
 
-    return v0;
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C238(u32 heapID)
+void *JournalEntry_CreateEventBattleRoom(u32 heapID)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = 16;
-    return v0;
+    journalEntryOnlineEvent->eventType = ONLINE_EVENT_BATTLE_ROOM;
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C244(u32 heapID, u32 param1)
+void *JournalEntry_CreateEventMisc(u32 heapID, u32 eventType)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = param1;
-    return v0;
+    journalEntryOnlineEvent->eventType = eventType;
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C250(const u16 *param0, u8 param1, u32 heapID, u32 param3)
+void *JournalEntry_CreateEventInteraction(const u16 *playerName, u8 playerGender, u32 heapID, u32 eventType)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = param3;
-    v0->unk_01_4 = param1;
+    journalEntryOnlineEvent->eventType = eventType;
+    journalEntryOnlineEvent->unused1 = playerGender;
 
-    sub_0202BF94(param0, v0->unk_02, 8);
-    return v0;
+    JournalEntry_StringCopy(playerName, journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    return journalEntryOnlineEvent;
 }
 
-void *sub_0202C280(int param0, u32 heapID, u32 param2)
+void *JournalEntry_CreateEventPlazaMinigame(int minigame, u32 heapID, u32 eventType)
 {
-    UnkStruct_0202BFCC *v0 = sub_0202BF7C(heapID);
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = JournalEntry_CreateOnlineEvent(heapID);
 
-    v0->unk_00 = param2;
-    v0->unk_01_0 = param0;
+    journalEntryOnlineEvent->eventType = eventType;
+    journalEntryOnlineEvent->result = minigame;
 
-    return v0;
+    return journalEntryOnlineEvent;
 }
 
 void JournalEntry_GetData(JournalEntry *journalEntry, void *dest, u8 dataType, u8 page)
@@ -1041,8 +1064,8 @@ void JournalEntry_GetData(JournalEntry *journalEntry, void *dest, u8 dataType, u
     case JOURNAL_TITLE:
         JournalEntry_GetTitle(&journalEntry[page], dest);
         break;
-    case JOURNAL_UNK_04:
-        sub_0202C304(&journalEntry[page], dest);
+    case JOURNAL_LOCATION:
+        JournalEntry_GetLocationEvent(&journalEntry[page], dest);
         break;
     case JOURNAL_MON:
         JournalEntry_GetMon(&journalEntry[page], dest);
@@ -1050,8 +1073,8 @@ void JournalEntry_GetData(JournalEntry *journalEntry, void *dest, u8 dataType, u
     case JOURNAL_TRAINER:
         JournalEntry_GetTrainer(&journalEntry[page], dest);
         break;
-    case JOURNAL_UNK_1C:
-        sub_0202C3D0(&journalEntry[page], dest);
+    case JOURNAL_ONLINE_EVENT:
+        JournalEntry_GetOnlineEvent(&journalEntry[page], dest);
         break;
     }
 }
@@ -1061,62 +1084,62 @@ static void JournalEntry_GetTitle(JournalEntry *journalEntry, JournalEntryTitle 
     *journalEntryTitle = journalEntry->title;
 }
 
-static void sub_0202C304(JournalEntry *journalEntry, UnkStruct_0202BCC8 *param1)
+static void JournalEntry_GetLocationEvent(JournalEntry *journalEntry, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
     u32 i;
 
-    for (i = 0; i < 4; i++) {
-        memset(&param1[i], 0, sizeof(UnkStruct_0202BCC8));
+    for (i = 0; i < MAX_JOURNAL_LOCATION_EVENTS; i++) {
+        memset(&journalEntryLocationEvent[i], 0, sizeof(JournalEntryLocationEvent));
 
-        switch (journalEntry->unk_04[i] & 0x3f) {
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 16:
-        case 17:
-        case 34:
-        case 35:
-        case 36:
-        case 37:
-        case 38:
-        case 39:
-        case 40:
-            sub_0202C474(journalEntry->unk_04[i], &param1[i]);
+        switch (LOCATION_EVENT_TYPE(journalEntry->locationEvents[i])) {
+        case LOCATION_EVENT_RESTED_AT_HOME:
+        case LOCATION_EVENT_LEFT_RESEARCH_LAB:
+        case LOCATION_EVENT_USED_PC_BOX:
+        case LOCATION_EVENT_SHOPPED_AT_MART:
+        case LOCATION_EVENT_LOTS_OF_SHOPPING:
+        case LOCATION_EVENT_SOLD_A_LITTLE:
+        case LOCATION_EVENT_SOLD_A_LOT:
+        case LOCATION_EVENT_BUSINESS_AT_MART:
+        case LOCATION_EVENT_GAME_CORNER:
+        case LOCATION_EVENT_SAFARI_GAME:
+        case LOCATION_EVENT_DUG_UNDERGROUND:
+        case LOCATION_EVENT_BUILT_SECRET_BASE:
+        case LOCATION_EVENT_BATTLE_TOWER:
+        case LOCATION_EVENT_BATTLE_FACTORY:
+        case LOCATION_EVENT_BATTLE_CASTLE:
+        case LOCATION_EVENT_BATTLE_HALL:
+        case LOCATION_EVENT_BATTLE_ARCADE:
+            JournalEntry_GetLocationEventMisc(journalEntry->locationEvents[i], &journalEntryLocationEvent[i]);
             break;
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-            sub_0202C47C(journalEntry->unk_04[i], &param1[i]);
+        case LOCATION_EVENT_GYM_WAS_TOO_TOUGH:
+        case LOCATION_EVENT_BEAT_GYM_LEADER:
+        case LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER:
+        case LOCATION_EVENT_BEAT_CHAMPION:
+            JournalEntry_GetLocationEventTrainer(journalEntry->locationEvents[i], &journalEntryLocationEvent[i]);
             break;
-        case 13:
-        case 14:
-        case 15:
-            sub_0202C494(journalEntry->unk_04[i], &param1[i]);
+        case LOCATION_EVENT_ARRIVED_IN_LOCATION:
+        case LOCATION_EVENT_LEFT_CAVE:
+        case LOCATION_EVENT_LEFT_BUILDING:
+            JournalEntry_GetLocationEventTravel(journalEntry->locationEvents[i], &journalEntryLocationEvent[i]);
             break;
-        case 18:
-            sub_0202C4A0(journalEntry->unk_04[i], &param1[i]);
+        case LOCATION_EVENT_ITEM_WAS_OBTAINED:
+            JournalEntry_GetLocationEventItem(journalEntry->locationEvents[i], &journalEntryLocationEvent[i]);
             break;
-        case 19:
-        case 20:
-        case 21:
-        case 22:
-        case 27:
-        case 23:
-        case 24:
-        case 25:
-        case 26:
-        case 29:
-        case 30:
-        case 28:
-        case 33:
-        case 32:
-            sub_0202C4AC(journalEntry->unk_04[i], &param1[i]);
+        case LOCATION_EVENT_USED_CUT:
+        case LOCATION_EVENT_FLEW_TO_LOCATION:
+        case LOCATION_EVENT_USED_SURF:
+        case LOCATION_EVENT_USED_STRENGTH:
+        case LOCATION_EVENT_USED_FLASH:
+        case LOCATION_EVENT_USED_DEFOG:
+        case LOCATION_EVENT_USED_ROCK_SMASH:
+        case LOCATION_EVENT_USED_WATERFALL:
+        case LOCATION_EVENT_USED_ROCK_CLIMB:
+        case LOCATION_EVENT_USED_DIG:
+        case LOCATION_EVENT_LURED_POKEMON:
+        case LOCATION_EVENT_WARPED_TO_LOCATION:
+        case LOCATION_EVENT_USED_SOFTBOILED:
+        case LOCATION_EVENT_USED_MILK_DRINK:
+            JournalEntry_GetLocationEventMove(journalEntry->locationEvents[i], &journalEntryLocationEvent[i]);
             break;
         }
     }
@@ -1132,142 +1155,142 @@ static void JournalEntry_GetTrainer(JournalEntry *journalEntry, JournalEntryTrai
     *journalEntryTrainer = journalEntry->trainer;
 }
 
-static void sub_0202C3D0(JournalEntry *journalEntry, UnkStruct_0202BFCC *param1)
+static void JournalEntry_GetOnlineEvent(JournalEntry *journalEntry, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
     u32 i;
 
-    for (i = 0; i < 2; i++) {
-        memset(&param1[i], 0, sizeof(UnkStruct_0202BFCC));
+    for (i = 0; i < MAX_JOURNAL_ONLINE_EVENTS; i++) {
+        memset(&journalEntryOnlineEvent[i], 0, sizeof(JournalEntryOnlineEvent));
 
-        switch (journalEntry->unk_1C[i][0]) {
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 11:
-            sub_0202C4B8(&journalEntry->unk_1C[i][0], &param1[i]);
+        switch (journalEntry->onlineEvents[i][0]) {
+        case ONLINE_EVENT_SINGLE_BATTLE:
+        case ONLINE_EVENT_DOUBLE_BATTLE:
+        case ONLINE_EVENT_MULTI_BATTLE:
+        case ONLINE_EVENT_MIX_SINGLE_BATTLE:
+        case ONLINE_EVENT_MIX_MULTI_BATTLE:
+        case ONLINE_EVENT_UNION_BATTLE:
+            JournalEntry_GetOnlineEventBattle(&journalEntry->onlineEvents[i][0], &journalEntryOnlineEvent[i]);
             break;
-        case 6:
-        case 22:
-        case 23:
-            sub_0202C528(&journalEntry->unk_1C[i][0], &param1[i]);
+        case ONLINE_EVENT_GREETED_IN_UNION_ROOM:
+        case ONLINE_EVENT_CHATTED_IN_PLAZA:
+        case ONLINE_EVENT_GOT_TAP_TOY:
+            JournalEntry_GetOnlineEventInteraction(&journalEntry->onlineEvents[i][0], &journalEntryOnlineEvent[i]);
             break;
-        case 7:
-        case 9:
-        case 15:
-            sub_0202C54C(&journalEntry->unk_1C[i][0], &param1[i]);
+        case ONLINE_EVENT_GOT_POKEMON_FROM_TRADE:
+        case ONLINE_EVENT_GOT_POKEMON_IN_FRIEND_TRADE:
+        case ONLINE_EVENT_GOT_POKEMON_GTS:
+            JournalEntry_GetOnlineEventTrade(&journalEntry->onlineEvents[i][0], &journalEntryOnlineEvent[i]);
             break;
-        case 8:
-        case 10:
-        case 12:
-        case 14:
-        case 16:
-        case 17:
-        case 18:
-        case 19:
-        case 20:
-        case 21:
-        case 25:
-        case 26:
-        case 27:
-        case 28:
-        case 29:
-            sub_0202C5A4(&journalEntry->unk_1C[i][0], &param1[i]);
+        case ONLINE_EVENT_DREW_PICTURES:
+        case ONLINE_EVENT_CHATTED_WITH_OTHERS:
+        case ONLINE_EVENT_MIXED_RECORDS:
+        case ONLINE_EVENT_MADE_POFFINS:
+        case ONLINE_EVENT_BATTLE_ROOM:
+        case ONLINE_EVENT_SPIN_TRADE:
+        case ONLINE_EVENT_WATCHED_BATTLE_VIDEOS:
+        case ONLINE_EVENT_CHECKED_RANKINGS:
+        case ONLINE_EVENT_CHECKED_DRESS_UP_DATA:
+        case ONLINE_EVENT_CHECKED_BOX_DATA:
+        case ONLINE_EVENT_PLAYED_WITH_FOOTPRINT_STAMP:
+        case ONLINE_EVENT_VIEWED_PLAZA_VISITOR_PROFILES:
+        case ONLINE_EVENT_READ_PLAZA_NEWS:
+        case ONLINE_EVENT_JOINED_PARADE:
+        case ONLINE_EVENT_WIFI_CLUB:
+            JournalEntry_GetOnlineEventMisc(&journalEntry->onlineEvents[i][0], &journalEntryOnlineEvent[i]);
             break;
-        case 13:
-        case 24:
-            sub_0202C5AC(&journalEntry->unk_1C[i][0], &param1[i]);
+        case ONLINE_EVENT_PLACED_IN_CONTEST:
+        case ONLINE_EVENT_PLAZA_MINIGAME:
+            JournalEntry_GetOnlineEventMinigame(&journalEntry->onlineEvents[i][0], &journalEntryOnlineEvent[i]);
             break;
         }
     }
 }
 
-static void sub_0202C474(u32 param0, UnkStruct_0202BCC8 *param1)
+static void JournalEntry_GetLocationEventMisc(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    param1->unk_00 = (param0 & 0x3f);
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_TYPE(locationEvent);
 }
 
-static void sub_0202C47C(u32 param0, UnkStruct_0202BCC8 *param1)
+static void JournalEntry_GetLocationEventTrainer(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    param1->unk_00 = (param0 & 0x3f);
-    param1->unk_04 = (param0 >> 6) & 0x3ff;
-    param1->unk_02 = (param0 >> 16) & 0xffff;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_TYPE(locationEvent);
+    journalEntryLocationEvent->trainerID = LOCATION_EVENT_TRAINER_ID(locationEvent);
+    journalEntryLocationEvent->locationID = LOCATION_EVENT_LOCATION_ID(locationEvent);
 }
 
-static void sub_0202C494(u32 param0, UnkStruct_0202BCC8 *param1)
+static void JournalEntry_GetLocationEventTravel(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    param1->unk_00 = (param0 & 0x3f);
-    param1->unk_02 = (param0 >> 16) & 0xffff;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_TYPE(locationEvent);
+    journalEntryLocationEvent->locationID = LOCATION_EVENT_LOCATION_ID(locationEvent);
 }
 
-static void sub_0202C4A0(u32 param0, UnkStruct_0202BCC8 *param1)
+static void JournalEntry_GetLocationEventItem(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    param1->unk_00 = (param0 & 0x3f);
-    param1->unk_06 = (param0 >> 16) & 0xffff;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_TYPE(locationEvent);
+    journalEntryLocationEvent->item = LOCATION_EVENT_ITEM(locationEvent);
 }
 
-static void sub_0202C4AC(u32 param0, UnkStruct_0202BCC8 *param1)
+static void JournalEntry_GetLocationEventMove(u32 locationEvent, JournalEntryLocationEvent *journalEntryLocationEvent)
 {
-    param1->unk_00 = (param0 & 0x3f);
-    param1->unk_02 = (param0 >> 16) & 0xffff;
+    journalEntryLocationEvent->eventType = LOCATION_EVENT_TYPE(locationEvent);
+    journalEntryLocationEvent->locationID = LOCATION_EVENT_LOCATION_ID(locationEvent);
 }
 
-static void sub_0202C4B8(u8 *param0, UnkStruct_0202BFCC *param1)
+static void JournalEntry_GetOnlineEventBattle(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
-    param1->unk_00 = param0[0];
-    param1->unk_01_0 = (param0[1] >> 2) & 0x1f;
-    param1->unk_01_4 = (param0[1] >> 1) & 1;
-    param1->unk_01_5 = param0[1] & 1;
+    journalEntryOnlineEvent->eventType = onlineEvent[0];
+    journalEntryOnlineEvent->result = (onlineEvent[1] >> 2) & 0x1f;
+    journalEntryOnlineEvent->unused1 = (onlineEvent[1] >> 1) & 1;
+    journalEntryOnlineEvent->unused2 = onlineEvent[1] & 1;
 
-    sub_0202BF94((u16 *)&param0[2], param1->unk_02, 8);
-    sub_0202BF94((u16 *)&param0[18], param1->unk_12, 8);
+    JournalEntry_StringCopy((u16 *)&onlineEvent[2], journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    JournalEntry_StringCopy((u16 *)&onlineEvent[18], journalEntryOnlineEvent->playerName2, TRAINER_NAME_LEN + 1);
 }
 
-static void sub_0202C528(u8 *param0, UnkStruct_0202BFCC *param1)
+static void JournalEntry_GetOnlineEventInteraction(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
-    param1->unk_00 = param0[0];
-    param1->unk_01_4 = param0[1];
+    journalEntryOnlineEvent->eventType = onlineEvent[0];
+    journalEntryOnlineEvent->unused1 = onlineEvent[1];
 
-    sub_0202BF94((u16 *)&param0[2], param1->unk_02, 8);
+    JournalEntry_StringCopy((u16 *)&onlineEvent[2], journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
 }
 
-static void sub_0202C54C(u8 *param0, UnkStruct_0202BFCC *param1)
+static void JournalEntry_GetOnlineEventTrade(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
-    param1->unk_00 = param0[0];
-    param1->unk_01_4 = (param0[1] >> 2) & 1;
-    param1->unk_01_6 = param0[1] & 3;
+    journalEntryOnlineEvent->eventType = onlineEvent[0];
+    journalEntryOnlineEvent->unused1 = (onlineEvent[1] >> 2) & 1;
+    journalEntryOnlineEvent->unused3 = onlineEvent[1] & 3;
 
-    sub_0202BF94((u16 *)&param0[2], param1->unk_02, 8);
-    sub_0202BF94((u16 *)&param0[18], param1->unk_22, 12);
+    JournalEntry_StringCopy((u16 *)&onlineEvent[2], journalEntryOnlineEvent->playerName1, TRAINER_NAME_LEN + 1);
+    JournalEntry_StringCopy((u16 *)&onlineEvent[18], journalEntryOnlineEvent->pokemonName, 12);
 }
 
-static void sub_0202C5A4(u8 *param0, UnkStruct_0202BFCC *param1)
+static void JournalEntry_GetOnlineEventMisc(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
-    param1->unk_00 = param0[0];
+    journalEntryOnlineEvent->eventType = onlineEvent[0];
 }
 
-static void sub_0202C5AC(u8 *param0, UnkStruct_0202BFCC *param1)
+static void JournalEntry_GetOnlineEventMinigame(u8 *onlineEvent, JournalEntryOnlineEvent *journalEntryOnlineEvent)
 {
-    param1->unk_00 = param0[0];
-    param1->unk_01_0 = param0[1];
+    journalEntryOnlineEvent->eventType = onlineEvent[0];
+    journalEntryOnlineEvent->result = onlineEvent[1];
 }
 
-void sub_0202C5C4(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 currMapID, u32 prevMapID, u32 heapID)
+void JournalEntry_CreateAndSaveEventMapTransition(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 currMapID, u32 prevMapID, u32 heapID)
 {
     void *data = NULL;
     u32 i;
 
     if (MapHeader_IsCave(prevMapID) == TRUE) {
         if (MapHeader_IsOutdoors(currMapID) == TRUE) {
-            data = sub_0202BDAC((u16)MapHeader_GetMapLabelTextID(prevMapID), heapID);
+            data = JournalEntry_CreateEventLeftCave((u16)MapHeader_GetMapLabelTextID(prevMapID), heapID);
         }
     } else if (MapHeader_IsBuilding(prevMapID) == TRUE) {
         if (MapHeader_IsOutdoors(currMapID) == TRUE) {
             if (prevMapID == MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F) {
-                data = sub_0202BCE4(heapID);
+                data = JournalEntry_CreateEventRestedAtHome(heapID);
             } else if (prevMapID == MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB) {
-                data = sub_0202BCF0(heapID);
+                data = JournalEntry_CreateEventLeftResearchLab(heapID);
             } else {
                 u32 mapLabelTextID = MapHeader_GetMapLabelTextID(prevMapID);
 
@@ -1276,31 +1299,31 @@ void sub_0202C5C4(TrainerInfo *trainerInfo, JournalEntry *journalEntry, u32 curr
                         continue;
                     }
 
-                    data = sub_0202BDC0((u16)mapLabelTextID, heapID);
+                    data = JournalEntry_CreateEventLeftBuilding((u16)mapLabelTextID, heapID);
                 }
             }
         }
     } else if (MapHeader_IsOutdoors(prevMapID) == TRUE) {
         if (MapHeader_IsBuilding(currMapID) == TRUE) {
-            u8 defeatedGym = JournalEntry_GetDefeatedGym(trainerInfo, currMapID);
+            u8 gymTooTough = JournalEntry_GetGymTooTough(trainerInfo, currMapID);
 
-            if (defeatedGym != 0xff) {
-                data = sub_0202BD44(defeatedGym, heapID);
+            if (gymTooTough != GYM_NONE) {
+                data = JournalEntry_CreateEventGymTooTough(gymTooTough, heapID);
             }
         }
     }
 
     if (data != NULL) {
-        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_LOCATION);
     }
 }
 
-u32 sub_0202C6A4(u32 param0)
+u32 sub_0202C6A4(u32 mapLabelTextID)
 {
     u32 i;
 
     for (i = 0; i < NELEMS(sMapsInfo); i++) {
-        if (param0 != sMapsInfo[i].mapLabelTextID) {
+        if (mapLabelTextID != sMapsInfo[i].mapLabelTextID) {
             continue;
         }
 
@@ -1310,13 +1333,13 @@ u32 sub_0202C6A4(u32 param0)
     return 0;
 }
 
-static u8 JournalEntry_GetDefeatedGym(TrainerInfo *trainerInfo, u32 mapID)
+static u8 JournalEntry_GetGymTooTough(TrainerInfo *trainerInfo, u32 mapID)
 {
     u8 i;
 
     for (i = 0; i < NELEMS(sGymsInfo); i++) {
         if (sGymsInfo[i].mapID == mapID) {
-            if (TrainerInfo_HasBadge(trainerInfo, sGymsInfo[i].badge) == 0) {
+            if (TrainerInfo_HasBadge(trainerInfo, sGymsInfo[i].badge) == FALSE) {
                 return i;
             }
 
@@ -1324,31 +1347,31 @@ static u8 JournalEntry_GetDefeatedGym(TrainerInfo *trainerInfo, u32 mapID)
         }
     }
 
-    return 0xff;
+    return GYM_NONE;
 }
 
-void sub_0202C704(JournalEntry *journalEntry, u32 mapID, u32 heapID)
+void JournalEntry_CreateAndSaveEventArrivedInLocation(JournalEntry *journalEntry, u32 mapID, u32 heapID)
 {
-    void *data = sub_0202BD98((u16)mapID, heapID);
-    JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
+    void *data = JournalEntry_CreateEventArrivedInLocation((u16)mapID, heapID);
+    JournalEntry_SaveData(journalEntry, data, JOURNAL_LOCATION);
 }
 
-void sub_0202C720(JournalEntry *journalEntry, u16 mapID, u16 trainerID, u32 heapID)
+void JournalEntry_CreateAndSaveEventTrainer(JournalEntry *journalEntry, u16 mapID, u16 trainerID, u32 heapID)
 {
     void *data;
     u8 trainerType = JournalEntry_TrainerType(trainerID);
 
-    if (trainerType < 8) {
-        data = sub_0202BD58(trainerType, trainerID, heapID);
-        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
-    } else if (trainerType == 8) {
-        data = sub_0202BD70(trainerID, heapID);
-        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
-    } else if (trainerType == 9) {
-        data = sub_0202BD84(trainerID, heapID);
-        JournalEntry_SaveData(journalEntry, data, JOURNAL_UNK_04);
+    if (trainerType < TRAINER_TYPE_ELITE_FOUR) {
+        data = JournalEntry_CreateEventGymLeader(trainerType, trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_LOCATION);
+    } else if (trainerType == TRAINER_TYPE_ELITE_FOUR) {
+        data = JournalEntry_CreateEventEliteFour(trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_LOCATION);
+    } else if (trainerType == TRAINER_TYPE_CHAMPION) {
+        data = JournalEntry_CreateEventChampion(trainerID, heapID);
+        JournalEntry_SaveData(journalEntry, data, JOURNAL_LOCATION);
     } else {
-        data = JournalEntry_InitTrainer(mapID, trainerID, heapID);
+        data = JournalEntry_CreateEventStandardTrainer(mapID, trainerID, heapID);
         JournalEntry_SaveData(journalEntry, data, JOURNAL_TRAINER);
     }
 }
@@ -1363,14 +1386,16 @@ static u8 JournalEntry_TrainerType(u32 trainerID)
         }
     }
 
-    if (trainerID == 261 || trainerID == 866 || trainerID == 262 || trainerID == 867
-        || trainerID == 263 || trainerID == 868 || trainerID == 264 || trainerID == 869) {
-        return 8;
+    if (trainerID == trainer_elite_four_aaron || trainerID == trainer_elite_four_aaron_rematch
+        || trainerID == trainer_elite_four_bertha || trainerID == trainer_elite_four_bertha_rematch
+        || trainerID == trainer_elite_four_flint || trainerID == trainer_elite_four_flint_rematch
+        || trainerID == trainer_elite_four_lucian || trainerID == trainer_elite_four_lucian_rematch) {
+        return TRAINER_TYPE_ELITE_FOUR;
     }
 
-    if (trainerID == 267 || trainerID == 870) {
-        return 9;
+    if (trainerID == trainer_champion_cynthia || trainerID == trainer_champion_cynthia_rematch) {
+        return TRAINER_TYPE_CHAMPION;
     }
 
-    return 10;
+    return TRAINER_TYPE_STANDARD;
 }

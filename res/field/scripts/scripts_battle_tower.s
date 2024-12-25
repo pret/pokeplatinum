@@ -445,7 +445,7 @@ _0734:
 
 _0746:
     IncrementGameRecord RECORD_UNK_058
-    ScrCmd_1CD 36, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_TOWER, 0, 0, 0, 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
@@ -1096,26 +1096,26 @@ _1205:
 
     .balign 4, 0
 _1248:
-    MoveAction_03E
-    MoveAction_00C 2
+    MoveAction_062
+    MoveAction_012 2
     EndMovement
 
     .balign 4, 0
 _1254:
-    MoveAction_00C
-    MoveAction_045
+    MoveAction_012
+    MoveAction_069
     EndMovement
 
     .balign 4, 0
 _1260:
-    MoveAction_03E
-    MoveAction_00C 2
+    MoveAction_062
+    MoveAction_012 2
     EndMovement
 
     .balign 4, 0
 _126C:
-    MoveAction_00C 2
-    MoveAction_045
+    MoveAction_012 2
+    MoveAction_069
     EndMovement
 
     .balign 4, 0

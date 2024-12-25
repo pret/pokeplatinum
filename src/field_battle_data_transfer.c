@@ -85,7 +85,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
 
     dto->background = BACKGROUND_PLAIN;
     dto->terrain = TERRAIN_MAX;
-    dto->mapLabelTextID = pl_msg_00000433_00000;
+    dto->mapLabelTextID = location_names_00000;
     dto->timeOfDay = TOD_MORNING;
     dto->mapEvolutionMethod = 0;
     dto->visitedContestHall = TRUE;
