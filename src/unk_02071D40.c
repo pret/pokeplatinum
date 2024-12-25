@@ -19,11 +19,11 @@
 #include "game_records.h"
 #include "heap.h"
 #include "play_time.h"
+#include "pokedex_data.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_0202C7FC.h"
 #include "unk_0203061C.h"
@@ -63,7 +63,7 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
         sub_02072014(param0, GAME_VERSION, v3, param2, TrainerInfo_RegionCode(v0), param5);
     }
 
-    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), Pokedex_CountSeen(SaveData_Pokedex(fieldSystem->saveData)), Pokedex_IsObtained(SaveData_Pokedex(fieldSystem->saveData)), GameRecords_GetTrainerScore(v1), param5);
+    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), PokedexData_CountSeen(SaveData_PokedexData(fieldSystem->saveData)), PokedexData_IsObtained(SaveData_PokedexData(fieldSystem->saveData)), GameRecords_GetTrainerScore(v1), param5);
 
     {
         RTCDate v4;
@@ -140,7 +140,7 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
         v0++;
     }
 
-    if (sub_02026EF4(SaveData_Pokedex(v1))) {
+    if (PokedexData_NationalDexCompleted(SaveData_PokedexData(v1))) {
         v0++;
     }
 

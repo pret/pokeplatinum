@@ -37,6 +37,7 @@
 #include "journal.h"
 #include "math.h"
 #include "party.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "ribbon.h"
 #include "rtc.h"
@@ -49,7 +50,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
-#include "unk_0202631C.h"
 #include "unk_020298BC.h"
 #include "unk_0202CC64.h"
 #include "unk_0202F108.h"
@@ -1643,10 +1643,10 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
             int v6;
             PokedexData *v7;
 
-            v7 = SaveData_Pokedex(param0->unk_1970);
+            v7 = SaveData_PokedexData(param0->unk_1970);
 
             for (v6 = param0->unk_00.unk_117; v6 < 4; v6++) {
-                sub_020272A4(v7, param0->unk_00.unk_00[v6]);
+                PokedexData_CaptureEntry(v7, param0->unk_00.unk_00[v6]);
             }
         }
     } else {

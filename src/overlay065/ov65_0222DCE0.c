@@ -78,7 +78,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
-#include "unk_0202631C.h"
+#include "pokedex_data.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
 #include "unk_0203061C.h"
@@ -1793,7 +1793,7 @@ static int ov65_0222F490 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_160);
-    PokedexData * v1 = SaveData_Pokedex(param0->unk_160);
+    PokedexData * v1 = SaveData_PokedexData(param0->unk_160);
     Party * v2 = Party_GetFromSavedata(param0->unk_160);
     UnkStruct_0202C878 * v3 = sub_0202C878(param0->unk_160);
     int v4, v5;
@@ -1811,7 +1811,7 @@ static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     param0->unk_04->unk_00.unk_18 = TrainerInfo_GameCode(v0);
     param0->unk_04->unk_00.unk_19 = TrainerInfo_RegionCode(v0);
-    param0->unk_04->unk_00.unk_1A = Pokedex_IsNationalDexObtained(v1);
+    param0->unk_04->unk_00.unk_1A = PokedexData_IsNationalDexObtained(v1);
     param0->unk_04->unk_00.unk_1B = 29;
 
     ov65_02232E70(param0, param1);

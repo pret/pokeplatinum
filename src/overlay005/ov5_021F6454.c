@@ -34,6 +34,7 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "savedata_misc.h"
@@ -47,7 +48,6 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02020AEC.h"
-#include "unk_0202631C.h"
 #include "unk_0202C858.h"
 #include "unk_02030880.h"
 #include "unk_02038F8C.h"
@@ -676,7 +676,7 @@ BOOL ScrCmd_304(ScriptContext *param0)
     v4 = Party_GetPokemonBySlotIndex(v5, v7);
 
     Pokemon_SetRotomForm(v4, v10, v8);
-    sub_0202736C(SaveData_Pokedex(fieldSystem->saveData), v4);
+    PokedexData_TradeEntry(SaveData_PokedexData(fieldSystem->saveData), v4);
 
     return 0;
 }

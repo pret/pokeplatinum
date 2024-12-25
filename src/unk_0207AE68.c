@@ -35,6 +35,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "party.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "poketch_data.h"
 #include "render_text.h"
@@ -53,7 +54,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_020393C8.h"
 #include "unk_0207C63C.h"
@@ -409,7 +409,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     case 12:
         if (Text_IsPrinterActive(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
-                sub_0202736C(param0->unk_48, param0->unk_28);
+                PokedexData_TradeEntry(param0->unk_48, param0->unk_28);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(param0->unk_28));
@@ -739,7 +739,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
 
                 Pokemon_CalcLevelAndStats(v1);
                 Party_AddPokemon(param0->unk_24, v1);
-                sub_0202736C(param0->unk_48, v1);
+                PokedexData_TradeEntry(param0->unk_48, v1);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(v1));
