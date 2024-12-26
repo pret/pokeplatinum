@@ -11,3 +11,7 @@ For more detailed information about the project as a whole, please refer to its
 
 - [2D Graphics](2d_rendering.md)
 - [3D Graphics](3d_rendering.md)
+
+## Mods
+
+- [Fast Guage](mods/fast_guage.md)
