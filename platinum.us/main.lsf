@@ -339,7 +339,7 @@ Static main
 	Object main.nef.p/src_unk_02097B18.c.o
 	Object main.nef.p/src_unk_02098218.c.o
 	Object main.nef.p/src_unk_020985E4.c.o
-	Object main.nef.p/src_unk_020986CC.c.o
+	Object main.nef.p/src_pokedex_language.c.o
 	Object main.nef.p/src_pokedex_heightweight.c.o
 	Object main.nef.p/src_pokedex_data_index.c.o
 	Object main.nef.p/src_unk_020F6824.c.o
@@ -792,7 +792,7 @@ Overlay overlay21
 	Object main.nef.p/src_overlay021_ov21_021D4C0C.c.o
 	Object main.nef.p/src_overlay021_ov21_021D4EE4.c.o
 	Object main.nef.p/src_overlay021_pokedex_field_map.c.o
-	Object main.nef.p/src_overlay021_ov21_021D5600.c.o
+	Object main.nef.p/src_overlay021_pokedex_text.c.o
 	Object main.nef.p/src_overlay021_pokedex_enc_data.c.o
 	Object main.nef.p/src_overlay021_ov21_021D5AEC.c.o
 	Object main.nef.p/src_overlay021_ov21_021D76B0.c.o

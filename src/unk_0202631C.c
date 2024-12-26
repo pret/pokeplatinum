@@ -7,9 +7,9 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "pokedex_language.h"
 #include "pokemon.h"
 #include "savedata.h"
-#include "unk_020986CC.h"
 
 // These u32[16] arrays store pokedex seen/caught info as bit flags
 // Therefore 32 * 16 = 512 pokedex slots. These need to be bumped up if it's pushed past this number
@@ -622,7 +622,7 @@ static void sub_02026B88(PokedexData *param0, u16 param1, u32 param2)
     int v1;
 
     v0 = param1;
-    v1 = sub_020986CC(param2);
+    v1 = PokedexLanguage_LanguageToIndex(param2);
 
     if (v1 == 6) {
         return;
@@ -1162,7 +1162,7 @@ BOOL sub_020274D0(const PokedexData *param0, u16 species, u32 param2)
     CheckPokedexIntegrity(param0);
 
     speciesInt = species;
-    param2 = sub_020986CC(param2);
+    param2 = PokedexLanguage_LanguageToIndex(param2);
 
     return param0->recordedLanguages[speciesInt] & (1 << param2);
 }
