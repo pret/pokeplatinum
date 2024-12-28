@@ -131,7 +131,35 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "When launching 3,600 degrees F\nfireballs, its body takes on a\nwhitish hue from the intense heat.",
-        "category": "Blast Pokémon"
+        "english": {
+            "category": "Blast Pokémon",
+            "entry_text": "When launching 3,600 degrees F\nfireballs, its body takes on a\nwhitish hue from the intense heat.",
+            "entry_text_diamond": "It blasts fireballs of over 3,600\ndegrees F from the ends of its\narms. It lives in volcanic craters."
+        },
+        "french": {
+            "name": "MAGANON",
+            "category": "Pokémon Explosion",
+            "entry_text": "Il projette des boules de feu de\n2 000 °C à bout de bras. Il\nvit dans les cratères volcaniques."
+        },
+        "german": {
+            "name": "MAGBRANT",
+            "category": "Detonation",
+            "entry_text": "Aus den Enden seiner Arme schießen\nFeuerbälle mit 2 000 Grad.\nEs lebt in Vulkankratern."
+        },
+        "italian": {
+            "name": "Magmortar",
+            "category": "Pokémon Esplosivo",
+            "entry_text": "Spara palle di fuoco di oltre\n2000°C dagli arti superiori.\nVive nei crateri dei vulcani."
+        },
+        "spanish": {
+            "name": "Magmortar",
+            "category": "Pokémon Explosión",
+            "entry_text": "Sus brazos disparan bolas de\nfuego de más de 2000 grados.\nVive en cráteres volcánicos."
+        },
+        "japanese": {
+            "name": "ブ－バ－ン",
+            "category": "ばくえんポケモン",
+            "entry_text": "うでの　さきから　せっし２０００どの\nひのたまを　はっしゃする。\nかざんの　かこうを　すみかにする。"
+        }
     }
 }

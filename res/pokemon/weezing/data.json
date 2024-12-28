@@ -124,7 +124,35 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "It grows by feeding on gases\nreleased by garbage. Though very\nrare, triplets have been found.",
-        "category": "Poison Gas Pokémon"
+        "english": {
+            "category": "Poison Gas Pokémon",
+            "entry_text": "It grows by feeding on gases\nreleased by garbage. Though very\nrare, triplets have been found.",
+            "entry_text_diamond": "It grows by feeding on gases\nreleased by garbage. Though very\nrare, triplets have been found."
+        },
+        "french": {
+            "name": "SMOGOGO",
+            "category": "Pokémon Gaz Mortel",
+            "entry_text": "Il grandit en absorbant les gaz des\ndétritus. Des triplés existent, bien\nqu’ils soient fort rares."
+        },
+        "german": {
+            "name": "SMOGMOG",
+            "category": "Giftwolke",
+            "entry_text": "Es wächst, indem es Gase aufnimmt,\ndie aus dem Müll aufsteigen. Selten\nkann man Drillinge von ihnen finden."
+        },
+        "italian": {
+            "name": "Weezing",
+            "category": "Pokémon Velenuvola",
+            "entry_text": "Cresce nutrendosi dei gas emanati\ndai rifiuti. Anche se rarissimi, ne\nhanno trovati in gruppi di tre."
+        },
+        "spanish": {
+            "name": "Weezing",
+            "category": "Pokémon Gas Veneno",
+            "entry_text": "Crece alimentándose de los gases\nemanados por la basura. Se han\ndado raros casos de trillizos."
+        },
+        "japanese": {
+            "name": "マタドガス",
+            "category": "どくガスポケモン",
+            "entry_text": "ゴミから　はっせいする　ガスを\nたべて　おおきくなる。ごくまれに\n３つごの　マタドガスが　みつかる。"
+        }
     }
 }

@@ -134,7 +134,35 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "When they lined up side by side, no\nfoe could break through. They\nshielded their young in that way.",
-        "category": "Shield Pokémon"
+        "english": {
+            "category": "Shield Pokémon",
+            "entry_text": "When they lined up side by side, no\nfoe could break through. They\nshielded their young in that way.",
+            "entry_text_diamond": "Any frontal attack is repulsed.\nIt is a docile Pokémon that\nfeeds on grass and berries."
+        },
+        "french": {
+            "name": "BASTIODON",
+            "category": "Pokémon Bouclier",
+            "entry_text": "Il résiste à toute attaque\nfrontale. C’est un Pokémon docile\nqui se nourrit d’herbe et de Baies."
+        },
+        "german": {
+            "name": "BOLLTERUS",
+            "category": "Schutzschild",
+            "entry_text": "Jeder Frontalangriff wird abge-\nschmettert. Dieses friedliche PKMN\nernährt sich von Gras und Beeren."
+        },
+        "italian": {
+            "name": "Bastiodon",
+            "category": "Pokémon Schermo",
+            "entry_text": "Respinge qualsiasi attacco\nfrontale. È un Pokémon docile\nche si nutre di erba e di bacche."
+        },
+        "spanish": {
+            "name": "Bastiodon",
+            "category": "Pokémon Escudo",
+            "entry_text": "Repele cualquier ataque frontal.\nEs muy dócil y se alimenta de\nhierba y bayas."
+        },
+        "japanese": {
+            "name": "トリデプス",
+            "category": "シ－ルドポケモン",
+            "entry_text": "しょうめんからの　こうげきは\nすべて　はねかえす。くさや　きのみを\nたべる　おとなしい　せいかく。"
+        }
     }
 }

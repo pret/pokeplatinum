@@ -126,7 +126,35 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "A Pokémon ancestor that was\nreanimated from a fossil. It lived\nin the sea and hunted with claws.",
-        "category": "Old Shrimp Pokémon"
+        "english": {
+            "category": "Old Shrimp Pokémon",
+            "entry_text": "A Pokémon ancestor that was\nreanimated from a fossil. It lived\nin the sea and hunted with claws.",
+            "entry_text_diamond": "A Pokémon ancestor that was\nreanimated from a fossil. It lived\nin the sea and hunted with claws."
+        },
+        "french": {
+            "name": "ANORITH",
+            "category": "Pokémon Crustage",
+            "entry_text": "Un ancêtre Pokémon réanimé \nà partir d’un fossile. Il vivait en\nmer et chassait avec ses pinces."
+        },
+        "german": {
+            "name": "ANORITH",
+            "category": "Krebssenior",
+            "entry_text": "Ein Vorfahre der PKMN, der aus\neinem Fossil neu belebt wurde. Es\nlebte im Meer und jagte mit Klauen."
+        },
+        "italian": {
+            "name": "Anorith",
+            "category": "Pokémon Primaceo",
+            "entry_text": "Un antico Pokémon rigenerato\nda un fossile. Viveva nel mare e\ncatturava le prede con gli artigli."
+        },
+        "spanish": {
+            "name": "Anorith",
+            "category": "Pokémon Camarón",
+            "entry_text": "Este Pokémon fue recreado a partir\nde restos fósiles. Vivía en el mar y\ncazaba con sus pinzas."
+        },
+        "japanese": {
+            "name": "アノプス",
+            "category": "むかしエビポケモン",
+            "entry_text": "かせきから　ふっかつした　ポケモンの\nせんぞの　いっしゅ。うみで　くらし\nツメで　えものを　つかまえる。"
+        }
     }
 }

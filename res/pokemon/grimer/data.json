@@ -133,7 +133,35 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It was born when sludge in a dirty\nstream was exposed to the moon’s\nX-rays. It appears among filth.",
-        "category": "Sludge Pokémon"
+        "english": {
+            "category": "Sludge Pokémon",
+            "entry_text": "It was born when sludge in a dirty\nstream was exposed to the moon’s\nX-rays. It appears among filth.",
+            "entry_text_diamond": "It was born when sludge in a dirty\nstream was exposed to the moon’s\nX-rays. It appears among filth."
+        },
+        "french": {
+            "name": "TADMORV",
+            "category": "Pokémon Dégueu",
+            "entry_text": "Il est né d’un torrent de boue\nexposé aux rayons X de la lune.\nIl vit dans les ordures."
+        },
+        "german": {
+            "name": "SLEIMA",
+            "category": "Schlamm",
+            "entry_text": "Es wurde geboren, als Schlamm von\nden Strahlen des Mondes getroffen\nwurde. Es erscheint, wo Unrat ist. "
+        },
+        "italian": {
+            "name": "Grimer",
+            "category": "Pokémon Melma",
+            "entry_text": "Nacque quando il fango di un fiume\nsudicio fu esposto ai raggi X della\nluna. Vive nella sporcizia."
+        },
+        "spanish": {
+            "name": "Grimer",
+            "category": "Pokémon Lodo",
+            "entry_text": "Emergió del lodo que se formó en\nagua contaminada expuesta a los\nrayos X lunares. Vive en la basura."
+        },
+        "japanese": {
+            "name": "ベトベタ－",
+            "category": "ヘドロポケモン",
+            "entry_text": "どぶがわの　ヘドロが　つきからの\nエックスせんを　あびて　うまれた。\nきたない　ばしょに　あらわれる。"
+        }
     }
 }

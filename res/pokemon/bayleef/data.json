@@ -129,7 +129,35 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "The buds that ring its neck give\noff a spicy aroma that perks\npeople up.",
-        "category": "Leaf Pokémon"
+        "english": {
+            "category": "Leaf Pokémon",
+            "entry_text": "The buds that ring its neck give\noff a spicy aroma that perks\npeople up.",
+            "entry_text_diamond": "The buds that ring its neck give\noff a spicy aroma that perks\npeople up."
+        },
+        "french": {
+            "name": "MACRONIUM",
+            "category": "Pokémon Feuille",
+            "entry_text": "Le collier de bourgeons à son cou\nrépand un arôme épicé qui vous\ndonne du tonus."
+        },
+        "german": {
+            "name": "LORBLATT",
+            "category": "Laub",
+            "entry_text": "Die Knospen an seinem Hals\ngeben ein würziges Aroma ab,\ndas andere aufheitert."
+        },
+        "italian": {
+            "name": "Bayleef",
+            "category": "Pokémon Foglia",
+            "entry_text": "Le foglie attorno al suo collo\nemanano un aroma speziato\ndall’effetto energizzante."
+        },
+        "spanish": {
+            "name": "Bayleef",
+            "category": "Pokémon Hoja",
+            "entry_text": "Su cuello desprende un dulce\naroma que anima a quien lo\nhuele."
+        },
+        "japanese": {
+            "name": "ベイリ－フ",
+            "category": "はっぱポケモン",
+            "entry_text": "くびまわりの　つぼみから　におう\nスパイシ－な　かおりは\nかいだ　ひとを　げんきに　させる。"
+        }
     }
 }

@@ -158,7 +158,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It is said that happiness will come\nto those who see a gathering of\nCLEFAIRY dancing under a full moon.",
-        "category": "Fairy Pokémon"
+        "english": {
+            "category": "Fairy Pokémon",
+            "entry_text": "It is said that happiness will come\nto those who see a gathering of\nCLEFAIRY dancing under a full moon.",
+            "entry_text_diamond": "Thought to live with others on\nquiet mountains, it is popular\nfor its adorable nature."
+        },
+        "french": {
+            "name": "MELOFEE",
+            "category": "Pokémon Fée",
+            "entry_text": "Tout le monde craque pour cet\nadorable Pokémon. Il vit en groupe\ndans le calme des montagnes."
+        },
+        "german": {
+            "name": "PIEPI",
+            "category": "Fee",
+            "entry_text": "Es ist bekannt für sein liebens-\nwertes Wesen. Man sagt, es lebt\nin der Stille der Berge."
+        },
+        "italian": {
+            "name": "Clefairy",
+            "category": "Pokémon Fata",
+            "entry_text": "È molto amato per la sua indole\ndocile. Si pensa che viva in gruppo\nnella quiete delle montagne."
+        },
+        "spanish": {
+            "name": "Clefairy",
+            "category": "Pokémon Hada",
+            "entry_text": "El preferido de mucha gente por su\nnaturaleza afable. Se cree que vive\nen grupo en montañas tranquilas."
+        },
+        "japanese": {
+            "name": "ピッピ",
+            "category": "ようせいポケモン",
+            "entry_text": "あいくるしい　しぐさで　だいにんき。\nしずかな　やまおくで　なかまたちと\nくらしていると　かんがえられている。"
+        }
     }
 }

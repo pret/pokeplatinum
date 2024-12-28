@@ -117,7 +117,35 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It stores berries in its shell.\nThe berries eventually ferment to\nbecome delicious juices.",
-        "category": "Mold Pokémon"
+        "english": {
+            "category": "Mold Pokémon",
+            "entry_text": "It stores berries in its shell.\nThe berries eventually ferment to\nbecome delicious juices.",
+            "entry_text_diamond": "It stores berries in its shell.\nThe berries eventually ferment to\nbecome delicious juices."
+        },
+        "french": {
+            "name": "CARATROC",
+            "category": "Pokémon Pourri",
+            "entry_text": "Il stocke des Baies sous sa\ncarapace. Elles fermentent et\nproduisent des jus délicieux."
+        },
+        "german": {
+            "name": "POTTROTT",
+            "category": "Schimmel",
+            "entry_text": "In seiner Schale bewahrt es Beeren\nauf. Diese fermentieren zu einem\nleckeren Saft."
+        },
+        "italian": {
+            "name": "Shuckle",
+            "category": "Pokémon Muffa",
+            "entry_text": "Conserva nel guscio delle bacche\nche, quando fermentano, si\ntrasformano in un succo delizioso."
+        },
+        "spanish": {
+            "name": "Shuckle",
+            "category": "Pokémon Moho",
+            "entry_text": "Almacena bayas en su caparazón,\nque más tarde fermentan para\nproducir deliciosos zumos."
+        },
+        "japanese": {
+            "name": "ツボツボ",
+            "category": "はっこうポケモン",
+            "entry_text": "こうらの　なかに　きのみを　ためる。\nそのうち　きのみは　はっこうして\nおいしい　ジュ－スに　なるのだ。"
+        }
     }
 }

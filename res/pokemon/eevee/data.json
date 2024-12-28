@@ -139,7 +139,35 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "Because its genetic makeup is\nirregular, it quickly changes its\nform due to a variety of causes.",
-        "category": "Evolution Pokémon"
+        "english": {
+            "category": "Evolution Pokémon",
+            "entry_text": "Because its genetic makeup is\nirregular, it quickly changes its\nform due to a variety of causes.",
+            "entry_text_diamond": "A rare Pokémon that adapts to\nharsh environments by taking on\ndifferent evolutionary forms."
+        },
+        "french": {
+            "name": "EVOLI",
+            "category": "Pokémon Evolutif",
+            "entry_text": "Un Pokémon rare qui s’adapte\naux environnements hostiles \nen variant ses formes évolutives."
+        },
+        "german": {
+            "name": "EVOLI",
+            "category": "Evolution",
+            "entry_text": "Ein seltenes PKMN, das sich seiner\nUmgebung anpasst, indem es sich in\nunterschiedlicher Form entwickelt."
+        },
+        "italian": {
+            "name": "Eevee",
+            "category": "Pokémon Evoluzione",
+            "entry_text": "Un Pokémon raro che si adatta\nagli ambienti più difficili assumendo\ndiverse forme nell’evoluzione."
+        },
+        "spanish": {
+            "name": "Eevee",
+            "category": "Pokémon Evolución",
+            "entry_text": "Un extraño Pokémon que se adapta\na los entornos más hostiles gracias\na sus diferentes evoluciones."
+        },
+        "japanese": {
+            "name": "イ－ブイ",
+            "category": "しんかポケモン",
+            "entry_text": "しんかのとき　すがたと　のうりょくが\nかわることで　きびしい　かんきょうに\nたいおうする　めずらしい　ポケモン。"
+        }
     }
 }

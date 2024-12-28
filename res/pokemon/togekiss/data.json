@@ -134,7 +134,35 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "It shares many blessings with\npeople who respect one another’s\nrights and avoid needless strife.",
-        "category": "Jubilee Pokémon"
+        "english": {
+            "category": "Jubilee Pokémon",
+            "entry_text": "It shares many blessings with\npeople who respect one another’s\nrights and avoid needless strife.",
+            "entry_text_diamond": "It will never appear where there\nis strife. Its sightings have\nbecome rare recently."
+        },
+        "french": {
+            "name": "TOGEKISS",
+            "category": "Pokémon Célébration",
+            "entry_text": "Il n’apparaît jamais en temps\nde conflit. Récemment, il se\nfait plus rare."
+        },
+        "german": {
+            "name": "TOGEKISS",
+            "category": "Jubilierer",
+            "entry_text": "Es zeigt sich niemals dort, wo\nes Streitigkeiten gibt. In letzter\nZeit wurde es nur selten gesehen."
+        },
+        "italian": {
+            "name": "Togekiss",
+            "category": "Pokémon Festa",
+            "entry_text": "Non si presenta mai dove c’è un\nconflitto. Di recente le sue\napparizioni sono diventate rare."
+        },
+        "spanish": {
+            "name": "Togekiss",
+            "category": "Pokémon Festejo",
+            "entry_text": "Nunca aparece donde hay peleas.\nÚltimamente no se deja ver muy\na menudo."
+        },
+        "japanese": {
+            "name": "トゲキッス",
+            "category": "しゅくふくポケモン",
+            "entry_text": "もめごとの　おこる　ばしょには\nけっして　あらわれない。ちかごろは\nすがたを　みかけなくなった。"
+        }
     }
 }

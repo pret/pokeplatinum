@@ -117,7 +117,35 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It makes a conical pit in desert\nsand and lies in wait at the bottom\nfor prey to come tumbling down.",
-        "category": "Ant Pit Pokémon"
+        "english": {
+            "category": "Ant Pit Pokémon",
+            "entry_text": "It makes a conical pit in desert\nsand and lies in wait at the bottom\nfor prey to come tumbling down.",
+            "entry_text_diamond": "It makes a conical pit in desert\nsand and lies in wait at the bottom\nfor prey to come tumbling down."
+        },
+        "french": {
+            "name": "KRAKNOIX",
+            "category": "Pokémon Piégeur",
+            "entry_text": "Il creuse un trou conique dans le\nsable du désert et se terre en\nattendant qu’une proie trébuche."
+        },
+        "german": {
+            "name": "KNACKLION",
+            "category": "Ameisenlöwe",
+            "entry_text": "Es baut im Wüstensand eine\nFallgrube, setzt sich in ihr auf den\nBoden und wartet auf Beute."
+        },
+        "italian": {
+            "name": "Trapinch",
+            "category": "Pokémon Trappola",
+            "entry_text": "Scava fosse coniche nella sabbia\ndel deserto e attende che le prede\ncadano in trappola."
+        },
+        "spanish": {
+            "name": "Trapinch",
+            "category": "Pokémon Hormigaleón",
+            "entry_text": "Cava fosas cóncavas en el desierto\ny espera en el fondo a que las\npresas caigan en ellas."
+        },
+        "japanese": {
+            "name": "ナックラ－",
+            "category": "ありじごくポケモン",
+            "entry_text": "さばくに　つくった　すりばちがたの\nあなの　そこで　えものが　はまって\nおちてくるのを　まちつづける。"
+        }
     }
 }

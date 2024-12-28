@@ -133,7 +133,35 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "By storing water in its body, this\ndesert dweller can survive for 30\ndays without water.",
-        "category": "Cactus Pokémon"
+        "english": {
+            "category": "Cactus Pokémon",
+            "entry_text": "By storing water in its body, this\ndesert dweller can survive for 30\ndays without water.",
+            "entry_text_diamond": "By storing water in its body, this\ndesert dweller can survive for 30\ndays without water."
+        },
+        "french": {
+            "name": "CACNEA",
+            "category": "Pokémon Cactus",
+            "entry_text": "En stockant l’eau dans son corps,\ncet habitant du désert peut \nsurvivre 30 jours sans boire."
+        },
+        "german": {
+            "name": "TUSKA",
+            "category": "Kaktus",
+            "entry_text": "Dieser Wüstenbewohner speichert\nWasser in seinem Körper. So kann er\n30 Tage ohne Wasser überleben."
+        },
+        "italian": {
+            "name": "Cacnea",
+            "category": "Pokémon Cactus",
+            "entry_text": "Immagazzina acqua nel corpo e\nriesce a sopravvivere nel deserto\nsenz’acqua anche per 30 giorni."
+        },
+        "spanish": {
+            "name": "Cacnea",
+            "category": "Pokémon Cactus",
+            "entry_text": "Habita en el desierto. Aguanta\ntreinta días sin agua gracias a la\nque almacena en su cuerpo."
+        },
+        "japanese": {
+            "name": "サボネア",
+            "category": "サボテンポケモン",
+            "entry_text": "さばくに　せいそく。たいないに\nすいぶんを　ためることで　みずを\nのまずに　３０にちかん　いきられる。"
+        }
     }
 }

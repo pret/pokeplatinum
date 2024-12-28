@@ -152,7 +152,35 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "It shapes an invisible wall in midair\nby minutely vibrating its fingertips\nto stop molecules in the air.",
-        "category": "Barrier Pokémon"
+        "english": {
+            "category": "Barrier Pokémon",
+            "entry_text": "It shapes an invisible wall in midair\nby minutely vibrating its fingertips\nto stop molecules in the air.",
+            "entry_text_diamond": "It is a pantomime expert that can\ncreate invisible but solid walls\nusing miming gestures."
+        },
+        "french": {
+            "name": "M. MIME",
+            "category": "Pokémon Bloqueur",
+            "entry_text": "Un expert de la pantomime dont\nles gestes façonnent de solides\nmurs invisibles."
+        },
+        "german": {
+            "name": "PANTIMOS",
+            "category": "Sperre",
+            "entry_text": "Ein Experte der Pantomime. Es kann\nunsichtbare, aber solide Wände\nallein durch Gesten erzeugen."
+        },
+        "italian": {
+            "name": "Mr. Mime",
+            "category": "Pokémon Barriera",
+            "entry_text": "È un esperto di mimica che, con\ni gesti, riesce ad innalzare pareti\ninvisibili che sembrano reali."
+        },
+        "spanish": {
+            "name": "Mr. Mime",
+            "category": "Pokémon Barrera",
+            "entry_text": "Es un experto mimo que puede\ncrear paredes invisibles pero\nsólidas solo con sus gestos."
+        },
+        "japanese": {
+            "name": "バリヤ－ド",
+            "category": "バリア－ポケモン",
+            "entry_text": "パントマイムの　たつじん。\nみぶりてぶりで　つくった　カベは\nやがて　ほんものに　なるのだ。"
+        }
     }
 }

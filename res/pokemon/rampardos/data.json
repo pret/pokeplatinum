@@ -145,7 +145,35 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "If two were to smash their heads\ntogether, their foot-thick skulls\nwould keep them from fainting.",
-        "category": "Head Butt Pokémon"
+        "english": {
+            "category": "Head Butt Pokémon",
+            "entry_text": "If two were to smash their heads\ntogether, their foot-thick skulls\nwould keep them from fainting.",
+            "entry_text_diamond": "Its powerful head butt has enough\npower to shatter even the most\ndurable things upon impact."
+        },
+        "french": {
+            "name": "CHARKOS",
+            "category": "Pokémon Coud’Boule",
+            "entry_text": "Son violent coup de tête est\nassez puissant pour pulvériser\nles matériaux les plus résistants."
+        },
+        "german": {
+            "name": "RAMEIDON",
+            "category": "Kopfstoß",
+            "entry_text": "Sein kräftiger Kopfstoß hat genug\nKraft, um selbst die stabilsten\nDinge zu zerschmettern."
+        },
+        "italian": {
+            "name": "Rampardos",
+            "category": "Pokémon Cranioso",
+            "entry_text": "Tira testate talmente potenti da\nfrantumare anche oggetti durissimi."
+        },
+        "spanish": {
+            "name": "Rampardos",
+            "category": "Pokémon Cabezazo",
+            "entry_text": "Su potente cabezazo puede\nhacer añicos cualquier cosa."
+        },
+        "japanese": {
+            "name": "ラムパルド",
+            "category": "ずつきポケモン",
+            "entry_text": "きょうれつな　ずつきの　こうげきは\nどんなに　がんじょうな　ものでも\nいちげきで　ふんさいする　いりょく。"
+        }
     }
 }

@@ -126,7 +126,35 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "Its legs can stretch double.\nFirst-time foes are startled by\nits extensible reach.",
-        "category": "Kicking Pokémon"
+        "english": {
+            "category": "Kicking Pokémon",
+            "entry_text": "Its legs can stretch double.\nFirst-time foes are startled by\nits extensible reach.",
+            "entry_text_diamond": "Its legs can stretch double.\nFirst-time foes are startled by\nits extensible reach."
+        },
+        "french": {
+            "name": "KICKLEE",
+            "category": "Pokémon Latteur",
+            "entry_text": "Ses pattes élastiques s’allongent,\nce qui ne manque jamais de\nsurprendre au premier combat."
+        },
+        "german": {
+            "name": "KICKLEE",
+            "category": "Kicker",
+            "entry_text": "Seine Beine können die doppelte\nLänge annehmen. Gegner, die das\nnicht wissen, erschrecken."
+        },
+        "italian": {
+            "name": "Hitmonlee",
+            "category": "Pokémon Tiracalci",
+            "entry_text": "I suoi arti inferiori si allungano del\ndoppio, il che sbalordisce i nemici\nche lo vedono per la prima volta."
+        },
+        "spanish": {
+            "name": "Hitmonlee",
+            "category": "Pokémon Patada",
+            "entry_text": "Sus piernas se extienden hasta\ndoblar su longitud para sorprender\na enemigos desprevenidos."
+        },
+        "japanese": {
+            "name": "サワムラ－",
+            "category": "キックポケモン",
+            "entry_text": "あしが　２ばいの　ながさに　のびる。\nはじめて　たたかう　あいては\nその　まあいの　ひろさに　おどろく。"
+        }
     }
 }

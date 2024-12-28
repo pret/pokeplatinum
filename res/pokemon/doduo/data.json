@@ -118,7 +118,35 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "The brains in its two heads appear\nto communicate emotions to each\nother with a telepathic power.",
-        "category": "Twin Bird Pokémon"
+        "english": {
+            "category": "Twin Bird Pokémon",
+            "entry_text": "The brains in its two heads appear\nto communicate emotions to each\nother with a telepathic power.",
+            "entry_text_diamond": "The brains in its two heads appear\nto communicate emotions to each\nother with a telepathic power."
+        },
+        "french": {
+            "name": "DODUO",
+            "category": "Pokémon Duoiseau",
+            "entry_text": "Ses deux cerveaux semblent\ncommuniquer leurs émotions\ngrâce à un lien télépathique."
+        },
+        "german": {
+            "name": "DODU",
+            "category": "Duovogel",
+            "entry_text": "Die Gehirne der beiden Köpfe\nkommunizieren ihre Gefühle\nüber Telepathie."
+        },
+        "italian": {
+            "name": "Doduo",
+            "category": "Pokémon Biuccello",
+            "entry_text": "I suoi due cervelli si comunicano\nle emozioni grazie ai poteri\ntelepatici."
+        },
+        "spanish": {
+            "name": "Doduo",
+            "category": "Pokémon Ave Gemela",
+            "entry_text": "Parece que los cerebros de sus\ndos cabezas se comunican por\ntelepatía."
+        },
+        "japanese": {
+            "name": "ド－ド－",
+            "category": "ふたごどりポケモン",
+            "entry_text": "２つの　あたまの　のうみそは\nテレパシ－のような　ちからで\nきもちを　つうじあわせているらしい。"
+        }
     }
 }

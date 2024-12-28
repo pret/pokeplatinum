@@ -128,7 +128,35 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "When the bud on its back starts\nswelling, a sweet aroma wafts to\nindicate the flower’s coming bloom.",
-        "category": "Seed Pokémon"
+        "english": {
+            "category": "Seed Pokémon",
+            "entry_text": "When the bud on its back starts\nswelling, a sweet aroma wafts to\nindicate the flower’s coming bloom.",
+            "entry_text_diamond": "When the bud on its back starts\nswelling, a sweet aroma wafts to\nindicate the flower’s coming bloom."
+        },
+        "french": {
+            "name": "HERBIZARRE",
+            "category": "Pokémon Graine",
+            "entry_text": "Lorsque le bourgeon sur son dos\néclot, il répand un doux parfum\npour célébrer sa floraison."
+        },
+        "german": {
+            "name": "BISAKNOSP",
+            "category": "Samen",
+            "entry_text": "Sobald die Knospe auf seinem Rücken\nein süßes Aroma abgibt, steht die\nBlüte kurz bevor."
+        },
+        "italian": {
+            "name": "Ivysaur",
+            "category": "Pokémon Seme",
+            "entry_text": "Quando il bocciolo che ha sul dorso\nsi gonfia, emana un dolce profumo.\nÈ indice dell’imminente fioritura."
+        },
+        "spanish": {
+            "name": "Ivysaur",
+            "category": "Pokémon Semilla",
+            "entry_text": "Cuando el bulbo de su lomo se\nhincha, desprende un dulce aroma\npara indicar el florecimiento."
+        },
+        "japanese": {
+            "name": "フシギソウ",
+            "category": "たねポケモン",
+            "entry_text": "せなかの　つぼみが　ふくらみだすと\nあまい　においが　ただよいはじめる。\nたいりんの　はなが　さく　まえぶれ。"
+        }
     }
 }

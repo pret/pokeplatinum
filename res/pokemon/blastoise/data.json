@@ -140,7 +140,35 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 6,
         "pokemon_pos_m": 1,
-        "entry_text": "The jets of water it spouts from\nthe rocket cannons on its shell\ncan punch through thick steel.",
-        "category": "Shellfish Pokémon"
+        "english": {
+            "category": "Shellfish Pokémon",
+            "entry_text": "The jets of water it spouts from\nthe rocket cannons on its shell\ncan punch through thick steel.",
+            "entry_text_diamond": "The jets of water it spouts from\nthe rocket cannons on its shell\ncan punch through thick steel."
+        },
+        "french": {
+            "name": "TORTANK",
+            "category": "Pokémon Carapace",
+            "entry_text": "Les trombes d’eau projetées par\nles canons de sa carapace peuvent\npercer le métal le plus résistant."
+        },
+        "german": {
+            "name": "TURTOK",
+            "category": "Panzer",
+            "entry_text": "Der Wasserstrahl, der aus den\nWasserdüsen schießt, kann\nsogar Stahlwände durchdringen."
+        },
+        "italian": {
+            "name": "Blastoise",
+            "category": "Pokémon Crostaceo",
+            "entry_text": "I getti d’acqua lanciati dai\ncannoni sul suo guscio riescono\na perforare persino l’acciaio."
+        },
+        "spanish": {
+            "name": "Blastoise",
+            "category": "Pokémon Marisco",
+            "entry_text": "Los chorros de agua que lanza\npor los tubos de su caparazón\npueden atravesar el acero."
+        },
+        "japanese": {
+            "name": "カメックス",
+            "category": "こうらポケモン",
+            "entry_text": "こうらの　ロケットほうから　ふきだす\nすいりゅうは　ぶあつい　てっぱんも\nいっぱつで　つらぬく　はかいりょく。"
+        }
     }
 }

@@ -128,7 +128,35 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 9,
-        "entry_text": "It races around the world to\npurify fouled water. It dashes\naway with the north wind.",
-        "category": "Aurora Pokémon"
+        "english": {
+            "category": "Aurora Pokémon",
+            "entry_text": "It races around the world to\npurify fouled water. It dashes\naway with the north wind.",
+            "entry_text_diamond": "It races around the world to\npurify fouled water. It dashes\naway with the north wind."
+        },
+        "french": {
+            "name": "SUICUNE",
+            "category": "Pokémon Aurore",
+            "entry_text": "Il parcourt le vaste monde pour\npurifier les eaux polluées. Il\naccompagne le vent du nord."
+        },
+        "german": {
+            "name": "SUICUNE",
+            "category": "Polarlicht",
+            "entry_text": "Es wandert beständig in der Welt\nherum, um verunreinigtes Wasser zu\nreinigen. Es zieht mit dem Nordwind."
+        },
+        "italian": {
+            "name": "Suicune",
+            "category": "Pokémon Aurora",
+            "entry_text": "Corre per tutto il mondo per\npurificare l’acqua contaminata.\nSi allontana con i venti del nord."
+        },
+        "spanish": {
+            "name": "Suicune",
+            "category": "Pokémon Aurora",
+            "entry_text": "Recorre el mundo para purificar\nagua contaminada. Corre veloz\ncon el viento del norte."
+        },
+        "japanese": {
+            "name": "スイクン",
+            "category": "オ－ロラポケモン",
+            "entry_text": "せかいじゅうを　かけめぐり\nよごれた　みずを　きよめている。\nきたかぜと　ともに　はしりさる。"
+        }
     }
 }

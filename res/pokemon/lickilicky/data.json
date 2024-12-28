@@ -143,7 +143,35 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "The long tongue is always soggy\nwith slobber. The saliva contains\na solvent that causes numbness.",
-        "category": "Licking Pokémon"
+        "english": {
+            "category": "Licking Pokémon",
+            "entry_text": "The long tongue is always soggy\nwith slobber. The saliva contains\na solvent that causes numbness.",
+            "entry_text_diamond": "It wraps things with its extensible\ntongue. Getting too close to it\nwill leave you soaked with drool."
+        },
+        "french": {
+            "name": "COUDLANGUE",
+            "category": "Pokémon Lécheur",
+            "entry_text": "Il enroule tout dans sa langue\nextensible. Ceux qui l’approchent\nfinissent couverts de bave."
+        },
+        "german": {
+            "name": "SCHLURPLEK",
+            "category": "Schlecker",
+            "entry_text": "Es umklammert Dinge mit seiner\ndehnbaren Zunge. Kommt man ihm zu\nnahe, wird man eingespeichelt."
+        },
+        "italian": {
+            "name": "Lickilicky",
+            "category": "Pokémon Linguaccia",
+            "entry_text": "Avvolge ogni cosa con la sua lingua\nallungabile. Chi si avvicina troppo,\nsi ritroverà tutto bagnato di bava."
+        },
+        "spanish": {
+            "name": "Lickilicky",
+            "category": "Pokémon Lametazo",
+            "entry_text": "Agarra cosas con su lengua\nextensible. Si te acercas mucho,\nte deja lleno de babas."
+        },
+        "japanese": {
+            "name": "ベロベルト",
+            "category": "なめまわしポケモン",
+            "entry_text": "ぐんぐん　のびる　ベロを　なんにでも\nまきつける。うかつに　ちかよると\nだえきで　べとべとに　されてしまう。"
+        }
     }
 }

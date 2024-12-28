@@ -166,7 +166,35 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 6,
-        "entry_text": "A Pokémon created by recombining\nMEW’s genes. It’s said to have the\nmost savage heart among Pokémon.",
-        "category": "Genetic Pokémon"
+        "english": {
+            "category": "Genetic Pokémon",
+            "entry_text": "A Pokémon created by recombining\nMEW’s genes. It’s said to have the\nmost savage heart among Pokémon.",
+            "entry_text_diamond": "A Pokémon created by recombining\nMEW’s genes. It’s said to have the\nmost savage heart among Pokémon."
+        },
+        "french": {
+            "name": "MEWTWO",
+            "category": "Pokémon Génétique",
+            "entry_text": "Un Pokémon conçu en réorganisant\nles gènes de MEW. On raconte qu’il\ns’agit du Pokémon le plus féroce."
+        },
+        "german": {
+            "name": "MEWTU",
+            "category": "Genmutant",
+            "entry_text": "Die Gene von MEW wurden neu\nangeordnet, wodurch dieses PKMN\nentstand. Es hat ein wildes Herz."
+        },
+        "italian": {
+            "name": "Mewtwo",
+            "category": "Pokémon Genetico",
+            "entry_text": "Un Pokémon creato usando i geni\ndi MEW. Si dice che fra i Pokémon\nsia quello con l’animo più crudele."
+        },
+        "spanish": {
+            "name": "Mewtwo",
+            "category": "Pokémon Genético",
+            "entry_text": "Pokémon creado por recombinación\ngenética de MEW. Se dice que es el\nmás salvaje de los Pokémon."
+        },
+        "japanese": {
+            "name": "ミュウツ－",
+            "category": "いでんしポケモン",
+            "entry_text": "ミュウの　いでんしを　くみかえて\nうみだされた。ポケモンで　いちばん\nきょうぼうな　こころを　もつという。"
+        }
     }
 }

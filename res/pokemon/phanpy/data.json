@@ -125,7 +125,35 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It is strong despite its compact\nsize. It can easily pick up and\ncarry an adult human on its back.",
-        "category": "Long Nose Pokémon"
+        "english": {
+            "category": "Long Nose Pokémon",
+            "entry_text": "It is strong despite its compact\nsize. It can easily pick up and\ncarry an adult human on its back.",
+            "entry_text_diamond": "It is strong despite its compact\nsize. It can easily pick up and\ncarry an adult human on its back."
+        },
+        "french": {
+            "name": "PHANPY",
+            "category": "Pokémon Long-Nez",
+            "entry_text": "Il est fort malgré son aspect\nramassé. Il n’a aucun mal à porter\nun humain adulte sur son dos."
+        },
+        "german": {
+            "name": "PHANPY",
+            "category": "Langrüssel",
+            "entry_text": "Trotz seiner geringen Größe ist es\nstark. Es kann einen Erwachsenen\nmühelos auf dem Rücken tragen."
+        },
+        "italian": {
+            "name": "Phanpy",
+            "category": "Pokémon Nasone",
+            "entry_text": "Non è molto grande, ma è forte.\nPuò sollevare un adulto e traspor-\ntarlo sul dorso senza fatica."
+        },
+        "spanish": {
+            "name": "Phanpy",
+            "category": "Pokémon Narizotas",
+            "entry_text": "A pesar de su tamaño reducido,\nes tan fuerte que puede llevar a un\nhumano a su espalda con facilidad."
+        },
+        "japanese": {
+            "name": "ゴマゾウ",
+            "category": "ながはなポケモン",
+            "entry_text": "からだは　ちいさいが　ちからもち。\nおとなの　ひとを　かるがると\nせなかに　のせて　あるいてしまう。"
+        }
     }
 }

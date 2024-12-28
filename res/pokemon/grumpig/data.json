@@ -146,7 +146,35 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It uses black pearls to amplify its\npsycho-power. It does an odd\ndance to gain control over foes.",
-        "category": "Manipulate Pokémon"
+        "english": {
+            "category": "Manipulate Pokémon",
+            "entry_text": "It uses black pearls to amplify its\npsycho-power. It does an odd\ndance to gain control over foes.",
+            "entry_text_diamond": "It uses black pearls to amplify its\npsycho-power. It does an odd\ndance to gain control over foes."
+        },
+        "french": {
+            "name": "GRORET",
+            "category": "Pokémon Magouilleur",
+            "entry_text": "Les perles noires amplifient ses \npouvoirs psy. Sa danse étrange lui\npermet de contrôler ses ennemis."
+        },
+        "german": {
+            "name": "GROINK",
+            "category": "Manipulator",
+            "entry_text": "Mit schwarzen Perlen verstärkt es\nseine Psycho-Kräfte. Mit einem\nTanz kontrolliert es seine Gegner."
+        },
+        "italian": {
+            "name": "Grumpig",
+            "category": "Pokémon Raggiro",
+            "entry_text": "Usa perle nere per amplificare i\nsuoi poteri psichici. Con una danza\nacquisisce controllo sul nemico."
+        },
+        "spanish": {
+            "name": "Grumpig",
+            "category": "Pokémon Manipulador",
+            "entry_text": "Usa perlas negras para potenciar\nsus poderes psíquicos. Con su\nraro baile controla a los rivales."
+        },
+        "japanese": {
+            "name": "ブ－ピッグ",
+            "category": "あやつりポケモン",
+            "entry_text": "くろしんじゅで　サイコパワ－を\nぞうふくさせる。ふしぎな　ステップで\nあいての　こころを　あやつる。"
+        }
     }
 }

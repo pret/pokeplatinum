@@ -127,7 +127,35 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "A rare Pokémon discovered during\na deep-sea exploration. It has not\nchanged in over 100 million years.",
-        "category": "Longevity Pokémon"
+        "english": {
+            "category": "Longevity Pokémon",
+            "entry_text": "A rare Pokémon discovered during\na deep-sea exploration. It has not\nchanged in over 100 million years.",
+            "entry_text_diamond": "A rare Pokémon discovered during\na deep-sea exploration. It has not\nchanged in over 100 million years."
+        },
+        "french": {
+            "name": "RELICANTH",
+            "category": "Pokémon Longévité",
+            "entry_text": "Un Pokémon rare aperçu lors d’une\nexploration sous-marine. Il n’a pas\névolué depuis 100 millions d’années."
+        },
+        "german": {
+            "name": "RELICANTH",
+            "category": "Bestand",
+            "entry_text": "Tiefseeforscher fanden dieses\nseltene PKMN, das sich in 100 Mio.\nJahren nicht verändert hat."
+        },
+        "italian": {
+            "name": "Relicanth",
+            "category": "Pokémon Longevità",
+            "entry_text": "Un Pokémon raro scoperto durante\nun’esplorazione del mare profondo.\nÈ immutato da 100 milioni di anni."
+        },
+        "spanish": {
+            "name": "Relicanth",
+            "category": "Pokémon Longevo",
+            "entry_text": "Un Pokémon raro descubierto en una\nexploración marina. No ha cambiado\nen más de 100 millones de años."
+        },
+        "japanese": {
+            "name": "ジ－ランス",
+            "category": "ちょうじゅポケモン",
+            "entry_text": "しんかいちょうさで　はっけんされた\nめずらしい　ポケモン。１おくねんの\nあいだ　すがたが　かわっていない。"
+        }
     }
 }

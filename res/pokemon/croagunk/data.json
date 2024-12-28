@@ -142,7 +142,35 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "It rarely fights fairly, but that is\nstrictly to ensure survival. It is\npopular as a mascot.",
-        "category": "Toxic Mouth Pokémon"
+        "english": {
+            "category": "Toxic Mouth Pokémon",
+            "entry_text": "It rarely fights fairly, but that is\nstrictly to ensure survival. It is\npopular as a mascot.",
+            "entry_text_diamond": "Its cheeks hold poison sacs.\nIt tries to catch foes off guard\nto jab them with toxic fingers."
+        },
+        "french": {
+            "name": "CRADOPAUD",
+            "category": "Pokémon Toxique",
+            "entry_text": "Ses joues contiennent des glandes\ntoxiques. Il attaque par surprise\net utilise son toucher empoisonné."
+        },
+        "german": {
+            "name": "GLIBUNKEL",
+            "category": "Giftmund",
+            "entry_text": "In seinen Backen sammelt sich Gift.\nEs versucht, Beute zu überraschen\nund mit Giftfingern zu schnappen."
+        },
+        "italian": {
+            "name": "Croagunk",
+            "category": "Pokémon Inveieleno",
+            "entry_text": "Le sacche delle guance contengono\nveleno. Infilza i nemici con le sue\nunghie avvelenate."
+        },
+        "spanish": {
+            "name": "Croagunk",
+            "category": "Pokémon Boca Tóxica",
+            "entry_text": "Tiene bolsas venenosas en las\nmejillas. Pilla desprevenidos\na sus rivales para pincharles."
+        },
+        "japanese": {
+            "name": "グレッグル",
+            "category": "どくづきポケモン",
+            "entry_text": "ほっぺたに　どくぶくろを　もつ。\nあいての　すきを　ついて　もうどくを\nにじませている　ゆびを　つきさす。"
+        }
     }
 }

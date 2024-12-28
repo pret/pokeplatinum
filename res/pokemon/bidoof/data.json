@@ -130,7 +130,35 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "A comparison revealed that\nBIDOOF’s front teeth grow at\nthe same rate as RATTATA’s.",
-        "category": "Plump Mouse Pokémon"
+        "english": {
+            "category": "Plump Mouse Pokémon",
+            "entry_text": "A comparison revealed that\nBIDOOF’s front teeth grow at\nthe same rate as RATTATA’s.",
+            "entry_text_diamond": "With nerves of steel, nothing can\nperturb it. It is more agile and\nactive than it appears."
+        },
+        "french": {
+            "name": "KEUNOTOR",
+            "category": "Pokémon Souridodue",
+            "entry_text": "Rien ne peut perturber ses nerfs\nd’acier. Il est plus agile et\nénergique qu’il n’y paraît."
+        },
+        "german": {
+            "name": "BIDIZA",
+            "category": "Dickmaus",
+            "entry_text": "Es hat Nerven wie Drahtseile,\nnichts kann es erschüttern. Es ist\nagiler und aktiver, als es scheint."
+        },
+        "italian": {
+            "name": "Bidoof",
+            "category": "Pokémon Topaffuto",
+            "entry_text": "Ha i nervi d’acciaio e niente può\nturbarlo. È più agile e attivo di\nquanto sembri."
+        },
+        "spanish": {
+            "name": "Bidoof",
+            "category": "Pokémon Gran Ratón",
+            "entry_text": "Tiene nervios de acero y nada\npuede perturbarlo. Es más ágil\ny activo de lo que aparenta."
+        },
+        "japanese": {
+            "name": "ビッパ",
+            "category": "まるねずみポケモン",
+            "entry_text": "なにごとにも　どうじない　ずぶとい\nしんけいの　もちぬし。みかけの\nわりには　きびんに　かつどうする。"
+        }
     }
 }

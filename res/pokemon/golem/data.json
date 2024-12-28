@@ -134,7 +134,35 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "Even dynamite can’t harm its hard,\nboulderlike body. It sheds its hide\njust once a year.",
-        "category": "Megaton Pokémon"
+        "english": {
+            "category": "Megaton Pokémon",
+            "entry_text": "Even dynamite can’t harm its hard,\nboulderlike body. It sheds its hide\njust once a year.",
+            "entry_text_diamond": "It sheds its hide once a year.\nIts boulderlike body is so tough,\neven dynamite can’t harm it."
+        },
+        "french": {
+            "name": "GROLEM",
+            "category": "Pokémon Titanesque",
+            "entry_text": "Il mue une fois par an. Son corps\nrocailleux est si dur qu’il résiste\nmême à la dynamite."
+        },
+        "german": {
+            "name": "GEOWAZ",
+            "category": "Urgestein",
+            "entry_text": "Einmal im Jahr wechselt es seine\nHaut. Seinem Körper kann\nselbst Dynamit nichts anhaben."
+        },
+        "italian": {
+            "name": "Golem",
+            "category": "Pokémon Megatone",
+            "entry_text": "Muta il guscio una volta all’anno. Il\nsuo corpo duro come la roccia non\nè scalfito neanche dalla dinamite."
+        },
+        "spanish": {
+            "name": "Golem",
+            "category": "Pokémon Megatón",
+            "entry_text": "Muda su piel una vez al año.\nSu cuerpo rocoso es tan duro\nque ni la dinamita lo daña."
+        },
+        "japanese": {
+            "name": "ゴロ－ニャ",
+            "category": "メガトンポケモン",
+            "entry_text": "１ねんに　１かい　だっぴする。\nがんせきのような　かたい　からだは\nダイナマイトでも　きずつかない。"
+        }
     }
 }

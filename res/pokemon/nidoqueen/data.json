@@ -145,7 +145,35 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "Its entire body is armored with\nhard scales. It will protect the\nyoung in its burrow with its life.",
-        "category": "Drill Pokémon"
+        "english": {
+            "category": "Drill Pokémon",
+            "entry_text": "Its entire body is armored with\nhard scales. It will protect the\nyoung in its burrow with its life.",
+            "entry_text_diamond": "Its entire body is armored with\nhard scales. It will protect the\nyoung in its burrow with its life."
+        },
+        "french": {
+            "name": "NIDOQUEEN",
+            "category": "Pokémon Perceur",
+            "entry_text": "Son corps est recouvert d’écailles\nsolides. Il donnera sa vie pour\nsecourir les petits de son terrier. "
+        },
+        "german": {
+            "name": "NIDOQUEEN",
+            "category": "Bohrer",
+            "entry_text": "Sein ganzer Körper ist mit harten\nSchuppen bedeckt. Es beschützt\nsein Junges mit seinem Leben."
+        },
+        "italian": {
+            "name": "Nidoqueen",
+            "category": "Pokémon Trapano",
+            "entry_text": "Una robusta armatura ricopre\nl’intero corpo. Protegge i propri\ncuccioli a costo della vita."
+        },
+        "spanish": {
+            "name": "Nidoqueen",
+            "category": "Pokémon Taladro",
+            "entry_text": "Tiene el cuerpo cubierto de duras\nescamas. Protege a su cría con\ntoda su fuerza."
+        },
+        "japanese": {
+            "name": "ニドクイン",
+            "category": "ドリルポケモン",
+            "entry_text": "よろいのように　かたい　ウロコが\nぜんしんを　つつむ。すあなの\nこどもを　いのちがけで　まもる。"
+        }
     }
 }

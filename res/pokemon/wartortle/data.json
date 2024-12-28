@@ -134,7 +134,35 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It is said to live 10,000 years.\nIts furry tail is popular as a\nsymbol of longevity.",
-        "category": "Turtle Pokémon"
+        "english": {
+            "category": "Turtle Pokémon",
+            "entry_text": "It is said to live 10,000 years.\nIts furry tail is popular as a\nsymbol of longevity.",
+            "entry_text_diamond": "It is said to live 10,000 years.\nIts furry tail is popular as a\nsymbol of longevity."
+        },
+        "french": {
+            "name": "CARABAFFE",
+            "category": "Pokémon Tortue",
+            "entry_text": "On prétend qu’il vit 10 000 ans.\nSa queue duveteuse est un\nsymbole de longévité populaire."
+        },
+        "german": {
+            "name": "SCHILLOK",
+            "category": "Kröte",
+            "entry_text": "Man sagt, es werde 10 000 Jahre\nalt. Sein buschiger Schweif ist ein\nSymbol für langes Leben."
+        },
+        "italian": {
+            "name": "Wartortle",
+            "category": "Pokémon Tartaruga",
+            "entry_text": "Pare che viva 10000 anni. Ha\nla coda ricoperta da una folta\npelliccia, indice di longevità."
+        },
+        "spanish": {
+            "name": "Wartortle",
+            "category": "Pokémon Tortuga",
+            "entry_text": "Se dice que vive 10000 años.\nSu peluda cola es un símbolo de\nlongevidad."
+        },
+        "japanese": {
+            "name": "カメ－ル",
+            "category": "かめポケモン",
+            "entry_text": "いちまんねんの　じゅみょうを　もつと\nいわれている。ふさふさの　しっぽは\nながいきの　シンボルとして　にんき。"
+        }
     }
 }

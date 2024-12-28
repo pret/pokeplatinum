@@ -132,7 +132,35 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "It raises its pincers with eyelike\nmarkings for intimidation. It also\nswings them down dangerously.",
-        "category": "Pincer Pokémon"
+        "english": {
+            "category": "Pincer Pokémon",
+            "entry_text": "It raises its pincers with eyelike\nmarkings for intimidation. It also\nswings them down dangerously.",
+            "entry_text_diamond": "It has a steel-hard body. It\nintimidates foes by upraising its\neye-patterned pincers."
+        },
+        "french": {
+            "name": "CIZAYOX",
+            "category": "Pokémon Pince",
+            "entry_text": "Son corps est dur comme l’acier.\nIl intimide ses ennemis en levant\nses pinces pareilles à des yeux. "
+        },
+        "german": {
+            "name": "SCHEROX",
+            "category": "Kneifer",
+            "entry_text": "Sein Körper ist stahlhart. Es\nbedroht seine Gegner, indem es die\nAugen auf seinen Scheren zeigt."
+        },
+        "italian": {
+            "name": "Scizor",
+            "category": "Pokémon Chela",
+            "entry_text": "Ha un corpo duro come l’acciaio.\nSpaventa i nemici con le chele, su\ncui sono disegnati degli occhi."
+        },
+        "spanish": {
+            "name": "Scizor",
+            "category": "Pokémon Tenaza",
+            "entry_text": "Su cuerpo es duro como el acero.\nConfunde a los rivales con los\ndibujos de ojos en sus pinzas."
+        },
+        "japanese": {
+            "name": "ハッサム",
+            "category": "はさみポケモン",
+            "entry_text": "はがねの　からだを　もつ。\nめだまもようの　ついた　はさみを\nふりあげて　あいてを　いかくする。"
+        }
     }
 }

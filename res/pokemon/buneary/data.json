@@ -131,7 +131,35 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "Its ears are always rolled up. They\ncan be forcefully extended to\nshatter even a large boulder.",
-        "category": "Rabbit Pokémon"
+        "english": {
+            "category": "Rabbit Pokémon",
+            "entry_text": "Its ears are always rolled up. They\ncan be forcefully extended to\nshatter even a large boulder.",
+            "entry_text_diamond": "It slams foes by sharply uncoiling\nits rolled ears. It stings enough\nto make a grown-up cry in pain."
+        },
+        "french": {
+            "name": "LAPOREILLE",
+            "category": "Pokémon Lapin",
+            "entry_text": "Il frappe l’ennemi en déroulant\nviolemment ses oreilles. Cela\npeut faire pleurer un adulte."
+        },
+        "german": {
+            "name": "HASPIROR",
+            "category": "Hase",
+            "entry_text": "Es entrollt seine Ohren sehr\nschnell, um seine Gegner\nschmerzhaft zu schlagen. "
+        },
+        "italian": {
+            "name": "Buneary",
+            "category": "Pokémon Coniglio",
+            "entry_text": "Sbaraglia i nemici dispiegando con\nforza le orecchie arrotolate. Fa\npiangere di dolore anche gli adulti."
+        },
+        "spanish": {
+            "name": "Buneary",
+            "category": "Pokémon Conejo",
+            "entry_text": "Ataca a sus enemigos con un\ngolpe rápido de sus orejas. Sus\npicotazos son muy dolorosos."
+        },
+        "japanese": {
+            "name": "ミミロル",
+            "category": "うさぎポケモン",
+            "entry_text": "まるめた　みみを　いきおいよく\nのばして　あいてに　たたきつける。\nおとなでも　とびあがるほど　いたい。"
+        }
     }
 }

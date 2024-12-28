@@ -130,7 +130,35 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "Almost all its body is its stomach.\nIts harsh digestive juices quickly\ndissolve anything it swallows.",
-        "category": "Stomach Pokémon"
+        "english": {
+            "category": "Stomach Pokémon",
+            "entry_text": "Almost all its body is its stomach.\nIts harsh digestive juices quickly\ndissolve anything it swallows.",
+            "entry_text_diamond": "Almost all its body is its stomach.\nIts harsh digestive juices quickly\ndissolve anything it swallows."
+        },
+        "french": {
+            "name": "GLOUPTI",
+            "category": "Pokémon Estomac",
+            "entry_text": "Il est principalement composé d’un\nestomac dont les sucs digestifs\ndissolvent tout ce qu’il avale."
+        },
+        "german": {
+            "name": "SCHLUPPUCK",
+            "category": "Magen",
+            "entry_text": "Sein Körper besteht fast nur aus\nMagen. Seine starken Verdauungs-\nsäfte zersetzen alles sehr schnell."
+        },
+        "italian": {
+            "name": "Gulpin",
+            "category": "Pokémon Stomaco",
+            "entry_text": "La maggior parte del suo corpo è\nstomaco. I suoi succhi gastrici\ndissolvono subito ciò che ingerisce."
+        },
+        "spanish": {
+            "name": "Gulpin",
+            "category": "Pokémon Estómago",
+            "entry_text": "Casi todo su cuerpo es estómago.\nSus potentes jugos gástricos\ndisuelven rápido cualquier cosa."
+        },
+        "japanese": {
+            "name": "ゴクリン",
+            "category": "いぶくろポケモン",
+            "entry_text": "からだの　ほとんどが　いぶくろ。\nきょうりょくな　いえきで　のみこんだ\nものを　たちまち　しょうかする。"
+        }
     }
 }

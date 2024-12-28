@@ -137,7 +137,35 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "Seeing its swinging pendulum can\ninduce sleep in three seconds,\neven in someone who just woke up.",
-        "category": "Hypnosis Pokémon"
+        "english": {
+            "category": "Hypnosis Pokémon",
+            "entry_text": "Seeing its swinging pendulum can\ninduce sleep in three seconds,\neven in someone who just woke up.",
+            "entry_text_diamond": "Seeing its swinging pendulum can\ninduce sleep in three seconds,\neven in someone who just woke up."
+        },
+        "french": {
+            "name": "HYPNOMADE",
+            "category": "Pokémon Hypnose",
+            "entry_text": "La vue de son pendule oscillant\nendort en trois secondes, même\nquand on vient de se réveiller. "
+        },
+        "german": {
+            "name": "HYPNO",
+            "category": "Hypnose",
+            "entry_text": "Ein Blick auf das Pendel versetzt\neinen in 3 Sekunden in Schlaf,\nselbst wenn man gar nicht müde ist."
+        },
+        "italian": {
+            "name": "Hypno",
+            "category": "Pokémon Ipnosi",
+            "entry_text": "Con il suo pendolo fa addormentare\nchiunque nel giro di tre secondi,\nanche chi si è appena svegliato."
+        },
+        "spanish": {
+            "name": "Hypno",
+            "category": "Pokémon Hipnosis",
+            "entry_text": "Mirar su péndulo puede inducir al\nsueño en tres segundos, incluso\nsi acabas de despertarte."
+        },
+        "japanese": {
+            "name": "スリ－パ－",
+            "category": "さいみんポケモン",
+            "entry_text": "ふりこを　めのまえで　ゆらされると\nたったいま　めざめたばかりの　ひとも\n３びょうごには　ねむってしまう。"
+        }
     }
 }

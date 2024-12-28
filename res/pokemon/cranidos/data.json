@@ -142,7 +142,35 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "A lifelong jungle dweller from 100\nmillion years ago, it would snap\nobstructing trees with head butts.",
-        "category": "Head Butt Pokémon"
+        "english": {
+            "category": "Head Butt Pokémon",
+            "entry_text": "A lifelong jungle dweller from 100\nmillion years ago, it would snap\nobstructing trees with head butts.",
+            "entry_text_diamond": "It lived in jungles around 100\nmillion years ago. Its skull is as\nhard as iron."
+        },
+        "french": {
+            "name": "KRANIDOS",
+            "category": "Pokémon Coud’Boule",
+            "entry_text": "Il vivait dans la jungle il y a \nenviron 100 millions d’années. Son\ncrâne est dur comme du fer."
+        },
+        "german": {
+            "name": "KOKNODON",
+            "category": "Kopfstoß",
+            "entry_text": "Vor über 100 Millionen Jahren lebte\nes in den Dschungeln. Sein Schädel\nist hart wie Eisen."
+        },
+        "italian": {
+            "name": "Cranidos",
+            "category": "Pokémon Cranioso",
+            "entry_text": "Viveva nella giungla circa 100\nmilioni di anni fa. Il suo cranio\nè duro come il ferro."
+        },
+        "spanish": {
+            "name": "Cranidos",
+            "category": "Pokémon Cabezazo",
+            "entry_text": "Vivía en la jungla hace unos 100\nmillones de años. Su cráneo es\ntan duro como el hierro."
+        },
+        "japanese": {
+            "name": "ズガイドス",
+            "category": "ずつきポケモン",
+            "entry_text": "およそ　１おくねんまえに\nこだいの　みつりんで　くらしていた。\nてつのように　かたい　ずがいこつ。"
+        }
     }
 }

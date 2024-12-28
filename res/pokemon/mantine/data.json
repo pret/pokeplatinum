@@ -132,7 +132,35 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 65535,
-        "entry_text": "While elegantly swimming in the sea,\nit ignores REMORAID that cling to\nits fins seeking food scraps.",
-        "category": "Kite Pokémon"
+        "english": {
+            "category": "Kite Pokémon",
+            "entry_text": "While elegantly swimming in the sea,\nit ignores REMORAID that cling to\nits fins seeking food scraps.",
+            "entry_text_diamond": "When the waves are calm, one may\nencounter a swarm of MANTINE\nswimming as if they are in flight."
+        },
+        "french": {
+            "name": "DEMANTA",
+            "category": "Pokémon Cervolant",
+            "entry_text": "Lorsque la mer est calme, il arrive\nde croiser un banc de DEMANTA\nnageant comme s’ils volaient."
+        },
+        "german": {
+            "name": "MANTAX",
+            "category": "Flugrochen",
+            "entry_text": "Wenn das Meer ruhig ist, kann man\nvielleicht einen Schwarm MANTAX\nsehen, die schnell vorbeischwimmen."
+        },
+        "italian": {
+            "name": "Mantine",
+            "category": "Pokémon Aquilone",
+            "entry_text": "Quando il mare è calmo, è possibile\nvedere branchi di MANTINE nuotare\nleggiadri come se volassero."
+        },
+        "spanish": {
+            "name": "Mantine",
+            "category": "Pokémon Milano",
+            "entry_text": "Cuando el mar está en calma, se\npueden ver bancos de MANTINE\nnadando como si volasen."
+        },
+        "japanese": {
+            "name": "マンタイン",
+            "category": "カイトポケモン",
+            "entry_text": "なみが　おだやかな　ときは\nおおうなばらを　とぶように　およぐ\nマンタインの　むれに　そうぐうする。"
+        }
     }
 }

@@ -136,7 +136,35 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 2,
-        "entry_text": "Its arms are made of plants that\nbind themselves to things. They\ngrow back right away if cut.",
-        "category": "Vine Pokémon"
+        "english": {
+            "category": "Vine Pokémon",
+            "entry_text": "Its arms are made of plants that\nbind themselves to things. They\ngrow back right away if cut.",
+            "entry_text_diamond": "It ensnares prey by extending\narms made of vines. Losing arms to\npredators does not trouble it."
+        },
+        "french": {
+            "name": "BOULDENEU",
+            "category": "Pokémon Vigne",
+            "entry_text": "Il ligote sa proie en étirant ses\nbras en lianes. Il ne craint pas de\nperdre un bras face à un ennemi."
+        },
+        "german": {
+            "name": "TANGOLOSS",
+            "category": "Ranke",
+            "entry_text": "Es umwickelt Beute, indem es seine\nArme, die aus Ranken bestehen,\nverlängert."
+        },
+        "italian": {
+            "name": "Tangrowth",
+            "category": "Pokémon Liana",
+            "entry_text": "Intrappola le prede con gli arti,\nche sono costituiti da liane. Se ne\nperde uno, non si turba affatto."
+        },
+        "spanish": {
+            "name": "Tangrowth",
+            "category": "Pokémon Enredadera",
+            "entry_text": "Atrapa a su presa desplegando las\nramas de sus brazos, que no le\nimporta perder ante depredadores."
+        },
+        "japanese": {
+            "name": "モジャンボ",
+            "category": "ツルじょうポケモン",
+            "entry_text": "しょくぶつの　ツルで　できた　うでを\nのばして　えものを　からめとる。\nうでを　たべられても　へっちゃら。"
+        }
     }
 }

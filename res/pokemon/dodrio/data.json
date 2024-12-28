@@ -119,7 +119,35 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 2,
-        "entry_text": "When DODUO evolves into this odd\nbreed, one of its heads splits into\ntwo. It runs at nearly 40 mph.",
-        "category": "Triple Bird Pokémon"
+        "english": {
+            "category": "Triple Bird Pokémon",
+            "entry_text": "When DODUO evolves into this odd\nbreed, one of its heads splits into\ntwo. It runs at nearly 40 mph.",
+            "entry_text_diamond": "When DODUO evolves into this odd\nbreed, one of its heads splits into\ntwo. It runs at nearly 40 mph."
+        },
+        "french": {
+            "name": "DODRIO",
+            "category": "Pokémon Trioiseau",
+            "entry_text": "Quand DODUO connaît cette étrange\névolution, l’une de ses têtes se \ndédouble. Il atteint les 60 km/h."
+        },
+        "german": {
+            "name": "DODRI",
+            "category": "Trivogel",
+            "entry_text": "Entwickelt sich DODU, teilt sich\neiner der Köpfe in zwei. Es kann\nsich mit 60 km/h fortbewegen."
+        },
+        "italian": {
+            "name": "Dodrio",
+            "category": "Pokémon Triuccello",
+            "entry_text": "Quando DODUO si evolve in questo\nstrano essere, una delle due teste\nsi divide a metà. Corre a 60 km/h."
+        },
+        "spanish": {
+            "name": "Dodrio",
+            "category": "Pokémon Ave Triple",
+            "entry_text": "Cuando un DODUO evoluciona, una de\nsus cabezas se divide en dos.\nCorre a unos 60 km por hora."
+        },
+        "japanese": {
+            "name": "ド－ドリオ",
+            "category": "みつごどりポケモン",
+            "entry_text": "しんかのときに　ド－ド－の　あたまの\nどちらかが　ぶんれつした　ちんしゅ。\nじそく　６０キロいじょうで　はしる。"
+        }
     }
 }

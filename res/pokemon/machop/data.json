@@ -132,7 +132,35 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "Though small in stature, it is\npowerful enough to easily heft and\nthrow a number of GEODUDE at once.",
-        "category": "Superpower Pokémon"
+        "english": {
+            "category": "Superpower Pokémon",
+            "entry_text": "Though small in stature, it is\npowerful enough to easily heft and\nthrow a number of GEODUDE at once.",
+            "entry_text_diamond": "It hefts a GRAVELER repeatedly to\nstrengthen its entire body. It\nuses every type of martial arts."
+        },
+        "french": {
+            "name": "MACHOC",
+            "category": "Pokémon Colosse",
+            "entry_text": "Il muscle son corps en soulevant\nrégulièrement un GRAVALANCH. Il\nest rompu à tous les arts martiaux."
+        },
+        "german": {
+            "name": "MACHOLLO",
+            "category": "Kraftprotz",
+            "entry_text": "Es hebt GEOROK hoch, um seinen\nKörper zu trainieren. Außerdem übt\nes sich in jeder Art v. Kampfsport."
+        },
+        "italian": {
+            "name": "Machop",
+            "category": "Pokémon Megaforza",
+            "entry_text": "Solleva GRAVELER ripetutamente\nper mantenersi forte. Conosce\nogni tipo di arte marziale."
+        },
+        "spanish": {
+            "name": "Machop",
+            "category": "Pokémon Superpoder",
+            "entry_text": "Levanta un GRAVELER para mantener\nsus músculos en forma. Domina\ntodas las artes marciales."
+        },
+        "japanese": {
+            "name": "ワンリキ－",
+            "category": "かいりきポケモン",
+            "entry_text": "ゴロ－ンを　なんども　あげおろしして\nぜんしんの　きんにくを　きたえる。\nあらゆる　かくとうぎを　つかう。"
+        }
     }
 }

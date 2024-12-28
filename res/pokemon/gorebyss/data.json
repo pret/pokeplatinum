@@ -117,7 +117,35 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It lives at the bottom of the sea.\nIn the springtime, its pink body\nturns more vivid for some reason.",
-        "category": "South Sea Pokémon"
+        "english": {
+            "category": "South Sea Pokémon",
+            "entry_text": "It lives at the bottom of the sea.\nIn the springtime, its pink body\nturns more vivid for some reason.",
+            "entry_text_diamond": "It lives at the bottom of the sea.\nIn the springtime, its pink body\nturns more vivid for some reason."
+        },
+        "french": {
+            "name": "ROSABYSS",
+            "category": "Pokémon Mer Du Sud",
+            "entry_text": "Au printemps, son corps rose se\nfait plus vif sans que l’on sache\npourquoi. Il vit au fond de la mer. "
+        },
+        "german": {
+            "name": "SAGANABYSS",
+            "category": "Südsee",
+            "entry_text": "Es lebt auf dem Grund des Meeres.\nIm Frühling wirkt die Farbe seines\nKörpers viel kräftiger."
+        },
+        "italian": {
+            "name": "Gorebyss",
+            "category": "Pokémon Sudmarino",
+            "entry_text": "Vive sui fondali marini. In primavera\nil suo corpo rosato diventa più\nvivido per chissà quale motivo."
+        },
+        "spanish": {
+            "name": "Gorebyss",
+            "category": "Pokémon Mar Del Sur",
+            "entry_text": "Vive en el fondo del mar. En\nprimavera, su cuerpo rosado\nadquiere colores más vivos."
+        },
+        "japanese": {
+            "name": "サクラビス",
+            "category": "なんかいポケモン",
+            "entry_text": "うみの　そこで　くらしているが\nはるになると　からだの　ピンクいろが\nなぜか　あざやかに　いろづく。"
+        }
     }
 }

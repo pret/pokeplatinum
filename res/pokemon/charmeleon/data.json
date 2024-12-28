@@ -129,7 +129,35 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "In the rocky mountains where\nCHARMELEON live, their fiery\ntails shine at night like stars.",
-        "category": "Flame Pokémon"
+        "english": {
+            "category": "Flame Pokémon",
+            "entry_text": "In the rocky mountains where\nCHARMELEON live, their fiery\ntails shine at night like stars.",
+            "entry_text_diamond": "In the rocky mountains where\nCHARMELEON live, their fiery\ntails shine at night like stars."
+        },
+        "french": {
+            "name": "REPTINCEL",
+            "category": "Pokémon Flamme",
+            "entry_text": "La nuit, la queue ardente du\nREPTINCEL brille comme une étoile\ndans son repaire montagneux."
+        },
+        "german": {
+            "name": "GLUTEXO",
+            "category": "Flamme",
+            "entry_text": "GLUTEXO leben in den Bergen. Die\nFlammen auf ihren Schweifspitzen\nleuchten in der Nacht wie Sterne."
+        },
+        "italian": {
+            "name": "Charmeleon",
+            "category": "Pokémon Fiamma",
+            "entry_text": "Sui monti rocciosi, sua dimora,\nla coda di CHARMELEON brilla\ncome una stella nella notte."
+        },
+        "spanish": {
+            "name": "Charmeleon",
+            "category": "Pokémon Llama",
+            "entry_text": "En las montañas rocosas donde\nviven los CHARMELEON, sus colas\nardientes brillan como estrellas."
+        },
+        "japanese": {
+            "name": "リザ－ド",
+            "category": "かえんポケモン",
+            "entry_text": "リザ－ドが　くらす　いわやまを\nよなかに　みあげると　しっぽの\nほのおが　ほしのように　みえる。"
+        }
     }
 }

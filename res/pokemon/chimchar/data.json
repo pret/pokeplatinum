@@ -139,7 +139,35 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It is very agile. Before going to\nsleep, it extinguishes the flame\non its tail to prevent fires.",
-        "category": "Chimp Pokémon"
+        "english": {
+            "category": "Chimp Pokémon",
+            "entry_text": "It is very agile. Before going to\nsleep, it extinguishes the flame\non its tail to prevent fires.",
+            "entry_text_diamond": "It agilely scales sheer cliffs to\nlive atop craggy mountains. Its\nfire is put out when it sleeps."
+        },
+        "french": {
+            "name": "OUISTICRAM",
+            "category": "Pokémon Chimpanzé",
+            "entry_text": "Il escalade prestement les falaises\nescarpées et vit sur les sommets.\nSa flamme s’éteint quand il dort."
+        },
+        "german": {
+            "name": "PANFLAM",
+            "category": "Schimpanse",
+            "entry_text": "Es klettert behände steile Felsen\nhinauf, um auf Bergen zu leben. Sein\nFeuer ist aus, wenn es schläft."
+        },
+        "italian": {
+            "name": "Chimchar",
+            "category": "Pokémon Scimpanzé",
+            "entry_text": "Scala agilmente le rocce scoscese\ne vive in cima ai monti. Prima\ndi dormire spegne le fiamme."
+        },
+        "spanish": {
+            "name": "Chimchar",
+            "category": "Pokémon Chimpancé",
+            "entry_text": "Escala acantilados escarpados con\nagilidad. Vive en las montañas y\nsu fuego se apaga cuando duerme."
+        },
+        "japanese": {
+            "name": "ヒコザル",
+            "category": "こざるポケモン",
+            "entry_text": "だんがいぜっぺきを　みがるに　のぼり\nいわやまの　うえで　せいかつする。\nほのおを　けして　ねむる。"
+        }
     }
 }

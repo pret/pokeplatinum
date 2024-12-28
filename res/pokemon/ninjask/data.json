@@ -131,7 +131,35 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "Because it moves so quickly, it\nsometimes becomes unseeable. It\ncongregates around tree sap.",
-        "category": "Ninja Pokémon"
+        "english": {
+            "category": "Ninja Pokémon",
+            "entry_text": "Because it moves so quickly, it\nsometimes becomes unseeable. It\ncongregates around tree sap.",
+            "entry_text_diamond": "Because it moves so quickly, it\nsometimes becomes unseeable. It\ncongregates around tree sap."
+        },
+        "french": {
+            "name": "NINJASK",
+            "category": "Pokémon Ninja",
+            "entry_text": "Il bouge si vite que l’œil a parfois\ndu mal à le suivre. Ils se regrou-\npent près de la sève des arbres."
+        },
+        "german": {
+            "name": "NINJASK",
+            "category": "Ninja",
+            "entry_text": "Es bewegt sich so schnell, dass es\nmanchmal unsichtbar zu sein\nscheint. Es liebt Baumsaft."
+        },
+        "italian": {
+            "name": "Ninjask",
+            "category": "Pokémon Ninja",
+            "entry_text": "Si muove così in fretta da risultare\nquasi invisibile. Lo si vede in gruppo\nattorno agli alberi ricchi di linfa."
+        },
+        "spanish": {
+            "name": "Ninjask",
+            "category": "Pokémon Ninja",
+            "entry_text": "Se mueve tan rápido que a veces\nresulta invisible. Le atrae la savia\nde los árboles."
+        },
+        "japanese": {
+            "name": "テッカニン",
+            "category": "しのびポケモン",
+            "entry_text": "あまりに　こうそくで　うごくため\nすがたが　みえなくなる　ことがある。\nじゅえきに　あつまってくる。"
+        }
     }
 }

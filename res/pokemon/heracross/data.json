@@ -126,7 +126,35 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "It loves sweet honey. To keep all\nthe honey to itself, it hurls rivals\naway with its prized horn.",
-        "category": "Single Horn Pokémon"
+        "english": {
+            "category": "Single Horn Pokémon",
+            "entry_text": "It loves sweet honey. To keep all\nthe honey to itself, it hurls rivals\naway with its prized horn.",
+            "entry_text_diamond": "It gathers in forests to search\nfor tree sap, its favorite food.\nIt’s strong enough to hurl foes."
+        },
+        "french": {
+            "name": "SCARHINO",
+            "category": "Pokémon Unicorne",
+            "entry_text": "Il arpente la forêt en quête de\nsève, son mets favori. Il est assez\nfort pour projeter l’ennemi."
+        },
+        "german": {
+            "name": "SKARABORN",
+            "category": "Einzelhorn",
+            "entry_text": "Auf der Suche nach Baumsaft durch-\nstreift es die Wälder. Es ist stark\ngenug, um Gegner wegzuschleudern."
+        },
+        "italian": {
+            "name": "Heracross",
+            "category": "Pokémon Monocorno",
+            "entry_text": "Si aggira nelle foreste in cerca di\nlinfa, di cui è ghiotto. È tanto\nforte da scagliare lontano i nemici."
+        },
+        "spanish": {
+            "name": "Heracross",
+            "category": "Pokémon Unicornio",
+            "entry_text": "Forman grupos en los bosques para\nbuscar savia de árboles, su comida\nfavorita. Puede voltear a su presa."
+        },
+        "japanese": {
+            "name": "ヘラクロス",
+            "category": "１ぽんヅノポケモン",
+            "entry_text": "こうぶつの　じゅえきを　もとめて\nもりに　あつまる。たくましい　ツノで\nあいてを　ぶんなげる　ちからもち。"
+        }
     }
 }

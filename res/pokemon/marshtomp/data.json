@@ -135,7 +135,35 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "Its sturdy legs give it sure\nfooting, even in mud. It\nburrows into dirt to sleep.",
-        "category": "Mud Fish Pokémon"
+        "english": {
+            "category": "Mud Fish Pokémon",
+            "entry_text": "Its sturdy legs give it sure\nfooting, even in mud. It\nburrows into dirt to sleep.",
+            "entry_text_diamond": "Its sturdy legs give it sure\nfooting, even in mud. It\nburrows into dirt to sleep."
+        },
+        "french": {
+            "name": "FLOBIO",
+            "category": "Pokémon Poissonboue",
+            "entry_text": "Ses jambes robustes lui donnent\nun bon appui, même dans la boue.\nIl dort enfoui dans la saleté."
+        },
+        "german": {
+            "name": "MOORABBEL",
+            "category": "Lehmhüpfer",
+            "entry_text": "Seine kräftigen Beine geben ihm\nsicheren Halt. Es gräbt sich in\nDreck ein, wenn es schlafen will."
+        },
+        "italian": {
+            "name": "Marshtomp",
+            "category": "Pokémon Fango Pesce",
+            "entry_text": "Grazie alle zampe vigorose, si muove\ncon disinvoltura anche nel fango.\nDorme immerso nella melma."
+        },
+        "spanish": {
+            "name": "Marshtomp",
+            "category": "Pokémon Pez Lodo",
+            "entry_text": "Sus piernas robustas impiden que\npierda el equilibrio y caiga, incluso\nen el barro. Duerme bajo la arena."
+        },
+        "japanese": {
+            "name": "ヌマクロ－",
+            "category": "ぬまうおポケモン",
+            "entry_text": "ぬかるんだ　あしばでも　しっかり\nあるける　じょうぶな　あしこし。\nどろに　からだを　うめて　ねむる。"
+        }
     }
 }

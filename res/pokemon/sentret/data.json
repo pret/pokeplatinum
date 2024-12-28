@@ -141,7 +141,35 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "It has a very nervous nature.\nIt stands up high on its tail so it\ncan scan wide areas.",
-        "category": "Scout Pokémon"
+        "english": {
+            "category": "Scout Pokémon",
+            "entry_text": "It has a very nervous nature.\nIt stands up high on its tail so it\ncan scan wide areas.",
+            "entry_text_diamond": "It has a very nervous nature.\nIt stands up high on its tail so it\ncan scan wide areas."
+        },
+        "french": {
+            "name": "FOUINETTE",
+            "category": "Pokémon Espion",
+            "entry_text": "Ce Pokémon très nerveux\nprend appui sur sa queue pour\nobserver ses alentours."
+        },
+        "german": {
+            "name": "WIESOR",
+            "category": "Späher",
+            "entry_text": "Ein sehr nervöses PKMN. Es steht\nauf seinem Schweif und betrachtet\nseine Umgebung ganz genau."
+        },
+        "italian": {
+            "name": "Sentret",
+            "category": "Pokémon Esplorante",
+            "entry_text": "Ha un’indole alquanto nervosa. Sta\nritto sulla punta della coda per\nriuscire a sorvegliare ampie aree."
+        },
+        "spanish": {
+            "name": "Sentret",
+            "category": "Pokémon Explorador",
+            "entry_text": "Es de naturaleza nerviosa. Se alza\nsobre su cola para otear grandes\nextensiones."
+        },
+        "japanese": {
+            "name": "オタチ",
+            "category": "みはりポケモン",
+            "entry_text": "とても　しんけいしつな　せいかく。\nとおくまで　みわたせるように\nしっぽを　つかって　せのびをする。"
+        }
     }
 }

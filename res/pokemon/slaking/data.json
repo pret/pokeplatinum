@@ -139,7 +139,35 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "The world’s laziest Pokémon. When\nit is lounging, it is actually saving\nenergy for striking back.",
-        "category": "Lazy Pokémon"
+        "english": {
+            "category": "Lazy Pokémon",
+            "entry_text": "The world’s laziest Pokémon. When\nit is lounging, it is actually saving\nenergy for striking back.",
+            "entry_text_diamond": "The world’s laziest Pokémon. When\nit is lounging, it is actually saving\nenergy for striking back."
+        },
+        "french": {
+            "name": "MONAFLEMIT",
+            "category": "Pokémon Fainéant",
+            "entry_text": "Le Pokémon le plus fainéant du\nmonde. Il s’allonge pour économiser\nses forces et contre-attaquer."
+        },
+        "german": {
+            "name": "LETARKING",
+            "category": "Müßig",
+            "entry_text": "Das faulste PKMN der Welt. Wenn es\nfaulenzt, sammelt es in Wahrheit\nEnergie, um zuzuschlagen."
+        },
+        "italian": {
+            "name": "Slaking",
+            "category": "Pokémon Pigrizia",
+            "entry_text": "Il Pokémon più pigro in assoluto.\nStando disteso, in realtà cerca di\nrisparmiare forze per attaccare."
+        },
+        "spanish": {
+            "name": "Slaking",
+            "category": "Pokémon Holgazán",
+            "entry_text": "El Pokémon más perezoso del\nmundo. Si está tumbado, es que\nreúne fuerzas para contraatacar."
+        },
+        "japanese": {
+            "name": "ケッキング",
+            "category": "ものぐさポケモン",
+            "entry_text": "せかいいち　ぐうたらな　ポケモン。\nねころがっているだけに　みえるが\nはんげきの　パワ－を　ためている。"
+        }
     }
 }

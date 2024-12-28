@@ -143,7 +143,35 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "When AZELF flew, people gained the\ndetermination to do things.\nIt was the birth of willpower.",
-        "category": "Willpower Pokémon"
+        "english": {
+            "category": "Willpower Pokémon",
+            "entry_text": "When AZELF flew, people gained the\ndetermination to do things.\nIt was the birth of willpower.",
+            "entry_text_diamond": "Known as “The Being of Willpower.”\nIt sleeps at the bottom of a lake\nto keep the world in balance."
+        },
+        "french": {
+            "name": "CREFADET",
+            "category": "Pokémon Volonté",
+            "entry_text": "On l’appelle “être de la volonté”.\nIl dort au fond d’un lac pour\nmaintenir l’équilibre du monde."
+        },
+        "german": {
+            "name": "TOBUTZ",
+            "category": "Willenskraft",
+            "entry_text": "“Das starke Wesen”.\nEs schläft auf dem Grund eines Sees\nund hält so die Welt in Balance."
+        },
+        "italian": {
+            "name": "Azelf",
+            "category": "Pokémon Volontà",
+            "entry_text": "Detto “Essere della volontà”.\nDorme sul fondo di un lago per\nmantenere il mondo in equilibrio."
+        },
+        "spanish": {
+            "name": "Azelf",
+            "category": "Pokémon Voluntad",
+            "entry_text": "Se le conoce como el “ser de la\nvoluntad”. Duerme en el fondo de\nun lago para equilibrar el mundo."
+        },
+        "japanese": {
+            "name": "アグノム",
+            "category": "いしポケモン",
+            "entry_text": "いしのかみ　と　よばれている。\nみずうみの　そこで　ねむりつづけ\nせかいの　バランスを　とっている。"
+        }
     }
 }

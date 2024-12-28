@@ -140,7 +140,35 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "Its cries sound like human speech.\nHowever, it is impossible to tell\nwhat it is trying to say.",
-        "category": "Human Shape Pokémon"
+        "english": {
+            "category": "Human Shape Pokémon",
+            "entry_text": "Its cries sound like human speech.\nHowever, it is impossible to tell\nwhat it is trying to say.",
+            "entry_text_diamond": "Its cries sound like human speech.\nHowever, it is impossible to tell\nwhat it is trying to say."
+        },
+        "french": {
+            "name": "LIPPOUTOU",
+            "category": "Pokémon Humanoïde",
+            "entry_text": "Son cri ressemble à des paroles\nhumaines. Mais nul n’est jamais\nparvenu à les comprendre. "
+        },
+        "german": {
+            "name": "ROSSANA",
+            "category": "Humanotyp",
+            "entry_text": "Sein Ruf klingt wie menschliche\nSprache. Trotzdem ist nicht zu\nverstehen, was es sagt."
+        },
+        "italian": {
+            "name": "Jynx",
+            "category": "Pokémon Umanoide",
+            "entry_text": "Le sue grida ricordano il linguaggio\numano, ma è impossibile capire\nil significato delle sue parole."
+        },
+        "spanish": {
+            "name": "Jynx",
+            "category": "Pokémon F. Humana",
+            "entry_text": "Sus gritos se parecen al lenguaje\nhumano, pero es imposible\nentender lo que dice."
+        },
+        "japanese": {
+            "name": "ル－ジュラ",
+            "category": "ひとがたポケモン",
+            "entry_text": "なきごえは　まるで　にんげんの\nことばのように　きこえるが\nいみは　まったく　りかいできない。"
+        }
     }
 }

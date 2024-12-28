@@ -141,7 +141,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It lets honey soak into its paws\nso it can lick them all the time.\nEvery set of paws tastes unique.",
-        "category": "Little Bear Pokémon"
+        "english": {
+            "category": "Little Bear Pokémon",
+            "entry_text": "It lets honey soak into its paws\nso it can lick them all the time.\nEvery set of paws tastes unique.",
+            "entry_text_diamond": "It lets honey soak into its paws\nso it can lick them all the time.\nEvery set of paws tastes unique."
+        },
+        "french": {
+            "name": "TEDDIURSA",
+            "category": "Pokémon Mini Ours",
+            "entry_text": "Il baigne ses griffes dans le miel \npour les lécher. Chaque paire\nde pattes a un goût unique."
+        },
+        "german": {
+            "name": "TEDDIURSA",
+            "category": "Kleinbär",
+            "entry_text": "Es lässt Honig in seine Pranken\neindringen, so dass es immer\nwelchen dabeihat."
+        },
+        "italian": {
+            "name": "Teddiursa",
+            "category": "Pokémon Orsetto",
+            "entry_text": "Si impregna le zampe di miele per\npoterle leccare in continuazione.\nOgni assaggio ha un sapore unico."
+        },
+        "spanish": {
+            "name": "Teddiursa",
+            "category": "Pokémon Osito",
+            "entry_text": "Deja que la miel se le pegue a las\ngarras para lamerla más tarde.\nCada una de ellas sabe diferente."
+        },
+        "japanese": {
+            "name": "ヒメグマ",
+            "category": "こぐまポケモン",
+            "entry_text": "あまい　ミツを　てのひらに\nしみこませて　いつも　なめている。\nヒメグマによって　あじが　ちがう。"
+        }
     }
 }

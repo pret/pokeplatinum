@@ -125,7 +125,35 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 3,
-        "entry_text": "It is said that when it roars, a\nvolcano erupts somewhere around\nthe globe.",
-        "category": "Volcano Pokémon"
+        "english": {
+            "category": "Volcano Pokémon",
+            "entry_text": "It is said that when it roars, a\nvolcano erupts somewhere around\nthe globe.",
+            "entry_text_diamond": "It is said that when it roars, a\nvolcano erupts somewhere around\nthe globe."
+        },
+        "french": {
+            "name": "ENTEI",
+            "category": "Pokémon Volcan",
+            "entry_text": "On raconte qu’à chaque fois qu’il\nrugit, un volcan entre en éruption\nquelque part."
+        },
+        "german": {
+            "name": "ENTEI",
+            "category": "Vulkan",
+            "entry_text": "Man sagt, wenn es brüllt, bricht\nirgendwo in der Welt ein Vulkan aus."
+        },
+        "italian": {
+            "name": "Entei",
+            "category": "Pokémon Vulcano",
+            "entry_text": "Si dice che quando emette il suo\nverso, da qualche parte nel mondo\nun vulcano stia eruttando."
+        },
+        "spanish": {
+            "name": "Entei",
+            "category": "Pokémon Volcán",
+            "entry_text": "Se dice que, cuando ruge, un\nvolcán entra en erupción en algún\npunto del globo."
+        },
+        "japanese": {
+            "name": "エンテイ",
+            "category": "かざんポケモン",
+            "entry_text": "エンテイが　ほえると\nせかいの　どこかの　かざんが\nふんかすると　いわれている。"
+        }
     }
 }

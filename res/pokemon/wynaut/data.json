@@ -83,7 +83,35 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It grows strong by pushing up\nagainst others en masse.\nIt loves eating sweet fruit.",
-        "category": "Bright Pokémon"
+        "english": {
+            "category": "Bright Pokémon",
+            "entry_text": "It grows strong by pushing up\nagainst others en masse.\nIt loves eating sweet fruit.",
+            "entry_text_diamond": "It grows strong by pushing up\nagainst others en masse.\nIt loves eating sweet fruit."
+        },
+        "french": {
+            "name": "OKEOKE",
+            "category": "Pokémon Ravi",
+            "entry_text": "Il se muscle en bousculant ses\nsemblables lors de mêlées. Il\nraffole des fruits sucrés."
+        },
+        "german": {
+            "name": "ISSO",
+            "category": "Strahlekind",
+            "entry_text": "Es wird stärker, indem es andere\nständig anrempelt. Es liebt\nSüßigkeiten."
+        },
+        "italian": {
+            "name": "Wynaut",
+            "category": "Pokémon Brillante",
+            "entry_text": "Questi Pokémon si allenano in\ngruppo caricandosi l’un l’altro per\nrafforzarsi. Amano i frutti dolci."
+        },
+        "spanish": {
+            "name": "Wynaut",
+            "category": "Pokémon Radiante",
+            "entry_text": "Se fortalecen empujándose unos\na otros en grupos. Les encantan\nlos dulces."
+        },
+        "japanese": {
+            "name": "ソ－ナノ",
+            "category": "ほがらかポケモン",
+            "entry_text": "なかまたちと　おしくらまんじゅうを\nやることで　がまんづよく　そだつ。\nあまい　くだものが　だいこうぶつ。"
+        }
     }
 }

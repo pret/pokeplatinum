@@ -120,7 +120,35 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "It cheers on friends with pom-poms\nmade of sparks. It drains power\nfrom telephone poles.",
-        "category": "Cheering Pokémon"
+        "english": {
+            "category": "Cheering Pokémon",
+            "entry_text": "It cheers on friends with pom-poms\nmade of sparks. It drains power\nfrom telephone poles.",
+            "entry_text_diamond": "It cheers on friends with pom-poms\nmade of sparks. It drains power\nfrom telephone poles."
+        },
+        "french": {
+            "name": "POSIPI",
+            "category": "Pokémon Acclameur",
+            "entry_text": "Il absorbe l’énergie des poteaux\nélectriques et encourage ses amis\navec des pompons d’étincelles. "
+        },
+        "german": {
+            "name": "PLUSLE",
+            "category": "Jubel",
+            "entry_text": "Es feuert Freunde mit Pompons an,\ndie aus Funken bestehen. Es holt\nsich Energie aus Telegrafenmasten."
+        },
+        "italian": {
+            "name": "Plusle",
+            "category": "Pokémon Incitamento",
+            "entry_text": "Incoraggia gli amici con un vivace\nscoppiettio di scintille. Assorbe\nelettricità dai pali telefonici."
+        },
+        "spanish": {
+            "name": "Plusle",
+            "category": "Pokémon Ánimo",
+            "entry_text": "Anima a sus compañeros con\npompones de chispas. Roba\nenergía de los postes telefónicos."
+        },
+        "japanese": {
+            "name": "プラスル",
+            "category": "おうえんポケモン",
+            "entry_text": "ひばなの　ボンボンを　つくって\nなかまを　おうえんする。\nでんちゅうから　でんきを　すいとる。"
+        }
     }
 }

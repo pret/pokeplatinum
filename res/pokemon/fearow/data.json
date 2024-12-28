@@ -118,7 +118,35 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "It has the stamina to fly all\nday on its broad wings. It\nfights by using its sharp beak.",
-        "category": "Beak Pokémon"
+        "english": {
+            "category": "Beak Pokémon",
+            "entry_text": "It has the stamina to fly all\nday on its broad wings. It\nfights by using its sharp beak.",
+            "entry_text_diamond": "It has the stamina to fly all\nday on its broad wings. It\nfights by using its sharp beak."
+        },
+        "french": {
+            "name": "RAPASDEPIC",
+            "category": "Pokémon Bec-Oiseau",
+            "entry_text": "Il a assez d’énergie pour voler \ntoute la journée avec ses grandes \nailes. Il frappe de son bec acéré."
+        },
+        "german": {
+            "name": "IBITAK",
+            "category": "Pickvogel",
+            "entry_text": "Es hat genügend Ausdauer, den\nganzen Tag zu fliegen. Sein\nscharfer Schnabel dient als Waffe."
+        },
+        "italian": {
+            "name": "Fearow",
+            "category": "Pokémon Becco",
+            "entry_text": "Le sue ampie ali robuste gli permet-\ntono di volare tutto il giorno.\nCombatte usando il becco aguzzo."
+        },
+        "spanish": {
+            "name": "Fearow",
+            "category": "Pokémon Pico",
+            "entry_text": "Tiene energía para volar todo el\ndía con sus grandes alas. Lucha\ncon su afilado pico."
+        },
+        "japanese": {
+            "name": "オニドリル",
+            "category": "くちばしポケモン",
+            "entry_text": "おおきな　つばさで　１にちじゅう\nとびまわる　たいりょくの　もちぬし。\nするどい　くちばしで　たたかう。"
+        }
     }
 }

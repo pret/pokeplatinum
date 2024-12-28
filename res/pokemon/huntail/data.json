@@ -115,7 +115,35 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "It lives deep in the sea. With a\ntail shaped like a small fish, it\nattracts unsuspecting prey.",
-        "category": "Deep Sea Pokémon"
+        "english": {
+            "category": "Deep Sea Pokémon",
+            "entry_text": "It lives deep in the sea. With a\ntail shaped like a small fish, it\nattracts unsuspecting prey.",
+            "entry_text_diamond": "It lives deep in the sea. With a\ntail shaped like a small fish, it\nattracts unsuspecting prey."
+        },
+        "french": {
+            "name": "SERPANG",
+            "category": "Pokémon Abysse",
+            "entry_text": "Il vit loin sous la mer. Il appâte\nles proies crédules avec sa\nqueue qui rappelle un petit poisson."
+        },
+        "german": {
+            "name": "AALABYSS",
+            "category": "Tiefsee",
+            "entry_text": "Es lebt tief im Meer. Sein Schweif\nist wie ein kleiner Fisch geformt.\nMit ihm lockt es Beute an."
+        },
+        "italian": {
+            "name": "Huntail",
+            "category": "Pokémon Abissi",
+            "entry_text": "Vive nei mari profondi. Con la coda\na forma di pesciolino attrae prede\nignare del pericolo."
+        },
+        "spanish": {
+            "name": "Huntail",
+            "category": "Pokémon Abisal",
+            "entry_text": "Vive en los fondos marinos. Atrae\na sus confiadas presas con\nla cola, que tiene forma de pez."
+        },
+        "japanese": {
+            "name": "ハンテ－ル",
+            "category": "しんかいポケモン",
+            "entry_text": "しんかいに　せいそくする　ポケモン。\nこざかなの　かたちをした　しっぽで\nえものを　おびきよせ　つかまえる。"
+        }
     }
 }

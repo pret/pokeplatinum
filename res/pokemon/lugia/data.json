@@ -151,7 +151,35 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 0,
-        "entry_text": "It sleeps in a deep-sea trench.\nIf it flaps its wings, it is said to\ncause a 40-day storm.",
-        "category": "Diving Pokémon"
+        "english": {
+            "category": "Diving Pokémon",
+            "entry_text": "It sleeps in a deep-sea trench.\nIf it flaps its wings, it is said to\ncause a 40-day storm.",
+            "entry_text_diamond": "It sleeps in a deep-sea trench.\nIf it flaps its wings, it is said to\ncause a 40-day storm."
+        },
+        "french": {
+            "name": "LUGIA",
+            "category": "Pokémon Plongeon",
+            "entry_text": "Il dort dans une faille des grands\nfonds. Ses battements d’ailes\ngénèrent une tempête de 40 jours."
+        },
+        "german": {
+            "name": "LUGIA",
+            "category": "Taucher",
+            "entry_text": "Es schläft in einem Tiefseegraben.\nSchwingt es seine Flügel, entsteht\nein Sturm, der 40 Tage dauert."
+        },
+        "italian": {
+            "name": "Lugia",
+            "category": "Pokémon Immersione",
+            "entry_text": "Dorme in una fossa negli abissi\nmarini. Con un battito d’ali provoca\nuna tempesta di 40 giorni."
+        },
+        "spanish": {
+            "name": "Lugia",
+            "category": "Pokémon Buceo",
+            "entry_text": "Duerme en una dorsal marina.\nSi bate sus alas puede causar\ntormentas de cuarenta días."
+        },
+        "japanese": {
+            "name": "ルギア",
+            "category": "せんすいポケモン",
+            "entry_text": "ふかい　かいこうの　そこで　ねむる。\nルギアが　はばたくと　４０にち\nあらしが　つづくと　いわれている。"
+        }
     }
 }

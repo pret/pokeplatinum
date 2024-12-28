@@ -123,7 +123,35 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "Its best attack involves flying\naround at high speed, striking with\npoison needles, then flying off.",
-        "category": "Poison Bee Pokémon"
+        "english": {
+            "category": "Poison Bee Pokémon",
+            "entry_text": "Its best attack involves flying\naround at high speed, striking with\npoison needles, then flying off.",
+            "entry_text_diamond": "Its best attack involves flying\naround at high speed, striking with\npoison needles, then flying off."
+        },
+        "french": {
+            "name": "DARDARGNAN",
+            "category": "Pokémon Guêpoison",
+            "entry_text": "Il virevolte rapidement autour de\nl’ennemi et frappe de son dard\nempoisonné avant de décamper."
+        },
+        "german": {
+            "name": "BIBOR",
+            "category": "Giftbiene",
+            "entry_text": "Sein bester Angriff: Schnell auf den\nGegner zufliegen, mit Giftstacheln\nzustechen und davonfliegen."
+        },
+        "italian": {
+            "name": "Beedrill",
+            "category": "Pokémon Velenape",
+            "entry_text": "Vola intorno al nemico ad alta\nvelocità, attacca con i pungiglioni\navvelenati e si allontana rapido."
+        },
+        "spanish": {
+            "name": "Beedrill",
+            "category": "Pokémon Abeja Ven.",
+            "entry_text": "Atacan volando alrededor del\nobjetivo y usando su aguijón\nvenenoso antes de huir."
+        },
+        "japanese": {
+            "name": "スピア－",
+            "category": "どくばちポケモン",
+            "entry_text": "こうそくで　とびまわり　どくバリで\nこうげきしたあと　すぐに　とびさる\nせんぽうが　とくいわざだ。"
+        }
     }
 }

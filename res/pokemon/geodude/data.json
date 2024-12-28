@@ -133,7 +133,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "At rest, it looks just like a rock.\nCarelessly stepping on it will make\nit swing its fists angrily.",
-        "category": "Rock Pokémon"
+        "english": {
+            "category": "Rock Pokémon",
+            "entry_text": "At rest, it looks just like a rock.\nCarelessly stepping on it will make\nit swing its fists angrily.",
+            "entry_text_diamond": "Many live on mountain trails\nand remain half buried while\nkeeping an eye on climbers."
+        },
+        "french": {
+            "name": "RACAILLOU",
+            "category": "Pokémon Roche",
+            "entry_text": "Nombre d’entre eux vivent sur des\nchemins montagneux où ils restent\nenfouis à épier les alpinistes."
+        },
+        "german": {
+            "name": "KLEINSTEIN",
+            "category": "Gestein",
+            "entry_text": "Viele von ihnen leben auf\nBergpfaden, halb vergraben\nund Bergsteiger beobachtend."
+        },
+        "italian": {
+            "name": "Geodude",
+            "category": "Pokémon Roccia",
+            "entry_text": "Molti vivono sui sentieri montani\ne se ne stanno mezzi infossati nel\nterreno ad osservare gli scalatori."
+        },
+        "spanish": {
+            "name": "Geodude",
+            "category": "Pokémon Roca",
+            "entry_text": "Muchos viven en zonas montañosas\ny permanecen semienterrados\nmientras miran a los escaladores."
+        },
+        "japanese": {
+            "name": "イシツブテ",
+            "category": "がんせきポケモン",
+            "entry_text": "やまみちに　おおく　せいそくする。\nからだの　はんぶんを　じめんに　うめ\nとざんしゃの　ようすを　みている。"
+        }
     }
 }

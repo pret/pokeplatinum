@@ -129,7 +129,35 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "It sprays a foul fluid from its\nrear. Its stench spreads over a\nmile radius, driving Pokémon away.",
-        "category": "Skunk Pokémon"
+        "english": {
+            "category": "Skunk Pokémon",
+            "entry_text": "It sprays a foul fluid from its\nrear. Its stench spreads over a\nmile radius, driving Pokémon away.",
+            "entry_text_diamond": "It protects itself by spraying a\nnoxious fluid from its rear. The\nstench lingers for 24 hours."
+        },
+        "french": {
+            "name": "MOUFOUETTE",
+            "category": "Pokémon Moufette",
+            "entry_text": "Il se protège en expulsant un \nfluide nocif par son derrière. \nLa puanteur dure 24 heures."
+        },
+        "german": {
+            "name": "SKUNKAPUH",
+            "category": "Stinktier",
+            "entry_text": "Um sich zu schützen, versprüht es\neine Substanz aus seinem\nHinterleib, die 24 Stunden stinkt."
+        },
+        "italian": {
+            "name": "Stunky",
+            "category": "Pokémon Moffetta",
+            "entry_text": "Si protegge spruzzando un\nfluido puzzolente dal posteriore.\nIl tanfo permane per 24 ore."
+        },
+        "spanish": {
+            "name": "Stunky",
+            "category": "Pokémon Mofeta",
+            "entry_text": "Se protege expulsando un fluido\nnocivo por su parte trasera.\nEl hedor dura 24 horas."
+        },
+        "japanese": {
+            "name": "スカンプ－",
+            "category": "スカンクポケモン",
+            "entry_text": "おしりから　きょうれつに　くさい\nえきたいを　とばして　みを　まもる。\nにおいは　２４じかん　きえない。"
+        }
     }
 }

@@ -133,7 +133,35 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It loves the crying of children. It\nstartles bad kids by passing\nthrough walls and making them cry.",
-        "category": "Requiem Pokémon"
+        "english": {
+            "category": "Requiem Pokémon",
+            "entry_text": "It loves the crying of children. It\nstartles bad kids by passing\nthrough walls and making them cry.",
+            "entry_text_diamond": "It doggedly pursues its prey\nwherever it goes. However, the\nchase is abandoned at sunrise."
+        },
+        "french": {
+            "name": "SKELENOX",
+            "category": "Pokémon Requiem",
+            "entry_text": "Il poursuit assidûment sa proie, où\nqu’elle aille. Il n’abandonne sa\ntraque qu’au lever du soleil."
+        },
+        "german": {
+            "name": "ZWIRRLICHT",
+            "category": "Requiem",
+            "entry_text": "Verbissen verfolgt es seine Beute\nüberallhin. Doch sobald die Sonne\naufgeht, ist die Jagd vorbei."
+        },
+        "italian": {
+            "name": "Duskull",
+            "category": "Pokémon Requiem",
+            "entry_text": "Segue ostinatamente la preda\novunque essa vada. Abbandona la\ncaccia solo all’alba."
+        },
+        "spanish": {
+            "name": "Duskull",
+            "category": "Pokémon Réquiem",
+            "entry_text": "Persigue a su presa como un perro\nallá donde vaya. No obstante,\nabandona la caza al amanecer."
+        },
+        "japanese": {
+            "name": "ヨマワル",
+            "category": "おむかえポケモン",
+            "entry_text": "どこまでも　えものを　おいつづける\nしゅうねんぶかい　せいかくだが\nあさひが　のぼると　あきらめる。"
+        }
     }
 }

@@ -146,7 +146,35 @@
         "pokemon_pos_f": 65518,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65518,
-        "entry_text": "It is said to have the ability to\ngrant any wish for just one week\nevery thousand years.",
-        "category": "Wish Pokémon"
+        "english": {
+            "category": "Wish Pokémon",
+            "entry_text": "It is said to have the ability to\ngrant any wish for just one week\nevery thousand years.",
+            "entry_text_diamond": "It is said to have the ability to\ngrant any wish for just one week\nevery thousand years."
+        },
+        "french": {
+            "name": "JIRACHI",
+            "category": "Pokémon Souhait",
+            "entry_text": "On raconte qu’une fois tous les\nmille ans, il a la capacité d’exaucer\ntous les vœux durant une semaine."
+        },
+        "german": {
+            "name": "JIRACHI",
+            "category": "Wünscher",
+            "entry_text": "Man sagt, es kann alle tausend\nJahre für eine Woche jeden Wunsch\nerfüllen."
+        },
+        "italian": {
+            "name": "Jirachi",
+            "category": "Pokémon Desiderio",
+            "entry_text": "Ha l’abilità di realizzare ogni\ndesiderio, ma soltanto per\nuna settimana ogni 1000 anni."
+        },
+        "spanish": {
+            "name": "Jirachi",
+            "category": "Pokémon Deseo",
+            "entry_text": "Se dice que puede otorgar\ncualquier deseo durante una\nsemana cada mil años."
+        },
+        "japanese": {
+            "name": "ジラ－チ",
+            "category": "ねがいごとポケモン",
+            "entry_text": "１０００ねんかんで　７にちだけ\nめを　さまし　どんな　ねがいごとでも\nかなえる　ちからを　つかうという。"
+        }
     }
 }

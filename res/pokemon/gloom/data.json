@@ -127,7 +127,35 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "The honey it drools from its mouth\nsmells so atrocious, it can curl\nnoses more than a mile away.",
-        "category": "Weed Pokémon"
+        "english": {
+            "category": "Weed Pokémon",
+            "entry_text": "The honey it drools from its mouth\nsmells so atrocious, it can curl\nnoses more than a mile away.",
+            "entry_text_diamond": "The honey it drools from its mouth\nsmells so atrocious, it can curl\nnoses more than a mile away."
+        },
+        "french": {
+            "name": "ORTIDE",
+            "category": "Pokémon Racine",
+            "entry_text": "L’odeur du nectar de sa bouche \nest si répugnante qu’elle agresse\nles narines à deux kilomètres."
+        },
+        "german": {
+            "name": "DUFLOR",
+            "category": "Unkraut",
+            "entry_text": "Der Honig, den es abgibt, riecht so\nentsetzlich, dass sich sogar Nasen\nin 2 km Entfernung rümpfen."
+        },
+        "italian": {
+            "name": "Gloom",
+            "category": "Pokémon Malerba",
+            "entry_text": "Il fluido che fuoriesce dalla sua\nbocca è così puzzolente che si\nsente anche a 2 km di distanza."
+        },
+        "spanish": {
+            "name": "Gloom",
+            "category": "Pokémon Hierbajo",
+            "entry_text": "La miel que emana de su boca\nposee un hedor capaz de derribar\nenemigos a 2 km de distancia."
+        },
+        "japanese": {
+            "name": "クサイハナ",
+            "category": "ざっそうポケモン",
+            "entry_text": "くちから　たれている　ミツは\n２キロ　はなれていても　はなが\nまがるほど　もうれつに　くさい。"
+        }
     }
 }

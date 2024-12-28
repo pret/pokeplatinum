@@ -114,7 +114,35 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "When it dangles from a tree\nbranch, it looks just like an acorn.\nIt enjoys scaring other Pokémon.",
-        "category": "Acorn Pokémon"
+        "english": {
+            "category": "Acorn Pokémon",
+            "entry_text": "When it dangles from a tree\nbranch, it looks just like an acorn.\nIt enjoys scaring other Pokémon.",
+            "entry_text_diamond": "When it dangles from a tree\nbranch, it looks just like an acorn.\nIt enjoys scaring other Pokémon."
+        },
+        "french": {
+            "name": "GRAINIPIOT",
+            "category": "Pokémon Gland",
+            "entry_text": "Il ressemble à un gland pendu\nà une branche. Il adore effrayer\nles autres Pokémon."
+        },
+        "german": {
+            "name": "SAMURZEL",
+            "category": "Eichelnuss",
+            "entry_text": "Es sieht aus wie eine Eichel, die am\nBaum hängt. Es liebt es, andere\nPKMN zu erschrecken."
+        },
+        "italian": {
+            "name": "Seedot",
+            "category": "Pokémon Ghianda",
+            "entry_text": "Quando si attacca a un ramo,\nsembra una vera ghianda. Si diverte\na spaventare gli altri Pokémon."
+        },
+        "spanish": {
+            "name": "Seedot",
+            "category": "Pokémon Bellota",
+            "entry_text": "Cuando cuelga de las ramas\nparece una bellota. Le encanta\nasustar a otros Pokémon."
+        },
+        "japanese": {
+            "name": "タネボ－",
+            "category": "どんぐりポケモン",
+            "entry_text": "えだに　ぶらさがっていると\nきのみに　そっくり。ついばもうとした\nポケモンを　おどろかせて　よろこぶ。"
+        }
     }
 }

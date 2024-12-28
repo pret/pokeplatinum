@@ -116,7 +116,35 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "The electric sacs in its cheeks are\nsmall. If even a little electricity\nleaks, it becomes shocked.",
-        "category": "Tiny Mouse Pokémon"
+        "english": {
+            "category": "Tiny Mouse Pokémon",
+            "entry_text": "The electric sacs in its cheeks are\nsmall. If even a little electricity\nleaks, it becomes shocked.",
+            "entry_text_diamond": "The electric pouches on its cheeks\nare still small. They cannot store\nmuch electricity yet."
+        },
+        "french": {
+            "name": "PICHU",
+            "category": "Pokémon Minisouris",
+            "entry_text": "Les poches sur ses joues sont\nencore trop petites pour\naccumuler beaucoup d’électricité."
+        },
+        "german": {
+            "name": "PICHU",
+            "category": "Babymaus",
+            "entry_text": "Seine Backentaschen sind noch\nrecht klein. Daher kann es nicht\nallzu viel Elektrizität speichern."
+        },
+        "italian": {
+            "name": "Pichu",
+            "category": "Pokémon Topino",
+            "entry_text": "Le sacche che ha sulle guance sono\nancora piccole e non riescono a\nimmagazzinare molta elettricità."
+        },
+        "spanish": {
+            "name": "Pichu",
+            "category": "Pokémon Ratoncito",
+            "entry_text": "Las bolsas de sus mejillas son aún\ndemasiado pequeñas para almacenar\nmucha electricidad."
+        },
+        "japanese": {
+            "name": "ピチュ－",
+            "category": "こねずみポケモン",
+            "entry_text": "ほっぺたの　でんきぶくろが\nまだ　ちいさいので\nでんきを　たくさん　ためられない。"
+        }
     }
 }

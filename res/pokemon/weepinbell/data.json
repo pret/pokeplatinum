@@ -124,7 +124,35 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "A Pokémon that appears to be a\nplant. It captures unwary prey by\ndousing them with a toxic powder.",
-        "category": "Flycatcher Pokémon"
+        "english": {
+            "category": "Flycatcher Pokémon",
+            "entry_text": "A Pokémon that appears to be a\nplant. It captures unwary prey by\ndousing them with a toxic powder.",
+            "entry_text_diamond": "A Pokémon that appears to be a\nplant. It captures unwary prey by\ndousing them with a toxic powder."
+        },
+        "french": {
+            "name": "BOUSTIFLOR",
+            "category": "Pokémon Carnivore",
+            "entry_text": "Un Pokémon végétal. Il capture les\nproies étourdies en les endormant\nà l’aide d’une poudre toxique."
+        },
+        "german": {
+            "name": "ULTRIGARIA",
+            "category": "Fliegentot",
+            "entry_text": "Ein Pokémon, das wie eine Pflanze\naussieht. Es fängt Beute, indem es\ngiftigen Puder darüber verteilt."
+        },
+        "italian": {
+            "name": "Weepinbell",
+            "category": "Pokémon Moschivoro",
+            "entry_text": "Questo Pokémon sembra una pianta.\nCattura le prede con una polvere\ntossica."
+        },
+        "spanish": {
+            "name": "Weepinbell",
+            "category": "Pokémon Matamoscas",
+            "entry_text": "Este Pokémon parece una planta.\nCaptura a sus presas usando polvo\ntóxico cuando están desprevenidas."
+        },
+        "japanese": {
+            "name": "ウツドン",
+            "category": "ハエとりポケモン",
+            "entry_text": "しょくぶつに　そっくりな　ポケモン。\nゆだんして　ちかよってきた　えものに\nどくのこなを　あびせて　つかまえる。"
+        }
     }
 }

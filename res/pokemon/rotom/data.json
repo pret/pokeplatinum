@@ -121,7 +121,35 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "Its electric-like body can enter\nsome kinds of machines and take\ncontrol in order to make mischief.",
-        "category": "Plasma Pokémon"
+        "english": {
+            "category": "Plasma Pokémon",
+            "entry_text": "Its electric-like body can enter\nsome kinds of machines and take\ncontrol in order to make mischief.",
+            "entry_text_diamond": "Its body is composed of plasma. It\nis known to infiltrate electronic\ndevices and wreak havoc."
+        },
+        "french": {
+            "name": "MOTISMA",
+            "category": "Pokémon Plasma",
+            "entry_text": "Son corps est fait de plasma. Il\ncause de gros dégâts en infiltrant\ndes appareils électroniques."
+        },
+        "german": {
+            "name": "ROTOM",
+            "category": "Plasma",
+            "entry_text": "Sein Körper besteht aus Plasma. Mit\nihm kann es in elektrische Geräte\neindringen und für Chaos sorgen."
+        },
+        "italian": {
+            "name": "Rotom",
+            "category": "Pokémon Plasma",
+            "entry_text": "Il suo corpo è composto di plasma.\nÈ solito infiltrarsi negli strumenti\nelettronici per provocare caos."
+        },
+        "spanish": {
+            "name": "Rotom",
+            "category": "Pokémon Plasma",
+            "entry_text": "Su cuerpo está hecho de plasma.\nPuede infiltrarse en dispositivos\nelectrónicos e inutilizarlos."
+        },
+        "japanese": {
+            "name": "ロトム",
+            "category": "プラズマポケモン",
+            "entry_text": "プラズマで　できた　からだを　もつ。\nでんかせいひんに　もぐりこみ\nわるさを　することで　しられている。"
+        }
     }
 }

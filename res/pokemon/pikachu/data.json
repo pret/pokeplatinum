@@ -130,7 +130,35 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "It occasionally uses an electric\nshock to recharge a fellow PIKACHU\nthat is in a weakened state.",
-        "category": "Mouse Pokémon"
+        "english": {
+            "category": "Mouse Pokémon",
+            "entry_text": "It occasionally uses an electric\nshock to recharge a fellow PIKACHU\nthat is in a weakened state.",
+            "entry_text_diamond": "It lives in forests with others.\nIt stores electricity in the\npouches on its cheeks."
+        },
+        "french": {
+            "name": "PIKACHU",
+            "category": "Pokémon Souris",
+            "entry_text": "Il vit en forêt avec ses pairs.\nIl accumule l’électricité dans\nles poches de ses joues."
+        },
+        "german": {
+            "name": "PIKACHU",
+            "category": "Maus",
+            "entry_text": "Es lebt zusammen mit anderen\nin Wäldern. In seinen Backen-\ntaschen speichert es Elektrizität."
+        },
+        "italian": {
+            "name": "Pikachu",
+            "category": "Pokémon Topo",
+            "entry_text": "Vive nelle foreste insieme agli\naltri. Immagazzina elettricità\nnelle sacche sulle guance."
+        },
+        "spanish": {
+            "name": "Pikachu",
+            "category": "Pokémon Ratón",
+            "entry_text": "Vive en grupo en los bosques.\nAlmacena electricidad en las\nbolsas de sus mejillas."
+        },
+        "japanese": {
+            "name": "ピカチュウ",
+            "category": "ねずみポケモン",
+            "entry_text": "もりの　なかで　なかまと　くらす。\nほっぺたの　りょうがわにある\nでんきぶくろに　でんきを　ためる。"
+        }
     }
 }

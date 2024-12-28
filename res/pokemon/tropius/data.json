@@ -129,7 +129,35 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 0,
-        "entry_text": "Delicious fruits grew out from\naround its neck because it always\nate the same kind of fruit.",
-        "category": "Fruit Pokémon"
+        "english": {
+            "category": "Fruit Pokémon",
+            "entry_text": "Delicious fruits grew out from\naround its neck because it always\nate the same kind of fruit.",
+            "entry_text_diamond": "Because it continually ate only\nits favorite fruit, the fruit\nstarted growing around its neck."
+        },
+        "french": {
+            "name": "TROPIUS",
+            "category": "Pokémon Fruit",
+            "entry_text": "A force de manger son fruit\npréféré, il a fini par pousser\nautour de son cou."
+        },
+        "german": {
+            "name": "TROPIUS",
+            "category": "Obst",
+            "entry_text": "Da es ausschließlich seine Lieb-\nlingsfrucht frisst, begann diese,\num seinen Hals herumzuwachsen."
+        },
+        "italian": {
+            "name": "Tropius",
+            "category": "Pokémon Frutto",
+            "entry_text": "Poiché mangiava sempre i suoi frutti\npreferiti, questi hanno cominciato\na crescergli attorno al collo."
+        },
+        "spanish": {
+            "name": "Tropius",
+            "category": "Pokémon Fruto",
+            "entry_text": "Como solo comía su fruta favorita,\nal final terminó creciéndole en su\npropio cuello."
+        },
+        "japanese": {
+            "name": "トロピウス",
+            "category": "フル－ツポケモン",
+            "entry_text": "だいこうぶつの　くだものばかり\nたべていたら　じぶんの　くびに\nくだものが　できるようになった。"
+        }
     }
 }

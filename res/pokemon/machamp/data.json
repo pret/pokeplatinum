@@ -129,7 +129,35 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "Its four muscled arms slam foes\nwith powerful punches and chops\nat blinding speed.",
-        "category": "Superpower Pokémon"
+        "english": {
+            "category": "Superpower Pokémon",
+            "entry_text": "Its four muscled arms slam foes\nwith powerful punches and chops\nat blinding speed.",
+            "entry_text_diamond": "It punches with its four arms at\nblinding speed. It can launch\n1,000 punches in two seconds."
+        },
+        "french": {
+            "name": "MACKOGNEUR",
+            "category": "Pokémon Colosse",
+            "entry_text": "Ses quatre bras frappent à une\nvitesse aveuglante. Il peut porter\n1 000 coups en deux secondes."
+        },
+        "german": {
+            "name": "MACHOMEI",
+            "category": "Kraftprotz",
+            "entry_text": "Mit seinen vier Armen schlägt es\nblitzschnell zu. Es kann in zwei\nSekunden 1 000-mal zuschlagen."
+        },
+        "italian": {
+            "name": "Machamp",
+            "category": "Pokémon Megaforza",
+            "entry_text": "Tira pugni con le quattro braccia\nad una velocità impressionante.\nScaglia 1000 pugni ogni 2 secondi."
+        },
+        "spanish": {
+            "name": "Machamp",
+            "category": "Pokémon Superpoder",
+            "entry_text": "Golpea con sus cuatro brazos a\ngran velocidad. Puede dar 1000\ngolpes en dos segundos."
+        },
+        "japanese": {
+            "name": "カイリキ－",
+            "category": "かいりきポケモン",
+            "entry_text": "４ほんの　うでを　めにもとまらぬ\nはやさで　うごかし　２びょうかんに\n１０００ぱつの　パンチを　くりだす。"
+        }
     }
 }

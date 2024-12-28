@@ -121,7 +121,35 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It looks just like a Poké Ball.\nIt is dangerous because it may\nelectrocute or explode on touch.",
-        "category": "Ball Pokémon"
+        "english": {
+            "category": "Ball Pokémon",
+            "entry_text": "It looks just like a Poké Ball.\nIt is dangerous because it may\nelectrocute or explode on touch.",
+            "entry_text_diamond": "It looks just like a Poké Ball.\nIt is dangerous because it may\nelectrocute or explode on touch."
+        },
+        "french": {
+            "name": "VOLTORBE",
+            "category": "Pokémon Balle",
+            "entry_text": "Il ressemble à une Poké Ball. Ce\nPokémon dangereux peut exploser\nou s’électrifier au toucher."
+        },
+        "german": {
+            "name": "VOLTOBAL",
+            "category": "Ball",
+            "entry_text": "Sieht aus wie ein Pokéball. Es ist\ngefährlich, da es bei Berührung\nexplodieren kann."
+        },
+        "italian": {
+            "name": "Voltorb",
+            "category": "Pokémon Ball",
+            "entry_text": "Sembra una Poké Ball. Toccandolo si\nrischia di prendere la scossa e di\nfarlo esplodere."
+        },
+        "spanish": {
+            "name": "Voltorb",
+            "category": "Pokémon Bola",
+            "entry_text": "Parece una Poké Ball. Es muy\npeligroso, ya que puede lanzar\ndescargas o explotar si se toca."
+        },
+        "japanese": {
+            "name": "ビリリダマ",
+            "category": "ボ－ルポケモン",
+            "entry_text": "モンスタ－ボ－ルに　そっくり。\nまちがって　さわると　かんでんしたり\nときには　ばくはつするので　きけん。"
+        }
     }
 }

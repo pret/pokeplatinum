@@ -124,7 +124,35 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "It chases down prey in a pack.\nIt will never disobey the commands\nof a skilled Trainer.",
-        "category": "Bite Pokémon"
+        "english": {
+            "category": "Bite Pokémon",
+            "entry_text": "It chases down prey in a pack.\nIt will never disobey the commands\nof a skilled Trainer.",
+            "entry_text_diamond": "It chases down prey in a pack.\nIt will never disobey the commands\nof a skilled Trainer."
+        },
+        "french": {
+            "name": "GRAHYENA",
+            "category": "Pokémon Morsure",
+            "entry_text": "Il traque ses proies en groupe.\nIl ne désobéira jamais aux\nordres d’un bon Dresseur."
+        },
+        "german": {
+            "name": "MAGNAYEN",
+            "category": "Biss",
+            "entry_text": "Es jagt seine Beute im Rudel. Den\nBefehlen eines erfahrenen Trainers\nwird es stets folgen."
+        },
+        "italian": {
+            "name": "Mightyena",
+            "category": "Pokémon Morso",
+            "entry_text": "Caccia le prede in branco. Non\ndisobbedisce mai agli ordini di\nun Allenatore abile."
+        },
+        "spanish": {
+            "name": "Mightyena",
+            "category": "Pokémon Mordisco",
+            "entry_text": "Ataca a sus presas en manada.\nNunca desobedece las órdenes\nde un entrenador avezado."
+        },
+        "japanese": {
+            "name": "グラエナ",
+            "category": "かみつきポケモン",
+            "entry_text": "むれで　えものを　おいつめる。\nすぐれた　トレ－ナ－の　めいれいには\nぜったいに　さからわない。"
+        }
     }
 }

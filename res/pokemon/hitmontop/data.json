@@ -122,7 +122,35 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "It fights while spinning like a top.\nThe centrifugal force boosts its\ndestructive power by ten.",
-        "category": "Handstand Pokémon"
+        "english": {
+            "category": "Handstand Pokémon",
+            "entry_text": "It fights while spinning like a top.\nThe centrifugal force boosts its\ndestructive power by ten.",
+            "entry_text_diamond": "It fights while spinning like a top.\nThe centrifugal force boosts its\ndestructive power by ten."
+        },
+        "french": {
+            "name": "KAPOERA",
+            "category": "Pokémon Poirier",
+            "entry_text": "Il combat en tournoyant comme une\ntoupie. La force centrifuge décuple\nsa puissance destructrice."
+        },
+        "german": {
+            "name": "KAPOERA",
+            "category": "Kopfstand",
+            "entry_text": "Es kämpft, während es sich wie ein\nKreisel dreht. Die Zentrifugalkraft\nerhöht die Kampfkraft um 10."
+        },
+        "italian": {
+            "name": "Hitmontop",
+            "category": "Pokémon Verticale",
+            "entry_text": "Combatte mentre gira come una\ntrottola. La forza centrifuga de-\ncuplica il suo potere distruttivo."
+        },
+        "spanish": {
+            "name": "Hitmontop",
+            "category": "Pokémon Boca Abajo",
+            "entry_text": "Gira a gran velocidad al luchar.\nLa fuerza centrífuga multiplica su\npoder de destrucción por diez."
+        },
+        "japanese": {
+            "name": "カポエラ－",
+            "category": "さかだちポケモン",
+            "entry_text": "コマのように　かいてんしながら\nたたかう。えんしんりょくの　パワ－で\nはかいりょくは　１０ばいだ。"
+        }
     }
 }

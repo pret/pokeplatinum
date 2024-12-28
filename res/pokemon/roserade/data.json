@@ -112,7 +112,35 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "Each of its hands contains\ndifferent toxins, but both hands\ncan jab with near-fatal power.",
-        "category": "Bouquet Pokémon"
+        "english": {
+            "category": "Bouquet Pokémon",
+            "entry_text": "Each of its hands contains\ndifferent toxins, but both hands\ncan jab with near-fatal power.",
+            "entry_text_diamond": "It attracts prey with a sweet\naroma, then downs it with\nthorny whips hidden in its arms."
+        },
+        "french": {
+            "name": "ROSERADE",
+            "category": "Pokémon Bouquet",
+            "entry_text": "Il attire ses proies avec son doux\nparfum et les achève grâce aux\nfouets d’épines de ses bras."
+        },
+        "german": {
+            "name": "ROSERADE",
+            "category": "Blumenstrauß",
+            "entry_text": "Mit einem süßen Duft lockt es Beute\nan, die es dann mit den dornigen\nRanken in seinen Armen schlägt."
+        },
+        "italian": {
+            "name": "Roserade",
+            "category": "Pokémon Floreale",
+            "entry_text": "Attira la preda con un dolce aroma,\npoi l’abbatte con le fruste spinose\ncelate fra i bouquet delle braccia."
+        },
+        "spanish": {
+            "name": "Roserade",
+            "category": "Pokémon Ramillete",
+            "entry_text": "Atrae a las presas con un dulce\naroma y las derrota con los\nlátigos espinosos de sus brazos."
+        },
+        "japanese": {
+            "name": "ロズレイド",
+            "category": "ブ－ケポケモン",
+            "entry_text": "あまい　かおりで　おびきよせて\nりょううでの　はなたばの　なかに\nある　トゲの　ムチで　しとめる。"
+        }
     }
 }

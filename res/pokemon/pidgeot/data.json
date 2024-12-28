@@ -121,7 +121,35 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "By flapping its wings with all its\nmight, PIDGEOT can make a gust of\nwind capable of bending tall trees.",
-        "category": "Bird Pokémon"
+        "english": {
+            "category": "Bird Pokémon",
+            "entry_text": "By flapping its wings with all its\nmight, PIDGEOT can make a gust of\nwind capable of bending tall trees.",
+            "entry_text_diamond": "By flapping its wings with all its\nmight, PIDGEOT can make a gust of\nwind capable of bending tall trees."
+        },
+        "french": {
+            "name": "ROUCARNAGE",
+            "category": "Pokémon Oiseau",
+            "entry_text": "En battant des ailes de toutes ses\nforces, ROUCARNAGE génère une\nrafale à en déraciner les arbres."
+        },
+        "german": {
+            "name": "TAUBOSS",
+            "category": "Vogel",
+            "entry_text": "Schlägt TAUBOSS mit ganzer Kraft\nseine Flügel, beugen sich selbst\ngroße Bäume durch den Windstoß."
+        },
+        "italian": {
+            "name": "Pidgeot",
+            "category": "Pokémon Uccello",
+            "entry_text": "Sbattendo le ali a più non posso,\nPIDGEOT crea un vento tanto\nforte da piegare alberi possenti."
+        },
+        "spanish": {
+            "name": "Pidgeot",
+            "category": "Pokémon Pájaro",
+            "entry_text": "Aleteando con toda su fuerza,\nPIDGEOT crea corrientes de aire\ncapaces de doblar grandes árboles."
+        },
+        "japanese": {
+            "name": "ピジョット",
+            "category": "とりポケモン",
+            "entry_text": "ピジョットが　ちからいっぱい\nはばたくと　たいぼくも　しなるほどの\nきょうふうを　まきおこす。"
+        }
     }
 }

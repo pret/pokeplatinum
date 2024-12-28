@@ -131,7 +131,35 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 7,
-        "entry_text": "It loves crossing the sea with\npeople and Pokémon on its back.\nIt understands human speech.",
-        "category": "Transport Pokémon"
+        "english": {
+            "category": "Transport Pokémon",
+            "entry_text": "It loves crossing the sea with\npeople and Pokémon on its back.\nIt understands human speech.",
+            "entry_text_diamond": "It loves crossing the sea with\npeople and Pokémon on its back.\nIt understands human speech."
+        },
+        "french": {
+            "name": "LOKHLASS",
+            "category": "Pokémon Transport",
+            "entry_text": "Il aime naviguer en portant des\nhumains et des Pokémon sur son\ndos. Il comprend le langage humain."
+        },
+        "german": {
+            "name": "LAPRAS",
+            "category": "Transport",
+            "entry_text": "Es liebt es, das Meer mit PKMN und\nMenschen auf dem Rücken zu über-\nqueren. Es versteht die Menschen."
+        },
+        "italian": {
+            "name": "Lapras",
+            "category": "Pokémon Trasporto",
+            "entry_text": "Ama attraversare il mare con\npersone e Pokémon sul suo dorso.\nCapisce il linguaggio umano."
+        },
+        "spanish": {
+            "name": "Lapras",
+            "category": "Pokémon Transporte",
+            "entry_text": "Le encanta surcar los mares con\ngente y Pokémon en su lomo.\nEntiende el lenguaje humano."
+        },
+        "japanese": {
+            "name": "ラプラス",
+            "category": "のりものポケモン",
+            "entry_text": "ひとや　ポケモンを　せなかに　のせて\nうみを　わたることが　だいすき。\nひとの　ことばを　りかいできる。"
+        }
     }
 }

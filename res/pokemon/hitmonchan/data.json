@@ -129,7 +129,35 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "The arm-twisting punches it throws\npulverize even concrete. It rests\nafter three minutes of fighting.",
-        "category": "Punching Pokémon"
+        "english": {
+            "category": "Punching Pokémon",
+            "entry_text": "The arm-twisting punches it throws\npulverize even concrete. It rests\nafter three minutes of fighting.",
+            "entry_text_diamond": "The arm-twisting punches it throws\npulverize even concrete. It rests\nafter three minutes of fighting."
+        },
+        "french": {
+            "name": "TYGNON",
+            "category": "Pokémon Puncheur",
+            "entry_text": "Même le béton cède sous ses \npoings dévastateurs. Au combat, il\ns’essouffle au bout de 3 minutes."
+        },
+        "german": {
+            "name": "NOCKCHAN",
+            "category": "Puncher",
+            "entry_text": "Die Schläge, die es austeilt, können\nBeton pulverisieren. Es muss sich\nim Kampf alle 3 Minuten ausruhen."
+        },
+        "italian": {
+            "name": "Hitmonchan",
+            "category": "Pokémon Tirapugni",
+            "entry_text": "Sferra pugni così potenti da polve-\nrizzare persino il cemento. Si ripo-\nsa dopo tre minuti di lotta."
+        },
+        "spanish": {
+            "name": "Hitmonchan",
+            "category": "Pokémon Puñetazo",
+            "entry_text": "Los potentes golpes de sus brazos\npueden pulverizar el hormigón.\nDescansa tras luchar tres minutos."
+        },
+        "japanese": {
+            "name": "エビワラ－",
+            "category": "パンチポケモン",
+            "entry_text": "うでを　ねじりながら　くりだす\nパンチは　コンクリ－トも　ふんさい。\n３ぷん　たたかうと　ひとやすみする。"
+        }
     }
 }

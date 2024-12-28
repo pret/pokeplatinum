@@ -117,7 +117,35 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "It spouts poison spores from the\ntop of its head. These spores\ncause pain all over if inhaled.",
-        "category": "Mushroom Pokémon"
+        "english": {
+            "category": "Mushroom Pokémon",
+            "entry_text": "It spouts poison spores from the\ntop of its head. These spores\ncause pain all over if inhaled.",
+            "entry_text_diamond": "It spouts poison spores from the\ntop of its head. These spores\ncause pain all over if inhaled."
+        },
+        "french": {
+            "name": "BALIGNON",
+            "category": "Pokémon Champignon",
+            "entry_text": "Le sommet de sa tête libère des\nspores empoisonnées. Il est\ndangereux de les inhaler."
+        },
+        "german": {
+            "name": "KNILZ",
+            "category": "Pilz",
+            "entry_text": "Es setzt an seinem Kopf Giftsporen\nfrei. Werden diese eingeatmet,\nverursachen sie Schmerzen."
+        },
+        "italian": {
+            "name": "Shroomish",
+            "category": "Pokémon Fungo",
+            "entry_text": "Sparge spore tossiche dalla sommità\ndel capo. Se inalate, queste spore\nprovocano dolore in tutto il corpo."
+        },
+        "spanish": {
+            "name": "Shroomish",
+            "category": "Pokémon Hongo",
+            "entry_text": "Lanza esporas venenosas desde\nla parte superior de la cabeza.\nInhalarlas es muy doloroso."
+        },
+        "japanese": {
+            "name": "キノココ",
+            "category": "きのこポケモン",
+            "entry_text": "あたまの　てっぺんから　どくほうしを\nふきだす。ほうしを　すいこむと\nからだの　ふしぶしが　いたくなる。"
+        }
     }
 }

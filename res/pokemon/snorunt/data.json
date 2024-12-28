@@ -123,7 +123,35 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It is said that several SNORUNT\ngather under giant leaves and\nlive together in harmony.",
-        "category": "Snow Hat Pokémon"
+        "english": {
+            "category": "Snow Hat Pokémon",
+            "entry_text": "It is said that several SNORUNT\ngather under giant leaves and\nlive together in harmony.",
+            "entry_text_diamond": "In the snow country, certain\nfolklore says a house will\nprosper if a SNORUNT lives there."
+        },
+        "french": {
+            "name": "STALGAMIN",
+            "category": "Pokémon Capuche",
+            "entry_text": "Selon un vieux dicton des régions\nenneigées: “STALGAMIN dans la \nmaison, richesse à l’horizon”."
+        },
+        "german": {
+            "name": "SCHNEPPKE",
+            "category": "Schneehut",
+            "entry_text": "Im Land des Schnees sagt eine\nLegende, dass in ein Haus Wohl-\nstand einzieht, wenn es darin lebt."
+        },
+        "italian": {
+            "name": "Snorunt",
+            "category": "Pokémon Cappelneve",
+            "entry_text": "Secondo alcune leggende delle\nregioni fredde, uno SNORUNT porta\nprosperità alla casa in cui vive."
+        },
+        "spanish": {
+            "name": "Snorunt",
+            "category": "Pokémon Gorro Nieve",
+            "entry_text": "En las zonas nevadas, las leyendas\ndicen que si un SNORUNT vive en una\ncasa, trae prosperidad."
+        },
+        "japanese": {
+            "name": "ユキワラシ",
+            "category": "ゆきかさポケモン",
+            "entry_text": "ユキワラシの　すみついた　いえは\nおかねもちになるという　いいつたえが\nゆきぐにには　のこっている。"
+        }
     }
 }

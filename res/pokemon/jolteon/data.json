@@ -123,7 +123,35 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "If agitated, it uses electricity to\nstraighten out its fur and launch\nit in small bunches.",
-        "category": "Lightning Pokémon"
+        "english": {
+            "category": "Lightning Pokémon",
+            "entry_text": "If agitated, it uses electricity to\nstraighten out its fur and launch\nit in small bunches.",
+            "entry_text_diamond": "It controls 10,000-volt power\nand can raise all the fur on its\nbody as if it were sharp needles."
+        },
+        "french": {
+            "name": "VOLTALI",
+            "category": "Pokémon Orage",
+            "entry_text": "Il contrôle une puissance de 10 000\nvolts. Il peut hérisser sa fourrure\ncomme s’il s’agissait de piquants."
+        },
+        "german": {
+            "name": "BLITZA",
+            "category": "Blitz",
+            "entry_text": "Es kontrolliert 10 000 Volt. Es\nkann sein Fell so aufstellen, dass\nes wie scharfe Nadeln wirkt."
+        },
+        "italian": {
+            "name": "Jolteon",
+            "category": "Pokémon Luminoso",
+            "entry_text": "Scarica elettricità a 10000 volt e\nrizza tutti i peli come se fossero\naghi pungenti."
+        },
+        "spanish": {
+            "name": "Jolteon",
+            "category": "Pokémon Relámpago",
+            "entry_text": "Lanza rayos de 10000 voltios.\nEs capaz de convertir su pelaje\nen púas afiladísimas."
+        },
+        "japanese": {
+            "name": "サンダ－ス",
+            "category": "かみなりポケモン",
+            "entry_text": "１まんボルトの　でんきを　あやつる。\nぜんしんの　たいもうが　さかだつと\nハリのように　するどく　とがる。"
+        }
     }
 }

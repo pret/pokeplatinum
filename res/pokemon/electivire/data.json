@@ -137,7 +137,35 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 13,
         "pokemon_pos_m": 7,
-        "entry_text": "Heedless of enemy attacks, it\ncloses in, shoves its tails onto the\nfoe, then looses high voltage.",
-        "category": "Thunderbolt Pokémon"
+        "english": {
+            "category": "Thunderbolt Pokémon",
+            "entry_text": "Heedless of enemy attacks, it\ncloses in, shoves its tails onto the\nfoe, then looses high voltage.",
+            "entry_text_diamond": "It pushes the tips of its two tails\nagainst the foe, then lets loose\nwith over 20,000 volts of power."
+        },
+        "french": {
+            "name": "ELEKABLE",
+            "category": "Pokémon Foudrélec",
+            "entry_text": "Il place le bout de ses deux \nqueues sur son ennemi et libère\nune décharge de 20 000 volts."
+        },
+        "german": {
+            "name": "ELEVOLTEK",
+            "category": "Donnerkeil",
+            "entry_text": "Es berührt den Gegner mit seinen\nbeiden Schweifspitzen und entlädt\ndann über 20 000 Volt."
+        },
+        "italian": {
+            "name": "Electivire",
+            "category": "Pokémon Saetta",
+            "entry_text": "Tocca il nemico con le sue due\ncode e rilascia una scarica\nelettrica di oltre 20000 volt."
+        },
+        "spanish": {
+            "name": "Electivire",
+            "category": "Pokémon Rayo",
+            "entry_text": "Toca a su enemigo con las puntas\nde sus dos colas y le suelta una\ndescarga de más de 20000 voltios."
+        },
+        "japanese": {
+            "name": "エレキブル",
+            "category": "らいでんポケモン",
+            "entry_text": "２ほんの　しっぽの　さきを　あいてに\nおしあてて　２まんボルトいじょうの\nでんりゅうを　ながして　こうげき。"
+        }
     }
 }

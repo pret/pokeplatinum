@@ -125,7 +125,35 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "It loves the honey of flowers and\ncan locate flower patches that\nhave even tiny amounts of pollen.",
-        "category": "Butterfly Pokémon"
+        "english": {
+            "category": "Butterfly Pokémon",
+            "entry_text": "It loves the honey of flowers and\ncan locate flower patches that\nhave even tiny amounts of pollen.",
+            "entry_text_diamond": "It loves the honey of flowers and\ncan locate flower patches that\nhave even tiny amounts of pollen."
+        },
+        "french": {
+            "name": "PAPILUSION",
+            "category": "Pokémon Papillon",
+            "entry_text": "Il raffole du nectar des fleurs. Il\nest capable de repérer la plus\npetite quantité de pollen."
+        },
+        "german": {
+            "name": "SMETTBO",
+            "category": "Falter",
+            "entry_text": "Es liebt Blütenhonig. Es findet\nselbst Blumen, die sehr wenig\nPollen haben."
+        },
+        "italian": {
+            "name": "Butterfree",
+            "category": "Pokémon Farfalla",
+            "entry_text": "Adora il nettare dei fiori e riesce a\nlocalizzare i campi in cui si trova\nanche una minima quantità di polline."
+        },
+        "spanish": {
+            "name": "Butterfree",
+            "category": "Pokémon Mariposa",
+            "entry_text": "Adora el néctar de las flores.\nPuede localizar hasta las más\npequeñas cantidades de polen."
+        },
+        "japanese": {
+            "name": "バタフリ－",
+            "category": "ちょうちょポケモン",
+            "entry_text": "はなの　ミツが　だいこうぶつ。\nわずかな　かふんで　はなばたけの\nばしょを　さがしだすことが　できる。"
+        }
     }
 }

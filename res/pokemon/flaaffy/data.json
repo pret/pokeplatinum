@@ -125,7 +125,35 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "If its coat becomes fully charged\nwith electricity, its tail lights up.\nIt fires hair that zaps on impact.",
-        "category": "Wool Pokémon"
+        "english": {
+            "category": "Wool Pokémon",
+            "entry_text": "If its coat becomes fully charged\nwith electricity, its tail lights up.\nIt fires hair that zaps on impact.",
+            "entry_text_diamond": "If its coat becomes fully charged\nwith electricity, its tail lights up.\nIt fires hair that zaps on impact."
+        },
+        "french": {
+            "name": "LAINERGIE",
+            "category": "Pokémon Laine",
+            "entry_text": "Sa queue s’allume lorsque sa\nlaine se charge d’électricité.\nIl projette des poils électrifiés."
+        },
+        "german": {
+            "name": "WAATY",
+            "category": "Wolle",
+            "entry_text": "Hat es sich mit Elektrizität aufge-\nladen, leuchtet sein Schweif und es\nfeuert Haare ab, die sich entladen."
+        },
+        "italian": {
+            "name": "Flaaffy",
+            "category": "Pokémon Lana",
+            "entry_text": "Se il suo manto è del tutto carico\nd’elettricità, la coda s’illumina.\nLancia peli che danno la scossa."
+        },
+        "spanish": {
+            "name": "Flaaffy",
+            "category": "Pokémon Lana",
+            "entry_text": "Cuando su pelaje se carga de\nelectricidad, su cola se enciende.\nLanza pelo que explota al impacto."
+        },
+        "japanese": {
+            "name": "モココ",
+            "category": "わたげポケモン",
+            "entry_text": "たいもうに　ためた　でんきが\nまんたんになると　しっぽが　ひかる。\nふれると　しびれる　けを　とばす。"
+        }
     }
 }

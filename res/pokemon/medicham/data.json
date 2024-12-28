@@ -142,7 +142,35 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "It gains the ability to see the aura\nof its opponents by honing its mind\nthrough starvation.",
-        "category": "Meditate Pokémon"
+        "english": {
+            "category": "Meditate Pokémon",
+            "entry_text": "It gains the ability to see the aura\nof its opponents by honing its mind\nthrough starvation.",
+            "entry_text_diamond": "Through yoga training, it has\nhoned its sixth sense. Its\nmovements are elegant."
+        },
+        "french": {
+            "name": "CHARMINA",
+            "category": "Pokémon Méditation",
+            "entry_text": "Il a développé son sixième sens\ngrâce au yoga. Ses mouvements\nsont gracieux."
+        },
+        "german": {
+            "name": "MEDITALIS",
+            "category": "Meditation",
+            "entry_text": "Mit Yoga-Training hat es seinen\n6. Sinn geschärft. Seine\nBewegungen sind sehr elegant."
+        },
+        "italian": {
+            "name": "Medicham",
+            "category": "Pokémon Meditazione",
+            "entry_text": "Con gli esercizi di yoga ha affinato\nil sesto senso. I suoi movimenti\nsono molto eleganti."
+        },
+        "spanish": {
+            "name": "Medicham",
+            "category": "Pokémon Meditador",
+            "entry_text": "El yoga ha perfeccionado su\nsexto sentido. Sus movimientos\nson extremadamente elegantes."
+        },
+        "japanese": {
+            "name": "チャ－レム",
+            "category": "めいそうポケモン",
+            "entry_text": "ヨガの　しゅぎょうによって\nだい６かんが　はったつした。\nゆうがに　おどるような　みのこなし。"
+        }
     }
 }

@@ -126,7 +126,35 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "It has a violent disposition and\nstabs foes with its horn, which\noozes poison upon impact.",
-        "category": "Poison Pin Pokémon"
+        "english": {
+            "category": "Poison Pin Pokémon",
+            "entry_text": "It has a violent disposition and\nstabs foes with its horn, which\noozes poison upon impact.",
+            "entry_text_diamond": "It has a violent disposition and\nstabs foes with its horn, which\noozes poison upon impact."
+        },
+        "french": {
+            "name": "NIDORINO",
+            "category": "Pokémon Venepic",
+            "entry_text": "D’un tempérament violent, il\nempale l’ennemi sur sa corne qui\ndistille un poison puissant."
+        },
+        "german": {
+            "name": "NIDORINO",
+            "category": "Giftdorn",
+            "entry_text": "Es ist aggressiv und greift seine\nGegner mit dem Horn an, welches\nbei Berührung Gift absondert."
+        },
+        "italian": {
+            "name": "Nidorino",
+            "category": "Pokémon Velenago",
+            "entry_text": "Ha un temperamento violento e\ninfilza i nemici con il corno, che,\nall’impatto, rilascia veleno."
+        },
+        "spanish": {
+            "name": "Nidorino",
+            "category": "Pokémon Pin Veneno",
+            "entry_text": "Se muestra violento y ataca\na los enemigos con un cuerno\nque desprende veneno."
+        },
+        "japanese": {
+            "name": "ニドリ－ノ",
+            "category": "どくばりポケモン",
+            "entry_text": "きしょうが　あらい　ポケモン。\nあいてに　つきさした　しょうげきで\nツノから　もうどくが　にじみでる。"
+        }
     }
 }

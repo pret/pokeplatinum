@@ -140,7 +140,35 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "At dusk, swarms of them are\ncarried aloft on winds. When\nnoticed, they suddenly vanish.",
-        "category": "Blimp Pokémon"
+        "english": {
+            "category": "Blimp Pokémon",
+            "entry_text": "At dusk, swarms of them are\ncarried aloft on winds. When\nnoticed, they suddenly vanish.",
+            "entry_text_diamond": "It’s drowzy in daytime, but flies\noff in the evening in big groups.\nNo one knows where they go."
+        },
+        "french": {
+            "name": "GRODRIVE",
+            "category": "Pokémon Ballon",
+            "entry_text": "Il somnole la journée et s’envole\nen grands groupes le soir venu. Nul\nne sait où ils vont."
+        },
+        "german": {
+            "name": "DRIFZEPELI",
+            "category": "Luftschiff",
+            "entry_text": "Tagsüber treibt es faul vor sich\nhin, nachts fliegt es mit anderen\numher. Niemand weiß wohin."
+        },
+        "italian": {
+            "name": "Drifblim",
+            "category": "Pokémon Dirigibile",
+            "entry_text": "Di giorno fluttua con aria\nsonnolenta, ma di notte vola via\nin gruppo. Nessuno sa dove vada."
+        },
+        "spanish": {
+            "name": "Drifblim",
+            "category": "Pokémon Dirigible",
+            "entry_text": "Durante el día está somnoliento,\npero por la noche sale volando en\ngrupo, aunque nadie sabe adónde."
+        },
+        "japanese": {
+            "name": "フワライド",
+            "category": "ききゅうポケモン",
+            "entry_text": "ひるまは　ねぼけて　うかんでいるが\nゆうがた　たいぐんで　とんでいく。\nいきさきは　だれも　しらない。"
+        }
     }
 }

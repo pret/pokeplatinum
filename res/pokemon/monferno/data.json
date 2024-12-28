@@ -144,7 +144,35 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It skillfully controls the intensity\nof the fire on its tail to keep its\nfoes at an ideal distance.",
-        "category": "Playful Pokémon"
+        "english": {
+            "category": "Playful Pokémon",
+            "entry_text": "It skillfully controls the intensity\nof the fire on its tail to keep its\nfoes at an ideal distance.",
+            "entry_text_diamond": "To intimidate attackers, it\nstretches the fire on its tail\nto make itself appear bigger."
+        },
+        "french": {
+            "name": "CHIMPENFEU",
+            "category": "Pokémon Garnement",
+            "entry_text": "Pour intimider ses agresseurs, il\ngonfle les flammes de sa queue\npour paraître plus grand."
+        },
+        "german": {
+            "name": "PANPYRO",
+            "category": "Verspielt",
+            "entry_text": "Um Angreifer abzuschrecken,\nverstärkt es das Feuer auf seinem\nSchweif, wodurch es größer wirkt."
+        },
+        "italian": {
+            "name": "Monferno",
+            "category": "Pokémon Briccone",
+            "entry_text": "Per intimorire i nemici che\nattaccano, intensifica le fiamme\nsulla coda per apparire più grande."
+        },
+        "spanish": {
+            "name": "Monferno",
+            "category": "Pokémon Juguetón",
+            "entry_text": "Intimida a sus enemigos\ndesplegando el fuego de su\ncola para parecer más grande."
+        },
+        "japanese": {
+            "name": "モウカザル",
+            "category": "やんちゃポケモン",
+            "entry_text": "しっぽの　ほのおを　ながく　のばして\nからだを　おおきく　みせることで\nおそってきた　てきを　こわがらせる。"
+        }
     }
 }

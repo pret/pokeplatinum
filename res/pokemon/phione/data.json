@@ -119,7 +119,35 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "It drifts in warm seas. It always\nreturns to where it was born, no\nmatter how far it may have drifted.",
-        "category": "Sea Drifter Pokémon"
+        "english": {
+            "category": "Sea Drifter Pokémon",
+            "entry_text": "It drifts in warm seas. It always\nreturns to where it was born, no\nmatter how far it may have drifted.",
+            "entry_text_diamond": "A Pokémon that lives in warm seas.\nIt inflates the flotation sac on its\nhead to drift and search for food."
+        },
+        "french": {
+            "name": "PHIONE",
+            "category": "Pokémon Dérivenmer",
+            "entry_text": "Un Pokémon des mers chaudes. Il\ngonfle la bouée sur sa tête et\ndérive en quête de vivres."
+        },
+        "german": {
+            "name": "PHIONE",
+            "category": "Seedrift",
+            "entry_text": "Es lebt in warmen Meeren. Geht\nes auf Nahrungssuche, füllt es den\nBeutel auf seinem Kopf mit Luft."
+        },
+        "italian": {
+            "name": "Phione",
+            "category": "Pokémon Oceanbondo",
+            "entry_text": "Vive nei mari caldi. Sulla testa ha\nun galleggiante gonfiabile grazie al\nquale nuota alla ricerca di cibo."
+        },
+        "spanish": {
+            "name": "Phione",
+            "category": "Pokémon Marino",
+            "entry_text": "Vive en los mares cálidos.\nInfla el flotador de la cabeza\npara nadar en busca de comida."
+        },
+        "japanese": {
+            "name": "フィオネ",
+            "category": "かいようポケモン",
+            "entry_text": "あたたかい　うみに　すむ　ポケモン。\nあたまの　うきぶくろを　ふくらませて\nなみまを　ただよい　えさを　さがす。"
+        }
     }
 }

@@ -76,7 +76,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "A steel-hard shell protects its\ntender body. It quietly endures\nhardships while awaiting evolution.",
-        "category": "Cocoon Pokémon"
+        "english": {
+            "category": "Cocoon Pokémon",
+            "entry_text": "A steel-hard shell protects its\ntender body. It quietly endures\nhardships while awaiting evolution.",
+            "entry_text_diamond": "A steel-hard shell protects its\ntender body. It quietly endures\nhardships while awaiting evolution."
+        },
+        "french": {
+            "name": "CHRYSACIER",
+            "category": "Pokémon Cocon",
+            "entry_text": "Son corps frêle est protégé par sa\ncarapace d’acier. Il encaisse les\ncoups durs en attendant d’évoluer."
+        },
+        "german": {
+            "name": "SAFCON",
+            "category": "Kokon",
+            "entry_text": "Der stahlharte Panzer schützt\nseinen zarten Körper. Es wartet\ngeduldig auf seine Entwicklung."
+        },
+        "italian": {
+            "name": "Metapod",
+            "category": "Pokémon Bozzolo",
+            "entry_text": "Ha una corazza dura come l’acciaio\nche protegge il suo fragile corpo.\nAttende immobile di evolversi."
+        },
+        "spanish": {
+            "name": "Metapod",
+            "category": "Pokémon Capullo",
+            "entry_text": "Su frágil cuerpo está recubierto\nde una coraza dura como el acero.\nPermanece quieto en su desarrollo."
+        },
+        "japanese": {
+            "name": "トランセル",
+            "category": "さなぎポケモン",
+            "entry_text": "こうてつのように　かたい　カラで\nやわらかい　なかみを　まもっている。\nしんかするまで　じっと　たえている。"
+        }
     }
 }

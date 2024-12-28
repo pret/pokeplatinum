@@ -143,7 +143,35 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "The mother puts its offspring to\nsleep by curling up around them.\nIt corners foes with speed.",
-        "category": "Long Body Pokémon"
+        "english": {
+            "category": "Long Body Pokémon",
+            "entry_text": "The mother puts its offspring to\nsleep by curling up around them.\nIt corners foes with speed.",
+            "entry_text_diamond": "The mother puts its offspring to\nsleep by curling up around them.\nIt corners foes with speed."
+        },
+        "french": {
+            "name": "FOUINAR",
+            "category": "Pokémon Allongé",
+            "entry_text": "La femelle s’enroule autour des\npetits pour les bercer. Il accule\nl’ennemi grâce à sa vitesse."
+        },
+        "german": {
+            "name": "WIESENIOR",
+            "category": "Langleib",
+            "entry_text": "Es rollt sich um seine Jungen, wenn\ndiese schlafen sollen. Gegnern\nbegegnet es mit Schnelligkeit."
+        },
+        "italian": {
+            "name": "Furret",
+            "category": "Pokémon Lungocorpo",
+            "entry_text": "Si addormenta avvolto nell’esile\ncorpo della madre. Mette all’angolo\ni nemici con movimenti rapidi."
+        },
+        "spanish": {
+            "name": "Furret",
+            "category": "Pokémon Alargado",
+            "entry_text": "Acurruca a sus crías para que\nduerman. Acorrala a los enemigos\ncon su enorme velocidad."
+        },
+        "japanese": {
+            "name": "オオタチ",
+            "category": "どうながポケモン",
+            "entry_text": "ははおやは　ほそながい　からだで\nこどもを　つつみこみ　ねむらせる。\nはやい　うごきで　てきを　おいこむ。"
+        }
     }
 }

@@ -114,7 +114,35 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "The small ball is not only filled with\nnutrients, it is also tasty. STARLY\ntry to peck it off.",
-        "category": "Cherry Pokémon"
+        "english": {
+            "category": "Cherry Pokémon",
+            "entry_text": "The small ball is not only filled with\nnutrients, it is also tasty. STARLY\ntry to peck it off.",
+            "entry_text_diamond": "The small ball holds the nutrients\nneeded for evolution. Apparently,\nit is very sweet and tasty."
+        },
+        "french": {
+            "name": "CERIBOU",
+            "category": "Pokémon Cerise",
+            "entry_text": "La petite boule renferme les\ndélicieux nutriments sucrés\ndont il a besoin pour évoluer."
+        },
+        "german": {
+            "name": "KIKUGI",
+            "category": "Kirsche",
+            "entry_text": "Das kleine Bällchen enthält alles,\nwas es für die Entwicklung\nbraucht. Es ist süß und lecker."
+        },
+        "italian": {
+            "name": "Cherubi",
+            "category": "Pokémon Ciliegia",
+            "entry_text": "La pallina contiene i nutrimenti\nnecessari per l’evoluzione. Dicono\nche sia molto dolce e deliziosa."
+        },
+        "spanish": {
+            "name": "Cherubi",
+            "category": "Pokémon Cereza",
+            "entry_text": "La pequeña esfera, dulce y\nsabrosa, contiene los nutrientes\nnecesarios para evolucionar."
+        },
+        "japanese": {
+            "name": "チェリンボ",
+            "category": "さくらんぼポケモン",
+            "entry_text": "しんかに　ひつような　えいようぶんが\nちいさい　たまに　ためられている。\nとても　あまくて　おいしい　らしい。"
+        }
     }
 }

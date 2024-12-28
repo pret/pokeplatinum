@@ -127,7 +127,35 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "The oil-filled end of its tail floats\non water. It keeps MARILL from\ndrowning even in a strong current.",
-        "category": "Aqua Mouse Pokémon"
+        "english": {
+            "category": "Aqua Mouse Pokémon",
+            "entry_text": "The oil-filled end of its tail floats\non water. It keeps MARILL from\ndrowning even in a strong current.",
+            "entry_text_diamond": "Using its tail as a float, it dives\nunderwater. It likes eating plants\nthat grow on river bottoms."
+        },
+        "french": {
+            "name": "MARILL",
+            "category": "Pokémon Aquasouris",
+            "entry_text": "Il plonge sous l’eau en utilisant sa\nqueue comme un flotteur. Il aime\nles plantes du fond des rivières."
+        },
+        "german": {
+            "name": "MARILL",
+            "category": "Aquamaus",
+            "entry_text": "Seinen Schweif verwendet es als\neine Art Rettungsring, wenn es\ntaucht. Es liebt Wasserpflanzen."
+        },
+        "italian": {
+            "name": "Marill",
+            "category": "Pokémon Acquatopo",
+            "entry_text": "Si tuffa in acqua e usa la coda come\ngalleggiante. Ama mangiare le piante\nche crescono sul fondo dei fiumi."
+        },
+        "spanish": {
+            "name": "Marill",
+            "category": "Pokémon Ratón Agua",
+            "entry_text": "Bucea usando su cola a modo\nde boya. Le gusta comer las\nplantas del fondo fluvial."
+        },
+        "japanese": {
+            "name": "マリル",
+            "category": "みずねずみポケモン",
+            "entry_text": "しっぽを　うきぶくろにして\nすいちゅうに　もぐる。\nかわぞこの　みずくさが　こうぶつ。"
+        }
     }
 }

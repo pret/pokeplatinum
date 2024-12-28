@@ -123,7 +123,35 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "When exposed to the moon’s aura,\nthe rings on its body glow faintly\nand it gains a mysterious power.",
-        "category": "Moonlight Pokémon"
+        "english": {
+            "category": "Moonlight Pokémon",
+            "entry_text": "When exposed to the moon’s aura,\nthe rings on its body glow faintly\nand it gains a mysterious power.",
+            "entry_text_diamond": "The light of the moon changed\nEEVEE’s genetic structure. It\nlurks in darkness for prey."
+        },
+        "french": {
+            "name": "NOCTALI",
+            "category": "Pokémon Lune",
+            "entry_text": "La lumière de la lune a modifié\nle code génétique d’EVOLI. Il hante\nles ombres en quête d’une proie."
+        },
+        "german": {
+            "name": "NACHTARA",
+            "category": "Mondschein",
+            "entry_text": "Mondlicht hat die genetische\nStruktur von EVOLI verändert.\nIm Dunkeln wartet es auf Beute."
+        },
+        "italian": {
+            "name": "Umbreon",
+            "category": "Pokémon Lucelunare",
+            "entry_text": "La luce lunare ha mutato la\nstruttura genetica di EEVEE. Si\ncela nel buio in attesa della preda."
+        },
+        "spanish": {
+            "name": "Umbreon",
+            "category": "Pokémon Luz Lunar",
+            "entry_text": "Creado cuando la luz lunar alteró\nla estructura genética de EEVEE.\nBusca presas en la oscuridad. "
+        },
+        "japanese": {
+            "name": "ブラッキ－",
+            "category": "げっこうポケモン",
+            "entry_text": "つきの　ひかりが　イ－ブイの\nいでんしを　へんかさせた。\nやみに　ひそみ　えものを　まつ。"
+        }
     }
 }

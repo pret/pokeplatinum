@@ -114,7 +114,35 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "Sensitive to changing temperature,\nthe bud is said to bloom when it\nfeels the sun’s warm touch.",
-        "category": "Bud Pokémon"
+        "english": {
+            "category": "Bud Pokémon",
+            "entry_text": "Sensitive to changing temperature,\nthe bud is said to bloom when it\nfeels the sun’s warm touch.",
+            "entry_text_diamond": "Over the winter, it closes its bud\nand endures the cold. In spring,\nthe bud opens and releases pollen."
+        },
+        "french": {
+            "name": "ROZBOUTON",
+            "category": "Pokémon Bourgeon",
+            "entry_text": "En hiver, son bourgeon se referme\npour résister au froid. Il s’ouvre\nau printemps et libère du pollen."
+        },
+        "german": {
+            "name": "KNOSPI",
+            "category": "Knospe",
+            "entry_text": "Im Winter schließt es die Knospe.\nIm Frühjahr öffnet es die Knospe\nund gibt Pollen ab."
+        },
+        "italian": {
+            "name": "Budew",
+            "category": "Pokémon Germoglio",
+            "entry_text": "D’inverno chiude la sua gemma e\nresiste al freddo. In primavera la\ngemma si riapre e rilascia polline."
+        },
+        "spanish": {
+            "name": "Budew",
+            "category": "Pokémon Brote",
+            "entry_text": "En invierno cierra su capullo para\nprotegerse del frío. En primavera,\nel capullo se abre y esparce polen."
+        },
+        "japanese": {
+            "name": "スボミ－",
+            "category": "つぼみポケモン",
+            "entry_text": "ふゆの　あいだは　つぼみを　とざして\nさむさに　たえる。はるになると\nつぼみを　ひらき　かふんを　とばす。"
+        }
     }
 }

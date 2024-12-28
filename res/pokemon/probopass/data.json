@@ -135,7 +135,35 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "It freely controls three small\nunits called Mini-Noses using\nmagnetic force.",
-        "category": "Compass Pokémon"
+        "english": {
+            "category": "Compass Pokémon",
+            "entry_text": "It freely controls three small\nunits called Mini-Noses using\nmagnetic force.",
+            "entry_text_diamond": "It exudes strong magnetism from\nall over. It controls three small\nunits called Mini-Noses."
+        },
+        "french": {
+            "name": "TARINORME",
+            "category": "Pokémon Boussole",
+            "entry_text": "Son corps libère une puissante\nforce magnétique. Il dirige trois\npetites unités appelées Mini-nez."
+        },
+        "german": {
+            "name": "VOLUMINAS",
+            "category": "Kompass",
+            "entry_text": "Es gibt starken Magnetismus ab. Es\nsteuert drei kleine Einheiten, die\nsich Mininasen nennen."
+        },
+        "italian": {
+            "name": "Probopass",
+            "category": "Pokémon Bussola",
+            "entry_text": "Emana un forte magnetismo da\ntutto il corpo. Controlla tre\npiccole unità, dette Mininasi."
+        },
+        "spanish": {
+            "name": "Probopass",
+            "category": "Pokémon Brújula",
+            "entry_text": "Emana un fuerte magnetismo.\nControla tres pequeñas unidades\nllamadas Mini-Narices."
+        },
+        "japanese": {
+            "name": "ダイノ－ズ",
+            "category": "コンパスポケモン",
+            "entry_text": "ぜんしんから　つよい　じりょくを\nだしている。３この　チビノ－ズと\nよばれる　ユニットを　あやつる。"
+        }
     }
 }

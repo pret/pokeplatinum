@@ -122,7 +122,35 @@
         "pokemon_pos_f": 32,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 32,
-        "entry_text": "A Pokémon that lives underground.\nBecause of its dark habitat, it is\nrepelled by bright sunlight.",
-        "category": "Mole Pokémon"
+        "english": {
+            "category": "Mole Pokémon",
+            "entry_text": "A Pokémon that lives underground.\nBecause of its dark habitat, it is\nrepelled by bright sunlight.",
+            "entry_text_diamond": "A Pokémon that lives underground.\nBecause of its dark habitat, it is\nrepelled by bright sunlight."
+        },
+        "french": {
+            "name": "TAUPIQUEUR",
+            "category": "Pokémon Taupe",
+            "entry_text": "Un Pokémon qui vit sous terre.\nHabitué aux souterrains, il fuit la\nlumière du jour."
+        },
+        "german": {
+            "name": "DIGDA",
+            "category": "Maulwurf",
+            "entry_text": "Dieses Pokémon lebt unterirdisch.\nDa es an Dunkelheit gewöhnt ist,\nschreckt helles Licht es ab."
+        },
+        "italian": {
+            "name": "Diglett",
+            "category": "Pokémon Talpa",
+            "entry_text": "Un Pokémon che vive sottoterra.\nPoiché è abituato a vivere al buio,\nnon sopporta la luce solare."
+        },
+        "spanish": {
+            "name": "Diglett",
+            "category": "Pokémon Topo",
+            "entry_text": "Este Pokémon vive a oscuras\nbajo tierra, por lo que la luz solar\nle espanta."
+        },
+        "japanese": {
+            "name": "ディグダ",
+            "category": "もぐらポケモン",
+            "entry_text": "ちちゅうで　くらしている　ポケモン。\nくらい　ちかに　いるため\nあかるい　たいようが　にがて。"
+        }
     }
 }

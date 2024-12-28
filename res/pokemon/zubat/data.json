@@ -126,7 +126,35 @@
         "pokemon_pos_f": 65525,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65525,
-        "entry_text": "It checks its surroundings and\nlocation using reflections of the\nultrasonic waves from its mouth.",
-        "category": "Bat Pokémon"
+        "english": {
+            "category": "Bat Pokémon",
+            "entry_text": "It checks its surroundings and\nlocation using reflections of the\nultrasonic waves from its mouth.",
+            "entry_text_diamond": "Even though it has no eyes, it can\nsense obstacles using ultrasonic\nwaves it emits from its mouth."
+        },
+        "french": {
+            "name": "NOSFERAPTI",
+            "category": "Pokémon Chovsouris",
+            "entry_text": "Bien que dépourvu d’yeux, il\nrepère les obstacles grâce aux\nultrasons émis par sa gueule."
+        },
+        "german": {
+            "name": "ZUBAT",
+            "category": "Fledermaus",
+            "entry_text": "Obwohl es keine Augen hat, kann es\nHindernisse mithilfe von\nUltraschallwellen wahrnehmen."
+        },
+        "italian": {
+            "name": "Zubat",
+            "category": "Pokémon Pipistrello",
+            "entry_text": "Non ha occhi, ma avverte gli\nostacoli con le onde ultrasoniche\nche emette dalla bocca."
+        },
+        "spanish": {
+            "name": "Zubat",
+            "category": "Pokémon Murciélago",
+            "entry_text": "Aunque carezca de ojos, puede\ndetectar obstáculos con las ondas\nultrasónicas que emite su boca."
+        },
+        "japanese": {
+            "name": "ズバット",
+            "category": "こうもりポケモン",
+            "entry_text": "くちから　だす　ちょうおんぱで\nりょうめが　なくても　まわりの\nしょうがいぶつを　さっちできる。"
+        }
     }
 }

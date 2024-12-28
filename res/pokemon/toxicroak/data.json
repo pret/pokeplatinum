@@ -144,7 +144,35 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "entry_text": "It has a poison sac at its throat.\nWhen it croaks, the stored poison\nis churned for greater potency.",
-        "category": "Toxic Mouth Pokémon"
+        "english": {
+            "category": "Toxic Mouth Pokémon",
+            "entry_text": "It has a poison sac at its throat.\nWhen it croaks, the stored poison\nis churned for greater potency.",
+            "entry_text_diamond": "Its knuckle claws secrete a toxin\nso vile that even a scratch could\nprove fatal."
+        },
+        "french": {
+            "name": "COATOX",
+            "category": "Pokémon Toxique",
+            "entry_text": "Les griffes de ses poings sécrètent\nune toxine si atroce qu’une simple\négratignure peut s’avérer fatale."
+        },
+        "german": {
+            "name": "TOXIQUAK",
+            "category": "Giftmund",
+            "entry_text": "Die Gelenke an seinen Klauen geben\nein so starkes Gift ab, dass selbst\nein kleiner Kratzer fatal ist."
+        },
+        "italian": {
+            "name": "Toxicroak",
+            "category": "Pokémon Inveieleno",
+            "entry_text": "I suoi artigli secernono una tossina\ncosì velenosa che persino un\ngraffio può essere letale."
+        },
+        "spanish": {
+            "name": "Toxicroak",
+            "category": "Pokémon Boca Tóxica",
+            "entry_text": "Sus garras segregan una toxina\ntan potente que un simple\narañazo puede ser mortal."
+        },
+        "japanese": {
+            "name": "ドクロッグ",
+            "category": "どくづきポケモン",
+            "entry_text": "こぶしの　トゲからは　かすりきずでも\nいのちを　おとすほどの　もうどくを\nぶんぴつしている。"
+        }
     }
 }

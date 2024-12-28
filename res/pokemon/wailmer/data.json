@@ -124,7 +124,35 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 9,
-        "entry_text": "On sunny days, it lands on beaches\nto bounce like a ball and play.\nIt spouts water from its nose.",
-        "category": "Ball Whale Pokémon"
+        "english": {
+            "category": "Ball Whale Pokémon",
+            "entry_text": "On sunny days, it lands on beaches\nto bounce like a ball and play.\nIt spouts water from its nose.",
+            "entry_text_diamond": "On sunny days, it lands on beaches\nto bounce like a ball and play.\nIt spouts water from its nose."
+        },
+        "french": {
+            "name": "WAILMER",
+            "category": "Pokémon Baleinboule",
+            "entry_text": "Par beau temps, il se pose sur les\nplages pour jouer et rebondir. Il\nexpulse de l’eau par son évent."
+        },
+        "german": {
+            "name": "WAILMER",
+            "category": "Kugelwal",
+            "entry_text": "An sonnigen Tagen trifft man diese\nPokémon an Stränden, wo sie wie\nBälle herumhüpfen. "
+        },
+        "italian": {
+            "name": "Wailmer",
+            "category": "Pokémon Balenottero",
+            "entry_text": "In giornate soleggiate, gioca\nrimbalzando sulla spiaggia.\nSpruzza acqua dalle narici."
+        },
+        "spanish": {
+            "name": "Wailmer",
+            "category": "Pokémon Ballenabola",
+            "entry_text": "En días soleados se tumba en las\nplayas para jugar y botar como una\npelota. Lanza agua por la nariz."
+        },
+        "japanese": {
+            "name": "ホエルコ",
+            "category": "たまくじらポケモン",
+            "entry_text": "はれた　ひは　すなはまに　あがり\nボ－ルのように　はずんで　あそぶ。\nはなから　みずを　ふきあげる。"
+        }
     }
 }

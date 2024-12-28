@@ -139,7 +139,35 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "A very haughty Pokémon. Among\nfans, the size of the jewel in its\nforehead is a topic of much talk.",
-        "category": "Classy Cat Pokémon"
+        "english": {
+            "category": "Classy Cat Pokémon",
+            "entry_text": "A very haughty Pokémon. Among\nfans, the size of the jewel in its\nforehead is a topic of much talk.",
+            "entry_text_diamond": "A very haughty Pokémon. Among\nfans, the size of the jewel in its\nforehead is a topic of much talk."
+        },
+        "french": {
+            "name": "PERSIAN",
+            "category": "Pokémon Chadeville",
+            "entry_text": "Un Pokémon très snob. La taille du\njoyau qui orne son front alimente\nbien des débats parmi ses fans."
+        },
+        "german": {
+            "name": "SNOBILIKAT",
+            "category": "Rassekatze",
+            "entry_text": "Ein sehr stolzes Pokémon. Für Fans\nist die Größe des Juwels auf seiner\nStirn Anlass für Diskussionen."
+        },
+        "italian": {
+            "name": "Persian",
+            "category": "Pokémon Nobilgatto",
+            "entry_text": "Un Pokémon molto altezzoso. I fan\nparlano spesso delle dimensioni\ndel gioiello che ha sulla testa."
+        },
+        "spanish": {
+            "name": "Persian",
+            "category": "Pokémon Gato Fino",
+            "entry_text": "Es un Pokémon muy arrogante. El\ntamaño de la joya de su frente da\nmucho que hablar."
+        },
+        "japanese": {
+            "name": "ペルシアン",
+            "category": "シャムネコポケモン",
+            "entry_text": "きぐらいが　たかい　ポケモン。\nマニアの　あいだでは　ひたいの\nほうせきの　サイズが　わだいになる。"
+        }
     }
 }

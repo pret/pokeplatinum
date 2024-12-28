@@ -118,7 +118,35 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It gathers groups of others as\ntheir leader. Its cries make\nPOLIWAG obey.",
-        "category": "Frog Pokémon"
+        "english": {
+            "category": "Frog Pokémon",
+            "entry_text": "It gathers groups of others as\ntheir leader. Its cries make\nPOLIWAG obey.",
+            "entry_text_diamond": "It gathers groups of others as\ntheir leader. Its cries make\nPOLIWAG obey."
+        },
+        "french": {
+            "name": "TARPAUD",
+            "category": "Pokémon Grenouille",
+            "entry_text": "Il rassemble ses pairs pour les\ncommander. Il utilise son cri \npour diriger PTITARD."
+        },
+        "german": {
+            "name": "QUAXO",
+            "category": "Frosch",
+            "entry_text": "Es versammelt andere PKMN um sich\nherum und führt sie an.\nPOLIWAG gehorchen seinem Ruf. "
+        },
+        "italian": {
+            "name": "Politoed",
+            "category": "Pokémon Rana",
+            "entry_text": "Ama radunare gruppi e atteggiarsi\na capogruppo.\nI suoi versi richiamano POLIWAG."
+        },
+        "spanish": {
+            "name": "Politoed",
+            "category": "Pokémon Rana",
+            "entry_text": "Agrupa a otros Pokémon para\nliderarlos. Los POLIWAG obedecen\nsu voz."
+        },
+        "japanese": {
+            "name": "ニョロトノ",
+            "category": "かえるポケモン",
+            "entry_text": "ニョロトノを　リ－ダ－に　グル－プが\nつくられる。ニョロトノの　なきごえが\nニョロモたちを　したがわせる。"
+        }
     }
 }

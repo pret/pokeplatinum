@@ -117,7 +117,35 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "It shuts its nostrils tight then\ntravels through sand as if walking.\nThey form colonies of around ten.",
-        "category": "Hippo Pokémon"
+        "english": {
+            "category": "Hippo Pokémon",
+            "entry_text": "It shuts its nostrils tight then\ntravels through sand as if walking.\nThey form colonies of around ten.",
+            "entry_text_diamond": "It lives in arid places. Instead\nof perspiration, it expels grainy\nsand from its body."
+        },
+        "french": {
+            "name": "HIPPOPOTAS",
+            "category": "Pokémon Hippo",
+            "entry_text": "Il vit dans des endroits arides.\nIl exsude du sable granuleux\nau lieu de transpirer."
+        },
+        "german": {
+            "name": "HIPPOPOTAS",
+            "category": "Flusspferd",
+            "entry_text": "Es lebt in ausgetrockneten\nGebieten. Statt zu schwitzen,\nsondert sein Körper Sand ab. "
+        },
+        "italian": {
+            "name": "Hippopotas",
+            "category": "Pokémon Ippo",
+            "entry_text": "Vive in territori aridi. Invece del\nsudore, espelle dal corpo sabbia\ngranulosa."
+        },
+        "spanish": {
+            "name": "Hippopotas",
+            "category": "Pokémon Hipo",
+            "entry_text": "Vive en zonas áridas. En lugar\nde sudar, su cuerpo expulsa\ngranos de arena."
+        },
+        "japanese": {
+            "name": "ヒポポタス",
+            "category": "カバポケモン",
+            "entry_text": "かんそうした　とちで　くらす。\nあせの　かわりに　すなつぶを\nからだから　ぶんぴつする　ポケモン。"
+        }
     }
 }

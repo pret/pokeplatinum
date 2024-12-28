@@ -141,7 +141,35 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 7,
-        "entry_text": "When its belly is full, it becomes\ntoo lethargic to even lift a finger,\nso it is safe to bounce on its belly.",
-        "category": "Sleeping Pokémon"
+        "english": {
+            "category": "Sleeping Pokémon",
+            "entry_text": "When its belly is full, it becomes\ntoo lethargic to even lift a finger,\nso it is safe to bounce on its belly.",
+            "entry_text_diamond": "Its stomach can digest any kind\nof food, even if it happens to be\nmoldy or rotten."
+        },
+        "french": {
+            "name": "RONFLEX",
+            "category": "Pokémon Pionceur",
+            "entry_text": "Son estomac peut digérer n’importe\nquel type de nourriture, même \nquand elle est moisie ou pourrie."
+        },
+        "german": {
+            "name": "RELAXO",
+            "category": "Tagträumer",
+            "entry_text": "Sein Magen kann jede Art von\nNahrung verdauen, selbst wenn sie\nverschimmelt und verdorben ist."
+        },
+        "italian": {
+            "name": "Snorlax",
+            "category": "Pokémon Sonno",
+            "entry_text": "Il suo stomaco riesce a digerire\nqualsiasi tipo di cibo, anche se\nmarcio o ammuffito."
+        },
+        "spanish": {
+            "name": "Snorlax",
+            "category": "Pokémon Dormir",
+            "entry_text": "Su estómago puede digerir todo\ntipo de comida, incluso si está\npodrida o mohosa."
+        },
+        "japanese": {
+            "name": "カビゴン",
+            "category": "いねむりポケモン",
+            "entry_text": "カビが　はえていても　くさっていても\nだいじょうぶ。カビゴンの　いぶくろは\nなんでも　しょうか　できるのだ。"
+        }
     }
 }

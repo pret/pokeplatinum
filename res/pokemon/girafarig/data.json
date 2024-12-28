@@ -134,7 +134,35 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "The head on its tail contains a\nsmall brain. It can instinctively\nfight even while facing backward.",
-        "category": "Long Neck Pokémon"
+        "english": {
+            "category": "Long Neck Pokémon",
+            "entry_text": "The head on its tail contains a\nsmall brain. It can instinctively\nfight even while facing backward.",
+            "entry_text_diamond": "Its tail also has a small brain.\nIt bites to repel any foe trying\nto sneak up on it from behind."
+        },
+        "french": {
+            "name": "GIRAFARIG",
+            "category": "Pokémon Long-Cou",
+            "entry_text": "Sa queue contient un minuscule\ncerveau. Elle mord l’ennemi qui\nessaie de le frapper dans le dos."
+        },
+        "german": {
+            "name": "GIRAFARIG",
+            "category": "Langhals",
+            "entry_text": "Sein Schweif besitzt ebenfalls ein\nGehirn. Er beißt jeden Gegner, der\nsich von hinten heranschleicht."
+        },
+        "italian": {
+            "name": "Girafarig",
+            "category": "Pokémon Lungocollo",
+            "entry_text": "Ha due cervelli, uno piccolo anche\nsulla coda. Morde per respingere i\nnemici che si avvicinano da dietro."
+        },
+        "spanish": {
+            "name": "Girafarig",
+            "category": "Pokémon Grancuello",
+            "entry_text": "Su cola tiene un pequeño cerebro\ny muerde a los enemigos que\nintentan acercarse por la espalda."
+        },
+        "japanese": {
+            "name": "キリンリキ",
+            "category": "くびながポケモン",
+            "entry_text": "しっぽも　ちいさい　のうを　もつ。\nうしろから　しのびよる　あいてを\nかみついて　げきたいする。"
+        }
     }
 }

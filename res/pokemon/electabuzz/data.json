@@ -134,7 +134,35 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "It windmills its arms to slightly\nboost its punches. Foes have been\nknown to escape in the meantime.",
-        "category": "Electric Pokémon"
+        "english": {
+            "category": "Electric Pokémon",
+            "entry_text": "It windmills its arms to slightly\nboost its punches. Foes have been\nknown to escape in the meantime.",
+            "entry_text_diamond": "Half of all blackouts occur when\nthis Pokémon appears at power\nplants and eats electricity."
+        },
+        "french": {
+            "name": "ELEKTEK",
+            "category": "Pokémon Electrique",
+            "entry_text": "Ce Pokémon dévore l’électricité des\ncentrales. Il est responsable de la\nmajorité des coupures de courant."
+        },
+        "german": {
+            "name": "ELEKTEK",
+            "category": "Elektro",
+            "entry_text": "Die Hälfte aller Stromausfälle wird\ndurch dieses PKMN ausgelöst, das\nin E-Werken Elektrizität frisst."
+        },
+        "italian": {
+            "name": "Electabuzz",
+            "category": "Pokémon Elettrico",
+            "entry_text": "Quando si avvicina alle centrali\nper nutrirsi dell’elettricità,\nprovoca un black-out."
+        },
+        "spanish": {
+            "name": "Electabuzz",
+            "category": "Pokémon Eléctrico",
+            "entry_text": "La mitad de los apagones los\nprovoca el enorme apetito de este\nPokémon que come electricidad."
+        },
+        "japanese": {
+            "name": "エレブ－",
+            "category": "でんげきポケモン",
+            "entry_text": "ていでんの　げんいんの　はんぶんは\nエレブ－が　はつでんしょに　あらわれ\nでんきを　たべてしまった　ことだ。"
+        }
     }
 }

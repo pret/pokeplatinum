@@ -76,7 +76,35 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "It wraps silk around the branches\nof a tree. It drinks rainwater on\nits silk while awaiting evolution.",
-        "category": "Cocoon Pokémon"
+        "english": {
+            "category": "Cocoon Pokémon",
+            "entry_text": "It wraps silk around the branches\nof a tree. It drinks rainwater on\nits silk while awaiting evolution.",
+            "entry_text_diamond": "It anchors itself by wrapping\ntwigs with the silk from its body.\nIt motionlessly awaits evolution."
+        },
+        "french": {
+            "name": "ARMULYS",
+            "category": "Pokémon Cocon",
+            "entry_text": "Il s’accroche en enroulant sa soie\nautour des branches. Il reste\nimmobile en attendant d’évoluer."
+        },
+        "german": {
+            "name": "SCHALOKO",
+            "category": "Kokon",
+            "entry_text": "Es bindet sich mit Seidenfäden an\nÄsten fest und wartet so starr auf\nseine Entwicklung."
+        },
+        "italian": {
+            "name": "Silcoon",
+            "category": "Pokémon Bozzolo",
+            "entry_text": "SILCOON si ancora ai rami con\nfili di seta. In questa posizione\naspetta immobile l’evoluzione."
+        },
+        "spanish": {
+            "name": "Silcoon",
+            "category": "Pokémon Capullo",
+            "entry_text": "La seda que segrega su cuerpo le\npermite agarrarse a los árboles y\nesperar su evolución."
+        },
+        "japanese": {
+            "name": "カラサリス",
+            "category": "さなぎポケモン",
+            "entry_text": "からだから　のびる　いとを　えだに\nまきつけて　おちないように　こてい。\nじっと　うごかずに　しんかを　まつ。"
+        }
     }
 }

@@ -122,7 +122,35 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "A Pokémon that lives on icebergs.\nIt swims in the sea using the point\non its head to break up ice.",
-        "category": "Sea Lion Pokémon"
+        "english": {
+            "category": "Sea Lion Pokémon",
+            "entry_text": "A Pokémon that lives on icebergs.\nIt swims in the sea using the point\non its head to break up ice.",
+            "entry_text_diamond": "A Pokémon that lives on icebergs.\nIt swims in the sea using the point\non its head to break up ice."
+        },
+        "french": {
+            "name": "OTARIA",
+            "category": "Pokémon Otarie",
+            "entry_text": "Un habitant des icebergs. \nEn mer, il utilise la corne sur \nsa tête pour briser la banquise."
+        },
+        "german": {
+            "name": "JUROB",
+            "category": "Seehund",
+            "entry_text": "Dieses Pokémon lebt auf Eisbergen.\nEs schwimmt im Eiswasser und bricht\ndas Eis mithilfe seines Horns."
+        },
+        "italian": {
+            "name": "Seel",
+            "category": "Pokémon Otaria",
+            "entry_text": "Pokémon che vive sugli iceberg.\nNuota spaccando il ghiaccio\ncon la punta che ha sulla testa."
+        },
+        "spanish": {
+            "name": "Seel",
+            "category": "Pokémon León Mar.",
+            "entry_text": "Este Pokémon vive en icebergs.\nNada en el mar y usa el cuerno de\nsu cabeza para romper el hielo."
+        },
+        "japanese": {
+            "name": "パウワウ",
+            "category": "あしかポケモン",
+            "entry_text": "ひょうざんで　くらす　ポケモン。\nあたまの　とがった　でっぱりで\nこおりを　わって　うみを　およぐ。"
+        }
     }
 }

@@ -130,7 +130,35 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "Many mysteriously appear when more\nsunspots dot the sun. They stop\nTV sets from displaying properly.",
-        "category": "Magnet Pokémon"
+        "english": {
+            "category": "Magnet Pokémon",
+            "entry_text": "Many mysteriously appear when more\nsunspots dot the sun. They stop\nTV sets from displaying properly.",
+            "entry_text_diamond": "It is actually three MAGNEMITE\nlinked by magnetism. A group can\nset off a magnetic storm."
+        },
+        "french": {
+            "name": "MAGNETON",
+            "category": "Pokémon Magnétique",
+            "entry_text": "Il est formé de trois MAGNETI liés\npar magnétisme. En groupe, ils\ndéclenchent un orage magnétique."
+        },
+        "german": {
+            "name": "MAGNETON",
+            "category": "Magnet",
+            "entry_text": "Eigentlich sind es drei MAGNETILO,\ndie durch Magnetismus verbunden\nsind."
+        },
+        "italian": {
+            "name": "Magneton",
+            "category": "Pokémon Calamita",
+            "entry_text": "Pokémon formato da tre MAGNEMITE\nuniti dalla forza magnetica. Più di\ntre creano una tempesta magnetica."
+        },
+        "spanish": {
+            "name": "Magneton",
+            "category": "Pokémon Imán",
+            "entry_text": "Realmente son tres MAGNEMITE\nunidos por un campo magnético.\nProvocan tormentas magnéticas."
+        },
+        "japanese": {
+            "name": "レアコイル",
+            "category": "じしゃくポケモン",
+            "entry_text": "３びきの　コイルが　じりょくで\nれんけつした　ポケモン。レアコイルが\nふえると　じきあらしが　おこる。"
+        }
     }
 }

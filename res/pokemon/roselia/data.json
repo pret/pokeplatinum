@@ -126,7 +126,35 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "The more healthy the ROSELIA, the\nmore pleasant its flowers’ aroma.\nIts scent deeply relaxes people.",
-        "category": "Thorn Pokémon"
+        "english": {
+            "category": "Thorn Pokémon",
+            "entry_text": "The more healthy the ROSELIA, the\nmore pleasant its flowers’ aroma.\nIts scent deeply relaxes people.",
+            "entry_text_diamond": "ROSELIA raised on clean drinking\nwater are known to grow vividly\ncolored flowers."
+        },
+        "french": {
+            "name": "ROSELIA",
+            "category": "Pokémon Epine",
+            "entry_text": "Les ROSELIA élevés avec une\neau claire et potable font de\nravissantes fleurs bariolées."
+        },
+        "german": {
+            "name": "ROSELIA",
+            "category": "Dorn",
+            "entry_text": "ROSELIA, die mit klarem Wasser\naufgezogen wurden, bekommen\nBlüten in leuchtenden Farben."
+        },
+        "italian": {
+            "name": "Roselia",
+            "category": "Pokémon Spina",
+            "entry_text": "ROSELIA, cresciuto bevendo acqua\npulita, è noto perché fa crescere\nfiori dai vividi colori."
+        },
+        "spanish": {
+            "name": "Roselia",
+            "category": "Pokémon Espina",
+            "entry_text": "Si este Pokémon crece con agua\nlimpia y potable, le brotarán\nflores de vivos colores."
+        },
+        "japanese": {
+            "name": "ロゼリア",
+            "category": "いばらポケモン",
+            "entry_text": "きれいな　みずを　のんで　そだった\nロゼリアは　いろあざやかな　はなを\nさかせる　ことで　しられている。"
+        }
     }
 }

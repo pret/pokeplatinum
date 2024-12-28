@@ -148,7 +148,35 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "Its body is covered with a down\nthat can refract light in such a\nway that it becomes invisible.",
-        "category": "Eon Pokémon"
+        "english": {
+            "category": "Eon Pokémon",
+            "entry_text": "Its body is covered with a down\nthat can refract light in such a\nway that it becomes invisible.",
+            "entry_text_diamond": "Its body is covered with a down\nthat can refract light in such a\nway that it becomes invisible."
+        },
+        "french": {
+            "name": "LATIAS",
+            "category": "Pokémon Eon",
+            "entry_text": "Son corps est recouvert d’un \nduvet qui reflète la lumière\net le rend invisible."
+        },
+        "german": {
+            "name": "LATIAS",
+            "category": "Äon",
+            "entry_text": "Sein Körper ist mit Daunen bedeckt,\ndie das Licht so brechen, dass das\nPKMN unsichtbar wird."
+        },
+        "italian": {
+            "name": "Latias",
+            "category": "Pokémon Eone",
+            "entry_text": "Questo Pokémon ha il corpo\nricoperto di piume che riflettono la\nluce e lo rendono invisibile."
+        },
+        "spanish": {
+            "name": "Latias",
+            "category": "Pokémon Eón",
+            "entry_text": "Su cuerpo está cubierto de un\nplumón que refleja la luz de\nforma que se vuelve invisible."
+        },
+        "japanese": {
+            "name": "ラティアス",
+            "category": "むげんポケモン",
+            "entry_text": "ひかりを　くっせつさせる　うもうで\nぜんしんを　つつみこみ　すがたを\nみえなくする　のうりょくを　もつ。"
+        }
     }
 }

@@ -128,7 +128,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "A weak electric current flows\nbetween its horns. Sticking a hand\nthere shocks the unwary.",
-        "category": "Electric Pokémon"
+        "english": {
+            "category": "Electric Pokémon",
+            "entry_text": "A weak electric current flows\nbetween its horns. Sticking a hand\nthere shocks the unwary.",
+            "entry_text_diamond": "It generates electricity by\nwhirling its arms. However, it\ncan’t store the energy it makes."
+        },
+        "french": {
+            "name": "ELEKID",
+            "category": "Pokémon Electrique",
+            "entry_text": "Il génère de l’électricité en\nbattant des bras, mais il n’a aucun\nmoyen de stocker cette énergie."
+        },
+        "german": {
+            "name": "ELEKID",
+            "category": "Elektro",
+            "entry_text": "Es bewegt seine Arme und generiert\ndamit Elektrizität. Diese kann es\naber nicht speichern."
+        },
+        "italian": {
+            "name": "Elekid",
+            "category": "Pokémon Elettrico",
+            "entry_text": "Genera elettricità roteando le\nbraccia. Tuttavia, non riesce ad\nimmagazzinare l’energia creata."
+        },
+        "spanish": {
+            "name": "Elekid",
+            "category": "Pokémon Eléctrico",
+            "entry_text": "Genera electricidad girando los\nbrazos. No obstante, es incapaz\nde almacenar la energía creada."
+        },
+        "japanese": {
+            "name": "エレキッド",
+            "category": "でんきポケモン",
+            "entry_text": "りょううでを　ぐるぐる　ふりまわして\nでんきを　はっせいさせる。しかし\nつくった　でんきは　ためておけない。"
+        }
     }
 }

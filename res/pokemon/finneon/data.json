@@ -127,7 +127,35 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "The line running down its side can\nstore sunlight. It shines vividly at\nnight.",
-        "category": "Wing Fish Pokémon"
+        "english": {
+            "category": "Wing Fish Pokémon",
+            "entry_text": "The line running down its side can\nstore sunlight. It shines vividly at\nnight.",
+            "entry_text_diamond": "After long exposure to sunlight,\nthe patterns on its tail fins shine\nvividly when darkness arrives."
+        },
+        "french": {
+            "name": "ECAYON",
+            "category": "Pokémon Poisson Ailé",
+            "entry_text": "Après une longue exposition au\nsoleil, les motifs de ses nageoires\ncaudales luisent à la nuit tombée."
+        },
+        "german": {
+            "name": "FINNEON",
+            "category": "Flügelfisch",
+            "entry_text": "Wurden die Flossen lange dem\nSonnenlicht ausgesetzt, leuchten\nsie in der Dunkelheit."
+        },
+        "italian": {
+            "name": "Finneon",
+            "category": "Pokémon Pescealato",
+            "entry_text": "Dopo una lunga esposizione al sole,\ni motivi sulle sue pinne brillano\nvividamente al calar dell’oscurità."
+        },
+        "spanish": {
+            "name": "Finneon",
+            "category": "Pokémon Pez Ala",
+            "entry_text": "Si se expone mucho al sol, los\ndibujos de sus aletas brillan\nen la oscuridad."
+        },
+        "japanese": {
+            "name": "ケイコウオ",
+            "category": "はねうおポケモン",
+            "entry_text": "たいようを　いっぱいに　あびた\nおびれの　もようは　くらくなると\nあざやかな　いろで　ひかりだす。"
+        }
     }
 }

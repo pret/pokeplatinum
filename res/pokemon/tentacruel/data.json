@@ -121,7 +121,35 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 4,
         "pokemon_pos_m": 65535,
-        "entry_text": "It extends its 80 tentacles to\nform an encircling poisonous net\nthat is difficult to escape.",
-        "category": "Jellyfish Pokémon"
+        "english": {
+            "category": "Jellyfish Pokémon",
+            "entry_text": "It extends its 80 tentacles to\nform an encircling poisonous net\nthat is difficult to escape.",
+            "entry_text_diamond": "With 80 tentacles for ensnaring\nvictims, it prevents escape until\nthe prey is weakened by poison."
+        },
+        "french": {
+            "name": "TENTACRUEL",
+            "category": "Pokémon Mollusque",
+            "entry_text": "Ses 80 tentacules ligotent ses\nproies et les retiennent jusqu’à\nce que son poison fasse effet."
+        },
+        "german": {
+            "name": "TENTOXA",
+            "category": "Qualle",
+            "entry_text": "Es besitzt 80 Tentakel, um Beute zu\nfangen und festzuhalten. Diese\nwird durch Gift geschwächt.  "
+        },
+        "italian": {
+            "name": "Tentacruel",
+            "category": "Pokémon Medusa",
+            "entry_text": "Ha 80 tentacoli per intrappolare\nla preda e non la rilascia finché il\nveleno non l’ha indebolita."
+        },
+        "spanish": {
+            "name": "Tentacruel",
+            "category": "Pokémon Medusa",
+            "entry_text": "Posee 80 tentáculos con los que\naprisiona a sus presas hasta que\nse debilitan por el veneno."
+        },
+        "japanese": {
+            "name": "ドククラゲ",
+            "category": "くらげポケモン",
+            "entry_text": "８０ほんの　しょくしゅを　もつ。\nえものを　からめとり　どくで\nよわるまで　ぜったいに　にがさない。"
+        }
     }
 }

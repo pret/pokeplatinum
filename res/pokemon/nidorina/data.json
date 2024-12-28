@@ -126,7 +126,35 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO’s.",
-        "category": "Poison Pin Pokémon"
+        "english": {
+            "category": "Poison Pin Pokémon",
+            "entry_text": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO’s.",
+            "entry_text_diamond": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO’s."
+        },
+        "french": {
+            "name": "NIDORINA",
+            "category": "Pokémon Venepic",
+            "entry_text": "Ce Pokémon dresse ses piquants\nen cas de danger. Ils poussent\nmoins vite que ceux de NIDORINO."
+        },
+        "german": {
+            "name": "NIDORINA",
+            "category": "Giftdorn",
+            "entry_text": "Bei Gefahr fährt es die Wider-\nhaken am Körper aus. Diese wachsen\nlangsamer als die von NIDORINO."
+        },
+        "italian": {
+            "name": "Nidorina",
+            "category": "Pokémon Velenago",
+            "entry_text": "Quando avverte il pericolo, rizza\ngli aculei, che fuoriescono più\nlentamente di quelli di NIDORINO."
+        },
+        "spanish": {
+            "name": "Nidorina",
+            "category": "Pokémon Pin Veneno",
+            "entry_text": "Saca las púas de su cuerpo si\nsiente peligro. Sus púas crecen\nmás despacio que las de NIDORINO."
+        },
+        "japanese": {
+            "name": "ニドリ－ナ",
+            "category": "どくばりポケモン",
+            "entry_text": "きけんを　かんじると　ぜんしんの\nトゲを　さかだてる。ニドリ－ノに\nくらべて　トゲの　そだちが　おそい。"
+        }
     }
 }

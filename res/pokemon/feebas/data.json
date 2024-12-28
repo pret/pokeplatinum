@@ -104,7 +104,35 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "It is a shabby and ugly Pokémon.\nHowever, it is very hardy and\ncan survive on little water.",
-        "category": "Fish Pokémon"
+        "english": {
+            "category": "Fish Pokémon",
+            "entry_text": "It is a shabby and ugly Pokémon.\nHowever, it is very hardy and\ncan survive on little water.",
+            "entry_text_diamond": "It is famous for its shabby\nappearance. While populous, they\ntend to cluster in set locations."
+        },
+        "french": {
+            "name": "BARPAU",
+            "category": "Pokémon Poisson",
+            "entry_text": "Il est connu pour son teint maladif.\nBien que nombreux, ces Pokémon\nse regroupent aux mêmes endroits."
+        },
+        "german": {
+            "name": "BARSCHWA",
+            "category": "Fisch",
+            "entry_text": "Seine lumpige Gestalt ist berühmt.\nEs lebt mit anderen in Gruppen an\nbestimmten Orten."
+        },
+        "italian": {
+            "name": "Feebas",
+            "category": "Pokémon Pesce",
+            "entry_text": "È noto per il suo aspetto disordi-\nnato. È molto comune e tende a\nraggrupparsi nei soliti posti."
+        },
+        "spanish": {
+            "name": "Feebas",
+            "category": "Pokémon Pez",
+            "entry_text": "Se caracterizan por su aspecto\nendeble. Se agrupan en gran\nnúmero en lugares muy concretos."
+        },
+        "japanese": {
+            "name": "ヒンバス",
+            "category": "さかなポケモン",
+            "entry_text": "みすぼらしい　すがたで　ゆうめい。\nせいそくすうは　おおいが\nいっかしょに　あつまる　しゅうせい。"
+        }
     }
 }

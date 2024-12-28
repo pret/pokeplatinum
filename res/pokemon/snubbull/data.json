@@ -140,7 +140,35 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "Small Pokémon flee from its scary\nface. It is, however, considered\nby women to be cute.",
-        "category": "Fairy Pokémon"
+        "english": {
+            "category": "Fairy Pokémon",
+            "entry_text": "Small Pokémon flee from its scary\nface. It is, however, considered\nby women to be cute.",
+            "entry_text_diamond": "Small Pokémon flee from its scary\nface. It is, however, considered\nby women to be cute."
+        },
+        "french": {
+            "name": "SNUBBULL",
+            "category": "Pokémon Fée",
+            "entry_text": "Son visage horrible fait fuir les\npetits Pokémon. Par contre, les\nfemmes le trouvent mignon."
+        },
+        "german": {
+            "name": "SNUBBULL",
+            "category": "Fee",
+            "entry_text": "Kleine PKMN fliehen beim Anblick\nseines Gesichts. Frauen aber finden\nes niedlich."
+        },
+        "italian": {
+            "name": "Snubbull",
+            "category": "Pokémon Fata",
+            "entry_text": "I Pokémon più piccoli fuggono alla\nvista della sua faccia terrificante.\nMa le donne lo trovano carino."
+        },
+        "spanish": {
+            "name": "Snubbull",
+            "category": "Pokémon Hada",
+            "entry_text": "Los Pokémon pequeños huyen al\nver su cara agresiva. No obstante,\npara muchas féminas es mono."
+        },
+        "japanese": {
+            "name": "ブル－",
+            "category": "ようせいポケモン",
+            "entry_text": "ちいさな　ポケモンが　にげだすほどの\nこわいかおが　ぎゃくに　かわいいと\nじょせいに　にんきの　ポケモン。"
+        }
     }
 }

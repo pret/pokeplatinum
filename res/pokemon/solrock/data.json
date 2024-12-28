@@ -138,7 +138,35 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "A new Pokémon species, rumored\nto be from the sun. It gives off\nlight while spinning.",
-        "category": "Meteorite Pokémon"
+        "english": {
+            "category": "Meteorite Pokémon",
+            "entry_text": "A new Pokémon species, rumored\nto be from the sun. It gives off\nlight while spinning.",
+            "entry_text_diamond": "A new Pokémon species, rumored\nto be from the sun. It gives off\nlight while spinning."
+        },
+        "french": {
+            "name": "SOLAROC",
+            "category": "Pokémon Météorite",
+            "entry_text": "Le bruit court que cette nouvelle\nespèce vient du soleil. Il produit\nde la lumière en tournoyant."
+        },
+        "german": {
+            "name": "SONNFEL",
+            "category": "Meteorit",
+            "entry_text": "Eine neue PKMN-Spezies, von der\nman annimmt, sie käme von der\nSonne. Sie strahlt Licht ab."
+        },
+        "italian": {
+            "name": "Solrock",
+            "category": "Pokémon Meteorite",
+            "entry_text": "Nuova specie di Pokémon che si\ndice provenga dal sole. Emana luce\nroteando vorticosamente."
+        },
+        "spanish": {
+            "name": "Solrock",
+            "category": "Pokémon Meteorito",
+            "entry_text": "Una nueva especie de Pokémon\nque se rumorea procede del Sol.\nEmite luz al girar."
+        },
+        "japanese": {
+            "name": "ソルロック",
+            "category": "いんせきポケモン",
+            "entry_text": "たいようの　ぶんしんと　うわさされる\nしんしゅの　ポケモン。からだを\nかいてんさせて　ひかりを　はなつ。"
+        }
     }
 }

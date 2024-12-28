@@ -116,7 +116,35 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "As a newborn, it can barely stand.\nHowever, through galloping, its\nlegs are made tougher and faster.",
-        "category": "Fire Horse Pokémon"
+        "english": {
+            "category": "Fire Horse Pokémon",
+            "entry_text": "As a newborn, it can barely stand.\nHowever, through galloping, its\nlegs are made tougher and faster.",
+            "entry_text_diamond": "About an hour after birth, its\nfiery mane and tail grow out,\ngiving it an impressive appearance."
+        },
+        "french": {
+            "name": "PONYTA",
+            "category": "Pokémon Cheval Feu",
+            "entry_text": "La crinière et la queue ardentes\nlui donnant sa superbe poussent \nune heure après sa naissance."
+        },
+        "german": {
+            "name": "PONITA",
+            "category": "Feuerpferd",
+            "entry_text": "Bereits eine Stunde nach seiner\nGeburt wachsen seine feurige\nMähne und sein feuriger Schweif. "
+        },
+        "italian": {
+            "name": "Ponyta",
+            "category": "Pokémon Cavalfuoco",
+            "entry_text": "Un’ora dopo la nascita, gli\ncrescono criniera e coda, che gli\ndonano un aspetto solenne."
+        },
+        "spanish": {
+            "name": "Ponyta",
+            "category": "Pokémon Caballo F.",
+            "entry_text": "Sus impresionantes cola y crin\nde fuego le crecen una hora\ndespués de nacer."
+        },
+        "japanese": {
+            "name": "ポニ－タ",
+            "category": "ひのうまポケモン",
+            "entry_text": "うまれてから　１じかんも　すると\nほのおの　たてがみや　しっぽが\nはえそろい　りっぱな　すがたになる。"
+        }
     }
 }

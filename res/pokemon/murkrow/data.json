@@ -134,7 +134,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "If spotted, it will lure an unwary\nperson into chasing it, then lose\nthe pursuer on mountain trails.",
-        "category": "Darkness Pokémon"
+        "english": {
+            "category": "Darkness Pokémon",
+            "entry_text": "If spotted, it will lure an unwary\nperson into chasing it, then lose\nthe pursuer on mountain trails.",
+            "entry_text_diamond": "It is believed that seeing this\nPokémon at night will bring\nabout ominous occurrences."
+        },
+        "french": {
+            "name": "CORNEBRE",
+            "category": "Pokémon Obscurité",
+            "entry_text": "On dit que rencontrer\nun CORNEBRE la nuit est\nsigne de mauvais augure."
+        },
+        "german": {
+            "name": "KRAMURX",
+            "category": "Finsternis",
+            "entry_text": "Sieht man dieses PKMN bei Nacht,\nsollen merkwürdige Dinge passieren."
+        },
+        "italian": {
+            "name": "Murkrow",
+            "category": "Pokémon Oscurità",
+            "entry_text": "Si dice che l’incontro notturno\ncon questo Pokémon sia un\npresagio infausto."
+        },
+        "spanish": {
+            "name": "Murkrow",
+            "category": "Pokémon Oscuridad",
+            "entry_text": "Se dice que ver a este Pokémon\npor la noche es señal de que van\na ocurrir cosas terribles."
+        },
+        "japanese": {
+            "name": "ヤミカラス",
+            "category": "くらやみポケモン",
+            "entry_text": "よるに　その　すがたを　みかけると\nふきつな　できごとが　おきると\nしんじられている　ポケモン。"
+        }
     }
 }

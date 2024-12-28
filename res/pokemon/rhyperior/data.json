@@ -156,7 +156,35 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 17,
         "pokemon_pos_m": 3,
-        "entry_text": "It can launch a rock held in its\nhand like a missile by tightening\nthen expanding muscles instantly.",
-        "category": "Drill Pokémon"
+        "english": {
+            "category": "Drill Pokémon",
+            "entry_text": "It can launch a rock held in its\nhand like a missile by tightening\nthen expanding muscles instantly.",
+            "entry_text_diamond": "It puts rocks in holes in its palms\nand uses its muscles to shoot them.\nGEODUDE are shot at rare times."
+        },
+        "french": {
+            "name": "RHINASTOC",
+            "category": "Pokémon Perceur",
+            "entry_text": "Il bande ses muscles pour projeter\ndes pierres ou des RACAILLOU\ndepuis le creux de ses paumes. "
+        },
+        "german": {
+            "name": "RIHORNIOR",
+            "category": "Bohrer",
+            "entry_text": "Es legt Steine in die Löcher seiner\nHände und wirft sie mit Muskelkraft.\nSogar GEOROK werden verwendet."
+        },
+        "italian": {
+            "name": "Rhyperior",
+            "category": "Pokémon Trapano",
+            "entry_text": "Mette rocce nelle cavità dei suoi\npalmi e le getta con tutta la sua\nforza. Talvolta lancia GEODUDE."
+        },
+        "spanish": {
+            "name": "Rhyperior",
+            "category": "Pokémon Taladro",
+            "entry_text": "Pone rocas en los agujeros de sus\nmanos y las lanza con los músculos.\nPocas veces ataca a GEODUDE."
+        },
+        "japanese": {
+            "name": "ドサイドン",
+            "category": "ドリルポケモン",
+            "entry_text": "いわを　てのひらの　あなに　つめて\nきんにくの　ちからで　はっしゃする。\nまれに　イシツブテを　とばす。"
+        }
     }
 }

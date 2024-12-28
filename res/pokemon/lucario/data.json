@@ -143,7 +143,35 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "A well-trained one can sense auras\nto identify and take in the feelings\nof creatures over half a mile away.",
-        "category": "Aura Pokémon"
+        "english": {
+            "category": "Aura Pokémon",
+            "entry_text": "A well-trained one can sense auras\nto identify and take in the feelings\nof creatures over half a mile away.",
+            "entry_text_diamond": "It has the ability to sense the\nauras of all things.\nIt understands human speech."
+        },
+        "french": {
+            "name": "LUCARIO",
+            "category": "Pokémon Aura",
+            "entry_text": "Il ressent les auras de tout. Il \ncomprend le langage humain."
+        },
+        "german": {
+            "name": "LUCARIO",
+            "category": "Aura",
+            "entry_text": "Es besitzt die Fähigkeit, die Aura\naller Dinge zu spüren. Es versteht\ndie menschliche Sprache."
+        },
+        "italian": {
+            "name": "Lucario",
+            "category": "Pokémon Aura",
+            "entry_text": "È in grado di avvertire l’aura di\ntutte le cose.\nComprende il linguaggio umano."
+        },
+        "spanish": {
+            "name": "Lucario",
+            "category": "Pokémon Aura",
+            "entry_text": "Puede sentir el aura de todas\nlas cosas. Comprende el\nlenguaje humano."
+        },
+        "japanese": {
+            "name": "ルカリオ",
+            "category": "はどうポケモン",
+            "entry_text": "あらゆる　ものが　はっする　はどうを\nキャッチする　のうりょくを　もつ。\nひとの　ことばを　りかいできる。"
+        }
     }
 }

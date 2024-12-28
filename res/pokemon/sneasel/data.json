@@ -145,7 +145,35 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "A smart and sneaky Pokémon. A pair\nmay work together to steal eggs by\nhaving one lure the parents away.",
-        "category": "Sharp Claw Pokémon"
+        "english": {
+            "category": "Sharp Claw Pokémon",
+            "entry_text": "A smart and sneaky Pokémon. A pair\nmay work together to steal eggs by\nhaving one lure the parents away.",
+            "entry_text_diamond": "It feeds on eggs stolen from\nnests. Its sharply hooked claws\nrip vulnerable spots on prey."
+        },
+        "french": {
+            "name": "FARFURET",
+            "category": "Pokémon Grifacérée",
+            "entry_text": "Il se nourrit d’œufs volés dans \ndes nids. Ses griffes crochues\npercent les défenses de l’ennemi."
+        },
+        "german": {
+            "name": "SNIEBEL",
+            "category": "Stichklaue",
+            "entry_text": "Es ernährt sich von Eiern, die es\naus Nestern stiehlt. Beute greift\nes mit seinen scharfen Krallen an."
+        },
+        "italian": {
+            "name": "Sneasel",
+            "category": "Pokémon Lamartigli",
+            "entry_text": "Mangia uova rubate dai nidi.\nAttacca i nemici nei punti deboli\ncon i suoi artigli uncinati."
+        },
+        "spanish": {
+            "name": "Sneasel",
+            "category": "Pokémon Garra Filo",
+            "entry_text": "Se alimenta de huevos robados en\nnidos. Clava sus afiladas garras en\nlos puntos débiles de sus rivales."
+        },
+        "japanese": {
+            "name": "ニュ－ラ",
+            "category": "かぎづめポケモン",
+            "entry_text": "すみかから　タマゴを　かすめとり\nたべてしまう。するどい　カギヅメが\nあいての　きゅうしょを　きりさく。"
+        }
     }
 }

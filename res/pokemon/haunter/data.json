@@ -142,7 +142,35 @@
         "pokemon_pos_f": 65530,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65530,
-        "entry_text": "It likes to lurk in the dark and tap\nshoulders with a gaseous hand. Its\ntouch causes endless shuddering.",
-        "category": "Gas Pokémon"
+        "english": {
+            "category": "Gas Pokémon",
+            "entry_text": "It likes to lurk in the dark and tap\nshoulders with a gaseous hand. Its\ntouch causes endless shuddering.",
+            "entry_text_diamond": "It can slip through any obstacle.\nIt lurks inside walls to keep an\neye on its foes."
+        },
+        "french": {
+            "name": "SPECTRUM",
+            "category": "Pokémon Gaz",
+            "entry_text": "Il peut traverser n’importe quel\nobstacle. Il rôde dans les murs\npour surveiller ses ennemis."
+        },
+        "german": {
+            "name": "ALPOLLO",
+            "category": "Gas",
+            "entry_text": "Es kann sich durch jedes Hindernis\nbewegen. Es versteckt sich in\nWänden, um Gegner zu beobachten."
+        },
+        "italian": {
+            "name": "Haunter",
+            "category": "Pokémon Gas",
+            "entry_text": "Riesce a superare qualsiasi\nostacolo. Si nasconde nei muri\nper osservare il nemico."
+        },
+        "spanish": {
+            "name": "Haunter",
+            "category": "Pokémon Gas",
+            "entry_text": "Puede atravesar cualquier\nobstáculo. Atraviesa las paredes\npara espiar a sus enemigos."
+        },
+        "japanese": {
+            "name": "ゴ－スト",
+            "category": "ガスじょうポケモン",
+            "entry_text": "どんな　ものでも　すりぬけられる。\nかべの　なかに　もぐりこんで\nあいての　ようすを　かんさつする。"
+        }
     }
 }

@@ -131,7 +131,35 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "Its six eggs converse using\ntelepathy. They can quickly gather\nif they become separated.",
-        "category": "Egg Pokémon"
+        "english": {
+            "category": "Egg Pokémon",
+            "entry_text": "Its six eggs converse using\ntelepathy. They can quickly gather\nif they become separated.",
+            "entry_text_diamond": "Its six eggs converse using\ntelepathy. They can quickly gather\nif they become separated."
+        },
+        "french": {
+            "name": "NOEUNOEUF",
+            "category": "Pokémon Oeuf",
+            "entry_text": "Ces six œufs communiquent par\ntélépathie. Ils peuvent se réunir\nrapidement si on les sépare."
+        },
+        "german": {
+            "name": "OWEI",
+            "category": "Ei",
+            "entry_text": "Die sechs Eier kommunizieren\ntelepathisch. Werden sie getrennt,\nfinden sie sich schnell wieder."
+        },
+        "italian": {
+            "name": "Exeggcute",
+            "category": "Pokémon Uovo",
+            "entry_text": "Queste sei uova comunicano per\ntelepatia. Si riuniscono subito\nanche se vengono divise."
+        },
+        "spanish": {
+            "name": "Exeggcute",
+            "category": "Pokémon Huevo",
+            "entry_text": "Estos seis huevos se comunican por\ntelepatía. Si se separan se pueden\nreunir rápidamente."
+        },
+        "japanese": {
+            "name": "タマタマ",
+            "category": "たまごポケモン",
+            "entry_text": "テレパシ－で　かいわをしているため\nタマタマを　ひきはなそうとしても\nすぐに　あつまって　６ぴきになる。"
+        }
     }
 }

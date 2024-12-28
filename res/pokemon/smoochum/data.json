@@ -134,7 +134,35 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "It tests everything by touching\nwith its lips, which remember\nwhat it likes and dislikes.",
-        "category": "Kiss Pokémon"
+        "english": {
+            "category": "Kiss Pokémon",
+            "entry_text": "It tests everything by touching\nwith its lips, which remember\nwhat it likes and dislikes.",
+            "entry_text_diamond": "It tests everything by touching\nwith its lips, which remember\nwhat it likes and dislikes."
+        },
+        "french": {
+            "name": "LIPPOUTI",
+            "category": "Pokémon Bisou",
+            "entry_text": "Il goûte à tout du bout des lèvres.\nElles gardent en mémoire ses\ngoûts et ses dégoûts."
+        },
+        "german": {
+            "name": "KUSSILLA",
+            "category": "Kuss",
+            "entry_text": "Dieses PKMN berührt alles mit den\nLippen. Diese merken sich, was es\nmag und nicht mag."
+        },
+        "italian": {
+            "name": "Smoochum",
+            "category": "Pokémon Bacio",
+            "entry_text": "Analizza tutto con le labbra e con\nesse riesce a memorizzare ciò che\ngli piace e ciò che non gli piace."
+        },
+        "spanish": {
+            "name": "Smoochum",
+            "category": "Pokémon Beso",
+            "entry_text": "Analiza todo tocándolo con los\nlabios. Así puede recordar las\ncosas que le gustan y disgustan."
+        },
+        "japanese": {
+            "name": "ムチュ－ル",
+            "category": "くちづけポケモン",
+            "entry_text": "なんでも　くちびるで　ふれてみて\nたしかめる。すきな　ものも　きらいな\nものも　くちびるが　おぼえている。"
+        }
     }
 }

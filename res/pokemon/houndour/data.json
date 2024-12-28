@@ -132,7 +132,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It is smart enough to hunt in\npacks. It uses a variety of cries\nfor communicating with others.",
-        "category": "Dark Pokémon"
+        "english": {
+            "category": "Dark Pokémon",
+            "entry_text": "It is smart enough to hunt in\npacks. It uses a variety of cries\nfor communicating with others.",
+            "entry_text_diamond": "It conveys its feelings using\ndifferent cries. It works in a pack\nto cleverly take down prey."
+        },
+        "french": {
+            "name": "MALOSSE",
+            "category": "Pokémon Sombre",
+            "entry_text": "Il exprime ses émotions en modulant\nson cri. Ce Pokémon rusé chasse\nen meute pour abattre ses proies."
+        },
+        "german": {
+            "name": "HUNDUSTER",
+            "category": "Hades",
+            "entry_text": "Durch unterschiedliche Schreie\ndrückt es seine Gefühle aus. Diese\nPKMN jagen im Verbund nach Beute."
+        },
+        "italian": {
+            "name": "Houndour",
+            "category": "Pokémon Buio",
+            "entry_text": "Trasmette i suoi stati d’animo con\nvari versi. Lavora in gruppo per\ncatturare le prede con l’astuzia."
+        },
+        "spanish": {
+            "name": "Houndour",
+            "category": "Pokémon Siniestro",
+            "entry_text": "Se comunica mediante gritos y\ncolabora en manada para atacar\na sus presas."
+        },
+        "japanese": {
+            "name": "デルビル",
+            "category": "ダ－クポケモン",
+            "entry_text": "なきごえを　つかいわけて　きもちを\nつたえる。みごとな　れんけいプレ－で\nえものを　おいこみ　しとめる。"
+        }
     }
 }

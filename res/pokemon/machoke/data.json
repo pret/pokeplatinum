@@ -132,7 +132,35 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "It happily carries heavy cargo to\ntoughen up. It willingly does hard\nwork for people.",
-        "category": "Superpower Pokémon"
+        "english": {
+            "category": "Superpower Pokémon",
+            "entry_text": "It happily carries heavy cargo to\ntoughen up. It willingly does hard\nwork for people.",
+            "entry_text_diamond": "MACHOKE’s boundless power is very\ndangerous, so it wears a belt that\nsuppresses its energy."
+        },
+        "french": {
+            "name": "MACHOPEUR",
+            "category": "Pokémon Colosse",
+            "entry_text": "La force herculéenne du MACHOPEUR\nest très dangereuse. Il utilise une\nceinture pour contenir son énergie."
+        },
+        "german": {
+            "name": "MASCHOCK",
+            "category": "Kraftprotz",
+            "entry_text": "MASCHOCKs unbegrenzte Kraft ist\ngefährlich, daher trägt es einen\nGürtel, der die Kraft unterdrückt."
+        },
+        "italian": {
+            "name": "Machoke",
+            "category": "Pokémon Megaforza",
+            "entry_text": "La sua incredibile forza può essere\nmolto pericolosa. Indossa una cin-\ntura per tenerla sotto controllo."
+        },
+        "spanish": {
+            "name": "Machoke",
+            "category": "Pokémon Superpoder",
+            "entry_text": "La gran fortaleza de MACHOKE es\npeligrosa, así que lleva un cinturón\nque disminuye su energía."
+        },
+        "japanese": {
+            "name": "ゴ－リキ－",
+            "category": "かいりきポケモン",
+            "entry_text": "ゴ－リキ－の　そこしれない　パワ－は\nとても　きけんなので　ちからを\nせいぎょする　ベルトを　まいている。"
+        }
     }
 }

@@ -59,7 +59,35 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": null,
-        "category": "????? Pokémon"
+        "english": {
+            "category": "????? Pokémon",
+            "entry_text": "",
+            "entry_text_diamond": "nguage>\n"
+        },
+        "french": {
+            "name": "----------",
+            "category": "Pokémon ?????",
+            "entry_text": ""
+        },
+        "german": {
+            "name": "----------",
+            "category": "?????",
+            "entry_text": ""
+        },
+        "italian": {
+            "name": "----------",
+            "category": "Pokémon ?????",
+            "entry_text": ""
+        },
+        "spanish": {
+            "name": "----------",
+            "category": "Pokémon (?)",
+            "entry_text": ""
+        },
+        "japanese": {
+            "name": "－－－－－",
+            "category": "？？？？？ポケモン",
+            "entry_text": ""
+        }
     }
 }

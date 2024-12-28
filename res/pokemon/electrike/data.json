@@ -121,7 +121,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Using electricity stored in its fur,\nit stimulates its muscles to\nheighten its reaction speed.",
-        "category": "Lightning Pokémon"
+        "english": {
+            "category": "Lightning Pokémon",
+            "entry_text": "Using electricity stored in its fur,\nit stimulates its muscles to\nheighten its reaction speed.",
+            "entry_text_diamond": "Using electricity stored in its fur,\nit stimulates its muscles to\nheighten its reaction speed."
+        },
+        "french": {
+            "name": "DYNAVOLT",
+            "category": "Pokémon Orage",
+            "entry_text": "Il améliore ses réflexes en\nstimulant ses muscles grâce à \nl’électricité dans sa fourrure."
+        },
+        "german": {
+            "name": "FRIZELBLIZ",
+            "category": "Gewitter",
+            "entry_text": "Die Elektrizität, die es im Fell\nspeichert, nutzt es, um seine\nMuskeln zu stimulieren."
+        },
+        "italian": {
+            "name": "Electrike",
+            "category": "Pokémon Lampo",
+            "entry_text": "L’elettricità immagazzinata nella\npelliccia gli stimola i muscoli e\naumenta la sua velocità di reazione."
+        },
+        "spanish": {
+            "name": "Electrike",
+            "category": "Pokémon Calambre",
+            "entry_text": "Estimula sus músculos y aumenta\nsus reflejos con la electricidad\nque almacena su pelaje."
+        },
+        "japanese": {
+            "name": "ラクライ",
+            "category": "いなずまポケモン",
+            "entry_text": "たいもうに　ためた　でんきを　つかい\nきんにくを　しげきすることで\nしゅんぱつりょくを　たかめる。"
+        }
     }
 }

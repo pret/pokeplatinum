@@ -75,7 +75,35 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It marks its territory by using its\ntail like a paintbrush. There are\nmore than 5,000 different marks.",
-        "category": "Painter Pokémon"
+        "english": {
+            "category": "Painter Pokémon",
+            "entry_text": "It marks its territory by using its\ntail like a paintbrush. There are\nmore than 5,000 different marks.",
+            "entry_text_diamond": "It marks its territory by using its\ntail like a paintbrush. There are\nmore than 5,000 different marks."
+        },
+        "french": {
+            "name": "QUEULORIOR",
+            "category": "Pokémon Peintre",
+            "entry_text": "Il marque son territoire en maniant\nsa queue comme un pinceau. On\ndénombre plus de 5 000 marques."
+        },
+        "german": {
+            "name": "FARBEAGLE",
+            "category": "Maler",
+            "entry_text": "Sein Revier markiert es mit seinem\npinselartigen Schweif. Es kennt\nmehr als 5 000 Markierungen."
+        },
+        "italian": {
+            "name": "Smeargle",
+            "category": "Pokémon Pittore",
+            "entry_text": "Delimita il suo territorio usando la\ncoda come se fosse un pennello. Ha\nlasciato oltre 5000 segni diversi."
+        },
+        "spanish": {
+            "name": "Smeargle",
+            "category": "Pokémon Pintor",
+            "entry_text": "Marca su territorio usando su\ncola a modo de pincel. Ha hecho\nmás de 5000 marcas diferentes."
+        },
+        "japanese": {
+            "name": "ド－ブル",
+            "category": "えかきポケモン",
+            "entry_text": "しっぽを　ふでのように　つかって\nなわばりに　マ－クを　えがく。\nその　しゅるいは　５０００いじょう。"
+        }
     }
 }

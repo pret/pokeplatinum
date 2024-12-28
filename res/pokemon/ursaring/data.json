@@ -139,7 +139,35 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "In its territory, it leaves\nscratches on trees that bear\ndelicious berries or fruits.",
-        "category": "Hibernator Pokémon"
+        "english": {
+            "category": "Hibernator Pokémon",
+            "entry_text": "In its territory, it leaves\nscratches on trees that bear\ndelicious berries or fruits.",
+            "entry_text_diamond": "In its territory, it leaves\nscratches on trees that bear\ndelicious berries or fruits."
+        },
+        "french": {
+            "name": "URSARING",
+            "category": "Pokémon Hibernant",
+            "entry_text": "Il marque de ses griffes les\narbres de son territoire qui\nportent des Baies ou des fruits."
+        },
+        "german": {
+            "name": "URSARING",
+            "category": "Schläfer",
+            "entry_text": "Es durchstreift sein Revier und\nmarkiert Bäume, die Früchte\noder Beeren tragen, mit Kratzern."
+        },
+        "italian": {
+            "name": "Ursaring",
+            "category": "Pokémon Letargo",
+            "entry_text": "Nel suo territorio, lascia graffi\nsugli alberi che hanno bacche\no frutti deliziosi."
+        },
+        "spanish": {
+            "name": "Ursaring",
+            "category": "Pokémon Hibernante",
+            "entry_text": "Araña los árboles de su territorio\nque dan bayas y frutas que le\ngustan para marcarlos."
+        },
+        "japanese": {
+            "name": "リングマ",
+            "category": "とうみんポケモン",
+            "entry_text": "なわばりにある　おいしい　きのみや\nくだものの　なる　き　には\nツメで　きずあとを　つける。"
+        }
     }
 }

@@ -85,7 +85,35 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "Often targeted by bird Pokémon,\nit desperately resists by releasing\npoison from its tail spikes.",
-        "category": "Worm Pokémon"
+        "english": {
+            "category": "Worm Pokémon",
+            "entry_text": "Often targeted by bird Pokémon,\nit desperately resists by releasing\npoison from its tail spikes.",
+            "entry_text_diamond": "It loves to eat leaves. If it is\nattacked by a STARLY, it will defend\nitself with its spiked rear."
+        },
+        "french": {
+            "name": "CHENIPOTTE",
+            "category": "Pokémon Ver",
+            "entry_text": "Il adore manger des feuilles. Si un\nETOURMI l’attaque, il riposte avec\nles piquants de son postérieur."
+        },
+        "german": {
+            "name": "WAUMPEL",
+            "category": "Wurm",
+            "entry_text": "Es isst am liebsten Blätter. Wird es\nvon einem STARALILI angegriffen,\nverteidigt es sich mit Stacheln."
+        },
+        "italian": {
+            "name": "Wurmple",
+            "category": "Pokémon Baco",
+            "entry_text": "Ama mangiare le foglie. Se STARLY lo\nattacca, si difende con gli aculei\nche ha sulla parte posteriore."
+        },
+        "spanish": {
+            "name": "Wurmple",
+            "category": "Pokémon Gusano",
+            "entry_text": "Le encanta comer hojas. Si le\nataca un STARLY, se defenderá\ncon sus púas."
+        },
+        "japanese": {
+            "name": "ケムッソ",
+            "category": "いもむしポケモン",
+            "entry_text": "はっぱが　だいこうぶつ。\nムックルに　おそわれたときは\nおしりの　トゲで　げきたいする。"
+        }
     }
 }

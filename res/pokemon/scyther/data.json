@@ -132,7 +132,35 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "The sharp scythes on its forearms\nbecome increasingly sharp by\ncutting through hard objects.",
-        "category": "Mantis Pokémon"
+        "english": {
+            "category": "Mantis Pokémon",
+            "entry_text": "The sharp scythes on its forearms\nbecome increasingly sharp by\ncutting through hard objects.",
+            "entry_text_diamond": "It is nearly impossible to parry\nits attacking scythes. Its\nmovements are like a ninja’s."
+        },
+        "french": {
+            "name": "INSECATEUR",
+            "category": "Pokémon Mante",
+            "entry_text": "Ses coups de faux sont \npratiquement imparables. Il se \ndéplace comme un ninja."
+        },
+        "german": {
+            "name": "SICHLOR",
+            "category": "Mantis",
+            "entry_text": "Es ist fast unmöglich, seinen\nSensen auszuweichen, da es mit der\nSchnelligkeit eines Ninja zuschlägt."
+        },
+        "italian": {
+            "name": "Scyther",
+            "category": "Pokémon Mantide",
+            "entry_text": "È quasi impossibile parare gli\nattacchi sferrati dalle sue falci.\nSi muove come un ninja."
+        },
+        "spanish": {
+            "name": "Scyther",
+            "category": "Pokémon Mantis",
+            "entry_text": "Es casi imposible evitar el ataque\nde sus guadañas. Se mueve como\nun ninja."
+        },
+        "japanese": {
+            "name": "ストライク",
+            "category": "かまきりポケモン",
+            "entry_text": "りょううでの　カマによる　こうげきを\nふせぐことは　ふかのうに　ちかい。\nその　うごきは　まるで　ニンジャだ。"
+        }
     }
 }

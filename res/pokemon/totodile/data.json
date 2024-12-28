@@ -135,7 +135,35 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It has the habit of biting anything\nwith its developed jaws. Even its\nTrainer needs to be careful.",
-        "category": "Big Jaw Pokémon"
+        "english": {
+            "category": "Big Jaw Pokémon",
+            "entry_text": "It has the habit of biting anything\nwith its developed jaws. Even its\nTrainer needs to be careful.",
+            "entry_text_diamond": "It has the habit of biting anything\nwith its developed jaws. Even its\nTrainer needs to be careful."
+        },
+        "french": {
+            "name": "KAIMINUS",
+            "category": "Pokémon Mâchoire",
+            "entry_text": "Il broie tout ce qu’il trouve avec\nses mâchoires puissantes. Même\nson Dresseur doit s’en méfier."
+        },
+        "german": {
+            "name": "KARNIMANI",
+            "category": "Großmaul",
+            "entry_text": "Es hat die Angewohnheit, nach allem\nzu schnappen, was es sieht. Selbst\nseine Trainer müssen aufpassen."
+        },
+        "italian": {
+            "name": "Totodile",
+            "category": "Pokémon Mascellone",
+            "entry_text": "Ha l’abitudine di mordere ogni cosa\ncon le potenti mandibole. Neppure\nil suo Allenatore è al sicuro!"
+        },
+        "spanish": {
+            "name": "Totodile",
+            "category": "Pokémon Fauces",
+            "entry_text": "Tiene costumbre de morderlo todo\ncon sus poderosas mandíbulas,\nincluso entrenadores."
+        },
+        "japanese": {
+            "name": "ワニノコ",
+            "category": "おおあごポケモン",
+            "entry_text": "はったつした　あごを　もち\nなんにでも　かみつく　しゅうせい。\nトレ－ナ－も　ちゅういが　ひつよう。"
+        }
     }
 }

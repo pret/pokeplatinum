@@ -145,7 +145,35 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It hides in the darkness of caves.\nIts diet of gems has transformed\nits eyes into gemstones.",
-        "category": "Darkness Pokémon"
+        "english": {
+            "category": "Darkness Pokémon",
+            "entry_text": "It hides in the darkness of caves.\nIts diet of gems has transformed\nits eyes into gemstones.",
+            "entry_text_diamond": "It hides in the darkness of caves.\nIts diet of gems has transformed\nits eyes into gemstones."
+        },
+        "french": {
+            "name": "TENEFIX",
+            "category": "Pokémon Obscurité",
+            "entry_text": "A force de manger des gemmes, \nles yeux de ce Pokémon des grottes\nobscures sont devenus des joyaux."
+        },
+        "german": {
+            "name": "ZOBIRIS",
+            "category": "Finsternis",
+            "entry_text": "Es versteckt sich im Dunkeln von\nHöhlen. Seine Augen sind\nEdelsteine."
+        },
+        "italian": {
+            "name": "Sableye",
+            "category": "Pokémon Oscurità",
+            "entry_text": "Si cela nell’oscurità delle caverne.\nSi nutre di gemme e per questo i\nsuoi occhi sono pietre preziose."
+        },
+        "spanish": {
+            "name": "Sableye",
+            "category": "Pokémon Oscuridad",
+            "entry_text": "Se oculta en cavernas oscuras.\nDe tanto comer gemas sus ojos\nson piedras preciosas."
+        },
+        "japanese": {
+            "name": "ヤミラミ",
+            "category": "くらやみポケモン",
+            "entry_text": "どうくつの　くらやみに　ひそむ。\nほうせきを　たべているうちに\nめが　ほうせきに　なってしまった。"
+        }
     }
 }

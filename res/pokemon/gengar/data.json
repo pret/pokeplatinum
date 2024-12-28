@@ -145,7 +145,35 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "The leer that floats in darkness\nbelongs to a GENGAR delighting in\ncasting curses on people.",
-        "category": "Shadow Pokémon"
+        "english": {
+            "category": "Shadow Pokémon",
+            "entry_text": "The leer that floats in darkness\nbelongs to a GENGAR delighting in\ncasting curses on people.",
+            "entry_text_diamond": "It hides in shadows. It is said\nthat if GENGAR is hiding, it cools\nthe area by nearly 10 degrees F."
+        },
+        "french": {
+            "name": "ECTOPLASMA",
+            "category": "Pokémon Ombre",
+            "entry_text": "On dit que lorsqu’ECTOPLASMA se \ncache dans l’ombre, la température\nalentour chute de 5 °C."
+        },
+        "german": {
+            "name": "GENGAR",
+            "category": "Schatten",
+            "entry_text": "Es versteckt sich im Schatten. Man\nsagt, wenn sich ein GENGAR ver-\nsteckt, kühlt es sich um 5 Grad ab."
+        },
+        "italian": {
+            "name": "Gengar",
+            "category": "Pokémon Ombra",
+            "entry_text": "Si nasconde nell’ombra. Pare che\nnei luoghi in cui GENGAR si cela,\nla temperatura si abbassi di 5°C."
+        },
+        "spanish": {
+            "name": "Gengar",
+            "category": "Pokémon Sombra",
+            "entry_text": "Se esconde entre las sombras.\nSe dice que donde GENGAR acecha,\nla temperatura baja 5 grados."
+        },
+        "japanese": {
+            "name": "ゲンガ－",
+            "category": "シャド－ポケモン",
+            "entry_text": "ものかげに　すがたを　かくす。\nゲンガ－の　ひそんでいる　へやは\nおんどが　５ど　さがると　いわれる。"
+        }
     }
 }

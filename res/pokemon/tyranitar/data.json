@@ -158,7 +158,35 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 3,
-        "entry_text": "If it rampages, it knocks down\nmountains and buries rivers. Maps\nmust be redrawn afterward.",
-        "category": "Armor Pokémon"
+        "english": {
+            "category": "Armor Pokémon",
+            "entry_text": "If it rampages, it knocks down\nmountains and buries rivers. Maps\nmust be redrawn afterward.",
+            "entry_text_diamond": "If it rampages, it knocks down\nmountains and buries rivers. Maps\nmust be redrawn afterward."
+        },
+        "french": {
+            "name": "TYRANOCIF",
+            "category": "Pokémon Armure",
+            "entry_text": "Lorsqu’il est en colère, il abat des\nmontagnes et enterre des fleuves.\nOn doit alors modifier les cartes."
+        },
+        "german": {
+            "name": "DESPOTAR",
+            "category": "Panzer",
+            "entry_text": "Bei einem Tobsuchtsanfall zerstört\nes ganze Gebirge und legt Flüsse\ntrocken."
+        },
+        "italian": {
+            "name": "Tyranitar",
+            "category": "Pokémon Armatura",
+            "entry_text": "Se s’infuria, abbatte le montagne e\nseppellisce i fiumi. In seguito, le\nmappe devono essere riscritte. "
+        },
+        "spanish": {
+            "name": "Tyranitar",
+            "category": "Pokémon Coraza",
+            "entry_text": "Puede alterar el paisaje derribando\nmontañas y enterrando ríos. Da\nmucho trabajo a los cartógrafos."
+        },
+        "japanese": {
+            "name": "バンギラス",
+            "category": "よろいポケモン",
+            "entry_text": "バンギラスが　あばれると\nやまが　くずれ　かわが　うまるため\nちずを　かきかえる　ことになる。"
+        }
     }
 }

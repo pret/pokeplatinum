@@ -131,7 +131,35 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 22,
         "pokemon_pos_m": 0,
-        "entry_text": "Once it begins to rampage, a\nGYARADOS will burn everything\ndown, even in a harsh storm.",
-        "category": "Atrocious Pokémon"
+        "english": {
+            "category": "Atrocious Pokémon",
+            "entry_text": "Once it begins to rampage, a\nGYARADOS will burn everything\ndown, even in a harsh storm.",
+            "entry_text_diamond": "Once it appears, its rage never\nsettles until it has razed the\nfields and mountains around it."
+        },
+        "french": {
+            "name": "LEVIATOR",
+            "category": "Pokémon Terrifiant",
+            "entry_text": "Lorsqu’il apparaît, sa rage ne\ncesse qu’après qu’il a rasé les\nplaines et montagnes alentour."
+        },
+        "german": {
+            "name": "GARADOS",
+            "category": "Grausam",
+            "entry_text": "Sobald es erscheint, nimmt seine\nWut nicht eher ab, bis es die Felder\nund Berge ringsum zerstört hat."
+        },
+        "italian": {
+            "name": "Gyarados",
+            "category": "Pokémon Atroce",
+            "entry_text": "La sua ira non si placa finché non\nha raso al suolo campi e monti\nattorno a sé."
+        },
+        "spanish": {
+            "name": "Gyarados",
+            "category": "Pokémon Atrocidad",
+            "entry_text": "Cuando se enfada, su rabia solo\nse disipa tras arrasar los\ncampos y montañas vecinos."
+        },
+        "japanese": {
+            "name": "ギャラドス",
+            "category": "きょうあくポケモン",
+            "entry_text": "ひとたび　すがたを　あらわすと\nのやまの　すべてを　やきつくすまで\nいかりが　しずまらない。"
+        }
     }
 }

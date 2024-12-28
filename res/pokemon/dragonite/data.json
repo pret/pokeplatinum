@@ -159,7 +159,35 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 8,
         "pokemon_pos_m": 5,
-        "entry_text": "It is said to make its home\nsomewhere in the sea. It guides\ncrews of shipwrecks to shore.",
-        "category": "Dragon Pokémon"
+        "english": {
+            "category": "Dragon Pokémon",
+            "entry_text": "It is said to make its home\nsomewhere in the sea. It guides\ncrews of shipwrecks to shore.",
+            "entry_text_diamond": "It is said to make its home\nsomewhere in the sea. It guides\ncrews of shipwrecks to shore."
+        },
+        "french": {
+            "name": "DRACOLOSSE",
+            "category": "Pokémon Dragon",
+            "entry_text": "On raconte qu’il vit quelque part\nen mer. Il guide les équipages\nnaufragés jusqu’à la terre ferme."
+        },
+        "german": {
+            "name": "DRAGORAN",
+            "category": "Drache",
+            "entry_text": "Man sagt, es lebe in den Meeren.\nEs bringt Schiffbrüchige sicher\nan Land."
+        },
+        "italian": {
+            "name": "Dragonite",
+            "category": "Pokémon Drago",
+            "entry_text": "Si dice che faccia la sua tana da\nqualche parte nel mare. Porta a\nriva le vittime di naufragi."
+        },
+        "spanish": {
+            "name": "Dragonite",
+            "category": "Pokémon Dragón",
+            "entry_text": "Se dice que vive en algún lugar\ndel mar. Guía a las tripulaciones\nde los barcos hundidos a la costa."
+        },
+        "japanese": {
+            "name": "カイリュ－",
+            "category": "ドラゴンポケモン",
+            "entry_text": "ひろい　うみの　どこかに　すみかが\nあると　いわれている。なんぱした\nふねを　りくまで　みちびいてくれる。"
+        }
     }
 }

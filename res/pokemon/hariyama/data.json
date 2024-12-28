@@ -135,7 +135,35 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 4,
-        "entry_text": "It loves to match power with\nbig-bodied Pokémon. It can knock a\ntruck flying with its arm thrusts.",
-        "category": "Arm Thrust Pokémon"
+        "english": {
+            "category": "Arm Thrust Pokémon",
+            "entry_text": "It loves to match power with\nbig-bodied Pokémon. It can knock a\ntruck flying with its arm thrusts.",
+            "entry_text_diamond": "It loves to match power with\nbig-bodied Pokémon. It can knock a\ntruck flying with its arm thrusts."
+        },
+        "french": {
+            "name": "HARIYAMA",
+            "category": "Pokémon Cogneur",
+            "entry_text": "Il aime mesurer sa force à celle des\nplus grands Pokémon. Ses coups de\npaume peuvent projeter un camion."
+        },
+        "german": {
+            "name": "HARIYAMA",
+            "category": "Armwurf",
+            "entry_text": "Es liebt das Kräftemessen mit\ngroßen PKMN. Mit seinem Armwurf\nkann es LKW durch die Luft werfen."
+        },
+        "italian": {
+            "name": "Hariyama",
+            "category": "Pokémon Sberletese",
+            "entry_text": "Ama confrontarsi con Pokémon gros-\nsi. Con uno dei suo schiaffi, può far\nprendere il volo a un camion."
+        },
+        "spanish": {
+            "name": "Hariyama",
+            "category": "Pokémon Empuje",
+            "entry_text": "Le encanta enfrentarse a Pokémon\ngrandes y probar su fuerza. Sus\nbrazos pueden derribar un camión."
+        },
+        "japanese": {
+            "name": "ハリテヤマ",
+            "category": "つっぱりポケモン",
+            "entry_text": "からだの　おおきな　ポケモンたちと\nちからくらべをすることが　だいすき。\nはりてで　トラックを　ふっとばす。"
+        }
     }
 }

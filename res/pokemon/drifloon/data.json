@@ -142,7 +142,35 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "entry_text": "Because of the way it floats\naimlessly, an old folktale calls it a\n\u201cSignpost for Wandering Spirits.\u201d",
-        "category": "Balloon Pokémon"
+        "english": {
+            "category": "Balloon Pokémon",
+            "entry_text": "Because of the way it floats\naimlessly, an old folktale calls it a\n“Signpost for Wandering Spirits.”",
+            "entry_text_diamond": "A Pokémon formed by the spirits\nof people and Pokémon. It loves\ndamp, humid seasons."
+        },
+        "french": {
+            "name": "BAUDRIVE",
+            "category": "Pokémon Bouboule",
+            "entry_text": "Un Pokémon né de l’esprit des gens\net des Pokémon. Il aime les saisons\nchaudes et humides."
+        },
+        "german": {
+            "name": "DRIFTLON",
+            "category": "Ballon",
+            "entry_text": "Ein PKMN, entstanden aus den\nGefühlen von Menschen und PKMN.\nEs mag feuchte Jahreszeiten."
+        },
+        "italian": {
+            "name": "Drifloon",
+            "category": "Pokémon Pallone",
+            "entry_text": "Pokémon formato dalle anime di\npersone e Pokémon. Ama le\nstagioni umide."
+        },
+        "spanish": {
+            "name": "Drifloon",
+            "category": "Pokémon Globo",
+            "entry_text": "Está formado por los espíritus de\npersonas y Pokémon. Le encantan\nlas estaciones húmedas."
+        },
+        "japanese": {
+            "name": "フワンテ",
+            "category": "ふうせんポケモン",
+            "entry_text": "ひとや　ポケモンの　たましいが\nかたまって　うまれた　ポケモン。\nジメジメした　きせつが　だいすき。"
+        }
     }
 }

@@ -128,7 +128,35 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It knows where pure water wells\nup. It carries fellow Pokémon there\non its back.",
-        "category": "Grove Pokémon"
+        "english": {
+            "category": "Grove Pokémon",
+            "entry_text": "It knows where pure water wells\nup. It carries fellow Pokémon there\non its back.",
+            "entry_text_diamond": "It lives along water in forests. In\nthe daytime, it leaves the forest\nto sunbathe its treed shell."
+        },
+        "french": {
+            "name": "BOSKARA",
+            "category": "Pokémon Bosquet",
+            "entry_text": "Il vit en forêt près de l’eau.\nEn journée, il la quitte pour dorer\nsa carapace feuillue au soleil."
+        },
+        "german": {
+            "name": "CHELCARAIN",
+            "category": "Hain",
+            "entry_text": "Es lebt in der Nähe von Wasser in\nWäldern. Tagsüber verlässt es\ndiese, um ein Sonnenbad zu nehmen."
+        },
+        "italian": {
+            "name": "Grotle",
+            "category": "Pokémon Boschetto",
+            "entry_text": "Vive nelle foreste vicino all’acqua,\nma esce di giorno per far pren-\ndere sole alle piante sul guscio."
+        },
+        "spanish": {
+            "name": "Grotle",
+            "category": "Pokémon Arboleda",
+            "entry_text": "Vive en los bosques cerca del\nagua. Por el día, sale a que les dé\nel sol a las plantas de su espalda."
+        },
+        "japanese": {
+            "name": "ハヤシガメ",
+            "category": "こだちポケモン",
+            "entry_text": "もりの　なかの　みずべで　くらす。\nひるまは　もりの　そとに　でて\nこうらの　きに　ひかりを　あてる。"
+        }
     }
 }

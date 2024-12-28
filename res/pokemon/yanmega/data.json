@@ -130,7 +130,35 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "Its jaw power is incredible. It is\nadept at biting apart foes while\nflying by at high speed.",
-        "category": "Ogre Darner Pokémon"
+        "english": {
+            "category": "Ogre Darner Pokémon",
+            "entry_text": "Its jaw power is incredible. It is\nadept at biting apart foes while\nflying by at high speed.",
+            "entry_text_diamond": "By churning its wings, it creates\nshock waves that inflict critical\ninternal injuries to foes."
+        },
+        "french": {
+            "name": "YANMEGA",
+            "category": "Pokémon Libellogre",
+            "entry_text": "Les ondes de choc qu’il génère\nen battant des ailes infligent de\ngraves blessures internes."
+        },
+        "german": {
+            "name": "YANMEGA",
+            "category": "Agrion",
+            "entry_text": "Durch die Bewegung seiner Flügel\nentstehen Schockwellen, die dem\nGegn. innere Verletzungen zufügen."
+        },
+        "italian": {
+            "name": "Yanmega",
+            "category": "Pokémon Libellorco",
+            "entry_text": "Agitando le ali crea onde d’urto\nche infliggono gravi ferite agli\norgani interni dei nemici."
+        },
+        "spanish": {
+            "name": "Yanmega",
+            "category": "Pokémon Libélula",
+            "entry_text": "Agita sus alas para crear ondas\nde choque que producen\nlesiones internas a sus rivales."
+        },
+        "japanese": {
+            "name": "メガヤンマ",
+            "category": "オニトンボポケモン",
+            "entry_text": "はばたいたときの　しょうげきはで\nあいての　からだの　うちがわに\nちめいてきな　ダメ－ジを　あたえる。"
+        }
     }
 }

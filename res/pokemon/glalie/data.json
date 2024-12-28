@@ -125,7 +125,35 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "It prevents prey from escaping by\ninstantaneously freezing moisture\nin the air.",
-        "category": "Face Pokémon"
+        "english": {
+            "category": "Face Pokémon",
+            "entry_text": "It prevents prey from escaping by\ninstantaneously freezing moisture\nin the air.",
+            "entry_text_diamond": "To protect itself, it clads its\nbody in an armor of ice, made\nby freezing moisture in the air."
+        },
+        "french": {
+            "name": "ONIGLALI",
+            "category": "Pokémon Face",
+            "entry_text": "Il gèle l’humidité de l’air pour \nformer une armure de glace\nprotectrice autour de son corps."
+        },
+        "german": {
+            "name": "FIRNONTOR",
+            "category": "Antlitz",
+            "entry_text": "Um sich zu schützen, umgibt es\nseinen Körper mit einer Rüstung\naus Eis."
+        },
+        "italian": {
+            "name": "Glalie",
+            "category": "Pokémon Tuttomuso",
+            "entry_text": "Per difendersi, riveste il suo corpo\ncon un’armatura di ghiaccio, fatta\ncongelando l’umidità dell’aria."
+        },
+        "spanish": {
+            "name": "Glalie",
+            "category": "Pokémon Cara",
+            "entry_text": "Se protege con una armadura de\nhielo creada por congelación de\nla humedad del aire."
+        },
+        "japanese": {
+            "name": "オニゴ－リ",
+            "category": "がんめんポケモン",
+            "entry_text": "くうきちゅうの　すいぶんを　こおらせ\nこおりの　そうこうで　からだを\nつつみこみ　みを　まもっている。"
+        }
     }
 }

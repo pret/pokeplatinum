@@ -134,7 +134,35 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "It transforms the kindness and joy\nof others into happiness, which it\nstores in its shell.",
-        "category": "Spike Ball Pokémon"
+        "english": {
+            "category": "Spike Ball Pokémon",
+            "entry_text": "It transforms the kindness and joy\nof others into happiness, which it\nstores in its shell.",
+            "entry_text_diamond": "Its shell is said to be stuffed\nwith happiness that it shares with\nkindhearted people."
+        },
+        "french": {
+            "name": "TOGEPI",
+            "category": "Pokémon Balle Pic",
+            "entry_text": "On prétend que sa coquille est\nremplie de bonheur, qu’il partage\navec les êtres au cœur pur."
+        },
+        "german": {
+            "name": "TOGEPI",
+            "category": "Zackenball",
+            "entry_text": "Seine Schale ist mit Glücksgefühlen\ngefüllt, die es mit gutherzigen\nLebewesen teilt."
+        },
+        "italian": {
+            "name": "Togepi",
+            "category": "Pokémon Pallapunte",
+            "entry_text": "Pare che il suo guscio immagazzini\nfelicità, che condivide poi con le\npersone gentili."
+        },
+        "spanish": {
+            "name": "Togepi",
+            "category": "Pokémon Bolaclavos",
+            "entry_text": "Se dice que su cascarón está\nlleno de alegría que comparte con\nlas personas de buen corazón."
+        },
+        "japanese": {
+            "name": "トゲピ－",
+            "category": "はりたまポケモン",
+            "entry_text": "カラの　なかに　たくさん　しあわせが\nつまっていて　やさしい　ひとに\nしあわせを　わけあたえるという。"
+        }
     }
 }

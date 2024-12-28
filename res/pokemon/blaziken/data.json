@@ -142,7 +142,35 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 13,
         "pokemon_pos_m": 5,
-        "entry_text": "Flames spout from its wrists,\nenveloping its knuckles. Its\npunches scorch its foes.",
-        "category": "Blaze Pokémon"
+        "english": {
+            "category": "Blaze Pokémon",
+            "entry_text": "Flames spout from its wrists,\nenveloping its knuckles. Its\npunches scorch its foes.",
+            "entry_text_diamond": "Flames spout from its wrists,\nenveloping its knuckles. Its\npunches scorch its foes."
+        },
+        "french": {
+            "name": "BRASEGALI",
+            "category": "Pokémon Ardent",
+            "entry_text": "Des flammes fusent de ses\npoignets et ses coups brûlent\nl’ennemi."
+        },
+        "german": {
+            "name": "LOHGOCK",
+            "category": "Großbrand",
+            "entry_text": "Aus seinen Handgelenken kommt\nFeuer, das seine Knöchel umhüllt.\nSchläge verbrennen den Gegner."
+        },
+        "italian": {
+            "name": "Blaziken",
+            "category": "Pokémon Vampe",
+            "entry_text": "Le fiamme che fuoriescono dai suoi\npolsi gli avvolgono i pugni. Quando\ncolpisce il nemico, lo scotta."
+        },
+        "spanish": {
+            "name": "Blaziken",
+            "category": "Pokémon Llameante",
+            "entry_text": "Sus puños están envueltos en\nllamas. Con sus golpes puede\nquemar a sus rivales."
+        },
+        "japanese": {
+            "name": "バシャ－モ",
+            "category": "もうかポケモン",
+            "entry_text": "てくびから　ふきだした　ほのおで\nこぶしを　つつみこんだ　パンチは\nあいてを　くろこげに　してしまう。"
+        }
     }
 }

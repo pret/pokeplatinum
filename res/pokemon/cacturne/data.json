@@ -135,7 +135,35 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "It becomes active at night,\nseeking prey that is exhausted\nfrom the day’s desert heat.",
-        "category": "Scarecrow Pokémon"
+        "english": {
+            "category": "Scarecrow Pokémon",
+            "entry_text": "It becomes active at night,\nseeking prey that is exhausted\nfrom the day’s desert heat.",
+            "entry_text_diamond": "It becomes active at night,\nseeking prey that is exhausted\nfrom the day’s desert heat."
+        },
+        "french": {
+            "name": "CACTURNE",
+            "category": "Pokémon Epouvantail",
+            "entry_text": "Il sort la nuit pour chasser. Il\ntraque les proies épuisées après\nune journée dans le désert."
+        },
+        "german": {
+            "name": "NOKTUSKA",
+            "category": "Vogelschock",
+            "entry_text": "Ein nachtaktives PKMN, das Beute\nsucht, die durch die Tageshitze der\nWüste bereits erschöpft ist."
+        },
+        "italian": {
+            "name": "Cacturne",
+            "category": "Pokémon Spavento",
+            "entry_text": "Diventa attivo di notte, quando va\na caccia di prede stremate dalla\ncalura del deserto."
+        },
+        "spanish": {
+            "name": "Cacturne",
+            "category": "Pokémon Espantajo",
+            "entry_text": "Es un Pokémon nocturno. Busca\npresas agotadas por el calor\ndiurno del desierto."
+        },
+        "japanese": {
+            "name": "ノクタス",
+            "category": "カカシぐさポケモン",
+            "entry_text": "よるになると　かつどうを　はじめる。\nさばくの　あつさに　つかれはてた\nえものを　みつけだし　とらえるのだ。"
+        }
     }
 }

@@ -137,7 +137,35 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "It can tell what people are\ndreaming by sniffing with its big\nnose. It loves fun dreams.",
-        "category": "Hypnosis Pokémon"
+        "english": {
+            "category": "Hypnosis Pokémon",
+            "entry_text": "It can tell what people are\ndreaming by sniffing with its big\nnose. It loves fun dreams.",
+            "entry_text_diamond": "It can tell what people are\ndreaming by sniffing with its big\nnose. It loves fun dreams."
+        },
+        "french": {
+            "name": "SOPORIFIK",
+            "category": "Pokémon Hypnose",
+            "entry_text": "Son grand nez lui permet de lire\nles rêves d’autrui. Il adore les\nsonges amusants."
+        },
+        "german": {
+            "name": "TRAUMATO",
+            "category": "Hypnose",
+            "entry_text": "Mit seiner großen Nase kann es die\nTräume anderer erkennen.\nEs liebt lustige Träume."
+        },
+        "italian": {
+            "name": "Drowzee",
+            "category": "Pokémon Ipnosi",
+            "entry_text": "Riesce ad indovinare cosa sognano\nle persone annusandole con il suo\ngrande naso. Ama i sogni divertenti."
+        },
+        "spanish": {
+            "name": "Drowzee",
+            "category": "Pokémon Hipnosis",
+            "entry_text": "Puede oler los sueños de la\ngente con su gran nariz. Le\nencantan los sueños divertidos."
+        },
+        "japanese": {
+            "name": "スリ－プ",
+            "category": "さいみんポケモン",
+            "entry_text": "つきでた　はなを　ひくひくさせると\nみている　ユメが　わかるという。\nだいこうぶつは　たのしい　ユメだ。"
+        }
     }
 }

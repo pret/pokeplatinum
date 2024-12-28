@@ -134,7 +134,35 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "It is outstandingly armored. As a\nresult, it can eat grass and\nberries without having to fight.",
-        "category": "Shield Pokémon"
+        "english": {
+            "category": "Shield Pokémon",
+            "entry_text": "It is outstandingly armored. As a\nresult, it can eat grass and\nberries without having to fight.",
+            "entry_text_diamond": "A Pokémon that lived in jungles\naround 100 million years ago. Its\nfacial hide is extremely hard."
+        },
+        "french": {
+            "name": "DINOCLIER",
+            "category": "Pokémon Bouclier",
+            "entry_text": "Un Pokémon qui vivait dans la jungle\nil y a 100 millions d’années. Son\nvisage est très dur."
+        },
+        "german": {
+            "name": "SCHILTERUS",
+            "category": "Schutzschild",
+            "entry_text": "Vor über 100 Millionen Jahren lebte\nes in den Dschungeln. Seine\nGesichtshaut ist extrem hart."
+        },
+        "italian": {
+            "name": "Shieldon",
+            "category": "Pokémon Schermo",
+            "entry_text": "Pokémon che viveva nella giungla\ncirca 100 milioni di anni fa. Il suo\nmuso è molto resistente."
+        },
+        "spanish": {
+            "name": "Shieldon",
+            "category": "Pokémon Escudo",
+            "entry_text": "Vivía en la jungla hace unos 100\nmillones de años. Su protección\nfacial es tremendamente dura."
+        },
+        "japanese": {
+            "name": "タテトプス",
+            "category": "シ－ルドポケモン",
+            "entry_text": "およそ　１おくねんまえに\nみつりんで　くらしていた　ポケモン。\nかおの　ひふが　ひじょうに　かたい。"
+        }
     }
 }

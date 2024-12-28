@@ -126,7 +126,35 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "A group tried to use scientific\nmeans to make MAGNEZONE evolve,\nbut their efforts ended in failure.",
-        "category": "Magnet Area Pokémon"
+        "english": {
+            "category": "Magnet Area Pokémon",
+            "entry_text": "A group tried to use scientific\nmeans to make MAGNEZONE evolve,\nbut their efforts ended in failure.",
+            "entry_text_diamond": "It evolved from exposure to a\nspecial magnetic field.\nThree units generate magnetism."
+        },
+        "french": {
+            "name": "MAGNEZONE",
+            "category": "Pokémon Aimant",
+            "entry_text": "Il a évolué suite à son exposition\nà un champ magnétique spécial. Ses\n3 unités génèrent du magnétisme."
+        },
+        "german": {
+            "name": "MAGNEZONE",
+            "category": "Magnetgebiet",
+            "entry_text": "Es entwickelte sich, als es einem\nbesonderen Magnetfeld ausgesetzt\nwurde."
+        },
+        "italian": {
+            "name": "Magnezone",
+            "category": "Pokémon Magnetico",
+            "entry_text": "Si è evoluto in seguito all’esposi-\nzione a uno speciale campo magneti-\nco. Tre unità generano magnetismo."
+        },
+        "spanish": {
+            "name": "Magnezone",
+            "category": "Pokémon Magnético",
+            "entry_text": "Evolucionó por la exposición a\nun campo magnético especial.\nTres unidades generan magnetismo."
+        },
+        "japanese": {
+            "name": "ジバコイル",
+            "category": "じばポケモン",
+            "entry_text": "とくしゅな　じばの　えいきょうで\nレアコイルが　しんかした。３つの\nユニットから　じりょくを　だす。"
+        }
     }
 }

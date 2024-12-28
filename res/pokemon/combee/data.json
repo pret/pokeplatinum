@@ -84,7 +84,35 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "The trio is together from birth.\nIt constantly gathers honey from\nflowers to please VESPIQUEN.",
-        "category": "Tiny Bee Pokémon"
+        "english": {
+            "category": "Tiny Bee Pokémon",
+            "entry_text": "The trio is together from birth.\nIt constantly gathers honey from\nflowers to please VESPIQUEN.",
+            "entry_text_diamond": "A Pokémon formed by three others.\nIt busily carries sweet floral\nhoney to VESPIQUEN."
+        },
+        "french": {
+            "name": "APITRINI",
+            "category": "Pokémon Miniabeille",
+            "entry_text": "Un Pokémon qui en regroupe trois\nautres. Il est toujours occupé à\napporter du nectar à APIREINE."
+        },
+        "german": {
+            "name": "WADRIBIE",
+            "category": "Kleinbiene",
+            "entry_text": "Ein PKMN, geformt aus 3 einzelnen\nPKMN. Fleißig bringt es Blütenhonig\nzu HONWEISEL."
+        },
+        "italian": {
+            "name": "Combee",
+            "category": "Pokémon Apetta",
+            "entry_text": "Pokémon formato da altri tre.\nÈ sempre impegnato a portare il\nnettare dei fiori a VESPIQUEN."
+        },
+        "spanish": {
+            "name": "Combee",
+            "category": "Pokémon Abejita",
+            "entry_text": "Está formado por otros tres\nPokémon. Le lleva miel floral\na VESPIQUEN."
+        },
+        "japanese": {
+            "name": "ミツハニ－",
+            "category": "はちのこポケモン",
+            "entry_text": "３びきが　ひとつになった　ポケモン。\nビ－クインのために　せっせと\nはなの　あまい　ミツを　はこぶ。"
+        }
     }
 }

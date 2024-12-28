@@ -130,7 +130,35 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It hides its spiteful tendency of\nhooking its claws into the nose of\nits Trainer if it isn’t fed.",
-        "category": "Catty Pokémon"
+        "english": {
+            "category": "Catty Pokémon",
+            "entry_text": "It hides its spiteful tendency of\nhooking its claws into the nose of\nits Trainer if it isn’t fed.",
+            "entry_text_diamond": "It claws if displeased and purrs\nwhen affectionate. Its fickleness\nis very popular among some."
+        },
+        "french": {
+            "name": "CHAGLAM",
+            "category": "Pokémon Chafouin",
+            "entry_text": "Il griffe quand il est en colère et\nronronne quand il est heureux. \nCertains aiment ce côté lunatique."
+        },
+        "german": {
+            "name": "CHARMIAN",
+            "category": "Fies",
+            "entry_text": "Es schlägt mit Krallen zu oder\nschnurrt, je nachdem, ob es gerade\nwütend oder zutraulich ist."
+        },
+        "italian": {
+            "name": "Glameow",
+            "category": "Pokémon Felide",
+            "entry_text": "Se disturbato, tira fuori gli arti-\ngli; se soddisfatto, fa le fusa. La\nsua incostanza piace a molti."
+        },
+        "spanish": {
+            "name": "Glameow",
+            "category": "Pokémon Gastuto",
+            "entry_text": "Araña cuando está enfadado y\nronronea cuando está cariñoso.\nSu imprevisibilidad es famosa."
+        },
+        "japanese": {
+            "name": "ニャルマ－",
+            "category": "ねこかぶりポケモン",
+            "entry_text": "きにいらないと　ツメを　たてるが\nたまに　のどを　ならして　あまえる\nせいかくが　いちぶに　だいにんきだ。"
+        }
     }
 }

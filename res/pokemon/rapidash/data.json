@@ -117,7 +117,35 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "When at an all-out gallop, its\nblazing mane sparkles, enhancing\nits beautiful appearance.",
-        "category": "Fire Horse Pokémon"
+        "english": {
+            "category": "Fire Horse Pokémon",
+            "entry_text": "When at an all-out gallop, its\nblazing mane sparkles, enhancing\nits beautiful appearance.",
+            "entry_text_diamond": "It gallops at nearly 150 mph.\nWith its mane blazing ferociously,\nit races as if it were an arrow."
+        },
+        "french": {
+            "name": "GALOPA",
+            "category": "Pokémon Cheval Feu",
+            "entry_text": "Son galop dépasse les 240 km/h. Il\nfile comme une flèche, laissant\nflotter sa crinière ardente."
+        },
+        "german": {
+            "name": "GALLOPA",
+            "category": "Feuerpferd",
+            "entry_text": "Seine Mähne lodert auf, wenn es\nmit 240 km/h pfeilschnell\ngaloppiert."
+        },
+        "italian": {
+            "name": "Rapidash",
+            "category": "Pokémon Cavalfuoco",
+            "entry_text": "Galoppa alla velocità di 240 km/h.\nCorre come una freccia facendo\nondeggiare la criniera ardente."
+        },
+        "spanish": {
+            "name": "Rapidash",
+            "category": "Pokémon Caballo F.",
+            "entry_text": "Galopa a casi 240 km por hora.\nSu crin ardiente parece una flecha\ncuando corre."
+        },
+        "japanese": {
+            "name": "ギャロップ",
+            "category": "ひのうまポケモン",
+            "entry_text": "はしる　そくどは　じそく２４０キロ。\nたてがみの　ほのおが　はげしく　もえ\nやの　ように　かけぬける。"
+        }
     }
 }

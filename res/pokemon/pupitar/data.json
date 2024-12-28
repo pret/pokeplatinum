@@ -133,7 +133,35 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "Its body is as hard as bedrock.\nBy venting pressurized gas, it can\nlaunch itself like a rocket.",
-        "category": "Hard Shell Pokémon"
+        "english": {
+            "category": "Hard Shell Pokémon",
+            "entry_text": "Its body is as hard as bedrock.\nBy venting pressurized gas, it can\nlaunch itself like a rocket.",
+            "entry_text_diamond": "Its body is as hard as bedrock.\nBy venting pressurized gas, it can\nlaunch itself like a rocket."
+        },
+        "french": {
+            "name": "YMPHECT",
+            "category": "Pokémon Carapadure",
+            "entry_text": "Son corps est dur comme la pierre\nsouterraine. Il file comme une\nfusée en expulsant des gaz."
+        },
+        "german": {
+            "name": "PUPITAR",
+            "category": "Hartschale",
+            "entry_text": "Sein Körper ist hart wie Fels. Es\nlässt mit Hochdruck Gas ab, um wie\neine Rakete nach oben zu schießen."
+        },
+        "italian": {
+            "name": "Pupitar",
+            "category": "Pokémon Guscioduro",
+            "entry_text": "Il suo corpo è duro come la roccia.\nRiesce a muoversi come un razzo\nespellendo gas con tutta forza."
+        },
+        "spanish": {
+            "name": "Pupitar",
+            "category": "Pokémon Caparazón",
+            "entry_text": "Su cuerpo es duro como la roca.\nSe autopropulsa como un cohete\nsoltando los gases de su interior."
+        },
+        "japanese": {
+            "name": "サナギラス",
+            "category": "だんがんポケモン",
+            "entry_text": "がんばんのような　かたい　からだ。\nあっしゅくした　ガスを　ふんしゃして\nまるで　ロケットのように　とびだす。"
+        }
     }
 }

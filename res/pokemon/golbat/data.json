@@ -132,7 +132,35 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "Its sharp fangs puncture the\ntoughest of hides and have small\nholes for greedily sucking blood.",
-        "category": "Bat Pokémon"
+        "english": {
+            "category": "Bat Pokémon",
+            "entry_text": "Its sharp fangs puncture the\ntoughest of hides and have small\nholes for greedily sucking blood.",
+            "entry_text_diamond": "It loves the blood of humans and\nPokémon. It flies around at night\nin search of neck veins."
+        },
+        "french": {
+            "name": "NOSFERALTO",
+            "category": "Pokémon Chovsouris",
+            "entry_text": "Il aime le sang des humains et des\nPokémon. Il erre la nuit en quête\nd’un cou où planter ses crocs."
+        },
+        "german": {
+            "name": "GOLBAT",
+            "category": "Fledermaus",
+            "entry_text": "Es liebt das Blut von Menschen und\nPokémon. Nachts fliegt es umher auf\nder Suche nach Halsvenen."
+        },
+        "italian": {
+            "name": "Golbat",
+            "category": "Pokémon Pipistrello",
+            "entry_text": "Ama il sangue umano e quello dei\nPokémon. Vola nel buio della notte\nin cerca di vene da succhiare."
+        },
+        "spanish": {
+            "name": "Golbat",
+            "category": "Pokémon Murciélago",
+            "entry_text": "Le encanta la sangre, tanto la de\nPokémon como la humana.\nSale a calmar su sed por la noche."
+        },
+        "japanese": {
+            "name": "ゴルバット",
+            "category": "こうもりポケモン",
+            "entry_text": "ひとや　ポケモンの　けつえきが\nだいこうぶつ。くびすじの　けっかんを\nねらい　よぞらを　とびまわる。"
+        }
     }
 }

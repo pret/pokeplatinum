@@ -139,7 +139,35 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It can’t stop itself from chasing\nmoving things, and it runs in a\ncircle, chasing its own tail.",
-        "category": "Kitten Pokémon"
+        "english": {
+            "category": "Kitten Pokémon",
+            "entry_text": "It can’t stop itself from chasing\nmoving things, and it runs in a\ncircle, chasing its own tail.",
+            "entry_text_diamond": "It can’t stop itself from chasing\nmoving things, and it runs in a\ncircle, chasing its own tail."
+        },
+        "french": {
+            "name": "SKITTY",
+            "category": "Pokémon Chaton",
+            "entry_text": "Il poursuit tout ce qui bouge. On\nle voit parfois courir en cercle,\nchassant sa propre queue."
+        },
+        "german": {
+            "name": "ENECO",
+            "category": "Kätzchen",
+            "entry_text": "Es muss Dinge, die sich bewegen,\neinfach jagen. Es rennt oft im Kreis\nund jagt seinen eigenen Schweif."
+        },
+        "italian": {
+            "name": "Skitty",
+            "category": "Pokémon Micio",
+            "entry_text": "Non riesce ad evitare di inseguire\ntutto ciò che si muove e corre in\ntondo a caccia della propria coda."
+        },
+        "spanish": {
+            "name": "Skitty",
+            "category": "Pokémon Gatito",
+            "entry_text": "No puede evitar ir tras las cosas\nque se mueven. Hasta corre en\ncírculos persiguiéndose la cola."
+        },
+        "japanese": {
+            "name": "エネコ",
+            "category": "こねこポケモン",
+            "entry_text": "うごくものを　つい　おってしまう。\nじぶんの　しっぽを　おいかけて\nおなじ　ばしょを　グルグル　まわる。"
+        }
     }
 }

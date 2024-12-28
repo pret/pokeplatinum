@@ -133,7 +133,35 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "It spends nearly all its time in a\nday sprawled out. Just seeing it\nmakes one drowsy.",
-        "category": "Slacker Pokémon"
+        "english": {
+            "category": "Slacker Pokémon",
+            "entry_text": "It spends nearly all its time in a\nday sprawled out. Just seeing it\nmakes one drowsy.",
+            "entry_text_diamond": "It spends nearly all its time in a\nday sprawled out. Just seeing it\nmakes one drowsy."
+        },
+        "french": {
+            "name": "PARECOOL",
+            "category": "Pokémon Flâneur",
+            "entry_text": "Il passe le plus clair de son temps\naffalé. Rien qu’à le voir, on a\nenvie de bâiller."
+        },
+        "german": {
+            "name": "BUMMELZ",
+            "category": "Faulpelz",
+            "entry_text": "Es verbringt fast den ganzen Tag\nmit Faulenzen und Schlafen. Selbst\nsein Anblick macht bereits müde."
+        },
+        "italian": {
+            "name": "Slakoth",
+            "category": "Pokémon Ozioso",
+            "entry_text": "Passa quasi tutto il tempo\nsdraiato. Soltanto a guardarlo\nsi prova sonnolenza."
+        },
+        "spanish": {
+            "name": "Slakoth",
+            "category": "Pokémon Gandul",
+            "entry_text": "Pasa la mayor parte del día\nrepanchingado. Entra sueño\nsolo de verlo."
+        },
+        "japanese": {
+            "name": "ナマケロ",
+            "category": "なまけものポケモン",
+            "entry_text": "１にちのうち　ほとんどの　じかんを\nねころがって　すごす。その　ようすを\nみていると　ねむけに　おそわれる。"
+        }
     }
 }

@@ -122,7 +122,35 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "Its body is made of magma.\nIf it doesn’t keep moving, its\nbody will cool and harden.",
-        "category": "Lava Pokémon"
+        "english": {
+            "category": "Lava Pokémon",
+            "entry_text": "Its body is made of magma.\nIf it doesn’t keep moving, its\nbody will cool and harden.",
+            "entry_text_diamond": "Its body is made of magma.\nIf it doesn’t keep moving, its\nbody will cool and harden."
+        },
+        "french": {
+            "name": "LIMAGMA",
+            "category": "Pokémon Lave",
+            "entry_text": "Son corps est fait de magma.\nS’il cesse de bouger, il refroidit\net durcit."
+        },
+        "german": {
+            "name": "SCHNECKMAG",
+            "category": "Lava",
+            "entry_text": "Sein Körper besteht aus Magma.\nBleibt es nicht ständig in Bewegung,\nkühlt es aus und verhärtet sich."
+        },
+        "italian": {
+            "name": "Slugma",
+            "category": "Pokémon Lava",
+            "entry_text": "Nel suo corpo scorre magma. Se\nnon si muove continuamente, il suo\ncorpo si raffredda e s’indurisce."
+        },
+        "spanish": {
+            "name": "Slugma",
+            "category": "Pokémon Lava",
+            "entry_text": "Su cuerpo se compone de magma.\nSi deja de moverse, se enfría y se\nendurece."
+        },
+        "japanese": {
+            "name": "マグマッグ",
+            "category": "ようがんポケモン",
+            "entry_text": "ようがんで　できた　からだを　もつ。\nたえず　うごいていないと　からだが\nひえて　かたまってしまうのだ。"
+        }
     }
 }

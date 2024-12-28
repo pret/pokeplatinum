@@ -157,7 +157,35 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "A kindly Pokémon that lays highly\nnutritious eggs and shares them\nwith injured Pokémon or people.",
-        "category": "Egg Pokémon"
+        "english": {
+            "category": "Egg Pokémon",
+            "entry_text": "A kindly Pokémon that lays highly\nnutritious eggs and shares them\nwith injured Pokémon or people.",
+            "entry_text_diamond": "It is said to deliver happiness.\nBeing compassionate, it shares its\neggs with injured people."
+        },
+        "french": {
+            "name": "LEVEINARD",
+            "category": "Pokémon Oeuf",
+            "entry_text": "Il est censé apporter la joie. Ce\nPokémon charitable offre ses\nœufs aux blessés."
+        },
+        "german": {
+            "name": "CHANEIRA",
+            "category": "Ei",
+            "entry_text": "Man sagt, es bringe Glück. Es ist\nsehr mitfühlend und teilt seine Eier\nmit Verletzten."
+        },
+        "italian": {
+            "name": "Chansey",
+            "category": "Pokémon Uovo",
+            "entry_text": "Si dice che porti felicità.\nÈ molto altruista e condivide\nle uova con chi è ferito."
+        },
+        "spanish": {
+            "name": "Chansey",
+            "category": "Pokémon Huevo",
+            "entry_text": "Se dice que reparte felicidad.\nEs compasivo y reparte sus\nhuevos entre la gente herida."
+        },
+        "japanese": {
+            "name": "ラッキ－",
+            "category": "たまごポケモン",
+            "entry_text": "しあわせを　はこぶと　いわれている。\nきずついた　ひとに　タマゴを\nわけてあげる　やさしい　ポケモン。"
+        }
     }
 }

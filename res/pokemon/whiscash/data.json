@@ -131,7 +131,35 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "It is extremely protective of its\nterritory. If any foe approaches,\nit attacks using vicious tremors.",
-        "category": "Whiskers Pokémon"
+        "english": {
+            "category": "Whiskers Pokémon",
+            "entry_text": "It is extremely protective of its\nterritory. If any foe approaches,\nit attacks using vicious tremors.",
+            "entry_text_diamond": "It is very territorial. It repels\nfoes by setting off tremors that\nextend over a three-mile radius."
+        },
+        "french": {
+            "name": "BARBICHA",
+            "category": "Pokémon Barbillon",
+            "entry_text": "Il est attaché à son territoire.\nIl repousse l’ennemi en provoquant\ndes secousses qui portent à 5 km."
+        },
+        "german": {
+            "name": "WELSAR",
+            "category": "Barthaar",
+            "entry_text": "Es verteidigt sein Revier, indem es\nErschütterungen auslöst, die noch\nin 5 km Entfernung zu spüren sind."
+        },
+        "italian": {
+            "name": "Whiscash",
+            "category": "Pokémon Baffetti",
+            "entry_text": "Ha un senso del territorio molto\nsviluppato. Respinge i nemici scate-\nnando terremoti del raggio di 5 km."
+        },
+        "spanish": {
+            "name": "Whiscash",
+            "category": "Pokémon Bigotudo",
+            "entry_text": "Es muy territorial. Expulsa a los\nintrusos con unos temblores que\nse sienten en un radio de 5 km."
+        },
+        "japanese": {
+            "name": "ナマズン",
+            "category": "ひげうおポケモン",
+            "entry_text": "なわばり　いしきが　とても　つよい。\nしゅうい　５キロの　はんいで\nじしんを　おこし　げきたいする。"
+        }
     }
 }

@@ -140,7 +140,35 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "As a result of its long-held dream\nof flying, its cellular structure\nchanged, and wings grew out.",
-        "category": "Dragon Pokémon"
+        "english": {
+            "category": "Dragon Pokémon",
+            "entry_text": "As a result of its long-held dream\nof flying, its cellular structure\nchanged, and wings grew out.",
+            "entry_text_diamond": "As a result of its long-held dream\nof flying, its cellular structure\nchanged, and wings grew out."
+        },
+        "french": {
+            "name": "DRATTAK",
+            "category": "Pokémon Dragon",
+            "entry_text": "A force de rêver de pouvoir voler,\nsa structure cellulaire a évolué\net il s’est vu pousser des ailes."
+        },
+        "german": {
+            "name": "BRUTALANDA",
+            "category": "Drache",
+            "entry_text": "Seine Zellstruktur änderte sich, es\nwuchsen ihm Flügel, da es immer\ndavon träumte, fliegen zu können."
+        },
+        "italian": {
+            "name": "Salamence",
+            "category": "Pokémon Drago",
+            "entry_text": "Il suo forte desiderio di volare ha\nprovocato una mutazione cellulare\ne gli sono spuntate le ali."
+        },
+        "spanish": {
+            "name": "Salamence",
+            "category": "Pokémon Dragón",
+            "entry_text": "Siempre soñó con volar, por lo\nque su estructura celular cambió\ny le crecieron alas."
+        },
+        "japanese": {
+            "name": "ボ－マンダ",
+            "category": "ドラゴンポケモン",
+            "entry_text": "そらを　とぶことを　ねがいつづけた\nけっか　からだの　さいぼうが\nへんかして　つばさが　はえてきた。"
+        }
     }
 }

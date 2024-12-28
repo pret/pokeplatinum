@@ -137,7 +137,35 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "When UXIE flew, people gained the\nability to solve problems.\nIt was the birth of knowledge.",
-        "category": "Knowledge Pokémon"
+        "english": {
+            "category": "Knowledge Pokémon",
+            "entry_text": "When UXIE flew, people gained the\nability to solve problems.\nIt was the birth of knowledge.",
+            "entry_text_diamond": "Known as “The Being of Knowledge.”\nIt is said that it can wipe out the\nmemory of those who see its eyes."
+        },
+        "french": {
+            "name": "CREHELF",
+            "category": "Pokémon Savoir",
+            "entry_text": "On l’appelle “être du savoir”.\nOn raconte que son regard a le\npouvoir d’effacer la mémoire."
+        },
+        "german": {
+            "name": "SELFE",
+            "category": "Wissen",
+            "entry_text": "“Das wissende Wesen”.\nEs soll die Erinnerungen derer\nlöschen, die ihm in die Augen sehen."
+        },
+        "italian": {
+            "name": "Uxie",
+            "category": "Pokémon Sapienza",
+            "entry_text": "Noto come “Essere della\nconoscenza”. Pare che faccia per-\ndere la memoria a chiunque lo fissi."
+        },
+        "spanish": {
+            "name": "Uxie",
+            "category": "Pokémon Sabiduría",
+            "entry_text": "Se le conoce como el “ser de\nla sabiduría”. Se dice que puede\nborrar la memoria con una mirada."
+        },
+        "japanese": {
+            "name": "ユクシ－",
+            "category": "ちしきポケモン",
+            "entry_text": "ちしきのかみ　と　よばれている。\nめを　あわせた　ものの　きおくを\nけしてしまう　ちからを　もつという。"
+        }
     }
 }

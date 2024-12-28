@@ -118,7 +118,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It has a timid nature. If it is\nstartled, the flames on its back\nburn more vigorously.",
-        "category": "Fire Mouse Pokémon"
+        "english": {
+            "category": "Fire Mouse Pokémon",
+            "entry_text": "It has a timid nature. If it is\nstartled, the flames on its back\nburn more vigorously.",
+            "entry_text_diamond": "It has a timid nature. If it is\nstartled, the flames on its back\nburn more vigorously."
+        },
+        "french": {
+            "name": "HERICENDRE",
+            "category": "Pokémon Souris Feu",
+            "entry_text": "Ce Pokémon est un grand timide.\nLes flammes sur son dos \ns’intensifient lorsqu’il prend peur."
+        },
+        "german": {
+            "name": "FEURIGEL",
+            "category": "Feuermaus",
+            "entry_text": "Erschrickt sich dieses scheue PKMN,\nlodern die Flammen auf seinem\nRücken kräftiger."
+        },
+        "italian": {
+            "name": "Cyndaquil",
+            "category": "Pokémon Fuocotopo",
+            "entry_text": "È riservato per natura. Se viene\nspaventato, le fiamme sul suo\ndorso bruciano ardentemente."
+        },
+        "spanish": {
+            "name": "Cyndaquil",
+            "category": "Pokémon Ratónfuego",
+            "entry_text": "Es un Pokémon muy tímido. Si\nse asusta, las llamas de su lomo\narden con más fuerza."
+        },
+        "japanese": {
+            "name": "ヒノアラシ",
+            "category": "ひねずみポケモン",
+            "entry_text": "おくびょうな　せいかく。\nおどろくと　せなかの　ほのおが\nいちだんと　つよく　もえあがる。"
+        }
     }
 }

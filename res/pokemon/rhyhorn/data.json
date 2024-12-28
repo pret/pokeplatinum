@@ -141,7 +141,35 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "Its powerful tackles can destroy\nanything. However, it is too\nslow witted to help people work.",
-        "category": "Spikes Pokémon"
+        "english": {
+            "category": "Spikes Pokémon",
+            "entry_text": "Its powerful tackles can destroy\nanything. However, it is too\nslow witted to help people work.",
+            "entry_text_diamond": "Its body is clad in a thick hide,\nand its tackles topple buildings.\nUnfortunately, it is not smart."
+        },
+        "french": {
+            "name": "RHINOCORNE",
+            "category": "Pokémon Piquant",
+            "entry_text": "Sa peau est très épaisse et sa \ncharge peut détruire un immeuble.\nDommage qu’il soit stupide."
+        },
+        "german": {
+            "name": "RIHORN",
+            "category": "Stachler",
+            "entry_text": "Sein Körper ist von einer dicken\nHaut umgeben und es kann wackelige\nGebäude zum Einsturz bringen."
+        },
+        "italian": {
+            "name": "Rhyhorn",
+            "category": "Pokémon Punzoni",
+            "entry_text": "Ha una pelle molto spessa ed è in\ngrado di abbattere interi edifici.\nNon è molto sagace."
+        },
+        "spanish": {
+            "name": "Rhyhorn",
+            "category": "Pokémon Clavos",
+            "entry_text": "Su cuerpo está protegido por una\ngruesa piel. Puede derribar hasta\nedificios, pero no es muy listo."
+        },
+        "japanese": {
+            "name": "サイホ－ン",
+            "category": "とげとげポケモン",
+            "entry_text": "かたい　ひふで　おおわれた　からだ。\nたいあたりで　ビルも　たおす。\nざんねんながら　あたまは　わるい。"
+        }
     }
 }

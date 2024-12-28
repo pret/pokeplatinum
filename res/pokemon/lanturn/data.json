@@ -128,7 +128,35 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n\u201cThe Deep-Sea Star.\u201d",
-        "category": "Light Pokémon"
+        "english": {
+            "category": "Light Pokémon",
+            "entry_text": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n“The Deep-Sea Star.”",
+            "entry_text_diamond": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n“The Deep-Sea Star.”"
+        },
+        "french": {
+            "name": "LANTURN",
+            "category": "Pokémon Lumière",
+            "entry_text": "La lumière de LANTURN surgit des\nprofondeurs. On le surnomme\n“étoile des profondeurs”."
+        },
+        "german": {
+            "name": "LANTURN",
+            "category": "Leuchte",
+            "entry_text": "LANTURNs Licht kann aus großen\nTiefen heraufscheinen. Man nennt\nes auch “Tiefseestern”."
+        },
+        "italian": {
+            "name": "Lanturn",
+            "category": "Pokémon Luce",
+            "entry_text": "La sua luce è visibile anche quando\nsi trova in profondità. È sopranno-\nminato “Stella degli abissi”."
+        },
+        "spanish": {
+            "name": "Lanturn",
+            "category": "Pokémon Luz",
+            "entry_text": "La luz de LANTURN se puede ver\ndesde lo más profundo. Se le\nllama la “estrella de alta mar”."
+        },
+        "japanese": {
+            "name": "ランタ－ン",
+            "category": "ライトポケモン",
+            "entry_text": "しんかいを　およぐ　ランタ－ンの\nあかりは　すいめんまで　とどく。\nしんかいのほし　と　よばれている。"
+        }
     }
 }

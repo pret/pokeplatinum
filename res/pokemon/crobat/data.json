@@ -129,7 +129,35 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 13,
         "pokemon_pos_m": 65533,
-        "entry_text": "The transformation of its legs into\nwings made it better at flying, but\nmore clumsy at walking.",
-        "category": "Bat Pokémon"
+        "english": {
+            "category": "Bat Pokémon",
+            "entry_text": "The transformation of its legs into\nwings made it better at flying, but\nmore clumsy at walking.",
+            "entry_text_diamond": "Having four wings enables it to fly\nfaster and more quietly. It turns\nactive when the night comes."
+        },
+        "french": {
+            "name": "NOSTENFER",
+            "category": "Pokémon Chovsouris",
+            "entry_text": "Il vole rapidement et sans faire\nde bruit grâce à ses quatre ailes.\nC’est un Pokémon nocturne."
+        },
+        "german": {
+            "name": "IKSBAT",
+            "category": "Fledermaus",
+            "entry_text": "Seine vier Flügel erlauben es dem\nPKMN, schneller und leiser zu\nfliegen. Es ist nachtaktiv."
+        },
+        "italian": {
+            "name": "Crobat",
+            "category": "Pokémon Pipistrello",
+            "entry_text": "Le sue quattro ali gli permettono\ndi volare più velocemente e più\nsilenziosamente. È attivo di notte."
+        },
+        "spanish": {
+            "name": "Crobat",
+            "category": "Pokémon Murciélago",
+            "entry_text": "Sus cuatro alas le permiten volar\nmás rápida y sigilosamente. Es\nun Pokémon nocturno."
+        },
+        "japanese": {
+            "name": "クロバット",
+            "category": "こうもりポケモン",
+            "entry_text": "４まいの　はねで　より　しずかに\nより　はやく　とべるように　なった。\nよるになると　かつどうを　はじめる。"
+        }
     }
 }

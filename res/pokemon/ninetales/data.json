@@ -113,7 +113,35 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "Its nine tails are said to be\nimbued with a mystic power.\nIt can live for a thousand years.",
-        "category": "Fox Pokémon"
+        "english": {
+            "category": "Fox Pokémon",
+            "entry_text": "Its nine tails are said to be\nimbued with a mystic power.\nIt can live for a thousand years.",
+            "entry_text_diamond": "Its nine tails are said to be\nimbued with a mystic power.\nIt can live for a thousand years."
+        },
+        "french": {
+            "name": "FEUNARD",
+            "category": "Pokémon Renard",
+            "entry_text": "On raconte que ses neuf queues\ndétiennent un pouvoir mystique.\nIl peut vivre pendant mille ans."
+        },
+        "german": {
+            "name": "VULNONA",
+            "category": "Fuchs",
+            "entry_text": "Seine neun Schweife sollen\nmystische Kräfte besitzen. Es kann\ntausend Jahre leben."
+        },
+        "italian": {
+            "name": "Ninetales",
+            "category": "Pokémon Volpe",
+            "entry_text": "Si dice che le sue nove code\nposseggano un potere magico.\nVive anche 1000 anni."
+        },
+        "spanish": {
+            "name": "Ninetales",
+            "category": "Pokémon Zorro",
+            "entry_text": "Se dice que sus nueve colas están\nrevestidas de poder místico.\nPuede vivir mil años."
+        },
+        "japanese": {
+            "name": "キュウコン",
+            "category": "きつねポケモン",
+            "entry_text": "９ほんの　しっぽには　しんぴてきな\nちからが　やどっていると　つたわる。\n１０００ねん　いきつづけるらしい。"
+        }
     }
 }

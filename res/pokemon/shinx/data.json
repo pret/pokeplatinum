@@ -119,7 +119,35 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "The extension and contraction of\nits muscles generates electricity.\nIt glows when in trouble.",
-        "category": "Flash Pokémon"
+        "english": {
+            "category": "Flash Pokémon",
+            "entry_text": "The extension and contraction of\nits muscles generates electricity.\nIt glows when in trouble.",
+            "entry_text_diamond": "All of its fur dazzles if danger is\nsensed. It flees while the foe is\nmomentarily blinded."
+        },
+        "french": {
+            "name": "LIXY",
+            "category": "Pokémon Flash",
+            "entry_text": "Sa fourrure étincelle en cas de\ndanger. Il profite du fait que \nl’ennemi est aveuglé pour s’enfuir."
+        },
+        "german": {
+            "name": "SHEINUX",
+            "category": "Flacker",
+            "entry_text": "In Gefahr blendet es seinen Gegner\nmit seinem Fell und flieht, während\nder Gegner einen Moment blind ist."
+        },
+        "italian": {
+            "name": "Shinx",
+            "category": "Pokémon Baleno",
+            "entry_text": "In caso di pericolo, la sua pelliccia\nsi illumina. Il nemico rimane acceca-\nto e lui ne approfitta per fuggire."
+        },
+        "spanish": {
+            "name": "Shinx",
+            "category": "Pokémon Flash",
+            "entry_text": "Si siente peligro, todo su pelaje\nbrilla. Aprovecha la ceguera\ntemporal de su rival para huir."
+        },
+        "japanese": {
+            "name": "コリンク",
+            "category": "せんこうポケモン",
+            "entry_text": "きけんを　かんじると　ぜんしんの\nたいもうが　ひかる。あいてが　めを\nくらませている　あいだに　にげる。"
+        }
     }
 }

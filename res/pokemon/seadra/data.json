@@ -127,7 +127,35 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "Its spines provide protection.\nIts fins and bones are prized as\ntraditional medicine ingredients.",
-        "category": "Dragon Pokémon"
+        "english": {
+            "category": "Dragon Pokémon",
+            "entry_text": "Its spines provide protection.\nIts fins and bones are prized as\ntraditional medicine ingredients.",
+            "entry_text_diamond": "Its spines provide protection.\nIts fins and bones are prized as\ntraditional medicine ingredients."
+        },
+        "french": {
+            "name": "HYPOCEAN",
+            "category": "Pokémon Dragon",
+            "entry_text": "Son épine dorsale le protège.\nSes os et ses nageoires sont très\nprisés en médecine traditionnelle."
+        },
+        "german": {
+            "name": "SEEMON",
+            "category": "Drache",
+            "entry_text": "Seine Stacheln schützen es. Seine\nFlossen und Knochen werden bei der\nHerstellung von Medizin verwendet."
+        },
+        "italian": {
+            "name": "Seadra",
+            "category": "Pokémon Drago",
+            "entry_text": "Si difende con gli aculei. Pinne\ne ossa sono comunemente usati\nnella medicina tradizionale."
+        },
+        "spanish": {
+            "name": "Seadra",
+            "category": "Pokémon Dragón",
+            "entry_text": "Se protege con sus púas. Sus\naletas y huesos son muy valorados\npor la medicina tradicional."
+        },
+        "japanese": {
+            "name": "シ－ドラ",
+            "category": "ドラゴンポケモン",
+            "entry_text": "トゲが　てきから　みを　まもる。\nひれや　ホネが　かんぽうやくの\nざいりょうとして　ちょうほうされる。"
+        }
     }
 }

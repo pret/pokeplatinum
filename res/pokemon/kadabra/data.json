@@ -141,7 +141,35 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "entry_text": "It stares at its silver spoon to\nfocus its mind. It emits more alpha\nwaves while doing so.",
-        "category": "Psi Pokémon"
+        "english": {
+            "category": "Psi Pokémon",
+            "entry_text": "It stares at its silver spoon to\nfocus its mind. It emits more alpha\nwaves while doing so.",
+            "entry_text_diamond": "If one is nearby, an eerie shadow\nappears on TV screens. Seeing the\nshadow is said to bring bad luck."
+        },
+        "french": {
+            "name": "KADABRA",
+            "category": "Pokémon Psy",
+            "entry_text": "Une ombre inquiétante obscurcit\nl’écran télé quand il s’approche.\nLe malheur frappe celui qui la voit."
+        },
+        "german": {
+            "name": "KADABRA",
+            "category": "Psi",
+            "entry_text": "Wenn sich auf deinem Fernsehbild-\nschirm ein Schatten zeigt, ist es in\nder Nähe. Und das bringt Unglück."
+        },
+        "italian": {
+            "name": "Kadabra",
+            "category": "Pokémon Psico",
+            "entry_text": "Se lo si avvicina, fa apparire alla\ntelevisione un’ombra inquietante\nche porta sfortuna a chi la guarda."
+        },
+        "spanish": {
+            "name": "Kadabra",
+            "category": "Pokémon Psi",
+            "entry_text": "Si se acerca uno, una extraña\nsombra aparece en los televisores.\nSe dice que verla trae mala suerte."
+        },
+        "japanese": {
+            "name": "ユンゲラ－",
+            "category": "ねんりきポケモン",
+            "entry_text": "ユンゲラ－が　そばにいると　テレビに\nふしぎな　かげが　うつる。それを\nみると　ふこうになると　いわれる。"
+        }
     }
 }

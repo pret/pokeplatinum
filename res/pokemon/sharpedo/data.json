@@ -137,7 +137,35 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 65535,
-        "entry_text": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n\u201cThe Bully of the Sea.\u201d",
-        "category": "Brutal Pokémon"
+        "english": {
+            "category": "Brutal Pokémon",
+            "entry_text": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n“The Bully of the Sea.”",
+            "entry_text_diamond": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n“The Bully of the Sea.”"
+        },
+        "french": {
+            "name": "SHARPEDO",
+            "category": "Pokémon Brutal",
+            "entry_text": "Ses crocs lacèrent des feuilles\nd’acier. Il nage à 120 km/h. On\nl’appelle “tyran des mers”."
+        },
+        "german": {
+            "name": "TOHAIDO",
+            "category": "Brutal",
+            "entry_text": "Seine Zähne durchdringen sogar\nEisen. Es schwimmt mit 120 km/h und\nwird “Tyrann des Meeres” genannt."
+        },
+        "italian": {
+            "name": "Sharpedo",
+            "category": "Pokémon Brutale",
+            "entry_text": "Con le sue zanne può spezzare\nil ferro. Nuota a 120 km/h. È noto\ncome il “Tiranno del mare”."
+        },
+        "spanish": {
+            "name": "Sharpedo",
+            "category": "Pokémon Voraz",
+            "entry_text": "Con sus colmillos puede atravesar\nel acero. Nada a 120 km por hora.\nLe llaman el “terror de los mares”."
+        },
+        "japanese": {
+            "name": "サメハダ－",
+            "category": "きょうぼうポケモン",
+            "entry_text": "てっぱんも　かみちぎる　キバを　もち\nおよぐ　そくどは　じそく１２０キロ。　\nべつめいは　うみのギャング。"
+        }
     }
 }

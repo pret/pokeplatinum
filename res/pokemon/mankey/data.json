@@ -144,7 +144,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It lives in treetop colonies.\nIf one becomes enraged, the whole\ncolony rampages for no reason.",
-        "category": "Pig Monkey Pokémon"
+        "english": {
+            "category": "Pig Monkey Pokémon",
+            "entry_text": "It lives in treetop colonies.\nIf one becomes enraged, the whole\ncolony rampages for no reason.",
+            "entry_text_diamond": "It lives in treetop colonies.\nIf one becomes enraged, the whole\ncolony rampages for no reason."
+        },
+        "french": {
+            "name": "FEROSINGE",
+            "category": "Pokémon Porsinge",
+            "entry_text": "Ils vivent en colonies sylvestres.\nQuand un FEROSINGE s’énerve,\ntoute la colonie suit son exemple."
+        },
+        "german": {
+            "name": "MENKI",
+            "category": "Schw./ Affe",
+            "entry_text": "Es lebt mit anderen in Baumkronen.\nWird eines von ihnen wütend, werden\nalle anderen auch wütend."
+        },
+        "italian": {
+            "name": "Mankey",
+            "category": "Pokémon Suinpanzé",
+            "entry_text": "Vive in colonie sugli alberi. Se uno\nsi adira, l’intera colonia comincia a\nagire violentemente senza motivo."
+        },
+        "spanish": {
+            "name": "Mankey",
+            "category": "Pokémon Mono Cerdo",
+            "entry_text": "Vive en colonias en los árboles.\nSi uno se enfada, el resto de la\nmanada ataca sin motivo."
+        },
+        "japanese": {
+            "name": "マンキ－",
+            "category": "ぶたざるポケモン",
+            "entry_text": "きのうえで　せいかつしている。\nむれの　１ぴきが　おこりはじめると\nぜんいんが　いみもなく　あばれだす。"
+        }
     }
 }

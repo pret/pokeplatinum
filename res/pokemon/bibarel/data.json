@@ -137,7 +137,35 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "A river dammed by BIBAREL will\nnever overflow its banks, which\nis appreciated by people nearby.",
-        "category": "Beaver Pokémon"
+        "english": {
+            "category": "Beaver Pokémon",
+            "entry_text": "A river dammed by BIBAREL will\nnever overflow its banks, which\nis appreciated by people nearby.",
+            "entry_text_diamond": "It makes its nest by damming\nstreams with bark and mud. It is\nknown as an industrious worker."
+        },
+        "french": {
+            "name": "CASTORNO",
+            "category": "Pokémon Castor",
+            "entry_text": "Il construit des barrages de boue\net d’écorce le long des fleuves. \nC’est un ouvrier de renom."
+        },
+        "german": {
+            "name": "BIDIFAS",
+            "category": "Biber",
+            "entry_text": "Es baut sein Nest, indem es in\nFlüssen Dämme aus Schlamm und\nÄsten baut. Ein fleißiger Arbeiter."
+        },
+        "italian": {
+            "name": "Bibarel",
+            "category": "Pokémon Castoro",
+            "entry_text": "Sbarra il corso dei fiumi con cor-\nteccia e fango per farsi la tana. È\nnoto come lavoratore instancabile."
+        },
+        "spanish": {
+            "name": "Bibarel",
+            "category": "Pokémon Castor",
+            "entry_text": "Para anidar, crea presas en los\nríos con maderas y barro.\nTiene fama de trabajador."
+        },
+        "japanese": {
+            "name": "ビ－ダル",
+            "category": "ビ－バ－ポケモン",
+            "entry_text": "かわを　きのみきや　どろの　ダムで\nせきとめて　すみかを　つくる。\nはたらきものとして　しられている。"
+        }
     }
 }

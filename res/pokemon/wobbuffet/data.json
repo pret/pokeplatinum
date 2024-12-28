@@ -71,7 +71,35 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "It desperately tries to keep its\nblack tail hidden. It is said to be\nproof the tail hides a secret.",
-        "category": "Patient Pokémon"
+        "english": {
+            "category": "Patient Pokémon",
+            "entry_text": "It desperately tries to keep its\nblack tail hidden. It is said to be\nproof the tail hides a secret.",
+            "entry_text_diamond": "It desperately tries to keep its\nblack tail hidden. It is said to be\nproof the tail hides a secret."
+        },
+        "french": {
+            "name": "QULBUTOKE",
+            "category": "Pokémon Patient",
+            "entry_text": "Il cherche désespérément à cacher\nsa queue noire. Certains pensent\nqu’elle renferme un secret. "
+        },
+        "german": {
+            "name": "WOINGENAU",
+            "category": "Geduld",
+            "entry_text": "Verzweifelt versucht es, seinen\nschwarzen Schweif zu verstecken.\nEr soll ein Geheimnis enthalten."
+        },
+        "italian": {
+            "name": "Wobbuffet",
+            "category": "Pokémon Pazienza",
+            "entry_text": "Cerca di tenere nascosta la sua\ncoda nera ad ogni costo. Pare\nche essa celi un segreto."
+        },
+        "spanish": {
+            "name": "Wobbuffet",
+            "category": "Pokémon Paciente",
+            "entry_text": "Siempre intenta ocultar su cola,\npor lo que muchos creen que\ncontiene un secreto."
+        },
+        "japanese": {
+            "name": "ソ－ナンス",
+            "category": "がまんポケモン",
+            "entry_text": "くろい　しっぽを　ひっしになって\nかくすのは　しっぽに　ひみつがある\nしょうこだと　かんぐられている。"
+        }
     }
 }

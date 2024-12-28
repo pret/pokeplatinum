@@ -134,7 +134,35 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It curls up, then rolls into foes\nwith its back. Its sharp spines\ninflict severe damage.",
-        "category": "Mouse Pokémon"
+        "english": {
+            "category": "Mouse Pokémon",
+            "entry_text": "It curls up, then rolls into foes\nwith its back. Its sharp spines\ninflict severe damage.",
+            "entry_text_diamond": "It curls up, then rolls into foes\nwith its back. Its sharp spines\ninflict severe damage."
+        },
+        "french": {
+            "name": "SABLAIREAU",
+            "category": "Pokémon Souris",
+            "entry_text": "Il se met en boule pour percuter\nl’ennemi. Ses épines aiguisées\nfont beaucoup de dégâts."
+        },
+        "german": {
+            "name": "SANDAMER",
+            "category": "Maus",
+            "entry_text": "Es rollt sich zusammen und rollt\ndann auf Gegner zu, die durch\nseine Stacheln Schaden nehmen."
+        },
+        "italian": {
+            "name": "Sandslash",
+            "category": "Pokémon Topo",
+            "entry_text": "Si arrotola come una palla e rotola\nsul dorso verso i nemici. Gli aculei\naguzzi provocano gravi danni."
+        },
+        "spanish": {
+            "name": "Sandslash",
+            "category": "Pokémon Ratón",
+            "entry_text": "Se hace una bola y se lanza\nrodando hacia los enemigos para\nclavarles sus afiladas púas."
+        },
+        "japanese": {
+            "name": "サンドパン",
+            "category": "ねずみポケモン",
+            "entry_text": "からだを　まるめて　せなかから\nたいあたり。するどい　トゲトゲが\nおおきな　ダメ－ジを　あたえる。"
+        }
     }
 }

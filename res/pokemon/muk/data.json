@@ -135,7 +135,35 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "A toxic fluid seeps from its body.\nThe fluid instantly kills plants and\ntrees on contact.",
-        "category": "Sludge Pokémon"
+        "english": {
+            "category": "Sludge Pokémon",
+            "entry_text": "A toxic fluid seeps from its body.\nThe fluid instantly kills plants and\ntrees on contact.",
+            "entry_text_diamond": "A toxic fluid seeps from its body.\nThe fluid instantly kills plants and\ntrees on contact."
+        },
+        "french": {
+            "name": "GROTADMORV",
+            "category": "Pokémon Dégueu",
+            "entry_text": "Son corps exsude un fluide toxique\nqui tue instantanément les plantes\net les arbres au contact."
+        },
+        "german": {
+            "name": "SLEIMOK",
+            "category": "Schlamm",
+            "entry_text": "Sein Körper sondert eine giftige\nSubstanz ab, die bei Kontakt\nPflanzen und Bäume vernichtet."
+        },
+        "italian": {
+            "name": "Muk",
+            "category": "Pokémon Melma",
+            "entry_text": "Dal suo corpo filtra un fluido tos-\nsico che uccide all’istante piante e\nalberi con cui viene a contatto."
+        },
+        "spanish": {
+            "name": "Muk",
+            "category": "Pokémon Lodo",
+            "entry_text": "Su cuerpo segrega un fluido\ntóxico que elimina la vida vegetal\ncuando la toca."
+        },
+        "japanese": {
+            "name": "ベトベトン",
+            "category": "ヘドロポケモン",
+            "entry_text": "からだから　もうどくの　たいえきが\nしみでている。その　えきに　ふれた\nくさきは　あっというまに　かれる。"
+        }
     }
 }

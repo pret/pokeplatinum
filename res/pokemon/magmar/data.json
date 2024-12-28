@@ -128,7 +128,35 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "When it breathes deeply, heat\nwaves form around its body, making\nit hard to see clearly.",
-        "category": "Spitfire Pokémon"
+        "english": {
+            "category": "Spitfire Pokémon",
+            "entry_text": "When it breathes deeply, heat\nwaves form around its body, making\nit hard to see clearly.",
+            "entry_text_diamond": "Born in the spout of a volcano,\nits body is covered by flames\nthat shimmer like the sun."
+        },
+        "french": {
+            "name": "MAGMAR",
+            "category": "Pokémon Crache-Feu",
+            "entry_text": "Il est né au milieu d’un volcan.\nSon corps est couvert de flammes\nqui flambent comme un soleil."
+        },
+        "german": {
+            "name": "MAGMAR",
+            "category": "Brenner",
+            "entry_text": "Es wurde bei einem Vulkanausbruch\ngeboren. Sein Körper ist von\nhellen Flammen umgeben."
+        },
+        "italian": {
+            "name": "Magmar",
+            "category": "Pokémon Sputafuoco",
+            "entry_text": "È nato dallo zampillo di un vulcano.\nHa il corpo ricoperto da fiamme\nche brillano come i raggi solari."
+        },
+        "spanish": {
+            "name": "Magmar",
+            "category": "Pokémon Escupfuego",
+            "entry_text": "Nació en el centro de un volcán.\nSu cuerpo está cubierto de llamas\nque brillan como el Sol."
+        },
+        "japanese": {
+            "name": "ブ－バ－",
+            "category": "ひふきポケモン",
+            "entry_text": "かざんの　かこうで　うまれそだった。\nたいようと　おなじような　ほのおの\nゆらめきが　ぜんしんを　おおう。"
+        }
     }
 }

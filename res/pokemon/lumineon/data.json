@@ -126,7 +126,35 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It crawls along the seafloor using\nits long front fins like legs. It\ncompetes for food with LANTURN.",
-        "category": "Neon Pokémon"
+        "english": {
+            "category": "Neon Pokémon",
+            "entry_text": "It crawls along the seafloor using\nits long front fins like legs. It\ncompetes for food with LANTURN.",
+            "entry_text_diamond": "It lives on the deep-sea floor.\nIt attracts prey by flashing the\npatterns on its four tail fins."
+        },
+        "french": {
+            "name": "LUMINEON",
+            "category": "Pokémon Néon",
+            "entry_text": "Il vit au plus profond de l’océan.\nIl attire sa proie en illuminant les\nmotifs de ses 4 nageoires."
+        },
+        "german": {
+            "name": "LUMINEON",
+            "category": "Neon",
+            "entry_text": "Es lebt tief auf dem Meeresboden.\nDas blinkende Muster auf seinen\nvier Rückenflossen zieht Beute an."
+        },
+        "italian": {
+            "name": "Lumineon",
+            "category": "Pokémon Neon",
+            "entry_text": "Vive negli abissi marini.\nAttira le prede illuminando i\nmotivi delle sue quattro pinne."
+        },
+        "spanish": {
+            "name": "Lumineon",
+            "category": "Pokémon Neón",
+            "entry_text": "Vive en las profundidades marinas.\nAtrae a sus presas con parpadeos\ndel dibujo de sus cuatro aletas."
+        },
+        "japanese": {
+            "name": "ネオラント",
+            "category": "ネオンポケモン",
+            "entry_text": "ふかい　うみの　そこで　くらす。\n４まいの　ひれの　もようを　ひからせ\nえものを　おびきよせる。"
+        }
     }
 }

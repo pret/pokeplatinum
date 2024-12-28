@@ -118,7 +118,35 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "A discarded bug shell that came to\nlife. Peering into the crack on its\nback is said to steal one’s spirit.",
-        "category": "Shed Pokémon"
+        "english": {
+            "category": "Shed Pokémon",
+            "entry_text": "A discarded bug shell that came to\nlife. Peering into the crack on its\nback is said to steal one’s spirit.",
+            "entry_text_diamond": "A discarded bug shell that came to\nlife. Peering into the crack on its\nback is said to steal one’s spirit."
+        },
+        "french": {
+            "name": "MUNJA",
+            "category": "Pokémon Exuvie",
+            "entry_text": "Une carapace d’insecte laissée à\nl’abandon. On dit qu’il vole l’âme\nde celui qui regarde à l’intérieur. "
+        },
+        "german": {
+            "name": "NINJATOM",
+            "category": "Häutung",
+            "entry_text": "Ein weggeworfener Käferpanzer, der\nzum Leben erwachte. Schaut man\nhinein, stiehlt es einem die Seele."
+        },
+        "italian": {
+            "name": "Shedinja",
+            "category": "Pokémon Cambiapelle",
+            "entry_text": "È nato dal guscio vuoto di un inset-\nto. Pare che chi spia nella fessura\nsul suo dorso perda l’anima."
+        },
+        "spanish": {
+            "name": "Shedinja",
+            "category": "Pokémon Muda",
+            "entry_text": "Es el caparazón de un bicho que\ncobró vida. Si alguien lo mira por\nla espalda, le robará el alma."
+        },
+        "japanese": {
+            "name": "ヌケニン",
+            "category": "ぬけがらポケモン",
+            "entry_text": "ぬけがらが　たましいを　やどした。\nせなかの　すきまから　のぞきこむと\nたましいを　すわれてしまうらしい。"
+        }
     }
 }

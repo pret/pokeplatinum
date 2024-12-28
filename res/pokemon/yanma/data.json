@@ -129,7 +129,35 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It can hover in one spot by\nflapping its wings at high speed. It\nflits about to guard its territory.",
-        "category": "Clear Wing Pokémon"
+        "english": {
+            "category": "Clear Wing Pokémon",
+            "entry_text": "It can hover in one spot by\nflapping its wings at high speed. It\nflits about to guard its territory.",
+            "entry_text_diamond": "Its eyes can see 360 degrees\nwithout moving its head. It won’t\nmiss prey--even those behind it."
+        },
+        "french": {
+            "name": "YANMA",
+            "category": "Pokémon Translaile",
+            "entry_text": "Il voit à 360 degrés sans avoir à\ntourner la tête. Il ne loupe jamais\nune proie, même dans son dos."
+        },
+        "german": {
+            "name": "YANMA",
+            "category": "Libelle",
+            "entry_text": "Mit seinen Augen hat es einen Blick-\nwinkel von 360 Grad. Es sieht sogar\nBeute, die sich hinter ihm befindet."
+        },
+        "italian": {
+            "name": "Yanma",
+            "category": "Pokémon Alachiara",
+            "entry_text": "Ha un campo visivo a 360° senza\nmuovere la testa. Riesce a vedere\npersino le prede alle sue spalle."
+        },
+        "spanish": {
+            "name": "Yanma",
+            "category": "Pokémon Ala Clara",
+            "entry_text": "Su campo visual es de 360 grados\nsin girar la cabeza. Detecta hasta\nlas presas que están a su espalda."
+        },
+        "japanese": {
+            "name": "ヤンヤンマ",
+            "category": "うすばねポケモン",
+            "entry_text": "かおを　うごかさずに　３６０ど\nすべてを　みわたす　めを　もつので\nまうしろの　えものも　みのがさない。"
+        }
     }
 }

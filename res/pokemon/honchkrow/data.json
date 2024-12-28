@@ -126,7 +126,35 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "If one utters a deep cry, many\nMURKROW gather quickly. For this,\nit is called \u201cSummoner of Night.\u201d",
-        "category": "Big Boss Pokémon"
+        "english": {
+            "category": "Big Boss Pokémon",
+            "entry_text": "If one utters a deep cry, many\nMURKROW gather quickly. For this,\nit is called “Summoner of Night.”",
+            "entry_text_diamond": "Becoming active at night, it is\nknown to swarm with numerous\nMURKROW in tow."
+        },
+        "french": {
+            "name": "CORBOSS",
+            "category": "Pokémon Big Boss",
+            "entry_text": "Ce Pokémon nocturne évolue en\ngrandes volées escortées par des\nCORNEBRE."
+        },
+        "german": {
+            "name": "KRAMSHEF",
+            "category": "Anführer",
+            "entry_text": "Ein nachtaktives PKMN, das sich in\nSchwärmen mit KRAMURX durch die\nNacht bewegt."
+        },
+        "italian": {
+            "name": "Honchkrow",
+            "category": "Pokémon Grancapo",
+            "entry_text": "Diventa attivo di notte e lo si vede\nspesso in compagnia di numerosi\nMURKROW."
+        },
+        "spanish": {
+            "name": "Honchkrow",
+            "category": "Pokémon Gran Jefe",
+            "entry_text": "Está activo por la noche y\npulula arrastrando a\nnumerosos MURKROW."
+        },
+        "japanese": {
+            "name": "ドンカラス",
+            "category": "おおボスポケモン",
+            "entry_text": "よるになると　かつどうを　はじめる。\nたくさんの　ヤミカラスを　ひきつれ\nむれを　つくることで　しられる。"
+        }
     }
 }

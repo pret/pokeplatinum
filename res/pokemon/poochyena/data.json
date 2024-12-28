@@ -123,7 +123,35 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "A Pokémon with a persistent\nnature, it chases its chosen prey\nuntil the prey becomes exhausted.",
-        "category": "Bite Pokémon"
+        "english": {
+            "category": "Bite Pokémon",
+            "entry_text": "A Pokémon with a persistent\nnature, it chases its chosen prey\nuntil the prey becomes exhausted.",
+            "entry_text_diamond": "A Pokémon with a persistent\nnature, it chases its chosen prey\nuntil the prey becomes exhausted."
+        },
+        "french": {
+            "name": "MEDHYENA",
+            "category": "Pokémon Morsure",
+            "entry_text": "Un Pokémon très obstiné qui\npoursuit sa proie jusqu’à ce\nqu’elle soit épuisée."
+        },
+        "german": {
+            "name": "FIFFYEN",
+            "category": "Biss",
+            "entry_text": "Ein beharrliches PKMN, das seine\nBeute jagt, bis diese erschöpft\nist."
+        },
+        "italian": {
+            "name": "Poochyena",
+            "category": "Pokémon Morso",
+            "entry_text": "Pokémon di natura ostinata.\nInsegue la preda prescelta\nfinché questa non è esausta."
+        },
+        "spanish": {
+            "name": "Poochyena",
+            "category": "Pokémon Mordisco",
+            "entry_text": "Es muy persistente. Si se fija en\nuna presa, no la dejará hasta que\ncaiga agotada."
+        },
+        "japanese": {
+            "name": "ポチエナ",
+            "category": "かみつきポケモン",
+            "entry_text": "しつこい　せいかくの　ポケモン。\nめをつけた　えものが　ヘトヘトに\nつかれるまで　おいかけまわす。"
+        }
     }
 }

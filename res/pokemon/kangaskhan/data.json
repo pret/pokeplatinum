@@ -149,7 +149,35 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 0,
-        "entry_text": "It raises its offspring in its belly\npouch. It lets the baby out to\nplay only when it feels safe.",
-        "category": "Parent Pokémon"
+        "english": {
+            "category": "Parent Pokémon",
+            "entry_text": "It raises its offspring in its belly\npouch. It lets the baby out to\nplay only when it feels safe.",
+            "entry_text_diamond": "It raises its offspring in its belly\npouch. It lets the baby out to\nplay only when it feels safe."
+        },
+        "french": {
+            "name": "KANGOUREX",
+            "category": "Pokémon Maternel",
+            "entry_text": "Il élève ses petits dans sa poche\nventrale. Il attend d’être en lieu\nsûr pour les laisser jouer dehors."
+        },
+        "german": {
+            "name": "KANGAMA",
+            "category": "Muttertier",
+            "entry_text": "Sein Nachwuchs wächst in seinem\nBeutel heran. Nur wenn es sicher\nist, darf das Junge aus dem Beutel."
+        },
+        "italian": {
+            "name": "Kangaskhan",
+            "category": "Pokémon Genitore",
+            "entry_text": "Tiene il cucciolo nel marsupio che ha\nsulla pancia e lo lascia uscire solo\nquando non ci sono pericoli."
+        },
+        "spanish": {
+            "name": "Kangaskhan",
+            "category": "Pokémon Padres",
+            "entry_text": "Lleva a su cría en la bolsa de su\npanza. Solo deja que su cría salga\na jugar cuando no siente peligro."
+        },
+        "japanese": {
+            "name": "ガル－ラ",
+            "category": "おやこポケモン",
+            "entry_text": "おなかの　ふくろで　こそだてをする。\nあんぜんな　ときだけ　こどもを\nふくろから　だして　あそばせる。"
+        }
     }
 }

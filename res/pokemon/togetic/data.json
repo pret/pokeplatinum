@@ -152,7 +152,35 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "To share its happiness, it flies\naround the world seeking kind-\nhearted people.",
-        "category": "Happiness Pokémon"
+        "english": {
+            "category": "Happiness Pokémon",
+            "entry_text": "To share its happiness, it flies\naround the world seeking kind-\nhearted people.",
+            "entry_text_diamond": "It is said to appear in front of\nkindly people to scatter a glowing\ndown called “joy dust.”"
+        },
+        "french": {
+            "name": "TOGETIC",
+            "category": "Pokémon Bonheur",
+            "entry_text": "On dit qu’il apparaît aux êtres\nbons pour répandre un duvet\nbrillant appelé “poudre de joie”."
+        },
+        "german": {
+            "name": "TOGETIC",
+            "category": "Freude",
+            "entry_text": "Man sagt, es erscheint vor denen,\ndie gutherzig sind, und verteilt\nglänzenden “Glücksstaub”."
+        },
+        "italian": {
+            "name": "Togetic",
+            "category": "Pokémon Felicità",
+            "entry_text": "Pare che appaia alle persone gentili\ndiffondendo un pulviscolo luminoso\ndetto “Polvere della gioia”."
+        },
+        "spanish": {
+            "name": "Togetic",
+            "category": "Pokémon Felicidad",
+            "entry_text": "Se dice que se aparece a la gente\nde buen corazón y que esparce un\n“polvillo de la alegría”."
+        },
+        "japanese": {
+            "name": "トゲチック",
+            "category": "しあわせポケモン",
+            "entry_text": "やさしい　ひとの　もとへ　あらわれて\nしあわせのこな　と　よばれる\nひかる　うもうを　ふりまくと　いう。"
+        }
     }
 }

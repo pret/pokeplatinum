@@ -133,7 +133,35 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 2,
-        "entry_text": "Its body is made of ice from the\nice age. It controls frigid air of\n-328 degrees Fahrenheit.",
-        "category": "Iceberg Pokémon"
+        "english": {
+            "category": "Iceberg Pokémon",
+            "entry_text": "Its body is made of ice from the\nice age. It controls frigid air of\n-328 degrees Fahrenheit.",
+            "entry_text_diamond": "Its body is made of ice from the\nice age. It controls frigid air of\n-328 degrees Fahrenheit."
+        },
+        "french": {
+            "name": "REGICE",
+            "category": "Pokémon Iceberg",
+            "entry_text": "Son corps est fait de glace datant\nde l’ère glaciaire. Il contrôle un\nair gelé de -200 °C."
+        },
+        "german": {
+            "name": "REGICE",
+            "category": "Eisberg",
+            "entry_text": "Sein Körper besteht aus Eis aus der\nEiszeit. Es kontrolliert gefrorene\nLuft, die minus 200 Grad kalt ist."
+        },
+        "italian": {
+            "name": "Regice",
+            "category": "Pokémon Iceberg",
+            "entry_text": "Il suo corpo è costituito da ghiac-\ncio dell’era glaciale. Mantiene\nl’aria a una temperatura di -200°C."
+        },
+        "spanish": {
+            "name": "Regice",
+            "category": "Pokémon Iceberg",
+            "entry_text": "Su cuerpo está hecho con hielo\nde la glaciación. Controla aire\ngélido a 200 grados bajo cero."
+        },
+        "japanese": {
+            "name": "レジアイス",
+            "category": "ひょうざんポケモン",
+            "entry_text": "ひょうがきに　できた　こおりで\nからだが　つくられている。マイナス\n２００どの　れいきを　あやつる。"
+        }
     }
 }

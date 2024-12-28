@@ -129,7 +129,35 @@
         "pokemon_pos_f": 65524,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65524,
-        "entry_text": "They swarm any foe that invades\ntheir territory. Their sharp fangs\ncan tear out boat hulls.",
-        "category": "Savage Pokémon"
+        "english": {
+            "category": "Savage Pokémon",
+            "entry_text": "They swarm any foe that invades\ntheir territory. Their sharp fangs\ncan tear out boat hulls.",
+            "entry_text_diamond": "They swarm any foe that invades\ntheir territory. Their sharp fangs\ncan tear out boat hulls."
+        },
+        "french": {
+            "name": "CARVANHA",
+            "category": "Pokémon Féroce",
+            "entry_text": "Il attaque en banc quand on\nmenace son territoire. Ses dents\naiguisées peuvent couler un navire."
+        },
+        "german": {
+            "name": "KANIVANHA",
+            "category": "Gnadenlos",
+            "entry_text": "Sie begegnen jedem Gegner, der in\nihr Revier eindringt, im Schwarm.\nIhre Zähne durchdringen alles."
+        },
+        "italian": {
+            "name": "Carvanha",
+            "category": "Pokémon Feroce",
+            "entry_text": "Attacca in branco chi invade il\nsuo territorio. Le zanne aguzze\nlacerano anche gli scafi delle navi."
+        },
+        "spanish": {
+            "name": "Carvanha",
+            "category": "Pokémon Feroz",
+            "entry_text": "Rodean a los enemigos que osan\ninvadir su territorio. Sus afilados\ncolmillos dañan los barcos."
+        },
+        "japanese": {
+            "name": "キバニア",
+            "category": "どうもうポケモン",
+            "entry_text": "なわばりに　はいってきた　あいてを\nしゅうだんで　こうげき。するどい\nキバは　ボ－トの　そこも　かみきる。"
+        }
     }
 }

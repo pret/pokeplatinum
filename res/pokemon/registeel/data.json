@@ -140,7 +140,35 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 4,
-        "entry_text": "Tempered by pressure underground\nover tens of thousands of years,\nits body cannot be scratched.",
-        "category": "Iron Pokémon"
+        "english": {
+            "category": "Iron Pokémon",
+            "entry_text": "Tempered by pressure underground\nover tens of thousands of years,\nits body cannot be scratched.",
+            "entry_text_diamond": "Tempered by pressure underground\nover tens of thousands of years,\nits body cannot be scratched."
+        },
+        "french": {
+            "name": "REGISTEEL",
+            "category": "Pokémon Fer",
+            "entry_text": "Son corps invulnérable fut forgé\npar la pression souterraine durant\ndes dizaines de milliers d’années."
+        },
+        "german": {
+            "name": "REGISTEEL",
+            "category": "Eisen",
+            "entry_text": "Im Laufe der Jahrtausende, die es\nunterirdisch lebte, wurde sein\nKörper durch Druck u. Wärme hart."
+        },
+        "italian": {
+            "name": "Registeel",
+            "category": "Pokémon Ferro",
+            "entry_text": "La pressione subita sottoterra\nper decine di migliaia di anni ha\nreso il suo corpo resistentissimo."
+        },
+        "spanish": {
+            "name": "Registeel",
+            "category": "Pokémon Hierro",
+            "entry_text": "Su cuerpo ha estado sometido a la\npresión subterránea durante miles\nde años y no puede arañarse."
+        },
+        "japanese": {
+            "name": "レジスチル",
+            "category": "くろがねポケモン",
+            "entry_text": "なんまんねんも　ちかの　あつりょくで\nきたえられた　きんぞくの　ボディは\nきずひとつ　つかない。"
+        }
     }
 }

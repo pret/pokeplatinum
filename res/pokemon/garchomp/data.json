@@ -138,7 +138,35 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 1,
-        "entry_text": "It is said that when one runs at\nhigh speed, its wings create blades\nof wind that can fell nearby trees.",
-        "category": "Mach Pokémon"
+        "english": {
+            "category": "Mach Pokémon",
+            "entry_text": "It is said that when one runs at\nhigh speed, its wings create blades\nof wind that can fell nearby trees.",
+            "entry_text_diamond": "When it folds up its body and\nextends its wings, it looks like a\njet plane. It flies at sonic speed."
+        },
+        "french": {
+            "name": "CARCHACROK",
+            "category": "Pokémon Supersonic",
+            "entry_text": "Quand il se recroqueville et étend\nses ailes, on dirait un chasseur.\nSa vitesse est supersonique."
+        },
+        "german": {
+            "name": "KNAKRACK",
+            "category": "Rasanz",
+            "entry_text": "Spannt es seinen Körper und seine\nFlügel, sieht es aus wie ein Jet.\nEs fliegt mit Schallgeschwindigkeit."
+        },
+        "italian": {
+            "name": "Garchomp",
+            "category": "Pokémon Mach",
+            "entry_text": "Quando si piega e distende le ali,\nsembra un jet. Vola a una velocità\nsupersonica."
+        },
+        "spanish": {
+            "name": "Garchomp",
+            "category": "Pokémon Mach",
+            "entry_text": "Cuando despliega su cuerpo y sus\nalas, parece un avión a reacción.\nVuela a velocidad sónica."
+        },
+        "japanese": {
+            "name": "ガブリアス",
+            "category": "マッハポケモン",
+            "entry_text": "からだを　おりたたみ　つばさを\nのばすと　まるで　ジェットき。\nおんそくで　とぶことが　できる。"
+        }
     }
 }

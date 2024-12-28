@@ -122,7 +122,35 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "Because its body is almost entirely\ncomposed of water, it shrivels up if\nit is washed ashore.",
-        "category": "Jellyfish Pokémon"
+        "english": {
+            "category": "Jellyfish Pokémon",
+            "entry_text": "Because its body is almost entirely\ncomposed of water, it shrivels up if\nit is washed ashore.",
+            "entry_text_diamond": "Its body is virtually composed of\nwater. It shoots strange beams\nfrom its crystal-like eyes."
+        },
+        "french": {
+            "name": "TENTACOOL",
+            "category": "Pokémon Mollusque",
+            "entry_text": "Son corps est principalement\ncomposé d’eau. Ses yeux cristallins\nprojettent d’étranges rayons."
+        },
+        "german": {
+            "name": "TENTACHA",
+            "category": "Qualle",
+            "entry_text": "Sein Körper besteht aus Wasser.\nAus seinen kristallartigen Augen\nverschießt es eigenartige Strahlen."
+        },
+        "italian": {
+            "name": "Tentacool",
+            "category": "Pokémon Medusa",
+            "entry_text": "Il suo corpo è quasi interamente\ncomposto d’acqua. Emette dei raggi\nmisteriosi dagli occhi cristallini."
+        },
+        "spanish": {
+            "name": "Tentacool",
+            "category": "Pokémon Medusa",
+            "entry_text": "Su cuerpo se compone casi en\nexclusiva de agua. Lanza extraños\nrayos con sus ojos cristalinos."
+        },
+        "japanese": {
+            "name": "メノクラゲ",
+            "category": "くらげポケモン",
+            "entry_text": "からだの　ほとんどが　すいぶん。\nすいしょうのような　めだまから\nふしぎな　ビ－ムを　はっしゃする。"
+        }
     }
 }

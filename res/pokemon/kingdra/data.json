@@ -122,7 +122,35 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 2,
-        "entry_text": "It lives in caves on the seafloor\nand creates giant whirlpools\nevery time it moves.",
-        "category": "Dragon Pokémon"
+        "english": {
+            "category": "Dragon Pokémon",
+            "entry_text": "It lives in caves on the seafloor\nand creates giant whirlpools\nevery time it moves.",
+            "entry_text_diamond": "It lives in caves on the seafloor\nand creates giant whirlpools\nevery time it moves."
+        },
+        "french": {
+            "name": "HYPOROI",
+            "category": "Pokémon Dragon",
+            "entry_text": "Chacun de ses déplacements\nprovoque des tourbillons. Il vit\ndans les grottes sous-marines."
+        },
+        "german": {
+            "name": "SEEDRAKING",
+            "category": "Drache",
+            "entry_text": "Es lebt in Höhlen auf dem Meeres-\ngrund. Jedes Mal, wenn es sich\nbewegt, entsteht ein Strudel. "
+        },
+        "italian": {
+            "name": "Kingdra",
+            "category": "Pokémon Drago",
+            "entry_text": "Vive in caverne sui fondali marini\ne crea vortici giganteschi ogni\nvolta che si muove."
+        },
+        "spanish": {
+            "name": "Kingdra",
+            "category": "Pokémon Dragón",
+            "entry_text": "Vive en cavernas del fondo marino\ny crea grandes remolinos cuando\nse mueve."
+        },
+        "japanese": {
+            "name": "キングドラ",
+            "category": "ドラゴンポケモン",
+            "entry_text": "かいていどうくつに　すんでいる。\nキングドラが　みうごきすると\nきょだいな　うずしおが　うまれる。"
+        }
     }
 }

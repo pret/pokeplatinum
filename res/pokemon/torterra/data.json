@@ -136,7 +136,35 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 0,
-        "entry_text": "Some Pokémon are born on a\nTORTERRA’s back and spend their\nentire life there.",
-        "category": "Continent Pokémon"
+        "english": {
+            "category": "Continent Pokémon",
+            "entry_text": "Some Pokémon are born on a\nTORTERRA’s back and spend their\nentire life there.",
+            "entry_text_diamond": "Small Pokémon occasionally gather\non its unmoving back to begin\nbuilding their nests."
+        },
+        "french": {
+            "name": "TORTERRA",
+            "category": "Pokémon Continent",
+            "entry_text": "Il arrive que de petits Pokémon\nse rassemblent sur son dos \nimmobile pour y faire leur nid."
+        },
+        "german": {
+            "name": "CHELTERRAR",
+            "category": "Kontinent",
+            "entry_text": "Kleine PKMN fangen manchmal an,\nauf dem bewegungslosen Rücken\nNester zu bauen."
+        },
+        "italian": {
+            "name": "Torterra",
+            "category": "Pokémon Continente",
+            "entry_text": "Piccoli Pokémon si radunano\ntalvolta sul suo dorso immobile\nper costruirvi la loro tana."
+        },
+        "spanish": {
+            "name": "Torterra",
+            "category": "Pokémon Continente",
+            "entry_text": "Algunos Pokémon pequeños\nse juntan en su espalda\npara hacer sus nidos."
+        },
+        "japanese": {
+            "name": "ドダイトス",
+            "category": "たいりくポケモン",
+            "entry_text": "ちいさな　ポケモンたちが　あつまり\nうごかない　ドダイトスの　せなかで\nすづくりを　はじめることがある。"
+        }
     }
 }

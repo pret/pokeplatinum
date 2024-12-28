@@ -130,7 +130,35 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "It is encased in a steel shell. Its\npeering eyes are all that can be\nseen of its mysterious innards.",
-        "category": "Bagworm Pokémon"
+        "english": {
+            "category": "Bagworm Pokémon",
+            "entry_text": "It is encased in a steel shell. Its\npeering eyes are all that can be\nseen of its mysterious innards.",
+            "entry_text_diamond": "It is encased in a steel shell. Its\npeering eyes are all that can be\nseen of its mysterious innards."
+        },
+        "french": {
+            "name": "FORETRESS",
+            "category": "Pokémon Ver Caché",
+            "entry_text": "Il est prisonnier d’une coquille \nd’acier. Ses yeux vigilants sont la\nseule partie visible de son corps."
+        },
+        "german": {
+            "name": "FORSTELLKA",
+            "category": "Beutelwurm",
+            "entry_text": "Dieses PKMN ist von einer Stahlhülle\numgeben. Seine stechenden Augen\nsind alles, was man von ihm sieht."
+        },
+        "italian": {
+            "name": "Forretress",
+            "category": "Pokémon Larva",
+            "entry_text": "È incassato in una conchiglia d’ac-\nciaio. A parte gli occhi scrutatori,\nnessuno sa cosa ci sia all’interno."
+        },
+        "spanish": {
+            "name": "Forretress",
+            "category": "Pokémon Larva",
+            "entry_text": "Se protege con su concha de\nacero de tal manera que solo se\npueden ver sus ojos."
+        },
+        "japanese": {
+            "name": "フォレトス",
+            "category": "みのむしポケモン",
+            "entry_text": "こうてつの　カラで　まもられている。\nすきまから　めだまが　のぞいているが\nなかみの　しょうたいは　なぞのまま。"
+        }
     }
 }

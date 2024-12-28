@@ -120,7 +120,35 @@
         "pokemon_pos_f": 65519,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65519,
-        "entry_text": "It has a gutsy spirit that makes\nit bravely take on tough foes. It\nflies in search of warm climates.",
-        "category": "TinySwallow Pokémon"
+        "english": {
+            "category": "TinySwallow Pokémon",
+            "entry_text": "It has a gutsy spirit that makes\nit bravely take on tough foes. It\nflies in search of warm climates.",
+            "entry_text_diamond": "It has a gutsy spirit that makes\nit bravely take on tough foes. It\nflies in search of warm climates."
+        },
+        "french": {
+            "name": "NIRONDELLE",
+            "category": "Pokémon Minirondel",
+            "entry_text": "Ce Pokémon téméraire n’a pas peur\nd’affronter des ennemis puissants.\nIl vole en quête de climats chauds."
+        },
+        "german": {
+            "name": "SCHWALBINI",
+            "category": "Schwälblein",
+            "entry_text": "Es ist sehr mutig und stellt sich\nauch starken Gegnern. Es sucht\nständig nach warmen Regionen."
+        },
+        "italian": {
+            "name": "Taillow",
+            "category": "Pokémon Rondinella",
+            "entry_text": "È molto coraggioso e affronta\nspavaldo i nemici più forti.\nMigra verso i paesi caldi."
+        },
+        "spanish": {
+            "name": "Taillow",
+            "category": "Pokémon Pequebuche",
+            "entry_text": "Es un Pokémon valiente que no\nteme a los rivales fuertes. Vuela\nen busca de climas templados. "
+        },
+        "japanese": {
+            "name": "スバメ",
+            "category": "こツバメポケモン",
+            "entry_text": "つよい　あいてにも　ゆうかんに\nたちむかう　こんじょうの　もちぬし。\nあたたかい　とちを　めざして　とぶ。"
+        }
     }
 }

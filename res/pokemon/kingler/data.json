@@ -131,7 +131,35 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "entry_text": "The larger pincer has 10,000-\nhorsepower strength. However, it\nis so heavy, it is difficult to aim.",
-        "category": "Pincer Pokémon"
+        "english": {
+            "category": "Pincer Pokémon",
+            "entry_text": "The larger pincer has 10,000-\nhorsepower strength. However, it\nis so heavy, it is difficult to aim.",
+            "entry_text_diamond": "The larger pincer has 10,000-\nhorsepower strength. However, it\nis so heavy, it is difficult to aim."
+        },
+        "french": {
+            "name": "KRABBOSS",
+            "category": "Pokémon Pince",
+            "entry_text": "Sa grande pince possède une\npuissance de 10 000 chevaux. Son\npoids la rend difficile à manier."
+        },
+        "german": {
+            "name": "KINGLER",
+            "category": "Kneifer",
+            "entry_text": "Die großen Scheren haben eine\nStärke von 10 000 PS. Aber sie sind\nschwer und kaum zu handhaben."
+        },
+        "italian": {
+            "name": "Kingler",
+            "category": "Pokémon Chela",
+            "entry_text": "La chela più grande ha una potenza\ndi 10000 cavalli, ma è così pesante\nche non permette di mirare bene."
+        },
+        "spanish": {
+            "name": "Kingler",
+            "category": "Pokémon Tenaza",
+            "entry_text": "La pinza mayor tiene 10000\ncaballos de potencia, pero es tan\ngrande que le cuesta usarla."
+        },
+        "japanese": {
+            "name": "キングラ－",
+            "category": "はさみポケモン",
+            "entry_text": "おおきいほうの　ハサミの　パワ－は\n１まんばりき。しかし　おもすぎるため\nねらいを　つけることが　にがてだ。"
+        }
     }
 }

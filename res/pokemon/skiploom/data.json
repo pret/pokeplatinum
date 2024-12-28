@@ -127,7 +127,35 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "It blooms when the weather warms.\nIt floats in the sky to soak up as\nmuch sunlight as possible.",
-        "category": "Cottonweed Pokémon"
+        "english": {
+            "category": "Cottonweed Pokémon",
+            "entry_text": "It blooms when the weather warms.\nIt floats in the sky to soak up as\nmuch sunlight as possible.",
+            "entry_text_diamond": "It blooms when the weather warms.\nIt floats in the sky to soak up as\nmuch sunlight as possible."
+        },
+        "french": {
+            "name": "FLORAVOL",
+            "category": "Pokémon Pissenlit",
+            "entry_text": "Il fleurit lorsque les températures\nremontent. Il flotte dans le ciel \npour absorber les rayons du soleil."
+        },
+        "german": {
+            "name": "HUBELUPF",
+            "category": "Löwenzahn",
+            "entry_text": "Sobald es wärmer wird, blüht es\nauf. Es schwebt am Himmel und nimmt\nso viel Sonnenlicht auf wie möglich."
+        },
+        "italian": {
+            "name": "Skiploom",
+            "category": "Pokémon Gramigna",
+            "entry_text": "Il suo fiore sboccia appena l’aria\nsi riscalda. Fluttua nel cielo\nper assorbire l’energia solare."
+        },
+        "spanish": {
+            "name": "Skiploom",
+            "category": "Pokémon Algadón",
+            "entry_text": "Florece en épocas cálidas. Flota\nen el aire para absorber toda la\nluz solar que puede."
+        },
+        "japanese": {
+            "name": "ポポッコ",
+            "category": "わたくさポケモン",
+            "entry_text": "きおんが　たかくなると　はなひらく。\nそらに　うかんで　ひざしを\nいっぱい　あびようとする。"
+        }
     }
 }

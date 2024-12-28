@@ -125,7 +125,35 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "Its fur is so sensitive, it can\nsense minute shifts in the air\nand predict the weather.",
-        "category": "Sun Pokémon"
+        "english": {
+            "category": "Sun Pokémon",
+            "entry_text": "Its fur is so sensitive, it can\nsense minute shifts in the air\nand predict the weather.",
+            "entry_text_diamond": "Its fur has the look and feel of\nvelvet. The orb on its forehead\nglows when it uses psycho-power."
+        },
+        "french": {
+            "name": "MENTALI",
+            "category": "Pokémon Soleil",
+            "entry_text": "Son pelage a l’aspect et la texture\ndu velours. L’orbe à son front luit\nquand il utilise ses pouvoirs psy."
+        },
+        "german": {
+            "name": "PSIANA",
+            "category": "Sonne",
+            "entry_text": "Sein Fell ist wie Samt. Setzt es\nPsycho-Kräfte ein, leuchtet die\nKugel in seiner Stirn."
+        },
+        "italian": {
+            "name": "Espeon",
+            "category": "Pokémon Sole",
+            "entry_text": "Il suo pelo è simile al velluto.\nQuando usa i suoi poteri psichici,\nla sfera che ha sulla fronte brilla."
+        },
+        "spanish": {
+            "name": "Espeon",
+            "category": "Pokémon Sol",
+            "entry_text": "Su pelaje es como el terciopelo.\nLa esfera de su frente brilla\ncuando usa sus poderes psíquicos."
+        },
+        "japanese": {
+            "name": "エ－フィ",
+            "category": "たいようポケモン",
+            "entry_text": "たいもうは　ビロ－ドの　つやと\nはだざわり。サイコパワ－を　つかう\nとき　ひたいの　たまが　かがやく。"
+        }
     }
 }

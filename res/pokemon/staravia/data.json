@@ -122,7 +122,35 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "Recognizing their own weakness,\nthey always live in a group. When\nalone, a STARAVIA cries noisily.",
-        "category": "Starling Pokémon"
+        "english": {
+            "category": "Starling Pokémon",
+            "entry_text": "Recognizing their own weakness,\nthey always live in a group. When\nalone, a STARAVIA cries noisily.",
+            "entry_text_diamond": "It flies around forests and fields\nin search of bug Pokémon.\nIt stays within a huge flock."
+        },
+        "french": {
+            "name": "ETOURVOL",
+            "category": "Pokémon Etourneau",
+            "entry_text": "Il survole les forêts et les champs\nen quête de Pokémon Insecte.\nIls forment de grandes volées."
+        },
+        "german": {
+            "name": "STARAVIA",
+            "category": "Star",
+            "entry_text": "Auf der Suche nach Käfer-PKMN\nfliegt es über Wiesen und Wälder. Es\nbleibt in einem großen Schwarm."
+        },
+        "italian": {
+            "name": "Staravia",
+            "category": "Pokémon Storno",
+            "entry_text": "Vola nelle foreste e nei campi\nin cerca di Pokémon coleottero.\nSi muove in grandi gruppi."
+        },
+        "spanish": {
+            "name": "Staravia",
+            "category": "Pokémon Estornino",
+            "entry_text": "Vuela por bosques y campos en\nbusca de Pokémon de tipo Bicho.\nSiempre va en bandadas."
+        },
+        "japanese": {
+            "name": "ムクバ－ド",
+            "category": "むくどりポケモン",
+            "entry_text": "むしポケモンを　ねらって\nもりや　そうげんを　とびまわる。\nおおきな　むれで　こうどうする。"
+        }
     }
 }

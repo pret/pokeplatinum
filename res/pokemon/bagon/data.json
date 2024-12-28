@@ -123,7 +123,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Dreaming of one day flying, it\npractices by leaping off cliffs\nevery day.",
-        "category": "Rock Head Pokémon"
+        "english": {
+            "category": "Rock Head Pokémon",
+            "entry_text": "Dreaming of one day flying, it\npractices by leaping off cliffs\nevery day.",
+            "entry_text_diamond": "Dreaming of one day flying, it\npractices by leaping off cliffs\nevery day."
+        },
+        "french": {
+            "name": "DRABY",
+            "category": "Pokémon Tête de Roc",
+            "entry_text": "Il rêve de pouvoir voler un jour. \nPour l’heure, il s’entraîne en\nsautant du haut des falaises."
+        },
+        "german": {
+            "name": "KINDWURM",
+            "category": "Steinhaupt",
+            "entry_text": "Es träumt davon, eines Tages\nfliegen zu können und springt daher\njeden Tag von hohen Klippen."
+        },
+        "italian": {
+            "name": "Bagon",
+            "category": "Pokémon Rocciotesta",
+            "entry_text": "Sogna di poter volare un giorno e,\npertanto, si allena regolarmente\ngettandosi da alture."
+        },
+        "spanish": {
+            "name": "Bagon",
+            "category": "Pokémon Cabeza Roca",
+            "entry_text": "Sueña con volar algún día,\npor lo que siempre practica\nsaltando desde acantilados."
+        },
+        "japanese": {
+            "name": "タツベイ",
+            "category": "いしあたまポケモン",
+            "entry_text": "おおぞらを　とぶことを　ゆめみて\nまいにち　とぶ　れんしゅうのために\nがけから　とびおりている。"
+        }
     }
 }

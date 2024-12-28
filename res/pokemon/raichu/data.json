@@ -118,7 +118,35 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "Its tail discharges electricity into\nthe ground, protecting it from\ngetting shocked.",
-        "category": "Mouse Pokémon"
+        "english": {
+            "category": "Mouse Pokémon",
+            "entry_text": "Its tail discharges electricity into\nthe ground, protecting it from\ngetting shocked.",
+            "entry_text_diamond": "It turns aggressive if it has too\nmuch electricity in its body. It\ndischarges power through its tail."
+        },
+        "french": {
+            "name": "RAICHU",
+            "category": "Pokémon Souris",
+            "entry_text": "Il devient agressif lorsque son\ncorps contient trop d’électricité.\nIl la décharge par sa queue."
+        },
+        "german": {
+            "name": "RAICHU",
+            "category": "Maus",
+            "entry_text": "Bei zu viel Elektrizität im Körper\nwird es aggressiv. Es entlädt sich\nüber seinen Schweif."
+        },
+        "italian": {
+            "name": "Raichu",
+            "category": "Pokémon Topo",
+            "entry_text": "Diventa aggressivo se accumula\nin sé troppa carica elettrica.\nScarica l’elettricità dalla coda."
+        },
+        "spanish": {
+            "name": "Raichu",
+            "category": "Pokémon Ratón",
+            "entry_text": "Se vuelve agresivo si su cuerpo\nacumula demasiada electricidad,\nque descarga a través de la cola."
+        },
+        "japanese": {
+            "name": "ライチュウ",
+            "category": "ねずみポケモン",
+            "entry_text": "からだの　でんきが　たまりすぎると\nこうげきてきな　きもちになる。\nしっぽから　でんきを　にがす。"
+        }
     }
 }

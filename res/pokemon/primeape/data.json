@@ -141,7 +141,35 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It grows angry if you see its eyes\nand gets angrier if you run. If you\nbeat it, it gets even madder.",
-        "category": "Pig Monkey Pokémon"
+        "english": {
+            "category": "Pig Monkey Pokémon",
+            "entry_text": "It grows angry if you see its eyes\nand gets angrier if you run. If you\nbeat it, it gets even madder.",
+            "entry_text_diamond": "It grows angry if you see its eyes\nand gets angrier if you run. If you\nbeat it, it gets even madder."
+        },
+        "french": {
+            "name": "COLOSSINGE",
+            "category": "Pokémon Porsinge",
+            "entry_text": "Il grogne quand on le toise,\nrugit quand on s’enfuit et devient\nfou de rage quand on le frappe."
+        },
+        "german": {
+            "name": "RASAFF",
+            "category": "Schw./ Affe",
+            "entry_text": "Siehst du ihm in die Augen, wird es\nwütend. Rennst du weg, wird es\nnoch wütender. Ärgerst du es..."
+        },
+        "italian": {
+            "name": "Primeape",
+            "category": "Pokémon Suinpanzé",
+            "entry_text": "Se lo guardi fisso negli occhi, si\nadira. Se corri, s’infuria. Se poi lo\nsconfiggi, s’arrabbia ancor di più."
+        },
+        "spanish": {
+            "name": "Primeape",
+            "category": "Pokémon Mono Cerdo",
+            "entry_text": "Se molesta si le miras a los ojos.\nSe enfada si corres. Se enfurece\nsi le golpeas."
+        },
+        "japanese": {
+            "name": "オコリザル",
+            "category": "ぶたざるポケモン",
+            "entry_text": "しせんが　あっただけで　おこり\nにげだしたら　また　おこり\nたたきのめしても　まだ　おこる。"
+        }
     }
 }

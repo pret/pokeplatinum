@@ -115,7 +115,35 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 2,
         "pokemon_pos_m": 4,
-        "entry_text": "It pools in its mouth a fluid with\na honeylike scent, which is really\nan acid that dissolves anything.",
-        "category": "Flycatcher Pokémon"
+        "english": {
+            "category": "Flycatcher Pokémon",
+            "entry_text": "It pools in its mouth a fluid with\na honeylike scent, which is really\nan acid that dissolves anything.",
+            "entry_text_diamond": "It pools in its mouth a fluid with\na honeylike scent, which is really\nan acid that dissolves anything."
+        },
+        "french": {
+            "name": "EMPIFLOR",
+            "category": "Pokémon Carnivore",
+            "entry_text": "Sa bouche sécrète un fluide à\nl’odeur de miel, qui s’avère être\nun acide extrêmement corrosif."
+        },
+        "german": {
+            "name": "SARZENIA",
+            "category": "Fliegentot",
+            "entry_text": "In seinem Maul sammelt sich eine\nFlüssigkeit, die nach Honig riecht,\nin Wahrheit aber ätzend ist."
+        },
+        "italian": {
+            "name": "Victreebel",
+            "category": "Pokémon Moschivoro",
+            "entry_text": "Tiene in bocca un liquido dall’aroma\nsimile al miele, che in realtà è un\nacido altamente corrosivo."
+        },
+        "spanish": {
+            "name": "Victreebel",
+            "category": "Pokémon Matamoscas",
+            "entry_text": "Su boca segrega un fluido de olor\nparecido a la miel: un potente\nácido que disuelve cualquier cosa."
+        },
+        "japanese": {
+            "name": "ウツボット",
+            "category": "ハエとりポケモン",
+            "entry_text": "ミツのような　かおりの　えきたいを\nくちに　ためているが　それは\nなんでも　とかす　ようかいえきだ。"
+        }
     }
 }

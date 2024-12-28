@@ -118,7 +118,35 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "There is a village that hosts a\ncontest based on the amazingly\nvariable cries of this Pokémon.",
-        "category": "Cricket Pokémon"
+        "english": {
+            "category": "Cricket Pokémon",
+            "entry_text": "There is a village that hosts a\ncontest based on the amazingly\nvariable cries of this Pokémon.",
+            "entry_text_diamond": "It crosses its knifelike arms in\nfront of its chest when it cries.\nIt can compose melodies ad lib."
+        },
+        "french": {
+            "name": "MELOKRIK",
+            "category": "Pokémon Criquet",
+            "entry_text": "Il croise ses bras affûtés devant\nson torse pour crier. Il compose\ntout un tas de mélodies."
+        },
+        "german": {
+            "name": "ZIRPEISE",
+            "category": "Zirper",
+            "entry_text": "Wenn es ruft, verschränkt es seine\nmesserartigen Arme vor der Brust.\nEs komponiert aus dem Stegreif."
+        },
+        "italian": {
+            "name": "Kricketune",
+            "category": "Pokémon Grillo",
+            "entry_text": "Quando canta tiene le zampe\nincrociate al petto.\nSa improvvisare melodie."
+        },
+        "spanish": {
+            "name": "Kricketune",
+            "category": "Pokémon Grillo",
+            "entry_text": "Cuando llora, cruza sus brazos\ncon forma de cuchillo. Puede\nimprovisar melodías."
+        },
+        "japanese": {
+            "name": "コロトック",
+            "category": "こおろぎポケモン",
+            "entry_text": "なくときは　ナイフのような　うでを\nむねの　まえで　こうささせる。\nそっきょうで　メロディを　つくる。"
+        }
     }
 }

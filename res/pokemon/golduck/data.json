@@ -136,7 +136,35 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 8,
-        "entry_text": "It is seen swimming dynamically and\nelegantly using its well-developed\nlimbs and flippers.",
-        "category": "Duck Pokémon"
+        "english": {
+            "category": "Duck Pokémon",
+            "entry_text": "It is seen swimming dynamically and\nelegantly using its well-developed\nlimbs and flippers.",
+            "entry_text_diamond": "A Pokémon that lives in lakes.\nIt swims faster than any human\nswimming champion."
+        },
+        "french": {
+            "name": "AKWAKWAK",
+            "category": "Pokémon Canard",
+            "entry_text": "Un habitant des lacs. Il nage\nplus vite qu’un champion\nhumain de natation."
+        },
+        "german": {
+            "name": "ENTORON",
+            "category": "Ente",
+            "entry_text": "Dieses Pokémon lebt in Seen. Es\nschwimmt schneller als der\nschnellste menschliche Schwimmer."
+        },
+        "italian": {
+            "name": "Golduck",
+            "category": "Pokémon Papero",
+            "entry_text": "Un Pokémon che vive nei laghi.\nNuota più velocemente di un\ncampione di nuoto."
+        },
+        "spanish": {
+            "name": "Golduck",
+            "category": "Pokémon Pato",
+            "entry_text": "Este Pokémon vive en lagos.\nEn el agua es más rápido que\ncualquier nadador profesional."
+        },
+        "japanese": {
+            "name": "ゴルダック",
+            "category": "あひるポケモン",
+            "entry_text": "みずうみに　すむ　ポケモン。\nおよぐ　スピ－ドは　オリンピックの\nきんメダリストよりも　はやい。"
+        }
     }
 }

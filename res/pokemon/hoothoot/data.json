@@ -131,7 +131,35 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It marks time precisely. Some\ncountries consider it to be a wise\nfriend, versed in the world’s ways.",
-        "category": "Owl Pokémon"
+        "english": {
+            "category": "Owl Pokémon",
+            "entry_text": "It marks time precisely. Some\ncountries consider it to be a wise\nfriend, versed in the world’s ways.",
+            "entry_text_diamond": "It always stands on one foot.\nEven when attacked, it does not\nbrace itself using both feet."
+        },
+        "french": {
+            "name": "HOOTHOOT",
+            "category": "Pokémon Hibou",
+            "entry_text": "Il se tient toujours sur un pied. Il\nne prend jamais appui sur les\ndeux, même en cas d’attaque."
+        },
+        "german": {
+            "name": "HOOTHOOT",
+            "category": "Eule",
+            "entry_text": "Es steht ständig auf einem Fuß.\nSelbst wenn es angreift, stellt es\nsich nicht auf beide Beine."
+        },
+        "italian": {
+            "name": "Hoothoot",
+            "category": "Pokémon Gufo",
+            "entry_text": "Sta sempre ritto su un piede solo\ne non mette giù l’altro neppure\nquando viene attaccato."
+        },
+        "spanish": {
+            "name": "Hoothoot",
+            "category": "Pokémon Búho",
+            "entry_text": "Siempre se yergue sobre una pata.\nNunca apoya ambas, ni siquiera\nal sufrir un ataque."
+        },
+        "japanese": {
+            "name": "ホ－ホ－",
+            "category": "ふくろうポケモン",
+            "entry_text": "いつも　いっぽんあしで　たっている。\nこうげきを　うけても　２ほんあしで\nふんばるようなことは　しない。"
+        }
     }
 }

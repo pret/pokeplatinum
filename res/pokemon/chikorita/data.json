@@ -125,7 +125,35 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It uses the leaf on its head to\ndetermine the temperature and\nhumidity. It loves to sunbathe.",
-        "category": "Leaf Pokémon"
+        "english": {
+            "category": "Leaf Pokémon",
+            "entry_text": "It uses the leaf on its head to\ndetermine the temperature and\nhumidity. It loves to sunbathe.",
+            "entry_text_diamond": "It uses the leaf on its head to\ndetermine the temperature and\nhumidity. It loves to sunbathe."
+        },
+        "french": {
+            "name": "GERMIGNON",
+            "category": "Pokémon Feuille",
+            "entry_text": "Il jauge la température et\nl’humidité grâce à la feuille sur sa\ntête. Il raffole des bains de soleil."
+        },
+        "german": {
+            "name": "ENDIVIE",
+            "category": "Laub",
+            "entry_text": "Mit dem Blatt auf seinem Kopf\nbestimmt es die Temperatur und\nFeuchtigkeit. Es liebt Sonnenbäder."
+        },
+        "italian": {
+            "name": "Chikorita",
+            "category": "Pokémon Foglia",
+            "entry_text": "Usa la foglia sulla sua testa\nper misurare la temperatura e\nl’umidità. Ama crogiolarsi al sole."
+        },
+        "spanish": {
+            "name": "Chikorita",
+            "category": "Pokémon Hoja",
+            "entry_text": "Con la hoja de su cabeza puede\nmedir la temperatura y la humedad.\nLe encanta tomar el sol."
+        },
+        "japanese": {
+            "name": "チコリ－タ",
+            "category": "はっぱポケモン",
+            "entry_text": "あたまの　はっぱで　まわりの\nおんどや　しつどを　さぐる。\nひざしを　あびることが　だいすき。"
+        }
     }
 }

@@ -126,7 +126,35 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It scans its surroundings by\nraising its ears out of the grass.\nIts toxic horn is for protection.",
-        "category": "Poison Pin Pokémon"
+        "english": {
+            "category": "Poison Pin Pokémon",
+            "entry_text": "It scans its surroundings by\nraising its ears out of the grass.\nIts toxic horn is for protection.",
+            "entry_text_diamond": "It scans its surroundings by\nraising its ears out of the grass.\nIts toxic horn is for protection."
+        },
+        "french": {
+            "name": "NIDORAN♂",
+            "category": "Pokémon Venepic",
+            "entry_text": "Il jauge le terrain en laissant\nses oreilles dépasser de l’herbe.\nIl se défend avec sa corne toxique."
+        },
+        "german": {
+            "name": "NIDORAN♂",
+            "category": "Giftdorn",
+            "entry_text": "Es untersucht die Umgebung, indem\nes die Ohren spitzt und lauscht.\nSein giftiges Horn schützt es."
+        },
+        "italian": {
+            "name": "Nidoran♂",
+            "category": "Pokémon Velenago",
+            "entry_text": "Esamina l’ambiente circostante ten-\ndendo le orecchie fuori dall’erba.\nSi protegge con il corno velenoso."
+        },
+        "spanish": {
+            "name": "Nidoran♂",
+            "category": "Pokémon Pin Veneno",
+            "entry_text": "Saca las orejas por encima de la\nhierba para explorar el territorio.\nLe protege su cuerno venenoso."
+        },
+        "japanese": {
+            "name": "ニドラン㊚",
+            "category": "どくばりポケモン",
+            "entry_text": "くさむらの　うえに　みみだけ　だして\nまわりの　けはいを　さぐる。\nもうどくの　ツノで　みを　まもる。"
+        }
     }
 }

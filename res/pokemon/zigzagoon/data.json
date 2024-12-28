@@ -135,7 +135,35 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "It walks in zigzag fashion. It is\ngood at finding items in the\ngrass and even in the ground.",
-        "category": "TinyRaccoon Pokémon"
+        "english": {
+            "category": "TinyRaccoon Pokémon",
+            "entry_text": "It walks in zigzag fashion. It is\ngood at finding items in the\ngrass and even in the ground.",
+            "entry_text_diamond": "It walks in zigzag fashion. It is\ngood at finding items in the\ngrass and even in the ground."
+        },
+        "french": {
+            "name": "ZIGZATON",
+            "category": "Pokémon Petit Raton",
+            "entry_text": "Il marche en zigzaguant et n’a\npas son pareil pour trouver des\nobjets dans l’herbe ou sous terre."
+        },
+        "german": {
+            "name": "ZIGZACHS",
+            "category": "Kleindachs",
+            "entry_text": "Es läuft im Zickzack. Es hat das\nTalent, Items im Gras, aber auch im\nBoden, zu finden."
+        },
+        "italian": {
+            "name": "Zigzagoon",
+            "category": "Pokémon Procione",
+            "entry_text": "Avanza a zigzag. È bravo a trovare\nstrumenti nell’erba e sul terreno."
+        },
+        "spanish": {
+            "name": "Zigzagoon",
+            "category": "Pokémon Mapachito",
+            "entry_text": "Se mueve en zigzag. Se le da\nbien encontrar objetos ocultos en\nla hierba e incluso enterrados."
+        },
+        "japanese": {
+            "name": "ジグザグマ",
+            "category": "まめだぬきポケモン",
+            "entry_text": "ジグザグに　あるいて　くさかげや\nじめんに　うまっている　たからものを\nみつけるのが　とくいな　ポケモン。"
+        }
     }
 }

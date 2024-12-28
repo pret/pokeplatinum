@@ -128,7 +128,35 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 0,
-        "entry_text": "It is said to have widened the\nseas by causing downpours. It had\nbeen asleep in a marine trench.",
-        "category": "Sea Basin Pokémon"
+        "english": {
+            "category": "Sea Basin Pokémon",
+            "entry_text": "It is said to have widened the\nseas by causing downpours. It had\nbeen asleep in a marine trench.",
+            "entry_text_diamond": "It is said to have widened the\nseas by causing downpours. It had\nbeen asleep in a marine trench."
+        },
+        "french": {
+            "name": "KYOGRE",
+            "category": "Pokémon Bassinmarin",
+            "entry_text": "On dit qu’il a fait monter les eaux\nen causant des pluies diluviennes.\nIl somnolait dans une fosse marine."
+        },
+        "german": {
+            "name": "KYOGRE",
+            "category": "Seegründler",
+            "entry_text": "Man sagt, es habe die Meere ver-\ngrößert, indem es es regnen ließ.\nEs schlief in einem Meeresgraben."
+        },
+        "italian": {
+            "name": "Kyogre",
+            "category": "Pokémon Oceano",
+            "entry_text": "Si dice che abbia ampliato i mari\nprovocando piogge torrenziali. Si è\nassopito in una fossa marina."
+        },
+        "spanish": {
+            "name": "Kyogre",
+            "category": "Pokémon Cuenca Mar",
+            "entry_text": "Se dice que aumentó el nivel del\nmar a base de aguaceros. Ha estado\ndurmiendo en una fosa marina."
+        },
+        "japanese": {
+            "name": "カイオ－ガ",
+            "category": "かいていポケモン",
+            "entry_text": "おおあめを　ふらせる　のうりょくで\nうみを　ひろげたと　いわれている。\nかいこうの　そこで　ねむっていた。"
+        }
     }
 }

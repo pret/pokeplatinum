@@ -139,7 +139,35 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "It brought rains by opening portals\nto another world. It was revered\nas a bringer of plentiful harvests.",
-        "category": "Bronze Bell Pokémon"
+        "english": {
+            "category": "Bronze Bell Pokémon",
+            "entry_text": "It brought rains by opening portals\nto another world. It was revered\nas a bringer of plentiful harvests.",
+            "entry_text_diamond": "One caused a news sensation when\nit was dug up at a construction\nsite after a 2,000-year sleep."
+        },
+        "french": {
+            "name": "ARCHEODONG",
+            "category": "Pokémon Clochebronze",
+            "entry_text": "La découverte d’un de ces Pokémon\nsur un site de fouilles après 2 000 \nans de sommeil a fait sensation."
+        },
+        "german": {
+            "name": "BRONZONG",
+            "category": "Bronzeglocke",
+            "entry_text": "Dieses PKMN fand man bei Grabungen\nauf einer Baustelle, an deren Ort\nes 2 000 Jahre geschlafen hatte."
+        },
+        "italian": {
+            "name": "Bronzong",
+            "category": "Pokémon Squibronzo",
+            "entry_text": "Il suo ritrovamento in un cantiere\ndopo un sonno di 2000 anni fece a\nsuo tempo molto scalpore."
+        },
+        "spanish": {
+            "name": "Bronzong",
+            "category": "Pokémon Cam. Bronce",
+            "entry_text": "Se produjo un gran revuelo cuando\nencontraron uno en una obra\ndespués de 2000 años durmiendo."
+        },
+        "japanese": {
+            "name": "ド－タクン",
+            "category": "どうたくポケモン",
+            "entry_text": "２０００ねん　いじょう　ねむっていた\nド－タクンが　こうじげんばから\nほりだされ　だいニュ－スに　なった。"
+        }
     }
 }

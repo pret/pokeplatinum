@@ -135,7 +135,35 @@
         "pokemon_pos_f": 30,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 30,
-        "entry_text": "It lives in burrows dug on sandy\nbeaches. Its pincers fully grow\nback if they are broken in battle.",
-        "category": "River Crab Pokémon"
+        "english": {
+            "category": "River Crab Pokémon",
+            "entry_text": "It lives in burrows dug on sandy\nbeaches. Its pincers fully grow\nback if they are broken in battle.",
+            "entry_text_diamond": "It lives in burrows dug on sandy\nbeaches. Its pincers fully grow\nback if they are broken in battle."
+        },
+        "french": {
+            "name": "KRABBY",
+            "category": "Pokémon Doux Crabe",
+            "entry_text": "Il creuse son terrier sur des \nplages sablonneuses. Ses \npinces repoussent si on les brise."
+        },
+        "german": {
+            "name": "KRABBY",
+            "category": "Krabbe",
+            "entry_text": "Es lebt in Höhlen am Strand. Seine\nScheren wachsen nach, wenn es sie\nim Kampf verliert."
+        },
+        "italian": {
+            "name": "Krabby",
+            "category": "Pokémon Granchio",
+            "entry_text": "Vive in buche scavate sulle spiagge\nsabbiose. Le sue chele ricrescono\nse si spezzano nella lotta."
+        },
+        "spanish": {
+            "name": "Krabby",
+            "category": "Pokémon Cangrejo",
+            "entry_text": "Vive en madrigueras excavadas\nen playas arenosas. Sus pinzas\nvuelven a crecer si se rompen."
+        },
+        "japanese": {
+            "name": "クラブ",
+            "category": "さわがにポケモン",
+            "entry_text": "すなはまに　あなを　ほって　くらす。\nハサミは　たたかいで　とれても\nまた　はえてきて　もとどおり。"
+        }
     }
 }

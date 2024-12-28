@@ -128,7 +128,35 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "The fire on the tip of its tail is a\nmeasure of its life. If healthy,\nits tail burns intensely.",
-        "category": "Lizard Pokémon"
+        "english": {
+            "category": "Lizard Pokémon",
+            "entry_text": "The fire on the tip of its tail is a\nmeasure of its life. If healthy,\nits tail burns intensely.",
+            "entry_text_diamond": "The fire on the tip of its tail is a\nmeasure of its life. If healthy,\nits tail burns intensely."
+        },
+        "french": {
+            "name": "SALAMECHE",
+            "category": "Pokémon Lézard",
+            "entry_text": "La flamme de sa queue symbolise sa\nvitalité. Elle est intense quand il\nest en bonne santé."
+        },
+        "german": {
+            "name": "GLUMANDA",
+            "category": "Echse",
+            "entry_text": "Lodert die Flamme auf seiner\nSchweifspitze hell, ist GLUMANDA\ngesund."
+        },
+        "italian": {
+            "name": "Charmander",
+            "category": "Pokémon Lucertola",
+            "entry_text": "La fiamma sulla punta della coda\nindica la sua vitalità. Se sta bene,\nla fiamma è più ardente."
+        },
+        "spanish": {
+            "name": "Charmander",
+            "category": "Pokémon Lagartija",
+            "entry_text": "La llama de la punta de su cola\nindica su salud. Si CHARMANDER\nestá sano, arderá con más fuerza."
+        },
+        "japanese": {
+            "name": "ヒトカゲ",
+            "category": "とかげポケモン",
+            "entry_text": "ヒトカゲの　しっぽの　ほのおは\nいのちの　ともしび。げんきな　ときは\nほのおも　ちからづよく　もえあがる。"
+        }
     }
 }

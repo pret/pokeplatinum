@@ -150,7 +150,35 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "Though usually dim witted, it\nseems to become inspired if the\nSHELLDER on its tail bites down.",
-        "category": "Hermit Crab Pokémon"
+        "english": {
+            "category": "Hermit Crab Pokémon",
+            "entry_text": "Though usually dim witted, it\nseems to become inspired if the\nSHELLDER on its tail bites down.",
+            "entry_text_diamond": "Though usually dim witted, it\nseems to become inspired if the\nSHELLDER on its tail bites down."
+        },
+        "french": {
+            "name": "FLAGADOSS",
+            "category": "Pokémon Symbiose",
+            "entry_text": "Ce grand benêt connaît des éclairs\nde lucidité lorsque le KOKIYAS de sa\nqueue se met à mordre."
+        },
+        "german": {
+            "name": "LAHMUS",
+            "category": "Symbiose",
+            "entry_text": "Ein begriffsstutziges Pokémon.\nBeißt das MUSCHAS am Schweif zu,\nscheint es Intelligenz zu gewinnen."
+        },
+        "italian": {
+            "name": "Slowbro",
+            "category": "Pokémon Paguro",
+            "entry_text": "Non è molto perspicace, ma sembra\naguzzare l’ingegno se lo SHELLDER\nche ha sulla coda lo morde."
+        },
+        "spanish": {
+            "name": "Slowbro",
+            "category": "Pokémon Ermitaño",
+            "entry_text": "Normalmente se muestra torpe,\naunque espabila si el SHELLDER de\nsu cola le muerde."
+        },
+        "japanese": {
+            "name": "ヤドラン",
+            "category": "やどかりポケモン",
+            "entry_text": "ぼんやりしている　ヤドランだが\nシェルダ－が　つよく　しっぽを\nかむとき　なにかが　ひらめくらしい。"
+        }
     }
 }

@@ -128,7 +128,35 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "Its eyes are specially developed\nto enable it to see clearly even in\nmurky darkness and minimal light.",
-        "category": "Owl Pokémon"
+        "english": {
+            "category": "Owl Pokémon",
+            "entry_text": "Its eyes are specially developed\nto enable it to see clearly even in\nmurky darkness and minimal light.",
+            "entry_text_diamond": "Its eyes are special. They can\npick out objects as long as there\nis the tiniest amount of light."
+        },
+        "french": {
+            "name": "NOARFANG",
+            "category": "Pokémon Hibou",
+            "entry_text": "Ses yeux sont particuliers. La\nplus petite source de lumière leur\npermet de distinguer les objets."
+        },
+        "german": {
+            "name": "NOCTUH",
+            "category": "Eule",
+            "entry_text": "Seine Augen sind etwas Besonderes.\nSie können selbst bei schwächstem\nLicht alles erkennen."
+        },
+        "italian": {
+            "name": "Noctowl",
+            "category": "Pokémon Gufo",
+            "entry_text": "Ha una vista acutissima, tanto da\nriuscire a scorgere oggetti anche\ncon la luce più fioca."
+        },
+        "spanish": {
+            "name": "Noctowl",
+            "category": "Pokémon Búho",
+            "entry_text": "Sus ojos son especiales: pueden\ndistinguir objetos siempre y cuando\nhaya algo de luz."
+        },
+        "japanese": {
+            "name": "ヨルノズク",
+            "category": "ふくろうポケモン",
+            "entry_text": "すこしの　ひかりが　あれば\nくらやみでも　みわけられる\nとくしゅな　めを　もつ。"
+        }
     }
 }

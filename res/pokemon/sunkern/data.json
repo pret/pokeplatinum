@@ -123,7 +123,35 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "It suddenly falls out of the sky in\nthe morning. A year after a cold\nsummer, their population explodes.",
-        "category": "Seed Pokémon"
+        "english": {
+            "category": "Seed Pokémon",
+            "entry_text": "It suddenly falls out of the sky in\nthe morning. A year after a cold\nsummer, their population explodes.",
+            "entry_text_diamond": "It suddenly falls out of the sky in\nthe morning. A year after a cold\nsummer, their population explodes."
+        },
+        "french": {
+            "name": "TOURNEGRIN",
+            "category": "Pokémon Graine",
+            "entry_text": "Il tombe du ciel sans crier gare en\nmatinée. On en croise énormément \nl’année suivant un été froid."
+        },
+        "german": {
+            "name": "SONNKERN",
+            "category": "Samen",
+            "entry_text": "Morgens fällt es plötzlich aus dem\nHimmel. War der Sommer kalt,\nexplodiert seine Population."
+        },
+        "italian": {
+            "name": "Sunkern",
+            "category": "Pokémon Seme",
+            "entry_text": "Cade improvvisamente giù dal cielo\nal mattino. Dopo un’estate fredda,\nla popolazione di SUNKERN esplode."
+        },
+        "spanish": {
+            "name": "Sunkern",
+            "category": "Pokémon Semilla",
+            "entry_text": "Cae de repente del cielo por las\nmañanas. Los años de veranos\nsuaves su número se multiplica."
+        },
+        "japanese": {
+            "name": "ヒマナッツ",
+            "category": "たねポケモン",
+            "entry_text": "あるあさ　とつぜん　ふってくる。\nなつが　さむかった　つぎの　としは\nかずが　ばくはつてきに　ふえる。"
+        }
     }
 }

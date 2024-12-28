@@ -142,7 +142,35 @@
         "pokemon_pos_f": 31,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 31,
-        "entry_text": "It picks food from cactus plants,\ndeftly avoiding buds and spines.\nIt seems to skip about to move.",
-        "category": "Tiny Bird Pokémon"
+        "english": {
+            "category": "Tiny Bird Pokémon",
+            "entry_text": "It picks food from cactus plants,\ndeftly avoiding buds and spines.\nIt seems to skip about to move.",
+            "entry_text_diamond": "It picks food from cactus plants,\ndeftly avoiding buds and spines.\nIt seems to skip about to move."
+        },
+        "french": {
+            "name": "NATU",
+            "category": "Pokémon Minoiseau",
+            "entry_text": "Il mange des cactus en prenant\nsoin d’éviter les bourgeons et les\népines. Il ne tient pas en place. "
+        },
+        "german": {
+            "name": "NATU",
+            "category": "Kleinvogel",
+            "entry_text": "Es pickt seine Nahrung aus\nKakteen, wobei es Knospen und\nDornen verschont."
+        },
+        "italian": {
+            "name": "Natu",
+            "category": "Pokémon Uccellino",
+            "entry_text": "Raccoglie cibo dai cactus, evitando\nagilmente germogli e spine. Si muove\nsaltellando."
+        },
+        "spanish": {
+            "name": "Natu",
+            "category": "Pokémon Pajarito",
+            "entry_text": "Recoge alimento de los cactos\nevitando los pinchos. Se mueve\ndando saltos."
+        },
+        "japanese": {
+            "name": "ネイティ",
+            "category": "ことりポケモン",
+            "entry_text": "サボテンの　つぼみや　トゲを\nきように　よけながら　ついばむ。\nとびはねるようにして　いどうする。"
+        }
     }
 }

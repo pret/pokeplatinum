@@ -126,7 +126,35 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "entry_text": "The faster the units at its sides\nrotate, the greater the magnetic\nforce they generate.",
-        "category": "Magnet Pokémon"
+        "english": {
+            "category": "Magnet Pokémon",
+            "entry_text": "The faster the units at its sides\nrotate, the greater the magnetic\nforce they generate.",
+            "entry_text_diamond": "The units at its sides generate\nelectromagnetic waves that keep it\nairborne. It feeds on electricity."
+        },
+        "french": {
+            "name": "MAGNETI",
+            "category": "Pokémon Magnétique",
+            "entry_text": "Ses extrémités génèrent les vagues\nélectromagnétiques qui le font \nvoler. Il se nourrit d’électricité."
+        },
+        "german": {
+            "name": "MAGNETILO",
+            "category": "Magnet",
+            "entry_text": "Die Vorrichtungen an seinem Körper\ngenerieren elektromagnetische\nWellen, die es schweben lassen."
+        },
+        "italian": {
+            "name": "Magnemite",
+            "category": "Pokémon Calamita",
+            "entry_text": "Gli elementi laterali generano onde\nmagnetiche che lo mantengono in\nsospeso. Si nutre d’elettricità."
+        },
+        "spanish": {
+            "name": "Magnemite",
+            "category": "Pokémon Imán",
+            "entry_text": "Las unidades laterales crean ondas\nelectromagnéticas que le permiten\nflotar. Se alimenta de electricidad."
+        },
+        "japanese": {
+            "name": "コイル",
+            "category": "じしゃくポケモン",
+            "entry_text": "さゆうの　ユニットから　でんじはを\nだして　くうちゅうを　いどうする。\nでんきを　たべる　ポケモン。"
+        }
     }
 }

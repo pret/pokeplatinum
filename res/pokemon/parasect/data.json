@@ -125,7 +125,35 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "A mushroom grown larger than the\nhost’s body controls PARASECT.\nIt scatters poisonous spores.",
-        "category": "Mushroom Pokémon"
+        "english": {
+            "category": "Mushroom Pokémon",
+            "entry_text": "A mushroom grown larger than the\nhost’s body controls PARASECT.\nIt scatters poisonous spores.",
+            "entry_text_diamond": "A mushroom grown larger than the\nhost’s body controls PARASECT.\nIt scatters poisonous spores."
+        },
+        "french": {
+            "name": "PARASECT",
+            "category": "Pokémon Champignon",
+            "entry_text": "Un champignon parasite plus gros\nque PARASECT contrôle son corps.\nIl répand des spores empoisonnées."
+        },
+        "german": {
+            "name": "PARASEK",
+            "category": "Pilz",
+            "entry_text": "PARASEK wird von einem Pilz, der\ngrößer als das Pokémon ist,\nkontrolliert. Er gibt Giftsporen ab."
+        },
+        "italian": {
+            "name": "Parasect",
+            "category": "Pokémon Fungo",
+            "entry_text": "PARASECT è controllato da un fungo\nancora più grosso del suo corpo.\nDiffonde spore velenose."
+        },
+        "spanish": {
+            "name": "Parasect",
+            "category": "Pokémon Hongo",
+            "entry_text": "PARASECT está dominado por un\nhongo parásito mayor que él.\nDispersa esporas venenosas."
+        },
+        "japanese": {
+            "name": "パラセクト",
+            "category": "きのこポケモン",
+            "entry_text": "からだよりも　おおきな　キノコが\nパラセクトを　あやつっている。\nどくの　ほうしを　ばらまく。"
+        }
     }
 }

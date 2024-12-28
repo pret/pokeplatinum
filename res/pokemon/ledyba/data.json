@@ -132,7 +132,35 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It is so timid, it can’t move if it\nisn’t with a swarm of others. It\nconveys its feelings with scent.",
-        "category": "Five Star Pokémon"
+        "english": {
+            "category": "Five Star Pokémon",
+            "entry_text": "It is so timid, it can’t move if it\nisn’t with a swarm of others. It\nconveys its feelings with scent.",
+            "entry_text_diamond": "It is so timid, it can’t move if it\nisn’t with a swarm of others. It\nconveys its feelings with scent."
+        },
+        "french": {
+            "name": "COXY",
+            "category": "Pokémon 5 Etoiles",
+            "entry_text": "Il est si timide qu’il ne se déplace\nqu’au milieu d’un essaim. Il exprime\nses émotions par l’odeur."
+        },
+        "german": {
+            "name": "LEDYBA",
+            "category": "Fünf-Punkt",
+            "entry_text": "Es ist so scheu, dass es sich\nnur dann bewegt, wenn es sich\nin einem Schwarm befindet."
+        },
+        "italian": {
+            "name": "Ledyba",
+            "category": "Pokémon Pentastra",
+            "entry_text": "È tanto timido da non muoversi se\nnon è in gruppo. Trasmette le sue\nemozioni emanando una fragranza."
+        },
+        "spanish": {
+            "name": "Ledyba",
+            "category": "Pokémon 5estrellas",
+            "entry_text": "Es tan temeroso que no se mueve\nsi no es en grupo. Comunica sus\nsentimientos con olores."
+        },
+        "japanese": {
+            "name": "レディバ",
+            "category": "いつつぼしポケモン",
+            "entry_text": "むれを　つくらないと　ふあんで\nうごけなくなるほど　おくびょう。\nにおいで　きもちを　つたえあう。"
+        }
     }
 }

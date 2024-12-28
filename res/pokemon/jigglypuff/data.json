@@ -147,7 +147,35 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "When it wavers its big, round\neyes, it begins singing a lullaby\nthat makes everyone drowsy.",
-        "category": "Balloon Pokémon"
+        "english": {
+            "category": "Balloon Pokémon",
+            "entry_text": "When it wavers its big, round\neyes, it begins singing a lullaby\nthat makes everyone drowsy.",
+            "entry_text_diamond": "When it wavers its big, round\neyes, it begins singing a lullaby\nthat makes everyone drowsy."
+        },
+        "french": {
+            "name": "RONDOUDOU",
+            "category": "Pokémon Bouboule",
+            "entry_text": "Lorsqu’il roule ses grands yeux\nronds, il entonne une berceuse\nqui endort son auditoire."
+        },
+        "german": {
+            "name": "PUMMELUFF",
+            "category": "Ballon",
+            "entry_text": "Sobald es mit seinen großen, runden\nAugen rollt, fängt es an, ein Lied\nzu singen und jeder schläft ein."
+        },
+        "italian": {
+            "name": "Jigglypuff",
+            "category": "Pokémon Pallone",
+            "entry_text": "Muove le pupille e comincia a\ncantare una ninnananna che fa\naddormentare chiunque l’ascolti."
+        },
+        "spanish": {
+            "name": "Jigglypuff",
+            "category": "Pokémon Globo",
+            "entry_text": "Cuando mueve sus grandes ojos\nredondos, comienza a cantar una\nnana que duerme al enemigo."
+        },
+        "japanese": {
+            "name": "プリン",
+            "category": "ふうせんポケモン",
+            "entry_text": "つぶらな　ひとみが　ゆれるとき\nだれもが　ねむくなってしまう\nこもりうたを　うたいはじめる。"
+        }
     }
 }

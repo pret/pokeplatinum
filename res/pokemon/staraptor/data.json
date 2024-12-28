@@ -119,7 +119,35 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "It never stops attacking even\nif it is injured. It fusses over the\nshape of its comb.",
-        "category": "Predator Pokémon"
+        "english": {
+            "category": "Predator Pokémon",
+            "entry_text": "It never stops attacking even\nif it is injured. It fusses over the\nshape of its comb.",
+            "entry_text_diamond": "It has a savage nature. It will\ncourageously challenge foes that\nare much larger."
+        },
+        "french": {
+            "name": "ETOURAPTOR",
+            "category": "Pokémon Rapace",
+            "entry_text": "Un Pokémon sauvage qui a le\ncourage de défier des ennemis\nbeaucoup plus grands que lui."
+        },
+        "german": {
+            "name": "STARAPTOR",
+            "category": "Raubtier",
+            "entry_text": "Es hat ein wildes Wesen. Mutig\nfordert es immer wieder Gegner\nheraus, die viel größer sind."
+        },
+        "italian": {
+            "name": "Staraptor",
+            "category": "Pokémon Rapace",
+            "entry_text": "Ha un’indole selvaggia. Sfida\ncoraggiosamente i nemici più\ngrossi di lui."
+        },
+        "spanish": {
+            "name": "Staraptor",
+            "category": "Pokémon Depredador",
+            "entry_text": "Tiene un carácter salvaje.\nNo duda en desafiar a rivales\nmucho mayores."
+        },
+        "japanese": {
+            "name": "ムクホ－ク",
+            "category": "もうきんポケモン",
+            "entry_text": "どうもうな　せいかくの　ポケモン。\nじぶんよりも　からだの　おおきい\nあいてにも　かかんに　いどみかかる。"
+        }
     }
 }

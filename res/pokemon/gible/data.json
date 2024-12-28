@@ -128,7 +128,35 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "It attacks using its huge mouth.\nWhile its attacks are powerful, it\nhurts itself out of clumsiness, too.",
-        "category": "Land Shark Pokémon"
+        "english": {
+            "category": "Land Shark Pokémon",
+            "entry_text": "It attacks using its huge mouth.\nWhile its attacks are powerful, it\nhurts itself out of clumsiness, too.",
+            "entry_text_diamond": "It nests in small, horizontal holes\nin cave walls. It pounces to catch\nprey that stray too close."
+        },
+        "french": {
+            "name": "GRIKNOT",
+            "category": "Pokémon Terrequin",
+            "entry_text": "Il niche dans les petits trous\nhorizontaux des murs des grottes.\nIl bondit pour saisir sa proie."
+        },
+        "german": {
+            "name": "KAUMALAT",
+            "category": "Landhai",
+            "entry_text": "Es nistet in kleinen Löchern in\nHöhlenwänden. Es springt Beute, die\nsich zu nah heranwagt, an."
+        },
+        "italian": {
+            "name": "Gible",
+            "category": "Pokémon Squaloterra",
+            "entry_text": "Nidifica in piccole cavità orizzontali\nnelle pareti delle grotte. Si avven-\nta sulle prede che si avvicinano."
+        },
+        "spanish": {
+            "name": "Gible",
+            "category": "Pokémon Terrascualo",
+            "entry_text": "Anida en pequeños agujeros en las\nparedes de cuevas. Cuando una\npresa pasa cerca, salta hacia ella."
+        },
+        "japanese": {
+            "name": "フカマル",
+            "category": "りくザメポケモン",
+            "entry_text": "どうくつの　ちいさな　よこあなを\nねぐらにする。えものが　ちかづくと\nすばやく　とびだして　つかまえる。"
+        }
     }
 }

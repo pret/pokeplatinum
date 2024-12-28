@@ -76,7 +76,35 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "It never forgets any attack it\nendured while in the cocoon.\nAfter evolution, it seeks payback.",
-        "category": "Cocoon Pokémon"
+        "english": {
+            "category": "Cocoon Pokémon",
+            "entry_text": "It never forgets any attack it\nendured while in the cocoon.\nAfter evolution, it seeks payback.",
+            "entry_text_diamond": "It is hot inside its cocoon. All\nthe cells in its body create the\nenergy for it to evolve."
+        },
+        "french": {
+            "name": "BLINDALYS",
+            "category": "Pokémon Cocon",
+            "entry_text": "Il est au chaud dans son cocon.\nSes cellules produisent l’énergie\nnécessaire à son évolution."
+        },
+        "german": {
+            "name": "PANEKON",
+            "category": "Kokon",
+            "entry_text": "In seinem Kokon ist es heiß. Seine\nKörperzellen produzieren die Hitze,\ndamit es sich entwickeln kann."
+        },
+        "italian": {
+            "name": "Cascoon",
+            "category": "Pokémon Bozzolo",
+            "entry_text": "Dentro, il suo bozzolo è caldo. Ogni\ncellula del suo corpo contribuisce\na creare energia per l’evoluzione."
+        },
+        "spanish": {
+            "name": "Cascoon",
+            "category": "Pokémon Capullo",
+            "entry_text": "Mantiene el calor en su capullo.\nDedica todas las células de su\ncuerpo a evolucionar."
+        },
+        "japanese": {
+            "name": "マユルド",
+            "category": "さなぎポケモン",
+            "entry_text": "マユの　なかは　おんどが　たかい。\nそのなかで　ぜんしんの　さいぼうが\nしんかの　エネルギ－を　つくりだす。"
+        }
     }
 }

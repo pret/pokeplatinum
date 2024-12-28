@@ -131,7 +131,35 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 4,
-        "entry_text": "If its body takes on an aura, the\nweather changes instantly. It is\nsaid to live in seas and lakes.",
-        "category": "Dragon Pokémon"
+        "english": {
+            "category": "Dragon Pokémon",
+            "entry_text": "If its body takes on an aura, the\nweather changes instantly. It is\nsaid to live in seas and lakes.",
+            "entry_text_diamond": "If its body takes on an aura, the\nweather changes instantly. It is\nsaid to live in seas and lakes."
+        },
+        "french": {
+            "name": "DRACO",
+            "category": "Pokémon Dragon",
+            "entry_text": "La météo change brusquement quand\nil est entouré d’une aura. On dit\nqu’il peuple les mers et les lacs."
+        },
+        "german": {
+            "name": "DRAGONIR",
+            "category": "Drache",
+            "entry_text": "Erscheint um seinen Körper eine\nAura, gibt es einen Wetterwechsel.\nEs soll in Seen und Meeren leben."
+        },
+        "italian": {
+            "name": "Dragonair",
+            "category": "Pokémon Drago",
+            "entry_text": "Se il suo corpo emana un’aura, il\ntempo cambia all’istante. Si dice\nche viva nei mari e nei laghi."
+        },
+        "spanish": {
+            "name": "Dragonair",
+            "category": "Pokémon Dragón",
+            "entry_text": "Si su cuerpo está rodeado de un\naura, el tiempo cambia de repente.\nSe dice que vive en mares y lagos."
+        },
+        "japanese": {
+            "name": "ハクリュ－",
+            "category": "ドラゴンポケモン",
+            "entry_text": "ぜんしんが　オ－ラに　つつまれるとき\nまわりの　てんきが　いっぺんする。\nうみや　みずうみに　すむという。"
+        }
     }
 }

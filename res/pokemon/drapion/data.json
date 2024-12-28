@@ -135,7 +135,35 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "Possessing a sturdy build, it takes\npride in its strength, taking down\nfoes without using toxins.",
-        "category": "Ogre Scorp Pokémon"
+        "english": {
+            "category": "Ogre Scorp Pokémon",
+            "entry_text": "Possessing a sturdy build, it takes\npride in its strength, taking down\nfoes without using toxins.",
+            "entry_text_diamond": "It has the power in its clawed\narms to make scrap of a car. The\ntips of its claws release poison."
+        },
+        "french": {
+            "name": "DRASCORE",
+            "category": "Pokémon Scorpogre",
+            "entry_text": "Il peut réduire une voiture en \npièces avec ses pinces. Le bout\nde ses pinces contient du poison."
+        },
+        "german": {
+            "name": "PIONDRAGI",
+            "category": "Ogerskorpion",
+            "entry_text": "In seinen Armen steckt so viel\nKraft, dass es mit seinen giftigen\nKrallen Autos zerquetschen kann."
+        },
+        "italian": {
+            "name": "Drapion",
+            "category": "Pokémon Scorpiaccio",
+            "entry_text": "Con le zampe può accartocciare una\nmacchina. Le punte degli artigli\nsono velenose."
+        },
+        "spanish": {
+            "name": "Drapion",
+            "category": "Pokémon Escorpiogro",
+            "entry_text": "Sus brazos tienen fuerza para\ndestrozar un coche. La punta\nde sus zarpas segrega veneno."
+        },
+        "japanese": {
+            "name": "ドラピオン",
+            "category": "ばけさそりポケモン",
+            "entry_text": "りょううでの　ツメは　じどうしゃを\nスクラップにする　はかいりょく。\nツメの　さきから　どくを　だす。"
+        }
     }
 }

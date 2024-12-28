@@ -130,7 +130,35 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "When walking on land, it covers its\nbody with a poisonous film that\nkeeps its skin from dehydrating.",
-        "category": "Water Fish Pokémon"
+        "english": {
+            "category": "Water Fish Pokémon",
+            "entry_text": "When walking on land, it covers its\nbody with a poisonous film that\nkeeps its skin from dehydrating.",
+            "entry_text_diamond": "It lives in cold water, half\nburying itself in mud at the\nbottom to sleep."
+        },
+        "french": {
+            "name": "AXOLOTO",
+            "category": "Pokémon Poisson",
+            "entry_text": "Il vit en eau froide. Il dort à demi\nenfoui dans la boue au fond\nde l’eau."
+        },
+        "german": {
+            "name": "FELINO",
+            "category": "Fisch",
+            "entry_text": "Es lebt im kalten Wasser. Es\nvergräbt sich halb im schlammigen\nBoden, wenn es schlafen will."
+        },
+        "italian": {
+            "name": "Wooper",
+            "category": "Pokémon Acquapesce",
+            "entry_text": "Vive nell’acqua fredda e quando\nvuole dormire si seppellisce a\nmetà nei fondali melmosi."
+        },
+        "spanish": {
+            "name": "Wooper",
+            "category": "Pokémon Pez Agua",
+            "entry_text": "Vive en aguas frías. Para dormir\nse entierra a medias en el lodo del\nfondo."
+        },
+        "japanese": {
+            "name": "ウパ－",
+            "category": "みずうおポケモン",
+            "entry_text": "つめたい　みずの　なかで　くらす。\nみずぞこの　どろに　からだを\nはんぶん　うずめて　ねむる。"
+        }
     }
 }

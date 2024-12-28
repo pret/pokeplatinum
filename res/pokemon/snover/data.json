@@ -127,7 +127,35 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "Seemingly curious about people,\nthey gather around footsteps they\nfind on snowy mountains.",
-        "category": "Frost Tree Pokémon"
+        "english": {
+            "category": "Frost Tree Pokémon",
+            "entry_text": "Seemingly curious about people,\nthey gather around footsteps they\nfind on snowy mountains.",
+            "entry_text_diamond": "It lives on snowy mountains.\nHaving had little contact with\nhumans, it is boldly inquisitive."
+        },
+        "french": {
+            "name": "BLIZZI",
+            "category": "Pokémon Arbregelé",
+            "entry_text": "Il vit sur les monts enneigés.\nIgnorant des coutumes humaines,\nil lui arrive d’être très indiscret."
+        },
+        "german": {
+            "name": "SHNEBEDECK",
+            "category": "Frostbaum",
+            "entry_text": "Es lebt im Schnee der Berge. Es\nhatte bisher kaum Kontakt zu Men-\nschen und ist daher sehr neugierig."
+        },
+        "italian": {
+            "name": "Snover",
+            "category": "Pokémon Albergelo",
+            "entry_text": "Vive sui monti innevati. Ha avuto\npochi contatti con gli umani, quindi\nè molto curioso nei loro confronti."
+        },
+        "spanish": {
+            "name": "Snover",
+            "category": "Pokémon Árbol Nieve",
+            "entry_text": "Vive en montañas nevadas.\nApenas tiene contacto con los\nhumanos y es muy curioso."
+        },
+        "japanese": {
+            "name": "ユキカブリ",
+            "category": "じゅひょうポケモン",
+            "entry_text": "ゆきやまで　くらしている。\nめったに　であわない　にんげんを\nめずらしがって　ちかよってくる。"
+        }
     }
 }

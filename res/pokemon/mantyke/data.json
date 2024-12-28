@@ -122,7 +122,35 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "People organize tours to see this\nPokémon frolic and skim the tops\nof waves with REMORAID.",
-        "category": "Kite Pokémon"
+        "english": {
+            "category": "Kite Pokémon",
+            "entry_text": "People organize tours to see this\nPokémon frolic and skim the tops\nof waves with REMORAID.",
+            "entry_text_diamond": "A friendly Pokémon that captures\nthe subtle flows of seawater using\nits two antennae."
+        },
+        "french": {
+            "name": "BABIMANTA",
+            "category": "Pokémon Cervolant",
+            "entry_text": "Un Pokémon amical qui analyse\nles mouvements subtils de l’eau de\nmer grâce à ses deux antennes."
+        },
+        "german": {
+            "name": "MANTIRPS",
+            "category": "Flugrochen",
+            "entry_text": "Ein freundliches PKMN, das mit\nseinen zwei Antennen die\nStrömungen des Meeres erkennt."
+        },
+        "italian": {
+            "name": "Mantyke",
+            "category": "Pokémon Aquilone",
+            "entry_text": "Pokémon amichevole che con le\nantenne è in grado di avvertire\nanche minime correnti marine."
+        },
+        "spanish": {
+            "name": "Mantyke",
+            "category": "Pokémon Milano",
+            "entry_text": "Un Pokémon amable que captura\nlos débiles flujos de agua marina\ncon sus dos antenas."
+        },
+        "japanese": {
+            "name": "タマンタ",
+            "category": "カイトポケモン",
+            "entry_text": "２ほんの　しょっかくで　かいすいの\nびみょうな　うごきを　キャッチする。\nひとなつっこい　ポケモン。"
+        }
     }
 }

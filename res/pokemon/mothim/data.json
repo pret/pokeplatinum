@@ -123,7 +123,35 @@
         "pokemon_pos_f": 65525,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65525,
-        "entry_text": "While it loves floral honey, it won’t\ngather any itself. Instead, it\nplots to steal some from COMBEE.",
-        "category": "Moth Pokémon"
+        "english": {
+            "category": "Moth Pokémon",
+            "entry_text": "While it loves floral honey, it won’t\ngather any itself. Instead, it\nplots to steal some from COMBEE.",
+            "entry_text_diamond": "It loves the honey of flowers\nand steals honey collected by\nCOMBEE."
+        },
+        "french": {
+            "name": "PAPILORD",
+            "category": "Pokémon Phalène",
+            "entry_text": "Il aime le nectar des fleurs et\nn’hésite pas à voler celui\nque récupère APITRINI."
+        },
+        "german": {
+            "name": "MOTERPEL",
+            "category": "Motte",
+            "entry_text": "Es liebt Honig und stiehlt den\nHonig, der von WADRIBIE\ngesammelt wurde."
+        },
+        "italian": {
+            "name": "Mothim",
+            "category": "Pokémon Falena",
+            "entry_text": "Ama il nettare dei fiori. Ruba e\nmangia il nettare raccolto da \nCOMBEE."
+        },
+        "spanish": {
+            "name": "Mothim",
+            "category": "Pokémon Polilla",
+            "entry_text": "Le encanta la miel de las\nflores y roba la que recoge\nCOMBEE."
+        },
+        "japanese": {
+            "name": "ガ－メイル",
+            "category": "ミノガポケモン",
+            "entry_text": "はなの　ミツが　だいすき。\nミツハニ－の　あつめた　ミツを\nよこどりして　たべてしまう。"
+        }
     }
 }

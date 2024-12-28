@@ -130,7 +130,35 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "It sneaks through grass without\nmaking a sound and strikes\nunsuspecting prey from behind.",
-        "category": "Snake Pokémon"
+        "english": {
+            "category": "Snake Pokémon",
+            "entry_text": "It sneaks through grass without\nmaking a sound and strikes\nunsuspecting prey from behind.",
+            "entry_text_diamond": "It sneaks through grass without\nmaking a sound and strikes\nunsuspecting prey from behind."
+        },
+        "french": {
+            "name": "ABO",
+            "category": "Pokémon Serpent",
+            "entry_text": "Il se faufile dans l’herbe sans un\nbruit et frappe dans le dos quand\nsa proie s’y attend le moins. "
+        },
+        "german": {
+            "name": "RETTAN",
+            "category": "Schlange",
+            "entry_text": "Es bewegt sich ohne einen Laut\ndurch das Gras und greift seine\nahnungslose Beute von hinten an. "
+        },
+        "italian": {
+            "name": "Ekans",
+            "category": "Pokémon Serpente",
+            "entry_text": "Striscia nell’erba senza fare il\nminimo rumore e colpisce alle\nspalle le prede ignare del pericolo."
+        },
+        "spanish": {
+            "name": "Ekans",
+            "category": "Pokémon Serpiente",
+            "entry_text": "Se mueve por la hierba en silencio\ny sorprende a sus presas atacando\npor detrás."
+        },
+        "japanese": {
+            "name": "ア－ボ",
+            "category": "へびポケモン",
+            "entry_text": "おとを　まったく　たてずに　くさちの\nなかを　すすむ。ゆだんしている\nえものに　はいごから　おそいかかる。"
+        }
     }
 }

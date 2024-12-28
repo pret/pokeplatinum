@@ -147,7 +147,35 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 6,
-        "entry_text": "It is said to take lost spirits\ninto its pliant body and guide\nthem home.",
-        "category": "Gripper Pokémon"
+        "english": {
+            "category": "Gripper Pokémon",
+            "entry_text": "It is said to take lost spirits\ninto its pliant body and guide\nthem home.",
+            "entry_text_diamond": "The antenna on its head captures\nradio waves from the world of spirits\nthat command it to take people there."
+        },
+        "french": {
+            "name": "NOCTUNOIR",
+            "category": "Pokémon Mainpince",
+            "entry_text": "L’antenne sur sa tête capte les\nondes radio du monde des esprits\nlui ordonnant d’y porter des gens."
+        },
+        "german": {
+            "name": "ZWIRRFINST",
+            "category": "Greifer",
+            "entry_text": "Die Antenne auf seinem Kopf\nempfängt Radiowellen aus einer\nanderen Dimension."
+        },
+        "italian": {
+            "name": "Dusknoir",
+            "category": "Pokémon Pinza",
+            "entry_text": "Capta con l’antenna onde che arri-\nvano dal mondo degli spiriti, che gli\nordinano di portare lì le persone."
+        },
+        "spanish": {
+            "name": "Dusknoir",
+            "category": "Pokémon Grilletes",
+            "entry_text": "La antena de la cabeza captura\nondas de radio lejanas que le\npermiten secuestrar a gente."
+        },
+        "japanese": {
+            "name": "ヨノワ－ル",
+            "category": "てづかみポケモン",
+            "entry_text": "あたまの　アンテナで　れいかいからの\nでんぱを　じゅしん。しじを　うけて\nひとを　れいかいへ　つれていくのだ。"
+        }
     }
 }

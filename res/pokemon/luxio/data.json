@@ -122,7 +122,35 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "Strong electricity courses through\nthe tips of its sharp claws. A light\nscratch causes fainting in foes.",
-        "category": "Spark Pokémon"
+        "english": {
+            "category": "Spark Pokémon",
+            "entry_text": "Strong electricity courses through\nthe tips of its sharp claws. A light\nscratch causes fainting in foes.",
+            "entry_text_diamond": "Its claws loose electricity with\nenough amperage to cause fainting.\nThey live in small groups."
+        },
+        "french": {
+            "name": "LUXIO",
+            "category": "Pokémon Etincelle",
+            "entry_text": "L’électricité libérée par ses\ngriffes peut assommer l’ennemi.\nIl vit en petits groupes."
+        },
+        "german": {
+            "name": "LUXIO",
+            "category": "Funken",
+            "entry_text": "Seine Krallen geben Elektrizität ab,\ndie stark genug ist, jemanden\nbewusstlos zu machen."
+        },
+        "italian": {
+            "name": "Luxio",
+            "category": "Pokémon Favilla",
+            "entry_text": "Dagli artigli rilascia un’elettricità\ntalmente intensa da mandare KO il\nnemico. Vive in piccoli gruppi."
+        },
+        "spanish": {
+            "name": "Luxio",
+            "category": "Pokémon Chispa",
+            "entry_text": "Sus garras emiten electricidad\nque puede debilitar a sus rivales.\nViven en grupos pequeños."
+        },
+        "japanese": {
+            "name": "ルクシオ",
+            "category": "でんこうポケモン",
+            "entry_text": "いっぱつで　きぜつさせるほどの\nでんりゅうを　ツメから　ながす。\nすうひきの　グル－プで　くらす。"
+        }
     }
 }

@@ -122,7 +122,35 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "Though it appears very elegant\nwhen swimming with fins unfurled, it\ncan jab powerfully with its horn.",
-        "category": "Goldfish Pokémon"
+        "english": {
+            "category": "Goldfish Pokémon",
+            "entry_text": "Though it appears very elegant\nwhen swimming with fins unfurled, it\ncan jab powerfully with its horn.",
+            "entry_text_diamond": "It swims elegantly by flittering\nits tail fin as if it were a dress.\nIt has the look of a queen."
+        },
+        "french": {
+            "name": "POISSIRENE",
+            "category": "Pokémon Poisson",
+            "entry_text": "Il nage élégamment en agitant sa\nnageoire caudale comme si c’était\nune robe. Il a l’allure d’une reine."
+        },
+        "german": {
+            "name": "GOLDINI",
+            "category": "Goldfisch",
+            "entry_text": "Es schwimmt elegant und bewegt\nseine Hinterflosse wie ein Kleid.\nEs sieht aus wie eine Königin."
+        },
+        "italian": {
+            "name": "Goldeen",
+            "category": "Pokémon Pescerosso",
+            "entry_text": "Quando nuota, la pinna posteriore\nsembra un elegante abito da sera.\nHa un aspetto regale."
+        },
+        "spanish": {
+            "name": "Goldeen",
+            "category": "Pokémon Pez Color",
+            "entry_text": "Nada elegantemente moviendo la\naleta de su cola como un vestido.\nParece una reina."
+        },
+        "japanese": {
+            "name": "トサキント",
+            "category": "きんぎょポケモン",
+            "entry_text": "おびれを　ドレスのように　ゆらして\nゆうがに　およぐ　すがたは\nまるで　すいちゅうの　じょおう。"
+        }
     }
 }

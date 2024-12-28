@@ -141,7 +141,35 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "Its heart beats at a tenfold\ntempo, so it cannot sit still for\neven a moment.",
-        "category": "Wild Monkey Pokémon"
+        "english": {
+            "category": "Wild Monkey Pokémon",
+            "entry_text": "Its heart beats at a tenfold\ntempo, so it cannot sit still for\neven a moment.",
+            "entry_text_diamond": "Its heart beats at a tenfold\ntempo, so it cannot sit still for\neven a moment."
+        },
+        "french": {
+            "name": "VIGOROTH",
+            "category": "Pokémon Turbusinge",
+            "entry_text": "Son cœur bat dix fois plus vite que\nla normale, c’est pourquoi il ne\ntient pas en place."
+        },
+        "german": {
+            "name": "MUNTIER",
+            "category": "Wildaffe",
+            "entry_text": "Sein Herz schlägt schneller als das\nanderer Lebewesen. Daher kann es\nnicht für einen Moment still sitzen."
+        },
+        "italian": {
+            "name": "Vigoroth",
+            "category": "Pokémon Indocile",
+            "entry_text": "Il suo cuore batte 10 volte più\nvelocemente del normale. Non\nsta fermo neanche un momento."
+        },
+        "spanish": {
+            "name": "Vigoroth",
+            "category": "Pokémon Mono Feroz",
+            "entry_text": "Su corazón late a un ritmo diez\nveces más rápido de lo normal.\nNo se está quieto ni un instante."
+        },
+        "japanese": {
+            "name": "ヤルキモノ",
+            "category": "あばれザルポケモン",
+            "entry_text": "しんぞうが　１０ばいの　テンポで\nこどう　しているため\nひとときも　じっとしていられない。"
+        }
     }
 }
