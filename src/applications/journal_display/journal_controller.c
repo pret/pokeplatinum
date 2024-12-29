@@ -10,6 +10,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/journal_display/journal_printer.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "core_sys.h"
@@ -306,7 +307,7 @@ static void JournalController_LoadGraphics(JournalManager *journalManager)
 
 static void JournalController_InitStringUtil(JournalManager *journalManager)
 {
-    journalManager->loader = MessageLoader_Init(0, 26, 366, HEAP_ID_JOURNAL);
+    journalManager->loader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_journal_entries, HEAP_ID_JOURNAL);
     journalManager->template = StringTemplate_Default(HEAP_ID_JOURNAL);
     journalManager->strbuf = Strbuf_Init(128, HEAP_ID_JOURNAL);
 }

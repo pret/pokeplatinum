@@ -23,7 +23,7 @@
 #include "text.h"
 #include "trainer_data.h"
 
-static u8 JournalPrinter_PrintTitle(JournalManager *journalManager, Window *window1, Window *window2);
+static u8 JournalPrinter_PrintTitle(JournalManager *journalManager, Window *titleWindow, Window *eventsWindow);
 static void JournalPrinter_PrintLocationEvents(JournalManager *journalManager, Window *window);
 static void JournalPrinter_PrintPokemonEvent(JournalManager *journalManager, Window *window);
 static void JournalPrinter_PrintTrainerEvent(JournalManager *journalManager, Window *window);
@@ -116,32 +116,32 @@ void JournalPrinter_RemoveWindows(JournalManager *journalManager)
 
 void JournalPrinter_PrintEntry(JournalManager *journalManager, u32 param1)
 {
-    Window *window1;
-    Window *window2;
+    Window *titleWindow;
+    Window *eventsWindow;
 
     if (param1 == 0) {
-        window1 = &journalManager->window[0];
-        window2 = &journalManager->window[1];
+        titleWindow = &journalManager->window[0];
+        eventsWindow = &journalManager->window[1];
     } else {
-        window1 = &journalManager->window[2];
-        window2 = &journalManager->window[3];
+        titleWindow = &journalManager->window[2];
+        eventsWindow = &journalManager->window[3];
     }
 
-    Window_FillTilemap(window1, 0);
-    Window_FillTilemap(window2, 0);
+    Window_FillTilemap(titleWindow, 0);
+    Window_FillTilemap(eventsWindow, 0);
 
-    if (JournalPrinter_PrintTitle(journalManager, window1, window2) == 1) {
-        JournalPrinter_PrintLocationEvents(journalManager, window2);
-        JournalPrinter_PrintPokemonEvent(journalManager, window2);
-        JournalPrinter_PrintTrainerEvent(journalManager, window2);
-        JournalPrinter_PrintOnlineEvents(journalManager, window2);
+    if (JournalPrinter_PrintTitle(journalManager, titleWindow, eventsWindow) == 1) {
+        JournalPrinter_PrintLocationEvents(journalManager, eventsWindow);
+        JournalPrinter_PrintPokemonEvent(journalManager, eventsWindow);
+        JournalPrinter_PrintTrainerEvent(journalManager, eventsWindow);
+        JournalPrinter_PrintOnlineEvents(journalManager, eventsWindow);
     }
 
-    Window_ScheduleCopyToVRAM(window1);
-    Window_ScheduleCopyToVRAM(window2);
+    Window_ScheduleCopyToVRAM(titleWindow);
+    Window_ScheduleCopyToVRAM(eventsWindow);
 }
 
-static u8 JournalPrinter_PrintTitle(JournalManager *journalManager, Window *window1, Window *window2)
+static u8 JournalPrinter_PrintTitle(JournalManager *journalManager, Window *titleWindow, Window *eventsWindow)
 {
     JournalEntryTitle journalEntryTitle;
     Strbuf *strbuf;
@@ -159,18 +159,18 @@ static u8 JournalPrinter_PrintTitle(JournalManager *journalManager, Window *wind
     StringTemplate_SetNumber(journalManager->template, 1, journalEntryTitle.day, 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(journalManager->template, journalManager->strbuf, strbuf);
     Strbuf_Free(strbuf);
-    Text_AddPrinterWithParamsAndColor(window1, FONT_SYSTEM, journalManager->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(titleWindow, FONT_SYSTEM, journalManager->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
     xOffset = Font_CalcStrbufWidth(FONT_SYSTEM, journalManager->strbuf, 0);
     strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, journal_entries_sunday + journalEntryTitle.week);
-    Text_AddPrinterWithParamsAndColor(window1, FONT_SYSTEM, strbuf, xOffset + 12, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(titleWindow, FONT_SYSTEM, strbuf, xOffset + 12, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, journal_entries_started_from_location);
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryTitle.mapID));
 
     StringTemplate_Format(journalManager->template, journalManager->strbuf, strbuf);
-    Text_AddPrinterWithParamsAndColor(window2, FONT_SYSTEM, journalManager->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(eventsWindow, FONT_SYSTEM, journalManager->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 
     return 1;
