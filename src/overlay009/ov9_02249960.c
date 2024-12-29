@@ -1575,7 +1575,7 @@ static void ov9_02249F84(UnkStruct_ov9_02249B04 *param0)
 
 static void ov9_02249F88(UnkStruct_ov9_02249B04 *param0)
 {
-    sub_02062CCC(param0->fieldSystem->mapObjMan, 0);
+    MapObjectMan_SetEndMovement(param0->fieldSystem->mapObjMan, 0);
 }
 
 static void ov9_02249F98(UnkStruct_ov9_02249B04 *param0)
@@ -7380,7 +7380,7 @@ BOOL ov9_0224F240(const MapObject *param0, int param1)
     v0 = MapObject_GetX(param0);
     v1 = MapObject_GetZ(param0);
     v0 += MapObject_GetDxFromDir(param1);
-    v1 += MapObject_GetDyFromDir(param1);
+    v1 += MapObject_GetDzFromDir(param1);
 
     return ov9_0224F1F8(v3, v0, v1, &v2);
 }
@@ -7556,7 +7556,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
 
                 v8 += MapObject_GetDxFromDir(v7);
                 v9 -= (2 * 2);
-                v10 += MapObject_GetDyFromDir(v7);
+                v10 += MapObject_GetDzFromDir(v7);
 
                 MapObject_SetX(v6, v8);
                 MapObject_SetY(v6, v9);

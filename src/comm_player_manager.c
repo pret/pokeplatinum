@@ -1129,7 +1129,7 @@ static BOOL CommPlayer_MoveBlow(int netId, int param1)
     x = CommPlayer_GetXServer(netId);
     z = CommPlayer_GetZServer(netId);
     x += MapObject_GetDxFromDir(sCommPlayerManager->unk_112[netId]);
-    z += MapObject_GetDyFromDir(sCommPlayerManager->unk_112[netId]);
+    z += MapObject_GetDzFromDir(sCommPlayerManager->unk_112[netId]);
 
     if (sCommPlayerManager->unk_10A[netId] != 0) {
         if (CommPlayer_CheckCollision(x, z, netId)) {
@@ -1318,7 +1318,7 @@ int sub_02058DC0(int netId)
         return 0xffff;
     }
 
-    return sCommPlayerManager->playerLocation[netId].z + MapObject_GetDyFromDir(sCommPlayerManager->playerLocation[netId].dir);
+    return sCommPlayerManager->playerLocation[netId].z + MapObject_GetDzFromDir(sCommPlayerManager->playerLocation[netId].dir);
 }
 
 int CommPlayer_GetXServer(int netId)
@@ -1380,7 +1380,7 @@ int CommPlayer_AddZServer(int netId)
         return 0xffff;
     }
 
-    return sCommPlayerManager->playerLocationServer[netId].z + MapObject_GetDyFromDir(sCommPlayerManager->playerLocationServer[netId].dir);
+    return sCommPlayerManager->playerLocationServer[netId].z + MapObject_GetDzFromDir(sCommPlayerManager->playerLocationServer[netId].dir);
 }
 
 int CommPlayer_Dir(int netId)
@@ -1591,7 +1591,7 @@ BOOL sub_0205928C(void)
 
         dir = CommPlayer_GetOppositeDir(playerLocation->dir);
         playerLocation->x += MapObject_GetDxFromDir(dir);
-        playerLocation->z += MapObject_GetDyFromDir(dir);
+        playerLocation->z += MapObject_GetDzFromDir(dir);
         playerLocation->moveSpeed = 2;
 
         sCommPlayerManager->movementChanged[netId] = 1;

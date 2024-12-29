@@ -159,7 +159,7 @@ static void ov5_021F62A0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     {
         VecFx32 v4, v5;
         int v6 = MapObject_GetX(v3) + MapObject_GetDxFromDir(v1->unk_04);
-        int v7 = MapObject_GetZ(v3) + MapObject_GetDyFromDir(v1->unk_04);
+        int v7 = MapObject_GetZ(v3) + MapObject_GetDzFromDir(v1->unk_04);
 
         sub_02064450(v6, v7, &v5);
         MapObject_GetPosPtr(v3, &v4);

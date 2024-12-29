@@ -842,7 +842,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     ov5_021DF488(fieldSystem->unk_40, 4, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
 
     if ((fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) || (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION)) {
-        sub_02062CCC(fieldSystem->mapObjMan, 0);
+        MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);
     }
 
     {

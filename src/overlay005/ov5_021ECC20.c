@@ -24,7 +24,7 @@ void ov5_021ECC20(MapObjectManager *param0, int param1, int param2, const int *p
     int v0, v1;
     UnkStruct_ov5_021ED0A4 *v2;
 
-    GF_ASSERT(sub_0206284C(param0, (1 << 0)) == 0);
+    GF_ASSERT(MapObjectMan_CheckStatus(param0, (1 << 0)) == 0);
 
     ov5_021ECCA4(param0);
 
@@ -33,7 +33,7 @@ void ov5_021ECC20(MapObjectManager *param0, int param1, int param2, const int *p
     v2 = sub_0206285C(param0);
 
     ov5_021ECE40(v2, param0, v0, v1, param1, param2, param3, param4);
-    sub_02062838(param0, (1 << 0));
+    MapObjectMan_SetStatusFlagOn(param0, (1 << 0));
 }
 
 void ov5_021ECC78(MapObjectManager *param0)
@@ -45,7 +45,7 @@ void ov5_021ECC78(MapObjectManager *param0)
 
     ov5_021ECE94(sub_0206285C(param0));
 
-    sub_02062840(param0, (1 << 0));
+    MapObjectMan_SetStatusFlagOff(param0, (1 << 0));
     ov5_021ECCBC(param0);
 }
 
@@ -65,7 +65,7 @@ void MapObject_Draw(MapObject *param0)
 {
     const MapObjectManager *v0 = MapObject_MapObjectManager(param0);
 
-    if (sub_0206284C(v0, (1 << 2))) {
+    if (MapObjectMan_CheckStatus(v0, (1 << 2))) {
         return;
     }
 

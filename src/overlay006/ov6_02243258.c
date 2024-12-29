@@ -3053,7 +3053,7 @@ static void ov6_02245F64(UnkStruct_ov6_02243FFC *param0, int param1)
 {
     MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
 
-    sub_02062DDC(v0);
+    MapObject_SetPauseMovementOff(v0);
     MapObject_SetHidden(v0, param1);
 }
 

@@ -484,7 +484,7 @@ static BOOL sub_02068884(FieldTask *task)
         break;
     case 1:
         if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
-            sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
+            MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
             PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 0));
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
@@ -494,7 +494,7 @@ static BOOL sub_02068884(FieldTask *task)
         } else {
             Sound_SetSpecialBGM(fieldSystem, 1152);
             sub_02055554(fieldSystem, 1152, 1);
-            sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
+            MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
 
             PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 1));
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
