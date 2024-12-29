@@ -12,7 +12,7 @@
 #include "unk_020986CC.h"
 
 #define DEX_SIZE_U32           ((int)((NATIONAL_DEX_COUNT - 1) / 32) + 1) // default 16
-#define MAGIC_NUMBER           3203386110
+#define MAGIC_NUMBER           0xbeefcafe
 #define NUM_MYTHICALS_NATIONAL 11
 #define NATIONAL_DEX_GOAL      (NATIONAL_DEX_COUNT - NUM_MYTHICALS_NATIONAL)
 #define UNOWN_COUNT            28
@@ -694,7 +694,7 @@ static BOOL CountsForDexCompletion_National(u16 species)
 {
     int i;
     BOOL included;
-    static const u16 mythicals[NUM_MYTHICALS_NATIONAL] = {
+    static const u16 excludedMons[NUM_MYTHICALS_NATIONAL] = {
         SPECIES_MEW,
         SPECIES_LUGIA,
         SPECIES_HO_OH,
@@ -711,7 +711,7 @@ static BOOL CountsForDexCompletion_National(u16 species)
     included = TRUE;
 
     for (i = 0; i < NUM_MYTHICALS_NATIONAL; i++) {
-        if (mythicals[i] == species) {
+        if (excludedMons[i] == species) {
             included = FALSE;
         }
     }
@@ -860,12 +860,9 @@ u16 PokedexData_NumCaught_Local(const PokedexData *pokedexData)
 
     for (species = 1; species <= NATIONAL_DEX_COUNT; species++) {
         if (PokedexData_HasSeenSpecies(pokedexData, species) == TRUE) {
-            u32 localDexNum = Pokemon_SinnohDexNumber(species);
-
-            if (localDexNum != 0) {
-                if (CountsForDexCompletion_Local(species) == TRUE) {
-                    numCaught++;
-                }
+            if (Pokemon_SinnohDexNumber(species) != 0
+                && CountsForDexCompletion_Local(species) == TRUE) {
+                numCaught++;
             }
         }
     }
