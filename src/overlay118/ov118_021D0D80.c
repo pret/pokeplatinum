@@ -93,7 +93,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
             break;
         }
 
-        PokedexData_TradeEntry(SaveData_PokedexData(FieldSystem_GetSaveData(param0->unk_5A4->unk_1C)), v1);
+        PokedexData_Capture(SaveData_PokedexData(FieldSystem_GetSaveData(param0->unk_5A4->unk_1C)), v1);
     }
         v0->unk_00++;
         break;

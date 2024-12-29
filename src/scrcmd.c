@@ -6773,7 +6773,7 @@ static void sub_020451B4(FieldSystem *fieldSystem, u16 param1)
 
     Pokemon_Init(v1);
     Pokemon_InitWith(v1, param1, 50, 32, FALSE, 0, OTID_NOT_SET, 0);
-    PokedexData_CaptureEntry(v0, v1);
+    PokedexData_Encounter(v0, v1);
     Heap_FreeToHeap(v1);
 
     return;
@@ -6896,7 +6896,7 @@ static BOOL ScrCmd_263(ScriptContext *ctx)
         if (v3 == SPECIES_DEOXYS) {
             Pokemon_SetValue(v5, MON_DATA_FORM, &v0);
             Pokemon_CalcLevelAndStats(v5);
-            PokedexData_TradeEntry(v6, v5);
+            PokedexData_Capture(v6, v5);
         }
     }
 
@@ -8333,7 +8333,7 @@ static BOOL ScrCmd_328(ScriptContext *ctx)
             v5 = Party_GetPokemonBySlotIndex(v1, v3);
 
             if ((Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA)) {
-                PokedexData_TradeEntry(SaveData_PokedexData(fieldSystem->saveData), v5);
+                PokedexData_Capture(SaveData_PokedexData(fieldSystem->saveData), v5);
             }
         }
     }

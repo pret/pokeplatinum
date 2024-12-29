@@ -1690,12 +1690,12 @@ void BattleSystem_DexFlagSeen(BattleSystem *param0, int param1)
 
     if ((param0->battleType & (0x4 | 0x80)) == 0) {
         if ((v0 & 0x1) || (param0->battleType == (0x2 | 0x8 | 0x40)) || (param0->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
-            PokedexData_CaptureEntry(param0->pokedex, v1);
+            PokedexData_Encounter(param0->pokedex, v1);
         }
     }
 
     if (((v0 & 0x1) == 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) == 412)) {
-        PokedexData_TradeEntry(param0->pokedex, v1);
+        PokedexData_Capture(param0->pokedex, v1);
     }
 }
 
@@ -1714,7 +1714,7 @@ void ov16_0223F9A0(BattleSystem *param0, int param1)
                 v2 = BattleContext_Get(param0, param0->battleCtx, 2, param1);
                 v1 = BattleSystem_PartyPokemon(param0, param1, v2);
 
-                PokedexData_TradeEntry(param0->pokedex, v1);
+                PokedexData_Capture(param0->pokedex, v1);
             }
         }
     }
