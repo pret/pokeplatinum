@@ -127,8 +127,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Float Whale Pokémon",
-            "entry_text": "The biggest of all Pokémon.\nIt can dive to a depth of almost\n10,000 feet on only one breath.",
-            "entry_text_diamond": "The biggest of all Pokémon.\nIt can dive to a depth of almost\n10,000 feet on only one breath."
+            "entry_text": "The biggest of all Pokémon.\nIt can dive to a depth of almost\n10,000 feet on only one breath."
         },
         "french": {
             "name": "WAILORD",

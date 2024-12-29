@@ -114,8 +114,7 @@
         "pokemon_pos_m": 9,
         "english": {
             "category": "Bivalve Pokémon",
-            "entry_text": "It fights by keeping its shell\ntightly shut for protection and\nby shooting spikes to repel foes.",
-            "entry_text_diamond": "It fights by keeping its shell\ntightly shut for protection and\nby shooting spikes to repel foes."
+            "entry_text": "It fights by keeping its shell\ntightly shut for protection and\nby shooting spikes to repel foes."
         },
         "french": {
             "name": "CRUSTABRI",

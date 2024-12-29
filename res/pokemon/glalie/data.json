@@ -127,8 +127,7 @@
         "pokemon_pos_m": 65535,
         "english": {
             "category": "Face Pokémon",
-            "entry_text": "It prevents prey from escaping by\ninstantaneously freezing moisture\nin the air.",
-            "entry_text_diamond": "To protect itself, it clads its\nbody in an armor of ice, made\nby freezing moisture in the air."
+            "entry_text": "It prevents prey from escaping by\ninstantaneously freezing moisture\nin the air."
         },
         "french": {
             "name": "ONIGLALI",

@@ -131,8 +131,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Superpower Pokémon",
-            "entry_text": "Its four muscled arms slam foes\nwith powerful punches and chops\nat blinding speed.",
-            "entry_text_diamond": "It punches with its four arms at\nblinding speed. It can launch\n1,000 punches in two seconds."
+            "entry_text": "Its four muscled arms slam foes\nwith powerful punches and chops\nat blinding speed."
         },
         "french": {
             "name": "MACKOGNEUR",

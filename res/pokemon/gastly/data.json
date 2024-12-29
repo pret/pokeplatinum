@@ -140,8 +140,7 @@
         "pokemon_pos_m": 65534,
         "english": {
             "category": "Gas Pokémon",
-            "entry_text": "Born from gases, anyone would\nfaint if engulfed by its gaseous\nbody, which contains poison.",
-            "entry_text_diamond": "This Pokémon’s body is 95% made up\nof gases, which are blown away by\nstrong gusts of wind."
+            "entry_text": "Born from gases, anyone would\nfaint if engulfed by its gaseous\nbody, which contains poison."
         },
         "french": {
             "name": "FANTOMINUS",

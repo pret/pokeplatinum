@@ -119,8 +119,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Mold Pokémon",
-            "entry_text": "It stores berries in its shell.\nThe berries eventually ferment to\nbecome delicious juices.",
-            "entry_text_diamond": "It stores berries in its shell.\nThe berries eventually ferment to\nbecome delicious juices."
+            "entry_text": "It stores berries in its shell.\nThe berries eventually ferment to\nbecome delicious juices."
         },
         "french": {
             "name": "CARATROC",

@@ -129,8 +129,7 @@
         "pokemon_pos_m": 65526,
         "english": {
             "category": "Poison Gas Pokémon",
-            "entry_text": "Lighter-than-air gases in its body\nkeep it aloft. The gases not only\nsmell, they are also explosive.",
-            "entry_text_diamond": "Lighter-than-air gases in its body\nkeep it aloft. The gases not only\nsmell, they are also explosive."
+            "entry_text": "Lighter-than-air gases in its body\nkeep it aloft. The gases not only\nsmell, they are also explosive."
         },
         "french": {
             "name": "SMOGO",

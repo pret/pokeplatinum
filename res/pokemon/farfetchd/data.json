@@ -129,8 +129,7 @@
         "pokemon_pos_m": 20,
         "english": {
             "category": "Wild Duck Pokémon",
-            "entry_text": "It can’t live without the stalk it\nholds. That’s why it defends the\nstalk from attackers with its life.",
-            "entry_text_diamond": "It can’t live without the stalk it\nholds. That’s why it defends the\nstalk from attackers with its life."
+            "entry_text": "It can’t live without the stalk it\nholds. That’s why it defends the\nstalk from attackers with its life."
         },
         "french": {
             "name": "CANARTICHO",

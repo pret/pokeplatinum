@@ -122,8 +122,7 @@
         "pokemon_pos_m": 16,
         "english": {
             "category": "Flame Pokémon",
-            "entry_text": "Inhaled air is heated in the flame\nsac in its body to an intense fire\nover 3,000 degrees Fahrenheit.",
-            "entry_text_diamond": "It has a flame sac in its body.\nIts body temperature tops 1,650\ndegrees Fahrenheit before battle."
+            "entry_text": "Inhaled air is heated in the flame\nsac in its body to an intense fire\nover 3,000 degrees Fahrenheit."
         },
         "french": {
             "name": "PYROLI",

@@ -123,8 +123,7 @@
         "pokemon_pos_m": 31,
         "english": {
             "category": "Tiny Bird Pokémon",
-            "entry_text": "It is docile and prefers to avoid\nconflict. If disturbed, however,\nit can ferociously strike back.",
-            "entry_text_diamond": "It is docile and prefers to avoid\nconflict. If disturbed, however,\nit can ferociously strike back."
+            "entry_text": "It is docile and prefers to avoid\nconflict. If disturbed, however,\nit can ferociously strike back."
         },
         "french": {
             "name": "ROUCOOL",

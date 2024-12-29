@@ -133,8 +133,7 @@
         "pokemon_pos_m": 11,
         "english": {
             "category": "Imitation Pokémon",
-            "entry_text": "To avoid being attacked, it does\nnothing but mimic a tree. It hates\nwater and flees from rain.",
-            "entry_text_diamond": "Despite appearing to be a tree,\nits body is closer to rocks and\nstones. It is very weak to water."
+            "entry_text": "To avoid being attacked, it does\nnothing but mimic a tree. It hates\nwater and flees from rain."
         },
         "french": {
             "name": "SIMULARBRE",

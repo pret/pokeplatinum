@@ -129,8 +129,7 @@
         "pokemon_pos_m": 16,
         "english": {
             "category": "Frost Tree Pokémon",
-            "entry_text": "Seemingly curious about people,\nthey gather around footsteps they\nfind on snowy mountains.",
-            "entry_text_diamond": "It lives on snowy mountains.\nHaving had little contact with\nhumans, it is boldly inquisitive."
+            "entry_text": "Seemingly curious about people,\nthey gather around footsteps they\nfind on snowy mountains."
         },
         "french": {
             "name": "BLIZZI",

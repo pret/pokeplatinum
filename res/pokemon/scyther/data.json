@@ -134,8 +134,7 @@
         "pokemon_pos_m": 7,
         "english": {
             "category": "Mantis Pokémon",
-            "entry_text": "The sharp scythes on its forearms\nbecome increasingly sharp by\ncutting through hard objects.",
-            "entry_text_diamond": "It is nearly impossible to parry\nits attacking scythes. Its\nmovements are like a ninja’s."
+            "entry_text": "The sharp scythes on its forearms\nbecome increasingly sharp by\ncutting through hard objects."
         },
         "french": {
             "name": "INSECATEUR",

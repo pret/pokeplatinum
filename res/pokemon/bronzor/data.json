@@ -136,8 +136,7 @@
         "pokemon_pos_m": 65528,
         "english": {
             "category": "Bronze Pokémon",
-            "entry_text": "There are researchers who believe\nthis Pokémon reflected like a mirror\nin the distant past.",
-            "entry_text_diamond": "Implements shaped like it were\ndiscovered in ancient tombs. It is\nunknown if they are related."
+            "entry_text": "There are researchers who believe\nthis Pokémon reflected like a mirror\nin the distant past."
         },
         "french": {
             "name": "ARCHEOMIRE",

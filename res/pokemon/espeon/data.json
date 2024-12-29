@@ -127,8 +127,7 @@
         "pokemon_pos_m": 12,
         "english": {
             "category": "Sun Pokémon",
-            "entry_text": "Its fur is so sensitive, it can\nsense minute shifts in the air\nand predict the weather.",
-            "entry_text_diamond": "Its fur has the look and feel of\nvelvet. The orb on its forehead\nglows when it uses psycho-power."
+            "entry_text": "Its fur is so sensitive, it can\nsense minute shifts in the air\nand predict the weather."
         },
         "french": {
             "name": "MENTALI",

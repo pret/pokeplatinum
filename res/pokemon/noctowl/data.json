@@ -130,8 +130,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Owl Pokémon",
-            "entry_text": "Its eyes are specially developed\nto enable it to see clearly even in\nmurky darkness and minimal light.",
-            "entry_text_diamond": "Its eyes are special. They can\npick out objects as long as there\nis the tiniest amount of light."
+            "entry_text": "Its eyes are specially developed\nto enable it to see clearly even in\nmurky darkness and minimal light."
         },
         "french": {
             "name": "NOARFANG",

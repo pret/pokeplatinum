@@ -133,8 +133,7 @@
         "pokemon_pos_m": 21,
         "english": {
             "category": "Emanation Pokémon",
-            "entry_text": "It has the peculiar power of being\nable to see emotions such as joy\nand rage in the form of waves.",
-            "entry_text_diamond": "The aura that emanates from its\nbody intensifies to alert others\nif it is afraid or sad."
+            "entry_text": "It has the peculiar power of being\nable to see emotions such as joy\nand rage in the form of waves."
         },
         "french": {
             "name": "RIOLU",

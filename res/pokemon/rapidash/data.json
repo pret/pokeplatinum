@@ -119,8 +119,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Fire Horse Pokémon",
-            "entry_text": "When at an all-out gallop, its\nblazing mane sparkles, enhancing\nits beautiful appearance.",
-            "entry_text_diamond": "It gallops at nearly 150 mph.\nWith its mane blazing ferociously,\nit races as if it were an arrow."
+            "entry_text": "When at an all-out gallop, its\nblazing mane sparkles, enhancing\nits beautiful appearance."
         },
         "french": {
             "name": "GALOPA",

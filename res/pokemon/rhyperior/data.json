@@ -158,8 +158,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Drill Pokémon",
-            "entry_text": "It can launch a rock held in its\nhand like a missile by tightening\nthen expanding muscles instantly.",
-            "entry_text_diamond": "It puts rocks in holes in its palms\nand uses its muscles to shoot them.\nGEODUDE are shot at rare times."
+            "entry_text": "It can launch a rock held in its\nhand like a missile by tightening\nthen expanding muscles instantly."
         },
         "french": {
             "name": "RHINASTOC",

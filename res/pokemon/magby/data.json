@@ -125,8 +125,7 @@
         "pokemon_pos_m": 20,
         "english": {
             "category": "Live Coal Pokémon",
-            "entry_text": "Its magma-like blood circulates\nthroughout its body. Its body’s\nheat can top 1,100 degrees F.",
-            "entry_text_diamond": "Its body temperature is around\n1,100 degrees F. It is healthy if\nit is breathing yellow flames."
+            "entry_text": "Its magma-like blood circulates\nthroughout its body. Its body’s\nheat can top 1,100 degrees F."
         },
         "french": {
             "name": "MAGBY",

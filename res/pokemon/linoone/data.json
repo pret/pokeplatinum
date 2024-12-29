@@ -138,8 +138,7 @@
         "pokemon_pos_m": 14,
         "english": {
             "category": "Rushing Pokémon",
-            "entry_text": "It charges prey at speeds over\n60 mph. However, because it can\nonly run straight, it often fails.",
-            "entry_text_diamond": "It charges prey at speeds over\n60 mph. However, because it can\nonly run straight, it often fails."
+            "entry_text": "It charges prey at speeds over\n60 mph. However, because it can\nonly run straight, it often fails."
         },
         "french": {
             "name": "LINEON",

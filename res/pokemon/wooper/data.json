@@ -132,8 +132,7 @@
         "pokemon_pos_m": 26,
         "english": {
             "category": "Water Fish Pokémon",
-            "entry_text": "When walking on land, it covers its\nbody with a poisonous film that\nkeeps its skin from dehydrating.",
-            "entry_text_diamond": "It lives in cold water, half\nburying itself in mud at the\nbottom to sleep."
+            "entry_text": "When walking on land, it covers its\nbody with a poisonous film that\nkeeps its skin from dehydrating."
         },
         "french": {
             "name": "AXOLOTO",

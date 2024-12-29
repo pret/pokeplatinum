@@ -129,8 +129,7 @@
         "pokemon_pos_m": 14,
         "english": {
             "category": "Verdant Pokémon",
-            "entry_text": "It basically does not fight. With\ncells similar to those of plants, it\ncan perform photosynthesis.",
-            "entry_text_diamond": "Just like a plant, it uses\nphotosynthesis. As a result, it is\nalways enveloped in clear air."
+            "entry_text": "It basically does not fight. With\ncells similar to those of plants, it\ncan perform photosynthesis."
         },
         "french": {
             "name": "PHYLLALI",

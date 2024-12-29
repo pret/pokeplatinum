@@ -128,8 +128,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Poison Pin Pokémon",
-            "entry_text": "It scans its surroundings by\nraising its ears out of the grass.\nIts toxic horn is for protection.",
-            "entry_text_diamond": "It scans its surroundings by\nraising its ears out of the grass.\nIts toxic horn is for protection."
+            "entry_text": "It scans its surroundings by\nraising its ears out of the grass.\nIts toxic horn is for protection."
         },
         "french": {
             "name": "NIDORAN♂",

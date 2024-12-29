@@ -144,8 +144,7 @@
         "pokemon_pos_m": 22,
         "english": {
             "category": "Toxic Mouth Pokémon",
-            "entry_text": "It rarely fights fairly, but that is\nstrictly to ensure survival. It is\npopular as a mascot.",
-            "entry_text_diamond": "Its cheeks hold poison sacs.\nIt tries to catch foes off guard\nto jab them with toxic fingers."
+            "entry_text": "It rarely fights fairly, but that is\nstrictly to ensure survival. It is\npopular as a mascot."
         },
         "french": {
             "name": "CRADOPAUD",

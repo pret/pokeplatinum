@@ -144,8 +144,7 @@
         "pokemon_pos_m": 65535,
         "english": {
             "category": "Time Travel Pokémon",
-            "entry_text": "It has the power to travel across\ntime, but it is said to appear only\nin peaceful times.",
-            "entry_text_diamond": "It has the power to travel across\ntime, but it is said to appear only\nin peaceful times."
+            "entry_text": "It has the power to travel across\ntime, but it is said to appear only\nin peaceful times."
         },
         "french": {
             "name": "CELEBI",

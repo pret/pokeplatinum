@@ -128,8 +128,7 @@
         "pokemon_pos_m": 65529,
         "english": {
             "category": "Magnet Area Pokémon",
-            "entry_text": "A group tried to use scientific\nmeans to make MAGNEZONE evolve,\nbut their efforts ended in failure.",
-            "entry_text_diamond": "It evolved from exposure to a\nspecial magnetic field.\nThree units generate magnetism."
+            "entry_text": "A group tried to use scientific\nmeans to make MAGNEZONE evolve,\nbut their efforts ended in failure."
         },
         "french": {
             "name": "MAGNEZONE",

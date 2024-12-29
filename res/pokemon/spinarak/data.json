@@ -120,8 +120,7 @@
         "pokemon_pos_m": 26,
         "english": {
             "category": "String Spit Pokémon",
-            "entry_text": "It sets a trap by spinning a web\nwith thin but strong silk. It waits\nmotionlessly for prey to arrive.",
-            "entry_text_diamond": "It sets a trap by spinning a web\nwith thin but strong silk. It waits\nmotionlessly for prey to arrive."
+            "entry_text": "It sets a trap by spinning a web\nwith thin but strong silk. It waits\nmotionlessly for prey to arrive."
         },
         "french": {
             "name": "MIMIGAL",

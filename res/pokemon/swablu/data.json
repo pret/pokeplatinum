@@ -130,8 +130,7 @@
         "pokemon_pos_m": 65522,
         "english": {
             "category": "Cotton Bird Pokémon",
-            "entry_text": "It can’t relax if it or its\nsurroundings are not clean.\nIt wipes off dirt with its wings.",
-            "entry_text_diamond": "Its wings are like cotton tufts.\nIf it perches on someone’s head,\nit looks like a cotton hat."
+            "entry_text": "It can’t relax if it or its\nsurroundings are not clean.\nIt wipes off dirt with its wings."
         },
         "french": {
             "name": "TYLTON",

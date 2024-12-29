@@ -131,8 +131,7 @@
         "pokemon_pos_m": 6,
         "english": {
             "category": "Dragon Pokémon",
-            "entry_text": "It is called the “Mirage Pokémon”\nbecause so few have seen it.\nIts shed skin has been found.",
-            "entry_text_diamond": "It is called the “Mirage Pokémon”\nbecause so few have seen it.\nIts shed skin has been found."
+            "entry_text": "It is called the “Mirage Pokémon”\nbecause so few have seen it.\nIts shed skin has been found."
         },
         "french": {
             "name": "MINIDRACO",

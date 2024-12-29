@@ -136,8 +136,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Virtual Pokémon",
-            "entry_text": "A man-made Pokémon created using\nadvanced scientific means. It can\nmove freely in cyberspace.",
-            "entry_text_diamond": "The world’s first artificially\ncreated Pokémon. It can travel\nthrough electronic space."
+            "entry_text": "A man-made Pokémon created using\nadvanced scientific means. It can\nmove freely in cyberspace."
         },
         "french": {
             "name": "PORYGON",

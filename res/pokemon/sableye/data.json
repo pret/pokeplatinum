@@ -147,8 +147,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Darkness Pokémon",
-            "entry_text": "It hides in the darkness of caves.\nIts diet of gems has transformed\nits eyes into gemstones.",
-            "entry_text_diamond": "It hides in the darkness of caves.\nIts diet of gems has transformed\nits eyes into gemstones."
+            "entry_text": "It hides in the darkness of caves.\nIts diet of gems has transformed\nits eyes into gemstones."
         },
         "french": {
             "name": "TENEFIX",

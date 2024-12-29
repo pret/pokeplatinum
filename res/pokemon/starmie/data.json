@@ -124,8 +124,7 @@
         "pokemon_pos_m": 13,
         "english": {
             "category": "Mysterious Pokémon",
-            "entry_text": "At the center of its body is a red\ncore, which sends mysterious\nradio signals into the night sky.",
-            "entry_text_diamond": "At the center of its body is a red\ncore, which sends mysterious\nradio signals into the night sky."
+            "entry_text": "At the center of its body is a red\ncore, which sends mysterious\nradio signals into the night sky."
         },
         "french": {
             "name": "STAROSS",

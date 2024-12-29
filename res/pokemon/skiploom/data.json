@@ -129,8 +129,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Cottonweed Pokémon",
-            "entry_text": "It blooms when the weather warms.\nIt floats in the sky to soak up as\nmuch sunlight as possible.",
-            "entry_text_diamond": "It blooms when the weather warms.\nIt floats in the sky to soak up as\nmuch sunlight as possible."
+            "entry_text": "It blooms when the weather warms.\nIt floats in the sky to soak up as\nmuch sunlight as possible."
         },
         "french": {
             "name": "FLORAVOL",

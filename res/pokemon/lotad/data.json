@@ -124,8 +124,7 @@
         "pokemon_pos_m": 24,
         "english": {
             "category": "Water Weed Pokémon",
-            "entry_text": "It looks like an aquatic plant and\nserves as a ferry to Pokémon\nthat can’t swim.",
-            "entry_text_diamond": "It looks like an aquatic plant and\nserves as a ferry to Pokémon\nthat can’t swim."
+            "entry_text": "It looks like an aquatic plant and\nserves as a ferry to Pokémon\nthat can’t swim."
         },
         "french": {
             "name": "NENUPIOT",

@@ -148,8 +148,7 @@
         "pokemon_pos_m": 10,
         "english": {
             "category": "Licking Pokémon",
-            "entry_text": "When it extends its over-six-foot-\nlong tongue, its tail quivers. There\nis a possibility they are connected.",
-            "entry_text_diamond": "Instead of hands, it uses its\ntongue, which is twice its height.\nIts sticky saliva grips anything."
+            "entry_text": "When it extends its over-six-foot-\nlong tongue, its tail quivers. There\nis a possibility they are connected."
         },
         "french": {
             "name": "EXCELANGUE",

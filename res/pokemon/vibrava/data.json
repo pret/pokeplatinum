@@ -134,8 +134,7 @@
         "pokemon_pos_m": 65532,
         "english": {
             "category": "Vibration Pokémon",
-            "entry_text": "It violently shudders its wings,\ngenerating ultrasonic waves to\ninduce headaches in people.",
-            "entry_text_diamond": "It violently shudders its wings,\ngenerating ultrasonic waves to\ninduce headaches in people."
+            "entry_text": "It violently shudders its wings,\ngenerating ultrasonic waves to\ninduce headaches in people."
         },
         "french": {
             "name": "VIBRANINF",

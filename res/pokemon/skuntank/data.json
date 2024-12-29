@@ -130,8 +130,7 @@
         "pokemon_pos_m": 15,
         "english": {
             "category": "Skunk Pokémon",
-            "entry_text": "It attacks by spraying a horribly\nsmelly fluid from the tip of its tail.\nAttacks from above confound it.",
-            "entry_text_diamond": "It sprays a vile-smelling fluid\nfrom the tip of its tail to attack.\nIts range is over 160 feet."
+            "entry_text": "It attacks by spraying a horribly\nsmelly fluid from the tip of its tail.\nAttacks from above confound it."
         },
         "french": {
             "name": "MOUFFLAIR",

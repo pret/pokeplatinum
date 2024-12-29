@@ -161,8 +161,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Drill Pokémon",
-            "entry_text": "Standing on its hind legs freed its\nforelegs and made it smarter. It is\nvery forgetful, however.",
-            "entry_text_diamond": "Its brain developed after it stood\nup on its hind legs. Its drill horn\nbores tunnels through solid rock."
+            "entry_text": "Standing on its hind legs freed its\nforelegs and made it smarter. It is\nvery forgetful, however."
         },
         "french": {
             "name": "RHINOFEROS",

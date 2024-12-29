@@ -134,8 +134,7 @@
         "pokemon_pos_m": 65531,
         "english": {
             "category": "Virtual Pokémon",
-            "entry_text": "Its programming was modified to\nenable work in alien dimensions.\nIt did not work as planned.",
-            "entry_text_diamond": "Additional software was installed\nto make it a better Pokémon.\nIt began acting oddly, however."
+            "entry_text": "Its programming was modified to\nenable work in alien dimensions.\nIt did not work as planned."
         },
         "french": {
             "name": "PORYGON-Z",

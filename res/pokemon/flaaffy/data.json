@@ -127,8 +127,7 @@
         "pokemon_pos_m": 18,
         "english": {
             "category": "Wool Pokémon",
-            "entry_text": "If its coat becomes fully charged\nwith electricity, its tail lights up.\nIt fires hair that zaps on impact.",
-            "entry_text_diamond": "If its coat becomes fully charged\nwith electricity, its tail lights up.\nIt fires hair that zaps on impact."
+            "entry_text": "If its coat becomes fully charged\nwith electricity, its tail lights up.\nIt fires hair that zaps on impact."
         },
         "french": {
             "name": "LAINERGIE",

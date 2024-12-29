@@ -128,8 +128,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Poison Pin Pokémon",
-            "entry_text": "While it does not prefer to fight,\neven one drop of the poison it\nsecretes from barbs can be fatal.",
-            "entry_text_diamond": "While it does not prefer to fight,\neven one drop of the poison it\nsecretes from barbs can be fatal."
+            "entry_text": "While it does not prefer to fight,\neven one drop of the poison it\nsecretes from barbs can be fatal."
         },
         "french": {
             "name": "NIDORAN♀",

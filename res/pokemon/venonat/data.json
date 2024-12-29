@@ -120,8 +120,7 @@
         "pokemon_pos_m": 20,
         "english": {
             "category": "Insect Pokémon",
-            "entry_text": "Its big eyes are actually clusters\nof tiny eyes. At night, its kind is\ndrawn by light.",
-            "entry_text_diamond": "Its big eyes are actually clusters\nof tiny eyes. At night, its kind is\ndrawn by light."
+            "entry_text": "Its big eyes are actually clusters\nof tiny eyes. At night, its kind is\ndrawn by light."
         },
         "french": {
             "name": "MIMITOSS",

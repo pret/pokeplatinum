@@ -85,8 +85,7 @@
         "pokemon_pos_m": 65530,
         "english": {
             "category": "Bagworm Pokémon",
-            "entry_text": "Even if it is born where there are\nno cocooning materials, it somehow\nalways ends up with a cloak.",
-            "entry_text_diamond": "To shelter itself from cold, wintry\nwinds, it covers itself with a cloak\nmade of twigs and leaves."
+            "entry_text": "Even if it is born where there are\nno cocooning materials, it somehow\nalways ends up with a cloak."
         },
         "french": {
             "name": "CHENITI",

@@ -131,8 +131,7 @@
         "pokemon_pos_m": 10,
         "english": {
             "category": "Sea Weasel Pokémon",
-            "entry_text": "It is a common sight around\nfishing ports. It is known to\nrescue people and carry off prey.",
-            "entry_text_diamond": "It floats using its well-developed\nflotation sac. It assists in the\nrescues of drowning people."
+            "entry_text": "It is a common sight around\nfishing ports. It is known to\nrescue people and carry off prey."
         },
         "french": {
             "name": "MUSTEFLOTT",

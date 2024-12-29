@@ -128,8 +128,7 @@
         "pokemon_pos_m": 28,
         "english": {
             "category": "Penguin Pokémon",
-            "entry_text": "A poor walker, it often falls down.\nHowever, its strong pride makes it\npuff up its chest without a care.",
-            "entry_text_diamond": "Because it is very proud, it hates\naccepting food from people. Its\nthick down guards it from cold."
+            "entry_text": "A poor walker, it often falls down.\nHowever, its strong pride makes it\npuff up its chest without a care."
         },
         "french": {
             "name": "TIPLOUF",

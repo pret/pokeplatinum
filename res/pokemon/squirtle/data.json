@@ -132,8 +132,7 @@
         "pokemon_pos_m": 24,
         "english": {
             "category": "Tiny Turtle Pokémon",
-            "entry_text": "It shelters itself in its shell,\nthen strikes back with spouts of\nwater at every opportunity.",
-            "entry_text_diamond": "It shelters itself in its shell,\nthen strikes back with spouts of\nwater at every opportunity."
+            "entry_text": "It shelters itself in its shell,\nthen strikes back with spouts of\nwater at every opportunity."
         },
         "french": {
             "name": "CARAPUCE",

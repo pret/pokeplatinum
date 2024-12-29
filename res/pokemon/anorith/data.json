@@ -128,8 +128,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Old Shrimp Pokémon",
-            "entry_text": "A Pokémon ancestor that was\nreanimated from a fossil. It lived\nin the sea and hunted with claws.",
-            "entry_text_diamond": "A Pokémon ancestor that was\nreanimated from a fossil. It lived\nin the sea and hunted with claws."
+            "entry_text": "A Pokémon ancestor that was\nreanimated from a fossil. It lived\nin the sea and hunted with claws."
         },
         "french": {
             "name": "ANORITH",

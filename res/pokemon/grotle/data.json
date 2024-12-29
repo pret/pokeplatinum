@@ -130,8 +130,7 @@
         "pokemon_pos_m": 14,
         "english": {
             "category": "Grove Pokémon",
-            "entry_text": "It knows where pure water wells\nup. It carries fellow Pokémon there\non its back.",
-            "entry_text_diamond": "It lives along water in forests. In\nthe daytime, it leaves the forest\nto sunbathe its treed shell."
+            "entry_text": "It knows where pure water wells\nup. It carries fellow Pokémon there\non its back."
         },
         "french": {
             "name": "BOSKARA",

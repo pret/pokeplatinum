@@ -145,8 +145,7 @@
         "pokemon_pos_m": 12,
         "english": {
             "category": "Aura Pokémon",
-            "entry_text": "A well-trained one can sense auras\nto identify and take in the feelings\nof creatures over half a mile away.",
-            "entry_text_diamond": "It has the ability to sense the\nauras of all things.\nIt understands human speech."
+            "entry_text": "A well-trained one can sense auras\nto identify and take in the feelings\nof creatures over half a mile away."
         },
         "french": {
             "name": "LUCARIO",

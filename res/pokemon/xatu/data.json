@@ -142,8 +142,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Mystic Pokémon",
-            "entry_text": "This odd Pokémon can see both\nthe past and the future. It eyes\nthe sun’s movement all day.",
-            "entry_text_diamond": "This odd Pokémon can see both\nthe past and the future. It eyes\nthe sun’s movement all day."
+            "entry_text": "This odd Pokémon can see both\nthe past and the future. It eyes\nthe sun’s movement all day."
         },
         "french": {
             "name": "XATU",

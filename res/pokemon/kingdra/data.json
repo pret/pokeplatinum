@@ -124,8 +124,7 @@
         "pokemon_pos_m": 2,
         "english": {
             "category": "Dragon Pokémon",
-            "entry_text": "It lives in caves on the seafloor\nand creates giant whirlpools\nevery time it moves.",
-            "entry_text_diamond": "It lives in caves on the seafloor\nand creates giant whirlpools\nevery time it moves."
+            "entry_text": "It lives in caves on the seafloor\nand creates giant whirlpools\nevery time it moves."
         },
         "french": {
             "name": "HYPOROI",

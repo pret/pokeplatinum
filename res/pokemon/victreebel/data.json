@@ -117,8 +117,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Flycatcher Pokémon",
-            "entry_text": "It pools in its mouth a fluid with\na honeylike scent, which is really\nan acid that dissolves anything.",
-            "entry_text_diamond": "It pools in its mouth a fluid with\na honeylike scent, which is really\nan acid that dissolves anything."
+            "entry_text": "It pools in its mouth a fluid with\na honeylike scent, which is really\nan acid that dissolves anything."
         },
         "french": {
             "name": "EMPIFLOR",

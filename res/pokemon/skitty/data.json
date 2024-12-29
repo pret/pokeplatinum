@@ -141,8 +141,7 @@
         "pokemon_pos_m": 21,
         "english": {
             "category": "Kitten Pokémon",
-            "entry_text": "It can’t stop itself from chasing\nmoving things, and it runs in a\ncircle, chasing its own tail.",
-            "entry_text_diamond": "It can’t stop itself from chasing\nmoving things, and it runs in a\ncircle, chasing its own tail."
+            "entry_text": "It can’t stop itself from chasing\nmoving things, and it runs in a\ncircle, chasing its own tail."
         },
         "french": {
             "name": "SKITTY",

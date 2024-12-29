@@ -127,8 +127,7 @@
         "pokemon_pos_m": 2,
         "english": {
             "category": "Bagworm Pokémon",
-            "entry_text": "It looks just like a pinecone.\nIts shell protects it from bird\nPokémon that peck it by mistake.",
-            "entry_text_diamond": "It looks just like a pinecone.\nIts shell protects it from bird\nPokémon that peck it by mistake."
+            "entry_text": "It looks just like a pinecone.\nIts shell protects it from bird\nPokémon that peck it by mistake."
         },
         "french": {
             "name": "POMDEPIK",

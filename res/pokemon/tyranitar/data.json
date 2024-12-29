@@ -160,8 +160,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Armor Pokémon",
-            "entry_text": "If it rampages, it knocks down\nmountains and buries rivers. Maps\nmust be redrawn afterward.",
-            "entry_text_diamond": "If it rampages, it knocks down\nmountains and buries rivers. Maps\nmust be redrawn afterward."
+            "entry_text": "If it rampages, it knocks down\nmountains and buries rivers. Maps\nmust be redrawn afterward."
         },
         "french": {
             "name": "TYRANOCIF",

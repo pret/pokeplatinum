@@ -146,8 +146,7 @@
         "pokemon_pos_m": 26,
         "english": {
             "category": "Big Eater Pokémon",
-            "entry_text": "In its desperation to gulp down\nfood, it forgets about the food it\nhas hidden under its fur.",
-            "entry_text_diamond": "It wolfs down its weight in food\nonce a day, swallowing food whole\nwith almost no chewing."
+            "entry_text": "In its desperation to gulp down\nfood, it forgets about the food it\nhas hidden under its fur."
         },
         "french": {
             "name": "GOINFREX",

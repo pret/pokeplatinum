@@ -131,8 +131,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Lava Dome Pokémon",
-            "entry_text": "Its body is made of rugged steel.\nHowever, it is partially melted in\nspots because of its own heat.",
-            "entry_text_diamond": "It dwells in volcanic caves. It\ndigs in with its cross-shaped feet\nto crawl on ceilings and walls."
+            "entry_text": "Its body is made of rugged steel.\nHowever, it is partially melted in\nspots because of its own heat."
         },
         "french": {
             "name": "HEATRAN",

@@ -128,8 +128,7 @@
         "pokemon_pos_m": 65522,
         "english": {
             "category": "Magnet Pokémon",
-            "entry_text": "The faster the units at its sides\nrotate, the greater the magnetic\nforce they generate.",
-            "entry_text_diamond": "The units at its sides generate\nelectromagnetic waves that keep it\nairborne. It feeds on electricity."
+            "entry_text": "The faster the units at its sides\nrotate, the greater the magnetic\nforce they generate."
         },
         "french": {
             "name": "MAGNETI",

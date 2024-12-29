@@ -131,8 +131,7 @@
         "pokemon_pos_m": 9,
         "english": {
             "category": "Skunk Pokémon",
-            "entry_text": "It sprays a foul fluid from its\nrear. Its stench spreads over a\nmile radius, driving Pokémon away.",
-            "entry_text_diamond": "It protects itself by spraying a\nnoxious fluid from its rear. The\nstench lingers for 24 hours."
+            "entry_text": "It sprays a foul fluid from its\nrear. Its stench spreads over a\nmile radius, driving Pokémon away."
         },
         "french": {
             "name": "MOUFOUETTE",

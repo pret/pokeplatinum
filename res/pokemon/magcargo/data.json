@@ -130,8 +130,7 @@
         "pokemon_pos_m": 14,
         "english": {
             "category": "Lava Pokémon",
-            "entry_text": "Its body temperature is roughly\n18,000 degrees F. Flames spout\nfrom gaps in its hardened shell.",
-            "entry_text_diamond": "Its body temperature is roughly\n18,000 degrees F. Flames spout\nfrom gaps in its hardened shell."
+            "entry_text": "Its body temperature is roughly\n18,000 degrees F. Flames spout\nfrom gaps in its hardened shell."
         },
         "french": {
             "name": "VOLCAROPOD",

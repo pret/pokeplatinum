@@ -131,8 +131,7 @@
         "pokemon_pos_m": 24,
         "english": {
             "category": "Shellfish Pokémon",
-            "entry_text": "It is thought to have inhabited\nbeaches 300 million years ago.\nIt is protected by a stiff shell.",
-            "entry_text_diamond": "It is thought to have inhabited\nbeaches 300 million years ago.\nIt is protected by a stiff shell."
+            "entry_text": "It is thought to have inhabited\nbeaches 300 million years ago.\nIt is protected by a stiff shell."
         },
         "french": {
             "name": "KABUTO",

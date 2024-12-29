@@ -136,8 +136,7 @@
         "pokemon_pos_m": 65532,
         "english": {
             "category": "Meteorite Pokémon",
-            "entry_text": "Because it turns active on nights\nof the full moon, it is said to have\nsome link to the lunar phases.",
-            "entry_text_diamond": "Because it turns active on nights\nof the full moon, it is said to have\nsome link to the lunar phases."
+            "entry_text": "Because it turns active on nights\nof the full moon, it is said to have\nsome link to the lunar phases."
         },
         "french": {
             "name": "SELEROC",

@@ -131,8 +131,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Fruit Pokémon",
-            "entry_text": "Delicious fruits grew out from\naround its neck because it always\nate the same kind of fruit.",
-            "entry_text_diamond": "Because it continually ate only\nits favorite fruit, the fruit\nstarted growing around its neck."
+            "entry_text": "Delicious fruits grew out from\naround its neck because it always\nate the same kind of fruit."
         },
         "french": {
             "name": "TROPIUS",

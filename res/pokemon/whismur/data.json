@@ -126,8 +126,7 @@
         "pokemon_pos_m": 23,
         "english": {
             "category": "Whisper Pokémon",
-            "entry_text": "Usually, its cries are like quiet\nmurmurs. If frightened, it shrieks\nat the same volume as a jet plane.",
-            "entry_text_diamond": "Usually, its cries are like quiet\nmurmurs. If frightened, it shrieks\nat the same volume as a jet plane."
+            "entry_text": "Usually, its cries are like quiet\nmurmurs. If frightened, it shrieks\nat the same volume as a jet plane."
         },
         "french": {
             "name": "CHUCHMUR",

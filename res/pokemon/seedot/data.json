@@ -116,8 +116,7 @@
         "pokemon_pos_m": 24,
         "english": {
             "category": "Acorn Pokémon",
-            "entry_text": "When it dangles from a tree\nbranch, it looks just like an acorn.\nIt enjoys scaring other Pokémon.",
-            "entry_text_diamond": "When it dangles from a tree\nbranch, it looks just like an acorn.\nIt enjoys scaring other Pokémon."
+            "entry_text": "When it dangles from a tree\nbranch, it looks just like an acorn.\nIt enjoys scaring other Pokémon."
         },
         "french": {
             "name": "GRAINIPIOT",

@@ -143,8 +143,7 @@
         "pokemon_pos_m": 7,
         "english": {
             "category": "Fairy Pokémon",
-            "entry_text": "It is timid in spite of its looks.\nIf it becomes enraged, however,\nit will strike with its huge fangs.",
-            "entry_text_diamond": "It is timid in spite of its looks.\nIf it becomes enraged, however,\nit will strike with its huge fangs."
+            "entry_text": "It is timid in spite of its looks.\nIf it becomes enraged, however,\nit will strike with its huge fangs."
         },
         "french": {
             "name": "GRANBULL",

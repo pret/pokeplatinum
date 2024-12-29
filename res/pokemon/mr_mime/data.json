@@ -154,8 +154,7 @@
         "pokemon_pos_m": 9,
         "english": {
             "category": "Barrier Pokémon",
-            "entry_text": "It shapes an invisible wall in midair\nby minutely vibrating its fingertips\nto stop molecules in the air.",
-            "entry_text_diamond": "It is a pantomime expert that can\ncreate invisible but solid walls\nusing miming gestures."
+            "entry_text": "It shapes an invisible wall in midair\nby minutely vibrating its fingertips\nto stop molecules in the air."
         },
         "french": {
             "name": "M. MIME",

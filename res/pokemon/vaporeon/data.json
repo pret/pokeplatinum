@@ -127,8 +127,7 @@
         "pokemon_pos_m": 10,
         "english": {
             "category": "Bubble Jet Pokémon",
-            "entry_text": "Its cell composition is similar\nto water molecules. As a result,\nit can melt away into water.",
-            "entry_text_diamond": "It has evolved to be suitable for\nan aquatic life. It can invisibly\nmelt away into water."
+            "entry_text": "Its cell composition is similar\nto water molecules. As a result,\nit can melt away into water."
         },
         "french": {
             "name": "AQUALI",

@@ -142,8 +142,7 @@
         "pokemon_pos_m": 5,
         "english": {
             "category": "Human Shape Pokémon",
-            "entry_text": "Its cries sound like human speech.\nHowever, it is impossible to tell\nwhat it is trying to say.",
-            "entry_text_diamond": "Its cries sound like human speech.\nHowever, it is impossible to tell\nwhat it is trying to say."
+            "entry_text": "Its cries sound like human speech.\nHowever, it is impossible to tell\nwhat it is trying to say."
         },
         "french": {
             "name": "LIPPOUTOU",

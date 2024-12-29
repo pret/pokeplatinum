@@ -130,8 +130,7 @@
         "pokemon_pos_m": 23,
         "english": {
             "category": "Electric Pokémon",
-            "entry_text": "A weak electric current flows\nbetween its horns. Sticking a hand\nthere shocks the unwary.",
-            "entry_text_diamond": "It generates electricity by\nwhirling its arms. However, it\ncan’t store the energy it makes."
+            "entry_text": "A weak electric current flows\nbetween its horns. Sticking a hand\nthere shocks the unwary."
         },
         "french": {
             "name": "ELEKID",

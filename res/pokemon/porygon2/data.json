@@ -137,8 +137,7 @@
         "pokemon_pos_m": 65529,
         "english": {
             "category": "Virtual Pokémon",
-            "entry_text": "It was upgraded to enable the\nexploration of other planets.\nHowever, it failed to measure up.",
-            "entry_text_diamond": "With planetary development\nsoftware installed, it became\ncapable of working in space."
+            "entry_text": "It was upgraded to enable the\nexploration of other planets.\nHowever, it failed to measure up."
         },
         "french": {
             "name": "PORYGON2",

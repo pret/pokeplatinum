@@ -142,8 +142,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Iron Pokémon",
-            "entry_text": "Tempered by pressure underground\nover tens of thousands of years,\nits body cannot be scratched.",
-            "entry_text_diamond": "Tempered by pressure underground\nover tens of thousands of years,\nits body cannot be scratched."
+            "entry_text": "Tempered by pressure underground\nover tens of thousands of years,\nits body cannot be scratched."
         },
         "french": {
             "name": "REGISTEEL",

@@ -134,8 +134,7 @@
         "pokemon_pos_m": 20,
         "english": {
             "category": "Scorpion Pokémon",
-            "entry_text": "As soon as the tail claws close,\nits needle tips secrete poison.\nIt can survive a year without food.",
-            "entry_text_diamond": "It grips prey with its tail claws\nand injects poison. It tenaciously\nhangs on until the poison takes."
+            "entry_text": "As soon as the tail claws close,\nits needle tips secrete poison.\nIt can survive a year without food."
         },
         "french": {
             "name": "RAPION",

@@ -121,8 +121,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Sea Drifter Pokémon",
-            "entry_text": "It drifts in warm seas. It always\nreturns to where it was born, no\nmatter how far it may have drifted.",
-            "entry_text_diamond": "A Pokémon that lives in warm seas.\nIt inflates the flotation sac on its\nhead to drift and search for food."
+            "entry_text": "It drifts in warm seas. It always\nreturns to where it was born, no\nmatter how far it may have drifted."
         },
         "french": {
             "name": "PHIONE",

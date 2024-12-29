@@ -144,8 +144,7 @@
         "pokemon_pos_m": 31,
         "english": {
             "category": "Tiny Bird Pokémon",
-            "entry_text": "It picks food from cactus plants,\ndeftly avoiding buds and spines.\nIt seems to skip about to move.",
-            "entry_text_diamond": "It picks food from cactus plants,\ndeftly avoiding buds and spines.\nIt seems to skip about to move."
+            "entry_text": "It picks food from cactus plants,\ndeftly avoiding buds and spines.\nIt seems to skip about to move."
         },
         "french": {
             "name": "NATU",

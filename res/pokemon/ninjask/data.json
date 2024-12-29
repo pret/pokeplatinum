@@ -133,8 +133,7 @@
         "pokemon_pos_m": 65534,
         "english": {
             "category": "Ninja Pokémon",
-            "entry_text": "Because it moves so quickly, it\nsometimes becomes unseeable. It\ncongregates around tree sap.",
-            "entry_text_diamond": "Because it moves so quickly, it\nsometimes becomes unseeable. It\ncongregates around tree sap."
+            "entry_text": "Because it moves so quickly, it\nsometimes becomes unseeable. It\ncongregates around tree sap."
         },
         "french": {
             "name": "NINJASK",

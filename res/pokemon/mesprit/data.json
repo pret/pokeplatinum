@@ -139,8 +139,7 @@
         "pokemon_pos_m": 65526,
         "english": {
             "category": "Emotion Pokémon",
-            "entry_text": "When MESPRIT flew, people learned\nthe joy and sadness of living.\nIt was the birth of emotions.",
-            "entry_text_diamond": "Known as “The Being of Emotion.”\nIt taught humans the nobility of\nsorrow, pain, and joy."
+            "entry_text": "When MESPRIT flew, people learned\nthe joy and sadness of living.\nIt was the birth of emotions."
         },
         "french": {
             "name": "CREFOLLET",

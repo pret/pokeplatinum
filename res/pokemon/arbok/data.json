@@ -133,8 +133,7 @@
         "pokemon_pos_m": 8,
         "english": {
             "category": "Cobra Pokémon",
-            "entry_text": "The pattern on its belly is for\nintimidation. It constricts foes\nwhile they are frozen in fear.",
-            "entry_text_diamond": "The pattern on its belly is for\nintimidation. It constricts foes\nwhile they are frozen in fear."
+            "entry_text": "The pattern on its belly is for\nintimidation. It constricts foes\nwhile they are frozen in fear."
         },
         "french": {
             "name": "ARBOK",

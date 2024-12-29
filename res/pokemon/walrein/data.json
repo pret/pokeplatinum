@@ -132,8 +132,7 @@
         "pokemon_pos_m": 8,
         "english": {
             "category": "Ice Break Pokémon",
-            "entry_text": "It shatters ice with its big tusks.\nIts thick blubber repels not only\nthe cold, but also enemy attacks.",
-            "entry_text_diamond": "It shatters ice with its big tusks.\nIts thick blubber repels not only\nthe cold, but also enemy attacks."
+            "entry_text": "It shatters ice with its big tusks.\nIts thick blubber repels not only\nthe cold, but also enemy attacks."
         },
         "french": {
             "name": "KAIMORSE",

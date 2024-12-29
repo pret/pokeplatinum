@@ -138,8 +138,7 @@
         "pokemon_pos_m": 8,
         "english": {
             "category": "Wicked Pokémon",
-            "entry_text": "By flapping its leafy fan, it can\nwhip up gusts of 100 ft/second\nthat can level houses.",
-            "entry_text_diamond": "By flapping its leafy fan, it can\nwhip up gusts of 100 ft/second\nthat can level houses."
+            "entry_text": "By flapping its leafy fan, it can\nwhip up gusts of 100 ft/second\nthat can level houses."
         },
         "french": {
             "name": "TENGALICE",

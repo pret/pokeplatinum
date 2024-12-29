@@ -133,8 +133,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Atrocious Pokémon",
-            "entry_text": "Once it begins to rampage, a\nGYARADOS will burn everything\ndown, even in a harsh storm.",
-            "entry_text_diamond": "Once it appears, its rage never\nsettles until it has razed the\nfields and mountains around it."
+            "entry_text": "Once it begins to rampage, a\nGYARADOS will burn everything\ndown, even in a harsh storm."
         },
         "french": {
             "name": "LEVIATOR",

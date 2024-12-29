@@ -131,8 +131,7 @@
         "pokemon_pos_m": 65531,
         "english": {
             "category": "Clear Wing Pokémon",
-            "entry_text": "It can hover in one spot by\nflapping its wings at high speed. It\nflits about to guard its territory.",
-            "entry_text_diamond": "Its eyes can see 360 degrees\nwithout moving its head. It won’t\nmiss prey--even those behind it."
+            "entry_text": "It can hover in one spot by\nflapping its wings at high speed. It\nflits about to guard its territory."
         },
         "french": {
             "name": "YANMA",

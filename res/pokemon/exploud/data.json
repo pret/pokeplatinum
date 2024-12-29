@@ -146,8 +146,7 @@
         "pokemon_pos_m": 6,
         "english": {
             "category": "Loud Noise Pokémon",
-            "entry_text": "Its howls can be heard over six\nmiles away. It emits all sorts of\nnoises from the ports on its body.",
-            "entry_text_diamond": "Its howls can be heard over six\nmiles away. It emits all sorts of\nnoises from the ports on its body."
+            "entry_text": "Its howls can be heard over six\nmiles away. It emits all sorts of\nnoises from the ports on its body."
         },
         "french": {
             "name": "BROUHABAM",

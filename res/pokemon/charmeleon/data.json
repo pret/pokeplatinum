@@ -131,8 +131,7 @@
         "pokemon_pos_m": 15,
         "english": {
             "category": "Flame Pokémon",
-            "entry_text": "In the rocky mountains where\nCHARMELEON live, their fiery\ntails shine at night like stars.",
-            "entry_text_diamond": "In the rocky mountains where\nCHARMELEON live, their fiery\ntails shine at night like stars."
+            "entry_text": "In the rocky mountains where\nCHARMELEON live, their fiery\ntails shine at night like stars."
         },
         "french": {
             "name": "REPTINCEL",

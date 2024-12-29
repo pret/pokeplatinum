@@ -127,8 +127,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Volcano Pokémon",
-            "entry_text": "It is said that when it roars, a\nvolcano erupts somewhere around\nthe globe.",
-            "entry_text_diamond": "It is said that when it roars, a\nvolcano erupts somewhere around\nthe globe."
+            "entry_text": "It is said that when it roars, a\nvolcano erupts somewhere around\nthe globe."
         },
         "french": {
             "name": "ENTEI",

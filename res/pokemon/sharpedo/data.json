@@ -139,8 +139,7 @@
         "pokemon_pos_m": 65535,
         "english": {
             "category": "Brutal Pokémon",
-            "entry_text": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n“The Bully of the Sea.”",
-            "entry_text_diamond": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n“The Bully of the Sea.”"
+            "entry_text": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n“The Bully of the Sea.”"
         },
         "french": {
             "name": "SHARPEDO",

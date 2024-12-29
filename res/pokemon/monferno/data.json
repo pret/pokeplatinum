@@ -146,8 +146,7 @@
         "pokemon_pos_m": 17,
         "english": {
             "category": "Playful Pokémon",
-            "entry_text": "It skillfully controls the intensity\nof the fire on its tail to keep its\nfoes at an ideal distance.",
-            "entry_text_diamond": "To intimidate attackers, it\nstretches the fire on its tail\nto make itself appear bigger."
+            "entry_text": "It skillfully controls the intensity\nof the fire on its tail to keep its\nfoes at an ideal distance."
         },
         "french": {
             "name": "CHIMPENFEU",

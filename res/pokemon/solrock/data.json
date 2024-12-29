@@ -140,8 +140,7 @@
         "pokemon_pos_m": 65528,
         "english": {
             "category": "Meteorite Pokémon",
-            "entry_text": "A new Pokémon species, rumored\nto be from the sun. It gives off\nlight while spinning.",
-            "entry_text_diamond": "A new Pokémon species, rumored\nto be from the sun. It gives off\nlight while spinning."
+            "entry_text": "A new Pokémon species, rumored\nto be from the sun. It gives off\nlight while spinning."
         },
         "french": {
             "name": "SOLAROC",

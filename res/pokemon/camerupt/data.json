@@ -129,8 +129,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Eruption Pokémon",
-            "entry_text": "It has volcanoes on its back. If\nmagma builds up in its body, it\nshudders, then erupts violently.",
-            "entry_text_diamond": "It has volcanoes on its back. If\nmagma builds up in its body, it\nshudders, then erupts violently."
+            "entry_text": "It has volcanoes on its back. If\nmagma builds up in its body, it\nshudders, then erupts violently."
         },
         "french": {
             "name": "CAMERUPT",

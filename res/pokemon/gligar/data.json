@@ -142,8 +142,7 @@
         "pokemon_pos_m": 65533,
         "english": {
             "category": "FlyScorpion Pokémon",
-            "entry_text": "It glides as if sliding. It startles\nfoes by clamping on to their faces,\nthen jabs with its poison stinger.",
-            "entry_text_diamond": "It sails on the winds with its\nlimbs extended to strike from the\nsky. It aims for the prey’s face."
+            "entry_text": "It glides as if sliding. It startles\nfoes by clamping on to their faces,\nthen jabs with its poison stinger."
         },
         "french": {
             "name": "SCORPLANE",

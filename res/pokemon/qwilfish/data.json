@@ -134,8 +134,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Balloon Pokémon",
-            "entry_text": "It shoots the poison spines on its\nbody in all directions. Its round\nform makes it a poor swimmer.",
-            "entry_text_diamond": "It shoots the poison spines on its\nbody in all directions. Its round\nform makes it a poor swimmer."
+            "entry_text": "It shoots the poison spines on its\nbody in all directions. Its round\nform makes it a poor swimmer."
         },
         "french": {
             "name": "QWILFISH",

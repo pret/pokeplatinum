@@ -148,8 +148,7 @@
         "pokemon_pos_m": 15,
         "english": {
             "category": "Long Tail Pokémon",
-            "entry_text": "It lives high among the treetops.\nIt can use its tail as freely and\ncleverly as its hands.",
-            "entry_text_diamond": "It uses its tail to pluck fruits\nthat are out of reach. Its tail is\nmore adept than its real hands."
+            "entry_text": "It lives high among the treetops.\nIt can use its tail as freely and\ncleverly as its hands."
         },
         "french": {
             "name": "CAPUMAIN",

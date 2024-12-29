@@ -143,8 +143,7 @@
         "pokemon_pos_m": 7,
         "english": {
             "category": "Sleeping Pokémon",
-            "entry_text": "When its belly is full, it becomes\ntoo lethargic to even lift a finger,\nso it is safe to bounce on its belly.",
-            "entry_text_diamond": "Its stomach can digest any kind\nof food, even if it happens to be\nmoldy or rotten."
+            "entry_text": "When its belly is full, it becomes\ntoo lethargic to even lift a finger,\nso it is safe to bounce on its belly."
         },
         "french": {
             "name": "RONFLEX",

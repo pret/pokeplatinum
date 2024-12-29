@@ -124,8 +124,7 @@
         "pokemon_pos_m": 65533,
         "english": {
             "category": "Bug Catcher Pokémon",
-            "entry_text": "It binds itself to trees in marshes.\nIt attracts prey with its sweet-\nsmelling drool and gulps them down.",
-            "entry_text_diamond": "It attracts prey with its sweet-\nsmelling saliva, then chomps down.\nIt takes a whole day to eat prey."
+            "entry_text": "It binds itself to trees in marshes.\nIt attracts prey with its sweet-\nsmelling drool and gulps them down."
         },
         "french": {
             "name": "VORTENTE",

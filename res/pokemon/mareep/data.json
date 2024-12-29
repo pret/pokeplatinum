@@ -116,8 +116,7 @@
         "pokemon_pos_m": 19,
         "english": {
             "category": "Wool Pokémon",
-            "entry_text": "Its fluffy coat swells to double\nwhen static electricity builds up.\nTouching it can be shocking.",
-            "entry_text_diamond": "Its fluffy coat swells to double\nwhen static electricity builds up.\nTouching it can be shocking."
+            "entry_text": "Its fluffy coat swells to double\nwhen static electricity builds up.\nTouching it can be shocking."
         },
         "french": {
             "name": "WATTOUAT",

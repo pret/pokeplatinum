@@ -128,8 +128,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Carefree Pokémon",
-            "entry_text": "If it hears festive music, all its\nmuscles fill with energy. It can’t\nhelp breaking out into a dance.",
-            "entry_text_diamond": "If it hears festive music, all its\nmuscles fill with energy. It can’t\nhelp breaking out into a dance."
+            "entry_text": "If it hears festive music, all its\nmuscles fill with energy. It can’t\nhelp breaking out into a dance."
         },
         "french": {
             "name": "LUDICOLO",

@@ -23,7 +23,7 @@ argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the gmm files will be made)')
 argparser.add_argument('out_files',
-                       nargs=26,
+                       nargs=25,
                        help='List of output file names')
 argparser.add_argument('src_files',
                        nargs=NUM_POKEMON,
@@ -102,48 +102,46 @@ for i, file in enumerate(args.src_files):
     for j, lang in enumerate(languages):
         # dex_entry
         if (lang == 'english'):
-            text_data[2+j][i] = str(pkdata[lang]['entry_text_diamond']).replace('\n','\\n')
+            text_data[7][i] = pkdata['english']['entry_text'].replace('\n','\\n')
         else:
-            text_data[2+j][i] = str(pkdata[lang]['entry_text']).replace('\n','\\n')
+            text_data[1+j][i] = pkdata[lang]['entry_text'].replace('\n','\\n')
         # name_number
         if (i == 0):
             if (lang == 'english'):
-                text_data[14+j][i] = pokemon_name + pokemon_name
+                text_data[13+j][i] = pokemon_name + pokemon_name
             else:
-                text_data[14+j][i] = pkdata[lang]['name']
+                text_data[13+j][i] = pkdata[lang]['name']
         else:
             if (lang == 'japanese'):
-                text_data[14+j][i] = Full_Width_Number(i) + '  ' + pkdata[lang]['name'].upper()
+                text_data[13+j][i] = Full_Width_Number(i) + '  ' + pkdata[lang]['name'].upper()
             elif (lang == 'english'):
-                text_data[14+j][i] = f'{i:03}  ' + pokemon_name
+                text_data[13+j][i] = f'{i:03}  ' + pokemon_name
             else:
-                text_data[14+j][i] = f'{i:03}  ' + pkdata[lang]['name'].upper()
+                text_data[13+j][i] = f'{i:03}  ' + pkdata[lang]['name'].upper()
         # category
-        text_data[20+j][i] = pkdata[lang]['category']
+        text_data[19+j][i] = pkdata[lang]['category']
     # native language
-    text_data[8][i] = pkdata['english']['entry_text'].replace('\n','\\n')
-    text_data[13][i] = pkdata['english']['category']
+    text_data[12][i] = pkdata['english']['category']
 
     # weight and height
     if pokemon_name == 'GIRATINA':
-        text_data[9][i] = Convert_weight(pkdata['origin']['weight'])
-        text_data[11][i] = Convert_Height(pkdata['origin']['height'])
+        text_data[8][i] = Convert_weight(pkdata['origin']['weight'])
+        text_data[10][i] = Convert_Height(pkdata['origin']['height'])
         pkdata = pkdata['altered']
     else:
-        text_data[9][i] = Convert_weight(pkdata['weight'])
-        text_data[11][i] = Convert_Height(pkdata['height'])
-    text_data[10][i] = Convert_weight(pkdata['weight'])
-    text_data[12][i] = Convert_Height(pkdata['height'])
+        text_data[8][i] = Convert_weight(pkdata['weight'])
+        text_data[10][i] = Convert_Height(pkdata['height'])
+    text_data[9][i] = Convert_weight(pkdata['weight'])
+    text_data[11][i] = Convert_Height(pkdata['height'])
 
+text_data[8][0] = '????.? lbs.'
 text_data[9][0] = '????.? lbs.'
-text_data[10][0] = '????.? lbs.'
+text_data[10][0] = '???’??”'
 text_data[11][0] = '???’??”'
-text_data[12][0] = '???’??”'
 
 fileKeys = [
     '30764',
     '59681',
-    '30026',
     '30030',
     '30034',
     '30038',
@@ -168,7 +166,7 @@ fileKeys = [
     '46181',
     '46177'
 ]
-file_number = [412, 413] + [(700 + i) for i in range(24)]
+file_number = [412, 413] + [(701 + i) for i in range(23)]
 empty_string = 'empty_string'
 
 # construct binaries
@@ -184,7 +182,7 @@ for file in range(len(file_names)):
 
         attribute = ET.SubElement(row, 'attribute')
         attribute.set('name', 'window_context_name')
-        if (((file > 0) and (file < 9)) and (i == 0)):
+        if (((file > 0) and (file < 8)) and (i == 0)):
             attribute.text = 'garbage'
             language = ET.SubElement(row, 'language')
             language.set('name', 'English')

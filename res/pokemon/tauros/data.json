@@ -131,8 +131,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Wild Bull Pokémon",
-            "entry_text": "Once it takes aim at its foe, it\nmakes a headlong charge. It is\nfamous for its violent nature.",
-            "entry_text_diamond": "Once it takes aim at its foe, it\nmakes a headlong charge. It is\nfamous for its violent nature."
+            "entry_text": "Once it takes aim at its foe, it\nmakes a headlong charge. It is\nfamous for its violent nature."
         },
         "french": {
             "name": "TAUROS",

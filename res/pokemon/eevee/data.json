@@ -141,8 +141,7 @@
         "pokemon_pos_m": 29,
         "english": {
             "category": "Evolution Pokémon",
-            "entry_text": "Because its genetic makeup is\nirregular, it quickly changes its\nform due to a variety of causes.",
-            "entry_text_diamond": "A rare Pokémon that adapts to\nharsh environments by taking on\ndifferent evolutionary forms."
+            "entry_text": "Because its genetic makeup is\nirregular, it quickly changes its\nform due to a variety of causes."
         },
         "french": {
             "name": "EVOLI",

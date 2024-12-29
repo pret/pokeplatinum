@@ -137,8 +137,7 @@
         "pokemon_pos_m": 6,
         "english": {
             "category": "Sludge Pokémon",
-            "entry_text": "A toxic fluid seeps from its body.\nThe fluid instantly kills plants and\ntrees on contact.",
-            "entry_text_diamond": "A toxic fluid seeps from its body.\nThe fluid instantly kills plants and\ntrees on contact."
+            "entry_text": "A toxic fluid seeps from its body.\nThe fluid instantly kills plants and\ntrees on contact."
         },
         "french": {
             "name": "GROTADMORV",

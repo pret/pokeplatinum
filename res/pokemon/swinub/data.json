@@ -130,8 +130,7 @@
         "pokemon_pos_m": 26,
         "english": {
             "category": "Pig Pokémon",
-            "entry_text": "It has a very sensitive nose. It\ncan locate mushrooms, berries, and\neven hot springs buried under ice.",
-            "entry_text_diamond": "It loves eating mushrooms that\ngrow under dead grass. It also\nfinds hot springs while foraging."
+            "entry_text": "It has a very sensitive nose. It\ncan locate mushrooms, berries, and\neven hot springs buried under ice."
         },
         "french": {
             "name": "MARCACRIN",

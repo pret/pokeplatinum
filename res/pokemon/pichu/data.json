@@ -118,8 +118,7 @@
         "pokemon_pos_m": 27,
         "english": {
             "category": "Tiny Mouse Pokémon",
-            "entry_text": "The electric sacs in its cheeks are\nsmall. If even a little electricity\nleaks, it becomes shocked.",
-            "entry_text_diamond": "The electric pouches on its cheeks\nare still small. They cannot store\nmuch electricity yet."
+            "entry_text": "The electric sacs in its cheeks are\nsmall. If even a little electricity\nleaks, it becomes shocked."
         },
         "french": {
             "name": "PICHU",

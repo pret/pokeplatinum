@@ -145,8 +145,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Rainbow Pokémon",
-            "entry_text": "Its feathers are in seven colors.\nIt is said that anyone seeing it is\npromised eternal happiness.",
-            "entry_text_diamond": "Its feathers are in seven colors.\nIt is said that anyone seeing it is\npromised eternal happiness."
+            "entry_text": "Its feathers are in seven colors.\nIt is said that anyone seeing it is\npromised eternal happiness."
         },
         "french": {
             "name": "HO-OH",

@@ -131,8 +131,7 @@
         "pokemon_pos_m": 65533,
         "english": {
             "category": "Bat Pokémon",
-            "entry_text": "The transformation of its legs into\nwings made it better at flying, but\nmore clumsy at walking.",
-            "entry_text_diamond": "Having four wings enables it to fly\nfaster and more quietly. It turns\nactive when the night comes."
+            "entry_text": "The transformation of its legs into\nwings made it better at flying, but\nmore clumsy at walking."
         },
         "french": {
             "name": "NOSTENFER",

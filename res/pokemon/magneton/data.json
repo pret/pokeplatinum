@@ -132,8 +132,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Magnet Pokémon",
-            "entry_text": "Many mysteriously appear when more\nsunspots dot the sun. They stop\nTV sets from displaying properly.",
-            "entry_text_diamond": "It is actually three MAGNEMITE\nlinked by magnetism. A group can\nset off a magnetic storm."
+            "entry_text": "Many mysteriously appear when more\nsunspots dot the sun. They stop\nTV sets from displaying properly."
         },
         "french": {
             "name": "MAGNETON",

@@ -140,8 +140,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Meditate Pokémon",
-            "entry_text": "It always trains deep in mountains.\nIt levitates when it heightens its\nspiritual power through meditation.",
-            "entry_text_diamond": "It eats just one berry a day.\nBy enduring hunger, its spirit is\ntempered and made sharper."
+            "entry_text": "It always trains deep in mountains.\nIt levitates when it heightens its\nspiritual power through meditation."
         },
         "french": {
             "name": "MEDITIKKA",

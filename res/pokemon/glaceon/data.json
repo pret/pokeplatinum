@@ -124,8 +124,7 @@
         "pokemon_pos_m": 19,
         "english": {
             "category": "Fresh Snow Pokémon",
-            "entry_text": "By controlling its body heat, it can\nfreeze the atmosphere around it\nto make a diamond-dust flurry.",
-            "entry_text_diamond": "As a protective technique, it can\ncompletely freeze its fur to make\nits hairs stand like needles."
+            "entry_text": "By controlling its body heat, it can\nfreeze the atmosphere around it\nto make a diamond-dust flurry."
         },
         "french": {
             "name": "GIVRALI",

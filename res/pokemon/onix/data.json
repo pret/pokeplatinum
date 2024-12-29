@@ -140,8 +140,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Rock Snake Pokémon",
-            "entry_text": "It burrows through the ground\nat a speed of 50 mph while\nfeeding on large boulders.\n",
-            "entry_text_diamond": "When it travels underground, it\ncauses rumbling and tremors.\nIt can move at 50 mph."
+            "entry_text": "It burrows through the ground\nat a speed of 50 mph while\nfeeding on large boulders.\n"
         },
         "french": {
             "name": "ONIX",

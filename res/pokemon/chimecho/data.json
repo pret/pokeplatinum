@@ -130,8 +130,7 @@
         "pokemon_pos_m": 65523,
         "english": {
             "category": "Wind Chime Pokémon",
-            "entry_text": "Its cries echo inside its hollow\nbody to emerge as beautiful notes\nfor startling and repelling foes.",
-            "entry_text_diamond": "To knock foes flying, it makes the\nair shudder with its cries. It\nconverses using seven cries."
+            "entry_text": "Its cries echo inside its hollow\nbody to emerge as beautiful notes\nfor startling and repelling foes."
         },
         "french": {
             "name": "EOKO",

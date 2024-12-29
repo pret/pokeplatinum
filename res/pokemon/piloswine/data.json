@@ -138,8 +138,7 @@
         "pokemon_pos_m": 14,
         "english": {
             "category": "Swine Pokémon",
-            "entry_text": "Covered by a shaggy coat, it is\nstrong against the cold. Its tusks\nof ice thicken when it snows.",
-            "entry_text_diamond": "Its shaggy coat makes it unable\nto see. It checks surroundings\nwith its sensitive nose instead."
+            "entry_text": "Covered by a shaggy coat, it is\nstrong against the cold. Its tusks\nof ice thicken when it snows."
         },
         "french": {
             "name": "COCHIGNON",

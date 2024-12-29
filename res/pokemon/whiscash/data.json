@@ -133,8 +133,7 @@
         "pokemon_pos_m": 2,
         "english": {
             "category": "Whiskers Pokémon",
-            "entry_text": "It is extremely protective of its\nterritory. If any foe approaches,\nit attacks using vicious tremors.",
-            "entry_text_diamond": "It is very territorial. It repels\nfoes by setting off tremors that\nextend over a three-mile radius."
+            "entry_text": "It is extremely protective of its\nterritory. If any foe approaches,\nit attacks using vicious tremors."
         },
         "french": {
             "name": "BARBICHA",

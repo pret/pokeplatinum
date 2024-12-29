@@ -132,8 +132,7 @@
         "pokemon_pos_m": 15,
         "english": {
             "category": "Ball Roll Pokémon",
-            "entry_text": "It habitually spins things on its\nnose. By doing so, it learns\ntextures and odors.",
-            "entry_text_diamond": "It habitually spins things on its\nnose. By doing so, it learns\ntextures and odors."
+            "entry_text": "It habitually spins things on its\nnose. By doing so, it learns\ntextures and odors."
         },
         "french": {
             "name": "PHOGLEUR",

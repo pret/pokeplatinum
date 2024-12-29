@@ -126,8 +126,7 @@
         "pokemon_pos_m": 9,
         "english": {
             "category": "Ball Whale Pokémon",
-            "entry_text": "On sunny days, it lands on beaches\nto bounce like a ball and play.\nIt spouts water from its nose.",
-            "entry_text_diamond": "On sunny days, it lands on beaches\nto bounce like a ball and play.\nIt spouts water from its nose."
+            "entry_text": "On sunny days, it lands on beaches\nto bounce like a ball and play.\nIt spouts water from its nose."
         },
         "french": {
             "name": "WAILMER",

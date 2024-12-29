@@ -115,8 +115,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Bivalve Pokémon",
-            "entry_text": "It makes a single pearl during\nits lifetime. The pearl is said\nto amplify psychic power.",
-            "entry_text_diamond": "It makes a single pearl during\nits lifetime. The pearl is said\nto amplify psychic power."
+            "entry_text": "It makes a single pearl during\nits lifetime. The pearl is said\nto amplify psychic power."
         },
         "french": {
             "name": "COQUIPERL",

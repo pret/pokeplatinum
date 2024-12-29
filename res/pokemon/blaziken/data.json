@@ -144,8 +144,7 @@
         "pokemon_pos_m": 5,
         "english": {
             "category": "Blaze Pokémon",
-            "entry_text": "Flames spout from its wrists,\nenveloping its knuckles. Its\npunches scorch its foes.",
-            "entry_text_diamond": "Flames spout from its wrists,\nenveloping its knuckles. Its\npunches scorch its foes."
+            "entry_text": "Flames spout from its wrists,\nenveloping its knuckles. Its\npunches scorch its foes."
         },
         "french": {
             "name": "BRASEGALI",

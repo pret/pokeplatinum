@@ -124,8 +124,7 @@
         "pokemon_pos_m": 10,
         "english": {
             "category": "Handstand Pokémon",
-            "entry_text": "It fights while spinning like a top.\nThe centrifugal force boosts its\ndestructive power by ten.",
-            "entry_text_diamond": "It fights while spinning like a top.\nThe centrifugal force boosts its\ndestructive power by ten."
+            "entry_text": "It fights while spinning like a top.\nThe centrifugal force boosts its\ndestructive power by ten."
         },
         "french": {
             "name": "KAPOERA",

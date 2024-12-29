@@ -144,8 +144,7 @@
         "pokemon_pos_m": 8,
         "english": {
             "category": "Meditate Pokémon",
-            "entry_text": "It gains the ability to see the aura\nof its opponents by honing its mind\nthrough starvation.",
-            "entry_text_diamond": "Through yoga training, it has\nhoned its sixth sense. Its\nmovements are elegant."
+            "entry_text": "It gains the ability to see the aura\nof its opponents by honing its mind\nthrough starvation."
         },
         "french": {
             "name": "CHARMINA",

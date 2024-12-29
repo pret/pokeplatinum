@@ -147,8 +147,7 @@
         "pokemon_pos_m": 13,
         "english": {
             "category": "Flame Pokémon",
-            "entry_text": "It uses unique fighting moves with\nfire on its hands and feet. It will\ntake on any opponent.",
-            "entry_text_diamond": "It uses a special kind of martial\narts involving all its limbs.\nIts fire never goes out."
+            "entry_text": "It uses unique fighting moves with\nfire on its hands and feet. It will\ntake on any opponent."
         },
         "french": {
             "name": "SIMIABRAZ",

@@ -154,8 +154,7 @@
         "pokemon_pos_m": 2,
         "english": {
             "category": "DNA Pokémon",
-            "entry_text": "An alien virus that fell to earth\non a meteor underwent a DNA\nmutation to become this Pokémon.",
-            "entry_text_diamond": "An alien virus that fell to earth\non a meteor underwent a DNA\nmutation to become this Pokémon."
+            "entry_text": "An alien virus that fell to earth\non a meteor underwent a DNA\nmutation to become this Pokémon."
         },
         "french": {
             "name": "DEOXYS",

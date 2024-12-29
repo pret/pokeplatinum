@@ -131,8 +131,7 @@
         "pokemon_pos_m": 5,
         "english": {
             "category": "Punching Pokémon",
-            "entry_text": "The arm-twisting punches it throws\npulverize even concrete. It rests\nafter three minutes of fighting.",
-            "entry_text_diamond": "The arm-twisting punches it throws\npulverize even concrete. It rests\nafter three minutes of fighting."
+            "entry_text": "The arm-twisting punches it throws\npulverize even concrete. It rests\nafter three minutes of fighting."
         },
         "french": {
             "name": "TYGNON",

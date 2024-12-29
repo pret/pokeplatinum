@@ -155,8 +155,7 @@
         "pokemon_pos_m": 15,
         "english": {
             "category": "Color Swap Pokémon",
-            "entry_text": "It can freely change its body’s\ncolor. The zigzag pattern on its\nbelly doesn’t change, however.",
-            "entry_text_diamond": "It can freely change its body’s\ncolor. The zigzag pattern on its\nbelly doesn’t change, however."
+            "entry_text": "It can freely change its body’s\ncolor. The zigzag pattern on its\nbelly doesn’t change, however."
         },
         "french": {
             "name": "KECLEON",

@@ -130,8 +130,7 @@
         "pokemon_pos_m": 65534,
         "english": {
             "category": "Seagull Pokémon",
-            "entry_text": "It soars high in the sky, riding on\nupdrafts like a glider. It carries\nfood tucked in its bill.",
-            "entry_text_diamond": "It makes its nest on steep sea\ncliffs. Riding updrafts, it soars\nto great heights."
+            "entry_text": "It soars high in the sky, riding on\nupdrafts like a glider. It carries\nfood tucked in its bill."
         },
         "french": {
             "name": "GOELISE",

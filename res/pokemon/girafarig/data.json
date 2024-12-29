@@ -136,8 +136,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Long Neck Pokémon",
-            "entry_text": "The head on its tail contains a\nsmall brain. It can instinctively\nfight even while facing backward.",
-            "entry_text_diamond": "Its tail also has a small brain.\nIt bites to repel any foe trying\nto sneak up on it from behind."
+            "entry_text": "The head on its tail contains a\nsmall brain. It can instinctively\nfight even while facing backward."
         },
         "french": {
             "name": "GIRAFARIG",

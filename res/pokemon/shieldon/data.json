@@ -136,8 +136,7 @@
         "pokemon_pos_m": 26,
         "english": {
             "category": "Shield Pokémon",
-            "entry_text": "It is outstandingly armored. As a\nresult, it can eat grass and\nberries without having to fight.",
-            "entry_text_diamond": "A Pokémon that lived in jungles\naround 100 million years ago. Its\nfacial hide is extremely hard."
+            "entry_text": "It is outstandingly armored. As a\nresult, it can eat grass and\nberries without having to fight."
         },
         "french": {
             "name": "DINOCLIER",

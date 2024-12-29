@@ -137,8 +137,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Compass Pokémon",
-            "entry_text": "It freely controls three small\nunits called Mini-Noses using\nmagnetic force.",
-            "entry_text_diamond": "It exudes strong magnetism from\nall over. It controls three small\nunits called Mini-Noses."
+            "entry_text": "It freely controls three small\nunits called Mini-Noses using\nmagnetic force."
         },
         "french": {
             "name": "TARINORME",

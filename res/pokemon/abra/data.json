@@ -129,8 +129,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Psi Pokémon",
-            "entry_text": "Using its psychic power is such a\nstrain on its brain that it needs\nto sleep for 18 hours a day.",
-            "entry_text_diamond": "It sleeps for 18 hours a day.\nEven when awake, it teleports\nitself while remaining seated."
+            "entry_text": "Using its psychic power is such a\nstrain on its brain that it needs\nto sleep for 18 hours a day."
         },
         "french": {
             "name": "ABRA",

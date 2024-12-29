@@ -127,8 +127,7 @@
         "pokemon_pos_m": 28,
         "english": {
             "category": "Tiny Leaf Pokémon",
-            "entry_text": "The shell on its back is made of\nsoil. On a very healthy TURTWIG,\nthe shell should feel moist.",
-            "entry_text_diamond": "Made from soil, the shell on its\nback hardens when it drinks water.\nIt lives along lakes."
+            "entry_text": "The shell on its back is made of\nsoil. On a very healthy TURTWIG,\nthe shell should feel moist."
         },
         "french": {
             "name": "TORTIPOUSS",

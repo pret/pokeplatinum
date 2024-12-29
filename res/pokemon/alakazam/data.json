@@ -140,8 +140,7 @@
         "pokemon_pos_m": 7,
         "english": {
             "category": "Psi Pokémon",
-            "entry_text": "The spoons clutched in its hands\nare said to have been created by\nits psychic powers.",
-            "entry_text_diamond": "Its superb memory lets it recall\neverything it has experienced from\nbirth. Its IQ exceeds 5,000."
+            "entry_text": "The spoons clutched in its hands\nare said to have been created by\nits psychic powers."
         },
         "french": {
             "name": "ALAKAZAM",

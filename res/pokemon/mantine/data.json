@@ -134,8 +134,7 @@
         "pokemon_pos_m": 65535,
         "english": {
             "category": "Kite Pokémon",
-            "entry_text": "While elegantly swimming in the sea,\nit ignores REMORAID that cling to\nits fins seeking food scraps.",
-            "entry_text_diamond": "When the waves are calm, one may\nencounter a swarm of MANTINE\nswimming as if they are in flight."
+            "entry_text": "While elegantly swimming in the sea,\nit ignores REMORAID that cling to\nits fins seeking food scraps."
         },
         "french": {
             "name": "DEMANTA",

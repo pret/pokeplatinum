@@ -123,8 +123,7 @@
         "pokemon_pos_m": 11,
         "english": {
             "category": "Ball Pokémon",
-            "entry_text": "It is known to drift on winds if it\nis bloated to bursting with stored\nelectricity.",
-            "entry_text_diamond": "It is known to drift on winds if it\nis bloated to bursting with stored\nelectricity."
+            "entry_text": "It is known to drift on winds if it\nis bloated to bursting with stored\nelectricity."
         },
         "french": {
             "name": "ELECTRODE",

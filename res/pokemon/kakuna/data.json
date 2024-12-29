@@ -78,8 +78,7 @@
         "pokemon_pos_m": 23,
         "english": {
             "category": "Cocoon Pokémon",
-            "entry_text": "While awaiting evolution, it\nhides from predators under\nleaves and in nooks of branches.",
-            "entry_text_diamond": "While awaiting evolution, it\nhides from predators under\nleaves and in nooks of branches."
+            "entry_text": "While awaiting evolution, it\nhides from predators under\nleaves and in nooks of branches."
         },
         "french": {
             "name": "COCONFORT",

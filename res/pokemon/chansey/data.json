@@ -159,8 +159,7 @@
         "pokemon_pos_m": 10,
         "english": {
             "category": "Egg Pokémon",
-            "entry_text": "A kindly Pokémon that lays highly\nnutritious eggs and shares them\nwith injured Pokémon or people.",
-            "entry_text_diamond": "It is said to deliver happiness.\nBeing compassionate, it shares its\neggs with injured people."
+            "entry_text": "A kindly Pokémon that lays highly\nnutritious eggs and shares them\nwith injured Pokémon or people."
         },
         "french": {
             "name": "LEVEINARD",

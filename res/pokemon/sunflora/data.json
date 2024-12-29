@@ -121,8 +121,7 @@
         "pokemon_pos_m": 18,
         "english": {
             "category": "Sun Pokémon",
-            "entry_text": "It gets energy from warm sunlight\nand is known for its habit of\nmoving in pursuit of it.",
-            "entry_text_diamond": "It gets energy from warm sunlight\nand is known for its habit of\nmoving in pursuit of it."
+            "entry_text": "It gets energy from warm sunlight\nand is known for its habit of\nmoving in pursuit of it."
         },
         "french": {
             "name": "HELIATRONC",

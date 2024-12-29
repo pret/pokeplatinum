@@ -123,8 +123,7 @@
         "pokemon_pos_m": 24,
         "english": {
             "category": "Ball Pokémon",
-            "entry_text": "It looks just like a Poké Ball.\nIt is dangerous because it may\nelectrocute or explode on touch.",
-            "entry_text_diamond": "It looks just like a Poké Ball.\nIt is dangerous because it may\nelectrocute or explode on touch."
+            "entry_text": "It looks just like a Poké Ball.\nIt is dangerous because it may\nelectrocute or explode on touch."
         },
         "french": {
             "name": "VOLTORBE",

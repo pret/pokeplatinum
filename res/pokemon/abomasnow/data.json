@@ -138,8 +138,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Frost Tree Pokémon",
-            "entry_text": "They appear when the snow flowers\nbloom. When the petals fall, they\nretreat to places unknown again.",
-            "entry_text_diamond": "It whips up blizzards in mountains\nthat are always buried in snow.\nIt is the abominable snowman."
+            "entry_text": "They appear when the snow flowers\nbloom. When the petals fall, they\nretreat to places unknown again."
         },
         "french": {
             "name": "BLIZZAROI",

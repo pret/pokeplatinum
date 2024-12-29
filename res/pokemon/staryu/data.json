@@ -132,8 +132,7 @@
         "pokemon_pos_m": 19,
         "english": {
             "category": "Star Shape Pokémon",
-            "entry_text": "If its body is torn, it can grow\nback if the red core remains.\nThe core flashes at midnight.",
-            "entry_text_diamond": "If its body is torn, it can grow\nback if the red core remains.\nThe core flashes at midnight."
+            "entry_text": "If its body is torn, it can grow\nback if the red core remains.\nThe core flashes at midnight."
         },
         "french": {
             "name": "STARI",

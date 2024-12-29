@@ -168,8 +168,7 @@
         "pokemon_pos_m": 6,
         "english": {
             "category": "Genetic Pokémon",
-            "entry_text": "A Pokémon created by recombining\nMEW’s genes. It’s said to have the\nmost savage heart among Pokémon.",
-            "entry_text_diamond": "A Pokémon created by recombining\nMEW’s genes. It’s said to have the\nmost savage heart among Pokémon."
+            "entry_text": "A Pokémon created by recombining\nMEW’s genes. It’s said to have the\nmost savage heart among Pokémon."
         },
         "french": {
             "name": "MEWTWO",

@@ -124,8 +124,7 @@
         "pokemon_pos_m": 17,
         "english": {
             "category": "Spark Pokémon",
-            "entry_text": "Strong electricity courses through\nthe tips of its sharp claws. A light\nscratch causes fainting in foes.",
-            "entry_text_diamond": "Its claws loose electricity with\nenough amperage to cause fainting.\nThey live in small groups."
+            "entry_text": "Strong electricity courses through\nthe tips of its sharp claws. A light\nscratch causes fainting in foes."
         },
         "french": {
             "name": "LUXIO",

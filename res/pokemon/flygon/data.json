@@ -137,8 +137,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Mystic Pokémon",
-            "entry_text": "It whips up sandstorms with\npowerful flaps of its wings. It is\nknown as “The Desert Spirit.”",
-            "entry_text_diamond": "It whips up sandstorms with\npowerful flaps of its wings. It is\nknown as “The Desert Spirit.”"
+            "entry_text": "It whips up sandstorms with\npowerful flaps of its wings. It is\nknown as “The Desert Spirit.”"
         },
         "french": {
             "name": "LIBEGON",

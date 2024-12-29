@@ -129,8 +129,7 @@
         "pokemon_pos_m": 65534,
         "english": {
             "category": "Wing Fish Pokémon",
-            "entry_text": "The line running down its side can\nstore sunlight. It shines vividly at\nnight.",
-            "entry_text_diamond": "After long exposure to sunlight,\nthe patterns on its tail fins shine\nvividly when darkness arrives."
+            "entry_text": "The line running down its side can\nstore sunlight. It shines vividly at\nnight."
         },
         "french": {
             "name": "ECAYON",

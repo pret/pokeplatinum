@@ -121,8 +121,7 @@
         "pokemon_pos_m": 24,
         "english": {
             "category": "Flash Pokémon",
-            "entry_text": "The extension and contraction of\nits muscles generates electricity.\nIt glows when in trouble.",
-            "entry_text_diamond": "All of its fur dazzles if danger is\nsensed. It flees while the foe is\nmomentarily blinded."
+            "entry_text": "The extension and contraction of\nits muscles generates electricity.\nIt glows when in trouble."
         },
         "french": {
             "name": "LIXY",

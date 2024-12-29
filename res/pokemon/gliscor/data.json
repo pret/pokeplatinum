@@ -146,8 +146,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Fang Scorp Pokémon",
-            "entry_text": "If it succeeds in catching even a\nfaint breeze properly, it can circle\nthe globe without flapping once.",
-            "entry_text_diamond": "It observes prey while hanging\ninverted from branches. When the\nchance presents itself, it swoops!"
+            "entry_text": "If it succeeds in catching even a\nfaint breeze properly, it can circle\nthe globe without flapping once."
         },
         "french": {
             "name": "SCORVOL",

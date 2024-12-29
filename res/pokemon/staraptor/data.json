@@ -121,8 +121,7 @@
         "pokemon_pos_m": 12,
         "english": {
             "category": "Predator Pokémon",
-            "entry_text": "It never stops attacking even\nif it is injured. It fusses over the\nshape of its comb.",
-            "entry_text_diamond": "It has a savage nature. It will\ncourageously challenge foes that\nare much larger."
+            "entry_text": "It never stops attacking even\nif it is injured. It fusses over the\nshape of its comb."
         },
         "french": {
             "name": "ETOURAPTOR",

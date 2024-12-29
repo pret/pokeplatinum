@@ -140,8 +140,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Mach Pokémon",
-            "entry_text": "It is said that when one runs at\nhigh speed, its wings create blades\nof wind that can fell nearby trees.",
-            "entry_text_diamond": "When it folds up its body and\nextends its wings, it looks like a\njet plane. It flies at sonic speed."
+            "entry_text": "It is said that when one runs at\nhigh speed, its wings create blades\nof wind that can fell nearby trees."
         },
         "french": {
             "name": "CARCHACROK",

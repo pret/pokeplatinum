@@ -124,8 +124,7 @@
         "pokemon_pos_m": 65530,
         "english": {
             "category": "Cottonweed Pokémon",
-            "entry_text": "It drifts on winds. It is said that\nwhen HOPPIP gather in fields and\nmountains, spring is on the way.",
-            "entry_text_diamond": "It drifts on winds. It is said that\nwhen HOPPIP gather in fields and\nmountains, spring is on the way."
+            "entry_text": "It drifts on winds. It is said that\nwhen HOPPIP gather in fields and\nmountains, spring is on the way."
         },
         "french": {
             "name": "GRANIVOL",

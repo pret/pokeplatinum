@@ -133,8 +133,7 @@
         "pokemon_pos_m": 28,
         "english": {
             "category": "Egg Pokémon",
-            "entry_text": "Its six eggs converse using\ntelepathy. They can quickly gather\nif they become separated.",
-            "entry_text_diamond": "Its six eggs converse using\ntelepathy. They can quickly gather\nif they become separated."
+            "entry_text": "Its six eggs converse using\ntelepathy. They can quickly gather\nif they become separated."
         },
         "french": {
             "name": "NOEUNOEUF",

@@ -137,8 +137,7 @@
         "pokemon_pos_m": 21,
         "english": {
             "category": "Duck Pokémon",
-            "entry_text": "Overwhelmed by enigmatic abilities,\nit suffers a constant headache. It\nsometimes uses mysterious powers.",
-            "entry_text_diamond": "If its usual headache worsens, it\nstarts exhibiting odd powers. It\ncan’t remember doing so, however."
+            "entry_text": "Overwhelmed by enigmatic abilities,\nit suffers a constant headache. It\nsometimes uses mysterious powers."
         },
         "french": {
             "name": "PSYKOKWAK",

@@ -127,8 +127,7 @@
         "pokemon_pos_m": 23,
         "english": {
             "category": "Sea Weasel Pokémon",
-            "entry_text": "It spins its two tails like a screw\nto propel itself through water. The\ntails also slice clinging seaweed.",
-            "entry_text_diamond": "It has a flotation sac that is\nlike an inflatable collar. It floats\non water with its head out."
+            "entry_text": "It spins its two tails like a screw\nto propel itself through water. The\ntails also slice clinging seaweed."
         },
         "french": {
             "name": "MUSTEBOUEE",

@@ -147,8 +147,7 @@
         "pokemon_pos_m": 65535,
         "english": {
             "category": "Shadow Pokémon",
-            "entry_text": "The leer that floats in darkness\nbelongs to a GENGAR delighting in\ncasting curses on people.",
-            "entry_text_diamond": "It hides in shadows. It is said\nthat if GENGAR is hiding, it cools\nthe area by nearly 10 degrees F."
+            "entry_text": "The leer that floats in darkness\nbelongs to a GENGAR delighting in\ncasting curses on people."
         },
         "french": {
             "name": "ECTOPLASMA",

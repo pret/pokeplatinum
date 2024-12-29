@@ -123,8 +123,7 @@
         "pokemon_pos_m": 65535,
         "english": {
             "category": "Jellyfish Pokémon",
-            "entry_text": "It extends its 80 tentacles to\nform an encircling poisonous net\nthat is difficult to escape.",
-            "entry_text_diamond": "With 80 tentacles for ensnaring\nvictims, it prevents escape until\nthe prey is weakened by poison."
+            "entry_text": "It extends its 80 tentacles to\nform an encircling poisonous net\nthat is difficult to escape."
         },
         "french": {
             "name": "TENTACRUEL",

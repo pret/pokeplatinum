@@ -126,8 +126,7 @@
         "pokemon_pos_m": 10,
         "english": {
             "category": "Bite Pokémon",
-            "entry_text": "It chases down prey in a pack.\nIt will never disobey the commands\nof a skilled Trainer.",
-            "entry_text_diamond": "It chases down prey in a pack.\nIt will never disobey the commands\nof a skilled Trainer."
+            "entry_text": "It chases down prey in a pack.\nIt will never disobey the commands\nof a skilled Trainer."
         },
         "french": {
             "name": "GRAHYENA",

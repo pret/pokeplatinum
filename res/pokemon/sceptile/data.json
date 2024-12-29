@@ -143,8 +143,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Forest Pokémon",
-            "entry_text": "The leaves that grow on its arms\ncan slice down thick trees. It is\nwithout peer in jungle combat.",
-            "entry_text_diamond": "The leaves that grow on its arms\ncan slice down thick trees. It is\nwithout peer in jungle combat."
+            "entry_text": "The leaves that grow on its arms\ncan slice down thick trees. It is\nwithout peer in jungle combat."
         },
         "french": {
             "name": "JUNGKO",

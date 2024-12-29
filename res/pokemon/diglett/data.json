@@ -124,8 +124,7 @@
         "pokemon_pos_m": 32,
         "english": {
             "category": "Mole Pokémon",
-            "entry_text": "A Pokémon that lives underground.\nBecause of its dark habitat, it is\nrepelled by bright sunlight.",
-            "entry_text_diamond": "A Pokémon that lives underground.\nBecause of its dark habitat, it is\nrepelled by bright sunlight."
+            "entry_text": "A Pokémon that lives underground.\nBecause of its dark habitat, it is\nrepelled by bright sunlight."
         },
         "french": {
             "name": "TAUPIQUEUR",

@@ -125,8 +125,7 @@
         "pokemon_pos_m": 20,
         "english": {
             "category": "Coal Pokémon",
-            "entry_text": "It burns coal inside its shell for\nenergy. It blows out black soot if\nit is endangered.",
-            "entry_text_diamond": "It burns coal inside its shell for\nenergy. It blows out black soot if\nit is endangered."
+            "entry_text": "It burns coal inside its shell for\nenergy. It blows out black soot if\nit is endangered."
         },
         "french": {
             "name": "CHARTOR",

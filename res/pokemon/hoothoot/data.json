@@ -133,8 +133,7 @@
         "pokemon_pos_m": 21,
         "english": {
             "category": "Owl Pokémon",
-            "entry_text": "It marks time precisely. Some\ncountries consider it to be a wise\nfriend, versed in the world’s ways.",
-            "entry_text_diamond": "It always stands on one foot.\nEven when attacked, it does not\nbrace itself using both feet."
+            "entry_text": "It marks time precisely. Some\ncountries consider it to be a wise\nfriend, versed in the world’s ways."
         },
         "french": {
             "name": "HOOTHOOT",

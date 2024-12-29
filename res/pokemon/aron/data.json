@@ -137,8 +137,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Iron Armor Pokémon",
-            "entry_text": "It usually lives deep in mountains.\nHowever, hunger may drive it to\neat railroad tracks and cars.",
-            "entry_text_diamond": "It usually lives deep in mountains.\nHowever, hunger may drive it to\neat railroad tracks and cars."
+            "entry_text": "It usually lives deep in mountains.\nHowever, hunger may drive it to\neat railroad tracks and cars."
         },
         "french": {
             "name": "GALEKID",

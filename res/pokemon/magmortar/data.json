@@ -133,8 +133,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Blast Pokémon",
-            "entry_text": "When launching 3,600 degrees F\nfireballs, its body takes on a\nwhitish hue from the intense heat.",
-            "entry_text_diamond": "It blasts fireballs of over 3,600\ndegrees F from the ends of its\narms. It lives in volcanic craters."
+            "entry_text": "When launching 3,600 degrees F\nfireballs, its body takes on a\nwhitish hue from the intense heat."
         },
         "french": {
             "name": "MAGANON",

@@ -136,8 +136,7 @@
         "pokemon_pos_m": 7,
         "english": {
             "category": "Megaton Pokémon",
-            "entry_text": "Even dynamite can’t harm its hard,\nboulderlike body. It sheds its hide\njust once a year.",
-            "entry_text_diamond": "It sheds its hide once a year.\nIts boulderlike body is so tough,\neven dynamite can’t harm it."
+            "entry_text": "Even dynamite can’t harm its hard,\nboulderlike body. It sheds its hide\njust once a year."
         },
         "french": {
             "name": "GROLEM",

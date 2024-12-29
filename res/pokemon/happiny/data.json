@@ -128,8 +128,7 @@
         "pokemon_pos_m": 24,
         "english": {
             "category": "Playhouse Pokémon",
-            "entry_text": "It likes to carry around a small\nrock. It may wander around others’\nfeet and cause them to stumble.",
-            "entry_text_diamond": "It loves round white things.\nIt carries an egg-shaped rock in\nimitation of CHANSEY."
+            "entry_text": "It likes to carry around a small\nrock. It may wander around others’\nfeet and cause them to stumble."
         },
         "french": {
             "name": "PTIRAVI",

@@ -119,8 +119,7 @@
         "pokemon_pos_m": 27,
         "english": {
             "category": "Mushroom Pokémon",
-            "entry_text": "It spouts poison spores from the\ntop of its head. These spores\ncause pain all over if inhaled.",
-            "entry_text_diamond": "It spouts poison spores from the\ntop of its head. These spores\ncause pain all over if inhaled."
+            "entry_text": "It spouts poison spores from the\ntop of its head. These spores\ncause pain all over if inhaled."
         },
         "french": {
             "name": "BALIGNON",

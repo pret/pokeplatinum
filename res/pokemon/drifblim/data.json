@@ -142,8 +142,7 @@
         "pokemon_pos_m": 65528,
         "english": {
             "category": "Blimp Pokémon",
-            "entry_text": "At dusk, swarms of them are\ncarried aloft on winds. When\nnoticed, they suddenly vanish.",
-            "entry_text_diamond": "It’s drowzy in daytime, but flies\noff in the evening in big groups.\nNo one knows where they go."
+            "entry_text": "At dusk, swarms of them are\ncarried aloft on winds. When\nnoticed, they suddenly vanish."
         },
         "french": {
             "name": "GRODRIVE",

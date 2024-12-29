@@ -142,8 +142,7 @@
         "pokemon_pos_m": 5,
         "english": {
             "category": "Dragon Pokémon",
-            "entry_text": "As a result of its long-held dream\nof flying, its cellular structure\nchanged, and wings grew out.",
-            "entry_text_diamond": "As a result of its long-held dream\nof flying, its cellular structure\nchanged, and wings grew out."
+            "entry_text": "As a result of its long-held dream\nof flying, its cellular structure\nchanged, and wings grew out."
         },
         "french": {
             "name": "DRATTAK",

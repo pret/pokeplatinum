@@ -165,8 +165,7 @@
         "pokemon_pos_m": 6,
         "english": {
             "category": "Iron Armor Pokémon",
-            "entry_text": "While seeking iron for food, it\ndigs tunnels by breaking through\nbedrock with its steel horns.",
-            "entry_text_diamond": "While seeking iron for food, it\ndigs tunnels by breaking through\nbedrock with its steel horns."
+            "entry_text": "While seeking iron for food, it\ndigs tunnels by breaking through\nbedrock with its steel horns."
         },
         "french": {
             "name": "GALEKING",

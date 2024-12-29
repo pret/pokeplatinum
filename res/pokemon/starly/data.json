@@ -123,8 +123,7 @@
         "pokemon_pos_m": 29,
         "english": {
             "category": "Starling Pokémon",
-            "entry_text": "Because they are weak individually,\nthey form groups. However, they\nbicker if the group grows too big.",
-            "entry_text_diamond": "They flock in great numbers.\nThough small, they flap their\nwings with great power."
+            "entry_text": "Because they are weak individually,\nthey form groups. However, they\nbicker if the group grows too big."
         },
         "french": {
             "name": "ETOURMI",

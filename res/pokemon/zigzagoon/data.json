@@ -137,8 +137,7 @@
         "pokemon_pos_m": 27,
         "english": {
             "category": "TinyRaccoon Pokémon",
-            "entry_text": "It walks in zigzag fashion. It is\ngood at finding items in the\ngrass and even in the ground.",
-            "entry_text_diamond": "It walks in zigzag fashion. It is\ngood at finding items in the\ngrass and even in the ground."
+            "entry_text": "It walks in zigzag fashion. It is\ngood at finding items in the\ngrass and even in the ground."
         },
         "french": {
             "name": "ZIGZATON",

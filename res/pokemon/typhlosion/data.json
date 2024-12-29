@@ -135,8 +135,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Volcano Pokémon",
-            "entry_text": "It attacks using blasts of fire.\nIt creates heat shimmers with\nintense fire to hide itself.",
-            "entry_text_diamond": "It attacks using blasts of fire.\nIt creates heat shimmers with\nintense fire to hide itself."
+            "entry_text": "It attacks using blasts of fire.\nIt creates heat shimmers with\nintense fire to hide itself."
         },
         "french": {
             "name": "TYPHLOSION",

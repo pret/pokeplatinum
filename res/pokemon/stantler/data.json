@@ -133,8 +133,7 @@
         "pokemon_pos_m": 7,
         "english": {
             "category": "Big Horn Pokémon",
-            "entry_text": "Staring at its antlers creates\nan odd sensation as if one were\nbeing drawn into their centers.",
-            "entry_text_diamond": "Staring at its antlers creates\nan odd sensation as if one were\nbeing drawn into their centers."
+            "entry_text": "Staring at its antlers creates\nan odd sensation as if one were\nbeing drawn into their centers."
         },
         "french": {
             "name": "CERFROUSSE",

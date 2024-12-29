@@ -128,8 +128,7 @@
         "pokemon_pos_m": 29,
         "english": {
             "category": "Balloon Pokémon",
-            "entry_text": "It has a soft and bouncy body.\nOnce it starts bouncing, it\nbecomes impossible to stop.",
-            "entry_text_diamond": "It has a soft and bouncy body.\nOnce it starts bouncing, it\nbecomes impossible to stop."
+            "entry_text": "It has a soft and bouncy body.\nOnce it starts bouncing, it\nbecomes impossible to stop."
         },
         "french": {
             "name": "TOUDOUDOU",

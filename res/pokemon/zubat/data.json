@@ -128,8 +128,7 @@
         "pokemon_pos_m": 65525,
         "english": {
             "category": "Bat Pokémon",
-            "entry_text": "It checks its surroundings and\nlocation using reflections of the\nultrasonic waves from its mouth.",
-            "entry_text_diamond": "Even though it has no eyes, it can\nsense obstacles using ultrasonic\nwaves it emits from its mouth."
+            "entry_text": "It checks its surroundings and\nlocation using reflections of the\nultrasonic waves from its mouth."
         },
         "french": {
             "name": "NOSFERAPTI",

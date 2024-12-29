@@ -138,8 +138,7 @@
         "pokemon_pos_m": 20,
         "english": {
             "category": "Bounce Pokémon",
-            "entry_text": "It bounces constantly, using its\ntail like a spring. The shock of\nbouncing keeps its heart beating.",
-            "entry_text_diamond": "It bounces constantly, using its\ntail like a spring. The shock of\nbouncing keeps its heart beating."
+            "entry_text": "It bounces constantly, using its\ntail like a spring. The shock of\nbouncing keeps its heart beating."
         },
         "french": {
             "name": "SPOINK",

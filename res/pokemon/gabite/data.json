@@ -134,8 +134,7 @@
         "pokemon_pos_m": 7,
         "english": {
             "category": "Cave Pokémon",
-            "entry_text": "It loves sparkly things. It seeks\ntreasures in caves and hoards the\nloot in its nest.",
-            "entry_text_diamond": "There is a long-held belief that\nmedicine made from its scales will\nheal even incurable illnesses."
+            "entry_text": "It loves sparkly things. It seeks\ntreasures in caves and hoards the\nloot in its nest."
         },
         "french": {
             "name": "CARMACHE",

@@ -141,8 +141,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Chimp Pokémon",
-            "entry_text": "It is very agile. Before going to\nsleep, it extinguishes the flame\non its tail to prevent fires.",
-            "entry_text_diamond": "It agilely scales sheer cliffs to\nlive atop craggy mountains. Its\nfire is put out when it sleeps."
+            "entry_text": "It is very agile. Before going to\nsleep, it extinguishes the flame\non its tail to prevent fires."
         },
         "french": {
             "name": "OUISTICRAM",

@@ -139,8 +139,7 @@
         "pokemon_pos_m": 15,
         "english": {
             "category": "Beaver Pokémon",
-            "entry_text": "A river dammed by BIBAREL will\nnever overflow its banks, which\nis appreciated by people nearby.",
-            "entry_text_diamond": "It makes its nest by damming\nstreams with bark and mud. It is\nknown as an industrious worker."
+            "entry_text": "A river dammed by BIBAREL will\nnever overflow its banks, which\nis appreciated by people nearby."
         },
         "french": {
             "name": "CASTORNO",

@@ -154,8 +154,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Happiness Pokémon",
-            "entry_text": "To share its happiness, it flies\naround the world seeking kind-\nhearted people.",
-            "entry_text_diamond": "It is said to appear in front of\nkindly people to scatter a glowing\ndown called “joy dust.”"
+            "entry_text": "To share its happiness, it flies\naround the world seeking kind-\nhearted people."
         },
         "french": {
             "name": "TOGETIC",

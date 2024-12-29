@@ -68,8 +68,7 @@
         "pokemon_pos_m": 30,
         "english": {
             "category": "Transform Pokémon",
-            "entry_text": "It has the ability to reconstitute\nits entire cellular structure to\ntransform into whatever it sees.",
-            "entry_text_diamond": "It has the ability to reconstitute\nits entire cellular structure to\ntransform into whatever it sees."
+            "entry_text": "It has the ability to reconstitute\nits entire cellular structure to\ntransform into whatever it sees."
         },
         "french": {
             "name": "METAMORPH",

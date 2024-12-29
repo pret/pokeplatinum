@@ -132,8 +132,7 @@
         "pokemon_pos_m": 9,
         "english": {
             "category": "Bagworm Pokémon",
-            "entry_text": "It is encased in a steel shell. Its\npeering eyes are all that can be\nseen of its mysterious innards.",
-            "entry_text_diamond": "It is encased in a steel shell. Its\npeering eyes are all that can be\nseen of its mysterious innards."
+            "entry_text": "It is encased in a steel shell. Its\npeering eyes are all that can be\nseen of its mysterious innards."
         },
         "french": {
             "name": "FORETRESS",

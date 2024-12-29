@@ -139,8 +139,7 @@
         "pokemon_pos_m": 7,
         "english": {
             "category": "Thunderbolt Pokémon",
-            "entry_text": "Heedless of enemy attacks, it\ncloses in, shoves its tails onto the\nfoe, then looses high voltage.",
-            "entry_text_diamond": "It pushes the tips of its two tails\nagainst the foe, then lets loose\nwith over 20,000 volts of power."
+            "entry_text": "Heedless of enemy attacks, it\ncloses in, shoves its tails onto the\nfoe, then looses high voltage."
         },
         "french": {
             "name": "ELEKABLE",

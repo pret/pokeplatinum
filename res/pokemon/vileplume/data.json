@@ -111,8 +111,7 @@
         "pokemon_pos_m": 14,
         "english": {
             "category": "Flower Pokémon",
-            "entry_text": "Its petals are the largest in the\nworld. As it walks, it scatters\nextremely allergenic pollen.",
-            "entry_text_diamond": "Its petals are the largest in the\nworld. As it walks, it scatters\nextremely allergenic pollen."
+            "entry_text": "Its petals are the largest in the\nworld. As it walks, it scatters\nextremely allergenic pollen."
         },
         "french": {
             "name": "RAFFLESIA",

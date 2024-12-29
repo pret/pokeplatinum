@@ -128,8 +128,7 @@
         "pokemon_pos_m": 65531,
         "english": {
             "category": "Neon Pokémon",
-            "entry_text": "It crawls along the seafloor using\nits long front fins like legs. It\ncompetes for food with LANTURN.",
-            "entry_text_diamond": "It lives on the deep-sea floor.\nIt attracts prey by flashing the\npatterns on its four tail fins."
+            "entry_text": "It crawls along the seafloor using\nits long front fins like legs. It\ncompetes for food with LANTURN."
         },
         "french": {
             "name": "LUMINEON",

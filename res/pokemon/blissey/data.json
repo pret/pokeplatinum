@@ -155,8 +155,7 @@
         "pokemon_pos_m": 6,
         "english": {
             "category": "Happiness Pokémon",
-            "entry_text": "The eggs it lays are filled with\nhappiness. Eating even one bite\nwill bring a smile to anyone.",
-            "entry_text_diamond": "This kindhearted Pokémon\nnurses sick Pokémon to health.\nIt senses feelings of sadness."
+            "entry_text": "The eggs it lays are filled with\nhappiness. Eating even one bite\nwill bring a smile to anyone."
         },
         "french": {
             "name": "LEUPHORIE",

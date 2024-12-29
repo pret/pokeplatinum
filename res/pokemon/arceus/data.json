@@ -183,8 +183,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Alpha Pokémon",
-            "entry_text": "It is said to have emerged from an\negg in a place where there was\nnothing, then shaped the world.",
-            "entry_text_diamond": "It is described in mythology as\nthe Pokémon that shaped the\nuniverse with its 1,000 arms."
+            "entry_text": "It is said to have emerged from an\negg in a place where there was\nnothing, then shaped the world."
         },
         "french": {
             "name": "ARCEUS",

@@ -128,8 +128,7 @@
         "pokemon_pos_m": 19,
         "english": {
             "category": "Poison Pin Pokémon",
-            "entry_text": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO’s.",
-            "entry_text_diamond": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO’s."
+            "entry_text": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO’s."
         },
         "french": {
             "name": "NIDORINA",

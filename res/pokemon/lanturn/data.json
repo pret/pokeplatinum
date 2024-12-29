@@ -130,8 +130,7 @@
         "pokemon_pos_m": 2,
         "english": {
             "category": "Light Pokémon",
-            "entry_text": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n“The Deep-Sea Star.”",
-            "entry_text_diamond": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n“The Deep-Sea Star.”"
+            "entry_text": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n“The Deep-Sea Star.”"
         },
         "french": {
             "name": "LANTURN",

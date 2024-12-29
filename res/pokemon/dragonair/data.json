@@ -133,8 +133,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Dragon Pokémon",
-            "entry_text": "If its body takes on an aura, the\nweather changes instantly. It is\nsaid to live in seas and lakes.",
-            "entry_text_diamond": "If its body takes on an aura, the\nweather changes instantly. It is\nsaid to live in seas and lakes."
+            "entry_text": "If its body takes on an aura, the\nweather changes instantly. It is\nsaid to live in seas and lakes."
         },
         "french": {
             "name": "DRACO",

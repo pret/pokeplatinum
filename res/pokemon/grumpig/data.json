@@ -148,8 +148,7 @@
         "pokemon_pos_m": 15,
         "english": {
             "category": "Manipulate Pokémon",
-            "entry_text": "It uses black pearls to amplify its\npsycho-power. It does an odd\ndance to gain control over foes.",
-            "entry_text_diamond": "It uses black pearls to amplify its\npsycho-power. It does an odd\ndance to gain control over foes."
+            "entry_text": "It uses black pearls to amplify its\npsycho-power. It does an odd\ndance to gain control over foes."
         },
         "french": {
             "name": "GRORET",

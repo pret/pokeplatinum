@@ -125,8 +125,7 @@
         "pokemon_pos_m": 28,
         "english": {
             "category": "Seed Pokémon",
-            "entry_text": "It suddenly falls out of the sky in\nthe morning. A year after a cold\nsummer, their population explodes.",
-            "entry_text_diamond": "It suddenly falls out of the sky in\nthe morning. A year after a cold\nsummer, their population explodes."
+            "entry_text": "It suddenly falls out of the sky in\nthe morning. A year after a cold\nsummer, their population explodes."
         },
         "french": {
             "name": "TOURNEGRIN",

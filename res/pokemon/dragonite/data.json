@@ -161,8 +161,7 @@
         "pokemon_pos_m": 5,
         "english": {
             "category": "Dragon Pokémon",
-            "entry_text": "It is said to make its home\nsomewhere in the sea. It guides\ncrews of shipwrecks to shore.",
-            "entry_text_diamond": "It is said to make its home\nsomewhere in the sea. It guides\ncrews of shipwrecks to shore."
+            "entry_text": "It is said to make its home\nsomewhere in the sea. It guides\ncrews of shipwrecks to shore."
         },
         "french": {
             "name": "DRACOLOSSE",

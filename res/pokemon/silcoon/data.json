@@ -78,8 +78,7 @@
         "pokemon_pos_m": 22,
         "english": {
             "category": "Cocoon Pokémon",
-            "entry_text": "It wraps silk around the branches\nof a tree. It drinks rainwater on\nits silk while awaiting evolution.",
-            "entry_text_diamond": "It anchors itself by wrapping\ntwigs with the silk from its body.\nIt motionlessly awaits evolution."
+            "entry_text": "It wraps silk around the branches\nof a tree. It drinks rainwater on\nits silk while awaiting evolution."
         },
         "french": {
             "name": "ARMULYS",

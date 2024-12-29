@@ -134,8 +134,7 @@
         "pokemon_pos_m": 15,
         "english": {
             "category": "Tiger Cat Pokémon",
-            "entry_text": "It binds its body with its tails to\nmake itself look bigger. If it locks\neyes, it will glare ceaselessly.",
-            "entry_text_diamond": "It is a brazen brute that barges\nits way into another Pokémon’s\nnest and claims it as its own."
+            "entry_text": "It binds its body with its tails to\nmake itself look bigger. If it locks\neyes, it will glare ceaselessly."
         },
         "french": {
             "name": "CHAFFREUX",

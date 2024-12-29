@@ -129,8 +129,7 @@
         "pokemon_pos_m": 65527,
         "english": {
             "category": "Bell Pokémon",
-            "entry_text": "There is an orb inside its mouth.\nWhen it hops, the orb bounces all\nover and makes a ringing sound.",
-            "entry_text_diamond": "It emits cries by agitating an orb\nat the back of its throat.\nIt moves with flouncing hops."
+            "entry_text": "There is an orb inside its mouth.\nWhen it hops, the orb bounces all\nover and makes a ringing sound."
         },
         "french": {
             "name": "KORILLON",

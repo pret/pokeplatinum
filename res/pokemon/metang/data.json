@@ -148,8 +148,7 @@
         "pokemon_pos_m": 65534,
         "english": {
             "category": "Iron Claw Pokémon",
-            "entry_text": "It is formed by two BELDUM joining\ntogether. Its steel body won’t be\nscratched if it collides with a jet.",
-            "entry_text_diamond": "It is formed by two BELDUM joining\ntogether. Its steel body won’t be\nscratched if it collides with a jet."
+            "entry_text": "It is formed by two BELDUM joining\ntogether. Its steel body won’t be\nscratched if it collides with a jet."
         },
         "french": {
             "name": "METANG",

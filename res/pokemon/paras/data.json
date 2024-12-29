@@ -126,8 +126,7 @@
         "pokemon_pos_m": 30,
         "english": {
             "category": "Mushroom Pokémon",
-            "entry_text": "Mushrooms named tochukaso grow\non its back. They grow along\nwith the host PARAS.",
-            "entry_text_diamond": "Mushrooms named tochukaso grow\non its back. They grow along\nwith the host PARAS."
+            "entry_text": "Mushrooms named tochukaso grow\non its back. They grow along\nwith the host PARAS."
         },
         "french": {
             "name": "PARAS",

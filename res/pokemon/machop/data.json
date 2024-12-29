@@ -134,8 +134,7 @@
         "pokemon_pos_m": 19,
         "english": {
             "category": "Superpower Pokémon",
-            "entry_text": "Though small in stature, it is\npowerful enough to easily heft and\nthrow a number of GEODUDE at once.",
-            "entry_text_diamond": "It hefts a GRAVELER repeatedly to\nstrengthen its entire body. It\nuses every type of martial arts."
+            "entry_text": "Though small in stature, it is\npowerful enough to easily heft and\nthrow a number of GEODUDE at once."
         },
         "french": {
             "name": "MACHOC",

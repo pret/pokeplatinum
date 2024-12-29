@@ -130,8 +130,7 @@
         "pokemon_pos_m": 65533,
         "english": {
             "category": "Lunar Pokémon",
-            "entry_text": "On nights around the quarter moon,\nthe aurora from its tail extends\nand undulates beautifully.",
-            "entry_text_diamond": "Shiny particles are released from\nits wings like a veil. It is said\nto represent the crescent moon."
+            "entry_text": "On nights around the quarter moon,\nthe aurora from its tail extends\nand undulates beautifully."
         },
         "french": {
             "name": "CRESSELIA",

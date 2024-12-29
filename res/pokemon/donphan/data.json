@@ -131,8 +131,7 @@
         "pokemon_pos_m": 17,
         "english": {
             "category": "Armor Pokémon",
-            "entry_text": "It attacks by curling up, then\nrolling into its foe. It can blow\napart a house in one hit.",
-            "entry_text_diamond": "It attacks by curling up, then\nrolling into its foe. It can blow\napart a house in one hit."
+            "entry_text": "It attacks by curling up, then\nrolling into its foe. It can blow\napart a house in one hit."
         },
         "french": {
             "name": "DONPHAN",

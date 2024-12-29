@@ -130,8 +130,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Colossal Pokémon",
-            "entry_text": "It is said to have made Pokémon\nthat look like itself from a special\nice mountain, rocks, and magma.",
-            "entry_text_diamond": "There is an enduring legend that\nstates this Pokémon towed\ncontinents with ropes."
+            "entry_text": "It is said to have made Pokémon\nthat look like itself from a special\nice mountain, rocks, and magma."
         },
         "french": {
             "name": "REGIGIGAS",

@@ -133,8 +133,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Seafaring Pokémon",
-            "entry_text": "It is born with a wondrous power\nthat lets it bond with any kind of\nPokémon.",
-            "entry_text_diamond": "Born on a cold seafloor, it\nwill swim great distances to\nreturn to its birthplace."
+            "entry_text": "It is born with a wondrous power\nthat lets it bond with any kind of\nPokémon."
         },
         "french": {
             "name": "MANAPHY",

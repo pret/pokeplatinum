@@ -134,8 +134,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Poison Bag Pokémon",
-            "entry_text": "It swallows anything whole.\nIt sweats toxic fluids from its\nfollicles to douse foes.",
-            "entry_text_diamond": "It swallows anything whole.\nIt sweats toxic fluids from its\nfollicles to douse foes."
+            "entry_text": "It swallows anything whole.\nIt sweats toxic fluids from its\nfollicles to douse foes."
         },
         "french": {
             "name": "AVALTOUT",

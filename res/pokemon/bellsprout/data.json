@@ -122,8 +122,7 @@
         "pokemon_pos_m": 22,
         "english": {
             "category": "Flower Pokémon",
-            "entry_text": "It prefers hot and humid\nenvironments. It is quick at\ncapturing prey with its vines.",
-            "entry_text_diamond": "It prefers hot and humid\nenvironments. It is quick at\ncapturing prey with its vines."
+            "entry_text": "It prefers hot and humid\nenvironments. It is quick at\ncapturing prey with its vines."
         },
         "french": {
             "name": "CHETIFLOR",

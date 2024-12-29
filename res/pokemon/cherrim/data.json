@@ -115,8 +115,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Blossom Pokémon",
-            "entry_text": "If it senses strong sunlight, it\nopens its folded petals to absorb\nthe sun’s rays with its whole body.",
-            "entry_text_diamond": "It blooms during times of strong\nsunlight. It tries to make up for\neverything it endured as a bud."
+            "entry_text": "If it senses strong sunlight, it\nopens its folded petals to absorb\nthe sun’s rays with its whole body."
         },
         "french": {
             "name": "CERIFLOR",

@@ -141,8 +141,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Fossil Pokémon",
-            "entry_text": "A Pokémon that roamed the skies\nin the dinosaur era. Its teeth are\nlike saw blades.",
-            "entry_text_diamond": "A Pokémon that roamed the skies\nin the dinosaur era. Its teeth are\nlike saw blades."
+            "entry_text": "A Pokémon that roamed the skies\nin the dinosaur era. Its teeth are\nlike saw blades."
         },
         "french": {
             "name": "PTERA",

@@ -124,8 +124,7 @@
         "pokemon_pos_m": 24,
         "english": {
             "category": "Starling Pokémon",
-            "entry_text": "Recognizing their own weakness,\nthey always live in a group. When\nalone, a STARAVIA cries noisily.",
-            "entry_text_diamond": "It flies around forests and fields\nin search of bug Pokémon.\nIt stays within a huge flock."
+            "entry_text": "Recognizing their own weakness,\nthey always live in a group. When\nalone, a STARAVIA cries noisily."
         },
         "french": {
             "name": "ETOURVOL",

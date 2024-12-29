@@ -133,8 +133,7 @@
         "pokemon_pos_m": 11,
         "english": {
             "category": "Pincer Pokémon",
-            "entry_text": "The larger pincer has 10,000-\nhorsepower strength. However, it\nis so heavy, it is difficult to aim.",
-            "entry_text_diamond": "The larger pincer has 10,000-\nhorsepower strength. However, it\nis so heavy, it is difficult to aim."
+            "entry_text": "The larger pincer has 10,000-\nhorsepower strength. However, it\nis so heavy, it is difficult to aim."
         },
         "french": {
             "name": "KRABBOSS",

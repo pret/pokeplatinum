@@ -139,8 +139,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Hypnosis Pokémon",
-            "entry_text": "Seeing its swinging pendulum can\ninduce sleep in three seconds,\neven in someone who just woke up.",
-            "entry_text_diamond": "Seeing its swinging pendulum can\ninduce sleep in three seconds,\neven in someone who just woke up."
+            "entry_text": "Seeing its swinging pendulum can\ninduce sleep in three seconds,\neven in someone who just woke up."
         },
         "french": {
             "name": "HYPNOMADE",

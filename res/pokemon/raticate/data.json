@@ -136,8 +136,7 @@
         "pokemon_pos_m": 21,
         "english": {
             "category": "Mouse Pokémon",
-            "entry_text": "It whittles its constantly growing\nfangs by gnawing on hard things.\nIt can chew apart cinder walls.",
-            "entry_text_diamond": "It whittles its constantly growing\nfangs by gnawing on hard things.\nIt can chew apart cinder walls."
+            "entry_text": "It whittles its constantly growing\nfangs by gnawing on hard things.\nIt can chew apart cinder walls."
         },
         "french": {
             "name": "RATTATAC",

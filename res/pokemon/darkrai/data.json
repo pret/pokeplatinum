@@ -149,8 +149,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Pitch-Black Pokémon",
-            "entry_text": "To protect itself, it afflicts those\naround it with nightmares. However,\nit means no harm.",
-            "entry_text_diamond": "It can lull people to sleep and\nmake them dream. It is active\nduring nights of the new moon."
+            "entry_text": "To protect itself, it afflicts those\naround it with nightmares. However,\nit means no harm."
         },
         "french": {
             "name": "DARKRAI",

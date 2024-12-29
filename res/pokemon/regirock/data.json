@@ -135,8 +135,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Rock Peak Pokémon",
-            "entry_text": "Its entire body is made of rock.\nIf any part chips off in battle, it\nattaches rocks to repair itself.",
-            "entry_text_diamond": "Its entire body is made of rock.\nIf any part chips off in battle, it\nattaches rocks to repair itself."
+            "entry_text": "Its entire body is made of rock.\nIf any part chips off in battle, it\nattaches rocks to repair itself."
         },
         "french": {
             "name": "REGIROCK",

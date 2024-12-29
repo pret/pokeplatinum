@@ -127,8 +127,7 @@
         "pokemon_pos_m": 17,
         "english": {
             "category": "Leaf Pokémon",
-            "entry_text": "It uses the leaf on its head to\ndetermine the temperature and\nhumidity. It loves to sunbathe.",
-            "entry_text_diamond": "It uses the leaf on its head to\ndetermine the temperature and\nhumidity. It loves to sunbathe."
+            "entry_text": "It uses the leaf on its head to\ndetermine the temperature and\nhumidity. It loves to sunbathe."
         },
         "french": {
             "name": "GERMIGNON",

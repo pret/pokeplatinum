@@ -142,8 +142,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Shellfish Pokémon",
-            "entry_text": "The jets of water it spouts from\nthe rocket cannons on its shell\ncan punch through thick steel.",
-            "entry_text_diamond": "The jets of water it spouts from\nthe rocket cannons on its shell\ncan punch through thick steel."
+            "entry_text": "The jets of water it spouts from\nthe rocket cannons on its shell\ncan punch through thick steel."
         },
         "french": {
             "name": "TORTANK",

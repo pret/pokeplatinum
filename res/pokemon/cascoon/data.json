@@ -78,8 +78,7 @@
         "pokemon_pos_m": 22,
         "english": {
             "category": "Cocoon Pokémon",
-            "entry_text": "It never forgets any attack it\nendured while in the cocoon.\nAfter evolution, it seeks payback.",
-            "entry_text_diamond": "It is hot inside its cocoon. All\nthe cells in its body create the\nenergy for it to evolve."
+            "entry_text": "It never forgets any attack it\nendured while in the cocoon.\nAfter evolution, it seeks payback."
         },
         "french": {
             "name": "BLINDALYS",

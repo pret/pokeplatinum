@@ -142,8 +142,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Iron Snake Pokémon",
-            "entry_text": "It is thought its body transformed\nas a result of iron accumulating\ninternally from swallowing soil.",
-            "entry_text_diamond": "Tempered underground under\nhigh pressure and heat, its\nbody is harder than any metal."
+            "entry_text": "It is thought its body transformed\nas a result of iron accumulating\ninternally from swallowing soil."
         },
         "french": {
             "name": "STEELIX",

@@ -68,8 +68,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Symbol Pokémon",
-            "entry_text": "When alone, nothing happens.\nHowever, if there are two or more,\nan odd power is said to emerge.",
-            "entry_text_diamond": "Shaped like ancient writing, it is\na huge mystery whether\nlanguage or UNOWN came first."
+            "entry_text": "When alone, nothing happens.\nHowever, if there are two or more,\nan odd power is said to emerge."
         },
         "french": {
             "name": "ZARBI",

@@ -143,8 +143,7 @@
         "pokemon_pos_m": 16,
         "english": {
             "category": "Spikes Pokémon",
-            "entry_text": "Its powerful tackles can destroy\nanything. However, it is too\nslow witted to help people work.",
-            "entry_text_diamond": "Its body is clad in a thick hide,\nand its tackles topple buildings.\nUnfortunately, it is not smart."
+            "entry_text": "Its powerful tackles can destroy\nanything. However, it is too\nslow witted to help people work."
         },
         "french": {
             "name": "RHINOCORNE",

@@ -130,8 +130,7 @@
         "pokemon_pos_m": 18,
         "english": {
             "category": "Land Shark Pokémon",
-            "entry_text": "It attacks using its huge mouth.\nWhile its attacks are powerful, it\nhurts itself out of clumsiness, too.",
-            "entry_text_diamond": "It nests in small, horizontal holes\nin cave walls. It pounces to catch\nprey that stray too close."
+            "entry_text": "It attacks using its huge mouth.\nWhile its attacks are powerful, it\nhurts itself out of clumsiness, too."
         },
         "french": {
             "name": "GRIKNOT",

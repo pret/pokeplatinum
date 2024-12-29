@@ -697,18 +697,18 @@ message_bank_files = files(
     'message_bank_unk_0697.gmm',
     'message_bank_unk_0698.gmm',
     'message_bank_unk_0699.gmm',
+    'message_bank_species_dex_entry_diamond.gmm',
 )
 
 pokedex_message_banks = [
     'message_bank_species_names.gmm',
     'message_bank_species_names_with_articles.gmm',
-    'message_bank_species_dex_entry_diamond.gmm',
     'message_bank_species_dex_entry_french.gmm',
     'message_bank_species_dex_entry_german.gmm',
     'message_bank_species_dex_entry_italian.gmm',
     'message_bank_species_dex_entry_spanish.gmm',
     'message_bank_species_dex_entry_japanese.gmm',
-    'message_bank_species_dex_entry.gmm',
+    'message_bank_species_dex_entry_english.gmm',
     'message_bank_species_weight.gmm',
     'message_bank_species_weight_gira.gmm',
     'message_bank_species_height.gmm',

@@ -128,8 +128,7 @@
         "pokemon_pos_m": 1,
         "english": {
             "category": "Kicking Pokémon",
-            "entry_text": "Its legs can stretch double.\nFirst-time foes are startled by\nits extensible reach.",
-            "entry_text_diamond": "Its legs can stretch double.\nFirst-time foes are startled by\nits extensible reach."
+            "entry_text": "Its legs can stretch double.\nFirst-time foes are startled by\nits extensible reach."
         },
         "french": {
             "name": "KICKLEE",

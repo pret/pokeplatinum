@@ -136,8 +136,7 @@
         "pokemon_pos_m": 6,
         "english": {
             "category": "Water Fish Pokémon",
-            "entry_text": "It has an easygoing nature. It\ndoesn’t care if it bumps its head on\nboats and boulders while swimming.",
-            "entry_text_diamond": "It has a sluggish nature. It lies\nat the river’s bottom, waiting for\nprey to stray into its mouth."
+            "entry_text": "It has an easygoing nature. It\ndoesn’t care if it bumps its head on\nboats and boulders while swimming."
         },
         "french": {
             "name": "MARAISTE",

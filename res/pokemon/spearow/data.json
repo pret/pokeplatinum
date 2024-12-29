@@ -122,8 +122,7 @@
         "pokemon_pos_m": 30,
         "english": {
             "category": "Tiny Bird Pokémon",
-            "entry_text": "It flaps its small wings busily to\nfly. Using its beak, it searches\nin grass for prey.",
-            "entry_text_diamond": "It flaps its small wings busily to\nfly. Using its beak, it searches\nin grass for prey."
+            "entry_text": "It flaps its small wings busily to\nfly. Using its beak, it searches\nin grass for prey."
         },
         "french": {
             "name": "PIAFABEC",

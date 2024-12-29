@@ -137,8 +137,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Humming Pokémon",
-            "entry_text": "If it bonds with a person, it will\ngently envelop the friend with its\nsoft wings, then hum.",
-            "entry_text_diamond": "It looks like a fluffy cloud when\nit is in flight. It hums with its\nsoprano voice."
+            "entry_text": "If it bonds with a person, it will\ngently envelop the friend with its\nsoft wings, then hum."
         },
         "french": {
             "name": "ALTARIA",

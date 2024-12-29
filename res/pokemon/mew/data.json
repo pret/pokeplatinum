@@ -221,8 +221,7 @@
         "pokemon_pos_m": 65522,
         "english": {
             "category": "New Species Pokémon",
-            "entry_text": "Because it can use all kinds of\nmoves, many scientists believe MEW\nto be the ancestor of Pokémon.",
-            "entry_text_diamond": "Because it can use all kinds of\nmoves, many scientists believe MEW\nto be the ancestor of Pokémon."
+            "entry_text": "Because it can use all kinds of\nmoves, many scientists believe MEW\nto be the ancestor of Pokémon."
         },
         "french": {
             "name": "MEW",

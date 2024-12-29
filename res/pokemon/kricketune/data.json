@@ -120,8 +120,7 @@
         "pokemon_pos_m": 17,
         "english": {
             "category": "Cricket Pokémon",
-            "entry_text": "There is a village that hosts a\ncontest based on the amazingly\nvariable cries of this Pokémon.",
-            "entry_text_diamond": "It crosses its knifelike arms in\nfront of its chest when it cries.\nIt can compose melodies ad lib."
+            "entry_text": "There is a village that hosts a\ncontest based on the amazingly\nvariable cries of this Pokémon."
         },
         "french": {
             "name": "MELOKRIK",

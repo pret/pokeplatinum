@@ -119,8 +119,7 @@
         "pokemon_pos_m": 21,
         "english": {
             "category": "Ant Pit Pokémon",
-            "entry_text": "It makes a conical pit in desert\nsand and lies in wait at the bottom\nfor prey to come tumbling down.",
-            "entry_text_diamond": "It makes a conical pit in desert\nsand and lies in wait at the bottom\nfor prey to come tumbling down."
+            "entry_text": "It makes a conical pit in desert\nsand and lies in wait at the bottom\nfor prey to come tumbling down."
         },
         "french": {
             "name": "KRAKNOIX",

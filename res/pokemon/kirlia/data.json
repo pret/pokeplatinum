@@ -150,8 +150,7 @@
         "pokemon_pos_m": 19,
         "english": {
             "category": "Emotion Pokémon",
-            "entry_text": "If its Trainer becomes happy, it\noverflows with energy, dancing\njoyously while spinning about.",
-            "entry_text_diamond": "It is highly perceptive of its\nTrainer’s feelings. It dances when\nit is feeling happy."
+            "entry_text": "If its Trainer becomes happy, it\noverflows with energy, dancing\njoyously while spinning about."
         },
         "french": {
             "name": "KIRLIA",

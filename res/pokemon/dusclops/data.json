@@ -155,8 +155,7 @@
         "pokemon_pos_m": 2,
         "english": {
             "category": "Beckon Pokémon",
-            "entry_text": "It seeks drifting will-o’-the-wisps\nand sucks them into its empty body.\nWhat happens inside is a mystery.",
-            "entry_text_diamond": "Its body is hollow. It is said that\nthose who look into its body are\nsucked into the void."
+            "entry_text": "It seeks drifting will-o’-the-wisps\nand sucks them into its empty body.\nWhat happens inside is a mystery."
         },
         "french": {
             "name": "TERACLOPE",

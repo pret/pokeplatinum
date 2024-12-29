@@ -128,8 +128,7 @@
         "pokemon_pos_m": 3,
         "english": {
             "category": "Thunder Pokémon",
-            "entry_text": "It is said to have fallen with\nlightning. It can fire thunderbolts\nfrom the rain clouds on its back.",
-            "entry_text_diamond": "It is said to have fallen with\nlightning. It can fire thunderbolts\nfrom the rain clouds on its back."
+            "entry_text": "It is said to have fallen with\nlightning. It can fire thunderbolts\nfrom the rain clouds on its back."
         },
         "french": {
             "name": "RAIKOU",

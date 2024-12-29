@@ -128,8 +128,7 @@
         "pokemon_pos_m": 65529,
         "english": {
             "category": "Magical Pokémon",
-            "entry_text": "Its cry sounds like an incantation.\nIt is said the cry may rarely be\nimbued with happiness-giving power.",
-            "entry_text_diamond": "Its cries sound like incantations.\nThose hearing it are tormented\nby headaches and hallucinations."
+            "entry_text": "Its cry sounds like an incantation.\nIt is said the cry may rarely be\nimbued with happiness-giving power."
         },
         "french": {
             "name": "MAGIREVE",

@@ -120,8 +120,7 @@
         "pokemon_pos_m": 21,
         "english": {
             "category": "Mouse Pokémon",
-            "entry_text": "Its tail discharges electricity into\nthe ground, protecting it from\ngetting shocked.",
-            "entry_text_diamond": "It turns aggressive if it has too\nmuch electricity in its body. It\ndischarges power through its tail."
+            "entry_text": "Its tail discharges electricity into\nthe ground, protecting it from\ngetting shocked."
         },
         "french": {
             "name": "RAICHU",

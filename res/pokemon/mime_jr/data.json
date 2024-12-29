@@ -149,8 +149,7 @@
         "pokemon_pos_m": 24,
         "english": {
             "category": "Mime Pokémon",
-            "entry_text": "It mimics the expressions and\nmotions of those it sees to\nunderstand the feelings of others.",
-            "entry_text_diamond": "It habitually mimics foes. Once\nmimicked, the foe cannot take its\neyes off this Pokémon."
+            "entry_text": "It mimics the expressions and\nmotions of those it sees to\nunderstand the feelings of others."
         },
         "french": {
             "name": "MIME JR.",

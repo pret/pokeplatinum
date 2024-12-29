@@ -161,8 +161,7 @@
         "pokemon_pos_m": 4,
         "english": {
             "category": "Blade Pokémon",
-            "entry_text": "When trying to protect someone,\nit extends its elbows as if they\nwere swords and fights savagely.",
-            "entry_text_diamond": "A master of courtesy and\nswordsmanship, it fights using\nextending swords on its elbows."
+            "entry_text": "When trying to protect someone,\nit extends its elbows as if they\nwere swords and fights savagely."
         },
         "french": {
             "name": "GALLAME",

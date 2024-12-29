@@ -132,8 +132,7 @@
         "pokemon_pos_m": 16,
         "english": {
             "category": "Compass Pokémon",
-            "entry_text": "When endangered, it may protect\nitself by raising its magnetism and\ndrawing iron objects to its body.",
-            "entry_text_diamond": "Its nose is a magnet. As a result,\nthis Pokémon always keeps its face\npointing north."
+            "entry_text": "When endangered, it may protect\nitself by raising its magnetism and\ndrawing iron objects to its body."
         },
         "french": {
             "name": "TARINOR",

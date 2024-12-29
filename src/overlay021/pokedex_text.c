@@ -115,7 +115,7 @@ Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, int hea
     if (index == NUM_LANGUAGES) {
         GF_ASSERT(entryOffset < 1);
         index = species + entryOffset;
-        bankID = message_bank_species_dex_entry;
+        bankID = message_bank_species_dex_entry_english;
     } else {
         const int dexEntryBanks[] = {
             message_bank_species_dex_entry_japanese,

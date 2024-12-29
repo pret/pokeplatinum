@@ -124,8 +124,7 @@
         "pokemon_pos_m": 65533,
         "english": {
             "category": "Jellyfish Pokémon",
-            "entry_text": "Because its body is almost entirely\ncomposed of water, it shrivels up if\nit is washed ashore.",
-            "entry_text_diamond": "Its body is virtually composed of\nwater. It shoots strange beams\nfrom its crystal-like eyes."
+            "entry_text": "Because its body is almost entirely\ncomposed of water, it shrivels up if\nit is washed ashore."
         },
         "french": {
             "name": "TENTACOOL",

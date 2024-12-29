@@ -145,8 +145,7 @@
         "pokemon_pos_m": 65535,
         "english": {
             "category": "Licking Pokémon",
-            "entry_text": "The long tongue is always soggy\nwith slobber. The saliva contains\na solvent that causes numbness.",
-            "entry_text_diamond": "It wraps things with its extensible\ntongue. Getting too close to it\nwill leave you soaked with drool."
+            "entry_text": "The long tongue is always soggy\nwith slobber. The saliva contains\na solvent that causes numbness."
         },
         "french": {
             "name": "COUDLANGUE",

@@ -138,8 +138,7 @@
         "pokemon_pos_m": 0,
         "english": {
             "category": "Continent Pokémon",
-            "entry_text": "Some Pokémon are born on a\nTORTERRA’s back and spend their\nentire life there.",
-            "entry_text_diamond": "Small Pokémon occasionally gather\non its unmoving back to begin\nbuilding their nests."
+            "entry_text": "Some Pokémon are born on a\nTORTERRA’s back and spend their\nentire life there."
         },
         "french": {
             "name": "TORTERRA",

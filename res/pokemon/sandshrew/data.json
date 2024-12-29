@@ -134,8 +134,7 @@
         "pokemon_pos_m": 22,
         "english": {
             "category": "Mouse Pokémon",
-            "entry_text": "To protect itself from attackers,\nit curls up into a ball. It lives in\narid regions with minimal rainfall.",
-            "entry_text_diamond": "To protect itself from attackers,\nit curls up into a ball. It lives in\narid regions with minimal rainfall."
+            "entry_text": "To protect itself from attackers,\nit curls up into a ball. It lives in\narid regions with minimal rainfall."
         },
         "french": {
             "name": "SABELETTE",

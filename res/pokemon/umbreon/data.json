@@ -125,8 +125,7 @@
         "pokemon_pos_m": 15,
         "english": {
             "category": "Moonlight Pokémon",
-            "entry_text": "When exposed to the moon’s aura,\nthe rings on its body glow faintly\nand it gains a mysterious power.",
-            "entry_text_diamond": "The light of the moon changed\nEEVEE’s genetic structure. It\nlurks in darkness for prey."
+            "entry_text": "When exposed to the moon’s aura,\nthe rings on its body glow faintly\nand it gains a mysterious power."
         },
         "french": {
             "name": "NOCTALI",

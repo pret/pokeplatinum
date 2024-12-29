@@ -150,8 +150,7 @@
         "pokemon_pos_m": 19,
         "english": {
             "category": "Dopey Pokémon",
-            "entry_text": "Although slow, it is skilled at\nfishing with its tail. It does not\nfeel pain if its tail is bitten.",
-            "entry_text_diamond": "Although slow, it is skilled at\nfishing with its tail. It does not\nfeel pain if its tail is bitten."
+            "entry_text": "Although slow, it is skilled at\nfishing with its tail. It does not\nfeel pain if its tail is bitten."
         },
         "french": {
             "name": "RAMOLOSS",

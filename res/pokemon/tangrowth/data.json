@@ -138,8 +138,7 @@
         "pokemon_pos_m": 2,
         "english": {
             "category": "Vine Pokémon",
-            "entry_text": "Its arms are made of plants that\nbind themselves to things. They\ngrow back right away if cut.",
-            "entry_text_diamond": "It ensnares prey by extending\narms made of vines. Losing arms to\npredators does not trouble it."
+            "entry_text": "Its arms are made of plants that\nbind themselves to things. They\ngrow back right away if cut."
         },
         "french": {
             "name": "BOULDENEU",

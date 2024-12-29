@@ -127,8 +127,7 @@
         "pokemon_pos_m": 19,
         "english": {
             "category": "Volcano Pokémon",
-            "entry_text": "It intimidates foes with the heat\nof its flames. The fire burns more\nstrongly when it readies to fight.",
-            "entry_text_diamond": "It intimidates foes with the heat\nof its flames. The fire burns more\nstrongly when it readies to fight."
+            "entry_text": "It intimidates foes with the heat\nof its flames. The fire burns more\nstrongly when it readies to fight."
         },
         "french": {
             "name": "FEURISSON",

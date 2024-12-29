@@ -146,8 +146,7 @@
         "pokemon_pos_m": 11,
         "english": {
             "category": "Toxic Mouth Pokémon",
-            "entry_text": "It has a poison sac at its throat.\nWhen it croaks, the stored poison\nis churned for greater potency.",
-            "entry_text_diamond": "Its knuckle claws secrete a toxin\nso vile that even a scratch could\nprove fatal."
+            "entry_text": "It has a poison sac at its throat.\nWhen it croaks, the stored poison\nis churned for greater potency."
         },
         "french": {
             "name": "COATOX",

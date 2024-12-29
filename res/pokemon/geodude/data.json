@@ -135,8 +135,7 @@
         "pokemon_pos_m": 23,
         "english": {
             "category": "Rock Pokémon",
-            "entry_text": "At rest, it looks just like a rock.\nCarelessly stepping on it will make\nit swing its fists angrily.",
-            "entry_text_diamond": "Many live on mountain trails\nand remain half buried while\nkeeping an eye on climbers."
+            "entry_text": "At rest, it looks just like a rock.\nCarelessly stepping on it will make\nit swing its fists angrily."
         },
         "french": {
             "name": "RACAILLOU",

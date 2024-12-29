@@ -116,8 +116,7 @@
         "pokemon_pos_m": 25,
         "english": {
             "category": "Cherry Pokémon",
-            "entry_text": "The small ball is not only filled with\nnutrients, it is also tasty. STARLY\ntry to peck it off.",
-            "entry_text_diamond": "The small ball holds the nutrients\nneeded for evolution. Apparently,\nit is very sweet and tasty."
+            "entry_text": "The small ball is not only filled with\nnutrients, it is also tasty. STARLY\ntry to peck it off."
         },
         "french": {
             "name": "CERIBOU",

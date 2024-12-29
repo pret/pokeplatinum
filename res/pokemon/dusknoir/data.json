@@ -149,8 +149,7 @@
         "pokemon_pos_m": 6,
         "english": {
             "category": "Gripper Pokémon",
-            "entry_text": "It is said to take lost spirits\ninto its pliant body and guide\nthem home.",
-            "entry_text_diamond": "The antenna on its head captures\nradio waves from the world of spirits\nthat command it to take people there."
+            "entry_text": "It is said to take lost spirits\ninto its pliant body and guide\nthem home."
         },
         "french": {
             "name": "NOCTUNOIR",

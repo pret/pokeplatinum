@@ -142,8 +142,7 @@
         "pokemon_pos_m": 2,
         "english": {
             "category": "Temporal Pokémon",
-            "entry_text": "A legendary Pokémon of Sinnoh.\nIt is said that time flows when\nDIALGA’s heart beats.",
-            "entry_text_diamond": "It has the power to control time.\nIt appears in Sinnoh-region myths\nas an ancient deity."
+            "entry_text": "A legendary Pokémon of Sinnoh.\nIt is said that time flows when\nDIALGA’s heart beats."
         },
         "french": {
             "name": "DIALGA",

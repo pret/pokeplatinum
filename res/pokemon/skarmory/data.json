@@ -133,8 +133,7 @@
         "pokemon_pos_m": 2,
         "english": {
             "category": "Armor Bird Pokémon",
-            "entry_text": "Despite being clad entirely in\niron-hard armor, it flies at\nspeeds over 180 mph.",
-            "entry_text_diamond": "Despite being clad entirely in\niron-hard armor, it flies at\nspeeds over 180 mph."
+            "entry_text": "Despite being clad entirely in\niron-hard armor, it flies at\nspeeds over 180 mph."
         },
         "french": {
             "name": "AIRMURE",

@@ -142,8 +142,7 @@
         "pokemon_pos_m": 19,
         "english": {
             "category": "Bone Keeper Pokémon",
-            "entry_text": "From its birth, this savage Pokémon\nconstantly holds bones. It is\nskilled in using them as weapons.",
-            "entry_text_diamond": "From its birth, this savage Pokémon\nconstantly holds bones. It is\nskilled in using them as weapons."
+            "entry_text": "From its birth, this savage Pokémon\nconstantly holds bones. It is\nskilled in using them as weapons."
         },
         "french": {
             "name": "OSSATUEUR",

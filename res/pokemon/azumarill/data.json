@@ -130,8 +130,7 @@
         "pokemon_pos_m": 19,
         "english": {
             "category": "Aqua Rabbit Pokémon",
-            "entry_text": "It can spend all day in water,\nsince it can inhale and store\na large volume of air.",
-            "entry_text_diamond": "It lives in rivers and lakes. In\nwater, its coloring and patterns\ntrick the vision of foes."
+            "entry_text": "It can spend all day in water,\nsince it can inhale and store\na large volume of air."
         },
         "french": {
             "name": "AZUMARILL",
