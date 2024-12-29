@@ -768,7 +768,7 @@ int MapObject_IsOnShallowSnow(MapObject *mapObj, u32 tileBehavior)
     return FALSE;
 }
 
-int sub_0206413C(MapObject *mapObj, u32 tileBehavior)
+int MapObject_IsOnBridge(MapObject *mapObj, u32 tileBehavior)
 {
     if (sub_02062F30(mapObj) == TRUE && TileBehavior_IsBridge(tileBehavior) == TRUE) {
         return TRUE;
@@ -777,7 +777,7 @@ int sub_0206413C(MapObject *mapObj, u32 tileBehavior)
     return FALSE;
 }
 
-int sub_0206415C(MapObject *mapObj, u32 tileBehavior)
+int MapObject_IsOnBikeBridgeNorthSouth(MapObject *mapObj, u32 tileBehavior)
 {
     if (sub_02062F30(mapObj) == TRUE && TileBehavior_IsBikeBridgeNorthSouth(tileBehavior) == TRUE) {
         return TRUE;
@@ -786,7 +786,7 @@ int sub_0206415C(MapObject *mapObj, u32 tileBehavior)
     return FALSE;
 }
 
-int sub_0206417C(MapObject *mapObj, u32 tileBehavior)
+int MapObject_IsOnBikeBridgeEastWest(MapObject *mapObj, u32 tileBehavior)
 {
     if (sub_02062F30(mapObj) == TRUE && TileBehavior_IsBikeBridgeEastWest(tileBehavior) == TRUE) {
         return TRUE;
@@ -809,7 +809,7 @@ static const int DATA_GPosY_Dir4AddTbl[] = {
     0
 };
 
-static const int sMapObjectDyDir[] = {
+static const int sMapObjectDzDir[] = {
     -1,
     0x1,
     0x0,
@@ -823,7 +823,7 @@ int MapObject_GetDxFromDir(int dir)
 
 int MapObject_GetDzFromDir(int dir)
 {
-    return sMapObjectDyDir[dir];
+    return sMapObjectDzDir[dir];
 }
 
 void MapObject_StepDir(MapObject *mapObj, int dir)

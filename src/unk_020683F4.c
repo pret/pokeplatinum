@@ -534,7 +534,7 @@ static u32 sub_02068948(const UnkStruct_020684D0 *param0)
     {
         MapObject *v1 = Player_MapObject(param0->playerAvatar);
 
-        if ((sub_0206415C(v1, param0->unk_0E) == 1) || (sub_0206417C(v1, param0->unk_0E) == 1)) {
+        if ((MapObject_IsOnBikeBridgeNorthSouth(v1, param0->unk_0E) == 1) || (MapObject_IsOnBikeBridgeEastWest(v1, param0->unk_0E) == 1)) {
             return 1;
         }
     }

@@ -1933,7 +1933,7 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
         u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
-            if (sub_0206415C(mapObj, v3) == 1) {
+            if (MapObject_IsOnBikeBridgeNorthSouth(mapObj, v3) == 1) {
                 if ((param2 == 0) || (param2 == 1)) {
                     return 0;
                 }
@@ -1941,7 +1941,7 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
                 return 1;
             }
 
-            if (sub_0206417C(mapObj, v3) == 1) {
+            if (MapObject_IsOnBikeBridgeEastWest(mapObj, v3) == 1) {
                 if ((param2 == 2) || (param2 == 3)) {
                     return 0;
                 }
@@ -1949,7 +1949,7 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
                 return 1;
             }
         } else {
-            if ((sub_0206415C(mapObj, v3) == 1) || (sub_0206417C(mapObj, v3) == 1)) {
+            if ((MapObject_IsOnBikeBridgeNorthSouth(mapObj, v3) == 1) || (MapObject_IsOnBikeBridgeEastWest(mapObj, v3) == 1)) {
                 return 1;
             }
         }
@@ -2366,7 +2366,7 @@ static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     if (param2 != -1) {
         u8 v0 = MapObject_GetCurrTileBehavior(mapObj);
 
-        if (sub_0206415C(mapObj, v0) == 1) {
+        if (MapObject_IsOnBikeBridgeNorthSouth(mapObj, v0) == 1) {
             if ((param2 == 0) || (param2 == 1)) {
                 return 0;
             }
@@ -2374,7 +2374,7 @@ static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
             return 1;
         }
 
-        if (sub_0206417C(mapObj, v0) == 1) {
+        if (MapObject_IsOnBikeBridgeEastWest(mapObj, v0) == 1) {
             if ((param2 == 2) || (param2 == 3)) {
                 return 0;
             }
@@ -2402,7 +2402,7 @@ static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 param
 
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
-    if (sub_0206413C(mapObj, param1) == 1) {
+    if (MapObject_IsOnBridge(mapObj, param1) == 1) {
         return TRUE;
     }
 

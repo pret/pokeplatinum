@@ -1691,16 +1691,16 @@ int MapObjectMan_IsDrawInitialized(const MapObjectManager *mapObjMan)
     return FALSE;
 }
 
-u32 MapObject_CheckManagerStatus(const MapObject *mapObj, u32 param1)
+u32 MapObject_CheckManagerStatus(const MapObject *mapObj, u32 flag)
 {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
-    return MapObjectMan_CheckStatus(mapObjMan, param1);
+    return MapObjectMan_CheckStatus(mapObjMan, flag);
 }
 
 void MapObjectMan_SetEndMovement(MapObjectManager *mapObjMan, int param1)
 {
-    if (param1 == 0) {
+    if (param1 == FALSE) {
         MapObjectMan_SetStatusFlagOn(mapObjMan, MAP_OBJ_STATUS_END_MOVEMENT);
     } else {
         MapObjectMan_SetStatusFlagOff(mapObjMan, MAP_OBJ_STATUS_END_MOVEMENT);
