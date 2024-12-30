@@ -12,7 +12,7 @@ void FieldMessaage_FillWindowTilemap(Window *window);
 u8 FieldMessage_Print(Window *window, Strbuf *strBuf, const Options *options, u8 canSkipDelay);
 u8 FieldMessage_PrintWithParams(Window *window, Strbuf *strBuf, int fontID, int renderDelay, u8 canSkipDelay, BOOL autoScroll);
 u8 FieldMessage_FinishedPrinting(u8 printerID);
-void sub_0205DA1C(BgConfig *bgConfig, Window *window, u16 param2, u16 param3);
+void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 signpostType, u16 param3);
 void FieldMessage_LoadAndDrawSignpost(Window *window, u16 signpostType, u16 signpostNARCMemberIdx);
 
 #endif // POKEPLATINUM_UNK_0205D8CC_H

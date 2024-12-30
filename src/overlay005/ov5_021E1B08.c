@@ -109,7 +109,7 @@ static void ov5_021E1BE0(FieldSystem *fieldSystem)
     Bg_SetOffset(fieldSystem->bgConfig, 3, 3, -48);
 
     if (fieldSystem->unk_64->unk_13_7 == 0) {
-        sub_0205DA1C(fieldSystem->bgConfig, &fieldSystem->unk_64->unk_00, fieldSystem->unk_64->unk_12, 3);
+        FieldMessage_AddSignpostWindow(fieldSystem->bgConfig, &fieldSystem->unk_64->unk_00, fieldSystem->unk_64->unk_12, 3);
         fieldSystem->unk_64->unk_13_7 = 1;
     }
 

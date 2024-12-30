@@ -71,11 +71,11 @@ u8 FieldMessage_FinishedPrinting(u8 printerID)
 }
 
 // used only in one instance
-void sub_0205DA1C(BgConfig *bgConfig, Window *window, u16 param2, u16 param3)
+void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 signpostType, u16 param3)
 {
     u16 tilemapLeft, width;
 
-    if ((param2 == 0) || (param2 == 1)) {
+    if (signpostType == SIGNPOST_CITY_MAP || signpostType == SIGNPOST_ROUTE_MAP) {
         tilemapLeft = 9;
         width = 20;
     } else {
@@ -90,7 +90,7 @@ void sub_0205DA1C(BgConfig *bgConfig, Window *window, u16 param2, u16 param3)
     }
 }
 
-// used only in one instance
+// used only in one instance, together with FieldMessage_AddSignpostWindow
 void FieldMessage_LoadAndDrawSignpost(Window *window, u16 signpostType, u16 signpostNARCMemberIdx)
 {
     LoadSignpostContentGraphics(window->bgConfig, Window_GetBgLayer(window), ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, signpostType, signpostNARCMemberIdx, HEAP_ID_FIELD);
