@@ -15,6 +15,7 @@
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
+#include "field_message.h"
 #include "field_overworld_state.h"
 #include "field_task.h"
 #include "game_options.h"
@@ -40,7 +41,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
-#include "unk_0205D8CC.h"
 #include "unk_02096420.h"
 #include "vars_flags.h"
 

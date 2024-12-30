@@ -232,7 +232,7 @@ pokeplatinum_c = files(
     'unk_0205C22C.c',
     'unk_0205C980.c',
     'unk_0205CA94.c',
-    'unk_0205D8CC.c',
+    'field_message.c',
     'map_tile_behavior.c',
     'unk_0205DFC4.c',
     'player_avatar.c',

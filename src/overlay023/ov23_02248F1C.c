@@ -14,6 +14,7 @@
 #include "cell_actor.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
+#include "field_message.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "math.h"
@@ -28,7 +29,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
-#include "unk_0205D8CC.h"
 
 typedef struct {
     Strbuf *unk_00[32];

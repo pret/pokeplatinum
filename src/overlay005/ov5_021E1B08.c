@@ -7,8 +7,8 @@
 #include "overlay005/struct_ov5_021E1B20_decl.h"
 
 #include "bg_window.h"
+#include "field_message.h"
 #include "heap.h"
-#include "unk_0205D8CC.h"
 
 struct UnkStruct_ov5_021E1B20_t {
     Window unk_00;

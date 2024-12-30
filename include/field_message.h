@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0205D8CC_H
-#define POKEPLATINUM_UNK_0205D8CC_H
+#ifndef POKEPLATINUM_FIELD_MESSAGE_H
+#define POKEPLATINUM_FIELD_MESSAGE_H
 
 #include "bg_window.h"
 #include "game_options.h"
@@ -15,4 +15,4 @@ u8 FieldMessage_FinishedPrinting(u8 printerID);
 void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 signpostType, u16 param3);
 void FieldMessage_LoadAndDrawSignpost(Window *window, u16 signpostType, u16 signpostNARCMemberIdx);
 
-#endif // POKEPLATINUM_UNK_0205D8CC_H
+#endif // POKEPLATINUM_FIELD_MESSAGE_H

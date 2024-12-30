@@ -18,6 +18,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "field_message.h"
 #include "field_task.h"
 #include "font.h"
 #include "graphics.h"
@@ -42,7 +43,6 @@
 #include "unk_02027F84.h"
 #include "unk_02033200.h"
 #include "unk_0205B33C.h"
-#include "unk_0205D8CC.h"
 
 FS_EXTERN_OVERLAY(overlay56);
 

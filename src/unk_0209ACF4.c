@@ -12,6 +12,7 @@
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
+#include "field_message.h"
 #include "field_task.h"
 #include "heap.h"
 #include "message.h"
@@ -25,7 +26,6 @@
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
-#include "unk_0205D8CC.h"
 #include "unk_0209747C.h"
 
 typedef struct {

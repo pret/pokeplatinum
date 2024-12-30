@@ -15,6 +15,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "field_message.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object.h"
@@ -30,7 +31,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_0205D8CC.h"
 #include "unk_020711EC.h"
 
 typedef struct {

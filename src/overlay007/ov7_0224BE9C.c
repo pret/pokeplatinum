@@ -12,6 +12,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "field_message.h"
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
@@ -31,7 +32,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_020298BC.h"
-#include "unk_0205D8CC.h"
 
 typedef struct {
     u32 unk_00;

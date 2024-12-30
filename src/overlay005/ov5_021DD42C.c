@@ -9,6 +9,7 @@
 #include "overlay005/struct_ov5_021DD42C.h"
 
 #include "bg_window.h"
+#include "field_message.h"
 #include "field_script_context.h"
 #include "game_options.h"
 #include "message.h"
@@ -18,7 +19,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_02014A84.h"
-#include "unk_0205D8CC.h"
 
 typedef struct {
     Strbuf *unk_00;

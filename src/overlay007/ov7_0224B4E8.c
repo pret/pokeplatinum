@@ -11,6 +11,7 @@
 
 #include "bg_window.h"
 #include "core_sys.h"
+#include "field_message.h"
 #include "field_task.h"
 #include "font.h"
 #include "heap.h"
@@ -26,7 +27,6 @@
 #include "unk_02005474.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
-#include "unk_0205D8CC.h"
 #include "unk_0207A2A8.h"
 
 typedef struct {
