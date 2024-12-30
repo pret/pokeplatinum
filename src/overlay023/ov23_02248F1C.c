@@ -421,7 +421,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
         NARC_dtor(v3);
     }
 
-    sub_0205D8CC(4, 0);
+    FieldMessage_LoadTextPalettes(4, FALSE);
     Bg_ClearTilesRange(7, 32, 0, 4);
     FieldMessage_AddWindow(param0, param1, 7);
     Window_FillTilemap(param1, 0);

@@ -5,7 +5,7 @@
 #include "game_options.h"
 #include "strbuf.h"
 
-void sub_0205D8CC(u32 param0, u32 param1);
+void FieldMessage_LoadTextPalettes(u32 palLocation, u32 resetPrinters);
 void FieldMessage_AddWindow(BgConfig *param0, Window *param1, u32 param2);
 void FieldMessage_DrawWindow(Window *param0, const Options *param1);
 void sub_0205D988(Window *param0);

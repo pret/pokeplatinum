@@ -370,7 +370,7 @@ static void ov7_0224C35C(UnkStruct_ov7_0224BEFC *param0)
 static void ov7_0224C3B8(UnkStruct_ov7_0224BEFC *param0)
 {
     Bg_ClearTilemap(param0->unk_14, 3);
-    sub_0205D8CC(0, 1);
+    FieldMessage_LoadTextPalettes(0, TRUE);
 }
 
 static void ov7_0224C3CC(UnkStruct_ov7_0224BEFC *param0)

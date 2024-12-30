@@ -11,14 +11,14 @@
 #include "strbuf.h"
 #include "text.h"
 
-void sub_0205D8CC(u32 param0, u32 param1)
+void FieldMessage_LoadTextPalettes(u32 palLocation, u32 resetPrinters)
 {
-    if (param1 == 1) {
+    if (resetPrinters == TRUE) {
         Text_ResetAllPrinters();
     }
 
-    Font_LoadTextPalette(param0, 13 * 32, 4);
-    Font_LoadScreenIndicatorsPalette(param0, 12 * 32, 4);
+    Font_LoadTextPalette(palLocation, 13 * 32, HEAP_ID_FIELD);
+    Font_LoadScreenIndicatorsPalette(palLocation, 12 * 32, HEAP_ID_FIELD);
 }
 
 void FieldMessage_AddWindow(BgConfig *param0, Window *param1, u32 param2)

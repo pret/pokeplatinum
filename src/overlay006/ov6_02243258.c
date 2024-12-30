@@ -1716,7 +1716,7 @@ static void ov6_022448C8(UnkStruct_ov6_02243FFC *param0)
     G2_SetBG0Priority(param0->unk_24);
     G2_SetBG3Priority(param0->unk_26);
 
-    sub_0205D8CC(0, 1);
+    FieldMessage_LoadTextPalettes(0, TRUE);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
