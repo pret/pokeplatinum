@@ -90,9 +90,10 @@ void sub_0205DA1C(BgConfig *bgConfig, Window *window, u16 param2, u16 param3)
     }
 }
 
-void sub_0205DA80(Window *window, u16 param1, u16 param2)
+// used only in one instance
+void FieldMessage_LoadAndDrawSignpost(Window *window, u16 signpostType, u16 signpostNARCMemberIdx)
 {
-    LoadSignpostContentGraphics(window->bgConfig, Window_GetBgLayer(window), ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, param1, param2, 4);
+    LoadSignpostContentGraphics(window->bgConfig, Window_GetBgLayer(window), ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, signpostType, signpostNARCMemberIdx, HEAP_ID_FIELD);
     Window_FillTilemap(window, 15);
-    Window_DrawSignpost(window, 0, ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, param1);
+    Window_DrawSignpost(window, FALSE, ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, signpostType);
 }

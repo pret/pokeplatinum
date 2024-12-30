@@ -113,7 +113,7 @@ static void ov5_021E1BE0(FieldSystem *fieldSystem)
         fieldSystem->unk_64->unk_13_7 = 1;
     }
 
-    sub_0205DA80(&fieldSystem->unk_64->unk_00, fieldSystem->unk_64->unk_12, fieldSystem->unk_64->unk_10);
+    FieldMessage_LoadAndDrawSignpost(&fieldSystem->unk_64->unk_00, fieldSystem->unk_64->unk_12, fieldSystem->unk_64->unk_10);
 }
 
 static void ov5_021E1C1C(FieldSystem *fieldSystem)
