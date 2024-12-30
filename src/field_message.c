@@ -34,7 +34,7 @@ void FieldMessage_DrawWindow(Window *window, const Options *options)
 {
     LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), 1024 - (18 + 12), 10, Options_Frame(options), 4);
     FieldMessaage_FillWindowTilemap(window);
-    Window_DrawMessageBoxWithScrollCursor(window, 0, 1024 - (18 + 12), 10);
+    Window_DrawMessageBoxWithScrollCursor(window, FALSE, 1024 - (18 + 12), 10);
 }
 
 void FieldMessaage_FillWindowTilemap(Window *window)
@@ -45,8 +45,8 @@ void FieldMessaage_FillWindowTilemap(Window *window)
 u8 FieldMessage_Print(Window *window, Strbuf *strBuf, const Options *options, u8 canSkipDelay)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(canSkipDelay);
-    RenderControlFlags_SetAutoScrollFlags(0);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetAutoScrollFlags(FALSE);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
     return Text_AddPrinterWithParams(window, FONT_MESSAGE, strBuf, 0, 0, Options_TextFrameDelay(options), NULL);
 }
@@ -56,7 +56,7 @@ u8 FieldMessage_PrintWithParams(Window *window, Strbuf *strBuf, int fontID, int 
 {
     RenderControlFlags_SetCanABSpeedUpPrint(canSkipDelay);
     RenderControlFlags_SetAutoScrollFlags(autoScroll);
-    RenderControlFlags_SetSpeedUpOnTouch(0);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 
     return Text_AddPrinterWithParams(window, fontID, strBuf, 0, 0, renderDelay, NULL);
 }
