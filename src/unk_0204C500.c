@@ -31,7 +31,7 @@ BOOL ScrCmd_253(ScriptContext *param0)
 
     if (v1 == 0) {
         SystemFlag_SetInPalPark(v0);
-        sub_020562F8(param0->fieldSystem);
+        PalPark_InitCatchingShowData(param0->fieldSystem);
     } else if (v1 == 1) {
         SystemFlag_ClearInPalPark(v0);
         sub_02056328(param0->fieldSystem);

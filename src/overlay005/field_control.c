@@ -548,7 +548,7 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
     if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
-        if (sub_02056374(fieldSystem, playerX, playerZ) == TRUE) {
+        if (PalPark_CheckWildEncounter(fieldSystem, playerX, playerZ) == TRUE) {
             Encounter_NewVsPalParkTransfer(fieldSystem, sub_0205639C(fieldSystem));
             return TRUE;
         } else {

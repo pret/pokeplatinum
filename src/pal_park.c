@@ -8,7 +8,6 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_02024440_decl.h"
-#include "struct_decls/struct_020564B4_decl.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -24,103 +23,85 @@
 #include "unk_0202EEC0.h"
 #include "unk_02054D00.h"
 
-typedef struct {
-    u16 unk_00;
-    u8 unk_02;
-    u8 unk_03;
-    u16 unk_04;
-    u8 unk_06;
-    u8 unk_07;
-} UnkStruct_020564B4_sub1;
+static void InitEncounterData(FieldSystem *fieldSystem, PalParkCatchingShowData *catchingShowData);
+static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, PalParkCatchingShowData *catchingShowData);
+static BOOL TryStartEncounter(FieldSystem *fieldSystem, PalParkCatchingShowData *catchingShowData, int param2, int param3);
+static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, PalParkCatchingShowData *catchingShowData);
+static NumMonsCaptured(PalParkCatchingShowData *catchingShowData);
+static void ResetStepCount(PalParkCatchingShowData *catchingShowData);
+static BOOL CanCheckEncounter(PalParkCatchingShowData *catchingShowData);
+static u32 CalculateTypePoints(PalParkCatchingShowData *catchingShowData);
+static u32 CalculateCatchingPoints(PalParkCatchingShowData *catchingShowData);
+static u32 GetTimePoints(PalParkCatchingShowData *catchingShowData);
 
-struct UnkStruct_020564B4_t {
-    UnkStruct_020564B4_sub1 unk_00[6];
-    u8 unk_30[6];
-    int unk_38;
-    int unk_3C;
-    s64 unk_40;
-    int unk_48;
-};
+static PalParkCatchingShowData sCatchingShowData;
 
-static void sub_0205642C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
-static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, UnkStruct_020564B4 *param2);
-static BOOL sub_02056554(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1, int param2, int param3);
-static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
-static NumMonsCaptured(UnkStruct_020564B4 *param0);
-static void sub_020564D0(UnkStruct_020564B4 *param0);
-static BOOL sub_020564F4(UnkStruct_020564B4 *param0);
-static u32 CalculateTypePoints(UnkStruct_020564B4 *param0);
-static u32 CalculateCatchingPoints(UnkStruct_020564B4 *param0);
-static u32 GetTimePoints(UnkStruct_020564B4 *param0);
-
-static UnkStruct_020564B4 Unk_021C07FC;
-
-void sub_020562F8(FieldSystem *fieldSystem)
+void PalPark_InitCatchingShowData(FieldSystem *fieldSystem)
 {
     int v0;
-    UnkStruct_020564B4 *v1 = &Unk_021C07FC;
+    PalParkCatchingShowData *v1 = &sCatchingShowData;
 
-    MI_CpuClearFast(v1, sizeof(UnkStruct_020564B4));
+    MI_CpuClearFast(v1, sizeof(PalParkCatchingShowData));
 
-    sub_0205642C(fieldSystem, v1);
-    sub_020564D0(v1);
+    InitEncounterData(fieldSystem, v1);
+    ResetStepCount(v1);
 
     v1->unk_40 = GetTimestamp();
 }
 
 void sub_02056328(FieldSystem *fieldSystem)
 {
-    UnkStruct_020564B4 *v0 = &Unk_021C07FC;
+    PalParkCatchingShowData *v0 = &sCatchingShowData;
     GameRecords *v1 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     s64 v2 = GetTimestamp();
     s64 v3 = TimeElapsed(v0->unk_40, v2);
 
     if (v3 < 1000) {
-        v0->unk_48 = ((1000 - v3) * 2);
+        v0->timePoints = ((1000 - v3) * 2);
     } else {
-        v0->unk_48 = 0;
+        v0->timePoints = 0;
     }
 
     GameRecords_IncrementTrainerScore(v1, TRAINER_SCORE_EVENT_UNK_17);
 }
 
-BOOL sub_02056374(FieldSystem *fieldSystem, int param1, int param2)
+BOOL PalPark_CheckWildEncounter(FieldSystem *fieldSystem, int param1, int param2)
 {
-    if (sub_020564F4(&Unk_021C07FC) == 1) {
-        return sub_02056554(fieldSystem, &Unk_021C07FC, param1, param2);
+    if (CanCheckEncounter(&sCatchingShowData) == 1) {
+        return TryStartEncounter(fieldSystem, &sCatchingShowData, param1, param2);
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
 FieldBattleDTO *sub_0205639C(FieldSystem *fieldSystem)
 {
-    return sub_0205664C(fieldSystem, &Unk_021C07FC);
+    return sub_0205664C(fieldSystem, &sCatchingShowData);
 }
 
 void sub_020563AC(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
-    sub_02056624(fieldSystem, param1, &Unk_021C07FC);
+    sub_02056624(fieldSystem, param1, &sCatchingShowData);
 }
 
 int PalPark_GetParkBallCount(FieldSystem *fieldSystem)
 {
-    return 6 - NumMonsCaptured(&Unk_021C07FC);
+    return 6 - NumMonsCaptured(&sCatchingShowData);
 }
 
 int PalPark_GetCatchingPoints(FieldSystem *fieldSystem)
 {
-    return CalculateCatchingPoints(&Unk_021C07FC);
+    return CalculateCatchingPoints(&sCatchingShowData);
 }
 
 int PalPark_GetTimePoints(FieldSystem *fieldSystem)
 {
-    return GetTimePoints(&Unk_021C07FC);
+    return GetTimePoints(&sCatchingShowData);
 }
 
 int PalPark_GetTypePoints(FieldSystem *fieldSystem)
 {
-    return CalculateTypePoints(&Unk_021C07FC);
+    return CalculateTypePoints(&sCatchingShowData);
 }
 
 static void sub_02056400(u32 param0, u8 *param1)
@@ -133,48 +114,48 @@ static void sub_02056400(u32 param0, u8 *param1)
     NARC_ReadFromMemberByIndexPair(param1, NARC_INDEX_ARC__PPARK, 0, v0, sizeof(u8) * 6);
 }
 
-static void sub_0205642C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1)
+static void InitEncounterData(FieldSystem *fieldSystem, PalParkCatchingShowData *catchingShowData)
 {
-    int v0;
+    int i;
     u8 v1[8];
-    u16 v2;
-    Pokemon *v3;
+    u16 monSpecies;
+    Pokemon *mon;
     PalParkTransfer *v4;
 
     v4 = SaveData_PalParkTransfer(fieldSystem->saveData);
-    v3 = Pokemon_New(4);
+    mon = Pokemon_New(4);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        param1->unk_30[v0] = 0;
-        sub_0202F000(v4, v0, v3);
+    for (i = 0; i < 6; i++) {
+        catchingShowData->unk_30[i] = 0;
+        sub_0202F000(v4, i, mon);
 
-        v2 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
+        monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-        param1->unk_00[v0].unk_00 = v2;
-        sub_02056400(v2, v1);
+        catchingShowData->palParkPokemon[i].unk_00 = monSpecies;
+        sub_02056400(monSpecies, v1);
 
         if (v1[0] != 0) {
-            param1->unk_00[v0].unk_02 = v1[0];
+            catchingShowData->palParkPokemon[i].encounterType = v1[0];
         } else {
-            param1->unk_00[v0].unk_02 = 5 - 1 + v1[1];
+            catchingShowData->palParkPokemon[i].encounterType = 5 - 1 + v1[1];
         }
 
-        param1->unk_00[v0].unk_03 = v1[3];
-        param1->unk_00[v0].unk_04 = v1[2];
-        param1->unk_00[v0].unk_06 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
-        param1->unk_00[v0].unk_07 = Pokemon_GetValue(v3, MON_DATA_TYPE_2, NULL);
+        catchingShowData->palParkPokemon[i].unk_03 = v1[3];
+        catchingShowData->palParkPokemon[i].unk_04 = v1[2];
+        catchingShowData->palParkPokemon[i].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
+        catchingShowData->palParkPokemon[i].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     }
 
-    Heap_FreeToHeap(v3);
+    Heap_FreeToHeap(mon);
 }
 
-static int NumMonsCaptured(UnkStruct_020564B4 *param0)
+static int NumMonsCaptured(PalParkCatchingShowData *catchingShowData)
 {
     int i;
     int numMonsCaptured = 0;
 
     for (i = 0; i < 6; i++) {
-        if (param0->unk_30[i] != 0) {
+        if (catchingShowData->unk_30[i] != 0) {
             numMonsCaptured++;
         }
     }
@@ -182,21 +163,21 @@ static int NumMonsCaptured(UnkStruct_020564B4 *param0)
     return numMonsCaptured;
 }
 
-static void sub_020564D0(UnkStruct_020564B4 *param0)
+static void ResetStepCount(PalParkCatchingShowData *catchingShowData)
 {
-    param0->unk_38 = inline_020564D0(10) + 5;
+    catchingShowData->steps = inline_020564D0(10) + 5;
 }
 
-static BOOL sub_020564F4(UnkStruct_020564B4 *param0)
+static BOOL CanCheckEncounter(PalParkCatchingShowData *catchingShowData)
 {
-    param0->unk_38--;
+    catchingShowData->steps--;
 
-    if (param0->unk_38 == 0) {
-        sub_020564D0(param0);
-        return 1;
+    if (catchingShowData->steps == 0) {
+        ResetStepCount(catchingShowData);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static int sub_0205650C(FieldSystem *fieldSystem, int param1, int param2)
@@ -216,54 +197,54 @@ static int sub_0205650C(FieldSystem *fieldSystem, int param1, int param2)
     return 0;
 }
 
-static BOOL sub_02056554(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1, int param2, int param3)
+static BOOL TryStartEncounter(FieldSystem *fieldSystem, PalParkCatchingShowData *catchingShowData, int param2, int param3)
 {
     int v0;
     int v1, v2 = 0;
     int v3 = sub_0205650C(fieldSystem, param2, param3);
 
     if (v3 == 0) {
-        return 0;
+        return FALSE;
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if ((param1->unk_30[v0] == 0) && (param1->unk_00[v0].unk_02 == v3)) {
-            v2 += param1->unk_00[v0].unk_03;
+        if ((catchingShowData->unk_30[v0] == 0) && (catchingShowData->palParkPokemon[v0].encounterType == v3)) {
+            v2 += catchingShowData->palParkPokemon[v0].unk_03;
         }
     }
 
     if (v2 == 0) {
-        return 0;
+        return FALSE;
     }
 
     v1 = inline_020564D0(v2 + 20);
 
     if (v1 < 20) {
-        return 0;
+        return FALSE;
     }
 
     v1 -= 20;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if ((param1->unk_30[v0] == 0) && (param1->unk_00[v0].unk_02 == v3)) {
-            if (v1 < param1->unk_00[v0].unk_03) {
-                param1->unk_3C = v0;
+        if ((catchingShowData->unk_30[v0] == 0) && (catchingShowData->palParkPokemon[v0].encounterType == v3)) {
+            if (v1 < catchingShowData->palParkPokemon[v0].unk_03) {
+                catchingShowData->unk_3C = v0;
                 return 1;
             } else {
-                v1 -= param1->unk_00[v0].unk_03;
+                v1 -= catchingShowData->palParkPokemon[v0].unk_03;
             }
         }
     }
 
     GF_ASSERT(0);
-    return 0;
+    return FALSE;
 }
 
-static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, UnkStruct_020564B4 *param2)
+static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, PalParkCatchingShowData *catchingShowData)
 {
     switch (param1->resultMask) {
     case BATTLE_RESULT_CAPTURED_MON:
-        param2->unk_30[param2->unk_3C] = NumMonsCaptured(param2) + 1;
+        catchingShowData->unk_30[catchingShowData->unk_3C] = NumMonsCaptured(catchingShowData) + 1;
         break;
     case BATTLE_RESULT_PLAYER_FLED:
         break;
@@ -272,7 +253,7 @@ static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, UnkSt
     }
 }
 
-static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1)
+static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, PalParkCatchingShowData *catchingShowData)
 {
     FieldBattleDTO *v0;
     Pokemon *v1 = Pokemon_New(32);
@@ -282,26 +263,26 @@ static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4
     v0 = FieldBattleDTO_NewPalPark(11, parkBallCount);
 
     FieldBattleDTO_Init(v0, fieldSystem);
-    sub_0202F000(v2, param1->unk_3C, v1);
+    sub_0202F000(v2, catchingShowData->unk_3C, v1);
     FieldBattleDTO_AddPokemonToBattler(v0, v1, 1);
     Heap_FreeToHeap(v1);
 
     return v0;
 }
 
-static u32 CalculateCatchingPoints(UnkStruct_020564B4 *param0)
+static u32 CalculateCatchingPoints(PalParkCatchingShowData *catchingShowData)
 {
     int i;
     u32 catchingPoints = 0;
 
     for (i = 0; i < 6; i++) {
-        catchingPoints += param0->unk_00[i].unk_04;
+        catchingPoints += catchingShowData->palParkPokemon[i].unk_04;
     }
 
     return catchingPoints;
 }
 
-static u32 CalculateTypePoints(UnkStruct_020564B4 *param0)
+static u32 CalculateTypePoints(PalParkCatchingShowData *catchingShowData)
 {
     int i, j;
     int typeToCheck1, typeToCheck2, typeAlreadyOwned1, typeAlreadyOwned2;
@@ -310,9 +291,9 @@ static u32 CalculateTypePoints(UnkStruct_020564B4 *param0)
 
     for (i = 1; i < 6 + 1; i++) {
         for (j = 0; j < 6; j++) {
-            if (param0->unk_30[j] == i) {
-                typeAlreadyOwned1 = param0->unk_00[j].unk_06;
-                typeAlreadyOwned2 = param0->unk_00[j].unk_07;
+            if (catchingShowData->unk_30[j] == i) {
+                typeAlreadyOwned1 = catchingShowData->palParkPokemon[j].type1;
+                typeAlreadyOwned2 = catchingShowData->palParkPokemon[j].type2;
 
                 if ((i != 1) && (typeToCheck1 != typeAlreadyOwned1) && (typeToCheck1 != typeAlreadyOwned2) && (typeToCheck2 != typeAlreadyOwned1) && (typeToCheck2 != typeAlreadyOwned2)) {
                     totalTypePoints += 200;
@@ -337,7 +318,7 @@ static u32 CalculateTypePoints(UnkStruct_020564B4 *param0)
     return totalTypePoints;
 }
 
-static u32 GetTimePoints(UnkStruct_020564B4 *param0)
+static u32 GetTimePoints(PalParkCatchingShowData *catchingShowData)
 {
-    return param0->unk_48;
+    return catchingShowData->timePoints;
 }
