@@ -33,13 +33,13 @@ void FieldMessage_AddWindow(BgConfig *param0, Window *param1, u32 param2)
 void FieldMessage_DrawWindow(Window *param0, const Options *param1)
 {
     LoadMessageBoxGraphics(param0->bgConfig, Window_GetBgLayer(param0), 1024 - (18 + 12), 10, Options_Frame(param1), 4);
-    sub_0205D988(param0);
+    FieldMessaage_FillWindowTilemap(param0);
     Window_DrawMessageBoxWithScrollCursor(param0, 0, 1024 - (18 + 12), 10);
 }
 
-void sub_0205D988(Window *param0)
+void FieldMessaage_FillWindowTilemap(Window *window)
 {
-    Window_FillTilemap(param0, 15);
+    Window_FillTilemap(window, 15);
 }
 
 u8 FieldMessage_Print(Window *param0, Strbuf *param1, const Options *param2, u8 param3)

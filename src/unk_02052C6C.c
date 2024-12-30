@@ -287,7 +287,7 @@ static void sub_0205300C(UnkStruct_0205300C *param0)
 {
     Strbuf_Free(param0->unk_2C);
     DestroyWaitDial(param0->unk_30);
-    sub_0205D988(&param0->unk_1C);
+    FieldMessaage_FillWindowTilemap(&param0->unk_1C);
 }
 
 static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, int param2)
