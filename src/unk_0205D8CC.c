@@ -54,13 +54,14 @@ u8 FieldMessage_Print(Window *window, Strbuf *strBuf, const Options *options, u8
     return v0;
 }
 
-u8 sub_0205D9CC(Window *window, Strbuf *strBuf, int param2, int param3, u8 param4, int param5)
+// used only in one instance
+u8 FieldMessage_PrintWithParams(Window *window, Strbuf *strBuf, int fontID, int renderDelay, u8 canSkipDelay, BOOL autoScroll)
 {
-    RenderControlFlags_SetCanABSpeedUpPrint(param4);
-    RenderControlFlags_SetAutoScrollFlags(param5);
+    RenderControlFlags_SetCanABSpeedUpPrint(canSkipDelay);
+    RenderControlFlags_SetAutoScrollFlags(autoScroll);
     RenderControlFlags_SetSpeedUpOnTouch(0);
 
-    return Text_AddPrinterWithParams(window, param2, strBuf, 0, 0, param3, NULL);
+    return Text_AddPrinterWithParams(window, fontID, strBuf, 0, 0, renderDelay, NULL);
 }
 
 u8 FieldMessage_FinishedPrinting(u8 printerID)
