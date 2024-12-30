@@ -70,22 +70,23 @@ u8 FieldMessage_FinishedPrinting(u8 printerID)
     return FALSE;
 }
 
-void sub_0205DA1C(BgConfig *bgConfig, Window *param1, u16 param2, u16 param3)
+// used only in one instance
+void sub_0205DA1C(BgConfig *bgConfig, Window *window, u16 param2, u16 param3)
 {
-    u16 v0, v1;
+    u16 tilemapLeft, width;
 
     if ((param2 == 0) || (param2 == 1)) {
-        v0 = 9;
-        v1 = 20;
+        tilemapLeft = 9;
+        width = 20;
     } else {
-        v0 = 2;
-        v1 = 27;
+        tilemapLeft = 2;
+        width = 27;
     }
 
     if (param3 == 3) {
-        Window_Add(bgConfig, param1, 3, v0, 19, v1, 4, 9, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
+        Window_Add(bgConfig, window, 3, tilemapLeft, 19, width, 4, 9, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
     } else {
-        Window_Add(bgConfig, param1, 7, v0, 19, v1, 4, 9, (512 - (27 * 4)));
+        Window_Add(bgConfig, window, 7, tilemapLeft, 19, width, 4, 9, (512 - (27 * 4)));
     }
 }
 
