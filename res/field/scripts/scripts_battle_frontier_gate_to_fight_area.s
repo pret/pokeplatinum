@@ -274,8 +274,8 @@ _0344:
 
     .balign 4, 0
 _034C:
-    MoveAction_00C 3
-    MoveAction_022
+    MoveAction_012 3
+    MoveAction_034
     EndMovement
 
 _0358:

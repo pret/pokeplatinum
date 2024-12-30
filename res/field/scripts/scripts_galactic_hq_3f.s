@@ -59,12 +59,12 @@ _00A0:
 
     .balign 4, 0
 _00A8:
-    MoveAction_012
+    MoveAction_018
     EndMovement
 
     .balign 4, 0
 _00B0:
-    MoveAction_013
+    MoveAction_019
     EndMovement
 
 _00B8:

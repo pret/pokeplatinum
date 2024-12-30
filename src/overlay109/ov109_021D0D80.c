@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "consts/game_records.h"
+#include "consts/journal.h"
 
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -1351,11 +1352,9 @@ static int ov109_021D19FC(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1A14(UnkStruct_ov109_021D0F70 *param0)
 {
-    void *v0;
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(95, ONLINE_EVENT_SPIN_TRADE);
 
-    v0 = sub_0202C244(95, 17);
-
-    Journal_SaveData(param0->unk_CC->unk_14.unk_18, v0, 4);
+    JournalEntry_SaveData(param0->unk_CC->unk_14.unk_18, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     GameRecords_IncrementRecordValue(param0->unk_CC->unk_14.records, RECORD_UNK_119);
     GameRecords_IncrementTrainerScore(param0->unk_CC->unk_14.records, TRAINER_SCORE_EVENT_UNK_45);
     ov109_021D2634(param0, 11);

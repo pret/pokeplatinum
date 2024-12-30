@@ -169,7 +169,7 @@ BOOL MapHeader_IsCave(u32 headerID)
     return MapHeader_GetMapType(headerID) == 3;
 }
 
-BOOL sub_0203A288(u32 headerID)
+BOOL MapHeader_IsBuilding(u32 headerID)
 {
     return (MapHeader_GetMapType(headerID) == 4) || (MapHeader_GetMapType(headerID) == 5);
 }

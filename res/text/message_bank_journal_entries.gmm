@@ -1,0 +1,416 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="11837" />
+	<row id="journal_entries_started_from_location" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Started from {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_date" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 74, 0, 0} {STRVAR_1 51, 1, 0}</language>
+	</row>
+	<row id="journal_entries_sunday" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunday</language>
+	</row>
+	<row id="journal_entries_monday" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Monday</language>
+	</row>
+	<row id="journal_entries_tuesday" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tuesday</language>
+	</row>
+	<row id="journal_entries_wednesday" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wednesday</language>
+	</row>
+	<row id="journal_entries_thursday" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thursday</language>
+	</row>
+	<row id="journal_entries_friday" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Friday</language>
+	</row>
+	<row id="journal_entries_saturday" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Saturday</language>
+	</row>
+	<row id="journal_entries_rested_at_home" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rested comfortably at home.</language>
+	</row>
+	<row id="journal_entries_left_research_lab" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Left the Research Lab.</language>
+	</row>
+	<row id="journal_entries_used_pc_box" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used a PC Box.</language>
+	</row>
+	<row id="journal_entries_shopped_at_poke_mart" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shopped at a Poké Mart.</language>
+	</row>
+	<row id="journal_entries_lots_of_shopping_at_poke_mart" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did lots of shopping at a Poké Mart.</language>
+	</row>
+	<row id="journal_entries_sold_a_little_at_poke_mart" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sold a little at a Poké Mart.</language>
+	</row>
+	<row id="journal_entries_sold_a_lot_at_poke_mart" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sold a lot at a Poké Mart.</language>
+	</row>
+	<row id="journal_entries_did_business_at_poke_mart" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did some business at a Poké Mart.</language>
+	</row>
+	<row id="journal_entries_gym_was_too_tough" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 32, 0, 0} was too tough...</language>
+	</row>
+	<row id="journal_entries_beat_locations_gym_leader" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 32, 0, 0}’s {STRVAR_1 67, 1, 0}!</language>
+	</row>
+	<row id="journal_entries_beat_elite_four_member" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat Elite 4 {STRVAR_1 67, 0, 0}!</language>
+	</row>
+	<row id="journal_entries_beat_champion" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Defeated the Champion, {STRVAR_1 67, 0, 0}!</language>
+	</row>
+	<row id="journal_entries_arrived_in_location" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Arrived in {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_got_through_location" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Got through {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_departed_from_location" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Departed from {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_exited_from_location" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Exited from {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_played_at_battle_tower" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Battle Tower.</language>
+	</row>
+	<row id="journal_entries_played_at_battle_factory" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Battle Factory.</language>
+	</row>
+	<row id="journal_entries_played_at_battle_castle" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Battle Castle.</language>
+	</row>
+	<row id="journal_entries_played_at_battle_hall" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Battle Hall.</language>
+	</row>
+	<row id="journal_entries_played_at_battle_arcade" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Battle Arcade.</language>
+	</row>
+	<row id="journal_entries_played_at_game_corner" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Had fun at the Game Corner.</language>
+	</row>
+	<row id="journal_entries_played_safari_game" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Went wild on the Safari Game.</language>
+	</row>
+	<row id="journal_entries_dug_underground" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dug for Treasure underground.</language>
+	</row>
+	<row id="journal_entries_built_secret_base" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Built a Secret Base underground.</language>
+	</row>
+	<row id="journal_entries_item_was_obtained" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 66, 0, 0} was obtained.</language>
+	</row>
+	<row id="journal_entries_used_cut_at_location" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Cut at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_flew_to_location" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flew to {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_used_surf_at_location" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Surf at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_used_strength_at_location" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Strength at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_used_flash_at_location" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Flash at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_used_rock_smash_at_location" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Rock Smash at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_used_waterfall_at_location" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Waterfall at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_used_rock_climb_at_location" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Rock Climb at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_used_defog_at_location" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Defog at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_used_dig_at_location" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Dig at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_lured_pokemon" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lured Pokémon with a sweet aroma.</language>
+	</row>
+	<row id="journal_entries_warped_to_location" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Warped to {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_used_softboiled" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shared HP using Softboiled.</language>
+	</row>
+	<row id="journal_entries_used_milk_drink" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shared HP using Milk Drink.</language>
+	</row>
+	<row id="journal_entries_caught_pokemon" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Caught {STRVAR_1 69, 0, 0} ({STRVAR_1 33, 1, 0}).</language>
+	</row>
+	<row id="journal_entries_pokemon_was_caught" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 69, 0, 0} was caught ({STRVAR_1 33, 1, 0}).</language>
+	</row>
+	<row id="journal_entries_caught_male_pokemon" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Caught a male {STRVAR_1 69, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_caught_female_pokemon" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Caught a female {STRVAR_1 69, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_pokemon_was_defeated" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 69, 0, 0} was defeated ({STRVAR_1 33, 1, 0}).</language>
+	</row>
+	<row id="journal_entries_defeated_pokemon" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Defeated {STRVAR_1 69, 0, 0} ({STRVAR_1 33, 1, 0}).</language>
+	</row>
+	<row id="journal_entries_defeated_male_pokemon" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Defeated a male {STRVAR_1 69, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_defeated_female_pokemon" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Defeated a female {STRVAR_1 69, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_battled_trainer_at_location" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battled {STRVAR_1 67, 1, 0} at {STRVAR_1 70, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_beat_trainer_at_location" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 67, 1, 0} at {STRVAR_1 71, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_beat_trainer_at_location_2" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 67, 1, 0} at {STRVAR_1 72, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_met_locations_trainer" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Met {STRVAR_1 73, 0, 0}’s {STRVAR_1 67, 1, 0}!</language>
+	</row>
+	<row id="journal_entries_rival_name" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 67, 1, 0}</language>
+	</row>
+	<row id="journal_entries_beat_player_single" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 75, 0, 0} (Single).</language>
+	</row>
+	<row id="journal_entries_lost_to_player_single" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 75, 0, 0} (Single).</language>
+	</row>
+	<row id="journal_entries_tied_player_single" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 75, 0, 0} (Single).</language>
+	</row>
+	<row id="journal_entries_beat_player_double" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 75, 0, 0} (Double).</language>
+	</row>
+	<row id="journal_entries_lost_to_player_double" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 75, 0, 0} (Double).</language>
+	</row>
+	<row id="journal_entries_tied_player_double" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 75, 0, 0} (Double).</language>
+	</row>
+	<row id="journal_entries_beat_players_multi" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Multi).</language>
+	</row>
+	<row id="journal_entries_lost_to_players_multi" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Multi).</language>
+	</row>
+	<row id="journal_entries_tied_players_multi" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Multi).</language>
+	</row>
+	<row id="journal_entries_beat_player_mix" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 75, 0, 0} (Mix).</language>
+	</row>
+	<row id="journal_entries_lost_to_player_mix" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 75, 0, 0} (Mix).</language>
+	</row>
+	<row id="journal_entries_tied_player_mix" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 75, 0, 0} (Mix).</language>
+	</row>
+	<row id="journal_entries_beat_players_mix" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Mix).</language>
+	</row>
+	<row id="journal_entries_lost_to_players_mix" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Mix).</language>
+	</row>
+	<row id="journal_entries_tied_players_mix" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Mix).</language>
+	</row>
+	<row id="journal_entries_greeted_player_in_union_room" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Greeted {STRVAR_1 67, 0, 0} in Union Room.</language>
+	</row>
+	<row id="journal_entries_got_pokemon_from_player" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Got {STRVAR_1 68, 1, 0} from {STRVAR_1 67, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_drew_pictures_with_others" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Drew pictures with others.</language>
+	</row>
+	<row id="journal_entries_got_pokemon_in_friend_trade" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Got {STRVAR_1 68, 0, 0} in a friend trade.</language>
+	</row>
+	<row id="journal_entries_chatted_with_others" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Chatted with others.</language>
+	</row>
+	<row id="journal_entries_beat_player_union" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 67, 0, 0} (Union).</language>
+	</row>
+	<row id="journal_entries_lost_to_player_union" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 67, 0, 0} (Union).</language>
+	</row>
+	<row id="journal_entries_tied_player_union" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 67, 0, 0} (Union).</language>
+	</row>
+	<row id="journal_entries_mixed_records" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mixed records with friends.</language>
+	</row>
+	<row id="journal_entries_did_spin_trade" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Had a friendly Spin Trade session.</language>
+	</row>
+	<row id="journal_entries_placed_number_in_contest" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Placed no. {STRVAR_1 50, 0, 0} in a Contest.</language>
+	</row>
+	<row id="journal_entries_made_poffins_in_group" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Made Poffins in a group.</language>
+	</row>
+	<row id="journal_entries_got_players_pokemon_gts" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Got {STRVAR_1 67, 0, 0}’s {STRVAR_1 68, 1, 0} (GTS).</language>
+	</row>
+	<row id="journal_entries_watched_battle_videos" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Watched everyone’s Battle Videos.</language>
+	</row>
+	<row id="journal_entries_checked_rankings" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Checked everyone’s rankings.</language>
+	</row>
+	<row id="journal_entries_checked_dress_up_data" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Checked everyone’s Dress-Up Data.</language>
+	</row>
+	<row id="journal_entries_checked_box_data" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Checked everyone’s Box Data.</language>
+	</row>
+	<row id="journal_entries_won_in_battle_room" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Won in the Wi-Fi Battle Room!</language>
+	</row>
+	<row id="journal_entries_chatted_with_player_in_plaza" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Chatted with {STRVAR_1 3, 0, 0} in the Plaza.</language>
+	</row>
+	<row id="journal_entries_got_tap_toy_from_player" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Got a Tap Toy from {STRVAR_1 3, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_played_plaza_mini_game" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played {STRVAR_6 0, 0, 0}.</language>
+	</row>
+	<row id="journal_entries_played_with_footprint_stamp" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played with the Footprint Stamp.</language>
+	</row>
+	<row id="journal_entries_viewed_plaza_visitor_profiles" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Viewed the Plaza Visitor Profiles.</language>
+	</row>
+	<row id="journal_entries_read_plaza_news" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Read the Plaza News.</language>
+	</row>
+	<row id="journal_entries_joined_parade" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Joined a Parade.</language>
+	</row>
+	<row id="journal_entries_played_at_wi_fi_club" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Wi-Fi Club.</language>
+	</row>
+</body>

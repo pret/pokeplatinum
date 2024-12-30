@@ -29,11 +29,11 @@ _002E:
 
     .balign 4, 0
 _004C:
-    MoveAction_041
+    MoveAction_065
     MoveAction_001
-    MoveAction_041
-    MoveAction_049
-    MoveAction_00D 2
-    MoveAction_04A
-    MoveAction_045
+    MoveAction_065
+    MoveAction_073
+    MoveAction_013 2
+    MoveAction_074
+    MoveAction_069
     EndMovement

@@ -160,7 +160,7 @@ static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager,
     scriptManager->saveType = saveType;
 
     if (object != NULL) {
-        *targetID = MapObject_Id(object);
+        *targetID = MapObject_GetLocalID(object);
     }
 
     if (scriptID >= SCRIPT_ID_OFFSET_HIDDEN_ITEMS && scriptID <= SCRIPT_ID_OFFSET_SAFARI_ZONE - 1) {

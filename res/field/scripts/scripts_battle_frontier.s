@@ -381,7 +381,7 @@ _0360:
 
     .balign 4, 0
 _0398:
-    MoveAction_012 5
+    MoveAction_018 5
     EndMovement
 
 _03A0:
@@ -398,7 +398,7 @@ _03A0:
 
     .balign 4, 0
 _03D8:
-    MoveAction_012 6
+    MoveAction_018 6
     EndMovement
 
 _03E0:
@@ -415,7 +415,7 @@ _03E0:
 
     .balign 4, 0
 _0418:
-    MoveAction_013 5
+    MoveAction_019 5
     EndMovement
 
 _0420:
@@ -432,7 +432,7 @@ _0420:
 
     .balign 4, 0
 _0458:
-    MoveAction_013 6
+    MoveAction_019 6
     EndMovement
 
 _0460:

@@ -21,7 +21,7 @@ _000E:
 
     .balign 4, 0
 _002C:
-    MoveAction_020
+    MoveAction_032
     EndMovement
 
 _0034:

@@ -39,6 +39,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
+#include "applications/journal_display/journal_controller.h"
 #include "applications/options_menu.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223B140.h"
@@ -61,7 +62,6 @@
 #include "overlay071/ov71_0223B140.h"
 #include "overlay072/ov72_0223D7A0.h"
 #include "overlay080/ov80_021D0D80.h"
-#include "overlay081/ov81_021D0D80.h"
 #include "overlay084/const_ov84_02241130.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
@@ -161,7 +161,7 @@ FS_EXTERN_OVERLAY(overlay72);
 FS_EXTERN_OVERLAY(options_menu);
 FS_EXTERN_OVERLAY(choose_starter);
 FS_EXTERN_OVERLAY(overlay80);
-FS_EXTERN_OVERLAY(overlay81);
+FS_EXTERN_OVERLAY(journal_display);
 FS_EXTERN_OVERLAY(overlay84);
 FS_EXTERN_OVERLAY(overlay85);
 FS_EXTERN_OVERLAY(overlay86);
@@ -362,16 +362,16 @@ void sub_0203D2E4(FieldSystem *fieldSystem, void *param1)
 
 void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
 {
-    FS_EXTERN_OVERLAY(overlay81);
+    FS_EXTERN_OVERLAY(journal_display);
 
-    const OverlayManagerTemplate v0 = {
-        ov81_021D0D80,
-        ov81_021D0E70,
-        ov81_021D0EC4,
-        FS_OVERLAY_ID(overlay81)
+    const OverlayManagerTemplate template = {
+        JournalController_Init,
+        JournalController_Main,
+        JournalController_Exit,
+        FS_OVERLAY_ID(journal_display)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &template, fieldSystem->saveData);
 }
 
 void sub_0203D334(FieldSystem *fieldSystem, void *param1)
@@ -982,7 +982,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_24 = SaveData_Pokedex(fieldSystem->saveData);
     param0->unk_30 = sub_0207A274(fieldSystem->saveData);
     param0->unk_10 = fieldSystem->saveData;
-    param0->unk_1C = fieldSystem->journal;
+    param0->unk_1C = fieldSystem->journalEntry;
     param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     param0->unk_38 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, TrainerInfo_Size());
     param0->unk_3C = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, Pokemon_GetStructSize());
@@ -1134,7 +1134,7 @@ void sub_0203DDFC(FieldSystem *fieldSystem)
     UnkStruct_0203DDFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DDFC));
 
     v0->unk_00 = fieldSystem->unk_80;
-    v0->unk_04 = fieldSystem->journal;
+    v0->unk_04 = fieldSystem->journalEntry;
     v0->unk_08 = SaveData_Options(fieldSystem->saveData);
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA258, v0);
@@ -1148,7 +1148,7 @@ void *sub_0203DE34(FieldSystem *fieldSystem)
     v0->unk_04 = fieldSystem->unk_80;
     v0->unk_08 = SaveData_Options(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    v0->unk_10 = fieldSystem->journal;
+    v0->unk_10 = fieldSystem->journalEntry;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA248, v0);
 
@@ -1372,7 +1372,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_24 = SaveData_Options(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    v0->unk_2C = fieldSystem->journal;
+    v0->unk_2C = fieldSystem->journalEntry;
     v0->unk_3C = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->unk_20 = fieldSystem->saveData;
     v0->unk_34 = sub_0207A274(fieldSystem->saveData);

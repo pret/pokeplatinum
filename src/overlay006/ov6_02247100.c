@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/journal.h"
+
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -200,15 +202,15 @@ BOOL ov6_022472E8(FieldTask *task)
 
 static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param1)
 {
-    void *v0;
+    void *journalEntryLocationEvent;
 
     if (param1->unk_08 == 2) {
-        v0 = sub_0202BE00((28 - 19), fieldSystem->location->mapId, 4);
+        journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_WARPED_TO_LOCATION - LOCATION_EVENT_USED_CUT, fieldSystem->location->mapId, HEAP_ID_FIELD);
     } else {
         return;
     }
 
-    Journal_SaveData(fieldSystem->journal, v0, 1);
+    JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 }
 
 static int ov6_02247354(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)

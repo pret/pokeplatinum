@@ -1,0 +1,213 @@
+{
+    "land_rate": 30,
+    "land_encounters": [
+        {
+            "level": 18,
+            "species": "SPECIES_BUDEW"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_BIDOOF"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_BUDEW"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_RALTS"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_ROSELIA"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_BIBAREL"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_RALTS"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_BIBAREL"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_ROSELIA"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_BIBAREL"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_ROSELIA"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_BIBAREL"
+        }
+    ],
+    "swarms": [
+        "SPECIES_DUNSPARCE",
+        "SPECIES_DUNSPARCE"
+    ],
+    "morning": [
+        "SPECIES_BUDEW",
+        "SPECIES_RALTS"
+    ],
+    "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_RALTS"
+    ],
+    "radar": [
+        "SPECIES_SMEARGLE",
+        "SPECIES_SMEARGLE",
+        "SPECIES_SMEARGLE",
+        "SPECIES_SMEARGLE"
+    ],
+    "rate_form0": 100,
+    "rate_form1": 100,
+    "rate_form2": 0,
+    "rate_form3": 0,
+    "rate_form4": 0,
+    "unown_table": 0,
+    "ruby": [
+        "SPECIES_ZANGOOSE",
+        "SPECIES_ZANGOOSE"
+    ],
+    "sapphire": [
+        "SPECIES_SEVIPER",
+        "SPECIES_SEVIPER"
+    ],
+    "emerald": [
+        "SPECIES_ROSELIA",
+        "SPECIES_BIBAREL"
+    ],
+    "firered": [
+        "SPECIES_ROSELIA",
+        "SPECIES_BIBAREL"
+    ],
+    "leafgreen": [
+        "SPECIES_ROSELIA",
+        "SPECIES_BIBAREL"
+    ],
+    "surf_rate": 10,
+    "surf_encounters": [
+        {
+            "level_max": 20,
+            "level_min": 20,
+            "species": "SPECIES_PSYDUCK"
+        },
+        {
+            "level_max": 20,
+            "level_min": 20,
+            "species": "SPECIES_PSYDUCK"
+        },
+        {
+            "level_max": 40,
+            "level_min": 20,
+            "species": "SPECIES_GOLDUCK"
+        },
+        {
+            "level_max": 40,
+            "level_min": 20,
+            "species": "SPECIES_GOLDUCK"
+        },
+        {
+            "level_max": 40,
+            "level_min": 20,
+            "species": "SPECIES_GOLDUCK"
+        }
+    ],
+    "old_rod_rate": 25,
+    "old_rod_encounters": [
+        {
+            "level_max": 6,
+            "level_min": 4,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 7,
+            "level_min": 3,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 10,
+            "level_min": 5,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 10,
+            "level_min": 5,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 15,
+            "level_min": 5,
+            "species": "SPECIES_MAGIKARP"
+        }
+    ],
+    "good_rod_rate": 50,
+    "good_rod_encounters": [
+        {
+            "level_max": 20,
+            "level_min": 15,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 20,
+            "level_min": 15,
+            "species": "SPECIES_GOLDEEN"
+        },
+        {
+            "level_max": 25,
+            "level_min": 10,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 25,
+            "level_min": 10,
+            "species": "SPECIES_GOLDEEN"
+        },
+        {
+            "level_max": 25,
+            "level_min": 10,
+            "species": "SPECIES_GOLDEEN"
+        }
+    ],
+    "super_rod_rate": 75,
+    "super_rod_encounters": [
+        {
+            "level_max": 40,
+            "level_min": 30,
+            "species": "SPECIES_GYARADOS"
+        },
+        {
+            "level_max": 40,
+            "level_min": 30,
+            "species": "SPECIES_SEAKING"
+        },
+        {
+            "level_max": 55,
+            "level_min": 40,
+            "species": "SPECIES_GYARADOS"
+        },
+        {
+            "level_max": 55,
+            "level_min": 40,
+            "species": "SPECIES_SEAKING"
+        },
+        {
+            "level_max": 55,
+            "level_min": 40,
+            "species": "SPECIES_SEAKING"
+        }
+    ],
+    "map_category": {
+        "map_type": "field",
+        "map_number": 21
+    }
+}

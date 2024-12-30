@@ -49,21 +49,21 @@ _0021:
 
     .balign 4, 0
 _0098:
-    MoveAction_022
+    MoveAction_034
     EndMovement
 
     .balign 4, 0
 _00A0:
-    MoveAction_026
-    MoveAction_03F
-    MoveAction_027
-    MoveAction_03F 2
-    MoveAction_024
+    MoveAction_038
+    MoveAction_063
+    MoveAction_039
+    MoveAction_063 2
+    MoveAction_036
     EndMovement
 
     .balign 4, 0
 _00B8:
-    MoveAction_023
+    MoveAction_035
     EndMovement
 
 _00C0:

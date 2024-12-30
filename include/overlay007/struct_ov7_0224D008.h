@@ -39,7 +39,7 @@ typedef struct {
     TrainerInfo *unk_270;
     void *unk_274;
     Options *unk_278;
-    Journal *unk_27C;
+    JournalEntry *unk_27C;
     GameRecords *records;
     SaveData *unk_284;
     VarsFlags *unk_288;

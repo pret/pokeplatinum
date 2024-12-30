@@ -18,7 +18,7 @@ int MapObject_HasAnimationEnded(SysTask *param0);
 void MapObject_FinishAnimation(SysTask *param0);
 int sub_02065838(int param0, int param1);
 int sub_0206587C(int param0);
-void sub_020658B4(MapObject *param0);
+void MapObject_DoMovementAction(MapObject *param0);
 int sub_020658DC(MapObject *param0);
 
 #endif // POKEPLATINUM_UNK_020655F4_H

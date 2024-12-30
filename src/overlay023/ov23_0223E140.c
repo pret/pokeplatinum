@@ -1666,10 +1666,10 @@ static void ov23_0223F118(SysTask *param0, void *param1)
 static void ov23_0223F70C(FieldSystem *fieldSystem)
 {
     UnkStruct_ov23_0223EE80 *v0;
-    void *v1 = sub_0202BE14(11);
+    void *journalEntryLocationEvent = JournalEntry_CreateEventDugUnderground(HEAP_ID_FIELDMAP);
 
-    Journal_SaveData(fieldSystem->journal, v1, 1);
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0223EE80));
+    JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0223EE80));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0223EE80));
     v0->fieldSystem = fieldSystem;
