@@ -1,4 +1,4 @@
-#include "unk_020562F8.h"
+#include "pal_park.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -46,12 +46,12 @@ static void sub_0205642C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
 static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, UnkStruct_020564B4 *param2);
 static BOOL sub_02056554(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1, int param2, int param3);
 static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
-static sub_020564B4(UnkStruct_020564B4 *param0);
+static NumMonsCaptured(UnkStruct_020564B4 *param0);
 static void sub_020564D0(UnkStruct_020564B4 *param0);
 static BOOL sub_020564F4(UnkStruct_020564B4 *param0);
-static u32 sub_020566AC(UnkStruct_020564B4 *param0);
-static u32 sub_02056698(UnkStruct_020564B4 *param0);
-static u32 sub_0205671C(UnkStruct_020564B4 *param0);
+static u32 CalculateTypePoints(UnkStruct_020564B4 *param0);
+static u32 CalculateCatchingPoints(UnkStruct_020564B4 *param0);
+static u32 GetTimePoints(UnkStruct_020564B4 *param0);
 
 static UnkStruct_020564B4 Unk_021C07FC;
 
@@ -103,24 +103,24 @@ void sub_020563AC(FieldSystem *fieldSystem, FieldBattleDTO *param1)
     sub_02056624(fieldSystem, param1, &Unk_021C07FC);
 }
 
-int sub_020563BC(FieldSystem *fieldSystem)
+int PalPark_GetParkBallCount(FieldSystem *fieldSystem)
 {
-    return 6 - sub_020564B4(&Unk_021C07FC);
+    return 6 - NumMonsCaptured(&Unk_021C07FC);
 }
 
-int sub_020563D0(FieldSystem *fieldSystem)
+int PalPark_GetCatchingPoints(FieldSystem *fieldSystem)
 {
-    return sub_02056698(&Unk_021C07FC);
+    return CalculateCatchingPoints(&Unk_021C07FC);
 }
 
-int sub_020563E0(FieldSystem *fieldSystem)
+int PalPark_GetTimePoints(FieldSystem *fieldSystem)
 {
-    return sub_0205671C(&Unk_021C07FC);
+    return GetTimePoints(&Unk_021C07FC);
 }
 
-int sub_020563F0(FieldSystem *fieldSystem)
+int PalPark_GetTypePoints(FieldSystem *fieldSystem)
 {
-    return sub_020566AC(&Unk_021C07FC);
+    return CalculateTypePoints(&Unk_021C07FC);
 }
 
 static void sub_02056400(u32 param0, u8 *param1)
@@ -168,18 +168,18 @@ static void sub_0205642C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1)
     Heap_FreeToHeap(v3);
 }
 
-static int sub_020564B4(UnkStruct_020564B4 *param0)
+static int NumMonsCaptured(UnkStruct_020564B4 *param0)
 {
-    int v0;
-    int v1 = 0;
+    int i;
+    int numMonsCaptured = 0;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (param0->unk_30[v0] != 0) {
-            v1++;
+    for (i = 0; i < 6; i++) {
+        if (param0->unk_30[i] != 0) {
+            numMonsCaptured++;
         }
     }
 
-    return v1;
+    return numMonsCaptured;
 }
 
 static void sub_020564D0(UnkStruct_020564B4 *param0)
@@ -263,7 +263,7 @@ static void sub_02056624(FieldSystem *fieldSystem, FieldBattleDTO *param1, UnkSt
 {
     switch (param1->resultMask) {
     case BATTLE_RESULT_CAPTURED_MON:
-        param2->unk_30[param2->unk_3C] = sub_020564B4(param2) + 1;
+        param2->unk_30[param2->unk_3C] = NumMonsCaptured(param2) + 1;
         break;
     case BATTLE_RESULT_PLAYER_FLED:
         break;
@@ -277,9 +277,9 @@ static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4
     FieldBattleDTO *v0;
     Pokemon *v1 = Pokemon_New(32);
     PalParkTransfer *v2 = SaveData_PalParkTransfer(fieldSystem->saveData);
-    int v3 = sub_020563BC(fieldSystem);
+    int parkBallCount = PalPark_GetParkBallCount(fieldSystem);
 
-    v0 = FieldBattleDTO_NewPalPark(11, v3);
+    v0 = FieldBattleDTO_NewPalPark(11, parkBallCount);
 
     FieldBattleDTO_Init(v0, fieldSystem);
     sub_0202F000(v2, param1->unk_3C, v1);
@@ -289,55 +289,55 @@ static FieldBattleDTO *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4
     return v0;
 }
 
-static u32 sub_02056698(UnkStruct_020564B4 *param0)
+static u32 CalculateCatchingPoints(UnkStruct_020564B4 *param0)
 {
-    int v0;
-    u32 v1 = 0;
+    int i;
+    u32 catchingPoints = 0;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v1 += param0->unk_00[v0].unk_04;
+    for (i = 0; i < 6; i++) {
+        catchingPoints += param0->unk_00[i].unk_04;
     }
 
-    return v1;
+    return catchingPoints;
 }
 
-static u32 sub_020566AC(UnkStruct_020564B4 *param0)
+static u32 CalculateTypePoints(UnkStruct_020564B4 *param0)
 {
-    int v0, v1;
-    int v2, v3, v4, v5;
-    u32 v6 = 0;
-    u32 v7 = 0;
+    int i, j;
+    int typeToCheck1, typeToCheck2, typeAlreadyOwned1, typeAlreadyOwned2;
+    u32 distinctTypeTracker = 0;
+    u32 totalTypePoints = 0;
 
-    for (v0 = 1; v0 < 6 + 1; v0++) {
-        for (v1 = 0; v1 < 6; v1++) {
-            if (param0->unk_30[v1] == v0) {
-                v4 = param0->unk_00[v1].unk_06;
-                v5 = param0->unk_00[v1].unk_07;
+    for (i = 1; i < 6 + 1; i++) {
+        for (j = 0; j < 6; j++) {
+            if (param0->unk_30[j] == i) {
+                typeAlreadyOwned1 = param0->unk_00[j].unk_06;
+                typeAlreadyOwned2 = param0->unk_00[j].unk_07;
 
-                if ((v0 != 1) && (v2 != v4) && (v2 != v5) && (v3 != v4) && (v3 != v5)) {
-                    v7 += 200;
+                if ((i != 1) && (typeToCheck1 != typeAlreadyOwned1) && (typeToCheck1 != typeAlreadyOwned2) && (typeToCheck2 != typeAlreadyOwned1) && (typeToCheck2 != typeAlreadyOwned2)) {
+                    totalTypePoints += 200;
                 }
 
-                v2 = v4;
-                v3 = v5;
-                v6 |= (1 << v2);
-                v6 |= (1 << v3);
+                typeToCheck1 = typeAlreadyOwned1;
+                typeToCheck2 = typeAlreadyOwned2;
+                distinctTypeTracker |= (1 << typeToCheck1);
+                distinctTypeTracker |= (1 << typeToCheck2);
 
                 break;
             }
         }
     }
 
-    for (; v6 != 0; v6 >>= 1) {
-        if (v6 & 1) {
-            v7 += 50;
+    for (; distinctTypeTracker != 0; distinctTypeTracker >>= 1) {
+        if (distinctTypeTracker & 1) {
+            totalTypePoints += 50;
         }
     }
 
-    return v7;
+    return totalTypePoints;
 }
 
-static u32 sub_0205671C(UnkStruct_020564B4 *param0)
+static u32 GetTimePoints(UnkStruct_020564B4 *param0)
 {
     return param0->unk_48;
 }

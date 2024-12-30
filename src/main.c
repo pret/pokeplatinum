@@ -339,7 +339,7 @@ void HandleConsoleFold(void)
 sleep_again:
             trigger = PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD;
 
-            if (gCoreSys.unk_66 && !gIgnoreCartridgeForWake) {
+            if (gCoreSys.gbaCartridgeVersion && !gIgnoreCartridgeForWake) {
                 trigger |= PM_TRIGGER_CARTRIDGE;
             }
 

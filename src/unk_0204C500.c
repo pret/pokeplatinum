@@ -12,6 +12,7 @@
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
+#include "pal_park.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "system_flags.h"
@@ -19,7 +20,6 @@
 #include "unk_0202631C.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F180.h"
-#include "unk_020562F8.h"
 #include "unk_020797C8.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
@@ -89,16 +89,16 @@ BOOL ScrCmd_256(ScriptContext *param0)
 
     switch (v0) {
     case 0:
-        *v1 = sub_020563D0(param0->fieldSystem);
+        *v1 = PalPark_GetCatchingPoints(param0->fieldSystem);
         break;
     case 1:
-        *v1 = sub_020563E0(param0->fieldSystem);
+        *v1 = PalPark_GetTimePoints(param0->fieldSystem);
         break;
     case 2:
-        *v1 = sub_020563F0(param0->fieldSystem);
+        *v1 = PalPark_GetTypePoints(param0->fieldSystem);
         break;
     case 3:
-        *v1 = sub_020563D0(param0->fieldSystem) + sub_020563F0(param0->fieldSystem) + sub_020563E0(param0->fieldSystem);
+        *v1 = PalPark_GetCatchingPoints(param0->fieldSystem) + PalPark_GetTypePoints(param0->fieldSystem) + PalPark_GetTimePoints(param0->fieldSystem);
         break;
     }
 

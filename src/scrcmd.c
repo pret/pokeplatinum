@@ -7065,7 +7065,7 @@ static BOOL ScrCmd_26E(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = gCoreSys.unk_66;
+    *v0 = gCoreSys.gbaCartridgeVersion;
     return 1;
 }
 

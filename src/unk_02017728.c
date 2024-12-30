@@ -300,7 +300,7 @@ void InitKeypadAndTouchpad(void)
 
 void sub_02017B70(int param0)
 {
-    gCoreSys.unk_66 = param0;
+    gCoreSys.gbaCartridgeVersion = param0;
 }
 
 void SleepLock(u8 param0)
