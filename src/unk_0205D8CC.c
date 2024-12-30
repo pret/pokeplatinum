@@ -44,14 +44,11 @@ void FieldMessaage_FillWindowTilemap(Window *window)
 
 u8 FieldMessage_Print(Window *window, Strbuf *strBuf, const Options *options, u8 canSkipDelay)
 {
-    u8 v0;
-
     RenderControlFlags_SetCanABSpeedUpPrint(canSkipDelay);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
 
-    v0 = Text_AddPrinterWithParams(window, FONT_MESSAGE, strBuf, 0, 0, Options_TextFrameDelay(options), NULL);
-    return v0;
+    return Text_AddPrinterWithParams(window, FONT_MESSAGE, strBuf, 0, 0, Options_TextFrameDelay(options), NULL);
 }
 
 // used only in one instance
