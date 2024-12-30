@@ -66,11 +66,11 @@ u8 FieldMessage_PrintWithParams(Window *window, Strbuf *strBuf, int fontID, int 
 
 u8 FieldMessage_FinishedPrinting(u8 printerID)
 {
-    if (Text_IsPrinterActive(printerID) == 0) {
-        return 1;
+    if (Text_IsPrinterActive(printerID) == FALSE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_0205DA1C(BgConfig *bgConfig, Window *param1, u16 param2, u16 param3)
