@@ -12,7 +12,7 @@
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
-#include "pal_park.h"
+#include "catching_show.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "system_flags.h"
@@ -31,10 +31,10 @@ BOOL ScrCmd_253(ScriptContext *param0)
 
     if (v1 == 0) {
         SystemFlag_SetInPalPark(v0);
-        PalPark_InitCatchingShowData(param0->fieldSystem);
+        CatchingShow_Start(param0->fieldSystem);
     } else if (v1 == 1) {
         SystemFlag_ClearInPalPark(v0);
-        sub_02056328(param0->fieldSystem);
+        CatchingShow_End(param0->fieldSystem);
     } else {
         GF_ASSERT(0);
     }
@@ -89,16 +89,16 @@ BOOL ScrCmd_256(ScriptContext *param0)
 
     switch (v0) {
     case 0:
-        *v1 = PalPark_GetCatchingPoints(param0->fieldSystem);
+        *v1 = CatchingShow_GetCatchingPoints(param0->fieldSystem);
         break;
     case 1:
-        *v1 = PalPark_GetTimePoints(param0->fieldSystem);
+        *v1 = CatchingShow_GetTimePoints(param0->fieldSystem);
         break;
     case 2:
-        *v1 = PalPark_GetTypePoints(param0->fieldSystem);
+        *v1 = CatchingShow_GetTypePoints(param0->fieldSystem);
         break;
     case 3:
-        *v1 = PalPark_GetCatchingPoints(param0->fieldSystem) + PalPark_GetTypePoints(param0->fieldSystem) + PalPark_GetTimePoints(param0->fieldSystem);
+        *v1 = CatchingShow_GetCatchingPoints(param0->fieldSystem) + CatchingShow_GetTypePoints(param0->fieldSystem) + CatchingShow_GetTimePoints(param0->fieldSystem);
         break;
     }
 

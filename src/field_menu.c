@@ -50,7 +50,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
-#include "pal_park.h"
+#include "catching_show.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
@@ -691,7 +691,7 @@ static void sub_0203B094(FieldTask *taskMan)
 
         StringTemplate_SetNumber(v3, 0, *v7, 2, 0, 1);
     } else {
-        int parkBallCount = PalPark_GetParkBallCount(fieldSystem);
+        int parkBallCount = CatchingShow_GetParkBallCount(fieldSystem);
 
         StringTemplate_SetNumber(v3, 0, parkBallCount, 2, 0, 1);
     }

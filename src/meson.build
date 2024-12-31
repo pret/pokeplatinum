@@ -220,7 +220,7 @@ pokeplatinum_c = files(
     'field_transition.c',
     'unk_020559DC.c',
     'unk_02055C50.c',
-    'pal_park.c',
+    'catching_show.c',
     'poketch_data.c',
     'unk_02056B30.c',
     'unk_020573FC.c',

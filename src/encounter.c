@@ -34,7 +34,7 @@
 #include "journal.h"
 #include "location.h"
 #include "map_object.h"
-#include "pal_park.h"
+#include "catching_show.h"
 #include "party.h"
 #include "pokemon.h"
 #include "pokeradar.h"
@@ -618,7 +618,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
-        sub_020563AC(fieldSystem, encounter->dto);
+        CatchingShow_UpdateBattleResult(fieldSystem, encounter->dto);
         UpdateGameRecords(fieldSystem, encounter->dto);
         (*state)++;
         break;
@@ -637,7 +637,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
     case 6:
         FreeEncounter(encounter);
 
-        if (PalPark_GetParkBallCount(fieldSystem) == 0) {
+        if (CatchingShow_GetParkBallCount(fieldSystem) == 0) {
             ScriptManager_Change(task, 3, NULL);
             return FALSE;
         } else {

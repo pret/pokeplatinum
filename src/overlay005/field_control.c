@@ -45,7 +45,7 @@
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_tile_behavior.h"
-#include "pal_park.h"
+#include "catching_show.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
@@ -548,8 +548,8 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
     if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
-        if (PalPark_CheckWildEncounter(fieldSystem, playerX, playerZ) == TRUE) {
-            Encounter_NewVsPalParkTransfer(fieldSystem, sub_0205639C(fieldSystem));
+        if (CatchingShow_CheckWildEncounter(fieldSystem, playerX, playerZ) == TRUE) {
+            Encounter_NewVsPalParkTransfer(fieldSystem, CatchingShow_GetBattleDTO(fieldSystem));
             return TRUE;
         } else {
             return FALSE;
