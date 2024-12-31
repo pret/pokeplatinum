@@ -27,7 +27,7 @@ static void InitEncounterData(FieldSystem *fieldSystem, CatchingShow *catchingSh
 static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO *dto, CatchingShow *catchingShow);
 static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow, int playerX, int playerY);
 static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *catchingShow);
-static NumMonsCaptured(CatchingShow *catchingShow);
+static int NumMonsCaptured(CatchingShow *catchingShow);
 static void ResetStepCount(CatchingShow *catchingShow);
 static BOOL IsStepCountZero(CatchingShow *catchingShow);
 static u32 CalculateTypePoints(CatchingShow *catchingShow);
@@ -55,8 +55,8 @@ void CatchingShow_End(FieldSystem *fieldSystem)
     s64 endTime = GetTimestamp();
     s64 elapsedTime = TimeElapsed(catchingShow->startTime, endTime);
 
-    if (elapsedTime < 1000) {
-        catchingShow->timePoints = ((1000 - elapsedTime) * 2);
+    if (elapsedTime < MAX_TIME_SECONDS) {
+        catchingShow->timePoints = ((MAX_TIME_SECONDS - elapsedTime) * POINTS_LOST_PER_SECOND);
     } else {
         catchingShow->timePoints = 0;
     }
@@ -228,7 +228,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
         if ((catchingShow->capturedPokemonIndex[i] == 0) && (catchingShow->pokemon[i].encounterType == encounterType)) {
             if (v1 < catchingShow->pokemon[i].encounterRate) {
                 catchingShow->currentEncounterIndex = i;
-                return 1;
+                return TRUE;
             } else {
                 v1 -= catchingShow->pokemon[i].encounterRate;
             }
@@ -295,7 +295,7 @@ static u32 CalculateTypePoints(CatchingShow *catchingShow)
                 currentMonType2 = catchingShow->pokemon[j].type2;
 
                 if ((i != 1) && (previousMonType1 != currentMonType1) && (previousMonType1 != currentMonType2) && (previousMonType2 != currentMonType1) && (previousMonType2 != currentMonType2)) {
-                    totalTypePoints += 200;
+                    totalTypePoints += DIFFERENT_TYPE_BONUS;
                 }
 
                 previousMonType1 = currentMonType1;
