@@ -21,12 +21,12 @@ void FieldMessage_LoadTextPalettes(u32 palLocation, u32 resetPrinters)
     Font_LoadScreenIndicatorsPalette(palLocation, 12 * 32, HEAP_ID_FIELD);
 }
 
-void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 param2)
+void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 bgLayer)
 {
-    if (param2 == 3) {
-        Window_Add(bgConfig, window, 3, 2, 19, 27, 4, 12, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
+    if (bgLayer == BG_LAYER_MAIN_3) {
+        Window_Add(bgConfig, window, BG_LAYER_MAIN_3, 2, 19, 27, 4, 12, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
     } else {
-        Window_Add(bgConfig, window, 7, 2, 19, 27, 4, 12, (512 - (27 * 4)));
+        Window_Add(bgConfig, window, BG_LAYER_SUB_3, 2, 19, 27, 4, 12, (512 - (27 * 4)));
     }
 }
 
@@ -71,7 +71,7 @@ u8 FieldMessage_FinishedPrinting(u8 printerID)
 }
 
 // used only in one instance
-void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 signpostType, u16 param3)
+void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 signpostType, u16 bgLayer)
 {
     u16 tilemapLeft, width;
 
@@ -83,10 +83,10 @@ void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 sign
         width = 27;
     }
 
-    if (param3 == 3) {
-        Window_Add(bgConfig, window, 3, tilemapLeft, 19, width, 4, 9, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
+    if (bgLayer == BG_LAYER_MAIN_3) {
+        Window_Add(bgConfig, window, BG_LAYER_MAIN_3, tilemapLeft, 19, width, 4, 9, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
     } else {
-        Window_Add(bgConfig, window, 7, tilemapLeft, 19, width, 4, 9, (512 - (27 * 4)));
+        Window_Add(bgConfig, window, BG_LAYER_SUB_3, tilemapLeft, 19, width, 4, 9, (512 - (27 * 4)));
     }
 }
 
