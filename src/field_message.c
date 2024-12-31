@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/window.h"
+
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
@@ -17,8 +19,8 @@ void FieldMessage_LoadTextPalettes(u32 palLocation, u32 resetPrinters)
         Text_ResetAllPrinters();
     }
 
-    Font_LoadTextPalette(palLocation, 13 * 32, HEAP_ID_FIELD);
-    Font_LoadScreenIndicatorsPalette(palLocation, 12 * 32, HEAP_ID_FIELD);
+    Font_LoadTextPalette(palLocation, PLTT_OFFSET(FIELD_MESSAGE_PALETTE_INDEX), HEAP_ID_FIELD);
+    Font_LoadScreenIndicatorsPalette(palLocation, PLTT_OFFSET(12), HEAP_ID_FIELD);
 }
 
 void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 bgLayer)
