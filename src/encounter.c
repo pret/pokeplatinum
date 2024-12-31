@@ -20,6 +20,7 @@
 #include "overlay006/ov6_02246034.h"
 #include "savedata/save_table.h"
 
+#include "catching_show.h"
 #include "communication_information.h"
 #include "enc_effects.h"
 #include "enums.h"
@@ -34,7 +35,6 @@
 #include "journal.h"
 #include "location.h"
 #include "map_object.h"
-#include "catching_show.h"
 #include "party.h"
 #include "pokemon.h"
 #include "pokeradar.h"

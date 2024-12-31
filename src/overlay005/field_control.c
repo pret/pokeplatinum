@@ -29,6 +29,7 @@
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_02241F74.h"
 
+#include "catching_show.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -45,7 +46,6 @@
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_tile_behavior.h"
-#include "catching_show.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"

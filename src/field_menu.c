@@ -35,6 +35,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "catching_show.h"
 #include "cell_actor.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -50,7 +51,6 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
-#include "catching_show.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"

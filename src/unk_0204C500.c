@@ -9,10 +9,10 @@
 
 #include "savedata/save_table.h"
 
+#include "catching_show.h"
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
-#include "catching_show.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "system_flags.h"

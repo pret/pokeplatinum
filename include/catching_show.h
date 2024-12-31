@@ -5,13 +5,13 @@
 
 #include "field_battle_data_transfer.h"
 
-#define POINTS_LOST_PER_SECOND   2
-#define CATCHING_SHOW_MONS       6
-#define DISTINCT_TYPE_BONUS      50
-#define DIFFERENT_TYPE_BONUS     200
-#define MAX_TIME_SECONDS         1000
+#define POINTS_LOST_PER_SECOND 2
+#define CATCHING_SHOW_MONS     6
+#define DISTINCT_TYPE_BONUS    50
+#define DIFFERENT_TYPE_BONUS   200
+#define MAX_TIME_SECONDS       1000
 
-typedef struct CatchingShowPokemon{
+typedef struct CatchingShowPokemon {
     u16 species;
     u8 encounterType;
     u8 encounterRate;
