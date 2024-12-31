@@ -1,8 +1,5 @@
 #include "pokedex_data.h"
 
-#include <nitro.h>
-#include <string.h>
-
 #include "constants/species.h"
 
 #include "heap.h"
