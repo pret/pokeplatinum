@@ -80,13 +80,13 @@ static BOOL SpeciesInvalid(u16 species)
 static inline BOOL ReadBit_2Forms(const u8 *array, u16 bitIndex)
 {
     bitIndex--;
-    return 0 != (array[bitIndex >> 0x3] & (1 << (bitIndex & 0x7)));
+    return 0 != (array[bitIndex >> 3] & (1 << (bitIndex & 0x7)));
 }
 
 static inline void ActivateBit_2Forms(u8 *array, u16 bitIndex)
 {
     bitIndex--;
-    array[bitIndex >> 0x3] |= 1 << (bitIndex & 0x7);
+    array[bitIndex >> 3] |= 1 << (bitIndex & 0x7);
 }
 
 static inline void SetBit_2Forms(u8 *array, u8 value, u16 bitIndex)
@@ -95,8 +95,8 @@ static inline void SetBit_2Forms(u8 *array, u8 value, u16 bitIndex)
 
     bitIndex--;
 
-    array[bitIndex >> 0x3] &= ~(1 << (bitIndex & 0x7));
-    array[bitIndex >> 0x3] |= value << (bitIndex & 0x7);
+    array[bitIndex >> 3] &= ~(1 << (bitIndex & 0x7));
+    array[bitIndex >> 3] |= value << (bitIndex & 0x7);
 }
 
 static inline u32 ReadBit_3Forms(const u8 *array, u16 bitIndex)
@@ -133,7 +133,7 @@ static void SetBit_Gender(PokedexData *pokedexData, u8 gender, u8 isSeen, u16 bi
 
 static void UpdateGender(PokedexData *pokedexData, u8 gender, u8 isSeen, u16 bitIndex)
 {
-    GF_ASSERT(gender <= 2);
+    GF_ASSERT(gender <= GENDER_NONE);
 
     if (gender == GENDER_NONE) {
         gender = GENDER_MALE;
@@ -586,8 +586,6 @@ static void UpdateForm(PokedexData *pokedexData, u16 species, Pokemon *pokemon)
     case SPECIES_ROTOM:
         form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
         UpdateForms_Rotom(pokedexData, species, form);
-        break;
-    default:
         break;
     }
 }
