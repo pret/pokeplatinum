@@ -125,7 +125,7 @@ static void InitEncounterData(FieldSystem *fieldSystem, CatchingShow *catchingSh
     mon = Pokemon_New(4);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        catchingShow->capturedPokemonIndex[i] = 0;
+        catchingShow->caughtMonsOrder[i] = 0;
         sub_0202F000(v4, i, mon);
 
         monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -154,7 +154,7 @@ static int NumMonsCaptured(CatchingShow *catchingShow)
     int numMonsCaptured = 0;
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        if (catchingShow->capturedPokemonIndex[i] != 0) {
+        if (catchingShow->caughtMonsOrder[i] != 0) {
             numMonsCaptured++;
         }
     }
@@ -207,7 +207,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
     }
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        if ((catchingShow->capturedPokemonIndex[i] == 0) && (catchingShow->pokemon[i].encounterType == encounterType)) {
+        if ((catchingShow->caughtMonsOrder[i] == 0) && (catchingShow->pokemon[i].encounterType == encounterType)) {
             v2 += catchingShow->pokemon[i].encounterRate;
         }
     }
@@ -225,7 +225,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
     v1 -= 20;
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        if ((catchingShow->capturedPokemonIndex[i] == 0) && (catchingShow->pokemon[i].encounterType == encounterType)) {
+        if ((catchingShow->caughtMonsOrder[i] == 0) && (catchingShow->pokemon[i].encounterType == encounterType)) {
             if (v1 < catchingShow->pokemon[i].encounterRate) {
                 catchingShow->currentEncounterIndex = i;
                 return TRUE;
@@ -243,7 +243,7 @@ static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO 
 {
     switch (dto->resultMask) {
     case BATTLE_RESULT_CAPTURED_MON:
-        catchingShow->capturedPokemonIndex[catchingShow->currentEncounterIndex] = NumMonsCaptured(catchingShow) + 1;
+        catchingShow->caughtMonsOrder[catchingShow->currentEncounterIndex] = NumMonsCaptured(catchingShow) + 1;
         break;
     case BATTLE_RESULT_PLAYER_FLED:
         break;
@@ -290,7 +290,7 @@ static u32 CalculateTypePoints(CatchingShow *catchingShow)
 
     for (i = 1; i < CATCHING_SHOW_MONS + 1; i++) {
         for (j = 0; j < CATCHING_SHOW_MONS; j++) {
-            if (catchingShow->capturedPokemonIndex[j] == i) {
+            if (catchingShow->caughtMonsOrder[j] == i) {
                 currentMonType1 = catchingShow->pokemon[j].type1;
                 currentMonType2 = catchingShow->pokemon[j].type2;
 

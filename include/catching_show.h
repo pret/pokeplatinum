@@ -22,7 +22,7 @@ typedef struct CatchingShowPokemon {
 
 typedef struct CatchingShow {
     CatchingShowPokemon pokemon[CATCHING_SHOW_MONS];
-    u8 capturedPokemonIndex[CATCHING_SHOW_MONS];
+    u8 caughtMonsOrder[CATCHING_SHOW_MONS];
     int steps;
     int currentEncounterIndex;
     s64 startTime;
