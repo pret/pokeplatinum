@@ -14,4 +14,4 @@ For more detailed information about the project as a whole, please refer to its
 
 ## Mods
 
-- [Fast Guage](mods/fast_guage.md)
+- [Fast Gauge](mods/fast_gauge.md)
