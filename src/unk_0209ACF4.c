@@ -268,7 +268,7 @@ static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2)
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, v0, 3);
         FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
-        FieldMessaage_FillWindowTilemap(v0);
+        FieldMessage_ClearWindow(v0);
         Window_DrawMessageBoxWithScrollCursor(v0, 0, 1024 - (18 + 12), 10);
     }
 

@@ -89,7 +89,7 @@ static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, &param0->unk_54, 3);
         FieldMessage_DrawWindow(&param0->unk_54, SaveData_Options(param0->fieldSystem->saveData));
     } else {
-        FieldMessaage_FillWindowTilemap(&param0->unk_54);
+        FieldMessage_ClearWindow(&param0->unk_54);
     }
 
     MessageLoader_GetStrbuf(param0->unk_68, param1, param0->unk_14);

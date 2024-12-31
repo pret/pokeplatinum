@@ -621,7 +621,7 @@ static int sub_0205AA50(UnkStruct_0205A0D8 *param0, const Strbuf *param1)
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, v0, 3);
         FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
-        FieldMessaage_FillWindowTilemap(v0);
+        FieldMessage_ClearWindow(v0);
     }
 
     return FieldMessage_Print(v0, (Strbuf *)param1, SaveData_Options(param0->fieldSystem->saveData), 1);

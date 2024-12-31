@@ -35,11 +35,11 @@ void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 bgLayer)
 void FieldMessage_DrawWindow(Window *window, const Options *options)
 {
     LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), 1024 - (18 + 12), 10, Options_Frame(options), 4);
-    FieldMessaage_FillWindowTilemap(window);
+    FieldMessage_ClearWindow(window);
     Window_DrawMessageBoxWithScrollCursor(window, FALSE, 1024 - (18 + 12), 10);
 }
 
-void FieldMessaage_FillWindowTilemap(Window *window)
+void FieldMessage_ClearWindow(Window *window)
 {
     Window_FillTilemap(window, 15);
 }
