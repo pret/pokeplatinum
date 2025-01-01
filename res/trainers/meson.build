@@ -951,11 +951,12 @@ trdata_narc = custom_target('trdata.narc',
     input: trainer_data_gen.process(trainer_data_files, env: json2bin_env),
     depends: [ py_consts_generators ],
     command: [
-        knarc_exe,
-        '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT0@',
+        narc_exe,
+        'create',
         '--order', trainers_order,
+        '--output', '@OUTPUT0@',
         '--naix',
+        '@PRIVATE_DIR@',
     ],
 )
 
@@ -967,11 +968,11 @@ trpoke_narc = custom_target('trpoke.narc',
     input: trainer_party_gen.process(trainer_data_files, env: json2bin_env),
     depends: [ py_consts_generators ],
     command: [
-        knarc_exe,
-        '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT0@',
-        '--order', trainers_order,
+        narc_exe, 'create',
         '--naix',
+        '--order', trainers_order,
+        '--output', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ]
 )
 

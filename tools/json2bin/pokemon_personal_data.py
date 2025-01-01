@@ -102,4 +102,4 @@ j2b.json2bin(args.source_dir,
              indexer,
              glob_pattern='**/data.json',
              narc_name='pl_personal',
-             narc_packer=args.knarc)
+             narc_packer=args.narc)
