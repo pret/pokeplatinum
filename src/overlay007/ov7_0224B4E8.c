@@ -11,6 +11,7 @@
 
 #include "bg_window.h"
 #include "core_sys.h"
+#include "field_message.h"
 #include "field_task.h"
 #include "font.h"
 #include "heap.h"
@@ -26,7 +27,6 @@
 #include "unk_02005474.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
-#include "unk_0205D8CC.h"
 #include "unk_0207A2A8.h"
 
 typedef struct {
@@ -89,7 +89,7 @@ static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, &param0->unk_54, 3);
         FieldMessage_DrawWindow(&param0->unk_54, SaveData_Options(param0->fieldSystem->saveData));
     } else {
-        sub_0205D988(&param0->unk_54);
+        FieldMessage_ClearWindow(&param0->unk_54);
     }
 
     MessageLoader_GetStrbuf(param0->unk_68, param1, param0->unk_14);

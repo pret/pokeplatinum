@@ -244,7 +244,7 @@ Static main
 	Object main.nef.p/src_unk_0205C22C.c.o
 	Object main.nef.p/src_unk_0205C980.c.o
 	Object main.nef.p/src_unk_0205CA94.c.o
-	Object main.nef.p/src_unk_0205D8CC.c.o
+	Object main.nef.p/src_field_message.c.o
 	Object main.nef.p/src_map_tile_behavior.c.o
 	Object main.nef.p/src_unk_0205DFC4.c.o
 	Object main.nef.p/src_player_avatar.c.o

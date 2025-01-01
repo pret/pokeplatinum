@@ -12,6 +12,7 @@
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
+#include "field_message.h"
 #include "field_task.h"
 #include "heap.h"
 #include "message.h"
@@ -25,7 +26,6 @@
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
-#include "unk_0205D8CC.h"
 #include "unk_0209747C.h"
 
 typedef struct {
@@ -268,7 +268,7 @@ static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2)
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, v0, 3);
         FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
-        sub_0205D988(v0);
+        FieldMessage_ClearWindow(v0);
         Window_DrawMessageBoxWithScrollCursor(v0, 0, 1024 - (18 + 12), 10);
     }
 
