@@ -208,8 +208,8 @@ static void JournalController_SetupBgs(BgConfig *bgConfig)
         0
     };
 
-    Bg_InitFromTemplate(bgConfig, 0, &bgTemplate1, 0);
-    Bg_ClearTilemap(bgConfig, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &bgTemplate1, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
     BgTemplate bgTemplate2 = {
         0,
@@ -227,8 +227,8 @@ static void JournalController_SetupBgs(BgConfig *bgConfig)
         0
     };
 
-    Bg_InitFromTemplate(bgConfig, 1, &bgTemplate2, 0);
-    Bg_ClearTilemap(bgConfig, 1);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgTemplate2, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
 
     BgTemplate bgTemplate3 = {
         0,
@@ -246,7 +246,7 @@ static void JournalController_SetupBgs(BgConfig *bgConfig)
         0
     };
 
-    Bg_InitFromTemplate(bgConfig, 2, &bgTemplate3, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgTemplate3, BG_TYPE_STATIC);
 
     BgTemplate bgTemplate4 = {
         0,
@@ -264,7 +264,7 @@ static void JournalController_SetupBgs(BgConfig *bgConfig)
         0
     };
 
-    Bg_InitFromTemplate(bgConfig, 3, &bgTemplate4, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgTemplate4, BG_TYPE_STATIC);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_JOURNAL);
     Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_JOURNAL);
