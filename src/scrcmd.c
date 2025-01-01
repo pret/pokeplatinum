@@ -649,7 +649,7 @@ static BOOL ScrCmd_269(ScriptContext *ctx);
 static BOOL ScrCmd_26A(ScriptContext *ctx);
 static BOOL ScrCmd_26B(ScriptContext *ctx);
 static BOOL ScrCmd_26C(ScriptContext *ctx);
-static BOOL ScrCmd_26E(ScriptContext *ctx);
+static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx);
 static BOOL ScrCmd_270(ScriptContext *ctx);
 static BOOL ScrCmd_273(ScriptContext *ctx);
 static BOOL ScrCmd_275(ScriptContext *ctx);
@@ -1364,7 +1364,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_253,
     ScrCmd_254,
     ScrCmd_255,
-    ScrCmd_256,
+    ScrCmd_CalcCatchingShowPoints,
     ScrCmd_257,
     ScrCmd_258,
     ScrCmd_259,
@@ -1388,7 +1388,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_26B,
     ScrCmd_26C,
     ScrCmd_26D,
-    ScrCmd_26E,
+    ScrCmd_GetGBACartridgeVersion,
     ScrCmd_26F,
     ScrCmd_270,
     ScrCmd_271,
@@ -7061,12 +7061,12 @@ static BOOL ScrCmd_26C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_26E(ScriptContext *ctx)
+static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = gCoreSys.gbaCartridgeVersion;
-    return 1;
+    *destVar = gCoreSys.gbaCartridgeVersion;
+    return TRUE;
 }
 
 static BOOL ScrCmd_26F(ScriptContext *ctx)

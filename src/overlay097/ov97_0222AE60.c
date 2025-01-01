@@ -235,7 +235,7 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
         break;
     }
 
-    sub_02017B70(v0);
+    SetGBACartridgeVersion(v0);
 
     if (Pokedex_IsNationalDexObtained(param0->unk_08) == FALSE) {
         return;

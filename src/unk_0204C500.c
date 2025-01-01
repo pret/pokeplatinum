@@ -82,25 +82,25 @@ BOOL ScrCmd_255(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_256(ScriptContext *param0)
+BOOL ScrCmd_CalcCatchingShowPoints(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
+    u16 pointsCategory = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    switch (v0) {
-    case 0:
-        *v1 = CatchingShow_GetCatchingPoints(param0->fieldSystem);
+    switch (pointsCategory) {
+    case CATCHING_POINTS:
+        *destVar = CatchingShow_CalcCatchingPoints(ctx->fieldSystem);
         break;
-    case 1:
-        *v1 = CatchingShow_GetTimePoints(param0->fieldSystem);
+    case TIME_POINTS:
+        *destVar = CatchingShow_GetTimePoints(ctx->fieldSystem);
         break;
-    case 2:
-        *v1 = CatchingShow_GetTypePoints(param0->fieldSystem);
+    case TYPE_POINTS:
+        *destVar = CatchingShow_GetTypePoints(ctx->fieldSystem);
         break;
-    case 3:
-        *v1 = CatchingShow_GetCatchingPoints(param0->fieldSystem) + CatchingShow_GetTypePoints(param0->fieldSystem) + CatchingShow_GetTimePoints(param0->fieldSystem);
+    case TOTAL_POINTS:
+        *destVar = CatchingShow_CalcCatchingPoints(ctx->fieldSystem) + CatchingShow_GetTypePoints(ctx->fieldSystem) + CatchingShow_GetTimePoints(ctx->fieldSystem);
         break;
     }
 
-    return 0;
+    return FALSE;
 }

@@ -213,16 +213,16 @@ _02F8:
     SetVar 0x40F3, 0
     ApplyMovement 0xFF, _03EC
     WaitMovement
-    ScrCmd_256 0, 0x800C
+    CalcCatchingShowPoints 0, 0x800C
     BufferNumber 0, 0x800C
-    ScrCmd_256 1, 0x800C
+    CalcCatchingShowPoints 1, 0x800C
     BufferNumber 1, 0x800C
-    ScrCmd_256 2, 0x800C
+    CalcCatchingShowPoints 2, 0x800C
     BufferNumber 2, 0x800C
-    ScrCmd_256 3, 0x800C
+    CalcCatchingShowPoints 3, 0x800C
     BufferNumber 3, 0x800C
     Message 38
-    ScrCmd_256 3, 0x800C
+    CalcCatchingShowPoints 3, 0x800C
     GoToIfGt 0x800C, 0x40E0, _035B
     Message 40
     Call _07BE
@@ -231,7 +231,7 @@ _02F8:
 _035B:
     Message 39
     Call _07BE
-    ScrCmd_256 3, 0x40E0
+    CalcCatchingShowPoints 3, 0x40E0
     GoTo _0370
 
 _0370:
@@ -507,7 +507,7 @@ _0662:
     LockAll
     FacePlayer
     GoToIfEq 0x4009, 1, _06CF
-    ScrCmd_26E 0x800C
+    GetGBACartridgeVersion 0x800C
     GoToIfEq 0x800C, 4, _06DA
     GoToIfEq 0x800C, 5, _0706
     GoToIfEq 0x800C, 1, _0732
@@ -587,7 +587,7 @@ _07AE:
     End
 
 _07BE:
-    ScrCmd_256 3, 0x800C
+    CalcCatchingShowPoints 3, 0x800C
     CallIfLt 0x800C, 0xBB8, _07FA
     CallIfLt 0x800C, 0xCE4, _0870
     CallIfLt 0x800C, 0xDAC, _08BF

@@ -3250,10 +3250,10 @@
     .short 597
     .endm
 
-    .macro ScrCmd_256 arg0, arg1
+    .macro CalcCatchingShowPoints pointsCategory, destVarID
     .short 598
-    .short \arg0
-    .short \arg1
+    .short \pointsCategory
+    .short \destVarID
     .endm
 
     .macro ScrCmd_257
@@ -3370,9 +3370,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_26E arg0
+    .macro GetGBACartridgeVersion destVarID
     .short 622
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_26F
