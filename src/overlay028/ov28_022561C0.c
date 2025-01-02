@@ -16,11 +16,11 @@
 
 #include "bg_window.h"
 #include "heap.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_0202631C.h"
 
 typedef struct {
     u8 unk_00;
@@ -635,15 +635,15 @@ static void ov28_02256914(UnkStruct_ov28_02256210 *param0, const UnkStruct_ov28_
         PokedexData *v1;
         u16 v2;
 
-        v1 = SaveData_Pokedex(PoketchSystem_GetSaveData(param0->poketchSys));
+        v1 = SaveData_PokedexData(PoketchSystem_GetSaveData(param0->poketchSys));
 
-        if (Pokedex_IsNationalDexObtained(v1)) {
+        if (PokedexData_IsNationalDexObtained(v1)) {
             v2 = v0;
         } else {
             v2 = Pokemon_NationalDexNumber((u16)v0);
         }
 
-        if (v2 > 0 && v2 <= NATIONAL_DEX_COUNT && Pokedex_HasSeenSpecies(v1, v2)) {
+        if (v2 > 0 && v2 <= NATIONAL_DEX_COUNT && PokedexData_HasSeenSpecies(v1, v2)) {
             ov25_02254444(v2, 0);
         }
     }

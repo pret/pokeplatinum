@@ -24,6 +24,7 @@
 #include "heap.h"
 #include "math.h"
 #include "party.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -31,7 +32,6 @@
 #include "unk_02006224.h"
 #include "unk_02017728.h"
 #include "unk_02026150.h"
-#include "unk_0202631C.h"
 
 BattleRecording *Unk_021C07A4 = NULL;
 
@@ -561,7 +561,7 @@ void sub_0202FAFC(FieldBattleDTO *param0, SaveData *param1)
     param0->resultMask = BATTLE_IN_PROGRESS;
     param0->leveledUpMonsMask = 0;
 
-    Pokedex_Copy(SaveData_Pokedex(param1), param0->pokedex);
+    PokedexData_Copy(SaveData_PokedexData(param1), param0->pokedex);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->trainerIDs[v0] = v1->unk_00.unk_08[v0];

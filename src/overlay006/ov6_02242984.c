@@ -16,7 +16,7 @@
 #include "map_header_data.h"
 #include "narc.h"
 #include "player_avatar.h"
-#include "unk_0202631C.h"
+#include "pokedex_data.h"
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
 
@@ -42,7 +42,7 @@ int ov6_02242984(FieldSystem *fieldSystem)
         v2[i] = encounterData->grassEncounters.encounters[i].species;
     }
 
-    BOOL v1 = Pokedex_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_GetSaveData(fieldSystem)));
+    BOOL v1 = PokedexData_IsNationalDexObtained(SaveData_PokedexData(FieldSystem_GetSaveData(fieldSystem)));
 
     ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), v1, fieldSystem->location->mapId, &v2[6], &v2[7]);
     WildEncounters_ReplaceTimedEncounters(encounterData, &v2[2], &v2[3]);

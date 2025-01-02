@@ -9,6 +9,7 @@
 #include "journal.h"
 #include "party.h"
 #include "poffin.h"
+#include "pokedex_data.h"
 #include "poketch_data.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
@@ -18,7 +19,6 @@
 #include "unk_02014D38.h"
 #include "unk_0202602C.h"
 #include "unk_020261E4.h"
-#include "unk_0202631C.h"
 #include "unk_02027F84.h"
 #include "unk_02028124.h"
 #include "unk_0202854C.h"
@@ -53,7 +53,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_VARS_FLAGS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)VarsFlags_SaveSize, (SaveEntryInitFunc)VarsFlags_Init },
     { SAVE_TABLE_ENTRY_POKETCH, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Poketch_SaveSize, (SaveEntryInitFunc)Poketch_Init },
     { SAVE_TABLE_ENTRY_FIELD_PLAYER_STATE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldOverworldState_Size, (SaveEntryInitFunc)FieldOverworldState_Init },
-    { SAVE_TABLE_ENTRY_POKEDEX, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Pokedex_SaveSize, (SaveEntryInitFunc)Pokedex_Init },
+    { SAVE_TABLE_ENTRY_POKEDEX, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)PokedexData_SaveSize, (SaveEntryInitFunc)PokedexData_Init },
     { SAVE_TABLE_ENTRY_DAYCARE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Daycare_SaveSize, (SaveEntryInitFunc)Daycare_Init },
     { SAVE_TABLE_ENTRY_PAL_PAD, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)PalPad_SaveSize, (SaveEntryInitFunc)PalPad_Init },
     { SAVE_TABLE_ENTRY_MISC, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MiscSaveBlock_SaveSize, (SaveEntryInitFunc)MiscSaveBlock_Init },
