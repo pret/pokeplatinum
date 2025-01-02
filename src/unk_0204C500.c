@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/catching_show.h"
+
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -88,16 +90,16 @@ BOOL ScrCmd_CalcCatchingShowPoints(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     switch (pointsCategory) {
-    case CATCHING_POINTS:
+    case CATCHING_SHOW_CATCHING_POINTS:
         *destVar = CatchingShow_CalcCatchingPoints(ctx->fieldSystem);
         break;
-    case TIME_POINTS:
+    case CATCHING_SHOW_TIME_POINTS:
         *destVar = CatchingShow_GetTimePoints(ctx->fieldSystem);
         break;
-    case TYPE_POINTS:
+    case CATCHING_SHOW_TYPE_POINTS:
         *destVar = CatchingShow_GetTypePoints(ctx->fieldSystem);
         break;
-    case TOTAL_POINTS:
+    case CATCHING_SHOW_TOTAL_POINTS:
         *destVar = CatchingShow_CalcCatchingPoints(ctx->fieldSystem) + CatchingShow_GetTypePoints(ctx->fieldSystem) + CatchingShow_GetTimePoints(ctx->fieldSystem);
         break;
     }

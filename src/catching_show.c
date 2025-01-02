@@ -23,6 +23,24 @@
 #include "unk_0202EEC0.h"
 #include "unk_02054D00.h"
 
+#define POINTS_LOST_PER_SECOND 2
+#define WEIGHT_NO_ENCOUNTER    20
+#define DISTINCT_TYPE_BONUS    50
+#define DIFFERENT_TYPE_BONUS   200
+#define MAX_TIME_SECONDS       1000
+
+enum PAL_PARK_AREA {
+    PAL_PARK_AREA_NONE = 0,
+    PAL_PARK_AREA_LAND_NORTH_WEST,
+    PAL_PARK_AREA_LAND_NORTH_EAST,
+    PAL_PARK_AREA_LAND_SOUTH_WEST,
+    PAL_PARK_AREA_LAND_SOUTH_EAST,
+    PAL_PARK_AREA_WATER_NORTH_WEST,
+    PAL_PARK_AREA_WATER_NORTH_EAST,
+    PAL_PARK_AREA_WATER_SOUTH_WEST,
+    PAL_PARK_AREA_WATER_SOUTH_EAST,
+};
+
 static void InitEncounterData(FieldSystem *fieldSystem, CatchingShow *catchingShow);
 static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO *dto, CatchingShow *catchingShow);
 static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow, int playerX, int playerY);
@@ -130,9 +148,9 @@ static void InitEncounterData(FieldSystem *fieldSystem, CatchingShow *catchingSh
         sub_02056400(monSpecies, v1);
 
         if (v1[0] != 0) {
-            catchingShow->pokemon[i].encounterType = v1[0];
+            catchingShow->pokemon[i].area = v1[0];
         } else {
-            catchingShow->pokemon[i].encounterType = PAL_PARK_ENCOUNTER_WATER_ZONE_1 - 1 + v1[1];
+            catchingShow->pokemon[i].area = PAL_PARK_AREA_WATER_NORTH_WEST - 1 + v1[1];
         }
 
         catchingShow->pokemon[i].rarity = v1[3];
@@ -175,33 +193,33 @@ static BOOL IsStepCountZero(CatchingShow *catchingShow)
     return FALSE;
 }
 
-static int GetEncounterType(FieldSystem *fieldSystem, int playerX, int playerY)
+static int GetEncounterArea(FieldSystem *fieldSystem, int playerX, int playerY)
 {
     u16 tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerY);
-    int palParkZone = (playerX < 32) ? 0 : 1;
-    palParkZone += (playerY < 32) ? 0 : 2;
+    int area = (playerX < 32) ? 0 : 1;
+    area += (playerY < 32) ? 0 : 2;
 
     if (TileBehavior_IsTallGrass(tileBehavior)) {
-        return PAL_PARK_ENCOUNTER_LAND_ZONE_1 + palParkZone;
+        return PAL_PARK_AREA_LAND_NORTH_WEST + area;
     } else if (TileBehavior_IsSurfable(tileBehavior)) {
-        return PAL_PARK_ENCOUNTER_WATER_ZONE_1 + palParkZone;
+        return PAL_PARK_AREA_WATER_NORTH_WEST + area;
     }
 
-    return PAL_PARK_ENCOUNTER_TYPE_NONE;
+    return PAL_PARK_AREA_NONE;
 }
 
 static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow, int playerX, int playerY)
 {
     int i;
     int encounterChance, totalRarity = 0;
-    int encounterType = GetEncounterType(fieldSystem, playerX, playerY);
+    int area = GetEncounterArea(fieldSystem, playerX, playerY);
 
-    if (encounterType == PAL_PARK_ENCOUNTER_TYPE_NONE) {
+    if (area == PAL_PARK_AREA_NONE) {
         return FALSE;
     }
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        if (catchingShow->caughtMonsOrder[i] == 0 && catchingShow->pokemon[i].encounterType == encounterType) {
+        if (catchingShow->caughtMonsOrder[i] == 0 && catchingShow->pokemon[i].area == area) {
             totalRarity += catchingShow->pokemon[i].rarity;
         }
     }
@@ -219,7 +237,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
     encounterChance -= WEIGHT_NO_ENCOUNTER;
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        if (catchingShow->caughtMonsOrder[i] == 0 && catchingShow->pokemon[i].encounterType == encounterType) {
+        if (catchingShow->caughtMonsOrder[i] == 0 && catchingShow->pokemon[i].area == area) {
             if (encounterChance < catchingShow->pokemon[i].rarity) {
                 catchingShow->currentEncounterIndex = i;
                 return TRUE;
@@ -229,7 +247,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return FALSE;
 }
 
@@ -242,7 +260,7 @@ static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO 
     case BATTLE_RESULT_PLAYER_FLED:
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 

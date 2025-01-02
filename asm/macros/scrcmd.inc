@@ -1,5 +1,6 @@
     .include "macros/movement.inc"
     .include "consts/badges.inc"
+    .include "consts/catching_show.inc"
     .include "consts/game_records.inc"
     .include "consts/items.inc"
     .include "consts/journal.inc"
