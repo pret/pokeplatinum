@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    20
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    557
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    557
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    29
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    29
+"english":
+    "category": |-
+        Starling Pokémon
+    "entry_text": |-
+        Because they are weak individually,
+        they form groups. However, they
+        bicker if the group grows too big.
+"french":
+    "name": |-
+        ETOURMI
+    "category": |-
+        Pokémon Etourneau
+    "entry_text": |-
+        Ils volent en nombre. Bien que
+        minuscule, il bat des ailes avec
+        une vigueur impressionnante.
+"german":
+    "name": |-
+        STARALILI
+    "category": |-
+        Star
+    "entry_text": |-
+        Ihr Schwarm ist stets groß. Obwohl
+        es kleine PKMN sind, schwingen sie
+        ihre Flügel mit enormer Kraft.
+"italian":
+    "name": |-
+        Starly
+    "category": |-
+        Pokémon Storno
+    "entry_text": |-
+        Si muove in grandi gruppi. Anche
+        se piccolo, batte le ali in maniera
+        molto energica.
+"spanish":
+    "name": |-
+        Starly
+    "category": |-
+        Pokémon Estornino
+    "entry_text": |-
+        Viaja en grandes bandadas.
+        Aunque es pequeño, agita
+        las alas con gran fuerza.
+"japanese":
+    "name": |-
+        ムックル
+    "category": |-
+        むくどりポケモン
+    "entry_text": |-
+        たくさんの　むれで　こうどうする。
+        からだは　ちいさいが　はばたく
+        ちからは　ひじょうに　つよい。

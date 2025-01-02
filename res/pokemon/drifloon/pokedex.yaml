@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    12
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    383
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    383
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65522
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65522
+"english":
+    "category": |-
+        Balloon Pokémon
+    "entry_text": |-
+        Because of the way it floats
+        aimlessly, an old folktale calls it a
+        “Signpost for Wandering Spirits.”
+"french":
+    "name": |-
+        BAUDRIVE
+    "category": |-
+        Pokémon Bouboule
+    "entry_text": |-
+        Un Pokémon né de l’esprit des gens
+        et des Pokémon. Il aime les saisons
+        chaudes et humides.
+"german":
+    "name": |-
+        DRIFTLON
+    "category": |-
+        Ballon
+    "entry_text": |-
+        Ein PKMN, entstanden aus den
+        Gefühlen von Menschen und PKMN.
+        Es mag feuchte Jahreszeiten.
+"italian":
+    "name": |-
+        Drifloon
+    "category": |-
+        Pokémon Pallone
+    "entry_text": |-
+        Pokémon formato dalle anime di
+        persone e Pokémon. Ama le
+        stagioni umide.
+"spanish":
+    "name": |-
+        Drifloon
+    "category": |-
+        Pokémon Globo
+    "entry_text": |-
+        Está formado por los espíritus de
+        personas y Pokémon. Le encantan
+        las estaciones húmedas.
+"japanese":
+    "name": |-
+        フワンテ
+    "category": |-
+        ふうせんポケモン
+    "entry_text": |-
+        ひとや　ポケモンの　たましいが
+        かたまって　うまれた　ポケモン。
+        ジメジメした　きせつが　だいすき。

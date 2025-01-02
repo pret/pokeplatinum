@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    335
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    334
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    334
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    10
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    10
+"english":
+    "category": |-
+        Sea Weasel Pokémon
+    "entry_text": |-
+        It is a common sight around
+        fishing ports. It is known to
+        rescue people and carry off prey.
+"french":
+    "name": |-
+        MUSTEFLOTT
+    "category": |-
+        Pokémon Aquabelette
+    "entry_text": |-
+        Il flotte grâce à sa bouée très
+        développée. Il vole au secours
+        des gens sur le point de se noyer.
+"german":
+    "name": |-
+        BOJELIN
+    "category": |-
+        Meereswiesel
+    "entry_text": |-
+        Es treibt mithilfe einer Art
+        Rettungsring auf dem Wasser und
+        hilft dem, der zu ertrinken droht.
+"italian":
+    "name": |-
+        Floatzel
+    "category": |-
+        Pokémon Maridonnola
+    "entry_text": |-
+        Nuota con il suo grosso galleg-
+        giante e aiuta a soccorrere
+        chi sta per annegare.
+"spanish":
+    "name": |-
+        Floatzel
+    "category": |-
+        Pokémon Nutria Mar.
+    "entry_text": |-
+        Nada gracias a su flotador.
+        Ayuda en los rescates de
+        gente que se está ahogando.
+"japanese":
+    "name": |-
+        フロ－ゼル
+    "category": |-
+        うみイタチポケモン
+    "entry_text": |-
+        はったつした　うきぶくろで　うかぶ。
+        おぼれた　ひとを　きゅうじょする
+        てつだいを　している　ポケモンだ。

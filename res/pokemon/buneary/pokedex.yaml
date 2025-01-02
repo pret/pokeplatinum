@@ -1,0 +1,72 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    55
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    430
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    430
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Rabbit Pokémon
+    "entry_text": |-
+        Its ears are always rolled up. They
+        can be forcefully extended to
+        shatter even a large boulder.
+"french":
+    "name": |-
+        LAPOREILLE
+    "category": |-
+        Pokémon Lapin
+    "entry_text": |-
+        Il frappe l’ennemi en déroulant
+        violemment ses oreilles. Cela
+        peut faire pleurer un adulte.
+"german":
+    "name": |-
+        HASPIROR
+    "category": |-
+        Hase
+    "entry_text": "Es entrollt seine Ohren sehr\nschnell, um seine Gegner\nschmerzhaft\
+        \ zu schlagen. "
+"italian":
+    "name": |-
+        Buneary
+    "category": |-
+        Pokémon Coniglio
+    "entry_text": |-
+        Sbaraglia i nemici dispiegando con
+        forza le orecchie arrotolate. Fa
+        piangere di dolore anche gli adulti.
+"spanish":
+    "name": |-
+        Buneary
+    "category": |-
+        Pokémon Conejo
+    "entry_text": |-
+        Ataca a sus enemigos con un
+        golpe rápido de sus orejas. Sus
+        picotazos son muy dolorosos.
+"japanese":
+    "name": |-
+        ミミロル
+    "category": |-
+        うさぎポケモン
+    "entry_text": |-
+        まるめた　みみを　いきおいよく
+        のばして　あいてに　たたきつける。
+        おとなでも　とびあがるほど　いたい。

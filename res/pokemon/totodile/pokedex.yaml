@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    95
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    330
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    330
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Big Jaw Pokémon
+    "entry_text": |-
+        It has the habit of biting anything
+        with its developed jaws. Even its
+        Trainer needs to be careful.
+"french":
+    "name": |-
+        KAIMINUS
+    "category": |-
+        Pokémon Mâchoire
+    "entry_text": |-
+        Il broie tout ce qu’il trouve avec
+        ses mâchoires puissantes. Même
+        son Dresseur doit s’en méfier.
+"german":
+    "name": |-
+        KARNIMANI
+    "category": |-
+        Großmaul
+    "entry_text": |-
+        Es hat die Angewohnheit, nach allem
+        zu schnappen, was es sieht. Selbst
+        seine Trainer müssen aufpassen.
+"italian":
+    "name": |-
+        Totodile
+    "category": |-
+        Pokémon Mascellone
+    "entry_text": |-
+        Ha l’abitudine di mordere ogni cosa
+        con le potenti mandibole. Neppure
+        il suo Allenatore è al sicuro!
+"spanish":
+    "name": |-
+        Totodile
+    "category": |-
+        Pokémon Fauces
+    "entry_text": |-
+        Tiene costumbre de morderlo todo
+        con sus poderosas mandíbulas,
+        incluso entrenadores.
+"japanese":
+    "name": |-
+        ワニノコ
+    "category": |-
+        おおあごポケモン
+    "entry_text": |-
+        はったつした　あごを　もち
+        なんにでも　かみつく　しゅうせい。
+        トレ－ナ－も　ちゅういが　ひつよう。

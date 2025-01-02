@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    270
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    319
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    319
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Deep Sea Pokémon
+    "entry_text": |-
+        It lives deep in the sea. With a
+        tail shaped like a small fish, it
+        attracts unsuspecting prey.
+"french":
+    "name": |-
+        SERPANG
+    "category": |-
+        Pokémon Abysse
+    "entry_text": |-
+        Il vit loin sous la mer. Il appâte
+        les proies crédules avec sa
+        queue qui rappelle un petit poisson.
+"german":
+    "name": |-
+        AALABYSS
+    "category": |-
+        Tiefsee
+    "entry_text": |-
+        Es lebt tief im Meer. Sein Schweif
+        ist wie ein kleiner Fisch geformt.
+        Mit ihm lockt es Beute an.
+"italian":
+    "name": |-
+        Huntail
+    "category": |-
+        Pokémon Abissi
+    "entry_text": |-
+        Vive nei mari profondi. Con la coda
+        a forma di pesciolino attrae prede
+        ignare del pericolo.
+"spanish":
+    "name": |-
+        Huntail
+    "category": |-
+        Pokémon Abisal
+    "entry_text": |-
+        Vive en los fondos marinos. Atrae
+        a sus confiadas presas con
+        la cola, que tiene forma de pez.
+"japanese":
+    "name": |-
+        ハンテ－ル
+    "category": |-
+        しんかいポケモン
+    "entry_text": |-
+        しんかいに　せいそくする　ポケモン。
+        こざかなの　かたちをした　しっぽで
+        えものを　おびきよせ　つかまえる。

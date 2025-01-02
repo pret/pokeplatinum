@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    40
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    482
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    482
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    29
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    29
+"english":
+    "category": |-
+        Bivalve Pokémon
+    "entry_text": |-
+        It swims backward by opening and
+        closing its two shells. Its large
+        tongue is always kept hanging out.
+"french":
+    "name": |-
+        KOKIYAS
+    "category": |-
+        Pokémon Bivalve
+    "entry_text": |-
+        Il nage à reculons en ouvrant et en
+        refermant ses deux coquilles. Il
+        laisse traîner sa large langue.
+"german":
+    "name": |-
+        MUSCHAS
+    "category": |-
+        Muschel
+    "entry_text": |-
+        Es schwimmt rückwärts, indem es
+        seine Schale öffnet und schließt.
+        Es zeigt immer seine breite Zunge.
+"italian":
+    "name": |-
+        Shellder
+    "category": |-
+        Pokémon Bivalve
+    "entry_text": |-
+        Nuota all’indietro aprendo e
+        chiudendo le due valve. La lingua
+        è sempre fuori a penzoloni.
+"spanish":
+    "name": |-
+        Shellder
+    "category": |-
+        Pokémon Bivalvo
+    "entry_text": |-
+        Nada hacia atrás abriendo y
+        cerrando su concha. Su gran
+        lengua siempre queda colgando.
+"japanese":
+    "name": |-
+        シェルダ－
+    "category": |-
+        ２まいがいポケモン
+    "entry_text": |-
+        ２まいの　カラを　あけしめすることで
+        うしろむきに　およぐ。どんなときでも
+        おおきな　ベロは　だしっぱなし。

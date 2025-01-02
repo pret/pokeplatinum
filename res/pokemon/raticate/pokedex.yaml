@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    185
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    351
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    351
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    21
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    21
+"english":
+    "category": |-
+        Mouse Pokémon
+    "entry_text": |-
+        It whittles its constantly growing
+        fangs by gnawing on hard things.
+        It can chew apart cinder walls.
+"french":
+    "name": |-
+        RATTATAC
+    "category": |-
+        Pokémon Souris
+    "entry_text": |-
+        Il grignote sans cesse pour apaiser
+        la poussée de ses crocs. Il peut
+        transpercer un mur de parpaings.
+"german":
+    "name": |-
+        RATTIKARL
+    "category": |-
+        Maus
+    "entry_text": |-
+        Es wetzt seine ständig wachsenden
+        Zähne an harten Dingen. Es kann
+        Wände aus Beton zernagen.
+"italian":
+    "name": |-
+        Raticate
+    "category": |-
+        Pokémon Topo
+    "entry_text": |-
+        Si affila le zanne in perenne
+        crescita rosicchiando cose dure.
+        Riesce a frantumare persino i muri.
+"spanish":
+    "name": |-
+        Raticate
+    "category": |-
+        Pokémon Ratón
+    "entry_text": |-
+        Lima sus colmillos royendo objetos
+        duros. Con ellos puede destruir
+        incluso paredes de hormigón.
+"japanese":
+    "name": |-
+        ラッタ
+    "category": |-
+        ねずみポケモン
+    "entry_text": |-
+        のびつづける　まえばを　けずるため
+        かたい　ものを　かじる　しゅうせい。
+        ブロックべいも　かじって　こわす。

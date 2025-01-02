@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    405
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    300
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    300
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    13
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    13
+"english":
+    "category": |-
+        Big Voice Pokémon
+    "entry_text": |-
+        The shock waves from its cries can
+        tip over trucks. It stamps its
+        feet to power up.
+"french":
+    "name": |-
+        RAMBOUM
+    "category": |-
+        Pokémon Grosse Voix
+    "entry_text": |-
+        L’onde de choc provoquée par son
+        cri peut renverser un camion. Il
+        trépigne pour augmenter sa force.
+"german":
+    "name": |-
+        KRAKEELO
+    "category": |-
+        Lauthals
+    "entry_text": |-
+        Die Schockwellen, die durch sein
+        Rufen entstehen, können einen
+        LKW umkippen.
+"italian":
+    "name": |-
+        Loudred
+    "category": |-
+        Pokémon Vocione
+    "entry_text": |-
+        Le onde d’urto dei suoi versi
+        ribaltano anche i camion. Pesta i
+        piedi per accumulare energia.
+"spanish":
+    "name": |-
+        Loudred
+    "category": |-
+        Pokémon Chillón
+    "entry_text": |-
+        Las ondas de sus gritos pueden
+        voltear un camión. Patea el suelo
+        para ganar potencia.
+"japanese":
+    "name": |-
+        ドゴ－ム
+    "category": |-
+        おおごえポケモン
+    "entry_text": |-
+        おおごえの　しょうげきはで
+        トラックを　ひっくりかえしてしまう。
+        あしを　ふみならして　パワ－アップ。

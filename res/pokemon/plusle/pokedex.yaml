@@ -1,0 +1,72 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    42
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    479
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    479
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    28
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    28
+"english":
+    "category": |-
+        Cheering Pokémon
+    "entry_text": |-
+        It cheers on friends with pom-poms
+        made of sparks. It drains power
+        from telephone poles.
+"french":
+    "name": |-
+        POSIPI
+    "category": |-
+        Pokémon Acclameur
+    "entry_text": "Il absorbe l’énergie des poteaux\nélectriques et encourage ses\
+        \ amis\navec des pompons d’étincelles. "
+"german":
+    "name": |-
+        PLUSLE
+    "category": |-
+        Jubel
+    "entry_text": |-
+        Es feuert Freunde mit Pompons an,
+        die aus Funken bestehen. Es holt
+        sich Energie aus Telegrafenmasten.
+"italian":
+    "name": |-
+        Plusle
+    "category": |-
+        Pokémon Incitamento
+    "entry_text": |-
+        Incoraggia gli amici con un vivace
+        scoppiettio di scintille. Assorbe
+        elettricità dai pali telefonici.
+"spanish":
+    "name": |-
+        Plusle
+    "category": |-
+        Pokémon Ánimo
+    "entry_text": |-
+        Anima a sus compañeros con
+        pompones de chispas. Roba
+        energía de los postes telefónicos.
+"japanese":
+    "name": |-
+        プラスル
+    "category": |-
+        おうえんポケモン
+    "entry_text": |-
+        ひばなの　ボンボンを　つくって
+        なかまを　おうえんする。
+        でんちゅうから　でんきを　すいとる。

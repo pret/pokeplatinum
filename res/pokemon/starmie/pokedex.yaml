@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    800
+"body_shape": |-
+    SHAPE_HEAD_BASE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    268
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    268
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    13
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    13
+"english":
+    "category": |-
+        Mysterious Pokémon
+    "entry_text": |-
+        At the center of its body is a red
+        core, which sends mysterious
+        radio signals into the night sky.
+"french":
+    "name": |-
+        STAROSS
+    "category": |-
+        Pokémon Mystérieux
+    "entry_text": |-
+        Un noyau rouge trône en son
+        centre. Il envoie des signaux radio
+        mystérieux vers le ciel nocturne.
+"german":
+    "name": |-
+        STARMIE
+    "category": |-
+        Mysteriös
+    "entry_text": |-
+        In der Körpermitte befindet sich
+        ein roter Kern, der mysteriöse
+        Radiowellen in die Nacht sendet.
+"italian":
+    "name": |-
+        Starmie
+    "category": |-
+        Pokémon Misterioso
+    "entry_text": |-
+        Al centro del corpo ha un nucleo
+        rosso che diffonde misteriosi
+        segnali radio nel cielo notturno.
+"spanish":
+    "name": |-
+        Starmie
+    "category": |-
+        Pokémon Misterioso
+    "entry_text": |-
+        El centro de su cuerpo alberga un
+        órgano que emite extrañas señales
+        de radio en la noche.
+"japanese":
+    "name": |-
+        スタ－ミ－
+    "category": |-
+        なぞのポケモン
+    "entry_text": |-
+        からだの　ちゅうしんにある　あかい
+        コアから　よぞらに　むかって
+        なぞの　でんぱを　はっしんしている。

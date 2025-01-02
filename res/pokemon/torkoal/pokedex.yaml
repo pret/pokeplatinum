@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    804
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    426
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    426
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    20
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    20
+"english":
+    "category": |-
+        Coal Pokémon
+    "entry_text": |-
+        It burns coal inside its shell for
+        energy. It blows out black soot if
+        it is endangered.
+"french":
+    "name": |-
+        CHARTOR
+    "category": |-
+        Pokémon Charbon
+    "entry_text": |-
+        Il tire son énergie du charbon qu’il
+        brûle dans sa carapace et crache
+        de la suie noire en cas de danger.
+"german":
+    "name": |-
+        QURTEL
+    "category": |-
+        Kohle
+    "entry_text": |-
+        In seinem Panzer verbrennt es
+        Kohle und gewinnt daraus Energie.
+        Bei Gefahr sondert es Ruß ab.
+"italian":
+    "name": |-
+        Torkoal
+    "category": |-
+        Pokémon Carbone
+    "entry_text": |-
+        Genera energia bruciando carbone
+        all’interno della corazza. Se è in
+        pericolo, emette fuliggine scura.
+"spanish":
+    "name": |-
+        Torkoal
+    "category": |-
+        Pokémon Carbón
+    "entry_text": |-
+        Quema carbón en su caparazón
+        para obtener energía. Si le atacan,
+        echa un denso humo negro.
+"japanese":
+    "name": |-
+        コ－タス
+    "category": |-
+        せきたんポケモン
+    "entry_text": |-
+        こうらの　なかで　せきたんを　もやし
+        エネルギ－に　している。ピンチの
+        ときは　くろい　ススを　ふきだす。

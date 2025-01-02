@@ -1,0 +1,74 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    520
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    248
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    248
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Blade Pokémon
+    "entry_text": |-
+        When trying to protect someone,
+        it extends its elbows as if they
+        were swords and fights savagely.
+"french":
+    "name": |-
+        GALLAME
+    "category": |-
+        Pokémon Lame
+    "entry_text": |-
+        Il frappe avec les grandes lames à
+        ses coudes. Son talent d’escrimeur
+        n’a d’égal que sa courtoisie.
+"german":
+    "name": |-
+        GALAGLADI
+    "category": |-
+        Klinge
+    "entry_text": |-
+        Es kämpft, indem es die Schwerter
+        an seinen Ellbogen verlängert. Es
+        ist ein Meister des Kampfes.
+"italian":
+    "name": |-
+        Gallade
+    "category": |-
+        Pokémon Lama
+    "entry_text": |-
+        Pokémon elegante e ottimo
+        spadaccino, combatte allungando le
+        lame che ha sui gomiti.
+"spanish":
+    "name": |-
+        Gallade
+    "category": |-
+        Pokémon Cuchilla
+    "entry_text": |-
+        Lucha con las espadas que salen
+        de sus codos. Es un maestro de
+        la cortesía y la esgrima.
+"japanese":
+    "name": |-
+        エルレイド
+    "category": |-
+        やいばポケモン
+    "entry_text": |-
+        のびちぢみする　ひじの　かたなで
+        たたかう。いあいの　めいしゅ。
+        れいぎ　ただしい　ポケモン。

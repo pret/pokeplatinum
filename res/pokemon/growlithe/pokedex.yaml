@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    190
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    290
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    290
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    20
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    20
+"english":
+    "category": |-
+        Puppy Pokémon
+    "entry_text": |-
+        A Pokémon with a loyal nature.
+        It will remain motionless until it is
+        given an order by its Trainer.
+"french":
+    "name": |-
+        CANINOS
+    "category": |-
+        Pokémon Chiot
+    "entry_text": |-
+        Un Pokémon très loyal. Il
+        restera immobile jusqu’à ce que
+        son Dresseur lui donne un ordre.
+"german":
+    "name": |-
+        FUKANO
+    "category": |-
+        Hund
+    "entry_text": |-
+        Ein loyales Pokémon. Es wird erst
+        dann aktiv, wenn sein Trainer ihm
+        Anweisungen gegeben hat.
+"italian":
+    "name": |-
+        Growlithe
+    "category": |-
+        Pokémon Cagnolino
+    "entry_text": |-
+        Un Pokémon fedele per natura.
+        Rimane immobile finché non
+        riceve ordini dal suo Allenatore.
+"spanish":
+    "name": |-
+        Growlithe
+    "category": |-
+        Pokémon Perrito
+    "entry_text": |-
+        Pokémon de naturaleza leal.
+        Permanece quieto en espera
+        de órdenes de su entrenador.
+"japanese":
+    "name": |-
+        ガ－ディ
+    "category": |-
+        こいぬポケモン
+    "entry_text": |-
+        ちゅうじつな　せいかくの　ポケモン。
+        トレ－ナ－の　めいれいが　あるまでは
+        いっぽも　うごかない。

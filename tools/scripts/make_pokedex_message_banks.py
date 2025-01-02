@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 import argparse
-import json
+import yaml
 import pathlib
 import xml.etree.ElementTree as ET
 
 from consts.species import PokemonSpecies
+
+# variables
+NUM_POKEMON = len(PokemonSpecies)
+NUM_CHR = len(str(NUM_POKEMON))
+languages = ['french', 'german', 'italian', 'spanish', 'japanese']
+text_data = [['' for i in range(NUM_POKEMON-2)] for i in range(22)]
 
 argparser = argparse.ArgumentParser(
     prog='make_pokedex_message_banks_py',
@@ -16,9 +22,12 @@ argparser.add_argument('-s', '--source-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the gmm files will be made)')
-argparser.add_argument('src_files',
-                       nargs='+',
-                       help='List of files to process in-order')
+argparser.add_argument('out_files',
+                       nargs=22,
+                       help='List of output file names')
+argparser.add_argument('pokedex_files',
+                       nargs=NUM_POKEMON,
+                       help='List of pokedex files to process in-order')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -34,13 +43,11 @@ def Convert_weight(hectograms):
     elif lbs == 1653.4:
         lbs = 1653.5
 
-    if lbs >= 1000:
-        return f'{lbs} lbs.'
-    if lbs >= 100:
-        return f' {lbs} lbs.'
-    if lbs >= 10:
-        return f'  {lbs} lbs.'
-    return f'   {lbs} lbs.'
+    weight = f'{lbs} lbs.'
+    while (len(weight) < 11):
+        weight = ' ' + weight
+
+    return weight
 
 def Convert_Height(decimeters):
     conv = 3.937
@@ -51,154 +58,126 @@ def Convert_Height(decimeters):
         feet += 1
         inches -= 12
 
-    if feet >= 100:
-        return f'{feet}’{inches:02}”'
-    if feet >= 10:
-        return f' {feet}’{inches:02}”'
-    return f'  {feet}’{inches:02}”'
+    height = f'{feet}’{inches:02}”'
+    while (len(height) < 7):
+        height = ' ' + height
 
-# variables
-NUM_POKEMON = len(PokemonSpecies)
+    return height
 
-name_data = ['' for i in range(NUM_POKEMON)]
-name_articles = ['' for i in range(NUM_POKEMON)]
-dex_entries = ['' for i in range(NUM_POKEMON-2)]
-heights = ['' for i in range(NUM_POKEMON-2)]
-heights_gira = ['' for i in range(NUM_POKEMON-2)]
-weights = ['' for i in range(NUM_POKEMON-2)]
-weights_gira = ['' for i in range(NUM_POKEMON-2)]
-name_number = ['' for i in range(NUM_POKEMON-2)]
-dex_categories = ['' for i in range(NUM_POKEMON-2)]
+def Full_Width_Number(value):
+    num = ''
+    while (value > 0):
+        num = chr(0xff10 + value%10) + num
+        value = value//10
+
+    while (len(num) < NUM_CHR):
+        num = '０' + num
+
+    return num
 
 # collect data
-for i, file in enumerate(args.src_files):
-    with open(file, 'r', encoding='utf-8') as data_file:
-        pkdata = json.load(data_file)
-    pokemon_name = pkdata['name']
-
-    if pokemon_name not in ['Egg', 'Bad Egg']:
-        pokemon_name = pokemon_name.upper()
-    
-    name_data[i] = pokemon_name
-
-    if pokemon_name[0] in ['A','E','I','O','U']:
-        name_articles[i] = 'an {COLOR 255}' + pokemon_name + '{COLOR 0}'
-    else:
-        name_articles[i] = 'a {COLOR 255}' + pokemon_name + '{COLOR 0}'
-
+for i, file in enumerate(args.pokedex_files):
     # eggs do not have dex entries
-    if pokemon_name in ['Egg', 'Bad Egg']:
+    if (i >= (NUM_POKEMON - 2)):
         continue
 
-    name_number[i] = f'{i:03}  ' + pokemon_name
-    pkdexdata = pkdata['pokedex_data']
-    if pokemon_name == 'GIRATINA':
-        heights_gira[i] = Convert_Height(pkdexdata[1]['height'])
-        weights_gira[i] = Convert_weight(pkdexdata[1]['weight'])
-        pkdexdata = pkdexdata[0]
+    dex_data = yaml.safe_load(pathlib.Path(file).read_text())
+
+    text_data[5][i] = dex_data['english']['entry_text'].replace('\n','\\n')
+    text_data[10][i] = dex_data['english']['category']
+    text_data[16][i] = dex_data['english']['category']
+
+    # record for each foreign language
+    for j, lang in enumerate(languages):
+        # dex_entry
+        text_data[j][i] = dex_data[lang]['entry_text'].replace('\n','\\n')
+        # name_number
+        if (i == 0):
+            text_data[11+j][0] = dex_data[lang]['name']
+        else:
+            if (lang == 'japanese'):
+                text_data[11+j][i] = Full_Width_Number(i) + '  ' + dex_data[lang]['name'].upper()
+            else:
+                text_data[11+j][i] = f'{i:03}  ' + dex_data[lang]['name'].upper()
+        # category
+        text_data[17+j][i] = dex_data[lang]['category']
+
+    # weight and height
+    is_giratina = ('origin' in dex_data.keys())
+    if is_giratina:
+        text_data[6][i] = Convert_weight(dex_data['origin']['weight'])
+        text_data[8][i] = Convert_Height(dex_data['origin']['height'])
+        dex_data = dex_data['altered']
     else:
-        heights_gira[i] = Convert_Height(pkdexdata['height'])
-        weights_gira[i] = Convert_weight(pkdexdata['weight'])
-    dex_entries[i] = str(pkdexdata['entry_text']).replace('\n','\\n')
-    dex_categories[i] = pkdexdata['category']
-    heights[i] = Convert_Height(pkdexdata['height'])
-    weights[i] = Convert_weight(pkdexdata['weight'])
+        text_data[6][i] = Convert_weight(dex_data['weight'])
+        text_data[8][i] = Convert_Height(dex_data['height'])
+    text_data[7][i] = Convert_weight(dex_data['weight'])
+    text_data[9][i] = Convert_Height(dex_data['height'])
 
-    if pokemon_name == '-----':
-        name_number[i] = '----------'
-        heights[i] = '???’??”'
-        heights_gira[i] = '???’??”'
-        weights[i] = '????.? lbs.'
-        weights_gira[i] = '????.? lbs.'
+text_data[6][0] = '????.? lbs.'
+text_data[7][0] = '????.? lbs.'
+text_data[8][0] = '???’??”'
+text_data[9][0] = '???’??”'
 
-fileNames = [
-    'message_bank_species_names.gmm',
-    'message_bank_species_names_with_articles.gmm',
-    'message_bank_species_dex_entry.gmm',
-    'message_bank_species_weight.gmm',
-    'message_bank_species_weight_gira.gmm',
-    'message_bank_species_height.gmm',
-    'message_bank_species_height_gira.gmm',
-    'message_bank_species_name_number_1.gmm',
-    'message_bank_species_name_number_2.gmm',
-    'message_bank_species_name_number_3.gmm',
-    'message_bank_species_category.gmm'
-]
 fileKeys = [
-    '30764',
-    '59681',
+    '30030',
+    '30034',
+    '30038',
+    '30042',
+    '30046',
     '63572',
     '25297',
     '64639',
     '5013',
     '28660',
-    '32249',
+    '48809',
+    '32242',
+    '32254',
     '32250',
     '32230',
-    '22840'
+    '32226',
+    '22840',
+    '46193',
+    '46205',
+    '46201',
+    '46181',
+    '46177'
 ]
-fileNumber = [
-    412,
-    413,
-    706,
-    707,
-    708,
-    709,
-    710,
-    712,
-    715,
-    716,
-    718
-]
-fileArrays = [
-    name_data,
-    name_articles,
-    dex_entries,
-    weights,
-    weights_gira,
-    heights,
-    heights_gira,
-    name_number,
-    name_number,
-    name_number,
-    dex_categories
-]
-fileData = [bytes() for i in range(len(fileNames))]
-emptyString = 'empty_string'
+file_number = [(701 + i) for i in range(11)] + [(713 + i) for i in range(11)]
+empty_string = 'empty_string'
 
 # construct binaries
-for file in range(len(fileNames)):
+for file_idx, file_name in enumerate(args.out_files):
     body = ET.Element('body')
     body.set('language', 'English')
     key = ET.SubElement(body, 'key')
-    key.set('value', fileKeys[file])
-    for i in range(len(fileArrays[file])):
+    key.set('value', fileKeys[file_idx])
+    for i in range(len(text_data[file_idx])):
         row = ET.SubElement(body, 'row')
-        row.set('id', f'pl_msg_{fileNumber[file]:08}_{i:05}')
+        row.set('id', f'pl_msg_{file_number[file_idx]:08}_{i:05}')
         row.set('index', f'{i}')
 
         attribute = ET.SubElement(row, 'attribute')
         attribute.set('name', 'window_context_name')
-        if (((fileNames[file] == 'message_bank_species_names_with_articles.gmm') or (fileNames[file] == 'message_bank_species_dex_entry.gmm')) and (i == 0)):
+        if ((file_idx < 6) and (i == 0)):
             attribute.text = 'garbage'
             language = ET.SubElement(row, 'language')
             language.set('name', 'English')
-            language.text = emptyString
+            language.text = empty_string
             language = ET.SubElement(row, 'language')
             language.set('name', '日本語')
-            language.text = emptyString
+            language.text = empty_string
         else:
             attribute.text = 'used'
             language = ET.SubElement(row, 'language')
             language.set('name', 'English')
-            language.text = fileArrays[file][i]
+            language.text = text_data[file_idx][i]
     ET.indent(body, '\t')
     message_bank = ET.tostring(body, encoding='utf-8')
-    message_bank = message_bank.decode('utf-8').replace(emptyString, '').encode('utf-8')
-    fileData[file] = bytes('<?xml version="1.0"?>\n', encoding='utf-8') + message_bank + bytes('\n', encoding='utf-8')
-
-# save binaries
-for i in range(len(fileNames)):
-    target_fname = output_dir / fileNames[i]
+    message_bank = message_bank.decode('utf-8').replace(empty_string, '').encode('utf-8')
+    file_data = bytes('<?xml version="1.0"?>\n', encoding='utf-8') + message_bank + bytes('\n', encoding='utf-8')
+    
+    # save gmm
+    target_fname = output_dir / file_name
     with open(target_fname, 'wb+') as target_file:
-        target_file.write(fileData[i])
+        target_file.write(file_data)

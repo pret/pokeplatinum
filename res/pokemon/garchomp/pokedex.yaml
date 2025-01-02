@@ -1,0 +1,74 @@
+"height": !!int |-
+    19
+"weight": !!int |-
+    950
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    325
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    304
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    14
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    14
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Mach Pokémon
+    "entry_text": |-
+        It is said that when one runs at
+        high speed, its wings create blades
+        of wind that can fell nearby trees.
+"french":
+    "name": |-
+        CARCHACROK
+    "category": |-
+        Pokémon Supersonic
+    "entry_text": |-
+        Quand il se recroqueville et étend
+        ses ailes, on dirait un chasseur.
+        Sa vitesse est supersonique.
+"german":
+    "name": |-
+        KNAKRACK
+    "category": |-
+        Rasanz
+    "entry_text": |-
+        Spannt es seinen Körper und seine
+        Flügel, sieht es aus wie ein Jet.
+        Es fliegt mit Schallgeschwindigkeit.
+"italian":
+    "name": |-
+        Garchomp
+    "category": |-
+        Pokémon Mach
+    "entry_text": |-
+        Quando si piega e distende le ali,
+        sembra un jet. Vola a una velocità
+        supersonica.
+"spanish":
+    "name": |-
+        Garchomp
+    "category": |-
+        Pokémon Mach
+    "entry_text": |-
+        Cuando despliega su cuerpo y sus
+        alas, parece un avión a reacción.
+        Vuela a velocidad sónica.
+"japanese":
+    "name": |-
+        ガブリアス
+    "category": |-
+        マッハポケモン
+    "entry_text": |-
+        からだを　おりたたみ　つばさを
+        のばすと　まるで　ジェットき。
+        おんそくで　とぶことが　できる。

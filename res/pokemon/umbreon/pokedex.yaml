@@ -1,0 +1,72 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    270
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    15
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    15
+"english":
+    "category": |-
+        Moonlight Pokémon
+    "entry_text": |-
+        When exposed to the moon’s aura,
+        the rings on its body glow faintly
+        and it gains a mysterious power.
+"french":
+    "name": |-
+        NOCTALI
+    "category": |-
+        Pokémon Lune
+    "entry_text": |-
+        La lumière de la lune a modifié
+        le code génétique d’EVOLI. Il hante
+        les ombres en quête d’une proie.
+"german":
+    "name": |-
+        NACHTARA
+    "category": |-
+        Mondschein
+    "entry_text": |-
+        Mondlicht hat die genetische
+        Struktur von EVOLI verändert.
+        Im Dunkeln wartet es auf Beute.
+"italian":
+    "name": |-
+        Umbreon
+    "category": |-
+        Pokémon Lucelunare
+    "entry_text": |-
+        La luce lunare ha mutato la
+        struttura genetica di EEVEE. Si
+        cela nel buio in attesa della preda.
+"spanish":
+    "name": |-
+        Umbreon
+    "category": |-
+        Pokémon Luz Lunar
+    "entry_text": "Creado cuando la luz lunar alteró\nla estructura genética de EEVEE.\n\
+        Busca presas en la oscuridad. "
+"japanese":
+    "name": |-
+        ブラッキ－
+    "category": |-
+        げっこうポケモン
+    "entry_text": |-
+        つきの　ひかりが　イ－ブイの
+        いでんしを　へんかさせた。
+        やみに　ひそみ　えものを　まつ。

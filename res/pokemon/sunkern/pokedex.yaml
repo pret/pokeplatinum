@@ -1,0 +1,72 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    18
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    488
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    488
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    28
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    28
+"english":
+    "category": |-
+        Seed Pokémon
+    "entry_text": |-
+        It suddenly falls out of the sky in
+        the morning. A year after a cold
+        summer, their population explodes.
+"french":
+    "name": |-
+        TOURNEGRIN
+    "category": |-
+        Pokémon Graine
+    "entry_text": "Il tombe du ciel sans crier gare en\nmatinée. On en croise énormément\
+        \ \nl’année suivant un été froid."
+"german":
+    "name": |-
+        SONNKERN
+    "category": |-
+        Samen
+    "entry_text": |-
+        Morgens fällt es plötzlich aus dem
+        Himmel. War der Sommer kalt,
+        explodiert seine Population.
+"italian":
+    "name": |-
+        Sunkern
+    "category": |-
+        Pokémon Seme
+    "entry_text": |-
+        Cade improvvisamente giù dal cielo
+        al mattino. Dopo un’estate fredda,
+        la popolazione di SUNKERN esplode.
+"spanish":
+    "name": |-
+        Sunkern
+    "category": |-
+        Pokémon Semilla
+    "entry_text": |-
+        Cae de repente del cielo por las
+        mañanas. Los años de veranos
+        suaves su número se multiplica.
+"japanese":
+    "name": |-
+        ヒマナッツ
+    "category": |-
+        たねポケモン
+    "entry_text": |-
+        あるあさ　とつぜん　ふってくる。
+        なつが　さむかった　つぎの　としは
+        かずが　ばくはつてきに　ふえる。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    565
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    247
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    247
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    11
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    11
+"english":
+    "category": |-
+        Psi Pokémon
+    "entry_text": |-
+        It stares at its silver spoon to
+        focus its mind. It emits more alpha
+        waves while doing so.
+"french":
+    "name": |-
+        KADABRA
+    "category": |-
+        Pokémon Psy
+    "entry_text": |-
+        Une ombre inquiétante obscurcit
+        l’écran télé quand il s’approche.
+        Le malheur frappe celui qui la voit.
+"german":
+    "name": |-
+        KADABRA
+    "category": |-
+        Psi
+    "entry_text": |-
+        Wenn sich auf deinem Fernsehbild-
+        schirm ein Schatten zeigt, ist es in
+        der Nähe. Und das bringt Unglück.
+"italian":
+    "name": |-
+        Kadabra
+    "category": |-
+        Pokémon Psico
+    "entry_text": |-
+        Se lo si avvicina, fa apparire alla
+        televisione un’ombra inquietante
+        che porta sfortuna a chi la guarda.
+"spanish":
+    "name": |-
+        Kadabra
+    "category": |-
+        Pokémon Psi
+    "entry_text": |-
+        Si se acerca uno, una extraña
+        sombra aparece en los televisores.
+        Se dice que verla trae mala suerte.
+"japanese":
+    "name": |-
+        ユンゲラ－
+    "category": |-
+        ねんりきポケモン
+    "entry_text": |-
+        ユンゲラ－が　そばにいると　テレビに
+        ふしぎな　かげが　うつる。それを
+        みると　ふこうになると　いわれる。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    600
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    11
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    11
+"english":
+    "category": |-
+        Pincer Pokémon
+    "entry_text": |-
+        The larger pincer has 10,000-
+        horsepower strength. However, it
+        is so heavy, it is difficult to aim.
+"french":
+    "name": |-
+        KRABBOSS
+    "category": |-
+        Pokémon Pince
+    "entry_text": |-
+        Sa grande pince possède une
+        puissance de 10 000 chevaux. Son
+        poids la rend difficile à manier.
+"german":
+    "name": |-
+        KINGLER
+    "category": |-
+        Kneifer
+    "entry_text": |-
+        Die großen Scheren haben eine
+        Stärke von 10 000 PS. Aber sie sind
+        schwer und kaum zu handhaben.
+"italian":
+    "name": |-
+        Kingler
+    "category": |-
+        Pokémon Chela
+    "entry_text": |-
+        La chela più grande ha una potenza
+        di 10000 cavalli, ma è così pesante
+        che non permette di mirare bene.
+"spanish":
+    "name": |-
+        Kingler
+    "category": |-
+        Pokémon Tenaza
+    "entry_text": |-
+        La pinza mayor tiene 10000
+        caballos de potencia, pero es tan
+        grande que le cuesta usarla.
+"japanese":
+    "name": |-
+        キングラ－
+    "category": |-
+        はさみポケモン
+    "entry_text": |-
+        おおきいほうの　ハサミの　パワ－は
+        １まんばりき。しかし　おもすぎるため
+        ねらいを　つけることが　にがてだ。

@@ -1,0 +1,72 @@
+"height": !!int |-
+    18
+"weight": !!int |-
+    226
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    346
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    346
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65531
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65531
+"english":
+    "category": |-
+        South Sea Pokémon
+    "entry_text": |-
+        It lives at the bottom of the sea.
+        In the springtime, its pink body
+        turns more vivid for some reason.
+"french":
+    "name": |-
+        ROSABYSS
+    "category": |-
+        Pokémon Mer Du Sud
+    "entry_text": "Au printemps, son corps rose se\nfait plus vif sans que l’on sache\n\
+        pourquoi. Il vit au fond de la mer. "
+"german":
+    "name": |-
+        SAGANABYSS
+    "category": |-
+        Südsee
+    "entry_text": |-
+        Es lebt auf dem Grund des Meeres.
+        Im Frühling wirkt die Farbe seines
+        Körpers viel kräftiger.
+"italian":
+    "name": |-
+        Gorebyss
+    "category": |-
+        Pokémon Sudmarino
+    "entry_text": |-
+        Vive sui fondali marini. In primavera
+        il suo corpo rosato diventa più
+        vivido per chissà quale motivo.
+"spanish":
+    "name": |-
+        Gorebyss
+    "category": |-
+        Pokémon Mar Del Sur
+    "entry_text": |-
+        Vive en el fondo del mar. En
+        primavera, su cuerpo rosado
+        adquiere colores más vivos.
+"japanese":
+    "name": |-
+        サクラビス
+    "category": |-
+        なんかいポケモン
+    "entry_text": |-
+        うみの　そこで　くらしているが
+        はるになると　からだの　ピンクいろが
+        なぜか　あざやかに　いろづく。

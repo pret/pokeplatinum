@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    133
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    309
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    309
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    18
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    18
+"english":
+    "category": |-
+        Wool Pokémon
+    "entry_text": |-
+        If its coat becomes fully charged
+        with electricity, its tail lights up.
+        It fires hair that zaps on impact.
+"french":
+    "name": |-
+        LAINERGIE
+    "category": |-
+        Pokémon Laine
+    "entry_text": |-
+        Sa queue s’allume lorsque sa
+        laine se charge d’électricité.
+        Il projette des poils électrifiés.
+"german":
+    "name": |-
+        WAATY
+    "category": |-
+        Wolle
+    "entry_text": |-
+        Hat es sich mit Elektrizität aufge-
+        laden, leuchtet sein Schweif und es
+        feuert Haare ab, die sich entladen.
+"italian":
+    "name": |-
+        Flaaffy
+    "category": |-
+        Pokémon Lana
+    "entry_text": |-
+        Se il suo manto è del tutto carico
+        d’elettricità, la coda s’illumina.
+        Lancia peli che danno la scossa.
+"spanish":
+    "name": |-
+        Flaaffy
+    "category": |-
+        Pokémon Lana
+    "entry_text": |-
+        Cuando su pelaje se carga de
+        electricidad, su cola se enciende.
+        Lanza pelo que explota al impacto.
+"japanese":
+    "name": |-
+        モココ
+    "category": |-
+        わたげポケモン
+    "entry_text": |-
+        たいもうに　ためた　でんきが
+        まんたんになると　しっぽが　ひかる。
+        ふれると　しびれる　けを　とばす。

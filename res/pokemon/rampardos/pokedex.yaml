@@ -1,0 +1,72 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    1025
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    292
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    292
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Head Butt Pokémon
+    "entry_text": |-
+        If two were to smash their heads
+        together, their foot-thick skulls
+        would keep them from fainting.
+"french":
+    "name": |-
+        CHARKOS
+    "category": |-
+        Pokémon Coud’Boule
+    "entry_text": |-
+        Son violent coup de tête est
+        assez puissant pour pulvériser
+        les matériaux les plus résistants.
+"german":
+    "name": |-
+        RAMEIDON
+    "category": |-
+        Kopfstoß
+    "entry_text": |-
+        Sein kräftiger Kopfstoß hat genug
+        Kraft, um selbst die stabilsten
+        Dinge zu zerschmettern.
+"italian":
+    "name": |-
+        Rampardos
+    "category": |-
+        Pokémon Cranioso
+    "entry_text": |-
+        Tira testate talmente potenti da
+        frantumare anche oggetti durissimi.
+"spanish":
+    "name": |-
+        Rampardos
+    "category": |-
+        Pokémon Cabezazo
+    "entry_text": |-
+        Su potente cabezazo puede
+        hacer añicos cualquier cosa.
+"japanese":
+    "name": |-
+        ラムパルド
+    "category": |-
+        ずつきポケモン
+    "entry_text": |-
+        きょうれつな　ずつきの　こうげきは
+        どんなに　がんじょうな　ものでも
+        いちげきで　ふんさいする　いりょく。

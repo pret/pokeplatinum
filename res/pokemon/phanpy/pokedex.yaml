@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    335
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    358
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    358
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Long Nose Pokémon
+    "entry_text": |-
+        It is strong despite its compact
+        size. It can easily pick up and
+        carry an adult human on its back.
+"french":
+    "name": |-
+        PHANPY
+    "category": |-
+        Pokémon Long-Nez
+    "entry_text": |-
+        Il est fort malgré son aspect
+        ramassé. Il n’a aucun mal à porter
+        un humain adulte sur son dos.
+"german":
+    "name": |-
+        PHANPY
+    "category": |-
+        Langrüssel
+    "entry_text": |-
+        Trotz seiner geringen Größe ist es
+        stark. Es kann einen Erwachsenen
+        mühelos auf dem Rücken tragen.
+"italian":
+    "name": |-
+        Phanpy
+    "category": |-
+        Pokémon Nasone
+    "entry_text": |-
+        Non è molto grande, ma è forte.
+        Può sollevare un adulto e traspor-
+        tarlo sul dorso senza fatica.
+"spanish":
+    "name": |-
+        Phanpy
+    "category": |-
+        Pokémon Narizotas
+    "entry_text": |-
+        A pesar de su tamaño reducido,
+        es tan fuerte que puede llevar a un
+        humano a su espalda con facilidad.
+"japanese":
+    "name": |-
+        ゴマゾウ
+    "category": |-
+        ながはなポケモン
+    "entry_text": |-
+        からだは　ちいさいが　ちからもち。
+        おとなの　ひとを　かるがると
+        せなかに　のせて　あるいてしまう。

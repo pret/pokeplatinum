@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    140
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    346
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    346
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Bright Pokémon
+    "entry_text": |-
+        It grows strong by pushing up
+        against others en masse.
+        It loves eating sweet fruit.
+"french":
+    "name": |-
+        OKEOKE
+    "category": |-
+        Pokémon Ravi
+    "entry_text": |-
+        Il se muscle en bousculant ses
+        semblables lors de mêlées. Il
+        raffole des fruits sucrés.
+"german":
+    "name": |-
+        ISSO
+    "category": |-
+        Strahlekind
+    "entry_text": |-
+        Es wird stärker, indem es andere
+        ständig anrempelt. Es liebt
+        Süßigkeiten.
+"italian":
+    "name": |-
+        Wynaut
+    "category": |-
+        Pokémon Brillante
+    "entry_text": |-
+        Questi Pokémon si allenano in
+        gruppo caricandosi l’un l’altro per
+        rafforzarsi. Amano i frutti dolci.
+"spanish":
+    "name": |-
+        Wynaut
+    "category": |-
+        Pokémon Radiante
+    "entry_text": |-
+        Se fortalecen empujándose unos
+        a otros en grupos. Les encantan
+        los dulces.
+"japanese":
+    "name": |-
+        ソ－ナノ
+    "category": |-
+        ほがらかポケモン
+    "entry_text": |-
+        なかまたちと　おしくらまんじゅうを
+        やることで　がまんづよく　そだつ。
+        あまい　くだものが　だいこうぶつ。

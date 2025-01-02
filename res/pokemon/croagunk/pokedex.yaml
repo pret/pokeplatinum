@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    230
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    320
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    320
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    22
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    22
+"english":
+    "category": |-
+        Toxic Mouth Pokémon
+    "entry_text": |-
+        It rarely fights fairly, but that is
+        strictly to ensure survival. It is
+        popular as a mascot.
+"french":
+    "name": |-
+        CRADOPAUD
+    "category": |-
+        Pokémon Toxique
+    "entry_text": |-
+        Ses joues contiennent des glandes
+        toxiques. Il attaque par surprise
+        et utilise son toucher empoisonné.
+"german":
+    "name": |-
+        GLIBUNKEL
+    "category": |-
+        Giftmund
+    "entry_text": |-
+        In seinen Backen sammelt sich Gift.
+        Es versucht, Beute zu überraschen
+        und mit Giftfingern zu schnappen.
+"italian":
+    "name": |-
+        Croagunk
+    "category": |-
+        Pokémon Inveieleno
+    "entry_text": |-
+        Le sacche delle guance contengono
+        veleno. Infilza i nemici con le sue
+        unghie avvelenate.
+"spanish":
+    "name": |-
+        Croagunk
+    "category": |-
+        Pokémon Boca Tóxica
+    "entry_text": |-
+        Tiene bolsas venenosas en las
+        mejillas. Pilla desprevenidos
+        a sus rivales para pincharles.
+"japanese":
+    "name": |-
+        グレッグル
+    "category": |-
+        どくづきポケモン
+    "entry_text": |-
+        ほっぺたに　どくぶくろを　もつ。
+        あいての　すきを　ついて　もうどくを
+        にじませている　ゆびを　つきさす。

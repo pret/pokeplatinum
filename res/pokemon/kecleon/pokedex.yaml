@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    220
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    276
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    276
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    15
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    15
+"english":
+    "category": |-
+        Color Swap Pokémon
+    "entry_text": |-
+        It can freely change its body’s
+        color. The zigzag pattern on its
+        belly doesn’t change, however.
+"french":
+    "name": |-
+        KECLEON
+    "category": |-
+        Pokémon Multicolor
+    "entry_text": |-
+        Il change de couleur à volonté,
+        mais le motif en zigzag qui
+        orne son ventre reste le même.
+"german":
+    "name": |-
+        KECLEON
+    "category": |-
+        Farbenspiel
+    "entry_text": |-
+        Es kann nach Belieben seine Farbe
+        ändern. Nur das gezackte Muster
+        auf seinem Bauch bleibt gleich.
+"italian":
+    "name": |-
+        Kecleon
+    "category": |-
+        Pokémon Mutacolore
+    "entry_text": |-
+        Può mutare il colore del corpo a
+        piacimento. Tuttavia, il motivo a
+        zigzag sul suo ventre non cambia.
+"spanish":
+    "name": |-
+        Kecleon
+    "category": |-
+        Pokémon Camaleónico
+    "entry_text": |-
+        Puede mudar el color de su cuerpo
+        a voluntad, pero el dibujo en zigzag
+        de su panza nunca desaparece.
+"japanese":
+    "name": |-
+        カクレオン
+    "category": |-
+        いろへんげポケモン
+    "entry_text": |-
+        からだの　いろを　じゆうに　かえる
+        のうりょくを　もつ。おなかにある
+        ギザギザもよう　だけは　かわらない。

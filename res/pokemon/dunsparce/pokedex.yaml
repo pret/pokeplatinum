@@ -1,0 +1,74 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    140
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Land Snake Pokémon
+    "entry_text": |-
+        It digs into the ground with its
+        tail and makes a mazelike nest.
+        It can fly just a little.
+"french":
+    "name": |-
+        INSOLOURDO
+    "category": |-
+        Pokémon Serpent
+    "entry_text": |-
+        Son nid est un véritable labyrinthe
+        qu’il creuse à l’aide de sa queue.
+        Il sait à peine voler.
+"german":
+    "name": |-
+        DUMMISEL
+    "category": |-
+        Schlange
+    "entry_text": |-
+        Es gräbt sich mit seinem Schweif in
+        die Erde und baut ein labyrinth-
+        artiges Nest. Es kann kaum fliegen.
+"italian":
+    "name": |-
+        Dunsparce
+    "category": |-
+        Pokémon Terraserpe
+    "entry_text": |-
+        Scava nel terreno con la coda
+        creando una tana simile a un labi-
+        rinto. Sa spiccare brevissimi voli.
+"spanish":
+    "name": |-
+        Dunsparce
+    "category": |-
+        Pokémon Serptierra
+    "entry_text": |-
+        Cava el suelo con su cola para
+        construir su madriguera. Puede
+        volar distancias cortas.
+"japanese":
+    "name": |-
+        ノコッチ
+    "category": |-
+        つちへびポケモン
+    "entry_text": |-
+        しっぽで　じめんを　ほって
+        めいろのような　すあなを　つくる。
+        はねで　すこしだけ　とべる。

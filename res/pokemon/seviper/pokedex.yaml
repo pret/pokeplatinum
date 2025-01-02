@@ -1,0 +1,72 @@
+"height": !!int |-
+    27
+"weight": !!int |-
+    525
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    296
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    296
+"trainer_pos_f": !!int |-
+    5
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    4
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Fang Snake Pokémon
+    "entry_text": |-
+        For many generations, it has
+        feuded with ZANGOOSE. It whets its
+        bladed tail on rocks for battle.
+"french":
+    "name": |-
+        SEVIPER
+    "category": |-
+        Pokémon Serpacroc
+    "entry_text": "Le rival historique de MANGRIFF.\nIl affûte la lame de sa queue\
+        \ \nsur les rochers avant le combat."
+"german":
+    "name": |-
+        VIPITIS
+    "category": |-
+        Reißzahn
+    "entry_text": |-
+        Seit Generationen ist es mit SENGO
+        verfeindet. Es wetzt seinen
+        scharfen Schweif an Felsen.
+"italian":
+    "name": |-
+        Seviper
+    "category": |-
+        Pokémon Zannaserpe
+    "entry_text": |-
+        È acerrimo nemico di ZANGOOSE.
+        Prima della lotta, affila sulle rocce
+        la sua coda simile ad una spada.
+"spanish":
+    "name": |-
+        Seviper
+    "category": |-
+        Pokémon Colmillos
+    "entry_text": |-
+        Se ha enfrentado durante muchos
+        años a ZANGOOSE. Usa rocas para
+        mantener afilada su cola.
+"japanese":
+    "name": |-
+        ハブネ－ク
+    "category": |-
+        キバへびポケモン
+    "entry_text": |-
+        せんぞだいだい　ザング－スと
+        たたかってきた。しっぽの　やいばを
+        いわで　とぎ　たたかいに　そなえる。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    63
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    469
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    469
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Sea Slug Pokémon
+    "entry_text": |-
+        Beware of pushing strongly on
+        its squishy body, as it makes a
+        mysterious purple fluid ooze out.
+"french":
+    "name": |-
+        SANCOKI
+    "category": |-
+        Pokémon Aqualimace
+    "entry_text": |-
+        Sa couleur et sa forme varient
+        selon les régions. On en recense
+        deux types à Sinnoh.
+"german":
+    "name": |-
+        SCHALELLOS
+    "category": |-
+        Seeschnecke
+    "entry_text": |-
+        Sein Aussehen ist von Region zu
+        Region unterschiedlich. In Sinnoh
+        finden sich zwei Arten.
+"italian":
+    "name": |-
+        Shellos
+    "category": |-
+        Pokémon Lumacomare
+    "entry_text": |-
+        Forma e colori variano di regione
+        in regione. Pare che nella regione
+        di Sinnoh ne esistano due tipi.
+"spanish":
+    "name": |-
+        Shellos
+    "category": |-
+        Pokémon Babosa Mar.
+    "entry_text": |-
+        El color y la forma varían según
+        la región. En Sinnoh, hay dos
+        tipos confirmados.
+"japanese":
+    "name": |-
+        カラナクシ
+    "category": |-
+        ウミウシポケモン
+    "entry_text": |-
+        せいそくちにより　ちがった　かたちや
+        いろを　している。シンオウちほうでは
+        ２しゅるいが　かくにんされている。

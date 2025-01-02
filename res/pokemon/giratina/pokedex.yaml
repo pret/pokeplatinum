@@ -1,0 +1,98 @@
+"origin":
+    "height": !!int |-
+        69
+    "weight": !!int |-
+        6500
+    "body_shape": |-
+        SHAPE_SERPENTINE
+    "trainer_scale_f": !!int |-
+        576
+    "pokemon_scale_f": !!int |-
+        256
+    "trainer_scale_m": !!int |-
+        554
+    "pokemon_scale_m": !!int |-
+        256
+    "trainer_pos_f": !!int |-
+        24
+    "pokemon_pos_f": !!int |-
+        1
+    "trainer_pos_m": !!int |-
+        23
+    "pokemon_pos_m": !!int |-
+        1
+"altered":
+    "height": !!int |-
+        45
+    "weight": !!int |-
+        7500
+    "body_shape": |-
+        SHAPE_TENTACLES
+    "trainer_scale_f": !!int |-
+        680
+    "pokemon_scale_f": !!int |-
+        256
+    "trainer_scale_m": !!int |-
+        645
+    "pokemon_scale_m": !!int |-
+        256
+    "trainer_pos_f": !!int |-
+        26
+    "pokemon_pos_f": !!int |-
+        3
+    "trainer_pos_m": !!int |-
+        26
+    "pokemon_pos_m": !!int |-
+        3
+"english":
+    "category": |-
+        Renegade Pokémon
+    "entry_text": |-
+        It was banished for its violence.
+        It silently gazed upon the old
+        world from the Distortion World.
+"french":
+    "name": |-
+        GIRATINA
+    "category": |-
+        Pokémon Renégat
+    "entry_text": |-
+        Un Pokémon censé vivre dans un
+        monde à l’opposé du nôtre. Il
+        apparaît dans un cimetière ancien.
+"german":
+    "name": |-
+        GIRATINA
+    "category": |-
+        Rebell
+    "entry_text": |-
+        Ein PKMN, von dem man sagt, es lebt
+        in der Spiegelwelt unserer Welt.
+        Es erscheint auf alten Friedhöfen.
+"italian":
+    "name": |-
+        Giratina
+    "category": |-
+        Pokémon Ribelle
+    "entry_text": |-
+        Pokémon che vive in un mondo sul
+        lato opposto al nostro. Appare in
+        cimiteri antichi.
+"spanish":
+    "name": |-
+        Giratina
+    "category": |-
+        Pokémon Renegado
+    "entry_text": |-
+        Se dice que vive en un mundo
+        en el lado inverso del nuestro.
+        Aparece en viejos cementerios.
+"japanese":
+    "name": |-
+        ギラティナ
+    "category": |-
+        はんこつポケモン
+    "entry_text": |-
+        このよの　うらがわにある　せかいに
+        すんでいると　いわれる　ポケモン。
+        こだいの　はかばに　あらわれる。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    100
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    341
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    341
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    22
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    22
+"english":
+    "category": |-
+        Cocoon Pokémon
+    "entry_text": |-
+        It wraps silk around the branches
+        of a tree. It drinks rainwater on
+        its silk while awaiting evolution.
+"french":
+    "name": |-
+        ARMULYS
+    "category": |-
+        Pokémon Cocon
+    "entry_text": |-
+        Il s’accroche en enroulant sa soie
+        autour des branches. Il reste
+        immobile en attendant d’évoluer.
+"german":
+    "name": |-
+        SCHALOKO
+    "category": |-
+        Kokon
+    "entry_text": |-
+        Es bindet sich mit Seidenfäden an
+        Ästen fest und wartet so starr auf
+        seine Entwicklung.
+"italian":
+    "name": |-
+        Silcoon
+    "category": |-
+        Pokémon Bozzolo
+    "entry_text": |-
+        SILCOON si ancora ai rami con
+        fili di seta. In questa posizione
+        aspetta immobile l’evoluzione.
+"spanish":
+    "name": |-
+        Silcoon
+    "category": |-
+        Pokémon Capullo
+    "entry_text": |-
+        La seda que segrega su cuerpo le
+        permite agarrarse a los árboles y
+        esperar su evolución.
+"japanese":
+    "name": |-
+        カラサリス
+    "category": |-
+        さなぎポケモン
+    "entry_text": |-
+        からだから　のびる　いとを　えだに
+        まきつけて　おちないように　こてい。
+        じっと　うごかずに　しんかを　まつ。

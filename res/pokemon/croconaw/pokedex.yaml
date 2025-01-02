@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    250
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    278
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    278
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    13
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    13
+"english":
+    "category": |-
+        Big Jaw Pokémon
+    "entry_text": |-
+        Once it bites down, it won’t let go
+        until it loses its fangs. New fangs
+        quickly grow into place.
+"french":
+    "name": |-
+        CROCRODIL
+    "category": |-
+        Pokémon Mâchoire
+    "entry_text": |-
+        Quand il mord, il ne lâche pas prise
+        avant que ses crocs se brisent.
+        Ils repoussent par la suite.
+"german":
+    "name": |-
+        TYRACROC
+    "category": |-
+        Großmaul
+    "entry_text": |-
+        Hat es einmal zugebissen, lässt es
+        erst los, wenn es seine Zähne
+        verliert, die schnell nachwachsen.
+"italian":
+    "name": |-
+        Croconaw
+    "category": |-
+        Pokémon Mascellone
+    "entry_text": |-
+        Quando azzanna il nemico, non molla
+        la presa finché non gli cadono le
+        zanne, che però ricrescono subito.
+"spanish":
+    "name": |-
+        Croconaw
+    "category": |-
+        Pokémon Fauces
+    "entry_text": |-
+        Cuando muerde algo, no lo suelta
+        hasta que pierde sus colmillos.
+        Estos se regeneran rápidamente.
+"japanese":
+    "name": |-
+        アリゲイツ
+    "category": |-
+        おおあごポケモン
+    "entry_text": |-
+        いちど　かみつくと　キバが
+        ぬけるまで　ぜったいに　はなさない。
+        ぬけた　キバは　すぐに　はえてくる。

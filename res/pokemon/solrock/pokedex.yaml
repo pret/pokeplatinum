@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    1540
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    310
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    310
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65528
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65528
+"english":
+    "category": |-
+        Meteorite Pokémon
+    "entry_text": |-
+        A new Pokémon species, rumored
+        to be from the sun. It gives off
+        light while spinning.
+"french":
+    "name": |-
+        SOLAROC
+    "category": |-
+        Pokémon Météorite
+    "entry_text": |-
+        Le bruit court que cette nouvelle
+        espèce vient du soleil. Il produit
+        de la lumière en tournoyant.
+"german":
+    "name": |-
+        SONNFEL
+    "category": |-
+        Meteorit
+    "entry_text": |-
+        Eine neue PKMN-Spezies, von der
+        man annimmt, sie käme von der
+        Sonne. Sie strahlt Licht ab.
+"italian":
+    "name": |-
+        Solrock
+    "category": |-
+        Pokémon Meteorite
+    "entry_text": |-
+        Nuova specie di Pokémon che si
+        dice provenga dal sole. Emana luce
+        roteando vorticosamente.
+"spanish":
+    "name": |-
+        Solrock
+    "category": |-
+        Pokémon Meteorito
+    "entry_text": |-
+        Una nueva especie de Pokémon
+        que se rumorea procede del Sol.
+        Emite luz al girar.
+"japanese":
+    "name": |-
+        ソルロック
+    "category": |-
+        いんせきポケモン
+    "entry_text": |-
+        たいようの　ぶんしんと　うわさされる
+        しんしゅの　ポケモン。からだを
+        かいてんさせて　ひかりを　はなつ。

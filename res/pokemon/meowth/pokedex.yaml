@@ -1,0 +1,71 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    42
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    546
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    546
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    26
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    26
+"english":
+    "category": |-
+        Scratch Cat Pokémon
+    "entry_text": |-
+        It is nocturnal in nature. If it
+        spots something shiny, its eyes
+        glitter brightly.
+"french":
+    "name": |-
+        MIAOUSS
+    "category": |-
+        Pokémon Chadégout
+    "entry_text": |-
+        Son regard s’anime à la vue
+        d’un objet brillant. C’est un
+        Pokémon nocturne.
+"german":
+    "name": |-
+        MAUZI
+    "category": |-
+        Katze
+    "entry_text": |-
+        Ein nachtaktives Pokémon. Sieht es
+        etwas Schimmerndes, fangen
+        seine Augen an zu glänzen.
+"italian":
+    "name": |-
+        Meowth
+    "category": |-
+        Pokémon Graffimiao
+    "entry_text": "È un Pokémon attivo di notte.\nSe nota qualcosa di luccicante,\n\
+        i suoi occhi cominciano a brillare. "
+"spanish":
+    "name": |-
+        Meowth
+    "category": |-
+        Pokémon Gato Araña
+    "entry_text": |-
+        Es de naturaleza nocturna.
+        Le atraen los objetos brillantes.
+"japanese":
+    "name": |-
+        ニャ－ス
+    "category": |-
+        ばけねこポケモン
+    "entry_text": |-
+        よなかに　こうどうする　しゅうせい。
+        きらきら　ひかるものを　みつけると
+        まけないくらい　ひとみが　かがやく。

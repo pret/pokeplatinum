@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    25
+"body_shape": |-
+    SHAPE_MULTI_BODY
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    377
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    377
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    28
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    28
+"english":
+    "category": |-
+        Egg Pokémon
+    "entry_text": |-
+        Its six eggs converse using
+        telepathy. They can quickly gather
+        if they become separated.
+"french":
+    "name": |-
+        NOEUNOEUF
+    "category": |-
+        Pokémon Oeuf
+    "entry_text": |-
+        Ces six œufs communiquent par
+        télépathie. Ils peuvent se réunir
+        rapidement si on les sépare.
+"german":
+    "name": |-
+        OWEI
+    "category": |-
+        Ei
+    "entry_text": |-
+        Die sechs Eier kommunizieren
+        telepathisch. Werden sie getrennt,
+        finden sie sich schnell wieder.
+"italian":
+    "name": |-
+        Exeggcute
+    "category": |-
+        Pokémon Uovo
+    "entry_text": |-
+        Queste sei uova comunicano per
+        telepatia. Si riuniscono subito
+        anche se vengono divise.
+"spanish":
+    "name": |-
+        Exeggcute
+    "category": |-
+        Pokémon Huevo
+    "entry_text": |-
+        Estos seis huevos se comunican por
+        telepatía. Si se separan se pueden
+        reunir rápidamente.
+"japanese":
+    "name": |-
+        タマタマ
+    "category": |-
+        たまごポケモン
+    "entry_text": |-
+        テレパシ－で　かいわをしているため
+        タマタマを　ひきはなそうとしても
+        すぐに　あつまって　６ぴきになる。

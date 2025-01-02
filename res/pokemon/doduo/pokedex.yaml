@@ -1,0 +1,74 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    392
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    250
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    250
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    12
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    12
+"english":
+    "category": |-
+        Twin Bird Pokémon
+    "entry_text": |-
+        The brains in its two heads appear
+        to communicate emotions to each
+        other with a telepathic power.
+"french":
+    "name": |-
+        DODUO
+    "category": |-
+        Pokémon Duoiseau
+    "entry_text": |-
+        Ses deux cerveaux semblent
+        communiquer leurs émotions
+        grâce à un lien télépathique.
+"german":
+    "name": |-
+        DODU
+    "category": |-
+        Duovogel
+    "entry_text": |-
+        Die Gehirne der beiden Köpfe
+        kommunizieren ihre Gefühle
+        über Telepathie.
+"italian":
+    "name": |-
+        Doduo
+    "category": |-
+        Pokémon Biuccello
+    "entry_text": |-
+        I suoi due cervelli si comunicano
+        le emozioni grazie ai poteri
+        telepatici.
+"spanish":
+    "name": |-
+        Doduo
+    "category": |-
+        Pokémon Ave Gemela
+    "entry_text": |-
+        Parece que los cerebros de sus
+        dos cabezas se comunican por
+        telepatía.
+"japanese":
+    "name": |-
+        ド－ド－
+    "category": |-
+        ふたごどりポケモン
+    "entry_text": |-
+        ２つの　あたまの　のうみそは
+        テレパシ－のような　ちからで
+        きもちを　つうじあわせているらしい。

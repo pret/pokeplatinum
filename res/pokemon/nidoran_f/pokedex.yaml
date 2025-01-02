@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    70
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    377
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    377
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Poison Pin Pokémon
+    "entry_text": |-
+        While it does not prefer to fight,
+        even one drop of the poison it
+        secretes from barbs can be fatal.
+"french":
+    "name": |-
+        NIDORAN♀
+    "category": |-
+        Pokémon Venepic
+    "entry_text": |-
+        Bien qu’il rechigne à se battre,
+        une goutte du poison sécrété par
+        ses piquants peut s’avérer fatale.
+"german":
+    "name": |-
+        NIDORAN♀
+    "category": |-
+        Giftdorn
+    "entry_text": |-
+        Es mag keine Kämpfe. Ein einziger
+        Tropfen des Gifts aus seinen
+        Widerhaken hat eine fatale Wirkung.
+"italian":
+    "name": |-
+        Nidoran♀
+    "category": |-
+        Pokémon Velenago
+    "entry_text": |-
+        Non ama combattere, ma anche una
+        sola goccia del veleno che secerne
+        dagli aculei può essere fatale.
+"spanish":
+    "name": |-
+        Nidoran♀
+    "category": |-
+        Pokémon Pin Veneno
+    "entry_text": |-
+        Aunque no le gusta luchar, una
+        sola gota del veneno de sus púas
+        puede resultar fatal.
+"japanese":
+    "name": |-
+        ニドラン㊛
+    "category": |-
+        どくばりポケモン
+    "entry_text": |-
+        たたかいを　このまない　せいかく。
+        どくバリから　ぶんぴつされる　どくは
+        ひとしずくでも　いのちとりだ。

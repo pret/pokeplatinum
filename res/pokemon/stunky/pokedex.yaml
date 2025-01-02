@@ -1,0 +1,72 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    192
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    266
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    266
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    9
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    9
+"english":
+    "category": |-
+        Skunk Pokémon
+    "entry_text": |-
+        It sprays a foul fluid from its
+        rear. Its stench spreads over a
+        mile radius, driving Pokémon away.
+"french":
+    "name": |-
+        MOUFOUETTE
+    "category": |-
+        Pokémon Moufette
+    "entry_text": "Il se protège en expulsant un \nfluide nocif par son derrière.\
+        \ \nLa puanteur dure 24 heures."
+"german":
+    "name": |-
+        SKUNKAPUH
+    "category": |-
+        Stinktier
+    "entry_text": |-
+        Um sich zu schützen, versprüht es
+        eine Substanz aus seinem
+        Hinterleib, die 24 Stunden stinkt.
+"italian":
+    "name": |-
+        Stunky
+    "category": |-
+        Pokémon Moffetta
+    "entry_text": |-
+        Si protegge spruzzando un
+        fluido puzzolente dal posteriore.
+        Il tanfo permane per 24 ore.
+"spanish":
+    "name": |-
+        Stunky
+    "category": |-
+        Pokémon Mofeta
+    "entry_text": |-
+        Se protege expulsando un fluido
+        nocivo por su parte trasera.
+        El hedor dura 24 horas.
+"japanese":
+    "name": |-
+        スカンプ－
+    "category": |-
+        スカンクポケモン
+    "entry_text": |-
+        おしりから　きょうれつに　くさい
+        えきたいを　とばして　みを　まもる。
+        においは　２４じかん　きえない。

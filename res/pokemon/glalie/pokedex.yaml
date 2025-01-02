@@ -1,0 +1,72 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    2565
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    199
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    199
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65535
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65535
+"english":
+    "category": |-
+        Face Pokémon
+    "entry_text": |-
+        It prevents prey from escaping by
+        instantaneously freezing moisture
+        in the air.
+"french":
+    "name": |-
+        ONIGLALI
+    "category": |-
+        Pokémon Face
+    "entry_text": "Il gèle l’humidité de l’air pour \nformer une armure de glace\n\
+        protectrice autour de son corps."
+"german":
+    "name": |-
+        FIRNONTOR
+    "category": |-
+        Antlitz
+    "entry_text": |-
+        Um sich zu schützen, umgibt es
+        seinen Körper mit einer Rüstung
+        aus Eis.
+"italian":
+    "name": |-
+        Glalie
+    "category": |-
+        Pokémon Tuttomuso
+    "entry_text": |-
+        Per difendersi, riveste il suo corpo
+        con un’armatura di ghiaccio, fatta
+        congelando l’umidità dell’aria.
+"spanish":
+    "name": |-
+        Glalie
+    "category": |-
+        Pokémon Cara
+    "entry_text": |-
+        Se protege con una armadura de
+        hielo creada por congelación de
+        la humedad del aire.
+"japanese":
+    "name": |-
+        オニゴ－リ
+    "category": |-
+        がんめんポケモン
+    "entry_text": |-
+        くうきちゅうの　すいぶんを　こおらせ
+        こおりの　そうこうで　からだを
+        つつみこみ　みを　まもっている。

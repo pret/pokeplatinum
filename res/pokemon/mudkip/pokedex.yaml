@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    76
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    423
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    423
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Mud Fish Pokémon
+    "entry_text": |-
+        To alert it, the fin on its head
+        senses the flow of water. It has
+        the strength to heft boulders.
+"french":
+    "name": |-
+        GOBOU
+    "category": |-
+        Pokémon Poissonboue
+    "entry_text": |-
+        Il analyse le courant grâce à la
+        nageoire sur sa tête. Il est assez
+        fort pour soulever des rochers.
+"german":
+    "name": |-
+        HYDROPI
+    "category": |-
+        Lehmhüpfer
+    "entry_text": |-
+        Die Flosse auf seinem Kopf prüft
+        die Strömung des Wassers. Dieses
+        PKMN kann Felsen heben.
+"italian":
+    "name": |-
+        Mudkip
+    "category": |-
+        Pokémon Fango Pesce
+    "entry_text": |-
+        Con la pinna sulla testa percepi-
+        sce i movimenti dell’acqua e sta in
+        guardia. Riesce a sollevare rocce.
+"spanish":
+    "name": |-
+        Mudkip
+    "category": |-
+        Pokémon Pez Lodo
+    "entry_text": |-
+        La aleta de su cabeza detecta las
+        corrientes de agua y los peligros.
+        Tiene fuerza para levantar rocas.
+"japanese":
+    "name": |-
+        ミズゴロウ
+    "category": |-
+        ぬまうおポケモン
+    "entry_text": |-
+        あたまの　ひれで　みずの　ながれを
+        かんじて　まわりの　ようすを　しる。
+        いわを　もちあげる　ちからもち。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    37
+"weight": !!int |-
+    4200
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    538
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    512
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    23
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    23
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Colossal Pokémon
+    "entry_text": |-
+        It is said to have made Pokémon
+        that look like itself from a special
+        ice mountain, rocks, and magma.
+"french":
+    "name": |-
+        REGIGIGAS
+    "category": |-
+        Pokémon Prodigieux
+    "entry_text": |-
+        Une légende tenace veut que ce
+        Pokémon ait traîné les continents
+        en les attachant à des cordes.
+"german":
+    "name": |-
+        REGIGIGAS
+    "category": |-
+        Kolossal
+    "entry_text": |-
+        Es gibt eine Legende, wonach
+        dieses PKMN die Kontinente mit
+        einem Seil gezogen hat.
+"italian":
+    "name": |-
+        Regigigas
+    "category": |-
+        Pokémon Colossale
+    "entry_text": |-
+        Una leggenda narra che questo
+        Pokémon abbia trainato i continenti
+        con delle funi.
+"spanish":
+    "name": |-
+        Regigigas
+    "category": |-
+        Pokémon Colosal
+    "entry_text": |-
+        Una antigua leyenda afirma que
+        este Pokémon arrastraba
+        continentes con cuerdas.
+"japanese":
+    "name": |-
+        レジギガス
+    "category": |-
+        きょだいポケモン
+    "entry_text": |-
+        なわで　しばった　たいりくを
+        ひっぱって　うごかしたという
+        でんせつが　のこされている。

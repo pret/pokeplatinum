@@ -1,0 +1,70 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    339
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    273
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    273
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    14
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    14
+"english":
+    "category": |-
+        Frog Pokémon
+    "entry_text": |-
+        It gathers groups of others as
+        their leader. Its cries make
+        POLIWAG obey.
+"french":
+    "name": |-
+        TARPAUD
+    "category": |-
+        Pokémon Grenouille
+    "entry_text": "Il rassemble ses pairs pour les\ncommander. Il utilise son cri\
+        \ \npour diriger PTITARD."
+"german":
+    "name": |-
+        QUAXO
+    "category": |-
+        Frosch
+    "entry_text": "Es versammelt andere PKMN um sich\nherum und führt sie an.\nPOLIWAG\
+        \ gehorchen seinem Ruf. "
+"italian":
+    "name": |-
+        Politoed
+    "category": |-
+        Pokémon Rana
+    "entry_text": |-
+        Ama radunare gruppi e atteggiarsi
+        a capogruppo.
+        I suoi versi richiamano POLIWAG.
+"spanish":
+    "name": |-
+        Politoed
+    "category": |-
+        Pokémon Rana
+    "entry_text": |-
+        Agrupa a otros Pokémon para
+        liderarlos. Los POLIWAG obedecen
+        su voz.
+"japanese":
+    "name": |-
+        ニョロトノ
+    "category": |-
+        かえるポケモン
+    "entry_text": |-
+        ニョロトノを　リ－ダ－に　グル－プが
+        つくられる。ニョロトノの　なきごえが
+        ニョロモたちを　したがわせる。

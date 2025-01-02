@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    115
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    323
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    323
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    22
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    22
+"english":
+    "category": |-
+        Cocoon Pokémon
+    "entry_text": |-
+        It never forgets any attack it
+        endured while in the cocoon.
+        After evolution, it seeks payback.
+"french":
+    "name": |-
+        BLINDALYS
+    "category": |-
+        Pokémon Cocon
+    "entry_text": |-
+        Il est au chaud dans son cocon.
+        Ses cellules produisent l’énergie
+        nécessaire à son évolution.
+"german":
+    "name": |-
+        PANEKON
+    "category": |-
+        Kokon
+    "entry_text": |-
+        In seinem Kokon ist es heiß. Seine
+        Körperzellen produzieren die Hitze,
+        damit es sich entwickeln kann.
+"italian":
+    "name": |-
+        Cascoon
+    "category": |-
+        Pokémon Bozzolo
+    "entry_text": |-
+        Dentro, il suo bozzolo è caldo. Ogni
+        cellula del suo corpo contribuisce
+        a creare energia per l’evoluzione.
+"spanish":
+    "name": |-
+        Cascoon
+    "category": |-
+        Pokémon Capullo
+    "entry_text": |-
+        Mantiene el calor en su capullo.
+        Dedica todas las células de su
+        cuerpo a evolucionar.
+"japanese":
+    "name": |-
+        マユルド
+    "category": |-
+        さなぎポケモン
+    "entry_text": |-
+        マユの　なかは　おんどが　たかい。
+        そのなかで　ぜんしんの　さいぼうが
+        しんかの　エネルギ－を　つくりだす。

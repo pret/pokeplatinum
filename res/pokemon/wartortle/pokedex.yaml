@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    225
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    339
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    339
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Turtle Pokémon
+    "entry_text": |-
+        It is said to live 10,000 years.
+        Its furry tail is popular as a
+        symbol of longevity.
+"french":
+    "name": |-
+        CARABAFFE
+    "category": |-
+        Pokémon Tortue
+    "entry_text": |-
+        On prétend qu’il vit 10 000 ans.
+        Sa queue duveteuse est un
+        symbole de longévité populaire.
+"german":
+    "name": |-
+        SCHILLOK
+    "category": |-
+        Kröte
+    "entry_text": |-
+        Man sagt, es werde 10 000 Jahre
+        alt. Sein buschiger Schweif ist ein
+        Symbol für langes Leben.
+"italian":
+    "name": |-
+        Wartortle
+    "category": |-
+        Pokémon Tartaruga
+    "entry_text": |-
+        Pare che viva 10000 anni. Ha
+        la coda ricoperta da una folta
+        pelliccia, indice di longevità.
+"spanish":
+    "name": |-
+        Wartortle
+    "category": |-
+        Pokémon Tortuga
+    "entry_text": |-
+        Se dice que vive 10000 años.
+        Su peluda cola es un símbolo de
+        longevidad.
+"japanese":
+    "name": |-
+        カメ－ル
+    "category": |-
+        かめポケモン
+    "entry_text": |-
+        いちまんねんの　じゅみょうを　もつと
+        いわれている。ふさふさの　しっぽは
+        ながいきの　シンボルとして　にんき。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    655
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    235
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    235
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    10
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    10
+"english":
+    "category": |-
+        Licking Pokémon
+    "entry_text": |-
+        When it extends its over-six-foot-
+        long tongue, its tail quivers. There
+        is a possibility they are connected.
+"french":
+    "name": |-
+        EXCELANGUE
+    "category": |-
+        Pokémon Lécheur
+    "entry_text": |-
+        Il n’utilise pas ses mains mais sa
+        langue qui fait deux fois sa taille.
+        Sa salive est une colle puissante.
+"german":
+    "name": |-
+        SCHLURP
+    "category": |-
+        Schlecker
+    "entry_text": |-
+        Statt Händen verwendet es seine
+        Zunge, die zweimal so groß wie
+        sein Körper und klebrig ist.
+"italian":
+    "name": |-
+        Lickitung
+    "category": |-
+        Pokémon Linguaccia
+    "entry_text": |-
+        Al posto delle mani usa la sua lingua
+        appiccicosa, lunga il doppio di lui.
+        Con essa afferra qualsiasi cosa.
+"spanish":
+    "name": |-
+        Lickitung
+    "category": |-
+        Pokémon Lametazo
+    "entry_text": |-
+        En vez de manos usa la lengua,
+        que mide el doble que su cuerpo.
+        Su saliva pegajosa lo atrapa todo.
+"japanese":
+    "name": |-
+        ベロリンガ
+    "category": |-
+        なめまわしポケモン
+    "entry_text": |-
+        ての　かわりに　しんちょうの　２ばい
+        のびる　ベロを　つかう。べとべとの
+        だえきが　なんでも　くっつけるのだ。

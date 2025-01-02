@@ -1,0 +1,72 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    95
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    346
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    346
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Flash Pokémon
+    "entry_text": |-
+        The extension and contraction of
+        its muscles generates electricity.
+        It glows when in trouble.
+"french":
+    "name": |-
+        LIXY
+    "category": |-
+        Pokémon Flash
+    "entry_text": "Sa fourrure étincelle en cas de\ndanger. Il profite du fait que\
+        \ \nl’ennemi est aveuglé pour s’enfuir."
+"german":
+    "name": |-
+        SHEINUX
+    "category": |-
+        Flacker
+    "entry_text": |-
+        In Gefahr blendet es seinen Gegner
+        mit seinem Fell und flieht, während
+        der Gegner einen Moment blind ist.
+"italian":
+    "name": |-
+        Shinx
+    "category": |-
+        Pokémon Baleno
+    "entry_text": |-
+        In caso di pericolo, la sua pelliccia
+        si illumina. Il nemico rimane acceca-
+        to e lui ne approfitta per fuggire.
+"spanish":
+    "name": |-
+        Shinx
+    "category": |-
+        Pokémon Flash
+    "entry_text": |-
+        Si siente peligro, todo su pelaje
+        brilla. Aprovecha la ceguera
+        temporal de su rival para huir.
+"japanese":
+    "name": |-
+        コリンク
+    "category": |-
+        せんこうポケモン
+    "entry_text": |-
+        きけんを　かんじると　ぜんしんの
+        たいもうが　ひかる。あいてが　めを
+        くらませている　あいだに　にげる。

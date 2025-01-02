@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    20
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    475
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    475
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Tiny Mouse Pokémon
+    "entry_text": |-
+        The electric sacs in its cheeks are
+        small. If even a little electricity
+        leaks, it becomes shocked.
+"french":
+    "name": |-
+        PICHU
+    "category": |-
+        Pokémon Minisouris
+    "entry_text": |-
+        Les poches sur ses joues sont
+        encore trop petites pour
+        accumuler beaucoup d’électricité.
+"german":
+    "name": |-
+        PICHU
+    "category": |-
+        Babymaus
+    "entry_text": |-
+        Seine Backentaschen sind noch
+        recht klein. Daher kann es nicht
+        allzu viel Elektrizität speichern.
+"italian":
+    "name": |-
+        Pichu
+    "category": |-
+        Pokémon Topino
+    "entry_text": |-
+        Le sacche che ha sulle guance sono
+        ancora piccole e non riescono a
+        immagazzinare molta elettricità.
+"spanish":
+    "name": |-
+        Pichu
+    "category": |-
+        Pokémon Ratoncito
+    "entry_text": |-
+        Las bolsas de sus mejillas son aún
+        demasiado pequeñas para almacenar
+        mucha electricidad.
+"japanese":
+    "name": |-
+        ピチュ－
+    "category": |-
+        こねずみポケモン
+    "entry_text": |-
+        ほっぺたの　でんきぶくろが
+        まだ　ちいさいので
+        でんきを　たくさん　ためられない。

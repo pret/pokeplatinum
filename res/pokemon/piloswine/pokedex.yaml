@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    558
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    14
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    14
+"english":
+    "category": |-
+        Swine Pokémon
+    "entry_text": |-
+        Covered by a shaggy coat, it is
+        strong against the cold. Its tusks
+        of ice thicken when it snows.
+"french":
+    "name": |-
+        COCHIGNON
+    "category": |-
+        Pokémon Porc
+    "entry_text": |-
+        Il ne voit rien à cause de sa
+        fourrure touffue et se repère
+        à l’aide de son nez délicat.
+"german":
+    "name": |-
+        KEIFEL
+    "category": |-
+        Schwein
+    "entry_text": |-
+        Sein dichtes Fell verdeckt seine
+        Augen. Es untersucht seine
+        Umgebung mit seiner Nase.
+"italian":
+    "name": |-
+        Piloswine
+    "category": |-
+        Pokémon Suino
+    "entry_text": |-
+        Poiché il lungo pelo gli impedisce di
+        vedere, sonda il terreno circo-
+        stante con il sensibilissimo naso.
+"spanish":
+    "name": |-
+        Piloswine
+    "category": |-
+        Pokémon Puerco
+    "entry_text": |-
+        Como su pelaje le impide ver,
+        estudia lo que le rodea con su
+        potente olfato.
+"japanese":
+    "name": |-
+        イノム－
+    "category": |-
+        いのししポケモン
+    "entry_text": |-
+        ながい　たいもうで　おおわれていて
+        めが　みえないが　びんかんな　はなを
+        つかって　まわりの　ようすを　しる。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    235
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    352
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    352
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Electric Pokémon
+    "entry_text": |-
+        A weak electric current flows
+        between its horns. Sticking a hand
+        there shocks the unwary.
+"french":
+    "name": |-
+        ELEKID
+    "category": |-
+        Pokémon Electrique
+    "entry_text": |-
+        Il génère de l’électricité en
+        battant des bras, mais il n’a aucun
+        moyen de stocker cette énergie.
+"german":
+    "name": |-
+        ELEKID
+    "category": |-
+        Elektro
+    "entry_text": |-
+        Es bewegt seine Arme und generiert
+        damit Elektrizität. Diese kann es
+        aber nicht speichern.
+"italian":
+    "name": |-
+        Elekid
+    "category": |-
+        Pokémon Elettrico
+    "entry_text": |-
+        Genera elettricità roteando le
+        braccia. Tuttavia, non riesce ad
+        immagazzinare l’energia creata.
+"spanish":
+    "name": |-
+        Elekid
+    "category": |-
+        Pokémon Eléctrico
+    "entry_text": |-
+        Genera electricidad girando los
+        brazos. No obstante, es incapaz
+        de almacenar la energía creada.
+"japanese":
+    "name": |-
+        エレキッド
+    "category": |-
+        でんきポケモン
+    "entry_text": |-
+        りょううでを　ぐるぐる　ふりまわして
+        でんきを　はっせいさせる。しかし
+        つくった　でんきは　ためておけない。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    465
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    221
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    221
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Wild Monkey Pokémon
+    "entry_text": |-
+        Its heart beats at a tenfold
+        tempo, so it cannot sit still for
+        even a moment.
+"french":
+    "name": |-
+        VIGOROTH
+    "category": |-
+        Pokémon Turbusinge
+    "entry_text": |-
+        Son cœur bat dix fois plus vite que
+        la normale, c’est pourquoi il ne
+        tient pas en place.
+"german":
+    "name": |-
+        MUNTIER
+    "category": |-
+        Wildaffe
+    "entry_text": |-
+        Sein Herz schlägt schneller als das
+        anderer Lebewesen. Daher kann es
+        nicht für einen Moment still sitzen.
+"italian":
+    "name": |-
+        Vigoroth
+    "category": |-
+        Pokémon Indocile
+    "entry_text": |-
+        Il suo cuore batte 10 volte più
+        velocemente del normale. Non
+        sta fermo neanche un momento.
+"spanish":
+    "name": |-
+        Vigoroth
+    "category": |-
+        Pokémon Mono Feroz
+    "entry_text": |-
+        Su corazón late a un ritmo diez
+        veces más rápido de lo normal.
+        No se está quieto ni un instante.
+"japanese":
+    "name": |-
+        ヤルキモノ
+    "category": |-
+        あばれザルポケモン
+    "entry_text": |-
+        しんぞうが　１０ばいの　テンポで
+        こどう　しているため
+        ひとときも　じっとしていられない。

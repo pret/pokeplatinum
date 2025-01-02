@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    155
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    423
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    423
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Starling Pokémon
+    "entry_text": |-
+        Recognizing their own weakness,
+        they always live in a group. When
+        alone, a STARAVIA cries noisily.
+"french":
+    "name": |-
+        ETOURVOL
+    "category": |-
+        Pokémon Etourneau
+    "entry_text": |-
+        Il survole les forêts et les champs
+        en quête de Pokémon Insecte.
+        Ils forment de grandes volées.
+"german":
+    "name": |-
+        STARAVIA
+    "category": |-
+        Star
+    "entry_text": |-
+        Auf der Suche nach Käfer-PKMN
+        fliegt es über Wiesen und Wälder. Es
+        bleibt in einem großen Schwarm.
+"italian":
+    "name": |-
+        Staravia
+    "category": |-
+        Pokémon Storno
+    "entry_text": |-
+        Vola nelle foreste e nei campi
+        in cerca di Pokémon coleottero.
+        Si muove in grandi gruppi.
+"spanish":
+    "name": |-
+        Staravia
+    "category": |-
+        Pokémon Estornino
+    "entry_text": |-
+        Vuela por bosques y campos en
+        busca de Pokémon de tipo Bicho.
+        Siempre va en bandadas.
+"japanese":
+    "name": |-
+        ムクバ－ド
+    "category": |-
+        むくどりポケモン
+    "entry_text": |-
+        むしポケモンを　ねらって
+        もりや　そうげんを　とびまわる。
+        おおきな　むれで　こうどうする。

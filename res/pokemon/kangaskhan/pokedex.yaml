@@ -1,0 +1,74 @@
+"height": !!int |-
+    22
+"weight": !!int |-
+    800
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    351
+"pokemon_scale_f": !!int |-
+    232
+"trainer_scale_m": !!int |-
+    333
+"pokemon_scale_m": !!int |-
+    232
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Parent Pokémon
+    "entry_text": |-
+        It raises its offspring in its belly
+        pouch. It lets the baby out to
+        play only when it feels safe.
+"french":
+    "name": |-
+        KANGOUREX
+    "category": |-
+        Pokémon Maternel
+    "entry_text": |-
+        Il élève ses petits dans sa poche
+        ventrale. Il attend d’être en lieu
+        sûr pour les laisser jouer dehors.
+"german":
+    "name": |-
+        KANGAMA
+    "category": |-
+        Muttertier
+    "entry_text": |-
+        Sein Nachwuchs wächst in seinem
+        Beutel heran. Nur wenn es sicher
+        ist, darf das Junge aus dem Beutel.
+"italian":
+    "name": |-
+        Kangaskhan
+    "category": |-
+        Pokémon Genitore
+    "entry_text": |-
+        Tiene il cucciolo nel marsupio che ha
+        sulla pancia e lo lascia uscire solo
+        quando non ci sono pericoli.
+"spanish":
+    "name": |-
+        Kangaskhan
+    "category": |-
+        Pokémon Padres
+    "entry_text": |-
+        Lleva a su cría en la bolsa de su
+        panza. Solo deja que su cría salga
+        a jugar cuando no siente peligro.
+"japanese":
+    "name": |-
+        ガル－ラ
+    "category": |-
+        おやこポケモン
+    "entry_text": |-
+        おなかの　ふくろで　こそだてをする。
+        あんぜんな　ときだけ　こどもを
+        ふくろから　だして　あそばせる。

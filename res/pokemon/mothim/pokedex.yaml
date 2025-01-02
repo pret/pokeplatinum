@@ -1,0 +1,72 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    233
+"body_shape": |-
+    SHAPE_MULTI_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    346
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    346
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65525
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65525
+"english":
+    "category": |-
+        Moth Pokémon
+    "entry_text": |-
+        While it loves floral honey, it won’t
+        gather any itself. Instead, it
+        plots to steal some from COMBEE.
+"french":
+    "name": |-
+        PAPILORD
+    "category": |-
+        Pokémon Phalène
+    "entry_text": |-
+        Il aime le nectar des fleurs et
+        n’hésite pas à voler celui
+        que récupère APITRINI.
+"german":
+    "name": |-
+        MOTERPEL
+    "category": |-
+        Motte
+    "entry_text": |-
+        Es liebt Honig und stiehlt den
+        Honig, der von WADRIBIE
+        gesammelt wurde.
+"italian":
+    "name": |-
+        Mothim
+    "category": |-
+        Pokémon Falena
+    "entry_text": "Ama il nettare dei fiori. Ruba e\nmangia il nettare raccolto da\
+        \ \nCOMBEE."
+"spanish":
+    "name": |-
+        Mothim
+    "category": |-
+        Pokémon Polilla
+    "entry_text": |-
+        Le encanta la miel de las
+        flores y roba la que recoge
+        COMBEE.
+"japanese":
+    "name": |-
+        ガ－メイル
+    "category": |-
+        ミノガポケモン
+    "entry_text": |-
+        はなの　ミツが　だいすき。
+        ミツハニ－の　あつめた　ミツを
+        よこどりして　たべてしまう。

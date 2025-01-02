@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    33
+"body_shape": |-
+    SHAPE_MULTI_BODY
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    377
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    377
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Cherry Pokémon
+    "entry_text": |-
+        The small ball is not only filled with
+        nutrients, it is also tasty. STARLY
+        try to peck it off.
+"french":
+    "name": |-
+        CERIBOU
+    "category": |-
+        Pokémon Cerise
+    "entry_text": |-
+        La petite boule renferme les
+        délicieux nutriments sucrés
+        dont il a besoin pour évoluer.
+"german":
+    "name": |-
+        KIKUGI
+    "category": |-
+        Kirsche
+    "entry_text": |-
+        Das kleine Bällchen enthält alles,
+        was es für die Entwicklung
+        braucht. Es ist süß und lecker.
+"italian":
+    "name": |-
+        Cherubi
+    "category": |-
+        Pokémon Ciliegia
+    "entry_text": |-
+        La pallina contiene i nutrimenti
+        necessari per l’evoluzione. Dicono
+        che sia molto dolce e deliziosa.
+"spanish":
+    "name": |-
+        Cherubi
+    "category": |-
+        Pokémon Cereza
+    "entry_text": |-
+        La pequeña esfera, dulce y
+        sabrosa, contiene los nutrientes
+        necesarios para evolucionar.
+"japanese":
+    "name": |-
+        チェリンボ
+    "category": |-
+        さくらんぼポケモン
+    "entry_text": |-
+        しんかに　ひつような　えいようぶんが
+        ちいさい　たまに　ためられている。
+        とても　あまくて　おいしい　らしい。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    333
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    276
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    276
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    12
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    12
+"english":
+    "category": |-
+        Rabbit Pokémon
+    "entry_text": |-
+        The ears appear to be delicate. If
+        they are touched roughly, it kicks
+        with its graceful legs.
+"french":
+    "name": |-
+        LOCKPIN
+    "category": |-
+        Pokémon Lapin
+    "entry_text": |-
+        Un Pokémon extrêmement prudent.
+        Il couvre son corps de ses oreilles
+        pelucheuses en cas de danger.
+"german":
+    "name": |-
+        SCHLAPOR
+    "category": |-
+        Hase
+    "entry_text": |-
+        Ein sehr vorsichtiges PKMN. Nimmt
+        es Gefahr wahr, schützt es seinen
+        Körper mit seinen weichen Ohren.
+"italian":
+    "name": |-
+        Lopunny
+    "category": |-
+        Pokémon Coniglio
+    "entry_text": |-
+        Pokémon molto cauto. Se percepisce
+        un pericolo, si avvolge nelle sue
+        orecchie morbide e pelose.
+"spanish":
+    "name": |-
+        Lopunny
+    "category": |-
+        Pokémon Conejo
+    "entry_text": |-
+        Es un Pokémon muy precavido.
+        Si siente peligro, se envuelve con
+        el pelaje de sus orejas.
+"japanese":
+    "name": |-
+        ミミロップ
+    "category": |-
+        うさぎポケモン
+    "entry_text": |-
+        けいかいしんの　つよい　ポケモン。
+        きけんを　かんじると　ふわふわした
+        みみさきの　けで　からだを　つつむ。

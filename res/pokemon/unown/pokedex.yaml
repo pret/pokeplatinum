@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    50
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    378
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    378
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Symbol Pokémon
+    "entry_text": |-
+        When alone, nothing happens.
+        However, if there are two or more,
+        an odd power is said to emerge.
+"french":
+    "name": |-
+        ZARBI
+    "category": |-
+        Pokémon Symbolique
+    "entry_text": |-
+        Il rappelle une écriture ancienne.
+        Reste à savoir qui du langage ou de
+        ZARBI est apparu en premier.
+"german":
+    "name": |-
+        ICOGNITO
+    "category": |-
+        Symbol
+    "entry_text": |-
+        Seine Form sieht aus wie antike
+        Schrift. Was war zuerst da? Die
+        Sprache oder ICOGNITO?
+"italian":
+    "name": |-
+        Unown
+    "category": |-
+        Pokémon Simbolo
+    "entry_text": |-
+        È a forma di lettera di un antico
+        alfabeto. È un mistero chi sia ap-
+        parso prima, l’alfabeto o UNOWN.
+"spanish":
+    "name": |-
+        Unown
+    "category": |-
+        Pokémon Símbolo
+    "entry_text": |-
+        Tienen forma de letras antiguas.
+        Se desconoce qué fue antes: si
+        la escritura o los UNOWN.
+"japanese":
+    "name": |-
+        アンノ－ン
+    "category": |-
+        シンボルポケモン
+    "entry_text": |-
+        こだいぶんめいの　もじに　にている。
+        もじが　さきか　アンノ－ンが　さきか
+        せかいの　７ふしぎの　ひとつ。

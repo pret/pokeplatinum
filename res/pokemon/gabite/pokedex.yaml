@@ -1,0 +1,72 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    560
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    242
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    242
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    7
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    7
+"english":
+    "category": |-
+        Cave Pokémon
+    "entry_text": |-
+        It loves sparkly things. It seeks
+        treasures in caves and hoards the
+        loot in its nest.
+"french":
+    "name": |-
+        CARMACHE
+    "category": |-
+        Pokémon Caverne
+    "entry_text": "Selon une croyance ancienne, on\npeut utiliser ses écailles pour\n\
+        guérir les maladies incurables. "
+"german":
+    "name": |-
+        KNARKSEL
+    "category": |-
+        Höhle
+    "entry_text": |-
+        Es gibt einen uralten Glauben, dass
+        Medizin, die aus seinen Schuppen
+        gewonnen wird, alles heilen kann.
+"italian":
+    "name": |-
+        Gabite
+    "category": |-
+        Pokémon Grotta
+    "entry_text": |-
+        Molti credono che le medicine
+        fatte con le sue scaglie
+        curino anche i mali incurabili.
+"spanish":
+    "name": |-
+        Gabite
+    "category": |-
+        Pokémon Cueva
+    "entry_text": |-
+        Existe la arraigada creencia de
+        que una medicina hecha de sus
+        escamas puede curarlo todo.
+"japanese":
+    "name": |-
+        ガバイト
+    "category": |-
+        ほらあなポケモン
+    "entry_text": |-
+        ガバイトの　ウロコから　つくった
+        くすりが　ふじのやまいを　なおすと
+        ふるくから　しんじられてきた。

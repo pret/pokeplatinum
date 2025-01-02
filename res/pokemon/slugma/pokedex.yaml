@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    350
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    268
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    268
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Lava Pokémon
+    "entry_text": |-
+        Its body is made of magma.
+        If it doesn’t keep moving, its
+        body will cool and harden.
+"french":
+    "name": |-
+        LIMAGMA
+    "category": |-
+        Pokémon Lave
+    "entry_text": |-
+        Son corps est fait de magma.
+        S’il cesse de bouger, il refroidit
+        et durcit.
+"german":
+    "name": |-
+        SCHNECKMAG
+    "category": |-
+        Lava
+    "entry_text": |-
+        Sein Körper besteht aus Magma.
+        Bleibt es nicht ständig in Bewegung,
+        kühlt es aus und verhärtet sich.
+"italian":
+    "name": |-
+        Slugma
+    "category": |-
+        Pokémon Lava
+    "entry_text": |-
+        Nel suo corpo scorre magma. Se
+        non si muove continuamente, il suo
+        corpo si raffredda e s’indurisce.
+"spanish":
+    "name": |-
+        Slugma
+    "category": |-
+        Pokémon Lava
+    "entry_text": |-
+        Su cuerpo se compone de magma.
+        Si deja de moverse, se enfría y se
+        endurece.
+"japanese":
+    "name": |-
+        マグマッグ
+    "category": |-
+        ようがんポケモン
+    "entry_text": |-
+        ようがんで　できた　からだを　もつ。
+        たえず　うごいていないと　からだが
+        ひえて　かたまってしまうのだ。

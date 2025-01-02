@@ -1,0 +1,72 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    152
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    284
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    284
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Lightning Pokémon
+    "entry_text": |-
+        Using electricity stored in its fur,
+        it stimulates its muscles to
+        heighten its reaction speed.
+"french":
+    "name": |-
+        DYNAVOLT
+    "category": |-
+        Pokémon Orage
+    "entry_text": "Il améliore ses réflexes en\nstimulant ses muscles grâce à \nl’électricité\
+        \ dans sa fourrure."
+"german":
+    "name": |-
+        FRIZELBLIZ
+    "category": |-
+        Gewitter
+    "entry_text": |-
+        Die Elektrizität, die es im Fell
+        speichert, nutzt es, um seine
+        Muskeln zu stimulieren.
+"italian":
+    "name": |-
+        Electrike
+    "category": |-
+        Pokémon Lampo
+    "entry_text": |-
+        L’elettricità immagazzinata nella
+        pelliccia gli stimola i muscoli e
+        aumenta la sua velocità di reazione.
+"spanish":
+    "name": |-
+        Electrike
+    "category": |-
+        Pokémon Calambre
+    "entry_text": |-
+        Estimula sus músculos y aumenta
+        sus reflejos con la electricidad
+        que almacena su pelaje.
+"japanese":
+    "name": |-
+        ラクライ
+    "category": |-
+        いなずまポケモン
+    "entry_text": |-
+        たいもうに　ためた　でんきを　つかい
+        きんにくを　しげきすることで
+        しゅんぱつりょくを　たかめる。

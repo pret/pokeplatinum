@@ -1,0 +1,74 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    1870
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    341
+"pokemon_scale_f": !!int |-
+    251
+"trainer_scale_m": !!int |-
+    327
+"pokemon_scale_m": !!int |-
+    251
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    9
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    9
+"english":
+    "category": |-
+        Aurora Pokémon
+    "entry_text": |-
+        It races around the world to
+        purify fouled water. It dashes
+        away with the north wind.
+"french":
+    "name": |-
+        SUICUNE
+    "category": |-
+        Pokémon Aurore
+    "entry_text": |-
+        Il parcourt le vaste monde pour
+        purifier les eaux polluées. Il
+        accompagne le vent du nord.
+"german":
+    "name": |-
+        SUICUNE
+    "category": |-
+        Polarlicht
+    "entry_text": |-
+        Es wandert beständig in der Welt
+        herum, um verunreinigtes Wasser zu
+        reinigen. Es zieht mit dem Nordwind.
+"italian":
+    "name": |-
+        Suicune
+    "category": |-
+        Pokémon Aurora
+    "entry_text": |-
+        Corre per tutto il mondo per
+        purificare l’acqua contaminata.
+        Si allontana con i venti del nord.
+"spanish":
+    "name": |-
+        Suicune
+    "category": |-
+        Pokémon Aurora
+    "entry_text": |-
+        Recorre el mundo para purificar
+        agua contaminada. Corre veloz
+        con el viento del norte.
+"japanese":
+    "name": |-
+        スイクン
+    "category": |-
+        オ－ロラポケモン
+    "entry_text": |-
+        せかいじゅうを　かけめぐり
+        よごれた　みずを　きよめている。
+        きたかぜと　ともに　はしりさる。

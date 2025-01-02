@@ -1,0 +1,72 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    120
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    300
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    300
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Balloon Pokémon
+    "entry_text": |-
+        Its fine fur feels sublime to the
+        touch. It can expand its body by
+        inhaling air.
+"french":
+    "name": |-
+        GRODOUDOU
+    "category": |-
+        Pokémon Bouboule
+    "entry_text": "Sa fourrure est d’une douceur\nincomparable au toucher. Il \npeut\
+        \ gonfler en aspirant de l’air."
+"german":
+    "name": |-
+        KNUDDELUFF
+    "category": |-
+        Ballon
+    "entry_text": |-
+        Sein feines Fell fühlt sich herrlich
+        an. Es kann sich größer machen,
+        indem es Luft einatmet.
+"italian":
+    "name": |-
+        Wigglytuff
+    "category": |-
+        Pokémon Pallone
+    "entry_text": |-
+        Il suo pelo è morbidissimo.
+        Riesce a gonfiarsi e a ingrandirsi
+        semplicemente inalando aria.
+"spanish":
+    "name": |-
+        Wigglytuff
+    "category": |-
+        Pokémon Globo
+    "entry_text": |-
+        Tiene un pelaje muy agradable al
+        tacto. Puede hinchar su cuerpo
+        tragando aire.
+"japanese":
+    "name": |-
+        プクリン
+    "category": |-
+        ふうせんポケモン
+    "entry_text": |-
+        キメこまやかな　たいもうは
+        ごくじょうの　はだざわり。
+        いきを　すいこんで　ふくらむ。

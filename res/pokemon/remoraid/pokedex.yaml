@@ -1,0 +1,72 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    120
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    331
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    331
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    5
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    5
+"english":
+    "category": |-
+        Jet Pokémon
+    "entry_text": |-
+        It forcefully squirts water. The
+        water jet never misses prey even
+        if the REMORAID is deep in the sea.
+"french":
+    "name": |-
+        REMORAID
+    "category": |-
+        Pokémon Jet
+    "entry_text": |-
+        Il crache un puissant jet d’eau
+        pour abattre les proies volantes.
+"german":
+    "name": |-
+        REMORAID
+    "category": |-
+        Hochdruck
+    "entry_text": |-
+        Es spritzt Wasser mit Hochdruck
+        aus seinem Maul und schießt damit
+        auf fliegende Beute.
+"italian":
+    "name": |-
+        Remoraid
+    "category": |-
+        Pokémon Jet
+    "entry_text": |-
+        Emette potenti getti d’acqua con i
+        quali riesce ad abbattere persino
+        le prede in volo.
+"spanish":
+    "name": |-
+        Remoraid
+    "category": |-
+        Pokémon Reactor
+    "entry_text": |-
+        Escupe potentes chorros de agua
+        para derribar presas voladoras.
+"japanese":
+    "name": |-
+        テッポウオ
+    "category": |-
+        ふんしゃポケモン
+    "entry_text": |-
+        くちから　みずを　はっしゃして
+        そらを　とぶ　えものを　うちおとす
+        ことから　この　なまえが　ついた。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    2
+"weight": !!int |-
+    21
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    460
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    460
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    32
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    32
+"english":
+    "category": |-
+        Gratitude Pokémon
+    "entry_text": |-
+        The flowers all over its body burst
+        into bloom if it is lovingly hugged
+        and senses gratitude.
+"french":
+    "name": |-
+        SHAYMIN
+    "category": |-
+        Pokémon Gratitude
+    "entry_text": |-
+        Il vit dans les champs de fleurs et
+        se cache en s’enroulant pour
+        imiter une plante fleurie.
+"german":
+    "name": |-
+        SHAYMIN
+    "category": |-
+        Dankbarkeit
+    "entry_text": |-
+        Es lebt auf Blumenwiesen und rollt
+        sich ein, um wie eine Blume auszu-
+        sehen u. nicht entdeckt zu werden.
+"italian":
+    "name": |-
+        Shaymin
+    "category": |-
+        Pokémon Gratitudine
+    "entry_text": |-
+        Vive nei campi di fiori e cerca di
+        non farsi vedere arrotolandosi per
+        sembrare una pianta fiorita.
+"spanish":
+    "name": |-
+        Shaymin
+    "category": |-
+        Pokémon Gratitud
+    "entry_text": |-
+        Vive entre las flores. Para evitar
+        ser descubierto, se enrosca
+        como si fuera una planta.
+"japanese":
+    "name": |-
+        シェイミ
+    "category": |-
+        かんしゃポケモン
+    "entry_text": |-
+        はなばたけの　なかで　くらしているが
+        からだを　まるめると　はなのように
+        みえるため　だれも　きづかないのだ。

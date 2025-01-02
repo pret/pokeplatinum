@@ -1,0 +1,74 @@
+"height": !!int |-
+    19
+"weight": !!int |-
+    2050
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    342
+"pokemon_scale_f": !!int |-
+    222
+"trainer_scale_m": !!int |-
+    320
+"pokemon_scale_m": !!int |-
+    222
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    14
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Iron Pokémon
+    "entry_text": |-
+        Tempered by pressure underground
+        over tens of thousands of years,
+        its body cannot be scratched.
+"french":
+    "name": |-
+        REGISTEEL
+    "category": |-
+        Pokémon Fer
+    "entry_text": |-
+        Son corps invulnérable fut forgé
+        par la pression souterraine durant
+        des dizaines de milliers d’années.
+"german":
+    "name": |-
+        REGISTEEL
+    "category": |-
+        Eisen
+    "entry_text": |-
+        Im Laufe der Jahrtausende, die es
+        unterirdisch lebte, wurde sein
+        Körper durch Druck u. Wärme hart.
+"italian":
+    "name": |-
+        Registeel
+    "category": |-
+        Pokémon Ferro
+    "entry_text": |-
+        La pressione subita sottoterra
+        per decine di migliaia di anni ha
+        reso il suo corpo resistentissimo.
+"spanish":
+    "name": |-
+        Registeel
+    "category": |-
+        Pokémon Hierro
+    "entry_text": |-
+        Su cuerpo ha estado sometido a la
+        presión subterránea durante miles
+        de años y no puede arañarse.
+"japanese":
+    "name": |-
+        レジスチル
+    "category": |-
+        くろがねポケモン
+    "entry_text": |-
+        なんまんねんも　ちかの　あつりょくで
+        きたえられた　きんぞくの　ボディは
+        きずひとつ　つかない。

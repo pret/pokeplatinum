@@ -1,0 +1,74 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    550
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    222
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    222
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65532
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65532
+"english":
+    "category": |-
+        Bat Pokémon
+    "entry_text": |-
+        Its sharp fangs puncture the
+        toughest of hides and have small
+        holes for greedily sucking blood.
+"french":
+    "name": |-
+        NOSFERALTO
+    "category": |-
+        Pokémon Chovsouris
+    "entry_text": |-
+        Il aime le sang des humains et des
+        Pokémon. Il erre la nuit en quête
+        d’un cou où planter ses crocs.
+"german":
+    "name": |-
+        GOLBAT
+    "category": |-
+        Fledermaus
+    "entry_text": |-
+        Es liebt das Blut von Menschen und
+        Pokémon. Nachts fliegt es umher auf
+        der Suche nach Halsvenen.
+"italian":
+    "name": |-
+        Golbat
+    "category": |-
+        Pokémon Pipistrello
+    "entry_text": |-
+        Ama il sangue umano e quello dei
+        Pokémon. Vola nel buio della notte
+        in cerca di vene da succhiare.
+"spanish":
+    "name": |-
+        Golbat
+    "category": |-
+        Pokémon Murciélago
+    "entry_text": |-
+        Le encanta la sangre, tanto la de
+        Pokémon como la humana.
+        Sale a calmar su sed por la noche.
+"japanese":
+    "name": |-
+        ゴルバット
+    "category": |-
+        こうもりポケモン
+    "entry_text": |-
+        ひとや　ポケモンの　けつえきが
+        だいこうぶつ。くびすじの　けっかんを
+        ねらい　よぞらを　とびまわる。

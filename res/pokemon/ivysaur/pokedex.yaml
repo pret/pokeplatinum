@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    130
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    287
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    287
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Seed Pokémon
+    "entry_text": |-
+        When the bud on its back starts
+        swelling, a sweet aroma wafts to
+        indicate the flower’s coming bloom.
+"french":
+    "name": |-
+        HERBIZARRE
+    "category": |-
+        Pokémon Graine
+    "entry_text": |-
+        Lorsque le bourgeon sur son dos
+        éclot, il répand un doux parfum
+        pour célébrer sa floraison.
+"german":
+    "name": |-
+        BISAKNOSP
+    "category": |-
+        Samen
+    "entry_text": |-
+        Sobald die Knospe auf seinem Rücken
+        ein süßes Aroma abgibt, steht die
+        Blüte kurz bevor.
+"italian":
+    "name": |-
+        Ivysaur
+    "category": |-
+        Pokémon Seme
+    "entry_text": |-
+        Quando il bocciolo che ha sul dorso
+        si gonfia, emana un dolce profumo.
+        È indice dell’imminente fioritura.
+"spanish":
+    "name": |-
+        Ivysaur
+    "category": |-
+        Pokémon Semilla
+    "entry_text": |-
+        Cuando el bulbo de su lomo se
+        hincha, desprende un dulce aroma
+        para indicar el florecimiento.
+"japanese":
+    "name": |-
+        フシギソウ
+    "category": |-
+        たねポケモン
+    "entry_text": |-
+        せなかの　つぼみが　ふくらみだすと
+        あまい　においが　ただよいはじめる。
+        たいりんの　はなが　さく　まえぶれ。

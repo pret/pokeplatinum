@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    120
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    377
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    377
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    20
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    20
+"english":
+    "category": |-
+        Scorpion Pokémon
+    "entry_text": |-
+        As soon as the tail claws close,
+        its needle tips secrete poison.
+        It can survive a year without food.
+"french":
+    "name": |-
+        RAPION
+    "category": |-
+        Pokémon Scorpion
+    "entry_text": |-
+        Il saisit sa proie avec les pinces de
+        sa queue, lui injecte un poison et
+        la retient jusqu’à ce qu’il agisse.
+"german":
+    "name": |-
+        PIONSKORA
+    "category": |-
+        Skorpion
+    "entry_text": |-
+        Es greift seine Beute mit den
+        Krallen an seinem Schweif und ver-
+        giftet sie. Dann wartet es ab...
+"italian":
+    "name": |-
+        Skorupi
+    "category": |-
+        Pokémon Scorpione
+    "entry_text": |-
+        Afferra le prede con gli artigli
+        della coda e non si allontana finché
+        il veleno che inietta non agisce.
+"spanish":
+    "name": |-
+        Skorupi
+    "category": |-
+        Pokémon Escorpión
+    "entry_text": |-
+        Agarra a sus presas con las garras
+        de la cola y les inyecta veneno.
+        Espera hasta que hace efecto.
+"japanese":
+    "name": |-
+        スコルピ
+    "category": |-
+        さそりポケモン
+    "entry_text": |-
+        しっぽの　ツメで　えものを　はさみ
+        どくを　おくりこむ。どくが　きくまで
+        ぜったいに　はなさない　しゅうねん。

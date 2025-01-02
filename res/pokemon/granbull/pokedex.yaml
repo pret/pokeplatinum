@@ -1,0 +1,74 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    487
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    232
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    232
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    7
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    7
+"english":
+    "category": |-
+        Fairy Pokémon
+    "entry_text": |-
+        It is timid in spite of its looks.
+        If it becomes enraged, however,
+        it will strike with its huge fangs.
+"french":
+    "name": |-
+        GRANBULL
+    "category": |-
+        Pokémon Fée
+    "entry_text": |-
+        En dépit des apparences, c’est un
+        grand timide. Quand il s’énerve, il
+        mord de ses énormes crocs.
+"german":
+    "name": |-
+        GRANBULL
+    "category": |-
+        Fee
+    "entry_text": |-
+        Es ist trotz seines Äußeren
+        schüchtern. Wird es wütend,
+        schnappt es mit seinen Fängen zu.
+"italian":
+    "name": |-
+        Granbull
+    "category": |-
+        Pokémon Fata
+    "entry_text": |-
+        Malgrado il suo aspetto, è molto
+        timido. Se si arrabbia, tuttavia,
+        colpisce con le sue enormi zanne.
+"spanish":
+    "name": |-
+        Granbull
+    "category": |-
+        Pokémon Hada
+    "entry_text": |-
+        A pesar de su aspecto, es muy
+        tímido. Sin embargo, cuando se
+        enfada ataca con sus colmillos.
+"japanese":
+    "name": |-
+        グランブル
+    "category": |-
+        ようせいポケモン
+    "entry_text": |-
+        かおに　にあわず　おくびょう。
+        しかし　ひとたび　おこりはじめると
+        おおきな　キバで　はんげきする。

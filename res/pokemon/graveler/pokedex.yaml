@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    1050
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    10
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    10
+"english":
+    "category": |-
+        Rock Pokémon
+    "entry_text": |-
+        It rolls on mountain paths to move.
+        Once it builds momentum, no Pokémon
+        can stop it without difficulty.
+"french":
+    "name": |-
+        GRAVALANCH
+    "category": |-
+        Pokémon Roche
+    "entry_text": |-
+        GRAVALANCH creuse son terrier
+        à flanc de montagne en perçant
+        des galeries horizontales.
+"german":
+    "name": |-
+        GEOROK
+    "category": |-
+        Gestein
+    "entry_text": |-
+        GEOROK leben an steilen
+        Felsvorsprüngen. Sie graben
+        dazu viele Löcher aus.
+"italian":
+    "name": |-
+        Graveler
+    "category": |-
+        Pokémon Roccia
+    "entry_text": |-
+        Costruisce la sua tana in fessure
+        scavate nelle pareti di precipizi e
+        dirupi scoscesi.
+"spanish":
+    "name": |-
+        Graveler
+    "category": |-
+        Pokémon Roca
+    "entry_text": |-
+        Muchos GRAVELER hacen agujeros
+        en acantilados escarpados para
+        establecerse dentro de ellos.
+"japanese":
+    "name": |-
+        ゴロ－ン
+    "category": |-
+        がんせきポケモン
+    "entry_text": |-
+        けわしい　がけの　ちゅうふくに
+        いくつもの　よこあなを　みつけたら
+        それは　ゴロ－ンの　すみか。

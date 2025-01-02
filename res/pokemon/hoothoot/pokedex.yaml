@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    212
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    350
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    350
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    21
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    21
+"english":
+    "category": |-
+        Owl Pokémon
+    "entry_text": |-
+        It marks time precisely. Some
+        countries consider it to be a wise
+        friend, versed in the world’s ways.
+"french":
+    "name": |-
+        HOOTHOOT
+    "category": |-
+        Pokémon Hibou
+    "entry_text": |-
+        Il se tient toujours sur un pied. Il
+        ne prend jamais appui sur les
+        deux, même en cas d’attaque.
+"german":
+    "name": |-
+        HOOTHOOT
+    "category": |-
+        Eule
+    "entry_text": |-
+        Es steht ständig auf einem Fuß.
+        Selbst wenn es angreift, stellt es
+        sich nicht auf beide Beine.
+"italian":
+    "name": |-
+        Hoothoot
+    "category": |-
+        Pokémon Gufo
+    "entry_text": |-
+        Sta sempre ritto su un piede solo
+        e non mette giù l’altro neppure
+        quando viene attaccato.
+"spanish":
+    "name": |-
+        Hoothoot
+    "category": |-
+        Pokémon Búho
+    "entry_text": |-
+        Siempre se yergue sobre una pata.
+        Nunca apoya ambas, ni siquiera
+        al sufrir un ataque.
+"japanese":
+    "name": |-
+        ホ－ホ－
+    "category": |-
+        ふくろうポケモン
+    "entry_text": |-
+        いつも　いっぽんあしで　たっている。
+        こうげきを　うけても　２ほんあしで
+        ふんばるようなことは　しない。

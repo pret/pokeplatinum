@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    99
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    352
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    352
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Cocoon Pokémon
+    "entry_text": |-
+        A steel-hard shell protects its
+        tender body. It quietly endures
+        hardships while awaiting evolution.
+"french":
+    "name": |-
+        CHRYSACIER
+    "category": |-
+        Pokémon Cocon
+    "entry_text": |-
+        Son corps frêle est protégé par sa
+        carapace d’acier. Il encaisse les
+        coups durs en attendant d’évoluer.
+"german":
+    "name": |-
+        SAFCON
+    "category": |-
+        Kokon
+    "entry_text": |-
+        Der stahlharte Panzer schützt
+        seinen zarten Körper. Es wartet
+        geduldig auf seine Entwicklung.
+"italian":
+    "name": |-
+        Metapod
+    "category": |-
+        Pokémon Bozzolo
+    "entry_text": |-
+        Ha una corazza dura come l’acciaio
+        che protegge il suo fragile corpo.
+        Attende immobile di evolversi.
+"spanish":
+    "name": |-
+        Metapod
+    "category": |-
+        Pokémon Capullo
+    "entry_text": |-
+        Su frágil cuerpo está recubierto
+        de una coraza dura como el acero.
+        Permanece quieto en su desarrollo.
+"japanese":
+    "name": |-
+        トランセル
+    "category": |-
+        さなぎポケモン
+    "entry_text": |-
+        こうてつのように　かたい　カラで
+        やわらかい　なかみを　まもっている。
+        しんかするまで　じっと　たえている。

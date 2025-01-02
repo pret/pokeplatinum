@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    150
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    284
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    284
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65528
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65528
+"english":
+    "category": |-
+        Blimp Pokémon
+    "entry_text": |-
+        At dusk, swarms of them are
+        carried aloft on winds. When
+        noticed, they suddenly vanish.
+"french":
+    "name": |-
+        GRODRIVE
+    "category": |-
+        Pokémon Ballon
+    "entry_text": |-
+        Il somnole la journée et s’envole
+        en grands groupes le soir venu. Nul
+        ne sait où ils vont.
+"german":
+    "name": |-
+        DRIFZEPELI
+    "category": |-
+        Luftschiff
+    "entry_text": |-
+        Tagsüber treibt es faul vor sich
+        hin, nachts fliegt es mit anderen
+        umher. Niemand weiß wohin.
+"italian":
+    "name": |-
+        Drifblim
+    "category": |-
+        Pokémon Dirigibile
+    "entry_text": |-
+        Di giorno fluttua con aria
+        sonnolenta, ma di notte vola via
+        in gruppo. Nessuno sa dove vada.
+"spanish":
+    "name": |-
+        Drifblim
+    "category": |-
+        Pokémon Dirigible
+    "entry_text": |-
+        Durante el día está somnoliento,
+        pero por la noche sale volando en
+        grupo, aunque nadie sabe adónde.
+"japanese":
+    "name": |-
+        フワライド
+    "category": |-
+        ききゅうポケモン
+    "entry_text": |-
+        ひるまは　ねぼけて　うかんでいるが
+        ゆうがた　たいぐんで　とんでいく。
+        いきさきは　だれも　しらない。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    90
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    358
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    358
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Poison Pin Pokémon
+    "entry_text": |-
+        It scans its surroundings by
+        raising its ears out of the grass.
+        Its toxic horn is for protection.
+"french":
+    "name": |-
+        NIDORAN♂
+    "category": |-
+        Pokémon Venepic
+    "entry_text": |-
+        Il jauge le terrain en laissant
+        ses oreilles dépasser de l’herbe.
+        Il se défend avec sa corne toxique.
+"german":
+    "name": |-
+        NIDORAN♂
+    "category": |-
+        Giftdorn
+    "entry_text": |-
+        Es untersucht die Umgebung, indem
+        es die Ohren spitzt und lauscht.
+        Sein giftiges Horn schützt es.
+"italian":
+    "name": |-
+        Nidoran♂
+    "category": |-
+        Pokémon Velenago
+    "entry_text": |-
+        Esamina l’ambiente circostante ten-
+        dendo le orecchie fuori dall’erba.
+        Si protegge con il corno velenoso.
+"spanish":
+    "name": |-
+        Nidoran♂
+    "category": |-
+        Pokémon Pin Veneno
+    "entry_text": |-
+        Saca las orejas por encima de la
+        hierba para explorar el territorio.
+        Le protege su cuerno venenoso.
+"japanese":
+    "name": |-
+        ニドラン㊚
+    "category": |-
+        どくばりポケモン
+    "entry_text": |-
+        くさむらの　うえに　みみだけ　だして
+        まわりの　けはいを　さぐる。
+        もうどくの　ツノで　みを　まもる。

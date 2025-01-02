@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    370
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    267
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    267
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    10
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    10
+"english":
+    "category": |-
+        Bite Pokémon
+    "entry_text": |-
+        It chases down prey in a pack.
+        It will never disobey the commands
+        of a skilled Trainer.
+"french":
+    "name": |-
+        GRAHYENA
+    "category": |-
+        Pokémon Morsure
+    "entry_text": |-
+        Il traque ses proies en groupe.
+        Il ne désobéira jamais aux
+        ordres d’un bon Dresseur.
+"german":
+    "name": |-
+        MAGNAYEN
+    "category": |-
+        Biss
+    "entry_text": |-
+        Es jagt seine Beute im Rudel. Den
+        Befehlen eines erfahrenen Trainers
+        wird es stets folgen.
+"italian":
+    "name": |-
+        Mightyena
+    "category": |-
+        Pokémon Morso
+    "entry_text": |-
+        Caccia le prede in branco. Non
+        disobbedisce mai agli ordini di
+        un Allenatore abile.
+"spanish":
+    "name": |-
+        Mightyena
+    "category": |-
+        Pokémon Mordisco
+    "entry_text": |-
+        Ataca a sus presas en manada.
+        Nunca desobedece las órdenes
+        de un entrenador avezado.
+"japanese":
+    "name": |-
+        グラエナ
+    "category": |-
+        かみつきポケモン
+    "entry_text": |-
+        むれで　えものを　おいつめる。
+        すぐれた　トレ－ナ－の　めいれいには
+        ぜったいに　さからわない。

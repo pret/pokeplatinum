@@ -1,0 +1,72 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    35
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    424
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    424
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Mouse Pokémon
+    "entry_text": |-
+        Cautious in the extreme, its
+        hardy vitality lets it live in
+        any kind of environment.
+"french":
+    "name": |-
+        RATTATA
+    "category": |-
+        Pokémon Souris
+    "entry_text": |-
+        D’une prudence extrême, sa nature
+        robuste lui permet de s’adapter
+        à tous les terrains.
+"german":
+    "name": |-
+        RATTFRATZ
+    "category": |-
+        Maus
+    "entry_text": "Es strotzt vor Lebenskraft und\nkann in jeder Umgebung leben. Es\n\
+        ist extrem vorsichtig. "
+"italian":
+    "name": |-
+        Rattata
+    "category": |-
+        Pokémon Topo
+    "entry_text": |-
+        Un’incredibile vitalità gli permette
+        di adattarsi a qualsiasi tipo di
+        habitat. È estremamente cauto.
+"spanish":
+    "name": |-
+        Rattata
+    "category": |-
+        Pokémon Ratón
+    "entry_text": |-
+        Su capacidad de adaptación le
+        permite vivir en cualquier lugar.
+        Es tremendamente cauteloso.
+"japanese":
+    "name": |-
+        コラッタ
+    "category": |-
+        ねずみポケモン
+    "entry_text": |-
+        どんな　ばしょにも　すみついて
+        いきていける　せいめいりょく。
+        けいかいしんが　とても　つよい。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    186
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    281
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    281
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    14
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    14
+"english":
+    "category": |-
+        Flower Pokémon
+    "entry_text": |-
+        Its petals are the largest in the
+        world. As it walks, it scatters
+        extremely allergenic pollen.
+"french":
+    "name": |-
+        RAFFLESIA
+    "category": |-
+        Pokémon Fleur
+    "entry_text": |-
+        Ses pétales sont les plus grands
+        du monde. Il marche en répandant
+        un pollen extrêmement allergène.
+"german":
+    "name": |-
+        GIFLOR
+    "category": |-
+        Blume
+    "entry_text": |-
+        Es besitzt die größten Blätter der
+        Welt. Es verteilt beim Gehen Pollen,
+        die schreckliche Allergien auslösen.
+"italian":
+    "name": |-
+        Vileplume
+    "category": |-
+        Pokémon Fiore
+    "entry_text": |-
+        I suoi petali sono i più grandi al
+        mondo. Mentre cammina diffonde
+        un polline che causa allergie.
+"spanish":
+    "name": |-
+        Vileplume
+    "category": |-
+        Pokémon Flor
+    "entry_text": |-
+        Sus pétalos son los más grandes
+        del mundo. Cuando anda desprende
+        un terrible polen alergénico.
+"japanese":
+    "name": |-
+        ラフレシア
+    "category": |-
+        フラワ－ポケモン
+    "entry_text": |-
+        はなびらの　おおきさは　せかいいち。
+        ひどい　アレルギ－を　ひきおこす
+        どくかふんを　ばらまいて　あるく。

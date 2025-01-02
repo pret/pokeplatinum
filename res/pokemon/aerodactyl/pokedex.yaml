@@ -1,0 +1,72 @@
+"height": !!int |-
+    18
+"weight": !!int |-
+    590
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    221
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    221
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Fossil Pokémon
+    "entry_text": |-
+        A Pokémon that roamed the skies
+        in the dinosaur era. Its teeth are
+        like saw blades.
+"french":
+    "name": |-
+        PTERA
+    "category": |-
+        Pokémon Fossile
+    "entry_text": "Un Pokémon qui arpentait le ciel\nau temps des dinosaures. Ses\
+        \ \ncrocs sont pareils à des scies."
+"german":
+    "name": |-
+        AERODACTYL
+    "category": |-
+        Fossil
+    "entry_text": |-
+        Dieses PKMN flog zu Zeiten der
+        Dinosaurier am Himmel. Seine
+        Zähne sind wie Sägeblätter.
+"italian":
+    "name": |-
+        Aerodactyl
+    "category": |-
+        Pokémon Fossile
+    "entry_text": |-
+        Un Pokémon che vagava nei cieli
+        nell’era dei dinosauri. Le sue zanne
+        sono affilate come lame.
+"spanish":
+    "name": |-
+        Aerodactyl
+    "category": |-
+        Pokémon Fósil
+    "entry_text": |-
+        Este Pokémon surcó los cielos
+        en la época de los dinosaurios.
+        Sus colmillos son muy afilados.
+"japanese":
+    "name": |-
+        プテラ
+    "category": |-
+        かせきポケモン
+    "entry_text": |-
+        きょうりゅうじだいの　おおぞらを
+        とびまわっていた　ポケモン。
+        のこぎりのような　キバを　もつ。

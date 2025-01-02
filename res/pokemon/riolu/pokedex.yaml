@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    202
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    342
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    342
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    21
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    21
+"english":
+    "category": |-
+        Emanation Pokémon
+    "entry_text": |-
+        It has the peculiar power of being
+        able to see emotions such as joy
+        and rage in the form of waves.
+"french":
+    "name": |-
+        RIOLU
+    "category": |-
+        Pokémon Emanation
+    "entry_text": |-
+        Son aura s’intensifie pour
+        prévenir son entourage quand
+        il a peur ou qu’il est triste.
+"german":
+    "name": |-
+        RIOLU
+    "category": |-
+        Wellenspiel
+    "entry_text": |-
+        Die Aura, die dieses PKMN umgibt,
+        verstärkt sich, wenn es zeigen will,
+        dass es ängstlich oder traurig ist.
+"italian":
+    "name": |-
+        Riolu
+    "category": |-
+        Pokémon Emanazione
+    "entry_text": |-
+        L’aura che emana si intensifica
+        per comunicare agli altri se è
+        triste o spaventato.
+"spanish":
+    "name": |-
+        Riolu
+    "category": |-
+        Pokémon Emanación
+    "entry_text": |-
+        Su aura se intensifica para alertar
+        a otros cuando está triste o tiene
+        miedo.
+"japanese":
+    "name": |-
+        リオル
+    "category": |-
+        はもんポケモン
+    "entry_text": |-
+        からだから　はっする　はどうは
+        こわいとき　かなしいときに　つよまり
+        ピンチを　なかまに　つたえる。

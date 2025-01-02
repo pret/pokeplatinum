@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    55
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    307
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    307
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    22
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    22
+"english":
+    "category": |-
+        Balloon Pokémon
+    "entry_text": |-
+        When it wavers its big, round
+        eyes, it begins singing a lullaby
+        that makes everyone drowsy.
+"french":
+    "name": |-
+        RONDOUDOU
+    "category": |-
+        Pokémon Bouboule
+    "entry_text": |-
+        Lorsqu’il roule ses grands yeux
+        ronds, il entonne une berceuse
+        qui endort son auditoire.
+"german":
+    "name": |-
+        PUMMELUFF
+    "category": |-
+        Ballon
+    "entry_text": |-
+        Sobald es mit seinen großen, runden
+        Augen rollt, fängt es an, ein Lied
+        zu singen und jeder schläft ein.
+"italian":
+    "name": |-
+        Jigglypuff
+    "category": |-
+        Pokémon Pallone
+    "entry_text": |-
+        Muove le pupille e comincia a
+        cantare una ninnananna che fa
+        addormentare chiunque l’ascolti.
+"spanish":
+    "name": |-
+        Jigglypuff
+    "category": |-
+        Pokémon Globo
+    "entry_text": |-
+        Cuando mueve sus grandes ojos
+        redondos, comienza a cantar una
+        nana que duerme al enemigo.
+"japanese":
+    "name": |-
+        プリン
+    "category": |-
+        ふうせんポケモン
+    "entry_text": |-
+        つぶらな　ひとみが　ゆれるとき
+        だれもが　ねむくなってしまう
+        こもりうたを　うたいはじめる。

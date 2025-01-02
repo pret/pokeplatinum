@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    55
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    291
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    291
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Trainee Pokémon
+    "entry_text": |-
+        It grows underground, sensing
+        its surroundings using antennae
+        instead of its virtually blind eyes.
+"french":
+    "name": |-
+        NINGALE
+    "category": |-
+        Pokémon Apprenti
+    "entry_text": |-
+        Il grandit sous terre et se repère
+        grâce à ses antennes car ses
+        yeux sont quasiment aveugles.
+"german":
+    "name": |-
+        NINCADA
+    "category": |-
+        Vorbereiter
+    "entry_text": |-
+        Es wächst unterirdisch heran und
+        nimmt seine Umgebung mit Antennen
+        wahr, da es nahezu blind ist.
+"italian":
+    "name": |-
+        Nincada
+    "category": |-
+        Pokémon Novizio
+    "entry_text": |-
+        Cresce sottoterra e, poiché è
+        quasi cieco, usa le antenne per
+        sondare ciò che lo circonda.
+"spanish":
+    "name": |-
+        Nincada
+    "category": |-
+        Pokémon Aprendiz
+    "entry_text": |-
+        Crece bajo tierra y explora el
+        entorno con sus antenas,
+        que sustituyen a ojos atrofiados.
+"japanese":
+    "name": |-
+        ツチニン
+    "category": |-
+        したづみポケモン
+    "entry_text": |-
+        じめんの　したで　せいちょうする。
+        ほとんど　みえない　めの　かわりに
+        しょっかくで　ようすを　さぐる。

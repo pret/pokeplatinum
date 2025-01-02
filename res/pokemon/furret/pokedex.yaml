@@ -1,0 +1,74 @@
+"height": !!int |-
+    18
+"weight": !!int |-
+    325
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    319
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    319
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    18
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    18
+"english":
+    "category": |-
+        Long Body Pokémon
+    "entry_text": |-
+        The mother puts its offspring to
+        sleep by curling up around them.
+        It corners foes with speed.
+"french":
+    "name": |-
+        FOUINAR
+    "category": |-
+        Pokémon Allongé
+    "entry_text": |-
+        La femelle s’enroule autour des
+        petits pour les bercer. Il accule
+        l’ennemi grâce à sa vitesse.
+"german":
+    "name": |-
+        WIESENIOR
+    "category": |-
+        Langleib
+    "entry_text": |-
+        Es rollt sich um seine Jungen, wenn
+        diese schlafen sollen. Gegnern
+        begegnet es mit Schnelligkeit.
+"italian":
+    "name": |-
+        Furret
+    "category": |-
+        Pokémon Lungocorpo
+    "entry_text": |-
+        Si addormenta avvolto nell’esile
+        corpo della madre. Mette all’angolo
+        i nemici con movimenti rapidi.
+"spanish":
+    "name": |-
+        Furret
+    "category": |-
+        Pokémon Alargado
+    "entry_text": |-
+        Acurruca a sus crías para que
+        duerman. Acorrala a los enemigos
+        con su enorme velocidad.
+"japanese":
+    "name": |-
+        オオタチ
+    "category": |-
+        どうながポケモン
+    "entry_text": |-
+        ははおやは　ほそながい　からだで
+        こどもを　つつみこみ　ねむらせる。
+        はやい　うごきで　てきを　おいこむ。

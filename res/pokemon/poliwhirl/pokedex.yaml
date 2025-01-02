@@ -1,0 +1,72 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    200
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Tadpole Pokémon
+    "entry_text": |-
+        The spiral pattern on its belly
+        subtly undulates. Staring at it
+        gradually causes drowsiness.
+"french":
+    "name": |-
+        TETARTE
+    "category": |-
+        Pokémon Têtard
+    "entry_text": "La spirale qui orne son ventre\nondule doucement. Celui qui la\
+        \ fixe\nest saisi d’une étrange torpeur. "
+"german":
+    "name": |-
+        QUAPUTZI
+    "category": |-
+        Kaulquappe
+    "entry_text": |-
+        Das Spiralmuster auf seinem Bauch
+        dreht sich langsam. Starrt man
+        darauf, wird einem schwindelig.
+"italian":
+    "name": |-
+        Poliwhirl
+    "category": |-
+        Pokémon Girino
+    "entry_text": |-
+        Il disegno spiraliforme sulla pancia
+        ondeggia leggermente. Chi lo fissa,
+        piano piano si assopisce.
+"spanish":
+    "name": |-
+        Poliwhirl
+    "category": |-
+        Pokémon Renacuajo
+    "entry_text": |-
+        El dibujo espiral de su panza ondea
+        levemente. Si se mira fijamente,
+        provoca somnolencia.
+"japanese":
+    "name": |-
+        ニョロゾ
+    "category": |-
+        おたまポケモン
+    "entry_text": |-
+        おなかの　うずまきは　びみょうに
+        うねっているので　みつめていると
+        だんだん　ねむくなってしまう。

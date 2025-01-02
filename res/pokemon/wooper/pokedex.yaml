@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    85
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    360
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    360
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    26
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    26
+"english":
+    "category": |-
+        Water Fish Pokémon
+    "entry_text": |-
+        When walking on land, it covers its
+        body with a poisonous film that
+        keeps its skin from dehydrating.
+"french":
+    "name": |-
+        AXOLOTO
+    "category": |-
+        Pokémon Poisson
+    "entry_text": |-
+        Il vit en eau froide. Il dort à demi
+        enfoui dans la boue au fond
+        de l’eau.
+"german":
+    "name": |-
+        FELINO
+    "category": |-
+        Fisch
+    "entry_text": |-
+        Es lebt im kalten Wasser. Es
+        vergräbt sich halb im schlammigen
+        Boden, wenn es schlafen will.
+"italian":
+    "name": |-
+        Wooper
+    "category": |-
+        Pokémon Acquapesce
+    "entry_text": |-
+        Vive nell’acqua fredda e quando
+        vuole dormire si seppellisce a
+        metà nei fondali melmosi.
+"spanish":
+    "name": |-
+        Wooper
+    "category": |-
+        Pokémon Pez Agua
+    "entry_text": |-
+        Vive en aguas frías. Para dormir
+        se entierra a medias en el lodo del
+        fondo.
+"japanese":
+    "name": |-
+        ウパ－
+    "category": |-
+        みずうおポケモン
+    "entry_text": |-
+        つめたい　みずの　なかで　くらす。
+        みずぞこの　どろに　からだを
+        はんぶん　うずめて　ねむる。

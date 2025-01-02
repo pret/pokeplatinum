@@ -783,14 +783,20 @@ pl_growtbl_narc = custom_target('pl_growtbl.narc',
     ]
 )
 
+species_data_srcs = files()
+foreach pokemon : pokemon_subdirs
+    species_data_srcs += files(pokemon / 'data.json')
+endforeach
+
 pokedex_data_srcs = files()
 foreach pokemon : pokemon_subdirs
-    pokedex_data_srcs += files(pokemon / 'data.json')
+    pokedex_data_srcs += files(pokemon / 'pokedex.yaml')
 endforeach
 
 pokedex_data_narc = custom_target('zukan_data.narc',
     output: 'zukan_data.narc',
-    input: pokedex_data_srcs,
+    input: [species_data_srcs,
+        pokedex_data_srcs],
     env: json2bin_env,
     depends: [ py_consts_generators ],
     command: [
@@ -800,13 +806,15 @@ pokedex_data_narc = custom_target('zukan_data.narc',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
         'giratina_origin',
+        species_data_srcs,
         pokedex_data_srcs
     ]
 )
 
 pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
     output: 'zukan_data_gira.narc',
-    input: pokedex_data_srcs,
+    input: [species_data_srcs,
+        pokedex_data_srcs],
     env: json2bin_env,
     depends: [ py_consts_generators ],
     command: [
@@ -816,6 +824,7 @@ pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
         'giratina_altered',
+        species_data_srcs,
         pokedex_data_srcs
     ]
 )

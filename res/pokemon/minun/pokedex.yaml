@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    42
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    494
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    494
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    28
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    28
+"english":
+    "category": |-
+        Cheering Pokémon
+    "entry_text": |-
+        It cheers on friends. If its
+        friends are losing, its body lets
+        off more and more sparks.
+"french":
+    "name": |-
+        NEGAPI
+    "category": |-
+        Pokémon Acclameur
+    "entry_text": |-
+        Il encourage ses amis. Son corps
+        produit plus d’étincelles quand il
+        est en mauvaise posture.
+"german":
+    "name": |-
+        MINUN
+    "category": |-
+        Jubel
+    "entry_text": |-
+        Es feuert Freunde an. Sind diese im
+        Begriff zu verlieren, gibt sein
+        Körper immer mehr Funken ab.
+"italian":
+    "name": |-
+        Minun
+    "category": |-
+        Pokémon Incitamento
+    "entry_text": |-
+        Incoraggia gli amici e, se questi
+        perdono, il suo corpo emette
+        una maggiore quantità di scintille.
+"spanish":
+    "name": |-
+        Minun
+    "category": |-
+        Pokémon Ánimo
+    "entry_text": |-
+        Le gusta animar a sus amigos. Si
+        pierden, su cuerpo suelta cada vez
+        más chispas.
+"japanese":
+    "name": |-
+        マイナン
+    "category": |-
+        おうえんポケモン
+    "entry_text": |-
+        なかまを　おうえんする　しゅうせい。
+        まけそうになると　からだから　だす
+        ひばなの　かずが　どんどん　ふえる。

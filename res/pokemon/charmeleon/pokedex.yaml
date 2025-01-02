@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    190
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    293
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    293
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    15
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    15
+"english":
+    "category": |-
+        Flame Pokémon
+    "entry_text": |-
+        In the rocky mountains where
+        CHARMELEON live, their fiery
+        tails shine at night like stars.
+"french":
+    "name": |-
+        REPTINCEL
+    "category": |-
+        Pokémon Flamme
+    "entry_text": |-
+        La nuit, la queue ardente du
+        REPTINCEL brille comme une étoile
+        dans son repaire montagneux.
+"german":
+    "name": |-
+        GLUTEXO
+    "category": |-
+        Flamme
+    "entry_text": |-
+        GLUTEXO leben in den Bergen. Die
+        Flammen auf ihren Schweifspitzen
+        leuchten in der Nacht wie Sterne.
+"italian":
+    "name": |-
+        Charmeleon
+    "category": |-
+        Pokémon Fiamma
+    "entry_text": |-
+        Sui monti rocciosi, sua dimora,
+        la coda di CHARMELEON brilla
+        come una stella nella notte.
+"spanish":
+    "name": |-
+        Charmeleon
+    "category": |-
+        Pokémon Llama
+    "entry_text": |-
+        En las montañas rocosas donde
+        viven los CHARMELEON, sus colas
+        ardientes brillan como estrellas.
+"japanese":
+    "name": |-
+        リザ－ド
+    "category": |-
+        かえんポケモン
+    "entry_text": |-
+        リザ－ドが　くらす　いわやまを
+        よなかに　みあげると　しっぽの
+        ほのおが　ほしのように　みえる。

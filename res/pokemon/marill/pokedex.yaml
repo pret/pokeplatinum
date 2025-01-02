@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    85
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    406
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    406
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Aqua Mouse Pokémon
+    "entry_text": |-
+        The oil-filled end of its tail floats
+        on water. It keeps MARILL from
+        drowning even in a strong current.
+"french":
+    "name": |-
+        MARILL
+    "category": |-
+        Pokémon Aquasouris
+    "entry_text": |-
+        Il plonge sous l’eau en utilisant sa
+        queue comme un flotteur. Il aime
+        les plantes du fond des rivières.
+"german":
+    "name": |-
+        MARILL
+    "category": |-
+        Aquamaus
+    "entry_text": |-
+        Seinen Schweif verwendet es als
+        eine Art Rettungsring, wenn es
+        taucht. Es liebt Wasserpflanzen.
+"italian":
+    "name": |-
+        Marill
+    "category": |-
+        Pokémon Acquatopo
+    "entry_text": |-
+        Si tuffa in acqua e usa la coda come
+        galleggiante. Ama mangiare le piante
+        che crescono sul fondo dei fiumi.
+"spanish":
+    "name": |-
+        Marill
+    "category": |-
+        Pokémon Ratón Agua
+    "entry_text": |-
+        Bucea usando su cola a modo
+        de boya. Le gusta comer las
+        plantas del fondo fluvial.
+"japanese":
+    "name": |-
+        マリル
+    "category": |-
+        みずねずみポケモン
+    "entry_text": |-
+        しっぽを　うきぶくろにして
+        すいちゅうに　もぐる。
+        かわぞこの　みずくさが　こうぶつ。

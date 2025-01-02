@@ -1,0 +1,74 @@
+"height": !!int |-
+    92
+"weight": !!int |-
+    4000
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    604
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    588
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    21
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    21
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Iron Snake Pokémon
+    "entry_text": |-
+        It is thought its body transformed
+        as a result of iron accumulating
+        internally from swallowing soil.
+"french":
+    "name": |-
+        STEELIX
+    "category": |-
+        Pokémon Serpenfer
+    "entry_text": |-
+        Grâce à la température élevée et la
+        haute pression souterraines, son
+        corps est plus dur que le métal.
+"german":
+    "name": |-
+        STAHLOS
+    "category": |-
+        Stahlboa
+    "entry_text": |-
+        Hoher Druck und hohe Temperaturen
+        haben seinen Körper härter als
+        Stahl werden lassen.
+"italian":
+    "name": |-
+        Steelix
+    "category": |-
+        Pokémon Ferroserpe
+    "entry_text": |-
+        Temprato dalla pressione e dal
+        calore sotterraneo, il suo corpo è
+        più duro di qualsiasi metallo.
+"spanish":
+    "name": |-
+        Steelix
+    "category": |-
+        Pokémon Serpférrea
+    "entry_text": |-
+        Su cuerpo es más duro que
+        cualquier metal debido a la gran
+        presión y calor de su hábitat.
+"japanese":
+    "name": |-
+        ハガネ－ル
+    "category": |-
+        てつへびポケモン
+    "entry_text": |-
+        ちちゅうの　たかい　あつりょくと
+        ねつで　きたえられた　からだは
+        あらゆる　きんぞくよりも　かたい。

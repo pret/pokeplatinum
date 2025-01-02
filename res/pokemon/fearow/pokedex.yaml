@@ -1,0 +1,72 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    380
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    256
+"pokemon_scale_f": !!int |-
+    249
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    249
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Beak Pokémon
+    "entry_text": |-
+        It has the stamina to fly all
+        day on its broad wings. It
+        fights by using its sharp beak.
+"french":
+    "name": |-
+        RAPASDEPIC
+    "category": |-
+        Pokémon Bec-Oiseau
+    "entry_text": "Il a assez d’énergie pour voler \ntoute la journée avec ses grandes\
+        \ \nailes. Il frappe de son bec acéré."
+"german":
+    "name": |-
+        IBITAK
+    "category": |-
+        Pickvogel
+    "entry_text": |-
+        Es hat genügend Ausdauer, den
+        ganzen Tag zu fliegen. Sein
+        scharfer Schnabel dient als Waffe.
+"italian":
+    "name": |-
+        Fearow
+    "category": |-
+        Pokémon Becco
+    "entry_text": |-
+        Le sue ampie ali robuste gli permet-
+        tono di volare tutto il giorno.
+        Combatte usando il becco aguzzo.
+"spanish":
+    "name": |-
+        Fearow
+    "category": |-
+        Pokémon Pico
+    "entry_text": |-
+        Tiene energía para volar todo el
+        día con sus grandes alas. Lucha
+        con su afilado pico.
+"japanese":
+    "name": |-
+        オニドリル
+    "category": |-
+        くちばしポケモン
+    "entry_text": |-
+        おおきな　つばさで　１にちじゅう
+        とびまわる　たいりょくの　もちぬし。
+        するどい　くちばしで　たたかう。

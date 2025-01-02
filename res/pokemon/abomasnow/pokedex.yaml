@@ -1,0 +1,74 @@
+"height": !!int |-
+    22
+"weight": !!int |-
+    1355
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    335
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    328
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Frost Tree Pokémon
+    "entry_text": |-
+        They appear when the snow flowers
+        bloom. When the petals fall, they
+        retreat to places unknown again.
+"french":
+    "name": |-
+        BLIZZAROI
+    "category": |-
+        Pokémon Arbregelé
+    "entry_text": |-
+        C’est l’abominable homme des
+        neiges. Il ensevelit les montagnes
+        sous ses blizzards.
+"german":
+    "name": |-
+        REXBLISAR
+    "category": |-
+        Frostbaum
+    "entry_text": |-
+        Es löst in den Bergen, wo ewiger
+        Schnee liegt, Blizzards aus. Es ist
+        ein scheußlicher Schneemann.
+"italian":
+    "name": |-
+        Abomasnow
+    "category": |-
+        Pokémon Albergelo
+    "entry_text": |-
+        Crea bufere di neve sui monti
+        ricoperti da nevi perenni.
+        È l’abominevole essere delle nevi.
+"spanish":
+    "name": |-
+        Abomasnow
+    "category": |-
+        Pokémon Árbol Nieve
+    "entry_text": |-
+        Es el abominable hombre de las
+        nieves. Produce ventiscas en las
+        montañas cubiertas de nieve.
+"japanese":
+    "name": |-
+        ユキノオ－
+    "category": |-
+        じゅひょうポケモン
+    "entry_text": |-
+        まんねんゆきの　つもる　やまで
+        くらし　ブリザ－ドを　まきおこす。
+        ゆきおとこの　しょうたいだ。

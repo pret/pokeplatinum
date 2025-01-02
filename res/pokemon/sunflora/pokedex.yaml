@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    85
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    310
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    310
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    18
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    18
+"english":
+    "category": |-
+        Sun Pokémon
+    "entry_text": |-
+        It gets energy from warm sunlight
+        and is known for its habit of
+        moving in pursuit of it.
+"french":
+    "name": |-
+        HELIATRONC
+    "category": |-
+        Pokémon Soleil
+    "entry_text": |-
+        Les rayons du soleil lui donnent de
+        l’énergie. Il est connu pour migrer
+        vers les régions ensoleillées.
+"german":
+    "name": |-
+        SONNFLORA
+    "category": |-
+        Sonne
+    "entry_text": |-
+        Warmes Sonnenlicht gibt ihm
+        Energie. Daher wandert es stets
+        dem Sonnenlicht hinterher.
+"italian":
+    "name": |-
+        Sunflora
+    "category": |-
+        Pokémon Sole
+    "entry_text": |-
+        Trae energia dalla luce del sole e
+        si muove di continuo per cercare
+        di assorbirne sempre di più.
+"spanish":
+    "name": |-
+        Sunflora
+    "category": |-
+        Pokémon Sol
+    "entry_text": |-
+        Obtiene energía de la luz solar.
+        Este Pokémon es famoso por
+        su heliotropismo.
+"japanese":
+    "name": |-
+        キマワリ
+    "category": |-
+        たいようポケモン
+    "entry_text": |-
+        あたたかい　ひざしが　エネルギ－。
+        たいようを　おいかけて　いどうする
+        しゅうせいで　しられている。

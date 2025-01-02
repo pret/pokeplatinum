@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    295
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    309
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    309
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    18
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    18
+"english":
+    "category": |-
+        Mushroom Pokémon
+    "entry_text": |-
+        A mushroom grown larger than the
+        host’s body controls PARASECT.
+        It scatters poisonous spores.
+"french":
+    "name": |-
+        PARASECT
+    "category": |-
+        Pokémon Champignon
+    "entry_text": |-
+        Un champignon parasite plus gros
+        que PARASECT contrôle son corps.
+        Il répand des spores empoisonnées.
+"german":
+    "name": |-
+        PARASEK
+    "category": |-
+        Pilz
+    "entry_text": |-
+        PARASEK wird von einem Pilz, der
+        größer als das Pokémon ist,
+        kontrolliert. Er gibt Giftsporen ab.
+"italian":
+    "name": |-
+        Parasect
+    "category": |-
+        Pokémon Fungo
+    "entry_text": |-
+        PARASECT è controllato da un fungo
+        ancora più grosso del suo corpo.
+        Diffonde spore velenose.
+"spanish":
+    "name": |-
+        Parasect
+    "category": |-
+        Pokémon Hongo
+    "entry_text": |-
+        PARASECT está dominado por un
+        hongo parásito mayor que él.
+        Dispersa esporas venenosas.
+"japanese":
+    "name": |-
+        パラセクト
+    "category": |-
+        きのこポケモン
+    "entry_text": |-
+        からだよりも　おおきな　キノコが
+        パラセクトを　あやつっている。
+        どくの　ほうしを　ばらまく。

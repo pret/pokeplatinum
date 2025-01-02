@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    32
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    437
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    437
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    26
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    26
+"english":
+    "category": |-
+        Hairy Bug Pokémon
+    "entry_text": |-
+        It eats its weight in leaves every
+        day. It fends off attackers with
+        the needle on its head.
+"french":
+    "name": |-
+        ASPICOT
+    "category": |-
+        Pokémon Insectopic
+    "entry_text": |-
+        Il mange chaque jour son poids en
+        feuilles. Il utilise l’aiguillon sur sa
+        tête pour repousser l’ennemi.
+"german":
+    "name": |-
+        HORNLIU
+    "category": |-
+        Raupe
+    "entry_text": |-
+        Es frisst täglich sein Gewicht in
+        Blättern. Die Nadel auf seinem Kopf
+        dient der Verteidigung.
+"italian":
+    "name": |-
+        Weedle
+    "category": |-
+        Pokémon Millepiedi
+    "entry_text": |-
+        Divora ogni giorno una quantità di
+        foglie pari al suo peso. Respinge i
+        nemici con l’aculeo sulla testa.
+"spanish":
+    "name": |-
+        Weedle
+    "category": |-
+        Pokémon Oruga
+    "entry_text": |-
+        Come el equivalente a su peso en
+        hojas todos los días. Se defiende
+        con el aguijón de su cabeza.
+"japanese":
+    "name": |-
+        ビ－ドル
+    "category": |-
+        けむしポケモン
+    "entry_text": |-
+        まいにち　じぶんと　おなじ　おもさの
+        はっぱを　たべる。あたまの　ハリで
+        おそってきた　てきを　げきたい。

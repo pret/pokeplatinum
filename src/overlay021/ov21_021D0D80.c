@@ -14,7 +14,6 @@
 #include "overlay021/ov21_021D423C.h"
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/ov21_021D4C0C.h"
-#include "overlay021/ov21_021D5600.h"
 #include "overlay021/ov21_021D5AEC.h"
 #include "overlay021/ov21_021D76B0.h"
 #include "overlay021/ov21_021D85B0.h"
@@ -33,6 +32,7 @@
 #include "overlay021/ov21_021E737C.h"
 #include "overlay021/ov21_021E8484.h"
 #include "overlay021/pokedex_sort.h"
+#include "overlay021/pokedex_text.h"
 #include "overlay021/species_caught_status.h"
 #include "overlay021/struct_ov21_021D0D80.h"
 #include "overlay021/struct_ov21_021D13FC.h"
@@ -664,13 +664,13 @@ void ov21_021D1650(Window *param0, int param1, int param2, int param3)
         v0 = ov21_021D1CE0(100, param3);
     }
 
-    v1 = ov21_021D561C(param2, GAME_LANGUAGE, param3);
+    v1 = PokedexText_NameNumber(param2, GAME_LANGUAGE, param3);
 
     Text_AddPrinterWithParamsAndColor(param0, FONT_SUBSCREEN, v0, 22, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SUBSCREEN, v1, 49, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     Strbuf_Free(v0);
 
-    ov21_021D5600(v1);
+    PokedexText_Free(v1);
 }
 
 Window *ov21_021D16D8(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320 *param1, int param2, int param3)

@@ -1,0 +1,74 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    408
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    239
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    239
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Owl Pokémon
+    "entry_text": |-
+        Its eyes are specially developed
+        to enable it to see clearly even in
+        murky darkness and minimal light.
+"french":
+    "name": |-
+        NOARFANG
+    "category": |-
+        Pokémon Hibou
+    "entry_text": |-
+        Ses yeux sont particuliers. La
+        plus petite source de lumière leur
+        permet de distinguer les objets.
+"german":
+    "name": |-
+        NOCTUH
+    "category": |-
+        Eule
+    "entry_text": |-
+        Seine Augen sind etwas Besonderes.
+        Sie können selbst bei schwächstem
+        Licht alles erkennen.
+"italian":
+    "name": |-
+        Noctowl
+    "category": |-
+        Pokémon Gufo
+    "entry_text": |-
+        Ha una vista acutissima, tanto da
+        riuscire a scorgere oggetti anche
+        con la luce più fioca.
+"spanish":
+    "name": |-
+        Noctowl
+    "category": |-
+        Pokémon Búho
+    "entry_text": |-
+        Sus ojos son especiales: pueden
+        distinguir objetos siempre y cuando
+        haya algo de luz.
+"japanese":
+    "name": |-
+        ヨルノズク
+    "category": |-
+        ふくろうポケモン
+    "entry_text": |-
+        すこしの　ひかりが　あれば
+        くらやみでも　みわけられる
+        とくしゅな　めを　もつ。

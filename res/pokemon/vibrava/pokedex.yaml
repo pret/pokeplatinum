@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    153
+"body_shape": |-
+    SHAPE_MULTI_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65532
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65532
+"english":
+    "category": |-
+        Vibration Pokémon
+    "entry_text": |-
+        It violently shudders its wings,
+        generating ultrasonic waves to
+        induce headaches in people.
+"french":
+    "name": |-
+        VIBRANINF
+    "category": |-
+        Pokémon Vibration
+    "entry_text": |-
+        Ses violents battements d’ailes
+        génèrent des vagues d’ultrasons
+        qui donnent mal au crâne.
+"german":
+    "name": |-
+        VIBRAVA
+    "category": |-
+        Vibration
+    "entry_text": |-
+        Es schlägt wild mit den Flügeln.
+        So entstehen Ultraschallwellen,
+        die Kopfschmerzen verursachen.
+"italian":
+    "name": |-
+        Vibrava
+    "category": |-
+        Pokémon Vibrazione
+    "entry_text": |-
+        Fa vibrare violentemente le ali
+        generando onde ultrasoniche che
+        provocano il mal di testa.
+"spanish":
+    "name": |-
+        Vibrava
+    "category": |-
+        Pokémon Vibrante
+    "entry_text": |-
+        Agita violentamente sus alas para
+        crear ondas ultrasónicas que
+        provocan dolores de cabeza.
+"japanese":
+    "name": |-
+        ビブラ－バ
+    "category": |-
+        しんどうポケモン
+    "entry_text": |-
+        はねを　はげしく　しんどうさせて
+        ちょうおんぱを　だす。にんげんも
+        ずつうを　おこすほど　きょうりょく。

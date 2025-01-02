@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    14
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    504
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    504
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Seafaring Pokémon
+    "entry_text": |-
+        It is born with a wondrous power
+        that lets it bond with any kind of
+        Pokémon.
+"french":
+    "name": |-
+        MANAPHY
+    "category": |-
+        Pokémon Voyagenmer
+    "entry_text": |-
+        Né dans les profondeurs froides de
+        l’océan, il parcourt un long chemin
+        pour gagner son lieu de naissance.
+"german":
+    "name": |-
+        MANAPHY
+    "category": |-
+        Seefahrer
+    "entry_text": |-
+        Geboren auf dem Meeresboden,
+        legt es große Entfernungen zurück,
+        um dorthin zurückzukehren.
+"italian":
+    "name": |-
+        Manaphy
+    "category": |-
+        Pokémon Oceandante
+    "entry_text": |-
+        Nato su freddi fondali marini, per-
+        corre a nuoto lunghe distanze per
+        tornare al suo luogo di nascita.
+"spanish":
+    "name": |-
+        Manaphy
+    "category": |-
+        Pokémon Náutico
+    "entry_text": |-
+        Nació en el frío fondo marino.
+        Nada grandes distancias para
+        regresar a su lugar de origen.
+"japanese":
+    "name": |-
+        マナフィ
+    "category": |-
+        かいゆうポケモン
+    "entry_text": |-
+        つめたい　うみの　そこで　うまれた。
+        じぶんが　うまれた　うみの　そこへ
+        ながい　きょりを　およいで　かえる。

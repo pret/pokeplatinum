@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    255
+"body_shape": |-
+    SHAPE_MULTI_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    345
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    345
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Cricket Pokémon
+    "entry_text": |-
+        There is a village that hosts a
+        contest based on the amazingly
+        variable cries of this Pokémon.
+"french":
+    "name": |-
+        MELOKRIK
+    "category": |-
+        Pokémon Criquet
+    "entry_text": |-
+        Il croise ses bras affûtés devant
+        son torse pour crier. Il compose
+        tout un tas de mélodies.
+"german":
+    "name": |-
+        ZIRPEISE
+    "category": |-
+        Zirper
+    "entry_text": |-
+        Wenn es ruft, verschränkt es seine
+        messerartigen Arme vor der Brust.
+        Es komponiert aus dem Stegreif.
+"italian":
+    "name": |-
+        Kricketune
+    "category": |-
+        Pokémon Grillo
+    "entry_text": |-
+        Quando canta tiene le zampe
+        incrociate al petto.
+        Sa improvvisare melodie.
+"spanish":
+    "name": |-
+        Kricketune
+    "category": |-
+        Pokémon Grillo
+    "entry_text": |-
+        Cuando llora, cruza sus brazos
+        con forma de cuchillo. Puede
+        improvisar melodías.
+"japanese":
+    "name": |-
+        コロトック
+    "category": |-
+        こおろぎポケモン
+    "entry_text": |-
+        なくときは　ナイフのような　うでを
+        むねの　まえで　こうささせる。
+        そっきょうで　メロディを　つくる。

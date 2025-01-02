@@ -1,0 +1,74 @@
+"height": !!int |-
+    40
+"weight": !!int |-
+    165
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    335
+"pokemon_scale_f": !!int |-
+    245
+"trainer_scale_m": !!int |-
+    335
+"pokemon_scale_m": !!int |-
+    245
+"trainer_pos_f": !!int |-
+    16
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Dragon Pokémon
+    "entry_text": |-
+        If its body takes on an aura, the
+        weather changes instantly. It is
+        said to live in seas and lakes.
+"french":
+    "name": |-
+        DRACO
+    "category": |-
+        Pokémon Dragon
+    "entry_text": |-
+        La météo change brusquement quand
+        il est entouré d’une aura. On dit
+        qu’il peuple les mers et les lacs.
+"german":
+    "name": |-
+        DRAGONIR
+    "category": |-
+        Drache
+    "entry_text": |-
+        Erscheint um seinen Körper eine
+        Aura, gibt es einen Wetterwechsel.
+        Es soll in Seen und Meeren leben.
+"italian":
+    "name": |-
+        Dragonair
+    "category": |-
+        Pokémon Drago
+    "entry_text": |-
+        Se il suo corpo emana un’aura, il
+        tempo cambia all’istante. Si dice
+        che viva nei mari e nei laghi.
+"spanish":
+    "name": |-
+        Dragonair
+    "category": |-
+        Pokémon Dragón
+    "entry_text": |-
+        Si su cuerpo está rodeado de un
+        aura, el tiempo cambia de repente.
+        Se dice que vive en mares y lagos.
+"japanese":
+    "name": |-
+        ハクリュ－
+    "category": |-
+        ドラゴンポケモン
+    "entry_text": |-
+        ぜんしんが　オ－ラに　つつまれるとき
+        まわりの　てんきが　いっぺんする。
+        うみや　みずうみに　すむという。

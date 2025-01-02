@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    100
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    298
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    298
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65531
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65531
+"english":
+    "category": |-
+        Fish Pokémon
+    "entry_text": |-
+        A MAGIKARP living for many years
+        can leap a mountain using Splash.
+        The move remains useless, though.
+"french":
+    "name": |-
+        MAGICARPE
+    "category": |-
+        Pokémon Poisson
+    "entry_text": |-
+        Ce Pokémon est réputé pour être
+        le plus faible au monde. Nul ne
+        sait comment son espèce perdure.
+"german":
+    "name": |-
+        KARPADOR
+    "category": |-
+        Fisch
+    "entry_text": |-
+        Man sagt, es sei das schwächste
+        PKMN der Welt. Niemand weiß, wie
+        es bisher überleben konnte.
+"italian":
+    "name": |-
+        Magikarp
+    "category": |-
+        Pokémon Pesce
+    "entry_text": |-
+        Si dice che sia il Pokémon più
+        debole del mondo. Nessuno sa
+        come abbia fatto a sopravvivere.
+"spanish":
+    "name": |-
+        Magikarp
+    "category": |-
+        Pokémon Pez
+    "entry_text": |-
+        Se dice que es el Pokémon más
+        débil del mundo. No se sabe cómo
+        ha logrado sobrevivir.
+"japanese":
+    "name": |-
+        コイキング
+    "category": |-
+        さかなポケモン
+    "entry_text": |-
+        せかいいち　よわいと　いわれる
+        コイキングが　なぜ　いきのこって
+        いるのか　だれも　わからない。

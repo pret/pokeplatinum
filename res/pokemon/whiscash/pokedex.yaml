@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    236
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    386
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    386
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    2
+"english":
+    "category": |-
+        Whiskers Pokémon
+    "entry_text": |-
+        It is extremely protective of its
+        territory. If any foe approaches,
+        it attacks using vicious tremors.
+"french":
+    "name": |-
+        BARBICHA
+    "category": |-
+        Pokémon Barbillon
+    "entry_text": |-
+        Il est attaché à son territoire.
+        Il repousse l’ennemi en provoquant
+        des secousses qui portent à 5 km.
+"german":
+    "name": |-
+        WELSAR
+    "category": |-
+        Barthaar
+    "entry_text": |-
+        Es verteidigt sein Revier, indem es
+        Erschütterungen auslöst, die noch
+        in 5 km Entfernung zu spüren sind.
+"italian":
+    "name": |-
+        Whiscash
+    "category": |-
+        Pokémon Baffetti
+    "entry_text": |-
+        Ha un senso del territorio molto
+        sviluppato. Respinge i nemici scate-
+        nando terremoti del raggio di 5 km.
+"spanish":
+    "name": |-
+        Whiscash
+    "category": |-
+        Pokémon Bigotudo
+    "entry_text": |-
+        Es muy territorial. Expulsa a los
+        intrusos con unos temblores que
+        se sienten en un radio de 5 km.
+"japanese":
+    "name": |-
+        ナマズン
+    "category": |-
+        ひげうおポケモン
+    "entry_text": |-
+        なわばり　いしきが　とても　つよい。
+        しゅうい　５キロの　はんいで
+        じしんを　おこし　げきたいする。

@@ -1,0 +1,72 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    952
+"body_shape": |-
+    SHAPE_HEAD_BASE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    378
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    378
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65529
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65529
+"english":
+    "category": |-
+        Iron Ball Pokémon
+    "entry_text": |-
+        It converses with others by using
+        magnetic pulses. In a swarm, they
+        move in perfect unison.
+"french":
+    "name": |-
+        TERHAL
+    "category": |-
+        Pokémon Boulefer
+    "entry_text": "Il dialogue avec les siens par \nimpulsions magnétiques. En bande,\n\
+        ils se déplacent à l’unisson."
+"german":
+    "name": |-
+        TANHEL
+    "category": |-
+        Eisenkugel
+    "entry_text": |-
+        Es kommuniziert mit anderen durch
+        magnetische Impulse. Im Schwarm
+        bilden sie eine perfekte Einheit.
+"italian":
+    "name": |-
+        Beldum
+    "category": |-
+        Pokémon Ferrosfera
+    "entry_text": |-
+        Comunica con i suoi simili mediante
+        onde magnetiche. I gruppi di BELDUM
+        si muovono in perfetta sintonia.
+"spanish":
+    "name": |-
+        Beldum
+    "category": |-
+        Pokémon Bola Hierro
+    "entry_text": |-
+        Se comunican mediante pulsos
+        magnéticos. Cuando van en
+        grupos, se mueven al unísono.
+"japanese":
+    "name": |-
+        ダンバル
+    "category": |-
+        てっきゅうポケモン
+    "entry_text": |-
+        じりょくの　はちょうで　なかまと
+        かいわする。むれになった　ダンバルは
+        いっしみだれぬ　うごきを　する。

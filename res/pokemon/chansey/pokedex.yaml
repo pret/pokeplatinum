@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    346
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    215
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    215
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    10
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    10
+"english":
+    "category": |-
+        Egg Pokémon
+    "entry_text": |-
+        A kindly Pokémon that lays highly
+        nutritious eggs and shares them
+        with injured Pokémon or people.
+"french":
+    "name": |-
+        LEVEINARD
+    "category": |-
+        Pokémon Oeuf
+    "entry_text": |-
+        Il est censé apporter la joie. Ce
+        Pokémon charitable offre ses
+        œufs aux blessés.
+"german":
+    "name": |-
+        CHANEIRA
+    "category": |-
+        Ei
+    "entry_text": |-
+        Man sagt, es bringe Glück. Es ist
+        sehr mitfühlend und teilt seine Eier
+        mit Verletzten.
+"italian":
+    "name": |-
+        Chansey
+    "category": |-
+        Pokémon Uovo
+    "entry_text": |-
+        Si dice che porti felicità.
+        È molto altruista e condivide
+        le uova con chi è ferito.
+"spanish":
+    "name": |-
+        Chansey
+    "category": |-
+        Pokémon Huevo
+    "entry_text": |-
+        Se dice que reparte felicidad.
+        Es compasivo y reparte sus
+        huevos entre la gente herida.
+"japanese":
+    "name": |-
+        ラッキ－
+    "category": |-
+        たまごポケモン
+    "entry_text": |-
+        しあわせを　はこぶと　いわれている。
+        きずついた　ひとに　タマゴを
+        わけてあげる　やさしい　ポケモン。

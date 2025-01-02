@@ -1,0 +1,72 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    99
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    320
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    320
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Fox Pokémon
+    "entry_text": |-
+        It controls balls of fire. As it
+        grows, its six tails split from
+        their tips to make more tails.
+"french":
+    "name": |-
+        GOUPIX
+    "category": |-
+        Pokémon Renard
+    "entry_text": "Il envoie des boules de feu. Avec\nl’âge, ses six queues en forment\
+        \ de\nnouvelles. "
+"german":
+    "name": |-
+        VULPIX
+    "category": |-
+        Fuchs
+    "entry_text": |-
+        Es beherrscht Feuerbälle. Während
+        es wächst, teilen sich seine sechs
+        Schweife, um weitere zu bilden.
+"italian":
+    "name": |-
+        Vulpix
+    "category": |-
+        Pokémon Volpe
+    "entry_text": |-
+        Controlla palle infuocate. Via via
+        che cresce, dalle sue sei code
+        se ne generano delle altre.
+"spanish":
+    "name": |-
+        Vulpix
+    "category": |-
+        Pokémon Zorro
+    "entry_text": |-
+        Controla bolas de fuego. A medida
+        que crece, sus seis colas se
+        multiplican.
+"japanese":
+    "name": |-
+        ロコン
+    "category": |-
+        きつねポケモン
+    "entry_text": |-
+        ほのおの　たまを　あやつる。
+        せいちょうすると　６ほんの　しっぽは
+        さきが　わかれて　さらに　ふえる。

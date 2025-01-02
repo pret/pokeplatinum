@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    60
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    524
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    524
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Mouse Pokémon
+    "entry_text": |-
+        It occasionally uses an electric
+        shock to recharge a fellow PIKACHU
+        that is in a weakened state.
+"french":
+    "name": |-
+        PIKACHU
+    "category": |-
+        Pokémon Souris
+    "entry_text": |-
+        Il vit en forêt avec ses pairs.
+        Il accumule l’électricité dans
+        les poches de ses joues.
+"german":
+    "name": |-
+        PIKACHU
+    "category": |-
+        Maus
+    "entry_text": |-
+        Es lebt zusammen mit anderen
+        in Wäldern. In seinen Backen-
+        taschen speichert es Elektrizität.
+"italian":
+    "name": |-
+        Pikachu
+    "category": |-
+        Pokémon Topo
+    "entry_text": |-
+        Vive nelle foreste insieme agli
+        altri. Immagazzina elettricità
+        nelle sacche sulle guance.
+"spanish":
+    "name": |-
+        Pikachu
+    "category": |-
+        Pokémon Ratón
+    "entry_text": |-
+        Vive en grupo en los bosques.
+        Almacena electricidad en las
+        bolsas de sus mejillas.
+"japanese":
+    "name": |-
+        ピカチュウ
+    "category": |-
+        ねずみポケモン
+    "entry_text": |-
+        もりの　なかで　なかまと　くらす。
+        ほっぺたの　りょうがわにある
+        でんきぶくろに　でんきを　ためる。

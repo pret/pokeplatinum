@@ -1,0 +1,72 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    750
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    212
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    212
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Water Fish Pokémon
+    "entry_text": |-
+        It has an easygoing nature. It
+        doesn’t care if it bumps its head on
+        boats and boulders while swimming.
+"french":
+    "name": |-
+        MARAISTE
+    "category": |-
+        Pokémon Poisson
+    "entry_text": "C’est un grand paresseux qui \nattend au fond de la rivière qu’une\n\
+        proie lui tombe dans le bec."
+"german":
+    "name": |-
+        MORLORD
+    "category": |-
+        Fisch
+    "entry_text": |-
+        Ein träges PKMN, das auf dem Grund
+        des Flusses liegt und wartet, dass
+        ihm Beute ins Maul schwimmt.
+"italian":
+    "name": |-
+        Quagsire
+    "category": |-
+        Pokémon Acquapesce
+    "entry_text": |-
+        È pigro per natura. Sta sul fondo
+        dei fiumi con la bocca aperta in
+        attesa di afferrare la preda.
+"spanish":
+    "name": |-
+        Quagsire
+    "category": |-
+        Pokémon Pez Agua
+    "entry_text": |-
+        Es un Pokémon bastante perezoso.
+        Para pescar permanece en el fondo
+        del río con la boca abierta.
+"japanese":
+    "name": |-
+        ヌオ－
+    "category": |-
+        みずうおポケモン
+    "entry_text": |-
+        のんびりとした　せいかく。
+        かわぞこで　くちを　あけて　エサが
+        とびこんでくるのを　ひたすら　まつ。

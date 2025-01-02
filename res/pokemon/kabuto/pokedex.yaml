@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    115
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    319
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    319
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Shellfish Pokémon
+    "entry_text": |-
+        It is thought to have inhabited
+        beaches 300 million years ago.
+        It is protected by a stiff shell.
+"french":
+    "name": |-
+        KABUTO
+    "category": |-
+        Pokémon Carapace
+    "entry_text": |-
+        On pense qu’il peuplait les plages
+        il y a 300 millions d’années. Il est
+        protégé par une coquille robuste.
+"german":
+    "name": |-
+        KABUTO
+    "category": |-
+        Schaltier
+    "entry_text": |-
+        Man geht davon aus, dass dieses
+        PKMN vor 300 Millionen Jahren die
+        Strände bevölkerte.
+"italian":
+    "name": |-
+        Kabuto
+    "category": |-
+        Pokémon Crostaceo
+    "entry_text": |-
+        Si ritiene che vivesse sulle spiagge
+        300 milioni di anni fa. È protetto da
+        una conchiglia robusta.
+"spanish":
+    "name": |-
+        Kabuto
+    "category": |-
+        Pokémon Marisco
+    "entry_text": |-
+        Se cree que habitó las playas
+        hace 300 millones de años.
+        Se protege con una dura concha.
+"japanese":
+    "name": |-
+        カブト
+    "category": |-
+        こうらポケモン
+    "entry_text": |-
+        ３おくねんまえの　すなはまで
+        くらしていたと　かんがえられている。
+        かたい　カラが　みを　まもる。

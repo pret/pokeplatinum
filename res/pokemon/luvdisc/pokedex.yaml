@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    87
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    329
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    329
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65527
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65527
+"english":
+    "category": |-
+        Rendezvous Pokémon
+    "entry_text": |-
+        It lives in warm seas. It is said
+        that a couple finding this Pokémon
+        will be blessed with eternal love.
+"french":
+    "name": |-
+        LOVDISC
+    "category": |-
+        Pokémon Rendezvous
+    "entry_text": |-
+        Un habitant des mers chaudes. On
+        dit que le couple qui tombe sur ce
+        Pokémon connaîtra l’amour éternel.
+"german":
+    "name": |-
+        LIEBISKUS
+    "category": |-
+        Rendezvous
+    "entry_text": |-
+        Es lebt in warmen Meeren. Man sagt,
+        dass Verliebte, die es sehen, mit
+        ewiger Liebe gesegnet sind.
+"italian":
+    "name": |-
+        Luvdisc
+    "category": |-
+        Pokémon Rendezvous
+    "entry_text": |-
+        Vive nei mari caldi. Si dice che le
+        coppie che trovano questo Pokémon
+        riceveranno in dono l’eterno amore.
+"spanish":
+    "name": |-
+        Luvdisc
+    "category": |-
+        Pokémon Cita
+    "entry_text": |-
+        Vive en mares cálidos. Se dice
+        que, si una pareja lo encuentra,
+        será bendecida con amor eterno.
+"japanese":
+    "name": |-
+        ラブカス
+    "category": |-
+        ランデブ－ポケモン
+    "entry_text": |-
+        あたたかい　うみに　せいそくする。
+        ラブカスを　みつけた　カップルは
+        えいえんの　あいが　つづくという。

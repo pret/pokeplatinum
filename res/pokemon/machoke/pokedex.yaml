@@ -1,0 +1,74 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    705
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    256
+"pokemon_scale_f": !!int |-
+    250
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    250
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    7
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    7
+"english":
+    "category": |-
+        Superpower Pokémon
+    "entry_text": |-
+        It happily carries heavy cargo to
+        toughen up. It willingly does hard
+        work for people.
+"french":
+    "name": |-
+        MACHOPEUR
+    "category": |-
+        Pokémon Colosse
+    "entry_text": |-
+        La force herculéenne du MACHOPEUR
+        est très dangereuse. Il utilise une
+        ceinture pour contenir son énergie.
+"german":
+    "name": |-
+        MASCHOCK
+    "category": |-
+        Kraftprotz
+    "entry_text": |-
+        MASCHOCKs unbegrenzte Kraft ist
+        gefährlich, daher trägt es einen
+        Gürtel, der die Kraft unterdrückt.
+"italian":
+    "name": |-
+        Machoke
+    "category": |-
+        Pokémon Megaforza
+    "entry_text": |-
+        La sua incredibile forza può essere
+        molto pericolosa. Indossa una cin-
+        tura per tenerla sotto controllo.
+"spanish":
+    "name": |-
+        Machoke
+    "category": |-
+        Pokémon Superpoder
+    "entry_text": |-
+        La gran fortaleza de MACHOKE es
+        peligrosa, así que lleva un cinturón
+        que disminuye su energía.
+"japanese":
+    "name": |-
+        ゴ－リキ－
+    "category": |-
+        かいりきポケモン
+    "entry_text": |-
+        ゴ－リキ－の　そこしれない　パワ－は
+        とても　きけんなので　ちからを
+        せいぎょする　ベルトを　まいている。

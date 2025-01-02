@@ -1,0 +1,72 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    255
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    14
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    14
+"english":
+    "category": |-
+        Verdant Pokémon
+    "entry_text": |-
+        It basically does not fight. With
+        cells similar to those of plants, it
+        can perform photosynthesis.
+"french":
+    "name": |-
+        PHYLLALI
+    "category": |-
+        Pokémon Verdoyant
+    "entry_text": "Il utilise la photosynthèse comme\nune plante. C’est pourquoi il\
+        \ est \ntoujours entouré d’air pur."
+"german":
+    "name": |-
+        FOLIPURBA
+    "category": |-
+        Unreif
+    "entry_text": |-
+        Genau wie ein Pflanze führt es die
+        Photosynthese aus. Deshalb ist es
+        ständig von reiner Luft umgeben.
+"italian":
+    "name": |-
+        Leafeon
+    "category": |-
+        Pokémon Rigoglioso
+    "entry_text": |-
+        Usa la fotosintesi, proprio come
+        una pianta. Pertanto è sempre
+        circondato da aria pulita.
+"spanish":
+    "name": |-
+        Leafeon
+    "category": |-
+        Pokémon Verdor
+    "entry_text": |-
+        Al igual que una planta, hace la
+        fotosíntesis. Como consecuencia,
+        siempre está rodeado de aire puro.
+"japanese":
+    "name": |-
+        リ－フィア
+    "category": |-
+        しんりょくポケモン
+    "entry_text": |-
+        しょくぶつのように　こうごうせいを
+        するため　リ－フィアの　まわりは
+        すんだ　くうきに　つつまれている。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    350
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    9
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    9
+"english":
+    "category": |-
+        Dark Pokémon
+    "entry_text": |-
+        The flames it breathes when angry
+        contain toxins. If they cause a
+        burn, it will hurt forever.
+"french":
+    "name": |-
+        DEMOLOSSE
+    "category": |-
+        Pokémon Sombre
+    "entry_text": |-
+        Jadis, les gens prenaient son
+        étrange hurlement pour
+        l’appel de la Faucheuse.
+"german":
+    "name": |-
+        HUNDEMON
+    "category": |-
+        Hades
+    "entry_text": |-
+        In alten Zeiten glaubte man, das
+        Heulen dieses PKMN sei der Ruf
+        des Todes.
+"italian":
+    "name": |-
+        Houndoom
+    "category": |-
+        Pokémon Buio
+    "entry_text": |-
+        Molto tempo fa, si riteneva che
+        le sue urla sinistre coincidessero
+        con la chiamata della morte.
+"spanish":
+    "name": |-
+        Houndoom
+    "category": |-
+        Pokémon Siniestro
+    "entry_text": |-
+        Hace mucho, la gente creía que
+        sus horripilantes aullidos eran de
+        la muerte personificada.
+"japanese":
+    "name": |-
+        ヘルガ－
+    "category": |-
+        ダ－クポケモン
+    "entry_text": |-
+        ヘルガ－の　ぶきみな　とおぼえは
+        じごくから　しにがみが　よぶ　こえと
+        むかしの　ひとは　そうぞうしていた。

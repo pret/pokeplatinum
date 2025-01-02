@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    605
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    382
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    382
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65528
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65528
+"english":
+    "category": |-
+        Bronze Pokémon
+    "entry_text": |-
+        There are researchers who believe
+        this Pokémon reflected like a mirror
+        in the distant past.
+"french":
+    "name": |-
+        ARCHEOMIRE
+    "category": |-
+        Pokémon Bronze
+    "entry_text": |-
+        Il rappelle des objets trouvés
+        dans des sépultures anciennes.
+        Nul ne sait s’ils sont liés.
+"german":
+    "name": |-
+        BRONZEL
+    "category": |-
+        Bronze
+    "entry_text": |-
+        Sein Körper sieht aus, als seien
+        Teile davon in alten Gräbern
+        gefunden worden.
+"italian":
+    "name": |-
+        Bronzor
+    "category": |-
+        Pokémon Bronzo
+    "entry_text": |-
+        Il suo aspetto ricorda alcuni
+        oggetti ritrovati in antiche tombe,
+        ma non si sa se ci sia una relazione.
+"spanish":
+    "name": |-
+        Bronzor
+    "category": |-
+        Pokémon Bronce
+    "entry_text": |-
+        Se descubrieron herramientas con
+        su forma en tumbas antiguas, pero
+        se desconoce si tiene relación.
+"japanese":
+    "name": |-
+        ド－ミラ－
+    "category": |-
+        せいどうポケモン
+    "entry_text": |-
+        ふるい　おはかから　ド－ミラ－に
+        そっくりな　どうぐが　ほりだされたが
+        かんけいは　わかっていない。

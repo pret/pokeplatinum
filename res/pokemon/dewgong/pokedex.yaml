@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    1200
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    290
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    280
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    6
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    5
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Sea Lion Pokémon
+    "entry_text": |-
+        In snow, the pure white coat
+        covering its body obscures it from
+        predators.
+"french":
+    "name": |-
+        LAMANTINE
+    "category": |-
+        Pokémon Otarie
+    "entry_text": |-
+        Son corps est couvert d’un grand
+        manteau blanc qui, dans la neige, le
+        dissimule aux yeux des prédateurs.
+"german":
+    "name": |-
+        JUGONG
+    "category": |-
+        Seehund
+    "entry_text": |-
+        Sein Körper ist mit einem weißen Fell
+        bedeckt, das es im Schnee fast
+        unsichtbar für Gegner macht.
+"italian":
+    "name": |-
+        Dewgong
+    "category": |-
+        Pokémon Otaria
+    "entry_text": |-
+        Ha il corpo ricoperto da una
+        pelliccia bianca che, sulla neve,
+        lo rende meno visibile ai predatori.
+"spanish":
+    "name": |-
+        Dewgong
+    "category": |-
+        Pokémon León Mar.
+    "entry_text": |-
+        Está cubierto de un luminoso
+        pelaje blanco que lo camufla
+        en la nieve.
+"japanese":
+    "name": |-
+        ジュゴン
+    "category": |-
+        あしかポケモン
+    "entry_text": |-
+        ぜんしんが　まっしろな　たいもうに
+        おおわれているため　ゆきの　なかでは
+        てんてきに　みつからないのだ。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    50
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    266
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    266
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Spot Panda Pokémon
+    "entry_text": |-
+        No two SPINDA have the same
+        pattern of spots. Its tottering
+        step fouls the aim of foes.
+"french":
+    "name": |-
+        SPINDA
+    "category": |-
+        Pokémon Panda Tache
+    "entry_text": |-
+        Les motifs sur leur fourrure sont
+        propres à chaque SPINDA. Son pas
+        chancelant le rend difficile à viser.
+"german":
+    "name": |-
+        PANDIR
+    "category": |-
+        Punkt-Panda
+    "entry_text": |-
+        Das Muster eines PANDIR ist wie
+        ein Fingerabdruck. Sein Taumeln
+        senkt die gegn. Zielsicherheit.
+"italian":
+    "name": |-
+        Spinda
+    "category": |-
+        Pokémon Macchipanda
+    "entry_text": |-
+        Non ci sono due SPINDA con lo stes-
+        so motivo maculato. Il suo passo
+        barcollante confonde i nemici.
+"spanish":
+    "name": |-
+        Spinda
+    "category": |-
+        Pokémon Panda Topos
+    "entry_text": |-
+        No hay dos SPINDA que tengan
+        idénticos pelajes. Su tambaleo
+        al bailar confunde a los rivales.
+"japanese":
+    "name": |-
+        パッチ－ル
+    "category": |-
+        ぶちパンダポケモン
+    "entry_text": |-
+        おなじ　ブチもようの　パッチ－ルは
+        いない。フラフラした　あしどりで
+        あいての　ねらいを　はずす。

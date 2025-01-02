@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    112
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    406
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    406
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Meditate Pokémon
+    "entry_text": |-
+        It always trains deep in mountains.
+        It levitates when it heightens its
+        spiritual power through meditation.
+"french":
+    "name": |-
+        MEDITIKKA
+    "category": |-
+        Pokémon Méditation
+    "entry_text": |-
+        Il ne mange qu’une Baie par jour.
+        La faim lui a forgé une volonté
+        de fer.
+"german":
+    "name": |-
+        MEDITIE
+    "category": |-
+        Meditation
+    "entry_text": |-
+        Es isst gerade mal eine Beere am
+        Tag. Durch Hunger wird sein Geist
+        ruhiger und schärfer.
+"italian":
+    "name": |-
+        Meditite
+    "category": |-
+        Pokémon Meditazione
+    "entry_text": |-
+        Mangia solo una bacca al giorno.
+        Resistendo alla fame, il suo spirito
+        viene temprato e rinvigorito.
+"spanish":
+    "name": |-
+        Meditite
+    "category": |-
+        Pokémon Meditador
+    "entry_text": |-
+        Solo come una baya al día. El
+        ayuno fortalece su espíritu y
+        su capacidad de concentración.
+"japanese":
+    "name": |-
+        アサナン
+    "category": |-
+        めいそうポケモン
+    "entry_text": |-
+        １にち　１こだけ　きのみを　たべる。
+        くうふくに　たえることで
+        こころが　とぎすまされていく。

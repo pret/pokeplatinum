@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    195
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    336
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    336
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Young Fowl Pokémon
+    "entry_text": |-
+        Its kicking mastery lets it loose
+        10 kicks per second. It emits
+        sharp cries to intimidate foes.
+"french":
+    "name": |-
+        GALIFEU
+    "category": |-
+        Pokémon Poulet
+    "entry_text": |-
+        Ce maître du coup de pied peut
+        donner 10 coups par seconde. Ses
+        cris aigus intimident l’ennemi.
+"german":
+    "name": |-
+        JUNGGLUT
+    "category": |-
+        Kleinhahn
+    "entry_text": |-
+        Es kann 10 Tritte pro Sekunde aus-
+        teilen. Es gibt schrille Schreie von
+        sich, um Gegner einzuschüchtern.
+"italian":
+    "name": |-
+        Combusken
+    "category": |-
+        Pokémon Rampollo
+    "entry_text": |-
+        Possiede l’abilità di sferrare anche
+        10 calci al secondo. Emette urla
+        strazianti per intimorire i nemici.
+"spanish":
+    "name": |-
+        Combusken
+    "category": |-
+        Pokémon Ave Corral
+    "entry_text": |-
+        Su habilidad le permite dar diez
+        patadas por segundo. Lanza
+        potentes gritos para intimidar.
+"japanese":
+    "name": |-
+        ワカシャモ
+    "category": |-
+        わかどりポケモン
+    "entry_text": |-
+        １びょうかんに　キックを　１０ぱつ
+        くりだす　あしわざの　もちぬし。
+        するどい　なきごえで　いかくする。

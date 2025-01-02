@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    177
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    342
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    342
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    21
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    21
+"english":
+    "category": |-
+        Firefly Pokémon
+    "entry_text": |-
+        It communicates with others by
+        lighting up its rear at night. It
+        loves ILLUMISE’s sweet aroma.
+"french":
+    "name": |-
+        MUCIOLE
+    "category": |-
+        Pokémon Luciole
+    "entry_text": |-
+        Il communique avec ses pairs en
+        allumant son postérieur la nuit. Il
+        adore le doux parfum de LUMIVOLE.
+"german":
+    "name": |-
+        VOLBEAT
+    "category": |-
+        Libelle
+    "entry_text": |-
+        Es kommuniziert mit anderen, indem
+        es sein Hinterteil zum Leuchten
+        bringt. Es liebt ILLUMISEs Duft.
+"italian":
+    "name": |-
+        Volbeat
+    "category": |-
+        Pokémon Lucciola
+    "entry_text": |-
+        Di notte comunica con gli altri
+        illuminando la sua coda.
+        Ama il dolce aroma di ILLUMISE.
+"spanish":
+    "name": |-
+        Volbeat
+    "category": |-
+        Pokémon Luciérnaga
+    "entry_text": |-
+        Se comunica con otros iluminando
+        su cola por la noche. Le encanta el
+        suave aroma de ILLUMISE.
+"japanese":
+    "name": |-
+        バルビ－ト
+    "category": |-
+        ほたるポケモン
+    "entry_text": |-
+        よるになると　おしりを　ひからせ
+        なかまと　かいわする。イルミ－ゼの
+        だす　あまい　かおりが　だいすき。

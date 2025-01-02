@@ -1,0 +1,74 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    1300
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    235
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    235
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Superpower Pokémon
+    "entry_text": |-
+        Its four muscled arms slam foes
+        with powerful punches and chops
+        at blinding speed.
+"french":
+    "name": |-
+        MACKOGNEUR
+    "category": |-
+        Pokémon Colosse
+    "entry_text": |-
+        Ses quatre bras frappent à une
+        vitesse aveuglante. Il peut porter
+        1 000 coups en deux secondes.
+"german":
+    "name": |-
+        MACHOMEI
+    "category": |-
+        Kraftprotz
+    "entry_text": |-
+        Mit seinen vier Armen schlägt es
+        blitzschnell zu. Es kann in zwei
+        Sekunden 1 000-mal zuschlagen.
+"italian":
+    "name": |-
+        Machamp
+    "category": |-
+        Pokémon Megaforza
+    "entry_text": |-
+        Tira pugni con le quattro braccia
+        ad una velocità impressionante.
+        Scaglia 1000 pugni ogni 2 secondi.
+"spanish":
+    "name": |-
+        Machamp
+    "category": |-
+        Pokémon Superpoder
+    "entry_text": |-
+        Golpea con sus cuatro brazos a
+        gran velocidad. Puede dar 1000
+        golpes en dos segundos.
+"japanese":
+    "name": |-
+        カイリキ－
+    "category": |-
+        かいりきポケモン
+    "entry_text": |-
+        ４ほんの　うでを　めにもとまらぬ
+        はやさで　うごかし　２びょうかんに
+        １０００ぱつの　パンチを　くりだす。

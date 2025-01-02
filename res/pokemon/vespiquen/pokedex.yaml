@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    385
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    268
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    268
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65532
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65532
+"english":
+    "category": |-
+        Beehive Pokémon
+    "entry_text": |-
+        It releases various pheromones
+        to make the grubs in its body do
+        its bidding while fighting foes.
+"french":
+    "name": |-
+        APIREINE
+    "category": |-
+        Pokémon Ruche
+    "entry_text": |-
+        Son abdomen est un rayon où
+        vivent ses larves, élevées avec
+        le nectar récolté par APITRINI.
+"german":
+    "name": |-
+        HONWEISEL
+    "category": |-
+        Bienenstock
+    "entry_text": |-
+        Ihr Bauch ist die Wabe für die
+        Larven. Sie füttert ihre Larven mit
+        dem Honig, den WADRIBIE sammelt.
+"italian":
+    "name": |-
+        Vespiquen
+    "category": |-
+        Pokémon Alveare
+    "entry_text": |-
+        Il suo addome funge da rifugio per
+        le larve, che nutre con il nettare
+        raccolto da COMBEE.
+"spanish":
+    "name": |-
+        Vespiquen
+    "category": |-
+        Pokémon Colmena
+    "entry_text": |-
+        Su abdomen es un panal de larvas
+        que alimenta con la miel recogida
+        por COMBEE.
+"japanese":
+    "name": |-
+        ビ－クイン
+    "category": |-
+        はちのすポケモン
+    "entry_text": |-
+        どうたいが　こどもたちの　すあなに
+        なっている。ミツハニ－の　あつめた
+        ミツで　こどもたちを　そだてる。

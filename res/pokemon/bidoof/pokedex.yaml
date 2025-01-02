@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    200
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    353
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    353
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Plump Mouse Pokémon
+    "entry_text": |-
+        A comparison revealed that
+        BIDOOF’s front teeth grow at
+        the same rate as RATTATA’s.
+"french":
+    "name": |-
+        KEUNOTOR
+    "category": |-
+        Pokémon Souridodue
+    "entry_text": |-
+        Rien ne peut perturber ses nerfs
+        d’acier. Il est plus agile et
+        énergique qu’il n’y paraît.
+"german":
+    "name": |-
+        BIDIZA
+    "category": |-
+        Dickmaus
+    "entry_text": |-
+        Es hat Nerven wie Drahtseile,
+        nichts kann es erschüttern. Es ist
+        agiler und aktiver, als es scheint.
+"italian":
+    "name": |-
+        Bidoof
+    "category": |-
+        Pokémon Topaffuto
+    "entry_text": |-
+        Ha i nervi d’acciaio e niente può
+        turbarlo. È più agile e attivo di
+        quanto sembri.
+"spanish":
+    "name": |-
+        Bidoof
+    "category": |-
+        Pokémon Gran Ratón
+    "entry_text": |-
+        Tiene nervios de acero y nada
+        puede perturbarlo. Es más ágil
+        y activo de lo que aparenta.
+"japanese":
+    "name": |-
+        ビッパ
+    "category": |-
+        まるねずみポケモン
+    "entry_text": |-
+        なにごとにも　どうじない　ずぶとい
+        しんけいの　もちぬし。みかけの
+        わりには　きびんに　かつどうする。

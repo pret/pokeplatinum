@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    15
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    451
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    451
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    29
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    29
+"english":
+    "category": |-
+        Spike Ball Pokémon
+    "entry_text": |-
+        It transforms the kindness and joy
+        of others into happiness, which it
+        stores in its shell.
+"french":
+    "name": |-
+        TOGEPI
+    "category": |-
+        Pokémon Balle Pic
+    "entry_text": |-
+        On prétend que sa coquille est
+        remplie de bonheur, qu’il partage
+        avec les êtres au cœur pur.
+"german":
+    "name": |-
+        TOGEPI
+    "category": |-
+        Zackenball
+    "entry_text": |-
+        Seine Schale ist mit Glücksgefühlen
+        gefüllt, die es mit gutherzigen
+        Lebewesen teilt.
+"italian":
+    "name": |-
+        Togepi
+    "category": |-
+        Pokémon Pallapunte
+    "entry_text": |-
+        Pare che il suo guscio immagazzini
+        felicità, che condivide poi con le
+        persone gentili.
+"spanish":
+    "name": |-
+        Togepi
+    "category": |-
+        Pokémon Bolaclavos
+    "entry_text": |-
+        Se dice que su cascarón está
+        lleno de alegría que comparte con
+        las personas de buen corazón.
+"japanese":
+    "name": |-
+        トゲピ－
+    "category": |-
+        はりたまポケモン
+    "entry_text": |-
+        カラの　なかに　たくさん　しあわせが
+        つまっていて　やさしい　ひとに
+        しあわせを　わけあたえるという。

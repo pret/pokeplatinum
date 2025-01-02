@@ -1,0 +1,74 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    1
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    214
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    214
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65530
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65530
+"english":
+    "category": |-
+        Gas Pokémon
+    "entry_text": |-
+        It likes to lurk in the dark and tap
+        shoulders with a gaseous hand. Its
+        touch causes endless shuddering.
+"french":
+    "name": |-
+        SPECTRUM
+    "category": |-
+        Pokémon Gaz
+    "entry_text": |-
+        Il peut traverser n’importe quel
+        obstacle. Il rôde dans les murs
+        pour surveiller ses ennemis.
+"german":
+    "name": |-
+        ALPOLLO
+    "category": |-
+        Gas
+    "entry_text": |-
+        Es kann sich durch jedes Hindernis
+        bewegen. Es versteckt sich in
+        Wänden, um Gegner zu beobachten.
+"italian":
+    "name": |-
+        Haunter
+    "category": |-
+        Pokémon Gas
+    "entry_text": |-
+        Riesce a superare qualsiasi
+        ostacolo. Si nasconde nei muri
+        per osservare il nemico.
+"spanish":
+    "name": |-
+        Haunter
+    "category": |-
+        Pokémon Gas
+    "entry_text": |-
+        Puede atravesar cualquier
+        obstáculo. Atraviesa las paredes
+        para espiar a sus enemigos.
+"japanese":
+    "name": |-
+        ゴ－スト
+    "category": |-
+        ガスじょうポケモン
+    "entry_text": |-
+        どんな　ものでも　すりぬけられる。
+        かべの　なかに　もぐりこんで
+        あいての　ようすを　かんさつする。

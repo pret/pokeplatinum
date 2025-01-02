@@ -1,0 +1,74 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    3000
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    351
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    351
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    10
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    10
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Heavyweight Pokémon
+    "entry_text": |-
+        It is surprisingly quick to anger.
+        It holds its mouth agape as a
+        display of its strength.
+"french":
+    "name": |-
+        HIPPODOCUS
+    "category": |-
+        Pokémon Poids Lourd
+    "entry_text": |-
+        Il emmagasine du sable qu’il
+        expulse en tornades par les
+        pores de sa peau pour attaquer.
+"german":
+    "name": |-
+        HIPPOTERUS
+    "category": |-
+        Schwergewicht
+    "entry_text": |-
+        Es wirbelt im Körper gespeicherten
+        Sand durch Öffnungen und generiert
+        so einen Sandwirbelsturm.
+"italian":
+    "name": |-
+        Hippowdon
+    "category": |-
+        Pokémon Grandepeso
+    "entry_text": |-
+        Immagazzina sabbia all’interno del
+        corpo e l’espelle con violenza dai
+        pori, formando enormi vortici.
+"spanish":
+    "name": |-
+        Hippowdon
+    "category": |-
+        Pokémon Peso Pesado
+    "entry_text": |-
+        Cuando ataca, expulsa arena
+        almacenada en su interior
+        para crear un gran tornado.
+"japanese":
+    "name": |-
+        カバルドン
+    "category": |-
+        じゅうりょうポケモン
+    "entry_text": |-
+        たいないに　ためた　すなを　からだの
+        あなから　ふきあげて　きょだいな
+        たつまきを　つくり　こうげきする。

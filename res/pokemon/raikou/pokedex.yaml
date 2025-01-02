@@ -1,0 +1,74 @@
+"height": !!int |-
+    19
+"weight": !!int |-
+    1780
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    341
+"pokemon_scale_f": !!int |-
+    248
+"trainer_scale_m": !!int |-
+    327
+"pokemon_scale_m": !!int |-
+    248
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Thunder Pokémon
+    "entry_text": |-
+        It is said to have fallen with
+        lightning. It can fire thunderbolts
+        from the rain clouds on its back.
+"french":
+    "name": |-
+        RAIKOU
+    "category": |-
+        Pokémon Foudre
+    "entry_text": |-
+        On prétend qu’il est tombé avec la
+        foudre. Il peut lancer des éclairs
+        grâce aux nuages sur son dos.
+"german":
+    "name": |-
+        RAIKOU
+    "category": |-
+        Donner
+    "entry_text": |-
+        Dieses PKMN ist der personifizierte
+        Blitz. Es kann aus den Wolken über
+        seinem Rücken Blitze schleudern.
+"italian":
+    "name": |-
+        Raikou
+    "category": |-
+        Pokémon Tuono
+    "entry_text": |-
+        Pare che sia caduto con un
+        fulmine. Può scagliare saette dalle
+        nuvole di pioggia che ha sul dorso.
+"spanish":
+    "name": |-
+        Raikou
+    "category": |-
+        Pokémon Trueno
+    "entry_text": |-
+        Dicen que apareció con un
+        relámpago. Puede lanzar rayos
+        desde las nubes de su lomo.
+"japanese":
+    "name": |-
+        ライコウ
+    "category": |-
+        いかずちポケモン
+    "entry_text": |-
+        カミナリと　ともに　おちてきたと
+        いわれている。せなかの　あまぐもから
+        カミナリを　うちだすことが　できる。

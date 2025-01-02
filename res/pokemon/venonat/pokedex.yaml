@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    300
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    292
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    292
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    20
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    20
+"english":
+    "category": |-
+        Insect Pokémon
+    "entry_text": |-
+        Its big eyes are actually clusters
+        of tiny eyes. At night, its kind is
+        drawn by light.
+"french":
+    "name": |-
+        MIMITOSS
+    "category": |-
+        Pokémon Vermine
+    "entry_text": |-
+        Ses grands yeux sont en fait
+        des amas d’yeux minuscules. La
+        nuit, il est attiré par la lumière.
+"german":
+    "name": |-
+        BLUZUK
+    "category": |-
+        Insekt
+    "entry_text": |-
+        Seine großen Augen bestehen aus
+        vielen kleinen Augen. Nachts wird
+        es von Licht angezogen.
+"italian":
+    "name": |-
+        Venonat
+    "category": |-
+        Pokémon Insetto
+    "entry_text": |-
+        I suoi grandi occhi sono in realtà
+        un insieme di tanti piccoli occhi.
+        Di notte, è attirato dalla luce.
+"spanish":
+    "name": |-
+        Venonat
+    "category": |-
+        Pokémon Insecto
+    "entry_text": |-
+        Sus grandes ojos son en realidad
+        grupos de ojos diminutos. Por la
+        noche se siente atraído por la luz.
+"japanese":
+    "name": |-
+        コンパン
+    "category": |-
+        こんちゅうポケモン
+    "entry_text": |-
+        ちいさな　めが　たくさん　あつまって
+        おおきな　めに　なっている。
+        よるになると　あかりに　あつまる。

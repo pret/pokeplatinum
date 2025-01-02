@@ -1,0 +1,72 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    390
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    239
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    239
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65533
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65533
+"english":
+    "category": |-
+        Goldfish Pokémon
+    "entry_text": |-
+        In autumn, its body becomes more
+        fatty in preparing to propose to a
+        mate. It takes on beautiful colors.
+"french":
+    "name": |-
+        POISSOROY
+    "category": |-
+        Pokémon Poisson
+    "entry_text": "Il niche dans des rochers du \nruisseau qu’il évide avec sa corne.\n\
+        Il donnerait sa vie pour ses œufs."
+"german":
+    "name": |-
+        GOLKING
+    "category": |-
+        Goldfisch
+    "entry_text": |-
+        Es baut Nester, indem es Steine im
+        Fluss mit seinem Horn aushöhlt. Es
+        verteidigt seine Eier mit dem Leben.
+"italian":
+    "name": |-
+        Seaking
+    "category": |-
+        Pokémon Pescerosso
+    "entry_text": |-
+        Con il suo corno, perfora le rocce
+        sul letto dei fiumi per farsi il nido.
+        Difende le uova a costo della vita.
+"spanish":
+    "name": |-
+        Seaking
+    "category": |-
+        Pokémon Pez Color
+    "entry_text": |-
+        Hace su nido en los agujeros
+        que cava con el cuerno. Defiende
+        sus huevos con su vida.
+"japanese":
+    "name": |-
+        アズマオウ
+    "category": |-
+        きんぎょポケモン
+    "entry_text": |-
+        あたまの　ツノで　かわぞこにある
+        いわを　くりぬいて　すを　つくる。
+        タマゴを　いのちがけで　まもる。

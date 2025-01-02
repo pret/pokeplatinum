@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    58
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    417
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    417
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Flower Pokémon
+    "entry_text": |-
+        When the heavy rainfall season
+        ends, it is drawn out by warm
+        sunlight to dance in the open.
+"french":
+    "name": |-
+        JOLIFLOR
+    "category": |-
+        Pokémon Fleur
+    "entry_text": |-
+        A la fin de la saison des pluies,
+        il sort danser en plein air,
+        attiré par la chaleur du soleil.
+"german":
+    "name": |-
+        BLUBELLA
+    "category": |-
+        Blume
+    "entry_text": |-
+        Sobald die Regenzeit vorbei ist,
+        wird es von der warmen Sonne nach
+        draußen gezogen, wo es tanzt.
+"italian":
+    "name": |-
+        Bellossom
+    "category": |-
+        Pokémon Fiore
+    "entry_text": |-
+        Quando finisce la stagione delle
+        piogge, lo si vede danzare sotto
+        i caldi raggi del sole.
+"spanish":
+    "name": |-
+        Bellossom
+    "category": |-
+        Pokémon Flor
+    "entry_text": |-
+        Cuando acaba la estación de las
+        lluvias, sale al sol e inicia una
+        peculiar danza.
+"japanese":
+    "name": |-
+        キレイハナ
+    "category": |-
+        フラワ－ポケモン
+    "entry_text": |-
+        おおあめの　きせつが　おわると
+        あたたかい　ひざしに　さそわれた
+        キレイハナが　おどりはじめる。

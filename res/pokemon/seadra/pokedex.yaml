@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    250
+"body_shape": |-
+    SHAPE_HEAD_BASE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    240
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    240
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65532
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65532
+"english":
+    "category": |-
+        Dragon Pokémon
+    "entry_text": |-
+        Its spines provide protection.
+        Its fins and bones are prized as
+        traditional medicine ingredients.
+"french":
+    "name": |-
+        HYPOCEAN
+    "category": |-
+        Pokémon Dragon
+    "entry_text": |-
+        Son épine dorsale le protège.
+        Ses os et ses nageoires sont très
+        prisés en médecine traditionnelle.
+"german":
+    "name": |-
+        SEEMON
+    "category": |-
+        Drache
+    "entry_text": |-
+        Seine Stacheln schützen es. Seine
+        Flossen und Knochen werden bei der
+        Herstellung von Medizin verwendet.
+"italian":
+    "name": |-
+        Seadra
+    "category": |-
+        Pokémon Drago
+    "entry_text": |-
+        Si difende con gli aculei. Pinne
+        e ossa sono comunemente usati
+        nella medicina tradizionale.
+"spanish":
+    "name": |-
+        Seadra
+    "category": |-
+        Pokémon Dragón
+    "entry_text": |-
+        Se protege con sus púas. Sus
+        aletas y huesos son muy valorados
+        por la medicina tradicional.
+"japanese":
+    "name": |-
+        シ－ドラ
+    "category": |-
+        ドラゴンポケモン
+    "entry_text": |-
+        トゲが　てきから　みを　まもる。
+        ひれや　ホネが　かんぽうやくの
+        ざいりょうとして　ちょうほうされる。

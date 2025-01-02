@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    300
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    319
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    319
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65529
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65529
+"english":
+    "category": |-
+        Bird Pokémon
+    "entry_text": |-
+        It flies over its wide territory in
+        search of prey, downing it
+        with its highly developed claws.
+"french":
+    "name": |-
+        ROUCOUPS
+    "category": |-
+        Pokémon Oiseau
+    "entry_text": |-
+        Il survole son vaste territoire en
+        quête d’une proie avant de fondre
+        sur elle toutes griffes en avant.
+"german":
+    "name": |-
+        TAUBOGA
+    "category": |-
+        Vogel
+    "entry_text": |-
+        Auf der Suche nach Nahrung, die es
+        mit scharfen Krallen schlägt, fliegt
+        es durch riesiges Territorium.
+"italian":
+    "name": |-
+        Pidgeotto
+    "category": |-
+        Pokémon Uccello
+    "entry_text": |-
+        Sorvola il suo ampio territorio a
+        caccia di prede, afferrandole con
+        i suoi artigli affilati.
+"spanish":
+    "name": |-
+        Pidgeotto
+    "category": |-
+        Pokémon Pájaro
+    "entry_text": |-
+        Sobrevuela su extenso territorio
+        en busca de presas y ataca con
+        sus poderosas garras.
+"japanese":
+    "name": |-
+        ピジョン
+    "category": |-
+        とりポケモン
+    "entry_text": |-
+        ひろい　なわばりを　とびまわりながら
+        えものを　さがす。はったつした
+        あしの　ツメで　えものを　しとめる。

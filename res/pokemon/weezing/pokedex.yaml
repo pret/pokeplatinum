@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    95
+"body_shape": |-
+    SHAPE_MULTI_BODY
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    285
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    285
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65526
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65526
+"english":
+    "category": |-
+        Poison Gas Pokémon
+    "entry_text": |-
+        It grows by feeding on gases
+        released by garbage. Though very
+        rare, triplets have been found.
+"french":
+    "name": |-
+        SMOGOGO
+    "category": |-
+        Pokémon Gaz Mortel
+    "entry_text": |-
+        Il grandit en absorbant les gaz des
+        détritus. Des triplés existent, bien
+        qu’ils soient fort rares.
+"german":
+    "name": |-
+        SMOGMOG
+    "category": |-
+        Giftwolke
+    "entry_text": |-
+        Es wächst, indem es Gase aufnimmt,
+        die aus dem Müll aufsteigen. Selten
+        kann man Drillinge von ihnen finden.
+"italian":
+    "name": |-
+        Weezing
+    "category": |-
+        Pokémon Velenuvola
+    "entry_text": |-
+        Cresce nutrendosi dei gas emanati
+        dai rifiuti. Anche se rarissimi, ne
+        hanno trovati in gruppi di tre.
+"spanish":
+    "name": |-
+        Weezing
+    "category": |-
+        Pokémon Gas Veneno
+    "entry_text": |-
+        Crece alimentándose de los gases
+        emanados por la basura. Se han
+        dado raros casos de trillizos.
+"japanese":
+    "name": |-
+        マタドガス
+    "category": |-
+        どくガスポケモン
+    "entry_text": |-
+        ゴミから　はっせいする　ガスを
+        たべて　おおきくなる。ごくまれに
+        ３つごの　マタドガスが　みつかる。

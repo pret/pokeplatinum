@@ -1,0 +1,72 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    405
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    191
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    191
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65535
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65535
+"english":
+    "category": |-
+        Shadow Pokémon
+    "entry_text": |-
+        The leer that floats in darkness
+        belongs to a GENGAR delighting in
+        casting curses on people.
+"french":
+    "name": |-
+        ECTOPLASMA
+    "category": |-
+        Pokémon Ombre
+    "entry_text": "On dit que lorsqu’ECTOPLASMA se \ncache dans l’ombre, la température\n\
+        alentour chute de 5 °C."
+"german":
+    "name": |-
+        GENGAR
+    "category": |-
+        Schatten
+    "entry_text": |-
+        Es versteckt sich im Schatten. Man
+        sagt, wenn sich ein GENGAR ver-
+        steckt, kühlt es sich um 5 Grad ab.
+"italian":
+    "name": |-
+        Gengar
+    "category": |-
+        Pokémon Ombra
+    "entry_text": |-
+        Si nasconde nell’ombra. Pare che
+        nei luoghi in cui GENGAR si cela,
+        la temperatura si abbassi di 5°C.
+"spanish":
+    "name": |-
+        Gengar
+    "category": |-
+        Pokémon Sombra
+    "entry_text": |-
+        Se esconde entre las sombras.
+        Se dice que donde GENGAR acecha,
+        la temperatura baja 5 grados.
+"japanese":
+    "name": |-
+        ゲンガ－
+    "category": |-
+        シャド－ポケモン
+    "entry_text": |-
+        ものかげに　すがたを　かくす。
+        ゲンガ－の　ひそんでいる　へやは
+        おんどが　５ど　さがると　いわれる。

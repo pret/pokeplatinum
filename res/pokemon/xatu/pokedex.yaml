@@ -1,0 +1,72 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    150
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    206
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    206
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Mystic Pokémon
+    "entry_text": |-
+        This odd Pokémon can see both
+        the past and the future. It eyes
+        the sun’s movement all day.
+"french":
+    "name": |-
+        XATU
+    "category": |-
+        Pokémon Mystique
+    "entry_text": "Cet étrange Pokémon peut voir\nl’avenir et le passé. Il guette\
+        \ \nsans cesse la course du soleil."
+"german":
+    "name": |-
+        XATU
+    "category": |-
+        Mystik
+    "entry_text": |-
+        Dieses PKMN kann die Vergangenheit
+        und die Zukunft sehen. Es
+        beobachtet ständig die Sonne.
+"italian":
+    "name": |-
+        Xatu
+    "category": |-
+        Pokémon Magico
+    "entry_text": |-
+        Pokémon enigmatico che vede il
+        passato e prevede il futuro osser-
+        vando il sole tutto il giorno.
+"spanish":
+    "name": |-
+        Xatu
+    "category": |-
+        Pokémon Místico
+    "entry_text": |-
+        Este extraño Pokémon puede ver
+        el pasado y el futuro. Se pasa el
+        día mirando al sol.
+"japanese":
+    "name": |-
+        ネイティオ
+    "category": |-
+        せいれいポケモン
+    "entry_text": |-
+        かこと　みらいを　みとおせる。
+        まいにち　たいようの　うごきを
+        みつづけている　ふしぎな　ポケモン。

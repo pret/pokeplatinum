@@ -1,0 +1,74 @@
+"height": !!int |-
+    23
+"weight": !!int |-
+    2538
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    349
+"pokemon_scale_f": !!int |-
+    240
+"trainer_scale_m": !!int |-
+    341
+"pokemon_scale_m": !!int |-
+    240
+"trainer_pos_f": !!int |-
+    13
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    12
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Arm Thrust Pokémon
+    "entry_text": |-
+        It loves to match power with
+        big-bodied Pokémon. It can knock a
+        truck flying with its arm thrusts.
+"french":
+    "name": |-
+        HARIYAMA
+    "category": |-
+        Pokémon Cogneur
+    "entry_text": |-
+        Il aime mesurer sa force à celle des
+        plus grands Pokémon. Ses coups de
+        paume peuvent projeter un camion.
+"german":
+    "name": |-
+        HARIYAMA
+    "category": |-
+        Armwurf
+    "entry_text": |-
+        Es liebt das Kräftemessen mit
+        großen PKMN. Mit seinem Armwurf
+        kann es LKW durch die Luft werfen.
+"italian":
+    "name": |-
+        Hariyama
+    "category": |-
+        Pokémon Sberletese
+    "entry_text": |-
+        Ama confrontarsi con Pokémon gros-
+        si. Con uno dei suo schiaffi, può far
+        prendere il volo a un camion.
+"spanish":
+    "name": |-
+        Hariyama
+    "category": |-
+        Pokémon Empuje
+    "entry_text": |-
+        Le encanta enfrentarse a Pokémon
+        grandes y probar su fuerza. Sus
+        brazos pueden derribar un camión.
+"japanese":
+    "name": |-
+        ハリテヤマ
+    "category": |-
+        つっぱりポケモン
+    "entry_text": |-
+        からだの　おおきな　ポケモンたちと
+        ちからくらべをすることが　だいすき。
+        はりてで　トラックを　ふっとばす。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    305
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    288
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    288
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Spark Pokémon
+    "entry_text": |-
+        Strong electricity courses through
+        the tips of its sharp claws. A light
+        scratch causes fainting in foes.
+"french":
+    "name": |-
+        LUXIO
+    "category": |-
+        Pokémon Etincelle
+    "entry_text": |-
+        L’électricité libérée par ses
+        griffes peut assommer l’ennemi.
+        Il vit en petits groupes.
+"german":
+    "name": |-
+        LUXIO
+    "category": |-
+        Funken
+    "entry_text": |-
+        Seine Krallen geben Elektrizität ab,
+        die stark genug ist, jemanden
+        bewusstlos zu machen.
+"italian":
+    "name": |-
+        Luxio
+    "category": |-
+        Pokémon Favilla
+    "entry_text": |-
+        Dagli artigli rilascia un’elettricità
+        talmente intensa da mandare KO il
+        nemico. Vive in piccoli gruppi.
+"spanish":
+    "name": |-
+        Luxio
+    "category": |-
+        Pokémon Chispa
+    "entry_text": |-
+        Sus garras emiten electricidad
+        que puede debilitar a sus rivales.
+        Viven en grupos pequeños.
+"japanese":
+    "name": |-
+        ルクシオ
+    "category": |-
+        でんこうポケモン
+    "entry_text": |-
+        いっぱつで　きぜつさせるほどの
+        でんりゅうを　ツメから　ながす。
+        すうひきの　グル－プで　くらす。

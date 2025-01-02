@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    195
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    284
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    284
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Poison Pin Pokémon
+    "entry_text": |-
+        It has a violent disposition and
+        stabs foes with its horn, which
+        oozes poison upon impact.
+"french":
+    "name": |-
+        NIDORINO
+    "category": |-
+        Pokémon Venepic
+    "entry_text": |-
+        D’un tempérament violent, il
+        empale l’ennemi sur sa corne qui
+        distille un poison puissant.
+"german":
+    "name": |-
+        NIDORINO
+    "category": |-
+        Giftdorn
+    "entry_text": |-
+        Es ist aggressiv und greift seine
+        Gegner mit dem Horn an, welches
+        bei Berührung Gift absondert.
+"italian":
+    "name": |-
+        Nidorino
+    "category": |-
+        Pokémon Velenago
+    "entry_text": |-
+        Ha un temperamento violento e
+        infilza i nemici con il corno, che,
+        all’impatto, rilascia veleno.
+"spanish":
+    "name": |-
+        Nidorino
+    "category": |-
+        Pokémon Pin Veneno
+    "entry_text": |-
+        Se muestra violento y ataca
+        a los enemigos con un cuerno
+        que desprende veneno.
+"japanese":
+    "name": |-
+        ニドリ－ノ
+    "category": |-
+        どくばりポケモン
+    "entry_text": |-
+        きしょうが　あらい　ポケモン。
+        あいてに　つきさした　しょうげきで
+        ツノから　もうどくが　にじみでる。

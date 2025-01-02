@@ -1,0 +1,72 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    502
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    234
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    234
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    5
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    5
+"english":
+    "category": |-
+        Punching Pokémon
+    "entry_text": |-
+        The arm-twisting punches it throws
+        pulverize even concrete. It rests
+        after three minutes of fighting.
+"french":
+    "name": |-
+        TYGNON
+    "category": |-
+        Pokémon Puncheur
+    "entry_text": "Même le béton cède sous ses \npoings dévastateurs. Au combat, il\n\
+        s’essouffle au bout de 3 minutes."
+"german":
+    "name": |-
+        NOCKCHAN
+    "category": |-
+        Puncher
+    "entry_text": |-
+        Die Schläge, die es austeilt, können
+        Beton pulverisieren. Es muss sich
+        im Kampf alle 3 Minuten ausruhen.
+"italian":
+    "name": |-
+        Hitmonchan
+    "category": |-
+        Pokémon Tirapugni
+    "entry_text": |-
+        Sferra pugni così potenti da polve-
+        rizzare persino il cemento. Si ripo-
+        sa dopo tre minuti di lotta.
+"spanish":
+    "name": |-
+        Hitmonchan
+    "category": |-
+        Pokémon Puñetazo
+    "entry_text": |-
+        Los potentes golpes de sus brazos
+        pueden pulverizar el hormigón.
+        Descansa tras luchar tres minutos.
+"japanese":
+    "name": |-
+        エビワラ－
+    "category": |-
+        パンチポケモン
+    "entry_text": |-
+        うでを　ねじりながら　くりだす
+        パンチは　コンクリ－トも　ふんさい。
+        ３ぷん　たたかうと　ひとやすみする。

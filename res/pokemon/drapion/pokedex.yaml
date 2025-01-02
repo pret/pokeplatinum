@@ -1,0 +1,72 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    615
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    10
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    10
+"english":
+    "category": |-
+        Ogre Scorp Pokémon
+    "entry_text": |-
+        Possessing a sturdy build, it takes
+        pride in its strength, taking down
+        foes without using toxins.
+"french":
+    "name": |-
+        DRASCORE
+    "category": |-
+        Pokémon Scorpogre
+    "entry_text": "Il peut réduire une voiture en \npièces avec ses pinces. Le bout\n\
+        de ses pinces contient du poison."
+"german":
+    "name": |-
+        PIONDRAGI
+    "category": |-
+        Ogerskorpion
+    "entry_text": |-
+        In seinen Armen steckt so viel
+        Kraft, dass es mit seinen giftigen
+        Krallen Autos zerquetschen kann.
+"italian":
+    "name": |-
+        Drapion
+    "category": |-
+        Pokémon Scorpiaccio
+    "entry_text": |-
+        Con le zampe può accartocciare una
+        macchina. Le punte degli artigli
+        sono velenose.
+"spanish":
+    "name": |-
+        Drapion
+    "category": |-
+        Pokémon Escorpiogro
+    "entry_text": |-
+        Sus brazos tienen fuerza para
+        destrozar un coche. La punta
+        de sus zarpas segrega veneno.
+"japanese":
+    "name": |-
+        ドラピオン
+    "category": |-
+        ばけさそりポケモン
+    "entry_text": |-
+        りょううでの　ツメは　じどうしゃを
+        スクラップにする　はかいりょく。
+        ツメの　さきから　どくを　だす。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    202
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    378
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    378
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Emotion Pokémon
+    "entry_text": |-
+        If its Trainer becomes happy, it
+        overflows with energy, dancing
+        joyously while spinning about.
+"french":
+    "name": |-
+        KIRLIA
+    "category": |-
+        Pokémon Emotion
+    "entry_text": |-
+        Il est très à l’écoute des émotions
+        de son Dresseur. Il danse quand
+        il est d’humeur joyeuse.
+"german":
+    "name": |-
+        KIRLIA
+    "category": |-
+        Emotion
+    "entry_text": |-
+        Es nimmt die Gefühle seines Trainers
+        deutlich wahr. Wenn es glücklich
+        ist, tanzt es.
+"italian":
+    "name": |-
+        Kirlia
+    "category": |-
+        Pokémon Emozione
+    "entry_text": |-
+        Percepisce molto bene i sentimenti
+        del suo Allenatore. Danza quando si
+        sente felice.
+"spanish":
+    "name": |-
+        Kirlia
+    "category": |-
+        Pokémon Sensorio
+    "entry_text": |-
+        Puede percibir los sentimientos
+        de su entrenador. Cuando se
+        siente feliz, baila.
+"japanese":
+    "name": |-
+        キルリア
+    "category": |-
+        かんじょうポケモン
+    "entry_text": |-
+        トレ－ナ－の　きもちを　びんかんに
+        キャッチする　ちからを　もつ。
+        たのしくなると　おどりはじめる。

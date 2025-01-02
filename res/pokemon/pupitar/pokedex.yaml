@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    1520
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    223
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    223
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    10
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    10
+"english":
+    "category": |-
+        Hard Shell Pokémon
+    "entry_text": |-
+        Its body is as hard as bedrock.
+        By venting pressurized gas, it can
+        launch itself like a rocket.
+"french":
+    "name": |-
+        YMPHECT
+    "category": |-
+        Pokémon Carapadure
+    "entry_text": |-
+        Son corps est dur comme la pierre
+        souterraine. Il file comme une
+        fusée en expulsant des gaz.
+"german":
+    "name": |-
+        PUPITAR
+    "category": |-
+        Hartschale
+    "entry_text": |-
+        Sein Körper ist hart wie Fels. Es
+        lässt mit Hochdruck Gas ab, um wie
+        eine Rakete nach oben zu schießen.
+"italian":
+    "name": |-
+        Pupitar
+    "category": |-
+        Pokémon Guscioduro
+    "entry_text": |-
+        Il suo corpo è duro come la roccia.
+        Riesce a muoversi come un razzo
+        espellendo gas con tutta forza.
+"spanish":
+    "name": |-
+        Pupitar
+    "category": |-
+        Pokémon Caparazón
+    "entry_text": |-
+        Su cuerpo es duro como la roca.
+        Se autopropulsa como un cohete
+        soltando los gases de su interior.
+"japanese":
+    "name": |-
+        サナギラス
+    "category": |-
+        だんがんポケモン
+    "entry_text": |-
+        がんばんのような　かたい　からだ。
+        あっしゅくした　ガスを　ふんしゃして
+        まるで　ロケットのように　とびだす。

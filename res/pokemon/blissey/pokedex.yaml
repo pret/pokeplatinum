@@ -1,0 +1,74 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    468
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    197
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    197
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Happiness Pokémon
+    "entry_text": |-
+        The eggs it lays are filled with
+        happiness. Eating even one bite
+        will bring a smile to anyone.
+"french":
+    "name": |-
+        LEUPHORIE
+    "category": |-
+        Pokémon Bonheur
+    "entry_text": |-
+        Ce Pokémon au cœur d’or
+        soigne les Pokémon malades.
+        Il ressent la tristesse d’autrui.
+"german":
+    "name": |-
+        HEITEIRA
+    "category": |-
+        Freude
+    "entry_text": |-
+        Dieses gutherzige PKMN pflegt
+        kranke PKMN gesund. Es spürt die
+        Traurigkeit anderer Lebewesen.
+"italian":
+    "name": |-
+        Blissey
+    "category": |-
+        Pokémon Felicità
+    "entry_text": |-
+        Questo Pokémon buono cura i
+        Pokémon malati e li fa guarire.
+        Percepisce la tristezza altrui.
+"spanish":
+    "name": |-
+        Blissey
+    "category": |-
+        Pokémon Felicidad
+    "entry_text": |-
+        Este amable Pokémon cuida de
+        Pokémon enfermos y los sana.
+        Puede presentir la tristeza.
+"japanese":
+    "name": |-
+        ハピナス
+    "category": |-
+        しあわせポケモン
+    "entry_text": |-
+        よわった　ポケモンを　なおるまで
+        かんびょうする　やさしい　ポケモン。
+        かなしい　きもちを　キャッチする。

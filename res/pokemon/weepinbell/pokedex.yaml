@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    64
+"body_shape": |-
+    SHAPE_HEAD_BASE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    300
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    300
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Flycatcher Pokémon
+    "entry_text": |-
+        A Pokémon that appears to be a
+        plant. It captures unwary prey by
+        dousing them with a toxic powder.
+"french":
+    "name": |-
+        BOUSTIFLOR
+    "category": |-
+        Pokémon Carnivore
+    "entry_text": |-
+        Un Pokémon végétal. Il capture les
+        proies étourdies en les endormant
+        à l’aide d’une poudre toxique.
+"german":
+    "name": |-
+        ULTRIGARIA
+    "category": |-
+        Fliegentot
+    "entry_text": |-
+        Ein Pokémon, das wie eine Pflanze
+        aussieht. Es fängt Beute, indem es
+        giftigen Puder darüber verteilt.
+"italian":
+    "name": |-
+        Weepinbell
+    "category": |-
+        Pokémon Moschivoro
+    "entry_text": |-
+        Questo Pokémon sembra una pianta.
+        Cattura le prede con una polvere
+        tossica.
+"spanish":
+    "name": |-
+        Weepinbell
+    "category": |-
+        Pokémon Matamoscas
+    "entry_text": |-
+        Este Pokémon parece una planta.
+        Captura a sus presas usando polvo
+        tóxico cuando están desprevenidas.
+"japanese":
+    "name": |-
+        ウツドン
+    "category": |-
+        ハエとりポケモン
+    "entry_text": |-
+        しょくぶつに　そっくりな　ポケモン。
+        ゆだんして　ちかよってきた　えものに
+        どくのこなを　あびせて　つかまえる。

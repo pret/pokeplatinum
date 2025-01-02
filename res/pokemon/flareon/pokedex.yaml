@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    250
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    235
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    235
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Flame Pokémon
+    "entry_text": |-
+        Inhaled air is heated in the flame
+        sac in its body to an intense fire
+        over 3,000 degrees Fahrenheit.
+"french":
+    "name": |-
+        PYROLI
+    "category": |-
+        Pokémon Flamme
+    "entry_text": |-
+        Son corps contient une glande
+        enflammée. Sa température monte
+        à 900 °C avant le combat.
+"german":
+    "name": |-
+        FLAMARA
+    "category": |-
+        Feuer
+    "entry_text": |-
+        In seinem Körper befindet sich eine
+        Flamme. Seine Körpertemperatur
+        liegt vor dem Kampf bei 900 Grad.
+"italian":
+    "name": |-
+        Flareon
+    "category": |-
+        Pokémon Fiamma
+    "entry_text": |-
+        Nel corpo conserva una tasca
+        ardente. Prima di lottare, la sua
+        temperatura si innalza a 900°C.
+"spanish":
+    "name": |-
+        Flareon
+    "category": |-
+        Pokémon Llama
+    "entry_text": |-
+        Almacena llamas en su cuerpo, que
+        alcanza una temperatura de 900
+        grados antes de un combate.
+"japanese":
+    "name": |-
+        ブ－スタ－
+    "category": |-
+        ほのおポケモン
+    "entry_text": |-
+        たいないに　ほのおぶくろを　もつ。
+        たたかいが　はじまる　ちょくぜんには
+        たいおんが　９００どまで　あがる。

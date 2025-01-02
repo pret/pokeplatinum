@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    240
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    258
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    281
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    21
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    22
+"english":
+    "category": |-
+        Slacker Pokémon
+    "entry_text": |-
+        It spends nearly all its time in a
+        day sprawled out. Just seeing it
+        makes one drowsy.
+"french":
+    "name": |-
+        PARECOOL
+    "category": |-
+        Pokémon Flâneur
+    "entry_text": |-
+        Il passe le plus clair de son temps
+        affalé. Rien qu’à le voir, on a
+        envie de bâiller.
+"german":
+    "name": |-
+        BUMMELZ
+    "category": |-
+        Faulpelz
+    "entry_text": |-
+        Es verbringt fast den ganzen Tag
+        mit Faulenzen und Schlafen. Selbst
+        sein Anblick macht bereits müde.
+"italian":
+    "name": |-
+        Slakoth
+    "category": |-
+        Pokémon Ozioso
+    "entry_text": |-
+        Passa quasi tutto il tempo
+        sdraiato. Soltanto a guardarlo
+        si prova sonnolenza.
+"spanish":
+    "name": |-
+        Slakoth
+    "category": |-
+        Pokémon Gandul
+    "entry_text": |-
+        Pasa la mayor parte del día
+        repanchingado. Entra sueño
+        solo de verlo.
+"japanese":
+    "name": |-
+        ナマケロ
+    "category": |-
+        なまけものポケモン
+    "entry_text": |-
+        １にちのうち　ほとんどの　じかんを
+        ねころがって　すごす。その　ようすを
+        みていると　ねむけに　おそわれる。

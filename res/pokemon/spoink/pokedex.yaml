@@ -1,0 +1,72 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    306
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    378
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    378
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    20
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    20
+"english":
+    "category": |-
+        Bounce Pokémon
+    "entry_text": |-
+        It bounces constantly, using its
+        tail like a spring. The shock of
+        bouncing keeps its heart beating.
+"french":
+    "name": |-
+        SPOINK
+    "category": |-
+        Pokémon Rebond
+    "entry_text": "Il utilise sa queue comme un \nressort et bondit partout. Chaque\n\
+        nouveau choc fait battre son cœur."
+"german":
+    "name": |-
+        SPOINK
+    "category": |-
+        Sprungfeder
+    "entry_text": |-
+        Es hüpft beständig umher, wobei es
+        seinen Schweif als Feder verwendet.
+        Nur so bleibt sein Herz aktiv.
+"italian":
+    "name": |-
+        Spoink
+    "category": |-
+        Pokémon Molla
+    "entry_text": |-
+        Rimbalza costantemente usando la
+        coda come una molla. Il movimento
+        sollecita il cuore e lo fa battere.
+"spanish":
+    "name": |-
+        Spoink
+    "category": |-
+        Pokémon Saltarín
+    "entry_text": |-
+        Bota continuamente usando su
+        cola como muelle. Salta para
+        mantener el latido de su corazón.
+"japanese":
+    "name": |-
+        バネブ－
+    "category": |-
+        とびはねポケモン
+    "entry_text": |-
+        しっぽを　バネのかわりに　いつも
+        とびはねている。はねる　しんどうで
+        しんぞうを　こどう　させているのだ。

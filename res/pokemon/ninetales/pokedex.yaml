@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    199
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    281
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    281
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    9
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    9
+"english":
+    "category": |-
+        Fox Pokémon
+    "entry_text": |-
+        Its nine tails are said to be
+        imbued with a mystic power.
+        It can live for a thousand years.
+"french":
+    "name": |-
+        FEUNARD
+    "category": |-
+        Pokémon Renard
+    "entry_text": |-
+        On raconte que ses neuf queues
+        détiennent un pouvoir mystique.
+        Il peut vivre pendant mille ans.
+"german":
+    "name": |-
+        VULNONA
+    "category": |-
+        Fuchs
+    "entry_text": |-
+        Seine neun Schweife sollen
+        mystische Kräfte besitzen. Es kann
+        tausend Jahre leben.
+"italian":
+    "name": |-
+        Ninetales
+    "category": |-
+        Pokémon Volpe
+    "entry_text": |-
+        Si dice che le sue nove code
+        posseggano un potere magico.
+        Vive anche 1000 anni.
+"spanish":
+    "name": |-
+        Ninetales
+    "category": |-
+        Pokémon Zorro
+    "entry_text": |-
+        Se dice que sus nueve colas están
+        revestidas de poder místico.
+        Puede vivir mil años.
+"japanese":
+    "name": |-
+        キュウコン
+    "category": |-
+        きつねポケモン
+    "entry_text": |-
+        ９ほんの　しっぽには　しんぴてきな
+        ちからが　やどっていると　つたわる。
+        １０００ねん　いきつづけるらしい。

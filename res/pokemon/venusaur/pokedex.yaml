@@ -1,0 +1,74 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    1000
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    308
+"pokemon_scale_f": !!int |-
+    241
+"trainer_scale_m": !!int |-
+    298
+"pokemon_scale_m": !!int |-
+    241
+"trainer_pos_f": !!int |-
+    9
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    8
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Seed Pokémon
+    "entry_text": |-
+        After a rainy day, the flower on
+        its back smells stronger. The
+        scent attracts other Pokémon.
+"french":
+    "name": |-
+        FLORIZARRE
+    "category": |-
+        Pokémon Graine
+    "entry_text": |-
+        Le parfum de sa fleur se fait plus
+        pénétrant les lendemains de pluie.
+        Cela appâte les autres Pokémon.
+"german":
+    "name": |-
+        BISAFLOR
+    "category": |-
+        Samen
+    "entry_text": |-
+        Nach einem Regentag riecht die
+        Blume auf seinem Rücken intensiver.
+        Das Aroma zieht andere Pokémon an.
+"italian":
+    "name": |-
+        Venusaur
+    "category": |-
+        Pokémon Seme
+    "entry_text": |-
+        Dopo la pioggia, il fiore sul suo
+        dorso emana un profumo più
+        intenso e attira gli altri Pokémon.
+"spanish":
+    "name": |-
+        Venusaur
+    "category": |-
+        Pokémon Semilla
+    "entry_text": |-
+        Después de un día de lluvia, la flor
+        de su lomo tiene un aroma más
+        potente y atrae a otros Pokémon.
+"japanese":
+    "name": |-
+        フシギバナ
+    "category": |-
+        たねポケモン
+    "entry_text": |-
+        あめの　ふった　よくじつは　せなかの
+        はなの　かおりが　つよまる。かおりに
+        さそわれ　ポケモンが　あつまる。

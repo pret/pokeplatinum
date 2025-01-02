@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    39
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    316
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    316
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Balloon Pokémon
+    "entry_text": |-
+        It shoots the poison spines on its
+        body in all directions. Its round
+        form makes it a poor swimmer.
+"french":
+    "name": |-
+        QWILFISH
+    "category": |-
+        Pokémon Bouboule
+    "entry_text": |-
+        Il envoie ses piquants empoisonnés
+        à la ronde. Sa forme sphérique en
+        fait un piètre nageur.
+"german":
+    "name": |-
+        BALDORFISH
+    "category": |-
+        Ballon
+    "entry_text": |-
+        Es verschießt die giftigen Stacheln
+        seines Körpers in alle Richtungen.
+        Es ist kein guter Schwimmer.
+"italian":
+    "name": |-
+        Qwilfish
+    "category": |-
+        Pokémon Pallone
+    "entry_text": |-
+        Spara i suoi aculei velenosi in
+        tutte le direzioni. Essendo un po’
+        tondetto, non è un gran nuotatore.
+"spanish":
+    "name": |-
+        Qwilfish
+    "category": |-
+        Pokémon Globo
+    "entry_text": |-
+        Lanza púas venenosas en todas
+        direcciones. Debido a su forma
+        redonda, es muy mal nadador.
+"japanese":
+    "name": |-
+        ハリ－セン
+    "category": |-
+        ふうせんポケモン
+    "entry_text": |-
+        ぜんしんの　どくバリを
+        しほうはっぽうに　うちだす。
+        まるい　からだは　およぎが　にがて。

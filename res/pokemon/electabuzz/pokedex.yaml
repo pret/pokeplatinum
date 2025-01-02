@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    300
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    273
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    273
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Electric Pokémon
+    "entry_text": |-
+        It windmills its arms to slightly
+        boost its punches. Foes have been
+        known to escape in the meantime.
+"french":
+    "name": |-
+        ELEKTEK
+    "category": |-
+        Pokémon Electrique
+    "entry_text": |-
+        Ce Pokémon dévore l’électricité des
+        centrales. Il est responsable de la
+        majorité des coupures de courant.
+"german":
+    "name": |-
+        ELEKTEK
+    "category": |-
+        Elektro
+    "entry_text": |-
+        Die Hälfte aller Stromausfälle wird
+        durch dieses PKMN ausgelöst, das
+        in E-Werken Elektrizität frisst.
+"italian":
+    "name": |-
+        Electabuzz
+    "category": |-
+        Pokémon Elettrico
+    "entry_text": |-
+        Quando si avvicina alle centrali
+        per nutrirsi dell’elettricità,
+        provoca un black-out.
+"spanish":
+    "name": |-
+        Electabuzz
+    "category": |-
+        Pokémon Eléctrico
+    "entry_text": |-
+        La mitad de los apagones los
+        provoca el enorme apetito de este
+        Pokémon que come electricidad.
+"japanese":
+    "name": |-
+        エレブ－
+    "category": |-
+        でんげきポケモン
+    "entry_text": |-
+        ていでんの　げんいんの　はんぶんは
+        エレブ－が　はつでんしょに　あらわれ
+        でんきを　たべてしまった　ことだ。

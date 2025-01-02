@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    1200
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    263
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    263
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    18
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    18
+"english":
+    "category": |-
+        Iron Armor Pokémon
+    "entry_text": |-
+        For food, it digs up iron ore. It
+        smashes its steely body against
+        others to fight over territory.
+"french":
+    "name": |-
+        GALEGON
+    "category": |-
+        Pokémon Armurfer
+    "entry_text": |-
+        Il se nourrit du minerai de fer qu’il
+        fore. Il défend son territoire en
+        chargeant avec son corps d’acier.
+"german":
+    "name": |-
+        STOLLRAK
+    "category": |-
+        Eisenpanzer
+    "entry_text": |-
+        Es ernährt sich von Eisenerz. Um
+        sein Revier zu sichern, setzt es
+        seinen harten Körper ein.
+"italian":
+    "name": |-
+        Lairon
+    "category": |-
+        Pokémon Corazza
+    "entry_text": |-
+        Scava per cercare ferro, di cui si
+        nutre. Si schianta contro gli altri
+        nella lotta per il territorio.
+"spanish":
+    "name": |-
+        Lairon
+    "category": |-
+        Pokémon Cor. Férrea
+    "entry_text": |-
+        Extrae hierro para alimentarse
+        y usa su cuerpo de acero para
+        luchar y conseguir territorio.
+"japanese":
+    "name": |-
+        コドラ
+    "category": |-
+        てつヨロイポケモン
+    "entry_text": |-
+        てっこうせきを　ほりだして　たべる。
+        はがねの　からだを　ぶつけあって
+        なわばりあらそいをする　しゅうせい。

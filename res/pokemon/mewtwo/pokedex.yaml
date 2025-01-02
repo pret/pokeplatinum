@@ -1,0 +1,74 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    1220
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    335
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    320
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    16
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    16
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Genetic Pokémon
+    "entry_text": |-
+        A Pokémon created by recombining
+        MEW’s genes. It’s said to have the
+        most savage heart among Pokémon.
+"french":
+    "name": |-
+        MEWTWO
+    "category": |-
+        Pokémon Génétique
+    "entry_text": |-
+        Un Pokémon conçu en réorganisant
+        les gènes de MEW. On raconte qu’il
+        s’agit du Pokémon le plus féroce.
+"german":
+    "name": |-
+        MEWTU
+    "category": |-
+        Genmutant
+    "entry_text": |-
+        Die Gene von MEW wurden neu
+        angeordnet, wodurch dieses PKMN
+        entstand. Es hat ein wildes Herz.
+"italian":
+    "name": |-
+        Mewtwo
+    "category": |-
+        Pokémon Genetico
+    "entry_text": |-
+        Un Pokémon creato usando i geni
+        di MEW. Si dice che fra i Pokémon
+        sia quello con l’animo più crudele.
+"spanish":
+    "name": |-
+        Mewtwo
+    "category": |-
+        Pokémon Genético
+    "entry_text": |-
+        Pokémon creado por recombinación
+        genética de MEW. Se dice que es el
+        más salvaje de los Pokémon.
+"japanese":
+    "name": |-
+        ミュウツ－
+    "category": |-
+        いでんしポケモン
+    "entry_text": |-
+        ミュウの　いでんしを　くみかえて
+        うみだされた。ポケモンで　いちばん
+        きょうぼうな　こころを　もつという。

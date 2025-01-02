@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    300
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    395
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    395
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    21
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    21
+"english":
+    "category": |-
+        Mouse Pokémon
+    "entry_text": |-
+        Its tail discharges electricity into
+        the ground, protecting it from
+        getting shocked.
+"french":
+    "name": |-
+        RAICHU
+    "category": |-
+        Pokémon Souris
+    "entry_text": |-
+        Il devient agressif lorsque son
+        corps contient trop d’électricité.
+        Il la décharge par sa queue.
+"german":
+    "name": |-
+        RAICHU
+    "category": |-
+        Maus
+    "entry_text": |-
+        Bei zu viel Elektrizität im Körper
+        wird es aggressiv. Es entlädt sich
+        über seinen Schweif.
+"italian":
+    "name": |-
+        Raichu
+    "category": |-
+        Pokémon Topo
+    "entry_text": |-
+        Diventa aggressivo se accumula
+        in sé troppa carica elettrica.
+        Scarica l’elettricità dalla coda.
+"spanish":
+    "name": |-
+        Raichu
+    "category": |-
+        Pokémon Ratón
+    "entry_text": |-
+        Se vuelve agresivo si su cuerpo
+        acumula demasiada electricidad,
+        que descarga a través de la cola.
+"japanese":
+    "name": |-
+        ライチュウ
+    "category": |-
+        ねずみポケモン
+    "entry_text": |-
+        からだの　でんきが　たまりすぎると
+        こうげきてきな　きもちになる。
+        しっぽから　でんきを　にがす。

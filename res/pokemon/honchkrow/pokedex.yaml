@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    273
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    339
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    339
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    18
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    18
+"english":
+    "category": |-
+        Big Boss Pokémon
+    "entry_text": |-
+        If one utters a deep cry, many
+        MURKROW gather quickly. For this,
+        it is called “Summoner of Night.”
+"french":
+    "name": |-
+        CORBOSS
+    "category": |-
+        Pokémon Big Boss
+    "entry_text": |-
+        Ce Pokémon nocturne évolue en
+        grandes volées escortées par des
+        CORNEBRE.
+"german":
+    "name": |-
+        KRAMSHEF
+    "category": |-
+        Anführer
+    "entry_text": |-
+        Ein nachtaktives PKMN, das sich in
+        Schwärmen mit KRAMURX durch die
+        Nacht bewegt.
+"italian":
+    "name": |-
+        Honchkrow
+    "category": |-
+        Pokémon Grancapo
+    "entry_text": |-
+        Diventa attivo di notte e lo si vede
+        spesso in compagnia di numerosi
+        MURKROW.
+"spanish":
+    "name": |-
+        Honchkrow
+    "category": |-
+        Pokémon Gran Jefe
+    "entry_text": |-
+        Está activo por la noche y
+        pulula arrastrando a
+        numerosos MURKROW.
+"japanese":
+    "name": |-
+        ドンカラス
+    "category": |-
+        おおボスポケモン
+    "entry_text": |-
+        よるになると　かつどうを　はじめる。
+        たくさんの　ヤミカラスを　ひきつれ
+        むれを　つくることで　しられる。

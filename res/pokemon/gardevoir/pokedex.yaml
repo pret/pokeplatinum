@@ -1,0 +1,74 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    484
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    236
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    236
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    2
+"english":
+    "category": |-
+        Embrace Pokémon
+    "entry_text": |-
+        To protect its Trainer, it will
+        expend all its psychic power
+        to create a small black hole.
+"french":
+    "name": |-
+        GARDEVOIR
+    "category": |-
+        Pokémon Etreinte
+    "entry_text": |-
+        Il donnera sa vie pour protéger
+        un Dresseur dévoué. Il a la
+        capacité de prédire l’avenir.
+"german":
+    "name": |-
+        GUARDEVOIR
+    "category": |-
+        Umarmung
+    "entry_text": |-
+        Es wird seinen Trainer mit dem Leben
+        beschützen, wenn es ihm vertraut.
+        Es kann in die Zukunft blicken.
+"italian":
+    "name": |-
+        Gardevoir
+    "category": |-
+        Pokémon Abbraccio
+    "entry_text": |-
+        Difende il suo fidato Allenatore
+        a costo della vita. Ha l’abilità di
+        predire il futuro.
+"spanish":
+    "name": |-
+        Gardevoir
+    "category": |-
+        Pokémon Envolvente
+    "entry_text": |-
+        Protegerá al entrenador que le
+        merezca la pena con su último
+        aliento. Puede ver el futuro.
+"japanese":
+    "name": |-
+        サ－ナイト
+    "category": |-
+        ほうようポケモン
+    "entry_text": |-
+        いのちがけで　しんらいする
+        トレ－ナ－を　まもろうとする。
+        みらいを　よちする　ちからを　もつ。

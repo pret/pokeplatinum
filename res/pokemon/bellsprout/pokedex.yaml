@@ -1,0 +1,70 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    40
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    341
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    341
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    22
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    22
+"english":
+    "category": |-
+        Flower Pokémon
+    "entry_text": |-
+        It prefers hot and humid
+        environments. It is quick at
+        capturing prey with its vines.
+"french":
+    "name": |-
+        CHETIFLOR
+    "category": |-
+        Pokémon Fleur
+    "entry_text": |-
+        Il préfère les climats chauds et
+        humides. Ses lianes peuvent
+        capturer une proie en un clin d’œil.
+"german":
+    "name": |-
+        KNOFENSA
+    "category": |-
+        Blume
+    "entry_text": |-
+        Es bevorzugt heiße und feuchte
+        Umgebungen. Seine Beute fängt es
+        blitzschnell mit seinen Ranken.
+"italian":
+    "name": |-
+        Bellsprout
+    "category": |-
+        Pokémon Fiore
+    "entry_text": "Preferisce gli habitat caldi e umidi.\nCattura velocemente le prede\
+        \ \ncon i suoi rampicanti."
+"spanish":
+    "name": |-
+        Bellsprout
+    "category": |-
+        Pokémon Flor
+    "entry_text": "Prefiere los lugares cálidos y\nhúmedos. Captura presas con sus\
+        \ \nrápidas lianas."
+"japanese":
+    "name": |-
+        マダツボミ
+    "category": |-
+        フラワ－ポケモン
+    "entry_text": |-
+        こうおん　たしつの　とちを　このむ。
+        ツルを　のばして　えものを　とらえる
+        ときの　うごきは　とても　すばやい。

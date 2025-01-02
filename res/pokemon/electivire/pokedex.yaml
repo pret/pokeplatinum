@@ -1,0 +1,72 @@
+"height": !!int |-
+    18
+"weight": !!int |-
+    1386
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    311
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    310
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    14
+"pokemon_pos_f": !!int |-
+    7
+"trainer_pos_m": !!int |-
+    13
+"pokemon_pos_m": !!int |-
+    7
+"english":
+    "category": |-
+        Thunderbolt Pokémon
+    "entry_text": |-
+        Heedless of enemy attacks, it
+        closes in, shoves its tails onto the
+        foe, then looses high voltage.
+"french":
+    "name": |-
+        ELEKABLE
+    "category": |-
+        Pokémon Foudrélec
+    "entry_text": "Il place le bout de ses deux \nqueues sur son ennemi et libère\n\
+        une décharge de 20 000 volts."
+"german":
+    "name": |-
+        ELEVOLTEK
+    "category": |-
+        Donnerkeil
+    "entry_text": |-
+        Es berührt den Gegner mit seinen
+        beiden Schweifspitzen und entlädt
+        dann über 20 000 Volt.
+"italian":
+    "name": |-
+        Electivire
+    "category": |-
+        Pokémon Saetta
+    "entry_text": |-
+        Tocca il nemico con le sue due
+        code e rilascia una scarica
+        elettrica di oltre 20000 volt.
+"spanish":
+    "name": |-
+        Electivire
+    "category": |-
+        Pokémon Rayo
+    "entry_text": |-
+        Toca a su enemigo con las puntas
+        de sus dos colas y le suelta una
+        descarga de más de 20000 voltios.
+"japanese":
+    "name": |-
+        エレキブル
+    "category": |-
+        らいでんポケモン
+    "entry_text": |-
+        ２ほんの　しっぽの　さきを　あいてに
+        おしあてて　２まんボルトいじょうの
+        でんりゅうを　ながして　こうげき。

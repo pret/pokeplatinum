@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    525
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    387
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    387
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Bivalve Pokémon
+    "entry_text": |-
+        It makes a single pearl during
+        its lifetime. The pearl is said
+        to amplify psychic power.
+"french":
+    "name": |-
+        COQUIPERL
+    "category": |-
+        Pokémon Bivalve
+    "entry_text": |-
+        Il ne produit qu’une perle durant
+        son existence. On raconte qu’elle
+        amplifie les pouvoirs psychiques.
+"german":
+    "name": |-
+        PERLU
+    "category": |-
+        Muschel
+    "entry_text": |-
+        In seinem Leben erschafft es eine
+        einzige Perle. Diese soll Psycho-
+        Kräfte verstärken.
+"italian":
+    "name": |-
+        Clamperl
+    "category": |-
+        Pokémon Bivalve
+    "entry_text": |-
+        Crea una sola perla in tutta la
+        sua vita. Si dice che questa perla
+        amplifichi i poteri psichici.
+"spanish":
+    "name": |-
+        Clamperl
+    "category": |-
+        Pokémon Bivalvo
+    "entry_text": |-
+        Durante toda su vida, crea una
+        sola perla que, según se dice,
+        aumenta los poderes psíquicos.
+"japanese":
+    "name": |-
+        パ－ルル
+    "category": |-
+        ２まいがいポケモン
+    "entry_text": |-
+        いっしょうに　１こだけ　つくる
+        しんじゅは　サイコパワ－を
+        ぞうふくする　さようが　あるという。

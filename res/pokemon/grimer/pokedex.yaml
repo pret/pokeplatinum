@@ -1,0 +1,72 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    300
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    224
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    224
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Sludge Pokémon
+    "entry_text": |-
+        It was born when sludge in a dirty
+        stream was exposed to the moon’s
+        X-rays. It appears among filth.
+"french":
+    "name": |-
+        TADMORV
+    "category": |-
+        Pokémon Dégueu
+    "entry_text": |-
+        Il est né d’un torrent de boue
+        exposé aux rayons X de la lune.
+        Il vit dans les ordures.
+"german":
+    "name": |-
+        SLEIMA
+    "category": |-
+        Schlamm
+    "entry_text": "Es wurde geboren, als Schlamm von\nden Strahlen des Mondes getroffen\n\
+        wurde. Es erscheint, wo Unrat ist. "
+"italian":
+    "name": |-
+        Grimer
+    "category": |-
+        Pokémon Melma
+    "entry_text": |-
+        Nacque quando il fango di un fiume
+        sudicio fu esposto ai raggi X della
+        luna. Vive nella sporcizia.
+"spanish":
+    "name": |-
+        Grimer
+    "category": |-
+        Pokémon Lodo
+    "entry_text": |-
+        Emergió del lodo que se formó en
+        agua contaminada expuesta a los
+        rayos X lunares. Vive en la basura.
+"japanese":
+    "name": |-
+        ベトベタ－
+    "category": |-
+        ヘドロポケモン
+    "entry_text": |-
+        どぶがわの　ヘドロが　つきからの
+        エックスせんを　あびて　うまれた。
+        きたない　ばしょに　あらわれる。

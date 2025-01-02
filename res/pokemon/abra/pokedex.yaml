@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    195
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    364
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    364
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Psi Pokémon
+    "entry_text": |-
+        Using its psychic power is such a
+        strain on its brain that it needs
+        to sleep for 18 hours a day.
+"french":
+    "name": |-
+        ABRA
+    "category": |-
+        Pokémon Psy
+    "entry_text": |-
+        Il dort 18 heures par jour. Même
+        éveillé, il ne prend pas la peine
+        de se lever pour se téléporter.
+"german":
+    "name": |-
+        ABRA
+    "category": |-
+        Psi
+    "entry_text": |-
+        18 Stunden am Tag schläft es. Und
+        wenn es wach ist, teleportiert es
+        sich, während es sitzen bleibt.
+"italian":
+    "name": |-
+        Abra
+    "category": |-
+        Pokémon Psico
+    "entry_text": |-
+        Dorme per 18 ore al giorno.
+        Anche da sveglio, si teletrasporta
+        rimanendo seduto.
+"spanish":
+    "name": |-
+        Abra
+    "category": |-
+        Pokémon Psi
+    "entry_text": |-
+        Duerme 18 horas al día. Cuando
+        está despierto no se levanta ni
+        para teletransportarse.
+"japanese":
+    "name": |-
+        ケ－シィ
+    "category": |-
+        ねんりきポケモン
+    "entry_text": |-
+        まいにち　１８じかん　ねむる。
+        めざめている　ときも　すわったまま
+        テレポ－トで　いどうする。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    970
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    282
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    282
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    14
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    14
+"english":
+    "category": |-
+        Grove Pokémon
+    "entry_text": |-
+        It knows where pure water wells
+        up. It carries fellow Pokémon there
+        on its back.
+"french":
+    "name": |-
+        BOSKARA
+    "category": |-
+        Pokémon Bosquet
+    "entry_text": |-
+        Il vit en forêt près de l’eau.
+        En journée, il la quitte pour dorer
+        sa carapace feuillue au soleil.
+"german":
+    "name": |-
+        CHELCARAIN
+    "category": |-
+        Hain
+    "entry_text": |-
+        Es lebt in der Nähe von Wasser in
+        Wäldern. Tagsüber verlässt es
+        diese, um ein Sonnenbad zu nehmen.
+"italian":
+    "name": |-
+        Grotle
+    "category": |-
+        Pokémon Boschetto
+    "entry_text": |-
+        Vive nelle foreste vicino all’acqua,
+        ma esce di giorno per far pren-
+        dere sole alle piante sul guscio.
+"spanish":
+    "name": |-
+        Grotle
+    "category": |-
+        Pokémon Arboleda
+    "entry_text": |-
+        Vive en los bosques cerca del
+        agua. Por el día, sale a que les dé
+        el sol a las plantas de su espalda.
+"japanese":
+    "name": |-
+        ハヤシガメ
+    "category": |-
+        こだちポケモン
+    "entry_text": |-
+        もりの　なかの　みずべで　くらす。
+        ひるまは　もりの　そとに　でて
+        こうらの　きに　ひかりを　あてる。

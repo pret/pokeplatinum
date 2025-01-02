@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    11
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    491
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    491
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65518
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65518
+"english":
+    "category": |-
+        Wish Pokémon
+    "entry_text": |-
+        It is said to have the ability to
+        grant any wish for just one week
+        every thousand years.
+"french":
+    "name": |-
+        JIRACHI
+    "category": |-
+        Pokémon Souhait
+    "entry_text": |-
+        On raconte qu’une fois tous les
+        mille ans, il a la capacité d’exaucer
+        tous les vœux durant une semaine.
+"german":
+    "name": |-
+        JIRACHI
+    "category": |-
+        Wünscher
+    "entry_text": |-
+        Man sagt, es kann alle tausend
+        Jahre für eine Woche jeden Wunsch
+        erfüllen.
+"italian":
+    "name": |-
+        Jirachi
+    "category": |-
+        Pokémon Desiderio
+    "entry_text": |-
+        Ha l’abilità di realizzare ogni
+        desiderio, ma soltanto per
+        una settimana ogni 1000 anni.
+"spanish":
+    "name": |-
+        Jirachi
+    "category": |-
+        Pokémon Deseo
+    "entry_text": |-
+        Se dice que puede otorgar
+        cualquier deseo durante una
+        semana cada mil años.
+"japanese":
+    "name": |-
+        ジラ－チ
+    "category": |-
+        ねがいごとポケモン
+    "entry_text": |-
+        １０００ねんかんで　７にちだけ
+        めを　さまし　どんな　ねがいごとでも
+        かなえる　ちからを　つかうという。

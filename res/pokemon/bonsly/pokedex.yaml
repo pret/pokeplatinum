@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    150
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    555
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    555
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Bonsai Pokémon
+    "entry_text": |-
+        It prefers an arid atmosphere. It
+        leaks water that looks like tears
+        when adjusting its moisture level.
+"french":
+    "name": |-
+        MANZAI
+    "category": |-
+        Pokémon Bonsaï
+    "entry_text": |-
+        On dirait qu’il pleure constamment.
+        En fait, il régule ses fluides
+        corporels en éliminant le surplus.
+"german":
+    "name": |-
+        MOBAI
+    "category": |-
+        Bonsai
+    "entry_text": |-
+        Es sieht aus, als würde es immer
+        weinen. Dabei reguliert es nur
+        seinen Wasserhaushalt.
+"italian":
+    "name": |-
+        Bonsly
+    "category": |-
+        Pokémon Bonsai
+    "entry_text": |-
+        Sembra che pianga tutto il tempo.
+        In realtà regola il livello dei fluidi
+        del corpo eliminando gli eccessi.
+"spanish":
+    "name": |-
+        Bonsly
+    "category": |-
+        Pokémon Bonsái
+    "entry_text": |-
+        Parece que siempre está llorando,
+        pero en realidad está eliminando
+        el exceso de fluidos corporales.
+"japanese":
+    "name": |-
+        ウソハチ
+    "category": |-
+        ぼんさいポケモン
+    "entry_text": |-
+        いつも　ないているように　みえるが
+        たいないの　すいぶんを　そとに
+        だして　ちょうせつしているのだ。

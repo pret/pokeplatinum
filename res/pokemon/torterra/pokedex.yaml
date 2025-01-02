@@ -1,0 +1,72 @@
+"height": !!int |-
+    22
+"weight": !!int |-
+    3100
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    331
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    334
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    16
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    16
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Continent Pokémon
+    "entry_text": |-
+        Some Pokémon are born on a
+        TORTERRA’s back and spend their
+        entire life there.
+"french":
+    "name": |-
+        TORTERRA
+    "category": |-
+        Pokémon Continent
+    "entry_text": "Il arrive que de petits Pokémon\nse rassemblent sur son dos \n\
+        immobile pour y faire leur nid."
+"german":
+    "name": |-
+        CHELTERRAR
+    "category": |-
+        Kontinent
+    "entry_text": |-
+        Kleine PKMN fangen manchmal an,
+        auf dem bewegungslosen Rücken
+        Nester zu bauen.
+"italian":
+    "name": |-
+        Torterra
+    "category": |-
+        Pokémon Continente
+    "entry_text": |-
+        Piccoli Pokémon si radunano
+        talvolta sul suo dorso immobile
+        per costruirvi la loro tana.
+"spanish":
+    "name": |-
+        Torterra
+    "category": |-
+        Pokémon Continente
+    "entry_text": |-
+        Algunos Pokémon pequeños
+        se juntan en su espalda
+        para hacer sus nidos.
+"japanese":
+    "name": |-
+        ドダイトス
+    "category": |-
+        たいりくポケモン
+    "entry_text": |-
+        ちいさな　ポケモンたちが　あつまり
+        うごかない　ドダイトスの　せなかで
+        すづくりを　はじめることがある。

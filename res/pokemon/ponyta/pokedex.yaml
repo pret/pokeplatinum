@@ -1,0 +1,70 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    300
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    304
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    304
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Fire Horse Pokémon
+    "entry_text": |-
+        As a newborn, it can barely stand.
+        However, through galloping, its
+        legs are made tougher and faster.
+"french":
+    "name": |-
+        PONYTA
+    "category": |-
+        Pokémon Cheval Feu
+    "entry_text": "La crinière et la queue ardentes\nlui donnant sa superbe poussent\
+        \ \nune heure après sa naissance."
+"german":
+    "name": |-
+        PONITA
+    "category": |-
+        Feuerpferd
+    "entry_text": "Bereits eine Stunde nach seiner\nGeburt wachsen seine feurige\n\
+        Mähne und sein feuriger Schweif. "
+"italian":
+    "name": |-
+        Ponyta
+    "category": |-
+        Pokémon Cavalfuoco
+    "entry_text": |-
+        Un’ora dopo la nascita, gli
+        crescono criniera e coda, che gli
+        donano un aspetto solenne.
+"spanish":
+    "name": |-
+        Ponyta
+    "category": |-
+        Pokémon Caballo F.
+    "entry_text": |-
+        Sus impresionantes cola y crin
+        de fuego le crecen una hora
+        después de nacer.
+"japanese":
+    "name": |-
+        ポニ－タ
+    "category": |-
+        ひのうまポケモン
+    "entry_text": |-
+        うまれてから　１じかんも　すると
+        ほのおの　たてがみや　しっぽが
+        はえそろい　りっぱな　すがたになる。

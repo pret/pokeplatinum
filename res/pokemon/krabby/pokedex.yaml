@@ -1,0 +1,72 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    65
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    493
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    493
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    30
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    30
+"english":
+    "category": |-
+        River Crab Pokémon
+    "entry_text": |-
+        It lives in burrows dug on sandy
+        beaches. Its pincers fully grow
+        back if they are broken in battle.
+"french":
+    "name": |-
+        KRABBY
+    "category": |-
+        Pokémon Doux Crabe
+    "entry_text": "Il creuse son terrier sur des \nplages sablonneuses. Ses \npinces\
+        \ repoussent si on les brise."
+"german":
+    "name": |-
+        KRABBY
+    "category": |-
+        Krabbe
+    "entry_text": |-
+        Es lebt in Höhlen am Strand. Seine
+        Scheren wachsen nach, wenn es sie
+        im Kampf verliert.
+"italian":
+    "name": |-
+        Krabby
+    "category": |-
+        Pokémon Granchio
+    "entry_text": |-
+        Vive in buche scavate sulle spiagge
+        sabbiose. Le sue chele ricrescono
+        se si spezzano nella lotta.
+"spanish":
+    "name": |-
+        Krabby
+    "category": |-
+        Pokémon Cangrejo
+    "entry_text": |-
+        Vive en madrigueras excavadas
+        en playas arenosas. Sus pinzas
+        vuelven a crecer si se rompen.
+"japanese":
+    "name": |-
+        クラブ
+    "category": |-
+        さわがにポケモン
+    "entry_text": |-
+        すなはまに　あなを　ほって　くらす。
+        ハサミは　たたかいで　とれても
+        また　はえてきて　もとどおり。

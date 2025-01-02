@@ -1,0 +1,72 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    505
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    222
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    222
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Pitch-Black Pokémon
+    "entry_text": |-
+        To protect itself, it afflicts those
+        around it with nightmares. However,
+        it means no harm.
+"french":
+    "name": |-
+        DARKRAI
+    "category": |-
+        Pokémon Noirtotal
+    "entry_text": |-
+        Il a la capacité de bercer les gens
+        pour les faire rêver. Il se montre
+        durant les nuits de nouvelle lune.
+"german":
+    "name": |-
+        DARKRAI
+    "category": |-
+        Dunkelnacht
+    "entry_text": |-
+        Es kann andere in Schlaf ver-
+        setzen und ihnen Träume geben.
+        Es ist nur bei Neumond aktiv.
+"italian":
+    "name": |-
+        Darkrai
+    "category": |-
+        Pokémon Neropesto
+    "entry_text": "Ha l’abilità di far addormentare la\ngente e farla sognare. È attivo\n\
+        nelle notti di luna nuova. "
+"spanish":
+    "name": |-
+        Darkrai
+    "category": |-
+        Pokémon Oscuridad
+    "entry_text": |-
+        Puede adormecer a la gente
+        y hacerle soñar. Está activo
+        en las noches de luna nueva.
+"japanese":
+    "name": |-
+        ダ－クライ
+    "category": |-
+        あんこくポケモン
+    "entry_text": |-
+        ひとびとを　ふかい　ねむりに　さそい
+        ゆめを　みせる　のうりょくを　もつ。
+        しんげつの　よるに　かつどうする。

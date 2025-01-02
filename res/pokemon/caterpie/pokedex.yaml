@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    29
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    502
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    502
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    28
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    28
+"english":
+    "category": |-
+        Worm Pokémon
+    "entry_text": |-
+        It releases a stench from its red
+        antenna to repel enemies. It
+        grows by molting repeatedly.
+"french":
+    "name": |-
+        CHENIPAN
+    "category": |-
+        Pokémon Ver
+    "entry_text": |-
+        Ses antennes rouges libèrent une
+        puanteur qui repousse l’ennemi. Il
+        grandit par mues régulières.
+"german":
+    "name": |-
+        RAUPY
+    "category": |-
+        Wurm
+    "entry_text": |-
+        Seine roten Antennen sondern einen
+        Gestank ab, der Feinde verjagt. Es
+        wächst, indem es sich häutet.
+"italian":
+    "name": |-
+        Caterpie
+    "category": |-
+        Pokémon Baco
+    "entry_text": |-
+        Dalle antenne rosse emana un puzzo
+        che respinge il nemico. Cresce
+        cambiando più volte la pelle.
+"spanish":
+    "name": |-
+        Caterpie
+    "category": |-
+        Pokémon Gusano
+    "entry_text": |-
+        Su antena roja desprende un gran
+        hedor para repeler a los enemigos.
+        Crece mudándose repetidamente.
+"japanese":
+    "name": |-
+        キャタピ－
+    "category": |-
+        いもむしポケモン
+    "entry_text": |-
+        あかい　しょっかくから　においを
+        だして　てきを　おいはらう。
+        だっぴを　くりかえし　おおきくなる。

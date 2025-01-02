@@ -1,0 +1,72 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    10
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    281
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    281
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Cottonweed Pokémon
+    "entry_text": |-
+        It blooms when the weather warms.
+        It floats in the sky to soak up as
+        much sunlight as possible.
+"french":
+    "name": |-
+        FLORAVOL
+    "category": |-
+        Pokémon Pissenlit
+    "entry_text": "Il fleurit lorsque les températures\nremontent. Il flotte dans\
+        \ le ciel \npour absorber les rayons du soleil."
+"german":
+    "name": |-
+        HUBELUPF
+    "category": |-
+        Löwenzahn
+    "entry_text": |-
+        Sobald es wärmer wird, blüht es
+        auf. Es schwebt am Himmel und nimmt
+        so viel Sonnenlicht auf wie möglich.
+"italian":
+    "name": |-
+        Skiploom
+    "category": |-
+        Pokémon Gramigna
+    "entry_text": |-
+        Il suo fiore sboccia appena l’aria
+        si riscalda. Fluttua nel cielo
+        per assorbire l’energia solare.
+"spanish":
+    "name": |-
+        Skiploom
+    "category": |-
+        Pokémon Algadón
+    "entry_text": |-
+        Florece en épocas cálidas. Flota
+        en el aire para absorber toda la
+        luz solar que puede.
+"japanese":
+    "name": |-
+        ポポッコ
+    "category": |-
+        わたくさポケモン
+    "entry_text": |-
+        きおんが　たかくなると　はなひらく。
+        そらに　うかんで　ひざしを
+        いっぱい　あびようとする。

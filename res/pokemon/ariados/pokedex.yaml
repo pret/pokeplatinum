@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    335
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    227
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    227
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    12
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    12
+"english":
+    "category": |-
+        Long Leg Pokémon
+    "entry_text": |-
+        It attaches silk to its prey and
+        sets it free. Later, it tracks the
+        silk to the prey and its friends.
+"french":
+    "name": |-
+        MIGALOS
+    "category": |-
+        Pokémon Long-Patte
+    "entry_text": |-
+        Il attache un fil à sa proie avant
+        de la libérer. Il s’en servira pour
+        la retrouver, elle et ses amis.
+"german":
+    "name": |-
+        ARIADOS
+    "category": |-
+        Langbein
+    "entry_text": |-
+        Es befestigt Seide an der Beute und
+        lässt sie frei. Es folgt dem Seiden-
+        faden zur Beute u. ihren Freunden.
+"italian":
+    "name": |-
+        Ariados
+    "category": |-
+        Pokémon Lungazampa
+    "entry_text": |-
+        Aggancia la preda con un filo di se-
+        ta e la lascia andare. Poi segue il
+        filo e la trova quando è in gruppo.
+"spanish":
+    "name": |-
+        Ariados
+    "category": |-
+        Pokémon Pata Larga
+    "entry_text": |-
+        Pega hilos de seda a sus presas y
+        las libera para seguirlas más tarde
+        y localizar también a sus amigos.
+"japanese":
+    "name": |-
+        アリアドス
+    "category": |-
+        あしながポケモン
+    "entry_text": |-
+        えものの　からだに　いとを　つけて
+        わざと　にがす。いとを　たどれば
+        なかまごと　つかまえられるからだ。

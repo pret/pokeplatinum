@@ -1,0 +1,72 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    682
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    236
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    236
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Plate Pokémon
+    "entry_text": |-
+        It went ashore after evolving.
+        Its entire body is clad in a sturdy
+        armor.
+"french":
+    "name": |-
+        ARMALDO
+    "category": |-
+        Pokémon Blindage
+    "entry_text": "Il a gagné la côte après son \névolution. Une armure robuste\n\
+        recouvre son corps."
+"german":
+    "name": |-
+        ARMALDO
+    "category": |-
+        Schild
+    "entry_text": |-
+        Nach seiner Entwicklung ging es an
+        Land. Sein Körper ist von einer
+        robusten Rüstung umgeben.
+"italian":
+    "name": |-
+        Armaldo
+    "category": |-
+        Pokémon Piastre
+    "entry_text": |-
+        Dopo essersi evoluto, è andato a
+        vivere a riva. Tutto il suo corpo è
+        rivestito da un’armatura robusta.
+"spanish":
+    "name": |-
+        Armaldo
+    "category": |-
+        Pokémon Armadura
+    "entry_text": |-
+        Tras evolucionar, este Pokémon
+        fue a tierra firme. Una dura coraza
+        protege todo su cuerpo.
+"japanese":
+    "name": |-
+        ア－マルド
+    "category": |-
+        かっちゅうポケモン
+    "entry_text": |-
+        しんかして　ちじょうで　くらすように
+        なった。ぜんしんが　がんじょうな
+        よろいに　おおわれている。

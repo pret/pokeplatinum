@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    522
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    228
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    228
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Forest Pokémon
+    "entry_text": |-
+        The leaves that grow on its arms
+        can slice down thick trees. It is
+        without peer in jungle combat.
+"french":
+    "name": |-
+        JUNGKO
+    "category": |-
+        Pokémon Forêt
+    "entry_text": |-
+        Les feuilles sur ses bras peuvent
+        trancher des troncs épais. C’est
+        le meilleur combattant des jungles.
+"german":
+    "name": |-
+        GEWALDRO
+    "category": |-
+        Dschungel
+    "entry_text": |-
+        Die Blätter an seinen Armen können
+        dicke Bäume fällen. Im Dschungel-
+        kampf gibt es kein stärkeres PKMN.
+"italian":
+    "name": |-
+        Sceptile
+    "category": |-
+        Pokémon Foresta
+    "entry_text": |-
+        Le foglie che crescono sulle sue
+        braccia tagliano anche grandi al-
+        beri. Nel suo habitat, è imbattibile.
+"spanish":
+    "name": |-
+        Sceptile
+    "category": |-
+        Pokémon Monte
+    "entry_text": |-
+        Las hojas de sus brazos pueden
+        cortar gruesos árboles. Invencible
+        en los combates en la jungla.
+"japanese":
+    "name": |-
+        ジュカイン
+    "category": |-
+        みつりんポケモン
+    "entry_text": |-
+        うでに　はえた　はっぱは　たいぼくも
+        すっぱり　きりたおす　きれあじ。
+        みつりんの　たたかいでは　むてき。

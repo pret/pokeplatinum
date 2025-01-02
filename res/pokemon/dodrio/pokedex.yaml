@@ -1,0 +1,72 @@
+"height": !!int |-
+    18
+"weight": !!int |-
+    852
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    310
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    303
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    13
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    12
+"pokemon_pos_m": !!int |-
+    2
+"english":
+    "category": |-
+        Triple Bird Pokémon
+    "entry_text": |-
+        When DODUO evolves into this odd
+        breed, one of its heads splits into
+        two. It runs at nearly 40 mph.
+"french":
+    "name": |-
+        DODRIO
+    "category": |-
+        Pokémon Trioiseau
+    "entry_text": "Quand DODUO connaît cette étrange\névolution, l’une de ses têtes\
+        \ se \ndédouble. Il atteint les 60 km/h."
+"german":
+    "name": |-
+        DODRI
+    "category": |-
+        Trivogel
+    "entry_text": |-
+        Entwickelt sich DODU, teilt sich
+        einer der Köpfe in zwei. Es kann
+        sich mit 60 km/h fortbewegen.
+"italian":
+    "name": |-
+        Dodrio
+    "category": |-
+        Pokémon Triuccello
+    "entry_text": |-
+        Quando DODUO si evolve in questo
+        strano essere, una delle due teste
+        si divide a metà. Corre a 60 km/h.
+"spanish":
+    "name": |-
+        Dodrio
+    "category": |-
+        Pokémon Ave Triple
+    "entry_text": |-
+        Cuando un DODUO evoluciona, una de
+        sus cabezas se divide en dos.
+        Corre a unos 60 km por hora.
+"japanese":
+    "name": |-
+        ド－ドリオ
+    "category": |-
+        みつごどりポケモン
+    "entry_text": |-
+        しんかのときに　ド－ド－の　あたまの
+        どちらかが　ぶんれつした　ちんしゅ。
+        じそく　６０キロいじょうで　はしる。

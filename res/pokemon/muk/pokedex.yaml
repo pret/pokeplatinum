@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    300
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Sludge Pokémon
+    "entry_text": |-
+        A toxic fluid seeps from its body.
+        The fluid instantly kills plants and
+        trees on contact.
+"french":
+    "name": |-
+        GROTADMORV
+    "category": |-
+        Pokémon Dégueu
+    "entry_text": |-
+        Son corps exsude un fluide toxique
+        qui tue instantanément les plantes
+        et les arbres au contact.
+"german":
+    "name": |-
+        SLEIMOK
+    "category": |-
+        Schlamm
+    "entry_text": |-
+        Sein Körper sondert eine giftige
+        Substanz ab, die bei Kontakt
+        Pflanzen und Bäume vernichtet.
+"italian":
+    "name": |-
+        Muk
+    "category": |-
+        Pokémon Melma
+    "entry_text": |-
+        Dal suo corpo filtra un fluido tos-
+        sico che uccide all’istante piante e
+        alberi con cui viene a contatto.
+"spanish":
+    "name": |-
+        Muk
+    "category": |-
+        Pokémon Lodo
+    "entry_text": |-
+        Su cuerpo segrega un fluido
+        tóxico que elimina la vida vegetal
+        cuando la toca.
+"japanese":
+    "name": |-
+        ベトベトン
+    "category": |-
+        ヘドロポケモン
+    "entry_text": |-
+        からだから　もうどくの　たいえきが
+        しみでている。その　えきに　ふれた
+        くさきは　あっというまに　かれる。

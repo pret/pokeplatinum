@@ -1,0 +1,72 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    495
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    265
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    265
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Hippo Pokémon
+    "entry_text": |-
+        It shuts its nostrils tight then
+        travels through sand as if walking.
+        They form colonies of around ten.
+"french":
+    "name": |-
+        HIPPOPOTAS
+    "category": |-
+        Pokémon Hippo
+    "entry_text": |-
+        Il vit dans des endroits arides.
+        Il exsude du sable granuleux
+        au lieu de transpirer.
+"german":
+    "name": |-
+        HIPPOPOTAS
+    "category": |-
+        Flusspferd
+    "entry_text": "Es lebt in ausgetrockneten\nGebieten. Statt zu schwitzen,\nsondert\
+        \ sein Körper Sand ab. "
+"italian":
+    "name": |-
+        Hippopotas
+    "category": |-
+        Pokémon Ippo
+    "entry_text": |-
+        Vive in territori aridi. Invece del
+        sudore, espelle dal corpo sabbia
+        granulosa.
+"spanish":
+    "name": |-
+        Hippopotas
+    "category": |-
+        Pokémon Hipo
+    "entry_text": |-
+        Vive en zonas áridas. En lugar
+        de sudar, su cuerpo expulsa
+        granos de arena.
+"japanese":
+    "name": |-
+        ヒポポタス
+    "category": |-
+        カバポケモン
+    "entry_text": |-
+        かんそうした　とちで　くらす。
+        あせの　かわりに　すなつぶを
+        からだから　ぶんぴつする　ポケモン。

@@ -1,0 +1,72 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    1300
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    358
+"pokemon_scale_f": !!int |-
+    184
+"trainer_scale_m": !!int |-
+    334
+"pokemon_scale_m": !!int |-
+    184
+"trainer_pos_f": !!int |-
+    16
+"pokemon_pos_f": !!int |-
+    9
+"trainer_pos_m": !!int |-
+    16
+"pokemon_pos_m": !!int |-
+    9
+"english":
+    "category": |-
+        Ball Whale Pokémon
+    "entry_text": |-
+        On sunny days, it lands on beaches
+        to bounce like a ball and play.
+        It spouts water from its nose.
+"french":
+    "name": |-
+        WAILMER
+    "category": |-
+        Pokémon Baleinboule
+    "entry_text": |-
+        Par beau temps, il se pose sur les
+        plages pour jouer et rebondir. Il
+        expulse de l’eau par son évent.
+"german":
+    "name": |-
+        WAILMER
+    "category": |-
+        Kugelwal
+    "entry_text": "An sonnigen Tagen trifft man diese\nPokémon an Stränden, wo sie\
+        \ wie\nBälle herumhüpfen. "
+"italian":
+    "name": |-
+        Wailmer
+    "category": |-
+        Pokémon Balenottero
+    "entry_text": |-
+        In giornate soleggiate, gioca
+        rimbalzando sulla spiaggia.
+        Spruzza acqua dalle narici.
+"spanish":
+    "name": |-
+        Wailmer
+    "category": |-
+        Pokémon Ballenabola
+    "entry_text": |-
+        En días soleados se tumba en las
+        playas para jugar y botar como una
+        pelota. Lanza agua por la nariz.
+"japanese":
+    "name": |-
+        ホエルコ
+    "category": |-
+        たまくじらポケモン
+    "entry_text": |-
+        はれた　ひは　すなはまに　あがり
+        ボ－ルのように　はずんで　あそぶ。
+        はなから　みずを　ふきあげる。
