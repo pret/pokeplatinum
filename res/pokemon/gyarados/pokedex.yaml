@@ -1,0 +1,74 @@
+"height": !!int |-
+    65
+"weight": !!int |-
+    2350
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    512
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    488
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    22
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    22
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Atrocious Pokémon
+    "entry_text": |-
+        Once it begins to rampage, a
+        GYARADOS will burn everything
+        down, even in a harsh storm.
+"french":
+    "name": |-
+        LEVIATOR
+    "category": |-
+        Pokémon Terrifiant
+    "entry_text": |-
+        Lorsqu’il apparaît, sa rage ne
+        cesse qu’après qu’il a rasé les
+        plaines et montagnes alentour.
+"german":
+    "name": |-
+        GARADOS
+    "category": |-
+        Grausam
+    "entry_text": |-
+        Sobald es erscheint, nimmt seine
+        Wut nicht eher ab, bis es die Felder
+        und Berge ringsum zerstört hat.
+"italian":
+    "name": |-
+        Gyarados
+    "category": |-
+        Pokémon Atroce
+    "entry_text": |-
+        La sua ira non si placa finché non
+        ha raso al suolo campi e monti
+        attorno a sé.
+"spanish":
+    "name": |-
+        Gyarados
+    "category": |-
+        Pokémon Atrocidad
+    "entry_text": |-
+        Cuando se enfada, su rabia solo
+        se disipa tras arrasar los
+        campos y montañas vecinos.
+"japanese":
+    "name": |-
+        ギャラドス
+    "category": |-
+        きょうあくポケモン
+    "entry_text": |-
+        ひとたび　すがたを　あらわすと
+        のやまの　すべてを　やきつくすまで
+        いかりが　しずまらない。

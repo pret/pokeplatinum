@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    196
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    326
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    326
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    21
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    21
+"english":
+    "category": |-
+        Duck Pokémon
+    "entry_text": |-
+        Overwhelmed by enigmatic abilities,
+        it suffers a constant headache. It
+        sometimes uses mysterious powers.
+"french":
+    "name": |-
+        PSYKOKWAK
+    "category": |-
+        Pokémon Canard
+    "entry_text": |-
+        Quand son mal de crâne empire,
+        il développe d’étranges pouvoirs
+        dont il ne se souvient jamais.
+"german":
+    "name": |-
+        ENTON
+    "category": |-
+        Ente
+    "entry_text": |-
+        Werden seine konstant vorhandenen
+        Kopfschmerzen stärker, entwickelt
+        es seltsame Kräfte.
+"italian":
+    "name": |-
+        Psyduck
+    "category": |-
+        Pokémon Papero
+    "entry_text": |-
+        Se la sua costante emicrania
+        peggiora, inizia ad usare poteri
+        misteriosi. Ma poi non se lo ricorda.
+"spanish":
+    "name": |-
+        Psyduck
+    "category": |-
+        Pokémon Pato
+    "entry_text": |-
+        Cuando su jaqueca empeora, usa
+        poderes misteriosos. Sin embargo,
+        nunca recuerda haberlos usado.
+"japanese":
+    "name": |-
+        コダック
+    "category": |-
+        あひるポケモン
+    "entry_text": |-
+        ずつうが　はげしくなると　ふしぎな
+        ちからを　つかうようになる。
+        そのときの　ことは　おぼえていない。

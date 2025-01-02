@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    95
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    326
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    326
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65534
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65534
+"english":
+    "category": |-
+        Seagull Pokémon
+    "entry_text": |-
+        It soars high in the sky, riding on
+        updrafts like a glider. It carries
+        food tucked in its bill.
+"french":
+    "name": |-
+        GOELISE
+    "category": |-
+        Pokémon Mouette
+    "entry_text": |-
+        Il niche sur les falaises escarpées
+        face à la mer. Il vole en altitude
+        grâce aux courants ascendants.
+"german":
+    "name": |-
+        WINGULL
+    "category": |-
+        Seemöwe
+    "entry_text": |-
+        Es baut sein Nest auf steilen
+        Klippen. Es nutzt die Aufwinde, um
+        in größerer Höhe fliegen zu können.
+"italian":
+    "name": |-
+        Wingull
+    "category": |-
+        Pokémon Gabbiano
+    "entry_text": |-
+        Nidifica su scogliere a picco sul
+        mare. Si fa trasportare ad alta
+        quota dalle correnti ascensionali.
+"spanish":
+    "name": |-
+        Wingull
+    "category": |-
+        Pokémon Gaviota
+    "entry_text": |-
+        Anida en acantilados y alcanza
+        gran altura aprovechando las
+        corrientes ascendentes.
+"japanese":
+    "name": |-
+        キャモメ
+    "category": |-
+        うみねこポケモン
+    "entry_text": |-
+        うみべの　だんがいぜっぺきに
+        すを　つくる。じょうしょうきりゅうを
+        りようして　おおぞらに　まいあがる。

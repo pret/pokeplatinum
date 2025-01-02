@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 18,
-        "weight": 1005,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 234,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 234,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Herb Pokémon",
-            "entry_text": "Its breath has the fantastic\nability to revive dead plants and\nflowers."
-        },
-        "french": {
-            "name": "MEGANIUM",
-            "category": "Pokémon Herbe",
-            "entry_text": "Son souffle a l’incroyable capacité\nde ranimer les plantes et les \nfleurs flétries."
-        },
-        "german": {
-            "name": "MEGANIE",
-            "category": "Kräuter",
-            "entry_text": "Mit seinem Atem kann es tote\nPflanzen und Blumen zu neuem\nLeben erwecken."
-        },
-        "italian": {
-            "name": "Meganium",
-            "category": "Pokémon Erbe",
-            "entry_text": "Il suo respiro ha lo straordinario\npotere di far tornare rigogliosi\npiante secche e fiori avvizziti."
-        },
-        "spanish": {
-            "name": "Meganium",
-            "category": "Pokémon Hierba",
-            "entry_text": "Su aliento tiene la maravillosa\ncapacidad de revivir plantas y\nflores muertas."
-        },
-        "japanese": {
-            "name": "メガニウム",
-            "category": "ハ－ブポケモン",
-            "entry_text": "メガニウムが　はきだす　いきには\nかれた　くさばなを　よみがえらせる\nふしぎな　ちからが　ひめられている。"
-        }
     }
 }

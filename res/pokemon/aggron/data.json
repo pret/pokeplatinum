@@ -150,47 +150,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 21,
-        "weight": 3600,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 350,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 355,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 15,
-        "pokemon_pos_f": 6,
-        "trainer_pos_m": 15,
-        "pokemon_pos_m": 6,
-        "english": {
-            "category": "Iron Armor Pokémon",
-            "entry_text": "While seeking iron for food, it\ndigs tunnels by breaking through\nbedrock with its steel horns."
-        },
-        "french": {
-            "name": "GALEKING",
-            "category": "Pokémon Armurfer",
-            "entry_text": "Il creuse des galeries à travers la\npierre avec ses cornes d’acier\npour trouver le fer qu’il apprécie. "
-        },
-        "german": {
-            "name": "STOLLOSS",
-            "category": "Eisenpanzer",
-            "entry_text": "Auf der Suche nach Eisen, seiner\nNahrung, gräbt es mit seinen Stahl-\nhörnern sogar Tunnel durch Felsen."
-        },
-        "italian": {
-            "name": "Aggron",
-            "category": "Pokémon Corazza",
-            "entry_text": "Cerca ferro da mangiare scavando\ntunnel nella roccia con le sue\ncorna d’acciaio."
-        },
-        "spanish": {
-            "name": "Aggron",
-            "category": "Pokémon Cor. Férrea",
-            "entry_text": "Mientras busca hierro para comer,\nexcava túneles en la roca con sus\npotentes cuernos de acero."
-        },
-        "japanese": {
-            "name": "ボスゴドラ",
-            "category": "てつヨロイポケモン",
-            "entry_text": "はがねの　ツノで　かたい　がんばんを\nつきくずしながら　しょくりょうの\nてつを　さがして　トンネルを　ほる。"
-        }
     }
 }

@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    163
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    326
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    326
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Whisper Pokémon
+    "entry_text": |-
+        Usually, its cries are like quiet
+        murmurs. If frightened, it shrieks
+        at the same volume as a jet plane.
+"french":
+    "name": |-
+        CHUCHMUR
+    "category": |-
+        Pokémon Chuchoteur
+    "entry_text": |-
+        En temps normal, son cri est pareil
+        à un murmure. Effrayé, il atteint le
+        volume d’un avion à réaction.
+"german":
+    "name": |-
+        FLURMEL
+    "category": |-
+        Flüster
+    "entry_text": |-
+        Normalerweise klingen seine Rufe
+        wie Gemurmel. Hat es aber Angst,
+        ist es so laut wie ein Flugzeug.
+"italian":
+    "name": |-
+        Whismur
+    "category": |-
+        Pokémon Sussurro
+    "entry_text": |-
+        Di solito ha una voce molto tenue,
+        ma se si spaventa, emette un suono
+        assordante quanto un jet.
+"spanish":
+    "name": |-
+        Whismur
+    "category": |-
+        Pokémon Susurro
+    "entry_text": |-
+        Suele murmurar a un volumen casi
+        inaudible, pero cuando se asusta
+        grita con el volumen de un reactor.
+"japanese":
+    "name": |-
+        ゴニョニョ
+    "category": |-
+        ささやきポケモン
+    "entry_text": |-
+        ふだんは　ささやくような　なきごえ。
+        ふあんになると　ジェットきと　おなじ
+        おんりょうで　なきつづける。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    19
+"weight": !!int |-
+    515
+"body_shape": |-
+    SHAPE_MULTI_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    276
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    276
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65532
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65532
+"english":
+    "category": |-
+        Ogre Darner Pokémon
+    "entry_text": |-
+        Its jaw power is incredible. It is
+        adept at biting apart foes while
+        flying by at high speed.
+"french":
+    "name": |-
+        YANMEGA
+    "category": |-
+        Pokémon Libellogre
+    "entry_text": |-
+        Les ondes de choc qu’il génère
+        en battant des ailes infligent de
+        graves blessures internes.
+"german":
+    "name": |-
+        YANMEGA
+    "category": |-
+        Agrion
+    "entry_text": |-
+        Durch die Bewegung seiner Flügel
+        entstehen Schockwellen, die dem
+        Gegn. innere Verletzungen zufügen.
+"italian":
+    "name": |-
+        Yanmega
+    "category": |-
+        Pokémon Libellorco
+    "entry_text": |-
+        Agitando le ali crea onde d’urto
+        che infliggono gravi ferite agli
+        organi interni dei nemici.
+"spanish":
+    "name": |-
+        Yanmega
+    "category": |-
+        Pokémon Libélula
+    "entry_text": |-
+        Agita sus alas para crear ondas
+        de choque que producen
+        lesiones internas a sus rivales.
+"japanese":
+    "name": |-
+        メガヤンマ
+    "category": |-
+        オニトンボポケモン
+    "entry_text": |-
+        はばたいたときの　しょうげきはで
+        あいての　からだの　うちがわに
+        ちめいてきな　ダメ－ジを　あたえる。

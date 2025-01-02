@@ -1,0 +1,74 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    405
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    9
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    9
+"english":
+    "category": |-
+        Shellfish Pokémon
+    "entry_text": |-
+        It is thought that this Pokémon
+        came onto land because its
+        prey adapted to life on land.
+"french":
+    "name": |-
+        KABUTOPS
+    "category": |-
+        Pokémon Carapace
+    "entry_text": |-
+        On pense que ce Pokémon est
+        venu sur la terre ferme pour
+        suivre l’évolution de ses proies.
+"german":
+    "name": |-
+        KABUTOPS
+    "category": |-
+        Schaltier
+    "entry_text": |-
+        Man geht davon aus, dass dieses
+        PKMN an Land kam, weil seine Beute
+        ebenfalls irgendwann an Land lebte.
+"italian":
+    "name": |-
+        Kabutops
+    "category": |-
+        Pokémon Crostaceo
+    "entry_text": |-
+        Pokémon probabilmente giunto sulla
+        terraferma perché le sue prede si
+        erano adattate a vivere lì.
+"spanish":
+    "name": |-
+        Kabutops
+    "category": |-
+        Pokémon Marisco
+    "entry_text": |-
+        Se cree que este Pokémon cambió
+        de hábitat y pasó del mar a la
+        tierra buscando nuevas presas.
+"japanese":
+    "name": |-
+        カブトプス
+    "category": |-
+        こうらポケモン
+    "entry_text": |-
+        えものが　りくじょうせいかつを
+        はじめたため　カブトプスも　りくに
+        あがったと　かんがえられている。

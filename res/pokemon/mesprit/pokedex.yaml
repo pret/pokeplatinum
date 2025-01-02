@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    3
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    470
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    470
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65526
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65526
+"english":
+    "category": |-
+        Emotion Pokémon
+    "entry_text": |-
+        When MESPRIT flew, people learned
+        the joy and sadness of living.
+        It was the birth of emotions.
+"french":
+    "name": |-
+        CREFOLLET
+    "category": |-
+        Pokémon Emotion
+    "entry_text": |-
+        On l’appelle “être de l’émotion”.
+        Il enseigne aux hommes la beauté de
+        la tristesse, la douleur et la joie.
+"german":
+    "name": |-
+        VESPRIT
+    "category": |-
+        Emotion
+    "entry_text": |-
+        “Das fühlende Wesen”.
+        Es lehrt die Menschen die Ideale
+        von Trauer, Schmerz und Freude.
+"italian":
+    "name": |-
+        Mesprit
+    "category": |-
+        Pokémon Emozione
+    "entry_text": |-
+        Detto “Essere delle emozioni”.
+        Ha insegnato agli uomini la nobiltà
+        di tristezza, gioia e dolore.
+"spanish":
+    "name": |-
+        Mesprit
+    "category": |-
+        Pokémon Sensorio
+    "entry_text": |-
+        Se le conoce como el “ser de la
+        emoción”. Enseñó a los humanos
+        la nobleza del dolor y la alegría.
+"japanese":
+    "name": |-
+        エムリット
+    "category": |-
+        かんじょうポケモン
+    "entry_text": |-
+        かなしみの　くるしさと　よろこびの
+        とうとさを　ひとびとに　おしえた。
+        かんじょうのかみ　と　よばれている。

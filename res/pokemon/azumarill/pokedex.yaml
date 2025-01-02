@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    285
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    347
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    347
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Aqua Rabbit Pokémon
+    "entry_text": |-
+        It can spend all day in water,
+        since it can inhale and store
+        a large volume of air.
+"french":
+    "name": |-
+        AZUMARILL
+    "category": |-
+        Pokémon Aqualapin
+    "entry_text": |-
+        Il peuple les lacs et les mers. Sous
+        l’eau, ses motifs et ses couleurs
+        brouillent la vue de l’ennemi.
+"german":
+    "name": |-
+        AZUMARILL
+    "category": |-
+        Aquahase
+    "entry_text": |-
+        Es lebt in Flüssen und Seen. Im
+        Wasser verwirrt es seine Gegner
+        durch seine Farbe und Muster.
+"italian":
+    "name": |-
+        Azumarill
+    "category": |-
+        Pokémon Acquniglio
+    "entry_text": |-
+        Vive nei fiumi e nei laghi. Il suo
+        colore e i disegni confondono i
+        nemici in acqua.
+"spanish":
+    "name": |-
+        Azumarill
+    "category": |-
+        Pokémon Conejoagua
+    "entry_text": |-
+        Vive en ríos y lagos. En el agua,
+        sus colores y dibujos confunden
+        a los enemigos.
+"japanese":
+    "name": |-
+        マリルリ
+    "category": |-
+        みずうさぎポケモン
+    "entry_text": |-
+        かわや　みずうみに　せいそくする。
+        みずの　なかでは　からだの　いろと
+        もようが　てきの　めを　あざむく。

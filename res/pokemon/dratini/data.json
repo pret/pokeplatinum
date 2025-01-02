@@ -116,47 +116,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 18,
-        "weight": 33,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 201,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 201,
-        "trainer_pos_f": 6,
-        "pokemon_pos_f": 6,
-        "trainer_pos_m": 5,
-        "pokemon_pos_m": 6,
-        "english": {
-            "category": "Dragon Pokémon",
-            "entry_text": "It is called the “Mirage Pokémon”\nbecause so few have seen it.\nIts shed skin has been found."
-        },
-        "french": {
-            "name": "MINIDRACO",
-            "category": "Pokémon Dragon",
-            "entry_text": "On l’appelle “Pokémon mirage”\nen raison de sa rareté. On a\ndécouvert sa mue."
-        },
-        "german": {
-            "name": "DRATINI",
-            "category": "Drache",
-            "entry_text": "Man nennt es “Illusion-Pokémon”,\ndenn nur wenige haben es gesehen.\nNur seine Haut wurde oft gefunden."
-        },
-        "italian": {
-            "name": "Dratini",
-            "category": "Pokémon Drago",
-            "entry_text": "Detto “Pokémon miraggio” perché\nè stato avvistato da pochi. È facile\ntrovare la sua pelle della muta."
-        },
-        "spanish": {
-            "name": "Dratini",
-            "category": "Pokémon Dragón",
-            "entry_text": "Se le llama el “Pokémon espejismo”\nporque son muy pocos los que lo\nhan visto. Se encontró su muda."
-        },
-        "japanese": {
-            "name": "ミニリュウ",
-            "category": "ドラゴンポケモン",
-            "entry_text": "もくげきしゃが　すくないために\nまぼろしのポケモンと　よばれていた。\nだっぴした　かわが　みつかっている。"
-        }
     }
 }

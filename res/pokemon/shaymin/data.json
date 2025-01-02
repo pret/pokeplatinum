@@ -102,47 +102,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 2,
-        "weight": 21,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 460,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 460,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 32,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 32,
-        "english": {
-            "category": "Gratitude Pokémon",
-            "entry_text": "The flowers all over its body burst\ninto bloom if it is lovingly hugged\nand senses gratitude."
-        },
-        "french": {
-            "name": "SHAYMIN",
-            "category": "Pokémon Gratitude",
-            "entry_text": "Il vit dans les champs de fleurs et\nse cache en s’enroulant pour\nimiter une plante fleurie."
-        },
-        "german": {
-            "name": "SHAYMIN",
-            "category": "Dankbarkeit",
-            "entry_text": "Es lebt auf Blumenwiesen und rollt\nsich ein, um wie eine Blume auszu-\nsehen u. nicht entdeckt zu werden."
-        },
-        "italian": {
-            "name": "Shaymin",
-            "category": "Pokémon Gratitudine",
-            "entry_text": "Vive nei campi di fiori e cerca di\nnon farsi vedere arrotolandosi per\nsembrare una pianta fiorita."
-        },
-        "spanish": {
-            "name": "Shaymin",
-            "category": "Pokémon Gratitud",
-            "entry_text": "Vive entre las flores. Para evitar\nser descubierto, se enrosca\ncomo si fuera una planta."
-        },
-        "japanese": {
-            "name": "シェイミ",
-            "category": "かんしゃポケモン",
-            "entry_text": "はなばたけの　なかで　くらしているが\nからだを　まるめると　はなのように\nみえるため　だれも　きづかないのだ。"
-        }
     }
 }

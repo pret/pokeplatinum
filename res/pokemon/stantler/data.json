@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 712,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 256,
-        "pokemon_scale_f": 222,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 237,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 6,
-        "trainer_pos_m": 8,
-        "pokemon_pos_m": 7,
-        "english": {
-            "category": "Big Horn Pokémon",
-            "entry_text": "Staring at its antlers creates\nan odd sensation as if one were\nbeing drawn into their centers."
-        },
-        "french": {
-            "name": "CERFROUSSE",
-            "category": "Pokémon Maxi Corne",
-            "entry_text": "Quiconque observe ses antennes\nressent une sensation étrange,\ncomme si leur centre l’attirait."
-        },
-        "german": {
-            "name": "DAMHIRPLEX",
-            "category": "Vielender",
-            "entry_text": "Starrt man auf sein Geweih, bekommt\nman das seltsame Gefühl, in dessen\nMitte gezogen zu werden."
-        },
-        "italian": {
-            "name": "Stantler",
-            "category": "Pokémon Grancorno",
-            "entry_text": "Chi fissa le sue corna riceve una\nstrana sensazione, quasi come\nse venisse risucchiato."
-        },
-        "spanish": {
-            "name": "Stantler",
-            "category": "Pokémon Grancuerno",
-            "entry_text": "Mirar a su cornamenta provoca\nuna extraña sensación de\npérdida de equilibrio."
-        },
-        "japanese": {
-            "name": "オドシシ",
-            "category": "おおツノポケモン",
-            "entry_text": "ツノを　みつめていると　わっかの\nちゅうしんに　すいこまれそうな\nふしぎな　きぶんに　なってしまう。"
-        }
     }
 }

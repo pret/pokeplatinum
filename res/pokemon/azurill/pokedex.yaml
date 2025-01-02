@@ -1,0 +1,74 @@
+"height": !!int |-
+    2
+"weight": !!int |-
+    20
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    436
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    436
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Polka Dot Pokémon
+    "entry_text": |-
+        Its tail bounces like a rubber ball.
+        It flings that tail around to fight
+        opponents bigger than itself.
+"french":
+    "name": |-
+        AZURILL
+    "category": |-
+        Pokémon Point Polka
+    "entry_text": |-
+        Un Pokémon qui vit près de l’eau.
+        Au sol, il se déplace rapidement en
+        rebondissant sur sa grosse queue.
+"german":
+    "name": |-
+        AZURILL
+    "category": |-
+        Gepunktet
+    "entry_text": |-
+        Dieses PKMN lebt am Wasser. An
+        Land bewegt es sich schnell, indem
+        es auf seinem großen Schweif hüpft.
+"italian":
+    "name": |-
+        Azurill
+    "category": |-
+        Pokémon Pois
+    "entry_text": |-
+        Pokémon che vive nell’acqua. Si
+        muove rapidamente sulla terraferma
+        saltellando sulla grossa coda.
+"spanish":
+    "name": |-
+        Azurill
+    "category": |-
+        Pokémon A Topos
+    "entry_text": |-
+        Vive cerca del agua. En la tierra
+        se mueve muy rápido botando
+        sobre su gran cola.
+"japanese":
+    "name": |-
+        ルリリ
+    "category": |-
+        みずたまポケモン
+    "entry_text": |-
+        おおきな　しっぽに　のって　はずむと
+        ちじょうでは　はやく　いどうできる。
+        みずべで　くらす　ポケモン。

@@ -1,0 +1,72 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    88
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    316
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    316
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Little Bear Pokémon
+    "entry_text": |-
+        It lets honey soak into its paws
+        so it can lick them all the time.
+        Every set of paws tastes unique.
+"french":
+    "name": |-
+        TEDDIURSA
+    "category": |-
+        Pokémon Mini Ours
+    "entry_text": "Il baigne ses griffes dans le miel \npour les lécher. Chaque paire\n\
+        de pattes a un goût unique."
+"german":
+    "name": |-
+        TEDDIURSA
+    "category": |-
+        Kleinbär
+    "entry_text": |-
+        Es lässt Honig in seine Pranken
+        eindringen, so dass es immer
+        welchen dabeihat.
+"italian":
+    "name": |-
+        Teddiursa
+    "category": |-
+        Pokémon Orsetto
+    "entry_text": |-
+        Si impregna le zampe di miele per
+        poterle leccare in continuazione.
+        Ogni assaggio ha un sapore unico.
+"spanish":
+    "name": |-
+        Teddiursa
+    "category": |-
+        Pokémon Osito
+    "entry_text": |-
+        Deja que la miel se le pegue a las
+        garras para lamerla más tarde.
+        Cada una de ellas sabe diferente.
+"japanese":
+    "name": |-
+        ヒメグマ
+    "category": |-
+        こぐまポケモン
+    "entry_text": |-
+        あまい　ミツを　てのひらに
+        しみこませて　いつも　なめている。
+        ヒメグマによって　あじが　ちがう。

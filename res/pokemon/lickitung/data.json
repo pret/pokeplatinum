@@ -133,47 +133,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 655,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 235,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 235,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 10,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 10,
-        "english": {
-            "category": "Licking Pokémon",
-            "entry_text": "When it extends its over-six-foot-\nlong tongue, its tail quivers. There\nis a possibility they are connected."
-        },
-        "french": {
-            "name": "EXCELANGUE",
-            "category": "Pokémon Lécheur",
-            "entry_text": "Il n’utilise pas ses mains mais sa\nlangue qui fait deux fois sa taille.\nSa salive est une colle puissante."
-        },
-        "german": {
-            "name": "SCHLURP",
-            "category": "Schlecker",
-            "entry_text": "Statt Händen verwendet es seine\nZunge, die zweimal so groß wie\nsein Körper und klebrig ist."
-        },
-        "italian": {
-            "name": "Lickitung",
-            "category": "Pokémon Linguaccia",
-            "entry_text": "Al posto delle mani usa la sua lingua\nappiccicosa, lunga il doppio di lui.\nCon essa afferra qualsiasi cosa."
-        },
-        "spanish": {
-            "name": "Lickitung",
-            "category": "Pokémon Lametazo",
-            "entry_text": "En vez de manos usa la lengua,\nque mide el doble que su cuerpo.\nSu saliva pegajosa lo atrapa todo."
-        },
-        "japanese": {
-            "name": "ベロリンガ",
-            "category": "なめまわしポケモン",
-            "entry_text": "ての　かわりに　しんちょうの　２ばい\nのびる　ベロを　つかう。べとべとの\nだえきが　なんでも　くっつけるのだ。"
-        }
     }
 }

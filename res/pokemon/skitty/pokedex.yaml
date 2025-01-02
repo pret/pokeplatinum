@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    110
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    346
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    346
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    21
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    21
+"english":
+    "category": |-
+        Kitten Pokémon
+    "entry_text": |-
+        It can’t stop itself from chasing
+        moving things, and it runs in a
+        circle, chasing its own tail.
+"french":
+    "name": |-
+        SKITTY
+    "category": |-
+        Pokémon Chaton
+    "entry_text": |-
+        Il poursuit tout ce qui bouge. On
+        le voit parfois courir en cercle,
+        chassant sa propre queue.
+"german":
+    "name": |-
+        ENECO
+    "category": |-
+        Kätzchen
+    "entry_text": |-
+        Es muss Dinge, die sich bewegen,
+        einfach jagen. Es rennt oft im Kreis
+        und jagt seinen eigenen Schweif.
+"italian":
+    "name": |-
+        Skitty
+    "category": |-
+        Pokémon Micio
+    "entry_text": |-
+        Non riesce ad evitare di inseguire
+        tutto ciò che si muove e corre in
+        tondo a caccia della propria coda.
+"spanish":
+    "name": |-
+        Skitty
+    "category": |-
+        Pokémon Gatito
+    "entry_text": |-
+        No puede evitar ir tras las cosas
+        que se mueven. Hasta corre en
+        círculos persiguiéndose la cola.
+"japanese":
+    "name": |-
+        エネコ
+    "category": |-
+        こねこポケモン
+    "entry_text": |-
+        うごくものを　つい　おってしまう。
+        じぶんの　しっぽを　おいかけて
+        おなじ　ばしょを　グルグル　まわる。

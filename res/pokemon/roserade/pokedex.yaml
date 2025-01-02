@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    145
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    351
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    351
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Bouquet Pokémon
+    "entry_text": |-
+        Each of its hands contains
+        different toxins, but both hands
+        can jab with near-fatal power.
+"french":
+    "name": |-
+        ROSERADE
+    "category": |-
+        Pokémon Bouquet
+    "entry_text": |-
+        Il attire ses proies avec son doux
+        parfum et les achève grâce aux
+        fouets d’épines de ses bras.
+"german":
+    "name": |-
+        ROSERADE
+    "category": |-
+        Blumenstrauß
+    "entry_text": |-
+        Mit einem süßen Duft lockt es Beute
+        an, die es dann mit den dornigen
+        Ranken in seinen Armen schlägt.
+"italian":
+    "name": |-
+        Roserade
+    "category": |-
+        Pokémon Floreale
+    "entry_text": |-
+        Attira la preda con un dolce aroma,
+        poi l’abbatte con le fruste spinose
+        celate fra i bouquet delle braccia.
+"spanish":
+    "name": |-
+        Roserade
+    "category": |-
+        Pokémon Ramillete
+    "entry_text": |-
+        Atrae a las presas con un dulce
+        aroma y las derrota con los
+        látigos espinosos de sus brazos.
+"japanese":
+    "name": |-
+        ロズレイド
+    "category": |-
+        ブ－ケポケモン
+    "entry_text": |-
+        あまい　かおりで　おびきよせて
+        りょううでの　はなたばの　なかに
+        ある　トゲの　ムチで　しとめる。

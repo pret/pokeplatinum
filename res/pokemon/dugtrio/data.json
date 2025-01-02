@@ -109,47 +109,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 7,
-        "weight": 333,
-        "body_shape": "SHAPE_MULTI_BODY",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 321,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 321,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 23,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 23,
-        "english": {
-            "category": "Mole Pokémon",
-            "entry_text": "Its three heads move alternately,\ndriving it through tough soil to\ndepths of over 60 miles."
-        },
-        "french": {
-            "name": "TRIOPIKEUR",
-            "category": "Pokémon Taupe",
-            "entry_text": "Ses trois têtes creusent le sol à\ntour de rôle. Il peut atteindre des\nprofondeurs de 100 kilomètres."
-        },
-        "german": {
-            "name": "DIGDRI",
-            "category": "Maulwurf",
-            "entry_text": "Die drei Köpfe bewegen sich abwech-\nselnd, um sich durch harte Erde in\nTiefen von bis zu 100 km zu graben."
-        },
-        "italian": {
-            "name": "Dugtrio",
-            "category": "Pokémon Talpa",
-            "entry_text": "Le sue tre teste si muovono a\nturno per scavare nel duro suolo\nfino ad una profondità di 100 km."
-        },
-        "spanish": {
-            "name": "Dugtrio",
-            "category": "Pokémon Topo",
-            "entry_text": "Sus tres cabezas se mueven por\nturnos para excavar la tierra a\nuna profundidad de unos 100 km."
-        },
-        "japanese": {
-            "name": "ダグトリオ",
-            "category": "もぐらポケモン",
-            "entry_text": "３つの　あたまが　たがいちがいに\nうごいて　どんなに　かたい　ちそうも\nちか１００キロまで　ほりすすむ。"
-        }
     }
 }

@@ -1,0 +1,74 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    395
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    242
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    242
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Bird Pokémon
+    "entry_text": |-
+        By flapping its wings with all its
+        might, PIDGEOT can make a gust of
+        wind capable of bending tall trees.
+"french":
+    "name": |-
+        ROUCARNAGE
+    "category": |-
+        Pokémon Oiseau
+    "entry_text": |-
+        En battant des ailes de toutes ses
+        forces, ROUCARNAGE génère une
+        rafale à en déraciner les arbres.
+"german":
+    "name": |-
+        TAUBOSS
+    "category": |-
+        Vogel
+    "entry_text": |-
+        Schlägt TAUBOSS mit ganzer Kraft
+        seine Flügel, beugen sich selbst
+        große Bäume durch den Windstoß.
+"italian":
+    "name": |-
+        Pidgeot
+    "category": |-
+        Pokémon Uccello
+    "entry_text": |-
+        Sbattendo le ali a più non posso,
+        PIDGEOT crea un vento tanto
+        forte da piegare alberi possenti.
+"spanish":
+    "name": |-
+        Pidgeot
+    "category": |-
+        Pokémon Pájaro
+    "entry_text": |-
+        Aleteando con toda su fuerza,
+        PIDGEOT crea corrientes de aire
+        capaces de doblar grandes árboles.
+"japanese":
+    "name": |-
+        ピジョット
+    "category": |-
+        とりポケモン
+    "entry_text": |-
+        ピジョットが　ちからいっぱい
+        はばたくと　たいぼくも　しなるほどの
+        きょうふうを　まきおこす。

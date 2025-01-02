@@ -1,0 +1,72 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    513
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    405
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    405
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Cactus Pokémon
+    "entry_text": |-
+        By storing water in its body, this
+        desert dweller can survive for 30
+        days without water.
+"french":
+    "name": |-
+        CACNEA
+    "category": |-
+        Pokémon Cactus
+    "entry_text": "En stockant l’eau dans son corps,\ncet habitant du désert peut\
+        \ \nsurvivre 30 jours sans boire."
+"german":
+    "name": |-
+        TUSKA
+    "category": |-
+        Kaktus
+    "entry_text": |-
+        Dieser Wüstenbewohner speichert
+        Wasser in seinem Körper. So kann er
+        30 Tage ohne Wasser überleben.
+"italian":
+    "name": |-
+        Cacnea
+    "category": |-
+        Pokémon Cactus
+    "entry_text": |-
+        Immagazzina acqua nel corpo e
+        riesce a sopravvivere nel deserto
+        senz’acqua anche per 30 giorni.
+"spanish":
+    "name": |-
+        Cacnea
+    "category": |-
+        Pokémon Cactus
+    "entry_text": |-
+        Habita en el desierto. Aguanta
+        treinta días sin agua gracias a la
+        que almacena en su cuerpo.
+"japanese":
+    "name": |-
+        サボネア
+    "category": |-
+        サボテンポケモン
+    "entry_text": |-
+        さばくに　せいそく。たいないに
+        すいぶんを　ためることで　みずを
+        のまずに　３０にちかん　いきられる。

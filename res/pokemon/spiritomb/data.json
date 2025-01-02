@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 1080,
-        "body_shape": "SHAPE_HEAD_BASE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 281,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 281,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 14,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 14,
-        "english": {
-            "category": "Forbidden Pokémon",
-            "entry_text": "Its constant mischief and misdeeds\nresulted in it being bound to an Odd\nKeystone by a mysterious spell."
-        },
-        "french": {
-            "name": "SPIRITOMB",
-            "category": "Pokémon Interdit",
-            "entry_text": "Un Pokémon composé de 108\nesprits. Il provient d’une fissure\ndans une clé de voûte étrange."
-        },
-        "german": {
-            "name": "KRYPPUK",
-            "category": "Verboten",
-            "entry_text": "Ein PKMN, das aus 108 Geistern\nbesteht. Es ist an einen Spalt in\neinem mysteriösen Stein gebunden."
-        },
-        "italian": {
-            "name": "Spiritomb",
-            "category": "Pokémon Proibito",
-            "entry_text": "Pokémon formato da 108 spiriti. È\nstato imprigionato nella fessura di\nuna Roccianima."
-        },
-        "spanish": {
-            "name": "Spiritomb",
-            "category": "Pokémon Prohibido",
-            "entry_text": "Se formó a partir de 108 espíritus.\nEstá unido a la fisura de una\npiedra angular mística."
-        },
-        "japanese": {
-            "name": "ミカルゲ",
-            "category": "ふういんポケモン",
-            "entry_text": "１０８この　たましいが　あつまって\nうまれた　ポケモン。かなめいしの\nひびわれに　つながれている。"
-        }
     }
 }

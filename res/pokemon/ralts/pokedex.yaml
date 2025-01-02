@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    66
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    441
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    441
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    26
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    26
+"english":
+    "category": |-
+        Feeling Pokémon
+    "entry_text": |-
+        If its horns capture the warm
+        feelings of people or Pokémon,
+        its body warms up slightly.
+"french":
+    "name": |-
+        TARSAL
+    "category": |-
+        Pokémon Sentiment
+    "entry_text": |-
+        Il perçoit les émotions humaines
+        grâce aux cornes sur sa tête. On
+        dit qu’il apprécie la joie de vivre.
+"german":
+    "name": |-
+        TRASLA
+    "category": |-
+        Gefühl
+    "entry_text": |-
+        Mit dem Horn kann es menschliche
+        Gefühle wahrnehmen. Es erscheint
+        fröhlichen Menschen.
+"italian":
+    "name": |-
+        Ralts
+    "category": |-
+        Pokémon Sensazione
+    "entry_text": |-
+        Percepisce gli stati d’animo delle
+        persone con le corna che ha sul
+        capo. Si mostra alla gente allegra.
+"spanish":
+    "name": |-
+        Ralts
+    "category": |-
+        Pokémon Sensible
+    "entry_text": |-
+        Su cuerno le permite presentir
+        las emociones humanas. Se dice
+        que se aparece a la gente amable.
+"japanese":
+    "name": |-
+        ラルトス
+    "category": |-
+        きもちポケモン
+    "entry_text": |-
+        あたまの　ツノで　ひとの　きもちを
+        かんじとる。あかるい　きぶんの
+        ひとの　まえに　あらわれるという。

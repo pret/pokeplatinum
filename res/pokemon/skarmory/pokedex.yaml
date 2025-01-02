@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    505
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    232
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    232
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    2
+"english":
+    "category": |-
+        Armor Bird Pokémon
+    "entry_text": |-
+        Despite being clad entirely in
+        iron-hard armor, it flies at
+        speeds over 180 mph.
+"french":
+    "name": |-
+        AIRMURE
+    "category": |-
+        Pokémon Armoiseau
+    "entry_text": |-
+        Son corps est prisonnier d’une
+        armure dure comme l’acier, mais il
+        vole à plus de 300 km/h.
+"german":
+    "name": |-
+        PANZAERON
+    "category": |-
+        Flugstahl
+    "entry_text": |-
+        Es wird komplett von einer eisen-
+        harten Rüstung geschützt. Wenn es
+        fliegt, erreicht es bis zu 300 km/h.
+"italian":
+    "name": |-
+        Skarmory
+    "category": |-
+        Pokémon Armuccello
+    "entry_text": |-
+        È interamente rivestito da
+        un’armatura dura come l’acciaio.
+        Vola alla velocità di 300 km/h.
+"spanish":
+    "name": |-
+        Skarmory
+    "category": |-
+        Pokémon Coraza Ave
+    "entry_text": |-
+        Una armadura de hierro cubre por
+        completo su cuerpo. Vuela a más
+        de 300 km por hora.
+"japanese":
+    "name": |-
+        エア－ムド
+    "category": |-
+        よろいどりポケモン
+    "entry_text": |-
+        てつのような　かたい　よろいに
+        おおわれている。じそく３００キロの
+        スピ－ドで　おおぞらを　とびまわる。

@@ -64,47 +64,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 32,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 437,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 437,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 26,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 26,
-        "english": {
-            "category": "Hairy Bug Pokémon",
-            "entry_text": "It eats its weight in leaves every\nday. It fends off attackers with\nthe needle on its head."
-        },
-        "french": {
-            "name": "ASPICOT",
-            "category": "Pokémon Insectopic",
-            "entry_text": "Il mange chaque jour son poids en\nfeuilles. Il utilise l’aiguillon sur sa\ntête pour repousser l’ennemi."
-        },
-        "german": {
-            "name": "HORNLIU",
-            "category": "Raupe",
-            "entry_text": "Es frisst täglich sein Gewicht in\nBlättern. Die Nadel auf seinem Kopf\ndient der Verteidigung."
-        },
-        "italian": {
-            "name": "Weedle",
-            "category": "Pokémon Millepiedi",
-            "entry_text": "Divora ogni giorno una quantità di\nfoglie pari al suo peso. Respinge i\nnemici con l’aculeo sulla testa."
-        },
-        "spanish": {
-            "name": "Weedle",
-            "category": "Pokémon Oruga",
-            "entry_text": "Come el equivalente a su peso en\nhojas todos los días. Se defiende\ncon el aguijón de su cabeza."
-        },
-        "japanese": {
-            "name": "ビ－ドル",
-            "category": "けむしポケモン",
-            "entry_text": "まいにち　じぶんと　おなじ　おもさの\nはっぱを　たべる。あたまの　ハリで\nおそってきた　てきを　げきたい。"
-        }
     }
 }

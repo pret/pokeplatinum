@@ -1,0 +1,74 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    785
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    214
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    214
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    8
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    8
+"english":
+    "category": |-
+        Hermit Crab Pokémon
+    "entry_text": |-
+        Though usually dim witted, it
+        seems to become inspired if the
+        SHELLDER on its tail bites down.
+"french":
+    "name": |-
+        FLAGADOSS
+    "category": |-
+        Pokémon Symbiose
+    "entry_text": |-
+        Ce grand benêt connaît des éclairs
+        de lucidité lorsque le KOKIYAS de sa
+        queue se met à mordre.
+"german":
+    "name": |-
+        LAHMUS
+    "category": |-
+        Symbiose
+    "entry_text": |-
+        Ein begriffsstutziges Pokémon.
+        Beißt das MUSCHAS am Schweif zu,
+        scheint es Intelligenz zu gewinnen.
+"italian":
+    "name": |-
+        Slowbro
+    "category": |-
+        Pokémon Paguro
+    "entry_text": |-
+        Non è molto perspicace, ma sembra
+        aguzzare l’ingegno se lo SHELLDER
+        che ha sulla coda lo morde.
+"spanish":
+    "name": |-
+        Slowbro
+    "category": |-
+        Pokémon Ermitaño
+    "entry_text": |-
+        Normalmente se muestra torpe,
+        aunque espabila si el SHELLDER de
+        su cola le muerde.
+"japanese":
+    "name": |-
+        ヤドラン
+    "category": |-
+        やどかりポケモン
+    "entry_text": |-
+        ぼんやりしている　ヤドランだが
+        シェルダ－が　つよく　しっぽを
+        かむとき　なにかが　ひらめくらしい。

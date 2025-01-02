@@ -119,47 +119,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 39,
-        "body_shape": "SHAPE_FINS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 316,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 316,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 4,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 4,
-        "english": {
-            "category": "Balloon Pokémon",
-            "entry_text": "It shoots the poison spines on its\nbody in all directions. Its round\nform makes it a poor swimmer."
-        },
-        "french": {
-            "name": "QWILFISH",
-            "category": "Pokémon Bouboule",
-            "entry_text": "Il envoie ses piquants empoisonnés\nà la ronde. Sa forme sphérique en\nfait un piètre nageur."
-        },
-        "german": {
-            "name": "BALDORFISH",
-            "category": "Ballon",
-            "entry_text": "Es verschießt die giftigen Stacheln\nseines Körpers in alle Richtungen.\nEs ist kein guter Schwimmer."
-        },
-        "italian": {
-            "name": "Qwilfish",
-            "category": "Pokémon Pallone",
-            "entry_text": "Spara i suoi aculei velenosi in\ntutte le direzioni. Essendo un po’\ntondetto, non è un gran nuotatore."
-        },
-        "spanish": {
-            "name": "Qwilfish",
-            "category": "Pokémon Globo",
-            "entry_text": "Lanza púas venenosas en todas\ndirecciones. Debido a su forma\nredonda, es muy mal nadador."
-        },
-        "japanese": {
-            "name": "ハリ－セン",
-            "category": "ふうせんポケモン",
-            "entry_text": "ぜんしんの　どくバリを\nしほうはっぽうに　うちだす。\nまるい　からだは　およぎが　にがて。"
-        }
     }
 }

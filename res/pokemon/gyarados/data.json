@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 65,
-        "weight": 2350,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 512,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 488,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 22,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 22,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Atrocious Pokémon",
-            "entry_text": "Once it begins to rampage, a\nGYARADOS will burn everything\ndown, even in a harsh storm."
-        },
-        "french": {
-            "name": "LEVIATOR",
-            "category": "Pokémon Terrifiant",
-            "entry_text": "Lorsqu’il apparaît, sa rage ne\ncesse qu’après qu’il a rasé les\nplaines et montagnes alentour."
-        },
-        "german": {
-            "name": "GARADOS",
-            "category": "Grausam",
-            "entry_text": "Sobald es erscheint, nimmt seine\nWut nicht eher ab, bis es die Felder\nund Berge ringsum zerstört hat."
-        },
-        "italian": {
-            "name": "Gyarados",
-            "category": "Pokémon Atroce",
-            "entry_text": "La sua ira non si placa finché non\nha raso al suolo campi e monti\nattorno a sé."
-        },
-        "spanish": {
-            "name": "Gyarados",
-            "category": "Pokémon Atrocidad",
-            "entry_text": "Cuando se enfada, su rabia solo\nse disipa tras arrasar los\ncampos y montañas vecinos."
-        },
-        "japanese": {
-            "name": "ギャラドス",
-            "category": "きょうあくポケモン",
-            "entry_text": "ひとたび　すがたを　あらわすと\nのやまの　すべてを　やきつくすまで\nいかりが　しずまらない。"
-        }
     }
 }

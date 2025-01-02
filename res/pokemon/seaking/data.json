@@ -106,47 +106,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 390,
-        "body_shape": "SHAPE_FINS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 239,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 239,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65533,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65533,
-        "english": {
-            "category": "Goldfish Pokémon",
-            "entry_text": "In autumn, its body becomes more\nfatty in preparing to propose to a\nmate. It takes on beautiful colors."
-        },
-        "french": {
-            "name": "POISSOROY",
-            "category": "Pokémon Poisson",
-            "entry_text": "Il niche dans des rochers du \nruisseau qu’il évide avec sa corne.\nIl donnerait sa vie pour ses œufs."
-        },
-        "german": {
-            "name": "GOLKING",
-            "category": "Goldfisch",
-            "entry_text": "Es baut Nester, indem es Steine im\nFluss mit seinem Horn aushöhlt. Es\nverteidigt seine Eier mit dem Leben."
-        },
-        "italian": {
-            "name": "Seaking",
-            "category": "Pokémon Pescerosso",
-            "entry_text": "Con il suo corno, perfora le rocce\nsul letto dei fiumi per farsi il nido.\nDifende le uova a costo della vita."
-        },
-        "spanish": {
-            "name": "Seaking",
-            "category": "Pokémon Pez Color",
-            "entry_text": "Hace su nido en los agujeros\nque cava con el cuerno. Defiende\nsus huevos con su vida."
-        },
-        "japanese": {
-            "name": "アズマオウ",
-            "category": "きんぎょポケモン",
-            "entry_text": "あたまの　ツノで　かわぞこにある\nいわを　くりぬいて　すを　つくる。\nタマゴを　いのちがけで　まもる。"
-        }
     }
 }

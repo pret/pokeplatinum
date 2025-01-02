@@ -112,47 +112,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 20,
-        "weight": 600,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 334,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 325,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 16,
-        "pokemon_pos_f": 1,
-        "trainer_pos_m": 15,
-        "pokemon_pos_m": 1,
-        "english": {
-            "category": "Flame Pokémon",
-            "entry_text": "One of the legendary bird Pokémon.\nIt is said that its appearance\nindicates the coming of spring."
-        },
-        "french": {
-            "name": "SULFURA",
-            "category": "Pokémon Flamme",
-            "entry_text": "L’un des Pokémon Oiseaux\nlégendaires. On dit que sa venue\nannonce l’arrivée du printemps."
-        },
-        "german": {
-            "name": "LAVADOS",
-            "category": "Flamme",
-            "entry_text": "Eines der Legendären Vogel-\nPokémon. Es wird als Bote des\nFrühlings angesehen."
-        },
-        "italian": {
-            "name": "Moltres",
-            "category": "Pokémon Fiamma",
-            "entry_text": "Un Pokémon uccello leggendario.\nSi dice che la sua apparizione pre-\nannunci l’arrivo della primavera."
-        },
-        "spanish": {
-            "name": "Moltres",
-            "category": "Pokémon Llama",
-            "entry_text": "Uno de los legendarios Pokémon\npájaro. Dicen que su presencia\nanuncia la llegada de la primavera."
-        },
-        "japanese": {
-            "name": "ファイヤ－",
-            "category": "かえんポケモン",
-            "entry_text": "でんせつの　とりポケモンの　１ぴき。\nファイヤ－が　すがたを　みせると\nはるが　おとずれると　いわれている。"
-        }
     }
 }

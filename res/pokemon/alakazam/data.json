@@ -125,47 +125,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 480,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 238,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 238,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 7,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 7,
-        "english": {
-            "category": "Psi Pokémon",
-            "entry_text": "The spoons clutched in its hands\nare said to have been created by\nits psychic powers."
-        },
-        "french": {
-            "name": "ALAKAZAM",
-            "category": "Pokémon Psy",
-            "entry_text": "Grâce à sa mémoire exceptionnelle,\nil n’a rien oublié depuis sa \nnaissance. Il a un Q.I. de 5 000."
-        },
-        "german": {
-            "name": "SIMSALA",
-            "category": "Psi",
-            "entry_text": "Es besitzt ein fantastisches Ge-\ndächtnis und erinnert sich an alles\nseit seiner Geburt. IQ: Über 5 000."
-        },
-        "italian": {
-            "name": "Alakazam",
-            "category": "Pokémon Psico",
-            "entry_text": "La sua incredibile memoria gli\nfa ricordare ogni evento fin dalla\nnascita. Il suo QI supera 5000."
-        },
-        "spanish": {
-            "name": "Alakazam",
-            "category": "Pokémon Psi",
-            "entry_text": "Su gran memoria le permite\nrecordar todo desde su nacimiento.\nSu CI es superior a 5000."
-        },
-        "japanese": {
-            "name": "フ－ディン",
-            "category": "ねんりきポケモン",
-            "entry_text": "うまれてから　たいけんした　すべてを\nおぼえているほどの　きおくりょく。\nちのうしすうは　５０００を　こえる。"
-        }
     }
 }

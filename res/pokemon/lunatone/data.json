@@ -121,47 +121,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 1680,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 271,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 271,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65532,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65532,
-        "english": {
-            "category": "Meteorite Pokémon",
-            "entry_text": "Because it turns active on nights\nof the full moon, it is said to have\nsome link to the lunar phases."
-        },
-        "french": {
-            "name": "SELEROC",
-            "category": "Pokémon Météorite",
-            "entry_text": "On suppose qu’il est lié au cycle\nlunaire, car il ne sort que les\nsoirs de pleine lune."
-        },
-        "german": {
-            "name": "LUNASTEIN",
-            "category": "Meteorit",
-            "entry_text": "Da es in Vollmondnächten aktiv wird,\nsagt man ihm nach, mit den Mond-\nphasen in Verbindung zu stehen."
-        },
-        "italian": {
-            "name": "Lunatone",
-            "category": "Pokémon Meteorite",
-            "entry_text": "Diventa attivo nelle notti di luna\npiena, pertanto si dice che abbia\nqualche legame con le fasi lunari."
-        },
-        "spanish": {
-            "name": "Lunatone",
-            "category": "Pokémon Meteorito",
-            "entry_text": "Se piensa que está muy influido\npor las fases lunares, ya que solo\nactúa en noches de luna llena."
-        },
-        "japanese": {
-            "name": "ルナト－ン",
-            "category": "いんせきポケモン",
-            "entry_text": "まんげつの　よるになると　かっぱつに\nかつどうするため　つきの　みちかけと\nかんけいしていると　いわれている。"
-        }
     }
 }

@@ -1,0 +1,72 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    715
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    342
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    342
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    15
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    15
+"english":
+    "category": |-
+        Manipulate Pokémon
+    "entry_text": |-
+        It uses black pearls to amplify its
+        psycho-power. It does an odd
+        dance to gain control over foes.
+"french":
+    "name": |-
+        GRORET
+    "category": |-
+        Pokémon Magouilleur
+    "entry_text": "Les perles noires amplifient ses \npouvoirs psy. Sa danse étrange\
+        \ lui\npermet de contrôler ses ennemis."
+"german":
+    "name": |-
+        GROINK
+    "category": |-
+        Manipulator
+    "entry_text": |-
+        Mit schwarzen Perlen verstärkt es
+        seine Psycho-Kräfte. Mit einem
+        Tanz kontrolliert es seine Gegner.
+"italian":
+    "name": |-
+        Grumpig
+    "category": |-
+        Pokémon Raggiro
+    "entry_text": |-
+        Usa perle nere per amplificare i
+        suoi poteri psichici. Con una danza
+        acquisisce controllo sul nemico.
+"spanish":
+    "name": |-
+        Grumpig
+    "category": |-
+        Pokémon Manipulador
+    "entry_text": |-
+        Usa perlas negras para potenciar
+        sus poderes psíquicos. Con su
+        raro baile controla a los rivales.
+"japanese":
+    "name": |-
+        ブ－ピッグ
+    "category": |-
+        あやつりポケモン
+    "entry_text": |-
+        くろしんじゅで　サイコパワ－を
+        ぞうふくさせる。ふしぎな　ステップで
+        あいての　こころを　あやつる。

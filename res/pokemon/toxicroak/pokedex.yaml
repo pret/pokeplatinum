@@ -1,0 +1,74 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    444
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    262
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    262
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    11
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    11
+"english":
+    "category": |-
+        Toxic Mouth Pokémon
+    "entry_text": |-
+        It has a poison sac at its throat.
+        When it croaks, the stored poison
+        is churned for greater potency.
+"french":
+    "name": |-
+        COATOX
+    "category": |-
+        Pokémon Toxique
+    "entry_text": |-
+        Les griffes de ses poings sécrètent
+        une toxine si atroce qu’une simple
+        égratignure peut s’avérer fatale.
+"german":
+    "name": |-
+        TOXIQUAK
+    "category": |-
+        Giftmund
+    "entry_text": |-
+        Die Gelenke an seinen Klauen geben
+        ein so starkes Gift ab, dass selbst
+        ein kleiner Kratzer fatal ist.
+"italian":
+    "name": |-
+        Toxicroak
+    "category": |-
+        Pokémon Inveieleno
+    "entry_text": |-
+        I suoi artigli secernono una tossina
+        così velenosa che persino un
+        graffio può essere letale.
+"spanish":
+    "name": |-
+        Toxicroak
+    "category": |-
+        Pokémon Boca Tóxica
+    "entry_text": |-
+        Sus garras segregan una toxina
+        tan potente que un simple
+        arañazo puede ser mortal.
+"japanese":
+    "name": |-
+        ドクロッグ
+    "category": |-
+        どくづきポケモン
+    "entry_text": |-
+        こぶしの　トゲからは　かすりきずでも
+        いのちを　おとすほどの　もうどくを
+        ぶんぴつしている。

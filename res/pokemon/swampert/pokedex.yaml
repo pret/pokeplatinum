@@ -1,0 +1,74 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    819
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    242
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    242
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Mud Fish Pokémon
+    "entry_text": |-
+        It can swim while towing a large
+        ship. It bashes down foes with a
+        swing of its thick arms.
+"french":
+    "name": |-
+        LAGGRON
+    "category": |-
+        Pokémon Poissonboue
+    "entry_text": |-
+        Il peut traîner un grand bateau en
+        nageant. Il assomme l’ennemi d’un
+        grand coup de ses bras épais.
+"german":
+    "name": |-
+        SUMPEX
+    "category": |-
+        Lehmhüpfer
+    "entry_text": |-
+        Es kann im Schwimmen ein großes
+        Schiff ziehen. Seine Gegner schlägt
+        es mit Schlägen seiner Arme zurück.
+"italian":
+    "name": |-
+        Swampert
+    "category": |-
+        Pokémon Fango Pesce
+    "entry_text": |-
+        Nuotando riesce a trainare una
+        grande nave. Con le braccia vigoro-
+        se abbatte i nemici in un sol colpo.
+"spanish":
+    "name": |-
+        Swampert
+    "category": |-
+        Pokémon Pez Lodo
+    "entry_text": |-
+        Puede nadar y arrastrar un barco
+        grande. Golpea a sus enemigos
+        con sus gruesos brazos.
+"japanese":
+    "name": |-
+        ラグラ－ジ
+    "category": |-
+        ぬまうおポケモン
+    "entry_text": |-
+        おおがたせんを　ひっぱって　およぐ
+        パワ－の　もちぬし。ふとい　うでの
+        ひとふりで　あいてを　たたきのめす。

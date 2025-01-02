@@ -64,47 +64,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 952,
-        "body_shape": "SHAPE_HEAD_BASE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 378,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 378,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65529,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65529,
-        "english": {
-            "category": "Iron Ball Pokémon",
-            "entry_text": "It converses with others by using\nmagnetic pulses. In a swarm, they\nmove in perfect unison."
-        },
-        "french": {
-            "name": "TERHAL",
-            "category": "Pokémon Boulefer",
-            "entry_text": "Il dialogue avec les siens par \nimpulsions magnétiques. En bande,\nils se déplacent à l’unisson."
-        },
-        "german": {
-            "name": "TANHEL",
-            "category": "Eisenkugel",
-            "entry_text": "Es kommuniziert mit anderen durch\nmagnetische Impulse. Im Schwarm\nbilden sie eine perfekte Einheit."
-        },
-        "italian": {
-            "name": "Beldum",
-            "category": "Pokémon Ferrosfera",
-            "entry_text": "Comunica con i suoi simili mediante\nonde magnetiche. I gruppi di BELDUM\nsi muovono in perfetta sintonia."
-        },
-        "spanish": {
-            "name": "Beldum",
-            "category": "Pokémon Bola Hierro",
-            "entry_text": "Se comunican mediante pulsos\nmagnéticos. Cuando van en\ngrupos, se mueven al unísono."
-        },
-        "japanese": {
-            "name": "ダンバル",
-            "category": "てっきゅうポケモン",
-            "entry_text": "じりょくの　はちょうで　なかまと\nかいわする。むれになった　ダンバルは\nいっしみだれぬ　うごきを　する。"
-        }
     }
 }

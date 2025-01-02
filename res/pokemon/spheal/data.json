@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 395,
-        "body_shape": "SHAPE_FINS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 239,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 239,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 20,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 20,
-        "english": {
-            "category": "Clap Pokémon",
-            "entry_text": "It rolls across ice floes to reach\nshore because its body is poorly\nshaped for swimming."
-        },
-        "french": {
-            "name": "OBALIE",
-            "category": "Pokémon Clap Clap",
-            "entry_text": "Il gagne la côte en roulant sur les\nblocs de glace car sa morphologie\nn’est pas adaptée à la nage."
-        },
-        "german": {
-            "name": "SEEMOPS",
-            "category": "Applaus",
-            "entry_text": "Es rollt über Eisschollen, um Land\nzu erreichen, da sein Körper zum\nSchwimmen nicht geeignet ist."
-        },
-        "italian": {
-            "name": "Spheal",
-            "category": "Pokémon Rotolante",
-            "entry_text": "Poiché il suo corpo non è adatto al\nnuoto, rotola su lastre di ghiaccio\nper raggiungere la riva."
-        },
-        "spanish": {
-            "name": "Spheal",
-            "category": "Pokémon Aplauso",
-            "entry_text": "Rueda por los témpanos de hielo\nhasta la orilla, ya que su cuerpo\nno está bien adaptado para nadar."
-        },
-        "japanese": {
-            "name": "タマザラシ",
-            "category": "てたたきポケモン",
-            "entry_text": "りゅうひょうの　うえを　コロコロと\nころがって　かいがんに　たどりつく。\nおよぐには　ふべんな　たいけい。"
-        }
     }
 }

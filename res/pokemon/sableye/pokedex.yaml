@@ -1,0 +1,72 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    110
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    414
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    414
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Darkness Pokémon
+    "entry_text": |-
+        It hides in the darkness of caves.
+        Its diet of gems has transformed
+        its eyes into gemstones.
+"french":
+    "name": |-
+        TENEFIX
+    "category": |-
+        Pokémon Obscurité
+    "entry_text": "A force de manger des gemmes, \nles yeux de ce Pokémon des grottes\n\
+        obscures sont devenus des joyaux."
+"german":
+    "name": |-
+        ZOBIRIS
+    "category": |-
+        Finsternis
+    "entry_text": |-
+        Es versteckt sich im Dunkeln von
+        Höhlen. Seine Augen sind
+        Edelsteine.
+"italian":
+    "name": |-
+        Sableye
+    "category": |-
+        Pokémon Oscurità
+    "entry_text": |-
+        Si cela nell’oscurità delle caverne.
+        Si nutre di gemme e per questo i
+        suoi occhi sono pietre preziose.
+"spanish":
+    "name": |-
+        Sableye
+    "category": |-
+        Pokémon Oscuridad
+    "entry_text": |-
+        Se oculta en cavernas oscuras.
+        De tanto comer gemas sus ojos
+        son piedras preciosas.
+"japanese":
+    "name": |-
+        ヤミラミ
+    "category": |-
+        くらやみポケモン
+    "entry_text": |-
+        どうくつの　くらやみに　ひそむ。
+        ほうせきを　たべているうちに
+        めが　ほうせきに　なってしまった。

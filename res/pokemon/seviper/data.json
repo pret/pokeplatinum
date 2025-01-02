@@ -107,47 +107,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 27,
-        "weight": 525,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 296,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 296,
-        "trainer_pos_f": 5,
-        "pokemon_pos_f": 6,
-        "trainer_pos_m": 4,
-        "pokemon_pos_m": 6,
-        "english": {
-            "category": "Fang Snake Pokémon",
-            "entry_text": "For many generations, it has\nfeuded with ZANGOOSE. It whets its\nbladed tail on rocks for battle."
-        },
-        "french": {
-            "name": "SEVIPER",
-            "category": "Pokémon Serpacroc",
-            "entry_text": "Le rival historique de MANGRIFF.\nIl affûte la lame de sa queue \nsur les rochers avant le combat."
-        },
-        "german": {
-            "name": "VIPITIS",
-            "category": "Reißzahn",
-            "entry_text": "Seit Generationen ist es mit SENGO\nverfeindet. Es wetzt seinen\nscharfen Schweif an Felsen."
-        },
-        "italian": {
-            "name": "Seviper",
-            "category": "Pokémon Zannaserpe",
-            "entry_text": "È acerrimo nemico di ZANGOOSE.\nPrima della lotta, affila sulle rocce\nla sua coda simile ad una spada."
-        },
-        "spanish": {
-            "name": "Seviper",
-            "category": "Pokémon Colmillos",
-            "entry_text": "Se ha enfrentado durante muchos\naños a ZANGOOSE. Usa rocas para\nmantener afilada su cola."
-        },
-        "japanese": {
-            "name": "ハブネ－ク",
-            "category": "キバへびポケモン",
-            "entry_text": "せんぞだいだい　ザング－スと\nたたかってきた。しっぽの　やいばを\nいわで　とぎ　たたかいに　そなえる。"
-        }
     }
 }

@@ -130,47 +130,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 540,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 293,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 293,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 12,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 12,
-        "english": {
-            "category": "Aura Pokémon",
-            "entry_text": "A well-trained one can sense auras\nto identify and take in the feelings\nof creatures over half a mile away."
-        },
-        "french": {
-            "name": "LUCARIO",
-            "category": "Pokémon Aura",
-            "entry_text": "Il ressent les auras de tout. Il \ncomprend le langage humain."
-        },
-        "german": {
-            "name": "LUCARIO",
-            "category": "Aura",
-            "entry_text": "Es besitzt die Fähigkeit, die Aura\naller Dinge zu spüren. Es versteht\ndie menschliche Sprache."
-        },
-        "italian": {
-            "name": "Lucario",
-            "category": "Pokémon Aura",
-            "entry_text": "È in grado di avvertire l’aura di\ntutte le cose.\nComprende il linguaggio umano."
-        },
-        "spanish": {
-            "name": "Lucario",
-            "category": "Pokémon Aura",
-            "entry_text": "Puede sentir el aura de todas\nlas cosas. Comprende el\nlenguaje humano."
-        },
-        "japanese": {
-            "name": "ルカリオ",
-            "category": "はどうポケモン",
-            "entry_text": "あらゆる　ものが　はっする　はどうを\nキャッチする　のうりょくを　もつ。\nひとの　ことばを　りかいできる。"
-        }
     }
 }

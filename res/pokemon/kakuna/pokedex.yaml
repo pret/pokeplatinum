@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    100
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    359
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    359
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Cocoon Pokémon
+    "entry_text": |-
+        While awaiting evolution, it
+        hides from predators under
+        leaves and in nooks of branches.
+"french":
+    "name": |-
+        COCONFORT
+    "category": |-
+        Pokémon Cocon
+    "entry_text": |-
+        Il se cache sous les feuilles et les
+        branches pour fuir les prédateurs
+        en attendant d’évoluer.
+"german":
+    "name": |-
+        KOKUNA
+    "category": |-
+        Kokon
+    "entry_text": |-
+        Während es auf seine Entwicklung
+        wartet, versteckt es sich unter
+        Blättern und zwischen Ästen.
+"italian":
+    "name": |-
+        Kakuna
+    "category": |-
+        Pokémon Bozzolo
+    "entry_text": |-
+        Si nasconde dai predatori dietro
+        le foglie e fra i rami, in attesa
+        dell’evoluzione.
+"spanish":
+    "name": |-
+        Kakuna
+    "category": |-
+        Pokémon Capullo
+    "entry_text": |-
+        Se esconde de sus atacantes
+        entre las ramas de los árboles
+        mientras espera a evolucionar.
+"japanese":
+    "name": |-
+        コク－ン
+    "category": |-
+        さなぎポケモン
+    "entry_text": |-
+        てんてきに　みつからないように
+        はっぱの　うらや　えだの　すきまに
+        かくれて　しんかの　ときを　まつ。

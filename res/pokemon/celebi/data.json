@@ -129,47 +129,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 50,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 390,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 390,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65535,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65535,
-        "english": {
-            "category": "Time Travel Pokémon",
-            "entry_text": "It has the power to travel across\ntime, but it is said to appear only\nin peaceful times."
-        },
-        "french": {
-            "name": "CELEBI",
-            "category": "Pokémon Temporel",
-            "entry_text": "Il a le pouvoir de voyager dans le\ntemps. Cependant, on dit qu’il\nn’apparaît qu’en temps de paix."
-        },
-        "german": {
-            "name": "CELEBI",
-            "category": "Zeitreise",
-            "entry_text": "Es kann durch die Zeit reisen,\naber es erscheint nur zu\nfriedlichen Zeiten."
-        },
-        "italian": {
-            "name": "Celebi",
-            "category": "Pokémon Tempovia",
-            "entry_text": "Ha il potere di viaggiare attraverso\nil tempo, ma si dice che appaia solo\nin periodi di pace."
-        },
-        "spanish": {
-            "name": "Celebi",
-            "category": "Pokémon Viajetiempo",
-            "entry_text": "Puede viajar en el tiempo, pero\nse dice que solo aparece en\ntiempos de paz."
-        },
-        "japanese": {
-            "name": "セレビィ",
-            "category": "ときわたりポケモン",
-            "entry_text": "じかんを　こえる　ちからを　つかう。\nへいわな　じだいにだけ\nすがたを　みせると　いわれている。"
-        }
     }
 }

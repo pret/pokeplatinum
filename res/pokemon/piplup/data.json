@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 52,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 405,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 405,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 28,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 28,
-        "english": {
-            "category": "Penguin Pokémon",
-            "entry_text": "A poor walker, it often falls down.\nHowever, its strong pride makes it\npuff up its chest without a care."
-        },
-        "french": {
-            "name": "TIPLOUF",
-            "category": "Pokémon Pingouin",
-            "entry_text": "Il est fier et déteste accepter\nla nourriture qu’on lui offre. Son\npelage épais le protège du froid."
-        },
-        "german": {
-            "name": "PLINFA",
-            "category": "Pinguin",
-            "entry_text": "Es ist sehr stolz und nimmt daher\nkein Futter von anderen an. Seine\ndicken Daunen schützen vor Kälte."
-        },
-        "italian": {
-            "name": "Piplup",
-            "category": "Pokémon Pinguino",
-            "entry_text": "È molto orgoglioso e odia accettare\ncibo dalla gente. Le fitte piume lo\nproteggono dal freddo."
-        },
-        "spanish": {
-            "name": "Piplup",
-            "category": "Pokémon Pingüino",
-            "entry_text": "Es muy orgulloso, por lo que odia\naceptar comida de la gente. Su\ngrueso plumón le protege del frío."
-        },
-        "japanese": {
-            "name": "ポッチャマ",
-            "category": "ペンギンポケモン",
-            "entry_text": "プライドが　たかく　ひとから\nたべものを　もらう　ことを　きらう。\nながい　うぶげが　さむさを　ふせぐ。"
-        }
     }
 }

@@ -1,0 +1,74 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    855
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    298
+"pokemon_scale_f": !!int |-
+    224
+"trainer_scale_m": !!int |-
+    292
+"pokemon_scale_m": !!int |-
+    224
+"trainer_pos_f": !!int |-
+    7
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    6
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Shellfish Pokémon
+    "entry_text": |-
+        The jets of water it spouts from
+        the rocket cannons on its shell
+        can punch through thick steel.
+"french":
+    "name": |-
+        TORTANK
+    "category": |-
+        Pokémon Carapace
+    "entry_text": |-
+        Les trombes d’eau projetées par
+        les canons de sa carapace peuvent
+        percer le métal le plus résistant.
+"german":
+    "name": |-
+        TURTOK
+    "category": |-
+        Panzer
+    "entry_text": |-
+        Der Wasserstrahl, der aus den
+        Wasserdüsen schießt, kann
+        sogar Stahlwände durchdringen.
+"italian":
+    "name": |-
+        Blastoise
+    "category": |-
+        Pokémon Crostaceo
+    "entry_text": |-
+        I getti d’acqua lanciati dai
+        cannoni sul suo guscio riescono
+        a perforare persino l’acciaio.
+"spanish":
+    "name": |-
+        Blastoise
+    "category": |-
+        Pokémon Marisco
+    "entry_text": |-
+        Los chorros de agua que lanza
+        por los tubos de su caparazón
+        pueden atravesar el acero.
+"japanese":
+    "name": |-
+        カメックス
+    "category": |-
+        こうらポケモン
+    "entry_text": |-
+        こうらの　ロケットほうから　ふきだす
+        すいりゅうは　ぶあつい　てっぱんも
+        いっぱつで　つらぬく　はかいりょく。

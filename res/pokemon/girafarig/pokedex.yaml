@@ -1,0 +1,74 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    415
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    244
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    244
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Long Neck Pokémon
+    "entry_text": |-
+        The head on its tail contains a
+        small brain. It can instinctively
+        fight even while facing backward.
+"french":
+    "name": |-
+        GIRAFARIG
+    "category": |-
+        Pokémon Long-Cou
+    "entry_text": |-
+        Sa queue contient un minuscule
+        cerveau. Elle mord l’ennemi qui
+        essaie de le frapper dans le dos.
+"german":
+    "name": |-
+        GIRAFARIG
+    "category": |-
+        Langhals
+    "entry_text": |-
+        Sein Schweif besitzt ebenfalls ein
+        Gehirn. Er beißt jeden Gegner, der
+        sich von hinten heranschleicht.
+"italian":
+    "name": |-
+        Girafarig
+    "category": |-
+        Pokémon Lungocollo
+    "entry_text": |-
+        Ha due cervelli, uno piccolo anche
+        sulla coda. Morde per respingere i
+        nemici che si avvicinano da dietro.
+"spanish":
+    "name": |-
+        Girafarig
+    "category": |-
+        Pokémon Grancuello
+    "entry_text": |-
+        Su cola tiene un pequeño cerebro
+        y muerde a los enemigos que
+        intentan acercarse por la espalda.
+"japanese":
+    "name": |-
+        キリンリキ
+    "category": |-
+        くびながポケモン
+    "entry_text": |-
+        しっぽも　ちいさい　のうを　もつ。
+        うしろから　しのびよる　あいてを
+        かみついて　げきたいする。

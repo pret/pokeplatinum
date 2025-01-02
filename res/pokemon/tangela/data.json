@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 350,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 17,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 17,
-        "english": {
-            "category": "Vine Pokémon",
-            "entry_text": "The blue vines shrouding its body\nare covered in a growth of fine\nhair. It is known to be ticklish."
-        },
-        "french": {
-            "name": "SAQUEDENEU",
-            "category": "Pokémon Vigne",
-            "entry_text": "Il s’abrite derrière des lianes\nbleues. Nul n’a jamais vu le\nvisage qu’elles dissimulent."
-        },
-        "german": {
-            "name": "TANGELA",
-            "category": "Ranke",
-            "entry_text": "Es ist von blauen Ranken umgeben.\nNiemand hat jemals das Gesicht\ndieses Pokémon gesehen."
-        },
-        "italian": {
-            "name": "Tangela",
-            "category": "Pokémon Liana",
-            "entry_text": "È ricoperto di liane blu. Nessuno\nha mai visto il suo volto, poiché è\ncelato dal groviglio di liane."
-        },
-        "spanish": {
-            "name": "Tangela",
-            "category": "Pokémon Enredadera",
-            "entry_text": "Está envuelto en lianas azules.\nNadie ha logrado ver el rostro\nque se oculta tras ellas."
-        },
-        "japanese": {
-            "name": "モンジャラ",
-            "category": "ツルじょうポケモン",
-            "entry_text": "あおい　ツルに　おおわれている。\nツルに　かくれている　かおを\nみたものは　まだ　いない。"
-        }
     }
 }

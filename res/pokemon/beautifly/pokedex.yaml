@@ -1,0 +1,72 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    284
+"body_shape": |-
+    SHAPE_MULTI_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65526
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65526
+"english":
+    "category": |-
+        Butterfly Pokémon
+    "entry_text": |-
+        Despite its looks, it is aggressive.
+        It jabs with its long, thin mouth if
+        disturbed while collecting pollen.
+"french":
+    "name": |-
+        CHARMILLON
+    "category": |-
+        Pokémon Papillon
+    "entry_text": "Il est très agressif. Il pique sa \nproie avec son long museau\
+        \ \nétroit et absorbe sa vitalité."
+"german":
+    "name": |-
+        PAPINELLA
+    "category": |-
+        Falter
+    "entry_text": |-
+        Es besitzt ein aggressives Wesen.
+        Es sticht seinen Rüssel in seine
+        Beute und saugt sie aus.
+"italian":
+    "name": |-
+        Beautifly
+    "category": |-
+        Pokémon Farfalla
+    "entry_text": |-
+        Ha un’indole aggressiva. Conficca
+        la sua bocca lunga e sottile nelle
+        prede e ne succhia i fluidi.
+"spanish":
+    "name": |-
+        Beautifly
+    "category": |-
+        Pokémon Mariposa
+    "entry_text": |-
+        Es un Pokémon agresivo. Con su
+        boca larga y afilada ataca a sus
+        rivales para drenar sus fluidos.
+"japanese":
+    "name": |-
+        アゲハント
+    "category": |-
+        ちょうちょポケモン
+    "entry_text": |-
+        ほそながい　くちを　つきさして
+        あいての　たいえきを　すいとる。
+        こうげきてきな　せいかく。

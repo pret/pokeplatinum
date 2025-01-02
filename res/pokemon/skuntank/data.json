@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 380,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 289,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 289,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 15,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 15,
-        "english": {
-            "category": "Skunk Pokémon",
-            "entry_text": "It attacks by spraying a horribly\nsmelly fluid from the tip of its tail.\nAttacks from above confound it."
-        },
-        "french": {
-            "name": "MOUFFLAIR",
-            "category": "Pokémon Moufette",
-            "entry_text": "Il attaque en projetant un\nliquide fétide du bout de sa queue.\nIl peut tirer à 50 mètres."
-        },
-        "german": {
-            "name": "SKUNTANK",
-            "category": "Stinktier",
-            "entry_text": "Über seine Schweifspitze versprüht\nes eine übelriechende Substanz. Die\nReichweite liegt bei über 50 Metern."
-        },
-        "italian": {
-            "name": "Skuntank",
-            "category": "Pokémon Moffetta",
-            "entry_text": "Attacca spruzzando un fluido\npuzzolente dalla coda. Ha un\nraggio d’azione di oltre 50 metri."
-        },
-        "spanish": {
-            "name": "Skuntank",
-            "category": "Pokémon Mofeta",
-            "entry_text": "Para atacar, emite un fluido\nmaloliente por la punta de su cola\nque puede llegar a más de 50 m."
-        },
-        "japanese": {
-            "name": "スカタンク",
-            "category": "スカンクポケモン",
-            "entry_text": "しっぽの　さきから　ひどい　においの\nえきたいを　とばして　こうげきする。\nひきょりは　５０メ－トルいじょう。"
-        }
     }
 }

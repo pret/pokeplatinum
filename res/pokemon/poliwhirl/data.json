@@ -121,47 +121,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 200,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 17,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 17,
-        "english": {
-            "category": "Tadpole Pokémon",
-            "entry_text": "The spiral pattern on its belly\nsubtly undulates. Staring at it\ngradually causes drowsiness."
-        },
-        "french": {
-            "name": "TETARTE",
-            "category": "Pokémon Têtard",
-            "entry_text": "La spirale qui orne son ventre\nondule doucement. Celui qui la fixe\nest saisi d’une étrange torpeur. "
-        },
-        "german": {
-            "name": "QUAPUTZI",
-            "category": "Kaulquappe",
-            "entry_text": "Das Spiralmuster auf seinem Bauch\ndreht sich langsam. Starrt man\ndarauf, wird einem schwindelig."
-        },
-        "italian": {
-            "name": "Poliwhirl",
-            "category": "Pokémon Girino",
-            "entry_text": "Il disegno spiraliforme sulla pancia\nondeggia leggermente. Chi lo fissa,\npiano piano si assopisce."
-        },
-        "spanish": {
-            "name": "Poliwhirl",
-            "category": "Pokémon Renacuajo",
-            "entry_text": "El dibujo espiral de su panza ondea\nlevemente. Si se mira fijamente,\nprovoca somnolencia."
-        },
-        "japanese": {
-            "name": "ニョロゾ",
-            "category": "おたまポケモン",
-            "entry_text": "おなかの　うずまきは　びみょうに\nうねっているので　みつめていると\nだんだん　ねむくなってしまう。"
-        }
     }
 }

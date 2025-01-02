@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    905
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    277
+"pokemon_scale_f": !!int |-
+    248
+"trainer_scale_m": !!int |-
+    261
+"pokemon_scale_m": !!int |-
+    248
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Flame Pokémon
+    "entry_text": |-
+        It is said that CHARIZARD’s fire
+        burns hotter if it has
+        experienced harsh battles.
+"french":
+    "name": |-
+        DRACAUFEU
+    "category": |-
+        Pokémon Flamme
+    "entry_text": |-
+        On raconte que la flamme du
+        DRACAUFEU s’intensifie après
+        un combat difficile.
+"german":
+    "name": |-
+        GLURAK
+    "category": |-
+        Flamme
+    "entry_text": |-
+        Man sagt, GLURAKs Feuer lodert
+        stärker, wenn es harte Kämpfe
+        überstanden hat.
+"italian":
+    "name": |-
+        Charizard
+    "category": |-
+        Pokémon Fiamma
+    "entry_text": |-
+        Pare che la temperatura della
+        fiamma di CHARIZARD aumenti
+        dopo che ha affrontato dure lotte.
+"spanish":
+    "name": |-
+        Charizard
+    "category": |-
+        Pokémon Llama
+    "entry_text": |-
+        Se dice que el fuego de CHARIZARD
+        arde con más fuerza si ha vivido
+        duras batallas.
+"japanese":
+    "name": |-
+        リザ－ドン
+    "category": |-
+        かえんポケモン
+    "entry_text": |-
+        くるしい　たたかいを　けいけんした
+        リザ－ドンほど　ほのおの　おんどが
+        たかくなると　いわれている。

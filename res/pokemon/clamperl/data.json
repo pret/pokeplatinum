@@ -100,47 +100,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 525,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 387,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 387,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Bivalve Pokémon",
-            "entry_text": "It makes a single pearl during\nits lifetime. The pearl is said\nto amplify psychic power."
-        },
-        "french": {
-            "name": "COQUIPERL",
-            "category": "Pokémon Bivalve",
-            "entry_text": "Il ne produit qu’une perle durant\nson existence. On raconte qu’elle\namplifie les pouvoirs psychiques."
-        },
-        "german": {
-            "name": "PERLU",
-            "category": "Muschel",
-            "entry_text": "In seinem Leben erschafft es eine\neinzige Perle. Diese soll Psycho-\nKräfte verstärken."
-        },
-        "italian": {
-            "name": "Clamperl",
-            "category": "Pokémon Bivalve",
-            "entry_text": "Crea una sola perla in tutta la\nsua vita. Si dice che questa perla\namplifichi i poteri psichici."
-        },
-        "spanish": {
-            "name": "Clamperl",
-            "category": "Pokémon Bivalvo",
-            "entry_text": "Durante toda su vida, crea una\nsola perla que, según se dice,\naumenta los poderes psíquicos."
-        },
-        "japanese": {
-            "name": "パ－ルル",
-            "category": "２まいがいポケモン",
-            "entry_text": "いっしょうに　１こだけ　つくる\nしんじゅは　サイコパワ－を\nぞうふくする　さようが　あるという。"
-        }
     }
 }

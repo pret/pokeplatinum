@@ -120,47 +120,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 864,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 248,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 248,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 13,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 13,
-        "english": {
-            "category": "Guts Pokémon",
-            "entry_text": "It toughens its body by slamming\ninto thick trees. Many snapped\ntrees can be found near its nest."
-        },
-        "french": {
-            "name": "MAKUHITA",
-            "category": "Pokémon Tenace",
-            "entry_text": "Il fortifie son corps en fonçant\nsur des arbres épais. Son nid est\nentouré d’arbres abattus."
-        },
-        "german": {
-            "name": "MAKUHITA",
-            "category": "Courage",
-            "entry_text": "Es stärkt seinen Körper, indem es\ngegen Bäume rennt. In seiner Nähe\nfinden sich viele umgekippte Bäume."
-        },
-        "italian": {
-            "name": "Makuhita",
-            "category": "Pokémon Coraggio",
-            "entry_text": "Si rinforza sbattendo contro enormi\nalberi. Vicino alla sua tana si\ntrovano parecchi alberi abbattuti."
-        },
-        "spanish": {
-            "name": "Makuhita",
-            "category": "Pokémon Valiente",
-            "entry_text": "Endurece su cuerpo golpeando\ngrandes árboles. Cerca de su hogar\nsuele haber árboles golpeados."
-        },
-        "japanese": {
-            "name": "マクノシタ",
-            "category": "こんじょうポケモン",
-            "entry_text": "ふとい　きのみきに　ぶつかって\nからだを　きたえる。すみかの　そばは\nへしおられた　きが　たくさんある。"
-        }
     }
 }

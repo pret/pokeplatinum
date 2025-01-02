@@ -99,47 +99,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 58,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 417,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 417,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 27,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 27,
-        "english": {
-            "category": "Flower Pokémon",
-            "entry_text": "When the heavy rainfall season\nends, it is drawn out by warm\nsunlight to dance in the open."
-        },
-        "french": {
-            "name": "JOLIFLOR",
-            "category": "Pokémon Fleur",
-            "entry_text": "A la fin de la saison des pluies,\nil sort danser en plein air,\nattiré par la chaleur du soleil."
-        },
-        "german": {
-            "name": "BLUBELLA",
-            "category": "Blume",
-            "entry_text": "Sobald die Regenzeit vorbei ist,\nwird es von der warmen Sonne nach\ndraußen gezogen, wo es tanzt."
-        },
-        "italian": {
-            "name": "Bellossom",
-            "category": "Pokémon Fiore",
-            "entry_text": "Quando finisce la stagione delle\npiogge, lo si vede danzare sotto\ni caldi raggi del sole."
-        },
-        "spanish": {
-            "name": "Bellossom",
-            "category": "Pokémon Flor",
-            "entry_text": "Cuando acaba la estación de las\nlluvias, sale al sol e inicia una\npeculiar danza."
-        },
-        "japanese": {
-            "name": "キレイハナ",
-            "category": "フラワ－ポケモン",
-            "entry_text": "おおあめの　きせつが　おわると\nあたたかい　ひざしに　さそわれた\nキレイハナが　おどりはじめる。"
-        }
     }
 }

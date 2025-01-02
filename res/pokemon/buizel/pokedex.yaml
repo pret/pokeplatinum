@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    295
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    380
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    380
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Sea Weasel Pokémon
+    "entry_text": |-
+        It spins its two tails like a screw
+        to propel itself through water. The
+        tails also slice clinging seaweed.
+"french":
+    "name": |-
+        MUSTEBOUEE
+    "category": |-
+        Pokémon Aquabelette
+    "entry_text": |-
+        Sa bouée est pareille à un
+        collier gonflable. Quand il flotte,
+        il garde la tête à l’air libre.
+"german":
+    "name": |-
+        BAMELIN
+    "category": |-
+        Meereswiesel
+    "entry_text": |-
+        Es hat eine Art Rettungsring um
+        den Hals. Wenn es schwimmt, gerät
+        sein Kopf niemals unter Wasser.
+"italian":
+    "name": |-
+        Buizel
+    "category": |-
+        Pokémon Maridonnola
+    "entry_text": |-
+        Ha un collare che funge da galleg-
+        giante. Quando nuota, la sua testa
+        rimane sempre fuori dall’acqua.
+"spanish":
+    "name": |-
+        Buizel
+    "category": |-
+        Pokémon Nutria Mar.
+    "entry_text": |-
+        Posee un flotador en forma de
+        collar hinchable. Flota en el
+        agua con la cabeza fuera.
+"japanese":
+    "name": |-
+        ブイゼル
+    "category": |-
+        うみイタチポケモン
+    "entry_text": |-
+        くびに　ある　うきぶくろに　くうきを
+        ためると　うきわのように　ふくらむ。
+        すいめんに　かおを　だして　うかぶ。

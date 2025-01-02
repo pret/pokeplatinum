@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    4300
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    356
+"pokemon_scale_f": !!int |-
+    218
+"trainer_scale_m": !!int |-
+    348
+"pokemon_scale_m": !!int |-
+    218
+"trainer_pos_f": !!int |-
+    7
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    7
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Lava Dome Pokémon
+    "entry_text": |-
+        Its body is made of rugged steel.
+        However, it is partially melted in
+        spots because of its own heat.
+"french":
+    "name": |-
+        HEATRAN
+    "category": |-
+        Pokémon Caldeira
+    "entry_text": |-
+        Il hante les grottes volcaniques.
+        Il rampe au mur et au plafond grâce
+        à ses pieds en forme de croix.
+"german":
+    "name": |-
+        HEATRAN
+    "category": |-
+        Lavadom
+    "entry_text": |-
+        Es lebt in vulkanischen Höhlen.
+        Mit seinen kreuzförmigen Klauen
+        kann es sogar an der Decke laufen.
+"italian":
+    "name": |-
+        Heatran
+    "category": |-
+        Pokémon Cratere
+    "entry_text": |-
+        Vive nelle cavità dei vulcani. Scava
+        con i suoi piedi a croce per scalare
+        pareti e arrampicarsi sui soffitti.
+"spanish":
+    "name": |-
+        Heatran
+    "category": |-
+        Pokémon Domo Lava
+    "entry_text": |-
+        Habita cuevas volcánicas. Cava
+        con sus pies en forma de cruz
+        para trepar por techos y paredes.
+"japanese":
+    "name": |-
+        ヒ－ドラン
+    "category": |-
+        かこうポケモン
+    "entry_text": |-
+        かざんの　ほらあなに　せいそく。
+        じゅうじの　ツメを　くいこませて
+        カベや　てんじょうを　はいまわる。

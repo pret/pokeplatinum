@@ -129,47 +129,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 19,
-        "weight": 520,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 338,
-        "pokemon_scale_f": 272,
-        "trainer_scale_m": 325,
-        "pokemon_scale_m": 272,
-        "trainer_pos_f": 13,
-        "pokemon_pos_f": 5,
-        "trainer_pos_m": 13,
-        "pokemon_pos_m": 5,
-        "english": {
-            "category": "Blaze Pokémon",
-            "entry_text": "Flames spout from its wrists,\nenveloping its knuckles. Its\npunches scorch its foes."
-        },
-        "french": {
-            "name": "BRASEGALI",
-            "category": "Pokémon Ardent",
-            "entry_text": "Des flammes fusent de ses\npoignets et ses coups brûlent\nl’ennemi."
-        },
-        "german": {
-            "name": "LOHGOCK",
-            "category": "Großbrand",
-            "entry_text": "Aus seinen Handgelenken kommt\nFeuer, das seine Knöchel umhüllt.\nSchläge verbrennen den Gegner."
-        },
-        "italian": {
-            "name": "Blaziken",
-            "category": "Pokémon Vampe",
-            "entry_text": "Le fiamme che fuoriescono dai suoi\npolsi gli avvolgono i pugni. Quando\ncolpisce il nemico, lo scotta."
-        },
-        "spanish": {
-            "name": "Blaziken",
-            "category": "Pokémon Llameante",
-            "entry_text": "Sus puños están envueltos en\nllamas. Con sus golpes puede\nquemar a sus rivales."
-        },
-        "japanese": {
-            "name": "バシャ－モ",
-            "category": "もうかポケモン",
-            "entry_text": "てくびから　ふきだした　ほのおで\nこぶしを　つつみこんだ　パンチは\nあいてを　くろこげに　してしまう。"
-        }
     }
 }

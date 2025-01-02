@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    90
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    395
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    395
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Tiny Turtle Pokémon
+    "entry_text": |-
+        It shelters itself in its shell,
+        then strikes back with spouts of
+        water at every opportunity.
+"french":
+    "name": |-
+        CARAPUCE
+    "category": |-
+        Pokémon Minitortue
+    "entry_text": |-
+        Il se réfugie dans sa carapace
+        et réplique en éclaboussant
+        l’ennemi à la première occasion.
+"german":
+    "name": |-
+        SCHIGGY
+    "category": |-
+        Minikröte
+    "entry_text": |-
+        Es zieht sich in seinen Panzer
+        zurück und greift dann mit
+        Wasserstrahlen seine Gegner an.
+"italian":
+    "name": |-
+        Squirtle
+    "category": |-
+        Pokémon Tartaghina
+    "entry_text": |-
+        Si ritira nel suo guscio e, alla prima
+        occasione, contrattacca colpendo
+        il nemico con spruzzi d’acqua.
+"spanish":
+    "name": |-
+        Squirtle
+    "category": |-
+        Pokémon Tortuguita
+    "entry_text": |-
+        Se protege con su caparazón y
+        luego contraataca lanzando agua a
+        presión cuando tiene oportunidad.
+"japanese":
+    "name": |-
+        ゼニガメ
+    "category": |-
+        かめのこポケモン
+    "entry_text": |-
+        こうらに　とじこもり　みを　まもる。
+        あいての　すきを　みのがさず
+        みずを　ふきだして　はんげきする。

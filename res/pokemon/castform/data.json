@@ -107,47 +107,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 8,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 471,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 471,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65523,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65523,
-        "english": {
-            "category": "Weather Pokémon",
-            "entry_text": "Its appearance changes with the\nweather. Recently, its molecules\nwere found to be just like water."
-        },
-        "french": {
-            "name": "MORPHEO",
-            "category": "Pokémon Climat",
-            "entry_text": "Son aspect change avec la météo.\nOn a récemment découvert que ses\nmolécules étaient pareilles à l’eau."
-        },
-        "german": {
-            "name": "FORMEO",
-            "category": "Wetter",
-            "entry_text": "Seine Gestalt ändert sich mit dem\nWetter. Vor kurzem entdeckte man,\ndass seine Moleküle wie Wasser sind."
-        },
-        "italian": {
-            "name": "Castform",
-            "category": "Pokémon Meteo",
-            "entry_text": "Il suo aspetto varia con il clima.\nRecentemente si è scoperto che\nle sue molecole sono di acqua."
-        },
-        "spanish": {
-            "name": "Castform",
-            "category": "Pokémon Clima",
-            "entry_text": "La meteorología determina su\naspecto. Hace poco se ha sabido\nque sus células son como el agua.  "
-        },
-        "japanese": {
-            "name": "ポワルン",
-            "category": "てんきポケモン",
-            "entry_text": "てんきによって　すがたが　かわる。\nみずの　ぶんしと　そっくりなことが\nさいきんになって　はっけんされた。"
-        }
     }
 }

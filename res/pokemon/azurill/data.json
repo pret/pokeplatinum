@@ -98,47 +98,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 2,
-        "weight": 20,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 436,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 436,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 27,
-        "english": {
-            "category": "Polka Dot Pokémon",
-            "entry_text": "Its tail bounces like a rubber ball.\nIt flings that tail around to fight\nopponents bigger than itself."
-        },
-        "french": {
-            "name": "AZURILL",
-            "category": "Pokémon Point Polka",
-            "entry_text": "Un Pokémon qui vit près de l’eau.\nAu sol, il se déplace rapidement en\nrebondissant sur sa grosse queue."
-        },
-        "german": {
-            "name": "AZURILL",
-            "category": "Gepunktet",
-            "entry_text": "Dieses PKMN lebt am Wasser. An\nLand bewegt es sich schnell, indem\nes auf seinem großen Schweif hüpft."
-        },
-        "italian": {
-            "name": "Azurill",
-            "category": "Pokémon Pois",
-            "entry_text": "Pokémon che vive nell’acqua. Si\nmuove rapidamente sulla terraferma\nsaltellando sulla grossa coda."
-        },
-        "spanish": {
-            "name": "Azurill",
-            "category": "Pokémon A Topos",
-            "entry_text": "Vive cerca del agua. En la tierra\nse mueve muy rápido botando\nsobre su gran cola."
-        },
-        "japanese": {
-            "name": "ルリリ",
-            "category": "みずたまポケモン",
-            "entry_text": "おおきな　しっぽに　のって　はずむと\nちじょうでは　はやく　いどうできる。\nみずべで　くらす　ポケモン。"
-        }
     }
 }

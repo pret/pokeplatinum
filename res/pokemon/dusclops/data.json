@@ -140,47 +140,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 16,
-        "weight": 306,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 233,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 233,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 2,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 2,
-        "english": {
-            "category": "Beckon Pokémon",
-            "entry_text": "It seeks drifting will-o’-the-wisps\nand sucks them into its empty body.\nWhat happens inside is a mystery."
-        },
-        "french": {
-            "name": "TERACLOPE",
-            "category": "Pokémon Appel",
-            "entry_text": "Son corps est creux. On raconte\nque celui qui regarde à l’intérieur\nfinira aspiré par le néant."
-        },
-        "german": {
-            "name": "ZWIRRKLOP",
-            "category": "Wink",
-            "entry_text": "Sein Körper ist hohl. Man sagt,\ndass diejenigen, die in den Körper\nblicken, hineingezogen werden."
-        },
-        "italian": {
-            "name": "Dusclops",
-            "category": "Pokémon Ipnosguardo",
-            "entry_text": "Il suo corpo è vuoto. Pare che\nchiunque si avvicini per guardare\ndentro venga risucchiato."
-        },
-        "spanish": {
-            "name": "Dusclops",
-            "category": "Pokémon Atrayente",
-            "entry_text": "Su cuerpo está hueco. Se dice\nque quien mire dentro, será\ntragado por un agujero negro."
-        },
-        "japanese": {
-            "name": "サマヨ－ル",
-            "category": "てまねきポケモン",
-            "entry_text": "からだの　なかみは　くうどうに\nなっていて　のぞきこんだ　あいてを\nすいこんでしまうと　いわれている。"
-        }
     }
 }

@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 350,
-        "body_shape": "SHAPE_TENTACLES",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 14,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 14,
-        "english": {
-            "category": "Spiral Pokémon",
-            "entry_text": "It is thought that this Pokémon\nbecame extinct because its spiral\nshell grew too large."
-        },
-        "french": {
-            "name": "AMONISTAR",
-            "category": "Pokémon Spirale",
-            "entry_text": "On pense que ce Pokémon a\ndisparu parce que sa coquille en\nspirale était devenue trop grosse."
-        },
-        "german": {
-            "name": "AMOROSO",
-            "category": "Spirale",
-            "entry_text": "Man geht davon aus, dass das PKMN\nausgestorben ist, weil seine spiral-\nförmige Schale zu groß wurde."
-        },
-        "italian": {
-            "name": "Omastar",
-            "category": "Pokémon Spirale",
-            "entry_text": "Si pensa che questo Pokémon si\nsia estinto perché la sua conchiglia\na spirale è cresciuta troppo."
-        },
-        "spanish": {
-            "name": "Omastar",
-            "category": "Pokémon Espiral",
-            "entry_text": "Se cree que este Pokémon se\nextinguió porque su concha\nespiral creció demasiado."
-        },
-        "japanese": {
-            "name": "オムスタ－",
-            "category": "うずまきポケモン",
-            "entry_text": "らせんじょうの　カラが　おおきく\nなりすぎたことが　げんいんで\nぜつめつしたと　かんがえられている。"
-        }
     }
 }

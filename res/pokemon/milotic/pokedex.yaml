@@ -1,0 +1,74 @@
+"height": !!int |-
+    62
+"weight": !!int |-
+    1620
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    349
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    357
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Tender Pokémon
+    "entry_text": |-
+        Its lovely scales are described as
+        rainbow colored. They change color
+        depending on the viewing angle.
+"french":
+    "name": |-
+        MILOBELLUS
+    "category": |-
+        Pokémon Tendre
+    "entry_text": |-
+        On raconte qu’il surgit du fond des
+        lacs pour calmer les esprits quand
+        les gens se querellent.
+"german":
+    "name": |-
+        MILOTIC
+    "category": |-
+        Zartheit
+    "entry_text": |-
+        Wenn sich jemand streitet, steigt
+        es aus den Tiefen des Sees empor,
+        um die Streitenden zu beruhigen.
+"italian":
+    "name": |-
+        Milotic
+    "category": |-
+        Pokémon Tenerezza
+    "entry_text": |-
+        Si dice che sorga dai fondali dei
+        laghi per placare gli animi furiosi
+        delle persone che litigano.
+"spanish":
+    "name": |-
+        Milotic
+    "category": |-
+        Pokémon Tierno
+    "entry_text": |-
+        Se dice que emerge del fondo de
+        los lagos cuando la gente discute
+        para apaciguarla.
+"japanese":
+    "name": |-
+        ミロカロス
+    "category": |-
+        いつくしみポケモン
+    "entry_text": |-
+        ひとびとが　あらそいを　はじめると
+        みずうみの　おくそこから　あらわれて
+        すさんだ　こころを　いやすという。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    864
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    248
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    248
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    13
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    13
+"english":
+    "category": |-
+        Guts Pokémon
+    "entry_text": |-
+        It toughens its body by slamming
+        into thick trees. Many snapped
+        trees can be found near its nest.
+"french":
+    "name": |-
+        MAKUHITA
+    "category": |-
+        Pokémon Tenace
+    "entry_text": |-
+        Il fortifie son corps en fonçant
+        sur des arbres épais. Son nid est
+        entouré d’arbres abattus.
+"german":
+    "name": |-
+        MAKUHITA
+    "category": |-
+        Courage
+    "entry_text": |-
+        Es stärkt seinen Körper, indem es
+        gegen Bäume rennt. In seiner Nähe
+        finden sich viele umgekippte Bäume.
+"italian":
+    "name": |-
+        Makuhita
+    "category": |-
+        Pokémon Coraggio
+    "entry_text": |-
+        Si rinforza sbattendo contro enormi
+        alberi. Vicino alla sua tana si
+        trovano parecchi alberi abbattuti.
+"spanish":
+    "name": |-
+        Makuhita
+    "category": |-
+        Pokémon Valiente
+    "entry_text": |-
+        Endurece su cuerpo golpeando
+        grandes árboles. Cerca de su hogar
+        suele haber árboles golpeados.
+"japanese":
+    "name": |-
+        マクノシタ
+    "category": |-
+        こんじょうポケモン
+    "entry_text": |-
+        ふとい　きのみきに　ぶつかって
+        からだを　きたえる。すみかの　そばは
+        へしおられた　きが　たくさんある。

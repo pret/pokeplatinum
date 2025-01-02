@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    295
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    279
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    279
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    15
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    15
+"english":
+    "category": |-
+        Mouse Pokémon
+    "entry_text": |-
+        It curls up, then rolls into foes
+        with its back. Its sharp spines
+        inflict severe damage.
+"french":
+    "name": |-
+        SABLAIREAU
+    "category": |-
+        Pokémon Souris
+    "entry_text": |-
+        Il se met en boule pour percuter
+        l’ennemi. Ses épines aiguisées
+        font beaucoup de dégâts.
+"german":
+    "name": |-
+        SANDAMER
+    "category": |-
+        Maus
+    "entry_text": |-
+        Es rollt sich zusammen und rollt
+        dann auf Gegner zu, die durch
+        seine Stacheln Schaden nehmen.
+"italian":
+    "name": |-
+        Sandslash
+    "category": |-
+        Pokémon Topo
+    "entry_text": |-
+        Si arrotola come una palla e rotola
+        sul dorso verso i nemici. Gli aculei
+        aguzzi provocano gravi danni.
+"spanish":
+    "name": |-
+        Sandslash
+    "category": |-
+        Pokémon Ratón
+    "entry_text": |-
+        Se hace una bola y se lanza
+        rodando hacia los enemigos para
+        clavarles sus afiladas púas.
+"japanese":
+    "name": |-
+        サンドパン
+    "category": |-
+        ねずみポケモン
+    "entry_text": |-
+        からだを　まるめて　せなかから
+        たいあたり。するどい　トゲトゲが
+        おおきな　ダメ－ジを　あたえる。

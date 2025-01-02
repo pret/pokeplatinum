@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    10
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    462
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    462
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    29
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    29
+"english":
+    "category": |-
+        Balloon Pokémon
+    "entry_text": |-
+        It has a soft and bouncy body.
+        Once it starts bouncing, it
+        becomes impossible to stop.
+"french":
+    "name": |-
+        TOUDOUDOU
+    "category": |-
+        Pokémon Bouboule
+    "entry_text": |-
+        Son corps est doux et élastique.
+        Quand il commence à rebondir,
+        on ne peut plus l’arrêter.
+"german":
+    "name": |-
+        FLUFFELUFF
+    "category": |-
+        Ballon
+    "entry_text": |-
+        Es hat einen weichen, elastischen
+        Körper. Hat es einmal angefangen
+        zu hüpfen, ist es nicht zu stoppen.
+"italian":
+    "name": |-
+        Igglybuff
+    "category": |-
+        Pokémon Pallone
+    "entry_text": |-
+        Ha un corpo morbido ed elastico.
+        Quando comincia a saltellare è
+        praticamente impossibile fermarlo.
+"spanish":
+    "name": |-
+        Igglybuff
+    "category": |-
+        Pokémon Globo
+    "entry_text": |-
+        Su cuerpo es suave y está
+        hinchado. Cuando empieza a
+        botar, no puede parar.
+"japanese":
+    "name": |-
+        ププリン
+    "category": |-
+        ふうせんポケモン
+    "entry_text": |-
+        やわらかく　だんりょくせいのある
+        からだは　いちど　はずむと
+        ぜんぜん　とまれなくなってしまう。

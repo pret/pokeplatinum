@@ -1,0 +1,74 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    600
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Eon Pokémon
+    "entry_text": |-
+        A highly intelligent Pokémon.
+        By folding back its wings in flight,
+        it can overtake jet planes.
+"french":
+    "name": |-
+        LATIOS
+    "category": |-
+        Pokémon Eon
+    "entry_text": |-
+        Un Pokémon très intelligent. Il
+        peut voler plus vite qu’un avion à
+        réaction en repliant ses ailes.
+"german":
+    "name": |-
+        LATIOS
+    "category": |-
+        Äon
+    "entry_text": |-
+        Ein hochintelligentes PKMN. Wenn es
+        im Flug seine Flügel nach hinten
+        legt, ist es schneller als ein Jet.
+"italian":
+    "name": |-
+        Latios
+    "category": |-
+        Pokémon Eone
+    "entry_text": |-
+        Pokémon molto intelligente.
+        Ripiegando indietro le ali, riesce a
+        volare più veloce di un jet.
+"spanish":
+    "name": |-
+        Latios
+    "category": |-
+        Pokémon Eón
+    "entry_text": |-
+        Es un Pokémon muy inteligente.
+        Puede adelantar a aviones a
+        reacción plegando las alas.
+"japanese":
+    "name": |-
+        ラティオス
+    "category": |-
+        むげんポケモン
+    "entry_text": |-
+        たかい　ちのうを　もつ　ポケモン。
+        うでを　おりたたんで　とべば
+        ジェットきを　おいこす　スピ－ドだ。

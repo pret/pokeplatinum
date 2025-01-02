@@ -124,47 +124,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 3,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 470,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 470,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65526,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65526,
-        "english": {
-            "category": "Emotion Pokémon",
-            "entry_text": "When MESPRIT flew, people learned\nthe joy and sadness of living.\nIt was the birth of emotions."
-        },
-        "french": {
-            "name": "CREFOLLET",
-            "category": "Pokémon Emotion",
-            "entry_text": "On l’appelle “être de l’émotion”.\nIl enseigne aux hommes la beauté de\nla tristesse, la douleur et la joie."
-        },
-        "german": {
-            "name": "VESPRIT",
-            "category": "Emotion",
-            "entry_text": "“Das fühlende Wesen”.\nEs lehrt die Menschen die Ideale\nvon Trauer, Schmerz und Freude."
-        },
-        "italian": {
-            "name": "Mesprit",
-            "category": "Pokémon Emozione",
-            "entry_text": "Detto “Essere delle emozioni”.\nHa insegnato agli uomini la nobiltà\ndi tristezza, gioia e dolore."
-        },
-        "spanish": {
-            "name": "Mesprit",
-            "category": "Pokémon Sensorio",
-            "entry_text": "Se le conoce como el “ser de la\nemoción”. Enseñó a los humanos\nla nobleza del dolor y la alegría."
-        },
-        "japanese": {
-            "name": "エムリット",
-            "category": "かんじょうポケモン",
-            "entry_text": "かなしみの　くるしさと　よろこびの\nとうとさを　ひとびとに　おしえた。\nかんじょうのかみ　と　よばれている。"
-        }
     }
 }

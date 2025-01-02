@@ -116,47 +116,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 1200,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 247,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 247,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 17,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 17,
-        "english": {
-            "category": "Armor Pokémon",
-            "entry_text": "It attacks by curling up, then\nrolling into its foe. It can blow\napart a house in one hit."
-        },
-        "french": {
-            "name": "DONPHAN",
-            "category": "Pokémon Armure",
-            "entry_text": "Il attaque en se roulant en boule\npour percuter l’ennemi. Il peut\nabattre une maison d’un seul coup."
-        },
-        "german": {
-            "name": "DONPHAN",
-            "category": "Panzer",
-            "entry_text": "Wenn es angreift, rollt es sich\nzusammen und auf den Gegner zu. Es\nkann Häuser zum Einsturz bringen."
-        },
-        "italian": {
-            "name": "Donphan",
-            "category": "Pokémon Armatura",
-            "entry_text": "Si arrotola a palla e attacca il\nnemico. Riesce ad abbattere\nuna casa con un solo colpo."
-        },
-        "spanish": {
-            "name": "Donphan",
-            "category": "Pokémon Coraza",
-            "entry_text": "Se enrolla sobre sí mismo y se\nlanza rodando contra el enemigo.\nPuede derribar casas de un golpe."
-        },
-        "japanese": {
-            "name": "ドンファン",
-            "category": "よろいポケモン",
-            "entry_text": "からだを　まるめて　かいてんしながら\nとっしんする　こうげき。いちげきで\nみんかを　ばらばらに　ふきとばす。"
-        }
     }
 }

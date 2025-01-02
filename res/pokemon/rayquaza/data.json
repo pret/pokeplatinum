@@ -133,47 +133,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 70,
-        "weight": 2065,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 545,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 512,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 22,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 22,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Sky High Pokémon",
-            "entry_text": "It lives in the ozone layer far\nabove the clouds and cannot be\nseen from the ground."
-        },
-        "french": {
-            "name": "RAYQUAZA",
-            "category": "Pokémon Cieux",
-            "entry_text": "Il vit dans la couche d’ozone, au\ndessus des nuages. Il est invisible\ndepuis le sol."
-        },
-        "german": {
-            "name": "RAYQUAZA",
-            "category": "Himmelhoch",
-            "entry_text": "Es lebt in der Ozonschicht hoch\nüber den Wolken und kann vom\nBoden aus nicht gesehen werden."
-        },
-        "italian": {
-            "name": "Rayquaza",
-            "category": "Pokémon Stratosfera",
-            "entry_text": "Vive nello strato di ozono oltre le\nnuvole e non può essere avvistato\nda terra."
-        },
-        "spanish": {
-            "name": "Rayquaza",
-            "category": "Pokémon Cielo",
-            "entry_text": "Vive en la capa de ozono sobre\nlas nubes y no puede ser visto\ndesde el suelo."
-        },
-        "japanese": {
-            "name": "レックウザ",
-            "category": "てんくうポケモン",
-            "entry_text": "くもより　はるかうえの　オゾンそうに\nせいそくしているため　ちじょうから\nすがたを　みることは　できない。"
-        }
     }
 }

@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    36
+"body_shape": |-
+    SHAPE_MULTI_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    366
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    366
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65533
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65533
+"english":
+    "category": |-
+        Eyeball Pokémon
+    "entry_text": |-
+        Its antennae have eye patterns
+        on them. Its four wings enable it
+        to hover and fly in any direction.
+"french":
+    "name": |-
+        MASKADRA
+    "category": |-
+        Pokémon Boule Oeil
+    "entry_text": |-
+        Des motifs en forme d’yeux ornent
+        ses antennes. Ses 4 ailes l’aident
+        à voler dans toutes les directions.
+"german":
+    "name": |-
+        MASKEREGEN
+    "category": |-
+        Auge
+    "entry_text": |-
+        Seine Antenne besitzt ein Augen-
+        muster. Seine vier Flügel erlauben
+        es, in alle Richtungen zu fliegen.
+"italian":
+    "name": |-
+        Masquerain
+    "category": |-
+        Pokémon Occhi
+    "entry_text": |-
+        Le sue antenne presentano un
+        motivo ad occhi. Con le quattro ali
+        riesce a volare in ogni direzione.
+"spanish":
+    "name": |-
+        Masquerain
+    "category": |-
+        Pokémon Globocular
+    "entry_text": |-
+        Sus antenas tienen dibujos de ojos,
+        mientras que sus alas le permiten
+        volar en cualquier dirección.
+"japanese":
+    "name": |-
+        アメモ－ス
+    "category": |-
+        めだまポケモン
+    "entry_text": |-
+        めだまもようの　しょっかくを　もつ。
+        ４まいの　はねで　うかびあがり
+        ぜんごさゆうに　うごくことができる。

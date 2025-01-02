@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    3
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    404
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    404
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65528
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65528
+"english":
+    "category": |-
+        Plasma Pokémon
+    "entry_text": |-
+        Its electric-like body can enter
+        some kinds of machines and take
+        control in order to make mischief.
+"french":
+    "name": |-
+        MOTISMA
+    "category": |-
+        Pokémon Plasma
+    "entry_text": |-
+        Son corps est fait de plasma. Il
+        cause de gros dégâts en infiltrant
+        des appareils électroniques.
+"german":
+    "name": |-
+        ROTOM
+    "category": |-
+        Plasma
+    "entry_text": |-
+        Sein Körper besteht aus Plasma. Mit
+        ihm kann es in elektrische Geräte
+        eindringen und für Chaos sorgen.
+"italian":
+    "name": |-
+        Rotom
+    "category": |-
+        Pokémon Plasma
+    "entry_text": |-
+        Il suo corpo è composto di plasma.
+        È solito infiltrarsi negli strumenti
+        elettronici per provocare caos.
+"spanish":
+    "name": |-
+        Rotom
+    "category": |-
+        Pokémon Plasma
+    "entry_text": |-
+        Su cuerpo está hecho de plasma.
+        Puede infiltrarse en dispositivos
+        electrónicos e inutilizarlos.
+"japanese":
+    "name": |-
+        ロトム
+    "category": |-
+        プラズマポケモン
+    "entry_text": |-
+        プラズマで　できた　からだを　もつ。
+        でんかせいひんに　もぐりこみ
+        わるさを　することで　しられている。

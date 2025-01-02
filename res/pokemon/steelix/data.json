@@ -127,47 +127,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 92,
-        "weight": 4000,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 604,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 588,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 21,
-        "pokemon_pos_f": 4,
-        "trainer_pos_m": 21,
-        "pokemon_pos_m": 4,
-        "english": {
-            "category": "Iron Snake Pokémon",
-            "entry_text": "It is thought its body transformed\nas a result of iron accumulating\ninternally from swallowing soil."
-        },
-        "french": {
-            "name": "STEELIX",
-            "category": "Pokémon Serpenfer",
-            "entry_text": "Grâce à la température élevée et la\nhaute pression souterraines, son\ncorps est plus dur que le métal."
-        },
-        "german": {
-            "name": "STAHLOS",
-            "category": "Stahlboa",
-            "entry_text": "Hoher Druck und hohe Temperaturen\nhaben seinen Körper härter als\nStahl werden lassen."
-        },
-        "italian": {
-            "name": "Steelix",
-            "category": "Pokémon Ferroserpe",
-            "entry_text": "Temprato dalla pressione e dal\ncalore sotterraneo, il suo corpo è\npiù duro di qualsiasi metallo."
-        },
-        "spanish": {
-            "name": "Steelix",
-            "category": "Pokémon Serpférrea",
-            "entry_text": "Su cuerpo es más duro que\ncualquier metal debido a la gran\npresión y calor de su hábitat."
-        },
-        "japanese": {
-            "name": "ハガネ－ル",
-            "category": "てつへびポケモン",
-            "entry_text": "ちちゅうの　たかい　あつりょくと\nねつで　きたえられた　からだは\nあらゆる　きんぞくよりも　かたい。"
-        }
     }
 }

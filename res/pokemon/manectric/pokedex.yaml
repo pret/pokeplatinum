@@ -1,0 +1,74 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    402
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    238
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    238
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    5
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    5
+"english":
+    "category": |-
+        Discharge Pokémon
+    "entry_text": |-
+        It discharges electricity from its
+        mane. It creates a thundercloud
+        overhead to drop lightning bolts.
+"french":
+    "name": |-
+        ELECSPRINT
+    "category": |-
+        Pokémon Décharge
+    "entry_text": |-
+        Il libère l’électricité par sa
+        crinière. Il crée un nuage d’orage
+        pour appeler la foudre.
+"german":
+    "name": |-
+        VOLTENSO
+    "category": |-
+        Entladung
+    "entry_text": |-
+        Aus seiner Mähne entlädt es Elekt-
+        rizität. Es generiert eine Gewitter-
+        wolke, aus der es Blitze entlädt.
+"italian":
+    "name": |-
+        Manectric
+    "category": |-
+        Pokémon Scossa
+    "entry_text": |-
+        Scarica elettricità dalla criniera.
+        Crea nubi temporalesche in
+        cielo che fanno cadere saette.
+"spanish":
+    "name": |-
+        Manectric
+    "category": |-
+        Pokémon Descarga
+    "entry_text": |-
+        Descarga electricidad desde su
+        melena. Crea nubarrones desde
+        los que lanza rayos.
+"japanese":
+    "name": |-
+        ライボルト
+    "category": |-
+        ほうでんポケモン
+    "entry_text": |-
+        たてがみから　ほうでんしている。
+        ずじょうに　かみなりぐもを　つくり
+        いなずまを　おとして　こうげきする。

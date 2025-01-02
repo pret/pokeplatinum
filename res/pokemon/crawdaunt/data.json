@@ -127,47 +127,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 328,
-        "body_shape": "SHAPE_INSECTOID",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 296,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 296,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 12,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 12,
-        "english": {
-            "category": "Rogue Pokémon",
-            "entry_text": "It is a ruffian that uses its\npincers to pick up and toss out\nother Pokémon from its pond."
-        },
-        "french": {
-            "name": "COLHOMARD",
-            "category": "Pokémon Crapule",
-            "entry_text": "C’est un voyou qui utilise ses\npinces pour chasser les autres\nPokémon hors de sa mare."
-        },
-        "german": {
-            "name": "KREBUTACK",
-            "category": "Schlingel",
-            "entry_text": "Dieser Grobian ergreift andere PKMN\nmit seinen Scheren und wirft sie\naus seinem Teich."
-        },
-        "italian": {
-            "name": "Crawdaunt",
-            "category": "Pokémon Canaglia",
-            "entry_text": "Pokémon violento che afferra il\nnemico con le chele e lo scaraventa\nfuori dal suo stagno."
-        },
-        "spanish": {
-            "name": "Crawdaunt",
-            "category": "Pokémon Granuja",
-            "entry_text": "Este malandrín usa sus pinzas para\natosigar y expulsar a los otros\nPokémon que viven en su estanque."
-        },
-        "japanese": {
-            "name": "シザリガ－",
-            "category": "ならずものポケモン",
-            "entry_text": "いけに　すむ　ほかの　ポケモンを\nハサミで　つまみあげ　いけの　そとへ\nほうりだしてしまう　あばれんぼう。"
-        }
     }
 }

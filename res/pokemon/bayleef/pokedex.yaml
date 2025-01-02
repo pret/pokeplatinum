@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    158
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    264
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    264
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    7
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    7
+"english":
+    "category": |-
+        Leaf Pokémon
+    "entry_text": |-
+        The buds that ring its neck give
+        off a spicy aroma that perks
+        people up.
+"french":
+    "name": |-
+        MACRONIUM
+    "category": |-
+        Pokémon Feuille
+    "entry_text": |-
+        Le collier de bourgeons à son cou
+        répand un arôme épicé qui vous
+        donne du tonus.
+"german":
+    "name": |-
+        LORBLATT
+    "category": |-
+        Laub
+    "entry_text": |-
+        Die Knospen an seinem Hals
+        geben ein würziges Aroma ab,
+        das andere aufheitert.
+"italian":
+    "name": |-
+        Bayleef
+    "category": |-
+        Pokémon Foglia
+    "entry_text": |-
+        Le foglie attorno al suo collo
+        emanano un aroma speziato
+        dall’effetto energizzante.
+"spanish":
+    "name": |-
+        Bayleef
+    "category": |-
+        Pokémon Hoja
+    "entry_text": |-
+        Su cuello desprende un dulce
+        aroma que anima a quien lo
+        huele.
+"japanese":
+    "name": |-
+        ベイリ－フ
+    "category": |-
+        はっぱポケモン
+    "entry_text": |-
+        くびまわりの　つぼみから　におう
+        スパイシ－な　かおりは
+        かいだ　ひとを　げんきに　させる。

@@ -133,47 +133,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 115,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 256,
-        "pokemon_scale_f": 323,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 323,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 15,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 15,
-        "english": {
-            "category": "Long Tail Pokémon",
-            "entry_text": "It lives high among the treetops.\nIt can use its tail as freely and\ncleverly as its hands."
-        },
-        "french": {
-            "name": "CAPUMAIN",
-            "category": "Pokémon Longqueue",
-            "entry_text": "Il utilise sa queue pour cueillir les\nfruits inaccessibles. Elle est plus\nagile que ses mains."
-        },
-        "german": {
-            "name": "GRIFFEL",
-            "category": "Langschweif",
-            "entry_text": "Mit dem Schweif pflückt es hochhän-\ngende Früchte. Mit ihm ist es\ngeschickter als mit den Händen."
-        },
-        "italian": {
-            "name": "Aipom",
-            "category": "Pokémon Lungacoda",
-            "entry_text": "Usa la coda per raccogliere i\nfrutti che sono fuori portata. La\nsua coda è più agile delle mani."
-        },
-        "spanish": {
-            "name": "Aipom",
-            "category": "Pokémon Cola Larga",
-            "entry_text": "Usa su cola para recoger la fruta\nque no está a su alcance. Su cola\nes más hábil que sus manos."
-        },
-        "japanese": {
-            "name": "エイパム",
-            "category": "おながポケモン",
-            "entry_text": "てを　のばしても　とどかない　えだに\nはえる　くだものを　しっぽで　とる。\nほんものの　うでよりも　きよう。"
-        }
     }
 }

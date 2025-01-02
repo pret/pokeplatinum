@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    205
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    386
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    386
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Mold Pokémon
+    "entry_text": |-
+        It stores berries in its shell.
+        The berries eventually ferment to
+        become delicious juices.
+"french":
+    "name": |-
+        CARATROC
+    "category": |-
+        Pokémon Pourri
+    "entry_text": |-
+        Il stocke des Baies sous sa
+        carapace. Elles fermentent et
+        produisent des jus délicieux.
+"german":
+    "name": |-
+        POTTROTT
+    "category": |-
+        Schimmel
+    "entry_text": |-
+        In seiner Schale bewahrt es Beeren
+        auf. Diese fermentieren zu einem
+        leckeren Saft.
+"italian":
+    "name": |-
+        Shuckle
+    "category": |-
+        Pokémon Muffa
+    "entry_text": |-
+        Conserva nel guscio delle bacche
+        che, quando fermentano, si
+        trasformano in un succo delizioso.
+"spanish":
+    "name": |-
+        Shuckle
+    "category": |-
+        Pokémon Moho
+    "entry_text": |-
+        Almacena bayas en su caparazón,
+        que más tarde fermentan para
+        producir deliciosos zumos.
+"japanese":
+    "name": |-
+        ツボツボ
+    "category": |-
+        はっこうポケモン
+    "entry_text": |-
+        こうらの　なかに　きのみを　ためる。
+        そのうち　きのみは　はっこうして
+        おいしい　ジュ－スに　なるのだ。

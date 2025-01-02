@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    115
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    256
+"pokemon_scale_f": !!int |-
+    323
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    323
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    15
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    15
+"english":
+    "category": |-
+        Long Tail Pokémon
+    "entry_text": |-
+        It lives high among the treetops.
+        It can use its tail as freely and
+        cleverly as its hands.
+"french":
+    "name": |-
+        CAPUMAIN
+    "category": |-
+        Pokémon Longqueue
+    "entry_text": |-
+        Il utilise sa queue pour cueillir les
+        fruits inaccessibles. Elle est plus
+        agile que ses mains.
+"german":
+    "name": |-
+        GRIFFEL
+    "category": |-
+        Langschweif
+    "entry_text": |-
+        Mit dem Schweif pflückt es hochhän-
+        gende Früchte. Mit ihm ist es
+        geschickter als mit den Händen.
+"italian":
+    "name": |-
+        Aipom
+    "category": |-
+        Pokémon Lungacoda
+    "entry_text": |-
+        Usa la coda per raccogliere i
+        frutti che sono fuori portata. La
+        sua coda è più agile delle mani.
+"spanish":
+    "name": |-
+        Aipom
+    "category": |-
+        Pokémon Cola Larga
+    "entry_text": |-
+        Usa su cola para recoger la fruta
+        que no está a su alcance. Su cola
+        es más hábil que sus manos.
+"japanese":
+    "name": |-
+        エイパム
+    "category": |-
+        おながポケモン
+    "entry_text": |-
+        てを　のばしても　とどかない　えだに
+        はえる　くだものを　しっぽで　とる。
+        ほんものの　うでよりも　きよう。

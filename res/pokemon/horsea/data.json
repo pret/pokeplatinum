@@ -107,47 +107,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 80,
-        "body_shape": "SHAPE_HEAD_BASE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 476,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 476,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65530,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65530,
-        "english": {
-            "category": "Dragon Pokémon",
-            "entry_text": "It makes its nest in the shade of\ncorals. If it senses danger, it\nspits murky ink and flees."
-        },
-        "french": {
-            "name": "HYPOTREMPE",
-            "category": "Pokémon Dragon",
-            "entry_text": "Il niche à l’ombre du corail. Quand\nil se sent menacé, il disparaît\ndans un nuage d’encre opaque."
-        },
-        "german": {
-            "name": "SEEPER",
-            "category": "Drache",
-            "entry_text": "Im Schatten von Korallen legt es\nsein Nest an. Bei Gefahr versprüht\nes Tinte und flieht."
-        },
-        "italian": {
-            "name": "Horsea",
-            "category": "Pokémon Drago",
-            "entry_text": "Crea la sua tana all’ombra dei\ncoralli. Se avverte un pericolo,\nspruzza inchiostro nero e fugge."
-        },
-        "spanish": {
-            "name": "Horsea",
-            "category": "Pokémon Dragón",
-            "entry_text": "Hace su nido entre los corales.\nSi se siente en peligro, escupe\ntinta y huye."
-        },
-        "japanese": {
-            "name": "タッツ－",
-            "category": "ドラゴンポケモン",
-            "entry_text": "サンゴの　かげに　すみかを　つくる。\nきけんを　かんじると　くちから\nまっくろい　スミを　はいて　にげる。"
-        }
     }
 }

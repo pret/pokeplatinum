@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 498,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 218,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 218,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 1,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 1,
-        "english": {
-            "category": "Kicking Pokémon",
-            "entry_text": "Its legs can stretch double.\nFirst-time foes are startled by\nits extensible reach."
-        },
-        "french": {
-            "name": "KICKLEE",
-            "category": "Pokémon Latteur",
-            "entry_text": "Ses pattes élastiques s’allongent,\nce qui ne manque jamais de\nsurprendre au premier combat."
-        },
-        "german": {
-            "name": "KICKLEE",
-            "category": "Kicker",
-            "entry_text": "Seine Beine können die doppelte\nLänge annehmen. Gegner, die das\nnicht wissen, erschrecken."
-        },
-        "italian": {
-            "name": "Hitmonlee",
-            "category": "Pokémon Tiracalci",
-            "entry_text": "I suoi arti inferiori si allungano del\ndoppio, il che sbalordisce i nemici\nche lo vedono per la prima volta."
-        },
-        "spanish": {
-            "name": "Hitmonlee",
-            "category": "Pokémon Patada",
-            "entry_text": "Sus piernas se extienden hasta\ndoblar su longitud para sorprender\na enemigos desprevenidos."
-        },
-        "japanese": {
-            "name": "サワムラ－",
-            "category": "キックポケモン",
-            "entry_text": "あしが　２ばいの　ながさに　のびる。\nはじめて　たたかう　あいては\nその　まあいの　ひろさに　おどろく。"
-        }
     }
 }

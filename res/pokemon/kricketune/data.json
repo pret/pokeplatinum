@@ -105,47 +105,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 255,
-        "body_shape": "SHAPE_MULTI_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 345,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 345,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 17,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 17,
-        "english": {
-            "category": "Cricket Pokémon",
-            "entry_text": "There is a village that hosts a\ncontest based on the amazingly\nvariable cries of this Pokémon."
-        },
-        "french": {
-            "name": "MELOKRIK",
-            "category": "Pokémon Criquet",
-            "entry_text": "Il croise ses bras affûtés devant\nson torse pour crier. Il compose\ntout un tas de mélodies."
-        },
-        "german": {
-            "name": "ZIRPEISE",
-            "category": "Zirper",
-            "entry_text": "Wenn es ruft, verschränkt es seine\nmesserartigen Arme vor der Brust.\nEs komponiert aus dem Stegreif."
-        },
-        "italian": {
-            "name": "Kricketune",
-            "category": "Pokémon Grillo",
-            "entry_text": "Quando canta tiene le zampe\nincrociate al petto.\nSa improvvisare melodie."
-        },
-        "spanish": {
-            "name": "Kricketune",
-            "category": "Pokémon Grillo",
-            "entry_text": "Cuando llora, cruza sus brazos\ncon forma de cuchillo. Puede\nimprovisar melodías."
-        },
-        "japanese": {
-            "name": "コロトック",
-            "category": "こおろぎポケモン",
-            "entry_text": "なくときは　ナイフのような　うでを\nむねの　まえで　こうささせる。\nそっきょうで　メロディを　つくる。"
-        }
     }
 }

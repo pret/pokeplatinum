@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    600
+"body_shape": |-
+    SHAPE_MULTI_BODY
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Magnet Pokémon
+    "entry_text": |-
+        Many mysteriously appear when more
+        sunspots dot the sun. They stop
+        TV sets from displaying properly.
+"french":
+    "name": |-
+        MAGNETON
+    "category": |-
+        Pokémon Magnétique
+    "entry_text": |-
+        Il est formé de trois MAGNETI liés
+        par magnétisme. En groupe, ils
+        déclenchent un orage magnétique.
+"german":
+    "name": |-
+        MAGNETON
+    "category": |-
+        Magnet
+    "entry_text": |-
+        Eigentlich sind es drei MAGNETILO,
+        die durch Magnetismus verbunden
+        sind.
+"italian":
+    "name": |-
+        Magneton
+    "category": |-
+        Pokémon Calamita
+    "entry_text": |-
+        Pokémon formato da tre MAGNEMITE
+        uniti dalla forza magnetica. Più di
+        tre creano una tempesta magnetica.
+"spanish":
+    "name": |-
+        Magneton
+    "category": |-
+        Pokémon Imán
+    "entry_text": |-
+        Realmente son tres MAGNEMITE
+        unidos por un campo magnético.
+        Provocan tormentas magnéticas.
+"japanese":
+    "name": |-
+        レアコイル
+    "category": |-
+        じしゃくポケモン
+    "entry_text": |-
+        ３びきの　コイルが　じりょくで
+        れんけつした　ポケモン。レアコイルが
+        ふえると　じきあらしが　おこる。

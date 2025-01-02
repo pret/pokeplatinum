@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 65,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 274,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 274,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 26,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 26,
-        "english": {
-            "category": "Pig Pokémon",
-            "entry_text": "It has a very sensitive nose. It\ncan locate mushrooms, berries, and\neven hot springs buried under ice."
-        },
-        "french": {
-            "name": "MARCACRIN",
-            "category": "Pokémon Cochon",
-            "entry_text": "Il adore les champignons qui\npoussent sous l’herbe morte. Il\ntrouve aussi des sources chaudes."
-        },
-        "german": {
-            "name": "QUIEKEL",
-            "category": "Ferkel",
-            "entry_text": "Es liebt Pilze, die unter totem Gras\nwachsen. Auf der Suche nach\nNahrung findet es heiße Quellen."
-        },
-        "italian": {
-            "name": "Swinub",
-            "category": "Pokémon Maiale",
-            "entry_text": "Ama mangiare i funghi che crescono\nsotto l’erba secca. Mentre cerca,\ntalvolta trova sorgenti termali."
-        },
-        "spanish": {
-            "name": "Swinub",
-            "category": "Pokémon Cerdo",
-            "entry_text": "Le encanta comer las setas que\ncrecen bajo la hierba seca. A\nveces descubre aguas termales."
-        },
-        "japanese": {
-            "name": "ウリム－",
-            "category": "いのぶたポケモン",
-            "entry_text": "かれくさの　したに　はえた　キノコが\nだいこうぶつ。においで　キノコを\nさがすうちに　おんせんを　みつける。"
-        }
     }
 }

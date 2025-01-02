@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    155
+"body_shape": |-
+    SHAPE_HEAD_BASE
+"trainer_scale_f": !!int |-
+    340
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    312
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    4
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    2
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Flycatcher Pokémon
+    "entry_text": |-
+        It pools in its mouth a fluid with
+        a honeylike scent, which is really
+        an acid that dissolves anything.
+"french":
+    "name": |-
+        EMPIFLOR
+    "category": |-
+        Pokémon Carnivore
+    "entry_text": |-
+        Sa bouche sécrète un fluide à
+        l’odeur de miel, qui s’avère être
+        un acide extrêmement corrosif.
+"german":
+    "name": |-
+        SARZENIA
+    "category": |-
+        Fliegentot
+    "entry_text": |-
+        In seinem Maul sammelt sich eine
+        Flüssigkeit, die nach Honig riecht,
+        in Wahrheit aber ätzend ist.
+"italian":
+    "name": |-
+        Victreebel
+    "category": |-
+        Pokémon Moschivoro
+    "entry_text": |-
+        Tiene in bocca un liquido dall’aroma
+        simile al miele, che in realtà è un
+        acido altamente corrosivo.
+"spanish":
+    "name": |-
+        Victreebel
+    "category": |-
+        Pokémon Matamoscas
+    "entry_text": |-
+        Su boca segrega un fluido de olor
+        parecido a la miel: un potente
+        ácido que disuelve cualquier cosa.
+"japanese":
+    "name": |-
+        ウツボット
+    "category": |-
+        ハエとりポケモン
+    "entry_text": |-
+        ミツのような　かおりの　えきたいを
+        くちに　ためているが　それは
+        なんでも　とかす　ようかいえきだ。

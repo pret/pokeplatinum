@@ -110,47 +110,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 245,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 16,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 16,
-        "english": {
-            "category": "Lightning Pokémon",
-            "entry_text": "If agitated, it uses electricity to\nstraighten out its fur and launch\nit in small bunches."
-        },
-        "french": {
-            "name": "VOLTALI",
-            "category": "Pokémon Orage",
-            "entry_text": "Il contrôle une puissance de 10 000\nvolts. Il peut hérisser sa fourrure\ncomme s’il s’agissait de piquants."
-        },
-        "german": {
-            "name": "BLITZA",
-            "category": "Blitz",
-            "entry_text": "Es kontrolliert 10 000 Volt. Es\nkann sein Fell so aufstellen, dass\nes wie scharfe Nadeln wirkt."
-        },
-        "italian": {
-            "name": "Jolteon",
-            "category": "Pokémon Luminoso",
-            "entry_text": "Scarica elettricità a 10000 volt e\nrizza tutti i peli come se fossero\naghi pungenti."
-        },
-        "spanish": {
-            "name": "Jolteon",
-            "category": "Pokémon Relámpago",
-            "entry_text": "Lanza rayos de 10000 voltios.\nEs capaz de convertir su pelaje\nen púas afiladísimas."
-        },
-        "japanese": {
-            "name": "サンダ－ス",
-            "category": "かみなりポケモン",
-            "entry_text": "１まんボルトの　でんきを　あやつる。\nぜんしんの　たいもうが　さかだつと\nハリのように　するどく　とがる。"
-        }
     }
 }

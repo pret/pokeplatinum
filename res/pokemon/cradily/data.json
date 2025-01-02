@@ -116,47 +116,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 604,
-        "body_shape": "SHAPE_HEAD_BASE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 264,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 264,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 6,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 6,
-        "english": {
-            "category": "Barnacle Pokémon",
-            "entry_text": "It lives in the shallows of warm\nseas. When the tide goes out, it\ndigs up prey from beaches."
-        },
-        "french": {
-            "name": "VACILYS",
-            "category": "Pokémon Bernacle",
-            "entry_text": "Vit dans les hauts-fonds des mers\nchaudes. Il déterre sa proie du\nsable quand la marée se retire."
-        },
-        "german": {
-            "name": "WIELIE",
-            "category": "Rankfüßer",
-            "entry_text": "Es lebt in seichten Stellen warmer\nMeere. Bei Ebbe sucht es im Sand\nnach Beute. "
-        },
-        "italian": {
-            "name": "Cradily",
-            "category": "Pokémon Lepade",
-            "entry_text": "Vive in acque poco profonde nei\nmari caldi. Con la bassa marea,\nscava sulla riva in cerca di prede."
-        },
-        "spanish": {
-            "name": "Cradily",
-            "category": "Pokémon Percebe",
-            "entry_text": "Vive en el fondo de los mares de\naguas templadas. Emerge para\ncazar cuando baja la marea."
-        },
-        "japanese": {
-            "name": "ユレイドル",
-            "category": "いわつぼポケモン",
-            "entry_text": "あたたかい　うみの　あさせに　いる。\nしおが　ひくと　すなはまに　もぐった\nえものを　ほりだして　たべる。"
-        }
     }
 }

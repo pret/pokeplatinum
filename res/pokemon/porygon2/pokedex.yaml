@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    325
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    331
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    331
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65529
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65529
+"english":
+    "category": |-
+        Virtual Pokémon
+    "entry_text": |-
+        It was upgraded to enable the
+        exploration of other planets.
+        However, it failed to measure up.
+"french":
+    "name": |-
+        PORYGON2
+    "category": |-
+        Pokémon Virtuel
+    "entry_text": |-
+        On lui a installé un logiciel de
+        terraformation pour lui permettre
+        de travailler dans l’espace.
+"german":
+    "name": |-
+        PORYGON2
+    "category": |-
+        Virtuell
+    "entry_text": |-
+        Interstellare Software wurde
+        installiert, so dass dieses PKMN
+        sich auch im All bewegen kann.
+"italian":
+    "name": |-
+        Porygon2
+    "category": |-
+        Pokémon Virtuale
+    "entry_text": |-
+        Gli è stato installato un programma
+        di sviluppo planetario che lo rende
+        capace di lavorare nello spazio.
+"spanish":
+    "name": |-
+        Porygon2
+    "category": |-
+        Pokémon Virtual
+    "entry_text": |-
+        Tiene instalado un avanzado
+        software astrofísico que le
+        permite trabajar en el espacio.
+"japanese":
+    "name": |-
+        ポリゴン２
+    "category": |-
+        バ－チャルポケモン
+    "entry_text": |-
+        わくせいかいはつようの　プログラムが
+        インスト－ルされている。しんくうの
+        うちゅうでも　かつどうできるのだ。

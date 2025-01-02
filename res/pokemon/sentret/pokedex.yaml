@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    60
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    256
+"pokemon_scale_f": !!int |-
+    410
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    410
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    18
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    18
+"english":
+    "category": |-
+        Scout Pokémon
+    "entry_text": |-
+        It has a very nervous nature.
+        It stands up high on its tail so it
+        can scan wide areas.
+"french":
+    "name": |-
+        FOUINETTE
+    "category": |-
+        Pokémon Espion
+    "entry_text": |-
+        Ce Pokémon très nerveux
+        prend appui sur sa queue pour
+        observer ses alentours.
+"german":
+    "name": |-
+        WIESOR
+    "category": |-
+        Späher
+    "entry_text": |-
+        Ein sehr nervöses PKMN. Es steht
+        auf seinem Schweif und betrachtet
+        seine Umgebung ganz genau.
+"italian":
+    "name": |-
+        Sentret
+    "category": |-
+        Pokémon Esplorante
+    "entry_text": |-
+        Ha un’indole alquanto nervosa. Sta
+        ritto sulla punta della coda per
+        riuscire a sorvegliare ampie aree.
+"spanish":
+    "name": |-
+        Sentret
+    "category": |-
+        Pokémon Explorador
+    "entry_text": |-
+        Es de naturaleza nerviosa. Se alza
+        sobre su cola para otear grandes
+        extensiones.
+"japanese":
+    "name": |-
+        オタチ
+    "category": |-
+        みはりポケモン
+    "entry_text": |-
+        とても　しんけいしつな　せいかく。
+        とおくまで　みわたせるように
+        しっぽを　つかって　せのびをする。

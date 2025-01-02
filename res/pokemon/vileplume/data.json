@@ -96,47 +96,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 186,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 281,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 281,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 14,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 14,
-        "english": {
-            "category": "Flower Pokémon",
-            "entry_text": "Its petals are the largest in the\nworld. As it walks, it scatters\nextremely allergenic pollen."
-        },
-        "french": {
-            "name": "RAFFLESIA",
-            "category": "Pokémon Fleur",
-            "entry_text": "Ses pétales sont les plus grands\ndu monde. Il marche en répandant\nun pollen extrêmement allergène."
-        },
-        "german": {
-            "name": "GIFLOR",
-            "category": "Blume",
-            "entry_text": "Es besitzt die größten Blätter der\nWelt. Es verteilt beim Gehen Pollen,\ndie schreckliche Allergien auslösen."
-        },
-        "italian": {
-            "name": "Vileplume",
-            "category": "Pokémon Fiore",
-            "entry_text": "I suoi petali sono i più grandi al\nmondo. Mentre cammina diffonde\nun polline che causa allergie."
-        },
-        "spanish": {
-            "name": "Vileplume",
-            "category": "Pokémon Flor",
-            "entry_text": "Sus pétalos son los más grandes\ndel mundo. Cuando anda desprende\nun terrible polen alergénico."
-        },
-        "japanese": {
-            "name": "ラフレシア",
-            "category": "フラワ－ポケモン",
-            "entry_text": "はなびらの　おおきさは　せかいいち。\nひどい　アレルギ－を　ひきおこす\nどくかふんを　ばらまいて　あるく。"
-        }
     }
 }

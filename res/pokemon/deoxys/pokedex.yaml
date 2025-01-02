@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    608
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    2
+"english":
+    "category": |-
+        DNA Pokémon
+    "entry_text": |-
+        An alien virus that fell to earth
+        on a meteor underwent a DNA
+        mutation to become this Pokémon.
+"french":
+    "name": |-
+        DEOXYS
+    "category": |-
+        Pokémon ADN
+    "entry_text": |-
+        Il vient d’un virus extraterrestre
+        arrivé avec une météorite et ayant
+        subi une mutation génétique.
+"german":
+    "name": |-
+        DEOXYS
+    "category": |-
+        DNS
+    "entry_text": |-
+        Ein außerirdischer Virus kam mit
+        einem Meteor auf die Erde. Seine
+        DNA mutierte. So entstand DEOXYS.
+"italian":
+    "name": |-
+        Deoxys
+    "category": |-
+        Pokémon DNA
+    "entry_text": |-
+        È il risultato della mutazione gene-
+        tica di un virus alieno, giunto sulla
+        terra con un meteorite.
+"spanish":
+    "name": |-
+        Deoxys
+    "category": |-
+        Pokémon ADN
+    "entry_text": |-
+        Surgió a raíz de la mutación de
+        ADN de un virus alienígena que
+        cayó a la Tierra en un meteorito.
+"japanese":
+    "name": |-
+        デオキシス
+    "category": |-
+        ＤＮＡポケモン
+    "entry_text": |-
+        いんせきに　ふちゃくしていた
+        うちゅうウイルスの　ＤＮＡが
+        へんいして　うまれた　ポケモン。

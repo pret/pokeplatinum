@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    299
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    307
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    307
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Sea Slug Pokémon
+    "entry_text": |-
+        Long ago, its entire back was
+        shielded with a sturdy shell. There
+        are traces of it left in its cells.
+"french":
+    "name": |-
+        TRITOSOR
+    "category": |-
+        Pokémon Aqualimace
+    "entry_text": |-
+        Son corps pliable est dépourvu
+        d’os. Lorsqu’on tranche un de ses
+        membres, il repousse immédiatement.
+"german":
+    "name": |-
+        GASTRODON
+    "category": |-
+        Seeschnecke
+    "entry_text": |-
+        Es hat einen biegsamen Körper ohne
+        einen Knochen. Wird ein Körperteil
+        abgetrennt, wächst er nach.
+"italian":
+    "name": |-
+        Gastrodon
+    "category": |-
+        Pokémon Lumacomare
+    "entry_text": |-
+        Ha un corpo flessibile e senza ossa.
+        Qualsiasi parte del corpo che gli
+        venga lacerata ricresce subito.
+"spanish":
+    "name": |-
+        Gastrodon
+    "category": |-
+        Pokémon Babosa Mar.
+    "entry_text": |-
+        Posee un cuerpo flexible sin
+        huesos. Si pierde alguna parte,
+        le vuelve a crecer.
+"japanese":
+    "name": |-
+        トリトドン
+    "category": |-
+        ウミウシポケモン
+    "entry_text": |-
+        ホネがなく　グニャグニャの　からだ。
+        からだの　いちぶが　ちぎれても
+        すぐに　さいせいされて　もとどおり。

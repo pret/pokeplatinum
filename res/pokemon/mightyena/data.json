@@ -111,47 +111,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 370,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 267,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 267,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 10,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 10,
-        "english": {
-            "category": "Bite Pokémon",
-            "entry_text": "It chases down prey in a pack.\nIt will never disobey the commands\nof a skilled Trainer."
-        },
-        "french": {
-            "name": "GRAHYENA",
-            "category": "Pokémon Morsure",
-            "entry_text": "Il traque ses proies en groupe.\nIl ne désobéira jamais aux\nordres d’un bon Dresseur."
-        },
-        "german": {
-            "name": "MAGNAYEN",
-            "category": "Biss",
-            "entry_text": "Es jagt seine Beute im Rudel. Den\nBefehlen eines erfahrenen Trainers\nwird es stets folgen."
-        },
-        "italian": {
-            "name": "Mightyena",
-            "category": "Pokémon Morso",
-            "entry_text": "Caccia le prede in branco. Non\ndisobbedisce mai agli ordini di\nun Allenatore abile."
-        },
-        "spanish": {
-            "name": "Mightyena",
-            "category": "Pokémon Mordisco",
-            "entry_text": "Ataca a sus presas en manada.\nNunca desobedece las órdenes\nde un entrenador avezado."
-        },
-        "japanese": {
-            "name": "グラエナ",
-            "category": "かみつきポケモン",
-            "entry_text": "むれで　えものを　おいつめる。\nすぐれた　トレ－ナ－の　めいれいには\nぜったいに　さからわない。"
-        }
     }
 }

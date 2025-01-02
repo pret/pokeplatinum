@@ -1,0 +1,72 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    560
+"body_shape": |-
+    SHAPE_MULTI_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    223
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    223
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    7
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    7
+"english":
+    "category": |-
+        Mantis Pokémon
+    "entry_text": |-
+        The sharp scythes on its forearms
+        become increasingly sharp by
+        cutting through hard objects.
+"french":
+    "name": |-
+        INSECATEUR
+    "category": |-
+        Pokémon Mante
+    "entry_text": "Ses coups de faux sont \npratiquement imparables. Il se \ndéplace\
+        \ comme un ninja."
+"german":
+    "name": |-
+        SICHLOR
+    "category": |-
+        Mantis
+    "entry_text": |-
+        Es ist fast unmöglich, seinen
+        Sensen auszuweichen, da es mit der
+        Schnelligkeit eines Ninja zuschlägt.
+"italian":
+    "name": |-
+        Scyther
+    "category": |-
+        Pokémon Mantide
+    "entry_text": |-
+        È quasi impossibile parare gli
+        attacchi sferrati dalle sue falci.
+        Si muove come un ninja.
+"spanish":
+    "name": |-
+        Scyther
+    "category": |-
+        Pokémon Mantis
+    "entry_text": |-
+        Es casi imposible evitar el ataque
+        de sus guadañas. Se mueve como
+        un ninja.
+"japanese":
+    "name": |-
+        ストライク
+    "category": |-
+        かまきりポケモン
+    "entry_text": |-
+        りょううでの　カマによる　こうげきを
+        ふせぐことは　ふかのうに　ちかい。
+        その　うごきは　まるで　ニンジャだ。

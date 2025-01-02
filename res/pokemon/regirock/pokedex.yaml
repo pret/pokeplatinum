@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    2300
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    296
+"pokemon_scale_f": !!int |-
+    226
+"trainer_scale_m": !!int |-
+    290
+"pokemon_scale_m": !!int |-
+    226
+"trainer_pos_f": !!int |-
+    11
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    12
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Rock Peak Pokémon
+    "entry_text": |-
+        Its entire body is made of rock.
+        If any part chips off in battle, it
+        attaches rocks to repair itself.
+"french":
+    "name": |-
+        REGIROCK
+    "category": |-
+        Pokémon Pic Rocheux
+    "entry_text": |-
+        Tout son corps est fait de roche.
+        S’il s’ébrèche au combat, il utilise
+        des pierres pour le réparer.
+"german":
+    "name": |-
+        REGIROCK
+    "category": |-
+        Steingipfel
+    "entry_text": |-
+        Sein Körper besteht aus Stein.
+        Bricht im Kampf etwas heraus, wird
+        es durch Stein wieder ersetzt.
+"italian":
+    "name": |-
+        Regirock
+    "category": |-
+        Pokémon Picco
+    "entry_text": |-
+        È formato interamente da rocce.
+        Se si staccano nella lotta, ne cerca
+        altre per sostituirle.
+"spanish":
+    "name": |-
+        Regirock
+    "category": |-
+        Pokémon Pico Roca
+    "entry_text": |-
+        Su cuerpo está hecho de roca.
+        Si se astilla durante el combate,
+        emplea piedras para repararlo.
+"japanese":
+    "name": |-
+        レジロック
+    "category": |-
+        いわやまポケモン
+    "entry_text": |-
+        ぜんしんが　いわで　できている。
+        たたかいで　からだが　かけても
+        いわを　くっつけて　なおしてしまう。

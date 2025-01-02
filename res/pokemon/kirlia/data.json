@@ -135,47 +135,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 202,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 378,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 378,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 19,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 19,
-        "english": {
-            "category": "Emotion Pokémon",
-            "entry_text": "If its Trainer becomes happy, it\noverflows with energy, dancing\njoyously while spinning about."
-        },
-        "french": {
-            "name": "KIRLIA",
-            "category": "Pokémon Emotion",
-            "entry_text": "Il est très à l’écoute des émotions\nde son Dresseur. Il danse quand\nil est d’humeur joyeuse."
-        },
-        "german": {
-            "name": "KIRLIA",
-            "category": "Emotion",
-            "entry_text": "Es nimmt die Gefühle seines Trainers\ndeutlich wahr. Wenn es glücklich\nist, tanzt es."
-        },
-        "italian": {
-            "name": "Kirlia",
-            "category": "Pokémon Emozione",
-            "entry_text": "Percepisce molto bene i sentimenti\ndel suo Allenatore. Danza quando si\nsente felice."
-        },
-        "spanish": {
-            "name": "Kirlia",
-            "category": "Pokémon Sensorio",
-            "entry_text": "Puede percibir los sentimientos\nde su entrenador. Cuando se\nsiente feliz, baila."
-        },
-        "japanese": {
-            "name": "キルリア",
-            "category": "かんじょうポケモン",
-            "entry_text": "トレ－ナ－の　きもちを　びんかんに\nキャッチする　ちからを　もつ。\nたのしくなると　おどりはじめる。"
-        }
     }
 }

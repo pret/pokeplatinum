@@ -116,47 +116,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 884,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 187,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 187,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Wild Bull Pokémon",
-            "entry_text": "Once it takes aim at its foe, it\nmakes a headlong charge. It is\nfamous for its violent nature."
-        },
-        "french": {
-            "name": "TAUROS",
-            "category": "Pokémon Buffle",
-            "entry_text": "Après avoir choisi sa cible, il fonce\ndessus tête baissée. Il est réputé\npour sa nature violente."
-        },
-        "german": {
-            "name": "TAUROS",
-            "category": "Wildbulle",
-            "entry_text": "Sobald es einen Gegner ins Visier\ngenommen hat, rennt es mit dem\nKopf voran auf ihn zu."
-        },
-        "italian": {
-            "name": "Tauros",
-            "category": "Pokémon Torobrado",
-            "entry_text": "Dopo aver puntato il nemico, lo\ncarica a testa bassa.\nÈ noto per la sua indole violenta."
-        },
-        "spanish": {
-            "name": "Tauros",
-            "category": "Pokémon Toro Bravo",
-            "entry_text": "Cuando elige una presa, ataca sin\npensárselo. Este Pokémon es\nfamoso por su carácter violento."
-        },
-        "japanese": {
-            "name": "ケンタロス",
-            "category": "あばれうしポケモン",
-            "entry_text": "えものに　ねらいを　さだめると\nいっちょくせんに　とっしんする。\nあらっぽい　せいかくで　ゆうめい。"
-        }
     }
 }

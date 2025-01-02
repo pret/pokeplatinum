@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    755
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    230
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    230
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    11
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    11
+"english":
+    "category": |-
+        Milk Cow Pokémon
+    "entry_text": |-
+        It is said that kids who drink
+        MILTANK’s milk grow up to become
+        hearty, healthy adults.
+"french":
+    "name": |-
+        ECREMEUH
+    "category": |-
+        Pokémon Vachalait
+    "entry_text": |-
+        On raconte que les enfants élevés
+        au lait d’ECREMEUH deviennent des
+        adultes braves et robustes.
+"german":
+    "name": |-
+        MILTANK
+    "category": |-
+        Milchkuh
+    "entry_text": |-
+        Man sagt, dass Kinder, die MILTANKs
+        Milch trinken, zu gesunden
+        Erwachsenen heranwachsen.
+"italian":
+    "name": |-
+        Miltank
+    "category": |-
+        Pokémon Bovino
+    "entry_text": |-
+        Si dice che se un bambino beve
+        il latte di MILTANK crescerà bene
+        e da adulto sarà sano e buono.
+"spanish":
+    "name": |-
+        Miltank
+    "category": |-
+        Pokémon Lechera
+    "entry_text": |-
+        Se dice que si un niño bebe leche
+        de MILTANK crecerá y se convertirá
+        en un adulto sano y campechano.
+"japanese":
+    "name": |-
+        ミルタンク
+    "category": |-
+        ちちうしポケモン
+    "entry_text": |-
+        ミルタンクの　ミルクを　のんで
+        そだった　こどもは　けんこうで
+        たくましい　おとなに　なるという。

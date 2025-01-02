@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    720
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    409
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    409
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    21
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    21
+"english":
+    "category": |-
+        Rock Skin Pokémon
+    "entry_text": |-
+        A Pokémon that eats soil. Once it
+        has eaten a large mountain, it
+        goes to sleep so it can grow.
+"french":
+    "name": |-
+        EMBRYLEX
+    "category": |-
+        Pokémon Peaupierre
+    "entry_text": |-
+        Un Pokémon qui se nourrit de terre.
+        Après avoir dévoré une montagne,
+        il s’endort pour grandir.
+"german":
+    "name": |-
+        LARVITAR
+    "category": |-
+        Felshaut
+    "entry_text": |-
+        Dieses PKMN frisst das Erdreich.
+        Hat es einen Berg verspeist,
+        schläft es ein, um zu wachsen.
+"italian":
+    "name": |-
+        Larvitar
+    "category": |-
+        Pokémon Peldisasso
+    "entry_text": |-
+        Pokémon che mangia la terra. Dopo
+        aver mangiato un’intera montagna,
+        va a dormire per poter crescere.
+"spanish":
+    "name": |-
+        Larvitar
+    "category": |-
+        Pokémon Piel Roca
+    "entry_text": |-
+        Este Pokémon come tierra.
+        Cuando se come una montaña,
+        se echa a dormir para crecer.
+"japanese":
+    "name": |-
+        ヨ－ギラス
+    "category": |-
+        いわはだポケモン
+    "entry_text": |-
+        つちを　たべる　ポケモン。
+        おおきな　やまを　たいらげると
+        せいちょうのため　ねむりはじめる。

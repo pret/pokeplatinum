@@ -111,47 +111,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 54,
-        "body_shape": "SHAPE_INSECTOID",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 469,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 469,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 30,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 30,
-        "english": {
-            "category": "Mushroom Pokémon",
-            "entry_text": "Mushrooms named tochukaso grow\non its back. They grow along\nwith the host PARAS."
-        },
-        "french": {
-            "name": "PARAS",
-            "category": "Pokémon Champignon",
-            "entry_text": "Des champignons appelés\n“tochukaso” poussent sur son dos.\nIls évoluent avec le PARAS hôte."
-        },
-        "german": {
-            "name": "PARAS",
-            "category": "Pilz",
-            "entry_text": "Auf seinem Rücken wachsen Pilze,\ndie Tochukaso. Sie nehmen an Größe\nzu, wenn PARAS wächst."
-        },
-        "italian": {
-            "name": "Paras",
-            "category": "Pokémon Fungo",
-            "entry_text": "Ha sul dorso dei funghi chiamati\ntochukaso, che crescono insieme\nal PARAS su cui si trovano."
-        },
-        "spanish": {
-            "name": "Paras",
-            "category": "Pokémon Hongo",
-            "entry_text": "En el lomo de PARAS crecen\nunas setas parasitarias llamadas\ntochukaso."
-        },
-        "japanese": {
-            "name": "パラス",
-            "category": "きのこポケモン",
-            "entry_text": "とうちゅうかそうと　よばれる\nキノコを　せなかに　はやしている。\nパラスと　ともに　おおきく　そだつ。"
-        }
     }
 }

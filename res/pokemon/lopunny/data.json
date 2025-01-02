@@ -124,47 +124,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 333,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 276,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 276,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 12,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 12,
-        "english": {
-            "category": "Rabbit Pokémon",
-            "entry_text": "The ears appear to be delicate. If\nthey are touched roughly, it kicks\nwith its graceful legs."
-        },
-        "french": {
-            "name": "LOCKPIN",
-            "category": "Pokémon Lapin",
-            "entry_text": "Un Pokémon extrêmement prudent.\nIl couvre son corps de ses oreilles\npelucheuses en cas de danger."
-        },
-        "german": {
-            "name": "SCHLAPOR",
-            "category": "Hase",
-            "entry_text": "Ein sehr vorsichtiges PKMN. Nimmt\nes Gefahr wahr, schützt es seinen\nKörper mit seinen weichen Ohren."
-        },
-        "italian": {
-            "name": "Lopunny",
-            "category": "Pokémon Coniglio",
-            "entry_text": "Pokémon molto cauto. Se percepisce\nun pericolo, si avvolge nelle sue\norecchie morbide e pelose."
-        },
-        "spanish": {
-            "name": "Lopunny",
-            "category": "Pokémon Conejo",
-            "entry_text": "Es un Pokémon muy precavido.\nSi siente peligro, se envuelve con\nel pelaje de sus orejas."
-        },
-        "japanese": {
-            "name": "ミミロップ",
-            "category": "うさぎポケモン",
-            "entry_text": "けいかいしんの　つよい　ポケモン。\nきけんを　かんじると　ふわふわした\nみみさきの　けで　からだを　つつむ。"
-        }
     }
 }

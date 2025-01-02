@@ -108,47 +108,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 62,
-        "weight": 1620,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 349,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 357,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 15,
-        "pokemon_pos_f": 3,
-        "trainer_pos_m": 15,
-        "pokemon_pos_m": 3,
-        "english": {
-            "category": "Tender Pokémon",
-            "entry_text": "Its lovely scales are described as\nrainbow colored. They change color\ndepending on the viewing angle."
-        },
-        "french": {
-            "name": "MILOBELLUS",
-            "category": "Pokémon Tendre",
-            "entry_text": "On raconte qu’il surgit du fond des\nlacs pour calmer les esprits quand\nles gens se querellent."
-        },
-        "german": {
-            "name": "MILOTIC",
-            "category": "Zartheit",
-            "entry_text": "Wenn sich jemand streitet, steigt\nes aus den Tiefen des Sees empor,\num die Streitenden zu beruhigen."
-        },
-        "italian": {
-            "name": "Milotic",
-            "category": "Pokémon Tenerezza",
-            "entry_text": "Si dice che sorga dai fondali dei\nlaghi per placare gli animi furiosi\ndelle persone che litigano."
-        },
-        "spanish": {
-            "name": "Milotic",
-            "category": "Pokémon Tierno",
-            "entry_text": "Se dice que emerge del fondo de\nlos lagos cuando la gente discute\npara apaciguarla."
-        },
-        "japanese": {
-            "name": "ミロカロス",
-            "category": "いつくしみポケモン",
-            "entry_text": "ひとびとが　あらそいを　はじめると\nみずうみの　おくそこから　あらわれて\nすさんだ　こころを　いやすという。"
-        }
     }
 }

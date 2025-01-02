@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 70,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 377,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 377,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Poison Pin Pokémon",
-            "entry_text": "While it does not prefer to fight,\neven one drop of the poison it\nsecretes from barbs can be fatal."
-        },
-        "french": {
-            "name": "NIDORAN♀",
-            "category": "Pokémon Venepic",
-            "entry_text": "Bien qu’il rechigne à se battre,\nune goutte du poison sécrété par\nses piquants peut s’avérer fatale."
-        },
-        "german": {
-            "name": "NIDORAN♀",
-            "category": "Giftdorn",
-            "entry_text": "Es mag keine Kämpfe. Ein einziger\nTropfen des Gifts aus seinen\nWiderhaken hat eine fatale Wirkung."
-        },
-        "italian": {
-            "name": "Nidoran♀",
-            "category": "Pokémon Velenago",
-            "entry_text": "Non ama combattere, ma anche una\nsola goccia del veleno che secerne\ndagli aculei può essere fatale."
-        },
-        "spanish": {
-            "name": "Nidoran♀",
-            "category": "Pokémon Pin Veneno",
-            "entry_text": "Aunque no le gusta luchar, una\nsola gota del veneno de sus púas\npuede resultar fatal."
-        },
-        "japanese": {
-            "name": "ニドラン㊛",
-            "category": "どくばりポケモン",
-            "entry_text": "たたかいを　このまない　せいかく。\nどくバリから　ぶんぴつされる　どくは\nひとしずくでも　いのちとりだ。"
-        }
     }
 }

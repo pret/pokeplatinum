@@ -133,47 +133,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 2025,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 274,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 274,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65534,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65534,
-        "english": {
-            "category": "Iron Claw Pokémon",
-            "entry_text": "It is formed by two BELDUM joining\ntogether. Its steel body won’t be\nscratched if it collides with a jet."
-        },
-        "french": {
-            "name": "METANG",
-            "category": "Pokémon Pincefer",
-            "entry_text": "Il est formé de deux TERHAL\nsoudés. Son corps de fer résiste à\nun choc avec un avion à réaction."
-        },
-        "german": {
-            "name": "METANG",
-            "category": "Eisenklaue",
-            "entry_text": "Das PKMN besteht aus zwei TANHEL.\nEs bekommt selbst dann keinen\nKratzer, wenn ein Jet es streift."
-        },
-        "italian": {
-            "name": "Metang",
-            "category": "Pokémon Ferrunghia",
-            "entry_text": "È sorto dalla fusione di due BELDUM.\nIl suo corpo d’acciaio non viene\nscalfito neanche se urta un jet."
-        },
-        "spanish": {
-            "name": "Metang",
-            "category": "Pokémon Garrahierro",
-            "entry_text": "Lo forman dos BELDUM unidos. Puede\nchocarse con un avión sin que su\ncuerpo de acero sufra ni rasguño."
-        },
-        "japanese": {
-            "name": "メタング",
-            "category": "てつツメポケモン",
-            "entry_text": "２ひきの　ダンバルが　がったいした。\nはがねの　ボディは　ジェットきと\nしょうとつしても　きずつかない。"
-        }
     }
 }

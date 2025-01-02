@@ -1,0 +1,74 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    3400
+"body_shape": |-
+    SHAPE_MULTI_BODY
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    243
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    243
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Compass Pokémon
+    "entry_text": |-
+        It freely controls three small
+        units called Mini-Noses using
+        magnetic force.
+"french":
+    "name": |-
+        TARINORME
+    "category": |-
+        Pokémon Boussole
+    "entry_text": |-
+        Son corps libère une puissante
+        force magnétique. Il dirige trois
+        petites unités appelées Mini-nez.
+"german":
+    "name": |-
+        VOLUMINAS
+    "category": |-
+        Kompass
+    "entry_text": |-
+        Es gibt starken Magnetismus ab. Es
+        steuert drei kleine Einheiten, die
+        sich Mininasen nennen.
+"italian":
+    "name": |-
+        Probopass
+    "category": |-
+        Pokémon Bussola
+    "entry_text": |-
+        Emana un forte magnetismo da
+        tutto il corpo. Controlla tre
+        piccole unità, dette Mininasi.
+"spanish":
+    "name": |-
+        Probopass
+    "category": |-
+        Pokémon Brújula
+    "entry_text": |-
+        Emana un fuerte magnetismo.
+        Controla tres pequeñas unidades
+        llamadas Mini-Narices.
+"japanese":
+    "name": |-
+        ダイノ－ズ
+    "category": |-
+        コンパスポケモン
+    "entry_text": |-
+        ぜんしんから　つよい　じりょくを
+        だしている。３この　チビノ－ズと
+        よばれる　ユニットを　あやつる。

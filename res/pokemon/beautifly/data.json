@@ -103,47 +103,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 284,
-        "body_shape": "SHAPE_MULTI_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65526,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65526,
-        "english": {
-            "category": "Butterfly Pokémon",
-            "entry_text": "Despite its looks, it is aggressive.\nIt jabs with its long, thin mouth if\ndisturbed while collecting pollen."
-        },
-        "french": {
-            "name": "CHARMILLON",
-            "category": "Pokémon Papillon",
-            "entry_text": "Il est très agressif. Il pique sa \nproie avec son long museau \nétroit et absorbe sa vitalité."
-        },
-        "german": {
-            "name": "PAPINELLA",
-            "category": "Falter",
-            "entry_text": "Es besitzt ein aggressives Wesen.\nEs sticht seinen Rüssel in seine\nBeute und saugt sie aus."
-        },
-        "italian": {
-            "name": "Beautifly",
-            "category": "Pokémon Farfalla",
-            "entry_text": "Ha un’indole aggressiva. Conficca\nla sua bocca lunga e sottile nelle\nprede e ne succhia i fluidi."
-        },
-        "spanish": {
-            "name": "Beautifly",
-            "category": "Pokémon Mariposa",
-            "entry_text": "Es un Pokémon agresivo. Con su\nboca larga y afilada ataca a sus\nrivales para drenar sus fluidos."
-        },
-        "japanese": {
-            "name": "アゲハント",
-            "category": "ちょうちょポケモン",
-            "entry_text": "ほそながい　くちを　つきさして\nあいての　たいえきを　すいとる。\nこうげきてきな　せいかく。"
-        }
     }
 }

@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 350,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 9,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 9,
-        "english": {
-            "category": "Dark Pokémon",
-            "entry_text": "The flames it breathes when angry\ncontain toxins. If they cause a\nburn, it will hurt forever."
-        },
-        "french": {
-            "name": "DEMOLOSSE",
-            "category": "Pokémon Sombre",
-            "entry_text": "Jadis, les gens prenaient son\nétrange hurlement pour\nl’appel de la Faucheuse."
-        },
-        "german": {
-            "name": "HUNDEMON",
-            "category": "Hades",
-            "entry_text": "In alten Zeiten glaubte man, das\nHeulen dieses PKMN sei der Ruf\ndes Todes."
-        },
-        "italian": {
-            "name": "Houndoom",
-            "category": "Pokémon Buio",
-            "entry_text": "Molto tempo fa, si riteneva che\nle sue urla sinistre coincidessero\ncon la chiamata della morte."
-        },
-        "spanish": {
-            "name": "Houndoom",
-            "category": "Pokémon Siniestro",
-            "entry_text": "Hace mucho, la gente creía que\nsus horripilantes aullidos eran de\nla muerte personificada."
-        },
-        "japanese": {
-            "name": "ヘルガ－",
-            "category": "ダ－クポケモン",
-            "entry_text": "ヘルガ－の　ぶきみな　とおぼえは\nじごくから　しにがみが　よぶ　こえと\nむかしの　ひとは　そうぞうしていた。"
-        }
     }
 }

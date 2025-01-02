@@ -1,0 +1,74 @@
+"height": !!int |-
+    25
+"weight": !!int |-
+    2910
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    432
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    410
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    19
+"pokemon_pos_f": !!int |-
+    5
+"trainer_pos_m": !!int |-
+    18
+"pokemon_pos_m": !!int |-
+    5
+"english":
+    "category": |-
+        Twin Tusk Pokémon
+    "entry_text": |-
+        A frozen one was dug up from
+        soil dating back 10,000 years. It
+        woke up to much amazement.
+"french":
+    "name": |-
+        MAMMOCHON
+    "category": |-
+        Pokémon Deudéfenses
+    "entry_text": |-
+        Ses défenses spectaculaires sont
+        glacées. Il a failli disparaître dans
+        la canicule suivant l’ère glaciaire.
+"german":
+    "name": |-
+        MAMUTEL
+    "category": |-
+        Doppelstoßzahn
+    "entry_text": |-
+        Die beeindruckenden Stoßzähne
+        dieser PKMN sind aus Eis. Nach der
+        Eiszeit nahm ihre Population ab.
+"italian":
+    "name": |-
+        Mamoswine
+    "category": |-
+        Pokémon Duezanne
+    "entry_text": |-
+        Ha enormi zanne di ghiaccio. La
+        popolazione di questo Pokémon è
+        diminuita alla fine dell’era glaciale.
+"spanish":
+    "name": |-
+        Mamoswine
+    "category": |-
+        Pokémon 2colmillos
+    "entry_text": |-
+        Sus impresionantes colmillos están
+        hechos de hielo. Su población se
+        redujo tras la glaciación.
+"japanese":
+    "name": |-
+        マンム－
+    "category": |-
+        ２ほんキバポケモン
+    "entry_text": |-
+        こおりで　できた　りっぱな　キバ。
+        ひょうがきが　おわり　あたたかく
+        なったため　かずが　へってしまった。

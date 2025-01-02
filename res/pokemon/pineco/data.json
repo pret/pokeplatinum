@@ -112,47 +112,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 72,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 347,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 347,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 2,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 2,
-        "english": {
-            "category": "Bagworm Pokémon",
-            "entry_text": "It looks just like a pinecone.\nIts shell protects it from bird\nPokémon that peck it by mistake."
-        },
-        "french": {
-            "name": "POMDEPIK",
-            "category": "Pokémon Ver Caché",
-            "entry_text": "Il ressemble à une pomme de pin.\nSa carapace le protège des Pokémon\nOiseau qui le picorent par erreur."
-        },
-        "german": {
-            "name": "TANNZA",
-            "category": "Beutelwurm",
-            "entry_text": "Es sieht aus wie ein Tannenzapfen.\nSeine Schale schützt es vor Vogel-\nPokémon, die an ihm picken wollen."
-        },
-        "italian": {
-            "name": "Pineco",
-            "category": "Pokémon Larva",
-            "entry_text": "Ha l’aspetto di una pigna. Il suo\nguscio lo protegge dai Pokémon\nuccello che lo beccano per errore."
-        },
-        "spanish": {
-            "name": "Pineco",
-            "category": "Pokémon Larva",
-            "entry_text": "Es como una piña piñonera. Su\ncoraza lo protege de los pájaros\nque lo picotean por error."
-        },
-        "japanese": {
-            "name": "クヌギダマ",
-            "category": "みのむしポケモン",
-            "entry_text": "きのみに　そっくり。まちがわれて\nとりポケモンに　つつかれてしまうが\nかたい　カラで　まもられている。"
-        }
     }
 }

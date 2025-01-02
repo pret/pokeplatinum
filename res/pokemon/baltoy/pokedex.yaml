@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    215
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    345
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    345
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    26
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    26
+"english":
+    "category": |-
+        Clay Doll Pokémon
+    "entry_text": |-
+        It moves by spinning on its foot.
+        It is a rare Pokémon that was
+        discovered in ancient ruins.
+"french":
+    "name": |-
+        BALBUTO
+    "category": |-
+        Pokémon Poupargile
+    "entry_text": |-
+        Il se déplace en tournoyant sur
+        son pied. Ce Pokémon rare fut
+        découvert dans de vieilles ruines.
+"german":
+    "name": |-
+        PUPPANCE
+    "category": |-
+        Lehmpuppe
+    "entry_text": |-
+        Es bewegt sich, indem es sich auf
+        seinem Fuß dreht. Ein seltenes
+        PKMN, das in alten Ruinen lebte.
+"italian":
+    "name": |-
+        Baltoy
+    "category": |-
+        Pokémon Argilla
+    "entry_text": |-
+        Pokémon raro che si muove rotean-
+        do su se stesso. È stato scoperto
+        nei pressi di antiche rovine.
+"spanish":
+    "name": |-
+        Baltoy
+    "category": |-
+        Pokémon Muñ. Barro
+    "entry_text": |-
+        Se mueve girando sobre su eje.
+        Es un extraño Pokémon que fue
+        encontrado en unas viejas ruinas.
+"japanese":
+    "name": |-
+        ヤジロン
+    "category": |-
+        どぐうポケモン
+    "entry_text": |-
+        いっぽんあしで　かいてんしながら
+        いどうする。こだいの　いせきから
+        みつかった　めずらしい　ポケモン。

@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 244,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 369,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 369,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 24,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 24,
-        "english": {
-            "category": "Playhouse Pokémon",
-            "entry_text": "It likes to carry around a small\nrock. It may wander around others’\nfeet and cause them to stumble."
-        },
-        "french": {
-            "name": "PTIRAVI",
-            "category": "Pokémon Maisonjouet",
-            "entry_text": "Ce Pokémon aime ce qui est rond et\nblanc et transporte un caillou en\nforme d’œuf pour imiter LEVEINARD."
-        },
-        "german": {
-            "name": "WONNEIRA",
-            "category": "Spielhaus",
-            "entry_text": "Es liebt runde, weiße Dinge. Es\nträgt einen eiförmigen Stein bei\nsich, und imitiert damit CHANEIRA."
-        },
-        "italian": {
-            "name": "Happiny",
-            "category": "Pokémon Ovettino",
-            "entry_text": "Ama gli oggetti bianchi e tondi.\nImita CHANSEY trasportando una\nroccia a forma di uovo."
-        },
-        "spanish": {
-            "name": "Happiny",
-            "category": "Pokémon Casita",
-            "entry_text": "Le encantan las cosas blancas y\nredondas. Imita a CHANSEY llevando\nuna roca con forma de huevo."
-        },
-        "japanese": {
-            "name": "ピンプク",
-            "category": "ままごとポケモン",
-            "entry_text": "しろくて　まるいものが　だいすき。\nラッキ－の　まねをして　タマゴに\nそっくりな　いしを　かかえている。"
-        }
     }
 }

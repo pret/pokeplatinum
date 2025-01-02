@@ -1,0 +1,72 @@
+"height": !!int |-
+    19
+"weight": !!int |-
+    1550
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    342
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    325
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    16
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    16
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Legendary Pokémon
+    "entry_text": |-
+        Its proud and regal appearance
+        has captured the hearts of
+        people since long ago.
+"french":
+    "name": |-
+        ARCANIN
+    "category": |-
+        Pokémon Légendaire
+    "entry_text": "Son port altier et son attitude \nfière ont depuis longtemps conquis\n\
+        le cœur des hommes."
+"german":
+    "name": |-
+        ARKANI
+    "category": |-
+        Legendär
+    "entry_text": |-
+        Mit seiner stolzen und königlichen
+        Erscheinung gewinnt es die
+        Herzen der Menschen.
+"italian":
+    "name": |-
+        Arcanine
+    "category": |-
+        Pokémon Leggenda
+    "entry_text": |-
+        Con il suo aspetto fiero ed
+        elegante, è riuscito da tempo
+        a conquistare i cuori della gente.
+"spanish":
+    "name": |-
+        Arcanine
+    "category": |-
+        Pokémon Legendario
+    "entry_text": |-
+        Su aspecto regio y orgulloso se
+        ha ganado el corazón de la
+        gente hace tiempo.
+"japanese":
+    "name": |-
+        ウインディ
+    "category": |-
+        でんせつポケモン
+    "entry_text": |-
+        いふうどうどうとした　すがたは
+        ふるくから　ひとびとの　こころを
+        とりこにしてきた。

@@ -114,47 +114,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 195,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 364,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 364,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Psi Pokémon",
-            "entry_text": "Using its psychic power is such a\nstrain on its brain that it needs\nto sleep for 18 hours a day."
-        },
-        "french": {
-            "name": "ABRA",
-            "category": "Pokémon Psy",
-            "entry_text": "Il dort 18 heures par jour. Même\néveillé, il ne prend pas la peine\nde se lever pour se téléporter."
-        },
-        "german": {
-            "name": "ABRA",
-            "category": "Psi",
-            "entry_text": "18 Stunden am Tag schläft es. Und\nwenn es wach ist, teleportiert es\nsich, während es sitzen bleibt."
-        },
-        "italian": {
-            "name": "Abra",
-            "category": "Pokémon Psico",
-            "entry_text": "Dorme per 18 ore al giorno.\nAnche da sveglio, si teletrasporta\nrimanendo seduto."
-        },
-        "spanish": {
-            "name": "Abra",
-            "category": "Pokémon Psi",
-            "entry_text": "Duerme 18 horas al día. Cuando\nestá despierto no se levanta ni\npara teletransportarse."
-        },
-        "japanese": {
-            "name": "ケ－シィ",
-            "category": "ねんりきポケモン",
-            "entry_text": "まいにち　１８じかん　ねむる。\nめざめている　ときも　すわったまま\nテレポ－トで　いどうする。"
-        }
     }
 }

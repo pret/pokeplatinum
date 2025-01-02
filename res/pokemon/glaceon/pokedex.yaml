@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    259
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    334
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    334
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Fresh Snow Pokémon
+    "entry_text": |-
+        By controlling its body heat, it can
+        freeze the atmosphere around it
+        to make a diamond-dust flurry.
+"french":
+    "name": |-
+        GIVRALI
+    "category": |-
+        Pokémon Poudreuse
+    "entry_text": |-
+        Il peut geler sa fourrure pour se
+        protéger en rendant ses poils
+        aussi durs que des piquants.
+"german":
+    "name": |-
+        GLAZIOLA
+    "category": |-
+        Neuschnee
+    "entry_text": |-
+        Will es sich schützen, kann es sein
+        Fell gefrieren, so dass jedes Haar
+        wie eine Nadel absteht.
+"italian":
+    "name": |-
+        Glaceon
+    "category": |-
+        Pokémon Nevefresca
+    "entry_text": |-
+        Come tecnica di difesa, congela
+        completamente la sua pelliccia
+        per far rizzare i peli come aghi.
+"spanish":
+    "name": |-
+        Glaceon
+    "category": |-
+        Pokémon Nievefresca
+    "entry_text": |-
+        Para protegerse, puede congelar
+        completamente su pelaje, de modo
+        que los pelos parecen agujas.
+"japanese":
+    "name": |-
+        グレイシア
+    "category": |-
+        しんせつポケモン
+    "entry_text": |-
+        ぜんしんの　たいもうを　こおらせて
+        ハリのように　するどく　とがらせる。
+        てきから　みを　まもる　しゅだん。

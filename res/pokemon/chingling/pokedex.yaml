@@ -1,0 +1,74 @@
+"height": !!int |-
+    2
+"weight": !!int |-
+    6
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    376
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    376
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65527
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65527
+"english":
+    "category": |-
+        Bell Pokémon
+    "entry_text": |-
+        There is an orb inside its mouth.
+        When it hops, the orb bounces all
+        over and makes a ringing sound.
+"french":
+    "name": |-
+        KORILLON
+    "category": |-
+        Pokémon Clochette
+    "entry_text": |-
+        Il émet des cris en agitant
+        l’orbe à l’arrière de sa gorge. Il
+        avance par bonds désordonnés.
+"german":
+    "name": |-
+        KLINGPLIM
+    "category": |-
+        Glöckchen
+    "entry_text": |-
+        Es ruft, indem es eine Kugel in
+        seiner Kehle bewegt. Es bewegt sich
+        mit eiligen Hopsern fort.
+"italian":
+    "name": |-
+        Chingling
+    "category": |-
+        Pokémon Sonaglio
+    "entry_text": |-
+        Emette versi muovendo la sfera
+        che ha nella gola.
+        Si muove saltellando agilmente.
+"spanish":
+    "name": |-
+        Chingling
+    "category": |-
+        Pokémon Campana
+    "entry_text": |-
+        Emite chillidos al agitar la esfera
+        de su garganta. Se mueve con
+        enérgicos saltos.
+"japanese":
+    "name": |-
+        リ－シャン
+    "category": |-
+        すずポケモン
+    "entry_text": |-
+        のどの　おくで　まるい　たまを
+        ふるわせて　なきごえを　だす。
+        ふわりと　はずんで　いどうする。

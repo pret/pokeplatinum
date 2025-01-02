@@ -53,47 +53,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 40,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 386,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 386,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 30,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 30,
-        "english": {
-            "category": "Transform Pokémon",
-            "entry_text": "It has the ability to reconstitute\nits entire cellular structure to\ntransform into whatever it sees."
-        },
-        "french": {
-            "name": "METAMORPH",
-            "category": "Pokémon Morphing",
-            "entry_text": "Il a la capacité de modifier sa\nstructure cellulaire pour prendre\nl’apparence de ce qu’il voit."
-        },
-        "german": {
-            "name": "DITTO",
-            "category": "Transform",
-            "entry_text": "Es kann seine Zellstruktur so\nverändern, dass es sich in alles\nverwandeln kann, was es sieht."
-        },
-        "italian": {
-            "name": "Ditto",
-            "category": "Pokémon Mutante",
-            "entry_text": "Ha la capacità di modificare la sua\nstruttura cellulare per trasfor-\nmarsi in qualsiasi cosa veda."
-        },
-        "spanish": {
-            "name": "Ditto",
-            "category": "Pokémon Transform.",
-            "entry_text": "Puede alterar por completo su\nestructura celular para emular\ncualquier objeto que vea."
-        },
-        "japanese": {
-            "name": "メタモン",
-            "category": "へんしんポケモン",
-            "entry_text": "ぜんしんの　さいぼうを　くみかえて\nみたものの　かたち　そっくりに\nへんしんする　のうりょくを　もつ。"
-        }
     }
 }

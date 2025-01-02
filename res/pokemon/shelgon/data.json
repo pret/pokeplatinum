@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 1105,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 245,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 245,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 14,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 14,
-        "english": {
-            "category": "Endurance Pokémon",
-            "entry_text": "Within its rugged shell, its cells\nhave begun changing. The shell\npeels off the instant it evolves."
-        },
-        "french": {
-            "name": "DRACKHAUS",
-            "category": "Pokémon Endurant",
-            "entry_text": "Ses cellules ont commencé à\nchanger dans sa robuste coquille.\nIl la perd en évoluant."
-        },
-        "german": {
-            "name": "DRASCHEL",
-            "category": "Durchsteher",
-            "entry_text": "Die Zellen seines Panzers fingen an,\nsich zu verändern. Er fällt ab,\nsobald sich das PKMN entwickelt."
-        },
-        "italian": {
-            "name": "Shelgon",
-            "category": "Pokémon Resistenza",
-            "entry_text": "Nella sua dura corazza le cellule\nhanno cominciato a cambiare.\nQuando si evolve, la corazza cade."
-        },
-        "spanish": {
-            "name": "Shelgon",
-            "category": "Pokémon Resistencia",
-            "entry_text": "Las células han empezado a cambiar\ndentro de su dura concha, que se\nsepara cuando evoluciona."
-        },
-        "japanese": {
-            "name": "コモル－",
-            "category": "にんたいポケモン",
-            "entry_text": "かたい　カラの　なかでは　さいぼうが\nへんかを　はじめている。しんかする\nしゅんかんに　カラが　はがれおちる。"
-        }
     }
 }

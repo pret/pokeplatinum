@@ -63,47 +63,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 100,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 359,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 359,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 23,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 23,
-        "english": {
-            "category": "Cocoon Pokémon",
-            "entry_text": "While awaiting evolution, it\nhides from predators under\nleaves and in nooks of branches."
-        },
-        "french": {
-            "name": "COCONFORT",
-            "category": "Pokémon Cocon",
-            "entry_text": "Il se cache sous les feuilles et les\nbranches pour fuir les prédateurs\nen attendant d’évoluer."
-        },
-        "german": {
-            "name": "KOKUNA",
-            "category": "Kokon",
-            "entry_text": "Während es auf seine Entwicklung\nwartet, versteckt es sich unter\nBlättern und zwischen Ästen."
-        },
-        "italian": {
-            "name": "Kakuna",
-            "category": "Pokémon Bozzolo",
-            "entry_text": "Si nasconde dai predatori dietro\nle foglie e fra i rami, in attesa\ndell’evoluzione."
-        },
-        "spanish": {
-            "name": "Kakuna",
-            "category": "Pokémon Capullo",
-            "entry_text": "Se esconde de sus atacantes\nentre las ramas de los árboles\nmientras espera a evolucionar."
-        },
-        "japanese": {
-            "name": "コク－ン",
-            "category": "さなぎポケモン",
-            "entry_text": "てんてきに　みつからないように\nはっぱの　うらや　えだの　すきまに\nかくれて　しんかの　ときを　まつ。"
-        }
     }
 }

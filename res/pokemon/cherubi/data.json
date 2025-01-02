@@ -101,47 +101,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 33,
-        "body_shape": "SHAPE_MULTI_BODY",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 377,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 377,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Cherry Pokémon",
-            "entry_text": "The small ball is not only filled with\nnutrients, it is also tasty. STARLY\ntry to peck it off."
-        },
-        "french": {
-            "name": "CERIBOU",
-            "category": "Pokémon Cerise",
-            "entry_text": "La petite boule renferme les\ndélicieux nutriments sucrés\ndont il a besoin pour évoluer."
-        },
-        "german": {
-            "name": "KIKUGI",
-            "category": "Kirsche",
-            "entry_text": "Das kleine Bällchen enthält alles,\nwas es für die Entwicklung\nbraucht. Es ist süß und lecker."
-        },
-        "italian": {
-            "name": "Cherubi",
-            "category": "Pokémon Ciliegia",
-            "entry_text": "La pallina contiene i nutrimenti\nnecessari per l’evoluzione. Dicono\nche sia molto dolce e deliziosa."
-        },
-        "spanish": {
-            "name": "Cherubi",
-            "category": "Pokémon Cereza",
-            "entry_text": "La pequeña esfera, dulce y\nsabrosa, contiene los nutrientes\nnecesarios para evolucionar."
-        },
-        "japanese": {
-            "name": "チェリンボ",
-            "category": "さくらんぼポケモン",
-            "entry_text": "しんかに　ひつような　えいようぶんが\nちいさい　たまに　ためられている。\nとても　あまくて　おいしい　らしい。"
-        }
     }
 }

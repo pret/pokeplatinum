@@ -1,0 +1,74 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    306
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    233
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    233
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    2
+"english":
+    "category": |-
+        Beckon Pokémon
+    "entry_text": |-
+        It seeks drifting will-o’-the-wisps
+        and sucks them into its empty body.
+        What happens inside is a mystery.
+"french":
+    "name": |-
+        TERACLOPE
+    "category": |-
+        Pokémon Appel
+    "entry_text": |-
+        Son corps est creux. On raconte
+        que celui qui regarde à l’intérieur
+        finira aspiré par le néant.
+"german":
+    "name": |-
+        ZWIRRKLOP
+    "category": |-
+        Wink
+    "entry_text": |-
+        Sein Körper ist hohl. Man sagt,
+        dass diejenigen, die in den Körper
+        blicken, hineingezogen werden.
+"italian":
+    "name": |-
+        Dusclops
+    "category": |-
+        Pokémon Ipnosguardo
+    "entry_text": |-
+        Il suo corpo è vuoto. Pare che
+        chiunque si avvicini per guardare
+        dentro venga risucchiato.
+"spanish":
+    "name": |-
+        Dusclops
+    "category": |-
+        Pokémon Atrayente
+    "entry_text": |-
+        Su cuerpo está hueco. Se dice
+        que quien mire dentro, será
+        tragado por un agujero negro.
+"japanese":
+    "name": |-
+        サマヨ－ル
+    "category": |-
+        てまねきポケモン
+    "entry_text": |-
+        からだの　なかみは　くうどうに
+        なっていて　のぞきこんだ　あいてを
+        すいこんでしまうと　いわれている。

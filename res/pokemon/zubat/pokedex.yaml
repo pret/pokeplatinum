@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    75
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    290
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    290
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65525
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65525
+"english":
+    "category": |-
+        Bat Pokémon
+    "entry_text": |-
+        It checks its surroundings and
+        location using reflections of the
+        ultrasonic waves from its mouth.
+"french":
+    "name": |-
+        NOSFERAPTI
+    "category": |-
+        Pokémon Chovsouris
+    "entry_text": |-
+        Bien que dépourvu d’yeux, il
+        repère les obstacles grâce aux
+        ultrasons émis par sa gueule.
+"german":
+    "name": |-
+        ZUBAT
+    "category": |-
+        Fledermaus
+    "entry_text": |-
+        Obwohl es keine Augen hat, kann es
+        Hindernisse mithilfe von
+        Ultraschallwellen wahrnehmen.
+"italian":
+    "name": |-
+        Zubat
+    "category": |-
+        Pokémon Pipistrello
+    "entry_text": |-
+        Non ha occhi, ma avverte gli
+        ostacoli con le onde ultrasoniche
+        che emette dalla bocca.
+"spanish":
+    "name": |-
+        Zubat
+    "category": |-
+        Pokémon Murciélago
+    "entry_text": |-
+        Aunque carezca de ojos, puede
+        detectar obstáculos con las ondas
+        ultrasónicas que emite su boca.
+"japanese":
+    "name": |-
+        ズバット
+    "category": |-
+        こうもりポケモン
+    "entry_text": |-
+        くちから　だす　ちょうおんぱで
+        りょうめが　なくても　まわりの
+        しょうがいぶつを　さっちできる。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    240
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    282
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    282
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65531
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65531
+"english":
+    "category": |-
+        Neon Pokémon
+    "entry_text": |-
+        It crawls along the seafloor using
+        its long front fins like legs. It
+        competes for food with LANTURN.
+"french":
+    "name": |-
+        LUMINEON
+    "category": |-
+        Pokémon Néon
+    "entry_text": |-
+        Il vit au plus profond de l’océan.
+        Il attire sa proie en illuminant les
+        motifs de ses 4 nageoires.
+"german":
+    "name": |-
+        LUMINEON
+    "category": |-
+        Neon
+    "entry_text": |-
+        Es lebt tief auf dem Meeresboden.
+        Das blinkende Muster auf seinen
+        vier Rückenflossen zieht Beute an.
+"italian":
+    "name": |-
+        Lumineon
+    "category": |-
+        Pokémon Neon
+    "entry_text": |-
+        Vive negli abissi marini.
+        Attira le prede illuminando i
+        motivi delle sue quattro pinne.
+"spanish":
+    "name": |-
+        Lumineon
+    "category": |-
+        Pokémon Neón
+    "entry_text": |-
+        Vive en las profundidades marinas.
+        Atrae a sus presas con parpadeos
+        del dibujo de sus cuatro aletas.
+"japanese":
+    "name": |-
+        ネオラント
+    "category": |-
+        ネオンポケモン
+    "entry_text": |-
+        ふかい　うみの　そこで　くらす。
+        ４まいの　ひれの　もようを　ひからせ
+        えものを　おびきよせる。

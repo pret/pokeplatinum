@@ -1,0 +1,74 @@
+"height": !!int |-
+    2
+"weight": !!int |-
+    34
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    545
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    545
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65530
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65530
+"english":
+    "category": |-
+        Bagworm Pokémon
+    "entry_text": |-
+        Even if it is born where there are
+        no cocooning materials, it somehow
+        always ends up with a cloak.
+"french":
+    "name": |-
+        CHENITI
+    "category": |-
+        Pokémon Ver Caché
+    "entry_text": |-
+        Pour se protéger des vents glacés
+        de l’hiver, il s’est tissé une cape
+        de feuilles et de brindilles.
+"german":
+    "name": |-
+        BURMY
+    "category": |-
+        Beutelwurm
+    "entry_text": |-
+        Um sich vor dem eisigen Winterwind
+        zu schützen, legt es sich unter
+        einen Umhang aus Ästen und Laub.
+"italian":
+    "name": |-
+        Burmy
+    "category": |-
+        Pokémon Larva
+    "entry_text": |-
+        Per ripararsi dal freddo e dai venti
+        invernali si copre con un manto
+        fatto di rami e foglie.
+"spanish":
+    "name": |-
+        Burmy
+    "category": |-
+        Pokémon Larva
+    "entry_text": |-
+        Para protegerse de los vientos
+        fríos invernales, se cubre con un
+        caparazón de ramas y hojas.
+"japanese":
+    "name": |-
+        ミノムッチ
+    "category": |-
+        みのむしポケモン
+    "entry_text": |-
+        つめたい　こがらしを　ふせぐため
+        こえだや　おちばを　ざいりょうに
+        ミノを　つくり　からだを　おおう。

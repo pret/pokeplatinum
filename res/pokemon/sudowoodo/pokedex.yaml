@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    380
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    235
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    235
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    11
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    11
+"english":
+    "category": |-
+        Imitation Pokémon
+    "entry_text": |-
+        To avoid being attacked, it does
+        nothing but mimic a tree. It hates
+        water and flees from rain.
+"french":
+    "name": |-
+        SIMULARBRE
+    "category": |-
+        Pokémon Imitation
+    "entry_text": |-
+        On pourrait le prendre pour un
+        arbre, mais il est plus proche d’une
+        pierre. L’eau est son point faible.
+"german":
+    "name": |-
+        MOGELBAUM
+    "category": |-
+        Imitation
+    "entry_text": |-
+        Auch wenn es wie ein Baum aussieht,
+        ist es eher wie ein Stein o. Fels.
+        Es ist schwach gegenüber Wasser.
+"italian":
+    "name": |-
+        Sudowoodo
+    "category": |-
+        Pokémon Imitazione
+    "entry_text": |-
+        Ha l’aspetto di un albero, ma il
+        suo corpo è più simile alla roccia.
+        È debole contro l’acqua.
+"spanish":
+    "name": |-
+        Sudowoodo
+    "category": |-
+        Pokémon Imitación
+    "entry_text": |-
+        Aunque parezca un árbol, su
+        cuerpo se asemeja a las rocas y
+        piedras. Es débil frente al agua.
+"japanese":
+    "name": |-
+        ウソッキ－
+    "category": |-
+        まねポケモン
+    "entry_text": |-
+        じゅもくの　ように　みえる　からだは
+        じつは　いわや　いしに　ちかい。
+        みずには　めっぽう　よわいのだ。

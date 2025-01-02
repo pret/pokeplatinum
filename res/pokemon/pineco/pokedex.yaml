@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    72
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    347
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    347
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    2
+"english":
+    "category": |-
+        Bagworm Pokémon
+    "entry_text": |-
+        It looks just like a pinecone.
+        Its shell protects it from bird
+        Pokémon that peck it by mistake.
+"french":
+    "name": |-
+        POMDEPIK
+    "category": |-
+        Pokémon Ver Caché
+    "entry_text": |-
+        Il ressemble à une pomme de pin.
+        Sa carapace le protège des Pokémon
+        Oiseau qui le picorent par erreur.
+"german":
+    "name": |-
+        TANNZA
+    "category": |-
+        Beutelwurm
+    "entry_text": |-
+        Es sieht aus wie ein Tannenzapfen.
+        Seine Schale schützt es vor Vogel-
+        Pokémon, die an ihm picken wollen.
+"italian":
+    "name": |-
+        Pineco
+    "category": |-
+        Pokémon Larva
+    "entry_text": |-
+        Ha l’aspetto di una pigna. Il suo
+        guscio lo protegge dai Pokémon
+        uccello che lo beccano per errore.
+"spanish":
+    "name": |-
+        Pineco
+    "category": |-
+        Pokémon Larva
+    "entry_text": |-
+        Es como una piña piñonera. Su
+        coraza lo protege de los pájaros
+        que lo picotean por error.
+"japanese":
+    "name": |-
+        クヌギダマ
+    "category": |-
+        みのむしポケモン
+    "entry_text": |-
+        きのみに　そっくり。まちがわれて
+        とりポケモンに　つつかれてしまうが
+        かたい　カラで　まもられている。

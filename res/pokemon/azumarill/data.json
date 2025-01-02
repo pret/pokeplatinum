@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 285,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 347,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 347,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 19,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 19,
-        "english": {
-            "category": "Aqua Rabbit Pokémon",
-            "entry_text": "It can spend all day in water,\nsince it can inhale and store\na large volume of air."
-        },
-        "french": {
-            "name": "AZUMARILL",
-            "category": "Pokémon Aqualapin",
-            "entry_text": "Il peuple les lacs et les mers. Sous\nl’eau, ses motifs et ses couleurs\nbrouillent la vue de l’ennemi."
-        },
-        "german": {
-            "name": "AZUMARILL",
-            "category": "Aquahase",
-            "entry_text": "Es lebt in Flüssen und Seen. Im\nWasser verwirrt es seine Gegner\ndurch seine Farbe und Muster."
-        },
-        "italian": {
-            "name": "Azumarill",
-            "category": "Pokémon Acquniglio",
-            "entry_text": "Vive nei fiumi e nei laghi. Il suo\ncolore e i disegni confondono i\nnemici in acqua."
-        },
-        "spanish": {
-            "name": "Azumarill",
-            "category": "Pokémon Conejoagua",
-            "entry_text": "Vive en ríos y lagos. En el agua,\nsus colores y dibujos confunden\na los enemigos."
-        },
-        "japanese": {
-            "name": "マリルリ",
-            "category": "みずうさぎポケモン",
-            "entry_text": "かわや　みずうみに　せいそくする。\nみずの　なかでは　からだの　いろと\nもようが　てきの　めを　あざむく。"
-        }
     }
 }

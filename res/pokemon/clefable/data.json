@@ -128,47 +128,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 400,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 240,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 240,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 9,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 9,
-        "english": {
-            "category": "Fairy Pokémon",
-            "entry_text": "It is very wary and rarely shows\nitself to people. Its ears can hear\na pin drop over half a mile away."
-        },
-        "french": {
-            "name": "MELODELFE",
-            "category": "Pokémon Fée",
-            "entry_text": "Il joue au bord des lacs déserts\nles soirs de pleine lune. Rares\nsont ceux qui l’ont aperçu."
-        },
-        "german": {
-            "name": "PIXI",
-            "category": "Fee",
-            "entry_text": "Man bekommt es selten zu sehen.\nBei Vollmond soll es an den Ufern\neinsam gelegener Seen spielen."
-        },
-        "italian": {
-            "name": "Clefable",
-            "category": "Pokémon Fata",
-            "entry_text": "Si vedono raramente. Pare che nelle\nnotti di luna piena vadano a giocare\nin prossimità di laghetti sperduti."
-        },
-        "spanish": {
-            "name": "Clefable",
-            "category": "Pokémon Hada",
-            "entry_text": "Rara vez se le ve. Se dice que en\nnoches de luna llena sale a jugar\nen lagos solitarios."
-        },
-        "japanese": {
-            "name": "ピクシ－",
-            "category": "ようせいポケモン",
-            "entry_text": "めったに　すがたを　あらわさない。\nまんげつに　さそわれて　ひとけのない\nみずうみで　あそぶと　いわれている。"
-        }
     }
 }

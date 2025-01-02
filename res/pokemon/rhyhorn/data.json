@@ -128,47 +128,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 1150,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 236,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 236,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 16,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 16,
-        "english": {
-            "category": "Spikes Pokémon",
-            "entry_text": "Its powerful tackles can destroy\nanything. However, it is too\nslow witted to help people work."
-        },
-        "french": {
-            "name": "RHINOCORNE",
-            "category": "Pokémon Piquant",
-            "entry_text": "Sa peau est très épaisse et sa \ncharge peut détruire un immeuble.\nDommage qu’il soit stupide."
-        },
-        "german": {
-            "name": "RIHORN",
-            "category": "Stachler",
-            "entry_text": "Sein Körper ist von einer dicken\nHaut umgeben und es kann wackelige\nGebäude zum Einsturz bringen."
-        },
-        "italian": {
-            "name": "Rhyhorn",
-            "category": "Pokémon Punzoni",
-            "entry_text": "Ha una pelle molto spessa ed è in\ngrado di abbattere interi edifici.\nNon è molto sagace."
-        },
-        "spanish": {
-            "name": "Rhyhorn",
-            "category": "Pokémon Clavos",
-            "entry_text": "Su cuerpo está protegido por una\ngruesa piel. Puede derribar hasta\nedificios, pero no es muy listo."
-        },
-        "japanese": {
-            "name": "サイホ－ン",
-            "category": "とげとげポケモン",
-            "entry_text": "かたい　ひふで　おおわれた　からだ。\nたいあたりで　ビルも　たおす。\nざんねんながら　あたまは　わるい。"
-        }
     }
 }

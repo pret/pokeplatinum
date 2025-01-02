@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    340
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    313
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    313
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    13
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    13
+"english":
+    "category": |-
+        Sharp Claw Pokémon
+    "entry_text": |-
+        Evolution made it even more
+        devious. It communicates by clawing
+        signs in boulders.
+"french":
+    "name": |-
+        DIMORET
+    "category": |-
+        Pokémon Grifacérée
+    "entry_text": |-
+        Ils vivent par groupe de 4 ou 5
+        en région froide et chassent de
+        façon très organisée.
+"german":
+    "name": |-
+        SNIBUNNA
+    "category": |-
+        Stichklaue
+    "entry_text": |-
+        Es lebt in kalten Gebieten in
+        Gruppen von 4 oder 5 PKMN, die bei
+        der Jagd großes Geschick zeigen.
+"italian":
+    "name": |-
+        Weavile
+    "category": |-
+        Pokémon Lamartigli
+    "entry_text": |-
+        Questi Pokémon vivono in zone fred-
+        de in gruppi di quattro o cinque.
+        Insieme sono cacciatori abilissimi.
+"spanish":
+    "name": |-
+        Weavile
+    "category": |-
+        Pokémon Garra Filo
+    "entry_text": |-
+        Viven en zonas frías y forman
+        grupos de cuatro o cinco para
+        cazar con gran coordinación.
+"japanese":
+    "name": |-
+        マニュ－ラ
+    "category": |-
+        かぎづめポケモン
+    "entry_text": |-
+        さむい　ちいきで　くらす　ポケモン。
+        ４、５ひきの　グル－プは　みごとな
+        れんけいで　えものを　おいつめる。

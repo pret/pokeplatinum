@@ -72,47 +72,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 36,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 493,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 493,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 27,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 27,
-        "english": {
-            "category": "Worm Pokémon",
-            "entry_text": "Often targeted by bird Pokémon,\nit desperately resists by releasing\npoison from its tail spikes."
-        },
-        "french": {
-            "name": "CHENIPOTTE",
-            "category": "Pokémon Ver",
-            "entry_text": "Il adore manger des feuilles. Si un\nETOURMI l’attaque, il riposte avec\nles piquants de son postérieur."
-        },
-        "german": {
-            "name": "WAUMPEL",
-            "category": "Wurm",
-            "entry_text": "Es isst am liebsten Blätter. Wird es\nvon einem STARALILI angegriffen,\nverteidigt es sich mit Stacheln."
-        },
-        "italian": {
-            "name": "Wurmple",
-            "category": "Pokémon Baco",
-            "entry_text": "Ama mangiare le foglie. Se STARLY lo\nattacca, si difende con gli aculei\nche ha sulla parte posteriore."
-        },
-        "spanish": {
-            "name": "Wurmple",
-            "category": "Pokémon Gusano",
-            "entry_text": "Le encanta comer hojas. Si le\nataca un STARLY, se defenderá\ncon sus púas."
-        },
-        "japanese": {
-            "name": "ケムッソ",
-            "category": "いもむしポケモン",
-            "entry_text": "はっぱが　だいこうぶつ。\nムックルに　おそわれたときは\nおしりの　トゲで　げきたいする。"
-        }
     }
 }

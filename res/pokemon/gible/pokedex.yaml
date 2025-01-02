@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    205
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    333
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    333
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    18
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    18
+"english":
+    "category": |-
+        Land Shark Pokémon
+    "entry_text": |-
+        It attacks using its huge mouth.
+        While its attacks are powerful, it
+        hurts itself out of clumsiness, too.
+"french":
+    "name": |-
+        GRIKNOT
+    "category": |-
+        Pokémon Terrequin
+    "entry_text": |-
+        Il niche dans les petits trous
+        horizontaux des murs des grottes.
+        Il bondit pour saisir sa proie.
+"german":
+    "name": |-
+        KAUMALAT
+    "category": |-
+        Landhai
+    "entry_text": |-
+        Es nistet in kleinen Löchern in
+        Höhlenwänden. Es springt Beute, die
+        sich zu nah heranwagt, an.
+"italian":
+    "name": |-
+        Gible
+    "category": |-
+        Pokémon Squaloterra
+    "entry_text": |-
+        Nidifica in piccole cavità orizzontali
+        nelle pareti delle grotte. Si avven-
+        ta sulle prede che si avvicinano.
+"spanish":
+    "name": |-
+        Gible
+    "category": |-
+        Pokémon Terrascualo
+    "entry_text": |-
+        Anida en pequeños agujeros en las
+        paredes de cuevas. Cuando una
+        presa pasa cerca, salta hacia ella.
+"japanese":
+    "name": |-
+        フカマル
+    "category": |-
+        りくザメポケモン
+    "entry_text": |-
+        どうくつの　ちいさな　よこあなを
+        ねぐらにする。えものが　ちかづくと
+        すばやく　とびだして　つかまえる。

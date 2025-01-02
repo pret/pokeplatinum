@@ -121,47 +121,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 750,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 212,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 212,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 6,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 6,
-        "english": {
-            "category": "Water Fish Pokémon",
-            "entry_text": "It has an easygoing nature. It\ndoesn’t care if it bumps its head on\nboats and boulders while swimming."
-        },
-        "french": {
-            "name": "MARAISTE",
-            "category": "Pokémon Poisson",
-            "entry_text": "C’est un grand paresseux qui \nattend au fond de la rivière qu’une\nproie lui tombe dans le bec."
-        },
-        "german": {
-            "name": "MORLORD",
-            "category": "Fisch",
-            "entry_text": "Ein träges PKMN, das auf dem Grund\ndes Flusses liegt und wartet, dass\nihm Beute ins Maul schwimmt."
-        },
-        "italian": {
-            "name": "Quagsire",
-            "category": "Pokémon Acquapesce",
-            "entry_text": "È pigro per natura. Sta sul fondo\ndei fiumi con la bocca aperta in\nattesa di afferrare la preda."
-        },
-        "spanish": {
-            "name": "Quagsire",
-            "category": "Pokémon Pez Agua",
-            "entry_text": "Es un Pokémon bastante perezoso.\nPara pescar permanece en el fondo\ndel río con la boca abierta."
-        },
-        "japanese": {
-            "name": "ヌオ－",
-            "category": "みずうおポケモン",
-            "entry_text": "のんびりとした　せいかく。\nかわぞこで　くちを　あけて　エサが\nとびこんでくるのを　ひたすら　まつ。"
-        }
     }
 }

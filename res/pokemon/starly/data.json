@@ -108,47 +108,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 20,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 557,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 557,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 29,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 29,
-        "english": {
-            "category": "Starling Pokémon",
-            "entry_text": "Because they are weak individually,\nthey form groups. However, they\nbicker if the group grows too big."
-        },
-        "french": {
-            "name": "ETOURMI",
-            "category": "Pokémon Etourneau",
-            "entry_text": "Ils volent en nombre. Bien que\nminuscule, il bat des ailes avec\nune vigueur impressionnante."
-        },
-        "german": {
-            "name": "STARALILI",
-            "category": "Star",
-            "entry_text": "Ihr Schwarm ist stets groß. Obwohl\nes kleine PKMN sind, schwingen sie\nihre Flügel mit enormer Kraft."
-        },
-        "italian": {
-            "name": "Starly",
-            "category": "Pokémon Storno",
-            "entry_text": "Si muove in grandi gruppi. Anche\nse piccolo, batte le ali in maniera\nmolto energica."
-        },
-        "spanish": {
-            "name": "Starly",
-            "category": "Pokémon Estornino",
-            "entry_text": "Viaja en grandes bandadas.\nAunque es pequeño, agita\nlas alas con gran fuerza."
-        },
-        "japanese": {
-            "name": "ムックル",
-            "category": "むくどりポケモン",
-            "entry_text": "たくさんの　むれで　こうどうする。\nからだは　ちいさいが　はばたく\nちからは　ひじょうに　つよい。"
-        }
     }
 }

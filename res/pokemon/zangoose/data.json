@@ -133,47 +133,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 403,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 8,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 8,
-        "english": {
-            "category": "Cat Ferret Pokémon",
-            "entry_text": "It has feuded with SEVIPER for\nmany generations. Its sharp claws\nare its biggest weapons."
-        },
-        "french": {
-            "name": "MANGRIFF",
-            "category": "Pokémon Chat Furet",
-            "entry_text": "C’est le rival de SEVIPER depuis\ndes générations. Ses griffes\naiguisées sont son meilleur atout."
-        },
-        "german": {
-            "name": "SENGO",
-            "category": "Frettkatz",
-            "entry_text": "Seit Generationen ist es mit\nVIPITIS verfeindet. Seine scharfen\nKlauen sind seine stärksten Waffen."
-        },
-        "italian": {
-            "name": "Zangoose",
-            "category": "Pokémon Furogatto",
-            "entry_text": "Da generazioni, è acerrimo nemico\ndi SEVIPER. Gli artigli aguzzi sono\nle sue armi più potenti."
-        },
-        "spanish": {
-            "name": "Zangoose",
-            "category": "Pokémon Gato Hurón",
-            "entry_text": "Hace muchos años que se\nenfrenta a SEVIPER. Su arma más\neficaz son sus zarpas afiladas."
-        },
-        "japanese": {
-            "name": "ザング－ス",
-            "category": "ネコイタチポケモン",
-            "entry_text": "なんせだいにも　わたって\nハブネ－クと　たたかってきた。\nするどい　ツメが　さいだいの　ぶき。"
-        }
     }
 }

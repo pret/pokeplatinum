@@ -1,0 +1,72 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    125
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    343
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    343
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Old Shrimp Pokémon
+    "entry_text": |-
+        A Pokémon ancestor that was
+        reanimated from a fossil. It lived
+        in the sea and hunted with claws.
+"french":
+    "name": |-
+        ANORITH
+    "category": |-
+        Pokémon Crustage
+    "entry_text": "Un ancêtre Pokémon réanimé \nà partir d’un fossile. Il vivait en\n\
+        mer et chassait avec ses pinces."
+"german":
+    "name": |-
+        ANORITH
+    "category": |-
+        Krebssenior
+    "entry_text": |-
+        Ein Vorfahre der PKMN, der aus
+        einem Fossil neu belebt wurde. Es
+        lebte im Meer und jagte mit Klauen.
+"italian":
+    "name": |-
+        Anorith
+    "category": |-
+        Pokémon Primaceo
+    "entry_text": |-
+        Un antico Pokémon rigenerato
+        da un fossile. Viveva nel mare e
+        catturava le prede con gli artigli.
+"spanish":
+    "name": |-
+        Anorith
+    "category": |-
+        Pokémon Camarón
+    "entry_text": |-
+        Este Pokémon fue recreado a partir
+        de restos fósiles. Vivía en el mar y
+        cazaba con sus pinzas.
+"japanese":
+    "name": |-
+        アノプス
+    "category": |-
+        むかしエビポケモン
+    "entry_text": |-
+        かせきから　ふっかつした　ポケモンの
+        せんぞの　いっしゅ。うみで　くらし
+        ツメで　えものを　つかまえる。

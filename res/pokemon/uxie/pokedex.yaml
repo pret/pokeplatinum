@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    3
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    461
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    461
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65526
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65526
+"english":
+    "category": |-
+        Knowledge Pokémon
+    "entry_text": |-
+        When UXIE flew, people gained the
+        ability to solve problems.
+        It was the birth of knowledge.
+"french":
+    "name": |-
+        CREHELF
+    "category": |-
+        Pokémon Savoir
+    "entry_text": |-
+        On l’appelle “être du savoir”.
+        On raconte que son regard a le
+        pouvoir d’effacer la mémoire.
+"german":
+    "name": |-
+        SELFE
+    "category": |-
+        Wissen
+    "entry_text": |-
+        “Das wissende Wesen”.
+        Es soll die Erinnerungen derer
+        löschen, die ihm in die Augen sehen.
+"italian":
+    "name": |-
+        Uxie
+    "category": |-
+        Pokémon Sapienza
+    "entry_text": |-
+        Noto come “Essere della
+        conoscenza”. Pare che faccia per-
+        dere la memoria a chiunque lo fissi.
+"spanish":
+    "name": |-
+        Uxie
+    "category": |-
+        Pokémon Sabiduría
+    "entry_text": |-
+        Se le conoce como el “ser de
+        la sabiduría”. Se dice que puede
+        borrar la memoria con una mirada.
+"japanese":
+    "name": |-
+        ユクシ－
+    "category": |-
+        ちしきポケモン
+    "entry_text": |-
+        ちしきのかみ　と　よばれている。
+        めを　あわせた　ものの　きおくを
+        けしてしまう　ちからを　もつという。

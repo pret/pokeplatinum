@@ -125,47 +125,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 115,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 392,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 392,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Deceiver Pokémon",
-            "entry_text": "Attached to its head is a huge\nset of jaws formed by horns.\nIt can chew through iron beams."
-        },
-        "french": {
-            "name": "MYSDIBULE",
-            "category": "Pokémon Trompeur",
-            "entry_text": "Ses cornes forment une grande\nmâchoire attachée à sa tête. Elle\npeut broyer des barres de fer. "
-        },
-        "german": {
-            "name": "FLUNKIFER",
-            "category": "Schwindler",
-            "entry_text": "Auf seinem Kopf befindet sich ein\nriesiger Kiefer, der aus Hörnern\nbesteht. Er kann Eisen zermalmen."
-        },
-        "italian": {
-            "name": "Mawile",
-            "category": "Pokémon Inganno",
-            "entry_text": "Le sue due enormi mandibole sono\ncorna trasformate. Con esse può\nmasticare persino travi di ferro."
-        },
-        "spanish": {
-            "name": "Mawile",
-            "category": "Pokémon Tramposo",
-            "entry_text": "Las grandes fauces de su cabeza\nestán formadas por cuernos.\nPuede romper el hierro con ellas."
-        },
-        "japanese": {
-            "name": "クチ－ト",
-            "category": "あざむきポケモン",
-            "entry_text": "ツノが　へんけいして　できた\nおおあごが　あたまに　ついている。\nてっこつを　かみきってしまう。"
-        }
     }
 }

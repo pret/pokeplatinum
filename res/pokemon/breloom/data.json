@@ -123,47 +123,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 392,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 258,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 258,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 8,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 8,
-        "english": {
-            "category": "Mushroom Pokémon",
-            "entry_text": "Its short arms stretch when it\nthrows punches. Its technique is\nequal to that of pro boxers."
-        },
-        "french": {
-            "name": "CHAPIGNON",
-            "category": "Pokémon Champignon",
-            "entry_text": "Ses petits bras s’étendent quand il\ndonne un coup de poing. Son talent\négale celui d’un boxeur pro."
-        },
-        "german": {
-            "name": "KAPILZ",
-            "category": "Pilz",
-            "entry_text": "Seine kurzen Arme dehnen sich aus,\nwenn es zuschlägt. Seine Technik\nähnelt der von Profi-Boxern."
-        },
-        "italian": {
-            "name": "Breloom",
-            "category": "Pokémon Fungo",
-            "entry_text": "Tirando pugni, i suoi cortissimi arti\nsi allungano. Usa una tecnica simile\na quella dei pugili professionisti."
-        },
-        "spanish": {
-            "name": "Breloom",
-            "category": "Pokémon Hongo",
-            "entry_text": "Sus cortos brazos se expanden\ncuando da puñetazos. Tiene una\ntécnica pugilística muy depurada."
-        },
-        "japanese": {
-            "name": "キノガッサ",
-            "category": "きのこポケモン",
-            "entry_text": "みじかい　うでは　パンチを　だすとき\nぐ－んと　のびる。プロボクサ－\nかおまけの　テクニックを　もつ。"
-        }
     }
 }

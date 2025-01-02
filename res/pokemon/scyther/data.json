@@ -119,47 +119,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 560,
-        "body_shape": "SHAPE_MULTI_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 223,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 223,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 7,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 7,
-        "english": {
-            "category": "Mantis Pokémon",
-            "entry_text": "The sharp scythes on its forearms\nbecome increasingly sharp by\ncutting through hard objects."
-        },
-        "french": {
-            "name": "INSECATEUR",
-            "category": "Pokémon Mante",
-            "entry_text": "Ses coups de faux sont \npratiquement imparables. Il se \ndéplace comme un ninja."
-        },
-        "german": {
-            "name": "SICHLOR",
-            "category": "Mantis",
-            "entry_text": "Es ist fast unmöglich, seinen\nSensen auszuweichen, da es mit der\nSchnelligkeit eines Ninja zuschlägt."
-        },
-        "italian": {
-            "name": "Scyther",
-            "category": "Pokémon Mantide",
-            "entry_text": "È quasi impossibile parare gli\nattacchi sferrati dalle sue falci.\nSi muove come un ninja."
-        },
-        "spanish": {
-            "name": "Scyther",
-            "category": "Pokémon Mantis",
-            "entry_text": "Es casi imposible evitar el ataque\nde sus guadañas. Se mueve como\nun ninja."
-        },
-        "japanese": {
-            "name": "ストライク",
-            "category": "かまきりポケモン",
-            "entry_text": "りょううでの　カマによる　こうげきを\nふせぐことは　ふかのうに　ちかい。\nその　うごきは　まるで　ニンジャだ。"
-        }
     }
 }

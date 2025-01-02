@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    950
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    235
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    235
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Fire Horse Pokémon
+    "entry_text": |-
+        When at an all-out gallop, its
+        blazing mane sparkles, enhancing
+        its beautiful appearance.
+"french":
+    "name": |-
+        GALOPA
+    "category": |-
+        Pokémon Cheval Feu
+    "entry_text": |-
+        Son galop dépasse les 240 km/h. Il
+        file comme une flèche, laissant
+        flotter sa crinière ardente.
+"german":
+    "name": |-
+        GALLOPA
+    "category": |-
+        Feuerpferd
+    "entry_text": |-
+        Seine Mähne lodert auf, wenn es
+        mit 240 km/h pfeilschnell
+        galoppiert.
+"italian":
+    "name": |-
+        Rapidash
+    "category": |-
+        Pokémon Cavalfuoco
+    "entry_text": |-
+        Galoppa alla velocità di 240 km/h.
+        Corre come una freccia facendo
+        ondeggiare la criniera ardente.
+"spanish":
+    "name": |-
+        Rapidash
+    "category": |-
+        Pokémon Caballo F.
+    "entry_text": |-
+        Galopa a casi 240 km por hora.
+        Su crin ardiente parece una flecha
+        cuando corre.
+"japanese":
+    "name": |-
+        ギャロップ
+    "category": |-
+        ひのうまポケモン
+    "entry_text": |-
+        はしる　そくどは　じそく２４０キロ。
+        たてがみの　ほのおが　はげしく　もえ
+        やの　ように　かけぬける。

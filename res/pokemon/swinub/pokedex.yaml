@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    65
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    274
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    274
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    26
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    26
+"english":
+    "category": |-
+        Pig Pokémon
+    "entry_text": |-
+        It has a very sensitive nose. It
+        can locate mushrooms, berries, and
+        even hot springs buried under ice.
+"french":
+    "name": |-
+        MARCACRIN
+    "category": |-
+        Pokémon Cochon
+    "entry_text": |-
+        Il adore les champignons qui
+        poussent sous l’herbe morte. Il
+        trouve aussi des sources chaudes.
+"german":
+    "name": |-
+        QUIEKEL
+    "category": |-
+        Ferkel
+    "entry_text": |-
+        Es liebt Pilze, die unter totem Gras
+        wachsen. Auf der Suche nach
+        Nahrung findet es heiße Quellen.
+"italian":
+    "name": |-
+        Swinub
+    "category": |-
+        Pokémon Maiale
+    "entry_text": |-
+        Ama mangiare i funghi che crescono
+        sotto l’erba secca. Mentre cerca,
+        talvolta trova sorgenti termali.
+"spanish":
+    "name": |-
+        Swinub
+    "category": |-
+        Pokémon Cerdo
+    "entry_text": |-
+        Le encanta comer las setas que
+        crecen bajo la hierba seca. A
+        veces descubre aguas termales.
+"japanese":
+    "name": |-
+        ウリム－
+    "category": |-
+        いのぶたポケモン
+    "entry_text": |-
+        かれくさの　したに　はえた　キノコが
+        だいこうぶつ。においで　キノコを
+        さがすうちに　おんせんを　みつける。

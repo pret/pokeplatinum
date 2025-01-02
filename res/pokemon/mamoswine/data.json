@@ -120,47 +120,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 25,
-        "weight": 2910,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 432,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 410,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 19,
-        "pokemon_pos_f": 5,
-        "trainer_pos_m": 18,
-        "pokemon_pos_m": 5,
-        "english": {
-            "category": "Twin Tusk Pokémon",
-            "entry_text": "A frozen one was dug up from\nsoil dating back 10,000 years. It\nwoke up to much amazement."
-        },
-        "french": {
-            "name": "MAMMOCHON",
-            "category": "Pokémon Deudéfenses",
-            "entry_text": "Ses défenses spectaculaires sont\nglacées. Il a failli disparaître dans\nla canicule suivant l’ère glaciaire."
-        },
-        "german": {
-            "name": "MAMUTEL",
-            "category": "Doppelstoßzahn",
-            "entry_text": "Die beeindruckenden Stoßzähne\ndieser PKMN sind aus Eis. Nach der\nEiszeit nahm ihre Population ab."
-        },
-        "italian": {
-            "name": "Mamoswine",
-            "category": "Pokémon Duezanne",
-            "entry_text": "Ha enormi zanne di ghiaccio. La\npopolazione di questo Pokémon è\ndiminuita alla fine dell’era glaciale."
-        },
-        "spanish": {
-            "name": "Mamoswine",
-            "category": "Pokémon 2colmillos",
-            "entry_text": "Sus impresionantes colmillos están\nhechos de hielo. Su población se\nredujo tras la glaciación."
-        },
-        "japanese": {
-            "name": "マンム－",
-            "category": "２ほんキバポケモン",
-            "entry_text": "こおりで　できた　りっぱな　キバ。\nひょうがきが　おわり　あたたかく\nなったため　かずが　へってしまった。"
-        }
     }
 }

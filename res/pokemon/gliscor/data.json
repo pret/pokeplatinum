@@ -131,47 +131,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 20,
-        "weight": 425,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 296,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 292,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 12,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 10,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Fang Scorp Pokémon",
-            "entry_text": "If it succeeds in catching even a\nfaint breeze properly, it can circle\nthe globe without flapping once."
-        },
-        "french": {
-            "name": "SCORVOL",
-            "category": "Pokémon Scorpicroc",
-            "entry_text": "Il guette sa proie, pendu à une\nbranche la tête en bas, et s’en\nsaisit à la première occasion. "
-        },
-        "german": {
-            "name": "SKORGRO",
-            "category": "Zahnskorpi",
-            "entry_text": "Es hängt kopfüber von einem Ast\nund beobachtet seine Beute. Bei\nGelegenheit stürzt es sich auf sie."
-        },
-        "italian": {
-            "name": "Gliscor",
-            "category": "Pokémon Scorpidente",
-            "entry_text": "Sta appeso ai rami con la testa in\ngiù. Alla prima occasione, si butta a\ncapofitto sulla preda."
-        },
-        "spanish": {
-            "name": "Gliscor",
-            "category": "Pokémon Colmicorpio",
-            "entry_text": "Espera a sus presas colgado de\nuna rama bocabajo. Cuando llega\nsu oportunidad, se lanza en picado."
-        },
-        "japanese": {
-            "name": "グライオン",
-            "category": "キバさそりポケモン",
-            "entry_text": "しっぽで　きのえだに　ぶらさがり\nえものを　かんさつする。すきを\nみて　じょうくうから　おそいかかる。"
-        }
     }
 }

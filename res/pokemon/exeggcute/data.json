@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 25,
-        "body_shape": "SHAPE_MULTI_BODY",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 377,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 377,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 28,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 28,
-        "english": {
-            "category": "Egg Pokémon",
-            "entry_text": "Its six eggs converse using\ntelepathy. They can quickly gather\nif they become separated."
-        },
-        "french": {
-            "name": "NOEUNOEUF",
-            "category": "Pokémon Oeuf",
-            "entry_text": "Ces six œufs communiquent par\ntélépathie. Ils peuvent se réunir\nrapidement si on les sépare."
-        },
-        "german": {
-            "name": "OWEI",
-            "category": "Ei",
-            "entry_text": "Die sechs Eier kommunizieren\ntelepathisch. Werden sie getrennt,\nfinden sie sich schnell wieder."
-        },
-        "italian": {
-            "name": "Exeggcute",
-            "category": "Pokémon Uovo",
-            "entry_text": "Queste sei uova comunicano per\ntelepatia. Si riuniscono subito\nanche se vengono divise."
-        },
-        "spanish": {
-            "name": "Exeggcute",
-            "category": "Pokémon Huevo",
-            "entry_text": "Estos seis huevos se comunican por\ntelepatía. Si se separan se pueden\nreunir rápidamente."
-        },
-        "japanese": {
-            "name": "タマタマ",
-            "category": "たまごポケモン",
-            "entry_text": "テレパシ－で　かいわをしているため\nタマタマを　ひきはなそうとしても\nすぐに　あつまって　６ぴきになる。"
-        }
     }
 }

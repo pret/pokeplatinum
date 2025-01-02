@@ -106,47 +106,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 420,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 8,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 8,
-        "english": {
-            "category": "Gleam Eyes Pokémon",
-            "entry_text": "It can see clearly through walls\nto track down its prey and seek\nits lost young."
-        },
-        "french": {
-            "name": "LUXRAY",
-            "category": "Pokémon Brilloeil",
-            "entry_text": "Ses yeux voient à travers tout. Il\nrepère les proies cachées derrière\nun objet pour les capturer."
-        },
-        "german": {
-            "name": "LUXTRA",
-            "category": "Glühauge",
-            "entry_text": "Mit seinen Augen kann es durch\nalles hindurch sehen. So findet es\nauch Beute, die sich versteckt hat."
-        },
-        "italian": {
-            "name": "Luxray",
-            "category": "Pokémon Occhiluce",
-            "entry_text": "Vede attraverso qualsiasi cosa.\nIndividua e cattura le prede che\nsi nascondono dietro gli oggetti."
-        },
-        "spanish": {
-            "name": "Luxray",
-            "category": "Pokémon Chispa Ojos",
-            "entry_text": "Sus ojos pueden ver a través\nde todo. Localiza a las presas\ndetrás de objetos y las captura."
-        },
-        "japanese": {
-            "name": "レントラ－",
-            "category": "がんこうポケモン",
-            "entry_text": "あらゆるものを　とうししてしまう\nめを　もつ。ものかげに　かくれた\nえものを　みつけて　とらえる。"
-        }
     }
 }

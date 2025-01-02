@@ -129,47 +129,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 315,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 268,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 268,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 8,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 8,
-        "english": {
-            "category": "Meditate Pokémon",
-            "entry_text": "It gains the ability to see the aura\nof its opponents by honing its mind\nthrough starvation."
-        },
-        "french": {
-            "name": "CHARMINA",
-            "category": "Pokémon Méditation",
-            "entry_text": "Il a développé son sixième sens\ngrâce au yoga. Ses mouvements\nsont gracieux."
-        },
-        "german": {
-            "name": "MEDITALIS",
-            "category": "Meditation",
-            "entry_text": "Mit Yoga-Training hat es seinen\n6. Sinn geschärft. Seine\nBewegungen sind sehr elegant."
-        },
-        "italian": {
-            "name": "Medicham",
-            "category": "Pokémon Meditazione",
-            "entry_text": "Con gli esercizi di yoga ha affinato\nil sesto senso. I suoi movimenti\nsono molto eleganti."
-        },
-        "spanish": {
-            "name": "Medicham",
-            "category": "Pokémon Meditador",
-            "entry_text": "El yoga ha perfeccionado su\nsexto sentido. Sus movimientos\nson extremadamente elegantes."
-        },
-        "japanese": {
-            "name": "チャ－レム",
-            "category": "めいそうポケモン",
-            "entry_text": "ヨガの　しゅぎょうによって\nだい６かんが　はったつした。\nゆうがに　おどるような　みのこなし。"
-        }
     }
 }

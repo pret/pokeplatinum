@@ -1,0 +1,72 @@
+"height": !!int |-
+    2
+"weight": !!int |-
+    20
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    479
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    479
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    31
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    31
+"english":
+    "category": |-
+        Tiny Bird Pokémon
+    "entry_text": |-
+        It picks food from cactus plants,
+        deftly avoiding buds and spines.
+        It seems to skip about to move.
+"french":
+    "name": |-
+        NATU
+    "category": |-
+        Pokémon Minoiseau
+    "entry_text": "Il mange des cactus en prenant\nsoin d’éviter les bourgeons et\
+        \ les\népines. Il ne tient pas en place. "
+"german":
+    "name": |-
+        NATU
+    "category": |-
+        Kleinvogel
+    "entry_text": |-
+        Es pickt seine Nahrung aus
+        Kakteen, wobei es Knospen und
+        Dornen verschont.
+"italian":
+    "name": |-
+        Natu
+    "category": |-
+        Pokémon Uccellino
+    "entry_text": |-
+        Raccoglie cibo dai cactus, evitando
+        agilmente germogli e spine. Si muove
+        saltellando.
+"spanish":
+    "name": |-
+        Natu
+    "category": |-
+        Pokémon Pajarito
+    "entry_text": |-
+        Recoge alimento de los cactos
+        evitando los pinchos. Se mueve
+        dando saltos.
+"japanese":
+    "name": |-
+        ネイティ
+    "category": |-
+        ことりポケモン
+    "entry_text": |-
+        サボテンの　つぼみや　トゲを
+        きように　よけながら　ついばむ。
+        とびはねるようにして　いどうする。

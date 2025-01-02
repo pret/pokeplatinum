@@ -1,0 +1,72 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    285
+"body_shape": |-
+    SHAPE_HEAD_BASE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    219
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    219
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    8
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    8
+"english":
+    "category": |-
+        Patient Pokémon
+    "entry_text": |-
+        It desperately tries to keep its
+        black tail hidden. It is said to be
+        proof the tail hides a secret.
+"french":
+    "name": |-
+        QULBUTOKE
+    "category": |-
+        Pokémon Patient
+    "entry_text": "Il cherche désespérément à cacher\nsa queue noire. Certains pensent\n\
+        qu’elle renferme un secret. "
+"german":
+    "name": |-
+        WOINGENAU
+    "category": |-
+        Geduld
+    "entry_text": |-
+        Verzweifelt versucht es, seinen
+        schwarzen Schweif zu verstecken.
+        Er soll ein Geheimnis enthalten.
+"italian":
+    "name": |-
+        Wobbuffet
+    "category": |-
+        Pokémon Pazienza
+    "entry_text": |-
+        Cerca di tenere nascosta la sua
+        coda nera ad ogni costo. Pare
+        che essa celi un segreto.
+"spanish":
+    "name": |-
+        Wobbuffet
+    "category": |-
+        Pokémon Paciente
+    "entry_text": |-
+        Siempre intenta ocultar su cola,
+        por lo que muchos creen que
+        contiene un secreto.
+"japanese":
+    "name": |-
+        ソ－ナンス
+    "category": |-
+        がまんポケモン
+    "entry_text": |-
+        くろい　しっぽを　ひっしになって
+        かくすのは　しっぽに　ひみつがある
+        しょうこだと　かんぐられている。

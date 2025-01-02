@@ -110,47 +110,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 402,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 238,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 238,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 5,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 5,
-        "english": {
-            "category": "Discharge Pokémon",
-            "entry_text": "It discharges electricity from its\nmane. It creates a thundercloud\noverhead to drop lightning bolts."
-        },
-        "french": {
-            "name": "ELECSPRINT",
-            "category": "Pokémon Décharge",
-            "entry_text": "Il libère l’électricité par sa\ncrinière. Il crée un nuage d’orage\npour appeler la foudre."
-        },
-        "german": {
-            "name": "VOLTENSO",
-            "category": "Entladung",
-            "entry_text": "Aus seiner Mähne entlädt es Elekt-\nrizität. Es generiert eine Gewitter-\nwolke, aus der es Blitze entlädt."
-        },
-        "italian": {
-            "name": "Manectric",
-            "category": "Pokémon Scossa",
-            "entry_text": "Scarica elettricità dalla criniera.\nCrea nubi temporalesche in\ncielo che fanno cadere saette."
-        },
-        "spanish": {
-            "name": "Manectric",
-            "category": "Pokémon Descarga",
-            "entry_text": "Descarga electricidad desde su\nmelena. Crea nubarrones desde\nlos que lanza rayos."
-        },
-        "japanese": {
-            "name": "ライボルト",
-            "category": "ほうでんポケモン",
-            "entry_text": "たてがみから　ほうでんしている。\nずじょうに　かみなりぐもを　つくり\nいなずまを　おとして　こうげきする。"
-        }
     }
 }

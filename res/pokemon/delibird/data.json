@@ -94,47 +94,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 160,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 295,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 295,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 15,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 15,
-        "english": {
-            "category": "Delivery Pokémon",
-            "entry_text": "It carries food rolled up in its\ntail. It has the habit of sharing\nfood with people lost in mountains."
-        },
-        "french": {
-            "name": "CADOIZO",
-            "category": "Pokémon Livraison",
-            "entry_text": "Il dépose sa nourriture dans sa\nqueue enroulée. Il l’offre souvent\naux gens égarés en montagne."
-        },
-        "german": {
-            "name": "BOTOGEL",
-            "category": "Lieferant",
-            "entry_text": "Im eingerollten Schweif transpor-\ntiert es Futter, das es mit denen\nteilt, die sich verlaufen haben."
-        },
-        "italian": {
-            "name": "Delibird",
-            "category": "Pokémon Consegna",
-            "entry_text": "Trascina il cibo avvolgendolo nella\ncoda e ha l’abitudine di condividerlo\ncon chi si perde fra le montagne."
-        },
-        "spanish": {
-            "name": "Delibird",
-            "category": "Pokémon Reparto",
-            "entry_text": "Lleva alimentos en su saco. Le\ngusta compartir su comida con\nlos montañistas perdidos."
-        },
-        "japanese": {
-            "name": "デリバ－ド",
-            "category": "はこびやポケモン",
-            "entry_text": "しっぽで　えさを　つつんで　はこぶ。\nやまで　そうなんした　ひとに\nえさを　わけあたえる　しゅうせい。"
-        }
     }
 }

@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 37,
-        "weight": 4200,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 538,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 512,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 23,
-        "pokemon_pos_f": 1,
-        "trainer_pos_m": 23,
-        "pokemon_pos_m": 1,
-        "english": {
-            "category": "Colossal Pokémon",
-            "entry_text": "It is said to have made Pokémon\nthat look like itself from a special\nice mountain, rocks, and magma."
-        },
-        "french": {
-            "name": "REGIGIGAS",
-            "category": "Pokémon Prodigieux",
-            "entry_text": "Une légende tenace veut que ce\nPokémon ait traîné les continents\nen les attachant à des cordes."
-        },
-        "german": {
-            "name": "REGIGIGAS",
-            "category": "Kolossal",
-            "entry_text": "Es gibt eine Legende, wonach\ndieses PKMN die Kontinente mit\neinem Seil gezogen hat."
-        },
-        "italian": {
-            "name": "Regigigas",
-            "category": "Pokémon Colossale",
-            "entry_text": "Una leggenda narra che questo\nPokémon abbia trainato i continenti\ncon delle funi."
-        },
-        "spanish": {
-            "name": "Regigigas",
-            "category": "Pokémon Colosal",
-            "entry_text": "Una antigua leyenda afirma que\neste Pokémon arrastraba\ncontinentes con cuerdas."
-        },
-        "japanese": {
-            "name": "レジギガス",
-            "category": "きょだいポケモン",
-            "entry_text": "なわで　しばった　たいりくを\nひっぱって　うごかしたという\nでんせつが　のこされている。"
-        }
     }
 }

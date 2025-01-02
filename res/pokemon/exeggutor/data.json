@@ -108,47 +108,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 20,
-        "weight": 1200,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 357,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 351,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 15,
-        "pokemon_pos_f": 2,
-        "trainer_pos_m": 14,
-        "pokemon_pos_m": 2,
-        "english": {
-            "category": "Coconut Pokémon",
-            "entry_text": "It is called “The Walking Jungle.”\nIf a head grows too big, it falls\noff and becomes an EXEGGCUTE."
-        },
-        "french": {
-            "name": "NOADKOKO",
-            "category": "Pokémon Fruitpalme",
-            "entry_text": "On l’appelle “jungle sur pattes”.\nSi une tête devient trop grosse,\nelle tombe et produit un NOEUNOEUF."
-        },
-        "german": {
-            "name": "KOKOWEI",
-            "category": "Palmfrucht",
-            "entry_text": "Man nennt es den “Laufenden\nDschungel”. Wird ein Kopf zu groß,\nfällt er ab und wird zu einem OWEI."
-        },
-        "italian": {
-            "name": "Exeggutor",
-            "category": "Pokémon Nocecocco",
-            "entry_text": "Noto come “Giungla in moto”. Se\nuna testa diventa troppo grande,\ncade e si trasforma in EXEGGCUTE."
-        },
-        "spanish": {
-            "name": "Exeggutor",
-            "category": "Pokémon Coco",
-            "entry_text": "Se le llama la “selva andante”.\nSi una cabeza crece demasiado,\nse cae y forma un EXEGGCUTE."
-        },
-        "japanese": {
-            "name": "ナッシ－",
-            "category": "やしのみポケモン",
-            "entry_text": "あるく　ねったいうりんと　よばれる。\nおおきくなった　あたまの　ひとつが\nじめんに　おちると　タマタマになる。"
-        }
     }
 }

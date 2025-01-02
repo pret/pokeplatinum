@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    280
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65531
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65531
+"english":
+    "category": |-
+        Water Bird Pokémon
+    "entry_text": |-
+        It is a messenger of the skies,
+        carrying small Pokémon and
+        eggs to safety in its bill.
+"french":
+    "name": |-
+        BEKIPAN
+    "category": |-
+        Pokémon Oiseaudo
+    "entry_text": |-
+        Il trempe son grand bec dans la
+        mer pour charrier de l’eau et
+        de nombreuses proies.
+"german":
+    "name": |-
+        PELIPPER
+    "category": |-
+        Wasservogel
+    "entry_text": |-
+        Es taucht seinen großen Schnabel
+        ins Wasser und fängt so eine Menge
+        Beute.
+"italian":
+    "name": |-
+        Pelipper
+    "category": |-
+        Pokémon Alacquatico
+    "entry_text": |-
+        Immerge il suo enorme becco nel
+        mare, raccogliendo acqua e
+        numerose prede.
+"spanish":
+    "name": |-
+        Pelipper
+    "category": |-
+        Pokémon Ave Agua
+    "entry_text": |-
+        Hunde su gran pico en el mar
+        para sacar numerosas presas
+        junto con mucha agua.
+"japanese":
+    "name": |-
+        ペリッパ－
+    "category": |-
+        みずどりポケモン
+    "entry_text": |-
+        おおきな　クチバシを　うみに　いれて
+        ひとすくいすると　エサが　たくさん
+        はいっているという　すんぽうだ。

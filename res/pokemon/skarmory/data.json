@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 17,
-        "weight": 505,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 232,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 232,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 2,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 2,
-        "english": {
-            "category": "Armor Bird Pokémon",
-            "entry_text": "Despite being clad entirely in\niron-hard armor, it flies at\nspeeds over 180 mph."
-        },
-        "french": {
-            "name": "AIRMURE",
-            "category": "Pokémon Armoiseau",
-            "entry_text": "Son corps est prisonnier d’une\narmure dure comme l’acier, mais il\nvole à plus de 300 km/h."
-        },
-        "german": {
-            "name": "PANZAERON",
-            "category": "Flugstahl",
-            "entry_text": "Es wird komplett von einer eisen-\nharten Rüstung geschützt. Wenn es\nfliegt, erreicht es bis zu 300 km/h."
-        },
-        "italian": {
-            "name": "Skarmory",
-            "category": "Pokémon Armuccello",
-            "entry_text": "È interamente rivestito da\nun’armatura dura come l’acciaio.\nVola alla velocità di 300 km/h."
-        },
-        "spanish": {
-            "name": "Skarmory",
-            "category": "Pokémon Coraza Ave",
-            "entry_text": "Una armadura de hierro cubre por\ncompleto su cuerpo. Vuela a más\nde 300 km por hora."
-        },
-        "japanese": {
-            "name": "エア－ムド",
-            "category": "よろいどりポケモン",
-            "entry_text": "てつのような　かたい　よろいに\nおおわれている。じそく３００キロの\nスピ－ドで　おおぞらを　とびまわる。"
-        }
     }
 }

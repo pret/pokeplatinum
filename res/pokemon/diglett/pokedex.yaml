@@ -1,0 +1,74 @@
+"height": !!int |-
+    2
+"weight": !!int |-
+    8
+"body_shape": |-
+    SHAPE_HEAD_BASE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    530
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    530
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    32
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    32
+"english":
+    "category": |-
+        Mole Pokémon
+    "entry_text": |-
+        A Pokémon that lives underground.
+        Because of its dark habitat, it is
+        repelled by bright sunlight.
+"french":
+    "name": |-
+        TAUPIQUEUR
+    "category": |-
+        Pokémon Taupe
+    "entry_text": |-
+        Un Pokémon qui vit sous terre.
+        Habitué aux souterrains, il fuit la
+        lumière du jour.
+"german":
+    "name": |-
+        DIGDA
+    "category": |-
+        Maulwurf
+    "entry_text": |-
+        Dieses Pokémon lebt unterirdisch.
+        Da es an Dunkelheit gewöhnt ist,
+        schreckt helles Licht es ab.
+"italian":
+    "name": |-
+        Diglett
+    "category": |-
+        Pokémon Talpa
+    "entry_text": |-
+        Un Pokémon che vive sottoterra.
+        Poiché è abituato a vivere al buio,
+        non sopporta la luce solare.
+"spanish":
+    "name": |-
+        Diglett
+    "category": |-
+        Pokémon Topo
+    "entry_text": |-
+        Este Pokémon vive a oscuras
+        bajo tierra, por lo que la luz solar
+        le espanta.
+"japanese":
+    "name": |-
+        ディグダ
+    "category": |-
+        もぐらポケモン
+    "entry_text": |-
+        ちちゅうで　くらしている　ポケモン。
+        くらい　ちかに　いるため
+        あかるい　たいようが　にがて。

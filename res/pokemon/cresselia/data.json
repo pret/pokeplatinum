@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 856,
-        "body_shape": "SHAPE_INSECTOID",
-        "trainer_scale_f": 296,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 297,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65533,
-        "trainer_pos_m": 7,
-        "pokemon_pos_m": 65533,
-        "english": {
-            "category": "Lunar Pokémon",
-            "entry_text": "On nights around the quarter moon,\nthe aurora from its tail extends\nand undulates beautifully."
-        },
-        "french": {
-            "name": "CRESSELIA",
-            "category": "Pokémon Lunaire",
-            "entry_text": "Ses ailes libèrent un rideau de\nparticules brillantes. Ce Pokémon\nsymboliserait le croissant de lune."
-        },
-        "german": {
-            "name": "CRESSELIA",
-            "category": "Lunar",
-            "entry_text": "Seine Flügel geben schimmernde\nPartikel ab, wie einen Schleier. Man\nsagt, es steht für die Mondsichel."
-        },
-        "italian": {
-            "name": "Cresselia",
-            "category": "Pokémon Falcato",
-            "entry_text": "Volando rilascia un velo di \nparticelle brillanti. Si dice che\nrappresenti la luna crescente."
-        },
-        "spanish": {
-            "name": "Cresselia",
-            "category": "Pokémon Lunar",
-            "entry_text": "Sus alas emiten un velo de\npartículas brillantes. Se dice\nque representa un cuarto lunar."
-        },
-        "japanese": {
-            "name": "クレセリア",
-            "category": "みかづきポケモン",
-            "entry_text": "ひこうするときは　ベ－ルのような\nはねから　ひかる　りゅうしを　だす。\nみかづきのけしんと　よばれている。"
-        }
     }
 }

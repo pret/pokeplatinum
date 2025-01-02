@@ -1,0 +1,72 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    280
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    14
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    14
+"english":
+    "category": |-
+        Wily Pokémon
+    "entry_text": |-
+        The sound of its grass flute makes
+        its listeners uneasy. It lives deep
+        in forests.
+"french":
+    "name": |-
+        PIFEUIL
+    "category": |-
+        Pokémon Malin
+    "entry_text": "Le son de sa flûte d’herbe\ndéstabilise l’auditeur. Il vit au \n\
+        plus profond des forêts."
+"german":
+    "name": |-
+        BLANAS
+    "category": |-
+        Hinterlist
+    "entry_text": |-
+        Der Ton seiner Grasflöte
+        beunruhigt die, die ihn hören.
+        Es lebt tief in den Wäldern.
+"italian":
+    "name": |-
+        Nuzleaf
+    "category": |-
+        Pokémon Scaltro
+    "entry_text": |-
+        Il fischio del suo flauto di foglia
+        mette a disagio chi lo sente.
+        Vive nelle foreste più fitte.
+"spanish":
+    "name": |-
+        Nuzleaf
+    "category": |-
+        Pokémon Astuto
+    "entry_text": |-
+        Cuando usa la hoja de su cabeza
+        como flauta asusta a la gente. Vive
+        en lo más profundo de los bosques.
+"japanese":
+    "name": |-
+        コノハナ
+    "category": |-
+        いじわるポケモン
+    "entry_text": |-
+        コノハナが　かなでる　くさぶえの
+        ねいろは　ひとを　ふあんにさせる。
+        もりの　おくに　すんでいる。

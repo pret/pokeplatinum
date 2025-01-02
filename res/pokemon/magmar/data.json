@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 445,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 10,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 10,
-        "english": {
-            "category": "Spitfire Pokémon",
-            "entry_text": "When it breathes deeply, heat\nwaves form around its body, making\nit hard to see clearly."
-        },
-        "french": {
-            "name": "MAGMAR",
-            "category": "Pokémon Crache-Feu",
-            "entry_text": "Il est né au milieu d’un volcan.\nSon corps est couvert de flammes\nqui flambent comme un soleil."
-        },
-        "german": {
-            "name": "MAGMAR",
-            "category": "Brenner",
-            "entry_text": "Es wurde bei einem Vulkanausbruch\ngeboren. Sein Körper ist von\nhellen Flammen umgeben."
-        },
-        "italian": {
-            "name": "Magmar",
-            "category": "Pokémon Sputafuoco",
-            "entry_text": "È nato dallo zampillo di un vulcano.\nHa il corpo ricoperto da fiamme\nche brillano come i raggi solari."
-        },
-        "spanish": {
-            "name": "Magmar",
-            "category": "Pokémon Escupfuego",
-            "entry_text": "Nació en el centro de un volcán.\nSu cuerpo está cubierto de llamas\nque brillan como el Sol."
-        },
-        "japanese": {
-            "name": "ブ－バ－",
-            "category": "ひふきポケモン",
-            "entry_text": "かざんの　かこうで　うまれそだった。\nたいようと　おなじような　ほのおの\nゆらめきが　ぜんしんを　おおう。"
-        }
     }
 }

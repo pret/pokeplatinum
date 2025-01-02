@@ -121,47 +121,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 3000,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 225,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 225,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 7,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 7,
-        "english": {
-            "category": "Megaton Pokémon",
-            "entry_text": "Even dynamite can’t harm its hard,\nboulderlike body. It sheds its hide\njust once a year."
-        },
-        "french": {
-            "name": "GROLEM",
-            "category": "Pokémon Titanesque",
-            "entry_text": "Il mue une fois par an. Son corps\nrocailleux est si dur qu’il résiste\nmême à la dynamite."
-        },
-        "german": {
-            "name": "GEOWAZ",
-            "category": "Urgestein",
-            "entry_text": "Einmal im Jahr wechselt es seine\nHaut. Seinem Körper kann\nselbst Dynamit nichts anhaben."
-        },
-        "italian": {
-            "name": "Golem",
-            "category": "Pokémon Megatone",
-            "entry_text": "Muta il guscio una volta all’anno. Il\nsuo corpo duro come la roccia non\nè scalfito neanche dalla dinamite."
-        },
-        "spanish": {
-            "name": "Golem",
-            "category": "Pokémon Megatón",
-            "entry_text": "Muda su piel una vez al año.\nSu cuerpo rocoso es tan duro\nque ni la dinamita lo daña."
-        },
-        "japanese": {
-            "name": "ゴロ－ニャ",
-            "category": "メガトンポケモン",
-            "entry_text": "１ねんに　１かい　だっぴする。\nがんせきのような　かたい　からだは\nダイナマイトでも　きずつかない。"
-        }
     }
 }

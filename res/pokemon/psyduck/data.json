@@ -122,47 +122,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 196,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 326,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 326,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 21,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 21,
-        "english": {
-            "category": "Duck Pokémon",
-            "entry_text": "Overwhelmed by enigmatic abilities,\nit suffers a constant headache. It\nsometimes uses mysterious powers."
-        },
-        "french": {
-            "name": "PSYKOKWAK",
-            "category": "Pokémon Canard",
-            "entry_text": "Quand son mal de crâne empire,\nil développe d’étranges pouvoirs\ndont il ne se souvient jamais."
-        },
-        "german": {
-            "name": "ENTON",
-            "category": "Ente",
-            "entry_text": "Werden seine konstant vorhandenen\nKopfschmerzen stärker, entwickelt\nes seltsame Kräfte."
-        },
-        "italian": {
-            "name": "Psyduck",
-            "category": "Pokémon Papero",
-            "entry_text": "Se la sua costante emicrania\npeggiora, inizia ad usare poteri\nmisteriosi. Ma poi non se lo ricorda."
-        },
-        "spanish": {
-            "name": "Psyduck",
-            "category": "Pokémon Pato",
-            "entry_text": "Cuando su jaqueca empeora, usa\npoderes misteriosos. Sin embargo,\nnunca recuerda haberlos usado."
-        },
-        "japanese": {
-            "name": "コダック",
-            "category": "あひるポケモン",
-            "entry_text": "ずつうが　はげしくなると　ふしぎな\nちからを　つかうようになる。\nそのときの　ことは　おぼえていない。"
-        }
     }
 }

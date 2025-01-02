@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    78
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    351
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    351
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    22
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    22
+"english":
+    "category": |-
+        Fairy Pokémon
+    "entry_text": |-
+        Small Pokémon flee from its scary
+        face. It is, however, considered
+        by women to be cute.
+"french":
+    "name": |-
+        SNUBBULL
+    "category": |-
+        Pokémon Fée
+    "entry_text": |-
+        Son visage horrible fait fuir les
+        petits Pokémon. Par contre, les
+        femmes le trouvent mignon.
+"german":
+    "name": |-
+        SNUBBULL
+    "category": |-
+        Fee
+    "entry_text": |-
+        Kleine PKMN fliehen beim Anblick
+        seines Gesichts. Frauen aber finden
+        es niedlich.
+"italian":
+    "name": |-
+        Snubbull
+    "category": |-
+        Pokémon Fata
+    "entry_text": |-
+        I Pokémon più piccoli fuggono alla
+        vista della sua faccia terrificante.
+        Ma le donne lo trovano carino.
+"spanish":
+    "name": |-
+        Snubbull
+    "category": |-
+        Pokémon Hada
+    "entry_text": |-
+        Los Pokémon pequeños huyen al
+        ver su cara agresiva. No obstante,
+        para muchas féminas es mono.
+"japanese":
+    "name": |-
+        ブル－
+    "category": |-
+        ようせいポケモン
+    "entry_text": |-
+        ちいさな　ポケモンが　にげだすほどの
+        こわいかおが　ぎゃくに　かわいいと
+        じょせいに　にんきの　ポケモン。

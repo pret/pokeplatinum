@@ -110,47 +110,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 150,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 555,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 555,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 27,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 27,
-        "english": {
-            "category": "Bonsai Pokémon",
-            "entry_text": "It prefers an arid atmosphere. It\nleaks water that looks like tears\nwhen adjusting its moisture level."
-        },
-        "french": {
-            "name": "MANZAI",
-            "category": "Pokémon Bonsaï",
-            "entry_text": "On dirait qu’il pleure constamment.\nEn fait, il régule ses fluides\ncorporels en éliminant le surplus."
-        },
-        "german": {
-            "name": "MOBAI",
-            "category": "Bonsai",
-            "entry_text": "Es sieht aus, als würde es immer\nweinen. Dabei reguliert es nur\nseinen Wasserhaushalt."
-        },
-        "italian": {
-            "name": "Bonsly",
-            "category": "Pokémon Bonsai",
-            "entry_text": "Sembra che pianga tutto il tempo.\nIn realtà regola il livello dei fluidi\ndel corpo eliminando gli eccessi."
-        },
-        "spanish": {
-            "name": "Bonsly",
-            "category": "Pokémon Bonsái",
-            "entry_text": "Parece que siempre está llorando,\npero en realidad está eliminando\nel exceso de fluidos corporales."
-        },
-        "japanese": {
-            "name": "ウソハチ",
-            "category": "ぼんさいポケモン",
-            "entry_text": "いつも　ないているように　みえるが\nたいないの　すいぶんを　そとに\nだして　ちょうせつしているのだ。"
-        }
     }
 }

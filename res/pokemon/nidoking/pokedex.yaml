@@ -1,0 +1,74 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    620
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    269
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    269
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    9
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    9
+"english":
+    "category": |-
+        Drill Pokémon
+    "entry_text": |-
+        One swing of its mighty tail can
+        snap a telephone pole as if it were
+        a matchstick.
+"french":
+    "name": |-
+        NIDOKING
+    "category": |-
+        Pokémon Perceur
+    "entry_text": |-
+        Un coup de sa puissante queue
+        peut briser un poteau téléphonique
+        comme une allumette.
+"german":
+    "name": |-
+        NIDOKING
+    "category": |-
+        Bohrer
+    "entry_text": |-
+        Ein Schlag mit seinem gewaltigen
+        Schweif kann einen Telegrafen-
+        masten knicken wie ein Streichholz.
+"italian":
+    "name": |-
+        Nidoking
+    "category": |-
+        Pokémon Trapano
+    "entry_text": |-
+        Con un solo colpo della potente
+        coda può abbattere un palo del te-
+        lefono come se fosse un fiammifero.
+"spanish":
+    "name": |-
+        Nidoking
+    "category": |-
+        Pokémon Taladro
+    "entry_text": |-
+        Un golpe de su poderosa cola
+        puede partir un poste de teléfono
+        como si fuese una cerilla.
+"japanese":
+    "name": |-
+        ニドキング
+    "category": |-
+        ドリルポケモン
+    "entry_text": |-
+        しっぽの　いちげきは　でんちゅうを
+        まるで　マッチぼうのように
+        まっぷたつに　へしおってしまう。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    120
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    348
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    348
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    5
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    5
+"english":
+    "category": |-
+        Angler Pokémon
+    "entry_text": |-
+        It discharges positive and
+        negative electricity from its
+        antenna tips to shock its foes.
+"french":
+    "name": |-
+        LOUPIO
+    "category": |-
+        Pokémon Poisson
+    "entry_text": |-
+        Il envoie des décharges électriques
+        positives et négatives du bout des
+        antennes pour paralyser sa proie.
+"german":
+    "name": |-
+        LAMPI
+    "category": |-
+        Angler
+    "entry_text": |-
+        Über seine Antennen entlädt es
+        Elektrizität, mit der es seinen
+        Gegnern einen Schlag versetzt.
+"italian":
+    "name": |-
+        Chinchou
+    "category": |-
+        Pokémon Pescatore
+    "entry_text": |-
+        Dalle antenne emette scariche
+        elettriche positive e negative con
+        le quali colpisce i nemici.
+"spanish":
+    "name": |-
+        Chinchou
+    "category": |-
+        Pokémon Rape
+    "entry_text": |-
+        Libera cargas eléctricas positivas
+        y negativas con sus antenas para
+        aturdir a sus enemigos.
+"japanese":
+    "name": |-
+        チョンチ－
+    "category": |-
+        あんこうポケモン
+    "entry_text": |-
+        プラスと　マイナスの　でんきを
+        しょくしゅの　さきから　ながす。
+        てきを　かんでんさせてしまうのだ。

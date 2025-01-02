@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    249
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    302
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    302
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    12
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    12
+"english":
+    "category": |-
+        Predator Pokémon
+    "entry_text": |-
+        It never stops attacking even
+        if it is injured. It fusses over the
+        shape of its comb.
+"french":
+    "name": |-
+        ETOURAPTOR
+    "category": |-
+        Pokémon Rapace
+    "entry_text": |-
+        Un Pokémon sauvage qui a le
+        courage de défier des ennemis
+        beaucoup plus grands que lui.
+"german":
+    "name": |-
+        STARAPTOR
+    "category": |-
+        Raubtier
+    "entry_text": |-
+        Es hat ein wildes Wesen. Mutig
+        fordert es immer wieder Gegner
+        heraus, die viel größer sind.
+"italian":
+    "name": |-
+        Staraptor
+    "category": |-
+        Pokémon Rapace
+    "entry_text": |-
+        Ha un’indole selvaggia. Sfida
+        coraggiosamente i nemici più
+        grossi di lui.
+"spanish":
+    "name": |-
+        Staraptor
+    "category": |-
+        Pokémon Depredador
+    "entry_text": |-
+        Tiene un carácter salvaje.
+        No duda en desafiar a rivales
+        mucho mayores.
+"japanese":
+    "name": |-
+        ムクホ－ク
+    "category": |-
+        もうきんポケモン
+    "entry_text": |-
+        どうもうな　せいかくの　ポケモン。
+        じぶんよりも　からだの　おおきい
+        あいてにも　かかんに　いどみかかる。

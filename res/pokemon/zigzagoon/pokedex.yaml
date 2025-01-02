@@ -1,0 +1,73 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    175
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    505
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    505
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        TinyRaccoon Pokémon
+    "entry_text": |-
+        It walks in zigzag fashion. It is
+        good at finding items in the
+        grass and even in the ground.
+"french":
+    "name": |-
+        ZIGZATON
+    "category": |-
+        Pokémon Petit Raton
+    "entry_text": |-
+        Il marche en zigzaguant et n’a
+        pas son pareil pour trouver des
+        objets dans l’herbe ou sous terre.
+"german":
+    "name": |-
+        ZIGZACHS
+    "category": |-
+        Kleindachs
+    "entry_text": |-
+        Es läuft im Zickzack. Es hat das
+        Talent, Items im Gras, aber auch im
+        Boden, zu finden.
+"italian":
+    "name": |-
+        Zigzagoon
+    "category": |-
+        Pokémon Procione
+    "entry_text": |-
+        Avanza a zigzag. È bravo a trovare
+        strumenti nell’erba e sul terreno.
+"spanish":
+    "name": |-
+        Zigzagoon
+    "category": |-
+        Pokémon Mapachito
+    "entry_text": |-
+        Se mueve en zigzag. Se le da
+        bien encontrar objetos ocultos en
+        la hierba e incluso enterrados.
+"japanese":
+    "name": |-
+        ジグザグマ
+    "category": |-
+        まめだぬきポケモン
+    "entry_text": |-
+        ジグザグに　あるいて　くさかげや
+        じめんに　うまっている　たからものを
+        みつけるのが　とくいな　ポケモン。

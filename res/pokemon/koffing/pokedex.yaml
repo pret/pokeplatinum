@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    10
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    350
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    350
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65526
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65526
+"english":
+    "category": |-
+        Poison Gas Pokémon
+    "entry_text": |-
+        Lighter-than-air gases in its body
+        keep it aloft. The gases not only
+        smell, they are also explosive.
+"french":
+    "name": |-
+        SMOGO
+    "category": |-
+        Pokémon Gaz Mortel
+    "entry_text": |-
+        Il flotte en retenant des gaz plus
+        légers que l’air. Ceux-ci sont
+        explosifs, en plus d’être fétides.
+"german":
+    "name": |-
+        SMOGON
+    "category": |-
+        Giftwolke
+    "entry_text": |-
+        Gase, die leichter als Luft sind,
+        lassen es schweben. Diese Gase
+        stinken und sind explosiv.
+"italian":
+    "name": |-
+        Koffing
+    "category": |-
+        Pokémon Velenuvola
+    "entry_text": |-
+        Fluttua a mezz’aria grazie ai gas
+        che ha in corpo. Questi sono male-
+        odoranti e altamente esplosivi.
+"spanish":
+    "name": |-
+        Koffing
+    "category": |-
+        Pokémon Gas Veneno
+    "entry_text": |-
+        Los gases de su cuerpo le permiten
+        flotar. Estos gases, además de
+        oler mal, también son explosivos.
+"japanese":
+    "name": |-
+        ドガ－ス
+    "category": |-
+        どくガスポケモン
+    "entry_text": |-
+        くうきよりも　かるい　ガスを
+        からだに　ためて　うかんでいる。
+        ガスは　くさいうえに　ばくはつする。

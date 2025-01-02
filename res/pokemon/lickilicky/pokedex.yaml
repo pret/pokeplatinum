@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    1400
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    225
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    225
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65535
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65535
+"english":
+    "category": |-
+        Licking Pokémon
+    "entry_text": |-
+        The long tongue is always soggy
+        with slobber. The saliva contains
+        a solvent that causes numbness.
+"french":
+    "name": |-
+        COUDLANGUE
+    "category": |-
+        Pokémon Lécheur
+    "entry_text": |-
+        Il enroule tout dans sa langue
+        extensible. Ceux qui l’approchent
+        finissent couverts de bave.
+"german":
+    "name": |-
+        SCHLURPLEK
+    "category": |-
+        Schlecker
+    "entry_text": |-
+        Es umklammert Dinge mit seiner
+        dehnbaren Zunge. Kommt man ihm zu
+        nahe, wird man eingespeichelt.
+"italian":
+    "name": |-
+        Lickilicky
+    "category": |-
+        Pokémon Linguaccia
+    "entry_text": |-
+        Avvolge ogni cosa con la sua lingua
+        allungabile. Chi si avvicina troppo,
+        si ritroverà tutto bagnato di bava.
+"spanish":
+    "name": |-
+        Lickilicky
+    "category": |-
+        Pokémon Lametazo
+    "entry_text": |-
+        Agarra cosas con su lengua
+        extensible. Si te acercas mucho,
+        te deja lleno de babas.
+"japanese":
+    "name": |-
+        ベロベルト
+    "category": |-
+        なめまわしポケモン
+    "entry_text": |-
+        ぐんぐん　のびる　ベロを　なんにでも
+        まきつける。うかつに　ちかよると
+        だえきで　べとべとに　されてしまう。

@@ -126,47 +126,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 1870,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 234,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 234,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 7,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 7,
-        "english": {
-            "category": "Bronze Bell Pokémon",
-            "entry_text": "It brought rains by opening portals\nto another world. It was revered\nas a bringer of plentiful harvests."
-        },
-        "french": {
-            "name": "ARCHEODONG",
-            "category": "Pokémon Clochebronze",
-            "entry_text": "La découverte d’un de ces Pokémon\nsur un site de fouilles après 2 000 \nans de sommeil a fait sensation."
-        },
-        "german": {
-            "name": "BRONZONG",
-            "category": "Bronzeglocke",
-            "entry_text": "Dieses PKMN fand man bei Grabungen\nauf einer Baustelle, an deren Ort\nes 2 000 Jahre geschlafen hatte."
-        },
-        "italian": {
-            "name": "Bronzong",
-            "category": "Pokémon Squibronzo",
-            "entry_text": "Il suo ritrovamento in un cantiere\ndopo un sonno di 2000 anni fece a\nsuo tempo molto scalpore."
-        },
-        "spanish": {
-            "name": "Bronzong",
-            "category": "Pokémon Cam. Bronce",
-            "entry_text": "Se produjo un gran revuelo cuando\nencontraron uno en una obra\ndespués de 2000 años durmiendo."
-        },
-        "japanese": {
-            "name": "ド－タクン",
-            "category": "どうたくポケモン",
-            "entry_text": "２０００ねん　いじょう　ねむっていた\nド－タクンが　こうじげんばから\nほりだされ　だいニュ－スに　なった。"
-        }
     }
 }

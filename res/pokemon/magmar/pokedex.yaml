@@ -1,0 +1,74 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    445
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    10
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    10
+"english":
+    "category": |-
+        Spitfire Pokémon
+    "entry_text": |-
+        When it breathes deeply, heat
+        waves form around its body, making
+        it hard to see clearly.
+"french":
+    "name": |-
+        MAGMAR
+    "category": |-
+        Pokémon Crache-Feu
+    "entry_text": |-
+        Il est né au milieu d’un volcan.
+        Son corps est couvert de flammes
+        qui flambent comme un soleil.
+"german":
+    "name": |-
+        MAGMAR
+    "category": |-
+        Brenner
+    "entry_text": |-
+        Es wurde bei einem Vulkanausbruch
+        geboren. Sein Körper ist von
+        hellen Flammen umgeben.
+"italian":
+    "name": |-
+        Magmar
+    "category": |-
+        Pokémon Sputafuoco
+    "entry_text": |-
+        È nato dallo zampillo di un vulcano.
+        Ha il corpo ricoperto da fiamme
+        che brillano come i raggi solari.
+"spanish":
+    "name": |-
+        Magmar
+    "category": |-
+        Pokémon Escupfuego
+    "entry_text": |-
+        Nació en el centro de un volcán.
+        Su cuerpo está cubierto de llamas
+        que brillan como el Sol.
+"japanese":
+    "name": |-
+        ブ－バ－
+    "category": |-
+        ひふきポケモン
+    "entry_text": |-
+        かざんの　かこうで　うまれそだった。
+        たいようと　おなじような　ほのおの
+        ゆらめきが　ぜんしんを　おおう。

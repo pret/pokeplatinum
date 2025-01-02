@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    650
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    320
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    320
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65529
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65529
+"english":
+    "category": |-
+        Kite Pokémon
+    "entry_text": |-
+        People organize tours to see this
+        Pokémon frolic and skim the tops
+        of waves with REMORAID.
+"french":
+    "name": |-
+        BABIMANTA
+    "category": |-
+        Pokémon Cervolant
+    "entry_text": |-
+        Un Pokémon amical qui analyse
+        les mouvements subtils de l’eau de
+        mer grâce à ses deux antennes.
+"german":
+    "name": |-
+        MANTIRPS
+    "category": |-
+        Flugrochen
+    "entry_text": |-
+        Ein freundliches PKMN, das mit
+        seinen zwei Antennen die
+        Strömungen des Meeres erkennt.
+"italian":
+    "name": |-
+        Mantyke
+    "category": |-
+        Pokémon Aquilone
+    "entry_text": |-
+        Pokémon amichevole che con le
+        antenne è in grado di avvertire
+        anche minime correnti marine.
+"spanish":
+    "name": |-
+        Mantyke
+    "category": |-
+        Pokémon Milano
+    "entry_text": |-
+        Un Pokémon amable que captura
+        los débiles flujos de agua marina
+        con sus dos antenas.
+"japanese":
+    "name": |-
+        タマンタ
+    "category": |-
+        カイトポケモン
+    "entry_text": |-
+        ２ほんの　しょっかくで　かいすいの
+        びみょうな　うごきを　キャッチする。
+        ひとなつっこい　ポケモン。

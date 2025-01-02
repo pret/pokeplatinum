@@ -1,0 +1,74 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    1026
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    5
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    5
+"english":
+    "category": |-
+        Dragon Pokémon
+    "entry_text": |-
+        As a result of its long-held dream
+        of flying, its cellular structure
+        changed, and wings grew out.
+"french":
+    "name": |-
+        DRATTAK
+    "category": |-
+        Pokémon Dragon
+    "entry_text": |-
+        A force de rêver de pouvoir voler,
+        sa structure cellulaire a évolué
+        et il s’est vu pousser des ailes.
+"german":
+    "name": |-
+        BRUTALANDA
+    "category": |-
+        Drache
+    "entry_text": |-
+        Seine Zellstruktur änderte sich, es
+        wuchsen ihm Flügel, da es immer
+        davon träumte, fliegen zu können.
+"italian":
+    "name": |-
+        Salamence
+    "category": |-
+        Pokémon Drago
+    "entry_text": |-
+        Il suo forte desiderio di volare ha
+        provocato una mutazione cellulare
+        e gli sono spuntate le ali.
+"spanish":
+    "name": |-
+        Salamence
+    "category": |-
+        Pokémon Dragón
+    "entry_text": |-
+        Siempre soñó con volar, por lo
+        que su estructura celular cambió
+        y le crecieron alas.
+"japanese":
+    "name": |-
+        ボ－マンダ
+    "category": |-
+        ドラゴンポケモン
+    "entry_text": |-
+        そらを　とぶことを　ねがいつづけた
+        けっか　からだの　さいぼうが
+        へんかして　つばさが　はえてきた。

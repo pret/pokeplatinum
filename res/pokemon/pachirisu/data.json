@@ -108,47 +108,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 39,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 431,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 431,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 23,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 23,
-        "english": {
-            "category": "EleSquirrel Pokémon",
-            "entry_text": "A pair may be seen rubbing their\ncheek pouches together in an\neffort to share stored electricity."
-        },
-        "french": {
-            "name": "PACHIRISU",
-            "category": "Pokémon Ecurélec",
-            "entry_text": "Il roule des boules de poils pleines\nd’électricité statique et les range\ndans des souches avec des Baies."
-        },
-        "german": {
-            "name": "PACHIRISU",
-            "category": "Elektrohörnchen",
-            "entry_text": "Es bildet ein Fellknäuel, der vor\nstatischer Energie knistert. Es\nspeichert die Energie in Bäumen."
-        },
-        "italian": {
-            "name": "Pachirisu",
-            "category": "Pokémon Elescoiatto",
-            "entry_text": "Forma delle palle di pelo cariche\nelettrostaticamente e le conserva\nnegli alberi insieme alle bacche."
-        },
-        "spanish": {
-            "name": "Pachirisu",
-            "category": "Pokémon Ardillalec",
-            "entry_text": "Crea bolas de pelo que crepitan\ncon electricidad estática. Las\nalmacena en agujeros de árboles."
-        },
-        "japanese": {
-            "name": "パチリス",
-            "category": "でんきりすポケモン",
-            "entry_text": "せいでんきが　たまって　パチパチする\nけだまを　だいこうぶつの　きのみと\nいっしょに　みきの　あなに　かくす。"
-        }
     }
 }

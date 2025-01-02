@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 345,
-        "body_shape": "SHAPE_HEAD_BASE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 297,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 297,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 19,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 19,
-        "english": {
-            "category": "Star Shape Pokémon",
-            "entry_text": "If its body is torn, it can grow\nback if the red core remains.\nThe core flashes at midnight."
-        },
-        "french": {
-            "name": "STARI",
-            "category": "Pokémon Etoile",
-            "entry_text": "Même amoché, son corps se régé-\nnère tant que le noyau rouge est\nintact. Le noyau s’illumine à minuit."
-        },
-        "german": {
-            "name": "STERNDU",
-            "category": "Sternform",
-            "entry_text": "Wird sein Körper verletzt, kann\nes sich regenerieren, sofern\nder rote Kern intakt ist."
-        },
-        "italian": {
-            "name": "Staryu",
-            "category": "Pokémon Stella",
-            "entry_text": "Se il corpo è lacerato, si rigenera\nse il nucleo rosso è ancora intat-\nto. Il nucleo brilla a mezzanotte."
-        },
-        "spanish": {
-            "name": "Staryu",
-            "category": "Pokémon Estrellada",
-            "entry_text": "Puede recuperar las extremidades\nque pierde si mantiene intacto su\nnúcleo rojo, que brilla en la noche."
-        },
-        "japanese": {
-            "name": "ヒトデマン",
-            "category": "ほしがたポケモン",
-            "entry_text": "あかい　コアが　あるかぎり　からだが\nちぎれても　すぐに　さいせいする。\nまよなか　コアが　てんめつする。"
-        }
     }
 }

@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    36
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    493
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    493
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Worm Pokémon
+    "entry_text": |-
+        Often targeted by bird Pokémon,
+        it desperately resists by releasing
+        poison from its tail spikes.
+"french":
+    "name": |-
+        CHENIPOTTE
+    "category": |-
+        Pokémon Ver
+    "entry_text": |-
+        Il adore manger des feuilles. Si un
+        ETOURMI l’attaque, il riposte avec
+        les piquants de son postérieur.
+"german":
+    "name": |-
+        WAUMPEL
+    "category": |-
+        Wurm
+    "entry_text": |-
+        Es isst am liebsten Blätter. Wird es
+        von einem STARALILI angegriffen,
+        verteidigt es sich mit Stacheln.
+"italian":
+    "name": |-
+        Wurmple
+    "category": |-
+        Pokémon Baco
+    "entry_text": |-
+        Ama mangiare le foglie. Se STARLY lo
+        attacca, si difende con gli aculei
+        che ha sulla parte posteriore.
+"spanish":
+    "name": |-
+        Wurmple
+    "category": |-
+        Pokémon Gusano
+    "entry_text": |-
+        Le encanta comer hojas. Si le
+        ataca un STARLY, se defenderá
+        con sus púas.
+"japanese":
+    "name": |-
+        ケムッソ
+    "category": |-
+        いもむしポケモン
+    "entry_text": |-
+        はっぱが　だいこうぶつ。
+        ムックルに　おそわれたときは
+        おしりの　トゲで　げきたいする。

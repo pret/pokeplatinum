@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    333
+"body_shape": |-
+    SHAPE_MULTI_BODY
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    321
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    321
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Mole Pokémon
+    "entry_text": |-
+        Its three heads move alternately,
+        driving it through tough soil to
+        depths of over 60 miles.
+"french":
+    "name": |-
+        TRIOPIKEUR
+    "category": |-
+        Pokémon Taupe
+    "entry_text": |-
+        Ses trois têtes creusent le sol à
+        tour de rôle. Il peut atteindre des
+        profondeurs de 100 kilomètres.
+"german":
+    "name": |-
+        DIGDRI
+    "category": |-
+        Maulwurf
+    "entry_text": |-
+        Die drei Köpfe bewegen sich abwech-
+        selnd, um sich durch harte Erde in
+        Tiefen von bis zu 100 km zu graben.
+"italian":
+    "name": |-
+        Dugtrio
+    "category": |-
+        Pokémon Talpa
+    "entry_text": |-
+        Le sue tre teste si muovono a
+        turno per scavare nel duro suolo
+        fino ad una profondità di 100 km.
+"spanish":
+    "name": |-
+        Dugtrio
+    "category": |-
+        Pokémon Topo
+    "entry_text": |-
+        Sus tres cabezas se mueven por
+        turnos para excavar la tierra a
+        una profundidad de unos 100 km.
+"japanese":
+    "name": |-
+        ダグトリオ
+    "category": |-
+        もぐらポケモン
+    "entry_text": |-
+        ３つの　あたまが　たがいちがいに
+        うごいて　どんなに　かたい　ちそうも
+        ちか１００キロまで　ほりすすむ。

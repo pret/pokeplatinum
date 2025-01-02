@@ -127,47 +127,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 450,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 284,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 284,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 19,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 19,
-        "english": {
-            "category": "Bone Keeper Pokémon",
-            "entry_text": "From its birth, this savage Pokémon\nconstantly holds bones. It is\nskilled in using them as weapons."
-        },
-        "french": {
-            "name": "OSSATUEUR",
-            "category": "Pokémon Gard’Os",
-            "entry_text": "Ce Pokémon sauvage possède des os\ndepuis sa naissance. Il s’en sert\npour combattre avec dextérité."
-        },
-        "german": {
-            "name": "KNOGGA",
-            "category": "Knochenfan",
-            "entry_text": "Von Geburt an trägt dieses wilde\nPokémon Knochen. Es setzt sie\ntalentiert als Waffen ein."
-        },
-        "italian": {
-            "name": "Marowak",
-            "category": "Pokémon Guardaossi",
-            "entry_text": "Pokémon selvatico che tiene in\nmano un osso sin dalla nascita.\nLo usa abilmente come arma."
-        },
-        "spanish": {
-            "name": "Marowak",
-            "category": "Pokémon Apilahueso",
-            "entry_text": "Este Pokémon salvaje maneja\nhuesos constantemente desde su\nnacimiento y los usa como armas."
-        },
-        "japanese": {
-            "name": "ガラガラ",
-            "category": "ほねずきポケモン",
-            "entry_text": "うまれたときから　いつも　もっている\nホネを　じざいに　つかいこなす。\nせいかくは　きょうぼうだ。"
-        }
     }
 }

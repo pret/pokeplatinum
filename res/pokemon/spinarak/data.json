@@ -105,47 +105,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 85,
-        "body_shape": "SHAPE_INSECTOID",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 274,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 274,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 26,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 26,
-        "english": {
-            "category": "String Spit Pokémon",
-            "entry_text": "It sets a trap by spinning a web\nwith thin but strong silk. It waits\nmotionlessly for prey to arrive."
-        },
-        "french": {
-            "name": "MIMIGAL",
-            "category": "Pokémon Crache Fil",
-            "entry_text": "Il tisse une toile fine mais solide\npour poser des pièges et se poste\ndans l’attente d’une proie."
-        },
-        "german": {
-            "name": "WEBARAK",
-            "category": "Fadenwurf",
-            "entry_text": "Es baut eine Falle, indem es ein\nNetz mit dünner, starker Seide\nspinnt. Es wartet still auf Beute."
-        },
-        "italian": {
-            "name": "Spinarak",
-            "category": "Pokémon Tela",
-            "entry_text": "Tesse una trappola con un filo di\nseta, sottile ma robusto. Attende\nla preda senza muoversi."
-        },
-        "spanish": {
-            "name": "Spinarak",
-            "category": "Pokémon Escupesoga",
-            "entry_text": "Pone trampas tejiendo una red\nde seda fina y resistente y luego\nespera inmóvil a su presa."
-        },
-        "japanese": {
-            "name": "イトマル",
-            "category": "いとはきポケモン",
-            "entry_text": "ほそくて　じょうぶな　いとを\nはりめぐらして　わなを　しかける。\nえものが　かかるまで　じっと　まつ。"
-        }
     }
 }

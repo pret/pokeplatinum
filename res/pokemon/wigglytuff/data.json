@@ -123,47 +123,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 120,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 300,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 300,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 16,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 16,
-        "english": {
-            "category": "Balloon Pokémon",
-            "entry_text": "Its fine fur feels sublime to the\ntouch. It can expand its body by\ninhaling air."
-        },
-        "french": {
-            "name": "GRODOUDOU",
-            "category": "Pokémon Bouboule",
-            "entry_text": "Sa fourrure est d’une douceur\nincomparable au toucher. Il \npeut gonfler en aspirant de l’air."
-        },
-        "german": {
-            "name": "KNUDDELUFF",
-            "category": "Ballon",
-            "entry_text": "Sein feines Fell fühlt sich herrlich\nan. Es kann sich größer machen,\nindem es Luft einatmet."
-        },
-        "italian": {
-            "name": "Wigglytuff",
-            "category": "Pokémon Pallone",
-            "entry_text": "Il suo pelo è morbidissimo.\nRiesce a gonfiarsi e a ingrandirsi\nsemplicemente inalando aria."
-        },
-        "spanish": {
-            "name": "Wigglytuff",
-            "category": "Pokémon Globo",
-            "entry_text": "Tiene un pelaje muy agradable al\ntacto. Puede hinchar su cuerpo\ntragando aire."
-        },
-        "japanese": {
-            "name": "プクリン",
-            "category": "ふうせんポケモン",
-            "entry_text": "キメこまやかな　たいもうは\nごくじょうの　はだざわり。\nいきを　すいこんで　ふくらむ。"
-        }
     }
 }

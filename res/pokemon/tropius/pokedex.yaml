@@ -1,0 +1,74 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    1000
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    349
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    335
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Fruit Pokémon
+    "entry_text": |-
+        Delicious fruits grew out from
+        around its neck because it always
+        ate the same kind of fruit.
+"french":
+    "name": |-
+        TROPIUS
+    "category": |-
+        Pokémon Fruit
+    "entry_text": |-
+        A force de manger son fruit
+        préféré, il a fini par pousser
+        autour de son cou.
+"german":
+    "name": |-
+        TROPIUS
+    "category": |-
+        Obst
+    "entry_text": |-
+        Da es ausschließlich seine Lieb-
+        lingsfrucht frisst, begann diese,
+        um seinen Hals herumzuwachsen.
+"italian":
+    "name": |-
+        Tropius
+    "category": |-
+        Pokémon Frutto
+    "entry_text": |-
+        Poiché mangiava sempre i suoi frutti
+        preferiti, questi hanno cominciato
+        a crescergli attorno al collo.
+"spanish":
+    "name": |-
+        Tropius
+    "category": |-
+        Pokémon Fruto
+    "entry_text": |-
+        Como solo comía su fruta favorita,
+        al final terminó creciéndole en su
+        propio cuello.
+"japanese":
+    "name": |-
+        トロピウス
+    "category": |-
+        フル－ツポケモン
+    "entry_text": |-
+        だいこうぶつの　くだものばかり
+        たべていたら　じぶんの　くびに
+        くだものが　できるようになった。

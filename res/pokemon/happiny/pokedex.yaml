@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    244
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    369
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    369
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Playhouse Pokémon
+    "entry_text": |-
+        It likes to carry around a small
+        rock. It may wander around others’
+        feet and cause them to stumble.
+"french":
+    "name": |-
+        PTIRAVI
+    "category": |-
+        Pokémon Maisonjouet
+    "entry_text": |-
+        Ce Pokémon aime ce qui est rond et
+        blanc et transporte un caillou en
+        forme d’œuf pour imiter LEVEINARD.
+"german":
+    "name": |-
+        WONNEIRA
+    "category": |-
+        Spielhaus
+    "entry_text": |-
+        Es liebt runde, weiße Dinge. Es
+        trägt einen eiförmigen Stein bei
+        sich, und imitiert damit CHANEIRA.
+"italian":
+    "name": |-
+        Happiny
+    "category": |-
+        Pokémon Ovettino
+    "entry_text": |-
+        Ama gli oggetti bianchi e tondi.
+        Imita CHANSEY trasportando una
+        roccia a forma di uovo.
+"spanish":
+    "name": |-
+        Happiny
+    "category": |-
+        Pokémon Casita
+    "entry_text": |-
+        Le encantan las cosas blancas y
+        redondas. Imita a CHANSEY llevando
+        una roca con forma de huevo.
+"japanese":
+    "name": |-
+        ピンプク
+    "category": |-
+        ままごとポケモン
+    "entry_text": |-
+        しろくて　まるいものが　だいすき。
+        ラッキ－の　まねをして　タマゴに
+        そっくりな　いしを　かかえている。

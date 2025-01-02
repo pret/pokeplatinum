@@ -112,47 +112,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 290,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 249,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 249,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 10,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 10,
-        "english": {
-            "category": "Bubble Jet Pokémon",
-            "entry_text": "Its cell composition is similar\nto water molecules. As a result,\nit can melt away into water."
-        },
-        "french": {
-            "name": "AQUALI",
-            "category": "Pokémon Bulleur",
-            "entry_text": "Il a évolué pour s’adapter au milieu\naquatique. Il peut se fondre et \ndisparaître dans l’élément liquide."
-        },
-        "german": {
-            "name": "AQUANA",
-            "category": "Blubblase",
-            "entry_text": "Es hat sich so entwickelt, dass es\nim Wasser leben kann. Im Wasser\nselbst wird es unsichtbar."
-        },
-        "italian": {
-            "name": "Vaporeon",
-            "category": "Pokémon Bollajet",
-            "entry_text": "Si è evoluto per adattarsi alla vita\nacquatica. Si può sciogliere\nnell’acqua diventando invisibile."
-        },
-        "spanish": {
-            "name": "Vaporeon",
-            "category": "Pokémon Burbuja",
-            "entry_text": "Ha evolucionado para adaptarse a\nla vida acuática. Se mimetiza a\nla perfección con el agua."
-        },
-        "japanese": {
-            "name": "シャワ－ズ",
-            "category": "あわはきポケモン",
-            "entry_text": "すいちゅうでの　せいかつに　てきした\nからだに　しんかした。\nみずに　とけると　みえなくなる。"
-        }
     }
 }

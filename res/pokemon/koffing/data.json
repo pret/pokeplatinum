@@ -114,47 +114,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 10,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 350,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 350,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65526,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65526,
-        "english": {
-            "category": "Poison Gas Pokémon",
-            "entry_text": "Lighter-than-air gases in its body\nkeep it aloft. The gases not only\nsmell, they are also explosive."
-        },
-        "french": {
-            "name": "SMOGO",
-            "category": "Pokémon Gaz Mortel",
-            "entry_text": "Il flotte en retenant des gaz plus\nlégers que l’air. Ceux-ci sont\nexplosifs, en plus d’être fétides."
-        },
-        "german": {
-            "name": "SMOGON",
-            "category": "Giftwolke",
-            "entry_text": "Gase, die leichter als Luft sind,\nlassen es schweben. Diese Gase\nstinken und sind explosiv."
-        },
-        "italian": {
-            "name": "Koffing",
-            "category": "Pokémon Velenuvola",
-            "entry_text": "Fluttua a mezz’aria grazie ai gas\nche ha in corpo. Questi sono male-\nodoranti e altamente esplosivi."
-        },
-        "spanish": {
-            "name": "Koffing",
-            "category": "Pokémon Gas Veneno",
-            "entry_text": "Los gases de su cuerpo le permiten\nflotar. Estos gases, además de\noler mal, también son explosivos."
-        },
-        "japanese": {
-            "name": "ドガ－ス",
-            "category": "どくガスポケモン",
-            "entry_text": "くうきよりも　かるい　ガスを\nからだに　ためて　うかんでいる。\nガスは　くさいうえに　ばくはつする。"
-        }
     }
 }

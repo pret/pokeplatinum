@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 10,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 462,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 462,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65523,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65523,
-        "english": {
-            "category": "Wind Chime Pokémon",
-            "entry_text": "Its cries echo inside its hollow\nbody to emerge as beautiful notes\nfor startling and repelling foes."
-        },
-        "french": {
-            "name": "EOKO",
-            "category": "Pokémon Carillon",
-            "entry_text": "Son langage comporte sept cris.\nIl les utilise pour faire vibrer\nl’air et projeter son ennemi."
-        },
-        "german": {
-            "name": "PALIMPALIM",
-            "category": "Windspiel",
-            "entry_text": "Um die Gegner fortzuwehen, setzt\nes die Luft mit Schreien in\nBewegung."
-        },
-        "italian": {
-            "name": "Chimecho",
-            "category": "Pokémon Vencampana",
-            "entry_text": "Le sue urla sono così potenti da\nfar volar via i nemici. Comunica con\nsette versi differenti."
-        },
-        "spanish": {
-            "name": "Chimecho",
-            "category": "Pokémon Sonido Aire",
-            "entry_text": "Sus gritos sacuden el aire para\nderribar a los rivales voladores.\nHabla con siete tipos de gritos."
-        },
-        "japanese": {
-            "name": "チリ－ン",
-            "category": "ふうりんポケモン",
-            "entry_text": "なきごえで　くうきを　しんどうさせ\nあいてを　ふきとばす。７しゅるいの\nこえで　なかまと　かいわする。"
-        }
     }
 }

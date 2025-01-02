@@ -1,0 +1,72 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    315
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    309
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    309
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    15
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    15
+"english":
+    "category": |-
+        Beaver Pokémon
+    "entry_text": |-
+        A river dammed by BIBAREL will
+        never overflow its banks, which
+        is appreciated by people nearby.
+"french":
+    "name": |-
+        CASTORNO
+    "category": |-
+        Pokémon Castor
+    "entry_text": "Il construit des barrages de boue\net d’écorce le long des fleuves.\
+        \ \nC’est un ouvrier de renom."
+"german":
+    "name": |-
+        BIDIFAS
+    "category": |-
+        Biber
+    "entry_text": |-
+        Es baut sein Nest, indem es in
+        Flüssen Dämme aus Schlamm und
+        Ästen baut. Ein fleißiger Arbeiter.
+"italian":
+    "name": |-
+        Bibarel
+    "category": |-
+        Pokémon Castoro
+    "entry_text": |-
+        Sbarra il corso dei fiumi con cor-
+        teccia e fango per farsi la tana. È
+        noto come lavoratore instancabile.
+"spanish":
+    "name": |-
+        Bibarel
+    "category": |-
+        Pokémon Castor
+    "entry_text": |-
+        Para anidar, crea presas en los
+        ríos con maderas y barro.
+        Tiene fama de trabajador.
+"japanese":
+    "name": |-
+        ビ－ダル
+    "category": |-
+        ビ－バ－ポケモン
+    "entry_text": |-
+        かわを　きのみきや　どろの　ダムで
+        せきとめて　すみかを　つくる。
+        はたらきものとして　しられている。

@@ -1,0 +1,72 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    86
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    307
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    307
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Weed Pokémon
+    "entry_text": |-
+        The honey it drools from its mouth
+        smells so atrocious, it can curl
+        noses more than a mile away.
+"french":
+    "name": |-
+        ORTIDE
+    "category": |-
+        Pokémon Racine
+    "entry_text": "L’odeur du nectar de sa bouche \nest si répugnante qu’elle agresse\n\
+        les narines à deux kilomètres."
+"german":
+    "name": |-
+        DUFLOR
+    "category": |-
+        Unkraut
+    "entry_text": |-
+        Der Honig, den es abgibt, riecht so
+        entsetzlich, dass sich sogar Nasen
+        in 2 km Entfernung rümpfen.
+"italian":
+    "name": |-
+        Gloom
+    "category": |-
+        Pokémon Malerba
+    "entry_text": |-
+        Il fluido che fuoriesce dalla sua
+        bocca è così puzzolente che si
+        sente anche a 2 km di distanza.
+"spanish":
+    "name": |-
+        Gloom
+    "category": |-
+        Pokémon Hierbajo
+    "entry_text": |-
+        La miel que emana de su boca
+        posee un hedor capaz de derribar
+        enemigos a 2 km de distancia.
+"japanese":
+    "name": |-
+        クサイハナ
+    "category": |-
+        ざっそうポケモン
+    "entry_text": |-
+        くちから　たれている　ミツは
+        ２キロ　はなれていても　はなが
+        まがるほど　もうれつに　くさい。

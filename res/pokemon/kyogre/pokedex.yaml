@@ -1,0 +1,74 @@
+"height": !!int |-
+    45
+"weight": !!int |-
+    3520
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    691
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    623
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    26
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    26
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Sea Basin Pokémon
+    "entry_text": |-
+        It is said to have widened the
+        seas by causing downpours. It had
+        been asleep in a marine trench.
+"french":
+    "name": |-
+        KYOGRE
+    "category": |-
+        Pokémon Bassinmarin
+    "entry_text": |-
+        On dit qu’il a fait monter les eaux
+        en causant des pluies diluviennes.
+        Il somnolait dans une fosse marine.
+"german":
+    "name": |-
+        KYOGRE
+    "category": |-
+        Seegründler
+    "entry_text": |-
+        Man sagt, es habe die Meere ver-
+        größert, indem es es regnen ließ.
+        Es schlief in einem Meeresgraben.
+"italian":
+    "name": |-
+        Kyogre
+    "category": |-
+        Pokémon Oceano
+    "entry_text": |-
+        Si dice che abbia ampliato i mari
+        provocando piogge torrenziali. Si è
+        assopito in una fossa marina.
+"spanish":
+    "name": |-
+        Kyogre
+    "category": |-
+        Pokémon Cuenca Mar
+    "entry_text": |-
+        Se dice que aumentó el nivel del
+        mar a base de aguaceros. Ha estado
+        durmiendo en una fosa marina.
+"japanese":
+    "name": |-
+        カイオ－ガ
+    "category": |-
+        かいていポケモン
+    "entry_text": |-
+        おおあめを　ふらせる　のうりょくで
+        うみを　ひろげたと　いわれている。
+        かいこうの　そこで　ねむっていた。

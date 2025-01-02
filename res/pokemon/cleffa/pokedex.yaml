@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    30
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    427
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    427
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    29
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    29
+"english":
+    "category": |-
+        Star Shape Pokémon
+    "entry_text": |-
+        It is often seen when shooting
+        stars fill the night skies. It’s said
+        to arrive riding on a shooting star.
+"french":
+    "name": |-
+        MELO
+    "category": |-
+        Pokémon Etoile
+    "entry_text": |-
+        Sa silhouette rappelle une étoile.
+        On dit qu’il descend sur terre
+        en chevauchant une étoile filante.
+"german":
+    "name": |-
+        PII
+    "category": |-
+        Sternform
+    "entry_text": |-
+        Seine Silhouette sieht aus wie ein
+        Stern. Man sagt, es würde auf
+        Sternschnuppen reisen.
+"italian":
+    "name": |-
+        Cleffa
+    "category": |-
+        Pokémon Stella
+    "entry_text": |-
+        La sua sagoma ricorda quella di
+        una stella. Si ritiene che giunga
+        a cavallo di stelle cadenti.
+"spanish":
+    "name": |-
+        Cleffa
+    "category": |-
+        Pokémon Estrellada
+    "entry_text": |-
+        Tiene forma de estrella. Se cree
+        que llega cabalgando sobre
+        estrellas fugaces.
+"japanese":
+    "name": |-
+        ピィ
+    "category": |-
+        ほしがたポケモン
+    "entry_text": |-
+        よぞらの　ほしに　にた　シルエット。
+        ながれぼしに　のって　やってくると
+        しんじられている　ポケモン。

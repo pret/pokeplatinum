@@ -1,0 +1,72 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    1080
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    250
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    250
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Clay Doll Pokémon
+    "entry_text": |-
+        An ancient clay figurine that came
+        to life as a Pokémon from exposure
+        to a mysterious ray of light.
+"french":
+    "name": |-
+        KAORINE
+    "category": |-
+        Pokémon Poupargile
+    "entry_text": "Une ancienne figurine d’argile qui \ns’est animée suite à son exposition\n\
+        à un rayon de lumière étrange."
+"german":
+    "name": |-
+        LEPUMENTAS
+    "category": |-
+        Lehmpuppe
+    "entry_text": |-
+        Eine antike Lehmstatue, die durch
+        ein mysteriöses Licht zum Leben
+        erwacht ist.
+"italian":
+    "name": |-
+        Claydol
+    "category": |-
+        Pokémon Argilla
+    "entry_text": |-
+        Pokémon nato da un’antica
+        statuetta d’argilla portata in
+        vita da misteriose radiazioni.
+"spanish":
+    "name": |-
+        Claydol
+    "category": |-
+        Pokémon Muñ. Barro
+    "entry_text": |-
+        Este Pokémon es una vieja figurilla
+        de barro que cobró vida mediante la
+        exposición a extraños rayos de luz.
+"japanese":
+    "name": |-
+        ネンド－ル
+    "category": |-
+        どぐうポケモン
+    "entry_text": |-
+        こだいの　どろにんぎょうが
+        かいこうせんを　あびたことで
+        いのちが　やどり　ポケモンとなった。

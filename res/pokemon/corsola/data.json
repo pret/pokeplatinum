@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 50,
-        "body_shape": "SHAPE_INSECTOID",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 341,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 341,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 23,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 23,
-        "english": {
-            "category": "Coral Pokémon",
-            "entry_text": "Many live in the clean seas of the\nsouth. They apparently can’t live\nin polluted waters."
-        },
-        "french": {
-            "name": "CORAYON",
-            "category": "Pokémon Corail",
-            "entry_text": "On en trouve beaucoup dans les\nmers claires du sud. On dirait qu’il\nne peut pas vivre en eau polluée."
-        },
-        "german": {
-            "name": "CORASONN",
-            "category": "Koralle",
-            "entry_text": "Viele von ihnen leben in den\nsauberen Seen im Süden. In ver-\nschmutzten können sie nicht leben."
-        },
-        "italian": {
-            "name": "Corsola",
-            "category": "Pokémon Corallo",
-            "entry_text": "Vivono numerosi nei limpidi mari del\nsud. Pare che non riescano a\nsopravvivere nelle acque inquinate."
-        },
-        "spanish": {
-            "name": "Corsola",
-            "category": "Pokémon Coral",
-            "entry_text": "Muchos viven en los cristalinos\nmares del sur. Son incapaces de\nvivir en aguas contaminadas."
-        },
-        "japanese": {
-            "name": "サニ－ゴ",
-            "category": "さんごポケモン",
-            "entry_text": "みなみの　きれいな　うみには\nたくさんの　サニ－ゴが　いる。\nよごれた　うみでは　いきられない。"
-        }
     }
 }

@@ -131,47 +131,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 220,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 309,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 309,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 17,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 17,
-        "english": {
-            "category": "Playful Pokémon",
-            "entry_text": "It skillfully controls the intensity\nof the fire on its tail to keep its\nfoes at an ideal distance."
-        },
-        "french": {
-            "name": "CHIMPENFEU",
-            "category": "Pokémon Garnement",
-            "entry_text": "Pour intimider ses agresseurs, il\ngonfle les flammes de sa queue\npour paraître plus grand."
-        },
-        "german": {
-            "name": "PANPYRO",
-            "category": "Verspielt",
-            "entry_text": "Um Angreifer abzuschrecken,\nverstärkt es das Feuer auf seinem\nSchweif, wodurch es größer wirkt."
-        },
-        "italian": {
-            "name": "Monferno",
-            "category": "Pokémon Briccone",
-            "entry_text": "Per intimorire i nemici che\nattaccano, intensifica le fiamme\nsulla coda per apparire più grande."
-        },
-        "spanish": {
-            "name": "Monferno",
-            "category": "Pokémon Juguetón",
-            "entry_text": "Intimida a sus enemigos\ndesplegando el fuego de su\ncola para parecer más grande."
-        },
-        "japanese": {
-            "name": "モウカザル",
-            "category": "やんちゃポケモン",
-            "entry_text": "しっぽの　ほのおを　ながく　のばして\nからだを　おおきく　みせることで\nおそってきた　てきを　こわがらせる。"
-        }
     }
 }

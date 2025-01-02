@@ -125,47 +125,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 112,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 406,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 406,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Meditate Pokémon",
-            "entry_text": "It always trains deep in mountains.\nIt levitates when it heightens its\nspiritual power through meditation."
-        },
-        "french": {
-            "name": "MEDITIKKA",
-            "category": "Pokémon Méditation",
-            "entry_text": "Il ne mange qu’une Baie par jour.\nLa faim lui a forgé une volonté\nde fer."
-        },
-        "german": {
-            "name": "MEDITIE",
-            "category": "Meditation",
-            "entry_text": "Es isst gerade mal eine Beere am\nTag. Durch Hunger wird sein Geist\nruhiger und schärfer."
-        },
-        "italian": {
-            "name": "Meditite",
-            "category": "Pokémon Meditazione",
-            "entry_text": "Mangia solo una bacca al giorno.\nResistendo alla fame, il suo spirito\nviene temprato e rinvigorito."
-        },
-        "spanish": {
-            "name": "Meditite",
-            "category": "Pokémon Meditador",
-            "entry_text": "Solo come una baya al día. El\nayuno fortalece su espíritu y\nsu capacidad de concentración."
-        },
-        "japanese": {
-            "name": "アサナン",
-            "category": "めいそうポケモン",
-            "entry_text": "１にち　１こだけ　きのみを　たべる。\nくうふくに　たえることで\nこころが　とぎすまされていく。"
-        }
     }
 }

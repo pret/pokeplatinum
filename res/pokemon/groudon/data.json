@@ -127,47 +127,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 35,
-        "weight": 9500,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 540,
-        "pokemon_scale_f": 241,
-        "trainer_scale_m": 512,
-        "pokemon_scale_m": 241,
-        "trainer_pos_f": 23,
-        "pokemon_pos_f": 3,
-        "trainer_pos_m": 23,
-        "pokemon_pos_m": 3,
-        "english": {
-            "category": "Continent Pokémon",
-            "entry_text": "It had been asleep in underground\nmagma ever since it fiercely\nfought KYOGRE long ago."
-        },
-        "french": {
-            "name": "GROUDON",
-            "category": "Pokémon Continent",
-            "entry_text": "Il dormait dans le magma souterrain\ndepuis sa lutte féroce contre\nKYOGRE, il y a longtemps de cela."
-        },
-        "german": {
-            "name": "GROUDON",
-            "category": "Kontinent",
-            "entry_text": "Es hat seit dem Kampf gegen\nKYOGRE in Magma unter dem\nErdboden geschlafen. "
-        },
-        "italian": {
-            "name": "Groudon",
-            "category": "Pokémon Continente",
-            "entry_text": "Dopo una lotta colossale contro\nKYOGRE, si è addormentato sotto\nterra in mezzo al magma."
-        },
-        "spanish": {
-            "name": "Groudon",
-            "category": "Pokémon Continente",
-            "entry_text": "Ha estado durmiendo en magma\nsubterráneo desde que luchó\ncontra KYOGRE en tiempos remotos."
-        },
-        "japanese": {
-            "name": "グラ－ドン",
-            "category": "たいりくポケモン",
-            "entry_text": "おおむかし　カイオ－ガとの　しとうの\nすえに　ちかマグマの　なかで\nねむっていた　ポケモン。"
-        }
     }
 }

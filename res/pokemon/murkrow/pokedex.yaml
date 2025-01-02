@@ -1,0 +1,73 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    21
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    415
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    415
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Darkness Pokémon
+    "entry_text": |-
+        If spotted, it will lure an unwary
+        person into chasing it, then lose
+        the pursuer on mountain trails.
+"french":
+    "name": |-
+        CORNEBRE
+    "category": |-
+        Pokémon Obscurité
+    "entry_text": |-
+        On dit que rencontrer
+        un CORNEBRE la nuit est
+        signe de mauvais augure.
+"german":
+    "name": |-
+        KRAMURX
+    "category": |-
+        Finsternis
+    "entry_text": |-
+        Sieht man dieses PKMN bei Nacht,
+        sollen merkwürdige Dinge passieren.
+"italian":
+    "name": |-
+        Murkrow
+    "category": |-
+        Pokémon Oscurità
+    "entry_text": |-
+        Si dice che l’incontro notturno
+        con questo Pokémon sia un
+        presagio infausto.
+"spanish":
+    "name": |-
+        Murkrow
+    "category": |-
+        Pokémon Oscuridad
+    "entry_text": |-
+        Se dice que ver a este Pokémon
+        por la noche es señal de que van
+        a ocurrir cosas terribles.
+"japanese":
+    "name": |-
+        ヤミカラス
+    "category": |-
+        くらやみポケモン
+    "entry_text": |-
+        よるに　その　すがたを　みかけると
+        ふきつな　できごとが　おきると
+        しんじられている　ポケモン。

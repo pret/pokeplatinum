@@ -107,47 +107,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 42,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 494,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 494,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 28,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 28,
-        "english": {
-            "category": "Cheering Pokémon",
-            "entry_text": "It cheers on friends. If its\nfriends are losing, its body lets\noff more and more sparks."
-        },
-        "french": {
-            "name": "NEGAPI",
-            "category": "Pokémon Acclameur",
-            "entry_text": "Il encourage ses amis. Son corps\nproduit plus d’étincelles quand il\nest en mauvaise posture."
-        },
-        "german": {
-            "name": "MINUN",
-            "category": "Jubel",
-            "entry_text": "Es feuert Freunde an. Sind diese im\nBegriff zu verlieren, gibt sein\nKörper immer mehr Funken ab."
-        },
-        "italian": {
-            "name": "Minun",
-            "category": "Pokémon Incitamento",
-            "entry_text": "Incoraggia gli amici e, se questi\nperdono, il suo corpo emette\nuna maggiore quantità di scintille."
-        },
-        "spanish": {
-            "name": "Minun",
-            "category": "Pokémon Ánimo",
-            "entry_text": "Le gusta animar a sus amigos. Si\npierden, su cuerpo suelta cada vez\nmás chispas."
-        },
-        "japanese": {
-            "name": "マイナン",
-            "category": "おうえんポケモン",
-            "entry_text": "なかまを　おうえんする　しゅうせい。\nまけそうになると　からだから　だす\nひばなの　かずが　どんどん　ふえる。"
-        }
     }
 }

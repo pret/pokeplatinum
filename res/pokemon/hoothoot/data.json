@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 7,
-        "weight": 212,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 350,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 350,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 21,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 21,
-        "english": {
-            "category": "Owl Pokémon",
-            "entry_text": "It marks time precisely. Some\ncountries consider it to be a wise\nfriend, versed in the world’s ways."
-        },
-        "french": {
-            "name": "HOOTHOOT",
-            "category": "Pokémon Hibou",
-            "entry_text": "Il se tient toujours sur un pied. Il\nne prend jamais appui sur les\ndeux, même en cas d’attaque."
-        },
-        "german": {
-            "name": "HOOTHOOT",
-            "category": "Eule",
-            "entry_text": "Es steht ständig auf einem Fuß.\nSelbst wenn es angreift, stellt es\nsich nicht auf beide Beine."
-        },
-        "italian": {
-            "name": "Hoothoot",
-            "category": "Pokémon Gufo",
-            "entry_text": "Sta sempre ritto su un piede solo\ne non mette giù l’altro neppure\nquando viene attaccato."
-        },
-        "spanish": {
-            "name": "Hoothoot",
-            "category": "Pokémon Búho",
-            "entry_text": "Siempre se yergue sobre una pata.\nNunca apoya ambas, ni siquiera\nal sufrir un ataque."
-        },
-        "japanese": {
-            "name": "ホ－ホ－",
-            "category": "ふくろうポケモン",
-            "entry_text": "いつも　いっぽんあしで　たっている。\nこうげきを　うけても　２ほんあしで\nふんばるようなことは　しない。"
-        }
     }
 }

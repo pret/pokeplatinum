@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    280
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    351
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    351
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Pig Monkey Pokémon
+    "entry_text": |-
+        It lives in treetop colonies.
+        If one becomes enraged, the whole
+        colony rampages for no reason.
+"french":
+    "name": |-
+        FEROSINGE
+    "category": |-
+        Pokémon Porsinge
+    "entry_text": |-
+        Ils vivent en colonies sylvestres.
+        Quand un FEROSINGE s’énerve,
+        toute la colonie suit son exemple.
+"german":
+    "name": |-
+        MENKI
+    "category": |-
+        Schw./ Affe
+    "entry_text": |-
+        Es lebt mit anderen in Baumkronen.
+        Wird eines von ihnen wütend, werden
+        alle anderen auch wütend.
+"italian":
+    "name": |-
+        Mankey
+    "category": |-
+        Pokémon Suinpanzé
+    "entry_text": |-
+        Vive in colonie sugli alberi. Se uno
+        si adira, l’intera colonia comincia a
+        agire violentemente senza motivo.
+"spanish":
+    "name": |-
+        Mankey
+    "category": |-
+        Pokémon Mono Cerdo
+    "entry_text": |-
+        Vive en colonias en los árboles.
+        Si uno se enfada, el resto de la
+        manada ataca sin motivo.
+"japanese":
+    "name": |-
+        マンキ－
+    "category": |-
+        ぶたざるポケモン
+    "entry_text": |-
+        きのうえで　せいかつしている。
+        むれの　１ぴきが　おこりはじめると
+        ぜんいんが　いみもなく　あばれだす。

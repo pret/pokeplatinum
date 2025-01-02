@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    150
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    314
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    314
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    20
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    20
+"english":
+    "category": |-
+        Wild Duck Pokémon
+    "entry_text": |-
+        It can’t live without the stalk it
+        holds. That’s why it defends the
+        stalk from attackers with its life.
+"french":
+    "name": |-
+        CANARTICHO
+    "category": |-
+        Pokémon Canard Fou
+    "entry_text": |-
+        Il ne peut pas vivre sans son
+        légume, c’est pourquoi il le
+        protégera au péril de sa vie.
+"german":
+    "name": |-
+        PORENTA
+    "category": |-
+        Wildente
+    "entry_text": |-
+        Ohne seinen Stock kann es nicht
+        leben. Daher beschützt es den
+        Stock mit seinem Leben.
+"italian":
+    "name": |-
+        Farfetch’d
+    "category": |-
+        Pokémon Selvanatra
+    "entry_text": |-
+        Non può vivere senza lo stelo che
+        tiene con un’ala. Lo difende dagli
+        attacchi a costo della vita.
+"spanish":
+    "name": |-
+        Farfetch’d
+    "category": |-
+        Pokémon Pato Salv.
+    "entry_text": |-
+        No puede vivir sin el palo que lleva.
+        Por eso lo protege de sus
+        atacantes con todas sus fuerzas.
+"japanese":
+    "name": |-
+        カモネギ
+    "category": |-
+        かるがもポケモン
+    "entry_text": |-
+        クキが　なくなると　いきていけない。
+        だから　クキを　ねらう　あいてとは
+        いのちがけで　たたかうのだ。

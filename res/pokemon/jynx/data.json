@@ -127,47 +127,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 406,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 256,
-        "pokemon_scale_f": 219,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 219,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 5,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 5,
-        "english": {
-            "category": "Human Shape Pokémon",
-            "entry_text": "Its cries sound like human speech.\nHowever, it is impossible to tell\nwhat it is trying to say."
-        },
-        "french": {
-            "name": "LIPPOUTOU",
-            "category": "Pokémon Humanoïde",
-            "entry_text": "Son cri ressemble à des paroles\nhumaines. Mais nul n’est jamais\nparvenu à les comprendre. "
-        },
-        "german": {
-            "name": "ROSSANA",
-            "category": "Humanotyp",
-            "entry_text": "Sein Ruf klingt wie menschliche\nSprache. Trotzdem ist nicht zu\nverstehen, was es sagt."
-        },
-        "italian": {
-            "name": "Jynx",
-            "category": "Pokémon Umanoide",
-            "entry_text": "Le sue grida ricordano il linguaggio\numano, ma è impossibile capire\nil significato delle sue parole."
-        },
-        "spanish": {
-            "name": "Jynx",
-            "category": "Pokémon F. Humana",
-            "entry_text": "Sus gritos se parecen al lenguaje\nhumano, pero es imposible\nentender lo que dice."
-        },
-        "japanese": {
-            "name": "ル－ジュラ",
-            "category": "ひとがたポケモン",
-            "entry_text": "なきごえは　まるで　にんげんの\nことばのように　きこえるが\nいみは　まったく　りかいできない。"
-        }
     }
 }

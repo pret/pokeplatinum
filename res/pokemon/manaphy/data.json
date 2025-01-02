@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 14,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 504,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 504,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Seafaring Pokémon",
-            "entry_text": "It is born with a wondrous power\nthat lets it bond with any kind of\nPokémon."
-        },
-        "french": {
-            "name": "MANAPHY",
-            "category": "Pokémon Voyagenmer",
-            "entry_text": "Né dans les profondeurs froides de\nl’océan, il parcourt un long chemin\npour gagner son lieu de naissance."
-        },
-        "german": {
-            "name": "MANAPHY",
-            "category": "Seefahrer",
-            "entry_text": "Geboren auf dem Meeresboden,\nlegt es große Entfernungen zurück,\num dorthin zurückzukehren."
-        },
-        "italian": {
-            "name": "Manaphy",
-            "category": "Pokémon Oceandante",
-            "entry_text": "Nato su freddi fondali marini, per-\ncorre a nuoto lunghe distanze per\ntornare al suo luogo di nascita."
-        },
-        "spanish": {
-            "name": "Manaphy",
-            "category": "Pokémon Náutico",
-            "entry_text": "Nació en el frío fondo marino.\nNada grandes distancias para\nregresar a su lugar de origen."
-        },
-        "japanese": {
-            "name": "マナフィ",
-            "category": "かいゆうポケモン",
-            "entry_text": "つめたい　うみの　そこで　うまれた。\nじぶんが　うまれた　うみの　そこへ\nながい　きょりを　およいで　かえる。"
-        }
     }
 }

@@ -123,47 +123,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 215,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 345,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 345,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 26,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 26,
-        "english": {
-            "category": "Clay Doll Pokémon",
-            "entry_text": "It moves by spinning on its foot.\nIt is a rare Pokémon that was\ndiscovered in ancient ruins."
-        },
-        "french": {
-            "name": "BALBUTO",
-            "category": "Pokémon Poupargile",
-            "entry_text": "Il se déplace en tournoyant sur\nson pied. Ce Pokémon rare fut\ndécouvert dans de vieilles ruines."
-        },
-        "german": {
-            "name": "PUPPANCE",
-            "category": "Lehmpuppe",
-            "entry_text": "Es bewegt sich, indem es sich auf\nseinem Fuß dreht. Ein seltenes\nPKMN, das in alten Ruinen lebte."
-        },
-        "italian": {
-            "name": "Baltoy",
-            "category": "Pokémon Argilla",
-            "entry_text": "Pokémon raro che si muove rotean-\ndo su se stesso. È stato scoperto\nnei pressi di antiche rovine."
-        },
-        "spanish": {
-            "name": "Baltoy",
-            "category": "Pokémon Muñ. Barro",
-            "entry_text": "Se mueve girando sobre su eje.\nEs un extraño Pokémon que fue\nencontrado en unas viejas ruinas."
-        },
-        "japanese": {
-            "name": "ヤジロン",
-            "category": "どぐうポケモン",
-            "entry_text": "いっぽんあしで　かいてんしながら\nいどうする。こだいの　いせきから\nみつかった　めずらしい　ポケモン。"
-        }
     }
 }

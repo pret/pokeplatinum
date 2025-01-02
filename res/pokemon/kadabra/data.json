@@ -128,47 +128,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 565,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 247,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 247,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 11,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 11,
-        "english": {
-            "category": "Psi Pokémon",
-            "entry_text": "It stares at its silver spoon to\nfocus its mind. It emits more alpha\nwaves while doing so."
-        },
-        "french": {
-            "name": "KADABRA",
-            "category": "Pokémon Psy",
-            "entry_text": "Une ombre inquiétante obscurcit\nl’écran télé quand il s’approche.\nLe malheur frappe celui qui la voit."
-        },
-        "german": {
-            "name": "KADABRA",
-            "category": "Psi",
-            "entry_text": "Wenn sich auf deinem Fernsehbild-\nschirm ein Schatten zeigt, ist es in\nder Nähe. Und das bringt Unglück."
-        },
-        "italian": {
-            "name": "Kadabra",
-            "category": "Pokémon Psico",
-            "entry_text": "Se lo si avvicina, fa apparire alla\ntelevisione un’ombra inquietante\nche porta sfortuna a chi la guarda."
-        },
-        "spanish": {
-            "name": "Kadabra",
-            "category": "Pokémon Psi",
-            "entry_text": "Si se acerca uno, una extraña\nsombra aparece en los televisores.\nSe dice que verla trae mala suerte."
-        },
-        "japanese": {
-            "name": "ユンゲラ－",
-            "category": "ねんりきポケモン",
-            "entry_text": "ユンゲラ－が　そばにいると　テレビに\nふしぎな　かげが　うつる。それを\nみると　ふこうになると　いわれる。"
-        }
     }
 }

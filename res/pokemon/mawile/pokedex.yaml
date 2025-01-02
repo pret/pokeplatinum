@@ -1,0 +1,72 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    115
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    392
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    392
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Deceiver Pokémon
+    "entry_text": |-
+        Attached to its head is a huge
+        set of jaws formed by horns.
+        It can chew through iron beams.
+"french":
+    "name": |-
+        MYSDIBULE
+    "category": |-
+        Pokémon Trompeur
+    "entry_text": "Ses cornes forment une grande\nmâchoire attachée à sa tête. Elle\n\
+        peut broyer des barres de fer. "
+"german":
+    "name": |-
+        FLUNKIFER
+    "category": |-
+        Schwindler
+    "entry_text": |-
+        Auf seinem Kopf befindet sich ein
+        riesiger Kiefer, der aus Hörnern
+        besteht. Er kann Eisen zermalmen.
+"italian":
+    "name": |-
+        Mawile
+    "category": |-
+        Pokémon Inganno
+    "entry_text": |-
+        Le sue due enormi mandibole sono
+        corna trasformate. Con esse può
+        masticare persino travi di ferro.
+"spanish":
+    "name": |-
+        Mawile
+    "category": |-
+        Pokémon Tramposo
+    "entry_text": |-
+        Las grandes fauces de su cabeza
+        están formadas por cuernos.
+        Puede romper el hierro con ellas.
+"japanese":
+    "name": |-
+        クチ－ト
+    "category": |-
+        あざむきポケモン
+    "entry_text": |-
+        ツノが　へんけいして　できた
+        おおあごが　あたまに　ついている。
+        てっこつを　かみきってしまう。

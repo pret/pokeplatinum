@@ -119,47 +119,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 120,
-        "body_shape": "SHAPE_INSECTOID",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 377,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 377,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 20,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 20,
-        "english": {
-            "category": "Scorpion Pokémon",
-            "entry_text": "As soon as the tail claws close,\nits needle tips secrete poison.\nIt can survive a year without food."
-        },
-        "french": {
-            "name": "RAPION",
-            "category": "Pokémon Scorpion",
-            "entry_text": "Il saisit sa proie avec les pinces de\nsa queue, lui injecte un poison et\nla retient jusqu’à ce qu’il agisse."
-        },
-        "german": {
-            "name": "PIONSKORA",
-            "category": "Skorpion",
-            "entry_text": "Es greift seine Beute mit den\nKrallen an seinem Schweif und ver-\ngiftet sie. Dann wartet es ab..."
-        },
-        "italian": {
-            "name": "Skorupi",
-            "category": "Pokémon Scorpione",
-            "entry_text": "Afferra le prede con gli artigli\ndella coda e non si allontana finché\nil veleno che inietta non agisce."
-        },
-        "spanish": {
-            "name": "Skorupi",
-            "category": "Pokémon Escorpión",
-            "entry_text": "Agarra a sus presas con las garras\nde la cola y les inyecta veneno.\nEspera hasta que hace efecto."
-        },
-        "japanese": {
-            "name": "スコルピ",
-            "category": "さそりポケモン",
-            "entry_text": "しっぽの　ツメで　えものを　はさみ\nどくを　おくりこむ。どくが　きくまで\nぜったいに　はなさない　しゅうねん。"
-        }
     }
 }

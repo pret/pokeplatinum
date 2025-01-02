@@ -114,47 +114,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 150,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 314,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 314,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 20,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 20,
-        "english": {
-            "category": "Wild Duck Pokémon",
-            "entry_text": "It can’t live without the stalk it\nholds. That’s why it defends the\nstalk from attackers with its life."
-        },
-        "french": {
-            "name": "CANARTICHO",
-            "category": "Pokémon Canard Fou",
-            "entry_text": "Il ne peut pas vivre sans son\nlégume, c’est pourquoi il le\nprotégera au péril de sa vie."
-        },
-        "german": {
-            "name": "PORENTA",
-            "category": "Wildente",
-            "entry_text": "Ohne seinen Stock kann es nicht\nleben. Daher beschützt es den\nStock mit seinem Leben."
-        },
-        "italian": {
-            "name": "Farfetch’d",
-            "category": "Pokémon Selvanatra",
-            "entry_text": "Non può vivere senza lo stelo che\ntiene con un’ala. Lo difende dagli\nattacchi a costo della vita."
-        },
-        "spanish": {
-            "name": "Farfetch’d",
-            "category": "Pokémon Pato Salv.",
-            "entry_text": "No puede vivir sin el palo que lleva.\nPor eso lo protege de sus\natacantes con todas sus fuerzas."
-        },
-        "japanese": {
-            "name": "カモネギ",
-            "category": "かるがもポケモン",
-            "entry_text": "クキが　なくなると　いきていけない。\nだから　クキを　ねらう　あいてとは\nいのちがけで　たたかうのだ。"
-        }
     }
 }

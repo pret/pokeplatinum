@@ -1,0 +1,74 @@
+"height": !!int |-
+    22
+"weight": !!int |-
+    1066
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    347
+"pokemon_scale_f": !!int |-
+    244
+"trainer_scale_m": !!int |-
+    335
+"pokemon_scale_m": !!int |-
+    244
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Gripper Pokémon
+    "entry_text": |-
+        It is said to take lost spirits
+        into its pliant body and guide
+        them home.
+"french":
+    "name": |-
+        NOCTUNOIR
+    "category": |-
+        Pokémon Mainpince
+    "entry_text": |-
+        L’antenne sur sa tête capte les
+        ondes radio du monde des esprits
+        lui ordonnant d’y porter des gens.
+"german":
+    "name": |-
+        ZWIRRFINST
+    "category": |-
+        Greifer
+    "entry_text": |-
+        Die Antenne auf seinem Kopf
+        empfängt Radiowellen aus einer
+        anderen Dimension.
+"italian":
+    "name": |-
+        Dusknoir
+    "category": |-
+        Pokémon Pinza
+    "entry_text": |-
+        Capta con l’antenna onde che arri-
+        vano dal mondo degli spiriti, che gli
+        ordinano di portare lì le persone.
+"spanish":
+    "name": |-
+        Dusknoir
+    "category": |-
+        Pokémon Grilletes
+    "entry_text": |-
+        La antena de la cabeza captura
+        ondas de radio lejanas que le
+        permiten secuestrar a gente.
+"japanese":
+    "name": |-
+        ヨノワ－ル
+    "category": |-
+        てづかみポケモン
+    "entry_text": |-
+        あたまの　アンテナで　れいかいからの
+        でんぱを　じゅしん。しじを　うけて
+        ひとを　れいかいへ　つれていくのだ。

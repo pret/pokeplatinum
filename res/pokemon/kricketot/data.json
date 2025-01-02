@@ -69,47 +69,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 22,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 713,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 713,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 28,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 28,
-        "english": {
-            "category": "Cricket Pokémon",
-            "entry_text": "Its legs are short. Whenever it\nstumbles, its stiff antennae clack\nwith a xylophone-like sound."
-        },
-        "french": {
-            "name": "CRIKZIK",
-            "category": "Pokémon Criquet",
-            "entry_text": "Quand il bascule sa tête d’avant \nen arrière, ses antennes se\nheurtent dans un son de xylophone."
-        },
-        "german": {
-            "name": "ZIRPURZE",
-            "category": "Zirper",
-            "entry_text": "Es schüttelt seinen Kopf, so dass\ndie beiden Antennen sich berühren\nund wie ein Xylophon klingen."
-        },
-        "italian": {
-            "name": "Kricketot",
-            "category": "Pokémon Grillo",
-            "entry_text": "Muove la testa avanti e indietro\ne le antenne, scontrandosi, produ-\ncono un suono simile allo xilofono."
-        },
-        "spanish": {
-            "name": "Kricketot",
-            "category": "Pokémon Grillo",
-            "entry_text": "Al agitar la cabeza de atrás hacia\ndelante, sus antenas chocan\ny suenan como un xilófono."
-        },
-        "japanese": {
-            "name": "コロボ－シ",
-            "category": "こおろぎポケモン",
-            "entry_text": "あたまを　ぜんごに　ゆすって\nしょっかくを　ぶつけあうことで\nもっきんのような　おとを　ならす。"
-        }
     }
 }

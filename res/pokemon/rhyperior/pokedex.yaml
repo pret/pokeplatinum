@@ -1,0 +1,72 @@
+"height": !!int |-
+    24
+"weight": !!int |-
+    2828
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    372
+"pokemon_scale_f": !!int |-
+    240
+"trainer_scale_m": !!int |-
+    369
+"pokemon_scale_m": !!int |-
+    240
+"trainer_pos_f": !!int |-
+    17
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    17
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Drill Pokémon
+    "entry_text": |-
+        It can launch a rock held in its
+        hand like a missile by tightening
+        then expanding muscles instantly.
+"french":
+    "name": |-
+        RHINASTOC
+    "category": |-
+        Pokémon Perceur
+    "entry_text": "Il bande ses muscles pour projeter\ndes pierres ou des RACAILLOU\n\
+        depuis le creux de ses paumes. "
+"german":
+    "name": |-
+        RIHORNIOR
+    "category": |-
+        Bohrer
+    "entry_text": |-
+        Es legt Steine in die Löcher seiner
+        Hände und wirft sie mit Muskelkraft.
+        Sogar GEOROK werden verwendet.
+"italian":
+    "name": |-
+        Rhyperior
+    "category": |-
+        Pokémon Trapano
+    "entry_text": |-
+        Mette rocce nelle cavità dei suoi
+        palmi e le getta con tutta la sua
+        forza. Talvolta lancia GEODUDE.
+"spanish":
+    "name": |-
+        Rhyperior
+    "category": |-
+        Pokémon Taladro
+    "entry_text": |-
+        Pone rocas en los agujeros de sus
+        manos y las lanza con los músculos.
+        Pocas veces ataca a GEODUDE.
+"japanese":
+    "name": |-
+        ドサイドン
+    "category": |-
+        ドリルポケモン
+    "entry_text": |-
+        いわを　てのひらの　あなに　つめて
+        きんにくの　ちからで　はっしゃする。
+        まれに　イシツブテを　とばす。

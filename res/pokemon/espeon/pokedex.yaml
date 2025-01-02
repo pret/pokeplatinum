@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    265
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    12
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    12
+"english":
+    "category": |-
+        Sun Pokémon
+    "entry_text": |-
+        Its fur is so sensitive, it can
+        sense minute shifts in the air
+        and predict the weather.
+"french":
+    "name": |-
+        MENTALI
+    "category": |-
+        Pokémon Soleil
+    "entry_text": |-
+        Son pelage a l’aspect et la texture
+        du velours. L’orbe à son front luit
+        quand il utilise ses pouvoirs psy.
+"german":
+    "name": |-
+        PSIANA
+    "category": |-
+        Sonne
+    "entry_text": |-
+        Sein Fell ist wie Samt. Setzt es
+        Psycho-Kräfte ein, leuchtet die
+        Kugel in seiner Stirn.
+"italian":
+    "name": |-
+        Espeon
+    "category": |-
+        Pokémon Sole
+    "entry_text": |-
+        Il suo pelo è simile al velluto.
+        Quando usa i suoi poteri psichici,
+        la sfera che ha sulla fronte brilla.
+"spanish":
+    "name": |-
+        Espeon
+    "category": |-
+        Pokémon Sol
+    "entry_text": |-
+        Su pelaje es como el terciopelo.
+        La esfera de su frente brilla
+        cuando usa sus poderes psíquicos.
+"japanese":
+    "name": |-
+        エ－フィ
+    "category": |-
+        たいようポケモン
+    "entry_text": |-
+        たいもうは　ビロ－ドの　つやと
+        はだざわり。サイコパワ－を　つかう
+        とき　ひたいの　たまが　かがやく。

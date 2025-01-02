@@ -100,47 +100,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 63,
-        "body_shape": "SHAPE_INSECTOID",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 469,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 469,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Sea Slug Pokémon",
-            "entry_text": "Beware of pushing strongly on\nits squishy body, as it makes a\nmysterious purple fluid ooze out."
-        },
-        "french": {
-            "name": "SANCOKI",
-            "category": "Pokémon Aqualimace",
-            "entry_text": "Sa couleur et sa forme varient\nselon les régions. On en recense\ndeux types à Sinnoh."
-        },
-        "german": {
-            "name": "SCHALELLOS",
-            "category": "Seeschnecke",
-            "entry_text": "Sein Aussehen ist von Region zu\nRegion unterschiedlich. In Sinnoh\nfinden sich zwei Arten."
-        },
-        "italian": {
-            "name": "Shellos",
-            "category": "Pokémon Lumacomare",
-            "entry_text": "Forma e colori variano di regione\nin regione. Pare che nella regione\ndi Sinnoh ne esistano due tipi."
-        },
-        "spanish": {
-            "name": "Shellos",
-            "category": "Pokémon Babosa Mar.",
-            "entry_text": "El color y la forma varían según\nla región. En Sinnoh, hay dos\ntipos confirmados."
-        },
-        "japanese": {
-            "name": "カラナクシ",
-            "category": "ウミウシポケモン",
-            "entry_text": "せいそくちにより　ちがった　かたちや\nいろを　している。シンオウちほうでは\n２しゅるいが　かくにんされている。"
-        }
     }
 }

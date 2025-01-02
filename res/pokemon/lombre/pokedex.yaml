@@ -1,0 +1,72 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    325
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    258
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    258
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    14
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    14
+"english":
+    "category": |-
+        Jolly Pokémon
+    "entry_text": |-
+        It has a mischievous spirit. If it
+        spots an angler, it will tug on the
+        fishing line to interfere.
+"french":
+    "name": |-
+        LOMBRE
+    "category": |-
+        Pokémon Jovial
+    "entry_text": "C’est un mauvais plaisantin. Quand\nil repère un pêcheur, il tire\
+        \ sur sa\nligne pour le déranger. "
+"german":
+    "name": |-
+        LOMBRERO
+    "category": |-
+        Frohmut
+    "entry_text": |-
+        Es hat ein spitzbübisches Wesen.
+        Sieht es einen Angler, zieht es an
+        der Angelschnur, um ihn zu ärgern.
+"italian":
+    "name": |-
+        Lombre
+    "category": |-
+        Pokémon Giocoso
+    "entry_text": |-
+        È un po’ dispettoso. Se vede un
+        pescatore, gli tira la lenza solo
+        per dargli fastidio.
+"spanish":
+    "name": |-
+        Lombre
+    "category": |-
+        Pokémon Alegre
+    "entry_text": |-
+        Tiene carácter travieso. Si ve un
+        pescador, tira del anzuelo para
+        confundirlo.
+"japanese":
+    "name": |-
+        ハスブレロ
+    "category": |-
+        ようきポケモン
+    "entry_text": |-
+        つりびとを　みつけると
+        すいちゅうから　つりいとを　ひっぱり
+        ジャマして　よろこぶ　いたずらもの。

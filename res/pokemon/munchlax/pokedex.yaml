@@ -1,0 +1,72 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    1050
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    380
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    380
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    26
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    26
+"english":
+    "category": |-
+        Big Eater Pokémon
+    "entry_text": |-
+        In its desperation to gulp down
+        food, it forgets about the food it
+        has hidden under its fur.
+"french":
+    "name": |-
+        GOINFREX
+    "category": |-
+        Pokémon Goinfre
+    "entry_text": "Il avale son poids en nourriture\nchaque jour. Il avale tout sans\
+        \ \nprendre le temps de mâcher."
+"german":
+    "name": |-
+        MAMPFAXO
+    "category": |-
+        Nimmersatt
+    "entry_text": |-
+        Einmal am Tag verschlingt es eine
+        Nahrungsmenge, die seinem Gewicht
+        entspricht. Und das ohne zu kauen.
+"italian":
+    "name": |-
+        Munchlax
+    "category": |-
+        Pokémon Ghiottone
+    "entry_text": |-
+        Divora quotidianamente una quantità
+        di cibo pari al suo peso mandandolo
+        giù quasi senza masticare.
+"spanish":
+    "name": |-
+        Munchlax
+    "category": |-
+        Pokémon Comilón
+    "entry_text": |-
+        Engulle su peso en comida una
+        vez al día. Se lo traga todo
+        sin apenas masticar.
+"japanese":
+    "name": |-
+        ゴンベ
+    "category": |-
+        おおぐいポケモン
+    "entry_text": |-
+        １にち　１かい　たいじゅうと　おなじ
+        りょうの　エサを　いっきに　たべる。
+        ほとんど　かまずに　まるのみ。

@@ -135,47 +135,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 360,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 19,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 19,
-        "english": {
-            "category": "Dopey Pokémon",
-            "entry_text": "Although slow, it is skilled at\nfishing with its tail. It does not\nfeel pain if its tail is bitten."
-        },
-        "french": {
-            "name": "RAMOLOSS",
-            "category": "Pokémon Crétin",
-            "entry_text": "Bien que lent, c’est un pêcheur\nadroit qui utilise sa queue. Elle\nest insensible aux morsures."
-        },
-        "german": {
-            "name": "FLEGMON",
-            "category": "Schnarcher",
-            "entry_text": "Es ist langsam, hat aber ein Talent,\nmit seinem Schweif zu fischen. Beißt\netwas an, tut es ihm nicht weh."
-        },
-        "italian": {
-            "name": "Slowpoke",
-            "category": "Pokémon Ronfone",
-            "entry_text": "Anche se è lento, è abile a pescare\ncon la coda. Non avverte alcun\ndolore se gliela mordono."
-        },
-        "spanish": {
-            "name": "Slowpoke",
-            "category": "Pokémon Atontado",
-            "entry_text": "A pesar de su lentitud, tiene una\ngran habilidad para pescar con la\ncola, que es insensible al dolor."
-        },
-        "japanese": {
-            "name": "ヤドン",
-            "category": "まぬけポケモン",
-            "entry_text": "うごきは　のろいが　しっぽを　つかう\nつりが　とくい。どんかんなので\nしっぽを　かまれても　いたくない。"
-        }
     }
 }

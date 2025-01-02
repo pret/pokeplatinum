@@ -120,47 +120,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 325,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 258,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 258,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 14,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 14,
-        "english": {
-            "category": "Jolly Pokémon",
-            "entry_text": "It has a mischievous spirit. If it\nspots an angler, it will tug on the\nfishing line to interfere."
-        },
-        "french": {
-            "name": "LOMBRE",
-            "category": "Pokémon Jovial",
-            "entry_text": "C’est un mauvais plaisantin. Quand\nil repère un pêcheur, il tire sur sa\nligne pour le déranger. "
-        },
-        "german": {
-            "name": "LOMBRERO",
-            "category": "Frohmut",
-            "entry_text": "Es hat ein spitzbübisches Wesen.\nSieht es einen Angler, zieht es an\nder Angelschnur, um ihn zu ärgern."
-        },
-        "italian": {
-            "name": "Lombre",
-            "category": "Pokémon Giocoso",
-            "entry_text": "È un po’ dispettoso. Se vede un\npescatore, gli tira la lenza solo\nper dargli fastidio."
-        },
-        "spanish": {
-            "name": "Lombre",
-            "category": "Pokémon Alegre",
-            "entry_text": "Tiene carácter travieso. Si ve un\npescador, tira del anzuelo para\nconfundirlo."
-        },
-        "japanese": {
-            "name": "ハスブレロ",
-            "category": "ようきポケモン",
-            "entry_text": "つりびとを　みつけると\nすいちゅうから　つりいとを　ひっぱり\nジャマして　よろこぶ　いたずらもの。"
-        }
     }
 }

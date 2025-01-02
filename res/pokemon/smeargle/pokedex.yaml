@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    580
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    292
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    292
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    15
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    15
+"english":
+    "category": |-
+        Painter Pokémon
+    "entry_text": |-
+        It marks its territory by using its
+        tail like a paintbrush. There are
+        more than 5,000 different marks.
+"french":
+    "name": |-
+        QUEULORIOR
+    "category": |-
+        Pokémon Peintre
+    "entry_text": |-
+        Il marque son territoire en maniant
+        sa queue comme un pinceau. On
+        dénombre plus de 5 000 marques.
+"german":
+    "name": |-
+        FARBEAGLE
+    "category": |-
+        Maler
+    "entry_text": |-
+        Sein Revier markiert es mit seinem
+        pinselartigen Schweif. Es kennt
+        mehr als 5 000 Markierungen.
+"italian":
+    "name": |-
+        Smeargle
+    "category": |-
+        Pokémon Pittore
+    "entry_text": |-
+        Delimita il suo territorio usando la
+        coda come se fosse un pennello. Ha
+        lasciato oltre 5000 segni diversi.
+"spanish":
+    "name": |-
+        Smeargle
+    "category": |-
+        Pokémon Pintor
+    "entry_text": |-
+        Marca su territorio usando su
+        cola a modo de pincel. Ha hecho
+        más de 5000 marcas diferentes.
+"japanese":
+    "name": |-
+        ド－ブル
+    "category": |-
+        えかきポケモン
+    "entry_text": |-
+        しっぽを　ふでのように　つかって
+        なわばりに　マ－クを　えがく。
+        その　しゅるいは　５０００いじょう。

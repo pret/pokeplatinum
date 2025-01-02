@@ -107,47 +107,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 65,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 503,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 503,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65524,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65524,
-        "english": {
-            "category": "Bagworm Pokémon",
-            "entry_text": "When evolving, its body takes in\nsurrounding materials. As a result,\nthere are many body variations."
-        },
-        "french": {
-            "name": "CHENISELLE",
-            "category": "Pokémon Ver Caché",
-            "entry_text": "Quand CHENITI a évolué, sa\ncape a fusionné avec son corps.\nCHENISELLE ne s’en sépare jamais."
-        },
-        "german": {
-            "name": "BURMADAME",
-            "category": "Beutelwurm",
-            "entry_text": "Als sich BURMY entwickelte,\nwurde sein Umhang Teil des Körpers.\nEs legt den Umhang niemals ab."
-        },
-        "italian": {
-            "name": "Wormadam",
-            "category": "Pokémon Larva",
-            "entry_text": "Con l’evoluzione, il manto di BURMY\ndiventa parte del corpo di questo\nPokémon. Non se ne separa mai."
-        },
-        "spanish": {
-            "name": "Wormadam",
-            "category": "Pokémon Larva",
-            "entry_text": "Cuando BURMY evolucionó,\nsu caparazón pasó a formar parte\nde este Pokémon."
-        },
-        "japanese": {
-            "name": "ミノマダム",
-            "category": "みのむしポケモン",
-            "entry_text": "ミノムッチから　しんかしたとき\nミノが　からだの　いちぶに　なった。\nいっしょう　ミノを　ぬぐことはない。"
-        }
     }
 }

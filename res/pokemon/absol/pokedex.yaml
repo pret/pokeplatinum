@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    470
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    300
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    300
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    14
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    14
+"english":
+    "category": |-
+        Disaster Pokémon
+    "entry_text": |-
+        Rumored to sense disasters with its
+        horn, it became a target. It fled
+        deep into the mountains.
+"french":
+    "name": |-
+        ABSOL
+    "category": |-
+        Pokémon Désastre
+    "entry_text": |-
+        Il pressent les catastrophes et
+        n’apparaît aux gens que pour les
+        prévenir d’un danger imminent.
+"german":
+    "name": |-
+        ABSOL
+    "category": |-
+        Desaster
+    "entry_text": |-
+        Es spürt drohende Katastrophen
+        und erscheint nur dann, wenn es
+        andere vor der Gefahr warnen will.
+"italian":
+    "name": |-
+        Absol
+    "category": |-
+        Pokémon Catastrofe
+    "entry_text": |-
+        Percepisce l’arrivo di disastri na-
+        turali e appare alla gente solo per
+        avvisarla del pericolo imminente.
+"spanish":
+    "name": |-
+        Absol
+    "category": |-
+        Pokémon Catástrofe
+    "entry_text": |-
+        Presiente desastres inminentes
+        y se aparece a la gente para
+        advertir del peligro.
+"japanese":
+    "name": |-
+        アブソル
+    "category": |-
+        わざわいポケモン
+    "entry_text": |-
+        さいがいの　よかんを　かんじとる。
+        きけんを　しらせる　ときだけ
+        ひとまえに　あらわれるという。

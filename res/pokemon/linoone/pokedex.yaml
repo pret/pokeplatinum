@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    325
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    341
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    341
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    14
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    14
+"english":
+    "category": |-
+        Rushing Pokémon
+    "entry_text": |-
+        It charges prey at speeds over
+        60 mph. However, because it can
+        only run straight, it often fails.
+"french":
+    "name": |-
+        LINEON
+    "category": |-
+        Pokémon Fonceur
+    "entry_text": |-
+        Il fonce sur sa proie à plus de 100
+        km/h. Mais il ne peut pas dévier sa
+        course et loupe souvent sa cible.
+"german":
+    "name": |-
+        GERADAKS
+    "category": |-
+        Sprinter
+    "entry_text": |-
+        Es stürzt sich mit 100 km/h auf
+        Beute. Aber es kann nur geradeaus
+        laufen und die Jagd misslingt oft.
+"italian":
+    "name": |-
+        Linoone
+    "category": |-
+        Pokémon Sfrecciante
+    "entry_text": |-
+        Carica la preda ad una velocità di
+        100 km/h. Ma dal momento che
+        va solo dritto, sbaglia spesso.
+"spanish":
+    "name": |-
+        Linoone
+    "category": |-
+        Pokémon Lanzado
+    "entry_text": |-
+        Carga contra sus enemigos a más
+        de 100 km por hora. Como solo
+        va en línea recta, falla a menudo.
+"japanese":
+    "name": |-
+        マッスグマ
+    "category": |-
+        とっしんポケモン
+    "entry_text": |-
+        じそく１００キロで　えものに
+        おそいかかるが　まっすぐにしか
+        はしれないので　しっぱいも　おおい。

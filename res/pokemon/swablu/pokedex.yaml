@@ -1,0 +1,72 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    12
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    426
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    426
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65522
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65522
+"english":
+    "category": |-
+        Cotton Bird Pokémon
+    "entry_text": |-
+        It can’t relax if it or its
+        surroundings are not clean.
+        It wipes off dirt with its wings.
+"french":
+    "name": |-
+        TYLTON
+    "category": |-
+        Pokémon Oiseaucoton
+    "entry_text": "Ses ailes sont comme des balles\nde coton. Perché sur la tête de\
+        \ \nquelqu’un, on dirait un chapeau."
+"german":
+    "name": |-
+        WABLU
+    "category": |-
+        Wollvogel
+    "entry_text": |-
+        Seine Flügel sehen aus wie Baum-
+        wolle. Legt es sie jemandem auf den
+        Kopf, sehen sie wie ein Wollhut aus.
+"italian":
+    "name": |-
+        Swablu
+    "category": |-
+        Pokémon Alidicotone
+    "entry_text": |-
+        Le sue ali sono come batuffoli. Se si
+        appoggia sulla testa di qualcuno,
+        sembra un cappello di cotone.
+"spanish":
+    "name": |-
+        Swablu
+    "category": |-
+        Pokémon Ave Algodón
+    "entry_text": |-
+        Sus alas parecen nubes de
+        algodón. Si se posa sobre una
+        cabeza, tiene pinta de gorro.
+"japanese":
+    "name": |-
+        チルット
+    "category": |-
+        わたどりポケモン
+    "entry_text": |-
+        わたのような　つばさを　もつ。
+        ひとの　あたまに　ちょこんと　のると
+        わたの　ぼうしみたいに　みえる。

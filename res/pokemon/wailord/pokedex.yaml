@@ -1,0 +1,72 @@
+"height": !!int |-
+    145
+"weight": !!int |-
+    3980
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    806
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    801
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    18
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    18
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Float Whale Pokémon
+    "entry_text": |-
+        The biggest of all Pokémon.
+        It can dive to a depth of almost
+        10,000 feet on only one breath.
+"french":
+    "name": |-
+        WAILORD
+    "category": |-
+        Pokémon Cachabouée
+    "entry_text": "Le plus grand des Pokémon. Il peut\nplonger à une profondeur de\
+        \ \n3 000 m en retenant son souffle."
+"german":
+    "name": |-
+        WAILORD
+    "category": |-
+        Flutwal
+    "entry_text": |-
+        Das größte PKMN. Es kann mit nur
+        einem Atemzug in Tiefen bis
+        3 000 Meter tauchen.
+"italian":
+    "name": |-
+        Wailord
+    "category": |-
+        Pokémon Megabalena
+    "entry_text": |-
+        Il Pokémon più grande che esista.
+        Dopo aver inalato aria, si immerge a
+        una profondità di 3000 metri.
+"spanish":
+    "name": |-
+        Wailord
+    "category": |-
+        Pokémon Ballenaflot
+    "entry_text": |-
+        Es el más grande de los Pokémon.
+        Puede nadar a una profundidad de
+        3000 m aguantando la respiración.
+"japanese":
+    "name": |-
+        ホエルオ－
+    "category": |-
+        うきくじらポケモン
+    "entry_text": |-
+        いちばん　おおきい　ポケモン。
+        いきつぎせずに　３０００メ－トルの
+        ふかさまで　もぐることが　できる。

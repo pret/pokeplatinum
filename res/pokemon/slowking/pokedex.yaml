@@ -1,0 +1,74 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    795
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    352
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    334
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Royal Pokémon
+    "entry_text": |-
+        Being bitten by SHELLDER gave it
+        intelligence comparable to that of
+        award-winning scientists.
+"french":
+    "name": |-
+        ROIGADA
+    "category": |-
+        Pokémon Royal
+    "entry_text": |-
+        La morsure de KOKIYAS a fait
+        de lui un génie dont l’intelligence
+        rivalise avec celle d’un prix Nobel.
+"german":
+    "name": |-
+        LASCHOKING
+    "category": |-
+        Monarch
+    "entry_text": |-
+        Wird es von MUSCHAS gebissen, wird
+        es so intelligent, dass es sich mit
+        Nobelpreisträgern messen kann.
+"italian":
+    "name": |-
+        Slowking
+    "category": |-
+        Pokémon Reale
+    "entry_text": |-
+        Il morso di SHELLDER gli ha infuso
+        un’intelligenza pari a quella di
+        rinomati scienziati.
+"spanish":
+    "name": |-
+        Slowking
+    "category": |-
+        Pokémon Regio
+    "entry_text": |-
+        Al ser mordido por un SHELLDER
+        desarrolló una inteligencia propia
+        de un ganador del premio Nobel.
+"japanese":
+    "name": |-
+        ヤドキング
+    "category": |-
+        おうじゃポケモン
+    "entry_text": |-
+        シェルダ－に　かまれたことによって
+        ノ－ベルしょうを　じゅしょうした
+        かがくしゃなみの　ちのうを　えた。

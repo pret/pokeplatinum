@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    136
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    386
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    386
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    26
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    26
+"english":
+    "category": |-
+        Bite Pokémon
+    "entry_text": |-
+        A Pokémon with a persistent
+        nature, it chases its chosen prey
+        until the prey becomes exhausted.
+"french":
+    "name": |-
+        MEDHYENA
+    "category": |-
+        Pokémon Morsure
+    "entry_text": |-
+        Un Pokémon très obstiné qui
+        poursuit sa proie jusqu’à ce
+        qu’elle soit épuisée.
+"german":
+    "name": |-
+        FIFFYEN
+    "category": |-
+        Biss
+    "entry_text": |-
+        Ein beharrliches PKMN, das seine
+        Beute jagt, bis diese erschöpft
+        ist.
+"italian":
+    "name": |-
+        Poochyena
+    "category": |-
+        Pokémon Morso
+    "entry_text": |-
+        Pokémon di natura ostinata.
+        Insegue la preda prescelta
+        finché questa non è esausta.
+"spanish":
+    "name": |-
+        Poochyena
+    "category": |-
+        Pokémon Mordisco
+    "entry_text": |-
+        Es muy persistente. Si se fija en
+        una presa, no la dejará hasta que
+        caiga agotada.
+"japanese":
+    "name": |-
+        ポチエナ
+    "category": |-
+        かみつきポケモン
+    "entry_text": |-
+        しつこい　せいかくの　ポケモン。
+        めをつけた　えものが　ヘトヘトに
+        つかれるまで　おいかけまわす。

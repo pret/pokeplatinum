@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 60,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 390,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 390,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65522,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65522,
-        "english": {
-            "category": "Magnet Pokémon",
-            "entry_text": "The faster the units at its sides\nrotate, the greater the magnetic\nforce they generate."
-        },
-        "french": {
-            "name": "MAGNETI",
-            "category": "Pokémon Magnétique",
-            "entry_text": "Ses extrémités génèrent les vagues\nélectromagnétiques qui le font \nvoler. Il se nourrit d’électricité."
-        },
-        "german": {
-            "name": "MAGNETILO",
-            "category": "Magnet",
-            "entry_text": "Die Vorrichtungen an seinem Körper\ngenerieren elektromagnetische\nWellen, die es schweben lassen."
-        },
-        "italian": {
-            "name": "Magnemite",
-            "category": "Pokémon Calamita",
-            "entry_text": "Gli elementi laterali generano onde\nmagnetiche che lo mantengono in\nsospeso. Si nutre d’elettricità."
-        },
-        "spanish": {
-            "name": "Magnemite",
-            "category": "Pokémon Imán",
-            "entry_text": "Las unidades laterales crean ondas\nelectromagnéticas que le permiten\nflotar. Se alimenta de electricidad."
-        },
-        "japanese": {
-            "name": "コイル",
-            "category": "じしゃくポケモン",
-            "entry_text": "さゆうの　ユニットから　でんじはを\nだして　くうちゅうを　いどうする。\nでんきを　たべる　ポケモン。"
-        }
     }
 }

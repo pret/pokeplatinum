@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 12,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 426,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 426,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65522,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65522,
-        "english": {
-            "category": "Cotton Bird Pokémon",
-            "entry_text": "It can’t relax if it or its\nsurroundings are not clean.\nIt wipes off dirt with its wings."
-        },
-        "french": {
-            "name": "TYLTON",
-            "category": "Pokémon Oiseaucoton",
-            "entry_text": "Ses ailes sont comme des balles\nde coton. Perché sur la tête de \nquelqu’un, on dirait un chapeau."
-        },
-        "german": {
-            "name": "WABLU",
-            "category": "Wollvogel",
-            "entry_text": "Seine Flügel sehen aus wie Baum-\nwolle. Legt es sie jemandem auf den\nKopf, sehen sie wie ein Wollhut aus."
-        },
-        "italian": {
-            "name": "Swablu",
-            "category": "Pokémon Alidicotone",
-            "entry_text": "Le sue ali sono come batuffoli. Se si\nappoggia sulla testa di qualcuno,\nsembra un cappello di cotone."
-        },
-        "spanish": {
-            "name": "Swablu",
-            "category": "Pokémon Ave Algodón",
-            "entry_text": "Sus alas parecen nubes de\nalgodón. Si se posa sobre una\ncabeza, tiene pinta de gorro."
-        },
-        "japanese": {
-            "name": "チルット",
-            "category": "わたどりポケモン",
-            "entry_text": "わたのような　つばさを　もつ。\nひとの　あたまに　ちょこんと　のると\nわたの　ぼうしみたいに　みえる。"
-        }
     }
 }

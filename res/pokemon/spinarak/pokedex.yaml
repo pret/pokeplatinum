@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    85
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    274
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    274
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    26
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    26
+"english":
+    "category": |-
+        String Spit Pokémon
+    "entry_text": |-
+        It sets a trap by spinning a web
+        with thin but strong silk. It waits
+        motionlessly for prey to arrive.
+"french":
+    "name": |-
+        MIMIGAL
+    "category": |-
+        Pokémon Crache Fil
+    "entry_text": |-
+        Il tisse une toile fine mais solide
+        pour poser des pièges et se poste
+        dans l’attente d’une proie.
+"german":
+    "name": |-
+        WEBARAK
+    "category": |-
+        Fadenwurf
+    "entry_text": |-
+        Es baut eine Falle, indem es ein
+        Netz mit dünner, starker Seide
+        spinnt. Es wartet still auf Beute.
+"italian":
+    "name": |-
+        Spinarak
+    "category": |-
+        Pokémon Tela
+    "entry_text": |-
+        Tesse una trappola con un filo di
+        seta, sottile ma robusto. Attende
+        la preda senza muoversi.
+"spanish":
+    "name": |-
+        Spinarak
+    "category": |-
+        Pokémon Escupesoga
+    "entry_text": |-
+        Pone trampas tejiendo una red
+        de seda fina y resistente y luego
+        espera inmóvil a su presa.
+"japanese":
+    "name": |-
+        イトマル
+    "category": |-
+        いとはきポケモン
+    "entry_text": |-
+        ほそくて　じょうぶな　いとを
+        はりめぐらして　わなを　しかける。
+        えものが　かかるまで　じっと　まつ。

@@ -106,47 +106,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 20,
-        "weight": 3000,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 351,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 351,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 10,
-        "pokemon_pos_f": 3,
-        "trainer_pos_m": 10,
-        "pokemon_pos_m": 3,
-        "english": {
-            "category": "Heavyweight Pokémon",
-            "entry_text": "It is surprisingly quick to anger.\nIt holds its mouth agape as a\ndisplay of its strength."
-        },
-        "french": {
-            "name": "HIPPODOCUS",
-            "category": "Pokémon Poids Lourd",
-            "entry_text": "Il emmagasine du sable qu’il\nexpulse en tornades par les\npores de sa peau pour attaquer."
-        },
-        "german": {
-            "name": "HIPPOTERUS",
-            "category": "Schwergewicht",
-            "entry_text": "Es wirbelt im Körper gespeicherten\nSand durch Öffnungen und generiert\nso einen Sandwirbelsturm."
-        },
-        "italian": {
-            "name": "Hippowdon",
-            "category": "Pokémon Grandepeso",
-            "entry_text": "Immagazzina sabbia all’interno del\ncorpo e l’espelle con violenza dai\npori, formando enormi vortici."
-        },
-        "spanish": {
-            "name": "Hippowdon",
-            "category": "Pokémon Peso Pesado",
-            "entry_text": "Cuando ataca, expulsa arena\nalmacenada en su interior\npara crear un gran tornado."
-        },
-        "japanese": {
-            "name": "カバルドン",
-            "category": "じゅうりょうポケモン",
-            "entry_text": "たいないに　ためた　すなを　からだの\nあなから　ふきあげて　きょだいな\nたつまきを　つくり　こうげきする。"
-        }
     }
 }

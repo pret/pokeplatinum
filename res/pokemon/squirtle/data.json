@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 90,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 395,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 395,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 24,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 24,
-        "english": {
-            "category": "Tiny Turtle Pokémon",
-            "entry_text": "It shelters itself in its shell,\nthen strikes back with spouts of\nwater at every opportunity."
-        },
-        "french": {
-            "name": "CARAPUCE",
-            "category": "Pokémon Minitortue",
-            "entry_text": "Il se réfugie dans sa carapace\net réplique en éclaboussant\nl’ennemi à la première occasion."
-        },
-        "german": {
-            "name": "SCHIGGY",
-            "category": "Minikröte",
-            "entry_text": "Es zieht sich in seinen Panzer\nzurück und greift dann mit\nWasserstrahlen seine Gegner an."
-        },
-        "italian": {
-            "name": "Squirtle",
-            "category": "Pokémon Tartaghina",
-            "entry_text": "Si ritira nel suo guscio e, alla prima\noccasione, contrattacca colpendo\nil nemico con spruzzi d’acqua."
-        },
-        "spanish": {
-            "name": "Squirtle",
-            "category": "Pokémon Tortuguita",
-            "entry_text": "Se protege con su caparazón y\nluego contraataca lanzando agua a\npresión cuando tiene oportunidad."
-        },
-        "japanese": {
-            "name": "ゼニガメ",
-            "category": "かめのこポケモン",
-            "entry_text": "こうらに　とじこもり　みを　まもる。\nあいての　すきを　みのがさず\nみずを　ふきだして　はんげきする。"
-        }
     }
 }

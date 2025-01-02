@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 44,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 401,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 401,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65529,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65529,
-        "english": {
-            "category": "Magical Pokémon",
-            "entry_text": "Its cry sounds like an incantation.\nIt is said the cry may rarely be\nimbued with happiness-giving power."
-        },
-        "french": {
-            "name": "MAGIREVE",
-            "category": "Pokémon Magique",
-            "entry_text": "Son cri rappelle une incantation.\nCeux qui l’entendent souffrent\nde migraines et d’hallucinations."
-        },
-        "german": {
-            "name": "TRAUNMAGIL",
-            "category": "Magisch",
-            "entry_text": "Seine Rufe klingen wie Beschwö-\nrungen. Die, die sie hören, kriegen\nKopfschmerzen und Halluzinationen."
-        },
-        "italian": {
-            "name": "Mismagius",
-            "category": "Pokémon Stregone",
-            "entry_text": "I suoi versi sembrano incantesimi.\nChi li sente è tormentato da\nemicranie e allucinazioni."
-        },
-        "spanish": {
-            "name": "Mismagius",
-            "category": "Pokémon Mágico",
-            "entry_text": "Sus gritos parecen cánticos.\nLos que los escuchan padecen\nmigrañas y alucinaciones."
-        },
-        "japanese": {
-            "name": "ムウマ－ジ",
-            "category": "マジカルポケモン",
-            "entry_text": "じゅもんのような　なきごえを　だして\nみみにした　あいてを\nずつうや　げんかくで　くるしめる。"
-        }
     }
 }

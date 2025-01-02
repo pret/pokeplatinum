@@ -122,47 +122,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 600,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 329,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 329,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Iron Armor Pokémon",
-            "entry_text": "It usually lives deep in mountains.\nHowever, hunger may drive it to\neat railroad tracks and cars."
-        },
-        "french": {
-            "name": "GALEKID",
-            "category": "Pokémon Armurfer",
-            "entry_text": "Il vit habituellement au cœur des\nmontagnes. Affamé, il dévore\nparfois des rails et des voitures."
-        },
-        "german": {
-            "name": "STOLLUNIOR",
-            "category": "Eisenpanzer",
-            "entry_text": "Normalerweise lebt es in dunklen\nBergen. Ist es hungrig, frisst es\nauch Eisenbahnschienen und Autos."
-        },
-        "italian": {
-            "name": "Aron",
-            "category": "Pokémon Corazza",
-            "entry_text": "Vive generalmente sui monti ma,\nspinto dalla fame, scende per\ncibarsi di ferrovie e automobili."
-        },
-        "spanish": {
-            "name": "Aron",
-            "category": "Pokémon Cor. Férrea",
-            "entry_text": "Suele vivir en lugares inaccesibles\nde las montañas, pero el hambre\nlo empuja a comer raíles y coches."
-        },
-        "japanese": {
-            "name": "ココドラ",
-            "category": "てつヨロイポケモン",
-            "entry_text": "ふだんは　やまおくで　くらしているが\nおなかが　すくと　ふもとに　あらわれ\nせんろや　くるまを　たべてしまう。"
-        }
     }
 }

@@ -128,47 +128,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 17,
-        "weight": 845,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 3,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 3,
-        "english": {
-            "category": "Emperor Pokémon",
-            "entry_text": "If anyone were to hurt its pride,\nit would slash them with wings that\ncan cleave through an ice floe."
-        },
-        "french": {
-            "name": "PINGOLEON",
-            "category": "Pokémon Empereur",
-            "entry_text": "Les trois cornes de son bec sont le\nsymbole de sa force. Celles du chef\nsont plus grosses que les autres."
-        },
-        "german": {
-            "name": "IMPOLEON",
-            "category": "Kaiser",
-            "entry_text": "Die 3 Hörner, die aus dem Schnabel\nwachsen, stehen für Kraft. Ein\nAnführer hat die größten Hörner."
-        },
-        "italian": {
-            "name": "Empoleon",
-            "category": "Pokémon Imperatore",
-            "entry_text": "I tre corni che si allungano dal suo\nbecco attestano la sua forza. Il\ncapogruppo ha i corni più grossi."
-        },
-        "spanish": {
-            "name": "Empoleon",
-            "category": "Pokémon Emperador",
-            "entry_text": "Los tres cuernos de su pico son\nmuestra de su fuerza. El líder\ntiene los cuernos más grandes."
-        },
-        "japanese": {
-            "name": "エンペルト",
-            "category": "こうていポケモン",
-            "entry_text": "クチバシから　のびている　３ぼんの\nツノは　つよさの　しょうちょう。\nリ－ダ－が　いちばん　おおきい。"
-        }
     }
 }

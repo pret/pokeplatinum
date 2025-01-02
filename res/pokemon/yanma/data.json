@@ -116,47 +116,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 380,
-        "body_shape": "SHAPE_MULTI_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 325,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 325,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65531,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65531,
-        "english": {
-            "category": "Clear Wing Pokémon",
-            "entry_text": "It can hover in one spot by\nflapping its wings at high speed. It\nflits about to guard its territory."
-        },
-        "french": {
-            "name": "YANMA",
-            "category": "Pokémon Translaile",
-            "entry_text": "Il voit à 360 degrés sans avoir à\ntourner la tête. Il ne loupe jamais\nune proie, même dans son dos."
-        },
-        "german": {
-            "name": "YANMA",
-            "category": "Libelle",
-            "entry_text": "Mit seinen Augen hat es einen Blick-\nwinkel von 360 Grad. Es sieht sogar\nBeute, die sich hinter ihm befindet."
-        },
-        "italian": {
-            "name": "Yanma",
-            "category": "Pokémon Alachiara",
-            "entry_text": "Ha un campo visivo a 360° senza\nmuovere la testa. Riesce a vedere\npersino le prede alle sue spalle."
-        },
-        "spanish": {
-            "name": "Yanma",
-            "category": "Pokémon Ala Clara",
-            "entry_text": "Su campo visual es de 360 grados\nsin girar la cabeza. Detecta hasta\nlas presas que están a su espalda."
-        },
-        "japanese": {
-            "name": "ヤンヤンマ",
-            "category": "うすばねポケモン",
-            "entry_text": "かおを　うごかさずに　３６０ど\nすべてを　みわたす　めを　もつので\nまうしろの　えものも　みのがさない。"
-        }
     }
 }

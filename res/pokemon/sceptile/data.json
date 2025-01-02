@@ -128,47 +128,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 17,
-        "weight": 522,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 228,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 228,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 1,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 1,
-        "english": {
-            "category": "Forest Pokémon",
-            "entry_text": "The leaves that grow on its arms\ncan slice down thick trees. It is\nwithout peer in jungle combat."
-        },
-        "french": {
-            "name": "JUNGKO",
-            "category": "Pokémon Forêt",
-            "entry_text": "Les feuilles sur ses bras peuvent\ntrancher des troncs épais. C’est\nle meilleur combattant des jungles."
-        },
-        "german": {
-            "name": "GEWALDRO",
-            "category": "Dschungel",
-            "entry_text": "Die Blätter an seinen Armen können\ndicke Bäume fällen. Im Dschungel-\nkampf gibt es kein stärkeres PKMN."
-        },
-        "italian": {
-            "name": "Sceptile",
-            "category": "Pokémon Foresta",
-            "entry_text": "Le foglie che crescono sulle sue\nbraccia tagliano anche grandi al-\nberi. Nel suo habitat, è imbattibile."
-        },
-        "spanish": {
-            "name": "Sceptile",
-            "category": "Pokémon Monte",
-            "entry_text": "Las hojas de sus brazos pueden\ncortar gruesos árboles. Invencible\nen los combates en la jungla."
-        },
-        "japanese": {
-            "name": "ジュカイン",
-            "category": "みつりんポケモン",
-            "entry_text": "うでに　はえた　はっぱは　たいぼくも\nすっぱり　きりたおす　きれあじ。\nみつりんの　たたかいでは　むてき。"
-        }
     }
 }

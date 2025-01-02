@@ -126,47 +126,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 320,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 280,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 280,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 16,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 16,
-        "english": {
-            "category": "Classy Cat Pokémon",
-            "entry_text": "A very haughty Pokémon. Among\nfans, the size of the jewel in its\nforehead is a topic of much talk."
-        },
-        "french": {
-            "name": "PERSIAN",
-            "category": "Pokémon Chadeville",
-            "entry_text": "Un Pokémon très snob. La taille du\njoyau qui orne son front alimente\nbien des débats parmi ses fans."
-        },
-        "german": {
-            "name": "SNOBILIKAT",
-            "category": "Rassekatze",
-            "entry_text": "Ein sehr stolzes Pokémon. Für Fans\nist die Größe des Juwels auf seiner\nStirn Anlass für Diskussionen."
-        },
-        "italian": {
-            "name": "Persian",
-            "category": "Pokémon Nobilgatto",
-            "entry_text": "Un Pokémon molto altezzoso. I fan\nparlano spesso delle dimensioni\ndel gioiello che ha sulla testa."
-        },
-        "spanish": {
-            "name": "Persian",
-            "category": "Pokémon Gato Fino",
-            "entry_text": "Es un Pokémon muy arrogante. El\ntamaño de la joya de su frente da\nmucho que hablar."
-        },
-        "japanese": {
-            "name": "ペルシアン",
-            "category": "シャムネコポケモン",
-            "entry_text": "きぐらいが　たかい　ポケモン。\nマニアの　あいだでは　ひたいの\nほうせきの　サイズが　わだいになる。"
-        }
     }
 }

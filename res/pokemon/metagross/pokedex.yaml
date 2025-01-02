@@ -1,0 +1,74 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    5500
+"body_shape": |-
+    SHAPE_MULTI_BODY
+"trainer_scale_f": !!int |-
+    342
+"pokemon_scale_f": !!int |-
+    219
+"trainer_scale_m": !!int |-
+    335
+"pokemon_scale_m": !!int |-
+    219
+"trainer_pos_f": !!int |-
+    14
+"pokemon_pos_f": !!int |-
+    9
+"trainer_pos_m": !!int |-
+    14
+"pokemon_pos_m": !!int |-
+    9
+"english":
+    "category": |-
+        Iron Leg Pokémon
+    "entry_text": |-
+        METANG combined to form it.
+        With four brains, it has the
+        intelligence of a supercomputer.
+"french":
+    "name": |-
+        METALOSSE
+    "category": |-
+        Pokémon Pattefer
+    "entry_text": |-
+        Il est né de la fusion de plusieurs
+        METANG. Ses quatre cerveaux en
+        font l’égal d’un superordinateur.
+"german":
+    "name": |-
+        METAGROSS
+    "category": |-
+        Eisenfuß
+    "entry_text": |-
+        Mehrere METANG bilden dieses PKMN.
+        Mit seinen 4 Gehirnen besitzt es die
+        Intelligenz eines Supercomputers.
+"italian":
+    "name": |-
+        Metagross
+    "category": |-
+        Pokémon Ferrarto
+    "entry_text": |-
+        È formato dalla fusione di due
+        METANG. Ha quattro cervelli e
+        l’intelligenza di un supercomputer.
+"spanish":
+    "name": |-
+        Metagross
+    "category": |-
+        Pokémon Pata Hierro
+    "entry_text": |-
+        Está formado por varios METANG.
+        Con cuatro cerebros, tiene la
+        inteligencia de un superordenador.
+"japanese":
+    "name": |-
+        メタグロス
+    "category": |-
+        てつあしポケモン
+    "entry_text": |-
+        メタングが　がったいして　うまれた。
+        ４つの　のうを　もつ　メタグロスは
+        ス－パ－コンピュ－タなみの　ちのう。

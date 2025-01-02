@@ -1,0 +1,74 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    420
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    8
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    8
+"english":
+    "category": |-
+        Gleam Eyes Pokémon
+    "entry_text": |-
+        It can see clearly through walls
+        to track down its prey and seek
+        its lost young.
+"french":
+    "name": |-
+        LUXRAY
+    "category": |-
+        Pokémon Brilloeil
+    "entry_text": |-
+        Ses yeux voient à travers tout. Il
+        repère les proies cachées derrière
+        un objet pour les capturer.
+"german":
+    "name": |-
+        LUXTRA
+    "category": |-
+        Glühauge
+    "entry_text": |-
+        Mit seinen Augen kann es durch
+        alles hindurch sehen. So findet es
+        auch Beute, die sich versteckt hat.
+"italian":
+    "name": |-
+        Luxray
+    "category": |-
+        Pokémon Occhiluce
+    "entry_text": |-
+        Vede attraverso qualsiasi cosa.
+        Individua e cattura le prede che
+        si nascondono dietro gli oggetti.
+"spanish":
+    "name": |-
+        Luxray
+    "category": |-
+        Pokémon Chispa Ojos
+    "entry_text": |-
+        Sus ojos pueden ver a través
+        de todo. Localiza a las presas
+        detrás de objetos y las captura.
+"japanese":
+    "name": |-
+        レントラ－
+    "category": |-
+        がんこうポケモン
+    "entry_text": |-
+        あらゆるものを　とうししてしまう
+        めを　もつ。ものかげに　かくれた
+        えものを　みつけて　とらえる。

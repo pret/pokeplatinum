@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    345
+"body_shape": |-
+    SHAPE_HEAD_BASE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    297
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    297
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Star Shape Pokémon
+    "entry_text": |-
+        If its body is torn, it can grow
+        back if the red core remains.
+        The core flashes at midnight.
+"french":
+    "name": |-
+        STARI
+    "category": |-
+        Pokémon Etoile
+    "entry_text": |-
+        Même amoché, son corps se régé-
+        nère tant que le noyau rouge est
+        intact. Le noyau s’illumine à minuit.
+"german":
+    "name": |-
+        STERNDU
+    "category": |-
+        Sternform
+    "entry_text": |-
+        Wird sein Körper verletzt, kann
+        es sich regenerieren, sofern
+        der rote Kern intakt ist.
+"italian":
+    "name": |-
+        Staryu
+    "category": |-
+        Pokémon Stella
+    "entry_text": |-
+        Se il corpo è lacerato, si rigenera
+        se il nucleo rosso è ancora intat-
+        to. Il nucleo brilla a mezzanotte.
+"spanish":
+    "name": |-
+        Staryu
+    "category": |-
+        Pokémon Estrellada
+    "entry_text": |-
+        Puede recuperar las extremidades
+        que pierde si mantiene intacto su
+        núcleo rojo, que brilla en la noche.
+"japanese":
+    "name": |-
+        ヒトデマン
+    "category": |-
+        ほしがたポケモン
+    "entry_text": |-
+        あかい　コアが　あるかぎり　からだが
+        ちぎれても　すぐに　さいせいする。
+        まよなか　コアが　てんめつする。

@@ -66,47 +66,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 29,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 502,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 502,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 28,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 28,
-        "english": {
-            "category": "Worm Pokémon",
-            "entry_text": "It releases a stench from its red\nantenna to repel enemies. It\ngrows by molting repeatedly."
-        },
-        "french": {
-            "name": "CHENIPAN",
-            "category": "Pokémon Ver",
-            "entry_text": "Ses antennes rouges libèrent une\npuanteur qui repousse l’ennemi. Il\ngrandit par mues régulières."
-        },
-        "german": {
-            "name": "RAUPY",
-            "category": "Wurm",
-            "entry_text": "Seine roten Antennen sondern einen\nGestank ab, der Feinde verjagt. Es\nwächst, indem es sich häutet."
-        },
-        "italian": {
-            "name": "Caterpie",
-            "category": "Pokémon Baco",
-            "entry_text": "Dalle antenne rosse emana un puzzo\nche respinge il nemico. Cresce\ncambiando più volte la pelle."
-        },
-        "spanish": {
-            "name": "Caterpie",
-            "category": "Pokémon Gusano",
-            "entry_text": "Su antena roja desprende un gran\nhedor para repeler a los enemigos.\nCrece mudándose repetidamente."
-        },
-        "japanese": {
-            "name": "キャタピ－",
-            "category": "いもむしポケモン",
-            "entry_text": "あかい　しょっかくから　においを\nだして　てきを　おいはらう。\nだっぴを　くりかえし　おおきくなる。"
-        }
     }
 }

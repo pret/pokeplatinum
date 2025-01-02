@@ -121,47 +121,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 605,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 382,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 382,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65528,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65528,
-        "english": {
-            "category": "Bronze Pokémon",
-            "entry_text": "There are researchers who believe\nthis Pokémon reflected like a mirror\nin the distant past."
-        },
-        "french": {
-            "name": "ARCHEOMIRE",
-            "category": "Pokémon Bronze",
-            "entry_text": "Il rappelle des objets trouvés\ndans des sépultures anciennes.\nNul ne sait s’ils sont liés."
-        },
-        "german": {
-            "name": "BRONZEL",
-            "category": "Bronze",
-            "entry_text": "Sein Körper sieht aus, als seien\nTeile davon in alten Gräbern\ngefunden worden."
-        },
-        "italian": {
-            "name": "Bronzor",
-            "category": "Pokémon Bronzo",
-            "entry_text": "Il suo aspetto ricorda alcuni\noggetti ritrovati in antiche tombe,\nma non si sa se ci sia una relazione."
-        },
-        "spanish": {
-            "name": "Bronzor",
-            "category": "Pokémon Bronce",
-            "entry_text": "Se descubrieron herramientas con\nsu forma en tumbas antiguas, pero\nse desconoce si tiene relación."
-        },
-        "japanese": {
-            "name": "ド－ミラ－",
-            "category": "せいどうポケモン",
-            "entry_text": "ふるい　おはかから　ド－ミラ－に\nそっくりな　どうぐが　ほりだされたが\nかんけいは　わかっていない。"
-        }
     }
 }

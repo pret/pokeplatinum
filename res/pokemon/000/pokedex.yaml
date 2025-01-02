@@ -1,0 +1,56 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    69
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    337
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    337
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    22
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    22
+"english":
+    "category": |-
+        ????? Pokémon
+    "entry_text": ""
+"french":
+    "name": |-
+        ----------
+    "category": |-
+        Pokémon ?????
+    "entry_text": ""
+"german":
+    "name": |-
+        ----------
+    "category": |-
+        ?????
+    "entry_text": ""
+"italian":
+    "name": |-
+        ----------
+    "category": |-
+        Pokémon ?????
+    "entry_text": ""
+"spanish":
+    "name": |-
+        ----------
+    "category": |-
+        Pokémon (?)
+    "entry_text": ""
+"japanese":
+    "name": |-
+        －－－－－
+    "category": |-
+        ？？？？？ポケモン
+    "entry_text": ""

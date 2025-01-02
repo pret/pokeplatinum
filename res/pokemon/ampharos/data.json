@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 615,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 243,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 243,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 8,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 8,
-        "english": {
-            "category": "Light Pokémon",
-            "entry_text": "The tip of its tail shines brightly.\nIn the olden days, people sent\nsignals using the tail’s light."
-        },
-        "french": {
-            "name": "PHARAMP",
-            "category": "Pokémon Lumière",
-            "entry_text": "Le bout de sa queue brille avec\nintensité. Jadis, on s’en servait\npour envoyer des signaux."
-        },
-        "german": {
-            "name": "AMPHAROS",
-            "category": "Leuchte",
-            "entry_text": "Seine Schweifspitze leuchtet hell.\nIn alten Zeiten hat man mit seiner\nHilfe Lichtsignale gegeben."
-        },
-        "italian": {
-            "name": "Ampharos",
-            "category": "Pokémon Luce",
-            "entry_text": "La punta della sua coda brilla. In\npassato, le persone si inviavano\nsegnali usando la luce della coda."
-        },
-        "spanish": {
-            "name": "Ampharos",
-            "category": "Pokémon Luz",
-            "entry_text": "La punta de su cola brilla.\nAntiguamente la gente enviaba\nseñales con ella."
-        },
-        "japanese": {
-            "name": "デンリュウ",
-            "category": "ライトポケモン",
-            "entry_text": "しっぽの　さきが　ひかりかがやく。\nむかしの　ひとたちは　その　あかりを\nつかって　あいずを　おくりあった。"
-        }
     }
 }

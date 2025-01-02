@@ -1,0 +1,74 @@
+"height": !!int |-
+    52
+"weight": !!int |-
+    2160
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    745
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    697
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    27
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    26
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Diving Pokémon
+    "entry_text": |-
+        It sleeps in a deep-sea trench.
+        If it flaps its wings, it is said to
+        cause a 40-day storm.
+"french":
+    "name": |-
+        LUGIA
+    "category": |-
+        Pokémon Plongeon
+    "entry_text": |-
+        Il dort dans une faille des grands
+        fonds. Ses battements d’ailes
+        génèrent une tempête de 40 jours.
+"german":
+    "name": |-
+        LUGIA
+    "category": |-
+        Taucher
+    "entry_text": |-
+        Es schläft in einem Tiefseegraben.
+        Schwingt es seine Flügel, entsteht
+        ein Sturm, der 40 Tage dauert.
+"italian":
+    "name": |-
+        Lugia
+    "category": |-
+        Pokémon Immersione
+    "entry_text": |-
+        Dorme in una fossa negli abissi
+        marini. Con un battito d’ali provoca
+        una tempesta di 40 giorni.
+"spanish":
+    "name": |-
+        Lugia
+    "category": |-
+        Pokémon Buceo
+    "entry_text": |-
+        Duerme en una dorsal marina.
+        Si bate sus alas puede causar
+        tormentas de cuarenta días.
+"japanese":
+    "name": |-
+        ルギア
+    "category": |-
+        せんすいポケモン
+    "entry_text": |-
+        ふかい　かいこうの　そこで　ねむる。
+        ルギアが　はばたくと　４０にち
+        あらしが　つづくと　いわれている。

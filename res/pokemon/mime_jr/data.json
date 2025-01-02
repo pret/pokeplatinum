@@ -134,47 +134,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 130,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 508,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 508,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 24,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 24,
-        "english": {
-            "category": "Mime Pokémon",
-            "entry_text": "It mimics the expressions and\nmotions of those it sees to\nunderstand the feelings of others."
-        },
-        "french": {
-            "name": "MIME JR.",
-            "category": "Pokémon Mime",
-            "entry_text": "Il imite ses ennemis. Une fois\nimités, ils ne peuvent plus\nquitter ce Pokémon des yeux."
-        },
-        "german": {
-            "name": "PANTIMIMI",
-            "category": "Mime",
-            "entry_text": "Es ahmt seinen Gegner nach. Der\nkann den Blick danach nicht von\nihm abwenden."
-        },
-        "italian": {
-            "name": "Mime Jr.",
-            "category": "Pokémon Mimo",
-            "entry_text": "Imita i movimenti dei nemici. Quando\nun nemico viene imitato, non riesce\npiù a distogliere lo sguardo da lui."
-        },
-        "spanish": {
-            "name": "Mime Jr.",
-            "category": "Pokémon Mimo",
-            "entry_text": "Suele imitar a sus enemigos.\nCuando lo hace, su rival no\npuede apartar los ojos de él."
-        },
-        "japanese": {
-            "name": "マネネ",
-            "category": "マイムポケモン",
-            "entry_text": "あいての　うごきを　モノマネする\nしゅうせい。まねを　された　あいては\nめが　はなせなくなる　という。"
-        }
     }
 }

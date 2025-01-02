@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    214
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    282
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    282
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    20
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    20
+"english":
+    "category": |-
+        Live Coal Pokémon
+    "entry_text": |-
+        Its magma-like blood circulates
+        throughout its body. Its body’s
+        heat can top 1,100 degrees F.
+"french":
+    "name": |-
+        MAGBY
+    "category": |-
+        Pokémon Charbon
+    "entry_text": |-
+        Sa température corporelle avoisine
+        les 600 °C. Son souffle est
+        jaune quand il est en bonne santé.
+"german":
+    "name": |-
+        MAGBY
+    "category": |-
+        Glutherd
+    "entry_text": |-
+        Seine Körpertemperatur liegt bei
+        etwa 600 Grad. Ist es gesund,
+        atmet es gelbe Flammen aus.
+"italian":
+    "name": |-
+        Magby
+    "category": |-
+        Pokémon Carbonvivo
+    "entry_text": |-
+        La sua temperatura corporea è di
+        circa 600°C. Se le fiamme che lancia
+        sono gialle significa che è in forma.
+"spanish":
+    "name": |-
+        Magby
+    "category": |-
+        Pokémon Ascuas
+    "entry_text": |-
+        Su temperatura corporal es de
+        unos 600 grados. Si está sano,
+        escupe llamas amarillas.
+"japanese":
+    "name": |-
+        ブビィ
+    "category": |-
+        ひだねポケモン
+    "entry_text": |-
+        たいおんは　やく６００ど。
+        くちから　きいろい　ほのおを
+        だしていれば　げんきな　しょうこ。

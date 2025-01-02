@@ -128,47 +128,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 1200,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 263,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 263,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 18,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 18,
-        "english": {
-            "category": "Iron Armor Pokémon",
-            "entry_text": "For food, it digs up iron ore. It\nsmashes its steely body against\nothers to fight over territory."
-        },
-        "french": {
-            "name": "GALEGON",
-            "category": "Pokémon Armurfer",
-            "entry_text": "Il se nourrit du minerai de fer qu’il\nfore. Il défend son territoire en\nchargeant avec son corps d’acier."
-        },
-        "german": {
-            "name": "STOLLRAK",
-            "category": "Eisenpanzer",
-            "entry_text": "Es ernährt sich von Eisenerz. Um\nsein Revier zu sichern, setzt es\nseinen harten Körper ein."
-        },
-        "italian": {
-            "name": "Lairon",
-            "category": "Pokémon Corazza",
-            "entry_text": "Scava per cercare ferro, di cui si\nnutre. Si schianta contro gli altri\nnella lotta per il territorio."
-        },
-        "spanish": {
-            "name": "Lairon",
-            "category": "Pokémon Cor. Férrea",
-            "entry_text": "Extrae hierro para alimentarse\ny usa su cuerpo de acero para\nluchar y conseguir territorio."
-        },
-        "japanese": {
-            "name": "コドラ",
-            "category": "てつヨロイポケモン",
-            "entry_text": "てっこうせきを　ほりだして　たべる。\nはがねの　からだを　ぶつけあって\nなわばりあらそいをする　しゅうせい。"
-        }
     }
 }

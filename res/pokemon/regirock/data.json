@@ -120,47 +120,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 17,
-        "weight": 2300,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 296,
-        "pokemon_scale_f": 226,
-        "trainer_scale_m": 290,
-        "pokemon_scale_m": 226,
-        "trainer_pos_f": 11,
-        "pokemon_pos_f": 1,
-        "trainer_pos_m": 12,
-        "pokemon_pos_m": 1,
-        "english": {
-            "category": "Rock Peak Pokémon",
-            "entry_text": "Its entire body is made of rock.\nIf any part chips off in battle, it\nattaches rocks to repair itself."
-        },
-        "french": {
-            "name": "REGIROCK",
-            "category": "Pokémon Pic Rocheux",
-            "entry_text": "Tout son corps est fait de roche.\nS’il s’ébrèche au combat, il utilise\ndes pierres pour le réparer."
-        },
-        "german": {
-            "name": "REGIROCK",
-            "category": "Steingipfel",
-            "entry_text": "Sein Körper besteht aus Stein.\nBricht im Kampf etwas heraus, wird\nes durch Stein wieder ersetzt."
-        },
-        "italian": {
-            "name": "Regirock",
-            "category": "Pokémon Picco",
-            "entry_text": "È formato interamente da rocce.\nSe si staccano nella lotta, ne cerca\naltre per sostituirle."
-        },
-        "spanish": {
-            "name": "Regirock",
-            "category": "Pokémon Pico Roca",
-            "entry_text": "Su cuerpo está hecho de roca.\nSi se astilla durante el combate,\nemplea piedras para repararlo."
-        },
-        "japanese": {
-            "name": "レジロック",
-            "category": "いわやまポケモン",
-            "entry_text": "ぜんしんが　いわで　できている。\nたたかいで　からだが　かけても\nいわを　くっつけて　なおしてしまう。"
-        }
     }
 }

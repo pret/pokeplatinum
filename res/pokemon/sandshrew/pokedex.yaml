@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    120
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    312
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    312
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    22
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    22
+"english":
+    "category": |-
+        Mouse Pokémon
+    "entry_text": |-
+        To protect itself from attackers,
+        it curls up into a ball. It lives in
+        arid regions with minimal rainfall.
+"french":
+    "name": |-
+        SABELETTE
+    "category": |-
+        Pokémon Souris
+    "entry_text": |-
+        Il vit sur des terres arides
+        épargnées par la pluie. Il se roule
+        en boule pour se protéger.
+"german":
+    "name": |-
+        SANDAN
+    "category": |-
+        Maus
+    "entry_text": |-
+        Es lebt in trockenen Regionen mit
+        wenig Regen. Es rollt sich ein, um
+        sich vor Gegnern zu schützen.
+"italian":
+    "name": |-
+        Sandshrew
+    "category": |-
+        Pokémon Topo
+    "entry_text": |-
+        Vive in zone aride con precipitazioni
+        minime. Si arrotola come se fosse
+        una palla per difendersi dai nemici.
+"spanish":
+    "name": |-
+        Sandshrew
+    "category": |-
+        Pokémon Ratón
+    "entry_text": |-
+        Vive en zonas áridas donde casi
+        no llueve. Se enrosca formando
+        una bola para defenderse.
+"japanese":
+    "name": |-
+        サンド
+    "category": |-
+        ねずみポケモン
+    "entry_text": |-
+        あめが　ほとんど　ふらない
+        かんそうした　とちに　せいそく。
+        からだを　まるめて　みを　まもる。

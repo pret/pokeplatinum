@@ -700,9 +700,13 @@ message_bank_files = files(
     'message_bank_species_dex_entry_diamond.gmm',
 )
 
-pokedex_message_banks = [
+species_message_banks = [
     'message_bank_species_names.gmm',
     'message_bank_species_names_with_articles.gmm',
+    'message_bank_species_name_number_english.gmm',
+]
+
+pokedex_message_banks = [
     'message_bank_species_dex_entry_french.gmm',
     'message_bank_species_dex_entry_german.gmm',
     'message_bank_species_dex_entry_italian.gmm',
@@ -714,7 +718,6 @@ pokedex_message_banks = [
     'message_bank_species_height.gmm',
     'message_bank_species_height_gira.gmm',
     'message_bank_species_category.gmm',
-    'message_bank_species_name_number_english.gmm',
     'message_bank_species_name_number_french.gmm',
     'message_bank_species_name_number_german.gmm',
     'message_bank_species_name_number_italian.gmm',
@@ -725,7 +728,7 @@ pokedex_message_banks = [
     'message_bank_species_category_german.gmm',
     'message_bank_species_category_italian.gmm',
     'message_bank_species_category_spanish.gmm',
-    'message_bank_species_category_japanese.gmm'
+    'message_bank_species_category_japanese.gmm',
 ]
 
 message_banks_narc_order = files('message_banks.order')
@@ -756,7 +759,7 @@ gmm_to_bin_gen = generator(msgenc_exe,
     output: '@BASENAME@'
 )
 
-pokedex_message_banks = custom_target('pokedex_message_banks',
+pokedex_message_bank_files = custom_target('pokedex_message_banks',
     output: pokedex_message_banks,
     input: pokedex_data_srcs,
     env: json2bin_env,
@@ -770,7 +773,23 @@ pokedex_message_banks = custom_target('pokedex_message_banks',
     ]
 )
 
-message_bank_files += pokedex_message_banks
+message_bank_files += pokedex_message_bank_files
+
+species_message_bank_files = custom_target('species_message_banks',
+    output: species_message_banks,
+    input: species_data_srcs,
+    env: json2bin_env,
+    depends: [ py_consts_generators ],
+    command: [
+        make_species_message_banks_py,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        species_message_banks,
+        species_data_srcs
+    ]
+)
+
+message_bank_files += species_message_bank_files
 
 message_banks_narc = custom_target('pl_msg.narc',
     output: 'pl_msg.narc',

@@ -1,0 +1,73 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    666
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    222
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    222
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    11
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    11
+"english":
+    "category": |-
+        Ball Pokémon
+    "entry_text": |-
+        It is known to drift on winds if it
+        is bloated to bursting with stored
+        electricity.
+"french":
+    "name": |-
+        ELECTRODE
+    "category": |-
+        Pokémon Balle
+    "entry_text": |-
+        Il se laisse porter par les vents
+        lorsque son corps est gonflé
+        d’électricité à en éclater.
+"german":
+    "name": |-
+        LEKTROBAL
+    "category": |-
+        Ball
+    "entry_text": |-
+        Es lässt sich vom Wind treiben,
+        wenn es so voller Elektrizität ist,
+        dass es fast explodiert.
+"italian":
+    "name": |-
+        Electrode
+    "category": |-
+        Pokémon Ball
+    "entry_text": |-
+        Quando ha accumulato elettricità
+        fino quasi a scoppiare, si fa
+        trasportare dal vento.
+"spanish":
+    "name": |-
+        Electrode
+    "category": |-
+        Pokémon Bola
+    "entry_text": |-
+        Se lo lleva el viento si se hincha
+        con la electricidad que almacena.
+"japanese":
+    "name": |-
+        マルマイン
+    "category": |-
+        ボ－ルポケモン
+    "entry_text": |-
+        でんきエネルギ－を　ためすぎて
+        ぱんぱんに　ふくらんだ　マルマインが
+        かぜに　ながされてくることが　ある。

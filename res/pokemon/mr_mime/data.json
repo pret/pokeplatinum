@@ -139,47 +139,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 545,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 227,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 227,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 9,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 9,
-        "english": {
-            "category": "Barrier Pokémon",
-            "entry_text": "It shapes an invisible wall in midair\nby minutely vibrating its fingertips\nto stop molecules in the air."
-        },
-        "french": {
-            "name": "M. MIME",
-            "category": "Pokémon Bloqueur",
-            "entry_text": "Un expert de la pantomime dont\nles gestes façonnent de solides\nmurs invisibles."
-        },
-        "german": {
-            "name": "PANTIMOS",
-            "category": "Sperre",
-            "entry_text": "Ein Experte der Pantomime. Es kann\nunsichtbare, aber solide Wände\nallein durch Gesten erzeugen."
-        },
-        "italian": {
-            "name": "Mr. Mime",
-            "category": "Pokémon Barriera",
-            "entry_text": "È un esperto di mimica che, con\ni gesti, riesce ad innalzare pareti\ninvisibili che sembrano reali."
-        },
-        "spanish": {
-            "name": "Mr. Mime",
-            "category": "Pokémon Barrera",
-            "entry_text": "Es un experto mimo que puede\ncrear paredes invisibles pero\nsólidas solo con sus gestos."
-        },
-        "japanese": {
-            "name": "バリヤ－ド",
-            "category": "バリア－ポケモン",
-            "entry_text": "パントマイムの　たつじん。\nみぶりてぶりで　つくった　カベは\nやがて　ほんものに　なるのだ。"
-        }
     }
 }

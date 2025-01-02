@@ -122,47 +122,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 325,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 331,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 331,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65529,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65529,
-        "english": {
-            "category": "Virtual Pokémon",
-            "entry_text": "It was upgraded to enable the\nexploration of other planets.\nHowever, it failed to measure up."
-        },
-        "french": {
-            "name": "PORYGON2",
-            "category": "Pokémon Virtuel",
-            "entry_text": "On lui a installé un logiciel de\nterraformation pour lui permettre\nde travailler dans l’espace."
-        },
-        "german": {
-            "name": "PORYGON2",
-            "category": "Virtuell",
-            "entry_text": "Interstellare Software wurde\ninstalliert, so dass dieses PKMN\nsich auch im All bewegen kann."
-        },
-        "italian": {
-            "name": "Porygon2",
-            "category": "Pokémon Virtuale",
-            "entry_text": "Gli è stato installato un programma\ndi sviluppo planetario che lo rende\ncapace di lavorare nello spazio."
-        },
-        "spanish": {
-            "name": "Porygon2",
-            "category": "Pokémon Virtual",
-            "entry_text": "Tiene instalado un avanzado\nsoftware astrofísico que le\npermite trabajar en el espacio."
-        },
-        "japanese": {
-            "name": "ポリゴン２",
-            "category": "バ－チャルポケモン",
-            "entry_text": "わくせいかいはつようの　プログラムが\nインスト－ルされている。しんくうの\nうちゅうでも　かつどうできるのだ。"
-        }
     }
 }

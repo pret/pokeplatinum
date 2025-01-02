@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    766
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    351
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    333
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    16
+"pokemon_pos_f": !!int |-
+    8
+"trainer_pos_m": !!int |-
+    16
+"pokemon_pos_m": !!int |-
+    8
+"english":
+    "category": |-
+        Duck Pokémon
+    "entry_text": |-
+        It is seen swimming dynamically and
+        elegantly using its well-developed
+        limbs and flippers.
+"french":
+    "name": |-
+        AKWAKWAK
+    "category": |-
+        Pokémon Canard
+    "entry_text": |-
+        Un habitant des lacs. Il nage
+        plus vite qu’un champion
+        humain de natation.
+"german":
+    "name": |-
+        ENTORON
+    "category": |-
+        Ente
+    "entry_text": |-
+        Dieses Pokémon lebt in Seen. Es
+        schwimmt schneller als der
+        schnellste menschliche Schwimmer.
+"italian":
+    "name": |-
+        Golduck
+    "category": |-
+        Pokémon Papero
+    "entry_text": |-
+        Un Pokémon che vive nei laghi.
+        Nuota più velocemente di un
+        campione di nuoto.
+"spanish":
+    "name": |-
+        Golduck
+    "category": |-
+        Pokémon Pato
+    "entry_text": |-
+        Este Pokémon vive en lagos.
+        En el agua es más rápido que
+        cualquier nadador profesional.
+"japanese":
+    "name": |-
+        ゴルダック
+    "category": |-
+        あひるポケモン
+    "entry_text": |-
+        みずうみに　すむ　ポケモン。
+        およぐ　スピ－ドは　オリンピックの
+        きんメダリストよりも　はやい。

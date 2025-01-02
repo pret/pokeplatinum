@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    130
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    508
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    508
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Mime Pokémon
+    "entry_text": |-
+        It mimics the expressions and
+        motions of those it sees to
+        understand the feelings of others.
+"french":
+    "name": |-
+        MIME JR.
+    "category": |-
+        Pokémon Mime
+    "entry_text": |-
+        Il imite ses ennemis. Une fois
+        imités, ils ne peuvent plus
+        quitter ce Pokémon des yeux.
+"german":
+    "name": |-
+        PANTIMIMI
+    "category": |-
+        Mime
+    "entry_text": |-
+        Es ahmt seinen Gegner nach. Der
+        kann den Blick danach nicht von
+        ihm abwenden.
+"italian":
+    "name": |-
+        Mime Jr.
+    "category": |-
+        Pokémon Mimo
+    "entry_text": |-
+        Imita i movimenti dei nemici. Quando
+        un nemico viene imitato, non riesce
+        più a distogliere lo sguardo da lui.
+"spanish":
+    "name": |-
+        Mime Jr.
+    "category": |-
+        Pokémon Mimo
+    "entry_text": |-
+        Suele imitar a sus enemigos.
+        Cuando lo hace, su rival no
+        puede apartar los ojos de él.
+"japanese":
+    "name": |-
+        マネネ
+    "category": |-
+        マイムポケモン
+    "entry_text": |-
+        あいての　うごきを　モノマネする
+        しゅうせい。まねを　された　あいては
+        めが　はなせなくなる　という。

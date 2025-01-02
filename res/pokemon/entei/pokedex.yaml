@@ -1,0 +1,73 @@
+"height": !!int |-
+    21
+"weight": !!int |-
+    1980
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    341
+"pokemon_scale_f": !!int |-
+    245
+"trainer_scale_m": !!int |-
+    327
+"pokemon_scale_m": !!int |-
+    245
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Volcano Pokémon
+    "entry_text": |-
+        It is said that when it roars, a
+        volcano erupts somewhere around
+        the globe.
+"french":
+    "name": |-
+        ENTEI
+    "category": |-
+        Pokémon Volcan
+    "entry_text": |-
+        On raconte qu’à chaque fois qu’il
+        rugit, un volcan entre en éruption
+        quelque part.
+"german":
+    "name": |-
+        ENTEI
+    "category": |-
+        Vulkan
+    "entry_text": |-
+        Man sagt, wenn es brüllt, bricht
+        irgendwo in der Welt ein Vulkan aus.
+"italian":
+    "name": |-
+        Entei
+    "category": |-
+        Pokémon Vulcano
+    "entry_text": |-
+        Si dice che quando emette il suo
+        verso, da qualche parte nel mondo
+        un vulcano stia eruttando.
+"spanish":
+    "name": |-
+        Entei
+    "category": |-
+        Pokémon Volcán
+    "entry_text": |-
+        Se dice que, cuando ruge, un
+        volcán entra en erupción en algún
+        punto del globo.
+"japanese":
+    "name": |-
+        エンテイ
+    "category": |-
+        かざんポケモン
+    "entry_text": |-
+        エンテイが　ほえると
+        せかいの　どこかの　かざんが
+        ふんかすると　いわれている。

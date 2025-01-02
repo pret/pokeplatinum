@@ -122,47 +122,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 266,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 243,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 243,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 7,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 7,
-        "english": {
-            "category": "Snow Land Pokémon",
-            "entry_text": "It freezes prey by blowing its -58\ndegrees F breath. It is said to\nthen secretly display its prey."
-        },
-        "french": {
-            "name": "MOMARTIK",
-            "category": "Pokémon Enneigement",
-            "entry_text": "MOMARTIK gèle ses ennemis grâce à\nson souffle à -50 °C. Ça ne se\nvoit pas, mais son corps est creux."
-        },
-        "german": {
-            "name": "FROSDEDJE",
-            "category": "Schneegebiet",
-            "entry_text": "Sein eisiger Atem mit minus 50 Grad\nfriert Gegner ein. Was aussieht wie\nsein Körper, ist tatsächlich hohl."
-        },
-        "italian": {
-            "name": "Froslass",
-            "category": "Pokémon Suolnevoso",
-            "entry_text": "Congela i nemici con un alito\nglaciale a -50°C. Il suo corpo\nè vuoto."
-        },
-        "spanish": {
-            "name": "Froslass",
-            "category": "Pokémon Tierra Fría",
-            "entry_text": "Congela a sus enemigos con un\naliento gélido de 50 grados bajo\ncero. Está hueco por dentro."
-        },
-        "japanese": {
-            "name": "ユキメノコ",
-            "category": "ゆきぐにポケモン",
-            "entry_text": "マイナス５０どの　れいきを　はいて\nあいてを　こおらせる。どうたいに\nみえる　ぶぶんは　じつは　くうどう。"
-        }
     }
 }

@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    320
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    280
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    280
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Classy Cat Pokémon
+    "entry_text": |-
+        A very haughty Pokémon. Among
+        fans, the size of the jewel in its
+        forehead is a topic of much talk.
+"french":
+    "name": |-
+        PERSIAN
+    "category": |-
+        Pokémon Chadeville
+    "entry_text": |-
+        Un Pokémon très snob. La taille du
+        joyau qui orne son front alimente
+        bien des débats parmi ses fans.
+"german":
+    "name": |-
+        SNOBILIKAT
+    "category": |-
+        Rassekatze
+    "entry_text": |-
+        Ein sehr stolzes Pokémon. Für Fans
+        ist die Größe des Juwels auf seiner
+        Stirn Anlass für Diskussionen.
+"italian":
+    "name": |-
+        Persian
+    "category": |-
+        Pokémon Nobilgatto
+    "entry_text": |-
+        Un Pokémon molto altezzoso. I fan
+        parlano spesso delle dimensioni
+        del gioiello che ha sulla testa.
+"spanish":
+    "name": |-
+        Persian
+    "category": |-
+        Pokémon Gato Fino
+    "entry_text": |-
+        Es un Pokémon muy arrogante. El
+        tamaño de la joya de su frente da
+        mucho que hablar.
+"japanese":
+    "name": |-
+        ペルシアン
+    "category": |-
+        シャムネコポケモン
+    "entry_text": |-
+        きぐらいが　たかい　ポケモン。
+        マニアの　あいだでは　ひたいの
+        ほうせきの　サイズが　わだいになる。

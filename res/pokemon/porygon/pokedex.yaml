@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    365
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    316
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    316
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Virtual Pokémon
+    "entry_text": |-
+        A man-made Pokémon created using
+        advanced scientific means. It can
+        move freely in cyberspace.
+"french":
+    "name": |-
+        PORYGON
+    "category": |-
+        Pokémon Virtuel
+    "entry_text": |-
+        Le premier Pokémon artificiel au
+        monde. Il a le pouvoir d’arpenter
+        l’espace électronique.
+"german":
+    "name": |-
+        PORYGON
+    "category": |-
+        Virtuell
+    "entry_text": |-
+        Das erste künstlich erzeugte PKMN
+        der Welt. Es kann durch
+        elektronischen Raum reisen.
+"italian":
+    "name": |-
+        Porygon
+    "category": |-
+        Pokémon Virtuale
+    "entry_text": |-
+        Il primo Pokémon al mondo creato
+        artificialmente. Riesce a muoversi
+        liberamente nel ciberspazio.
+"spanish":
+    "name": |-
+        Porygon
+    "category": |-
+        Pokémon Virtual
+    "entry_text": |-
+        Es el primer Pokémon creado de
+        forma artificial. Puede viajar por
+        el ciberespacio.
+"japanese":
+    "name": |-
+        ポリゴン
+    "category": |-
+        バ－チャルポケモン
+    "entry_text": |-
+        せかいで　はじめて　じんこうてきに
+        つくりだされた　ポケモン。
+        でんしくうかんを　いどうできる。

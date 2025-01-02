@@ -109,47 +109,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 259,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 334,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 334,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 19,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 19,
-        "english": {
-            "category": "Fresh Snow Pokémon",
-            "entry_text": "By controlling its body heat, it can\nfreeze the atmosphere around it\nto make a diamond-dust flurry."
-        },
-        "french": {
-            "name": "GIVRALI",
-            "category": "Pokémon Poudreuse",
-            "entry_text": "Il peut geler sa fourrure pour se\nprotéger en rendant ses poils\naussi durs que des piquants."
-        },
-        "german": {
-            "name": "GLAZIOLA",
-            "category": "Neuschnee",
-            "entry_text": "Will es sich schützen, kann es sein\nFell gefrieren, so dass jedes Haar\nwie eine Nadel absteht."
-        },
-        "italian": {
-            "name": "Glaceon",
-            "category": "Pokémon Nevefresca",
-            "entry_text": "Come tecnica di difesa, congela\ncompletamente la sua pelliccia\nper far rizzare i peli come aghi."
-        },
-        "spanish": {
-            "name": "Glaceon",
-            "category": "Pokémon Nievefresca",
-            "entry_text": "Para protegerse, puede congelar\ncompletamente su pelaje, de modo\nque los pelos parecen agujas."
-        },
-        "japanese": {
-            "name": "グレイシア",
-            "category": "しんせつポケモン",
-            "entry_text": "ぜんしんの　たいもうを　こおらせて\nハリのように　するどく　とがらせる。\nてきから　みを　まもる　しゅだん。"
-        }
     }
 }

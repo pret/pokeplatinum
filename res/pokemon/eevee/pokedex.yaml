@@ -1,0 +1,72 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    65
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    542
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    542
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    29
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    29
+"english":
+    "category": |-
+        Evolution Pokémon
+    "entry_text": |-
+        Because its genetic makeup is
+        irregular, it quickly changes its
+        form due to a variety of causes.
+"french":
+    "name": |-
+        EVOLI
+    "category": |-
+        Pokémon Evolutif
+    "entry_text": "Un Pokémon rare qui s’adapte\naux environnements hostiles \nen\
+        \ variant ses formes évolutives."
+"german":
+    "name": |-
+        EVOLI
+    "category": |-
+        Evolution
+    "entry_text": |-
+        Ein seltenes PKMN, das sich seiner
+        Umgebung anpasst, indem es sich in
+        unterschiedlicher Form entwickelt.
+"italian":
+    "name": |-
+        Eevee
+    "category": |-
+        Pokémon Evoluzione
+    "entry_text": |-
+        Un Pokémon raro che si adatta
+        agli ambienti più difficili assumendo
+        diverse forme nell’evoluzione.
+"spanish":
+    "name": |-
+        Eevee
+    "category": |-
+        Pokémon Evolución
+    "entry_text": |-
+        Un extraño Pokémon que se adapta
+        a los entornos más hostiles gracias
+        a sus diferentes evoluciones.
+"japanese":
+    "name": |-
+        イ－ブイ
+    "category": |-
+        しんかポケモン
+    "entry_text": |-
+        しんかのとき　すがたと　のうりょくが
+        かわることで　きびしい　かんきょうに
+        たいおうする　めずらしい　ポケモン。

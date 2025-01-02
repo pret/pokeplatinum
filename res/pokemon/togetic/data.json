@@ -139,47 +139,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 32,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 387,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 387,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Happiness Pokémon",
-            "entry_text": "To share its happiness, it flies\naround the world seeking kind-\nhearted people."
-        },
-        "french": {
-            "name": "TOGETIC",
-            "category": "Pokémon Bonheur",
-            "entry_text": "On dit qu’il apparaît aux êtres\nbons pour répandre un duvet\nbrillant appelé “poudre de joie”."
-        },
-        "german": {
-            "name": "TOGETIC",
-            "category": "Freude",
-            "entry_text": "Man sagt, es erscheint vor denen,\ndie gutherzig sind, und verteilt\nglänzenden “Glücksstaub”."
-        },
-        "italian": {
-            "name": "Togetic",
-            "category": "Pokémon Felicità",
-            "entry_text": "Pare che appaia alle persone gentili\ndiffondendo un pulviscolo luminoso\ndetto “Polvere della gioia”."
-        },
-        "spanish": {
-            "name": "Togetic",
-            "category": "Pokémon Felicidad",
-            "entry_text": "Se dice que se aparece a la gente\nde buen corazón y que esparce un\n“polvillo de la alegría”."
-        },
-        "japanese": {
-            "name": "トゲチック",
-            "category": "しあわせポケモン",
-            "entry_text": "やさしい　ひとの　もとへ　あらわれて\nしあわせのこな　と　よばれる\nひかる　うもうを　ふりまくと　いう。"
-        }
     }
 }

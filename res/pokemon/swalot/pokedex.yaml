@@ -1,0 +1,72 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    800
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    186
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    186
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Poison Bag Pokémon
+    "entry_text": |-
+        It swallows anything whole.
+        It sweats toxic fluids from its
+        follicles to douse foes.
+"french":
+    "name": |-
+        AVALTOUT
+    "category": |-
+        Pokémon Sac Poison
+    "entry_text": |-
+        Il avale tout en une bouchée. Ses
+        follicules sécrètent des fluides
+        toxiques qui endorment l’ennemi.
+"german":
+    "name": |-
+        SCHLUKWECH
+    "category": |-
+        Giftbeutel
+    "entry_text": "Es verschluckt alles in einem\nStück und sondert giftige Stoffe\n\
+        ab, mit denen es Gegner besprüht. "
+"italian":
+    "name": |-
+        Swalot
+    "category": |-
+        Pokémon Velenosacco
+    "entry_text": |-
+        Inghiotte intera qualsiasi cosa.
+        Dai pori traspira un liquido tossico
+        con cui bagna i nemici.
+"spanish":
+    "name": |-
+        Swalot
+    "category": |-
+        Pokémon Bolsa Ven.
+    "entry_text": |-
+        Se traga cualquier cosa de una
+        pieza. Sus poros segregan fluidos
+        tóxicos que dañan a sus enemigos.
+"japanese":
+    "name": |-
+        マルノ－ム
+    "category": |-
+        どくぶくろポケモン
+    "entry_text": |-
+        なんでも　まるのみしてしまう。
+        けあなから　もうどくの　たいえきを
+        ぶんぴつして　てきに　あびせかける。

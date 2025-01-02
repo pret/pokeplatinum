@@ -102,47 +102,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 19,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 420,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 420,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 24,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 24,
-        "english": {
-            "category": "Music Note Pokémon",
-            "entry_text": "Its tongue is just like a human’s.\nAs a result, it can cleverly mimic\nhuman speech."
-        },
-        "french": {
-            "name": "PIJAKO",
-            "category": "Pokémon Note Musique",
-            "entry_text": "On peut lui enseigner quelques\nmots. S’il s’agit d’un groupe, ils\nretiendront les mêmes phrases."
-        },
-        "german": {
-            "name": "PLAUDAGEI",
-            "category": "Musiknote",
-            "entry_text": "Es kann die menschliche Sprache\nlernen. Versammeln sie sich,\nbringen sie sich alle dasselbe bei."
-        },
-        "italian": {
-            "name": "Chatot",
-            "category": "Pokémon Musicale",
-            "entry_text": "Può imparare il linguaggio umano.\nSe un gruppo si raduna, tutti\nimparano le stesse parole."
-        },
-        "spanish": {
-            "name": "Chatot",
-            "category": "Pokémon Corchea",
-            "entry_text": "Pueden aprender y hablar lenguas\nhumanas. Si se juntan, todos\naprenden las mismas palabras."
-        },
-        "japanese": {
-            "name": "ペラップ",
-            "category": "おんぷポケモン",
-            "entry_text": "ひとの　ことばを　おぼえて　なく。\nなかまが　いっかしょに　あつまると\nみんな　おなじ　ことばを　おぼえる。"
-        }
     }
 }

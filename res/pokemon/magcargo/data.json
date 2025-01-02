@@ -115,47 +115,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 550,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 274,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 274,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 14,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 14,
-        "english": {
-            "category": "Lava Pokémon",
-            "entry_text": "Its body temperature is roughly\n18,000 degrees F. Flames spout\nfrom gaps in its hardened shell."
-        },
-        "french": {
-            "name": "VOLCAROPOD",
-            "category": "Pokémon Lave",
-            "entry_text": "Sa température corporelle avoisine\nles 10 000 °C. Des flammes \nfusent des fissures de sa coquille."
-        },
-        "german": {
-            "name": "MAGCARGO",
-            "category": "Lava",
-            "entry_text": "Seine Körpertemperatur beträgt\netwa 10 000 Grad. Aus seiner Schale\ntreten immer wieder Flammen aus."
-        },
-        "italian": {
-            "name": "Magcargo",
-            "category": "Pokémon Lava",
-            "entry_text": "Ha una temperatura corporea di\ncirca 10000°C. Dai fori del guscio\nfuoriescono intense fiammate."
-        },
-        "spanish": {
-            "name": "Magcargo",
-            "category": "Pokémon Lava",
-            "entry_text": "Su cuerpo está a una temperatura\nde 10000 grados. De las fisuras\nde su cuerpo escapan llamas."
-        },
-        "japanese": {
-            "name": "マグカルゴ",
-            "category": "ようがんポケモン",
-            "entry_text": "たいおんは　やく１まんど。\nマグマが　かたまって　できた　カラの\nすきまから　ほのおを　ふきだす。"
-        }
     }
 }

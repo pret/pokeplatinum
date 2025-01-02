@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    17
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    434
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    434
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Pond Skater Pokémon
+    "entry_text": |-
+        It appears as if it is skating on
+        water. It draws prey with a sweet
+        scent from the tip of its head.
+"french":
+    "name": |-
+        ARAKDO
+    "category": |-
+        Pokémon Maresurfeur
+    "entry_text": |-
+        Il semble patiner sur l’eau. Le
+        parfum diffusé par le sommet de
+        sa tête sert à attirer ses proies.
+"german":
+    "name": |-
+        GEHWEIHER
+    "category": |-
+        Wassergeher
+    "entry_text": |-
+        Scheinbar reitet es auf dem Wasser.
+        Es lockt seine Beute mit einem
+        süßen Duft an.
+"italian":
+    "name": |-
+        Surskit
+    "category": |-
+        Pokémon Sfiorapozze
+    "entry_text": |-
+        Cammina a pelo d’acqua. Dall’aculeo
+        sulla testa emana un dolce aroma
+        con cui attira le prede.
+"spanish":
+    "name": |-
+        Surskit
+    "category": |-
+        Pokémon Zapatero
+    "entry_text": |-
+        Parece que patina sobre el agua.
+        Atrae a las presas con el suave
+        aroma de su cabeza.
+"japanese":
+    "name": |-
+        アメタマ
+    "category": |-
+        あめんぼポケモン
+    "entry_text": |-
+        すいめんを　すべるように　あるく。
+        あたまの　さきから　あまい　においを
+        だして　えものを　さそう。

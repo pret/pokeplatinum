@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 380,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 235,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 235,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 11,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 11,
-        "english": {
-            "category": "Imitation Pokémon",
-            "entry_text": "To avoid being attacked, it does\nnothing but mimic a tree. It hates\nwater and flees from rain."
-        },
-        "french": {
-            "name": "SIMULARBRE",
-            "category": "Pokémon Imitation",
-            "entry_text": "On pourrait le prendre pour un\narbre, mais il est plus proche d’une\npierre. L’eau est son point faible."
-        },
-        "german": {
-            "name": "MOGELBAUM",
-            "category": "Imitation",
-            "entry_text": "Auch wenn es wie ein Baum aussieht,\nist es eher wie ein Stein o. Fels.\nEs ist schwach gegenüber Wasser."
-        },
-        "italian": {
-            "name": "Sudowoodo",
-            "category": "Pokémon Imitazione",
-            "entry_text": "Ha l’aspetto di un albero, ma il\nsuo corpo è più simile alla roccia.\nÈ debole contro l’acqua."
-        },
-        "spanish": {
-            "name": "Sudowoodo",
-            "category": "Pokémon Imitación",
-            "entry_text": "Aunque parezca un árbol, su\ncuerpo se asemeja a las rocas y\npiedras. Es débil frente al agua."
-        },
-        "japanese": {
-            "name": "ウソッキ－",
-            "category": "まねポケモン",
-            "entry_text": "じゅもくの　ように　みえる　からだは\nじつは　いわや　いしに　ちかい。\nみずには　めっぽう　よわいのだ。"
-        }
     }
 }

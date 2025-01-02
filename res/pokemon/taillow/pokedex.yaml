@@ -1,0 +1,72 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    23
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    483
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    483
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65519
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65519
+"english":
+    "category": |-
+        TinySwallow Pokémon
+    "entry_text": |-
+        It has a gutsy spirit that makes
+        it bravely take on tough foes. It
+        flies in search of warm climates.
+"french":
+    "name": |-
+        NIRONDELLE
+    "category": |-
+        Pokémon Minirondel
+    "entry_text": |-
+        Ce Pokémon téméraire n’a pas peur
+        d’affronter des ennemis puissants.
+        Il vole en quête de climats chauds.
+"german":
+    "name": |-
+        SCHWALBINI
+    "category": |-
+        Schwälblein
+    "entry_text": |-
+        Es ist sehr mutig und stellt sich
+        auch starken Gegnern. Es sucht
+        ständig nach warmen Regionen.
+"italian":
+    "name": |-
+        Taillow
+    "category": |-
+        Pokémon Rondinella
+    "entry_text": |-
+        È molto coraggioso e affronta
+        spavaldo i nemici più forti.
+        Migra verso i paesi caldi.
+"spanish":
+    "name": |-
+        Taillow
+    "category": |-
+        Pokémon Pequebuche
+    "entry_text": "Es un Pokémon valiente que no\nteme a los rivales fuertes. Vuela\n\
+        en busca de climas templados. "
+"japanese":
+    "name": |-
+        スバメ
+    "category": |-
+        こツバメポケモン
+    "entry_text": |-
+        つよい　あいてにも　ゆうかんに
+        たちむかう　こんじょうの　もちぬし。
+        あたたかい　とちを　めざして　とぶ。

@@ -106,47 +106,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 31,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 423,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 423,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 1,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 1,
-        "english": {
-            "category": "Sea Drifter Pokémon",
-            "entry_text": "It drifts in warm seas. It always\nreturns to where it was born, no\nmatter how far it may have drifted."
-        },
-        "french": {
-            "name": "PHIONE",
-            "category": "Pokémon Dérivenmer",
-            "entry_text": "Un Pokémon des mers chaudes. Il\ngonfle la bouée sur sa tête et\ndérive en quête de vivres."
-        },
-        "german": {
-            "name": "PHIONE",
-            "category": "Seedrift",
-            "entry_text": "Es lebt in warmen Meeren. Geht\nes auf Nahrungssuche, füllt es den\nBeutel auf seinem Kopf mit Luft."
-        },
-        "italian": {
-            "name": "Phione",
-            "category": "Pokémon Oceanbondo",
-            "entry_text": "Vive nei mari caldi. Sulla testa ha\nun galleggiante gonfiabile grazie al\nquale nuota alla ricerca di cibo."
-        },
-        "spanish": {
-            "name": "Phione",
-            "category": "Pokémon Marino",
-            "entry_text": "Vive en los mares cálidos.\nInfla el flotador de la cabeza\npara nadar en busca de comida."
-        },
-        "japanese": {
-            "name": "フィオネ",
-            "category": "かいようポケモン",
-            "entry_text": "あたたかい　うみに　すむ　ポケモン。\nあたまの　うきぶくろを　ふくらませて\nなみまを　ただよい　えさを　さがす。"
-        }
     }
 }

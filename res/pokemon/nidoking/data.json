@@ -132,47 +132,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 620,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 269,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 269,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 9,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 9,
-        "english": {
-            "category": "Drill Pokémon",
-            "entry_text": "One swing of its mighty tail can\nsnap a telephone pole as if it were\na matchstick."
-        },
-        "french": {
-            "name": "NIDOKING",
-            "category": "Pokémon Perceur",
-            "entry_text": "Un coup de sa puissante queue\npeut briser un poteau téléphonique\ncomme une allumette."
-        },
-        "german": {
-            "name": "NIDOKING",
-            "category": "Bohrer",
-            "entry_text": "Ein Schlag mit seinem gewaltigen\nSchweif kann einen Telegrafen-\nmasten knicken wie ein Streichholz."
-        },
-        "italian": {
-            "name": "Nidoking",
-            "category": "Pokémon Trapano",
-            "entry_text": "Con un solo colpo della potente\ncoda può abbattere un palo del te-\nlefono come se fosse un fiammifero."
-        },
-        "spanish": {
-            "name": "Nidoking",
-            "category": "Pokémon Taladro",
-            "entry_text": "Un golpe de su poderosa cola\npuede partir un poste de teléfono\ncomo si fuese una cerilla."
-        },
-        "japanese": {
-            "name": "ニドキング",
-            "category": "ドリルポケモン",
-            "entry_text": "しっぽの　いちげきは　でんちゅうを\nまるで　マッチぼうのように\nまっぷたつに　へしおってしまう。"
-        }
     }
 }

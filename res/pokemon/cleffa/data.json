@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 30,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 427,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 427,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 29,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 29,
-        "english": {
-            "category": "Star Shape Pokémon",
-            "entry_text": "It is often seen when shooting\nstars fill the night skies. It’s said\nto arrive riding on a shooting star."
-        },
-        "french": {
-            "name": "MELO",
-            "category": "Pokémon Etoile",
-            "entry_text": "Sa silhouette rappelle une étoile.\nOn dit qu’il descend sur terre\nen chevauchant une étoile filante."
-        },
-        "german": {
-            "name": "PII",
-            "category": "Sternform",
-            "entry_text": "Seine Silhouette sieht aus wie ein\nStern. Man sagt, es würde auf\nSternschnuppen reisen."
-        },
-        "italian": {
-            "name": "Cleffa",
-            "category": "Pokémon Stella",
-            "entry_text": "La sua sagoma ricorda quella di\nuna stella. Si ritiene che giunga\na cavallo di stelle cadenti."
-        },
-        "spanish": {
-            "name": "Cleffa",
-            "category": "Pokémon Estrellada",
-            "entry_text": "Tiene forma de estrella. Se cree\nque llega cabalgando sobre\nestrellas fugaces."
-        },
-        "japanese": {
-            "name": "ピィ",
-            "category": "ほしがたポケモン",
-            "entry_text": "よぞらの　ほしに　にた　シルエット。\nながれぼしに　のって　やってくると\nしんじられている　ポケモン。"
-        }
     }
 }

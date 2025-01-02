@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    505
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    270
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    270
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Frost Tree Pokémon
+    "entry_text": |-
+        Seemingly curious about people,
+        they gather around footsteps they
+        find on snowy mountains.
+"french":
+    "name": |-
+        BLIZZI
+    "category": |-
+        Pokémon Arbregelé
+    "entry_text": |-
+        Il vit sur les monts enneigés.
+        Ignorant des coutumes humaines,
+        il lui arrive d’être très indiscret.
+"german":
+    "name": |-
+        SHNEBEDECK
+    "category": |-
+        Frostbaum
+    "entry_text": |-
+        Es lebt im Schnee der Berge. Es
+        hatte bisher kaum Kontakt zu Men-
+        schen und ist daher sehr neugierig.
+"italian":
+    "name": |-
+        Snover
+    "category": |-
+        Pokémon Albergelo
+    "entry_text": |-
+        Vive sui monti innevati. Ha avuto
+        pochi contatti con gli umani, quindi
+        è molto curioso nei loro confronti.
+"spanish":
+    "name": |-
+        Snover
+    "category": |-
+        Pokémon Árbol Nieve
+    "entry_text": |-
+        Vive en montañas nevadas.
+        Apenas tiene contacto con los
+        humanos y es muy curioso.
+"japanese":
+    "name": |-
+        ユキカブリ
+    "category": |-
+        じゅひょうポケモン
+    "entry_text": |-
+        ゆきやまで　くらしている。
+        めったに　であわない　にんげんを
+        めずらしがって　ちかよってくる。

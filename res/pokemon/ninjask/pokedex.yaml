@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    120
+"body_shape": |-
+    SHAPE_MULTI_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    276
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    276
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65534
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65534
+"english":
+    "category": |-
+        Ninja Pokémon
+    "entry_text": |-
+        Because it moves so quickly, it
+        sometimes becomes unseeable. It
+        congregates around tree sap.
+"french":
+    "name": |-
+        NINJASK
+    "category": |-
+        Pokémon Ninja
+    "entry_text": |-
+        Il bouge si vite que l’œil a parfois
+        du mal à le suivre. Ils se regrou-
+        pent près de la sève des arbres.
+"german":
+    "name": |-
+        NINJASK
+    "category": |-
+        Ninja
+    "entry_text": |-
+        Es bewegt sich so schnell, dass es
+        manchmal unsichtbar zu sein
+        scheint. Es liebt Baumsaft.
+"italian":
+    "name": |-
+        Ninjask
+    "category": |-
+        Pokémon Ninja
+    "entry_text": |-
+        Si muove così in fretta da risultare
+        quasi invisibile. Lo si vede in gruppo
+        attorno agli alberi ricchi di linfa.
+"spanish":
+    "name": |-
+        Ninjask
+    "category": |-
+        Pokémon Ninja
+    "entry_text": |-
+        Se mueve tan rápido que a veces
+        resulta invisible. Le atrae la savia
+        de los árboles.
+"japanese":
+    "name": |-
+        テッカニン
+    "category": |-
+        しのびポケモン
+    "entry_text": |-
+        あまりに　こうそくで　うごくため
+        すがたが　みえなくなる　ことがある。
+        じゅえきに　あつまってくる。

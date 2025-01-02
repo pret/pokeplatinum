@@ -122,47 +122,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 20,
-        "weight": 820,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 345,
-        "pokemon_scale_f": 251,
-        "trainer_scale_m": 341,
-        "pokemon_scale_m": 251,
-        "trainer_pos_f": 15,
-        "pokemon_pos_f": 1,
-        "trainer_pos_m": 16,
-        "pokemon_pos_m": 1,
-        "english": {
-            "category": "Mystic Pokémon",
-            "entry_text": "It whips up sandstorms with\npowerful flaps of its wings. It is\nknown as “The Desert Spirit.”"
-        },
-        "french": {
-            "name": "LIBEGON",
-            "category": "Pokémon Mystique",
-            "entry_text": "Son puissant battement d’ailes\nprovoque des tempêtes de sable.\nOn l’appelle “esprit du désert”."
-        },
-        "german": {
-            "name": "LIBELLDRA",
-            "category": "Mystik",
-            "entry_text": "Mit mächtigem Flügelschlag verur-\nsacht es einen Sandsturm. Es wird\n“Geist der Wüste” genannt."
-        },
-        "italian": {
-            "name": "Flygon",
-            "category": "Pokémon Magico",
-            "entry_text": "Genera tempeste di sabbia con il\nbattito delle ali. È detto anche\n“Spirito primordiale del deserto”."
-        },
-        "spanish": {
-            "name": "Flygon",
-            "category": "Pokémon Místico",
-            "entry_text": "Levanta tormentas de arena con\nsus alas. Se le conoce como el\n“alma del desierto”."
-        },
-        "japanese": {
-            "name": "フライゴン",
-            "category": "せいれいポケモン",
-            "entry_text": "きょうれつな　ハネの　はばたきで\nすなあらしを　おこす。\nさばくのせいれい　と　よばれる。"
-        }
     }
 }

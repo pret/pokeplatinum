@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    160
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    295
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    295
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    15
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    15
+"english":
+    "category": |-
+        Delivery Pokémon
+    "entry_text": |-
+        It carries food rolled up in its
+        tail. It has the habit of sharing
+        food with people lost in mountains.
+"french":
+    "name": |-
+        CADOIZO
+    "category": |-
+        Pokémon Livraison
+    "entry_text": |-
+        Il dépose sa nourriture dans sa
+        queue enroulée. Il l’offre souvent
+        aux gens égarés en montagne.
+"german":
+    "name": |-
+        BOTOGEL
+    "category": |-
+        Lieferant
+    "entry_text": |-
+        Im eingerollten Schweif transpor-
+        tiert es Futter, das es mit denen
+        teilt, die sich verlaufen haben.
+"italian":
+    "name": |-
+        Delibird
+    "category": |-
+        Pokémon Consegna
+    "entry_text": |-
+        Trascina il cibo avvolgendolo nella
+        coda e ha l’abitudine di condividerlo
+        con chi si perde fra le montagne.
+"spanish":
+    "name": |-
+        Delibird
+    "category": |-
+        Pokémon Reparto
+    "entry_text": |-
+        Lleva alimentos en su saco. Le
+        gusta compartir su comida con
+        los montañistas perdidos.
+"japanese":
+    "name": |-
+        デリバ－ド
+    "category": |-
+        はこびやポケモン
+    "entry_text": |-
+        しっぽで　えさを　つつんで　はこぶ。
+        やまで　そうなんした　ひとに
+        えさを　わけあたえる　しゅうせい。

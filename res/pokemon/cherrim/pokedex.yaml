@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    93
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    429
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    429
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Blossom Pokémon
+    "entry_text": |-
+        If it senses strong sunlight, it
+        opens its folded petals to absorb
+        the sun’s rays with its whole body.
+"french":
+    "name": |-
+        CERIFLOR
+    "category": |-
+        Pokémon Floraison
+    "entry_text": |-
+        Il fleurit lorsque le soleil est au
+        beau fixe. Il cherche à prendre sa
+        revanche sur une vie de bourgeon.
+"german":
+    "name": |-
+        KINOSO
+    "category": |-
+        Blüte
+    "entry_text": |-
+        In Zeiten mit viel Sonnenschein
+        blüht es auf. Es holt nach, was ihm
+        als Knospe verwehrt blieb.
+"italian":
+    "name": |-
+        Cherrim
+    "category": |-
+        Pokémon Bocciolo
+    "entry_text": |-
+        Sboccia quando fa caldo e cerca
+        di godersi fino all’ultimo ogni mo-
+        mento che può passare al sole.
+"spanish":
+    "name": |-
+        Cherrim
+    "category": |-
+        Pokémon Floración
+    "entry_text": |-
+        Florece en épocas de mucha
+        luz solar. Intenta compensar
+        lo que soportó como capullo.
+"japanese":
+    "name": |-
+        チェリム
+    "category": |-
+        サクラポケモン
+    "entry_text": |-
+        ひざしが　つよくなると　はなひらく。
+        つぼみの　ときに　たえしのんだ
+        うっぷんを　いっきに　はらすのだ。

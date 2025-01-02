@@ -64,47 +64,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 100,
-        "body_shape": "SHAPE_FINS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 298,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 298,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65531,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65531,
-        "english": {
-            "category": "Fish Pokémon",
-            "entry_text": "A MAGIKARP living for many years\ncan leap a mountain using Splash.\nThe move remains useless, though."
-        },
-        "french": {
-            "name": "MAGICARPE",
-            "category": "Pokémon Poisson",
-            "entry_text": "Ce Pokémon est réputé pour être\nle plus faible au monde. Nul ne\nsait comment son espèce perdure."
-        },
-        "german": {
-            "name": "KARPADOR",
-            "category": "Fisch",
-            "entry_text": "Man sagt, es sei das schwächste\nPKMN der Welt. Niemand weiß, wie\nes bisher überleben konnte."
-        },
-        "italian": {
-            "name": "Magikarp",
-            "category": "Pokémon Pesce",
-            "entry_text": "Si dice che sia il Pokémon più\ndebole del mondo. Nessuno sa\ncome abbia fatto a sopravvivere."
-        },
-        "spanish": {
-            "name": "Magikarp",
-            "category": "Pokémon Pez",
-            "entry_text": "Se dice que es el Pokémon más\ndébil del mundo. No se sabe cómo\nha logrado sobrevivir."
-        },
-        "japanese": {
-            "name": "コイキング",
-            "category": "さかなポケモン",
-            "entry_text": "せかいいち　よわいと　いわれる\nコイキングが　なぜ　いきのこって\nいるのか　だれも　わからない。"
-        }
     }
 }

@@ -1,0 +1,72 @@
+"height": !!int |-
+    21
+"weight": !!int |-
+    4600
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    350
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    333
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    7
+"trainer_pos_m": !!int |-
+    16
+"pokemon_pos_m": !!int |-
+    7
+"english":
+    "category": |-
+        Sleeping Pokémon
+    "entry_text": |-
+        When its belly is full, it becomes
+        too lethargic to even lift a finger,
+        so it is safe to bounce on its belly.
+"french":
+    "name": |-
+        RONFLEX
+    "category": |-
+        Pokémon Pionceur
+    "entry_text": "Son estomac peut digérer n’importe\nquel type de nourriture, même\
+        \ \nquand elle est moisie ou pourrie."
+"german":
+    "name": |-
+        RELAXO
+    "category": |-
+        Tagträumer
+    "entry_text": |-
+        Sein Magen kann jede Art von
+        Nahrung verdauen, selbst wenn sie
+        verschimmelt und verdorben ist.
+"italian":
+    "name": |-
+        Snorlax
+    "category": |-
+        Pokémon Sonno
+    "entry_text": |-
+        Il suo stomaco riesce a digerire
+        qualsiasi tipo di cibo, anche se
+        marcio o ammuffito.
+"spanish":
+    "name": |-
+        Snorlax
+    "category": |-
+        Pokémon Dormir
+    "entry_text": |-
+        Su estómago puede digerir todo
+        tipo de comida, incluso si está
+        podrida o mohosa.
+"japanese":
+    "name": |-
+        カビゴン
+    "category": |-
+        いねむりポケモン
+    "entry_text": |-
+        カビが　はえていても　くさっていても
+        だいじょうぶ。カビゴンの　いぶくろは
+        なんでも　しょうか　できるのだ。

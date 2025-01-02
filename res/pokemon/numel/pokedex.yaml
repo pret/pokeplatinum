@@ -1,0 +1,72 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    240
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    316
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    316
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    22
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    22
+"english":
+    "category": |-
+        Numb Pokémon
+    "entry_text": |-
+        Its humped back stores intensely
+        hot magma. In rain, the magma
+        cools, slowing its movement.
+"french":
+    "name": |-
+        CHAMALLOT
+    "category": |-
+        Pokémon Engourdi
+    "entry_text": "Son dos bossu renferme une lave\nbouillonnante. Elle refroidit\
+        \ par \ntemps de pluie, ce qui le ralentit."
+"german":
+    "name": |-
+        CAMAUB
+    "category": |-
+        Taubheit
+    "entry_text": |-
+        In seinem Rücken speichert es sehr
+        heißes Magma. Regnet es, kühlt das
+        Magma ab und es wird langsamer.
+"italian":
+    "name": |-
+        Numel
+    "category": |-
+        Pokémon Torpore
+    "entry_text": |-
+        Nella gobba accumula magma. Quando
+        piove, il magma si indurisce e
+        il Pokémon diventa più lento.
+"spanish":
+    "name": |-
+        Numel
+    "category": |-
+        Pokémon Torpe
+    "entry_text": |-
+        En su joroba almacena magma
+        ardiente que se enfría cuando
+        llueve y lo ralentiza.
+"japanese":
+    "name": |-
+        ドンメル
+    "category": |-
+        どんかんポケモン
+    "entry_text": |-
+        しゃくねつの　マグマを　せなかの
+        コブに　ためている。あめに　あたると
+        マグマが　ひえて　うごきが　にぶる。

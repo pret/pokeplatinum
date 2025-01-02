@@ -112,47 +112,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 300,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 319,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 319,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65529,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65529,
-        "english": {
-            "category": "Bird Pokémon",
-            "entry_text": "It flies over its wide territory in\nsearch of prey, downing it\nwith its highly developed claws."
-        },
-        "french": {
-            "name": "ROUCOUPS",
-            "category": "Pokémon Oiseau",
-            "entry_text": "Il survole son vaste territoire en\nquête d’une proie avant de fondre\nsur elle toutes griffes en avant."
-        },
-        "german": {
-            "name": "TAUBOGA",
-            "category": "Vogel",
-            "entry_text": "Auf der Suche nach Nahrung, die es\nmit scharfen Krallen schlägt, fliegt\nes durch riesiges Territorium."
-        },
-        "italian": {
-            "name": "Pidgeotto",
-            "category": "Pokémon Uccello",
-            "entry_text": "Sorvola il suo ampio territorio a\ncaccia di prede, afferrandole con\ni suoi artigli affilati."
-        },
-        "spanish": {
-            "name": "Pidgeotto",
-            "category": "Pokémon Pájaro",
-            "entry_text": "Sobrevuela su extenso territorio\nen busca de presas y ataca con\nsus poderosas garras."
-        },
-        "japanese": {
-            "name": "ピジョン",
-            "category": "とりポケモン",
-            "entry_text": "ひろい　なわばりを　とびまわりながら\nえものを　さがす。はったつした\nあしの　ツメで　えものを　しとめる。"
-        }
     }
 }

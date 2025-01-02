@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    20
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    561
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    561
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    29
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    29
+"english":
+    "category": |-
+        Thorn Pokémon
+    "entry_text": |-
+        The more healthy the ROSELIA, the
+        more pleasant its flowers’ aroma.
+        Its scent deeply relaxes people.
+"french":
+    "name": |-
+        ROSELIA
+    "category": |-
+        Pokémon Epine
+    "entry_text": |-
+        Les ROSELIA élevés avec une
+        eau claire et potable font de
+        ravissantes fleurs bariolées.
+"german":
+    "name": |-
+        ROSELIA
+    "category": |-
+        Dorn
+    "entry_text": |-
+        ROSELIA, die mit klarem Wasser
+        aufgezogen wurden, bekommen
+        Blüten in leuchtenden Farben.
+"italian":
+    "name": |-
+        Roselia
+    "category": |-
+        Pokémon Spina
+    "entry_text": |-
+        ROSELIA, cresciuto bevendo acqua
+        pulita, è noto perché fa crescere
+        fiori dai vividi colori.
+"spanish":
+    "name": |-
+        Roselia
+    "category": |-
+        Pokémon Espina
+    "entry_text": |-
+        Si este Pokémon crece con agua
+        limpia y potable, le brotarán
+        flores de vivos colores.
+"japanese":
+    "name": |-
+        ロゼリア
+    "category": |-
+        いばらポケモン
+    "entry_text": |-
+        きれいな　みずを　のんで　そだった
+        ロゼリアは　いろあざやかな　はなを
+        さかせる　ことで　しられている。

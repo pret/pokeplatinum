@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    1680
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    271
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    271
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65532
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65532
+"english":
+    "category": |-
+        Meteorite Pokémon
+    "entry_text": |-
+        Because it turns active on nights
+        of the full moon, it is said to have
+        some link to the lunar phases.
+"french":
+    "name": |-
+        SELEROC
+    "category": |-
+        Pokémon Météorite
+    "entry_text": |-
+        On suppose qu’il est lié au cycle
+        lunaire, car il ne sort que les
+        soirs de pleine lune.
+"german":
+    "name": |-
+        LUNASTEIN
+    "category": |-
+        Meteorit
+    "entry_text": |-
+        Da es in Vollmondnächten aktiv wird,
+        sagt man ihm nach, mit den Mond-
+        phasen in Verbindung zu stehen.
+"italian":
+    "name": |-
+        Lunatone
+    "category": |-
+        Pokémon Meteorite
+    "entry_text": |-
+        Diventa attivo nelle notti di luna
+        piena, pertanto si dice che abbia
+        qualche legame con le fasi lunari.
+"spanish":
+    "name": |-
+        Lunatone
+    "category": |-
+        Pokémon Meteorito
+    "entry_text": |-
+        Se piensa que está muy influido
+        por las fases lunares, ya que solo
+        actúa en noches de luna llena.
+"japanese":
+    "name": |-
+        ルナト－ン
+    "category": |-
+        いんせきポケモン
+    "entry_text": |-
+        まんげつの　よるになると　かっぱつに
+        かつどうするため　つきの　みちかけと
+        かんけいしていると　いわれている。

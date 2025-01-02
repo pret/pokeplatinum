@@ -122,47 +122,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 206,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 320,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 320,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Humming Pokémon",
-            "entry_text": "If it bonds with a person, it will\ngently envelop the friend with its\nsoft wings, then hum."
-        },
-        "french": {
-            "name": "ALTARIA",
-            "category": "Pokémon Virevolteur",
-            "entry_text": "En vol, il ressemble à un nuage\ncotonneux. Il fredonne d’une voix\nde soprano."
-        },
-        "german": {
-            "name": "ALTARIA",
-            "category": "Summsel",
-            "entry_text": "Im Flug sieht es aus wie eine\nwatteweiche Wolke. Es singt mit\neiner Sopranstimme."
-        },
-        "italian": {
-            "name": "Altaria",
-            "category": "Pokémon Canterino",
-            "entry_text": "Quando lotta, sembra una morbida\nnuvola. Canticchia con la sua\nvoce da soprano."
-        },
-        "spanish": {
-            "name": "Altaria",
-            "category": "Pokémon Cantor",
-            "entry_text": "Cuando vuela, parece una nube\nde algodón. Entona bellas\nmelodías con su voz de soprano."
-        },
-        "japanese": {
-            "name": "チルタリス",
-            "category": "ハミングポケモン",
-            "entry_text": "そらを　とぶ　すがたは\nまるで　わたぐものように　みえる。\nソプラノの　こえで　ハミングする。"
-        }
     }
 }

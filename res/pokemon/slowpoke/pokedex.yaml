@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    360
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Dopey Pokémon
+    "entry_text": |-
+        Although slow, it is skilled at
+        fishing with its tail. It does not
+        feel pain if its tail is bitten.
+"french":
+    "name": |-
+        RAMOLOSS
+    "category": |-
+        Pokémon Crétin
+    "entry_text": |-
+        Bien que lent, c’est un pêcheur
+        adroit qui utilise sa queue. Elle
+        est insensible aux morsures.
+"german":
+    "name": |-
+        FLEGMON
+    "category": |-
+        Schnarcher
+    "entry_text": |-
+        Es ist langsam, hat aber ein Talent,
+        mit seinem Schweif zu fischen. Beißt
+        etwas an, tut es ihm nicht weh.
+"italian":
+    "name": |-
+        Slowpoke
+    "category": |-
+        Pokémon Ronfone
+    "entry_text": |-
+        Anche se è lento, è abile a pescare
+        con la coda. Non avverte alcun
+        dolore se gliela mordono.
+"spanish":
+    "name": |-
+        Slowpoke
+    "category": |-
+        Pokémon Atontado
+    "entry_text": |-
+        A pesar de su lentitud, tiene una
+        gran habilidad para pescar con la
+        cola, que es insensible al dolor.
+"japanese":
+    "name": |-
+        ヤドン
+    "category": |-
+        まぬけポケモン
+    "entry_text": |-
+        うごきは　のろいが　しっぽを　つかう
+        つりが　とくい。どんかんなので
+        しっぽを　かまれても　いたくない。

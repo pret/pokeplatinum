@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    876
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    15
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    15
+"english":
+    "category": |-
+        Ball Roll Pokémon
+    "entry_text": |-
+        It habitually spins things on its
+        nose. By doing so, it learns
+        textures and odors.
+"french":
+    "name": |-
+        PHOGLEUR
+    "category": |-
+        Pokémon Roule Boule
+    "entry_text": |-
+        Il fait souvent tourner des objets
+        sur son museau pour connaître
+        leur odeur et leur texture.
+"german":
+    "name": |-
+        SEEJONG
+    "category": |-
+        Spielball
+    "entry_text": |-
+        Es balanciert Dinge auf seiner
+        Nase. Dabei lernt es etwas über die
+        Beschaffenheit und den Geruch.
+"italian":
+    "name": |-
+        Sealeo
+    "category": |-
+        Pokémon Rotapalla
+    "entry_text": |-
+        Fa roteare oggetti sul naso
+        per controllarne l’odore e la
+        consistenza.
+"spanish":
+    "name": |-
+        Sealeo
+    "category": |-
+        Pokémon Rodabola
+    "entry_text": |-
+        Suele hacer girar objetos en su
+        nariz. De esta forma aprende
+        texturas y olores.
+"japanese":
+    "name": |-
+        トドグラ－
+    "category": |-
+        たままわしポケモン
+    "entry_text": |-
+        なんでも　はなの　うえで　まわす
+        クセを　もつ。まわしながら　においや
+        かんしょくを　おぼえるのだ。

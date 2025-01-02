@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 103,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 391,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 391,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 27,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 27,
-        "english": {
-            "category": "Stomach Pokémon",
-            "entry_text": "Almost all its body is its stomach.\nIts harsh digestive juices quickly\ndissolve anything it swallows."
-        },
-        "french": {
-            "name": "GLOUPTI",
-            "category": "Pokémon Estomac",
-            "entry_text": "Il est principalement composé d’un\nestomac dont les sucs digestifs\ndissolvent tout ce qu’il avale."
-        },
-        "german": {
-            "name": "SCHLUPPUCK",
-            "category": "Magen",
-            "entry_text": "Sein Körper besteht fast nur aus\nMagen. Seine starken Verdauungs-\nsäfte zersetzen alles sehr schnell."
-        },
-        "italian": {
-            "name": "Gulpin",
-            "category": "Pokémon Stomaco",
-            "entry_text": "La maggior parte del suo corpo è\nstomaco. I suoi succhi gastrici\ndissolvono subito ciò che ingerisce."
-        },
-        "spanish": {
-            "name": "Gulpin",
-            "category": "Pokémon Estómago",
-            "entry_text": "Casi todo su cuerpo es estómago.\nSus potentes jugos gástricos\ndisuelven rápido cualquier cosa."
-        },
-        "japanese": {
-            "name": "ゴクリン",
-            "category": "いぶくろポケモン",
-            "entry_text": "からだの　ほとんどが　いぶくろ。\nきょうりょくな　いえきで　のみこんだ\nものを　たちまち　しょうかする。"
-        }
     }
 }

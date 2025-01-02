@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    60
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    407
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    407
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    28
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    28
+"english":
+    "category": |-
+        Kiss Pokémon
+    "entry_text": |-
+        It tests everything by touching
+        with its lips, which remember
+        what it likes and dislikes.
+"french":
+    "name": |-
+        LIPPOUTI
+    "category": |-
+        Pokémon Bisou
+    "entry_text": |-
+        Il goûte à tout du bout des lèvres.
+        Elles gardent en mémoire ses
+        goûts et ses dégoûts.
+"german":
+    "name": |-
+        KUSSILLA
+    "category": |-
+        Kuss
+    "entry_text": |-
+        Dieses PKMN berührt alles mit den
+        Lippen. Diese merken sich, was es
+        mag und nicht mag.
+"italian":
+    "name": |-
+        Smoochum
+    "category": |-
+        Pokémon Bacio
+    "entry_text": |-
+        Analizza tutto con le labbra e con
+        esse riesce a memorizzare ciò che
+        gli piace e ciò che non gli piace.
+"spanish":
+    "name": |-
+        Smoochum
+    "category": |-
+        Pokémon Beso
+    "entry_text": |-
+        Analiza todo tocándolo con los
+        labios. Así puede recordar las
+        cosas que le gustan y disgustan.
+"japanese":
+    "name": |-
+        ムチュ－ル
+    "category": |-
+        くちづけポケモン
+    "entry_text": |-
+        なんでも　くちびるで　ふれてみて
+        たしかめる。すきな　ものも　きらいな
+        ものも　くちびるが　おぼえている。

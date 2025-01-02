@@ -99,47 +99,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 1325,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 233,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 233,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 9,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 9,
-        "english": {
-            "category": "Bivalve Pokémon",
-            "entry_text": "It fights by keeping its shell\ntightly shut for protection and\nby shooting spikes to repel foes."
-        },
-        "french": {
-            "name": "CRUSTABRI",
-            "category": "Pokémon Bivalve",
-            "entry_text": "Il se défend en fermant sa coquille\net projette des piquants qui\nrepoussent ses agresseurs."
-        },
-        "german": {
-            "name": "AUSTOS",
-            "category": "Muschel",
-            "entry_text": "Im Kampf schließt es seine Schale,\num sich zu schützen. Es schießt mit\nStacheln auf seine Gegner."
-        },
-        "italian": {
-            "name": "Cloyster",
-            "category": "Pokémon Bivalve",
-            "entry_text": "Quando lotta si protegge tenendo\nla conchiglia chiusa e spara punte\nper respingere i nemici."
-        },
-        "spanish": {
-            "name": "Cloyster",
-            "category": "Pokémon Bivalvo",
-            "entry_text": "En la lucha se protege cerrando\nsu concha y lanzando pinchos\na sus oponentes."
-        },
-        "japanese": {
-            "name": "パルシェン",
-            "category": "２まいがいポケモン",
-            "entry_text": "カラを　しっかりと　とじて　みを\nまもりながら　トゲを　とばして\nてきを　げきたいする　せんぽう。"
-        }
     }
 }

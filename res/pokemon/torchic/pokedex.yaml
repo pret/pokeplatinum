@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    25
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    508
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    508
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Chick Pokémon
+    "entry_text": |-
+        A fire burns inside, so it feels
+        very warm to hug. It launches
+        fireballs of 1,800 degrees F.
+"french":
+    "name": |-
+        POUSSIFEU
+    "category": |-
+        Pokémon Poussin
+    "entry_text": |-
+        Ses câlins réchauffent car il
+        renferme une fournaise. Il envoie
+        des boules de feu à 1 000 °C.
+"german":
+    "name": |-
+        FLEMMLI
+    "category": |-
+        Küken
+    "entry_text": |-
+        In seinem Inneren lodert ein Feuer.
+        Es schleudert 1 000 Grad heiße
+        Feuerbälle.
+"italian":
+    "name": |-
+        Torchic
+    "category": |-
+        Pokémon Pulcino
+    "entry_text": |-
+        Nel suo corpo brucia una fiamma e
+        abbracciandolo si avverte calore.
+        Lancia palle di fuoco a 1000°C.
+"spanish":
+    "name": |-
+        Torchic
+    "category": |-
+        Pokémon Polluelo
+    "entry_text": |-
+        En su interior arde una llama que
+        mantiene su cuerpo caliente. Tira
+        bolas de fuego a 1000 grados.
+"japanese":
+    "name": |-
+        アチャモ
+    "category": |-
+        ひよこポケモン
+    "entry_text": |-
+        たいないで　ほのおが　もえているので
+        だきしめると　とても　あたたかい。
+        １０００どの　ひのたまを　とばす。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    26
+"body_shape": |-
+    SHAPE_INSECTOID
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    322
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    322
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Water Weed Pokémon
+    "entry_text": |-
+        It looks like an aquatic plant and
+        serves as a ferry to Pokémon
+        that can’t swim.
+"french":
+    "name": |-
+        NENUPIOT
+    "category": |-
+        Pokémon Aquaplante
+    "entry_text": |-
+        Il ressemble à une plante aquatique
+        et fait la navette pour les
+        Pokémon qui ne savent pas nager.
+"german":
+    "name": |-
+        LOTURZEL
+    "category": |-
+        Wasserlinse
+    "entry_text": |-
+        Es sieht aus wie eine Wasser-
+        pflanze. Es dient den PKMN, die
+        nicht schwimmen können, als Fähre.
+"italian":
+    "name": |-
+        Lotad
+    "category": |-
+        Pokémon Alga
+    "entry_text": |-
+        Sembra una pianta acquatica e
+        viene usato come traghetto dai
+        Pokémon che non sanno nuotare.
+"spanish":
+    "name": |-
+        Lotad
+    "category": |-
+        Pokémon Alga
+    "entry_text": |-
+        Parece una planta acuática. Hace
+        de ferry para los Pokémon que no
+        saben nadar.
+"japanese":
+    "name": |-
+        ハスボ－
+    "category": |-
+        うきくさポケモン
+    "entry_text": |-
+        みずくさに　そっくりな　ポケモン。
+        およげない　ポケモンを　はっぱに
+        のせて　むこうぎしまで　はこぶ。

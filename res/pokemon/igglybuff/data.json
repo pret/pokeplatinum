@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 10,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 462,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 462,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 29,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 29,
-        "english": {
-            "category": "Balloon Pokémon",
-            "entry_text": "It has a soft and bouncy body.\nOnce it starts bouncing, it\nbecomes impossible to stop."
-        },
-        "french": {
-            "name": "TOUDOUDOU",
-            "category": "Pokémon Bouboule",
-            "entry_text": "Son corps est doux et élastique.\nQuand il commence à rebondir,\non ne peut plus l’arrêter."
-        },
-        "german": {
-            "name": "FLUFFELUFF",
-            "category": "Ballon",
-            "entry_text": "Es hat einen weichen, elastischen\nKörper. Hat es einmal angefangen\nzu hüpfen, ist es nicht zu stoppen."
-        },
-        "italian": {
-            "name": "Igglybuff",
-            "category": "Pokémon Pallone",
-            "entry_text": "Ha un corpo morbido ed elastico.\nQuando comincia a saltellare è\npraticamente impossibile fermarlo."
-        },
-        "spanish": {
-            "name": "Igglybuff",
-            "category": "Pokémon Globo",
-            "entry_text": "Su cuerpo es suave y está\nhinchado. Cuando empieza a\nbotar, no puede parar."
-        },
-        "japanese": {
-            "name": "ププリン",
-            "category": "ふうせんポケモン",
-            "entry_text": "やわらかく　だんりょくせいのある\nからだは　いちど　はずむと\nぜんぜん　とまれなくなってしまう。"
-        }
     }
 }

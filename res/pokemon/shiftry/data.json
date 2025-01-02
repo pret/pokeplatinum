@@ -123,47 +123,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 596,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 8,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 8,
-        "english": {
-            "category": "Wicked Pokémon",
-            "entry_text": "By flapping its leafy fan, it can\nwhip up gusts of 100 ft/second\nthat can level houses."
-        },
-        "french": {
-            "name": "TENGALICE",
-            "category": "Pokémon Malveillant",
-            "entry_text": "D’un coup de sa feuille éventail, il\ngénère des bourrasques de 30 m/s\ncapables de souffler une maison. "
-        },
-        "german": {
-            "name": "TENGULIST",
-            "category": "Verschlagen",
-            "entry_text": "Seine großen Fächer erzeugen Böen,\ndie eine Geschwindigkeit von\n30 m/sek erreichen können."
-        },
-        "italian": {
-            "name": "Shiftry",
-            "category": "Pokémon Burbero",
-            "entry_text": "Con le sue foglie provoca raffiche\ndi vento della velocità di 30 m/s\nche spazzano via interi edifici."
-        },
-        "spanish": {
-            "name": "Shiftry",
-            "category": "Pokémon Malvado",
-            "entry_text": "Con sus abanicos puede provocar\nvientos de 30 m por segundo\ncapaces de levantar casas."
-        },
-        "japanese": {
-            "name": "ダ－テング",
-            "category": "よこしまポケモン",
-            "entry_text": "はっぱの　うちわを　あおぐと\nふうそく３０メ－トルの　とっぷうが\nまきおこり　みんかを　ふきとばす。"
-        }
     }
 }

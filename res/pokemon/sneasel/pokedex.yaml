@@ -1,0 +1,72 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    280
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    315
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    315
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    12
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    12
+"english":
+    "category": |-
+        Sharp Claw Pokémon
+    "entry_text": |-
+        A smart and sneaky Pokémon. A pair
+        may work together to steal eggs by
+        having one lure the parents away.
+"french":
+    "name": |-
+        FARFURET
+    "category": |-
+        Pokémon Grifacérée
+    "entry_text": "Il se nourrit d’œufs volés dans \ndes nids. Ses griffes crochues\n\
+        percent les défenses de l’ennemi."
+"german":
+    "name": |-
+        SNIEBEL
+    "category": |-
+        Stichklaue
+    "entry_text": |-
+        Es ernährt sich von Eiern, die es
+        aus Nestern stiehlt. Beute greift
+        es mit seinen scharfen Krallen an.
+"italian":
+    "name": |-
+        Sneasel
+    "category": |-
+        Pokémon Lamartigli
+    "entry_text": |-
+        Mangia uova rubate dai nidi.
+        Attacca i nemici nei punti deboli
+        con i suoi artigli uncinati.
+"spanish":
+    "name": |-
+        Sneasel
+    "category": |-
+        Pokémon Garra Filo
+    "entry_text": |-
+        Se alimenta de huevos robados en
+        nidos. Clava sus afiladas garras en
+        los puntos débiles de sus rivales.
+"japanese":
+    "name": |-
+        ニュ－ラ
+    "category": |-
+        かぎづめポケモン
+    "entry_text": |-
+        すみかから　タマゴを　かすめとり
+        たべてしまう。するどい　カギヅメが
+        あいての　きゅうしょを　きりさく。

@@ -146,47 +146,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 19,
-        "weight": 1200,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 350,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 333,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 16,
-        "pokemon_pos_f": 4,
-        "trainer_pos_m": 16,
-        "pokemon_pos_m": 4,
-        "english": {
-            "category": "Drill Pokémon",
-            "entry_text": "Standing on its hind legs freed its\nforelegs and made it smarter. It is\nvery forgetful, however."
-        },
-        "french": {
-            "name": "RHINOFEROS",
-            "category": "Pokémon Perceur",
-            "entry_text": "Son cerveau s’est développé depuis\nqu’il tient debout. Sa corne peut\ntraverser la pierre la plus dure. "
-        },
-        "german": {
-            "name": "RIZEROS",
-            "category": "Bohrer",
-            "entry_text": "Sein Gehirn entwickelt sich, wenn es\nsich auf die Hinterbeine stellt. Mit\ndem Horn bohrt es durch Gestein."
-        },
-        "italian": {
-            "name": "Rhydon",
-            "category": "Pokémon Trapano",
-            "entry_text": "Si è alzato sulle zampe posteriori\ne poi gli si è sviluppato il cervello.\nCon il corno perfora la roccia."
-        },
-        "spanish": {
-            "name": "Rhydon",
-            "category": "Pokémon Taladro",
-            "entry_text": "Su cerebro se desarrolló cuando\nse levantó sobre dos patas. Con\nsu cuerno puede cavar túneles."
-        },
-        "japanese": {
-            "name": "サイドン",
-            "category": "ドリルポケモン",
-            "entry_text": "うしろあしで　たつようになり　のうが\nおおきくなった。ドリルの　ツノで\nいわを　くりぬき　トンネルを　ほる。"
-        }
     }
 }

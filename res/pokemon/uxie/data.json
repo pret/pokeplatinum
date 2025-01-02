@@ -124,47 +124,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 3,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 461,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 461,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65526,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65526,
-        "english": {
-            "category": "Knowledge Pokémon",
-            "entry_text": "When UXIE flew, people gained the\nability to solve problems.\nIt was the birth of knowledge."
-        },
-        "french": {
-            "name": "CREHELF",
-            "category": "Pokémon Savoir",
-            "entry_text": "On l’appelle “être du savoir”.\nOn raconte que son regard a le\npouvoir d’effacer la mémoire."
-        },
-        "german": {
-            "name": "SELFE",
-            "category": "Wissen",
-            "entry_text": "“Das wissende Wesen”.\nEs soll die Erinnerungen derer\nlöschen, die ihm in die Augen sehen."
-        },
-        "italian": {
-            "name": "Uxie",
-            "category": "Pokémon Sapienza",
-            "entry_text": "Noto come “Essere della\nconoscenza”. Pare che faccia per-\ndere la memoria a chiunque lo fissi."
-        },
-        "spanish": {
-            "name": "Uxie",
-            "category": "Pokémon Sabiduría",
-            "entry_text": "Se le conoce como el “ser de\nla sabiduría”. Se dice que puede\nborrar la memoria con una mirada."
-        },
-        "japanese": {
-            "name": "ユクシ－",
-            "category": "ちしきポケモン",
-            "entry_text": "ちしきのかみ　と　よばれている。\nめを　あわせた　ものの　きおくを\nけしてしまう　ちからを　もつという。"
-        }
     }
 }

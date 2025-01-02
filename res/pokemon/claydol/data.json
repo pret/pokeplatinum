@@ -127,47 +127,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 1080,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 250,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 250,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Clay Doll Pokémon",
-            "entry_text": "An ancient clay figurine that came\nto life as a Pokémon from exposure\nto a mysterious ray of light."
-        },
-        "french": {
-            "name": "KAORINE",
-            "category": "Pokémon Poupargile",
-            "entry_text": "Une ancienne figurine d’argile qui \ns’est animée suite à son exposition\nà un rayon de lumière étrange."
-        },
-        "german": {
-            "name": "LEPUMENTAS",
-            "category": "Lehmpuppe",
-            "entry_text": "Eine antike Lehmstatue, die durch\nein mysteriöses Licht zum Leben\nerwacht ist."
-        },
-        "italian": {
-            "name": "Claydol",
-            "category": "Pokémon Argilla",
-            "entry_text": "Pokémon nato da un’antica\nstatuetta d’argilla portata in\nvita da misteriose radiazioni."
-        },
-        "spanish": {
-            "name": "Claydol",
-            "category": "Pokémon Muñ. Barro",
-            "entry_text": "Este Pokémon es una vieja figurilla\nde barro que cobró vida mediante la\nexposición a extraños rayos de luz."
-        },
-        "japanese": {
-            "name": "ネンド－ル",
-            "category": "どぐうポケモン",
-            "entry_text": "こだいの　どろにんぎょうが\nかいこうせんを　あびたことで\nいのちが　やどり　ポケモンとなった。"
-        }
     }
 }

@@ -123,47 +123,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 20,
-        "weight": 1286,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 331,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 334,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 15,
-        "pokemon_pos_f": 2,
-        "trainer_pos_m": 15,
-        "pokemon_pos_m": 2,
-        "english": {
-            "category": "Vine Pokémon",
-            "entry_text": "Its arms are made of plants that\nbind themselves to things. They\ngrow back right away if cut."
-        },
-        "french": {
-            "name": "BOULDENEU",
-            "category": "Pokémon Vigne",
-            "entry_text": "Il ligote sa proie en étirant ses\nbras en lianes. Il ne craint pas de\nperdre un bras face à un ennemi."
-        },
-        "german": {
-            "name": "TANGOLOSS",
-            "category": "Ranke",
-            "entry_text": "Es umwickelt Beute, indem es seine\nArme, die aus Ranken bestehen,\nverlängert."
-        },
-        "italian": {
-            "name": "Tangrowth",
-            "category": "Pokémon Liana",
-            "entry_text": "Intrappola le prede con gli arti,\nche sono costituiti da liane. Se ne\nperde uno, non si turba affatto."
-        },
-        "spanish": {
-            "name": "Tangrowth",
-            "category": "Pokémon Enredadera",
-            "entry_text": "Atrapa a su presa desplegando las\nramas de sus brazos, que no le\nimporta perder ante depredadores."
-        },
-        "japanese": {
-            "name": "モジャンボ",
-            "category": "ツルじょうポケモン",
-            "entry_text": "しょくぶつの　ツルで　できた　うでを\nのばして　えものを　からめとる。\nうでを　たべられても　へっちゃら。"
-        }
     }
 }

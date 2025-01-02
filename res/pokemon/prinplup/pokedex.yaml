@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    230
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    347
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    347
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    18
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    18
+"english":
+    "category": |-
+        Penguin Pokémon
+    "entry_text": |-
+        Because every PRINPLUP considers
+        itself to be the most important,
+        they can never form a group.
+"french":
+    "name": |-
+        PRINPLOUF
+    "category": |-
+        Pokémon Pingouin
+    "entry_text": |-
+        Il vit seul, à l’écart de ses pairs.
+        Chaque individu est convaincu
+        d’être meilleur que les autres.
+"german":
+    "name": |-
+        PLIPRIN
+    "category": |-
+        Pinguin
+    "entry_text": |-
+        Es lebt allein, entfernt von
+        anderen. Jedes von ihnen denkt, es
+        sei das bedeutendste unter ihnen.
+"italian":
+    "name": |-
+        Prinplup
+    "category": |-
+        Pokémon Pinguino
+    "entry_text": |-
+        Vive da solo lontano dagli altri.
+        Apparentemente ogni esemplare
+        crede di essere il più importante.
+"spanish":
+    "name": |-
+        Prinplup
+    "category": |-
+        Pokémon Pingüino
+    "entry_text": |-
+        Vive solo, alejado de los demás.
+        Cada uno piensa que es el
+        más importante.
+"japanese":
+    "name": |-
+        ポッタイシ
+    "category": |-
+        ペンギンポケモン
+    "entry_text": |-
+        むれを　つくらずに　１ぴきで　いる。
+        じぶんが　いちばん　えらいと　どの
+        ポッタイシも　かんがえているようだ。

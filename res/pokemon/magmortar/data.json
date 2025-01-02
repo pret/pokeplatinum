@@ -118,47 +118,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 16,
-        "weight": 680,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 247,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 247,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 1,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 1,
-        "english": {
-            "category": "Blast Pokémon",
-            "entry_text": "When launching 3,600 degrees F\nfireballs, its body takes on a\nwhitish hue from the intense heat."
-        },
-        "french": {
-            "name": "MAGANON",
-            "category": "Pokémon Explosion",
-            "entry_text": "Il projette des boules de feu de\n2 000 °C à bout de bras. Il\nvit dans les cratères volcaniques."
-        },
-        "german": {
-            "name": "MAGBRANT",
-            "category": "Detonation",
-            "entry_text": "Aus den Enden seiner Arme schießen\nFeuerbälle mit 2 000 Grad.\nEs lebt in Vulkankratern."
-        },
-        "italian": {
-            "name": "Magmortar",
-            "category": "Pokémon Esplosivo",
-            "entry_text": "Spara palle di fuoco di oltre\n2000°C dagli arti superiori.\nVive nei crateri dei vulcani."
-        },
-        "spanish": {
-            "name": "Magmortar",
-            "category": "Pokémon Explosión",
-            "entry_text": "Sus brazos disparan bolas de\nfuego de más de 2000 grados.\nVive en cráteres volcánicos."
-        },
-        "japanese": {
-            "name": "ブ－バ－ン",
-            "category": "ばくえんポケモン",
-            "entry_text": "うでの　さきから　せっし２０００どの\nひのたまを　はっしゃする。\nかざんの　かこうを　すみかにする。"
-        }
     }
 }

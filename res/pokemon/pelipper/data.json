@@ -122,47 +122,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 280,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65531,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65531,
-        "english": {
-            "category": "Water Bird Pokémon",
-            "entry_text": "It is a messenger of the skies,\ncarrying small Pokémon and\neggs to safety in its bill."
-        },
-        "french": {
-            "name": "BEKIPAN",
-            "category": "Pokémon Oiseaudo",
-            "entry_text": "Il trempe son grand bec dans la\nmer pour charrier de l’eau et\nde nombreuses proies."
-        },
-        "german": {
-            "name": "PELIPPER",
-            "category": "Wasservogel",
-            "entry_text": "Es taucht seinen großen Schnabel\nins Wasser und fängt so eine Menge\nBeute."
-        },
-        "italian": {
-            "name": "Pelipper",
-            "category": "Pokémon Alacquatico",
-            "entry_text": "Immerge il suo enorme becco nel\nmare, raccogliendo acqua e\nnumerose prede."
-        },
-        "spanish": {
-            "name": "Pelipper",
-            "category": "Pokémon Ave Agua",
-            "entry_text": "Hunde su gran pico en el mar\npara sacar numerosas presas\njunto con mucha agua."
-        },
-        "japanese": {
-            "name": "ペリッパ－",
-            "category": "みずどりポケモン",
-            "entry_text": "おおきな　クチバシを　うみに　いれて\nひとすくいすると　エサが　たくさん\nはいっているという　すんぽうだ。"
-        }
     }
 }

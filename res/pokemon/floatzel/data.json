@@ -116,47 +116,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 335,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 334,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 334,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 10,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 10,
-        "english": {
-            "category": "Sea Weasel Pokémon",
-            "entry_text": "It is a common sight around\nfishing ports. It is known to\nrescue people and carry off prey."
-        },
-        "french": {
-            "name": "MUSTEFLOTT",
-            "category": "Pokémon Aquabelette",
-            "entry_text": "Il flotte grâce à sa bouée très\ndéveloppée. Il vole au secours\ndes gens sur le point de se noyer."
-        },
-        "german": {
-            "name": "BOJELIN",
-            "category": "Meereswiesel",
-            "entry_text": "Es treibt mithilfe einer Art\nRettungsring auf dem Wasser und\nhilft dem, der zu ertrinken droht."
-        },
-        "italian": {
-            "name": "Floatzel",
-            "category": "Pokémon Maridonnola",
-            "entry_text": "Nuota con il suo grosso galleg-\ngiante e aiuta a soccorrere\nchi sta per annegare."
-        },
-        "spanish": {
-            "name": "Floatzel",
-            "category": "Pokémon Nutria Mar.",
-            "entry_text": "Nada gracias a su flotador.\nAyuda en los rescates de\ngente que se está ahogando."
-        },
-        "japanese": {
-            "name": "フロ－ゼル",
-            "category": "うみイタチポケモン",
-            "entry_text": "はったつした　うきぶくろで　うかぶ。\nおぼれた　ひとを　きゅうじょする\nてつだいを　している　ポケモンだ。"
-        }
     }
 }

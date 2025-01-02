@@ -1,0 +1,72 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    604
+"body_shape": |-
+    SHAPE_HEAD_BASE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    264
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    264
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Barnacle Pokémon
+    "entry_text": |-
+        It lives in the shallows of warm
+        seas. When the tide goes out, it
+        digs up prey from beaches.
+"french":
+    "name": |-
+        VACILYS
+    "category": |-
+        Pokémon Bernacle
+    "entry_text": |-
+        Vit dans les hauts-fonds des mers
+        chaudes. Il déterre sa proie du
+        sable quand la marée se retire.
+"german":
+    "name": |-
+        WIELIE
+    "category": |-
+        Rankfüßer
+    "entry_text": "Es lebt in seichten Stellen warmer\nMeere. Bei Ebbe sucht es im\
+        \ Sand\nnach Beute. "
+"italian":
+    "name": |-
+        Cradily
+    "category": |-
+        Pokémon Lepade
+    "entry_text": |-
+        Vive in acque poco profonde nei
+        mari caldi. Con la bassa marea,
+        scava sulla riva in cerca di prede.
+"spanish":
+    "name": |-
+        Cradily
+    "category": |-
+        Pokémon Percebe
+    "entry_text": |-
+        Vive en el fondo de los mares de
+        aguas templadas. Emerge para
+        cazar cuando baja la marea.
+"japanese":
+    "name": |-
+        ユレイドル
+    "category": |-
+        いわつぼポケモン
+    "entry_text": |-
+        あたたかい　うみの　あさせに　いる。
+        しおが　ひくと　すなはまに　もぐった
+        えものを　ほりだして　たべる。

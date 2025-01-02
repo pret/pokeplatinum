@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 600,
-        "body_shape": "SHAPE_MULTI_BODY",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Magnet Pokémon",
-            "entry_text": "Many mysteriously appear when more\nsunspots dot the sun. They stop\nTV sets from displaying properly."
-        },
-        "french": {
-            "name": "MAGNETON",
-            "category": "Pokémon Magnétique",
-            "entry_text": "Il est formé de trois MAGNETI liés\npar magnétisme. En groupe, ils\ndéclenchent un orage magnétique."
-        },
-        "german": {
-            "name": "MAGNETON",
-            "category": "Magnet",
-            "entry_text": "Eigentlich sind es drei MAGNETILO,\ndie durch Magnetismus verbunden\nsind."
-        },
-        "italian": {
-            "name": "Magneton",
-            "category": "Pokémon Calamita",
-            "entry_text": "Pokémon formato da tre MAGNEMITE\nuniti dalla forza magnetica. Più di\ntre creano una tempesta magnetica."
-        },
-        "spanish": {
-            "name": "Magneton",
-            "category": "Pokémon Imán",
-            "entry_text": "Realmente son tres MAGNEMITE\nunidos por un campo magnético.\nProvocan tormentas magnéticas."
-        },
-        "japanese": {
-            "name": "レアコイル",
-            "category": "じしゃくポケモン",
-            "entry_text": "３びきの　コイルが　じりょくで\nれんけつした　ポケモン。レアコイルが\nふえると　じきあらしが　おこる。"
-        }
     }
 }

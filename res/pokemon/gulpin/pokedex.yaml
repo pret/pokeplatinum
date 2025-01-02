@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    103
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    391
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    391
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Stomach Pokémon
+    "entry_text": |-
+        Almost all its body is its stomach.
+        Its harsh digestive juices quickly
+        dissolve anything it swallows.
+"french":
+    "name": |-
+        GLOUPTI
+    "category": |-
+        Pokémon Estomac
+    "entry_text": |-
+        Il est principalement composé d’un
+        estomac dont les sucs digestifs
+        dissolvent tout ce qu’il avale.
+"german":
+    "name": |-
+        SCHLUPPUCK
+    "category": |-
+        Magen
+    "entry_text": |-
+        Sein Körper besteht fast nur aus
+        Magen. Seine starken Verdauungs-
+        säfte zersetzen alles sehr schnell.
+"italian":
+    "name": |-
+        Gulpin
+    "category": |-
+        Pokémon Stomaco
+    "entry_text": |-
+        La maggior parte del suo corpo è
+        stomaco. I suoi succhi gastrici
+        dissolvono subito ciò che ingerisce.
+"spanish":
+    "name": |-
+        Gulpin
+    "category": |-
+        Pokémon Estómago
+    "entry_text": |-
+        Casi todo su cuerpo es estómago.
+        Sus potentes jugos gástricos
+        disuelven rápido cualquier cosa.
+"japanese":
+    "name": |-
+        ゴクリン
+    "category": |-
+        いぶくろポケモン
+    "entry_text": |-
+        からだの　ほとんどが　いぶくろ。
+        きょうりょくな　いえきで　のみこんだ
+        ものを　たちまち　しょうかする。

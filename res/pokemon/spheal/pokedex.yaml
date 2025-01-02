@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    395
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    239
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    239
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    20
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    20
+"english":
+    "category": |-
+        Clap Pokémon
+    "entry_text": |-
+        It rolls across ice floes to reach
+        shore because its body is poorly
+        shaped for swimming.
+"french":
+    "name": |-
+        OBALIE
+    "category": |-
+        Pokémon Clap Clap
+    "entry_text": |-
+        Il gagne la côte en roulant sur les
+        blocs de glace car sa morphologie
+        n’est pas adaptée à la nage.
+"german":
+    "name": |-
+        SEEMOPS
+    "category": |-
+        Applaus
+    "entry_text": |-
+        Es rollt über Eisschollen, um Land
+        zu erreichen, da sein Körper zum
+        Schwimmen nicht geeignet ist.
+"italian":
+    "name": |-
+        Spheal
+    "category": |-
+        Pokémon Rotolante
+    "entry_text": |-
+        Poiché il suo corpo non è adatto al
+        nuoto, rotola su lastre di ghiaccio
+        per raggiungere la riva.
+"spanish":
+    "name": |-
+        Spheal
+    "category": |-
+        Pokémon Aplauso
+    "entry_text": |-
+        Rueda por los témpanos de hielo
+        hasta la orilla, ya que su cuerpo
+        no está bien adaptado para nadar.
+"japanese":
+    "name": |-
+        タマザラシ
+    "category": |-
+        てたたきポケモン
+    "entry_text": |-
+        りゅうひょうの　うえを　コロコロと
+        ころがって　かいがんに　たどりつく。
+        およぐには　ふべんな　たいけい。

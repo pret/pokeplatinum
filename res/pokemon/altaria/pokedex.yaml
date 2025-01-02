@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    206
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    320
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    320
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Humming Pokémon
+    "entry_text": |-
+        If it bonds with a person, it will
+        gently envelop the friend with its
+        soft wings, then hum.
+"french":
+    "name": |-
+        ALTARIA
+    "category": |-
+        Pokémon Virevolteur
+    "entry_text": |-
+        En vol, il ressemble à un nuage
+        cotonneux. Il fredonne d’une voix
+        de soprano.
+"german":
+    "name": |-
+        ALTARIA
+    "category": |-
+        Summsel
+    "entry_text": |-
+        Im Flug sieht es aus wie eine
+        watteweiche Wolke. Es singt mit
+        einer Sopranstimme.
+"italian":
+    "name": |-
+        Altaria
+    "category": |-
+        Pokémon Canterino
+    "entry_text": |-
+        Quando lotta, sembra una morbida
+        nuvola. Canticchia con la sua
+        voce da soprano.
+"spanish":
+    "name": |-
+        Altaria
+    "category": |-
+        Pokémon Cantor
+    "entry_text": |-
+        Cuando vuela, parece una nube
+        de algodón. Entona bellas
+        melodías con su voz de soprano.
+"japanese":
+    "name": |-
+        チルタリス
+    "category": |-
+        ハミングポケモン
+    "entry_text": |-
+        そらを　とぶ　すがたは
+        まるで　わたぐものように　みえる。
+        ソプラノの　こえで　ハミングする。

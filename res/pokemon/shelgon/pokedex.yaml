@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    1105
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    245
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    245
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    14
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    14
+"english":
+    "category": |-
+        Endurance Pokémon
+    "entry_text": |-
+        Within its rugged shell, its cells
+        have begun changing. The shell
+        peels off the instant it evolves.
+"french":
+    "name": |-
+        DRACKHAUS
+    "category": |-
+        Pokémon Endurant
+    "entry_text": |-
+        Ses cellules ont commencé à
+        changer dans sa robuste coquille.
+        Il la perd en évoluant.
+"german":
+    "name": |-
+        DRASCHEL
+    "category": |-
+        Durchsteher
+    "entry_text": |-
+        Die Zellen seines Panzers fingen an,
+        sich zu verändern. Er fällt ab,
+        sobald sich das PKMN entwickelt.
+"italian":
+    "name": |-
+        Shelgon
+    "category": |-
+        Pokémon Resistenza
+    "entry_text": |-
+        Nella sua dura corazza le cellule
+        hanno cominciato a cambiare.
+        Quando si evolve, la corazza cade.
+"spanish":
+    "name": |-
+        Shelgon
+    "category": |-
+        Pokémon Resistencia
+    "entry_text": |-
+        Las células han empezado a cambiar
+        dentro de su dura concha, que se
+        separa cuando evoluciona.
+"japanese":
+    "name": |-
+        コモル－
+    "category": |-
+        にんたいポケモン
+    "entry_text": |-
+        かたい　カラの　なかでは　さいぼうが
+        へんかを　はじめている。しんかする
+        しゅんかんに　カラが　はがれおちる。

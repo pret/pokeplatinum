@@ -114,47 +114,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 76,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 423,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 423,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 27,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 27,
-        "english": {
-            "category": "Mud Fish Pokémon",
-            "entry_text": "To alert it, the fin on its head\nsenses the flow of water. It has\nthe strength to heft boulders."
-        },
-        "french": {
-            "name": "GOBOU",
-            "category": "Pokémon Poissonboue",
-            "entry_text": "Il analyse le courant grâce à la\nnageoire sur sa tête. Il est assez\nfort pour soulever des rochers."
-        },
-        "german": {
-            "name": "HYDROPI",
-            "category": "Lehmhüpfer",
-            "entry_text": "Die Flosse auf seinem Kopf prüft\ndie Strömung des Wassers. Dieses\nPKMN kann Felsen heben."
-        },
-        "italian": {
-            "name": "Mudkip",
-            "category": "Pokémon Fango Pesce",
-            "entry_text": "Con la pinna sulla testa percepi-\nsce i movimenti dell’acqua e sta in\nguardia. Riesce a sollevare rocce."
-        },
-        "spanish": {
-            "name": "Mudkip",
-            "category": "Pokémon Pez Lodo",
-            "entry_text": "La aleta de su cabeza detecta las\ncorrientes de agua y los peligros.\nTiene fuerza para levantar rocas."
-        },
-        "japanese": {
-            "name": "ミズゴロウ",
-            "category": "ぬまうおポケモン",
-            "entry_text": "あたまの　ひれで　みずの　ながれを\nかんじて　まわりの　ようすを　しる。\nいわを　もちあげる　ちからもち。"
-        }
     }
 }

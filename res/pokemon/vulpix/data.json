@@ -110,47 +110,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 99,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 320,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 320,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 17,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 17,
-        "english": {
-            "category": "Fox Pokémon",
-            "entry_text": "It controls balls of fire. As it\ngrows, its six tails split from\ntheir tips to make more tails."
-        },
-        "french": {
-            "name": "GOUPIX",
-            "category": "Pokémon Renard",
-            "entry_text": "Il envoie des boules de feu. Avec\nl’âge, ses six queues en forment de\nnouvelles. "
-        },
-        "german": {
-            "name": "VULPIX",
-            "category": "Fuchs",
-            "entry_text": "Es beherrscht Feuerbälle. Während\nes wächst, teilen sich seine sechs\nSchweife, um weitere zu bilden."
-        },
-        "italian": {
-            "name": "Vulpix",
-            "category": "Pokémon Volpe",
-            "entry_text": "Controlla palle infuocate. Via via\nche cresce, dalle sue sei code\nse ne generano delle altre."
-        },
-        "spanish": {
-            "name": "Vulpix",
-            "category": "Pokémon Zorro",
-            "entry_text": "Controla bolas de fuego. A medida\nque crece, sus seis colas se\nmultiplican."
-        },
-        "japanese": {
-            "name": "ロコン",
-            "category": "きつねポケモン",
-            "entry_text": "ほのおの　たまを　あやつる。\nせいちょうすると　６ほんの　しっぽは\nさきが　わかれて　さらに　ふえる。"
-        }
     }
 }

@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    324
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    319
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    319
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Hypnosis Pokémon
+    "entry_text": |-
+        It can tell what people are
+        dreaming by sniffing with its big
+        nose. It loves fun dreams.
+"french":
+    "name": |-
+        SOPORIFIK
+    "category": |-
+        Pokémon Hypnose
+    "entry_text": |-
+        Son grand nez lui permet de lire
+        les rêves d’autrui. Il adore les
+        songes amusants.
+"german":
+    "name": |-
+        TRAUMATO
+    "category": |-
+        Hypnose
+    "entry_text": |-
+        Mit seiner großen Nase kann es die
+        Träume anderer erkennen.
+        Es liebt lustige Träume.
+"italian":
+    "name": |-
+        Drowzee
+    "category": |-
+        Pokémon Ipnosi
+    "entry_text": |-
+        Riesce ad indovinare cosa sognano
+        le persone annusandole con il suo
+        grande naso. Ama i sogni divertenti.
+"spanish":
+    "name": |-
+        Drowzee
+    "category": |-
+        Pokémon Hipnosis
+    "entry_text": |-
+        Puede oler los sueños de la
+        gente con su gran nariz. Le
+        encantan los sueños divertidos.
+"japanese":
+    "name": |-
+        スリ－プ
+    "category": |-
+        さいみんポケモン
+    "entry_text": |-
+        つきでた　はなを　ひくひくさせると
+        みている　ユメが　わかるという。
+        だいこうぶつは　たのしい　ユメだ。

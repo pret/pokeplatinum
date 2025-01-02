@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    554
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    317
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    315
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    7
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Freeze Pokémon
+    "entry_text": |-
+        A legendary bird Pokémon.
+        It can create blizzards by
+        freezing moisture in the air.
+"french":
+    "name": |-
+        ARTIKODIN
+    "category": |-
+        Pokémon Glaciaire
+    "entry_text": |-
+        Un Pokémon Oiseau légendaire.
+        Il peut provoquer des blizzards
+        en gelant l’humidité de l’air.
+"german":
+    "name": |-
+        ARKTOS
+    "category": |-
+        Eis
+    "entry_text": |-
+        Ein Legendäres Vogel-Pokémon.
+        Es kann Blizzards verursachen,
+        indem es Feuchtigkeit gefriert.
+"italian":
+    "name": |-
+        Articuno
+    "category": |-
+        Pokémon Gelo
+    "entry_text": |-
+        Un Pokémon uccello leggendario.
+        Riesce a creare bufere di neve
+        congelando l’umidità dell’aria.
+"spanish":
+    "name": |-
+        Articuno
+    "category": |-
+        Pokémon Congelar
+    "entry_text": |-
+        Legendario Pokémon pájaro capaz
+        de generar ventiscas congelando
+        la humedad del aire.
+"japanese":
+    "name": |-
+        フリ－ザ－
+    "category": |-
+        れいとうポケモン
+    "entry_text": |-
+        でんせつの　とりポケモン。
+        くうきちゅうの　すいぶんを　こおらせ
+        ふぶきを　つくりだすことが　できる。

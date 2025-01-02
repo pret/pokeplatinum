@@ -1,0 +1,74 @@
+"height": !!int |-
+    23
+"weight": !!int |-
+    888
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    358
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    333
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    2
+"english":
+    "category": |-
+        Big Jaw Pokémon
+    "entry_text": |-
+        It usually moves slowly, but it
+        goes at blinding speed when it
+        attacks and bites prey.
+"french":
+    "name": |-
+        ALIGATUEUR
+    "category": |-
+        Pokémon Mâchoire
+    "entry_text": |-
+        Ce Pokémon à l’air pataud est
+        capable d’attaquer à la vitesse
+        de l’éclair pour mordre sa proie.
+"german":
+    "name": |-
+        IMPERGATOR
+    "category": |-
+        Großmaul
+    "entry_text": |-
+        Eigentlich bewegt es sich langsam,
+        doch seine Beute greift es
+        blitzschnell an.
+"italian":
+    "name": |-
+        Feraligatr
+    "category": |-
+        Pokémon Mascellone
+    "entry_text": |-
+        Di solito si muove lentamente, ma
+        quando attacca e morde la preda si
+        muove ad una velocità incredibile.
+"spanish":
+    "name": |-
+        Feraligatr
+    "category": |-
+        Pokémon Fauces
+    "entry_text": |-
+        Se suele mover lento, pero alcanza
+        velocidades de vértigo al atacar
+        y morder a sus enemigos.
+"japanese":
+    "name": |-
+        オ－ダイル
+    "category": |-
+        おおあごポケモン
+    "entry_text": |-
+        ふだんは　ゆっくりとした　うごきだが
+        えものに　かみつくときは
+        めにも　とまらない　スピ－ドだ。

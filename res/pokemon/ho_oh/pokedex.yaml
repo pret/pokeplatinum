@@ -1,0 +1,72 @@
+"height": !!int |-
+    38
+"weight": !!int |-
+    1990
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    451
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    444
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    21
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    21
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Rainbow Pokémon
+    "entry_text": |-
+        Its feathers are in seven colors.
+        It is said that anyone seeing it is
+        promised eternal happiness.
+"french":
+    "name": |-
+        HO-OH
+    "category": |-
+        Pokémon Arcenciel
+    "entry_text": "Ses plumes possèdent sept \ncouleurs. On prétend que sa vue\napporte\
+        \ la joie éternelle."
+"german":
+    "name": |-
+        HO-OH
+    "category": |-
+        Regenbogen
+    "entry_text": |-
+        Seine Federn besitzen 7 Farben.
+        Man sagt, dass demjenigen, der es
+        sieht, ewiges Glück beschieden ist.
+"italian":
+    "name": |-
+        Ho-Oh
+    "category": |-
+        Pokémon Arcobaleno
+    "entry_text": |-
+        Le sue piume sono di sette colori.
+        Si dice che chiunque lo veda
+        sarà per sempre felice.
+"spanish":
+    "name": |-
+        Ho-Oh
+    "category": |-
+        Pokémon Arco Iris
+    "entry_text": |-
+        Su plumaje tiene siete colores.
+        Se dice que verlo proporciona
+        felicidad eterna.
+"japanese":
+    "name": |-
+        ホウオウ
+    "category": |-
+        にじいろポケモン
+    "entry_text": |-
+        なないろの　つばさを　もつ。
+        ホウオウを　みた　ものは　えいえんの
+        しあわせが　やくそくされるという。

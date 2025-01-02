@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    80
+"body_shape": |-
+    SHAPE_HEAD_BASE
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    476
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    476
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65530
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65530
+"english":
+    "category": |-
+        Dragon Pokémon
+    "entry_text": |-
+        It makes its nest in the shade of
+        corals. If it senses danger, it
+        spits murky ink and flees.
+"french":
+    "name": |-
+        HYPOTREMPE
+    "category": |-
+        Pokémon Dragon
+    "entry_text": |-
+        Il niche à l’ombre du corail. Quand
+        il se sent menacé, il disparaît
+        dans un nuage d’encre opaque.
+"german":
+    "name": |-
+        SEEPER
+    "category": |-
+        Drache
+    "entry_text": |-
+        Im Schatten von Korallen legt es
+        sein Nest an. Bei Gefahr versprüht
+        es Tinte und flieht.
+"italian":
+    "name": |-
+        Horsea
+    "category": |-
+        Pokémon Drago
+    "entry_text": |-
+        Crea la sua tana all’ombra dei
+        coralli. Se avverte un pericolo,
+        spruzza inchiostro nero e fugge.
+"spanish":
+    "name": |-
+        Horsea
+    "category": |-
+        Pokémon Dragón
+    "entry_text": |-
+        Hace su nido entre los corales.
+        Si se siente en peligro, escupe
+        tinta y huye.
+"japanese":
+    "name": |-
+        タッツ－
+    "category": |-
+        ドラゴンポケモン
+    "entry_text": |-
+        サンゴの　かげに　すみかを　つくる。
+        きけんを　かんじると　くちから
+        まっくろい　スミを　はいて　にげる。

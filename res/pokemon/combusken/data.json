@@ -125,47 +125,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 195,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 336,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 336,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 17,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 17,
-        "english": {
-            "category": "Young Fowl Pokémon",
-            "entry_text": "Its kicking mastery lets it loose\n10 kicks per second. It emits\nsharp cries to intimidate foes."
-        },
-        "french": {
-            "name": "GALIFEU",
-            "category": "Pokémon Poulet",
-            "entry_text": "Ce maître du coup de pied peut\ndonner 10 coups par seconde. Ses\ncris aigus intimident l’ennemi."
-        },
-        "german": {
-            "name": "JUNGGLUT",
-            "category": "Kleinhahn",
-            "entry_text": "Es kann 10 Tritte pro Sekunde aus-\nteilen. Es gibt schrille Schreie von\nsich, um Gegner einzuschüchtern."
-        },
-        "italian": {
-            "name": "Combusken",
-            "category": "Pokémon Rampollo",
-            "entry_text": "Possiede l’abilità di sferrare anche\n10 calci al secondo. Emette urla\nstrazianti per intimorire i nemici."
-        },
-        "spanish": {
-            "name": "Combusken",
-            "category": "Pokémon Ave Corral",
-            "entry_text": "Su habilidad le permite dar diez\npatadas por segundo. Lanza\npotentes gritos para intimidar."
-        },
-        "japanese": {
-            "name": "ワカシャモ",
-            "category": "わかどりポケモン",
-            "entry_text": "１びょうかんに　キックを　１０ぱつ\nくりだす　あしわざの　もちぬし。\nするどい　なきごえで　いかくする。"
-        }
     }
 }

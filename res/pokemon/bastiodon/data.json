@@ -121,47 +121,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 13,
-        "weight": 1495,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 243,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 243,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 9,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 9,
-        "english": {
-            "category": "Shield Pokémon",
-            "entry_text": "When they lined up side by side, no\nfoe could break through. They\nshielded their young in that way."
-        },
-        "french": {
-            "name": "BASTIODON",
-            "category": "Pokémon Bouclier",
-            "entry_text": "Il résiste à toute attaque\nfrontale. C’est un Pokémon docile\nqui se nourrit d’herbe et de Baies."
-        },
-        "german": {
-            "name": "BOLLTERUS",
-            "category": "Schutzschild",
-            "entry_text": "Jeder Frontalangriff wird abge-\nschmettert. Dieses friedliche PKMN\nernährt sich von Gras und Beeren."
-        },
-        "italian": {
-            "name": "Bastiodon",
-            "category": "Pokémon Schermo",
-            "entry_text": "Respinge qualsiasi attacco\nfrontale. È un Pokémon docile\nche si nutre di erba e di bacche."
-        },
-        "spanish": {
-            "name": "Bastiodon",
-            "category": "Pokémon Escudo",
-            "entry_text": "Repele cualquier ataque frontal.\nEs muy dócil y se alimenta de\nhierba y bayas."
-        },
-        "japanese": {
-            "name": "トリデプス",
-            "category": "シ－ルドポケモン",
-            "entry_text": "しょうめんからの　こうげきは\nすべて　はねかえす。くさや　きのみを\nたべる　おとなしい　せいかく。"
-        }
     }
 }

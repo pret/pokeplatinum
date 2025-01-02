@@ -168,47 +168,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 32,
-        "weight": 3200,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 512,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 487,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 23,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 23,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Alpha Pokémon",
-            "entry_text": "It is said to have emerged from an\negg in a place where there was\nnothing, then shaped the world."
-        },
-        "french": {
-            "name": "ARCEUS",
-            "category": "Pokémon Alpha",
-            "entry_text": "La mythologie le décrit comme\nle Pokémon qui a façonné\nl’univers avec ses 1 000 bras."
-        },
-        "german": {
-            "name": "ARCEUS",
-            "category": "Alpha",
-            "entry_text": "Die Mythologie nennt dieses PKMN\nals Former des Universums, wobei es\nseine tausend Arme eingesetzt hat."
-        },
-        "italian": {
-            "name": "Arceus",
-            "category": "Pokémon Primevo",
-            "entry_text": "Nella mitologia è descritto come il\nPokémon che ha dato forma all’uni-\nverso con le sue 1000 braccia."
-        },
-        "spanish": {
-            "name": "Arceus",
-            "category": "Pokémon Alfa",
-            "entry_text": "La mitología lo describe como\nel Pokémon que dio forma al\nUniverso con sus 1000 brazos."
-        },
-        "japanese": {
-            "name": "アルセウス",
-            "category": "そうぞうポケモン",
-            "entry_text": "１０００ぼんの　うでで\nうちゅうを　つくった　ポケモンとして\nしんわに　えがかれている。"
-        }
     }
 }

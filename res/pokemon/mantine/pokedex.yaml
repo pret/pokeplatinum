@@ -1,0 +1,74 @@
+"height": !!int |-
+    21
+"weight": !!int |-
+    2200
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    356
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    366
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    65535
+"trainer_pos_m": !!int |-
+    16
+"pokemon_pos_m": !!int |-
+    65535
+"english":
+    "category": |-
+        Kite Pokémon
+    "entry_text": |-
+        While elegantly swimming in the sea,
+        it ignores REMORAID that cling to
+        its fins seeking food scraps.
+"french":
+    "name": |-
+        DEMANTA
+    "category": |-
+        Pokémon Cervolant
+    "entry_text": |-
+        Lorsque la mer est calme, il arrive
+        de croiser un banc de DEMANTA
+        nageant comme s’ils volaient.
+"german":
+    "name": |-
+        MANTAX
+    "category": |-
+        Flugrochen
+    "entry_text": |-
+        Wenn das Meer ruhig ist, kann man
+        vielleicht einen Schwarm MANTAX
+        sehen, die schnell vorbeischwimmen.
+"italian":
+    "name": |-
+        Mantine
+    "category": |-
+        Pokémon Aquilone
+    "entry_text": |-
+        Quando il mare è calmo, è possibile
+        vedere branchi di MANTINE nuotare
+        leggiadri come se volassero.
+"spanish":
+    "name": |-
+        Mantine
+    "category": |-
+        Pokémon Milano
+    "entry_text": |-
+        Cuando el mar está en calma, se
+        pueden ver bancos de MANTINE
+        nadando como si volasen.
+"japanese":
+    "name": |-
+        マンタイン
+    "category": |-
+        カイトポケモン
+    "entry_text": |-
+        なみが　おだやかな　ときは
+        おおうなばらを　とぶように　およぐ
+        マンタインの　むれに　そうぐうする。

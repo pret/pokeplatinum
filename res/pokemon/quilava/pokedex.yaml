@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    190
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    300
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    300
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Volcano Pokémon
+    "entry_text": |-
+        It intimidates foes with the heat
+        of its flames. The fire burns more
+        strongly when it readies to fight.
+"french":
+    "name": |-
+        FEURISSON
+    "category": |-
+        Pokémon Volcan
+    "entry_text": |-
+        La chaleur de ses flammes intimide
+        l’ennemi. Elles s’intensifient
+        lorsqu’il se prépare à combattre.
+"german":
+    "name": |-
+        IGELAVAR
+    "category": |-
+        Vulkan
+    "entry_text": |-
+        Es bedroht seine Gegner mit der
+        Hitze seiner Flammen. Ist es
+        kampfbereit, lodern sie stärker.
+"italian":
+    "name": |-
+        Quilava
+    "category": |-
+        Pokémon Vulcano
+    "entry_text": |-
+        Intimorisce i nemici con il calore
+        delle sue fiamme. Se è pronto a lot-
+        tare, le vampate sono più ardenti.
+"spanish":
+    "name": |-
+        Quilava
+    "category": |-
+        Pokémon Volcán
+    "entry_text": |-
+        Intimida a sus enemigos con el
+        calor de sus llamas. Arde con
+        mayor fuerza cuando va a luchar.
+"japanese":
+    "name": |-
+        マグマラシ
+    "category": |-
+        かざんポケモン
+    "entry_text": |-
+        ほのおの　ねつで　あいてを　いかく。
+        たたかう　たいせいになると
+        ほのおの　いきおいが　ます。

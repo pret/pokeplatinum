@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    32
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    387
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    387
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Happiness Pokémon
+    "entry_text": |-
+        To share its happiness, it flies
+        around the world seeking kind-
+        hearted people.
+"french":
+    "name": |-
+        TOGETIC
+    "category": |-
+        Pokémon Bonheur
+    "entry_text": |-
+        On dit qu’il apparaît aux êtres
+        bons pour répandre un duvet
+        brillant appelé “poudre de joie”.
+"german":
+    "name": |-
+        TOGETIC
+    "category": |-
+        Freude
+    "entry_text": |-
+        Man sagt, es erscheint vor denen,
+        die gutherzig sind, und verteilt
+        glänzenden “Glücksstaub”.
+"italian":
+    "name": |-
+        Togetic
+    "category": |-
+        Pokémon Felicità
+    "entry_text": |-
+        Pare che appaia alle persone gentili
+        diffondendo un pulviscolo luminoso
+        detto “Polvere della gioia”.
+"spanish":
+    "name": |-
+        Togetic
+    "category": |-
+        Pokémon Felicidad
+    "entry_text": |-
+        Se dice que se aparece a la gente
+        de buen corazón y que esparce un
+        “polvillo de la alegría”.
+"japanese":
+    "name": |-
+        トゲチック
+    "category": |-
+        しあわせポケモン
+    "entry_text": |-
+        やさしい　ひとの　もとへ　あらわれて
+        しあわせのこな　と　よばれる
+        ひかる　うもうを　ふりまくと　いう。

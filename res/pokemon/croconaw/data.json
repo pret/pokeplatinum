@@ -126,47 +126,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 250,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 278,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 278,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 13,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 13,
-        "english": {
-            "category": "Big Jaw Pokémon",
-            "entry_text": "Once it bites down, it won’t let go\nuntil it loses its fangs. New fangs\nquickly grow into place."
-        },
-        "french": {
-            "name": "CROCRODIL",
-            "category": "Pokémon Mâchoire",
-            "entry_text": "Quand il mord, il ne lâche pas prise\navant que ses crocs se brisent.\nIls repoussent par la suite."
-        },
-        "german": {
-            "name": "TYRACROC",
-            "category": "Großmaul",
-            "entry_text": "Hat es einmal zugebissen, lässt es\nerst los, wenn es seine Zähne\nverliert, die schnell nachwachsen."
-        },
-        "italian": {
-            "name": "Croconaw",
-            "category": "Pokémon Mascellone",
-            "entry_text": "Quando azzanna il nemico, non molla\nla presa finché non gli cadono le\nzanne, che però ricrescono subito."
-        },
-        "spanish": {
-            "name": "Croconaw",
-            "category": "Pokémon Fauces",
-            "entry_text": "Cuando muerde algo, no lo suelta\nhasta que pierde sus colmillos.\nEstos se regeneran rápidamente."
-        },
-        "japanese": {
-            "name": "アリゲイツ",
-            "category": "おおあごポケモン",
-            "entry_text": "いちど　かみつくと　キバが\nぬけるまで　ぜったいに　はなさない。\nぬけた　キバは　すぐに　はえてくる。"
-        }
     }
 }

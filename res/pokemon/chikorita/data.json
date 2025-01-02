@@ -112,47 +112,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 64,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 315,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 315,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 17,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 17,
-        "english": {
-            "category": "Leaf Pokémon",
-            "entry_text": "It uses the leaf on its head to\ndetermine the temperature and\nhumidity. It loves to sunbathe."
-        },
-        "french": {
-            "name": "GERMIGNON",
-            "category": "Pokémon Feuille",
-            "entry_text": "Il jauge la température et\nl’humidité grâce à la feuille sur sa\ntête. Il raffole des bains de soleil."
-        },
-        "german": {
-            "name": "ENDIVIE",
-            "category": "Laub",
-            "entry_text": "Mit dem Blatt auf seinem Kopf\nbestimmt es die Temperatur und\nFeuchtigkeit. Es liebt Sonnenbäder."
-        },
-        "italian": {
-            "name": "Chikorita",
-            "category": "Pokémon Foglia",
-            "entry_text": "Usa la foglia sulla sua testa\nper misurare la temperatura e\nl’umidità. Ama crogiolarsi al sole."
-        },
-        "spanish": {
-            "name": "Chikorita",
-            "category": "Pokémon Hoja",
-            "entry_text": "Con la hoja de su cabeza puede\nmedir la temperatura y la humedad.\nLe encanta tomar el sol."
-        },
-        "japanese": {
-            "name": "チコリ－タ",
-            "category": "はっぱポケモン",
-            "entry_text": "あたまの　はっぱで　まわりの\nおんどや　しつどを　さぐる。\nひざしを　あびることが　だいすき。"
-        }
     }
 }

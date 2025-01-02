@@ -1,0 +1,74 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    1286
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    331
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    334
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    2
+"english":
+    "category": |-
+        Vine Pokémon
+    "entry_text": |-
+        Its arms are made of plants that
+        bind themselves to things. They
+        grow back right away if cut.
+"french":
+    "name": |-
+        BOULDENEU
+    "category": |-
+        Pokémon Vigne
+    "entry_text": |-
+        Il ligote sa proie en étirant ses
+        bras en lianes. Il ne craint pas de
+        perdre un bras face à un ennemi.
+"german":
+    "name": |-
+        TANGOLOSS
+    "category": |-
+        Ranke
+    "entry_text": |-
+        Es umwickelt Beute, indem es seine
+        Arme, die aus Ranken bestehen,
+        verlängert.
+"italian":
+    "name": |-
+        Tangrowth
+    "category": |-
+        Pokémon Liana
+    "entry_text": |-
+        Intrappola le prede con gli arti,
+        che sono costituiti da liane. Se ne
+        perde uno, non si turba affatto.
+"spanish":
+    "name": |-
+        Tangrowth
+    "category": |-
+        Pokémon Enredadera
+    "entry_text": |-
+        Atrapa a su presa desplegando las
+        ramas de sus brazos, que no le
+        importa perder ante depredadores.
+"japanese":
+    "name": |-
+        モジャンボ
+    "category": |-
+        ツルじょうポケモン
+    "entry_text": |-
+        しょくぶつの　ツルで　できた　うでを
+        のばして　えものを　からめとる。
+        うでを　たべられても　へっちゃら。

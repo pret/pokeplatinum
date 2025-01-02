@@ -1,0 +1,74 @@
+"height": !!int |-
+    2
+"weight": !!int |-
+    12
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    698
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    698
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    29
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    29
+"english":
+    "category": |-
+        Bud Pokémon
+    "entry_text": |-
+        Sensitive to changing temperature,
+        the bud is said to bloom when it
+        feels the sun’s warm touch.
+"french":
+    "name": |-
+        ROZBOUTON
+    "category": |-
+        Pokémon Bourgeon
+    "entry_text": |-
+        En hiver, son bourgeon se referme
+        pour résister au froid. Il s’ouvre
+        au printemps et libère du pollen.
+"german":
+    "name": |-
+        KNOSPI
+    "category": |-
+        Knospe
+    "entry_text": |-
+        Im Winter schließt es die Knospe.
+        Im Frühjahr öffnet es die Knospe
+        und gibt Pollen ab.
+"italian":
+    "name": |-
+        Budew
+    "category": |-
+        Pokémon Germoglio
+    "entry_text": |-
+        D’inverno chiude la sua gemma e
+        resiste al freddo. In primavera la
+        gemma si riapre e rilascia polline.
+"spanish":
+    "name": |-
+        Budew
+    "category": |-
+        Pokémon Brote
+    "entry_text": |-
+        En invierno cierra su capullo para
+        protegerse del frío. En primavera,
+        el capullo se abre y esparce polen.
+"japanese":
+    "name": |-
+        スボミ－
+    "category": |-
+        つぼみポケモン
+    "entry_text": |-
+        ふゆの　あいだは　つぼみを　とざして
+        さむさに　たえる。はるになると
+        つぼみを　ひらき　かふんを　とばす。

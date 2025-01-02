@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    570
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    365
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    365
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    26
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    26
+"english":
+    "category": |-
+        Shield Pokémon
+    "entry_text": |-
+        It is outstandingly armored. As a
+        result, it can eat grass and
+        berries without having to fight.
+"french":
+    "name": |-
+        DINOCLIER
+    "category": |-
+        Pokémon Bouclier
+    "entry_text": |-
+        Un Pokémon qui vivait dans la jungle
+        il y a 100 millions d’années. Son
+        visage est très dur.
+"german":
+    "name": |-
+        SCHILTERUS
+    "category": |-
+        Schutzschild
+    "entry_text": |-
+        Vor über 100 Millionen Jahren lebte
+        es in den Dschungeln. Seine
+        Gesichtshaut ist extrem hart.
+"italian":
+    "name": |-
+        Shieldon
+    "category": |-
+        Pokémon Schermo
+    "entry_text": |-
+        Pokémon che viveva nella giungla
+        circa 100 milioni di anni fa. Il suo
+        muso è molto resistente.
+"spanish":
+    "name": |-
+        Shieldon
+    "category": |-
+        Pokémon Escudo
+    "entry_text": |-
+        Vivía en la jungla hace unos 100
+        millones de años. Su protección
+        facial es tremendamente dura.
+"japanese":
+    "name": |-
+        タテトプス
+    "category": |-
+        シ－ルドポケモン
+    "entry_text": |-
+        およそ　１おくねんまえに
+        みつりんで　くらしていた　ポケモン。
+        かおの　ひふが　ひじょうに　かたい。

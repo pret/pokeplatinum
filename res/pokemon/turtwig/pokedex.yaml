@@ -1,0 +1,72 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    102
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    503
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    503
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    28
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    28
+"english":
+    "category": |-
+        Tiny Leaf Pokémon
+    "entry_text": |-
+        The shell on its back is made of
+        soil. On a very healthy TURTWIG,
+        the shell should feel moist.
+"french":
+    "name": |-
+        TORTIPOUSS
+    "category": |-
+        Pokémon Minifeuille
+    "entry_text": "La coquille sur son dos est faite\nde terre. Elle durcit lorsqu’il\
+        \ \ns’abreuve. Il vit le long des lacs."
+"german":
+    "name": |-
+        CHELAST
+    "category": |-
+        Winziglaub
+    "entry_text": |-
+        Es besteht aus Erdreich. Trinkt es
+        Wasser, verhärtet sich der Panzer
+        auf seinem Rücken. Es lebt an Seen.
+"italian":
+    "name": |-
+        Turtwig
+    "category": |-
+        Pokémon Fogliolina
+    "entry_text": |-
+        Il suo guscio, che è fatto di terra,
+        s’indurisce quando il Pokémon beve.
+        Vive sulle rive dei laghi.
+"spanish":
+    "name": |-
+        Turtwig
+    "category": |-
+        Pokémon Hojita
+    "entry_text": |-
+        La concha de su espalda es de
+        tierra y se endurece cuando bebe
+        agua. Vive cerca de los lagos.
+"japanese":
+    "name": |-
+        ナエトル
+    "category": |-
+        わかばポケモン
+    "entry_text": |-
+        つちで　できた　せなかの　こうらは
+        みずを　のむと　さらに　かたくなる。
+        みずうみの　ほとりで　くらしている。

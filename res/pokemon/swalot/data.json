@@ -119,47 +119,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 17,
-        "weight": 800,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 186,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 186,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 3,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 3,
-        "english": {
-            "category": "Poison Bag Pokémon",
-            "entry_text": "It swallows anything whole.\nIt sweats toxic fluids from its\nfollicles to douse foes."
-        },
-        "french": {
-            "name": "AVALTOUT",
-            "category": "Pokémon Sac Poison",
-            "entry_text": "Il avale tout en une bouchée. Ses\nfollicules sécrètent des fluides\ntoxiques qui endorment l’ennemi."
-        },
-        "german": {
-            "name": "SCHLUKWECH",
-            "category": "Giftbeutel",
-            "entry_text": "Es verschluckt alles in einem\nStück und sondert giftige Stoffe\nab, mit denen es Gegner besprüht. "
-        },
-        "italian": {
-            "name": "Swalot",
-            "category": "Pokémon Velenosacco",
-            "entry_text": "Inghiotte intera qualsiasi cosa.\nDai pori traspira un liquido tossico\ncon cui bagna i nemici."
-        },
-        "spanish": {
-            "name": "Swalot",
-            "category": "Pokémon Bolsa Ven.",
-            "entry_text": "Se traga cualquier cosa de una\npieza. Sus poros segregan fluidos\ntóxicos que dañan a sus enemigos."
-        },
-        "japanese": {
-            "name": "マルノ－ム",
-            "category": "どくぶくろポケモン",
-            "entry_text": "なんでも　まるのみしてしまう。\nけあなから　もうどくの　たいえきを\nぶんぴつして　てきに　あびせかける。"
-        }
     }
 }

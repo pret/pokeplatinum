@@ -112,47 +112,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 190,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 300,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 300,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 19,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 19,
-        "english": {
-            "category": "Volcano Pokémon",
-            "entry_text": "It intimidates foes with the heat\nof its flames. The fire burns more\nstrongly when it readies to fight."
-        },
-        "french": {
-            "name": "FEURISSON",
-            "category": "Pokémon Volcan",
-            "entry_text": "La chaleur de ses flammes intimide\nl’ennemi. Elles s’intensifient\nlorsqu’il se prépare à combattre."
-        },
-        "german": {
-            "name": "IGELAVAR",
-            "category": "Vulkan",
-            "entry_text": "Es bedroht seine Gegner mit der\nHitze seiner Flammen. Ist es\nkampfbereit, lodern sie stärker."
-        },
-        "italian": {
-            "name": "Quilava",
-            "category": "Pokémon Vulcano",
-            "entry_text": "Intimorisce i nemici con il calore\ndelle sue fiamme. Se è pronto a lot-\ntare, le vampate sono più ardenti."
-        },
-        "spanish": {
-            "name": "Quilava",
-            "category": "Pokémon Volcán",
-            "entry_text": "Intimida a sus enemigos con el\ncalor de sus llamas. Arde con\nmayor fuerza cuando va a luchar."
-        },
-        "japanese": {
-            "name": "マグマラシ",
-            "category": "かざんポケモン",
-            "entry_text": "ほのおの　ねつで　あいてを　いかく。\nたたかう　たいせいになると\nほのおの　いきおいが　ます。"
-        }
     }
 }

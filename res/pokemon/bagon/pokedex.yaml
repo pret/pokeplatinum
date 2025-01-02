@@ -1,0 +1,72 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    421
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    380
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    380
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Rock Head Pokémon
+    "entry_text": |-
+        Dreaming of one day flying, it
+        practices by leaping off cliffs
+        every day.
+"french":
+    "name": |-
+        DRABY
+    "category": |-
+        Pokémon Tête de Roc
+    "entry_text": "Il rêve de pouvoir voler un jour. \nPour l’heure, il s’entraîne\
+        \ en\nsautant du haut des falaises."
+"german":
+    "name": |-
+        KINDWURM
+    "category": |-
+        Steinhaupt
+    "entry_text": |-
+        Es träumt davon, eines Tages
+        fliegen zu können und springt daher
+        jeden Tag von hohen Klippen.
+"italian":
+    "name": |-
+        Bagon
+    "category": |-
+        Pokémon Rocciotesta
+    "entry_text": |-
+        Sogna di poter volare un giorno e,
+        pertanto, si allena regolarmente
+        gettandosi da alture.
+"spanish":
+    "name": |-
+        Bagon
+    "category": |-
+        Pokémon Cabeza Roca
+    "entry_text": |-
+        Sueña con volar algún día,
+        por lo que siempre practica
+        saltando desde acantilados.
+"japanese":
+    "name": |-
+        タツベイ
+    "category": |-
+        いしあたまポケモン
+    "entry_text": |-
+        おおぞらを　とぶことを　ゆめみて
+        まいにち　とぶ　れんしゅうのために
+        がけから　とびおりている。

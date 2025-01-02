@@ -1,0 +1,74 @@
+"height": !!int |-
+    7
+"weight": !!int |-
+    210
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    346
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    346
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    18
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    18
+"english":
+    "category": |-
+        Scuffle Pokémon
+    "entry_text": |-
+        It is famous for its eagerness to
+        fight and always nurses injuries
+        from challenging larger foes.
+"french":
+    "name": |-
+        DEBUGANT
+    "category": |-
+        Pokémon Bagarreur
+    "entry_text": |-
+        Il est réputé pour sa combativité.
+        Il se blesse toujours en défiant
+        des ennemis plus grands.
+"german":
+    "name": |-
+        RABAUZ
+    "category": |-
+        Racker
+    "entry_text": |-
+        Es ist bekannt für seine Kampfbe-
+        gierde. Es erholt sich ständig von
+        Verletzungen.
+"italian":
+    "name": |-
+        Tyrogue
+    "category": |-
+        Pokémon Baruffa
+    "entry_text": |-
+        È famoso per la sua brama di lotta.
+        Subisce sempre ferite dai nemici
+        più forti di lui che sfida.
+"spanish":
+    "name": |-
+        Tyrogue
+    "category": |-
+        Pokémon Peleón
+    "entry_text": |-
+        Famoso por su disposición a la
+        lucha. Siempre tiene heridas por
+        luchar con enemigos más grandes.
+"japanese":
+    "name": |-
+        バルキ－
+    "category": |-
+        けんかポケモン
+    "entry_text": |-
+        けんかっぱやいことで　ゆうめい。
+        じぶんよりも　おおきな　あいてに
+        いどみかかるので　きずが　たえない。

@@ -1,0 +1,72 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    19
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    464
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    464
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65531
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65531
+"english":
+    "category": |-
+        Whiskers Pokémon
+    "entry_text": |-
+        Its slimy body is hard to grasp. In
+        one region, it is said to have been
+        born from hardened mud.
+"french":
+    "name": |-
+        BARLOCHE
+    "category": |-
+        Pokémon Barbillon
+    "entry_text": "Il enduit son corps d’une \nsubstance visqueuse pour glisser\n\
+        et se libérer quand on l’agrippe."
+"german":
+    "name": |-
+        SCHMERBE
+    "category": |-
+        Barthaar
+    "entry_text": |-
+        Es bedeckt seinen Körper mit einer
+        schleimigen Substanz und kann
+        sich so aus Umklammerungen winden.
+"italian":
+    "name": |-
+        Barboach
+    "category": |-
+        Pokémon Baffetti
+    "entry_text": |-
+        Il suo corpo è ricoperto da una
+        pellicola viscida, che gli permette
+        di sgusciare via, se afferrato.
+"spanish":
+    "name": |-
+        Barboach
+    "category": |-
+        Pokémon Bigotudo
+    "entry_text": |-
+        Recubre su cuerpo de una película
+        viscosa que le permite escapar si
+        alguien lo agarra.
+"japanese":
+    "name": |-
+        ドジョッチ
+    "category": |-
+        ひげうおポケモン
+    "entry_text": |-
+        ぜんしんが　ヌルヌルの　たいえきで
+        おおわれているため　つかまっても
+        ぬるりと　ぬけだすことが　できる。

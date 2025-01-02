@@ -121,47 +121,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 8,
-        "weight": 365,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 316,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 316,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Virtual Pokémon",
-            "entry_text": "A man-made Pokémon created using\nadvanced scientific means. It can\nmove freely in cyberspace."
-        },
-        "french": {
-            "name": "PORYGON",
-            "category": "Pokémon Virtuel",
-            "entry_text": "Le premier Pokémon artificiel au\nmonde. Il a le pouvoir d’arpenter\nl’espace électronique."
-        },
-        "german": {
-            "name": "PORYGON",
-            "category": "Virtuell",
-            "entry_text": "Das erste künstlich erzeugte PKMN\nder Welt. Es kann durch\nelektronischen Raum reisen."
-        },
-        "italian": {
-            "name": "Porygon",
-            "category": "Pokémon Virtuale",
-            "entry_text": "Il primo Pokémon al mondo creato\nartificialmente. Riesce a muoversi\nliberamente nel ciberspazio."
-        },
-        "spanish": {
-            "name": "Porygon",
-            "category": "Pokémon Virtual",
-            "entry_text": "Es el primer Pokémon creado de\nforma artificial. Puede viajar por\nel ciberespacio."
-        },
-        "japanese": {
-            "name": "ポリゴン",
-            "category": "バ－チャルポケモン",
-            "entry_text": "せかいで　はじめて　じんこうてきに\nつくりだされた　ポケモン。\nでんしくうかんを　いどうできる。"
-        }
     }
 }

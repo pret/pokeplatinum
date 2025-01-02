@@ -104,47 +104,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 40,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 482,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 482,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 29,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 29,
-        "english": {
-            "category": "Bivalve Pokémon",
-            "entry_text": "It swims backward by opening and\nclosing its two shells. Its large\ntongue is always kept hanging out."
-        },
-        "french": {
-            "name": "KOKIYAS",
-            "category": "Pokémon Bivalve",
-            "entry_text": "Il nage à reculons en ouvrant et en\nrefermant ses deux coquilles. Il\nlaisse traîner sa large langue."
-        },
-        "german": {
-            "name": "MUSCHAS",
-            "category": "Muschel",
-            "entry_text": "Es schwimmt rückwärts, indem es\nseine Schale öffnet und schließt.\nEs zeigt immer seine breite Zunge."
-        },
-        "italian": {
-            "name": "Shellder",
-            "category": "Pokémon Bivalve",
-            "entry_text": "Nuota all’indietro aprendo e\nchiudendo le due valve. La lingua\nè sempre fuori a penzoloni."
-        },
-        "spanish": {
-            "name": "Shellder",
-            "category": "Pokémon Bivalvo",
-            "entry_text": "Nada hacia atrás abriendo y\ncerrando su concha. Su gran\nlengua siempre queda colgando."
-        },
-        "japanese": {
-            "name": "シェルダ－",
-            "category": "２まいがいポケモン",
-            "entry_text": "２まいの　カラを　あけしめすることで\nうしろむきに　およぐ。どんなときでも\nおおきな　ベロは　だしっぱなし。"
-        }
     }
 }

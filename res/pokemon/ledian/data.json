@@ -121,47 +121,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 356,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 238,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 238,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65529,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65529,
-        "english": {
-            "category": "Five Star Pokémon",
-            "entry_text": "It uses starlight as energy. When\nmore stars appear at night, the\npatterns on its back grow larger."
-        },
-        "french": {
-            "name": "COXYCLAQUE",
-            "category": "Pokémon 5 Etoiles",
-            "entry_text": "Il tire sa force de la lumière des\nétoiles. Plus il y en a et plus ses\nmotifs dorsaux sont grands."
-        },
-        "german": {
-            "name": "LEDIAN",
-            "category": "Fünf-Punkt",
-            "entry_text": "Es zieht Energie aus dem Licht der\nSterne. Je mehr Sterne zu sehen\nsind, desto größer ist sein Muster."
-        },
-        "italian": {
-            "name": "Ledian",
-            "category": "Pokémon Pentastra",
-            "entry_text": "La luce delle stelle è la sua fonte\nd’energia. Un cielo più stellato fa\ningrandire i disegni sul suo dorso."
-        },
-        "spanish": {
-            "name": "Ledian",
-            "category": "Pokémon 5estrellas",
-            "entry_text": "Se nutre de la luz de las estrellas.\nCuanto más estrellada es la noche,\nmás crecen los dibujos de su lomo."
-        },
-        "japanese": {
-            "name": "レディアン",
-            "category": "いつつぼしポケモン",
-            "entry_text": "ほしあかりを　エネルギ－にする。\nよぞらの　ほしの　かずが　ふえると\nせなかの　もようが　おおきくなる。"
-        }
     }
 }

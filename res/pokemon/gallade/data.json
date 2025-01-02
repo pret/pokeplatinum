@@ -146,47 +146,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 16,
-        "weight": 520,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 248,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 248,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 4,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 4,
-        "english": {
-            "category": "Blade Pokémon",
-            "entry_text": "When trying to protect someone,\nit extends its elbows as if they\nwere swords and fights savagely."
-        },
-        "french": {
-            "name": "GALLAME",
-            "category": "Pokémon Lame",
-            "entry_text": "Il frappe avec les grandes lames à\nses coudes. Son talent d’escrimeur\nn’a d’égal que sa courtoisie."
-        },
-        "german": {
-            "name": "GALAGLADI",
-            "category": "Klinge",
-            "entry_text": "Es kämpft, indem es die Schwerter\nan seinen Ellbogen verlängert. Es\nist ein Meister des Kampfes."
-        },
-        "italian": {
-            "name": "Gallade",
-            "category": "Pokémon Lama",
-            "entry_text": "Pokémon elegante e ottimo\nspadaccino, combatte allungando le\nlame che ha sui gomiti."
-        },
-        "spanish": {
-            "name": "Gallade",
-            "category": "Pokémon Cuchilla",
-            "entry_text": "Lucha con las espadas que salen\nde sus codos. Es un maestro de\nla cortesía y la esgrima."
-        },
-        "japanese": {
-            "name": "エルレイド",
-            "category": "やいばポケモン",
-            "entry_text": "のびちぢみする　ひじの　かたなで\nたたかう。いあいの　めいしゅ。\nれいぎ　ただしい　ポケモン。"
-        }
     }
 }

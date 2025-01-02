@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    52
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    405
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    405
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    28
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    28
+"english":
+    "category": |-
+        Penguin Pokémon
+    "entry_text": |-
+        A poor walker, it often falls down.
+        However, its strong pride makes it
+        puff up its chest without a care.
+"french":
+    "name": |-
+        TIPLOUF
+    "category": |-
+        Pokémon Pingouin
+    "entry_text": |-
+        Il est fier et déteste accepter
+        la nourriture qu’on lui offre. Son
+        pelage épais le protège du froid.
+"german":
+    "name": |-
+        PLINFA
+    "category": |-
+        Pinguin
+    "entry_text": |-
+        Es ist sehr stolz und nimmt daher
+        kein Futter von anderen an. Seine
+        dicken Daunen schützen vor Kälte.
+"italian":
+    "name": |-
+        Piplup
+    "category": |-
+        Pokémon Pinguino
+    "entry_text": |-
+        È molto orgoglioso e odia accettare
+        cibo dalla gente. Le fitte piume lo
+        proteggono dal freddo.
+"spanish":
+    "name": |-
+        Piplup
+    "category": |-
+        Pokémon Pingüino
+    "entry_text": |-
+        Es muy orgulloso, por lo que odia
+        aceptar comida de la gente. Su
+        grueso plumón le protege del frío.
+"japanese":
+    "name": |-
+        ポッチャマ
+    "category": |-
+        ペンギンポケモン
+    "entry_text": |-
+        プライドが　たかく　ひとから
+        たべものを　もらう　ことを　きらう。
+        ながい　うぶげが　さむさを　ふせぐ。

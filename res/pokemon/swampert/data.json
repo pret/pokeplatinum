@@ -125,47 +125,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 819,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 242,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 242,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 4,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 4,
-        "english": {
-            "category": "Mud Fish Pokémon",
-            "entry_text": "It can swim while towing a large\nship. It bashes down foes with a\nswing of its thick arms."
-        },
-        "french": {
-            "name": "LAGGRON",
-            "category": "Pokémon Poissonboue",
-            "entry_text": "Il peut traîner un grand bateau en\nnageant. Il assomme l’ennemi d’un\ngrand coup de ses bras épais."
-        },
-        "german": {
-            "name": "SUMPEX",
-            "category": "Lehmhüpfer",
-            "entry_text": "Es kann im Schwimmen ein großes\nSchiff ziehen. Seine Gegner schlägt\nes mit Schlägen seiner Arme zurück."
-        },
-        "italian": {
-            "name": "Swampert",
-            "category": "Pokémon Fango Pesce",
-            "entry_text": "Nuotando riesce a trainare una\ngrande nave. Con le braccia vigoro-\nse abbatte i nemici in un sol colpo."
-        },
-        "spanish": {
-            "name": "Swampert",
-            "category": "Pokémon Pez Lodo",
-            "entry_text": "Puede nadar y arrastrar un barco\ngrande. Golpea a sus enemigos\ncon sus gruesos brazos."
-        },
-        "japanese": {
-            "name": "ラグラ－ジ",
-            "category": "ぬまうおポケモン",
-            "entry_text": "おおがたせんを　ひっぱって　およぐ\nパワ－の　もちぬし。ふとい　うでの\nひとふりで　あいてを　たたきのめす。"
-        }
     }
 }

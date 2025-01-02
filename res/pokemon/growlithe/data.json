@@ -111,47 +111,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 7,
-        "weight": 190,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 290,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 290,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 20,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 20,
-        "english": {
-            "category": "Puppy Pokémon",
-            "entry_text": "A Pokémon with a loyal nature.\nIt will remain motionless until it is\ngiven an order by its Trainer."
-        },
-        "french": {
-            "name": "CANINOS",
-            "category": "Pokémon Chiot",
-            "entry_text": "Un Pokémon très loyal. Il\nrestera immobile jusqu’à ce que\nson Dresseur lui donne un ordre."
-        },
-        "german": {
-            "name": "FUKANO",
-            "category": "Hund",
-            "entry_text": "Ein loyales Pokémon. Es wird erst\ndann aktiv, wenn sein Trainer ihm\nAnweisungen gegeben hat."
-        },
-        "italian": {
-            "name": "Growlithe",
-            "category": "Pokémon Cagnolino",
-            "entry_text": "Un Pokémon fedele per natura.\nRimane immobile finché non\nriceve ordini dal suo Allenatore."
-        },
-        "spanish": {
-            "name": "Growlithe",
-            "category": "Pokémon Perrito",
-            "entry_text": "Pokémon de naturaleza leal.\nPermanece quieto en espera\nde órdenes de su entrenador."
-        },
-        "japanese": {
-            "name": "ガ－ディ",
-            "category": "こいぬポケモン",
-            "entry_text": "ちゅうじつな　せいかくの　ポケモン。\nトレ－ナ－の　めいれいが　あるまでは\nいっぽも　うごかない。"
-        }
     }
 }

@@ -53,47 +53,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 50,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 378,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 378,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 1,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 1,
-        "english": {
-            "category": "Symbol Pokémon",
-            "entry_text": "When alone, nothing happens.\nHowever, if there are two or more,\nan odd power is said to emerge."
-        },
-        "french": {
-            "name": "ZARBI",
-            "category": "Pokémon Symbolique",
-            "entry_text": "Il rappelle une écriture ancienne.\nReste à savoir qui du langage ou de\nZARBI est apparu en premier."
-        },
-        "german": {
-            "name": "ICOGNITO",
-            "category": "Symbol",
-            "entry_text": "Seine Form sieht aus wie antike\nSchrift. Was war zuerst da? Die\nSprache oder ICOGNITO?"
-        },
-        "italian": {
-            "name": "Unown",
-            "category": "Pokémon Simbolo",
-            "entry_text": "È a forma di lettera di un antico\nalfabeto. È un mistero chi sia ap-\nparso prima, l’alfabeto o UNOWN."
-        },
-        "spanish": {
-            "name": "Unown",
-            "category": "Pokémon Símbolo",
-            "entry_text": "Tienen forma de letras antiguas.\nSe desconoce qué fue antes: si\nla escritura o los UNOWN."
-        },
-        "japanese": {
-            "name": "アンノ－ン",
-            "category": "シンボルポケモン",
-            "entry_text": "こだいぶんめいの　もじに　にている。\nもじが　さきか　アンノ－ンが　さきか\nせかいの　７ふしぎの　ひとつ。"
-        }
     }
 }

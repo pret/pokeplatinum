@@ -123,47 +123,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 280,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 14,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 14,
-        "english": {
-            "category": "Wily Pokémon",
-            "entry_text": "The sound of its grass flute makes\nits listeners uneasy. It lives deep\nin forests."
-        },
-        "french": {
-            "name": "PIFEUIL",
-            "category": "Pokémon Malin",
-            "entry_text": "Le son de sa flûte d’herbe\ndéstabilise l’auditeur. Il vit au \nplus profond des forêts."
-        },
-        "german": {
-            "name": "BLANAS",
-            "category": "Hinterlist",
-            "entry_text": "Der Ton seiner Grasflöte\nbeunruhigt die, die ihn hören.\nEs lebt tief in den Wäldern."
-        },
-        "italian": {
-            "name": "Nuzleaf",
-            "category": "Pokémon Scaltro",
-            "entry_text": "Il fischio del suo flauto di foglia\nmette a disagio chi lo sente.\nVive nelle foreste più fitte."
-        },
-        "spanish": {
-            "name": "Nuzleaf",
-            "category": "Pokémon Astuto",
-            "entry_text": "Cuando usa la hoja de su cabeza\ncomo flauta asusta a la gente. Vive\nen lo más profundo de los bosques."
-        },
-        "japanese": {
-            "name": "コノハナ",
-            "category": "いじわるポケモン",
-            "entry_text": "コノハナが　かなでる　くさぶえの\nねいろは　ひとを　ふあんにさせる。\nもりの　おくに　すんでいる。"
-        }
     }
 }

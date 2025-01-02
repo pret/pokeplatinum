@@ -101,47 +101,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 40,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 358,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 358,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 24,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 24,
-        "english": {
-            "category": "Acorn Pokémon",
-            "entry_text": "When it dangles from a tree\nbranch, it looks just like an acorn.\nIt enjoys scaring other Pokémon."
-        },
-        "french": {
-            "name": "GRAINIPIOT",
-            "category": "Pokémon Gland",
-            "entry_text": "Il ressemble à un gland pendu\nà une branche. Il adore effrayer\nles autres Pokémon."
-        },
-        "german": {
-            "name": "SAMURZEL",
-            "category": "Eichelnuss",
-            "entry_text": "Es sieht aus wie eine Eichel, die am\nBaum hängt. Es liebt es, andere\nPKMN zu erschrecken."
-        },
-        "italian": {
-            "name": "Seedot",
-            "category": "Pokémon Ghianda",
-            "entry_text": "Quando si attacca a un ramo,\nsembra una vera ghianda. Si diverte\na spaventare gli altri Pokémon."
-        },
-        "spanish": {
-            "name": "Seedot",
-            "category": "Pokémon Bellota",
-            "entry_text": "Cuando cuelga de las ramas\nparece una bellota. Le encanta\nasustar a otros Pokémon."
-        },
-        "japanese": {
-            "name": "タネボ－",
-            "category": "どんぐりポケモン",
-            "entry_text": "えだに　ぶらさがっていると\nきのみに　そっくり。ついばもうとした\nポケモンを　おどろかせて　よろこぶ。"
-        }
     }
 }

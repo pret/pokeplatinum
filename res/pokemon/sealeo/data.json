@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 876,
-        "body_shape": "SHAPE_FINS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 15,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 15,
-        "english": {
-            "category": "Ball Roll Pokémon",
-            "entry_text": "It habitually spins things on its\nnose. By doing so, it learns\ntextures and odors."
-        },
-        "french": {
-            "name": "PHOGLEUR",
-            "category": "Pokémon Roule Boule",
-            "entry_text": "Il fait souvent tourner des objets\nsur son museau pour connaître\nleur odeur et leur texture."
-        },
-        "german": {
-            "name": "SEEJONG",
-            "category": "Spielball",
-            "entry_text": "Es balanciert Dinge auf seiner\nNase. Dabei lernt es etwas über die\nBeschaffenheit und den Geruch."
-        },
-        "italian": {
-            "name": "Sealeo",
-            "category": "Pokémon Rotapalla",
-            "entry_text": "Fa roteare oggetti sul naso\nper controllarne l’odore e la\nconsistenza."
-        },
-        "spanish": {
-            "name": "Sealeo",
-            "category": "Pokémon Rodabola",
-            "entry_text": "Suele hacer girar objetos en su\nnariz. De esta forma aprende\ntexturas y olores."
-        },
-        "japanese": {
-            "name": "トドグラ－",
-            "category": "たままわしポケモン",
-            "entry_text": "なんでも　はなの　うえで　まわす\nクセを　もつ。まわしながら　においや\nかんしょくを　おぼえるのだ。"
-        }
     }
 }

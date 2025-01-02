@@ -125,47 +125,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 216,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 324,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 324,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 14,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 14,
-        "english": {
-            "category": "Wood Gecko Pokémon",
-            "entry_text": "It lives in dense jungles. While \nclosing in on its prey, it leaps\nfrom branch to branch."
-        },
-        "french": {
-            "name": "MASSKO",
-            "category": "Pokémon Bois Gecko",
-            "entry_text": "Il vit dans les jungles denses. \nIl saute de branche en branche\npour approcher de sa proie."
-        },
-        "german": {
-            "name": "REPTAIN",
-            "category": "Waldgecko",
-            "entry_text": "Es lebt im dichten Dschungel.\nEs springt von Ast zu Ast, wenn es\nsich einer Beute nähert."
-        },
-        "italian": {
-            "name": "Grovyle",
-            "category": "Pokémon Legnogeco",
-            "entry_text": "Vive in giungle fitte. Si avvicina\nalle prede saltando di ramo in ramo."
-        },
-        "spanish": {
-            "name": "Grovyle",
-            "category": "Pokémon Geco Bosque",
-            "entry_text": "Vive en selvas frondosas. Salta de\nrama en rama para acercarse a\nsus presas."
-        },
-        "japanese": {
-            "name": "ジュプトル",
-            "category": "もりトカゲポケモン",
-            "entry_text": "みつりんに　せいそくする。\nえだから　えだへ　とびうつりながら\nいどうして　えものに　せっきんする。"
-        }
     }
 }

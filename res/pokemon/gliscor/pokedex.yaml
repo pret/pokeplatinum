@@ -1,0 +1,72 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    425
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    296
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    292
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    12
+"pokemon_pos_f": !!int |-
+    0
+"trainer_pos_m": !!int |-
+    10
+"pokemon_pos_m": !!int |-
+    0
+"english":
+    "category": |-
+        Fang Scorp Pokémon
+    "entry_text": |-
+        If it succeeds in catching even a
+        faint breeze properly, it can circle
+        the globe without flapping once.
+"french":
+    "name": |-
+        SCORVOL
+    "category": |-
+        Pokémon Scorpicroc
+    "entry_text": "Il guette sa proie, pendu à une\nbranche la tête en bas, et s’en\n\
+        saisit à la première occasion. "
+"german":
+    "name": |-
+        SKORGRO
+    "category": |-
+        Zahnskorpi
+    "entry_text": |-
+        Es hängt kopfüber von einem Ast
+        und beobachtet seine Beute. Bei
+        Gelegenheit stürzt es sich auf sie.
+"italian":
+    "name": |-
+        Gliscor
+    "category": |-
+        Pokémon Scorpidente
+    "entry_text": |-
+        Sta appeso ai rami con la testa in
+        giù. Alla prima occasione, si butta a
+        capofitto sulla preda.
+"spanish":
+    "name": |-
+        Gliscor
+    "category": |-
+        Pokémon Colmicorpio
+    "entry_text": |-
+        Espera a sus presas colgado de
+        una rama bocabajo. Cuando llega
+        su oportunidad, se lanza en picado.
+"japanese":
+    "name": |-
+        グライオン
+    "category": |-
+        キバさそりポケモン
+    "entry_text": |-
+        しっぽで　きのえだに　ぶらさがり
+        えものを　かんさつする。すきを
+        みて　じょうくうから　おそいかかる。

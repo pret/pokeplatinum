@@ -130,47 +130,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 203,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 282,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 282,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 7,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 7,
-        "english": {
-            "category": "Long Tail Pokémon",
-            "entry_text": "Split into two, the tails are so\nadept at handling and doing things,\nAMBIPOM rarely uses its hands."
-        },
-        "french": {
-            "name": "CAPIDEXTRE",
-            "category": "Pokémon Longqueue",
-            "entry_text": "Il se nourrit de noix qu’il épluche\navec ses deux queues habiles. Il\nutilise de moins en moins ses bras."
-        },
-        "german": {
-            "name": "AMBIDIFFEL",
-            "category": "Langschweif",
-            "entry_text": "Wenn es hungrig ist, knackt es\nNüsse mit seinen beiden Schweifen.\nNur selten verwendet es die Arme."
-        },
-        "italian": {
-            "name": "Ambipom",
-            "category": "Pokémon Lungacoda",
-            "entry_text": "Si nutre di nocciole che sbuccia con\nle due code. Raramente usa le sue\nvere braccia."
-        },
-        "spanish": {
-            "name": "Ambipom",
-            "category": "Pokémon Cola Larga",
-            "entry_text": "Para comer, rompe nueces\ncon sus dos colas. Raras\nveces utiliza sus brazos."
-        },
-        "japanese": {
-            "name": "エテボ－ス",
-            "category": "おながポケモン",
-            "entry_text": "２ほんの　しっぽで　きのみの　からを\nきように　むいて　たべる。ほんものの\nうでは　ほとんど　つかわなくなった。"
-        }
     }
 }

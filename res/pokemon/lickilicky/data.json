@@ -130,47 +130,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 17,
-        "weight": 1400,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 225,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 225,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65535,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65535,
-        "english": {
-            "category": "Licking Pokémon",
-            "entry_text": "The long tongue is always soggy\nwith slobber. The saliva contains\na solvent that causes numbness."
-        },
-        "french": {
-            "name": "COUDLANGUE",
-            "category": "Pokémon Lécheur",
-            "entry_text": "Il enroule tout dans sa langue\nextensible. Ceux qui l’approchent\nfinissent couverts de bave."
-        },
-        "german": {
-            "name": "SCHLURPLEK",
-            "category": "Schlecker",
-            "entry_text": "Es umklammert Dinge mit seiner\ndehnbaren Zunge. Kommt man ihm zu\nnahe, wird man eingespeichelt."
-        },
-        "italian": {
-            "name": "Lickilicky",
-            "category": "Pokémon Linguaccia",
-            "entry_text": "Avvolge ogni cosa con la sua lingua\nallungabile. Chi si avvicina troppo,\nsi ritroverà tutto bagnato di bava."
-        },
-        "spanish": {
-            "name": "Lickilicky",
-            "category": "Pokémon Lametazo",
-            "entry_text": "Agarra cosas con su lengua\nextensible. Si te acercas mucho,\nte deja lleno de babas."
-        },
-        "japanese": {
-            "name": "ベロベルト",
-            "category": "なめまわしポケモン",
-            "entry_text": "ぐんぐん　のびる　ベロを　なんにでも\nまきつける。うかつに　ちかよると\nだえきで　べとべとに　されてしまう。"
-        }
     }
 }

@@ -111,47 +111,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 163,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 326,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 326,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 23,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 23,
-        "english": {
-            "category": "Whisper Pokémon",
-            "entry_text": "Usually, its cries are like quiet\nmurmurs. If frightened, it shrieks\nat the same volume as a jet plane."
-        },
-        "french": {
-            "name": "CHUCHMUR",
-            "category": "Pokémon Chuchoteur",
-            "entry_text": "En temps normal, son cri est pareil\nà un murmure. Effrayé, il atteint le\nvolume d’un avion à réaction."
-        },
-        "german": {
-            "name": "FLURMEL",
-            "category": "Flüster",
-            "entry_text": "Normalerweise klingen seine Rufe\nwie Gemurmel. Hat es aber Angst,\nist es so laut wie ein Flugzeug."
-        },
-        "italian": {
-            "name": "Whismur",
-            "category": "Pokémon Sussurro",
-            "entry_text": "Di solito ha una voce molto tenue,\nma se si spaventa, emette un suono\nassordante quanto un jet."
-        },
-        "spanish": {
-            "name": "Whismur",
-            "category": "Pokémon Susurro",
-            "entry_text": "Suele murmurar a un volumen casi\ninaudible, pero cuando se asusta\ngrita con el volumen de un reactor."
-        },
-        "japanese": {
-            "name": "ゴニョニョ",
-            "category": "ささやきポケモン",
-            "entry_text": "ふだんは　ささやくような　なきごえ。\nふあんになると　ジェットきと　おなじ\nおんりょうで　なきつづける。"
-        }
     }
 }

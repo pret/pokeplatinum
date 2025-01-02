@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    75
+"body_shape": |-
+    SHAPE_TENTACLES
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    388
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    388
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    28
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    28
+"english":
+    "category": |-
+        Spiral Pokémon
+    "entry_text": |-
+        A Pokémon that was resurrected
+        from a fossil using modern science.
+        It swam in ancient seas.
+"french":
+    "name": |-
+        AMONITA
+    "category": |-
+        Pokémon Spirale
+    "entry_text": |-
+        Un Pokémon ramené à la vie par
+        la science à partir d’un fossile. Il
+        peuplait autrefois les mers.
+"german":
+    "name": |-
+        AMONITAS
+    "category": |-
+        Spirale
+    "entry_text": |-
+        Dieses PKMN wurde von der modernen
+        Wissenschaft aus einem Fossil ge-
+        schaffen. Es lebte im urzeitl. Meer.
+"italian":
+    "name": |-
+        Omanyte
+    "category": |-
+        Pokémon Spirale
+    "entry_text": |-
+        Pokémon rigenerato da un fossile
+        grazie alla scienza moderna.
+        Nuotava nei mari ancestrali.
+"spanish":
+    "name": |-
+        Omanyte
+    "category": |-
+        Pokémon Espiral
+    "entry_text": |-
+        Fue recuperado a partir de un fósil
+        gracias a la ciencia moderna.
+        Solía nadar en antiguos mares.
+"japanese":
+    "name": |-
+        オムナイト
+    "category": |-
+        うずまきポケモン
+    "entry_text": |-
+        げんだいの　すぐれた　かがくりょくで
+        かせきから　ふっかつした　ポケモン。
+        こだいの　うみを　およいでいた。

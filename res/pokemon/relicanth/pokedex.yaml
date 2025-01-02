@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    234
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    276
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    276
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65529
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65529
+"english":
+    "category": |-
+        Longevity Pokémon
+    "entry_text": |-
+        A rare Pokémon discovered during
+        a deep-sea exploration. It has not
+        changed in over 100 million years.
+"french":
+    "name": |-
+        RELICANTH
+    "category": |-
+        Pokémon Longévité
+    "entry_text": |-
+        Un Pokémon rare aperçu lors d’une
+        exploration sous-marine. Il n’a pas
+        évolué depuis 100 millions d’années.
+"german":
+    "name": |-
+        RELICANTH
+    "category": |-
+        Bestand
+    "entry_text": |-
+        Tiefseeforscher fanden dieses
+        seltene PKMN, das sich in 100 Mio.
+        Jahren nicht verändert hat.
+"italian":
+    "name": |-
+        Relicanth
+    "category": |-
+        Pokémon Longevità
+    "entry_text": |-
+        Un Pokémon raro scoperto durante
+        un’esplorazione del mare profondo.
+        È immutato da 100 milioni di anni.
+"spanish":
+    "name": |-
+        Relicanth
+    "category": |-
+        Pokémon Longevo
+    "entry_text": |-
+        Un Pokémon raro descubierto en una
+        exploración marina. No ha cambiado
+        en más de 100 millones de años.
+"japanese":
+    "name": |-
+        ジ－ランス
+    "category": |-
+        ちょうじゅポケモン
+    "entry_text": |-
+        しんかいちょうさで　はっけんされた
+        めずらしい　ポケモン。１おくねんの
+        あいだ　すがたが　かわっていない。

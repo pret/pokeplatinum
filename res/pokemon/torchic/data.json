@@ -111,47 +111,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 25,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 508,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 508,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 27,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 27,
-        "english": {
-            "category": "Chick Pokémon",
-            "entry_text": "A fire burns inside, so it feels\nvery warm to hug. It launches\nfireballs of 1,800 degrees F."
-        },
-        "french": {
-            "name": "POUSSIFEU",
-            "category": "Pokémon Poussin",
-            "entry_text": "Ses câlins réchauffent car il\nrenferme une fournaise. Il envoie\ndes boules de feu à 1 000 °C."
-        },
-        "german": {
-            "name": "FLEMMLI",
-            "category": "Küken",
-            "entry_text": "In seinem Inneren lodert ein Feuer.\nEs schleudert 1 000 Grad heiße\nFeuerbälle."
-        },
-        "italian": {
-            "name": "Torchic",
-            "category": "Pokémon Pulcino",
-            "entry_text": "Nel suo corpo brucia una fiamma e\nabbracciandolo si avverte calore.\nLancia palle di fuoco a 1000°C."
-        },
-        "spanish": {
-            "name": "Torchic",
-            "category": "Pokémon Polluelo",
-            "entry_text": "En su interior arde una llama que\nmantiene su cuerpo caliente. Tira\nbolas de fuego a 1000 grados."
-        },
-        "japanese": {
-            "name": "アチャモ",
-            "category": "ひよこポケモン",
-            "entry_text": "たいないで　ほのおが　もえているので\nだきしめると　とても　あたたかい。\n１０００どの　ひのたまを　とばす。"
-        }
     }
 }

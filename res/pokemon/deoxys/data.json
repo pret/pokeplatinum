@@ -139,47 +139,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 17,
-        "weight": 608,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 2,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 2,
-        "english": {
-            "category": "DNA Pokémon",
-            "entry_text": "An alien virus that fell to earth\non a meteor underwent a DNA\nmutation to become this Pokémon."
-        },
-        "french": {
-            "name": "DEOXYS",
-            "category": "Pokémon ADN",
-            "entry_text": "Il vient d’un virus extraterrestre\narrivé avec une météorite et ayant\nsubi une mutation génétique."
-        },
-        "german": {
-            "name": "DEOXYS",
-            "category": "DNS",
-            "entry_text": "Ein außerirdischer Virus kam mit\neinem Meteor auf die Erde. Seine\nDNA mutierte. So entstand DEOXYS."
-        },
-        "italian": {
-            "name": "Deoxys",
-            "category": "Pokémon DNA",
-            "entry_text": "È il risultato della mutazione gene-\ntica di un virus alieno, giunto sulla\nterra con un meteorite."
-        },
-        "spanish": {
-            "name": "Deoxys",
-            "category": "Pokémon ADN",
-            "entry_text": "Surgió a raíz de la mutación de\nADN de un virus alienígena que\ncayó a la Tierra en un meteorito."
-        },
-        "japanese": {
-            "name": "デオキシス",
-            "category": "ＤＮＡポケモン",
-            "entry_text": "いんせきに　ふちゃくしていた\nうちゅうウイルスの　ＤＮＡが\nへんいして　うまれた　ポケモン。"
-        }
     }
 }

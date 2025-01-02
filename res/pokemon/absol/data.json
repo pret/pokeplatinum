@@ -141,47 +141,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 470,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 300,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 300,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 14,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 14,
-        "english": {
-            "category": "Disaster Pokémon",
-            "entry_text": "Rumored to sense disasters with its\nhorn, it became a target. It fled\ndeep into the mountains."
-        },
-        "french": {
-            "name": "ABSOL",
-            "category": "Pokémon Désastre",
-            "entry_text": "Il pressent les catastrophes et\nn’apparaît aux gens que pour les\nprévenir d’un danger imminent."
-        },
-        "german": {
-            "name": "ABSOL",
-            "category": "Desaster",
-            "entry_text": "Es spürt drohende Katastrophen\nund erscheint nur dann, wenn es\nandere vor der Gefahr warnen will."
-        },
-        "italian": {
-            "name": "Absol",
-            "category": "Pokémon Catastrofe",
-            "entry_text": "Percepisce l’arrivo di disastri na-\nturali e appare alla gente solo per\navvisarla del pericolo imminente."
-        },
-        "spanish": {
-            "name": "Absol",
-            "category": "Pokémon Catástrofe",
-            "entry_text": "Presiente desastres inminentes\ny se aparece a la gente para\nadvertir del peligro."
-        },
-        "japanese": {
-            "name": "アブソル",
-            "category": "わざわいポケモン",
-            "entry_text": "さいがいの　よかんを　かんじとる。\nきけんを　しらせる　ときだけ\nひとまえに　あらわれるという。"
-        }
     }
 }

@@ -123,47 +123,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 125,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 266,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 266,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 13,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 13,
-        "english": {
-            "category": "Marionette Pokémon",
-            "entry_text": "A doll that became a Pokémon over\nits grudge from being junked. It\nseeks the child that disowned it."
-        },
-        "french": {
-            "name": "BRANETTE",
-            "category": "Pokémon Marionnette",
-            "entry_text": "Une poupée mue par la tristesse qui\nla ronge depuis qu’on l’a délaissée.\nElle recherche son propriétaire."
-        },
-        "german": {
-            "name": "BANETTE",
-            "category": "Marionette",
-            "entry_text": "Dieses PKMN war eine Puppe, die\nweggeworfen wurde. Es sucht nun\ndas Kind, das dies getan hat."
-        },
-        "italian": {
-            "name": "Banette",
-            "category": "Pokémon Marionetta",
-            "entry_text": "Un peluche divenuto Pokémon per la\nrabbia di essere stato buttato via\nda un bimbo, di cui è alla ricerca."
-        },
-        "spanish": {
-            "name": "Banette",
-            "category": "Pokémon Marioneta",
-            "entry_text": "Este muñeco se convirtió en un\nPokémon cuando lo tiraron a la\nbasura. Busca a su antiguo dueño."
-        },
-        "japanese": {
-            "name": "ジュペッタ",
-            "category": "ぬいぐるみポケモン",
-            "entry_text": "すてられた　ぬいぐるみに　おんねんが\nやどり　ポケモンになった。じぶんを\nすてた　こどもを　さがしている。"
-        }
     }
 }

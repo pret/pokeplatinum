@@ -1,0 +1,74 @@
+"height": !!int |-
+    17
+"weight": !!int |-
+    795
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    241
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    241
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    3
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    3
+"english":
+    "category": |-
+        Volcano Pokémon
+    "entry_text": |-
+        It attacks using blasts of fire.
+        It creates heat shimmers with
+        intense fire to hide itself.
+"french":
+    "name": |-
+        TYPHLOSION
+    "category": |-
+        Pokémon Volcan
+    "entry_text": |-
+        Il attaque en projetant des
+        flammes. Il se dissimule derrière
+        les vagues de chaleur qu’il produit.
+"german":
+    "name": |-
+        TORNUPTO
+    "category": |-
+        Vulkan
+    "entry_text": |-
+        Es greift seine Gegner mit Feuer
+        an. Dabei entsteht ein Hitze-
+        flimmern, in dem es sich versteckt.
+"italian":
+    "name": |-
+        Typhlosion
+    "category": |-
+        Pokémon Vulcano
+    "entry_text": |-
+        Attacca usando fiamme esplosive.
+        Si cela in una scintillante nube di
+        calore creata dalle fiamme roventi.
+"spanish":
+    "name": |-
+        Typhlosion
+    "category": |-
+        Pokémon Volcán
+    "entry_text": |-
+        Ataca con llamaradas. Con ellas
+        crea reflejos de calor para
+        ocultarse.
+"japanese":
+    "name": |-
+        バクフ－ン
+    "category": |-
+        かざんポケモン
+    "entry_text": |-
+        ほのおの　ばくふうで　こうげき。
+        しゃくねつの　ほのおで　かげろうを
+        つくりだし　すがたを　かくす。

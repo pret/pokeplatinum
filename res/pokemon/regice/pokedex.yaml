@@ -1,0 +1,74 @@
+"height": !!int |-
+    18
+"weight": !!int |-
+    1750
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    308
+"pokemon_scale_f": !!int |-
+    222
+"trainer_scale_m": !!int |-
+    298
+"pokemon_scale_m": !!int |-
+    222
+"trainer_pos_f": !!int |-
+    12
+"pokemon_pos_f": !!int |-
+    2
+"trainer_pos_m": !!int |-
+    12
+"pokemon_pos_m": !!int |-
+    2
+"english":
+    "category": |-
+        Iceberg Pokémon
+    "entry_text": |-
+        Its body is made of ice from the
+        ice age. It controls frigid air of
+        -328 degrees Fahrenheit.
+"french":
+    "name": |-
+        REGICE
+    "category": |-
+        Pokémon Iceberg
+    "entry_text": |-
+        Son corps est fait de glace datant
+        de l’ère glaciaire. Il contrôle un
+        air gelé de -200 °C.
+"german":
+    "name": |-
+        REGICE
+    "category": |-
+        Eisberg
+    "entry_text": |-
+        Sein Körper besteht aus Eis aus der
+        Eiszeit. Es kontrolliert gefrorene
+        Luft, die minus 200 Grad kalt ist.
+"italian":
+    "name": |-
+        Regice
+    "category": |-
+        Pokémon Iceberg
+    "entry_text": |-
+        Il suo corpo è costituito da ghiac-
+        cio dell’era glaciale. Mantiene
+        l’aria a una temperatura di -200°C.
+"spanish":
+    "name": |-
+        Regice
+    "category": |-
+        Pokémon Iceberg
+    "entry_text": |-
+        Su cuerpo está hecho con hielo
+        de la glaciación. Controla aire
+        gélido a 200 grados bajo cero.
+"japanese":
+    "name": |-
+        レジアイス
+    "category": |-
+        ひょうざんポケモン
+    "entry_text": |-
+        ひょうがきに　できた　こおりで
+        からだが　つくられている。マイナス
+        ２００どの　れいきを　あやつる。

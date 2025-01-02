@@ -1,0 +1,72 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    22
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    713
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    713
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    28
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    28
+"english":
+    "category": |-
+        Cricket Pokémon
+    "entry_text": |-
+        Its legs are short. Whenever it
+        stumbles, its stiff antennae clack
+        with a xylophone-like sound.
+"french":
+    "name": |-
+        CRIKZIK
+    "category": |-
+        Pokémon Criquet
+    "entry_text": "Quand il bascule sa tête d’avant \nen arrière, ses antennes se\n\
+        heurtent dans un son de xylophone."
+"german":
+    "name": |-
+        ZIRPURZE
+    "category": |-
+        Zirper
+    "entry_text": |-
+        Es schüttelt seinen Kopf, so dass
+        die beiden Antennen sich berühren
+        und wie ein Xylophon klingen.
+"italian":
+    "name": |-
+        Kricketot
+    "category": |-
+        Pokémon Grillo
+    "entry_text": |-
+        Muove la testa avanti e indietro
+        e le antenne, scontrandosi, produ-
+        cono un suono simile allo xilofono.
+"spanish":
+    "name": |-
+        Kricketot
+    "category": |-
+        Pokémon Grillo
+    "entry_text": |-
+        Al agitar la cabeza de atrás hacia
+        delante, sus antenas chocan
+        y suenan como un xilófono.
+"japanese":
+    "name": |-
+        コロボ－シ
+    "category": |-
+        こおろぎポケモン
+    "entry_text": |-
+        あたまを　ぜんごに　ゆすって
+        しょっかくを　ぶつけあうことで
+        もっきんのような　おとを　ならす。

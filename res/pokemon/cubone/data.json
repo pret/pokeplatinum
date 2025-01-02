@@ -124,47 +124,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 65,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 461,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 461,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 28,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 28,
-        "english": {
-            "category": "Lonely Pokémon",
-            "entry_text": "When it thinks of its dead mother,\nit cries. Its crying makes the\nskull it wears rattle hollowly."
-        },
-        "french": {
-            "name": "OSSELAIT",
-            "category": "Pokémon Solitaire",
-            "entry_text": "Il pleure en pensant à sa mère\ndisparue, et ses larmes résonnent\ndans son crâne creux."
-        },
-        "german": {
-            "name": "TRAGOSSO",
-            "category": "Einsam",
-            "entry_text": "Denkt es an seine verstorbene\nMutter, weint es, wobei der Schädel\nauf seinem Kopf hohl klingt."
-        },
-        "italian": {
-            "name": "Cubone",
-            "category": "Pokémon Solitario",
-            "entry_text": "Piange pensando alla madre defunta\ne dal teschio che ha in testa pro-\nviene un rumore sordo e continuo."
-        },
-        "spanish": {
-            "name": "Cubone",
-            "category": "Pokémon Solitario",
-            "entry_text": "Llora cuando se acuerda de su\nmadre fallecida. Cuando lo hace,\nsus llantos resuenan en su cráneo."
-        },
-        "japanese": {
-            "name": "カラカラ",
-            "category": "こどくポケモン",
-            "entry_text": "しにわかれた　ははおやを　おもいだし\nないてしまうとき　あたまに　かぶった\nホネが　からからと　おとを　たてる。"
-        }
     }
 }

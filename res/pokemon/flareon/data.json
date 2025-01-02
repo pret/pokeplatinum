@@ -107,47 +107,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 250,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 235,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 235,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 16,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 16,
-        "english": {
-            "category": "Flame Pokémon",
-            "entry_text": "Inhaled air is heated in the flame\nsac in its body to an intense fire\nover 3,000 degrees Fahrenheit."
-        },
-        "french": {
-            "name": "PYROLI",
-            "category": "Pokémon Flamme",
-            "entry_text": "Son corps contient une glande\nenflammée. Sa température monte\nà 900 °C avant le combat."
-        },
-        "german": {
-            "name": "FLAMARA",
-            "category": "Feuer",
-            "entry_text": "In seinem Körper befindet sich eine\nFlamme. Seine Körpertemperatur\nliegt vor dem Kampf bei 900 Grad."
-        },
-        "italian": {
-            "name": "Flareon",
-            "category": "Pokémon Fiamma",
-            "entry_text": "Nel corpo conserva una tasca\nardente. Prima di lottare, la sua\ntemperatura si innalza a 900°C."
-        },
-        "spanish": {
-            "name": "Flareon",
-            "category": "Pokémon Llama",
-            "entry_text": "Almacena llamas en su cuerpo, que\nalcanza una temperatura de 900\ngrados antes de un combate."
-        },
-        "japanese": {
-            "name": "ブ－スタ－",
-            "category": "ほのおポケモン",
-            "entry_text": "たいないに　ほのおぶくろを　もつ。\nたたかいが　はじまる　ちょくぜんには\nたいおんが　９００どまで　あがる。"
-        }
     }
 }

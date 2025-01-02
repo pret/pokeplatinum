@@ -1,0 +1,74 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    108
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    259
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    259
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65531
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65531
+"english":
+    "category": |-
+        Five Star Pokémon
+    "entry_text": |-
+        It is so timid, it can’t move if it
+        isn’t with a swarm of others. It
+        conveys its feelings with scent.
+"french":
+    "name": |-
+        COXY
+    "category": |-
+        Pokémon 5 Etoiles
+    "entry_text": |-
+        Il est si timide qu’il ne se déplace
+        qu’au milieu d’un essaim. Il exprime
+        ses émotions par l’odeur.
+"german":
+    "name": |-
+        LEDYBA
+    "category": |-
+        Fünf-Punkt
+    "entry_text": |-
+        Es ist so scheu, dass es sich
+        nur dann bewegt, wenn es sich
+        in einem Schwarm befindet.
+"italian":
+    "name": |-
+        Ledyba
+    "category": |-
+        Pokémon Pentastra
+    "entry_text": |-
+        È tanto timido da non muoversi se
+        non è in gruppo. Trasmette le sue
+        emozioni emanando una fragranza.
+"spanish":
+    "name": |-
+        Ledyba
+    "category": |-
+        Pokémon 5estrellas
+    "entry_text": |-
+        Es tan temeroso que no se mueve
+        si no es en grupo. Comunica sus
+        sentimientos con olores.
+"japanese":
+    "name": |-
+        レディバ
+    "category": |-
+        いつつぼしポケモン
+    "entry_text": |-
+        むれを　つくらないと　ふあんで
+        うごけなくなるほど　おくびょう。
+        においで　きもちを　つたえあう。

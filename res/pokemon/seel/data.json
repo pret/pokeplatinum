@@ -109,47 +109,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 900,
-        "body_shape": "SHAPE_FINS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 244,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 244,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 13,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 13,
-        "english": {
-            "category": "Sea Lion Pokémon",
-            "entry_text": "A Pokémon that lives on icebergs.\nIt swims in the sea using the point\non its head to break up ice."
-        },
-        "french": {
-            "name": "OTARIA",
-            "category": "Pokémon Otarie",
-            "entry_text": "Un habitant des icebergs. \nEn mer, il utilise la corne sur \nsa tête pour briser la banquise."
-        },
-        "german": {
-            "name": "JUROB",
-            "category": "Seehund",
-            "entry_text": "Dieses Pokémon lebt auf Eisbergen.\nEs schwimmt im Eiswasser und bricht\ndas Eis mithilfe seines Horns."
-        },
-        "italian": {
-            "name": "Seel",
-            "category": "Pokémon Otaria",
-            "entry_text": "Pokémon che vive sugli iceberg.\nNuota spaccando il ghiaccio\ncon la punta che ha sulla testa."
-        },
-        "spanish": {
-            "name": "Seel",
-            "category": "Pokémon León Mar.",
-            "entry_text": "Este Pokémon vive en icebergs.\nNada en el mar y usa el cuerno de\nsu cabeza para romper el hielo."
-        },
-        "japanese": {
-            "name": "パウワウ",
-            "category": "あしかポケモン",
-            "entry_text": "ひょうざんで　くらす　ポケモン。\nあたまの　とがった　でっぱりで\nこおりを　わって　うみを　およぐ。"
-        }
     }
 }

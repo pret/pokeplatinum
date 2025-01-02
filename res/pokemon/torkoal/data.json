@@ -110,47 +110,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 804,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 426,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 426,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 20,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 20,
-        "english": {
-            "category": "Coal Pokémon",
-            "entry_text": "It burns coal inside its shell for\nenergy. It blows out black soot if\nit is endangered."
-        },
-        "french": {
-            "name": "CHARTOR",
-            "category": "Pokémon Charbon",
-            "entry_text": "Il tire son énergie du charbon qu’il\nbrûle dans sa carapace et crache\nde la suie noire en cas de danger."
-        },
-        "german": {
-            "name": "QURTEL",
-            "category": "Kohle",
-            "entry_text": "In seinem Panzer verbrennt es\nKohle und gewinnt daraus Energie.\nBei Gefahr sondert es Ruß ab."
-        },
-        "italian": {
-            "name": "Torkoal",
-            "category": "Pokémon Carbone",
-            "entry_text": "Genera energia bruciando carbone\nall’interno della corazza. Se è in\npericolo, emette fuliggine scura."
-        },
-        "spanish": {
-            "name": "Torkoal",
-            "category": "Pokémon Carbón",
-            "entry_text": "Quema carbón en su caparazón\npara obtener energía. Si le atacan,\necha un denso humo negro."
-        },
-        "japanese": {
-            "name": "コ－タス",
-            "category": "せきたんポケモン",
-            "entry_text": "こうらの　なかで　せきたんを　もやし\nエネルギ－に　している。ピンチの\nときは　くろい　ススを　ふきだす。"
-        }
     }
 }

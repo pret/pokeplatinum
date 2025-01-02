@@ -1,0 +1,72 @@
+"height": !!int |-
+    21
+"weight": !!int |-
+    3600
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    350
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    355
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    6
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    6
+"english":
+    "category": |-
+        Iron Armor Pokémon
+    "entry_text": |-
+        While seeking iron for food, it
+        digs tunnels by breaking through
+        bedrock with its steel horns.
+"french":
+    "name": |-
+        GALEKING
+    "category": |-
+        Pokémon Armurfer
+    "entry_text": "Il creuse des galeries à travers la\npierre avec ses cornes d’acier\n\
+        pour trouver le fer qu’il apprécie. "
+"german":
+    "name": |-
+        STOLLOSS
+    "category": |-
+        Eisenpanzer
+    "entry_text": |-
+        Auf der Suche nach Eisen, seiner
+        Nahrung, gräbt es mit seinen Stahl-
+        hörnern sogar Tunnel durch Felsen.
+"italian":
+    "name": |-
+        Aggron
+    "category": |-
+        Pokémon Corazza
+    "entry_text": |-
+        Cerca ferro da mangiare scavando
+        tunnel nella roccia con le sue
+        corna d’acciaio.
+"spanish":
+    "name": |-
+        Aggron
+    "category": |-
+        Pokémon Cor. Férrea
+    "entry_text": |-
+        Mientras busca hierro para comer,
+        excava túneles en la roca con sus
+        potentes cuernos de acero.
+"japanese":
+    "name": |-
+        ボスゴドラ
+    "category": |-
+        てつヨロイポケモン
+    "entry_text": |-
+        はがねの　ツノで　かたい　がんばんを
+        つきくずしながら　しょくりょうの
+        てつを　さがして　トンネルを　ほる。

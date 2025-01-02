@@ -110,47 +110,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 326,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 282,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 282,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 12,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 12,
-        "english": {
-            "category": "Prim Pokémon",
-            "entry_text": "It is highly popular among female\nTrainers for its sublime fur.\nIt does not keep a nest."
-        },
-        "french": {
-            "name": "DELCATTY",
-            "category": "Pokémon Guindé",
-            "entry_text": "Les femmes Dresseurs raffolent\nde sa sublime fourrure. Il ne\npossède pas de nid."
-        },
-        "german": {
-            "name": "ENEKORO",
-            "category": "Eingebildet",
-            "entry_text": "Dieses PKMN ist bei weiblichen\nTrainern aufgrund seines Fells\nbeliebt."
-        },
-        "italian": {
-            "name": "Delcatty",
-            "category": "Pokémon Finezza",
-            "entry_text": "Ha successo fra gli Allenatori di\nsesso femminile per la sua bellissima\npelliccia. Non ha una tana fissa."
-        },
-        "spanish": {
-            "name": "Delcatty",
-            "category": "Pokémon Cursi",
-            "entry_text": "Tiene mucho éxito entre las\nentrenadoras por su suave pelaje.\nNo vive en un sitio fijo."
-        },
-        "japanese": {
-            "name": "エネコロロ",
-            "category": "おすましポケモン",
-            "entry_text": "うつくしい　けなみを　もち\nじょせいトレ－ナ－に　だいにんき。\nきまった　すみかを　もたない。"
-        }
     }
 }

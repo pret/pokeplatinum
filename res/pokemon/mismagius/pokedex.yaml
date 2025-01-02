@@ -1,0 +1,74 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    44
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    401
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    401
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65529
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65529
+"english":
+    "category": |-
+        Magical Pokémon
+    "entry_text": |-
+        Its cry sounds like an incantation.
+        It is said the cry may rarely be
+        imbued with happiness-giving power.
+"french":
+    "name": |-
+        MAGIREVE
+    "category": |-
+        Pokémon Magique
+    "entry_text": |-
+        Son cri rappelle une incantation.
+        Ceux qui l’entendent souffrent
+        de migraines et d’hallucinations.
+"german":
+    "name": |-
+        TRAUNMAGIL
+    "category": |-
+        Magisch
+    "entry_text": |-
+        Seine Rufe klingen wie Beschwö-
+        rungen. Die, die sie hören, kriegen
+        Kopfschmerzen und Halluzinationen.
+"italian":
+    "name": |-
+        Mismagius
+    "category": |-
+        Pokémon Stregone
+    "entry_text": |-
+        I suoi versi sembrano incantesimi.
+        Chi li sente è tormentato da
+        emicranie e allucinazioni.
+"spanish":
+    "name": |-
+        Mismagius
+    "category": |-
+        Pokémon Mágico
+    "entry_text": |-
+        Sus gritos parecen cánticos.
+        Los que los escuchan padecen
+        migrañas y alucinaciones.
+"japanese":
+    "name": |-
+        ムウマ－ジ
+    "category": |-
+        マジカルポケモン
+    "entry_text": |-
+        じゅもんのような　なきごえを　だして
+        みみにした　あいてを
+        ずつうや　げんかくで　くるしめる。

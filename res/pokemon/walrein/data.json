@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 14,
-        "weight": 1506,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 8,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 8,
-        "english": {
-            "category": "Ice Break Pokémon",
-            "entry_text": "It shatters ice with its big tusks.\nIts thick blubber repels not only\nthe cold, but also enemy attacks."
-        },
-        "french": {
-            "name": "KAIMORSE",
-            "category": "Pokémon Brise Glace",
-            "entry_text": "Il brise la glace avec ses grosses\ndéfenses. Sa graisse le protège du \nfroid, mais aussi des attaques."
-        },
-        "german": {
-            "name": "WALRAISA",
-            "category": "Eisbrecher",
-            "entry_text": "Mit seinen Stoßzähnen bricht es\ndurch Eis. Eine Speckschicht\nschützt es vor Kälte und Angriffen."
-        },
-        "italian": {
-            "name": "Walrein",
-            "category": "Pokémon Spaccagelo",
-            "entry_text": "Frantuma il ghiaccio con le zanne.\nLo spesso strato adiposo respinge\nil freddo e gli attacchi nemici."
-        },
-        "spanish": {
-            "name": "Walrein",
-            "category": "Pokémon Rompehielo",
-            "entry_text": "Rompe el hielo con sus colmillos.\nSu gruesa capa de grasa le protege\ndel frío y de los enemigos."
-        },
-        "japanese": {
-            "name": "トドゼルガ",
-            "category": "こおりわりポケモン",
-            "entry_text": "おおきな　こおりを　キバで　くだく。\nあつい　しぼうは　さむさだけでなく\nてきの　こうげきも　はねかえす。"
-        }
     }
 }

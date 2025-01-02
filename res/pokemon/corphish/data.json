@@ -122,47 +122,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 115,
-        "body_shape": "SHAPE_INSECTOID",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 367,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 367,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 23,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 23,
-        "english": {
-            "category": "Ruffian Pokémon",
-            "entry_text": "Its hardy vitality enables it to\nadapt to any environment. Its\npincers will never release prey."
-        },
-        "french": {
-            "name": "ECRAPINCE",
-            "category": "Pokémon Brute",
-            "entry_text": "Sa nature robuste lui permet de\nvivre sur n’importe quel terrain. \nSes pinces ne lâchent jamais prise."
-        },
-        "german": {
-            "name": "KREBSCORPS",
-            "category": "Grobian",
-            "entry_text": "Ein robustes PKMN, das sich jeder\nUmgebung anpassen kann. Seine\nZangen geben keine Beute frei."
-        },
-        "italian": {
-            "name": "Corphish",
-            "category": "Pokémon Birbone",
-            "entry_text": "La sua grande vitalità gli permette\ndi adattarsi ad ogni habitat. Le sue\nchele non rilasciano mai la preda."
-        },
-        "spanish": {
-            "name": "Corphish",
-            "category": "Pokémon Rufián",
-            "entry_text": "Su organismo le permite adaptarse\na cualquier entorno. Sus pinzas\nnunca sueltan a su presa."
-        },
-        "japanese": {
-            "name": "ヘイガニ",
-            "category": "ごろつきポケモン",
-            "entry_text": "どんな　かんきょうにも　てきおうする\nつよい　せいめいりょくの　もちぬし。\nはさんだ　えものは　はなさない。"
-        }
     }
 }

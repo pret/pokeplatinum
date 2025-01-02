@@ -119,47 +119,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 9,
-        "weight": 285,
-        "body_shape": "SHAPE_TENTACLES",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 258,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 258,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 5,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 5,
-        "english": {
-            "category": "Jet Pokémon",
-            "entry_text": "It loves to lurk inside holes in\nrocks. It sometimes sprays ink on\nprey by sticking out only its mouth."
-        },
-        "french": {
-            "name": "OCTILLERY",
-            "category": "Pokémon Jet",
-            "entry_text": "Il hante les fissures dans la roche\net les trous au fond de la mer. Ses\nventouses ne lâchent jamais prise."
-        },
-        "german": {
-            "name": "OCTILLERY",
-            "category": "Hochdruck",
-            "entry_text": "Es lebt in Gesteinsritzen und\nLöchern auf dem Meeresboden. Mit\nSaugnäpfen hält es Beute fest."
-        },
-        "italian": {
-            "name": "Octillery",
-            "category": "Pokémon Jet",
-            "entry_text": "Vive nelle spaccature delle rocce\ne del fondo marino. Con le sue ven-\ntose afferra saldamente la preda."
-        },
-        "spanish": {
-            "name": "Octillery",
-            "category": "Pokémon Reactor",
-            "entry_text": "Se refugia en los agujeros de las\nrocas y el fondo marino. Sus\nventosas son muy potentes."
-        },
-        "japanese": {
-            "name": "オクタン",
-            "category": "ふんしゃポケモン",
-            "entry_text": "かいていの　いわかげや　あなを\nすみかにして　くらす。きゅうばんで\nえものに　すいつき　にがさない。"
-        }
     }
 }

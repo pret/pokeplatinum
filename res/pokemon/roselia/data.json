@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 20,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 561,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 561,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 29,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 29,
-        "english": {
-            "category": "Thorn Pokémon",
-            "entry_text": "The more healthy the ROSELIA, the\nmore pleasant its flowers’ aroma.\nIts scent deeply relaxes people."
-        },
-        "french": {
-            "name": "ROSELIA",
-            "category": "Pokémon Epine",
-            "entry_text": "Les ROSELIA élevés avec une\neau claire et potable font de\nravissantes fleurs bariolées."
-        },
-        "german": {
-            "name": "ROSELIA",
-            "category": "Dorn",
-            "entry_text": "ROSELIA, die mit klarem Wasser\naufgezogen wurden, bekommen\nBlüten in leuchtenden Farben."
-        },
-        "italian": {
-            "name": "Roselia",
-            "category": "Pokémon Spina",
-            "entry_text": "ROSELIA, cresciuto bevendo acqua\npulita, è noto perché fa crescere\nfiori dai vividi colori."
-        },
-        "spanish": {
-            "name": "Roselia",
-            "category": "Pokémon Espina",
-            "entry_text": "Si este Pokémon crece con agua\nlimpia y potable, le brotarán\nflores de vivos colores."
-        },
-        "japanese": {
-            "name": "ロゼリア",
-            "category": "いばらポケモン",
-            "entry_text": "きれいな　みずを　のんで　そだった\nロゼリアは　いろあざやかな　はなを\nさかせる　ことで　しられている。"
-        }
     }
 }

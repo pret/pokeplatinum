@@ -1,0 +1,74 @@
+"height": !!int |-
+    12
+"weight": !!int |-
+    203
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    282
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    282
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    7
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    7
+"english":
+    "category": |-
+        Long Tail Pokémon
+    "entry_text": |-
+        Split into two, the tails are so
+        adept at handling and doing things,
+        AMBIPOM rarely uses its hands.
+"french":
+    "name": |-
+        CAPIDEXTRE
+    "category": |-
+        Pokémon Longqueue
+    "entry_text": |-
+        Il se nourrit de noix qu’il épluche
+        avec ses deux queues habiles. Il
+        utilise de moins en moins ses bras.
+"german":
+    "name": |-
+        AMBIDIFFEL
+    "category": |-
+        Langschweif
+    "entry_text": |-
+        Wenn es hungrig ist, knackt es
+        Nüsse mit seinen beiden Schweifen.
+        Nur selten verwendet es die Arme.
+"italian":
+    "name": |-
+        Ambipom
+    "category": |-
+        Pokémon Lungacoda
+    "entry_text": |-
+        Si nutre di nocciole che sbuccia con
+        le due code. Raramente usa le sue
+        vere braccia.
+"spanish":
+    "name": |-
+        Ambipom
+    "category": |-
+        Pokémon Cola Larga
+    "entry_text": |-
+        Para comer, rompe nueces
+        con sus dos colas. Raras
+        veces utiliza sus brazos.
+"japanese":
+    "name": |-
+        エテボ－ス
+    "category": |-
+        おながポケモン
+    "entry_text": |-
+        ２ほんの　しっぽで　きのみの　からを
+        きように　むいて　たべる。ほんものの
+        うでは　ほとんど　つかわなくなった。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    208
+"body_shape": |-
+    SHAPE_FINS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    331
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    331
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65524
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65524
+"english":
+    "category": |-
+        Savage Pokémon
+    "entry_text": |-
+        They swarm any foe that invades
+        their territory. Their sharp fangs
+        can tear out boat hulls.
+"french":
+    "name": |-
+        CARVANHA
+    "category": |-
+        Pokémon Féroce
+    "entry_text": |-
+        Il attaque en banc quand on
+        menace son territoire. Ses dents
+        aiguisées peuvent couler un navire.
+"german":
+    "name": |-
+        KANIVANHA
+    "category": |-
+        Gnadenlos
+    "entry_text": |-
+        Sie begegnen jedem Gegner, der in
+        ihr Revier eindringt, im Schwarm.
+        Ihre Zähne durchdringen alles.
+"italian":
+    "name": |-
+        Carvanha
+    "category": |-
+        Pokémon Feroce
+    "entry_text": |-
+        Attacca in branco chi invade il
+        suo territorio. Le zanne aguzze
+        lacerano anche gli scafi delle navi.
+"spanish":
+    "name": |-
+        Carvanha
+    "category": |-
+        Pokémon Feroz
+    "entry_text": |-
+        Rodean a los enemigos que osan
+        invadir su territorio. Sus afilados
+        colmillos dañan los barcos.
+"japanese":
+    "name": |-
+        キバニア
+    "category": |-
+        どうもうポケモン
+    "entry_text": |-
+        なわばりに　はいってきた　あいてを
+        しゅうだんで　こうげき。するどい
+        キバは　ボ－トの　そこも　かみきる。

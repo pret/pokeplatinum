@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    45
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    352
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    352
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    27
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    27
+"english":
+    "category": |-
+        Mushroom Pokémon
+    "entry_text": |-
+        It spouts poison spores from the
+        top of its head. These spores
+        cause pain all over if inhaled.
+"french":
+    "name": |-
+        BALIGNON
+    "category": |-
+        Pokémon Champignon
+    "entry_text": |-
+        Le sommet de sa tête libère des
+        spores empoisonnées. Il est
+        dangereux de les inhaler.
+"german":
+    "name": |-
+        KNILZ
+    "category": |-
+        Pilz
+    "entry_text": |-
+        Es setzt an seinem Kopf Giftsporen
+        frei. Werden diese eingeatmet,
+        verursachen sie Schmerzen.
+"italian":
+    "name": |-
+        Shroomish
+    "category": |-
+        Pokémon Fungo
+    "entry_text": |-
+        Sparge spore tossiche dalla sommità
+        del capo. Se inalate, queste spore
+        provocano dolore in tutto il corpo.
+"spanish":
+    "name": |-
+        Shroomish
+    "category": |-
+        Pokémon Hongo
+    "entry_text": |-
+        Lanza esporas venenosas desde
+        la parte superior de la cabeza.
+        Inhalarlas es muy doloroso.
+"japanese":
+    "name": |-
+        キノココ
+    "category": |-
+        きのこポケモン
+    "entry_text": |-
+        あたまの　てっぺんから　どくほうしを
+        ふきだす。ほうしを　すいこむと
+        からだの　ふしぶしが　いたくなる。

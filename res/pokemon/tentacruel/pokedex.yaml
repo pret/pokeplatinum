@@ -1,0 +1,72 @@
+"height": !!int |-
+    16
+"weight": !!int |-
+    550
+"body_shape": |-
+    SHAPE_TENTACLES
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    245
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    245
+"trainer_pos_f": !!int |-
+    5
+"pokemon_pos_f": !!int |-
+    65535
+"trainer_pos_m": !!int |-
+    4
+"pokemon_pos_m": !!int |-
+    65535
+"english":
+    "category": |-
+        Jellyfish Pokémon
+    "entry_text": |-
+        It extends its 80 tentacles to
+        form an encircling poisonous net
+        that is difficult to escape.
+"french":
+    "name": |-
+        TENTACRUEL
+    "category": |-
+        Pokémon Mollusque
+    "entry_text": |-
+        Ses 80 tentacules ligotent ses
+        proies et les retiennent jusqu’à
+        ce que son poison fasse effet.
+"german":
+    "name": |-
+        TENTOXA
+    "category": |-
+        Qualle
+    "entry_text": "Es besitzt 80 Tentakel, um Beute zu\nfangen und festzuhalten. Diese\n\
+        wird durch Gift geschwächt.  "
+"italian":
+    "name": |-
+        Tentacruel
+    "category": |-
+        Pokémon Medusa
+    "entry_text": |-
+        Ha 80 tentacoli per intrappolare
+        la preda e non la rilascia finché il
+        veleno non l’ha indebolita.
+"spanish":
+    "name": |-
+        Tentacruel
+    "category": |-
+        Pokémon Medusa
+    "entry_text": |-
+        Posee 80 tentáculos con los que
+        aprisiona a sus presas hasta que
+        se debilitan por el veneno.
+"japanese":
+    "name": |-
+        ドククラゲ
+    "category": |-
+        くらげポケモン
+    "entry_text": |-
+        ８０ほんの　しょくしゅを　もつ。
+        えものを　からめとり　どくで
+        よわるまで　ぜったいに　にがさない。

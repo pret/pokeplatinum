@@ -100,47 +100,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 93,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 429,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 429,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Blossom Pokémon",
-            "entry_text": "If it senses strong sunlight, it\nopens its folded petals to absorb\nthe sun’s rays with its whole body."
-        },
-        "french": {
-            "name": "CERIFLOR",
-            "category": "Pokémon Floraison",
-            "entry_text": "Il fleurit lorsque le soleil est au\nbeau fixe. Il cherche à prendre sa\nrevanche sur une vie de bourgeon."
-        },
-        "german": {
-            "name": "KINOSO",
-            "category": "Blüte",
-            "entry_text": "In Zeiten mit viel Sonnenschein\nblüht es auf. Es holt nach, was ihm\nals Knospe verwehrt blieb."
-        },
-        "italian": {
-            "name": "Cherrim",
-            "category": "Pokémon Bocciolo",
-            "entry_text": "Sboccia quando fa caldo e cerca\ndi godersi fino all’ultimo ogni mo-\nmento che può passare al sole."
-        },
-        "spanish": {
-            "name": "Cherrim",
-            "category": "Pokémon Floración",
-            "entry_text": "Florece en épocas de mucha\nluz solar. Intenta compensar\nlo que soportó como capullo."
-        },
-        "japanese": {
-            "name": "チェリム",
-            "category": "サクラポケモン",
-            "entry_text": "ひざしが　つよくなると　はなひらく。\nつぼみの　ときに　たえしのんだ\nうっぷんを　いっきに　はらすのだ。"
-        }
     }
 }

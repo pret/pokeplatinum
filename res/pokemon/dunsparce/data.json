@@ -122,47 +122,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 140,
-        "body_shape": "SHAPE_SERPENTINE",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 16,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 16,
-        "english": {
-            "category": "Land Snake Pokémon",
-            "entry_text": "It digs into the ground with its\ntail and makes a mazelike nest.\nIt can fly just a little."
-        },
-        "french": {
-            "name": "INSOLOURDO",
-            "category": "Pokémon Serpent",
-            "entry_text": "Son nid est un véritable labyrinthe\nqu’il creuse à l’aide de sa queue.\nIl sait à peine voler."
-        },
-        "german": {
-            "name": "DUMMISEL",
-            "category": "Schlange",
-            "entry_text": "Es gräbt sich mit seinem Schweif in\ndie Erde und baut ein labyrinth-\nartiges Nest. Es kann kaum fliegen."
-        },
-        "italian": {
-            "name": "Dunsparce",
-            "category": "Pokémon Terraserpe",
-            "entry_text": "Scava nel terreno con la coda\ncreando una tana simile a un labi-\nrinto. Sa spiccare brevissimi voli."
-        },
-        "spanish": {
-            "name": "Dunsparce",
-            "category": "Pokémon Serptierra",
-            "entry_text": "Cava el suelo con su cola para\nconstruir su madriguera. Puede\nvolar distancias cortas."
-        },
-        "japanese": {
-            "name": "ノコッチ",
-            "category": "つちへびポケモン",
-            "entry_text": "しっぽで　じめんを　ほって\nめいろのような　すあなを　つくる。\nはねで　すこしだけ　とべる。"
-        }
     }
 }

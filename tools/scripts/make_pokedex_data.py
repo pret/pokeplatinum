@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import yaml
 import pathlib
 import subprocess
 
@@ -8,6 +9,8 @@ from consts.species import PokemonSpecies
 from consts.pokemon import PokemonType
 from consts.pokemon import PokemonBodyShape
 
+NUM_FILES = 26 + PokemonType['NUMBER_OF_MON_TYPES'].value + PokemonBodyShape['NUMBER_OF_BODY_SHAPES'].value
+NUM_POKEMON = len(PokemonSpecies)
 
 argparser = argparse.ArgumentParser(
     prog='make_pokedex_data_py',
@@ -27,14 +30,19 @@ argparser.add_argument('-o', '--output-dir',
                        help='Path to the output directory (where the NARC will be made)')
 argparser.add_argument('giratina_form',
                        help='String of either giratina_origin or giratina_altered')
-argparser.add_argument('src_files',
-                       nargs='+',
-                       help='List of files to process in-order')
+argparser.add_argument('pokemon_files',
+                       nargs=NUM_POKEMON,
+                       help='List of pokemon files to process in-order')
+argparser.add_argument('pokedex_files',
+                       nargs=NUM_POKEMON,
+                       help='List of pokedex files to process in-order')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
 private_dir = pathlib.Path(args.private_dir)
 output_dir = pathlib.Path(args.output_dir)
+pokemon_files = args.pokemon_files
+pokedex_files = args.pokedex_files
 
 private_dir.mkdir(parents=True, exist_ok=True)
 
@@ -59,43 +67,40 @@ def DataSize(num):
         return 1
     return 2
 
-NUM_FILES = 26 + PokemonType['NUMBER_OF_MON_TYPES'].value + PokemonBodyShape['NUMBER_OF_BODY_SHAPES'].value
-NUM_POKEMON = len(PokemonSpecies)-3
-
 binData = [bytes() for f in range(NUM_FILES)]
-heightData = [0 for i in range(NUM_POKEMON)]
-weightData = [0 for i in range(NUM_POKEMON)]
-nameData = ['' for i in range(NUM_POKEMON)]
+heightData = [0 for i in range(NUM_POKEMON-3)]
+weightData = [0 for i in range(NUM_POKEMON-3)]
+nameData = ['' for i in range(NUM_POKEMON-3)]
 
-for i, file in enumerate(args.src_files):
-    with open(file, 'r', encoding='utf-8') as data_file:
-        pkdata = json.load(data_file)
-    pk_name = pkdata['name'].lower()
+for i in range(NUM_POKEMON):
+    with open(pokemon_files[i], 'r', encoding='utf-8') as data_file:
+        poke_data = json.load(data_file)
+    dex_data = yaml.safe_load(pathlib.Path(pokedex_files[i]).read_text())
+    pk_name = poke_data['name'].lower()
 
     # Do not attempt to process eggs
     if pk_name in ['egg', 'bad egg']:
         continue
 
-    pkdexdata = pkdata['pokedex_data']
     if pk_name == 'giratina':
         if args.giratina_form == 'giratina_origin':
-            pkdexdata = pkdexdata['origin']
+            dex_data = dex_data['origin']
         if args.giratina_form == 'giratina_altered':
-            pkdexdata = pkdexdata['altered']
+            dex_data = dex_data['altered']
     
     for j in range(11):
         dataSize = DataSize(j)
         if j == 2:
-            binData[2] = binData[2] + PokemonBodyShape[pkdexdata['body_shape']].value.to_bytes(1, 'little')
+            binData[2] = binData[2] + PokemonBodyShape[dex_data['body_shape']].value.to_bytes(1, 'little')
         else:
-            binData[j] = binData[j] + pkdexdata[data_names[j]].to_bytes(dataSize, 'little')
+            binData[j] = binData[j] + dex_data[data_names[j]].to_bytes(dataSize, 'little')
 
     if i > 0:
         # national dex order
         binData[11] = binData[11] + i.to_bytes(2, 'little')
 
         # body shape
-        bodyIdx = PokemonBodyShape[pkdexdata['body_shape']].value + PokemonType['NUMBER_OF_MON_TYPES'].value + 26
+        bodyIdx = PokemonBodyShape[dex_data['body_shape']].value + PokemonType['NUMBER_OF_MON_TYPES'].value + 26
         binData[bodyIdx] = binData[bodyIdx] + i.to_bytes(2, 'little')
 
         # pokemon types
@@ -103,13 +108,13 @@ for i, file in enumerate(args.src_files):
         for type in PokemonType:
             if type.name in ['TYPE_MYSTERY', 'NUMBER_OF_MON_TYPES']:
                 continue
-            if type.name in pkdata['types']:
+            if type.name in poke_data['types']:
                 binData[typeIdx] = binData[typeIdx] + i.to_bytes(2, 'little')
             typeIdx += 1
         
         # store for later
-        heightData[i-1] = pkdexdata['height']
-        weightData[i-1] = pkdexdata['weight']
+        heightData[i-1] = dex_data['height']
+        weightData[i-1] = dex_data['weight']
         nameData[i-1] = pk_name.replace('porygon2','porygon-z2')
 
 # sinnoh dex order

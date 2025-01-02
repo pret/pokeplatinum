@@ -120,47 +120,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 50,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 396,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 396,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 22,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 22,
-        "english": {
-            "category": "Wood Gecko Pokémon",
-            "entry_text": "The soles of its feet are covered\nby countless tiny spikes, enabling\nit to walk on walls and ceilings."
-        },
-        "french": {
-            "name": "ARCKO",
-            "category": "Pokémon Bois Gecko",
-            "entry_text": "Ses plantes de pieds sont\ncouvertes d’épines lui permettant\nde marcher au mur et au plafond."
-        },
-        "german": {
-            "name": "GECKARBOR",
-            "category": "Waldgecko",
-            "entry_text": "Seine Fußsohlen sind mit kleinen\nStacheln bedeckt, so dass es an\nWänden und Decken Halt findet."
-        },
-        "italian": {
-            "name": "Treecko",
-            "category": "Pokémon Legnogeco",
-            "entry_text": "Le piante dei suoi piedi sono piene\ndi uncini che gli permettono di\ncamminare su muri e soffitti."
-        },
-        "spanish": {
-            "name": "Treecko",
-            "category": "Pokémon Geco Bosque",
-            "entry_text": "Las plantas de sus pies tienen\npúas diminutas que le permiten\nandar por paredes y techos."
-        },
-        "japanese": {
-            "name": "キモリ",
-            "category": "もりトカゲポケモン",
-            "entry_text": "あしの　うらには　ちいさな　トゲが\nたくさん　ついているので　カベや\nてんじょうを　あるくことが　できる。"
-        }
     }
 }

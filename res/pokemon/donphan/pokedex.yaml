@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    1200
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    247
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    247
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    17
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    17
+"english":
+    "category": |-
+        Armor Pokémon
+    "entry_text": |-
+        It attacks by curling up, then
+        rolling into its foe. It can blow
+        apart a house in one hit.
+"french":
+    "name": |-
+        DONPHAN
+    "category": |-
+        Pokémon Armure
+    "entry_text": |-
+        Il attaque en se roulant en boule
+        pour percuter l’ennemi. Il peut
+        abattre une maison d’un seul coup.
+"german":
+    "name": |-
+        DONPHAN
+    "category": |-
+        Panzer
+    "entry_text": |-
+        Wenn es angreift, rollt es sich
+        zusammen und auf den Gegner zu. Es
+        kann Häuser zum Einsturz bringen.
+"italian":
+    "name": |-
+        Donphan
+    "category": |-
+        Pokémon Armatura
+    "entry_text": |-
+        Si arrotola a palla e attacca il
+        nemico. Riesce ad abbattere
+        una casa con un solo colpo.
+"spanish":
+    "name": |-
+        Donphan
+    "category": |-
+        Pokémon Coraza
+    "entry_text": |-
+        Se enrolla sobre sí mismo y se
+        lanza rodando contra el enemigo.
+        Puede derribar casas de un golpe.
+"japanese":
+    "name": |-
+        ドンファン
+    "category": |-
+        よろいポケモン
+    "entry_text": |-
+        からだを　まるめて　かいてんしながら
+        とっしんする　こうげき。いちげきで
+        みんかを　ばらばらに　ふきとばす。

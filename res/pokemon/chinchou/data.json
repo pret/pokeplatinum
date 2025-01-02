@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 120,
-        "body_shape": "SHAPE_FINS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 348,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 348,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 5,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 5,
-        "english": {
-            "category": "Angler Pokémon",
-            "entry_text": "It discharges positive and\nnegative electricity from its\nantenna tips to shock its foes."
-        },
-        "french": {
-            "name": "LOUPIO",
-            "category": "Pokémon Poisson",
-            "entry_text": "Il envoie des décharges électriques\npositives et négatives du bout des\nantennes pour paralyser sa proie."
-        },
-        "german": {
-            "name": "LAMPI",
-            "category": "Angler",
-            "entry_text": "Über seine Antennen entlädt es\nElektrizität, mit der es seinen\nGegnern einen Schlag versetzt."
-        },
-        "italian": {
-            "name": "Chinchou",
-            "category": "Pokémon Pescatore",
-            "entry_text": "Dalle antenne emette scariche\nelettriche positive e negative con\nle quali colpisce i nemici."
-        },
-        "spanish": {
-            "name": "Chinchou",
-            "category": "Pokémon Rape",
-            "entry_text": "Libera cargas eléctricas positivas\ny negativas con sus antenas para\naturdir a sus enemigos."
-        },
-        "japanese": {
-            "name": "チョンチ－",
-            "category": "あんこうポケモン",
-            "entry_text": "プラスと　マイナスの　でんきを\nしょくしゅの　さきから　ながす。\nてきを　かんでんさせてしまうのだ。"
-        }
     }
 }

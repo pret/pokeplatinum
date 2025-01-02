@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    104
+"body_shape": |-
+    SHAPE_HEAD
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    336
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    336
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Ball Pokémon
+    "entry_text": |-
+        It looks just like a Poké Ball.
+        It is dangerous because it may
+        electrocute or explode on touch.
+"french":
+    "name": |-
+        VOLTORBE
+    "category": |-
+        Pokémon Balle
+    "entry_text": |-
+        Il ressemble à une Poké Ball. Ce
+        Pokémon dangereux peut exploser
+        ou s’électrifier au toucher.
+"german":
+    "name": |-
+        VOLTOBAL
+    "category": |-
+        Ball
+    "entry_text": |-
+        Sieht aus wie ein Pokéball. Es ist
+        gefährlich, da es bei Berührung
+        explodieren kann.
+"italian":
+    "name": |-
+        Voltorb
+    "category": |-
+        Pokémon Ball
+    "entry_text": |-
+        Sembra una Poké Ball. Toccandolo si
+        rischia di prendere la scossa e di
+        farlo esplodere.
+"spanish":
+    "name": |-
+        Voltorb
+    "category": |-
+        Pokémon Bola
+    "entry_text": |-
+        Parece una Poké Ball. Es muy
+        peligroso, ya que puede lanzar
+        descargas o explotar si se toca.
+"japanese":
+    "name": |-
+        ビリリダマ
+    "category": |-
+        ボ－ルポケモン
+    "entry_text": |-
+        モンスタ－ボ－ルに　そっくり。
+        まちがって　さわると　かんでんしたり
+        ときには　ばくはつするので　きけん。

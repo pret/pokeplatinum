@@ -122,47 +122,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 300,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 6,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 6,
-        "english": {
-            "category": "Sludge Pokémon",
-            "entry_text": "A toxic fluid seeps from its body.\nThe fluid instantly kills plants and\ntrees on contact."
-        },
-        "french": {
-            "name": "GROTADMORV",
-            "category": "Pokémon Dégueu",
-            "entry_text": "Son corps exsude un fluide toxique\nqui tue instantanément les plantes\net les arbres au contact."
-        },
-        "german": {
-            "name": "SLEIMOK",
-            "category": "Schlamm",
-            "entry_text": "Sein Körper sondert eine giftige\nSubstanz ab, die bei Kontakt\nPflanzen und Bäume vernichtet."
-        },
-        "italian": {
-            "name": "Muk",
-            "category": "Pokémon Melma",
-            "entry_text": "Dal suo corpo filtra un fluido tos-\nsico che uccide all’istante piante e\nalberi con cui viene a contatto."
-        },
-        "spanish": {
-            "name": "Muk",
-            "category": "Pokémon Lodo",
-            "entry_text": "Su cuerpo segrega un fluido\ntóxico que elimina la vida vegetal\ncuando la toca."
-        },
-        "japanese": {
-            "name": "ベトベトン",
-            "category": "ヘドロポケモン",
-            "entry_text": "からだから　もうどくの　たいえきが\nしみでている。その　えきに　ふれた\nくさきは　あっというまに　かれる。"
-        }
     }
 }

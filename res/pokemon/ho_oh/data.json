@@ -130,47 +130,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 38,
-        "weight": 1990,
-        "body_shape": "SHAPE_WINGED",
-        "trainer_scale_f": 451,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 444,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 21,
-        "pokemon_pos_f": 0,
-        "trainer_pos_m": 21,
-        "pokemon_pos_m": 0,
-        "english": {
-            "category": "Rainbow Pokémon",
-            "entry_text": "Its feathers are in seven colors.\nIt is said that anyone seeing it is\npromised eternal happiness."
-        },
-        "french": {
-            "name": "HO-OH",
-            "category": "Pokémon Arcenciel",
-            "entry_text": "Ses plumes possèdent sept \ncouleurs. On prétend que sa vue\napporte la joie éternelle."
-        },
-        "german": {
-            "name": "HO-OH",
-            "category": "Regenbogen",
-            "entry_text": "Seine Federn besitzen 7 Farben.\nMan sagt, dass demjenigen, der es\nsieht, ewiges Glück beschieden ist."
-        },
-        "italian": {
-            "name": "Ho-Oh",
-            "category": "Pokémon Arcobaleno",
-            "entry_text": "Le sue piume sono di sette colori.\nSi dice che chiunque lo veda\nsarà per sempre felice."
-        },
-        "spanish": {
-            "name": "Ho-Oh",
-            "category": "Pokémon Arco Iris",
-            "entry_text": "Su plumaje tiene siete colores.\nSe dice que verlo proporciona\nfelicidad eterna."
-        },
-        "japanese": {
-            "name": "ホウオウ",
-            "category": "にじいろポケモン",
-            "entry_text": "なないろの　つばさを　もつ。\nホウオウを　みた　ものは　えいえんの\nしあわせが　やくそくされるという。"
-        }
     }
 }

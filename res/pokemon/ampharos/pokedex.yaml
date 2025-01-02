@@ -1,0 +1,74 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    615
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    243
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    243
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    8
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    8
+"english":
+    "category": |-
+        Light Pokémon
+    "entry_text": |-
+        The tip of its tail shines brightly.
+        In the olden days, people sent
+        signals using the tail’s light.
+"french":
+    "name": |-
+        PHARAMP
+    "category": |-
+        Pokémon Lumière
+    "entry_text": |-
+        Le bout de sa queue brille avec
+        intensité. Jadis, on s’en servait
+        pour envoyer des signaux.
+"german":
+    "name": |-
+        AMPHAROS
+    "category": |-
+        Leuchte
+    "entry_text": |-
+        Seine Schweifspitze leuchtet hell.
+        In alten Zeiten hat man mit seiner
+        Hilfe Lichtsignale gegeben.
+"italian":
+    "name": |-
+        Ampharos
+    "category": |-
+        Pokémon Luce
+    "entry_text": |-
+        La punta della sua coda brilla. In
+        passato, le persone si inviavano
+        segnali usando la luce della coda.
+"spanish":
+    "name": |-
+        Ampharos
+    "category": |-
+        Pokémon Luz
+    "entry_text": |-
+        La punta de su cola brilla.
+        Antiguamente la gente enviaba
+        señales con ella.
+"japanese":
+    "name": |-
+        デンリュウ
+    "category": |-
+        ライトポケモン
+    "entry_text": |-
+        しっぽの　さきが　ひかりかがやく。
+        むかしの　ひとたちは　その　あかりを
+        つかって　あいずを　おくりあった。

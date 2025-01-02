@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    19
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    420
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    420
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Music Note Pokémon
+    "entry_text": |-
+        Its tongue is just like a human’s.
+        As a result, it can cleverly mimic
+        human speech.
+"french":
+    "name": |-
+        PIJAKO
+    "category": |-
+        Pokémon Note Musique
+    "entry_text": |-
+        On peut lui enseigner quelques
+        mots. S’il s’agit d’un groupe, ils
+        retiendront les mêmes phrases.
+"german":
+    "name": |-
+        PLAUDAGEI
+    "category": |-
+        Musiknote
+    "entry_text": |-
+        Es kann die menschliche Sprache
+        lernen. Versammeln sie sich,
+        bringen sie sich alle dasselbe bei.
+"italian":
+    "name": |-
+        Chatot
+    "category": |-
+        Pokémon Musicale
+    "entry_text": |-
+        Può imparare il linguaggio umano.
+        Se un gruppo si raduna, tutti
+        imparano le stesse parole.
+"spanish":
+    "name": |-
+        Chatot
+    "category": |-
+        Pokémon Corchea
+    "entry_text": |-
+        Pueden aprender y hablar lenguas
+        humanas. Si se juntan, todos
+        aprenden las mismas palabras.
+"japanese":
+    "name": |-
+        ペラップ
+    "category": |-
+        おんぷポケモン
+    "entry_text": |-
+        ひとの　ことばを　おぼえて　なく。
+        なかまが　いっかしょに　あつまると
+        みんな　おなじ　ことばを　おぼえる。

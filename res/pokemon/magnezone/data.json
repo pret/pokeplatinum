@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 1800,
-        "body_shape": "SHAPE_HEAD_ARMS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 246,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 246,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 65529,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 65529,
-        "english": {
-            "category": "Magnet Area Pokémon",
-            "entry_text": "A group tried to use scientific\nmeans to make MAGNEZONE evolve,\nbut their efforts ended in failure."
-        },
-        "french": {
-            "name": "MAGNEZONE",
-            "category": "Pokémon Aimant",
-            "entry_text": "Il a évolué suite à son exposition\nà un champ magnétique spécial. Ses\n3 unités génèrent du magnétisme."
-        },
-        "german": {
-            "name": "MAGNEZONE",
-            "category": "Magnetgebiet",
-            "entry_text": "Es entwickelte sich, als es einem\nbesonderen Magnetfeld ausgesetzt\nwurde."
-        },
-        "italian": {
-            "name": "Magnezone",
-            "category": "Pokémon Magnetico",
-            "entry_text": "Si è evoluto in seguito all’esposi-\nzione a uno speciale campo magneti-\nco. Tre unità generano magnetismo."
-        },
-        "spanish": {
-            "name": "Magnezone",
-            "category": "Pokémon Magnético",
-            "entry_text": "Evolucionó por la exposición a\nun campo magnético especial.\nTres unidades generan magnetismo."
-        },
-        "japanese": {
-            "name": "ジバコイル",
-            "category": "じばポケモン",
-            "entry_text": "とくしゅな　じばの　えいきょうで\nレアコイルが　しんかした。３つの\nユニットから　じりょくを　だす。"
-        }
     }
 }

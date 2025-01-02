@@ -104,47 +104,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 124,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 319,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 319,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 21,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 21,
-        "english": {
-            "category": "Tadpole Pokémon",
-            "entry_text": "Its skin is so thin, its internal\norgans are visible. It has trouble\nwalking on its newly grown feet."
-        },
-        "french": {
-            "name": "PTITARD",
-            "category": "Pokémon Têtard",
-            "entry_text": "Sa peau est si mince qu’on\nvoit ses organes internes. Il tient\nà peine sur ses nouveaux pieds."
-        },
-        "german": {
-            "name": "QUAPSEL",
-            "category": "Kaulquappe",
-            "entry_text": "Seine Haut ist so dünn, dass man die\ninneren Organe sehen kann. Es hat\nSchwierigkeiten beim Laufen."
-        },
-        "italian": {
-            "name": "Poliwag",
-            "category": "Pokémon Girino",
-            "entry_text": "La sua pelle è così sottile che si\nintravedono gli organi. Cammina a\nfatica sulle zampe poco sviluppate."
-        },
-        "spanish": {
-            "name": "Poliwag",
-            "category": "Pokémon Renacuajo",
-            "entry_text": "Su piel es tan fina que permite\nver sus órganos. Le cuesta andar\ncon sus nuevas patas."
-        },
-        "japanese": {
-            "name": "ニョロモ",
-            "category": "おたまポケモン",
-            "entry_text": "ないぞうが　すけて　みえるほど\nひふが　うすい。はえたばかりの\nあしは　あるくことが　にがて。"
-        }
     }
 }

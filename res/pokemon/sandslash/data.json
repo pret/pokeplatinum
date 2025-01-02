@@ -121,47 +121,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 295,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 279,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 279,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 15,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 15,
-        "english": {
-            "category": "Mouse Pokémon",
-            "entry_text": "It curls up, then rolls into foes\nwith its back. Its sharp spines\ninflict severe damage."
-        },
-        "french": {
-            "name": "SABLAIREAU",
-            "category": "Pokémon Souris",
-            "entry_text": "Il se met en boule pour percuter\nl’ennemi. Ses épines aiguisées\nfont beaucoup de dégâts."
-        },
-        "german": {
-            "name": "SANDAMER",
-            "category": "Maus",
-            "entry_text": "Es rollt sich zusammen und rollt\ndann auf Gegner zu, die durch\nseine Stacheln Schaden nehmen."
-        },
-        "italian": {
-            "name": "Sandslash",
-            "category": "Pokémon Topo",
-            "entry_text": "Si arrotola come una palla e rotola\nsul dorso verso i nemici. Gli aculei\naguzzi provocano gravi danni."
-        },
-        "spanish": {
-            "name": "Sandslash",
-            "category": "Pokémon Ratón",
-            "entry_text": "Se hace una bola y se lanza\nrodando hacia los enemigos para\nclavarles sus afiladas púas."
-        },
-        "japanese": {
-            "name": "サンドパン",
-            "category": "ねずみポケモン",
-            "entry_text": "からだを　まるめて　せなかから\nたいあたり。するどい　トゲトゲが\nおおきな　ダメ－ジを　あたえる。"
-        }
     }
 }

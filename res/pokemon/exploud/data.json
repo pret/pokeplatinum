@@ -131,47 +131,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 15,
-        "weight": 840,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 241,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 241,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 6,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 6,
-        "english": {
-            "category": "Loud Noise Pokémon",
-            "entry_text": "Its howls can be heard over six\nmiles away. It emits all sorts of\nnoises from the ports on its body."
-        },
-        "french": {
-            "name": "BROUHABAM",
-            "category": "Pokémon Bruit Sourd",
-            "entry_text": "Son hurlement s’entend à 10 km\nà la ronde. Ses orifices\némettent toutes sortes de bruits."
-        },
-        "german": {
-            "name": "KRAWUMMS",
-            "category": "Krach",
-            "entry_text": "Sein Heulen hört man in 10 km\nEntfernung. Es gibt alle Arten von\nGeräuschen von sich."
-        },
-        "italian": {
-            "name": "Exploud",
-            "category": "Pokémon Fragore",
-            "entry_text": "Le sue urla si sentono a 10 km di\ndistanza. Emette diversi suoni dalle\nnumerose aperture del suo corpo."
-        },
-        "spanish": {
-            "name": "Exploud",
-            "category": "Pokémon Escandaloso",
-            "entry_text": "Su aullido se puede oír a 10 km.\nEmite todo tipo de sonidos desde\nlos tubos de su cuerpo."
-        },
-        "japanese": {
-            "name": "バクオング",
-            "category": "そうおんポケモン",
-            "entry_text": "バクオングの　とおぼえは　１０キロ\nさきまで　とどく。からだじゅうの\nあなから　さまざまな　おとを　だす。"
-        }
     }
 }

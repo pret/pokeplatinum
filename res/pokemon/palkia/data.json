@@ -129,47 +129,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 42,
-        "weight": 3360,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 603,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 597,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 26,
-        "pokemon_pos_f": 2,
-        "trainer_pos_m": 26,
-        "pokemon_pos_m": 2,
-        "english": {
-            "category": "Spatial Pokémon",
-            "entry_text": "A legendary Pokémon of Sinnoh.\nIt is said that space becomes more\nstable with PALKIA’s every breath."
-        },
-        "french": {
-            "name": "PALKIA",
-            "category": "Pokémon Espace",
-            "entry_text": "Il peut modeler l’espace. Les\nmythes de Sinnoh en parlent\ncomme d’une divinité ancienne."
-        },
-        "german": {
-            "name": "PALKIA",
-            "category": "Räumlich",
-            "entry_text": "Es hat die Macht, den Raum zu\nkrümmen. In den Mythen von\nSinnoh erscheint es als Gottheit."
-        },
-        "italian": {
-            "name": "Palkia",
-            "category": "Pokémon Spazio",
-            "entry_text": "Ha l’abilità di distorcere lo spazio.\nNella mitologia della regione di\nSinnoh è una divinità."
-        },
-        "spanish": {
-            "name": "Palkia",
-            "category": "Pokémon Espacial",
-            "entry_text": "Tiene la habilidad de distorsionar\nel espacio. La mitología de Sinnoh\nlo describe como una deidad."
-        },
-        "japanese": {
-            "name": "パルキア",
-            "category": "くうかんポケモン",
-            "entry_text": "くうかんを　ゆがめる　のうりょくを\nもち　シンオウちほうの　しんわでは\nかみさまとして　えがかれている。"
-        }
     }
 }

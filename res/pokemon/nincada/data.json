@@ -107,47 +107,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 55,
-        "body_shape": "SHAPE_INSECTOID",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 291,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 291,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 25,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 25,
-        "english": {
-            "category": "Trainee Pokémon",
-            "entry_text": "It grows underground, sensing\nits surroundings using antennae\ninstead of its virtually blind eyes."
-        },
-        "french": {
-            "name": "NINGALE",
-            "category": "Pokémon Apprenti",
-            "entry_text": "Il grandit sous terre et se repère\ngrâce à ses antennes car ses\nyeux sont quasiment aveugles."
-        },
-        "german": {
-            "name": "NINCADA",
-            "category": "Vorbereiter",
-            "entry_text": "Es wächst unterirdisch heran und\nnimmt seine Umgebung mit Antennen\nwahr, da es nahezu blind ist."
-        },
-        "italian": {
-            "name": "Nincada",
-            "category": "Pokémon Novizio",
-            "entry_text": "Cresce sottoterra e, poiché è\nquasi cieco, usa le antenne per\nsondare ciò che lo circonda."
-        },
-        "spanish": {
-            "name": "Nincada",
-            "category": "Pokémon Aprendiz",
-            "entry_text": "Crece bajo tierra y explora el\nentorno con sus antenas,\nque sustituyen a ojos atrofiados."
-        },
-        "japanese": {
-            "name": "ツチニン",
-            "category": "したづみポケモン",
-            "entry_text": "じめんの　したで　せいちょうする。\nほとんど　みえない　めの　かわりに\nしょっかくで　ようすを　さぐる。"
-        }
     }
 }

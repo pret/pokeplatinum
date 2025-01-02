@@ -108,47 +108,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 12,
-        "weight": 666,
-        "body_shape": "SHAPE_HEAD",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 222,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 222,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 11,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 11,
-        "english": {
-            "category": "Ball Pokémon",
-            "entry_text": "It is known to drift on winds if it\nis bloated to bursting with stored\nelectricity."
-        },
-        "french": {
-            "name": "ELECTRODE",
-            "category": "Pokémon Balle",
-            "entry_text": "Il se laisse porter par les vents\nlorsque son corps est gonflé\nd’électricité à en éclater."
-        },
-        "german": {
-            "name": "LEKTROBAL",
-            "category": "Ball",
-            "entry_text": "Es lässt sich vom Wind treiben,\nwenn es so voller Elektrizität ist,\ndass es fast explodiert."
-        },
-        "italian": {
-            "name": "Electrode",
-            "category": "Pokémon Ball",
-            "entry_text": "Quando ha accumulato elettricità\nfino quasi a scoppiare, si fa\ntrasportare dal vento."
-        },
-        "spanish": {
-            "name": "Electrode",
-            "category": "Pokémon Bola",
-            "entry_text": "Se lo lleva el viento si se hincha\ncon la electricidad que almacena."
-        },
-        "japanese": {
-            "name": "マルマイン",
-            "category": "ボ－ルポケモン",
-            "entry_text": "でんきエネルギ－を　ためすぎて\nぱんぱんに　ふくらんだ　マルマインが\nかぜに　ながされてくることが　ある。"
-        }
     }
 }

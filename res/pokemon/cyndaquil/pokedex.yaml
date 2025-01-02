@@ -1,0 +1,72 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    79
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    357
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    357
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Fire Mouse Pokémon
+    "entry_text": |-
+        It has a timid nature. If it is
+        startled, the flames on its back
+        burn more vigorously.
+"french":
+    "name": |-
+        HERICENDRE
+    "category": |-
+        Pokémon Souris Feu
+    "entry_text": "Ce Pokémon est un grand timide.\nLes flammes sur son dos \ns’intensifient\
+        \ lorsqu’il prend peur."
+"german":
+    "name": |-
+        FEURIGEL
+    "category": |-
+        Feuermaus
+    "entry_text": |-
+        Erschrickt sich dieses scheue PKMN,
+        lodern die Flammen auf seinem
+        Rücken kräftiger.
+"italian":
+    "name": |-
+        Cyndaquil
+    "category": |-
+        Pokémon Fuocotopo
+    "entry_text": |-
+        È riservato per natura. Se viene
+        spaventato, le fiamme sul suo
+        dorso bruciano ardentemente.
+"spanish":
+    "name": |-
+        Cyndaquil
+    "category": |-
+        Pokémon Ratónfuego
+    "entry_text": |-
+        Es un Pokémon muy tímido. Si
+        se asusta, las llamas de su lomo
+        arden con más fuerza.
+"japanese":
+    "name": |-
+        ヒノアラシ
+    "category": |-
+        ひねずみポケモン
+    "entry_text": |-
+        おくびょうな　せいかく。
+        おどろくと　せなかの　ほのおが
+        いちだんと　つよく　もえあがる。

@@ -114,47 +114,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 19,
-        "weight": 2200,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 347,
-        "pokemon_scale_f": 209,
-        "trainer_scale_m": 335,
-        "pokemon_scale_m": 209,
-        "trainer_pos_f": 15,
-        "pokemon_pos_f": 3,
-        "trainer_pos_m": 16,
-        "pokemon_pos_m": 3,
-        "english": {
-            "category": "Eruption Pokémon",
-            "entry_text": "It has volcanoes on its back. If\nmagma builds up in its body, it\nshudders, then erupts violently."
-        },
-        "french": {
-            "name": "CAMERUPT",
-            "category": "Pokémon Eruption",
-            "entry_text": "Il porte des volcans sur son dos.\nQuand le magma remonte, il\nfrissonne et entre en éruption."
-        },
-        "german": {
-            "name": "CAMERUPT",
-            "category": "Ausbruch",
-            "entry_text": "Auf seinem Rücken befinden sich\nVulkane. Magma bildet sich in seinem\nKörper, die irgendwann ausbricht."
-        },
-        "italian": {
-            "name": "Camerupt",
-            "category": "Pokémon Eruzione",
-            "entry_text": "Ha dei vulcani sul dorso. Se il\nmagma nel suo corpo aumenta,\ntrema e poi erutta violentemente."
-        },
-        "spanish": {
-            "name": "Camerupt",
-            "category": "Pokémon Erupción",
-            "entry_text": "Tiene volcanes en el lomo. Si el\nmagma se acumula en su cuerpo,\nse sacude y estalla con violencia."
-        },
-        "japanese": {
-            "name": "バク－ダ",
-            "category": "ふんかポケモン",
-            "entry_text": "せなかに　かざんを　もつ　ポケモン。\nたいないの　マグマが　ふえると\nふるえた　あとに　だいばくはつする。"
-        }
     }
 }

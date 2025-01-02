@@ -1,0 +1,74 @@
+"height": !!int |-
+    11
+"weight": !!int |-
+    648
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    292
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    292
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65533
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65533
+"english":
+    "category": |-
+        FlyScorpion Pokémon
+    "entry_text": |-
+        It glides as if sliding. It startles
+        foes by clamping on to their faces,
+        then jabs with its poison stinger.
+"french":
+    "name": |-
+        SCORPLANE
+    "category": |-
+        Pokémon Scorpivol
+    "entry_text": |-
+        Il chevauche les vents en tendant
+        ses membres pour frapper depuis
+        le ciel. Il vise toujours au visage.
+"german":
+    "name": |-
+        SKORGLA
+    "category": |-
+        Flugskorpi
+    "entry_text": |-
+        Es segelt durch die Lüfte und
+        breitet seine Gliedmaßen aus, um
+        aus der Luft anzugreifen.
+"italian":
+    "name": |-
+        Gligar
+    "category": |-
+        Pokémon Aliscorpio
+    "entry_text": |-
+        Si fa trasportare dai venti con le
+        ali spalancate e colpisce la preda
+        dall’alto mirando al volto.
+"spanish":
+    "name": |-
+        Gligar
+    "category": |-
+        Pokémon Escorpiala
+    "entry_text": |-
+        Ataca desde el aire con sus
+        extremidades extendidas. Va
+        directo a la cara de su oponente.
+"japanese":
+    "name": |-
+        グライガ－
+    "category": |-
+        とびさそりポケモン
+    "entry_text": |-
+        てあしの　まくで　かぜに　のって
+        そらから　おそいかかる　せんぽう。
+        えものの　かおを　ねらう。

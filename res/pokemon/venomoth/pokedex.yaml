@@ -1,0 +1,74 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    125
+"body_shape": |-
+    SHAPE_MULTI_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65530
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65530
+"english":
+    "category": |-
+        Poison Moth Pokémon
+    "entry_text": |-
+        It flutters its wings to scatter
+        dustlike scales. The scales leach
+        toxins if they contact skin.
+"french":
+    "name": |-
+        AEROMITE
+    "category": |-
+        Pokémon Papipoison
+    "entry_text": |-
+        Il répand ses écailles poudreuses
+        en battant des ailes. Elles sont
+        toxiques au toucher.
+"german":
+    "name": |-
+        OMOT
+    "category": |-
+        Giftmotte
+    "entry_text": |-
+        Es schlägt mit den Flügeln, um
+        staubartige Schuppen abzusondern.
+        Diese geben bei Kontakt Gift ab.
+"italian":
+    "name": |-
+        Venomoth
+    "category": |-
+        Pokémon Velentarma
+    "entry_text": |-
+        Sbattendo le ali sparge una
+        polvere velenosa a contatto
+        con la pelle.
+"spanish":
+    "name": |-
+        Venomoth
+    "category": |-
+        Pokémon Polilla V.
+    "entry_text": |-
+        Agita las alas para dispersar
+        un polvillo de escamas que
+        libera toxinas si toca la piel.
+"japanese":
+    "name": |-
+        モルフォン
+    "category": |-
+        どくがポケモン
+    "entry_text": |-
+        はばたいて　りんぷんを　まきちらす。
+        りんぷんが　からだに　つくと　どくの
+        せいぶんが　ひふに　しみこんでくる。

@@ -1,0 +1,74 @@
+"height": !!int |-
+    88
+"weight": !!int |-
+    2100
+"body_shape": |-
+    SHAPE_SERPENTINE
+"trainer_scale_f": !!int |-
+    692
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    588
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    26
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    25
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Rock Snake Pokémon
+    "entry_text": |
+        It burrows through the ground
+        at a speed of 50 mph while
+        feeding on large boulders.
+"french":
+    "name": |-
+        ONIX
+    "category": |-
+        Pokémon Serpenroc
+    "entry_text": |-
+        Il provoque des secousses
+        sismiques en creusant.
+        Il peut atteindre les 80 km/h.
+"german":
+    "name": |-
+        ONIX
+    "category": |-
+        Felsnatter
+    "entry_text": |-
+        Wenn es sich unter dem Boden mit
+        bis zu 80 km/h bewegt, verursacht
+        es Erschütterungen.
+"italian":
+    "name": |-
+        Onix
+    "category": |-
+        Pokémon Serpesasso
+    "entry_text": |-
+        Si muove sottoterra provocando
+        scosse e boati. Può raggiungere
+        anche la velocità di 80 km/h.
+"spanish":
+    "name": |-
+        Onix
+    "category": |-
+        Pokémon Serp. Roca
+    "entry_text": |-
+        Cuando viaja bajo tierra causa
+        temblores y estruendo. Se puede
+        mover a 80 km por hora.
+"japanese":
+    "name": |-
+        イワ－ク
+    "category": |-
+        いわへびポケモン
+    "entry_text": |-
+        イワ－クが　ちちゅうを　ほりすすむと
+        じなりが　きこえ　じめんが　ゆれる。
+        いどうそくどは　じそく８０キロ。

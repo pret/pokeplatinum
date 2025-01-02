@@ -121,47 +121,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 1050,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 10,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 10,
-        "english": {
-            "category": "Rock Pokémon",
-            "entry_text": "It rolls on mountain paths to move.\nOnce it builds momentum, no Pokémon\ncan stop it without difficulty."
-        },
-        "french": {
-            "name": "GRAVALANCH",
-            "category": "Pokémon Roche",
-            "entry_text": "GRAVALANCH creuse son terrier\nà flanc de montagne en perçant\ndes galeries horizontales."
-        },
-        "german": {
-            "name": "GEOROK",
-            "category": "Gestein",
-            "entry_text": "GEOROK leben an steilen\nFelsvorsprüngen. Sie graben\ndazu viele Löcher aus."
-        },
-        "italian": {
-            "name": "Graveler",
-            "category": "Pokémon Roccia",
-            "entry_text": "Costruisce la sua tana in fessure\nscavate nelle pareti di precipizi e\ndirupi scoscesi."
-        },
-        "spanish": {
-            "name": "Graveler",
-            "category": "Pokémon Roca",
-            "entry_text": "Muchos GRAVELER hacen agujeros\nen acantilados escarpados para\nestablecerse dentro de ellos."
-        },
-        "japanese": {
-            "name": "ゴロ－ン",
-            "category": "がんせきポケモン",
-            "entry_text": "けわしい　がけの　ちゅうふくに\nいくつもの　よこあなを　みつけたら\nそれは　ゴロ－ンの　すみか。"
-        }
     }
 }

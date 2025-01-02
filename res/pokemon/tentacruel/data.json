@@ -108,47 +108,5 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 16,
-        "weight": 550,
-        "body_shape": "SHAPE_TENTACLES",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 245,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 245,
-        "trainer_pos_f": 5,
-        "pokemon_pos_f": 65535,
-        "trainer_pos_m": 4,
-        "pokemon_pos_m": 65535,
-        "english": {
-            "category": "Jellyfish Pokémon",
-            "entry_text": "It extends its 80 tentacles to\nform an encircling poisonous net\nthat is difficult to escape."
-        },
-        "french": {
-            "name": "TENTACRUEL",
-            "category": "Pokémon Mollusque",
-            "entry_text": "Ses 80 tentacules ligotent ses\nproies et les retiennent jusqu’à\nce que son poison fasse effet."
-        },
-        "german": {
-            "name": "TENTOXA",
-            "category": "Qualle",
-            "entry_text": "Es besitzt 80 Tentakel, um Beute zu\nfangen und festzuhalten. Diese\nwird durch Gift geschwächt.  "
-        },
-        "italian": {
-            "name": "Tentacruel",
-            "category": "Pokémon Medusa",
-            "entry_text": "Ha 80 tentacoli per intrappolare\nla preda e non la rilascia finché il\nveleno non l’ha indebolita."
-        },
-        "spanish": {
-            "name": "Tentacruel",
-            "category": "Pokémon Medusa",
-            "entry_text": "Posee 80 tentáculos con los que\naprisiona a sus presas hasta que\nse debilitan por el veneno."
-        },
-        "japanese": {
-            "name": "ドククラゲ",
-            "category": "くらげポケモン",
-            "entry_text": "８０ほんの　しょくしゅを　もつ。\nえものを　からめとり　どくで\nよわるまで　ぜったいに　にがさない。"
-        }
     }
 }

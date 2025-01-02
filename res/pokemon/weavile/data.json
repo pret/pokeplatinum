@@ -132,47 +132,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 11,
-        "weight": 340,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 313,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 313,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 13,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 13,
-        "english": {
-            "category": "Sharp Claw Pokémon",
-            "entry_text": "Evolution made it even more\ndevious. It communicates by clawing\nsigns in boulders."
-        },
-        "french": {
-            "name": "DIMORET",
-            "category": "Pokémon Grifacérée",
-            "entry_text": "Ils vivent par groupe de 4 ou 5\nen région froide et chassent de\nfaçon très organisée."
-        },
-        "german": {
-            "name": "SNIBUNNA",
-            "category": "Stichklaue",
-            "entry_text": "Es lebt in kalten Gebieten in\nGruppen von 4 oder 5 PKMN, die bei\nder Jagd großes Geschick zeigen."
-        },
-        "italian": {
-            "name": "Weavile",
-            "category": "Pokémon Lamartigli",
-            "entry_text": "Questi Pokémon vivono in zone fred-\nde in gruppi di quattro o cinque.\nInsieme sono cacciatori abilissimi."
-        },
-        "spanish": {
-            "name": "Weavile",
-            "category": "Pokémon Garra Filo",
-            "entry_text": "Viven en zonas frías y forman\ngrupos de cuatro o cinco para\ncazar con gran coordinación."
-        },
-        "japanese": {
-            "name": "マニュ－ラ",
-            "category": "かぎづめポケモン",
-            "entry_text": "さむい　ちいきで　くらす　ポケモン。\n４、５ひきの　グル－プは　みごとな\nれんけいで　えものを　おいつめる。"
-        }
     }
 }

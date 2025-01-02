@@ -114,47 +114,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 255,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 14,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 14,
-        "english": {
-            "category": "Verdant Pokémon",
-            "entry_text": "It basically does not fight. With\ncells similar to those of plants, it\ncan perform photosynthesis."
-        },
-        "french": {
-            "name": "PHYLLALI",
-            "category": "Pokémon Verdoyant",
-            "entry_text": "Il utilise la photosynthèse comme\nune plante. C’est pourquoi il est \ntoujours entouré d’air pur."
-        },
-        "german": {
-            "name": "FOLIPURBA",
-            "category": "Unreif",
-            "entry_text": "Genau wie ein Pflanze führt es die\nPhotosynthese aus. Deshalb ist es\nständig von reiner Luft umgeben."
-        },
-        "italian": {
-            "name": "Leafeon",
-            "category": "Pokémon Rigoglioso",
-            "entry_text": "Usa la fotosintesi, proprio come\nuna pianta. Pertanto è sempre\ncircondato da aria pulita."
-        },
-        "spanish": {
-            "name": "Leafeon",
-            "category": "Pokémon Verdor",
-            "entry_text": "Al igual que una planta, hace la\nfotosíntesis. Como consecuencia,\nsiempre está rodeado de aire puro."
-        },
-        "japanese": {
-            "name": "リ－フィア",
-            "category": "しんりょくポケモン",
-            "entry_text": "しょくぶつのように　こうごうせいを\nするため　リ－フィアの　まわりは\nすんだ　くうきに　つつまれている。"
-        }
     }
 }

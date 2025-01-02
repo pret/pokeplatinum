@@ -1,0 +1,74 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    50
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    390
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    390
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65535
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65535
+"english":
+    "category": |-
+        Time Travel Pokémon
+    "entry_text": |-
+        It has the power to travel across
+        time, but it is said to appear only
+        in peaceful times.
+"french":
+    "name": |-
+        CELEBI
+    "category": |-
+        Pokémon Temporel
+    "entry_text": |-
+        Il a le pouvoir de voyager dans le
+        temps. Cependant, on dit qu’il
+        n’apparaît qu’en temps de paix.
+"german":
+    "name": |-
+        CELEBI
+    "category": |-
+        Zeitreise
+    "entry_text": |-
+        Es kann durch die Zeit reisen,
+        aber es erscheint nur zu
+        friedlichen Zeiten.
+"italian":
+    "name": |-
+        Celebi
+    "category": |-
+        Pokémon Tempovia
+    "entry_text": |-
+        Ha il potere di viaggiare attraverso
+        il tempo, ma si dice che appaia solo
+        in periodi di pace.
+"spanish":
+    "name": |-
+        Celebi
+    "category": |-
+        Pokémon Viajetiempo
+    "entry_text": |-
+        Puede viajar en el tiempo, pero
+        se dice que solo aparece en
+        tiempos de paz.
+"japanese":
+    "name": |-
+        セレビィ
+    "category": |-
+        ときわたりポケモン
+    "entry_text": |-
+        じかんを　こえる　ちからを　つかう。
+        へいわな　じだいにだけ
+        すがたを　みせると　いわれている。

@@ -103,47 +103,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 5,
-        "weight": 54,
-        "body_shape": "SHAPE_HEAD_LEGS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 376,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 376,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 27,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 27,
-        "english": {
-            "category": "Weed Pokémon",
-            "entry_text": "It often plants its root feet in the\nground during the day and sows\nseeds as it walks about at night."
-        },
-        "french": {
-            "name": "MYSTHERBE",
-            "category": "Pokémon Racine",
-            "entry_text": "En journée, il plante ses pieds-\nracines dans le sol. La nuit, il se \npromène en semant des graines."
-        },
-        "german": {
-            "name": "MYRAPLA",
-            "category": "Unkraut",
-            "entry_text": "Tagsüber verankert es sich mit\nseinen Wurzelfüßen im Boden. Nachts\nwandert es und verteilt Samen."
-        },
-        "italian": {
-            "name": "Oddish",
-            "category": "Pokémon Malerba",
-            "entry_text": "Durante il giorno, pianta i piedi\nper terra come se fossero radici.\nDi notte cammina seminando."
-        },
-        "spanish": {
-            "name": "Oddish",
-            "category": "Pokémon Hierbajo",
-            "entry_text": "Suele plantarse en el suelo\ndurante el día. Por la noche se\ndesplaza esparciendo semillas."
-        },
-        "japanese": {
-            "name": "ナゾノクサ",
-            "category": "ざっそうポケモン",
-            "entry_text": "ひるまは　ねっこの　あしを　じめんに\nうめて　うごかないことが　おおい。\nよる　あるきまわって　タネを　まく。"
-        }
     }
 }

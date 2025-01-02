@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 7,
-        "weight": 177,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 342,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 342,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 21,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 21,
-        "english": {
-            "category": "Firefly Pokémon",
-            "entry_text": "It communicates with others by\nlighting up its rear at night. It\nloves ILLUMISE’s sweet aroma."
-        },
-        "french": {
-            "name": "MUCIOLE",
-            "category": "Pokémon Luciole",
-            "entry_text": "Il communique avec ses pairs en\nallumant son postérieur la nuit. Il\nadore le doux parfum de LUMIVOLE."
-        },
-        "german": {
-            "name": "VOLBEAT",
-            "category": "Libelle",
-            "entry_text": "Es kommuniziert mit anderen, indem\nes sein Hinterteil zum Leuchten\nbringt. Es liebt ILLUMISEs Duft."
-        },
-        "italian": {
-            "name": "Volbeat",
-            "category": "Pokémon Lucciola",
-            "entry_text": "Di notte comunica con gli altri\nilluminando la sua coda.\nAma il dolce aroma di ILLUMISE."
-        },
-        "spanish": {
-            "name": "Volbeat",
-            "category": "Pokémon Luciérnaga",
-            "entry_text": "Se comunica con otros iluminando\nsu cola por la noche. Le encanta el\nsuave aroma de ILLUMISE."
-        },
-        "japanese": {
-            "name": "バルビ－ト",
-            "category": "ほたるポケモン",
-            "entry_text": "よるになると　おしりを　ひからせ\nなかまと　かいわする。イルミ－ゼの\nだす　あまい　かおりが　だいすき。"
-        }
     }
 }

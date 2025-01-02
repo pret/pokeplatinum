@@ -1,0 +1,74 @@
+"height": !!int |-
+    18
+"weight": !!int |-
+    1258
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    218
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    218
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Hibernator Pokémon
+    "entry_text": |-
+        In its territory, it leaves
+        scratches on trees that bear
+        delicious berries or fruits.
+"french":
+    "name": |-
+        URSARING
+    "category": |-
+        Pokémon Hibernant
+    "entry_text": |-
+        Il marque de ses griffes les
+        arbres de son territoire qui
+        portent des Baies ou des fruits.
+"german":
+    "name": |-
+        URSARING
+    "category": |-
+        Schläfer
+    "entry_text": |-
+        Es durchstreift sein Revier und
+        markiert Bäume, die Früchte
+        oder Beeren tragen, mit Kratzern.
+"italian":
+    "name": |-
+        Ursaring
+    "category": |-
+        Pokémon Letargo
+    "entry_text": |-
+        Nel suo territorio, lascia graffi
+        sugli alberi che hanno bacche
+        o frutti deliziosi.
+"spanish":
+    "name": |-
+        Ursaring
+    "category": |-
+        Pokémon Hibernante
+    "entry_text": |-
+        Araña los árboles de su territorio
+        que dan bayas y frutas que le
+        gustan para marcarlos.
+"japanese":
+    "name": |-
+        リングマ
+    "category": |-
+        とうみんポケモン
+    "entry_text": |-
+        なわばりにある　おいしい　きのみや
+        くだものの　なる　き　には
+        ツメで　きずあとを　つける。

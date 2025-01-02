@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    62
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    430
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    430
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    25
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    25
+"english":
+    "category": |-
+        Chimp Pokémon
+    "entry_text": |-
+        It is very agile. Before going to
+        sleep, it extinguishes the flame
+        on its tail to prevent fires.
+"french":
+    "name": |-
+        OUISTICRAM
+    "category": |-
+        Pokémon Chimpanzé
+    "entry_text": |-
+        Il escalade prestement les falaises
+        escarpées et vit sur les sommets.
+        Sa flamme s’éteint quand il dort.
+"german":
+    "name": |-
+        PANFLAM
+    "category": |-
+        Schimpanse
+    "entry_text": |-
+        Es klettert behände steile Felsen
+        hinauf, um auf Bergen zu leben. Sein
+        Feuer ist aus, wenn es schläft.
+"italian":
+    "name": |-
+        Chimchar
+    "category": |-
+        Pokémon Scimpanzé
+    "entry_text": |-
+        Scala agilmente le rocce scoscese
+        e vive in cima ai monti. Prima
+        di dormire spegne le fiamme.
+"spanish":
+    "name": |-
+        Chimchar
+    "category": |-
+        Pokémon Chimpancé
+    "entry_text": |-
+        Escala acantilados escarpados con
+        agilidad. Vive en las montañas y
+        su fuego se apaga cuando duerme.
+"japanese":
+    "name": |-
+        ヒコザル
+    "category": |-
+        こざるポケモン
+    "entry_text": |-
+        だんがいぜっぺきを　みがるに　のぼり
+        いわやまの　うえで　せいかつする。
+        ほのおを　けして　ねむる。

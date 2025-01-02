@@ -1,0 +1,74 @@
+"height": !!int |-
+    15
+"weight": !!int |-
+    380
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    223
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    223
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65534
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65534
+"english":
+    "category": |-
+        Jubilee Pokémon
+    "entry_text": |-
+        It shares many blessings with
+        people who respect one another’s
+        rights and avoid needless strife.
+"french":
+    "name": |-
+        TOGEKISS
+    "category": |-
+        Pokémon Célébration
+    "entry_text": |-
+        Il n’apparaît jamais en temps
+        de conflit. Récemment, il se
+        fait plus rare.
+"german":
+    "name": |-
+        TOGEKISS
+    "category": |-
+        Jubilierer
+    "entry_text": |-
+        Es zeigt sich niemals dort, wo
+        es Streitigkeiten gibt. In letzter
+        Zeit wurde es nur selten gesehen.
+"italian":
+    "name": |-
+        Togekiss
+    "category": |-
+        Pokémon Festa
+    "entry_text": |-
+        Non si presenta mai dove c’è un
+        conflitto. Di recente le sue
+        apparizioni sono diventate rare.
+"spanish":
+    "name": |-
+        Togekiss
+    "category": |-
+        Pokémon Festejo
+    "entry_text": |-
+        Nunca aparece donde hay peleas.
+        Últimamente no se deja ver muy
+        a menudo.
+"japanese":
+    "name": |-
+        トゲキッス
+    "category": |-
+        しゅくふくポケモン
+    "entry_text": |-
+        もめごとの　おこる　ばしょには
+        けっして　あらわれない。ちかごろは
+        すがたを　みかけなくなった。

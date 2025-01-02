@@ -1,0 +1,70 @@
+"height": !!int |-
+    6
+"weight": !!int |-
+    78
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    278
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    278
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Wool Pokémon
+    "entry_text": |-
+        Its fluffy coat swells to double
+        when static electricity builds up.
+        Touching it can be shocking.
+"french":
+    "name": |-
+        WATTOUAT
+    "category": |-
+        Pokémon Laine
+    "entry_text": "Sa laine fournie enfle lorsqu’il\naccumule de l’électricité statique.\n\
+        Son contact peut choquer. "
+"german":
+    "name": |-
+        VOLTILAMM
+    "category": |-
+        Wolle
+    "entry_text": "Sein weiches Fell wird doppelt so\ndick, wenn sich Elektrizität\n\
+        aufbaut. "
+"italian":
+    "name": |-
+        Mareep
+    "category": |-
+        Pokémon Lana
+    "entry_text": |
+        Se il manto è carico d’elettricità,
+        le sue dimensioni raddoppiano e può
+        dare la scossa.
+"spanish":
+    "name": |-
+        Mareep
+    "category": |-
+        Pokémon Lana
+    "entry_text": |-
+        Su pelaje lanudo dobla su volumen
+        al acumular electricidad estática.
+        Tocarlo puede dar calambre.
+"japanese":
+    "name": |-
+        メリ－プ
+    "category": |-
+        わたげポケモン
+    "entry_text": |-
+        ふわふわの　たいもうは　せいでんきが
+        たまると　２ばいに　ふくらむ。
+        さわると　かんでんしてしまう。

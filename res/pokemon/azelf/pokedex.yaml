@@ -1,0 +1,74 @@
+"height": !!int |-
+    3
+"weight": !!int |-
+    3
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    491
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    491
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65526
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65526
+"english":
+    "category": |-
+        Willpower Pokémon
+    "entry_text": |-
+        When AZELF flew, people gained the
+        determination to do things.
+        It was the birth of willpower.
+"french":
+    "name": |-
+        CREFADET
+    "category": |-
+        Pokémon Volonté
+    "entry_text": |-
+        On l’appelle “être de la volonté”.
+        Il dort au fond d’un lac pour
+        maintenir l’équilibre du monde.
+"german":
+    "name": |-
+        TOBUTZ
+    "category": |-
+        Willenskraft
+    "entry_text": |-
+        “Das starke Wesen”.
+        Es schläft auf dem Grund eines Sees
+        und hält so die Welt in Balance.
+"italian":
+    "name": |-
+        Azelf
+    "category": |-
+        Pokémon Volontà
+    "entry_text": |-
+        Detto “Essere della volontà”.
+        Dorme sul fondo di un lago per
+        mantenere il mondo in equilibrio.
+"spanish":
+    "name": |-
+        Azelf
+    "category": |-
+        Pokémon Voluntad
+    "entry_text": |-
+        Se le conoce como el “ser de la
+        voluntad”. Duerme en el fondo de
+        un lago para equilibrar el mundo.
+"japanese":
+    "name": |-
+        アグノム
+    "category": |-
+        いしポケモン
+    "entry_text": |-
+        いしのかみ　と　よばれている。
+        みずうみの　そこで　ねむりつづけ
+        せかいの　バランスを　とっている。

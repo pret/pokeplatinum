@@ -101,47 +101,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 78,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 278,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 278,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 19,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 19,
-        "english": {
-            "category": "Wool Pokémon",
-            "entry_text": "Its fluffy coat swells to double\nwhen static electricity builds up.\nTouching it can be shocking."
-        },
-        "french": {
-            "name": "WATTOUAT",
-            "category": "Pokémon Laine",
-            "entry_text": "Sa laine fournie enfle lorsqu’il\naccumule de l’électricité statique.\nSon contact peut choquer. "
-        },
-        "german": {
-            "name": "VOLTILAMM",
-            "category": "Wolle",
-            "entry_text": "Sein weiches Fell wird doppelt so\ndick, wenn sich Elektrizität\naufbaut. "
-        },
-        "italian": {
-            "name": "Mareep",
-            "category": "Pokémon Lana",
-            "entry_text": "Se il manto è carico d’elettricità,\nle sue dimensioni raddoppiano e può\ndare la scossa.\n"
-        },
-        "spanish": {
-            "name": "Mareep",
-            "category": "Pokémon Lana",
-            "entry_text": "Su pelaje lanudo dobla su volumen\nal acumular electricidad estática.\nTocarlo puede dar calambre."
-        },
-        "japanese": {
-            "name": "メリ－プ",
-            "category": "わたげポケモン",
-            "entry_text": "ふわふわの　たいもうは　せいでんきが\nたまると　２ばいに　ふくらむ。\nさわると　かんでんしてしまう。"
-        }
     }
 }

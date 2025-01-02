@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 60,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 524,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 524,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 27,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 27,
-        "english": {
-            "category": "Mouse Pokémon",
-            "entry_text": "It occasionally uses an electric\nshock to recharge a fellow PIKACHU\nthat is in a weakened state."
-        },
-        "french": {
-            "name": "PIKACHU",
-            "category": "Pokémon Souris",
-            "entry_text": "Il vit en forêt avec ses pairs.\nIl accumule l’électricité dans\nles poches de ses joues."
-        },
-        "german": {
-            "name": "PIKACHU",
-            "category": "Maus",
-            "entry_text": "Es lebt zusammen mit anderen\nin Wäldern. In seinen Backen-\ntaschen speichert es Elektrizität."
-        },
-        "italian": {
-            "name": "Pikachu",
-            "category": "Pokémon Topo",
-            "entry_text": "Vive nelle foreste insieme agli\naltri. Immagazzina elettricità\nnelle sacche sulle guance."
-        },
-        "spanish": {
-            "name": "Pikachu",
-            "category": "Pokémon Ratón",
-            "entry_text": "Vive en grupo en los bosques.\nAlmacena electricidad en las\nbolsas de sus mejillas."
-        },
-        "japanese": {
-            "name": "ピカチュウ",
-            "category": "ねずみポケモン",
-            "entry_text": "もりの　なかで　なかまと　くらす。\nほっぺたの　りょうがわにある\nでんきぶくろに　でんきを　ためる。"
-        }
     }
 }

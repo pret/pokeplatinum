@@ -112,47 +112,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    },
-    "pokedex_data": {
-        "height": 4,
-        "weight": 102,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 503,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 503,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 28,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 28,
-        "english": {
-            "category": "Tiny Leaf Pokémon",
-            "entry_text": "The shell on its back is made of\nsoil. On a very healthy TURTWIG,\nthe shell should feel moist."
-        },
-        "french": {
-            "name": "TORTIPOUSS",
-            "category": "Pokémon Minifeuille",
-            "entry_text": "La coquille sur son dos est faite\nde terre. Elle durcit lorsqu’il \ns’abreuve. Il vit le long des lacs."
-        },
-        "german": {
-            "name": "CHELAST",
-            "category": "Winziglaub",
-            "entry_text": "Es besteht aus Erdreich. Trinkt es\nWasser, verhärtet sich der Panzer\nauf seinem Rücken. Es lebt an Seen."
-        },
-        "italian": {
-            "name": "Turtwig",
-            "category": "Pokémon Fogliolina",
-            "entry_text": "Il suo guscio, che è fatto di terra,\ns’indurisce quando il Pokémon beve.\nVive sulle rive dei laghi."
-        },
-        "spanish": {
-            "name": "Turtwig",
-            "category": "Pokémon Hojita",
-            "entry_text": "La concha de su espalda es de\ntierra y se endurece cuando bebe\nagua. Vive cerca de los lagos."
-        },
-        "japanese": {
-            "name": "ナエトル",
-            "category": "わかばポケモン",
-            "entry_text": "つちで　できた　せなかの　こうらは\nみずを　のむと　さらに　かたくなる。\nみずうみの　ほとりで　くらしている。"
-        }
     }
 }

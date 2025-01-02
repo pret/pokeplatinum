@@ -101,47 +101,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
-    },
-    "pokedex_data": {
-        "height": 19,
-        "weight": 1550,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 342,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 325,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 16,
-        "pokemon_pos_f": 6,
-        "trainer_pos_m": 16,
-        "pokemon_pos_m": 6,
-        "english": {
-            "category": "Legendary Pokémon",
-            "entry_text": "Its proud and regal appearance\nhas captured the hearts of\npeople since long ago."
-        },
-        "french": {
-            "name": "ARCANIN",
-            "category": "Pokémon Légendaire",
-            "entry_text": "Son port altier et son attitude \nfière ont depuis longtemps conquis\nle cœur des hommes."
-        },
-        "german": {
-            "name": "ARKANI",
-            "category": "Legendär",
-            "entry_text": "Mit seiner stolzen und königlichen\nErscheinung gewinnt es die\nHerzen der Menschen."
-        },
-        "italian": {
-            "name": "Arcanine",
-            "category": "Pokémon Leggenda",
-            "entry_text": "Con il suo aspetto fiero ed\nelegante, è riuscito da tempo\na conquistare i cuori della gente."
-        },
-        "spanish": {
-            "name": "Arcanine",
-            "category": "Pokémon Legendario",
-            "entry_text": "Su aspecto regio y orgulloso se\nha ganado el corazón de la\ngente hace tiempo."
-        },
-        "japanese": {
-            "name": "ウインディ",
-            "category": "でんせつポケモン",
-            "entry_text": "いふうどうどうとした　すがたは\nふるくから　ひとびとの　こころを\nとりこにしてきた。"
-        }
     }
 }

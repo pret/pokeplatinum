@@ -1,0 +1,74 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    820
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    345
+"pokemon_scale_f": !!int |-
+    251
+"trainer_scale_m": !!int |-
+    341
+"pokemon_scale_m": !!int |-
+    251
+"trainer_pos_f": !!int |-
+    15
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    16
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Mystic Pokémon
+    "entry_text": |-
+        It whips up sandstorms with
+        powerful flaps of its wings. It is
+        known as “The Desert Spirit.”
+"french":
+    "name": |-
+        LIBEGON
+    "category": |-
+        Pokémon Mystique
+    "entry_text": |-
+        Son puissant battement d’ailes
+        provoque des tempêtes de sable.
+        On l’appelle “esprit du désert”.
+"german":
+    "name": |-
+        LIBELLDRA
+    "category": |-
+        Mystik
+    "entry_text": |-
+        Mit mächtigem Flügelschlag verur-
+        sacht es einen Sandsturm. Es wird
+        “Geist der Wüste” genannt.
+"italian":
+    "name": |-
+        Flygon
+    "category": |-
+        Pokémon Magico
+    "entry_text": |-
+        Genera tempeste di sabbia con il
+        battito delle ali. È detto anche
+        “Spirito primordiale del deserto”.
+"spanish":
+    "name": |-
+        Flygon
+    "category": |-
+        Pokémon Místico
+    "entry_text": |-
+        Levanta tormentas de arena con
+        sus alas. Se le conoce como el
+        “alma del desierto”.
+"japanese":
+    "name": |-
+        フライゴン
+    "category": |-
+        せいれいポケモン
+    "entry_text": |-
+        きょうれつな　ハネの　はばたきで
+        すなあらしを　おこす。
+        さばくのせいれい　と　よばれる。

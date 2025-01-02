@@ -1,0 +1,74 @@
+"height": !!int |-
+    19
+"weight": !!int |-
+    520
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    338
+"pokemon_scale_f": !!int |-
+    272
+"trainer_scale_m": !!int |-
+    325
+"pokemon_scale_m": !!int |-
+    272
+"trainer_pos_f": !!int |-
+    13
+"pokemon_pos_f": !!int |-
+    5
+"trainer_pos_m": !!int |-
+    13
+"pokemon_pos_m": !!int |-
+    5
+"english":
+    "category": |-
+        Blaze Pokémon
+    "entry_text": |-
+        Flames spout from its wrists,
+        enveloping its knuckles. Its
+        punches scorch its foes.
+"french":
+    "name": |-
+        BRASEGALI
+    "category": |-
+        Pokémon Ardent
+    "entry_text": |-
+        Des flammes fusent de ses
+        poignets et ses coups brûlent
+        l’ennemi.
+"german":
+    "name": |-
+        LOHGOCK
+    "category": |-
+        Großbrand
+    "entry_text": |-
+        Aus seinen Handgelenken kommt
+        Feuer, das seine Knöchel umhüllt.
+        Schläge verbrennen den Gegner.
+"italian":
+    "name": |-
+        Blaziken
+    "category": |-
+        Pokémon Vampe
+    "entry_text": |-
+        Le fiamme che fuoriescono dai suoi
+        polsi gli avvolgono i pugni. Quando
+        colpisce il nemico, lo scotta.
+"spanish":
+    "name": |-
+        Blaziken
+    "category": |-
+        Pokémon Llameante
+    "entry_text": |-
+        Sus puños están envueltos en
+        llamas. Con sus golpes puede
+        quemar a sus rivales.
+"japanese":
+    "name": |-
+        バシャ－モ
+    "category": |-
+        もうかポケモン
+    "entry_text": |-
+        てくびから　ふきだした　ほのおで
+        こぶしを　つつみこんだ　パンチは
+        あいてを　くろこげに　してしまう。

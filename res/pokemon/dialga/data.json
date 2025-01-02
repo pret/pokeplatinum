@@ -127,47 +127,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 54,
-        "weight": 6830,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 683,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 655,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 26,
-        "pokemon_pos_f": 2,
-        "trainer_pos_m": 26,
-        "pokemon_pos_m": 2,
-        "english": {
-            "category": "Temporal Pokémon",
-            "entry_text": "A legendary Pokémon of Sinnoh.\nIt is said that time flows when\nDIALGA’s heart beats."
-        },
-        "french": {
-            "name": "DIALGA",
-            "category": "Pokémon Temps",
-            "entry_text": "Il peut contrôler le temps. Les\nmythes de Sinnoh en parlent\ncomme d’une divinité ancienne."
-        },
-        "german": {
-            "name": "DIALGA",
-            "category": "Zeitweilig",
-            "entry_text": "Es besitzt die Macht, die Zeit zu\nkontrollieren. In den Mythen von\nSinnoh erscheint es als Gottheit."
-        },
-        "italian": {
-            "name": "Dialga",
-            "category": "Pokémon Tempo",
-            "entry_text": "Ha il potere di controllare il tempo.\nDescritto nei miti della regione di\nSinnoh come un’antica divinità."
-        },
-        "spanish": {
-            "name": "Dialga",
-            "category": "Pokémon Temporal",
-            "entry_text": "Tiene el poder de controlar el\ntiempo. Aparece en los mitos de\nSinnoh como una vieja deidad."
-        },
-        "japanese": {
-            "name": "ディアルガ",
-            "category": "じかんポケモン",
-            "entry_text": "じかんを　あやつる　ちからを　もつ。\nシンオウちほうでは　かみさまと\nよばれ　しんわに　とうじょうする。"
-        }
     }
 }

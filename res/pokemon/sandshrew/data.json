@@ -119,47 +119,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 120,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 312,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 312,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 22,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 22,
-        "english": {
-            "category": "Mouse Pokémon",
-            "entry_text": "To protect itself from attackers,\nit curls up into a ball. It lives in\narid regions with minimal rainfall."
-        },
-        "french": {
-            "name": "SABELETTE",
-            "category": "Pokémon Souris",
-            "entry_text": "Il vit sur des terres arides\népargnées par la pluie. Il se roule\nen boule pour se protéger."
-        },
-        "german": {
-            "name": "SANDAN",
-            "category": "Maus",
-            "entry_text": "Es lebt in trockenen Regionen mit\nwenig Regen. Es rollt sich ein, um\nsich vor Gegnern zu schützen."
-        },
-        "italian": {
-            "name": "Sandshrew",
-            "category": "Pokémon Topo",
-            "entry_text": "Vive in zone aride con precipitazioni\nminime. Si arrotola come se fosse\nuna palla per difendersi dai nemici."
-        },
-        "spanish": {
-            "name": "Sandshrew",
-            "category": "Pokémon Ratón",
-            "entry_text": "Vive en zonas áridas donde casi\nno llueve. Se enrosca formando\nuna bola para defenderse."
-        },
-        "japanese": {
-            "name": "サンド",
-            "category": "ねずみポケモン",
-            "entry_text": "あめが　ほとんど　ふらない\nかんそうした　とちに　せいそく。\nからだを　まるめて　みを　まもる。"
-        }
     }
 }

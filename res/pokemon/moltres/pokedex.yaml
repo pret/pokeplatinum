@@ -1,0 +1,74 @@
+"height": !!int |-
+    20
+"weight": !!int |-
+    600
+"body_shape": |-
+    SHAPE_WINGED
+"trainer_scale_f": !!int |-
+    334
+"pokemon_scale_f": !!int |-
+    256
+"trainer_scale_m": !!int |-
+    325
+"pokemon_scale_m": !!int |-
+    256
+"trainer_pos_f": !!int |-
+    16
+"pokemon_pos_f": !!int |-
+    1
+"trainer_pos_m": !!int |-
+    15
+"pokemon_pos_m": !!int |-
+    1
+"english":
+    "category": |-
+        Flame Pokémon
+    "entry_text": |-
+        One of the legendary bird Pokémon.
+        It is said that its appearance
+        indicates the coming of spring.
+"french":
+    "name": |-
+        SULFURA
+    "category": |-
+        Pokémon Flamme
+    "entry_text": |-
+        L’un des Pokémon Oiseaux
+        légendaires. On dit que sa venue
+        annonce l’arrivée du printemps.
+"german":
+    "name": |-
+        LAVADOS
+    "category": |-
+        Flamme
+    "entry_text": |-
+        Eines der Legendären Vogel-
+        Pokémon. Es wird als Bote des
+        Frühlings angesehen.
+"italian":
+    "name": |-
+        Moltres
+    "category": |-
+        Pokémon Fiamma
+    "entry_text": |-
+        Un Pokémon uccello leggendario.
+        Si dice che la sua apparizione pre-
+        annunci l’arrivo della primavera.
+"spanish":
+    "name": |-
+        Moltres
+    "category": |-
+        Pokémon Llama
+    "entry_text": |-
+        Uno de los legendarios Pokémon
+        pájaro. Dicen que su presencia
+        anuncia la llegada de la primavera.
+"japanese":
+    "name": |-
+        ファイヤ－
+    "category": |-
+        かえんポケモン
+    "entry_text": |-
+        でんせつの　とりポケモンの　１ぴき。
+        ファイヤ－が　すがたを　みせると
+        はるが　おとずれると　いわれている。

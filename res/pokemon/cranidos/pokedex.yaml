@@ -1,0 +1,72 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    315
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    339
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    339
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    21
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    21
+"english":
+    "category": |-
+        Head Butt Pokémon
+    "entry_text": |-
+        A lifelong jungle dweller from 100
+        million years ago, it would snap
+        obstructing trees with head butts.
+"french":
+    "name": |-
+        KRANIDOS
+    "category": |-
+        Pokémon Coud’Boule
+    "entry_text": "Il vivait dans la jungle il y a \nenviron 100 millions d’années.\
+        \ Son\ncrâne est dur comme du fer."
+"german":
+    "name": |-
+        KOKNODON
+    "category": |-
+        Kopfstoß
+    "entry_text": |-
+        Vor über 100 Millionen Jahren lebte
+        es in den Dschungeln. Sein Schädel
+        ist hart wie Eisen.
+"italian":
+    "name": |-
+        Cranidos
+    "category": |-
+        Pokémon Cranioso
+    "entry_text": |-
+        Viveva nella giungla circa 100
+        milioni di anni fa. Il suo cranio
+        è duro come il ferro.
+"spanish":
+    "name": |-
+        Cranidos
+    "category": |-
+        Pokémon Cabezazo
+    "entry_text": |-
+        Vivía en la jungla hace unos 100
+        millones de años. Su cráneo es
+        tan duro como el hierro.
+"japanese":
+    "name": |-
+        ズガイドス
+    "category": |-
+        ずつきポケモン
+    "entry_text": |-
+        およそ　１おくねんまえに
+        こだいの　みつりんで　くらしていた。
+        てつのように　かたい　ずがいこつ。

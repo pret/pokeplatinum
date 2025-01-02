@@ -1,0 +1,72 @@
+"height": !!int |-
+    9
+"weight": !!int |-
+    340
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    325
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    325
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65531
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65531
+"english":
+    "category": |-
+        Virtual Pokémon
+    "entry_text": |-
+        Its programming was modified to
+        enable work in alien dimensions.
+        It did not work as planned.
+"french":
+    "name": |-
+        PORYGON-Z
+    "category": |-
+        Pokémon Virtuel
+    "entry_text": "Un logiciel supplémentaire fut \ninstallé pour l’améliorer. Mais\n\
+        depuis, il se comporte bizarrement."
+"german":
+    "name": |-
+        PORYGON-Z
+    "category": |-
+        Virtuell
+    "entry_text": |-
+        Zusätzliche Software wurde instal-
+        liert, um das PKMN zu verbessern.
+        Seitdem benimmt es sich seltsam.
+"italian":
+    "name": |-
+        Porygon-Z
+    "category": |-
+        Pokémon Virtuale
+    "entry_text": |-
+        È stato aggiunto un software per
+        migliorare le prestazioni di questo
+        Pokémon. Agisce in modo strano.
+"spanish":
+    "name": |-
+        Porygon-Z
+    "category": |-
+        Pokémon Virtual
+    "entry_text": |-
+        Se le instaló un software para
+        mejorarlo. Sin embargo, comenzó
+        a comportarse de manera extraña.
+"japanese":
+    "name": |-
+        ポリゴンＺ
+    "category": |-
+        バ－チャルポケモン
+    "entry_text": |-
+        より　すぐれた　ポケモンに　するため
+        プログラムを　ついかしたが　なぜか
+        おかしな　こうどうを　はじめた。

@@ -127,47 +127,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 19,
-        "weight": 2050,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 342,
-        "pokemon_scale_f": 222,
-        "trainer_scale_m": 320,
-        "pokemon_scale_m": 222,
-        "trainer_pos_f": 15,
-        "pokemon_pos_f": 4,
-        "trainer_pos_m": 14,
-        "pokemon_pos_m": 4,
-        "english": {
-            "category": "Iron Pokémon",
-            "entry_text": "Tempered by pressure underground\nover tens of thousands of years,\nits body cannot be scratched."
-        },
-        "french": {
-            "name": "REGISTEEL",
-            "category": "Pokémon Fer",
-            "entry_text": "Son corps invulnérable fut forgé\npar la pression souterraine durant\ndes dizaines de milliers d’années."
-        },
-        "german": {
-            "name": "REGISTEEL",
-            "category": "Eisen",
-            "entry_text": "Im Laufe der Jahrtausende, die es\nunterirdisch lebte, wurde sein\nKörper durch Druck u. Wärme hart."
-        },
-        "italian": {
-            "name": "Registeel",
-            "category": "Pokémon Ferro",
-            "entry_text": "La pressione subita sottoterra\nper decine di migliaia di anni ha\nreso il suo corpo resistentissimo."
-        },
-        "spanish": {
-            "name": "Registeel",
-            "category": "Pokémon Hierro",
-            "entry_text": "Su cuerpo ha estado sometido a la\npresión subterránea durante miles\nde años y no puede arañarse."
-        },
-        "japanese": {
-            "name": "レジスチル",
-            "category": "くろがねポケモン",
-            "entry_text": "なんまんねんも　ちかの　あつりょくで\nきたえられた　きんぞくの　ボディは\nきずひとつ　つかない。"
-        }
     }
 }

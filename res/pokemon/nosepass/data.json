@@ -117,47 +117,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 10,
-        "weight": 970,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 256,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 256,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 16,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 16,
-        "english": {
-            "category": "Compass Pokémon",
-            "entry_text": "When endangered, it may protect\nitself by raising its magnetism and\ndrawing iron objects to its body."
-        },
-        "french": {
-            "name": "TARINOR",
-            "category": "Pokémon Boussole",
-            "entry_text": "Son nez est un aimant, c’est\npourquoi ce Pokémon fait toujours\nface au nord."
-        },
-        "german": {
-            "name": "NASGNET",
-            "category": "Kompass",
-            "entry_text": "Seine Nase ist ein Magnet. Daher\nsieht das PKMN immer nach Norden."
-        },
-        "italian": {
-            "name": "Nosepass",
-            "category": "Pokémon Bussola",
-            "entry_text": "Il suo naso è magnetico. Per questo\nmotivo lo tiene sempre puntato\nverso nord."
-        },
-        "spanish": {
-            "name": "Nosepass",
-            "category": "Pokémon Brújula",
-            "entry_text": "Su nariz es un imán. Por eso el\nrostro de este Pokémon siempre\nse orienta al norte."
-        },
-        "japanese": {
-            "name": "ノズパス",
-            "category": "コンパスポケモン",
-            "entry_text": "はなが　じしゃくに　なっているので\nつねに　ほっきょくの　ほうがくに\nかおを　むけている　ポケモン。"
-        }
     }
 }

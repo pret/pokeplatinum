@@ -1,0 +1,74 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    774
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    334
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    334
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    10
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    10
+"english":
+    "category": |-
+        Scarecrow Pokémon
+    "entry_text": |-
+        It becomes active at night,
+        seeking prey that is exhausted
+        from the day’s desert heat.
+"french":
+    "name": |-
+        CACTURNE
+    "category": |-
+        Pokémon Epouvantail
+    "entry_text": |-
+        Il sort la nuit pour chasser. Il
+        traque les proies épuisées après
+        une journée dans le désert.
+"german":
+    "name": |-
+        NOKTUSKA
+    "category": |-
+        Vogelschock
+    "entry_text": |-
+        Ein nachtaktives PKMN, das Beute
+        sucht, die durch die Tageshitze der
+        Wüste bereits erschöpft ist.
+"italian":
+    "name": |-
+        Cacturne
+    "category": |-
+        Pokémon Spavento
+    "entry_text": |-
+        Diventa attivo di notte, quando va
+        a caccia di prede stremate dalla
+        calura del deserto.
+"spanish":
+    "name": |-
+        Cacturne
+    "category": |-
+        Pokémon Espantajo
+    "entry_text": |-
+        Es un Pokémon nocturno. Busca
+        presas agotadas por el calor
+        diurno del desierto.
+"japanese":
+    "name": |-
+        ノクタス
+    "category": |-
+        カカシぐさポケモン
+    "entry_text": |-
+        よるになると　かつどうを　はじめる。
+        さばくの　あつさに　つかれはてた
+        えものを　みつけだし　とらえるのだ。

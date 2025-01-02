@@ -1,0 +1,74 @@
+"height": !!int |-
+    14
+"weight": !!int |-
+    480
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    233
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    233
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    10
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    10
+"english":
+    "category": |-
+        Handstand Pokémon
+    "entry_text": |-
+        It fights while spinning like a top.
+        The centrifugal force boosts its
+        destructive power by ten.
+"french":
+    "name": |-
+        KAPOERA
+    "category": |-
+        Pokémon Poirier
+    "entry_text": |-
+        Il combat en tournoyant comme une
+        toupie. La force centrifuge décuple
+        sa puissance destructrice.
+"german":
+    "name": |-
+        KAPOERA
+    "category": |-
+        Kopfstand
+    "entry_text": |-
+        Es kämpft, während es sich wie ein
+        Kreisel dreht. Die Zentrifugalkraft
+        erhöht die Kampfkraft um 10.
+"italian":
+    "name": |-
+        Hitmontop
+    "category": |-
+        Pokémon Verticale
+    "entry_text": |-
+        Combatte mentre gira come una
+        trottola. La forza centrifuga de-
+        cuplica il suo potere distruttivo.
+"spanish":
+    "name": |-
+        Hitmontop
+    "category": |-
+        Pokémon Boca Abajo
+    "entry_text": |-
+        Gira a gran velocidad al luchar.
+        La fuerza centrífuga multiplica su
+        poder de destrucción por diez.
+"japanese":
+    "name": |-
+        カポエラ－
+    "category": |-
+        さかだちポケモン
+    "entry_text": |-
+        コマのように　かいてんしながら
+        たたかう。えんしんりょくの　パワ－で
+        はかいりょくは　１０ばいだ。

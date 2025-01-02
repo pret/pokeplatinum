@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 19,
-        "weight": 1780,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 341,
-        "pokemon_scale_f": 248,
-        "trainer_scale_m": 327,
-        "pokemon_scale_m": 248,
-        "trainer_pos_f": 15,
-        "pokemon_pos_f": 3,
-        "trainer_pos_m": 15,
-        "pokemon_pos_m": 3,
-        "english": {
-            "category": "Thunder Pokémon",
-            "entry_text": "It is said to have fallen with\nlightning. It can fire thunderbolts\nfrom the rain clouds on its back."
-        },
-        "french": {
-            "name": "RAIKOU",
-            "category": "Pokémon Foudre",
-            "entry_text": "On prétend qu’il est tombé avec la\nfoudre. Il peut lancer des éclairs\ngrâce aux nuages sur son dos."
-        },
-        "german": {
-            "name": "RAIKOU",
-            "category": "Donner",
-            "entry_text": "Dieses PKMN ist der personifizierte\nBlitz. Es kann aus den Wolken über\nseinem Rücken Blitze schleudern."
-        },
-        "italian": {
-            "name": "Raikou",
-            "category": "Pokémon Tuono",
-            "entry_text": "Pare che sia caduto con un\nfulmine. Può scagliare saette dalle\nnuvole di pioggia che ha sul dorso."
-        },
-        "spanish": {
-            "name": "Raikou",
-            "category": "Pokémon Trueno",
-            "entry_text": "Dicen que apareció con un\nrelámpago. Puede lanzar rayos\ndesde las nubes de su lomo."
-        },
-        "japanese": {
-            "name": "ライコウ",
-            "category": "いかずちポケモン",
-            "entry_text": "カミナリと　ともに　おちてきたと\nいわれている。せなかの　あまぐもから\nカミナリを　うちだすことが　できる。"
-        }
     }
 }

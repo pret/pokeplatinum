@@ -1,0 +1,72 @@
+"height": !!int |-
+    10
+"weight": !!int |-
+    1150
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    236
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    236
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    16
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    16
+"english":
+    "category": |-
+        Spikes Pokémon
+    "entry_text": |-
+        Its powerful tackles can destroy
+        anything. However, it is too
+        slow witted to help people work.
+"french":
+    "name": |-
+        RHINOCORNE
+    "category": |-
+        Pokémon Piquant
+    "entry_text": "Sa peau est très épaisse et sa \ncharge peut détruire un immeuble.\n\
+        Dommage qu’il soit stupide."
+"german":
+    "name": |-
+        RIHORN
+    "category": |-
+        Stachler
+    "entry_text": |-
+        Sein Körper ist von einer dicken
+        Haut umgeben und es kann wackelige
+        Gebäude zum Einsturz bringen.
+"italian":
+    "name": |-
+        Rhyhorn
+    "category": |-
+        Pokémon Punzoni
+    "entry_text": |-
+        Ha una pelle molto spessa ed è in
+        grado di abbattere interi edifici.
+        Non è molto sagace.
+"spanish":
+    "name": |-
+        Rhyhorn
+    "category": |-
+        Pokémon Clavos
+    "entry_text": |-
+        Su cuerpo está protegido por una
+        gruesa piel. Puede derribar hasta
+        edificios, pero no es muy listo.
+"japanese":
+    "name": |-
+        サイホ－ン
+    "category": |-
+        とげとげポケモン
+    "entry_text": |-
+        かたい　ひふで　おおわれた　からだ。
+        たいあたりで　ビルも　たおす。
+        ざんねんながら　あたまは　わるい。

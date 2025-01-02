@@ -126,47 +126,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 3,
-        "weight": 65,
-        "body_shape": "SHAPE_QUADRUPED",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 542,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 542,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 29,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 29,
-        "english": {
-            "category": "Evolution Pokémon",
-            "entry_text": "Because its genetic makeup is\nirregular, it quickly changes its\nform due to a variety of causes."
-        },
-        "french": {
-            "name": "EVOLI",
-            "category": "Pokémon Evolutif",
-            "entry_text": "Un Pokémon rare qui s’adapte\naux environnements hostiles \nen variant ses formes évolutives."
-        },
-        "german": {
-            "name": "EVOLI",
-            "category": "Evolution",
-            "entry_text": "Ein seltenes PKMN, das sich seiner\nUmgebung anpasst, indem es sich in\nunterschiedlicher Form entwickelt."
-        },
-        "italian": {
-            "name": "Eevee",
-            "category": "Pokémon Evoluzione",
-            "entry_text": "Un Pokémon raro che si adatta\nagli ambienti più difficili assumendo\ndiverse forme nell’evoluzione."
-        },
-        "spanish": {
-            "name": "Eevee",
-            "category": "Pokémon Evolución",
-            "entry_text": "Un extraño Pokémon que se adapta\na los entornos más hostiles gracias\na sus diferentes evoluciones."
-        },
-        "japanese": {
-            "name": "イ－ブイ",
-            "category": "しんかポケモン",
-            "entry_text": "しんかのとき　すがたと　のうりょくが\nかわることで　きびしい　かんきょうに\nたいおうする　めずらしい　ポケモン。"
-        }
     }
 }

@@ -1,0 +1,74 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    540
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    227
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    227
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    4
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    4
+"english":
+    "category": |-
+        Tadpole Pokémon
+    "entry_text": |-
+        With its extremely tough muscles,
+        it can keep swimming in the Pacific
+        Ocean without resting.
+"french":
+    "name": |-
+        TARTARD
+    "category": |-
+        Pokémon Têtard
+    "entry_text": |-
+        Il possède de sacrés biscoteaux.
+        Il peut parcourir sans relâche
+        l’Océan Pacifique.
+"german":
+    "name": |-
+        QUAPPO
+    "category": |-
+        Kaulquappe
+    "entry_text": |-
+        Es hat extrem starke Muskeln und
+        kann durch den Ozean schwimmen,
+        ohne sich ausruhen zu müssen.
+"italian":
+    "name": |-
+        Poliwrath
+    "category": |-
+        Pokémon Girino
+    "entry_text": |-
+        Ha dei muscoli tanto sviluppati da
+        riuscire ad attraversare a nuoto
+        l’Oceano Pacifico senza fermarsi.
+"spanish":
+    "name": |-
+        Poliwrath
+    "category": |-
+        Pokémon Renacuajo
+    "entry_text": |-
+        Tiene músculos muy desarrollados.
+        Es capaz de nadar en el océano
+        sin descanso.
+"japanese":
+    "name": |-
+        ニョロボン
+    "category": |-
+        おたまポケモン
+    "entry_text": |-
+        きょうじんな　きんにくを　もつ。
+        たいへいようを　やすむことなく
+        およぎつづけることが　できるのだ。

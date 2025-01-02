@@ -1,0 +1,74 @@
+"height": !!int |-
+    13
+"weight": !!int |-
+    315
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILLESS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    268
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    268
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    8
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    8
+"english":
+    "category": |-
+        Meditate Pokémon
+    "entry_text": |-
+        It gains the ability to see the aura
+        of its opponents by honing its mind
+        through starvation.
+"french":
+    "name": |-
+        CHARMINA
+    "category": |-
+        Pokémon Méditation
+    "entry_text": |-
+        Il a développé son sixième sens
+        grâce au yoga. Ses mouvements
+        sont gracieux.
+"german":
+    "name": |-
+        MEDITALIS
+    "category": |-
+        Meditation
+    "entry_text": |-
+        Mit Yoga-Training hat es seinen
+        6. Sinn geschärft. Seine
+        Bewegungen sind sehr elegant.
+"italian":
+    "name": |-
+        Medicham
+    "category": |-
+        Pokémon Meditazione
+    "entry_text": |-
+        Con gli esercizi di yoga ha affinato
+        il sesto senso. I suoi movimenti
+        sono molto eleganti.
+"spanish":
+    "name": |-
+        Medicham
+    "category": |-
+        Pokémon Meditador
+    "entry_text": |-
+        El yoga ha perfeccionado su
+        sexto sentido. Sus movimientos
+        son extremadamente elegantes.
+"japanese":
+    "name": |-
+        チャ－レム
+    "category": |-
+        めいそうポケモン
+    "entry_text": |-
+        ヨガの　しゅぎょうによって
+        だい６かんが　はったつした。
+        ゆうがに　おどるような　みのこなし。

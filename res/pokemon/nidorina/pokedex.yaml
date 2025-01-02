@@ -1,0 +1,74 @@
+"height": !!int |-
+    8
+"weight": !!int |-
+    200
+"body_shape": |-
+    SHAPE_QUADRUPED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    301
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    301
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    19
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    19
+"english":
+    "category": |-
+        Poison Pin Pokémon
+    "entry_text": |-
+        When it senses danger, it raises
+        all the barbs on its body. These
+        barbs grow slower than NIDORINO’s.
+"french":
+    "name": |-
+        NIDORINA
+    "category": |-
+        Pokémon Venepic
+    "entry_text": |-
+        Ce Pokémon dresse ses piquants
+        en cas de danger. Ils poussent
+        moins vite que ceux de NIDORINO.
+"german":
+    "name": |-
+        NIDORINA
+    "category": |-
+        Giftdorn
+    "entry_text": |-
+        Bei Gefahr fährt es die Wider-
+        haken am Körper aus. Diese wachsen
+        langsamer als die von NIDORINO.
+"italian":
+    "name": |-
+        Nidorina
+    "category": |-
+        Pokémon Velenago
+    "entry_text": |-
+        Quando avverte il pericolo, rizza
+        gli aculei, che fuoriescono più
+        lentamente di quelli di NIDORINO.
+"spanish":
+    "name": |-
+        Nidorina
+    "category": |-
+        Pokémon Pin Veneno
+    "entry_text": |-
+        Saca las púas de su cuerpo si
+        siente peligro. Sus púas crecen
+        más despacio que las de NIDORINO.
+"japanese":
+    "name": |-
+        ニドリ－ナ
+    "category": |-
+        どくばりポケモン
+    "entry_text": |-
+        きけんを　かんじると　ぜんしんの
+        トゲを　さかだてる。ニドリ－ノに
+        くらべて　トゲの　そだちが　おそい。

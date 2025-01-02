@@ -1,0 +1,74 @@
+"height": !!int |-
+    5
+"weight": !!int |-
+    40
+"body_shape": |-
+    SHAPE_HEAD_LEGS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    358
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    358
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    24
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    24
+"english":
+    "category": |-
+        Acorn Pokémon
+    "entry_text": |-
+        When it dangles from a tree
+        branch, it looks just like an acorn.
+        It enjoys scaring other Pokémon.
+"french":
+    "name": |-
+        GRAINIPIOT
+    "category": |-
+        Pokémon Gland
+    "entry_text": |-
+        Il ressemble à un gland pendu
+        à une branche. Il adore effrayer
+        les autres Pokémon.
+"german":
+    "name": |-
+        SAMURZEL
+    "category": |-
+        Eichelnuss
+    "entry_text": |-
+        Es sieht aus wie eine Eichel, die am
+        Baum hängt. Es liebt es, andere
+        PKMN zu erschrecken.
+"italian":
+    "name": |-
+        Seedot
+    "category": |-
+        Pokémon Ghianda
+    "entry_text": |-
+        Quando si attacca a un ramo,
+        sembra una vera ghianda. Si diverte
+        a spaventare gli altri Pokémon.
+"spanish":
+    "name": |-
+        Seedot
+    "category": |-
+        Pokémon Bellota
+    "entry_text": |-
+        Cuando cuelga de las ramas
+        parece una bellota. Le encanta
+        asustar a otros Pokémon.
+"japanese":
+    "name": |-
+        タネボ－
+    "category": |-
+        どんぐりポケモン
+    "entry_text": |-
+        えだに　ぶらさがっていると
+        きのみに　そっくり。ついばもうとした
+        ポケモンを　おどろかせて　よろこぶ。

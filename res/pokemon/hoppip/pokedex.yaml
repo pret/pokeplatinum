@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    5
+"body_shape": |-
+    SHAPE_BIPEDAL_TAILED
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    438
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    438
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    65530
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    65530
+"english":
+    "category": |-
+        Cottonweed Pokémon
+    "entry_text": |-
+        It drifts on winds. It is said that
+        when HOPPIP gather in fields and
+        mountains, spring is on the way.
+"french":
+    "name": |-
+        GRANIVOL
+    "category": |-
+        Pokémon Pissenlit
+    "entry_text": |-
+        Il dérive avec le vent. Sa présence
+        en nombre dans les champs et les
+        montagnes annonce le printemps.
+"german":
+    "name": |-
+        HOPPSPROSS
+    "category": |-
+        Löwenzahn
+    "entry_text": |-
+        Es reitet auf dem Wind. Man sagt,
+        wenn sich HOPPSPROSS ver-
+        sammeln, kommt der Frühling bald.
+"italian":
+    "name": |-
+        Hoppip
+    "category": |-
+        Pokémon Gramigna
+    "entry_text": |-
+        Giunge sospinto dai venti. Si dice
+        che quando HOPPIP appare su campi
+        e monti, la primavera sia in arrivo.
+"spanish":
+    "name": |-
+        Hoppip
+    "category": |-
+        Pokémon Algadón
+    "entry_text": |-
+        Flotan en el aire. Se dice que
+        cuando los HOPPIP se reúnen, es
+        que la primavera está al caer.
+"japanese":
+    "name": |-
+        ハネッコ
+    "category": |-
+        わたくさポケモン
+    "entry_text": |-
+        かぜに　ながされて　ただよう。
+        のやまに　ハネッコが　あつまりだすと
+        はるが　おとずれると　いわれている。

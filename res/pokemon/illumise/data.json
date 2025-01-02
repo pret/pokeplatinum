@@ -113,47 +113,5 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    },
-    "pokedex_data": {
-        "height": 6,
-        "weight": 177,
-        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
-        "trainer_scale_f": 272,
-        "pokemon_scale_f": 401,
-        "trainer_scale_m": 256,
-        "pokemon_scale_m": 401,
-        "trainer_pos_f": 8,
-        "pokemon_pos_f": 23,
-        "trainer_pos_m": 9,
-        "pokemon_pos_m": 23,
-        "english": {
-            "category": "Firefly Pokémon",
-            "entry_text": "With its sweet aroma, it guides\nVOLBEAT to draw signs with light in\nthe night sky."
-        },
-        "french": {
-            "name": "LUMIVOLE",
-            "category": "Pokémon Luciole",
-            "entry_text": "Il utilise son doux parfum pour\naider MUCIOLE à décrire des\narabesques dans le ciel nocturne."
-        },
-        "german": {
-            "name": "ILLUMISE",
-            "category": "Libelle",
-            "entry_text": "Sein süßer Duft leitet VOLBEAT an,\nZeichen aus Licht an den\nNachthimmel zu malen."
-        },
-        "italian": {
-            "name": "Illumise",
-            "category": "Pokémon Lucciola",
-            "entry_text": "Con il suo dolce aroma dirige il volo\ndi VOLBEAT, che disegna figure\nluminose nel cielo stellato."
-        },
-        "spanish": {
-            "name": "Illumise",
-            "category": "Pokémon Luciérnaga",
-            "entry_text": "Su suave aroma guía a VOLBEAT\npara que haga señales luminosas\nen el cielo nocturno."
-        },
-        "japanese": {
-            "name": "イルミ－ゼ",
-            "category": "ほたるポケモン",
-            "entry_text": "あまい　かおりで　バルビ－トを\nゆうどうして　よぞらに\nひかりの　サインを　えがく。"
-        }
     }
 }

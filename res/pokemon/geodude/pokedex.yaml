@@ -1,0 +1,74 @@
+"height": !!int |-
+    4
+"weight": !!int |-
+    200
+"body_shape": |-
+    SHAPE_HEAD_ARMS
+"trainer_scale_f": !!int |-
+    272
+"pokemon_scale_f": !!int |-
+    380
+"trainer_scale_m": !!int |-
+    256
+"pokemon_scale_m": !!int |-
+    380
+"trainer_pos_f": !!int |-
+    8
+"pokemon_pos_f": !!int |-
+    23
+"trainer_pos_m": !!int |-
+    9
+"pokemon_pos_m": !!int |-
+    23
+"english":
+    "category": |-
+        Rock Pokémon
+    "entry_text": |-
+        At rest, it looks just like a rock.
+        Carelessly stepping on it will make
+        it swing its fists angrily.
+"french":
+    "name": |-
+        RACAILLOU
+    "category": |-
+        Pokémon Roche
+    "entry_text": |-
+        Nombre d’entre eux vivent sur des
+        chemins montagneux où ils restent
+        enfouis à épier les alpinistes.
+"german":
+    "name": |-
+        KLEINSTEIN
+    "category": |-
+        Gestein
+    "entry_text": |-
+        Viele von ihnen leben auf
+        Bergpfaden, halb vergraben
+        und Bergsteiger beobachtend.
+"italian":
+    "name": |-
+        Geodude
+    "category": |-
+        Pokémon Roccia
+    "entry_text": |-
+        Molti vivono sui sentieri montani
+        e se ne stanno mezzi infossati nel
+        terreno ad osservare gli scalatori.
+"spanish":
+    "name": |-
+        Geodude
+    "category": |-
+        Pokémon Roca
+    "entry_text": |-
+        Muchos viven en zonas montañosas
+        y permanecen semienterrados
+        mientras miran a los escaladores.
+"japanese":
+    "name": |-
+        イシツブテ
+    "category": |-
+        がんせきポケモン
+    "entry_text": |-
+        やまみちに　おおく　せいそくする。
+        からだの　はんぶんを　じめんに　うめ
+        とざんしゃの　ようすを　みている。
