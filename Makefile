@@ -21,6 +21,9 @@ VENV ?= .venv
 VENV_ACTIVATE := $(VENV)/bin/activate
 VENV_MESON := . $(VENV_ACTIVATE) ; $(MESON)
 VENV_NINJA := . $(VENV_ACTIVATE) ; $(NINJA)
+VENV_PIP := . $(VENV_ACTIVATE) ; pip
+
+PIP_REQUIREMENTS := requirements.txt
 
 ifneq (,$(findstring Microsoft,$(UNAME_R)))
 ifneq (,$(filter /mnt/%,$(CWD)))
@@ -79,6 +82,8 @@ clean: $(BUILD)/build.ninja
 	$(VENV_MESON) compile -C $(BUILD) --clean
 
 update: $(BUILD)/build.ninja
+	$(VENV_PIP) install --upgrade pip
+	$(VENV_PIP) install --upgrade -r $(PIP_REQUIREMENTS)
 	$(VENV_MESON) subprojects update
 
 distclean:
@@ -96,7 +101,7 @@ venv: $(VENV_ACTIVATE)
 
 $(VENV_ACTIVATE):
 	python3 -m venv $(VENV)
-	. $(VENV_ACTIVATE) ; pip install -r requirements.txt
+	. $(VENV_ACTIVATE) ; pip install -r $(PIP_REQUIREMENTS)
 
 $(BUILD)/build.ninja: $(ROOT_INI) $(DOT_MWCONFIG) $(VENV_ACTIVATE) | $(BUILD)
 	. $(VENV_ACTIVATE) ; MWCONFIG=$(abspath $(DOT_MWCONFIG)) $(MESON) setup \
