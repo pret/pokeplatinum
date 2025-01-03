@@ -1,4 +1,4 @@
-.PHONY: all release debug check rom target format clean distclean setup_release setup_debug configure
+.PHONY: all release debug check rom target format clean distclean setup_release setup_debug configure venv
 
 MESON ?= meson
 NINJA ?= ninja
@@ -16,6 +16,14 @@ MWRAP := $(WRAP)/mwrap
 UNAME_R := $(shell uname -r)
 UNAME_S := $(shell uname -s)
 CWD := $(shell pwd)
+
+VENV ?= .venv
+VENV_ACTIVATE := $(VENV)/bin/activate
+VENV_MESON := . $(VENV_ACTIVATE) ; $(MESON)
+VENV_NINJA := . $(VENV_ACTIVATE) ; $(NINJA)
+VENV_PIP := . $(VENV_ACTIVATE) ; pip
+
+PIP_REQUIREMENTS := requirements.txt
 
 ifneq (,$(findstring Microsoft,$(UNAME_R)))
 ifneq (,$(filter /mnt/%,$(CWD)))
@@ -56,39 +64,47 @@ release: setup_release rom
 
 .NOTPARALLEL: debug
 debug: setup_debug rom
-	$(MESON) compile -C $(BUILD) debug.nef overlay.map
+	$(VENV_MESON) compile -C $(BUILD) debug.nef overlay.map
 
 check: rom
-	$(MESON) test -C $(BUILD)
+	$(VENV_MESON) test -C $(BUILD)
 
 rom: $(BUILD)/build.ninja
-	$(MESON) compile -C $(BUILD) pokeplatinum.us.nds
+	$(VENV_MESON) compile -C $(BUILD) pokeplatinum.us.nds
 
 target: $(BUILD)/build.ninja
-	$(MESON) compile -C $(BUILD) $(MESON_TARGET)
+	$(VENV_MESON) compile -C $(BUILD) $(MESON_TARGET)
 
 format: $(BUILD)/build.ninja
-	$(NINJA) -C $(BUILD) clang-format
+	$(VENV_NINJA) -C $(BUILD) clang-format
 
 clean: $(BUILD)/build.ninja
-	$(MESON) compile -C $(BUILD) --clean
+	$(VENV_MESON) compile -C $(BUILD) --clean
 
 update: $(BUILD)/build.ninja
-	$(MESON) subprojects update
+	$(VENV_PIP) install --upgrade pip
+	$(VENV_PIP) install --upgrade -r $(PIP_REQUIREMENTS)
+	$(VENV_MESON) subprojects update
 
 distclean:
-	rm -rf $(BUILD) $(MWRAP)
+	rm -rf $(BUILD) $(MWRAP) $(VENV)
 
 setup_release: $(BUILD)/build.ninja
-	$(MESON) configure build -Dgdb_debugging=false
+	$(VENV_MESON) configure build -Dgdb_debugging=false
 
 setup_debug: $(BUILD)/build.ninja
-	$(MESON) configure build -Dgdb_debugging=true
+	$(VENV_MESON) configure build -Dgdb_debugging=true
 
 configure: $(BUILD)/build.ninja
 
-$(BUILD)/build.ninja: $(ROOT_INI) $(DOT_MWCONFIG) | $(BUILD)
-	MWCONFIG=$(abspath $(DOT_MWCONFIG)) $(MESON) setup \
+venv: $(VENV_ACTIVATE)
+
+$(VENV_ACTIVATE):
+	python3 -m venv $(VENV)
+	. $(VENV_ACTIVATE) ; pip install -r $(PIP_REQUIREMENTS)
+
+$(BUILD)/build.ninja: $(ROOT_INI) $(DOT_MWCONFIG) $(VENV_ACTIVATE) | $(BUILD)
+	. $(VENV_ACTIVATE) ; MWCONFIG=$(abspath $(DOT_MWCONFIG)) $(MESON) setup \
 	         --wrap-mode=nopromote \
 	         --native-file=meson/$(NATIVE) \
 	         --native-file=$(ROOT_INI) \
@@ -124,9 +140,9 @@ endif
 $(BUILD):
 	mkdir -p -- $(BUILD)
 
-$(MWRAP):
+$(MWRAP): $(VENV_ACTIVATE)
 	rm -rf $(MWRAP) $(WRAP_BUILD)
-	$(MESON) setup $(WRAP_BUILD) $(WRAP)
-	$(MESON) compile -C $(WRAP_BUILD)
+	$(VENV_MESON) setup $(WRAP_BUILD) $(WRAP)
+	$(VENV_MESON) compile -C $(WRAP_BUILD)
 	install -m755 $(WRAP_BUILD)/$(@F) $@
 	rm -rf $(WRAP_BUILD)
