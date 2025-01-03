@@ -80,11 +80,11 @@ field_board_narc = custom_target('field_board.narc',
         field_board_order,
     ],
     command: [
-        knarc_exe,
-        '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT0@',
-        '--order', field_board_order,
+        narc_exe, 'create',
         '--naix',
+        '--order', field_board_order,
+        '--output', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ]
 )
 

@@ -11,9 +11,9 @@ argparser = argparse.ArgumentParser(
     prog='make_pokedex_enc_platinum_py',
     description='Packs the archive containing Pokedex encounter data'
 )
-argparser.add_argument('-k', '--knarc',
+argparser.add_argument('-n', '--narc',
                        required=True,
-                       help='Path to knarc executable')
+                       help='Path to narc executable')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
                        help='Path to the source directory (res/field/encounters)')
@@ -438,4 +438,4 @@ for species in range(NUM_POKEMON):
         with open(target_fname, 'wb+') as target_file:
             target_file.write(bin_data)
 
-subprocess.run([args.knarc, '-d', private_dir, '-p', str(output_dir / output_name) + '.narc'])
+subprocess.run([args.narc, 'create', '--output', str(output_dir / output_name) + '.narc', private_dir])

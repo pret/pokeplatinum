@@ -11,7 +11,7 @@ argparser = argparse.ArgumentParser(
     prog='make_shinzukan_py',
     description='Packs the archive containing SinnohDex->NatDex number mapping'
 )
-argparser.add_argument('-k', '--knarc',
+argparser.add_argument('-n', '--narc',
                        required=True,
                        help='Path to knarc executable')
 argparser.add_argument('-s', '--source-dir',
@@ -42,7 +42,7 @@ with open(args.pokedex) as data_file:
     for i, mon in enumerate(dex_data):
         pokedex[i] = PokemonSpecies[mon].value
 
-target_fname = private_dir / f'shinzukan_0.bin'
+target_fname = private_dir / 'shinzukan_0.bin'
 with open(target_fname, 'wb+') as target_file:
     shinzukan = [0 for i in range(NUM_SINNOH * 2)]
     for i in range(NUM_SINNOH):
@@ -50,4 +50,4 @@ with open(target_fname, 'wb+') as target_file:
         shinzukan[i*2 + 1] = (pokedex[i] >> 8) & 0xff
     target_file.write(bytes(shinzukan))
 
-subprocess.run([args.knarc, '-d', private_dir, '-p', output_dir / 'shinzukan.narc'])
+subprocess.run([args.narc, 'create', '--output', output_dir / 'shinzukan.narc', private_dir])
