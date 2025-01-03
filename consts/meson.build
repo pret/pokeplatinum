@@ -4,6 +4,7 @@ consts_manifest_basenames = [
     'battle',
     'battle_subscripts',
     'btlcmd',
+    'catching_show',
     'game_records',
     'gender',
     'items',

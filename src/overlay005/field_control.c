@@ -29,6 +29,7 @@
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_02241F74.h"
 
+#include "catching_show.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -60,7 +61,6 @@
 #include "unk_0203C954.h"
 #include "unk_02054884.h"
 #include "unk_02054D00.h"
-#include "unk_020562F8.h"
 #include "unk_02056B30.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
@@ -548,8 +548,8 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
     if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
-        if (sub_02056374(fieldSystem, playerX, playerZ) == TRUE) {
-            Encounter_NewVsPalParkTransfer(fieldSystem, sub_0205639C(fieldSystem));
+        if (CatchingShow_CheckWildEncounter(fieldSystem, playerX, playerZ) == TRUE) {
+            Encounter_NewVsPalParkTransfer(fieldSystem, CatchingShow_GetBattleDTO(fieldSystem));
             return TRUE;
         } else {
             return FALSE;

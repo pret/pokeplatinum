@@ -1,0 +1,13 @@
+{
+    "definitions": {
+        "@CatchingShowPointsCategory": {
+            "type": "enum",
+            "values": [
+                "CATCHING_SHOW_CATCHING_POINTS",
+                "CATCHING_SHOW_TIME_POINTS",
+                "CATCHING_SHOW_TYPE_POINTS",
+                "CATCHING_SHOW_TOTAL_POINTS"
+            ]
+        }
+    }
+}
