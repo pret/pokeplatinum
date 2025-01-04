@@ -11,10 +11,27 @@
 #include "savedata.h"
 #include "unk_020986CC.h"
 
+static const u16 sExcludedMons_national[] = {
+    SPECIES_MEW,
+    SPECIES_LUGIA,
+    SPECIES_HO_OH,
+    SPECIES_CELEBI,
+    SPECIES_JIRACHI,
+    SPECIES_DEOXYS,
+    SPECIES_PHIONE,
+    SPECIES_MANAPHY,
+    SPECIES_DARKRAI,
+    SPECIES_SHAYMIN,
+    SPECIES_ARCEUS
+};
+static const u16 sExcludedMons_local[] = {};
+
 #define DEX_SIZE_U32           ((int)((NATIONAL_DEX_COUNT - 1) / 32) + 1) // default 16
 #define MAGIC_NUMBER           0xbeefcafe
-#define NUM_MYTHICALS_NATIONAL 11
-#define NATIONAL_DEX_GOAL      (NATIONAL_DEX_COUNT - NUM_MYTHICALS_NATIONAL)
+#define NUM_EXCLUDED_NATIONAL  ((int)(sizeof(sExcludedMons_national) / sizeof(u16)))
+#define NUM_EXCLUDED_LOCAL     0 //((int)(sizeof(sExcludedMons_local) / sizeof(u16)))
+#define NATIONAL_DEX_GOAL      (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
+#define LOCAL_DEX_GOAL         (LOCAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
 #define UNOWN_COUNT            28
 #define DEOXYS_COUNT           4
 #define ROTOM_COUNT            6
@@ -689,25 +706,10 @@ static int GetForm_3Forms(const PokedexData *pokedexData, u32 species, int formI
 static BOOL CountsForDexCompletion_National(u16 species)
 {
     int i;
-    BOOL included;
-    static const u16 excludedMons[NUM_MYTHICALS_NATIONAL] = {
-        SPECIES_MEW,
-        SPECIES_LUGIA,
-        SPECIES_HO_OH,
-        SPECIES_CELEBI,
-        SPECIES_JIRACHI,
-        SPECIES_DEOXYS,
-        SPECIES_PHIONE,
-        SPECIES_MANAPHY,
-        SPECIES_DARKRAI,
-        SPECIES_SHAYMIN,
-        SPECIES_ARCEUS
-    };
+    BOOL included = TRUE;
 
-    included = TRUE;
-
-    for (i = 0; i < NUM_MYTHICALS_NATIONAL; i++) {
-        if (excludedMons[i] == species) {
+    for (i = 0; i < NUM_EXCLUDED_NATIONAL; i++) {
+        if (sExcludedMons_national[i] == species) {
             included = FALSE;
         }
     }
@@ -717,7 +719,15 @@ static BOOL CountsForDexCompletion_National(u16 species)
 
 static BOOL CountsForDexCompletion_Local(u16 species)
 {
-    return TRUE;
+    BOOL included = TRUE;
+
+    for (int i = 0; i < NUM_EXCLUDED_LOCAL; i++) {
+        if (sExcludedMons_local[i] == species) {
+            included = FALSE;
+        }
+    }
+
+    return included;
 }
 
 void PokedexData_Init(PokedexData *pokedexData)
@@ -826,7 +836,7 @@ BOOL PokedexData_LocalDexCompleted(const PokedexData *pokedexData)
 {
     u16 numCaught = PokedexData_NumCaught_Local(pokedexData);
 
-    if (numCaught >= LOCAL_DEX_COUNT) {
+    if (numCaught >= LOCAL_DEX_GOAL) {
         return TRUE;
     }
 
