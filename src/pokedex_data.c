@@ -26,19 +26,19 @@ static const u16 sExcludedMons_national[] = {
 };
 static const u16 sExcludedMons_local[] = {};
 
-#define DEX_SIZE_U32           ((int)((NATIONAL_DEX_COUNT - 1) / 32) + 1) // default 16
-#define MAGIC_NUMBER           0xbeefcafe
-#define NUM_EXCLUDED_NATIONAL  ((int)(sizeof(sExcludedMons_national) / sizeof(u16)))
-#define NUM_EXCLUDED_LOCAL     0 //((int)(sizeof(sExcludedMons_local) / sizeof(u16)))
-#define NATIONAL_DEX_GOAL      (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
-#define LOCAL_DEX_GOAL         (LOCAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
-#define UNOWN_COUNT            28
-#define DEOXYS_COUNT           4
-#define ROTOM_COUNT            6
-#define TERMINAL_4BITS         0x7
-#define TERMINAL_BYTE          0xf
-#define TERMINAL_U8            0xff
-#define TERMINAL_U32           0xffffffff
+#define DEX_SIZE_U32          ((int)((NATIONAL_DEX_COUNT - 1) / 32) + 1) // default 16
+#define MAGIC_NUMBER          0xbeefcafe
+#define NUM_EXCLUDED_NATIONAL ((int)(sizeof(sExcludedMons_national) / sizeof(u16)))
+#define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMons_local) / sizeof(u16)))
+#define NATIONAL_DEX_GOAL     (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
+#define LOCAL_DEX_GOAL        (LOCAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
+#define UNOWN_COUNT           28
+#define DEOXYS_COUNT          4
+#define ROTOM_COUNT           6
+#define TERMINAL_4BITS        0x7
+#define TERMINAL_BYTE         0xf
+#define TERMINAL_U8           0xff
+#define TERMINAL_U32          0xffffffff
 
 typedef struct PokedexData {
     u32 magic;
