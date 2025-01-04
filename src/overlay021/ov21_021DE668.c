@@ -9,9 +9,9 @@
 #include "overlay021/ov21_021D1F90.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
-#include "overlay021/ov21_021D5600.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/pokedex_sort.h"
+#include "overlay021/pokedex_text.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
@@ -469,12 +469,12 @@ static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3)
 
 static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u32 param4)
 {
-    Strbuf *v0 = ov21_021D56BC(param2, GAME_LANGUAGE, param3, param1);
+    Strbuf *v0 = PokedexText_DexEntry(param2, GAME_LANGUAGE, param3, param1);
     u32 v1 = Font_CalcMaxLineWidth(FONT_SYSTEM, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
 
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, v2, 136, TEXT_SPEED_INSTANT, param4, NULL);
-    ov21_021D5600(v0);
+    PokedexText_Free(v0);
 }
 
 static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
@@ -785,7 +785,7 @@ Window *ov21_021DF30C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2)
     Strbuf *v1;
 
     v0 = ov21_021D4D6C(param0, 18, 2);
-    v1 = ov21_021D566C(param1, GAME_LANGUAGE, param2);
+    v1 = PokedexText_Category(param1, GAME_LANGUAGE, param2);
 
     {
         u32 v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
@@ -794,7 +794,7 @@ Window *ov21_021DF30C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2)
         ov21_021D4E80(param0, v0, v1, v3, 0);
     }
 
-    ov21_021D5600(v1);
+    PokedexText_Free(v1);
 
     return v0;
 }

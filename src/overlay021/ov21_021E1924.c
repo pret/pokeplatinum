@@ -9,11 +9,11 @@
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/ov21_021D4C0C.h"
-#include "overlay021/ov21_021D5600.h"
 #include "overlay021/ov21_021DE668.h"
 #include "overlay021/ov21_021E0C68.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/pokedex_sort.h"
+#include "overlay021/pokedex_text.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D3320.h"
@@ -1019,7 +1019,7 @@ static void ov21_021E27C0(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
         v1 = 72;
 
         ov21_021E0CDC(param1->unk_10, 2);
-        v2 = ov21_021D5608(param3 - 1);
+        v2 = PokedexText_ForeignLanguage(param3 - 1);
         ov21_021E0CF8(param1->unk_10, v2);
         break;
     default:
@@ -1127,7 +1127,7 @@ static void ov21_021E2968(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
     param0->unk_38 = 0;
 
     for (v1 = 0; v1 < (6 - 1); v1++) {
-        v2 = ov21_021D5608(v1);
+        v2 = PokedexText_ForeignLanguage(v1);
         v0 = ov21_021D392C(param1->unk_04, v2);
 
         if (v0) {
