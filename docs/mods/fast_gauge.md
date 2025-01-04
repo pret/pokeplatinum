@@ -14,5 +14,5 @@ Fixes are written in the `diff` format, as mentioned in [Bugs and Glitches](../b
 ```diff
 if (max < corrected) {
 -   ratio = max * 0x100 / corrected;
-+   ratio = (max >> 8) / corrected;
++   ratio = (max << 8) / corrected;
 ```
