@@ -10,24 +10,26 @@
 #include "message.h"
 #include "strbuf.h"
 
-u32 sub_02071CFC(MessageLoader *param0, const int param1, Strbuf *param2)
+#include "text/pl_msg.naix"
+
+u32 MapHeader_GetStringWidth(MessageLoader *msgLoader, const int entryID, Strbuf *strbuf)
 {
-    u32 v0;
+    u32 width;
 
-    MessageLoader_GetStrbuf(param0, param1, param2);
-    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param2, 0);
+    MessageLoader_GetStrbuf(msgLoader, entryID, strbuf);
+    width = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
 
-    return v0;
+    return width;
 }
 
-void sub_02071D10(const int param0, const u32 param1, Strbuf *param2)
+void sub_02071D10(const int headerID, const u32 heapID, Strbuf *strbuf)
 {
-    int v0;
-    MessageLoader *v1;
+    int mapLabelTextID;
+    MessageLoader *msgLoader;
 
-    v1 = MessageLoader_Init(1, 26, 433, param1);
-    v0 = MapHeader_GetMapLabelTextID(param0);
+    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_location_names, heapID);
+    mapLabelTextID = MapHeader_GetMapLabelTextID(headerID);
 
-    sub_02071CFC(v1, v0, param2);
-    MessageLoader_Free(v1);
+    MapHeader_GetStringWidth(msgLoader, mapLabelTextID, strbuf);
+    MessageLoader_Free(msgLoader);
 }

@@ -188,7 +188,7 @@ static void ov5_021DD8A4(SysTask *param0, void *param1)
             if (v2->unk_14) {
                 v2->unk_14 = 0;
 
-                v1 = sub_02071CFC(v2->unk_3C, v2->unk_18, v2->unk_40);
+                v1 = MapHeader_GetStringWidth(v2->unk_3C, v2->unk_18, v2->unk_40);
 
                 ov5_021DD7A0(v2, v1);
                 ov5_021DD954(v2, v2->unk_40);
@@ -260,7 +260,7 @@ void ov5_021DD9E8(UnkStruct_ov5_021DD9C8 *param0, const int param1, const int pa
         param0->unk_08 = SysTask_Start(ov5_021DD8A4, param0, 0);
         param0->unk_04 = 1;
 
-        v1 = sub_02071CFC(param0->unk_3C, param0->unk_18, param0->unk_40);
+        v1 = MapHeader_GetStringWidth(param0->unk_3C, param0->unk_18, param0->unk_40);
         param0->unk_31 = param2;
 
         ov5_021DD7A0(param0, v1);
