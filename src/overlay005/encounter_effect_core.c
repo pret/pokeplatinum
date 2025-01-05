@@ -2590,13 +2590,13 @@ typedef struct GymLeaderEncounterParam {
     u16 trainerClass;
     u16 unk_0A;
     // The rest are NARC indices
-    u8 unk_0C;
-    u8 unk_0D;
-    u8 unk_0E;
-    u8 unk_0F;
-    u8 unk_10;
-    u8 unk_11;
-    u8 unk_12;
+    u8 mugshotPlttIdx;
+    u8 mugshotTileIdx;
+    u8 mugshotCellIdx;
+    u8 mugshotAnimIdx;
+    u8 bannerPlttIdx;
+    u8 bannerTileIdx;
+    u8 bannerTilemapIdx;
     u8 padding;
 } GymLeaderEncounterParam;
 
@@ -2608,13 +2608,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 246,
         .trainerClass = TRAINER_CLASS_LEADER_ROARK,
         .unk_0A = 1,
-        .unk_0C = 55,
-        .unk_0D = 56,
-        .unk_0E = 57,
-        .unk_0F = 58,
-        .unk_10 = 15,
-        .unk_11 = 16,
-        .unk_12 = 17,
+        .mugshotPlttIdx = 55,
+        .mugshotTileIdx = 56,
+        .mugshotCellIdx = 57,
+        .mugshotAnimIdx = 58,
+        .bannerPlttIdx = 15,
+        .bannerTileIdx = 16,
+        .bannerTilemapIdx = 17,
         .padding = 0,
     },
     {
@@ -2622,13 +2622,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 315,
         .trainerClass = TRAINER_CLASS_LEADER_GARDENIA,
         .unk_0A = 1,
-        .unk_0C = 59,
-        .unk_0D = 60,
-        .unk_0E = 61,
-        .unk_0F = 62,
-        .unk_10 = 18,
-        .unk_11 = 19,
-        .unk_12 = 20,
+        .mugshotPlttIdx = 59,
+        .mugshotTileIdx = 60,
+        .mugshotCellIdx = 61,
+        .mugshotAnimIdx = 62,
+        .bannerPlttIdx = 18,
+        .bannerTileIdx = 19,
+        .bannerTilemapIdx = 20,
         .padding = 0,
     },
     {
@@ -2636,13 +2636,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 316,
         .trainerClass = TRAINER_CLASS_LEADER_WAKE,
         .unk_0A = 0,
-        .unk_0C = 63,
-        .unk_0D = 64,
-        .unk_0E = 65,
-        .unk_0F = 66,
-        .unk_10 = 21,
-        .unk_11 = 22,
-        .unk_12 = 23,
+        .mugshotPlttIdx = 63,
+        .mugshotTileIdx = 64,
+        .mugshotCellIdx = 65,
+        .mugshotAnimIdx = 66,
+        .bannerPlttIdx = 21,
+        .bannerTileIdx = 22,
+        .bannerTilemapIdx = 23,
         .padding = 0,
     },
     {
@@ -2650,13 +2650,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 317,
         .trainerClass = TRAINER_CLASS_LEADER_MAYLENE,
         .unk_0A = 1,
-        .unk_0C = 67,
-        .unk_0D = 68,
-        .unk_0E = 69,
-        .unk_0F = 70,
-        .unk_10 = 24,
-        .unk_11 = 25,
-        .unk_12 = 26,
+        .mugshotPlttIdx = 67,
+        .mugshotTileIdx = 68,
+        .mugshotCellIdx = 69,
+        .mugshotAnimIdx = 70,
+        .bannerPlttIdx = 24,
+        .bannerTileIdx = 25,
+        .bannerTilemapIdx = 26,
         .padding = 0,
     },
     {
@@ -2664,13 +2664,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 318,
         .trainerClass = TRAINER_CLASS_LEADER_FANTINA,
         .unk_0A = 1,
-        .unk_0C = 71,
-        .unk_0D = 72,
-        .unk_0E = 73,
-        .unk_0F = 74,
-        .unk_10 = 27,
-        .unk_11 = 28,
-        .unk_12 = 29,
+        .mugshotPlttIdx = 71,
+        .mugshotTileIdx = 72,
+        .mugshotCellIdx = 73,
+        .mugshotAnimIdx = 74,
+        .bannerPlttIdx = 27,
+        .bannerTileIdx = 28,
+        .bannerTilemapIdx = 29,
         .padding = 0,
     },
     {
@@ -2678,13 +2678,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 319,
         .trainerClass = TRAINER_CLASS_LEADER_CANDICE,
         .unk_0A = 1,
-        .unk_0C = 75,
-        .unk_0D = 76,
-        .unk_0E = 77,
-        .unk_0F = 78,
-        .unk_10 = 30,
-        .unk_11 = 31,
-        .unk_12 = 32,
+        .mugshotPlttIdx = 75,
+        .mugshotTileIdx = 76,
+        .mugshotCellIdx = 77,
+        .mugshotAnimIdx = 78,
+        .bannerPlttIdx = 30,
+        .bannerTileIdx = 31,
+        .bannerTilemapIdx = 32,
         .padding = 0,
     },
     {
@@ -2692,13 +2692,13 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 250,
         .trainerClass = TRAINER_CLASS_LEADER_BYRON,
         .unk_0A = 1,
-        .unk_0C = 79,
-        .unk_0D = 80,
-        .unk_0E = 81,
-        .unk_0F = 82,
-        .unk_10 = 33,
-        .unk_11 = 34,
-        .unk_12 = 35,
+        .mugshotPlttIdx = 79,
+        .mugshotTileIdx = 80,
+        .mugshotCellIdx = 81,
+        .mugshotAnimIdx = 82,
+        .bannerPlttIdx = 33,
+        .bannerTileIdx = 34,
+        .bannerTilemapIdx = 35,
         .padding = 0,
     },
     {
@@ -2706,48 +2706,48 @@ static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
         .trainerID = 320,
         .trainerClass = TRAINER_CLASS_LEADER_VOLKNER,
         .unk_0A = 1,
-        .unk_0C = 83,
-        .unk_0D = 84,
-        .unk_0E = 85,
-        .unk_0F = 86,
-        .unk_10 = 36,
-        .unk_11 = 37,
-        .unk_12 = 38,
+        .mugshotPlttIdx = 83,
+        .mugshotTileIdx = 84,
+        .mugshotCellIdx = 85,
+        .mugshotAnimIdx = 86,
+        .bannerPlttIdx = 36,
+        .bannerTileIdx = 37,
+        .bannerTilemapIdx = 38,
         .padding = 0,
     },
 };
 
 typedef struct EliterFourChampionEncounterParam {
-    u16 unk_00;
-    u8 unk_02;
+    u16 mugshotPlttIdx;
+    u8 bannerPlttIdx;
     u8 facePanFrames;
     u16 trainerClass;
     u16 trainerID;
 } EliterFourChampionEncounterParam;
 
 static const EliterFourChampionEncounterParam sEliteFourChampionEncounterParams[5] = {
-    { .unk_00 = 87,
-        .unk_02 = 39,
+    { .mugshotPlttIdx = 87,                            //Narc indices of the Elite Four and Champion
+        .bannerPlttIdx = 39,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_AARON,
         .trainerID = 261 },
-    { .unk_00 = 91,
-        .unk_02 = 43,
+    { .mugshotPlttIdx = 91,
+        .bannerPlttIdx = 43,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_BERTHA,
         .trainerID = 262 },
-    { .unk_00 = 95,
-        .unk_02 = 44,
+    { .mugshotPlttIdx = 95,
+        .bannerPlttIdx = 44,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_FLINT,
         .trainerID = 263 },
-    { .unk_00 = 99,
-        .unk_02 = 45,
+    { .mugshotPlttIdx = 99,
+        .bannerPlttIdx = 45,
         .facePanFrames = 32,
         .trainerClass = TRAINER_CLASS_ELITE_FOUR_LUCIAN,
         .trainerID = 264 },
-    { .unk_00 = 103,
-        .unk_02 = 46,
+    { .mugshotPlttIdx = 103,
+        .bannerPlttIdx = 46,
         .facePanFrames = 9,
         .trainerClass = TRAINER_CLASS_CHAMPION_CYNTHIA,
         .trainerID = 267 },
@@ -2909,7 +2909,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
         ov5_021DE47C(&v0->unk_44, 8, 3);
 
         ov5_021DE4CC(
-            encEffect->narc, &v0->unk_44, &v0->unk_1E4[0], param->unk_0C, 1, param->unk_0D, param->unk_0E, param->unk_0F, 600000);
+            encEffect->narc, &v0->unk_44, &v0->unk_1E4[0], param->mugshotPlttIdx, 1, param->mugshotTileIdx, param->mugshotCellIdx, param->mugshotAnimIdx, 600000);
 
         ov5_021DE4CC(
             encEffect->narc, &v0->unk_44, &v0->unk_1E4[1], 51, 1, 52, 53, 54, 600000 + 1);
@@ -2942,7 +2942,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
     case 3:
 
         ov5_021DE3D0(
-            encEffect->narc, param->unk_12, param->unk_11, param->unk_10, 0, 1, encEffect->fieldSystem->bgConfig, 3);
+            encEffect->narc, param->bannerTilemapIdx, param->bannerTileIdx, param->bannerPlttIdx, 0, 1, encEffect->fieldSystem->bgConfig, 3);
         v0->unk_2F0 = 1;
 
         ov5_021DED20(encEffect, v0->unk_40, 6, 8, 16, (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ));
@@ -3229,10 +3229,10 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         }
 
         ov5_021DE4CC(
-            encEffect->narc, &v0->unk_5C, &v0->unk_1FC[1], param->unk_00, 1, param->unk_00 + 1, param->unk_00 + 2, param->unk_00 + 3, 600000 + 1);
+            encEffect->narc, &v0->unk_5C, &v0->unk_1FC[1], param->mugshotPlttIdx, 1, param->mugshotPlttIdx + 1, param->mugshotPlttIdx + 2, param->mugshotPlttIdx + 3, 600000 + 1);
 
         ov5_021DE4CC(
-            encEffect->narc, &v0->unk_5C, &v0->unk_1FC[2], param->unk_02, 0xC, 40, 41, 42, 600000 + 2);
+            encEffect->narc, &v0->unk_5C, &v0->unk_1FC[2], param->bannerPlttIdx, 0xC, 40, 41, 42, 600000 + 2);
 
         ov5_021DE4CC(
             encEffect->narc, &v0->unk_5C, &v0->unk_1FC[3], 51, 1, 52, 53, 54, 600000 + 3);
