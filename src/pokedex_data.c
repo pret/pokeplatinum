@@ -11,7 +11,7 @@
 #include "savedata.h"
 #include "unk_020986CC.h"
 
-static const u16 sExcludedMons_national[] = {
+static const u16 sExcludedMonsNational[] = {
     SPECIES_MEW,
     SPECIES_LUGIA,
     SPECIES_HO_OH,
@@ -24,21 +24,17 @@ static const u16 sExcludedMons_national[] = {
     SPECIES_SHAYMIN,
     SPECIES_ARCEUS
 };
-static const u16 sExcludedMons_local[] = {};
+static const u16 sExcludedMonsLocal[] = {};
 
 #define DEX_SIZE_U32          ((int)((NATIONAL_DEX_COUNT - 1) / 32) + 1) // default 16
-#define MAGIC_NUMBER          0xbeefcafe
-#define NUM_EXCLUDED_NATIONAL ((int)(sizeof(sExcludedMons_national) / sizeof(u16)))
-#define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMons_local) / sizeof(u16)))
+#define MAGIC_NUMBER          0xBEEFCAFE
+#define NUM_EXCLUDED_NATIONAL ((int)(sizeof(sExcludedMonsNational) / sizeof(u16)))
+#define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMonsLocal) / sizeof(u16)))
 #define NATIONAL_DEX_GOAL     (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
 #define LOCAL_DEX_GOAL        (LOCAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
 #define UNOWN_COUNT           28
 #define DEOXYS_COUNT          4
 #define ROTOM_COUNT           6
-#define TERMINAL_4BITS        0x7
-#define TERMINAL_BYTE         0xf
-#define TERMINAL_U8           0xff
-#define TERMINAL_U32          0xffffffff
 
 typedef struct PokedexData {
     u32 magic;
@@ -97,13 +93,13 @@ static BOOL SpeciesInvalid(u16 species)
 static inline BOOL ReadBit_2Forms(const u8 *array, u16 bitIndex)
 {
     bitIndex--;
-    return 0 != (array[bitIndex >> 3] & (1 << (bitIndex & 0x7)));
+    return 0 != (array[bitIndex >> 3] & (1 << (bitIndex & 0x07)));
 }
 
 static inline void ActivateBit_2Forms(u8 *array, u16 bitIndex)
 {
     bitIndex--;
-    array[bitIndex >> 3] |= 1 << (bitIndex & 0x7);
+    array[bitIndex >> 3] |= 1 << (bitIndex & 0x07);
 }
 
 static inline void SetBit_2Forms(u8 *array, u8 value, u16 bitIndex)
@@ -112,21 +108,21 @@ static inline void SetBit_2Forms(u8 *array, u8 value, u16 bitIndex)
 
     bitIndex--;
 
-    array[bitIndex >> 3] &= ~(1 << (bitIndex & 0x7));
-    array[bitIndex >> 3] |= value << (bitIndex & 0x7);
+    array[bitIndex >> 3] &= ~(1 << (bitIndex & 0x07));
+    array[bitIndex >> 3] |= value << (bitIndex & 0x07);
 }
 
 static inline u32 ReadBit_3Forms(const u8 *array, u16 bitIndex)
 {
-    return (array[bitIndex >> 2] >> ((bitIndex & 0x3) * 2)) & 0x3;
+    return (array[bitIndex >> 2] >> ((bitIndex & 0x03) * 2)) & 0x03;
 }
 
 static inline void SetBit_3Forms(u8 *array, u8 value, u16 bitIndex)
 {
     GF_ASSERT(value < 4);
 
-    array[bitIndex >> 2] &= ~(0x3 << ((bitIndex & 0x3) * 2));
-    array[bitIndex >> 2] |= value << ((bitIndex & 0x3) * 2);
+    array[bitIndex >> 2] &= ~(0x03 << ((bitIndex & 0x03) * 2));
+    array[bitIndex >> 2] |= value << ((bitIndex & 0x03) * 2);
 }
 
 static inline void Write_SeenSpecies(PokedexData *pokedexData, u16 species)
@@ -186,7 +182,7 @@ static int NumFormsSeen_Unown(const PokedexData *pokedexData)
     int formIndex;
 
     for (formIndex = 0; formIndex < UNOWN_COUNT; formIndex++) {
-        if (pokedexData->unownFormsSeen[formIndex] == TERMINAL_U8) {
+        if (pokedexData->unownFormsSeen[formIndex] == 0xFF) {
             break;
         }
     }
@@ -402,7 +398,7 @@ static void UpdateForms_ThreeForms(PokedexData *pokedexData, u32 species, int fo
 static void WriteBit_Deoxys(u32 *array, u8 value, u8 bitIndex)
 {
     u32 bitOffset = (24 + (bitIndex * 4));
-    u32 emptyBits = ~(0xf << bitOffset);
+    u32 emptyBits = ~(0x0F << bitOffset);
 
     array[DEX_SIZE_U32 - 1] &= emptyBits;
     array[DEX_SIZE_U32 - 1] |= (value << bitOffset);
@@ -414,7 +410,7 @@ static void UpdateFormArray_Deoxys(PokedexData *pokedexData, u8 form, u8 bitInde
     // This will want to be changed when modding to avoid overlapping references
 
     GF_ASSERT(bitIndex < DEOXYS_COUNT);
-    GF_ASSERT(form <= TERMINAL_BYTE);
+    GF_ASSERT(form <= 0x0F);
 
     if (bitIndex < 2) {
         WriteBit_Deoxys(pokedexData->caughtPokemon, form, bitIndex);
@@ -426,7 +422,7 @@ static void UpdateFormArray_Deoxys(PokedexData *pokedexData, u8 form, u8 bitInde
 static inline u32 ReadBit_Deoxys(const u32 *array, u8 bitIndex)
 {
     u32 bitOffset = (24 + (bitIndex * 4));
-    return (array[DEX_SIZE_U32 - 1] >> bitOffset) & 0xf;
+    return (array[DEX_SIZE_U32 - 1] >> bitOffset) & 0x0F;
 }
 
 static u32 GetForm_Deoxys(const PokedexData *pokedexData, u8 formIndex)
@@ -449,7 +445,7 @@ static u32 NumFormsSeen_Deoxys(const PokedexData *pokedexData)
     int formIndex;
 
     for (formIndex = 0; formIndex < DEOXYS_COUNT; formIndex++) {
-        if (GetForm_Deoxys(pokedexData, formIndex) == TERMINAL_BYTE) {
+        if (GetForm_Deoxys(pokedexData, formIndex) == 0x0F) {
             break;
         }
     }
@@ -483,20 +479,20 @@ static void UpdateForms_Deoxys(PokedexData *pokedexData, u16 species, Pokemon *p
 static void InitDeoxys(PokedexData *pokedexData)
 {
     for (int formIndex = 0; formIndex < DEOXYS_COUNT; formIndex++) {
-        UpdateFormArray_Deoxys(pokedexData, TERMINAL_BYTE, formIndex);
+        UpdateFormArray_Deoxys(pokedexData, 0x0F, formIndex);
     }
 }
 
 static inline u32 ReadBit_Rotom(u32 formArray, u32 formIndex)
 {
-    return (formArray >> (formIndex * 3)) & 0x7;
+    return (formArray >> (formIndex * 3)) & 0x07;
 }
 
 static inline void SetBit_Rotom(u32 *formArray, u32 formIndex, u32 form)
 {
-    GF_ASSERT(form < TERMINAL_4BITS);
+    GF_ASSERT(form < 0x07);
 
-    (*formArray) &= ~(0x7 << (formIndex * 3));
+    (*formArray) &= ~(0x07 << (formIndex * 3));
     (*formArray) |= (form << (formIndex * 3));
 }
 
@@ -515,7 +511,7 @@ static int NumFormsSeen_Rotom(const PokedexData *pokedexData, u32 species)
     for (formIndex = 0; formIndex < ROTOM_COUNT; formIndex++) {
         form = ReadBit_Rotom(pokedexData->rotomFormsSeen, formIndex);
 
-        if (form != TERMINAL_4BITS) {
+        if (form != 0x07) {
             numFormsSeen++;
         } else {
             break;
@@ -709,7 +705,7 @@ static BOOL CountsForDexCompletion_National(u16 species)
     BOOL included = TRUE;
 
     for (i = 0; i < NUM_EXCLUDED_NATIONAL; i++) {
-        if (sExcludedMons_national[i] == species) {
+        if (sExcludedMonsNational[i] == species) {
             included = FALSE;
         }
     }
@@ -722,7 +718,7 @@ static BOOL CountsForDexCompletion_Local(u16 species)
     BOOL included = TRUE;
 
     for (int i = 0; i < NUM_EXCLUDED_LOCAL; i++) {
-        if (sExcludedMons_local[i] == species) {
+        if (sExcludedMonsLocal[i] == species) {
             included = FALSE;
         }
     }
@@ -737,15 +733,15 @@ void PokedexData_Init(PokedexData *pokedexData)
     pokedexData->magic = MAGIC_NUMBER;
     pokedexData->nationalDexObtained = FALSE;
 
-    memset(pokedexData->unownFormsSeen, TERMINAL_U8, sizeof(u8) * UNOWN_COUNT);
+    memset(pokedexData->unownFormsSeen, 0xFF, sizeof(u8) * UNOWN_COUNT);
 
-    pokedexData->shellosFormsSeen = TERMINAL_U8;
-    pokedexData->gastrodonFormsSeen = TERMINAL_U8;
-    pokedexData->burmyFormsSeen = TERMINAL_U8;
-    pokedexData->wormadamFormsSeen = TERMINAL_U8;
-    pokedexData->rotomFormsSeen = TERMINAL_U32;
-    pokedexData->shayminFormsSeen = TERMINAL_U8;
-    pokedexData->giratinaFormsSeen = TERMINAL_U8;
+    pokedexData->shellosFormsSeen = 0xFF;
+    pokedexData->gastrodonFormsSeen = 0xFF;
+    pokedexData->burmyFormsSeen = 0xFF;
+    pokedexData->wormadamFormsSeen = 0xFF;
+    pokedexData->rotomFormsSeen = 0xFFFFFFFF;
+    pokedexData->shayminFormsSeen = 0xFF;
+    pokedexData->giratinaFormsSeen = 0xFF;
 
     InitDeoxys(pokedexData);
 }
