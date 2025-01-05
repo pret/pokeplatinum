@@ -3,12 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/catching_show.h"
+
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "savedata/save_table.h"
 
+#include "catching_show.h"
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
@@ -19,7 +22,6 @@
 #include "trainer_info.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F180.h"
-#include "unk_020562F8.h"
 #include "unk_020797C8.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
@@ -31,10 +33,10 @@ BOOL ScrCmd_253(ScriptContext *param0)
 
     if (v1 == 0) {
         SystemFlag_SetInPalPark(v0);
-        sub_020562F8(param0->fieldSystem);
+        CatchingShow_Start(param0->fieldSystem);
     } else if (v1 == 1) {
         SystemFlag_ClearInPalPark(v0);
-        sub_02056328(param0->fieldSystem);
+        CatchingShow_End(param0->fieldSystem);
     } else {
         GF_ASSERT(0);
     }
@@ -82,25 +84,25 @@ BOOL ScrCmd_255(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_256(ScriptContext *param0)
+BOOL ScrCmd_CalcCatchingShowPoints(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
+    u16 pointsCategory = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    switch (v0) {
-    case 0:
-        *v1 = sub_020563D0(param0->fieldSystem);
+    switch (pointsCategory) {
+    case CATCHING_SHOW_CATCHING_POINTS:
+        *destVar = CatchingShow_CalcCatchingPoints(ctx->fieldSystem);
         break;
-    case 1:
-        *v1 = sub_020563E0(param0->fieldSystem);
+    case CATCHING_SHOW_TIME_POINTS:
+        *destVar = CatchingShow_GetTimePoints(ctx->fieldSystem);
         break;
-    case 2:
-        *v1 = sub_020563F0(param0->fieldSystem);
+    case CATCHING_SHOW_TYPE_POINTS:
+        *destVar = CatchingShow_GetTypePoints(ctx->fieldSystem);
         break;
-    case 3:
-        *v1 = sub_020563D0(param0->fieldSystem) + sub_020563F0(param0->fieldSystem) + sub_020563E0(param0->fieldSystem);
+    case CATCHING_SHOW_TOTAL_POINTS:
+        *destVar = CatchingShow_CalcCatchingPoints(ctx->fieldSystem) + CatchingShow_GetTypePoints(ctx->fieldSystem) + CatchingShow_GetTimePoints(ctx->fieldSystem);
         break;
     }
 
-    return 0;
+    return FALSE;
 }

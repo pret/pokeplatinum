@@ -1566,19 +1566,19 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
     }
 
     if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
-        switch (gCoreSys.unk_66) {
+        switch (gCoreSys.gbaCartridgeVersion) {
         default:
-        case 2:
-        case 1:
+        case RUBY:
+        case SAPPHIRE:
             v1 = 0;
             break;
-        case 4:
+        case FIRERED:
             v1 = 1;
             break;
-        case 5:
+        case LEAFGREEN:
             v1 = 2;
             break;
-        case 3:
+        case EMERALD:
             v1 = 3;
             break;
         }

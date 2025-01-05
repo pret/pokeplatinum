@@ -232,7 +232,7 @@ Static main
 	Object main.nef.p/src_field_transition.c.o
 	Object main.nef.p/src_unk_020559DC.c.o
 	Object main.nef.p/src_unk_02055C50.c.o
-	Object main.nef.p/src_unk_020562F8.c.o
+	Object main.nef.p/src_catching_show.c.o
 	Object main.nef.p/src_poketch_data.c.o
 	Object main.nef.p/src_unk_02056B30.c.o
 	Object main.nef.p/src_unk_020573FC.c.o

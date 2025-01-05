@@ -35,6 +35,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "catching_show.h"
 #include "cell_actor.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -77,7 +78,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
-#include "unk_020562F8.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_0205F180.h"
@@ -691,9 +691,9 @@ static void sub_0203B094(FieldTask *taskMan)
 
         StringTemplate_SetNumber(v3, 0, *v7, 2, 0, 1);
     } else {
-        int v8 = sub_020563BC(fieldSystem);
+        int parkBallCount = CatchingShow_GetParkBallCount(fieldSystem);
 
-        StringTemplate_SetNumber(v3, 0, v8, 2, 0, 1);
+        StringTemplate_SetNumber(v3, 0, parkBallCount, 2, 0, 1);
     }
 
     StringTemplate_Format(v3, v4, v5);
