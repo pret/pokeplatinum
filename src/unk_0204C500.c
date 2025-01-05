@@ -15,11 +15,11 @@
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0202631C.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F180.h"
 #include "unk_020797C8.h"
@@ -66,7 +66,7 @@ BOOL ScrCmd_255(ScriptContext *param0)
     PCBoxes *v1 = SaveData_PCBoxes(param0->fieldSystem->saveData);
     Pokemon *v2 = Pokemon_New(32);
     TrainerInfo *v3 = SaveData_GetTrainerInfo(param0->fieldSystem->saveData);
-    PokedexData *v4 = SaveData_Pokedex(param0->fieldSystem->saveData);
+    PokedexData *v4 = SaveData_PokedexData(param0->fieldSystem->saveData);
     BOOL v5;
     int v6;
 

@@ -14,7 +14,7 @@ ARGPARSER = ArgumentParser(
     prog='json2bin.py',
     description='Tool for converting a collection of JSON documents into\na NARC via a constructed parsing schema'
 )
-ARGPARSER.add_argument('--knarc', required=True,
+ARGPARSER.add_argument('--narc', required=True,
                        help='Path to the knarc executable')
 ARGPARSER.add_argument('--source-dir', required=True,
                        help='Source directory with subdirs for each data element')
@@ -236,7 +236,7 @@ def json2bin(target: str,
         _write(merged, 0, private_dir)
 
     subprocess.run([
-        pathlib.Path(narc_packer),
-        '-d', private_dir,
-        '-p', output_dir / f'{narc_name}.narc'
+        pathlib.Path(narc_packer), 'create',
+        '--output', output_dir / f'{narc_name}.narc',
+        private_dir,
     ])
