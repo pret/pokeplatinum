@@ -14,11 +14,11 @@
 #include "graphics.h"
 #include "heap.h"
 #include "narc.h"
+#include "pokedex_data.h"
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_0202631C.h"
 
 #define NUMSTATFILES 11
 #define BLANKSPACE   (NATIONAL_DEX_COUNT + 1)
@@ -101,7 +101,7 @@ void PokedexSort_PopulatePokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruc
     param0->dexData = param1->dexData;
     param0->timeOfDay = param1->timeOfDay;
 
-    if (Pokedex_IsNationalDexObtained(param0->dexData)) {
+    if (PokedexData_IsNationalDexObtained(param0->dexData)) {
         param0->isNationalDexUnlocked = TRUE;
     } else {
         param0->isNationalDexUnlocked = FALSE;
@@ -171,7 +171,7 @@ u32 ov21_021D334C(const UnkStruct_ov21_021D3320 *param0, int param1, int param2)
 {
     u32 v0;
 
-    v0 = sub_02027058(param0->dexData, param1, param2);
+    v0 = PokedexData_DisplayedGender(param0->dexData, param1, param2);
     return v0;
 }
 
@@ -180,7 +180,7 @@ u32 ov21_021D335C(const UnkStruct_ov21_021D3320 *param0, int param1)
     int v0;
 
     GF_ASSERT(param1 < 28);
-    v0 = sub_020270AC(param0->dexData, param1);
+    v0 = PokedexData_GetForm_Unown(param0->dexData, param1);
 
     return v0;
 }
@@ -190,7 +190,7 @@ u32 ov21_021D3374(const UnkStruct_ov21_021D3320 *param0, int param1)
     u32 v0;
 
     GF_ASSERT(param1 < 2);
-    v0 = sub_020270F8(param0->dexData, param1);
+    v0 = PokedexData_GetForm_Shellos(param0->dexData, param1);
 
     return v0;
 }
@@ -201,7 +201,7 @@ u32 ov21_021D338C(const UnkStruct_ov21_021D3320 *param0, int param1)
 
     GF_ASSERT(param1 < 2);
 
-    v0 = sub_02027154(param0->dexData, param1);
+    v0 = PokedexData_GetForm_Gastrodon(param0->dexData, param1);
     return v0;
 }
 
@@ -211,7 +211,7 @@ u32 ov21_021D33A4(const UnkStruct_ov21_021D3320 *param0, int param1)
 
     GF_ASSERT(param1 < 3);
 
-    v0 = sub_020271B0(param0->dexData, param1);
+    v0 = PokedexData_GetForm_Burmy(param0->dexData, param1);
     return v0;
 }
 
@@ -221,13 +221,13 @@ u32 ov21_021D33BC(const UnkStruct_ov21_021D3320 *param0, int param1)
 
     GF_ASSERT(param1 < 3);
 
-    v0 = sub_02027208(param0->dexData, param1);
+    v0 = PokedexData_GetForm_Wormadam(param0->dexData, param1);
     return v0;
 }
 
 u32 ov21_021D33D4(const UnkStruct_ov21_021D3320 *param0, u32 species)
 {
-    return sub_0202756C(param0->dexData, species, 0);
+    return PokedexData_GetDisplayForm(param0->dexData, species, 0);
 }
 
 u32 ov21_021D33E0(const UnkStruct_ov21_021D3320 *param0, int param1)
@@ -243,27 +243,27 @@ u32 ov21_021D33E0(const UnkStruct_ov21_021D3320 *param0, int param1)
 
 u32 ov21_021D33F8(const UnkStruct_ov21_021D3320 *param0)
 {
-    return sub_0202702C(param0->dexData, 0);
+    return PokedexData_GetForm_Spinda(param0->dexData, 0);
 }
 
 u32 ov21_021D3404(const UnkStruct_ov21_021D3320 *param0, int param1)
 {
-    return sub_02027264(param0->dexData, param1);
+    return PokedexData_GetForm_Deoxys(param0->dexData, param1);
 }
 
 u32 ov21_021D3410(const UnkStruct_ov21_021D3320 *param0, u32 param1, int param2)
 {
-    return sub_0202756C(param0->dexData, param1, param2);
+    return PokedexData_GetDisplayForm(param0->dexData, param1, param2);
 }
 
 u32 ov21_021D341C(const UnkStruct_ov21_021D3320 *param0, u32 param1)
 {
-    return sub_020276C8(param0->dexData, param1);
+    return PokedexData_NumFormsSeen(param0->dexData, param1);
 }
 
 BOOL PokedexSort_IsNationalUnlocked(const UnkStruct_ov21_021D3320 *param0)
 {
-    return Pokedex_IsNationalDexObtained(param0->dexData);
+    return PokedexData_IsNationalDexObtained(param0->dexData);
 }
 
 void ov21_021D3434(UnkStruct_ov21_021D3320 *param0, u32 param1)
@@ -620,16 +620,16 @@ BOOL ov21_021D392C(const UnkStruct_ov21_021D3320 *param0, int param1)
 {
     int species = PokedexSort_CurrentSpecies(param0);
 
-    if (sub_02027514(param0->dexData) == 0) {
+    if (PokedexData_CanDetectLanguages(param0->dexData) == 0) {
         return FALSE;
     }
 
-    return sub_020274D0(param0->dexData, species, param1);
+    return PokedexData_IsLanguageObtained(param0->dexData, species, param1);
 }
 
 BOOL PokedexSort_CanDetectForms(const UnkStruct_ov21_021D3320 *param0)
 {
-    return Pokedex_CanDetectForms(param0->dexData);
+    return PokedexData_CanDetectForms(param0->dexData);
 }
 
 void ov21_021D3960(UnkStruct_ov21_021D3320 *param0)
@@ -658,7 +658,7 @@ static void FilterUnencountered(u16 *encounteredDex, int *caughtStatusLength, co
     *caughtStatusLength = 0;
 
     for (int species = 0; species < pokedexLength; species++) {
-        if (Pokedex_HasSeenSpecies(dexData, fullDex[species])) {
+        if (PokedexData_HasSeenSpecies(dexData, fullDex[species])) {
             encounteredDex[*caughtStatusLength] = fullDex[species];
             (*caughtStatusLength)++;
         }
@@ -677,7 +677,7 @@ static void IntersectPokedexes(u16 *resultingPokedex, int *numResulting, const u
                 if (keepUncaught == TRUE) {
                     break;
                 } else {
-                    if (Pokedex_HasCaughtSpecies(dexData, pokedex1[dexIndex1])) {
+                    if (PokedexData_HasCaughtSpecies(dexData, pokedex1[dexIndex1])) {
                         break;
                     }
                 }
@@ -696,7 +696,7 @@ static void UpdateCaughtStatus(SortedPokedex *sortedPokedex, const PokedexData *
     sortedPokedex->caughtStatusLength = 0;
 
     for (int dexIndex = 0; dexIndex < caughtStatusLength; dexIndex++) {
-        if (Pokedex_HasCaughtSpecies(dexData, encounteredPokedex[dexIndex])) {
+        if (PokedexData_HasCaughtSpecies(dexData, encounteredPokedex[dexIndex])) {
             sortedPokedex->caughtStatusArray[sortedPokedex->caughtStatusLength].caughtStatus = CS_CAUGHT;
         } else {
             sortedPokedex->caughtStatusArray[sortedPokedex->caughtStatusLength].caughtStatus = CS_ENCOUNTERED;
