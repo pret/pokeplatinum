@@ -943,7 +943,7 @@ trainer_party_gen = generator(
 
 trainers_order = files('trainers.order')
 
-trdata_narc = custom_target('trdata.narc',
+trdata_target = custom_target('trdata.narc',
     output: [
         'trdata.narc',
         'trdata.naix',
@@ -959,24 +959,22 @@ trdata_narc = custom_target('trdata.narc',
         '@PRIVATE_DIR@',
     ],
 )
+trdata_narc = trdata_target[0]
+trdata_naix = trdata_target[1]
 
+# Do not generate an NAIX for `trpoke.narc`; it would go wholly unused
 trpoke_narc = custom_target('trpoke.narc',
-    output: [
-        'trpoke.narc',
-        'trpoke.naix',
-    ],
+    output: 'trpoke.narc',
     input: trainer_party_gen.process(trainer_data_files, env: json2bin_env),
     depends: [ py_consts_generators ],
     command: [
         narc_exe, 'create',
-        '--naix',
         '--order', trainers_order,
-        '--output', '@OUTPUT0@',
+        '--output', '@OUTPUT@',
         '@PRIVATE_DIR@',
     ]
 )
 
-nitrofs_files += trdata_narc[0]
-nitrofs_files += trpoke_narc[0]
-naix_headers += trdata_narc[1]
-naix_headers += trpoke_narc[1]
+nitrofs_files += trdata_narc
+nitrofs_files += trpoke_narc
+naix_headers += trdata_naix
