@@ -7,9 +7,9 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "pokedex_language.h"
 #include "pokemon.h"
 #include "savedata.h"
-#include "unk_020986CC.h"
 
 static const u16 sExcludedMonsNational[] = {
     SPECIES_MEW,
@@ -606,9 +606,9 @@ static void UpdateForm(PokedexData *pokedexData, u16 species, Pokemon *pokemon)
 static void UpdateLanguage(PokedexData *pokedexData, u16 species, u32 language)
 {
     int bitIndex = species;
-    int languageIndex = sub_020986CC(language);
+    int languageIndex = PokedexLanguage_LanguageToIndex(language);
 
-    if (languageIndex == 6) {
+    if (languageIndex == NUM_LANGUAGES) {
         return;
     }
 
@@ -1118,7 +1118,7 @@ BOOL PokedexData_IsLanguageObtained(const PokedexData *pokedexData, u16 species,
     CheckPokedexIntegrity(pokedexData);
 
     bitIndex = species;
-    languageIndex = sub_020986CC(languageIndex);
+    languageIndex = PokedexLanguage_LanguageToIndex(languageIndex);
 
     return pokedexData->recordedLanguages[bitIndex] & (1 << languageIndex);
 }
