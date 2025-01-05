@@ -71,7 +71,7 @@ void NitroMain(void)
     InitGraphics();
     InitKeypadAndTouchpad();
 
-    SetGBACartridgeVersion(0);
+    SetGBACartridgeVersion(VERSION_NONE);
     PM_GetBackLight(&sSavedBacklightState, NULL);
     sub_0202419C();
     InitRTC();
