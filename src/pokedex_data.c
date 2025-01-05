@@ -1,44 +1,60 @@
 #include "pokedex_data.h"
 
+#include <nitro.h>
+#include <string.h>
+
 #include "constants/species.h"
 
 #include "heap.h"
 #include "inlines.h"
-#include "pokedex_language.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "unk_020986CC.h"
 
-#define DEX_SIZE_U32           ((int)((NATIONAL_DEX_COUNT - 1) / 32) + 1) // default 16
-#define MAGIC_NUMBER           3203386110
-#define NUM_MYTHICALS_NATIONAL 11
-#define NATIONAL_DEX_GOAL      (NATIONAL_DEX_COUNT - NUM_MYTHICALS_NATIONAL)
-#define UNOWN_COUNT            28
-#define DEOXYS_COUNT           4
-#define ROTOM_COUNT            6
-#define TERMINAL_4BITS         0x7
-#define TERMINAL_BYTE          0xf
-#define TERMINAL_U8            0xff
-#define TERMINAL_U32           0xffffffff
+static const u16 sExcludedMonsNational[] = {
+    SPECIES_MEW,
+    SPECIES_LUGIA,
+    SPECIES_HO_OH,
+    SPECIES_CELEBI,
+    SPECIES_JIRACHI,
+    SPECIES_DEOXYS,
+    SPECIES_PHIONE,
+    SPECIES_MANAPHY,
+    SPECIES_DARKRAI,
+    SPECIES_SHAYMIN,
+    SPECIES_ARCEUS
+};
+static const u16 sExcludedMonsLocal[] = {};
+
+#define DEX_SIZE_U32          ((int)((NATIONAL_DEX_COUNT - 1) / 32) + 1) // default 16
+#define MAGIC_NUMBER          0xBEEFCAFE
+#define NUM_EXCLUDED_NATIONAL ((int)(sizeof(sExcludedMonsNational) / sizeof(u16)))
+#define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMonsLocal) / sizeof(u16)))
+#define NATIONAL_DEX_GOAL     (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
+#define LOCAL_DEX_GOAL        (LOCAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
+#define UNOWN_COUNT           28
+#define DEOXYS_COUNT          4
+#define ROTOM_COUNT           6
 
 typedef struct PokedexData {
     u32 magic;
     u32 caughtPokemon[DEX_SIZE_U32];
     u32 seenPokemon[DEX_SIZE_U32];
     u32 recordedGenders[2][DEX_SIZE_U32];
-    u32 spindaForms;
-    u8 shellosForms;
-    u8 gastrodonForms;
-    u8 burmyForms;
-    u8 wormadamForms;
-    u8 unownForms[UNOWN_COUNT];
+    u32 spindaForm;
+    u8 shellosFormsSeen;
+    u8 gastrodonFormsSeen;
+    u8 burmyFormsSeen;
+    u8 wormadamFormsSeen;
+    u8 unownFormsSeen[UNOWN_COUNT];
     u8 recordedLanguages[MAX_SPECIES + 1];
     u8 canDetectForms;
     u8 canDetectLanguages;
     u8 pokedexObtained;
     u8 nationalDexObtained;
-    u32 rotomForms;
-    u8 shayminForms;
-    u8 giratinaForms;
+    u32 rotomFormsSeen;
+    u8 shayminFormsSeen;
+    u8 giratinaFormsSeen;
 } PokedexData;
 
 int PokedexData_SaveSize(void)
@@ -77,13 +93,13 @@ static BOOL SpeciesInvalid(u16 species)
 static inline BOOL ReadBit_2Forms(const u8 *array, u16 bitIndex)
 {
     bitIndex--;
-    return 0 != (array[bitIndex >> 0x3] & (1 << (bitIndex & 0x7)));
+    return 0 != (array[bitIndex >> 3] & (1 << (bitIndex & 0x07)));
 }
 
 static inline void ActivateBit_2Forms(u8 *array, u16 bitIndex)
 {
     bitIndex--;
-    array[bitIndex >> 0x3] |= 1 << (bitIndex & 0x7);
+    array[bitIndex >> 3] |= 1 << (bitIndex & 0x07);
 }
 
 static inline void SetBit_2Forms(u8 *array, u8 value, u16 bitIndex)
@@ -92,21 +108,21 @@ static inline void SetBit_2Forms(u8 *array, u8 value, u16 bitIndex)
 
     bitIndex--;
 
-    array[bitIndex >> 0x3] &= ~(1 << (bitIndex & 0x7));
-    array[bitIndex >> 0x3] |= value << (bitIndex & 0x7);
+    array[bitIndex >> 3] &= ~(1 << (bitIndex & 0x07));
+    array[bitIndex >> 3] |= value << (bitIndex & 0x07);
 }
 
 static inline u32 ReadBit_3Forms(const u8 *array, u16 bitIndex)
 {
-    return (array[bitIndex >> 2] >> ((bitIndex & 0x3) * 2)) & 0x3;
+    return (array[bitIndex >> 2] >> ((bitIndex & 0x03) * 2)) & 0x03;
 }
 
 static inline void SetBit_3Forms(u8 *array, u8 value, u16 bitIndex)
 {
     GF_ASSERT(value < 4);
 
-    array[bitIndex >> 2] &= ~(0x3 << ((bitIndex & 0x3) * 2));
-    array[bitIndex >> 2] |= value << ((bitIndex & 0x3) * 2);
+    array[bitIndex >> 2] &= ~(0x03 << ((bitIndex & 0x03) * 2));
+    array[bitIndex >> 2] |= value << ((bitIndex & 0x03) * 2);
 }
 
 static inline void Write_SeenSpecies(PokedexData *pokedexData, u16 species)
@@ -130,7 +146,7 @@ static void SetBit_Gender(PokedexData *pokedexData, u8 gender, u8 isSeen, u16 bi
 
 static void UpdateGender(PokedexData *pokedexData, u8 gender, u8 isSeen, u16 bitIndex)
 {
-    GF_ASSERT(gender <= 2);
+    GF_ASSERT(gender <= GENDER_NONE);
 
     if (gender == GENDER_NONE) {
         gender = GENDER_MALE;
@@ -157,7 +173,7 @@ static inline u8 GetGender(const PokedexData *pokedexData, u16 species, u8 bitIn
 static inline void SetForm_Spinda(PokedexData *pokedexData, u16 species, u32 personality)
 {
     if (species == SPECIES_SPINDA) {
-        pokedexData->spindaForms = personality;
+        pokedexData->spindaForm = personality;
     }
 }
 
@@ -166,7 +182,7 @@ static int NumFormsSeen_Unown(const PokedexData *pokedexData)
     int formIndex;
 
     for (formIndex = 0; formIndex < UNOWN_COUNT; formIndex++) {
-        if (pokedexData->unownForms[formIndex] == TERMINAL_U8) {
+        if (pokedexData->unownFormsSeen[formIndex] == 0xFF) {
             break;
         }
     }
@@ -177,7 +193,7 @@ static int NumFormsSeen_Unown(const PokedexData *pokedexData)
 static BOOL UnownFormSeen(const PokedexData *pokedexData, u8 form)
 {
     for (int formIndex = 0; formIndex < UNOWN_COUNT; formIndex++) {
-        if (pokedexData->unownForms[formIndex] == form) {
+        if (pokedexData->unownFormsSeen[formIndex] == form) {
             return TRUE;
         }
     }
@@ -194,7 +210,7 @@ static void SetUnownForm(PokedexData *pokedexData, int form)
     int numUnownSeen = NumFormsSeen_Unown(pokedexData);
 
     if (numUnownSeen < UNOWN_COUNT) {
-        pokedexData->unownForms[numUnownSeen] = form;
+        pokedexData->unownFormsSeen[numUnownSeen] = form;
     }
 }
 
@@ -209,16 +225,16 @@ static int NumFormsSeen_TwoForms(const PokedexData *pokedexData, u32 species)
     const u8 *formArray;
     switch (species) {
     case SPECIES_SHELLOS:
-        formArray = &pokedexData->shellosForms;
+        formArray = &pokedexData->shellosFormsSeen;
         break;
     case SPECIES_GASTRODON:
-        formArray = &pokedexData->gastrodonForms;
+        formArray = &pokedexData->gastrodonFormsSeen;
         break;
     case SPECIES_SHAYMIN:
-        formArray = &pokedexData->shayminForms;
+        formArray = &pokedexData->shayminFormsSeen;
         break;
     case SPECIES_GIRATINA:
-        formArray = &pokedexData->giratinaForms;
+        formArray = &pokedexData->giratinaFormsSeen;
         break;
     }
 
@@ -243,16 +259,16 @@ static BOOL FormSeen_TwoForms(const PokedexData *pokedexData, u32 species, u8 fo
     const u8 *formArray;
     switch (species) {
     case SPECIES_SHELLOS:
-        formArray = &pokedexData->shellosForms;
+        formArray = &pokedexData->shellosFormsSeen;
         break;
     case SPECIES_GASTRODON:
-        formArray = &pokedexData->gastrodonForms;
+        formArray = &pokedexData->gastrodonFormsSeen;
         break;
     case SPECIES_SHAYMIN:
-        formArray = &pokedexData->shayminForms;
+        formArray = &pokedexData->shayminFormsSeen;
         break;
     case SPECIES_GIRATINA:
-        formArray = &pokedexData->giratinaForms;
+        formArray = &pokedexData->giratinaFormsSeen;
         break;
     }
 
@@ -280,16 +296,16 @@ static void UpdateForms_TwoForms(PokedexData *pokedexData, u32 species, int form
     u8 *formArray;
     switch (species) {
     case SPECIES_SHELLOS:
-        formArray = &pokedexData->shellosForms;
+        formArray = &pokedexData->shellosFormsSeen;
         break;
     case SPECIES_GASTRODON:
-        formArray = &pokedexData->gastrodonForms;
+        formArray = &pokedexData->gastrodonFormsSeen;
         break;
     case SPECIES_SHAYMIN:
-        formArray = &pokedexData->shayminForms;
+        formArray = &pokedexData->shayminFormsSeen;
         break;
     case SPECIES_GIRATINA:
-        formArray = &pokedexData->giratinaForms;
+        formArray = &pokedexData->giratinaFormsSeen;
         break;
     }
 
@@ -314,9 +330,9 @@ static int NumFormsSeen_ThreeForms(const PokedexData *pokedexData, u32 species)
 
     const u8 *formArray;
     if (species == SPECIES_BURMY) {
-        formArray = &pokedexData->burmyForms;
+        formArray = &pokedexData->burmyFormsSeen;
     } else {
-        formArray = &pokedexData->wormadamForms;
+        formArray = &pokedexData->wormadamFormsSeen;
     }
 
     int formIndex;
@@ -341,9 +357,9 @@ static BOOL FormSeen_ThreeForms(const PokedexData *pokedexData, u32 species, u8 
 
     const u8 *formArray;
     if (species == SPECIES_BURMY) {
-        formArray = &pokedexData->burmyForms;
+        formArray = &pokedexData->burmyFormsSeen;
     } else {
-        formArray = &pokedexData->wormadamForms;
+        formArray = &pokedexData->wormadamFormsSeen;
     }
 
     for (int formIndex = 0; formIndex < 3; formIndex++) {
@@ -367,9 +383,9 @@ static void UpdateForms_ThreeForms(PokedexData *pokedexData, u32 species, int fo
 
     u8 *formArray;
     if (species == SPECIES_BURMY) {
-        formArray = &pokedexData->burmyForms;
+        formArray = &pokedexData->burmyFormsSeen;
     } else {
-        formArray = &pokedexData->wormadamForms;
+        formArray = &pokedexData->wormadamFormsSeen;
     }
 
     int numFormsSeen = NumFormsSeen_ThreeForms(pokedexData, species);
@@ -382,7 +398,7 @@ static void UpdateForms_ThreeForms(PokedexData *pokedexData, u32 species, int fo
 static void WriteBit_Deoxys(u32 *array, u8 value, u8 bitIndex)
 {
     u32 bitOffset = (24 + (bitIndex * 4));
-    u32 emptyBits = ~(0xf << bitOffset);
+    u32 emptyBits = ~(0x0F << bitOffset);
 
     array[DEX_SIZE_U32 - 1] &= emptyBits;
     array[DEX_SIZE_U32 - 1] |= (value << bitOffset);
@@ -394,7 +410,7 @@ static void UpdateFormArray_Deoxys(PokedexData *pokedexData, u8 form, u8 bitInde
     // This will want to be changed when modding to avoid overlapping references
 
     GF_ASSERT(bitIndex < DEOXYS_COUNT);
-    GF_ASSERT(form <= TERMINAL_BYTE);
+    GF_ASSERT(form <= 0x0F);
 
     if (bitIndex < 2) {
         WriteBit_Deoxys(pokedexData->caughtPokemon, form, bitIndex);
@@ -406,9 +422,7 @@ static void UpdateFormArray_Deoxys(PokedexData *pokedexData, u8 form, u8 bitInde
 static inline u32 ReadBit_Deoxys(const u32 *array, u8 bitIndex)
 {
     u32 bitOffset = (24 + (bitIndex * 4));
-    u32 form = (array[DEX_SIZE_U32 - 1] >> bitOffset) & 0xf;
-
-    return form;
+    return (array[DEX_SIZE_U32 - 1] >> bitOffset) & 0x0F;
 }
 
 static u32 GetForm_Deoxys(const PokedexData *pokedexData, u8 formIndex)
@@ -431,7 +445,7 @@ static u32 NumFormsSeen_Deoxys(const PokedexData *pokedexData)
     int formIndex;
 
     for (formIndex = 0; formIndex < DEOXYS_COUNT; formIndex++) {
-        if (GetForm_Deoxys(pokedexData, formIndex) == TERMINAL_BYTE) {
+        if (GetForm_Deoxys(pokedexData, formIndex) == 0x0F) {
             break;
         }
     }
@@ -465,20 +479,20 @@ static void UpdateForms_Deoxys(PokedexData *pokedexData, u16 species, Pokemon *p
 static void InitDeoxys(PokedexData *pokedexData)
 {
     for (int formIndex = 0; formIndex < DEOXYS_COUNT; formIndex++) {
-        UpdateFormArray_Deoxys(pokedexData, TERMINAL_BYTE, formIndex);
+        UpdateFormArray_Deoxys(pokedexData, 0x0F, formIndex);
     }
 }
 
 static inline u32 ReadBit_Rotom(u32 formArray, u32 formIndex)
 {
-    return (formArray >> (formIndex * 3)) & 0x7;
+    return (formArray >> (formIndex * 3)) & 0x07;
 }
 
 static inline void SetBit_Rotom(u32 *formArray, u32 formIndex, u32 form)
 {
-    GF_ASSERT(form < TERMINAL_4BITS);
+    GF_ASSERT(form < 0x07);
 
-    (*formArray) &= ~(0x7 << (formIndex * 3));
+    (*formArray) &= ~(0x07 << (formIndex * 3));
     (*formArray) |= (form << (formIndex * 3));
 }
 
@@ -495,9 +509,9 @@ static int NumFormsSeen_Rotom(const PokedexData *pokedexData, u32 species)
     int numFormsSeen = 0;
 
     for (formIndex = 0; formIndex < ROTOM_COUNT; formIndex++) {
-        form = ReadBit_Rotom(pokedexData->rotomForms, formIndex);
+        form = ReadBit_Rotom(pokedexData->rotomFormsSeen, formIndex);
 
-        if (form != TERMINAL_4BITS) {
+        if (form != 0x07) {
             numFormsSeen++;
         } else {
             break;
@@ -519,7 +533,7 @@ static BOOL FormSeen_Rotom(const PokedexData *pokedexData, u32 species, u8 form)
     u32 numFormsSeen = NumFormsSeen_Rotom(pokedexData, species);
 
     for (formIndex = 0; formIndex < numFormsSeen; formIndex++) {
-        u32 rotomForm = ReadBit_Rotom(pokedexData->rotomForms, formIndex);
+        u32 rotomForm = ReadBit_Rotom(pokedexData->rotomFormsSeen, formIndex);
 
         if (rotomForm == form) {
             return TRUE;
@@ -542,7 +556,7 @@ static void UpdateForms_Rotom(PokedexData *pokedexData, u32 species, int form)
     numFormsSeen = NumFormsSeen_Rotom(pokedexData, species);
 
     if (numFormsSeen < ROTOM_COUNT) {
-        SetBit_Rotom(&pokedexData->rotomForms, numFormsSeen, form);
+        SetBit_Rotom(&pokedexData->rotomFormsSeen, numFormsSeen, form);
     }
 }
 
@@ -586,17 +600,15 @@ static void UpdateForm(PokedexData *pokedexData, u16 species, Pokemon *pokemon)
         form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
         UpdateForms_Rotom(pokedexData, species, form);
         break;
-    default:
-        break;
     }
 }
 
 static void UpdateLanguage(PokedexData *pokedexData, u16 species, u32 language)
 {
     int bitIndex = species;
-    int languageIndex = PokedexLanguage_LanguageToIndex(language);
+    int languageIndex = sub_020986CC(language);
 
-    if (languageIndex == NUM_LANGUAGES) {
+    if (languageIndex == 6) {
         return;
     }
 
@@ -635,7 +647,7 @@ static u32 GetDisplayGender(const PokedexData *pokedexData, u16 species, int dis
 
 static inline int GetForm_Unown(const PokedexData *pokedexData, int formIndex)
 {
-    return pokedexData->unownForms[formIndex];
+    return pokedexData->unownFormsSeen[formIndex];
 }
 
 static int GetForm_TwoForms(const PokedexData *pokedexData, u32 species, int formIndex)
@@ -647,16 +659,16 @@ static int GetForm_TwoForms(const PokedexData *pokedexData, u32 species, int for
 
     switch (species) {
     case SPECIES_SHELLOS:
-        formArray = &pokedexData->shellosForms;
+        formArray = &pokedexData->shellosFormsSeen;
         break;
     case SPECIES_GASTRODON:
-        formArray = &pokedexData->gastrodonForms;
+        formArray = &pokedexData->gastrodonFormsSeen;
         break;
     case SPECIES_SHAYMIN:
-        formArray = &pokedexData->shayminForms;
+        formArray = &pokedexData->shayminFormsSeen;
         break;
     case SPECIES_GIRATINA:
-        formArray = &pokedexData->giratinaForms;
+        formArray = &pokedexData->giratinaFormsSeen;
         break;
     }
 
@@ -668,7 +680,7 @@ static int GetForm_Rotom(const PokedexData *pokedexData, u32 species, int formIn
     GF_ASSERT(species == SPECIES_ROTOM);
     GF_ASSERT(formIndex < ROTOM_COUNT);
 
-    return ReadBit_Rotom(pokedexData->rotomForms, formIndex);
+    return ReadBit_Rotom(pokedexData->rotomFormsSeen, formIndex);
 }
 
 static int GetForm_3Forms(const PokedexData *pokedexData, u32 species, int formIndex)
@@ -679,9 +691,9 @@ static int GetForm_3Forms(const PokedexData *pokedexData, u32 species, int formI
     GF_ASSERT(formIndex < 3);
 
     if (species == SPECIES_BURMY) {
-        formArray = &pokedexData->burmyForms;
+        formArray = &pokedexData->burmyFormsSeen;
     } else {
-        formArray = &pokedexData->wormadamForms;
+        formArray = &pokedexData->wormadamFormsSeen;
     }
 
     return ReadBit_3Forms(formArray, formIndex);
@@ -690,25 +702,10 @@ static int GetForm_3Forms(const PokedexData *pokedexData, u32 species, int formI
 static BOOL CountsForDexCompletion_National(u16 species)
 {
     int i;
-    BOOL included;
-    static const u16 mythicals[NUM_MYTHICALS_NATIONAL] = {
-        SPECIES_MEW,
-        SPECIES_LUGIA,
-        SPECIES_HO_OH,
-        SPECIES_CELEBI,
-        SPECIES_JIRACHI,
-        SPECIES_DEOXYS,
-        SPECIES_PHIONE,
-        SPECIES_MANAPHY,
-        SPECIES_DARKRAI,
-        SPECIES_SHAYMIN,
-        SPECIES_ARCEUS
-    };
+    BOOL included = TRUE;
 
-    included = TRUE;
-
-    for (i = 0; i < NUM_MYTHICALS_NATIONAL; i++) {
-        if (mythicals[i] == species) {
+    for (i = 0; i < NUM_EXCLUDED_NATIONAL; i++) {
+        if (sExcludedMonsNational[i] == species) {
             included = FALSE;
         }
     }
@@ -718,7 +715,15 @@ static BOOL CountsForDexCompletion_National(u16 species)
 
 static BOOL CountsForDexCompletion_Local(u16 species)
 {
-    return TRUE;
+    BOOL included = TRUE;
+
+    for (int i = 0; i < NUM_EXCLUDED_LOCAL; i++) {
+        if (sExcludedMonsLocal[i] == species) {
+            included = FALSE;
+        }
+    }
+
+    return included;
 }
 
 void PokedexData_Init(PokedexData *pokedexData)
@@ -728,15 +733,15 @@ void PokedexData_Init(PokedexData *pokedexData)
     pokedexData->magic = MAGIC_NUMBER;
     pokedexData->nationalDexObtained = FALSE;
 
-    memset(pokedexData->unownForms, TERMINAL_U8, sizeof(u8) * UNOWN_COUNT);
+    memset(pokedexData->unownFormsSeen, 0xFF, sizeof(u8) * UNOWN_COUNT);
 
-    pokedexData->shellosForms = TERMINAL_U8;
-    pokedexData->gastrodonForms = TERMINAL_U8;
-    pokedexData->burmyForms = TERMINAL_U8;
-    pokedexData->wormadamForms = TERMINAL_U8;
-    pokedexData->rotomForms = TERMINAL_U32;
-    pokedexData->shayminForms = TERMINAL_U8;
-    pokedexData->giratinaForms = TERMINAL_U8;
+    pokedexData->shellosFormsSeen = 0xFF;
+    pokedexData->gastrodonFormsSeen = 0xFF;
+    pokedexData->burmyFormsSeen = 0xFF;
+    pokedexData->wormadamFormsSeen = 0xFF;
+    pokedexData->rotomFormsSeen = 0xFFFFFFFF;
+    pokedexData->shayminFormsSeen = 0xFF;
+    pokedexData->giratinaFormsSeen = 0xFF;
 
     InitDeoxys(pokedexData);
 }
@@ -827,7 +832,7 @@ BOOL PokedexData_LocalDexCompleted(const PokedexData *pokedexData)
 {
     u16 numCaught = PokedexData_NumCaught_Local(pokedexData);
 
-    if (numCaught >= LOCAL_DEX_COUNT) {
+    if (numCaught >= LOCAL_DEX_GOAL) {
         return TRUE;
     }
 
@@ -857,12 +862,9 @@ u16 PokedexData_NumCaught_Local(const PokedexData *pokedexData)
 
     for (species = 1; species <= NATIONAL_DEX_COUNT; species++) {
         if (PokedexData_HasSeenSpecies(pokedexData, species) == TRUE) {
-            u32 localDexNum = Pokemon_SinnohDexNumber(species);
-
-            if (localDexNum != 0) {
-                if (CountsForDexCompletion_Local(species) == TRUE) {
-                    numCaught++;
-                }
+            if (Pokemon_SinnohDexNumber(species) != 0
+                && CountsForDexCompletion_Local(species) == TRUE) {
+                numCaught++;
             }
         }
     }
@@ -903,7 +905,7 @@ u32 PokedexData_GetForm_Spinda(const PokedexData *pokedexData, u8 formIndex)
     u32 form;
     switch (formIndex) {
     case 0:
-        form = pokedexData->spindaForms;
+        form = pokedexData->spindaForm;
         break;
     default:
         GF_ASSERT(FALSE);
@@ -1025,7 +1027,7 @@ u32 PokedexData_NumFormsSeen_Deoxys(const PokedexData *pokedexData)
     return NumFormsSeen_Deoxys(pokedexData);
 }
 
-void PokedexData_CaptureEntry(PokedexData *pokedexData, Pokemon *pokemon)
+void PokedexData_Encounter(PokedexData *pokedexData, Pokemon *pokemon)
 {
     u16 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
     u32 personality = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
@@ -1052,7 +1054,7 @@ void PokedexData_CaptureEntry(PokedexData *pokedexData, Pokemon *pokemon)
     Write_SeenSpecies(pokedexData, species);
 }
 
-void PokedexData_TradeEntry(PokedexData *pokedexData, Pokemon *pokemon)
+void PokedexData_Capture(PokedexData *pokedexData, Pokemon *pokemon)
 {
     u16 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
     u32 language = Pokemon_GetValue(pokemon, MON_DATA_LANGUAGE, NULL);
@@ -1116,7 +1118,7 @@ BOOL PokedexData_IsLanguageObtained(const PokedexData *pokedexData, u16 species,
     CheckPokedexIntegrity(pokedexData);
 
     bitIndex = species;
-    languageIndex = PokedexLanguage_LanguageToIndex(languageIndex);
+    languageIndex = sub_020986CC(languageIndex);
 
     return pokedexData->recordedLanguages[bitIndex] & (1 << languageIndex);
 }

@@ -1143,11 +1143,11 @@ scr_seq_narc = custom_target('scr_seq.narc',
         extra_args: ['--out-dir', scr_seq_private_dir]
     ),
     command: [
-        knarc_exe,
-        '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT0@',
-        '-o', scr_seq_narc_order,
-        '-n'
+        narc_exe, 'create',
+        '--naix',
+        '--order', scr_seq_narc_order,
+        '--output', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ],
     depends: [
         trdata_narc,

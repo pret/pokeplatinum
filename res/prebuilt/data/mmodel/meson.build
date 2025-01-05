@@ -4,9 +4,9 @@ mmodel_narc = custom_target('mmodel.narc',
     output: 'mmodel.narc',
     input: mmodel_files_targets,
     command: [
-        knarc_exe,
-        '-d', '@OUTDIR@/mmodel',
-        '-p', '@OUTPUT0@'
+        narc_exe, 'create',
+        '--output', '@OUTPUT0@',
+        '@OUTDIR@/mmodel',
     ]
 )
 

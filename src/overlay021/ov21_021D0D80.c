@@ -55,6 +55,7 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "pokedex_data.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
@@ -73,7 +74,6 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
-#include "unk_0202631C.h"
 #include "unk_0209ACBC.h"
 
 typedef struct UnkStruct_ov21_021D0F60_t {
@@ -136,7 +136,7 @@ int ov21_021D0D80(OverlayManager *param0, int *param1)
     {
         u32 v4;
 
-        v4 = sub_0202756C(v1->unk_00, 487, 0);
+        v4 = PokedexData_GetDisplayForm(v1->unk_00, 487, 0);
         Pokedex_SetupGiratina(v4);
     }
 
