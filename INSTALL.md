@@ -53,7 +53,7 @@ the following commands to install necessary build dependencies:
     ```bash
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
-    pacman -S git meson gcc flex bison base-devel mingw-w64-x86_64-arm-none-eabi-{binutils,gcc}
+    pacman -S git gcc flex bison base-devel mingw-w64-x86_64-arm-none-eabi-{binutils,gcc}
     ```
 
     Press 'Y' when prompted to confirm the installation.
@@ -153,27 +153,10 @@ install to a more recent version of `Ubuntu`:
 registry:
 
     ```bash
-    sudo apt install git flex bison build-essential binutils-arm-none-eabi gcc-arm-none-eabi ninja-build
+    sudo apt install git flex bison build-essential binutils-arm-none-eabi gcc-arm-none-eabi
     ```
 
-2. Run the following to install additional dependencies via `pip`:
-
-    ```bash
-    sudo apt install pip
-    pip install --user meson
-    ```
-
-    You may see `pip` respond with a warning saying `"The script meson is
-installed in '/home/<YOUR_USER>/.local/bin', which is not on PATH.` To resolve
-this issue, run the following commands, filling `<path/to/install/directory>`
-with the path reported by `pip` above:
-
-    ```bash
-    echo 'export PATH="<path/to/install/directory>:$PATH"' >> ~/.bashrc
-    source ~/.bashrc
-    ```
-
-3. [Download the repository](#2-downloading-the-repository).
+2. [Download the repository](#2-downloading-the-repository).
 
 ### MacOS
 
@@ -190,7 +173,7 @@ the following commands:
 
     ```zsh
     brew update
-    brew install gcc@14 meson libpng pkg-config arm-none-eabi-binutils arm-none-eabi-gcc
+    brew install gcc@14 libpng pkg-config arm-none-eabi-binutils arm-none-eabi-gcc
     brew install --cask wine-stable
     ```
 
@@ -209,12 +192,6 @@ GNU `coreutils` installed to run the build scripts:
 > Precise packages to be installed will vary by Linux distribution and
 > package registry. A handful of common distributions are listed below for
 > convenience.
->
-> [!IMPORTANT]
-> This project requires `meson` version `1.3.0` or higher. If the version of
-> `meson` provided by your package manager is out of date, then follow
-> [these instructions](https://mesonbuild.com/Getting-meson.html) to get the
-> most recent version.
 
 Once you have installed all the above dependencies, proceed to [downloading
 the repository](#2-downloading-the-repository).
@@ -234,15 +211,7 @@ the repository](#2-downloading-the-repository).
 2. Install the following packages via `apt`:
 
     ```bash
-    sudo apt install git flex bison ninja-build build-essential binutils-arm-none-eabi gcc-arm-none-eabi pkg-config
-    ```
-
-3. Install `meson` via `pip`:
-
-    ```bash
-    pip3 install --user meson
-    echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc
-    source ~/.bashrc
+    sudo apt install git flex bison build-essential binutils-arm-none-eabi gcc-arm-none-eabi pkg-config
     ```
 
 #### Arch Linux (and derivatives)
@@ -250,13 +219,13 @@ the repository](#2-downloading-the-repository).
 Install dependencies via `pacman`:
 
 ```bash
-sudo pacman -S git flex bison build-essentials arm-none-eabi-binutils arm-none-eabi-gcc pkg-config wine meson
+sudo pacman -S git flex bison build-essentials arm-none-eabi-binutils arm-none-eabi-gcc pkg-config wine
 ```
 
 #### Fedora (and derivatives)
 
 ```bash
-sudo yum install git flex bison gcc make arm-none-eabi-bintuils-cs arm-none-eabi-gcc-cs pkg-config wine meson ninja-build
+sudo yum install git flex bison gcc make arm-none-eabi-bintuils-cs arm-none-eabi-gcc-cs pkg-config wine
 ```
 
 ### Docker
