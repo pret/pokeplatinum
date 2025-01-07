@@ -206,13 +206,13 @@ static MapObjectManager *MapObjectMan_Alloc(int maxObjs)
 {
     int size;
     MapObject *mapObj;
-    MapObjectManager *mapObjMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, (sizeof(MapObjectManager)));
+    MapObjectManager *mapObjMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(MapObjectManager));
 
     GF_ASSERT(mapObjMan != NULL);
-    memset(mapObjMan, 0, (sizeof(MapObjectManager)));
+    memset(mapObjMan, 0, sizeof(MapObjectManager));
 
     size = sizeof(MapObject) * maxObjs;
-    mapObj = Heap_AllocFromHeap(11, size);
+    mapObj = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, size);
 
     GF_ASSERT(mapObj != NULL);
     memset(mapObj, 0, size);
@@ -439,7 +439,7 @@ void MapObjectMan_SaveAll(FieldSystem *fieldSystem, const MapObjectManager *mapO
     }
 
     if (param3) {
-        memset(mapObjSave, 0, param3 * (sizeof(MapObjectSave)));
+        memset(mapObjSave, 0, param3 * sizeof(MapObjectSave));
     }
 }
 
@@ -595,13 +595,13 @@ void sub_02062068(const MapObjectManager *mapObjMan, int param1, int param2, con
 
     GF_ASSERT(param2);
 
-    v0 = (sizeof(ObjectEvent)) * param2;
-    v1 = Heap_AllocFromHeapAtEnd(11, v0);
+    v0 = sizeof(ObjectEvent) * param2;
+    v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v0);
 
     GF_ASSERT(v1 != NULL);
     memcpy(v1, objectEvent, v0);
 
-    v2 = Heap_AllocFromHeapAtEnd(11, (sizeof(UnkStruct_020620C4)));
+    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020620C4));
     GF_ASSERT(v2 != NULL);
 
     v2->unk_00 = param1;
@@ -716,7 +716,7 @@ static void sub_020622B8(MapObject *mapObj, const ObjectEvent *objectEvent)
 
     v0 = ObjectEvent_GetY(objectEvent);
     v1.y = (fx32)v0;
-    v0 = (((v0) >> 3) / FX32_ONE);
+    v0 = ((v0) >> 3) / FX32_ONE;
 
     MapObject_SetYInitial(mapObj, v0);
     MapObject_SetYPrev(mapObj, v0);
@@ -774,7 +774,7 @@ static void sub_020623D4(MapObject *mapObj)
 
 static void sub_0206243C(MapObject *mapObj)
 {
-    memset(mapObj, 0, (sizeof(MapObject)));
+    memset(mapObj, 0, sizeof(MapObject));
 }
 
 static int sub_0206244C(const MapObject *mapObj, int param1, int objEventCount, const ObjectEvent *objectEvent)
