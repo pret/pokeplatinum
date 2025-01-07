@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02061D3C.h"
 
 #include "field/field_system_decl.h"
 #include "functypes/funcptr_020EDF0C.h"
@@ -23,6 +22,36 @@
 #include "map_header_data.h"
 #include "narc.h"
 #include "sys_task_manager.h"
+
+typedef struct MapObjectSave {
+    u32 status;
+    u32 unk_04;
+    u8 localID;
+    u8 movementType;
+    s8 movementRangeX;
+    s8 movementRangeZ;
+    s8 initialDir;
+    s8 facingDir;
+    s8 movingDir;
+    u8 padding_0F;
+    u16 unk_10;
+    u16 graphicsID;
+    u16 trainerType;
+    u16 flag;
+    u16 script;
+    s16 unk_1A;
+    s16 unk_1C;
+    s16 unk_1E;
+    s16 xInitial;
+    s16 yInitial;
+    s16 zInitial;
+    s16 x;
+    s16 y;
+    s16 z;
+    fx32 unk_2C;
+    u8 unk_30[16];
+    u8 unk_40[16];
+} MapObjectSave;
 
 MapObjectManager *MapObjectMan_New(FieldSystem *fieldSystem, int maxObjs, int param2);
 void MapObjectMan_Delete(MapObjectManager *mapObjMan);
