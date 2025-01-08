@@ -311,7 +311,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             ov5_021D5BA8(fieldSystem);
             ov5_021D5278(&fieldSystem->unk_4C);
             ov5_021E1B20(fieldSystem->unk_64);
-            ov5_021DD9C8(fieldSystem->unk_04->unk_08);
+            MapNamePopUp_Destroy(fieldSystem->unk_04->unk_08);
 
             if (fieldSystem->unk_04->unk_0C != NULL) {
                 ov5_021D5EF8(fieldSystem->unk_04->unk_0C);
@@ -909,7 +909,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
         fieldSystem->unk_04->unk_0C = ov5_021D5EB8(fieldSystem);
     }
 
-    fieldSystem->unk_04->unk_08 = ov5_021DD98C(fieldSystem->bgConfig);
+    fieldSystem->unk_04->unk_08 = MapNamePopUp_Create(fieldSystem->bgConfig);
     fieldSystem->unk_64 = ov5_021E1B08(4);
     fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 

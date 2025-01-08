@@ -4,13 +4,12 @@
 #include <string.h>
 
 #include "field/field_system_sub2_t.h"
+#include "text/pl_msg.naix"
 
 #include "font.h"
 #include "map_header.h"
 #include "message.h"
 #include "strbuf.h"
-
-#include "text/pl_msg.naix"
 
 u32 MapHeader_GetStringWidth(MessageLoader *msgLoader, const int entryID, Strbuf *strbuf)
 {
