@@ -555,7 +555,7 @@ static int ov5_021ED2E8(UnkStruct_ov5_021ED0A4 *param0, UnkStruct_ov5_021F06D8 *
     GF_ASSERT(v0 != NULL);
 
     {
-        NARC *v1 = sub_020628A0(param0->unk_104);
+        NARC *v1 = MapObjectMan_GetNARC(param0->unk_104);
         ov5_021F0784(param1, param2, v1, v0->unk_04, 0);
     }
 

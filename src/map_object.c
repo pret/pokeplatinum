@@ -128,7 +128,7 @@ static MapObject *sub_020624CC(const MapObjectManager *mapObjMan, int localID, i
 static void sub_02062604(MapObject *mapObj);
 static void sub_02062618(MapObject *mapObj);
 static void sub_02062628(MapObject *mapObj);
-static int FieldSystem_GetGraphicsID(FieldSystem *fieldSystem, int param1);
+static int sub_0206262C(FieldSystem *fieldSystem, int param1);
 static void sub_02062648(MapObject *mapObj);
 static void sub_02062660(MapObject *mapObj);
 static void sub_02062670(MapObject *mapObj);
@@ -689,7 +689,7 @@ static void MapObjectMan_AddMoveTask(const MapObjectManager *mapObjMan, MapObjec
 static void sub_020621E8(MapObject *mapObj, const ObjectEvent *objectEvent, FieldSystem *fieldSystem)
 {
     MapObject_SetLocalID(mapObj, ObjectEvent_GetLocalID(objectEvent));
-    MapObject_SetGraphicsID(mapObj, FieldSystem_GetGraphicsID(fieldSystem, ObjectEvent_GetGraphicsID(objectEvent)));
+    MapObject_SetGraphicsID(mapObj, sub_0206262C(fieldSystem, ObjectEvent_GetGraphicsID(objectEvent)));
     MapObject_SetMovementType(mapObj, ObjectEvent_GetMovementType(objectEvent));
     MapObject_SetTrainerType(mapObj, ObjectEvent_GetTrainerType(objectEvent));
     MapObject_SetFlag(mapObj, ObjectEvent_GetFlag(objectEvent));
@@ -904,7 +904,7 @@ static void sub_02062628(MapObject *mapObj)
     (void)0;
 }
 
-static int FieldSystem_GetGraphicsID(FieldSystem *fieldSystem, int graphicsID)
+static int sub_0206262C(FieldSystem *fieldSystem, int graphicsID)
 {
     if (graphicsID >= 0x65 && graphicsID <= 0x74) {
         graphicsID -= 0x65;
@@ -1135,12 +1135,12 @@ FieldSystem *MapObjectMan_FieldSystem(const MapObjectManager *mapObjMan)
     return mapObjMan->fieldSystem;
 }
 
-void MapObjectMan_GetNARC(MapObjectManager *mapObjMan, NARC *narc)
+void MapObjectMan_SetNARC(MapObjectManager *mapObjMan, NARC *narc)
 {
     mapObjMan->narc = narc;
 }
 
-NARC *sub_020628A0(const MapObjectManager *mapObjMan)
+NARC *MapObjectMan_GetNARC(const MapObjectManager *mapObjMan)
 {
     GF_ASSERT(mapObjMan->narc != NULL);
     return ((MapObjectManager *)mapObjMan)->narc;

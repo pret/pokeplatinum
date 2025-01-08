@@ -982,10 +982,10 @@ void sub_02064464(MapObject *mapObj)
 }
 
 static const int sOppositeDirections[] = {
-    DIR_SOUTH,
-    DIR_NORTH,
-    DIR_EAST,
-    DIR_WEST
+    [DIR_NORTH] = DIR_SOUTH,
+    [DIR_SOUTH] = DIR_NORTH,
+    [DIR_WEST] = DIR_EAST,
+    [DIR_EAST] = DIR_WEST
 };
 
 int Direction_GetOpposite(int dir)
@@ -993,17 +993,17 @@ int Direction_GetOpposite(int dir)
     return sOppositeDirections[dir];
 }
 
-int sub_02064488(int x, int z, int xPrev, int zPrev)
+int sub_02064488(int param0, int param1, int param2, int param3)
 {
-    if (x > xPrev) {
+    if (param0 > param2) {
         return DIR_WEST;
     }
 
-    if (x < xPrev) {
+    if (param0 < param2) {
         return DIR_EAST;
     }
 
-    if (z > zPrev) {
+    if (param1 > param3) {
         return DIR_NORTH;
     }
 

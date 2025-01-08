@@ -52,12 +52,12 @@ void ov5_021ECC78(MapObjectManager *param0)
 static void ov5_021ECCA4(MapObjectManager *param0)
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_DATA__MMODEL__MMODEL, 4);
-    MapObjectMan_GetNARC(param0, v0);
+    MapObjectMan_SetNARC(param0, v0);
 }
 
 static void ov5_021ECCBC(MapObjectManager *param0)
 {
-    NARC *v0 = sub_020628A0(param0);
+    NARC *v0 = MapObjectMan_GetNARC(param0);
     NARC_dtor(v0);
 }
 
@@ -120,7 +120,7 @@ int ov5_021ECD38(const MapObject *param0)
 void *ov5_021ECD68(const MapObjectManager *param0, u32 param1, int param2)
 {
     void *v0;
-    NARC *v1 = sub_020628A0(param0);
+    NARC *v1 = MapObjectMan_GetNARC(param0);
     u32 v2 = NARC_GetMemberSize(v1, param1);
 
     if (param2 == 1) {
