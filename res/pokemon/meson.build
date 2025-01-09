@@ -28,6 +28,18 @@ otherpoke_shared = files(
 
 sinnoh_pokedex = files('sinnoh_pokedex.json')
 
+move_tutors_json = files('move_tutors.json')
+
+tutorable_moves_h = custom_target('tutorable_moves.h',
+    input: move_tutors_json,
+    output: 'tutorable_moves.h',
+    command: [
+        make_tutorable_moves_py,
+        '--schema', move_tutors_json,
+        '--output-dir', meson.current_build_dir(),
+    ]
+)
+
 pl_growtbl_files = files('.shared/exp_tables.csv')
 
 # Process mons in national dex order
@@ -616,7 +628,7 @@ wotbl_narc = custom_target('wotbl.narc',
     depends: [ py_consts_generators ],
     command: [
         pokemon_wotbl_data_py,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
@@ -630,7 +642,7 @@ pl_personal_narc = custom_target('pl_personal.narc',
     depends: [ py_consts_generators ],
     command: [
         pokemon_personal_data_py,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
@@ -644,7 +656,7 @@ evo_narc = custom_target('evo.narc',
     depends: [ py_consts_generators ],
     command: [
         evo_py,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
@@ -660,7 +672,7 @@ pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
     command: [
         make_pl_poke_icon_py,
         '--nitrogfx', nitrogfx_exe,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--shared-dir', '@CURRENT_SOURCE_DIR@/.shared',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
@@ -674,7 +686,7 @@ pl_pokegra_narc = custom_target('pl_pokegra.narc',
     command: [
         make_pl_pokegra_py,
         '--nitrogfx', nitrogfx_exe,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
@@ -691,7 +703,7 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
     command: [
         make_pl_otherpoke_py,
         '--nitrogfx', nitrogfx_exe,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
         '--sprite-entries', '154',
@@ -708,7 +720,7 @@ height_narc = custom_target('height.narc',
     depends: [ py_consts_generators ],
     command: [
         make_height_py,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
@@ -723,7 +735,7 @@ pl_poke_data_narc = custom_target('pl_poke_data.narc',
     depends: [ py_consts_generators ],
     command: [
         pl_poke_data_py,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
@@ -736,7 +748,7 @@ pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
     env: json2bin_env,
     command: [
         make_pl_pokezukan_py,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
@@ -750,7 +762,7 @@ shinzukan_narc = custom_target('shinzukan.narc',
     env: json2bin_env,
     command: [
         make_shinzukan_py,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
@@ -763,11 +775,48 @@ pl_growtbl_narc = custom_target('pl_growtbl.narc',
     input: pl_growtbl_files,
     command: [
         make_pl_growtbl_py,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
         pl_growtbl_files
+    ]
+)
+
+pokedex_data_srcs = files()
+foreach pokemon : pokemon_subdirs
+    pokedex_data_srcs += files(pokemon / 'data.json')
+endforeach
+
+pokedex_data_narc = custom_target('zukan_data.narc',
+    output: 'zukan_data.narc',
+    input: pokedex_data_srcs,
+    env: json2bin_env,
+    depends: [ py_consts_generators ],
+    command: [
+        make_pokedex_data_py,
+        '--narc', narc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        'giratina_origin',
+        pokedex_data_srcs
+    ]
+)
+
+pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
+    output: 'zukan_data_gira.narc',
+    input: pokedex_data_srcs,
+    env: json2bin_env,
+    depends: [ py_consts_generators ],
+    command: [
+        make_pokedex_data_py,
+        '--narc', narc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        'giratina_altered',
+        pokedex_data_srcs
     ]
 )
 
@@ -800,3 +849,5 @@ nitrofs_files += pl_poke_data_narc
 nitrofs_files += pl_pokezukan_narc
 nitrofs_files += shinzukan_narc
 nitrofs_files += pl_growtbl_narc
+nitrofs_files += pokedex_data_narc
+nitrofs_files += pokedex_data_giratina_altered_narc

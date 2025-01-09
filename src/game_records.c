@@ -4,7 +4,7 @@
 
 #include "game_records.h"
 #include "math.h"
-#include "unk_0202631C.h"
+#include "pokedex_data.h"
 
 #define START_ENCODED_RECORDS RECORD_TRAINER_SCORE
 #define SIZE_ENCODED_RECORDS  (sizeof(GameRecords) - sizeof(EncodingSeed) - (START_ENCODED_RECORDS * sizeof(u32)))
@@ -273,7 +273,7 @@ static const u16 sTrainerScoreIncrements[MAX_TRAINER_SCORE_EVENTS] = {
     [TRAINER_SCORE_EVENT_UNK_14] = 7,
     [TRAINER_SCORE_EVENT_UNK_15] = 7,
     [TRAINER_SCORE_EVENT_UNK_16] = 10,
-    [TRAINER_SCORE_EVENT_UNK_17] = 10,
+    [TRAINER_SCORE_EVENT_FINISHED_CATCHING_SHOW] = 10,
     [TRAINER_SCORE_EVENT_UNK_18] = 11,
     [TRAINER_SCORE_EVENT_UNK_19] = 11,
     [TRAINER_SCORE_EVENT_UNK_20] = 11,
@@ -409,7 +409,7 @@ u32 GameRecords_GetTrainerScore(GameRecords *records)
 
 void GameRecords_IncrementTrainerScoreOnCatch(GameRecords *records, const Pokedex *pokedex, const u16 species)
 {
-    if (!Pokedex_HasCaughtSpecies(pokedex, species)) {
+    if (!PokedexData_HasCaughtSpecies(pokedex, species)) {
         GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
     }
 }

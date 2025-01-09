@@ -11,10 +11,10 @@
 
 #include "inlines.h"
 #include "math.h"
+#include "pokedex_data.h"
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0202631C.h"
 #include "vars_flags.h"
 
 typedef BOOL (*UnkStruct_ov6_022494B0)(FieldSystem *);
@@ -145,7 +145,7 @@ static BOOL ov6_02246AB0(FieldSystem *fieldSystem)
 static BOOL ov6_02246AC8(FieldSystem *fieldSystem)
 {
     Pokedex *v0 = SaveData_Pokedex(fieldSystem->saveData);
-    return sub_02026F0C(v0);
+    return PokedexData_LocalDexCompleted(v0);
 }
 
 static BOOL ov6_02246AD8(FieldSystem *fieldSystem)

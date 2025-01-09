@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "consts/journal.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
@@ -34,6 +35,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "catching_show.h"
 #include "cell_actor.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -51,6 +53,7 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "poketch_data.h"
 #include "render_window.h"
@@ -68,7 +71,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
-#include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"
 #include "unk_02033200.h"
@@ -76,7 +78,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
-#include "unk_020562F8.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_0205F180.h"
@@ -359,7 +360,7 @@ static u32 sub_0203ABD0(FieldSystem *fieldSystem)
 {
     u32 v0 = 0;
 
-    if (Pokedex_IsObtained(SaveData_Pokedex(fieldSystem->saveData)) == FALSE) {
+    if (PokedexData_IsObtained(SaveData_PokedexData(fieldSystem->saveData)) == FALSE) {
         v0 |= 0x1;
     }
 
@@ -690,9 +691,9 @@ static void sub_0203B094(FieldTask *taskMan)
 
         StringTemplate_SetNumber(v3, 0, *v7, 2, 0, 1);
     } else {
-        int v8 = sub_020563BC(fieldSystem);
+        int parkBallCount = CatchingShow_GetParkBallCount(fieldSystem);
 
-        StringTemplate_SetNumber(v3, 0, v8, 2, 0, 1);
+        StringTemplate_SetNumber(v3, 0, parkBallCount, 2, 0, 1);
     }
 
     StringTemplate_Format(v3, v4, v5);
@@ -948,7 +949,7 @@ static BOOL FieldMenu_Pokedex(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
     v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov21_021D0D80));
-    v3 = SaveData_Pokedex(fieldSystem->saveData);
+    v3 = SaveData_PokedexData(fieldSystem->saveData);
     v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v5 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
@@ -1736,25 +1737,25 @@ BOOL sub_0203C434(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
     v3 = *((u32 *)menu->unk_260);
 
-    Heap_FreeToHeapExplicit(11, menu->unk_260);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_260);
 
     v2 = (UnkStruct_0203D8AC *)menu->unk_25C;
 
     if (!(v2->unk_10)) {
-        Heap_FreeToHeapExplicit(11, menu->unk_25C);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
         menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, v3);
         sub_0203B674(menu, sub_0203B7C0);
     } else {
-        Pokemon *v4;
+        Pokemon *mon;
         void *v5;
-        void *v6;
+        void *journalEntryLocationEvent;
 
-        v4 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
-        v5 = sub_0207064C(11, fieldSystem, v4, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
-        v6 = sub_0202BE00((20 - 19), v2->unk_1C, 11);
+        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
+        v5 = sub_0207064C(HEAP_ID_FIELDMAP, fieldSystem, mon, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
+        journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_FLEW_TO_LOCATION - LOCATION_EVENT_USED_CUT, v2->unk_1C, HEAP_ID_FIELDMAP);
 
-        Journal_SaveData(fieldSystem->journal, v6, 1);
-        Heap_FreeToHeapExplicit(11, menu->unk_25C);
+        JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
         FieldSystem_StartFieldMap(fieldSystem);
 
         menu->unk_22C = sub_02070680;
@@ -1762,7 +1763,7 @@ BOOL sub_0203C434(FieldTask *taskMan)
         menu->state = FIELD_MENU_STATE_10;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL sub_0203C50C(FieldTask *taskMan)
@@ -1929,9 +1930,9 @@ static void FieldMenu_EvolveInit(FieldTask *taskMan)
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
 
     if (v2->unk_01 == 0) {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, 0x1, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_PokedexData(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, 0x1, 73);
     } else {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, NULL, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_PokedexData(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, NULL, 73);
     }
 
     {

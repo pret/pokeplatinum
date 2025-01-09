@@ -56,6 +56,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "party.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
@@ -80,7 +81,6 @@
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_0202631C.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -727,13 +727,12 @@ static void ov16_0223BCB4(OverlayManager *param0)
         TrainerInfo_Copy(battleSystem->trainerInfo[battlerId], v1->trainerInfo[battlerId]);
         Heap_FreeToHeap(battleSystem->trainerInfo[battlerId]);
     }
-
+    
     sub_02015760(battleSystem->unk_1AC);
     Bag_Copy(battleSystem->unk_58, v1->bag);
     Heap_FreeToHeap(battleSystem->unk_58);
     Pokedex_Copy(battleSystem->pokedex, v1->pokedex);
     Heap_FreeToHeap(battleSystem->pokedex);
-
     v1->pcBoxes = battleSystem->pcBoxes;
     v1->bagCursor = battleSystem->unk_5C;
     v1->subscreenCursorOn = battleSystem->unk_1BC;

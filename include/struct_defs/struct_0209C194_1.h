@@ -17,7 +17,7 @@ typedef struct {
     UnkStruct_0205C22C *unk_0C;
     Options *unk_10;
     GameRecords *records;
-    Journal *unk_18;
+    JournalEntry *unk_18;
     FieldSystem *fieldSystem;
 } UnkStruct_0209C194_1;
 

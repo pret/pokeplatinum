@@ -175,33 +175,33 @@ _0168:
 
     .balign 4, 0
 _01E8:
-    MoveAction_011 7
+    MoveAction_017 7
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_026
-    MoveAction_03F
-    MoveAction_027
-    MoveAction_03F
-    MoveAction_025
+    MoveAction_038
+    MoveAction_063
+    MoveAction_039
+    MoveAction_063
+    MoveAction_037
     EndMovement
 
     .balign 4, 0
 _0208:
-    MoveAction_04B
+    MoveAction_075
     EndMovement
 
     .balign 4, 0
 _0210:
-    MoveAction_010 7
+    MoveAction_016 7
     EndMovement
 
     .balign 4, 0
 _0218:
-    MoveAction_03F
-    MoveAction_04B
-    MoveAction_03F 3
+    MoveAction_063
+    MoveAction_075
+    MoveAction_063 3
     EndMovement
 
     .balign 4, 0

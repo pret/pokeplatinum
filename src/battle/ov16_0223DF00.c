@@ -57,6 +57,7 @@
 #include "message.h"
 #include "palette.h"
 #include "party.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "poketch_data.h"
 #include "render_text.h"
@@ -69,7 +70,6 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
-#include "unk_0202631C.h"
 #include "unk_0202F1D4.h"
 #include "unk_0206CCB0.h"
 
@@ -1688,14 +1688,14 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
     v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
     v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
 
-    if ((battleSystem->battleType & (0x4 | 0x80)) == 0) {
-        if ((v0 & 0x1) || (battleSystem->battleType == (0x2 | 0x8 | 0x40)) || (battleSystem->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
-            sub_020272A4(battleSystem->pokedex, v1);
+    if ((param0->battleType & (0x4 | 0x80)) == 0) {
+        if ((v0 & 0x1) || (param0->battleType == (0x2 | 0x8 | 0x40)) || (param0->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
+            PokedexData_Encounter(param0->pokedex, v1);
         }
     }
 
     if (((v0 & 0x1) == 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) == 412)) {
-        sub_0202736C(battleSystem->pokedex, v1);
+        PokedexData_Capture(param0->pokedex, v1);
     }
 }
 
@@ -1714,7 +1714,7 @@ void ov16_0223F9A0(BattleSystem *battleSystem, int param1)
                 v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
                 v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
 
-                sub_0202736C(battleSystem->pokedex, v1);
+                PokedexData_Capture(param0->pokedex, v1);
             }
         }
     }
@@ -1722,7 +1722,7 @@ void ov16_0223F9A0(BattleSystem *battleSystem, int param1)
 
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species)
 {
-    return Pokedex_HasCaughtSpecies(battleSys->pokedex, species);
+    return PokedexData_HasCaughtSpecies(battleSys->pokedex, species);
 }
 
 void Battle_SetDefaultBlend(void)

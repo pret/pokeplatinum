@@ -7,8 +7,8 @@
 #include "overlay005/struct_ov5_021E1B20_decl.h"
 
 #include "bg_window.h"
+#include "field_message.h"
 #include "heap.h"
-#include "unk_0205D8CC.h"
 
 struct UnkStruct_ov5_021E1B20_t {
     Window unk_00;
@@ -109,11 +109,11 @@ static void ov5_021E1BE0(FieldSystem *fieldSystem)
     Bg_SetOffset(fieldSystem->bgConfig, 3, 3, -48);
 
     if (fieldSystem->unk_64->unk_13_7 == 0) {
-        sub_0205DA1C(fieldSystem->bgConfig, &fieldSystem->unk_64->unk_00, fieldSystem->unk_64->unk_12, 3);
+        FieldMessage_AddSignpostWindow(fieldSystem->bgConfig, &fieldSystem->unk_64->unk_00, fieldSystem->unk_64->unk_12, 3);
         fieldSystem->unk_64->unk_13_7 = 1;
     }
 
-    sub_0205DA80(&fieldSystem->unk_64->unk_00, fieldSystem->unk_64->unk_12, fieldSystem->unk_64->unk_10);
+    FieldMessage_LoadAndDrawSignpost(&fieldSystem->unk_64->unk_00, fieldSystem->unk_64->unk_12, fieldSystem->unk_64->unk_10);
 }
 
 static void ov5_021E1C1C(FieldSystem *fieldSystem)

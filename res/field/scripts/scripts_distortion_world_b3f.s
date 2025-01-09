@@ -36,10 +36,10 @@ _003E:
 
     .balign 4, 0
 _0060:
-    MoveAction_00C 7
+    MoveAction_012 7
     EndMovement
 
     .balign 4, 0
 _0068:
-    MoveAction_00D 7
+    MoveAction_013 7
     EndMovement

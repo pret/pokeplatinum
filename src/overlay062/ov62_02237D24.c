@@ -37,6 +37,7 @@
 #include "heap.h"
 #include "message.h"
 #include "palette.h"
+#include "pokedex_data.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -48,7 +49,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
-#include "unk_0202631C.h"
 #include "unk_020298BC.h"
 #include "unk_02030A80.h"
 #include "unk_0208B284.h"
@@ -1475,7 +1475,7 @@ static BOOL ov62_02239984(UnkStruct_0208C06C *param0, int param1)
         Pokedex *v10 = SaveData_Pokedex(param0->unk_830);
 
         for (v7 = v3; v7 < v4; v7++) {
-            v9 = Pokedex_HasSeenSpecies(v10, v1[v7]);
+            v9 = PokedexData_HasSeenSpecies(v10, v1[v7]);
 
             if (v9 == 0) {
                 v1[v7] = 0xFFFF;
@@ -1521,7 +1521,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
         v4->unk_1D4.unk_00 = 0;
 
         for (v5 = v2; v5 < v3; v5++) {
-            v7 = Pokedex_HasSeenSpecies(v8, v0[v5]);
+            v7 = PokedexData_HasSeenSpecies(v8, v0[v5]);
 
             if (v7 == 0) {
                 v0[v5] = 0xFFFF;

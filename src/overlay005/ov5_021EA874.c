@@ -11,6 +11,7 @@
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "field_message.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "game_options.h"
@@ -30,7 +31,6 @@
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
-#include "unk_0205D8CC.h"
 
 typedef struct {
     StringList *unk_00;

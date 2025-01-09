@@ -652,11 +652,11 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *param1)
     sub_0204A5EC(param0, param1, 0, v0);
 }
 
-void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, Journal *param2)
+void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, JournalEntry *journalEntry)
 {
     u32 v0 = 0;
     int v1;
-    void *v2;
+    void *journalEntryOnlineEvent;
     u16 v3, v4, v5;
     GameRecords *v6;
     UnkStruct_0203068C *v7;
@@ -702,9 +702,9 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, Journal *param2)
     sub_0204ACC8(param0);
     sub_0204A5EC(param0, param1, 1, v0);
 
-    if (param0->unk_0F == 4) {
-        v2 = sub_0202C238(param0->unk_04);
-        Journal_SaveData(param2, v2, 4);
+    if (param0->unk_0F == HEAP_ID_FIELD) {
+        journalEntryOnlineEvent = JournalEntry_CreateEventBattleRoom(param0->unk_04);
+        JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     }
 }
 

@@ -5,15 +5,15 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "savedata.h"
-#include "unk_0202631C.h"
 
 u32 sub_0207A274(SaveData *param0)
 {
     Pokedex *v0;
 
-    v0 = SaveData_Pokedex(param0);
+    v0 = SaveData_PokedexData(param0);
     return sub_0207A280(v0);
 }
 
@@ -21,7 +21,7 @@ u32 sub_0207A280(const Pokedex *param0)
 {
     BOOL v0;
 
-    v0 = Pokedex_IsNationalDexObtained(param0);
+    v0 = PokedexData_IsNationalDexObtained(param0);
 
     if (v0 == 1) {
         return 1;

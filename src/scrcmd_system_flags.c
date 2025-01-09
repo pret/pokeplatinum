@@ -10,24 +10,24 @@
 #include "field_script_context.h"
 #include "inlines.h"
 #include "player_avatar.h"
+#include "pokedex_data.h"
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0202631C.h"
 #include "vars_flags.h"
 
 BOOL ScrCmd_CheckPokedexAcquired(ScriptContext *ctx)
 {
     const Pokedex *pokedex = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
-    *destVar = Pokedex_IsObtained(pokedex);
+    *destVar = PokedexData_IsObtained(pokedex);
     return FALSE;
 }
 
 BOOL ScrCmd_GivePokedex(ScriptContext *ctx)
 {
     Pokedex *pokedex = SaveData_Pokedex(ctx->fieldSystem->saveData);
-    Pokedex_FlagObtained(pokedex);
+    PokedexData_ObtainPokedex(pokedex);
     return FALSE;
 }
 

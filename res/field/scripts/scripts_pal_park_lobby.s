@@ -186,16 +186,16 @@ _02AD:
 
     .balign 4, 0
 _02B8:
-    MoveAction_024
-    MoveAction_00C 2
-    MoveAction_00F
-    MoveAction_026
+    MoveAction_036
+    MoveAction_012 2
+    MoveAction_015
+    MoveAction_038
     EndMovement
 
     .balign 4, 0
 _02CC:
-    MoveAction_00C 5
-    MoveAction_045
+    MoveAction_012 5
+    MoveAction_069
     EndMovement
 
 _02D8:
@@ -213,16 +213,16 @@ _02F8:
     SetVar 0x40F3, 0
     ApplyMovement 0xFF, _03EC
     WaitMovement
-    ScrCmd_256 0, 0x800C
+    CalcCatchingShowPoints CATCHING_SHOW_CATCHING_POINTS, 0x800C
     BufferNumber 0, 0x800C
-    ScrCmd_256 1, 0x800C
+    CalcCatchingShowPoints CATCHING_SHOW_TIME_POINTS, 0x800C
     BufferNumber 1, 0x800C
-    ScrCmd_256 2, 0x800C
+    CalcCatchingShowPoints CATCHING_SHOW_TYPE_POINTS, 0x800C
     BufferNumber 2, 0x800C
-    ScrCmd_256 3, 0x800C
+    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, 0x800C
     BufferNumber 3, 0x800C
     Message 38
-    ScrCmd_256 3, 0x800C
+    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, 0x800C
     GoToIfGt 0x800C, 0x40E0, _035B
     Message 40
     Call _07BE
@@ -231,7 +231,7 @@ _02F8:
 _035B:
     Message 39
     Call _07BE
-    ScrCmd_256 3, 0x40E0
+    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, 0x40E0
     GoTo _0370
 
 _0370:
@@ -267,24 +267,24 @@ _03BD:
 
     .balign 4, 0
 _03D8:
-    MoveAction_00E
-    MoveAction_00D 2
+    MoveAction_014
+    MoveAction_013 2
     EndMovement
 
     .balign 4, 0
 _03E4:
-    MoveAction_00D 5
+    MoveAction_013 5
     EndMovement
 
     .balign 4, 0
 _03EC:
-    MoveAction_00D 2
-    MoveAction_027
+    MoveAction_013 2
+    MoveAction_039
     EndMovement
 
     .balign 4, 0
 _03F8:
-    MoveAction_00D 4
+    MoveAction_013 4
     EndMovement
 
 _0400:
@@ -412,27 +412,27 @@ _04F6:
 
     .balign 4, 0
 _0548:
-    MoveAction_04B
-    MoveAction_03F
-    MoveAction_00D 3
+    MoveAction_075
+    MoveAction_063
+    MoveAction_013 3
     EndMovement
 
     .balign 4, 0
 _0558:
-    MoveAction_04B
-    MoveAction_03F
+    MoveAction_075
+    MoveAction_063
     EndMovement
 
     .balign 4, 0
 _0564:
-    MoveAction_00D
-    MoveAction_021
+    MoveAction_013
+    MoveAction_033
     EndMovement
 
     .balign 4, 0
 _0570:
-    MoveAction_00F
-    MoveAction_022
+    MoveAction_015
+    MoveAction_034
     EndMovement
 
 _057C:
@@ -507,7 +507,7 @@ _0662:
     LockAll
     FacePlayer
     GoToIfEq 0x4009, 1, _06CF
-    ScrCmd_26E 0x800C
+    GetGBACartridgeVersion 0x800C
     GoToIfEq 0x800C, 4, _06DA
     GoToIfEq 0x800C, 5, _0706
     GoToIfEq 0x800C, 1, _0732
@@ -587,7 +587,7 @@ _07AE:
     End
 
 _07BE:
-    ScrCmd_256 3, 0x800C
+    CalcCatchingShowPoints CATCHING_SHOW_TOTAL_POINTS, 0x800C
     CallIfLt 0x800C, 0xBB8, _07FA
     CallIfLt 0x800C, 0xCE4, _0870
     CallIfLt 0x800C, 0xDAC, _08BF

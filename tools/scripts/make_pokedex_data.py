@@ -13,12 +13,12 @@ argparser = argparse.ArgumentParser(
     prog='make_pokedex_data_py',
     description='Packs the archive containing Pokedex sorting'
 )
-argparser.add_argument('-k', '--knarc',
+argparser.add_argument('-n', '--narc',
                        required=True,
-                       help='Path to knarc executable')
+                       help='Path to narc executable')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
-                       help='Path to the source directory (res/prebuilt/application/zukanlist/zkn_data)')
+                       help='Path to the source directory (res/pokemon)')
 argparser.add_argument('-p', '--private-dir',
                        required=True,
                        help='Path to the private directory (where binaries will be made)')
@@ -27,6 +27,9 @@ argparser.add_argument('-o', '--output-dir',
                        help='Path to the output directory (where the NARC will be made)')
 argparser.add_argument('giratina_form',
                        help='String of either giratina_origin or giratina_altered')
+argparser.add_argument('src_files',
+                       nargs='+',
+                       help='List of files to process in-order')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -64,22 +67,20 @@ heightData = [0 for i in range(NUM_POKEMON)]
 weightData = [0 for i in range(NUM_POKEMON)]
 nameData = ['' for i in range(NUM_POKEMON)]
 
-for i, species in enumerate(PokemonSpecies):
-    subdir = species.name
-    subdir = subdir[8:].lower()
-    if subdir == 'none':
-        subdir = '000'
-    # Do not attempt to process eggs
-    if subdir in ['egg', 'bad_egg']:
-        continue
-    
-    with open(source_dir / subdir / 'data.json', 'r', encoding='utf-8') as data_file:
+for i, file in enumerate(args.src_files):
+    with open(file, 'r', encoding='utf-8') as data_file:
         pkdata = json.load(data_file)
+    pk_name = pkdata['name'].lower()
+
+    # Do not attempt to process eggs
+    if pk_name in ['egg', 'bad egg']:
+        continue
+
     pkdexdata = pkdata['pokedex_data']
-    if subdir == 'giratina':
+    if pk_name == 'giratina':
         if args.giratina_form == 'giratina_origin':
             pkdexdata = pkdexdata[0]
-        if args.giratina_form == 'giratina_altered':
+        else:
             pkdexdata = pkdexdata[1]
     
     for j in range(11):
@@ -109,7 +110,7 @@ for i, species in enumerate(PokemonSpecies):
         # store for later
         heightData[i-1] = pkdexdata['height']
         weightData[i-1] = pkdexdata['weight']
-        nameData[i-1] = subdir.replace('porygon2','porygon_z2')
+        nameData[i-1] = pk_name.replace('porygon2','porygon-z2')
 
 # sinnoh dex order
 with open(source_dir / 'sinnoh_pokedex.json') as data_file:
@@ -153,7 +154,7 @@ for idx in shortest:
 # save data
 if args.giratina_form == 'giratina_origin':
     output_name = 'zukan_data'
-if args.giratina_form == 'giratina_altered':
+else:
     output_name = 'zukan_data_gira'
 
 numDigits = len(str(NUM_FILES))
@@ -163,4 +164,4 @@ for i in range(NUM_FILES):
     with open(target_fname, 'wb+') as target_file:
         target_file.write(binData[i])
 
-subprocess.run([args.knarc, '-d', private_dir, '-p', str(output_dir / output_name) + '.narc'])
+subprocess.run([args.narc, 'create', '--output', str(output_dir / output_name) + '.narc', private_dir])

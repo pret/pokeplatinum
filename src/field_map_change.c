@@ -25,6 +25,7 @@
 #include "bg_window.h"
 #include "communication_system.h"
 #include "core_sys.h"
+#include "field_message.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -67,7 +68,6 @@
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_0205CA94.h"
-#include "unk_0205D8CC.h"
 #include "unk_0206AFE0.h"
 #include "unk_02070428.h"
 #include "vars_flags.h"
@@ -409,19 +409,19 @@ static void FieldMapChange_RemoveTerrainCollisionManager(FieldSystem *fieldSyste
 
 void sub_02053494(FieldSystem *fieldSystem)
 {
-    if (fieldSystem->journal != NULL) {
-        void *v0 = sub_0202BC58(fieldSystem->location->mapId, 11);
-        Journal_SaveData(fieldSystem->journal, v0, 0);
+    if (fieldSystem->journalEntry != NULL) {
+        void *v0 = JournalEntry_CreateTitle(fieldSystem->location->mapId, 11);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v0, JOURNAL_TITLE);
     }
 }
 
 static void sub_020534BC(FieldSystem *fieldSystem)
 {
-    if (fieldSystem->journal != NULL) {
+    if (fieldSystem->journalEntry != NULL) {
         FieldOverworldState *owState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
         Location *location = FieldOverworldState_GetSpecialLocation(owState);
-        void *v2 = sub_0202BC58(location->mapId, 11);
-        Journal_SaveData(fieldSystem->journal, v2, 0);
+        void *v2 = JournalEntry_CreateTitle(location->mapId, 11);
+        JournalEntry_SaveData(fieldSystem->journalEntry, v2, JOURNAL_TITLE);
     }
 }
 
@@ -497,7 +497,7 @@ static BOOL FieldTask_LoadSavedGameMap(FieldTask *task)
             break;
         }
     case 1:
-        fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags));
+        fieldSystem->journalEntry = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags));
 
         if (SystemFlag_CheckCommunicationClubAccessible(varsFlags)) {
             FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
@@ -556,7 +556,7 @@ static BOOL FieldTask_LoadMapFromError(FieldTask *task)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         SaveData_LoadAndUpdateUnderground(fieldSystem->saveData);
-        fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags));
+        fieldSystem->journalEntry = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags));
         (*state)++;
         break;
     case 1:

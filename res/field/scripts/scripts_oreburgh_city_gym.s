@@ -13,7 +13,7 @@ _000E:
     FacePlayer
     CheckBadgeAcquired BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _0103
-    ScrCmd_1CD 9, 47, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 47, 0, 0, 0
     Message 0
     CloseMessage
     StartTrainerBattle trainer_leader_roark
@@ -34,7 +34,7 @@ _000E:
     SetVar 0x40F0, 1
     SetVar 0x4076, 1
     SetVar 0x4079, 2
-    ScrCmd_1CD 10, 47, trainer_leader_roark, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 47, trainer_leader_roark, 0, 0
     SetVar 0x4077, 3
     ClearFlag 0x17A
     ClearFlag 0x19D

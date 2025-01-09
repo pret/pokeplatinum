@@ -37,6 +37,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "core_sys.h"
+#include "field_message.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
@@ -58,7 +59,6 @@
 #include "unk_02005474.h"
 #include "unk_02027F50.h"
 #include "unk_02054D00.h"
-#include "unk_0205D8CC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
@@ -3365,7 +3365,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
             sub_02064450(v0->unk_08.unk_00, v0->unk_08.unk_04, &param0->unk_20);
             MapObject_SetX(v0->unk_08.unk_08, v0->unk_08.unk_00);
             MapObject_SetZ(v0->unk_08.unk_08, v0->unk_08.unk_04);
-            sub_02064208(v0->unk_08.unk_08);
+            MapObject_UpdateCoords(v0->unk_08.unk_08);
             ov5_021F4714(v0->unk_08.unk_0C, FX32_ONE);
             Sound_StopEffect(1356, 0);
             Sound_PlayEffect(1367);

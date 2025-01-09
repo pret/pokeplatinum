@@ -13,7 +13,7 @@ void *ReadFileToHeap(int heapID, const char *filename);
 void ReadFileToBuffer(const char *filename, void **buf);
 void sub_02017ACC(void);
 void InitKeypadAndTouchpad(void);
-void sub_02017B70(int param0);
+void SetGBACartridgeVersion(int version);
 void SleepLock(u8 param0);
 void SleepUnlock(u8 param0);
 void ReadKeypadAndTouchpad(void);

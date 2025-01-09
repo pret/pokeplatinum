@@ -33,8 +33,7 @@
 #include "sys_task_manager.h"
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
-
-#include "constdata/const_020EE3A8.h"
+#include "unk_020EDBAC.h"
 
 typedef struct MapObjectMan {
     u32 unk_00;
@@ -82,7 +81,7 @@ typedef struct MapObject {
     VecFx32 unk_94;
     u32 unk_A0;
     int movementAction;
-    int unk_A8;
+    int movementStep;
     u16 unk_AC;
     u16 unk_AE;
     SysTask *unk_B0;
@@ -97,7 +96,7 @@ typedef struct MapObject {
     UnkFuncPtr_ov5_021FB0F0_4 unk_D4;
     u8 unk_D8[16];
     u8 unk_E8[16];
-    u8 unk_F8[16];
+    u8 movementData[16];
     u8 unk_108[32];
 } MapObject;
 
@@ -1503,21 +1502,19 @@ void *sub_02062AA0(MapObject *mapObj)
     return mapObj->unk_E8;
 }
 
-void *sub_02062AA4(MapObject *mapObj, int param1)
+void *MapObject_InitMovementData(MapObject *mapObj, int size)
 {
-    u8 *v0;
+    GF_ASSERT(size <= 16);
 
-    GF_ASSERT(param1 <= 16);
+    void *movementData = MapObject_GetMovementData(mapObj);
+    memset(movementData, 0, size);
 
-    v0 = sub_02062AC8(mapObj);
-    memset(v0, 0, param1);
-
-    return v0;
+    return movementData;
 }
 
-void *sub_02062AC8(MapObject *mapObj)
+void *MapObject_GetMovementData(MapObject *mapObj)
 {
-    return mapObj->unk_F8;
+    return mapObj->movementData;
 }
 
 void *sub_02062ACC(MapObject *mapObj, int param1)
@@ -1633,19 +1630,19 @@ int MapObject_GetMovementAction(const MapObject *mapObj)
     return mapObj->movementAction;
 }
 
-void sub_02062BC0(MapObject *mapObj, int param1)
+void MapObject_SetMovementStep(MapObject *mapObj, int movementStep)
 {
-    mapObj->unk_A8 = param1;
+    mapObj->movementStep = movementStep;
 }
 
-void sub_02062BC8(MapObject *mapObj)
+void MapObject_AdvanceMovementStep(MapObject *mapObj)
 {
-    mapObj->unk_A8++;
+    mapObj->movementStep++;
 }
 
-int sub_02062BD8(const MapObject *mapObj)
+int MapObject_GetMovementStep(const MapObject *mapObj)
 {
-    return mapObj->unk_A8;
+    return mapObj->movementStep;
 }
 
 void sub_02062BE0(MapObject *mapObj, u32 param1)
@@ -2498,7 +2495,7 @@ void sub_020632D4(MapObject *mapObj, const VecFx32 *param1, int param2)
     MapObject_SetZ(mapObj, v2);
 
     MapObject_SetPos(mapObj, param1);
-    sub_02064208(mapObj);
+    MapObject_UpdateCoords(mapObj);
 
     MapObject_Face(mapObj, param2);
 
@@ -2521,7 +2518,7 @@ void MapObject_SetPosDir(MapObject *mapObj, int param1, int param2, int param3, 
     MapObject_SetZ(mapObj, param3);
 
     MapObject_SetPos(mapObj, &v0);
-    sub_02064208(mapObj);
+    MapObject_UpdateCoords(mapObj);
 
     MapObject_Face(mapObj, param4);
 

@@ -14,13 +14,13 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_0202BE38.h"
 
 #include "field/field_system.h"
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay006/ov6_02246034.h"
 #include "savedata/save_table.h"
 
+#include "catching_show.h"
 #include "communication_information.h"
 #include "enc_effects.h"
 #include "enums.h"
@@ -47,7 +47,6 @@
 #include "unk_0202F1D4.h"
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
-#include "unk_020562F8.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020797C8.h"
@@ -619,7 +618,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
-        sub_020563AC(fieldSystem, encounter->dto);
+        CatchingShow_UpdateBattleResult(fieldSystem, encounter->dto);
         UpdateGameRecords(fieldSystem, encounter->dto);
         (*state)++;
         break;
@@ -638,7 +637,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
     case 6:
         FreeEncounter(encounter);
 
-        if (sub_020563BC(fieldSystem) == 0) {
+        if (CatchingShow_GetParkBallCount(fieldSystem) == 0) {
             ScriptManager_Change(task, 3, NULL);
             return FALSE;
         } else {
@@ -948,26 +947,26 @@ static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto)
         || battleType == BATTLE_TYPE_ROAMER
         || battleType == BATTLE_TYPE_AI_PARTNER
         || battleType == BATTLE_TYPE_SAFARI) {
-        UnkStruct_0202BE38 *journalMon;
+        JournalEntryMon *journalEntryMon;
 
         if (resultMask == BATTLE_RESULT_WIN) {
             fieldSystem->unk_78.unk_02++;
 
             if (fieldSystem->unk_78.unk_02 >= 5) {
                 caughtMon = Party_GetPokemonBySlotIndex(dto->parties[1], 0);
-                journalMon = sub_0202BECC(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
-                Journal_SaveData(fieldSystem->journal, journalMon, 2);
+                journalEntryMon = JournalEntry_CreateEventMonDefeated(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
+                JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryMon, JOURNAL_MON);
             }
         } else if (resultMask == BATTLE_RESULT_CAPTURED_MON) {
             int caughtBattlerIdx = dto->caughtBattlerIdx;
             caughtMon = Party_GetPokemonBySlotIndex(dto->parties[caughtBattlerIdx], 0);
-            journalMon = sub_0202BE4C(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
+            journalEntryMon = JournalEntry_CreateEventMonCaught(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
 
-            Journal_SaveData(fieldSystem->journal, journalMon, 2);
+            JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryMon, JOURNAL_MON);
         }
     } else if ((battleType & BATTLE_TYPE_TRAINER) || (battleType & BATTLE_TYPE_TAG)) {
         if (resultMask == BATTLE_RESULT_WIN) {
-            sub_0202C720(fieldSystem->journal, fieldSystem->location->mapId, dto->trainerIDs[BATTLER_ENEMY_1], HEAP_ID_FIELDMAP);
+            JournalEntry_CreateAndSaveEventTrainer(fieldSystem->journalEntry, fieldSystem->location->mapId, dto->trainerIDs[BATTLER_ENEMY_SLOT_1], HEAP_ID_FIELDMAP);
         }
     }
 }

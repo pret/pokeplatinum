@@ -21,13 +21,13 @@
 #include "map_header.h"
 #include "message_util.h"
 #include "player_avatar.h"
+#include "pokedex_data.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0202631C.h"
 #include "unk_020366A0.h"
 
 static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem);
@@ -55,8 +55,8 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
 
     saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
 
-    if (Pokedex_IsObtained(pokedex)) {
-        saveInfo->pokedexCount = Pokedex_CountSeen(pokedex);
+    if (PokedexData_IsObtained(pokedex)) {
+        saveInfo->pokedexCount = PokedexData_CountSeen(pokedex);
     } else {
         saveInfo->pokedexCount = 0;
     }

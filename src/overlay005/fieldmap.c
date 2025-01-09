@@ -54,6 +54,7 @@
 #include "core_sys.h"
 #include "easy3d.h"
 #include "field_map_change.h"
+#include "field_message.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -84,7 +85,6 @@
 #include "unk_020556C4.h"
 #include "unk_020559DC.h"
 #include "unk_02055C50.h"
-#include "unk_0205D8CC.h"
 #include "unk_02068344.h"
 
 FS_EXTERN_OVERLAY(overlay6);
@@ -200,7 +200,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         GXLayers_SwapDisplay();
         fieldSystem->bgConfig = BgConfig_New(4);
         ov5_021D1444(fieldSystem->bgConfig);
-        sub_0205D8CC(0, 1);
+        FieldMessage_LoadTextPalettes(0, TRUE);
         sub_0203F5C0(fieldSystem, 4);
         break;
     case 1:
