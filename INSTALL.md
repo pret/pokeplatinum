@@ -211,7 +211,7 @@ GNU `coreutils` installed to run the build scripts:
 > convenience.
 >
 > [!IMPORTANT]
-> This project requires `meson` version `1.3.0` or higher. If the version of
+> This project requires `meson` version `1.5.0` or higher. If the version of
 > `meson` provided by your package manager is out of date, then follow
 > [these instructions](https://mesonbuild.com/Getting-meson.html) to get the
 > most recent version.
