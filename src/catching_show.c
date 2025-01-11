@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/species.h"
+#include "consts/catching_show.h"
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_02024440_decl.h"
@@ -29,18 +30,6 @@
 #define DISTINCT_TYPE_BONUS    50
 #define DIFFERENT_TYPE_BONUS   200
 #define MAX_TIME_SECONDS       1000
-
-enum PAL_PARK_AREA {
-    PAL_PARK_AREA_NONE = 0,
-    PAL_PARK_AREA_LAND_NORTH_WEST,
-    PAL_PARK_AREA_LAND_NORTH_EAST,
-    PAL_PARK_AREA_LAND_SOUTH_WEST,
-    PAL_PARK_AREA_LAND_SOUTH_EAST,
-    PAL_PARK_AREA_WATER_NORTH_WEST,
-    PAL_PARK_AREA_WATER_NORTH_EAST,
-    PAL_PARK_AREA_WATER_SOUTH_WEST,
-    PAL_PARK_AREA_WATER_SOUTH_EAST,
-};
 
 enum PAL_PARK_SPECIES_DATA_INDEXES {
     SPECIES_DATA_LAND_AREA = 0,
