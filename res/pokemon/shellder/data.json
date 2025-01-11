@@ -119,5 +119,12 @@
         "pokemon_pos_m": 29,
         "entry_text": "It swims backward by opening and\nclosing its two shells. Its large\ntongue is always kept hanging out.",
         "category": "Bivalve Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

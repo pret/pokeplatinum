@@ -146,5 +146,12 @@
         "pokemon_pos_m": 0,
         "entry_text": "If it succeeds in catching even a\nfaint breeze properly, it can circle\nthe globe without flapping once.",
         "category": "Fang Scorp Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 4360
     }
 }

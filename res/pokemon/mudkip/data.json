@@ -129,5 +129,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "To alert it, the fin on its head\nsenses the flow of water. It has\nthe strength to heft boulders.",
         "category": "Mud Fish Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

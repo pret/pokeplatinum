@@ -133,5 +133,12 @@
         "pokemon_pos_m": 2,
         "entry_text": "It is extremely protective of its\nterritory. If any foe approaches,\nit attacks using vicious tremors.",
         "category": "Whiskers Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2051
     }
 }

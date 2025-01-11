@@ -129,5 +129,12 @@
         "pokemon_pos_m": 25,
         "entry_text": "Using its psychic power is such a\nstrain on its brain that it needs\nto sleep for 18 hours a day.",
         "category": "Psi Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2570
     }
 }

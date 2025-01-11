@@ -132,5 +132,12 @@
         "pokemon_pos_m": 21,
         "entry_text": "It communicates with others by\nlighting up its rear at night. It\nloves ILLUMISE’s sweet aroma.",
         "category": "Firefly Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1028
     }
 }

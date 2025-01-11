@@ -84,5 +84,12 @@
         "pokemon_pos_m": 28,
         "entry_text": "Its legs are short. Whenever it\nstumbles, its stiff antennae clack\nwith a xylophone-like sound.",
         "category": "Cricket Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1028
     }
 }

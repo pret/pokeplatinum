@@ -140,5 +140,12 @@
         "pokemon_pos_m": 1,
         "entry_text": "It burrows through the ground\nat a speed of 50 mph while\nfeeding on large boulders.\n",
         "category": "Rock Snake Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2059
     }
 }

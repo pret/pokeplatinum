@@ -133,5 +133,12 @@
         "pokemon_pos_m": 28,
         "entry_text": "Its six eggs converse using\ntelepathy. They can quickly gather\nif they become separated.",
         "category": "Egg Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2561
     }
 }

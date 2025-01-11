@@ -133,5 +133,12 @@
         "pokemon_pos_m": 17,
         "entry_text": "The blue vines shrouding its body\nare covered in a growth of fine\nhair. It is known to be ticklish.",
         "category": "Vine Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 257
     }
 }

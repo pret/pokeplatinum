@@ -144,5 +144,12 @@
         "pokemon_pos_m": 65535,
         "entry_text": "It has the power to travel across\ntime, but it is said to appear only\nin peaceful times.",
         "category": "Time Travel Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 100,
+        "rarity": 1,
+        "unused": 266
     }
 }

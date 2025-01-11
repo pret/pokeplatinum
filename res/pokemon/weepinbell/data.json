@@ -126,5 +126,12 @@
         "pokemon_pos_m": 16,
         "entry_text": "A Pokémon that appears to be a\nplant. It captures unwary prey by\ndousing them with a toxic powder.",
         "category": "Flycatcher Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1537
     }
 }

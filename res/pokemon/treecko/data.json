@@ -135,5 +135,12 @@
         "pokemon_pos_m": 22,
         "entry_text": "The soles of its feet are covered\nby countless tiny spikes, enabling\nit to walk on walls and ceilings.",
         "category": "Wood Gecko Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 257
     }
 }

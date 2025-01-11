@@ -127,5 +127,12 @@
         "pokemon_pos_m": 28,
         "entry_text": "The shell on its back is made of\nsoil. On a very healthy TURTWIG,\nthe shell should feel moist.",
         "category": "Tiny Leaf Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 257
     }
 }

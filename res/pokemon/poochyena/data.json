@@ -125,5 +125,12 @@
         "pokemon_pos_m": 26,
         "entry_text": "A Pokémon with a persistent\nnature, it chases its chosen prey\nuntil the prey becomes exhausted.",
         "category": "Bite Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 4112
     }
 }

@@ -138,5 +138,12 @@
         "pokemon_pos_m": 20,
         "entry_text": "It bounces constantly, using its\ntail like a spring. The shock of\nbouncing keeps its heart beating.",
         "category": "Bounce Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2570
     }
 }

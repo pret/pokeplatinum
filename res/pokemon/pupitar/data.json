@@ -135,5 +135,12 @@
         "pokemon_pos_m": 10,
         "entry_text": "Its body is as hard as bedrock.\nBy venting pressurized gas, it can\nlaunch itself like a rocket.",
         "category": "Hard Shell Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2059
     }
 }

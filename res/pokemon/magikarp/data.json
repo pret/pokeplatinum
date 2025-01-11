@@ -79,5 +79,12 @@
         "pokemon_pos_m": 65531,
         "entry_text": "A MAGIKARP living for many years\ncan leap a mountain using Splash.\nThe move remains useless, though.",
         "category": "Fish Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 771
     }
 }

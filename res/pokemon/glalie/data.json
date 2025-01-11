@@ -127,5 +127,12 @@
         "pokemon_pos_m": 65535,
         "entry_text": "It prevents prey from escaping by\ninstantaneously freezing moisture\nin the air.",
         "category": "Face Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 3341
     }
 }

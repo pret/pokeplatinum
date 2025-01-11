@@ -135,5 +135,12 @@
         "pokemon_pos_m": 13,
         "entry_text": "It toughens its body by slamming\ninto thick trees. Many snapped\ntrees can be found near its nest.",
         "category": "Guts Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2313
     }
 }

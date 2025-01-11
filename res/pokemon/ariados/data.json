@@ -118,5 +118,12 @@
         "pokemon_pos_m": 12,
         "entry_text": "It attaches silk to its prey and\nsets it free. Later, it tracks the\nsilk to the prey and its friends.",
         "category": "Long Leg Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1540
     }
 }

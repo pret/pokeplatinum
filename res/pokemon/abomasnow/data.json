@@ -138,5 +138,12 @@
         "pokemon_pos_m": 4,
         "entry_text": "They appear when the snow flowers\nbloom. When the petals fall, they\nretreat to places unknown again.",
         "category": "Frost Tree Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2063
     }
 }

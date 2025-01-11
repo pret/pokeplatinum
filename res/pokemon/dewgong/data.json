@@ -126,5 +126,12 @@
         "pokemon_pos_m": 1,
         "entry_text": "In snow, the pure white coat\ncovering its body obscures it from\npredators.",
         "category": "Sea Lion Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 3331
     }
 }

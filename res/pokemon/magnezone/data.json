@@ -128,5 +128,12 @@
         "pokemon_pos_m": 65529,
         "entry_text": "A group tried to use scientific\nmeans to make MAGNEZONE evolve,\nbut their efforts ended in failure.",
         "category": "Magnet Area Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 3591
     }
 }

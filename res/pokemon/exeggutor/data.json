@@ -123,5 +123,12 @@
         "pokemon_pos_m": 2,
         "entry_text": "It is called \u201cThe Walking Jungle.\u201d\nIf a head grows too big, it falls\noff and becomes an EXEGGCUTE.",
         "category": "Coconut Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2561
     }
 }

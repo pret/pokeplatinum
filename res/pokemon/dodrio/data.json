@@ -121,5 +121,12 @@
         "pokemon_pos_m": 2,
         "entry_text": "When DODUO evolves into this odd\nbreed, one of its heads splits into\ntwo. It runs at nearly 40 mph.",
         "category": "Triple Bird Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4357
     }
 }

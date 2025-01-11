@@ -135,5 +135,12 @@
         "pokemon_pos_m": 17,
         "entry_text": "It was born when sludge in a dirty\nstream was exposed to the moon’s\nX-rays. It appears among filth.",
         "category": "Sludge Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1542
     }
 }

@@ -119,5 +119,12 @@
         "pokemon_pos_m": 25,
         "entry_text": "It stores berries in its shell.\nThe berries eventually ferment to\nbecome delicious juices.",
         "category": "Mold Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2820
     }
 }

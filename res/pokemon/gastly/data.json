@@ -140,5 +140,12 @@
         "pokemon_pos_m": 65534,
         "entry_text": "Born from gases, anyone would\nfaint if engulfed by its gaseous\nbody, which contains poison.",
         "category": "Gas Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1548
     }
 }

@@ -137,5 +137,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "It walks in zigzag fashion. It is\ngood at finding items in the\ngrass and even in the ground.",
         "category": "TinyRaccoon Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1285
     }
 }

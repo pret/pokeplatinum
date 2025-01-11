@@ -131,5 +131,12 @@
         "pokemon_pos_m": 6,
         "entry_text": "It lives in the shallows of warm\nseas. When the tide goes out, it\ndigs up prey from beaches.",
         "category": "Barnacle Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 267
     }
 }

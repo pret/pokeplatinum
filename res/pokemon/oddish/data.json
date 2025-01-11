@@ -118,5 +118,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "It often plants its root feet in the\nground during the day and sows\nseeds as it walks about at night.",
         "category": "Weed Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1537
     }
 }

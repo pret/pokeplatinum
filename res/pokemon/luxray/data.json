@@ -121,5 +121,12 @@
         "pokemon_pos_m": 8,
         "entry_text": "It can see clearly through walls\nto track down its prey and seek\nits lost young.",
         "category": "Gleam Eyes Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1799
     }
 }

@@ -122,5 +122,12 @@
         "pokemon_pos_m": 6,
         "entry_text": "For many generations, it has\nfeuded with ZANGOOSE. It whets its\nbladed tail on rocks for battle.",
         "category": "Fang Snake Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1542
     }
 }

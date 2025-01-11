@@ -143,5 +143,12 @@
         "pokemon_pos_m": 14,
         "entry_text": "It grows angry if you see its eyes\nand gets angrier if you run. If you\nbeat it, it gets even madder.",
         "category": "Pig Monkey Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2313
     }
 }

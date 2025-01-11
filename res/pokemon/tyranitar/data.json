@@ -160,5 +160,12 @@
         "pokemon_pos_m": 3,
         "entry_text": "If it rampages, it knocks down\nmountains and buries rivers. Maps\nmust be redrawn afterward.",
         "category": "Armor Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 4107
     }
 }

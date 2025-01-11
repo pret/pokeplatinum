@@ -147,5 +147,12 @@
         "pokemon_pos_m": 13,
         "entry_text": "Evolution made it even more\ndevious. It communicates by clawing\nsigns in boulders.",
         "category": "Sharp Claw Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2063
     }
 }

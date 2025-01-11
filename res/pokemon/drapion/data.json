@@ -137,5 +137,12 @@
         "pokemon_pos_m": 10,
         "entry_text": "Possessing a sturdy build, it takes\npride in its strength, taking down\nfoes without using toxins.",
         "category": "Ogre Scorp Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 771
     }
 }

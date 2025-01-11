@@ -134,5 +134,12 @@
         "pokemon_pos_m": 7,
         "entry_text": "The sharp scythes on its forearms\nbecome increasingly sharp by\ncutting through hard objects.",
         "category": "Mantis Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4356
     }
 }

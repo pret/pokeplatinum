@@ -132,5 +132,12 @@
         "pokemon_pos_m": 19,
         "entry_text": "If its body is torn, it can grow\nback if the red core remains.\nThe core flashes at midnight.",
         "category": "Star Shape Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

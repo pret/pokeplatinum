@@ -139,5 +139,12 @@
         "pokemon_pos_m": 65526,
         "entry_text": "When UXIE flew, people gained the\nability to solve problems.\nIt was the birth of knowledge.",
         "category": "Knowledge Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 1285
     }
 }

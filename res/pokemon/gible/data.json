@@ -130,5 +130,12 @@
         "pokemon_pos_m": 18,
         "entry_text": "It attacks using its huge mouth.\nWhile its attacks are powerful, it\nhurts itself out of clumsiness, too.",
         "category": "Land Shark Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1030
     }
 }

@@ -138,5 +138,12 @@
         "pokemon_pos_m": 8,
         "entry_text": "Its short arms stretch when it\nthrows punches. Its technique is\nequal to that of pro boxers.",
         "category": "Mushroom Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2305
     }
 }

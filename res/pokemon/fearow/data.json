@@ -120,5 +120,12 @@
         "pokemon_pos_m": 0,
         "entry_text": "It has the stamina to fly all\nday on its broad wings. It\nfights by using its sharp beak.",
         "category": "Beak Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4357
     }
 }

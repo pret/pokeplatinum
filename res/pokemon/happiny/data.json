@@ -128,5 +128,12 @@
         "pokemon_pos_m": 24,
         "entry_text": "It likes to carry around a small\nrock. It may wander around others’\nfeet and cause them to stumble.",
         "category": "Playhouse Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1285
     }
 }

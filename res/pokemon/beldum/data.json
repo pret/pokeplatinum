@@ -79,5 +79,12 @@
         "pokemon_pos_m": 65529,
         "entry_text": "It converses with others by using\nmagnetic pulses. In a swarm, they\nmove in perfect unison.",
         "category": "Iron Ball Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2574
     }
 }

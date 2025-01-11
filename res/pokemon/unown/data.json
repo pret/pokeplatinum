@@ -68,5 +68,12 @@
         "pokemon_pos_m": 1,
         "entry_text": "When alone, nothing happens.\nHowever, if there are two or more,\nan odd power is said to emerge.",
         "category": "Symbol Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2570
     }
 }

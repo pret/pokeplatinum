@@ -146,5 +146,12 @@
         "pokemon_pos_m": 17,
         "entry_text": "It skillfully controls the intensity\nof the fire on its tail to keep its\nfoes at an ideal distance.",
         "category": "Playful Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2306
     }
 }

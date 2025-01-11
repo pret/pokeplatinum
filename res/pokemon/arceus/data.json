@@ -183,5 +183,12 @@
         "pokemon_pos_m": 0,
         "entry_text": "It is said to have emerged from an\negg in a place where there was\nnothing, then shaped the world.",
         "category": "Alpha Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 100,
+        "rarity": 1,
+        "unused": 1285
     }
 }

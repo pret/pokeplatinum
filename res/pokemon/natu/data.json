@@ -144,5 +144,12 @@
         "pokemon_pos_m": 31,
         "entry_text": "It picks food from cactus plants,\ndeftly avoiding buds and spines.\nIt seems to skip about to move.",
         "category": "Tiny Bird Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4362
     }
 }

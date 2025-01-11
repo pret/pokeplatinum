@@ -126,5 +126,12 @@
         "pokemon_pos_m": 23,
         "entry_text": "Usually, its cries are like quiet\nmurmurs. If frightened, it shrieks\nat the same volume as a jet plane.",
         "category": "Whisper Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1285
     }
 }

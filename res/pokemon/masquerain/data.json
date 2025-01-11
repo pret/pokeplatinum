@@ -129,5 +129,12 @@
         "pokemon_pos_m": 65533,
         "entry_text": "Its antennae have eye patterns\non them. Its four wings enable it\nto hover and fly in any direction.",
         "category": "Eyeball Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4356
     }
 }

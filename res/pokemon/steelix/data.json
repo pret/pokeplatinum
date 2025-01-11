@@ -142,5 +142,12 @@
         "pokemon_pos_m": 4,
         "entry_text": "It is thought its body transformed\nas a result of iron accumulating\ninternally from swallowing soil.",
         "category": "Iron Snake Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2062
     }
 }

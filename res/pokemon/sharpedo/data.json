@@ -139,5 +139,12 @@
         "pokemon_pos_m": 65535,
         "entry_text": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n\u201cThe Bully of the Sea.\u201d",
         "category": "Brutal Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4099
     }
 }

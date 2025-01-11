@@ -133,5 +133,12 @@
         "pokemon_pos_m": 7,
         "entry_text": "It loves crossing the sea with\npeople and Pokémon on its back.\nIt understands human speech.",
         "category": "Transport Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 3331
     }
 }

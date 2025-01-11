@@ -127,5 +127,12 @@
         "pokemon_pos_m": 18,
         "entry_text": "A mushroom grown larger than the\nhost’s body controls PARASECT.\nIt scatters poisonous spores.",
         "category": "Mushroom Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 260
     }
 }

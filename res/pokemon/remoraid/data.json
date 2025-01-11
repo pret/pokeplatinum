@@ -128,5 +128,12 @@
         "pokemon_pos_m": 5,
         "entry_text": "It forcefully squirts water. The\nwater jet never misses prey even\nif the REMORAID is deep in the sea.",
         "category": "Jet Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

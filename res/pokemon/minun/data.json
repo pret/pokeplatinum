@@ -122,5 +122,12 @@
         "pokemon_pos_m": 28,
         "entry_text": "It cheers on friends. If its\nfriends are losing, its body lets\noff more and more sparks.",
         "category": "Cheering Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 1799
     }
 }

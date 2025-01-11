@@ -120,5 +120,12 @@
         "pokemon_pos_m": 65533,
         "entry_text": "A discarded bug shell that came to\nlife. Peering into the crack on its\nback is said to steal one’s spirit.",
         "category": "Shed Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 3076
     }
 }

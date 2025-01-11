@@ -134,5 +134,12 @@
         "pokemon_pos_m": 65531,
         "entry_text": "Its programming was modified to\nenable work in alien dimensions.\nIt did not work as planned.",
         "category": "Virtual Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1285
     }
 }

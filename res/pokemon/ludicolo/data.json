@@ -128,5 +128,12 @@
         "pokemon_pos_m": 3,
         "entry_text": "If it hears festive music, all its\nmuscles fill with energy. It can’t\nhelp breaking out into a dance.",
         "category": "Carefree Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 259
     }
 }

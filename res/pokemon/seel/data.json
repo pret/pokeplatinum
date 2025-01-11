@@ -124,5 +124,12 @@
         "pokemon_pos_m": 13,
         "entry_text": "A Pokémon that lives on icebergs.\nIt swims in the sea using the point\non its head to break up ice.",
         "category": "Sea Lion Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

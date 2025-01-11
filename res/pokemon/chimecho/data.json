@@ -130,5 +130,12 @@
         "pokemon_pos_m": 65523,
         "entry_text": "Its cries echo inside its hollow\nbody to emerge as beautiful notes\nfor startling and repelling foes.",
         "category": "Wind Chime Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2570
     }
 }
