@@ -618,7 +618,7 @@ pokeplatinum_c = files(
     'overlay021/ov21_021E29DC.c',
     'overlay021/ov21_021E3FFC.c',
     'overlay021/ov21_021E4CA4.c',
-    'overlay021/pokedex_weight_check.c',
+    'overlay021/pokedex_height_check.c',
     'overlay021/ov21_021E68F4.c',
     'overlay021/ov21_021E737C.c',
     'overlay021/ov21_021E8484.c',
