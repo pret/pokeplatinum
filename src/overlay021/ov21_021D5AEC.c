@@ -22,6 +22,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -732,15 +733,15 @@ static void ov21_021D63C0(UnkStruct_ov21_021D71A8 *param0)
     param0->unk_DC = NULL;
 }
 
-static void ov21_021D63DC(UnkStruct_ov21_021D13FC *param0, int param1, int param2, int param3)
+static void ov21_021D63DC(UnkStruct_ov21_021D13FC *param0, int heapID, int param2, int param3)
 {
-    Strbuf *v0 = Strbuf_Init(32, param1);
-    MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param1);
+    Strbuf *v0 = Strbuf_Init(32, heapID);
+    MessageLoader *pokedexTextBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
-    MessageLoader_GetStrbuf(v1, 0, v0);
+    MessageLoader_GetStrbuf(pokedexTextBank, 0, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 8, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    MessageLoader_GetStrbuf(v1, 1, v0);
+    MessageLoader_GetStrbuf(pokedexTextBank, 1, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 128, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     Strbuf_FormatInt(v0, param2, 3, 2, 1);
@@ -750,21 +751,21 @@ static void ov21_021D63DC(UnkStruct_ov21_021D13FC *param0, int param1, int param
     Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 180, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     Strbuf_Free(v0);
-    MessageLoader_Free(v1);
+    MessageLoader_Free(pokedexTextBank);
     Bg_ScheduleTilemapTransfer(param0->unk_00, 1);
 }
 
-static void ov21_021D64B0(UnkStruct_ov21_021D13FC *param0, int param1, int param2)
+static void ov21_021D64B0(UnkStruct_ov21_021D13FC *param0, int heapID, int param2)
 {
-    Strbuf *v0 = Strbuf_Init(32, param1);
-    MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param1);
+    Strbuf *v0 = Strbuf_Init(32, heapID);
+    MessageLoader *pokedexTextBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
-    MessageLoader_GetStrbuf(v1, 109, v0);
+    MessageLoader_GetStrbuf(pokedexTextBank, 109, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 8, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     Strbuf_FormatInt(v0, param2, 3, 2, 1);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 48, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     Strbuf_Free(v0);
-    MessageLoader_Free(v1);
+    MessageLoader_Free(pokedexTextBank);
     Bg_ScheduleTilemapTransfer(param0->unk_00, 1);
 }
 
@@ -1282,12 +1283,12 @@ static void ov21_021D6D78(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     ov21_021D4DA0(v1);
 }
 
-static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13FC *param1, int param2, int param3, int param4)
+static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13FC *param1, int heapID, int param3, int param4)
 {
     UnkStruct_ov21_021D4CB8 v0;
     Window *v1;
-    Strbuf *v2 = Strbuf_Init(32, param2);
-    MessageLoader *v3 = MessageLoader_Init(0, 26, 697, param2);
+    Strbuf *v2 = Strbuf_Init(32, heapID);
+    MessageLoader *pokedexTextBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
     v0.unk_00 = param1->unk_14C;
     v0.unk_08 = param0->unk_90.paletteProxy;
@@ -1297,13 +1298,13 @@ static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     v0.unk_18 = 2;
     v0.unk_1C = 0;
     v0.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.heapID = param2;
+    v0.heapID = heapID;
 
     v1 = ov21_021D4D6C(param1->unk_14C, 15, 2);
 
     Strbuf_FormatInt(v2, param4, 3, 2, 1);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SUBSCREEN, v2, 22, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
-    MessageLoader_GetStrbuf(v3, 99, v2);
+    MessageLoader_GetStrbuf(pokedexTextBank, 99, v2);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SUBSCREEN, v2, 49, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
 
     if (param0->unk_28[param3]) {
@@ -1316,7 +1317,7 @@ static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     ov21_021D4DA0(v1);
 
     Strbuf_Free(v2);
-    MessageLoader_Free(v3);
+    MessageLoader_Free(pokedexTextBank);
 }
 
 static void ov21_021D6ED0(UnkStruct_ov21_021D71A8 *param0, const UnkStruct_ov21_021D5B68 *param1)

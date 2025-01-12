@@ -146,7 +146,7 @@ u32 ov21_021D4DAC(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, u
     Strbuf *v1;
     u32 v2;
 
-    v0 = MessageLoader_Init(0, 26, param2, param0->unk_14);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, param0->unk_14);
     GF_ASSERT(v0);
 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
@@ -166,7 +166,7 @@ void ov21_021D4E10(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, 
     int v2;
     int v3;
 
-    v0 = MessageLoader_Init(0, 26, param2, param0->unk_14);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, param0->unk_14);
     GF_ASSERT(v0);
 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);

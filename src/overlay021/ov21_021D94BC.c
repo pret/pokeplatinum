@@ -24,6 +24,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -2751,7 +2752,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
 
     v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = ov21_021D4DAC(param2, v0, 697, 50, 0, 0);
+    v2 = ov21_021D4DAC(param2, v0, message_bank_pokedex, 50, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[1];
@@ -2763,7 +2764,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = ov21_021D4DAC(param2, v0, 697, 47, 0, 0);
+    v2 = ov21_021D4DAC(param2, v0, message_bank_pokedex, 47, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[2];
@@ -2775,7 +2776,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = ov21_021D4DAC(param2, v0, 697, 48, 0, 0);
+    v2 = ov21_021D4DAC(param2, v0, message_bank_pokedex, 48, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[3];
@@ -2787,7 +2788,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = ov21_021D4DAC(param2, v0, 697, 49, 0, 0);
+    v2 = ov21_021D4DAC(param2, v0, message_bank_pokedex, 49, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[4];
@@ -2799,7 +2800,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = ov21_021D4DAC(param2, v0, 697, 51, 0, 0);
+    v2 = ov21_021D4DAC(param2, v0, message_bank_pokedex, 51, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[5];
@@ -2868,7 +2869,7 @@ static void ov21_021DC088(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v4 = ov21_021D4DAC(param2, v0, 697, v3, 0, 0);
+        v4 = ov21_021D4DAC(param2, v0, message_bank_pokedex, v3, 0, 0);
 
         param1->unk_10 = -v4 / 2;
         param1->unk_04 = v0;
@@ -2927,7 +2928,7 @@ static void ov21_021DC12C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v5 = ov21_021D4DAC(param2, v0, 697, v4, 0, 0);
+        v5 = ov21_021D4DAC(param2, v0, message_bank_pokedex, v4, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
@@ -2986,7 +2987,7 @@ static void ov21_021DC1E8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v5 = ov21_021D4DAC(param2, v0, 697, v4, 0, 0);
+        v5 = ov21_021D4DAC(param2, v0, message_bank_pokedex, v4, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
@@ -3042,7 +3043,7 @@ static void ov21_021DC2A4(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v5 = ov21_021D4DAC(param2, v0, 697, v4, 0, 0);
+        v5 = ov21_021D4DAC(param2, v0, message_bank_pokedex, v4, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;

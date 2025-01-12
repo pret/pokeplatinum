@@ -20,6 +20,7 @@
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
 #include "overlay022/struct_ov22_022559F8.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -745,16 +746,16 @@ static void ov21_021E9968(Window *param0, int param1, int param2)
     ov21_021E998C(param0, param1);
 }
 
-static void ov21_021E998C(Window *param0, int param1)
+static void ov21_021E998C(Window *param0, int heapID)
 {
-    Strbuf *v0 = Strbuf_Init(64, param1);
-    MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param1);
+    Strbuf *v0 = Strbuf_Init(64, heapID);
+    MessageLoader *pokedexTextBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
-    MessageLoader_GetStrbuf(v1, 110, v0);
+    MessageLoader_GetStrbuf(pokedexTextBank, 110, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 32, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
 
     Strbuf_Free(v0);
-    MessageLoader_Free(v1);
+    MessageLoader_Free(pokedexTextBank);
 }
 
 static Sprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1, int param2, int param3, int param4)

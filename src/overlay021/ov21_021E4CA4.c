@@ -19,6 +19,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -937,7 +938,7 @@ static void ov21_021E58B8(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     v4 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(v3->unk_14C, 8, 2);
 
-    v5 = ov21_021D4DAC(v3->unk_14C, v0, 697, 41, 0, 0);
+    v5 = ov21_021D4DAC(v3->unk_14C, v0, message_bank_pokedex, 41, 0, 0);
     v1.unk_10 = 64 - v5 / 2;
     v1.unk_04 = v0;
 
@@ -947,7 +948,7 @@ static void ov21_021E58B8(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(v3->unk_14C, 8, 2);
-    v5 = ov21_021D4DAC(v3->unk_14C, v0, 697, 42, 0, 0);
+    v5 = ov21_021D4DAC(v3->unk_14C, v0, message_bank_pokedex, 42, 0, 0);
 
     v1.unk_10 = 64 - v5 / 2;
     v1.unk_04 = v0;

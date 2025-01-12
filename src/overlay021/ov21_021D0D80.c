@@ -27,12 +27,12 @@
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/ov21_021E3FFC.h"
 #include "overlay021/ov21_021E4CA4.h"
-#include "overlay021/ov21_021E6014.h"
 #include "overlay021/ov21_021E68F4.h"
 #include "overlay021/ov21_021E737C.h"
 #include "overlay021/ov21_021E8484.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_text.h"
+#include "overlay021/pokedex_weight_check.h"
 #include "overlay021/species_caught_status.h"
 #include "overlay021/struct_ov21_021D0D80.h"
 #include "overlay021/struct_ov21_021D13FC.h"
@@ -48,6 +48,7 @@
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay022/struct_ov22_022559F8.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -968,13 +969,13 @@ u32 ov21_021D1C88(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
     return v0;
 }
 
-Strbuf *ov21_021D1CE0(int param0, int param1)
+Strbuf *ov21_021D1CE0(int param0, int heapID)
 {
     Strbuf *v0;
-    MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param1);
+    MessageLoader *pokedexTextBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
-    v0 = MessageLoader_GetNewStrbuf(v1, param0);
-    MessageLoader_Free(v1);
+    v0 = MessageLoader_GetNewStrbuf(pokedexTextBank, param0);
+    MessageLoader_Free(pokedexTextBank);
 
     return v0;
 }

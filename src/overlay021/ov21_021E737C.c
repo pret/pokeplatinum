@@ -20,6 +20,7 @@
 #include "overlay021/struct_ov21_021E7F40.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -701,24 +702,24 @@ static void ov21_021E7CF4(UnkStruct_ov21_021E7714 *param0)
     return;
 }
 
-static void ov21_021E7CF8(UnkStruct_ov21_021E747C *param0, int param1)
+static void ov21_021E7CF8(UnkStruct_ov21_021E747C *param0, int heapID)
 {
-    Strbuf *v0 = Strbuf_Init(32, param1);
-    MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param1);
+    Strbuf *v0 = Strbuf_Init(32, heapID);
+    MessageLoader *pokedexTextBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
-    MessageLoader_GetStrbuf(v1, 44, v0);
+    MessageLoader_GetStrbuf(pokedexTextBank, 44, v0);
 
     {
         u32 v2 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, 256);
         Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, v0, v2, 24, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
-    MessageLoader_GetStrbuf(v1, 10, v0);
+    MessageLoader_GetStrbuf(pokedexTextBank, 10, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, v0, 32, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    MessageLoader_GetStrbuf(v1, 10, v0);
+    MessageLoader_GetStrbuf(pokedexTextBank, 10, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, v0, 152, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     Strbuf_Free(v0);
-    MessageLoader_Free(v1);
+    MessageLoader_Free(pokedexTextBank);
 }
 
 static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_021E7468 *param1, int heapID)
@@ -741,7 +742,7 @@ static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
     Strbuf_Free(v3);
     MessageLoader_Free(v1);
 
-    v1 = MessageLoader_Init(0, 26, 697, heapID);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, PokedexSort_TrainerName(param1->unk_00), 146, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
