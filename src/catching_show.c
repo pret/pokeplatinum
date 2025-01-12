@@ -24,7 +24,7 @@
 #include "unk_0202EEC0.h"
 #include "unk_02054D00.h"
 
-#define NO_ENCOUNTER           0
+#define PAL_PARK_AREA_NONE     0
 #define POINTS_LOST_PER_SECOND 2
 #define BYTES_PER_SPECIES      6
 #define WEIGHT_NO_ENCOUNTER    20
@@ -203,7 +203,7 @@ static int GetEncounterArea(FieldSystem *fieldSystem, int playerX, int playerY)
         return PAL_PARK_AREA_LAND_END + area;
     }
 
-    return NO_ENCOUNTER;
+    return PAL_PARK_AREA_NONE;
 }
 
 static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow, int playerX, int playerY)
@@ -212,7 +212,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
     int encounterChance, totalRarity = 0;
     int area = GetEncounterArea(fieldSystem, playerX, playerY);
 
-    if (area == NO_ENCOUNTER) {
+    if (area == PAL_PARK_AREA_NONE) {
         return FALSE;
     }
 
