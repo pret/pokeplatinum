@@ -9,14 +9,21 @@
                 "CATCHING_SHOW_TOTAL_POINTS"
             ]
         },
-        "@PalParkArea": {
+        "@PalParkLandArea": {
             "type": "enum",
             "values": [
-                "PAL_PARK_AREA_NONE",
+                "PAL_PARK_AREA_LAND_NONE",
                 "PAL_PARK_AREA_LAND_NORTH_WEST",
                 "PAL_PARK_AREA_LAND_NORTH_EAST",
                 "PAL_PARK_AREA_LAND_SOUTH_WEST",
                 "PAL_PARK_AREA_LAND_SOUTH_EAST",
+                "PAL_PARK_AREA_LAND_END"
+            ]
+        },
+        "@PalParkWaterArea": {
+            "type": "enum",
+            "values": [
+                "PAL_PARK_AREA_WATER_NONE",
                 "PAL_PARK_AREA_WATER_NORTH_WEST",
                 "PAL_PARK_AREA_WATER_NORTH_EAST",
                 "PAL_PARK_AREA_WATER_SOUTH_WEST",

@@ -24,6 +24,7 @@
 #include "unk_0202EEC0.h"
 #include "unk_02054D00.h"
 
+#define NO_ENCOUNTER           0
 #define POINTS_LOST_PER_SECOND 2
 #define BYTES_PER_SPECIES      6
 #define WEIGHT_NO_ENCOUNTER    20
@@ -147,7 +148,7 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
         if (speciesData[SPECIES_DATA_LAND_AREA] != 0) {
             catchingShow->pokemon[i].area = speciesData[SPECIES_DATA_LAND_AREA];
         } else {
-            catchingShow->pokemon[i].area = PAL_PARK_AREA_WATER_NORTH_WEST - 1 + speciesData[SPECIES_DATA_WATER_AREA];
+            catchingShow->pokemon[i].area = PAL_PARK_AREA_LAND_END - 1 + speciesData[SPECIES_DATA_WATER_AREA];
         }
 
         catchingShow->pokemon[i].rarity = speciesData[SPECIES_DATA_RARITY];
@@ -199,10 +200,10 @@ static int GetEncounterArea(FieldSystem *fieldSystem, int playerX, int playerY)
     if (TileBehavior_IsTallGrass(tileBehavior)) {
         return PAL_PARK_AREA_LAND_NORTH_WEST + area;
     } else if (TileBehavior_IsSurfable(tileBehavior)) {
-        return PAL_PARK_AREA_WATER_NORTH_WEST + area;
+        return PAL_PARK_AREA_LAND_END + area;
     }
 
-    return PAL_PARK_AREA_NONE;
+    return NO_ENCOUNTER;
 }
 
 static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow, int playerX, int playerY)
@@ -211,7 +212,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
     int encounterChance, totalRarity = 0;
     int area = GetEncounterArea(fieldSystem, playerX, playerY);
 
-    if (area == PAL_PARK_AREA_NONE) {
+    if (area == NO_ENCOUNTER) {
         return FALSE;
     }
 
