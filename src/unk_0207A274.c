@@ -13,7 +13,7 @@ u32 sub_0207A274(SaveData *param0)
 {
     Pokedex *v0;
 
-    v0 = SaveData_PokedexData(param0);
+    v0 = SaveData_Pokedex(param0);
     return sub_0207A280(v0);
 }
 

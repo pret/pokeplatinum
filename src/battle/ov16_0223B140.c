@@ -268,7 +268,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
         if (v2) {
             Heap_Create(3, 73, 0x30000);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
-            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketchData, v3, 0x1 | 0x2, 73);
+            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, 73);
             *param1 = 14;
         } else {
             *param1 = 15;
@@ -722,7 +722,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     }
 
     for (battlerId = 0; battlerId < MAX_BATTLERS; battlerId++) {
-        Party_cpy(battleSystem->parties[battlerId], v1->parties[battlerId]);
+        Party_Copy(battleSystem->parties[battlerId], v1->parties[battlerId]);
         Heap_FreeToHeap(battleSystem->parties[battlerId]);
         TrainerInfo_Copy(battleSystem->trainerInfo[battlerId], v1->trainerInfo[battlerId]);
         Heap_FreeToHeap(battleSystem->trainerInfo[battlerId]);
@@ -736,7 +736,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     v1->pcBoxes = battleSystem->pcBoxes;
     v1->bagCursor = battleSystem->unk_5C;
     v1->subscreenCursorOn = battleSystem->unk_1BC;
-    v1->poketchData = battleSystem->poketchData;
+    v1->poketch = battleSystem->poketch;
     v1->unk_10C = battleSystem->unk_9C;
     v1->countSafariBalls = battleSystem->safariBalls;
     v1->resultMask = battleSystem->resultMask & (0xc0 ^ 0xff);
@@ -1091,7 +1091,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
     param0->unk_1B4 = param1->unk_124;
     param0->unk_5C = param1->bagCursor;
     param0->unk_1BC = param1->subscreenCursorOn;
-    param0->poketchData = param1->poketchData;
+    param0->poketch = param1->poketch;
     param0->unk_2420 = param1->mapEvolutionMethod;
     param0->unk_9C = param1->unk_10C;
     param0->safariBalls = param1->countSafariBalls;
@@ -1149,7 +1149,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
 
                 for (v0 = 0; v0 < 4; v0++) {
                     ov16_02263730(param0, param0->battlers[v0]);
-                    Party_cpy(param1->parties[v0], param0->parties[v0]);
+                    Party_Copy(param1->parties[v0], param0->parties[v0]);
                 }
 
                 for (v0 = 0; v0 < param0->maxBattlers; v0++) {
@@ -1176,7 +1176,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
 
                 for (v0 = 0; v0 < 4; v0++) {
                     ov16_02263730(param0, param0->battlers[v0]);
-                    Party_cpy(param1->parties[v0], param0->parties[v0]);
+                    Party_Copy(param1->parties[v0], param0->parties[v0]);
                 }
 
                 for (v0 = 0; v0 < param0->maxBattlers; v0++) {
@@ -1203,7 +1203,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
                 param0->maxBattlers = v0;
 
                 for (v0 = 0; v0 < 4; v0++) {
-                    Party_cpy(param1->parties[v0], param0->parties[v0]);
+                    Party_Copy(param1->parties[v0], param0->parties[v0]);
                 }
 
                 for (v0 = 0; v0 < param0->maxBattlers; v0++) {
@@ -1234,7 +1234,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
                 param0->maxBattlers = v0;
 
                 for (v0 = 0; v0 < 4; v0++) {
-                    Party_cpy(param1->parties[v0], param0->parties[v0]);
+                    Party_Copy(param1->parties[v0], param0->parties[v0]);
 
                     for (v1 = 0; v1 < Party_GetCurrentCount(param0->parties[v0]); v1++) {
                         v3 = Party_GetPokemonBySlotIndex(param0->parties[v0], v1);
@@ -1263,7 +1263,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
             param0->maxBattlers = v0;
 
             for (v0 = 0; v0 < 4; v0++) {
-                Party_cpy(param1->parties[v0], param0->parties[v0]);
+                Party_Copy(param1->parties[v0], param0->parties[v0]);
             }
 
             for (v0 = 0; v0 < param0->maxBattlers; v0++) {
@@ -1301,7 +1301,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
         param0->maxBattlers = v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            Party_cpy(param1->parties[v0], param0->parties[v0]);
+            Party_Copy(param1->parties[v0], param0->parties[v0]);
         }
 
         for (v0 = 0; v0 < param0->maxBattlers; v0++) {
@@ -1329,7 +1329,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
         param0->maxBattlers = v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            Party_cpy(param1->parties[v0], param0->parties[v0]);
+            Party_Copy(param1->parties[v0], param0->parties[v0]);
         }
 
         for (v0 = 0; v0 < param0->maxBattlers; v0++) {
@@ -1363,7 +1363,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
         param0->maxBattlers = v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            Party_cpy(param1->parties[v0], param0->parties[v0]);
+            Party_Copy(param1->parties[v0], param0->parties[v0]);
 
             for (v1 = 0; v1 < Party_GetCurrentCount(param0->parties[v0]); v1++) {
                 v3 = Party_GetPokemonBySlotIndex(param0->parties[v0], v1);

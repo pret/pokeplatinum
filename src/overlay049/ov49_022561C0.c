@@ -22,7 +22,7 @@ typedef struct {
     UnkStruct_ov49_022563D4_1 unk_04;
     UnkStruct_ov49_022563D4 *unk_08;
     PoketchSystem *poketchSys;
-    PoketchData *poketchData;
+    Poketch *poketch;
 } UnkStruct_ov49_0225621C;
 
 static void NitroStaticInit(void);
@@ -63,8 +63,8 @@ static BOOL ov49_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
 
 static BOOL ov49_0225621C(UnkStruct_ov49_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
-    param0->poketchData = PoketchSystem_GetPoketchData(poketchSys);
-    param0->unk_04.unk_00 = PoketchData_CurrentScreenColor(param0->poketchData);
+    param0->poketch = PoketchSystem_GetPoketchData(poketchSys);
+    param0->unk_04.unk_00 = PoketchData_CurrentScreenColor(param0->poketch);
     param0->unk_03 = param0->unk_04.unk_00;
 
     if (ov49_022563D4(&(param0->unk_08), &(param0->unk_04), param2)) {
@@ -178,7 +178,7 @@ static BOOL ov49_02256348(UnkStruct_ov49_0225621C *param0)
                 if (v2 != param0->unk_03) {
                     param0->unk_04.unk_00 = v2;
                     param0->unk_03 = v2;
-                    PoketchData_SetScreenColor(param0->poketchData, v2);
+                    PoketchData_SetScreenColor(param0->poketch, v2);
                     return 1;
                 }
             }

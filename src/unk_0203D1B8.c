@@ -979,7 +979,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_0C = SaveData_SaveTable(fieldSystem->saveData, 9);
     param0->unk_14 = sub_0202C878(fieldSystem->saveData);
     param0->unk_18 = SaveData_Options(fieldSystem->saveData);
-    param0->unk_24 = SaveData_PokedexData(fieldSystem->saveData);
+    param0->unk_24 = SaveData_Pokedex(fieldSystem->saveData);
     param0->unk_30 = sub_0207A274(fieldSystem->saveData);
     param0->unk_10 = fieldSystem->saveData;
     param0->unk_1C = fieldSystem->journalEntry;
@@ -1075,7 +1075,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
 
         if ((v4 = sub_02076B94(NULL, v2->unk_04.unk_40, 1, v3, &v5)) != 0) {
             Heap_Create(3, 26, 0x30000);
-            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_PokedexData(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v5, 0x4, 26);
+            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v5, 0x4, 26);
             v2->unk_00 = 6;
         } else {
             v2->unk_00 = 7;
@@ -1366,7 +1366,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, 2);
     v0->unk_0C = SaveData_PCBoxes(fieldSystem->saveData);
-    v0->unk_10 = SaveData_PokedexData(fieldSystem->saveData);
+    v0->unk_10 = SaveData_Pokedex(fieldSystem->saveData);
     v0->unk_14 = sub_0202B370(fieldSystem->saveData);
     v0->unk_18 = sub_0202C878(fieldSystem->saveData);
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);

@@ -635,7 +635,7 @@ static void ov28_02256914(UnkStruct_ov28_02256210 *param0, const UnkStruct_ov28_
         Pokedex *v1;
         u16 v2;
 
-        v1 = SaveData_PokedexData(PoketchSystem_GetSaveData(param0->poketchSys));
+        v1 = SaveData_Pokedex(PoketchSystem_GetSaveData(param0->poketchSys));
 
         if (PokedexData_IsNationalDexObtained(v1)) {
             v2 = v0;

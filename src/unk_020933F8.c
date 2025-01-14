@@ -1623,10 +1623,10 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
         }
 
         int i;
-        Pokedex *v7 = SaveData_PokedexData(param0->unk_1970);
-        
+        Pokedex *pokedex = SaveData_Pokedex(param0->unk_1970);
+
         for (i = param0->unk_00.unk_117; i < 4; i++) {
-            PokedexData_Encounter(v7, param0->unk_00.unk_00[i]);
+            Pokedex_Encounter(pokedex, param0->unk_00.unk_00[i]);
         }
     } else {
         sub_0202F134(param0->unk_1970, param0->unk_00.unk_10F, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08);

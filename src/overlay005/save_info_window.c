@@ -55,8 +55,8 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
 
     saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
 
-    if (PokedexData_IsObtained(pokedex)) {
-        saveInfo->pokedexCount = PokedexData_CountSeen(pokedex);
+    if (Pokedex_IsObtained(pokedex)) {
+        saveInfo->pokedexCount = Pokedex_CountSeen(pokedex);
     } else {
         saveInfo->pokedexCount = 0;
     }

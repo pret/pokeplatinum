@@ -1115,8 +1115,8 @@ void ov16_0223EF2C(BattleSystem *battleSystem, int param1, int param2)
 
 void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1)
 {
-    if (battleSystem->poketchData) {
-        PoketchData_PokemonHistoryEnqueue(battleSystem->poketchData, Pokemon_GetBoxPokemon(param1));
+    if (battleSystem->poketch) {
+        PoketchData_PokemonHistoryEnqueue(battleSystem->poketch, Pokemon_GetBoxPokemon(param1));
     }
 }
 
@@ -1688,14 +1688,14 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
     v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
     v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
 
-    if ((param0->battleType & (0x4 | 0x80)) == 0) {
-        if ((v0 & 0x1) || (param0->battleType == (0x2 | 0x8 | 0x40)) || (param0->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
-            PokedexData_Encounter(param0->pokedex, v1);
+    if ((battleSystem->battleType & (0x4 | 0x80)) == 0) {
+        if ((v0 & 0x1) || (battleSystem->battleType == (0x2 | 0x8 | 0x40)) || (battleSystem->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
+            Pokedex_Encounter(battleSystem->pokedex, v1);
         }
     }
 
     if (((v0 & 0x1) == 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) == 412)) {
-        PokedexData_Capture(param0->pokedex, v1);
+        PokedexData_Capture(battleSystem->pokedex, v1);
     }
 }
 
@@ -1714,7 +1714,7 @@ void ov16_0223F9A0(BattleSystem *battleSystem, int param1)
                 v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
                 v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
 
-                PokedexData_Capture(param0->pokedex, v1);
+                PokedexData_Capture(battleSystem->pokedex, v1);
             }
         }
     }

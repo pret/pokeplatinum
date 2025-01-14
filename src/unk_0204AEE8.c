@@ -112,7 +112,7 @@ StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3
 
     v2 = Strbuf_Init(12 + 2, 4);
     v3 = Strbuf_Init(2, 4);
-    v4 = SaveData_PokedexData(param0);
+    v4 = SaveData_Pokedex(param0);
     v6 = MessageLoader_Init(1, 26, 412, 4);
     v5 = StringTemplate_New(18 + 1, 12 + 2, 4);
 

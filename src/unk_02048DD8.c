@@ -319,8 +319,8 @@ static BOOL sub_02049348(FieldSystem *fieldSystem)
 
 static BOOL sub_02049358(FieldSystem *fieldSystem)
 {
-    PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
-    return PoketchData_IsEnabled(poketchData);
+    Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
+    return PoketchData_IsEnabled(poketch);
 }
 
 static BOOL sub_02049368(FieldSystem *fieldSystem)

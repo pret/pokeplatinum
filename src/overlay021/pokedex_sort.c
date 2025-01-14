@@ -227,7 +227,7 @@ u32 ov21_021D33BC(const UnkStruct_ov21_021D3320 *param0, int param1)
 
 u32 ov21_021D33D4(const UnkStruct_ov21_021D3320 *param0, u32 species)
 {
-    return PokedexData_GetDisplayForm(param0->dexData, species, 0);
+    return Pokedex_GetDisplayForm(param0->dexData, species, 0);
 }
 
 u32 ov21_021D33E0(const UnkStruct_ov21_021D3320 *param0, int param1)
@@ -253,7 +253,7 @@ u32 ov21_021D3404(const UnkStruct_ov21_021D3320 *param0, int param1)
 
 u32 ov21_021D3410(const UnkStruct_ov21_021D3320 *param0, u32 param1, int param2)
 {
-    return PokedexData_GetDisplayForm(param0->dexData, param1, param2);
+    return Pokedex_GetDisplayForm(param0->dexData, param1, param2);
 }
 
 u32 ov21_021D341C(const UnkStruct_ov21_021D3320 *param0, u32 param1)

@@ -20,7 +20,7 @@ BOOL ScrCmd_CheckPokedexAcquired(ScriptContext *ctx)
 {
     const Pokedex *pokedex = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
-    *destVar = PokedexData_IsObtained(pokedex);
+    *destVar = Pokedex_IsObtained(pokedex);
     return FALSE;
 }
 

@@ -162,8 +162,8 @@ static void ov25_02254684(UnkStruct_ov25_02254560 *param0)
 void ov25_022546B8(u32 param0, u32 param1)
 {
     UnkStruct_ov25_02254560 *v0 = ov25_02254418();
-    PoketchData *poketchData = PoketchSystem_GetPoketchData(v0->poketchSys);
-    u32 v2 = PoketchData_CurrentScreenColor(poketchData);
+    Poketch *poketch = PoketchSystem_GetPoketchData(v0->poketchSys);
+    u32 v2 = PoketchData_CurrentScreenColor(poketch);
 
     GXS_LoadBGPltt(&v0->unk_200[v2 * 32], param0 * 0x20, 0x20);
     GXS_LoadOBJPltt(&v0->unk_200[v2 * 32], param1, 0x20);
@@ -172,8 +172,8 @@ void ov25_022546B8(u32 param0, u32 param1)
 void ov25_022546F0(u32 param0, u32 param1)
 {
     UnkStruct_ov25_02254560 *v0 = ov25_02254418();
-    PoketchData *poketchData = PoketchSystem_GetPoketchData(v0->poketchSys);
-    u32 v2 = PoketchData_CurrentScreenColor(poketchData);
+    Poketch *poketch = PoketchSystem_GetPoketchData(v0->poketchSys);
+    u32 v2 = PoketchData_CurrentScreenColor(poketch);
 
     GXS_LoadBGPltt(&v0->unk_200[v2 * 32 + 16], 0, 0x20);
     GXS_LoadOBJPltt(&v0->unk_200[v2 * 32 + 16], 0, 0x20);
@@ -182,8 +182,8 @@ void ov25_022546F0(u32 param0, u32 param1)
 void ov25_02254728(u16 *param0)
 {
     UnkStruct_ov25_02254560 *v0 = ov25_02254418();
-    PoketchData *poketchData = PoketchSystem_GetPoketchData(v0->poketchSys);
-    u32 v2 = PoketchData_CurrentScreenColor(poketchData);
+    Poketch *poketch = PoketchSystem_GetPoketchData(v0->poketchSys);
+    u32 v2 = PoketchData_CurrentScreenColor(poketch);
 
     MI_CpuCopy16(&v0->unk_200[v2 * 32], param0, 0x20);
 }
@@ -604,8 +604,8 @@ static void ov25_02254DE0(UnkStruct_ov25_02254560 *param0, UnkStruct_ov25_02254D
 
 static void ov25_02254E84(UnkStruct_ov25_02254560 *param0, u32 param1)
 {
-    PoketchData *poketchData = PoketchSystem_GetPoketchData(param0->poketchSys);
-    u32 v2 = PoketchData_CurrentScreenColor(poketchData);
+    Poketch *poketch = PoketchSystem_GetPoketchData(param0->poketchSys);
+    u32 v2 = PoketchData_CurrentScreenColor(poketch);
 
     ov25_02254728(param0->unk_400);
 

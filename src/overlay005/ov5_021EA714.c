@@ -25,11 +25,11 @@ void ov5_021EA714(FieldSystem *fieldSystem, enum PoketchEventID eventID, u32 dum
 
 void ov5_021EA728(FieldSystem *fieldSystem)
 {
-    PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
-    VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (PoketchData_IsEnabled(poketchData)
-        && (SystemFlag_CheckPoketchHidden(v1) == 0)) {
+    if (PoketchData_IsEnabled(poketch)
+        && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
         PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, sub_0200A914(1));
     } else {
@@ -40,11 +40,11 @@ void ov5_021EA728(FieldSystem *fieldSystem)
 
 void ov5_021EA790(FieldSystem *fieldSystem)
 {
-    PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
-    VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (PoketchData_IsEnabled(poketchData)
-        && (SystemFlag_CheckPoketchHidden(v1) == 0)) {
+    if (PoketchData_IsEnabled(poketch)
+        && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
         PoketchSystem_StartShutdown(fieldSystem->unk_04->poketchSys);
     } else {
         ov24_02253DA4(fieldSystem->bgConfig);
@@ -53,11 +53,11 @@ void ov5_021EA790(FieldSystem *fieldSystem)
 
 u8 ov5_021EA7CC(FieldSystem *fieldSystem)
 {
-    PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
-    VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (PoketchData_IsEnabled(poketchData)
-        && (SystemFlag_CheckPoketchHidden(v1) == 0)) {
+    if (PoketchData_IsEnabled(poketch)
+        && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
         if (PoketchSystem_IsSystemShutdown(fieldSystem->unk_04->poketchSys)) {
             fieldSystem->unk_04->poketchSys = NULL;
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay25));

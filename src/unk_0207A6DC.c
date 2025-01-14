@@ -387,7 +387,7 @@ BOOL sub_0207AA38(UnkStruct_0207A778 *param0)
     }
 
     v0 = (Party *)&param0->unk_20[0];
-    Party_cpy(param0->unk_00->parties[0], v0);
+    Party_Copy(param0->unk_00->parties[0], v0);
 
     return 1;
 }
@@ -534,7 +534,7 @@ BOOL sub_0207AC28(UnkStruct_0207A778 *param0, int param1)
     }
 
     v0 = (Party *)&param0->unk_20[0];
-    Party_cpy(param0->unk_00->parties[param1], v0);
+    Party_Copy(param0->unk_00->parties[param1], v0);
 
     return 1;
 }
