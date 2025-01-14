@@ -1516,10 +1516,10 @@ static BOOL ov62_02242748 (UnkStruct_0208C06C * param0, int param1)
         int v7;
         int v8 = 0;
         BOOL v9;
-        Pokedex * v10 = SaveData_Pokedex(param0->unk_830);
+        Pokedex * v10 = SaveData_GetPokedex(param0->unk_830);
 
         for (v7 = v3; v7 < v4; v7++) {
-            v9 = PokedexData_HasSeenSpecies(v10, v1[v7]);
+            v9 = Pokedex_HasSeenSpecies(v10, v1[v7]);
 
             if (v9 == 0) {
                 v1[v7] = 0xFFFF;
@@ -1560,12 +1560,12 @@ static void ov62_022427D0 (UnkStruct_0208C06C * param0, int param1)
         int v5;
         int v6 = 0;
         BOOL v7;
-        Pokedex * v8 = SaveData_Pokedex(param0->unk_830);
+        Pokedex * v8 = SaveData_GetPokedex(param0->unk_830);
 
         v4->unk_4C8.unk_00 = 0;
 
         for (v5 = v2; v5 < v3; v5++) {
-            v7 = PokedexData_HasSeenSpecies(v8, v0[v5]);
+            v7 = Pokedex_HasSeenSpecies(v8, v0[v5]);
 
             if (v7 == 0) {
                 v0[v5] = 0xFFFF;

@@ -1695,7 +1695,7 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
     }
 
     if (((v0 & 0x1) == 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) == 412)) {
-        PokedexData_Capture(battleSystem->pokedex, v1);
+        Pokedex_Capture(battleSystem->pokedex, v1);
     }
 }
 
@@ -1714,7 +1714,7 @@ void ov16_0223F9A0(BattleSystem *battleSystem, int param1)
                 v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
                 v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
 
-                PokedexData_Capture(battleSystem->pokedex, v1);
+                Pokedex_Capture(battleSystem->pokedex, v1);
             }
         }
     }
@@ -1722,7 +1722,7 @@ void ov16_0223F9A0(BattleSystem *battleSystem, int param1)
 
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species)
 {
-    return PokedexData_HasCaughtSpecies(battleSys->pokedex, species);
+    return Pokedex_HasCaughtSpecies(battleSys->pokedex, species);
 }
 
 void Battle_SetDefaultBlend(void)

@@ -33,19 +33,19 @@ struct UnkStruct_0209747C_t {
     u16 unk_20[2];
 };
 
-UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *param2, u32 param3)
+UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *saveData, u32 param3)
 {
     UnkStruct_0209747C *v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_0209747C));
 
     v0->unk_00 = param0;
     v0->unk_01 = param1;
-    v0->unk_0C = SaveData_Pokedex(param2);
-    v0->unk_10 = sub_02014EC4(param2);
-    v0->unk_04 = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(param2));
+    v0->unk_0C = SaveData_GetPokedex(saveData);
+    v0->unk_10 = sub_02014EC4(saveData);
+    v0->unk_04 = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(saveData));
     v0->unk_05 = 0;
     v0->unk_02 = 1;
     v0->unk_03 = 0;
-    v0->unk_08 = Options_Frame(SaveData_Options(param2));
+    v0->unk_08 = Options_Frame(SaveData_Options(saveData));
 
     if (param0 == 2) {
         sub_02014A9C(&v0->unk_14, 3);

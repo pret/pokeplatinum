@@ -97,45 +97,39 @@ static BOOL ov6_02246A34(FieldSystem *fieldSystem)
 
 static BOOL ov6_02246A38(FieldSystem *fieldSystem)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_JUBILIFE_CITY);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_JUBILIFE_CITY);
 }
 
 static BOOL ov6_02246A4C(FieldSystem *fieldSystem)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FLOAROMA_TOWN);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FLOAROMA_TOWN);
 }
 
 static BOOL ov6_02246A60(FieldSystem *fieldSystem)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_OREBURGH_CITY);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_OREBURGH_CITY);
 }
 
 static BOOL ov6_02246A74(FieldSystem *fieldSystem)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY);
 }
 
 static BOOL ov6_02246A88(FieldSystem *fieldSystem)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_HEARTHOME_CITY);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_HEARTHOME_CITY);
 }
 
 static BOOL ov6_02246A9C(FieldSystem *fieldSystem)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
 static BOOL ov6_02246AB0(FieldSystem *fieldSystem)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
 
-    if (TrainerInfo_BadgeCount(v0) >= 5) {
+    if (TrainerInfo_BadgeCount(trainerInfo) >= 5) {
         return 1;
     } else {
         return 0;
@@ -144,20 +138,17 @@ static BOOL ov6_02246AB0(FieldSystem *fieldSystem)
 
 static BOOL ov6_02246AC8(FieldSystem *fieldSystem)
 {
-    Pokedex *v0 = SaveData_Pokedex(fieldSystem->saveData);
-    return PokedexData_LocalDexCompleted(v0);
+    return Pokedex_LocalDexCompleted(SaveData_GetPokedex(fieldSystem->saveData));
 }
 
 static BOOL ov6_02246AD8(FieldSystem *fieldSystem)
 {
-    Pokedex *pokedex = SaveData_Pokedex(fieldSystem->saveData);
-    return Pokedex_IsObtained(pokedex);
+    return Pokedex_IsObtained(SaveData_GetPokedex(fieldSystem->saveData));
 }
 
 static BOOL ov6_02246AE8(FieldSystem *fieldSystem)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    return SystemFlag_CheckGameCompleted(v0);
+    return SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
 static int ov6_02246AF8(FieldSystem *fieldSystem, u8 *param1)

@@ -1134,12 +1134,12 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
-            if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
+            if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
                 v2++;
             }
         } else {
             if (param4[param3[v1 + v0]]) {
-                if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
+                if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
                     v2++;
                 }
             }
@@ -1150,12 +1150,12 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
-            if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
+            if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
                 StringList_AddFromMessageBank(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
             }
         } else {
             if (param4[param3[v1 + v0]]) {
-                if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
+                if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
                     StringList_AddFromMessageBank(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
                 }
             }

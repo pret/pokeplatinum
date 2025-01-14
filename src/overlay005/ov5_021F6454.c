@@ -676,7 +676,7 @@ BOOL ScrCmd_304(ScriptContext *param0)
     v4 = Party_GetPokemonBySlotIndex(v5, v7);
 
     Pokemon_SetRotomForm(v4, v10, v8);
-    PokedexData_Capture(SaveData_Pokedex(fieldSystem->saveData), v4);
+    Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), v4);
 
     return 0;
 }

@@ -313,7 +313,7 @@ UnkStruct_ov21_021D0F60 *ov21_021D0F60(int param0, const UnkStruct_ov21_021D0D80
     v0->unk_1D6C = ov21_021D3FE0(param0);
     v0->unk_1D70 = ov21_021D3FE0(param0);
 
-    v2.dexData = param1->pokedex;
+    v2.pokedex = param1->pokedex;
     v2.unk_04 = param1->trainerInfo;
     v2.timeOfDay = param1->timeOfDay;
     v2.fullmoonIslandVisible = param1->fullmoonIslandVisible;

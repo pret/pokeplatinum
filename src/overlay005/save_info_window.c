@@ -51,7 +51,7 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
 {
     SaveData *saveData = fieldSystem->saveData;
     Location *curLocation = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(saveData));
-    Pokedex *pokedex = SaveData_Pokedex(saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(saveData);
 
     saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
 

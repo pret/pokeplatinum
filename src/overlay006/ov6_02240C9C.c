@@ -325,7 +325,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
             v13[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = PokedexData_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_GetSaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v13[2].species, &v13[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v13[0].species, &v13[1].species);
@@ -513,7 +513,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
             v12[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = PokedexData_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_GetSaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v12[2].species, &v12[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
@@ -642,7 +642,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
             v12[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = PokedexData_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_GetSaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v12[2].species, &v12[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);

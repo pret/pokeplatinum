@@ -681,7 +681,7 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     v0->unk_04 = BgConfig_New(v0->unk_00);
     v0->unk_08 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
-    v0->unk_0C = SaveData_Pokedex(v0->unk_08);
+    v0->unk_0C = SaveData_GetPokedex(v0->unk_08);
     v0->unk_14 = SaveData_Options(v0->unk_08);
 
     ov97_02237694(v0->unk_00);

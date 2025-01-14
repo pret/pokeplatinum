@@ -409,7 +409,7 @@ u32 GameRecords_GetTrainerScore(GameRecords *records)
 
 void GameRecords_IncrementTrainerScoreOnCatch(GameRecords *records, const Pokedex *pokedex, const u16 species)
 {
-    if (!PokedexData_HasCaughtSpecies(pokedex, species)) {
+    if (!Pokedex_HasCaughtSpecies(pokedex, species)) {
         GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
     }
 }

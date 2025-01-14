@@ -770,10 +770,10 @@ static int sub_0206D2E0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206D320(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    Pokedex *v0 = SaveData_Pokedex(fieldSystem->saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     UnkStruct_0206D140 *v1 = ov6_02246498(param1);
 
-    return PokedexData_HasSeenSpecies(v0, v1->unk_06);
+    return Pokedex_HasSeenSpecies(pokedex, v1->unk_06);
 }
 
 void sub_0206D340(FieldSystem *fieldSystem, BOOL param1, u16 param2, Pokemon *param3)
@@ -814,7 +814,7 @@ static BOOL sub_0206D3C0(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
         return 1;
     }
 
-    return PokedexData_HasSeenSpecies(SaveData_Pokedex(fieldSystem->saveData), v0->unk_00);
+    return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_00);
 }
 
 static void sub_0206D3E4(FieldSystem *fieldSystem, int param1)
@@ -935,7 +935,7 @@ static int sub_0206D5B0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 static BOOL sub_0206D5F0(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     UnkStruct_0206D5B0 *v0 = (UnkStruct_0206D5B0 *)ov6_02246498(param1);
-    return PokedexData_HasSeenSpecies(SaveData_Pokedex(fieldSystem->saveData), v0->unk_00);
+    return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_00);
 }
 
 void sub_0206D60C(FieldSystem *fieldSystem, Pokemon *param1)
@@ -961,10 +961,10 @@ static int sub_0206D644(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206D6A8(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    Pokedex *v0 = SaveData_Pokedex(fieldSystem->saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     UnkStruct_0206D644 *v1 = (UnkStruct_0206D644 *)ov6_02246498(param1);
 
-    return PokedexData_HasSeenSpecies(v0, v1->unk_00);
+    return Pokedex_HasSeenSpecies(pokedex, v1->unk_00);
 }
 
 void sub_0206D6C8(FieldSystem *fieldSystem, int param1, int param2)
@@ -1022,17 +1022,17 @@ static int sub_0206D75C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206D7A4(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    Pokedex *v0 = SaveData_Pokedex(fieldSystem->saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     UnkStruct_0206D75C *v1 = (UnkStruct_0206D75C *)ov6_02246498(param1);
 
-    return PokedexData_HasSeenSpecies(v0, v1->unk_00);
+    return Pokedex_HasSeenSpecies(pokedex, v1->unk_00);
 }
 
 void sub_0206D7C4(FieldSystem *fieldSystem)
 {
     u32 v0, v1, v2, v3;
     u8 v4, v5;
-    Pokemon *v6;
+    Pokemon *pokemon;
     UnkUnion_0206D1B8 v7;
     Party *v8;
     UnkStruct_0206D8B0 *v9 = &v7.val11;
@@ -1044,10 +1044,10 @@ void sub_0206D7C4(FieldSystem *fieldSystem)
     v4 = Party_GetCurrentCount(v8);
 
     for (v5 = 0; v5 < v4; v5++) {
-        v6 = Party_GetPokemonBySlotIndex(v8, v5);
+        pokemon = Party_GetPokemonBySlotIndex(v8, v5);
 
-        if (Pokemon_GetValue(v6, MON_DATA_IS_EGG, NULL) == 0) {
-            v3 = Pokemon_GetValue(v6, MON_DATA_GENDER, NULL);
+        if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == 0) {
+            v3 = Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL);
 
             if (v3 == 0) {
                 v0 = 1;
@@ -1061,12 +1061,12 @@ void sub_0206D7C4(FieldSystem *fieldSystem)
 
     if (v2 == 0) {
         if ((v0 == 1) && (v1 == 0)) {
-            v6 = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
-            sub_0206CE38(v6, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
+            pokemon = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
+            sub_0206CE38(pokemon, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
             sub_0206CD70(fieldSystem, 2, 16, v9);
         } else if ((v0 == 0) && (v1 == 1)) {
-            v6 = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
-            sub_0206CE38(v6, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
+            pokemon = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
+            sub_0206CE38(pokemon, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
             sub_0206CD70(fieldSystem, 2, 16, v9);
         }
     }
@@ -1092,7 +1092,7 @@ static BOOL sub_0206D8F0(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 {
     UnkStruct_0206D8B0 *v0 = (UnkStruct_0206D8B0 *)ov6_02246498(param1);
 
-    return PokedexData_HasSeenSpecies(SaveData_Pokedex(fieldSystem->saveData), v0->unk_00);
+    return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_00);
 }
 
 void sub_0206D90C(TVBroadcast *fieldSystem, Pokemon *param1, u16 param2)
@@ -1171,7 +1171,7 @@ static BOOL sub_0206DA50(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 {
     UnkStruct_0206D9F4 *v0 = (UnkStruct_0206D9F4 *)ov6_02246498(param1);
 
-    return PokedexData_HasSeenSpecies(SaveData_Pokedex(fieldSystem->saveData), v0->unk_00);
+    return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_00);
 }
 
 static void sub_0206DA6C(UnkStruct_0206DA6C *param0, const TrainerInfo *param1)
@@ -1304,7 +1304,7 @@ static BOOL sub_0206DC3C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 {
     UnkStruct_0206DBE8 *v0 = (UnkStruct_0206DBE8 *)ov6_02246498(param1);
 
-    if (PokedexData_HasSeenSpecies(SaveData_Pokedex(fieldSystem->saveData), v0->unk_02) == 0) {
+    if (Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_02) == 0) {
         return 0;
     }
 
@@ -1341,7 +1341,7 @@ static int sub_0206DC9C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 static BOOL sub_0206DD1C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     UnkStruct_0206DC9C *v0 = (UnkStruct_0206DC9C *)ov6_02246498(param1);
-    return PokedexData_HasSeenSpecies(SaveData_Pokedex(fieldSystem->saveData), v0->unk_00);
+    return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_00);
 }
 
 void sub_0206DD38(FieldSystem *fieldSystem, u32 param1, u32 param2, u32 param3)
@@ -1682,7 +1682,7 @@ static BOOL sub_0206E248(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 {
     UnkStruct_0206E1C0 *v0 = ov6_02246498(param1);
 
-    return PokedexData_HasSeenSpecies(SaveData_Pokedex(fieldSystem->saveData), v0->unk_00);
+    return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_00);
 }
 
 void sub_0206E264(FieldSystem *fieldSystem, u16 param1)
@@ -1742,7 +1742,7 @@ static int sub_0206E300(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 static BOOL sub_0206E37C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     UnkStruct_0206E300 *v0 = ov6_02246498(param1);
-    return PokedexData_HasSeenSpecies(SaveData_Pokedex(fieldSystem->saveData), v0->unk_00.unk_02);
+    return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_00.unk_02);
 }
 
 void sub_0206E398(FieldSystem *fieldSystem, u16 param1)
@@ -1776,7 +1776,7 @@ static int sub_0206E3C8(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 static BOOL sub_0206E3F8(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     UnkStruct_0206E3C8 *v0 = ov6_02246498(param1);
-    return PokedexData_HasSeenSpecies(SaveData_Pokedex(fieldSystem->saveData), v0->unk_00);
+    return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_00);
 }
 
 void sub_0206E414(FieldSystem *fieldSystem, u16 param1)
@@ -2754,12 +2754,12 @@ static int sub_0206F01C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 {
     Strbuf *v0;
     u16 v1, v2, v3;
-    const Pokedex *v4 = SaveData_Pokedex(fieldSystem->saveData);
+    const Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 1)) + 1;
 
     for (v2 = 1; v2 <= NATIONAL_DEX_COUNT; v2++) {
-        if (PokedexData_HasSeenSpecies(v4, v1) == TRUE) {
+        if (Pokedex_HasSeenSpecies(pokedex, v1) == TRUE) {
             v3 = v1;
             break;
         }
@@ -2803,7 +2803,7 @@ static Strbuf *sub_0206F0D8(u16 param0, u32 param1)
 
 static BOOL sub_0206F100(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    const Pokedex *pokedex = SaveData_Pokedex(fieldSystem->saveData);
+    const Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 
     if (Pokedex_IsObtained(pokedex) == TRUE) {
         return TRUE;
@@ -2846,21 +2846,21 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 {
     Strbuf *v0;
     u16 v1, v2;
-    Pokemon *v3;
-    Party *v4;
-    TrainerInfo *v5 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    Pokedex *v6 = SaveData_Pokedex(fieldSystem->saveData);
+    Pokemon *pokemon;
+    Party *party;
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 
-    v4 = Party_GetFromSavedata(fieldSystem->saveData);
-    v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(fieldSystem->saveData));
+    party = Party_GetFromSavedata(fieldSystem->saveData);
+    pokemon = Party_GetPokemonBySlotIndex(party, sub_0205E1B4(fieldSystem->saveData));
 
-    sub_0206CE74(param1, 0, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v3, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(v5), TrainerInfo_GameCode(v5));
+    sub_0206CE74(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
     StringTemplate_SetContestAccessoryName(param1, 1, (LCRNG_Next() % 100));
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);
 
     for (v2 = 1; v2 <= NATIONAL_DEX_COUNT; v2++) {
-        if (PokedexData_HasSeenSpecies(v6, v1) == TRUE) {
+        if (Pokedex_HasSeenSpecies(pokedex, v1) == TRUE) {
             v0 = sub_0206F0D8(v1, 4);
             StringTemplate_SetStrbuf(param1, 2, v0, 0, 1, GAME_LANGUAGE);
             Strbuf_Free(v0);
@@ -2881,7 +2881,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206F260(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    const Pokedex *pokedex = SaveData_Pokedex(fieldSystem->saveData);
+    const Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 
     if (Pokedex_IsObtained(pokedex) == TRUE) {
         return TRUE;

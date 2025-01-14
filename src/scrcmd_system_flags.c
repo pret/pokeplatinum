@@ -18,7 +18,7 @@
 
 BOOL ScrCmd_CheckPokedexAcquired(ScriptContext *ctx)
 {
-    const Pokedex *pokedex = SaveData_Pokedex(ctx->fieldSystem->saveData);
+    const Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     *destVar = Pokedex_IsObtained(pokedex);
     return FALSE;
@@ -26,8 +26,8 @@ BOOL ScrCmd_CheckPokedexAcquired(ScriptContext *ctx)
 
 BOOL ScrCmd_GivePokedex(ScriptContext *ctx)
 {
-    Pokedex *pokedex = SaveData_Pokedex(ctx->fieldSystem->saveData);
-    PokedexData_ObtainPokedex(pokedex);
+    Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    Pokedex_ObtainPokedex(pokedex);
     return FALSE;
 }
 

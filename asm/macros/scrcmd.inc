@@ -4475,7 +4475,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_337 arg0, arg1
+    .macro ScrCmd_HasSeenSpecies arg0, arg1
     .short 823
     .short \arg0
     .short \arg1

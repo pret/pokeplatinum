@@ -1065,7 +1065,7 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (PokedexData_IsNationalDexObtained(SaveData_Pokedex(param0->fieldSystem->saveData)) == FALSE) {
+    if (Pokedex_IsNationalDexObtained(SaveData_GetPokedex(param0->fieldSystem->saveData)) == FALSE) {
         return -1;
     }
 

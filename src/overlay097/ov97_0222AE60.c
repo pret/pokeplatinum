@@ -237,7 +237,7 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
 
     SetGBACartridgeVersion(v0);
 
-    if (PokedexData_IsNationalDexObtained(param0->unk_08) == FALSE) {
+    if (Pokedex_IsNationalDexObtained(param0->unk_08) == FALSE) {
         return;
     }
 
@@ -987,7 +987,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
     v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_04);
-    v0->unk_08 = SaveData_Pokedex(v0->unk_04);
+    v0->unk_08 = SaveData_GetPokedex(v0->unk_04);
     v0->playTime = SaveData_GetPlayTime(v0->unk_04);
     v0->unk_4C = Pokedex_IsObtained(v0->unk_08);
     v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);

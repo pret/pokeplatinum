@@ -42,7 +42,7 @@ int ov6_02242984(FieldSystem *fieldSystem)
         v2[i] = encounterData->grassEncounters.encounters[i].species;
     }
 
-    BOOL v1 = PokedexData_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_GetSaveData(fieldSystem)));
+    BOOL v1 = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
     ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), v1, fieldSystem->location->mapId, &v2[6], &v2[7]);
     WildEncounters_ReplaceTimedEncounters(encounterData, &v2[2], &v2[3]);

@@ -1777,10 +1777,10 @@ static BOOL ov23_0223F838(int param0, int param1, int param2)
 
 static int ov23_0223F970(UnkStruct_ov23_02256EB0 *param0)
 {
-    SaveData *v0 = FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem);
-    UndergroundData *v1 = sub_020298B0(v0);
-    BOOL v2 = TrainerInfo_ID(SaveData_GetTrainerInfo(v0)) % 2;
-    BOOL v3 = PokedexData_IsNationalDexObtained(SaveData_Pokedex(v0));
+    SaveData *saveData = FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem);
+    UndergroundData *v1 = sub_020298B0(saveData);
+    BOOL v2 = TrainerInfo_ID(SaveData_GetTrainerInfo(saveData)) % 2;
+    BOOL v3 = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(saveData));
     int v4 = 0;
 
     if (v3) {

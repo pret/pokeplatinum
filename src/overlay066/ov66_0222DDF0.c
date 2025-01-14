@@ -2311,7 +2311,7 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *param1, u32
     {
         v0 = SaveData_GetTrainerInfo(param1);
         v1 = Party_GetFromSavedata(param1);
-        v3 = SaveData_Pokedex(param1);
+        v3 = SaveData_GetPokedex(param1);
         v2 = sub_0202C878(param1);
         v4 = SaveData_GetGameTime(param1);
     }
@@ -2354,7 +2354,7 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *param1, u32
     param0->unk_20.unk_3A = ov66_02230C0C(param0->unk_20.unk_3A);
     param0->unk_20.unk_3C = sub_0202C8C0(v2);
     param0->unk_20.unk_3E = sub_0202C8C4(v2);
-    param0->unk_20.unk_3F = PokedexData_IsNationalDexObtained(v3);
+    param0->unk_20.unk_3F = Pokedex_IsNationalDexObtained(v3);
     param0->unk_20.unk_40 = TrainerInfo_IsMainStoryCleared(v0);
     param0->unk_20.unk_41 = 0xff;
     param0->unk_20.unk_43 = 0;

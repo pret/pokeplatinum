@@ -409,7 +409,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     case 12:
         if (Text_IsPrinterActive(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
-                PokedexData_Capture(param0->unk_48, param0->unk_28);
+                Pokedex_Capture(param0->unk_48, param0->unk_28);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 PoketchData_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(param0->unk_28));
@@ -739,7 +739,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
 
                 Pokemon_CalcLevelAndStats(v1);
                 Party_AddPokemon(param0->unk_24, v1);
-                PokedexData_Capture(param0->unk_48, v1);
+                Pokedex_Capture(param0->unk_48, v1);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 PoketchData_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(v1));

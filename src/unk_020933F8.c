@@ -1623,7 +1623,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
         }
 
         int i;
-        Pokedex *pokedex = SaveData_Pokedex(param0->unk_1970);
+        Pokedex *pokedex = SaveData_GetPokedex(param0->unk_1970);
 
         for (i = param0->unk_00.unk_117; i < 4; i++) {
             Pokedex_Encounter(pokedex, param0->unk_00.unk_00[i]);

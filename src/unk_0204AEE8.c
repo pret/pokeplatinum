@@ -106,13 +106,13 @@ StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3
     u8 v0;
     u16 v1;
     Strbuf *v2, *v3;
-    Pokedex *v4;
+    Pokedex *pokedex;
     StringTemplate *v5;
     MessageLoader *v6;
 
     v2 = Strbuf_Init(12 + 2, 4);
     v3 = Strbuf_Init(2, 4);
-    v4 = SaveData_Pokedex(param0);
+    pokedex = SaveData_GetPokedex(param0);
     v6 = MessageLoader_Init(1, 26, 412, 4);
     v5 = StringTemplate_New(18 + 1, 12 + 2, 4);
 
@@ -121,7 +121,7 @@ StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3
     for (v0 = 0; v0 < 18; v0++) {
         v1 = sub_02078824(v0);
 
-        if (PokedexData_HasSeenSpecies(v4, v1)) {
+        if (Pokedex_HasSeenSpecies(pokedex, v1)) {
             MessageLoader_GetStrbuf(v6, v1, v2);
             StringTemplate_SetStrbuf(v5, (*param4) + 1, v2, param2, param3, GAME_LANGUAGE);
             (*param4)++;
