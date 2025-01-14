@@ -727,7 +727,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
         TrainerInfo_Copy(battleSystem->trainerInfo[battlerId], v1->trainerInfo[battlerId]);
         Heap_FreeToHeap(battleSystem->trainerInfo[battlerId]);
     }
-    
+
     sub_02015760(battleSystem->unk_1AC);
     Bag_Copy(battleSystem->unk_58, v1->bag);
     Heap_FreeToHeap(battleSystem->unk_58);

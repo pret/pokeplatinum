@@ -100,11 +100,11 @@ enum BattlerBootState {
  *
  *      PLAYER_SLOT_1   PLAYER_SLOT_2
  */
-#define BATTLER_PLAYER_1      0
-#define BATTLER_ENEMY_1       1
-#define BATTLER_PLAYER_2      2
-#define BATTLER_ENEMY_2       3
-#define BATTLER_NONE          0xFF
+#define BATTLER_PLAYER_1 0
+#define BATTLER_ENEMY_1  1
+#define BATTLER_PLAYER_2 2
+#define BATTLER_ENEMY_2  3
+#define BATTLER_NONE     0xFF
 
 #define BATTLER_TYPE_SOLO_PLAYER        0
 #define BATTLER_TYPE_SOLO_ENEMY         1
