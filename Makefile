@@ -41,8 +41,13 @@ ifneq (,$(findstring Darwin,$(UNAME_S)))
 NATIVE := native_macos.ini
 CROSS := cross_unix.ini
 else
+ifneq (,$(findstring BSD, $(UNAME_S)))
+NATIVE := native_unix.ini 
+CROSS := cross_unix.ini
+else
 NATIVE := native.ini
 CROSS := cross.ini
+endif
 endif
 endif
 
