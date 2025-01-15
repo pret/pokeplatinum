@@ -98,6 +98,12 @@ typedef struct SpeciesEvolution {
     u16 targetSpecies;
 } SpeciesEvolution;
 
+// This struct is not explicitly used; it is provided to document and enforce the size of
+// the learnset entries.
+typedef struct SpeciesLearnset {
+    __attribute__((aligned(4))) u16 entries[MAX_LEARNSET_ENTRIES + 1];
+} SpeciesLearnset;
+
 enum PokemonDataBlockID {
     DATA_BLOCK_A = 0,
     DATA_BLOCK_B,
@@ -3538,34 +3544,25 @@ u16 sub_02076FD4(const u16 monSpecies)
 
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
 {
-    BOOL reencrypt;
-    // TODO const value?
-    u16 *monLevelUpMoves = Heap_AllocFromHeap(0, 44);
-
+    BOOL reencrypt; // must pre-declare to match
+    u16 *monLevelUpMoves = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
     reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    u16 monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, 0);
-    int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, 0);
+    u16 monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
     u8 monLevel = BoxPokemon_GetLevel(boxMon);
 
     Pokemon_LoadLevelUpMovesOf(monSpecies, monForm, monLevelUpMoves);
 
-    int i = 0;
-
-    // TODO const values for sentinels?
-    while (monLevelUpMoves[i] != 0xffff) {
-        if ((monLevelUpMoves[i] & 0xfe00) <= monLevel << 9) {
-            u16 monLevelUpMoveID = monLevelUpMoves[i] & 0x1ff;
-            u16 moveID = BoxPokemon_AddMove(boxMon, monLevelUpMoveID);
-
-            if (moveID == 0xffff) {
+    for (int i = 0; monLevelUpMoves[i] != LEARNSET_SENTINEL_ENTRY; i++) {
+        if ((monLevelUpMoves[i] & 0xFE00) <= monLevel << 9) {
+            u16 monLevelUpMoveID = monLevelUpMoves[i] & 0x1FF;
+            if (BoxPokemon_AddMove(boxMon, monLevelUpMoveID) == LEARNSET_ALL_SLOTS_FILLED) {
                 BoxPokemon_ReplaceMove(boxMon, monLevelUpMoveID);
             }
         } else {
             break;
         }
-
-        i++;
     }
 
     Heap_FreeToHeap(monLevelUpMoves);
@@ -3580,27 +3577,24 @@ u16 Pokemon_AddMove(Pokemon *mon, u16 moveID)
 
 static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID)
 {
-    // TODO const values for sentinels?
-    u16 result = 0xffff;
-
+    u16 result = LEARNSET_ALL_SLOTS_FILLED;
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         u16 slotMove;
-        if ((slotMove = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL)) == 0) {
+        if ((slotMove = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL)) == MOVE_NONE) {
             BoxPokemon_SetMoveSlot(boxMon, moveID, i);
             result = moveID;
             break;
         } else {
             if (slotMove == moveID) {
-                result = 0xfffe;
+                result = LEARNSET_MOVE_ALREADY_KNOWN;
                 break;
             }
         }
     }
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
-
     return result;
 }
 
@@ -3618,15 +3612,16 @@ static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID)
     u8 movePPs[LEARNED_MOVES_MAX];
     u8 movePPUps[LEARNED_MOVES_MAX];
 
-    for (int i = 0; i < 3; i++) {
+    // Bubble move slots 2 through 4 upwards
+    for (int i = 0; i < LEARNED_MOVES_MAX - 1; i++) {
         moveIDs[i] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE2 + i, NULL);
         movePPs[i] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE2_CUR_PP + i, NULL);
         movePPUps[i] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE2_PP_UPS + i, NULL);
     }
 
-    moveIDs[3] = moveID;
-    movePPs[3] = MoveTable_LoadParam(moveID, MOVEATTRIBUTE_PP);
-    movePPUps[3] = 0;
+    moveIDs[LEARNED_MOVES_MAX - 1] = moveID;
+    movePPs[LEARNED_MOVES_MAX - 1] = MoveTable_LoadParam(moveID, MOVEATTRIBUTE_PP);
+    movePPUps[LEARNED_MOVES_MAX - 1] = 0;
 
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1 + i, &moveIDs[i]);
@@ -3641,14 +3636,11 @@ void Pokemon_ResetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot)
 {
     Pokemon_SetMoveSlot(mon, moveID, moveSlot);
 
-    u32 moveMaxPP;
-    u32 movePPUps = 0;
+    u32 moveMaxPP, movePPUps = 0;
     Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &movePPUps);
 
     moveMaxPP = MoveTable_CalcMaxPP(moveID, 0);
     Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, &moveMaxPP);
-
-    return;
 }
 
 void Pokemon_SetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot)
@@ -3668,40 +3660,34 @@ static void BoxPokemon_SetMoveSlot(BoxPokemon *boxMon, u16 moveID, u8 moveSlot)
 
 u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID)
 {
-    u16 result = 0x0;
-    // TODO const value?
-    u16 *monLevelUpMoves = Heap_AllocFromHeap(0, 44);
-
+    u16 result = MOVE_NONE;
+    u16 *monLevelUpMoves = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
     u16 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     u8 monLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
     Pokemon_LoadLevelUpMovesOf(monSpecies, monForm, monLevelUpMoves);
 
-    // TODO const values for sentinels?
-    if (monLevelUpMoves[index[0]] == 0xffff) {
+    if (monLevelUpMoves[*index] == LEARNSET_SENTINEL_ENTRY) {
         Heap_FreeToHeap(monLevelUpMoves);
-        return 0x0;
+        return MOVE_NONE;
     }
 
-    while ((monLevelUpMoves[index[0]] & 0xfe00) != monLevel << 9) {
-        index[0]++;
-
-        if (monLevelUpMoves[index[0]] == 0xffff) {
+    while ((monLevelUpMoves[*index] & 0xFE00) != monLevel << 9) {
+        (*index)++;
+        if (monLevelUpMoves[*index] == LEARNSET_SENTINEL_ENTRY) {
             Heap_FreeToHeap(monLevelUpMoves);
-            return 0x0;
+            return MOVE_NONE;
         }
     }
 
-    if ((monLevelUpMoves[index[0]] & 0xfe00) == monLevel << 9) {
-        moveID[0] = monLevelUpMoves[index[0]] & 0x1ff;
-        index[0]++;
-
-        result = Pokemon_AddMove(mon, moveID[0]);
+    if ((monLevelUpMoves[*index] & 0xFE00) == monLevel << 9) {
+        *moveID = monLevelUpMoves[*index] & 0x1FF;
+        (*index)++;
+        result = Pokemon_AddMove(mon, *moveID);
     }
 
     Heap_FreeToHeap(monLevelUpMoves);
-
     return result;
 }
 
@@ -3874,15 +3860,14 @@ s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, int flavor)
 
 int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMoveIDs)
 {
-    u16 *monLevelUpMoves = Heap_AllocFromHeap(0, 44);
+    u16 *monLevelUpMoves = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
 
     Pokemon_LoadLevelUpMovesOf(monSpecies, monForm, monLevelUpMoves);
 
     int result = 0;
 
-    // TODO const values for sentinels?
-    while (monLevelUpMoves[result] != 0xffff) {
-        monLevelUpMoveIDs[result] = monLevelUpMoves[result] & 0x1ff;
+    while (monLevelUpMoves[result] != LEARNSET_ALL_SLOTS_FILLED) {
+        monLevelUpMoveIDs[result] = monLevelUpMoves[result] & 0x1FF;
         result++;
     }
 
