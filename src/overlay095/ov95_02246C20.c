@@ -196,7 +196,7 @@ static BOOL ov95_02246DEC(BoxPokemon *param0)
     int v0 = BoxPokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
     int v1 = BoxPokemon_GetValue(param0, MON_DATA_FORM, NULL);
 
-    return PokemonPersonalData_GetFormValue(v0, v1, 28) == 0;
+    return SpeciesData_GetFormValue(v0, v1, 28) == 0;
 }
 
 int ov95_02246E1C(OverlayManager *param0, int *param1)

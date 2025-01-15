@@ -253,7 +253,7 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
                 if (BoxPokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
                     u16 v9 = BoxPokemon_GetValue(v1, MON_DATA_FORM, NULL);
 
-                    v6 = PokemonPersonalData_GetFormValue(v5, v9, MON_DATA_PERSONAL_COLOR);
+                    v6 = SpeciesData_GetFormValue(v5, v9, SPECIES_DATA_BODY_COLOR);
                 } else {
                     v6 = (v5 != SPECIES_MANAPHY) ? 8 : 1;
                 }

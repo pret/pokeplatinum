@@ -328,7 +328,7 @@ static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param
     if (param1 == 5) {
         v1 = 4;
     } else {
-        if (PokemonPersonalData_GetFormValue(param3, param4, 28)) {
+        if (SpeciesData_GetFormValue(param3, param4, 28)) {
             v1 = 4;
         } else {
             v1 = 5;

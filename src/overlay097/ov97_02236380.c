@@ -1329,21 +1329,21 @@ static int ov97_02236E28(BoxPokemonGBA *param0, BoxPokemon *param1)
 
     v2 = BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     v3 = GetGBABoxMonData(param0, 46, NULL);
-    v1 = PokemonPersonalData_GetSpeciesValue(v2, 25);
+    v1 = SpeciesData_GetSpeciesValue(v2, 25);
 
     if (v1) {
         for (v0 = 0; v0 < (sizeof(Unk_ov97_0223ECA0) / 2); v0++) {
             if (Unk_ov97_0223ECA0[v0] == v2) {
-                v1 = PokemonPersonalData_GetSpeciesValue(v2, 24);
+                v1 = SpeciesData_GetSpeciesValue(v2, 24);
                 break;
             }
         }
 
         if ((v0 == (sizeof(Unk_ov97_0223ECA0) / 2)) && ((v3 & 1) == 0)) {
-            v1 = PokemonPersonalData_GetSpeciesValue(v2, 24);
+            v1 = SpeciesData_GetSpeciesValue(v2, 24);
         }
     } else {
-        v1 = PokemonPersonalData_GetSpeciesValue(v2, 24);
+        v1 = SpeciesData_GetSpeciesValue(v2, 24);
     }
 
     return v1;

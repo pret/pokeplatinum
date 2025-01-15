@@ -632,8 +632,8 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     int v4, v5;
     int v6 = PokedexSort_DefaultForm(param2->unk_04, species);
 
-    v4 = PokemonPersonalData_GetFormValue(species, v6, 6);
-    v5 = PokemonPersonalData_GetFormValue(species, v6, 7);
+    v4 = SpeciesData_GetFormValue(species, v6, 6);
+    v5 = SpeciesData_GetFormValue(species, v6, 7);
     v4 = ov21_021DF180(v4);
     v5 = ov21_021DF180(v5);
 

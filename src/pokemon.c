@@ -134,8 +134,8 @@ static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *pa
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
-static void PokemonPersonalData_LoadSpecies(int monSpecies, PokemonPersonalData *monPersonalData);
-static void PokemonPersonalData_LoadForm(int monSpecies, int monForm, PokemonPersonalData *monPersonalData);
+static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
+static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData);
 static void PokemonEvolutionData_LoadSpecies(int monSpecies, PokemonEvolutionData *monEvolutionData);
 static void Pokemon_EncryptData(void *data, u32 bytes, u32 seed);
 static void Pokemon_DecryptData(void *data, u32 bytes, u32 seed);
@@ -288,7 +288,7 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     v1 = Pokemon_GetSpeciesBaseExpAt(monSpecies, monLevel);
     BoxPokemon_SetValue(boxMon, MON_DATA_EXP, &v1);
 
-    v1 = PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_BASE_FRIENDSHIP);
+    v1 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_BASE_FRIENDSHIP);
     BoxPokemon_SetValue(boxMon, MON_DATA_FRIENDSHIP, &v1);
 
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_LEVEL, &monLevel);
@@ -326,8 +326,8 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
         BoxPokemon_SetValue(boxMon, MON_DATA_SPDEF_IV, &v2);
     }
 
-    v1 = PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_ABILITY_1);
-    v2 = PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_ABILITY_2);
+    v1 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_1);
+    v2 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_2);
 
     if (v2 != ABILITY_NONE) {
         if (monPersonality & 1) {
@@ -378,7 +378,7 @@ void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 gende
 
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
 {
-    u8 monGenderChance = PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_GENDER);
+    u8 monGenderChance = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_GENDER_RATIO);
 
     u32 result;
     switch (monGenderChance) {
@@ -447,45 +447,45 @@ void Pokemon_CalcStats(Pokemon *mon)
 
     int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    PokemonPersonalData *monPersonalData = Heap_AllocFromHeap(0, sizeof(PokemonPersonalData));
+    SpeciesData *speciesData = Heap_AllocFromHeap(0, sizeof(SpeciesData));
 
-    PokemonPersonalData_LoadForm(monSpecies, monForm, monPersonalData);
+    SpeciesData_LoadForm(monSpecies, monForm, speciesData);
 
     int newMaxHp;
     if (monSpecies == SPECIES_SHEDINJA) {
         newMaxHp = 1;
     } else {
-        newMaxHp = ((2 * monPersonalData->baseHp + monHpIV + monHpEV / 4) * monLevel / 100 + monLevel + 10);
+        newMaxHp = ((2 * speciesData->baseStats.hp + monHpIV + monHpEV / 4) * monLevel / 100 + monLevel + 10);
     }
 
     Pokemon_SetValue(mon, MON_DATA_MAX_HP, &newMaxHp);
 
     // TODO inline func maybe
-    int newAtk = ((2 * monPersonalData->baseAtk + monAtkIV + monAtkEV / 4) * monLevel / 100 + 5);
+    int newAtk = ((2 * speciesData->baseStats.attack + monAtkIV + monAtkEV / 4) * monLevel / 100 + 5);
     newAtk = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newAtk, STAT_ATTACK);
 
     Pokemon_SetValue(mon, MON_DATA_ATK, &newAtk);
 
-    int newDef = ((2 * monPersonalData->baseDef + monDefIV + monDefEV / 4) * monLevel / 100 + 5);
+    int newDef = ((2 * speciesData->baseStats.defense + monDefIV + monDefEV / 4) * monLevel / 100 + 5);
     newDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newDef, STAT_DEFENSE);
 
     Pokemon_SetValue(mon, MON_DATA_DEF, &newDef);
 
-    int newSpeed = ((2 * monPersonalData->baseSpeed + monSpeedIV + monSpeedEV / 4) * monLevel / 100 + 5);
+    int newSpeed = ((2 * speciesData->baseStats.speed + monSpeedIV + monSpeedEV / 4) * monLevel / 100 + 5);
     newSpeed = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpeed, STAT_SPEED);
 
     Pokemon_SetValue(mon, MON_DATA_SPEED, &newSpeed);
 
-    int newSpAtk = ((2 * monPersonalData->baseSpAtk + monSpAtkIV + monSpAtkEV / 4) * monLevel / 100 + 5);
+    int newSpAtk = ((2 * speciesData->baseStats.spAttack + monSpAtkIV + monSpAtkEV / 4) * monLevel / 100 + 5);
     newSpAtk = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpAtk, STAT_SPECIAL_ATTACK);
 
     Pokemon_SetValue(mon, MON_DATA_SP_ATK, &newSpAtk);
 
-    int newSpDef = ((2 * monPersonalData->baseSpDef + monSpDefIV + monSpDefEV / 4) * monLevel / 100 + 5);
+    int newSpDef = ((2 * speciesData->baseStats.spDefense + monSpDefIV + monSpDefEV / 4) * monLevel / 100 + 5);
     newSpDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpDef, STAT_SPECIAL_DEFENSE);
 
     Pokemon_SetValue(mon, MON_DATA_SP_DEF, &newSpDef);
-    Heap_FreeToHeap(monPersonalData);
+    Heap_FreeToHeap(speciesData);
 
     if (monCurrentHp != 0 || monMaxHp == 0) {
         if (monSpecies == SPECIES_SHEDINJA) {
@@ -1080,7 +1080,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         if (monDataBlockA->species == SPECIES_ARCEUS && monDataBlockA->ability == ABILITY_MULTITYPE) {
             result = Pokemon_GetArceusTypeOf(Item_LoadParam(monDataBlockA->heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
         } else {
-            result = PokemonPersonalData_GetFormValue(monDataBlockA->species, monDataBlockB->form, MON_DATA_PERSONAL_TYPE_1 + (param - MON_DATA_TYPE_1));
+            result = SpeciesData_GetFormValue(monDataBlockA->species, monDataBlockB->form, SPECIES_DATA_TYPE_1 + (param - MON_DATA_TYPE_1));
         }
         break;
 
@@ -1995,157 +1995,157 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     }
 }
 
-PokemonPersonalData *PokemonPersonalData_FromMonForm(int monSpecies, int monForm, int heapID)
+SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID)
 {
-    PokemonPersonalData *monPersonalData = Heap_AllocFromHeap(heapID, sizeof(PokemonPersonalData));
-    PokemonPersonalData_LoadForm(monSpecies, monForm, monPersonalData);
+    SpeciesData *speciesData = Heap_AllocFromHeap(heapID, sizeof(SpeciesData));
+    SpeciesData_LoadForm(monSpecies, monForm, speciesData);
 
-    return monPersonalData;
+    return speciesData;
 }
 
-PokemonPersonalData *PokemonPersonalData_FromMonSpecies(int monSpecies, int heapID)
+SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, int heapID)
 {
-    PokemonPersonalData *monPersonalData = Heap_AllocFromHeap(heapID, sizeof(PokemonPersonalData));
-    PokemonPersonalData_LoadSpecies(monSpecies, monPersonalData);
+    SpeciesData *speciesData = Heap_AllocFromHeap(heapID, sizeof(SpeciesData));
+    SpeciesData_LoadSpecies(monSpecies, speciesData);
 
-    return monPersonalData;
+    return speciesData;
 }
 
-u32 PokemonPersonalData_GetValue(PokemonPersonalData *monPersonalData, enum PokemonPersonalDataParam param)
+u32 SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param)
 {
     u32 result;
 
-    GF_ASSERT(monPersonalData);
+    GF_ASSERT(speciesData);
 
     switch (param) {
-    case MON_DATA_PERSONAL_BASE_HP:
-        result = monPersonalData->baseHp;
+    case SPECIES_DATA_BASE_HP:
+        result = speciesData->baseStats.hp;
         break;
-    case MON_DATA_PERSONAL_BASE_ATK:
-        result = monPersonalData->baseAtk;
+    case SPECIES_DATA_BASE_ATK:
+        result = speciesData->baseStats.attack;
         break;
-    case MON_DATA_PERSONAL_BASE_DEF:
-        result = monPersonalData->baseDef;
+    case SPECIES_DATA_BASE_DEF:
+        result = speciesData->baseStats.defense;
         break;
-    case MON_DATA_PERSONAL_BASE_SPEED:
-        result = monPersonalData->baseSpeed;
+    case SPECIES_DATA_BASE_SPEED:
+        result = speciesData->baseStats.speed;
         break;
-    case MON_DATA_PERSONAL_BASE_SP_ATK:
-        result = monPersonalData->baseSpAtk;
+    case SPECIES_DATA_BASE_SP_ATK:
+        result = speciesData->baseStats.spAttack;
         break;
-    case MON_DATA_PERSONAL_BASE_SP_DEF:
-        result = monPersonalData->baseSpDef;
+    case SPECIES_DATA_BASE_SP_DEF:
+        result = speciesData->baseStats.spDefense;
         break;
-    case MON_DATA_PERSONAL_TYPE_1:
-        result = monPersonalData->type1;
+    case SPECIES_DATA_TYPE_1:
+        result = speciesData->types[0];
         break;
-    case MON_DATA_PERSONAL_TYPE_2:
-        result = monPersonalData->type2;
+    case SPECIES_DATA_TYPE_2:
+        result = speciesData->types[1];
         break;
-    case MON_DATA_PERSONAL_CATCH_RATE:
-        result = monPersonalData->catchRate;
+    case SPECIES_DATA_CATCH_RATE:
+        result = speciesData->catchRate;
         break;
-    case MON_DATA_PERSONAL_BASE_EXP:
-        result = monPersonalData->baseExp;
+    case SPECIES_DATA_BASE_EXP_REWARD:
+        result = speciesData->baseExpReward;
         break;
-    case MON_DATA_PERSONAL_EV_HP_YIELD:
-        result = monPersonalData->evHpYield;
+    case SPECIES_DATA_EV_HP_YIELD:
+        result = speciesData->evYields.hp;
         break;
-    case MON_DATA_PERSONAL_EV_ATK_YIELD:
-        result = monPersonalData->evAtkYield;
+    case SPECIES_DATA_EV_ATK_YIELD:
+        result = speciesData->evYields.attack;
         break;
-    case MON_DATA_PERSONAL_EV_DEF_YIELD:
-        result = monPersonalData->evDefYield;
+    case SPECIES_DATA_EV_DEF_YIELD:
+        result = speciesData->evYields.defense;
         break;
-    case MON_DATA_PERSONAL_EV_SPEED_YIELD:
-        result = monPersonalData->evSpeedYield;
+    case SPECIES_DATA_EV_SPEED_YIELD:
+        result = speciesData->evYields.speed;
         break;
-    case MON_DATA_PERSONAL_EV_SP_ATK_YIELD:
-        result = monPersonalData->evSpAtkYield;
+    case SPECIES_DATA_EV_SP_ATK_YIELD:
+        result = speciesData->evYields.spAttack;
         break;
-    case MON_DATA_PERSONAL_EV_SP_DEF_YIELD:
-        result = monPersonalData->evSpDefYield;
+    case SPECIES_DATA_EV_SP_DEF_YIELD:
+        result = speciesData->evYields.spDefense;
         break;
-    case MON_DATA_PERSONAL_ITEM1:
-        result = monPersonalData->item1;
+    case SPECIES_DATA_HELD_ITEM_COMMON:
+        result = speciesData->wildHeldItems.common;
         break;
-    case MON_DATA_PERSONAL_ITEM2:
-        result = monPersonalData->item2;
+    case SPECIES_DATA_HELD_ITEM_RARE:
+        result = speciesData->wildHeldItems.rare;
         break;
-    case MON_DATA_PERSONAL_GENDER:
-        result = monPersonalData->gender;
+    case SPECIES_DATA_GENDER_RATIO:
+        result = speciesData->genderRatio;
         break;
-    case MON_DATA_PERSONAL_HATCH_CYCLE:
-        result = monPersonalData->hatchCycles;
+    case SPECIES_DATA_HATCH_CYCLES:
+        result = speciesData->hatchCycles;
         break;
-    case MON_DATA_PERSONAL_BASE_FRIENDSHIP:
-        result = monPersonalData->baseFriendship;
+    case SPECIES_DATA_BASE_FRIENDSHIP:
+        result = speciesData->baseFriendship;
         break;
-    case MON_DATA_PERSONAL_EXP_RATE:
-        result = monPersonalData->expRate;
+    case SPECIES_DATA_EXP_RATE:
+        result = speciesData->expRate;
         break;
-    case MON_DATA_PERSONAL_EGG_GROUP_1:
-        result = monPersonalData->eggGroup1;
+    case SPECIES_DATA_EGG_GROUP_1:
+        result = speciesData->eggGroups[0];
         break;
-    case MON_DATA_PERSONAL_EGG_GROUP_2:
-        result = monPersonalData->eggGroup2;
+    case SPECIES_DATA_EGG_GROUP_2:
+        result = speciesData->eggGroups[1];
         break;
-    case MON_DATA_PERSONAL_ABILITY_1:
-        result = monPersonalData->ability1;
+    case SPECIES_DATA_ABILITY_1:
+        result = speciesData->abilities[0];
         break;
-    case MON_DATA_PERSONAL_ABILITY_2:
-        result = monPersonalData->ability2;
+    case SPECIES_DATA_ABILITY_2:
+        result = speciesData->abilities[1];
         break;
-    case MON_DATA_PERSONAL_GREAT_MARSH_FLEE_RATE:
-        result = monPersonalData->greatMarshFleeRate;
+    case SPECIES_DATA_SAFARI_FLEE_RATE:
+        result = speciesData->safariFleeRate;
         break;
-    case MON_DATA_PERSONAL_COLOR:
-        result = monPersonalData->color;
+    case SPECIES_DATA_BODY_COLOR:
+        result = speciesData->bodyColor;
         break;
-    case MON_DATA_PERSONAL_FLIP_SPRITE:
-        result = monPersonalData->flipSprite;
+    case SPECIES_DATA_FLIP_SPRITE:
+        result = speciesData->flipSprite;
         break;
-    case MON_DATA_PERSONAL_TM_LEARNSET_MASK_1:
-        result = monPersonalData->tmLearnsetMask1;
+    case SPECIES_DATA_TM_LEARNSET_MASK_1:
+        result = speciesData->tmLearnsetMask1;
         break;
-    case MON_DATA_PERSONAL_TM_LEARNSET_MASK_2:
-        result = monPersonalData->tmLearnsetMask2;
+    case SPECIES_DATA_TM_LEARNSET_MASK_2:
+        result = speciesData->tmLearnsetMask2;
         break;
-    case MON_DATA_PERSONAL_TM_LEARNSET_MASK_3:
-        result = monPersonalData->tmLearnsetMask3;
+    case SPECIES_DATA_TM_LEARNSET_MASK_3:
+        result = speciesData->tmLearnsetMask3;
         break;
-    case MON_DATA_PERSONAL_TM_LEARNSET_MASK_4:
-        result = monPersonalData->tmLearnsetMask4;
+    case SPECIES_DATA_TM_LEARNSET_MASK_4:
+        result = speciesData->tmLearnsetMask4;
         break;
     }
 
     return result;
 }
 
-void PokemonPersonalData_Free(PokemonPersonalData *monPersonalData)
+void SpeciesData_Free(SpeciesData *speciesData)
 {
-    GF_ASSERT(monPersonalData);
-    Heap_FreeToHeap(monPersonalData);
+    GF_ASSERT(speciesData);
+    Heap_FreeToHeap(speciesData);
 }
 
-u32 PokemonPersonalData_GetFormValue(int monSpecies, int monForm, enum PokemonPersonalDataParam param)
+u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam param)
 {
     monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);
 
-    PokemonPersonalData *monPersonalData = PokemonPersonalData_FromMonSpecies(monSpecies, 0);
-    u32 result = PokemonPersonalData_GetValue(monPersonalData, param);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    u32 result = SpeciesData_GetValue(speciesData, param);
 
-    PokemonPersonalData_Free(monPersonalData);
+    SpeciesData_Free(speciesData);
 
     return result;
 }
 
-u32 PokemonPersonalData_GetSpeciesValue(int monSpecies, enum PokemonPersonalDataParam param)
+u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param)
 {
-    PokemonPersonalData *monPersonalData = PokemonPersonalData_FromMonSpecies(monSpecies, 0);
-    u32 result = PokemonPersonalData_GetValue(monPersonalData, param);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    u32 result = SpeciesData_GetValue(speciesData, param);
 
-    PokemonPersonalData_Free(monPersonalData);
+    SpeciesData_Free(speciesData);
 
     return result;
 }
@@ -2186,7 +2186,7 @@ u32 Pokemon_GetCurrentLevelBaseExp(Pokemon *mon)
 
 u32 Pokemon_GetSpeciesBaseExpAt(int monSpecies, int monLevel)
 {
-    return Pokemon_GetExpRateBaseExpAt(PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_EXP_RATE), monLevel);
+    return Pokemon_GetExpRateBaseExpAt(SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_EXP_RATE), monLevel);
 }
 
 static void Pokemon_LoadExperienceTableOf(enum PokemonExpRate monExpRate, u32 *monExpTable)
@@ -2229,20 +2229,20 @@ u32 BoxPokemon_GetLevel(BoxPokemon *boxMon)
 
 u32 Pokemon_GetSpeciesLevelAt(u16 monSpecies, u32 monExp)
 {
-    PokemonPersonalData *monPersonalData = PokemonPersonalData_FromMonSpecies(monSpecies, 0);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
 
-    u32 monLevel = PokemonPersonalData_GetLevelAt(monPersonalData, monSpecies, monExp);
-    PokemonPersonalData_Free(monPersonalData);
+    u32 monLevel = SpeciesData_GetLevelAt(speciesData, monSpecies, monExp);
+    SpeciesData_Free(speciesData);
 
     return monLevel;
 }
 
-u32 PokemonPersonalData_GetLevelAt(PokemonPersonalData *monPersonalData, u16 unused_monSpecies, u32 monExp)
+u32 SpeciesData_GetLevelAt(SpeciesData *speciesData, u16 unused_monSpecies, u32 monExp)
 {
     // TODO const for table size
     static u32 monExpTable[101];
 
-    enum PokemonExpRate monExpRate = PokemonPersonalData_GetValue(monPersonalData, MON_DATA_PERSONAL_EXP_RATE);
+    enum PokemonExpRate monExpRate = SpeciesData_GetValue(speciesData, SPECIES_DATA_EXP_RATE);
     Pokemon_LoadExperienceTableOf(monExpRate, monExpTable);
 
     int i;
@@ -2422,17 +2422,17 @@ u8 BoxPokemon_GetGender(BoxPokemon *boxMon)
 
 u8 Pokemon_GetGenderOf(u16 monSpecies, u32 monPersonality)
 {
-    PokemonPersonalData *monPersonalData = PokemonPersonalData_FromMonSpecies(monSpecies, 0);
-    u8 monGender = PokemonPersonalData_GetGenderOf(monPersonalData, monSpecies, monPersonality);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, 0);
+    u8 monGender = SpeciesData_GetGenderOf(speciesData, monSpecies, monPersonality);
 
-    PokemonPersonalData_Free(monPersonalData);
+    SpeciesData_Free(speciesData);
 
     return monGender;
 }
 
-u8 PokemonPersonalData_GetGenderOf(PokemonPersonalData *monPersonalData, u16 unused_monSpecies, u32 monPersonality)
+u8 SpeciesData_GetGenderOf(SpeciesData *speciesData, u16 unused_monSpecies, u32 monPersonality)
 {
-    u8 monGender = PokemonPersonalData_GetValue(monPersonalData, MON_DATA_PERSONAL_GENDER);
+    u8 monGender = SpeciesData_GetValue(speciesData, SPECIES_DATA_GENDER_RATIO);
 
     switch (monGender) {
     case GENDER_RATIO_MALE_ONLY:
@@ -3223,7 +3223,7 @@ BOOL Pokemon_ShouldLevelUp(Pokemon *mon)
     u16 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     u8 monNextLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) + 1;
     u32 monExp = Pokemon_GetValue(mon, MON_DATA_EXP, NULL);
-    int monExpRate = PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_EXP_RATE);
+    int monExpRate = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_EXP_RATE);
     // TODO const value?
     u32 maxExp = Pokemon_GetExpRateBaseExpAt(monExpRate, 100);
 
@@ -4419,8 +4419,8 @@ void Pokemon_GiveHeldItem(Pokemon *mon, u32 param1, int param2)
     u32 rand = LCRNG_Next() % 100;
     u16 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     u16 monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-    u16 monItem1 = PokemonPersonalData_GetFormValue(monSpecies, monForm, MON_DATA_PERSONAL_ITEM1);
-    u16 monItem2 = PokemonPersonalData_GetFormValue(monSpecies, monForm, MON_DATA_PERSONAL_ITEM2);
+    u16 monItem1 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_HELD_ITEM_COMMON);
+    u16 monItem2 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_HELD_ITEM_RARE);
 
     if (monItem1 == monItem2 && monItem1 != ITEM_NONE) {
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &monItem1);
@@ -4456,22 +4456,22 @@ BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID)
     }
 
     u32 tmFlag;
-    u8 monPersonalDataAttribute;
+    u8 speciesDataAttribute;
     if (tmID < 32) {
         tmFlag = (1 << tmID);
-        monPersonalDataAttribute = MON_DATA_PERSONAL_TM_LEARNSET_MASK_1;
+        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_1;
     } else if (tmID < 64) {
         tmFlag = (1 << (tmID - 32));
-        monPersonalDataAttribute = MON_DATA_PERSONAL_TM_LEARNSET_MASK_2;
+        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_2;
     } else if (tmID < 96) {
         tmFlag = (1 << (tmID - 64));
-        monPersonalDataAttribute = MON_DATA_PERSONAL_TM_LEARNSET_MASK_3;
+        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_3;
     } else {
         tmFlag = (1 << (tmID - 96));
-        monPersonalDataAttribute = MON_DATA_PERSONAL_TM_LEARNSET_MASK_4;
+        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_4;
     }
 
-    return (PokemonPersonalData_GetFormValue(monSpecies, monForm, monPersonalDataAttribute) & tmFlag) != 0;
+    return (SpeciesData_GetFormValue(monSpecies, monForm, speciesDataAttribute) & tmFlag) != 0;
 }
 
 void Pokemon_CalcAbility(Pokemon *mon)
@@ -4485,8 +4485,8 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
     int monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
     u32 monPersonality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
     int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
-    int monAbility1 = PokemonPersonalData_GetFormValue(monSpecies, monForm, MON_DATA_PERSONAL_ABILITY_1);
-    int monAbility2 = PokemonPersonalData_GetFormValue(monSpecies, monForm, MON_DATA_PERSONAL_ABILITY_2);
+    int monAbility1 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_1);
+    int monAbility2 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_2);
 
     // TODO enum value?
     if (monAbility2 != ABILITY_NONE) {
@@ -4535,15 +4535,15 @@ void sub_020780C4(Pokemon *mon, u32 monPersonality)
     Heap_FreeToHeap(newMon);
 }
 
-static void PokemonPersonalData_LoadSpecies(int monSpecies, PokemonPersonalData *monPersonalData)
+static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData)
 {
-    NARC_ReadWholeMemberByIndexPair(monPersonalData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, monSpecies);
+    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, monSpecies);
 }
 
-static void PokemonPersonalData_LoadForm(int monSpecies, int monForm, PokemonPersonalData *monPersonalData)
+static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData)
 {
     monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);
-    NARC_ReadWholeMemberByIndexPair(monPersonalData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, monSpecies);
+    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, monSpecies);
 }
 
 static void PokemonEvolutionData_LoadSpecies(int monSpecies, PokemonEvolutionData *monEvolutionData)

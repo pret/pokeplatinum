@@ -31,48 +31,52 @@
 #define FACE_BACK  0
 #define FACE_FRONT 2
 
-/**
- * @brief Pokemon Personal data structure. This contains data that is the same across all pokemon of the same species/form
- */
-typedef struct PokemonPersonalData {
-    u8 baseHp; //!< The pokemons base HP stat
-    u8 baseAtk; //!< The pokemons base Attack stat
-    u8 baseDef; //!< The pokemons base Defense stat
-    u8 baseSpeed; //!< The pokemons base Speed stat
-    u8 baseSpAtk; //!< The pokemons base Special Attack stat
-    u8 baseSpDef; //!< The pokemons base Special Defense stat
-    u8 type1; //!< The pokemons first type
-    u8 type2; //!< The pokemons second type
-    u8 catchRate; //!< The pokemons catch rate
-    u8 baseExp; //!< A factor in determining experience yield when defeating this pokemon
-    u16 evHpYield : 2; //!< How many HP EVs will be gained when defeating this pokemon
-    u16 evAtkYield : 2; //!< How many Attack EVs will be gained when defeating this pokemon
-    u16 evDefYield : 2; //!< How many Defense EVs will be gained when defeating this pokemon
-    u16 evSpeedYield : 2; //!< How many Speed EVs will be gained when defeating this pokemon
-    u16 evSpAtkYield : 2; //!< How many Special Attack EVs will be gained when defeating this pokemon
-    u16 evSpDefYield : 2; //!< How many Special Defense EVs will be gained when defeating this pokemon
-    // u16 padding : 4;
+typedef struct SpeciesBaseStats {
+    u8 hp;
+    u8 attack;
+    u8 defense;
+    u8 speed;
+    u8 spAttack;
+    u8 spDefense;
+} SpeciesBaseStats;
 
-    u16 item1; //!< Common held item when this pokemon is encountered in the wild
-    u16 item2; //!< Rare held item when this pokemon is encountered in the wild
-    u8 gender; //!< The pokemons gender ratio, except for special values, a higher value will result in more females and a lower value will result in more males appearing
-    u8 hatchCycles; //!< How long eggs of this pokemon will take to hatch. In Gen.IV One cycle is 255 steps
-    u8 baseFriendship; //!< The pokemons base Friendship stat
-    u8 expRate; //!< The experience rate category of the pokemon. This sets which formula is used to determine the pokemons level based on its experience
-    u8 eggGroup1; //!< The pokemons first egg group
-    u8 eggGroup2; //!< The pokemons second egg group
-    u8 ability1; //!< The pokemons first possible ability
-    u8 ability2; //!< The pokemons second possible ability
-    u8 greatMarshFleeRate; //!< The pokemons base flee rate in the Great Marsh safari zone
-    u8 color : 7; //!< The pokemons color category
+typedef struct SpeciesEVYields {
+    u16 hp : 2;
+    u16 attack : 2;
+    u16 defense : 2;
+    u16 speed : 2;
+    u16 spAttack : 2;
+    u16 spDefense : 2;
+} SpeciesEVYields;
+
+typedef struct SpeciesWildHeldItems {
+    u16 common;
+    u16 rare;
+} SpeciesWildHeldItems;
+
+typedef struct SpeciesData {
+    SpeciesBaseStats baseStats;
+    u8 types[MAX_TYPES];
+    u8 catchRate;
+    u8 baseExpReward;
+    SpeciesEVYields evYields;
+    SpeciesWildHeldItems wildHeldItems;
+    u8 genderRatio;
+    u8 hatchCycles;
+    u8 baseFriendship;
+    u8 expRate;
+    u8 eggGroups[MAX_EGG_GROUPS];
+    u8 abilities[MAX_ABILITIES];
+    u8 safariFleeRate;
+    u8 bodyColor : 7;
     u8 flipSprite : 1;
     // u16 padding;
 
-    u32 tmLearnsetMask1; //!< Bitflags for whether this pokemon can learn a TM (TM1 -> TM32)
-    u32 tmLearnsetMask2; //!< Bitflags for whether this pokemon can learn a TM (TM33 -> TM64)
-    u32 tmLearnsetMask3; //!< Bitflags for whether this pokemon can learn a TM (TM65 -> TM92, HM1 -> HM4)
-    u32 tmLearnsetMask4; //!< Bitflags for whether this pokemon can learn a TM (HM5 -> HM8, rest unused)
-} PokemonPersonalData;
+    u32 tmLearnsetMask1; // Bitflags for whether this pokemon can learn a TM (TM1 -> TM32)
+    u32 tmLearnsetMask2; // Bitflags for whether this pokemon can learn a TM (TM33 -> TM64)
+    u32 tmLearnsetMask3; // Bitflags for whether this pokemon can learn a TM (TM65 -> TM92, HM1 -> HM4)
+    u32 tmLearnsetMask4; // Bitflags for whether this pokemon can learn a TM (HM5 -> HM8, rest unused)
+} SpeciesData;
 
 /**
  * @brief Zeros out a Pokemon data structure, then encrypts the result
@@ -207,58 +211,58 @@ void BoxPokemon_SetValue(BoxPokemon *boxMon, enum PokemonDataParam param, const 
 void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value);
 
 /**
- * @brief Gets a PokemonPersonalData based on a pokemon species and form
+ * @brief Gets a SpeciesData based on a pokemon species and form
  *
  * @param monSpecies
  * @param monForm
- * @param heapID The index of the heap that the PokemonPersonalData should be loaded into
- * @return PokemonPersonalData*
+ * @param heapID The index of the heap that the SpeciesData should be loaded into
+ * @return SpeciesData*
  */
-PokemonPersonalData *PokemonPersonalData_FromMonForm(int monSpecies, int monForm, int heapID);
+SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID);
 
 /**
- * @brief Gets a PokemonPersonalData based on a pokemon species
+ * @brief Gets a SpeciesData based on a pokemon species
  *
  * @param monSpecies
- * @param heapID The index of the heap that the PokemonPersonalData should be loaded into
- * @return PokemonPersonalData*
+ * @param heapID The index of the heap that the SpeciesData should be loaded into
+ * @return SpeciesData*
  */
-PokemonPersonalData *PokemonPersonalData_FromMonSpecies(int monSpecies, int heapID);
+SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, int heapID);
 
 /**
- * @brief Gets a value from a PokemonPersonalData structure
+ * @brief Gets a value from a SpeciesData structure
  *
- * @param monPersonalData
+ * @param speciesData
  * @param param What value to get
  * @return The requested value
  */
-u32 PokemonPersonalData_GetValue(PokemonPersonalData *monPersonalData, enum PokemonPersonalDataParam param);
+u32 SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param);
 
 /**
- * @brief Frees a PokemonPersonalData structure from the heap
+ * @brief Frees a SpeciesData structure from the heap
  *
- * @param monPersonalData
+ * @param speciesData
  */
-void PokemonPersonalData_Free(PokemonPersonalData *monPersonalData);
+void SpeciesData_Free(SpeciesData *speciesData);
 
 /**
- * @brief Loads a PokemonPersonalData based on its species and form and gets a value from it
+ * @brief Loads a SpeciesData based on its species and form and gets a value from it
  *
  * @param monSpecies
  * @param monForm
  * @param param What value to get
  * @return The requested value
  */
-u32 PokemonPersonalData_GetFormValue(int monSpecies, int monForm, enum PokemonPersonalDataParam param);
+u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam param);
 
 /**
- * @brief Loads a PokemonPersonalData based on its species and gets a value from it
+ * @brief Loads a SpeciesData based on its species and gets a value from it
  *
  * @param monSpecies
  * @param param What value to get
  * @return The requested value
  */
-u32 PokemonPersonalData_GetSpeciesValue(int monSpecies, enum PokemonPersonalDataParam param);
+u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param);
 
 /**
  * @brief Gets how much progress a Pokemon has made towards its next level as a percentage
@@ -321,12 +325,12 @@ u32 Pokemon_GetSpeciesLevelAt(u16 monSpecies, u32 monExp);
 /**
  * @brief Gets the level of a pokemon based on its personal data and exp
  *
- * @param monPersonalData
+ * @param speciesData
  * @param unused_monSpecies unused
  * @param monExp
  * @return The pokemons level
  */
-u32 PokemonPersonalData_GetLevelAt(PokemonPersonalData *monPersonalData, u16 unused_monSpecies, u32 monExp);
+u32 SpeciesData_GetLevelAt(SpeciesData *speciesData, u16 unused_monSpecies, u32 monExp);
 
 /**
  * @brief Gets the nature of a Pokemon based on its personality value
@@ -389,14 +393,14 @@ u8 BoxPokemon_GetGender(BoxPokemon *boxMon);
 u8 Pokemon_GetGenderOf(u16 monSpecies, u32 monPersonality);
 
 /**
- * @brief Gets the gender of a pokemon based on its PokemonPersonalData and personality value
+ * @brief Gets the gender of a pokemon based on its SpeciesData and personality value
  *
- * @param monPersonalData
+ * @param speciesData
  * @param unused_monSpecies unused
  * @param monPersonality
  * @return The pokemons gender
  */
-u8 PokemonPersonalData_GetGenderOf(PokemonPersonalData *monPersonalData, u16 unused_monSpecies, u32 monPersonality);
+u8 SpeciesData_GetGenderOf(SpeciesData *speciesData, u16 unused_monSpecies, u32 monPersonality);
 
 /**
  * @brief Gets whether a BoxPokemon is shiny based on its Original Trainer ID and its personality value

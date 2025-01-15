@@ -2443,7 +2443,7 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
             }
         }
 
-        u16 exp = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battleCtx->faintedMon].species, MON_DATA_PERSONAL_BASE_EXP);
+        u16 exp = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battleCtx->faintedMon].species, SPECIES_DATA_BASE_EXP_REWARD);
         exp = (exp * battleCtx->battleMons[battleCtx->faintedMon].level) / 7;
 
         if (totalMonsWithExpShare) {
@@ -6431,10 +6431,10 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
     form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-    battleCtx->damage = PokemonPersonalData_GetFormValue(species, form, MON_DATA_PERSONAL_BASE_ATK);
+    battleCtx->damage = SpeciesData_GetFormValue(species, form, SPECIES_DATA_BASE_ATK);
     battleCtx->damage *= CURRENT_MOVE_DATA.power;
     battleCtx->damage *= ((level * 2 / 5) + 2);
-    battleCtx->damage /= PokemonPersonalData_GetFormValue(DEFENDING_MON.species, DEFENDING_MON.formNum, MON_DATA_PERSONAL_BASE_DEF);
+    battleCtx->damage /= SpeciesData_GetFormValue(DEFENDING_MON.species, DEFENDING_MON.formNum, SPECIES_DATA_BASE_DEF);
     battleCtx->damage /= 50;
     battleCtx->damage += 2;
     battleCtx->damage *= battleCtx->criticalMul;
@@ -9648,7 +9648,7 @@ static BOOL BtlCmd_LoadArchivedMonData(BattleSystem *battleSys, BattleContext *b
     int personalParam = BattleScript_Read(battleCtx);
 
     int *form = BattleScript_VarAddress(battleSys, battleCtx, formVar);
-    battleCtx->calcTemp = PokemonPersonalData_GetFormValue(species, *form, personalParam);
+    battleCtx->calcTemp = SpeciesData_GetFormValue(species, *form, personalParam);
 
     return FALSE;
 }
@@ -10457,9 +10457,9 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
     int itemEffect;
     int itemPower;
     Pokemon *mon;
-    PokemonPersonalData *personal;
+    SpeciesData *personal;
 
-    personal = PokemonPersonalData_FromMonForm(species, form, HEAP_ID_BATTLE);
+    personal = SpeciesData_FromMonForm(species, form, HEAP_ID_BATTLE);
     mon = Party_GetPokemonBySlotIndex(party, slot);
     item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
@@ -10478,42 +10478,42 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
 
         switch (stat) {
         case STAT_HP:
-            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_HP_YIELD);
+            tmp = SpeciesData_GetValue(personal, SPECIES_DATA_EV_HP_YIELD);
             if (itemEffect == HOLD_EFFECT_LVLUP_HP_EV_UP) {
                 tmp += itemPower;
             }
             break;
 
         case STAT_ATTACK:
-            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_ATK_YIELD);
+            tmp = SpeciesData_GetValue(personal, SPECIES_DATA_EV_ATK_YIELD);
             if (itemEffect == HOLD_EFFECT_LVLUP_ATK_EV_UP) {
                 tmp += itemPower;
             }
             break;
 
         case STAT_DEFENSE:
-            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_DEF_YIELD);
+            tmp = SpeciesData_GetValue(personal, SPECIES_DATA_EV_DEF_YIELD);
             if (itemEffect == HOLD_EFFECT_LVLUP_DEF_EV_UP) {
                 tmp += itemPower;
             }
             break;
 
         case STAT_SPEED:
-            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_SPEED_YIELD);
+            tmp = SpeciesData_GetValue(personal, SPECIES_DATA_EV_SPEED_YIELD);
             if (itemEffect == HOLD_EFFECT_LVLUP_SPEED_EV_UP) {
                 tmp += itemPower;
             }
             break;
 
         case STAT_SPECIAL_ATTACK:
-            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_SP_ATK_YIELD);
+            tmp = SpeciesData_GetValue(personal, SPECIES_DATA_EV_SP_ATK_YIELD);
             if (itemEffect == HOLD_EFFECT_LVLUP_SPATK_EV_UP) {
                 tmp += itemPower;
             }
             break;
 
         case STAT_SPECIAL_DEFENSE:
-            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_SP_DEF_YIELD);
+            tmp = SpeciesData_GetValue(personal, SPECIES_DATA_EV_SP_DEF_YIELD);
             if (itemEffect == HOLD_EFFECT_LVLUP_SPDEF_EV_UP) {
                 tmp += itemPower;
             }
@@ -10543,7 +10543,7 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
         Pokemon_SetValue(mon, MON_DATA_HP_EV + stat, &curEVs[stat]);
     }
 
-    PokemonPersonalData_Free(personal);
+    SpeciesData_Free(personal);
 }
 
 static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
@@ -11156,10 +11156,10 @@ static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *
 
     u32 speciesMod;
     if (battleCtx->msgItemTemp == ITEM_SAFARI_BALL) {
-        speciesMod = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battleCtx->defender].species, MON_DATA_PERSONAL_CATCH_RATE);
+        speciesMod = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battleCtx->defender].species, SPECIES_DATA_CATCH_RATE);
         speciesMod = speciesMod * sSafariCatchRate[battleCtx->safariCatchStage].numerator / sSafariCatchRate[battleCtx->safariCatchStage].denominator;
     } else {
-        speciesMod = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battleCtx->defender].species, MON_DATA_PERSONAL_CATCH_RATE);
+        speciesMod = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battleCtx->defender].species, SPECIES_DATA_CATCH_RATE);
     }
 
     u32 ballMod = 10;

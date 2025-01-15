@@ -979,7 +979,7 @@ static void ov6_02241BAC(const u16 species, const u8 level, const int param2, co
 
     if (!encounterFieldParams->isFirstMonEgg) {
         if (encounterFieldParams->firstMonAbility == ABILITY_CUTE_CHARM) {
-            u32 speciesGenderRatio = PokemonPersonalData_GetSpeciesValue(species, MON_DATA_PERSONAL_GENDER);
+            u32 speciesGenderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
 
             switch (speciesGenderRatio) {
             case GENDER_RATIO_MALE_ONLY:
@@ -1037,7 +1037,7 @@ static void ov6_02241CC0(u16 species, u8 level, const int param2, const WildEnco
     Pokemon_Init(newEncounter);
     BOOL v0 = TRUE;
 
-    u32 speciesGenderRatio = PokemonPersonalData_GetSpeciesValue(species, MON_DATA_PERSONAL_GENDER);
+    u32 speciesGenderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
 
     switch (speciesGenderRatio) {
     case GENDER_RATIO_MALE_ONLY:
@@ -1278,8 +1278,8 @@ static BOOL ov6_0224219C(const EncounterSlot *param0, const u8 maxEncounters, co
     u8 v1 = 0;
 
     for (v2 = 0; v2 < maxEncounters; v2++) {
-        u8 v3 = PokemonPersonalData_GetSpeciesValue(param0[v2].species, MON_DATA_PERSONAL_TYPE_1);
-        u8 v4 = PokemonPersonalData_GetSpeciesValue(param0[v2].species, MON_DATA_PERSONAL_TYPE_2);
+        u8 v3 = SpeciesData_GetSpeciesValue(param0[v2].species, SPECIES_DATA_TYPE_1);
+        u8 v4 = SpeciesData_GetSpeciesValue(param0[v2].species, SPECIES_DATA_TYPE_2);
 
         if (v3 == type || v4 == type) {
             v0[v1++] = v2;

@@ -592,8 +592,8 @@ static void ov21_021E95F8(UnkStruct_ov21_021E968C *param0, CellActorCollection *
     CellActorResourceData v1;
     int v2, v3;
 
-    v2 = PokemonPersonalData_GetSpeciesValue(param4, 6);
-    v3 = PokemonPersonalData_GetSpeciesValue(param4, 7);
+    v2 = SpeciesData_GetSpeciesValue(param4, 6);
+    v3 = SpeciesData_GetSpeciesValue(param4, 7);
     v2 = ov21_021DF180(v2);
     v3 = ov21_021DF180(v3);
 

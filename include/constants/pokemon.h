@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_POKEMON_H
 #define POKEPLATINUM_CONSTANTS_POKEMON_H
 
-#include "consts/pokemon.h" // defs for PokemonType and PokemonPersonalDataParam
+#include "consts/pokemon.h" // defs for PokemonType and SpeciesDataParam
 
 /**
  * @brief Pokemon Stats
@@ -16,6 +16,10 @@ enum {
 
     STAT_MAX
 };
+
+#define MAX_ABILITIES  2
+#define MAX_EGG_GROUPS 2
+#define MAX_TYPES      2
 
 #define MAX_PARTY_SIZE      6
 #define NUM_BOOSTABLE_STATS 8
