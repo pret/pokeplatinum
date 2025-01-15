@@ -26,18 +26,18 @@
 
 #define PAL_PARK_AREA_NONE     0
 #define POINTS_LOST_PER_SECOND 2
-#define BYTES_PER_SPECIES      6
 #define WEIGHT_NO_ENCOUNTER    20
 #define DISTINCT_TYPE_BONUS    50
 #define DIFFERENT_TYPE_BONUS   200
 #define MAX_TIME_SECONDS       1000
 
-enum PAL_PARK_SPECIES_DATA_INDEXES {
-    SPECIES_DATA_LAND_AREA = 0,
-    SPECIES_DATA_WATER_AREA,
-    SPECIES_DATA_CATCHING_POINTS,
-    SPECIES_DATA_RARITY,
-};
+typedef struct PalParkSpecies {
+    u8 landArea;
+    u8 waterArea;
+    u8 catchingPoints;
+    u8 rarity;
+    u8 unused[2];
+} PalParkSpecies;
 
 static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow);
 static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO *dto, CatchingShow *catchingShow);
@@ -119,19 +119,19 @@ int CatchingShow_GetTypePoints(FieldSystem *fieldSystem)
     return CalculateTypePoints(&sCatchingShow);
 }
 
-static void BufferSpeciesData(u32 species, u8 *speciesDataArray)
+static void BufferSpeciesData(u32 species, PalParkSpecies *speciesData)
 {
     GF_ASSERT(0 < species && species <= NATIONAL_DEX_COUNT);
 
-    int speciesOffset = (species - 1) * BYTES_PER_SPECIES;
+    int speciesOffset = (species - 1) * sizeof(PalParkSpecies);
 
-    NARC_ReadFromMemberByIndexPair(speciesDataArray, NARC_INDEX_ARC__PPARK, 0, speciesOffset, sizeof(u8) * BYTES_PER_SPECIES);
+    NARC_ReadFromMemberByIndexPair(speciesData, NARC_INDEX_ARC__PPARK, 0, speciesOffset, sizeof(PalParkSpecies));
 }
 
 static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow)
 {
     int i;
-    u8 speciesData[8];
+    PalParkSpecies speciesData;
     u16 monSpecies;
     PalParkTransfer *v4 = SaveData_PalParkTransfer(fieldSystem->saveData);
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
@@ -143,16 +143,16 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
         monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
         catchingShow->pokemon[i].species = monSpecies;
-        BufferSpeciesData(monSpecies, speciesData);
+        BufferSpeciesData(monSpecies, &speciesData);
 
-        if (speciesData[SPECIES_DATA_LAND_AREA] != 0) {
-            catchingShow->pokemon[i].area = speciesData[SPECIES_DATA_LAND_AREA];
+        if (speciesData.landArea != 0) {
+            catchingShow->pokemon[i].area = speciesData.landArea;
         } else {
-            catchingShow->pokemon[i].area = PAL_PARK_AREA_LAND_END - 1 + speciesData[SPECIES_DATA_WATER_AREA];
+            catchingShow->pokemon[i].area = PAL_PARK_AREA_LAND_END - 1 + speciesData.waterArea;
         }
 
-        catchingShow->pokemon[i].rarity = speciesData[SPECIES_DATA_RARITY];
-        catchingShow->pokemon[i].catchingPoints = speciesData[SPECIES_DATA_CATCHING_POINTS];
+        catchingShow->pokemon[i].rarity = speciesData.rarity;
+        catchingShow->pokemon[i].catchingPoints = speciesData.catchingPoints;
         catchingShow->pokemon[i].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
         catchingShow->pokemon[i].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     }
