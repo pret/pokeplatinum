@@ -311,7 +311,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             ov5_021D5BA8(fieldSystem);
             ov5_021D5278(&fieldSystem->unk_4C);
             ov5_021E1B20(fieldSystem->unk_64);
-            MapNamePopUp_Destroy(fieldSystem->unk_04->unk_08);
+            MapNamePopUp_DestroyTextWindow(fieldSystem->unk_04->unk_08);
 
             if (fieldSystem->unk_04->unk_0C != NULL) {
                 ov5_021D5EF8(fieldSystem->unk_04->unk_0C);
@@ -450,7 +450,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
             v9--;
         }
 
-        ov5_021DD9E8(fieldSystem->unk_04->unk_08, v8, v9);
+        MapNamePop_Show(fieldSystem->unk_04->unk_08, v8, v9);
     }
 
     return TRUE;
