@@ -123,5 +123,12 @@
         "pokemon_pos_m": 29,
         "entry_text": "Because they are weak individually,\nthey form groups. However, they\nbicker if the group grows too big.",
         "category": "Starling Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 4357
     }
 }

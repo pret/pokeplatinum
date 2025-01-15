@@ -116,5 +116,12 @@
         "pokemon_pos_m": 29,
         "entry_text": "Sensitive to changing temperature,\nthe bud is said to bloom when it\nfeels the sun’s warm touch.",
         "category": "Bud Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1537
     }
 }

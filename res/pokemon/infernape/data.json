@@ -147,5 +147,12 @@
         "pokemon_pos_m": 13,
         "entry_text": "It uses unique fighting moves with\nfire on its hands and feet. It will\ntake on any opponent.",
         "category": "Flame Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2306
     }
 }

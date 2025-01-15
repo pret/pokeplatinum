@@ -136,5 +136,12 @@
         "pokemon_pos_m": 65529,
         "entry_text": "It uses starlight as energy. When\nmore stars appear at night, the\npatterns on its back grow larger.",
         "category": "Five Star Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4356
     }
 }

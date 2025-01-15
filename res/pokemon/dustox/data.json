@@ -119,5 +119,12 @@
         "pokemon_pos_m": 65527,
         "entry_text": "Toxic powder is scattered with each\nflap. At night, it is known to strip\nleaves off trees lining boulevards.",
         "category": "Poison Moth Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1540
     }
 }

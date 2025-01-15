@@ -129,5 +129,12 @@
         "pokemon_pos_m": 3,
         "entry_text": "It has volcanoes on its back. If\nmagma builds up in its body, it\nshudders, then erupts violently.",
         "category": "Eruption Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2050
     }
 }

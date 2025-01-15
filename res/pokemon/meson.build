@@ -838,6 +838,20 @@ gen_species_headers = custom_target('gen_species_headers',
     ]
 )
 
+ppark_narc = custom_target('ppark.narc',
+    output: 'ppark.narc',
+    input: personal_files,
+    env: json2bin_env,
+    depends: [ py_consts_generators ],
+    command: [
+        catching_show_data_py,
+        '--narc', narc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+    ]
+)
+
 nitrofs_files += pl_personal_narc
 nitrofs_files += evo_narc
 nitrofs_files += pl_poke_icon_narc
@@ -851,3 +865,4 @@ nitrofs_files += shinzukan_narc
 nitrofs_files += pl_growtbl_narc
 nitrofs_files += pokedex_data_narc
 nitrofs_files += pokedex_data_giratina_altered_narc
+nitrofs_files += ppark_narc

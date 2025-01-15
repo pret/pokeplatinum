@@ -134,5 +134,12 @@
         "pokemon_pos_m": 20,
         "entry_text": "As soon as the tail claws close,\nits needle tips secrete poison.\nIt can survive a year without food.",
         "category": "Scorpion Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

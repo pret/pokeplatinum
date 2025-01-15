@@ -146,5 +146,12 @@
         "pokemon_pos_m": 6,
         "entry_text": "Its howls can be heard over six\nmiles away. It emits all sorts of\nnoises from the ports on its body.",
         "category": "Loud Noise Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1285
     }
 }
