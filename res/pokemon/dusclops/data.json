@@ -132,7 +132,7 @@
     },
     "evolutions": [
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_REAPER_CLOTH",
             "SPECIES_DUSKNOIR"
         ]

@@ -101,7 +101,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             18,
             "SPECIES_SKIPLOOM"
         ]

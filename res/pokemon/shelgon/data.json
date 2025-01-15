@@ -110,7 +110,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             50,
             "SPECIES_SALAMENCE"
         ]

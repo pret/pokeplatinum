@@ -112,7 +112,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             38,
             "SPECIES_MUK"
         ]

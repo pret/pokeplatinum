@@ -99,7 +99,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             21,
             "SPECIES_WEEPINBELL"
         ]

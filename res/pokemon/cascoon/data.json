@@ -55,7 +55,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             10,
             "SPECIES_DUSTOX"
         ]

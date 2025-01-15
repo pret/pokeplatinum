@@ -12,6 +12,8 @@
 #include "constants/species.h"
 #include "consts/abilities.h"
 #include "consts/gender.h"
+#include "consts/items.h"
+#include "consts/pokemon.h"
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
@@ -90,17 +92,13 @@ static const s8 sNatureFlavorAffinities[][5] = {
     { 0x0, 0x0, 0x0, 0x0, 0x0 },
 };
 
-typedef struct PokemonEvolutionMethod {
-    u16 type;
+typedef struct SpeciesEvolution {
+    u16 method;
     u16 param;
     u16 targetSpecies;
-} PokemonEvolutionMethod;
+} SpeciesEvolution;
 
-typedef struct PokemonEvolutionData {
-    PokemonEvolutionMethod methods[7];
-} PokemonEvolutionData;
-
-static enum PokemonDataBlockID {
+enum PokemonDataBlockID {
     DATA_BLOCK_A = 0,
     DATA_BLOCK_B,
     DATA_BLOCK_C,
@@ -136,7 +134,7 @@ static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
 static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
 static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData);
-static void PokemonEvolutionData_LoadSpecies(int monSpecies, PokemonEvolutionData *monEvolutionData);
+static void LoadSpeciesEvolutions(int monSpecies, SpeciesEvolution speciesEvolution[MAX_EVOLUTIONS]);
 static void Pokemon_EncryptData(void *data, u32 bytes, u32 seed);
 static void Pokemon_DecryptData(void *data, u32 bytes, u32 seed);
 static u16 Pokemon_GetDataChecksum(void *data, u32 bytes);
@@ -3247,8 +3245,7 @@ BOOL Pokemon_ShouldLevelUp(Pokemon *mon)
     return FALSE;
 }
 
-// TODO return species enum (TODO: replace species id defines with enum)
-u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *evoTypeResult)
+u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u16 evoParam, int *evoTypeResult)
 {
     u16 targetSpecies = SPECIES_NONE;
 
@@ -3260,164 +3257,205 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
     int i;
     u16 monFriendship;
 
-    u16 monPersonalityUpper = (monPersonality & 0xffff0000) >> 16;
-    u8 itemHoldEffect = Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, 0);
+    u16 monPersonalityUpper = (monPersonality & 0xFFFF0000) >> 16;
+    u8 itemHoldEffect = Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM);
 
-    if (monSpecies != SPECIES_KADABRA) {
-        if (itemHoldEffect == HOLD_EFFECT_NO_EVOLVE && evoTypeList != 3) {
-            return 0;
-        }
+    if (monSpecies != SPECIES_KADABRA
+        && itemHoldEffect == HOLD_EFFECT_NO_EVOLVE
+        && evoClass != EVO_CLASS_BY_ITEM) {
+        return SPECIES_NONE;
     }
 
-    int v11;
+    int stackVar;
     if (evoTypeResult == NULL) {
-        evoTypeResult = &v11;
+        evoTypeResult = &stackVar;
     }
 
-    PokemonEvolutionData *monEvolutionData = Heap_AllocFromHeap(0, sizeof(PokemonEvolutionData));
-    PokemonEvolutionData_LoadSpecies(monSpecies, monEvolutionData);
+    SpeciesEvolution *speciesEvolutions = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesEvolution) * MAX_EVOLUTIONS);
+    LoadSpeciesEvolutions(monSpecies, speciesEvolutions);
 
-    // TODO enum?
-    switch (evoTypeList) {
-    case 0:
+    switch (evoClass) {
+    case EVO_CLASS_BY_LEVEL: {
         u8 monLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
         monFriendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-        for (i = 0; i < 7; i++) {
-            switch (monEvolutionData->methods[i].type) {
-            case 1: // high friendship
-                if (220 <= monFriendship) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 1;
+        for (i = 0; i < MAX_EVOLUTIONS; i++) {
+            switch (speciesEvolutions[i].method) {
+            case EVO_LEVEL_HAPPINESS:
+                if (EVOLVE_FRIENDSHIP_THRESHOLD <= monFriendship) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_HAPPINESS;
                 }
                 break;
-            case 2: // high friendship && daytime
-                if (IsNight() == 0 && 220 <= monFriendship) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 2;
+
+            case EVO_LEVEL_HAPPINESS_DAY:
+                if (IsNight() == FALSE && EVOLVE_FRIENDSHIP_THRESHOLD <= monFriendship) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_HAPPINESS_DAY;
                 }
                 break;
-            case 3: // high friendship && nighttime
-                if (IsNight() == 1 && 220 <= monFriendship) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 3;
+
+            case EVO_LEVEL_HAPPINESS_NIGHT:
+                if (IsNight() == TRUE && EVOLVE_FRIENDSHIP_THRESHOLD <= monFriendship) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_HAPPINESS_NIGHT;
                 }
                 break;
-            case 4: // above level param
-                if (monEvolutionData->methods[i].param <= monLevel) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 4;
+
+            case EVO_LEVEL:
+                if (speciesEvolutions[i].param <= monLevel) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL;
                 }
                 break;
-            case 8: // tyrogue evo to hitmonlee: above level param && attack > defense
-                if (monEvolutionData->methods[i].param <= monLevel) {
+
+            case EVO_LEVEL_ATK_GT_DEF:
+                if (speciesEvolutions[i].param <= monLevel) {
                     if (Pokemon_GetValue(mon, MON_DATA_ATK, NULL) > Pokemon_GetValue(mon, MON_DATA_DEF, NULL)) {
-                        targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                        evoTypeResult[0] = 8;
+                        targetSpecies = speciesEvolutions[i].targetSpecies;
+                        *evoTypeResult = EVO_LEVEL_ATK_GT_DEF;
                     }
                 }
                 break;
-            case 9: // tyrogue evo to hitmontop: above level param && attack == defense
-                if (monEvolutionData->methods[i].param <= monLevel) {
+
+            case EVO_LEVEL_ATK_EQ_DEF:
+                if (speciesEvolutions[i].param <= monLevel) {
                     if (Pokemon_GetValue(mon, MON_DATA_ATK, NULL) == Pokemon_GetValue(mon, MON_DATA_DEF, NULL)) {
-                        targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                        evoTypeResult[0] = 9;
+                        targetSpecies = speciesEvolutions[i].targetSpecies;
+                        *evoTypeResult = EVO_LEVEL_ATK_EQ_DEF;
                     }
                 }
                 break;
-            case 10: // tyrogue evo to hitmonchan: above level param && attack < defense
-                if (monEvolutionData->methods[i].param <= monLevel) {
+
+            case EVO_LEVEL_ATK_LT_DEF:
+                if (speciesEvolutions[i].param <= monLevel) {
                     if (Pokemon_GetValue(mon, MON_DATA_ATK, NULL) < Pokemon_GetValue(mon, MON_DATA_DEF, NULL)) {
-                        targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                        evoTypeResult[0] = 10;
+                        targetSpecies = speciesEvolutions[i].targetSpecies;
+                        *evoTypeResult = EVO_LEVEL_ATK_LT_DEF;
                     }
                 }
                 break;
-            case 11: // wurmple evo to silcoon: above level param && upper16 of personality % 10 < 5
-                if (monEvolutionData->methods[i].param <= monLevel) {
+
+            case EVO_LEVEL_PID_LOW:
+                if (speciesEvolutions[i].param <= monLevel) {
                     if (monPersonalityUpper % 10 < 5) {
-                        targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                        evoTypeResult[0] = 11;
+                        targetSpecies = speciesEvolutions[i].targetSpecies;
+                        *evoTypeResult = EVO_LEVEL_PID_LOW;
                     }
                 }
                 break;
-            case 12: // wurmple evo to cascoon: above level param && upper16 of personality % 10 >= 5
-                if (monEvolutionData->methods[i].param <= monLevel) {
+
+            case EVO_LEVEL_PID_HIGH:
+                if (speciesEvolutions[i].param <= monLevel) {
                     if (monPersonalityUpper % 10 >= 5) {
-                        targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                        evoTypeResult[0] = 12;
+                        targetSpecies = speciesEvolutions[i].targetSpecies;
+                        *evoTypeResult = EVO_LEVEL_PID_HIGH;
                     }
                 }
                 break;
-            case 13: // nincada evo to ninjask: above level param
-                if (monEvolutionData->methods[i].param <= monLevel) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 13;
+
+            case EVO_LEVEL_NINJASK:
+                if (speciesEvolutions[i].param <= monLevel) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_NINJASK;
                 }
                 break;
-            case 14: // nincada evo to shedinja: ???
-                evoTypeResult[0] = 14;
+
+            case EVO_LEVEL_SHEDINJA:
+                *evoTypeResult = EVO_LEVEL_SHEDINJA;
                 break;
-            case 15: // feebas evo: beauty > param
-                if (monEvolutionData->methods[i].param <= monBeauty) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 15;
+
+            case EVO_LEVEL_BEAUTY:
+                if (speciesEvolutions[i].param <= monBeauty) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_BEAUTY;
                 }
                 break;
-            case 18: // happiny evo: hold param && daytime
-                if (IsNight() == 0 && monEvolutionData->methods[i].param == monHeldItem) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 18;
+
+            case EVO_LEVEL_WITH_HELD_ITEM_DAY:
+                if (IsNight() == FALSE && speciesEvolutions[i].param == monHeldItem) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_WITH_HELD_ITEM_DAY;
                 }
                 break;
-            case 19: // sneasel and gligar evo: hold param && nighttime
-                if (IsNight() == 1 && monEvolutionData->methods[i].param == monHeldItem) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 19;
+
+            case EVO_LEVEL_WITH_HELD_ITEM_NIGHT:
+                if (IsNight() == TRUE && speciesEvolutions[i].param == monHeldItem) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_WITH_HELD_ITEM_NIGHT;
                 }
                 break;
-            case 20: // lickitung, tangela etc. evo: after param learned
-                if (Pokemon_HasMove(mon, monEvolutionData->methods[i].param) == 1) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 20;
+
+            case EVO_LEVEL_KNOW_MOVE:
+                if (Pokemon_HasMove(mon, speciesEvolutions[i].param) == TRUE) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_KNOW_MOVE;
                 }
                 break;
-            case 21: // mantyke evo: have param in party
+
+            case EVO_LEVEL_SPECIES_IN_PARTY:
                 if (party != NULL) {
-                    if (Party_HasSpecies(party, monEvolutionData->methods[i].param) == 1) {
-                        targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                        evoTypeResult[0] = 21;
+                    if (Party_HasSpecies(party, speciesEvolutions[i].param) == TRUE) {
+                        targetSpecies = speciesEvolutions[i].targetSpecies;
+                        *evoTypeResult = EVO_LEVEL_SPECIES_IN_PARTY;
                     }
                 }
                 break;
-            case 22: // burmy evo to mothim: above level param && male
-                if (Pokemon_GetValue(mon, MON_DATA_GENDER, NULL) == 0 && monEvolutionData->methods[i].param <= monLevel) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 22;
+
+            case EVO_LEVEL_MALE:
+                if (Pokemon_GetValue(mon, MON_DATA_GENDER, NULL) == GENDER_MALE && speciesEvolutions[i].param <= monLevel) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_MALE;
                 }
                 break;
-            case 23: // burmy evo to wormadam, combee evo to vespiquen: above level param && female
-                if (Pokemon_GetValue(mon, MON_DATA_GENDER, NULL) == 1 && monEvolutionData->methods[i].param <= monLevel) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 23;
+
+            case EVO_LEVEL_FEMALE:
+                if (Pokemon_GetValue(mon, MON_DATA_GENDER, NULL) == GENDER_FEMALE && speciesEvolutions[i].param <= monLevel) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_FEMALE;
                 }
                 break;
-            case 24: // magneton and nosepass evo: custom check
-                if (monEvolutionData->methods[i].type == evoParam) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 24;
+
+            case EVO_LEVEL_MAGNETIC_FIELD:
+                if (speciesEvolutions[i].method == evoParam) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_MAGNETIC_FIELD;
                 }
                 break;
-            case 25: // eevee evo to leafeon: custom check
-                if (monEvolutionData->methods[i].type == evoParam) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 25;
+
+            case EVO_LEVEL_MOSS_ROCK:
+                if (speciesEvolutions[i].method == evoParam) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_MOSS_ROCK;
                 }
                 break;
-            case 26: // eevee evo to glaceon: custom check
-                if (monEvolutionData->methods[i].type == evoParam) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 26;
+
+            case EVO_LEVEL_ICE_ROCK:
+                if (speciesEvolutions[i].method == evoParam) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_LEVEL_ICE_ROCK;
+                }
+                break;
+            }
+
+            if (targetSpecies) {
+                break;
+            }
+        }
+    } break;
+
+    case EVO_CLASS_BY_TRADE:
+        for (i = 0; i < MAX_EVOLUTIONS; i++) {
+            switch (speciesEvolutions[i].method) {
+            case EVO_TRADE:
+                targetSpecies = speciesEvolutions[i].targetSpecies;
+                *evoTypeResult = EVO_TRADE;
+                break;
+
+            case EVO_TRADE_WITH_HELD_ITEM:
+                if (speciesEvolutions[i].param == monHeldItem) {
+                    targetSpecies = speciesEvolutions[i].targetSpecies;
+                    *evoTypeResult = EVO_TRADE_WITH_HELD_ITEM;
                 }
                 break;
             }
@@ -3427,45 +3465,29 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
             }
         }
         break;
-    case 1:
-        for (i = 0; i < 7; i++) {
-            switch (monEvolutionData->methods[i].type) {
-            case 5: // kadabra etc. evo: trade
-                targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                evoTypeResult[0] = 5;
-                break;
-            case 6: // poliwhirl evo to politoed etc.: trade holding param
-                if (monEvolutionData->methods[i].param == monHeldItem) {
-                    targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                    evoTypeResult[0] = 6;
-                }
+
+    case EVO_CLASS_UNUSED_02:
+    case EVO_CLASS_BY_ITEM:
+        for (i = 0; i < MAX_EVOLUTIONS; i++) {
+            if (speciesEvolutions[i].method == EVO_USE_ITEM && speciesEvolutions[i].param == evoParam) {
+                targetSpecies = speciesEvolutions[i].targetSpecies;
+                *evoTypeResult = EVO_NONE;
                 break;
             }
 
-            if (targetSpecies) {
+            if (speciesEvolutions[i].method == EVO_USE_ITEM_MALE
+                && Pokemon_GetValue(mon, MON_DATA_GENDER, NULL) == GENDER_MALE
+                && speciesEvolutions[i].param == evoParam) {
+                targetSpecies = speciesEvolutions[i].targetSpecies;
+                *evoTypeResult = EVO_NONE;
                 break;
             }
-        }
-        break;
-    case 2:
-    case 3:
-        for (i = 0; i < 7; i++) {
-            // use param
-            if (monEvolutionData->methods[i].type == 7 && monEvolutionData->methods[i].param == evoParam) {
-                targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                evoTypeResult[0] = 0;
-                break;
-            }
-            // kirlia evo to gallade: use param && male
-            if (monEvolutionData->methods[i].type == 16 && Pokemon_GetValue(mon, MON_DATA_GENDER, NULL) == 0 && monEvolutionData->methods[i].param == evoParam) {
-                targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                evoTypeResult[0] = 0;
-                break;
-            }
-            // snorunt evo to froslass: use param && female
-            if (monEvolutionData->methods[i].type == 17 && Pokemon_GetValue(mon, MON_DATA_GENDER, NULL) == 1 && monEvolutionData->methods[i].param == evoParam) {
-                targetSpecies = monEvolutionData->methods[i].targetSpecies;
-                evoTypeResult[0] = 0;
+
+            if (speciesEvolutions[i].method == EVO_USE_ITEM_FEMALE
+                && Pokemon_GetValue(mon, MON_DATA_GENDER, NULL) == GENDER_FEMALE
+                && speciesEvolutions[i].param == evoParam) {
+                targetSpecies = speciesEvolutions[i].targetSpecies;
+                *evoTypeResult = EVO_NONE;
                 break;
             }
 
@@ -3476,7 +3498,7 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
         break;
     }
 
-    Heap_FreeToHeap(monEvolutionData);
+    Heap_FreeToHeap(speciesEvolutions);
     return targetSpecies;
 }
 
@@ -4546,9 +4568,9 @@ static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speci
     NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, monSpecies);
 }
 
-static void PokemonEvolutionData_LoadSpecies(int monSpecies, PokemonEvolutionData *monEvolutionData)
+static void LoadSpeciesEvolutions(int monSpecies, SpeciesEvolution speciesEvolutions[MAX_EVOLUTIONS])
 {
-    NARC_ReadWholeMemberByIndexPair(monEvolutionData, NARC_INDEX_POKETOOL__PERSONAL__EVO, monSpecies);
+    NARC_ReadWholeMemberByIndexPair(speciesEvolutions, NARC_INDEX_POKETOOL__PERSONAL__EVO, monSpecies);
 }
 
 static void Pokemon_EncryptData(void *data, u32 bytes, u32 seed)

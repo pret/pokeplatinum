@@ -113,7 +113,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             33,
             "SPECIES_BRONZONG"
         ]

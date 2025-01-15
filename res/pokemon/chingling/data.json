@@ -107,7 +107,7 @@
     },
     "evolutions": [
         [
-            "EVO_HAPPINESS_NIGHT",
+            "EVO_LEVEL_HAPPINESS_NIGHT",
             "SPECIES_CHIMECHO"
         ]
     ],

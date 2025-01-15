@@ -58,7 +58,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             7,
             "SPECIES_METAPOD"
         ]

@@ -124,7 +124,7 @@
     },
     "evolutions": [
         [
-            "EVO_USE_ITEM_NIGHT",
+            "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
             "ITEM_RAZOR_CLAW",
             "SPECIES_WEAVILE"
         ]

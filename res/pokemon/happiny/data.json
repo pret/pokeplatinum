@@ -105,7 +105,7 @@
     },
     "evolutions": [
         [
-            "EVO_USE_ITEM_DAY",
+            "EVO_LEVEL_WITH_HELD_ITEM_DAY",
             "ITEM_OVAL_STONE",
             "SPECIES_CHANSEY"
         ]

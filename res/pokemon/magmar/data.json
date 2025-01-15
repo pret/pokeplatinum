@@ -107,7 +107,7 @@
     },
     "evolutions": [
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_MAGMARIZER",
             "SPECIES_MAGMORTAR"
         ]

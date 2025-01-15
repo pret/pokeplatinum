@@ -120,7 +120,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             15,
             "SPECIES_FURRET"
         ]

@@ -112,7 +112,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             37,
             "SPECIES_DUSCLOPS"
         ]

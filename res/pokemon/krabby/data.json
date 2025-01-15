@@ -114,7 +114,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             28,
             "SPECIES_KINGLER"
         ]

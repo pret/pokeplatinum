@@ -118,7 +118,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             14,
             "SPECIES_MONFERNO"
         ]

@@ -111,7 +111,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             45,
             "SPECIES_FLYGON"
         ]

@@ -20,6 +20,7 @@ enum {
 #define MAX_ABILITIES  2
 #define MAX_EGG_GROUPS 2
 #define MAX_TYPES      2
+#define MAX_EVOLUTIONS 7
 
 #define MAX_PARTY_SIZE      6
 #define NUM_BOOSTABLE_STATS 8
@@ -37,6 +38,8 @@ enum {
 #define LEARNSET_NO_MOVE_TO_LEARN   0
 #define LEARNSET_MOVE_ALREADY_KNOWN 0xFFFE
 #define LEARNSET_ALL_SLOTS_FILLED   0xFFFF
+
+#define EVOLVE_FRIENDSHIP_THRESHOLD 220
 
 /**
  * @brief Pokemon Data Parameters

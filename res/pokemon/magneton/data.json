@@ -110,7 +110,7 @@
     },
     "evolutions": [
         [
-            "EVO_ELECTRIC_FIELD",
+            "EVO_LEVEL_MAGNETIC_FIELD",
             "SPECIES_MAGNEZONE"
         ]
     ],

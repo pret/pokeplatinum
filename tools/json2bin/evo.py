@@ -17,17 +17,17 @@ def get_evo_params(method: pokemon.PokemonEvoMethod, evo: Sequence):
     #None of these take an extra parameter
     if method in set([
         pokemon.PokemonEvoMethod.EVO_NONE,
-        pokemon.PokemonEvoMethod.EVO_HAPPINESS,
-        pokemon.PokemonEvoMethod.EVO_HAPPINESS_DAY,
-        pokemon.PokemonEvoMethod.EVO_HAPPINESS_NIGHT,
+        pokemon.PokemonEvoMethod.EVO_LEVEL_HAPPINESS,
+        pokemon.PokemonEvoMethod.EVO_LEVEL_HAPPINESS_DAY,
+        pokemon.PokemonEvoMethod.EVO_LEVEL_HAPPINESS_NIGHT,
         pokemon.PokemonEvoMethod.EVO_TRADE,
-        pokemon.PokemonEvoMethod.EVO_ELECTRIC_FIELD,
-        pokemon.PokemonEvoMethod.EVO_MOSSY_STONE,
-        pokemon.PokemonEvoMethod.EVO_ICY_STONE]):
+        pokemon.PokemonEvoMethod.EVO_LEVEL_MAGNETIC_FIELD,
+        pokemon.PokemonEvoMethod.EVO_LEVEL_MOSS_ROCK,
+        pokemon.PokemonEvoMethod.EVO_LEVEL_ICE_ROCK]):
         final_param = 0
     # These all specify a basic integer param
     elif method in set([
-        pokemon.PokemonEvoMethod.EVO_LEVEL_UP,
+        pokemon.PokemonEvoMethod.EVO_LEVEL,
         pokemon.PokemonEvoMethod.EVO_LEVEL_ATK_GT_DEF,
         pokemon.PokemonEvoMethod.EVO_LEVEL_ATK_EQ_DEF,
         pokemon.PokemonEvoMethod.EVO_LEVEL_ATK_LT_DEF,
@@ -37,20 +37,20 @@ def get_evo_params(method: pokemon.PokemonEvoMethod, evo: Sequence):
         pokemon.PokemonEvoMethod.EVO_LEVEL_SHEDINJA,
         pokemon.PokemonEvoMethod.EVO_LEVEL_MALE,
         pokemon.PokemonEvoMethod.EVO_LEVEL_FEMALE,
-        pokemon.PokemonEvoMethod.EVO_BEAUTY]):
+        pokemon.PokemonEvoMethod.EVO_LEVEL_BEAUTY]):
         final_param = maybe_param
     # These specify an item
     elif method in set([
-        pokemon.PokemonEvoMethod.EVO_TRADE_WITH_ITEM,
+        pokemon.PokemonEvoMethod.EVO_TRADE_WITH_HELD_ITEM,
         pokemon.PokemonEvoMethod.EVO_USE_ITEM,
         pokemon.PokemonEvoMethod.EVO_USE_ITEM_MALE,
         pokemon.PokemonEvoMethod.EVO_USE_ITEM_FEMALE,
-        pokemon.PokemonEvoMethod.EVO_USE_ITEM_DAY,
-        pokemon.PokemonEvoMethod.EVO_USE_ITEM_NIGHT]):
+        pokemon.PokemonEvoMethod.EVO_LEVEL_WITH_HELD_ITEM_DAY,
+        pokemon.PokemonEvoMethod.EVO_LEVEL_WITH_HELD_ITEM_NIGHT]):
         final_param = items.Item[maybe_param].value
-    elif method == pokemon.PokemonEvoMethod.EVO_KNOW_MOVE:
+    elif method == pokemon.PokemonEvoMethod.EVO_LEVEL_KNOW_MOVE:
         final_param = moves.Move[maybe_param].value
-    elif method == pokemon.PokemonEvoMethod.EVO_MON_IN_PARTY:
+    elif method == pokemon.PokemonEvoMethod.EVO_LEVEL_SPECIES_IN_PARTY:
         final_param = species.PokemonSpecies[maybe_param].value
 
     return final_param

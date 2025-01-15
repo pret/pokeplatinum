@@ -112,7 +112,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             32,
             "SPECIES_CACTURNE"
         ]

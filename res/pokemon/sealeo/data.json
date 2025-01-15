@@ -109,7 +109,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             44,
             "SPECIES_WALREIN"
         ]

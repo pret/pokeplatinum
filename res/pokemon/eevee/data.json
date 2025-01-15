@@ -92,11 +92,11 @@
     },
     "evolutions": [
         [
-            "EVO_MOSSY_STONE",
+            "EVO_LEVEL_MOSS_ROCK",
             "SPECIES_LEAFEON"
         ],
         [
-            "EVO_ICY_STONE",
+            "EVO_LEVEL_ICE_ROCK",
             "SPECIES_GLACEON"
         ],
         [
@@ -115,11 +115,11 @@
             "SPECIES_FLAREON"
         ],
         [
-            "EVO_HAPPINESS_DAY",
+            "EVO_LEVEL_HAPPINESS_DAY",
             "SPECIES_ESPEON"
         ],
         [
-            "EVO_HAPPINESS_NIGHT",
+            "EVO_LEVEL_HAPPINESS_NIGHT",
             "SPECIES_UMBREON"
         ]
     ],

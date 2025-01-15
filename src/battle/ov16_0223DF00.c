@@ -978,7 +978,7 @@ u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2)
         if (param1[0] < 6) {
             v0 = Party_GetPokemonBySlotIndex(param0->parties[0], param1[0]);
 
-            if ((v1 = sub_02076B94(param0->parties[0], v0, 0, param0->mapEvolutionMethod, param2))) {
+            if ((v1 = Pokemon_GetEvolutionTargetSpecies(param0->parties[0], v0, EVO_CLASS_BY_LEVEL, param0->mapEvolutionMethod, param2))) {
                 return v1;
             }
         }

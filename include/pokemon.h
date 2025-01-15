@@ -78,6 +78,13 @@ typedef struct SpeciesData {
     u32 tmLearnsetMask4; // Bitflags for whether this pokemon can learn a TM (HM5 -> HM8, rest unused)
 } SpeciesData;
 
+enum EvolutionClass {
+    EVO_CLASS_BY_LEVEL = 0,
+    EVO_CLASS_BY_TRADE,
+    EVO_CLASS_UNUSED_02,
+    EVO_CLASS_BY_ITEM,
+};
+
 /**
  * @brief Zeros out a Pokemon data structure, then encrypts the result
  *
@@ -562,7 +569,7 @@ u8 BoxPokemon_GetForm(BoxPokemon *boxMon);
 BoxPokemon *Pokemon_GetBoxPokemon(Pokemon *mon);
 
 BOOL Pokemon_ShouldLevelUp(Pokemon *mon);
-u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *evoTypeResult);
+u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u16 evoParam, int *evoTypeResult);
 u16 sub_02076F84(const u16 monSpecies);
 u16 sub_02076FD4(const u16 monSpecies);
 

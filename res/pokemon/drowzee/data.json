@@ -116,7 +116,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             26,
             "SPECIES_HYPNO"
         ]

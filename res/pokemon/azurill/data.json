@@ -91,7 +91,7 @@
     },
     "evolutions": [
         [
-            "EVO_HAPPINESS",
+            "EVO_LEVEL_HAPPINESS",
             "SPECIES_MARILL"
         ]
     ],

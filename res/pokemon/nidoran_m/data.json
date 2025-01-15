@@ -105,7 +105,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             16,
             "SPECIES_NIDORINO"
         ]

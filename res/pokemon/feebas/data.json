@@ -83,7 +83,7 @@
     },
     "evolutions": [
         [
-            "EVO_BEAUTY",
+            "EVO_LEVEL_BEAUTY",
             170,
             "SPECIES_MILOTIC"
         ]

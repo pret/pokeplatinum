@@ -111,7 +111,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             40,
             "SPECIES_DRAPION"
         ]

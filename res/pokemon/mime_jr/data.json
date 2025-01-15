@@ -126,7 +126,7 @@
     },
     "evolutions": [
         [
-            "EVO_KNOW_MOVE",
+            "EVO_LEVEL_KNOW_MOVE",
             "MOVE_MIMIC",
             "SPECIES_MR_MIME"
         ]

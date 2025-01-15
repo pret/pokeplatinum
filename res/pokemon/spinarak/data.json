@@ -97,7 +97,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             22,
             "SPECIES_ARIADOS"
         ]

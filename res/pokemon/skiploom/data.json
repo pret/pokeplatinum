@@ -106,7 +106,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             27,
             "SPECIES_JUMPLUFF"
         ]
