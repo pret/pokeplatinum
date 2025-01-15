@@ -92,18 +92,6 @@ static const s8 sNatureFlavorAffinities[][5] = {
     { 0x0, 0x0, 0x0, 0x0, 0x0 },
 };
 
-typedef struct SpeciesEvolution {
-    u16 method;
-    u16 param;
-    u16 targetSpecies;
-} SpeciesEvolution;
-
-// This struct is not explicitly used; it is provided to document and enforce the size of
-// the learnset entries.
-typedef struct SpeciesLearnset {
-    __attribute__((aligned(4))) u16 entries[MAX_LEARNSET_ENTRIES + 1];
-} SpeciesLearnset;
-
 enum PokemonDataBlockID {
     DATA_BLOCK_A = 0,
     DATA_BLOCK_B,

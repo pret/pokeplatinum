@@ -14,6 +14,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon.h"
+#include "struct_defs/species.h"
 #include "struct_defs/sprite_animation_frame.h"
 
 #include "overlay005/struct_ov5_021DE5D0.h"
@@ -30,53 +31,6 @@
 
 #define FACE_BACK  0
 #define FACE_FRONT 2
-
-typedef struct SpeciesBaseStats {
-    u8 hp;
-    u8 attack;
-    u8 defense;
-    u8 speed;
-    u8 spAttack;
-    u8 spDefense;
-} SpeciesBaseStats;
-
-typedef struct SpeciesEVYields {
-    u16 hp : 2;
-    u16 attack : 2;
-    u16 defense : 2;
-    u16 speed : 2;
-    u16 spAttack : 2;
-    u16 spDefense : 2;
-} SpeciesEVYields;
-
-typedef struct SpeciesWildHeldItems {
-    u16 common;
-    u16 rare;
-} SpeciesWildHeldItems;
-
-typedef struct SpeciesData {
-    SpeciesBaseStats baseStats;
-    u8 types[MAX_TYPES];
-    u8 catchRate;
-    u8 baseExpReward;
-    SpeciesEVYields evYields;
-    SpeciesWildHeldItems wildHeldItems;
-    u8 genderRatio;
-    u8 hatchCycles;
-    u8 baseFriendship;
-    u8 expRate;
-    u8 eggGroups[MAX_EGG_GROUPS];
-    u8 abilities[MAX_ABILITIES];
-    u8 safariFleeRate;
-    u8 bodyColor : 7;
-    u8 flipSprite : 1;
-    // u16 padding;
-
-    u32 tmLearnsetMask1; // Bitflags for whether this pokemon can learn a TM (TM1 -> TM32)
-    u32 tmLearnsetMask2; // Bitflags for whether this pokemon can learn a TM (TM33 -> TM64)
-    u32 tmLearnsetMask3; // Bitflags for whether this pokemon can learn a TM (TM65 -> TM92, HM1 -> HM4)
-    u32 tmLearnsetMask4; // Bitflags for whether this pokemon can learn a TM (HM5 -> HM8, rest unused)
-} SpeciesData;
 
 enum EvolutionClass {
     EVO_CLASS_BY_LEVEL = 0,
