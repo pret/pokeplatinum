@@ -2099,16 +2099,16 @@ u32 SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param)
         result = speciesData->flipSprite;
         break;
     case SPECIES_DATA_TM_LEARNSET_MASK_1:
-        result = speciesData->tmLearnsetMask1;
+        result = speciesData->tmLearnsetMasks[0];
         break;
     case SPECIES_DATA_TM_LEARNSET_MASK_2:
-        result = speciesData->tmLearnsetMask2;
+        result = speciesData->tmLearnsetMasks[1];
         break;
     case SPECIES_DATA_TM_LEARNSET_MASK_3:
-        result = speciesData->tmLearnsetMask3;
+        result = speciesData->tmLearnsetMasks[2];
         break;
     case SPECIES_DATA_TM_LEARNSET_MASK_4:
-        result = speciesData->tmLearnsetMask4;
+        result = speciesData->tmLearnsetMasks[3];
         break;
     }
 

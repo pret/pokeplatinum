@@ -54,10 +54,7 @@ typedef struct SpeciesData {
     u8 flipSprite : 1;
     // u16 padding;
 
-    u32 tmLearnsetMask1; // Bitflags for whether this pokemon can learn a TM (TM1 -> TM32)
-    u32 tmLearnsetMask2; // Bitflags for whether this pokemon can learn a TM (TM33 -> TM64)
-    u32 tmLearnsetMask3; // Bitflags for whether this pokemon can learn a TM (TM65 -> TM92, HM1 -> HM4)
-    u32 tmLearnsetMask4; // Bitflags for whether this pokemon can learn a TM (HM5 -> HM8, rest unused)
+    u32 tmLearnsetMasks[4]; // Bitflags for whether this pokemon can learn a TM
 } SpeciesData;
 
 typedef struct SpeciesEvolution {
