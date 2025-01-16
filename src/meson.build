@@ -375,7 +375,7 @@ pokeplatinum_c = files(
     'overlay005/vs_seeker.c',
     'overlay005/ov5_021DC018.c',
     'overlay005/ov5_021DD42C.c',
-    'overlay005/ov5_021DD6FC.c',
+    'overlay005/map_name_popup.c',
     'overlay005/ov5_021DDAE4.c',
     'overlay005/encounter_effect.c',
     'overlay005/ov5_021DF440.c',

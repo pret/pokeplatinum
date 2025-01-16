@@ -481,7 +481,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_vs_seeker.c.o
 	Object main.nef.p/src_overlay005_ov5_021DC018.c.o
 	Object main.nef.p/src_overlay005_ov5_021DD42C.c.o
-	Object main.nef.p/src_overlay005_ov5_021DD6FC.c.o
+	Object main.nef.p/src_overlay005_map_name_popup.c.o
 	Object main.nef.p/src_overlay005_ov5_021DDAE4.c.o
 	Object main.nef.p/src_overlay005_encounter_effect.c.o
 	Object main.nef.p/src_overlay005_ov5_021DF440.c.o

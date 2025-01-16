@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DD6FC.h"
+#include "overlay005/map_name_popup.h"
 #include "overlay005/ov5_021E135C.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"

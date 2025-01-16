@@ -11,8 +11,8 @@
 #include "functypes/funcptr_020EC57C.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/hblank_system.h"
+#include "overlay005/map_name_popup.h"
 #include "overlay005/ov5_021D431C.h"
-#include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
 #include "overlay005/struct_ov5_021D4E00_decl.h"
 
