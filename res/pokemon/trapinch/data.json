@@ -119,5 +119,12 @@
         "pokemon_pos_m": 21,
         "entry_text": "It makes a conical pit in desert\nsand and lies in wait at the bottom\nfor prey to come tumbling down.",
         "category": "Ant Pit Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2056
     }
 }

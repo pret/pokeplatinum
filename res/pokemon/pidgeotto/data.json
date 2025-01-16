@@ -127,5 +127,12 @@
         "pokemon_pos_m": 65529,
         "entry_text": "It flies over its wide territory in\nsearch of prey, downing it\nwith its highly developed claws.",
         "category": "Bird Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4357
     }
 }

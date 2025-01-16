@@ -130,5 +130,12 @@
         "pokemon_pos_m": 0,
         "entry_text": "Its breath has the fantastic\nability to revive dead plants and\nflowers.",
         "category": "Herb Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 257
     }
 }

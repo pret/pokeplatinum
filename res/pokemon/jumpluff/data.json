@@ -124,5 +124,12 @@
         "pokemon_pos_m": 65529,
         "entry_text": "Blown by seasonal winds, it\ncircles the globe, scattering\ncotton spores as it goes.",
         "category": "Cottonweed Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 4353
     }
 }

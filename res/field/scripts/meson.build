@@ -1131,6 +1131,17 @@ scr_seq_files = files(
     'scripts_route_230.s',
 )
 
+# Field scripts have a dependency on `trdata.naix`, and so they require a
+# custom generator.
+field_script_gen = generator(make_script_bin_sh,
+    arguments: make_script_bin_args,
+    depends: [
+        make_script_bin_deps,
+        trdata_naix,
+    ],
+    output: '@BASENAME@',
+)
+
 scr_seq_narc_order = files('scripts.order')
 
 scr_seq_narc = custom_target('scr_seq.narc',
@@ -1138,19 +1149,16 @@ scr_seq_narc = custom_target('scr_seq.narc',
         'scr_seq.narc',
         'scr_seq.naix',
     ],
-    input: s_to_bin_gen.process(
+    input: field_script_gen.process(
         scr_seq_files,
         extra_args: ['--out-dir', scr_seq_private_dir]
     ),
     command: [
-        knarc_exe,
-        '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT0@',
-        '-o', scr_seq_narc_order,
-        '-n'
-    ],
-    depends: [
-        trdata_narc,
+        narc_exe, 'create',
+        '--naix',
+        '--order', scr_seq_narc_order,
+        '--output', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ],
 )
 

@@ -17,6 +17,7 @@
 /subprojects/constgen/
 /subprojects/SDATTool/
 /subprojects/knarc/
+/subprojects/narc/
 
 # CLion folders
 .idea/

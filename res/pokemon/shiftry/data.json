@@ -138,5 +138,12 @@
         "pokemon_pos_m": 8,
         "entry_text": "By flapping its leafy fan, it can\nwhip up gusts of 100 ft/second\nthat can level houses.",
         "category": "Wicked Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 4097
     }
 }

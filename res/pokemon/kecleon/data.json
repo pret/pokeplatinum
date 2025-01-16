@@ -155,5 +155,12 @@
         "pokemon_pos_m": 15,
         "entry_text": "It can freely change its body’s\ncolor. The zigzag pattern on its\nbelly doesn’t change, however.",
         "category": "Color Swap Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1285
     }
 }

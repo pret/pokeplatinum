@@ -484,7 +484,7 @@ pl_waza_tbl_narc = custom_target('pl_waza_tbl.narc',
     depends: [ py_consts_generators ],
     command: [
         movedata_py,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',

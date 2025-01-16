@@ -113,5 +113,12 @@
         "pokemon_pos_m": 65527,
         "entry_text": "It lives in warm seas. It is said\nthat a couple finding this Pokémon\nwill be blessed with eternal love.",
         "category": "Rendezvous Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

@@ -122,5 +122,12 @@
         "pokemon_pos_m": 16,
         "entry_text": "Inhaled air is heated in the flame\nsac in its body to an intense fire\nover 3,000 degrees Fahrenheit.",
         "category": "Flame Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 514
     }
 }

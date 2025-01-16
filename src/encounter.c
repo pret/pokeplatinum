@@ -20,6 +20,7 @@
 #include "overlay006/ov6_02246034.h"
 #include "savedata/save_table.h"
 
+#include "catching_show.h"
 #include "communication_information.h"
 #include "enc_effects.h"
 #include "enums.h"
@@ -46,7 +47,6 @@
 #include "unk_0202F1D4.h"
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
-#include "unk_020562F8.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020797C8.h"
@@ -618,7 +618,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
-        sub_020563AC(fieldSystem, encounter->dto);
+        CatchingShow_UpdateBattleResult(fieldSystem, encounter->dto);
         UpdateGameRecords(fieldSystem, encounter->dto);
         (*state)++;
         break;
@@ -637,7 +637,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
     case 6:
         FreeEncounter(encounter);
 
-        if (sub_020563BC(fieldSystem) == 0) {
+        if (CatchingShow_GetParkBallCount(fieldSystem) == 0) {
             ScriptManager_Change(task, 3, NULL);
             return FALSE;
         } else {

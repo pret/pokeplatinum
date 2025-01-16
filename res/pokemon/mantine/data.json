@@ -134,5 +134,12 @@
         "pokemon_pos_m": 65535,
         "entry_text": "While elegantly swimming in the sea,\nit ignores REMORAID that cling to\nits fins seeking food scraps.",
         "category": "Kite Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4355
     }
 }

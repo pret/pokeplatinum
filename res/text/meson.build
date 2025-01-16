@@ -773,11 +773,11 @@ message_banks_narc = custom_target('pl_msg.narc',
     output: 'pl_msg.narc',
     input: gmm_to_bin_gen.process(message_bank_files),
     command: [
-        knarc_exe,
-        '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT0@',
-        '-o', message_banks_narc_order,
-        '-n'
+        narc_exe, 'create',
+        '--naix',
+        '--order', message_banks_narc_order,
+        '--output', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ]
 )
 

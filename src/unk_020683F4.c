@@ -30,6 +30,7 @@
 #include "core_sys.h"
 #include "field_map_change.h"
 #include "field_menu.h"
+#include "field_message.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "game_options.h"
@@ -42,6 +43,7 @@
 #include "map_tile_behavior.h"
 #include "party.h"
 #include "player_avatar.h"
+#include "pokedex_data.h"
 #include "pokeradar.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -49,14 +51,12 @@
 #include "strbuf.h"
 #include "system_flags.h"
 #include "unk_0200F174.h"
-#include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_02055C50.h"
-#include "unk_0205D8CC.h"
 #include "unk_0205F180.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
@@ -1065,7 +1065,7 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (Pokedex_IsNationalDexObtained(SaveData_Pokedex(param0->fieldSystem->saveData)) == FALSE) {
+    if (PokedexData_IsNationalDexObtained(SaveData_PokedexData(param0->fieldSystem->saveData)) == FALSE) {
         return -1;
     }
 
