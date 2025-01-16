@@ -2,10 +2,8 @@
 import pathlib
 import json2bin as j2b
 
-from consts import (
-    species,
-    catching_show
-)
+from consts import catching_show
+from generated import species
 
 def parse_catching_show_data(cs_data: dict, _size: int, _consts: type = None) -> bytes:
     binary = bytearray([])
@@ -23,7 +21,7 @@ SCHEMA = j2b.Parser() \
 
 def indexer(file_path: pathlib.Path) -> int:
     name = file_path.parent.stem.upper()
-    return species.PokemonSpecies[f'SPECIES_{name}'].value
+    return species.Species[f'SPECIES_{name}'].value
 
 
 args = j2b.ARGPARSER.parse_args()

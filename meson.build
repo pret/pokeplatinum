@@ -31,7 +31,8 @@ c_args = [
     '-char', 'signed',
     '-nosyspath',
     '-stdinc',
-    '-sym', 'on'
+    '-sym', 'on',
+    '-DPOKEPLATINUM_GENERATED_ENUM',
 ]
 
 if get_option('gdb_debugging')
@@ -136,6 +137,7 @@ subdir('lib')
 ###                       CONSTS                         ###
 ############################################################
 subdir('consts')
+subdir('generated')
 
 
 ############################################################

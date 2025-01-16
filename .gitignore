@@ -18,6 +18,7 @@
 /subprojects/SDATTool/
 /subprojects/knarc/
 /subprojects/narc/
+/subprojects/metang/
 
 # CLion folders
 .idea/

@@ -2,9 +2,9 @@
 import pathlib
 import json2bin as j2b
 
-from consts import (
+from generated import (
     moves,
-    species
+    species,
 )
 
 
@@ -70,7 +70,7 @@ def indexer(file_path: pathlib.Path) -> int:
         species_idx = file_path.parent.parent.parent.stem.upper()
         form = file_path.parent.stem.upper()
         return FORM_INDICES[species_idx][form]
-    return species.PokemonSpecies[f'SPECIES_{name}'].value
+    return species.Species[f'SPECIES_{name}'].value
 
 
 args = j2b.ARGPARSER.parse_args()

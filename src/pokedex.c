@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "generated/gender_ratios.h"
 
 #include "heap.h"
 #include "inlines.h"

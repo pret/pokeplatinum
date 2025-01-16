@@ -40,6 +40,10 @@ arm9_c_flags = [
     '-DSDK_CW_FORCE_EXPORT_SUPPORT',
     '-DSDK_FINALROM',
     '-DSDK_TS',
+    '-DPOKEPLATINUM_GENERATED_ENUM',
+    '-DPM_KEEP_ASSERTS',
+    '-DGAME_VERSION=PLATINUM',
+    '-DGAME_LANGUAGE=ENGLISH'
 ]
 
 asm_commands = [

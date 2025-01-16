@@ -3,11 +3,14 @@ from collections.abc import Sequence
 import pathlib
 import json2bin as j2b
 
-from consts import (
+from generated import (
     items,
     moves,
+    species,
+)
+
+from consts import (
     pokemon,
-    species
 )
 
 
@@ -51,7 +54,7 @@ def get_evo_params(method: pokemon.PokemonEvoMethod, evo: Sequence):
     elif method == pokemon.PokemonEvoMethod.EVO_LEVEL_KNOW_MOVE:
         final_param = moves.Move[maybe_param].value
     elif method == pokemon.PokemonEvoMethod.EVO_LEVEL_SPECIES_IN_PARTY:
-        final_param = species.PokemonSpecies[maybe_param].value
+        final_param = species.Species[maybe_param].value
 
     return final_param
 
@@ -70,7 +73,7 @@ def parse_evolutions(table: Sequence, _size: int, _enum: None) -> bytes:
         evo = table[j]
         method = pokemon.PokemonEvoMethod[evo[0]]
         params = get_evo_params(method, evo)
-        target = species.PokemonSpecies[evo[-1]]
+        target = species.Species[evo[-1]]
         out.extend(table_line(method.value, params, target.value))
         
     out.extend((0).to_bytes(44 - len(out), 'little'))
@@ -118,7 +121,7 @@ def indexer(file_path: pathlib.Path) -> int:
         species_idx = file_path.parent.parent.parent.stem.upper()
         form = file_path.parent.stem.upper()
         return FORM_INDICES[species_idx][form]
-    return species.PokemonSpecies[f'SPECIES_{name}'].value
+    return species.Species[f'SPECIES_{name}'].value
 
 
 args = j2b.ARGPARSER.parse_args()

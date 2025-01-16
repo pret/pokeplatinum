@@ -2,10 +2,8 @@
 import pathlib
 import json2bin as j2b
 
-from consts import (
-    species,
-    shadows
-)
+from consts import shadows
+from generated import species
 
 
 def parse_frame(frame: dict) -> bytes:
@@ -41,7 +39,7 @@ SCHEMA = j2b.Parser() \
 def indexer(file_path: pathlib.Path) -> int:
     name = file_path.parent.stem.upper()
     if name == '000': return 0
-    return species.PokemonSpecies[f'SPECIES_{name}'].value
+    return species.Species[f'SPECIES_{name}'].value
 
 
 args = j2b.ARGPARSER.parse_args()

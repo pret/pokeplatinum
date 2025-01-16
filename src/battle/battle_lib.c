@@ -11,9 +11,9 @@
 #include "constants/species.h"
 #include "constants/string.h"
 #include "constants/trainer.h"
-#include "consts/abilities.h"
 #include "consts/game_records.h"
 #include "consts/gender.h"
+#include "generated/abilities.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02098700_decl.h"

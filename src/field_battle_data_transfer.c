@@ -10,8 +10,8 @@
 #include "constants/pokemon.h"
 #include "constants/string.h"
 #include "consts/battle.h"
-#include "consts/items.h"
-#include "consts/species.h"
+#include "generated/items.h"
+#include "generated/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"

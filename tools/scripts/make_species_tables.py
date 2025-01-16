@@ -2,9 +2,10 @@
 import argparse
 import json
 import pathlib
-from consts.moves import Move
-from consts.species import PokemonSpecies
+
 from consts.pokemon import PokemonFootprintSize
+from generated.moves import Move
+from generated.species import Species
 
 
 argparser = argparse.ArgumentParser(
@@ -83,7 +84,7 @@ for file_path in source_dir.glob("**/data.json"):
 
         isForm = True
     else:
-        species_id = PokemonSpecies[f"SPECIES_{species_name}"].value
+        species_id = Species[f"SPECIES_{species_name}"].value
 
 
     # this needs to be increased if more than 40 moves are added to this list

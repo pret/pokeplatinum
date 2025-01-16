@@ -3,14 +3,18 @@ import pathlib
 
 import json2bin as j2b
 
-from consts import (
+from generated import (
     abilities,
+    egg_groups,
+    exp_rates,
+    gender_ratios,
     items,
-    pokemon,
+    pokemon_colors,
+    pokemon_types,
     species,
-    tm_learnset
 )
 
+from consts import tm_learnset
 
 def parse_ev_yields(ev_yields: dict, size: int, _: None) -> bytes:
     packed = ev_yields['hp']
@@ -22,7 +26,7 @@ def parse_ev_yields(ev_yields: dict, size: int, _: None) -> bytes:
     return packed.to_bytes(size, 'little')
 
 def parse_color(sprite: dict, size: int, _: None) -> bytes:
-    packed = pokemon.PokemonColor[sprite['color']].value
+    packed = pokemon_colors.PokemonColor[sprite['color']].value
     packed = packed + ((1 if sprite['flip_sprite'] else 0) << 7)
     return packed.to_bytes(size, 'little')
 
@@ -34,19 +38,19 @@ SCHEMA = j2b.Parser() \
     .register('base_stats.speed', 1, j2b.parse_int) \
     .register('base_stats.special_attack', 1, j2b.parse_int) \
     .register('base_stats.special_defense', 1, j2b.parse_int) \
-    .register('types.0', 1, j2b.parse_const, pokemon.PokemonType) \
-    .register('types.1', 1, j2b.parse_const, pokemon.PokemonType) \
+    .register('types.0', 1, j2b.parse_const, pokemon_types.PokemonType) \
+    .register('types.1', 1, j2b.parse_const, pokemon_types.PokemonType) \
     .register('catch_rate', 1, j2b.parse_int) \
     .register('base_exp_reward', 1, j2b.parse_int) \
     .register('ev_yields', 2, parse_ev_yields) \
     .register('held_items.common', 2, j2b.parse_const, items.Item) \
     .register('held_items.rare', 2, j2b.parse_const, items.Item) \
-    .register('gender_ratio', 1, j2b.parse_const, pokemon.PokemonGenderRatio) \
+    .register('gender_ratio', 1, j2b.parse_const, gender_ratios.GenderRatio) \
     .register('hatch_cycles', 1, j2b.parse_int) \
     .register('base_friendship', 1, j2b.parse_int) \
-    .register('exp_rate', 1, j2b.parse_const, pokemon.PokemonExpRate) \
-    .register('egg_groups.0', 1, j2b.parse_const, pokemon.PokemonEggGroup) \
-    .register('egg_groups.1', 1, j2b.parse_const, pokemon.PokemonEggGroup) \
+    .register('exp_rate', 1, j2b.parse_const, exp_rates.ExpRate) \
+    .register('egg_groups.0', 1, j2b.parse_const, egg_groups.EggGroup) \
+    .register('egg_groups.1', 1, j2b.parse_const, egg_groups.EggGroup) \
     .register('abilities.0', 1, j2b.parse_const, abilities.Ability) \
     .register('abilities.1', 1, j2b.parse_const, abilities.Ability) \
     .register('great_marsh_flee_rate', 1, j2b.parse_int) \
@@ -91,7 +95,7 @@ def indexer(file_path: pathlib.Path) -> int:
         species_idx = file_path.parent.parent.parent.stem.upper()
         form = file_path.parent.stem.upper()
         return FORM_INDICES[species_idx][form]
-    return species.PokemonSpecies[f'SPECIES_{name}'].value
+    return species.Species[f'SPECIES_{name}'].value
 
 
 args = j2b.ARGPARSER.parse_args()

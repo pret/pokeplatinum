@@ -5,7 +5,7 @@
 
 #include "constants/narc.h"
 #include "constants/pokemon.h"
-#include "consts/items.h"
+#include "generated/items.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"

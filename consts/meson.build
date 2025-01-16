@@ -1,5 +1,4 @@
 consts_manifest_basenames = [
-    'abilities',
     'badges',
     'battle',
     'battle_subscripts',
@@ -7,7 +6,6 @@ consts_manifest_basenames = [
     'catching_show',
     'game_records',
     'gender',
-    'items',
     'journal',
     'map',
     'movement',
@@ -17,7 +15,6 @@ consts_manifest_basenames = [
     'scrcmd',
     'sdat',
     'shadows',
-    'species',
     'tm_learnset',
     'trainer',
     'trainer_ai',

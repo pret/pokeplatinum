@@ -4,7 +4,7 @@ import json
 import pathlib
 import subprocess
 
-from consts.pokemon import PokemonGenderRatio
+from generated.gender_ratios import GenderRatio
 
 
 argparser = argparse.ArgumentParser(
@@ -45,10 +45,10 @@ for i, subdir in enumerate(args.subdirs):
         pkdata = json.load(data_file)
     
     gender_ratio = pkdata['gender_ratio']
-    female_only = (gender_ratio == PokemonGenderRatio.GENDER_RATIO_FEMALE_ONLY.name)
+    female_only = (gender_ratio == GenderRatio.GENDER_RATIO_FEMALE_ONLY.name)
     male_or_genderless = (gender_ratio in [
-        PokemonGenderRatio.GENDER_RATIO_MALE_ONLY.name,
-        PokemonGenderRatio.GENDER_RATIO_NO_GENDER.name
+        GenderRatio.GENDER_RATIO_MALE_ONLY.name,
+        GenderRatio.GENDER_RATIO_NO_GENDER.name
     ])
 
     j = 0

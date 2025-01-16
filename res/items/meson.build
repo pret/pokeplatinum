@@ -38,7 +38,8 @@ pl_item_data_narc = custom_target('pl_item_data.narc',
         '--pad', '0xFF',
         '-i', '@SOURCE_ROOT@/include',
         '-i', '@SOURCE_ROOT@/build',
-    ]
+    ],
+    depends: [ c_consts_generators, ],
 )
 
 nitrofs_files += nuts_data_narc

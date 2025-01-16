@@ -4,7 +4,7 @@ import json
 import pathlib
 import xml.etree.ElementTree as ET
 
-from consts.species import PokemonSpecies
+from generated.species import Species
 
 argparser = argparse.ArgumentParser(
     prog='make_pokedex_message_banks_py',
@@ -58,7 +58,7 @@ def Convert_Height(decimeters):
     return f'  {feet}’{inches:02}”'
 
 # variables
-NUM_POKEMON = len(PokemonSpecies)
+NUM_POKEMON = len(Species)
 
 name_data = ['' for i in range(NUM_POKEMON)]
 name_articles = ['' for i in range(NUM_POKEMON)]

@@ -1,30 +1,5 @@
 {
     "definitions": {
-        "@PokemonType": {
-            "type": "enum",
-            "as_preproc": true,
-            "values": [
-                "TYPE_NORMAL",
-                "TYPE_FIGHTING",
-                "TYPE_FLYING",
-                "TYPE_POISON",
-                "TYPE_GROUND",
-                "TYPE_ROCK",
-                "TYPE_BUG",
-                "TYPE_GHOST",
-                "TYPE_STEEL",
-                "TYPE_MYSTERY",
-                "TYPE_FIRE",
-                "TYPE_WATER",
-                "TYPE_GRASS",
-                "TYPE_ELECTRIC",
-                "TYPE_PSYCHIC",
-                "TYPE_ICE",
-                "TYPE_DRAGON",
-                "TYPE_DARK",
-                "NUMBER_OF_MON_TYPES"
-            ]
-        },
         "@SpeciesDataParam": {
             "type": "enum",
             "values": [
@@ -63,43 +38,6 @@
                 "SPECIES_DATA_TM_LEARNSET_MASK_4"
             ]
         },
-        "@PokemonColor": {
-            "type": "enum",
-            "values": [
-                "MON_COLOR_RED",
-                "MON_COLOR_BLUE",
-                "MON_COLOR_YELLOW",
-                "MON_COLOR_GREEN",
-                "MON_COLOR_BLACK",
-                "MON_COLOR_BROWN",
-                "MON_COLOR_PURPLE",
-                "MON_COLOR_GRAY",
-                "MON_COLOR_WHITE",
-                "MON_COLOR_PINK",
-                "MON_COLOR_EGG"
-            ]
-        },
-        "@PokemonEggGroup": {
-            "type": "enum",
-            "values": [
-                "EGG_GROUP_NONE",
-                "EGG_GROUP_MONSTER",
-                "EGG_GROUP_WATER_1",
-                "EGG_GROUP_BUG",
-                "EGG_GROUP_FLYING",
-                "EGG_GROUP_FIELD",
-                "EGG_GROUP_FAIRY",
-                "EGG_GROUP_GRASS",
-                "EGG_GROUP_HUMAN_LIKE",
-                "EGG_GROUP_WATER_3",
-                "EGG_GROUP_MINERAL",
-                "EGG_GROUP_AMORPHOUS",
-                "EGG_GROUP_WATER_2",
-                "EGG_GROUP_DITTO",
-                "EGG_GROUP_DRAGON",
-                "EGG_GROUP_UNDISCOVERED"
-            ]
-        },
         "@PokemonEvoMethod": {
             "type": "enum",
             "values": [
@@ -132,17 +70,6 @@
                 "EVO_LEVEL_ICE_ROCK"
             ]
         },
-        "@PokemonExpRate": {
-            "type": "enum",
-            "values": [
-                "EXP_RATE_MEDIUM_FAST",
-                "EXP_RATE_ERRATIC",
-                "EXP_RATE_FLUCTUATING",
-                "EXP_RATE_MEDIUM_SLOW",
-                "EXP_RATE_FAST",
-                "EXP_RATE_SLOW"
-            ]
-        },
         "@PokemonContestType": {
             "type": "enum",
             "values": [
@@ -153,20 +80,6 @@
                 "CONTEST_TYPE_TOUGH",
                 "CONTEST_TYPE_MAX"
             ]
-        },
-        "@PokemonGenderRatio": {
-            "type": "aliases",
-            "as_preproc": true,
-            "values": {
-                "GENDER_RATIO_MALE_ONLY": 0,
-                "GENDER_RATIO_FEMALE_12_5": 31,
-                "GENDER_RATIO_FEMALE_25": 63,
-                "GENDER_RATIO_FEMALE_50": 127,
-                "GENDER_RATIO_FEMALE_75": 191,
-                "GENDER_RATIO_FEMALE_87_5": 223,
-                "GENDER_RATIO_FEMALE_ONLY": 254,
-                "GENDER_RATIO_NO_GENDER": 255
-            }
         },
         "@PokemonFootprintSize": {
             "type": "enum",

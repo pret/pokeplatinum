@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/species.h"
+#include "generated/species.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
 
