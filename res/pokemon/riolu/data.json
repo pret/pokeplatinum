@@ -133,5 +133,12 @@
         "pokemon_pos_m": 21,
         "entry_text": "It has the peculiar power of being\nable to see emotions such as joy\nand rage in the form of waves.",
         "category": "Emanation Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 257
     }
 }

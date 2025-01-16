@@ -130,5 +130,12 @@
         "pokemon_pos_m": 65522,
         "entry_text": "It can’t relax if it or its\nsurroundings are not clean.\nIt wipes off dirt with its wings.",
         "category": "Cotton Bird Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4357
     }
 }

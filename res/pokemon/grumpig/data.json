@@ -148,5 +148,12 @@
         "pokemon_pos_m": 15,
         "entry_text": "It uses black pearls to amplify its\npsycho-power. It does an odd\ndance to gain control over foes.",
         "category": "Manipulate Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2570
     }
 }

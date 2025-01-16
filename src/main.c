@@ -71,7 +71,7 @@ void NitroMain(void)
     InitGraphics();
     InitKeypadAndTouchpad();
 
-    sub_02017B70(0);
+    SetGBACartridgeVersion(NULL);
     PM_GetBackLight(&sSavedBacklightState, NULL);
     sub_0202419C();
     InitRTC();
@@ -339,7 +339,7 @@ void HandleConsoleFold(void)
 sleep_again:
             trigger = PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD;
 
-            if (gCoreSys.unk_66 && !gIgnoreCartridgeForWake) {
+            if (gCoreSys.gbaCartridgeVersion && !gIgnoreCartridgeForWake) {
                 trigger |= PM_TRIGGER_CARTRIDGE;
             }
 

@@ -15,6 +15,7 @@
 #include "heap.h"
 #include "message.h"
 #include "party.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "spl.h"
 #include "strbuf.h"
@@ -23,7 +24,6 @@
 #include "unk_02005474.h"
 #include "unk_02014000.h"
 #include "unk_0202419C.h"
-#include "unk_0202631C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
@@ -93,7 +93,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
             break;
         }
 
-        sub_0202736C(SaveData_Pokedex(FieldSystem_GetSaveData(param0->unk_5A4->unk_1C)), v1);
+        PokedexData_Capture(SaveData_PokedexData(FieldSystem_GetSaveData(param0->unk_5A4->unk_1C)), v1);
     }
         v0->unk_00++;
         break;

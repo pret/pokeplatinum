@@ -32,6 +32,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -41,7 +42,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_0202631C.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
 
@@ -1134,12 +1134,12 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
-            if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
+            if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
                 v2++;
             }
         } else {
             if (param4[param3[v1 + v0]]) {
-                if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
+                if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
                     v2++;
                 }
             }
@@ -1150,12 +1150,12 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
-            if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
+            if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
                 StringList_AddFromMessageBank(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
             }
         } else {
             if (param4[param3[v1 + v0]]) {
-                if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
+                if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
                     StringList_AddFromMessageBank(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
                 }
             }

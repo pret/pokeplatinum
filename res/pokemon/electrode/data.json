@@ -123,5 +123,12 @@
         "pokemon_pos_m": 11,
         "entry_text": "It is known to drift on winds if it\nis bloated to bursting with stored\nelectricity.",
         "category": "Ball Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1799
     }
 }

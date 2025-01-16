@@ -14,7 +14,6 @@
 #include "overlay021/ov21_021D423C.h"
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/ov21_021D4C0C.h"
-#include "overlay021/ov21_021D5600.h"
 #include "overlay021/ov21_021D5AEC.h"
 #include "overlay021/ov21_021D76B0.h"
 #include "overlay021/ov21_021D85B0.h"
@@ -33,6 +32,7 @@
 #include "overlay021/ov21_021E737C.h"
 #include "overlay021/ov21_021E8484.h"
 #include "overlay021/pokedex_sort.h"
+#include "overlay021/pokedex_text.h"
 #include "overlay021/species_caught_status.h"
 #include "overlay021/struct_ov21_021D0D80.h"
 #include "overlay021/struct_ov21_021D13FC.h"
@@ -55,6 +55,7 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "pokedex_data.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
@@ -73,7 +74,6 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
-#include "unk_0202631C.h"
 #include "unk_0209ACBC.h"
 
 typedef struct UnkStruct_ov21_021D0F60_t {
@@ -136,7 +136,7 @@ int ov21_021D0D80(OverlayManager *param0, int *param1)
     {
         u32 v4;
 
-        v4 = sub_0202756C(v1->unk_00, 487, 0);
+        v4 = PokedexData_GetDisplayForm(v1->unk_00, 487, 0);
         Pokedex_SetupGiratina(v4);
     }
 
@@ -664,13 +664,13 @@ void ov21_021D1650(Window *param0, int param1, int param2, int param3)
         v0 = ov21_021D1CE0(100, param3);
     }
 
-    v1 = ov21_021D561C(param2, GAME_LANGUAGE, param3);
+    v1 = PokedexText_NameNumber(param2, GAME_LANGUAGE, param3);
 
     Text_AddPrinterWithParamsAndColor(param0, FONT_SUBSCREEN, v0, 22, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SUBSCREEN, v1, 49, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     Strbuf_Free(v0);
 
-    ov21_021D5600(v1);
+    PokedexText_Free(v1);
 }
 
 Window *ov21_021D16D8(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320 *param1, int param2, int param3)

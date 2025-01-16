@@ -13,9 +13,9 @@ argparser = argparse.ArgumentParser(
     prog='make_pokedex_data_py',
     description='Packs the archive containing Pokedex sorting'
 )
-argparser.add_argument('-k', '--knarc',
+argparser.add_argument('-n', '--narc',
                        required=True,
-                       help='Path to knarc executable')
+                       help='Path to narc executable')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
                        help='Path to the source directory (res/pokemon)')
@@ -80,7 +80,7 @@ for i, file in enumerate(args.src_files):
     if pk_name == 'giratina':
         if args.giratina_form == 'giratina_origin':
             pkdexdata = pkdexdata[0]
-        if args.giratina_form == 'giratina_altered':
+        else:
             pkdexdata = pkdexdata[1]
     
     for j in range(11):
@@ -154,7 +154,7 @@ for idx in shortest:
 # save data
 if args.giratina_form == 'giratina_origin':
     output_name = 'zukan_data'
-if args.giratina_form == 'giratina_altered':
+else:
     output_name = 'zukan_data_gira'
 
 numDigits = len(str(NUM_FILES))
@@ -164,4 +164,4 @@ for i in range(NUM_FILES):
     with open(target_fname, 'wb+') as target_file:
         target_file.write(binData[i])
 
-subprocess.run([args.knarc, '-d', private_dir, '-p', str(output_dir / output_name) + '.narc'])
+subprocess.run([args.narc, 'create', '--output', str(output_dir / output_name) + '.narc', private_dir])

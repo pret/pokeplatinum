@@ -17,3 +17,4 @@ encdata_ex_elusive_rod_py = find_program('encdata_ex_elusive_rod.py', native: tr
 encdata_ex_honey_trees_py = find_program('encdata_ex_honey_trees.py', native: true)
 encdata_ex_trophy_garden_py = find_program('encdata_ex_trophy_garden.py', native: true)
 encdata_ex_great_marsh_py = find_program('encdata_ex_great_marsh.py', native: true)
+catching_show_data_py = find_program('catching_show_data.py', native: true)

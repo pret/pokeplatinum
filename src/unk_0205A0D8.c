@@ -20,6 +20,7 @@
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_comm_manager.h"
+#include "field_message.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
@@ -42,7 +43,6 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
-#include "unk_0205D8CC.h"
 #include "unk_020655F4.h"
 #include "unk_0207A274.h"
 
@@ -621,7 +621,7 @@ static int sub_0205AA50(UnkStruct_0205A0D8 *param0, const Strbuf *param1)
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, v0, 3);
         FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
-        sub_0205D988(v0);
+        FieldMessage_ClearWindow(v0);
     }
 
     return FieldMessage_Print(v0, (Strbuf *)param1, SaveData_Options(param0->fieldSystem->saveData), 1);

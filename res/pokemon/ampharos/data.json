@@ -128,5 +128,12 @@
         "pokemon_pos_m": 8,
         "entry_text": "The tip of its tail shines brightly.\nIn the olden days, people sent\nsignals using the tail’s light.",
         "category": "Light Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1799
     }
 }

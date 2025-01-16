@@ -221,5 +221,12 @@
         "pokemon_pos_m": 65522,
         "entry_text": "Because it can use all kinds of\nmoves, many scientists believe MEW\nto be the ancestor of Pokémon.",
         "category": "New Species Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 100,
+        "rarity": 1,
+        "unused": 2570
     }
 }
