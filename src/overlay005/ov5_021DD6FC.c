@@ -28,7 +28,7 @@ enum MapNamePopUpState {
 };
 
 typedef struct UnkStruct_ov5_021DD9C8_t {
-    BOOL inUse;
+    BOOL unk_00;
     u8 state;
     SysTask *task;
     s32 yOffset;
