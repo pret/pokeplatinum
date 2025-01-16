@@ -143,5 +143,12 @@
         "pokemon_pos_m": 23,
         "entry_text": "It lets honey soak into its paws\nso it can lick them all the time.\nEvery set of paws tastes unique.",
         "category": "Little Bear Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1285
     }
 }

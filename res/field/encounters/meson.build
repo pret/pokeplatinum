@@ -200,10 +200,10 @@ pl_enc_tbl_narc = custom_target('pl_enc_data.narc',
     ],
     depends: [ py_consts_generators ],
     command: [
-        knarc_exe,
-        '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT@',
-        '-o', pl_enc_data_order,
+        narc_exe, 'create',
+        '--order', pl_enc_data_order,
+        '--output', '@OUTPUT@',
+        '@PRIVATE_DIR@',
     ]
 )
 
@@ -258,10 +258,10 @@ encdata_ex_narc = custom_target('encdata_ex.narc',
     env: json2bin_env,
     depends: [ py_consts_generators ],
     command: [
-        knarc_exe,
-        '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT@',
-        '-o', encdata_ex_order,
+        narc_exe, 'create',
+        '--order', encdata_ex_order,
+        '--output', '@OUTPUT@',
+        '@PRIVATE_DIR@',
     ]
 )
 
@@ -278,7 +278,7 @@ pokedex_enc_platinum_narc = custom_target('zukan_enc_platinum.narc',
     depends: [ py_consts_generators ],
     command: [
         make_pokedex_enc_platinum_py,
-        '--knarc', knarc_exe,
+        '--narc', narc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',

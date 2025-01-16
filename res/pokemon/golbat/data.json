@@ -134,5 +134,12 @@
         "pokemon_pos_m": 65532,
         "entry_text": "Its sharp fangs puncture the\ntoughest of hides and have small\nholes for greedily sucking blood.",
         "category": "Bat Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4358
     }
 }

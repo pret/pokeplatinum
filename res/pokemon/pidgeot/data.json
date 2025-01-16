@@ -123,5 +123,12 @@
         "pokemon_pos_m": 6,
         "entry_text": "By flapping its wings with all its\nmight, PIDGEOT can make a gust of\nwind capable of bending tall trees.",
         "category": "Bird Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4357
     }
 }

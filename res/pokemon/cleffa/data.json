@@ -132,5 +132,12 @@
         "pokemon_pos_m": 29,
         "entry_text": "It is often seen when shooting\nstars fill the night skies. It’s said\nto arrive riding on a shooting star.",
         "category": "Star Shape Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1285
     }
 }

@@ -14,6 +14,7 @@
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_comm_manager.h"
+#include "field_message.h"
 #include "field_system.h"
 #include "heap.h"
 #include "list_menu.h"
@@ -33,7 +34,6 @@
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_0205D8CC.h"
 
 typedef struct CommClubManager CommClubManager;
 typedef void (*CommClubManTaskFunc)(SysTask *, void *);

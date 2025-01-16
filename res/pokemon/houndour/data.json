@@ -134,5 +134,12 @@
         "pokemon_pos_m": 23,
         "entry_text": "It is smart enough to hunt in\npacks. It uses a variety of cries\nfor communicating with others.",
         "category": "Dark Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 528
     }
 }

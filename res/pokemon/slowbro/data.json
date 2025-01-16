@@ -152,5 +152,12 @@
         "pokemon_pos_m": 8,
         "entry_text": "Though usually dim witted, it\nseems to become inspired if the\nSHELLDER on its tail bites down.",
         "category": "Hermit Crab Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2563
     }
 }

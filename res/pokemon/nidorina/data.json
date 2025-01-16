@@ -128,5 +128,12 @@
         "pokemon_pos_m": 19,
         "entry_text": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO’s.",
         "category": "Poison Pin Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1542
     }
 }

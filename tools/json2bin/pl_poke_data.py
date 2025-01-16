@@ -52,6 +52,6 @@ j2b.json2bin(args.source_dir,
              indexer,
              glob_pattern='**/sprite_data.json',
              narc_name='pl_poke_data',
-             narc_packer=args.knarc,
+             narc_packer=args.narc,
              output_mode=j2b.OutputMode.SINGLE_FILE,
              skip_stems=['forms'])

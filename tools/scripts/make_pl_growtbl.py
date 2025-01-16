@@ -9,9 +9,9 @@ argparser = argparse.ArgumentParser(
     prog='make_pl_growtbl',
     description='Packs the archive containing pokemon exp tables'
 )
-argparser.add_argument('-k', '--knarc',
+argparser.add_argument('-', '--narc',
                        required=True,
-                       help='Path to knarc executable')
+                       help='Path to narc executable')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
                        help='Path to the source directory (res/pokemon)')
@@ -48,4 +48,4 @@ with open(args.table) as data_file:
             target_file.write(out)
         count += 1
 
-subprocess.run([args.knarc, '-d', private_dir, '-p', output_dir / 'pl_growtbl.narc'])
+subprocess.run([args.narc, 'create', '--output', output_dir / 'pl_growtbl.narc', private_dir])

@@ -9,6 +9,7 @@
 #include "overlay005/struct_ov5_021DD42C.h"
 
 #include "bg_window.h"
+#include "field_message.h"
 #include "field_script_context.h"
 #include "game_options.h"
 #include "message.h"
@@ -18,7 +19,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_02014A84.h"
-#include "unk_0205D8CC.h"
 
 typedef struct {
     Strbuf *unk_00;
@@ -165,7 +165,7 @@ static void ov5_021DD664(UnkStruct_ov5_021DD648 *param0, u16 param1, u16 param2,
 
 static void ov5_021DD6B4(UnkStruct_ov5_021DD648 *param0, int param1, int param2, int param3, int param4)
 {
-    *(param0->unk_14) = sub_0205D9CC(param0->unk_0C, param0->unk_00, param1, param2, param3, param4);
+    *(param0->unk_14) = FieldMessage_PrintWithParams(param0->unk_0C, param0->unk_00, param1, param2, param3, param4);
 }
 
 static void ov5_021DD6DC(UnkStruct_ov5_021DD648 *param0, int param1)

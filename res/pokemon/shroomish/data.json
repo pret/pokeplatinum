@@ -119,5 +119,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "It spouts poison spores from the\ntop of its head. These spores\ncause pain all over if inhaled.",
         "category": "Mushroom Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 257
     }
 }

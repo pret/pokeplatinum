@@ -119,5 +119,12 @@
         "pokemon_pos_m": 65531,
         "entry_text": "It lives at the bottom of the sea.\nIn the springtime, its pink body\nturns more vivid for some reason.",
         "category": "South Sea Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 771
     }
 }

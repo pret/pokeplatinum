@@ -20,11 +20,11 @@ config_gra_narc = custom_target('config_gra.narc',
         config_gra_order,
     ],
     command: [
-        knarc_exe,
-        '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT0@',
-        '--order', config_gra_order,
+        narc_exe, 'create',
         '--naix',
+        '--order', config_gra_order,
+        '--output', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ]
 )
 
