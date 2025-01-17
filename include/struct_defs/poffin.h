@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0202A93C_H
-#define POKEPLATINUM_STRUCT_0202A93C_H
+#ifndef POKEPLATINUM_STRUCT_POFFIN_H
+#define POKEPLATINUM_STRUCT_POFFIN_H
 
 typedef struct {
     union {
@@ -17,4 +17,4 @@ typedef struct {
     };
 } Poffin;
 
-#endif // POKEPLATINUM_STRUCT_0202A93C_H
+#endif // POKEPLATINUM_STRUCT_POFFIN_H

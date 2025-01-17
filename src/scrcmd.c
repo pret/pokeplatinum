@@ -23,7 +23,7 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202AB28_decl.h"
+#include "struct_decls/poffin_case_decl.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
@@ -33,7 +33,7 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_0202A93C.h"
+#include "struct_defs/poffin.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -4274,7 +4274,7 @@ static BOOL ScrCmd_1D8(ScriptContext *ctx)
         return 0;
     }
 
-    if (sub_0202AC98(Poffin_GetSavedataBlock(ctx->fieldSystem->saveData)) >= 100) {
+    if (Poffin_GetNumberOfFilledSlots(Poffin_GetSavedataBlock(ctx->fieldSystem->saveData)) >= MAX_POFFINS) {
         *v0 = 2;
         return 0;
     }
@@ -7369,7 +7369,7 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
 {
     Poffin *v0;
     int v1;
-    UnkStruct_0202AB28 *v2;
+    PoffinCase *v2;
     u8 v3[5];
     u8 v4;
     u16 v5;
@@ -7386,11 +7386,11 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
     v0 = Poffin_malloc(4);
     v1 = sub_0202A9E4(v0, v3, v4, 0);
     v2 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
-    v5 = sub_0202AB74(v2, v0);
+    v5 = Poffin_AddToCase(v2, v0);
 
     Heap_FreeToHeap(v0);
 
-    if (v5 == 0xFFFF) {
+    if (v5 == POFFIN_NONE) {
         *v6 = 0xffff;
     } else {
         *v6 = v1;
@@ -7401,13 +7401,13 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
 
 static BOOL ScrCmd_28A(ScriptContext *ctx)
 {
-    UnkStruct_0202AB28 *v0;
+    PoffinCase *poffinCase;
     u16 *v1;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
+    poffinCase = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
 
-    if (sub_0202AB54(v0) == 0xFFFF) {
+    if (Poffin_GetEmptyCaseSlot(poffinCase) == POFFIN_NONE) {
         *v1 = 0;
     } else {
         *v1 = 1;
@@ -7418,12 +7418,12 @@ static BOOL ScrCmd_28A(ScriptContext *ctx)
 
 static BOOL ScrCmd_307(ScriptContext *ctx)
 {
-    UnkStruct_0202AB28 *v0;
+    PoffinCase *poffinCase;
     u16 *v1;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
-    *v1 = sub_0202ACC0(v0);
+    poffinCase = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
+    *v1 = Poffin_GetNumberOfEmptySlots(poffinCase);
 
     return 0;
 }

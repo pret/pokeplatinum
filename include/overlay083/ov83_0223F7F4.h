@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV83_0223F7F4_H
 #define POKEPLATINUM_OV83_0223F7F4_H
 
-#include "struct_defs/struct_0202A93C.h"
+#include "struct_defs/poffin.h"
 
 #include "overlay083/struct_ov83_0223F820.h"
 #include "overlay083/struct_ov83_0223F88C.h"

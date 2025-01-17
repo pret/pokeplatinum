@@ -3,21 +3,23 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202A93C.h"
-#include "struct_defs/struct_0202AB28.h"
+#include "struct_defs/poffin.h"
+#include "struct_defs/poffin_case.h"
 
 #include "heap.h"
 #include "math.h"
 #include "savedata.h"
+
+#define FLAVOUR_NONE    30
 
 int Poffin_sizeof(void)
 {
     return sizeof(Poffin);
 }
 
-BOOL sub_0202A914(Poffin *poffin)
+BOOL Poffin_HasValidFlavor(Poffin *poffin)
 {
-    if (poffin->flavor == 30) {
+    if (poffin->flavor == FLAVOUR_NONE) {
         return FALSE;
     }
 
@@ -26,7 +28,7 @@ BOOL sub_0202A914(Poffin *poffin)
 
 void Poffin_clear(Poffin *poffin)
 {
-    poffin->flavor = 30;
+    poffin->flavor = FLAVOUR_NONE;
     poffin->spiciness = 0;
     poffin->dryness = 0;
     poffin->sweetness = 0;
@@ -224,7 +226,7 @@ u8 Poffin_CalcLevel(Poffin *poffin)
     return level;
 }
 
-UnkStruct_0202AB28 *Poffin_GetSavedataBlock(SaveData *savedata)
+PoffinCase *Poffin_GetSavedataBlock(SaveData *savedata)
 {
     return SaveData_SaveTable(savedata, 16);
 }
@@ -234,144 +236,149 @@ int Poffin_SaveSize(void)
     return sizeof(Poffin) * 100;
 }
 
-void Poffin_Init(UnkStruct_0202AB28 *param0)
+void Poffin_Init(PoffinCase *poffinCase)
 {
-    int i = 0;
+    int i;
 
-    for (i = 0; i < 100; i++) {
-        Poffin_clear(&param0->unk_00[i]);
+    for (i = 0; i < MAX_POFFINS; i++) {
+        Poffin_clear(&poffinCase->slot[i]);
     }
 }
 
-u16 sub_0202AB54(UnkStruct_0202AB28 *param0)
+u16 Poffin_GetEmptyCaseSlot(PoffinCase *poffinCase)
 {
-    u16 v0;
+    u16 i;
 
-    for (v0 = 0; v0 < 100; v0++) {
-        if (param0->unk_00[v0].flavor == 30) {
-            return v0;
+    for (i = 0; i < MAX_POFFINS; i++) {
+        if (poffinCase->slot[i].flavor == FLAVOUR_NONE) {
+            return i;
         }
     }
 
-    return 0xFFFF;
+    return POFFIN_NONE;
 }
 
-u16 sub_0202AB74(UnkStruct_0202AB28 *param0, Poffin *param1)
+u16 Poffin_AddToCase(PoffinCase *poffinCase, Poffin *poffin)
 {
-    u16 v0 = sub_0202AB54(param0);
+    u16 slotId = Poffin_GetEmptyCaseSlot(poffinCase);
 
-    if (v0 == 0xFFFF) {
-        return v0;
+    if (slotId == POFFIN_NONE) {
+        return slotId;
     }
 
-    Poffin_copy(param1, &param0->unk_00[v0]);
-    return v0;
+    Poffin_copy(poffin, &poffinCase->slot[slotId]);
+    return slotId;
 }
 
-BOOL sub_0202AB98(UnkStruct_0202AB28 *param0, u16 param1)
+BOOL Poffin_ClearCaseSlot(PoffinCase *poffinCase, u16 slot)
 {
-    if (param1 >= 100) {
+    if (slot >= MAX_POFFINS) {
         return FALSE;
     }
 
-    Poffin_clear(&param0->unk_00[param1]);
+    Poffin_clear(&poffinCase->slot[slot]);
     return TRUE;
 }
 
-static u16 sub_0202ABB0(UnkStruct_0202AB28 *param0, u16 param1)
+static u16 Poffin_GetFirstValidPoffin(PoffinCase *poffinCase, u16 startingSlot)
 {
-    u16 v0;
+    u16 i;
 
-    for (v0 = param1; v0 < 100; v0++) {
-        if (param0->unk_00[v0].flavor != 30) {
-            return v0;
+    for (i = startingSlot; i < MAX_POFFINS; i++) {
+        if (poffinCase->slot[i].flavor != FLAVOUR_NONE) {
+            return i;
         }
     }
 
-    return 0xFFFF;
+    return POFFIN_NONE;
 }
 
-void sub_0202ABD4(UnkStruct_0202AB28 *param0)
+void Poffin_CompactCase(PoffinCase *poffinCase)
 {
-    u16 v0, v1, v2;
-    u16 v3, v4, v5;
+    u16 i, unused; 
+    u16 nextValidSlotNum, emptySlotNum, targetSlotNum; 
+    u16 remainingSlots;
 
-    v5 = 100;
+    remainingSlots = MAX_POFFINS;
 
-    for (v0 = 0; v0 < v5; v0++) {
-        if (param0->unk_00[v0].flavor != 30) {
+    for (i = 0; i < remainingSlots; i++) {
+        // skip over occupied slots
+        if (poffinCase->slot[i].flavor != FLAVOUR_NONE) {
             continue;
         }
 
-        v3 = v0;
-        v2 = sub_0202ABB0(param0, v3);
+        // found an empty slot, proceed
+        emptySlotNum = i;
+        nextValidSlotNum = Poffin_GetFirstValidPoffin(poffinCase, emptySlotNum); // find the next valid poffin
 
-        if (v2 == 0xFFFF) {
+        if (nextValidSlotNum == POFFIN_NONE) {
             break;
+        } // skips rest of execution, reached end of poffin case
+
+        targetSlotNum = nextValidSlotNum;
+        nextValidSlotNum = targetSlotNum - emptySlotNum;
+
+        for (; targetSlotNum < remainingSlots; emptySlotNum++, targetSlotNum++) {
+            Poffin_copy(&poffinCase->slot[targetSlotNum], &poffinCase->slot[emptySlotNum]);
+            Poffin_clear(&poffinCase->slot[targetSlotNum]);
         }
 
-        v4 = v2;
-        v2 = v4 - v3;
-
-        for (; v4 < v5; v3++, v4++) {
-            Poffin_copy(&param0->unk_00[v4], &param0->unk_00[v3]);
-            Poffin_clear(&param0->unk_00[v4]);
-        }
-
-        v5 -= v2;
+        remainingSlots -= nextValidSlotNum;
     }
 }
 
-void sub_0202AC54(UnkStruct_0202AB28 *param0, u16 param1, Poffin *param2)
+void Poffin_CopyToCaseSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin)
 {
-    if (param1 >= 100) {
-        Poffin_clear(param2);
+    if (destSlot >= MAX_POFFINS) {
+        Poffin_clear(poffin);
         return;
     }
 
-    Poffin_copy(&param0->unk_00[param1], param2);
+    Poffin_copy(&poffinCase->slot[destSlot], poffin);
     return;
 }
 
-Poffin *sub_0202AC70(UnkStruct_0202AB28 *param0, u16 param1, int param2)
+Poffin *Poffin_AllocateForCaseSlot(PoffinCase *poffinCase, u16 destSlot, int heapID)
 {
-    Poffin *v0;
+    Poffin *poffin;
 
-    v0 = Poffin_malloc(param2);
+    poffin = Poffin_malloc(heapID);
 
-    if (param1 >= 100) {
-        Poffin_clear(v0);
+    if (destSlot >= MAX_POFFINS) {
+        Poffin_clear(poffin);
         return NULL;
     }
 
-    Poffin_copy(&param0->unk_00[param1], v0);
-    return v0;
+    Poffin_copy(&poffinCase->slot[destSlot], poffin);
+    return poffin;
 }
 
-u16 sub_0202AC98(UnkStruct_0202AB28 *param0)
+u16 Poffin_GetNumberOfFilledSlots(PoffinCase *poffinCase)
 {
-    u16 v0 = 0, v1;
+    u16 j, i;
 
-    for (v1 = 0; v1 < 100; v1++) {
-        if (sub_0202A914(&param0->unk_00[v1])) {
-            ++v0;
+    j = 0;
+
+    for (i = 0; i < MAX_POFFINS; i++) {
+        if (Poffin_HasValidFlavor(&poffinCase->slot[i])) {
+            ++j;
         }
     }
 
-    return v0;
+    return j;
 }
 
-u16 sub_0202ACC0(UnkStruct_0202AB28 *param0)
+u16 Poffin_GetNumberOfEmptySlots(PoffinCase *poffinCase)
 {
-    u16 v0, v1;
+    u16 i, j;
 
-    v1 = 0;
+    j = 0;
 
-    for (v0 = 0; v0 < 100; v0++) {
-        if (param0->unk_00[v0].flavor == 30) {
-            v1++;
+    for (i = 0; i < MAX_POFFINS; i++) {
+        if (poffinCase->slot[i].flavor == FLAVOUR_NONE) {
+            j++;
         }
     }
 
-    return v1;
+    return j;
 }

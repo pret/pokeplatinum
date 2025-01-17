@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_POFFIN_CASE_DECL_H
+#define POKEPLATINUM_POFFIN_CASE_DECL_H
+
+typedef struct PoffinCase PoffinCase;
+
+#endif // POKEPLATINUM_POFFIN_CASE_DECL_H
