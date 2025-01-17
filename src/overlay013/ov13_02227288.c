@@ -168,7 +168,7 @@ static void ov13_022273CC(UnkStruct_ov13_02227244 *param0)
     ov13_02227374(param0, 3, 6, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
 
     if (param0->unk_00->unk_20 != 0) {
-        Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->unk_10, 8);
+        Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->unk_10, 8); // Possibly TRAINER_NAME_LEN + 1
 
         Text_AddPrinterWithParamsAndColor(&param0->unk_2C[4], FONT_SUBSCREEN, v1, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
         Strbuf_Free(v1);
