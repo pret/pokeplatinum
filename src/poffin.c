@@ -10,7 +10,7 @@
 #include "math.h"
 #include "savedata.h"
 
-#define FLAVOUR_NONE    30
+#define FLAVOUR_NONE 30
 
 int Poffin_sizeof(void)
 {
@@ -295,8 +295,8 @@ static u16 Poffin_GetFirstValidPoffin(PoffinCase *poffinCase, u16 startingSlot)
 
 void Poffin_CompactCase(PoffinCase *poffinCase)
 {
-    u16 i, unused; 
-    u16 nextValidSlotNum, emptySlotNum, targetSlotNum; 
+    u16 i, unused;
+    u16 nextValidSlotNum, emptySlotNum, targetSlotNum;
     u16 remainingSlots;
 
     remainingSlots = MAX_POFFINS;

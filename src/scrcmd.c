@@ -11,6 +11,7 @@
 #include "consts/journal.h"
 #include "consts/scrcmd.h"
 
+#include "struct_decls/poffin_case_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
@@ -23,7 +24,6 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/poffin_case_decl.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
