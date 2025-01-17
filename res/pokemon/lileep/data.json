@@ -8,10 +8,7 @@
         "special_attack": 61,
         "special_defense": 87
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_GRASS" ],
     "catch_rate": 45,
     "base_exp_reward": 99,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 30,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_SUCTION_CUPS",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_SUCTION_CUPS", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_CONSTRICT" ],
+            [ 8, "MOVE_ACID" ],
+            [ 15, "MOVE_INGRAIN" ],
+            [ 22, "MOVE_CONFUSE_RAY" ],
+            [ 29, "MOVE_AMNESIA" ],
+            [ 36, "MOVE_GASTRO_ACID" ],
+            [ 43, "MOVE_ANCIENT_POWER" ],
+            [ 50, "MOVE_ENERGY_BALL" ],
+            [ 57, "MOVE_STOCKPILE" ],
+            [ 57, "MOVE_SPIT_UP" ],
+            [ 57, "MOVE_SWALLOW" ],
+            [ 64, "MOVE_WRING_OUT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -76,26 +82,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ASTONISH",
-                "MOVE_CONSTRICT"
-            ],
-            "8": "MOVE_ACID",
-            "15": "MOVE_INGRAIN",
-            "22": "MOVE_CONFUSE_RAY",
-            "29": "MOVE_AMNESIA",
-            "36": "MOVE_GASTRO_ACID",
-            "43": "MOVE_ANCIENT_POWER",
-            "50": "MOVE_ENERGY_BALL",
-            "57": [
-                "MOVE_STOCKPILE",
-                "MOVE_SPIT_UP",
-                "MOVE_SWALLOW"
-            ],
-            "64": "MOVE_WRING_OUT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_GASTRO_ACID",
             "MOVE_SNORE",
@@ -113,8 +100,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -129,7 +116,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
         "entry_text": "It lived on the seafloor 100\nmillion years ago and was\nreanimated scientifically.",
-        "category": "Sea Lily Pokémon"
+        "category": "Sea Lily Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

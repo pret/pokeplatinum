@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_PSYCHIC" ],
     "catch_rate": 190,
     "base_exp_reward": 99,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_OWN_TEMPO"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_OWN_TEMPO" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PINK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_CURSE" ],
+            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 6, "MOVE_GROWL" ],
+            [ 11, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_CONFUSION" ],
+            [ 20, "MOVE_DISABLE" ],
+            [ 25, "MOVE_HEADBUTT" ],
+            [ 29, "MOVE_WATER_PULSE" ],
+            [ 34, "MOVE_ZEN_HEADBUTT" ],
+            [ 39, "MOVE_SLACK_OFF" ],
+            [ 43, "MOVE_AMNESIA" ],
+            [ 48, "MOVE_PSYCHIC" ],
+            [ 53, "MOVE_RAIN_DANCE" ],
+            [ 57, "MOVE_PSYCH_UP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM06",
@@ -89,26 +97,7 @@
             "HM03",
             "HM04"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_CURSE",
-                "MOVE_YAWN",
-                "MOVE_TACKLE"
-            ],
-            "6": "MOVE_GROWL",
-            "11": "MOVE_WATER_GUN",
-            "15": "MOVE_CONFUSION",
-            "20": "MOVE_DISABLE",
-            "25": "MOVE_HEADBUTT",
-            "29": "MOVE_WATER_PULSE",
-            "34": "MOVE_ZEN_HEADBUTT",
-            "39": "MOVE_SLACK_OFF",
-            "43": "MOVE_AMNESIA",
-            "48": "MOVE_PSYCHIC",
-            "53": "MOVE_RAIN_DANCE",
-            "57": "MOVE_PSYCH_UP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -133,8 +122,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -149,7 +138,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
         "entry_text": "Although slow, it is skilled at\nfishing with its tail. It does not\nfeel pain if its tail is bitten.",
-        "category": "Dopey Pokémon"
+        "category": "Dopey Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

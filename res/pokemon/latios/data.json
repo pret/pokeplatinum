@@ -8,10 +8,7 @@
         "special_attack": 130,
         "special_defense": 110
     },
-    "types": [
-        "TYPE_DRAGON",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_DRAGON", "TYPE_PSYCHIC" ],
     "catch_rate": 3,
     "base_exp_reward": 211,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 120,
     "base_friendship": 90,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PSYWAVE" ],
+            [ 5, "MOVE_HEAL_BLOCK" ],
+            [ 10, "MOVE_HELPING_HAND" ],
+            [ 15, "MOVE_SAFEGUARD" ],
+            [ 20, "MOVE_DRAGON_BREATH" ],
+            [ 25, "MOVE_PROTECT" ],
+            [ 30, "MOVE_REFRESH" ],
+            [ 35, "MOVE_LUSTER_PURGE" ],
+            [ 40, "MOVE_ZEN_HEADBUTT" ],
+            [ 45, "MOVE_RECOVER" ],
+            [ 50, "MOVE_PSYCHO_SHIFT" ],
+            [ 55, "MOVE_DRAGON_DANCE" ],
+            [ 60, "MOVE_MEMENTO" ],
+            [ 65, "MOVE_PSYCHIC" ],
+            [ 70, "MOVE_DRAGON_PULSE" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM03",
             "TM04",
@@ -99,24 +107,7 @@
             "HM05",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_PSYWAVE",
-            "5": "MOVE_HEAL_BLOCK",
-            "10": "MOVE_HELPING_HAND",
-            "15": "MOVE_SAFEGUARD",
-            "20": "MOVE_DRAGON_BREATH",
-            "25": "MOVE_PROTECT",
-            "30": "MOVE_REFRESH",
-            "35": "MOVE_LUSTER_PURGE",
-            "40": "MOVE_ZEN_HEADBUTT",
-            "45": "MOVE_RECOVER",
-            "50": "MOVE_PSYCHO_SHIFT",
-            "55": "MOVE_DRAGON_DANCE",
-            "60": "MOVE_MEMENTO",
-            "65": "MOVE_PSYCHIC",
-            "70": "MOVE_DRAGON_PULSE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -131,9 +122,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 20,
@@ -147,8 +139,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "A highly intelligent Pokémon.\nBy folding back its wings in flight,\nit can overtake jet planes.",
-        "category": "Eon Pokémon"
+        "entry_text": "A highly intelligent Pok\u00e9mon.\nBy folding back its wings in flight,\nit can overtake jet planes.",
+        "category": "Eon Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 211,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_ANGER_POINT"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_ANGER_POINT" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 3, "MOVE_TAIL_WHIP" ],
+            [ 5, "MOVE_RAGE" ],
+            [ 8, "MOVE_HORN_ATTACK" ],
+            [ 11, "MOVE_SCARY_FACE" ],
+            [ 15, "MOVE_PURSUIT" ],
+            [ 19, "MOVE_REST" ],
+            [ 24, "MOVE_PAYBACK" ],
+            [ 29, "MOVE_ZEN_HEADBUTT" ],
+            [ 35, "MOVE_TAKE_DOWN" ],
+            [ 41, "MOVE_SWAGGER" ],
+            [ 48, "MOVE_THRASH" ],
+            [ 55, "MOVE_GIGA_IMPACT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -86,22 +92,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "3": "MOVE_TAIL_WHIP",
-            "5": "MOVE_RAGE",
-            "8": "MOVE_HORN_ATTACK",
-            "11": "MOVE_SCARY_FACE",
-            "15": "MOVE_PURSUIT",
-            "19": "MOVE_REST",
-            "24": "MOVE_PAYBACK",
-            "29": "MOVE_ZEN_HEADBUTT",
-            "35": "MOVE_TAKE_DOWN",
-            "41": "MOVE_SWAGGER",
-            "48": "MOVE_THRASH",
-            "55": "MOVE_GIGA_IMPACT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
@@ -113,9 +104,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 14,
@@ -130,7 +122,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
         "entry_text": "Once it takes aim at its foe, it\nmakes a headlong charge. It is\nfamous for its violent nature.",
-        "category": "Wild Bull Pokémon"
+        "category": "Wild Bull Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

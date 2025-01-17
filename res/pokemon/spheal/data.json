@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_WATER" ],
     "catch_rate": 255,
     "base_exp_reward": 75,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_ICE_BODY"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_ICE_BODY" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 7, "MOVE_ENCORE" ],
+            [ 13, "MOVE_ICE_BALL" ],
+            [ 19, "MOVE_BODY_SLAM" ],
+            [ 25, "MOVE_AURORA_BEAM" ],
+            [ 31, "MOVE_HAIL" ],
+            [ 37, "MOVE_REST" ],
+            [ 37, "MOVE_SNORE" ],
+            [ 43, "MOVE_BLIZZARD" ],
+            [ 49, "MOVE_SHEER_COLD" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -76,26 +82,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_DEFENSE_CURL",
-                "MOVE_POWDER_SNOW",
-                "MOVE_GROWL",
-                "MOVE_WATER_GUN"
-            ],
-            "7": "MOVE_ENCORE",
-            "13": "MOVE_ICE_BALL",
-            "19": "MOVE_BODY_SLAM",
-            "25": "MOVE_AURORA_BEAM",
-            "31": "MOVE_HAIL",
-            "37": [
-                "MOVE_REST",
-                "MOVE_SNORE"
-            ],
-            "43": "MOVE_BLIZZARD",
-            "49": "MOVE_SHEER_COLD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -113,8 +100,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 8,
@@ -129,7 +116,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
         "entry_text": "It rolls across ice floes to reach\nshore because its body is poorly\nshaped for swimming.",
-        "category": "Clap Pokémon"
+        "category": "Clap Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

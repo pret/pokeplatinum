@@ -1,5 +1,5 @@
 {
-    "name": "Farfetch’d",
+    "name": "Farfetch\u2019d",
     "base_stats": {
         "hp": 52,
         "attack": 65,
@@ -8,10 +8,7 @@
         "special_attack": 58,
         "special_defense": 62
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 94,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_INNER_FOCUS"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_INNER_FOCUS" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_JAB" ],
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_FURY_CUTTER" ],
+            [ 7, "MOVE_FURY_ATTACK" ],
+            [ 9, "MOVE_KNOCK_OFF" ],
+            [ 13, "MOVE_AERIAL_ACE" ],
+            [ 19, "MOVE_SLASH" ],
+            [ 21, "MOVE_AIR_CUTTER" ],
+            [ 25, "MOVE_SWORDS_DANCE" ],
+            [ 31, "MOVE_AGILITY" ],
+            [ 33, "MOVE_NIGHT_SLASH" ],
+            [ 37, "MOVE_AIR_SLASH" ],
+            [ 43, "MOVE_FEINT" ],
+            [ 45, "MOVE_FALSE_SWIPE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -77,27 +86,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_JAB",
-                "MOVE_PECK",
-                "MOVE_SAND_ATTACK",
-                "MOVE_LEER",
-                "MOVE_FURY_CUTTER"
-            ],
-            "7": "MOVE_FURY_ATTACK",
-            "9": "MOVE_KNOCK_OFF",
-            "13": "MOVE_AERIAL_ACE",
-            "19": "MOVE_SLASH",
-            "21": "MOVE_AIR_CUTTER",
-            "25": "MOVE_SWORDS_DANCE",
-            "31": "MOVE_AGILITY",
-            "33": "MOVE_NIGHT_SLASH",
-            "37": "MOVE_AIR_SLASH",
-            "43": "MOVE_FEINT",
-            "45": "MOVE_FALSE_SWIPE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_OMINOUS_WIND",
@@ -111,9 +100,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -127,8 +117,8 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "It can’t live without the stalk it\nholds. That’s why it defends the\nstalk from attackers with its life.",
-        "category": "Wild Duck Pokémon"
+        "entry_text": "It can\u2019t live without the stalk it\nholds. That\u2019s why it defends the\nstalk from attackers with its life.",
+        "category": "Wild Duck Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

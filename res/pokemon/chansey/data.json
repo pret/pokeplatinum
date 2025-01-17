@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 105
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 30,
     "base_exp_reward": 255,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 40,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_NATURAL_CURE",
-        "ABILITY_SERENE_GRACE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_SERENE_GRACE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PINK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_REFRESH" ],
+            [ 12, "MOVE_SOFTBOILED" ],
+            [ 16, "MOVE_DOUBLE_SLAP" ],
+            [ 20, "MOVE_MINIMIZE" ],
+            [ 23, "MOVE_SING" ],
+            [ 27, "MOVE_FLING" ],
+            [ 31, "MOVE_DEFENSE_CURL" ],
+            [ 34, "MOVE_LIGHT_SCREEN" ],
+            [ 38, "MOVE_EGG_BOMB" ],
+            [ 42, "MOVE_HEALING_WISH" ],
+            [ 46, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -103,25 +110,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_TAIL_WHIP",
-            "9": "MOVE_REFRESH",
-            "12": "MOVE_SOFTBOILED",
-            "16": "MOVE_DOUBLE_SLAP",
-            "20": "MOVE_MINIMIZE",
-            "23": "MOVE_SING",
-            "27": "MOVE_FLING",
-            "31": "MOVE_DEFENSE_CURL",
-            "34": "MOVE_LIGHT_SCREEN",
-            "38": "MOVE_EGG_BOMB",
-            "42": "MOVE_HEALING_WISH",
-            "46": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -136,14 +125,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_LEVEL_HAPPINESS",
-            "SPECIES_BLISSEY"
-        ]
+        [ "EVO_LEVEL_HAPPINESS", "SPECIES_BLISSEY" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -157,8 +143,8 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "A kindly Pokémon that lays highly\nnutritious eggs and shares them\nwith injured Pokémon or people.",
-        "category": "Egg Pokémon"
+        "entry_text": "A kindly Pok\u00e9mon that lays highly\nnutritious eggs and shares them\nwith injured Pok\u00e9mon or people.",
+        "category": "Egg Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

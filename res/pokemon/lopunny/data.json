@@ -8,10 +8,7 @@
         "special_attack": 54,
         "special_defense": 96
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 60,
     "base_exp_reward": 178,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 20,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_CUTE_CHARM",
-        "ABILITY_KLUTZ"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_KLUTZ" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_MIRROR_COAT" ],
+            [ 1, "MOVE_MAGIC_COAT" ],
+            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_FORESIGHT" ],
+            [ 6, "MOVE_ENDURE" ],
+            [ 13, "MOVE_RETURN" ],
+            [ 16, "MOVE_QUICK_ATTACK" ],
+            [ 23, "MOVE_JUMP_KICK" ],
+            [ 26, "MOVE_BATON_PASS" ],
+            [ 33, "MOVE_AGILITY" ],
+            [ 36, "MOVE_DIZZY_PUNCH" ],
+            [ 43, "MOVE_CHARM" ],
+            [ 46, "MOVE_BOUNCE" ],
+            [ 53, "MOVE_HEALING_WISH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -86,27 +95,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_MIRROR_COAT",
-                "MOVE_MAGIC_COAT",
-                "MOVE_SPLASH",
-                "MOVE_POUND",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_FORESIGHT"
-            ],
-            "6": "MOVE_ENDURE",
-            "13": "MOVE_RETURN",
-            "16": "MOVE_QUICK_ATTACK",
-            "23": "MOVE_JUMP_KICK",
-            "26": "MOVE_BATON_PASS",
-            "33": "MOVE_AGILITY",
-            "36": "MOVE_DIZZY_PUNCH",
-            "43": "MOVE_CHARM",
-            "46": "MOVE_BOUNCE",
-            "53": "MOVE_HEALING_WISH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -121,9 +110,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -138,7 +128,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
         "entry_text": "The ears appear to be delicate. If\nthey are touched roughly, it kicks\nwith its graceful legs.",
-        "category": "Rabbit Pokémon"
+        "category": "Rabbit Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

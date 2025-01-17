@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 45,
     "base_exp_reward": 141,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_OVERGROW",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_WITHDRAW" ],
+            [ 5, "MOVE_WITHDRAW" ],
+            [ 9, "MOVE_ABSORB" ],
+            [ 13, "MOVE_RAZOR_LEAF" ],
+            [ 17, "MOVE_CURSE" ],
+            [ 22, "MOVE_BITE" ],
+            [ 27, "MOVE_MEGA_DRAIN" ],
+            [ 32, "MOVE_LEECH_SEED" ],
+            [ 37, "MOVE_SYNTHESIS" ],
+            [ 42, "MOVE_CRUNCH" ],
+            [ 47, "MOVE_GIGA_DRAIN" ],
+            [ 52, "MOVE_LEAF_STORM" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -79,24 +85,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_WITHDRAW"
-            ],
-            "5": "MOVE_WITHDRAW",
-            "9": "MOVE_ABSORB",
-            "13": "MOVE_RAZOR_LEAF",
-            "17": "MOVE_CURSE",
-            "22": "MOVE_BITE",
-            "27": "MOVE_MEGA_DRAIN",
-            "32": "MOVE_LEECH_SEED",
-            "37": "MOVE_SYNTHESIS",
-            "42": "MOVE_CRUNCH",
-            "47": "MOVE_GIGA_DRAIN",
-            "52": "MOVE_LEAF_STORM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SUPERPOWER",
             "MOVE_SNORE",
@@ -113,8 +102,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -128,8 +117,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It knows where pure water wells\nup. It carries fellow Pokémon there\non its back.",
-        "category": "Grove Pokémon"
+        "entry_text": "It knows where pure water wells\nup. It carries fellow Pok\u00e9mon there\non its back.",
+        "category": "Grove Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

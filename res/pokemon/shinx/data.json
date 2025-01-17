@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 34
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 235,
     "base_exp_reward": 60,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_RIVALRY",
-        "ABILITY_INTIMIDATE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_RIVALRY", "ABILITY_INTIMIDATE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 5, "MOVE_LEER" ],
+            [ 9, "MOVE_CHARGE" ],
+            [ 13, "MOVE_SPARK" ],
+            [ 17, "MOVE_BITE" ],
+            [ 21, "MOVE_ROAR" ],
+            [ 25, "MOVE_SWAGGER" ],
+            [ 29, "MOVE_THUNDER_FANG" ],
+            [ 33, "MOVE_CRUNCH" ],
+            [ 37, "MOVE_SCARY_FACE" ],
+            [ 41, "MOVE_DISCHARGE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -74,20 +78,7 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "5": "MOVE_LEER",
-            "9": "MOVE_CHARGE",
-            "13": "MOVE_SPARK",
-            "17": "MOVE_BITE",
-            "21": "MOVE_ROAR",
-            "25": "MOVE_SWAGGER",
-            "29": "MOVE_THUNDER_FANG",
-            "33": "MOVE_CRUNCH",
-            "37": "MOVE_SCARY_FACE",
-            "41": "MOVE_DISCHARGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -104,8 +95,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -120,7 +111,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
         "entry_text": "The extension and contraction of\nits muscles generates electricity.\nIt glows when in trouble.",
-        "category": "Flash Pokémon"
+        "category": "Flash Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

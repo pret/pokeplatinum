@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 105
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 210,
     "ev_yields": {
@@ -30,21 +27,35 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FLASH_CANNON" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_WITHDRAW" ],
+            [ 4, "MOVE_TAIL_WHIP" ],
+            [ 7, "MOVE_BUBBLE" ],
+            [ 10, "MOVE_WITHDRAW" ],
+            [ 13, "MOVE_WATER_GUN" ],
+            [ 16, "MOVE_BITE" ],
+            [ 20, "MOVE_RAPID_SPIN" ],
+            [ 24, "MOVE_PROTECT" ],
+            [ 28, "MOVE_WATER_PULSE" ],
+            [ 32, "MOVE_AQUA_TAIL" ],
+            [ 39, "MOVE_SKULL_BASH" ],
+            [ 46, "MOVE_IRON_DEFENSE" ],
+            [ 53, "MOVE_RAIN_DANCE" ],
+            [ 60, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM05",
@@ -88,29 +99,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FLASH_CANNON",
-                "MOVE_TACKLE",
-                "MOVE_TAIL_WHIP",
-                "MOVE_BUBBLE",
-                "MOVE_WITHDRAW"
-            ],
-            "4": "MOVE_TAIL_WHIP",
-            "7": "MOVE_BUBBLE",
-            "10": "MOVE_WITHDRAW",
-            "13": "MOVE_WATER_GUN",
-            "16": "MOVE_BITE",
-            "20": "MOVE_RAPID_SPIN",
-            "24": "MOVE_PROTECT",
-            "28": "MOVE_WATER_PULSE",
-            "32": "MOVE_AQUA_TAIL",
-            "39": "MOVE_SKULL_BASH",
-            "46": "MOVE_IRON_DEFENSE",
-            "53": "MOVE_RAIN_DANCE",
-            "60": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -124,9 +113,10 @@
             "MOVE_IRON_DEFENSE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 16,
@@ -141,7 +131,7 @@
         "trainer_pos_m": 6,
         "pokemon_pos_m": 1,
         "entry_text": "The jets of water it spouts from\nthe rocket cannons on its shell\ncan punch through thick steel.",
-        "category": "Shellfish Pokémon"
+        "category": "Shellfish Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

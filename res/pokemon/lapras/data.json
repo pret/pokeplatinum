@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 95
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_ICE"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_ICE" ],
     "catch_rate": 45,
     "base_exp_reward": 219,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 40,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_WATER_ABSORB",
-        "ABILITY_SHELL_ARMOR"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_WATER_ABSORB", "ABILITY_SHELL_ARMOR" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SING" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 4, "MOVE_MIST" ],
+            [ 7, "MOVE_CONFUSE_RAY" ],
+            [ 10, "MOVE_ICE_SHARD" ],
+            [ 14, "MOVE_WATER_PULSE" ],
+            [ 18, "MOVE_BODY_SLAM" ],
+            [ 22, "MOVE_RAIN_DANCE" ],
+            [ 27, "MOVE_PERISH_SONG" ],
+            [ 32, "MOVE_ICE_BEAM" ],
+            [ 37, "MOVE_BRINE" ],
+            [ 43, "MOVE_SAFEGUARD" ],
+            [ 49, "MOVE_HYDRO_PUMP" ],
+            [ 55, "MOVE_SHEER_COLD" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -84,26 +92,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SING",
-                "MOVE_GROWL",
-                "MOVE_WATER_GUN"
-            ],
-            "4": "MOVE_MIST",
-            "7": "MOVE_CONFUSE_RAY",
-            "10": "MOVE_ICE_SHARD",
-            "14": "MOVE_WATER_PULSE",
-            "18": "MOVE_BODY_SLAM",
-            "22": "MOVE_RAIN_DANCE",
-            "27": "MOVE_PERISH_SONG",
-            "32": "MOVE_ICE_BEAM",
-            "37": "MOVE_BRINE",
-            "43": "MOVE_SAFEGUARD",
-            "49": "MOVE_HYDRO_PUMP",
-            "55": "MOVE_SHEER_COLD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_IRON_HEAD",
@@ -115,9 +104,10 @@
             "MOVE_ZEN_HEADBUTT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 25,
@@ -131,8 +121,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 7,
-        "entry_text": "It loves crossing the sea with\npeople and Pokémon on its back.\nIt understands human speech.",
-        "category": "Transport Pokémon"
+        "entry_text": "It loves crossing the sea with\npeople and Pok\u00e9mon on its back.\nIt understands human speech.",
+        "category": "Transport Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

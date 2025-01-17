@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_GROUND" ],
     "catch_rate": 45,
     "base_exp_reward": 195,
     "ev_yields": {
@@ -30,21 +27,24 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_POISON_POINT",
-        "ABILITY_RIVALRY"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_POISON_POINT", "ABILITY_RIVALRY" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 1, "MOVE_DOUBLE_KICK" ],
+            [ 1, "MOVE_POISON_STING" ],
+            [ 23, "MOVE_THRASH" ],
+            [ 43, "MOVE_EARTH_POWER" ],
+            [ 58, "MOVE_MEGAHORN" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM05",
@@ -101,18 +101,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PECK",
-                "MOVE_FOCUS_ENERGY",
-                "MOVE_DOUBLE_KICK",
-                "MOVE_POISON_STING"
-            ],
-            "23": "MOVE_THRASH",
-            "43": "MOVE_EARTH_POWER",
-            "58": "MOVE_MEGAHORN"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -129,9 +118,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 14,
@@ -146,7 +136,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
         "entry_text": "One swing of its mighty tail can\nsnap a telephone pole as if it were\na matchstick.",
-        "category": "Drill Pokémon"
+        "category": "Drill Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

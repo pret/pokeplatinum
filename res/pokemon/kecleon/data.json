@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 120
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 200,
     "base_exp_reward": 132,
     "ev_yields": {
@@ -30,21 +27,34 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_COLOR_CHANGE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 120,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_COLOR_CHANGE", "ABILITY_NONE" ],
+    "safari_flee_rate": 120,
     "sprite": {
         "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_THIEF" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_LICK" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 4, "MOVE_BIND" ],
+            [ 7, "MOVE_FAINT_ATTACK" ],
+            [ 10, "MOVE_FURY_SWIPES" ],
+            [ 14, "MOVE_FEINT" ],
+            [ 18, "MOVE_PSYBEAM" ],
+            [ 22, "MOVE_SHADOW_SNEAK" ],
+            [ 27, "MOVE_SLASH" ],
+            [ 32, "MOVE_SCREECH" ],
+            [ 37, "MOVE_SUBSTITUTE" ],
+            [ 43, "MOVE_SUCKER_PUNCH" ],
+            [ 49, "MOVE_SHADOW_CLAW" ],
+            [ 55, "MOVE_ANCIENT_POWER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -98,28 +108,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_THIEF",
-                "MOVE_TAIL_WHIP",
-                "MOVE_ASTONISH",
-                "MOVE_LICK",
-                "MOVE_SCRATCH"
-            ],
-            "4": "MOVE_BIND",
-            "7": "MOVE_FAINT_ATTACK",
-            "10": "MOVE_FURY_SWIPES",
-            "14": "MOVE_FEINT",
-            "18": "MOVE_PSYBEAM",
-            "22": "MOVE_SHADOW_SNEAK",
-            "27": "MOVE_SLASH",
-            "32": "MOVE_SCREECH",
-            "37": "MOVE_SUBSTITUTE",
-            "43": "MOVE_SUCKER_PUNCH",
-            "49": "MOVE_SHADOW_CLAW",
-            "55": "MOVE_ANCIENT_POWER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -137,9 +126,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -153,8 +143,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It can freely change its body’s\ncolor. The zigzag pattern on its\nbelly doesn’t change, however.",
-        "category": "Color Swap Pokémon"
+        "entry_text": "It can freely change its body\u2019s\ncolor. The zigzag pattern on its\nbelly doesn\u2019t change, however.",
+        "category": "Color Swap Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

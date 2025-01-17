@@ -8,10 +8,7 @@
         "special_attack": 105,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 75,
     "base_exp_reward": 164,
     "ev_yields": {
@@ -30,21 +27,34 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_SUCTION_CUPS",
-        "ABILITY_SNIPER"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_SUCTION_CUPS", "ABILITY_SNIPER" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_RED",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GUNK_SHOT" ],
+            [ 1, "MOVE_ROCK_BLAST" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_CONSTRICT" ],
+            [ 1, "MOVE_PSYBEAM" ],
+            [ 1, "MOVE_AURORA_BEAM" ],
+            [ 6, "MOVE_CONSTRICT" ],
+            [ 10, "MOVE_PSYBEAM" ],
+            [ 14, "MOVE_AURORA_BEAM" ],
+            [ 19, "MOVE_BUBBLE_BEAM" ],
+            [ 23, "MOVE_FOCUS_ENERGY" ],
+            [ 25, "MOVE_OCTAZOOKA" ],
+            [ 29, "MOVE_BULLET_SEED" ],
+            [ 36, "MOVE_WRING_OUT" ],
+            [ 42, "MOVE_SIGNAL_BEAM" ],
+            [ 48, "MOVE_ICE_BEAM" ],
+            [ 55, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM09",
@@ -83,28 +93,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GUNK_SHOT",
-                "MOVE_ROCK_BLAST",
-                "MOVE_WATER_GUN",
-                "MOVE_CONSTRICT",
-                "MOVE_PSYBEAM",
-                "MOVE_AURORA_BEAM"
-            ],
-            "6": "MOVE_CONSTRICT",
-            "10": "MOVE_PSYBEAM",
-            "14": "MOVE_AURORA_BEAM",
-            "19": "MOVE_BUBBLE_BEAM",
-            "23": "MOVE_FOCUS_ENERGY",
-            "25": "MOVE_OCTAZOOKA",
-            "29": "MOVE_BULLET_SEED",
-            "36": "MOVE_WRING_OUT",
-            "42": "MOVE_SIGNAL_BEAM",
-            "48": "MOVE_ICE_BEAM",
-            "55": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -116,9 +105,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -133,7 +123,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
         "entry_text": "It loves to lurk inside holes in\nrocks. It sometimes sprays ink on\nprey by sticking out only its mouth.",
-        "category": "Jet Pokémon"
+        "category": "Jet Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

@@ -8,10 +8,7 @@
         "special_attack": 80,
         "special_defense": 110
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 3,
     "base_exp_reward": 220,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_SLOW_START",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_SLOW_START", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FIRE_PUNCH" ],
+            [ 1, "MOVE_ICE_PUNCH" ],
+            [ 1, "MOVE_THUNDER_PUNCH" ],
+            [ 1, "MOVE_DIZZY_PUNCH" ],
+            [ 1, "MOVE_KNOCK_OFF" ],
+            [ 1, "MOVE_CONFUSE_RAY" ],
+            [ 1, "MOVE_FORESIGHT" ],
+            [ 25, "MOVE_REVENGE" ],
+            [ 50, "MOVE_ZEN_HEADBUTT" ],
+            [ 75, "MOVE_CRUSH_GRIP" ],
+            [ 100, "MOVE_GIGA_IMPACT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -83,22 +87,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FIRE_PUNCH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_DIZZY_PUNCH",
-                "MOVE_KNOCK_OFF",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_FORESIGHT"
-            ],
-            "25": "MOVE_REVENGE",
-            "50": "MOVE_ZEN_HEADBUTT",
-            "75": "MOVE_CRUSH_GRIP",
-            "100": "MOVE_GIGA_IMPACT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
@@ -112,9 +101,10 @@
             "MOVE_EARTH_POWER"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 37,
@@ -128,8 +118,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 23,
         "pokemon_pos_m": 1,
-        "entry_text": "It is said to have made Pokémon\nthat look like itself from a special\nice mountain, rocks, and magma.",
-        "category": "Colossal Pokémon"
+        "entry_text": "It is said to have made Pok\u00e9mon\nthat look like itself from a special\nice mountain, rocks, and magma.",
+        "category": "Colossal Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

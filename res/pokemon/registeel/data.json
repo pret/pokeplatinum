@@ -8,10 +8,7 @@
         "special_attack": 75,
         "special_defense": 150
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_STEEL"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_STEEL" ],
     "catch_rate": 3,
     "base_exp_reward": 215,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 80,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_CLEAR_BODY",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_CLEAR_BODY", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_EXPLOSION" ],
+            [ 1, "MOVE_STOMP" ],
+            [ 9, "MOVE_METAL_CLAW" ],
+            [ 17, "MOVE_CURSE" ],
+            [ 25, "MOVE_SUPERPOWER" ],
+            [ 33, "MOVE_ANCIENT_POWER" ],
+            [ 41, "MOVE_IRON_DEFENSE" ],
+            [ 41, "MOVE_AMNESIA" ],
+            [ 49, "MOVE_CHARGE_BEAM" ],
+            [ 57, "MOVE_LOCK_ON" ],
+            [ 65, "MOVE_ZAP_CANNON" ],
+            [ 73, "MOVE_IRON_HEAD" ],
+            [ 73, "MOVE_FLASH_CANNON" ],
+            [ 81, "MOVE_HAMMER_ARM" ],
+            [ 89, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -88,30 +96,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_EXPLOSION",
-                "MOVE_STOMP"
-            ],
-            "9": "MOVE_METAL_CLAW",
-            "17": "MOVE_CURSE",
-            "25": "MOVE_SUPERPOWER",
-            "33": "MOVE_ANCIENT_POWER",
-            "41": [
-                "MOVE_IRON_DEFENSE",
-                "MOVE_AMNESIA"
-            ],
-            "49": "MOVE_CHARGE_BEAM",
-            "57": "MOVE_LOCK_ON",
-            "65": "MOVE_ZAP_CANNON",
-            "73": [
-                "MOVE_IRON_HEAD",
-                "MOVE_FLASH_CANNON"
-            ],
-            "81": "MOVE_HAMMER_ARM",
-            "89": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -124,9 +109,10 @@
             "MOVE_MAGNET_RISE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 19,
@@ -141,7 +127,7 @@
         "trainer_pos_m": 14,
         "pokemon_pos_m": 4,
         "entry_text": "Tempered by pressure underground\nover tens of thousands of years,\nits body cannot be scratched.",
-        "category": "Iron Pokémon"
+        "category": "Iron Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -8,10 +8,7 @@
         "special_attack": 115,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 3,
     "base_exp_reward": 216,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 80,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 8, "MOVE_THUNDER_SHOCK" ],
+            [ 15, "MOVE_ROAR" ],
+            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 29, "MOVE_SPARK" ],
+            [ 36, "MOVE_REFLECT" ],
+            [ 43, "MOVE_CRUNCH" ],
+            [ 50, "MOVE_THUNDER_FANG" ],
+            [ 57, "MOVE_DISCHARGE" ],
+            [ 64, "MOVE_EXTRASENSORY" ],
+            [ 71, "MOVE_RAIN_DANCE" ],
+            [ 78, "MOVE_CALM_MIND" ],
+            [ 85, "MOVE_THUNDER" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM05",
             "TM06",
@@ -83,25 +90,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BITE",
-                "MOVE_LEER"
-            ],
-            "8": "MOVE_THUNDER_SHOCK",
-            "15": "MOVE_ROAR",
-            "22": "MOVE_QUICK_ATTACK",
-            "29": "MOVE_SPARK",
-            "36": "MOVE_REFLECT",
-            "43": "MOVE_CRUNCH",
-            "50": "MOVE_THUNDER_FANG",
-            "57": "MOVE_DISCHARGE",
-            "64": "MOVE_EXTRASENSORY",
-            "71": "MOVE_RAIN_DANCE",
-            "78": "MOVE_CALM_MIND",
-            "85": "MOVE_THUNDER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
@@ -110,9 +99,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 19,
@@ -127,7 +117,7 @@
         "trainer_pos_m": 15,
         "pokemon_pos_m": 3,
         "entry_text": "It is said to have fallen with\nlightning. It can fire thunderbolts\nfrom the rain clouds on its back.",
-        "category": "Thunder Pokémon"
+        "category": "Thunder Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

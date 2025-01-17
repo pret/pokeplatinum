@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 120,
     "base_exp_reward": 104,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_STATIC",
-        "ABILITY_LIGHTNING_ROD"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_STATIC", "ABILITY_LIGHTNING_ROD" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 4, "MOVE_THUNDER_WAVE" ],
+            [ 9, "MOVE_LEER" ],
+            [ 12, "MOVE_HOWL" ],
+            [ 17, "MOVE_QUICK_ATTACK" ],
+            [ 20, "MOVE_SPARK" ],
+            [ 25, "MOVE_ODOR_SLEUTH" ],
+            [ 28, "MOVE_BITE" ],
+            [ 33, "MOVE_THUNDER_FANG" ],
+            [ 36, "MOVE_ROAR" ],
+            [ 41, "MOVE_DISCHARGE" ],
+            [ 44, "MOVE_CHARGE" ],
+            [ 49, "MOVE_THUNDER" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -75,22 +81,7 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "4": "MOVE_THUNDER_WAVE",
-            "9": "MOVE_LEER",
-            "12": "MOVE_HOWL",
-            "17": "MOVE_QUICK_ATTACK",
-            "20": "MOVE_SPARK",
-            "25": "MOVE_ODOR_SLEUTH",
-            "28": "MOVE_BITE",
-            "33": "MOVE_THUNDER_FANG",
-            "36": "MOVE_ROAR",
-            "41": "MOVE_DISCHARGE",
-            "44": "MOVE_CHARGE",
-            "49": "MOVE_THUNDER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
@@ -106,8 +97,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -122,7 +113,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
         "entry_text": "Using electricity stored in its fur,\nit stimulates its muscles to\nheighten its reaction speed.",
-        "category": "Lightning Pokémon"
+        "category": "Lightning Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

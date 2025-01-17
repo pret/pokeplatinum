@@ -8,10 +8,7 @@
         "special_attack": 95,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_FLYING" ],
     "catch_rate": 75,
     "base_exp_reward": 171,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_EARLY_BIRD"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_EARLY_BIRD" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 6, "MOVE_NIGHT_SHADE" ],
+            [ 9, "MOVE_TELEPORT" ],
+            [ 12, "MOVE_LUCKY_CHANT" ],
+            [ 17, "MOVE_MIRACLE_EYE" ],
+            [ 20, "MOVE_ME_FIRST" ],
+            [ 23, "MOVE_CONFUSE_RAY" ],
+            [ 27, "MOVE_TAILWIND" ],
+            [ 30, "MOVE_WISH" ],
+            [ 37, "MOVE_PSYCHO_SHIFT" ],
+            [ 42, "MOVE_FUTURE_SIGHT" ],
+            [ 47, "MOVE_OMINOUS_WIND" ],
+            [ 54, "MOVE_POWER_SWAP" ],
+            [ 54, "MOVE_GUARD_SWAP" ],
+            [ 59, "MOVE_PSYCHIC" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -89,29 +98,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PECK",
-                "MOVE_LEER"
-            ],
-            "6": "MOVE_NIGHT_SHADE",
-            "9": "MOVE_TELEPORT",
-            "12": "MOVE_LUCKY_CHANT",
-            "17": "MOVE_MIRACLE_EYE",
-            "20": "MOVE_ME_FIRST",
-            "23": "MOVE_CONFUSE_RAY",
-            "27": "MOVE_TAILWIND",
-            "30": "MOVE_WISH",
-            "37": "MOVE_PSYCHO_SHIFT",
-            "42": "MOVE_FUTURE_SIGHT",
-            "47": "MOVE_OMINOUS_WIND",
-            "54": [
-                "MOVE_POWER_SWAP",
-                "MOVE_GUARD_SWAP"
-            ],
-            "59": "MOVE_PSYCHIC"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
@@ -124,9 +111,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -140,8 +128,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "This odd Pokémon can see both\nthe past and the future. It eyes\nthe sun’s movement all day.",
-        "category": "Mystic Pokémon"
+        "entry_text": "This odd Pok\u00e9mon can see both\nthe past and the future. It eyes\nthe sun\u2019s movement all day.",
+        "category": "Mystic Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

@@ -8,10 +8,7 @@
         "special_attack": 90,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 3,
     "base_exp_reward": 217,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 80,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 8, "MOVE_EMBER" ],
+            [ 15, "MOVE_ROAR" ],
+            [ 22, "MOVE_FIRE_SPIN" ],
+            [ 29, "MOVE_STOMP" ],
+            [ 36, "MOVE_FLAMETHROWER" ],
+            [ 43, "MOVE_SWAGGER" ],
+            [ 50, "MOVE_FIRE_FANG" ],
+            [ 57, "MOVE_LAVA_PLUME" ],
+            [ 64, "MOVE_EXTRASENSORY" ],
+            [ 71, "MOVE_FIRE_BLAST" ],
+            [ 78, "MOVE_CALM_MIND" ],
+            [ 85, "MOVE_ERUPTION" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM05",
             "TM06",
@@ -83,25 +90,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BITE",
-                "MOVE_LEER"
-            ],
-            "8": "MOVE_EMBER",
-            "15": "MOVE_ROAR",
-            "22": "MOVE_FIRE_SPIN",
-            "29": "MOVE_STOMP",
-            "36": "MOVE_FLAMETHROWER",
-            "43": "MOVE_SWAGGER",
-            "50": "MOVE_FIRE_FANG",
-            "57": "MOVE_LAVA_PLUME",
-            "64": "MOVE_EXTRASENSORY",
-            "71": "MOVE_FIRE_BLAST",
-            "78": "MOVE_CALM_MIND",
-            "85": "MOVE_ERUPTION"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
@@ -109,9 +98,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 21,
@@ -126,7 +116,7 @@
         "trainer_pos_m": 15,
         "pokemon_pos_m": 3,
         "entry_text": "It is said that when it roars, a\nvolcano erupts somewhere around\nthe globe.",
-        "category": "Volcano Pokémon"
+        "category": "Volcano Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

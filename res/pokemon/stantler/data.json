@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 165,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_FRISK"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_FRISK" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 3, "MOVE_LEER" ],
+            [ 7, "MOVE_ASTONISH" ],
+            [ 10, "MOVE_HYPNOSIS" ],
+            [ 13, "MOVE_STOMP" ],
+            [ 16, "MOVE_SAND_ATTACK" ],
+            [ 21, "MOVE_TAKE_DOWN" ],
+            [ 23, "MOVE_CONFUSE_RAY" ],
+            [ 27, "MOVE_CALM_MIND" ],
+            [ 33, "MOVE_ROLE_PLAY" ],
+            [ 38, "MOVE_ZEN_HEADBUTT" ],
+            [ 43, "MOVE_IMPRISON" ],
+            [ 49, "MOVE_CAPTIVATE" ],
+            [ 53, "MOVE_ME_FIRST" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM05",
             "TM06",
@@ -86,23 +93,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "3": "MOVE_LEER",
-            "7": "MOVE_ASTONISH",
-            "10": "MOVE_HYPNOSIS",
-            "13": "MOVE_STOMP",
-            "16": "MOVE_SAND_ATTACK",
-            "21": "MOVE_TAKE_DOWN",
-            "23": "MOVE_CONFUSE_RAY",
-            "27": "MOVE_CALM_MIND",
-            "33": "MOVE_ROLE_PLAY",
-            "38": "MOVE_ZEN_HEADBUTT",
-            "43": "MOVE_IMPRISON",
-            "49": "MOVE_CAPTIVATE",
-            "53": "MOVE_ME_FIRST"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_SPITE",
@@ -115,9 +106,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 14,
@@ -132,7 +124,7 @@
         "trainer_pos_m": 8,
         "pokemon_pos_m": 7,
         "entry_text": "Staring at its antlers creates\nan odd sensation as if one were\nbeing drawn into their centers.",
-        "category": "Big Horn Pokémon"
+        "category": "Big Horn Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

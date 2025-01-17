@@ -8,10 +8,7 @@
         "special_attack": 73,
         "special_defense": 83
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 75,
     "base_exp_reward": 168,
     "ev_yields": {
@@ -30,21 +27,35 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LIQUID_OOZE",
-        "ABILITY_STICKY_HOLD"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LIQUID_OOZE", "ABILITY_STICKY_HOLD" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_POISON_GAS" ],
+            [ 1, "MOVE_SLUDGE" ],
+            [ 6, "MOVE_YAWN" ],
+            [ 9, "MOVE_POISON_GAS" ],
+            [ 14, "MOVE_SLUDGE" ],
+            [ 17, "MOVE_AMNESIA" ],
+            [ 23, "MOVE_ENCORE" ],
+            [ 26, "MOVE_BODY_SLAM" ],
+            [ 30, "MOVE_TOXIC" ],
+            [ 38, "MOVE_STOCKPILE" ],
+            [ 38, "MOVE_SPIT_UP" ],
+            [ 38, "MOVE_SWALLOW" ],
+            [ 45, "MOVE_SLUDGE_BOMB" ],
+            [ 52, "MOVE_GASTRO_ACID" ],
+            [ 59, "MOVE_WRING_OUT" ],
+            [ 66, "MOVE_GUNK_SHOT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM09",
@@ -80,31 +91,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_YAWN",
-                "MOVE_POISON_GAS",
-                "MOVE_SLUDGE"
-            ],
-            "6": "MOVE_YAWN",
-            "9": "MOVE_POISON_GAS",
-            "14": "MOVE_SLUDGE",
-            "17": "MOVE_AMNESIA",
-            "23": "MOVE_ENCORE",
-            "26": "MOVE_BODY_SLAM",
-            "30": "MOVE_TOXIC",
-            "38": [
-                "MOVE_STOCKPILE",
-                "MOVE_SPIT_UP",
-                "MOVE_SWALLOW"
-            ],
-            "45": "MOVE_SLUDGE_BOMB",
-            "52": "MOVE_GASTRO_ACID",
-            "59": "MOVE_WRING_OUT",
-            "66": "MOVE_GUNK_SHOT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -116,9 +103,10 @@
             "MOVE_SEED_BOMB"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 17,
@@ -133,7 +121,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
         "entry_text": "It swallows anything whole.\nIt sweats toxic fluids from its\nfollicles to douse foes.",
-        "category": "Poison Bag Pokémon"
+        "category": "Poison Bag Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

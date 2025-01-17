@@ -8,10 +8,7 @@
         "special_attack": 25,
         "special_defense": 25
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_POISON" ],
     "catch_rate": 120,
     "base_exp_reward": 71,
     "ev_yields": {
@@ -30,28 +27,20 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SHED_SKIN",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SHED_SKIN", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": "MOVE_HARDEN",
-            "7": "MOVE_HARDEN"
-        },
-        "tutor": [
-            "MOVE_IRON_DEFENSE"
-        ]
+        "by_level": [
+            [ 1, "MOVE_HARDEN" ],
+            [ 7, "MOVE_HARDEN" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [ "MOVE_IRON_DEFENSE" ]
     },
     "evolutions": [
         [
@@ -61,8 +50,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 6,
@@ -77,7 +66,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
         "entry_text": "While awaiting evolution, it\nhides from predators under\nleaves and in nooks of branches.",
-        "category": "Cocoon Pokémon"
+        "category": "Cocoon Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

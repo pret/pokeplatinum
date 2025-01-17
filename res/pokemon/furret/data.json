@@ -8,10 +8,7 @@
         "special_attack": 45,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 90,
     "base_exp_reward": 116,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_RUN_AWAY",
-        "ABILITY_KEEN_EYE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_KEEN_EYE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_FORESIGHT" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 4, "MOVE_DEFENSE_CURL" ],
+            [ 7, "MOVE_QUICK_ATTACK" ],
+            [ 13, "MOVE_FURY_SWIPES" ],
+            [ 17, "MOVE_HELPING_HAND" ],
+            [ 21, "MOVE_FOLLOW_ME" ],
+            [ 28, "MOVE_SLAM" ],
+            [ 32, "MOVE_REST" ],
+            [ 36, "MOVE_SUCKER_PUNCH" ],
+            [ 42, "MOVE_AMNESIA" ],
+            [ 46, "MOVE_BATON_PASS" ],
+            [ 50, "MOVE_ME_FIRST" ],
+            [ 56, "MOVE_HYPER_VOICE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -90,27 +99,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_FORESIGHT",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_QUICK_ATTACK"
-            ],
-            "4": "MOVE_DEFENSE_CURL",
-            "7": "MOVE_QUICK_ATTACK",
-            "13": "MOVE_FURY_SWIPES",
-            "17": "MOVE_HELPING_HAND",
-            "21": "MOVE_FOLLOW_ME",
-            "28": "MOVE_SLAM",
-            "32": "MOVE_REST",
-            "36": "MOVE_SUCKER_PUNCH",
-            "42": "MOVE_AMNESIA",
-            "46": "MOVE_BATON_PASS",
-            "50": "MOVE_ME_FIRST",
-            "56": "MOVE_HYPER_VOICE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -127,9 +116,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 18,
@@ -144,7 +134,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
         "entry_text": "The mother puts its offspring to\nsleep by curling up around them.\nIt corners foes with speed.",
-        "category": "Long Body Pokémon"
+        "category": "Long Body Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

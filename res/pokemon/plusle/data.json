@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 200,
     "base_exp_reward": 120,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_PLUS",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_PLUS", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 3, "MOVE_THUNDER_WAVE" ],
+            [ 7, "MOVE_QUICK_ATTACK" ],
+            [ 10, "MOVE_HELPING_HAND" ],
+            [ 15, "MOVE_SPARK" ],
+            [ 17, "MOVE_ENCORE" ],
+            [ 21, "MOVE_FAKE_TEARS" ],
+            [ 24, "MOVE_COPYCAT" ],
+            [ 29, "MOVE_SWIFT" ],
+            [ 31, "MOVE_FAKE_TEARS" ],
+            [ 35, "MOVE_CHARGE" ],
+            [ 38, "MOVE_THUNDER" ],
+            [ 42, "MOVE_BATON_PASS" ],
+            [ 44, "MOVE_AGILITY" ],
+            [ 48, "MOVE_LAST_RESORT" ],
+            [ 51, "MOVE_NASTY_PLOT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM16",
@@ -73,25 +82,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": "MOVE_GROWL",
-            "3": "MOVE_THUNDER_WAVE",
-            "7": "MOVE_QUICK_ATTACK",
-            "10": "MOVE_HELPING_HAND",
-            "15": "MOVE_SPARK",
-            "17": "MOVE_ENCORE",
-            "21": "MOVE_FAKE_TEARS",
-            "24": "MOVE_COPYCAT",
-            "29": "MOVE_SWIFT",
-            "31": "MOVE_FAKE_TEARS",
-            "35": "MOVE_CHARGE",
-            "38": "MOVE_THUNDER",
-            "42": "MOVE_BATON_PASS",
-            "44": "MOVE_AGILITY",
-            "48": "MOVE_LAST_RESORT",
-            "51": "MOVE_NASTY_PLOT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -104,9 +95,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -121,7 +113,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
         "entry_text": "It cheers on friends with pom-poms\nmade of sparks. It drains power\nfrom telephone poles.",
-        "category": "Cheering Pokémon"
+        "category": "Cheering Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

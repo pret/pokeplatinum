@@ -8,10 +8,7 @@
         "special_attack": 76,
         "special_defense": 76
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_ELECTRIC" ],
     "catch_rate": 75,
     "base_exp_reward": 156,
     "ev_yields": {
@@ -30,21 +27,35 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_VOLT_ABSORB",
-        "ABILITY_ILLUMINATE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_VOLT_ABSORB", "ABILITY_ILLUMINATE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 1, "MOVE_THUNDER_WAVE" ],
+            [ 6, "MOVE_THUNDER_WAVE" ],
+            [ 9, "MOVE_FLAIL" ],
+            [ 12, "MOVE_WATER_GUN" ],
+            [ 17, "MOVE_CONFUSE_RAY" ],
+            [ 20, "MOVE_SPARK" ],
+            [ 23, "MOVE_TAKE_DOWN" ],
+            [ 27, "MOVE_STOCKPILE" ],
+            [ 27, "MOVE_SWALLOW" ],
+            [ 27, "MOVE_SPIT_UP" ],
+            [ 30, "MOVE_BUBBLE_BEAM" ],
+            [ 35, "MOVE_SIGNAL_BEAM" ],
+            [ 40, "MOVE_DISCHARGE" ],
+            [ 47, "MOVE_AQUA_RING" ],
+            [ 52, "MOVE_HYDRO_PUMP" ],
+            [ 57, "MOVE_CHARGE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -78,31 +89,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BUBBLE",
-                "MOVE_SUPERSONIC",
-                "MOVE_THUNDER_WAVE"
-            ],
-            "6": "MOVE_THUNDER_WAVE",
-            "9": "MOVE_FLAIL",
-            "12": "MOVE_WATER_GUN",
-            "17": "MOVE_CONFUSE_RAY",
-            "20": "MOVE_SPARK",
-            "23": "MOVE_TAKE_DOWN",
-            "27": [
-                "MOVE_STOCKPILE",
-                "MOVE_SWALLOW",
-                "MOVE_SPIT_UP"
-            ],
-            "30": "MOVE_BUBBLE_BEAM",
-            "35": "MOVE_SIGNAL_BEAM",
-            "40": "MOVE_DISCHARGE",
-            "47": "MOVE_AQUA_RING",
-            "52": "MOVE_HYDRO_PUMP",
-            "57": "MOVE_CHARGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
@@ -112,9 +99,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -128,8 +116,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n“The Deep-Sea Star.”",
-        "category": "Light Pokémon"
+        "entry_text": "LANTURN\u2019s light can shine up from\ngreat depths. It is nicknamed\n\u201cThe Deep-Sea Star.\u201d",
+        "category": "Light Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

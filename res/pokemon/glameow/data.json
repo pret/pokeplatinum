@@ -8,10 +8,7 @@
         "special_attack": 42,
         "special_defense": 37
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 190,
     "base_exp_reward": 71,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_LIMBER",
-        "ABILITY_OWN_TEMPO"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_LIMBER", "ABILITY_OWN_TEMPO" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FAKE_OUT" ],
+            [ 5, "MOVE_SCRATCH" ],
+            [ 8, "MOVE_GROWL" ],
+            [ 13, "MOVE_HYPNOSIS" ],
+            [ 17, "MOVE_FAINT_ATTACK" ],
+            [ 20, "MOVE_FURY_SWIPES" ],
+            [ 25, "MOVE_CHARM" ],
+            [ 29, "MOVE_ASSIST" ],
+            [ 32, "MOVE_CAPTIVATE" ],
+            [ 37, "MOVE_SLASH" ],
+            [ 41, "MOVE_SUCKER_PUNCH" ],
+            [ 45, "MOVE_ATTRACT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -83,21 +88,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": "MOVE_FAKE_OUT",
-            "5": "MOVE_SCRATCH",
-            "8": "MOVE_GROWL",
-            "13": "MOVE_HYPNOSIS",
-            "17": "MOVE_FAINT_ATTACK",
-            "20": "MOVE_FURY_SWIPES",
-            "25": "MOVE_CHARM",
-            "29": "MOVE_ASSIST",
-            "32": "MOVE_CAPTIVATE",
-            "37": "MOVE_SLASH",
-            "41": "MOVE_SUCKER_PUNCH",
-            "45": "MOVE_ATTRACT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -115,8 +106,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -130,8 +121,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It hides its spiteful tendency of\nhooking its claws into the nose of\nits Trainer if it isn’t fed.",
-        "category": "Catty Pokémon"
+        "entry_text": "It hides its spiteful tendency of\nhooking its claws into the nose of\nits Trainer if it isn\u2019t fed.",
+        "category": "Catty Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

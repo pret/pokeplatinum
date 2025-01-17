@@ -8,10 +8,7 @@
         "special_attack": 105,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 200,
     "base_exp_reward": 75,
     "ev_yields": {
@@ -30,21 +27,18 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_INNER_FOCUS"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_INNER_FOCUS" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TELEPORT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -90,10 +84,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": "MOVE_TELEPORT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
@@ -112,8 +103,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -128,7 +119,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
         "entry_text": "Using its psychic power is such a\nstrain on its brain that it needs\nto sleep for 18 hours a day.",
-        "category": "Psi Pokémon"
+        "category": "Psi Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

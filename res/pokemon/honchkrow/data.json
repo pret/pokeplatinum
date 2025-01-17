@@ -8,10 +8,7 @@
         "special_attack": 105,
         "special_defense": 52
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_FLYING" ],
     "catch_rate": 30,
     "base_exp_reward": 187,
     "ev_yields": {
@@ -30,21 +27,25 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_INSOMNIA",
-        "ABILITY_SUPER_LUCK"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_INSOMNIA", "ABILITY_SUPER_LUCK" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_PURSUIT" ],
+            [ 1, "MOVE_HAZE" ],
+            [ 1, "MOVE_WING_ATTACK" ],
+            [ 25, "MOVE_SWAGGER" ],
+            [ 35, "MOVE_NASTY_PLOT" ],
+            [ 45, "MOVE_NIGHT_SLASH" ],
+            [ 55, "MOVE_DARK_PULSE" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -85,19 +86,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ASTONISH",
-                "MOVE_PURSUIT",
-                "MOVE_HAZE",
-                "MOVE_WING_ATTACK"
-            ],
-            "25": "MOVE_SWAGGER",
-            "35": "MOVE_NASTY_PLOT",
-            "45": "MOVE_NIGHT_SLASH",
-            "55": "MOVE_DARK_PULSE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SUPERPOWER",
             "MOVE_OMINOUS_WIND",
@@ -110,9 +99,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -126,8 +116,8 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "If one utters a deep cry, many\nMURKROW gather quickly. For this,\nit is called “Summoner of Night.”",
-        "category": "Big Boss Pokémon"
+        "entry_text": "If one utters a deep cry, many\nMURKROW gather quickly. For this,\nit is called \u201cSummoner of Night.\u201d",
+        "category": "Big Boss Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

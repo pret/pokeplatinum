@@ -8,10 +8,7 @@
         "special_attack": 10,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 255,
     "base_exp_reward": 61,
     "ev_yields": {
@@ -30,21 +27,20 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SPLASH" ],
+            [ 15, "MOVE_TACKLE" ],
+            [ 30, "MOVE_FLAIL" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -69,12 +65,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_SPLASH",
-            "15": "MOVE_TACKLE",
-            "30": "MOVE_FLAIL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -89,8 +80,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 6,
@@ -104,8 +95,8 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "It is a shabby and ugly Pokémon.\nHowever, it is very hardy and\ncan survive on little water.",
-        "category": "Fish Pokémon"
+        "entry_text": "It is a shabby and ugly Pok\u00e9mon.\nHowever, it is very hardy and\ncan survive on little water.",
+        "category": "Fish Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

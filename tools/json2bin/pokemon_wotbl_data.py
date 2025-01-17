@@ -12,24 +12,18 @@ def table_line(move_id: int, level: int) -> bytes:
     return ((move_id & 0x01FF) | ((level & 0x7F) << 9)).to_bytes(2, 'little', signed=False)
 
 
-def parse_level_up_moves(table: dict, _size: int, _enum: None):
+def parse_level_up_moves(table: list, _size: int, _enum: None):
     out = []
-    for key, value in table.items():
-        level = int(key)
-        level_moves = value
-        if isinstance(level_moves, str):
-            out.extend(table_line(moves.Move[level_moves].value, level))
-        elif isinstance(level_moves, list):
-            for move in level_moves:
-                out.extend(table_line(moves.Move[move].value, level))
-        else:
-            raise TypeError(f"Invalid table value {level}; expected str or list")
+    for entry in table:
+        level = entry[0]
+        move = entry[1]
+        out.extend(table_line(moves.Move[move].value, level))
     return out
 
 
 SCHEMA = j2b.Parser() \
     .register_name(lambda s: s) \
-    .register('learnset.level_up', 0, parse_level_up_moves, optional=j2b.OptionalBehavior.SKIP) \
+    .register('learnset.by_level', 0, parse_level_up_moves, optional=j2b.OptionalBehavior.SKIP) \
     .pad(2, 0xff) \
     .align(4)
 

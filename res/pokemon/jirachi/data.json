@@ -8,10 +8,7 @@
         "special_attack": 100,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_PSYCHIC" ],
     "catch_rate": 3,
     "base_exp_reward": 215,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 120,
     "base_friendship": 100,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_SERENE_GRACE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_SERENE_GRACE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WISH" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 5, "MOVE_REST" ],
+            [ 10, "MOVE_SWIFT" ],
+            [ 15, "MOVE_HELPING_HAND" ],
+            [ 20, "MOVE_PSYCHIC" ],
+            [ 25, "MOVE_REFRESH" ],
+            [ 30, "MOVE_REST" ],
+            [ 35, "MOVE_ZEN_HEADBUTT" ],
+            [ 40, "MOVE_DOUBLE_EDGE" ],
+            [ 45, "MOVE_GRAVITY" ],
+            [ 50, "MOVE_HEALING_WISH" ],
+            [ 55, "MOVE_FUTURE_SIGHT" ],
+            [ 60, "MOVE_COSMIC_POWER" ],
+            [ 65, "MOVE_LAST_RESORT" ],
+            [ 70, "MOVE_DOOM_DESIRE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM06",
@@ -91,27 +100,7 @@
             "TM91",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_WISH",
-                "MOVE_CONFUSION"
-            ],
-            "5": "MOVE_REST",
-            "10": "MOVE_SWIFT",
-            "15": "MOVE_HELPING_HAND",
-            "20": "MOVE_PSYCHIC",
-            "25": "MOVE_REFRESH",
-            "30": "MOVE_REST",
-            "35": "MOVE_ZEN_HEADBUTT",
-            "40": "MOVE_DOUBLE_EDGE",
-            "45": "MOVE_GRAVITY",
-            "50": "MOVE_HEALING_WISH",
-            "55": "MOVE_FUTURE_SIGHT",
-            "60": "MOVE_COSMIC_POWER",
-            "65": "MOVE_LAST_RESORT",
-            "70": "MOVE_DOOM_DESIRE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
@@ -130,9 +119,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -147,7 +137,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65518,
         "entry_text": "It is said to have the ability to\ngrant any wish for just one week\nevery thousand years.",
-        "category": "Wish Pokémon"
+        "category": "Wish Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -8,10 +8,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_GROUND" ],
     "catch_rate": 255,
     "base_exp_reward": 65,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_COMPOUND_EYES",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_COMPOUND_EYES", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 5, "MOVE_LEECH_LIFE" ],
+            [ 9, "MOVE_SAND_ATTACK" ],
+            [ 14, "MOVE_FURY_SWIPES" ],
+            [ 19, "MOVE_MIND_READER" ],
+            [ 25, "MOVE_FALSE_SWIPE" ],
+            [ 31, "MOVE_MUD_SLAP" ],
+            [ 38, "MOVE_METAL_CLAW" ],
+            [ 45, "MOVE_DIG" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -71,21 +74,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_HARDEN"
-            ],
-            "5": "MOVE_LEECH_LIFE",
-            "9": "MOVE_SAND_ATTACK",
-            "14": "MOVE_FURY_SWIPES",
-            "19": "MOVE_MIND_READER",
-            "25": "MOVE_FALSE_SWIPE",
-            "31": "MOVE_MUD_SLAP",
-            "38": "MOVE_METAL_CLAW",
-            "45": "MOVE_DIG"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -105,8 +94,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -121,7 +110,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
         "entry_text": "It grows underground, sensing\nits surroundings using antennae\ninstead of its virtually blind eyes.",
-        "category": "Trainee Pokémon"
+        "category": "Trainee Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

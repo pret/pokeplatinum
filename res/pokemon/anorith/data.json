@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_BUG"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_BUG" ],
     "catch_rate": 45,
     "base_exp_reward": 99,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 30,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_BATTLE_ARMOR",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_BATTLE_ARMOR", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 7, "MOVE_MUD_SPORT" ],
+            [ 13, "MOVE_WATER_GUN" ],
+            [ 19, "MOVE_METAL_CLAW" ],
+            [ 25, "MOVE_PROTECT" ],
+            [ 31, "MOVE_ANCIENT_POWER" ],
+            [ 37, "MOVE_FURY_CUTTER" ],
+            [ 43, "MOVE_SLASH" ],
+            [ 49, "MOVE_ROCK_BLAST" ],
+            [ 55, "MOVE_CRUSH_CLAW" ],
+            [ 61, "MOVE_X_SCISSOR" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -77,23 +82,7 @@
             "HM01",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_HARDEN"
-            ],
-            "7": "MOVE_MUD_SPORT",
-            "13": "MOVE_WATER_GUN",
-            "19": "MOVE_METAL_CLAW",
-            "25": "MOVE_PROTECT",
-            "31": "MOVE_ANCIENT_POWER",
-            "37": "MOVE_FURY_CUTTER",
-            "43": "MOVE_SLASH",
-            "49": "MOVE_ROCK_BLAST",
-            "55": "MOVE_CRUSH_CLAW",
-            "61": "MOVE_X_SCISSOR"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -111,8 +100,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 7,
@@ -126,8 +115,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "A Pokémon ancestor that was\nreanimated from a fossil. It lived\nin the sea and hunted with claws.",
-        "category": "Old Shrimp Pokémon"
+        "entry_text": "A Pok\u00e9mon ancestor that was\nreanimated from a fossil. It lived\nin the sea and hunted with claws.",
+        "category": "Old Shrimp Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

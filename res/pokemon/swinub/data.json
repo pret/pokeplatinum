@@ -8,10 +8,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_GROUND" ],
     "catch_rate": 225,
     "base_exp_reward": 78,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_SNOW_CLOAK"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_SNOW_CLOAK" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_ODOR_SLEUTH" ],
+            [ 4, "MOVE_MUD_SPORT" ],
+            [ 8, "MOVE_POWDER_SNOW" ],
+            [ 13, "MOVE_MUD_SLAP" ],
+            [ 16, "MOVE_ENDURE" ],
+            [ 20, "MOVE_MUD_BOMB" ],
+            [ 25, "MOVE_ICY_WIND" ],
+            [ 28, "MOVE_ICE_SHARD" ],
+            [ 32, "MOVE_TAKE_DOWN" ],
+            [ 37, "MOVE_EARTHQUAKE" ],
+            [ 40, "MOVE_MIST" ],
+            [ 44, "MOVE_BLIZZARD" ],
+            [ 49, "MOVE_AMNESIA" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM07",
@@ -77,25 +84,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_ODOR_SLEUTH"
-            ],
-            "4": "MOVE_MUD_SPORT",
-            "8": "MOVE_POWDER_SNOW",
-            "13": "MOVE_MUD_SLAP",
-            "16": "MOVE_ENDURE",
-            "20": "MOVE_MUD_BOMB",
-            "25": "MOVE_ICY_WIND",
-            "28": "MOVE_ICE_SHARD",
-            "32": "MOVE_TAKE_DOWN",
-            "37": "MOVE_EARTHQUAKE",
-            "40": "MOVE_MIST",
-            "44": "MOVE_BLIZZARD",
-            "49": "MOVE_AMNESIA"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_SUPERPOWER",
@@ -113,8 +102,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 4,
@@ -129,7 +118,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
         "entry_text": "It has a very sensitive nose. It\ncan locate mushrooms, berries, and\neven hot springs buried under ice.",
-        "category": "Pig Pokémon"
+        "category": "Pig Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

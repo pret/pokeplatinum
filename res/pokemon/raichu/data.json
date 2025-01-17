@@ -8,10 +8,7 @@
         "special_attack": 90,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 75,
     "base_exp_reward": 122,
     "ev_yields": {
@@ -30,21 +27,21 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_STATIC",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_STATIC", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_THUNDER_SHOCK" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_THUNDERBOLT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -82,15 +79,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_THUNDER_SHOCK",
-                "MOVE_TAIL_WHIP",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_THUNDERBOLT"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -102,9 +91,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -119,7 +109,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
         "entry_text": "Its tail discharges electricity into\nthe ground, protecting it from\ngetting shocked.",
-        "category": "Mouse Pokémon"
+        "category": "Mouse Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

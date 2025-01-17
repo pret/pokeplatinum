@@ -61,7 +61,7 @@ FORM_INDICES = {
 
 species_movesets = {}
 species_footprints = {
-    0: { "has_footprint": False, "footprint_size": "FOOTPRINT_SMALL" }
+    0: { "has": False, "size": "FOOTPRINT_SMALL" }
 }
 
 for file_path in source_dir.glob("**/data.json"):
@@ -97,7 +97,7 @@ for file_path in source_dir.glob("**/data.json"):
         byte = byte_array[byte_index]
         byte_array[byte_index] = byte | (1 << bit_index)
 
-    for tutor_move in species_data["learnset"]["tutor"]:
+    for tutor_move in species_data["learnset"]["by_tutor"]:
         set_bit(moveset.index(Move[tutor_move]))
 
     species_movesets[species_id] = byte_array
@@ -150,10 +150,10 @@ with open(output_path, "w") as output_file:
 
     for key, value in sorted_array:
 
-        has_footprint = "TRUE" if species_footprints[key]["has_footprint"] else "FALSE"
-        footprint_size = PokemonFootprintSize[species_footprints[key]["footprint_size"]].value
+            has_footprint = "TRUE" if species_footprints[key]["has"] else "FALSE"
+            footprint_size = PokemonFootprintSize[species_footprints[key]["size"]].value
 
-        output_file.write(f"    {{ {has_footprint}, {footprint_size} }},\n")
+            output_file.write(f"    {{ {has_footprint}, {footprint_size} }},\n")
 
     output_file.write("};\n")
     output_file.write("\n#endif\n")

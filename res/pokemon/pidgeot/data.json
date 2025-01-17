@@ -8,10 +8,7 @@
         "special_attack": 70,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 172,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_TANGLED_FEET"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_TANGLED_FEET" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_GUST" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 5, "MOVE_SAND_ATTACK" ],
+            [ 9, "MOVE_GUST" ],
+            [ 13, "MOVE_QUICK_ATTACK" ],
+            [ 17, "MOVE_WHIRLWIND" ],
+            [ 22, "MOVE_TWISTER" ],
+            [ 27, "MOVE_FEATHER_DANCE" ],
+            [ 32, "MOVE_AGILITY" ],
+            [ 38, "MOVE_WING_ATTACK" ],
+            [ 44, "MOVE_ROOST" ],
+            [ 50, "MOVE_TAILWIND" ],
+            [ 56, "MOVE_MIRROR_MOVE" ],
+            [ 62, "MOVE_AIR_SLASH" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -74,27 +83,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_SAND_ATTACK",
-                "MOVE_GUST",
-                "MOVE_QUICK_ATTACK"
-            ],
-            "5": "MOVE_SAND_ATTACK",
-            "9": "MOVE_GUST",
-            "13": "MOVE_QUICK_ATTACK",
-            "17": "MOVE_WHIRLWIND",
-            "22": "MOVE_TWISTER",
-            "27": "MOVE_FEATHER_DANCE",
-            "32": "MOVE_AGILITY",
-            "38": "MOVE_WING_ATTACK",
-            "44": "MOVE_ROOST",
-            "50": "MOVE_TAILWIND",
-            "56": "MOVE_MIRROR_MOVE",
-            "62": "MOVE_AIR_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -105,9 +94,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 15,
@@ -122,7 +112,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
         "entry_text": "By flapping its wings with all its\nmight, PIDGEOT can make a gust of\nwind capable of bending tall trees.",
-        "category": "Bird Pokémon"
+        "category": "Bird Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

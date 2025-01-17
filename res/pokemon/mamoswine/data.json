@@ -8,10 +8,7 @@
         "special_attack": 70,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_GROUND" ],
     "catch_rate": 50,
     "base_exp_reward": 207,
     "ev_yields": {
@@ -30,21 +27,35 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_SNOW_CLOAK"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_SNOW_CLOAK" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ANCIENT_POWER" ],
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_ODOR_SLEUTH" ],
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 4, "MOVE_MUD_SPORT" ],
+            [ 8, "MOVE_POWDER_SNOW" ],
+            [ 13, "MOVE_MUD_SLAP" ],
+            [ 16, "MOVE_ENDURE" ],
+            [ 20, "MOVE_MUD_BOMB" ],
+            [ 25, "MOVE_HAIL" ],
+            [ 28, "MOVE_ICE_FANG" ],
+            [ 32, "MOVE_TAKE_DOWN" ],
+            [ 33, "MOVE_DOUBLE_HIT" ],
+            [ 40, "MOVE_EARTHQUAKE" ],
+            [ 48, "MOVE_MIST" ],
+            [ 56, "MOVE_BLIZZARD" ],
+            [ 65, "MOVE_SCARY_FACE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM07",
@@ -82,29 +93,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ANCIENT_POWER",
-                "MOVE_PECK",
-                "MOVE_ODOR_SLEUTH",
-                "MOVE_MUD_SPORT",
-                "MOVE_POWDER_SNOW"
-            ],
-            "4": "MOVE_MUD_SPORT",
-            "8": "MOVE_POWDER_SNOW",
-            "13": "MOVE_MUD_SLAP",
-            "16": "MOVE_ENDURE",
-            "20": "MOVE_MUD_BOMB",
-            "25": "MOVE_HAIL",
-            "28": "MOVE_ICE_FANG",
-            "32": "MOVE_TAKE_DOWN",
-            "33": "MOVE_DOUBLE_HIT",
-            "40": "MOVE_EARTHQUAKE",
-            "48": "MOVE_MIST",
-            "56": "MOVE_BLIZZARD",
-            "65": "MOVE_SCARY_FACE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -117,9 +106,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 25,
@@ -134,7 +124,7 @@
         "trainer_pos_m": 18,
         "pokemon_pos_m": 5,
         "entry_text": "A frozen one was dug up from\nsoil dating back 10,000 years. It\nwoke up to much amazement.",
-        "category": "Twin Tusk Pokémon"
+        "category": "Twin Tusk Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

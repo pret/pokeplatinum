@@ -8,10 +8,7 @@
         "special_attack": 70,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 225,
     "base_exp_reward": 106,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_ILLUMINATE",
-        "ABILITY_NATURAL_CURE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_ILLUMINATE", "ABILITY_NATURAL_CURE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": true
+        "flip": true
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 6, "MOVE_WATER_GUN" ],
+            [ 10, "MOVE_RAPID_SPIN" ],
+            [ 15, "MOVE_RECOVER" ],
+            [ 19, "MOVE_CAMOUFLAGE" ],
+            [ 24, "MOVE_SWIFT" ],
+            [ 28, "MOVE_BUBBLE_BEAM" ],
+            [ 33, "MOVE_MINIMIZE" ],
+            [ 37, "MOVE_GYRO_BALL" ],
+            [ 42, "MOVE_LIGHT_SCREEN" ],
+            [ 46, "MOVE_POWER_GEM" ],
+            [ 51, "MOVE_COSMIC_POWER" ],
+            [ 55, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -79,25 +86,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_HARDEN"
-            ],
-            "6": "MOVE_WATER_GUN",
-            "10": "MOVE_RAPID_SPIN",
-            "15": "MOVE_RECOVER",
-            "19": "MOVE_CAMOUFLAGE",
-            "24": "MOVE_SWIFT",
-            "28": "MOVE_BUBBLE_BEAM",
-            "33": "MOVE_MINIMIZE",
-            "37": "MOVE_GYRO_BALL",
-            "42": "MOVE_LIGHT_SCREEN",
-            "46": "MOVE_POWER_GEM",
-            "51": "MOVE_COSMIC_POWER",
-            "55": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -115,8 +104,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 8,
@@ -131,7 +120,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
         "entry_text": "If its body is torn, it can grow\nback if the red core remains.\nThe core flashes at midnight.",
-        "category": "Star Shape Pokémon"
+        "category": "Star Shape Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

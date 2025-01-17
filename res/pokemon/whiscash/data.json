@@ -8,10 +8,7 @@
         "special_attack": 76,
         "special_defense": 71
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GROUND" ],
     "catch_rate": 75,
     "base_exp_reward": 158,
     "ev_yields": {
@@ -30,21 +27,35 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_ANTICIPATION"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_ANTICIPATION" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ZEN_HEADBUTT" ],
+            [ 1, "MOVE_TICKLE" ],
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 6, "MOVE_MUD_SPORT" ],
+            [ 6, "MOVE_WATER_SPORT" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 14, "MOVE_MUD_BOMB" ],
+            [ 18, "MOVE_AMNESIA" ],
+            [ 22, "MOVE_WATER_PULSE" ],
+            [ 26, "MOVE_MAGNITUDE" ],
+            [ 33, "MOVE_REST" ],
+            [ 33, "MOVE_SNORE" ],
+            [ 39, "MOVE_AQUA_TAIL" ],
+            [ 45, "MOVE_EARTHQUAKE" ],
+            [ 51, "MOVE_FUTURE_SIGHT" ],
+            [ 57, "MOVE_FISSURE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -78,33 +89,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_TICKLE",
-                "MOVE_MUD_SLAP",
-                "MOVE_MUD_SPORT",
-                "MOVE_WATER_SPORT"
-            ],
-            "6": [
-                "MOVE_MUD_SPORT",
-                "MOVE_WATER_SPORT"
-            ],
-            "10": "MOVE_WATER_GUN",
-            "14": "MOVE_MUD_BOMB",
-            "18": "MOVE_AMNESIA",
-            "22": "MOVE_WATER_PULSE",
-            "26": "MOVE_MAGNITUDE",
-            "33": [
-                "MOVE_REST",
-                "MOVE_SNORE"
-            ],
-            "39": "MOVE_AQUA_TAIL",
-            "45": "MOVE_EARTHQUAKE",
-            "51": "MOVE_FUTURE_SIGHT",
-            "57": "MOVE_FISSURE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -115,9 +100,10 @@
             "MOVE_BOUNCE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 9,
@@ -132,7 +118,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
         "entry_text": "It is extremely protective of its\nterritory. If any foe approaches,\nit attacks using vicious tremors.",
-        "category": "Whiskers Pokémon"
+        "category": "Whiskers Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

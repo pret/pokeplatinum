@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_DARK" ],
     "catch_rate": 45,
     "base_exp_reward": 204,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_BATTLE_ARMOR",
-        "ABILITY_SNIPER"
-    ],
-    "great_marsh_flee_rate": 60,
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_BATTLE_ARMOR", "ABILITY_SNIPER" ],
+    "safari_flee_rate": 60,
     "sprite": {
         "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_KNOCK_OFF" ],
+            [ 6, "MOVE_KNOCK_OFF" ],
+            [ 12, "MOVE_PIN_MISSILE" ],
+            [ 17, "MOVE_ACUPRESSURE" ],
+            [ 23, "MOVE_SCARY_FACE" ],
+            [ 28, "MOVE_TOXIC_SPIKES" ],
+            [ 34, "MOVE_BUG_BITE" ],
+            [ 39, "MOVE_POISON_FANG" ],
+            [ 49, "MOVE_CRUNCH" ],
+            [ 58, "MOVE_CROSS_POISON" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -91,27 +100,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_THUNDER_FANG",
-                "MOVE_ICE_FANG",
-                "MOVE_FIRE_FANG",
-                "MOVE_BITE",
-                "MOVE_POISON_STING",
-                "MOVE_LEER",
-                "MOVE_KNOCK_OFF"
-            ],
-            "6": "MOVE_KNOCK_OFF",
-            "12": "MOVE_PIN_MISSILE",
-            "17": "MOVE_ACUPRESSURE",
-            "23": "MOVE_SCARY_FACE",
-            "28": "MOVE_TOXIC_SPIKES",
-            "34": "MOVE_BUG_BITE",
-            "39": "MOVE_POISON_FANG",
-            "49": "MOVE_CRUNCH",
-            "58": "MOVE_CROSS_POISON"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_AQUA_TAIL",
@@ -119,9 +108,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 13,
@@ -136,7 +126,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
         "entry_text": "Possessing a sturdy build, it takes\npride in its strength, taking down\nfoes without using toxins.",
-        "category": "Ogre Scorp Pokémon"
+        "category": "Ogre Scorp Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

@@ -8,10 +8,7 @@
         "special_attack": 95,
         "special_defense": 95
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_DRAGON"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_DRAGON" ],
     "catch_rate": 45,
     "base_exp_reward": 207,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_SNIPER"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_SNIPER" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_SMOKE_SCREEN" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 4, "MOVE_SMOKE_SCREEN" ],
+            [ 8, "MOVE_LEER" ],
+            [ 11, "MOVE_WATER_GUN" ],
+            [ 14, "MOVE_FOCUS_ENERGY" ],
+            [ 18, "MOVE_BUBBLE_BEAM" ],
+            [ 23, "MOVE_AGILITY" ],
+            [ 26, "MOVE_TWISTER" ],
+            [ 30, "MOVE_BRINE" ],
+            [ 40, "MOVE_HYDRO_PUMP" ],
+            [ 48, "MOVE_DRAGON_DANCE" ],
+            [ 57, "MOVE_DRAGON_PULSE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -74,27 +83,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_YAWN",
-                "MOVE_BUBBLE",
-                "MOVE_SMOKE_SCREEN",
-                "MOVE_LEER",
-                "MOVE_WATER_GUN"
-            ],
-            "4": "MOVE_SMOKE_SCREEN",
-            "8": "MOVE_LEER",
-            "11": "MOVE_WATER_GUN",
-            "14": "MOVE_FOCUS_ENERGY",
-            "18": "MOVE_BUBBLE_BEAM",
-            "23": "MOVE_AGILITY",
-            "26": "MOVE_TWISTER",
-            "30": "MOVE_BRINE",
-            "40": "MOVE_HYDRO_PUMP",
-            "48": "MOVE_DRAGON_DANCE",
-            "57": "MOVE_DRAGON_PULSE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_IRON_HEAD",
@@ -106,9 +95,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 18,
@@ -123,7 +113,7 @@
         "trainer_pos_m": 12,
         "pokemon_pos_m": 2,
         "entry_text": "It lives in caves on the seafloor\nand creates giant whirlpools\nevery time it moves.",
-        "category": "Dragon Pokémon"
+        "category": "Dragon Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

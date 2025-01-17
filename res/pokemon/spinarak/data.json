@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_POISON" ],
     "catch_rate": 255,
     "base_exp_reward": 54,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_INSOMNIA"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_INSOMNIA" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_STRING_SHOT" ],
+            [ 5, "MOVE_SCARY_FACE" ],
+            [ 8, "MOVE_CONSTRICT" ],
+            [ 12, "MOVE_LEECH_LIFE" ],
+            [ 15, "MOVE_NIGHT_SHADE" ],
+            [ 19, "MOVE_SHADOW_SNEAK" ],
+            [ 22, "MOVE_FURY_SWIPES" ],
+            [ 26, "MOVE_SUCKER_PUNCH" ],
+            [ 29, "MOVE_SPIDER_WEB" ],
+            [ 33, "MOVE_AGILITY" ],
+            [ 36, "MOVE_PIN_MISSILE" ],
+            [ 40, "MOVE_PSYCHIC" ],
+            [ 43, "MOVE_POISON_JAB" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -71,25 +78,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_STING",
-                "MOVE_STRING_SHOT"
-            ],
-            "5": "MOVE_SCARY_FACE",
-            "8": "MOVE_CONSTRICT",
-            "12": "MOVE_LEECH_LIFE",
-            "15": "MOVE_NIGHT_SHADE",
-            "19": "MOVE_SHADOW_SNEAK",
-            "22": "MOVE_FURY_SWIPES",
-            "26": "MOVE_SUCKER_PUNCH",
-            "29": "MOVE_SPIDER_WEB",
-            "33": "MOVE_AGILITY",
-            "36": "MOVE_PIN_MISSILE",
-            "40": "MOVE_PSYCHIC",
-            "43": "MOVE_POISON_JAB"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_SIGNAL_BEAM",
             "MOVE_BOUNCE",
             "MOVE_SUCKER_PUNCH"
@@ -103,8 +92,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 5,
@@ -119,7 +108,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
         "entry_text": "It sets a trap by spinning a web\nwith thin but strong silk. It waits\nmotionlessly for prey to arrive.",
-        "category": "String Spit Pokémon"
+        "category": "String Spit Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

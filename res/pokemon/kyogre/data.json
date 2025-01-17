@@ -8,10 +8,7 @@
         "special_attack": 150,
         "special_defense": 140
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 5,
     "base_exp_reward": 218,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_DRIZZLE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_DRIZZLE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WATER_PULSE" ],
+            [ 5, "MOVE_SCARY_FACE" ],
+            [ 15, "MOVE_ANCIENT_POWER" ],
+            [ 20, "MOVE_BODY_SLAM" ],
+            [ 30, "MOVE_CALM_MIND" ],
+            [ 35, "MOVE_ICE_BEAM" ],
+            [ 45, "MOVE_HYDRO_PUMP" ],
+            [ 50, "MOVE_REST" ],
+            [ 60, "MOVE_SHEER_COLD" ],
+            [ 65, "MOVE_DOUBLE_EDGE" ],
+            [ 75, "MOVE_AQUA_TAIL" ],
+            [ 80, "MOVE_WATER_SPOUT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM05",
@@ -85,21 +90,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_WATER_PULSE",
-            "5": "MOVE_SCARY_FACE",
-            "15": "MOVE_ANCIENT_POWER",
-            "20": "MOVE_BODY_SLAM",
-            "30": "MOVE_CALM_MIND",
-            "35": "MOVE_ICE_BEAM",
-            "45": "MOVE_HYDRO_PUMP",
-            "50": "MOVE_REST",
-            "60": "MOVE_SHEER_COLD",
-            "65": "MOVE_DOUBLE_EDGE",
-            "75": "MOVE_AQUA_TAIL",
-            "80": "MOVE_WATER_SPOUT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -112,9 +103,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 45,
@@ -129,7 +121,7 @@
         "trainer_pos_m": 26,
         "pokemon_pos_m": 0,
         "entry_text": "It is said to have widened the\nseas by causing downpours. It had\nbeen asleep in a marine trench.",
-        "category": "Sea Basin Pokémon"
+        "category": "Sea Basin Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

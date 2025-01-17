@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GROUND" ],
     "catch_rate": 45,
     "base_exp_reward": 143,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 6, "MOVE_MUD_SLAP" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_BIDE" ],
+            [ 16, "MOVE_MUD_SHOT" ],
+            [ 20, "MOVE_FORESIGHT" ],
+            [ 25, "MOVE_MUD_BOMB" ],
+            [ 31, "MOVE_TAKE_DOWN" ],
+            [ 37, "MOVE_MUDDY_WATER" ],
+            [ 42, "MOVE_PROTECT" ],
+            [ 46, "MOVE_EARTHQUAKE" ],
+            [ 53, "MOVE_ENDEAVOR" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -79,26 +87,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_MUD_SLAP",
-                "MOVE_WATER_GUN"
-            ],
-            "6": "MOVE_MUD_SLAP",
-            "10": "MOVE_WATER_GUN",
-            "15": "MOVE_BIDE",
-            "16": "MOVE_MUD_SHOT",
-            "20": "MOVE_FORESIGHT",
-            "25": "MOVE_MUD_BOMB",
-            "31": "MOVE_TAKE_DOWN",
-            "37": "MOVE_MUDDY_WATER",
-            "42": "MOVE_PROTECT",
-            "46": "MOVE_EARTHQUAKE",
-            "53": "MOVE_ENDEAVOR"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -120,8 +109,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -136,7 +125,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
         "entry_text": "Its sturdy legs give it sure\nfooting, even in mud. It\nburrows into dirt to sleep.",
-        "category": "Mud Fish Pokémon"
+        "category": "Mud Fish Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

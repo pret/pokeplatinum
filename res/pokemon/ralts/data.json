@@ -8,10 +8,7 @@
         "special_attack": 45,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 235,
     "base_exp_reward": 70,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_TRACE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_TRACE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 6, "MOVE_CONFUSION" ],
+            [ 10, "MOVE_DOUBLE_TEAM" ],
+            [ 12, "MOVE_TELEPORT" ],
+            [ 17, "MOVE_LUCKY_CHANT" ],
+            [ 21, "MOVE_MAGICAL_LEAF" ],
+            [ 23, "MOVE_CALM_MIND" ],
+            [ 28, "MOVE_PSYCHIC" ],
+            [ 32, "MOVE_IMPRISON" ],
+            [ 34, "MOVE_FUTURE_SIGHT" ],
+            [ 39, "MOVE_CHARM" ],
+            [ 43, "MOVE_HYPNOSIS" ],
+            [ 45, "MOVE_DREAM_EATER" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -86,22 +92,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": "MOVE_GROWL",
-            "6": "MOVE_CONFUSION",
-            "10": "MOVE_DOUBLE_TEAM",
-            "12": "MOVE_TELEPORT",
-            "17": "MOVE_LUCKY_CHANT",
-            "21": "MOVE_MAGICAL_LEAF",
-            "23": "MOVE_CALM_MIND",
-            "28": "MOVE_PSYCHIC",
-            "32": "MOVE_IMPRISON",
-            "34": "MOVE_FUTURE_SIGHT",
-            "39": "MOVE_CHARM",
-            "43": "MOVE_HYPNOSIS",
-            "45": "MOVE_DREAM_EATER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
@@ -123,8 +114,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 4,
@@ -138,8 +129,8 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "If its horns capture the warm\nfeelings of people or Pokémon,\nits body warms up slightly.",
-        "category": "Feeling Pokémon"
+        "entry_text": "If its horns capture the warm\nfeelings of people or Pok\u00e9mon,\nits body warms up slightly.",
+        "category": "Feeling Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

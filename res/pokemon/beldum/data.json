@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_PSYCHIC" ],
     "catch_rate": 3,
     "base_exp_reward": 103,
     "ev_yields": {
@@ -30,25 +27,19 @@
     "hatch_cycles": 40,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_CLEAR_BODY",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_CLEAR_BODY", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": "MOVE_TAKE_DOWN"
-        },
-        "tutor": [
+        "by_level": [
+            [ 1, "MOVE_TAKE_DOWN" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [
             "MOVE_IRON_HEAD",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_IRON_DEFENSE"
@@ -62,8 +53,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 6,
@@ -78,7 +69,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
         "entry_text": "It converses with others by using\nmagnetic pulses. In a swarm, they\nmove in perfect unison.",
-        "category": "Iron Ball Pokémon"
+        "category": "Iron Ball Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

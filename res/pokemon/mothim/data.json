@@ -8,10 +8,7 @@
         "special_attack": 94,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 159,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 10, "MOVE_PROTECT" ],
+            [ 15, "MOVE_BUG_BITE" ],
+            [ 20, "MOVE_HIDDEN_POWER" ],
+            [ 23, "MOVE_CONFUSION" ],
+            [ 26, "MOVE_GUST" ],
+            [ 29, "MOVE_POISON_POWDER" ],
+            [ 32, "MOVE_PSYBEAM" ],
+            [ 35, "MOVE_CAMOUFLAGE" ],
+            [ 38, "MOVE_SILVER_WIND" ],
+            [ 41, "MOVE_AIR_SLASH" ],
+            [ 44, "MOVE_PSYCHIC" ],
+            [ 47, "MOVE_BUG_BUZZ" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -82,22 +88,7 @@
             "TM90",
             "HM05"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "10": "MOVE_PROTECT",
-            "15": "MOVE_BUG_BITE",
-            "20": "MOVE_HIDDEN_POWER",
-            "23": "MOVE_CONFUSION",
-            "26": "MOVE_GUST",
-            "29": "MOVE_POISON_POWDER",
-            "32": "MOVE_PSYBEAM",
-            "35": "MOVE_CAMOUFLAGE",
-            "38": "MOVE_SILVER_WIND",
-            "41": "MOVE_AIR_SLASH",
-            "44": "MOVE_PSYCHIC",
-            "47": "MOVE_BUG_BUZZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -107,9 +98,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 9,
@@ -123,8 +115,8 @@
         "pokemon_pos_f": 65525,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65525,
-        "entry_text": "While it loves floral honey, it won’t\ngather any itself. Instead, it\nplots to steal some from COMBEE.",
-        "category": "Moth Pokémon"
+        "entry_text": "While it loves floral honey, it won\u2019t\ngather any itself. Instead, it\nplots to steal some from COMBEE.",
+        "category": "Moth Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

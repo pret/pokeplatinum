@@ -8,10 +8,7 @@
         "special_attack": 125,
         "special_defense": 105
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_POISON" ],
     "catch_rate": 75,
     "base_exp_reward": 204,
     "ev_yields": {
@@ -30,21 +27,22 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_NATURAL_CURE",
-        "ABILITY_POISON_POINT"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_POISON_POINT" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GREEN",
-        "flip_sprite": true
+        "flip": true
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WEATHER_BALL" ],
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_MEGA_DRAIN" ],
+            [ 1, "MOVE_MAGICAL_LEAF" ],
+            [ 1, "MOVE_SWEET_SCENT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -78,16 +76,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_WEATHER_BALL",
-                "MOVE_POISON_STING",
-                "MOVE_MEGA_DRAIN",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_SWEET_SCENT"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -96,9 +85,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 9,
@@ -113,7 +103,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
         "entry_text": "Each of its hands contains\ndifferent toxins, but both hands\ncan jab with near-fatal power.",
-        "category": "Bouquet Pokémon"
+        "category": "Bouquet Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

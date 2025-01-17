@@ -8,10 +8,7 @@
         "special_attack": 92,
         "special_defense": 82
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GROUND" ],
     "catch_rate": 75,
     "base_exp_reward": 176,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_STICKY_HOLD",
-        "ABILITY_STORM_DRAIN"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_STICKY_HOLD", "ABILITY_STORM_DRAIN" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_WATER_PULSE" ],
+            [ 2, "MOVE_MUD_SPORT" ],
+            [ 4, "MOVE_HARDEN" ],
+            [ 7, "MOVE_WATER_PULSE" ],
+            [ 11, "MOVE_MUD_BOMB" ],
+            [ 16, "MOVE_HIDDEN_POWER" ],
+            [ 22, "MOVE_RAIN_DANCE" ],
+            [ 29, "MOVE_BODY_SLAM" ],
+            [ 41, "MOVE_MUDDY_WATER" ],
+            [ 54, "MOVE_RECOVER" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -82,24 +88,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_MUD_SLAP",
-                "MOVE_MUD_SPORT",
-                "MOVE_HARDEN",
-                "MOVE_WATER_PULSE"
-            ],
-            "2": "MOVE_MUD_SPORT",
-            "4": "MOVE_HARDEN",
-            "7": "MOVE_WATER_PULSE",
-            "11": "MOVE_MUD_BOMB",
-            "16": "MOVE_HIDDEN_POWER",
-            "22": "MOVE_RAIN_DANCE",
-            "29": "MOVE_BODY_SLAM",
-            "41": "MOVE_MUDDY_WATER",
-            "54": "MOVE_RECOVER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -108,9 +97,10 @@
             "MOVE_EARTH_POWER"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -125,7 +115,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
         "entry_text": "Long ago, its entire back was\nshielded with a sturdy shell. There\nare traces of it left in its cells.",
-        "category": "Sea Slug Pokémon"
+        "category": "Sea Slug Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

@@ -8,10 +8,7 @@
         "special_attack": 72,
         "special_defense": 87
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_FLYING" ],
     "catch_rate": 200,
     "base_exp_reward": 169,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_CHLOROPHYLL",
-        "ABILITY_SOLAR_POWER"
-    ],
-    "great_marsh_flee_rate": 60,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_SOLAR_POWER" ],
+    "safari_flee_rate": 60,
     "sprite": {
         "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_GUST" ],
+            [ 7, "MOVE_GROWTH" ],
+            [ 11, "MOVE_RAZOR_LEAF" ],
+            [ 17, "MOVE_STOMP" ],
+            [ 21, "MOVE_SWEET_SCENT" ],
+            [ 27, "MOVE_WHIRLWIND" ],
+            [ 31, "MOVE_MAGICAL_LEAF" ],
+            [ 37, "MOVE_BODY_SLAM" ],
+            [ 41, "MOVE_SYNTHESIS" ],
+            [ 47, "MOVE_AIR_SLASH" ],
+            [ 51, "MOVE_SOLAR_BEAM" ],
+            [ 57, "MOVE_NATURAL_GIFT" ],
+            [ 61, "MOVE_LEAF_STORM" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM09",
@@ -84,25 +91,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LEER",
-                "MOVE_GUST"
-            ],
-            "7": "MOVE_GROWTH",
-            "11": "MOVE_RAZOR_LEAF",
-            "17": "MOVE_STOMP",
-            "21": "MOVE_SWEET_SCENT",
-            "27": "MOVE_WHIRLWIND",
-            "31": "MOVE_MAGICAL_LEAF",
-            "37": "MOVE_BODY_SLAM",
-            "41": "MOVE_SYNTHESIS",
-            "47": "MOVE_AIR_SLASH",
-            "51": "MOVE_SOLAR_BEAM",
-            "57": "MOVE_NATURAL_GIFT",
-            "61": "MOVE_LEAF_STORM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_OMINOUS_WIND",
@@ -113,9 +102,10 @@
             "MOVE_TWISTER"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 20,
@@ -130,7 +120,7 @@
         "trainer_pos_m": 15,
         "pokemon_pos_m": 0,
         "entry_text": "Delicious fruits grew out from\naround its neck because it always\nate the same kind of fruit.",
-        "category": "Fruit Pokémon"
+        "category": "Fruit Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

@@ -8,10 +8,7 @@
         "special_attack": 100,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 3,
     "base_exp_reward": 215,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_HYDRATION",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_HYDRATION", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TAIL_GLOW" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 9, "MOVE_CHARM" ],
+            [ 16, "MOVE_SUPERSONIC" ],
+            [ 24, "MOVE_BUBBLE_BEAM" ],
+            [ 31, "MOVE_ACID_ARMOR" ],
+            [ 39, "MOVE_WHIRLPOOL" ],
+            [ 46, "MOVE_WATER_PULSE" ],
+            [ 54, "MOVE_AQUA_RING" ],
+            [ 61, "MOVE_DIVE" ],
+            [ 69, "MOVE_RAIN_DANCE" ],
+            [ 76, "MOVE_HEART_SWAP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM06",
@@ -83,24 +89,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TAIL_GLOW",
-                "MOVE_BUBBLE",
-                "MOVE_WATER_SPORT"
-            ],
-            "9": "MOVE_CHARM",
-            "16": "MOVE_SUPERSONIC",
-            "24": "MOVE_BUBBLE_BEAM",
-            "31": "MOVE_ACID_ARMOR",
-            "39": "MOVE_WHIRLPOOL",
-            "46": "MOVE_WATER_PULSE",
-            "54": "MOVE_AQUA_RING",
-            "61": "MOVE_DIVE",
-            "69": "MOVE_RAIN_DANCE",
-            "76": "MOVE_HEART_SWAP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -115,9 +104,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 3,
@@ -131,8 +121,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "It is born with a wondrous power\nthat lets it bond with any kind of\nPokémon.",
-        "category": "Seafaring Pokémon"
+        "entry_text": "It is born with a wondrous power\nthat lets it bond with any kind of\nPok\u00e9mon.",
+        "category": "Seafaring Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

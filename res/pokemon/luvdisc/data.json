@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 225,
     "base_exp_reward": 110,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PINK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 4, "MOVE_CHARM" ],
+            [ 7, "MOVE_WATER_GUN" ],
+            [ 9, "MOVE_AGILITY" ],
+            [ 14, "MOVE_TAKE_DOWN" ],
+            [ 17, "MOVE_LUCKY_CHANT" ],
+            [ 22, "MOVE_ATTRACT" ],
+            [ 27, "MOVE_SWEET_KISS" ],
+            [ 31, "MOVE_WATER_PULSE" ],
+            [ 37, "MOVE_AQUA_RING" ],
+            [ 40, "MOVE_CAPTIVATE" ],
+            [ 46, "MOVE_FLAIL" ],
+            [ 51, "MOVE_SAFEGUARD" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -72,22 +78,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "4": "MOVE_CHARM",
-            "7": "MOVE_WATER_GUN",
-            "9": "MOVE_AGILITY",
-            "14": "MOVE_TAKE_DOWN",
-            "17": "MOVE_LUCKY_CHANT",
-            "22": "MOVE_ATTRACT",
-            "27": "MOVE_SWEET_KISS",
-            "31": "MOVE_WATER_PULSE",
-            "37": "MOVE_AQUA_RING",
-            "40": "MOVE_CAPTIVATE",
-            "46": "MOVE_FLAIL",
-            "51": "MOVE_SAFEGUARD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -95,9 +86,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 6,
@@ -111,8 +103,8 @@
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65527,
-        "entry_text": "It lives in warm seas. It is said\nthat a couple finding this Pokémon\nwill be blessed with eternal love.",
-        "category": "Rendezvous Pokémon"
+        "entry_text": "It lives in warm seas. It is said\nthat a couple finding this Pok\u00e9mon\nwill be blessed with eternal love.",
+        "category": "Rendezvous Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

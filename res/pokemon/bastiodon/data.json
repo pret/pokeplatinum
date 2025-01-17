@@ -8,10 +8,7 @@
         "special_attack": 47,
         "special_defense": 138
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_STEEL"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_STEEL" ],
     "catch_rate": 45,
     "base_exp_reward": 199,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 30,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_STURDY",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_STURDY", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_PROTECT" ],
+            [ 1, "MOVE_TAUNT" ],
+            [ 1, "MOVE_METAL_SOUND" ],
+            [ 6, "MOVE_TAUNT" ],
+            [ 10, "MOVE_METAL_SOUND" ],
+            [ 15, "MOVE_TAKE_DOWN" ],
+            [ 19, "MOVE_IRON_DEFENSE" ],
+            [ 24, "MOVE_SWAGGER" ],
+            [ 28, "MOVE_ANCIENT_POWER" ],
+            [ 30, "MOVE_BLOCK" ],
+            [ 36, "MOVE_ENDURE" ],
+            [ 43, "MOVE_METAL_BURST" ],
+            [ 52, "MOVE_IRON_HEAD" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -89,25 +96,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_PROTECT",
-                "MOVE_TAUNT",
-                "MOVE_METAL_SOUND"
-            ],
-            "6": "MOVE_TAUNT",
-            "10": "MOVE_METAL_SOUND",
-            "15": "MOVE_TAKE_DOWN",
-            "19": "MOVE_IRON_DEFENSE",
-            "24": "MOVE_SWAGGER",
-            "28": "MOVE_ANCIENT_POWER",
-            "30": "MOVE_BLOCK",
-            "36": "MOVE_ENDURE",
-            "43": "MOVE_METAL_BURST",
-            "52": "MOVE_IRON_HEAD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
@@ -118,9 +107,10 @@
             "MOVE_MAGNET_RISE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -135,7 +125,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
         "entry_text": "When they lined up side by side, no\nfoe could break through. They\nshielded their young in that way.",
-        "category": "Shield Pokémon"
+        "category": "Shield Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

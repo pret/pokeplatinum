@@ -1,5 +1,5 @@
 {
-    "name": "Nidoran♀",
+    "name": "Nidoran\u2640",
     "base_stats": {
         "hp": 55,
         "attack": 47,
@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 235,
     "base_exp_reward": 59,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_POISON_POINT",
-        "ABILITY_RIVALRY"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_POISON_POINT", "ABILITY_RIVALRY" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 7, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_DOUBLE_KICK" ],
+            [ 13, "MOVE_POISON_STING" ],
+            [ 19, "MOVE_FURY_SWIPES" ],
+            [ 21, "MOVE_BITE" ],
+            [ 25, "MOVE_HELPING_HAND" ],
+            [ 31, "MOVE_TOXIC_SPIKES" ],
+            [ 33, "MOVE_FLATTER" ],
+            [ 37, "MOVE_CRUNCH" ],
+            [ 43, "MOVE_CAPTIVATE" ],
+            [ 45, "MOVE_POISON_FANG" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -80,24 +86,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_SCRATCH"
-            ],
-            "7": "MOVE_TAIL_WHIP",
-            "9": "MOVE_DOUBLE_KICK",
-            "13": "MOVE_POISON_STING",
-            "19": "MOVE_FURY_SWIPES",
-            "21": "MOVE_BITE",
-            "25": "MOVE_HELPING_HAND",
-            "31": "MOVE_TOXIC_SPIKES",
-            "33": "MOVE_FLATTER",
-            "37": "MOVE_CRUNCH",
-            "43": "MOVE_CAPTIVATE",
-            "45": "MOVE_POISON_FANG"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND"
@@ -111,8 +100,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -127,7 +116,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
         "entry_text": "While it does not prefer to fight,\neven one drop of the poison it\nsecretes from barbs can be fatal.",
-        "category": "Poison Pin Pokémon"
+        "category": "Poison Pin Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_FLYING" ],
     "catch_rate": 190,
     "base_exp_reward": 64,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 6, "MOVE_SUPERSONIC" ],
+            [ 11, "MOVE_WING_ATTACK" ],
+            [ 16, "MOVE_MIST" ],
+            [ 19, "MOVE_WATER_PULSE" ],
+            [ 24, "MOVE_QUICK_ATTACK" ],
+            [ 29, "MOVE_ROOST" ],
+            [ 34, "MOVE_PURSUIT" ],
+            [ 37, "MOVE_AGILITY" ],
+            [ 42, "MOVE_AERIAL_ACE" ],
+            [ 47, "MOVE_AIR_SLASH" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -77,23 +82,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_WATER_GUN"
-            ],
-            "6": "MOVE_SUPERSONIC",
-            "11": "MOVE_WING_ATTACK",
-            "16": "MOVE_MIST",
-            "19": "MOVE_WATER_PULSE",
-            "24": "MOVE_QUICK_ATTACK",
-            "29": "MOVE_ROOST",
-            "34": "MOVE_PURSUIT",
-            "37": "MOVE_AGILITY",
-            "42": "MOVE_AERIAL_ACE",
-            "47": "MOVE_AIR_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_OMINOUS_WIND",
@@ -113,8 +102,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -129,7 +118,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
         "entry_text": "It soars high in the sky, riding on\nupdrafts like a glider. It carries\nfood tucked in its bill.",
-        "category": "Seagull Pokémon"
+        "category": "Seagull Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

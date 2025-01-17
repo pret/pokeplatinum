@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_POISON" ],
     "catch_rate": 45,
     "base_exp_reward": 64,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_OVERGROW",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 3, "MOVE_GROWL" ],
+            [ 7, "MOVE_LEECH_SEED" ],
+            [ 9, "MOVE_VINE_WHIP" ],
+            [ 13, "MOVE_POISON_POWDER" ],
+            [ 13, "MOVE_SLEEP_POWDER" ],
+            [ 15, "MOVE_TAKE_DOWN" ],
+            [ 19, "MOVE_RAZOR_LEAF" ],
+            [ 21, "MOVE_SWEET_SCENT" ],
+            [ 25, "MOVE_GROWTH" ],
+            [ 27, "MOVE_DOUBLE_EDGE" ],
+            [ 31, "MOVE_WORRY_SEED" ],
+            [ 33, "MOVE_SYNTHESIS" ],
+            [ 37, "MOVE_SEED_BOMB" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -74,25 +81,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "3": "MOVE_GROWL",
-            "7": "MOVE_LEECH_SEED",
-            "9": "MOVE_VINE_WHIP",
-            "13": [
-                "MOVE_POISON_POWDER",
-                "MOVE_SLEEP_POWDER"
-            ],
-            "15": "MOVE_TAKE_DOWN",
-            "19": "MOVE_RAZOR_LEAF",
-            "21": "MOVE_SWEET_SCENT",
-            "25": "MOVE_GROWTH",
-            "27": "MOVE_DOUBLE_EDGE",
-            "31": "MOVE_WORRY_SEED",
-            "33": "MOVE_SYNTHESIS",
-            "37": "MOVE_SEED_BOMB"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -109,8 +98,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -125,7 +114,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
         "entry_text": "For some time after its birth, it\ngrows by gaining nourishment from\nthe seed on its back.",
-        "category": "Seed Pokémon"
+        "category": "Seed Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

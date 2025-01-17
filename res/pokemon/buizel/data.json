@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
     "base_exp_reward": 75,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SONIC_BOOM" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 3, "MOVE_QUICK_ATTACK" ],
+            [ 6, "MOVE_WATER_GUN" ],
+            [ 10, "MOVE_PURSUIT" ],
+            [ 15, "MOVE_SWIFT" ],
+            [ 21, "MOVE_AQUA_JET" ],
+            [ 28, "MOVE_AGILITY" ],
+            [ 36, "MOVE_WHIRLPOOL" ],
+            [ 45, "MOVE_RAZOR_WIND" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -78,22 +82,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SONIC_BOOM",
-                "MOVE_GROWL",
-                "MOVE_WATER_SPORT"
-            ],
-            "3": "MOVE_QUICK_ATTACK",
-            "6": "MOVE_WATER_GUN",
-            "10": "MOVE_PURSUIT",
-            "15": "MOVE_SWIFT",
-            "21": "MOVE_AQUA_JET",
-            "28": "MOVE_AGILITY",
-            "36": "MOVE_WHIRLPOOL",
-            "45": "MOVE_RAZOR_WIND"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -110,8 +99,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -126,7 +115,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
         "entry_text": "It spins its two tails like a screw\nto propel itself through water. The\ntails also slice clinging seaweed.",
-        "category": "Sea Weasel Pokémon"
+        "category": "Sea Weasel Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

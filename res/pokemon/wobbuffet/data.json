@@ -8,10 +8,7 @@
         "special_attack": 33,
         "special_defense": 58
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
     "base_exp_reward": 177,
     "ev_yields": {
@@ -30,34 +27,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_SHADOW_TAG",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_SHADOW_TAG", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": [
-                "MOVE_COUNTER",
-                "MOVE_MIRROR_COAT",
-                "MOVE_SAFEGUARD",
-                "MOVE_DESTINY_BOND"
-            ]
-        },
-        "tutor": []
+        "by_level": [
+            [ 1, "MOVE_COUNTER" ],
+            [ 1, "MOVE_MIRROR_COAT" ],
+            [ 1, "MOVE_SAFEGUARD" ],
+            [ 1, "MOVE_DESTINY_BOND" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [  ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 13,
@@ -72,7 +62,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
         "entry_text": "It desperately tries to keep its\nblack tail hidden. It is said to be\nproof the tail hides a secret.",
-        "category": "Patient Pokémon"
+        "category": "Patient Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

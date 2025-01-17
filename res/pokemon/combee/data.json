@@ -8,10 +8,7 @@
         "special_attack": 30,
         "special_defense": 42
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_FLYING" ],
     "catch_rate": 120,
     "base_exp_reward": 63,
     "ev_yields": {
@@ -30,29 +27,21 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_HONEY_GATHER",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_HONEY_GATHER", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": [
-                "MOVE_SWEET_SCENT",
-                "MOVE_GUST"
-            ],
-            "13": "MOVE_BUG_BITE"
-        },
-        "tutor": [
+        "by_level": [
+            [ 1, "MOVE_SWEET_SCENT" ],
+            [ 1, "MOVE_GUST" ],
+            [ 13, "MOVE_BUG_BITE" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -69,8 +58,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 3,
@@ -85,7 +74,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
         "entry_text": "The trio is together from birth.\nIt constantly gathers honey from\nflowers to please VESPIQUEN.",
-        "category": "Tiny Bee Pokémon"
+        "category": "Tiny Bee Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

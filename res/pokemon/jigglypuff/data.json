@@ -8,10 +8,7 @@
         "special_attack": 45,
         "special_defense": 25
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 170,
     "base_exp_reward": 76,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_CUTE_CHARM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PINK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SING" ],
+            [ 5, "MOVE_DEFENSE_CURL" ],
+            [ 9, "MOVE_POUND" ],
+            [ 13, "MOVE_DISABLE" ],
+            [ 17, "MOVE_ROLLOUT" ],
+            [ 21, "MOVE_DOUBLE_SLAP" ],
+            [ 25, "MOVE_REST" ],
+            [ 29, "MOVE_BODY_SLAM" ],
+            [ 33, "MOVE_GYRO_BALL" ],
+            [ 37, "MOVE_WAKE_UP_SLAP" ],
+            [ 41, "MOVE_MIMIC" ],
+            [ 45, "MOVE_HYPER_VOICE" ],
+            [ 49, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -94,22 +100,7 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": "MOVE_SING",
-            "5": "MOVE_DEFENSE_CURL",
-            "9": "MOVE_POUND",
-            "13": "MOVE_DISABLE",
-            "17": "MOVE_ROLLOUT",
-            "21": "MOVE_DOUBLE_SLAP",
-            "25": "MOVE_REST",
-            "29": "MOVE_BODY_SLAM",
-            "33": "MOVE_GYRO_BALL",
-            "37": "MOVE_WAKE_UP_SLAP",
-            "41": "MOVE_MIMIC",
-            "45": "MOVE_HYPER_VOICE",
-            "49": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -132,8 +123,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -148,7 +139,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
         "entry_text": "When it wavers its big, round\neyes, it begins singing a lullaby\nthat makes everyone drowsy.",
-        "category": "Balloon Pokémon"
+        "category": "Balloon Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

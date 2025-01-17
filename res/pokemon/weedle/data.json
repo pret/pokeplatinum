@@ -8,10 +8,7 @@
         "special_attack": 20,
         "special_defense": 20
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_POISON" ],
     "catch_rate": 255,
     "base_exp_reward": 52,
     "ev_yields": {
@@ -30,29 +27,21 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SHIELD_DUST",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SHIELD_DUST", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_STING",
-                "MOVE_STRING_SHOT"
-            ],
-            "15": "MOVE_BUG_BITE"
-        },
-        "tutor": []
+        "by_level": [
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_STRING_SHOT" ],
+            [ 15, "MOVE_BUG_BITE" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [  ]
     },
     "evolutions": [
         [
@@ -62,8 +51,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -78,7 +67,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
         "entry_text": "It eats its weight in leaves every\nday. It fends off attackers with\nthe needle on its head.",
-        "category": "Hairy Bug Pokémon"
+        "category": "Hairy Bug Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

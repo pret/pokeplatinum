@@ -8,10 +8,7 @@
         "special_attack": 15,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 130,
     "base_exp_reward": 255,
     "ev_yields": {
@@ -30,21 +27,22 @@
     "hatch_cycles": 40,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_NATURAL_CURE",
-        "ABILITY_SERENE_GRACE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_SERENE_GRACE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PINK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 5, "MOVE_COPYCAT" ],
+            [ 9, "MOVE_REFRESH" ],
+            [ 12, "MOVE_SWEET_KISS" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -82,16 +80,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_CHARM"
-            ],
-            "5": "MOVE_COPYCAT",
-            "9": "MOVE_REFRESH",
-            "12": "MOVE_SWEET_KISS"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -111,8 +100,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -126,8 +115,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It likes to carry around a small\nrock. It may wander around others’\nfeet and cause them to stumble.",
-        "category": "Playhouse Pokémon"
+        "entry_text": "It likes to carry around a small\nrock. It may wander around others\u2019\nfeet and cause them to stumble.",
+        "category": "Playhouse Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

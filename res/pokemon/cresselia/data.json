@@ -8,10 +8,7 @@
         "special_attack": 75,
         "special_defense": 130
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 3,
     "base_exp_reward": 210,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 120,
     "base_friendship": 100,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_CONFUSION" ],
+            [ 1, "MOVE_DOUBLE_TEAM" ],
+            [ 11, "MOVE_SAFEGUARD" ],
+            [ 20, "MOVE_MIST" ],
+            [ 29, "MOVE_AURORA_BEAM" ],
+            [ 38, "MOVE_FUTURE_SIGHT" ],
+            [ 47, "MOVE_SLASH" ],
+            [ 57, "MOVE_MOONLIGHT" ],
+            [ 66, "MOVE_PSYCHO_CUT" ],
+            [ 75, "MOVE_PSYCHO_SHIFT" ],
+            [ 84, "MOVE_LUNAR_DANCE" ],
+            [ 93, "MOVE_PSYCHIC" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -84,23 +89,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_CONFUSION",
-                "MOVE_DOUBLE_TEAM"
-            ],
-            "11": "MOVE_SAFEGUARD",
-            "20": "MOVE_MIST",
-            "29": "MOVE_AURORA_BEAM",
-            "38": "MOVE_FUTURE_SIGHT",
-            "47": "MOVE_SLASH",
-            "57": "MOVE_MOONLIGHT",
-            "66": "MOVE_PSYCHO_CUT",
-            "75": "MOVE_PSYCHO_SHIFT",
-            "84": "MOVE_LUNAR_DANCE",
-            "93": "MOVE_PSYCHIC"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -112,9 +101,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 15,
@@ -129,7 +119,7 @@
         "trainer_pos_m": 7,
         "pokemon_pos_m": 65533,
         "entry_text": "On nights around the quarter moon,\nthe aurora from its tail extends\nand undulates beautifully.",
-        "category": "Lunar Pokémon"
+        "category": "Lunar Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

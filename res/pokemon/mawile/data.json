@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_STEEL"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_STEEL" ],
     "catch_rate": 45,
     "base_exp_reward": 98,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_HYPER_CUTTER",
-        "ABILITY_INTIMIDATE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_INTIMIDATE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ASTONISH" ],
+            [ 6, "MOVE_FAKE_TEARS" ],
+            [ 11, "MOVE_BITE" ],
+            [ 16, "MOVE_SWEET_SCENT" ],
+            [ 21, "MOVE_VICE_GRIP" ],
+            [ 26, "MOVE_FAINT_ATTACK" ],
+            [ 31, "MOVE_BATON_PASS" ],
+            [ 36, "MOVE_CRUNCH" ],
+            [ 41, "MOVE_IRON_DEFENSE" ],
+            [ 46, "MOVE_SUCKER_PUNCH" ],
+            [ 51, "MOVE_STOCKPILE" ],
+            [ 51, "MOVE_SWALLOW" ],
+            [ 51, "MOVE_SPIT_UP" ],
+            [ 56, "MOVE_IRON_HEAD" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -90,25 +97,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_ASTONISH",
-            "6": "MOVE_FAKE_TEARS",
-            "11": "MOVE_BITE",
-            "16": "MOVE_SWEET_SCENT",
-            "21": "MOVE_VICE_GRIP",
-            "26": "MOVE_FAINT_ATTACK",
-            "31": "MOVE_BATON_PASS",
-            "36": "MOVE_CRUNCH",
-            "41": "MOVE_IRON_DEFENSE",
-            "46": "MOVE_SUCKER_PUNCH",
-            "51": [
-                "MOVE_STOCKPILE",
-                "MOVE_SWALLOW",
-                "MOVE_SPIT_UP"
-            ],
-            "56": "MOVE_IRON_HEAD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
@@ -122,9 +111,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -139,7 +129,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
         "entry_text": "Attached to its head is a huge\nset of jaws formed by horns.\nIt can chew through iron beams.",
-        "category": "Deceiver Pokémon"
+        "category": "Deceiver Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

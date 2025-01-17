@@ -8,10 +8,7 @@
         "special_attack": 48,
         "special_defense": 48
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 35,
     "base_exp_reward": 61,
     "ev_yields": {
@@ -30,29 +27,24 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_DITTO",
-        "EGG_GROUP_DITTO"
-    ],
-    "abilities": [
-        "ABILITY_LIMBER",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_DITTO", "EGG_GROUP_DITTO" ],
+    "abilities": [ "ABILITY_LIMBER", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": "MOVE_TRANSFORM"
-        },
-        "tutor": []
+        "by_level": [
+            [ 1, "MOVE_TRANSFORM" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [  ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 3,
@@ -67,7 +59,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 30,
         "entry_text": "It has the ability to reconstitute\nits entire cellular structure to\ntransform into whatever it sees.",
-        "category": "Transform Pokémon"
+        "category": "Transform Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

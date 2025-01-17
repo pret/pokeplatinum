@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 143,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 4, "MOVE_TAIL_WHIP" ],
+            [ 7, "MOVE_BUBBLE" ],
+            [ 10, "MOVE_WITHDRAW" ],
+            [ 13, "MOVE_WATER_GUN" ],
+            [ 16, "MOVE_BITE" ],
+            [ 20, "MOVE_RAPID_SPIN" ],
+            [ 24, "MOVE_PROTECT" ],
+            [ 28, "MOVE_WATER_PULSE" ],
+            [ 32, "MOVE_AQUA_TAIL" ],
+            [ 36, "MOVE_SKULL_BASH" ],
+            [ 40, "MOVE_IRON_DEFENSE" ],
+            [ 44, "MOVE_RAIN_DANCE" ],
+            [ 48, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -79,27 +88,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_TAIL_WHIP",
-                "MOVE_BUBBLE"
-            ],
-            "4": "MOVE_TAIL_WHIP",
-            "7": "MOVE_BUBBLE",
-            "10": "MOVE_WITHDRAW",
-            "13": "MOVE_WATER_GUN",
-            "16": "MOVE_BITE",
-            "20": "MOVE_RAPID_SPIN",
-            "24": "MOVE_PROTECT",
-            "28": "MOVE_WATER_PULSE",
-            "32": "MOVE_AQUA_TAIL",
-            "36": "MOVE_SKULL_BASH",
-            "40": "MOVE_IRON_DEFENSE",
-            "44": "MOVE_RAIN_DANCE",
-            "48": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -119,8 +108,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -135,7 +124,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
         "entry_text": "It is said to live 10,000 years.\nIts furry tail is popular as a\nsymbol of longevity.",
-        "category": "Turtle Pokémon"
+        "category": "Turtle Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

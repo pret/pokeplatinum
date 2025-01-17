@@ -8,10 +8,7 @@
         "special_attack": 0,
         "special_defense": 0
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 0,
     "base_exp_reward": 0,
     "ev_yields": {
@@ -30,23 +27,18 @@
     "hatch_cycles": 0,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_NONE",
-        "EGG_GROUP_NONE"
-    ],
-    "abilities": [
-        "ABILITY_NONE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_NONE", "EGG_GROUP_NONE" ],
+    "abilities": [ "ABILITY_NONE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_RED",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [],
-        "level_up": {}
+        "by_level": [  ],
+        "by_tm": [  ]
     },
+    "evolutions": [  ],
     "pokedex_data": {
         "height": 7,
         "weight": 69,
@@ -60,6 +52,6 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
         "entry_text": null,
-        "category": "????? Pokémon"
+        "category": "????? Pok\u00e9mon"
     }
 }

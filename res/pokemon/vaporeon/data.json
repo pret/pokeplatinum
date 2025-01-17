@@ -8,10 +8,7 @@
         "special_attack": 110,
         "special_defense": 95
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 196,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 35,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_WATER_ABSORB",
-        "ABILITY_WATER_ABSORB"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_WATER_ABSORB", "ABILITY_WATER_ABSORB" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 8, "MOVE_SAND_ATTACK" ],
+            [ 15, "MOVE_WATER_GUN" ],
+            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 29, "MOVE_BITE" ],
+            [ 36, "MOVE_AURORA_BEAM" ],
+            [ 43, "MOVE_AQUA_RING" ],
+            [ 50, "MOVE_LAST_RESORT" ],
+            [ 57, "MOVE_HAZE" ],
+            [ 64, "MOVE_ACID_ARMOR" ],
+            [ 71, "MOVE_HYDRO_PUMP" ],
+            [ 78, "MOVE_MUDDY_WATER" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -79,25 +86,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TAIL_WHIP",
-                "MOVE_TACKLE",
-                "MOVE_HELPING_HAND"
-            ],
-            "8": "MOVE_SAND_ATTACK",
-            "15": "MOVE_WATER_GUN",
-            "22": "MOVE_QUICK_ATTACK",
-            "29": "MOVE_BITE",
-            "36": "MOVE_AURORA_BEAM",
-            "43": "MOVE_AQUA_RING",
-            "50": "MOVE_LAST_RESORT",
-            "57": "MOVE_HAZE",
-            "64": "MOVE_ACID_ARMOR",
-            "71": "MOVE_HYDRO_PUMP",
-            "78": "MOVE_MUDDY_WATER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -109,9 +98,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -126,7 +116,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
         "entry_text": "Its cell composition is similar\nto water molecules. As a result,\nit can melt away into water.",
-        "category": "Bubble Jet Pokémon"
+        "category": "Bubble Jet Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

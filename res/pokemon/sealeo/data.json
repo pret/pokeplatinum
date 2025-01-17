@@ -8,10 +8,7 @@
         "special_attack": 75,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_WATER" ],
     "catch_rate": 120,
     "base_exp_reward": 128,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_ICE_BODY"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_ICE_BODY" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_ENCORE" ],
+            [ 7, "MOVE_ENCORE" ],
+            [ 13, "MOVE_ICE_BALL" ],
+            [ 19, "MOVE_BODY_SLAM" ],
+            [ 25, "MOVE_AURORA_BEAM" ],
+            [ 31, "MOVE_HAIL" ],
+            [ 32, "MOVE_SWAGGER" ],
+            [ 39, "MOVE_REST" ],
+            [ 39, "MOVE_SNORE" ],
+            [ 47, "MOVE_BLIZZARD" ],
+            [ 55, "MOVE_SHEER_COLD" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -77,27 +84,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POWDER_SNOW",
-                "MOVE_GROWL",
-                "MOVE_WATER_GUN",
-                "MOVE_ENCORE"
-            ],
-            "7": "MOVE_ENCORE",
-            "13": "MOVE_ICE_BALL",
-            "19": "MOVE_BODY_SLAM",
-            "25": "MOVE_AURORA_BEAM",
-            "31": "MOVE_HAIL",
-            "32": "MOVE_SWAGGER",
-            "39": [
-                "MOVE_REST",
-                "MOVE_SNORE"
-            ],
-            "47": "MOVE_BLIZZARD",
-            "55": "MOVE_SHEER_COLD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -115,8 +102,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 11,
@@ -131,7 +118,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
         "entry_text": "It habitually spins things on its\nnose. By doing so, it learns\ntextures and odors.",
-        "category": "Ball Roll Pokémon"
+        "category": "Ball Roll Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

@@ -8,10 +8,7 @@
         "special_attack": 100,
         "special_defense": 125
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 60,
     "base_exp_reward": 213,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_MARVEL_SCALE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_MARVEL_SCALE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PINK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_WRAP" ],
+            [ 5, "MOVE_WATER_SPORT" ],
+            [ 9, "MOVE_REFRESH" ],
+            [ 13, "MOVE_WATER_PULSE" ],
+            [ 17, "MOVE_TWISTER" ],
+            [ 21, "MOVE_RECOVER" ],
+            [ 25, "MOVE_CAPTIVATE" ],
+            [ 29, "MOVE_AQUA_TAIL" ],
+            [ 33, "MOVE_RAIN_DANCE" ],
+            [ 37, "MOVE_HYDRO_PUMP" ],
+            [ 41, "MOVE_ATTRACT" ],
+            [ 45, "MOVE_SAFEGUARD" ],
+            [ 49, "MOVE_AQUA_RING" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -76,25 +83,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_WATER_GUN",
-                "MOVE_WRAP"
-            ],
-            "5": "MOVE_WATER_SPORT",
-            "9": "MOVE_REFRESH",
-            "13": "MOVE_WATER_PULSE",
-            "17": "MOVE_TWISTER",
-            "21": "MOVE_RECOVER",
-            "25": "MOVE_CAPTIVATE",
-            "29": "MOVE_AQUA_TAIL",
-            "33": "MOVE_RAIN_DANCE",
-            "37": "MOVE_HYDRO_PUMP",
-            "41": "MOVE_ATTRACT",
-            "45": "MOVE_SAFEGUARD",
-            "49": "MOVE_AQUA_RING"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -105,9 +94,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 62,
@@ -122,7 +112,7 @@
         "trainer_pos_m": 15,
         "pokemon_pos_m": 3,
         "entry_text": "Its lovely scales are described as\nrainbow colored. They change color\ndepending on the viewing angle.",
-        "category": "Tender Pokémon"
+        "category": "Tender Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

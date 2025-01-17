@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 135
     },
-    "types": [
-        "TYPE_GHOST",
-        "TYPE_GHOST"
-    ],
+    "types": [ "TYPE_GHOST", "TYPE_GHOST" ],
     "catch_rate": 45,
     "base_exp_reward": 210,
     "ev_yields": {
@@ -30,21 +27,37 @@
     "hatch_cycles": 25,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FIRE_PUNCH" ],
+            [ 1, "MOVE_ICE_PUNCH" ],
+            [ 1, "MOVE_THUNDER_PUNCH" ],
+            [ 1, "MOVE_GRAVITY" ],
+            [ 1, "MOVE_BIND" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_NIGHT_SHADE" ],
+            [ 1, "MOVE_DISABLE" ],
+            [ 6, "MOVE_DISABLE" ],
+            [ 9, "MOVE_FORESIGHT" ],
+            [ 14, "MOVE_ASTONISH" ],
+            [ 17, "MOVE_CONFUSE_RAY" ],
+            [ 22, "MOVE_SHADOW_SNEAK" ],
+            [ 25, "MOVE_PURSUIT" ],
+            [ 30, "MOVE_CURSE" ],
+            [ 33, "MOVE_WILL_O_WISP" ],
+            [ 37, "MOVE_SHADOW_PUNCH" ],
+            [ 43, "MOVE_MEAN_LOOK" ],
+            [ 51, "MOVE_PAYBACK" ],
+            [ 61, "MOVE_FUTURE_SIGHT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -94,31 +107,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FIRE_PUNCH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_GRAVITY",
-                "MOVE_BIND",
-                "MOVE_LEER",
-                "MOVE_NIGHT_SHADE",
-                "MOVE_DISABLE"
-            ],
-            "6": "MOVE_DISABLE",
-            "9": "MOVE_FORESIGHT",
-            "14": "MOVE_ASTONISH",
-            "17": "MOVE_CONFUSE_RAY",
-            "22": "MOVE_SHADOW_SNEAK",
-            "25": "MOVE_PURSUIT",
-            "30": "MOVE_CURSE",
-            "33": "MOVE_WILL_O_WISP",
-            "37": "MOVE_SHADOW_PUNCH",
-            "43": "MOVE_MEAN_LOOK",
-            "51": "MOVE_PAYBACK",
-            "61": "MOVE_FUTURE_SIGHT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
@@ -131,9 +120,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 22,
@@ -148,7 +138,7 @@
         "trainer_pos_m": 15,
         "pokemon_pos_m": 6,
         "entry_text": "It is said to take lost spirits\ninto its pliant body and guide\nthem home.",
-        "category": "Gripper Pokémon"
+        "category": "Gripper Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

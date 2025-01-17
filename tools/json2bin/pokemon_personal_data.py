@@ -27,7 +27,7 @@ def parse_ev_yields(ev_yields: dict, size: int, _: None) -> bytes:
 
 def parse_color(sprite: dict, size: int, _: None) -> bytes:
     packed = pokemon_colors.PokemonColor[sprite['color']].value
-    packed = packed + ((1 if sprite['flip_sprite'] else 0) << 7)
+    packed = packed + ((1 if sprite['flip'] else 0) << 7)
     return packed.to_bytes(size, 'little')
 
 SCHEMA = j2b.Parser() \
@@ -53,10 +53,10 @@ SCHEMA = j2b.Parser() \
     .register('egg_groups.1', 1, j2b.parse_const, egg_groups.EggGroup) \
     .register('abilities.0', 1, j2b.parse_const, abilities.Ability) \
     .register('abilities.1', 1, j2b.parse_const, abilities.Ability) \
-    .register('great_marsh_flee_rate', 1, j2b.parse_int) \
+    .register('safari_flee_rate', 1, j2b.parse_int) \
     .register('sprite', 1, parse_color) \
     .pad(2) \
-    .register('learnset.tms', 16, j2b.pack_flags, tm_learnset.TMLearnsetFlags)
+    .register('learnset.by_tm', 16, j2b.pack_flags, tm_learnset.TMLearnsetFlags)
 
 
 NATIONAL_DEX_COUNT = 493

@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 25,
     "base_exp_reward": 129,
     "ev_yields": {
@@ -30,21 +27,21 @@
     "hatch_cycles": 10,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_CUTE_CHARM",
-        "ABILITY_MAGIC_GUARD"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_MAGIC_GUARD" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PINK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SING" ],
+            [ 1, "MOVE_DOUBLE_SLAP" ],
+            [ 1, "MOVE_MINIMIZE" ],
+            [ 1, "MOVE_METRONOME" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -99,15 +96,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SING",
-                "MOVE_DOUBLE_SLAP",
-                "MOVE_MINIMIZE",
-                "MOVE_METRONOME"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -125,9 +114,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -142,7 +132,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
         "entry_text": "It is very wary and rarely shows\nitself to people. Its ears can hear\na pin drop over half a mile away.",
-        "category": "Fairy Pokémon"
+        "category": "Fairy Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

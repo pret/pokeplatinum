@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 130
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_DARK" ],
     "catch_rate": 45,
     "base_exp_reward": 197,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 35,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_SYNCHRONIZE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_SYNCHRONIZE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 8, "MOVE_SAND_ATTACK" ],
+            [ 15, "MOVE_PURSUIT" ],
+            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 29, "MOVE_CONFUSE_RAY" ],
+            [ 36, "MOVE_FAINT_ATTACK" ],
+            [ 43, "MOVE_ASSURANCE" ],
+            [ 50, "MOVE_LAST_RESORT" ],
+            [ 57, "MOVE_MEAN_LOOK" ],
+            [ 64, "MOVE_SCREECH" ],
+            [ 71, "MOVE_MOONLIGHT" ],
+            [ 78, "MOVE_GUARD_SWAP" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -79,25 +86,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TAIL_WHIP",
-                "MOVE_TACKLE",
-                "MOVE_HELPING_HAND"
-            ],
-            "8": "MOVE_SAND_ATTACK",
-            "15": "MOVE_PURSUIT",
-            "22": "MOVE_QUICK_ATTACK",
-            "29": "MOVE_CONFUSE_RAY",
-            "36": "MOVE_FAINT_ATTACK",
-            "43": "MOVE_ASSURANCE",
-            "50": "MOVE_LAST_RESORT",
-            "57": "MOVE_MEAN_LOOK",
-            "64": "MOVE_SCREECH",
-            "71": "MOVE_MOONLIGHT",
-            "78": "MOVE_GUARD_SWAP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_SPITE",
@@ -107,9 +96,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -123,8 +113,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "When exposed to the moon’s aura,\nthe rings on its body glow faintly\nand it gains a mysterious power.",
-        "category": "Moonlight Pokémon"
+        "entry_text": "When exposed to the moon\u2019s aura,\nthe rings on its body glow faintly\nand it gains a mysterious power.",
+        "category": "Moonlight Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

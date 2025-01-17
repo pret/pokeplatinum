@@ -8,10 +8,7 @@
         "special_attack": 58,
         "special_defense": 44
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 45,
     "base_exp_reward": 65,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_BLAZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_BROWN",
-        "flip_sprite": true
+        "flip": true
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 7, "MOVE_EMBER" ],
+            [ 9, "MOVE_TAUNT" ],
+            [ 15, "MOVE_FURY_SWIPES" ],
+            [ 17, "MOVE_FLAME_WHEEL" ],
+            [ 23, "MOVE_NASTY_PLOT" ],
+            [ 25, "MOVE_TORMENT" ],
+            [ 31, "MOVE_FACADE" ],
+            [ 33, "MOVE_FIRE_SPIN" ],
+            [ 39, "MOVE_SLACK_OFF" ],
+            [ 41, "MOVE_FLAMETHROWER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -85,23 +90,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_LEER"
-            ],
-            "7": "MOVE_EMBER",
-            "9": "MOVE_TAUNT",
-            "15": "MOVE_FURY_SWIPES",
-            "17": "MOVE_FLAME_WHEEL",
-            "23": "MOVE_NASTY_PLOT",
-            "25": "MOVE_TORMENT",
-            "31": "MOVE_FACADE",
-            "33": "MOVE_FIRE_SPIN",
-            "39": "MOVE_SLACK_OFF",
-            "41": "MOVE_FLAMETHROWER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -124,8 +113,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -140,7 +129,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
         "entry_text": "It is very agile. Before going to\nsleep, it extinguishes the flame\non its tail to prevent fires.",
-        "category": "Chimp Pokémon"
+        "category": "Chimp Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

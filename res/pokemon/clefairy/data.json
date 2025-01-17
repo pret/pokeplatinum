@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 150,
     "base_exp_reward": 68,
     "ev_yields": {
@@ -30,21 +27,34 @@
     "hatch_cycles": 10,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_CUTE_CHARM",
-        "ABILITY_MAGIC_GUARD"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_MAGIC_GUARD" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PINK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 4, "MOVE_ENCORE" ],
+            [ 7, "MOVE_SING" ],
+            [ 10, "MOVE_DOUBLE_SLAP" ],
+            [ 13, "MOVE_DEFENSE_CURL" ],
+            [ 16, "MOVE_FOLLOW_ME" ],
+            [ 19, "MOVE_MINIMIZE" ],
+            [ 22, "MOVE_WAKE_UP_SLAP" ],
+            [ 25, "MOVE_COSMIC_POWER" ],
+            [ 28, "MOVE_LUCKY_CHANT" ],
+            [ 31, "MOVE_METRONOME" ],
+            [ 34, "MOVE_GRAVITY" ],
+            [ 37, "MOVE_MOONLIGHT" ],
+            [ 40, "MOVE_LIGHT_SCREEN" ],
+            [ 43, "MOVE_METEOR_MASH" ],
+            [ 46, "MOVE_HEALING_WISH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -96,28 +106,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_GROWL"
-            ],
-            "4": "MOVE_ENCORE",
-            "7": "MOVE_SING",
-            "10": "MOVE_DOUBLE_SLAP",
-            "13": "MOVE_DEFENSE_CURL",
-            "16": "MOVE_FOLLOW_ME",
-            "19": "MOVE_MINIMIZE",
-            "22": "MOVE_WAKE_UP_SLAP",
-            "25": "MOVE_COSMIC_POWER",
-            "28": "MOVE_LUCKY_CHANT",
-            "31": "MOVE_METRONOME",
-            "34": "MOVE_GRAVITY",
-            "37": "MOVE_MOONLIGHT",
-            "40": "MOVE_LIGHT_SCREEN",
-            "43": "MOVE_METEOR_MASH",
-            "46": "MOVE_HEALING_WISH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -143,8 +132,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -159,7 +148,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
         "entry_text": "It is said that happiness will come\nto those who see a gathering of\nCLEFAIRY dancing under a full moon.",
-        "category": "Fairy Pokémon"
+        "category": "Fairy Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

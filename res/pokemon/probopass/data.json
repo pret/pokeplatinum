@@ -8,10 +8,7 @@
         "special_attack": 75,
         "special_defense": 150
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_STEEL"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_STEEL" ],
     "catch_rate": 60,
     "base_exp_reward": 198,
     "ev_yields": {
@@ -30,21 +27,36 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_STURDY",
-        "ABILITY_MAGNET_PULL"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_STURDY", "ABILITY_MAGNET_PULL" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_MAGNET_RISE" ],
+            [ 1, "MOVE_GRAVITY" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_IRON_DEFENSE" ],
+            [ 1, "MOVE_MAGNET_BOMB" ],
+            [ 1, "MOVE_BLOCK" ],
+            [ 7, "MOVE_IRON_DEFENSE" ],
+            [ 13, "MOVE_MAGNET_BOMB" ],
+            [ 19, "MOVE_BLOCK" ],
+            [ 25, "MOVE_THUNDER_WAVE" ],
+            [ 31, "MOVE_ROCK_SLIDE" ],
+            [ 37, "MOVE_SANDSTORM" ],
+            [ 43, "MOVE_REST" ],
+            [ 49, "MOVE_POWER_GEM" ],
+            [ 55, "MOVE_DISCHARGE" ],
+            [ 61, "MOVE_STONE_EDGE" ],
+            [ 67, "MOVE_ZAP_CANNON" ],
+            [ 73, "MOVE_LOCK_ON" ],
+            [ 79, "MOVE_EARTH_POWER" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -82,30 +94,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_MAGNET_RISE",
-                "MOVE_GRAVITY",
-                "MOVE_TACKLE",
-                "MOVE_IRON_DEFENSE",
-                "MOVE_MAGNET_BOMB",
-                "MOVE_BLOCK"
-            ],
-            "7": "MOVE_IRON_DEFENSE",
-            "13": "MOVE_MAGNET_BOMB",
-            "19": "MOVE_BLOCK",
-            "25": "MOVE_THUNDER_WAVE",
-            "31": "MOVE_ROCK_SLIDE",
-            "37": "MOVE_SANDSTORM",
-            "43": "MOVE_REST",
-            "49": "MOVE_POWER_GEM",
-            "55": "MOVE_DISCHARGE",
-            "61": "MOVE_STONE_EDGE",
-            "67": "MOVE_ZAP_CANNON",
-            "73": "MOVE_LOCK_ON",
-            "79": "MOVE_EARTH_POWER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -119,9 +108,10 @@
             "MOVE_MAGNET_RISE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 14,
@@ -136,7 +126,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
         "entry_text": "It freely controls three small\nunits called Mini-Noses using\nmagnetic force.",
-        "category": "Compass Pokémon"
+        "category": "Compass Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

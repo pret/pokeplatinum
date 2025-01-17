@@ -8,10 +8,7 @@
         "special_attack": 51,
         "special_defense": 23
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 190,
     "base_exp_reward": 68,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SOUNDPROOF",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SOUNDPROOF", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
     "sprite": {
         "color": "MON_COLOR_PINK",
-        "flip_sprite": false
+        "flip": false
     },
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 5, "MOVE_UPROAR" ],
+            [ 11, "MOVE_ASTONISH" ],
+            [ 15, "MOVE_HOWL" ],
+            [ 21, "MOVE_SUPERSONIC" ],
+            [ 25, "MOVE_STOMP" ],
+            [ 31, "MOVE_SCREECH" ],
+            [ 35, "MOVE_ROAR" ],
+            [ 41, "MOVE_REST" ],
+            [ 41, "MOVE_SLEEP_TALK" ],
+            [ 45, "MOVE_HYPER_VOICE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -74,22 +78,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": "MOVE_POUND",
-            "5": "MOVE_UPROAR",
-            "11": "MOVE_ASTONISH",
-            "15": "MOVE_HOWL",
-            "21": "MOVE_SUPERSONIC",
-            "25": "MOVE_STOMP",
-            "31": "MOVE_SCREECH",
-            "35": "MOVE_ROAR",
-            "41": [
-                "MOVE_REST",
-                "MOVE_SLEEP_TALK"
-            ],
-            "45": "MOVE_HYPER_VOICE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -109,8 +98,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -125,7 +114,7 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
         "entry_text": "Usually, its cries are like quiet\nmurmurs. If frightened, it shrieks\nat the same volume as a jet plane.",
-        "category": "Whisper Pokémon"
+        "category": "Whisper Pok\u00e9mon"
     },
     "catching_show_data": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
