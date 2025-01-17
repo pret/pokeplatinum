@@ -10,7 +10,7 @@
 #include "math.h"
 #include "savedata.h"
 
-#define FLAVOUR_NONE 30
+#define FLAVOR_NONE 30
 
 int Poffin_sizeof(void)
 {
@@ -19,7 +19,7 @@ int Poffin_sizeof(void)
 
 BOOL Poffin_HasValidFlavor(Poffin *poffin)
 {
-    if (poffin->flavor == FLAVOUR_NONE) {
+    if (poffin->flavor == FLAVOR_NONE) {
         return FALSE;
     }
 
@@ -28,7 +28,7 @@ BOOL Poffin_HasValidFlavor(Poffin *poffin)
 
 void Poffin_clear(Poffin *poffin)
 {
-    poffin->flavor = FLAVOUR_NONE;
+    poffin->flavor = FLAVOR_NONE;
     poffin->spiciness = 0;
     poffin->dryness = 0;
     poffin->sweetness = 0;
@@ -250,7 +250,7 @@ u16 Poffin_GetEmptyCaseSlot(PoffinCase *poffinCase)
     u16 i;
 
     for (i = 0; i < MAX_POFFINS; i++) {
-        if (poffinCase->slot[i].flavor == FLAVOUR_NONE) {
+        if (poffinCase->slot[i].flavor == FLAVOR_NONE) {
             return i;
         }
     }
@@ -285,7 +285,7 @@ static u16 Poffin_GetFirstValidPoffin(PoffinCase *poffinCase, u16 startingSlot)
     u16 i;
 
     for (i = startingSlot; i < MAX_POFFINS; i++) {
-        if (poffinCase->slot[i].flavor != FLAVOUR_NONE) {
+        if (poffinCase->slot[i].flavor != FLAVOR_NONE) {
             return i;
         }
     }
@@ -303,7 +303,7 @@ void Poffin_CompactCase(PoffinCase *poffinCase)
 
     for (i = 0; i < remainingSlots; i++) {
         // skip over occupied slots
-        if (poffinCase->slot[i].flavor != FLAVOUR_NONE) {
+        if (poffinCase->slot[i].flavor != FLAVOR_NONE) {
             continue;
         }
 
@@ -375,7 +375,7 @@ u16 Poffin_GetNumberOfEmptySlots(PoffinCase *poffinCase)
     j = 0;
 
     for (i = 0; i < MAX_POFFINS; i++) {
-        if (poffinCase->slot[i].flavor == FLAVOUR_NONE) {
+        if (poffinCase->slot[i].flavor == FLAVOR_NONE) {
             j++;
         }
     }
