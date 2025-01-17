@@ -7191,7 +7191,7 @@ static BOOL ov9_0224EF64(UnkStruct_ov9_02249B04 *param0, MapObject **param1, con
     if (v0 == NULL) {
         UnkStruct_020216E0 *v1;
 
-        MapObject_SetPosDir(*param1, param2->unk_08.x, (((param2->unk_08.y) >> 3) / FX32_ONE), param2->unk_08.z, param2->unk_08.dir);
+        MapObject_SetPosDirFromCoords(*param1, param2->unk_08.x, (((param2->unk_08.y) >> 3) / FX32_ONE), param2->unk_08.z, param2->unk_08.dir);
 
         v1 = ov5_021EB1A0(*param1);
 
@@ -7455,7 +7455,7 @@ static BOOL ov9_0224F324(UnkStruct_ov9_0224F6EC *param0)
 
     Sound_PlayEffect(1571);
     v1.y = ((115 << 4) * FX32_ONE);
-    sub_020632D4(v2, &v1, MapObject_GetFacingDir(v2));
+    MapObject_SetPosDirFromVec(v2, &v1, MapObject_GetFacingDir(v2));
     sub_02062914(v2, 580);
 
     {

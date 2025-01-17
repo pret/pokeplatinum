@@ -385,10 +385,14 @@ static void sub_02063A78(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
         return;
     }
 
-    if (TileBehavior_IsTallGrass(currTileBehavior) == TRUE || TileBehavior_IsVeryTallGrass(currTileBehavior) == TRUE
-        || MapObject_IsOnWater(mapObj, currTileBehavior) == TRUE || TileBehavior_IsPuddle(currTileBehavior) == TRUE
-        || TileBehavior_IsShallowWater(currTileBehavior) == TRUE || MapObject_IsOnSnow(mapObj, currTileBehavior) == TRUE
-        || TileBehavior_IsMud(currTileBehavior) == TRUE || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE
+    if (TileBehavior_IsTallGrass(currTileBehavior) == TRUE
+        || TileBehavior_IsVeryTallGrass(currTileBehavior) == TRUE
+        || MapObject_IsOnWater(mapObj, currTileBehavior) == TRUE
+        || TileBehavior_IsPuddle(currTileBehavior) == TRUE
+        || TileBehavior_IsShallowWater(currTileBehavior) == TRUE
+        || MapObject_IsOnSnow(mapObj, currTileBehavior) == TRUE
+        || TileBehavior_IsMud(currTileBehavior) == TRUE
+        || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE
         || TileBehavior_IsReflective(currTileBehavior)) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_HIDE_SHADOW);
     } else {
@@ -411,10 +415,14 @@ static void sub_02063B20(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
         return;
     }
 
-    if (TileBehavior_IsTallGrass(currTileBehavior) == TRUE || TileBehavior_IsVeryTallGrass(currTileBehavior) == TRUE
-        || MapObject_IsOnWater(mapObj, currTileBehavior) == TRUE || TileBehavior_IsPuddle(currTileBehavior) == TRUE
-        || TileBehavior_IsShallowWater(currTileBehavior) == TRUE || MapObject_IsOnSnow(mapObj, currTileBehavior) == TRUE
-        || TileBehavior_IsMud(currTileBehavior) == TRUE || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE
+    if (TileBehavior_IsTallGrass(currTileBehavior) == TRUE
+        || TileBehavior_IsVeryTallGrass(currTileBehavior) == TRUE
+        || MapObject_IsOnWater(mapObj, currTileBehavior) == TRUE
+        || TileBehavior_IsPuddle(currTileBehavior) == TRUE
+        || TileBehavior_IsShallowWater(currTileBehavior) == TRUE
+        || MapObject_IsOnSnow(mapObj, currTileBehavior) == TRUE
+        || TileBehavior_IsMud(currTileBehavior) == TRUE
+        || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE
         || TileBehavior_IsReflective(currTileBehavior)) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_HIDE_SHADOW);
     } else {
@@ -424,9 +432,12 @@ static void sub_02063B20(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
 
 static void sub_02063BB4(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
 {
-    if (MapObject_IsOnWater(mapObj, currTileBehavior) == TRUE || TileBehavior_IsShallowWater(currTileBehavior) == TRUE
-        || TileBehavior_IsIce(currTileBehavior) == TRUE || TileBehavior_IsMud(currTileBehavior) == TRUE
-        || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE || MapObject_IsOnSnow(mapObj, currTileBehavior) == TRUE) {
+    if (MapObject_IsOnWater(mapObj, currTileBehavior) == TRUE
+        || TileBehavior_IsShallowWater(currTileBehavior) == TRUE
+        || TileBehavior_IsIce(currTileBehavior) == TRUE
+        || TileBehavior_IsMud(currTileBehavior) == TRUE
+        || TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE
+        || MapObject_IsOnSnow(mapObj, currTileBehavior) == TRUE) {
         return;
     }
 
@@ -796,13 +807,13 @@ int MapObject_IsOnBikeBridgeEastWest(MapObject *mapObj, u32 tileBehavior)
 }
 
 static const int sMapObjectDxDir[] = {
-    0x0,
-    0x0,
-    -1,
-    0x1
+    [DIR_NORTH] = 0,
+    [DIR_SOUTH] = 0,
+    [DIR_WEST] = -1,
+    [DIR_EAST] = 1
 };
 
-static const int DATA_GPosY_Dir4AddTbl[] = {
+static const int UNUSED_GPosY_Dir4AddTbl[] = {
     0,
     0,
     0,
@@ -810,10 +821,10 @@ static const int DATA_GPosY_Dir4AddTbl[] = {
 };
 
 static const int sMapObjectDzDir[] = {
-    -1,
-    0x1,
-    0x0,
-    0x0
+    [DIR_NORTH] = -1,
+    [DIR_SOUTH] = 1,
+    [DIR_WEST] = 0,
+    [DIR_EAST] = 0
 };
 
 int MapObject_GetDxFromDir(int dir)

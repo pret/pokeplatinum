@@ -5632,7 +5632,7 @@ static BOOL ScrCmd_187(ScriptContext *ctx)
 
     v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
 
-    MapObject_SetPosDir(v0, v2, v3, v4, v5);
+    MapObject_SetPosDirFromCoords(v0, v2, v3, v4, v5);
     sub_020642F8(v0);
 
     return 0;

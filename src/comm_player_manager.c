@@ -1771,7 +1771,7 @@ void CommPlayerMan_ForcePos(void)
 
         MapObject_SetX(obj, x);
         MapObject_SetZ(obj, z);
-        MapObject_SetPosDir(obj, x, 0, z, dir);
+        MapObject_SetPosDirFromCoords(obj, x, 0, z, dir);
     }
 }
 

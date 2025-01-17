@@ -2429,7 +2429,7 @@ MapObject *sub_0206326C(const MapObjectManager *mapObjMan, int x, int z, int par
     return NULL;
 }
 
-void sub_020632D4(MapObject *mapObj, const VecFx32 *pos, int param2)
+void MapObject_SetPosDirFromVec(MapObject *mapObj, const VecFx32 *pos, int dir)
 {
     int x, y, z;
 
@@ -2445,14 +2445,14 @@ void sub_020632D4(MapObject *mapObj, const VecFx32 *pos, int param2)
     MapObject_SetPos(mapObj, pos);
     MapObject_UpdateCoords(mapObj);
 
-    MapObject_Face(mapObj, param2);
+    MapObject_Face(mapObj, dir);
 
     sub_020656DC(mapObj);
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_1 | MAP_OBJ_STATUS_END_MOVEMENT);
 }
 
-void MapObject_SetPosDir(MapObject *mapObj, int x, int y, int z, int dir)
+void MapObject_SetPosDirFromCoords(MapObject *mapObj, int x, int y, int z, int dir)
 {
     VecFx32 pos;
 
