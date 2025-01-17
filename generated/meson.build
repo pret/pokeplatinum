@@ -1,6 +1,7 @@
 enum_generators = {
     'abilities': ['--tag-name', 'Ability'],
     'egg_groups': ['--tag-name', 'EggGroup'],
+    'evolution_methods': ['--tag-name', 'EvolutionMethod'],
     'exp_rates': ['--tag-name', 'ExpRate'],
     'gender_ratios': ['--tag-name', 'GenderRatio'],
     'item_hold_effects': ['--tag-name', 'ItemHoldEffect'],

@@ -38,38 +38,6 @@
                 "SPECIES_DATA_TM_LEARNSET_MASK_4"
             ]
         },
-        "@PokemonEvoMethod": {
-            "type": "enum",
-            "values": [
-                "EVO_NONE",
-                "EVO_LEVEL_HAPPINESS",
-                "EVO_LEVEL_HAPPINESS_DAY",
-                "EVO_LEVEL_HAPPINESS_NIGHT",
-                "EVO_LEVEL",
-                "EVO_TRADE",
-                "EVO_TRADE_WITH_HELD_ITEM",
-                "EVO_USE_ITEM",
-                "EVO_LEVEL_ATK_GT_DEF",
-                "EVO_LEVEL_ATK_EQ_DEF",
-                "EVO_LEVEL_ATK_LT_DEF",
-                "EVO_LEVEL_PID_LOW",
-                "EVO_LEVEL_PID_HIGH",
-                "EVO_LEVEL_NINJASK",
-                "EVO_LEVEL_SHEDINJA",
-                "EVO_LEVEL_BEAUTY",
-                "EVO_USE_ITEM_MALE",
-                "EVO_USE_ITEM_FEMALE",
-                "EVO_LEVEL_WITH_HELD_ITEM_DAY",
-                "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
-                "EVO_LEVEL_KNOW_MOVE",
-                "EVO_LEVEL_SPECIES_IN_PARTY",
-                "EVO_LEVEL_MALE",
-                "EVO_LEVEL_FEMALE",
-                "EVO_LEVEL_MAGNETIC_FIELD",
-                "EVO_LEVEL_MOSS_ROCK",
-                "EVO_LEVEL_ICE_ROCK"
-            ]
-        },
         "@PokemonContestType": {
             "type": "enum",
             "values": [

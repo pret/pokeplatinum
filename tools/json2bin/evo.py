@@ -4,56 +4,53 @@ import pathlib
 import json2bin as j2b
 
 from generated import (
+    evolution_methods,
     items,
     moves,
     species,
 )
 
-from consts import (
-    pokemon,
-)
 
-
-def get_evo_params(method: pokemon.PokemonEvoMethod, evo: Sequence):
+def get_evo_params(method: evolution_methods.EvolutionMethod, evo: Sequence):
     maybe_param = evo[1]
     final_param = 0
     #None of these take an extra parameter
     if method in set([
-        pokemon.PokemonEvoMethod.EVO_NONE,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_HAPPINESS,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_HAPPINESS_DAY,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_HAPPINESS_NIGHT,
-        pokemon.PokemonEvoMethod.EVO_TRADE,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_MAGNETIC_FIELD,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_MOSS_ROCK,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_ICE_ROCK]):
+        evolution_methods.EvolutionMethod.EVO_NONE,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_HAPPINESS,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_HAPPINESS_DAY,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_HAPPINESS_NIGHT,
+        evolution_methods.EvolutionMethod.EVO_TRADE,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_MAGNETIC_FIELD,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_MOSS_ROCK,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_ICE_ROCK]):
         final_param = 0
     # These all specify a basic integer param
     elif method in set([
-        pokemon.PokemonEvoMethod.EVO_LEVEL,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_ATK_GT_DEF,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_ATK_EQ_DEF,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_ATK_LT_DEF,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_PID_LOW,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_PID_HIGH,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_NINJASK,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_SHEDINJA,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_MALE,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_FEMALE,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_BEAUTY]):
+        evolution_methods.EvolutionMethod.EVO_LEVEL,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_ATK_GT_DEF,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_ATK_EQ_DEF,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_ATK_LT_DEF,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_PID_LOW,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_PID_HIGH,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_NINJASK,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_SHEDINJA,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_MALE,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_FEMALE,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_BEAUTY]):
         final_param = maybe_param
     # These specify an item
     elif method in set([
-        pokemon.PokemonEvoMethod.EVO_TRADE_WITH_HELD_ITEM,
-        pokemon.PokemonEvoMethod.EVO_USE_ITEM,
-        pokemon.PokemonEvoMethod.EVO_USE_ITEM_MALE,
-        pokemon.PokemonEvoMethod.EVO_USE_ITEM_FEMALE,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_WITH_HELD_ITEM_DAY,
-        pokemon.PokemonEvoMethod.EVO_LEVEL_WITH_HELD_ITEM_NIGHT]):
+        evolution_methods.EvolutionMethod.EVO_TRADE_WITH_HELD_ITEM,
+        evolution_methods.EvolutionMethod.EVO_USE_ITEM,
+        evolution_methods.EvolutionMethod.EVO_USE_ITEM_MALE,
+        evolution_methods.EvolutionMethod.EVO_USE_ITEM_FEMALE,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_WITH_HELD_ITEM_DAY,
+        evolution_methods.EvolutionMethod.EVO_LEVEL_WITH_HELD_ITEM_NIGHT]):
         final_param = items.Item[maybe_param].value
-    elif method == pokemon.PokemonEvoMethod.EVO_LEVEL_KNOW_MOVE:
+    elif method == evolution_methods.EvolutionMethod.EVO_LEVEL_KNOW_MOVE:
         final_param = moves.Move[maybe_param].value
-    elif method == pokemon.PokemonEvoMethod.EVO_LEVEL_SPECIES_IN_PARTY:
+    elif method == evolution_methods.EvolutionMethod.EVO_LEVEL_SPECIES_IN_PARTY:
         final_param = species.Species[maybe_param].value
 
     return final_param
@@ -71,7 +68,7 @@ def parse_evolutions(table: Sequence, _size: int, _enum: None) -> bytes:
     out = bytearray([])
     for j in range(min(len(table), 7)):
         evo = table[j]
-        method = pokemon.PokemonEvoMethod[evo[0]]
+        method = evolution_methods.EvolutionMethod[evo[0]]
         params = get_evo_params(method, evo)
         target = species.Species[evo[-1]]
         out.extend(table_line(method.value, params, target.value))

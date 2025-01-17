@@ -13,6 +13,7 @@
 #include "consts/gender.h"
 #include "consts/pokemon.h"
 #include "generated/abilities.h"
+#include "generated/evolution_methods.h"
 #include "generated/exp_rates.h"
 #include "generated/gender_ratios.h"
 
