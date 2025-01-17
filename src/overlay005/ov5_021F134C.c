@@ -258,7 +258,7 @@ static void ov5_021F1604(UnkStruct_ov101_021D5D90 *param0, void *param1)
         return;
     }
 
-    if (sub_02062CBC(v1, (1 << 3))) {
+    if (MapObject_CheckManagerStatus(v1, (1 << 3))) {
         ov5_021DF74C(param0);
         return;
     }

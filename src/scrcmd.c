@@ -3108,7 +3108,7 @@ static BOOL ScrCmd_LockAll(ScriptContext *ctx)
             && SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1
             && MapObject_IsMoving(object) != FALSE) {
 
-            sub_02062DDC(object);
+            MapObject_SetPauseMovementOff(object);
             ScriptContext_Pause(ctx, sub_020410CC);
             return TRUE;
         }
@@ -3148,12 +3148,12 @@ static BOOL sub_02041004(ScriptContext *ctx)
     MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
 
     if (inline_020410F4_1(1 << 0) && (LocalMapObj_CheckAnimationFinished(v2) == 1)) {
-        sub_02062DD0(v2);
+        MapObject_SetPauseMovementOn(v2);
         inline_020410F4_3(1 << 0);
     }
 
     if (inline_020410F4_1(1 << 2) && (MapObject_IsMoving(*v1) == 0)) {
-        sub_02062DD0(*v1);
+        MapObject_SetPauseMovementOn(*v1);
         inline_020410F4_3(1 << 2);
     }
 
@@ -3161,7 +3161,7 @@ static BOOL sub_02041004(ScriptContext *ctx)
         MapObject *v3 = sub_02062570(fieldSystem->mapObjMan, 0x30);
 
         if (MapObject_IsMoving(v3) == 0) {
-            sub_02062DD0(v3);
+            MapObject_SetPauseMovementOn(v3);
             inline_020410F4_3(1 << 1);
         }
     }
@@ -3170,7 +3170,7 @@ static BOOL sub_02041004(ScriptContext *ctx)
         MapObject *v4 = sub_02069EB8(*v1);
 
         if (MapObject_IsMoving(v4) == 0) {
-            sub_02062DD0(v4);
+            MapObject_SetPauseMovementOn(v4);
             inline_020410F4_3(1 << 3);
         }
     }
@@ -3188,7 +3188,7 @@ static BOOL sub_020410CC(ScriptContext *ctx)
     MapObject *v1 = sub_02062570(fieldSystem->mapObjMan, 0x30);
 
     if (MapObject_IsMoving(v1) == 0) {
-        sub_02062DD0(v1);
+        MapObject_SetPauseMovementOn(v1);
         return 1;
     }
 
@@ -3209,25 +3209,25 @@ static BOOL ScrCmd_LockLastTalked(ScriptContext *ctx)
 
     if (LocalMapObj_CheckAnimationFinished(player) == FALSE) {
         inline_020410F4_2(1 << 0);
-        sub_02062DDC(player);
+        MapObject_SetPauseMovementOff(player);
     }
 
     if (MapObject_IsMoving(*v1) != FALSE) {
         inline_020410F4_2(1 << 2);
-        sub_02062DDC(*v1);
+        MapObject_SetPauseMovementOff(*v1);
     }
 
     if (v3) {
         if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1 && MapObject_IsMoving(v3) != FALSE) {
             inline_020410F4_2(1 << 1);
-            sub_02062DDC(v3);
+            MapObject_SetPauseMovementOff(v3);
         }
     }
 
     if (v4) {
         if (MapObject_IsMoving(v4) != FALSE) {
             inline_020410F4_2(1 << 3);
-            sub_02062DDC(v4);
+            MapObject_SetPauseMovementOff(v4);
         }
     }
 
@@ -3250,9 +3250,9 @@ static BOOL ScrCmd_062(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_ReadHalfWord(ctx));
-    sub_02062DD0(mapObj);
+    MapObject_SetPauseMovementOn(mapObj);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_063(ScriptContext *ctx)
@@ -3261,9 +3261,9 @@ static BOOL ScrCmd_063(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_ReadHalfWord(ctx));
-    sub_02062DDC(mapObj);
+    MapObject_SetPauseMovementOff(mapObj);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_064(ScriptContext *ctx)
@@ -3278,7 +3278,7 @@ static BOOL ScrCmd_064(ScriptContext *ctx)
         GF_ASSERT(FALSE);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_065(ScriptContext *ctx)
@@ -5632,7 +5632,7 @@ static BOOL ScrCmd_187(ScriptContext *ctx)
 
     v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
 
-    MapObject_SetPosDir(v0, v2, v3, v4, v5);
+    MapObject_SetPosDirFromCoords(v0, v2, v3, v4, v5);
     sub_020642F8(v0);
 
     return 0;

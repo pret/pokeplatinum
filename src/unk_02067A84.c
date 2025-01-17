@@ -321,7 +321,7 @@ static int sub_02067E74(const MapObject *mapObj, int param1, int param2)
     v2 = MapObject_GetZ(mapObj);
     v3 = MapObject_GetY(mapObj);
     v1 += MapObject_GetDxFromDir(param1);
-    v2 += MapObject_GetDyFromDir(param1);
+    v2 += MapObject_GetDzFromDir(param1);
 
     for (v0 = 0; v0 < (param2 - 1); v0++) {
         v4 = sub_02063E94(mapObj, v1, v3, v2, param1);
@@ -332,7 +332,7 @@ static int sub_02067E74(const MapObject *mapObj, int param1, int param2)
         }
 
         v1 += MapObject_GetDxFromDir(param1);
-        v2 += MapObject_GetDyFromDir(param1);
+        v2 += MapObject_GetDzFromDir(param1);
     }
 
     v4 = sub_02063E94(mapObj, v1, v3, v2, param1);
@@ -466,7 +466,7 @@ static int sub_02068088(UnkStruct_020EF6D0 *param0)
     MapObject *v0 = param0->unk_24;
 
     if (MapObject_IsMoving(v0) == 1) {
-        sub_02062DDC(v0);
+        MapObject_SetPauseMovementOff(v0);
     }
 
     param0->unk_00 = 1;

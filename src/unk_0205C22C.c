@@ -371,7 +371,7 @@ static void sub_0205C6E0(UnkStruct_0205C680 *param0, MapObject *param1, int para
     Sound_PlayEffect(1615);
     sub_02061AD4(param1, param0->unk_08);
     sub_0205C680(param0, 0);
-    MapObject_SetPosDir(param1, v0, v1, v2, 1);
+    MapObject_SetPosDirFromCoords(param1, v0, v1, v2, 1);
     MapObject_Face(param1, 1);
     LocalMapObj_SetAnimationCode(param1, 0x44);
     MapObject_SetHidden(param1, 0);

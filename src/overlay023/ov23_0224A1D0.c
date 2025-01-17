@@ -724,7 +724,7 @@ void ov23_0224ADB0(int param0, int param1, int param2, int param3)
     CommPlayerLocation *v1 = &v0->playerLocationServer[param0];
 
     v1->x = param1 + MapObject_GetDxFromDir(param3);
-    v1->z = param2 + MapObject_GetDyFromDir(param3);
+    v1->z = param2 + MapObject_GetDzFromDir(param3);
     v1->dir = param3;
 }
 
