@@ -390,7 +390,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
     case 0:
         PlayerAvatar_SetRequestStateBit(v0->playerAvatar, (1 << 4));
         PlayerAvatar_RequestChangeState(v0->playerAvatar);
-        sub_02062DDC(Player_MapObject(v0->playerAvatar));
+        MapObject_SetPauseMovementOff(Player_MapObject(v0->playerAvatar));
         v1->unk_00 = 1;
         break;
     case 1:
@@ -453,7 +453,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
         break;
     case 4:
         Player_SetDir(v0->playerAvatar, v1->unk_04);
-        sub_02062DD0(Player_MapObject(v0->playerAvatar));
+        MapObject_SetPauseMovementOn(Player_MapObject(v0->playerAvatar));
         Heap_FreeToHeap(v1);
         return 1;
     }

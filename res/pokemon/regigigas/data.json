@@ -130,5 +130,12 @@
         "pokemon_pos_m": 1,
         "entry_text": "It is said to have made Pokémon\nthat look like itself from a special\nice mountain, rocks, and magma.",
         "category": "Colossal Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 1285
     }
 }

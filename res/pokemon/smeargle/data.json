@@ -77,5 +77,12 @@
         "pokemon_pos_m": 15,
         "entry_text": "It marks its territory by using its\ntail like a paintbrush. There are\nmore than 5,000 different marks.",
         "category": "Painter Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1285
     }
 }

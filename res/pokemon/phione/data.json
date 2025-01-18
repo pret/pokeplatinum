@@ -121,5 +121,12 @@
         "pokemon_pos_m": 1,
         "entry_text": "It drifts in warm seas. It always\nreturns to where it was born, no\nmatter how far it may have drifted.",
         "category": "Sea Drifter Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 771
     }
 }

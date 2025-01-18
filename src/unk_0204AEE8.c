@@ -292,7 +292,7 @@ static UnkStruct_0204B184 *sub_0204B184(UnkStruct_ov104_0223A348 *param0, u16 pa
 
     v2 = MessageLoader_GetNewStrbuf(v1, param1);
 
-    Strbuf_ToChars(v2, &param0->unk_00.unk_08[0], 8);
+    Strbuf_ToChars(v2, &param0->unk_00.unk_08[0], 8); // Possibly TRAINER_NAME_LEN + 1
     Strbuf_Free(v2);
     MessageLoader_Free(v1);
 

@@ -42,7 +42,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int param2)
     v8 = Heap_AllocFromHeap(param2, sizeof(u16) * v9);
 
     for (v4 = 0; v4 < v2; v4++) {
-        for (v10 = 8 - 1; v10 > -1; v10--) {
+        for (v10 = TRAINER_NAME_LEN; v10 > -1; v10--) {
             if (param1->trainer[v4].name[v10] == 0xffff) {
                 break;
             }
@@ -50,7 +50,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int param2)
 
         if (v10 == -1) {
             ov62_0224856C(v7, param2);
-            Strbuf_ToChars(v7, param1->trainer[v4].name, 8);
+            Strbuf_ToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
             continue;
         }
 
@@ -59,7 +59,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int param2)
 
         if (Font_AreAllCharsValid(FONT_SYSTEM, v6, v7) == 0) {
             ov62_0224856C(v7, param2);
-            Strbuf_ToChars(v7, param1->trainer[v4].name, 8);
+            Strbuf_ToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
             continue;
         }
     }

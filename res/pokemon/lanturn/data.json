@@ -128,7 +128,14 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n\u201cThe Deep-Sea Star.\u201d",
+        "entry_text": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n“The Deep-Sea Star.”",
         "category": "Light Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1795
     }
 }

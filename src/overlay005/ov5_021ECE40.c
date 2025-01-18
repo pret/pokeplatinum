@@ -471,7 +471,7 @@ static int ov5_021ED1C8(const MapObjectManager *param0, const MapObject *param1,
     const MapObject *v2;
 
     v0 = MapObjectMan_GetMaxObjects(param0);
-    v2 = sub_02062868(param0);
+    v2 = MapObjectMan_GetMapObjectConst(param0);
 
     do {
         if (v2 != param1) {
@@ -555,7 +555,7 @@ static int ov5_021ED2E8(UnkStruct_ov5_021ED0A4 *param0, UnkStruct_ov5_021F06D8 *
     GF_ASSERT(v0 != NULL);
 
     {
-        NARC *v1 = sub_020628A0(param0->unk_104);
+        NARC *v1 = MapObjectMan_GetNARC(param0->unk_104);
         ov5_021F0784(param1, param2, v1, v0->unk_04, 0);
     }
 
@@ -2034,7 +2034,7 @@ static UnkStruct_020216E0 *ov5_021EE454(MapObject *param0, int param1, UnkFuncPt
             VecFx32 v12;
             int v13;
             int v14 = sub_02062758(param0, 2);
-            u8 v15 = sub_02064238(param0, 1);
+            u8 v15 = MapObject_GetTileBehaviorFromDir(param0, 1);
 
             if (TileBehavior_IsReflective(v15) == 1) {
                 v13 = 2;

@@ -133,5 +133,12 @@
         "pokemon_pos_m": 1,
         "entry_text": "When launching 3,600 degrees F\nfireballs, its body takes on a\nwhitish hue from the intense heat.",
         "category": "Blast Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 514
     }
 }
