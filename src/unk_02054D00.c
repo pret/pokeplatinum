@@ -341,12 +341,12 @@ static int sub_02054FD0(const FieldSystem *fieldSystem, const VecFx32 *param1, c
     return v0;
 }
 
-BOOL sub_02055024(const FieldSystem *fieldSystem, const VecFx32 *param1, const int param2, const int param3, s8 *param4)
+BOOL sub_02055024(const FieldSystem *fieldSystem, const VecFx32 *pos, const int x, const int z, s8 *param4)
 {
     int v0;
     u8 v1;
 
-    v0 = sub_02054FD0(fieldSystem, param1, param2, param3, &v1);
+    v0 = sub_02054FD0(fieldSystem, pos, x, z, &v1);
 
     if (param4 != NULL) {
         *param4 = v0;
@@ -355,19 +355,19 @@ BOOL sub_02055024(const FieldSystem *fieldSystem, const VecFx32 *param1, const i
     if (v0 == 0) {
         BOOL v2;
 
-        v2 = FieldSystem_CheckCollision(fieldSystem, param2, param3);
+        v2 = FieldSystem_CheckCollision(fieldSystem, x, z);
 
         if ((!v2) && (v1 == 2)) {
-            u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, param2, param3);
+            u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, x, z);
 
             if (TileBehavior_IsPastoriaGymWater(v3)) {
-                return 1;
+                return TRUE;
             }
         }
 
         return v2;
     } else {
-        return 1;
+        return TRUE;
     }
 }
 

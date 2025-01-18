@@ -34,7 +34,7 @@ static void ov5_021E1350(void *param0);
 int ov5_021E1154(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2)
 {
     MapObject *v0 = Player_MapObject(playerAvatar);
-    u8 v1 = sub_02062BE8(v0);
+    u8 v1 = MapObject_GetCurrTileBehavior(v0);
     int v2;
 
     if (TileBehavior_IsSlideEastward(v1) == 1) {
@@ -85,7 +85,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
 {
     UnkStruct_ov5_021E11B0 *v0 = FieldTask_GetEnv(param0);
     MapObject *v1 = Player_MapObject(v0->playerAvatar);
-    u8 v2 = sub_02062BE8(v1);
+    u8 v2 = MapObject_GetCurrTileBehavior(v1);
 
     switch (v0->unk_08) {
     case 0:

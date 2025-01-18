@@ -107,7 +107,7 @@ void sub_02069C44(MapObject *mapObj)
 static int sub_02069C48(MapObject *mapObj, UnkStruct_02069CA8 *param1)
 {
     sub_02062D10(mapObj);
-    sub_02062D34(mapObj);
+    MapObject_SetEndMovementOff(mapObj);
 
     if (sub_02069CFC(mapObj, param1) == 1) {
         sub_02069D30(mapObj, param1);
@@ -277,7 +277,7 @@ void sub_02069E50(MapObject *mapObj)
 static int sub_02069E5C(MapObject *mapObj, UnkStruct_02069F48 *param1)
 {
     sub_02062D10(mapObj);
-    sub_02062D34(mapObj);
+    MapObject_SetEndMovementOff(mapObj);
 
     if (sub_02069FE8(mapObj, param1) == 1) {
         if (sub_0206A034(mapObj, param1) == 1) {
@@ -401,7 +401,7 @@ static int sub_0206A034(MapObject *mapObj, UnkStruct_02069F48 *param1)
 
     v6 = sub_02064488(v0, v1, v4, v5);
     v0 += MapObject_GetDxFromDir(v6);
-    v1 += MapObject_GetDyFromDir(v6);
+    v1 += MapObject_GetDzFromDir(v6);
 
     if ((v0 != v2) || (v1 != v3)) {
         u32 v7 = 0xc;
@@ -493,7 +493,7 @@ static int sub_0206A1AC(MapObject *mapObj, UnkStruct_0206A0BC *param1)
     }
 
     sub_02062D10(mapObj);
-    sub_02062D34(mapObj);
+    MapObject_SetEndMovementOff(mapObj);
     param1->unk_00++;
 
     return 0;
@@ -609,7 +609,7 @@ static int sub_0206A2E0(MapObject *mapObj, UnkStruct_0206A23C *param1)
 
     sub_02065668(mapObj, v0);
     sub_02062D10(mapObj);
-    sub_02062D34(mapObj);
+    MapObject_SetEndMovementOff(mapObj);
 
     param1->unk_00 = 1;
     return 1;
@@ -634,7 +634,7 @@ static int sub_0206A324(MapObject *mapObj, UnkStruct_0206A23C *param1)
     }
 
     sub_02062D10(mapObj);
-    sub_02062D34(mapObj);
+    MapObject_SetEndMovementOff(mapObj);
 
     param1->unk_00 = 3;
     return 1;
@@ -642,7 +642,7 @@ static int sub_0206A324(MapObject *mapObj, UnkStruct_0206A23C *param1)
 
 static u32 sub_0206A354(MapObject *mapObj, int param1)
 {
-    u32 v0 = sub_02064238(mapObj, param1);
+    u32 v0 = MapObject_GetTileBehaviorFromDir(mapObj, param1);
 
     if (TileBehavior_IsVeryTallGrass(v0) == 0) {
         v0 = (1 << 1);
@@ -713,7 +713,7 @@ static int sub_0206A454(MapObject *mapObj, UnkStruct_0206A23C *param1)
     }
 
     sub_02062D10(mapObj);
-    sub_02062D34(mapObj);
+    MapObject_SetEndMovementOff(mapObj);
 
     param1->unk_00 = 2;
     return 0;
