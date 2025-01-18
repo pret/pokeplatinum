@@ -851,7 +851,11 @@ static u8 GetWaterEncounterSlot(void)
         return 1;
     } else if (roll >= 90 && roll < 95) {
         return 2;
+<<<<<<< HEAD
     } else if (roll >= 95 && roll < 99) {
+=======
+    } else if (roll >= 95 roll < 99) {
+>>>>>>> c86cf1547103c43f66b1811b2d5edb88f166a0f7
         return 3;
     }
 
