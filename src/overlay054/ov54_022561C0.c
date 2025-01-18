@@ -10,7 +10,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
@@ -119,11 +119,11 @@ static BOOL ov54_0225621C(UnkStruct_ov54_0225621C *param0, PoketchSystem *poketc
     int v2;
 
     poketch = PoketchSystem_GetPoketchData(poketchSys);
-    param0->unk_04.unk_90 = PoketchData_PokemonHistorySize(poketch);
+    param0->unk_04.unk_90 = Poketch_PokemonHistorySize(poketch);
 
     for (v2 = 0; v2 < param0->unk_04.unk_90; v2++) {
-        PoketchData_PokemonHistorySpeciesAndIcon(poketch, v2, &(param0->unk_04.unk_00[v2].unk_00), &(param0->unk_04.unk_00[v2].unk_08));
-        param0->unk_04.unk_00[v2].unk_04 = PoketchData_PokemonHistoryForm(poketch, v2);
+        Poketch_PokemonHistorySpeciesAndIcon(poketch, v2, &(param0->unk_04.unk_00[v2].unk_00), &(param0->unk_04.unk_00[v2].unk_08));
+        param0->unk_04.unk_00[v2].unk_04 = Poketch_PokemonHistoryForm(poketch, v2);
     }
 
     if (ov54_0225642C(&(param0->unk_98), &(param0->unk_04), param2)) {

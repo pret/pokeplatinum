@@ -32,7 +32,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "strbuf.h"

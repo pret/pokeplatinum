@@ -9,7 +9,7 @@
 #include "overlay025/struct_ov25_02254560_decl.h"
 
 #include "bg_window.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "savedata.h"
 #include "sys_task_manager.h"
 

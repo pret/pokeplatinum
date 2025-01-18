@@ -26,7 +26,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"

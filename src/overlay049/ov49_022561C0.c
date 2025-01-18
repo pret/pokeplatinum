@@ -9,7 +9,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
@@ -64,7 +64,7 @@ static BOOL ov49_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
 static BOOL ov49_0225621C(UnkStruct_ov49_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     param0->poketch = PoketchSystem_GetPoketchData(poketchSys);
-    param0->unk_04.unk_00 = PoketchData_CurrentScreenColor(param0->poketch);
+    param0->unk_04.unk_00 = Poketch_CurrentScreenColor(param0->poketch);
     param0->unk_03 = param0->unk_04.unk_00;
 
     if (ov49_022563D4(&(param0->unk_08), &(param0->unk_04), param2)) {
@@ -178,7 +178,7 @@ static BOOL ov49_02256348(UnkStruct_ov49_0225621C *param0)
                 if (v2 != param0->unk_03) {
                     param0->unk_04.unk_00 = v2;
                     param0->unk_03 = v2;
-                    PoketchData_SetScreenColor(param0->poketch, v2);
+                    Poketch_SetScreenColor(param0->poketch, v2);
                     return 1;
                 }
             }

@@ -20,7 +20,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "strbuf.h"
 #include "string_template.h"
 

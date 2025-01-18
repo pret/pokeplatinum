@@ -15,7 +15,7 @@
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "system_flags.h"

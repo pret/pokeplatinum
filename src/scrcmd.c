@@ -122,10 +122,10 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "poffin.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "pokeradar.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "render_window.h"
 #include "roaming_pokemon.h"
 #include "rtc.h"
@@ -5183,7 +5183,7 @@ static BOOL ScrCmd_132(ScriptContext *ctx)
     Poketch *poketch = SaveData_PoketchData(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = PoketchData_IsEnabled(poketch);
+    *v1 = Poketch_IsEnabled(poketch);
     return 0;
 }
 
@@ -5192,7 +5192,7 @@ static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 appID = ScriptContext_GetVar(ctx);
 
-    PoketchData_RegisterApp(SaveData_PoketchData(fieldSystem->saveData), appID);
+    Poketch_RegisterApp(SaveData_PoketchData(fieldSystem->saveData), appID);
     return FALSE;
 }
 
@@ -5202,7 +5202,7 @@ static BOOL ScrCmd_134(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = PoketchData_IsAppRegistered(SaveData_PoketchData(fieldSystem->saveData), v1);
+    *v2 = Poketch_IsAppRegistered(SaveData_PoketchData(fieldSystem->saveData), v1);
     return 0;
 }
 

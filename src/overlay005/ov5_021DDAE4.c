@@ -11,7 +11,7 @@
 #include "field_task.h"
 #include "game_overlay.h"
 #include "heap.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 
@@ -44,7 +44,7 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
 
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
             Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
-            PoketchData_Enable(poketch);
+            Poketch_Enable(poketch);
             PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, sub_0200A914(1));
             v1->unk_00++;
         }

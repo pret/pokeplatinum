@@ -80,7 +80,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
 #include "unk_0203061C.h"

@@ -39,9 +39,9 @@
 #include "message.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -171,7 +171,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
     Bag_TryAddItem(dto->bag, ITEM_POKE_BALL, 20, heapID);
 
     mon = Pokemon_New(heapID);
-    Pokemon_InitWith(mon, VarsFlags_GetProfessorAssistantStarterSpecies(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, 32, FALSE, 0, OTID_NOT_SHINY, 0);
+    Pokemon_InitWith(mon, VarsFlags_GetPlayerCounterpartStarterSpecies(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, 32, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(dto->parties[BATTLER_PLAYER_1], mon);
     Pokemon_InitWith(mon, SPECIES_BIDOOF, 2, 32, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(dto->parties[BATTLER_ENEMY_1], mon);

@@ -10,7 +10,7 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "inlines.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
@@ -92,7 +92,7 @@ static void ov31_02256268(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_022565
 {
     Poketch *poketch = PoketchSystem_GetPoketchData(param0->poketchSys);
 
-    if (PoketchData_DotArtModified(poketch)) {
+    if (Poketch_DotArtModified(poketch)) {
         ov31_02256298(param0, param1, poketch);
     } else {
         ov31_0225635C(param1);
@@ -113,7 +113,7 @@ static void ov31_02256298(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_022565
 {
     int v0, v1, v2;
 
-    PoketchData_CopyDotArtData(poketch, param0->unk_1F4);
+    Poketch_CopyDotArtData(poketch, param0->unk_1F4);
 
     v2 = 0;
 
@@ -138,7 +138,7 @@ static void ov31_022562EC(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_022565
         }
     }
 
-    PoketchData_ModifyDotArtData(poketch, param0->unk_1F4);
+    Poketch_ModifyDotArtData(poketch, param0->unk_1F4);
 }
 
 static void ov31_0225635C(UnkStruct_ov31_02256554_1 *param0)

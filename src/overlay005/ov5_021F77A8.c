@@ -20,7 +20,7 @@
 #include "list_menu.h"
 #include "message.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "script_manager.h"

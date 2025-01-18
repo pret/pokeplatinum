@@ -1,4 +1,4 @@
-#include "pokedex_data.h"
+#include "pokedex.h"
 
 #include <nitro.h>
 #include <string.h>

@@ -50,7 +50,7 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "unk_0202F1D4.h"
 #include "unk_02030A80.h"
 #include "unk_020393C8.h"

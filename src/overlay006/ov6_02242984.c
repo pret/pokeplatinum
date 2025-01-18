@@ -16,7 +16,7 @@
 #include "map_header_data.h"
 #include "narc.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
 

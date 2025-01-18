@@ -42,7 +42,7 @@
 #include "math.h"
 #include "message.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "record_mixed_rng.h"
 #include "ribbon.h"

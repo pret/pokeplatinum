@@ -8,7 +8,7 @@
 #include "overlay024/ov24_02253CE0.h"
 
 #include "game_overlay.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "system_flags.h"
 #include "unk_0200A784.h"
 #include "vars_flags.h"
@@ -28,7 +28,7 @@ void ov5_021EA728(FieldSystem *fieldSystem)
     Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (PoketchData_IsEnabled(poketch)
+    if (Poketch_IsEnabled(poketch)
         && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
         PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, sub_0200A914(1));
@@ -43,7 +43,7 @@ void ov5_021EA790(FieldSystem *fieldSystem)
     Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (PoketchData_IsEnabled(poketch)
+    if (Poketch_IsEnabled(poketch)
         && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
         PoketchSystem_StartShutdown(fieldSystem->unk_04->poketchSys);
     } else {
@@ -56,7 +56,7 @@ u8 ov5_021EA7CC(FieldSystem *fieldSystem)
     Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (PoketchData_IsEnabled(poketch)
+    if (Poketch_IsEnabled(poketch)
         && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
         if (PoketchSystem_IsSystemShutdown(fieldSystem->unk_04->poketchSys)) {
             fieldSystem->unk_04->poketchSys = NULL;

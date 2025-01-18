@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "message.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "spl.h"
 #include "strbuf.h"

@@ -8,7 +8,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
@@ -73,7 +73,7 @@ static BOOL ov36_0225621C(UnkStruct_ov36_0225621C *param0, PoketchSystem *poketc
     param0->poketchSys = poketchSys;
     param0->poketch = PoketchSystem_GetPoketchData(poketchSys);
     param0->unk_04.unk_04 = 1;
-    param0->unk_04.unk_00 = PoketchData_StepCount(param0->poketch);
+    param0->unk_04.unk_00 = Poketch_StepCount(param0->poketch);
 
     if (ov36_02256404(&(param0->unk_0C), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -181,7 +181,7 @@ static BOOL ov36_02256330(UnkStruct_ov36_0225621C *param0)
         }
 
         if (PoketchSystem_PedometerUpdated(param0->poketchSys)) {
-            v0->unk_00 = PoketchData_StepCount(param0->poketch);
+            v0->unk_00 = Poketch_StepCount(param0->poketch);
             ov36_0225653C(param0->unk_0C, 3);
             break;
         }
@@ -201,7 +201,7 @@ static BOOL ov36_02256330(UnkStruct_ov36_0225621C *param0)
             v0->unk_04 = 1;
             v0->unk_00 = 0;
 
-            PoketchData_SetStepCount(param0->poketch, 0);
+            Poketch_SetStepCount(param0->poketch, 0);
 
             ov36_0225653C(param0->unk_0C, 2);
             ov36_0225653C(param0->unk_0C, 3);

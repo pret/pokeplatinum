@@ -19,7 +19,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "play_time.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "system_flags.h"

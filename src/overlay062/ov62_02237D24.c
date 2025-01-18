@@ -37,7 +37,7 @@
 #include "heap.h"
 #include "message.h"
 #include "palette.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"

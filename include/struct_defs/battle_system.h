@@ -35,7 +35,7 @@
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"

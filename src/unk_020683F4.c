@@ -43,7 +43,7 @@
 #include "map_tile_behavior.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokeradar.h"
 #include "render_window.h"
 #include "save_player.h"

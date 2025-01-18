@@ -16,7 +16,7 @@ u16 sub_0206B034(VarsFlags *varsFlags);
 BOOL sub_0206B044(VarsFlags *varsFlags, u16 param1);
 u16 sub_0206B054(VarsFlags *varsFlags);
 u16 sub_0206B064(VarsFlags *varsFlags);
-u16 VarsFlags_GetProfessorAssistantStarterSpecies(VarsFlags *varsFlags);
+u16 VarsFlags_GetPlayerCounterpartStarterSpecies(VarsFlags *varsFlags);
 u16 sub_0206B0B4(VarsFlags *varsFlags);
 BOOL sub_0206B0C4(VarsFlags *varsFlags, u16 param1);
 void VsSeeker_Reset(VarsFlags *varsFlags);

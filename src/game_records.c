@@ -4,7 +4,7 @@
 
 #include "game_records.h"
 #include "math.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 
 #define START_ENCODED_RECORDS RECORD_TRAINER_SCORE
 #define SIZE_ENCODED_RECORDS  (sizeof(GameRecords) - sizeof(EncodingSeed) - (START_ENCODED_RECORDS * sizeof(u32)))

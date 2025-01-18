@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_POKETCH_DATA_H
-#define POKEPLATINUM_POKETCH_DATA_H
+#ifndef POKEPLATINUM_POKETCH_H
+#define POKEPLATINUM_POKETCH_H
 
 #include "consts/poketch.h"
 
@@ -11,7 +11,7 @@
 #define POKETCH_REGISTRY_SIZE      32
 #define POKETCH_DOTART_SIZE_BYTES  120
 
-/** Poketch Screen colors, used in PoketchData_SetScreenColor */
+/** Poketch Screen colors, used in Poketch_SetScreenColor */
 enum PoketchScreenColor {
     POKETCH_SCREEN_COLOR_GREEN = 0,
     POKETCH_SCREEN_COLOR_YELLOW,
@@ -37,7 +37,7 @@ typedef struct Poketch {
 
     s8 appCount; //!< Number of currently registered apps
     s8 appIndex; //!< Currently selected app
-    u8 appRegistry[POKETCH_REGISTRY_SIZE]; //!< Registration status of all apps. Indices 0-24 correspond to the App IDs in poketch_data.h. Indices 25-31 are unused.
+    u8 appRegistry[POKETCH_REGISTRY_SIZE]; //!< Registration status of all apps. Indices 0-24 correspond to the App IDs in poketch.h. Indices 25-31 are unused.
 
     u32 stepCount;
 
@@ -73,100 +73,100 @@ int Poketch_SaveSize(void);
 
 void Poketch_Init(Poketch *poketch);
 
-void PoketchData_Enable(Poketch *poketch);
+void Poketch_Enable(Poketch *poketch);
 
-BOOL PoketchData_IsEnabled(Poketch *poketch);
+BOOL Poketch_IsEnabled(Poketch *poketch);
 
-BOOL PoketchData_IsAppRegistered(Poketch *poketch, enum PoketchAppID appID);
+BOOL Poketch_IsAppRegistered(Poketch *poketch, enum PoketchAppID appID);
 
-BOOL PoketchData_RegisterApp(Poketch *poketch, enum PoketchAppID appID);
+BOOL Poketch_RegisterApp(Poketch *poketch, enum PoketchAppID appID);
 
-enum PoketchAppID PoketchData_CurrentAppID(const Poketch *poketch);
+enum PoketchAppID Poketch_CurrentAppID(const Poketch *poketch);
 
 /**
  * Sets the current Poketch app to the next registered app, skipping unregistered App IDs and wrapping around if necessary.
  */
-int PoketchData_IncrementAppID(Poketch *poketch);
+int Poketch_IncrementAppID(Poketch *poketch);
 
 /**
  * Sets the current Poketch app to the previous registered app, skipping unregistered App IDs and wrapping around if necessary.
  */
-int PoketchData_DecrementAppID(Poketch *poketch);
+int Poketch_DecrementAppID(Poketch *poketch);
 
-u32 PoketchData_CurrentScreenColor(const Poketch *poketch);
+u32 Poketch_CurrentScreenColor(const Poketch *poketch);
 
 /**
  * Sets the Poketch's color setting with values from the PoketchScreenColor enum above.
  * This function asserts that the given value is less than POKETCH_SCREEN_COLOR_MAX.
  */
-void PoketchData_SetScreenColor(Poketch *poketch, u32 screenColor);
+void Poketch_SetScreenColor(Poketch *poketch, u32 screenColor);
 
-u32 PoketchData_StepCount(const Poketch *poketch);
+u32 Poketch_StepCount(const Poketch *poketch);
 
 /**
  * Overwrites the current step count. This function will not do anything unless the Pedometer app is registered.
  */
-void PoketchData_SetStepCount(Poketch *poketch, u32 value);
+void Poketch_SetStepCount(Poketch *poketch, u32 value);
 
-BOOL PoketchData_IsAlarmSet(const Poketch *poketch);
+BOOL Poketch_IsAlarmSet(const Poketch *poketch);
 
-void PoketchData_AlarmTime(const Poketch *poketch, u32 *hour, u32 *minute);
+void Poketch_AlarmTime(const Poketch *poketch, u32 *hour, u32 *minute);
 
-void PoketchData_SetAlarm(Poketch *poketch, BOOL enabled, u32 hour, u32 minute);
+void Poketch_SetAlarm(Poketch *poketch, BOOL enabled, u32 hour, u32 minute);
 
 /**
  * Marks the given date on the Calendar app as highlighted.
  * Passing this function a new month will change the month on the calendar and clear all days except the given one.
  */
-void PoketchData_SetCalendarMark(Poketch *poketch, u32 month, u32 day);
+void Poketch_SetCalendarMark(Poketch *poketch, u32 month, u32 day);
 
 /**
  * Clears the mark on the given date on the Calendar app.
  * Passing this function a new month will change the month on the calendar and clear every day.
  */
-void PoketchData_ClearCalendarMark(Poketch *poketch, u32 month, u32 day);
+void Poketch_ClearCalendarMark(Poketch *poketch, u32 month, u32 day);
 
-BOOL PoketchData_CalendarMarked(const Poketch *poketch, u32 month, u32 day);
+BOOL Poketch_CalendarMarked(const Poketch *poketch, u32 month, u32 day);
 
 /**
  * Sets the location of a map marker. Asserts that index is less than POKETCH_MAPMARKER_COUNT.
  */
-void PoketchData_SetMapMarker(Poketch *poketch, int index, u8 x, u8 y);
+void Poketch_SetMapMarker(Poketch *poketch, int index, u8 x, u8 y);
 
 /**
  * Gets the location of a map marker. Asserts that index is less than POKETCH_MAPMARKER_COUNT.
  */
-void PoketchData_MapMarkerPos(const Poketch *poketch, int index, u8 *x, u8 *y);
+void Poketch_MapMarkerPos(const Poketch *poketch, int index, u8 *x, u8 *y);
 
 /**
  * Checks whether or not the Dot Art data has been modified at any point.
- * This will return FALSE until PoketchData_ModifyDotArtData is called, at which point it will always return TRUE.
+ * This will return FALSE until Poketch_ModifyDotArtData is called, at which point it will always return TRUE.
  */
-BOOL PoketchData_DotArtModified(const Poketch *poketch);
+BOOL Poketch_DotArtModified(const Poketch *poketch);
 
-void PoketchData_CopyDotArtData(const Poketch *poketch, u8 *dst);
+void Poketch_CopyDotArtData(const Poketch *poketch, u8 *dst);
 
-void PoketchData_ModifyDotArtData(Poketch *poketch, const u8 *src);
+void Poketch_ModifyDotArtData(Poketch *poketch, const u8 *src);
 
 /**
  * Adds a new Pokemon to the end of the Pokemon History list.
  */
-void PoketchData_PokemonHistoryEnqueue(Poketch *poketch, const BoxPokemon *boxPokemon);
+void Poketch_PokemonHistoryEnqueue(Poketch *poketch, const BoxPokemon *boxPokemon);
 
-int PoketchData_PokemonHistorySize(const Poketch *poketch);
+int Poketch_PokemonHistorySize(const Poketch *poketch);
 
 /**
  * Gets the species and icon info of a given index in the Pokemon History.
  * This function asserts that index is less than POKETCH_POKEMONHISTORY_MAX.
  */
-void PoketchData_PokemonHistorySpeciesAndIcon(const Poketch *poketch, int index, int *species, int *icon);
+void Poketch_PokemonHistorySpeciesAndIcon(const Poketch *poketch, int index, int *species, int *icon);
 
 /**
  * Gets the form info of a given index in the pokemon history.
  * This function asserts that index is less than POKETCH_POKEMONHISTORY_MAX.
  */
-u32 PoketchData_PokemonHistoryForm(const Poketch *poketch, int index);
+u32 Poketch_PokemonHistoryForm(const Poketch *poketch, int index);
 
 Poketch *SaveData_PoketchData(SaveData *saveData);
 
-#endif // POKEPLATINUM_POKETCH_DATA_H
+#endif // POKEPLATINUM_POKETCH_H

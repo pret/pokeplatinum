@@ -10,7 +10,7 @@
 #include "field_script_context.h"
 #include "inlines.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"

@@ -27,7 +27,7 @@
 #include "map_object.h"
 #include "menu.h"
 #include "message.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"

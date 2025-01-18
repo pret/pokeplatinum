@@ -11,7 +11,7 @@
 
 #include "inlines.h"
 #include "math.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"

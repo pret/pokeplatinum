@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_POKEDEX_DATA_H
-#define POKEPLATINUM_POKEDEX_DATA_H
+#ifndef POKEPLATINUM_POKEDEX_H
+#define POKEPLATINUM_POKEDEX_H
 
 #include "struct_decls/pokedexdata_decl.h"
 
@@ -50,4 +50,4 @@ Pokedex *SaveData_GetPokedex(SaveData *saveData);
 u32 Pokedex_GetDisplayForm(const Pokedex *pokedex, int species, int formIndex);
 u32 Pokedex_NumFormsSeen(const Pokedex *pokedex, int species);
 
-#endif // POKEPLATINUM_POKEDEX_DATA_H
+#endif // POKEPLATINUM_POKEDEX_H

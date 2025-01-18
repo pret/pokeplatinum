@@ -14,7 +14,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "narc.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "strbuf.h"

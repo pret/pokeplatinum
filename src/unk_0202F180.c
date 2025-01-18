@@ -6,9 +6,9 @@
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "game_records.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "savedata.h"
 
 void sub_0202F180(SaveData *saveData, const Pokemon *pokemon)
@@ -18,6 +18,6 @@ void sub_0202F180(SaveData *saveData, const Pokemon *pokemon)
 
         GameRecords_IncrementTrainerScoreOnCatch(SaveData_GetGameRecordsPtr(saveData), pokedex, Pokemon_GetValue((Pokemon *)pokemon, MON_DATA_SPECIES, NULL));
         Pokedex_Capture(pokedex, (Pokemon *)pokemon);
-        PoketchData_PokemonHistoryEnqueue(SaveData_PoketchData(saveData), (const BoxPokemon *)pokemon);
+        Poketch_PokemonHistoryEnqueue(SaveData_PoketchData(saveData), (const BoxPokemon *)pokemon);
     }
 }

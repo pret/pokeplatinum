@@ -305,7 +305,7 @@ _0399:
 _03C2:
     Message 20
     GoToIfSet 251, _0408
-    ScrCmd_HasSeenSpecies SPECIES_MANAPHY, 0x800C
+    has_seen_species SPECIES_MANAPHY, 0x800C
     GoToIfEq 0x800C, 1, _03FC
     ScrCmd_208 SPECIES_MANAPHY, 0
     WaitABPress

@@ -10,7 +10,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "rtc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -168,7 +168,7 @@ static void ov50_022562AC(UnkStruct_ov50_02256510_1 *param0, UnkStruct_ov50_0225
 
     for (v1 = 0; v1 < (param0->unk_04); v1++) {
         param0->unk_0C[v1].unk_00 = v1 + 1;
-        param0->unk_0C[v1].unk_03 = PoketchData_CalendarMarked(param1->poketch, param0->unk_00, v1 + 1);
+        param0->unk_0C[v1].unk_03 = Poketch_CalendarMarked(param1->poketch, param0->unk_00, v1 + 1);
         param0->unk_0C[v1].unk_02 = v2 + v1;
     }
 }
@@ -260,10 +260,10 @@ static BOOL ov50_02256418(UnkStruct_ov50_022561D4 *param0)
             if ((param0->unk_A4 >= param0->unk_A8) && (param0->unk_A4 <= param0->unk_AC)) {
                 int v0 = (param0->unk_A4 - param0->unk_A8);
 
-                if (PoketchData_CalendarMarked(param0->poketch, param0->unk_04.unk_00, v0 + 1)) {
-                    PoketchData_ClearCalendarMark(param0->poketch, param0->unk_04.unk_00, v0 + 1);
+                if (Poketch_CalendarMarked(param0->poketch, param0->unk_04.unk_00, v0 + 1)) {
+                    Poketch_ClearCalendarMark(param0->poketch, param0->unk_04.unk_00, v0 + 1);
                 } else {
-                    PoketchData_SetCalendarMark(param0->poketch, param0->unk_04.unk_00, v0 + 1);
+                    Poketch_SetCalendarMark(param0->poketch, param0->unk_04.unk_00, v0 + 1);
                 }
 
                 param0->unk_04.unk_0C[v0].unk_03 ^= 1;

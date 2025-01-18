@@ -29,7 +29,7 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -320,7 +320,7 @@ static BOOL sub_02049348(FieldSystem *fieldSystem)
 static BOOL sub_02049358(FieldSystem *fieldSystem)
 {
     Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
-    return PoketchData_IsEnabled(poketch);
+    return Poketch_IsEnabled(poketch);
 }
 
 static BOOL sub_02049368(FieldSystem *fieldSystem)

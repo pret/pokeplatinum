@@ -40,7 +40,7 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "pokeradar.h"
 #include "roaming_pokemon.h"

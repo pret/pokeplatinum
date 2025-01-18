@@ -57,9 +57,9 @@
 #include "message.h"
 #include "palette.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -1116,7 +1116,7 @@ void ov16_0223EF2C(BattleSystem *battleSystem, int param1, int param2)
 void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1)
 {
     if (battleSystem->poketch) {
-        PoketchData_PokemonHistoryEnqueue(battleSystem->poketch, Pokemon_GetBoxPokemon(param1));
+        Poketch_PokemonHistoryEnqueue(battleSystem->poketch, Pokemon_GetBoxPokemon(param1));
     }
 }
 

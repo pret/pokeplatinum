@@ -56,7 +56,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"

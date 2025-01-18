@@ -41,7 +41,7 @@
 #include "math.h"
 #include "menu.h"
 #include "narc.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"

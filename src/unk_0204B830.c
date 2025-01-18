@@ -19,7 +19,7 @@
 #include "math.h"
 #include "party.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "ribbon.h"
 #include "save_player.h"
 #include "script_manager.h"
@@ -715,7 +715,7 @@ static BOOL sub_0204C458(FieldSystem *fieldSystem, void *param1)
     Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
 
-    return PoketchData_IsEnabled(poketch);
+    return Poketch_IsEnabled(poketch);
 }
 
 static void sub_0204C474(FieldSystem *fieldSystem, void *param1)
@@ -723,7 +723,7 @@ static void sub_0204C474(FieldSystem *fieldSystem, void *param1)
     Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
     UnkUnion_0204C4D0 *v1 = sub_0204B844(fieldSystem);
 
-    PoketchData_RegisterApp(poketch, v1->val6.unk_00);
+    Poketch_RegisterApp(poketch, v1->val6.unk_00);
 }
 
 static void sub_0204C494(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)

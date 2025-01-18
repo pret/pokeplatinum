@@ -37,7 +37,7 @@
 #include "journal.h"
 #include "math.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "ribbon.h"
 #include "rtc.h"

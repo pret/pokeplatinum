@@ -34,7 +34,7 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "savedata_misc.h"

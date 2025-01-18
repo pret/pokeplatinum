@@ -35,9 +35,9 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -412,7 +412,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 Pokedex_Capture(param0->unk_48, param0->unk_28);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
-                PoketchData_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(param0->unk_28));
+                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(param0->unk_28));
 
                 if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
                     Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES_NAME, NULL);
@@ -742,7 +742,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 Pokedex_Capture(param0->unk_48, v1);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
-                PoketchData_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(v1));
+                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
                 Bag_TryRemoveItem(param0->unk_4C, ITEM_POKE_BALL, 1, param0->unk_5C);
             }

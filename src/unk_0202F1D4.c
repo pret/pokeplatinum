@@ -24,7 +24,7 @@
 #include "heap.h"
 #include "math.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"

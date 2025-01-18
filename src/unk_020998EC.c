@@ -11,7 +11,7 @@
 
 #include "heap.h"
 #include "inlines.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "strbuf.h"
 #include "unk_02014D38.h"
 #include "unk_0209747C.h"

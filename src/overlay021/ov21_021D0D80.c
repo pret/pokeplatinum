@@ -55,7 +55,7 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"

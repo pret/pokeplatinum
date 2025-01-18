@@ -19,7 +19,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "journal.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "trainer_info.h"

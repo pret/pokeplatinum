@@ -16,7 +16,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
