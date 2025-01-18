@@ -176,37 +176,6 @@ static const UnkStruct_ov6_02248FF0 WildEncounters_UnownTables[] = {
     { 0x2, UnownOnlyExcQue }
 };
 
-static const u8 sGroundEncounterSlotRates[MAX_GRASS_ENCOUNTERS] = {
-    20,
-    20,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    5,
-    5,
-    4,
-    4,
-    1,
-    1
-};
-
-static const u8 sWaterEncounterSlotRates[MAX_WATER_ENCOUNTERS] = {
-    60,
-    30,
-    5,
-    4,
-    1
-};
-
-static const u8 sRodEncounterSlotRates[NUM_RODS][MAX_WATER_ENCOUNTERS] = {
-    {60, 30, 5, 4, 1}, //Old Rod
-    {40, 40, 15, 4, 1}, // Good Rod
-    {40, 40, 15, 4, 1}, // Super Rod
-};
-
 void WildEncounters_ReplaceTimedEncounters(const WildEncounters *encounterData, int *timedSlot1, int *timedSlot2)
 {
     int timeOfDay = GetTimeOfDay();
@@ -843,53 +812,103 @@ static BOOL ov6_022418DC(FieldSystem *fieldSystem, u32 encounterRate)
 
 static u8 GetGroundEncounterSlot(void)
 {
-    u8 encounterSlot;
-
     u8 roll = inline_020564D0(100); // a common rng function
 
-    u8 hit = 0;
-    for (encounterSlot = 0; encounterSlot < MAX_GRASS_ENCOUNTERS; encounterSlot++) {
-        hit += sGroundEncounterSlotRates[encounterSlot];
-        if (roll < hit - 1) {
-            return encounterSlot;
-        }
+    if (roll < 20) {
+        return 0;
+    } else if (roll < 40) {
+        return 1;
+    } else if (roll < 50) {
+        return 2;
+    } else if (roll < 60) {
+        return 3;
+    } else if (roll < 70) {
+        return 4;
+    } else if (roll < 80) {
+        return 5;
+    } else if (roll < 85) {
+        return 6;
+    } else if (roll < 90) {
+        return 7;
+    } else if (roll < 94) {
+        return 8;
+    } else if (roll < 98) {
+        return 9;
+    } else if (roll == 98) {
+        return 10;
+    } else {
+        return 11;
     }
-
-    return encounterSlot;
 }
 
 static u8 GetWaterEncounterSlot(void)
 {
-    u8 encounterSlot;
-
     u8 roll = inline_020564D0(100); // a common rng function
 
-    u8 hit = 0;
-    for (encounterSlot = 0; encounterSlot < MAX_WATER_ENCOUNTERS; encounterSlot++) {
-        hit += sWaterEncounterSlotRates[encounterSlot];
-        if (roll < hit) {
-            return encounterSlot;
-        }
+    if (roll < 60) {
+        return 0;
+    } else if (roll < 90) {
+        return 1;
+    } else if (roll < 95) {
+        return 2;
+    } else if (roll < 99) {
+        return 3;
+    } else {
+        return 4;
     }
-
-    return encounterSlot;
 }
 
 static u8 GetRodEncounterSlot(const int fishingRodType)
 {
-    u8 encounterSlot;
+    u8 encSlot = 0;
 
     u8 roll = inline_020564D0(100); // a common rng function
 
-    u8 hit = 0;
-    for (encounterSlot = 0; encounterSlot < MAX_WATER_ENCOUNTERS; encounterSlot++) {
-        hit += sRodEncounterSlotRates[fishingRodType][encounterSlot];
-        if (roll < hit) {
-            return encounterSlot;
+    switch (fishingRodType) {
+    case FISHING_TYPE_OLD_ROD:
+        if (roll < 60) {
+            encSlot = 0;
+        } else if (roll < 90) {
+            encSlot = 1;
+        } else if (roll < 95) {
+            encSlot = 2;
+        } else if (roll < 99) {
+            encSlot = 3;
+        } else {
+            encSlot = 4;
         }
-    } 
+        break;
+    case FISHING_TYPE_GOOD_ROD:
+        if (roll < 40) {
+            encSlot = 0;
+        } else if (roll < 80) {
+            encSlot = 1;
+        } else if (roll < 95) {
+            encSlot = 2;
+        } else if (roll < 99) {
+            encSlot = 3;
+        } else {
+            encSlot = 4;
+        }
+        break;
+    case FISHING_TYPE_SUPER_ROD:
+        if (roll < 40) {
+            encSlot = 0;
+        } else if (roll < 80) {
+            encSlot = 1;
+        } else if (roll < 95) {
+            encSlot = 2;
+        } else if (roll < 99) {
+            encSlot = 3;
+        } else {
+            encSlot = 4;
+        }
+        break;
+    default:
+        GF_ASSERT(FALSE);
+    }
 
-    return encounterSlot;
+    return encSlot;
 }
 
 static void ov6_02241A90(Pokemon *mon, u8 *encounterRate)
