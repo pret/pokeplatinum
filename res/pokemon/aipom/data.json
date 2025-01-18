@@ -148,5 +148,12 @@
         "pokemon_pos_m": 15,
         "entry_text": "It lives high among the treetops.\nIt can use its tail as freely and\ncleverly as its hands.",
         "category": "Long Tail Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1285
     }
 }

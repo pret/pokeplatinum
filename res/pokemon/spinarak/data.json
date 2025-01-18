@@ -120,5 +120,12 @@
         "pokemon_pos_m": 26,
         "entry_text": "It sets a trap by spinning a web\nwith thin but strong silk. It waits\nmotionlessly for prey to arrive.",
         "category": "String Spit Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1540
     }
 }

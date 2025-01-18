@@ -129,5 +129,12 @@
         "pokemon_pos_m": 19,
         "entry_text": "The honey it drools from its mouth\nsmells so atrocious, it can curl\nnoses more than a mile away.",
         "category": "Weed Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1537
     }
 }

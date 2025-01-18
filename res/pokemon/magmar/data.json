@@ -130,5 +130,12 @@
         "pokemon_pos_m": 10,
         "entry_text": "When it breathes deeply, heat\nwaves form around its body, making\nit hard to see clearly.",
         "category": "Spitfire Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 514
     }
 }

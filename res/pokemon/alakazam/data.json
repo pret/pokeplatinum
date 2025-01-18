@@ -140,5 +140,12 @@
         "pokemon_pos_m": 7,
         "entry_text": "The spoons clutched in its hands\nare said to have been created by\nits psychic powers.",
         "category": "Psi Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2570
     }
 }

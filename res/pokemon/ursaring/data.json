@@ -141,5 +141,12 @@
         "pokemon_pos_m": 1,
         "entry_text": "In its territory, it leaves\nscratches on trees that bear\ndelicious berries or fruits.",
         "category": "Hibernator Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1285
     }
 }

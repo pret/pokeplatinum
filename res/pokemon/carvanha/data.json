@@ -131,5 +131,12 @@
         "pokemon_pos_m": 65524,
         "entry_text": "They swarm any foe that invades\ntheir territory. Their sharp fangs\ncan tear out boat hulls.",
         "category": "Savage Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4099
     }
 }

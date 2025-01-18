@@ -125,5 +125,12 @@
         "pokemon_pos_m": 28,
         "entry_text": "It suddenly falls out of the sky in\nthe morning. A year after a cold\nsummer, their population explodes.",
         "category": "Seed Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 257
     }
 }

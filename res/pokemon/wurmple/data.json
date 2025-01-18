@@ -87,5 +87,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "Often targeted by bird Pokémon,\nit desperately resists by releasing\npoison from its tail spikes.",
         "category": "Worm Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1028
     }
 }
