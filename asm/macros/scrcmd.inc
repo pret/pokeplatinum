@@ -4475,7 +4475,7 @@
     .short \arg0
     .endm
 
-    .macro has_seen_species species, ret
+    .macro HasSeenSpecies species, ret
     .short 823
     .short \species
     .short \ret
