@@ -272,7 +272,7 @@ static int ov5_021F4AB4(const MapObject *param0, int param1, VecFx32 *param2)
 
     for (v2 = 0; v2 < param1; v2++) {
         v4 += MapObject_GetDxFromDir(v3);
-        v6 += MapObject_GetDyFromDir(v3);
+        v6 += MapObject_GetDzFromDir(v3);
 
         v0 = sub_02063E18(param0, &v1, v4, v5, v6, v3);
 
