@@ -30,6 +30,7 @@
 #include "core_sys.h"
 #include "field_map_change.h"
 #include "field_menu.h"
+#include "field_message.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "game_options.h"
@@ -42,6 +43,7 @@
 #include "map_tile_behavior.h"
 #include "party.h"
 #include "player_avatar.h"
+#include "pokedex_data.h"
 #include "pokeradar.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -49,14 +51,12 @@
 #include "strbuf.h"
 #include "system_flags.h"
 #include "unk_0200F174.h"
-#include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_02055C50.h"
-#include "unk_0205D8CC.h"
 #include "unk_0205F180.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
@@ -484,7 +484,7 @@ static BOOL sub_02068884(FieldTask *task)
         break;
     case 1:
         if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
-            sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
+            MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
             PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 0));
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
@@ -494,7 +494,7 @@ static BOOL sub_02068884(FieldTask *task)
         } else {
             Sound_SetSpecialBGM(fieldSystem, 1152);
             sub_02055554(fieldSystem, 1152, 1);
-            sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
+            MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
 
             PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 1));
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
@@ -534,7 +534,7 @@ static u32 sub_02068948(const UnkStruct_020684D0 *param0)
     {
         MapObject *v1 = Player_MapObject(param0->playerAvatar);
 
-        if ((sub_0206415C(v1, param0->unk_0E) == 1) || (sub_0206417C(v1, param0->unk_0E) == 1)) {
+        if ((MapObject_IsOnBikeBridgeNorthSouth(v1, param0->unk_0E) == 1) || (MapObject_IsOnBikeBridgeEastWest(v1, param0->unk_0E) == 1)) {
             return 1;
         }
     }
@@ -1065,7 +1065,7 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (Pokedex_IsNationalDexObtained(SaveData_Pokedex(param0->fieldSystem->saveData)) == FALSE) {
+    if (PokedexData_IsNationalDexObtained(SaveData_PokedexData(param0->fieldSystem->saveData)) == FALSE) {
         return -1;
     }
 

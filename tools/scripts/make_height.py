@@ -11,9 +11,9 @@ argparser = argparse.ArgumentParser(
     prog='pl_poke_icon.narc packer',
     description='Packs the archive containing Pokemon icons'
 )
-argparser.add_argument('-k', '--knarc',
+argparser.add_argument('-n', '--narc',
                        required=True,
-                       help='Path to knarc executable')
+                       help='Path to narc executable')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
                        help='Path to the source directory (res/pokemon)')
@@ -65,4 +65,4 @@ for i, subdir in enumerate(args.subdirs):
 
             j += 1
 
-subprocess.run([args.knarc, '-d', private_dir, '-p', output_dir / 'height.narc'])
+subprocess.run([args.narc, 'create', '--output', output_dir / 'height.narc', private_dir])

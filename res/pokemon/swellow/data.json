@@ -120,5 +120,12 @@
         "pokemon_pos_m": 65531,
         "entry_text": "It circles the sky in search of\nprey. When it spots one, it dives\nsteeply to catch the prey.",
         "category": "Swallow Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4357
     }
 }

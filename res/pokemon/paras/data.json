@@ -126,5 +126,12 @@
         "pokemon_pos_m": 30,
         "entry_text": "Mushrooms named tochukaso grow\non its back. They grow along\nwith the host PARAS.",
         "category": "Mushroom Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 260
     }
 }

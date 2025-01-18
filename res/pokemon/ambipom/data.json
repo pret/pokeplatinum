@@ -145,5 +145,12 @@
         "pokemon_pos_m": 7,
         "entry_text": "Split into two, the tails are so\nadept at handling and doing things,\nAMBIPOM rarely uses its hands.",
         "category": "Long Tail Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

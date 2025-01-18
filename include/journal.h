@@ -5,6 +5,8 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
+#define MAX_JOURNAL_ENTRIES 10
+
 #define POKEMON_CAUGHT   1
 #define POKEMON_DEFEATED 2
 

@@ -131,7 +131,7 @@ void sub_0205CA94(SysTask *param0, void *param1)
 
     switch (v0->unk_1E4) {
     case 0:
-        sub_02062DDC(Player_MapObject(v0->fieldSystem->playerAvatar));
+        MapObject_SetPauseMovementOff(Player_MapObject(v0->fieldSystem->playerAvatar));
         PlayerAvatar_SetHidden(v0->fieldSystem->playerAvatar, 0);
         v0->unk_1E4++;
         break;

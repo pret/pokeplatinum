@@ -132,5 +132,12 @@
         "pokemon_pos_m": 6,
         "entry_text": "It went ashore after evolving.\nIts entire body is clad in a sturdy\narmor.",
         "category": "Plate Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1035
     }
 }

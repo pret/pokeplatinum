@@ -132,5 +132,12 @@
         "pokemon_pos_m": 23,
         "entry_text": "Many live in the clean seas of the\nsouth. They apparently can’t live\nin polluted waters.",
         "category": "Coral Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2819
     }
 }

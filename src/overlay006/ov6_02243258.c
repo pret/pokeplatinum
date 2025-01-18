@@ -15,6 +15,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "field_message.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object.h"
@@ -30,7 +31,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_0205D8CC.h"
 #include "unk_020711EC.h"
 
 typedef struct {
@@ -1716,7 +1716,7 @@ static void ov6_022448C8(UnkStruct_ov6_02243FFC *param0)
     G2_SetBG0Priority(param0->unk_24);
     G2_SetBG3Priority(param0->unk_26);
 
-    sub_0205D8CC(0, 1);
+    FieldMessage_LoadTextPalettes(0, TRUE);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
@@ -3053,7 +3053,7 @@ static void ov6_02245F64(UnkStruct_ov6_02243FFC *param0, int param1)
 {
     MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
 
-    sub_02062DDC(v0);
+    MapObject_SetPauseMovementOff(v0);
     MapObject_SetHidden(v0, param1);
 }
 

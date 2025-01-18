@@ -12,9 +12,9 @@ argparser = argparse.ArgumentParser(
 argparser.add_argument('-n', '--nitrogfx',
                        required=True,
                        help='Path to nitrogfx executable')
-argparser.add_argument('-k', '--knarc',
+argparser.add_argument('-k', '--narc',
                        required=True,
-                       help='Path to knarc executable')
+                       help='Path to narc executable')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
                        help='Path to the source directory (res/pokemon)')
@@ -83,4 +83,4 @@ for i, subdir in enumerate(args.subdirs):
         '-comp', '10'
     ])
 
-subprocess.run([args.knarc, '-d', private_dir, '-p', output_dir / 'pl_pokegra.narc'])
+subprocess.run([args.narc, 'create', '--output', output_dir / 'pl_pokegra.narc', private_dir])

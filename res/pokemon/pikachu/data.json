@@ -132,5 +132,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "It occasionally uses an electric\nshock to recharge a fellow PIKACHU\nthat is in a weakened state.",
         "category": "Mouse Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1799
     }
 }

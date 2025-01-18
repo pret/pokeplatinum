@@ -142,5 +142,12 @@
         "pokemon_pos_m": 4,
         "entry_text": "This odd Pokémon can see both\nthe past and the future. It eyes\nthe sun’s movement all day.",
         "category": "Mystic Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4362
     }
 }

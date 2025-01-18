@@ -18,6 +18,7 @@
 #include "core_sys.h"
 #include "encounter.h"
 #include "field_battle_data_transfer.h"
+#include "field_message.h"
 #include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
@@ -34,7 +35,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0205D8CC.h"
 #include "unk_020655F4.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
@@ -192,7 +192,7 @@ static void ov5_021F0A04(SysTask *task, void *param1)
 static int ov5_021F0A30(UnkStruct_ov5_021F0D6C *param0, PlayerAvatar *playerAvatar, MapObject *param2)
 {
     ov5_021F0D6C(param0);
-    sub_02062DDC(param2);
+    MapObject_SetPauseMovementOff(param2);
     param0->unk_0C = 1;
 
     return 1;

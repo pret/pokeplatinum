@@ -1096,7 +1096,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
 
     if (ov97_02237624()) {
         v0->unk_1638 = 2;
-        sub_02017B70(gGameVersion);
+        SetGBACartridgeVersion(gGameVersion);
         ov97_02238400(1);
     }
 
@@ -2445,7 +2445,7 @@ static int ov97_022301BC(OverlayManager *param0, int *param1)
     Heap_Destroy(86);
 
     if (v0->unk_1638 == 2) {
-        sub_02017B70(0);
+        SetGBACartridgeVersion(NULL);
     }
 
     ov97_02238400(0);

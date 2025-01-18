@@ -135,5 +135,12 @@
         "pokemon_pos_m": 14,
         "entry_text": "It has a mischievous spirit. If it\nspots an angler, it will tug on the\nfishing line to interfere.",
         "category": "Jolly Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 259
     }
 }

@@ -142,5 +142,12 @@
         "pokemon_pos_m": 5,
         "entry_text": "Its cries sound like human speech.\nHowever, it is impossible to tell\nwhat it is trying to say.",
         "category": "Human Shape Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2573
     }
 }

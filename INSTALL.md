@@ -211,7 +211,7 @@ GNU `coreutils` installed to run the build scripts:
 > convenience.
 >
 > [!IMPORTANT]
-> This project requires `meson` version `1.3.0` or higher. If the version of
+> This project requires `meson` version `1.5.0` or higher. If the version of
 > `meson` provided by your package manager is out of date, then follow
 > [these instructions](https://mesonbuild.com/Getting-meson.html) to get the
 > most recent version.
@@ -228,7 +228,7 @@ the repository](#2-downloading-the-repository).
     sudo mkdir -pm755 /etc/apt/keyrings
     sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
     sudo apt update
-    sudo apt install --install-recommends winehq-stable
+    sudo apt install --install-recommends wine-stable
     ```
 
 2. Install the following packages via `apt`:
@@ -319,10 +319,11 @@ in the lower right corner.
 
 ### Unix Systems
 
-Export the environment variable as above to your terminal profile:
+Export the environment variable as above to your terminal profile. To do so, run the
+following commands from the root of your repository:
 
 ```bash
-echo 'export LM_LICENSE_FILE="/path/to/pokeplatinum/tools/cw/license.dat"' >> ~/.bashrc
+echo "export LM_LICENSE_FILE=\"$(pwd)/tools/cw/license.dat\"" >> ~/.bashrc
 source ~/.bashrc
 ```
 

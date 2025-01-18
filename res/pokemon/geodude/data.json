@@ -135,5 +135,12 @@
         "pokemon_pos_m": 23,
         "entry_text": "At rest, it looks just like a rock.\nCarelessly stepping on it will make\nit swing its fists angrily.",
         "category": "Rock Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 2059
     }
 }

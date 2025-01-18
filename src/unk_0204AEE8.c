@@ -21,13 +21,13 @@
 #include "message.h"
 #include "narc.h"
 #include "party.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_0202631C.h"
 #include "unk_0202D05C.h"
 #include "unk_02049D08.h"
 
@@ -112,7 +112,7 @@ StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3
 
     v2 = Strbuf_Init(12 + 2, 4);
     v3 = Strbuf_Init(2, 4);
-    v4 = SaveData_Pokedex(param0);
+    v4 = SaveData_PokedexData(param0);
     v6 = MessageLoader_Init(1, 26, 412, 4);
     v5 = StringTemplate_New(18 + 1, 12 + 2, 4);
 
@@ -121,7 +121,7 @@ StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3
     for (v0 = 0; v0 < 18; v0++) {
         v1 = sub_02078824(v0);
 
-        if (Pokedex_HasSeenSpecies(v4, v1)) {
+        if (PokedexData_HasSeenSpecies(v4, v1)) {
             MessageLoader_GetStrbuf(v6, v1, v2);
             StringTemplate_SetStrbuf(v5, (*param4) + 1, v2, param2, param3, GAME_LANGUAGE);
             (*param4)++;
@@ -292,7 +292,7 @@ static UnkStruct_0204B184 *sub_0204B184(UnkStruct_ov104_0223A348 *param0, u16 pa
 
     v2 = MessageLoader_GetNewStrbuf(v1, param1);
 
-    Strbuf_ToChars(v2, &param0->unk_00.unk_08[0], 8);
+    Strbuf_ToChars(v2, &param0->unk_00.unk_08[0], 8); // Possibly TRAINER_NAME_LEN + 1
     Strbuf_Free(v2);
     MessageLoader_Free(v1);
 

@@ -37,6 +37,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "core_sys.h"
+#include "field_message.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
@@ -58,7 +59,6 @@
 #include "unk_02005474.h"
 #include "unk_02027F50.h"
 #include "unk_02054D00.h"
-#include "unk_0205D8CC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
@@ -3176,7 +3176,7 @@ static u32 ov8_0224BA0C(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, 
     }
 
     param1 += MapObject_GetDxFromDir(param3);
-    param2 += MapObject_GetDyFromDir(param3);
+    param2 += MapObject_GetDzFromDir(param3);
 
     v2 = ov8_0224B9D8(param1, param2);
 
@@ -3204,7 +3204,7 @@ static u32 ov8_0224BAA0(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, 
 
     do {
         param1 += MapObject_GetDxFromDir(param3);
-        param2 += MapObject_GetDyFromDir(param3);
+        param2 += MapObject_GetDzFromDir(param3);
         (*param4)++;
         v0 = ov8_0224BA0C(param0, param1, param2, param3);
     } while (v0 == 0);
@@ -3355,7 +3355,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
         param0->unk_14 = (((param0->unk_30) >> 4) / FX32_ONE);
 
         v0->unk_08.unk_00 += MapObject_GetDxFromDir(param0->unk_08);
-        v0->unk_08.unk_04 += MapObject_GetDyFromDir(param0->unk_08);
+        v0->unk_08.unk_04 += MapObject_GetDzFromDir(param0->unk_08);
 
         v1 = ov8_0224BA0C(param0->unk_3C, v0->unk_08.unk_00, v0->unk_08.unk_04, param0->unk_08);
 
@@ -3378,7 +3378,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
                     param0->unk_00 = 8;
                 }
             } else {
-                param0->unk_38 = ov8_0224B878(param0->unk_3C, v0->unk_08.unk_00 + MapObject_GetDxFromDir(param0->unk_08), v0->unk_08.unk_04 + MapObject_GetDyFromDir(param0->unk_08));
+                param0->unk_38 = ov8_0224B878(param0->unk_3C, v0->unk_08.unk_00 + MapObject_GetDxFromDir(param0->unk_08), v0->unk_08.unk_04 + MapObject_GetDzFromDir(param0->unk_08));
                 GF_ASSERT(param0->unk_38 != NULL);
                 param0->unk_04 = 0;
                 param0->unk_00 = 4;
@@ -3575,7 +3575,7 @@ static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param
     GF_ASSERT(v3->unk_24);
 
     v3->unk_18 = v0 + (MapObject_GetDxFromDir(param3) * v3->unk_24);
-    v3->unk_1C = v1 + (MapObject_GetDyFromDir(param3) * v3->unk_24);
+    v3->unk_1C = v1 + (MapObject_GetDzFromDir(param3) * v3->unk_24);
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
@@ -3739,7 +3739,7 @@ void ov8_0224C198(FieldSystem *fieldSystem)
 
     ov8_0224C3B4(v2);
     ov5_021DF4A8(fieldSystem->unk_40, 32);
-    sub_02062CCC(fieldSystem->mapObjMan, 0);
+    MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);
 
     {
         int v3 = 0xd2;

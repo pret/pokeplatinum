@@ -447,7 +447,13 @@ RomSpec
 	HostRoot res/prebuilt
 	File arc/manene.narc
 	File arc/plgym_ghost.narc
-	File arc/ppark.narc
+
+	Root /arc
+	HostRoot res/pokemon
+	File ppark.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File arc/ship_demo.narc
 	File arc/ship_demo_pl.narc
 	File arc/tv.narc

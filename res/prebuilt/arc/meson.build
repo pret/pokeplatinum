@@ -8,7 +8,6 @@ prebuilt_files = [
     'email_gra.narc',
     'manene.narc',
     'plgym_ghost.narc',
-    'ppark.narc',
     'ship_demo_pl.narc',
     'ship_demo.narc',
     'tv.narc'

@@ -20,6 +20,7 @@
 #include "list_menu.h"
 #include "message.h"
 #include "party.h"
+#include "pokedex_data.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "script_manager.h"
@@ -31,7 +32,6 @@
 #include "tutor_movesets.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_0202631C.h"
 #include "unk_02054884.h"
 
 #include "res/pokemon/tutor_movesets.h"
@@ -90,9 +90,9 @@ BOOL ScrCmd_337(ScriptContext *param0)
 {
     u16 v0 = FieldSystem_TryGetVar(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
     u16 *v1 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    PokedexData *v2 = SaveData_Pokedex(param0->fieldSystem->saveData);
+    PokedexData *v2 = SaveData_PokedexData(param0->fieldSystem->saveData);
 
-    *v1 = Pokedex_HasSeenSpecies(v2, v0);
+    *v1 = PokedexData_HasSeenSpecies(v2, v0);
     return 0;
 }
 
