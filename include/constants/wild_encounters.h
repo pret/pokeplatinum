@@ -7,6 +7,7 @@
 #define MAX_RADAR_ENCOUNTERS     4
 #define MAX_DUAL_SLOT_ENCOUNTERS 2
 #define MAX_WATER_ENCOUNTERS     5
+#define NUM_RODS                 3
 
 enum ENCOUNTER_TYPE {
     ENCOUNTER_TYPE_GRASS = 0,
