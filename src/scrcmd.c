@@ -11,7 +11,6 @@
 #include "consts/journal.h"
 #include "consts/scrcmd.h"
 
-#include "struct_decls/poffin_case_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
@@ -33,7 +32,6 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/poffin.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -7383,7 +7381,7 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
     }
 
     v4 = ScriptContext_GetVar(ctx);
-    v0 = Poffin_malloc(4);
+    v0 = Poffin_New(4);
     v1 = sub_0202A9E4(v0, v3, v4, 0);
     v2 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
     v5 = Poffin_AddToCase(v2, v0);

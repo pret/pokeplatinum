@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/poffin.h"
-
 #include "overlay083/struct_ov83_0223DB4C_sub1.h"
 #include "overlay083/struct_ov83_0223F820.h"
 #include "overlay083/struct_ov83_0223F88C.h"

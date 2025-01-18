@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/poffin.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay083/ov83_0223C958.h"
@@ -598,9 +597,9 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         break;
     case 4:
         if (ov83_0223D570(param1->unk_148C) == 0) {
-            v0 = Poffin_malloc(param1->unk_00);
+            v0 = Poffin_New(param1->unk_00);
             ov83_0223FFD4(&param1->unk_34C, v0, &param1->unk_1494, param1->unk_1488, param1->unk_00);
-            v1 = ov83_0223D508(28, v0, Poffin_sizeof(), param1->unk_148C);
+            v1 = ov83_0223D508(28, v0, Poffin_SizeOf(), param1->unk_148C);
             Heap_FreeToHeap(v0);
 
             if (v1 == 1) {
@@ -1058,7 +1057,7 @@ static void ov83_0223C82C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B7
 {
     int v0;
 
-    param1->unk_1494.unk_100 = Poffin_malloc(param1->unk_00);
+    param1->unk_1494.unk_100 = Poffin_New(param1->unk_00);
     param1->unk_1494.unk_144 = ov83_0223D570(param1->unk_148C);
 
     for (v0 = 0; v0 < 4; v0++) {

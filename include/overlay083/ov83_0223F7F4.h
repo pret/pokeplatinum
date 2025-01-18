@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_OV83_0223F7F4_H
 #define POKEPLATINUM_OV83_0223F7F4_H
 
-#include "struct_defs/poffin.h"
-
 #include "overlay083/struct_ov83_0223F820.h"
 #include "overlay083/struct_ov83_0223F88C.h"
 #include "overlay083/struct_ov83_0223F8AC.h"
@@ -13,6 +11,8 @@
 #include "overlay083/struct_ov83_0223FDB0.h"
 #include "overlay083/struct_ov83_0223FDB0_sub1.h"
 #include "overlay083/struct_ov83_0223FE50.h"
+
+#include "poffin.h"
 
 s32 ov83_0223F7F4(int param0, int param1, int param2, int param3, int param4, int param5);
 void ov83_0223F820(UnkStruct_ov83_0223F820 *param0);

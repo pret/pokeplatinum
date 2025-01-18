@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02098DE8_H
 #define POKEPLATINUM_STRUCT_02098DE8_H
 
-#include "struct_defs/poffin.h"
-
+#include "poffin.h"
 #include "pokemon.h"
 
 typedef struct {

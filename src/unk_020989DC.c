@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/poffin.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
 #include "struct_defs/struct_02098C44.h"
@@ -109,7 +108,7 @@ UnkStruct_0203D9B8 *sub_020989DC(SaveData *param0, int param1)
     v0->unk_14 = SaveData_GetBag(param0);
     v0->unk_18 = SaveData_Options(param0);
 
-    v1 = Poffin_malloc(param1);
+    v1 = Poffin_New(param1);
     v3 = StringTemplate_New(1, 32, param1);
 
     for (v5 = 0; v5 < MAX_POFFINS; v5++) {

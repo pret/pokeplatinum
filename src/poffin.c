@@ -3,16 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/poffin.h"
-#include "struct_defs/poffin_case.h"
-
 #include "heap.h"
 #include "math.h"
 #include "savedata.h"
 
 #define FLAVOR_NONE 30
 
-int Poffin_sizeof(void)
+int Poffin_SizeOf(void)
 {
     return sizeof(Poffin);
 }
@@ -26,7 +23,7 @@ BOOL Poffin_HasValidFlavor(Poffin *poffin)
     return TRUE;
 }
 
-void Poffin_clear(Poffin *poffin)
+void Poffin_Clear(Poffin *poffin)
 {
     poffin->flavor = FLAVOR_NONE;
     poffin->spiciness = 0;
@@ -38,17 +35,17 @@ void Poffin_clear(Poffin *poffin)
     poffin->dummy = 0;
 }
 
-Poffin *Poffin_malloc(int heapID)
+Poffin *Poffin_New(int heapID)
 {
     Poffin *poffin;
 
     poffin = Heap_AllocFromHeapAtEnd(heapID, sizeof(Poffin));
-    Poffin_clear(poffin);
+    Poffin_Clear(poffin);
 
     return poffin;
 }
 
-void Poffin_copy(Poffin *src, Poffin *dest)
+void Poffin_Copy(Poffin *src, Poffin *dest)
 {
     dest->flavor = src->flavor;
     dest->spiciness = src->spiciness;
@@ -81,7 +78,7 @@ u8 Poffin_GetAttribute(Poffin *poffin, PoffinAttributeID attributeID)
     }
 }
 
-static void MakePoffinFoul(Poffin *poffin, u8 param1)
+static void Poffin_MakeFoul(Poffin *poffin, u8 param1)
 {
     int v0;
     u8 v1;
@@ -112,7 +109,7 @@ int sub_0202A9E4(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul)
     v4 = 27;
 
     if (isFoul) {
-        MakePoffinFoul(poffin, param2);
+        Poffin_MakeFoul(poffin, param2);
         return v4;
     }
 
@@ -128,7 +125,7 @@ int sub_0202A9E4(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul)
 
     switch (v1) {
     case 0:
-        MakePoffinFoul(poffin, param2);
+        Poffin_MakeFoul(poffin, param2);
         return v4;
     case 1:
         v4 = v2[0] * 5 + v2[0];
@@ -241,7 +238,7 @@ void Poffin_Init(PoffinCase *poffinCase)
     int i;
 
     for (i = 0; i < MAX_POFFINS; i++) {
-        Poffin_clear(&poffinCase->slot[i]);
+        Poffin_Clear(&poffinCase->slot[i]);
     }
 }
 
@@ -266,7 +263,7 @@ u16 Poffin_AddToCase(PoffinCase *poffinCase, Poffin *poffin)
         return slotId;
     }
 
-    Poffin_copy(poffin, &poffinCase->slot[slotId]);
+    Poffin_Copy(poffin, &poffinCase->slot[slotId]);
     return slotId;
 }
 
@@ -276,7 +273,7 @@ BOOL Poffin_ClearCaseSlot(PoffinCase *poffinCase, u16 slot)
         return FALSE;
     }
 
-    Poffin_clear(&poffinCase->slot[slot]);
+    Poffin_Clear(&poffinCase->slot[slot]);
     return TRUE;
 }
 
@@ -313,14 +310,14 @@ void Poffin_CompactCase(PoffinCase *poffinCase)
 
         if (nextValidSlotNum == POFFIN_NONE) {
             break;
-        } // skips rest of execution, reached end of poffin case
+        }
 
         targetSlotNum = nextValidSlotNum;
         nextValidSlotNum = targetSlotNum - emptySlotNum;
 
         for (; targetSlotNum < remainingSlots; emptySlotNum++, targetSlotNum++) {
-            Poffin_copy(&poffinCase->slot[targetSlotNum], &poffinCase->slot[emptySlotNum]);
-            Poffin_clear(&poffinCase->slot[targetSlotNum]);
+            Poffin_Copy(&poffinCase->slot[targetSlotNum], &poffinCase->slot[emptySlotNum]);
+            Poffin_Clear(&poffinCase->slot[targetSlotNum]);
         }
 
         remainingSlots -= nextValidSlotNum;
@@ -330,11 +327,11 @@ void Poffin_CompactCase(PoffinCase *poffinCase)
 void Poffin_CopyToCaseSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin)
 {
     if (destSlot >= MAX_POFFINS) {
-        Poffin_clear(poffin);
+        Poffin_Clear(poffin);
         return;
     }
 
-    Poffin_copy(&poffinCase->slot[destSlot], poffin);
+    Poffin_Copy(&poffinCase->slot[destSlot], poffin);
     return;
 }
 
@@ -342,14 +339,14 @@ Poffin *Poffin_AllocateForCaseSlot(PoffinCase *poffinCase, u16 destSlot, int hea
 {
     Poffin *poffin;
 
-    poffin = Poffin_malloc(heapID);
+    poffin = Poffin_New(heapID);
 
     if (destSlot >= MAX_POFFINS) {
-        Poffin_clear(poffin);
+        Poffin_Clear(poffin);
         return NULL;
     }
 
-    Poffin_copy(&poffinCase->slot[destSlot], poffin);
+    Poffin_Copy(&poffinCase->slot[destSlot], poffin);
     return poffin;
 }
 

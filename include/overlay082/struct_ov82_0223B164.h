@@ -1,11 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV82_0223B164_H
 #define POKEPLATINUM_STRUCT_OV82_0223B164_H
 
-#include "struct_decls/poffin_case_decl.h"
-
 #include "bag.h"
 #include "game_options.h"
 #include "journal.h"
+#include "poffin.h"
 #include "savedata.h"
 #include "trainer_info.h"
 
