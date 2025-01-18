@@ -810,7 +810,7 @@ static BOOL ov6_022418DC(FieldSystem *fieldSystem, u32 encounterRate)
     }
 }
 
-static u8 GetGrassEncounterSlot(void)
+static u8 GetGroundEncounterSlot(void)
 {
     u8 roll = inline_020564D0(100); // a common rng function
 
