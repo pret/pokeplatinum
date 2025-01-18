@@ -1113,7 +1113,7 @@ static BOOL ov6_02241DC4(Pokemon *firstPartyMon, const int fishingRodType, const
             v0 = ov6_0224222C(firstPartyMon, encounterFieldParams, param3, MAX_GRASS_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
 
             if (!v0) {
-                encounterSlot = ov6_02241904();
+                encounterSlot = GetGroundEncounterSlot();
             }
         }
 
@@ -1125,7 +1125,7 @@ static BOOL ov6_02241DC4(Pokemon *firstPartyMon, const int fishingRodType, const
         v0 = ov6_0224222C(firstPartyMon, encounterFieldParams, param3, MAX_WATER_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
 
         if (!v0) {
-            encounterSlot = ov6_022419A0();
+            encounterSlot = GetWaterEncounterSlot();
         }
 
         level = ov6_02241B40(&param3[encounterSlot], encounterFieldParams);
@@ -1135,7 +1135,7 @@ static BOOL ov6_02241DC4(Pokemon *firstPartyMon, const int fishingRodType, const
         v0 = ov6_0224222C(firstPartyMon, encounterFieldParams, param3, MAX_WATER_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
 
         if (!v0) {
-            encounterSlot = ov6_022419EC(fishingRodType);
+            encounterSlot = GetRodEncounterSlot(fishingRodType);
         }
 
         level = ov6_02241B40(&param3[encounterSlot], encounterFieldParams);
@@ -1180,7 +1180,7 @@ static BOOL ov6_02241F7C(FieldSystem *fieldSystem, Pokemon *param1, const WildEn
         v0 = ov6_0224222C(param1, encounterFieldParams, param3, MAX_GRASS_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
 
         if (v0 == 0) {
-            encounterSlot = ov6_02241904();
+            encounterSlot = GetGroundEncounterSlot();
         }
     }
 
