@@ -816,23 +816,23 @@ static u8 GetGroundEncounterSlot(void)
 
     if (roll < 20) {
         return 0;
-    } else if (roll < 40) {
+    } else if (roll >= 20 && roll < 40) {
         return 1;
-    } else if (roll < 50) {
+    } else if (roll >= 40 && roll < 50) {
         return 2;
-    } else if (roll < 60) {
+    } else if (roll >= 50 && roll < 60) {
         return 3;
-    } else if (roll < 70) {
+    } else if (roll >= 60 && roll < 70) {
         return 4;
-    } else if (roll < 80) {
+    } else if (roll >= 70 && roll < 80) {
         return 5;
-    } else if (roll < 85) {
+    } else if (roll >= 80 && roll < 85) {
         return 6;
-    } else if (roll < 90) {
+    } else if (roll >= 85 && roll < 90) {
         return 7;
-    } else if (roll < 94) {
+    } else if (roll >= 90 && roll < 94) {
         return 8;
-    } else if (roll < 98) {
+    } else if (roll >= 94 && roll < 98) {
         return 9;
     } else if (roll == 98) {
         return 10;
@@ -847,11 +847,11 @@ static u8 GetWaterEncounterSlot(void)
 
     if (roll < 60) {
         return 0;
-    } else if (roll < 90) {
+    } else if (roll >= 60 && roll < 90) {
         return 1;
-    } else if (roll < 95) {
+    } else if (roll >= 90 && roll < 95) {
         return 2;
-    } else if (roll < 99) {
+    } else if (roll >= 95 roll < 99) {
         return 3;
     } else {
         return 4;
