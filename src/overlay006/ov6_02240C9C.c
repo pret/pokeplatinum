@@ -837,7 +837,7 @@ static u8 GetGroundEncounterSlot(void)
     } else if (roll == 98) {
         return 10;
     }
-    
+
     return 11;
 }
 
