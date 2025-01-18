@@ -21,32 +21,30 @@ int Party_SaveSize(void)
     return sizeof(Party);
 }
 
-Party *Party_New(u32 param0)
+Party *Party_New(u32 heapID)
 {
-    Party *v0;
+    Party *party = Heap_AllocFromHeap(heapID, sizeof(Party));
+    Party_Init(party);
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(Party));
-    Party_Init(v0);
-
-    return v0;
+    return party;
 }
 
-void Party_Init(Party *param0)
+void Party_Init(Party *party)
 {
-    Party_InitWithCapacity(param0, 6);
+    Party_InitWithCapacity(party, MAX_PARTY_SIZE);
 }
 
 void Party_InitWithCapacity(Party *party, int capacity)
 {
     int i;
 
-    GF_ASSERT(capacity <= 6);
+    GF_ASSERT(capacity <= MAX_PARTY_SIZE);
     memset(party, 0, sizeof(Party));
 
     party->currentCount = 0;
     party->capacity = capacity;
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < MAX_PARTY_SIZE; i++) {
         Pokemon_Init(&party->pokemon[i]);
     }
 }
@@ -96,14 +94,14 @@ Pokemon *Party_GetPokemonBySlotIndex(const Party *party, int slot)
     return (Pokemon *)&party->pokemon[slot];
 }
 
-void sub_0207A128(Party *party, int slot, Pokemon *param2)
+void sub_0207A128(Party *party, int slot, Pokemon *pokemon)
 {
     int v0;
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    v0 = Pokemon_GetValue(&(party->pokemon[slot]), MON_DATA_SPECIES_EXISTS, NULL) - Pokemon_GetValue(param2, MON_DATA_SPECIES_EXISTS, NULL);
-    party->pokemon[slot] = *param2;
+    v0 = Pokemon_GetValue(&(party->pokemon[slot]), MON_DATA_SPECIES_EXISTS, NULL) - Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EXISTS, NULL);
+    party->pokemon[slot] = *pokemon;
     party->currentCount += v0;
 }
 
@@ -125,7 +123,7 @@ BOOL Party_SwapSlots(Party *party, int slotA, int slotB)
     return FALSE;
 }
 
-void Party_cpy(const Party *src, Party *dest)
+void Party_Copy(const Party *src, Party *dest)
 {
     *dest = *src;
 }
@@ -143,10 +141,8 @@ BOOL Party_HasSpecies(const Party *party, int species)
     return i != party->currentCount;
 }
 
-Party *Party_GetFromSavedata(SaveData *param0)
+Party *Party_GetFromSavedata(SaveData *saveData)
 {
-    Party *v0;
-
-    v0 = (Party *)SaveData_SaveTable(param0, 2);
-    return v0;
+    Party *party = (Party *)SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PARTY);
+    return party;
 }

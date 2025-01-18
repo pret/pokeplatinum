@@ -224,7 +224,7 @@ void FieldBattleDTO_AddPokemonToBattler(FieldBattleDTO *dto, Pokemon *src, int b
 void FieldBattleDTO_CopyPartyToBattler(FieldBattleDTO *dto, const Party *src, int battler)
 {
     GF_ASSERT(battler < MAX_BATTLERS);
-    Party_cpy(src, dto->parties[battler]);
+    Party_Copy(src, dto->parties[battler]);
 }
 
 void FieldBattleDTO_CopyTrainerInfoToBattler(FieldBattleDTO *dto, const TrainerInfo *src, int battler)
@@ -428,7 +428,7 @@ void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fi
     u16 *fieldSysSafariBalls = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     TrainerInfo_Copy(dto->trainerInfo[BATTLER_PLAYER_SLOT_1], trainerInfo);
-    Party_cpy(dto->parties[BATTLER_PLAYER_SLOT_1], party);
+    Party_Copy(dto->parties[BATTLER_PLAYER_SLOT_1], party);
     Bag_Copy(dto->bag, bag);
     PokedexData_Copy(dto->pokedex, pokedex);
 
