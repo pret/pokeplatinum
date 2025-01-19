@@ -8,7 +8,7 @@
 
 typedef struct {
     union {
-        struct {
+        struct PoffinInner {
             u8 flavor;
             u8 spiciness;
             u8 dryness;
@@ -18,7 +18,7 @@ typedef struct {
             u8 val1_06;
             u8 dummy;
         };
-        u8 attributes[8];
+        u8 attributes[sizeof(struct PoffinInner)];
     };
 } Poffin;
 
