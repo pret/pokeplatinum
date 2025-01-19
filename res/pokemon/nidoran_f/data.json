@@ -1,5 +1,5 @@
 {
-    "name": "Nidoran\u2640",
+    "name": "Nidoran♀",
     "base_stats": {
         "hp": 55,
         "attack": 47,
@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_POISON_POINT", "ABILITY_RIVALRY" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
@@ -116,9 +114,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
         "entry_text": "While it does not prefer to fight,\neven one drop of the poison it\nsecretes from barbs can be fatal.",
-        "category": "Poison Pin Pok\u00e9mon"
+        "category": "Poison Pin Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

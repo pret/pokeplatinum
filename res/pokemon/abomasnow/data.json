@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
     "abilities": [ "ABILITY_SNOW_WARNING", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ICE_PUNCH" ],
@@ -127,9 +125,9 @@
         "trainer_pos_m": 15,
         "pokemon_pos_m": 4,
         "entry_text": "They appear when the snow flowers\nbloom. When the petals fall, they\nretreat to places unknown again.",
-        "category": "Frost Tree Pok\u00e9mon"
+        "category": "Frost Tree Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

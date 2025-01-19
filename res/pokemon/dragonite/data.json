@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_DRAGON" ],
     "abilities": [ "ABILITY_INNER_FOCUS", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_FIRE_PUNCH" ],
@@ -150,9 +148,9 @@
         "trainer_pos_m": 8,
         "pokemon_pos_m": 5,
         "entry_text": "It is said to make its home\nsomewhere in the sea. It guides\ncrews of shipwrecks to shore.",
-        "category": "Dragon Pok\u00e9mon"
+        "category": "Dragon Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

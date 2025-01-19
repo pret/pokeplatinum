@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+"""
+    This is a standalone script for existing end-users to migrate their data
+    structures to the new species_data format expected by datagen_species.cpp.
+    New users and users who have not made any changes to species' data.json
+    files should not need to use it. Any user which *has* made changes to these
+    files can accept their copy during a merge from main, then run this script
+    to update all of their files in bulk.
+"""
+
 import json
 import pathlib
 
@@ -67,36 +76,43 @@ def migrate(d: dict) -> dict:
     o["exp_rate"] = d["exp_rate"]
     o["egg_groups"] = d["egg_groups"]
     o["abilities"] = d["abilities"]
-    o["safari_flee_rate"] = d["great_marsh_flee_rate"]
-
-    o["sprite"] = {}
-    o["sprite"]["color"] = d["sprite"]["color"]
-    o["sprite"]["flip"] = d["sprite"]["flip_sprite"]
+    o["safari_flee_rate"] = d.get("safari_flee_rate", d.get("great_marsh_flee_rate"))
+    o["body_color"] = d["sprite"]["color"]
+    o["flip_sprite"] = d["sprite"].get("flip", d["sprite"].get("flip_sprite"))
 
     o["learnset"] = {}
+    learnsets = d["learnset"]
+
     by_level = []
-    for k, v in d["learnset"]["level_up"].items():
-        if isinstance(v, list):
-            for mem in v:
-                by_level.append([int(k), mem])
-        else:
-            by_level.append([int(k), v])
+    if "level_up" in learnsets: # old dictionary-based structure
+        for k, v in learnsets["level_up"].items():
+            if isinstance(v, list):
+                for mem in v:
+                    by_level.append([int(k), mem])
+            else:
+                by_level.append([int(k), v])
+    else: # newer list-of-tuples structure
+        by_level = learnsets["by_level"]
+
     o["learnset"]["by_level"] = by_level
-    o["learnset"]["by_tm"] = d["learnset"]["tms"]
-    if "tutor" in d["learnset"]:
-        o["learnset"]["by_tutor"] = d["learnset"]["tutor"]
+    o["learnset"]["by_tm"] = learnsets.get("by_tm", learnsets.get("tms"))
+    if "tutor" in learnsets:
+        o["learnset"]["by_tutor"] = learnsets["tutor"]
+    elif "by_tutor" in learnsets:
+        o["learnset"]["by_tutor"] = learnsets["by_tutor"]
 
     o["evolutions"] = d.get("evolutions", [])
 
     if "footprint" in d:
         o["footprint"] = {}
-        o["footprint"]["has"] = d["footprint"]["has_footprint"]
-        o["footprint"]["size"] = d["footprint"]["footprint_size"]
+        footprint = d["footprint"]
+        o["footprint"]["has"] = footprint.get("has", footprint.get("has_footprint"))
+        o["footprint"]["size"] = footprint.get("size", footprint.get("footprint_size"))
 
     if "pokedex_data" in d:
         o["pokedex_data"] = d["pokedex_data"]
     if "catching_show_data" in d:
-        o["catching_show_data"] = d["catching_show_data"]
+        o["catching_show"] = d["catching_show_data"]
 
     return o
 

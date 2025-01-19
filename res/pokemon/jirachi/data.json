@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_SERENE_GRACE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WISH" ],
@@ -137,9 +135,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65518,
         "entry_text": "It is said to have the ability to\ngrant any wish for just one week\nevery thousand years.",
-        "category": "Wish Pok\u00e9mon"
+        "category": "Wish Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 100,

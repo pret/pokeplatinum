@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
     "abilities": [ "ABILITY_GUTS", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_PECK" ],
@@ -110,9 +108,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65519,
         "entry_text": "It has a gutsy spirit that makes\nit bravely take on tough foes. It\nflies in search of warm climates.",
-        "category": "TinySwallow Pok\u00e9mon"
+        "category": "TinySwallow Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

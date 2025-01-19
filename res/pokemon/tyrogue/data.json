@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_GUTS", "ABILITY_STEADFAST" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -111,9 +109,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
         "entry_text": "It is famous for its eagerness to\nfight and always nurses injuries\nfrom challenging larger foes.",
-        "category": "Scuffle Pok\u00e9mon"
+        "category": "Scuffle Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

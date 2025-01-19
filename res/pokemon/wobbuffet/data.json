@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
     "abilities": [ "ABILITY_SHADOW_TAG", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_COUNTER" ],
@@ -62,9 +60,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
         "entry_text": "It desperately tries to keep its\nblack tail hidden. It is said to be\nproof the tail hides a secret.",
-        "category": "Patient Pok\u00e9mon"
+        "category": "Patient Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

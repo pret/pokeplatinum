@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -132,9 +130,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
         "entry_text": "If anyone were to hurt its pride,\nit would slash them with wings that\ncan cleave through an ice floe.",
-        "category": "Emperor Pok\u00e9mon"
+        "category": "Emperor Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 90,

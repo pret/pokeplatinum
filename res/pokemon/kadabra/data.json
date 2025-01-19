@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
     "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_INNER_FOCUS" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TELEPORT" ],
@@ -128,9 +126,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
         "entry_text": "It stares at its silver spoon to\nfocus its mind. It emits more alpha\nwaves while doing so.",
-        "category": "Psi Pok\u00e9mon"
+        "category": "Psi Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

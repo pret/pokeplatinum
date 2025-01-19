@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_GRASS" ],
     "abilities": [ "ABILITY_EFFECT_SPORE", "ABILITY_DRY_SKIN" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_CROSS_POISON" ],
@@ -113,10 +111,10 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "A mushroom grown larger than the\nhost\u2019s body controls PARASECT.\nIt scatters poisonous spores.",
-        "category": "Mushroom Pok\u00e9mon"
+        "entry_text": "A mushroom grown larger than the\nhost’s body controls PARASECT.\nIt scatters poisonous spores.",
+        "category": "Mushroom Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

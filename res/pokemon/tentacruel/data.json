@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
     "abilities": [ "ABILITY_CLEAR_BODY", "ABILITY_LIQUID_OOZE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POISON_STING" ],
@@ -112,9 +110,9 @@
         "trainer_pos_m": 4,
         "pokemon_pos_m": 65535,
         "entry_text": "It extends its 80 tentacles to\nform an encircling poisonous net\nthat is difficult to escape.",
-        "category": "Jellyfish Pok\u00e9mon"
+        "category": "Jellyfish Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

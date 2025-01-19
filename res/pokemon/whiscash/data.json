@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
     "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_ANTICIPATION" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ZEN_HEADBUTT" ],
@@ -118,9 +116,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
         "entry_text": "It is extremely protective of its\nterritory. If any foe approaches,\nit attacks using vicious tremors.",
-        "category": "Whiskers Pok\u00e9mon"
+        "category": "Whiskers Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 70,

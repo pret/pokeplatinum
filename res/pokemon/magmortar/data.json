@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
     "abilities": [ "ABILITY_FLAME_BODY", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip": true
-    },
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": true,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_THUNDER_PUNCH" ],
@@ -122,9 +120,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
         "entry_text": "When launching 3,600 degrees F\nfireballs, its body takes on a\nwhitish hue from the intense heat.",
-        "category": "Blast Pok\u00e9mon"
+        "category": "Blast Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

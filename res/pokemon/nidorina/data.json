@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_POISON_POINT", "ABILITY_RIVALRY" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
@@ -115,10 +113,10 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO\u2019s.",
-        "category": "Poison Pin Pok\u00e9mon"
+        "entry_text": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO’s.",
+        "category": "Poison Pin Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

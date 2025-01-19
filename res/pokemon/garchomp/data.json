@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_DRAGON" ],
     "abilities": [ "ABILITY_SAND_VEIL", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_FIRE_FANG" ],
@@ -129,9 +127,9 @@
         "trainer_pos_m": 14,
         "pokemon_pos_m": 1,
         "entry_text": "It is said that when one runs at\nhigh speed, its wings create blades\nof wind that can fell nearby trees.",
-        "category": "Mach Pok\u00e9mon"
+        "category": "Mach Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

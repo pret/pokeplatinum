@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_HUMAN_LIKE" ],
     "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_TINTED_LENS" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -119,9 +117,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
         "entry_text": "With its sweet aroma, it guides\nVOLBEAT to draw signs with light in\nthe night sky.",
-        "category": "Firefly Pok\u00e9mon"
+        "category": "Firefly Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

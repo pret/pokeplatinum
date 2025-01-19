@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_CONFUSION" ],
@@ -154,10 +152,10 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 6,
-        "entry_text": "A Pok\u00e9mon created by recombining\nMEW\u2019s genes. It\u2019s said to have the\nmost savage heart among Pok\u00e9mon.",
-        "category": "Genetic Pok\u00e9mon"
+        "entry_text": "A Pokémon created by recombining\nMEW’s genes. It’s said to have the\nmost savage heart among Pokémon.",
+        "category": "Genetic Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

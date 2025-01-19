@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_FLAME_BODY", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip": true
-    },
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": true,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SMOG" ],
@@ -112,10 +110,10 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "Its magma-like blood circulates\nthroughout its body. Its body\u2019s\nheat can top 1,100 degrees F.",
-        "category": "Live Coal Pok\u00e9mon"
+        "entry_text": "Its magma-like blood circulates\nthroughout its body. Its body’s\nheat can top 1,100 degrees F.",
+        "category": "Live Coal Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

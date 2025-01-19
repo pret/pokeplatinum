@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
     "abilities": [ "ABILITY_STURDY", "ABILITY_ROCK_HEAD" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WOOD_HAMMER" ],
@@ -122,9 +120,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
         "entry_text": "To avoid being attacked, it does\nnothing but mimic a tree. It hates\nwater and flees from rain.",
-        "category": "Imitation Pok\u00e9mon"
+        "category": "Imitation Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

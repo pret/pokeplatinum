@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
     "abilities": [ "ABILITY_SWARM", "ABILITY_TECHNICIAN" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_VACUUM_WAVE" ],
@@ -122,9 +120,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
         "entry_text": "The sharp scythes on its forearms\nbecome increasingly sharp by\ncutting through hard objects.",
-        "category": "Mantis Pok\u00e9mon"
+        "category": "Mantis Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

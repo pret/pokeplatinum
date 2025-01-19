@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_GRASS" ],
     "abilities": [ "ABILITY_FLOWER_GIFT", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -103,10 +101,10 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "If it senses strong sunlight, it\nopens its folded petals to absorb\nthe sun\u2019s rays with its whole body.",
-        "category": "Blossom Pok\u00e9mon"
+        "entry_text": "If it senses strong sunlight, it\nopens its folded petals to absorb\nthe sun’s rays with its whole body.",
+        "category": "Blossom Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

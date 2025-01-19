@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_LIGHTNING_ROD", "ABILITY_SOLID_ROCK" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POISON_JAB" ],
@@ -147,9 +145,9 @@
         "trainer_pos_m": 17,
         "pokemon_pos_m": 3,
         "entry_text": "It can launch a rock held in its\nhand like a missile by tightening\nthen expanding muscles instantly.",
-        "category": "Drill Pok\u00e9mon"
+        "category": "Drill Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

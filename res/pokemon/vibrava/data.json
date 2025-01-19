@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
     "abilities": [ "ABILITY_LEVITATE", "ABILITY_LEVITATE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SONIC_BOOM" ],
@@ -122,9 +120,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
         "entry_text": "It violently shudders its wings,\ngenerating ultrasonic waves to\ninduce headaches in people.",
-        "category": "Vibration Pok\u00e9mon"
+        "category": "Vibration Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

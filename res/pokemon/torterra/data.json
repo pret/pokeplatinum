@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
     "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip": true
-    },
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": true,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WOOD_HAMMER" ],
@@ -126,10 +124,10 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 0,
-        "entry_text": "Some Pok\u00e9mon are born on a\nTORTERRA\u2019s back and spend their\nentire life there.",
-        "category": "Continent Pok\u00e9mon"
+        "entry_text": "Some Pokémon are born on a\nTORTERRA’s back and spend their\nentire life there.",
+        "category": "Continent Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
     "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_LEAF_GUARD" ],
     "safari_flee_rate": 90,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_INGRAIN" ],
@@ -121,9 +119,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
         "entry_text": "The blue vines shrouding its body\nare covered in a growth of fine\nhair. It is known to be ticklish.",
-        "category": "Vine Pok\u00e9mon"
+        "category": "Vine Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

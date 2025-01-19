@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
     "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SEED_BOMB" ],
@@ -111,10 +109,10 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 2,
-        "entry_text": "It is called \u201cThe Walking Jungle.\u201d\nIf a head grows too big, it falls\noff and becomes an EXEGGCUTE.",
-        "category": "Coconut Pok\u00e9mon"
+        "entry_text": "It is called “The Walking Jungle.”\nIf a head grows too big, it falls\noff and becomes an EXEGGCUTE.",
+        "category": "Coconut Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_GRASS" ],
     "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_POISON_POINT" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip": true
-    },
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": true,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WEATHER_BALL" ],
@@ -103,9 +101,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
         "entry_text": "Each of its hands contains\ndifferent toxins, but both hands\ncan jab with near-fatal power.",
-        "category": "Bouquet Pok\u00e9mon"
+        "category": "Bouquet Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

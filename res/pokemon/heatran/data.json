@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_FLASH_FIRE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ANCIENT_POWER" ],
@@ -122,9 +120,9 @@
         "trainer_pos_m": 7,
         "pokemon_pos_m": 1,
         "entry_text": "Its body is made of rugged steel.\nHowever, it is partially melted in\nspots because of its own heat.",
-        "category": "Lava Dome Pok\u00e9mon"
+        "category": "Lava Dome Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

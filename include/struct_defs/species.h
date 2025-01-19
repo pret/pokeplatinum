@@ -63,10 +63,27 @@ typedef struct SpeciesEvolution {
     u16 targetSpecies;
 } SpeciesEvolution;
 
+typedef struct SpeciesLearnsetEntry {
+    u16 move : 9;
+    u16 level : 7;
+} SpeciesLearnsetEntry;
+
 // This struct is not explicitly used; it is provided to document and enforce the size of
 // the learnset entries.
 typedef struct SpeciesLearnset {
-    ALIGN_4 u16 entries[MAX_LEARNSET_ENTRIES + 1];
+    ALIGN_4 SpeciesLearnsetEntry entries[MAX_LEARNSET_ENTRIES + 1];
 } SpeciesLearnset;
+
+typedef struct SpeciesPalPark {
+    u8 landArea;
+    u8 waterArea;
+    u8 catchingPoints;
+    u8 rarity;
+
+    union {
+        u8 asU8[2];
+        u16 asU16;
+    } unused;
+} SpeciesPalPark;
 
 #endif // POKEPLATINUM_SPECIES_H

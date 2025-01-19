@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
     "abilities": [ "ABILITY_ROUGH_SKIN", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_FEINT" ],
@@ -127,10 +125,10 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 65535,
-        "entry_text": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n\u201cThe Bully of the Sea.\u201d",
-        "category": "Brutal Pok\u00e9mon"
+        "entry_text": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n“The Bully of the Sea.”",
+        "category": "Brutal Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 70,

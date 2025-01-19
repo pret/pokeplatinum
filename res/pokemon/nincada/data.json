@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
     "abilities": [ "ABILITY_COMPOUND_EYES", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -110,9 +108,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
         "entry_text": "It grows underground, sensing\nits surroundings using antennae\ninstead of its virtually blind eyes.",
-        "category": "Trainee Pok\u00e9mon"
+        "category": "Trainee Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

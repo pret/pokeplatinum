@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_DAMP", "ABILITY_WATER_ABSORB" ],
     "safari_flee_rate": 60,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WATER_GUN" ],
@@ -122,10 +120,10 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "It has an easygoing nature. It\ndoesn\u2019t care if it bumps its head on\nboats and boulders while swimming.",
-        "category": "Water Fish Pok\u00e9mon"
+        "entry_text": "It has an easygoing nature. It\ndoesn’t care if it bumps its head on\nboats and boulders while swimming.",
+        "category": "Water Fish Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 70,

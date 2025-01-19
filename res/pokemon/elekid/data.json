@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_STATIC", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip": true
-    },
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": true,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_QUICK_ATTACK" ],
@@ -118,9 +116,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
         "entry_text": "A weak electric current flows\nbetween its horns. Sticking a hand\nthere shocks the unwary.",
-        "category": "Electric Pok\u00e9mon"
+        "category": "Electric Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

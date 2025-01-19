@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_1" ],
     "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_WATER_ABSORB" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_PSYBEAM" ],
@@ -123,9 +121,9 @@
         "trainer_pos_m": 16,
         "pokemon_pos_m": 65535,
         "entry_text": "While elegantly swimming in the sea,\nit ignores REMORAID that cling to\nits fins seeking food scraps.",
-        "category": "Kite Pok\u00e9mon"
+        "category": "Kite Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 70,

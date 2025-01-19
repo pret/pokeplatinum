@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
     "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_TRACE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
@@ -129,10 +127,10 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "If its horns capture the warm\nfeelings of people or Pok\u00e9mon,\nits body warms up slightly.",
-        "category": "Feeling Pok\u00e9mon"
+        "entry_text": "If its horns capture the warm\nfeelings of people or Pokémon,\nits body warms up slightly.",
+        "category": "Feeling Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_DAMP", "ABILITY_CLOUD_NINE" ],
     "safari_flee_rate": 90,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WATER_SPORT" ],
@@ -125,9 +123,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
         "entry_text": "Overwhelmed by enigmatic abilities,\nit suffers a constant headache. It\nsometimes uses mysterious powers.",
-        "category": "Duck Pok\u00e9mon"
+        "category": "Duck Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_DRAGON_BREATH" ],
@@ -135,7 +133,7 @@
             "trainer_pos_m": 23,
             "pokemon_pos_m": 1,
             "entry_text": "It was banished for its violence.\nIt silently gazed upon the old\nworld from the Distortion World.",
-            "category": "Renegade Pok\u00e9mon"
+            "category": "Renegade Pokémon"
         },
         {
             "height": 45,
@@ -152,7 +150,7 @@
             "entry_text": "It was banished for its violence.\nIt silently gazed upon the old\nworld from the Distortion World."
         }
     ],
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

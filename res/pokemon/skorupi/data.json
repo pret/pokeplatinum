@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_WATER_3" ],
     "abilities": [ "ABILITY_BATTLE_ARMOR", "ABILITY_SNIPER" ],
     "safari_flee_rate": 120,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BITE" ],
@@ -122,9 +120,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
         "entry_text": "As soon as the tail claws close,\nits needle tips secrete poison.\nIt can survive a year without food.",
-        "category": "Scorpion Pok\u00e9mon"
+        "category": "Scorpion Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WHIRLWIND" ],
@@ -144,9 +142,9 @@
         "trainer_pos_m": 26,
         "pokemon_pos_m": 0,
         "entry_text": "It sleeps in a deep-sea trench.\nIf it flaps its wings, it is said to\ncause a 40-day storm.",
-        "category": "Diving Pok\u00e9mon"
+        "category": "Diving Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

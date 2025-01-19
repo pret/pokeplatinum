@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_PRESSURE", "ABILITY_SUPER_LUCK" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip": true
-    },
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": true,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -145,9 +143,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
         "entry_text": "Rumored to sense disasters with its\nhorn, it became a target. It fled\ndeep into the mountains.",
-        "category": "Disaster Pok\u00e9mon"
+        "category": "Disaster Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

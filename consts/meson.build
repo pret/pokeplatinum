@@ -1,9 +1,11 @@
+# This must be moved here during the refactor to move all constants to metang.
+constgen_py = find_program('constgen_py', native: true)
+
 consts_manifest_basenames = [
     'badges',
     'battle',
     'battle_subscripts',
     'btlcmd',
-    'catching_show',
     'game_records',
     'gender',
     'journal',
@@ -14,8 +16,6 @@ consts_manifest_basenames = [
     'poketch',
     'scrcmd',
     'sdat',
-    'shadows',
-    'tm_learnset',
     'trainer',
     'trainer_ai',
 ]

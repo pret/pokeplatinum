@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
     "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_OWN_TEMPO" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_CURSE" ],
@@ -138,9 +136,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
         "entry_text": "Although slow, it is skilled at\nfishing with its tail. It does not\nfeel pain if its tail is bitten.",
-        "category": "Dopey Pok\u00e9mon"
+        "category": "Dopey Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

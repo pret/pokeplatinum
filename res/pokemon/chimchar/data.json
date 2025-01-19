@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_HUMAN_LIKE" ],
     "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": true
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": true,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -129,9 +127,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
         "entry_text": "It is very agile. Before going to\nsleep, it extinguishes the flame\non its tail to prevent fires.",
-        "category": "Chimp Pok\u00e9mon"
+        "category": "Chimp Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

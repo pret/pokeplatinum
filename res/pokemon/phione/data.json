@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FAIRY" ],
     "abilities": [ "ABILITY_HYDRATION", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BUBBLE" ],
@@ -110,9 +108,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
         "entry_text": "It drifts in warm seas. It always\nreturns to where it was born, no\nmatter how far it may have drifted.",
-        "category": "Sea Drifter Pok\u00e9mon"
+        "category": "Sea Drifter Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 90,

@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
     "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_HYPNOSIS" ],
@@ -129,9 +127,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65530,
         "entry_text": "It likes to lurk in the dark and tap\nshoulders with a gaseous hand. Its\ntouch causes endless shuddering.",
-        "category": "Gas Pok\u00e9mon"
+        "category": "Gas Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

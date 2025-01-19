@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_SLOW_START", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_FIRE_PUNCH" ],
@@ -118,10 +116,10 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 23,
         "pokemon_pos_m": 1,
-        "entry_text": "It is said to have made Pok\u00e9mon\nthat look like itself from a special\nice mountain, rocks, and magma.",
-        "category": "Colossal Pok\u00e9mon"
+        "entry_text": "It is said to have made Pokémon\nthat look like itself from a special\nice mountain, rocks, and magma.",
+        "category": "Colossal Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

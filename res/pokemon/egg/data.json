@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_NONE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_EGG",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_EGG",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SPLASH" ]

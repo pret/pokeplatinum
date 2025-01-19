@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_QUICK_FEET" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -114,10 +112,10 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "A Pok\u00e9mon with a persistent\nnature, it chases its chosen prey\nuntil the prey becomes exhausted.",
-        "category": "Bite Pok\u00e9mon"
+        "entry_text": "A Pokémon with a persistent\nnature, it chases its chosen prey\nuntil the prey becomes exhausted.",
+        "category": "Bite Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

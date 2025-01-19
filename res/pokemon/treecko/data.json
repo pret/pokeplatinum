@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_DRAGON" ],
     "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
@@ -123,9 +121,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
         "entry_text": "The soles of its feet are covered\nby countless tiny spikes, enabling\nit to walk on walls and ceilings.",
-        "category": "Wood Gecko Pok\u00e9mon"
+        "category": "Wood Gecko Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

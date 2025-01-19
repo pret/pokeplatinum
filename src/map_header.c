@@ -252,7 +252,7 @@ BOOL MapHeader_IsPokemonCenter2F(const u32 headerID)
     return FALSE;
 }
 
-enum PokemonEvoMethod MapHeader_GetMapEvolutionMethod(u32 headerID)
+enum EvolutionMethod MapHeader_GetMapEvolutionMethod(u32 headerID)
 {
     static const u16 mapEvolutionMethods[] = {
         MAP_HEADER_ROUTE_217,
@@ -298,9 +298,8 @@ enum PokemonEvoMethod MapHeader_GetMapEvolutionMethod(u32 headerID)
         MAP_HEADER_SPEAR_PILLAR_PALKIA,
         EVO_LEVEL_MAGNETIC_FIELD
     };
-    int i;
 
-    for (i = 0; i < NELEMS(mapEvolutionMethods); i += 2) {
+    for (int i = 0; i < NELEMS(mapEvolutionMethods); i += 2) {
         if (mapEvolutionMethods[i] == headerID) {
             return mapEvolutionMethods[i + 1];
         }

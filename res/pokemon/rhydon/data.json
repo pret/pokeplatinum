@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_LIGHTNING_ROD", "ABILITY_ROCK_HEAD" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_HORN_ATTACK" ],
@@ -149,9 +147,9 @@
         "trainer_pos_m": 16,
         "pokemon_pos_m": 4,
         "entry_text": "Standing on its hind legs freed its\nforelegs and made it smarter. It is\nvery forgetful, however.",
-        "category": "Drill Pok\u00e9mon"
+        "category": "Drill Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

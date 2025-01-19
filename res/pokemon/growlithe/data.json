@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_FLASH_FIRE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BITE" ],
@@ -113,10 +111,10 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "A Pok\u00e9mon with a loyal nature.\nIt will remain motionless until it is\ngiven an order by its Trainer.",
-        "category": "Puppy Pok\u00e9mon"
+        "entry_text": "A Pokémon with a loyal nature.\nIt will remain motionless until it is\ngiven an order by its Trainer.",
+        "category": "Puppy Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

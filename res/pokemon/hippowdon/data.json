@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_SAND_STREAM", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ICE_FANG" ],
@@ -110,9 +108,9 @@
         "trainer_pos_m": 10,
         "pokemon_pos_m": 3,
         "entry_text": "It is surprisingly quick to anger.\nIt holds its mouth agape as a\ndisplay of its strength.",
-        "category": "Heavyweight Pok\u00e9mon"
+        "category": "Heavyweight Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 80,

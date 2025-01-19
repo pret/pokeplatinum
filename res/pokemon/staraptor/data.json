@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
     "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -110,9 +108,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
         "entry_text": "It never stops attacking even\nif it is injured. It fusses over the\nshape of its comb.",
-        "category": "Predator Pok\u00e9mon"
+        "category": "Predator Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

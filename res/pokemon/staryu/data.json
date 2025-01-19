@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
     "abilities": [ "ABILITY_ILLUMINATE", "ABILITY_NATURAL_CURE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": true
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": true,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -120,9 +118,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
         "entry_text": "If its body is torn, it can grow\nback if the red core remains.\nThe core flashes at midnight.",
-        "category": "Star Shape Pok\u00e9mon"
+        "category": "Star Shape Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

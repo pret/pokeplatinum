@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_LEAF_GUARD", "ABILITY_LEAF_GUARD" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TAIL_WHIP" ],
@@ -118,9 +116,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
         "entry_text": "It basically does not fight. With\ncells similar to those of plants, it\ncan perform photosynthesis.",
-        "category": "Verdant Pok\u00e9mon"
+        "category": "Verdant Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_GRASS" ],
     "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_RAIN_DISH" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ASTONISH" ],
@@ -125,9 +123,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
         "entry_text": "It has a mischievous spirit. If it\nspots an angler, it will tug on the\nfishing line to interfere.",
-        "category": "Jolly Pok\u00e9mon"
+        "category": "Jolly Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

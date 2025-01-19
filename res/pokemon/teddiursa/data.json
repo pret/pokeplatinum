@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_PICKUP", "ABILITY_QUICK_FEET" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": true
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": true,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_COVET" ],
@@ -129,9 +127,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
         "entry_text": "It lets honey soak into its paws\nso it can lick them all the time.\nEvery set of paws tastes unique.",
-        "category": "Little Bear Pok\u00e9mon"
+        "category": "Little Bear Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

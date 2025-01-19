@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
     "abilities": [ "ABILITY_MAGMA_ARMOR", "ABILITY_FLAME_BODY" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_YAWN" ],
@@ -111,10 +109,10 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "Its body is made of magma.\nIf it doesn\u2019t keep moving, its\nbody will cool and harden.",
-        "category": "Lava Pok\u00e9mon"
+        "entry_text": "Its body is made of magma.\nIf it doesn’t keep moving, its\nbody will cool and harden.",
+        "category": "Lava Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

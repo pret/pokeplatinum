@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
     "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_STOCKPILE" ],
@@ -104,9 +102,9 @@
         "trainer_pos_m": 2,
         "pokemon_pos_m": 4,
         "entry_text": "It pools in its mouth a fluid with\na honeylike scent, which is really\nan acid that dissolves anything.",
-        "category": "Flycatcher Pok\u00e9mon"
+        "category": "Flycatcher Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

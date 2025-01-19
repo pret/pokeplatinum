@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_STATIC", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_FIRE_PUNCH" ],
@@ -116,10 +114,10 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "The tip of its tail shines brightly.\nIn the olden days, people sent\nsignals using the tail\u2019s light.",
-        "category": "Light Pok\u00e9mon"
+        "entry_text": "The tip of its tail shines brightly.\nIn the olden days, people sent\nsignals using the tail’s light.",
+        "category": "Light Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

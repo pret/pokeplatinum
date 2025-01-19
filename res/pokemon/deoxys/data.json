@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_LEER" ],
@@ -142,10 +140,10 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "An alien virus that fell to earth\non a meteor underwent a DNA\nmutation to become this Pok\u00e9mon.",
-        "category": "DNA Pok\u00e9mon"
+        "entry_text": "An alien virus that fell to earth\non a meteor underwent a DNA\nmutation to become this Pokémon.",
+        "category": "DNA Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 100,

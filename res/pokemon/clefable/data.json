@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
     "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_MAGIC_GUARD" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SING" ],
@@ -132,9 +130,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
         "entry_text": "It is very wary and rarely shows\nitself to people. Its ears can hear\na pin drop over half a mile away.",
-        "category": "Fairy Pok\u00e9mon"
+        "category": "Fairy Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

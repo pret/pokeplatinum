@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
     "abilities": [ "ABILITY_GUTS", "ABILITY_NO_GUARD" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_LOW_KICK" ],
@@ -120,9 +118,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
         "entry_text": "Its four muscled arms slam foes\nwith powerful punches and chops\nat blinding speed.",
-        "category": "Superpower Pok\u00e9mon"
+        "category": "Superpower Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FAIRY" ],
     "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_QUICK_FEET" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ICE_FANG" ],
@@ -132,9 +130,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
         "entry_text": "It is timid in spite of its looks.\nIf it becomes enraged, however,\nit will strike with its huge fangs.",
-        "category": "Fairy Pok\u00e9mon"
+        "category": "Fairy Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

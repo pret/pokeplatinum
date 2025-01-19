@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_SNOW_CLOAK" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ANCIENT_POWER" ],
@@ -124,9 +122,9 @@
         "trainer_pos_m": 18,
         "pokemon_pos_m": 5,
         "entry_text": "A frozen one was dug up from\nsoil dating back 10,000 years. It\nwoke up to much amazement.",
-        "category": "Twin Tusk Pok\u00e9mon"
+        "category": "Twin Tusk Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

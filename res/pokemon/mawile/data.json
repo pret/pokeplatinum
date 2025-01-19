@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FAIRY" ],
     "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_INTIMIDATE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ASTONISH" ],
@@ -129,9 +127,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
         "entry_text": "Attached to its head is a huge\nset of jaws formed by horns.\nIt can chew through iron beams.",
-        "category": "Deceiver Pok\u00e9mon"
+        "category": "Deceiver Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

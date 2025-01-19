@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
     "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_STURDY" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -124,10 +122,10 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "Even dynamite can\u2019t harm its hard,\nboulderlike body. It sheds its hide\njust once a year.",
-        "category": "Megaton Pok\u00e9mon"
+        "entry_text": "Even dynamite can’t harm its hard,\nboulderlike body. It sheds its hide\njust once a year.",
+        "category": "Megaton Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
     "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -114,9 +112,9 @@
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
         "entry_text": "A fire burns inside, so it feels\nvery warm to hug. It launches\nfireballs of 1,800 degrees F.",
-        "category": "Chick Pok\u00e9mon"
+        "category": "Chick Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

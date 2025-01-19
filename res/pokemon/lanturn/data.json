@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
     "abilities": [ "ABILITY_VOLT_ABSORB", "ABILITY_ILLUMINATE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BUBBLE" ],
@@ -116,10 +114,10 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "LANTURN\u2019s light can shine up from\ngreat depths. It is nicknamed\n\u201cThe Deep-Sea Star.\u201d",
-        "category": "Light Pok\u00e9mon"
+        "entry_text": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n“The Deep-Sea Star.”",
+        "category": "Light Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 70,

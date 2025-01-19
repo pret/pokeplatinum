@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
     "abilities": [ "ABILITY_MOTOR_DRIVE", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_FIRE_PUNCH" ],
@@ -128,9 +126,9 @@
         "trainer_pos_m": 13,
         "pokemon_pos_m": 7,
         "entry_text": "Heedless of enemy attacks, it\ncloses in, shoves its tails onto the\nfoe, then looses high voltage.",
-        "category": "Thunderbolt Pok\u00e9mon"
+        "category": "Thunderbolt Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

@@ -30,10 +30,8 @@
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [ "ABILITY_DROUGHT", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip": false
-    },
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_MUD_SHOT" ],
@@ -133,9 +131,9 @@
         "trainer_pos_m": 23,
         "pokemon_pos_m": 3,
         "entry_text": "It had been asleep in underground\nmagma ever since it fiercely\nfought KYOGRE long ago.",
-        "category": "Continent Pok\u00e9mon"
+        "category": "Continent Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,
