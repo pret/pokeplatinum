@@ -40,14 +40,14 @@ void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem)
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
     sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
-    sub_0202D9EC(sub_0202D834(fieldSystem->saveData), 0);
+    sub_0202D9EC(SaveData_GetSpecialEncounters(fieldSystem->saveData), 0);
 
     fieldSystem->unk_78.unk_00 = 0;
 
     if (!SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
-        UnkStruct_0202D7B0 *v0;
+        SpecialEncounter *v0;
 
-        v0 = sub_0202D834(fieldSystem->saveData);
+        v0 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
         sub_0206C404(v0, fieldSystem->location->mapId);
         sub_0206C37C(v0);
     }
@@ -69,14 +69,14 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
     sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
-    sub_0202D9EC(sub_0202D834(fieldSystem->saveData), 0);
+    sub_0202D9EC(SaveData_GetSpecialEncounters(fieldSystem->saveData), 0);
 
     fieldSystem->unk_78.unk_00 = 0;
 
     {
-        UnkStruct_0202D7B0 *v0;
+        SpecialEncounter *v0;
 
-        v0 = sub_0202D834(fieldSystem->saveData);
+        v0 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
         sub_0206C404(v0, fieldSystem->location->mapId);
     }
 
@@ -108,13 +108,13 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
 void sub_0207056C(FieldSystem *fieldSystem)
 {
     SystemFlag_ClearSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
-    sub_0206C354(sub_0202D834(fieldSystem->saveData));
+    sub_0206C354(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 }
 
 void FieldSystem_SetTeleportFlags(FieldSystem *fieldSystem)
 {
     SystemFlag_ClearSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
-    sub_0206C354(sub_0202D834(fieldSystem->saveData));
+    sub_0206C354(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 }
 
 void FieldSystem_SetEscapeFlags(FieldSystem *fieldSystem)
@@ -132,7 +132,7 @@ void sub_020705B4(FieldSystem *fieldSystem)
 
 void sub_020705CC(FieldSystem *fieldSystem)
 {
-    sub_0206C354(sub_0202D834(fieldSystem->saveData));
+    sub_0206C354(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 }
 
 static BOOL sub_020705DC(FieldSystem *fieldSystem)

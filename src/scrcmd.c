@@ -108,6 +108,7 @@
 #include "field_task.h"
 #include "field_transition.h"
 #include "game_records.h"
+#include "great_marsh_lookout.h"
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
@@ -201,7 +202,6 @@
 #include "unk_02069BE0.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
-#include "unk_0206C0E8.h"
 #include "unk_0206C660.h"
 #include "unk_0206C784.h"
 #include "unk_0206CCB0.h"
@@ -590,7 +590,7 @@ static BOOL ScrCmd_203(ScriptContext *ctx);
 static BOOL ScrCmd_204(ScriptContext *ctx);
 static BOOL ScrCmd_205(ScriptContext *ctx);
 static BOOL ScrCmd_310(ScriptContext *ctx);
-static BOOL ScrCmd_206(ScriptContext *ctx);
+static BOOL ScrCmd_DoGreatMarshLookoutScene(ScriptContext *ctx);
 static BOOL ScrCmd_20C(ScriptContext *ctx);
 static BOOL ScrCmd_20D(ScriptContext *ctx);
 static BOOL ScrCmd_20E(ScriptContext *ctx);
@@ -1284,7 +1284,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_203,
     ScrCmd_204,
     ScrCmd_205,
-    ScrCmd_206,
+    ScrCmd_DoGreatMarshLookoutScene,
     ScrCmd_207,
     ScrCmd_208,
     ScrCmd_209,
@@ -4804,11 +4804,11 @@ static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx)
 
 static BOOL ScrCmd_0E3(ScriptContext *ctx)
 {
-    UnkStruct_0202D7B0 *v0 = sub_0202D834(ctx->fieldSystem->saveData);
+    SpecialEncounter *v0 = SaveData_GetSpecialEncounters(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    ov6_0224322C(sub_0202D814(v0, 2), v1, v2);
+    ov6_0224322C(SpecialEncounter_GetDailyMon(v0, DAILY_SWARM), v1, v2);
     return 0;
 }
 
@@ -6406,10 +6406,10 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_206(ScriptContext *ctx)
+static BOOL ScrCmd_DoGreatMarshLookoutScene(ScriptContext *ctx)
 {
-    sub_0206C0E8(ctx->fieldSystem);
-    return 1;
+    GreatMarshLookout_Init(ctx->fieldSystem);
+    return TRUE;
 }
 
 static BOOL ScrCmd_20D(ScriptContext *ctx)

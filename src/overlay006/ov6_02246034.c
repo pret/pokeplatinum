@@ -20,22 +20,22 @@
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
-static void ov6_02246110(UnkStruct_0202D7B0 *param0, const int param1);
-static UnkStruct_0206C638 *ov6_02246148(UnkStruct_0202D7B0 *param0, const int param1);
+static void ov6_02246110(SpecialEncounter *param0, const int param1);
+static Roamer *ov6_02246148(SpecialEncounter *param0, const int param1);
 
 void ov6_02246034(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 {
     u16 v0;
     u8 v1;
     int v2;
-    UnkStruct_0202D7B0 *v3;
-    UnkStruct_0206C638 *v4;
+    SpecialEncounter *v3;
+    Roamer *v4;
     Party *v5;
     Pokemon *v6;
 
     v5 = param1->parties[1];
     v6 = Party_GetPokemonBySlotIndex(v5, 0);
-    v3 = sub_0202D834(fieldSystem->saveData);
+    v3 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     v2 = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
     v4 = ov6_02246148(v3, v2);
 
@@ -56,13 +56,13 @@ void ov6_02246034(FieldSystem *fieldSystem, FieldBattleDTO *param1)
 
         ov6_02246110(v3, fieldSystem->location->mapId);
     } else {
-        if (inline_020564D0(100) < 30) {
+        if (LCRNG_RandMod(100) < 30) {
             ov6_02246110(v3, fieldSystem->location->mapId);
         }
     }
 }
 
-static void ov6_02246110(UnkStruct_0202D7B0 *param0, const int param1)
+static void ov6_02246110(SpecialEncounter *param0, const int param1)
 {
     int v0;
     u8 v1;
@@ -78,10 +78,10 @@ static void ov6_02246110(UnkStruct_0202D7B0 *param0, const int param1)
     }
 }
 
-static UnkStruct_0206C638 *ov6_02246148(UnkStruct_0202D7B0 *param0, const int param1)
+static Roamer *ov6_02246148(SpecialEncounter *param0, const int param1)
 {
     u8 v0;
-    UnkStruct_0206C638 *v1;
+    Roamer *v1;
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0202D8F8(param0, v0)) {
