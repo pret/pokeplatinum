@@ -13,7 +13,7 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "trainer_info.h"
 #include "unk_0202DA40.h"
 #include "unk_020797C8.h"

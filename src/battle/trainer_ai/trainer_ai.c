@@ -3478,11 +3478,11 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
 
     // "Player" consts here refer to the AI's perspective.
     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
-        defender1 = BATTLER_PLAYER_SLOT_1;
-        defender2 = BATTLER_PLAYER_SLOT_2;
+        defender1 = BATTLER_PLAYER_1;
+        defender2 = BATTLER_PLAYER_2;
     } else {
-        defender1 = BATTLER_PLAYER_SLOT_1;
-        defender2 = BATTLER_PLAYER_SLOT_1;
+        defender1 = BATTLER_PLAYER_1;
+        defender2 = BATTLER_PLAYER_1;
     }
 
     // Check all of this mon's attacking moves for immunities. If any of our moves can deal damage to

@@ -143,5 +143,12 @@
         "pokemon_pos_m": 1,
         "entry_text": "The leaves that grow on its arms\ncan slice down thick trees. It is\nwithout peer in jungle combat.",
         "category": "Forest Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 257
     }
 }

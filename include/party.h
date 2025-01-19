@@ -17,7 +17,7 @@ int Party_GetCurrentCount(const Party *party);
 Pokemon *Party_GetPokemonBySlotIndex(const Party *party, int slot);
 void sub_0207A128(Party *party, int slot, Pokemon *param2);
 BOOL Party_SwapSlots(Party *party, int slotA, int slotB);
-void Party_cpy(const Party *src, Party *dest);
+void Party_Copy(const Party *src, Party *dest);
 BOOL Party_HasSpecies(const Party *party, int species);
 Party *Party_GetFromSavedata(SaveData *party);
 

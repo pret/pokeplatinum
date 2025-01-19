@@ -117,5 +117,12 @@
         "pokemon_pos_m": 32,
         "entry_text": "The flowers all over its body burst\ninto bloom if it is lovingly hugged\nand senses gratitude.",
         "category": "Gratitude Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 100,
+        "rarity": 1,
+        "unused": 257
     }
 }

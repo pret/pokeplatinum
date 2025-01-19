@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0203A024_H
-#define POKEPLATINUM_UNK_0203A024_H
+#ifndef POKEPLATINUM_MAP_HEADER_H
+#define POKEPLATINUM_MAP_HEADER_H
 
 typedef struct {
     u8 unk_00;
@@ -24,40 +24,40 @@ typedef struct {
     u16 isFlyAllowed : 1;
 } MapHeader;
 
-u32 MapHeader_IDBoundsCheck(u32 param0);
-const u16 sub_0203A038(u32 param0);
-const u16 sub_0203A04C(u32 param0);
-const u16 MapHeader_GetMapMatrixID(u32 param0);
-u32 MapHeader_GetMsgArchiveID(u32 param0);
-u32 MapHeader_GetScriptsArchiveID(u32 param0);
-u32 MapHeader_GetInitScriptsArchiveID(u32 param0);
-u16 MapHeader_GetDayMusicID(u32 param0);
-u16 MapHeader_GetNightMusicID(u32 param0);
-BOOL MapHeader_HasWildEncounters(u32 param0);
-u32 MapHeader_GetWildEncountersArchiveID(u32 param0);
-u32 MapHeader_GetEventsArchiveID(u32 param0);
-u32 MapHeader_GetMapLabelTextID(u32 param0);
-u8 MapHeader_GetMapLabelWindowID(u32 param0);
-u32 MapHeader_GetWeatherType(u32 param0);
-u32 MapHeader_GetCameraType(u32 param0);
-u32 MapHeader_GetBattleBG(u32 param0);
-BOOL MapHeader_IsEscapeRopeAllowed(u32 param0);
-BOOL MapHeader_IsFlyAllowed(u32 param0);
-BOOL MapHeader_IsBikeAllowed(u32 param0);
+u32 MapHeader_IDBoundsCheck(u32 headerID);
+const u16 sub_0203A038(u32 headerID);
+const u16 sub_0203A04C(u32 headerID);
+const u16 MapHeader_GetMapMatrixID(u32 headerID);
+u32 MapHeader_GetMsgArchiveID(u32 headerID);
+u32 MapHeader_GetScriptsArchiveID(u32 headerID);
+u32 MapHeader_GetInitScriptsArchiveID(u32 headerID);
+u16 MapHeader_GetDayMusicID(u32 headerID);
+u16 MapHeader_GetNightMusicID(u32 headerID);
+BOOL MapHeader_HasWildEncounters(u32 headerID);
+u32 MapHeader_GetWildEncountersArchiveID(u32 headerID);
+u32 MapHeader_GetEventsArchiveID(u32 headerID);
+u32 MapHeader_GetMapLabelTextID(u32 headerID);
+u8 MapHeader_GetMapLabelWindowID(u32 headerID);
+u32 MapHeader_GetWeatherType(u32 headerID);
+u32 MapHeader_GetCameraType(u32 headerID);
+u32 MapHeader_GetBattleBG(u32 headerID);
+BOOL MapHeader_IsEscapeRopeAllowed(u32 headerID);
+BOOL MapHeader_IsFlyAllowed(u32 headerID);
+BOOL MapHeader_IsBikeAllowed(u32 headerID);
 u32 MapHeader_GetMapType(u32 headerID);
-BOOL MapHeader_IsTeleportAllowed(u32 param0);
-BOOL MapHeader_IsOnMainMatrix(u32 param0);
-BOOL MapHeader_IsPokemonCenter(u32 param0);
-BOOL MapHeader_IsCave(u32 param0);
-BOOL MapHeader_IsBuilding(u32 param0);
-BOOL MapHeader_IsOutdoors(u32 param0);
-BOOL sub_0203A2C8(u32 param0);
-BOOL MapHeader_IsUnionRoom(const u32 param0);
-BOOL MapHeader_HasFeebasTiles(const u32 param0);
-BOOL MapHeader_IsTrophyGarden(const u32 param0);
-BOOL MapHeader_IsAmitySquare(const u32 param0);
-BOOL MapHeader_IsAzureFluteAllowed(const u32 param0);
-BOOL MapHeader_IsPokemonCenter2F(const u32 param0);
-u32 MapHeader_GetMapEvolutionMethod(u32 param0);
+BOOL MapHeader_IsTeleportAllowed(u32 headerID);
+BOOL MapHeader_IsOnMainMatrix(u32 headerID);
+BOOL MapHeader_IsPokemonCenter(u32 headerID);
+BOOL MapHeader_IsCave(u32 headerID);
+BOOL MapHeader_IsBuilding(u32 headerID);
+BOOL MapHeader_IsOutdoors(u32 headerID);
+BOOL sub_0203A2C8(u32 headerID);
+BOOL MapHeader_IsUnionRoom(const u32 headerID);
+BOOL MapHeader_HasFeebasTiles(const u32 headerID);
+BOOL MapHeader_IsTrophyGarden(const u32 headerID);
+BOOL MapHeader_IsAmitySquare(const u32 headerID);
+BOOL MapHeader_IsAzureFluteAllowed(const u32 headerID);
+BOOL MapHeader_IsPokemonCenter2F(const u32 headerID);
+enum PokemonEvoMethod MapHeader_GetMapEvolutionMethod(u32 headerID);
 
-#endif // POKEPLATINUM_UNK_0203A024_H
+#endif // POKEPLATINUM_MAP_HEADER_H

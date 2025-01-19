@@ -25,7 +25,7 @@ typedef struct {
     Options *unk_18;
     JournalEntry *unk_1C;
     GameRecords *records;
-    PokedexData *unk_24;
+    Pokedex *unk_24;
     int unk_28;
     int unk_2C;
     int unk_30;

@@ -20,7 +20,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "strbuf.h"
 #include "string_template.h"
 
@@ -42,10 +42,10 @@ struct UnkStruct_0207AE68_t {
     PokemonSummary *unk_3C;
     void *unk_40;
     PokemonAnimationSys *unk_44;
-    PokedexData *unk_48;
+    Pokedex *unk_48;
     Bag *unk_4C;
     GameRecords *records;
-    PoketchData *poketchData;
+    Poketch *poketch;
     void *unk_58;
     int unk_5C;
     u16 unk_60;

@@ -109,7 +109,7 @@ Static main
 	Object main.nef.p/src_unk_0202602C.c.o
 	Object main.nef.p/src_unk_02026150.c.o
 	Object main.nef.p/src_unk_020261E4.c.o
-	Object main.nef.p/src_pokedex_data.c.o
+	Object main.nef.p/src_pokedex.c.o
 	Object main.nef.p/src_savedata_misc.c.o
 	Object main.nef.p/src_game_options.c.o
 	Object main.nef.p/src_berry_patches.c.o
@@ -233,7 +233,7 @@ Static main
 	Object main.nef.p/src_unk_020559DC.c.o
 	Object main.nef.p/src_unk_02055C50.c.o
 	Object main.nef.p/src_catching_show.c.o
-	Object main.nef.p/src_poketch_data.c.o
+	Object main.nef.p/src_poketch.c.o
 	Object main.nef.p/src_unk_02056B30.c.o
 	Object main.nef.p/src_unk_020573FC.c.o
 	Object main.nef.p/src_unk_0205749C.c.o

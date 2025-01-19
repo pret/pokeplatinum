@@ -124,5 +124,12 @@
         "pokemon_pos_m": 19,
         "entry_text": "Its body is made of magma.\nIf it doesn’t keep moving, its\nbody will cool and harden.",
         "category": "Lava Pokémon"
+    },
+    "catching_show_data": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 514
     }
 }

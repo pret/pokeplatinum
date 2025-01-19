@@ -344,7 +344,7 @@ static void JournalPrinter_PrintTrainerEvent(JournalManager *journalManager, Win
     strLength = Strbuf_Length(name);
     Strbuf_Free(name);
 
-    if (TrainerData_LoadParam(journalEntryTrainer.trainerID, TRDATA_CLASS) == TRAINER_CLASS_RIVAL) {
+    if (Trainer_LoadParam(journalEntryTrainer.trainerID, TRDATA_CLASS) == TRAINER_CLASS_RIVAL) {
         name = MessageLoader_GetNewStrbuf(journalManager->loader, journal_entries_rival_name);
         StringTemplate_SetRivalName(journalManager->template, 1, journalManager->saveData);
         StringTemplate_Format(journalManager->template, journalManager->strbuf, name);
