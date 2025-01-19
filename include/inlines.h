@@ -158,19 +158,18 @@ static inline u16 ScriptContext_GetVar(ScriptContext *ctx)
     return FieldSystem_TryGetVar(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 }
 
-inline u16 inline_020564D0(const u16 param0)
+// Functionally equivalent to LCRNG_Next() % param
+inline u16 LCRNG_RandMod(const u16 param)
 {
-    GF_ASSERT(param0 != 0);
+    GF_ASSERT(param != 0);
 
-    if (param0 <= 1) {
+    if (param <= 1) {
         return 0;
     } else {
-        u16 v0;
-        u16 v1;
-        v0 = (0xffff / param0) + 1;
-        v1 = LCRNG_Next() / v0;
+        u16 v0 = (0xffff / param) + 1;
+        u16 v1 = LCRNG_Next() / v0;
 
-        GF_ASSERT(v1 < param0);
+        GF_ASSERT(v1 < param);
         return v1;
     }
 }

@@ -1162,7 +1162,7 @@ static int ov94_02243990(UnkStruct_ov94_0223FD4C *param0)
     SaveData_SaveStateInit(param0->unk_00->unk_20, 2);
 
     param0->unk_2C = 31;
-    param0->unk_10E0 = inline_020564D0(60) + 2;
+    param0->unk_10E0 = LCRNG_RandMod(60) + 2;
 
     return 3;
 }

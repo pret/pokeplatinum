@@ -29,7 +29,7 @@ _003E:
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     ScrCmd_073
-    ScrCmd_206
+    DoGreatMarshLookoutScene
     ReleaseAll
     End
 

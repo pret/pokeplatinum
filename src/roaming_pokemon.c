@@ -21,9 +21,9 @@ typedef struct {
     u16 unk_02[5];
 } UnkStruct_020EFBB8;
 
-static void sub_0206C538(UnkStruct_0202D7B0 *param0, const u8 param1, const int param2);
-static void sub_0206C588(UnkStruct_0202D7B0 *param0, const u8 param1, const int param2);
-static void sub_0206C638(UnkStruct_0202D7B0 *param0, const u8 param1, const u8 param2, const int param3);
+static void sub_0206C538(SpecialEncounter *param0, const u8 param1, const int param2);
+static void sub_0206C588(SpecialEncounter *param0, const u8 param1, const int param2);
+static void sub_0206C638(SpecialEncounter *param0, const u8 param1, const u8 param2, const int param3);
 
 static const UnkStruct_020EFBB8 Unk_020EFBB8[29] = {
     {
@@ -176,7 +176,7 @@ static const int RoamingPokemonRoutes[29] = {
     0xCC,
 };
 
-void sub_0206C33C(UnkStruct_0202D7B0 *param0, const u8 param1)
+void sub_0206C33C(SpecialEncounter *param0, const u8 param1)
 {
     int v0;
 
@@ -184,7 +184,7 @@ void sub_0206C33C(UnkStruct_0202D7B0 *param0, const u8 param1)
     sub_0206C538(param0, param1, v0);
 }
 
-void sub_0206C354(UnkStruct_0202D7B0 *param0)
+void sub_0206C354(SpecialEncounter *param0)
 {
     u8 v0;
 
@@ -195,13 +195,13 @@ void sub_0206C354(UnkStruct_0202D7B0 *param0)
     }
 }
 
-void sub_0206C37C(UnkStruct_0202D7B0 *param0)
+void sub_0206C37C(SpecialEncounter *param0)
 {
     u8 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0202D8F8(param0, v0)) {
-            if (inline_020564D0(16) == 0) {
+            if (LCRNG_RandMod(16) == 0) {
                 sub_0206C33C(param0, v0);
             } else {
                 {
@@ -221,7 +221,7 @@ int sub_0206C3C8(const u8 param0)
     return RoamingPokemonRoutes[param0];
 }
 
-BOOL sub_0206C3E0(UnkStruct_0202D7B0 *param0)
+BOOL sub_0206C3E0(SpecialEncounter *param0)
 {
     u8 v0;
 
@@ -234,7 +234,7 @@ BOOL sub_0206C3E0(UnkStruct_0202D7B0 *param0)
     return 0;
 }
 
-void sub_0206C404(UnkStruct_0202D7B0 *param0, const int param1)
+void sub_0206C404(SpecialEncounter *param0, const int param1)
 {
     if (sub_0206C3E0(param0)) {
         sub_0202D8A4(param0, param1);
@@ -244,14 +244,14 @@ void sub_0206C404(UnkStruct_0202D7B0 *param0, const int param1)
 void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
 {
     Pokemon *v0;
-    UnkStruct_0206C638 *v1;
-    UnkStruct_0202D7B0 *v2;
+    Roamer *v1;
+    SpecialEncounter *v2;
     int previouslyVisitedMap;
     TrainerInfo *v4;
     int species;
     u8 level;
 
-    v2 = sub_0202D834(saveData);
+    v2 = SaveData_GetSpecialEncounters(saveData);
     v1 = sub_0202D924(v2, slot);
 
     switch (slot) {
@@ -303,7 +303,7 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
     sub_0206C538(v2, slot, previouslyVisitedMap);
 }
 
-static void sub_0206C538(UnkStruct_0202D7B0 *param0, const u8 param1, const int param2)
+static void sub_0206C538(SpecialEncounter *param0, const u8 param1, const int param2)
 {
     u8 v0;
     int v1;
@@ -312,7 +312,7 @@ static void sub_0206C538(UnkStruct_0202D7B0 *param0, const u8 param1, const int 
     v1 = RoamingPokemonRoutes[sub_0202D8C4(param0, param1)];
 
     while (TRUE) {
-        v0 = inline_020564D0(29);
+        v0 = LCRNG_RandMod(29);
         v2 = RoamingPokemonRoutes[v0];
 
         if ((v2 != param2) && (v2 != v1)) {
@@ -322,7 +322,7 @@ static void sub_0206C538(UnkStruct_0202D7B0 *param0, const u8 param1, const int 
     }
 }
 
-static void sub_0206C588(UnkStruct_0202D7B0 *param0, const u8 param1, const int param2)
+static void sub_0206C588(SpecialEncounter *param0, const u8 param1, const int param2)
 {
     const UnkStruct_020EFBB8 *v0;
     u8 v1;
@@ -343,7 +343,7 @@ static void sub_0206C588(UnkStruct_0202D7B0 *param0, const u8 param1, const int 
         u8 v3;
 
         while (TRUE) {
-            v3 = inline_020564D0(v0->unk_00);
+            v3 = LCRNG_RandMod(v0->unk_00);
             v1 = v0->unk_02[v3];
             v2 = RoamingPokemonRoutes[v1];
 
@@ -355,9 +355,9 @@ static void sub_0206C588(UnkStruct_0202D7B0 *param0, const u8 param1, const int 
     }
 }
 
-static void sub_0206C638(UnkStruct_0202D7B0 *param0, const u8 param1, const u8 param2, const int param3)
+static void sub_0206C638(SpecialEncounter *param0, const u8 param1, const u8 param2, const int param3)
 {
-    UnkStruct_0206C638 *v0;
+    Roamer *v0;
 
     v0 = sub_0202D924(param0, param1);
 

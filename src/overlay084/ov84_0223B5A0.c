@@ -602,9 +602,9 @@ static void ov84_0223B9AC(UnkStruct_ov84_0223B5A0 *param0)
     param0->unk_D0 = SaveData_Options(param0->unk_C4->unk_00);
 }
 
-static UnkStruct_0202D7B0 *ov84_0223B9E4(UnkStruct_ov84_0223B5A0 *param0)
+static SpecialEncounter *ov84_0223B9E4(UnkStruct_ov84_0223B5A0 *param0)
 {
-    return sub_0202D834(param0->unk_C4->unk_00);
+    return SaveData_GetSpecialEncounters(param0->unk_C4->unk_00);
 }
 
 static void ov84_0223B9F4(UnkStruct_ov84_0223B5A0 *param0, u8 param1)

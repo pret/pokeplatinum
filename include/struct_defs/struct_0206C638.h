@@ -10,6 +10,6 @@ typedef struct {
     u8 unk_10;
     u8 unk_11;
     u8 unk_12;
-} UnkStruct_0206C638;
+} Roamer;
 
 #endif // POKEPLATINUM_STRUCT_0206C638_H

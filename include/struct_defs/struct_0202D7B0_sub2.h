@@ -4,6 +4,6 @@
 typedef struct {
     int unk_00;
     int unk_04;
-} UnkStruct_0202D7B0_sub2;
+} SpecialEncounter_sub2;
 
 #endif // POKEPLATINUM_STRUCT_0202D7B0_SUB2_H

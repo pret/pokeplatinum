@@ -109,7 +109,7 @@ BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int par
     v7 = 0;
 
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
-        v3 = inline_020564D0(ringTileCount[patchRing]);
+        v3 = LCRNG_RandMod(ringTileCount[patchRing]);
         v1 = 9 - (patchRing * 2);
         v2 = 9 - (patchRing * 2);
         v4 = v3 / v1;
@@ -153,7 +153,7 @@ void SetupGrassPatches(FieldSystem *fieldSystem, const int param1, RadarChain *c
         if (chain->patch[patchRing].active) {
             chain->patch[patchRing].continueChain = CheckPatchContinueChain(patchRing, param1);
             if (!chain->patch[patchRing].continueChain) {
-                if (inline_020564D0(100) < 50) { // If the patch will break the chain, it has a 50/50 chance of shaking the other type
+                if (LCRNG_RandMod(100) < 50) { // If the patch will break the chain, it has a 50/50 chance of shaking the other type
                     chain->patch[patchRing].shakeType = PATCH_SHAKE_SOFT;
                 } else {
                     chain->patch[patchRing].shakeType = PATCH_SHAKE_HARD;
@@ -350,7 +350,7 @@ static BOOL sub_020698AC(const RadarChain *chain, const int param1, const int pa
 
 static void sub_020698E4(FieldSystem *fieldSystem, RadarChain *chain)
 {
-    UnkStruct_020698E4 *v0 = sub_0202D830(sub_0202D834(fieldSystem->saveData));
+    UnkStruct_020698E4 *v0 = sub_0202D830(SaveData_GetSpecialEncounters(fieldSystem->saveData));
     int v1 = v0->unk_00[chain->unk_D0].unk_02;
 
     if (v1 < chain->count) {
@@ -373,7 +373,7 @@ static u8 sub_0206994C(FieldSystem *fieldSystem)
 {
     u8 v1;
     BOOL v2;
-    UnkStruct_020698E4 *v0 = sub_0202D830(sub_0202D834(fieldSystem->saveData));
+    UnkStruct_020698E4 *v0 = sub_0202D830(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 
     for (v1 = 0; v1 < 3; v1++) {
         if (v0->unk_00[v1].unk_00 == 0) {
@@ -408,7 +408,7 @@ static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult)
         rates = ratesBoosted;
     }
 
-    if (inline_020564D0(100) < rates[patchRing]) { // Check if random number falls within the rates
+    if (LCRNG_RandMod(100) < rates[patchRing]) { // Check if random number falls within the rates
         return TRUE; // Patch will continue the chain
     } else {
         return FALSE; // Patch will break the chain
@@ -423,7 +423,7 @@ BOOL RefreshRadarChain(FieldTask *taskMan)
     switch (*v1) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        u8 *v2 = sub_0202D9C4(sub_0202D834(fieldSystem->saveData));
+        u8 *v2 = sub_0202D9C4(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 
         if (*v2 < RADAR_BATTERY_STEPS) {
             ScriptManager_Start(taskMan, 8970, NULL, NULL);
@@ -477,7 +477,7 @@ static BOOL CheckPatchShiny(const int chainCount)
         rate = 200;
     }
 
-    if (!inline_020564D0(rate)) {
+    if (!LCRNG_RandMod(rate)) {
         return TRUE;
     } else {
         return FALSE;
@@ -500,7 +500,7 @@ void RadarChargeStep(FieldSystem *fieldSystem)
     u8 *v0;
 
     if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 431, 1, 4) == 1) {
-        v0 = sub_0202D9C4(sub_0202D834(fieldSystem->saveData));
+        v0 = sub_0202D9C4(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;
         }

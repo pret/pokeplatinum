@@ -1,4 +1,4 @@
-#include "overlay006/ov6_022477B8.h"
+#include "overlay006/dual_slot_encounters.h"
 
 #include <nitro.h>
 #include <string.h>

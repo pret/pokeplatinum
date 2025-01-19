@@ -176,7 +176,7 @@ static int NumMonsCaptured(CatchingShow *catchingShow)
 
 static void ResetStepCount(CatchingShow *catchingShow)
 {
-    catchingShow->steps = inline_020564D0(10) + 5;
+    catchingShow->steps = LCRNG_RandMod(10) + 5;
 }
 
 static BOOL IsStepCountZero(CatchingShow *catchingShow)
@@ -226,7 +226,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
         return FALSE;
     }
 
-    encounterChance = inline_020564D0(totalRarity + WEIGHT_NO_ENCOUNTER);
+    encounterChance = LCRNG_RandMod(totalRarity + WEIGHT_NO_ENCOUNTER);
 
     if (encounterChance < WEIGHT_NO_ENCOUNTER) {
         return FALSE;
