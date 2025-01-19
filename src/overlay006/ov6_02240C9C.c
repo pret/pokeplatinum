@@ -812,7 +812,7 @@ static BOOL ov6_022418DC(FieldSystem *fieldSystem, u32 encounterRate)
 
 static u8 GetGroundEncounterSlot(void)
 {
-    u8 v0 = LCRNG_RandMod(100);
+    u8 roll = LCRNG_RandMod(100);
 
     if (roll < 20) {
         return 0;
@@ -843,7 +843,7 @@ static u8 GetGroundEncounterSlot(void)
 
 static u8 GetWaterEncounterSlot(void)
 {
-    u8 v0 = LCRNG_RandMod(100);
+    u8 roll = LCRNG_RandMod(100);
 
     if (roll < 60) {
         return 0;
@@ -862,7 +862,7 @@ static u8 GetRodEncounterSlot(const int fishingRodType)
 {
     u8 encSlot = 0;
 
-    u8 v0 = LCRNG_RandMod(100);
+    u8 roll = LCRNG_RandMod(100);
 
     switch (fishingRodType) {
     case FISHING_TYPE_OLD_ROD:
