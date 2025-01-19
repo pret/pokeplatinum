@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -110,21 +111,21 @@ static void ov21_021E0B24(int param0, int *param1, int *param2);
 static void ov21_021DFD00(UnkStruct_ov21_021DF858 *param0);
 static void ov21_021E08D0(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int param3, int param4, int param5);
 static void ov21_021E0944(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int param3, int param4, int param5);
-static void ov21_021E09A4(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int param3, int param4, int param5, int param6, int param7);
-static int ov21_021E0A4C(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0A8C(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0A90(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0A94(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0A98(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0AA8(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0AB8(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0AC8(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0AD8(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0ADC(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0AEC(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0AFC(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0B10(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2);
-static int ov21_021E0B64(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2, int param3);
+static void ov21_021E09A4(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int param3, int param4, int formIndex, int param6, int param7);
+static int SpeciesGenderMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int SpeciesMaleMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int SpeciesFemaleMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int BlankMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int BurmyFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int WormadamFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int ShellosFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int GastrodonFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int ov21_021E0AD8(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int DeoxysFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int ShayminFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int GiratinaFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int RotomFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex);
+static int FormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2, int formIndex);
 static void ov21_021E0BF8(UnkStruct_ov21_021DFFF8 *param0);
 static void ov21_021E0C10(UnkStruct_ov21_021DFFF8 *param0);
 static void ov21_021E0C30(UnkStruct_ov21_021DFFF8 *param0);
@@ -784,12 +785,12 @@ static int ov21_021E0268(int param0, const UnkStruct_ov21_021DF844 *param1)
     case 492:
     case 487:
     case 479:
-        return ov21_021D341C(param1->unk_04, param0);
+        return PokedexSort_NumFormsSeem(param1->unk_04, param0);
     default:
         break;
     }
 
-    return ov21_021D33E0(param1->unk_04, param0);
+    return PokedexSort_NumGendersVisible(param1->unk_04, param0);
 }
 
 static int ov21_021E02F0(int param0, const UnkStruct_ov21_021DF844 *param1)
@@ -811,10 +812,10 @@ static int ov21_021E02F0(int param0, const UnkStruct_ov21_021DF844 *param1)
         return 3;
     }
 
-    v1 = ov21_021D33E0(param1->unk_04, param0);
+    v1 = PokedexSort_NumGendersVisible(param1->unk_04, param0);
 
     if (v1 == 1) {
-        v0 = ov21_021D334C(param1->unk_04, param0, 0);
+        v0 = PokedexSort_Gender(param1->unk_04, param0, 0);
         GF_ASSERT(v0 != -1);
 
         if (v0 == 0) {
@@ -1050,17 +1051,17 @@ static void ov21_021E0944(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
     ov21_021E09A4(param0, param1, param2, param3, param4, v0, v1, v2);
 }
 
-static void ov21_021E09A4(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int param3, int param4, int param5, int param6, int param7)
+static void ov21_021E09A4(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int param3, int param4, int formIndex, int param6, int param7)
 {
     Window *v0;
     UnkStruct_ov21_021D4CB8 v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int v3;
-    int v4;
+    int entryID;
 
     GF_ASSERT(param0->unk_00[param6]);
 
-    v4 = ov21_021E0B64(param1, param2, param4, param5);
+    entryID = FormMessage(param1, param2, param4, formIndex);
 
     v1.unk_00 = v2->unk_14C;
     v1.unk_08 = sub_0200A72C(param0->unk_10[1], NULL);
@@ -1074,7 +1075,7 @@ static void ov21_021E09A4(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
     v3 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DMAIN);
     v0 = ov21_021D4D6C(v2->unk_14C, 16, 2);
 
-    ov21_021D4E10(v2->unk_14C, v0, message_bank_pokedex, v4);
+    ov21_021D4E10(v2->unk_14C, v0, message_bank_pokedex, entryID);
 
     v1.unk_04 = v0;
     v1.unk_0C = param0->unk_00[param6];
@@ -1085,131 +1086,87 @@ static void ov21_021E09A4(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
     ov21_021D4DA0(v0);
 }
 
-static int ov21_021E0A4C(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int SpeciesGenderMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-    int v1;
+    int entryID;
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
-    v1 = ov21_021D334C(param1->unk_04, species, param2);
-    GF_ASSERT(v1 != -1);
+    int gender = PokedexSort_Gender(param1->unk_04, species, formIndex);
+    GF_ASSERT(gender != -1);
 
-    switch (v1) {
-    case 0:
-        v0 = 13;
+    switch (gender) {
+    case GENDER_MALE:
+        entryID = pl_msg_pokedex_male;
         break;
-    case 1:
-        v0 = 14;
+    case GENDER_FEMALE:
+        entryID = pl_msg_pokedex_female;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    return v0;
+    return entryID;
 }
 
-static int ov21_021E0A8C(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int SpeciesMaleMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-
-    v0 = 13;
-    return v0;
+    return pl_msg_pokedex_male;
 }
 
-static int ov21_021E0A90(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int SpeciesFemaleMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-
-    v0 = 14;
-    return v0;
+    return pl_msg_pokedex_female;
 }
 
-static int ov21_021E0A94(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int BlankMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0 = 21;
-
-    return v0;
+    return pl_msg_pokedex_blank;
 }
 
-static int ov21_021E0A98(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int BurmyFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-    int v1 = ov21_021D33A4(param1->unk_04, param2);
-
-    v0 = 17 + v1;
-    return v0;
+    return pl_msg_pokedex_plantcloak + PokedexSort_BurmyForm(param1->unk_04, formIndex);
 }
 
-static int ov21_021E0AA8(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int WormadamFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-    int v1 = ov21_021D33BC(param1->unk_04, param2);
-
-    v0 = 17 + v1;
-
-    return v0;
+    return pl_msg_pokedex_plantcloak + PokedexSort_WormadamForm(param1->unk_04, formIndex);
 }
 
-static int ov21_021E0AB8(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int ShellosFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-    int v1 = ov21_021D3374(param1->unk_04, param2);
-
-    v0 = 15 + v1;
-
-    return v0;
+    return pl_msg_pokedex_westsea + PokedexSort_ShellosForm(param1->unk_04, formIndex);
 }
 
-static int ov21_021E0AC8(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int GastrodonFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-    int v1 = ov21_021D338C(param1->unk_04, param2);
-
-    v0 = 15 + v1;
-    return v0;
+    return pl_msg_pokedex_westsea + PokedexSort_GastrodonForm(param1->unk_04, formIndex);
 }
 
-static int ov21_021E0AD8(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int ov21_021E0AD8(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0 = 20;
-    return v0;
+    return pl_msg_pokedex_oneform;
 }
 
-static int ov21_021E0ADC(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int DeoxysFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-    int v1 = ov21_021D3404(param1->unk_04, param2);
-
-    v0 = 111 + v1;
-    return v0;
+    return pl_msg_pokedex_normalforme + PokedexSort_DeoxysForm(param1->unk_04, formIndex);
 }
 
-static int ov21_021E0AEC(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int ShayminFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-    int v1 = ov21_021D3410(param1->unk_04, 492, param2);
-
-    v0 = 115 + v1;
-    return v0;
+    return pl_msg_pokedex_landforme + PokedexSort_Form(param1->unk_04, SPECIES_SHAYMIN, formIndex);
 }
 
-static int ov21_021E0AFC(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int GiratinaFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-    int v1 = ov21_021D3410(param1->unk_04, 487, param2);
-
-    v0 = 117 + v1;
-    return v0;
+    return pl_msg_pokedex_alteredforme + PokedexSort_Form(param1->unk_04, SPECIES_GIRATINA, formIndex);
 }
 
-static int ov21_021E0B10(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2)
+static int RotomFormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int formIndex)
 {
-    int v0;
-    int v1 = ov21_021D3410(param1->unk_04, 479, param2);
-
-    v0 = 119 + v1;
-    return v0;
+    return pl_msg_pokedex_rotom + PokedexSort_Form(param1->unk_04, SPECIES_ROTOM, formIndex);
 }
 
 static inline int inline_ov21_021E00F4(int param0, int param1)
@@ -1254,55 +1211,55 @@ static void ov21_021E0B24(int param0, int *param1, int *param2)
     *param2 = v1;
 }
 
-static int ov21_021E0B64(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2, int param3)
+static int FormMessage(UnkStruct_ov21_021DF858 *param0, const UnkStruct_ov21_021DF844 *param1, int param2, int formIndex)
 {
-    int v0;
+    int entryID;
 
     switch (param2) {
     case 0:
-        v0 = ov21_021E0A4C(param0, param1, param3);
+        entryID = SpeciesGenderMessage(param0, param1, formIndex);
         break;
     case 1:
-        v0 = ov21_021E0A8C(param0, param1, param3);
+        entryID = SpeciesMaleMessage(param0, param1, formIndex);
         break;
     case 2:
-        v0 = ov21_021E0A90(param0, param1, param3);
+        entryID = SpeciesFemaleMessage(param0, param1, formIndex);
         break;
     case 3:
-        v0 = ov21_021E0A94(param0, param1, param3);
+        entryID = BlankMessage(param0, param1, formIndex);
         break;
     case 6:
-        v0 = ov21_021E0A98(param0, param1, param3);
+        entryID = BurmyFormMessage(param0, param1, formIndex);
         break;
     case 7:
-        v0 = ov21_021E0AA8(param0, param1, param3);
+        entryID = WormadamFormMessage(param0, param1, formIndex);
         break;
     case 4:
-        v0 = ov21_021E0AB8(param0, param1, param3);
+        entryID = ShellosFormMessage(param0, param1, formIndex);
         break;
     case 5:
-        v0 = ov21_021E0AC8(param0, param1, param3);
+        entryID = GastrodonFormMessage(param0, param1, formIndex);
         break;
     case 8:
-        v0 = ov21_021E0AD8(param0, param1, param3);
+        entryID = ov21_021E0AD8(param0, param1, formIndex);
         break;
     case 9:
-        v0 = ov21_021E0ADC(param0, param1, param3);
+        entryID = DeoxysFormMessage(param0, param1, formIndex);
         break;
     case 10:
-        v0 = ov21_021E0AEC(param0, param1, param3);
+        entryID = ShayminFormMessage(param0, param1, formIndex);
         break;
     case 11:
-        v0 = ov21_021E0AFC(param0, param1, param3);
+        entryID = GiratinaFormMessage(param0, param1, formIndex);
         break;
     case 12:
-        v0 = ov21_021E0B10(param0, param1, param3);
+        entryID = RotomFormMessage(param0, param1, formIndex);
         break;
     default:
         break;
     }
 
-    return v0;
+    return entryID;
 }
 
 static void ov21_021E0BF8(UnkStruct_ov21_021DFFF8 *param0)

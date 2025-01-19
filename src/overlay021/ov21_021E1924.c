@@ -5,6 +5,7 @@
 
 #include "struct_decls/struct_02023FCC_decl.h"
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
@@ -799,7 +800,7 @@ static void ov21_021E2478(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A
     v4 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(v3->unk_14C, 8, 4);
 
-    ov21_021D4DAC(v3->unk_14C, v0, message_bank_pokedex, 33, 0, 0);
+    DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_next, 0, 0);
 
     v1.unk_04 = v0;
     v1.unk_0C = param0->unk_00[0];
@@ -813,7 +814,7 @@ static void ov21_021E2478(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A
     v0 = ov21_021D4D6C(v3->unk_14C, 8, 4);
 
     {
-        u32 v6 = ov21_021D4DAC(v3->unk_14C, v0, message_bank_pokedex, 34, 0, 0);
+        u32 v6 = DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_back, 0, 0);
         v1.unk_10 = 32 - v6;
     }
 

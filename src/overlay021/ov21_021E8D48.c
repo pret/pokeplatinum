@@ -8,6 +8,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1F90.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -749,13 +750,13 @@ static void ov21_021E9968(Window *param0, int param1, int param2)
 static void ov21_021E998C(Window *param0, int heapID)
 {
     Strbuf *v0 = Strbuf_Init(64, heapID);
-    MessageLoader *pokedexTextBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
-    MessageLoader_GetStrbuf(pokedexTextBank, 110, v0);
+    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_registered, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 32, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
 
     Strbuf_Free(v0);
-    MessageLoader_Free(pokedexTextBank);
+    MessageLoader_Free(pokedexMessageBank);
 }
 
 static Sprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1, int param2, int param3, int param4)

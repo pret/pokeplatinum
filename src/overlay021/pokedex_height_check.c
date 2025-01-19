@@ -5,6 +5,7 @@
 
 #include "struct_decls/sprite_decl.h"
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021E29DC.h"
@@ -45,10 +46,6 @@ typedef struct {
 } UnkStruct_ov21_021E6118;
 
 typedef struct {
-    int unk_00;
-} UnkStruct_ov21_021E6134;
-
-typedef struct {
     SpriteResource *heightCheckGraphics[4];
     CellActor *trainerHeightCellActor;
 } HeightCheckVisuals;
@@ -65,7 +62,7 @@ static UnkStruct_ov21_021E6118 *ov21_021E60D8(int param0, UnkStruct_ov21_021D0F6
 static UnkStruct_ov21_021D4660 *ov21_021E6100(int param0, UnkStruct_ov21_021D0F60 *param1);
 static void ov21_021E6104(UnkStruct_ov21_021E6104 *param0);
 static void ov21_021E6118(UnkStruct_ov21_021E6118 *param0);
-static void ForMatching1(UnkStruct_ov21_021D4660 *param0);
+static void DummyForMatching1(UnkStruct_ov21_021D4660 *param0);
 static int ov21_021E6130(void);
 static int ov21_021E6134(UnkStruct_ov21_021E6A68 *param0, void *param1);
 static int ov21_021E6158(UnkStruct_ov21_021E6A68 *param0, void *param1);
@@ -77,15 +74,15 @@ static void SetTrainerHeightLarge(HeightCheckVisuals *heightCheckVisuals);
 static void SetTrainerHeightNormal(HeightCheckVisuals *heightCheckVisuals);
 static void ov21_021E628C(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, BOOL param3);
 static BOOL ov21_021E62F8(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, BOOL param3);
-static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, const UnkStruct_ov21_021E6134 *param3, int heapID);
+static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, const int *param3, int heapID);
 static void FreeVisuals(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1);
 static void DisplayBackground(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, int heapID);
 static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, int heapID);
-static void RemoveVisuals(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1);
+static void FreeSprites(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1);
 static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, int heapID);
-static void DeleteTrainerHeight(HeightCheckVisuals *heightCheckVisuals);
-static void ForMatching2(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, int heapID);
-static void ForMatching3(HeightCheckVisuals *heightCheckVisuals);
+static void FreeTrainerHeight(HeightCheckVisuals *heightCheckVisuals);
+static void DummyForMatching2(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, int heapID);
+static void DummyForMatching3(HeightCheckVisuals *heightCheckVisuals);
 static void DisplayHeightLabels(UnkStruct_ov21_021E6118 *param0, int heapID);
 static void DisplayHeightValues(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, int heapID);
 static void DisplaySpeciesHeight(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1);
@@ -118,7 +115,7 @@ void ov21_021E6074(UnkStruct_ov21_021E68F4 *param0)
 {
     ov21_021E6104(param0->unk_00);
     ov21_021E6118(param0->unk_04);
-    ForMatching1(param0->unk_20);
+    DummyForMatching1(param0->unk_20);
 }
 
 static UnkStruct_ov21_021E6104 *ov21_021E608C(int param0, UnkStruct_ov21_021D0F60 *param1)
@@ -163,7 +160,7 @@ static void ov21_021E6118(UnkStruct_ov21_021E6118 *param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ForMatching1(UnkStruct_ov21_021D4660 *param0)
+static void DummyForMatching1(UnkStruct_ov21_021D4660 *param0)
 {
     return;
 }
@@ -175,10 +172,10 @@ static int ov21_021E6130(void)
 
 static int ov21_021E6134(UnkStruct_ov21_021E6A68 *param0, void *param1)
 {
-    UnkStruct_ov21_021E6134 *v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021E6134));
+    int *v1 = Heap_AllocFromHeap(param0->heapID, sizeof(int));
 
     GF_ASSERT(v1);
-    memset(v1, 0, sizeof(UnkStruct_ov21_021E6134));
+    memset(v1, 0, sizeof(int));
 
     param0->unk_08 = v1;
 
@@ -196,7 +193,7 @@ static int ov21_021E6158(UnkStruct_ov21_021E6A68 *param0, void *param1)
 
 static int ov21_021E6168(UnkStruct_ov21_021E6A68 *param0, void *param1)
 {
-    UnkStruct_ov21_021E6134 *v1 = param0->unk_08;
+    int *v1 = param0->unk_08;
 
     Heap_FreeToHeap(v1);
     param0->unk_08 = NULL;
@@ -207,7 +204,7 @@ static int ov21_021E6168(UnkStruct_ov21_021E6A68 *param0, void *param1)
 static int ov21_021E617C(void *param0, UnkStruct_ov21_021E6B20 *param1, const void *param2, const UnkStruct_ov21_021E6A68 *param3)
 {
     const UnkStruct_ov21_021E6104 *v0 = param2;
-    const UnkStruct_ov21_021E6134 *v1 = param3->unk_08;
+    const int *v1 = param3->unk_08;
     UnkStruct_ov21_021E6118 *v2 = param0;
     HeightCheckVisuals *heightCheckVisuals = param1->unk_08;
 
@@ -314,22 +311,22 @@ static BOOL ov21_021E62F8(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21
     return FALSE;
 }
 
-static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, const UnkStruct_ov21_021E6134 *param3, int heapID)
+static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, const int *param3, int heapID)
 {
     DisplayBackground(param1, param2, heapID);
     DisplayHeightLabels(param1, heapID);
     DisplayHeightValues(param1, param2, heapID);
     GetHeightCheckGraphics(heightCheckVisuals, param1, heapID);
     DisplayTrainerHeight(heightCheckVisuals, param1, param2, heapID);
-    ForMatching2(heightCheckVisuals, param1, param2, heapID);
+    DummyForMatching2(heightCheckVisuals, param1, param2, heapID);
     DisplaySpeciesHeight(param1, param2);
 }
 
 static void FreeVisuals(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1)
 {
-    ForMatching3(heightCheckVisuals);
-    DeleteTrainerHeight(heightCheckVisuals);
-    RemoveVisuals(heightCheckVisuals, param1);
+    DummyForMatching3(heightCheckVisuals);
+    FreeTrainerHeight(heightCheckVisuals);
+    FreeSprites(heightCheckVisuals, param1);
 
     Window_FillTilemap(&param1->unk_00->unk_04, 0);
     Bg_ClearTilemap(param1->unk_00->unk_00, 1);
@@ -369,7 +366,7 @@ static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, UnkSt
     heightCheckVisuals->heightCheckGraphics[HCG_ANIMATION] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], pokedexGraphicsNarc, 92, 1, 92 + 7000, 3, heapID);
 }
 
-static void RemoveVisuals(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1)
+static void FreeSprites(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1)
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
 
@@ -414,17 +411,17 @@ static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, UnkStru
     SetTrainerScale(heightCheckVisuals->trainerHeightCellActor, trainerScale);
 }
 
-static void DeleteTrainerHeight(HeightCheckVisuals *heightCheckVisuals)
+static void FreeTrainerHeight(HeightCheckVisuals *heightCheckVisuals)
 {
     CellActor_Delete(heightCheckVisuals->trainerHeightCellActor);
 }
 
-static void ForMatching2(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, int heapID)
+static void DummyForMatching2(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, int heapID)
 {
     return;
 }
 
-static void ForMatching3(HeightCheckVisuals *heightCheckVisuals)
+static void DummyForMatching3(HeightCheckVisuals *heightCheckVisuals)
 {
     return;
 }
@@ -432,21 +429,21 @@ static void ForMatching3(HeightCheckVisuals *heightCheckVisuals)
 static void DisplayHeightLabels(UnkStruct_ov21_021E6118 *param0, int heapID)
 {
     Strbuf *strbuf = Strbuf_Init(32, heapID);
-    MessageLoader *pokedexTextBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
-    MessageLoader_GetStrbuf(pokedexTextBank, 43, strbuf);
+    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_heightcheck_topscreen, strbuf);
 
     {
         u32 xOffset = Font_CalcCenterAlignment(FONT_SYSTEM, strbuf, 0, 256);
         Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, strbuf, xOffset, 24, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
-    MessageLoader_GetStrbuf(pokedexTextBank, 9, strbuf);
+    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_ht, strbuf);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, strbuf, 32, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    MessageLoader_GetStrbuf(pokedexTextBank, 9, strbuf);
+    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_ht, strbuf);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, strbuf, 152, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     Strbuf_Free(strbuf);
-    MessageLoader_Free(pokedexTextBank);
+    MessageLoader_Free(pokedexMessageBank);
 }
 
 static void DisplayHeightValues(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, int heapID)
@@ -474,9 +471,9 @@ static void DisplayHeightValues(UnkStruct_ov21_021E6118 *param0, const UnkStruct
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, PokedexSort_TrainerName(param1->unk_04), 146, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     if (PokedexSort_TrainerGender(param1->unk_04) == GENDER_MALE) {
-        MessageLoader_GetStrbuf(messageBank, 95, strbuf);
+        MessageLoader_GetStrbuf(messageBank, pl_msg_pokedex_lucasheight, strbuf);
     } else {
-        MessageLoader_GetStrbuf(messageBank, 96, strbuf);
+        MessageLoader_GetStrbuf(messageBank, pl_msg_pokedex_dawnheight, strbuf);
     }
 
     {

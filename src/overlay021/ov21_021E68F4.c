@@ -5,6 +5,7 @@
 
 #include "struct_decls/struct_02023FCC_decl.h"
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
@@ -622,7 +623,7 @@ static void ov21_021E70D4(UnkStruct_ov21_021E6C60 *param0, UnkStruct_ov21_021E6A
 
     v4 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(v3->unk_14C, 12, 2);
-    v5 = ov21_021D4DAC(v3->unk_14C, v0, message_bank_pokedex, 45, 0, 0);
+    v5 = DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_heightcheck_button, 0, 0);
 
     v1.unk_10 = -(v5 / 2);
     v1.unk_04 = v0;
@@ -634,7 +635,7 @@ static void ov21_021E70D4(UnkStruct_ov21_021E6C60 *param0, UnkStruct_ov21_021E6A
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(v3->unk_14C, 12, 2);
-    v5 = ov21_021D4DAC(v3->unk_14C, v0, message_bank_pokedex, 46, 0, 0);
+    v5 = DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_weightcheck_button, 0, 0);
 
     v1.unk_10 = -(v5 / 2);
     v1.unk_04 = v0;

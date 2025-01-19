@@ -7,6 +7,7 @@
 #include "struct_decls/struct_0209ACBC_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/funcptr_ov21_021E9B74.h"
 #include "overlay021/funcptr_ov21_021E9B9C.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -662,7 +663,7 @@ void ov21_021D1650(Window *param0, int param1, int param2, int param3)
         v0 = Strbuf_Init(4, param3);
         Strbuf_FormatInt(v0, param1, 3, 2, 1);
     } else {
-        v0 = ov21_021D1CE0(100, param3);
+        v0 = GetPokedexMessage(pl_msg_pokedex_none, param3);
     }
 
     v1 = PokedexText_NameNumber(param2, GAME_LANGUAGE, param3);
@@ -827,10 +828,10 @@ u32 ov21_021D19D8(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
     u32 v1 = 0;
 
     if (param2 == 327) {
-        v1 = ov21_021D33F8(param1);
+        v1 = PokedexSort_SpindaForm(param1);
     }
 
-    v0 = ov21_021D334C(param1, param2, param6);
+    v0 = PokedexSort_Gender(param1, param2, param6);
 
     if (v0 != -1) {
         ov21_021D2188(param0, param2, v0, param3, 0, 0, v1, param4, param5, param7);
@@ -843,7 +844,7 @@ u32 ov21_021D1A34(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
 {
     int v0;
 
-    v0 = ov21_021D335C(param1, param5);
+    v0 = PokedexSort_UnownForm(param1, param5);
 
     if (v0 != -1) {
         ov21_021D2188(param0, 201, 2, param2, 0, v0, 0, param3, param4, param6);
@@ -856,7 +857,7 @@ u32 ov21_021D1A78(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
 {
     int v0;
 
-    v0 = ov21_021D3374(param1, param5);
+    v0 = PokedexSort_ShellosForm(param1, param5);
 
     if (v0 != -1) {
         ov21_021D2188(param0, 422, 0, param2, 0, v0, 0, param3, param4, param6);
@@ -869,7 +870,7 @@ u32 ov21_021D1AC0(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
 {
     int v0;
 
-    v0 = ov21_021D338C(param1, param5);
+    v0 = PokedexSort_GastrodonForm(param1, param5);
 
     if (v0 != -1) {
         ov21_021D2188(param0, 423, 0, param2, 0, v0, 0, param3, param4, param6);
@@ -882,7 +883,7 @@ u32 ov21_021D1B08(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
 {
     int v0;
 
-    v0 = ov21_021D33A4(param1, param5);
+    v0 = PokedexSort_BurmyForm(param1, param5);
 
     if (v0 != -1) {
         ov21_021D2188(param0, 412, 0, param2, 0, v0, 0, param3, param4, param6);
@@ -895,7 +896,7 @@ u32 ov21_021D1B4C(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
 {
     int v0;
 
-    v0 = ov21_021D33BC(param1, param5);
+    v0 = PokedexSort_WormadamForm(param1, param5);
 
     if (v0 != -1) {
         ov21_021D2188(param0, 413, 1, param2, 0, v0, 0, param3, param4, param6);
@@ -908,7 +909,7 @@ u32 ov21_021D1B94(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
 {
     int v0;
 
-    v0 = ov21_021D3404(param1, param5);
+    v0 = PokedexSort_DeoxysForm(param1, param5);
 
     if (v0 != 15) {
         ov21_021D2188(param0, 386, 1, param2, 0, v0, 0, param3, param4, param6);
@@ -922,10 +923,10 @@ u32 ov21_021D1BD8(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
     int v0;
     int v1;
 
-    v1 = ov21_021D341C(param1, 492);
+    v1 = PokedexSort_NumFormsSeem(param1, 492);
 
     if (v1 > param5) {
-        v0 = ov21_021D3410(param1, 492, param5);
+        v0 = PokedexSort_Form(param1, 492, param5);
         ov21_021D2188(param0, 492, 1, param2, 0, v0, 0, param3, param4, param6);
     } else {
         v0 = -1;
@@ -939,10 +940,10 @@ u32 ov21_021D1C30(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
     int v0;
     int v1;
 
-    v1 = ov21_021D341C(param1, 487);
+    v1 = PokedexSort_NumFormsSeem(param1, 487);
 
     if (v1 > param5) {
-        v0 = ov21_021D3410(param1, 487, param5);
+        v0 = PokedexSort_Form(param1, 487, param5);
         ov21_021D2188(param0, 487, 1, param2, 0, v0, 0, param3, param4, param6);
     } else {
         v0 = -1;
@@ -956,10 +957,10 @@ u32 ov21_021D1C88(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
     int v0;
     int v1;
 
-    v1 = ov21_021D341C(param1, 479);
+    v1 = PokedexSort_NumFormsSeem(param1, 479);
 
     if (v1 > param5) {
-        v0 = ov21_021D3410(param1, 479, param5);
+        v0 = PokedexSort_Form(param1, 479, param5);
 
         ov21_021D2188(param0, 479, 1, param2, 0, v0, 0, param3, param4, param6);
     } else {
@@ -969,15 +970,15 @@ u32 ov21_021D1C88(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
     return v0;
 }
 
-Strbuf *ov21_021D1CE0(int param0, int heapID)
+Strbuf *GetPokedexMessage(int entryID, int heapID)
 {
-    Strbuf *v0;
-    MessageLoader *pokedexTextBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
+    Strbuf *pokedexMessage;
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
-    v0 = MessageLoader_GetNewStrbuf(pokedexTextBank, param0);
-    MessageLoader_Free(pokedexTextBank);
+    pokedexMessage = MessageLoader_GetNewStrbuf(pokedexMessageBank, entryID);
+    MessageLoader_Free(pokedexMessageBank);
 
-    return v0;
+    return pokedexMessage;
 }
 
 static void ov21_021D1D08(UnkStruct_ov21_021D0F60 *param0)

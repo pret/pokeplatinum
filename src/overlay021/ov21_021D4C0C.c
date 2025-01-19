@@ -140,23 +140,23 @@ void ov21_021D4DA0(Window *param0)
     Windows_Delete(param0, 1);
 }
 
-u32 ov21_021D4DAC(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, u32 param3, int param4, int param5)
+u32 DisplayMessage(UnkStruct_ov21_021D4C0C *param0, Window *window, u32 bankID, u32 entryID, int xOffset, int yOffset)
 {
-    MessageLoader *v0;
-    Strbuf *v1;
-    u32 v2;
+    MessageLoader *messageLoader;
+    Strbuf *strbuf;
+    u32 strWidth;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, param0->unk_14);
-    GF_ASSERT(v0);
+    messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, param0->unk_14);
+    GF_ASSERT(messageLoader);
 
-    v1 = MessageLoader_GetNewStrbuf(v0, param3);
-    Text_AddPrinterWithParamsAndColor(param1, FONT_SUBSCREEN, v1, param4, param5, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
-    v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
+    strbuf = MessageLoader_GetNewStrbuf(messageLoader, entryID);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
+    strWidth = Font_CalcStrbufWidth(FONT_SUBSCREEN, strbuf, 0);
 
-    Strbuf_Free(v1);
-    MessageLoader_Free(v0);
+    Strbuf_Free(strbuf);
+    MessageLoader_Free(messageLoader);
 
-    return v2;
+    return strWidth;
 }
 
 void ov21_021D4E10(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, u32 param3)

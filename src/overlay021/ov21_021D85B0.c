@@ -5,6 +5,7 @@
 
 #include "struct_decls/sprite_decl.h"
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
@@ -679,28 +680,28 @@ static void ov21_021D8DD4(UnkStruct_ov21_021D879C *param0, int param1, int param
 {
     UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
     Strbuf *v1;
-    int v2;
+    int entryID;
 
     Window_FillRectWithColor(&v0->unk_04, 0, 24, 8, 208, 32);
 
     switch (param1) {
     case 0:
-        v2 = 90;
+        entryID = pl_msg_pokedex_listing_description;
         break;
     case 1:
-        v2 = 87;
+        entryID = pl_msg_pokedex_alphabetical_description;
         break;
     case 2:
-        v2 = 88;
+        entryID = pl_msg_pokedex_type_description;
         break;
     case 3:
-        v2 = 89;
+        entryID = pl_msg_pokedex_body_description;
         break;
     default:
         break;
     }
 
-    v1 = ov21_021D1CE0(v2, param2);
+    v1 = GetPokedexMessage(entryID, param2);
 
     {
         u32 v3 = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, v1, 0)) / 2;
@@ -718,7 +719,7 @@ static void ov21_021D8E68(UnkStruct_ov21_021D879C *param0, int param1)
 
     Window_FillRectWithColor(&v0->unk_04, 0, 24, 8, 208, 32);
 
-    v1 = ov21_021D1CE0(93, param1);
+    v1 = GetPokedexMessage(pl_msg_pokedex_nonefound, param1);
 
     {
         u32 v2 = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, v1, 0)) / 2;
@@ -825,12 +826,12 @@ static void ov21_021D9054(UnkStruct_ov21_021D879C *param0, int param1, int param
 {
     UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
     Strbuf *v1;
-    int v2;
+    int entryID;
 
     Window_FillRectWithColor(&v0->unk_04, 0, 88, 52, 80, 16);
 
-    v2 = 81 + param1;
-    v1 = ov21_021D1CE0(v2, param2);
+    entryID = pl_msg_pokedex_numerical + param1;
+    v1 = GetPokedexMessage(entryID, param2);
 
     {
         u32 v3 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, v1, 0, 80);
@@ -844,45 +845,45 @@ static void ov21_021D90B4(UnkStruct_ov21_021D879C *param0, int param1, int param
 {
     UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
     Strbuf *v1;
-    int v2;
+    int entryID;
     int v3;
 
     Window_FillRectWithColor(&v0->unk_04, 0, 88, 77, 80, 16);
 
     switch (param1) {
     case 0:
-        v2 = 126;
+        entryID = pl_msg_pokedex_nonealphabetical;
         break;
     case 1:
-        v2 = 54;
+        entryID = pl_msg_pokedex_abc;
         break;
     case 2:
-        v2 = 55;
+        entryID = pl_msg_pokedex_def;
         break;
     case 3:
-        v2 = 56;
+        entryID = pl_msg_pokedex_ghi;
         break;
     case 4:
-        v2 = 57;
+        entryID = pl_msg_pokedex_jkl;
         break;
     case 5:
-        v2 = 58;
+        entryID = pl_msg_pokedex_mno;
         break;
     case 6:
-        v2 = 59;
+        entryID = pl_msg_pokedex_pqr;
         break;
     case 7:
-        v2 = 60;
+        entryID = pl_msg_pokedex_stu;
         break;
     case 8:
-        v2 = 61;
+        entryID = pl_msg_pokedex_vwx;
         break;
     case 9:
-        v2 = 62;
+        entryID = pl_msg_pokedex_yz;
         break;
     }
 
-    v1 = ov21_021D1CE0(v2, param2);
+    v1 = GetPokedexMessage(entryID, param2);
 
     {
         u32 v4 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, v1, 0, 80);
@@ -896,69 +897,69 @@ static void ov21_021D915C(UnkStruct_ov21_021D879C *param0, int param1, int param
 {
     UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
     Strbuf *v1;
-    int v2;
+    int entryID;
     int v3;
 
     Window_FillRectWithColor(&v0->unk_04, 0, 88, param3, 80, 16);
 
     switch (param1) {
     case 0:
-        v2 = 53;
+        entryID = pl_msg_pokedex_dash;
         break;
     case 1:
-        v2 = 64;
+        entryID = pl_msg_pokedex_normal;
         break;
     case 2:
-        v2 = 70;
+        entryID = pl_msg_pokedex_fight;
         break;
     case 3:
-        v2 = 73;
+        entryID = pl_msg_pokedex_flying;
         break;
     case 4:
-        v2 = 71;
+        entryID = pl_msg_pokedex_poison;
         break;
     case 5:
-        v2 = 72;
+        entryID = pl_msg_pokedex_ground;
         break;
     case 6:
-        v2 = 76;
+        entryID = pl_msg_pokedex_rock;
         break;
     case 7:
-        v2 = 75;
+        entryID = pl_msg_pokedex_bug;
         break;
     case 8:
-        v2 = 77;
+        entryID = pl_msg_pokedex_ghost;
         break;
     case 9:
-        v2 = 80;
+        entryID = pl_msg_pokedex_steel;
         break;
     case 10:
-        v2 = 65;
+        entryID = pl_msg_pokedex_fire;
         break;
     case 11:
-        v2 = 66;
+        entryID = pl_msg_pokedex_water;
         break;
     case 12:
-        v2 = 68;
+        entryID = pl_msg_pokedex_grass;
         break;
     case 13:
-        v2 = 67;
+        entryID = pl_msg_pokedex_electric;
         break;
     case 14:
-        v2 = 74;
+        entryID = pl_msg_pokedex_psychic;
         break;
     case 15:
-        v2 = 69;
+        entryID = pl_msg_pokedex_ice;
         break;
     case 16:
-        v2 = 78;
+        entryID = pl_msg_pokedex_dragon;
         break;
     case 17:
-        v2 = 79;
+        entryID = pl_msg_pokedex_dark;
         break;
     }
 
-    v1 = ov21_021D1CE0(v2, param2);
+    v1 = GetPokedexMessage(entryID, param2);
 
     {
         u32 v4 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, v1, 0, 80);
@@ -1078,7 +1079,7 @@ static void ov21_021D93F4(UnkStruct_ov21_021D879C *param0, int param1)
 
     Window_FillTilemap(&param0->unk_00->unk_04, 0);
 
-    v1 = ov21_021D1CE0(94, param1);
+    v1 = GetPokedexMessage(pl_msg_pokedex_searching, param1);
 
     {
         u32 v3 = (256 - Font_CalcMaxLineWidth(FONT_SYSTEM, v1, 0)) / 2;

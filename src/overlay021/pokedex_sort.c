@@ -167,98 +167,75 @@ void PokedexSort_PokedexStatusFreeHWData(UnkStruct_ov21_021D3320 *param0)
     param0->HWData = NULL;
 }
 
-u32 ov21_021D334C(const UnkStruct_ov21_021D3320 *param0, int param1, int param2)
+u32 PokedexSort_Gender(const UnkStruct_ov21_021D3320 *param0, int species, int formIndex)
 {
-    u32 v0;
-
-    v0 = PokedexData_DisplayedGender(param0->dexData, param1, param2);
-    return v0;
+    return PokedexData_DisplayedGender(param0->dexData, species, formIndex);
 }
 
-u32 ov21_021D335C(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_UnownForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    int v0;
-
-    GF_ASSERT(param1 < 28);
-    v0 = PokedexData_GetForm_Unown(param0->dexData, param1);
-
-    return v0;
+    GF_ASSERT(formIndex < 28);
+    return PokedexData_GetForm_Unown(param0->dexData, formIndex);
 }
 
-u32 ov21_021D3374(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_ShellosForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    u32 v0;
-
-    GF_ASSERT(param1 < 2);
-    v0 = PokedexData_GetForm_Shellos(param0->dexData, param1);
-
-    return v0;
+    GF_ASSERT(formIndex < 2);
+    return PokedexData_GetForm_Shellos(param0->dexData, formIndex);
 }
 
-u32 ov21_021D338C(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_GastrodonForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    u32 v0;
-
-    GF_ASSERT(param1 < 2);
-
-    v0 = PokedexData_GetForm_Gastrodon(param0->dexData, param1);
-    return v0;
+    GF_ASSERT(formIndex < 2);
+    return PokedexData_GetForm_Gastrodon(param0->dexData, formIndex);
 }
 
-u32 ov21_021D33A4(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_BurmyForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    u32 v0;
-
-    GF_ASSERT(param1 < 3);
-
-    v0 = PokedexData_GetForm_Burmy(param0->dexData, param1);
-    return v0;
+    GF_ASSERT(formIndex < 3);
+    return PokedexData_GetForm_Burmy(param0->dexData, formIndex);
 }
 
-u32 ov21_021D33BC(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_WormadamForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    u32 v0;
-
-    GF_ASSERT(param1 < 3);
-
-    v0 = PokedexData_GetForm_Wormadam(param0->dexData, param1);
-    return v0;
+    GF_ASSERT(formIndex < 3);
+    return PokedexData_GetForm_Wormadam(param0->dexData, formIndex);
 }
 
-u32 ov21_021D33D4(const UnkStruct_ov21_021D3320 *param0, u32 species)
+u32 PokedexSort_DefaultForm(const UnkStruct_ov21_021D3320 *param0, u32 species)
 {
     return PokedexData_GetDisplayForm(param0->dexData, species, 0);
 }
 
-u32 ov21_021D33E0(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_NumGendersVisible(const UnkStruct_ov21_021D3320 *param0, int species)
 {
-    int v0 = ov21_021D334C(param0, param1, 1);
+    int gender = PokedexSort_Gender(param0, species, 1);
 
-    if (v0 == -1) {
+    if (gender == -1) {
         return 1;
     }
 
     return 2;
 }
 
-u32 ov21_021D33F8(const UnkStruct_ov21_021D3320 *param0)
+u32 PokedexSort_SpindaForm(const UnkStruct_ov21_021D3320 *param0)
 {
     return PokedexData_GetForm_Spinda(param0->dexData, 0);
 }
 
-u32 ov21_021D3404(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_DeoxysForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    return PokedexData_GetForm_Deoxys(param0->dexData, param1);
+    return PokedexData_GetForm_Deoxys(param0->dexData, formIndex);
 }
 
-u32 ov21_021D3410(const UnkStruct_ov21_021D3320 *param0, u32 param1, int param2)
+u32 PokedexSort_Form(const UnkStruct_ov21_021D3320 *param0, u32 species, int formIndex)
 {
-    return PokedexData_GetDisplayForm(param0->dexData, param1, param2);
+    return PokedexData_GetDisplayForm(param0->dexData, species, formIndex);
 }
 
-u32 ov21_021D341C(const UnkStruct_ov21_021D3320 *param0, u32 param1)
+u32 PokedexSort_NumFormsSeem(const UnkStruct_ov21_021D3320 *param0, u32 species)
 {
-    return PokedexData_NumFormsSeen(param0->dexData, param1);
+    return PokedexData_NumFormsSeen(param0->dexData, species);
 }
 
 BOOL PokedexSort_IsNationalUnlocked(const UnkStruct_ov21_021D3320 *param0)

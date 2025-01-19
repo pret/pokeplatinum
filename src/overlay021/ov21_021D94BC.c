@@ -5,6 +5,7 @@
 
 #include "struct_decls/struct_02023FCC_decl.h"
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -2752,7 +2753,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
 
     v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = ov21_021D4DAC(param2, v0, message_bank_pokedex, 50, 0, 0);
+    v2 = DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_order, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[1];
@@ -2764,7 +2765,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = ov21_021D4DAC(param2, v0, message_bank_pokedex, 47, 0, 0);
+    v2 = DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_name, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[2];
@@ -2776,7 +2777,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = ov21_021D4DAC(param2, v0, message_bank_pokedex, 48, 0, 0);
+    v2 = DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_type, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[3];
@@ -2788,7 +2789,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = ov21_021D4DAC(param2, v0, message_bank_pokedex, 49, 0, 0);
+    v2 = DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_form, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[4];
@@ -2800,7 +2801,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = ov21_021D4DAC(param2, v0, message_bank_pokedex, 51, 0, 0);
+    v2 = DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_ok, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[5];
@@ -2840,7 +2841,7 @@ static void ov21_021DC088(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     Window *v0;
     int v1;
     int v2;
-    int v3;
+    int entryID;
     u32 v4;
 
     v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -2850,26 +2851,26 @@ static void ov21_021DC088(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
 
         switch (v2) {
         case 0:
-            v3 = 81;
+            entryID = pl_msg_pokedex_numerical;
             break;
         case 1:
-            v3 = 82;
+            entryID = pl_msg_pokedex_alphabetical;
             break;
         case 2:
-            v3 = 83;
+            entryID = pl_msg_pokedex_heaviest;
             break;
         case 3:
-            v3 = 84;
+            entryID = pl_msg_pokedex_lightest;
             break;
         case 4:
-            v3 = 85;
+            entryID = pl_msg_pokedex_tallest;
             break;
         case 5:
-            v3 = 86;
+            entryID = pl_msg_pokedex_smallest;
             break;
         }
 
-        v4 = ov21_021D4DAC(param2, v0, message_bank_pokedex, v3, 0, 0);
+        v4 = DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
 
         param1->unk_10 = -v4 / 2;
         param1->unk_04 = v0;
@@ -2887,7 +2888,7 @@ static void ov21_021DC12C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     Window *v0;
     int v1;
     int v2, v3;
-    int v4;
+    int entryID;
     u32 v5;
 
     v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -2897,38 +2898,38 @@ static void ov21_021DC12C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
 
         switch (v2) {
         case 0:
-            v4 = 54;
+            entryID = pl_msg_pokedex_abc;
             break;
         case 1:
-            v4 = 55;
+            entryID = pl_msg_pokedex_def;
             break;
         case 2:
-            v4 = 56;
+            entryID = pl_msg_pokedex_ghi;
             break;
         case 3:
-            v4 = 57;
+            entryID = pl_msg_pokedex_jkl;
             break;
         case 4:
-            v4 = 58;
+            entryID = pl_msg_pokedex_mno;
             break;
         case 5:
-            v4 = 59;
+            entryID = pl_msg_pokedex_pqr;
             break;
         case 6:
-            v4 = 60;
+            entryID = pl_msg_pokedex_stu;
             break;
         case 7:
-            v4 = 61;
+            entryID = pl_msg_pokedex_vwx;
             break;
         case 8:
-            v4 = 62;
+            entryID = pl_msg_pokedex_yz;
             break;
         case 9:
-            v4 = 126;
+            entryID = pl_msg_pokedex_nonealphabetical;
             break;
         }
 
-        v5 = ov21_021D4DAC(param2, v0, message_bank_pokedex, v4, 0, 0);
+        v5 = DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
@@ -2946,7 +2947,7 @@ static void ov21_021DC1E8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     Window *v0;
     int v1;
     int v2, v3;
-    int v4;
+    int entryID;
     u32 v5;
 
     v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -2956,38 +2957,38 @@ static void ov21_021DC1E8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
 
         switch (v2) {
         case 0:
-            v4 = 64;
+            entryID = pl_msg_pokedex_normal;
             break;
         case 1:
-            v4 = 70;
+            entryID = pl_msg_pokedex_fight;
             break;
         case 2:
-            v4 = 73;
+            entryID = pl_msg_pokedex_flying;
             break;
         case 3:
-            v4 = 71;
+            entryID = pl_msg_pokedex_poison;
             break;
         case 4:
-            v4 = 72;
+            entryID = pl_msg_pokedex_ground;
             break;
         case 5:
-            v4 = 76;
+            entryID = pl_msg_pokedex_rock;
             break;
         case 6:
-            v4 = 75;
+            entryID = pl_msg_pokedex_bug;
             break;
         case 7:
-            v4 = 77;
+            entryID = pl_msg_pokedex_ghost;
             break;
         case 8:
-            v4 = 80;
+            entryID = pl_msg_pokedex_steel;
             break;
         case 9:
-            v4 = 127;
+            entryID = pl_msg_pokedex_nonetype;
             break;
         }
 
-        v5 = ov21_021D4DAC(param2, v0, message_bank_pokedex, v4, 0, 0);
+        v5 = DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
@@ -3005,7 +3006,7 @@ static void ov21_021DC2A4(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     Window *v0;
     int v1;
     int v2, v3;
-    int v4;
+    int entryID;
     u32 v5;
 
     v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -3015,35 +3016,35 @@ static void ov21_021DC2A4(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
 
         switch (v2) {
         case 0:
-            v4 = 65;
+            entryID = pl_msg_pokedex_fire;
             break;
         case 1:
-            v4 = 66;
+            entryID = pl_msg_pokedex_water;
             break;
         case 2:
-            v4 = 68;
+            entryID = pl_msg_pokedex_grass;
             break;
         case 3:
-            v4 = 67;
+            entryID = pl_msg_pokedex_electric;
             break;
         case 4:
-            v4 = 74;
+            entryID = pl_msg_pokedex_psychic;
             break;
         case 5:
-            v4 = 69;
+            entryID = pl_msg_pokedex_ice;
             break;
         case 6:
-            v4 = 78;
+            entryID = pl_msg_pokedex_dragon;
             break;
         case 7:
-            v4 = 79;
+            entryID = pl_msg_pokedex_dark;
             break;
         case 8:
-            v4 = 127;
+            entryID = pl_msg_pokedex_nonetype;
             break;
         }
 
-        v5 = ov21_021D4DAC(param2, v0, message_bank_pokedex, v4, 0, 0);
+        v5 = DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
