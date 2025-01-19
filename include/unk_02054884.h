@@ -2,7 +2,6 @@
 #define POKEPLATINUM_UNK_02054884_H
 
 #include "party.h"
-
 #include "pokemon.h"
 #include "savedata.h"
 

@@ -12,7 +12,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "party.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer_data.h"
 
@@ -32,6 +31,7 @@
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
+#include "party.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"

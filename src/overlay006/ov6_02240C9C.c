@@ -12,7 +12,6 @@
 #include "consts/items.h"
 #include "consts/pokemon.h"
 
-#include "party.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0206C638.h"
 

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "party.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0202DFA8.h"
 #include "struct_defs/struct_0202E1F4.h"

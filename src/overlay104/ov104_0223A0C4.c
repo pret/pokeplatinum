@@ -5,7 +5,6 @@
 
 #include "consts/battle.h"
 
-#include "party.h"
 #include "struct_defs/struct_0202D764.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B184.h"

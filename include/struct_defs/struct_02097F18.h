@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_02097F18_H
 
 #include "struct_decls/struct_0202CA1C_decl.h"
-#include "party.h"
 
 #include "game_options.h"
+#include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
 

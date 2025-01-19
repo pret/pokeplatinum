@@ -11,7 +11,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
-#include "party.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon.h"
@@ -21,6 +20,7 @@
 
 #include "narc.h"
 #include "palette.h"
+#include "party.h"
 #include "string.h"
 #include "trainer_info.h"
 

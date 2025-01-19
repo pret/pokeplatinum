@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "party.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"

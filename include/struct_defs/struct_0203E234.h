@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_0203E234_H
 
 #include "party.h"
-
 #include "play_time.h"
 #include "trainer_info.h"
 

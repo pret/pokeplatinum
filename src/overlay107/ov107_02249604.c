@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "party.h"
-
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay107/struct_ov107_02249954.h"
 

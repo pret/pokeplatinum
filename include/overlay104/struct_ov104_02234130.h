@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV104_02234130_H
 
 #include "party.h"
-
 #include "savedata.h"
 
 typedef struct {

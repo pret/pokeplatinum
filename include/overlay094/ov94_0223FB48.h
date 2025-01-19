@@ -2,10 +2,10 @@
 #define POKEPLATINUM_OV94_0223FB48_H
 
 #include "struct_decls/struct_020797DC_decl.h"
-#include "party.h"
 
 #include "overlay094/struct_ov94_0223FD4C_decl.h"
 
+#include "party.h"
 #include "pokemon.h"
 
 int ov94_0223FB48(UnkStruct_ov94_0223FD4C *param0, int param1);

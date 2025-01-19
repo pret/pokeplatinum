@@ -6,12 +6,12 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "party.h"
 
 #include "bag.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "journal.h"
+#include "party.h"
 #include "savedata.h"
 #include "system_data.h"
 #include "trainer_info.h"

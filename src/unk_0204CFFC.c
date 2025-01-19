@@ -6,7 +6,6 @@
 #include "constants/heap.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
-#include "party.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021E622C.h"

@@ -1,11 +1,10 @@
 #ifndef POKEPLATINUM_OV104_02237DD8_H
 #define POKEPLATINUM_OV104_02237DD8_H
 
-#include "party.h"
-
 #include "overlay104/struct_ov104_0223BFFC.h"
 #include "overlay104/struct_ov104_0223C4CC_decl.h"
 
+#include "party.h"
 #include "savedata.h"
 
 UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6);

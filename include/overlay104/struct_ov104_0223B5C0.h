@@ -2,11 +2,11 @@
 #define POKEPLATINUM_STRUCT_OV104_0223B5C0_H
 
 #include "struct_decls/struct_02030114_decl.h"
-#include "party.h"
 
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
+#include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
 

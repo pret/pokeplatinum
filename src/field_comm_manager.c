@@ -6,7 +6,6 @@
 #include "constants/heap.h"
 
 #include "struct_decls/struct_02029894_decl.h"
-#include "party.h"
 #include "struct_defs/struct_0205964C.h"
 #include "struct_defs/struct_02072014.h"
 

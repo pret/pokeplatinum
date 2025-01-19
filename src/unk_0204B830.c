@@ -6,7 +6,6 @@
 #include "constants/heap.h"
 #include "constants/species.h"
 
-#include "party.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/union_0204C4D0.h"
 

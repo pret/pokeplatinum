@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_0203D9B8_H
 #define POKEPLATINUM_STRUCT_0203D9B8_H
 
-#include "party.h"
 #include "struct_defs/struct_020989DC.h"
 
 #include "bag.h"
 #include "game_options.h"
+#include "party.h"
 #include "poffin.h"
 #include "trainer_info.h"
 

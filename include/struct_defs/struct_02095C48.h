@@ -2,12 +2,12 @@
 #define POKEPLATINUM_STRUCT_02095C48_H
 
 #include "struct_decls/struct_0202A750_decl.h"
-#include "party.h"
 #include "struct_defs/struct_02094A58.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 #include "struct_defs/struct_02095C60.h"
 
 #include "game_options.h"
+#include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "sys_task_manager.h"

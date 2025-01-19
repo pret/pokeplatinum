@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "party.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer_data.h"
 
@@ -19,6 +18,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "journal.h"
+#include "party.h"
 #include "poketch.h"
 #include "rtc.h"
 #include "savedata.h"

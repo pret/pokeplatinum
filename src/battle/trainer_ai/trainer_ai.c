@@ -9,7 +9,6 @@
 #include "consts/abilities.h"
 
 #include "struct_decls/battle_system.h"
-#include "party.h"
 #include "struct_defs/battle_system.h"
 
 #include "battle/ai_context.h"

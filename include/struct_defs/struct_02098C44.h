@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_02098C44_H
 #define POKEPLATINUM_STRUCT_02098C44_H
 
-#include "party.h"
-
 #include "game_options.h"
+#include "party.h"
 
 typedef struct {
     Party *unk_00;

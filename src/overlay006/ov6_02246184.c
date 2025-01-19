@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "party.h"
-
 #include "field/field_system.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 #include "overlay006/struct_ov6_02246254.h"

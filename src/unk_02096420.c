@@ -5,8 +5,6 @@
 
 #include "consts/species.h"
 
-#include "party.h"
-
 #include "heap.h"
 #include "item.h"
 #include "move_table.h"
