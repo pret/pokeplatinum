@@ -3,10 +3,10 @@
 
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02095C60.h"
 
 #include "game_options.h"
-#include "pokemon.h"
 #include "trainer_info.h"
 
 typedef struct {

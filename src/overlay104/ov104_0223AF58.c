@@ -6,6 +6,7 @@
 #include "consts/battle.h"
 
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0204B184.h"
 
 #include "overlay104/ov104_0222DCE0.h"

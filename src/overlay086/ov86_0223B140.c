@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02008900.h"
 #include "struct_defs/struct_0200C738.h"

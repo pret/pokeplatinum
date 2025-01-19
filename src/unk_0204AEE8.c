@@ -5,6 +5,7 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"

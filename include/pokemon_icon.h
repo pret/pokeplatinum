@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_POKEMON_ICON_H
 #define POKEPLATINUM_POKEMON_ICON_H
 
-#include "pokemon.h"
+#include "struct_defs/pokemon.h"
 
 /**
  * @brief Get the index of the sprite-tiles file used for a given BoxPokemon.

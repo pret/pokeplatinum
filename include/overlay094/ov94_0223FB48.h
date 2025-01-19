@@ -3,10 +3,9 @@
 
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay094/struct_ov94_0223FD4C_decl.h"
-
-#include "pokemon.h"
 
 int ov94_0223FB48(UnkStruct_ov94_0223FD4C *param0, int param1);
 int ov94_0223FBBC(UnkStruct_ov94_0223FD4C *param0, int param1);

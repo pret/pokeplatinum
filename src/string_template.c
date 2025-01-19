@@ -12,6 +12,7 @@
 #include "consts/moves.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/trainer_data.h"
 
 #include "gmm/message_bank_common_strings.h"

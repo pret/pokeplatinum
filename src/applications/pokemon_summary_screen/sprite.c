@@ -7,6 +7,8 @@
 #include "constants/pokemon.h"
 #include "consts/items.h"
 
+#include "struct_defs/pokemon.h"
+
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "graphics/pokemon_summary_screen/pl_pst_gra.naix"

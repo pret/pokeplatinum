@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/pokemon.h"
+
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/struct_ov19_021D4DF0.h"

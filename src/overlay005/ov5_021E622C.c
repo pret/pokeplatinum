@@ -12,6 +12,7 @@
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon.h"
 
 #include "field/field_system.h"
 

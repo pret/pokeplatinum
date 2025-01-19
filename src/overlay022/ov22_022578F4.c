@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_020298D8.h"
 
 #include "overlay022/ov22_02254DE0.h"
@@ -19,7 +20,6 @@
 #include "overlay022/struct_ov22_022599A0.h"
 #include "overlay022/struct_ov22_0225B388.h"
 
-#include "pokemon.h"
 #include "touch_screen.h"
 #include "unk_0200762C.h"
 #include "unk_02015064.h"

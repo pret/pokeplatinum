@@ -11,6 +11,7 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"

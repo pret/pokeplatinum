@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_020997B8.h"
 
 #include "field_script_context.h"
@@ -10,7 +11,6 @@
 #include "heap.h"
 #include "inlines.h"
 #include "party.h"
-#include "pokemon.h"
 #include "save_player.h"
 #include "scrcmd.h"
 #include "script_manager.h"

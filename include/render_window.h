@@ -3,8 +3,9 @@
 
 #include "constants/heap.h"
 
+#include "struct_defs/pokemon.h"
+
 #include "bg_window.h"
-#include "pokemon.h"
 
 #define TEXT_WINDOW_SIZE 30
 

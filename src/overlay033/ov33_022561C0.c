@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay025/poketch_system.h"
 #include "overlay033/ov33_02256474.h"

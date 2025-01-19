@@ -5,6 +5,8 @@
 
 #include "constants/species.h"
 
+#include "struct_defs/pokemon.h"
+
 #include "heap.h"
 #include "inlines.h"
 #include "pokedex_language.h"

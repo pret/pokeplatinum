@@ -9,6 +9,7 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "field/field_system.h"
 #include "overlay005/map_object_anim_cmd.h"
@@ -37,7 +38,6 @@
 #include "map_tile_behavior.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokemon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"

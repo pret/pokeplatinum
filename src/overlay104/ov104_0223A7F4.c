@@ -5,6 +5,7 @@
 
 #include "consts/battle.h"
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
 

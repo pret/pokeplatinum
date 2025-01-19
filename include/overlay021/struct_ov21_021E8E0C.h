@@ -2,10 +2,10 @@
 #define POKEPLATINUM_STRUCT_OV21_021E8E0C_H
 
 #include "struct_decls/struct_02007768_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "bg_window.h"
 #include "palette.h"
-#include "pokemon.h"
 
 typedef struct {
     BgConfig *unk_00;

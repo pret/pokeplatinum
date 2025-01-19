@@ -2,6 +2,7 @@
 #define POKEPLATINUM_OV104_02231F74_H
 
 #include "struct_decls/cell_actor_data.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
@@ -12,7 +13,6 @@
 #include "overlay104/struct_ov104_0223C4CC_decl.h"
 
 #include "message.h"
-#include "pokemon.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 

@@ -6,6 +6,7 @@
 #include "consts/species.h"
 
 #include "struct_decls/struct_02014014_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0207F248.h"
 
 #include "camera.h"

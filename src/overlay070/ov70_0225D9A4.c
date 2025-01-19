@@ -50,7 +50,6 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
-#include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"

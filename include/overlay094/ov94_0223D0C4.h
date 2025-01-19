@@ -1,12 +1,13 @@
 #ifndef POKEPLATINUM_OV94_0223D0C4_H
 #define POKEPLATINUM_OV94_0223D0C4_H
 
+#include "struct_defs/pokemon.h"
+
 #include "overlay094/struct_ov94_0223BA88_sub2.h"
 #include "overlay094/struct_ov94_0223FD4C_decl.h"
 
 #include "bg_window.h"
 #include "message.h"
-#include "pokemon.h"
 #include "string_template.h"
 
 int ov94_0223D0C4(UnkStruct_ov94_0223FD4C *param0, int param1);

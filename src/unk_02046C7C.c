@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02093800.h"
 
 #include "field/field_system_sub2_t.h"
@@ -13,7 +14,6 @@
 #include "map_header.h"
 #include "party.h"
 #include "pokedex_data.h"
-#include "pokemon.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "strbuf.h"

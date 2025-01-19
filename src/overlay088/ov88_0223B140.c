@@ -11,6 +11,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_t.h"
 #include "struct_defs/struct_02099F80.h"

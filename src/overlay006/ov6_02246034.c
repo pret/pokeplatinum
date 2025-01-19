@@ -6,6 +6,7 @@
 #include "constants/battle.h"
 
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0206C638.h"
 

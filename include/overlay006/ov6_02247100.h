@@ -1,10 +1,11 @@
 #ifndef POKEPLATINUM_OV6_02247100_H
 #define POKEPLATINUM_OV6_02247100_H
 
+#include "struct_defs/pokemon.h"
+
 #include "field/field_system_decl.h"
 
 #include "field_task.h"
-#include "pokemon.h"
 
 void *ov6_02247100(FieldSystem *fieldSystem, u32 param1);
 BOOL ov6_02247120(FieldTask *task);

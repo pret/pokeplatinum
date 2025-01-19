@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay107/struct_ov107_02249954.h"

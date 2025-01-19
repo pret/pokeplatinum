@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV108_0224351C_H
 #define POKEPLATINUM_OV108_0224351C_H
 
+#include "struct_defs/pokemon.h"
+
 #include "overlay108/struct_ov108_02243030.h"
 #include "overlay108/struct_ov108_02243594_decl.h"
-
-#include "pokemon.h"
 
 UnkStruct_ov108_02243594 *ov108_0224351C(UnkStruct_ov108_02243030 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u16 param5, u16 param6, u32 param7, int param8, u8 param9);
 void *ov108_02243594(UnkStruct_ov108_02243594 *param0);

@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_UNK_02092494_H
 #define POKEPLATINUM_UNK_02092494_H
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02090800.h"
 
-#include "pokemon.h"
 #include "trainer_info.h"
 
 PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int param2);

@@ -11,7 +11,6 @@
 #include "math.h"
 #include "overlay_manager.h"
 #include "party.h"
-#include "pokemon.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"

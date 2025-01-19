@@ -2,6 +2,7 @@
 #define POKEPLATINUM_OV19_021D0D80_H
 
 #include "struct_decls/struct_020797DC_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4F5C.h"
@@ -11,7 +12,6 @@
 
 #include "message.h"
 #include "overlay_manager.h"
-#include "pokemon.h"
 #include "string_template.h"
 
 int ov19_021D0D80(OverlayManager *param0, int *param1);

@@ -6,6 +6,7 @@
 #include "consts/gender.h"
 #include "consts/items.h"
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02090800.h"
 
 #include "applications/pokemon_summary_screen/main.h"

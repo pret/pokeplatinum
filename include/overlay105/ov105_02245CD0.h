@@ -3,8 +3,7 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-
-#include "pokemon.h"
+#include "struct_defs/pokemon.h"
 
 void ov105_02245CD0(void);
 void ov105_02245D50(UnkStruct_02007768 *param0);

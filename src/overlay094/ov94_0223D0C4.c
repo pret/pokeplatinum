@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/ov94_0223BCB0.h"

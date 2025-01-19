@@ -4,11 +4,11 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "bag.h"
 #include "game_options.h"
 #include "game_records.h"
-#include "pokemon.h"
 #include "poketch_data.h"
 
 UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, PokedexData *param5, Bag *param6, GameRecords *records, PoketchData *poketchData, int param9, int param10, int param11);

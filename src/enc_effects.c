@@ -10,6 +10,7 @@
 #include "consts/sdat.h"
 
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay005/encounter_effect.h"
 

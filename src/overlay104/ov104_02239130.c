@@ -5,6 +5,7 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0204AFC4.h"
 
 #include "overlay104/ov104_0222E930.h"
@@ -21,7 +22,6 @@
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "game_records.h"
-#include "pokemon.h"
 #include "savedata.h"
 #include "unk_020041CC.h"
 #include "unk_020363E8.h"

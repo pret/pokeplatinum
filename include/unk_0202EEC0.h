@@ -2,8 +2,7 @@
 #define POKEPLATINUM_UNK_0202EEC0_H
 
 #include "struct_decls/struct_02024440_decl.h"
-
-#include "pokemon.h"
+#include "struct_defs/pokemon.h"
 
 int PalParkTransfer_SaveSize(void);
 void PalParkTransfer_Init(PalParkTransfer *param0);

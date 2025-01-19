@@ -7,6 +7,8 @@
 #include "constants/gba/species.h"
 #include "constants/species.h"
 
+#include "struct_defs/pokemon.h"
+
 #include "overlay097/box_pokemon_gba.h"
 #include "overlay097/ov97_022392E4.h"
 

@@ -6,6 +6,7 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "overlay021/ov21_021D0D80.h"

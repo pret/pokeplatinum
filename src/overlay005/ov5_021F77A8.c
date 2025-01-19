@@ -6,6 +6,8 @@
 #include "constants/forms.h"
 #include "constants/species.h"
 
+#include "struct_defs/pokemon.h"
+
 #include "field/field_system.h"
 #include "overlay005/ov5_021DC018.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"

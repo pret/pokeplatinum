@@ -11,6 +11,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
+#include "struct_defs/pokemon.h"
 
 #include "battle/battle_display.h"
 #include "battle/battle_io.h"

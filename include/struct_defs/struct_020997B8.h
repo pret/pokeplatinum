@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_020997B8_H
 #define POKEPLATINUM_STRUCT_020997B8_H
 
+#include "struct_defs/pokemon.h"
+
 #include "game_options.h"
-#include "pokemon.h"
 #include "trainer_info.h"
 
 typedef struct {

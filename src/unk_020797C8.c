@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/pokemon.h"
+
 #include "message.h"
 #include "pokemon.h"
 #include "savedata.h"

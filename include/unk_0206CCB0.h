@@ -3,11 +3,11 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "field/field_system_decl.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
 
-#include "pokemon.h"
 #include "savedata.h"
 #include "string_template.h"
 #include "trainer_info.h"

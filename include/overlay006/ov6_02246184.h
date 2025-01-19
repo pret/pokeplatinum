@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_OV6_02246184_H
 #define POKEPLATINUM_OV6_02246184_H
 
+#include "struct_defs/pokemon.h"
+
 #include "field/field_system_decl.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 #include "overlay006/struct_ov6_02246254.h"
-
-#include "pokemon.h"
 
 UnkStruct_ov6_02246204 *ov6_02246184(u32 param0, u32 param1);
 void ov6_02246204(UnkStruct_ov6_02246204 *param0);

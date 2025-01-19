@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "game_records.h"
 #include "pokedex_data.h"

@@ -5,6 +5,7 @@
 
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"

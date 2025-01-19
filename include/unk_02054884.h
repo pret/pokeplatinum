@@ -2,8 +2,8 @@
 #define POKEPLATINUM_UNK_02054884_H
 
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 
-#include "pokemon.h"
 #include "savedata.h"
 
 #define PARTY_SLOT_NONE 0xFF

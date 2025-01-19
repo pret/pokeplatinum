@@ -7,6 +7,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0207C690.h"

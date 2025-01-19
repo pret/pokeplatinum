@@ -6,6 +6,7 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0202FF58.h"
 #include "struct_defs/struct_020300F4.h"
 #include "struct_defs/struct_0204B184.h"

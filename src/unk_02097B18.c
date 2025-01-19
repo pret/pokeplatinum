@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 #include "struct_defs/struct_02097F18.h"

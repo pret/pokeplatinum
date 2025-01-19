@@ -3,12 +3,12 @@
 
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02094A58.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 #include "struct_defs/struct_02095C60.h"
 
 #include "game_options.h"
-#include "pokemon.h"
 #include "savedata.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"

@@ -13,6 +13,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/sprite_animation_frame.h"
 
 #include "bg_window.h"
@@ -21,7 +22,6 @@
 #include "game_options.h"
 #include "message.h"
 #include "narc.h"
-#include "pokemon.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"

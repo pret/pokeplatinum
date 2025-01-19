@@ -11,6 +11,7 @@
 #include "consts/sdat.h"
 #include "consts/species.h"
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/3d_anim.h"

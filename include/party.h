@@ -2,8 +2,8 @@
 #define POKEPLATINUM_UNK_02079FEC_H
 
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 
-#include "pokemon.h"
 #include "savedata.h"
 
 int Party_SaveSize(void);

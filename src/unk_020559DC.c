@@ -12,7 +12,6 @@
 #include "field_system.h"
 #include "inlines.h"
 #include "party.h"
-#include "pokemon.h"
 #include "record_mixed_rng.h"
 #include "rtc.h"
 #include "script_manager.h"

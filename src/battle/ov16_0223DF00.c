@@ -23,6 +23,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/trainer_data.h"
 

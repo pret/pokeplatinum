@@ -7,6 +7,8 @@
 #include "consts/gender.h"
 #include "consts/journal.h"
 
+#include "struct_defs/pokemon.h"
+
 #include "applications/journal_display/journal_controller.h"
 #include "text/gmm/message_bank_journal_entries.h"
 #include "text/gmm/message_bank_location_names.h"

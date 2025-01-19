@@ -17,6 +17,7 @@
 #include "consts/sdat.h"
 
 #include "struct_decls/battle_system.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/trainer_data.h"
 
 #include "battle/ai_context.h"

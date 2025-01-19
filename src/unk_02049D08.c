@@ -11,6 +11,7 @@
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/pokemon.h"
+
 #include "field/field_system.h"
 #include "overlay006/ov6_02243258.h"
 
@@ -11,7 +13,6 @@
 #include "heap.h"
 #include "location.h"
 #include "player_avatar.h"
-#include "pokemon.h"
 #include "sys_task_manager.h"
 #include "unk_0203A7D8.h"
 

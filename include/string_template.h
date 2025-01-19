@@ -6,10 +6,10 @@
 #include "consts/moves.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/trainer_data.h"
 
 #include "enums.h"
-#include "pokemon.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "trainer_info.h"

@@ -19,6 +19,7 @@
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/fraction.h"
+#include "struct_defs/pokemon.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"

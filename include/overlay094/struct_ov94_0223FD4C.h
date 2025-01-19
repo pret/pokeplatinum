@@ -6,6 +6,7 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203E0FC.h"
 
@@ -28,7 +29,6 @@
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
-#include "pokemon.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_list.h"

@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_02093800_H
 
 #include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "game_options.h"
-#include "pokemon.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "trainer_info.h"

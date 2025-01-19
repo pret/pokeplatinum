@@ -22,7 +22,6 @@
 #include "location.h"
 #include "message.h"
 #include "party.h"
-#include "pokemon.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "script_manager.h"

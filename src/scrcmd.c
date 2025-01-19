@@ -33,6 +33,7 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0202A93C.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0202DF8C.h"

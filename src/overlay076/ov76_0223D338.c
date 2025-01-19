@@ -7,6 +7,7 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02015958.h"

@@ -3,7 +3,8 @@
 
 #include "consts/poketch.h"
 
-#include "pokemon.h"
+#include "struct_defs/pokemon.h"
+
 #include "savedata.h"
 
 #define POKETCH_MAPMARKER_COUNT    6

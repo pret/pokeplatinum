@@ -3,12 +3,11 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "battle/struct_ov16_0223E0C8.h"
 #include "overlay006/struct_ov6_02248BE8.h"
-
-#include "pokemon.h"
 
 int sub_02094EDC(UnkStruct_02095C48 *param0);
 void sub_02094F04(UnkStruct_02095C48 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7);

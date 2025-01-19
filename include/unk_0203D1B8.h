@@ -4,6 +4,7 @@
 #include "struct_decls/struct_02070950_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203E234.h"
@@ -22,7 +23,6 @@
 
 #include "field_battle_data_transfer.h"
 #include "field_task.h"
-#include "pokemon.h"
 #include "savedata.h"
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);

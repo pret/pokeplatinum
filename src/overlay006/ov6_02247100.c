@@ -7,6 +7,7 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "field/field_system.h"
 #include "overlay005/map_object_anim_cmd.h"
@@ -20,7 +21,6 @@
 #include "journal.h"
 #include "location.h"
 #include "player_avatar.h"
-#include "pokemon.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"

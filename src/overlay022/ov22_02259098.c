@@ -5,6 +5,7 @@
 
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_020298D8.h"
 
 #include "overlay022/ov22_02255094.h"

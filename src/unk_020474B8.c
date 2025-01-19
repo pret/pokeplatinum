@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020797DC_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"

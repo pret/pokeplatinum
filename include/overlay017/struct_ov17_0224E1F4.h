@@ -2,10 +2,9 @@
 #define POKEPLATINUM_STRUCT_OV17_0224E1F4_H
 
 #include "struct_decls/sprite_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay017/struct_ov17_0224B09C.h"
-
-#include "pokemon.h"
 
 typedef struct {
     Pokemon *unk_00;

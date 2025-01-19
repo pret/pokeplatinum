@@ -2,8 +2,8 @@
 #define POKEPLATINUM_UNK_020797C8_H
 
 #include "struct_decls/struct_020797DC_decl.h"
+#include "struct_defs/pokemon.h"
 
-#include "pokemon.h"
 #include "strbuf.h"
 
 #define MAX_PC_BOXES 18

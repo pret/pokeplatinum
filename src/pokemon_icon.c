@@ -5,6 +5,8 @@
 
 #include "constants/pokemon.h"
 
+#include "struct_defs/pokemon.h"
+
 #include "data/pokeicon_palettes.h"
 
 #include "pokemon.h"

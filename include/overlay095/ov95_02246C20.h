@@ -3,6 +3,8 @@
 
 #include <nnsys.h>
 
+#include "struct_defs/pokemon.h"
+
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
 #include "overlay095/struct_ov95_02247568.h"
@@ -12,7 +14,6 @@
 #include "cell_actor.h"
 #include "message.h"
 #include "overlay_manager.h"
-#include "pokemon.h"
 #include "string_template.h"
 
 int ov95_02246C20(OverlayManager *param0, int *param1);

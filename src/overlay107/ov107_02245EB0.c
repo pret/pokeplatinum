@@ -40,6 +40,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "struct_defs/pokemon.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"

@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02098700_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "field/field_system.h"
 

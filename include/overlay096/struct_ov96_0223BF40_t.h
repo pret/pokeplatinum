@@ -4,6 +4,7 @@
 #include <dwc.h>
 #include <nnsys.h>
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0206BC70.h"
 
@@ -17,7 +18,6 @@
 #include "cell_actor.h"
 #include "menu.h"
 #include "message.h"
-#include "pokemon.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"

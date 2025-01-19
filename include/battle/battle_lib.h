@@ -5,13 +5,12 @@
 #include "constants/sound.h"
 
 #include "struct_decls/battle_system.h"
+#include "struct_defs/pokemon.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "battle/btlcmd.h"
-
-#include "pokemon.h"
 
 enum CountAbilityMode {
     COUNT_ALL_BATTLERS_OUR_SIDE = 0, //< Count all the battlers on our side with the ability

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0202F264.h"
 #include "struct_defs/struct_0202F298.h"
 #include "struct_defs/struct_0202F298_sub1.h"

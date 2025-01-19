@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0207F248.h"
 
 #include "bg_window.h"

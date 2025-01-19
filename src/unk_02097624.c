@@ -4,6 +4,7 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_02028430_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_02097728.h"

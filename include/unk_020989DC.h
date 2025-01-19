@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_UNK_020989DC_H
 #define POKEPLATINUM_UNK_020989DC_H
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0202A93C.h"
 #include "struct_defs/struct_0203D9B8.h"
 
 #include "enums.h"
-#include "pokemon.h"
 #include "savedata.h"
 
 UnkStruct_0203D9B8 *sub_020989DC(SaveData *param0, int param1);

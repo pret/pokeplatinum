@@ -5,12 +5,11 @@
 #include <nnsys.h>
 
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay022/struct_ov22_02257964.h"
 #include "overlay022/struct_ov22_02259560.h"
 #include "overlay022/struct_ov22_0225B388.h"
-
-#include "pokemon.h"
 
 void ov22_022578F4(UnkStruct_ov22_02257964 *param0, UnkStruct_ov22_0225B388 *param1);
 void ov22_02257948(UnkStruct_ov22_02257964 *param0);

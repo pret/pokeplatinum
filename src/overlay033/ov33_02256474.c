@@ -23,7 +23,6 @@
 #include "inlines.h"
 #include "math.h"
 #include "narc.h"
-#include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

@@ -11,6 +11,7 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"

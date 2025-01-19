@@ -2,8 +2,8 @@
 #define POKEPLATINUM_UNK_0202DA40_H
 
 #include "struct_decls/struct_0202DA40_decl.h"
+#include "struct_defs/pokemon.h"
 
-#include "pokemon.h"
 #include "savedata.h"
 
 UnkStruct_0202DA40 *sub_0202DA40(SaveData *param0);

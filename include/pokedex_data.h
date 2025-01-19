@@ -2,8 +2,8 @@
 #define POKEPLATINUM_POKEDEX_DATA_H
 
 #include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/pokemon.h"
 
-#include "pokemon.h"
 #include "savedata.h"
 
 int PokedexData_SaveSize(void);

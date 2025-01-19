@@ -1,7 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV79_021D38D0_H
 #define POKEPLATINUM_STRUCT_OV79_021D38D0_H
 
-#include "pokemon.h"
+#include "struct_defs/pokemon.h"
+
 #include "strbuf.h"
 
 typedef struct {

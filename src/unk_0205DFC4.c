@@ -5,6 +5,7 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "field/field_system.h"
 #include "overlay004/ov4_021D0D80.h"

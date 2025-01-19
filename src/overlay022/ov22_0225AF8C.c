@@ -8,6 +8,7 @@
 #include "struct_decls/struct_0202A138_decl.h"
 #include "struct_decls/struct_0202A150_decl.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02255094.h"

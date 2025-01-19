@@ -6,6 +6,7 @@
 #include "constants/species.h"
 
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0202DF40.h"
 
 #include "overlay022/struct_ov22_022559F8.h"

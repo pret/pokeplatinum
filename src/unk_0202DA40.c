@@ -3,7 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "pokemon.h"
+#include "struct_defs/pokemon.h"
+
 #include "savedata.h"
 
 typedef struct UnkStruct_0202DA40_t {

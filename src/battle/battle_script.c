@@ -22,6 +22,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/fraction.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"

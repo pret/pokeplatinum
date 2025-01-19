@@ -3,9 +3,9 @@
 
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "game_options.h"
-#include "pokemon.h"
 #include "savedata.h"
 
 typedef struct {

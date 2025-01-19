@@ -7,6 +7,7 @@
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DFB54.h"
@@ -27,7 +28,6 @@
 #include "message.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokemon.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"

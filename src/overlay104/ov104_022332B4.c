@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/pokemon.h"
+
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0222E930.h"

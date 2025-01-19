@@ -23,6 +23,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/poke_animation_settings.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV12_02236030_H
 #define POKEPLATINUM_STRUCT_OV12_02236030_H
 
-#include "pokemon.h"
+#include "struct_defs/pokemon.h"
 
 typedef struct {
     int unk_00;

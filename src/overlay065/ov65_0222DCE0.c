@@ -54,6 +54,7 @@
 #include "party.h"
 #include "poffin.h"
 #include "pokemon.h"
+#include "struct_defs/pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "rtc.h"

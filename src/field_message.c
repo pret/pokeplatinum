@@ -8,6 +8,7 @@
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
+#include "palette.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "strbuf.h"

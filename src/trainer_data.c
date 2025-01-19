@@ -7,6 +7,8 @@
 #include "constants/pokemon.h"
 #include "constants/trainer.h"
 
+#include "struct_defs/pokemon.h"
+
 #include "data/trainer_class_genders.h"
 
 #include "charcode_util.h"

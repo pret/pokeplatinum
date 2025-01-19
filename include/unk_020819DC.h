@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_UNK_020819DC_H
 #define POKEPLATINUM_UNK_020819DC_H
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0207F248.h"
-
-#include "pokemon.h"
 
 void sub_02081A24(GameWindowLayout *param0);
 void sub_02081B90(GameWindowLayout *param0);

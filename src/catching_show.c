@@ -9,6 +9,7 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_02024440_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"

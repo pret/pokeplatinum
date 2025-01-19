@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV107_02249B1C_H
 #define POKEPLATINUM_OV107_02249B1C_H
 
+#include "struct_defs/pokemon.h"
+
 #include "overlay107/struct_ov107_02249954.h"
 #include "overlay107/struct_ov107_02249B8C_decl.h"
-
-#include "pokemon.h"
 
 UnkStruct_ov107_02249B8C *ov107_02249B1C(UnkStruct_ov107_02249954 *param0, u32 param1, u32 param2, u32 param3, u32 param4, s16 param5, s16 param6, int param7, const u8 *param8);
 void *ov107_02249B8C(UnkStruct_ov107_02249B8C *param0);

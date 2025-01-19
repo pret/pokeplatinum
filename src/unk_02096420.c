@@ -6,6 +6,7 @@
 #include "consts/species.h"
 
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "heap.h"
 #include "item.h"

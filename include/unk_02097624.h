@@ -2,9 +2,9 @@
 #define POKEPLATINUM_UNK_02097624_H
 
 #include "struct_decls/struct_02028430_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02097728.h"
 
-#include "pokemon.h"
 #include "savedata.h"
 
 UnkStruct_02097728 *sub_02097624(SaveData *param0, int param1, u8 param2, u8 param3, int param4);

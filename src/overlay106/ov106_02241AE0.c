@@ -5,6 +5,7 @@
 
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
