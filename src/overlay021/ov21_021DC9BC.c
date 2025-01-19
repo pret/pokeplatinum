@@ -655,7 +655,7 @@ static void ov21_021DD2E0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 
     v4 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DMAIN);
     v0 = ov21_021D4D6C(v3->unk_14C, 16, 2);
-    v6 = DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_areaunknown, 0, 0);
+    v6 = Pokedex_DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_areaunknown, 0, 0);
 
     v1.unk_04 = v0;
     v1.unk_0C = mapDisplay->AreaUnknownCellActor;
@@ -669,7 +669,7 @@ static void ov21_021DD2E0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 
     for (v5 = 0; v5 < 3; v5++) {
         v0 = ov21_021D4D6C(v3->unk_14C, 9, 2);
-        v6 = DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_morning + v5, 0, 0);
+        v6 = Pokedex_DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_morning + v5, 0, 0);
 
         v1.unk_04 = v0;
         v1.unk_0C = NULL;

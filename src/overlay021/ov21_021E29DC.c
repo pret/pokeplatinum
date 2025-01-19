@@ -733,7 +733,7 @@ static void ov21_021E3270(UnkStruct_ov21_021E2BBC *param0, UnkStruct_ov21_021E32
     for (v4 = 0; v4 < 5; v4++) {
         v0 = ov21_021D4D6C(v2->unk_14C, 8, 2);
 
-        DisplayMessage(v2->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_info + v4, 0, 0);
+        Pokedex_DisplayMessage(v2->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_info + v4, 0, 0);
 
         v1.unk_04 = v0;
         param1->unk_04[v4] = ov21_021D4CA0(&v1);

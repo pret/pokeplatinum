@@ -17,7 +17,7 @@ void ov21_021D4D1C(UnkStruct_ov21_021D4CA0 *param0);
 void ov21_021D4D3C(UnkStruct_ov21_021D4C0C *param0);
 Window *ov21_021D4D6C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2);
 void ov21_021D4DA0(Window *param0);
-u32 DisplayMessage(UnkStruct_ov21_021D4C0C *param0, Window *window, u32 bankID, u32 entryID, int xOffset, int yOffset);
+u32 Pokedex_DisplayMessage(UnkStruct_ov21_021D4C0C *param0, Window *window, u32 bankID, u32 entryID, int xOffset, int yOffset);
 void ov21_021D4E10(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, u32 param3);
 void ov21_021D4E80(UnkStruct_ov21_021D4C0C *param0, Window *param1, Strbuf *param2, int param3, int param4);
 

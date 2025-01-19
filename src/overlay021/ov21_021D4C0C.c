@@ -140,7 +140,7 @@ void ov21_021D4DA0(Window *param0)
     Windows_Delete(param0, 1);
 }
 
-u32 DisplayMessage(UnkStruct_ov21_021D4C0C *param0, Window *window, u32 bankID, u32 entryID, int xOffset, int yOffset)
+u32 Pokedex_DisplayMessage(UnkStruct_ov21_021D4C0C *param0, Window *window, u32 bankID, u32 entryID, int xOffset, int yOffset)
 {
     MessageLoader *messageLoader;
     Strbuf *strbuf;

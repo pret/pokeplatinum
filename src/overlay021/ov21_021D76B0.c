@@ -693,7 +693,7 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     v4 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(v3->unk_14C, 10, 4);
 
-    DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_search, 0, 0);
+    Pokedex_DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_search, 0, 0);
 
     v1.unk_04 = v0;
     v1.unk_0C = param0->unk_00[0];
@@ -707,7 +707,7 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
 
     ov21_021D4DA0(v0);
     v0 = ov21_021D4D6C(v3->unk_14C, 10, 4);
-    DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_switch, 0, 0);
+    Pokedex_DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_switch, 0, 0);
 
     v1.unk_04 = v0;
     v1.unk_0C = param0->unk_00[1];
@@ -721,7 +721,7 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
 
     ov21_021D4DA0(v0);
     v0 = ov21_021D4D6C(v3->unk_14C, 10, 4);
-    DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_check, 0, 0);
+    Pokedex_DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_check, 0, 0);
 
     v1.unk_04 = v0;
     v1.unk_0C = param0->unk_00[2];
@@ -733,9 +733,9 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     v0 = ov21_021D4D6C(v3->unk_14C, 14, 2);
 
     if (param2->unk_1C->unk_04->unk_1740 == 0) {
-        DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_quit, 0, 0);
+        Pokedex_DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_quit, 0, 0);
     } else {
-        DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_cancel, 0, 0);
+        Pokedex_DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_cancel, 0, 0);
     }
 
     v1.unk_04 = v0;

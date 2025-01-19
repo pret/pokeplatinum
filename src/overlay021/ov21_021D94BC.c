@@ -2753,7 +2753,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
 
     v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_order, 0, 0);
+    v2 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_order, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[1];
@@ -2765,7 +2765,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_name, 0, 0);
+    v2 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_name, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[2];
@@ -2777,7 +2777,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_type, 0, 0);
+    v2 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_type, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[3];
@@ -2789,7 +2789,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_form, 0, 0);
+    v2 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_form, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[4];
@@ -2801,7 +2801,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_ok, 0, 0);
+    v2 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_ok, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[5];
@@ -2870,7 +2870,7 @@ static void ov21_021DC088(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v4 = DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
+        v4 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
 
         param1->unk_10 = -v4 / 2;
         param1->unk_04 = v0;
@@ -2929,7 +2929,7 @@ static void ov21_021DC12C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v5 = DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
+        v5 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
@@ -2988,7 +2988,7 @@ static void ov21_021DC1E8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v5 = DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
+        v5 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
@@ -3044,7 +3044,7 @@ static void ov21_021DC2A4(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v5 = DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
+        v5 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
