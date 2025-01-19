@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_ENCOUNTER_H
 #define POKEPLATINUM_ENCOUNTER_H
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "field/field_system_decl.h"
 

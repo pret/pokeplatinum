@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV13_0221FC20_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 typedef struct {
     Party *unk_00;

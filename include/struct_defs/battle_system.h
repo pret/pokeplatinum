@@ -15,7 +15,7 @@
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/trainer_data.h"

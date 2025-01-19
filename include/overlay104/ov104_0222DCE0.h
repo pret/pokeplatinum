@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_0222DCE0_H
 #define POKEPLATINUM_OV104_0222DCE0_H
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
 

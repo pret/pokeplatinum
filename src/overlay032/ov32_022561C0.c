@@ -2,7 +2,7 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "overlay025/poketch_system.h"
 #include "overlay032/ov32_02256470.h"

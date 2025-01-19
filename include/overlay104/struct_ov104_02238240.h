@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_02238240_H
 #define POKEPLATINUM_STRUCT_OV104_02238240_H
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "savedata.h"
 

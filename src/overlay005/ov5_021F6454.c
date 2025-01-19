@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EB1A0.h"

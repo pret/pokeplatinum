@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV88_0223B140_H
 
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "overlay_manager.h"
 

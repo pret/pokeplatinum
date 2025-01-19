@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV104_0223B6F4_H
 
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223BA10.h"

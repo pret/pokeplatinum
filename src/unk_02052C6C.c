@@ -5,7 +5,7 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"

@@ -8,7 +8,7 @@
 #include "constants/heap.h"
 #include "constants/items.h"
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "overlay005/ov5_021E622C.h"
 

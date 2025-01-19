@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "bag.h"
 #include "game_options.h"

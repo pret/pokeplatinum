@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV19_021D4DF0_H
 
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "overlay019/struct_ov19_021D3CFC.h"
 #include "overlay019/struct_ov19_021D4DE4.h"

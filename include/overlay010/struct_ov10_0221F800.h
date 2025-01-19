@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV10_0221F800_H
 #define POKEPLATINUM_STRUCT_OV10_0221F800_H
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "field_battle_data_transfer.h"
 #include "strbuf.h"

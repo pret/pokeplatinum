@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02028430_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0206A844.h"
 #include "struct_defs/struct_02097728.h"

@@ -3,7 +3,7 @@
 
 #include <nitro/rtc.h>
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 #include "struct_defs/struct_0202DF8C.h"
 
 #include "overlay087/struct_ov87_021D1640.h"

@@ -3,7 +3,7 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "bag.h"
 #include "game_options.h"

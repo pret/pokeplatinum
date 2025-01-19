@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02096420_H
 #define POKEPLATINUM_UNK_02096420_H
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "pokemon.h"
 

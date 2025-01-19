@@ -9,7 +9,7 @@
 #include "constants/trainer.h"
 #include "consts/sdat.h"
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "overlay005/encounter_effect.h"
 

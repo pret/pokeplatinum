@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E930.h"

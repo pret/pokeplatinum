@@ -5,7 +5,7 @@
 
 #include "consts/species.h"
 
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "heap.h"
 #include "item.h"

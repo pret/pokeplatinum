@@ -3,7 +3,7 @@
 
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_020304A0_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"

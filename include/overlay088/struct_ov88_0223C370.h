@@ -4,7 +4,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 
 #include "field/field_system_decl.h"
 
