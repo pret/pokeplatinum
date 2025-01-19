@@ -3797,7 +3797,7 @@ static u32 ov65_022319B8 (UnkStruct_ov65_0222EBE0 * param0)
         return 3;
     }
 
-    if (sub_0202AC98(Poffin_GetSavedataBlock(param0->unk_160)) >= 100) {
+    if (Poffin_GetNumberOfFilledSlots(Poffin_GetSavedataBlock(param0->unk_160)) >= MAX_POFFINS) {
         return 2;
     }
 

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202A93C.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
 #include "struct_defs/struct_02098C44.h"
@@ -109,13 +108,13 @@ UnkStruct_0203D9B8 *sub_020989DC(SaveData *param0, int param1)
     v0->unk_14 = SaveData_GetBag(param0);
     v0->unk_18 = SaveData_Options(param0);
 
-    v1 = Poffin_malloc(param1);
+    v1 = Poffin_New(param1);
     v3 = StringTemplate_New(1, 32, param1);
 
-    for (v5 = 0; v5 < 100; v5++) {
-        sub_0202AC54(v0->unk_08, v5, v1);
+    for (v5 = 0; v5 < MAX_POFFINS; v5++) {
+        Poffin_CopyToCaseSlot(v0->unk_08, v5, v1);
 
-        if (!sub_0202A914(v1)) {
+        if (!Poffin_HasValidFlavor(v1)) {
             continue;
         }
 
@@ -243,7 +242,7 @@ static void sub_02098BE4(UnkStruct_02098BE4 *param0)
         v2 = &param0->unk_0C->unk_1C[v0];
 
         if (v2->unk_04_val1_6) {
-            sub_0202AB98(param0->unk_0C->unk_08, v2->unk_00);
+            Poffin_ClearCaseSlot(param0->unk_0C->unk_08, v2->unk_00);
             v1 = 1;
         }
     }
@@ -252,7 +251,7 @@ static void sub_02098BE4(UnkStruct_02098BE4 *param0)
         return;
     }
 
-    sub_0202ABD4(param0->unk_0C->unk_08);
+    Poffin_CompactCase(param0->unk_0C->unk_08);
 }
 
 static int sub_02098C2C(UnkStruct_02098BE4 *param0)
@@ -382,7 +381,7 @@ static int sub_02098D7C(UnkStruct_02098BE4 *param0)
     MI_CpuClear8(v1, sizeof(UnkStruct_02098DE8));
 
     v1->unk_08 = param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_02;
-    v1->unk_04 = sub_0202AC70(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->unk_00);
+    v1->unk_04 = Poffin_AllocateForCaseSlot(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->unk_00);
     v1->unk_00 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_10, param0->unk_08);
     v1->unk_0A = Options_TextFrameDelay(param0->unk_0C->unk_18);
     v1->unk_0B = Options_Frame(param0->unk_0C->unk_18);
@@ -419,7 +418,7 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
     };
 
     v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(PokemonSummary));
-    v2 = sub_0202AC70(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->unk_00);
+    v2 = Poffin_AllocateForCaseSlot(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->unk_00);
 
     v1->monData = param0->unk_0C->unk_10;
     v1->options = param0->unk_0C->unk_18;
