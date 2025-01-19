@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02096420_H
 #define POKEPLATINUM_UNK_02096420_H
 
-#include "struct_decls/struct_party_decl.h"
-
+#include "party.h"
 #include "pokemon.h"
 
 u8 CheckItemEffectsOnPokemon(Pokemon *param0, u16 param1, u16 param2, u32 param3);

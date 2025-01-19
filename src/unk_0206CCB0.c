@@ -11,7 +11,6 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"

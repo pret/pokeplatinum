@@ -3,10 +3,11 @@
 
 #include <nitro/rtc.h>
 
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202DF8C.h"
 
 #include "overlay087/struct_ov87_021D1640.h"
+
+#include "party.h"
 
 int HallOfFame_SaveSize(void);
 void HallOfFame_Init(HallOfFame *param0);

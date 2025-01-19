@@ -12,7 +12,6 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"

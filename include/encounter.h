@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_ENCOUNTER_H
 #define POKEPLATINUM_ENCOUNTER_H
 
-#include "struct_decls/struct_party_decl.h"
-
 #include "field/field_system_decl.h"
 
 #include "field_battle_data_transfer.h"
 #include "field_task.h"
+#include "party.h"
 
 void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void Encounter_StartVsWild(FieldSystem *fieldSystem, FieldTask *task, FieldBattleDTO *dto);

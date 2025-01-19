@@ -14,7 +14,6 @@
 #include "struct_defs/struct_0202FD30.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_02078B40.h"
-#include "struct_defs/struct_party.h"
 
 #include "savedata/save_table.h"
 

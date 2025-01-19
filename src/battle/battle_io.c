@@ -8,7 +8,6 @@
 #include "consts/gender.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/battle_io.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A81C.h"

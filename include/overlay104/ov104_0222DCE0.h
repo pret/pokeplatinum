@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV104_0222DCE0_H
 #define POKEPLATINUM_OV104_0222DCE0_H
 
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
 
@@ -11,6 +10,7 @@
 
 #include "cell_actor.h"
 #include "field_battle_data_transfer.h"
+#include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "string_template.h"

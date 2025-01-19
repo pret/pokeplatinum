@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02098700_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"
