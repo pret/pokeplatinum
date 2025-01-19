@@ -17,6 +17,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "heap.h"
 #include "overlay_manager.h"
 #include "strbuf.h"
 #include "touch_screen.h"
@@ -24,7 +25,7 @@
 int ov21_021D0D80(OverlayManager *param0, int *param1);
 int ov21_021D0E3C(OverlayManager *param0, int *param1);
 int ov21_021D0EC8(OverlayManager *param0, int *param1);
-UnkStruct_ov21_021D0F60 *ov21_021D0F60(int param0, const UnkStruct_ov21_021D0D80 *param1);
+UnkStruct_ov21_021D0F60 *ov21_021D0F60(enum HeapId heapID, const UnkStruct_ov21_021D0D80 *param1);
 BOOL ov21_021D10B8(UnkStruct_ov21_021D0F60 *param0);
 void ov21_021D12B0(int param0);
 void ov21_021D12C4(void);
@@ -70,6 +71,6 @@ u32 ov21_021D1B94(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
 u32 ov21_021D1BD8(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320 *param1, int param2, int param3, int param4, int param5, int param6);
 u32 ov21_021D1C30(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320 *param1, int param2, int param3, int param4, int param5, int param6);
 u32 ov21_021D1C88(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320 *param1, int param2, int param3, int param4, int param5, int param6);
-Strbuf *GetPokedexMessage(int entryID, int heapID);
+Strbuf *GetPokedexMessage(int entryID, enum HeapId heapID);
 
 #endif // POKEPLATINUM_OV21_021D0D80_H

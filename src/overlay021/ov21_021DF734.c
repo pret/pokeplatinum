@@ -63,8 +63,8 @@ typedef struct {
 } UnkStruct_ov21_021DFFF8;
 
 static inline int inline_ov21_021E00F4(int param0, int param1);
-static UnkStruct_ov21_021DF844 *ov21_021DF7CC(int param0, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021DF858 *ov21_021DF80C(int param0, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
 static void ov21_021DF844(UnkStruct_ov21_021DF844 *param0);
 static void ov21_021DF858(UnkStruct_ov21_021DF858 *param0);
 static int ov21_021DF86C(void);
@@ -130,13 +130,13 @@ static void ov21_021E0BF8(UnkStruct_ov21_021DFFF8 *param0);
 static void ov21_021E0C10(UnkStruct_ov21_021DFFF8 *param0);
 static void ov21_021E0C30(UnkStruct_ov21_021DFFF8 *param0);
 
-void ov21_021DF734(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, int param2)
+void ov21_021DF734(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, enum HeapId heapID)
 {
     UnkStruct_ov21_021DF844 *v0;
     UnkStruct_ov21_021DF858 *v1;
 
-    v0 = ov21_021DF7CC(param2, param1);
-    v1 = ov21_021DF80C(param2, param1);
+    v0 = ov21_021DF7CC(heapID, param1);
+    v1 = ov21_021DF80C(heapID, param1);
 
     param0->unk_00 = v0;
     param0->unk_04 = v1;
@@ -177,12 +177,12 @@ BOOL ov21_021DF7A0(UnkStruct_ov21_021E68F4 *param0, int param1)
     return 0;
 }
 
-static UnkStruct_ov21_021DF844 *ov21_021DF7CC(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     UnkStruct_ov21_021DF844 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021DF844));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DF844));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DF844));
@@ -195,12 +195,12 @@ static UnkStruct_ov21_021DF844 *ov21_021DF7CC(int param0, UnkStruct_ov21_021D0F6
     return v0;
 }
 
-static UnkStruct_ov21_021DF858 *ov21_021DF80C(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     UnkStruct_ov21_021DF858 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021DF858));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DF858));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DF858));

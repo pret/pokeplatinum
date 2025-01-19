@@ -57,9 +57,9 @@ enum HeightCheckGraphics {
     HCG_ANIMATION,
 };
 
-static UnkStruct_ov21_021E6104 *ov21_021E608C(int param0, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021E6118 *ov21_021E60D8(int param0, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021D4660 *ov21_021E6100(int param0, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021E6104 *ov21_021E608C(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021E6118 *ov21_021E60D8(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021D4660 *ov21_021E6100(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
 static void ov21_021E6104(UnkStruct_ov21_021E6104 *param0);
 static void ov21_021E6118(UnkStruct_ov21_021E6118 *param0);
 static void DummyForMatching1(UnkStruct_ov21_021D4660 *param0);
@@ -74,17 +74,17 @@ static void SetTrainerHeightLarge(HeightCheckVisuals *heightCheckVisuals);
 static void SetTrainerHeightNormal(HeightCheckVisuals *heightCheckVisuals);
 static void ov21_021E628C(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, BOOL param3);
 static BOOL ov21_021E62F8(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, BOOL param3);
-static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, const int *param3, int heapID);
+static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, const int *param3, enum HeapId heapID);
 static void FreeVisuals(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1);
-static void DisplayBackground(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, int heapID);
-static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, int heapID);
+static void DisplayBackground(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, enum HeapId heapID);
+static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, enum HeapId heapID);
 static void FreeSprites(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1);
-static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, int heapID);
+static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, enum HeapId heapID);
 static void FreeTrainerHeight(HeightCheckVisuals *heightCheckVisuals);
-static void DummyForMatching2(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, int heapID);
+static void DummyForMatching2(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, enum HeapId heapID);
 static void DummyForMatching3(HeightCheckVisuals *heightCheckVisuals);
-static void DisplayHeightLabels(UnkStruct_ov21_021E6118 *param0, int heapID);
-static void DisplayHeightValues(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, int heapID);
+static void DisplayHeightLabels(UnkStruct_ov21_021E6118 *param0, enum HeapId heapID);
+static void DisplayHeightValues(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, enum HeapId heapID);
 static void DisplaySpeciesHeight(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1);
 static void ClearSpeciesSprite(UnkStruct_ov21_021E6118 *param0);
 static void SetTrainerPosition(CellActor *trainerHeightCellActor, short trainerPos);
@@ -92,11 +92,11 @@ static void SetSpeciesPosition(Sprite *speciesSprite, short pokemonPos);
 static void SetTrainerScale(CellActor *trainerHeightCellActor, short trainerScale);
 static void SetSpeciesScale(Sprite *speciesSprite, short pokemonScale);
 
-void ov21_021E6014(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, int param2)
+void ov21_021E6014(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, enum HeapId heapID)
 {
-    UnkStruct_ov21_021E6104 *v0 = ov21_021E608C(param2, param1);
-    UnkStruct_ov21_021E6118 *v1 = ov21_021E60D8(param2, param1);
-    UnkStruct_ov21_021D4660 *v2 = ov21_021E6100(param2, param1);
+    UnkStruct_ov21_021E6104 *v0 = ov21_021E608C(heapID, param1);
+    UnkStruct_ov21_021E6118 *v1 = ov21_021E60D8(heapID, param1);
+    UnkStruct_ov21_021D4660 *v2 = ov21_021E6100(heapID, param1);
 
     param0->unk_00 = v0;
     param0->unk_04 = v1;
@@ -118,9 +118,9 @@ void ov21_021E6074(UnkStruct_ov21_021E68F4 *param0)
     DummyForMatching1(param0->unk_20);
 }
 
-static UnkStruct_ov21_021E6104 *ov21_021E608C(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021E6104 *ov21_021E608C(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
-    UnkStruct_ov21_021E6104 *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021E6104));
+    UnkStruct_ov21_021E6104 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E6104));
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E6104));
 
@@ -131,9 +131,9 @@ static UnkStruct_ov21_021E6104 *ov21_021E608C(int param0, UnkStruct_ov21_021D0F6
     return v0;
 }
 
-UnkStruct_ov21_021E6118 *ov21_021E60D8(int param0, UnkStruct_ov21_021D0F60 *param1)
+UnkStruct_ov21_021E6118 *ov21_021E60D8(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
-    UnkStruct_ov21_021E6118 *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021E6118));
+    UnkStruct_ov21_021E6118 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E6118));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E6118));
@@ -143,7 +143,7 @@ UnkStruct_ov21_021E6118 *ov21_021E60D8(int param0, UnkStruct_ov21_021D0F60 *para
     return v0;
 }
 
-static UnkStruct_ov21_021D4660 *ov21_021E6100(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021D4660 *ov21_021E6100(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     return NULL;
 }
@@ -311,7 +311,7 @@ static BOOL ov21_021E62F8(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21
     return FALSE;
 }
 
-static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, const int *param3, int heapID)
+static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, const int *param3, enum HeapId heapID)
 {
     DisplayBackground(param1, param2, heapID);
     DisplayHeightLabels(param1, heapID);
@@ -334,7 +334,7 @@ static void FreeVisuals(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_0
     ClearSpeciesSprite(param1);
 }
 
-static void DisplayBackground(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, int heapID)
+static void DisplayBackground(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, enum HeapId heapID)
 {
     NNSG2dScreenData *v1;
 
@@ -347,7 +347,7 @@ static void DisplayBackground(UnkStruct_ov21_021E6118 *param0, const UnkStruct_o
     Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 3);
 }
 
-static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, int heapID)
+static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, enum HeapId heapID)
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
     NARC *pokedexGraphicsNarc = ov21_021D26E0(v0);
@@ -378,7 +378,7 @@ static void FreeSprites(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_0
     SpriteResourceCollection_Remove(v0->unk_13C[3], heightCheckVisuals->heightCheckGraphics[HCG_ANIMATION]);
 }
 
-static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, int heapID)
+static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, enum HeapId heapID)
 {
     CellActorResourceData trainerResource;
     CellActorInitParams trainerCellParams;
@@ -416,7 +416,7 @@ static void FreeTrainerHeight(HeightCheckVisuals *heightCheckVisuals)
     CellActor_Delete(heightCheckVisuals->trainerHeightCellActor);
 }
 
-static void DummyForMatching2(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, int heapID)
+static void DummyForMatching2(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, enum HeapId heapID)
 {
     return;
 }
@@ -426,7 +426,7 @@ static void DummyForMatching3(HeightCheckVisuals *heightCheckVisuals)
     return;
 }
 
-static void DisplayHeightLabels(UnkStruct_ov21_021E6118 *param0, int heapID)
+static void DisplayHeightLabels(UnkStruct_ov21_021E6118 *param0, enum HeapId heapID)
 {
     Strbuf *strbuf = Strbuf_Init(32, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
@@ -446,7 +446,7 @@ static void DisplayHeightLabels(UnkStruct_ov21_021E6118 *param0, int heapID)
     MessageLoader_Free(pokedexMessageBank);
 }
 
-static void DisplayHeightValues(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, int heapID)
+static void DisplayHeightValues(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, enum HeapId heapID)
 {
     Strbuf *strbuf = Strbuf_Init(32, heapID);
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
