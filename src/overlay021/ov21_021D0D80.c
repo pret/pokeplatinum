@@ -55,7 +55,7 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
@@ -133,12 +133,8 @@ int ov21_021D0D80(OverlayManager *param0, int *param1)
 
     v1 = OverlayManager_Args(param0);
 
-    {
-        u32 v4;
-
-        v4 = PokedexData_GetDisplayForm(v1->unk_00, 487, 0);
-        Pokedex_SetupGiratina(v4);
-    }
+    u32 form = Pokedex_GetDisplayForm(v1->pokedex, 487, 0);
+    Pokedex_SetupGiratina(form);
 
     SetMainCallback(ov21_021D0F04, v0);
     DisableHBlank();
@@ -149,8 +145,8 @@ int ov21_021D0D80(OverlayManager *param0, int *param1)
 
     ov21_021D12B0(37);
 
-    v2.unk_00 = v1->unk_00;
-    v2.unk_04 = v1->unk_04;
+    v2.pokedex = v1->pokedex;
+    v2.trainerInfo = v1->trainerInfo;
     v2.timeOfDay = v1->timeOfDay;
     v2.fullmoonIslandVisible = v1->fullmoonIslandVisible;
     v2.seabreakPathVisible = v1->seabreakPathVisible;
@@ -317,8 +313,8 @@ UnkStruct_ov21_021D0F60 *ov21_021D0F60(int param0, const UnkStruct_ov21_021D0D80
     v0->unk_1D6C = ov21_021D3FE0(param0);
     v0->unk_1D70 = ov21_021D3FE0(param0);
 
-    v2.dexData = param1->unk_00;
-    v2.unk_04 = param1->unk_04;
+    v2.pokedex = param1->pokedex;
+    v2.unk_04 = param1->trainerInfo;
     v2.timeOfDay = param1->timeOfDay;
     v2.fullmoonIslandVisible = param1->fullmoonIslandVisible;
     v2.newmoonIslandVisible = param1->newmoonIslandVisible;

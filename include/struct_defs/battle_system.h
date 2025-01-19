@@ -35,7 +35,7 @@
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -57,22 +57,22 @@ struct BattleSystem {
     BattleContext *battleCtx;
     BattlerData *battlers[MAX_BATTLERS];
     int maxBattlers;
-    TrainerInfo *trainerInfo[4];
+    TrainerInfo *trainerInfo[MAX_BATTLERS];
     Bag *unk_58;
     BagCursor *unk_5C;
-    PokedexData *pokedex;
+    Pokedex *pokedex;
     PCBoxes *pcBoxes;
-    Party *parties[4];
-    ChatotCry *unk_78[4];
+    Party *parties[MAX_BATTLERS];
+    ChatotCry *unk_78[MAX_BATTLERS];
     UnkStruct_02007768 *unk_88;
     UnkStruct_ov12_0221FCDC *unk_8C;
     SpriteRenderer *unk_90;
     SpriteGfxHandler *unk_94;
-    PoketchData *poketchData;
+    Poketch *poketch;
     UnkStruct_0206D140 *unk_9C;
-    u16 trainerIDs[4];
+    u16 trainerIDs[MAX_BATTLERS];
     u8 unk_A8[4];
-    TrainerData trainers[4];
+    Trainer trainers[MAX_BATTLERS];
     UnkStruct_ov16_02268520 unk_17C[2];
     UnkStruct_ov16_02268A14 *unk_198;
     PartyGauge *unk_19C[2];

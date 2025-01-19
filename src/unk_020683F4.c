@@ -43,7 +43,7 @@
 #include "map_tile_behavior.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokeradar.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -1065,7 +1065,7 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (PokedexData_IsNationalDexObtained(SaveData_PokedexData(param0->fieldSystem->saveData)) == FALSE) {
+    if (Pokedex_IsNationalDexObtained(SaveData_GetPokedex(param0->fieldSystem->saveData)) == FALSE) {
         return -1;
     }
 

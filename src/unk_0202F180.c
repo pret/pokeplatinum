@@ -6,18 +6,18 @@
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "game_records.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "savedata.h"
 
-void sub_0202F180(SaveData *param0, const Pokemon *param1)
+void sub_0202F180(SaveData *saveData, const Pokemon *pokemon)
 {
-    if (Pokemon_GetValue((Pokemon *)param1, MON_DATA_IS_EGG, NULL) == 0) {
-        PokedexData *v0 = SaveData_PokedexData(param0);
+    if (Pokemon_GetValue((Pokemon *)pokemon, MON_DATA_IS_EGG, NULL) == 0) {
+        Pokedex *pokedex = SaveData_GetPokedex(saveData);
 
-        GameRecords_IncrementTrainerScoreOnCatch(SaveData_GetGameRecordsPtr(param0), v0, Pokemon_GetValue((Pokemon *)param1, MON_DATA_SPECIES, NULL));
-        PokedexData_Capture(v0, (Pokemon *)param1);
-        PoketchData_PokemonHistoryEnqueue(SaveData_PoketchData(param0), (const BoxPokemon *)param1);
+        GameRecords_IncrementTrainerScoreOnCatch(SaveData_GetGameRecordsPtr(saveData), pokedex, Pokemon_GetValue((Pokemon *)pokemon, MON_DATA_SPECIES, NULL));
+        Pokedex_Capture(pokedex, (Pokemon *)pokemon);
+        Poketch_PokemonHistoryEnqueue(SaveData_PoketchData(saveData), (const BoxPokemon *)pokemon);
     }
 }

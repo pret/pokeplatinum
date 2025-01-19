@@ -35,9 +35,9 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -60,7 +60,7 @@
 
 #include "constdata/const_020F410C.h"
 
-UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, PokedexData *param5, Bag *param6, GameRecords *records, PoketchData *poketchData, int param9, int param10, int param11);
+UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int param11);
 static void sub_0207B0A0(SysTask *param0, void *param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 *param0);
 void sub_0207B0E0(UnkStruct_0207AE68 *param0);
@@ -90,7 +90,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, PokedexData *param5, Bag *param6, GameRecords *records, PoketchData *poketchData, int param9, int param10, int param11)
+UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int param11)
 {
     UnkStruct_0207AE68 *v0;
     ArchivedSprite v1;
@@ -149,7 +149,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     v0->unk_48 = param5;
     v0->unk_4C = param6;
     v0->records = records;
-    v0->poketchData = poketchData;
+    v0->poketch = poketch;
     v0->unk_78 = param9;
     v0->unk_7C = param10;
 
@@ -409,10 +409,10 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     case 12:
         if (Text_IsPrinterActive(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
-                PokedexData_Capture(param0->unk_48, param0->unk_28);
+                Pokedex_Capture(param0->unk_48, param0->unk_28);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
-                PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(param0->unk_28));
+                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(param0->unk_28));
 
                 if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
                     Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES_NAME, NULL);
@@ -739,10 +739,10 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
 
                 Pokemon_CalcLevelAndStats(v1);
                 Party_AddPokemon(param0->unk_24, v1);
-                PokedexData_Capture(param0->unk_48, v1);
+                Pokedex_Capture(param0->unk_48, v1);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
-                PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(v1));
+                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
                 Bag_TryRemoveItem(param0->unk_4C, ITEM_POKE_BALL, 1, param0->unk_5C);
             }

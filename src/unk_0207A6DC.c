@@ -151,7 +151,7 @@ static int sub_0207A76C(void)
 
 static int sub_0207A774(void)
 {
-    return sizeof(TrainerData);
+    return sizeof(Trainer);
 }
 
 static u8 *sub_0207A778(int param0, void *param1, int param2)
@@ -170,9 +170,9 @@ static u8 *sub_0207A798(int param0, void *param1, int param2)
     UnkStruct_0207A778 *v0 = param1;
 
     if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        return (u8 *)&v0->unk_00->trainerData[param0 * 2];
+        return (u8 *)&v0->unk_00->trainer[param0 * 2];
     } else {
-        return (u8 *)&v0->unk_00->trainerData[param0];
+        return (u8 *)&v0->unk_00->trainer[param0];
     }
 }
 
@@ -201,13 +201,13 @@ static u8 *sub_0207A7D4(int param0, void *param1, int param2)
 static u8 *sub_0207A7F4(int param0, void *param1, int param2)
 {
     UnkStruct_0207A778 *v0 = param1;
-    return (u8 *)&v0->unk_00->trainerData[1];
+    return (u8 *)&v0->unk_00->trainer[1];
 }
 
 static u8 *sub_0207A7FC(int param0, void *param1, int param2)
 {
     UnkStruct_0207A778 *v0 = param1;
-    return (u8 *)&v0->unk_00->trainerData[3];
+    return (u8 *)&v0->unk_00->trainer[3];
 }
 
 static u8 *sub_0207A804(int param0, void *param1, int param2)
@@ -347,14 +347,14 @@ static void sub_0207A9BC(int param0, int param1, void *param2, void *param3)
 
 BOOL sub_0207A9CC(UnkStruct_0207A778 *param0)
 {
-    TrainerData *v0;
+    Trainer *v0;
 
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    v0 = (TrainerData *)&param0->unk_20[0];
-    *v0 = param0->unk_00->trainerData[0];
+    v0 = (Trainer *)&param0->unk_20[0];
+    *v0 = param0->unk_00->trainer[0];
 
     return 1;
 }
@@ -369,7 +369,7 @@ BOOL sub_0207A9F8(UnkStruct_0207A778 *param0)
         return 0;
     }
 
-    return CommSys_SendDataHuge(26, (void *)&param0->unk_20[0], sizeof(TrainerData));
+    return CommSys_SendDataHuge(26, (void *)&param0->unk_20[0], sizeof(Trainer));
 }
 
 static void sub_0207AA28(int param0, int param1, void *param2, void *param3)
@@ -387,7 +387,7 @@ BOOL sub_0207AA38(UnkStruct_0207A778 *param0)
     }
 
     v0 = (Party *)&param0->unk_20[0];
-    Party_cpy(param0->unk_00->parties[0], v0);
+    Party_Copy(param0->unk_00->parties[0], v0);
 
     return 1;
 }
@@ -490,14 +490,14 @@ static void sub_0207AB8C(int param0, int param1, void *param2, void *param3)
 
 BOOL sub_0207AB9C(UnkStruct_0207A778 *param0, int param1)
 {
-    TrainerData *v0;
+    Trainer *v0;
 
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    v0 = (TrainerData *)&param0->unk_20[0];
-    *v0 = param0->unk_00->trainerData[param1];
+    v0 = (Trainer *)&param0->unk_20[0];
+    *v0 = param0->unk_00->trainer[param1];
 
     return 1;
 }
@@ -513,9 +513,9 @@ BOOL sub_0207ABD0(UnkStruct_0207A778 *param0, int param1, int param2)
     }
 
     if (param1 == 1) {
-        return CommSys_SendDataHuge(29, (void *)&param0->unk_20[0], sizeof(TrainerData));
+        return CommSys_SendDataHuge(29, (void *)&param0->unk_20[0], sizeof(Trainer));
     } else {
-        return CommSys_SendDataHuge(30, (void *)&param0->unk_20[0], sizeof(TrainerData));
+        return CommSys_SendDataHuge(30, (void *)&param0->unk_20[0], sizeof(Trainer));
     }
 }
 
@@ -534,7 +534,7 @@ BOOL sub_0207AC28(UnkStruct_0207A778 *param0, int param1)
     }
 
     v0 = (Party *)&param0->unk_20[0];
-    Party_cpy(param0->unk_00->parties[param1], v0);
+    Party_Copy(param0->unk_00->parties[param1], v0);
 
     return 1;
 }

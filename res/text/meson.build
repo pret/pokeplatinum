@@ -723,9 +723,7 @@ gmm_header_dir = custom_target('gmm_header_dir',
     capture: true,
     output: 'gmm_header_dir',
     command: [
-        'sh', '-c', '"$@"',
-        '--',
-        'mkdir', '-p', gmm_header_target
+        'sh', '-c', 'mkdir -p ' + gmm_header_target
     ]
 )
 

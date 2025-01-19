@@ -4475,10 +4475,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_337 arg0, arg1
+    .macro HasSeenSpecies species, ret
     .short 823
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \ret
     .endm
 
     .macro ScrCmd_338
