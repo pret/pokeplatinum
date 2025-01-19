@@ -13,7 +13,7 @@ BOOL ov6_02246BF4(SaveData *param0, FieldSystem *fieldSystem)
 {
     u8 *v0;
 
-    v0 = sub_0202D9CC(sub_0202D834(param0));
+    v0 = sub_0202D9CC(SaveData_GetSpecialEncounters(param0));
 
     if ((*v0) > 0) {
         (*v0)--;

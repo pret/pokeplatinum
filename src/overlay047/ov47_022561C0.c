@@ -28,7 +28,7 @@ typedef struct {
     UnkStruct_ov47_02256634 *unk_70;
     PoketchSystem *poketchSys;
     PoketchData *poketchData;
-    UnkStruct_0206C638 *unk_7C[6];
+    Roamer *unk_7C[6];
     u8 unk_94[6];
     u8 unk_9A;
 } UnkStruct_ov47_0225621C;
@@ -102,7 +102,7 @@ static BOOL ov47_0225621C(UnkStruct_ov47_0225621C *param0, PoketchSystem *poketc
     }
 
     {
-        UnkStruct_0202D7B0 *v2 = sub_0202D834(PoketchSystem_GetSaveData(poketchSys));
+        SpecialEncounter *v2 = SaveData_GetSpecialEncounters(PoketchSystem_GetSaveData(poketchSys));
 
         for (v0 = 0; v0 < 6; v0++) {
             param0->unk_7C[v0] = sub_0202D924(v2, v0);
