@@ -5,6 +5,7 @@
 
 #include "struct_decls/sprite_decl.h"
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1F90.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -22,6 +23,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -54,8 +56,8 @@ typedef struct {
     UnkStruct_ov21_021D2648 unk_54;
 } UnkStruct_ov21_021DF374;
 
-static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(int param0, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021DE760 *ov21_021DE724(int param0, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021DE760 *ov21_021DE724(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
 static void ov21_021DE74C(UnkStruct_ov21_021DE6D4 *param0);
 static void ov21_021DE760(UnkStruct_ov21_021DE760 *param0);
 static int ov21_021DE774(void);
@@ -102,13 +104,13 @@ static void ov21_021DEF3C(UnkStruct_ov21_021DE760 *param0);
 static void ov21_021DEF54(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_021DE6D4 *param1);
 static void ov21_021DEF8C(UnkStruct_ov21_021DE760 *param0);
 
-void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, int param2)
+void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, enum HeapId heapID)
 {
     UnkStruct_ov21_021DE6D4 *v0;
     UnkStruct_ov21_021DE760 *v1;
 
-    v0 = ov21_021DE6E8(param2, param1);
-    v1 = ov21_021DE724(param2, param1);
+    v0 = ov21_021DE6E8(heapID, param1);
+    v1 = ov21_021DE724(heapID, param1);
 
     param0->unk_00 = v0;
     param0->unk_04 = v1;
@@ -146,12 +148,12 @@ BOOL ov21_021DE6D8(UnkStruct_ov21_021DE6D4 *param0, int param1)
     return v0;
 }
 
-static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     UnkStruct_ov21_021DE6D4 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021DE6D4));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DE6D4));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DE6D4));
@@ -164,12 +166,12 @@ static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(int param0, UnkStruct_ov21_021D0F6
     return v0;
 }
 
-static UnkStruct_ov21_021DE760 *ov21_021DE724(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021DE760 *ov21_021DE724(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     UnkStruct_ov21_021DE760 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021DE760));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DE760));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DE760));
@@ -423,22 +425,22 @@ static void ov21_021DEB58(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_
     ov21_021DEB8C(&param0->unk_00->unk_04, species, param2, param1->unk_18, TEXT_COLOR(2, 1, 0));
 }
 
-void ov21_021DEB8C(Window *param0, int param1, int param2, int param3, u32 param4)
+void ov21_021DEB8C(Window *param0, int param1, enum HeapId heapID, int param3, u32 param4)
 {
-    Strbuf *v0 = Strbuf_Init(64, param2);
-    MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param2);
+    Strbuf *v0 = Strbuf_Init(64, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
-    MessageLoader_GetStrbuf(v1, 9, v0);
+    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_ht, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 152, 88, TEXT_SPEED_INSTANT, param4, NULL);
 
-    MessageLoader_GetStrbuf(v1, 10, v0);
+    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_wt, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 152, 104, TEXT_SPEED_INSTANT, param4, NULL);
     Strbuf_Free(v0);
-    MessageLoader_Free(v1);
+    MessageLoader_Free(pokedexMessageBank);
 
-    ov21_021DEC2C(param0, param2, param1, param4);
-    ov21_021DEC80(param0, param2, param1, param4);
-    ov21_021DECD4(param0, param2, param1, param3, param4);
+    ov21_021DEC2C(param0, heapID, param1, param4);
+    ov21_021DEC80(param0, heapID, param1, param4);
+    ov21_021DECD4(param0, heapID, param1, param3, param4);
 }
 
 static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3)
@@ -480,7 +482,7 @@ static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u3
 static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
 {
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
-    int v1 = ov21_021D33D4(param2->unk_04, species);
+    int v1 = PokedexSort_DefaultForm(param2->unk_04, species);
 
     if ((species == 487) && (v1 > 0)) {
         species = 11;
@@ -628,7 +630,7 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
     int v4, v5;
-    int v6 = ov21_021D33D4(param2->unk_04, species);
+    int v6 = PokedexSort_DefaultForm(param2->unk_04, species);
 
     v4 = PokemonPersonalData_GetFormValue(species, v6, 6);
     v5 = PokemonPersonalData_GetFormValue(species, v6, 7);

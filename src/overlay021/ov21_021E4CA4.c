@@ -5,6 +5,7 @@
 
 #include "struct_decls/struct_02023FCC_decl.h"
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -19,6 +20,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -110,9 +112,9 @@ typedef struct {
     BOOL unk_70;
 } UnkStruct_ov21_021E5004;
 
-static UnkStruct_ov21_021E4D90 *ov21_021E4D24(int param0, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021E4DA4 *ov21_021E4D64(int param0, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021D4660 *ov21_021E4D8C(int param0, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021E4D90 *ov21_021E4D24(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021E4DA4 *ov21_021E4D64(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021D4660 *ov21_021E4D8C(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
 static void ov21_021E4D90(UnkStruct_ov21_021E4D90 *param0);
 static void ov21_021E4DA4(UnkStruct_ov21_021E4DA4 *param0);
 static void ov21_021E4DB8(UnkStruct_ov21_021D4660 *param0);
@@ -127,7 +129,7 @@ static void ov21_021E5004(UnkStruct_ov21_021E5004 *param0);
 static void ov21_021E5040(UnkStruct_ov21_021E5004 *param0);
 static void ov21_021E507C(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4DA4 *param1, const UnkStruct_ov21_021E4D90 *param2, BOOL param3);
 static BOOL ov21_021E50EC(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4DA4 *param1, const UnkStruct_ov21_021E4D90 *param2, BOOL param3);
-static void ov21_021E5128(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1, int param2);
+static void ov21_021E5128(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1, enum HeapId heapID);
 static void ov21_021E51DC(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1);
 static void ov21_021E5200(UnkStruct_ov21_021E51DC *param0);
 static void ov21_021E5228(u32 param0, u32 param1, void *param2);
@@ -179,15 +181,15 @@ static void ov21_021E5E98(UnkStruct_ov21_021E5004 *param0);
 static void ov21_021E5EAC(UnkStruct_ov21_021E5004 *param0);
 static void ov21_021E5EC0(UnkStruct_ov21_021E5004 *param0);
 
-void ov21_021E4CA4(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, int param2)
+void ov21_021E4CA4(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, enum HeapId heapID)
 {
     UnkStruct_ov21_021E4D90 *v0;
     UnkStruct_ov21_021E4DA4 *v1;
     UnkStruct_ov21_021D4660 *v2;
 
-    v0 = ov21_021E4D24(param2, param1);
-    v1 = ov21_021E4D64(param2, param1);
-    v2 = ov21_021E4D8C(param2, param1);
+    v0 = ov21_021E4D24(heapID, param1);
+    v1 = ov21_021E4D64(heapID, param1);
+    v2 = ov21_021E4D8C(heapID, param1);
 
     param0->unk_00 = v0;
     param0->unk_04 = v1;
@@ -216,11 +218,11 @@ int ov21_021E4D1C(const UnkStruct_ov21_021E68F4 *param0)
     return v0->unk_0C;
 }
 
-static UnkStruct_ov21_021E4D90 *ov21_021E4D24(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021E4D90 *ov21_021E4D24(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     UnkStruct_ov21_021E4D90 *v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021E4D90));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E4D90));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E4D90));
@@ -232,12 +234,12 @@ static UnkStruct_ov21_021E4D90 *ov21_021E4D24(int param0, UnkStruct_ov21_021D0F6
     return v0;
 }
 
-static UnkStruct_ov21_021E4DA4 *ov21_021E4D64(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021E4DA4 *ov21_021E4D64(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     UnkStruct_ov21_021E4DA4 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021E4DA4));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E4DA4));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E4DA4));
@@ -247,7 +249,7 @@ static UnkStruct_ov21_021E4DA4 *ov21_021E4D64(int param0, UnkStruct_ov21_021D0F6
     return v0;
 }
 
-static UnkStruct_ov21_021D4660 *ov21_021E4D8C(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021D4660 *ov21_021E4D8C(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     return NULL;
 }
@@ -489,10 +491,10 @@ static BOOL ov21_021E50EC(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     return 0;
 }
 
-static void ov21_021E5128(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1, int param2)
+static void ov21_021E5128(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1, enum HeapId heapID)
 {
-    param0->unk_04 = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 3);
-    param0->unk_10 = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 2);
+    param0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 3);
+    param0->unk_10 = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 2);
 
     ov21_021D154C(&param0->unk_04[0], 67 - 14, 67 + 14, 64 - 42, 64 + 42);
 
@@ -512,8 +514,8 @@ static void ov21_021E5128(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D
     param0->unk_08.unk_00 = param1;
     param0->unk_08.unk_04 = param0;
 
-    param0->unk_00 = sub_02023FCC(param0->unk_04, 3, ov21_021E5228, &param0->unk_08, param2);
-    param0->unk_14 = sub_02023FCC(param0->unk_10, 2, ov21_021E5268, &param0->unk_08, param2);
+    param0->unk_00 = sub_02023FCC(param0->unk_04, 3, ov21_021E5228, &param0->unk_08, heapID);
+    param0->unk_14 = sub_02023FCC(param0->unk_10, 2, ov21_021E5268, &param0->unk_08, heapID);
 }
 
 static void ov21_021E51DC(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1)
@@ -937,7 +939,7 @@ static void ov21_021E58B8(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     v4 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(v3->unk_14C, 8, 2);
 
-    v5 = ov21_021D4DAC(v3->unk_14C, v0, 697, 41, 0, 0);
+    v5 = Pokedex_DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_chorus, 0, 0);
     v1.unk_10 = 64 - v5 / 2;
     v1.unk_04 = v0;
 
@@ -947,7 +949,7 @@ static void ov21_021E58B8(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(v3->unk_14C, 8, 2);
-    v5 = ov21_021D4DAC(v3->unk_14C, v0, 697, 42, 0, 0);
+    v5 = Pokedex_DisplayMessage(v3->unk_14C, v0, message_bank_pokedex, pl_msg_pokedex_pan, 0, 0);
 
     v1.unk_10 = 64 - v5 / 2;
     v1.unk_04 = v0;

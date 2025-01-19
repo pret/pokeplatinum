@@ -4,7 +4,9 @@
 #include "overlay021/struct_ov21_021D3FE0_decl.h"
 #include "overlay021/struct_ov21_021D4008.h"
 
-UnkStruct_ov21_021D3FE0 *ov21_021D3FE0(int param0);
+#include "heap.h"
+
+UnkStruct_ov21_021D3FE0 *ov21_021D3FE0(enum HeapId heapID);
 void ov21_021D4008(UnkStruct_ov21_021D3FE0 *param0, const UnkStruct_ov21_021D4008 *param1);
 int ov21_021D4078(UnkStruct_ov21_021D3FE0 *param0);
 int ov21_021D4100(UnkStruct_ov21_021D3FE0 *param0);

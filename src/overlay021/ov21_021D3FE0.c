@@ -27,17 +27,17 @@ static void ov21_021D41E4(UnkStruct_ov21_021E6B20 *param0);
 static int ov21_021D41EC(UnkFuncPtr_ov21_021D41EC param0, UnkStruct_ov21_021E6A68 *param1, void *param2);
 static int ov21_021D420C(UnkFuncPtr_ov21_021D420C param0, void *param1, UnkStruct_ov21_021E6B20 *param2, const void *param3, const UnkStruct_ov21_021E6A68 *param4);
 
-UnkStruct_ov21_021D3FE0 *ov21_021D3FE0(int param0)
+UnkStruct_ov21_021D3FE0 *ov21_021D3FE0(enum HeapId heapID)
 {
     UnkStruct_ov21_021D3FE0 *v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D3FE0));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D3FE0));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D3FE0));
 
     v0->unk_08 = 5;
-    v0->heapID = param0;
+    v0->heapID = heapID;
 
     return v0;
 }

@@ -1,531 +1,531 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="10789" />
-	<row id="pl_msg_00000697_00000" index="0">
+	<row id="pl_msg_pokedex_seen" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SEEN</language>
 	</row>
-	<row id="pl_msg_00000697_00001" index="1">
+	<row id="pl_msg_pokedex_obtained" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OBTAINED</language>
 	</row>
-	<row id="pl_msg_00000697_00002" index="2">
+	<row id="pl_msg_pokedex_garbage1" index="2">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000697_00003" index="3">
+	<row id="pl_msg_pokedex_garbage2" index="3">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000697_00004" index="4">
+	<row id="pl_msg_pokedex_garbage3" index="4">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000697_00005" index="5">
+	<row id="pl_msg_pokedex_switch" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SWITCH\nPOKéDEX</language>
 	</row>
-	<row id="pl_msg_00000697_00006" index="6">
+	<row id="pl_msg_pokedex_garbage4" index="6">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000697_00007" index="7">
+	<row id="pl_msg_pokedex_search" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SEARCH\nPOKéMON</language>
 	</row>
-	<row id="pl_msg_00000697_00008" index="8">
+	<row id="pl_msg_pokedex_garbage5" index="8">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXX</language>
 	</row>
-	<row id="pl_msg_00000697_00009" index="9">
+	<row id="pl_msg_pokedex_ht" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">HT</language>
 	</row>
-	<row id="pl_msg_00000697_00010" index="10">
+	<row id="pl_msg_pokedex_wt" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">WT</language>
 	</row>
-	<row id="pl_msg_00000697_00011" index="11">
+	<row id="pl_msg_pokedex_ft" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ft.</language>
 	</row>
-	<row id="pl_msg_00000697_00012" index="12">
+	<row id="pl_msg_pokedex_lbs" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">lbs.</language>
 	</row>
-	<row id="pl_msg_00000697_00013" index="13">
+	<row id="pl_msg_pokedex_male" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Male</language>
 	</row>
-	<row id="pl_msg_00000697_00014" index="14">
+	<row id="pl_msg_pokedex_female" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Female</language>
 	</row>
-	<row id="pl_msg_00000697_00015" index="15">
+	<row id="pl_msg_pokedex_westsea" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">West sea</language>
 	</row>
-	<row id="pl_msg_00000697_00016" index="16">
+	<row id="pl_msg_pokedex_eastsea" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">East sea</language>
 	</row>
-	<row id="pl_msg_00000697_00017" index="17">
+	<row id="pl_msg_pokedex_plantcloak" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Plant cloak</language>
 	</row>
-	<row id="pl_msg_00000697_00018" index="18">
+	<row id="pl_msg_pokedex_sandycloak" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sandy cloak</language>
 	</row>
-	<row id="pl_msg_00000697_00019" index="19">
+	<row id="pl_msg_pokedex_trashcloak" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Trash cloak</language>
 	</row>
-	<row id="pl_msg_00000697_00020" index="20">
+	<row id="pl_msg_pokedex_oneform" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">One form</language>
 	</row>
-	<row id="pl_msg_00000697_00021" index="21">
+	<row id="pl_msg_pokedex_blank" index="21">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語"></language>
 	</row>
-	<row id="pl_msg_00000697_00022" index="22">
+	<row id="pl_msg_pokedex_english" index="22">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">English Pokédex</language>
 	</row>
-	<row id="pl_msg_00000697_00023" index="23">
+	<row id="pl_msg_pokedex_french" index="23">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">French Pokédex</language>
 	</row>
-	<row id="pl_msg_00000697_00024" index="24">
+	<row id="pl_msg_pokedex_german" index="24">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">German Pokédex</language>
 	</row>
-	<row id="pl_msg_00000697_00025" index="25">
+	<row id="pl_msg_pokedex_italian" index="25">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Italian Pokédex</language>
 	</row>
-	<row id="pl_msg_00000697_00026" index="26">
+	<row id="pl_msg_pokedex_spanish" index="26">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Spanish Pokédex</language>
 	</row>
-	<row id="pl_msg_00000697_00027" index="27">
+	<row id="pl_msg_pokedex_pokemon" index="27">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon</language>
 	</row>
-	<row id="pl_msg_00000697_00028" index="28">
+	<row id="pl_msg_pokedex_garbage6" index="28">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXX</language>
 	</row>
-	<row id="pl_msg_00000697_00029" index="29">
+	<row id="pl_msg_pokedex_check" index="29">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CHECK\nPOKéDEX</language>
 	</row>
-	<row id="pl_msg_00000697_00030" index="30">
+	<row id="pl_msg_pokedex_garbage7" index="30">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXX</language>
 	</row>
-	<row id="pl_msg_00000697_00031" index="31">
+	<row id="pl_msg_pokedex_garbage8" index="31">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXX</language>
 	</row>
-	<row id="pl_msg_00000697_00032" index="32">
+	<row id="pl_msg_pokedex_garbage9" index="32">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXX</language>
 	</row>
-	<row id="pl_msg_00000697_00033" index="33">
+	<row id="pl_msg_pokedex_next" index="33">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">NEXT</language>
 	</row>
-	<row id="pl_msg_00000697_00034" index="34">
+	<row id="pl_msg_pokedex_back" index="34">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">BACK</language>
 	</row>
-	<row id="pl_msg_00000697_00035" index="35">
+	<row id="pl_msg_pokedex_areaunknown" index="35">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Area Unknown</language>
 	</row>
-	<row id="pl_msg_00000697_00036" index="36">
+	<row id="pl_msg_pokedex_morning" index="36">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Morning</language>
 	</row>
-	<row id="pl_msg_00000697_00037" index="37">
+	<row id="pl_msg_pokedex_day" index="37">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Day</language>
 	</row>
-	<row id="pl_msg_00000697_00038" index="38">
+	<row id="pl_msg_pokedex_night" index="38">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Night</language>
 	</row>
-	<row id="pl_msg_00000697_00039" index="39">
+	<row id="pl_msg_pokedex_garbage10" index="39">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XX</language>
 	</row>
-	<row id="pl_msg_00000697_00040" index="40">
+	<row id="pl_msg_pokedex_garbage11" index="40">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXX</language>
 	</row>
-	<row id="pl_msg_00000697_00041" index="41">
+	<row id="pl_msg_pokedex_chorus" index="41">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CHORUS</language>
 	</row>
-	<row id="pl_msg_00000697_00042" index="42">
+	<row id="pl_msg_pokedex_pan" index="42">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">PAN</language>
 	</row>
-	<row id="pl_msg_00000697_00043" index="43">
+	<row id="pl_msg_pokedex_heightcheck_topscreen" index="43">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Height Check</language>
 	</row>
-	<row id="pl_msg_00000697_00044" index="44">
+	<row id="pl_msg_pokedex_weightcheck_topscreen" index="44">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Weight Check</language>
 	</row>
-	<row id="pl_msg_00000697_00045" index="45">
+	<row id="pl_msg_pokedex_heightcheck_button" index="45">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Height Check</language>
 	</row>
-	<row id="pl_msg_00000697_00046" index="46">
+	<row id="pl_msg_pokedex_weightcheck_button" index="46">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Weight Check</language>
 	</row>
-	<row id="pl_msg_00000697_00047" index="47">
+	<row id="pl_msg_pokedex_name" index="47">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">NAME</language>
 	</row>
-	<row id="pl_msg_00000697_00048" index="48">
+	<row id="pl_msg_pokedex_type" index="48">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">TYPE</language>
 	</row>
-	<row id="pl_msg_00000697_00049" index="49">
+	<row id="pl_msg_pokedex_form" index="49">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">FORM</language>
 	</row>
-	<row id="pl_msg_00000697_00050" index="50">
+	<row id="pl_msg_pokedex_order" index="50">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ORDER</language>
 	</row>
-	<row id="pl_msg_00000697_00051" index="51">
+	<row id="pl_msg_pokedex_ok" index="51">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK</language>
 	</row>
-	<row id="pl_msg_00000697_00052" index="52">
+	<row id="pl_msg_pokedex_garbage12" index="52">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXX</language>
 	</row>
-	<row id="pl_msg_00000697_00053" index="53">
+	<row id="pl_msg_pokedex_dash" index="53">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">-</language>
 	</row>
-	<row id="pl_msg_00000697_00054" index="54">
+	<row id="pl_msg_pokedex_abc" index="54">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ABC</language>
 	</row>
-	<row id="pl_msg_00000697_00055" index="55">
+	<row id="pl_msg_pokedex_def" index="55">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">DEF</language>
 	</row>
-	<row id="pl_msg_00000697_00056" index="56">
+	<row id="pl_msg_pokedex_ghi" index="56">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">GHI</language>
 	</row>
-	<row id="pl_msg_00000697_00057" index="57">
+	<row id="pl_msg_pokedex_jkl" index="57">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">JKL</language>
 	</row>
-	<row id="pl_msg_00000697_00058" index="58">
+	<row id="pl_msg_pokedex_mno" index="58">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MNO</language>
 	</row>
-	<row id="pl_msg_00000697_00059" index="59">
+	<row id="pl_msg_pokedex_pqr" index="59">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">PQR</language>
 	</row>
-	<row id="pl_msg_00000697_00060" index="60">
+	<row id="pl_msg_pokedex_stu" index="60">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">STU</language>
 	</row>
-	<row id="pl_msg_00000697_00061" index="61">
+	<row id="pl_msg_pokedex_vwx" index="61">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">VWX</language>
 	</row>
-	<row id="pl_msg_00000697_00062" index="62">
+	<row id="pl_msg_pokedex_yz" index="62">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">YZ</language>
 	</row>
-	<row id="pl_msg_00000697_00063" index="63">
+	<row id="pl_msg_pokedex_garbage13" index="63">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語"></language>
 	</row>
-	<row id="pl_msg_00000697_00064" index="64">
+	<row id="pl_msg_pokedex_normal" index="64">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Normal</language>
 	</row>
-	<row id="pl_msg_00000697_00065" index="65">
+	<row id="pl_msg_pokedex_fire" index="65">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Fire</language>
 	</row>
-	<row id="pl_msg_00000697_00066" index="66">
+	<row id="pl_msg_pokedex_water" index="66">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Water</language>
 	</row>
-	<row id="pl_msg_00000697_00067" index="67">
+	<row id="pl_msg_pokedex_electric" index="67">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Electric</language>
 	</row>
-	<row id="pl_msg_00000697_00068" index="68">
+	<row id="pl_msg_pokedex_grass" index="68">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Grass</language>
 	</row>
-	<row id="pl_msg_00000697_00069" index="69">
+	<row id="pl_msg_pokedex_ice" index="69">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ice</language>
 	</row>
-	<row id="pl_msg_00000697_00070" index="70">
+	<row id="pl_msg_pokedex_fight" index="70">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Fight</language>
 	</row>
-	<row id="pl_msg_00000697_00071" index="71">
+	<row id="pl_msg_pokedex_poison" index="71">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Poison</language>
 	</row>
-	<row id="pl_msg_00000697_00072" index="72">
+	<row id="pl_msg_pokedex_ground" index="72">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ground</language>
 	</row>
-	<row id="pl_msg_00000697_00073" index="73">
+	<row id="pl_msg_pokedex_flying" index="73">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Flying</language>
 	</row>
-	<row id="pl_msg_00000697_00074" index="74">
+	<row id="pl_msg_pokedex_psychic" index="74">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Psychic</language>
 	</row>
-	<row id="pl_msg_00000697_00075" index="75">
+	<row id="pl_msg_pokedex_bug" index="75">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Bug</language>
 	</row>
-	<row id="pl_msg_00000697_00076" index="76">
+	<row id="pl_msg_pokedex_rock" index="76">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Rock</language>
 	</row>
-	<row id="pl_msg_00000697_00077" index="77">
+	<row id="pl_msg_pokedex_ghost" index="77">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ghost</language>
 	</row>
-	<row id="pl_msg_00000697_00078" index="78">
+	<row id="pl_msg_pokedex_dragon" index="78">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dragon</language>
 	</row>
-	<row id="pl_msg_00000697_00079" index="79">
+	<row id="pl_msg_pokedex_dark" index="79">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dark</language>
 	</row>
-	<row id="pl_msg_00000697_00080" index="80">
+	<row id="pl_msg_pokedex_steel" index="80">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Steel</language>
 	</row>
-	<row id="pl_msg_00000697_00081" index="81">
+	<row id="pl_msg_pokedex_numerical" index="81">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Numerical</language>
 	</row>
-	<row id="pl_msg_00000697_00082" index="82">
+	<row id="pl_msg_pokedex_alphabetical" index="82">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A to Z</language>
 	</row>
-	<row id="pl_msg_00000697_00083" index="83">
+	<row id="pl_msg_pokedex_heaviest" index="83">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Heaviest</language>
 	</row>
-	<row id="pl_msg_00000697_00084" index="84">
+	<row id="pl_msg_pokedex_lightest" index="84">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lightest</language>
 	</row>
-	<row id="pl_msg_00000697_00085" index="85">
+	<row id="pl_msg_pokedex_tallest" index="85">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Tallest</language>
 	</row>
-	<row id="pl_msg_00000697_00086" index="86">
+	<row id="pl_msg_pokedex_smallest" index="86">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Smallest</language>
 	</row>
-	<row id="pl_msg_00000697_00087" index="87">
+	<row id="pl_msg_pokedex_alphabetical_description" index="87">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">List by the first letter\nin the name.</language>
 	</row>
-	<row id="pl_msg_00000697_00088" index="88">
+	<row id="pl_msg_pokedex_type_description" index="88">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">List by type.</language>
 	</row>
-	<row id="pl_msg_00000697_00089" index="89">
+	<row id="pl_msg_pokedex_body_description" index="89">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">List by body style.</language>
 	</row>
-	<row id="pl_msg_00000697_00090" index="90">
+	<row id="pl_msg_pokedex_listing_description" index="90">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Select the Pokédex listing mode.</language>
 	</row>
-	<row id="pl_msg_00000697_00091" index="91">
+	<row id="pl_msg_pokedex_garbage14" index="91">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000697_00092" index="92">
+	<row id="pl_msg_pokedex_garbage15" index="92">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000697_00093" index="93">
+	<row id="pl_msg_pokedex_nonefound" index="93">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">No matching Pokémon were found.</language>
 	</row>
-	<row id="pl_msg_00000697_00094" index="94">
+	<row id="pl_msg_pokedex_searching" index="94">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Searching...</language>
 	</row>
-	<row id="pl_msg_00000697_00095" index="95">
+	<row id="pl_msg_pokedex_lucasheight" index="95">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">4’8”</language>
 	</row>
-	<row id="pl_msg_00000697_00096" index="96">
+	<row id="pl_msg_pokedex_dawnheight" index="96">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">4’6”</language>
 	</row>
-	<row id="pl_msg_00000697_00097" index="97">
+	<row id="pl_msg_pokedex_lucasweight" index="97">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">83.8 lbs.</language>
 	</row>
-	<row id="pl_msg_00000697_00098" index="98">
+	<row id="pl_msg_pokedex_dawnweight" index="98">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">75.0 lbs.</language>
 	</row>
-	<row id="pl_msg_00000697_00099" index="99">
+	<row id="pl_msg_pokedex_noname" index="99">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">-----</language>
 	</row>
-	<row id="pl_msg_00000697_00100" index="100">
+	<row id="pl_msg_pokedex_none" index="100">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">---</language>
 	</row>
-	<row id="pl_msg_00000697_00101" index="101">
+	<row id="pl_msg_pokedex_anotherform" index="101">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">See another form.</language>
 	</row>
-	<row id="pl_msg_00000697_00102" index="102">
+	<row id="pl_msg_pokedex_info" index="102">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">INFO</language>
 	</row>
-	<row id="pl_msg_00000697_00103" index="103">
+	<row id="pl_msg_pokedex_area" index="103">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">AREA</language>
 	</row>
-	<row id="pl_msg_00000697_00104" index="104">
+	<row id="pl_msg_pokedex_cry" index="104">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CRY</language>
 	</row>
-	<row id="pl_msg_00000697_00105" index="105">
+	<row id="pl_msg_pokedex_size" index="105">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SIZE</language>
 	</row>
-	<row id="pl_msg_00000697_00106" index="106">
+	<row id="pl_msg_pokedex_forms" index="106">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">FORMS</language>
 	</row>
-	<row id="pl_msg_00000697_00107" index="107">
+	<row id="pl_msg_pokedex_quit" index="107">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">QUIT</language>
 	</row>
-	<row id="pl_msg_00000697_00108" index="108">
+	<row id="pl_msg_pokedex_cancel" index="108">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CANCEL</language>
 	</row>
-	<row id="pl_msg_00000697_00109" index="109">
+	<row id="pl_msg_pokedex_results" index="109">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">RESULTS</language>
 	</row>
-	<row id="pl_msg_00000697_00110" index="110">
+	<row id="pl_msg_pokedex_registered" index="110">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokédex registration completed.</language>
 	</row>
-	<row id="pl_msg_00000697_00111" index="111">
+	<row id="pl_msg_pokedex_normalforme" index="111">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Normal Forme</language>
 	</row>
-	<row id="pl_msg_00000697_00112" index="112">
+	<row id="pl_msg_pokedex_attackforme" index="112">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Attack Forme</language>
 	</row>
-	<row id="pl_msg_00000697_00113" index="113">
+	<row id="pl_msg_pokedex_defenseforme" index="113">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Defense Forme</language>
 	</row>
-	<row id="pl_msg_00000697_00114" index="114">
+	<row id="pl_msg_pokedex_speedforme" index="114">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Speed Forme</language>
 	</row>
-	<row id="pl_msg_00000697_00115" index="115">
+	<row id="pl_msg_pokedex_landforme" index="115">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Land Forme</language>
 	</row>
-	<row id="pl_msg_00000697_00116" index="116">
+	<row id="pl_msg_pokedex_skyforme" index="116">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sky Forme</language>
 	</row>
-	<row id="pl_msg_00000697_00117" index="117">
+	<row id="pl_msg_pokedex_alteredforme" index="117">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Altered Forme</language>
 	</row>
-	<row id="pl_msg_00000697_00118" index="118">
+	<row id="pl_msg_pokedex_originforme" index="118">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Origin Forme</language>
 	</row>
-	<row id="pl_msg_00000697_00119" index="119">
+	<row id="pl_msg_pokedex_rotom" index="119">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ROTOM</language>
 	</row>
-	<row id="pl_msg_00000697_00120" index="120">
+	<row id="pl_msg_pokedex_rotomheat" index="120">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">HEAT ROTOM</language>
 	</row>
-	<row id="pl_msg_00000697_00121" index="121">
+	<row id="pl_msg_pokedex_rotomwash" index="121">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">WASH ROTOM</language>
 	</row>
-	<row id="pl_msg_00000697_00122" index="122">
+	<row id="pl_msg_pokedex_rotomfrost" index="122">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">FROST ROTOM</language>
 	</row>
-	<row id="pl_msg_00000697_00123" index="123">
+	<row id="pl_msg_pokedex_rotomfan" index="123">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">FAN ROTOM</language>
 	</row>
-	<row id="pl_msg_00000697_00124" index="124">
+	<row id="pl_msg_pokedex_rotommow" index="124">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MOW ROTOM</language>
 	</row>
-	<row id="pl_msg_00000697_00125" index="125">
+	<row id="pl_msg_pokedex_japanese" index="125">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Japanese Pokédex</language>
 	</row>
-	<row id="pl_msg_00000697_00126" index="126">
+	<row id="pl_msg_pokedex_nonealphabetical" index="126">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">- - - - -</language>
 	</row>
-	<row id="pl_msg_00000697_00127" index="127">
+	<row id="pl_msg_pokedex_nonetype" index="127">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">- - - -</language>
 	</row>

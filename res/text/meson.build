@@ -694,7 +694,7 @@ message_bank_files = files(
     'message_bank_country_names.gmm',
     'message_bank_unk_0695.gmm',
     'message_bank_unk_0696.gmm',
-    'message_bank_unk_0697.gmm',
+    'message_bank_pokedex.gmm',
     'message_bank_unk_0698.gmm',
     'message_bank_unk_0699.gmm',
     'message_bank_unk_0700.gmm',

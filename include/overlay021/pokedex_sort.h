@@ -5,6 +5,7 @@
 #include "overlay021/struct_ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D3320.h"
 
+#include "heap.h"
 #include "strbuf.h"
 
 enum SortOrder {
@@ -68,27 +69,27 @@ enum FilterForm { // called form in game, but refers to body shape
     FF_MULTIBODY
 };
 
-void PokedexSort_PopulatePokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, int heapID);
+void PokedexSort_PopulatePokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, enum HeapId heapID);
 void PokedexSort_PokedexStatusFreeHWData(UnkStruct_ov21_021D3320 *param0);
-u32 ov21_021D334C(const UnkStruct_ov21_021D3320 *param0, int param1, int param2);
-u32 ov21_021D335C(const UnkStruct_ov21_021D3320 *param0, int param1);
-u32 ov21_021D3374(const UnkStruct_ov21_021D3320 *param0, int param1);
-u32 ov21_021D338C(const UnkStruct_ov21_021D3320 *param0, int param1);
-u32 ov21_021D33A4(const UnkStruct_ov21_021D3320 *param0, int param1);
-u32 ov21_021D33BC(const UnkStruct_ov21_021D3320 *param0, int param1);
-u32 ov21_021D33D4(const UnkStruct_ov21_021D3320 *param0, u32 param1);
-u32 ov21_021D33E0(const UnkStruct_ov21_021D3320 *param0, int param1);
-u32 ov21_021D33F8(const UnkStruct_ov21_021D3320 *param0);
-u32 ov21_021D3404(const UnkStruct_ov21_021D3320 *param0, int param1);
-u32 ov21_021D3410(const UnkStruct_ov21_021D3320 *param0, u32 param1, int param2);
-u32 ov21_021D341C(const UnkStruct_ov21_021D3320 *param0, u32 param1);
+u32 PokedexSort_Gender(const UnkStruct_ov21_021D3320 *param0, int species, int formIndex);
+u32 PokedexSort_UnownForm(const UnkStruct_ov21_021D3320 *param0, int formIndex);
+u32 PokedexSort_ShellosForm(const UnkStruct_ov21_021D3320 *param0, int formIndex);
+u32 PokedexSort_GastrodonForm(const UnkStruct_ov21_021D3320 *param0, int formIndex);
+u32 PokedexSort_BurmyForm(const UnkStruct_ov21_021D3320 *param0, int formIndex);
+u32 PokedexSort_WormadamForm(const UnkStruct_ov21_021D3320 *param0, int formIndex);
+u32 PokedexSort_DefaultForm(const UnkStruct_ov21_021D3320 *param0, u32 species);
+u32 PokedexSort_NumGendersVisible(const UnkStruct_ov21_021D3320 *param0, int species);
+u32 PokedexSort_SpindaForm(const UnkStruct_ov21_021D3320 *param0);
+u32 PokedexSort_DeoxysForm(const UnkStruct_ov21_021D3320 *param0, int formIndex);
+u32 PokedexSort_Form(const UnkStruct_ov21_021D3320 *param0, u32 species, int formIndex);
+u32 PokedexSort_NumFormsSeem(const UnkStruct_ov21_021D3320 *param0, u32 species);
 BOOL PokedexSort_IsNationalUnlocked(const UnkStruct_ov21_021D3320 *param0);
 void ov21_021D3434(UnkStruct_ov21_021D3320 *param0, u32 param1);
 u32 ov21_021D3440(const UnkStruct_ov21_021D3320 *param0);
 void ov21_021D344C(UnkStruct_ov21_021D3320 *param0, u32 param1);
 u32 ov21_021D3458(const UnkStruct_ov21_021D3320 *param0);
-BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, int sortCategory, int firstLetterFilter, int typeFilter1, int typeFilter2, int bodyShapeFilter, int isNationalDex, int heapID, BOOL isFiltered);
-BOOL PokedexSort_SortUnfiltered(UnkStruct_ov21_021D3320 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7);
+BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, int sortCategory, int firstLetterFilter, int typeFilter1, int typeFilter2, int bodyShapeFilter, int isNationalDex, enum HeapId heapID, BOOL isFiltered);
+BOOL PokedexSort_SortUnfiltered(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filterName, int filterType1, int filterType2, int filterForm, int isNationalDex, enum HeapId heapID);
 BOOL ov21_021D36A4(const UnkStruct_ov21_021D3320 *param0, int param1);
 BOOL ov21_021D36C0(UnkStruct_ov21_021D3320 *param0, int param1);
 int PokedexStatus_IsNationalDex(const UnkStruct_ov21_021D3320 *param0);
