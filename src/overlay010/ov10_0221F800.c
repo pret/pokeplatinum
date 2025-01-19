@@ -2407,7 +2407,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
     battleResult = param0->unk_2A - 1;
 
     if (MapHeader_IsUnionRoom(param0->unk_00->mapHeaderID) == 1) {
-        opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+        opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].class);
         opponentName1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
         Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
@@ -2416,7 +2416,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
     } else {
         switch (sub_0203895C()) {
         case 1:
-            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].class);
             opponentName1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
             Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
@@ -2425,7 +2425,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             Heap_FreeToHeap(opponentName1);
             break;
         case 2:
-            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].class);
             opponentName1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
             Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
@@ -2434,7 +2434,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             Heap_FreeToHeap(opponentName1);
             break;
         case 3:
-            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[v6 ^ 1].class);
+            opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].class);
             opponentName1 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
             Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
@@ -2447,14 +2447,14 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             opponentName2 = Heap_AllocFromHeap(param0->unk_24, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
             if (ov10_02220AD0() == 1) {
-                opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[1].class);
-                opponentGender2 = TrainerClass_Gender(param0->unk_00->trainerData[3].class);
+                opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[1].class);
+                opponentGender2 = TrainerClass_Gender(param0->unk_00->trainer[3].class);
 
                 Strbuf_ToChars(param0->unk_14[1], opponentName1, TRAINER_NAME_LEN + 1);
                 Strbuf_ToChars(param0->unk_14[3], opponentName2, TRAINER_NAME_LEN + 1);
             } else {
-                opponentGender1 = TrainerClass_Gender(param0->unk_00->trainerData[0].class);
-                opponentGender2 = TrainerClass_Gender(param0->unk_00->trainerData[2].class);
+                opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[0].class);
+                opponentGender2 = TrainerClass_Gender(param0->unk_00->trainer[2].class);
 
                 Strbuf_ToChars(param0->unk_14[0], opponentName1, TRAINER_NAME_LEN + 1);
                 Strbuf_ToChars(param0->unk_14[2], opponentName2, TRAINER_NAME_LEN + 1);

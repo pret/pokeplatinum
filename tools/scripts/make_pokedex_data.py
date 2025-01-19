@@ -114,8 +114,8 @@ for i, file in enumerate(args.src_files):
 
 # sinnoh dex order
 with open(source_dir / 'sinnoh_pokedex.json') as data_file:
-    dexData = json.load(data_file)
-    for mon in dexData:
+    pokedex = json.load(data_file)
+    for mon in pokedex:
         if mon not in ['SPECIES_EGG', 'SPECIES_BAD_EGG', 'SPECIES_NONE', 'SPECIES_ARCEUS']:
             binData[12] = binData[12] + PokemonSpecies[mon].value.to_bytes(2, 'little')
 

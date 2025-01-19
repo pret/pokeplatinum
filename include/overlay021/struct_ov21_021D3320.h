@@ -9,7 +9,7 @@
 #include "strbuf.h"
 
 typedef struct {
-    const PokedexData *dexData;
+    const Pokedex *pokedex;
     SortedPokedex sortedPokedex;
     int isNationalDex;
     BOOL isNationalDexUnlocked;

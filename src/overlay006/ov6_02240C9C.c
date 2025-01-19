@@ -40,7 +40,7 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "pokeradar.h"
 #include "roaming_pokemon.h"
@@ -180,10 +180,10 @@ void WildEncounters_ReplaceTimedEncounters(const WildEncounters *encounterData, 
 {
     int timeOfDay = GetTimeOfDay();
 
-    if (timeOfDay == TOD_DAY || timeOfDay == TOD_TWILIGHT) {
+    if (timeOfDay == TIMEOFDAY_DAY || timeOfDay == TIMEOFDAY_TWILIGHT) {
         *timedSlot1 = encounterData->dayEncounters[0];
         *timedSlot2 = encounterData->dayEncounters[1];
-    } else if (timeOfDay == TOD_NIGHT || timeOfDay == TOD_LATE_NIGHT) {
+    } else if (timeOfDay == TIMEOFDAY_NIGHT || timeOfDay == TIMEOFDAY_LATE_NIGHT) {
         *timedSlot1 = encounterData->nightEncounters[0];
         *timedSlot2 = encounterData->nightEncounters[1];
     }
@@ -325,7 +325,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
             v13[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = PokedexData_IsNationalDexObtained(SaveData_PokedexData(FieldSystem_GetSaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v13[2].species, &v13[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v13[0].species, &v13[1].species);
@@ -339,7 +339,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
         } else {
             {
                 battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
-                TrainerData_Encounter(battleParams, fieldSystem->saveData, 11);
+                Trainer_Encounter(battleParams, fieldSystem->saveData, 11);
             }
             v7 = ov6_0224174C(fieldSystem, firstPartyMon, battleParams, v13, &encounterFieldParams);
         }
@@ -513,7 +513,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
             v12[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = PokedexData_IsNationalDexObtained(SaveData_PokedexData(FieldSystem_GetSaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v12[2].species, &v12[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
@@ -526,7 +526,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
             v8 = ov6_02241674(fieldSystem, firstPartyMon, battleParams, encounterData, v12, &encounterFieldParams, &v9);
         } else {
             battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
-            TrainerData_Encounter(battleParams, fieldSystem->saveData, 11);
+            Trainer_Encounter(battleParams, fieldSystem->saveData, 11);
             v8 = ov6_0224174C(fieldSystem, firstPartyMon, battleParams, v12, &encounterFieldParams);
         }
     } else if (encounterType == ENCOUNTER_TYPE_SURF) {
@@ -642,7 +642,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
             v12[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = PokedexData_IsNationalDexObtained(SaveData_PokedexData(FieldSystem_GetSaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v12[2].species, &v12[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
@@ -656,7 +656,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
         } else {
             {
                 (*battleParams)->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
-                TrainerData_Encounter(*battleParams, fieldSystem->saveData, 11);
+                Trainer_Encounter(*battleParams, fieldSystem->saveData, 11);
             }
             v6 = ov6_0224174C(fieldSystem, firstPartyMon, *battleParams, v12, &encounterFieldParams);
         }
@@ -810,131 +810,105 @@ static BOOL ov6_022418DC(FieldSystem *fieldSystem, u32 encounterRate)
     }
 }
 
-static u8 ov6_02241904(void)
+static u8 GetGroundEncounterSlot(void)
 {
-    u8 v0 = inline_020564D0(100);
+    u8 roll = inline_020564D0(100); // a common rng function
 
-    if (v0 < 20) {
+    if (roll < 20) {
         return 0;
-    }
-
-    if (v0 >= 20 && v0 < 40) {
+    } else if (roll >= 20 && roll < 40) {
         return 1;
-    }
-
-    if (v0 >= 40 && v0 < 50) {
+    } else if (roll >= 40 && roll < 50) {
         return 2;
-    }
-
-    if (v0 >= 50 && v0 < 60) {
+    } else if (roll >= 50 && roll < 60) {
         return 3;
-    }
-
-    if (v0 >= 60 && v0 < 70) {
+    } else if (roll >= 60 && roll < 70) {
         return 4;
-    }
-
-    if (v0 >= 70 && v0 < 80) {
+    } else if (roll >= 70 && roll < 80) {
         return 5;
-    }
-
-    if (v0 >= 80 && v0 < 85) {
+    } else if (roll >= 80 && roll < 85) {
         return 6;
-    }
-
-    if (v0 >= 85 && v0 < 90) {
+    } else if (roll >= 85 && roll < 90) {
         return 7;
-    }
-
-    if (v0 >= 90 && v0 < 94) {
+    } else if (roll >= 90 && roll < 94) {
         return 8;
-    }
-
-    if (v0 >= 94 && v0 < 98) {
+    } else if (roll >= 94 && roll < 98) {
         return 9;
-    }
-
-    if (v0 == 98) {
+    } else if (roll == 98) {
         return 10;
     }
 
     return 11;
 }
 
-static u8 ov6_022419A0(void)
+static u8 GetWaterEncounterSlot(void)
 {
-    u8 v0 = inline_020564D0(100);
+    u8 roll = inline_020564D0(100); // a common rng function
 
-    if (v0 < 60) {
+    if (roll < 60) {
         return 0;
-    }
-
-    if (v0 >= 60 && v0 < 90) {
+    } else if (roll >= 60 && roll < 90) {
         return 1;
-    }
-
-    if (v0 >= 90 && v0 < 95) {
+    } else if (roll >= 90 && roll < 95) {
         return 2;
-    }
-
-    if (v0 >= 95 && v0 < 99) {
+    } else if (roll >= 95 && roll < 99) {
         return 3;
     }
 
     return 4;
 }
 
-static u8 ov6_022419EC(const int fishingRodType)
+static u8 GetRodEncounterSlot(const int fishingRodType)
 {
-    u8 v1 = 0;
+    u8 encSlot = 0;
 
-    u8 v0 = inline_020564D0(100);
+    u8 roll = inline_020564D0(100); // a common rng function
 
     switch (fishingRodType) {
     case FISHING_TYPE_OLD_ROD:
-        if (v0 < 60) {
-            v1 = 0;
-        } else if (v0 < 90) {
-            v1 = 1;
-        } else if (v0 < 95) {
-            v1 = 2;
-        } else if (v0 < 99) {
-            v1 = 3;
+        if (roll < 60) {
+            encSlot = 0;
+        } else if (roll < 90) {
+            encSlot = 1;
+        } else if (roll < 95) {
+            encSlot = 2;
+        } else if (roll < 99) {
+            encSlot = 3;
         } else {
-            v1 = 4;
+            encSlot = 4;
         }
         break;
     case FISHING_TYPE_GOOD_ROD:
-        if (v0 < 40) {
-            v1 = 0;
-        } else if (v0 < 80) {
-            v1 = 1;
-        } else if (v0 < 95) {
-            v1 = 2;
-        } else if (v0 < 99) {
-            v1 = 3;
+        if (roll < 40) {
+            encSlot = 0;
+        } else if (roll < 80) {
+            encSlot = 1;
+        } else if (roll < 95) {
+            encSlot = 2;
+        } else if (roll < 99) {
+            encSlot = 3;
         } else {
-            v1 = 4;
+            encSlot = 4;
         }
         break;
     case FISHING_TYPE_SUPER_ROD:
-        if (v0 < 40) {
-            v1 = 0;
-        } else if (v0 < 80) {
-            v1 = 1;
-        } else if (v0 < 95) {
-            v1 = 2;
-        } else if (v0 < 99) {
-            v1 = 3;
+        if (roll < 40) {
+            encSlot = 0;
+        } else if (roll < 80) {
+            encSlot = 1;
+        } else if (roll < 95) {
+            encSlot = 2;
+        } else if (roll < 99) {
+            encSlot = 3;
         } else {
-            v1 = 4;
+            encSlot = 4;
         }
         break;
     default:
         GF_ASSERT(FALSE);
     }
 
-    return v1;
+    return encSlot;
 }
 
 static void ov6_02241A90(Pokemon *mon, u8 *encounterRate)
@@ -1113,7 +1087,7 @@ static BOOL ov6_02241DC4(Pokemon *firstPartyMon, const int fishingRodType, const
             v0 = ov6_0224222C(firstPartyMon, encounterFieldParams, param3, MAX_GRASS_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
 
             if (!v0) {
-                encounterSlot = ov6_02241904();
+                encounterSlot = GetGroundEncounterSlot();
             }
         }
 
@@ -1125,7 +1099,7 @@ static BOOL ov6_02241DC4(Pokemon *firstPartyMon, const int fishingRodType, const
         v0 = ov6_0224222C(firstPartyMon, encounterFieldParams, param3, MAX_WATER_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
 
         if (!v0) {
-            encounterSlot = ov6_022419A0();
+            encounterSlot = GetWaterEncounterSlot();
         }
 
         level = ov6_02241B40(&param3[encounterSlot], encounterFieldParams);
@@ -1135,7 +1109,7 @@ static BOOL ov6_02241DC4(Pokemon *firstPartyMon, const int fishingRodType, const
         v0 = ov6_0224222C(firstPartyMon, encounterFieldParams, param3, MAX_WATER_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
 
         if (!v0) {
-            encounterSlot = ov6_022419EC(fishingRodType);
+            encounterSlot = GetRodEncounterSlot(fishingRodType);
         }
 
         level = ov6_02241B40(&param3[encounterSlot], encounterFieldParams);
@@ -1180,7 +1154,7 @@ static BOOL ov6_02241F7C(FieldSystem *fieldSystem, Pokemon *param1, const WildEn
         v0 = ov6_0224222C(param1, encounterFieldParams, param3, MAX_GRASS_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
 
         if (v0 == 0) {
-            encounterSlot = ov6_02241904();
+            encounterSlot = GetGroundEncounterSlot();
         }
     }
 

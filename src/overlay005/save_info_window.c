@@ -21,7 +21,7 @@
 #include "map_header.h"
 #include "message_util.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -51,12 +51,12 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
 {
     SaveData *saveData = fieldSystem->saveData;
     Location *curLocation = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(saveData));
-    PokedexData *pokedex = SaveData_PokedexData(saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(saveData);
 
     saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
 
-    if (PokedexData_IsObtained(pokedex)) {
-        saveInfo->pokedexCount = PokedexData_CountSeen(pokedex);
+    if (Pokedex_IsObtained(pokedex)) {
+        saveInfo->pokedexCount = Pokedex_CountSeen(pokedex);
     } else {
         saveInfo->pokedexCount = 0;
     }

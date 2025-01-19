@@ -224,9 +224,6 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         nitrofs_files # Make sure this is always listed last
     ],
     command : [
-        'sh', '-c',
-        '"$@" && @INPUT6@ @OUTPUT0@ --secure-crc 0xF8B8 --game-code CPUE',
-        '--',
         makerom_exe,
         '-DTITLE_NAME=POKEMON PL',
         '-DBNR=@INPUT1@',
@@ -235,7 +232,9 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         '-DARM7_DEFS=@INPUT5@',
         '@INPUT3@',
         '@OUTPUT0@',
-        '@OUTPUT1@'
+        '@OUTPUT1@',
+        '&&','sh', '-c',
+        '@INPUT6@ @OUTPUT0@ --secure-crc 0xF8B8 --game-code CPUE'
     ],
     build_by_default: true
 )
