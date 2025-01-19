@@ -269,7 +269,7 @@ static void HeapCanaryFailed(int resetParam, int param1)
 
     if (param1 == 3) {
         sub_02039834(0, 3, 0);
-    } else if (resetParam == 0) {
+    } else if (resetParam == RESET_CLEAN) {
         if (sub_020389B8() == TRUE) {
             sub_02039834(0, 6, 0);
         } else {

@@ -252,7 +252,7 @@ BOOL MapHeader_IsPokemonCenter2F(const u32 headerID)
     return FALSE;
 }
 
-u32 MapHeader_GetMapEvolutionMethod(u32 headerID)
+enum PokemonEvoMethod MapHeader_GetMapEvolutionMethod(u32 headerID)
 {
     static const u16 mapEvolutionMethods[] = {
         MAP_HEADER_ROUTE_217,
@@ -306,5 +306,5 @@ u32 MapHeader_GetMapEvolutionMethod(u32 headerID)
         }
     }
 
-    return 0;
+    return EVO_NONE;
 }
