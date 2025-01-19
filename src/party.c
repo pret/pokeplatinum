@@ -125,7 +125,7 @@ BOOL Party_SwapSlots(Party *party, int slotA, int slotB)
     return FALSE;
 }
 
-void Party_cpy(const Party *src, Party *dest)
+void Party_Copy(const Party *src, Party *dest)
 {
     *dest = *src;
 }

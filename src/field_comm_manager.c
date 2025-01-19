@@ -436,7 +436,7 @@ static void sub_02059C2C(BOOL param0, const Party *party)
 {
     if (party) {
         sFieldCommMan->party = Party_New(11);
-        Party_cpy(party, sFieldCommMan->party);
+        Party_Copy(party, sFieldCommMan->party);
     }
 
     if (param0) {

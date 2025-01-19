@@ -34,7 +34,7 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "savedata_misc.h"
@@ -676,7 +676,7 @@ BOOL ScrCmd_304(ScriptContext *param0)
     v4 = Party_GetPokemonBySlotIndex(v5, v7);
 
     Pokemon_SetRotomForm(v4, v10, v8);
-    PokedexData_Capture(SaveData_PokedexData(fieldSystem->saveData), v4);
+    Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), v4);
 
     return 0;
 }

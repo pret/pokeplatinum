@@ -1663,8 +1663,8 @@ static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx
         || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, battler)) // either of the two opponents on the enemy side
         || ((battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) && Battler_Side(battleSys, battler)) // either of the two opponents on the enemy side
         || battleType == BATTLE_TYPE_FRONTIER_WITH_AI_PARTNER) { // frontier, AI partner
-        if (BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_PLAYER_SLOT_2
-            || BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_ENEMY_SLOT_2) {
+        if (BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_PLAYER_2
+            || BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_ENEMY_2) {
             battler1 = battler;
             battler2 = BattleSystem_Partner(battleSys, battler);
         } else {

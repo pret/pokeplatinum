@@ -17,7 +17,7 @@ enum TrainerDataType {
 /**
  * @brief Trainer data encapsulation. Contains all trainer-level data needed to instantiate a trainer battle.
  */
-typedef struct TrainerData {
+typedef struct Trainer {
     u8 type; //< The data type of the trainer; controls which TrainerMon struct is used for the party.
     u8 class; //< The trainer's class, e.g. "Youngster" or "Gym Leader."
     u8 sprite; //< Which sprite ID the trainer uses.
@@ -33,7 +33,7 @@ typedef struct TrainerData {
 
     Sentence winMsg; //< The message to display if the trainer wins.
     Sentence loseMsg; //< The message to display if the trainer loses.
-} TrainerData;
+} Trainer;
 
 #define MAX_DV 255
 

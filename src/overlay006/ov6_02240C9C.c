@@ -40,7 +40,7 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "pokeradar.h"
 #include "roaming_pokemon.h"
@@ -180,10 +180,10 @@ void WildEncounters_ReplaceTimedEncounters(const WildEncounters *encounterData, 
 {
     int timeOfDay = GetTimeOfDay();
 
-    if (timeOfDay == TOD_DAY || timeOfDay == TOD_TWILIGHT) {
+    if (timeOfDay == TIMEOFDAY_DAY || timeOfDay == TIMEOFDAY_TWILIGHT) {
         *timedSlot1 = encounterData->dayEncounters[0];
         *timedSlot2 = encounterData->dayEncounters[1];
-    } else if (timeOfDay == TOD_NIGHT || timeOfDay == TOD_LATE_NIGHT) {
+    } else if (timeOfDay == TIMEOFDAY_NIGHT || timeOfDay == TIMEOFDAY_LATE_NIGHT) {
         *timedSlot1 = encounterData->nightEncounters[0];
         *timedSlot2 = encounterData->nightEncounters[1];
     }
@@ -325,7 +325,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
             v13[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = PokedexData_IsNationalDexObtained(SaveData_PokedexData(FieldSystem_GetSaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v13[2].species, &v13[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v13[0].species, &v13[1].species);
@@ -339,7 +339,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
         } else {
             {
                 battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
-                TrainerData_Encounter(battleParams, fieldSystem->saveData, 11);
+                Trainer_Encounter(battleParams, fieldSystem->saveData, 11);
             }
             v7 = ov6_0224174C(fieldSystem, firstPartyMon, battleParams, v13, &encounterFieldParams);
         }
@@ -513,7 +513,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
             v12[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = PokedexData_IsNationalDexObtained(SaveData_PokedexData(FieldSystem_GetSaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v12[2].species, &v12[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
@@ -526,7 +526,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
             v8 = ov6_02241674(fieldSystem, firstPartyMon, battleParams, encounterData, v12, &encounterFieldParams, &v9);
         } else {
             battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
-            TrainerData_Encounter(battleParams, fieldSystem->saveData, 11);
+            Trainer_Encounter(battleParams, fieldSystem->saveData, 11);
             v8 = ov6_0224174C(fieldSystem, firstPartyMon, battleParams, v12, &encounterFieldParams);
         }
     } else if (encounterType == ENCOUNTER_TYPE_SURF) {
@@ -642,7 +642,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
             v12[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = PokedexData_IsNationalDexObtained(SaveData_PokedexData(FieldSystem_GetSaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v12[2].species, &v12[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
@@ -656,7 +656,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
         } else {
             {
                 (*battleParams)->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
-                TrainerData_Encounter(*battleParams, fieldSystem->saveData, 11);
+                Trainer_Encounter(*battleParams, fieldSystem->saveData, 11);
             }
             v6 = ov6_0224174C(fieldSystem, firstPartyMon, *battleParams, v12, &encounterFieldParams);
         }

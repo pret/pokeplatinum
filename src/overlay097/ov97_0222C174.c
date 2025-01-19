@@ -29,7 +29,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
@@ -349,7 +349,7 @@ typedef struct {
     int unk_00;
     BgConfig *unk_04;
     SaveData *unk_08;
-    PokedexData *unk_0C;
+    Pokedex *unk_0C;
     TrainerInfo *unk_10;
     Options *unk_14;
     Window unk_18;
@@ -681,7 +681,7 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     v0->unk_04 = BgConfig_New(v0->unk_00);
     v0->unk_08 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
-    v0->unk_0C = SaveData_PokedexData(v0->unk_08);
+    v0->unk_0C = SaveData_GetPokedex(v0->unk_08);
     v0->unk_14 = SaveData_Options(v0->unk_08);
 
     ov97_02237694(v0->unk_00);
@@ -707,7 +707,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
     case UnkEnum_ov97_0222C78C_00:
         ov97_0222C254(v0);
 
-        if (PokedexData_IsObtained(v0->unk_0C) == FALSE) {
+        if (Pokedex_IsObtained(v0->unk_0C) == FALSE) {
             ov97_02237790(1, UnkEnum_ov97_0222C78C_01, param1, UnkEnum_ov97_0222C78C_13);
         } else {
             *param1 = UnkEnum_ov97_0222C78C_02;

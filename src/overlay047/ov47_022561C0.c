@@ -13,7 +13,7 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "inlines.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0202D7A8.h"
@@ -27,7 +27,7 @@ typedef struct {
     UnkStruct_ov47_02256634_1 unk_04;
     UnkStruct_ov47_02256634 *unk_70;
     PoketchSystem *poketchSys;
-    PoketchData *poketchData;
+    Poketch *poketch;
     UnkStruct_0206C638 *unk_7C[6];
     u8 unk_94[6];
     u8 unk_9A;
@@ -75,13 +75,13 @@ static BOOL ov47_0225621C(UnkStruct_ov47_0225621C *param0, PoketchSystem *poketc
 {
     int v0;
 
-    param0->poketchData = PoketchSystem_GetPoketchData(poketchSys);
+    param0->poketch = PoketchSystem_GetPoketchData(poketchSys);
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_04.unk_0C[v0].unk_03 = 1;
         param0->unk_04.unk_0C[v0].unk_02 = v0;
 
-        PoketchData_MapMarkerPos(param0->poketchData, v0, &(param0->unk_04.unk_0C[v0].unk_00), &(param0->unk_04.unk_0C[v0].unk_01));
+        Poketch_MapMarkerPos(param0->poketch, v0, &(param0->unk_04.unk_0C[v0].unk_00), &(param0->unk_04.unk_0C[v0].unk_01));
 
         param0->unk_04.unk_0C[v0].unk_00 += 16;
         param0->unk_04.unk_0C[v0].unk_01 += 16;
@@ -129,7 +129,7 @@ static void ov47_0225634C(UnkStruct_ov47_0225621C *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        PoketchData_SetMapMarker(param0->poketchData, v0, (param0->unk_04.unk_0C[v0].unk_00 - 16), (param0->unk_04.unk_0C[v0].unk_01 - 16));
+        Poketch_SetMapMarker(param0->poketch, v0, (param0->unk_04.unk_0C[v0].unk_00 - 16), (param0->unk_04.unk_0C[v0].unk_01 - 16));
     }
 
     ov47_02256670(param0->unk_70);

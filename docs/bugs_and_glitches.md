@@ -73,7 +73,7 @@ or Uproar is in effect.
 **Fix:** Edit [`res/battle/res/scripts/subscript_pursuit.s`](https://github.com/pret/pokeplatinum/blob/main/res/battle/scripts/subscripts/subscript_pursuit.s)
 
 ```diff
-     UpdateVar OPCODE_ADD, BTLVAR_FAINTED_MON, BATTLER_ENEMY_SLOT_1
+     UpdateVar OPCODE_ADD, BTLVAR_FAINTED_MON, BATTLER_ENEMY_1
      UpdateVar OPCODE_RIGHT_SHIFT, BTLVAR_CALC_TEMP, 0x00000001
      CompareVarToValue OPCODE_NEQ, BTLVAR_CALC_TEMP, 0x00000000, _208
 -    // BUG: Acid Rain (see docs/bugs_and_glitches.md)

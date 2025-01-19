@@ -10,7 +10,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "rtc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -23,7 +23,7 @@ typedef struct {
     UnkStruct_ov45_022566EC_1 unk_03;
     UnkStruct_ov45_022566EC *unk_08;
     PoketchSystem *poketchSys;
-    PoketchData *poketchData;
+    Poketch *poketch;
     PoketchButtonManager *buttonManager;
     u32 unk_18;
     u32 unk_1C;
@@ -117,10 +117,10 @@ static BOOL ov45_0225621C(UnkStruct_ov45_022561D4 *param0, PoketchSystem *poketc
     };
     u32 v1, v2;
 
-    param0->poketchData = PoketchSystem_GetPoketchData(poketchSys);
-    param0->unk_03.unk_00 = PoketchData_IsAlarmSet(param0->poketchData);
+    param0->poketch = PoketchSystem_GetPoketchData(poketchSys);
+    param0->unk_03.unk_00 = Poketch_IsAlarmSet(param0->poketch);
 
-    PoketchData_AlarmTime(param0->poketchData, &v1, &v2);
+    Poketch_AlarmTime(param0->poketch, &v1, &v2);
 
     param0->unk_03.unk_03 = v1;
     param0->unk_03.unk_04 = v2;
@@ -258,7 +258,7 @@ static BOOL ov45_022563C0(UnkStruct_ov45_022561D4 *param0)
         if ((param0->unk_1C == 1) && (param0->unk_18 == 0)) {
             param0->unk_03.unk_00 = 1;
             ov45_022562C0(&param0->unk_03);
-            PoketchData_SetAlarm(param0->poketchData, 1, param0->unk_03.unk_03, param0->unk_03.unk_04);
+            Poketch_SetAlarm(param0->poketch, 1, param0->unk_03.unk_03, param0->unk_03.unk_04);
             ov45_02256918(param0->unk_08, 2);
             param0->unk_1C = 0;
             param0->unk_01++;

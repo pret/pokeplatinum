@@ -271,7 +271,7 @@ static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *ca
 
     FieldBattleDTO_Init(dto, fieldSystem);
     sub_0202F000(v2, catchingShow->currentEncounterIndex, mon);
-    FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_ENEMY_SLOT_1);
+    FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_ENEMY_1);
     Heap_FreeToHeap(mon);
 
     return dto;
