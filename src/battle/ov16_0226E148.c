@@ -5,8 +5,8 @@
 
 #include "struct_decls/battle_system.h"
 
+#include "battle/battle_input.h"
 #include "battle/ov16_0223DF00.h"
-#include "battle/ov16_0226871C.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 
 #include "heap.h"
@@ -50,13 +50,11 @@ void ov16_0226E174(SysTask *param0)
 static void ov16_0226E188(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0226E148 *v0 = param1;
-    UnkStruct_ov16_02268A14 *v1;
-
-    v1 = ov16_0223E02C(v0->unk_00);
+    BattleInput *battleInput = BattleSystem_GetBattleInput(v0->unk_00);
 
     switch (v0->unk_04) {
     case 0:
-        GF_ASSERT(v1 != NULL);
+        GF_ASSERT(battleInput != NULL);
 
         {
             NARC *v2, *v3;
@@ -64,20 +62,20 @@ static void ov16_0226E188(SysTask *param0, void *param1)
             v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
             v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
-            ov16_02268C04(v2, v3, v1, 18, 0, NULL);
+            ov16_02268C04(v2, v3, battleInput, 18, 0, NULL);
             NARC_dtor(v2);
             NARC_dtor(v3);
         }
         v0->unk_04++;
         break;
     case 1:
-        if (ov16_02269348(v1) == 1) {
+        if (ov16_02269348(battleInput) == 1) {
             v0->unk_04++;
         }
         break;
     case 2:
         if (ov16_0223F7A4(v0->unk_00) == 1) {
-            if (ov16_0226925C(v1) == 1) {
+            if (BattleInput_CheckTouch(battleInput) == 1) {
                 Sound_PlayEffect(1501);
                 v0->unk_04++;
             }

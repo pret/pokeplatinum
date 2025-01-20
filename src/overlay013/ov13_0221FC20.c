@@ -184,8 +184,8 @@ void ov13_0221FC20(UnkStruct_ov13_0221FC20 *param0)
     memset(v0, 0, sizeof(UnkStruct_ov13_022213F0));
 
     v0->unk_00 = param0;
-    v0->unk_1E0 = BattleSystem_BGL(param0->unk_08);
-    v0->unk_1E4 = BattleSystem_PaletteSys(param0->unk_08);
+    v0->unk_1E0 = BattleSystem_GetBgConfig(param0->unk_08);
+    v0->unk_1E4 = BattleSystem_GetPaletteData(param0->unk_08);
     v0->unk_2074 = 0;
     v0->unk_2072 = param0->unk_11;
     v0->unk_2073_4 = ov16_0223F1F8(param0->unk_08);
@@ -1663,7 +1663,7 @@ static u8 ov13_0222194C(UnkStruct_ov13_022213F0 *param0)
 
 u8 ov13_0222196C(UnkStruct_ov13_022213F0 *param0)
 {
-    u32 v0 = BattleSystem_BattleType(param0->unk_00->unk_08);
+    u32 v0 = BattleSystem_GetBattleType(param0->unk_00->unk_08);
 
     if ((v0 != (0x2 | 0x8 | 0x40)) && (v0 != ((0x2 | 0x1) | 0x8 | 0x40)) && (v0 & (0x2 | 0x10))) {
         return 1;
@@ -1674,7 +1674,7 @@ u8 ov13_0222196C(UnkStruct_ov13_022213F0 *param0)
 
 u8 ov13_0222198C(UnkStruct_ov13_022213F0 *param0)
 {
-    u32 v0 = BattleSystem_BattleType(param0->unk_00->unk_08);
+    u32 v0 = BattleSystem_GetBattleType(param0->unk_00->unk_08);
 
     if ((v0 != (0x2 | 0x8 | 0x40)) && (v0 != ((0x2 | 0x1) | 0x8 | 0x40)) && (v0 & 0x8)) {
         return 1;

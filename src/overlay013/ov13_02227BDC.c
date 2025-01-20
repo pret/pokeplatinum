@@ -236,19 +236,19 @@ static void ov13_02227F38(UnkStruct_ov13_02227244 *param0)
 static void ov13_02227F7C(UnkStruct_ov13_02227244 *param0)
 {
     SpriteRenderer *v0;
-    UnkStruct_ov16_0226DC24 *v1;
+    BattleCursor *v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_00);
-    ov16_0226DB7C(v0, param0->unk_30C, param0->unk_08, param0->unk_00->unk_0C, 46270, 46270, 46265, 46265);
-    v1 = ov16_0226DC24(v0, param0->unk_30C, param0->unk_00->unk_0C, 46270, 46270, 46265, 46265, 0, 1);
+    BattleCursor_LoadResources(v0, param0->unk_30C, param0->unk_08, param0->unk_00->unk_0C, 46270, 46270, 46265, 46265);
+    v1 = BattleCursor_New(v0, param0->unk_30C, param0->unk_00->unk_0C, 46270, 46270, 46265, 46265, 0, 1);
 
     ov13_02228A64(param0->unk_34, v1);
 }
 
 static void ov13_02227FDC(UnkStruct_ov13_02227244 *param0)
 {
-    ov16_0226DCA8(ov13_02228A58(param0->unk_34));
-    ov16_0226DBFC(param0->unk_30C, 46270, 46270, 46265, 46265);
+    BattleCursor_Free(ov13_02228A58(param0->unk_34));
+    BattleCursor_FreeResources(param0->unk_30C, 46270, 46270, 46265, 46265);
 }
 
 static const ByteFlagSet Unk_ov13_02229C14[] = {
@@ -309,18 +309,18 @@ void ov13_02228050(UnkStruct_ov13_02227244 *param0)
 static void ov13_02228070(UnkStruct_ov13_02227244 *param0)
 {
     SpriteRenderer *v0;
-    UnkStruct_ov16_0226DEEC *v1;
+    CatchingTutorialFinger *v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_00);
 
-    ov16_0226DE44(v0, param0->unk_30C, param0->unk_00->unk_0C, param0->unk_08, 46269, 46269, 46264, 46264);
-    param0->unk_38 = ov16_0226DEEC(v0, param0->unk_30C, param0->unk_00->unk_0C, 46269, 46269, 46264, 46264, 0, 0);
+    CatchingTutorialFinger_LoadResources(v0, param0->unk_30C, param0->unk_00->unk_0C, param0->unk_08, 46269, 46269, 46264, 46264);
+    param0->unk_38 = CatchingTutorialFinger_Create(v0, param0->unk_30C, param0->unk_00->unk_0C, 46269, 46269, 46264, 46264, 0, 0);
 }
 
 static void ov13_022280C8(UnkStruct_ov13_02227244 *param0)
 {
-    ov16_0226DF68(param0->unk_38);
-    ov16_0226DEC4(param0->unk_30C, 46269, 46269, 46264, 46264);
+    CatchingTutorialFinger_Free(param0->unk_38);
+    CatchingTutorialFinger_FreeResources(param0->unk_30C, 46269, 46269, 46264, 46264);
 }
 
 static const int Unk_ov13_02229BFC[3][2] = {

@@ -8,10 +8,10 @@
 
 UnkStruct_ov13_02228A50 *ov13_02228A38(u32 param0);
 void ov13_02228A50(UnkStruct_ov13_02228A50 *param0);
-UnkStruct_ov16_0226DC24 *ov13_02228A58(UnkStruct_ov13_02228A50 *param0);
+BattleCursor *ov13_02228A58(UnkStruct_ov13_02228A50 *param0);
 u8 ov13_02228A5C(UnkStruct_ov13_02228A50 *param0);
 void ov13_02228A60(UnkStruct_ov13_02228A50 *param0, u8 param1);
-void ov13_02228A64(UnkStruct_ov13_02228A50 *param0, UnkStruct_ov16_0226DC24 *param1);
+void ov13_02228A64(UnkStruct_ov13_02228A50 *param0, BattleCursor *param1);
 void ov13_02228A68(UnkStruct_ov13_02228A50 *param0, u8 param1);
 void ov13_02228A90(UnkStruct_ov13_02228A50 *param0);
 void ov13_02228A9C(UnkStruct_ov13_02228A50 *param0, const ByteFlagSet *param1);

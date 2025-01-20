@@ -112,7 +112,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
     battleCtx->battleMons[battler].isShiny = Pokemon_IsShiny(mon);
 
-    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_ABILITIES) {
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_NO_ABILITIES) {
         battleCtx->battleMons[battler].ability = ABILITY_NONE;
         battleCtx->battleMons[battler].status = MON_CONDITION_NONE;
         battleCtx->battleMons[battler].heldItem = ITEM_NONE;
@@ -122,7 +122,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
         battleCtx->battleMons[battler].heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     }
 
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_ABILITIES) && Battler_Side(battleSys, battler) == BATTLER_US) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_NO_ABILITIES) && Battler_Side(battleSys, battler) == BATTLER_US) {
         battleCtx->battleMons[battler].formNum = 0;
     } else {
         battleCtx->battleMons[battler].formNum = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
@@ -1457,7 +1457,7 @@ void BattleSystem_ClearSideExpGain(BattleContext *battleCtx, int battler)
 void BattleSystem_FlagBattlerExpGain(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     int side = 0;
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     while (side <= 2) {
         if ((battleCtx->battlersSwitchingMask & FlagIndex(side)) == FALSE
@@ -1645,7 +1645,7 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
             battleCtx->battlerCounter++;
         }
     } else if (range == RANGE_USER_OR_ALLY && randomize == TRUE) { // e.g., Acupressure
-        if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
             && BattleSystem_RandNext(battleSys) % 2 == 0) {
             defender = BattleSystem_Partner(battleSys, attacker);
             if (battleCtx->battleMons[defender].curHP == 0) {
@@ -1664,13 +1664,13 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
         || range == RANGE_FIELD) { // e.g., Sunny Day
         defender = attacker;
     } else if (range == RANGE_ALLY) { // e.g., Helping Hand
-        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+        if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
             defender = BattleSystem_Partner(battleSys, attacker);
         } else {
             defender = attacker;
         }
     } else if (range == RANGE_USER_OR_ALLY) { // e.g., Acupressure
-        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+        if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
             defender = battleCtx->battlerActions[attacker][BATTLE_ACTION_CHOOSE_TARGET];
             if (battleCtx->battleMons[defender].curHP == 0) {
                 defender = attacker;
@@ -1680,7 +1680,7 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
         }
     } else if (range == RANGE_RANDOM_OPPONENT || randomize == TRUE) { // e.g., Outrage, Thrash, any other reason the move should be randomly targeted
         int opponents[2];
-        int battleType = BattleSystem_BattleType(battleSys);
+        int battleType = BattleSystem_GetBattleType(battleSys);
         int enemySide = Battler_Side(battleSys, attacker) ^ 1;
 
         opponents[0] = BattleSystem_EnemyInSlot(battleSys, attacker, ENEMY_IN_SLOT_RIGHT);
@@ -1868,7 +1868,7 @@ enum {
 
 BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int battleType = BattleSystem_BattleType(battleSys);
+    int battleType = BattleSystem_GetBattleType(battleSys);
 
     if (battleType & BATTLE_TYPE_NO_TRAINER_MESSAGES) {
         return FALSE;
@@ -2023,7 +2023,7 @@ void BattleContext_InitCounters(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->prizeMoneyMul = 1;
     battleCtx->meFirstTurnOrder = 1;
 
-    int battleType = BattleSystem_BattleType(battleSys);
+    int battleType = BattleSystem_GetBattleType(battleSys);
     if ((battleType & BATTLE_TYPE_DOUBLES) == FALSE) {
         battleCtx->battlersSwitchingMask |= FlagIndex(BATTLER_PLAYER_2);
         battleCtx->battlersSwitchingMask |= FlagIndex(BATTLER_ENEMY_2);
@@ -2043,7 +2043,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
 
     moveEffects = battleCtx->battleMons[battler].moveEffectsData;
     maxBattlers = BattleSystem_MaxBattlers(battleSys);
-    battleType = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_GetBattleType(battleSys);
 
     // Forcefully end the battler's turn after the replacement
     battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
@@ -3131,7 +3131,7 @@ BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *bat
     u32 battleType;
 
     result = FALSE;
-    battleType = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_GetBattleType(battleSys);
     party = BattleSystem_Party(battleSys, battler);
     partySize = BattleSystem_PartyCount(battleSys, battler);
 
@@ -3184,7 +3184,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
     int itemEffect;
     u32 battleType;
 
-    battleType = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_GetBattleType(battleSys);
     itemEffect = Battler_HeldItemEffect(battleCtx, battler);
 
     if (itemEffect == HOLD_EFFECT_FLEE
@@ -3266,7 +3266,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
 
 BOOL Battler_CanEscape(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
     BOOL result = FALSE;
 
@@ -4003,7 +4003,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     && Battler_Ability(battleCtx, battler) == ABILITY_FRISK) {
                     battleCtx->battleMons[battler].friskAnnounced = TRUE;
 
-                    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+                    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
                         int enemies[] = {
                             BattleSystem_EnemyInSlot(battleSys, battler, ENEMY_IN_SLOT_RIGHT),
                             BattleSystem_EnemyInSlot(battleSys, battler, ENEMY_IN_SLOT_LEFT),
@@ -4176,7 +4176,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker)
 {
     int opponents[2];
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     int chosen;
     if (battleType & BATTLE_TYPE_DOUBLES) {
@@ -6241,7 +6241,7 @@ void BattleSystem_SetPokemonCatchData(BattleSystem *battleSys, BattleContext *ba
     int terrain = BattleSystem_Terrain(battleSys);
 
     int ball;
-    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_PAL_PARK) {
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_PAL_PARK) {
         ball = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
     } else {
         ball = battleCtx->msgItemTemp;
@@ -6418,7 +6418,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 Pokemon *mon = Pokemon_New(HEAP_ID_BATTLE);
 
                 int target;
-                if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+                if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
                     target = battleCtx->battlerActions[battleCtx->msgBattlerTemp][BATTLE_ACTION_CHOOSE_TARGET];
                 } else {
                     target = battleCtx->msgBattlerTemp ^ 1;
@@ -6478,7 +6478,7 @@ void BattleSystem_SwitchSlots(BattleSystem *battleSys, BattleContext *battleCtx,
     int i;
     int tmp;
     int targetSlot;
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     if (((battleType & BATTLE_TYPE_DOUBLES) && (battleType & BATTLE_TYPE_2vs2_TAG) == FALSE)
         || ((battleType & BATTLE_TYPE_TAG) && (BattleSystem_BattlerSlot(battleSys, battler) & BATTLER_TYPE_SOLO_ENEMY) == FALSE)) {
@@ -6666,7 +6666,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     defenderParams.heldItemEffect = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT);
     defenderParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT_PARAM);
 
-    battleType = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_GetBattleType(battleSys);
 
     // Assign power; prefer the input power (used by variable-power moves, e.g. Gyro Ball)
     if (inPower == 0) {
@@ -7940,8 +7940,8 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
     battleCtx = BattleSystem_Context(battleSys);
 
     slot1 = battler;
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG)
-        || (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2)) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG)
+        || (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)) {
         slot2 = slot1;
     } else {
         slot2 = BattleSystem_Partner(battleSys, battler);

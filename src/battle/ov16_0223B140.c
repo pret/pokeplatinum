@@ -19,12 +19,12 @@
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
 #include "battle/battle_display.h"
+#include "battle/battle_input.h"
 #include "battle/battle_io.h"
 #include "battle/battle_io_command.h"
 #include "battle/battle_lib.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02268520.h"
-#include "battle/ov16_0226871C.h"
 #include "battle/ov16_0226E148.h"
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
@@ -292,7 +292,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
 
 void ov16_0223B384(BattleSystem *param0)
 {
-    ov16_02268A14(param0->unk_198);
+    BattleInput_Free(param0->battleInput);
     ov16_022687A0(param0->unk_04);
 
     param0->unk_23FB_2 = 1;
@@ -312,7 +312,7 @@ void ov16_0223B384(BattleSystem *param0)
 void ov16_0223B3E4(BattleSystem *param0)
 {
     SetMainCallback(NULL, NULL);
-    ov16_02268A14(param0->unk_198);
+    BattleInput_Free(param0->battleInput);
     Window_Remove(&param0->windows[0]);
 
     ov16_0223C288(param0->unk_04);
@@ -342,7 +342,7 @@ void ov16_0223B430(BattleSystem *param0)
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
     v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
-    param0->unk_198 = ov16_022687C8(v0, v1, param0, BattleSystem_GetTrainerGender(param0, ov16_0223F6E4(param0)), param0->unk_1BC);
+    param0->battleInput = BattleInput_NewInit(v0, v1, param0, BattleSystem_GetTrainerGender(param0, ov16_0223F6E4(param0)), param0->unk_1BC);
 
     Font_InitManager(FONT_SUBSCREEN, 5);
 
@@ -353,9 +353,9 @@ void ov16_0223B430(BattleSystem *param0)
     }
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    ov16_02268A88(param0->unk_198);
-    ov16_02268C04(v0, v1, param0->unk_198, 0, 1, NULL);
-    ov16_02268D40(v1, param0->unk_198);
+    ov16_02268A88(param0->battleInput);
+    ov16_02268C04(v0, v1, param0->battleInput, 0, 1, NULL);
+    ov16_02268D40(v1, param0->battleInput);
     NARC_dtor(v0);
     NARC_dtor(v1);
     TextPrinter_SetScrollArrowBaseTile(1);
@@ -561,7 +561,7 @@ static void ov16_0223B790(OverlayManager *param0)
         NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
         NARC *v7 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
-        v0->unk_198 = ov16_022687C8(v6, v7, v0, BattleSystem_GetTrainerGender(v0, ov16_0223F6E4(v0)), v0->unk_1BC);
+        v0->battleInput = BattleInput_NewInit(v6, v7, v0, BattleSystem_GetTrainerGender(v0, ov16_0223F6E4(v0)), v0->unk_1BC);
 
         NARC_dtor(v6);
         NARC_dtor(v7);
@@ -585,7 +585,7 @@ static void ov16_0223B790(OverlayManager *param0)
     sub_0200CB30(v0->unk_90, v0->unk_94, &Unk_ov16_0226E2B0);
     sub_0200964C(sub_0200C738(v0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 
-    ov16_02268A88(v0->unk_198);
+    ov16_02268A88(v0->battleInput);
 
     {
         NARC *v8;
@@ -594,8 +594,8 @@ static void ov16_0223B790(OverlayManager *param0)
         v8 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
         v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
-        ov16_02268C04(v8, v9, v0->unk_198, 0, 1, NULL);
-        ov16_02268D40(v9, v0->unk_198);
+        ov16_02268C04(v8, v9, v0->battleInput, 0, 1, NULL);
+        ov16_02268D40(v9, v0->battleInput);
 
         NARC_dtor(v8);
         NARC_dtor(v9);
@@ -1572,7 +1572,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
     v5 = 0;
     v6 = ov16_0223F450(v0);
 
-    if (BattleSystem_BattleType(v0) & (0x20 | 0x200)) {
+    if (BattleSystem_GetBattleType(v0) & (0x20 | 0x200)) {
         return;
     }
 

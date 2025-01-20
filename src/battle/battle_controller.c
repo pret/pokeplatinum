@@ -312,7 +312,7 @@ static inline BOOL SingleControllerForSide(BattleContext *battleCtx, int battler
 static void BattleController_CommandSelectionInput(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
-    int battleType = BattleSystem_BattleType(battleSys);
+    int battleType = BattleSystem_GetBattleType(battleSys);
     int battlersDone = 0;
     BattleMessage msg;
 
@@ -460,7 +460,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
                     break;
 
                 case PLAYER_INPUT_ITEM:
-                    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_ITEMS) {
+                    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_NO_ITEMS) {
                         msg.id = 593; // "Items can’t be used here."
                         msg.tags = TAG_NONE;
                         BattleIO_SetAlertMessage(battleSys, i, msg);
@@ -709,7 +709,7 @@ static void BattleController_CalcTurnOrder(BattleSystem *battleSys, BattleContex
     int battler, i, j; // Must declare these here to match.
 
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
     int order = 0;
 
     if (battleType & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
@@ -1955,8 +1955,8 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
 
         case BATTLE_ITEM_CATEGORY_POKE_BALLS:
             nextSeq = subscript_throw_pokeball;
-            if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE
-                && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) == FALSE) {
+            if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE
+                && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) == FALSE) {
                 Bag_TryRemoveItem(BattleSystem_Bag(battleSys), used->item, 1, HEAP_ID_BATTLE);
                 Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), used->item, used->category);
             }
@@ -1990,7 +1990,7 @@ static void BattleController_FleeCommand(BattleSystem *battleSys, BattleContext 
     battleCtx->attacker = battleCtx->battlerActionOrder[battleCtx->turnOrderCounter];
 
     if (Battler_Side(battleSys, battleCtx->attacker)
-        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
+        && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
         if (ATTACKING_MON.statusVolatile & (VOLATILE_CONDITION_BIND | VOLATILE_CONDITION_MEAN_LOOK)) {
             LOAD_SUBSEQ(subscript_enemy_escape_failed);
             battleCtx->scriptCursor = 0;
@@ -2110,7 +2110,7 @@ static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContex
 {
     int rand1, rand2; // must be defined up here to match
     u8 maxLevel = 0;
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
     TrainerInfo *trInfo = BattleSystem_TrainerInfo(battleSys, 0);
 
     // These separate sentinels do not match if chained into a single sentinel
@@ -2864,7 +2864,7 @@ static inline int CalcMoveType(BattleContext *battleCtx, int attacker, int move)
  */
 static int BattleController_CheckMoveHitAccuracy(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
 {
-    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) {
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) {
         return 0;
     }
 
@@ -3961,7 +3961,7 @@ static void BattleController_UpdateMoveBuffers(BattleSystem *battleSys, BattleCo
 
 static void BattleController_MoveEnd(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_MOVES) == FALSE) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_NO_MOVES) == FALSE) {
         if (BattleSystem_RecoverStatusByAbility(battleSys, battleCtx, battleCtx->attacker, FALSE) == TRUE
             || (battleCtx->defender != BATTLER_NONE
                 && BattleSystem_RecoverStatusByAbility(battleSys, battleCtx, battleCtx->defender, FALSE) == TRUE)
@@ -4040,7 +4040,7 @@ static void BattleController_ScreenWipe(BattleSystem *battleSys, BattleContext *
 
 static void BattleController_EndFight(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     if ((battleType & BATTLE_TYPE_LINK) == FALSE) {
         Party *playerParty = BattleSystem_Party(battleSys, BATTLER_US);
@@ -4072,7 +4072,7 @@ static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleConte
     BOOL result = FALSE;
     int i; // must be declared here to match
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
     int retCommand = battleCtx->command;
 
     for (i = 0; i < maxBattlers; i++) {
@@ -4182,7 +4182,7 @@ static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleCont
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
     u8 battleResult = BATTLE_IN_PROGRESS;
 
     for (i = 0; i < maxBattlers; i++) {
@@ -4795,7 +4795,7 @@ static BOOL BattleController_TriggerAfterMoveHitEffects(BattleSystem *battleSys,
  */
 static void BattleController_InitAI(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
     MI_CpuClear32(&battleCtx->aiContext, sizeof(AIContext));
 
     if ((battleType & BATTLE_TYPE_TRAINER) && (battleType & BATTLE_TYPE_NO_AI_ITEMS) == FALSE) {

@@ -291,7 +291,7 @@ static void ov13_02224720(UnkStruct_ov13_022213F0 *param0)
 
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0207C9B0(param0->unk_1E4, 3, v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 45065);
+    MoveTypeIcon_LoadPalette(param0->unk_1E4, 3, v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 45065);
     sub_0207C9EC(v0, param0->unk_1FB0, 45065, 45065);
 
     for (v1 = 45070; v1 <= 45076; v1++) {
@@ -795,19 +795,19 @@ static void ov13_02225420(UnkStruct_ov13_022213F0 *param0)
 static void ov13_0222554C(UnkStruct_ov13_022213F0 *param0)
 {
     SpriteRenderer *v0;
-    UnkStruct_ov16_0226DC24 *v1;
+    BattleCursor *v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_08);
-    ov16_0226DB7C(v0, param0->unk_1FB0, param0->unk_1E4, param0->unk_00->unk_0C, 45080, 45068, 45068, 45068);
-    v1 = ov16_0226DC24(v0, param0->unk_1FB0, param0->unk_00->unk_0C, 45080, 45068, 45068, 45068, 0, 1);
+    BattleCursor_LoadResources(v0, param0->unk_1FB0, param0->unk_1E4, param0->unk_00->unk_0C, 45080, 45068, 45068, 45068);
+    v1 = BattleCursor_New(v0, param0->unk_1FB0, param0->unk_00->unk_0C, 45080, 45068, 45068, 45068, 0, 1);
 
     ov13_02228A64(param0->unk_2084, v1);
 }
 
 static void ov13_022255B8(UnkStruct_ov13_022213F0 *param0)
 {
-    ov16_0226DCA8(ov13_02228A58(param0->unk_2084));
-    ov16_0226DBFC(param0->unk_1FB0, 45080, 45068, 45068, 45068);
+    BattleCursor_Free(ov13_02228A58(param0->unk_2084));
+    BattleCursor_FreeResources(param0->unk_1FB0, 45080, 45068, 45068, 45068);
 }
 
 static const ByteFlagSet Unk_ov13_02229464[] = {

@@ -521,7 +521,7 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
     v0.unk_01 = partySlot;
     v0.unk_29 = battleCtx->battlersSwitchingMask | v10;
 
-    v9 = BattleSystem_BattleType(battleSys);
+    v9 = BattleSystem_GetBattleType(battleSys);
 
     if ((v9 & 0x2) && ((v9 & 0x8) == 0)) {
         v2 = battler & 1;
@@ -697,7 +697,7 @@ void BattleIO_ShowTargetSelection(BattleSystem *battleSys, BattleContext *battle
 
     BattleIO_ClearBuffer(battleCtx, battler);
 
-    v2 = BattleSystem_BattleType(battleSys);
+    v2 = BattleSystem_GetBattleType(battleSys);
 
     v0.unk_00 = 16;
     v0.unk_02 = range;
@@ -760,7 +760,7 @@ void BattleIO_ShowBagScreen(BattleSystem *battleSys, BattleContext *battleCtx, i
         v0.unk_20[v1] = battleCtx->battleMons[v1].moveEffectsData.embargoTurns;
     }
 
-    if (BattleSystem_BattleType(battleSys) == (0x2 | 0x8 | 0x40)) {
+    if (BattleSystem_GetBattleType(battleSys) == (0x2 | 0x8 | 0x40)) {
         if (((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) && ((battleCtx->battlersSwitchingMask & FlagIndex(3)) == 0)) {
             v0.unk_01 = 1;
             v0.unk_02 = 0;
@@ -792,7 +792,7 @@ void BattleIO_ShowBagScreen(BattleSystem *battleSys, BattleContext *battleCtx, i
                 v0.unk_03 = 0;
             }
         }
-    } else if (BattleSystem_BattleType(battleSys) == (0x0 | 0x0)) {
+    } else if (BattleSystem_GetBattleType(battleSys) == (0x0 | 0x0)) {
         v0.unk_01 = 0;
 
         if (battleCtx->battleMons[1].moveEffectsMask & (0x40 | 0x80 | 0x40000 | 0x20000000)) {
@@ -1351,7 +1351,7 @@ void BattleIO_IncrementRecord(BattleSystem *param0, int param1, int param2, int 
 void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler)
 {
     UnkStruct_ov16_0225C988 v0;
-    u32 v1 = BattleSystem_BattleType(battleSys);
+    u32 v1 = BattleSystem_GetBattleType(battleSys);
 
     v0.unk_00 = 55;
     v0.unk_02 = 0;
@@ -1409,7 +1409,7 @@ void BattleIO_EscapeMessage(BattleSystem *param0, BattleContext *param1)
 {
     UnkStruct_ov16_0225C9F0 v0;
     int v1;
-    u32 v2 = BattleSystem_BattleType(param0);
+    u32 v2 = BattleSystem_GetBattleType(param0);
 
     v0.unk_00 = 60;
     v0.unk_01 = 0;
@@ -1432,7 +1432,7 @@ void BattleIO_EscapeMessage(BattleSystem *param0, BattleContext *param1)
 void BattleIO_ForfeitMessage(BattleSystem *param0)
 {
     UnkStruct_ov16_0225CA14 v0;
-    u32 v1 = BattleSystem_BattleType(param0);
+    u32 v1 = BattleSystem_GetBattleType(param0);
 
     v0.unk_00 = 61;
     v0.unk_02 = 0;
@@ -1499,7 +1499,7 @@ void BattleIO_PlayMusic(BattleSystem *param0, int param1, int param2)
 void BattleIO_SubmitResult(BattleSystem *param0)
 {
     UnkStruct_ov16_02266A38 v0;
-    u32 v1 = BattleSystem_BattleType(param0);
+    u32 v1 = BattleSystem_GetBattleType(param0);
 
     v0.unk_00 = 65;
     v0.unk_04 = BattleSystem_ResultMask(param0);
@@ -1652,7 +1652,7 @@ static inline void PartyGaugeData_Fill(BattleContext *battleCtx, PartyGaugeData 
 static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx, PartyGaugeData *partyGauge, int command, int battler)
 {
     MI_CpuClearFast(partyGauge, sizeof(PartyGaugeData));
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
     partyGauge->command = command;
 
     // must make declarations here to match

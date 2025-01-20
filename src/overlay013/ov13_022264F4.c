@@ -107,8 +107,8 @@ void ov13_022264F4(UnkStruct_ov13_022264F4 *param0)
     memset(v0, 0, sizeof(UnkStruct_ov13_02227244));
 
     v0->unk_00 = param0;
-    v0->unk_04 = BattleSystem_BGL(param0->unk_00);
-    v0->unk_08 = BattleSystem_PaletteSys(param0->unk_00);
+    v0->unk_04 = BattleSystem_GetBgConfig(param0->unk_00);
+    v0->unk_08 = BattleSystem_GetPaletteData(param0->unk_00);
     v0->unk_114A = 0;
 
     {
@@ -127,7 +127,7 @@ void ov13_022264F4(UnkStruct_ov13_022264F4 *param0)
 
     ov13_02227A4C(v0);
 
-    if (BattleSystem_BattleType(v0->unk_00->unk_00) & 0x400) {
+    if (BattleSystem_GetBattleType(v0->unk_00->unk_00) & 0x400) {
         v0->unk_00->unk_14 = 1;
     }
 }
@@ -420,7 +420,7 @@ static u8 ov13_02226A5C(UnkStruct_ov13_02227244 *param0)
             ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
             return 13;
         } else if (v2 == 3) {
-            if (!(BattleSystem_BattleType(v0->unk_00) & 0x1)) {
+            if (!(BattleSystem_GetBattleType(v0->unk_00) & 0x1)) {
                 ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
                 return 13;
             } else {

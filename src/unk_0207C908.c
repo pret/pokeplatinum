@@ -117,7 +117,7 @@ void sub_0207C97C(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM
     sub_0200CC9C(param0, param1, sub_0207C944(), sub_0207C920(), 0, 3, param2, param3);
 }
 
-void sub_0207C9B0(PaletteData *param0, int param1, SpriteRenderer *param2, SpriteGfxHandler *param3, NNS_G2D_VRAM_TYPE param4, u32 param5)
+void MoveTypeIcon_LoadPalette(PaletteData *param0, int param1, SpriteRenderer *param2, SpriteGfxHandler *param3, NNS_G2D_VRAM_TYPE param4, u32 param5)
 {
     sub_0200CD7C(param0, param1, param2, param3, sub_0207C944(), sub_0207C920(), 0, 3, param4, param5);
 }

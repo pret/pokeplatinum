@@ -22,7 +22,7 @@ void ov16_02264798(BattlerData *param0, BattleSystem *param1)
         return;
     }
 
-    if (BattleSystem_BattleType(param1) & (0x20 | 0x200)) {
+    if (BattleSystem_GetBattleType(param1) & (0x20 | 0x200)) {
         return;
     }
 

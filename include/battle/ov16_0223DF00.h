@@ -40,7 +40,7 @@
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2
 
-BgConfig *BattleSystem_BGL(BattleSystem *battleSys);
+BgConfig *BattleSystem_GetBgConfig(BattleSystem *battleSys);
 
 /**
  * @brief Get one of the allocated windows for the battle display.
@@ -50,7 +50,7 @@ BgConfig *BattleSystem_BGL(BattleSystem *battleSys);
  * @return
  */
 Window *BattleSystem_Window(BattleSystem *battleSys, int idx);
-u32 BattleSystem_BattleType(BattleSystem *battleSys);
+u32 BattleSystem_GetBattleType(BattleSystem *battleSys);
 BattleContext *BattleSystem_Context(BattleSystem *battleSys);
 BattlerData *BattleSystem_BattlerData(BattleSystem *battleSys, int param1);
 int BattleSystem_MaxBattlers(BattleSystem *battleSys);
@@ -89,14 +89,14 @@ UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSys);
 SpriteRenderer *ov16_0223E010(BattleSystem *battleSys);
 SpriteGfxHandler *ov16_0223E018(BattleSystem *battleSys);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1);
-UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys);
+BattleInput *BattleSystem_GetBattleInput(BattleSystem *battleSys);
 PartyGauge *ov16_0223E034(BattleSystem *battleSys, enum PartyGaugeSide param1);
 void ov16_0223E040(BattleSystem *battleSys, enum PartyGaugeSide param1, PartyGauge *param2);
 UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSys);
 UnkStruct_0200C440 *ov16_0223E054(BattleSystem *battleSys);
 MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSys);
 MessageLoader *ov16_0223E060(BattleSystem *battleSys);
-PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSys);
+PaletteData *BattleSystem_GetPaletteData(BattleSystem *battleSys);
 Pokedex *BattleSystem_GetPokedex(BattleSystem *battleSys);
 u8 *ov16_0223E06C(BattleSystem *battleSys);
 u8 *ov16_0223E074(BattleSystem *battleSys);
