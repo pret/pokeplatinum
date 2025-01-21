@@ -80,13 +80,13 @@ static void UpdateCaughtStatus(SortedPokedex *sortedPokedex, const Pokedex *poke
 static void PopulateDisplayPokedex_Blanks(SortedPokedex *sortedPokedex, const u16 *fullDex, int pokedexLength);
 static void PopulateDisplayPokedex(SortedPokedex *sortedPokedex);
 static void NumEncounteredAndCaught(SortedPokedex *sortedPokedex, int *caughtStatusLength, int *numCaught);
-static u16 *PokedexFromNARC(int heapID, int pokedexSort, int *pokedexLength);
-static void DexSortOrder(int sortOrder, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const Pokedex *pokedex);
-static void FilterByName(int filterName, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const Pokedex *pokedex);
-static void FilterByType(int typeFilter, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const Pokedex *pokedex);
-static void FilterByForm(int filterForm, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const Pokedex *pokedex);
+static u16 *PokedexFromNARC(enum HeapId heapID, int pokedexSort, int *pokedexLength);
+static void DexSortOrder(int sortOrder, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, enum HeapId heapID, const Pokedex *pokedex);
+static void FilterByName(int filterName, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, enum HeapId heapID, const Pokedex *pokedex);
+static void FilterByType(int typeFilter, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, enum HeapId heapID, const Pokedex *pokedex);
+static void FilterByForm(int filterForm, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, enum HeapId heapID, const Pokedex *pokedex);
 
-void PokedexSort_PopulatePokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, int heapID)
+void PokedexSort_PopulatePokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, enum HeapId heapID)
 {
     int sortOrder;
     int filterName;
@@ -167,98 +167,75 @@ void PokedexSort_PokedexStatusFreeHWData(UnkStruct_ov21_021D3320 *param0)
     param0->HWData = NULL;
 }
 
-u32 ov21_021D334C(const UnkStruct_ov21_021D3320 *param0, int param1, int param2)
+u32 PokedexSort_Gender(const UnkStruct_ov21_021D3320 *param0, int species, int formIndex)
 {
-    u32 v0;
-
-    v0 = Pokedex_DisplayedGender(param0->pokedex, param1, param2);
-    return v0;
+    return Pokedex_DisplayedGender(param0->pokedex, species, formIndex);
 }
 
-u32 ov21_021D335C(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_UnownForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    int v0;
-
-    GF_ASSERT(param1 < 28);
-    v0 = Pokedex_GetForm_Unown(param0->pokedex, param1);
-
-    return v0;
+    GF_ASSERT(formIndex < 28);
+    return Pokedex_GetForm_Unown(param0->pokedex, formIndex);
 }
 
-u32 ov21_021D3374(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_ShellosForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    u32 v0;
-
-    GF_ASSERT(param1 < 2);
-    v0 = Pokedex_GetForm_Shellos(param0->pokedex, param1);
-
-    return v0;
+    GF_ASSERT(formIndex < 2);
+    return Pokedex_GetForm_Shellos(param0->pokedex, formIndex);
 }
 
-u32 ov21_021D338C(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_GastrodonForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    u32 v0;
-
-    GF_ASSERT(param1 < 2);
-
-    v0 = Pokedex_GetForm_Gastrodon(param0->pokedex, param1);
-    return v0;
+    GF_ASSERT(formIndex < 2);
+    return Pokedex_GetForm_Gastrodon(param0->pokedex, formIndex);
 }
 
-u32 ov21_021D33A4(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_BurmyForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    u32 v0;
-
-    GF_ASSERT(param1 < 3);
-
-    v0 = Pokedex_GetForm_Burmy(param0->pokedex, param1);
-    return v0;
+    GF_ASSERT(formIndex < 3);
+    return Pokedex_GetForm_Burmy(param0->pokedex, formIndex);
 }
 
-u32 ov21_021D33BC(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_WormadamForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    u32 v0;
-
-    GF_ASSERT(param1 < 3);
-
-    v0 = Pokedex_GetForm_Wormadam(param0->pokedex, param1);
-    return v0;
+    GF_ASSERT(formIndex < 3);
+    return Pokedex_GetForm_Wormadam(param0->pokedex, formIndex);
 }
 
-u32 ov21_021D33D4(const UnkStruct_ov21_021D3320 *param0, u32 species)
+u32 PokedexSort_DefaultForm(const UnkStruct_ov21_021D3320 *param0, u32 species)
 {
     return Pokedex_GetDisplayForm(param0->pokedex, species, 0);
 }
 
-u32 ov21_021D33E0(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_NumGendersVisible(const UnkStruct_ov21_021D3320 *param0, int species)
 {
-    int v0 = ov21_021D334C(param0, param1, 1);
+    int gender = PokedexSort_Gender(param0, species, 1);
 
-    if (v0 == -1) {
+    if (gender == -1) {
         return 1;
     }
 
     return 2;
 }
 
-u32 ov21_021D33F8(const UnkStruct_ov21_021D3320 *param0)
+u32 PokedexSort_SpindaForm(const UnkStruct_ov21_021D3320 *param0)
 {
     return Pokedex_GetForm_Spinda(param0->pokedex, 0);
 }
 
-u32 ov21_021D3404(const UnkStruct_ov21_021D3320 *param0, int param1)
+u32 PokedexSort_DeoxysForm(const UnkStruct_ov21_021D3320 *param0, int formIndex)
 {
-    return Pokedex_GetForm_Deoxys(param0->pokedex, param1);
+    return Pokedex_GetForm_Deoxys(param0->pokedex, formIndex);
 }
 
-u32 ov21_021D3410(const UnkStruct_ov21_021D3320 *param0, u32 param1, int param2)
+u32 PokedexSort_Form(const UnkStruct_ov21_021D3320 *param0, u32 species, int formIndex)
 {
-    return Pokedex_GetDisplayForm(param0->pokedex, param1, param2);
+    return Pokedex_GetDisplayForm(param0->pokedex, species, formIndex);
 }
 
-u32 ov21_021D341C(const UnkStruct_ov21_021D3320 *param0, u32 param1)
+u32 PokedexSort_NumFormsSeem(const UnkStruct_ov21_021D3320 *param0, u32 species)
 {
-    return Pokedex_NumFormsSeen(param0->pokedex, param1);
+    return Pokedex_NumFormsSeen(param0->pokedex, species);
 }
 
 BOOL PokedexSort_IsNationalUnlocked(const UnkStruct_ov21_021D3320 *param0)
@@ -286,7 +263,7 @@ u32 ov21_021D3458(const UnkStruct_ov21_021D3320 *param0)
     return param0->unk_175E;
 }
 
-BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filterName, int filterType1, int filterType2, int filterForm, int isNationalDex, int heapID, BOOL isFiltered)
+BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filterName, int filterType1, int filterType2, int filterForm, int isNationalDex, enum HeapId heapID, BOOL isFiltered)
 {
     u16 *encounteredPokedex;
     int caughtStatusLength;
@@ -402,7 +379,7 @@ BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filter
     return dexExists;
 }
 
-BOOL PokedexSort_SortUnfiltered(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filterName, int filterType1, int filterType2, int filterForm, int isNationalDex, int heapID)
+BOOL PokedexSort_SortUnfiltered(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filterName, int filterType1, int filterType2, int filterForm, int isNationalDex, enum HeapId heapID)
 {
     return PokedexSort_Sort(param0, sortOrder, filterName, filterType1, filterType2, filterForm, isNationalDex, heapID, FALSE);
 }
@@ -736,7 +713,7 @@ static void PopulateDisplayPokedex(SortedPokedex *sortedPokedex)
     }
 }
 
-static u16 *PokedexFromNARC(int heapID, int pokedexSort, int *pokedexLength)
+static u16 *PokedexFromNARC(enum HeapId heapID, int pokedexSort, int *pokedexLength)
 {
     u32 pokedexSize;
 
@@ -749,7 +726,7 @@ static u16 *PokedexFromNARC(int heapID, int pokedexSort, int *pokedexLength)
     return pokedexFromFile;
 }
 
-static void DexSortOrder(int sortOrder, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const Pokedex *pokedex)
+static void DexSortOrder(int sortOrder, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, enum HeapId heapID, const Pokedex *pokedex)
 {
     u16 *pokedexFromFile;
     int pokedexLength;
@@ -789,7 +766,7 @@ static void DexSortOrder(int sortOrder, u16 *resultingPokedex, int *numResulting
     }
 }
 
-static void FilterByName(int filterName, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const Pokedex *pokedex)
+static void FilterByName(int filterName, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, enum HeapId heapID, const Pokedex *pokedex)
 {
     u16 *pokedexFromFile;
     int pokedexLength;
@@ -839,7 +816,7 @@ static void FilterByName(int filterName, u16 *resultingPokedex, int *numResultin
     }
 }
 
-static void FilterByType(int typeFilter, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const Pokedex *pokedex)
+static void FilterByType(int typeFilter, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, enum HeapId heapID, const Pokedex *pokedex)
 {
     u16 *pokedexFromFile;
     int pokedexLength;
@@ -913,7 +890,7 @@ static void FilterByType(int typeFilter, u16 *resultingPokedex, int *numResultin
     }
 }
 
-static void FilterByForm(int filterForm, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, int heapID, const Pokedex *pokedex)
+static void FilterByForm(int filterForm, u16 *resultingPokedex, int *numResulting, const u16 *encounteredPokedex, int caughtStatusLength, enum HeapId heapID, const Pokedex *pokedex)
 {
     u16 *pokedexFromFile;
     int pokedexLength;

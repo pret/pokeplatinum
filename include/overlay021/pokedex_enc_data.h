@@ -4,6 +4,7 @@
 #include "constants/species.h"
 
 #include "cell_actor.h"
+#include "heap.h"
 
 typedef struct EncounterLocations {
     int *locations;
@@ -49,7 +50,7 @@ enum PokedexEncFileCatgegory {
  * @param encounterCategory
  * @param heapID
  */
-void PokedexEncData_PopulateEncounterLocations(EncounterLocations *encounterLocations, int species, int encounterCategory, int heapID);
+void PokedexEncData_PopulateEncounterLocations(EncounterLocations *encounterLocations, int species, int encounterCategory, enum HeapId heapID);
 
 /**
  * @brief Frees encounter data from the heap
@@ -68,7 +69,7 @@ void PokedexEncData_FreeEncounterLocations(EncounterLocations *encounterLocation
  * @param numDungeons
  * @return Array of coordinates for each dungeon
  */
-DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(int heapID, int *numDungeons);
+DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(enum HeapId heapID, int *numDungeons);
 
 /**
  * @brief Reads field coordinates data from zukan_enc_platinum.narc
@@ -80,7 +81,7 @@ DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(int heapID, int *numDun
  * @param numFields
  * @return Array of coordinates for each field
  */
-FieldCoordinates *PokedexEncData_GetFieldCoordinates(int heapID, int *numFields);
+FieldCoordinates *PokedexEncData_GetFieldCoordinates(enum HeapId heapID, int *numFields);
 
 /**
  * @brief Updates fieldMap with the coordinates occupied by the field
