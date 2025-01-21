@@ -667,27 +667,27 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">FAVORITE FOOD</language>
 	</row>
-	<row id="summary_template_likes_spicy" index="166">
+	<row id="summary_likes_it_spicy" index="166">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}spicy{COLOR 0}.</language>
 	</row>
-	<row id="summary_template_likes_dry" index="167">
+	<row id="summary_likes_it_dry" index="167">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}dry{COLOR 0}.</language>
 	</row>
-	<row id="summary_template_likes_sweet" index="168">
+	<row id="summary_likes_it_sweet" index="168">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}sweet{COLOR 0}.</language>
 	</row>
-	<row id="summary_template_likes_bitter" index="169">
+	<row id="summary_likes_it_bitter" index="169">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}bitter{COLOR 0}.</language>
 	</row>
-	<row id="summary_template_likes_sour" index="170">
+	<row id="summary_likes_it_sour" index="170">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}sour{COLOR 0}.</language>
 	</row>
-	<row id="pl_msg_00000455_00171" index="171">
+	<row id="summary_eats_anything" index="171">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Eats anything.</language>
 	</row>

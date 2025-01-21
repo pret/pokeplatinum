@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/condition.h"
 #include "constants/flavor.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
@@ -1149,8 +1150,8 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     } else if (Pokemon_InfectedWithPokerus(mon) == TRUE) {
         monData->pokerus = SUMMARY_POKERUS_INFECTED;
 
-        if (monData->status == 7) {
-            monData->status = 0;
+        if (monData->status == SUMMARY_CONDITION_NONE) {
+            monData->status = SUMMARY_CONDITION_POKERUS;
         }
     } else {
         monData->pokerus = SUMMARY_POKERUS_NONE;
@@ -2216,18 +2217,18 @@ u32 PokemonSummaryScreen_StatusIconAnimIdx(Pokemon *mon)
     u32 statusCondition = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
 
     if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
-        return 6;
-    } else if ((statusCondition & (0x8 | 0x80)) != 0) {
-        return 4;
-    } else if ((statusCondition & 0x7) != 0) {
-        return 3;
-    } else if ((statusCondition & 0x10) != 0) {
-        return 5;
-    } else if ((statusCondition & 0x20) != 0) {
-        return 2;
-    } else if ((statusCondition & 0x40) != 0) {
-        return 1;
+        return SUMMARY_CONDITION_FAINTED;
+    } else if ((statusCondition & (MON_CONDITION_POISON | MON_CONDITION_TOXIC)) != MON_CONDITION_NONE) {
+        return SUMMARY_CONDITION_POISON;
+    } else if ((statusCondition & MON_CONDITION_SLEEP) != MON_CONDITION_NONE) {
+        return SUMMARY_CONDITION_SLEEP;
+    } else if ((statusCondition & MON_CONDITION_BURN) != MON_CONDITION_NONE) {
+        return SUMMARY_CONDITION_BURN;
+    } else if ((statusCondition & MON_CONDITION_FREEZE) != MON_CONDITION_NONE) {
+        return SUMMARY_CONDITION_FREEZE;
+    } else if ((statusCondition & MON_CONDITION_PARALYSIS) != MON_CONDITION_NONE) {
+        return SUMMARY_CONDITION_PARALYSIS;
     }
 
-    return 7;
+    return SUMMARY_CONDITION_NONE;
 }

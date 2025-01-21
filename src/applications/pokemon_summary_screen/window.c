@@ -1210,7 +1210,7 @@ static void DrawConditionPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], 0);
     MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_favorite_food, summaryScreen->strbuf);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_template_likes_spicy + summaryScreen->monData.preferredFlavor, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_likes_it_spicy + summaryScreen->monData.preferredFlavor, summaryScreen->strbuf);
     Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], FONT_SYSTEM, summaryScreen->strbuf, 0, 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD]);
 
@@ -1311,7 +1311,7 @@ static void DrawExitPageWindows(PokemonSummaryScreen *summaryScreen)
     MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_favorite_food, summaryScreen->strbuf);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_template_likes_spicy + summaryScreen->monData.preferredFlavor, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_likes_it_spicy + summaryScreen->monData.preferredFlavor, summaryScreen->strbuf);
     Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], FONT_SYSTEM, summaryScreen->strbuf, 0, 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
 
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD]);
