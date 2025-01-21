@@ -83,6 +83,12 @@ enum ConditionFlashBounds {
 #define MOVE_CATEGORY_ICON_X 108
 #define MOVE_CATEGORY_ICON_Y 72
 
+#define BATTLE_MOVE_MON_ICON_X 24
+#define BATTLE_MOVE_MON_ICON_Y 48
+
+#define CONTEST_MOVE_MON_ICON_X 32
+#define CONTEST_MOVE_MON_ICON_Y 68
+
 // contest stat dot position info for the contest move info
 #define COOL_MAX_X 88
 #define COOL_MIN_X 88
@@ -111,6 +117,8 @@ enum ConditionFlashBounds {
 
 #define DOT_MAX_POS 300
 #define DOT_MIN_POS 44
+
+#define TAP_CIRCLE_BASE_Y 192
 
 static const SpriteTemplateFromResourceHeader Unk_020F41A8[] = {
     [SUMMARY_SPRITE_TAB_INFO] = { 0x1, 0x80, 0x18, 0x0, 0x0, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
@@ -681,9 +689,9 @@ void PokemonSummaryScreen_InitButtonTapAnim(PokemonSummaryScreen *summaryScreen)
     PokemonSummaryScreen_CalcSubscreenButtonTapAnimPos(summaryScreen, &x, &y);
 
     if (summaryScreen->subscreenType == SUMMARY_SUBSCREEN_TYPE_NORMAL) {
-        Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_BUTTON_TAP_CIRCLE], x, y + 192);
+        Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_BUTTON_TAP_CIRCLE], x, y + TAP_CIRCLE_BASE_Y);
     } else {
-        Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_BUTTON_TAP_CIRCLE], x - 4, y + 192);
+        Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_BUTTON_TAP_CIRCLE], x - 4, y + TAP_CIRCLE_BASE_Y);
     }
 }
 
@@ -727,7 +735,7 @@ void PokemonSummaryScreen_SetMonIcon(PokemonSummaryScreen *summaryScreen)
 
     SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, iconIndex, 0, 11);
     Sprite_SetExplicitPalette2(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], PokeIconPaletteIndex(summaryScreen->monData.species, summaryScreen->monData.form, summaryScreen->monData.isEgg) + 7);
-    Sprite_SetFlipMode(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], (SpeciesData_GetFormValue(summaryScreen->monData.species, summaryScreen->monData.form, 28) ^ 1));
+    Sprite_SetFlipMode(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], (SpeciesData_GetFormValue(summaryScreen->monData.species, summaryScreen->monData.form, SPECIES_DATA_FLIP_SPRITE) ^ 1));
 }
 
 void PokemonSummaryScreen_ShowMonIcon(PokemonSummaryScreen *summaryScreen)
@@ -735,9 +743,9 @@ void PokemonSummaryScreen_ShowMonIcon(PokemonSummaryScreen *summaryScreen)
     SpriteSystem_ReplacePlttResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 5);
 
     if (summaryScreen->page == SUMMARY_PAGE_BATTLE_MOVES) {
-        Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], 24, 48);
+        Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], BATTLE_MOVE_MON_ICON_X, BATTLE_MOVE_MON_ICON_Y);
     } else {
-        Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], 32, 68);
+        Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], CONTEST_MOVE_MON_ICON_X, CONTEST_MOVE_MON_ICON_Y);
     }
 
     Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], TRUE);
