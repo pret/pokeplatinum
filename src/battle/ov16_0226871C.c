@@ -1557,7 +1557,7 @@ int ov16_0226925C(UnkStruct_ov16_02268A14 *param0)
     if (BattleSystem_BattleType(param0->unk_00) & 0x400) {
         v1 = ov16_0226CD18(param0);
     } else {
-        v1 = sub_02022664(v4->unk_14);
+        v1 = TouchScreen_CheckRectanglePressed(v4->unk_14);
 
         if (v1 == 0xffffffff) {
             v1 = ov16_0226BE48(param0);

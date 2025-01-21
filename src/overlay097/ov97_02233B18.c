@@ -1964,7 +1964,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
 
         break;
     case 13:
-        v0 = sub_02022664((const TouchScreenRect *)v3->unk_374);
+        v0 = TouchScreen_CheckRectanglePressed((const TouchScreenRect *)v3->unk_374);
 
         if (v0 != 0xffffffff) {
             if (v0 < 30) {

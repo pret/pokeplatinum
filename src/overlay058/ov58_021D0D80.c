@@ -804,7 +804,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
     int v0 = -1, v1;
     int v2 = 0;
 
-    v0 = sub_02022664(Unk_ov58_021D2EB8);
+    v0 = TouchScreen_CheckRectanglePressed(Unk_ov58_021D2EB8);
 
     if (v0 != 0xffffffff) {
         switch (v0) {
@@ -871,7 +871,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
         }
     }
 
-    v1 = sub_02022644(Unk_ov58_021D2DDC);
+    v1 = TouchScreen_CheckRectangleHeld(Unk_ov58_021D2DDC);
     Sprite_SetDrawFlag(param0->unk_23C[CommSys_CurNetId()], 0);
 
     if (v1 != 0xffffffff) {
@@ -1869,7 +1869,7 @@ static void ov58_021D2D10(UnkStruct_02095EAC *param0)
 
 static int ov58_021D2D30(UnkStruct_02095EAC *param0)
 {
-    int v0 = sub_02022664(Unk_ov58_021D2DD4);
+    int v0 = TouchScreen_CheckRectanglePressed(Unk_ov58_021D2DD4);
 
     if (v0 != 0xffffffff) {
         return 1;

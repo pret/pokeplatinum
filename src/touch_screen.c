@@ -41,8 +41,7 @@ static BOOL sub_0202260C(const TouchScreenHitTable *hitTable, u32 param1, u32 pa
     return 0;
 }
 
-// ravetodo TouchScreen_CheckRectangleHeld
-int sub_02022644(const TouchScreenRect *rect)
+int TouchScreen_CheckRectangleHeld(const TouchScreenRect *rect)
 {
     if (gSystem.touchHeld) {
         return CheckRectangleTouch(rect, gSystem.touchX, gSystem.touchY);
@@ -50,8 +49,8 @@ int sub_02022644(const TouchScreenRect *rect)
 
     return TOUCHSCREEN_INPUT_NONE;
 }
-// ravetodo TouchScreen_CheckRectanglePressed
-int sub_02022664(const TouchScreenRect *rect)
+
+int TouchScreen_CheckRectanglePressed(const TouchScreenRect *rect)
 {
     if (gSystem.touchPressed) {
         return CheckRectangleTouch(rect, gSystem.touchX, gSystem.touchY);

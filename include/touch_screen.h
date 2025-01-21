@@ -26,8 +26,8 @@ typedef union {
     } circle;
 } TouchScreenRect, TouchScreenHitTable;
 
-int sub_02022644(const TouchScreenRect *rect);
-int sub_02022664(const TouchScreenRect *rect);
+int TouchScreen_CheckRectangleHeld(const TouchScreenRect *rect);
+int TouchScreen_CheckRectanglePressed(const TouchScreenRect *rect);
 int sub_02022684(const TouchScreenHitTable *hitTable);
 int sub_020226DC(const TouchScreenHitTable *hitTable);
 BOOL TouchScreen_LocationHeld(const TouchScreenHitTable *hitTable);
