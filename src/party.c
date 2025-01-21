@@ -141,6 +141,5 @@ BOOL Party_HasSpecies(const Party *party, int species)
 
 Party *Party_GetFromSavedata(SaveData *saveData)
 {
-    Party *party = (Party *)SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PARTY);
-    return party;
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PARTY);
 }
