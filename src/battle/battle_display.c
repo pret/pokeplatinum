@@ -5680,14 +5680,14 @@ Healthbar *ov16_02263B08(BattlerData *param0)
     return &param0->healthbar;
 }
 
-UnkStruct_ov16_0226C378 *ov16_02263B0C(BattlerData *param0)
+BattleCursorPosition *Battler_GetCursorPosition(BattlerData *param0)
 {
     return &param0->unk_7B;
 }
 
 void ov16_02263B10(BattlerData *param0)
 {
-    MI_CpuClear8(&param0->unk_7B, sizeof(UnkStruct_ov16_0226C378));
+    MI_CpuClear8(&param0->unk_7B, sizeof(BattleCursorPosition));
 }
 
 void ov16_02263B20(BattlerData *param0, int param1)

@@ -155,7 +155,7 @@ u8 Battler_Type(BattlerData *param0);
 u8 Battler_BootState(BattlerData *param0);
 Sprite *ov16_02263AFC(BattlerData *param0);
 Healthbar *ov16_02263B08(BattlerData *param0);
-UnkStruct_ov16_0226C378 *ov16_02263B0C(BattlerData *param0);
+BattleCursorPosition *Battler_GetCursorPosition(BattlerData *param0);
 void ov16_02263B10(BattlerData *param0);
 void ov16_02263B20(BattlerData *param0, int param1);
 

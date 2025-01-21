@@ -31,7 +31,7 @@ void ov16_0226BCCC(BattleInput *input, int param1);
 BOOL ov16_0226BCD0(BattleInput *input);
 int ov16_0226CD08(BattleInput *input);
 void ov16_0226CD10(BattleInput *input, int param1);
-void ov16_0226CEB0(BattleInput *input, int param1);
+void BattleInput_PrintRecordingStopMessage(BattleInput *input, int param1);
 u8 ov16_0226D088(BattleInput *input);
 
 #endif // POKEPLATINUM_OV16_0226871C_H

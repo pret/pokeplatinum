@@ -1565,7 +1565,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
         return;
     }
 
-    ov16_0226CEB0(battleSys->battleInput, flag);
+    BattleInput_PrintRecordingStopMessage(battleSys->battleInput, flag);
 
     StartScreenTransition(3, 0, 0, 0, 16, 2, 5);
     sub_0200569C();

@@ -23,7 +23,7 @@ struct BattlerData {
     Sprite *unk_20;
     Window *unk_24;
     Healthbar healthbar;
-    UnkStruct_ov16_0226C378 unk_7B;
+    BattleCursorPosition unk_7B;
     BallRotation *unk_84;
     UnkStruct_ov12_02223764 *unk_88;
     void *unk_8C;
