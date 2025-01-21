@@ -1509,7 +1509,7 @@ static void ov88_0223CE74(UnkStruct_02095E80 *param0)
         return;
     }
 
-    v2 = sub_02022664(Unk_ov88_0223EE28);
+    v2 = TouchScreen_CheckRectanglePressed(Unk_ov88_0223EE28);
 
     if (v2 != 0xffffffff) {
         if (param0->unk_6F4[param0->unk_88[0]].unk_05) {

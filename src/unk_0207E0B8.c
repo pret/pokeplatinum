@@ -2302,7 +2302,7 @@ static int GetValidWindowLayout(GameWindowLayout *param0)
         return 0xffffffff;
     }
 
-    v0 = sub_02022664(Unk_020F1C94);
+    v0 = TouchScreen_CheckRectanglePressed(Unk_020F1C94);
 
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;

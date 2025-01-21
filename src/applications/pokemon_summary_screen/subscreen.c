@@ -163,7 +163,7 @@ static int CheckSubscreenRectanglePress(PokemonSummaryScreen *summaryScreen)
         return TOUCHSCREEN_INPUT_NONE;
     }
 
-    return sub_02022664(sSubscreenRectangles[summaryScreen->subscreenType]);
+    return TouchScreen_CheckRectanglePressed(sSubscreenRectangles[summaryScreen->subscreenType]);
 }
 
 static int CheckSubscreenRectangleHeld(PokemonSummaryScreen *summaryScreen)
@@ -172,7 +172,7 @@ static int CheckSubscreenRectangleHeld(PokemonSummaryScreen *summaryScreen)
         return TOUCHSCREEN_INPUT_NONE;
     }
 
-    int rectHeld = sub_02022644(sSubscreenRectangles[summaryScreen->subscreenType]);
+    int rectHeld = TouchScreen_CheckRectangleHeld(sSubscreenRectangles[summaryScreen->subscreenType]);
 
     if (rectHeld != TOUCHSCREEN_INPUT_NONE) {
         u16 v1 = 0xFFFE;
