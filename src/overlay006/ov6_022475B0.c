@@ -33,7 +33,7 @@ void ov6_022475B0(SaveData *param0)
     }
 
     while (TRUE) {
-        v0 = inline_020564D0(16);
+        v0 = LCRNG_RandMod(16);
 
         if ((v3[0] != v4[v0]) && (v3[1] != v4[v0])) {
             sub_0202DA24(param0, v0);

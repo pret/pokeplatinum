@@ -266,7 +266,7 @@ Static main
 	Object main.nef.p/src_unk_0206AFE0.c.o
 	Object main.nef.p/src_unk_0206B70C.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o
-	Object main.nef.p/src_unk_0206C0E8.c.o
+	Object main.nef.p/src_great_marsh_lookout.c.o
 	Object main.nef.p/src_unk_0206C2D0.c.o
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_unk_0206C660.c.o
@@ -566,9 +566,9 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_ov6_0223E140.c.o
 	Object main.nef.p/src_overlay006_ov6_02240C9C.c.o
 	Object main.nef.p/src_overlay006_ov6_022426AC.c.o
-	Object main.nef.p/src_overlay006_ov6_02242984.c.o
+	Object main.nef.p/src_overlay006_great_marsh_binoculars.c.o
 	Object main.nef.p/src_overlay006_ov6_02242AF0.c.o
-	Object main.nef.p/src_overlay006_ov6_02242F74.c.o
+	Object main.nef.p/src_overlay006_great_marsh_daily_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_02243004.c.o
 	Object main.nef.p/src_overlay006_ov6_022430C4.c.o
 	Object main.nef.p/src_overlay006_ov6_02243218.c.o
@@ -586,7 +586,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_ov6_02247100.c.o
 	Object main.nef.p/src_overlay006_ov6_022475B0.c.o
 	Object main.nef.p/src_overlay006_ov6_02247660.c.o
-	Object main.nef.p/src_overlay006_ov6_022477B8.c.o
+	Object main.nef.p/src_overlay006_dual_slot_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_02247830.c.o
 	Object main.nef.p/src_overlay006_ov6_02247A0C.c.o
 	Object main.nef.p/src_overlay006_ov6_02247D30.c.o

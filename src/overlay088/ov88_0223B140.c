@@ -594,7 +594,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
             }
 
             if (CommSys_CurNetId() == 0) {
-                ov88_0223D044(CommSys_CurNetId(), 31, inline_020564D0(60) + 3);
+                ov88_0223D044(CommSys_CurNetId(), 31, LCRNG_RandMod(60) + 3);
             }
 
             ov88_0223D0C0(param0->unk_04);

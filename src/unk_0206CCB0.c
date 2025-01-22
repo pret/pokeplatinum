@@ -955,7 +955,7 @@ static int sub_0206D644(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     sub_0206CE74(param1, 1, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
     sub_0206CD94(param1, 2, v0->unk_06, v0->unk_02, v0->unk_03, 1);
 
-    return 17 + inline_020564D0(5);
+    return 17 + LCRNG_RandMod(5);
 }
 
 static BOOL sub_0206D6A8(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
@@ -1163,7 +1163,7 @@ static int sub_0206D9F4(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     StringTemplate_SetBallSealName(param1, 1, v0->unk_06);
     sub_0206CE74(param1, 2, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
 
-    return 33 + inline_020564D0(3);
+    return 33 + LCRNG_RandMod(3);
 }
 
 static BOOL sub_0206DA50(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
@@ -2083,7 +2083,7 @@ static int sub_0206E870(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
     GF_ASSERT(v1 == 0);
 
-    v3 = inline_020564D0(17);
+    v3 = LCRNG_RandMod(17);
 
     if (v3 >= 9) {
         v3++;
@@ -2119,13 +2119,13 @@ static int sub_0206E940(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 {
     int v0, weather;
 
-    v0 = Unk_02100BA4[inline_020564D0(NELEMS(Unk_02100BA4))];
+    v0 = Unk_02100BA4[LCRNG_RandMod(NELEMS(Unk_02100BA4))];
     weather = FieldSystem_GetWeather(fieldSystem, v0);
     StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
 
     switch (weather) {
     case OVERWORLD_WEATHER_CLEAR:
-        switch (inline_020564D0(4)) {
+        switch (LCRNG_RandMod(4)) {
         case 0:
             return 1;
         case 1:
@@ -2236,9 +2236,9 @@ static int sub_0206EA10(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 static int sub_0206EB94(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     u16 v0, v1;
-    UnkStruct_0202D7B0 *v2 = sub_0202D834(fieldSystem->saveData);
+    SpecialEncounter *v2 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
 
-    ov6_0224322C(sub_0202D814(v2, 2), &v0, &v1);
+    ov6_0224322C(SpecialEncounter_GetDailyMon(v2, DAILY_SWARM), &v0, &v1);
     StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
     sub_0206CEA4(param1, 1, v1);
 
@@ -2247,7 +2247,7 @@ static int sub_0206EB94(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206EBD4(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    UnkStruct_0202D7B0 *v0 = sub_0202D834(fieldSystem->saveData);
+    SpecialEncounter *v0 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     return sub_0202D898(v0);
 }
 
@@ -2534,7 +2534,7 @@ static int sub_0206EBE8(FieldSystem *fieldSystem)
         }
     }
 
-    return v1[inline_020564D0(v3)];
+    return v1[LCRNG_RandMod(v3)];
 }
 
 static int sub_0206EC90(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
@@ -2617,14 +2617,14 @@ static int sub_0206ED14(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    UnkStruct_0206C638 *v0;
-    UnkStruct_0202D7B0 *v1;
+    Roamer *v0;
+    SpecialEncounter *v1;
     u16 v2, v3;
     u32 v4, v5;
     Strbuf *v6 = Strbuf_Init(22, 4);
     TrainerInfo *v7 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
 
-    v1 = sub_0202D834(fieldSystem->saveData);
+    v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     v2 = (LCRNG_Next() % 29);
 
     sub_02071D10(sub_0206C3C8(v2), 4, v6);
@@ -2649,9 +2649,9 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 static BOOL sub_0206EE74(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     int v0;
-    UnkStruct_0202D7B0 *v1;
+    SpecialEncounter *v1;
 
-    v1 = sub_0202D834(fieldSystem->saveData);
+    v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0202D8F8(v1, v0)) {

@@ -2797,7 +2797,7 @@
     .short 517
     .endm
 
-    .macro ScrCmd_206
+    .macro StartGreatMarshLookout
     .short 518
     .endm
 

@@ -1495,7 +1495,7 @@ void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 
         }
 
         if (v7 == (NELEMS(Unk_ov104_02240714))) {
-            v9 = Unk_ov104_0224032C[(NELEMS(Unk_ov104_0224032C)) - 1].unk_00;
+            v9 = Unk_ov104_0224032C[NELEMS(Unk_ov104_0224032C) - 1].unk_00;
         }
 
         for (v7 = 0; v7 < (NELEMS(Unk_ov104_0224032C)); v7++) {
@@ -1505,11 +1505,11 @@ void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 
         }
 
         if (v7 == (NELEMS(Unk_ov104_0224032C))) {
-            v7 = ((NELEMS(Unk_ov104_0224032C)) - 1);
+            v7 = (NELEMS(Unk_ov104_0224032C) - 1);
         }
 
         if (param6 == 2) {
-            v0 = &Unk_ov104_0224032C[((NELEMS(Unk_ov104_0224032C)) - 1)];
+            v0 = &Unk_ov104_0224032C[(NELEMS(Unk_ov104_0224032C) - 1)];
         } else {
             v0 = &Unk_ov104_0224032C[v7];
         }
