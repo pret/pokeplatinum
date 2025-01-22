@@ -1700,7 +1700,7 @@ int ov17_02243174(int param0)
     v0 = param0 / 50;
 
     if (v0 >= (NELEMS(Unk_ov17_022536FC))) {
-        v0 = (NELEMS(Unk_ov17_022536FC))-1;
+        v0 = NELEMS(Unk_ov17_022536FC) - 1;
     }
 
     v1 = Unk_ov17_022536FC[v0];
