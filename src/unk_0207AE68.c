@@ -5,6 +5,7 @@
 
 #include "generated/game_records.h"
 #include "generated/items.h"
+#include "generated/moves.h"
 #include "generated/species.h"
 #include "generated/trainer_score_events.h"
 
@@ -530,10 +531,10 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         sub_0200F338(1);
 
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            if (param0->unk_3C->selectedSlot == 4) {
+            if (param0->unk_3C->selectedMoveSlot == LEARNED_MOVES_MAX) {
                 param0->unk_64 = 32;
             } else {
-                param0->unk_6E = param0->unk_3C->selectedSlot;
+                param0->unk_6E = param0->unk_3C->selectedMoveSlot;
                 param0->unk_64 = 25;
             }
         }

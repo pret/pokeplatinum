@@ -44,8 +44,8 @@ _0054:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_1C6 0x8002
-    ScrCmd_1C7 0x8001
+    SelectPartyMonMove 0x8002
+    GetSelectedPartyMonMove 0x8001
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

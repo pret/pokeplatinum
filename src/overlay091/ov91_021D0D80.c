@@ -1523,7 +1523,7 @@ static int ov91_021D26AC(UnkStruct_ov91_021D0ED8 *param0)
         ov91_021D2548(param0, param0->unk_00->unk_10, 1);
         ov91_021D2574(param0, 0);
         ov91_021D25E4(param0);
-        param0->unk_00->unk_17 = param0->unk_14C.selectedSlot;
+        param0->unk_00->unk_17 = param0->unk_14C.selectedMoveSlot;
         param0->unk_180 = 7;
         return 0;
     }

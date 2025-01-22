@@ -1045,7 +1045,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         PokemonSummaryScreen_FlagVisiblePages(summary, Unk_020EA02C);
         PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        sub_0203D334(fieldSystem, summary);
+        FieldSystem_OpenSummaryScreen(fieldSystem, summary);
 
         menu->unk_25C = summary;
         sub_0203B674(menu, sub_0203C1C8);
@@ -1066,7 +1066,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         PokemonSummaryScreen_FlagVisiblePages(v4, Unk_020EA01C);
         PokemonSummaryScreen_SetPlayerProfile(v4, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        sub_0203D334(fieldSystem, v4);
+        FieldSystem_OpenSummaryScreen(fieldSystem, v4);
 
         UnkStruct_0203C1C8 *v5 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203C1C8));
 
@@ -1093,7 +1093,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         PokemonSummaryScreen_FlagVisiblePages(v6, Unk_020EA01C);
         PokemonSummaryScreen_SetPlayerProfile(v6, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        sub_0203D334(fieldSystem, v6);
+        FieldSystem_OpenSummaryScreen(fieldSystem, v6);
 
         UnkStruct_0203C1C8 *v7 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203C1C8));
 
@@ -1635,7 +1635,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         v3->unk_24 = v4->unk_00;
         v3->unk_22 = v2->monIndex;
         v3->unk_26 = v2->move;
-        v3->unk_28 = v2->selectedSlot;
+        v3->unk_28 = v2->selectedMoveSlot;
 
         FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v3);
         Heap_FreeToHeap(menu->unk_260);

@@ -1217,8 +1217,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1C3,
     ScrCmd_1C4,
     ScrCmd_InitSizeContestRecord,
-    ScrCmd_1C6,
-    ScrCmd_1C7,
+    ScrCmd_SelectPartyMonMove,
+    ScrCmd_GetSelectedPartyMonMove,
     ScrCmd_1C8,
     ScrCmd_1C9,
     ScrCmd_1CA,
@@ -1305,7 +1305,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_EnableSwarms,
     ScrCmd_21C,
     ScrCmd_21D,
-    ScrCmd_21E,
+    ScrCmd_Dummy21E,
     ScrCmd_21F,
     ScrCmd_220,
     ScrCmd_221,
@@ -3801,7 +3801,7 @@ static BOOL ScrCmd_2E8(ScriptContext *ctx)
     GF_ASSERT(*v0 != 0);
 
     v2 = *v0;
-    *v1 = v2->selectedSlot;
+    *v1 = v2->selectedMoveSlot;
 
     Heap_FreeToHeap(*v0);
     *v0 = NULL;

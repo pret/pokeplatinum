@@ -130,7 +130,7 @@ static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
             param0->unk_34 = sub_0203D670(param0->fieldSystem, 3, 0);
             param0->unk_04 = v0;
             param0->unk_34->monIndex = v0;
-            sub_0203D334(param0->fieldSystem, param0->unk_34);
+            FieldSystem_OpenSummaryScreen(param0->fieldSystem, param0->unk_34);
             param0->unk_00 = 3;
         } else {
             param0->unk_28->unk_04 = v0;

@@ -340,7 +340,7 @@ typedef struct PokemonSummary {
     u8 monMax;
     u8 monIndex;
     u8 pageFlags;
-    u8 selectedSlot;
+    u8 selectedMoveSlot;
     u8 returnMode;
     u16 move;
 
