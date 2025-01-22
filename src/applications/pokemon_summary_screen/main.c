@@ -71,9 +71,9 @@ enum SummaryState {
     SUMMARY_STATE_HIDE_BATTLE_MOVE_INFO,
     SUMMARY_STATE_SETUP_CONTEST_MOVE_INFO,
     SUMMARY_STATE_HIDE_CONTEST_MOVE_INFO,
-    SUMMARY_STATE_MOVE_SELECT,
+    SUMMARY_STATE_MOVE_DETAILS,
     SUMMARY_STATE_MOVE_SWAP,
-    SUMMARY_STATE_LEARN_MOVE,
+    SUMMARY_STATE_SELECT_MOVE,
     SUMMARY_STATE_WAIT_HM_MSG_INPUT,
     SUMMARY_STATE_SETUP_RIBBON_INFO,
     SUMMARY_STATE_HIDE_RIBBON_INFO,
@@ -138,9 +138,9 @@ static int WaitSetupBattleMoveInfo(PokemonSummaryScreen *summaryScreen);
 static int WaitHideBattleMoveInfo(PokemonSummaryScreen *summaryScreen);
 static int WaitSetupContestMoveInfo(PokemonSummaryScreen *summaryScreen);
 static int WaitHideContestMoveInfo(PokemonSummaryScreen *summaryScreen);
-static int HandleInput_MoveSelect(PokemonSummaryScreen *summaryScreen);
+static int HandleInput_MoveDetails(PokemonSummaryScreen *summaryScreen);
 static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen);
-static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen);
+static int HandleInput_SelectMove(PokemonSummaryScreen *summaryScreen);
 static int WaitForHMMsgInput(PokemonSummaryScreen *summaryScreen);
 static int WaitSetupRibbonInfo(PokemonSummaryScreen *summaryScreen);
 static int WaitHideRibbonInfo(PokemonSummaryScreen *summaryScreen);
@@ -290,14 +290,14 @@ static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state)
     case SUMMARY_STATE_HIDE_CONTEST_MOVE_INFO:
         *state = WaitHideContestMoveInfo(summaryScreen);
         break;
-    case SUMMARY_STATE_MOVE_SELECT:
-        *state = HandleInput_MoveSelect(summaryScreen);
+    case SUMMARY_STATE_MOVE_DETAILS:
+        *state = HandleInput_MoveDetails(summaryScreen);
         break;
     case SUMMARY_STATE_MOVE_SWAP:
         *state = HandleInput_MoveSwap(summaryScreen);
         break;
-    case SUMMARY_STATE_LEARN_MOVE:
-        *state = HandleInput_LearnMove(summaryScreen);
+    case SUMMARY_STATE_SELECT_MOVE:
+        *state = HandleInput_SelectMove(summaryScreen);
         break;
     case SUMMARY_STATE_WAIT_HM_MSG_INPUT:
         *state = WaitForHMMsgInput(summaryScreen);
@@ -576,7 +576,7 @@ static int WaitSummaryScreenTransition(PokemonSummaryScreen *summaryScreen)
         PlayMonCry(summaryScreen);
 
         if (summaryScreen->data->mode == SUMMARY_MODE_SELECT_MOVE) {
-            return SUMMARY_STATE_LEARN_MOVE;
+            return SUMMARY_STATE_SELECT_MOVE;
         } else if (summaryScreen->data->mode == SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
             return SUMMARY_STATE_SETUP_POFFIN_FEED;
         } else {
@@ -658,7 +658,7 @@ static int HandleInput_Main(PokemonSummaryScreen *summaryScreen)
 static int WaitSetupBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
 {
     if (SetupBattleMoveInfo(summaryScreen) == TRUE) {
-        return SUMMARY_STATE_MOVE_SELECT;
+        return SUMMARY_STATE_MOVE_DETAILS;
     }
 
     return SUMMARY_STATE_SETUP_BATTLE_MOVE_INFO;
@@ -676,7 +676,7 @@ static int WaitHideBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
 static int WaitSetupContestMoveInfo(PokemonSummaryScreen *summaryScreen)
 {
     if (SetupContestMoveInfo(summaryScreen) == TRUE) {
-        return SUMMARY_STATE_MOVE_SELECT;
+        return SUMMARY_STATE_MOVE_DETAILS;
     }
 
     return SUMMARY_STATE_SETUP_CONTEST_MOVE_INFO;
@@ -691,7 +691,7 @@ static int WaitHideContestMoveInfo(PokemonSummaryScreen *summaryScreen)
     return SUMMARY_STATE_HIDE_CONTEST_MOVE_INFO;
 }
 
-static int HandleInput_MoveSelect(PokemonSummaryScreen *summaryScreen)
+static int HandleInput_MoveDetails(PokemonSummaryScreen *summaryScreen)
 {
     if (JOY_NEW(PAD_KEY_UP)) {
         if (TryChangeSelectedMove(summaryScreen, -1) == TRUE) {
@@ -699,7 +699,7 @@ static int HandleInput_MoveSelect(PokemonSummaryScreen *summaryScreen)
             UpdateMoveAttributes(summaryScreen);
         }
 
-        return SUMMARY_STATE_MOVE_SELECT;
+        return SUMMARY_STATE_MOVE_DETAILS;
     }
 
     if (JOY_NEW(PAD_KEY_DOWN)) {
@@ -708,7 +708,7 @@ static int HandleInput_MoveSelect(PokemonSummaryScreen *summaryScreen)
             UpdateMoveAttributes(summaryScreen);
         }
 
-        return SUMMARY_STATE_MOVE_SELECT;
+        return SUMMARY_STATE_MOVE_DETAILS;
     }
 
     if (JOY_NEW(PAD_BUTTON_A)) {
@@ -740,7 +740,7 @@ static int HandleInput_MoveSelect(PokemonSummaryScreen *summaryScreen)
         }
     }
 
-    return SUMMARY_STATE_MOVE_SELECT;
+    return SUMMARY_STATE_MOVE_DETAILS;
 }
 
 static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
@@ -776,28 +776,28 @@ static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         }
 
-        return SUMMARY_STATE_MOVE_SELECT;
+        return SUMMARY_STATE_MOVE_DETAILS;
     }
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_2], FALSE);
-        return SUMMARY_STATE_MOVE_SELECT;
+        return SUMMARY_STATE_MOVE_DETAILS;
     }
 
     return SUMMARY_STATE_MOVE_SWAP;
 }
 
-static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
+static int HandleInput_SelectMove(PokemonSummaryScreen *summaryScreen)
 {
     if (JOY_NEW(PAD_KEY_LEFT)) {
         ChangePage(summaryScreen, -1);
-        return SUMMARY_STATE_LEARN_MOVE;
+        return SUMMARY_STATE_SELECT_MOVE;
     }
 
     if (JOY_NEW(PAD_KEY_RIGHT)) {
         ChangePage(summaryScreen, 1);
-        return SUMMARY_STATE_LEARN_MOVE;
+        return SUMMARY_STATE_SELECT_MOVE;
     }
 
     if (JOY_NEW(PAD_KEY_UP)) {
@@ -806,7 +806,7 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
             UpdateMoveAttributes(summaryScreen);
         }
 
-        return SUMMARY_STATE_LEARN_MOVE;
+        return SUMMARY_STATE_SELECT_MOVE;
     }
 
     if (JOY_NEW(PAD_KEY_DOWN)) {
@@ -815,7 +815,7 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
             UpdateMoveAttributes(summaryScreen);
         }
 
-        return SUMMARY_STATE_LEARN_MOVE;
+        return SUMMARY_STATE_SELECT_MOVE;
     }
 
     if (JOY_NEW(PAD_BUTTON_A)) {
@@ -842,14 +842,14 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
         return SUMMARY_STATE_TRANSITION_OUT;
     }
 
-    return SUMMARY_STATE_LEARN_MOVE;
+    return SUMMARY_STATE_SELECT_MOVE;
 }
 
 static int WaitForHMMsgInput(PokemonSummaryScreen *summaryScreen)
 {
     if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
         UpdateMoveAttributes(summaryScreen);
-        return SUMMARY_STATE_LEARN_MOVE;
+        return SUMMARY_STATE_SELECT_MOVE;
     }
 
     return SUMMARY_STATE_WAIT_HM_MSG_INPUT;
