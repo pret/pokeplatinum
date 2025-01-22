@@ -812,9 +812,9 @@ static void ov105_022424CC(UnkStruct_ov105_02241FF4 *param0)
     ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
 
     if (ov104_0223AED4(param0->unk_09) == 0) {
-        param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, ((NELEMS(Unk_ov105_02246340))-1), 2, param0->unk_334, Unk_ov105_02246340, Unk_ov105_022462D0);
+        param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, (NELEMS(Unk_ov105_02246340) - 1), 2, param0->unk_334, Unk_ov105_02246340, Unk_ov105_022462D0);
     } else {
-        param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, ((NELEMS(Unk_ov105_022462FC))-1), 2, param0->unk_334, Unk_ov105_022462FC, Unk_ov105_022462CC);
+        param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, (NELEMS(Unk_ov105_022462FC) - 1), 2, param0->unk_334, Unk_ov105_022462FC, Unk_ov105_022462CC);
     }
 
     ov105_02244F0C(param0, &param0->unk_50[0], 0, 0, 0);
@@ -1625,9 +1625,9 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
         Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
 
         if (ov104_0223AED4(param0->unk_09) == 0) {
-            param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, ((NELEMS(Unk_ov105_02246350))-2), 2, 0, Unk_ov105_02246350, Unk_ov105_022462D4);
+            param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, (NELEMS(Unk_ov105_02246350) - 2), 2, 0, Unk_ov105_02246350, Unk_ov105_022462D4);
         } else {
-            param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, ((NELEMS(Unk_ov105_0224637C))-2), 2, 0, Unk_ov105_0224637C, Unk_ov105_022462E4);
+            param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, (NELEMS(Unk_ov105_0224637C) - 2), 2, 0, Unk_ov105_0224637C, Unk_ov105_022462E4);
         }
 
         v3 = ov105_022461A0(param0->unk_30C);
