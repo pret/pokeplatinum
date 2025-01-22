@@ -3171,7 +3171,7 @@ static void ov16_02260B04(SysTask *param0, void *param1)
 
     v3 = ov16_0223ED6C(v0->unk_00);
     v2 = BattleMon_Get(BattleSystem_Context(v0->unk_00), v0->unk_09, 0, NULL);
-    v1 = SpeciesData_GetSpeciesValue(v2, 26);
+    v1 = SpeciesData_GetSpeciesValue(v2, SPECIES_DATA_SAFARI_FLEE_RATE);
     v1 = v1 * Unk_ov16_0226F194[v3][0] / Unk_ov16_0226F194[v3][1];
 
     if ((BattleSystem_RandNext(v0->unk_00) % 255) <= v1) {

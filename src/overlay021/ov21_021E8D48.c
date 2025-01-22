@@ -590,12 +590,12 @@ static void ov21_021E95F8(UnkStruct_ov21_021E968C *param0, CellActorCollection *
 {
     CellActorInitParams v0;
     CellActorResourceData v1;
-    int v2, v3;
+    int type1, type2;
 
-    v2 = SpeciesData_GetSpeciesValue(param4, 6);
-    v3 = SpeciesData_GetSpeciesValue(param4, 7);
-    v2 = ov21_021DF180(v2);
-    v3 = ov21_021DF180(v3);
+    type1 = SpeciesData_GetSpeciesValue(param4, SPECIES_DATA_TYPE_1);
+    type2 = SpeciesData_GetSpeciesValue(param4, SPECIES_DATA_TYPE_2);
+    type1 = ov21_021DF180(type1);
+    type2 = ov21_021DF180(type2);
 
     ov21_021E93F8(param0->unk_08, param2, &v1, 2);
 
@@ -609,13 +609,13 @@ static void ov21_021E95F8(UnkStruct_ov21_021E968C *param0, CellActorCollection *
 
     param0->unk_00[0] = CellActorCollection_Add(&v0);
 
-    CellActor_SetAnim(param0->unk_00[0], 0 + v2);
+    CellActor_SetAnim(param0->unk_00[0], 0 + type1);
 
-    if (v2 != v3) {
+    if (type1 != type2) {
         v0.position.x = (220 * FX32_ONE);
         v0.position.y = (72 * FX32_ONE);
         param0->unk_00[1] = CellActorCollection_Add(&v0);
-        CellActor_SetAnim(param0->unk_00[1], 0 + v3);
+        CellActor_SetAnim(param0->unk_00[1], 0 + type2);
     } else {
         param0->unk_00[1] = NULL;
     }

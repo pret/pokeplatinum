@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/pokemon.h"
+
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B184.h"
@@ -378,16 +380,16 @@ static u32 sub_0204B1E8(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348_sub
     param1->unk_1E_val2 = 0;
     param1->unk_1F = gGameLanguage;
 
-    v0 = SpeciesData_GetSpeciesValue(param1->unk_00_val1_0, 25);
+    v0 = SpeciesData_GetSpeciesValue(param1->unk_00_val1_0, SPECIES_DATA_ABILITY_2);
 
     if (v0) {
         if (param1->unk_10 & 1) {
             param1->unk_20 = v0;
         } else {
-            param1->unk_20 = SpeciesData_GetSpeciesValue(param1->unk_00_val1_0, 24);
+            param1->unk_20 = SpeciesData_GetSpeciesValue(param1->unk_00_val1_0, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        param1->unk_20 = SpeciesData_GetSpeciesValue(param1->unk_00_val1_0, 24);
+        param1->unk_20 = SpeciesData_GetSpeciesValue(param1->unk_00_val1_0, SPECIES_DATA_ABILITY_1);
     }
 
     param1->unk_21 = v3;

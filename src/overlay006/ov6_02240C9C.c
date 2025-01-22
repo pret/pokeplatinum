@@ -1279,10 +1279,10 @@ static BOOL ov6_0224219C(const EncounterSlot *param0, const u8 maxEncounters, co
     u8 v1 = 0;
 
     for (v2 = 0; v2 < maxEncounters; v2++) {
-        u8 v3 = SpeciesData_GetSpeciesValue(param0[v2].species, SPECIES_DATA_TYPE_1);
-        u8 v4 = SpeciesData_GetSpeciesValue(param0[v2].species, SPECIES_DATA_TYPE_2);
+        u8 type1 = SpeciesData_GetSpeciesValue(param0[v2].species, SPECIES_DATA_TYPE_1);
+        u8 type2 = SpeciesData_GetSpeciesValue(param0[v2].species, SPECIES_DATA_TYPE_2);
 
-        if (v3 == type || v4 == type) {
+        if (type1 == type || type2 == type) {
             v0[v1++] = v2;
         }
     }
