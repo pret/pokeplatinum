@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/sdat.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -95,7 +97,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
             GreatMarshLookout_CreateLookoutMonSprite(lookout->spriteResources, species);
             ov6_022427F4(lookout->spriteResources);
             lookout->timer = 0;
-            Sound_PlayEffect(1657); // binoculars switch
+            Sound_PlayEffect(SEQ_SE_DP_KASYA); // binoculars switch
             sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, HEAP_ID_FIELDMAP);
             lookout->state = 5;
         } else {
@@ -110,7 +112,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
         if ((lookout->timer >= 60) || (gCoreSys.pressedKeys & PAD_BUTTON_A)) {
             GreatMarshBinoculars_SetNextLocationWithCoords(lookout->numCycles, lookout->binocularsData);
             lookout->nextLocation = GreatMarshBinoculars_GetLocation(lookout->binocularsData);
-            Sound_PlayEffect(1657);
+            Sound_PlayEffect(SEQ_SE_DP_KASYA);
             sub_02056B30(taskMan, 3, 16, 0xffff, 0x0, 6, 1, HEAP_ID_FIELDMAP);
             lookout->state = 6;
         }

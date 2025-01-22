@@ -590,7 +590,7 @@ static BOOL ScrCmd_203(ScriptContext *ctx);
 static BOOL ScrCmd_204(ScriptContext *ctx);
 static BOOL ScrCmd_205(ScriptContext *ctx);
 static BOOL ScrCmd_310(ScriptContext *ctx);
-static BOOL ScrCmd_DoGreatMarshLookoutScene(ScriptContext *ctx);
+static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx);
 static BOOL ScrCmd_20C(ScriptContext *ctx);
 static BOOL ScrCmd_20D(ScriptContext *ctx);
 static BOOL ScrCmd_20E(ScriptContext *ctx);
@@ -1284,7 +1284,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_203,
     ScrCmd_204,
     ScrCmd_205,
-    ScrCmd_DoGreatMarshLookoutScene,
+    ScrCmd_StartGreatMarshLookout,
     ScrCmd_207,
     ScrCmd_208,
     ScrCmd_209,
@@ -6406,7 +6406,7 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_DoGreatMarshLookoutScene(ScriptContext *ctx)
+static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx)
 {
     GreatMarshLookout_Init(ctx->fieldSystem);
     return TRUE;
