@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0204B184.h"
 

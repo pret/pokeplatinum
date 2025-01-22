@@ -5,8 +5,6 @@
 
 #include "consts/species.h"
 
-#include "struct_decls/struct_party_decl.h"
-
 #include "heap.h"
 #include "item.h"
 #include "move_table.h"
