@@ -4,7 +4,7 @@ import json
 import pathlib
 import sys
 
-from consts import items
+from generated import items
 from convert import (
     TrainerDataFlags,
     derive_data_flags,

@@ -8,10 +8,7 @@
         "special_attack": 125,
         "special_defense": 115
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
     "base_exp_reward": 208,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_TRACE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_TRACE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_HEALING_WISH" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 1, "MOVE_DOUBLE_TEAM" ],
+            [ 1, "MOVE_TELEPORT" ],
+            [ 6, "MOVE_CONFUSION" ],
+            [ 10, "MOVE_DOUBLE_TEAM" ],
+            [ 12, "MOVE_TELEPORT" ],
+            [ 17, "MOVE_WISH" ],
+            [ 22, "MOVE_MAGICAL_LEAF" ],
+            [ 25, "MOVE_CALM_MIND" ],
+            [ 33, "MOVE_PSYCHIC" ],
+            [ 40, "MOVE_IMPRISON" ],
+            [ 45, "MOVE_FUTURE_SIGHT" ],
+            [ 53, "MOVE_CAPTIVATE" ],
+            [ 60, "MOVE_HYPNOSIS" ],
+            [ 65, "MOVE_DREAM_EATER" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -90,28 +98,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_HEALING_WISH",
-                "MOVE_GROWL",
-                "MOVE_CONFUSION",
-                "MOVE_DOUBLE_TEAM",
-                "MOVE_TELEPORT"
-            ],
-            "6": "MOVE_CONFUSION",
-            "10": "MOVE_DOUBLE_TEAM",
-            "12": "MOVE_TELEPORT",
-            "17": "MOVE_WISH",
-            "22": "MOVE_MAGICAL_LEAF",
-            "25": "MOVE_CALM_MIND",
-            "33": "MOVE_PSYCHIC",
-            "40": "MOVE_IMPRISON",
-            "45": "MOVE_FUTURE_SIGHT",
-            "53": "MOVE_CAPTIVATE",
-            "60": "MOVE_HYPNOSIS",
-            "65": "MOVE_DREAM_EATER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
@@ -125,9 +112,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 16,
@@ -144,7 +132,7 @@
         "entry_text": "To protect its Trainer, it will\nexpend all its psychic power\nto create a small black hole.",
         "category": "Embrace Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

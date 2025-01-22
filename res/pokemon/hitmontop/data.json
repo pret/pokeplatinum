@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 110
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_FIGHTING" ],
     "catch_rate": 45,
     "base_exp_reward": 138,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_TECHNICIAN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_TECHNICIAN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_REVENGE" ],
+            [ 1, "MOVE_ROLLING_KICK" ],
+            [ 6, "MOVE_FOCUS_ENERGY" ],
+            [ 10, "MOVE_PURSUIT" ],
+            [ 15, "MOVE_QUICK_ATTACK" ],
+            [ 19, "MOVE_TRIPLE_KICK" ],
+            [ 24, "MOVE_RAPID_SPIN" ],
+            [ 28, "MOVE_COUNTER" ],
+            [ 33, "MOVE_FEINT" ],
+            [ 37, "MOVE_AGILITY" ],
+            [ 42, "MOVE_GYRO_BALL" ],
+            [ 46, "MOVE_DETECT" ],
+            [ 51, "MOVE_CLOSE_COMBAT" ],
+            [ 55, "MOVE_ENDEAVOR" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM08",
             "TM10",
@@ -76,25 +81,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_REVENGE",
-                "MOVE_ROLLING_KICK"
-            ],
-            "6": "MOVE_FOCUS_ENERGY",
-            "10": "MOVE_PURSUIT",
-            "15": "MOVE_QUICK_ATTACK",
-            "19": "MOVE_TRIPLE_KICK",
-            "24": "MOVE_RAPID_SPIN",
-            "28": "MOVE_COUNTER",
-            "33": "MOVE_FEINT",
-            "37": "MOVE_AGILITY",
-            "42": "MOVE_GYRO_BALL",
-            "46": "MOVE_DETECT",
-            "51": "MOVE_CLOSE_COMBAT",
-            "55": "MOVE_ENDEAVOR"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -106,9 +93,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 14,
@@ -125,7 +113,7 @@
         "entry_text": "It fights while spinning like a top.\nThe centrifugal force boosts its\ndestructive power by ten.",
         "category": "Handstand Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

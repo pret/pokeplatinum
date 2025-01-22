@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_MAP_HEADER_H
 #define POKEPLATINUM_MAP_HEADER_H
 
+#include "generated/evolution_methods.h"
+
 typedef struct {
     u8 unk_00;
     u8 unk_01;
@@ -58,6 +60,6 @@ BOOL MapHeader_IsTrophyGarden(const u32 headerID);
 BOOL MapHeader_IsAmitySquare(const u32 headerID);
 BOOL MapHeader_IsAzureFluteAllowed(const u32 headerID);
 BOOL MapHeader_IsPokemonCenter2F(const u32 headerID);
-enum PokemonEvoMethod MapHeader_GetMapEvolutionMethod(u32 headerID);
+enum EvolutionMethod MapHeader_GetMapEvolutionMethod(u32 headerID);
 
 #endif // POKEPLATINUM_MAP_HEADER_H

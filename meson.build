@@ -13,6 +13,7 @@ fs = import('fs')
 ###                    INCLUDE PATHS                     ###
 ############################################################
 public_includes = include_directories('include', 'asm', 'res')
+toplevel_includes = include_directories('.')
 
 
 ############################################################
@@ -31,7 +32,8 @@ c_args = [
     '-char', 'signed',
     '-nosyspath',
     '-stdinc',
-    '-sym', 'on'
+    '-sym', 'on',
+    '-DPOKEPLATINUM_GENERATED_ENUM',
 ]
 
 if get_option('gdb_debugging')
@@ -115,6 +117,13 @@ ppwlobby_dep = dependency('ppwlobby')
 
 
 ############################################################
+###                       CONSTS                         ###
+############################################################
+subdir('consts')
+subdir('generated')
+
+
+############################################################
 ###                        TOOLS                         ###
 ############################################################
 subdir('tools')
@@ -130,12 +139,6 @@ subdir('platinum.us')
 ###                  INTERNAL LIBRARIES                  ###
 ############################################################
 subdir('lib')
-
-
-############################################################
-###                       CONSTS                         ###
-############################################################
-subdir('consts')
 
 
 ############################################################
@@ -159,6 +162,7 @@ main = executable('main',
         naix_headers,
         gen_species_headers,
         tutorable_moves_h,
+        species_learnsets_by_tutor_h,
     ],
     c_args: [
         pokeplatinum_args,

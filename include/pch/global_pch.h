@@ -16,6 +16,8 @@
 #define NELEMS(a)                     (sizeof(a) / sizeof(*(a)))
 #define XtOffset(pointer_type, field) ((unsigned int)&(((pointer_type)NULL)->field))
 
+#define ALIGN_4 __attribute__((aligned(4)))
+
 typedef struct {
     int x;
     int y;

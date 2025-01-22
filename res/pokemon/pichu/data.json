@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 190,
     "base_exp_reward": 42,
     "ev_yields": {
@@ -30,21 +27,21 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_STATIC",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_STATIC", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_THUNDER_SHOCK" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 5, "MOVE_TAIL_WHIP" ],
+            [ 10, "MOVE_THUNDER_WAVE" ],
+            [ 13, "MOVE_SWEET_KISS" ],
+            [ 18, "MOVE_NASTY_PLOT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM16",
@@ -73,17 +70,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_THUNDER_SHOCK",
-                "MOVE_CHARM"
-            ],
-            "5": "MOVE_TAIL_WHIP",
-            "10": "MOVE_THUNDER_WAVE",
-            "13": "MOVE_SWEET_KISS",
-            "18": "MOVE_NASTY_PLOT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -95,14 +82,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_HAPPINESS",
-            "SPECIES_PIKACHU"
-        ]
+        [ "EVO_LEVEL_HAPPINESS", "SPECIES_PIKACHU" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -119,7 +103,7 @@
         "entry_text": "The electric sacs in its cheeks are\nsmall. If even a little electricity\nleaks, it becomes shocked.",
         "category": "Tiny Mouse Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

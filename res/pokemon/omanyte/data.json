@@ -8,10 +8,7 @@
         "special_attack": 90,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 99,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 30,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_SHELL_ARMOR"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_SHELL_ARMOR" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_CONSTRICT" ],
+            [ 1, "MOVE_WITHDRAW" ],
+            [ 7, "MOVE_BITE" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 16, "MOVE_ROLLOUT" ],
+            [ 19, "MOVE_LEER" ],
+            [ 25, "MOVE_MUD_SHOT" ],
+            [ 28, "MOVE_BRINE" ],
+            [ 34, "MOVE_PROTECT" ],
+            [ 37, "MOVE_ANCIENT_POWER" ],
+            [ 43, "MOVE_TICKLE" ],
+            [ 46, "MOVE_ROCK_BLAST" ],
+            [ 52, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -78,24 +82,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_CONSTRICT",
-                "MOVE_WITHDRAW"
-            ],
-            "7": "MOVE_BITE",
-            "10": "MOVE_WATER_GUN",
-            "16": "MOVE_ROLLOUT",
-            "19": "MOVE_LEER",
-            "25": "MOVE_MUD_SHOT",
-            "28": "MOVE_BRINE",
-            "34": "MOVE_PROTECT",
-            "37": "MOVE_ANCIENT_POWER",
-            "43": "MOVE_TICKLE",
-            "46": "MOVE_ROCK_BLAST",
-            "52": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -108,14 +95,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             40,
             "SPECIES_OMASTAR"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 4,
@@ -132,7 +119,7 @@
         "entry_text": "A Pokémon that was resurrected\nfrom a fossil using modern science.\nIt swam in ancient seas.",
         "category": "Spiral Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

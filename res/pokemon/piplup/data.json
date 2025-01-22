@@ -8,10 +8,7 @@
         "special_attack": 61,
         "special_defense": 56
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 66,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 4, "MOVE_GROWL" ],
+            [ 8, "MOVE_BUBBLE" ],
+            [ 11, "MOVE_WATER_SPORT" ],
+            [ 15, "MOVE_PECK" ],
+            [ 18, "MOVE_BUBBLE_BEAM" ],
+            [ 22, "MOVE_BIDE" ],
+            [ 25, "MOVE_FURY_ATTACK" ],
+            [ 29, "MOVE_BRINE" ],
+            [ 32, "MOVE_WHIRLPOOL" ],
+            [ 36, "MOVE_MIST" ],
+            [ 39, "MOVE_DRILL_PECK" ],
+            [ 43, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -80,22 +84,7 @@
             "HM05",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_POUND",
-            "4": "MOVE_GROWL",
-            "8": "MOVE_BUBBLE",
-            "11": "MOVE_WATER_SPORT",
-            "15": "MOVE_PECK",
-            "18": "MOVE_BUBBLE_BEAM",
-            "22": "MOVE_BIDE",
-            "25": "MOVE_FURY_ATTACK",
-            "29": "MOVE_BRINE",
-            "32": "MOVE_WHIRLPOOL",
-            "36": "MOVE_MIST",
-            "39": "MOVE_DRILL_PECK",
-            "43": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -105,14 +94,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             16,
             "SPECIES_PRINPLUP"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -129,7 +118,7 @@
         "entry_text": "A poor walker, it often falls down.\nHowever, its strong pride makes it\npuff up its chest without a care.",
         "category": "Penguin Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

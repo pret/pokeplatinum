@@ -8,10 +8,7 @@
         "special_attack": 95,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 210,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_TRUANT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_TRUANT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_ENCORE" ],
+            [ 1, "MOVE_SLACK_OFF" ],
+            [ 7, "MOVE_ENCORE" ],
+            [ 13, "MOVE_SLACK_OFF" ],
+            [ 19, "MOVE_FAINT_ATTACK" ],
+            [ 25, "MOVE_AMNESIA" ],
+            [ 31, "MOVE_COVET" ],
+            [ 36, "MOVE_SWAGGER" ],
+            [ 37, "MOVE_COUNTER" ],
+            [ 43, "MOVE_FLAIL" ],
+            [ 49, "MOVE_FLING" ],
+            [ 55, "MOVE_PUNISHMENT" ],
+            [ 61, "MOVE_HAMMER_ARM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM05",
@@ -92,26 +98,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_YAWN",
-                "MOVE_ENCORE",
-                "MOVE_SLACK_OFF"
-            ],
-            "7": "MOVE_ENCORE",
-            "13": "MOVE_SLACK_OFF",
-            "19": "MOVE_FAINT_ATTACK",
-            "25": "MOVE_AMNESIA",
-            "31": "MOVE_COVET",
-            "36": "MOVE_SWAGGER",
-            "37": "MOVE_COUNTER",
-            "43": "MOVE_FLAIL",
-            "49": "MOVE_FLING",
-            "55": "MOVE_PUNISHMENT",
-            "61": "MOVE_HAMMER_ARM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -123,9 +110,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 20,
@@ -142,7 +130,7 @@
         "entry_text": "The world’s laziest Pokémon. When\nit is lounging, it is actually saving\nenergy for striking back.",
         "category": "Lazy Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

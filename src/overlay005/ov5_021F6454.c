@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "consts/game_records.h"
-#include "consts/items.h"
-#include "consts/species.h"
+#include "generated/items.h"
+#include "generated/species.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"

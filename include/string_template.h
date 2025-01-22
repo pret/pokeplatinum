@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRING_TEMPLATE_H
 #define POKEPLATINUM_STRING_TEMPLATE_H
 
-#include "consts/abilities.h"
 #include "consts/gender.h"
 #include "consts/moves.h"
+#include "generated/abilities.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/trainer_data.h"

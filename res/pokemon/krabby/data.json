@@ -8,10 +8,7 @@
         "special_attack": 25,
         "special_defense": 25
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 225,
     "base_exp_reward": 115,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_HYPER_CUTTER",
-        "ABILITY_SHELL_ARMOR"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_SHELL_ARMOR" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 5, "MOVE_VICE_GRIP" ],
+            [ 9, "MOVE_LEER" ],
+            [ 11, "MOVE_HARDEN" ],
+            [ 15, "MOVE_BUBBLE_BEAM" ],
+            [ 19, "MOVE_MUD_SHOT" ],
+            [ 21, "MOVE_METAL_CLAW" ],
+            [ 25, "MOVE_STOMP" ],
+            [ 29, "MOVE_PROTECT" ],
+            [ 31, "MOVE_GUILLOTINE" ],
+            [ 35, "MOVE_SLAM" ],
+            [ 39, "MOVE_BRINE" ],
+            [ 41, "MOVE_CRABHAMMER" ],
+            [ 45, "MOVE_FLAIL" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -81,26 +87,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_MUD_SPORT",
-                "MOVE_BUBBLE"
-            ],
-            "5": "MOVE_VICE_GRIP",
-            "9": "MOVE_LEER",
-            "11": "MOVE_HARDEN",
-            "15": "MOVE_BUBBLE_BEAM",
-            "19": "MOVE_MUD_SHOT",
-            "21": "MOVE_METAL_CLAW",
-            "25": "MOVE_STOMP",
-            "29": "MOVE_PROTECT",
-            "31": "MOVE_GUILLOTINE",
-            "35": "MOVE_SLAM",
-            "39": "MOVE_BRINE",
-            "41": "MOVE_CRABHAMMER",
-            "45": "MOVE_FLAIL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -114,14 +101,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             28,
             "SPECIES_KINGLER"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -138,7 +125,7 @@
         "entry_text": "It lives in burrows dug on sandy\nbeaches. Its pincers fully grow\nback if they are broken in battle.",
         "category": "River Crab Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

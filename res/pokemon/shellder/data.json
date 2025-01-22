@@ -8,10 +8,7 @@
         "special_attack": 45,
         "special_defense": 25
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
     "base_exp_reward": 97,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_SHELL_ARMOR",
-        "ABILITY_SKILL_LINK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_SHELL_ARMOR", "ABILITY_SKILL_LINK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 4, "MOVE_WITHDRAW" ],
+            [ 8, "MOVE_SUPERSONIC" ],
+            [ 13, "MOVE_ICICLE_SPEAR" ],
+            [ 16, "MOVE_PROTECT" ],
+            [ 20, "MOVE_LEER" ],
+            [ 25, "MOVE_CLAMP" ],
+            [ 28, "MOVE_ICE_SHARD" ],
+            [ 32, "MOVE_AURORA_BEAM" ],
+            [ 37, "MOVE_WHIRLPOOL" ],
+            [ 40, "MOVE_IRON_DEFENSE" ],
+            [ 44, "MOVE_BRINE" ],
+            [ 49, "MOVE_ICE_BEAM" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -71,22 +75,7 @@
             "TM90",
             "HM03"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "4": "MOVE_WITHDRAW",
-            "8": "MOVE_SUPERSONIC",
-            "13": "MOVE_ICICLE_SPEAR",
-            "16": "MOVE_PROTECT",
-            "20": "MOVE_LEER",
-            "25": "MOVE_CLAMP",
-            "28": "MOVE_ICE_SHARD",
-            "32": "MOVE_AURORA_BEAM",
-            "37": "MOVE_WHIRLPOOL",
-            "40": "MOVE_IRON_DEFENSE",
-            "44": "MOVE_BRINE",
-            "49": "MOVE_ICE_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -102,8 +91,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 3,
@@ -120,7 +109,7 @@
         "entry_text": "It swims backward by opening and\nclosing its two shells. Its large\ntongue is always kept hanging out.",
         "category": "Bivalve Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

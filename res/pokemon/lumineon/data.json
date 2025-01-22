@@ -8,10 +8,7 @@
         "special_attack": 69,
         "special_defense": 86
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 75,
     "base_exp_reward": 156,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_STORM_DRAIN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_STORM_DRAIN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_ATTRACT" ],
+            [ 6, "MOVE_WATER_GUN" ],
+            [ 10, "MOVE_ATTRACT" ],
+            [ 13, "MOVE_RAIN_DANCE" ],
+            [ 17, "MOVE_GUST" ],
+            [ 22, "MOVE_WATER_PULSE" ],
+            [ 26, "MOVE_CAPTIVATE" ],
+            [ 29, "MOVE_SAFEGUARD" ],
+            [ 35, "MOVE_AQUA_RING" ],
+            [ 42, "MOVE_WHIRLPOOL" ],
+            [ 48, "MOVE_U_TURN" ],
+            [ 53, "MOVE_BOUNCE" ],
+            [ 59, "MOVE_SILVER_WIND" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -79,26 +85,7 @@
             "HM05",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_WATER_GUN",
-                "MOVE_ATTRACT"
-            ],
-            "6": "MOVE_WATER_GUN",
-            "10": "MOVE_ATTRACT",
-            "13": "MOVE_RAIN_DANCE",
-            "17": "MOVE_GUST",
-            "22": "MOVE_WATER_PULSE",
-            "26": "MOVE_CAPTIVATE",
-            "29": "MOVE_SAFEGUARD",
-            "35": "MOVE_AQUA_RING",
-            "42": "MOVE_WHIRLPOOL",
-            "48": "MOVE_U_TURN",
-            "53": "MOVE_BOUNCE",
-            "59": "MOVE_SILVER_WIND"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
@@ -110,9 +97,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -129,7 +117,7 @@
         "entry_text": "It crawls along the seafloor using\nits long front fins like legs. It\ncompetes for food with LANTURN.",
         "category": "Neon Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

@@ -8,10 +8,7 @@
         "special_attack": 90,
         "special_defense": 115
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 3,
     "base_exp_reward": 215,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 80,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 8, "MOVE_BUBBLE_BEAM" ],
+            [ 15, "MOVE_RAIN_DANCE" ],
+            [ 22, "MOVE_GUST" ],
+            [ 29, "MOVE_AURORA_BEAM" ],
+            [ 36, "MOVE_MIST" ],
+            [ 43, "MOVE_MIRROR_COAT" ],
+            [ 50, "MOVE_ICE_FANG" ],
+            [ 57, "MOVE_TAILWIND" ],
+            [ 64, "MOVE_EXTRASENSORY" ],
+            [ 71, "MOVE_HYDRO_PUMP" ],
+            [ 78, "MOVE_CALM_MIND" ],
+            [ 85, "MOVE_BLIZZARD" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM05",
@@ -83,25 +88,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BITE",
-                "MOVE_LEER"
-            ],
-            "8": "MOVE_BUBBLE_BEAM",
-            "15": "MOVE_RAIN_DANCE",
-            "22": "MOVE_GUST",
-            "29": "MOVE_AURORA_BEAM",
-            "36": "MOVE_MIST",
-            "43": "MOVE_MIRROR_COAT",
-            "50": "MOVE_ICE_FANG",
-            "57": "MOVE_TAILWIND",
-            "64": "MOVE_EXTRASENSORY",
-            "71": "MOVE_HYDRO_PUMP",
-            "78": "MOVE_CALM_MIND",
-            "85": "MOVE_BLIZZARD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -112,9 +99,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 20,
@@ -131,7 +119,7 @@
         "entry_text": "It races around the world to\npurify fouled water. It dashes\naway with the north wind.",
         "category": "Aurora Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

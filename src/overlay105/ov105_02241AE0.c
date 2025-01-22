@@ -3015,7 +3015,7 @@ static void ov105_022455C4(UnkStruct_ov105_02241FF4 *param0, u8 param1, Pokemon 
     v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
     v1 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
 
-    if (PokemonPersonalData_GetFormValue(v0, v1, 28) == 0) {
+    if (SpeciesData_GetFormValue(v0, v1, 28) == 0) {
         ov105_02245DB8(param0->unk_12C[param1], param5);
     }
 

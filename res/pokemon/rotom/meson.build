@@ -1,4 +1,4 @@
-personal_files += files('data.json')
+species_data_files += files('data.json')
 rotom_heat_personal = files('forms/heat/data.json')
 rotom_wash_personal = files('forms/wash/data.json')
 rotom_frost_personal = files('forms/frost/data.json')

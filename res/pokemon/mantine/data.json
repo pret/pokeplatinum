@@ -8,10 +8,7 @@
         "special_attack": 80,
         "special_defense": 140
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_FLYING" ],
     "catch_rate": 25,
     "base_exp_reward": 168,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_WATER_ABSORB"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_WATER_ABSORB" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PSYBEAM" ],
+            [ 1, "MOVE_BULLET_SEED" ],
+            [ 1, "MOVE_SIGNAL_BEAM" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 1, "MOVE_BUBBLE_BEAM" ],
+            [ 4, "MOVE_SUPERSONIC" ],
+            [ 10, "MOVE_BUBBLE_BEAM" ],
+            [ 13, "MOVE_HEADBUTT" ],
+            [ 19, "MOVE_AGILITY" ],
+            [ 22, "MOVE_WING_ATTACK" ],
+            [ 28, "MOVE_WATER_PULSE" ],
+            [ 31, "MOVE_TAKE_DOWN" ],
+            [ 37, "MOVE_CONFUSE_RAY" ],
+            [ 40, "MOVE_BOUNCE" ],
+            [ 46, "MOVE_AQUA_RING" ],
+            [ 49, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -78,29 +87,7 @@
             "HM05",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PSYBEAM",
-                "MOVE_BULLET_SEED",
-                "MOVE_SIGNAL_BEAM",
-                "MOVE_TACKLE",
-                "MOVE_BUBBLE",
-                "MOVE_SUPERSONIC",
-                "MOVE_BUBBLE_BEAM"
-            ],
-            "4": "MOVE_SUPERSONIC",
-            "10": "MOVE_BUBBLE_BEAM",
-            "13": "MOVE_HEADBUTT",
-            "19": "MOVE_AGILITY",
-            "22": "MOVE_WING_ATTACK",
-            "28": "MOVE_WATER_PULSE",
-            "31": "MOVE_TAKE_DOWN",
-            "37": "MOVE_CONFUSE_RAY",
-            "40": "MOVE_BOUNCE",
-            "46": "MOVE_AQUA_RING",
-            "49": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -116,9 +103,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 21,
@@ -135,7 +123,7 @@
         "entry_text": "While elegantly swimming in the sea,\nit ignores REMORAID that cling to\nits fins seeking food scraps.",
         "category": "Kite Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 70,

@@ -3953,21 +3953,21 @@ static void ov19_021D58AC(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1, U
 {
     UnkStruct_ov19_021D5BAC *v0 = &(param0->unk_4C);
     BOOL v1 = BoxPokemon_EnterDecryptionContext(param1);
-    PokemonPersonalData *v2;
+    SpeciesData *speciesData;
 
     v0->unk_00 = param1;
     v0->unk_04 = BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     v0->unk_06 = BoxPokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
     v0->unk_08 = sub_0207A294(sub_0207A274(param2->unk_11C), v0->unk_04);
     v0->unk_0F = BoxPokemon_GetValue(param1, MON_DATA_EGG_EXISTS, NULL);
-    v2 = PokemonPersonalData_FromMonSpecies(v0->unk_04, 9);
-    v0->unk_0A = PokemonPersonalData_GetLevelAt(v2, v0->unk_04, BoxPokemon_GetValue(param1, MON_DATA_EXP, NULL));
+    speciesData = SpeciesData_FromMonSpecies(v0->unk_04, 9);
+    v0->unk_0A = SpeciesData_GetLevelAt(speciesData, v0->unk_04, BoxPokemon_GetValue(param1, MON_DATA_EXP, NULL));
     v0->unk_0B = BoxPokemon_GetValue(param1, MON_DATA_MARKS, NULL);
     v0->unk_0C = BoxPokemon_GetValue(param1, MON_DATA_TYPE_1, NULL);
     v0->unk_0D = BoxPokemon_GetValue(param1, MON_DATA_TYPE_2, NULL);
 
     if ((v0->unk_0F == 0) && BoxPokemon_GetValue(param1, MON_DATA_NIDORAN_HAS_NICKNAME, NULL)) {
-        v0->unk_0E = PokemonPersonalData_GetGenderOf(v2, v0->unk_04, BoxPokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL));
+        v0->unk_0E = SpeciesData_GetGenderOf(speciesData, v0->unk_04, BoxPokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL));
     } else {
         v0->unk_0E = 255;
     }
@@ -3995,7 +3995,7 @@ static void ov19_021D58AC(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1, U
         MessageLoader_GetStrbuf(param2->unk_198, v3, v0->unk_24);
     }
 
-    PokemonPersonalData_Free(v2);
+    SpeciesData_Free(speciesData);
     BoxPokemon_ExitDecryptionContext(param1, v1);
 }
 

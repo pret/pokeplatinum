@@ -1,9 +1,10 @@
 #ifndef POKEPLATINUM_CONSTANTS_ITEMS_H
 #define POKEPLATINUM_CONSTANTS_ITEMS_H
 
-#ifndef __ASM_PM_
-#include "consts/items.h"
+#include "generated/item_hold_effects.h"
+#include "generated/items.h"
 
+#ifndef __ASM_PM_
 enum {
     BATTLE_ITEM_CATEGORY_RECOVER_HP = 0,
     BATTLE_ITEM_CATEGORY_RECOVER_STATUS,

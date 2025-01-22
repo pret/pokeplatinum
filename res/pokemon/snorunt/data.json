@@ -8,10 +8,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_ICE"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_ICE" ],
     "catch_rate": 190,
     "base_exp_reward": 74,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_INNER_FOCUS",
-        "ABILITY_ICE_BODY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_INNER_FOCUS", "ABILITY_ICE_BODY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 1, "MOVE_LEER" ],
+            [ 4, "MOVE_DOUBLE_TEAM" ],
+            [ 10, "MOVE_BITE" ],
+            [ 13, "MOVE_ICY_WIND" ],
+            [ 19, "MOVE_HEADBUTT" ],
+            [ 22, "MOVE_PROTECT" ],
+            [ 28, "MOVE_ICE_FANG" ],
+            [ 31, "MOVE_CRUNCH" ],
+            [ 37, "MOVE_ICE_SHARD" ],
+            [ 40, "MOVE_HAIL" ],
+            [ 46, "MOVE_BLIZZARD" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -72,23 +75,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POWDER_SNOW",
-                "MOVE_LEER"
-            ],
-            "4": "MOVE_DOUBLE_TEAM",
-            "10": "MOVE_BITE",
-            "13": "MOVE_ICY_WIND",
-            "19": "MOVE_HEADBUTT",
-            "22": "MOVE_PROTECT",
-            "28": "MOVE_ICE_FANG",
-            "31": "MOVE_CRUNCH",
-            "37": "MOVE_ICE_SHARD",
-            "40": "MOVE_HAIL",
-            "46": "MOVE_BLIZZARD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -97,7 +84,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             42,
             "SPECIES_GLALIE"
         ],
@@ -108,8 +95,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -126,7 +113,7 @@
         "entry_text": "It is said that several SNORUNT\ngather under giant leaves and\nlive together in harmony.",
         "category": "Snow Hat Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

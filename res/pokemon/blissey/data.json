@@ -8,10 +8,7 @@
         "special_attack": 75,
         "special_defense": 135
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 30,
     "base_exp_reward": 255,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 40,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_NATURAL_CURE",
-        "ABILITY_SERENE_GRACE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_SERENE_GRACE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_REFRESH" ],
+            [ 12, "MOVE_SOFTBOILED" ],
+            [ 16, "MOVE_DOUBLE_SLAP" ],
+            [ 20, "MOVE_MINIMIZE" ],
+            [ 23, "MOVE_SING" ],
+            [ 27, "MOVE_FLING" ],
+            [ 31, "MOVE_DEFENSE_CURL" ],
+            [ 34, "MOVE_LIGHT_SCREEN" ],
+            [ 38, "MOVE_EGG_BOMB" ],
+            [ 42, "MOVE_HEALING_WISH" ],
+            [ 46, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -105,25 +110,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_TAIL_WHIP",
-            "9": "MOVE_REFRESH",
-            "12": "MOVE_SOFTBOILED",
-            "16": "MOVE_DOUBLE_SLAP",
-            "20": "MOVE_MINIMIZE",
-            "23": "MOVE_SING",
-            "27": "MOVE_FLING",
-            "31": "MOVE_DEFENSE_CURL",
-            "34": "MOVE_LIGHT_SCREEN",
-            "38": "MOVE_EGG_BOMB",
-            "42": "MOVE_HEALING_WISH",
-            "46": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -137,9 +124,10 @@
             "MOVE_LAST_RESORT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -156,7 +144,7 @@
         "entry_text": "The eggs it lays are filled with\nhappiness. Eating even one bite\nwill bring a smile to anyone.",
         "category": "Happiness Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

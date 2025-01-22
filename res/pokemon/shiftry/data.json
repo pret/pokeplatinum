@@ -8,10 +8,7 @@
         "special_attack": 90,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_DARK" ],
     "catch_rate": 45,
     "base_exp_reward": 181,
     "ev_yields": {
@@ -30,21 +27,20 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_CHLOROPHYLL",
-        "ABILITY_EARLY_BIRD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_EARLY_BIRD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FAINT_ATTACK" ],
+            [ 1, "MOVE_WHIRLWIND" ],
+            [ 1, "MOVE_NASTY_PLOT" ],
+            [ 1, "MOVE_RAZOR_LEAF" ],
+            [ 49, "MOVE_LEAF_STORM" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -93,16 +89,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FAINT_ATTACK",
-                "MOVE_WHIRLWIND",
-                "MOVE_NASTY_PLOT",
-                "MOVE_RAZOR_LEAF"
-            ],
-            "49": "MOVE_LEAF_STORM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -120,9 +107,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -139,7 +127,7 @@
         "entry_text": "By flapping its leafy fan, it can\nwhip up gusts of 100 ft/second\nthat can level houses.",
         "category": "Wicked Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

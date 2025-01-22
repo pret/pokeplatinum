@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_DARK" ],
     "catch_rate": 127,
     "base_exp_reward": 128,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_QUICK_FEET"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_QUICK_FEET" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HOWL" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_BITE" ],
+            [ 5, "MOVE_HOWL" ],
+            [ 9, "MOVE_SAND_ATTACK" ],
+            [ 13, "MOVE_BITE" ],
+            [ 17, "MOVE_ODOR_SLEUTH" ],
+            [ 22, "MOVE_ROAR" ],
+            [ 27, "MOVE_SWAGGER" ],
+            [ 32, "MOVE_ASSURANCE" ],
+            [ 37, "MOVE_SCARY_FACE" ],
+            [ 42, "MOVE_TAUNT" ],
+            [ 47, "MOVE_EMBARGO" ],
+            [ 52, "MOVE_TAKE_DOWN" ],
+            [ 57, "MOVE_THIEF" ],
+            [ 62, "MOVE_SUCKER_PUNCH" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -79,28 +87,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_HOWL",
-                "MOVE_SAND_ATTACK",
-                "MOVE_BITE"
-            ],
-            "5": "MOVE_HOWL",
-            "9": "MOVE_SAND_ATTACK",
-            "13": "MOVE_BITE",
-            "17": "MOVE_ODOR_SLEUTH",
-            "22": "MOVE_ROAR",
-            "27": "MOVE_SWAGGER",
-            "32": "MOVE_ASSURANCE",
-            "37": "MOVE_SCARY_FACE",
-            "42": "MOVE_TAUNT",
-            "47": "MOVE_EMBARGO",
-            "52": "MOVE_TAKE_DOWN",
-            "57": "MOVE_THIEF",
-            "62": "MOVE_SUCKER_PUNCH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_SPITE",
@@ -108,9 +95,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -127,7 +115,7 @@
         "entry_text": "It chases down prey in a pack.\nIt will never disobey the commands\nof a skilled Trainer.",
         "category": "Bite Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

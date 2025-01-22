@@ -8,10 +8,7 @@
         "special_attack": 70,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 145,
     "ev_yields": {
@@ -30,21 +27,23 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_FORECAST",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_FORECAST", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 10, "MOVE_EMBER" ],
+            [ 10, "MOVE_POWDER_SNOW" ],
+            [ 20, "MOVE_RAIN_DANCE" ],
+            [ 20, "MOVE_SUNNY_DAY" ],
+            [ 20, "MOVE_HAIL" ],
+            [ 30, "MOVE_WEATHER_BALL" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -82,21 +81,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "10": [
-                "MOVE_WATER_GUN",
-                "MOVE_EMBER",
-                "MOVE_POWDER_SNOW"
-            ],
-            "20": [
-                "MOVE_RAIN_DANCE",
-                "MOVE_SUNNY_DAY",
-                "MOVE_HAIL"
-            ],
-            "30": "MOVE_WEATHER_BALL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -104,9 +89,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 3,
@@ -123,7 +109,7 @@
         "entry_text": "Its appearance changes with the\nweather. Recently, its molecules\nwere found to be just like water.",
         "category": "Weather Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

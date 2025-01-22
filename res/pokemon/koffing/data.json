@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 190,
     "base_exp_reward": 114,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_GAS" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 6, "MOVE_SMOG" ],
+            [ 10, "MOVE_SMOKE_SCREEN" ],
+            [ 15, "MOVE_ASSURANCE" ],
+            [ 19, "MOVE_SELFDESTRUCT" ],
+            [ 24, "MOVE_SLUDGE" ],
+            [ 28, "MOVE_HAZE" ],
+            [ 33, "MOVE_GYRO_BALL" ],
+            [ 37, "MOVE_EXPLOSION" ],
+            [ 42, "MOVE_SLUDGE_BOMB" ],
+            [ 46, "MOVE_DESTINY_BOND" ],
+            [ 51, "MOVE_MEMENTO" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -80,24 +84,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_GAS",
-                "MOVE_TACKLE"
-            ],
-            "6": "MOVE_SMOG",
-            "10": "MOVE_SMOKE_SCREEN",
-            "15": "MOVE_ASSURANCE",
-            "19": "MOVE_SELFDESTRUCT",
-            "24": "MOVE_SLUDGE",
-            "28": "MOVE_HAZE",
-            "33": "MOVE_GYRO_BALL",
-            "37": "MOVE_EXPLOSION",
-            "42": "MOVE_SLUDGE_BOMB",
-            "46": "MOVE_DESTINY_BOND",
-            "51": "MOVE_MEMENTO"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_SPITE",
@@ -106,14 +93,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             35,
             "SPECIES_WEEZING"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 6,
@@ -130,7 +117,7 @@
         "entry_text": "Lighter-than-air gases in its body\nkeep it aloft. The gases not only\nsmell, they are also explosive.",
         "category": "Poison Gas Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

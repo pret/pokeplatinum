@@ -766,7 +766,7 @@ static void ov88_0223BD18(Pokemon *param0, UnkStruct_ov88_0223C8AC *param1)
     Pokemon_ExitDecryptionContext(param0, v0);
 
     if (param1->unk_00 != 0) {
-        param1->unk_0A = PokemonPersonalData_GetFormValue(param1->unk_00, param1->unk_06, 28);
+        param1->unk_0A = SpeciesData_GetFormValue(param1->unk_00, param1->unk_06, 28);
     }
 
     if (v1 != 0) {

@@ -8,10 +8,7 @@
         "special_attack": 45,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_GROUND" ],
     "catch_rate": 45,
     "base_exp_reward": 67,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 40,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_GUTS",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_GUTS", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 5, "MOVE_SANDSTORM" ],
+            [ 10, "MOVE_SCREECH" ],
+            [ 14, "MOVE_ROCK_SLIDE" ],
+            [ 19, "MOVE_SCARY_FACE" ],
+            [ 23, "MOVE_THRASH" ],
+            [ 28, "MOVE_DARK_PULSE" ],
+            [ 32, "MOVE_PAYBACK" ],
+            [ 37, "MOVE_CRUNCH" ],
+            [ 41, "MOVE_EARTHQUAKE" ],
+            [ 46, "MOVE_STONE_EDGE" ],
+            [ 50, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -79,24 +83,7 @@
             "TM90",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BITE",
-                "MOVE_LEER"
-            ],
-            "5": "MOVE_SANDSTORM",
-            "10": "MOVE_SCREECH",
-            "14": "MOVE_ROCK_SLIDE",
-            "19": "MOVE_SCARY_FACE",
-            "23": "MOVE_THRASH",
-            "28": "MOVE_DARK_PULSE",
-            "32": "MOVE_PAYBACK",
-            "37": "MOVE_CRUNCH",
-            "41": "MOVE_EARTHQUAKE",
-            "46": "MOVE_STONE_EDGE",
-            "50": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SUPERPOWER",
             "MOVE_IRON_HEAD",
@@ -109,14 +96,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_PUPITAR"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 6,
@@ -133,7 +120,7 @@
         "entry_text": "A Pokémon that eats soil. Once it\nhas eaten a large mountain, it\ngoes to sleep so it can grow.",
         "category": "Rock Skin Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

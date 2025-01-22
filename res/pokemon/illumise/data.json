@@ -8,10 +8,7 @@
         "special_attack": 73,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_BUG"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_BUG" ],
     "catch_rate": 150,
     "base_exp_reward": 146,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_TINTED_LENS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_TINTED_LENS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 5, "MOVE_SWEET_SCENT" ],
+            [ 9, "MOVE_CHARM" ],
+            [ 13, "MOVE_MOONLIGHT" ],
+            [ 17, "MOVE_QUICK_ATTACK" ],
+            [ 21, "MOVE_WISH" ],
+            [ 25, "MOVE_ENCORE" ],
+            [ 29, "MOVE_FLATTER" ],
+            [ 33, "MOVE_HELPING_HAND" ],
+            [ 37, "MOVE_ZEN_HEADBUTT" ],
+            [ 41, "MOVE_BUG_BUZZ" ],
+            [ 45, "MOVE_COVET" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -84,21 +87,7 @@
             "TM89",
             "TM90"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "5": "MOVE_SWEET_SCENT",
-            "9": "MOVE_CHARM",
-            "13": "MOVE_MOONLIGHT",
-            "17": "MOVE_QUICK_ATTACK",
-            "21": "MOVE_WISH",
-            "25": "MOVE_ENCORE",
-            "29": "MOVE_FLATTER",
-            "33": "MOVE_HELPING_HAND",
-            "37": "MOVE_ZEN_HEADBUTT",
-            "41": "MOVE_BUG_BUZZ",
-            "45": "MOVE_COVET"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_ICE_PUNCH",
@@ -110,9 +99,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -129,7 +119,7 @@
         "entry_text": "With its sweet aroma, it guides\nVOLBEAT to draw signs with light in\nthe night sky.",
         "category": "Firefly Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

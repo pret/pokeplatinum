@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "consts/game_records.h"
-#include "consts/species.h"
+#include "generated/species.h"
 
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0209843C.h"

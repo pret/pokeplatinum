@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 175,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_EARLY_BIRD",
-        "ABILITY_SCRAPPY"
-    ],
-    "great_marsh_flee_rate": 150,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_EARLY_BIRD", "ABILITY_SCRAPPY" ],
+    "safari_flee_rate": 150,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_COMET_PUNCH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 7, "MOVE_FAKE_OUT" ],
+            [ 10, "MOVE_TAIL_WHIP" ],
+            [ 13, "MOVE_BITE" ],
+            [ 19, "MOVE_MEGA_PUNCH" ],
+            [ 22, "MOVE_RAGE" ],
+            [ 25, "MOVE_DIZZY_PUNCH" ],
+            [ 31, "MOVE_CRUNCH" ],
+            [ 34, "MOVE_ENDURE" ],
+            [ 37, "MOVE_OUTRAGE" ],
+            [ 43, "MOVE_DOUBLE_HIT" ],
+            [ 46, "MOVE_SUCKER_PUNCH" ],
+            [ 49, "MOVE_REVERSAL" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM05",
@@ -98,25 +103,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_COMET_PUNCH",
-                "MOVE_LEER"
-            ],
-            "7": "MOVE_FAKE_OUT",
-            "10": "MOVE_TAIL_WHIP",
-            "13": "MOVE_BITE",
-            "19": "MOVE_MEGA_PUNCH",
-            "22": "MOVE_RAGE",
-            "25": "MOVE_DIZZY_PUNCH",
-            "31": "MOVE_CRUNCH",
-            "34": "MOVE_ENDURE",
-            "37": "MOVE_OUTRAGE",
-            "43": "MOVE_DOUBLE_HIT",
-            "46": "MOVE_SUCKER_PUNCH",
-            "49": "MOVE_REVERSAL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -133,9 +120,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 22,
@@ -152,7 +140,7 @@
         "entry_text": "It raises its offspring in its belly\npouch. It lets the baby out to\nplay only when it feels safe.",
         "category": "Parent Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

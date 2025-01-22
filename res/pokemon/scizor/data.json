@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_STEEL"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_STEEL" ],
     "catch_rate": 25,
     "base_exp_reward": 200,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_TECHNICIAN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_TECHNICIAN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BULLET_PUNCH" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 5, "MOVE_FOCUS_ENERGY" ],
+            [ 9, "MOVE_PURSUIT" ],
+            [ 13, "MOVE_FALSE_SWIPE" ],
+            [ 17, "MOVE_AGILITY" ],
+            [ 21, "MOVE_METAL_CLAW" ],
+            [ 25, "MOVE_FURY_CUTTER" ],
+            [ 29, "MOVE_SLASH" ],
+            [ 33, "MOVE_RAZOR_WIND" ],
+            [ 37, "MOVE_IRON_DEFENSE" ],
+            [ 41, "MOVE_X_SCISSOR" ],
+            [ 45, "MOVE_NIGHT_SLASH" ],
+            [ 49, "MOVE_DOUBLE_HIT" ],
+            [ 53, "MOVE_IRON_HEAD" ],
+            [ 57, "MOVE_SWORDS_DANCE" ],
+            [ 61, "MOVE_FEINT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -83,29 +92,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BULLET_PUNCH",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_LEER"
-            ],
-            "5": "MOVE_FOCUS_ENERGY",
-            "9": "MOVE_PURSUIT",
-            "13": "MOVE_FALSE_SWIPE",
-            "17": "MOVE_AGILITY",
-            "21": "MOVE_METAL_CLAW",
-            "25": "MOVE_FURY_CUTTER",
-            "29": "MOVE_SLASH",
-            "33": "MOVE_RAZOR_WIND",
-            "37": "MOVE_IRON_DEFENSE",
-            "41": "MOVE_X_SCISSOR",
-            "45": "MOVE_NIGHT_SLASH",
-            "49": "MOVE_DOUBLE_HIT",
-            "53": "MOVE_IRON_HEAD",
-            "57": "MOVE_SWORDS_DANCE",
-            "61": "MOVE_FEINT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_FURY_CUTTER",
             "MOVE_SUPERPOWER",
             "MOVE_IRON_HEAD",
@@ -116,9 +103,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 18,
@@ -135,7 +123,7 @@
         "entry_text": "It raises its pincers with eyelike\nmarkings for intimidation. It also\nswings them down dangerously.",
         "category": "Pincer Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

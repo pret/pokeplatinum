@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 90,
     "base_exp_reward": 161,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_WHITE_SMOKE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_WHITE_SMOKE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_EMBER" ],
+            [ 4, "MOVE_SMOG" ],
+            [ 7, "MOVE_WITHDRAW" ],
+            [ 12, "MOVE_CURSE" ],
+            [ 17, "MOVE_FIRE_SPIN" ],
+            [ 20, "MOVE_SMOKE_SCREEN" ],
+            [ 23, "MOVE_RAPID_SPIN" ],
+            [ 28, "MOVE_FLAMETHROWER" ],
+            [ 33, "MOVE_BODY_SLAM" ],
+            [ 36, "MOVE_PROTECT" ],
+            [ 39, "MOVE_LAVA_PLUME" ],
+            [ 44, "MOVE_IRON_DEFENSE" ],
+            [ 49, "MOVE_AMNESIA" ],
+            [ 52, "MOVE_FLAIL" ],
+            [ 55, "MOVE_HEAT_WAVE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -81,24 +87,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_EMBER",
-            "4": "MOVE_SMOG",
-            "7": "MOVE_WITHDRAW",
-            "12": "MOVE_CURSE",
-            "17": "MOVE_FIRE_SPIN",
-            "20": "MOVE_SMOKE_SCREEN",
-            "23": "MOVE_RAPID_SPIN",
-            "28": "MOVE_FLAMETHROWER",
-            "33": "MOVE_BODY_SLAM",
-            "36": "MOVE_PROTECT",
-            "39": "MOVE_LAVA_PLUME",
-            "44": "MOVE_IRON_DEFENSE",
-            "49": "MOVE_AMNESIA",
-            "52": "MOVE_FLAIL",
-            "55": "MOVE_HEAT_WAVE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -107,9 +96,10 @@
             "MOVE_HEAT_WAVE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -126,7 +116,7 @@
         "entry_text": "It burns coal inside its shell for\nenergy. It blows out black soot if\nit is endangered.",
         "category": "Coal Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

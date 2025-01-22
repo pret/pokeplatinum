@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/items.h"
+#include "generated/items.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0207F248.h"

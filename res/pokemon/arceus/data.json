@@ -8,10 +8,7 @@
         "special_attack": 120,
         "special_defense": 120
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 3,
     "base_exp_reward": 255,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_MULTITYPE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_MULTITYPE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SEISMIC_TOSS" ],
+            [ 1, "MOVE_COSMIC_POWER" ],
+            [ 1, "MOVE_NATURAL_GIFT" ],
+            [ 1, "MOVE_PUNISHMENT" ],
+            [ 10, "MOVE_GRAVITY" ],
+            [ 20, "MOVE_EARTH_POWER" ],
+            [ 30, "MOVE_HYPER_VOICE" ],
+            [ 40, "MOVE_EXTREME_SPEED" ],
+            [ 50, "MOVE_REFRESH" ],
+            [ 60, "MOVE_FUTURE_SIGHT" ],
+            [ 70, "MOVE_RECOVER" ],
+            [ 80, "MOVE_HYPER_BEAM" ],
+            [ 90, "MOVE_PERISH_SONG" ],
+            [ 100, "MOVE_JUDGMENT" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM03",
             "TM04",
@@ -125,25 +130,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SEISMIC_TOSS",
-                "MOVE_COSMIC_POWER",
-                "MOVE_NATURAL_GIFT",
-                "MOVE_PUNISHMENT"
-            ],
-            "10": "MOVE_GRAVITY",
-            "20": "MOVE_EARTH_POWER",
-            "30": "MOVE_HYPER_VOICE",
-            "40": "MOVE_EXTREME_SPEED",
-            "50": "MOVE_REFRESH",
-            "60": "MOVE_FUTURE_SIGHT",
-            "70": "MOVE_RECOVER",
-            "80": "MOVE_HYPER_BEAM",
-            "90": "MOVE_PERISH_SONG",
-            "100": "MOVE_JUDGMENT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -165,9 +152,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 32,
@@ -184,7 +172,7 @@
         "entry_text": "It is said to have emerged from an\negg in a place where there was\nnothing, then shaped the world.",
         "category": "Alpha Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 100,

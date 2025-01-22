@@ -8,10 +8,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_ROCK"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_ROCK" ],
     "catch_rate": 90,
     "base_exp_reward": 152,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 35,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_STURDY",
-        "ABILITY_ROCK_HEAD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_STURDY", "ABILITY_ROCK_HEAD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 1, "MOVE_HEADBUTT" ],
+            [ 4, "MOVE_HARDEN" ],
+            [ 8, "MOVE_MUD_SLAP" ],
+            [ 11, "MOVE_HEADBUTT" ],
+            [ 15, "MOVE_METAL_CLAW" ],
+            [ 18, "MOVE_IRON_DEFENSE" ],
+            [ 22, "MOVE_ROAR" ],
+            [ 25, "MOVE_TAKE_DOWN" ],
+            [ 29, "MOVE_IRON_HEAD" ],
+            [ 34, "MOVE_PROTECT" ],
+            [ 40, "MOVE_METAL_SOUND" ],
+            [ 45, "MOVE_IRON_TAIL" ],
+            [ 51, "MOVE_DOUBLE_EDGE" ],
+            [ 56, "MOVE_METAL_BURST" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -81,28 +89,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_HARDEN",
-                "MOVE_MUD_SLAP",
-                "MOVE_HEADBUTT"
-            ],
-            "4": "MOVE_HARDEN",
-            "8": "MOVE_MUD_SLAP",
-            "11": "MOVE_HEADBUTT",
-            "15": "MOVE_METAL_CLAW",
-            "18": "MOVE_IRON_DEFENSE",
-            "22": "MOVE_ROAR",
-            "25": "MOVE_TAKE_DOWN",
-            "29": "MOVE_IRON_HEAD",
-            "34": "MOVE_PROTECT",
-            "40": "MOVE_METAL_SOUND",
-            "45": "MOVE_IRON_TAIL",
-            "51": "MOVE_DOUBLE_EDGE",
-            "56": "MOVE_METAL_BURST"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -120,14 +107,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             42,
             "SPECIES_AGGRON"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -144,7 +131,7 @@
         "entry_text": "For food, it digs up iron ore. It\nsmashes its steely body against\nothers to fight over territory.",
         "category": "Iron Armor Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

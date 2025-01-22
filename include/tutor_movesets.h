@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_TUTOR_MOVESETS_H
 #define POKEPLATINUM_TUTOR_MOVESETS_H
 
-#include "consts/moves.h"
+#include "generated/moves.h"
 
 enum TutorLocation {
     TUTOR_LOCATION_ROUTE_212 = 0,

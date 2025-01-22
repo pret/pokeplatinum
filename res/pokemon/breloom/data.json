@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_FIGHTING" ],
     "catch_rate": 90,
     "base_exp_reward": 165,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_EFFECT_SPORE",
-        "ABILITY_POISON_HEAL"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_EFFECT_SPORE", "ABILITY_POISON_HEAL" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_STUN_SPORE" ],
+            [ 1, "MOVE_LEECH_SEED" ],
+            [ 5, "MOVE_TACKLE" ],
+            [ 9, "MOVE_STUN_SPORE" ],
+            [ 13, "MOVE_LEECH_SEED" ],
+            [ 17, "MOVE_MEGA_DRAIN" ],
+            [ 21, "MOVE_HEADBUTT" ],
+            [ 23, "MOVE_MACH_PUNCH" ],
+            [ 25, "MOVE_COUNTER" ],
+            [ 29, "MOVE_FORCE_PALM" ],
+            [ 33, "MOVE_SKY_UPPERCUT" ],
+            [ 37, "MOVE_MIND_READER" ],
+            [ 41, "MOVE_SEED_BOMB" ],
+            [ 45, "MOVE_DYNAMIC_PUNCH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -88,27 +95,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ABSORB",
-                "MOVE_TACKLE",
-                "MOVE_STUN_SPORE",
-                "MOVE_LEECH_SEED"
-            ],
-            "5": "MOVE_TACKLE",
-            "9": "MOVE_STUN_SPORE",
-            "13": "MOVE_LEECH_SEED",
-            "17": "MOVE_MEGA_DRAIN",
-            "21": "MOVE_HEADBUTT",
-            "23": "MOVE_MACH_PUNCH",
-            "25": "MOVE_COUNTER",
-            "29": "MOVE_FORCE_PALM",
-            "33": "MOVE_SKY_UPPERCUT",
-            "37": "MOVE_MIND_READER",
-            "41": "MOVE_SEED_BOMB",
-            "45": "MOVE_DYNAMIC_PUNCH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -120,9 +107,10 @@
             "MOVE_SEED_BOMB"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -139,7 +127,7 @@
         "entry_text": "Its short arms stretch when it\nthrows punches. Its technique is\nequal to that of pro boxers.",
         "category": "Mushroom Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

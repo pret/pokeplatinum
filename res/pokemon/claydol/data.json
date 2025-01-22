@@ -8,10 +8,7 @@
         "special_attack": 70,
         "special_defense": 120
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_PSYCHIC" ],
     "catch_rate": 90,
     "base_exp_reward": 189,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TELEPORT" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_RAPID_SPIN" ],
+            [ 3, "MOVE_HARDEN" ],
+            [ 5, "MOVE_RAPID_SPIN" ],
+            [ 7, "MOVE_MUD_SLAP" ],
+            [ 11, "MOVE_PSYBEAM" ],
+            [ 15, "MOVE_ROCK_TOMB" ],
+            [ 19, "MOVE_SELFDESTRUCT" ],
+            [ 25, "MOVE_ANCIENT_POWER" ],
+            [ 31, "MOVE_POWER_TRICK" ],
+            [ 36, "MOVE_HYPER_BEAM" ],
+            [ 40, "MOVE_SANDSTORM" ],
+            [ 51, "MOVE_COSMIC_POWER" ],
+            [ 62, "MOVE_EARTH_POWER" ],
+            [ 73, "MOVE_HEAL_BLOCK" ],
+            [ 86, "MOVE_EXPLOSION" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -92,29 +101,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TELEPORT",
-                "MOVE_CONFUSION",
-                "MOVE_HARDEN",
-                "MOVE_RAPID_SPIN"
-            ],
-            "3": "MOVE_HARDEN",
-            "5": "MOVE_RAPID_SPIN",
-            "7": "MOVE_MUD_SLAP",
-            "11": "MOVE_PSYBEAM",
-            "15": "MOVE_ROCK_TOMB",
-            "19": "MOVE_SELFDESTRUCT",
-            "25": "MOVE_ANCIENT_POWER",
-            "31": "MOVE_POWER_TRICK",
-            "36": "MOVE_HYPER_BEAM",
-            "40": "MOVE_SANDSTORM",
-            "51": "MOVE_COSMIC_POWER",
-            "62": "MOVE_EARTH_POWER",
-            "73": "MOVE_HEAL_BLOCK",
-            "86": "MOVE_EXPLOSION"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_ANCIENT_POWER",
@@ -124,9 +111,10 @@
             "MOVE_TRICK"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 15,
@@ -143,7 +131,7 @@
         "entry_text": "An ancient clay figurine that came\nto life as a Pokémon from exposure\nto a mysterious ray of light.",
         "category": "Clay Doll Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

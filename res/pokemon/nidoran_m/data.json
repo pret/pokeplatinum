@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 235,
     "base_exp_reward": 60,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_POISON_POINT",
-        "ABILITY_RIVALRY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_POISON_POINT", "ABILITY_RIVALRY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_PECK" ],
+            [ 7, "MOVE_FOCUS_ENERGY" ],
+            [ 9, "MOVE_DOUBLE_KICK" ],
+            [ 13, "MOVE_POISON_STING" ],
+            [ 19, "MOVE_FURY_ATTACK" ],
+            [ 21, "MOVE_HORN_ATTACK" ],
+            [ 25, "MOVE_HELPING_HAND" ],
+            [ 31, "MOVE_TOXIC_SPIKES" ],
+            [ 33, "MOVE_FLATTER" ],
+            [ 37, "MOVE_POISON_JAB" ],
+            [ 43, "MOVE_CAPTIVATE" ],
+            [ 45, "MOVE_HORN_DRILL" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -79,24 +83,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LEER",
-                "MOVE_PECK"
-            ],
-            "7": "MOVE_FOCUS_ENERGY",
-            "9": "MOVE_DOUBLE_KICK",
-            "13": "MOVE_POISON_STING",
-            "19": "MOVE_FURY_ATTACK",
-            "21": "MOVE_HORN_ATTACK",
-            "25": "MOVE_HELPING_HAND",
-            "31": "MOVE_TOXIC_SPIKES",
-            "33": "MOVE_FLATTER",
-            "37": "MOVE_POISON_JAB",
-            "43": "MOVE_CAPTIVATE",
-            "45": "MOVE_HORN_DRILL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -105,14 +92,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             16,
             "SPECIES_NIDORINO"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -129,7 +116,7 @@
         "entry_text": "It scans its surroundings by\nraising its ears out of the grass.\nIts toxic horn is for protection.",
         "category": "Poison Pin Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

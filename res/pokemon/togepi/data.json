@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 190,
     "base_exp_reward": 74,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_HUSTLE",
-        "ABILITY_SERENE_GRACE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_HUSTLE", "ABILITY_SERENE_GRACE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 6, "MOVE_METRONOME" ],
+            [ 10, "MOVE_SWEET_KISS" ],
+            [ 15, "MOVE_YAWN" ],
+            [ 19, "MOVE_ENCORE" ],
+            [ 24, "MOVE_FOLLOW_ME" ],
+            [ 28, "MOVE_WISH" ],
+            [ 33, "MOVE_ANCIENT_POWER" ],
+            [ 37, "MOVE_SAFEGUARD" ],
+            [ 42, "MOVE_BATON_PASS" ],
+            [ 46, "MOVE_DOUBLE_EDGE" ],
+            [ 51, "MOVE_LAST_RESORT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -81,24 +85,7 @@
             "TM90",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_CHARM"
-            ],
-            "6": "MOVE_METRONOME",
-            "10": "MOVE_SWEET_KISS",
-            "15": "MOVE_YAWN",
-            "19": "MOVE_ENCORE",
-            "24": "MOVE_FOLLOW_ME",
-            "28": "MOVE_WISH",
-            "33": "MOVE_ANCIENT_POWER",
-            "37": "MOVE_SAFEGUARD",
-            "42": "MOVE_BATON_PASS",
-            "46": "MOVE_DOUBLE_EDGE",
-            "51": "MOVE_LAST_RESORT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -113,14 +100,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_HAPPINESS",
-            "SPECIES_TOGETIC"
-        ]
+        [ "EVO_LEVEL_HAPPINESS", "SPECIES_TOGETIC" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -137,7 +121,7 @@
         "entry_text": "It transforms the kindness and joy\nof others into happiness, which it\nstores in its shell.",
         "category": "Spike Ball Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

@@ -8,10 +8,7 @@
         "special_attack": 81,
         "special_defense": 76
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 143,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 4, "MOVE_GROWL" ],
+            [ 8, "MOVE_BUBBLE" ],
+            [ 11, "MOVE_WATER_SPORT" ],
+            [ 15, "MOVE_PECK" ],
+            [ 16, "MOVE_METAL_CLAW" ],
+            [ 19, "MOVE_BUBBLE_BEAM" ],
+            [ 24, "MOVE_BIDE" ],
+            [ 28, "MOVE_FURY_ATTACK" ],
+            [ 33, "MOVE_BRINE" ],
+            [ 37, "MOVE_WHIRLPOOL" ],
+            [ 42, "MOVE_MIST" ],
+            [ 46, "MOVE_DRILL_PECK" ],
+            [ 51, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -83,26 +89,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL"
-            ],
-            "4": "MOVE_GROWL",
-            "8": "MOVE_BUBBLE",
-            "11": "MOVE_WATER_SPORT",
-            "15": "MOVE_PECK",
-            "16": "MOVE_METAL_CLAW",
-            "19": "MOVE_BUBBLE_BEAM",
-            "24": "MOVE_BIDE",
-            "28": "MOVE_FURY_ATTACK",
-            "33": "MOVE_BRINE",
-            "37": "MOVE_WHIRLPOOL",
-            "42": "MOVE_MIST",
-            "46": "MOVE_DRILL_PECK",
-            "51": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -112,14 +99,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             36,
             "SPECIES_EMPOLEON"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -136,7 +123,7 @@
         "entry_text": "Because every PRINPLUP considers\nitself to be the most important,\nthey can never form a group.",
         "category": "Penguin Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 80,

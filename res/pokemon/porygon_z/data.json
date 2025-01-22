@@ -8,10 +8,7 @@
         "special_attack": 135,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 30,
     "base_exp_reward": 185,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_ADAPTABILITY",
-        "ABILITY_DOWNLOAD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_ADAPTABILITY", "ABILITY_DOWNLOAD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TRICK_ROOM" ],
+            [ 1, "MOVE_CONVERSION_2" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_CONVERSION" ],
+            [ 1, "MOVE_NASTY_PLOT" ],
+            [ 7, "MOVE_PSYBEAM" ],
+            [ 12, "MOVE_AGILITY" ],
+            [ 18, "MOVE_RECOVER" ],
+            [ 23, "MOVE_MAGNET_RISE" ],
+            [ 29, "MOVE_SIGNAL_BEAM" ],
+            [ 34, "MOVE_EMBARGO" ],
+            [ 40, "MOVE_DISCHARGE" ],
+            [ 45, "MOVE_LOCK_ON" ],
+            [ 51, "MOVE_TRI_ATTACK" ],
+            [ 56, "MOVE_MAGIC_COAT" ],
+            [ 62, "MOVE_ZAP_CANNON" ],
+            [ 67, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -84,28 +92,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TRICK_ROOM",
-                "MOVE_CONVERSION_2",
-                "MOVE_TACKLE",
-                "MOVE_CONVERSION",
-                "MOVE_NASTY_PLOT"
-            ],
-            "7": "MOVE_PSYBEAM",
-            "12": "MOVE_AGILITY",
-            "18": "MOVE_RECOVER",
-            "23": "MOVE_MAGNET_RISE",
-            "29": "MOVE_SIGNAL_BEAM",
-            "34": "MOVE_EMBARGO",
-            "40": "MOVE_DISCHARGE",
-            "45": "MOVE_LOCK_ON",
-            "51": "MOVE_TRI_ATTACK",
-            "56": "MOVE_MAGIC_COAT",
-            "62": "MOVE_ZAP_CANNON",
-            "67": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
@@ -116,9 +103,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 9,
@@ -135,7 +123,7 @@
         "entry_text": "Its programming was modified to\nenable work in alien dimensions.\nIt did not work as planned.",
         "category": "Virtual Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

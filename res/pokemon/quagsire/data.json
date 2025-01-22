@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GROUND" ],
     "catch_rate": 90,
     "base_exp_reward": 137,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_DAMP",
-        "ABILITY_WATER_ABSORB"
-    ],
-    "great_marsh_flee_rate": 60,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_DAMP", "ABILITY_WATER_ABSORB" ],
+    "safari_flee_rate": 60,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 5, "MOVE_MUD_SPORT" ],
+            [ 9, "MOVE_MUD_SHOT" ],
+            [ 15, "MOVE_SLAM" ],
+            [ 19, "MOVE_MUD_BOMB" ],
+            [ 24, "MOVE_AMNESIA" ],
+            [ 31, "MOVE_YAWN" ],
+            [ 36, "MOVE_EARTHQUAKE" ],
+            [ 41, "MOVE_RAIN_DANCE" ],
+            [ 48, "MOVE_MIST" ],
+            [ 48, "MOVE_HAZE" ],
+            [ 53, "MOVE_MUDDY_WATER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -86,27 +91,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_WATER_GUN",
-                "MOVE_TAIL_WHIP",
-                "MOVE_MUD_SPORT"
-            ],
-            "5": "MOVE_MUD_SPORT",
-            "9": "MOVE_MUD_SHOT",
-            "15": "MOVE_SLAM",
-            "19": "MOVE_MUD_BOMB",
-            "24": "MOVE_AMNESIA",
-            "31": "MOVE_YAWN",
-            "36": "MOVE_EARTHQUAKE",
-            "41": "MOVE_RAIN_DANCE",
-            "48": [
-                "MOVE_MIST",
-                "MOVE_HAZE"
-            ],
-            "53": "MOVE_MUDDY_WATER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -118,9 +103,10 @@
             "MOVE_EARTH_POWER"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 14,
@@ -137,7 +123,7 @@
         "entry_text": "It has an easygoing nature. It\ndoesn’t care if it bumps its head on\nboats and boulders while swimming.",
         "category": "Water Fish Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 70,

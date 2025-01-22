@@ -8,10 +8,7 @@
         "special_attack": 100,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_PSYCHIC" ],
     "catch_rate": 75,
     "base_exp_reward": 164,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_OWN_TEMPO"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_OWN_TEMPO" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_CURSE" ],
+            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 6, "MOVE_GROWL" ],
+            [ 11, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_CONFUSION" ],
+            [ 20, "MOVE_DISABLE" ],
+            [ 25, "MOVE_HEADBUTT" ],
+            [ 29, "MOVE_WATER_PULSE" ],
+            [ 34, "MOVE_ZEN_HEADBUTT" ],
+            [ 37, "MOVE_WITHDRAW" ],
+            [ 41, "MOVE_SLACK_OFF" ],
+            [ 47, "MOVE_AMNESIA" ],
+            [ 54, "MOVE_PSYCHIC" ],
+            [ 61, "MOVE_RAIN_DANCE" ],
+            [ 67, "MOVE_PSYCH_UP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -98,28 +106,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_CURSE",
-                "MOVE_YAWN",
-                "MOVE_TACKLE",
-                "MOVE_GROWL"
-            ],
-            "6": "MOVE_GROWL",
-            "11": "MOVE_WATER_GUN",
-            "15": "MOVE_CONFUSION",
-            "20": "MOVE_DISABLE",
-            "25": "MOVE_HEADBUTT",
-            "29": "MOVE_WATER_PULSE",
-            "34": "MOVE_ZEN_HEADBUTT",
-            "37": "MOVE_WITHDRAW",
-            "41": "MOVE_SLACK_OFF",
-            "47": "MOVE_AMNESIA",
-            "54": "MOVE_PSYCHIC",
-            "61": "MOVE_RAIN_DANCE",
-            "67": "MOVE_PSYCH_UP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -134,9 +121,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 16,
@@ -153,7 +141,7 @@
         "entry_text": "Though usually dim witted, it\nseems to become inspired if the\nSHELLDER on its tail bites down.",
         "category": "Hermit Crab Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 70,

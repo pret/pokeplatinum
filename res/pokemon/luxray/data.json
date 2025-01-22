@@ -8,10 +8,7 @@
         "special_attack": 95,
         "special_defense": 79
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 45,
     "base_exp_reward": 194,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_RIVALRY",
-        "ABILITY_INTIMIDATE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_RIVALRY", "ABILITY_INTIMIDATE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_CHARGE" ],
+            [ 5, "MOVE_LEER" ],
+            [ 9, "MOVE_CHARGE" ],
+            [ 13, "MOVE_SPARK" ],
+            [ 18, "MOVE_BITE" ],
+            [ 23, "MOVE_ROAR" ],
+            [ 28, "MOVE_SWAGGER" ],
+            [ 35, "MOVE_THUNDER_FANG" ],
+            [ 42, "MOVE_CRUNCH" ],
+            [ 49, "MOVE_SCARY_FACE" ],
+            [ 56, "MOVE_DISCHARGE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -76,24 +80,7 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_LEER",
-                "MOVE_CHARGE"
-            ],
-            "5": "MOVE_LEER",
-            "9": "MOVE_CHARGE",
-            "13": "MOVE_SPARK",
-            "18": "MOVE_BITE",
-            "23": "MOVE_ROAR",
-            "28": "MOVE_SWAGGER",
-            "35": "MOVE_THUNDER_FANG",
-            "42": "MOVE_CRUNCH",
-            "49": "MOVE_SCARY_FACE",
-            "56": "MOVE_DISCHARGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SUPERPOWER",
@@ -103,9 +90,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 14,
@@ -122,7 +110,7 @@
         "entry_text": "It can see clearly through walls\nto track down its prey and seek\nits lost young.",
         "category": "Gleam Eyes Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,
