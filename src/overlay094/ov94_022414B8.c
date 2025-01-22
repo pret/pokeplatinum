@@ -1255,7 +1255,7 @@ void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
         GF_ASSERT(param1 < (13 - 1));
     } else {
         v0 = Unk_ov94_022460AC;
-        GF_ASSERT(param1 < ((NELEMS(Unk_ov94_022460AC))-1));
+        GF_ASSERT(param1 < (NELEMS(Unk_ov94_022460AC) - 1));
     }
 
     param0->unk_03 = v0[param1].unk_04;

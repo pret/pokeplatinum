@@ -3484,7 +3484,7 @@ static void ov115_0226414C(UnkStruct_ov115_02263DF8 *param0, u32 param1)
     param1 -= ((20 * 0xffff) / 360);
     v0 = (param1 * 90) / CalcAngleRotationIdx_Wraparound(90 - ((20 * 0xffff) / 360));
     v0 = (v0 * (FX32_CONST(180))) / 90;
-    v0 = (FX32_CONST(180))-v0;
+    v0 = FX32_CONST(180) - v0;
 
     Easy3DAnim_SetFrame(&param0->unk_198[1], v0);
 }
@@ -3799,7 +3799,7 @@ static void ov115_02264848(UnkStruct_ov115_022647A0 *param0)
         v0 = ov115_02262888(param0->unk_F8);
 
         if (v0 == 0) {
-            v2 = ((FX32_CONST(-50))-FX32_CONST(1));
+            v2 = (FX32_CONST(-50) - FX32_CONST(1));
         } else {
             v2 = (FX32_CONST(-300));
         }
@@ -4138,7 +4138,7 @@ static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_022
 
         Easy3DModel_LoadFrom(&param0->unk_168[v4], param2, v3, param5);
         Easy3DObject_Init(&param0->unk_00[v4], &param0->unk_168[v4]);
-        Easy3DObject_SetPosition(&param0->unk_00[v4], 0, ((FX32_CONST(-90))-FX32_CONST(8)), 0);
+        Easy3DObject_SetPosition(&param0->unk_00[v4], 0, (FX32_CONST(-90) - FX32_CONST(8)), 0);
         Easy3DObject_SetScale(&param0->unk_00[v4], (FX32_CONST(1.50f)), (FX32_CONST(1.50f)), (FX32_CONST(1.50f)));
 
         if (v4 == 1) {
