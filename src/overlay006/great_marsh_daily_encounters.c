@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/map.h"
+
 #include "heap.h"
 #include "narc.h"
 
@@ -21,7 +23,7 @@ void ReplaceGreatMarshDailyEncounters(const int dailyMon, const BOOL nationalDex
         encDataGroup = 10;
     }
 
-    narc = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, encDataGroup, 4);
+    narc = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, encDataGroup, HEAP_ID_FIELD);
     encounterIndex = ((dailyMon >> (5 * areaNum)) & 0x1f);
     encounterIndex %= 32;
 
@@ -36,22 +38,22 @@ static u8 GreatMarsh_GetAreaNumFromMapId(const int mapId)
     u8 areaNum = 0;
 
     switch (mapId) {
-    case 504:
+    case MAP_HEADER_GREAT_MARSH_1:
         areaNum = 0;
         break;
-    case 505:
+    case MAP_HEADER_GREAT_MARSH_2:
         areaNum = 1;
         break;
-    case 506:
+    case MAP_HEADER_GREAT_MARSH_3:
         areaNum = 2;
         break;
-    case 507:
+    case MAP_HEADER_GREAT_MARSH_4:
         areaNum = 3;
         break;
-    case 508:
+    case MAP_HEADER_GREAT_MARSH_5:
         areaNum = 4;
         break;
-    case 509:
+    case MAP_HEADER_GREAT_MARSH_6:
         areaNum = 5;
         break;
     default:

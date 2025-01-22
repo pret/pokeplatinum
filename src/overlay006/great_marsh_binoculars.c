@@ -48,26 +48,21 @@ GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapId, FieldSyste
     binocularsData = Heap_AllocFromHeapAtEnd(heapId, sizeof(GreatMarshBinoculars));
     binocularsData->fieldSystem = fieldSystem;
 
-    {
-        u8 randIndex;
-        BinocularCoords *coordData;
+    u8 randIndex;
+    BinocularCoords *coordData;
 
-        coordData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 11, 4);
+    coordData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 11, HEAP_ID_FIELD);
 
-        for (i = 0; i < BINOCULARS_CYCLE_COUNT; i++) {
-            randIndex = LCRNG_RandMod(36);
-            binocularsData->coordsList[i].x = coordData[randIndex].x;
-            binocularsData->coordsList[i].z = coordData[randIndex].z;
-        }
-
-        {
-            binocularsData->coordsList[BINOCULARS_CYCLE_COUNT].x = Player_GetXPos(fieldSystem->playerAvatar);
-            binocularsData->coordsList[BINOCULARS_CYCLE_COUNT].z = Player_GetZPos(fieldSystem->playerAvatar);
-            binocularsData->lookoutMapId = fieldSystem->location->mapId;
-        }
-
-        Heap_FreeToHeap(coordData);
+    for (i = 0; i < BINOCULARS_CYCLE_COUNT; i++) {
+        randIndex = LCRNG_RandMod(36);
+        binocularsData->coordsList[i].x = coordData[randIndex].x;
+        binocularsData->coordsList[i].z = coordData[randIndex].z;
     }
+
+    binocularsData->coordsList[BINOCULARS_CYCLE_COUNT].x = Player_GetXPos(fieldSystem->playerAvatar);
+    binocularsData->coordsList[BINOCULARS_CYCLE_COUNT].z = Player_GetZPos(fieldSystem->playerAvatar);
+    binocularsData->lookoutMapId = fieldSystem->location->mapId;
+    Heap_FreeToHeap(coordData);
 
     return binocularsData;
 }
@@ -83,7 +78,7 @@ void GreatMarshBinoculars_SetNextLocationWithCoords(const u8 cycleNum, GreatMars
     int nextX, nextZ;
 
     if (cycleNum == 0) {
-        int v3 = 240;
+        int v3 = 240; // member number for NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX. Not sure what it represents exactly.
         nextX = binocularsData->coordsList[cycleNum].x / 32;
         nextZ = binocularsData->coordsList[cycleNum].z / 32;
         nextMapId = sub_02039F10(v3, nextX, nextZ);

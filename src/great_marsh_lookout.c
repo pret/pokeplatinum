@@ -38,10 +38,10 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan);
 
 void GreatMarshLookout_Init(FieldSystem *fieldSystem)
 {
-    LookoutData *lookout = Heap_AllocFromHeapAtEnd(11, sizeof(LookoutData));
+    LookoutData *lookout = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(LookoutData));
 
-    lookout->spriteResources = GreatMarshLookout_AllocSpriteResources(11);
-    lookout->binocularsData = GreatMarshBinoculars_InitData(11, fieldSystem);
+    lookout->spriteResources = GreatMarshLookout_AllocSpriteResources(HEAP_ID_FIELDMAP);
+    lookout->binocularsData = GreatMarshBinoculars_InitData(HEAP_ID_FIELDMAP, fieldSystem);
     lookout->state = 0;
     lookout->numCycles = 0;
 
@@ -96,7 +96,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
             ov6_022427F4(lookout->spriteResources);
             lookout->timer = 0;
             Sound_PlayEffect(1657); // binoculars switch
-            sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, 11);
+            sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, HEAP_ID_FIELDMAP);
             lookout->state = 5;
         } else {
             MapObject_SetHidden(playerAvatar, 0);
@@ -111,7 +111,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
             GreatMarshBinoculars_SetNextLocationWithCoords(lookout->numCycles, lookout->binocularsData);
             lookout->nextLocation = GreatMarshBinoculars_GetLocation(lookout->binocularsData);
             Sound_PlayEffect(1657);
-            sub_02056B30(taskMan, 3, 16, 0xffff, 0x0, 6, 1, 11);
+            sub_02056B30(taskMan, 3, 16, 0xffff, 0x0, 6, 1, HEAP_ID_FIELDMAP);
             lookout->state = 6;
         }
         break;
