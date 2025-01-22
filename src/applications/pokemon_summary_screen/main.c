@@ -830,14 +830,14 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
             }
         }
 
-        summaryScreen->data->selectedSlot = summaryScreen->cursor;
+        summaryScreen->data->selectedMoveSlot = summaryScreen->cursor;
         summaryScreen->data->returnMode = SUMMARY_RETURN_SELECT;
         return SUMMARY_STATE_TRANSITION_OUT;
     }
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-        summaryScreen->data->selectedSlot = LEARNED_MOVES_MAX;
+        summaryScreen->data->selectedMoveSlot = LEARNED_MOVES_MAX;
         summaryScreen->data->returnMode = SUMMARY_RETURN_CANCEL;
         return SUMMARY_STATE_TRANSITION_OUT;
     }

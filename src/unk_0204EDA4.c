@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/moves.h"
+
 #include "struct_defs/struct_020997B8.h"
 
 #include "field_script_context.h"
@@ -19,41 +21,36 @@
 
 static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16 *param3);
 
-BOOL ScrCmd_1C6(ScriptContext *param0)
+BOOL ScrCmd_SelectPartyMonMove(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
-    void **v1;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    *partyData = FieldSystem_OpenSummaryScreenSelectMove(HEAP_ID_FIELD_TASK, ctx->fieldSystem, partySlot);
 
-    v1 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-    *v1 = sub_0203D6E4(32, param0->fieldSystem, v0);
-
-    ScriptContext_Pause(param0, ScriptContext_WaitForApplicationExit);
-    return 1;
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
+    return TRUE;
 }
 
-BOOL ScrCmd_1C7(ScriptContext *param0)
+BOOL ScrCmd_GetSelectedPartyMonMove(ScriptContext *ctx)
 {
-    void **v0;
-    u16 *v1;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    GF_ASSERT(*partyData != 0);
+    *destVar = PokemonSummary_GetSelectedMoveSlot(*partyData);
 
-    v1 = ScriptContext_GetVarPointer(param0);
-    v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-    GF_ASSERT(*v0 != 0);
-    *v1 = sub_0203D750(*v0);
-
-    if (*v1 == 4) {
-        *v1 = 0xff;
+    if (*destVar == LEARNED_MOVES_MAX) {
+        *destVar = 0xFF;
     }
 
-    Heap_FreeToHeap(*v0);
-    *v0 = NULL;
+    Heap_FreeToHeap(*partyData);
+    *partyData = NULL;
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_21E(ScriptContext *param0)
+BOOL ScrCmd_Dummy21E(ScriptContext *ctx)
 {
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_21F(ScriptContext *param0)
