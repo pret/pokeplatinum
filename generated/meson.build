@@ -6,6 +6,8 @@
 
 # This must be declared here instead of in tools/meson.build, as some tools depend
 # on metang-generated constants.
+subproject('metang')
+
 metang_exe = find_program('metang', native: true)
 
 enum_generators = {
