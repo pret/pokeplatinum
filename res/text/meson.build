@@ -767,8 +767,11 @@ pokedex_message_banks = custom_target('pokedex_message_banks',
 
 message_bank_files += pokedex_message_banks
 
-message_banks_narc = custom_target('pl_msg.narc',
-    output: 'pl_msg.narc',
+message_banks = custom_target('pl_msg.narc',
+    output: [
+        'pl_msg.narc',
+        'pl_msg.naix',
+    ],
     input: gmm_to_bin_gen.process(message_bank_files),
     command: [
         narc_exe, 'create',
@@ -778,5 +781,7 @@ message_banks_narc = custom_target('pl_msg.narc',
         '@PRIVATE_DIR@',
     ]
 )
+message_banks_index = message_banks[1]
 
-nitrofs_files += message_banks_narc
+nitrofs_files += message_banks[0]
+naix_headers += message_banks_index

@@ -1131,15 +1131,20 @@ scr_seq_files = files(
     'scripts_route_230.s',
 )
 
-# Field scripts have a dependency on `trdata.naix`, and so they require a
-# custom generator.
+# Field scripts declare a direct dependency on `trdata.naix` for use in the
+# `StartTrainerBattle` command. Ordinarily, we would try to declare this as an
+# order-only dependency just to ensure that it is built before this generator
+# can be run, then let the individual script files include it as needed, similar
+# to message banks. But, there is only one `trdata.naix` file, and script files
+# are fast to build anyways, so this is the preferred solution.
 field_script_gen = generator(make_script_bin_sh,
     arguments: make_script_bin_args,
+    output: '@BASENAME@',
+    depfile: '@BASENAME@.d',
     depends: [
-        make_script_bin_deps,
+        message_banks_index, # TODO: Can this be an order-only dependency...?
         trdata_naix,
     ],
-    output: '@BASENAME@',
 )
 
 scr_seq_narc_order = files('scripts.order')
@@ -1151,7 +1156,7 @@ scr_seq_narc = custom_target('scr_seq.narc',
     ],
     input: field_script_gen.process(
         scr_seq_files,
-        extra_args: ['--out-dir', scr_seq_private_dir]
+        extra_args: ['--depfile', '--out-dir', scr_seq_private_dir]
     ),
     command: [
         narc_exe, 'create',

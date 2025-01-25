@@ -33,7 +33,7 @@ make_script_bin_args = [
 ]
 
 make_script_bin_deps = [
-    message_banks_narc, # for GMM headers
+    message_banks_index, # for GMM headers
     asm_consts_generators, # for ASM headers
     c_consts_generators, # for C headers
 ]
