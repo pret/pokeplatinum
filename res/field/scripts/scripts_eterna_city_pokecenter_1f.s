@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_eterna_city_pokecenter_1f.h"
 
     .data
 

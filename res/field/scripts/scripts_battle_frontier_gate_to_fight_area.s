@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_battle_frontier_gate_to_fight_area.h"
 
     .data
 

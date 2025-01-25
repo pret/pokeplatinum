@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_team_galactic_eterna_building_4f.h"
 
     .data
 

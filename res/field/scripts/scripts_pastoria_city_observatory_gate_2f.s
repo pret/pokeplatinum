@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_pastoria_city_observatory_gate_2f.h"
 
     .data
 

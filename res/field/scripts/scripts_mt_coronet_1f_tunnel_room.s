@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_mt_coronet_1f_tunnel_room.h"
 
     .data
 

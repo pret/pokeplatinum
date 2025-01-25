@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_jubilife_city_condominiums_2f.h"
 
     .data
 

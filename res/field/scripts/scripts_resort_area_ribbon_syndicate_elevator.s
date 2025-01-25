@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_resort_area_ribbon_syndicate_elevator.h"
 
     .data
 

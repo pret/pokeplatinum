@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_veilstone_city_pokecenter_b1f.h"
 
     .data
 

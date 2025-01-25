@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_celestic_town_northwest_house.h"
 
     .data
 

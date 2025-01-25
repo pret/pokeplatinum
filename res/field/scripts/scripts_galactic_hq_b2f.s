@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_galactic_hq_b2f.h"
 
     .data
 

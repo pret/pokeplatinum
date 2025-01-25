@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_pokemon_league_flint_room.h"
 
     .data
 

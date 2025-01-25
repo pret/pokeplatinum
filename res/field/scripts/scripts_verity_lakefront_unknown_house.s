@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_verity_lakefront_unknown_house.h"
 
     .data
 

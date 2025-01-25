@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_hearthome_city_southeast_house_2f.h"
 
     .data
 

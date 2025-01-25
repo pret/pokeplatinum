@@ -4,6 +4,8 @@
 #include "field/scripts/scr_seq.naix"
 #include "text/pl_msg.naix"
 
+#include "map_header.h" // Only for Intellisense/LSPs
+
 static const MapHeader sMapHeaders[] = {
     [MAP_HEADER_EVERYWHERE] = {
         .unk_00 = 0x0,

@@ -26,6 +26,7 @@
 
 #include "constdata/const_020EAB80.h"
 #include "constdata/const_020EAC58.h"
+#include "res/text/pl_msg.naix"
 
 static BOOL FieldTask_RunScript(FieldTask *taskManager);
 static ScriptManager *ScriptManager_New();
@@ -195,100 +196,100 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     u16 retScriptID = scriptID;
 
     if (retScriptID >= 10490) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0499, 541);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0499, message_bank_unk_0541);
         retScriptID -= 10490;
     } else if (retScriptID >= 10450) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0500, 16);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0500, message_bank_unk_0016);
         retScriptID -= 10450;
     } else if (retScriptID >= 10400) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0400, 203);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0400, message_bank_unk_0203);
         retScriptID -= 10400;
     } else if (retScriptID >= 10300) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1051, 552);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1051, message_bank_unk_0552);
         retScriptID -= 10300;
     } else if (retScriptID >= 10200) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0407, 379);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0407, message_bank_unk_0379);
         retScriptID -= 10200;
     } else if (retScriptID >= 10150) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1116, 621);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1116, message_bank_unk_0621);
         retScriptID -= 10150;
     } else if (retScriptID >= 10100) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1115, 622);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1115, message_bank_unk_0622);
         retScriptID -= 10100;
     } else if (retScriptID >= 10000) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0409, 381);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0409, message_bank_unk_0381);
         retScriptID -= 10000;
     } else if (retScriptID >= 9950) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0411, 383);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0411, message_bank_unk_0383);
         retScriptID -= 9950;
     } else if (retScriptID >= 9900) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0397, 213);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0397, message_bank_common_strings);
         retScriptID -= 9900;
     } else if (retScriptID >= 9800) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0212, 217);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0212, message_bank_unk_0217);
         retScriptID -= 9800;
     } else if (retScriptID >= 9700) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0422, 429);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0422, message_bank_unk_0429);
         retScriptID -= 9700;
     } else if (retScriptID >= 9600) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0412, 213);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0412, message_bank_common_strings);
         retScriptID -= 9600;
     } else if (retScriptID >= 9500) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0501, 547);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0501, message_bank_unk_0547);
         retScriptID -= 9500;
     } else if (retScriptID >= 9400) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0426, 432);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0426, message_bank_unk_0432);
         retScriptID -= 9400;
     } else if (retScriptID >= 9300) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0406, 374);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0406, message_bank_unk_0374);
         retScriptID -= 9300;
     } else if (retScriptID >= 9200) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0423, 430);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0423, message_bank_unk_0430);
         retScriptID -= 9200;
     } else if (retScriptID >= 9100) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0000, 11);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0000, message_bank_unk_0011);
         retScriptID -= 9100;
     } else if (retScriptID >= 9000) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0213, 221);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0213, message_bank_unk_0221);
         retScriptID -= 9000;
     } else if (retScriptID >= 8970) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0425, 7);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0425, message_bank_unk_0007);
         retScriptID -= 8970;
     } else if (retScriptID >= 8950) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0498, 539);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0498, message_bank_unk_0539);
         retScriptID -= 8950;
     } else if (retScriptID >= 8900) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0424, 431);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0424, message_bank_unk_0431);
         retScriptID -= 8900;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_SAFARI_ZONE) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0497, 538);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0497, message_bank_unk_0538);
         retScriptID -= SCRIPT_ID_OFFSET_SAFARI_ZONE;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_HIDDEN_ITEMS) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0408, 380);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0408, message_bank_unk_0380);
         retScriptID -= SCRIPT_ID_OFFSET_HIDDEN_ITEMS;
     } else if (retScriptID >= 7000) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0404, 369);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0404, message_bank_unk_0369);
         retScriptID -= 7000;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_DOUBLE_BATTLES) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1114, 213);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1114, message_bank_common_strings);
         retScriptID -= SCRIPT_ID_OFFSET_DOUBLE_BATTLES;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_SINGLE_BATTLES) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1114, 213);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1114, message_bank_common_strings);
         retScriptID -= SCRIPT_ID_OFFSET_SINGLE_BATTLES;
     } else if (retScriptID >= 2800) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0413, 397);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0413, message_bank_unk_0397);
         retScriptID -= 2800;
     } else if (retScriptID >= 2500) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0001, 17);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0001, message_bank_unk_0017);
         retScriptID -= 2500;
     } else if (retScriptID >= 2000) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0211, 213);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0211, message_bank_common_strings);
         retScriptID -= 2000;
     } else if (retScriptID >= 1) {
         ScriptContext_LoadFromCurrentMap(fieldSystem, ctx);
         retScriptID -= 1;
     } else {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0402, 355);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0402, message_bank_unk_0355);
         retScriptID = 0;
     }
 

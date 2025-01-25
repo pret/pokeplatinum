@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_route_218_gate_to_canalave_city.h"
 
     .data
 

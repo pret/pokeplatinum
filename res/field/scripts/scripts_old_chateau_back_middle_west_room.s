@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_old_chateau_back_middle_west_room.h"
 
     .data
 

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_sunyshore_city_gym_room_1.h"
 
     .data
 

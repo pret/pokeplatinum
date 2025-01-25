@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_route_228_gate_to_route_226.h"
 
     .data
 

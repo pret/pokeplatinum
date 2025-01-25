@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_oreburgh_mine_b1f.h"
 
     .data
 

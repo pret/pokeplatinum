@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_turnback_cave_entrance.h"
 
     .data
 

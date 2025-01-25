@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_distortion_world_turnback_cave_room.h"
 
     .data
 

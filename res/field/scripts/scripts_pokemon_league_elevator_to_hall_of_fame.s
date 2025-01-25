@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_pokemon_league_elevator_to_hall_of_fame.h"
 
     .data
 

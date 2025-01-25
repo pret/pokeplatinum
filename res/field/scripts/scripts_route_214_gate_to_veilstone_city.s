@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_route_214_gate_to_veilstone_city.h"
 
     .data
 

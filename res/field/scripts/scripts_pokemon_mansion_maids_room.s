@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_pokemon_mansion_maids_room.h"
 
     .data
 

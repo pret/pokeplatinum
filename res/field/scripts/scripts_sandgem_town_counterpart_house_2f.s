@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_sandgem_town_counterpart_house_2f.h"
 
     .data
 

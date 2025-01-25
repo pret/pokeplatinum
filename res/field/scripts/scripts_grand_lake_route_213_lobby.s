@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/gmm/message_bank_grand_lake_route_213_lobby.h"
 
     .data
 
