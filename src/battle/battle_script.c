@@ -9,8 +9,8 @@
 #include "constants/species.h"
 #include "constants/trainer.h"
 #include "consts/gender.h"
-#include "consts/sdat.h"
 #include "generated/abilities.h"
+#include "generated/sdat.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/sprite_decl.h"

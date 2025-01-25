@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/sdat.h"
+#include "generated/sdat.h"
 
 #include "gmm/message_bank_common_strings_2.h"
 #include "text/pl_msg.naix"

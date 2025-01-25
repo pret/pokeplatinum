@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
-#include "consts/sdat.h"
+#include "generated/sdat.h"
 
 #include "struct_defs/struct_0201CFEC.h"
 #include "struct_defs/struct_020698E4.h"

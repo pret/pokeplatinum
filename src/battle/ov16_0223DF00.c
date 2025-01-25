@@ -8,8 +8,8 @@
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "consts/battle.h"
-#include "consts/game_records.h"
 #include "generated/species.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pokedexdata_decl.h"

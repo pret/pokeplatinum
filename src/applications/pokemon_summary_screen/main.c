@@ -8,7 +8,7 @@
 #include "constants/pokemon.h"
 #include "constants/string.h"
 #include "consts/moves.h"
-#include "consts/sdat.h"
+#include "generated/sdat.h"
 #include "generated/species.h"
 
 #include "struct_defs/struct_02099F80.h"

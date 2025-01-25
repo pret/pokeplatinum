@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/map.h"
 #include "consts/pokemon.h"
+#include "generated/map_headers.h"
 
 #include "data/map_headers.h"
 #include "global/pm_version.h"

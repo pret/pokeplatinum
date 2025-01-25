@@ -5,7 +5,7 @@
 
 #include "constants/field/window.h"
 #include "constants/narc.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 

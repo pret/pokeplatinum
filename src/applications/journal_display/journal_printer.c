@@ -5,7 +5,8 @@
 
 #include "constants/trainer.h"
 #include "consts/gender.h"
-#include "consts/journal.h"
+#include "generated/journal_location_events.h"
+#include "generated/journal_online_events.h"
 
 #include "applications/journal_display/journal_controller.h"
 #include "text/gmm/message_bank_journal_entries.h"

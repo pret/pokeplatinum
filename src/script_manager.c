@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "data/field/hidden_items.h"
 #include "field/field_system.h"

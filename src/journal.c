@@ -3,9 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/badges.h"
-#include "consts/journal.h"
-#include "consts/map.h"
+#include "generated/badges.h"
+#include "generated/journal_location_events.h"
+#include "generated/journal_online_events.h"
+#include "generated/map_headers.h"
 
 #include "text/gmm/message_bank_location_names.h"
 #include "trainers/trdata.naix"

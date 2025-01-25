@@ -12,20 +12,30 @@ metang_exe = find_program('metang', native: true)
 
 enum_generators = {
     'abilities': ['--tag-name', 'Ability'],
+    'badges': ['--tag-name', 'Badge'],
     'catching_show_points_category': ['--tag-name', 'CatchingShowPointsCategory'],
     'egg_groups': ['--tag-name', 'EggGroup'],
     'evolution_methods': ['--tag-name', 'EvolutionMethod'],
     'exp_rates': ['--tag-name', 'ExpRate'],
+    'game_records': ['--tag-name', 'GameRecord'],
     'gender_ratios': ['--tag-name', 'GenderRatio'],
     'item_hold_effects': ['--tag-name', 'ItemHoldEffect'],
     'items': ['--tag-name', 'Item'],
+    'journal_location_events': ['--tag-name', 'JournalLocationEventType'],
+    'journal_online_events': ['--tag-name', 'JournalOnlineEventType'],
+    'map_headers': ['--tag-name', 'MapHeader'],
+    'movement_actions': ['--tag-name', 'MovementAction'],
     'moves': ['--tag-name', 'Move'],
     'pal_park_land_area': ['--tag-name', 'PalParkLandArea'],
     'pal_park_water_area': ['--tag-name', 'PalParkWaterArea'],
     'pokemon_colors': ['--tag-name', 'PokemonColor'],
     'pokemon_types': ['--tag-name', 'PokemonType'],
+    'poketch_apps': ['--tag-name', 'PoketchAppID'],
+    'save_types': ['--tag-name', 'SaveType'],
+    'sdat': ['--tag-name', 'SDATID'],
     'shadow_sizes': ['--tag-name', 'ShadowSize'],
     'species': ['--tag-name', 'Species'],
+    'trainer_score_events': ['--tag-name', 'TrainerScoreEvent'],
 }
 
 foreach gen_key : enum_generators.keys()

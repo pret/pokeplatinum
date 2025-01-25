@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
-#include "consts/journal.h"
+#include "generated/journal_location_events.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"

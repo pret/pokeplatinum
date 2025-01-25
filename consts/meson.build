@@ -2,20 +2,12 @@
 constgen_py = find_program('constgen_py', native: true)
 
 consts_manifest_basenames = [
-    'badges',
     'battle',
     'battle_subscripts',
     'btlcmd',
-    'game_records',
     'gender',
-    'journal',
-    'map',
-    'movement',
     'moves',
     'pokemon',
-    'poketch',
-    'scrcmd',
-    'sdat',
     'trainer',
     'trainer_ai',
 ]

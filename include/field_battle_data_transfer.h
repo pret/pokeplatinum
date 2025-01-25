@@ -2,7 +2,7 @@
 #define POKEPLATINUM_FIELD_BATTLE_DATA_TRANSFER_H
 
 #include "constants/battle.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"

@@ -1,4 +1,4 @@
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "field/events/zone_event.naix"
 #include "field/scripts/scr_seq.naix"

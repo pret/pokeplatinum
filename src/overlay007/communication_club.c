@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/communication/comm_type.h"
-#include "consts/sdat.h"
+#include "generated/sdat.h"
 
 #include "field/field_system.h"
 #include "gmm/message_bank_unk_0353.h"
