@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/trainer.h"
-#include "consts/gender.h"
+#include "generated/genders.h"
 #include "generated/journal_location_events.h"
 #include "generated/journal_online_events.h"
 

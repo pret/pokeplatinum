@@ -9,7 +9,6 @@
 #include "constants/overworld_weather.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
-#include "consts/battle.h"
 #include "generated/items.h"
 #include "generated/species.h"
 
@@ -444,7 +443,7 @@ void FieldBattleDTO_UpdatePokedex(const FieldBattleDTO *dto, FieldSystem *fieldS
     Pokedex_Copy(dto->pokedex, pokedex);
 }
 
-static const enum Terrain sTerrainForBackground[] = {
+static const enum BattleTerrain sTerrainForBackground[] = {
     [BACKGROUND_PLAIN] = TERRAIN_PLAIN,
     [BACKGROUND_WATER] = TERRAIN_WATER,
     [BACKGROUND_CITY] = TERRAIN_BUILDING,

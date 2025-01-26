@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 40,
     "effect": {
-        "type": "BATTLE_EFFECT_IGNORE_EVASION_REMOVE_GHOST_IMMUNE",
+        "type": "BATTLE_EFFECT_FORESIGHT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

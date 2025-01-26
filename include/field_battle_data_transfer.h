@@ -51,7 +51,7 @@ typedef struct FieldBattleDTO {
     JournalEntry *journalEntry;
     UnkStruct_02027F8C *unk_124;
     int background;
-    enum Terrain terrain;
+    enum BattleTerrain terrain;
     int mapLabelTextID;
     int mapHeaderID;
     enum TimeOfDay timeOfDay;

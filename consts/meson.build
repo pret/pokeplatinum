@@ -2,14 +2,8 @@
 constgen_py = find_program('constgen_py', native: true)
 
 consts_manifest_basenames = [
-    'battle',
-    'battle_subscripts',
-    'btlcmd',
-    'gender',
-    'moves',
     'pokemon',
     'trainer',
-    'trainer_ai',
 ]
 
 generated_consts_root = meson.current_build_dir()

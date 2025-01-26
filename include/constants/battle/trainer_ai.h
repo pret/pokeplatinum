@@ -1,21 +1,10 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_TRAINER_AI_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_TRAINER_AI_H
 
-#ifndef __ASM_PM_
-#include "consts/trainer_ai.h"
-
-enum AIActionChoice {
-    AI_ENEMY_ATTACK_1 = 0,
-    AI_ENEMY_ATTACK_2,
-    AI_ENEMY_ATTACK_3,
-    AI_ENEMY_ATTACK_4,
-    AI_ENEMY_ESCAPE,
-    AI_ENEMY_SAFARI,
-    AI_ENEMY_SWITCH,
-};
-
-#define AI_CONTEXT (battleCtx->aiContext)
-#endif
+#include "generated/ai_action_choices.h"
+#include "generated/ai_flags.h"
+#include "generated/ai_load_type_targets.h"
+#include "generated/ai_weather_types.h"
 
 #define AI_INIT_SCORE_MOVE_1 (1 << 0)
 #define AI_INIT_SCORE_MOVE_2 (1 << 1)
@@ -55,5 +44,12 @@ enum AIActionChoice {
 // flag determining if they roll for damage or not
 #define USE_MAX_DAMAGE  0
 #define ROLL_FOR_DAMAGE 1
+
+#define CHECK_DISABLE 0
+#define CHECK_ENCORE  1
+
+#define CHECK_HIGHER_THAN_TARGET 0
+#define CHECK_LOWER_THAN_TARGET  1
+#define CHECK_EQUAL_TO_TARGET    2
 
 #endif

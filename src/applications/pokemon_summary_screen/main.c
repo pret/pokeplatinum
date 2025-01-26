@@ -7,7 +7,6 @@
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
-#include "consts/moves.h"
 #include "generated/sdat.h"
 #include "generated/species.h"
 

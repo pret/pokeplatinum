@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/genders.h"
 #include "generated/sdat.h"
 
 #include "field/field_system_decl.h"
@@ -15,7 +16,6 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "game_overlay.h"
-#include "gender.h"
 #include "heap.h"
 #include "inlines.h"
 #include "save_player.h"

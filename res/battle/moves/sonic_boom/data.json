@@ -6,7 +6,7 @@
     "accuracy": 90,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_10_DAMAGE_FLAT",
+        "type": "BATTLE_EFFECT_20_DAMAGE_FLAT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

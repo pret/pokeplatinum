@@ -6,7 +6,6 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
-#include "consts/battle.h"
 #include "generated/game_records.h"
 #include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"

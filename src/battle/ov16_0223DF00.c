@@ -7,7 +7,6 @@
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
-#include "consts/battle.h"
 #include "generated/species.h"
 #include "generated/trainer_score_events.h"
 
@@ -114,7 +113,7 @@ u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
 u8 Battler_Side(BattleSystem *battleSystem, int param1);
 void *ov16_0223E220(BattleSystem *battleSystem);
 PCBoxes *ov16_0223E228(BattleSystem *battleSystem);
-enum Terrain BattleSystem_Terrain(BattleSystem *battleSys);
+enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
 int ov16_0223E240(BattleSystem *battleSystem);
 int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
@@ -505,7 +504,7 @@ PCBoxes *ov16_0223E228(BattleSystem *battleSystem)
     return battleSystem->pcBoxes;
 }
 
-enum Terrain BattleSystem_Terrain(BattleSystem *battleSys)
+enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys)
 {
     if (battleSys->terrain > TERRAIN_MAX || battleSys->terrain < TERRAIN_PLAIN) {
         return TERRAIN_MAX;

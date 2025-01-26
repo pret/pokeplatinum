@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/pokemon.h"
 #include "generated/game_records.h"
-#include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/pokedexdata_decl.h"

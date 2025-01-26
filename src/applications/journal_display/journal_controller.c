@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "consts/gender.h"
+#include "generated/genders.h"
 #include "generated/sdat.h"
 
 #include "struct_defs/struct_02099F80.h"

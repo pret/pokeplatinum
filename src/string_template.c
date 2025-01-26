@@ -7,9 +7,9 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
-#include "consts/gender.h"
-#include "consts/moves.h"
 #include "generated/abilities.h"
+#include "generated/genders.h"
+#include "generated/moves.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/trainer_data.h"
