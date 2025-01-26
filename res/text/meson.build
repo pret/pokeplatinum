@@ -783,5 +783,5 @@ message_banks = custom_target('pl_msg.narc',
 )
 message_banks_index = message_banks[1]
 
-nitrofs_files += message_banks[0]
+nitrofs_files += message_banks
 naix_headers += message_banks_index

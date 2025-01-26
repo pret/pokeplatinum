@@ -146,6 +146,8 @@ subdir('lib')
 ############################################################
 subdir('res')
 
+# Phony-like target to build all generated data files
+alias_target('data', nitrofs_files, gen_species_headers)
 
 ############################################################
 ###                     ARM9 BINARY                      ###

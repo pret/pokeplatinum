@@ -943,7 +943,7 @@ trainer_party_gen = generator(
 
 trainers_order = files('trainers.order')
 
-trdata_target = custom_target('trdata.narc',
+trdata_narc = custom_target('trdata.narc',
     output: [
         'trdata.narc',
         'trdata.naix',
@@ -959,8 +959,7 @@ trdata_target = custom_target('trdata.narc',
         '@PRIVATE_DIR@',
     ],
 )
-trdata_narc = trdata_target[0]
-trdata_naix = trdata_target[1]
+trdata_naix = trdata_narc[1]
 
 # Do not generate an NAIX for `trpoke.narc`; it would go wholly unused
 trpoke_narc = custom_target('trpoke.narc',
