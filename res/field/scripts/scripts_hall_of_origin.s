@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_hall_of_origin.h"
+#include "res/text/bank/hall_of_origin.h"
 
     .data
 

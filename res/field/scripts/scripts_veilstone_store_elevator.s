@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_veilstone_store_elevator.h"
+#include "res/text/bank/veilstone_store_elevator.h"
 
     .data
 

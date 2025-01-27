@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "graphics/pokemon_summary_screen/pl_pst_gra.naix"
-#include "text/gmm/message_bank_ribbon_names.h"
+#include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix"
+#include "res/text/bank/ribbon_names.h"
 
 typedef struct {
     u32 ribbonID;

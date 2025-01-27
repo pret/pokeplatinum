@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_foreign_building.h"
+#include "res/text/bank/foreign_building.h"
 
     .data
 

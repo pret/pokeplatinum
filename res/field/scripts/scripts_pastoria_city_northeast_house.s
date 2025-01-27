@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_pastoria_city_northeast_house.h"
+#include "res/text/bank/pastoria_city_northeast_house.h"
 
     .data
 

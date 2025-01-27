@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_iceberg_ruins.h"
+#include "res/text/bank/iceberg_ruins.h"
 
     .data
 

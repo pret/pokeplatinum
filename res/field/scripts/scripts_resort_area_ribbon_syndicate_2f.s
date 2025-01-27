@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_resort_area_ribbon_syndicate_2f.h"
+#include "res/text/bank/resort_area_ribbon_syndicate_2f.h"
 
     .data
 

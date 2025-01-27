@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_spear_pillar_palkia.h"
+#include "res/text/bank/spear_pillar_palkia.h"
 
     .data
 

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_cycle_shop.h"
+#include "res/text/bank/cycle_shop.h"
 
     .data
 

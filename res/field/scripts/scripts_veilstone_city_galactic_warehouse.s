@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_veilstone_city_galactic_warehouse.h"
+#include "res/text/bank/veilstone_city_galactic_warehouse.h"
 
     .data
 

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_sandgem_town_mart.h"
+#include "res/text/bank/sandgem_town_mart.h"
 
     .data
 

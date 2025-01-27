@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_game_corner.h"
+#include "res/text/bank/game_corner.h"
 
     .data
 

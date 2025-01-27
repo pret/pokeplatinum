@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_canalave_city_harbor_inn.h"
+#include "res/text/bank/canalave_city_harbor_inn.h"
 
     .data
 

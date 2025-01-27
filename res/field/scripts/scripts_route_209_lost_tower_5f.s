@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_route_209_lost_tower_5f.h"
+#include "res/text/bank/route_209_lost_tower_5f.h"
 
     .data
 

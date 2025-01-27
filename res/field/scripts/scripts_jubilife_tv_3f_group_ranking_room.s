@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_jubilife_tv_3f_group_ranking_room.h"
+#include "res/text/bank/jubilife_tv_3f_group_ranking_room.h"
 
     .data
 

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_spear_pillar_distorted.h"
+#include "res/text/bank/spear_pillar_distorted.h"
 
     .data
 

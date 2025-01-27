@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_hearthome_city_pokemon_fan_club.h"
+#include "res/text/bank/hearthome_city_pokemon_fan_club.h"
 
     .data
 

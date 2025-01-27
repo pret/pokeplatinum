@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_battle_tower_multi_battle_room.h"
+#include "res/text/bank/battle_tower_multi_battle_room.h"
 
     .data
 

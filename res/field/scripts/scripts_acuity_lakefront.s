@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_acuity_lakefront.h"
+#include "res/text/bank/acuity_lakefront.h"
 
     .data
 

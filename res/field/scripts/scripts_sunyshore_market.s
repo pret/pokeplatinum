@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_sunyshore_market.h"
+#include "res/text/bank/sunyshore_market.h"
 
     .data
 

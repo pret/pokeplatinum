@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_poketch_co_1f.h"
+#include "res/text/bank/poketch_co_1f.h"
 
     .data
 

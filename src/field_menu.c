@@ -25,7 +25,6 @@
 #include "field/field_system.h"
 #include "functypes/funcptr_0203B7C0.h"
 #include "functypes/funcptr_0203BC5C.h"
-#include "gmm/message_bank_unk_0367.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
@@ -97,6 +96,7 @@
 
 #include "constdata/const_020EA02C.h"
 #include "constdata/const_020F1E88.h"
+#include "res/text/bank/unk_0367.h"
 
 typedef enum FieldMenuPos {
     MENU_POS_POKEDEX,

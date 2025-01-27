@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_villa.h"
+#include "res/text/bank/villa.h"
 
     .data
 

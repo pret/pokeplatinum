@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_grand_lake_valor_lakefront_east_house.h"
+#include "res/text/bank/grand_lake_valor_lakefront_east_house.h"
 
     .data
 

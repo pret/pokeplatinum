@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_sunyshore_city_east_house.h"
+#include "res/text/bank/sunyshore_city_east_house.h"
 
     .data
 

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_pal_park.h"
+#include "res/text/bank/pal_park.h"
 
     .data
 

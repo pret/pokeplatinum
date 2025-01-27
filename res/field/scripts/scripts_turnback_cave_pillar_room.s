@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_turnback_cave_pillar_room.h"
+#include "res/text/bank/turnback_cave_pillar_room.h"
 
     .data
 

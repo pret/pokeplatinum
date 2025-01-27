@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_eterna_forest.h"
+#include "res/text/bank/eterna_forest.h"
 
     .data
 

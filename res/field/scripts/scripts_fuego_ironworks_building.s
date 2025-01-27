@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_fuego_ironworks_building.h"
+#include "res/text/bank/fuego_ironworks_building.h"
 
     .data
 

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_poffin_house.h"
+#include "res/text/bank/poffin_house.h"
 
     .data
 

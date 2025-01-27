@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_eterna_city_underground_man_house.h"
+#include "res/text/bank/eterna_city_underground_man_house.h"
 
     .data
 

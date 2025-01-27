@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_solaceon_town_pokemon_news_press.h"
+#include "res/text/bank/solaceon_town_pokemon_news_press.h"
 
     .data
 

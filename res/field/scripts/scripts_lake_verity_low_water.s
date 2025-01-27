@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_lake_verity_low_water.h"
+#include "res/text/bank/lake_verity_low_water.h"
 
     .data
 

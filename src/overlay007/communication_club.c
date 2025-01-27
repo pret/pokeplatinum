@@ -7,7 +7,6 @@
 #include "generated/sdat.h"
 
 #include "field/field_system.h"
-#include "gmm/message_bank_unk_0353.h"
 
 #include "bg_window.h"
 #include "communication_information.h"
@@ -34,6 +33,8 @@
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
+
+#include "res/text/bank/unk_0353.h"
 
 typedef struct CommClubManager CommClubManager;
 typedef void (*CommClubManTaskFunc)(SysTask *, void *);

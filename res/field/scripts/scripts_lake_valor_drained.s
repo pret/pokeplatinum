@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_lake_valor_drained.h"
+#include "res/text/bank/lake_valor_drained.h"
 
     .data
 

@@ -6,12 +6,9 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 #include "generated/sdat.h"
+#include "generated/text_banks.h"
 
 #include "struct_defs/struct_02099F80.h"
-
-#include "graphics/options_menu/config_gra.naix"
-#include "text/gmm/message_bank_options_menu.h"
-#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "core_sys.h"
@@ -36,6 +33,9 @@
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
+
+#include "res/graphics/options_menu/config_gra.naix"
+#include "res/text/bank/options_menu.h"
 
 #define MENU_TITLE_BASE_TILE      10
 #define MENU_TITLE_WIDTH          12
@@ -370,7 +370,7 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
         LoadBgTiles(menuData);
         menuData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE,
             NARC_INDEX_MSGDATA__PL_MSG,
-            message_bank_options_menu,
+            TEXT_BANK_OPTIONS_MENU,
             menuData->heapID);
         LoadAllEntryChoices(menuData);
         break;

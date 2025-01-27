@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_survival_area.h"
+#include "res/text/bank/survival_area.h"
 
     .data
 

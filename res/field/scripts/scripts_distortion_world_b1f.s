@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_distortion_world_b1f.h"
+#include "res/text/bank/distortion_world_b1f.h"
 
     .data
 

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_stark_mountain_outside.h"
+#include "res/text/bank/stark_mountain_outside.h"
 
     .data
 

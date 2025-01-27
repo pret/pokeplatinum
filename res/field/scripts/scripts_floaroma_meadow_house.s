@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_floaroma_meadow_house.h"
+#include "res/text/bank/floaroma_meadow_house.h"
 
     .data
 

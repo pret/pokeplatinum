@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_solaceon_town_east_house.h"
+#include "res/text/bank/solaceon_town_east_house.h"
 
     .data
 

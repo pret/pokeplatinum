@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_newmoon_island_forest.h"
+#include "res/text/bank/newmoon_island_forest.h"
 
     .data
 

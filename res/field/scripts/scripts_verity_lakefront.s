@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_verity_lakefront.h"
+#include "res/text/bank/verity_lakefront.h"
 
     .data
 

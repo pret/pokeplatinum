@@ -40,7 +40,7 @@ script_bin_gen = generator(make_script_bin_sh,
         '@INPUT@',
     ],
     depends: [
-        message_banks_index,
+        text_banks,
         asm_consts_generators,
         c_consts_generators,
         trdata_naix,

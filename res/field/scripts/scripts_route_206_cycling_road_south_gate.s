@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_route_206_cycling_road_south_gate.h"
+#include "res/text/bank/route_206_cycling_road_south_gate.h"
 
     .data
 

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_twinleaf_town.h"
+#include "res/text/bank/twinleaf_town.h"
 
     .data
 

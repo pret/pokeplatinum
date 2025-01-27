@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_twinleaf_town_rival_house_2f.h"
+#include "res/text/bank/twinleaf_town_rival_house_2f.h"
 
     .data
 

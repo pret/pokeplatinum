@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_oreburgh_city.h"
+#include "res/text/bank/oreburgh_city.h"
 
     .data
 

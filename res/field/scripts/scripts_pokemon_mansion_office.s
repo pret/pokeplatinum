@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_pokemon_mansion_office.h"
+#include "res/text/bank/pokemon_mansion_office.h"
 
     .data
 

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_celestic_town.h"
+#include "res/text/bank/celestic_town.h"
 
     .data
 

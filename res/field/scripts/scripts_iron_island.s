@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_iron_island.h"
+#include "res/text/bank/iron_island.h"
 
     .data
 

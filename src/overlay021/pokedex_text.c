@@ -5,8 +5,7 @@
 
 #include "constants/narc.h"
 #include "constants/species.h"
-
-#include "text/pl_msg.naix"
+#include "generated/text_banks.h"
 
 #include "error_handling.h"
 #include "heap.h"
@@ -62,12 +61,12 @@ Strbuf *PokedexText_NameNumber(int species, int language, enum HeapId heapID)
         return MessageUtil_SpeciesName(species, heapID);
     } else {
         const int nameNumberBanks[] = {
-            message_bank_unk_0717,
-            message_bank_species_name_number_1,
-            message_bank_unk_0713,
-            message_bank_unk_0714,
-            message_bank_species_name_number_2,
-            message_bank_species_name_number_3
+            TEXT_BANK_UNK_0717,
+            TEXT_BANK_SPECIES_NAME_NUMBER_1,
+            TEXT_BANK_UNK_0713,
+            TEXT_BANK_UNK_0714,
+            TEXT_BANK_SPECIES_NAME_NUMBER_2,
+            TEXT_BANK_SPECIES_NAME_NUMBER_3
         };
         bankID = nameNumberBanks[index];
         index = dexNum;
@@ -87,15 +86,15 @@ Strbuf *PokedexText_Category(int species, int language, enum HeapId heapID)
 
     if (index == NUM_LANGUAGES) {
         index = species;
-        bankID = message_bank_unk_0711;
+        bankID = TEXT_BANK_UNK_0711;
     } else {
         const int categoryBanks[] = {
-            message_bank_unk_0723,
-            message_bank_species_category,
-            message_bank_unk_0719,
-            message_bank_unk_0720,
-            message_bank_unk_0721,
-            message_bank_unk_0722
+            TEXT_BANK_UNK_0723,
+            TEXT_BANK_SPECIES_CATEGORY,
+            TEXT_BANK_UNK_0719,
+            TEXT_BANK_UNK_0720,
+            TEXT_BANK_UNK_0721,
+            TEXT_BANK_UNK_0722
         };
         bankID = categoryBanks[index];
         index = dexNum;
@@ -116,15 +115,15 @@ Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, enum He
     if (index == NUM_LANGUAGES) {
         GF_ASSERT(entryOffset < 1);
         index = species + entryOffset;
-        bankID = message_bank_species_dex_entry;
+        bankID = TEXT_BANK_SPECIES_DEX_ENTRY;
     } else {
         const int dexEntryBanks[] = {
-            message_bank_unk_0705,
-            message_bank_unk_0700,
-            message_bank_unk_0701,
-            message_bank_unk_0702,
-            message_bank_unk_0703,
-            message_bank_unk_0704
+            TEXT_BANK_UNK_0705,
+            TEXT_BANK_UNK_0700,
+            TEXT_BANK_UNK_0701,
+            TEXT_BANK_UNK_0702,
+            TEXT_BANK_UNK_0703,
+            TEXT_BANK_UNK_0704
         };
         GF_ASSERT(entryOffset < 1);
         bankID = dexEntryBanks[index];

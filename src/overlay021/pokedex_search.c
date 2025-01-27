@@ -3,11 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/sdat.h"
+#include "generated/sdat.h"
 
 #include "struct_decls/sprite_decl.h"
 
-#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
@@ -34,6 +33,8 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
+
+#include "res/text/bank/pokedex.h"
 
 #define EXITSEARCH (1 << 1)
 

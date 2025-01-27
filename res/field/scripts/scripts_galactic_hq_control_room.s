@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_galactic_hq_control_room.h"
+#include "res/text/bank/galactic_hq_control_room.h"
 
     .data
 

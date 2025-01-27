@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_fullmoon_island.h"
+#include "res/text/bank/fullmoon_island.h"
 
     .data
 

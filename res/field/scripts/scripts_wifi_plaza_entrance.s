@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_wifi_plaza_entrance.h"
+#include "res/text/bank/wifi_plaza_entrance.h"
 
     .data
 

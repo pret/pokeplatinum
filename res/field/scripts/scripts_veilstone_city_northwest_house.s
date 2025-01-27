@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_veilstone_city_northwest_house.h"
+#include "res/text/bank/veilstone_city_northwest_house.h"
 
     .data
 

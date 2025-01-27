@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_route_212_south.h"
+#include "res/text/bank/route_212_south.h"
 
     .data
 

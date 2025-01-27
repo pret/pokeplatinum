@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_sendoff_spring.h"
+#include "res/text/bank/sendoff_spring.h"
 
     .data
 

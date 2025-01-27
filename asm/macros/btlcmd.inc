@@ -12,8 +12,8 @@
 #include "generated/moves.h"
 #include "generated/pokemon_types.h"
 #include "generated/species_data_params.h"
-#include "gmm/message_bank_battle_strings.h"
 #include "battle/btlcmd.h"
+#include "res/text/bank/battle_strings.h"
 
     .equ FALSE, 0
     .equ TRUE, 1

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_maniac_tunnel.h"
+#include "res/text/bank/maniac_tunnel.h"
 
     .data
 

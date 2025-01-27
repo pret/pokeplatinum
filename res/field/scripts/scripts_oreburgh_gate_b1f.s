@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_oreburgh_gate_b1f.h"
+#include "res/text/bank/oreburgh_gate_b1f.h"
 
     .data
 

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_great_marsh_3.h"
+#include "res/text/bank/great_marsh_3.h"
 
     .data
 

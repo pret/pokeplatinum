@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_pokemon_league_south_pokecenter_1f.h"
+#include "res/text/bank/pokemon_league_south_pokecenter_1f.h"
 
     .data
 

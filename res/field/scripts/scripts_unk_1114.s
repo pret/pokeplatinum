@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_common_strings.h"
+#include "res/text/bank/common_strings.h"
 
     .data
 

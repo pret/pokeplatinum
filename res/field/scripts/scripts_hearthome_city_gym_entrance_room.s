@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_hearthome_city_gym_entrance_room.h"
+#include "res/text/bank/hearthome_city_gym_entrance_room.h"
 
     .data
 

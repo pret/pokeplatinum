@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_footstep_house.h"
+#include "res/text/bank/footstep_house.h"
 
     .data
 

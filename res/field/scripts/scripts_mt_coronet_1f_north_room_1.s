@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_mt_coronet_1f_north_room_1.h"
+#include "res/text/bank/mt_coronet_1f_north_room_1.h"
 
     .data
 

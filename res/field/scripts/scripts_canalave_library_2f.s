@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_canalave_library_2f.h"
+#include "res/text/bank/canalave_library_2f.h"
 
     .data
 

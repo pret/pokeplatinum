@@ -66,6 +66,7 @@ metang_generators = {
     'shadow_sizes': { 'type': 'enum', 'tag': 'ShadowSize' },
     'species': { 'type': 'enum', 'tag': 'Species' },
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },
+    'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
 }
 
@@ -104,3 +105,4 @@ foreach gen_key : metang_generators.keys()
 endforeach
 
 species_txt = files('species.txt')
+text_banks_txt = files('text_banks.txt')

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_solaceon_ruins_maniac_tunnel_room.h"
+#include "res/text/bank/solaceon_ruins_maniac_tunnel_room.h"
 
     .data
 

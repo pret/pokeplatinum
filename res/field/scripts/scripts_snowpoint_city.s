@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_snowpoint_city.h"
+#include "res/text/bank/snowpoint_city.h"
 
     .data
 

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_pokemon_day_care.h"
+#include "res/text/bank/pokemon_day_care.h"
 
     .data
 

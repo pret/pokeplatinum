@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_flower_paradise.h"
+#include "res/text/bank/flower_paradise.h"
 
     .data
 

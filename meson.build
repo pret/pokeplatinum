@@ -176,7 +176,6 @@ main = executable('main',
         public_includes,
         libgds_public_includes,
         libspl_public_includes,
-        gmm_header_includes,
     ],
     dependencies: [
         nitrosdk_dep,

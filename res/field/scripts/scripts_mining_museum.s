@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/gmm/message_bank_mining_museum.h"
+#include "res/text/bank/mining_museum.h"
 
     .data
 
