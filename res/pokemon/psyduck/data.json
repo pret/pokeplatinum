@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
     "base_exp_reward": 80,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_DAMP",
-        "ABILITY_CLOUD_NINE"
-    ],
-    "great_marsh_flee_rate": 90,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_DAMP", "ABILITY_CLOUD_NINE" ],
+    "safari_flee_rate": 90,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 5, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_WATER_GUN" ],
+            [ 14, "MOVE_DISABLE" ],
+            [ 18, "MOVE_CONFUSION" ],
+            [ 22, "MOVE_WATER_PULSE" ],
+            [ 27, "MOVE_FURY_SWIPES" ],
+            [ 31, "MOVE_SCREECH" ],
+            [ 35, "MOVE_PSYCH_UP" ],
+            [ 40, "MOVE_ZEN_HEADBUTT" ],
+            [ 44, "MOVE_AMNESIA" ],
+            [ 48, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -83,24 +87,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_WATER_SPORT",
-                "MOVE_SCRATCH"
-            ],
-            "5": "MOVE_TAIL_WHIP",
-            "9": "MOVE_WATER_GUN",
-            "14": "MOVE_DISABLE",
-            "18": "MOVE_CONFUSION",
-            "22": "MOVE_WATER_PULSE",
-            "27": "MOVE_FURY_SWIPES",
-            "31": "MOVE_SCREECH",
-            "35": "MOVE_PSYCH_UP",
-            "40": "MOVE_ZEN_HEADBUTT",
-            "44": "MOVE_AMNESIA",
-            "48": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -114,14 +101,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             33,
             "SPECIES_GOLDUCK"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -138,7 +125,7 @@
         "entry_text": "Overwhelmed by enigmatic abilities,\nit suffers a constant headache. It\nsometimes uses mysterious powers.",
         "category": "Duck Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

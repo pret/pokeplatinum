@@ -8,10 +8,7 @@
         "special_attack": 135,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_DARK" ],
     "catch_rate": 3,
     "base_exp_reward": 210,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_BAD_DREAMS",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_BAD_DREAMS", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_OMINOUS_WIND" ],
+            [ 1, "MOVE_DISABLE" ],
+            [ 11, "MOVE_QUICK_ATTACK" ],
+            [ 20, "MOVE_HYPNOSIS" ],
+            [ 29, "MOVE_FAINT_ATTACK" ],
+            [ 38, "MOVE_NIGHTMARE" ],
+            [ 47, "MOVE_DOUBLE_TEAM" ],
+            [ 57, "MOVE_HAZE" ],
+            [ 66, "MOVE_DARK_VOID" ],
+            [ 75, "MOVE_NASTY_PLOT" ],
+            [ 84, "MOVE_DREAM_EATER" ],
+            [ 93, "MOVE_DARK_PULSE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -102,23 +105,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_OMINOUS_WIND",
-                "MOVE_DISABLE"
-            ],
-            "11": "MOVE_QUICK_ATTACK",
-            "20": "MOVE_HYPNOSIS",
-            "29": "MOVE_FAINT_ATTACK",
-            "38": "MOVE_NIGHTMARE",
-            "47": "MOVE_DOUBLE_TEAM",
-            "57": "MOVE_HAZE",
-            "66": "MOVE_DARK_VOID",
-            "75": "MOVE_NASTY_PLOT",
-            "84": "MOVE_DREAM_EATER",
-            "93": "MOVE_DARK_PULSE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_OMINOUS_WIND",
@@ -131,9 +118,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 15,
@@ -150,7 +138,7 @@
         "entry_text": "To protect itself, it afflicts those\naround it with nightmares. However,\nit means no harm.",
         "category": "Pitch-Black Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 100,

@@ -7,10 +7,11 @@
 #include "constants/forms.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
-#include "consts/abilities.h"
 #include "consts/gender.h"
-#include "consts/items.h"
 #include "consts/pokemon.h"
+#include "generated/abilities.h"
+#include "generated/gender_ratios.h"
+#include "generated/items.h"
 
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0206C638.h"
@@ -981,7 +982,7 @@ static void ov6_02241BAC(const u16 species, const u8 level, const int param2, co
 
     if (!encounterFieldParams->isFirstMonEgg) {
         if (encounterFieldParams->firstMonAbility == ABILITY_CUTE_CHARM) {
-            u32 speciesGenderRatio = PokemonPersonalData_GetSpeciesValue(species, MON_DATA_PERSONAL_GENDER);
+            u32 speciesGenderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
 
             switch (speciesGenderRatio) {
             case GENDER_RATIO_MALE_ONLY:
@@ -1039,7 +1040,7 @@ static void CreateWildMon(u16 species, u8 level, const int param2, const WildEnc
     Pokemon_Init(newEncounter);
     BOOL hasRandomGender = TRUE;
 
-    u32 speciesGenderRatio = PokemonPersonalData_GetSpeciesValue(species, MON_DATA_PERSONAL_GENDER);
+    u32 speciesGenderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
 
     switch (speciesGenderRatio) {
     case GENDER_RATIO_MALE_ONLY:
@@ -1281,10 +1282,10 @@ static BOOL ov6_0224219C(const EncounterSlot *param0, const u8 maxEncounters, co
     u8 v1 = 0;
 
     for (v2 = 0; v2 < maxEncounters; v2++) {
-        u8 v3 = PokemonPersonalData_GetSpeciesValue(param0[v2].species, MON_DATA_PERSONAL_TYPE_1);
-        u8 v4 = PokemonPersonalData_GetSpeciesValue(param0[v2].species, MON_DATA_PERSONAL_TYPE_2);
+        u8 type1 = SpeciesData_GetSpeciesValue(param0[v2].species, SPECIES_DATA_TYPE_1);
+        u8 type2 = SpeciesData_GetSpeciesValue(param0[v2].species, SPECIES_DATA_TYPE_2);
 
-        if (v3 == type || v4 == type) {
+        if (type1 == type || type2 == type) {
             v0[v1++] = v2;
         }
     }

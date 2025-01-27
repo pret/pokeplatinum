@@ -1,4 +1,4 @@
-personal_files += files('data.json')
+species_data_files += files('data.json')
 
 poke_icon_files += files('icon.png')
 unown_a_icon = files('icon.png') # We actually need this for later

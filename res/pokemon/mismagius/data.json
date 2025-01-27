@@ -8,10 +8,7 @@
         "special_attack": 105,
         "special_defense": 105
     },
-    "types": [
-        "TYPE_GHOST",
-        "TYPE_GHOST"
-    ],
+    "types": [ "TYPE_GHOST", "TYPE_GHOST" ],
     "catch_rate": 45,
     "base_exp_reward": 187,
     "ev_yields": {
@@ -30,21 +27,21 @@
     "hatch_cycles": 25,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LUCKY_CHANT" ],
+            [ 1, "MOVE_MAGICAL_LEAF" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_PSYWAVE" ],
+            [ 1, "MOVE_SPITE" ],
+            [ 1, "MOVE_ASTONISH" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -89,17 +86,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LUCKY_CHANT",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_GROWL",
-                "MOVE_PSYWAVE",
-                "MOVE_SPITE",
-                "MOVE_ASTONISH"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -110,9 +97,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 9,
@@ -129,7 +117,7 @@
         "entry_text": "Its cry sounds like an incantation.\nIt is said the cry may rarely be\nimbued with happiness-giving power.",
         "category": "Magical Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

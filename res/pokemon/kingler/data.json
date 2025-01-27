@@ -8,10 +8,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 60,
     "base_exp_reward": 206,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_HYPER_CUTTER",
-        "ABILITY_SHELL_ARMOR"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_SHELL_ARMOR" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_VICE_GRIP" ],
+            [ 5, "MOVE_VICE_GRIP" ],
+            [ 9, "MOVE_LEER" ],
+            [ 11, "MOVE_HARDEN" ],
+            [ 15, "MOVE_BUBBLE_BEAM" ],
+            [ 19, "MOVE_MUD_SHOT" ],
+            [ 21, "MOVE_METAL_CLAW" ],
+            [ 25, "MOVE_STOMP" ],
+            [ 32, "MOVE_PROTECT" ],
+            [ 37, "MOVE_GUILLOTINE" ],
+            [ 44, "MOVE_SLAM" ],
+            [ 51, "MOVE_BRINE" ],
+            [ 56, "MOVE_CRABHAMMER" ],
+            [ 63, "MOVE_FLAIL" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -83,27 +90,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_MUD_SPORT",
-                "MOVE_BUBBLE",
-                "MOVE_VICE_GRIP"
-            ],
-            "5": "MOVE_VICE_GRIP",
-            "9": "MOVE_LEER",
-            "11": "MOVE_HARDEN",
-            "15": "MOVE_BUBBLE_BEAM",
-            "19": "MOVE_MUD_SHOT",
-            "21": "MOVE_METAL_CLAW",
-            "25": "MOVE_STOMP",
-            "32": "MOVE_PROTECT",
-            "37": "MOVE_GUILLOTINE",
-            "44": "MOVE_SLAM",
-            "51": "MOVE_BRINE",
-            "56": "MOVE_CRABHAMMER",
-            "63": "MOVE_FLAIL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -115,9 +102,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -134,7 +122,7 @@
         "entry_text": "The larger pincer has 10,000-\nhorsepower strength. However, it\nis so heavy, it is difficult to aim.",
         "category": "Pincer Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 70,

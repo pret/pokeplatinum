@@ -629,13 +629,13 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     CellActorInitParams v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
-    int v4, v5;
+    int type1, type2;
     int v6 = PokedexSort_DefaultForm(param2->unk_04, species);
 
-    v4 = PokemonPersonalData_GetFormValue(species, v6, 6);
-    v5 = PokemonPersonalData_GetFormValue(species, v6, 7);
-    v4 = ov21_021DF180(v4);
-    v5 = ov21_021DF180(v5);
+    type1 = SpeciesData_GetFormValue(species, v6, SPECIES_DATA_TYPE_1);
+    type2 = SpeciesData_GetFormValue(species, v6, SPECIES_DATA_TYPE_2);
+    type1 = ov21_021DF180(type1);
+    type2 = ov21_021DF180(type2);
 
     sub_020093B4(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
@@ -649,13 +649,13 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
 
     param0->unk_00[1] = CellActorCollection_Add(&v1);
 
-    CellActor_SetAnim(param0->unk_00[1], 0 + v4);
+    CellActor_SetAnim(param0->unk_00[1], 0 + type1);
 
-    if (v4 != v5) {
+    if (type1 != type2) {
         v1.position.x = (220 * FX32_ONE);
         v1.position.y = (72 * FX32_ONE);
         param0->unk_00[2] = CellActorCollection_Add(&v1);
-        CellActor_SetAnim(param0->unk_00[2], 0 + v5);
+        CellActor_SetAnim(param0->unk_00[2], 0 + type2);
     } else {
         param0->unk_00[2] = NULL;
     }

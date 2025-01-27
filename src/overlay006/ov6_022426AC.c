@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "consts/gender.h"
+#include "generated/gender_ratios.h"
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
@@ -49,7 +50,7 @@ void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources 
     resources->unk_1CC = 0;
 
     int gender;
-    u8 genderRatio = PokemonPersonalData_GetSpeciesValue(species, MON_DATA_PERSONAL_GENDER);
+    u8 genderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
 
     switch (genderRatio) {
     case GENDER_RATIO_MALE_ONLY:

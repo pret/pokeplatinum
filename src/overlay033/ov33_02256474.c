@@ -289,7 +289,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
                 GF_ASSERT(0);
             }
 
-            param0->unk_134[v5].unk_30 = PokemonPersonalData_GetFormValue(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 28);
+            param0->unk_134[v5].unk_30 = SpeciesData_GetFormValue(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 28);
             param0->unk_134[v5].unk_31 = 0;
             param0->unk_134[v5].unk_32 = 0;
 

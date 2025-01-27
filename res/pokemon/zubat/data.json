@@ -8,10 +8,7 @@
         "special_attack": 30,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_FLYING" ],
     "catch_rate": 255,
     "base_exp_reward": 54,
     "ev_yields": {
@@ -30,21 +27,26 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_INNER_FOCUS",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_INNER_FOCUS", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEECH_LIFE" ],
+            [ 5, "MOVE_SUPERSONIC" ],
+            [ 9, "MOVE_ASTONISH" ],
+            [ 13, "MOVE_BITE" ],
+            [ 17, "MOVE_WING_ATTACK" ],
+            [ 21, "MOVE_CONFUSE_RAY" ],
+            [ 25, "MOVE_AIR_CUTTER" ],
+            [ 29, "MOVE_MEAN_LOOK" ],
+            [ 33, "MOVE_POISON_FANG" ],
+            [ 37, "MOVE_HAZE" ],
+            [ 41, "MOVE_AIR_SLASH" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -79,20 +81,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": "MOVE_LEECH_LIFE",
-            "5": "MOVE_SUPERSONIC",
-            "9": "MOVE_ASTONISH",
-            "13": "MOVE_BITE",
-            "17": "MOVE_WING_ATTACK",
-            "21": "MOVE_CONFUSE_RAY",
-            "25": "MOVE_AIR_CUTTER",
-            "29": "MOVE_MEAN_LOOK",
-            "33": "MOVE_POISON_FANG",
-            "37": "MOVE_HAZE",
-            "41": "MOVE_AIR_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
@@ -105,14 +94,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             22,
             "SPECIES_GOLBAT"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 8,
@@ -129,7 +118,7 @@
         "entry_text": "It checks its surroundings and\nlocation using reflections of the\nultrasonic waves from its mouth.",
         "category": "Bat Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

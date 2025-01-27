@@ -8,10 +8,7 @@
         "special_attack": 10,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_ROCK"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_ROCK" ],
     "catch_rate": 255,
     "base_exp_reward": 68,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_STURDY",
-        "ABILITY_ROCK_HEAD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_STURDY", "ABILITY_ROCK_HEAD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FAKE_TEARS" ],
+            [ 1, "MOVE_COPYCAT" ],
+            [ 6, "MOVE_FLAIL" ],
+            [ 9, "MOVE_LOW_KICK" ],
+            [ 14, "MOVE_ROCK_THROW" ],
+            [ 17, "MOVE_MIMIC" ],
+            [ 22, "MOVE_BLOCK" ],
+            [ 25, "MOVE_FAINT_ATTACK" ],
+            [ 30, "MOVE_ROCK_TOMB" ],
+            [ 33, "MOVE_ROCK_SLIDE" ],
+            [ 38, "MOVE_SLAM" ],
+            [ 41, "MOVE_SUCKER_PUNCH" ],
+            [ 46, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -74,24 +78,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FAKE_TEARS",
-                "MOVE_COPYCAT"
-            ],
-            "6": "MOVE_FLAIL",
-            "9": "MOVE_LOW_KICK",
-            "14": "MOVE_ROCK_THROW",
-            "17": "MOVE_MIMIC",
-            "22": "MOVE_BLOCK",
-            "25": "MOVE_FAINT_ATTACK",
-            "30": "MOVE_ROCK_TOMB",
-            "33": "MOVE_ROCK_SLIDE",
-            "38": "MOVE_SLAM",
-            "41": "MOVE_SUCKER_PUNCH",
-            "46": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -102,14 +89,14 @@
     },
     "evolutions": [
         [
-            "EVO_KNOW_MOVE",
+            "EVO_LEVEL_KNOW_MOVE",
             "MOVE_MIMIC",
             "SPECIES_SUDOWOODO"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -126,7 +113,7 @@
         "entry_text": "It prefers an arid atmosphere. It\nleaks water that looks like tears\nwhen adjusting its moisture level.",
         "category": "Bonsai Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

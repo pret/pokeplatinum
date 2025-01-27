@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import pathlib
 
+from generated.moves import Move
+from generated.pokemon_types import PokemonType
+
 from consts import (
     battle,
     moves,
@@ -15,7 +18,7 @@ SCHEMA = j2b.Parser() \
     .register('effect.type', 2, j2b.parse_const, battle.BattleEffect) \
     .register('class', 1, j2b.parse_const, moves.MoveClass) \
     .register('power', 1, j2b.parse_int) \
-    .register('type', 1, j2b.parse_const, pokemon.PokemonType) \
+    .register('type', 1, j2b.parse_const, PokemonType) \
     .register('accuracy', 1, j2b.parse_int) \
     .register('pp', 1, j2b.parse_int) \
     .register('effect.chance', 1, j2b.parse_int) \
@@ -31,7 +34,7 @@ def indexer(file_path: pathlib.Path) -> int:
     if stem.isnumeric():
         return int(stem)
 
-    return moves.Move[f'MOVE_{file_path.parent.stem.upper()}'].value
+    return Move[f'MOVE_{file_path.parent.stem.upper()}'].value
 
 
 args = j2b.ARGPARSER.parse_args()

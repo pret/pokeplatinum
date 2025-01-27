@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 45,
     "base_exp_reward": 106,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_STATIC",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_STATIC", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 7, "MOVE_THUNDER_SHOCK" ],
+            [ 10, "MOVE_LOW_KICK" ],
+            [ 16, "MOVE_SWIFT" ],
+            [ 19, "MOVE_SHOCK_WAVE" ],
+            [ 25, "MOVE_LIGHT_SCREEN" ],
+            [ 28, "MOVE_THUNDER_PUNCH" ],
+            [ 34, "MOVE_DISCHARGE" ],
+            [ 37, "MOVE_THUNDERBOLT" ],
+            [ 43, "MOVE_SCREECH" ],
+            [ 46, "MOVE_THUNDER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -76,23 +79,7 @@
             "TM90",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_QUICK_ATTACK",
-                "MOVE_LEER"
-            ],
-            "7": "MOVE_THUNDER_SHOCK",
-            "10": "MOVE_LOW_KICK",
-            "16": "MOVE_SWIFT",
-            "19": "MOVE_SHOCK_WAVE",
-            "25": "MOVE_LIGHT_SCREEN",
-            "28": "MOVE_THUNDER_PUNCH",
-            "34": "MOVE_DISCHARGE",
-            "37": "MOVE_THUNDERBOLT",
-            "43": "MOVE_SCREECH",
-            "46": "MOVE_THUNDER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -107,14 +94,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_ELECTABUZZ"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -131,7 +118,7 @@
         "entry_text": "A weak electric current flows\nbetween its horns. Sticking a hand\nthere shocks the unwary.",
         "category": "Electric Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

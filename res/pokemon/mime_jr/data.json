@@ -8,10 +8,7 @@
         "special_attack": 70,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 145,
     "base_exp_reward": 78,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_SOUNDPROOF",
-        "ABILITY_FILTER"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_SOUNDPROOF", "ABILITY_FILTER" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TICKLE" ],
+            [ 1, "MOVE_BARRIER" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 4, "MOVE_COPYCAT" ],
+            [ 8, "MOVE_MEDITATE" ],
+            [ 11, "MOVE_ENCORE" ],
+            [ 15, "MOVE_DOUBLE_SLAP" ],
+            [ 18, "MOVE_MIMIC" ],
+            [ 22, "MOVE_LIGHT_SCREEN" ],
+            [ 22, "MOVE_REFLECT" ],
+            [ 25, "MOVE_PSYBEAM" ],
+            [ 29, "MOVE_SUBSTITUTE" ],
+            [ 32, "MOVE_RECYCLE" ],
+            [ 36, "MOVE_TRICK" ],
+            [ 39, "MOVE_PSYCHIC" ],
+            [ 43, "MOVE_ROLE_PLAY" ],
+            [ 46, "MOVE_BATON_PASS" ],
+            [ 50, "MOVE_SAFEGUARD" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -91,31 +100,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TICKLE",
-                "MOVE_BARRIER",
-                "MOVE_CONFUSION"
-            ],
-            "4": "MOVE_COPYCAT",
-            "8": "MOVE_MEDITATE",
-            "11": "MOVE_ENCORE",
-            "15": "MOVE_DOUBLE_SLAP",
-            "18": "MOVE_MIMIC",
-            "22": [
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_REFLECT"
-            ],
-            "25": "MOVE_PSYBEAM",
-            "29": "MOVE_SUBSTITUTE",
-            "32": "MOVE_RECYCLE",
-            "36": "MOVE_TRICK",
-            "39": "MOVE_PSYCHIC",
-            "43": "MOVE_ROLE_PLAY",
-            "46": "MOVE_BATON_PASS",
-            "50": "MOVE_SAFEGUARD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -126,14 +111,14 @@
     },
     "evolutions": [
         [
-            "EVO_KNOW_MOVE",
+            "EVO_LEVEL_KNOW_MOVE",
             "MOVE_MIMIC",
             "SPECIES_MR_MIME"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 6,
@@ -150,7 +135,7 @@
         "entry_text": "It mimics the expressions and\nmotions of those it sees to\nunderstand the feelings of others.",
         "category": "Mime Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

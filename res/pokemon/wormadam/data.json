@@ -8,10 +8,7 @@
         "special_attack": 79,
         "special_defense": 105
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_GRASS" ],
     "catch_rate": 45,
     "base_exp_reward": 159,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_ANTICIPATION",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_ANTICIPATION", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 10, "MOVE_PROTECT" ],
+            [ 15, "MOVE_BUG_BITE" ],
+            [ 20, "MOVE_HIDDEN_POWER" ],
+            [ 23, "MOVE_CONFUSION" ],
+            [ 26, "MOVE_RAZOR_LEAF" ],
+            [ 29, "MOVE_GROWTH" ],
+            [ 32, "MOVE_PSYBEAM" ],
+            [ 35, "MOVE_CAPTIVATE" ],
+            [ 38, "MOVE_FLAIL" ],
+            [ 41, "MOVE_ATTRACT" ],
+            [ 44, "MOVE_PSYCHIC" ],
+            [ 47, "MOVE_LEAF_STORM" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -79,22 +83,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "10": "MOVE_PROTECT",
-            "15": "MOVE_BUG_BITE",
-            "20": "MOVE_HIDDEN_POWER",
-            "23": "MOVE_CONFUSION",
-            "26": "MOVE_RAZOR_LEAF",
-            "29": "MOVE_GROWTH",
-            "32": "MOVE_PSYBEAM",
-            "35": "MOVE_CAPTIVATE",
-            "38": "MOVE_FLAIL",
-            "41": "MOVE_ATTRACT",
-            "44": "MOVE_PSYCHIC",
-            "47": "MOVE_LEAF_STORM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_SNORE",
             "MOVE_ENDEAVOR",
             "MOVE_SYNTHESIS",
@@ -104,9 +93,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 5,
@@ -123,7 +113,7 @@
         "entry_text": "When evolving, its body takes in\nsurrounding materials. As a result,\nthere are many body variations.",
         "category": "Bagworm Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

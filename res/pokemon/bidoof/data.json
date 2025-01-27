@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 255,
     "base_exp_reward": 58,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SIMPLE",
-        "ABILITY_UNAWARE"
-    ],
-    "great_marsh_flee_rate": 90,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SIMPLE", "ABILITY_UNAWARE" ],
+    "safari_flee_rate": 90,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 5, "MOVE_GROWL" ],
+            [ 9, "MOVE_DEFENSE_CURL" ],
+            [ 13, "MOVE_ROLLOUT" ],
+            [ 17, "MOVE_HEADBUTT" ],
+            [ 21, "MOVE_HYPER_FANG" ],
+            [ 25, "MOVE_YAWN" ],
+            [ 29, "MOVE_AMNESIA" ],
+            [ 33, "MOVE_TAKE_DOWN" ],
+            [ 37, "MOVE_SUPER_FANG" ],
+            [ 41, "MOVE_SUPERPOWER" ],
+            [ 45, "MOVE_CURSE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -81,21 +84,7 @@
             "HM01",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "5": "MOVE_GROWL",
-            "9": "MOVE_DEFENSE_CURL",
-            "13": "MOVE_ROLLOUT",
-            "17": "MOVE_HEADBUTT",
-            "21": "MOVE_HYPER_FANG",
-            "25": "MOVE_YAWN",
-            "29": "MOVE_AMNESIA",
-            "33": "MOVE_TAKE_DOWN",
-            "37": "MOVE_SUPER_FANG",
-            "41": "MOVE_SUPERPOWER",
-            "45": "MOVE_CURSE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -109,14 +98,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             15,
             "SPECIES_BIBAREL"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 5,
@@ -133,7 +122,7 @@
         "entry_text": "A comparison revealed that\nBIDOOF’s front teeth grow at\nthe same rate as RATTATA’s.",
         "category": "Plump Mouse Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

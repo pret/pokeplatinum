@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 127,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_OWN_TEMPO",
-        "ABILITY_OBLIVIOUS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_OWN_TEMPO", "ABILITY_OBLIVIOUS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LICK" ],
+            [ 5, "MOVE_SUPERSONIC" ],
+            [ 9, "MOVE_DEFENSE_CURL" ],
+            [ 13, "MOVE_KNOCK_OFF" ],
+            [ 17, "MOVE_WRAP" ],
+            [ 21, "MOVE_STOMP" ],
+            [ 25, "MOVE_DISABLE" ],
+            [ 29, "MOVE_SLAM" ],
+            [ 33, "MOVE_ROLLOUT" ],
+            [ 37, "MOVE_ME_FIRST" ],
+            [ 41, "MOVE_REFRESH" ],
+            [ 45, "MOVE_SCREECH" ],
+            [ 49, "MOVE_POWER_WHIP" ],
+            [ 53, "MOVE_WRING_OUT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -94,23 +99,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": "MOVE_LICK",
-            "5": "MOVE_SUPERSONIC",
-            "9": "MOVE_DEFENSE_CURL",
-            "13": "MOVE_KNOCK_OFF",
-            "17": "MOVE_WRAP",
-            "21": "MOVE_STOMP",
-            "25": "MOVE_DISABLE",
-            "29": "MOVE_SLAM",
-            "33": "MOVE_ROLLOUT",
-            "37": "MOVE_ME_FIRST",
-            "41": "MOVE_REFRESH",
-            "45": "MOVE_SCREECH",
-            "49": "MOVE_POWER_WHIP",
-            "53": "MOVE_WRING_OUT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -125,14 +114,14 @@
     },
     "evolutions": [
         [
-            "EVO_KNOW_MOVE",
+            "EVO_LEVEL_KNOW_MOVE",
             "MOVE_ROLLOUT",
             "SPECIES_LICKILICKY"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -149,7 +138,7 @@
         "entry_text": "When it extends its over-six-foot-\nlong tongue, its tail quivers. There\nis a possibility they are connected.",
         "category": "Licking Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

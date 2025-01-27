@@ -8,10 +8,7 @@
         "special_attack": 45,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_GROUND" ],
     "catch_rate": 255,
     "base_exp_reward": 73,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_HYPER_CUTTER",
-        "ABILITY_ARENA_TRAP"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_ARENA_TRAP" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BITE" ],
+            [ 9, "MOVE_SAND_ATTACK" ],
+            [ 17, "MOVE_FAINT_ATTACK" ],
+            [ 25, "MOVE_SAND_TOMB" ],
+            [ 33, "MOVE_CRUNCH" ],
+            [ 41, "MOVE_DIG" ],
+            [ 49, "MOVE_SANDSTORM" ],
+            [ 57, "MOVE_HYPER_BEAM" ],
+            [ 65, "MOVE_EARTH_POWER" ],
+            [ 73, "MOVE_EARTHQUAKE" ],
+            [ 81, "MOVE_FEINT" ],
+            [ 89, "MOVE_FISSURE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -73,21 +76,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_BITE",
-            "9": "MOVE_SAND_ATTACK",
-            "17": "MOVE_FAINT_ATTACK",
-            "25": "MOVE_SAND_TOMB",
-            "33": "MOVE_CRUNCH",
-            "41": "MOVE_DIG",
-            "49": "MOVE_SANDSTORM",
-            "57": "MOVE_HYPER_BEAM",
-            "65": "MOVE_EARTH_POWER",
-            "73": "MOVE_EARTHQUAKE",
-            "81": "MOVE_FEINT",
-            "89": "MOVE_FISSURE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -96,14 +85,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             35,
             "SPECIES_VIBRAVA"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -120,7 +109,7 @@
         "entry_text": "It makes a conical pit in desert\nsand and lies in wait at the bottom\nfor prey to come tumbling down.",
         "category": "Ant Pit Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

@@ -1,7 +1,8 @@
 #ifndef POKEPLATINUM_CONSTANTS_POKEMON_H
 #define POKEPLATINUM_CONSTANTS_POKEMON_H
 
-#include "consts/pokemon.h" // defs for PokemonType and PokemonPersonalDataParam
+#include "consts/pokemon.h" // defs for SpeciesDataParam
+#include "generated/pokemon_types.h" // PokemonType
 
 /**
  * @brief Pokemon Stats
@@ -30,9 +31,7 @@ enum {
 #define MAX_POKEMON_MARKINGS 6
 #define MAX_POKEMON_LEVEL    100
 
-#define LEARNSET_NO_MOVE_TO_LEARN   0
-#define LEARNSET_MOVE_ALREADY_KNOWN 0xFFFE
-#define LEARNSET_ALL_SLOTS_FILLED   0xFFFF
+#define EVOLVE_FRIENDSHIP_THRESHOLD 220
 
 /**
  * @brief Pokemon Data Parameters

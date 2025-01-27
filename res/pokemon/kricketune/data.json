@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 51
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_BUG"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_BUG" ],
     "catch_rate": 45,
     "base_exp_reward": 159,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_BIDE" ],
+            [ 10, "MOVE_FURY_CUTTER" ],
+            [ 14, "MOVE_LEECH_LIFE" ],
+            [ 18, "MOVE_SING" ],
+            [ 22, "MOVE_FOCUS_ENERGY" ],
+            [ 26, "MOVE_SLASH" ],
+            [ 30, "MOVE_X_SCISSOR" ],
+            [ 34, "MOVE_SCREECH" ],
+            [ 38, "MOVE_TAUNT" ],
+            [ 42, "MOVE_NIGHT_SLASH" ],
+            [ 46, "MOVE_BUG_BUZZ" ],
+            [ 50, "MOVE_PERISH_SONG" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -76,24 +80,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_BIDE"
-            ],
-            "10": "MOVE_FURY_CUTTER",
-            "14": "MOVE_LEECH_LIFE",
-            "18": "MOVE_SING",
-            "22": "MOVE_FOCUS_ENERGY",
-            "26": "MOVE_SLASH",
-            "30": "MOVE_X_SCISSOR",
-            "34": "MOVE_SCREECH",
-            "38": "MOVE_TAUNT",
-            "42": "MOVE_NIGHT_SLASH",
-            "46": "MOVE_BUG_BUZZ",
-            "50": "MOVE_PERISH_SONG"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -102,9 +89,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 10,
@@ -121,7 +109,7 @@
         "entry_text": "There is a village that hosts a\ncontest based on the amazingly\nvariable cries of this Pokémon.",
         "category": "Cricket Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

@@ -8,10 +8,7 @@
         "special_attack": 115,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_GHOST",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_GHOST", "TYPE_POISON" ],
     "catch_rate": 90,
     "base_exp_reward": 126,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_HYPNOSIS" ],
+            [ 1, "MOVE_LICK" ],
+            [ 1, "MOVE_SPITE" ],
+            [ 5, "MOVE_SPITE" ],
+            [ 8, "MOVE_MEAN_LOOK" ],
+            [ 12, "MOVE_CURSE" ],
+            [ 15, "MOVE_NIGHT_SHADE" ],
+            [ 19, "MOVE_CONFUSE_RAY" ],
+            [ 22, "MOVE_SUCKER_PUNCH" ],
+            [ 25, "MOVE_SHADOW_PUNCH" ],
+            [ 28, "MOVE_PAYBACK" ],
+            [ 33, "MOVE_SHADOW_BALL" ],
+            [ 39, "MOVE_DREAM_EATER" ],
+            [ 44, "MOVE_DARK_PULSE" ],
+            [ 50, "MOVE_DESTINY_BOND" ],
+            [ 55, "MOVE_NIGHTMARE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -86,27 +93,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_HYPNOSIS",
-                "MOVE_LICK",
-                "MOVE_SPITE"
-            ],
-            "5": "MOVE_SPITE",
-            "8": "MOVE_MEAN_LOOK",
-            "12": "MOVE_CURSE",
-            "15": "MOVE_NIGHT_SHADE",
-            "19": "MOVE_CONFUSE_RAY",
-            "22": "MOVE_SUCKER_PUNCH",
-            "25": "MOVE_SHADOW_PUNCH",
-            "28": "MOVE_PAYBACK",
-            "33": "MOVE_SHADOW_BALL",
-            "39": "MOVE_DREAM_EATER",
-            "44": "MOVE_DARK_PULSE",
-            "50": "MOVE_DESTINY_BOND",
-            "55": "MOVE_NIGHTMARE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -121,14 +108,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_TRADE",
-            "SPECIES_GENGAR"
-        ]
+        [ "EVO_TRADE", "SPECIES_GENGAR" ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 16,
@@ -145,7 +129,7 @@
         "entry_text": "It likes to lurk in the dark and tap\nshoulders with a gaseous hand. Its\ntouch causes endless shuddering.",
         "category": "Gas Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

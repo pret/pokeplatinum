@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_POISON" ],
     "catch_rate": 190,
     "base_exp_reward": 75,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_COMPOUND_EYES",
-        "ABILITY_TINTED_LENS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_COMPOUND_EYES", "ABILITY_TINTED_LENS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_DISABLE" ],
+            [ 1, "MOVE_FORESIGHT" ],
+            [ 5, "MOVE_SUPERSONIC" ],
+            [ 11, "MOVE_CONFUSION" ],
+            [ 13, "MOVE_POISON_POWDER" ],
+            [ 17, "MOVE_LEECH_LIFE" ],
+            [ 23, "MOVE_STUN_SPORE" ],
+            [ 25, "MOVE_PSYBEAM" ],
+            [ 29, "MOVE_SLEEP_POWDER" ],
+            [ 35, "MOVE_SIGNAL_BEAM" ],
+            [ 37, "MOVE_ZEN_HEADBUTT" ],
+            [ 41, "MOVE_POISON_FANG" ],
+            [ 47, "MOVE_PSYCHIC" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -70,25 +75,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_DISABLE",
-                "MOVE_FORESIGHT"
-            ],
-            "5": "MOVE_SUPERSONIC",
-            "11": "MOVE_CONFUSION",
-            "13": "MOVE_POISON_POWDER",
-            "17": "MOVE_LEECH_LIFE",
-            "23": "MOVE_STUN_SPORE",
-            "25": "MOVE_PSYBEAM",
-            "29": "MOVE_SLEEP_POWDER",
-            "35": "MOVE_SIGNAL_BEAM",
-            "37": "MOVE_ZEN_HEADBUTT",
-            "41": "MOVE_POISON_FANG",
-            "47": "MOVE_PSYCHIC"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
@@ -97,14 +84,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             31,
             "SPECIES_VENOMOTH"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -121,7 +108,7 @@
         "entry_text": "Its big eyes are actually clusters\nof tiny eyes. At night, its kind is\ndrawn by light.",
         "category": "Insect Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

@@ -8,10 +8,7 @@
         "special_attack": 61,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_FIGHTING" ],
     "catch_rate": 140,
     "base_exp_reward": 83,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 10,
     "base_friendship": 100,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_ANTICIPATION",
-        "ABILITY_DRY_SKIN"
-    ],
-    "great_marsh_flee_rate": 150,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_ANTICIPATION", "ABILITY_DRY_SKIN" ],
+    "safari_flee_rate": 150,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ASTONISH" ],
+            [ 3, "MOVE_MUD_SLAP" ],
+            [ 8, "MOVE_POISON_STING" ],
+            [ 10, "MOVE_TAUNT" ],
+            [ 15, "MOVE_PURSUIT" ],
+            [ 17, "MOVE_FAINT_ATTACK" ],
+            [ 22, "MOVE_REVENGE" ],
+            [ 24, "MOVE_SWAGGER" ],
+            [ 29, "MOVE_MUD_BOMB" ],
+            [ 31, "MOVE_SUCKER_PUNCH" ],
+            [ 36, "MOVE_NASTY_PLOT" ],
+            [ 38, "MOVE_POISON_JAB" ],
+            [ 43, "MOVE_SLUDGE_BOMB" ],
+            [ 45, "MOVE_FLATTER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -87,23 +92,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": "MOVE_ASTONISH",
-            "3": "MOVE_MUD_SLAP",
-            "8": "MOVE_POISON_STING",
-            "10": "MOVE_TAUNT",
-            "15": "MOVE_PURSUIT",
-            "17": "MOVE_FAINT_ATTACK",
-            "22": "MOVE_REVENGE",
-            "24": "MOVE_SWAGGER",
-            "29": "MOVE_MUD_BOMB",
-            "31": "MOVE_SUCKER_PUNCH",
-            "36": "MOVE_NASTY_PLOT",
-            "38": "MOVE_POISON_JAB",
-            "43": "MOVE_SLUDGE_BOMB",
-            "45": "MOVE_FLATTER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -121,14 +110,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             37,
             "SPECIES_TOXICROAK"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -145,7 +134,7 @@
         "entry_text": "It rarely fights fairly, but that is\nstrictly to ensure survival. It is\npopular as a mascot.",
         "category": "Toxic Mouth Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

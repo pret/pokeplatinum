@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 183,
     "ev_yields": {
@@ -30,21 +27,16 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_VITAL_SPIRIT",
-        "ABILITY_HUSTLE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_VITAL_SPIRIT", "ABILITY_HUSTLE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PRESENT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -77,10 +69,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": "MOVE_PRESENT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -91,9 +80,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -110,7 +100,7 @@
         "entry_text": "It carries food rolled up in its\ntail. It has the habit of sharing\nfood with people lost in mountains.",
         "category": "Delivery Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

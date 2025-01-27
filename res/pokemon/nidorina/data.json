@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 120,
     "base_exp_reward": 117,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_POISON_POINT",
-        "ABILITY_RIVALRY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_POISON_POINT", "ABILITY_RIVALRY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 7, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_DOUBLE_KICK" ],
+            [ 13, "MOVE_POISON_STING" ],
+            [ 20, "MOVE_FURY_SWIPES" ],
+            [ 23, "MOVE_BITE" ],
+            [ 28, "MOVE_HELPING_HAND" ],
+            [ 35, "MOVE_TOXIC_SPIKES" ],
+            [ 38, "MOVE_FLATTER" ],
+            [ 43, "MOVE_CRUNCH" ],
+            [ 50, "MOVE_CAPTIVATE" ],
+            [ 58, "MOVE_POISON_FANG" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -80,24 +84,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_SCRATCH"
-            ],
-            "7": "MOVE_TAIL_WHIP",
-            "9": "MOVE_DOUBLE_KICK",
-            "13": "MOVE_POISON_STING",
-            "20": "MOVE_FURY_SWIPES",
-            "23": "MOVE_BITE",
-            "28": "MOVE_HELPING_HAND",
-            "35": "MOVE_TOXIC_SPIKES",
-            "38": "MOVE_FLATTER",
-            "43": "MOVE_CRUNCH",
-            "50": "MOVE_CAPTIVATE",
-            "58": "MOVE_POISON_FANG"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND"
@@ -111,8 +98,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -129,7 +116,7 @@
         "entry_text": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO’s.",
         "category": "Poison Pin Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

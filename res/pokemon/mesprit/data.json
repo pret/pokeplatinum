@@ -8,10 +8,7 @@
         "special_attack": 105,
         "special_defense": 105
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 3,
     "base_exp_reward": 210,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 80,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_REST" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 6, "MOVE_IMPRISON" ],
+            [ 16, "MOVE_PROTECT" ],
+            [ 21, "MOVE_SWIFT" ],
+            [ 31, "MOVE_LUCKY_CHANT" ],
+            [ 36, "MOVE_FUTURE_SIGHT" ],
+            [ 46, "MOVE_CHARM" ],
+            [ 51, "MOVE_EXTRASENSORY" ],
+            [ 61, "MOVE_COPYCAT" ],
+            [ 66, "MOVE_NATURAL_GIFT" ],
+            [ 76, "MOVE_HEALING_WISH" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM06",
@@ -91,23 +94,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_REST",
-                "MOVE_CONFUSION"
-            ],
-            "6": "MOVE_IMPRISON",
-            "16": "MOVE_PROTECT",
-            "21": "MOVE_SWIFT",
-            "31": "MOVE_LUCKY_CHANT",
-            "36": "MOVE_FUTURE_SIGHT",
-            "46": "MOVE_CHARM",
-            "51": "MOVE_EXTRASENSORY",
-            "61": "MOVE_COPYCAT",
-            "66": "MOVE_NATURAL_GIFT",
-            "76": "MOVE_HEALING_WISH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -121,9 +108,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -140,7 +128,7 @@
         "entry_text": "When MESPRIT flew, people learned\nthe joy and sadness of living.\nIt was the birth of emotions.",
         "category": "Emotion Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

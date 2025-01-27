@@ -8,10 +8,7 @@
         "special_attack": 30,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_BUG"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_BUG" ],
     "catch_rate": 120,
     "base_exp_reward": 114,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_BATTLE_ARMOR",
-        "ABILITY_SNIPER"
-    ],
-    "great_marsh_flee_rate": 120,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_BATTLE_ARMOR", "ABILITY_SNIPER" ],
+    "safari_flee_rate": 120,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_LEER" ],
+            [ 6, "MOVE_KNOCK_OFF" ],
+            [ 12, "MOVE_PIN_MISSILE" ],
+            [ 17, "MOVE_ACUPRESSURE" ],
+            [ 23, "MOVE_SCARY_FACE" ],
+            [ 28, "MOVE_TOXIC_SPIKES" ],
+            [ 34, "MOVE_BUG_BITE" ],
+            [ 39, "MOVE_POISON_FANG" ],
+            [ 45, "MOVE_CRUNCH" ],
+            [ 50, "MOVE_CROSS_POISON" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -85,23 +88,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BITE",
-                "MOVE_POISON_STING",
-                "MOVE_LEER"
-            ],
-            "6": "MOVE_KNOCK_OFF",
-            "12": "MOVE_PIN_MISSILE",
-            "17": "MOVE_ACUPRESSURE",
-            "23": "MOVE_SCARY_FACE",
-            "28": "MOVE_TOXIC_SPIKES",
-            "34": "MOVE_BUG_BITE",
-            "39": "MOVE_POISON_FANG",
-            "45": "MOVE_CRUNCH",
-            "50": "MOVE_CROSS_POISON"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_AQUA_TAIL",
@@ -111,14 +98,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             40,
             "SPECIES_DRAPION"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 8,
@@ -135,7 +122,7 @@
         "entry_text": "As soon as the tail claws close,\nits needle tips secrete poison.\nIt can survive a year without food.",
         "category": "Scorpion Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

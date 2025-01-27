@@ -8,10 +8,7 @@
         "special_attack": 71,
         "special_defense": 61
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_DARK" ],
     "catch_rate": 60,
     "base_exp_reward": 209,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_STENCH",
-        "ABILITY_AFTERMATH"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_STENCH", "ABILITY_AFTERMATH" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 1, "MOVE_POISON_GAS" ],
+            [ 4, "MOVE_POISON_GAS" ],
+            [ 7, "MOVE_SCREECH" ],
+            [ 10, "MOVE_FURY_SWIPES" ],
+            [ 14, "MOVE_SMOKE_SCREEN" ],
+            [ 18, "MOVE_FEINT" ],
+            [ 22, "MOVE_SLASH" ],
+            [ 27, "MOVE_TOXIC" ],
+            [ 32, "MOVE_NIGHT_SLASH" ],
+            [ 34, "MOVE_FLAMETHROWER" ],
+            [ 42, "MOVE_MEMENTO" ],
+            [ 52, "MOVE_EXPLOSION" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -86,25 +91,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_FOCUS_ENERGY",
-                "MOVE_POISON_GAS"
-            ],
-            "4": "MOVE_POISON_GAS",
-            "7": "MOVE_SCREECH",
-            "10": "MOVE_FURY_SWIPES",
-            "14": "MOVE_SMOKE_SCREEN",
-            "18": "MOVE_FEINT",
-            "22": "MOVE_SLASH",
-            "27": "MOVE_TOXIC",
-            "32": "MOVE_NIGHT_SLASH",
-            "34": "MOVE_FLAMETHROWER",
-            "42": "MOVE_MEMENTO",
-            "52": "MOVE_EXPLOSION"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -112,9 +99,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -131,7 +119,7 @@
         "entry_text": "It attacks by spraying a horribly\nsmelly fluid from the tip of its tail.\nAttacks from above confound it.",
         "category": "Skunk Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

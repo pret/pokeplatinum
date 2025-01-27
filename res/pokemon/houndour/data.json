@@ -8,10 +8,7 @@
         "special_attack": 80,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_FIRE" ],
     "catch_rate": 120,
     "base_exp_reward": 114,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_EARLY_BIRD",
-        "ABILITY_FLASH_FIRE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_EARLY_BIRD", "ABILITY_FLASH_FIRE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 4, "MOVE_HOWL" ],
+            [ 9, "MOVE_SMOG" ],
+            [ 14, "MOVE_ROAR" ],
+            [ 17, "MOVE_BITE" ],
+            [ 22, "MOVE_ODOR_SLEUTH" ],
+            [ 27, "MOVE_BEAT_UP" ],
+            [ 30, "MOVE_FIRE_FANG" ],
+            [ 35, "MOVE_FAINT_ATTACK" ],
+            [ 40, "MOVE_EMBARGO" ],
+            [ 43, "MOVE_FLAMETHROWER" ],
+            [ 48, "MOVE_CRUNCH" ],
+            [ 53, "MOVE_NASTY_PLOT" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -81,25 +86,7 @@
             "TM90",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LEER",
-                "MOVE_EMBER"
-            ],
-            "4": "MOVE_HOWL",
-            "9": "MOVE_SMOG",
-            "14": "MOVE_ROAR",
-            "17": "MOVE_BITE",
-            "22": "MOVE_ODOR_SLEUTH",
-            "27": "MOVE_BEAT_UP",
-            "30": "MOVE_FIRE_FANG",
-            "35": "MOVE_FAINT_ATTACK",
-            "40": "MOVE_EMBARGO",
-            "43": "MOVE_FLAMETHROWER",
-            "48": "MOVE_CRUNCH",
-            "53": "MOVE_NASTY_PLOT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_SPITE",
@@ -111,14 +98,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             24,
             "SPECIES_HOUNDOOM"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -135,7 +122,7 @@
         "entry_text": "It is smart enough to hunt in\npacks. It uses a variety of cries\nfor communicating with others.",
         "category": "Dark Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

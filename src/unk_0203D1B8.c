@@ -1072,7 +1072,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
         int v4;
         int v5;
 
-        if ((v4 = sub_02076B94(NULL, v2->unk_04.unk_40, 1, v3, &v5)) != 0) {
+        if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, v2->unk_04.unk_40, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
             Heap_Create(3, 26, 0x30000);
             v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v5, 0x4, 26);
             v2->unk_00 = 6;
