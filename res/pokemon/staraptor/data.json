@@ -8,10 +8,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 172,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_WING_ATTACK" ],
+            [ 5, "MOVE_QUICK_ATTACK" ],
+            [ 9, "MOVE_WING_ATTACK" ],
+            [ 13, "MOVE_DOUBLE_TEAM" ],
+            [ 18, "MOVE_ENDEAVOR" ],
+            [ 23, "MOVE_WHIRLWIND" ],
+            [ 28, "MOVE_AERIAL_ACE" ],
+            [ 33, "MOVE_TAKE_DOWN" ],
+            [ 34, "MOVE_CLOSE_COMBAT" ],
+            [ 41, "MOVE_AGILITY" ],
+            [ 49, "MOVE_BRAVE_BIRD" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -74,25 +79,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_WING_ATTACK"
-            ],
-            "5": "MOVE_QUICK_ATTACK",
-            "9": "MOVE_WING_ATTACK",
-            "13": "MOVE_DOUBLE_TEAM",
-            "18": "MOVE_ENDEAVOR",
-            "23": "MOVE_WHIRLWIND",
-            "28": "MOVE_AERIAL_ACE",
-            "33": "MOVE_TAKE_DOWN",
-            "34": "MOVE_CLOSE_COMBAT",
-            "41": "MOVE_AGILITY",
-            "49": "MOVE_BRAVE_BIRD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -103,9 +90,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -122,7 +110,7 @@
         "entry_text": "It never stops attacking even\nif it is injured. It fusses over the\nshape of its comb.",
         "category": "Predator Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

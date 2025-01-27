@@ -8,10 +8,7 @@
         "special_attack": 130,
         "special_defense": 95
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_ICE"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_ICE" ],
     "catch_rate": 45,
     "base_exp_reward": 196,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 35,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SNOW_CLOAK",
-        "ABILITY_SNOW_CLOAK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SNOW_CLOAK", "ABILITY_SNOW_CLOAK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 8, "MOVE_SAND_ATTACK" ],
+            [ 15, "MOVE_ICY_WIND" ],
+            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 29, "MOVE_BITE" ],
+            [ 36, "MOVE_ICE_SHARD" ],
+            [ 43, "MOVE_ICE_FANG" ],
+            [ 50, "MOVE_LAST_RESORT" ],
+            [ 57, "MOVE_MIRROR_COAT" ],
+            [ 64, "MOVE_HAIL" ],
+            [ 71, "MOVE_BLIZZARD" ],
+            [ 78, "MOVE_BARRIER" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -77,25 +82,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TAIL_WHIP",
-                "MOVE_TACKLE",
-                "MOVE_HELPING_HAND"
-            ],
-            "8": "MOVE_SAND_ATTACK",
-            "15": "MOVE_ICY_WIND",
-            "22": "MOVE_QUICK_ATTACK",
-            "29": "MOVE_BITE",
-            "36": "MOVE_ICE_SHARD",
-            "43": "MOVE_ICE_FANG",
-            "50": "MOVE_LAST_RESORT",
-            "57": "MOVE_MIRROR_COAT",
-            "64": "MOVE_HAIL",
-            "71": "MOVE_BLIZZARD",
-            "78": "MOVE_BARRIER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
@@ -106,9 +93,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -125,7 +113,7 @@
         "entry_text": "By controlling its body heat, it can\nfreeze the atmosphere around it\nto make a diamond-dust flurry.",
         "category": "Fresh Snow Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

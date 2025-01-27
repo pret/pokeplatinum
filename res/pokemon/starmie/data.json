@@ -8,10 +8,7 @@
         "special_attack": 100,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_PSYCHIC" ],
     "catch_rate": 60,
     "base_exp_reward": 207,
     "ev_yields": {
@@ -30,21 +27,20 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_ILLUMINATE",
-        "ABILITY_NATURAL_CURE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_ILLUMINATE", "ABILITY_NATURAL_CURE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_RAPID_SPIN" ],
+            [ 1, "MOVE_RECOVER" ],
+            [ 1, "MOVE_SWIFT" ],
+            [ 28, "MOVE_CONFUSE_RAY" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -86,16 +82,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_WATER_GUN",
-                "MOVE_RAPID_SPIN",
-                "MOVE_RECOVER",
-                "MOVE_SWIFT"
-            ],
-            "28": "MOVE_CONFUSE_RAY"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -106,9 +93,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 11,
@@ -125,7 +113,7 @@
         "entry_text": "At the center of its body is a red\ncore, which sends mysterious\nradio signals into the night sky.",
         "category": "Mysterious Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 70,

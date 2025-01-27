@@ -8,10 +8,7 @@
         "special_attack": 50,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_POISON" ],
     "catch_rate": 190,
     "base_exp_reward": 105,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_CLEAR_BODY",
-        "ABILITY_LIQUID_OOZE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_CLEAR_BODY", "ABILITY_LIQUID_OOZE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_STING" ],
+            [ 5, "MOVE_SUPERSONIC" ],
+            [ 8, "MOVE_CONSTRICT" ],
+            [ 12, "MOVE_ACID" ],
+            [ 15, "MOVE_TOXIC_SPIKES" ],
+            [ 19, "MOVE_BUBBLE_BEAM" ],
+            [ 22, "MOVE_WRAP" ],
+            [ 26, "MOVE_BARRIER" ],
+            [ 29, "MOVE_WATER_PULSE" ],
+            [ 33, "MOVE_POISON_JAB" ],
+            [ 36, "MOVE_SCREECH" ],
+            [ 40, "MOVE_HYDRO_PUMP" ],
+            [ 43, "MOVE_WRING_OUT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -77,22 +81,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_POISON_STING",
-            "5": "MOVE_SUPERSONIC",
-            "8": "MOVE_CONSTRICT",
-            "12": "MOVE_ACID",
-            "15": "MOVE_TOXIC_SPIKES",
-            "19": "MOVE_BUBBLE_BEAM",
-            "22": "MOVE_WRAP",
-            "26": "MOVE_BARRIER",
-            "29": "MOVE_WATER_PULSE",
-            "33": "MOVE_POISON_JAB",
-            "36": "MOVE_SCREECH",
-            "40": "MOVE_HYDRO_PUMP",
-            "43": "MOVE_WRING_OUT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -101,14 +90,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_TENTACRUEL"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 9,
@@ -125,7 +114,7 @@
         "entry_text": "Because its body is almost entirely\ncomposed of water, it shrivels up if\nit is washed ashore.",
         "category": "Jellyfish Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 30,

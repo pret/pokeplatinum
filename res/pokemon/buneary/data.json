@@ -8,10 +8,7 @@
         "special_attack": 44,
         "special_defense": 56
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 190,
     "base_exp_reward": 84,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_RUN_AWAY",
-        "ABILITY_KLUTZ"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_KLUTZ" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_FORESIGHT" ],
+            [ 6, "MOVE_ENDURE" ],
+            [ 13, "MOVE_FRUSTRATION" ],
+            [ 16, "MOVE_QUICK_ATTACK" ],
+            [ 23, "MOVE_JUMP_KICK" ],
+            [ 26, "MOVE_BATON_PASS" ],
+            [ 33, "MOVE_AGILITY" ],
+            [ 36, "MOVE_DIZZY_PUNCH" ],
+            [ 43, "MOVE_CHARM" ],
+            [ 46, "MOVE_BOUNCE" ],
+            [ 53, "MOVE_HEALING_WISH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -80,25 +85,7 @@
             "HM01",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SPLASH",
-                "MOVE_POUND",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_FORESIGHT"
-            ],
-            "6": "MOVE_ENDURE",
-            "13": "MOVE_FRUSTRATION",
-            "16": "MOVE_QUICK_ATTACK",
-            "23": "MOVE_JUMP_KICK",
-            "26": "MOVE_BATON_PASS",
-            "33": "MOVE_AGILITY",
-            "36": "MOVE_DIZZY_PUNCH",
-            "43": "MOVE_CHARM",
-            "46": "MOVE_BOUNCE",
-            "53": "MOVE_HEALING_WISH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -110,14 +97,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_HAPPINESS",
-            "SPECIES_LOPUNNY"
-        ]
+        [ "EVO_LEVEL_HAPPINESS", "SPECIES_LOPUNNY" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -134,7 +118,7 @@
         "entry_text": "Its ears are always rolled up. They\ncan be forcefully extended to\nshatter even a large boulder.",
         "category": "Rabbit Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

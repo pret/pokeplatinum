@@ -798,7 +798,7 @@ static int ov21_021E02F0(int param0, const UnkStruct_ov21_021DF844 *param1)
     int v0;
     int v1;
 
-    v0 = PokemonPersonalData_GetSpeciesValue(param0, 18);
+    v0 = SpeciesData_GetSpeciesValue(param0, SPECIES_DATA_GENDER_RATIO);
 
     if (v0 == 0) {
         return 1;

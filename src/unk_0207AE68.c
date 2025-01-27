@@ -4,12 +4,11 @@
 #include <string.h>
 
 #include "consts/game_records.h"
-#include "consts/items.h"
-#include "consts/species.h"
+#include "generated/items.h"
+#include "generated/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0202818C.h"

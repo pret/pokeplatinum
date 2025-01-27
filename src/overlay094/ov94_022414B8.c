@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "consts/pokemon.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 
@@ -640,7 +641,7 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_F9C[1]);
         param0->unk_B74.unk_00 = v0;
         Sound_PlayEffect(1500);
-        param0->unk_10E4->unk_20 = PokemonPersonalData_GetSpeciesValue(v0, 18);
+        param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(v0, SPECIES_DATA_GENDER_RATIO);
 
         if (ov94_02241B80(&param0->unk_B74, param0->unk_10E4->unk_20)) {
             param0->unk_2C = 10;
@@ -1255,7 +1256,7 @@ void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
         GF_ASSERT(param1 < (13 - 1));
     } else {
         v0 = Unk_ov94_022460AC;
-        GF_ASSERT(param1 < ((NELEMS(Unk_ov94_022460AC)) - 1));
+        GF_ASSERT(param1 < (NELEMS(Unk_ov94_022460AC) - 1));
     }
 
     param0->unk_03 = v0[param1].unk_04;

@@ -9,11 +9,10 @@
 #include "constants/trainer.h"
 #include "consts/sdat.h"
 
-#include "struct_decls/struct_party_decl.h"
-
 #include "overlay005/encounter_effect.h"
 
 #include "field_battle_data_transfer.h"
+#include "party.h"
 #include "pokemon.h"
 #include "unk_02054884.h"
 

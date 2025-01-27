@@ -8,10 +8,7 @@
         "special_attack": 45,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 150,
     "base_exp_reward": 37,
     "ev_yields": {
@@ -30,21 +27,22 @@
     "hatch_cycles": 10,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_CUTE_CHARM",
-        "ABILITY_MAGIC_GUARD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_MAGIC_GUARD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 4, "MOVE_ENCORE" ],
+            [ 7, "MOVE_SING" ],
+            [ 10, "MOVE_SWEET_KISS" ],
+            [ 13, "MOVE_COPYCAT" ],
+            [ 16, "MOVE_MAGICAL_LEAF" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -83,18 +81,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_CHARM"
-            ],
-            "4": "MOVE_ENCORE",
-            "7": "MOVE_SING",
-            "10": "MOVE_SWEET_KISS",
-            "13": "MOVE_COPYCAT",
-            "16": "MOVE_MAGICAL_LEAF"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -109,14 +96,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_HAPPINESS",
-            "SPECIES_CLEFAIRY"
-        ]
+        [ "EVO_LEVEL_HAPPINESS", "SPECIES_CLEFAIRY" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -133,7 +117,7 @@
         "entry_text": "It is often seen when shooting\nstars fill the night skies. It’s said\nto arrive riding on a shooting star.",
         "category": "Star Shape Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

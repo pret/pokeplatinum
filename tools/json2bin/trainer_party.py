@@ -3,7 +3,7 @@ import json
 import pathlib
 import sys
 
-from consts import moves
+from generated import moves
 from convert import derive_data_flags, pad, u16, u32, from_item, from_move, from_species
 
 

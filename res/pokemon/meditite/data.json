@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_PSYCHIC" ],
     "catch_rate": 180,
     "base_exp_reward": 91,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_PURE_POWER",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_PURE_POWER", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BIDE" ],
+            [ 4, "MOVE_MEDITATE" ],
+            [ 8, "MOVE_CONFUSION" ],
+            [ 11, "MOVE_DETECT" ],
+            [ 15, "MOVE_HIDDEN_POWER" ],
+            [ 18, "MOVE_MIND_READER" ],
+            [ 22, "MOVE_FEINT" ],
+            [ 25, "MOVE_CALM_MIND" ],
+            [ 29, "MOVE_FORCE_PALM" ],
+            [ 32, "MOVE_HI_JUMP_KICK" ],
+            [ 36, "MOVE_PSYCH_UP" ],
+            [ 39, "MOVE_POWER_TRICK" ],
+            [ 43, "MOVE_REVERSAL" ],
+            [ 46, "MOVE_RECOVER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -85,23 +90,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_BIDE",
-            "4": "MOVE_MEDITATE",
-            "8": "MOVE_CONFUSION",
-            "11": "MOVE_DETECT",
-            "15": "MOVE_HIDDEN_POWER",
-            "18": "MOVE_MIND_READER",
-            "22": "MOVE_FEINT",
-            "25": "MOVE_CALM_MIND",
-            "29": "MOVE_FORCE_PALM",
-            "32": "MOVE_HI_JUMP_KICK",
-            "36": "MOVE_PSYCH_UP",
-            "39": "MOVE_POWER_TRICK",
-            "43": "MOVE_REVERSAL",
-            "46": "MOVE_RECOVER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -117,14 +106,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             37,
             "SPECIES_MEDICHAM"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -141,7 +130,7 @@
         "entry_text": "It always trains deep in mountains.\nIt levitates when it heightens its\nspiritual power through meditation.",
         "category": "Meditate Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

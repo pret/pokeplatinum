@@ -1,12 +1,12 @@
 item:skip:constants/items.h:ITEM_
 price:u16
-holdEffect:u8:consts/items.h:HOLD_EFFECT_
+holdEffect:u8:generated/item_hold_effects.h:HOLD_EFFECT_
 holdEffectParam:u8
 pluckEffect:u8
 flingEffect:u8
 flingPower:u8
 naturalGiftPower:u8
-naturalGiftType:u16.5:consts/pokemon.h:TYPE_
+naturalGiftType:u16.5:generated/pokemon_types.h:TYPE_
 prevent_toss:u16.1:bool
 selectable:u16.1:bool
 fieldPocket:u16.4:constants/items.h:POCKET_

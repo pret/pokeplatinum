@@ -440,7 +440,7 @@ void sub_0208232C(GameWindowLayout *param0, u8 param1)
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
 
-    if (sub_02076B94(NULL, v0, 3, param0->unk_5A4->unk_24, NULL) == 0) {
+    if (Pokemon_GetEvolutionTargetSpecies(NULL, v0, EVO_CLASS_BY_ITEM, param0->unk_5A4->unk_24, NULL) == 0) {
         sub_02082810(param0, param1, 1);
     } else {
         sub_02082810(param0, param1, 0);

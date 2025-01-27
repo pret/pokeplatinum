@@ -8,10 +8,7 @@
         "special_attack": 45,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
     "base_exp_reward": 100,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_HYDRATION"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_HYDRATION" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_HEADBUTT" ],
+            [ 3, "MOVE_GROWL" ],
+            [ 7, "MOVE_WATER_SPORT" ],
+            [ 11, "MOVE_ICY_WIND" ],
+            [ 13, "MOVE_ENCORE" ],
+            [ 17, "MOVE_ICE_SHARD" ],
+            [ 21, "MOVE_REST" ],
+            [ 23, "MOVE_AQUA_RING" ],
+            [ 27, "MOVE_AURORA_BEAM" ],
+            [ 31, "MOVE_AQUA_JET" ],
+            [ 33, "MOVE_BRINE" ],
+            [ 37, "MOVE_TAKE_DOWN" ],
+            [ 41, "MOVE_DIVE" ],
+            [ 43, "MOVE_AQUA_TAIL" ],
+            [ 47, "MOVE_ICE_BEAM" ],
+            [ 51, "MOVE_SAFEGUARD" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -73,25 +80,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_HEADBUTT",
-            "3": "MOVE_GROWL",
-            "7": "MOVE_WATER_SPORT",
-            "11": "MOVE_ICY_WIND",
-            "13": "MOVE_ENCORE",
-            "17": "MOVE_ICE_SHARD",
-            "21": "MOVE_REST",
-            "23": "MOVE_AQUA_RING",
-            "27": "MOVE_AURORA_BEAM",
-            "31": "MOVE_AQUA_JET",
-            "33": "MOVE_BRINE",
-            "37": "MOVE_TAKE_DOWN",
-            "41": "MOVE_DIVE",
-            "43": "MOVE_AQUA_TAIL",
-            "47": "MOVE_ICE_BEAM",
-            "51": "MOVE_SAFEGUARD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
@@ -101,14 +90,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             34,
             "SPECIES_DEWGONG"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 11,
@@ -125,7 +114,7 @@
         "entry_text": "A Pokémon that lives on icebergs.\nIt swims in the sea using the point\non its head to break up ice.",
         "category": "Sea Lion Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

@@ -5,8 +5,8 @@
 
 #include "constants/battle.h"
 #include "constants/species.h"
-#include "consts/catching_show.h"
 #include "consts/game_records.h"
+#include "generated/pal_park_land_area.h"
 
 #include "struct_decls/struct_02024440_decl.h"
 
@@ -21,6 +21,7 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "rtc.h"
+#include "species.h"
 #include "unk_0202EEC0.h"
 #include "unk_02054D00.h"
 
@@ -30,14 +31,6 @@
 #define DISTINCT_TYPE_BONUS    50
 #define DIFFERENT_TYPE_BONUS   200
 #define MAX_TIME_SECONDS       1000
-
-typedef struct PalParkSpecies {
-    u8 landArea;
-    u8 waterArea;
-    u8 catchingPoints;
-    u8 rarity;
-    u8 unused[2];
-} PalParkSpecies;
 
 static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow);
 static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO *dto, CatchingShow *catchingShow);
@@ -119,19 +112,19 @@ int CatchingShow_GetTypePoints(FieldSystem *fieldSystem)
     return CalculateTypePoints(&sCatchingShow);
 }
 
-static void BufferSpeciesData(u32 species, PalParkSpecies *speciesData)
+static void BufferSpeciesData(u32 species, SpeciesPalPark *speciesData)
 {
     GF_ASSERT(0 < species && species <= NATIONAL_DEX_COUNT);
 
-    int speciesOffset = (species - 1) * sizeof(PalParkSpecies);
+    int speciesOffset = (species - 1) * sizeof(SpeciesPalPark);
 
-    NARC_ReadFromMemberByIndexPair(speciesData, NARC_INDEX_ARC__PPARK, 0, speciesOffset, sizeof(PalParkSpecies));
+    NARC_ReadFromMemberByIndexPair(speciesData, NARC_INDEX_ARC__PPARK, 0, speciesOffset, sizeof(SpeciesPalPark));
 }
 
 static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow)
 {
     int i;
-    PalParkSpecies speciesData;
+    SpeciesPalPark speciesData;
     u16 monSpecies;
     PalParkTransfer *v4 = SaveData_PalParkTransfer(fieldSystem->saveData);
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
@@ -176,7 +169,7 @@ static int NumMonsCaptured(CatchingShow *catchingShow)
 
 static void ResetStepCount(CatchingShow *catchingShow)
 {
-    catchingShow->steps = inline_020564D0(10) + 5;
+    catchingShow->steps = LCRNG_RandMod(10) + 5;
 }
 
 static BOOL IsStepCountZero(CatchingShow *catchingShow)
@@ -226,7 +219,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
         return FALSE;
     }
 
-    encounterChance = inline_020564D0(totalRarity + WEIGHT_NO_ENCOUNTER);
+    encounterChance = LCRNG_RandMod(totalRarity + WEIGHT_NO_ENCOUNTER);
 
     if (encounterChance < WEIGHT_NO_ENCOUNTER) {
         return FALSE;

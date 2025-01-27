@@ -2,6 +2,7 @@
 #define POKEPLATINUM_CONSTANTS_MOVES_H
 
 #include "consts/moves.h"
+#include "generated/moves.h"
 
 #define LEARNED_MOVES_MAX 4
 

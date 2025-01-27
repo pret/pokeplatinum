@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GRASS" ],
     "catch_rate": 255,
     "base_exp_reward": 74,
     "ev_yields": {
@@ -30,21 +27,26 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_RAIN_DISH"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_RAIN_DISH" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ASTONISH" ],
+            [ 3, "MOVE_GROWL" ],
+            [ 5, "MOVE_ABSORB" ],
+            [ 7, "MOVE_NATURE_POWER" ],
+            [ 11, "MOVE_MIST" ],
+            [ 15, "MOVE_NATURAL_GIFT" ],
+            [ 19, "MOVE_MEGA_DRAIN" ],
+            [ 25, "MOVE_BUBBLE_BEAM" ],
+            [ 31, "MOVE_ZEN_HEADBUTT" ],
+            [ 37, "MOVE_RAIN_DANCE" ],
+            [ 45, "MOVE_ENERGY_BALL" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -77,20 +79,7 @@
             "TM90",
             "HM03"
         ],
-        "level_up": {
-            "1": "MOVE_ASTONISH",
-            "3": "MOVE_GROWL",
-            "5": "MOVE_ABSORB",
-            "7": "MOVE_NATURE_POWER",
-            "11": "MOVE_MIST",
-            "15": "MOVE_NATURAL_GIFT",
-            "19": "MOVE_MEGA_DRAIN",
-            "25": "MOVE_BUBBLE_BEAM",
-            "31": "MOVE_ZEN_HEADBUTT",
-            "37": "MOVE_RAIN_DANCE",
-            "45": "MOVE_ENERGY_BALL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
             "MOVE_SYNTHESIS",
@@ -101,14 +90,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             14,
             "SPECIES_LOMBRE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -125,7 +114,7 @@
         "entry_text": "It looks like an aquatic plant and\nserves as a ferry to Pokémon\nthat can’t swim.",
         "category": "Water Weed Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 30,

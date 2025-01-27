@@ -8,10 +8,7 @@
         "special_attack": 45,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_ROCK"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_ROCK" ],
     "catch_rate": 25,
     "base_exp_reward": 198,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 40,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_ROCK_HEAD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_ROCK_HEAD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 8, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_ROCK_TOMB" ],
+            [ 22, "MOVE_YAWN" ],
+            [ 29, "MOVE_TAKE_DOWN" ],
+            [ 36, "MOVE_MUD_SPORT" ],
+            [ 43, "MOVE_ANCIENT_POWER" ],
+            [ 50, "MOVE_DOUBLE_EDGE" ],
+            [ 57, "MOVE_DIVE" ],
+            [ 64, "MOVE_REST" ],
+            [ 71, "MOVE_HYDRO_PUMP" ],
+            [ 78, "MOVE_HEAD_SMASH" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM06",
@@ -83,24 +87,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_HARDEN"
-            ],
-            "8": "MOVE_WATER_GUN",
-            "15": "MOVE_ROCK_TOMB",
-            "22": "MOVE_YAWN",
-            "29": "MOVE_TAKE_DOWN",
-            "36": "MOVE_MUD_SPORT",
-            "43": "MOVE_ANCIENT_POWER",
-            "50": "MOVE_DOUBLE_EDGE",
-            "57": "MOVE_DIVE",
-            "64": "MOVE_REST",
-            "71": "MOVE_HYDRO_PUMP",
-            "78": "MOVE_HEAD_SMASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -111,9 +98,10 @@
             "MOVE_BOUNCE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 10,
@@ -130,7 +118,7 @@
         "entry_text": "A rare Pokémon discovered during\na deep-sea exploration. It has not\nchanged in over 100 million years.",
         "category": "Longevity Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 80,

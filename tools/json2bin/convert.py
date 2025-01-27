@@ -2,7 +2,8 @@
 import collections
 import functools
 
-from consts import items, moves, species, trainer, trainer_ai
+from generated import items, moves, species
+from consts import trainer, trainer_ai
 
 def pad(len: int) -> bytes:
     return (0).to_bytes(len, 'little')
@@ -23,7 +24,7 @@ def from_move(s: str) -> int:
     return moves.Move[s].value
 
 def from_species(s: str) -> int:
-    return species.PokemonSpecies[s].value
+    return species.Species[s].value
 
 def from_trainer_class(s: str) -> int:
     return trainer.TrainerClass[s].value

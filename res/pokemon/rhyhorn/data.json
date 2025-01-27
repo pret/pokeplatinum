@@ -8,10 +8,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_ROCK"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_ROCK" ],
     "catch_rate": 120,
     "base_exp_reward": 135,
     "ev_yields": {
@@ -30,21 +27,26 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_LIGHTNING_ROD",
-        "ABILITY_ROCK_HEAD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_LIGHTNING_ROD", "ABILITY_ROCK_HEAD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_HORN_ATTACK" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_STOMP" ],
+            [ 13, "MOVE_FURY_ATTACK" ],
+            [ 21, "MOVE_SCARY_FACE" ],
+            [ 25, "MOVE_ROCK_BLAST" ],
+            [ 33, "MOVE_TAKE_DOWN" ],
+            [ 37, "MOVE_HORN_DRILL" ],
+            [ 45, "MOVE_STONE_EDGE" ],
+            [ 49, "MOVE_EARTHQUAKE" ],
+            [ 57, "MOVE_MEGAHORN" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -89,22 +91,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_HORN_ATTACK",
-                "MOVE_TAIL_WHIP"
-            ],
-            "9": "MOVE_STOMP",
-            "13": "MOVE_FURY_ATTACK",
-            "21": "MOVE_SCARY_FACE",
-            "25": "MOVE_ROCK_BLAST",
-            "33": "MOVE_TAKE_DOWN",
-            "37": "MOVE_HORN_DRILL",
-            "45": "MOVE_STONE_EDGE",
-            "49": "MOVE_EARTHQUAKE",
-            "57": "MOVE_MEGAHORN"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -120,14 +107,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             42,
             "SPECIES_RHYDON"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -144,7 +131,7 @@
         "entry_text": "Its powerful tackles can destroy\nanything. However, it is too\nslow witted to help people work.",
         "category": "Spikes Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

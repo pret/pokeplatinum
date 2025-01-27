@@ -8,10 +8,7 @@
         "special_attack": 90,
         "special_defense": 72
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 200,
     "base_exp_reward": 164,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_GRASS",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 60,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 60,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BIND" ],
+            [ 1, "MOVE_GROWTH" ],
+            [ 7, "MOVE_BITE" ],
+            [ 11, "MOVE_VINE_WHIP" ],
+            [ 17, "MOVE_SWEET_SCENT" ],
+            [ 21, "MOVE_INGRAIN" ],
+            [ 27, "MOVE_FAINT_ATTACK" ],
+            [ 31, "MOVE_STOCKPILE" ],
+            [ 31, "MOVE_SPIT_UP" ],
+            [ 31, "MOVE_SWALLOW" ],
+            [ 37, "MOVE_CRUNCH" ],
+            [ 41, "MOVE_WRING_OUT" ],
+            [ 47, "MOVE_POWER_WHIP" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -77,26 +81,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BIND",
-                "MOVE_GROWTH"
-            ],
-            "7": "MOVE_BITE",
-            "11": "MOVE_VINE_WHIP",
-            "17": "MOVE_SWEET_SCENT",
-            "21": "MOVE_INGRAIN",
-            "27": "MOVE_FAINT_ATTACK",
-            "31": [
-                "MOVE_STOCKPILE",
-                "MOVE_SPIT_UP",
-                "MOVE_SWALLOW"
-            ],
-            "37": "MOVE_CRUNCH",
-            "41": "MOVE_WRING_OUT",
-            "47": "MOVE_POWER_WHIP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_GASTRO_ACID",
@@ -106,9 +91,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 14,
@@ -125,7 +111,7 @@
         "entry_text": "It binds itself to trees in marshes.\nIt attracts prey with its sweet-\nsmelling drool and gulps them down.",
         "category": "Bug Catcher Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

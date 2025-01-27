@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 45,
     "base_exp_reward": 65,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_BLAZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 4, "MOVE_SMOKE_SCREEN" ],
+            [ 10, "MOVE_EMBER" ],
+            [ 13, "MOVE_QUICK_ATTACK" ],
+            [ 19, "MOVE_FLAME_WHEEL" ],
+            [ 22, "MOVE_DEFENSE_CURL" ],
+            [ 28, "MOVE_SWIFT" ],
+            [ 31, "MOVE_LAVA_PLUME" ],
+            [ 37, "MOVE_FLAMETHROWER" ],
+            [ 40, "MOVE_ROLLOUT" ],
+            [ 46, "MOVE_DOUBLE_EDGE" ],
+            [ 49, "MOVE_ERUPTION" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -70,24 +74,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_LEER"
-            ],
-            "4": "MOVE_SMOKE_SCREEN",
-            "10": "MOVE_EMBER",
-            "13": "MOVE_QUICK_ATTACK",
-            "19": "MOVE_FLAME_WHEEL",
-            "22": "MOVE_DEFENSE_CURL",
-            "28": "MOVE_SWIFT",
-            "31": "MOVE_LAVA_PLUME",
-            "37": "MOVE_FLAMETHROWER",
-            "40": "MOVE_ROLLOUT",
-            "46": "MOVE_DOUBLE_EDGE",
-            "49": "MOVE_ERUPTION"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -97,14 +84,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             14,
             "SPECIES_QUILAVA"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -121,7 +108,7 @@
         "entry_text": "It has a timid nature. If it is\nstartled, the flames on its back\nburn more vigorously.",
         "category": "Fire Mouse Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

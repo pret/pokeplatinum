@@ -23,7 +23,6 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202AB28_decl.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
@@ -31,9 +30,7 @@
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_0202A93C.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -108,6 +105,7 @@
 #include "field_task.h"
 #include "field_transition.h"
 #include "game_records.h"
+#include "great_marsh_lookout.h"
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
@@ -201,7 +199,6 @@
 #include "unk_02069BE0.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
-#include "unk_0206C0E8.h"
 #include "unk_0206C660.h"
 #include "unk_0206C784.h"
 #include "unk_0206CCB0.h"
@@ -590,7 +587,7 @@ static BOOL ScrCmd_203(ScriptContext *ctx);
 static BOOL ScrCmd_204(ScriptContext *ctx);
 static BOOL ScrCmd_205(ScriptContext *ctx);
 static BOOL ScrCmd_310(ScriptContext *ctx);
-static BOOL ScrCmd_206(ScriptContext *ctx);
+static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx);
 static BOOL ScrCmd_20C(ScriptContext *ctx);
 static BOOL ScrCmd_20D(ScriptContext *ctx);
 static BOOL ScrCmd_20E(ScriptContext *ctx);
@@ -1284,7 +1281,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_203,
     ScrCmd_204,
     ScrCmd_205,
-    ScrCmd_206,
+    ScrCmd_StartGreatMarshLookout,
     ScrCmd_207,
     ScrCmd_208,
     ScrCmd_209,
@@ -4274,7 +4271,7 @@ static BOOL ScrCmd_1D8(ScriptContext *ctx)
         return 0;
     }
 
-    if (sub_0202AC98(Poffin_GetSavedataBlock(ctx->fieldSystem->saveData)) >= 100) {
+    if (Poffin_GetNumberOfFilledSlots(Poffin_GetSavedataBlock(ctx->fieldSystem->saveData)) >= MAX_POFFINS) {
         *v0 = 2;
         return 0;
     }
@@ -4804,11 +4801,11 @@ static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx)
 
 static BOOL ScrCmd_0E3(ScriptContext *ctx)
 {
-    UnkStruct_0202D7B0 *v0 = sub_0202D834(ctx->fieldSystem->saveData);
+    SpecialEncounter *v0 = SaveData_GetSpecialEncounters(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    ov6_0224322C(sub_0202D814(v0, 2), v1, v2);
+    ov6_0224322C(SpecialEncounter_GetDailyMon(v0, DAILY_SWARM), v1, v2);
     return 0;
 }
 
@@ -6406,10 +6403,10 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_206(ScriptContext *ctx)
+static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx)
 {
-    sub_0206C0E8(ctx->fieldSystem);
-    return 1;
+    GreatMarshLookout_Init(ctx->fieldSystem);
+    return TRUE;
 }
 
 static BOOL ScrCmd_20D(ScriptContext *ctx)
@@ -7369,7 +7366,7 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
 {
     Poffin *v0;
     int v1;
-    UnkStruct_0202AB28 *v2;
+    PoffinCase *v2;
     u8 v3[5];
     u8 v4;
     u16 v5;
@@ -7383,14 +7380,14 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
     }
 
     v4 = ScriptContext_GetVar(ctx);
-    v0 = Poffin_malloc(4);
+    v0 = Poffin_New(4);
     v1 = sub_0202A9E4(v0, v3, v4, 0);
     v2 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
-    v5 = sub_0202AB74(v2, v0);
+    v5 = Poffin_AddToCase(v2, v0);
 
     Heap_FreeToHeap(v0);
 
-    if (v5 == 0xFFFF) {
+    if (v5 == POFFIN_NONE) {
         *v6 = 0xffff;
     } else {
         *v6 = v1;
@@ -7401,13 +7398,13 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
 
 static BOOL ScrCmd_28A(ScriptContext *ctx)
 {
-    UnkStruct_0202AB28 *v0;
+    PoffinCase *poffinCase;
     u16 *v1;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
+    poffinCase = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
 
-    if (sub_0202AB54(v0) == 0xFFFF) {
+    if (Poffin_GetEmptyCaseSlot(poffinCase) == POFFIN_NONE) {
         *v1 = 0;
     } else {
         *v1 = 1;
@@ -7418,12 +7415,12 @@ static BOOL ScrCmd_28A(ScriptContext *ctx)
 
 static BOOL ScrCmd_307(ScriptContext *ctx)
 {
-    UnkStruct_0202AB28 *v0;
+    PoffinCase *poffinCase;
     u16 *v1;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
-    *v1 = sub_0202ACC0(v0);
+    poffinCase = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
+    *v1 = Poffin_GetNumberOfEmptySlots(poffinCase);
 
     return 0;
 }

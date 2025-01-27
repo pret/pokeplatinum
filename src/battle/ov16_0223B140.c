@@ -263,7 +263,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
         int v3;
         Pokemon *v4;
 
-        v2 = ov16_0223ECC4(v0, &v1, &v3);
+        v2 = Battle_FindEvolvingPartyMember(v0, &v1, &v3);
 
         if (v2) {
             Heap_Create(3, 73, 0x30000);

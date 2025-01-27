@@ -1,15 +1,15 @@
+#include "generated/items.h"
+#include "generated/moves.h"
+#include "generated/species.h"
+#include "generated/catching_show_points_category.h"
     .include "macros/movement.inc"
     .include "consts/badges.inc"
-    .include "consts/catching_show.inc"
     .include "consts/game_records.inc"
-    .include "consts/items.inc"
     .include "consts/journal.inc"
     .include "consts/map.inc"
-    .include "consts/moves.inc"
     .include "consts/poketch.inc"
     .include "consts/scrcmd.inc"
     .include "consts/sdat.inc"
-    .include "consts/species.inc"
 
 #include "res/trainers/trdata.naix"
 
@@ -2797,7 +2797,7 @@
     .short 517
     .endm
 
-    .macro ScrCmd_206
+    .macro StartGreatMarshLookout
     .short 518
     .endm
 

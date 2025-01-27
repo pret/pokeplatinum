@@ -4,13 +4,13 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_party_decl.h"
 
 #include "field/field_system_decl.h"
 
 #include "game_options.h"
 #include "game_records.h"
 #include "journal.h"
+#include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_info.h"

@@ -9,7 +9,7 @@
 #include "constants/items.h"
 #include "consts/battle.h"
 #include "consts/game_records.h"
-#include "consts/species.h"
+#include "generated/species.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pokedexdata_decl.h"
@@ -20,7 +20,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -125,7 +124,7 @@ u32 ov16_0223EBEC(BattleSystem *battleSystem);
 enum Time BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem *battleSystem);
 u8 ov16_0223EC58(BattleSystem *battleSystem, int param1, u8 param2);
-u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2);
+u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *param0, int *param1, int *param2);
 u8 ov16_0223ED60(BattleSystem *battleSystem);
 u8 ov16_0223ED6C(BattleSystem *battleSystem);
 int BattleSystem_NumSafariBalls(BattleSystem *battleSystem);
@@ -957,35 +956,35 @@ u8 ov16_0223EC58(BattleSystem *battleSystem, int param1, u8 param2)
     return 0;
 }
 
-u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2)
+u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *dto, int *outPartySlot, int *outEvoType)
 {
-    Pokemon *v0;
-    u16 v1;
+    Pokemon *mon;
+    u16 species = SPECIES_NONE;
 
-    v1 = 0;
-
-    if ((param0->resultMask != BATTLE_RESULT_WIN) && (param0->resultMask != BATTLE_RESULT_CAPTURED_MON) && (param0->resultMask != BATTLE_RESULT_PLAYER_FLED)) {
-        return 0;
+    if (dto->resultMask != BATTLE_RESULT_WIN
+        && dto->resultMask != BATTLE_RESULT_CAPTURED_MON
+        && dto->resultMask != BATTLE_RESULT_PLAYER_FLED) {
+        return SPECIES_NONE;
     }
 
-    while (param0->leveledUpMonsMask) {
-        for (param1[0] = 0; param1[0] < 6; param1[0]++) {
-            if (param0->leveledUpMonsMask & FlagIndex(param1[0])) {
-                param0->leveledUpMonsMask &= (FlagIndex(param1[0]) ^ 0xffffffff);
+    while (dto->leveledUpMonsMask) {
+        for (*outPartySlot = 0; *outPartySlot < 6; (*outPartySlot)++) {
+            if (dto->leveledUpMonsMask & FlagIndex(*outPartySlot)) {
+                dto->leveledUpMonsMask &= (FlagIndex(*outPartySlot) ^ 0xFFFFFFFF);
                 break;
             }
         }
 
-        if (param1[0] < 6) {
-            v0 = Party_GetPokemonBySlotIndex(param0->parties[0], param1[0]);
-
-            if ((v1 = sub_02076B94(param0->parties[0], v0, 0, param0->mapEvolutionMethod, param2))) {
-                return v1;
+        if (*outPartySlot < 6) {
+            mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLE_SIDE_PLAYER], *outPartySlot);
+            species = Pokemon_GetEvolutionTargetSpecies(dto->parties[BATTLE_SIDE_PLAYER], mon, EVO_CLASS_BY_LEVEL, dto->mapEvolutionMethod, outEvoType);
+            if (species) {
+                return species;
             }
         }
     }
 
-    return v1;
+    return species;
 }
 
 u8 ov16_0223ED60(BattleSystem *battleSystem)

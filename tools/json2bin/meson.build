@@ -3,10 +3,6 @@ json2bin_env.set('PYTHONPATH', meson.project_build_root()) # access to constants
 
 # Old combined parser + packer scripts
 movedata_py = find_program('movedata.py', native: true)
-pokemon_personal_data_py = find_program('pokemon_personal_data.py', native: true)
-pokemon_wotbl_data_py = find_program('pokemon_wotbl_data.py', native: true)
-evo_py = find_program('evo.py', native: true)
-pl_poke_data_py = find_program('pl_poke_data.py', native: true)
 
 # New single-file-parser scripts
 encounter_py = find_program('encounter.py', native: true)
@@ -17,4 +13,3 @@ encdata_ex_elusive_rod_py = find_program('encdata_ex_elusive_rod.py', native: tr
 encdata_ex_honey_trees_py = find_program('encdata_ex_honey_trees.py', native: true)
 encdata_ex_trophy_garden_py = find_program('encdata_ex_trophy_garden.py', native: true)
 encdata_ex_great_marsh_py = find_program('encdata_ex_great_marsh.py', native: true)
-catching_show_data_py = find_program('catching_show_data.py', native: true)

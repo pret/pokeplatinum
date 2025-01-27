@@ -4,7 +4,7 @@ import json
 import pathlib
 import subprocess
 
-from consts.species import PokemonSpecies
+from generated.species import Species
 
 
 argparser = argparse.ArgumentParser(
@@ -232,7 +232,7 @@ honey_tree_fields = [
 ]
 great_marsh_dungeon = 4
 
-NUM_POKEMON = len(PokemonSpecies) - 1
+NUM_POKEMON = len(Species) - 1
 NUM_FILES = NUM_POKEMON * 10 + 4
 
 NUM_DIGITS = len(str(NUM_FILES))
@@ -291,24 +291,24 @@ for file in args.src_files:
     if (file == args.honey_file):
         for species in enc_data['common']:
             for map_num in honey_tree_dungeons:
-                dungeon_special[PokemonSpecies[species].value].add(map_num)
-                dungeon_special_natdex[PokemonSpecies[species].value].add(map_num)
+                dungeon_special[Species[species].value].add(map_num)
+                dungeon_special_natdex[Species[species].value].add(map_num)
             for map_num in honey_tree_fields:
-                field_special[PokemonSpecies[species].value].add(map_num)
-                field_special_natdex[PokemonSpecies[species].value].add(map_num)
+                field_special[Species[species].value].add(map_num)
+                field_special_natdex[Species[species].value].add(map_num)
         for species in enc_data['uncommon']:
             for map_num in honey_tree_dungeons:
-                dungeon_special[PokemonSpecies[species].value].add(map_num)
-                dungeon_special_natdex[PokemonSpecies[species].value].add(map_num)
+                dungeon_special[Species[species].value].add(map_num)
+                dungeon_special_natdex[Species[species].value].add(map_num)
             for map_num in honey_tree_fields:
-                field_special[PokemonSpecies[species].value].add(map_num)
-                field_special_natdex[PokemonSpecies[species].value].add(map_num)
+                field_special[Species[species].value].add(map_num)
+                field_special_natdex[Species[species].value].add(map_num)
     
     elif (file == args.marsh_file):
         for species in enc_data['before_national_dex']:
-            dungeon_special[PokemonSpecies[species].value].add(great_marsh_dungeon)
+            dungeon_special[Species[species].value].add(great_marsh_dungeon)
         for species in enc_data['after_national_dex']:
-            dungeon_special_natdex[PokemonSpecies[species].value].add(great_marsh_dungeon)
+            dungeon_special_natdex[Species[species].value].add(great_marsh_dungeon)
 
     else:
         map_data = enc_data['map_category']
@@ -318,99 +318,99 @@ for file in args.src_files:
         if (map_type == 'dungeon'):
             for i, slot in enumerate(enc_data['land_encounters']):
                 species = slot['species']
-                dungeon_morning[PokemonSpecies[species].value].add(map_num)
+                dungeon_morning[Species[species].value].add(map_num)
 
                 if ((i == 2) or (i == 3)):
                     species = enc_data['morning'][i - 2]
-                    dungeon_day[PokemonSpecies[species].value].add(map_num)
+                    dungeon_day[Species[species].value].add(map_num)
 
                     species = enc_data['night'][i - 2]
-                    dungeon_night[PokemonSpecies[species].value].add(map_num)
+                    dungeon_night[Species[species].value].add(map_num)
                 else:
-                    dungeon_day[PokemonSpecies[species].value].add(map_num)
-                    dungeon_night[PokemonSpecies[species].value].add(map_num)
+                    dungeon_day[Species[species].value].add(map_num)
+                    dungeon_night[Species[species].value].add(map_num)
 
             for slot in enc_data['surf_encounters']:
                 species = slot['species']
-                dungeon_morning[PokemonSpecies[species].value].add(map_num)
-                dungeon_day[PokemonSpecies[species].value].add(map_num)
-                dungeon_night[PokemonSpecies[species].value].add(map_num)
+                dungeon_morning[Species[species].value].add(map_num)
+                dungeon_day[Species[species].value].add(map_num)
+                dungeon_night[Species[species].value].add(map_num)
 
             for slot in enc_data['old_rod_encounters']:
                 species = slot['species']
-                dungeon_morning[PokemonSpecies[species].value].add(map_num)
-                dungeon_day[PokemonSpecies[species].value].add(map_num)
-                dungeon_night[PokemonSpecies[species].value].add(map_num)
+                dungeon_morning[Species[species].value].add(map_num)
+                dungeon_day[Species[species].value].add(map_num)
+                dungeon_night[Species[species].value].add(map_num)
 
             for slot in enc_data['good_rod_encounters']:
                 species = slot['species']
-                dungeon_morning[PokemonSpecies[species].value].add(map_num)
-                dungeon_day[PokemonSpecies[species].value].add(map_num)
-                dungeon_night[PokemonSpecies[species].value].add(map_num)
+                dungeon_morning[Species[species].value].add(map_num)
+                dungeon_day[Species[species].value].add(map_num)
+                dungeon_night[Species[species].value].add(map_num)
 
             for slot in enc_data['super_rod_encounters']:
                 species = slot['species']
-                dungeon_morning[PokemonSpecies[species].value].add(map_num)
-                dungeon_day[PokemonSpecies[species].value].add(map_num)
-                dungeon_night[PokemonSpecies[species].value].add(map_num)
+                dungeon_morning[Species[species].value].add(map_num)
+                dungeon_day[Species[species].value].add(map_num)
+                dungeon_night[Species[species].value].add(map_num)
 
             dungeon_special[0].add(map_num)
 
             for species in enc_data['radar']:
-                dungeon_special_natdex[PokemonSpecies[species].value].add(map_num)
+                dungeon_special_natdex[Species[species].value].add(map_num)
 
             if (file == args.coronet_file):
                 species = enc_data['elusive_rod_encounter']['species']
-                dungeon_special[PokemonSpecies[species].value].add(map_num)
-                dungeon_special_natdex[PokemonSpecies[species].value].add(map_num)
+                dungeon_special[Species[species].value].add(map_num)
+                dungeon_special_natdex[Species[species].value].add(map_num)
 
             if (file == args.trophy_file):
                 for species in enc_data['daily_encounters']:
-                    dungeon_special_natdex[PokemonSpecies[species].value].add(map_num)
+                    dungeon_special_natdex[Species[species].value].add(map_num)
 
         if (map_type == 'field'):
             for i, slot in enumerate(enc_data['land_encounters']):
                 species = slot['species']
-                field_morning[PokemonSpecies[species].value].add(map_num)
+                field_morning[Species[species].value].add(map_num)
 
                 if ((i == 2) or (i == 3)):
                     species = enc_data['morning'][i - 2]
-                    field_day[PokemonSpecies[species].value].add(map_num)
+                    field_day[Species[species].value].add(map_num)
 
                     species = enc_data['night'][i - 2]
-                    field_night[PokemonSpecies[species].value].add(map_num)
+                    field_night[Species[species].value].add(map_num)
                 else:
-                    field_day[PokemonSpecies[species].value].add(map_num)
-                    field_night[PokemonSpecies[species].value].add(map_num)
+                    field_day[Species[species].value].add(map_num)
+                    field_night[Species[species].value].add(map_num)
 
             for slot in enc_data['surf_encounters']:
                 species = slot['species']
-                field_morning[PokemonSpecies[species].value].add(map_num)
-                field_day[PokemonSpecies[species].value].add(map_num)
-                field_night[PokemonSpecies[species].value].add(map_num)
+                field_morning[Species[species].value].add(map_num)
+                field_day[Species[species].value].add(map_num)
+                field_night[Species[species].value].add(map_num)
 
             for slot in enc_data['old_rod_encounters']:
                 species = slot['species']
-                field_morning[PokemonSpecies[species].value].add(map_num)
-                field_day[PokemonSpecies[species].value].add(map_num)
-                field_night[PokemonSpecies[species].value].add(map_num)
+                field_morning[Species[species].value].add(map_num)
+                field_day[Species[species].value].add(map_num)
+                field_night[Species[species].value].add(map_num)
 
             for slot in enc_data['good_rod_encounters']:
                 species = slot['species']
-                field_morning[PokemonSpecies[species].value].add(map_num)
-                field_day[PokemonSpecies[species].value].add(map_num)
-                field_night[PokemonSpecies[species].value].add(map_num)
+                field_morning[Species[species].value].add(map_num)
+                field_day[Species[species].value].add(map_num)
+                field_night[Species[species].value].add(map_num)
 
             for slot in enc_data['super_rod_encounters']:
                 species = slot['species']
-                field_morning[PokemonSpecies[species].value].add(map_num)
-                field_day[PokemonSpecies[species].value].add(map_num)
-                field_night[PokemonSpecies[species].value].add(map_num)
+                field_morning[Species[species].value].add(map_num)
+                field_day[Species[species].value].add(map_num)
+                field_night[Species[species].value].add(map_num)
 
             field_special[0].add(map_num)
 
             for species in enc_data['radar']:
-                field_special_natdex[PokemonSpecies[species].value].add(map_num)
+                field_special_natdex[Species[species].value].add(map_num)
 
 
 for species in range(NUM_POKEMON):

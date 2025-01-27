@@ -8,10 +8,7 @@
         "special_attack": 15,
         "special_defense": 20
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 255,
     "base_exp_reward": 20,
     "ev_yields": {
@@ -30,40 +27,30 @@
     "hatch_cycles": 5,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 90,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_NONE" ],
+    "safari_flee_rate": 90,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": "MOVE_SPLASH",
-            "15": "MOVE_TACKLE",
-            "30": "MOVE_FLAIL"
-        },
-        "tutor": [
-            "MOVE_BOUNCE"
-        ]
+        "by_level": [
+            [ 1, "MOVE_SPLASH" ],
+            [ 15, "MOVE_TACKLE" ],
+            [ 30, "MOVE_FLAIL" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [ "MOVE_BOUNCE" ]
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             20,
             "SPECIES_GYARADOS"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 9,
@@ -80,7 +67,7 @@
         "entry_text": "A MAGIKARP living for many years\ncan leap a mountain using Splash.\nThe move remains useless, though.",
         "category": "Fish Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 30,

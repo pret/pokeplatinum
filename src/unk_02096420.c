@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/species.h"
-
-#include "struct_decls/struct_party_decl.h"
+#include "generated/species.h"
 
 #include "heap.h"
 #include "item.h"
@@ -92,7 +90,7 @@ u8 CheckItemEffectsOnPokemon(Pokemon *param0, u16 param1, u16 param2, u32 param3
     }
 
     if (Item_Get(v0, 26) != 0) {
-        if (sub_02076B94(NULL, param0, 3, param1, NULL) != 0) {
+        if (Pokemon_GetEvolutionTargetSpecies(NULL, param0, EVO_CLASS_BY_ITEM, param1, NULL) != 0) {
             Heap_FreeToHeap(v0);
             return 1;
         }

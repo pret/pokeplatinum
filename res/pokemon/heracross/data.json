@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 95
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_FIGHTING" ],
     "catch_rate": 45,
     "base_exp_reward": 200,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_GUTS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_GUTS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_NIGHT_SLASH" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_HORN_ATTACK" ],
+            [ 1, "MOVE_ENDURE" ],
+            [ 7, "MOVE_FURY_ATTACK" ],
+            [ 13, "MOVE_AERIAL_ACE" ],
+            [ 19, "MOVE_BRICK_BREAK" ],
+            [ 25, "MOVE_COUNTER" ],
+            [ 31, "MOVE_TAKE_DOWN" ],
+            [ 37, "MOVE_CLOSE_COMBAT" ],
+            [ 43, "MOVE_REVERSAL" ],
+            [ 49, "MOVE_FEINT" ],
+            [ 55, "MOVE_MEGAHORN" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -83,25 +88,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_TACKLE",
-                "MOVE_LEER",
-                "MOVE_HORN_ATTACK",
-                "MOVE_ENDURE"
-            ],
-            "7": "MOVE_FURY_ATTACK",
-            "13": "MOVE_AERIAL_ACE",
-            "19": "MOVE_BRICK_BREAK",
-            "25": "MOVE_COUNTER",
-            "31": "MOVE_TAKE_DOWN",
-            "37": "MOVE_CLOSE_COMBAT",
-            "43": "MOVE_REVERSAL",
-            "49": "MOVE_FEINT",
-            "55": "MOVE_MEGAHORN"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -110,9 +97,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -129,7 +117,7 @@
         "entry_text": "It loves sweet honey. To keep all\nthe honey to itself, it hurls rivals\naway with its prized horn.",
         "category": "Single Horn Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

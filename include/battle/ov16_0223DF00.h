@@ -12,7 +12,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer_data.h"
 
@@ -32,6 +31,7 @@
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
+#include "party.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -192,7 +192,7 @@ u32 BattleSystem_BattleStatus(BattleSystem *battleSys);
 enum Time BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem *battleSys);
 u8 ov16_0223EC58(BattleSystem *battleSys, int param1, u8 param2);
-u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2);
+u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *param0, int *param1, int *param2);
 u8 ov16_0223ED60(BattleSystem *battleSys);
 u8 ov16_0223ED6C(BattleSystem *battleSys);
 int BattleSystem_NumSafariBalls(BattleSystem *battleSys);

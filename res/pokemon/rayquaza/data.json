@@ -8,10 +8,7 @@
         "special_attack": 150,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_DRAGON",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_DRAGON", "TYPE_FLYING" ],
     "catch_rate": 3,
     "base_exp_reward": 220,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_AIR_LOCK",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_AIR_LOCK", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TWISTER" ],
+            [ 5, "MOVE_SCARY_FACE" ],
+            [ 15, "MOVE_ANCIENT_POWER" ],
+            [ 20, "MOVE_DRAGON_CLAW" ],
+            [ 30, "MOVE_DRAGON_DANCE" ],
+            [ 35, "MOVE_CRUNCH" ],
+            [ 45, "MOVE_FLY" ],
+            [ 50, "MOVE_REST" ],
+            [ 60, "MOVE_EXTREME_SPEED" ],
+            [ 65, "MOVE_HYPER_BEAM" ],
+            [ 75, "MOVE_DRAGON_PULSE" ],
+            [ 80, "MOVE_OUTRAGE" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM03",
             "TM05",
@@ -100,21 +103,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_TWISTER",
-            "5": "MOVE_SCARY_FACE",
-            "15": "MOVE_ANCIENT_POWER",
-            "20": "MOVE_DRAGON_CLAW",
-            "30": "MOVE_DRAGON_DANCE",
-            "35": "MOVE_CRUNCH",
-            "45": "MOVE_FLY",
-            "50": "MOVE_REST",
-            "60": "MOVE_EXTREME_SPEED",
-            "65": "MOVE_HYPER_BEAM",
-            "75": "MOVE_DRAGON_PULSE",
-            "80": "MOVE_OUTRAGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -130,9 +119,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 70,
@@ -149,7 +139,7 @@
         "entry_text": "It lives in the ozone layer far\nabove the clouds and cannot be\nseen from the ground.",
         "category": "Sky High Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

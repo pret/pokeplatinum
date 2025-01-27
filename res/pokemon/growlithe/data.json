@@ -8,10 +8,7 @@
         "special_attack": 70,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 190,
     "base_exp_reward": 91,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_FLASH_FIRE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_FLASH_FIRE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_ROAR" ],
+            [ 6, "MOVE_EMBER" ],
+            [ 9, "MOVE_LEER" ],
+            [ 14, "MOVE_ODOR_SLEUTH" ],
+            [ 17, "MOVE_HELPING_HAND" ],
+            [ 20, "MOVE_FLAME_WHEEL" ],
+            [ 25, "MOVE_REVERSAL" ],
+            [ 28, "MOVE_FIRE_FANG" ],
+            [ 31, "MOVE_TAKE_DOWN" ],
+            [ 34, "MOVE_FLAMETHROWER" ],
+            [ 39, "MOVE_AGILITY" ],
+            [ 42, "MOVE_CRUNCH" ],
+            [ 45, "MOVE_HEAT_WAVE" ],
+            [ 48, "MOVE_FLARE_BLITZ" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -74,26 +80,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BITE",
-                "MOVE_ROAR"
-            ],
-            "6": "MOVE_EMBER",
-            "9": "MOVE_LEER",
-            "14": "MOVE_ODOR_SLEUTH",
-            "17": "MOVE_HELPING_HAND",
-            "20": "MOVE_FLAME_WHEEL",
-            "25": "MOVE_REVERSAL",
-            "28": "MOVE_FIRE_FANG",
-            "31": "MOVE_TAKE_DOWN",
-            "34": "MOVE_FLAMETHROWER",
-            "39": "MOVE_AGILITY",
-            "42": "MOVE_CRUNCH",
-            "45": "MOVE_HEAT_WAVE",
-            "48": "MOVE_FLARE_BLITZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -109,8 +96,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -127,7 +114,7 @@
         "entry_text": "A Pokémon with a loyal nature.\nIt will remain motionless until it is\ngiven an order by its Trainer.",
         "category": "Puppy Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

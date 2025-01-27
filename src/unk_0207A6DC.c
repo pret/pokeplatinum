@@ -6,7 +6,6 @@
 #include "constants/battle.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02039A58.h"

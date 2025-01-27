@@ -8,10 +8,7 @@
         "special_attack": 100,
         "special_defense": 120
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
     "base_exp_reward": 136,
     "ev_yields": {
@@ -30,21 +27,35 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_SOUNDPROOF",
-        "ABILITY_FILTER"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_SOUNDPROOF", "ABILITY_FILTER" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_MAGICAL_LEAF" ],
+            [ 1, "MOVE_POWER_SWAP" ],
+            [ 1, "MOVE_GUARD_SWAP" ],
+            [ 1, "MOVE_BARRIER" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 4, "MOVE_COPYCAT" ],
+            [ 8, "MOVE_MEDITATE" ],
+            [ 11, "MOVE_ENCORE" ],
+            [ 15, "MOVE_DOUBLE_SLAP" ],
+            [ 18, "MOVE_MIMIC" ],
+            [ 22, "MOVE_LIGHT_SCREEN" ],
+            [ 22, "MOVE_REFLECT" ],
+            [ 25, "MOVE_PSYBEAM" ],
+            [ 29, "MOVE_SUBSTITUTE" ],
+            [ 32, "MOVE_RECYCLE" ],
+            [ 36, "MOVE_TRICK" ],
+            [ 39, "MOVE_PSYCHIC" ],
+            [ 43, "MOVE_ROLE_PLAY" ],
+            [ 46, "MOVE_BATON_PASS" ],
+            [ 50, "MOVE_SAFEGUARD" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -97,33 +108,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_POWER_SWAP",
-                "MOVE_GUARD_SWAP",
-                "MOVE_BARRIER",
-                "MOVE_CONFUSION"
-            ],
-            "4": "MOVE_COPYCAT",
-            "8": "MOVE_MEDITATE",
-            "11": "MOVE_ENCORE",
-            "15": "MOVE_DOUBLE_SLAP",
-            "18": "MOVE_MIMIC",
-            "22": [
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_REFLECT"
-            ],
-            "25": "MOVE_PSYBEAM",
-            "29": "MOVE_SUBSTITUTE",
-            "32": "MOVE_RECYCLE",
-            "36": "MOVE_TRICK",
-            "39": "MOVE_PSYCHIC",
-            "43": "MOVE_ROLE_PLAY",
-            "46": "MOVE_BATON_PASS",
-            "50": "MOVE_SAFEGUARD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -136,9 +121,10 @@
             "MOVE_TRICK"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -155,7 +141,7 @@
         "entry_text": "It shapes an invisible wall in midair\nby minutely vibrating its fingertips\nto stop molecules in the air.",
         "category": "Barrier Pokémon"
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,
