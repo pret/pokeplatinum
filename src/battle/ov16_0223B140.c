@@ -355,7 +355,7 @@ void ov16_0223B430(BattleSystem *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     ov16_02268A88(param0->battleInput);
     ov16_02268C04(v0, v1, param0->battleInput, 0, 1, NULL);
-    ov16_02268D40(v1, param0->battleInput);
+    BattleInput_CreateBallGagueObjects(v1, param0->battleInput);
     NARC_dtor(v0);
     NARC_dtor(v1);
     TextPrinter_SetScrollArrowBaseTile(1);
@@ -595,7 +595,7 @@ static void ov16_0223B790(OverlayManager *param0)
         v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
         ov16_02268C04(v8, v9, v0->battleInput, 0, 1, NULL);
-        ov16_02268D40(v9, v0->battleInput);
+        BattleInput_CreateBallGagueObjects(v9, v0->battleInput);
 
         NARC_dtor(v8);
         NARC_dtor(v9);

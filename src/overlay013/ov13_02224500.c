@@ -238,7 +238,7 @@ void ov13_02224500(UnkStruct_ov13_022213F0 *param0)
 static void ov13_0222453C(UnkStruct_ov13_022213F0 *param0)
 {
     UnkStruct_ov104_02241308 v0 = { 18, 6, 6, 6, 0, 0 };
-    SpriteRenderer *v1 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteRenderer *v1 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
 
     param0->unk_1FB0 = sub_0200C704(v1);
 
@@ -253,7 +253,7 @@ static void ov13_02224588(UnkStruct_ov13_022213F0 *param0)
     NARC *v2;
 
     v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->unk_0C);
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
 
     SpriteRenderer_LoadPalette(param0->unk_1E4, 3, v0, param0->unk_1FB0, v2, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIcon32KCellsFileIndex(), 0, 45063);
@@ -272,7 +272,7 @@ static void ov13_02224588(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02224670(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteRenderer *v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
     NARC *v1;
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_0C);
@@ -289,7 +289,7 @@ static void ov13_02224720(UnkStruct_ov13_022213F0 *param0)
     SpriteRenderer *v0;
     u32 v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
 
     MoveTypeIcon_LoadPalette(param0->unk_1E4, 3, v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 45065);
     sub_0207C9EC(v0, param0->unk_1FB0, 45065, 45065);
@@ -308,7 +308,7 @@ static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
     NARC *v2;
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_0C);
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
 
     SpriteRenderer_LoadPalette(param0->unk_1E4, 3, v0, param0->unk_1FB0, v2, sub_02081934(), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45066);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_02081938(), 0, 45066);
@@ -319,7 +319,7 @@ static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02224848(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteRenderer *v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
 
     sub_0200CD7C(param0->unk_1E4, 3, v0, param0->unk_1FB0, 72, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45067);
     sub_0200CE0C(v0, param0->unk_1FB0, 72, 25, 0, 45067);
@@ -332,7 +332,7 @@ static CellActorData *ov13_022248D8(UnkStruct_ov13_022213F0 *param0, u32 param1)
     SpriteTemplate v0;
     SpriteRenderer *v1;
 
-    v1 = ov16_0223E010(param0->unk_00->unk_08);
+    v1 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
 
     v0.x = 0;
     v0.y = 0;
@@ -367,7 +367,7 @@ void ov13_02224970(UnkStruct_ov13_022213F0 *param0)
     SpriteRenderer *v0;
     u32 v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
 
     for (v1 = 0; v1 < 38; v1++) {
         sub_0200D0F4(param0->unk_1FB4[v1]);
@@ -398,7 +398,7 @@ static void ov13_022249CC(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02224A0C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1, u32 param2, u8 param3)
 {
-    SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteRenderer *v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
 
     sub_0200D948(v0, param0->unk_1FB0, sub_0207C944(), sub_0207C908(param3), 1, param2);
     sub_0200D41C(param1, sub_0207C92C(param3) + 4);
@@ -406,7 +406,7 @@ static void ov13_02224A0C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1
 
 static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1, u32 param2)
 {
-    SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteRenderer *v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
 
     sub_0200D948(v0, param0->unk_1FB0, sub_0207CAC0(), sub_0207CA90(param2), 1, 45077);
     sub_0200D41C(param1, sub_0207CAA8(param2) + 4);
@@ -797,7 +797,7 @@ static void ov13_0222554C(UnkStruct_ov13_022213F0 *param0)
     SpriteRenderer *v0;
     BattleCursor *v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_08);
     BattleCursor_LoadResources(v0, param0->unk_1FB0, param0->unk_1E4, param0->unk_00->unk_0C, 45080, 45068, 45068, 45068);
     v1 = BattleCursor_New(v0, param0->unk_1FB0, param0->unk_00->unk_0C, 45080, 45068, 45068, 45068, 0, 1);
 

@@ -866,7 +866,7 @@ void ov16_0225D8F0(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
 
 void BattleDisplay_PrintMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg)
 {
-    MessageLoader *msgLoader = BattleSystem_MessageLoader(battleSys);
+    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(battleSys);
     BattleMessageWaitTask *taskData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     taskData->battleSys = battleSys;
@@ -1095,7 +1095,7 @@ void ov16_0225DDD8(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
 
     ov16_02263C1C(param0, param1, param2, &v2);
 
-    v1 = BattleSystem_MessageLoader(param0);
+    v1 = BattleSystem_GetMessageLoader(param0);
     v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = param0;
@@ -1114,7 +1114,7 @@ void ov16_0225DE30(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
 
     ov16_02263CF0(param0, param1, param2, &v2);
 
-    v1 = BattleSystem_MessageLoader(param0);
+    v1 = BattleSystem_GetMessageLoader(param0);
     v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = param0;
@@ -1133,7 +1133,7 @@ void ov16_0225DE88(BattleSystem *param0, BattlerData *param1)
 
     ov16_02263DD0(param0, param1, &v2);
 
-    v1 = BattleSystem_MessageLoader(param0);
+    v1 = BattleSystem_GetMessageLoader(param0);
     v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = param0;
@@ -1152,7 +1152,7 @@ void ov16_0225DEDC(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
 
     ov16_02263E7C(param0, param1, param2, &v2);
 
-    v1 = BattleSystem_MessageLoader(param0);
+    v1 = BattleSystem_GetMessageLoader(param0);
     v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = param0;
@@ -1184,7 +1184,7 @@ void ov16_0225DF6C(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
     MessageLoader *v1;
 
     if (param1->bootState == 0x0) {
-        v1 = BattleSystem_MessageLoader(param0);
+        v1 = BattleSystem_GetMessageLoader(param0);
         v0 = (UnkStruct_ov16_0225DF6C *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225DF6C));
 
         v0->unk_00 = param0;
@@ -1348,7 +1348,7 @@ void ov16_0225E23C(BattleSystem *param0, BattlerData *param1)
     BattleMessage v1;
 
     if (param1->bootState == 0x0) {
-        v0 = BattleSystem_MessageLoader(param0);
+        v0 = BattleSystem_GetMessageLoader(param0);
 
         v1.id = 923;
         v1.tags = 0;
@@ -1409,7 +1409,7 @@ void ov16_0225E338(BattleSystem *param0, BattlerData *param1)
 
     ov16_022641B4(param0, param1, &v2);
 
-    v1 = BattleSystem_MessageLoader(param0);
+    v1 = BattleSystem_GetMessageLoader(param0);
     v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = param0;
@@ -1428,7 +1428,7 @@ void ov16_0225E38C(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
 
     ov16_02264270(param0, param1, param2, &v2);
 
-    v1 = BattleSystem_MessageLoader(param0);
+    v1 = BattleSystem_GetMessageLoader(param0);
     v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = param0;
@@ -1447,7 +1447,7 @@ void ov16_0225E3E0(BattleSystem *param0, BattlerData *param1)
 
     ov16_02264360(param0, param1, &v2);
 
-    v1 = BattleSystem_MessageLoader(param0);
+    v1 = BattleSystem_GetMessageLoader(param0);
     v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = param0;
@@ -1947,7 +1947,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         v2.heapID = 5;
         v2.target = v0->unk_81;
         v2.ballID = v0->unk_8E;
-        v2.cellActorSys = ov16_0223E010(v0->unk_00);
+        v2.cellActorSys = BattleSystem_GetSpriteRenderer(v0->unk_00);
         v2.paletteSys = BattleSystem_GetPaletteData(v0->unk_00);
         v2.bgPrio = 1;
         v2.surface = 0;
@@ -2200,7 +2200,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
                 v5.mode = 5;
                 v5.target = v0->unk_69;
                 v5.ballID = v0->unk_6E;
-                v5.cellActorSys = ov16_0223E010(v0->unk_00);
+                v5.cellActorSys = BattleSystem_GetSpriteRenderer(v0->unk_00);
                 v5.paletteSys = BattleSystem_GetPaletteData(v0->unk_00);
                 v5.bgPrio = 1;
                 v5.surface = 0;
@@ -2216,7 +2216,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
                 v6.mode = 5;
                 v6.target = v0->unk_69;
                 v6.ballID = v0->unk_6E;
-                v6.cellActorSys = ov16_0223E010(v0->unk_00);
+                v6.cellActorSys = BattleSystem_GetSpriteRenderer(v0->unk_00);
                 v6.paletteSys = BattleSystem_GetPaletteData(v0->unk_00);
                 v6.bgPrio = 1;
                 v6.surface = 0;
@@ -2556,7 +2556,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
                 v6.heapID = 5;
                 v6.mode = 4;
                 v6.target = v0->unk_09;
-                v6.cellActorSys = ov16_0223E010(v0->unk_00);
+                v6.cellActorSys = BattleSystem_GetSpriteRenderer(v0->unk_00);
                 v6.paletteSys = BattleSystem_GetPaletteData(v0->unk_00);
                 v6.surface = 0;
                 v6.battleSys = v0->unk_00;
@@ -2599,7 +2599,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
                 {
                     SpriteGfxHandler *v8;
 
-                    v8 = ov16_0223E018(v0->unk_00);
+                    v8 = BattleSystem_GetSpriteGfxHandler(v0->unk_00);
                     sub_0200D0F4(v0->unk_04->unk_18);
                     v0->unk_04->unk_18 = NULL;
 
@@ -2652,7 +2652,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
             {
                 SpriteGfxHandler *v10;
 
-                v10 = ov16_0223E018(v0->unk_00);
+                v10 = BattleSystem_GetSpriteGfxHandler(v0->unk_00);
 
                 sub_0200D0F4(v0->unk_04->unk_18);
                 v0->unk_04->unk_18 = NULL;
@@ -2742,7 +2742,7 @@ static void ov16_02260284(SysTask *param0, void *param1)
     case 1: {
         SpriteGfxHandler *v3;
 
-        v3 = ov16_0223E018(v0->unk_00);
+        v3 = BattleSystem_GetSpriteGfxHandler(v0->unk_00);
         sub_0200D0F4(v0->unk_04->unk_18);
         v0->unk_04->unk_18 = NULL;
 
@@ -2910,7 +2910,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         MessageLoader *v9;
         BattleMessage v10;
 
-        v9 = BattleSystem_MessageLoader(v0->unk_00);
+        v9 = BattleSystem_GetMessageLoader(v0->unk_00);
 
         if (v4 & 0x400) {
             switch (ov16_0223F228(v0->unk_00)) {
@@ -3247,7 +3247,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
             MessageLoader *v6;
             BattleMessage v7;
 
-            v6 = BattleSystem_MessageLoader(v0->unk_00);
+            v6 = BattleSystem_GetMessageLoader(v0->unk_00);
             v7.tags = 2;
             v7.params[0] = v0->unk_1D | (v0->unk_1F << 8);
             v7.id = 921;
@@ -3588,7 +3588,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
 
     switch (v0->unk_0E) {
     case 0:
-        v0->unk_10 = ov16_0226CD08(BattleSystem_GetBattleInput(v0->unk_00));
+        v0->unk_10 = BattleInput_GetCursorPressed(BattleSystem_GetBattleInput(v0->unk_00));
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
         PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 0, 7, 0x0);
         PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
@@ -3702,7 +3702,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         break;
     case 6:
         ov16_0223B430(v0->unk_00);
-        ov16_0226CD10(BattleSystem_GetBattleInput(v0->unk_00), v0->unk_10);
+        BattleInput_SetCursorPressed(BattleSystem_GetBattleInput(v0->unk_00), v0->unk_10);
         PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
         PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
         v0->unk_0E++;
@@ -3816,7 +3816,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v9.tags = 5;
         v9.params[0] = v0->unk_04->unk_1C;
 
-        v8 = BattleSystem_MessageLoader(v0->unk_00);
+        v8 = BattleSystem_GetMessageLoader(v0->unk_00);
 
         v0->unk_11 = BattleMessage_Print(v0->unk_00, v8, &v9, BattleSystem_TextSpeed(v0->unk_00));
         v0->unk_17 = 30;
@@ -3901,7 +3901,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
             break;
         }
 
-        v14 = BattleSystem_MessageLoader(v0->unk_00);
+        v14 = BattleSystem_GetMessageLoader(v0->unk_00);
         v0->unk_11 = BattleMessage_Print(v0->unk_00, v14, &v15, BattleSystem_TextSpeed(v0->unk_00));
         v0->unk_17 = 30;
     }
@@ -3961,7 +3961,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         BattleMessage v25;
         int v26;
 
-        v24 = BattleSystem_MessageLoader(v0->unk_00);
+        v24 = BattleSystem_GetMessageLoader(v0->unk_00);
         v26 = v0->unk_08->unk_04->unk_11 * 2;
 
         if (v0->unk_08->unk_04->unk_20) {
@@ -4067,7 +4067,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
             }
         }
 
-        v29 = BattleSystem_MessageLoader(v0->unk_00);
+        v29 = BattleSystem_GetMessageLoader(v0->unk_00);
         v0->unk_11 = BattleMessage_Print(v0->unk_00, v29, &v30, BattleSystem_TextSpeed(v0->unk_00));
         v0->unk_17 = 30;
     }
@@ -4182,7 +4182,7 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
         Window_LoadTiles(v2);
     }
 
-        v0->unk_17 = ov16_0226CD08(BattleSystem_GetBattleInput(v0->unk_00));
+        v0->unk_17 = BattleInput_GetCursorPressed(BattleSystem_GetBattleInput(v0->unk_00));
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
         PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 0, 7, 0x0);
         PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
@@ -4293,7 +4293,7 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
     case 2:
         if (v0->unk_04->unk_36) {
             ov16_0223B430(v0->unk_00);
-            ov16_0226CD10(BattleSystem_GetBattleInput(v0->unk_00), v0->unk_04->unk_32);
+            BattleInput_SetCursorPressed(BattleSystem_GetBattleInput(v0->unk_00), v0->unk_04->unk_32);
             PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
             PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
             v0->unk_0A++;
@@ -4446,7 +4446,7 @@ static void ov16_022623F0(SysTask *param0, void *param1)
                 MessageLoader *v7;
                 BattleMessage v8;
 
-                v7 = BattleSystem_MessageLoader(v0->unk_00);
+                v7 = BattleSystem_GetMessageLoader(v0->unk_00);
 
                 if (v0->unk_0F == 5) {
                     v8.tags = 2 | 0x80;
@@ -5359,7 +5359,7 @@ static void ShowPartyGaugeTask(SysTask *param0, void *param1)
             }
         }
 
-        v3 = PartyGauge_Show(v0->status, v1, v4, v5, ov16_0223E010(v0->battleSys), ov16_0223E018(v0->battleSys));
+        v3 = PartyGauge_Show(v0->status, v1, v4, v5, BattleSystem_GetSpriteRenderer(v0->battleSys), BattleSystem_GetSpriteGfxHandler(v0->battleSys));
         ov16_0223E040(v0->battleSys, v1, v3);
     }
         v0->state++;
@@ -6137,8 +6137,8 @@ static CellActorData *ov16_022643B8(BattleSystem *param0, int param1, int param2
     CellActorData *v3;
     int v4;
 
-    v0 = ov16_0223E010(param0);
-    v1 = ov16_0223E018(param0);
+    v0 = BattleSystem_GetSpriteRenderer(param0);
+    v1 = BattleSystem_GetSpriteGfxHandler(param0);
     v2 = BattleSystem_GetPaletteData(param0);
 
     if (param1 & 0x1) {
@@ -6168,7 +6168,7 @@ static void ov16_02264408(BattleSystem *param0, BattlerData *param1, UnkStruct_o
 
     v0.unk_04 = BattleSystem_GetBgConfig(param0);
     v0.unk_08 = BattleSystem_GetPaletteData(param0);
-    v0.unk_00 = ov16_0223E010(param0);
+    v0.unk_00 = BattleSystem_GetSpriteRenderer(param0);
 
     for (i = 0; i < 4; i++) {
         v0.unk_0C[i] = ov16_0223F2AC(param0, i);

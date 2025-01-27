@@ -190,7 +190,7 @@ void ov16_0225C038(BattleSystem *param0, BattlerData *param1, int param2, int pa
     v0.mode = 4;
     v0.target = param1->battler;
     v0.ballID = param2;
-    v0.cellActorSys = ov16_0223E010(param0);
+    v0.cellActorSys = BattleSystem_GetSpriteRenderer(param0);
     v0.paletteSys = BattleSystem_GetPaletteData(param0);
     v0.surface = 0;
     v0.bgPrio = 1;
@@ -853,8 +853,8 @@ static void ov16_0225C8E0(BattleSystem *param0, BattlerData *param1)
     SpriteGfxHandler *v1;
     PaletteData *v2;
 
-    v0 = ov16_0223E010(param0);
-    v1 = ov16_0223E018(param0);
+    v0 = BattleSystem_GetSpriteRenderer(param0);
+    v1 = BattleSystem_GetSpriteGfxHandler(param0);
     v2 = BattleSystem_GetPaletteData(param0);
 
     PartyGauge_LoadGraphics(v0, v1, v2);
@@ -866,7 +866,7 @@ static void ov16_0225C91C(BattleSystem *param0, BattlerData *param1)
 {
     SpriteGfxHandler *v0;
 
-    v0 = ov16_0223E018(param0);
+    v0 = BattleSystem_GetSpriteGfxHandler(param0);
 
     PartyGauge_FreeGraphics(v0);
     ClearCommand(param0, param1->battler, 53);

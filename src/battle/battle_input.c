@@ -169,8 +169,8 @@ typedef struct {
 
 typedef struct {
     u8 unk_00;
-    s8 unk_01;
-    s8 unk_02;
+    s8 y;
+    s8 x;
     u8 unk_03;
 } BattleCursorMove;
 
@@ -212,9 +212,9 @@ struct BattleInput_t {
     UnkStruct_02012744 *unk_4C8;
     BattleInputTextObject textObj[13];
     UnkStruct_02012B20 *unk_5B8;
-    CellActorData *unk_5BC[6];
-    CellActorData *unk_5D4[6];
-    CellActorData *unk_5EC[4];
+    CellActorData *actorBallGague[6];
+    CellActorData *actorBallGagueOpponent[6];
+    CellActorData *actorTypeIcons[4];
     CellActorData *unk_5FC[4];
     CellActorData *unk_60C[4];
     SysTask *unk_61C[4];
@@ -223,7 +223,7 @@ struct BattleInput_t {
     u8 unk_668;
     u8 unk_669;
     u8 unk_66A;
-    s8 unk_66B;
+    s8 curMenuId;
     u8 unk_66C;
     u8 unk_66D;
     u8 unk_66E;
@@ -239,14 +239,14 @@ struct BattleInput_t {
     s32 unk_6B0;
     s32 unk_6B4;
     BattleCursor *cursor;
-    BattleCursorMove unk_6BC;
+    BattleCursorMove cursorMove;
     u8 unk_6C0;
     u8 unk_6C1;
     struct {
         CatchingTutorialFinger *finger;
-        u8 unk_04;
         u8 state;
-        u8 unk_06;
+        u8 subState;
+        u8 delay;
     } catchingTutorial;
 };
 
@@ -274,11 +274,11 @@ typedef struct {
     const TouchScreenRect *unk_14;
     const int *unk_18;
     const u8 *unk_1C;
-    int (*unk_20)(BattleInput *battleInput, int param1);
+    int (*funcCursorMove)(BattleInput *battleInput, int param1);
     void (*funcSaveCursorPos)(BattleInput *battleInput, int param1);
-    void (*unk_28)(BattleInput *battleInput, int param1, int param2);
+    void (*funcCreateMenuObjects)(BattleInput *battleInput, int param1, int param2);
     int (*unk_2C)(BattleInput *battleInput, int param1, int param2);
-} UnkStruct_ov16_02270670;
+} BattleMenuTemplate;
 
 enum {
     BITO_FIGHT = 0,
@@ -312,8 +312,8 @@ static void ov16_02269E94(BattleInput *battleInput, int param1, int param2);
 static int ov16_0226A318(BattleInput *battleInput, int param1, int param2);
 static int ov16_0226A3F4(BattleInput *battleInput, int param1, int param2);
 static void ov16_022699AC(BattleInput *battleInput, int param1, int param2);
-static void ov16_0226AF0C(BattleInput *battleInput);
-static void ov16_0226AFF4(BattleInput *battleInput);
+static void BattleInput_CreateTypeIcons(BattleInput *battleInput);
+static void BattleInput_DestroyTypeIcons(BattleInput *battleInput);
 static void ov16_0226B028(BattleInput *battleInput);
 static void ov16_0226B2BC(SysTaskFunc param0, BattleInput *battleInput);
 static void ov16_0226B2F0(BattleInput *battleInput);
@@ -322,7 +322,7 @@ static int ov16_0226A634(BattleInput *battleInput, int param1, int param2);
 static int ov16_0226A528(BattleInput *battleInput, int param1, int param2);
 static void BattleInput_CreateYesNoTextObjects(BattleInput *battleInput, int param1, int param2);
 static void ov16_02269D14(BattleInput *battleInput, int param1, int param2);
-static void ov16_02269DB0(BattleInput *battleInput, int param1, int param2);
+static void BattleInput_CreateCancelLearningMoveObjects(BattleInput *battleInput, int param1, int param2);
 static void ov16_02269F68(BattleInput *battleInput, int param1, int param2);
 static void ov16_0226A04C(BattleInput *battleInput, int param1, int param2);
 static void ov16_0226A12C(BattleInput *battleInput, int param1, int param2);
@@ -330,7 +330,7 @@ static void ov16_0226B06C(BattleInput *battleInput, int param1, int param2);
 static void ov16_0226B088(BattleInput *battleInput, int param1);
 static void ov16_0226B0DC(BattleInput *battleInput, int param1);
 static int ov16_0226A934(u8 param0);
-static void ov16_02268F00(BattleInput *battleInput);
+static void BattleInput_FreeBallGagueObjects(BattleInput *battleInput);
 void ov16_02269168(BattleInput *battleInput, u8 param1[], u8 param2[]);
 void ov16_022691BC(BattleInput *battleInput);
 void ov16_02269218(BattleInput *battleInput);
@@ -338,7 +338,7 @@ static void ov16_0226BC50(SysTask *param0, void *param1);
 static void ov16_0226B198(void);
 static void ov16_0226BCBC(SysTask *param0, void *param1);
 static void ov16_0226B1C4(BattleInput *battleInput, int param1, int param2);
-static void ov16_0226B1E8(BattleInput *battleInput);
+static void BattleInput_DestroyMenuObjects(BattleInput *battleInput);
 static void ov16_0226B390(SysTask *param0, void *param1);
 static void ov16_0226B4E0(SysTask *param0, void *param1);
 static void ov16_0226B780(SysTask *param0, void *param1);
@@ -349,7 +349,7 @@ void ov16_0226947C(BattleInput *battleInput, int param1, int param2);
 static void ov16_022694A8(SysTask *param0, void *param1);
 static void ov16_0226B314(BattleInput *battleInput, int param1);
 static void BattleInput_CreateTextObject(BattleInput *battleInput, BattleInputTextObject *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9, BattleInputTextImage *param10);
-static void ov16_0226AAC0(BattleInput *battleInput);
+static void BattleInput_DestroyTextObjects(BattleInput *battleInput);
 static void ov16_0226A698(BattleInput *battleInput);
 static void ov16_0226A718(BattleInput *battleInput);
 static void ov16_0226A768(BattleInput *battleInput);
@@ -368,7 +368,7 @@ static int ov16_0226BEC0(BattleInput *battleInput, int param1);
 static int ov16_0226C1F8(BattleInput *battleInput, int param1);
 static int ov16_0226C3C8(BattleInput *battleInput, int param1);
 static int ov16_0226CA14(BattleInput *battleInput, int param1);
-static u32 ov16_0226CB10(BattleCursorMove *param0, int param1, int param2, const u8 *param3);
+static u32 CursorMove_CheckKeyPress(BattleCursorMove *cursorMove, int param1, int param2, const u8 *param3);
 static void BattleInput_SaveBattlerCursorPosition(BattleInput *battleInput, int param1);
 static void BattleInput_SaveBattlerMovePosition(BattleInput *battleInput, int param1);
 static void ov16_0226C9B8(BattleInput *battleInput, int param1);
@@ -399,7 +399,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270264[] = {
     0x2D
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov16_022702B4[][2] = {
+__attribute__((aligned(4))) static const u16 sTypeIconPositions[][2] = {
     { 0x20, 0x3E },
     { 0xA0, 0x3E },
     { 0x20, 0x7E },
@@ -591,7 +591,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_022701C4[NELEMS(Unk_ov16_02
     0x4
 };
 
-static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
+static const BattleMenuTemplate sBattleMenuTemplates[] = {
     {
         0x1C,
         0xF2,
@@ -797,7 +797,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270A00,
         ov16_0226CA14,
         NULL,
-        ov16_02269DB0,
+        BattleInput_CreateCancelLearningMoveObjects,
         ov16_0226A4A4,
     },
     {
@@ -841,7 +841,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
     },
 };
 
-static const SpriteTemplate Unk_ov16_02270414 = {
+static const SpriteTemplate sBallGagueTemplate = {
     0xC,
     0xD,
     0x0,
@@ -854,7 +854,7 @@ static const SpriteTemplate Unk_ov16_02270414 = {
     0x0,
 };
 
-static const SpriteTemplate Unk_ov16_02270448 = {
+static const SpriteTemplate sBallGagueOpponentTemplate = {
     0xF6,
     0x9,
     0x0,
@@ -867,7 +867,7 @@ static const SpriteTemplate Unk_ov16_02270448 = {
     0x0,
 };
 
-static const SpriteTemplate Unk_ov16_0227047C = {
+static const SpriteTemplate sTypeIconSpriteTemplate = {
     0x0,
     0x0,
     0x0,
@@ -1042,7 +1042,7 @@ static void *BattleInput_New(void)
 {
     BattleInput *battleInput = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleInput));
     MI_CpuClear8(battleInput, sizeof(BattleInput));
-    battleInput->unk_66B = -1;
+    battleInput->curMenuId = -1;
 
     return battleInput;
 }
@@ -1179,8 +1179,8 @@ void BattleInput_Free(BattleInput *battleInput)
         *battleInput->unk_04 = battleInput->unk_6C0;
     }
 
-    ov16_0226B1E8(battleInput);
-    ov16_02268F00(battleInput);
+    BattleInput_DestroyMenuObjects(battleInput);
+    BattleInput_FreeBallGagueObjects(battleInput);
     ov16_02268B8C(battleInput);
 
     sub_020127BC(battleInput->unk_4C8);
@@ -1206,8 +1206,8 @@ void ov16_02268A88(BattleInput *battleInput)
     PaletteData *v3;
     int i;
 
-    spriteRenderer = ov16_0223E010(battleInput->battleSystem);
-    v2 = ov16_0223E018(battleInput->battleSystem);
+    spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    v2 = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
     bgConfig = BattleSystem_GetBgConfig(battleInput->battleSystem);
     v3 = BattleSystem_GetPaletteData(battleInput->battleSystem);
 
@@ -1237,32 +1237,29 @@ void ov16_02268A88(BattleInput *battleInput)
 void ov16_02268B8C(BattleInput *battleInput)
 {
     int i;
-    SpriteRenderer *v1;
-    SpriteGfxHandler *v2;
-
-    v1 = ov16_0223E010(battleInput->battleSystem);
-    v2 = ov16_0223E018(battleInput->battleSystem);
+    SpriteRenderer *spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    SpriteGfxHandler *spriteGfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
 
     for (i = 0; i < 4; i++) {
-        sub_0207CA34(v2, 20025 + i);
+        sub_0207CA34(spriteGfxHandler, 20025 + i);
     }
 
-    sub_0207CA3C(v2, 20020);
-    sub_0207CA44(v2, 20017, 20017);
+    sub_0207CA3C(spriteGfxHandler, 20020);
+    sub_0207CA44(spriteGfxHandler, 20017, 20017);
 
     if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_CATCH_TUTORIAL) {
         CatchingTutorialFinger_Free(battleInput->catchingTutorial.finger);
-        CatchingTutorialFinger_FreeResources(v2, 20412, 20036, 20406, 20395);
+        CatchingTutorialFinger_FreeResources(spriteGfxHandler, 20412, 20036, 20406, 20395);
     }
 }
 
-void ov16_02268C04(NARC *param0, NARC *param1, BattleInput *battleInput, int param3, int param4, void *param5)
+void ov16_02268C04(NARC *param0, NARC *param1, BattleInput *battleInput, int menuId, int param4, void *param5)
 {
-    const UnkStruct_ov16_02270670 *v0, *v1;
+    const BattleMenuTemplate *menuTemplate, *prevMenuTemplate;
     int i;
-    BgConfig *v3;
-    SpriteRenderer *v4;
-    SpriteGfxHandler *v5;
+    BgConfig *bgConfig;
+    SpriteRenderer *spriteRenderer;
+    SpriteGfxHandler *gfxHandler;
 
     if (param5 != NULL) {
         MI_CpuCopy8(param5, &battleInput->unk_1A, sizeof(UnkStruct_ov16_02268A14_sub2));
@@ -1270,67 +1267,67 @@ void ov16_02268C04(NARC *param0, NARC *param1, BattleInput *battleInput, int par
 
     battleInput->unk_66E = 0;
 
-    v3 = BattleSystem_GetBgConfig(battleInput->battleSystem);
-    v4 = ov16_0223E010(battleInput->battleSystem);
-    v5 = ov16_0223E018(battleInput->battleSystem);
+    bgConfig = BattleSystem_GetBgConfig(battleInput->battleSystem);
+    spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
 
-    if (battleInput->unk_66B == -1) {
+    if (battleInput->curMenuId == -1) {
         param4 = 1;
-        v1 = NULL;
+        prevMenuTemplate = NULL;
     } else {
-        v1 = &Unk_ov16_02270670[battleInput->unk_66B];
+        prevMenuTemplate = &sBattleMenuTemplates[battleInput->curMenuId];
     }
 
-    v0 = &Unk_ov16_02270670[param3];
+    menuTemplate = &sBattleMenuTemplates[menuId];
 
     PaletteData_LoadBuffer(BattleSystem_GetPaletteData(battleInput->battleSystem), battleInput->unk_58, 1, 0, 0x200);
 
     for (i = 0; i < 4; i++) {
-        if ((v0->unk_04_val2[i] != 0xffff) && ((param4 == 1) || (v0->unk_04_val2[i] != v1->unk_04_val2[i]))) {
-            Bg_LoadTilemapBuffer(v3, 4 + i, battleInput->unk_3C[v0->unk_04_val2[i]], 0x800);
-            Bg_ScheduleTilemapTransfer(v3, 4 + i);
+        if ((menuTemplate->unk_04_val2[i] != 0xffff) && ((param4 == 1) || (menuTemplate->unk_04_val2[i] != prevMenuTemplate->unk_04_val2[i]))) {
+            Bg_LoadTilemapBuffer(bgConfig, 4 + i, battleInput->unk_3C[menuTemplate->unk_04_val2[i]], 0x800);
+            Bg_ScheduleTilemapTransfer(bgConfig, 4 + i);
         }
     }
 
-    SpriteRenderer_LoadPalette(BattleSystem_GetPaletteData(battleInput->battleSystem), 3, v4, v5, param1, 72, 0, 7, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
-    battleInput->unk_66B = param3;
+    SpriteRenderer_LoadPalette(BattleSystem_GetPaletteData(battleInput->battleSystem), 3, spriteRenderer, gfxHandler, param1, 72, 0, 7, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
+    battleInput->curMenuId = menuId;
 
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_BGALL), 8, 12);
-    ov16_0226B1E8(battleInput);
+    BattleInput_DestroyMenuObjects(battleInput);
 
-    if (v0->unk_28 != NULL) {
-        v0->unk_28(battleInput, param3, param4);
+    if (menuTemplate->funcCreateMenuObjects != NULL) {
+        menuTemplate->funcCreateMenuObjects(battleInput, menuId, param4);
     }
 
     SysTask_ExecuteAfterVBlank(ov16_0226BC50, battleInput, 10);
 }
 
-void ov16_02268D40(NARC *param0, BattleInput *battleInput)
+void BattleInput_CreateBallGagueObjects(NARC *param0, BattleInput *battleInput)
 {
     int i;
     SpriteRenderer *spriteRenderer;
-    SpriteGfxHandler *v2;
+    SpriteGfxHandler *spriteGfxHandler;
 
-    GF_ASSERT(battleInput->unk_5BC[0] == NULL && battleInput->unk_5D4[0] == NULL);
+    GF_ASSERT(battleInput->actorBallGague[0] == NULL && battleInput->actorBallGagueOpponent[0] == NULL);
 
-    spriteRenderer = ov16_0223E010(battleInput->battleSystem);
-    v2 = ov16_0223E018(battleInput->battleSystem);
+    spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    spriteGfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(spriteRenderer, v2, param0, 208, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(spriteRenderer, v2, param0, 207, 1, 20015);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(spriteRenderer, v2, param0, 209, 1, 20015);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, param0, 208, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, param0, 207, 1, 20015);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, param0, 209, 1, 20015);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(spriteRenderer, v2, param0, 205, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20024);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(spriteRenderer, v2, param0, 204, 1, 20016);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(spriteRenderer, v2, param0, 206, 1, 20016);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, param0, 205, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20024);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, param0, 204, 1, 20016);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, param0, 206, 1, 20016);
 
     for (i = 0; i < 6; i++) {
-        battleInput->unk_5BC[i] = SpriteActor_LoadResources(spriteRenderer, v2, &Unk_ov16_02270414);
-        sub_0200D4D0(battleInput->unk_5BC[i]->unk_00, 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
-        sub_0200D6A4(battleInput->unk_5BC[i], 1);
+        battleInput->actorBallGague[i] = SpriteActor_LoadResources(spriteRenderer, spriteGfxHandler, &sBallGagueTemplate);
+        sub_0200D4D0(battleInput->actorBallGague[i]->unk_00, 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
+        sub_0200D6A4(battleInput->actorBallGague[i], 1);
 
-        battleInput->unk_5D4[i] = SpriteActor_LoadResources(spriteRenderer, v2, &Unk_ov16_02270448);
-        sub_0200D4D0(battleInput->unk_5D4[i]->unk_00, 246 + -12 * i, 9, ((192 + 80) << FX32_SHIFT));
+        battleInput->actorBallGagueOpponent[i] = SpriteActor_LoadResources(spriteRenderer, spriteGfxHandler, &sBallGagueOpponentTemplate);
+        sub_0200D4D0(battleInput->actorBallGagueOpponent[i]->unk_00, 246 + -12 * i, 9, ((192 + 80) << FX32_SHIFT));
     }
 
     ov16_02269218(battleInput);
@@ -1338,44 +1335,42 @@ void ov16_02268D40(NARC *param0, BattleInput *battleInput)
     GF_ASSERT(battleInput->unk_08 == NULL);
     battleInput->unk_08 = SysTask_Start(ov16_02268FCC, battleInput, 1300);
 
-    PaletteData *v3;
-
-    v3 = BattleSystem_GetPaletteData(battleInput->battleSystem);
-    BattleCursor_LoadResources(spriteRenderer, v2, v3, 5, 20411, 20035, 20405, 20394);
-    battleInput->cursor = BattleCursor_New(spriteRenderer, v2, 5, 20411, 20035, 20405, 20394, 5, 0);
+    PaletteData *palette = BattleSystem_GetPaletteData(battleInput->battleSystem);
+    BattleCursor_LoadResources(spriteRenderer, spriteGfxHandler, palette, 5, 20411, 20035, 20405, 20394);
+    battleInput->cursor = BattleCursor_New(spriteRenderer, spriteGfxHandler, 5, 20411, 20035, 20405, 20394, 5, 0);
 }
 
-static void ov16_02268F00(BattleInput *battleInput)
+static void BattleInput_FreeBallGagueObjects(BattleInput *battleInput)
 {
     int i;
     SpriteRenderer *spriteRenderer;
-    SpriteGfxHandler *v2;
+    SpriteGfxHandler *spriteGfxHandler;
 
-    GF_ASSERT(battleInput->unk_5BC[0] != NULL && battleInput->unk_5D4[0] != NULL);
+    GF_ASSERT(battleInput->actorBallGague[0] != NULL && battleInput->actorBallGagueOpponent[0] != NULL);
 
-    spriteRenderer = ov16_0223E010(battleInput->battleSystem);
-    v2 = ov16_0223E018(battleInput->battleSystem);
+    spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    spriteGfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
 
-    SpriteGfxHandler_UnloadCharObjById(v2, 20023);
-    SpriteGfxHandler_UnloadCellObjById(v2, 20015);
-    SpriteGfxHandler_UnloadAnimObjById(v2, 20015);
-    SpriteGfxHandler_UnloadCharObjById(v2, 20024);
-    SpriteGfxHandler_UnloadCellObjById(v2, 20016);
-    SpriteGfxHandler_UnloadAnimObjById(v2, 20016);
-    SpriteGfxHandler_UnloadPlttObjById(v2, 20023);
+    SpriteGfxHandler_UnloadCharObjById(spriteGfxHandler, 20023);
+    SpriteGfxHandler_UnloadCellObjById(spriteGfxHandler, 20015);
+    SpriteGfxHandler_UnloadAnimObjById(spriteGfxHandler, 20015);
+    SpriteGfxHandler_UnloadCharObjById(spriteGfxHandler, 20024);
+    SpriteGfxHandler_UnloadCellObjById(spriteGfxHandler, 20016);
+    SpriteGfxHandler_UnloadAnimObjById(spriteGfxHandler, 20016);
+    SpriteGfxHandler_UnloadPlttObjById(spriteGfxHandler, 20023);
 
     for (i = 0; i < 6; i++) {
-        sub_0200D0F4(battleInput->unk_5BC[i]);
-        battleInput->unk_5BC[i] = NULL;
+        sub_0200D0F4(battleInput->actorBallGague[i]);
+        battleInput->actorBallGague[i] = NULL;
 
-        sub_0200D0F4(battleInput->unk_5D4[i]);
-        battleInput->unk_5D4[i] = NULL;
+        sub_0200D0F4(battleInput->actorBallGagueOpponent[i]);
+        battleInput->actorBallGagueOpponent[i] = NULL;
     }
 
     SysTask_Done(battleInput->unk_08);
     battleInput->unk_08 = NULL;
 
-    BattleCursor_FreeResources(v2, 20411, 20035, 20405, 20394);
+    BattleCursor_FreeResources(spriteGfxHandler, 20411, 20035, 20405, 20394);
     BattleCursor_Free(battleInput->cursor);
 }
 
@@ -1391,7 +1386,7 @@ static void ov16_02268FCC(SysTask *task, void *data)
         switch (v2->unk_03) {
         case 0:
         default:
-            if (sub_0200D400(battleInput->unk_5BC[i]->unk_00) == 0) {
+            if (sub_0200D400(battleInput->actorBallGague[i]->unk_00) == 0) {
                 break;
             }
 
@@ -1416,10 +1411,10 @@ static void ov16_02268FCC(SysTask *task, void *data)
             break;
         case 2:
         case 4:
-            sub_0200D7C0(battleInput->unk_5BC[i], 0x800);
+            sub_0200D7C0(battleInput->actorBallGague[i], 0x800);
             v2->unk_00 += 0x180;
 
-            sub_0200D500(battleInput->unk_5BC[i], 12 + 19 * i + v2->unk_00 / 0x100, 13, ((192 + 80) << FX32_SHIFT));
+            sub_0200D500(battleInput->actorBallGague[i], 12 + 19 * i + v2->unk_00 / 0x100, 13, ((192 + 80) << FX32_SHIFT));
             v2->unk_06++;
 
             if (v2->unk_06 >= v2->unk_07) {
@@ -1428,8 +1423,8 @@ static void ov16_02268FCC(SysTask *task, void *data)
                 if (v2->unk_03 == 2) {
                     v2->unk_03++;
                 } else {
-                    sub_0200D79C(battleInput->unk_5BC[i], 0);
-                    sub_0200D500(battleInput->unk_5BC[i], 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
+                    sub_0200D79C(battleInput->actorBallGague[i], 0);
+                    sub_0200D500(battleInput->actorBallGague[i], 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
 
                     v2->unk_00 = 0;
 
@@ -1450,10 +1445,10 @@ static void ov16_02268FCC(SysTask *task, void *data)
 
             break;
         case 3:
-            sub_0200D7C0(battleInput->unk_5BC[i], -0x800);
+            sub_0200D7C0(battleInput->actorBallGague[i], -0x800);
             v2->unk_00 -= 0x180;
 
-            sub_0200D500(battleInput->unk_5BC[i], 12 + 19 * i + v2->unk_00 / 0x100, 13, ((192 + 80) << FX32_SHIFT));
+            sub_0200D500(battleInput->actorBallGague[i], 12 + 19 * i + v2->unk_00 / 0x100, 13, ((192 + 80) << FX32_SHIFT));
             v2->unk_06++;
 
             if (v2->unk_06 >= v2->unk_07 * 2) {
@@ -1481,13 +1476,13 @@ void ov16_02269168(BattleInput *battleInput, u8 param1[], u8 param2[])
     for (i = 0; i < 6; i++) {
         v1 = ov16_0226A934(param1[i]);
 
-        CellActor_SetAnim(battleInput->unk_5BC[i]->unk_00, v1);
-        SpriteActor_UpdateObject(battleInput->unk_5BC[i]->unk_00);
+        CellActor_SetAnim(battleInput->actorBallGague[i]->unk_00, v1);
+        SpriteActor_UpdateObject(battleInput->actorBallGague[i]->unk_00);
 
         v1 = ov16_0226A934(param2[i]);
 
-        CellActor_SetAnim(battleInput->unk_5D4[i]->unk_00, v1);
-        SpriteActor_UpdateObject(battleInput->unk_5D4[i]->unk_00);
+        CellActor_SetAnim(battleInput->actorBallGagueOpponent[i]->unk_00, v1);
+        SpriteActor_UpdateObject(battleInput->actorBallGagueOpponent[i]->unk_00);
     }
 }
 
@@ -1495,15 +1490,15 @@ void ov16_022691BC(BattleInput *battleInput)
 {
     int i;
 
-    GF_ASSERT(battleInput->unk_5BC[0] != NULL && battleInput->unk_5D4[0] != NULL);
+    GF_ASSERT(battleInput->actorBallGague[0] != NULL && battleInput->actorBallGagueOpponent[0] != NULL);
 
     for (i = 0; i < 6; i++) {
-        SpriteActor_DrawSprite(battleInput->unk_5BC[i]->unk_00, 1);
+        SpriteActor_DrawSprite(battleInput->actorBallGague[i]->unk_00, 1);
     }
 
     if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_TRAINER) {
         for (i = 0; i < 6; i++) {
-            SpriteActor_DrawSprite(battleInput->unk_5D4[i]->unk_00, 1);
+            SpriteActor_DrawSprite(battleInput->actorBallGagueOpponent[i]->unk_00, 1);
         }
     }
 }
@@ -1512,34 +1507,34 @@ void ov16_02269218(BattleInput *battleInput)
 {
     int i;
 
-    GF_ASSERT(battleInput->unk_5BC[0] != NULL && battleInput->unk_5D4[0] != NULL);
+    GF_ASSERT(battleInput->actorBallGague[0] != NULL && battleInput->actorBallGagueOpponent[0] != NULL);
 
     for (i = 0; i < 6; i++) {
-        SpriteActor_DrawSprite(battleInput->unk_5BC[i]->unk_00, 0);
-        SpriteActor_DrawSprite(battleInput->unk_5D4[i]->unk_00, 0);
+        SpriteActor_DrawSprite(battleInput->actorBallGague[i]->unk_00, 0);
+        SpriteActor_DrawSprite(battleInput->actorBallGagueOpponent[i]->unk_00, 0);
     }
 }
 
 int BattleInput_CheckTouch(BattleInput *battleInput)
 {
     int v0, v1, v2, v3;
-    const UnkStruct_ov16_02270670 *v4;
+    const BattleMenuTemplate *menuTemplate;
     int v5 = 0;
 
-    GF_ASSERT(battleInput->unk_66B != -1);
+    GF_ASSERT(battleInput->curMenuId != -1);
 
-    v4 = &Unk_ov16_02270670[battleInput->unk_66B];
+    menuTemplate = &sBattleMenuTemplates[battleInput->curMenuId];
 
-    if ((v4->unk_14 == NULL) || (battleInput->unk_66E == 1)) {
+    if ((menuTemplate->unk_14 == NULL) || (battleInput->unk_66E == 1)) {
         return 0xffffffff;
     }
 
-    GF_ASSERT(v4->unk_18 != NULL);
+    GF_ASSERT(menuTemplate->unk_18 != NULL);
 
     if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_CATCH_TUTORIAL) {
         v1 = BattleInput_CatchingTutorialMain(battleInput);
     } else {
-        v1 = sub_02022664(v4->unk_14);
+        v1 = sub_02022664(menuTemplate->unk_14);
 
         if (v1 == 0xffffffff) {
             v1 = ov16_0226BE48(battleInput);
@@ -1551,19 +1546,19 @@ int BattleInput_CheckTouch(BattleInput *battleInput)
         v0 = 0xffffffff;
         v3 = 0xff;
     } else {
-        v0 = v4->unk_18[v1];
-        v3 = v4->unk_1C[v1];
+        v0 = menuTemplate->unk_18[v1];
+        v3 = menuTemplate->unk_1C[v1];
     }
 
-    if (v4->unk_2C != NULL) {
-        v0 = v4->unk_2C(battleInput, v0, v3);
+    if (menuTemplate->unk_2C != NULL) {
+        v0 = menuTemplate->unk_2C(battleInput, v0, v3);
 
         if (v0 != 0xffffffff) {
-            if (v4->funcSaveCursorPos != NULL) {
-                v4->funcSaveCursorPos(battleInput, v1);
+            if (menuTemplate->funcSaveCursorPos != NULL) {
+                menuTemplate->funcSaveCursorPos(battleInput, v1);
             }
 
-            MI_CpuClear8(&battleInput->unk_6BC, sizeof(BattleCursorMove));
+            MI_CpuClear8(&battleInput->cursorMove, sizeof(BattleCursorMove));
             ov16_0226DDE8(battleInput->cursor);
 
             if (v5 > 0) {
@@ -1718,7 +1713,7 @@ static void ov16_02269654(BattleInput *battleInput, int param1, int param2)
 static void ov16_02269668(BattleInput *battleInput, int param1, int param2)
 {
     Strbuf *v0, *v1, *v2, *v3;
-    MessageLoader *v4;
+    MessageLoader *msgLoader;
     int v5;
     UnkStruct_ov16_02269668 *v6;
 
@@ -1727,29 +1722,29 @@ static void ov16_02269668(BattleInput *battleInput, int param1, int param2)
 
     battleInput->unk_6C1 = v6->unk_08;
 
-    v4 = BattleSystem_MessageLoader(battleInput->battleSystem);
+    msgLoader = BattleSystem_GetMessageLoader(battleInput->battleSystem);
 
     battleInput->unk_66A = v5;
 
     if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_SAFARI) {
-        v0 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_00931); // BALL
-        v1 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_00932); // BAIT
-        v2 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_00933); // MUD
+        v0 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00931); // BALL
+        v1 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00932); // BAIT
+        v2 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00933); // MUD
     } else if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_PAL_PARK) {
-        v0 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_01223); // BALL
-        v1 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_00932); // BAIT
-        v2 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_00933); // MUD
+        v0 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_01223); // BALL
+        v1 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00932); // BAIT
+        v2 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00933); // MUD
     } else {
-        v0 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_00924); // FIGHT
-        v1 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_00925); // BAG
-        v2 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_00926); // POKéMON
+        v0 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00924); // FIGHT
+        v1 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00925); // BAG
+        v2 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00926); // POKéMON
     }
 
     if (battleInput->unk_6C1 == 1) {
-        v3 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_00928); // CANCEL
+        v3 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00928); // CANCEL
         battleInput->unk_66F = 1;
     } else {
-        v3 = MessageLoader_GetNewStrbuf(v4, pl_msg_00000368_00927); // RUN
+        v3 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00927); // RUN
         battleInput->unk_66F = 0;
     }
 
@@ -1861,10 +1856,10 @@ static void ov16_022699AC(BattleInput *battleInput, int param1, int param2)
 
     battleInput->unk_66A = v0->unk_10;
 
-    v2 = BattleSystem_MessageLoader(battleInput->battleSystem);
+    v2 = BattleSystem_GetMessageLoader(battleInput->battleSystem);
     moveDisplay = ov16_0226ABD4(battleInput, v0->unk_10);
 
-    ov16_0226AF0C(battleInput);
+    BattleInput_CreateTypeIcons(battleInput);
 
     {
         BattleInput_CreateTextObject(battleInput, &battleInput->textObj[0], NULL, FONT_SUBSCREEN, TEXT_COLOR(7, 8, 9), 3, 20023, 64, 46, 1, &moveDisplay->moveNameText[0]);
@@ -1939,7 +1934,7 @@ static void BattleInput_CreateYesNoTextObjects(BattleInput *battleInput, int par
     MessageLoader *msgLoader;
     Strbuf *strYes, *strNo;
 
-    msgLoader = BattleSystem_MessageLoader(battleInput->battleSystem);
+    msgLoader = BattleSystem_GetMessageLoader(battleInput->battleSystem);
     strYes = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00940); // Yes
     strNo = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00941); // No
 
@@ -1955,7 +1950,7 @@ static void ov16_02269D14(BattleInput *battleInput, int param1, int param2)
     MessageLoader *msgLoader;
     Strbuf *v1, *v2;
 
-    msgLoader = BattleSystem_MessageLoader(battleInput->battleSystem);
+    msgLoader = BattleSystem_GetMessageLoader(battleInput->battleSystem);
     v1 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_01181); // Forget a move!
     v2 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_01182); // Keep old moves!
 
@@ -1966,7 +1961,7 @@ static void ov16_02269D14(BattleInput *battleInput, int param1, int param2)
     Strbuf_Free(v2);
 }
 
-static void ov16_02269DB0(BattleInput *battleInput, int param1, int param2)
+static void BattleInput_CreateCancelLearningMoveObjects(BattleInput *battleInput, int param1, int param2)
 {
     MessageLoader *msgLoader;
     Strbuf *v1, *v2, *v3, *v4;
@@ -1974,7 +1969,7 @@ static void ov16_02269DB0(BattleInput *battleInput, int param1, int param2)
     UnkStruct_ov16_022623F0 *v6;
 
     v6 = &battleInput->unk_1A.val4;
-    msgLoader = BattleSystem_MessageLoader(battleInput->battleSystem);
+    msgLoader = BattleSystem_GetMessageLoader(battleInput->battleSystem);
     v5 = BattleSystem_StringTemplate(battleInput->battleSystem);
     v1 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_01186); // Give up on {move}?
     v2 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_01187); // Don't give up on {move}!
@@ -2001,7 +1996,7 @@ static void ov16_02269E94(BattleInput *battleInput, int param1, int param2)
 
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_BGALL), 31, 0);
 
-    msgLoader = BattleSystem_MessageLoader(battleInput->battleSystem);
+    msgLoader = BattleSystem_GetMessageLoader(battleInput->battleSystem);
     v1 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_01260); // STOP
 
     {
@@ -2038,7 +2033,7 @@ static void ov16_02269F68(BattleInput *battleInput, int param1, int param2)
     UnkStruct_ov16_022623F0 *v6;
 
     v6 = &battleInput->unk_1A.val4;
-    msgLoader = BattleSystem_MessageLoader(battleInput->battleSystem);
+    msgLoader = BattleSystem_GetMessageLoader(battleInput->battleSystem);
     v5 = BattleSystem_StringTemplate(battleInput->battleSystem);
     v1 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_01217); // Use next Pokémon
     v2 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_01218); // Flee
@@ -2066,7 +2061,7 @@ static void ov16_0226A04C(BattleInput *battleInput, int param1, int param2)
     UnkStruct_ov16_022623F0 *v6;
 
     v6 = &battleInput->unk_1A.val4;
-    msgLoader = BattleSystem_MessageLoader(battleInput->battleSystem);
+    msgLoader = BattleSystem_GetMessageLoader(battleInput->battleSystem);
     v5 = BattleSystem_StringTemplate(battleInput->battleSystem);
     v1 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_01215); // Switch Pokémon
     v2 = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_01216); // Keep battling
@@ -2106,7 +2101,7 @@ static void ov16_0226A12C(BattleInput *battleInput, int param1, int param2)
     battleInput->unk_66C = v0->unk_21;
     battleInput->unk_66A = v0->unk_20;
 
-    v2 = BattleSystem_MessageLoader(battleInput->battleSystem);
+    v2 = BattleSystem_GetMessageLoader(battleInput->battleSystem);
     v8 = BattleSystem_StringTemplate(battleInput->battleSystem);
 
     ov16_0226B20C(battleInput, v3, 0);
@@ -2163,13 +2158,9 @@ static void ov16_0226A12C(BattleInput *battleInput, int param1, int param2)
 
     Strbuf_Free(v4);
 
-    {
-        Strbuf *v13;
-
-        v13 = MessageLoader_GetNewStrbuf(v2, 930);
-        BattleInput_CreateTextObject(battleInput, &battleInput->textObj[4], v13, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, Unk_ov16_02270328[4][0], Unk_ov16_02270328[4][1], 1, NULL);
-        Strbuf_Free(v13);
-    }
+    Strbuf *strCancel = MessageLoader_GetNewStrbuf(v2, pl_msg_00000368_00930); // CANCEL
+    BattleInput_CreateTextObject(battleInput, &battleInput->textObj[4], strCancel, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, Unk_ov16_02270328[4][0], Unk_ov16_02270328[4][1], 1, NULL);
+    Strbuf_Free(strCancel);
 }
 
 static int ov16_0226A318(BattleInput *battleInput, int param1, int param2)
@@ -2409,8 +2400,8 @@ static void ov16_0226A698(BattleInput *battleInput)
     int v2, v3, v4;
     PaletteData *v5;
 
-    v0 = ov16_0223E010(battleInput->battleSystem);
-    v1 = ov16_0223E018(battleInput->battleSystem);
+    v0 = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    v1 = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
     v5 = BattleSystem_GetPaletteData(battleInput->battleSystem);
 
     sub_0200CD7C(v5, 3, v0, v1, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 20022);
@@ -2420,16 +2411,14 @@ static void ov16_0226A698(BattleInput *battleInput)
 
 static void ov16_0226A718(BattleInput *battleInput)
 {
-    SpriteGfxHandler *v0;
+    SpriteGfxHandler *gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
 
-    v0 = ov16_0223E018(battleInput->battleSystem);
-
-    SpriteGfxHandler_UnloadCharObjById(v0, 20036);
-    SpriteGfxHandler_UnloadCharObjById(v0, 20037);
-    SpriteGfxHandler_UnloadCharObjById(v0, 20038);
-    SpriteGfxHandler_UnloadCellObjById(v0, 20021);
-    SpriteGfxHandler_UnloadAnimObjById(v0, 20021);
-    SpriteGfxHandler_UnloadPlttObjById(v0, 20022);
+    SpriteGfxHandler_UnloadCharObjById(gfxHandler, 20036);
+    SpriteGfxHandler_UnloadCharObjById(gfxHandler, 20037);
+    SpriteGfxHandler_UnloadCharObjById(gfxHandler, 20038);
+    SpriteGfxHandler_UnloadCellObjById(gfxHandler, 20021);
+    SpriteGfxHandler_UnloadAnimObjById(gfxHandler, 20021);
+    SpriteGfxHandler_UnloadPlttObjById(gfxHandler, 20022);
 }
 
 static void ov16_0226A768(BattleInput *battleInput)
@@ -2484,8 +2473,8 @@ static CellActorData *ov16_0226A7A4(BattleInput *battleInput, Pokemon *param1, i
         return NULL;
     }
 
-    v0 = ov16_0223E010(battleInput->battleSystem);
-    v1 = ov16_0223E018(battleInput->battleSystem);
+    v0 = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    v1 = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
 
     sub_0200CBDC(v0, v1, 19, Pokemon_IconSpriteIndex(param1), 0, NNS_G2D_VRAM_TYPE_2DSUB, v2);
 
@@ -2577,54 +2566,54 @@ static void ov16_0226A95C(const Strbuf *param0, int param1, int *param2, int *pa
     *param3 = v1;
 }
 
-static void BattleInput_CreateTextObject(BattleInput *battleInput, BattleInputTextObject *textObj, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9, BattleInputTextImage *param10)
+static void BattleInput_CreateTextObject(BattleInput *battleInput, BattleInputTextObject *textObj, const Strbuf *str, enum Font param3, TextColor param4, int param5, int param6, int x, int y, int param9, BattleInputTextImage *param10)
 {
     UnkStruct_020127E8 v0;
-    Window v1;
+    Window window;
     SpriteManagerAllocation spriteManAlloc;
     int v3;
     FontOAM *fontOAM;
-    BgConfig *v5;
+    BgConfig *bgConfig;
     SpriteGfxHandler *v6;
     int v7, v8;
 
     GF_ASSERT(textObj->fontOAM == NULL);
 
-    v6 = ov16_0223E018(battleInput->battleSystem);
-    v5 = BattleSystem_GetBgConfig(battleInput->battleSystem);
+    v6 = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    bgConfig = BattleSystem_GetBgConfig(battleInput->battleSystem);
 
     if (param10 == NULL) {
-        ov16_0226A95C(param2, param3, &v7, &v8);
+        ov16_0226A95C(str, param3, &v7, &v8);
     } else {
         v7 = param10->unk_12;
         v8 = param10->unk_10;
     }
 
     if (param10 == NULL) {
-        Window_Init(&v1);
-        Window_AddToTopLeftCorner(v5, &v1, v8, 16 / 8, 0, 0);
-        Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
+        Window_Init(&window);
+        Window_AddToTopLeftCorner(bgConfig, &window, v8, 16 / 8, 0, 0);
+        Text_AddPrinterWithParamsColorAndSpacing(&window, param3, str, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
     } else {
-        v1 = param10->unk_00;
+        window = param10->unk_00;
     }
 
-    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, 5);
+    v3 = sub_02012898(&window, NNS_G2D_VRAM_TYPE_2DSUB, 5);
     sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &spriteManAlloc);
 
     if (param9 == 1) {
-        param7 -= v7 / 2;
+        x -= v7 / 2;
     }
 
-    param8 += (((192 + 80) << FX32_SHIFT) >> FX32_SHIFT) - 8;
+    y += (((192 + 80) << FX32_SHIFT) >> FX32_SHIFT) - 8;
 
     v0.unk_00 = battleInput->unk_4C8;
-    v0.unk_04 = &v1;
+    v0.unk_04 = &window;
     v0.unk_08 = sub_0200D9B0(v6);
     v0.unk_0C = sub_0200D04C(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = spriteManAlloc.unk_04;
-    v0.unk_18 = param7;
-    v0.unk_1C = param8;
+    v0.unk_18 = x;
+    v0.unk_1C = y;
     v0.unk_20 = 0;
     v0.unk_24 = 100;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
@@ -2633,10 +2622,10 @@ static void BattleInput_CreateTextObject(BattleInput *battleInput, BattleInputTe
     fontOAM = sub_020127E8(&v0);
 
     sub_02012AC0(fontOAM, param5);
-    sub_020128C4(fontOAM, param7, param8);
+    sub_020128C4(fontOAM, x, y);
 
     if (param10 == NULL) {
-        Window_Remove(&v1);
+        Window_Remove(&window);
     }
 
     textObj->fontOAM = fontOAM;
@@ -2644,7 +2633,7 @@ static void BattleInput_CreateTextObject(BattleInput *battleInput, BattleInputTe
     textObj->unk_10 = v7;
 }
 
-static void ov16_0226AAC0(BattleInput *battleInput)
+static void BattleInput_DestroyTextObjects(BattleInput *battleInput)
 {
     int i;
 
@@ -2662,10 +2651,10 @@ static void ov16_0226AAF8(BattleInput *battleInput)
     u8 v0[4], v1[4];
     int j, i;
     u16 *v4, *v5;
-    BgConfig *v6;
+    BgConfig *bgConfig;
 
-    v6 = BattleSystem_GetBgConfig(battleInput->battleSystem);
-    v4 = Bg_GetTilemapBuffer(v6, 5);
+    bgConfig = BattleSystem_GetBgConfig(battleInput->battleSystem);
+    v4 = Bg_GetTilemapBuffer(bgConfig, 5);
 
     ov16_0226B20C(battleInput, v0, 0);
 
@@ -2764,7 +2753,7 @@ void ov16_0226AC98(BattleInput *battleInput, int param1, const MoveDisplayInfo *
     TextColor ppColor;
     MessageLoader *v12;
 
-    v12 = BattleSystem_MessageLoader(battleInput->battleSystem);
+    v12 = BattleSystem_GetMessageLoader(battleInput->battleSystem);
     moveDisplayObj = ov16_0226ABD4(battleInput, param1);
     v3 = sub_0208C098(6);
     v9 = MessageLoader_GetNewStrbuf(v12, pl_msg_00000368_00938); // PP
@@ -2828,62 +2817,60 @@ static void ov16_0226AEA0(BattleInput *battleInput, const Strbuf *param1, enum F
     Text_AddPrinterWithParamsColorAndSpacing(&param3->unk_00, param2, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
 }
 
-static void ov16_0226AF0C(BattleInput *battleInput)
+static void BattleInput_CreateTypeIcons(BattleInput *battleInput)
 {
     int i;
     SpriteRenderer *v1;
     SpriteGfxHandler *v2;
-    SpriteTemplate v3;
+    SpriteTemplate typeIconTemplate;
     UnkStruct_ov16_02260C00 *v4;
-    int v5;
+    int type;
     int v6;
     MoveDisplayObject *moveDisplayObj;
 
     v4 = &battleInput->unk_1A.val2;
-    v1 = ov16_0223E010(battleInput->battleSystem);
-    v2 = ov16_0223E018(battleInput->battleSystem);
+    v1 = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    v2 = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
     moveDisplayObj = ov16_0226ABD4(battleInput, battleInput->unk_66A);
-    v3 = Unk_ov16_0227047C;
+    typeIconTemplate = sTypeIconSpriteTemplate;
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        GF_ASSERT(battleInput->unk_5EC[i] == NULL);
+        GF_ASSERT(battleInput->actorTypeIcons[i] == NULL);
 
         if (v4->unk_00[i] != 0) {
-            v5 = MoveTable_LoadParam(v4->unk_00[i], MOVEATTRIBUTE_TYPE);
-            v3.resources[0] = 20025 + i;
-            v3.x = Unk_ov16_022702B4[i][0];
-            v3.y = Unk_ov16_022702B4[i][1];
+            type = MoveTable_LoadParam(v4->unk_00[i], MOVEATTRIBUTE_TYPE);
+            typeIconTemplate.resources[0] = 20025 + i;
+            typeIconTemplate.x = sTypeIconPositions[i][0];
+            typeIconTemplate.y = sTypeIconPositions[i][1];
 
-            battleInput->unk_5EC[i] = sub_0207CA58(v1, v2, v5, &v3);
+            battleInput->actorTypeIcons[i] = sub_0207CA58(v1, v2, type, &typeIconTemplate);
 
-            sub_0200D500(battleInput->unk_5EC[i], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
+            sub_0200D500(battleInput->actorTypeIcons[i], typeIconTemplate.x, typeIconTemplate.y, ((192 + 80) << FX32_SHIFT));
 
-            {
-                void *v8;
-                NNSG2dImageProxy *v9;
+            void *v8;
+            NNSG2dImageProxy *v9;
 
-                v8 = G2S_GetOBJCharPtr();
-                v9 = SpriteActor_ImageProxy(battleInput->unk_5EC[i]->unk_00);
+            v8 = G2S_GetOBJCharPtr();
+            v9 = SpriteActor_ImageProxy(battleInput->actorTypeIcons[i]->unk_00);
 
-                MI_CpuCopy16(moveDisplayObj->typeIcon[i], (void *)((u32)v8 + v9->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DSUB]), sub_0208C098(6));
-            }
+            MI_CpuCopy16(moveDisplayObj->typeIcon[i], (void *)((u32)v8 + v9->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DSUB]), sub_0208C098(6));
         }
     }
 }
 
-static void ov16_0226AFF4(BattleInput *battleInput)
+static void BattleInput_DestroyTypeIcons(BattleInput *battleInput)
 {
     int i;
     SpriteRenderer *v1;
     SpriteGfxHandler *v2;
 
-    v1 = ov16_0223E010(battleInput->battleSystem);
-    v2 = ov16_0223E018(battleInput->battleSystem);
+    v1 = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    v2 = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
 
     for (i = 0; i < 4; i++) {
-        if (battleInput->unk_5EC[i] != NULL) {
-            sub_0207CA88(battleInput->unk_5EC[i]);
-            battleInput->unk_5EC[i] = NULL;
+        if (battleInput->actorTypeIcons[i] != NULL) {
+            sub_0207CA88(battleInput->actorTypeIcons[i]);
+            battleInput->actorTypeIcons[i] = NULL;
         }
     }
 }
@@ -2894,8 +2881,8 @@ static void ov16_0226B028(BattleInput *battleInput)
     SpriteRenderer *v1;
     SpriteGfxHandler *v2;
 
-    v1 = ov16_0223E010(battleInput->battleSystem);
-    v2 = ov16_0223E018(battleInput->battleSystem);
+    v1 = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    v2 = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
 
     for (i = 0; i < 4; i++) {
         if (battleInput->unk_5FC[i] != NULL) {
@@ -2958,7 +2945,7 @@ static void ov16_0226B198(void)
 static void ov16_0226B1C4(BattleInput *battleInput, int param1, int param2)
 {
     if (param1 == 1) {
-        ov16_0226B1E8(battleInput);
+        BattleInput_DestroyMenuObjects(battleInput);
     }
 
     if (param2 == 1) {
@@ -2966,11 +2953,11 @@ static void ov16_0226B1C4(BattleInput *battleInput, int param1, int param2)
     }
 }
 
-static void ov16_0226B1E8(BattleInput *battleInput)
+static void BattleInput_DestroyMenuObjects(BattleInput *battleInput)
 {
-    ov16_0226AFF4(battleInput);
+    BattleInput_DestroyTypeIcons(battleInput);
     ov16_0226B028(battleInput);
-    ov16_0226AAC0(battleInput);
+    BattleInput_DestroyTextObjects(battleInput);
     ov16_0226A718(battleInput);
     ov16_0226A768(battleInput);
 }
@@ -3077,9 +3064,9 @@ static void ov16_0226B318(BattleInput *battleInput, int param1)
     battleInput->unk_6A0.unk_09 = param1;
 }
 
-static void inline_ov16_0226B318_1(SysTask *param0, void *param1)
+static void inline_ov16_0226B318_1(SysTask *param0, void *data)
 {
-    BattleInput *battleInput = param1;
+    BattleInput *battleInput = data;
     UnkStruct_ov16_02268A14_sub4 *v1;
     BgConfig *v2;
     PaletteData *v3;
@@ -3119,9 +3106,9 @@ static void inline_ov16_0226B318_1(SysTask *param0, void *param1)
     }
 }
 
-static void inline_ov16_0226B314_1(SysTask *param0, void *param1)
+static void inline_ov16_0226B314_1(SysTask *param0, void *data)
 {
-    BattleInput *battleInput = param1;
+    BattleInput *battleInput = data;
     UnkStruct_ov16_02268A14_sub4 *v1;
     BgConfig *v2;
     PaletteData *v3;
@@ -3313,7 +3300,7 @@ static void ov16_0226B4E0(SysTask *param0, void *param1)
             sub_020128C4(battleInput->textObj[v6].fontOAM, v2, v3 + -2);
 
             if (v9 != 0) {
-                sub_0200D5AC(battleInput->unk_5EC[v7]->unk_00, 0, -2);
+                sub_0200D5AC(battleInput->actorTypeIcons[v7]->unk_00, 0, -2);
 
                 if (battleInput->unk_5FC[v7] != NULL) {
                     sub_0200D5AC(battleInput->unk_5FC[v7]->unk_00, 0, -2);
@@ -3347,7 +3334,7 @@ static void ov16_0226B4E0(SysTask *param0, void *param1)
             sub_020128C4(battleInput->textObj[v6].fontOAM, v2, v3 + 1);
 
             if (v9 != 0) {
-                sub_0200D5AC(battleInput->unk_5EC[v7]->unk_00, 0, 1);
+                sub_0200D5AC(battleInput->actorTypeIcons[v7]->unk_00, 0, 1);
 
                 if (battleInput->unk_5FC[v7] != NULL) {
                     sub_0200D5AC(battleInput->unk_5FC[v7]->unk_00, 0, 1);
@@ -3631,10 +3618,10 @@ static void ov16_0226BB94(void *param0)
 static void ov16_0226BC50(SysTask *task, void *param1)
 {
     BattleInput *battleInput = param1;
-    const UnkStruct_ov16_02270670 *v1;
+    const BattleMenuTemplate *v1;
     int i;
 
-    v1 = &Unk_ov16_02270670[battleInput->unk_66B];
+    v1 = &sBattleMenuTemplates[battleInput->curMenuId];
 
     for (i = 0; i < 4; i++) {
         if (v1->unk_04_val2[i] == 0xffff) {
@@ -3752,94 +3739,94 @@ static void ov16_0226BD74(SysTask *task, void *param1)
 
 static int ov16_0226BE48(BattleInput *battleInput)
 {
-    BattleCursorMove *v0;
-    const UnkStruct_ov16_02270670 *v1;
+    BattleCursorMove *cursorMove;
+    const BattleMenuTemplate *v1;
 
-    v0 = &battleInput->unk_6BC;
-    v1 = &Unk_ov16_02270670[battleInput->unk_66B];
+    cursorMove = &battleInput->cursorMove;
+    v1 = &sBattleMenuTemplates[battleInput->curMenuId];
 
-    if (v1->unk_20 == NULL) {
+    if (v1->funcCursorMove == NULL) {
         return 0xffffffff;
     }
 
-    if (v0->unk_00 == 0) {
+    if (cursorMove->unk_00 == 0) {
         if ((battleInput->unk_6C0 == 1) || (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
             if (battleInput->unk_6C0 == 0) {
                 Sound_PlayEffect(1500);
             }
 
-            v0->unk_00 = 1;
+            cursorMove->unk_00 = 1;
             battleInput->unk_6C0 = 0;
-            v1->unk_20(battleInput, 1);
+            v1->funcCursorMove(battleInput, 1);
         }
 
         return 0xffffffff;
     }
 
-    return v1->unk_20(battleInput, 0);
+    return v1->funcCursorMove(battleInput, 0);
 }
 
 static int ov16_0226BEC0(BattleInput *battleInput, int param1)
 {
-    BattleCursorMove *v0;
-    u32 v1;
-    const UnkStruct_ov16_02270670 *v2;
+    BattleCursorMove *cursorMove;
+    u32 key;
+    const BattleMenuTemplate *v2;
     int i, v4, v5;
     BattleCursorPosition *v6;
 
-    v0 = &battleInput->unk_6BC;
-    v2 = &Unk_ov16_02270670[battleInput->unk_66B];
+    cursorMove = &battleInput->cursorMove;
+    v2 = &sBattleMenuTemplates[battleInput->curMenuId];
     v5 = BattleSystem_BattlerOfType(battleInput->battleSystem, battleInput->unk_66A);
     v6 = Battler_GetCursorPosition(BattleSystem_BattlerData(battleInput->battleSystem, v5));
 
     if (param1 == 1) {
-        v0->unk_02 = v6->commandX;
-        v0->unk_01 = v6->commandY;
-        v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
+        cursorMove->x = v6->commandX;
+        cursorMove->y = v6->commandY;
+        v4 = Unk_ov16_022701EC[cursorMove->y][cursorMove->x];
         ov16_0226DD9C(battleInput->cursor, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         return 0xffffffff;
     }
 
-    switch (battleInput->unk_66B) {
+    switch (battleInput->curMenuId) {
     case 6:
     case 5:
-        v1 = ov16_0226CB10(v0, 1, 1, Unk_ov16_022701EC[0]);
+        key = CursorMove_CheckKeyPress(cursorMove, 1, 1, Unk_ov16_022701EC[0]);
         break;
     default:
-        v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
+        v4 = Unk_ov16_022701EC[cursorMove->y][cursorMove->x];
 
         if ((v4 == 3) && (gCoreSys.pressedKeys & PAD_KEY_UP)) {
             (void)0;
         } else {
-            v1 = ov16_0226CB10(v0, 3, 2, Unk_ov16_022701EC[0]);
+            key = CursorMove_CheckKeyPress(cursorMove, 3, 2, Unk_ov16_022701EC[0]);
 
-            if ((v1 == 0) && (v4 == 0)) {
+            if ((key == 0) && (v4 == 0)) {
                 if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
-                    v0->unk_02 = 0;
-                    v0->unk_01 = 1;
+                    cursorMove->x = 0;
+                    cursorMove->y = 1;
                     Sound_PlayEffect(1500);
-                    v1 = PAD_KEY_LEFT;
+                    key = PAD_KEY_LEFT;
                 } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
-                    v0->unk_02 = 2;
-                    v0->unk_01 = 1;
+                    cursorMove->x = 2;
+                    cursorMove->y = 1;
                     Sound_PlayEffect(1500);
-                    v1 = PAD_KEY_RIGHT;
+                    key = PAD_KEY_RIGHT;
                 }
             }
         }
         break;
     }
 
-    switch (v1) {
+    switch (key) {
     case PAD_KEY_UP:
     case PAD_KEY_DOWN:
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
-        v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
+        v4 = Unk_ov16_022701EC[cursorMove->y][cursorMove->x];
         ov16_0226DD9C(battleInput->cursor, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         break;
     case PAD_BUTTON_A:
-        return Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
+        return Unk_ov16_022701EC[cursorMove->y][cursorMove->x];
     case PAD_BUTTON_B:
         if (battleInput->unk_66F == 1) {
             for (i = 0; i < v2->unk_14[i].rect.top != 0xff; i++) {
@@ -3879,34 +3866,34 @@ static void BattleInput_SaveBattlerCursorPosition(BattleInput *battleInput, int 
 
 static int ov16_0226C100(BattleInput *battleInput, int param1)
 {
-    BattleCursorMove *v0;
-    u32 v1;
-    const UnkStruct_ov16_02270670 *v2;
+    BattleCursorMove *cursorMove;
+    u32 key;
+    const BattleMenuTemplate *v2;
     int v3, v4;
 
-    v0 = &battleInput->unk_6BC;
-    v2 = &Unk_ov16_02270670[battleInput->unk_66B];
+    cursorMove = &battleInput->cursorMove;
+    v2 = &sBattleMenuTemplates[battleInput->curMenuId];
 
     if (param1 == 1) {
-        v0->unk_02 = 0;
-        v0->unk_01 = 0;
-        v4 = Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
+        cursorMove->x = 0;
+        cursorMove->y = 0;
+        v4 = Unk_ov16_022701CC[cursorMove->y][cursorMove->x];
         ov16_0226DD9C(battleInput->cursor, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         return 0xffffffff;
     }
 
-    v1 = ov16_0226CB10(v0, 1, 2, Unk_ov16_022701CC[0]);
+    key = CursorMove_CheckKeyPress(cursorMove, 1, 2, Unk_ov16_022701CC[0]);
 
-    switch (v1) {
+    switch (key) {
     case PAD_KEY_UP:
     case PAD_KEY_DOWN:
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
-        v4 = Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
+        v4 = Unk_ov16_022701CC[cursorMove->y][cursorMove->x];
         ov16_0226DD9C(battleInput->cursor, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         break;
     case PAD_BUTTON_A:
-        return Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
+        return Unk_ov16_022701CC[cursorMove->y][cursorMove->x];
     case PAD_BUTTON_B:
         break;
     }
@@ -3916,30 +3903,30 @@ static int ov16_0226C100(BattleInput *battleInput, int param1)
 
 static int ov16_0226C1F8(BattleInput *battleInput, int param1)
 {
-    BattleCursorMove *v0;
+    BattleCursorMove *cursorMove;
     u32 v1;
-    const UnkStruct_ov16_02270670 *v2;
+    const BattleMenuTemplate *v2;
     int v3, i;
     u8 v5[3][2];
     UnkStruct_ov16_02260C00 *v6;
     BattleCursorPosition *cursorPos;
 
     cursorPos = Battler_GetCursorPosition(BattleSystem_BattlerData(battleInput->battleSystem, BattleSystem_BattlerOfType(battleInput->battleSystem, battleInput->unk_66A)));
-    v0 = &battleInput->unk_6BC;
-    v2 = &Unk_ov16_02270670[battleInput->unk_66B];
+    cursorMove = &battleInput->cursorMove;
+    v2 = &sBattleMenuTemplates[battleInput->curMenuId];
     v6 = &battleInput->unk_1A.val2;
 
     if (param1 == 1) {
-        v0->unk_02 = cursorPos->moveX;
-        v0->unk_01 = cursorPos->moveY;
-        v3 = Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
+        cursorMove->x = cursorPos->moveX;
+        cursorMove->y = cursorPos->moveY;
+        v3 = Unk_ov16_022701E4[cursorMove->y][cursorMove->x];
 
         if ((v3 != 0) && (v6->unk_00[v3 - 1] == 0)) {
             cursorPos->moveX = 0;
             cursorPos->moveY = 0;
-            v0->unk_02 = 0;
-            v0->unk_01 = 0;
-            v3 = Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
+            cursorMove->x = 0;
+            cursorMove->y = 0;
+            v3 = Unk_ov16_022701E4[cursorMove->y][cursorMove->x];
         }
 
         ov16_0226DD9C(battleInput->cursor, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
@@ -3947,18 +3934,18 @@ static int ov16_0226C1F8(BattleInput *battleInput, int param1)
     }
 
     MI_CpuCopy8(Unk_ov16_022701E4, v5, 3 * 2);
-    v1 = ov16_0226CB10(v0, 2, 3, v5[0]);
+    v1 = CursorMove_CheckKeyPress(cursorMove, 2, 3, v5[0]);
 
     switch (v1) {
     case PAD_KEY_UP:
     case PAD_KEY_DOWN:
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
-        v3 = Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
+        v3 = Unk_ov16_022701E4[cursorMove->y][cursorMove->x];
         ov16_0226DD9C(battleInput->cursor, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         break;
     case PAD_BUTTON_A:
-        return Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
+        return Unk_ov16_022701E4[cursorMove->y][cursorMove->x];
     case PAD_BUTTON_B:
         for (i = 0; i < v2->unk_14[i].rect.top != 0xff; i++) {
             if (0xff == v2->unk_18[i]) {
@@ -3997,9 +3984,9 @@ static void BattleInput_SaveBattlerMovePosition(BattleInput *battleInput, int pa
 
 static int ov16_0226C3C8(BattleInput *battleInput, int param1)
 {
-    BattleCursorMove *v0;
+    BattleCursorMove *cursorMove;
     u32 v1;
-    const UnkStruct_ov16_02270670 *v2;
+    const BattleMenuTemplate *menu;
     int v3, v4;
     int v5 = 0;
     u8 v6[4], v7[4];
@@ -4013,8 +4000,8 @@ static int ov16_0226C3C8(BattleInput *battleInput, int param1)
     BattleCursorPosition *v30;
 
     v30 = Battler_GetCursorPosition(BattleSystem_BattlerData(battleInput->battleSystem, BattleSystem_BattlerOfType(battleInput->battleSystem, battleInput->unk_66A)));
-    v0 = &battleInput->unk_6BC;
-    v2 = &Unk_ov16_02270670[battleInput->unk_66B];
+    cursorMove = &battleInput->cursorMove;
+    menu = &sBattleMenuTemplates[battleInput->curMenuId];
 
     MI_CpuCopy8(Unk_ov16_022701DC, v8, 3 * 2);
 
@@ -4051,20 +4038,20 @@ static int ov16_0226C3C8(BattleInput *battleInput, int param1)
         v12 = 2;
 
         if ((v7[5 - 2] == 1) && (v7[3 - 2] == 1)) {
-            v21 = v2->unk_14[3].rect.left + 8;
-            v22 = v2->unk_14[1].rect.right - 8;
-            v19 = v2->unk_14[3].rect.top + 8;
-            v20 = v2->unk_14[3].rect.bottom - 8;
+            v21 = menu->unk_14[3].rect.left + 8;
+            v22 = menu->unk_14[1].rect.right - 8;
+            v19 = menu->unk_14[3].rect.top + 8;
+            v20 = menu->unk_14[3].rect.bottom - 8;
         } else if ((v7[5 - 2] == 1) && (v7[3 - 2] == 0)) {
-            v21 = v2->unk_14[3].rect.left + 8;
-            v22 = v2->unk_14[3].rect.right - 8;
-            v19 = v2->unk_14[3].rect.top + 8;
-            v20 = v2->unk_14[3].rect.bottom - 8;
+            v21 = menu->unk_14[3].rect.left + 8;
+            v22 = menu->unk_14[3].rect.right - 8;
+            v19 = menu->unk_14[3].rect.top + 8;
+            v20 = menu->unk_14[3].rect.bottom - 8;
         } else if ((v7[5 - 2] == 0) && (v7[3 - 2] == 1)) {
-            v21 = v2->unk_14[1].rect.left + 8;
-            v22 = v2->unk_14[1].rect.right - 8;
-            v19 = v2->unk_14[1].rect.top + 8;
-            v20 = v2->unk_14[1].rect.bottom - 8;
+            v21 = menu->unk_14[1].rect.left + 8;
+            v22 = menu->unk_14[1].rect.right - 8;
+            v19 = menu->unk_14[1].rect.top + 8;
+            v20 = menu->unk_14[1].rect.bottom - 8;
         } else {
             v21 = -1;
             v22 = -1;
@@ -4073,20 +4060,20 @@ static int ov16_0226C3C8(BattleInput *battleInput, int param1)
         }
 
         if ((v7[2 - 2] == 1) && (v7[4 - 2] == 1)) {
-            v25 = v2->unk_14[0].rect.left + 8;
-            v26 = v2->unk_14[2].rect.right - 8;
-            v23 = v2->unk_14[0].rect.top + 8;
-            v24 = v2->unk_14[0].rect.bottom - 8;
+            v25 = menu->unk_14[0].rect.left + 8;
+            v26 = menu->unk_14[2].rect.right - 8;
+            v23 = menu->unk_14[0].rect.top + 8;
+            v24 = menu->unk_14[0].rect.bottom - 8;
         } else if ((v7[2 - 2] == 1) && (v7[4 - 2] == 0)) {
-            v25 = v2->unk_14[0].rect.left + 8;
-            v26 = v2->unk_14[0].rect.right - 8;
-            v23 = v2->unk_14[0].rect.top + 8;
-            v24 = v2->unk_14[0].rect.bottom - 8;
+            v25 = menu->unk_14[0].rect.left + 8;
+            v26 = menu->unk_14[0].rect.right - 8;
+            v23 = menu->unk_14[0].rect.top + 8;
+            v24 = menu->unk_14[0].rect.bottom - 8;
         } else if ((v7[2 - 2] == 0) && (v7[4 - 2] == 1)) {
-            v25 = v2->unk_14[2].rect.left + 8;
-            v26 = v2->unk_14[2].rect.right - 8;
-            v23 = v2->unk_14[2].rect.top + 8;
-            v24 = v2->unk_14[2].rect.bottom - 8;
+            v25 = menu->unk_14[2].rect.left + 8;
+            v26 = menu->unk_14[2].rect.right - 8;
+            v23 = menu->unk_14[2].rect.top + 8;
+            v24 = menu->unk_14[2].rect.bottom - 8;
         } else {
             v25 = -1;
             v26 = -1;
@@ -4153,27 +4140,27 @@ static int ov16_0226C3C8(BattleInput *battleInput, int param1)
     if (param1 == 1) {
         if (v5 == 0) {
             if (v30->unk_06 == battleInput->unk_66C) {
-                v0->unk_02 = v30->unk_04;
-                v0->unk_01 = v30->unk_05;
+                cursorMove->x = v30->unk_04;
+                cursorMove->y = v30->unk_05;
             } else if (v6[5 - 2] == 1) {
-                v0->unk_02 = 0;
-                v0->unk_01 = 0;
+                cursorMove->x = 0;
+                cursorMove->y = 0;
             } else if (v6[3 - 2] == 1) {
-                v0->unk_02 = 1;
-                v0->unk_01 = 0;
+                cursorMove->x = 1;
+                cursorMove->y = 0;
             } else if (v6[2 - 2] == 1) {
-                v0->unk_02 = 0;
-                v0->unk_01 = 1;
+                cursorMove->x = 0;
+                cursorMove->y = 1;
             } else {
-                v0->unk_02 = 1;
-                v0->unk_01 = 1;
+                cursorMove->x = 1;
+                cursorMove->y = 1;
             }
 
-            v4 = Unk_ov16_022701DC[v0->unk_01][v0->unk_02];
-            ov16_0226DD9C(battleInput->cursor, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+            v4 = Unk_ov16_022701DC[cursorMove->y][cursorMove->x];
+            ov16_0226DD9C(battleInput->cursor, menu->unk_14[v4].rect.left + 8, menu->unk_14[v4].rect.right - 8, menu->unk_14[v4].rect.top + 8, menu->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         } else {
-            v0->unk_02 = 0;
-            v0->unk_01 = 0;
+            cursorMove->x = 0;
+            cursorMove->y = 0;
 
             if (((v28 == -1) && (v27 == -1)) || (v17 == -1)) {
                 ov16_0226DD9C(battleInput->cursor, v13, v14, v15, v16, ((192 + 80) << FX32_SHIFT));
@@ -4192,9 +4179,9 @@ static int ov16_0226C3C8(BattleInput *battleInput, int param1)
     }
 
     if (v5 == 0) {
-        v1 = ov16_0226CB10(v0, v11, v12, v8[0]);
+        v1 = CursorMove_CheckKeyPress(cursorMove, v11, v12, v8[0]);
     } else {
-        v1 = ov16_0226CB10(v0, v11, v12, NULL);
+        v1 = CursorMove_CheckKeyPress(cursorMove, v11, v12, NULL);
     }
 
     switch (v1) {
@@ -4203,10 +4190,10 @@ static int ov16_0226C3C8(BattleInput *battleInput, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         if (v5 == 0) {
-            v4 = Unk_ov16_022701DC[v0->unk_01][v0->unk_02];
-            ov16_0226DD9C(battleInput->cursor, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+            v4 = Unk_ov16_022701DC[cursorMove->y][cursorMove->x];
+            ov16_0226DD9C(battleInput->cursor, menu->unk_14[v4].rect.left + 8, menu->unk_14[v4].rect.right - 8, menu->unk_14[v4].rect.top + 8, menu->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         } else {
-            if (v0->unk_01 == 0) {
+            if (cursorMove->y == 0) {
                 if (((v27 == -1) && (v28 == -1)) || (v17 == -1)) {
                     ov16_0226DD9C(battleInput->cursor, v13, v14, v15, v16, ((192 + 80) << FX32_SHIFT));
                 } else if ((v28 != -1) && (v27 == -1)) {
@@ -4221,14 +4208,14 @@ static int ov16_0226C3C8(BattleInput *battleInput, int param1)
                     ov16_0226DE04(battleInput->cursor);
                 }
             } else {
-                ov16_0226DD9C(battleInput->cursor, v2->unk_14[4].rect.left + 8, v2->unk_14[4].rect.right - 8, v2->unk_14[4].rect.top + 8, v2->unk_14[4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+                ov16_0226DD9C(battleInput->cursor, menu->unk_14[4].rect.left + 8, menu->unk_14[4].rect.right - 8, menu->unk_14[4].rect.top + 8, menu->unk_14[4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
                 ov16_0226DE04(battleInput->cursor);
             }
         }
         break;
     case PAD_BUTTON_A:
         if (v5 == 1) {
-            if (v0->unk_01 > 0) {
+            if (cursorMove->y > 0) {
                 return 4;
             } else {
                 for (v3 = 0; v3 < 4; v3++) {
@@ -4238,7 +4225,7 @@ static int ov16_0226C3C8(BattleInput *battleInput, int param1)
                 }
             }
         } else {
-            v4 = Unk_ov16_022701DC[v0->unk_01][v0->unk_02];
+            v4 = Unk_ov16_022701DC[cursorMove->y][cursorMove->x];
 
             if ((v4 == 4) || (v6[v4 - 0] == 1)) {
                 return v4;
@@ -4254,7 +4241,7 @@ static int ov16_0226C3C8(BattleInput *battleInput, int param1)
 
 static void ov16_0226C9B8(BattleInput *battleInput, int param1)
 {
-    BattleCursorPosition *v0;
+    BattleCursorPosition *cursorPos;
     int v1, j, i;
 
     if (param1 == 4) {
@@ -4262,15 +4249,15 @@ static void ov16_0226C9B8(BattleInput *battleInput, int param1)
     }
 
     v1 = BattleSystem_BattlerOfType(battleInput->battleSystem, battleInput->unk_66A);
-    v0 = Battler_GetCursorPosition(BattleSystem_BattlerData(battleInput->battleSystem, v1));
+    cursorPos = Battler_GetCursorPosition(BattleSystem_BattlerData(battleInput->battleSystem, v1));
 
-    v0->unk_06 = battleInput->unk_66C;
+    cursorPos->unk_06 = battleInput->unk_66C;
 
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 2; j++) {
             if (param1 == Unk_ov16_022701DC[i][j]) {
-                v0->unk_04 = j;
-                v0->unk_05 = i;
+                cursorPos->unk_04 = j;
+                cursorPos->unk_05 = i;
 
                 return;
             }
@@ -4282,30 +4269,30 @@ static int ov16_0226CA14(BattleInput *battleInput, int param1)
 {
     BattleCursorMove *cursorMove;
     u32 v1;
-    const UnkStruct_ov16_02270670 *v2;
+    const BattleMenuTemplate *menu;
     int v3, v4;
 
-    cursorMove = &battleInput->unk_6BC;
-    v2 = &Unk_ov16_02270670[battleInput->unk_66B];
+    cursorMove = &battleInput->cursorMove;
+    menu = &sBattleMenuTemplates[battleInput->curMenuId];
 
     if (param1 == 1) {
-        v3 = Unk_ov16_022701C8[cursorMove->unk_01][cursorMove->unk_02];
-        ov16_0226DD9C(battleInput->cursor, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+        v3 = Unk_ov16_022701C8[cursorMove->y][cursorMove->x];
+        ov16_0226DD9C(battleInput->cursor, menu->unk_14[v3].rect.left + 8, menu->unk_14[v3].rect.right - 8, menu->unk_14[v3].rect.top + 8, menu->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         return 0xffffffff;
     }
 
-    v1 = ov16_0226CB10(cursorMove, 1, 2, Unk_ov16_022701C8[0]);
+    v1 = CursorMove_CheckKeyPress(cursorMove, 1, 2, Unk_ov16_022701C8[0]);
 
     switch (v1) {
     case PAD_KEY_UP:
     case PAD_KEY_DOWN:
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
-        v3 = Unk_ov16_022701C8[cursorMove->unk_01][cursorMove->unk_02];
-        ov16_0226DD9C(battleInput->cursor, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+        v3 = Unk_ov16_022701C8[cursorMove->y][cursorMove->x];
+        ov16_0226DD9C(battleInput->cursor, menu->unk_14[v3].rect.left + 8, menu->unk_14[v3].rect.right - 8, menu->unk_14[v3].rect.top + 8, menu->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         break;
     case PAD_BUTTON_A:
-        v3 = Unk_ov16_022701C8[cursorMove->unk_01][cursorMove->unk_02];
+        v3 = Unk_ov16_022701C8[cursorMove->y][cursorMove->x];
         return v3;
     case PAD_BUTTON_B:
         return 1;
@@ -4314,35 +4301,35 @@ static int ov16_0226CA14(BattleInput *battleInput, int param1)
     return 0xffffffff;
 }
 
-static u32 ov16_0226CB10(BattleCursorMove *cursorMove, int param1, int param2, const u8 *param3)
+static u32 CursorMove_CheckKeyPress(BattleCursorMove *cursorMove, int param1, int param2, const u8 *param3)
 {
     int v0, v1;
     u32 v2;
 
-    if (cursorMove->unk_02 >= param1) {
-        cursorMove->unk_02 = param1 - 1;
+    if (cursorMove->x >= param1) {
+        cursorMove->x = param1 - 1;
     }
 
-    if (cursorMove->unk_01 >= param2) {
-        cursorMove->unk_01 = param2 - 1;
+    if (cursorMove->y >= param2) {
+        cursorMove->y = param2 - 1;
     }
 
-    v1 = cursorMove->unk_02;
-    v0 = cursorMove->unk_01;
+    v1 = cursorMove->x;
+    v0 = cursorMove->y;
 
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
-        cursorMove->unk_01--;
+        cursorMove->y--;
 
-        if (cursorMove->unk_01 < 0) {
-            cursorMove->unk_01 = 0;
+        if (cursorMove->y < 0) {
+            cursorMove->y = 0;
         }
 
         if (param3 != NULL) {
-            while (param3[param1 * cursorMove->unk_01 + cursorMove->unk_02] == 0xff) {
-                cursorMove->unk_01--;
+            while (param3[param1 * cursorMove->y + cursorMove->x] == 0xff) {
+                cursorMove->y--;
 
-                if (cursorMove->unk_01 < 0) {
-                    cursorMove->unk_01 = v0;
+                if (cursorMove->y < 0) {
+                    cursorMove->y = v0;
                     break;
                 }
             }
@@ -4350,18 +4337,18 @@ static u32 ov16_0226CB10(BattleCursorMove *cursorMove, int param1, int param2, c
 
         v2 = PAD_KEY_UP;
     } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
-        cursorMove->unk_01++;
+        cursorMove->y++;
 
-        if (cursorMove->unk_01 >= param2) {
-            cursorMove->unk_01 = param2 - 1;
+        if (cursorMove->y >= param2) {
+            cursorMove->y = param2 - 1;
         }
 
         if (param3 != NULL) {
-            while (param3[param1 * cursorMove->unk_01 + cursorMove->unk_02] == 0xff) {
-                cursorMove->unk_01++;
+            while (param3[param1 * cursorMove->y + cursorMove->x] == 0xff) {
+                cursorMove->y++;
 
-                if (cursorMove->unk_01 >= param2) {
-                    cursorMove->unk_01 = v0;
+                if (cursorMove->y >= param2) {
+                    cursorMove->y = v0;
                     break;
                 }
             }
@@ -4369,18 +4356,18 @@ static u32 ov16_0226CB10(BattleCursorMove *cursorMove, int param1, int param2, c
 
         v2 = PAD_KEY_DOWN;
     } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
-        cursorMove->unk_02--;
+        cursorMove->x--;
 
-        if (cursorMove->unk_02 < 0) {
-            cursorMove->unk_02 = 0;
+        if (cursorMove->x < 0) {
+            cursorMove->x = 0;
         }
 
         if (param3 != NULL) {
-            while (param3[param1 * cursorMove->unk_01 + cursorMove->unk_02] == 0xff) {
-                cursorMove->unk_02--;
+            while (param3[param1 * cursorMove->y + cursorMove->x] == 0xff) {
+                cursorMove->x--;
 
-                if (cursorMove->unk_02 < 0) {
-                    cursorMove->unk_02 = v1;
+                if (cursorMove->x < 0) {
+                    cursorMove->x = v1;
                     break;
                 }
             }
@@ -4388,18 +4375,18 @@ static u32 ov16_0226CB10(BattleCursorMove *cursorMove, int param1, int param2, c
 
         v2 = PAD_KEY_LEFT;
     } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
-        cursorMove->unk_02++;
+        cursorMove->x++;
 
-        if (cursorMove->unk_02 >= param1) {
-            cursorMove->unk_02 = param1 - 1;
+        if (cursorMove->x >= param1) {
+            cursorMove->x = param1 - 1;
         }
 
         if (param3 != NULL) {
-            while (param3[param1 * cursorMove->unk_01 + cursorMove->unk_02] == 0xff) {
-                cursorMove->unk_02++;
+            while (param3[param1 * cursorMove->y + cursorMove->x] == 0xff) {
+                cursorMove->x++;
 
-                if (cursorMove->unk_02 >= param1) {
-                    cursorMove->unk_02 = v1;
+                if (cursorMove->x >= param1) {
+                    cursorMove->x = v1;
                     break;
                 }
             }
@@ -4418,79 +4405,72 @@ static u32 ov16_0226CB10(BattleCursorMove *cursorMove, int param1, int param2, c
         int v3, v4;
 
         v3 = param3[param1 * v0 + v1];
-        v4 = param3[param1 * cursorMove->unk_01 + cursorMove->unk_02];
+        v4 = param3[param1 * cursorMove->y + cursorMove->x];
 
         if (v3 == v4) {
-            cursorMove->unk_02 = v1;
-            cursorMove->unk_01 = v0;
+            cursorMove->x = v1;
+            cursorMove->y = v0;
         }
     }
 
-    if ((cursorMove->unk_02 != v1) || (cursorMove->unk_01 != v0)) {
+    if ((cursorMove->x != v1) || (cursorMove->y != v0)) {
         Sound_PlayEffect(1500);
-    } else {
-        if (v2 & PAD_KEY) {
-            return 0;
-        }
+    } else if (v2 & PAD_KEY) {
+        return 0;
     }
 
     return v2;
 }
 
-int ov16_0226CD08(BattleInput *battleInput)
+int BattleInput_GetCursorPressed(BattleInput *battleInput)
 {
     return battleInput->unk_6C0;
 }
 
-void ov16_0226CD10(BattleInput *battleInput, int param1)
+void BattleInput_SetCursorPressed(BattleInput *battleInput, int param1)
 {
     battleInput->unk_6C0 = param1;
 }
 
-static int (*const Unk_ov16_0227020C[])(BattleInput *) = {
+static int (*const sCatchingTutorialStateFuncs[])(BattleInput *) = {
     BattleInput_CatchingTutorialFight,
     BattleInput_CatchingTutorialMove
 };
 
 static int BattleInput_CatchingTutorialMain(BattleInput *battleInput)
 {
-    SpriteRenderer *v0;
-    SpriteGfxHandler *v1;
-    PaletteData *v2;
-    int v3;
-
-    v0 = ov16_0223E010(battleInput->battleSystem);
-    v1 = ov16_0223E018(battleInput->battleSystem);
-    v2 = BattleSystem_GetPaletteData(battleInput->battleSystem);
-    v3 = 0xffffffff;
+    SpriteRenderer *v0 = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
+    SpriteGfxHandler *v1 = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    PaletteData *v2 = BattleSystem_GetPaletteData(battleInput->battleSystem);
+    int ret = 0xffffffff;
 
     if (ov16_0223F228(battleInput->battleSystem) == 0) {
-        GF_ASSERT(battleInput->catchingTutorial.unk_04 < NELEMS(Unk_ov16_0227020C));
-        v3 = Unk_ov16_0227020C[battleInput->catchingTutorial.unk_04](battleInput);
+        GF_ASSERT(battleInput->catchingTutorial.state < NELEMS(sCatchingTutorialStateFuncs));
+        ret = sCatchingTutorialStateFuncs[battleInput->catchingTutorial.state](battleInput);
     } else {
-        v3 = BattleInput_CatchingTutorialBag(battleInput);
+        ret = BattleInput_CatchingTutorialBag(battleInput);
     }
 
-    if (v3 != 0xffffffff) {
-        battleInput->catchingTutorial.state = 0;
-        battleInput->catchingTutorial.unk_06 = 0;
-        battleInput->catchingTutorial.unk_04++;
+    if (ret != 0xffffffff) {
+        battleInput->catchingTutorial.subState = 0;
+        battleInput->catchingTutorial.delay = 0;
+        battleInput->catchingTutorial.state++;
     }
 
-    return v3;
+    return ret;
 }
 
 static int BattleInput_CatchingTutorialFight(BattleInput *battleInput)
 {
-    switch (battleInput->catchingTutorial.state) {
+    switch (battleInput->catchingTutorial.subState) {
     case 0:
         ov16_0226DF80(battleInput->catchingTutorial.finger, 128, 84 - 24, ((192 + 80) << FX32_SHIFT));
         ov16_0226DFD0(battleInput->catchingTutorial.finger, 60);
-        battleInput->catchingTutorial.state++;
+        battleInput->catchingTutorial.subState++;
         break;
     default:
         if (ov16_0226DFD4(battleInput->catchingTutorial.finger) == 1) {
-            battleInput->catchingTutorial.state++;
+            battleInput->catchingTutorial.subState++;
             return 0;
         }
 
@@ -4502,15 +4482,15 @@ static int BattleInput_CatchingTutorialFight(BattleInput *battleInput)
 
 static int BattleInput_CatchingTutorialMove(BattleInput *battleInput)
 {
-    switch (battleInput->catchingTutorial.state) {
+    switch (battleInput->catchingTutorial.subState) {
     case 0:
         ov16_0226DF80(battleInput->catchingTutorial.finger, 64, 46 - 24, ((192 + 80) << FX32_SHIFT));
         ov16_0226DFD0(battleInput->catchingTutorial.finger, 60);
-        battleInput->catchingTutorial.state++;
+        battleInput->catchingTutorial.subState++;
         break;
     default:
         if (ov16_0226DFD4(battleInput->catchingTutorial.finger) == 1) {
-            battleInput->catchingTutorial.state++;
+            battleInput->catchingTutorial.subState++;
             return 1;
         }
         break;
@@ -4521,23 +4501,23 @@ static int BattleInput_CatchingTutorialMove(BattleInput *battleInput)
 
 static int BattleInput_CatchingTutorialBag(BattleInput *battleInput)
 {
-    switch (battleInput->catchingTutorial.state) {
+    switch (battleInput->catchingTutorial.subState) {
     case 0:
-        battleInput->catchingTutorial.unk_06++;
+        battleInput->catchingTutorial.delay++;
 
-        if (battleInput->catchingTutorial.unk_06 > 60) {
-            battleInput->catchingTutorial.unk_06 = 0;
-            battleInput->catchingTutorial.state++;
+        if (battleInput->catchingTutorial.delay > 60) {
+            battleInput->catchingTutorial.delay = 0;
+            battleInput->catchingTutorial.subState++;
         }
         break;
     case 1:
         ov16_0226DF80(battleInput->catchingTutorial.finger, 40, 170 - 24, ((192 + 80) << FX32_SHIFT));
         ov16_0226DFD0(battleInput->catchingTutorial.finger, 60);
-        battleInput->catchingTutorial.state++;
+        battleInput->catchingTutorial.subState++;
         break;
     default:
         if (ov16_0226DFD4(battleInput->catchingTutorial.finger) == 1) {
-            battleInput->catchingTutorial.state++;
+            battleInput->catchingTutorial.subState++;
             return 1;
         }
         break;
@@ -4551,7 +4531,7 @@ void BattleInput_PrintRecordingStopMessage(BattleInput *battleInput, int param1)
     BgConfig *bgConfig = BattleSystem_GetBgConfig(battleInput->battleSystem);
     PaletteData *palette = BattleSystem_GetPaletteData(battleInput->battleSystem);
 
-    GF_ASSERT(battleInput->unk_66B == 18);
+    GF_ASSERT(battleInput->curMenuId == 18);
 
     LoadStandardWindowGraphics(bgConfig, 5, 0x20, 1, 0, HEAP_ID_BATTLE);
     PaletteData_LoadBufferFromHardware(palette, 1, 1 * 16, 0x20);
@@ -4576,7 +4556,7 @@ void BattleInput_PrintRecordingStopMessage(BattleInput *battleInput, int param1)
     Bg_ScheduleTilemapTransfer(bgConfig, 5);
 
     Strbuf *src;
-    MessageLoader *msgLoader = BattleSystem_MessageLoader(battleInput->battleSystem);
+    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(battleInput->battleSystem);
     int i;
     const u16 v11[][2] = {
         // Playback paused

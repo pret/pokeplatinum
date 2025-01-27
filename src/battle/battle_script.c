@@ -9927,7 +9927,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     int item;
     int itemEffect;
 
-    msgLoader = BattleSystem_MessageLoader(data->battleSys);
+    msgLoader = BattleSystem_GetMessageLoader(data->battleSys);
     battleType = BattleSystem_GetBattleType(data->battleSys);
     battler = data->battleCtx->faintedMon >> 1 & 1; // init to the side with the fainted mon
     expBattler = 0;
@@ -10557,7 +10557,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     UnkStruct_02007768 *v5;
     MessageLoader *v6;
 
-    v6 = BattleSystem_MessageLoader(v2->battleSys);
+    v6 = BattleSystem_GetMessageLoader(v2->battleSys);
     v4 = BattleSystem_GetPaletteData(v2->battleSys);
     v5 = ov16_0223E000(v2->battleSys);
     v1 = 1;
@@ -10576,7 +10576,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v7.heapID = 5;
                 v7.target = v1 + 20000;
                 v7.ballID = v2->ball;
-                v7.cellActorSys = ov16_0223E010(v2->battleSys);
+                v7.cellActorSys = BattleSystem_GetSpriteRenderer(v2->battleSys);
                 v7.paletteSys = BattleSystem_GetPaletteData(v2->battleSys);
                 v7.bgPrio = 1;
                 v7.surface = 0;
@@ -12213,12 +12213,12 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     UnkStruct_020127E8 v12;
     int v13;
 
-    v4 = BattleSystem_MessageLoader(param0);
+    v4 = BattleSystem_GetMessageLoader(param0);
     v7 = ov16_0223E0D4(param0);
     v5 = BattleSystem_StringTemplate(param0);
     v8 = BattleSystem_GetBgConfig(param0);
-    v1 = ov16_0223E010(param0);
-    v2 = ov16_0223E018(param0);
+    v1 = BattleSystem_GetSpriteRenderer(param0);
+    v2 = BattleSystem_GetSpriteGfxHandler(param0);
     v3 = BattleSystem_GetPaletteData(param0);
 
     sub_0200CBDC(v1, v2, 27, 256, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
@@ -12290,7 +12290,7 @@ static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScript
 {
     SpriteGfxHandler *v0;
 
-    v0 = ov16_0223E018(param0);
+    v0 = BattleSystem_GetSpriteGfxHandler(param0);
 
     sub_0200D0F4(param1->cellActorData[0]);
     sub_0200D0F4(param1->cellActorData[1]);
