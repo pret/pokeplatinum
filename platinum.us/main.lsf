@@ -700,7 +700,7 @@ Overlay battle
 	Object main.nef.p/src_battle_battle_io.c.o
 	Object main.nef.p/src_battle_healthbar.c.o
 	Object main.nef.p/src_battle_ov16_02268520.c.o
-	Object main.nef.p/src_battle_ov16_0226871C.c.o
+	Object main.nef.p/src_battle_battle_input.c.o
 	Object main.nef.p/src_battle_party_gauge.c.o
 	Object main.nef.p/src_battle_ov16_0226DB7C.c.o
 	Object main.nef.p/src_battle_ov16_0226DE44.c.o

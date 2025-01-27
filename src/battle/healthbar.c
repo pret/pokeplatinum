@@ -598,7 +598,7 @@ void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
         break;
     }
 
-    if (BattleSystem_BattleType(healthbar->battleSys) & BATTLE_TYPE_TRAINER) {
+    if (BattleSystem_GetBattleType(healthbar->battleSys) & BATTLE_TYPE_TRAINER) {
         // Never show the pokeball icon on an enemy trainer's healthbar
         flags &= ~HEALTHBAR_INFO_CAUGHT_SPECIES;
     }
@@ -702,8 +702,8 @@ void ov16_02267258(Healthbar *param0)
     const SpriteTemplate *v2;
 
     v2 = Healthbar_SpriteTemplate(param0->type);
-    v0 = ov16_0223E010(param0->battleSys);
-    v1 = ov16_0223E018(param0->battleSys);
+    v0 = BattleSystem_GetSpriteRenderer(param0->battleSys);
+    v1 = BattleSystem_GetSpriteGfxHandler(param0->battleSys);
 
     SpriteGfxHandler_UnloadCharObjById(v1, v2->resources[0]);
     SpriteGfxHandler_UnloadCellObjById(v1, v2->resources[2]);
@@ -722,8 +722,8 @@ static void ov16_0226728C(Healthbar *param0)
         return;
     }
 
-    v0 = ov16_0223E010(param0->battleSys);
-    v1 = ov16_0223E018(param0->battleSys);
+    v0 = BattleSystem_GetSpriteRenderer(param0->battleSys);
+    v1 = BattleSystem_GetSpriteGfxHandler(param0->battleSys);
 
     SpriteGfxHandler_UnloadCharObjById(v1, v2->resources[0]);
     SpriteGfxHandler_UnloadCellObjById(v1, v2->resources[2]);
@@ -739,9 +739,9 @@ void ov16_022672C4(Healthbar *param0)
     NARC *v4;
 
     v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
-    v1 = ov16_0223E010(param0->battleSys);
-    v2 = ov16_0223E018(param0->battleSys);
-    v3 = BattleSystem_PaletteSys(param0->battleSys);
+    v1 = BattleSystem_GetSpriteRenderer(param0->battleSys);
+    v2 = BattleSystem_GetSpriteGfxHandler(param0->battleSys);
+    v3 = BattleSystem_GetPaletteData(param0->battleSys);
     v0 = Healthbar_SpriteTemplate(param0->type);
 
     Healthbar_LoadResources(v1, v2, v4, v3, param0->type);
@@ -890,7 +890,7 @@ void ov16_0226757C(Healthbar *param0)
         Healthbar_EnableArrow(param0, 1);
     }
 
-    if ((BattleSystem_BattleType(param0->battleSys) & (0x20 | 0x200)) == 0) {
+    if ((BattleSystem_GetBattleType(param0->battleSys) & (0x20 | 0x200)) == 0) {
         ov16_02268470(param0);
     }
 }
@@ -932,7 +932,7 @@ static void Healthbar_EnableArrow(Healthbar *battleSys, BOOL enable)
     }
 
     // Safari battles don't get an arrow.
-    if ((BattleSystem_BattleType(battleSys->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK))
+    if ((BattleSystem_GetBattleType(battleSys->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK))
         && enable == TRUE) {
         return;
     }
@@ -1084,8 +1084,8 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     BoxPokemon *boxMon;
     StringTemplate *strFormatter;
 
-    bgl = BattleSystem_BGL(healthbar->battleSys);
-    msgLoader = BattleSystem_MessageLoader(healthbar->battleSys);
+    bgl = BattleSystem_GetBgConfig(healthbar->battleSys);
+    msgLoader = BattleSystem_GetMessageLoader(healthbar->battleSys);
     strFormatter = BattleSystem_StringTemplate(healthbar->battleSys);
 
     nickname = Strbuf_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
@@ -1301,8 +1301,8 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
     MessageLoader *v4;
     Strbuf *v5;
 
-    v0 = BattleSystem_BGL(param0->battleSys);
-    v4 = BattleSystem_MessageLoader(param0->battleSys);
+    v0 = BattleSystem_GetBgConfig(param0->battleSys);
+    v4 = BattleSystem_GetMessageLoader(param0->battleSys);
 
     if (param1 & (1 << 10)) {
         v5 = MessageLoader_GetNewStrbuf(v4, 950);
@@ -1345,8 +1345,8 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     Strbuf *v5, *v6;
     StringTemplate *v7;
 
-    v0 = BattleSystem_BGL(param0->battleSys);
-    v4 = BattleSystem_MessageLoader(param0->battleSys);
+    v0 = BattleSystem_GetBgConfig(param0->battleSys);
+    v4 = BattleSystem_GetMessageLoader(param0->battleSys);
     v7 = BattleSystem_StringTemplate(param0->battleSys);
     v5 = Strbuf_Init(30, 5);
 
@@ -1771,8 +1771,8 @@ static void ov16_02268380(SysTask *param0, void *param1)
     int v2;
     PaletteData *v3;
 
-    v1 = ov16_0223E018(v0->unk_00->battleSys);
-    v3 = BattleSystem_PaletteSys(v0->unk_00->battleSys);
+    v1 = BattleSystem_GetSpriteGfxHandler(v0->unk_00->battleSys);
+    v3 = BattleSystem_GetPaletteData(v0->unk_00->battleSys);
 
     switch (v0->unk_08) {
     case 0:

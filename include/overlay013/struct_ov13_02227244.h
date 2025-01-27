@@ -30,7 +30,7 @@ typedef struct {
     u8 unk_31;
     u8 unk_32;
     UnkStruct_ov13_02228A50 *unk_34;
-    UnkStruct_ov16_0226DEEC *unk_38;
+    CatchingTutorialFinger *unk_38;
     BagItem unk_3C[5][36];
     SpriteGfxHandler *unk_30C;
     CellActorData *unk_310[6];

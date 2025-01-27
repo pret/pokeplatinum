@@ -12,12 +12,12 @@
 #include "struct_defs/battle_io.h"
 
 #include "battle/battle_display.h"
+#include "battle/battle_input.h"
 #include "battle/battle_io.h"
 #include "battle/battle_message.h"
 #include "battle/healthbar.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02264798.h"
-#include "battle/ov16_0226871C.h"
 #include "battle/party_gauge.h"
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
@@ -176,11 +176,11 @@ void ov16_0225C038(BattleSystem *param0, BattlerData *param1, int param2, int pa
     BallThrow v0;
     s16 v1, v2;
 
-    if (BattleSystem_BattleType(param0) & (0x20 | 0x200)) {
+    if (BattleSystem_GetBattleType(param0) & (0x20 | 0x200)) {
         return;
     }
 
-    if ((param1->battlerType & 0x1) && ((BattleSystem_BattleType(param0) & 0x1) == 0)) {
+    if ((param1->battlerType & 0x1) && ((BattleSystem_GetBattleType(param0) & 0x1) == 0)) {
         return;
     }
 
@@ -189,8 +189,8 @@ void ov16_0225C038(BattleSystem *param0, BattlerData *param1, int param2, int pa
     v0.mode = 4;
     v0.target = param1->battler;
     v0.ballID = param2;
-    v0.cellActorSys = ov16_0223E010(param0);
-    v0.paletteSys = BattleSystem_PaletteSys(param0);
+    v0.cellActorSys = BattleSystem_GetSpriteRenderer(param0);
+    v0.paletteSys = BattleSystem_GetPaletteData(param0);
     v0.surface = 0;
     v0.bgPrio = 1;
 
@@ -658,10 +658,10 @@ static void ov16_0225C47C(BattleSystem *param0, BattlerData *param1)
 static void ov16_0225C558(BattleSystem *param0, BattlerData *param1)
 {
     u32 v0;
-    UnkStruct_ov16_02268A14 *v1;
+    BattleInput *v1;
 
-    v0 = BattleSystem_BattleType(param0);
-    v1 = ov16_0223E02C(param0);
+    v0 = BattleSystem_GetBattleType(param0);
+    v1 = BattleSystem_GetBattleInput(param0);
 
     if (param1->bootState == 0x0) {
         if ((v0 & 0x8) || (((v0 & 0x8) == 0) && (param1->battlerType != 4))) {
@@ -771,7 +771,7 @@ static void ov16_0225C79C(BattleSystem *param0, BattlerData *param1)
 {
     if (param1->bootState == 0x0) {
         {
-            UnkStruct_ov16_02268A14 *v0;
+            BattleInput *v0;
             int v1;
             Healthbar *v2;
             NARC *v3;
@@ -779,7 +779,7 @@ static void ov16_0225C79C(BattleSystem *param0, BattlerData *param1)
 
             v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
             v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
-            v0 = ov16_0223E02C(param0);
+            v0 = BattleSystem_GetBattleInput(param0);
 
             ov16_02268C04(v3, v4, v0, 0, 0, NULL);
             ov16_0226BCCC(v0, 0);
@@ -852,9 +852,9 @@ static void ov16_0225C8E0(BattleSystem *param0, BattlerData *param1)
     SpriteGfxHandler *v1;
     PaletteData *v2;
 
-    v0 = ov16_0223E010(param0);
-    v1 = ov16_0223E018(param0);
-    v2 = BattleSystem_PaletteSys(param0);
+    v0 = BattleSystem_GetSpriteRenderer(param0);
+    v1 = BattleSystem_GetSpriteGfxHandler(param0);
+    v2 = BattleSystem_GetPaletteData(param0);
 
     PartyGauge_LoadGraphics(v0, v1, v2);
     ClearCommand(param0, param1->battler, 52);
@@ -865,7 +865,7 @@ static void ov16_0225C91C(BattleSystem *param0, BattlerData *param1)
 {
     SpriteGfxHandler *v0;
 
-    v0 = ov16_0223E018(param0);
+    v0 = BattleSystem_GetSpriteGfxHandler(param0);
 
     PartyGauge_FreeGraphics(v0);
     ClearCommand(param0, param1->battler, 53);
@@ -980,7 +980,7 @@ static void ov16_0225CA74(BattleSystem *param0, BattlerData *param1)
 
     ov16_0223F638(param0, v0->unk_02, v0->unk_08);
 
-    if (BattleSystem_BattleType(param0) & 0x80) {
+    if (BattleSystem_GetBattleType(param0) & 0x80) {
         BattleSystem_SetResultFlag(param0, v0->unk_04);
     } else {
         for (v4 = 0; v4 < BattleSystem_MaxBattlers(param0); v4++) {

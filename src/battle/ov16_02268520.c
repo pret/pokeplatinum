@@ -182,8 +182,8 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     NARC *v10;
 
     v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
-    v0 = ov16_0223E010(param0->unk_04);
-    v1 = ov16_0223E018(param0->unk_04);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_04);
+    v1 = BattleSystem_GetSpriteGfxHandler(param0->unk_04);
     v9 = ov16_0223EC04(param0->unk_04);
     v2 = &Unk_ov16_022700CC[param0->unk_08];
 
@@ -204,8 +204,8 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     }
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    SpriteRenderer_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
-    PaletteData_LoadBufferFromFileStart(BattleSystem_PaletteSys(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
+    SpriteRenderer_LoadPalette(BattleSystem_GetPaletteData(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    PaletteData_LoadBufferFromFileStart(BattleSystem_GetPaletteData(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, 1, v6);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, 1, v8);
     NARC_dtor(v10);
@@ -217,8 +217,8 @@ void ov16_0226862C(UnkStruct_ov16_02268520 *param0)
     SpriteGfxHandler *v1;
     const SpriteTemplate *v2;
 
-    v0 = ov16_0223E010(param0->unk_04);
-    v1 = ov16_0223E018(param0->unk_04);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_04);
+    v1 = BattleSystem_GetSpriteGfxHandler(param0->unk_04);
     v2 = &Unk_ov16_022700CC[param0->unk_08];
 
     param0->unk_00 = SpriteActor_LoadResources(v0, v1, v2);
@@ -240,7 +240,7 @@ void ov16_02268674(UnkStruct_ov16_02268520 *param0)
     SpriteGfxHandler *v0;
     int v1, v2, v3;
 
-    v0 = ov16_0223E018(param0->unk_04);
+    v0 = BattleSystem_GetSpriteGfxHandler(param0->unk_04);
 
     if (param0->unk_08 == 0) {
         v1 = 20013;

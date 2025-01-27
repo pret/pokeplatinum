@@ -3396,7 +3396,7 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
     u32 effectiveness;
     Pokemon *mon;
 
-    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
         return FALSE;
     }
 
@@ -3476,7 +3476,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
     Pokemon *mon;
 
     // "Player" consts here refer to the AI's perspective.
-    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
         defender1 = BATTLER_PLAYER_1;
         defender2 = BATTLER_PLAYER_2;
     } else {
@@ -3520,7 +3520,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
     }
 
     aiSlot1 = battler;
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2)) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)) {
         aiSlot2 = aiSlot1;
     } else {
         aiSlot2 = BattleSystem_Partner(battleSys, battler);
@@ -3699,7 +3699,7 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
     }
 
     // Check the defender's partner the same way as above.
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) == FALSE) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) == FALSE) {
         return FALSE;
     }
     defender = BattleSystem_Partner(battleSys, defender);
@@ -3784,7 +3784,7 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
     }
 
     aiSlot1 = battler;
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2)) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)) {
         aiSlot2 = aiSlot1;
     } else {
         aiSlot2 = BattleSystem_Partner(battleSys, battler);
@@ -3849,7 +3849,7 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
     }
 
     aiSlot1 = battler;
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2)) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)) {
         aiSlot2 = aiSlot1;
     } else {
         aiSlot2 = BattleSystem_Partner(battleSys, battler);
@@ -4019,7 +4019,7 @@ static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battl
 
     alivePartyMons = 0;
     aiSlot1 = battler;
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2)) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)) {
         aiSlot2 = aiSlot1;
     } else {
         aiSlot2 = BattleSystem_Partner(battleSys, battler);
@@ -4102,7 +4102,7 @@ int TrainerAI_PickCommand(BattleSystem *battleSys, int battler)
     BattleContext *battleCtx;
 
     battleCtx = battleSys->battleCtx;
-    battleType = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_GetBattleType(battleSys);
 
     if ((battleType & BATTLE_TYPE_TRAINER) || Battler_Side(battleSys, battler) == BATTLE_SIDE_PLAYER) {
         if (TrainerAI_ShouldSwitch(battleSys, battleCtx, battler)) {

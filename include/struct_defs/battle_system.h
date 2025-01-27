@@ -74,7 +74,7 @@ struct BattleSystem {
     u8 unk_A8[4];
     Trainer trainers[MAX_BATTLERS];
     UnkStruct_ov16_02268520 unk_17C[2];
-    UnkStruct_ov16_02268A14 *unk_198;
+    BattleInput *battleInput;
     PartyGauge *unk_19C[2];
     UnkStruct_0200C440 *unk_1A4;
     UnkStruct_0200C440 *unk_1A8;

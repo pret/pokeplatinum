@@ -79,7 +79,7 @@ void ov13_02227BDC(UnkStruct_ov13_02227244 *param0)
 static void ov13_02227C08(UnkStruct_ov13_02227244 *param0)
 {
     UnkStruct_ov104_02241308 v0 = { 8, 8, 3, 3, 0, 0 };
-    SpriteRenderer *v1 = ov16_0223E010(param0->unk_00->unk_00);
+    SpriteRenderer *v1 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_00);
 
     param0->unk_30C = sub_0200C704(v1);
 
@@ -94,7 +94,7 @@ static void ov13_02227C54(UnkStruct_ov13_02227244 *param0)
     NARC *v2;
 
     v2 = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, param0->unk_00->unk_0C);
-    v0 = ov16_0223E010(param0->unk_00->unk_00);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_00);
 
     for (v1 = 0; v1 < 6; v1++) {
         SpriteRenderer_LoadCharResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_FileID(1, 1), 0, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
@@ -108,7 +108,7 @@ static void ov13_02227C54(UnkStruct_ov13_02227244 *param0)
 
 static void ov13_02227D10(UnkStruct_ov13_02227244 *param0, u16 param1, u32 param2)
 {
-    SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_00);
+    SpriteRenderer *v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_00);
     sub_0200D948(v0, param0->unk_30C, 16, Item_FileID(param1, 1), 0, param2);
 }
 
@@ -122,7 +122,7 @@ static CellActorData *ov13_02227D78(UnkStruct_ov13_02227244 *param0, u32 param1)
     SpriteTemplate v0;
     SpriteRenderer *v1;
 
-    v1 = ov16_0223E010(param0->unk_00->unk_00);
+    v1 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_00);
 
     v0.x = 0;
     v0.y = 0;
@@ -155,7 +155,7 @@ void ov13_02227E08(UnkStruct_ov13_02227244 *param0)
     SpriteRenderer *v0;
     u32 v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_00);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_00);
 
     for (v1 = 0; v1 < 6; v1++) {
         sub_0200D0F4(param0->unk_310[v1]);
@@ -236,19 +236,19 @@ static void ov13_02227F38(UnkStruct_ov13_02227244 *param0)
 static void ov13_02227F7C(UnkStruct_ov13_02227244 *param0)
 {
     SpriteRenderer *v0;
-    UnkStruct_ov16_0226DC24 *v1;
+    BattleCursor *v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_00);
-    ov16_0226DB7C(v0, param0->unk_30C, param0->unk_08, param0->unk_00->unk_0C, 46270, 46270, 46265, 46265);
-    v1 = ov16_0226DC24(v0, param0->unk_30C, param0->unk_00->unk_0C, 46270, 46270, 46265, 46265, 0, 1);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_00);
+    BattleCursor_LoadResources(v0, param0->unk_30C, param0->unk_08, param0->unk_00->unk_0C, 46270, 46270, 46265, 46265);
+    v1 = BattleCursor_New(v0, param0->unk_30C, param0->unk_00->unk_0C, 46270, 46270, 46265, 46265, 0, 1);
 
     ov13_02228A64(param0->unk_34, v1);
 }
 
 static void ov13_02227FDC(UnkStruct_ov13_02227244 *param0)
 {
-    ov16_0226DCA8(ov13_02228A58(param0->unk_34));
-    ov16_0226DBFC(param0->unk_30C, 46270, 46270, 46265, 46265);
+    BattleCursor_Free(ov13_02228A58(param0->unk_34));
+    BattleCursor_FreeResources(param0->unk_30C, 46270, 46270, 46265, 46265);
 }
 
 static const ByteFlagSet Unk_ov13_02229C14[] = {
@@ -309,18 +309,18 @@ void ov13_02228050(UnkStruct_ov13_02227244 *param0)
 static void ov13_02228070(UnkStruct_ov13_02227244 *param0)
 {
     SpriteRenderer *v0;
-    UnkStruct_ov16_0226DEEC *v1;
+    CatchingTutorialFinger *v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_00);
+    v0 = BattleSystem_GetSpriteRenderer(param0->unk_00->unk_00);
 
-    ov16_0226DE44(v0, param0->unk_30C, param0->unk_00->unk_0C, param0->unk_08, 46269, 46269, 46264, 46264);
-    param0->unk_38 = ov16_0226DEEC(v0, param0->unk_30C, param0->unk_00->unk_0C, 46269, 46269, 46264, 46264, 0, 0);
+    CatchingTutorialFinger_LoadResources(v0, param0->unk_30C, param0->unk_00->unk_0C, param0->unk_08, 46269, 46269, 46264, 46264);
+    param0->unk_38 = CatchingTutorialFinger_Create(v0, param0->unk_30C, param0->unk_00->unk_0C, 46269, 46269, 46264, 46264, 0, 0);
 }
 
 static void ov13_022280C8(UnkStruct_ov13_02227244 *param0)
 {
-    ov16_0226DF68(param0->unk_38);
-    ov16_0226DEC4(param0->unk_30C, 46269, 46269, 46264, 46264);
+    CatchingTutorialFinger_Free(param0->unk_38);
+    CatchingTutorialFinger_FreeResources(param0->unk_30C, 46269, 46269, 46264, 46264);
 }
 
 static const int Unk_ov13_02229BFC[3][2] = {
