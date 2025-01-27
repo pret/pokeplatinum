@@ -32,8 +32,8 @@
 #include "unk_020711EC.h"
 
 typedef struct {
-    int unk_00;
-    int unk_04;
+    int x;
+    int z;
     int shakeType;
     BOOL active;
     BOOL continueChain;
@@ -56,7 +56,7 @@ typedef struct RadarChain {
 } RadarChain;
 
 static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const int param2, const int param3, const u8 param4, const u8 param5, GrassPatch *patch);
-static BOOL sub_020698AC(const RadarChain *chain, const int param1, const int param2, u8 *param3);
+static BOOL PlayerStandingInPatch(const RadarChain *chain, const int x, const int z, u8 *patchMatch);
 static void sub_020698E4(FieldSystem *fieldSystem, RadarChain *chain);
 static u8 sub_0206994C(FieldSystem *fieldSystem);
 static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult);
@@ -171,8 +171,8 @@ void sub_02069638(FieldSystem *fieldSystem, RadarChain *chain)
 {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
-            int v1 = chain->patch[patchRing].unk_00;
-            int v2 = chain->patch[patchRing].unk_04;
+            int v1 = chain->patch[patchRing].x;
+            int v2 = chain->patch[patchRing].z;
             if (chain->patch[patchRing].shiny) {
                 chain->patch[patchRing].unk_18 = ov5_021F3154(fieldSystem, v1, v2, 2);
             } else {
@@ -211,13 +211,13 @@ BOOL sub_02069690(RadarChain *chain)
     return FALSE;
 }
 
-BOOL sub_020696DC(const int param0, const int param1, FieldSystem *fieldSystem, RadarChain *chain, int *param4, BOOL *param5, BOOL *param6)
+BOOL PokeRadar_ShouldDoRadarEncounter(const int playerX, const int playerZ, FieldSystem *fieldSystem, RadarChain *chain, int *shake, BOOL *param5, BOOL *isShiny)
 {
     u8 patchRing;
     *param5 = 0;
-    *param6 = 0;
+    *isShiny = 0;
 
-    if (!sub_020698AC(chain, param0, param1, &patchRing)) {
+    if (!PlayerStandingInPatch(chain, playerX, playerZ, &patchRing)) {
         return FALSE;
     }
 
@@ -228,21 +228,21 @@ BOOL sub_020696DC(const int param0, const int param1, FieldSystem *fieldSystem, 
     if (chain->unk_14 == 0) {
         if (continueChain) {
             IncWithCap(&(chain->count));
-            *param4 = shakeType;
+            *shake = shakeType;
             *param5 = 1;
             sub_020698E4(fieldSystem, chain);
-            *param6 = chain->patch[patchRing].shiny;
+            *isShiny = chain->patch[patchRing].shiny;
             return TRUE;
         } else {
-            *param4 = shakeType;
+            *shake = shakeType;
         }
     } else {
-        *param4 = shakeType;
+        *shake = shakeType;
         chain->unk_14 = 0;
         chain->unk_D0 = sub_0206994C(fieldSystem);
     }
 
-    chain->shakeType = *param4;
+    chain->shakeType = *shake;
     return TRUE;
 }
 
@@ -305,8 +305,8 @@ static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const 
 {
     int v0 = (param2 - (9 / 2)) + param4;
     int v1 = (param3 - (9 / 2)) + param5;
-    patch->unk_00 = v0;
-    patch->unk_04 = v1;
+    patch->x = v0;
+    patch->z = v1;
     u8 v2 = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
 
     if (TileBehavior_IsTallGrass(v2)) {
@@ -335,12 +335,13 @@ static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const 
     }
 }
 
-static BOOL sub_020698AC(const RadarChain *chain, const int param1, const int param2, u8 *param3)
+// Checks if the player is standing in any of the shaking patches.
+static BOOL PlayerStandingInPatch(const RadarChain *chain, const int x, const int z, u8 *patchMatch)
 {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
-            if ((chain->patch[patchRing].unk_00 == param1) && (chain->patch[patchRing].unk_04 == param2)) {
-                *param3 = patchRing;
+            if ((chain->patch[patchRing].x == x) && (chain->patch[patchRing].z == z)) {
+                *patchMatch = patchRing;
                 return TRUE;
             }
         }

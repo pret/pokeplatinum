@@ -69,7 +69,7 @@ _00D8:
 _00FB:
     ScrCmd_1EC
     ScrCmd_1ED 0x8000
-    ScrCmd_0DA 0, 0x8000, 0, 0
+    BufferSpeciesNameFromVar 0, 0x8000, 0, 0
     Message 6
     GetPlayerMapPos 0x8001, 0x8002
     ApplyMovement 2, _01D4
@@ -90,7 +90,7 @@ _00FB:
 
 _0155:
     ScrCmd_1ED 0x8000
-    ScrCmd_0DA 0, 0x8000, 0, 0
+    BufferSpeciesNameFromVar 0, 0x8000, 0, 0
     Message 10
     WaitABXPadPress
     CloseMessage
@@ -235,7 +235,7 @@ _02FF:
 
 _0304:
     ScrCmd_1ED 0x8000
-    ScrCmd_0DA 0, 0x8000, 0, 0
+    BufferSpeciesNameFromVar 0, 0x8000, 0, 0
     Message 14
     WaitABXPadPress
     CloseMessage

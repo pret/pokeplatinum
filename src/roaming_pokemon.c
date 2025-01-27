@@ -189,7 +189,7 @@ void sub_0206C354(SpecialEncounter *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0202D8F8(param0, v0)) {
+        if (SpecialEncounter_IsRoamerActive(param0, v0)) {
             sub_0206C33C(param0, v0);
         }
     }
@@ -200,7 +200,7 @@ void sub_0206C37C(SpecialEncounter *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0202D8F8(param0, v0)) {
+        if (SpecialEncounter_IsRoamerActive(param0, v0)) {
             if (LCRNG_RandMod(16) == 0) {
                 sub_0206C33C(param0, v0);
             } else {
@@ -215,10 +215,10 @@ void sub_0206C37C(SpecialEncounter *param0)
     }
 }
 
-int sub_0206C3C8(const u8 param0)
+int RoamingPokemon_GetRouteFromId(const u8 routeId)
 {
-    GF_ASSERT(param0 < 29);
-    return RoamingPokemonRoutes[param0];
+    GF_ASSERT(routeId < 29);
+    return RoamingPokemonRoutes[routeId];
 }
 
 BOOL sub_0206C3E0(SpecialEncounter *param0)
@@ -226,7 +226,7 @@ BOOL sub_0206C3E0(SpecialEncounter *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0202D8F8(param0, v0)) {
+        if (SpecialEncounter_IsRoamerActive(param0, v0)) {
             return 1;
         }
     }
@@ -252,7 +252,7 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
     u8 level;
 
     v2 = SaveData_GetSpecialEncounters(saveData);
-    v1 = sub_0202D924(v2, slot);
+    v1 = SpecialEncounter_GetRoamer(v2, slot);
 
     switch (slot) {
     case ROAMING_SLOT_MESPRIT:
@@ -284,19 +284,19 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
         return;
     }
 
-    sub_0202D980(v1, 4, species);
-    sub_0202D980(v1, 6, level);
+    Roamer_SetData(v1, ROAMER_DATA_SPECIES, species);
+    Roamer_SetData(v1, ROAMER_DATA_LEVEL, level);
 
     v4 = SaveData_GetTrainerInfo(saveData);
     v0 = Pokemon_New(4);
 
     Pokemon_Init(v0);
     Pokemon_InitWith(v0, species, level, 32, FALSE, 0, OTID_SET, TrainerInfo_ID_LowHalf(v4));
-    sub_0202D980(v1, 7, 0);
-    sub_0202D980(v1, 8, 1);
-    sub_0202D980(v1, 2, Pokemon_GetValue(v0, MON_DATA_COMBINED_IVS, NULL));
-    sub_0202D980(v1, 3, Pokemon_GetValue(v0, MON_DATA_PERSONALITY, NULL));
-    sub_0202D980(v1, 5, Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL));
+    Roamer_SetData(v1, ROAMER_DATA_STATUS, 0);
+    Roamer_SetData(v1, ROAMER_DATA_ACTIVE, 1);
+    Roamer_SetData(v1, ROAMER_DATA_IVS, Pokemon_GetValue(v0, MON_DATA_COMBINED_IVS, NULL));
+    Roamer_SetData(v1, ROAMER_DATA_PERSONALITY, Pokemon_GetValue(v0, MON_DATA_PERSONALITY, NULL));
+    Roamer_SetData(v1, ROAMER_DATA_CURRENT_HP, Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL));
     Heap_FreeToHeap(v0);
 
     previouslyVisitedMap = sub_0202D8BC(v2);
@@ -309,7 +309,7 @@ static void sub_0206C538(SpecialEncounter *param0, const u8 param1, const int pa
     int v1;
     int v2;
 
-    v1 = RoamingPokemonRoutes[sub_0202D8C4(param0, param1)];
+    v1 = RoamingPokemonRoutes[SpecialEncounter_GetRoamerRouteId(param0, param1)];
 
     while (TRUE) {
         v0 = LCRNG_RandMod(29);
@@ -328,7 +328,7 @@ static void sub_0206C588(SpecialEncounter *param0, const u8 param1, const int pa
     u8 v1;
     int v2;
 
-    v0 = &(Unk_020EFBB8[sub_0202D8C4(param0, param1)]);
+    v0 = &(Unk_020EFBB8[SpecialEncounter_GetRoamerRouteId(param0, param1)]);
 
     if (v0->unk_00 == 1) {
         v1 = v0->unk_02[0];
@@ -359,8 +359,8 @@ static void sub_0206C638(SpecialEncounter *param0, const u8 param1, const u8 par
 {
     Roamer *v0;
 
-    v0 = sub_0202D924(param0, param1);
+    v0 = SpecialEncounter_GetRoamer(param0, param1);
 
     sub_0202D8DC(param0, param1, param2);
-    sub_0202D980(v0, 1, param3);
+    Roamer_SetData(v0, 1, param3);
 }

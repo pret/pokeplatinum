@@ -141,7 +141,7 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
 void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature);
 void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2);
-void sub_02074158(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality);
+void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality);
 
 /**
  * @brief Calculates and stores the current level and stats for a given Pokemon based on its IVs, EVs etc.

@@ -22,7 +22,7 @@ BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int par
 void SetupGrassPatches(FieldSystem *fieldSystem, const int param1, RadarChain *chain);
 void sub_02069638(FieldSystem *fieldSystem, RadarChain *chain);
 BOOL sub_02069690(RadarChain *chain);
-int sub_020696DC(const int param0, const int param1, FieldSystem *fieldSystem, RadarChain *chain, int *param4, BOOL *param5, BOOL *param6);
+int PokeRadar_ShouldDoRadarEncounter(const int param0, const int param1, FieldSystem *fieldSystem, RadarChain *chain, int *param4, BOOL *param5, BOOL *param6);
 void SetRadarMon(RadarChain *chain, const int species, const int level);
 void GetRadarMon(RadarChain *chain, int *species, int *level);
 const BOOL sub_02069798(const RadarChain *chain);

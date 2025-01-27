@@ -8,7 +8,7 @@
 #include "field_task.h"
 
 void WildEncounters_ReplaceTimedEncounters(const WildEncounters *encounterData, int *param1, int *param2);
-BOOL ov6_02240D5C(FieldSystem *fieldSystem);
+BOOL WildEncounter_TryWildEncounter(FieldSystem *fieldSystem);
 BOOL ov6_0224106C(FieldSystem *fieldSystem, const int param1, FieldBattleDTO **param2);
 BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1);
 BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **param1);

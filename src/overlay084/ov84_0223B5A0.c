@@ -607,17 +607,17 @@ static SpecialEncounter *ov84_0223B9E4(UnkStruct_ov84_0223B5A0 *param0)
     return SaveData_GetSpecialEncounters(param0->unk_C4->unk_00);
 }
 
-static void ov84_0223B9F4(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
+static void SetRepelSteps(UnkStruct_ov84_0223B5A0 *param0, u8 stepCount)
 {
-    u8 *v0;
+    u8 *repelSteps;
 
-    v0 = sub_0202D9CC(ov84_0223B9E4(param0));
-    *v0 = param1;
+    repelSteps = SpecialEncounter_GetRepelSteps(ov84_0223B9E4(param0));
+    *repelSteps = stepCount;
 }
 
-static void ov84_0223BA04(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
+static void SetBlackWhiteFluteActive(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 {
-    sub_0202D9EC(ov84_0223B9E4(param0), param1);
+    SpecialEncounter_SetFluteFactor(ov84_0223B9E4(param0), param1);
 }
 
 static void ov84_0223BA14(void *param0)
@@ -2267,15 +2267,15 @@ static BOOL ov84_0223DBF4(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
     StringTemplate_SetPlayerName(param0->unk_118, 0, param0->unk_CC);
     StringTemplate_SetItemName(param0->unk_118, 1, param1);
 
-    if (param1 == 68) {
+    if (param1 == ITEM_BLACK_FLUTE) {
         v0 = MessageLoader_GetNewStrbuf(param0->unk_114, 64);
-        ov84_0223BA04(param0, 1);
+        SetBlackWhiteFluteActive(param0, FLUTE_FACTOR_USED_BLACK);
         param0->unk_488 = 0;
-    } else if (param1 == 69) {
+    } else if (param1 == ITEM_WHITE_FLUTE) {
         v0 = MessageLoader_GetNewStrbuf(param0->unk_114, 63);
-        ov84_0223BA04(param0, 2);
+        SetBlackWhiteFluteActive(param0, FLUTE_FACTOR_USED_WHITE);
         param0->unk_488 = 0;
-    } else if ((param1 == 77) || (param1 == 76) || (param1 == 79)) {
+    } else if ((param1 == ITEM_MAX_REPEL) || (param1 == ITEM_SUPER_REPEL) || (param1 == ITEM_REPEL)) {
         v0 = ov84_0223DC9C(param0, param1);
     } else {
         return 0;
@@ -2288,16 +2288,17 @@ static BOOL ov84_0223DBF4(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 
 static Strbuf *ov84_0223DC9C(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 {
-    s32 v0;
+    s32 stepCount;
     u8 *v1;
 
-    if (sub_0202D9D8(ov84_0223B9E4(param0)) == 0) {
+    // Repel is still active, show "effects still lingered" message
+    if (SpecialEncounter_RepelStepsEmpty(ov84_0223B9E4(param0)) == 0) {
         param0->unk_488 = 0;
         return MessageLoader_GetNewStrbuf(param0->unk_114, 62);
     }
 
-    v0 = Item_LoadParam(param1, 2, 6);
-    ov84_0223B9F4(param0, (u8)v0);
+    stepCount = Item_LoadParam(param1, 2, 6);
+    SetRepelSteps(param0, (u8)stepCount);
     param0->unk_488 = 1;
     Sound_PlayEffect(1536);
 

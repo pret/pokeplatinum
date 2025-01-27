@@ -49,8 +49,8 @@ void ov6_02246034(FieldSystem *fieldSystem, FieldBattleDTO *param1)
             sub_0202D914(&v4);
             sub_0206B688(SaveData_GetVarsFlags(fieldSystem->saveData), v2, 1);
         } else {
-            sub_0202D980(v4, 5, v0);
-            sub_0202D980(v4, 7, v1);
+            Roamer_SetData(v4, ROAMER_DATA_CURRENT_HP, v0);
+            Roamer_SetData(v4, ROAMER_DATA_STATUS, v1);
         }
 
         ov6_02246110(v3, fieldSystem->location->mapId);
@@ -67,8 +67,8 @@ static void ov6_02246110(SpecialEncounter *param0, const int param1)
     u8 v1;
 
     for (v1 = 0; v1 < 6; v1++) {
-        if (sub_0202D8F8(param0, v1)) {
-            v0 = sub_0206C3C8(sub_0202D8C4(param0, v1));
+        if (SpecialEncounter_IsRoamerActive(param0, v1)) {
+            v0 = RoamingPokemon_GetRouteFromId(SpecialEncounter_GetRoamerRouteId(param0, v1));
 
             if (param1 == v0) {
                 sub_0206C33C(param0, v1);
@@ -83,10 +83,10 @@ static Roamer *ov6_02246148(SpecialEncounter *param0, const int param1)
     Roamer *v1;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0202D8F8(param0, v0)) {
-            v1 = sub_0202D924(param0, v0);
+        if (SpecialEncounter_IsRoamerActive(param0, v0)) {
+            v1 = SpecialEncounter_GetRoamer(param0, v0);
 
-            if (param1 == sub_0202D93C(v1, 4)) {
+            if (param1 == Roamer_GetData(v1, ROAMER_DATA_SPECIES)) {
                 return v1;
             }
         }

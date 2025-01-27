@@ -10,6 +10,7 @@
 #include "struct_defs/struct_0206C638.h"
 
 #include "math.h"
+#include "roaming_pokemon.h"
 #include "savedata.h"
 
 int SpecialEncounter_SaveSize(void)
@@ -23,9 +24,9 @@ void SpecialEncounter_Init(SpecialEncounter *param0)
 
     param0->marshDaily = MTRNG_Next();
     param0->swarmDaily = MTRNG_Next();
-    param0->unk_08.unk_00 = 0;
-    param0->unk_08.unk_04 = 0xffff;
-    param0->unk_08.unk_06 = 0xffff;
+    param0->trophyGarden.unk_00 = 0;
+    param0->trophyGarden.slot1 = TROPHY_GARDEN_SLOT_NONE;
+    param0->trophyGarden.slot2 = TROPHY_GARDEN_SLOT_NONE;
 
     {
         int v0;
@@ -42,10 +43,10 @@ void SpecialEncounter_Init(SpecialEncounter *param0)
         }
     }
 
-    param0->unk_14E = 0;
-    param0->unk_14F = 0;
+    param0->swarmEnabled = 0;
+    param0->repelSteps = 0;
     param0->unk_150 = 0;
-    param0->unk_151 = 0;
+    param0->fluteFactor = FLUTE_FACTOR_NONE;
 }
 
 void SpecialEncounter_SetMixedRecordDailies(SpecialEncounter *speEnc, const u32 mixedRecord)
@@ -123,17 +124,17 @@ void sub_0202D854(SaveData *param0, const int param1)
     }
 }
 
-void sub_0202D884(SaveData *param0)
+void SpecialEncounter_EnableSwarms(SaveData *saveData)
 {
-    SpecialEncounter *v0;
+    SpecialEncounter *speEnc;
 
-    v0 = SaveData_GetSpecialEncounters(param0);
-    v0->unk_14E = 1;
+    speEnc = SaveData_GetSpecialEncounters(saveData);
+    speEnc->swarmEnabled = 1;
 }
 
-u8 sub_0202D898(SpecialEncounter *param0)
+u8 SpecialEncounter_IsSwarmEnabled(SpecialEncounter *speEnc)
 {
-    return param0->unk_14E;
+    return speEnc->swarmEnabled;
 }
 
 void sub_0202D8A4(SpecialEncounter *param0, const int param1)
@@ -149,22 +150,22 @@ int sub_0202D8BC(SpecialEncounter *param0)
     return param0->unk_C8.unk_04;
 }
 
-u8 sub_0202D8C4(SpecialEncounter *param0, const u8 param1)
+u8 SpecialEncounter_GetRoamerRouteId(SpecialEncounter *speEnc, const u8 roamerId)
 {
-    GF_ASSERT(param1 < 6);
-    return param0->unk_148[param1];
+    GF_ASSERT(roamerId < 6);
+    return speEnc->roamerRouteIds[roamerId];
 }
 
 void sub_0202D8DC(SpecialEncounter *param0, const u8 param1, const u8 param2)
 {
     GF_ASSERT(param1 < 6);
-    param0->unk_148[param1] = param2;
+    param0->roamerRouteIds[param1] = param2;
 }
 
-u8 sub_0202D8F8(SpecialEncounter *param0, const u8 param1)
+u8 SpecialEncounter_IsRoamerActive(SpecialEncounter *speEnc, const u8 slot)
 {
-    GF_ASSERT(param1 < 6);
-    return param0->unk_D0[param1].unk_12;
+    GF_ASSERT(slot < ROAMING_SLOT_MAX);
+    return speEnc->roamers[slot].active;
 }
 
 void sub_0202D914(Roamer **param0)
@@ -172,74 +173,74 @@ void sub_0202D914(Roamer **param0)
     memset((*param0), 0, sizeof(Roamer));
 }
 
-Roamer *sub_0202D924(SpecialEncounter *param0, const u8 param1)
+Roamer *SpecialEncounter_GetRoamer(SpecialEncounter *speEnc, const u8 slot)
 {
-    GF_ASSERT(param1 < 6);
-    return &(param0->unk_D0[param1]);
+    GF_ASSERT(slot < ROAMING_SLOT_MAX);
+    return &(speEnc->roamers[slot]);
 }
 
-u32 sub_0202D93C(const Roamer *param0, const u8 param1)
+u32 Roamer_GetData(const Roamer *roamer, const u8 dataType)
 {
-    u32 v0;
+    u32 data;
 
-    switch (param1) {
+    switch (dataType) {
     case 1:
-        v0 = param0->unk_00;
+        data = roamer->unk_00;
         break;
-    case 2:
-        v0 = param0->unk_04;
+    case ROAMER_DATA_IVS:
+        data = roamer->ivs;
         break;
-    case 3:
-        v0 = param0->unk_08;
+    case ROAMER_DATA_PERSONALITY:
+        data = roamer->personality;
         break;
-    case 4:
-        v0 = param0->unk_0C;
+    case ROAMER_DATA_SPECIES:
+        data = roamer->species;
         break;
-    case 5:
-        v0 = param0->unk_0E;
+    case ROAMER_DATA_CURRENT_HP:
+        data = roamer->currentHP;
         break;
-    case 6:
-        v0 = param0->unk_10;
+    case ROAMER_DATA_LEVEL:
+        data = roamer->level;
         break;
-    case 7:
-        v0 = param0->unk_11;
+    case ROAMER_DATA_STATUS:
+        data = roamer->status;
         break;
-    case 8:
-        v0 = param0->unk_12;
+    case ROAMER_DATA_ACTIVE:
+        data = roamer->active;
         break;
     }
 
-    return v0;
+    return data;
 }
 
-void sub_0202D980(Roamer *param0, const u8 param1, const u32 param2)
+void Roamer_SetData(Roamer *roamer, const u8 dataType, const u32 data)
 {
     u32 v0;
 
-    switch (param1) {
+    switch (dataType) {
     case 1:
-        param0->unk_00 = param2;
+        roamer->unk_00 = data;
         break;
-    case 2:
-        param0->unk_04 = param2;
+    case ROAMER_DATA_IVS:
+        roamer->ivs = data;
         break;
-    case 3:
-        param0->unk_08 = param2;
+    case ROAMER_DATA_PERSONALITY:
+        roamer->personality = data;
         break;
-    case 4:
-        param0->unk_0C = param2;
+    case ROAMER_DATA_SPECIES:
+        roamer->species = data;
         break;
-    case 5:
-        param0->unk_0E = param2;
+    case ROAMER_DATA_CURRENT_HP:
+        roamer->currentHP = data;
         break;
-    case 6:
-        param0->unk_10 = param2;
+    case ROAMER_DATA_LEVEL:
+        roamer->level = data;
         break;
-    case 7:
-        param0->unk_11 = param2;
+    case ROAMER_DATA_STATUS:
+        roamer->status = data;
         break;
-    case 8:
-        param0->unk_12 = param2;
+    case ROAMER_DATA_ACTIVE:
+        roamer->active = data;
         break;
     }
 }
@@ -249,45 +250,46 @@ u8 *sub_0202D9C4(SpecialEncounter *param0)
     return &(param0->unk_150);
 }
 
-u8 *sub_0202D9CC(SpecialEncounter *param0)
+u8 *SpecialEncounter_GetRepelSteps(SpecialEncounter *param0)
 {
-    return &(param0->unk_14F);
+    return &(param0->repelSteps);
 }
 
-BOOL sub_0202D9D8(SpecialEncounter *param0)
+BOOL SpecialEncounter_RepelStepsEmpty(SpecialEncounter *param0)
 {
-    if (!param0->unk_14F) {
+    if (!param0->repelSteps) {
         return 1;
     } else {
         return 0;
     }
 }
 
-void sub_0202D9EC(SpecialEncounter *param0, const u8 param1)
+void SpecialEncounter_SetFluteFactor(SpecialEncounter *speEnc, const u8 flute)
 {
-    GF_ASSERT((param1 == 1) || (param1 == 2) || (param1 == 0));
-    param0->unk_151 = param1;
+    GF_ASSERT((flute == FLUTE_FACTOR_USED_BLACK) || (flute == FLUTE_FACTOR_USED_WHITE) || (flute == FLUTE_FACTOR_NONE));
+    speEnc->fluteFactor = flute;
 }
 
-u8 sub_0202DA04(SpecialEncounter *param0)
+u8 SpecialEncounter_GetFluteFactor(SpecialEncounter *speEnc)
 {
-    return param0->unk_151;
+    return speEnc->fluteFactor;
 }
 
-void sub_0202DA10(SaveData *param0, u16 *param1, u16 *param2)
+void SpecialEncounter_GetTrophyGardenMons(SaveData *saveData, u16 *slot1, u16 *slot2)
 {
-    SpecialEncounter *v0 = SaveData_GetSpecialEncounters(param0);
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(saveData);
 
-    (*param1) = v0->unk_08.unk_04;
-    (*param2) = v0->unk_08.unk_06;
+    (*slot1) = speEnc->trophyGarden.slot1;
+    (*slot2) = speEnc->trophyGarden.slot2;
 }
 
-void sub_0202DA24(SaveData *param0, const u16 param1)
+// Assigns slot1 mon to slot2 and newMon to slot1 
+void TrophyGarden_ShiftSlotsForNewMon(SaveData *saveData, const u16 newMon)
 {
-    SpecialEncounter *v0 = SaveData_GetSpecialEncounters(param0);
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(saveData);
 
-    GF_ASSERT(param1 < 16);
+    GF_ASSERT(newMon < NUM_TROPHY_GARDEN_SPECIAL_MONS);
 
-    v0->unk_08.unk_06 = v0->unk_08.unk_04;
-    v0->unk_08.unk_04 = param1;
+    speEnc->trophyGarden.slot2 = speEnc->trophyGarden.slot1;
+    speEnc->trophyGarden.slot1 = newMon;
 }

@@ -40,7 +40,7 @@ void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem)
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
     sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
-    sub_0202D9EC(SaveData_GetSpecialEncounters(fieldSystem->saveData), 0);
+    SpecialEncounter_SetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData), FLUTE_FACTOR_NONE);
 
     fieldSystem->unk_78.unk_00 = 0;
 
@@ -69,7 +69,7 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
     sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
-    sub_0202D9EC(SaveData_GetSpecialEncounters(fieldSystem->saveData), 0);
+    SpecialEncounter_SetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData), FLUTE_FACTOR_NONE);
 
     fieldSystem->unk_78.unk_00 = 0;
 

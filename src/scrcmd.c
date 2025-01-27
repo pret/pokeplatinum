@@ -72,7 +72,7 @@
 #include "overlay006/ov6_02246C24.h"
 #include "overlay006/ov6_02246F00.h"
 #include "overlay006/ov6_02247078.h"
-#include "overlay006/ov6_022475B0.h"
+#include "overlay006/trophy_garden_daily_encounters.h"
 #include "overlay006/ov6_02247830.h"
 #include "overlay006/ov6_02247D30.h"
 #include "overlay006/ov6_02247F5C.h"
@@ -419,7 +419,7 @@ static BOOL ScrCmd_GetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_0DE(ScriptContext *ctx);
-static BOOL ScrCmd_0E3(ScriptContext *ctx);
+static BOOL ScrCmd_GetSwarmMapAndSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_0E6(ScriptContext *ctx);
 static BOOL ScrCmd_0F2(ScriptContext *ctx);
 static BOOL sub_02042F74(ScriptContext *ctx);
@@ -981,7 +981,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferPoketchAppName,
     ScrCmd_0D8,
     ScrCmd_0D9,
-    ScrCmd_0DA,
+    ScrCmd_BufferSpeciesNameFromVar,
     ScrCmd_0DB,
     ScrCmd_0DC,
     ScrCmd_0DD,
@@ -990,7 +990,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferUndergroundTrapName,
     ScrCmd_BufferUndergroundItemName,
     ScrCmd_0E2,
-    ScrCmd_0E3,
+    ScrCmd_GetSwarmMapAndSpecies,
     ScrCmd_0E4,
     ScrCmd_StartTrainerBattle,
     ScrCmd_0E6,
@@ -4799,13 +4799,13 @@ static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0E3(ScriptContext *ctx)
+static BOOL ScrCmd_GetSwarmMapAndSpecies(ScriptContext *ctx)
 {
-    SpecialEncounter *v0 = SaveData_GetSpecialEncounters(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(ctx->fieldSystem->saveData);
+    u16 *mapDest = ScriptContext_GetVarPointer(ctx);
+    u16 *speciesDest = ScriptContext_GetVarPointer(ctx);
 
-    ov6_0224322C(SpecialEncounter_GetDailyMon(v0, DAILY_SWARM), v1, v2);
+    Swarm_GetMapIdAndSpecies(SpecialEncounter_GetDailyMon(speEnc, DAILY_SWARM), mapDest, speciesDest);
     return 0;
 }
 
@@ -6283,7 +6283,7 @@ static BOOL ScrCmd_1EB(ScriptContext *ctx)
 
 static BOOL ScrCmd_1EC(ScriptContext *ctx)
 {
-    ov6_022475B0(ctx->fieldSystem->saveData);
+    TrophyGarden_AddNewMon(ctx->fieldSystem->saveData);
     return 0;
 }
 
@@ -6291,7 +6291,7 @@ static BOOL ScrCmd_1ED(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    (*v0) = ov6_02247624(ctx->fieldSystem->saveData);
+    (*v0) = TrophyGarden_GetSlot1Species(ctx->fieldSystem->saveData);
     return 0;
 }
 
@@ -6503,7 +6503,7 @@ static BOOL ScrCmd_21A(ScriptContext *ctx)
 
 static BOOL ScrCmd_21B(ScriptContext *ctx)
 {
-    sub_0202D884(ctx->fieldSystem->saveData);
+    SpecialEncounter_EnableSwarms(ctx->fieldSystem->saveData);
 
     return 0;
 }

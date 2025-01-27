@@ -6,45 +6,46 @@
 #include "overlay006/wild_encounters.h"
 
 #include "map_header_data.h"
+#include "consts/map.h"
 
-static const u32 Unk_ov6_02249090[22] = {
-    0x156,
-    0x157,
-    0x158,
-    0x15E,
-    0x161,
-    0x162,
-    0x164,
-    0x17C,
-    0x17E,
-    0x181,
-    0x184,
-    0x188,
-    0x18B,
-    0x18F,
-    0x190,
-    0x1D5,
-    0x193,
-    0x196,
-    0x197,
-    0x1D7,
-    0xC8,
-    0xCB
+static const u32 Swarm_MapIdTable[NUM_SWARMS] = {
+    MAP_HEADER_ROUTE_201,
+    MAP_HEADER_ROUTE_202,
+    MAP_HEADER_ROUTE_203,
+    MAP_HEADER_ROUTE_206,
+    MAP_HEADER_ROUTE_207,
+    MAP_HEADER_ROUTE_208,
+    MAP_HEADER_ROUTE_209,
+    MAP_HEADER_ROUTE_214,
+    MAP_HEADER_ROUTE_215,
+    MAP_HEADER_ROUTE_217,
+    MAP_HEADER_ROUTE_218,
+    MAP_HEADER_ROUTE_221,
+    MAP_HEADER_ROUTE_222,
+    MAP_HEADER_ROUTE_224,
+    MAP_HEADER_ROUTE_225,
+    MAP_HEADER_ROUTE_226,
+    MAP_HEADER_ROUTE_227,
+    MAP_HEADER_ROUTE_228,
+    MAP_HEADER_ROUTE_229,
+    MAP_HEADER_ROUTE_230,
+    MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE,
+    MAP_HEADER_ETERNA_FOREST
 };
 
-u32 ov6_02243218(const u32 param0)
+u32 Swarm_GetMapId(const u32 swarm)
 {
-    return Unk_ov6_02249090[param0 % 22];
+    return Swarm_MapIdTable[swarm % NUM_SWARMS];
 }
 
-void ov6_0224322C(const u32 param0, u16 *param1, u16 *param2)
+void Swarm_GetMapIdAndSpecies(const u32 swarm, u16 *mapIdDest, u16 *speciesDest)
 {
     WildEncounters encounterData;
-    u32 v1;
+    u32 mapId;
 
-    v1 = Unk_ov6_02249090[(param0 % 22)];
-    MapHeaderData_LoadWildEncounters(&encounterData, v1);
+    mapId = Swarm_MapIdTable[(swarm % NUM_SWARMS)];
+    MapHeaderData_LoadWildEncounters(&encounterData, mapId);
 
-    (*param2) = encounterData.swarmEncounters[0];
-    (*param1) = v1;
+    (*speciesDest) = encounterData.swarmEncounters[0];
+    (*mapIdDest) = mapId;
 }

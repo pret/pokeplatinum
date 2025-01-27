@@ -555,7 +555,7 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
         }
     }
 
-    return MapHeader_HasWildEncounters(fieldSystem->location->mapId) && ov6_02240D5C(fieldSystem) == TRUE;
+    return MapHeader_HasWildEncounters(fieldSystem->location->mapId) && WildEncounter_TryWildEncounter(fieldSystem) == TRUE;
 }
 
 static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput *input)

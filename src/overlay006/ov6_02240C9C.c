@@ -55,12 +55,12 @@
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
-typedef struct {
-    int unk_00;
+typedef struct RadarEncounterData {
+    int shakeType;
     BOOL unk_04;
-    BOOL unk_08;
-    BOOL unk_0C;
-} UnkStruct_ov6_02241674;
+    BOOL isShiny;
+    BOOL isRadarEncounter;
+} RadarEncounterData;
 
 typedef struct EncounterSlot {
     int species;
@@ -70,7 +70,7 @@ typedef struct EncounterSlot {
 
 typedef struct WildEncounters_FieldParams {
     u32 trainerID;
-    BOOL unk_04;
+    BOOL repelActive;
     BOOL unk_08;
     u8 firstBattlerLevel;
     u8 isFirstMonEgg;
@@ -79,38 +79,38 @@ typedef struct WildEncounters_FieldParams {
     u8 unownTableID;
 } WildEncounters_FieldParams;
 
-typedef struct UnkStruct_ov6_02248FF0 {
+typedef struct UnownFormsGroup {
     int numberForms;
     const u8 *forms;
-} UnkStruct_ov6_02248FF0;
+} UnownFormsGroup;
 
-static BOOL ov6_022417C8(FieldSystem *fieldSystem, const u32 param1, const u8 param2);
-static u8 ov6_02241874(FieldSystem *fieldSystem, u8 param1, u8 *encounterType);
+static BOOL ShouldGetRandomEncounter(FieldSystem *fieldSystem, const u32 param1, const u8 param2);
+static u8 GetTileEncounterRateAndType(FieldSystem *fieldSystem, u8 tileBehavior, u8 *encounterType);
 static BOOL ov6_022418B4(FieldSystem *fieldSystem, u32 param1);
-static BOOL ov6_022418DC(FieldSystem *fieldSystem, u32 param1);
+static BOOL CheckEncounterRateSuccess(FieldSystem *fieldSystem, u32 param1);
 static BOOL ov6_0224222C(Pokemon *param0, const WildEncounters_FieldParams *param1, const EncounterSlot *param2, const u8 param3, const u8 param4, const u8 param5, u8 *param6);
-static BOOL ov6_022422D0(const WildEncounters_FieldParams *param0, Pokemon *param1, const u8 param2);
+static BOOL FirstMonAbilityPreventsEncounter(const WildEncounters_FieldParams *param0, Pokemon *param1, const u8 param2);
 static int GetGrassEncounterRate(FieldSystem *fieldSystem);
 static int GetSurfEncounterRate(FieldSystem *fieldSystem);
 static int GetFishingEncounterRate(FieldSystem *fieldSystem, const int param1);
-static BOOL ov6_02241674(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, WildEncounters *encounterData, EncounterSlot *param4, const WildEncounters_FieldParams *param5, const UnkStruct_ov6_02241674 *param6);
-static BOOL ov6_0224174C(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4);
-static BOOL ov6_02241790(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4);
-static BOOL ov6_022417AC(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4, const int param5);
-static BOOL ov6_02241DC4(Pokemon *param0, const int param1, const WildEncounters_FieldParams *param2, const EncounterSlot *param3, const u8 encounterType, const int param5, FieldBattleDTO *param6);
+static BOOL TryGenerateGrassEncounter_WithRadar(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, WildEncounters *encounterData, EncounterSlot *param4, const WildEncounters_FieldParams *param5, const RadarEncounterData *param6);
+static BOOL TryGenerateGrassEncounter_DoubleBattle(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4);
+static BOOL TryGenerateSurfEncounter(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4);
+static BOOL TryGenerateFishingEncounter(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4, const int param5);
+static BOOL TryGenerateWildMon(Pokemon *param0, const int param1, const WildEncounters_FieldParams *param2, const EncounterSlot *param3, const u8 encounterType, const int param5, FieldBattleDTO *param6);
 static BOOL ov6_02241F7C(FieldSystem *fieldSystem, Pokemon *param1, const WildEncounters_FieldParams *param2, const EncounterSlot *param3, const int param4, FieldBattleDTO *param5, const int param6, const int param7);
 static BOOL ov6_02241F2C(const int param0, const int param1, const int param2, const BOOL param3, const u32 param4, const WildEncounters_FieldParams *param5, Pokemon *param6, FieldBattleDTO *param7);
-static u8 ov6_0224226C(const BOOL param0, const u8 param1, const WildEncounters_FieldParams *param2, const u32 param3, Pokemon *param4);
-static void ov6_02242328(FieldSystem *fieldSystem, const BOOL param1, FieldBattleDTO **param2);
+static u8 ModifyEncounterRateWithFieldParams(const BOOL isFishingEncounter, const u8 encounterRate, const WildEncounters_FieldParams *fieldParams, const u32 weatherEffect, Pokemon *unused);
+static void CreateWildSingleBattle(FieldSystem *fieldSystem, const BOOL param1, FieldBattleDTO **param2);
 static void WildEncounters_ReplaceGreatMarshDailyEncounters(FieldSystem *fieldSystem, const BOOL safariGameActive, const BOOL param2, EncounterSlot *encTable);
-static BOOL ov6_02242388(const u8 param0, const WildEncounters_FieldParams *param1);
-static void ov6_0224239C(const u32 param0, Roamer *param1, FieldBattleDTO *param2);
-static BOOL ov6_02242440(FieldSystem *fieldSystem, Roamer **param1);
+static BOOL RepelPreventsEncounter(const u8 param0, const WildEncounters_FieldParams *param1);
+static void AddRoamerToEnemyParty(const u32 param0, Roamer *param1, FieldBattleDTO *param2);
+static BOOL TryEncounterRoamer(FieldSystem *fieldSystem, Roamer **param1);
 static BOOL ov6_02242514(const int param0, const WildEncounters_FieldParams *param1, Pokemon *param2, FieldBattleDTO *param3);
 static u8 ov6_022425D4(const EncounterSlot *param0, const WildEncounters_FieldParams *param1, const u8 param2);
-static void ov6_02242634(FieldSystem *fieldSystem, Pokemon *param1, WildEncounters *encounterData, WildEncounters_FieldParams *param3);
-static void ov6_02241A90(Pokemon *param0, u8 *param1);
-static void ov6_02241ABC(FieldSystem *fieldSystem, u8 *param1);
+static void InitEncounterFieldParams(FieldSystem *fieldSystem, Pokemon *firstPartyMon, WildEncounters *encounterData, WildEncounters_FieldParams *param3);
+static void ModifyEncounterRateWithHeldItem(Pokemon *param0, u8 *param1);
+static void ModifyEncounterRateWithFlute(FieldSystem *fieldSystem, u8 *param1);
 
 static const u8 UnownMostForms[] = {
     UNOWN_FORM_A,
@@ -164,7 +164,9 @@ static const u8 UnownOnlyExcQue[] = {
     UNOWN_FORM_QUE
 };
 
-static const UnkStruct_ov6_02248FF0 WildEncounters_UnownTables[] = {
+// The first group is used for the "dead-end" rooms in Solaceon ruins. The last group is used for the secret room reached via the Maniac Tunnel after seeing 26 Unown forms.
+// The middle groups are used in sequence for the "correct path" main rooms in Solaceon ruins, in the order F-R-I-E-N-D.
+static const UnownFormsGroup WildEncounters_UnownTables[] = {
     { 0x14, UnownMostForms },
     { 0x1, UnownOnlyF },
     { 0x1, UnownOnlyR },
@@ -188,14 +190,14 @@ void WildEncounters_ReplaceTimedEncounters(const WildEncounters *encounterData, 
     }
 }
 
-static void WildEncounters_ReplaceRadarEncounters(FieldSystem *fieldSystem, const WildEncounters *encounterData, int *radarSlot1, int *radarSlot2)
+static void WildEncounters_ReplaceSwarmEncounters(FieldSystem *fieldSystem, const WildEncounters *encounterData, int *radarSlot1, int *radarSlot2)
 {
-    SpecialEncounter *v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+    SpecialEncounter *specialEncounter = SaveData_GetSpecialEncounters(fieldSystem->saveData);
 
-    if (sub_0202D898(v1)) {
-        u32 v0 = SpecialEncounter_GetDailyMon(v1, DAILY_SWARM);
+    if (SpecialEncounter_IsSwarmEnabled(specialEncounter)) {
+        u32 swarmId = SpecialEncounter_GetDailyMon(specialEncounter, DAILY_SWARM);
 
-        if (fieldSystem->location->mapId == ov6_02243218(v0)) {
+        if (fieldSystem->location->mapId == Swarm_GetMapId(swarmId)) {
             *radarSlot1 = encounterData->swarmEncounters[0];
             *radarSlot2 = encounterData->swarmEncounters[1];
         }
@@ -205,44 +207,44 @@ static void WildEncounters_ReplaceRadarEncounters(FieldSystem *fieldSystem, cons
 static void WildEncounters_ReplaceTrophyGardenEncounters(FieldSystem *fieldSystem, const BOOL nationalDexObtained, int *trophySlot1, int *trophySlot2)
 {
     if (MapHeader_IsTrophyGarden(fieldSystem->location->mapId)) {
-        u16 v1, v2;
-        sub_0202DA10(fieldSystem->saveData, &v1, &v2);
+        u16 index1, index2;
+        SpecialEncounter_GetTrophyGardenMons(fieldSystem->saveData, &index1, &index2);
 
         if (nationalDexObtained) {
-            int *v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, 4);
+            int *trophyGardenData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, HEAP_ID_FIELD);
 
-            if (v1 != 0xffff) {
-                *trophySlot1 = v0[v1];
+            if (index1 != TROPHY_GARDEN_SLOT_NONE) {
+                *trophySlot1 = trophyGardenData[index1];
             }
 
-            if (v2 != 0xffff) {
-                *trophySlot2 = v0[v2];
+            if (index2 != TROPHY_GARDEN_SLOT_NONE) {
+                *trophySlot2 = trophyGardenData[index2];
             }
 
-            Heap_FreeToHeap(v0);
+            Heap_FreeToHeap(trophyGardenData);
         }
     }
 }
 
-BOOL ov6_02240D5C(FieldSystem *fieldSystem)
+BOOL WildEncounter_TryWildEncounter(FieldSystem *fieldSystem)
 {
     FieldBattleDTO *battleParams;
     Pokemon *firstPartyMon;
-    u8 v4;
+    u8 tileBehavior;
     u8 encounterType;
-    BOOL v6;
-    BOOL v7;
-    BOOL v8;
+    BOOL gettingEncounter;
+    BOOL encounterSuccess;
+    BOOL withPartner;
     BOOL safariGameActive;
-    UnkStruct_ov6_02241674 v10;
-    EncounterSlot v13[MAX_GRASS_ENCOUNTERS];
+    RadarEncounterData radarData;
+    EncounterSlot encounterTable[MAX_GRASS_ENCOUNTERS];
     WildEncounters_FieldParams encounterFieldParams;
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    v4 = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
+    tileBehavior = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 
-    u8 encounterRate = ov6_02241874(fieldSystem, v4, &encounterType);
+    u8 encounterRate = GetTileEncounterRateAndType(fieldSystem, tileBehavior, &encounterType);
 
     if (encounterRate == 0) {
         return FALSE;
@@ -252,53 +254,53 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
     WildEncounters *encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
     firstPartyMon = Party_GetPokemonBySlotIndex(party, 0);
 
-    ov6_02242634(fieldSystem, firstPartyMon, encounterData, &encounterFieldParams);
+    InitEncounterFieldParams(fieldSystem, firstPartyMon, encounterData, &encounterFieldParams);
 
-    if (!sub_0202D9D8(SaveData_GetSpecialEncounters(fieldSystem->saveData))) {
-        Pokemon *v16 = Party_FindFirstEligibleBattler(party);
-        encounterFieldParams.unk_04 = TRUE;
-        encounterFieldParams.firstBattlerLevel = Pokemon_GetValue(v16, MON_DATA_LEVEL, NULL);
+    if (!SpecialEncounter_RepelStepsEmpty(SaveData_GetSpecialEncounters(fieldSystem->saveData))) {
+        Pokemon *firstLiveMon = Party_FindFirstEligibleBattler(party);
+        encounterFieldParams.repelActive = TRUE;
+        encounterFieldParams.firstBattlerLevel = Pokemon_GetValue(firstLiveMon, MON_DATA_LEVEL, NULL);
     }
 
-    encounterRate = ov6_0224226C(FALSE, encounterRate, &encounterFieldParams, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), firstPartyMon);
+    encounterRate = ModifyEncounterRateWithFieldParams(FALSE, encounterRate, &encounterFieldParams, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), firstPartyMon);
 
-    ov6_02241ABC(fieldSystem, &encounterRate);
-    ov6_02241A90(firstPartyMon, &encounterRate);
+    ModifyEncounterRateWithFlute(fieldSystem, &encounterRate);
+    ModifyEncounterRateWithHeldItem(firstPartyMon, &encounterRate);
 
-    if (ov6_022417C8(fieldSystem, encounterRate, v4)) {
-        v6 = TRUE;
+    if (ShouldGetRandomEncounter(fieldSystem, encounterRate, tileBehavior)) {
+        gettingEncounter = TRUE;
     } else {
-        v6 = FALSE;
+        gettingEncounter = FALSE;
     }
 
-    memset(&v10, 0, sizeof(UnkStruct_ov6_02241674));
+    memset(&radarData, 0, sizeof(RadarEncounterData));
 
-    if (!sub_020696DC(playerX, playerZ, fieldSystem, fieldSystem->chain, &v10.unk_00, &v10.unk_04, &v10.unk_08)) {
-        v10.unk_0C = FALSE;
+    if (!PokeRadar_ShouldDoRadarEncounter(playerX, playerZ, fieldSystem, fieldSystem->chain, &radarData.shakeType, &radarData.unk_04, &radarData.isShiny)) {
+        radarData.isRadarEncounter = FALSE;
     } else {
-        v10.unk_0C = TRUE;
-        v6 = TRUE;
+        radarData.isRadarEncounter = TRUE;
+        gettingEncounter = TRUE;
     }
 
-    if (!v6) {
+    if (!gettingEncounter) {
         return FALSE;
     }
 
     if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
-        v8 = TRUE;
+        withPartner = TRUE;
     } else {
-        v8 = FALSE;
+        withPartner = FALSE;
     }
 
-    if (!v8 && !v10.unk_0C) {
-        Roamer *v17;
+    if (!withPartner && !radarData.isRadarEncounter) {
+        Roamer *roamer;
 
-        if (ov6_02242440(fieldSystem, &v17)) {
-            if (!ov6_02242388(sub_0202D93C(v17, 6), &encounterFieldParams)) {
-                battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_ROAMER);
+        if (TryEncounterRoamer(fieldSystem, &roamer)) {
+            if (!RepelPreventsEncounter(Roamer_GetData(roamer, ROAMER_DATA_LEVEL), &encounterFieldParams)) {
+                battleParams = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_ROAMER);
 
                 FieldBattleDTO_Init(battleParams, fieldSystem);
-                ov6_0224239C(encounterFieldParams.trainerID, v17, battleParams);
+                AddRoamerToEnemyParty(encounterFieldParams.trainerID, roamer, battleParams);
                 RadarChain_Clear(fieldSystem->chain);
                 Encounter_NewVsWild(fieldSystem, battleParams);
                 return TRUE;
@@ -308,70 +310,68 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
         }
     }
 
-    if (!v8) {
+    if (!withPartner) {
         safariGameActive = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
-        ov6_02242328(fieldSystem, safariGameActive, &battleParams);
+        CreateWildSingleBattle(fieldSystem, safariGameActive, &battleParams);
     } else {
-        battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_AI_PARTNER);
+        battleParams = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_AI_PARTNER);
     }
 
     FieldBattleDTO_Init(battleParams, fieldSystem);
 
     if (encounterType == ENCOUNTER_TYPE_GRASS) {
         for (int i = 0; i < MAX_GRASS_ENCOUNTERS; i++) {
-            v13[i].species = encounterData->grassEncounters.encounters[i].species;
-            v13[i].maxLevel = encounterData->grassEncounters.encounters[i].level;
-            v13[i].minLevel = encounterData->grassEncounters.encounters[i].level;
+            encounterTable[i].species = encounterData->grassEncounters.encounters[i].species;
+            encounterTable[i].maxLevel = encounterData->grassEncounters.encounters[i].level;
+            encounterTable[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
         BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
-        WildEncounters_ReplaceTimedEncounters(encounterData, &v13[2].species, &v13[3].species);
-        WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v13[0].species, &v13[1].species);
-        WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &v13[6].species, &v13[7].species);
-        WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &v13[8].species, &v13[9].species);
+        WildEncounters_ReplaceTimedEncounters(encounterData, &encounterTable[2].species, &encounterTable[3].species);
+        WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &encounterTable[0].species, &encounterTable[1].species);
+        WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
+        WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &encounterTable[8].species, &encounterTable[9].species);
 
-        if (!v8) {
-            WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, v13);
+        if (!withPartner) {
+            WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
 
-            v7 = ov6_02241674(fieldSystem, firstPartyMon, battleParams, encounterData, v13, &encounterFieldParams, &v10);
+            encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
-            {
-                battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
-                Trainer_Encounter(battleParams, fieldSystem->saveData, 11);
-            }
-            v7 = ov6_0224174C(fieldSystem, firstPartyMon, battleParams, v13, &encounterFieldParams);
+            battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
+            Trainer_Encounter(battleParams, fieldSystem->saveData, HEAP_ID_FIELDMAP);
+            encounterSuccess = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
         }
     } else if (encounterType == ENCOUNTER_TYPE_SURF) {
         for (int i = 0; i < MAX_WATER_ENCOUNTERS; i++) {
-            v13[i].species = encounterData->surfEncounters.encounters[i].species;
-            v13[i].maxLevel = encounterData->surfEncounters.encounters[i].maxLevel;
-            v13[i].minLevel = encounterData->surfEncounters.encounters[i].minLevel;
+            encounterTable[i].species = encounterData->surfEncounters.encounters[i].species;
+            encounterTable[i].maxLevel = encounterData->surfEncounters.encounters[i].maxLevel;
+            encounterTable[i].minLevel = encounterData->surfEncounters.encounters[i].minLevel;
         }
 
-        v7 = ov6_02241790(fieldSystem, firstPartyMon, battleParams, v13, &encounterFieldParams);
+        encounterSuccess = TryGenerateSurfEncounter(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
     } else {
         GF_ASSERT(FALSE);
         FieldBattleDTO_Free(battleParams);
         return FALSE;
     }
 
-    if (v7) {
+    if (encounterSuccess) {
         Encounter_NewVsWild(fieldSystem, battleParams);
     } else {
-        v6 = FALSE;
+        gettingEncounter = FALSE;
     }
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(4));
-    GF_ASSERT(GF_heap_c_dummy_return_true(11));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELD));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELDMAP));
 
-    if (!v6) {
+    if (!gettingEncounter) {
         FieldBattleDTO_Free(battleParams);
     }
 
     fieldSystem->unk_78.unk_00 = 0;
 
-    return v6;
+    return gettingEncounter;
 }
 
 BOOL ov6_0224106C(FieldSystem *fieldSystem, const int fishingRodType, FieldBattleDTO **battleParams)
@@ -387,8 +387,8 @@ BOOL ov6_0224106C(FieldSystem *fieldSystem, const int fishingRodType, FieldBattl
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
     Pokemon *firstPartyMon = Party_GetPokemonBySlotIndex(party, 0);
     WildEncounters_FieldParams encounterFieldParams;
-    ov6_02242634(fieldSystem, firstPartyMon, NULL, &encounterFieldParams);
-    encounterRate = ov6_0224226C(TRUE, encounterRate, &encounterFieldParams, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), firstPartyMon);
+    InitEncounterFieldParams(fieldSystem, firstPartyMon, NULL, &encounterFieldParams);
+    encounterRate = ModifyEncounterRateWithFieldParams(TRUE, encounterRate, &encounterFieldParams, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), firstPartyMon);
 
     if (LCRNG_RandMod(100) >= encounterRate) {
         return FALSE;
@@ -396,7 +396,7 @@ BOOL ov6_0224106C(FieldSystem *fieldSystem, const int fishingRodType, FieldBattl
 
     BOOL v2 = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
 
-    ov6_02242328(fieldSystem, v2, battleParams);
+    CreateWildSingleBattle(fieldSystem, v2, battleParams);
 
     FieldBattleDTO_Init(*battleParams, fieldSystem);
     FieldBattleDTO_SetWaterTerrain(*battleParams);
@@ -436,7 +436,7 @@ BOOL ov6_0224106C(FieldSystem *fieldSystem, const int fishingRodType, FieldBattl
         }
     }
 
-    if (!ov6_022417AC(fieldSystem, firstPartyMon, *battleParams, v3, &encounterFieldParams, fishingRodType)) {
+    if (!TryGenerateFishingEncounter(fieldSystem, firstPartyMon, *battleParams, v3, &encounterFieldParams, fishingRodType)) {
         return FALSE;
     }
 
@@ -451,7 +451,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
     BOOL v6;
     BOOL safariGameActive;
     BOOL v8;
-    UnkStruct_ov6_02241674 v9;
+    RadarEncounterData v9;
     EncounterSlot v12[MAX_GRASS_ENCOUNTERS];
     WildEncounters_FieldParams encounterFieldParams;
 
@@ -459,7 +459,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
     u8 v4 = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 
-    u8 encounterRate = ov6_02241874(fieldSystem, v4, &encounterType);
+    u8 encounterRate = GetTileEncounterRateAndType(fieldSystem, v4, &encounterType);
 
     if (encounterRate == 0) {
         return FALSE;
@@ -469,12 +469,12 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
     WildEncounters *encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
     firstPartyMon = Party_GetPokemonBySlotIndex(party, 0);
 
-    ov6_02242634(fieldSystem, firstPartyMon, encounterData, &encounterFieldParams);
+    InitEncounterFieldParams(fieldSystem, firstPartyMon, encounterData, &encounterFieldParams);
 
-    encounterFieldParams.unk_04 = FALSE;
+    encounterFieldParams.repelActive = FALSE;
     encounterFieldParams.unk_08 = TRUE;
 
-    memset(&v9, 0, sizeof(UnkStruct_ov6_02241674));
+    memset(&v9, 0, sizeof(RadarEncounterData));
 
     if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v6 = TRUE;
@@ -485,11 +485,11 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
     if (!v6) {
         Roamer *v15;
 
-        if (ov6_02242440(fieldSystem, &v15)) {
+        if (TryEncounterRoamer(fieldSystem, &v15)) {
             battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_ROAMER);
 
             FieldBattleDTO_Init(battleParams, fieldSystem);
-            ov6_0224239C(encounterFieldParams.trainerID, v15, battleParams);
+            AddRoamerToEnemyParty(encounterFieldParams.trainerID, v15, battleParams);
             RadarChain_Clear(fieldSystem->chain);
             Encounter_StartVsWild(fieldSystem, param1, battleParams);
             return TRUE;
@@ -498,7 +498,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
 
     if (!v6) {
         safariGameActive = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
-        ov6_02242328(fieldSystem, safariGameActive, &battleParams);
+        CreateWildSingleBattle(fieldSystem, safariGameActive, &battleParams);
     } else {
         battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_AI_PARTNER);
     }
@@ -515,18 +515,18 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
         BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v12[2].species, &v12[3].species);
-        WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
+        WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &v12[6].species, &v12[7].species);
         WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &v12[8].species, &v12[9].species);
 
         if (!v6) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, v12);
 
-            v8 = ov6_02241674(fieldSystem, firstPartyMon, battleParams, encounterData, v12, &encounterFieldParams, &v9);
+            v8 = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, battleParams, encounterData, v12, &encounterFieldParams, &v9);
         } else {
             battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
             Trainer_Encounter(battleParams, fieldSystem->saveData, 11);
-            v8 = ov6_0224174C(fieldSystem, firstPartyMon, battleParams, v12, &encounterFieldParams);
+            v8 = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, battleParams, v12, &encounterFieldParams);
         }
     } else if (encounterType == ENCOUNTER_TYPE_SURF) {
         for (int i = 0; i < MAX_WATER_ENCOUNTERS; i++) {
@@ -535,7 +535,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
             v12[i].minLevel = encounterData->surfEncounters.encounters[i].minLevel;
         }
 
-        v8 = ov6_02241790(fieldSystem, firstPartyMon, battleParams, v12, &encounterFieldParams);
+        v8 = TryGenerateSurfEncounter(fieldSystem, firstPartyMon, battleParams, v12, &encounterFieldParams);
     } else {
         GF_ASSERT(FALSE);
         return FALSE;
@@ -559,7 +559,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
     BOOL v6;
     BOOL v7;
     BOOL safariGameActive;
-    UnkStruct_ov6_02241674 v9;
+    RadarEncounterData v9;
     EncounterSlot v12[MAX_GRASS_ENCOUNTERS];
     WildEncounters_FieldParams encounterFieldParams;
 
@@ -569,7 +569,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
     u8 v3 = FieldSystem_GetTileBehavior(fieldSystem, playerX, playerZ);
 
-    u8 encounterRate = ov6_02241874(fieldSystem, v3, &encounterType);
+    u8 encounterRate = GetTileEncounterRateAndType(fieldSystem, v3, &encounterType);
 
     if (encounterRate == 0) {
         return FALSE;
@@ -579,28 +579,28 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
     WildEncounters *encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
     firstPartyMon = Party_GetPokemonBySlotIndex(party, 0);
 
-    ov6_02242634(fieldSystem, firstPartyMon, encounterData, &encounterFieldParams);
+    InitEncounterFieldParams(fieldSystem, firstPartyMon, encounterData, &encounterFieldParams);
 
-    if (!sub_0202D9D8(SaveData_GetSpecialEncounters(fieldSystem->saveData))) {
+    if (!SpecialEncounter_RepelStepsEmpty(SaveData_GetSpecialEncounters(fieldSystem->saveData))) {
         Pokemon *v15 = Party_FindFirstEligibleBattler(party);
 
-        encounterFieldParams.unk_04 = TRUE;
+        encounterFieldParams.repelActive = TRUE;
         encounterFieldParams.firstBattlerLevel = Pokemon_GetValue(v15, MON_DATA_LEVEL, NULL);
     }
 
-    encounterRate = ov6_0224226C(FALSE, encounterRate, &encounterFieldParams, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), firstPartyMon);
+    encounterRate = ModifyEncounterRateWithFieldParams(FALSE, encounterRate, &encounterFieldParams, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), firstPartyMon);
 
-    ov6_02241ABC(fieldSystem, &encounterRate);
-    ov6_02241A90(firstPartyMon, &encounterRate);
+    ModifyEncounterRateWithFlute(fieldSystem, &encounterRate);
+    ModifyEncounterRateWithHeldItem(firstPartyMon, &encounterRate);
 
-    if (ov6_022417C8(fieldSystem, encounterRate, v3)) {
+    if (ShouldGetRandomEncounter(fieldSystem, encounterRate, v3)) {
         v5 = TRUE;
     } else {
         v5 = FALSE;
     }
 
-    memset(&v9, 0, sizeof(UnkStruct_ov6_02241674));
-    v9.unk_0C = FALSE;
+    memset(&v9, 0, sizeof(RadarEncounterData));
+    v9.isRadarEncounter = FALSE;
 
     if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v7 = TRUE;
@@ -611,12 +611,12 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
     if (!v7) {
         Roamer *v16;
 
-        if (ov6_02242440(fieldSystem, &v16)) {
-            if (!ov6_02242388(sub_0202D93C(v16, 6), &encounterFieldParams)) {
+        if (TryEncounterRoamer(fieldSystem, &v16)) {
+            if (!RepelPreventsEncounter(Roamer_GetData(v16, ROAMER_DATA_LEVEL), &encounterFieldParams)) {
                 *battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_ROAMER);
 
                 FieldBattleDTO_Init(*battleParams, fieldSystem);
-                ov6_0224239C(encounterFieldParams.trainerID, v16, *battleParams);
+                AddRoamerToEnemyParty(encounterFieldParams.trainerID, v16, *battleParams);
                 RadarChain_Clear(fieldSystem->chain);
                 return TRUE;
             } else {
@@ -627,7 +627,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
 
     if (!v7) {
         safariGameActive = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
-        ov6_02242328(fieldSystem, safariGameActive, battleParams);
+        CreateWildSingleBattle(fieldSystem, safariGameActive, battleParams);
     } else {
         *battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_AI_PARTNER);
     }
@@ -644,20 +644,20 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
         BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v12[2].species, &v12[3].species);
-        WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
+        WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &v12[6].species, &v12[7].species);
         WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &v12[8].species, &v12[9].species);
 
         if (!v7) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, v12);
 
-            v6 = ov6_02241674(fieldSystem, firstPartyMon, *battleParams, encounterData, v12, &encounterFieldParams, &v9);
+            v6 = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, *battleParams, encounterData, v12, &encounterFieldParams, &v9);
         } else {
             {
                 (*battleParams)->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
                 Trainer_Encounter(*battleParams, fieldSystem->saveData, 11);
             }
-            v6 = ov6_0224174C(fieldSystem, firstPartyMon, *battleParams, v12, &encounterFieldParams);
+            v6 = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, *battleParams, v12, &encounterFieldParams);
         }
     } else {
         GF_ASSERT(FALSE);
@@ -681,27 +681,27 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, FieldBattleDTO **battleParams)
     return v5;
 }
 
-static BOOL ov6_02241674(FieldSystem *fieldSystem, Pokemon *firstPartyMon, FieldBattleDTO *battleParams, WildEncounters *encounterData, EncounterSlot *param4, const WildEncounters_FieldParams *encounterFieldParams, const UnkStruct_ov6_02241674 *param6)
+static BOOL TryGenerateGrassEncounter_WithRadar(FieldSystem *fieldSystem, Pokemon *firstPartyMon, FieldBattleDTO *battleParams, WildEncounters *encounterData, EncounterSlot *encounterTable, const WildEncounters_FieldParams *encounterFieldParams, const RadarEncounterData *param6)
 {
     BOOL v0;
 
-    if (param6->unk_0C) {
+    if (param6->isRadarEncounter) {
         int species, level;
 
-        if (param6->unk_00 == 1) {
-            param4[4].species = encounterData->radarEncounters[0];
-            param4[5].species = encounterData->radarEncounters[1];
-            param4[10].species = encounterData->radarEncounters[2];
-            param4[11].species = encounterData->radarEncounters[3];
+        if (param6->shakeType == 1) {
+            encounterTable[4].species = encounterData->radarEncounters[0];
+            encounterTable[5].species = encounterData->radarEncounters[1];
+            encounterTable[10].species = encounterData->radarEncounters[2];
+            encounterTable[11].species = encounterData->radarEncounters[3];
         }
 
         GetRadarMon(fieldSystem->chain, &species, &level);
 
         if (param6->unk_04 == 1) {
             TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
-            v0 = ov6_02241F2C(species, level, 1, param6->unk_08, TrainerInfo_ID(v3), encounterFieldParams, firstPartyMon, battleParams);
+            v0 = ov6_02241F2C(species, level, 1, param6->isShiny, TrainerInfo_ID(v3), encounterFieldParams, firstPartyMon, battleParams);
         } else {
-            v0 = ov6_02241F7C(fieldSystem, firstPartyMon, encounterFieldParams, param4, 1, battleParams, species, level);
+            v0 = ov6_02241F7C(fieldSystem, firstPartyMon, encounterFieldParams, encounterTable, 1, battleParams, species, level);
         }
 
         if (v0) {
@@ -713,7 +713,7 @@ static BOOL ov6_02241674(FieldSystem *fieldSystem, Pokemon *firstPartyMon, Field
             }
         }
     } else {
-        v0 = ov6_02241DC4(firstPartyMon, 0xff, encounterFieldParams, param4, ENCOUNTER_TYPE_GRASS, 1, battleParams);
+        v0 = TryGenerateWildMon(firstPartyMon, 0xff, encounterFieldParams, encounterTable, ENCOUNTER_TYPE_GRASS, 1, battleParams);
 
         if (v0) {
             RadarChain_Clear(fieldSystem->chain);
@@ -723,27 +723,27 @@ static BOOL ov6_02241674(FieldSystem *fieldSystem, Pokemon *firstPartyMon, Field
     return v0;
 }
 
-static BOOL ov6_0224174C(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4)
+static BOOL TryGenerateGrassEncounter_DoubleBattle(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4)
 {
-    if (!ov6_02241DC4(param1, 0xff, param4, param3, ENCOUNTER_TYPE_GRASS, 1, param2)) {
+    if (!TryGenerateWildMon(param1, 0xff, param4, param3, ENCOUNTER_TYPE_GRASS, 1, param2)) {
         return FALSE;
     }
 
-    BOOL v0 = ov6_02241DC4(param1, 0xff, param4, param3, ENCOUNTER_TYPE_GRASS, 3, param2);
+    BOOL v0 = TryGenerateWildMon(param1, 0xff, param4, param3, ENCOUNTER_TYPE_GRASS, 3, param2);
     return v0;
 }
 
-static BOOL ov6_02241790(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4)
+static BOOL TryGenerateSurfEncounter(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4)
 {
-    return ov6_02241DC4(param1, 0xff, param4, param3, ENCOUNTER_TYPE_SURF, 1, param2);
+    return TryGenerateWildMon(param1, 0xff, param4, param3, ENCOUNTER_TYPE_SURF, 1, param2);
 }
 
-static BOOL ov6_022417AC(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4, const int fishingRodType)
+static BOOL TryGenerateFishingEncounter(FieldSystem *fieldSystem, Pokemon *param1, FieldBattleDTO *param2, EncounterSlot *param3, const WildEncounters_FieldParams *param4, const int fishingRodType)
 {
-    return ov6_02241DC4(param1, fishingRodType, param4, param3, ENCOUNTER_TYPE_FISHING, 1, param2);
+    return TryGenerateWildMon(param1, fishingRodType, param4, param3, ENCOUNTER_TYPE_FISHING, 1, param2);
 }
 
-static BOOL ov6_022417C8(FieldSystem *fieldSystem, const u32 encounterRate, const u8 param2)
+static BOOL ShouldGetRandomEncounter(FieldSystem *fieldSystem, const u32 encounterRate, const u8 param2)
 {
     u32 v1 = encounterRate << 8;
 
@@ -769,13 +769,14 @@ static BOOL ov6_022417C8(FieldSystem *fieldSystem, const u32 encounterRate, cons
         v0 = 100;
     }
 
-    return LCRNG_RandMod(100) < v0 && ov6_022418DC(fieldSystem, encounterRate);
+    return LCRNG_RandMod(100) < v0 && CheckEncounterRateSuccess(fieldSystem, encounterRate);
 }
 
-static u8 ov6_02241874(FieldSystem *fieldSystem, u8 param1, u8 *encounterType)
+// Returns encounter rate. Assigns encounter type to third parameter.
+static u8 GetTileEncounterRateAndType(FieldSystem *fieldSystem, u8 tileBehavior, u8 *encounterType)
 {
-    if (TileBehavior_HasEncounters(param1)) {
-        if (TileBehavior_IsSurfable(param1)) {
+    if (TileBehavior_HasEncounters(tileBehavior)) {
+        if (TileBehavior_IsSurfable(tileBehavior)) {
             *encounterType = ENCOUNTER_TYPE_SURF;
             return GetSurfEncounterRate(fieldSystem);
         } else {
@@ -800,7 +801,7 @@ static BOOL ov6_022418B4(FieldSystem *fieldSystem, u32 param1)
     return fieldSystem->unk_78.unk_00 >= param1;
 }
 
-static BOOL ov6_022418DC(FieldSystem *fieldSystem, u32 encounterRate)
+static BOOL CheckEncounterRateSuccess(FieldSystem *fieldSystem, u32 encounterRate)
 {
     if (LCRNG_RandMod(100) >= encounterRate) {
         return FALSE;
@@ -910,7 +911,7 @@ static u8 GetRodEncounterSlot(const int fishingRodType)
     return encSlot;
 }
 
-static void ov6_02241A90(Pokemon *mon, u8 *encounterRate)
+static void ModifyEncounterRateWithHeldItem(Pokemon *mon, u8 *encounterRate)
 {
     u16 heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
@@ -919,22 +920,23 @@ static void ov6_02241A90(Pokemon *mon, u8 *encounterRate)
     }
 }
 
-static void ov6_02241ABC(FieldSystem *fieldSystem, u8 *encounterRate)
+static void ModifyEncounterRateWithFlute(FieldSystem *fieldSystem, u8 *encounterRate)
 {
-    u8 v0 = sub_0202DA04(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+    u8 activeFlute = SpecialEncounter_GetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 
-    if (v0 == 1) {
+    if (activeFlute == FLUTE_FACTOR_USED_BLACK) {
         *encounterRate /= 2;
-    } else if (v0 == 2) {
+    } else if (activeFlute == FLUTE_FACTOR_USED_WHITE) {
         *encounterRate = *encounterRate + (*encounterRate / 2);
     }
 }
 
-static u8 ov6_02241AE4(Pokemon *param0, const WildEncounters_FieldParams *encounterFieldParams)
+// checks Synchronize, returns a random nature otherwise.
+static u8 GetNatureForWildMon(Pokemon *firstMon, const WildEncounters_FieldParams *encounterFieldParams)
 {
     if (!encounterFieldParams->isFirstMonEgg && encounterFieldParams->firstMonAbility == ABILITY_SYNCHRONIZE && LCRNG_RandMod(2) == 0) {
-        u32 v0 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
-        return (u8)(v0 % 25);
+        u32 leadPersonality = Pokemon_GetValue(firstMon, MON_DATA_PERSONALITY, NULL);
+        return (u8)(leadPersonality % 25);
     }
 
     return LCRNG_RandMod(25);
@@ -1031,11 +1033,11 @@ static void ov6_02241BAC(const u16 species, const u8 level, const int param2, co
     Heap_FreeToHeap(newEncounter);
 }
 
-static void ov6_02241CC0(u16 species, u8 level, const int param2, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
+static void CreateWildMon(u16 species, u8 level, const int param2, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
 {
-    Pokemon *newEncounter = Pokemon_New(11);
+    Pokemon *newEncounter = Pokemon_New(HEAP_ID_FIELDMAP);
     Pokemon_Init(newEncounter);
-    BOOL v0 = TRUE;
+    BOOL hasRandomGender = TRUE;
 
     u32 speciesGenderRatio = PokemonPersonalData_GetSpeciesValue(species, MON_DATA_PERSONAL_GENDER);
 
@@ -1043,10 +1045,11 @@ static void ov6_02241CC0(u16 species, u8 level, const int param2, const WildEnco
     case GENDER_RATIO_MALE_ONLY:
     case GENDER_RATIO_FEMALE_ONLY:
     case GENDER_RATIO_NO_GENDER:
-        v0 = FALSE;
+        hasRandomGender = FALSE;
     }
 
-    if (v0 && !encounterFieldParams->isFirstMonEgg && encounterFieldParams->firstMonAbility == ABILITY_CUTE_CHARM && LCRNG_RandMod(3) > 0) {
+    // 2/3 chance for Cute Charm to force the encounter to be the opposite gender of the lead, if possible.
+    if (hasRandomGender && !encounterFieldParams->isFirstMonEgg && encounterFieldParams->firstMonAbility == ABILITY_CUTE_CHARM && LCRNG_RandMod(3) > 0) {
         u8 gender = Pokemon_GetValue(firstPartyMon, MON_DATA_GENDER, NULL);
 
         if (gender == GENDER_FEMALE) {
@@ -1057,7 +1060,7 @@ static void ov6_02241CC0(u16 species, u8 level, const int param2, const WildEnco
             GF_ASSERT(FALSE);
         }
 
-        sub_02074088(newEncounter, species, level, 32, gender, ov6_02241AE4(firstPartyMon, encounterFieldParams), 0);
+        sub_02074088(newEncounter, species, level, 32, gender, GetNatureForWildMon(firstPartyMon, encounterFieldParams), 0);
         Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
         GF_ASSERT(ov6_02242514(param2, encounterFieldParams, newEncounter, battleParams));
@@ -1065,14 +1068,14 @@ static void ov6_02241CC0(u16 species, u8 level, const int param2, const WildEnco
         return;
     }
 
-    sub_02074044(newEncounter, species, level, 32, ov6_02241AE4(firstPartyMon, encounterFieldParams));
+    sub_02074044(newEncounter, species, level, 32, GetNatureForWildMon(firstPartyMon, encounterFieldParams));
     Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
     GF_ASSERT(ov6_02242514(param2, encounterFieldParams, newEncounter, battleParams));
     Heap_FreeToHeap(newEncounter);
 }
 
-static BOOL ov6_02241DC4(Pokemon *firstPartyMon, const int fishingRodType, const WildEncounters_FieldParams *encounterFieldParams, const EncounterSlot *param3, const u8 encounterType, const int param5, FieldBattleDTO *battleParams)
+static BOOL TryGenerateWildMon(Pokemon *firstPartyMon, const int fishingRodType, const WildEncounters_FieldParams *encounterFieldParams, const EncounterSlot *param3, const u8 encounterType, const int param5, FieldBattleDTO *battleParams)
 {
     BOOL v0;
     u8 encounterSlot = 0;
@@ -1117,15 +1120,15 @@ static BOOL ov6_02241DC4(Pokemon *firstPartyMon, const int fishingRodType, const
         GF_ASSERT(FALSE);
     }
 
-    if (ov6_022422D0(encounterFieldParams, firstPartyMon, level)) {
+    if (FirstMonAbilityPreventsEncounter(encounterFieldParams, firstPartyMon, level)) {
         return FALSE;
     }
 
-    if (ov6_02242388(level, encounterFieldParams) == TRUE) {
+    if (RepelPreventsEncounter(level, encounterFieldParams) == TRUE) {
         return FALSE;
     }
 
-    ov6_02241CC0(param3[encounterSlot].species, level, param5, encounterFieldParams, firstPartyMon, battleParams);
+    CreateWildMon(param3[encounterSlot].species, level, param5, encounterFieldParams, firstPartyMon, battleParams);
     return TRUE;
 }
 
@@ -1137,7 +1140,7 @@ static BOOL ov6_02241F2C(const int param0, const int param1, const int param2, c
     if (param3) {
         ov6_02241BAC(param0, v0, param2, param4, encounterFieldParams, param6, battleParams);
     } else {
-        ov6_02241CC0(param0, v0, param2, encounterFieldParams, param6, battleParams);
+        CreateWildMon(param0, v0, param2, encounterFieldParams, param6, battleParams);
     }
 
     return TRUE;
@@ -1171,7 +1174,7 @@ static BOOL ov6_02241F7C(FieldSystem *fieldSystem, Pokemon *param1, const WildEn
         RadarChain_Clear(fieldSystem->chain);
     }
 
-    ov6_02241CC0(v3, v2, param4, encounterFieldParams, param1, battleParams);
+    CreateWildMon(v3, v2, param4, encounterFieldParams, param1, battleParams);
     return TRUE;
 }
 
@@ -1185,7 +1188,7 @@ void ov6_02242034(FieldSystem *fieldSystem, FieldBattleDTO *battleParams)
     v0 = Party_GetPokemonBySlotIndex(v4, 0);
 
     WildEncounters_FieldParams encounterFieldParams;
-    ov6_02242634(fieldSystem, v0, NULL, &encounterFieldParams);
+    InitEncounterFieldParams(fieldSystem, v0, NULL, &encounterFieldParams);
 
     u8 v5 = 15 - 5 + 1;
 
@@ -1201,7 +1204,7 @@ void ov6_02242034(FieldSystem *fieldSystem, FieldBattleDTO *battleParams)
 
     ov5_021F0040(fieldSystem);
     battleParams->battleStatusMask |= BATTLE_STATUS_HONEY_TREE;
-    ov6_02241CC0(v1, v3, 1, &encounterFieldParams, v0, battleParams);
+    CreateWildMon(v1, v3, 1, &encounterFieldParams, v0, battleParams);
 
     return;
 }
@@ -1212,9 +1215,9 @@ void ov6_022420D4(FieldSystem *fieldSystem, u16 param1, u8 param2, FieldBattleDT
     Pokemon *v0 = Party_GetPokemonBySlotIndex(v2, 0);
 
     WildEncounters_FieldParams encounterFieldParams;
-    ov6_02242634(fieldSystem, v0, NULL, &encounterFieldParams);
+    InitEncounterFieldParams(fieldSystem, v0, NULL, &encounterFieldParams);
 
-    ov6_02241CC0(param1, param2, 1, &encounterFieldParams, v0, param3);
+    CreateWildMon(param1, param2, 1, &encounterFieldParams, v0, param3);
     return;
 }
 
@@ -1303,53 +1306,53 @@ static BOOL ov6_0224222C(Pokemon *param0, const WildEncounters_FieldParams *enco
     return FALSE;
 }
 
-static u8 ov6_0224226C(const BOOL isFishingEncounter, const u8 param1, const WildEncounters_FieldParams *encounterFieldParams, const u32 weatherEffect, Pokemon *param4)
+static u8 ModifyEncounterRateWithFieldParams(const BOOL isFishingEncounter, const u8 encounterRate, const WildEncounters_FieldParams *encounterFieldParams, const u32 weatherEffect, Pokemon *unused)
 {
-    int v0 = param1;
+    int newEncRate = encounterRate;
 
     if (!encounterFieldParams->isFirstMonEgg) {
         if (isFishingEncounter) {
             if (encounterFieldParams->firstMonAbility == ABILITY_STICKY_HOLD || encounterFieldParams->firstMonAbility == ABILITY_SUCTION_CUPS) {
-                v0 * 2; // BUG: Abilities do not Increase Fishing Encounter Rate (see docs/bugs_and_glitches.md)
+                newEncRate * 2; // BUG: Abilities do not Increase Fishing Encounter Rate (see docs/bugs_and_glitches.md)
             }
         } else {
             if (encounterFieldParams->firstMonAbility == ABILITY_ARENA_TRAP || encounterFieldParams->firstMonAbility == ABILITY_NO_GUARD || encounterFieldParams->firstMonAbility == ABILITY_ILLUMINATE) {
-                v0 *= 2;
+                newEncRate *= 2;
             } else if (encounterFieldParams->firstMonAbility == ABILITY_SAND_VEIL) {
                 if (weatherEffect == OVERWORLD_WEATHER_SANDSTORM) {
-                    v0 /= 2;
+                    newEncRate /= 2;
                 }
             } else if (encounterFieldParams->firstMonAbility == ABILITY_SNOW_CLOAK) {
                 if (weatherEffect == OVERWORLD_WEATHER_SNOWING || weatherEffect == OVERWORLD_WEATHER_HEAVY_SNOW || weatherEffect == OVERWORLD_WEATHER_BLIZZARD) {
-                    v0 /= 2;
+                    newEncRate /= 2;
                 }
             } else if (encounterFieldParams->firstMonAbility == ABILITY_WHITE_SMOKE || encounterFieldParams->firstMonAbility == ABILITY_QUICK_FEET || encounterFieldParams->firstMonAbility == ABILITY_STENCH) {
-                v0 /= 2;
+                newEncRate /= 2;
             }
         }
 
-        if (v0 > 100) {
-            v0 = 100;
+        if (newEncRate > 100) {
+            newEncRate = 100;
         }
     }
 
-    return v0;
+    return newEncRate;
 }
 
-static BOOL ov6_022422D0(const WildEncounters_FieldParams *encounterFieldParams, Pokemon *param1, const u8 param2)
+static BOOL FirstMonAbilityPreventsEncounter(const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstMon, const u8 wildLevel)
 {
     if (encounterFieldParams->unk_08) {
         return FALSE;
     }
 
     if (!encounterFieldParams->isFirstMonEgg && (encounterFieldParams->firstMonAbility == ABILITY_KEEN_EYE || encounterFieldParams->firstMonAbility == ABILITY_INTIMIDATE)) {
-        u8 v0 = Pokemon_GetValue(param1, MON_DATA_LEVEL, NULL);
+        u8 leadLevel = Pokemon_GetValue(firstMon, MON_DATA_LEVEL, NULL);
 
-        if (v0 <= 5) {
+        if (leadLevel <= 5) {
             return FALSE;
         }
 
-        if (param2 <= v0 - 5 && LCRNG_RandMod(2) == 0) {
+        if (wildLevel <= leadLevel - 5 && LCRNG_RandMod(2) == 0) {
             return TRUE;
         }
     }
@@ -1357,13 +1360,13 @@ static BOOL ov6_022422D0(const WildEncounters_FieldParams *encounterFieldParams,
     return FALSE;
 }
 
-static void ov6_02242328(FieldSystem *fieldSystem, const BOOL param1, FieldBattleDTO **param2)
+static void CreateWildSingleBattle(FieldSystem *fieldSystem, const BOOL safariGameActive, FieldBattleDTO **param2)
 {
-    if (!param1) {
-        *param2 = FieldBattleDTO_New(11, (0x0 | 0x0));
+    if (!safariGameActive) {
+        *param2 = FieldBattleDTO_New(HEAP_ID_FIELDMAP, (0x0 | 0x0));
     } else {
-        u16 *v0 = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-        *param2 = FieldBattleDTO_NewSafari(11, *v0);
+        u16 *safariBallsCount = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+        *param2 = FieldBattleDTO_NewSafari(HEAP_ID_FIELDMAP, *safariBallsCount);
     }
 }
 
@@ -1374,56 +1377,58 @@ static void WildEncounters_ReplaceGreatMarshDailyEncounters(FieldSystem *fieldSy
     }
 }
 
-static BOOL ov6_02242388(const u8 roamerLevel, const WildEncounters_FieldParams *encounterFieldParams)
+static BOOL RepelPreventsEncounter(const u8 wildLevel, const WildEncounters_FieldParams *encounterFieldParams)
 {
-    return encounterFieldParams->unk_04 && encounterFieldParams->firstBattlerLevel > roamerLevel;
+    return encounterFieldParams->repelActive && encounterFieldParams->firstBattlerLevel > wildLevel;
 }
 
-static void ov6_0224239C(const u32 trainerID, Roamer *param1, FieldBattleDTO *param2)
+static void AddRoamerToEnemyParty(const u32 trainerID, Roamer *roamer, FieldBattleDTO *battle)
 {
-    Pokemon *mon = Pokemon_New(4);
-    int roamerSpecies = sub_0202D93C(param1, 4);
-    u8 roamerLevel = sub_0202D93C(param1, 6);
-    u32 roamerCombinedIVs = sub_0202D93C(param1, 2);
-    u32 roamerPersonality = sub_0202D93C(param1, 3);
-    u32 roamerStatusCondition = sub_0202D93C(param1, 7);
-    u16 roamerCurrentHP = sub_0202D93C(param1, 5);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
+    int roamerSpecies = Roamer_GetData(roamer, ROAMER_DATA_SPECIES);
+    u8 roamerLevel = Roamer_GetData(roamer, ROAMER_DATA_LEVEL);
+    u32 roamerCombinedIVs = Roamer_GetData(roamer, ROAMER_DATA_IVS);
+    u32 roamerPersonality = Roamer_GetData(roamer, ROAMER_DATA_PERSONALITY);
+    u32 roamerStatusCondition = Roamer_GetData(roamer, ROAMER_DATA_STATUS);
+    u16 roamerCurrentHP = Roamer_GetData(roamer, ROAMER_DATA_CURRENT_HP);
 
-    sub_02074158(mon, roamerSpecies, roamerLevel, roamerCombinedIVs, roamerPersonality);
+    Pokemon_InitAndCalcStats(mon, roamerSpecies, roamerLevel, roamerCombinedIVs, roamerPersonality);
     Pokemon_SetValue(mon, MON_DATA_OT_ID, &trainerID);
     Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &roamerStatusCondition);
     Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &roamerCurrentHP);
 
-    GF_ASSERT(Party_AddPokemon(param2->parties[1], mon));
+    GF_ASSERT(Party_AddPokemon(battle->parties[1], mon));
     Heap_FreeToHeap(mon);
 }
 
-static BOOL ov6_02242440(FieldSystem *fieldSystem, Roamer **param1)
+// 50% chance to encounter a roamer if there is one on the current map.
+// If there are multiple on the same map, picks one randomly.
+static BOOL TryEncounterRoamer(FieldSystem *fieldSystem, Roamer **param1)
 {
-    Roamer *v1[6];
+    Roamer *roamers[ROAMING_SLOT_MAX];
 
-    u8 v2 = 0;
-    SpecialEncounter *v0 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+    u8 numRoamersOnMap = 0;
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
 
-    for (u8 v3 = 0; v3 < 6; v3++) {
-        int v4 = sub_0206C3C8(sub_0202D8C4(v0, v3));
+    for (u8 slot = 0; slot < ROAMING_SLOT_MAX; slot++) {
+        int roamerMapId = RoamingPokemon_GetRouteFromId(SpecialEncounter_GetRoamerRouteId(speEnc, slot));
 
-        if (sub_0202D8F8(v0, v3) && v4 == fieldSystem->location->mapId) {
-            v1[v2] = sub_0202D924(v0, v3);
-            v2++;
+        if (SpecialEncounter_IsRoamerActive(speEnc, slot) && roamerMapId == fieldSystem->location->mapId) {
+            roamers[numRoamersOnMap] = SpecialEncounter_GetRoamer(speEnc, slot);
+            numRoamersOnMap++;
         }
     }
 
-    if (v2 == 0) {
+    if (numRoamersOnMap == 0) {
         return FALSE;
     } else if (LCRNG_RandMod(2) == 0) {
         return FALSE;
     }
 
-    if (v2 > 1) {
-        *param1 = v1[LCRNG_RandMod(v2)];
+    if (numRoamersOnMap > 1) {
+        *param1 = roamers[LCRNG_RandMod(numRoamersOnMap)];
     } else {
-        *param1 = v1[0];
+        *param1 = roamers[0];
     }
 
     return TRUE;
@@ -1495,18 +1500,18 @@ static u8 ov6_022425D4(const EncounterSlot *param0, const WildEncounters_FieldPa
     return encounterSlot;
 }
 
-static void ov6_02242634(FieldSystem *fieldSystem, Pokemon *param1, WildEncounters *encounterData, WildEncounters_FieldParams *encounterFieldParams)
+static void InitEncounterFieldParams(FieldSystem *fieldSystem, Pokemon *firstPartyMon, WildEncounters *encounterData, WildEncounters_FieldParams *encounterFieldParams)
 {
-    if (Pokemon_GetValue(param1, MON_DATA_IS_EGG, NULL) == 0) {
+    if (Pokemon_GetValue(firstPartyMon, MON_DATA_IS_EGG, NULL) == 0) {
         encounterFieldParams->isFirstMonEgg = FALSE;
-        encounterFieldParams->firstMonAbility = Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
+        encounterFieldParams->firstMonAbility = Pokemon_GetValue(firstPartyMon, MON_DATA_ABILITY, NULL);
     } else {
         encounterFieldParams->isFirstMonEgg = TRUE;
         encounterFieldParams->firstMonAbility = 123;
     }
 
     encounterFieldParams->firstBattlerLevel = 0;
-    encounterFieldParams->unk_04 = FALSE;
+    encounterFieldParams->repelActive = FALSE;
     encounterFieldParams->unk_08 = FALSE;
 
     if (encounterData != NULL) {

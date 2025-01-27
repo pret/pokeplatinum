@@ -105,8 +105,8 @@ static BOOL ov47_0225621C(UnkStruct_ov47_0225621C *param0, PoketchSystem *poketc
         SpecialEncounter *v2 = SaveData_GetSpecialEncounters(PoketchSystem_GetSaveData(poketchSys));
 
         for (v0 = 0; v0 < 6; v0++) {
-            param0->unk_7C[v0] = sub_0202D924(v2, v0);
-            param0->unk_04.unk_3C[v0].unk_00 = sub_0202D93C(param0->unk_7C[v0], 8);
+            param0->unk_7C[v0] = SpecialEncounter_GetRoamer(v2, v0);
+            param0->unk_04.unk_3C[v0].unk_00 = Roamer_GetData(param0->unk_7C[v0], ROAMER_DATA_ACTIVE);
             param0->unk_9A = 0;
         }
     }
@@ -314,7 +314,7 @@ static BOOL ov47_02256584(UnkStruct_ov47_0225621C *param0)
 
             for (v3 = 0; v3 < 6; v3++) {
                 if (param0->unk_04.unk_3C[v3].unk_00 == 0) {
-                    param0->unk_04.unk_3C[v3].unk_00 = sub_0202D93C(param0->unk_7C[v3], 8);
+                    param0->unk_04.unk_3C[v3].unk_00 = Roamer_GetData(param0->unk_7C[v3], ROAMER_DATA_ACTIVE);
 
                     if (param0->unk_04.unk_3C[v3].unk_00) {
                         v0 = 1;
@@ -322,7 +322,7 @@ static BOOL ov47_02256584(UnkStruct_ov47_0225621C *param0)
                 }
 
                 if (param0->unk_04.unk_3C[v3].unk_00) {
-                    param0->unk_04.unk_3C[v3].unk_04 = sub_0202D93C(param0->unk_7C[v3], 1);
+                    param0->unk_04.unk_3C[v3].unk_04 = Roamer_GetData(param0->unk_7C[v3], 1);
                     v0 = 1;
                 }
             }

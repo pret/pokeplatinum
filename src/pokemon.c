@@ -401,7 +401,8 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
     return result;
 }
 
-void sub_02074158(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
+// only used when encountering a roamer
+void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
 {
     Pokemon_InitWith(mon, monSpecies, monLevel, 0, TRUE, monPersonality, OTID_NOT_SET, 0);
     Pokemon_SetValue(mon, MON_DATA_COMBINED_IVS, &monCombinedIVs);

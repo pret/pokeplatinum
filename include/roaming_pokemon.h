@@ -16,7 +16,7 @@
 void sub_0206C33C(SpecialEncounter *param0, const u8 param1);
 void sub_0206C354(SpecialEncounter *param0);
 void sub_0206C37C(SpecialEncounter *param0);
-int sub_0206C3C8(const u8 param0);
+int RoamingPokemon_GetRouteFromId(const u8 param0);
 BOOL sub_0206C3E0(SpecialEncounter *param0);
 void sub_0206C404(SpecialEncounter *param0, const int param1);
 void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 speciesID);

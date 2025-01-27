@@ -473,7 +473,7 @@ pokeplatinum_c = files(
     'overlay006/ov6_02246F00.c',
     'overlay006/ov6_02247078.c',
     'overlay006/ov6_02247100.c',
-    'overlay006/ov6_022475B0.c',
+    'overlay006/trophy_garden_daily_encounters.c',
     'overlay006/ov6_02247660.c',
     'overlay006/dual_slot_encounters.c',
     'overlay006/ov6_02247830.c',

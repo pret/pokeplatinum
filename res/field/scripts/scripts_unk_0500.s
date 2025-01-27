@@ -77,7 +77,7 @@ _0118:
     ScrCmd_2CC 1, 0x8001, 0x800C
     GoToIfEq 0x800C, 0, _0174
     ScrCmd_2CC 2, 0x8001, 0x800C
-    ScrCmd_0DA 0, 0x800C, 0, 0
+    BufferSpeciesNameFromVar 0, 0x800C, 0, 0
     Message 7
     GoTo _017F
     End
