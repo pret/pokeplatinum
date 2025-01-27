@@ -1412,7 +1412,7 @@ static BOOL TryEncounterRoamer(FieldSystem *fieldSystem, Roamer **param1)
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
 
     for (u8 slot = 0; slot < ROAMING_SLOT_MAX; slot++) {
-        int roamerMapId = RoamingPokemon_GetRouteFromId(SpecialEncounter_GetRoamerRouteId(speEnc, slot));
+        int roamerMapId = RoamingPokemon_GetRouteFromId(SpecialEncounter_GetRoamerRouteIndex(speEnc, slot));
 
         if (SpecialEncounter_IsRoamerActive(speEnc, slot) && roamerMapId == fieldSystem->location->mapId) {
             roamers[numRoamersOnMap] = SpecialEncounter_GetRoamer(speEnc, slot);

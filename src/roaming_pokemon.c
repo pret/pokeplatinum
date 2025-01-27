@@ -309,7 +309,7 @@ static void sub_0206C538(SpecialEncounter *param0, const u8 param1, const int pa
     int v1;
     int v2;
 
-    v1 = RoamingPokemonRoutes[SpecialEncounter_GetRoamerRouteId(param0, param1)];
+    v1 = RoamingPokemonRoutes[SpecialEncounter_GetRoamerRouteIndex(param0, param1)];
 
     while (TRUE) {
         v0 = LCRNG_RandMod(29);
@@ -328,7 +328,7 @@ static void sub_0206C588(SpecialEncounter *param0, const u8 param1, const int pa
     u8 v1;
     int v2;
 
-    v0 = &(Unk_020EFBB8[SpecialEncounter_GetRoamerRouteId(param0, param1)]);
+    v0 = &(Unk_020EFBB8[SpecialEncounter_GetRoamerRouteIndex(param0, param1)]);
 
     if (v0->unk_00 == 1) {
         v1 = v0->unk_02[0];

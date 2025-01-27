@@ -13,17 +13,17 @@
 #define DAILY_MARSH 1
 #define DAILY_SWARM 2
 
-#define NUM_TROPHY_GARDEN_SPECIAL_MONS 16 
-#define TROPHY_GARDEN_SLOT_NONE 0xFFFF
+#define NUM_TROPHY_GARDEN_SPECIAL_MONS 16
+#define TROPHY_GARDEN_SLOT_NONE        0xFFFF
 
 // for Roamer_Get/SetData
-#define ROAMER_DATA_IVS 2
+#define ROAMER_DATA_IVS         2
 #define ROAMER_DATA_PERSONALITY 3
-#define ROAMER_DATA_SPECIES 4
-#define ROAMER_DATA_CURRENT_HP 5
-#define ROAMER_DATA_LEVEL 6
-#define ROAMER_DATA_STATUS 7
-#define ROAMER_DATA_ACTIVE 8
+#define ROAMER_DATA_SPECIES     4
+#define ROAMER_DATA_CURRENT_HP  5
+#define ROAMER_DATA_LEVEL       6
+#define ROAMER_DATA_STATUS      7
+#define ROAMER_DATA_ACTIVE      8
 
 int SpecialEncounter_SaveSize(void);
 void SpecialEncounter_Init(SpecialEncounter *param0);
@@ -40,7 +40,7 @@ void SpecialEncounter_EnableSwarms(SaveData *param0);
 u8 SpecialEncounter_IsSwarmEnabled(SpecialEncounter *param0);
 void sub_0202D8A4(SpecialEncounter *param0, const int param1);
 int sub_0202D8BC(SpecialEncounter *param0);
-u8 SpecialEncounter_GetRoamerRouteId(SpecialEncounter *param0, const u8 param1);
+u8 SpecialEncounter_GetRoamerRouteIndex(SpecialEncounter *param0, const u8 param1);
 void sub_0202D8DC(SpecialEncounter *param0, const u8 param1, const u8 param2);
 u8 SpecialEncounter_IsRoamerActive(SpecialEncounter *param0, const u8 param1);
 void sub_0202D914(Roamer **param0);

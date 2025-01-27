@@ -150,16 +150,16 @@ int sub_0202D8BC(SpecialEncounter *param0)
     return param0->unk_C8.unk_04;
 }
 
-u8 SpecialEncounter_GetRoamerRouteId(SpecialEncounter *speEnc, const u8 roamerId)
+u8 SpecialEncounter_GetRoamerRouteIndex(SpecialEncounter *speEnc, const u8 roamerId)
 {
     GF_ASSERT(roamerId < 6);
-    return speEnc->roamerRouteIds[roamerId];
+    return speEnc->roamerRouteIndexes[roamerId];
 }
 
 void sub_0202D8DC(SpecialEncounter *param0, const u8 param1, const u8 param2)
 {
     GF_ASSERT(param1 < 6);
-    param0->roamerRouteIds[param1] = param2;
+    param0->roamerRouteIndexes[param1] = param2;
 }
 
 u8 SpecialEncounter_IsRoamerActive(SpecialEncounter *speEnc, const u8 slot)
@@ -283,7 +283,7 @@ void SpecialEncounter_GetTrophyGardenMons(SaveData *saveData, u16 *slot1, u16 *s
     (*slot2) = speEnc->trophyGarden.slot2;
 }
 
-// Assigns slot1 mon to slot2 and newMon to slot1 
+// Assigns slot1 mon to slot2 and newMon to slot1
 void TrophyGarden_ShiftSlotsForNewMon(SaveData *saveData, const u16 newMon)
 {
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(saveData);

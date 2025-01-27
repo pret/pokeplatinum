@@ -3,10 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/map.h"
+
 #include "overlay006/wild_encounters.h"
 
 #include "map_header_data.h"
-#include "consts/map.h"
 
 static const u32 Swarm_MapIdTable[NUM_SWARMS] = {
     MAP_HEADER_ROUTE_201,

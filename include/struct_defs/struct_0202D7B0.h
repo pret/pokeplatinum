@@ -24,7 +24,7 @@ typedef struct SpecialEncounter {
     UnkStruct_020698E4 unk_BC;
     SpecialEncounter_sub2 unk_C8;
     Roamer roamers[6];
-    u8 roamerRouteIds[6]; // Not a map ID. Actually index into RoamingPokemonRoutes in roaming_pokemon.c
+    u8 roamerRouteIndexes[6]; // Not a map ID. Actually index into RoamingPokemonRoutes in roaming_pokemon.c
     u8 swarmEnabled;
     u8 repelSteps;
     u8 unk_150;

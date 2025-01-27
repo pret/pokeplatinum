@@ -68,7 +68,7 @@ static void ov6_02246110(SpecialEncounter *param0, const int param1)
 
     for (v1 = 0; v1 < 6; v1++) {
         if (SpecialEncounter_IsRoamerActive(param0, v1)) {
-            v0 = RoamingPokemon_GetRouteFromId(SpecialEncounter_GetRoamerRouteId(param0, v1));
+            v0 = RoamingPokemon_GetRouteFromId(SpecialEncounter_GetRoamerRouteIndex(param0, v1));
 
             if (param1 == v0) {
                 sub_0206C33C(param0, v1);
