@@ -24,7 +24,7 @@ int sub_02061544(PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, u32 param1, int param2);
 u32 sub_0206156C(PlayerAvatar *playerAvatar, int param1);
 void sub_0206157C(PlayerAvatar *playerAvatar, int param1, int *param2, int *param3);
-void sub_020615AC(PlayerAvatar *playerAvatar, int *param1, int *param2);
+void PlayerAvatar_GetFacingTile(PlayerAvatar *playerAvatar, int *param1, int *param2);
 void sub_02061674(PlayerAvatar *playerAvatar, int param1, int *param2, int *param3, int *param4);
 u32 sub_020616F0(PlayerAvatar *playerAvatar, int param1);
 u32 sub_02061760(PlayerAvatar *playerAvatar);

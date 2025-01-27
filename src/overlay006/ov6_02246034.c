@@ -43,10 +43,10 @@ void ov6_02246034(FieldSystem *fieldSystem, FieldBattleDTO *param1)
         v1 = (u8)(Pokemon_GetValue(v6, MON_DATA_STATUS_CONDITION, NULL));
 
         if ((param1->resultMask == BATTLE_RESULT_WIN) && (v0 == 0)) {
-            sub_0202D914(&v4);
+            SpecialEncounter_ZeroRoamerData(&v4);
             sub_0206B688(SaveData_GetVarsFlags(fieldSystem->saveData), v2, 2);
         } else if (param1->resultMask == BATTLE_RESULT_CAPTURED_MON) {
-            sub_0202D914(&v4);
+            SpecialEncounter_ZeroRoamerData(&v4);
             sub_0206B688(SaveData_GetVarsFlags(fieldSystem->saveData), v2, 1);
         } else {
             Roamer_SetData(v4, ROAMER_DATA_CURRENT_HP, v0);

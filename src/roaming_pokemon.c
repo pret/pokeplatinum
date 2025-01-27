@@ -361,6 +361,6 @@ static void sub_0206C638(SpecialEncounter *param0, const u8 param1, const u8 par
 
     v0 = SpecialEncounter_GetRoamer(param0, param1);
 
-    sub_0202D8DC(param0, param1, param2);
+    SpecialEncounter_SetRoamerRouteIndex(param0, param1, param2);
     Roamer_SetData(v0, 1, param3);
 }

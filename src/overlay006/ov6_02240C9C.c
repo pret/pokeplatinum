@@ -20,10 +20,10 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay005/ov5_021EFB0C.h"
 #include "overlay006/dual_slot_encounters.h"
+#include "overlay006/feebas_fishing.h"
 #include "overlay006/great_marsh_daily_encounters.h"
 #include "overlay006/ov6_02243218.h"
 #include "overlay006/ov6_02246B74.h"
-#include "overlay006/ov6_02247660.h"
 #include "overlay006/wild_encounters.h"
 
 #include "encounter.h"
@@ -377,7 +377,7 @@ BOOL WildEncounter_TryWildEncounter(FieldSystem *fieldSystem)
 
 BOOL ov6_0224106C(FieldSystem *fieldSystem, const int fishingRodType, FieldBattleDTO **battleParams)
 {
-    EncounterSlot v3[MAX_GRASS_ENCOUNTERS];
+    EncounterSlot encounterTable[MAX_GRASS_ENCOUNTERS];
 
     u8 encounterRate = GetFishingEncounterRate(fieldSystem, fishingRodType);
 
@@ -402,17 +402,17 @@ BOOL ov6_0224106C(FieldSystem *fieldSystem, const int fishingRodType, FieldBattl
     FieldBattleDTO_Init(*battleParams, fieldSystem);
     FieldBattleDTO_SetWaterTerrain(*battleParams);
 
-    if (MapHeader_HasFeebasTiles(fieldSystem->location->mapId) && ov6_02247660(fieldSystem)) {
+    if (MapHeader_HasFeebasTiles(fieldSystem->location->mapId) && IsFacingFeebasTile(fieldSystem)) {
         int species;
         u8 maxLevel, minLevel;
 
-        ov6_02247794(&maxLevel, &minLevel);
-        ov6_022477A0(&species);
+        LoadFeebasLevelRange(&maxLevel, &minLevel);
+        LoadFeebasFromNARC(&species);
 
         for (u8 i = 0; i < MAX_WATER_ENCOUNTERS; i++) {
-            v3[i].species = species;
-            v3[i].maxLevel = maxLevel;
-            v3[i].minLevel = minLevel;
+            encounterTable[i].species = species;
+            encounterTable[i].maxLevel = maxLevel;
+            encounterTable[i].minLevel = minLevel;
         }
     } else {
         WaterEncounter *fishingEncounters;
@@ -431,13 +431,13 @@ BOOL ov6_0224106C(FieldSystem *fieldSystem, const int fishingRodType, FieldBattl
         }
 
         for (u8 i = 0; i < MAX_WATER_ENCOUNTERS; i++) {
-            v3[i].species = fishingEncounters[i].species;
-            v3[i].maxLevel = fishingEncounters[i].maxLevel;
-            v3[i].minLevel = fishingEncounters[i].minLevel;
+            encounterTable[i].species = fishingEncounters[i].species;
+            encounterTable[i].maxLevel = fishingEncounters[i].maxLevel;
+            encounterTable[i].minLevel = fishingEncounters[i].minLevel;
         }
     }
 
-    if (!TryGenerateFishingEncounter(fieldSystem, firstPartyMon, *battleParams, v3, &encounterFieldParams, fishingRodType)) {
+    if (!TryGenerateFishingEncounter(fieldSystem, firstPartyMon, *battleParams, encounterTable, &encounterFieldParams, fishingRodType)) {
         return FALSE;
     }
 

@@ -24,7 +24,7 @@ void SpecialEncounter_Init(SpecialEncounter *param0)
 
     param0->marshDaily = MTRNG_Next();
     param0->swarmDaily = MTRNG_Next();
-    param0->trophyGarden.unk_00 = 0;
+    param0->trophyGarden.unused = 0;
     param0->trophyGarden.slot1 = TROPHY_GARDEN_SLOT_NONE;
     param0->trophyGarden.slot2 = TROPHY_GARDEN_SLOT_NONE;
 
@@ -45,7 +45,7 @@ void SpecialEncounter_Init(SpecialEncounter *param0)
 
     param0->swarmEnabled = 0;
     param0->repelSteps = 0;
-    param0->unk_150 = 0;
+    param0->radarCharge = 0;
     param0->fluteFactor = FLUTE_FACTOR_NONE;
 }
 
@@ -152,14 +152,14 @@ int sub_0202D8BC(SpecialEncounter *param0)
 
 u8 SpecialEncounter_GetRoamerRouteIndex(SpecialEncounter *speEnc, const u8 roamerId)
 {
-    GF_ASSERT(roamerId < 6);
+    GF_ASSERT(roamerId < ROAMING_SLOT_MAX);
     return speEnc->roamerRouteIndexes[roamerId];
 }
 
-void sub_0202D8DC(SpecialEncounter *param0, const u8 param1, const u8 param2)
+void SpecialEncounter_SetRoamerRouteIndex(SpecialEncounter *speEnc, const u8 roamerId, const u8 routeIndex)
 {
-    GF_ASSERT(param1 < 6);
-    param0->roamerRouteIndexes[param1] = param2;
+    GF_ASSERT(roamerId < ROAMING_SLOT_MAX);
+    speEnc->roamerRouteIndexes[roamerId] = routeIndex;
 }
 
 u8 SpecialEncounter_IsRoamerActive(SpecialEncounter *speEnc, const u8 slot)
@@ -168,9 +168,9 @@ u8 SpecialEncounter_IsRoamerActive(SpecialEncounter *speEnc, const u8 slot)
     return speEnc->roamers[slot].active;
 }
 
-void sub_0202D914(Roamer **param0)
+void SpecialEncounter_ZeroRoamerData(Roamer **roamer)
 {
-    memset((*param0), 0, sizeof(Roamer));
+    memset((*roamer), 0, sizeof(Roamer));
 }
 
 Roamer *SpecialEncounter_GetRoamer(SpecialEncounter *speEnc, const u8 slot)
@@ -245,9 +245,9 @@ void Roamer_SetData(Roamer *roamer, const u8 dataType, const u32 data)
     }
 }
 
-u8 *sub_0202D9C4(SpecialEncounter *param0)
+u8 *SpecialEncounter_GetRadarCharge(SpecialEncounter *param0)
 {
-    return &(param0->unk_150);
+    return &(param0->radarCharge);
 }
 
 u8 *SpecialEncounter_GetRepelSteps(SpecialEncounter *param0)

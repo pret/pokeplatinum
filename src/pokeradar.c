@@ -424,7 +424,7 @@ BOOL RefreshRadarChain(FieldTask *taskMan)
     switch (*v1) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        u8 *v2 = sub_0202D9C4(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+        u8 *v2 = SpecialEncounter_GetRadarCharge(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 
         if (*v2 < RADAR_BATTERY_STEPS) {
             ScriptManager_Start(taskMan, 8970, NULL, NULL);
@@ -501,7 +501,7 @@ void RadarChargeStep(FieldSystem *fieldSystem)
     u8 *v0;
 
     if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 431, 1, 4) == 1) {
-        v0 = sub_0202D9C4(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+        v0 = SpecialEncounter_GetRadarCharge(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;
         }

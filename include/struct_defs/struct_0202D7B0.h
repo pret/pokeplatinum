@@ -11,7 +11,7 @@
 #define FLUTE_FACTOR_USED_WHITE 2 // increases encounter rate by 50%
 
 typedef struct TrophyGardenMons {
-    BOOL unk_00;
+    BOOL unused;
     u16 slot1;
     u16 slot2;
 } TrophyGardenMons;
@@ -27,7 +27,7 @@ typedef struct SpecialEncounter {
     u8 roamerRouteIndexes[6]; // Not a map ID. Actually index into RoamingPokemonRoutes in roaming_pokemon.c
     u8 swarmEnabled;
     u8 repelSteps;
-    u8 unk_150;
+    u8 radarCharge;
     u8 fluteFactor;
 } SpecialEncounter;
 

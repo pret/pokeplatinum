@@ -2346,7 +2346,7 @@ void sub_0206157C(PlayerAvatar *playerAvatar, int param1, int *param2, int *para
     *param3 = Player_GetZPos(playerAvatar) + MapObject_GetDzFromDir(param1);
 }
 
-void sub_020615AC(PlayerAvatar *playerAvatar, int *param1, int *param2)
+void PlayerAvatar_GetFacingTile(PlayerAvatar *playerAvatar, int *param1, int *param2)
 {
     int v0 = PlayerAvatar_GetDir(playerAvatar);
     sub_0206157C(playerAvatar, v0, param1, param2);
