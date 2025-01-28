@@ -14,7 +14,8 @@ enum SortOrder {
     SO_HEAVIEST,
     SO_LIGHTEST,
     SO_TALLEST,
-    SO_SMALLEST
+    SO_SMALLEST,
+    MAX_SORT_ORDER
 };
 
 enum FilterName {
@@ -27,7 +28,8 @@ enum FilterName {
     FN_PQR,
     FN_STU,
     FN_VWX,
-    FN_YZ
+    FN_YZ,
+    MAX_FILTER_NAME
 };
 
 enum FilterType {
@@ -48,7 +50,8 @@ enum FilterType {
     FT_PSYCHIC,
     FT_ICE,
     FT_DRAGON,
-    FT_DARK
+    FT_DARK,
+    MAX_FILTER_TYPE
 };
 
 enum FilterForm { // called form in game, but refers to body shape
@@ -66,7 +69,8 @@ enum FilterForm { // called form in game, but refers to body shape
     FF_TENTACLES,
     FF_FINS,
     FF_HEAD,
-    FF_MULTIBODY
+    FF_MULTIBODY,
+    MAX_FILTER_FORM
 };
 
 void PokedexSort_PopulatePokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, enum HeapId heapID);
@@ -88,8 +92,8 @@ void ov21_021D3434(UnkStruct_ov21_021D3320 *param0, u32 param1);
 u32 ov21_021D3440(const UnkStruct_ov21_021D3320 *param0);
 void ov21_021D344C(UnkStruct_ov21_021D3320 *param0, u32 param1);
 u32 ov21_021D3458(const UnkStruct_ov21_021D3320 *param0);
-BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, int sortCategory, int firstLetterFilter, int typeFilter1, int typeFilter2, int bodyShapeFilter, int isNationalDex, enum HeapId heapID, BOOL isFiltered);
-BOOL PokedexSort_SortUnfiltered(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filterName, int filterType1, int filterType2, int filterForm, int isNationalDex, enum HeapId heapID);
+BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, enum SortOrder sortOrder, enum FilterName filterName, enum FilterType typeFilter1, enum FilterType typeFilter2, enum FilterForm filterForm, int isNationalDex, enum HeapId heapID, BOOL isFiltered);
+BOOL PokedexSort_SortUnfiltered(UnkStruct_ov21_021D3320 *param0, enum SortOrder sortOrder, enum FilterName filterName, enum FilterType filterType1, enum FilterType filterType2, enum FilterForm filterForm, int isNationalDex, enum HeapId heapID);
 BOOL ov21_021D36A4(const UnkStruct_ov21_021D3320 *param0, int param1);
 BOOL ov21_021D36C0(UnkStruct_ov21_021D3320 *param0, int param1);
 int PokedexStatus_IsNationalDex(const UnkStruct_ov21_021D3320 *param0);

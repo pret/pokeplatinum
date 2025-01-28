@@ -17,7 +17,6 @@
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D5AEC.h"
 #include "overlay021/ov21_021D76B0.h"
-#include "overlay021/ov21_021D85B0.h"
 #include "overlay021/ov21_021D94BC.h"
 #include "overlay021/ov21_021DC9BC.h"
 #include "overlay021/ov21_021DDD2C.h"
@@ -32,12 +31,12 @@
 #include "overlay021/ov21_021E737C.h"
 #include "overlay021/ov21_021E8484.h"
 #include "overlay021/pokedex_height_check.h"
+#include "overlay021/pokedex_search.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_text.h"
 #include "overlay021/species_caught_status.h"
 #include "overlay021/struct_ov21_021D0D80.h"
 #include "overlay021/struct_ov21_021D13FC.h"
-#include "overlay021/struct_ov21_021D157C.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D3320.h"
@@ -247,7 +246,7 @@ static BOOL ov21_021D0F58(UnkStruct_ov21_021D0F18 *param0)
 
 const static UnkFuncPtr_ov21_021E9B74 Unk_ov21_021E9B74[10] = {
     ov21_021D5AEC,
-    ov21_021D85B0,
+    PokedexSearch_TransitionFunctions,
     ov21_021DE668,
     ov21_021DF734,
     ov21_021E0C68,
@@ -271,7 +270,7 @@ const static UnkFuncPtr_ov21_021E9B74 Unk_ov21_021E9B34[8] = {
 
 const static UnkFuncPtr_ov21_021E9B9C Unk_ov21_021E9B9C[10] = {
     ov21_021D5B50,
-    ov21_021D8610,
+    PokedexSearch_FreeData,
     ov21_021DE6C0,
     ov21_021DF78C,
     ov21_021E0CC0,
@@ -607,47 +606,47 @@ void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int pa
     hitTable->rect.right = param4;
 }
 
-void ov21_021D1558(UnkStruct_ov21_021D157C *param0, BgConfig *param1, int param2, NNSG2dScreenData *param3, int param4, int param5, int param6, int param7, int param8)
+void Pokedex_SetLoadingScreenParams(PokedexLoadingScreen *param0, BgConfig *bgConfig, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration)
 {
-    param0->unk_00 = param1;
-    param0->unk_08 = param2;
-    param0->unk_04 = param3;
-    param0->unk_0C = param4;
-    param0->unk_14 = param5 - param4;
-    param0->unk_10 = param6;
-    param0->unk_18 = param7 - param6;
-    param0->unk_20 = param8;
-    param0->unk_1C = 0;
+    param0->bgConfig = bgConfig;
+    param0->layer = layer;
+    param0->screenData = screenData;
+    param0->topStart = topStart;
+    param0->topDist = topEnd - topStart;
+    param0->bottomStart = bottomStart;
+    param0->bottomDist = bottomEnd - bottomStart;
+    param0->duration = duration;
+    param0->counter = 0;
 }
 
-BOOL ov21_021D157C(UnkStruct_ov21_021D157C *param0)
+BOOL Pokedex_LoadingScreenMove(PokedexLoadingScreen *loadingScreen)
 {
-    int v0;
-    int v1;
+    int topPos;
+    int bottomPos;
 
-    if (param0->unk_1C <= param0->unk_20) {
-        Bg_FillTilemapRect(param0->unk_00, param0->unk_08, 0, 0, 0, 32, 24, 16);
+    if (loadingScreen->counter <= loadingScreen->duration) {
+        Bg_FillTilemapRect(loadingScreen->bgConfig, loadingScreen->layer, 0, 0, 0, 32, 24, 16);
 
-        v0 = (param0->unk_14 * param0->unk_1C) / param0->unk_20;
-        v1 = (param0->unk_18 * param0->unk_1C) / param0->unk_20;
-        v0 += param0->unk_0C;
-        v1 += param0->unk_10;
+        topPos = (loadingScreen->topDist * loadingScreen->counter) / loadingScreen->duration;
+        bottomPos = (loadingScreen->bottomDist * loadingScreen->counter) / loadingScreen->duration;
+        topPos += loadingScreen->topStart;
+        bottomPos += loadingScreen->bottomStart;
 
-        if (v0 > 0) {
-            Bg_CopyToTilemapRect(param0->unk_00, param0->unk_08, 0, 0, 32, v0, param0->unk_04->rawData, 0, 32 - v0, 32, 32);
+        if (topPos > 0) {
+            Bg_CopyToTilemapRect(loadingScreen->bgConfig, loadingScreen->layer, 0, 0, 32, topPos, loadingScreen->screenData->rawData, 0, 32 - topPos, 32, 32);
         }
 
-        if ((32 - v1) > 0) {
-            Bg_CopyToTilemapRect(param0->unk_00, param0->unk_08, 0, 32 - v1, 32, v1, param0->unk_04->rawData, 0, 0, 32, 32);
+        if ((32 - bottomPos) > 0) {
+            Bg_CopyToTilemapRect(loadingScreen->bgConfig, loadingScreen->layer, 0, 32 - bottomPos, 32, bottomPos, loadingScreen->screenData->rawData, 0, 0, 32, 32);
         }
 
-        Bg_ScheduleTilemapTransfer(param0->unk_00, param0->unk_08);
-        param0->unk_1C++;
+        Bg_ScheduleTilemapTransfer(loadingScreen->bgConfig, loadingScreen->layer);
+        loadingScreen->counter++;
 
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 void ov21_021D1650(Window *param0, int param1, int param2, int param3)

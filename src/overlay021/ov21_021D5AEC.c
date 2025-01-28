@@ -14,7 +14,6 @@
 #include "overlay021/species_caught_status.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
-#include "overlay021/struct_ov21_021D157C.h"
 #include "overlay021/struct_ov21_021D2648.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
@@ -71,7 +70,7 @@ typedef struct {
     CellActorResourceData unk_B4;
     void *unk_D8;
     NNSG2dScreenData *unk_DC;
-    UnkStruct_ov21_021D157C unk_E0;
+    PokedexLoadingScreen loadingScreen;
     UnkStruct_ov21_021D2648 unk_104;
     UnkStruct_ov21_021D2648 unk_124;
     int unk_144;
@@ -1420,31 +1419,27 @@ static void ov21_021D6FB4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D5C
         }
     }
 
-    ov21_021D1558(&param0->unk_E0, param1->unk_00->unk_00, 2, param0->unk_DC, v0, v1, v2, v3, v4);
+    Pokedex_SetLoadingScreenParams(&param0->loadingScreen, param1->unk_00->unk_00, 2, param0->unk_DC, v0, v1, v2, v3, v4);
 }
 
 static BOOL ov21_021D7044(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D5C08 *param1)
 {
-    BOOL v0;
-    int v1;
+    BOOL moveComplete = Pokedex_LoadingScreenMove(&param0->loadingScreen);
 
-    v0 = ov21_021D157C(&param0->unk_E0);
+    if (moveComplete == FALSE) {
+        int bottomPos = (param0->loadingScreen.bottomDist * (param0->loadingScreen.counter - 1)) / param0->loadingScreen.duration;
+        bottomPos += param0->loadingScreen.bottomStart;
+        bottomPos *= 8;
+        bottomPos = bottomPos - (14 * 8);
 
-    if (v0 == 0) {
-        v1 = (param0->unk_E0.unk_18 * (param0->unk_E0.unk_1C - 1)) / param0->unk_E0.unk_20;
-        v1 += param0->unk_E0.unk_10;
-        v1 = v1;
-        v1 *= 8;
-        v1 = v1 - (14 * 8);
-
-        if (v1 < -48) {
-            v1 = -48;
+        if (bottomPos < -48) {
+            bottomPos = -48;
         }
 
-        Bg_ScheduleScroll(param1->unk_00->unk_00, 1, 3, v1);
+        Bg_ScheduleScroll(param1->unk_00->unk_00, 1, 3, bottomPos);
     }
 
-    return v0;
+    return moveComplete;
 }
 
 static void ov21_021D7094(UnkStruct_ov21_021D5C08 *param0, const UnkStruct_ov21_021D5B68 *param1, BOOL param2)

@@ -263,7 +263,7 @@ u32 ov21_021D3458(const UnkStruct_ov21_021D3320 *param0)
     return param0->unk_175E;
 }
 
-BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filterName, int filterType1, int filterType2, int filterForm, int isNationalDex, enum HeapId heapID, BOOL isFiltered)
+BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, enum SortOrder sortOrder, enum FilterName filterName, enum FilterType filterType1, enum FilterType filterType2, enum FilterForm filterForm, int isNationalDex, enum HeapId heapID, BOOL isFiltered)
 {
     u16 *encounteredPokedex;
     int caughtStatusLength;
@@ -379,7 +379,7 @@ BOOL PokedexSort_Sort(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filter
     return dexExists;
 }
 
-BOOL PokedexSort_SortUnfiltered(UnkStruct_ov21_021D3320 *param0, int sortOrder, int filterName, int filterType1, int filterType2, int filterForm, int isNationalDex, enum HeapId heapID)
+BOOL PokedexSort_SortUnfiltered(UnkStruct_ov21_021D3320 *param0, enum SortOrder sortOrder, enum FilterName filterName, enum FilterType filterType1, enum FilterType filterType2, enum FilterForm filterForm, int isNationalDex, enum HeapId heapID)
 {
     return PokedexSort_Sort(param0, sortOrder, filterName, filterType1, filterType2, filterForm, isNationalDex, heapID, FALSE);
 }
