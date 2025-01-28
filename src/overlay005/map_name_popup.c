@@ -11,12 +11,12 @@
 #include "graphics.h"
 #include "heap.h"
 #include "map_header.h"
+#include "map_header_util.h"
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02071CFC.h"
 
 enum MapNamePopUpState {
     MAP_NAME_POPUP_STATE_END,

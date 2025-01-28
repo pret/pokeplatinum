@@ -17,6 +17,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
+#include "map_header_util.h"
 #include "message.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -28,7 +29,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02039C80.h"
-#include "unk_02071CFC.h"
 
 void sub_02071D10(const int param0, const u32 param1, Strbuf *param2);
 

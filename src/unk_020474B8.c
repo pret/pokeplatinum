@@ -14,6 +14,7 @@
 #include "field_system.h"
 #include "inlines.h"
 #include "item.h"
+#include "map_header_util.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
@@ -27,7 +28,6 @@
 #include "unk_0205C980.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
-#include "unk_02071CFC.h"
 #include "unk_020797C8.h"
 #include "vars_flags.h"
 
