@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 110
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_FLYING" ],
     "catch_rate": 90,
     "base_exp_reward": 134,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_EARLY_BIRD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_EARLY_BIRD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 1, "MOVE_COMET_PUNCH" ],
+            [ 6, "MOVE_SUPERSONIC" ],
+            [ 9, "MOVE_COMET_PUNCH" ],
+            [ 14, "MOVE_LIGHT_SCREEN" ],
+            [ 14, "MOVE_REFLECT" ],
+            [ 14, "MOVE_SAFEGUARD" ],
+            [ 17, "MOVE_MACH_PUNCH" ],
+            [ 24, "MOVE_BATON_PASS" ],
+            [ 29, "MOVE_SILVER_WIND" ],
+            [ 36, "MOVE_AGILITY" ],
+            [ 41, "MOVE_SWIFT" ],
+            [ 48, "MOVE_DOUBLE_EDGE" ],
+            [ 53, "MOVE_BUG_BUZZ" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -85,28 +91,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_SUPERSONIC",
-                "MOVE_COMET_PUNCH"
-            ],
-            "6": "MOVE_SUPERSONIC",
-            "9": "MOVE_COMET_PUNCH",
-            "14": [
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_REFLECT",
-                "MOVE_SAFEGUARD"
-            ],
-            "17": "MOVE_MACH_PUNCH",
-            "24": "MOVE_BATON_PASS",
-            "29": "MOVE_SILVER_WIND",
-            "36": "MOVE_AGILITY",
-            "41": "MOVE_SWIFT",
-            "48": "MOVE_DOUBLE_EDGE",
-            "53": "MOVE_BUG_BUZZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
             "MOVE_ICE_PUNCH",
@@ -118,9 +103,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 14,
@@ -136,5 +122,12 @@
         "pokemon_pos_m": 65529,
         "entry_text": "It uses starlight as energy. When\nmore stars appear at night, the\npatterns on its back grow larger.",
         "category": "Five Star Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4356
     }
 }

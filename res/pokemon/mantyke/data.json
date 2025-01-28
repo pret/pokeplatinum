@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 120
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_FLYING" ],
     "catch_rate": 25,
     "base_exp_reward": 108,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_WATER_ABSORB"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_WATER_ABSORB" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 4, "MOVE_SUPERSONIC" ],
+            [ 10, "MOVE_BUBBLE_BEAM" ],
+            [ 13, "MOVE_HEADBUTT" ],
+            [ 19, "MOVE_AGILITY" ],
+            [ 22, "MOVE_WING_ATTACK" ],
+            [ 28, "MOVE_WATER_PULSE" ],
+            [ 31, "MOVE_TAKE_DOWN" ],
+            [ 37, "MOVE_CONFUSE_RAY" ],
+            [ 40, "MOVE_BOUNCE" ],
+            [ 46, "MOVE_AQUA_RING" ],
+            [ 49, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -71,24 +75,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_BUBBLE"
-            ],
-            "4": "MOVE_SUPERSONIC",
-            "10": "MOVE_BUBBLE_BEAM",
-            "13": "MOVE_HEADBUTT",
-            "19": "MOVE_AGILITY",
-            "22": "MOVE_WING_ATTACK",
-            "28": "MOVE_WATER_PULSE",
-            "31": "MOVE_TAKE_DOWN",
-            "37": "MOVE_CONFUSE_RAY",
-            "40": "MOVE_BOUNCE",
-            "46": "MOVE_AQUA_RING",
-            "49": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -101,14 +88,14 @@
     },
     "evolutions": [
         [
-            "EVO_MON_IN_PARTY",
+            "EVO_LEVEL_SPECIES_IN_PARTY",
             "SPECIES_REMORAID",
             "SPECIES_MANTINE"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 10,
@@ -124,5 +111,12 @@
         "pokemon_pos_m": 65529,
         "entry_text": "People organize tours to see this\nPokémon frolic and skim the tops\nof waves with REMORAID.",
         "category": "Kite Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 3593
     }
 }

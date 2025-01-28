@@ -4,7 +4,7 @@ import json
 import pathlib
 import subprocess
 
-from consts.species import PokemonSpecies
+from generated.species import Species
 
 
 argparser = argparse.ArgumentParser(
@@ -40,7 +40,7 @@ pokedex = [0 for i in range(NUM_SINNOH)]
 with open(args.pokedex) as data_file:
     dex_data = json.load(data_file)
     for i, mon in enumerate(dex_data):
-        pokedex[i] = PokemonSpecies[mon].value
+        pokedex[i] = Species[mon].value
 
 target_fname = private_dir / 'shinzukan_0.bin'
 with open(target_fname, 'wb+') as target_file:

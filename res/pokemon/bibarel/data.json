@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_WATER" ],
     "catch_rate": 127,
     "base_exp_reward": 116,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SIMPLE",
-        "ABILITY_UNAWARE"
-    ],
-    "great_marsh_flee_rate": 60,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SIMPLE", "ABILITY_UNAWARE" ],
+    "safari_flee_rate": 60,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_GROWL" ],
+            [ 9, "MOVE_DEFENSE_CURL" ],
+            [ 13, "MOVE_ROLLOUT" ],
+            [ 15, "MOVE_WATER_GUN" ],
+            [ 18, "MOVE_HEADBUTT" ],
+            [ 23, "MOVE_HYPER_FANG" ],
+            [ 28, "MOVE_YAWN" ],
+            [ 33, "MOVE_AMNESIA" ],
+            [ 38, "MOVE_TAKE_DOWN" ],
+            [ 43, "MOVE_SUPER_FANG" ],
+            [ 48, "MOVE_SUPERPOWER" ],
+            [ 53, "MOVE_CURSE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -90,25 +95,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_GROWL",
-            "9": "MOVE_DEFENSE_CURL",
-            "13": "MOVE_ROLLOUT",
-            "15": "MOVE_WATER_GUN",
-            "18": "MOVE_HEADBUTT",
-            "23": "MOVE_HYPER_FANG",
-            "28": "MOVE_YAWN",
-            "33": "MOVE_AMNESIA",
-            "38": "MOVE_TAKE_DOWN",
-            "43": "MOVE_SUPER_FANG",
-            "48": "MOVE_SUPERPOWER",
-            "53": "MOVE_CURSE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -121,9 +108,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -139,5 +127,12 @@
         "pokemon_pos_m": 15,
         "entry_text": "A river dammed by BIBAREL will\nnever overflow its banks, which\nis appreciated by people nearby.",
         "category": "Beaver Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 773
     }
 }

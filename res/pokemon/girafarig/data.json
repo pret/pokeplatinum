@@ -8,10 +8,7 @@
         "special_attack": 90,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_PSYCHIC" ],
     "catch_rate": 60,
     "base_exp_reward": 149,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_INNER_FOCUS",
-        "ABILITY_EARLY_BIRD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_INNER_FOCUS", "ABILITY_EARLY_BIRD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POWER_SWAP" ],
+            [ 1, "MOVE_GUARD_SWAP" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 5, "MOVE_ODOR_SLEUTH" ],
+            [ 10, "MOVE_STOMP" ],
+            [ 14, "MOVE_AGILITY" ],
+            [ 19, "MOVE_PSYBEAM" ],
+            [ 23, "MOVE_BATON_PASS" ],
+            [ 28, "MOVE_ASSURANCE" ],
+            [ 32, "MOVE_DOUBLE_HIT" ],
+            [ 37, "MOVE_PSYCHIC" ],
+            [ 41, "MOVE_ZEN_HEADBUTT" ],
+            [ 46, "MOVE_CRUNCH" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -87,27 +94,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POWER_SWAP",
-                "MOVE_GUARD_SWAP",
-                "MOVE_ASTONISH",
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_CONFUSION"
-            ],
-            "5": "MOVE_ODOR_SLEUTH",
-            "10": "MOVE_STOMP",
-            "14": "MOVE_AGILITY",
-            "19": "MOVE_PSYBEAM",
-            "23": "MOVE_BATON_PASS",
-            "28": "MOVE_ASSURANCE",
-            "32": "MOVE_DOUBLE_HIT",
-            "37": "MOVE_PSYCHIC",
-            "41": "MOVE_ZEN_HEADBUTT",
-            "46": "MOVE_CRUNCH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
@@ -118,9 +105,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 15,
@@ -136,5 +124,12 @@
         "pokemon_pos_m": 4,
         "entry_text": "The head on its tail contains a\nsmall brain. It can instinctively\nfight even while facing backward.",
         "category": "Long Neck Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2565
     }
 }

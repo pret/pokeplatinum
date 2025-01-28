@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 255,
     "base_exp_reward": 85,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_OWN_TEMPO",
-        "ABILITY_TANGLED_FEET"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_OWN_TEMPO", "ABILITY_TANGLED_FEET" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 5, "MOVE_UPROAR" ],
+            [ 10, "MOVE_COPYCAT" ],
+            [ 14, "MOVE_FAINT_ATTACK" ],
+            [ 19, "MOVE_PSYBEAM" ],
+            [ 23, "MOVE_HYPNOSIS" ],
+            [ 28, "MOVE_DIZZY_PUNCH" ],
+            [ 32, "MOVE_SUCKER_PUNCH" ],
+            [ 37, "MOVE_TEETER_DANCE" ],
+            [ 41, "MOVE_PSYCH_UP" ],
+            [ 46, "MOVE_DOUBLE_EDGE" ],
+            [ 50, "MOVE_FLAIL" ],
+            [ 55, "MOVE_THRASH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -87,22 +91,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "5": "MOVE_UPROAR",
-            "10": "MOVE_COPYCAT",
-            "14": "MOVE_FAINT_ATTACK",
-            "19": "MOVE_PSYBEAM",
-            "23": "MOVE_HYPNOSIS",
-            "28": "MOVE_DIZZY_PUNCH",
-            "32": "MOVE_SUCKER_PUNCH",
-            "37": "MOVE_TEETER_DANCE",
-            "41": "MOVE_PSYCH_UP",
-            "46": "MOVE_DOUBLE_EDGE",
-            "50": "MOVE_FLAIL",
-            "55": "MOVE_THRASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -118,9 +107,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -136,5 +126,12 @@
         "pokemon_pos_m": 16,
         "entry_text": "No two SPINDA have the same\npattern of spots. Its tottering\nstep fouls the aim of foes.",
         "category": "Spot Panda Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1285
     }
 }

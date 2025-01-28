@@ -820,10 +820,10 @@ static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem)
         }
 
         if (MapObject_IsMoving(mapObj) == TRUE) {
-            sub_02062DDC(mapObj);
+            MapObject_SetPauseMovementOff(mapObj);
             anyMoving = TRUE;
         } else {
-            sub_02062DD0(mapObj);
+            MapObject_SetPauseMovementOn(mapObj);
         }
     }
 

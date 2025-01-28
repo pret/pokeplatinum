@@ -191,57 +191,26 @@ BOOL MapHeaderData_SetBgEventPos(FieldSystem *fieldSystem, u16 index, u16 x, u16
     return TRUE;
 }
 
+#define CONSUME_EVENTS(T, dataTEvents, dataNumTEvents) \
+    do {                                               \
+        (dataNumTEvents) = *(u32 *)events;             \
+        events += sizeof(u32);                         \
+        if ((dataNumTEvents) != 0) {                   \
+            (dataTEvents) = (const T *)events;         \
+        } else {                                       \
+            (dataTEvents) = NULL;                      \
+        }                                              \
+        events += sizeof(T) * (dataNumTEvents);        \
+    } while (0)
+
 static void MapHeaderData_ParseEvents(MapHeaderData *data)
 {
     const u8 *events = (const u8 *)data->tmpEventsBuf;
 
-    // bgEvents
-    {
-        data->numBgEvents = *(u32 *)events;
-        events += sizeof(u32);
-        if (data->numBgEvents != 0) {
-            data->bgEvents = (const BgEvent *)events;
-        } else {
-            data->bgEvents = NULL;
-        }
-        events += sizeof(BgEvent) * data->numBgEvents;
-    }
-
-    // objectEvents
-    {
-        data->numObjectEvents = *(u32 *)events;
-        events += sizeof(u32);
-        if (data->numObjectEvents != 0) {
-            data->objectEvents = (const ObjectEvent *)events;
-        } else {
-            data->objectEvents = NULL;
-        }
-        events += sizeof(ObjectEvent) * data->numObjectEvents;
-    }
-
-    // warpEvents
-    {
-        data->numWarpEvents = *(u32 *)events;
-        events += sizeof(u32);
-        if (data->numWarpEvents != 0) {
-            data->warpEvents = (const WarpEvent *)events;
-        } else {
-            data->warpEvents = NULL;
-        }
-        events += sizeof(WarpEvent) * data->numWarpEvents;
-    }
-
-    // coordEvents
-    {
-        data->numCoordEvents = *(u32 *)events;
-        events += sizeof(u32);
-        if (data->numCoordEvents != 0) {
-            data->coordEvents = (const CoordEvent *)events;
-        } else {
-            data->coordEvents = NULL;
-        }
-        events += sizeof(CoordEvent) * data->numCoordEvents;
-    }
+    CONSUME_EVENTS(BgEvent, data->bgEvents, data->numBgEvents);
+    CONSUME_EVENTS(ObjectEvent, data->objectEvents, data->numObjectEvents);
+    CONSUME_EVENTS(WarpEvent, data->warpEvents, data->numWarpEvents);
+    CONSUME_EVENTS(CoordEvent, data->coordEvents, data->numCoordEvents);
 }
 
 void MapHeaderData_LoadWildEncounters(WildEncounters *data, int headerID)

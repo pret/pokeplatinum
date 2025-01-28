@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 235,
     "base_exp_reward": 59,
     "ev_yields": {
@@ -30,21 +27,26 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_STATIC",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_STATIC", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 5, "MOVE_GROWL" ],
+            [ 10, "MOVE_THUNDER_SHOCK" ],
+            [ 14, "MOVE_THUNDER_WAVE" ],
+            [ 19, "MOVE_COTTON_SPORE" ],
+            [ 23, "MOVE_CHARGE" ],
+            [ 28, "MOVE_DISCHARGE" ],
+            [ 32, "MOVE_SIGNAL_BEAM" ],
+            [ 37, "MOVE_LIGHT_SCREEN" ],
+            [ 41, "MOVE_POWER_GEM" ],
+            [ 46, "MOVE_THUNDER" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM16",
@@ -71,20 +73,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "5": "MOVE_GROWL",
-            "10": "MOVE_THUNDER_SHOCK",
-            "14": "MOVE_THUNDER_WAVE",
-            "19": "MOVE_COTTON_SPORE",
-            "23": "MOVE_CHARGE",
-            "28": "MOVE_DISCHARGE",
-            "32": "MOVE_SIGNAL_BEAM",
-            "37": "MOVE_LIGHT_SCREEN",
-            "41": "MOVE_POWER_GEM",
-            "46": "MOVE_THUNDER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
             "MOVE_MAGNET_RISE",
@@ -93,14 +82,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             15,
             "SPECIES_FLAAFFY"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 6,
@@ -116,5 +105,12 @@
         "pokemon_pos_m": 19,
         "entry_text": "Its fluffy coat swells to double\nwhen static electricity builds up.\nTouching it can be shocking.",
         "category": "Wool Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1799
     }
 }

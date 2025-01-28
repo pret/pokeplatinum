@@ -1575,7 +1575,7 @@ static void ov9_02249F84(UnkStruct_ov9_02249B04 *param0)
 
 static void ov9_02249F88(UnkStruct_ov9_02249B04 *param0)
 {
-    sub_02062CCC(param0->fieldSystem->mapObjMan, 0);
+    MapObjectMan_SetEndMovement(param0->fieldSystem->mapObjMan, 0);
 }
 
 static void ov9_02249F98(UnkStruct_ov9_02249B04 *param0)
@@ -7191,7 +7191,7 @@ static BOOL ov9_0224EF64(UnkStruct_ov9_02249B04 *param0, MapObject **param1, con
     if (v0 == NULL) {
         UnkStruct_020216E0 *v1;
 
-        MapObject_SetPosDir(*param1, param2->unk_08.x, (((param2->unk_08.y) >> 3) / FX32_ONE), param2->unk_08.z, param2->unk_08.dir);
+        MapObject_SetPosDirFromCoords(*param1, param2->unk_08.x, (((param2->unk_08.y) >> 3) / FX32_ONE), param2->unk_08.z, param2->unk_08.dir);
 
         v1 = ov5_021EB1A0(*param1);
 
@@ -7380,7 +7380,7 @@ BOOL ov9_0224F240(const MapObject *param0, int param1)
     v0 = MapObject_GetX(param0);
     v1 = MapObject_GetZ(param0);
     v0 += MapObject_GetDxFromDir(param1);
-    v1 += MapObject_GetDyFromDir(param1);
+    v1 += MapObject_GetDzFromDir(param1);
 
     return ov9_0224F1F8(v3, v0, v1, &v2);
 }
@@ -7455,7 +7455,7 @@ static BOOL ov9_0224F324(UnkStruct_ov9_0224F6EC *param0)
 
     Sound_PlayEffect(1571);
     v1.y = ((115 << 4) * FX32_ONE);
-    sub_020632D4(v2, &v1, MapObject_GetFacingDir(v2));
+    MapObject_SetPosDirFromVec(v2, &v1, MapObject_GetFacingDir(v2));
     sub_02062914(v2, 580);
 
     {
@@ -7556,7 +7556,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
 
                 v8 += MapObject_GetDxFromDir(v7);
                 v9 -= (2 * 2);
-                v10 += MapObject_GetDyFromDir(v7);
+                v10 += MapObject_GetDzFromDir(v7);
 
                 MapObject_SetX(v6, v8);
                 MapObject_SetY(v6, v9);

@@ -9,11 +9,10 @@
 #include "constants/trainer.h"
 #include "consts/sdat.h"
 
-#include "struct_decls/struct_party_decl.h"
-
 #include "overlay005/encounter_effect.h"
 
 #include "field_battle_data_transfer.h"
+#include "party.h"
 #include "pokemon.h"
 #include "unk_02054884.h"
 
@@ -127,7 +126,7 @@ static u32 EncEffects_GetEffectPair(const FieldBattleDTO *dto)
     u32 battleType = dto->battleType;
 
     if (battleType & BATTLE_TYPE_TRAINER) {
-        u32 trainerEffect = EncEffects_TrainerClassEffect(dto->trainerData[1].class);
+        u32 trainerEffect = EncEffects_TrainerClassEffect(dto->trainer[1].class);
 
         if (battleType & BATTLE_TYPE_FRONTIER) {
             if (trainerEffect == ENCEFF_FRONTIER_BRAIN) {

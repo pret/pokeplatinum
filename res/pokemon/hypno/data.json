@@ -8,10 +8,7 @@
         "special_attack": 73,
         "special_defense": 115
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 75,
     "base_exp_reward": 165,
     "ev_yields": {
@@ -30,21 +27,34 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_INSOMNIA",
-        "ABILITY_FOREWARN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_INSOMNIA", "ABILITY_FOREWARN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_NIGHTMARE" ],
+            [ 1, "MOVE_SWITCHEROO" ],
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_HYPNOSIS" ],
+            [ 1, "MOVE_DISABLE" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 7, "MOVE_DISABLE" ],
+            [ 9, "MOVE_CONFUSION" ],
+            [ 15, "MOVE_HEADBUTT" ],
+            [ 18, "MOVE_POISON_GAS" ],
+            [ 21, "MOVE_MEDITATE" ],
+            [ 28, "MOVE_PSYBEAM" ],
+            [ 33, "MOVE_PSYCH_UP" ],
+            [ 38, "MOVE_HEADBUTT" ],
+            [ 45, "MOVE_SWAGGER" ],
+            [ 50, "MOVE_PSYCHIC" ],
+            [ 55, "MOVE_NASTY_PLOT" ],
+            [ 64, "MOVE_ZEN_HEADBUTT" ],
+            [ 69, "MOVE_FUTURE_SIGHT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -89,30 +99,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_NIGHTMARE",
-                "MOVE_SWITCHEROO",
-                "MOVE_POUND",
-                "MOVE_HYPNOSIS",
-                "MOVE_DISABLE",
-                "MOVE_CONFUSION"
-            ],
-            "7": "MOVE_DISABLE",
-            "9": "MOVE_CONFUSION",
-            "15": "MOVE_HEADBUTT",
-            "18": "MOVE_POISON_GAS",
-            "21": "MOVE_MEDITATE",
-            "28": "MOVE_PSYBEAM",
-            "33": "MOVE_PSYCH_UP",
-            "38": "MOVE_HEADBUTT",
-            "45": "MOVE_SWAGGER",
-            "50": "MOVE_PSYCHIC",
-            "55": "MOVE_NASTY_PLOT",
-            "64": "MOVE_ZEN_HEADBUTT",
-            "69": "MOVE_FUTURE_SIGHT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
@@ -121,9 +108,10 @@
             "MOVE_TRICK"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 16,
@@ -139,5 +127,12 @@
         "pokemon_pos_m": 4,
         "entry_text": "Seeing its swinging pendulum can\ninduce sleep in three seconds,\neven in someone who just woke up.",
         "category": "Hypnosis Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2570
     }
 }

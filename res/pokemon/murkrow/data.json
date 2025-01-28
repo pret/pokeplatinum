@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 42
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_FLYING" ],
     "catch_rate": 30,
     "base_exp_reward": 107,
     "ev_yields": {
@@ -30,21 +27,26 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_INSOMNIA",
-        "ABILITY_SUPER_LUCK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_INSOMNIA", "ABILITY_SUPER_LUCK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 5, "MOVE_PURSUIT" ],
+            [ 11, "MOVE_HAZE" ],
+            [ 15, "MOVE_WING_ATTACK" ],
+            [ 21, "MOVE_NIGHT_SHADE" ],
+            [ 25, "MOVE_ASSURANCE" ],
+            [ 31, "MOVE_TAUNT" ],
+            [ 35, "MOVE_FAINT_ATTACK" ],
+            [ 41, "MOVE_MEAN_LOOK" ],
+            [ 45, "MOVE_SUCKER_PUNCH" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -83,22 +85,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PECK",
-                "MOVE_ASTONISH"
-            ],
-            "5": "MOVE_PURSUIT",
-            "11": "MOVE_HAZE",
-            "15": "MOVE_WING_ATTACK",
-            "21": "MOVE_NIGHT_SHADE",
-            "25": "MOVE_ASSURANCE",
-            "31": "MOVE_TAUNT",
-            "35": "MOVE_FAINT_ATTACK",
-            "41": "MOVE_MEAN_LOOK",
-            "45": "MOVE_SUCKER_PUNCH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_OMINOUS_WIND",
@@ -119,8 +106,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -136,5 +123,12 @@
         "pokemon_pos_m": 23,
         "entry_text": "If spotted, it will lure an unwary\nperson into chasing it, then lose\nthe pursuer on mountain trails.",
         "category": "Darkness Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4368
     }
 }

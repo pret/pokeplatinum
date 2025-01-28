@@ -3,7 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/map.h"
+#include "consts/pokemon.h"
+
 #include "data/map_headers.h"
+#include "global/pm_version.h"
 
 u32 MapHeader_IDBoundsCheck(u32 headerID)
 {
@@ -34,10 +38,8 @@ const u16 MapHeader_GetMapMatrixID(u32 headerID)
     headerID = MapHeader_IDBoundsCheck(headerID);
     mapMatrixID = sMapHeaders[headerID].mapMatrixID;
 
-    if (mapMatrixID == 22) {
-        if (gGameVersion == 11) {
-            mapMatrixID = 23;
-        }
+    if (mapMatrixID == 22 && gGameVersion == PEARL) {
+        mapMatrixID = 23;
     }
 
     return mapMatrixID;
@@ -147,7 +149,7 @@ u32 MapHeader_GetMapType(u32 headerID)
 
 BOOL MapHeader_IsTeleportAllowed(u32 headerID)
 {
-    if (MapHeader_IsFlyAllowed(headerID) == 0) {
+    if (MapHeader_IsFlyAllowed(headerID) == FALSE) {
         return FALSE;
     }
 
@@ -190,27 +192,27 @@ BOOL sub_0203A2C8(u32 headerID)
 
 BOOL MapHeader_IsUnionRoom(const u32 headerID)
 {
-    return headerID == 466;
+    return headerID == MAP_HEADER_UNION_ROOM;
 }
 
 BOOL MapHeader_HasFeebasTiles(const u32 headerID)
 {
-    return headerID == 219;
+    return headerID == MAP_HEADER_MT_CORONET_B1F;
 }
 
 BOOL MapHeader_IsTrophyGarden(const u32 headerID)
 {
-    return headerID == 287;
+    return headerID == MAP_HEADER_TROPHY_GARDEN;
 }
 
 BOOL MapHeader_IsAmitySquare(const u32 headerID)
 {
-    return headerID == 253;
+    return headerID == MAP_HEADER_AMITY_SQUARE;
 }
 
 BOOL MapHeader_IsAzureFluteAllowed(const u32 headerID)
 {
-    if ((headerID == 220) || (headerID == 584) || (headerID == 585)) {
+    if (headerID == MAP_HEADER_SPEAR_PILLAR || headerID == MAP_HEADER_SPEAR_PILLAR_DIALGA || headerID == MAP_HEADER_SPEAR_PILLAR_PALKIA) {
         return TRUE;
     }
 
@@ -219,90 +221,89 @@ BOOL MapHeader_IsAzureFluteAllowed(const u32 headerID)
 
 BOOL MapHeader_IsPokemonCenter2F(const u32 headerID)
 {
-    static const u16 v0[] = {
-        0x1A5,
-        0x1AD,
-        0x1B4,
-        0x1BC,
-        0x1C5,
-        0x1CC,
-        0x7,
-        0x25,
-        0x31,
-        0x1EF,
-        0x46,
-        0x66,
-        0x7C,
-        0x87,
-        0x98,
-        0xA9,
-        0xAE,
-        0xBE
+    static const u16 pokecenters2F[] = {
+        MAP_HEADER_SANDGEM_TOWN_POKECENTER_2F,
+        MAP_HEADER_FLOAROMA_TOWN_POKECENTER_2F,
+        MAP_HEADER_SOLACEON_TOWN_POKECENTER_2F,
+        MAP_HEADER_CELESTIC_TOWN_POKECENTER_2F,
+        MAP_HEADER_SURVIVAL_AREA_POKECENTER_2F,
+        MAP_HEADER_RESORT_AREA_POKECENTER_2F,
+        MAP_HEADER_JUBILIFE_CITY_POKECENTER_2F,
+        MAP_HEADER_CANALAVE_CITY_POKECENTER_2F,
+        MAP_HEADER_OREBURGH_CITY_POKECENTER_2F,
+        MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_2F,
+        MAP_HEADER_ETERNA_CITY_POKECENTER_2F,
+        MAP_HEADER_HEARTHOME_CITY_POKECENTER_2F,
+        MAP_HEADER_PASTORIA_CITY_POKECENTER_2F,
+        MAP_HEADER_VEILSTONE_CITY_POKECENTER_2F,
+        MAP_HEADER_SUNYSHORE_CITY_POKECENTER_2F,
+        MAP_HEADER_SNOWPOINT_CITY_POKECENTER_2F,
+        MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_2F,
+        MAP_HEADER_FIGHT_AREA_POKECENTER_2F
     };
     int i;
 
-    for (i = 0; i < NELEMS(v0); i++) {
-        if (headerID == v0[i]) {
-            return 1;
+    for (i = 0; i < NELEMS(pokecenters2F); i++) {
+        if (headerID == pokecenters2F[i]) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-u32 MapHeader_GetMapEvolutionMethod(u32 headerID)
+enum EvolutionMethod MapHeader_GetMapEvolutionMethod(u32 headerID)
 {
-    static const u16 v0[] = {
-        0x181,
-        0x1A,
-        0xCB,
-        0x19,
-        0xCF,
-        0x18,
-        0xD0,
-        0x18,
-        0xD1,
-        0x18,
-        0xD2,
-        0x18,
-        0xD3,
-        0x18,
-        0xD4,
-        0x18,
-        0xD5,
-        0x18,
-        0xD6,
-        0x18,
-        0xD7,
-        0x18,
-        0xD8,
-        0x18,
-        0xD9,
-        0x18,
-        0xDA,
-        0x18,
-        0xDB,
-        0x18,
-        0xDC,
-        0x18,
-        0xDD,
-        0x18,
-        0x1FE,
-        0x18,
-        0x1FF,
-        0x18,
-        0x248,
-        0x18,
-        0x249,
-        0x18
+    static const u16 mapEvolutionMethods[] = {
+        MAP_HEADER_ROUTE_217,
+        EVO_LEVEL_ICE_ROCK,
+        MAP_HEADER_ETERNA_FOREST,
+        EVO_LEVEL_MOSS_ROCK,
+        MAP_HEADER_MT_CORONET_1F_SOUTH,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_2F,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_3F,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_OUTSIDE_NORTH,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_4F_ROOM_3,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_5F,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_6F,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_MT_CORONET_B1F,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_SPEAR_PILLAR,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_SPEAR_PILLAR_DISTORTED,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_HALL_OF_ORIGIN,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_UNKNOWN_511,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_SPEAR_PILLAR_DIALGA,
+        EVO_LEVEL_MAGNETIC_FIELD,
+        MAP_HEADER_SPEAR_PILLAR_PALKIA,
+        EVO_LEVEL_MAGNETIC_FIELD
     };
-    int i;
 
-    for (i = 0; i < NELEMS(v0); i += 2) {
-        if (v0[i] == headerID) {
-            return v0[i + 1];
+    for (int i = 0; i < NELEMS(mapEvolutionMethods); i += 2) {
+        if (mapEvolutionMethods[i] == headerID) {
+            return mapEvolutionMethods[i + 1];
         }
     }
 
-    return 0;
+    return EVO_NONE;
 }

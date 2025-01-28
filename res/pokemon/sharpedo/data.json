@@ -8,10 +8,7 @@
         "special_attack": 95,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_DARK" ],
     "catch_rate": 60,
     "base_exp_reward": 175,
     "ev_yields": {
@@ -30,21 +27,34 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_ROUGH_SKIN",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_ROUGH_SKIN", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FEINT" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_RAGE" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 6, "MOVE_RAGE" ],
+            [ 8, "MOVE_FOCUS_ENERGY" ],
+            [ 11, "MOVE_SCARY_FACE" ],
+            [ 16, "MOVE_ICE_FANG" ],
+            [ 18, "MOVE_SCREECH" ],
+            [ 21, "MOVE_SWAGGER" ],
+            [ 26, "MOVE_ASSURANCE" ],
+            [ 28, "MOVE_CRUNCH" ],
+            [ 30, "MOVE_SLASH" ],
+            [ 34, "MOVE_AQUA_JET" ],
+            [ 40, "MOVE_TAUNT" ],
+            [ 45, "MOVE_AGILITY" ],
+            [ 50, "MOVE_SKULL_BASH" ],
+            [ 56, "MOVE_NIGHT_SLASH" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -84,30 +94,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FEINT",
-                "MOVE_LEER",
-                "MOVE_BITE",
-                "MOVE_RAGE",
-                "MOVE_FOCUS_ENERGY"
-            ],
-            "6": "MOVE_RAGE",
-            "8": "MOVE_FOCUS_ENERGY",
-            "11": "MOVE_SCARY_FACE",
-            "16": "MOVE_ICE_FANG",
-            "18": "MOVE_SCREECH",
-            "21": "MOVE_SWAGGER",
-            "26": "MOVE_ASSURANCE",
-            "28": "MOVE_CRUNCH",
-            "30": "MOVE_SLASH",
-            "34": "MOVE_AQUA_JET",
-            "40": "MOVE_TAUNT",
-            "45": "MOVE_AGILITY",
-            "50": "MOVE_SKULL_BASH",
-            "56": "MOVE_NIGHT_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -121,9 +108,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 18,
@@ -137,7 +125,14 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 65535,
-        "entry_text": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n\u201cThe Bully of the Sea.\u201d",
+        "entry_text": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n“The Bully of the Sea.”",
         "category": "Brutal Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4099
     }
 }

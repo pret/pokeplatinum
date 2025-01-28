@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 199,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 30,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_BATTLE_ARMOR"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_BATTLE_ARMOR" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FEINT" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_LEER" ],
+            [ 6, "MOVE_ABSORB" ],
+            [ 11, "MOVE_LEER" ],
+            [ 16, "MOVE_MUD_SHOT" ],
+            [ 21, "MOVE_SAND_ATTACK" ],
+            [ 26, "MOVE_ENDURE" ],
+            [ 31, "MOVE_AQUA_JET" ],
+            [ 36, "MOVE_MEGA_DRAIN" ],
+            [ 40, "MOVE_SLASH" ],
+            [ 45, "MOVE_METAL_SOUND" ],
+            [ 54, "MOVE_ANCIENT_POWER" ],
+            [ 63, "MOVE_WRING_OUT" ],
+            [ 72, "MOVE_NIGHT_SLASH" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -88,28 +96,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FEINT",
-                "MOVE_SCRATCH",
-                "MOVE_HARDEN",
-                "MOVE_ABSORB",
-                "MOVE_LEER"
-            ],
-            "6": "MOVE_ABSORB",
-            "11": "MOVE_LEER",
-            "16": "MOVE_MUD_SHOT",
-            "21": "MOVE_SAND_ATTACK",
-            "26": "MOVE_ENDURE",
-            "31": "MOVE_AQUA_JET",
-            "36": "MOVE_MEGA_DRAIN",
-            "40": "MOVE_SLASH",
-            "45": "MOVE_METAL_SOUND",
-            "54": "MOVE_ANCIENT_POWER",
-            "63": "MOVE_WRING_OUT",
-            "72": "MOVE_NIGHT_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -124,9 +111,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -142,5 +130,12 @@
         "pokemon_pos_m": 9,
         "entry_text": "It is thought that this Pokémon\ncame onto land because its\nprey adapted to life on land.",
         "category": "Shellfish Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 779
     }
 }

@@ -11,7 +11,6 @@
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -99,8 +98,9 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "player_avatar.h"
+#include "pokedex.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "record_mixed_rng.h"
 #include "rtc.h"
 #include "save_player.h"
@@ -111,7 +111,6 @@
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02017498.h"
-#include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
@@ -979,7 +978,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_0C = SaveData_SaveTable(fieldSystem->saveData, 9);
     param0->unk_14 = sub_0202C878(fieldSystem->saveData);
     param0->unk_18 = SaveData_Options(fieldSystem->saveData);
-    param0->unk_24 = SaveData_Pokedex(fieldSystem->saveData);
+    param0->unk_24 = SaveData_GetPokedex(fieldSystem->saveData);
     param0->unk_30 = sub_0207A274(fieldSystem->saveData);
     param0->unk_10 = fieldSystem->saveData;
     param0->unk_1C = fieldSystem->journalEntry;
@@ -1073,9 +1072,9 @@ BOOL sub_0203DBF0(FieldTask *param0)
         int v4;
         int v5;
 
-        if ((v4 = sub_02076B94(NULL, v2->unk_04.unk_40, 1, v3, &v5)) != 0) {
+        if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, v2->unk_04.unk_40, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
             Heap_Create(3, 26, 0x30000);
-            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v5, 0x4, 26);
+            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_Options(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecordsPtr(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v5, 0x4, 26);
             v2->unk_00 = 6;
         } else {
             v2->unk_00 = 7;
@@ -1366,7 +1365,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, 2);
     v0->unk_0C = SaveData_PCBoxes(fieldSystem->saveData);
-    v0->unk_10 = SaveData_Pokedex(fieldSystem->saveData);
+    v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
     v0->unk_14 = sub_0202B370(fieldSystem->saveData);
     v0->unk_18 = sub_0202C878(fieldSystem->saveData);
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);

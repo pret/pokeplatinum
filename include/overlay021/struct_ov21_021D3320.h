@@ -9,13 +9,13 @@
 #include "strbuf.h"
 
 typedef struct {
-    const PokedexData *dexData;
+    const Pokedex *pokedex;
     SortedPokedex sortedPokedex;
     int isNationalDex;
     BOOL isNationalDexUnlocked;
     int numEncountered;
     int numCaught;
-    int unk_1740;
+    BOOL unk_1740;
     int timeOfDay;
     HeightWeightData *HWData;
     u32 trainerGameCode;

@@ -8,10 +8,7 @@
         "special_attack": 50,
         "special_defense": 52
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_WATER" ],
     "catch_rate": 200,
     "base_exp_reward": 63,
     "ev_yields": {
@@ -30,21 +27,24 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BUBBLE" ],
+            [ 7, "MOVE_QUICK_ATTACK" ],
+            [ 13, "MOVE_SWEET_SCENT" ],
+            [ 19, "MOVE_WATER_SPORT" ],
+            [ 25, "MOVE_BUBBLE_BEAM" ],
+            [ 31, "MOVE_AGILITY" ],
+            [ 37, "MOVE_MIST" ],
+            [ 37, "MOVE_HAZE" ],
+            [ 43, "MOVE_BATON_PASS" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -73,20 +73,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": "MOVE_BUBBLE",
-            "7": "MOVE_QUICK_ATTACK",
-            "13": "MOVE_SWEET_SCENT",
-            "19": "MOVE_WATER_SPORT",
-            "25": "MOVE_BUBBLE_BEAM",
-            "31": "MOVE_AGILITY",
-            "37": [
-                "MOVE_MIST",
-                "MOVE_HAZE"
-            ],
-            "43": "MOVE_BATON_PASS"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -96,14 +83,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             22,
             "SPECIES_MASQUERAIN"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 5,
@@ -119,5 +106,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "It appears as if it is skating on\nwater. It draws prey with a sweet\nscent from the tip of its head.",
         "category": "Pond Skater Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 772
     }
 }

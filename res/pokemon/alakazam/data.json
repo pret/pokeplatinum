@@ -8,10 +8,7 @@
         "special_attack": 135,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 50,
     "base_exp_reward": 186,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_INNER_FOCUS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_INNER_FOCUS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TELEPORT" ],
+            [ 1, "MOVE_KINESIS" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 16, "MOVE_CONFUSION" ],
+            [ 18, "MOVE_DISABLE" ],
+            [ 22, "MOVE_MIRACLE_EYE" ],
+            [ 24, "MOVE_PSYBEAM" ],
+            [ 28, "MOVE_REFLECT" ],
+            [ 30, "MOVE_RECOVER" ],
+            [ 34, "MOVE_PSYCHO_CUT" ],
+            [ 36, "MOVE_CALM_MIND" ],
+            [ 40, "MOVE_PSYCHIC" ],
+            [ 42, "MOVE_FUTURE_SIGHT" ],
+            [ 46, "MOVE_TRICK" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -93,25 +98,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TELEPORT",
-                "MOVE_KINESIS",
-                "MOVE_CONFUSION"
-            ],
-            "16": "MOVE_CONFUSION",
-            "18": "MOVE_DISABLE",
-            "22": "MOVE_MIRACLE_EYE",
-            "24": "MOVE_PSYBEAM",
-            "28": "MOVE_REFLECT",
-            "30": "MOVE_RECOVER",
-            "34": "MOVE_PSYCHO_CUT",
-            "36": "MOVE_CALM_MIND",
-            "40": "MOVE_PSYCHIC",
-            "42": "MOVE_FUTURE_SIGHT",
-            "46": "MOVE_TRICK"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
@@ -122,9 +109,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -140,5 +128,12 @@
         "pokemon_pos_m": 7,
         "entry_text": "The spoons clutched in its hands\nare said to have been created by\nits psychic powers.",
         "category": "Psi Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2570
     }
 }

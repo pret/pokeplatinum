@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 20
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 170,
     "base_exp_reward": 39,
     "ev_yields": {
@@ -30,21 +27,21 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_CUTE_CHARM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SING" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 5, "MOVE_DEFENSE_CURL" ],
+            [ 9, "MOVE_POUND" ],
+            [ 13, "MOVE_SWEET_KISS" ],
+            [ 17, "MOVE_COPYCAT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -82,17 +79,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SING",
-                "MOVE_CHARM"
-            ],
-            "5": "MOVE_DEFENSE_CURL",
-            "9": "MOVE_POUND",
-            "13": "MOVE_SWEET_KISS",
-            "17": "MOVE_COPYCAT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -105,14 +92,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_HAPPINESS",
-            "SPECIES_JIGGLYPUFF"
-        ]
+        [ "EVO_LEVEL_HAPPINESS", "SPECIES_JIGGLYPUFF" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 3,
@@ -128,5 +112,12 @@
         "pokemon_pos_m": 29,
         "entry_text": "It has a soft and bouncy body.\nOnce it starts bouncing, it\nbecomes impossible to stop.",
         "category": "Balloon Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1285
     }
 }

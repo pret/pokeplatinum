@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 255,
     "base_exp_reward": 57,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_RUN_AWAY",
-        "ABILITY_KEEN_EYE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_KEEN_EYE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_FORESIGHT" ],
+            [ 4, "MOVE_DEFENSE_CURL" ],
+            [ 7, "MOVE_QUICK_ATTACK" ],
+            [ 13, "MOVE_FURY_SWIPES" ],
+            [ 16, "MOVE_HELPING_HAND" ],
+            [ 19, "MOVE_FOLLOW_ME" ],
+            [ 25, "MOVE_SLAM" ],
+            [ 28, "MOVE_REST" ],
+            [ 31, "MOVE_SUCKER_PUNCH" ],
+            [ 36, "MOVE_AMNESIA" ],
+            [ 39, "MOVE_BATON_PASS" ],
+            [ 42, "MOVE_ME_FIRST" ],
+            [ 47, "MOVE_HYPER_VOICE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -83,25 +88,7 @@
             "HM01",
             "HM03"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_FORESIGHT"
-            ],
-            "4": "MOVE_DEFENSE_CURL",
-            "7": "MOVE_QUICK_ATTACK",
-            "13": "MOVE_FURY_SWIPES",
-            "16": "MOVE_HELPING_HAND",
-            "19": "MOVE_FOLLOW_ME",
-            "25": "MOVE_SLAM",
-            "28": "MOVE_REST",
-            "31": "MOVE_SUCKER_PUNCH",
-            "36": "MOVE_AMNESIA",
-            "39": "MOVE_BATON_PASS",
-            "42": "MOVE_ME_FIRST",
-            "47": "MOVE_HYPER_VOICE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -120,14 +107,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             15,
             "SPECIES_FURRET"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 8,
@@ -143,5 +130,12 @@
         "pokemon_pos_m": 18,
         "entry_text": "It has a very nervous nature.\nIt stands up high on its tail so it\ncan scan wide areas.",
         "category": "Scout Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1285
     }
 }

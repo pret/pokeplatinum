@@ -14,7 +14,6 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_decls/struct_0207E060_decl.h"
-#include "struct_decls/struct_party_decl.h"
 
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_0223177C.h"
@@ -51,6 +50,7 @@
 #include "math.h"
 #include "message.h"
 #include "party.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -60,7 +60,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02014D38.h"
-#include "unk_0202631C.h"
 #include "unk_0202C858.h"
 #include "unk_02030EA4.h"
 #include "unk_0207E060.h"
@@ -2305,13 +2304,13 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *param1, u32
     TrainerInfo *v0;
     Party *v1;
     UnkStruct_0202C878 *v2;
-    PokedexData *v3;
+    Pokedex *v3;
     GameTime *v4;
 
     {
         v0 = SaveData_GetTrainerInfo(param1);
         v1 = Party_GetFromSavedata(param1);
-        v3 = SaveData_Pokedex(param1);
+        v3 = SaveData_GetPokedex(param1);
         v2 = sub_0202C878(param1);
         v4 = SaveData_GetGameTime(param1);
     }

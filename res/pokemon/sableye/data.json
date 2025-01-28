@@ -8,10 +8,7 @@
         "special_attack": 65,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_GHOST"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_GHOST" ],
     "catch_rate": 45,
     "base_exp_reward": 98,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 25,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_STALL"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_STALL" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 4, "MOVE_FORESIGHT" ],
+            [ 8, "MOVE_NIGHT_SHADE" ],
+            [ 11, "MOVE_ASTONISH" ],
+            [ 15, "MOVE_FURY_SWIPES" ],
+            [ 18, "MOVE_FAKE_OUT" ],
+            [ 22, "MOVE_DETECT" ],
+            [ 25, "MOVE_SHADOW_SNEAK" ],
+            [ 29, "MOVE_KNOCK_OFF" ],
+            [ 32, "MOVE_FAINT_ATTACK" ],
+            [ 36, "MOVE_PUNISHMENT" ],
+            [ 39, "MOVE_SHADOW_CLAW" ],
+            [ 43, "MOVE_POWER_GEM" ],
+            [ 46, "MOVE_CONFUSE_RAY" ],
+            [ 50, "MOVE_ZEN_HEADBUTT" ],
+            [ 53, "MOVE_SHADOW_BALL" ],
+            [ 57, "MOVE_MEAN_LOOK" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -90,29 +99,7 @@
             "HM01",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LEER",
-                "MOVE_SCRATCH"
-            ],
-            "4": "MOVE_FORESIGHT",
-            "8": "MOVE_NIGHT_SHADE",
-            "11": "MOVE_ASTONISH",
-            "15": "MOVE_FURY_SWIPES",
-            "18": "MOVE_FAKE_OUT",
-            "22": "MOVE_DETECT",
-            "25": "MOVE_SHADOW_SNEAK",
-            "29": "MOVE_KNOCK_OFF",
-            "32": "MOVE_FAINT_ATTACK",
-            "36": "MOVE_PUNISHMENT",
-            "39": "MOVE_SHADOW_CLAW",
-            "43": "MOVE_POWER_GEM",
-            "46": "MOVE_CONFUSE_RAY",
-            "50": "MOVE_ZEN_HEADBUTT",
-            "53": "MOVE_SHADOW_BALL",
-            "57": "MOVE_MEAN_LOOK"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -129,9 +116,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -147,5 +135,12 @@
         "pokemon_pos_m": 25,
         "entry_text": "It hides in the darkness of caves.\nIts diet of gems has transformed\nits eyes into gemstones.",
         "category": "Darkness Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 3088
     }
 }

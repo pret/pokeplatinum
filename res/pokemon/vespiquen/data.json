@@ -8,10 +8,7 @@
         "special_attack": 80,
         "special_defense": 102
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 188,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SWEET_SCENT" ],
+            [ 1, "MOVE_GUST" ],
+            [ 3, "MOVE_POISON_STING" ],
+            [ 7, "MOVE_CONFUSE_RAY" ],
+            [ 9, "MOVE_FURY_CUTTER" ],
+            [ 13, "MOVE_DEFEND_ORDER" ],
+            [ 15, "MOVE_PURSUIT" ],
+            [ 19, "MOVE_FURY_SWIPES" ],
+            [ 21, "MOVE_POWER_GEM" ],
+            [ 25, "MOVE_HEAL_ORDER" ],
+            [ 27, "MOVE_TOXIC" ],
+            [ 31, "MOVE_SLASH" ],
+            [ 33, "MOVE_CAPTIVATE" ],
+            [ 37, "MOVE_ATTACK_ORDER" ],
+            [ 39, "MOVE_SWAGGER" ],
+            [ 43, "MOVE_DESTINY_BOND" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -77,27 +84,7 @@
             "HM01",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SWEET_SCENT",
-                "MOVE_GUST"
-            ],
-            "3": "MOVE_POISON_STING",
-            "7": "MOVE_CONFUSE_RAY",
-            "9": "MOVE_FURY_CUTTER",
-            "13": "MOVE_DEFEND_ORDER",
-            "15": "MOVE_PURSUIT",
-            "19": "MOVE_FURY_SWIPES",
-            "21": "MOVE_POWER_GEM",
-            "25": "MOVE_HEAL_ORDER",
-            "27": "MOVE_TOXIC",
-            "31": "MOVE_SLASH",
-            "33": "MOVE_CAPTIVATE",
-            "37": "MOVE_ATTACK_ORDER",
-            "39": "MOVE_SWAGGER",
-            "43": "MOVE_DESTINY_BOND"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_OMINOUS_WIND",
@@ -108,9 +95,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -126,5 +114,12 @@
         "pokemon_pos_m": 65532,
         "entry_text": "It releases various pheromones\nto make the grubs in its body do\nits bidding while fighting foes.",
         "category": "Beehive Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4356
     }
 }

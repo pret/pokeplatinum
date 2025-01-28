@@ -49,7 +49,7 @@ typedef struct CoreSys {
     u16 touchHeld;
     u8 unk_64;
     u8 unk_65;
-    u8 unk_66;
+    u8 gbaCartridgeVersion;
     u8 inhibitSleep;
     u8 inhibitReset;
     u8 padding_69[3];

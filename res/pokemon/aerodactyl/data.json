@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 202,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 35,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_ROCK_HEAD",
-        "ABILITY_PRESSURE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_PRESSURE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_WING_ATTACK" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_SCARY_FACE" ],
+            [ 9, "MOVE_ROAR" ],
+            [ 17, "MOVE_AGILITY" ],
+            [ 25, "MOVE_ANCIENT_POWER" ],
+            [ 33, "MOVE_CRUNCH" ],
+            [ 41, "MOVE_TAKE_DOWN" ],
+            [ 49, "MOVE_IRON_HEAD" ],
+            [ 57, "MOVE_HYPER_BEAM" ],
+            [ 65, "MOVE_ROCK_SLIDE" ],
+            [ 73, "MOVE_GIGA_IMPACT" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM05",
             "TM06",
@@ -90,27 +97,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ICE_FANG",
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG",
-                "MOVE_WING_ATTACK",
-                "MOVE_SUPERSONIC",
-                "MOVE_BITE",
-                "MOVE_SCARY_FACE"
-            ],
-            "9": "MOVE_ROAR",
-            "17": "MOVE_AGILITY",
-            "25": "MOVE_ANCIENT_POWER",
-            "33": "MOVE_CRUNCH",
-            "41": "MOVE_TAKE_DOWN",
-            "49": "MOVE_IRON_HEAD",
-            "57": "MOVE_HYPER_BEAM",
-            "65": "MOVE_ROCK_SLIDE",
-            "73": "MOVE_GIGA_IMPACT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_IRON_HEAD",
             "MOVE_AQUA_TAIL",
             "MOVE_OMINOUS_WIND",
@@ -123,9 +110,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 18,
@@ -141,5 +129,12 @@
         "pokemon_pos_m": 4,
         "entry_text": "A Pokémon that roamed the skies\nin the dinosaur era. Its teeth are\nlike saw blades.",
         "category": "Fossil Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4363
     }
 }

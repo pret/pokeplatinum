@@ -4,11 +4,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/items.h"
-#include "consts/species.h"
+#include "generated/items.h"
+#include "generated/species.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_022414B8.h"

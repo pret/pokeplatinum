@@ -26,6 +26,7 @@
 #include "message_util.h"
 #include "overlay_manager.h"
 #include "play_time.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -41,7 +42,6 @@
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_02024358.h"
-#include "unk_0202631C.h"
 #include "unk_0202DAB4.h"
 #include "unk_020366A0.h"
 #include "unk_0209A74C.h"
@@ -82,7 +82,7 @@ typedef struct {
 typedef struct {
     BgConfig *unk_00;
     SaveData *unk_04;
-    PokedexData *unk_08;
+    Pokedex *unk_08;
     TrainerInfo *unk_0C;
     PlayTime *playTime;
     MysteryGift *unk_14;
@@ -235,7 +235,7 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
         break;
     }
 
-    sub_02017B70(v0);
+    SetGBACartridgeVersion(v0);
 
     if (Pokedex_IsNationalDexObtained(param0->unk_08) == FALSE) {
         return;
@@ -987,7 +987,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
     v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_04);
-    v0->unk_08 = SaveData_Pokedex(v0->unk_04);
+    v0->unk_08 = SaveData_GetPokedex(v0->unk_04);
     v0->playTime = SaveData_GetPlayTime(v0->unk_04);
     v0->unk_4C = Pokedex_IsObtained(v0->unk_08);
     v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);

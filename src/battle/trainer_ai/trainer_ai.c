@@ -6,10 +6,9 @@
 #include "constants/battle.h"
 #include "constants/items.h"
 #include "constants/species.h"
-#include "consts/abilities.h"
+#include "generated/abilities.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/battle_system.h"
 
 #include "battle/ai_context.h"
@@ -1294,8 +1293,8 @@ static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *bat
                 AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].ability;
             } else {
                 // Try to guess the opponent's ability (flip a coin)
-                int ability1 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_1);
-                int ability2 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_2);
+                int ability1 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_1);
+                int ability2 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_2);
 
                 if (ability1 && ability2) {
                     if (BattleSystem_RandNext(battleSys) & 1) {
@@ -1339,8 +1338,8 @@ static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *ba
                 tmpAbility = battleCtx->battleMons[battler].ability;
             } else {
                 // Try to guess the opponent's ability (flip a coin)
-                int ability1 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_1);
-                int ability2 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_2);
+                int ability1 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_1);
+                int ability2 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_2);
 
                 if (ability1 && ability2) {
                     // If the opponent has two abilities, but neither are the expected one,
@@ -3478,11 +3477,11 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
 
     // "Player" consts here refer to the AI's perspective.
     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
-        defender1 = BATTLER_PLAYER_SLOT_1;
-        defender2 = BATTLER_PLAYER_SLOT_2;
+        defender1 = BATTLER_PLAYER_1;
+        defender2 = BATTLER_PLAYER_2;
     } else {
-        defender1 = BATTLER_PLAYER_SLOT_1;
-        defender2 = BATTLER_PLAYER_SLOT_1;
+        defender1 = BATTLER_PLAYER_1;
+        defender2 = BATTLER_PLAYER_1;
     }
 
     // Check all of this mon's attacking moves for immunities. If any of our moves can deal damage to

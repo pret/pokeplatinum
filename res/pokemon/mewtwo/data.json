@@ -8,10 +8,7 @@
         "special_attack": 154,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 3,
     "base_exp_reward": 220,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_CONFUSION" ],
+            [ 1, "MOVE_DISABLE" ],
+            [ 8, "MOVE_BARRIER" ],
+            [ 15, "MOVE_SWIFT" ],
+            [ 22, "MOVE_FUTURE_SIGHT" ],
+            [ 29, "MOVE_PSYCH_UP" ],
+            [ 36, "MOVE_MIRACLE_EYE" ],
+            [ 43, "MOVE_MIST" ],
+            [ 50, "MOVE_PSYCHO_CUT" ],
+            [ 57, "MOVE_AMNESIA" ],
+            [ 64, "MOVE_POWER_SWAP" ],
+            [ 64, "MOVE_GUARD_SWAP" ],
+            [ 71, "MOVE_PSYCHIC" ],
+            [ 79, "MOVE_ME_FIRST" ],
+            [ 86, "MOVE_RECOVER" ],
+            [ 93, "MOVE_SAFEGUARD" ],
+            [ 100, "MOVE_AURA_SPHERE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -113,30 +121,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_CONFUSION",
-                "MOVE_DISABLE"
-            ],
-            "8": "MOVE_BARRIER",
-            "15": "MOVE_SWIFT",
-            "22": "MOVE_FUTURE_SIGHT",
-            "29": "MOVE_PSYCH_UP",
-            "36": "MOVE_MIRACLE_EYE",
-            "43": "MOVE_MIST",
-            "50": "MOVE_PSYCHO_CUT",
-            "57": "MOVE_AMNESIA",
-            "64": [
-                "MOVE_POWER_SWAP",
-                "MOVE_GUARD_SWAP"
-            ],
-            "71": "MOVE_PSYCHIC",
-            "79": "MOVE_ME_FIRST",
-            "86": "MOVE_RECOVER",
-            "93": "MOVE_SAFEGUARD",
-            "100": "MOVE_AURA_SPHERE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
@@ -150,9 +135,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 20,
@@ -168,5 +154,12 @@
         "pokemon_pos_m": 6,
         "entry_text": "A Pokémon created by recombining\nMEW’s genes. It’s said to have the\nmost savage heart among Pokémon.",
         "category": "Genetic Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2570
     }
 }

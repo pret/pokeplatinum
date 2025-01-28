@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_PSYCHIC" ],
     "catch_rate": 3,
     "base_exp_reward": 103,
     "ev_yields": {
@@ -30,25 +27,17 @@
     "hatch_cycles": 40,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_CLEAR_BODY",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_CLEAR_BODY", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": "MOVE_TAKE_DOWN"
-        },
-        "tutor": [
+        "by_level": [
+            [ 1, "MOVE_TAKE_DOWN" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [
             "MOVE_IRON_HEAD",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_IRON_DEFENSE"
@@ -56,14 +45,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             20,
             "SPECIES_METANG"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 6,
@@ -79,5 +68,12 @@
         "pokemon_pos_m": 65529,
         "entry_text": "It converses with others by using\nmagnetic pulses. In a swarm, they\nmove in perfect unison.",
         "category": "Iron Ball Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2574
     }
 }

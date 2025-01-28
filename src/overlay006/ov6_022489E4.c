@@ -264,12 +264,12 @@ BOOL ov6_02248CE8(UnkStruct_02095C48 *param0, int param1, const Strbuf *param2)
     int v0, v1;
     u8 *v2;
     BOOL v3;
-    u16 v4[8];
+    u16 v4[8]; // Possibly TRAINER_NAME_LEN + 1
 
     v0 = 8 * sizeof(u16);
     v1 = 4;
 
-    Strbuf_ToChars(param2, v4, 8);
+    Strbuf_ToChars(param2, v4, 8); // Possibly TRAINER_NAME_LEN + 1
 
     v2 = Heap_AllocFromHeap(20, v0 + v1);
     MI_CpuCopy8(v4, &v2[v1], v0);

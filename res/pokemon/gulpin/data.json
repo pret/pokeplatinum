@@ -8,10 +8,7 @@
         "special_attack": 43,
         "special_defense": 53
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 225,
     "base_exp_reward": 75,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LIQUID_OOZE",
-        "ABILITY_STICKY_HOLD"
-    ],
-    "great_marsh_flee_rate": 120,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LIQUID_OOZE", "ABILITY_STICKY_HOLD" ],
+    "safari_flee_rate": 120,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 6, "MOVE_YAWN" ],
+            [ 9, "MOVE_POISON_GAS" ],
+            [ 14, "MOVE_SLUDGE" ],
+            [ 17, "MOVE_AMNESIA" ],
+            [ 23, "MOVE_ENCORE" ],
+            [ 28, "MOVE_TOXIC" ],
+            [ 34, "MOVE_STOCKPILE" ],
+            [ 34, "MOVE_SPIT_UP" ],
+            [ 34, "MOVE_SWALLOW" ],
+            [ 39, "MOVE_SLUDGE_BOMB" ],
+            [ 44, "MOVE_GASTRO_ACID" ],
+            [ 49, "MOVE_WRING_OUT" ],
+            [ 54, "MOVE_GUNK_SHOT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM09",
@@ -77,25 +82,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_POUND",
-            "6": "MOVE_YAWN",
-            "9": "MOVE_POISON_GAS",
-            "14": "MOVE_SLUDGE",
-            "17": "MOVE_AMNESIA",
-            "23": "MOVE_ENCORE",
-            "28": "MOVE_TOXIC",
-            "34": [
-                "MOVE_STOCKPILE",
-                "MOVE_SPIT_UP",
-                "MOVE_SWALLOW"
-            ],
-            "39": "MOVE_SLUDGE_BOMB",
-            "44": "MOVE_GASTRO_ACID",
-            "49": "MOVE_WRING_OUT",
-            "54": "MOVE_GUNK_SHOT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -109,14 +96,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             26,
             "SPECIES_SWALOT"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 4,
@@ -132,5 +119,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "Almost all its body is its stomach.\nIts harsh digestive juices quickly\ndissolve anything it swallows.",
         "category": "Stomach Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1542
     }
 }

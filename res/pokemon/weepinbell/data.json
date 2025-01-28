@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_POISON" ],
     "catch_rate": 120,
     "base_exp_reward": 151,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_GRASS",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_CHLOROPHYLL",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_VINE_WHIP" ],
+            [ 1, "MOVE_GROWTH" ],
+            [ 1, "MOVE_WRAP" ],
+            [ 7, "MOVE_GROWTH" ],
+            [ 11, "MOVE_WRAP" ],
+            [ 13, "MOVE_SLEEP_POWDER" ],
+            [ 15, "MOVE_POISON_POWDER" ],
+            [ 17, "MOVE_STUN_SPORE" ],
+            [ 23, "MOVE_ACID" ],
+            [ 27, "MOVE_KNOCK_OFF" ],
+            [ 29, "MOVE_SWEET_SCENT" ],
+            [ 35, "MOVE_GASTRO_ACID" ],
+            [ 39, "MOVE_RAZOR_LEAF" ],
+            [ 41, "MOVE_SLAM" ],
+            [ 47, "MOVE_WRING_OUT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -73,26 +79,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_VINE_WHIP",
-                "MOVE_GROWTH",
-                "MOVE_WRAP"
-            ],
-            "7": "MOVE_GROWTH",
-            "11": "MOVE_WRAP",
-            "13": "MOVE_SLEEP_POWDER",
-            "15": "MOVE_POISON_POWDER",
-            "17": "MOVE_STUN_SPORE",
-            "23": "MOVE_ACID",
-            "27": "MOVE_KNOCK_OFF",
-            "29": "MOVE_SWEET_SCENT",
-            "35": "MOVE_GASTRO_ACID",
-            "39": "MOVE_RAZOR_LEAF",
-            "41": "MOVE_SLAM",
-            "47": "MOVE_WRING_OUT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_GASTRO_ACID",
             "MOVE_SNORE",
             "MOVE_SYNTHESIS",
@@ -109,8 +96,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 10,
@@ -126,5 +113,12 @@
         "pokemon_pos_m": 16,
         "entry_text": "A Pokémon that appears to be a\nplant. It captures unwary prey by\ndousing them with a toxic powder.",
         "category": "Flycatcher Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1537
     }
 }

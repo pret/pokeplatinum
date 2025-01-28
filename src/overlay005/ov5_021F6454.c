@@ -4,15 +4,14 @@
 #include <string.h>
 
 #include "consts/game_records.h"
-#include "consts/items.h"
-#include "consts/species.h"
+#include "generated/items.h"
+#include "generated/species.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_party_decl.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EB1A0.h"
@@ -34,6 +33,7 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "savedata_misc.h"
@@ -47,7 +47,6 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02020AEC.h"
-#include "unk_0202631C.h"
 #include "unk_0202C858.h"
 #include "unk_02030880.h"
 #include "unk_02038F8C.h"
@@ -676,7 +675,7 @@ BOOL ScrCmd_304(ScriptContext *param0)
     v4 = Party_GetPokemonBySlotIndex(v5, v7);
 
     Pokemon_SetRotomForm(v4, v10, v8);
-    sub_0202736C(SaveData_Pokedex(fieldSystem->saveData), v4);
+    Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), v4);
 
     return 0;
 }

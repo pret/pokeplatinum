@@ -8,10 +8,7 @@
         "special_attack": 90,
         "special_defense": 154
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_FLYING" ],
     "catch_rate": 3,
     "base_exp_reward": 220,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WHIRLWIND" ],
+            [ 9, "MOVE_SAFEGUARD" ],
+            [ 15, "MOVE_GUST" ],
+            [ 23, "MOVE_RECOVER" ],
+            [ 29, "MOVE_HYDRO_PUMP" ],
+            [ 37, "MOVE_RAIN_DANCE" ],
+            [ 43, "MOVE_SWIFT" ],
+            [ 51, "MOVE_NATURAL_GIFT" ],
+            [ 57, "MOVE_ANCIENT_POWER" ],
+            [ 65, "MOVE_EXTRASENSORY" ],
+            [ 71, "MOVE_PUNISHMENT" ],
+            [ 79, "MOVE_FUTURE_SIGHT" ],
+            [ 85, "MOVE_AEROBLAST" ],
+            [ 93, "MOVE_CALM_MIND" ],
+            [ 99, "MOVE_SKY_ATTACK" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM05",
@@ -100,24 +106,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_WHIRLWIND",
-            "9": "MOVE_SAFEGUARD",
-            "15": "MOVE_GUST",
-            "23": "MOVE_RECOVER",
-            "29": "MOVE_HYDRO_PUMP",
-            "37": "MOVE_RAIN_DANCE",
-            "43": "MOVE_SWIFT",
-            "51": "MOVE_NATURAL_GIFT",
-            "57": "MOVE_ANCIENT_POWER",
-            "65": "MOVE_EXTRASENSORY",
-            "71": "MOVE_PUNISHMENT",
-            "79": "MOVE_FUTURE_SIGHT",
-            "85": "MOVE_AEROBLAST",
-            "93": "MOVE_CALM_MIND",
-            "99": "MOVE_SKY_ATTACK"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -135,9 +124,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 52,
@@ -153,5 +143,12 @@
         "pokemon_pos_m": 0,
         "entry_text": "It sleeps in a deep-sea trench.\nIf it flaps its wings, it is said to\ncause a 40-day storm.",
         "category": "Diving Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 4362
     }
 }

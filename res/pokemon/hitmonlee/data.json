@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 110
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_FIGHTING" ],
     "catch_rate": 45,
     "base_exp_reward": 139,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_LIMBER",
-        "ABILITY_RECKLESS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_LIMBER", "ABILITY_RECKLESS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_REVENGE" ],
+            [ 1, "MOVE_DOUBLE_KICK" ],
+            [ 5, "MOVE_MEDITATE" ],
+            [ 9, "MOVE_ROLLING_KICK" ],
+            [ 13, "MOVE_JUMP_KICK" ],
+            [ 17, "MOVE_BRICK_BREAK" ],
+            [ 21, "MOVE_FOCUS_ENERGY" ],
+            [ 25, "MOVE_FEINT" ],
+            [ 29, "MOVE_HI_JUMP_KICK" ],
+            [ 33, "MOVE_MIND_READER" ],
+            [ 37, "MOVE_FORESIGHT" ],
+            [ 41, "MOVE_BLAZE_KICK" ],
+            [ 45, "MOVE_ENDURE" ],
+            [ 49, "MOVE_MEGA_KICK" ],
+            [ 53, "MOVE_CLOSE_COMBAT" ],
+            [ 57, "MOVE_REVERSAL" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -78,27 +85,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_REVENGE",
-                "MOVE_DOUBLE_KICK"
-            ],
-            "5": "MOVE_MEDITATE",
-            "9": "MOVE_ROLLING_KICK",
-            "13": "MOVE_JUMP_KICK",
-            "17": "MOVE_BRICK_BREAK",
-            "21": "MOVE_FOCUS_ENERGY",
-            "25": "MOVE_FEINT",
-            "29": "MOVE_HI_JUMP_KICK",
-            "33": "MOVE_MIND_READER",
-            "37": "MOVE_FORESIGHT",
-            "41": "MOVE_BLAZE_KICK",
-            "45": "MOVE_ENDURE",
-            "49": "MOVE_MEGA_KICK",
-            "53": "MOVE_CLOSE_COMBAT",
-            "57": "MOVE_REVERSAL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SUPERPOWER",
             "MOVE_SNORE",
@@ -110,9 +97,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -128,5 +116,12 @@
         "pokemon_pos_m": 1,
         "entry_text": "Its legs can stretch double.\nFirst-time foes are startled by\nits extensible reach.",
         "category": "Kicking Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2313
     }
 }

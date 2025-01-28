@@ -10,7 +10,6 @@
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026224_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "field/field_system.h"
@@ -2601,7 +2600,7 @@ void ov5_021E6CF0(Pokemon *param0, u16 param1, u8 param2, TrainerInfo *param3, i
 {
     u8 v0, v1, v2;
     u16 v3;
-    u8 v4 = PokemonPersonalData_GetSpeciesValue(param1, MON_DATA_PERSONAL_HATCH_CYCLE);
+    u8 hatchCycles = SpeciesData_GetSpeciesValue(param1, SPECIES_DATA_HATCH_CYCLES);
     Strbuf *v5;
 
     Pokemon_InitWith(param0, param1, 1, 32, FALSE, 0, OTID_NOT_SET, 0);
@@ -2610,7 +2609,7 @@ void ov5_021E6CF0(Pokemon *param0, u16 param1, u8 param2, TrainerInfo *param3, i
     v3 = ITEM_POKE_BALL;
 
     Pokemon_SetValue(param0, MON_DATA_POKEBALL, &v3);
-    Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &v4);
+    Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &hatchCycles);
     Pokemon_SetValue(param0, MON_DATA_MET_LEVEL, &v0);
 
     if (param2) {
@@ -2644,7 +2643,7 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, UnkStruct_02026310 *param2, u32 p
     u16 v1;
     u32 v2;
     Strbuf *v3;
-    u8 v4 = PokemonPersonalData_GetSpeciesValue(param1, MON_DATA_PERSONAL_HATCH_CYCLE);
+    u8 hatchCycles = SpeciesData_GetSpeciesValue(param1, SPECIES_DATA_HATCH_CYCLES);
 
     v2 = sub_02026248(param2);
 
@@ -2670,7 +2669,7 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, UnkStruct_02026310 *param2, u32 p
     v1 = ITEM_POKE_BALL;
 
     Pokemon_SetValue(param0, MON_DATA_POKEBALL, &v1);
-    Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &v4);
+    Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &hatchCycles);
     Pokemon_SetValue(param0, MON_DATA_MET_LEVEL, &v0);
     Pokemon_SetValue(param0, MON_DATA_FORM, &param4);
 
@@ -2760,8 +2759,8 @@ static u8 ov5_021E6FF0(BoxPokemon **param0)
         v2[v5] = BoxPokemon_GetValue(param0[v5], MON_DATA_OT_ID, NULL);
         v4 = BoxPokemon_GetValue(param0[v5], MON_DATA_PERSONALITY, NULL);
         v3[v5] = Pokemon_GetGenderOf(v1[v5], v4);
-        v0[v5][0] = PokemonPersonalData_GetSpeciesValue(v1[v5], 22);
-        v0[v5][1] = PokemonPersonalData_GetSpeciesValue(v1[v5], 23);
+        v0[v5][0] = SpeciesData_GetSpeciesValue(v1[v5], SPECIES_DATA_EGG_GROUP_1);
+        v0[v5][1] = SpeciesData_GetSpeciesValue(v1[v5], SPECIES_DATA_EGG_GROUP_2);
     }
 
     if ((v0[0][0] == 15) || (v0[1][0] == 15)) {

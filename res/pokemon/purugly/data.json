@@ -8,10 +8,7 @@
         "special_attack": 64,
         "special_defense": 59
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 75,
     "base_exp_reward": 183,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_OWN_TEMPO"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_OWN_TEMPO" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FAKE_OUT" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_SCRATCH" ],
+            [ 8, "MOVE_GROWL" ],
+            [ 13, "MOVE_HYPNOSIS" ],
+            [ 17, "MOVE_FAINT_ATTACK" ],
+            [ 20, "MOVE_FURY_SWIPES" ],
+            [ 25, "MOVE_CHARM" ],
+            [ 29, "MOVE_ASSIST" ],
+            [ 32, "MOVE_CAPTIVATE" ],
+            [ 37, "MOVE_SLASH" ],
+            [ 38, "MOVE_SWAGGER" ],
+            [ 45, "MOVE_BODY_SLAM" ],
+            [ 53, "MOVE_ATTRACT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -86,26 +92,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FAKE_OUT",
-                "MOVE_SCRATCH",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_SCRATCH",
-            "8": "MOVE_GROWL",
-            "13": "MOVE_HYPNOSIS",
-            "17": "MOVE_FAINT_ATTACK",
-            "20": "MOVE_FURY_SWIPES",
-            "25": "MOVE_CHARM",
-            "29": "MOVE_ASSIST",
-            "32": "MOVE_CAPTIVATE",
-            "37": "MOVE_SLASH",
-            "38": "MOVE_SWAGGER",
-            "45": "MOVE_BODY_SLAM",
-            "53": "MOVE_ATTRACT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -116,9 +103,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -134,5 +122,12 @@
         "pokemon_pos_m": 15,
         "entry_text": "It binds its body with its tails to\nmake itself look bigger. If it locks\neyes, it will glare ceaselessly.",
         "category": "Tiger Cat Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4102
     }
 }

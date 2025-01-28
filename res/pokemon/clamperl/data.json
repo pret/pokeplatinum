@@ -8,10 +8,7 @@
         "special_attack": 74,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 255,
     "base_exp_reward": 142,
     "ev_yields": {
@@ -30,21 +27,19 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_SHELL_ARMOR",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_SHELL_ARMOR", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_CLAMP" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_WHIRLPOOL" ],
+            [ 1, "MOVE_IRON_DEFENSE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -70,15 +65,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_CLAMP",
-                "MOVE_WATER_GUN",
-                "MOVE_WHIRLPOOL",
-                "MOVE_IRON_DEFENSE"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -87,19 +74,19 @@
     },
     "evolutions": [
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_DEEPSEATOOTH",
             "SPECIES_HUNTAIL"
         ],
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_DEEPSEASCALE",
             "SPECIES_GOREBYSS"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 4,
@@ -115,5 +102,12 @@
         "pokemon_pos_m": 25,
         "entry_text": "It makes a single pearl during\nits lifetime. The pearl is said\nto amplify psychic power.",
         "category": "Bivalve Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

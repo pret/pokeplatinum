@@ -8,10 +8,7 @@
         "special_attack": 125,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_FLYING" ],
     "catch_rate": 3,
     "base_exp_reward": 216,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 80,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_THUNDER_SHOCK" ],
+            [ 8, "MOVE_THUNDER_WAVE" ],
+            [ 15, "MOVE_DETECT" ],
+            [ 22, "MOVE_PLUCK" ],
+            [ 29, "MOVE_ANCIENT_POWER" ],
+            [ 36, "MOVE_CHARGE" ],
+            [ 43, "MOVE_AGILITY" ],
+            [ 50, "MOVE_DISCHARGE" ],
+            [ 57, "MOVE_ROOST" ],
+            [ 64, "MOVE_LIGHT_SCREEN" ],
+            [ 71, "MOVE_DRILL_PECK" ],
+            [ 78, "MOVE_THUNDER" ],
+            [ 85, "MOVE_RAIN_DANCE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -81,25 +86,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PECK",
-                "MOVE_THUNDER_SHOCK"
-            ],
-            "8": "MOVE_THUNDER_WAVE",
-            "15": "MOVE_DETECT",
-            "22": "MOVE_PLUCK",
-            "29": "MOVE_ANCIENT_POWER",
-            "36": "MOVE_CHARGE",
-            "43": "MOVE_AGILITY",
-            "50": "MOVE_DISCHARGE",
-            "57": "MOVE_ROOST",
-            "64": "MOVE_LIGHT_SCREEN",
-            "71": "MOVE_DRILL_PECK",
-            "78": "MOVE_THUNDER",
-            "85": "MOVE_RAIN_DANCE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -111,9 +98,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 16,
@@ -129,5 +117,12 @@
         "pokemon_pos_m": 0,
         "entry_text": "A legendary Pokémon that is said\nto live in thunderclouds. It freely\ncontrols lightning bolts.",
         "category": "Electric Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 4359
     }
 }

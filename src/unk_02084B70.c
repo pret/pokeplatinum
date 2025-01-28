@@ -807,7 +807,7 @@ static int sub_02085C50(void *param0)
         v3 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
         fieldSystem = v0->unk_5A4->unk_1C;
         v5 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
-        v0->unk_5A4->unk_38 = sub_02076B94(v0->unk_5A4->unk_00, v3, 0, v5, &v0->unk_5A4->unk_3C);
+        v0->unk_5A4->unk_38 = Pokemon_GetEvolutionTargetSpecies(v0->unk_5A4->unk_00, v3, EVO_CLASS_BY_LEVEL, v5, &v0->unk_5A4->unk_3C);
 
         if (v0->unk_5A4->unk_38 != 0) {
             v0->unk_5A4->unk_23 = 9;

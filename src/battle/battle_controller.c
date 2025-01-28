@@ -12,9 +12,9 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
-#include "consts/abilities.h"
 #include "consts/game_records.h"
 #include "consts/sdat.h"
+#include "generated/abilities.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/trainer_data.h"
@@ -488,10 +488,10 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
                         BattleIO_StopGaugeAnimation(battleSys, i);
                         battleCtx->curCommandState[i] = BATTLE_CONTROL_GET_BATTLE_MON;
                         battleCtx->curCommandState[BattleSystem_Partner(battleSys, i)] = BATTLE_CONTROL_GET_BATTLE_MON;
-                    } else if ((battleType & BATTLE_TYPE_DOUBLES) && i == BATTLER_PLAYER_SLOT_2) {
+                    } else if ((battleType & BATTLE_TYPE_DOUBLES) && i == BATTLER_PLAYER_2) {
                         BattleIO_StopGaugeAnimation(battleSys, i);
-                        battleCtx->curCommandState[BATTLER_PLAYER_SLOT_1] = BATTLE_CONTROL_GET_BATTLE_MON;
-                        battleCtx->curCommandState[BATTLER_PLAYER_SLOT_2] = BATTLE_CONTROL_GET_BATTLE_MON;
+                        battleCtx->curCommandState[BATTLER_PLAYER_1] = BATTLE_CONTROL_GET_BATTLE_MON;
+                        battleCtx->curCommandState[BATTLER_PLAYER_2] = BATTLE_CONTROL_GET_BATTLE_MON;
                     }
 
                     break;
@@ -728,13 +728,13 @@ static void BattleController_CalcTurnOrder(BattleSystem *battleSys, BattleContex
             }
         } else {
             // If the player decided to Run using either of their mons, process that first.
-            if (battleCtx->battlerActions[BATTLER_PLAYER_SLOT_1][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_RUN) {
-                battler = BATTLER_PLAYER_SLOT_1;
+            if (battleCtx->battlerActions[BATTLER_PLAYER_1][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_RUN) {
+                battler = BATTLER_PLAYER_1;
                 order = 5;
             }
 
-            if (battleCtx->battlerActions[BATTLER_PLAYER_SLOT_2][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_RUN) {
-                battler = BATTLER_PLAYER_SLOT_2;
+            if (battleCtx->battlerActions[BATTLER_PLAYER_2][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_RUN) {
+                battler = BATTLER_PLAYER_2;
                 order = 5;
             }
         }
@@ -4266,7 +4266,7 @@ static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleCont
     // a link battle.
     if ((battleResult == BATTLE_RESULT_WIN && (battleType & BATTLE_TYPE_TRAINER) && (battleType & BATTLE_TYPE_LINK) == FALSE)
         || (battleResult == BATTLE_RESULT_WIN && (battleType & BATTLE_TYPE_FRONTIER) && (battleType & BATTLE_TYPE_LINK) == FALSE)) {
-        TrainerData *trainer = BattleSystem_TrainerData(battleSys, 1);
+        Trainer *trainer = BattleSystem_GetTrainer(battleSys, BATTLER_ENEMY_1);
 
         switch (trainer->class) {
         case TRAINER_CLASS_LEADER_ROARK:

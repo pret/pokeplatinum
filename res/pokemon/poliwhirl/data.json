@@ -8,10 +8,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 120,
     "base_exp_reward": 131,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_WATER_ABSORB",
-        "ABILITY_DAMP"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_WATER_ABSORB", "ABILITY_DAMP" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_HYPNOSIS" ],
+            [ 5, "MOVE_BUBBLE" ],
+            [ 8, "MOVE_HYPNOSIS" ],
+            [ 11, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_DOUBLE_SLAP" ],
+            [ 18, "MOVE_RAIN_DANCE" ],
+            [ 21, "MOVE_BODY_SLAM" ],
+            [ 27, "MOVE_BUBBLE_BEAM" ],
+            [ 32, "MOVE_MUD_SHOT" ],
+            [ 37, "MOVE_BELLY_DRUM" ],
+            [ 43, "MOVE_WAKE_UP_SLAP" ],
+            [ 48, "MOVE_HYDRO_PUMP" ],
+            [ 53, "MOVE_MUD_BOMB" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -78,26 +84,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_WATER_SPORT",
-                "MOVE_BUBBLE",
-                "MOVE_HYPNOSIS"
-            ],
-            "5": "MOVE_BUBBLE",
-            "8": "MOVE_HYPNOSIS",
-            "11": "MOVE_WATER_GUN",
-            "15": "MOVE_DOUBLE_SLAP",
-            "18": "MOVE_RAIN_DANCE",
-            "21": "MOVE_BODY_SLAM",
-            "27": "MOVE_BUBBLE_BEAM",
-            "32": "MOVE_MUD_SHOT",
-            "37": "MOVE_BELLY_DRUM",
-            "43": "MOVE_WAKE_UP_SLAP",
-            "48": "MOVE_HYDRO_PUMP",
-            "53": "MOVE_MUD_BOMB"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -113,14 +100,14 @@
             "SPECIES_POLIWRATH"
         ],
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_KINGS_ROCK",
             "SPECIES_POLITOED"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -136,5 +123,12 @@
         "pokemon_pos_m": 17,
         "entry_text": "The spiral pattern on its belly\nsubtly undulates. Staring at it\ngradually causes drowsiness.",
         "category": "Tadpole Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 771
     }
 }

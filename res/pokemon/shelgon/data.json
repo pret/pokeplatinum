@@ -8,10 +8,7 @@
         "special_attack": 60,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_DRAGON",
-        "TYPE_DRAGON"
-    ],
+    "types": [ "TYPE_DRAGON", "TYPE_DRAGON" ],
     "catch_rate": 45,
     "base_exp_reward": 144,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 40,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_DRAGON",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_ROCK_HEAD",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_DRAGON", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_RAGE" ],
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_HEADBUTT" ],
+            [ 5, "MOVE_BITE" ],
+            [ 10, "MOVE_LEER" ],
+            [ 16, "MOVE_HEADBUTT" ],
+            [ 20, "MOVE_FOCUS_ENERGY" ],
+            [ 25, "MOVE_EMBER" ],
+            [ 30, "MOVE_PROTECT" ],
+            [ 32, "MOVE_DRAGON_BREATH" ],
+            [ 37, "MOVE_ZEN_HEADBUTT" ],
+            [ 43, "MOVE_SCARY_FACE" ],
+            [ 50, "MOVE_CRUNCH" ],
+            [ 55, "MOVE_DRAGON_CLAW" ],
+            [ 61, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM05",
             "TM06",
@@ -77,27 +84,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_RAGE",
-                "MOVE_BITE",
-                "MOVE_LEER",
-                "MOVE_HEADBUTT"
-            ],
-            "5": "MOVE_BITE",
-            "10": "MOVE_LEER",
-            "16": "MOVE_HEADBUTT",
-            "20": "MOVE_FOCUS_ENERGY",
-            "25": "MOVE_EMBER",
-            "30": "MOVE_PROTECT",
-            "32": "MOVE_DRAGON_BREATH",
-            "37": "MOVE_ZEN_HEADBUTT",
-            "43": "MOVE_SCARY_FACE",
-            "50": "MOVE_CRUNCH",
-            "55": "MOVE_DRAGON_CLAW",
-            "61": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -110,14 +97,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             50,
             "SPECIES_SALAMENCE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -133,5 +120,12 @@
         "pokemon_pos_m": 14,
         "entry_text": "Within its rugged shell, its cells\nhave begun changing. The shell\npeels off the instant it evolves.",
         "category": "Endurance Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 3855
     }
 }

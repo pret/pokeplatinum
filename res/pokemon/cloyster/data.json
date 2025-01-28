@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_ICE"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_ICE" ],
     "catch_rate": 60,
     "base_exp_reward": 203,
     "ev_yields": {
@@ -30,21 +27,22 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_SHELL_ARMOR",
-        "ABILITY_SKILL_LINK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_SHELL_ARMOR", "ABILITY_SKILL_LINK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TOXIC_SPIKES" ],
+            [ 1, "MOVE_WITHDRAW" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 1, "MOVE_AURORA_BEAM" ],
+            [ 1, "MOVE_PROTECT" ],
+            [ 28, "MOVE_SPIKES" ],
+            [ 40, "MOVE_SPIKE_CANNON" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -76,18 +74,7 @@
             "TM90",
             "HM03"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TOXIC_SPIKES",
-                "MOVE_WITHDRAW",
-                "MOVE_SUPERSONIC",
-                "MOVE_AURORA_BEAM",
-                "MOVE_PROTECT"
-            ],
-            "28": "MOVE_SPIKES",
-            "40": "MOVE_SPIKE_CANNON"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -96,9 +83,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 15,
@@ -114,5 +102,12 @@
         "pokemon_pos_m": 9,
         "entry_text": "It fights by keeping its shell\ntightly shut for protection and\nby shooting spikes to repel foes.",
         "category": "Bivalve Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 3331
     }
 }

@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRING_TEMPLATE_H
 #define POKEPLATINUM_STRING_TEMPLATE_H
 
-#include "consts/abilities.h"
 #include "consts/gender.h"
 #include "consts/moves.h"
+#include "generated/abilities.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/trainer_data.h"
@@ -65,10 +65,10 @@ void StringTemplate_SetLocationName(StringTemplate *template, u32 idx, u32 locat
 void StringTemplate_SetPoketchAppName(StringTemplate *template, u32 idx, u32 app);
 void StringTemplate_SetTrainerClassName(StringTemplate *template, u32 idx, u32 trainerClass);
 void StringTemplate_SetTrainerClassNameWithArticle(StringTemplate *template, u32 idx, u32 trainerClass);
-void StringTemplate_SetTrainerClassNameBattle(StringTemplate *template, u32 idx, TrainerData *trainerData);
+void StringTemplate_SetTrainerClassNameBattle(StringTemplate *template, u32 idx, Trainer *trainer);
 void StringTemplate_SetTrainerName(StringTemplate *template, u32 idx, u32 trainerID);
 void StringTemplate_SetFrontierTrainerName(StringTemplate *template, u32 idx, u32 trainerID);
-void StringTemplate_SetTrainerNameBattle(StringTemplate *template, u32 idx, TrainerData *trainerData);
+void StringTemplate_SetTrainerNameBattle(StringTemplate *template, u32 idx, Trainer *trainer);
 void StringTemplate_SetUndergroundItemName(StringTemplate *template, u32 idx, u32 item);
 void StringTemplate_SetUndergroundItemNameWithArticle(StringTemplate *template, u32 idx, u32 item);
 void StringTemplate_SetUndergroundTrapName(StringTemplate *template, u32 idx, u32 trap);

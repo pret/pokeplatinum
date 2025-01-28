@@ -8,10 +8,7 @@
         "special_attack": 104,
         "special_defense": 71
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIGHTING" ],
     "catch_rate": 45,
     "base_exp_reward": 209,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_BLAZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_TAUNT" ],
+            [ 7, "MOVE_EMBER" ],
+            [ 9, "MOVE_TAUNT" ],
+            [ 14, "MOVE_MACH_PUNCH" ],
+            [ 17, "MOVE_FURY_SWIPES" ],
+            [ 21, "MOVE_FLAME_WHEEL" ],
+            [ 29, "MOVE_FEINT" ],
+            [ 33, "MOVE_PUNISHMENT" ],
+            [ 41, "MOVE_CLOSE_COMBAT" ],
+            [ 45, "MOVE_FIRE_SPIN" ],
+            [ 53, "MOVE_CALM_MIND" ],
+            [ 57, "MOVE_FLARE_BLITZ" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM05",
@@ -96,26 +102,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_LEER",
-                "MOVE_EMBER",
-                "MOVE_TAUNT"
-            ],
-            "7": "MOVE_EMBER",
-            "9": "MOVE_TAUNT",
-            "14": "MOVE_MACH_PUNCH",
-            "17": "MOVE_FURY_SWIPES",
-            "21": "MOVE_FLAME_WHEEL",
-            "29": "MOVE_FEINT",
-            "33": "MOVE_PUNISHMENT",
-            "41": "MOVE_CLOSE_COMBAT",
-            "45": "MOVE_FIRE_SPIN",
-            "53": "MOVE_CALM_MIND",
-            "57": "MOVE_FLARE_BLITZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -129,9 +116,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -147,5 +135,12 @@
         "pokemon_pos_m": 13,
         "entry_text": "It uses unique fighting moves with\nfire on its hands and feet. It will\ntake on any opponent.",
         "category": "Flame Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2306
     }
 }

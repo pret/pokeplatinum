@@ -8,10 +8,7 @@
         "special_attack": 115,
         "special_defense": 95
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
     "base_exp_reward": 137,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_FOREWARN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_FOREWARN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_LICK" ],
+            [ 1, "MOVE_LOVELY_KISS" ],
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 5, "MOVE_LICK" ],
+            [ 8, "MOVE_LOVELY_KISS" ],
+            [ 11, "MOVE_POWDER_SNOW" ],
+            [ 15, "MOVE_DOUBLE_SLAP" ],
+            [ 18, "MOVE_ICE_PUNCH" ],
+            [ 21, "MOVE_MEAN_LOOK" ],
+            [ 25, "MOVE_FAKE_TEARS" ],
+            [ 28, "MOVE_WAKE_UP_SLAP" ],
+            [ 33, "MOVE_AVALANCHE" ],
+            [ 39, "MOVE_BODY_SLAM" ],
+            [ 44, "MOVE_WRING_OUT" ],
+            [ 49, "MOVE_PERISH_SONG" ],
+            [ 55, "MOVE_BLIZZARD" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -92,28 +100,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_LICK",
-                "MOVE_LOVELY_KISS",
-                "MOVE_POWDER_SNOW"
-            ],
-            "5": "MOVE_LICK",
-            "8": "MOVE_LOVELY_KISS",
-            "11": "MOVE_POWDER_SNOW",
-            "15": "MOVE_DOUBLE_SLAP",
-            "18": "MOVE_ICE_PUNCH",
-            "21": "MOVE_MEAN_LOOK",
-            "25": "MOVE_FAKE_TEARS",
-            "28": "MOVE_WAKE_UP_SLAP",
-            "33": "MOVE_AVALANCHE",
-            "39": "MOVE_BODY_SLAM",
-            "44": "MOVE_WRING_OUT",
-            "49": "MOVE_PERISH_SONG",
-            "55": "MOVE_BLIZZARD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ICE_PUNCH",
@@ -124,9 +111,10 @@
             "MOVE_TRICK"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 14,
@@ -142,5 +130,12 @@
         "pokemon_pos_m": 5,
         "entry_text": "Its cries sound like human speech.\nHowever, it is impossible to tell\nwhat it is trying to say.",
         "category": "Human Shape Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2573
     }
 }

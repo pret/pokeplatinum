@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02027F8C.h"
@@ -595,7 +594,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
             }
 
             if (CommSys_CurNetId() == 0) {
-                ov88_0223D044(CommSys_CurNetId(), 31, inline_020564D0(60) + 3);
+                ov88_0223D044(CommSys_CurNetId(), 31, LCRNG_RandMod(60) + 3);
             }
 
             ov88_0223D0C0(param0->unk_04);
@@ -767,7 +766,7 @@ static void ov88_0223BD18(Pokemon *param0, UnkStruct_ov88_0223C8AC *param1)
     Pokemon_ExitDecryptionContext(param0, v0);
 
     if (param1->unk_00 != 0) {
-        param1->unk_0A = PokemonPersonalData_GetFormValue(param1->unk_00, param1->unk_06, 28);
+        param1->unk_0A = SpeciesData_GetFormValue(param1->unk_00, param1->unk_06, 28);
     }
 
     if (v1 != 0) {

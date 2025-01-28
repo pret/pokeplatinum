@@ -1601,7 +1601,7 @@ static u8 ov13_022217A4(UnkStruct_ov13_022213F0 *param0)
             int v2;
 
             v2 = BattleSystem_Partner(param0->unk_00->unk_08, param0->unk_00->unk_28);
-            StringTemplate_SetTrainerNameBattle(param0->unk_1FA8, 0, BattleSystem_TrainerData(param0->unk_00->unk_08, v2));
+            StringTemplate_SetTrainerNameBattle(param0->unk_1FA8, 0, BattleSystem_GetTrainer(param0->unk_00->unk_08, v2));
         }
         StringTemplate_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);

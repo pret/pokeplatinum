@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_GROUND" ],
     "catch_rate": 25,
     "base_exp_reward": 196,
     "ev_yields": {
@@ -30,21 +27,35 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_ROCK_HEAD",
-        "ABILITY_STURDY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_STURDY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_BIND" ],
+            [ 6, "MOVE_SCREECH" ],
+            [ 9, "MOVE_ROCK_THROW" ],
+            [ 14, "MOVE_RAGE" ],
+            [ 17, "MOVE_ROCK_TOMB" ],
+            [ 22, "MOVE_SANDSTORM" ],
+            [ 25, "MOVE_SLAM" ],
+            [ 30, "MOVE_ROCK_POLISH" ],
+            [ 33, "MOVE_DRAGON_BREATH" ],
+            [ 38, "MOVE_CURSE" ],
+            [ 41, "MOVE_IRON_TAIL" ],
+            [ 46, "MOVE_CRUNCH" ],
+            [ 49, "MOVE_DOUBLE_EDGE" ],
+            [ 54, "MOVE_STONE_EDGE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -88,31 +99,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_THUNDER_FANG",
-                "MOVE_ICE_FANG",
-                "MOVE_FIRE_FANG",
-                "MOVE_MUD_SPORT",
-                "MOVE_TACKLE",
-                "MOVE_HARDEN",
-                "MOVE_BIND"
-            ],
-            "6": "MOVE_SCREECH",
-            "9": "MOVE_ROCK_THROW",
-            "14": "MOVE_RAGE",
-            "17": "MOVE_ROCK_TOMB",
-            "22": "MOVE_SANDSTORM",
-            "25": "MOVE_SLAM",
-            "30": "MOVE_ROCK_POLISH",
-            "33": "MOVE_DRAGON_BREATH",
-            "38": "MOVE_CURSE",
-            "41": "MOVE_IRON_TAIL",
-            "46": "MOVE_CRUNCH",
-            "49": "MOVE_DOUBLE_EDGE",
-            "54": "MOVE_STONE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_IRON_HEAD",
@@ -124,9 +111,10 @@
             "MOVE_MAGNET_RISE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 92,
@@ -142,5 +130,12 @@
         "pokemon_pos_m": 4,
         "entry_text": "It is thought its body transformed\nas a result of iron accumulating\ninternally from swallowing soil.",
         "category": "Iron Snake Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2062
     }
 }

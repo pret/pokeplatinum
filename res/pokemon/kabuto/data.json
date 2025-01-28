@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 99,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 30,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_BATTLE_ARMOR"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_BATTLE_ARMOR" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 6, "MOVE_ABSORB" ],
+            [ 11, "MOVE_LEER" ],
+            [ 16, "MOVE_MUD_SHOT" ],
+            [ 21, "MOVE_SAND_ATTACK" ],
+            [ 26, "MOVE_ENDURE" ],
+            [ 31, "MOVE_AQUA_JET" ],
+            [ 36, "MOVE_MEGA_DRAIN" ],
+            [ 41, "MOVE_METAL_SOUND" ],
+            [ 46, "MOVE_ANCIENT_POWER" ],
+            [ 51, "MOVE_WRING_OUT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -79,23 +82,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_HARDEN"
-            ],
-            "6": "MOVE_ABSORB",
-            "11": "MOVE_LEER",
-            "16": "MOVE_MUD_SHOT",
-            "21": "MOVE_SAND_ATTACK",
-            "26": "MOVE_ENDURE",
-            "31": "MOVE_AQUA_JET",
-            "36": "MOVE_MEGA_DRAIN",
-            "41": "MOVE_METAL_SOUND",
-            "46": "MOVE_ANCIENT_POWER",
-            "51": "MOVE_WRING_OUT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -108,14 +95,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             40,
             "SPECIES_KABUTOPS"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 5,
@@ -131,5 +118,12 @@
         "pokemon_pos_m": 24,
         "entry_text": "It is thought to have inhabited\nbeaches 300 million years ago.\nIt is protected by a stiff shell.",
         "category": "Shellfish Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 779
     }
 }

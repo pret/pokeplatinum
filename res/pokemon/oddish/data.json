@@ -8,10 +8,7 @@
         "special_attack": 75,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_POISON" ],
     "catch_rate": 255,
     "base_exp_reward": 78,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_GRASS",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_CHLOROPHYLL",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ABSORB" ],
+            [ 5, "MOVE_SWEET_SCENT" ],
+            [ 9, "MOVE_ACID" ],
+            [ 13, "MOVE_POISON_POWDER" ],
+            [ 15, "MOVE_STUN_SPORE" ],
+            [ 17, "MOVE_SLEEP_POWDER" ],
+            [ 21, "MOVE_MEGA_DRAIN" ],
+            [ 25, "MOVE_LUCKY_CHANT" ],
+            [ 29, "MOVE_NATURAL_GIFT" ],
+            [ 33, "MOVE_MOONLIGHT" ],
+            [ 37, "MOVE_GIGA_DRAIN" ],
+            [ 41, "MOVE_PETAL_DANCE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -72,21 +75,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": "MOVE_ABSORB",
-            "5": "MOVE_SWEET_SCENT",
-            "9": "MOVE_ACID",
-            "13": "MOVE_POISON_POWDER",
-            "15": "MOVE_STUN_SPORE",
-            "17": "MOVE_SLEEP_POWDER",
-            "21": "MOVE_MEGA_DRAIN",
-            "25": "MOVE_LUCKY_CHANT",
-            "29": "MOVE_NATURAL_GIFT",
-            "33": "MOVE_MOONLIGHT",
-            "37": "MOVE_GIGA_DRAIN",
-            "41": "MOVE_PETAL_DANCE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_GASTRO_ACID",
             "MOVE_SNORE",
             "MOVE_SYNTHESIS",
@@ -95,14 +84,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             21,
             "SPECIES_GLOOM"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 5,
@@ -118,5 +107,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "It often plants its root feet in the\nground during the day and sows\nseeds as it walks about at night.",
         "category": "Weed Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1537
     }
 }

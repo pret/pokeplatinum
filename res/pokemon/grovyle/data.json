@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 45,
     "base_exp_reward": 141,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_OVERGROW",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 6, "MOVE_ABSORB" ],
+            [ 11, "MOVE_QUICK_ATTACK" ],
+            [ 16, "MOVE_FURY_CUTTER" ],
+            [ 17, "MOVE_PURSUIT" ],
+            [ 23, "MOVE_SCREECH" ],
+            [ 29, "MOVE_LEAF_BLADE" ],
+            [ 35, "MOVE_AGILITY" ],
+            [ 41, "MOVE_SLAM" ],
+            [ 47, "MOVE_DETECT" ],
+            [ 53, "MOVE_FALSE_SWIPE" ],
+            [ 59, "MOVE_LEAF_STORM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM09",
@@ -85,26 +91,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_LEER",
-                "MOVE_ABSORB",
-                "MOVE_QUICK_ATTACK"
-            ],
-            "6": "MOVE_ABSORB",
-            "11": "MOVE_QUICK_ATTACK",
-            "16": "MOVE_FURY_CUTTER",
-            "17": "MOVE_PURSUIT",
-            "23": "MOVE_SCREECH",
-            "29": "MOVE_LEAF_BLADE",
-            "35": "MOVE_AGILITY",
-            "41": "MOVE_SLAM",
-            "47": "MOVE_DETECT",
-            "53": "MOVE_FALSE_SWIPE",
-            "59": "MOVE_LEAF_STORM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -117,14 +104,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             36,
             "SPECIES_SCEPTILE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -140,5 +127,12 @@
         "pokemon_pos_m": 14,
         "entry_text": "It lives in dense jungles. While \nclosing in on its prey, it leaps\nfrom branch to branch.",
         "category": "Wood Gecko Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 257
     }
 }

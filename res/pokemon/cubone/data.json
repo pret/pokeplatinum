@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_GROUND" ],
     "catch_rate": 190,
     "base_exp_reward": 87,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_ROCK_HEAD",
-        "ABILITY_LIGHTNING_ROD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_LIGHTNING_ROD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 3, "MOVE_TAIL_WHIP" ],
+            [ 7, "MOVE_BONE_CLUB" ],
+            [ 11, "MOVE_HEADBUTT" ],
+            [ 13, "MOVE_LEER" ],
+            [ 17, "MOVE_FOCUS_ENERGY" ],
+            [ 21, "MOVE_BONEMERANG" ],
+            [ 23, "MOVE_RAGE" ],
+            [ 27, "MOVE_FALSE_SWIPE" ],
+            [ 31, "MOVE_THRASH" ],
+            [ 33, "MOVE_FLING" ],
+            [ 37, "MOVE_BONE_RUSH" ],
+            [ 41, "MOVE_ENDEAVOR" ],
+            [ 43, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -84,23 +89,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": "MOVE_GROWL",
-            "3": "MOVE_TAIL_WHIP",
-            "7": "MOVE_BONE_CLUB",
-            "11": "MOVE_HEADBUTT",
-            "13": "MOVE_LEER",
-            "17": "MOVE_FOCUS_ENERGY",
-            "21": "MOVE_BONEMERANG",
-            "23": "MOVE_RAGE",
-            "27": "MOVE_FALSE_SWIPE",
-            "31": "MOVE_THRASH",
-            "33": "MOVE_FLING",
-            "37": "MOVE_BONE_RUSH",
-            "41": "MOVE_ENDEAVOR",
-            "43": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -116,14 +105,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             28,
             "SPECIES_MAROWAK"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -139,5 +128,12 @@
         "pokemon_pos_m": 28,
         "entry_text": "When it thinks of its dead mother,\nit cries. Its crying makes the\nskull it wears rattle hollowly.",
         "category": "Lonely Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2056
     }
 }

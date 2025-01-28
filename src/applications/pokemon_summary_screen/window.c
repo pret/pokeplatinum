@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "consts/gender.h"
-#include "consts/items.h"
+#include "generated/items.h"
 
 #include "struct_defs/struct_02090800.h"
 

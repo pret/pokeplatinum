@@ -37,6 +37,7 @@
 #include "journal.h"
 #include "math.h"
 #include "party.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "ribbon.h"
 #include "rtc.h"
@@ -49,7 +50,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
-#include "unk_0202631C.h"
 #include "unk_020298BC.h"
 #include "unk_0202CC64.h"
 #include "unk_0202F108.h"
@@ -439,7 +439,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     }
 
     for (v2 = 0; v2 < 4; v2++) {
-        v0->unk_14C[v2] = AllocateAndInitializeChatotCryData(20);
+        v0->unk_14C[v2] = ChatotCry_New(20);
     }
 
     CopyChatotCryData(v0->unk_14C[0], param0->unk_20);
@@ -1623,10 +1623,10 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
         }
 
         int i;
-        PokedexData *v7 = SaveData_Pokedex(param0->unk_1970);
+        Pokedex *pokedex = SaveData_GetPokedex(param0->unk_1970);
 
         for (i = param0->unk_00.unk_117; i < 4; i++) {
-            sub_020272A4(v7, param0->unk_00.unk_00[i]);
+            Pokedex_Encounter(pokedex, param0->unk_00.unk_00[i]);
         }
     } else {
         sub_0202F134(param0->unk_1970, param0->unk_00.unk_10F, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08);

@@ -7,7 +7,7 @@ typedef struct {
     u32 unk_00;
     int unk_04;
     int unk_08[4];
-    TrainerData unk_18[4];
+    Trainer unk_18[4];
     int unk_E8;
     int unk_EC;
     int unk_F0;

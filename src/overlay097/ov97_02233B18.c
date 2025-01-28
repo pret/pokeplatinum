@@ -704,7 +704,7 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
             v1 = ov97_02234124(param0, param0->unk_E8E4, v0);
             v2 = ov97_02234148(param0, param0->unk_E8E4, v0);
             v5 = ov97_0223416C(param0, param0->unk_E8E4, v0);
-            v3 = gCoreSys.unk_66;
+            v3 = gCoreSys.gbaCartridgeVersion;
             v4 = GBASpeciesToDSFormId(ov97_02236DD0(v1), v5, v3);
 
             ov97_022342E4(v1, v2, v4, v0, param0->unk_20C[v0].unk_00, v6, v7);
@@ -1471,7 +1471,7 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
         v1 = ov97_02234124(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
         v2 = ov97_02234148(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
         v4 = ov97_0223416C(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
-        v3 = gCoreSys.unk_66;
+        v3 = gCoreSys.gbaCartridgeVersion;
 
         ov97_02234278(v1, v2, v4, v3, v0, param0->unk_478[v0]);
     }

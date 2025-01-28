@@ -8,10 +8,7 @@
         "special_attack": 50,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_GROUND" ],
     "catch_rate": 50,
     "base_exp_reward": 153,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SAND_VEIL",
-        "ABILITY_ARENA_TRAP"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SAND_VEIL", "ABILITY_ARENA_TRAP" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_NIGHT_SLASH" ],
+            [ 1, "MOVE_TRI_ATTACK" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 4, "MOVE_GROWL" ],
+            [ 7, "MOVE_ASTONISH" ],
+            [ 12, "MOVE_MAGNITUDE" ],
+            [ 15, "MOVE_MUD_SLAP" ],
+            [ 18, "MOVE_DIG" ],
+            [ 23, "MOVE_SUCKER_PUNCH" ],
+            [ 26, "MOVE_SAND_TOMB" ],
+            [ 28, "MOVE_EARTH_POWER" ],
+            [ 33, "MOVE_MUD_BOMB" ],
+            [ 40, "MOVE_SLASH" ],
+            [ 45, "MOVE_EARTHQUAKE" ],
+            [ 50, "MOVE_FISSURE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -78,37 +86,17 @@
             "HM01",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_TRI_ATTACK",
-                "MOVE_SCRATCH",
-                "MOVE_SAND_ATTACK",
-                "MOVE_GROWL"
-            ],
-            "4": "MOVE_GROWL",
-            "7": "MOVE_ASTONISH",
-            "12": "MOVE_MAGNITUDE",
-            "15": "MOVE_MUD_SLAP",
-            "18": "MOVE_DIG",
-            "23": "MOVE_SUCKER_PUNCH",
-            "26": "MOVE_SAND_TOMB",
-            "28": "MOVE_EARTH_POWER",
-            "33": "MOVE_MUD_BOMB",
-            "40": "MOVE_SLASH",
-            "45": "MOVE_EARTHQUAKE",
-            "50": "MOVE_FISSURE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_EARTH_POWER",
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 7,
@@ -124,5 +112,12 @@
         "pokemon_pos_m": 23,
         "entry_text": "Its three heads move alternately,\ndriving it through tough soil to\ndepths of over 60 miles.",
         "category": "Mole Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2056
     }
 }

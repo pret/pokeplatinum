@@ -8,10 +8,7 @@
         "special_attack": 100,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_POISON" ],
     "catch_rate": 45,
     "base_exp_reward": 191,
     "ev_yields": {
@@ -30,21 +27,24 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_GRASS",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_CHLOROPHYLL",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_STOCKPILE" ],
+            [ 1, "MOVE_SWALLOW" ],
+            [ 1, "MOVE_SPIT_UP" ],
+            [ 1, "MOVE_VINE_WHIP" ],
+            [ 1, "MOVE_SLEEP_POWDER" ],
+            [ 1, "MOVE_SWEET_SCENT" ],
+            [ 1, "MOVE_RAZOR_LEAF" ],
+            [ 47, "MOVE_LEAF_STORM" ],
+            [ 47, "MOVE_LEAF_BLADE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -75,22 +75,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_STOCKPILE",
-                "MOVE_SWALLOW",
-                "MOVE_SPIT_UP",
-                "MOVE_VINE_WHIP",
-                "MOVE_SLEEP_POWDER",
-                "MOVE_SWEET_SCENT",
-                "MOVE_RAZOR_LEAF"
-            ],
-            "47": [
-                "MOVE_LEAF_STORM",
-                "MOVE_LEAF_BLADE"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_GASTRO_ACID",
             "MOVE_SNORE",
             "MOVE_SYNTHESIS",
@@ -99,9 +84,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 17,
@@ -117,5 +103,12 @@
         "pokemon_pos_m": 4,
         "entry_text": "It pools in its mouth a fluid with\na honeylike scent, which is really\nan acid that dissolves anything.",
         "category": "Flycatcher Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1537
     }
 }

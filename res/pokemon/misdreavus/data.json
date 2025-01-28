@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_GHOST",
-        "TYPE_GHOST"
-    ],
+    "types": [ "TYPE_GHOST", "TYPE_GHOST" ],
     "catch_rate": 45,
     "base_exp_reward": 147,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 25,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_PSYWAVE" ],
+            [ 5, "MOVE_SPITE" ],
+            [ 10, "MOVE_ASTONISH" ],
+            [ 14, "MOVE_CONFUSE_RAY" ],
+            [ 19, "MOVE_MEAN_LOOK" ],
+            [ 23, "MOVE_PSYBEAM" ],
+            [ 28, "MOVE_PAIN_SPLIT" ],
+            [ 32, "MOVE_PAYBACK" ],
+            [ 37, "MOVE_SHADOW_BALL" ],
+            [ 41, "MOVE_PERISH_SONG" ],
+            [ 46, "MOVE_GRUDGE" ],
+            [ 50, "MOVE_POWER_GEM" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -86,24 +90,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_PSYWAVE"
-            ],
-            "5": "MOVE_SPITE",
-            "10": "MOVE_ASTONISH",
-            "14": "MOVE_CONFUSE_RAY",
-            "19": "MOVE_MEAN_LOOK",
-            "23": "MOVE_PSYBEAM",
-            "28": "MOVE_PAIN_SPLIT",
-            "32": "MOVE_PAYBACK",
-            "37": "MOVE_SHADOW_BALL",
-            "41": "MOVE_PERISH_SONG",
-            "46": "MOVE_GRUDGE",
-            "50": "MOVE_POWER_GEM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -122,8 +109,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 7,
@@ -139,5 +126,12 @@
         "pokemon_pos_m": 65527,
         "entry_text": "A Pokémon that startles people in\nthe middle of the night. It gathers\nfear as its energy.",
         "category": "Screech Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 3084
     }
 }

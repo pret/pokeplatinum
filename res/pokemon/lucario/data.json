@@ -8,10 +8,7 @@
         "special_attack": 115,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_STEEL"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_STEEL" ],
     "catch_rate": 45,
     "base_exp_reward": 204,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_STEADFAST",
-        "ABILITY_INNER_FOCUS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_STEADFAST", "ABILITY_INNER_FOCUS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_DARK_PULSE" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_FORESIGHT" ],
+            [ 1, "MOVE_DETECT" ],
+            [ 1, "MOVE_METAL_CLAW" ],
+            [ 6, "MOVE_COUNTER" ],
+            [ 11, "MOVE_FORCE_PALM" ],
+            [ 15, "MOVE_FEINT" ],
+            [ 19, "MOVE_BONE_RUSH" ],
+            [ 24, "MOVE_METAL_SOUND" ],
+            [ 29, "MOVE_ME_FIRST" ],
+            [ 33, "MOVE_SWORDS_DANCE" ],
+            [ 37, "MOVE_AURA_SPHERE" ],
+            [ 42, "MOVE_CLOSE_COMBAT" ],
+            [ 47, "MOVE_DRAGON_PULSE" ],
+            [ 51, "MOVE_EXTREME_SPEED" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -93,27 +100,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_DARK_PULSE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_FORESIGHT",
-                "MOVE_DETECT",
-                "MOVE_METAL_CLAW"
-            ],
-            "6": "MOVE_COUNTER",
-            "11": "MOVE_FORCE_PALM",
-            "15": "MOVE_FEINT",
-            "19": "MOVE_BONE_RUSH",
-            "24": "MOVE_METAL_SOUND",
-            "29": "MOVE_ME_FIRST",
-            "33": "MOVE_SWORDS_DANCE",
-            "37": "MOVE_AURA_SPHERE",
-            "42": "MOVE_CLOSE_COMBAT",
-            "47": "MOVE_DRAGON_PULSE",
-            "51": "MOVE_EXTREME_SPEED"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -127,9 +114,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -145,5 +133,12 @@
         "pokemon_pos_m": 12,
         "entry_text": "A well-trained one can sense auras\nto identify and take in the feelings\nof creatures over half a mile away.",
         "category": "Aura Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2056
     }
 }

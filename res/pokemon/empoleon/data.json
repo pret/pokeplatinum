@@ -8,10 +8,7 @@
         "special_attack": 111,
         "special_defense": 101
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_STEEL"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_STEEL" ],
     "catch_rate": 45,
     "base_exp_reward": 210,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 4, "MOVE_GROWL" ],
+            [ 8, "MOVE_BUBBLE" ],
+            [ 11, "MOVE_SWORDS_DANCE" ],
+            [ 15, "MOVE_PECK" ],
+            [ 16, "MOVE_METAL_CLAW" ],
+            [ 19, "MOVE_BUBBLE_BEAM" ],
+            [ 24, "MOVE_SWAGGER" ],
+            [ 28, "MOVE_FURY_ATTACK" ],
+            [ 33, "MOVE_BRINE" ],
+            [ 36, "MOVE_AQUA_JET" ],
+            [ 39, "MOVE_WHIRLPOOL" ],
+            [ 46, "MOVE_MIST" ],
+            [ 52, "MOVE_DRILL_PECK" ],
+            [ 59, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -93,28 +101,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_BUBBLE"
-            ],
-            "4": "MOVE_GROWL",
-            "8": "MOVE_BUBBLE",
-            "11": "MOVE_SWORDS_DANCE",
-            "15": "MOVE_PECK",
-            "16": "MOVE_METAL_CLAW",
-            "19": "MOVE_BUBBLE_BEAM",
-            "24": "MOVE_SWAGGER",
-            "28": "MOVE_FURY_ATTACK",
-            "33": "MOVE_BRINE",
-            "36": "MOVE_AQUA_JET",
-            "39": "MOVE_WHIRLPOOL",
-            "46": "MOVE_MIST",
-            "52": "MOVE_DRILL_PECK",
-            "59": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -125,9 +112,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 17,
@@ -143,5 +131,12 @@
         "pokemon_pos_m": 3,
         "entry_text": "If anyone were to hurt its pride,\nit would slash them with wings that\ncan cleave through an ice floe.",
         "category": "Emperor Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 3587
     }
 }

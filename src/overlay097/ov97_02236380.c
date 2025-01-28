@@ -1320,33 +1320,33 @@ u32 ov97_02236E00(BoxPokemonGBA *param0)
     return Pokemon_GetSpeciesLevelAt(v0, v1);
 }
 
-static int ov97_02236E28(BoxPokemonGBA *param0, BoxPokemon *param1)
+static int ov97_02236E28(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
 {
     int v0;
-    int v1;
-    u16 v2;
+    int ability;
+    u16 species;
     int v3;
 
-    v2 = BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    v3 = GetGBABoxMonData(param0, 46, NULL);
-    v1 = PokemonPersonalData_GetSpeciesValue(v2, 25);
+    species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    v3 = GetGBABoxMonData(boxMonGBA, 46, NULL);
+    ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_2);
 
-    if (v1) {
+    if (ability) {
         for (v0 = 0; v0 < (sizeof(Unk_ov97_0223ECA0) / 2); v0++) {
-            if (Unk_ov97_0223ECA0[v0] == v2) {
-                v1 = PokemonPersonalData_GetSpeciesValue(v2, 24);
+            if (Unk_ov97_0223ECA0[v0] == species) {
+                ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
                 break;
             }
         }
 
         if ((v0 == (sizeof(Unk_ov97_0223ECA0) / 2)) && ((v3 & 1) == 0)) {
-            v1 = PokemonPersonalData_GetSpeciesValue(v2, 24);
+            ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        v1 = PokemonPersonalData_GetSpeciesValue(v2, 24);
+        ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
     }
 
-    return v1;
+    return ability;
 }
 
 void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
@@ -1566,19 +1566,19 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
     }
 
     if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
-        switch (gCoreSys.unk_66) {
+        switch (gCoreSys.gbaCartridgeVersion) {
         default:
-        case 2:
-        case 1:
+        case RUBY:
+        case SAPPHIRE:
             v1 = 0;
             break;
-        case 4:
+        case FIRERED:
             v1 = 1;
             break;
-        case 5:
+        case LEAFGREEN:
             v1 = 2;
             break;
-        case 3:
+        case EMERALD:
             v1 = 3;
             break;
         }

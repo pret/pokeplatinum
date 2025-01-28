@@ -6,7 +6,6 @@
 #include "constants/heap.h"
 
 #include "struct_decls/struct_02029894_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0205964C.h"
 #include "struct_defs/struct_02072014.h"
 
@@ -436,7 +435,7 @@ static void sub_02059C2C(BOOL param0, const Party *party)
 {
     if (party) {
         sFieldCommMan->party = Party_New(11);
-        Party_cpy(party, sFieldCommMan->party);
+        Party_Copy(party, sFieldCommMan->party);
     }
 
     if (param0) {

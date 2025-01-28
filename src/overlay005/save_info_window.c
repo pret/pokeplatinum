@@ -21,13 +21,13 @@
 #include "map_header.h"
 #include "message_util.h"
 #include "player_avatar.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0202631C.h"
 #include "unk_020366A0.h"
 
 static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem);
@@ -51,7 +51,7 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
 {
     SaveData *saveData = fieldSystem->saveData;
     Location *curLocation = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(saveData));
-    PokedexData *pokedex = SaveData_Pokedex(saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(saveData);
 
     saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
 

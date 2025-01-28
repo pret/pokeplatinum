@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_FIGHTING" ],
     "catch_rate": 75,
     "base_exp_reward": 72,
     "ev_yields": {
@@ -30,21 +27,24 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_STEADFAST",
-        "ABILITY_INNER_FOCUS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_STEADFAST", "ABILITY_INNER_FOCUS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_FORESIGHT" ],
+            [ 1, "MOVE_ENDURE" ],
+            [ 6, "MOVE_COUNTER" ],
+            [ 11, "MOVE_FORCE_PALM" ],
+            [ 15, "MOVE_FEINT" ],
+            [ 19, "MOVE_REVERSAL" ],
+            [ 24, "MOVE_SCREECH" ],
+            [ 29, "MOVE_COPYCAT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM05",
             "TM06",
@@ -82,20 +82,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_QUICK_ATTACK",
-                "MOVE_FORESIGHT",
-                "MOVE_ENDURE"
-            ],
-            "6": "MOVE_COUNTER",
-            "11": "MOVE_FORCE_PALM",
-            "15": "MOVE_FEINT",
-            "19": "MOVE_REVERSAL",
-            "24": "MOVE_SCREECH",
-            "29": "MOVE_COPYCAT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -110,14 +97,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_HAPPINESS_DAY",
-            "SPECIES_LUCARIO"
-        ]
+        [ "EVO_LEVEL_HAPPINESS_DAY", "SPECIES_LUCARIO" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -133,5 +117,12 @@
         "pokemon_pos_m": 21,
         "entry_text": "It has the peculiar power of being\nable to see emotions such as joy\nand rage in the form of waves.",
         "category": "Emanation Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 257
     }
 }

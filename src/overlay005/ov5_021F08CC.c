@@ -192,7 +192,7 @@ static void ov5_021F0A04(SysTask *task, void *param1)
 static int ov5_021F0A30(UnkStruct_ov5_021F0D6C *param0, PlayerAvatar *playerAvatar, MapObject *param2)
 {
     ov5_021F0D6C(param0);
-    sub_02062DDC(param2);
+    MapObject_SetPauseMovementOff(param2);
     param0->unk_0C = 1;
 
     return 1;

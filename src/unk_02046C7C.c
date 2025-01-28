@@ -12,6 +12,7 @@
 #include "inlines.h"
 #include "map_header.h"
 #include "party.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "script_manager.h"
@@ -19,7 +20,6 @@
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0202631C.h"
 #include "unk_020298BC.h"
 #include "unk_0202CC64.h"
 #include "unk_020933F8.h"
@@ -107,7 +107,7 @@ BOOL ScrCmd_0FA(ScriptContext *param0)
     v8.unk_01 = v4;
     v8.unk_02 = v6;
     v8.unk_03 = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    v8.unk_04 = Pokedex_IsNationalDexObtained(SaveData_Pokedex(param0->fieldSystem->saveData));
+    v8.unk_04 = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(param0->fieldSystem->saveData));
     v8.unk_05 = v7;
     v8.unk_08 = v1;
     v8.unk_0C = v0;

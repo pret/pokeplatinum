@@ -63,7 +63,7 @@ void ov21_021D1FA4(UnkStruct_ov21_021D13FC *param0, int param1)
     GraphicsModes v0;
     UnkStruct_ov21_021D1FA4 v1;
 
-    param0->unk_278 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1);
+    param0->pokedexGraphics = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1);
     param0->unk_00 = BgConfig_New(param1);
 
     v0.displayMode = GX_DISPMODE_GRAPHICS;
@@ -120,7 +120,7 @@ void ov21_021D2098(UnkStruct_ov21_021D13FC *param0)
     ov21_021D4C6C(param0->unk_14C);
     Font_Free(FONT_SUBSCREEN);
     ov21_021D2AB4(param0);
-    NARC_dtor(param0->unk_278);
+    NARC_dtor(param0->pokedexGraphics);
 
     memset(param0, 0, sizeof(UnkStruct_ov21_021D13FC));
 }
@@ -466,14 +466,14 @@ BOOL ov21_021D2664(UnkStruct_ov21_021D2648 *param0)
 
 NARC *ov21_021D26E0(UnkStruct_ov21_021D13FC *param0)
 {
-    return param0->unk_278;
+    return param0->pokedexGraphics;
 }
 
 void *ov21_021D26E8(UnkStruct_ov21_021D13FC *param0, u32 param1, BOOL param2, u32 param3)
 {
     void *v0;
 
-    v0 = NARC_AllocAndReadWholeMember(param0->unk_278, param1, param3);
+    v0 = NARC_AllocAndReadWholeMember(param0->pokedexGraphics, param1, param3);
 
     if (v0 != NULL) {
         if (param2) {

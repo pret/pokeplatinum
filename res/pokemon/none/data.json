@@ -1,0 +1,55 @@
+{
+    "name": "-----",
+    "base_stats": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
+    "catch_rate": 0,
+    "base_exp_reward": 0,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_MALE_ONLY",
+    "hatch_cycles": 0,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [ "EGG_GROUP_NONE", "EGG_GROUP_NONE" ],
+    "abilities": [ "ABILITY_NONE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
+    "learnset": {
+        "by_level": [  ],
+        "by_tm": [  ]
+    },
+    "evolutions": [  ],
+    "pokedex_data": {
+        "height": 7,
+        "weight": 69,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 337,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 337,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 22,
+        "entry_text": null,
+        "category": "????? Pokémon"
+    }
+}

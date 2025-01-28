@@ -8,10 +8,7 @@
         "special_attack": 70,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 45,
     "base_exp_reward": 65,
     "ev_yields": {
@@ -30,21 +27,26 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_BLAZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 7, "MOVE_FOCUS_ENERGY" ],
+            [ 10, "MOVE_EMBER" ],
+            [ 16, "MOVE_PECK" ],
+            [ 19, "MOVE_SAND_ATTACK" ],
+            [ 25, "MOVE_FIRE_SPIN" ],
+            [ 28, "MOVE_QUICK_ATTACK" ],
+            [ 34, "MOVE_SLASH" ],
+            [ 37, "MOVE_MIRROR_MOVE" ],
+            [ 43, "MOVE_FLAMETHROWER" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -76,22 +78,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_GROWL"
-            ],
-            "7": "MOVE_FOCUS_ENERGY",
-            "10": "MOVE_EMBER",
-            "16": "MOVE_PECK",
-            "19": "MOVE_SAND_ATTACK",
-            "25": "MOVE_FIRE_SPIN",
-            "28": "MOVE_QUICK_ATTACK",
-            "34": "MOVE_SLASH",
-            "37": "MOVE_MIRROR_MOVE",
-            "43": "MOVE_FLAMETHROWER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -103,14 +90,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             16,
             "SPECIES_COMBUSKEN"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -126,5 +113,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "A fire burns inside, so it feels\nvery warm to hug. It launches\nfireballs of 1,800 degrees F.",
         "category": "Chick Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 514
     }
 }

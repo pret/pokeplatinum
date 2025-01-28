@@ -31,7 +31,7 @@ BOOL ov6_02247660(FieldSystem *fieldSystem)
     int v14;
     int v15, v16;
 
-    if (inline_020564D0(2) == 0) {
+    if (LCRNG_RandMod(2) == 0) {
         return 0;
     }
 

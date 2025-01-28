@@ -1815,7 +1815,7 @@ static void ov23_022448FC(int param0)
     v0 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_00;
     v1 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_02;
     v0 = v0 + MapObject_GetDxFromDir(v2);
-    v1 = v1 + MapObject_GetDyFromDir(v2);
+    v1 = v1 + MapObject_GetDzFromDir(v2);
 
     CommPlayer_SendXZPos(0, v0, v1);
 }
@@ -1832,7 +1832,7 @@ static BOOL ov23_0224495C(int param0, BOOL param1)
 
     if (!param1) {
         v2 = v2 + MapObject_GetDxFromDir(v4);
-        v3 = v3 + MapObject_GetDyFromDir(v4);
+        v3 = v3 + MapObject_GetDzFromDir(v4);
     }
 
     if ((v0 == v2) && (v1 == v3)) {

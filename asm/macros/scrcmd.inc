@@ -1,14 +1,15 @@
+#include "generated/items.h"
+#include "generated/moves.h"
+#include "generated/species.h"
+#include "generated/catching_show_points_category.h"
     .include "macros/movement.inc"
     .include "consts/badges.inc"
     .include "consts/game_records.inc"
-    .include "consts/items.inc"
     .include "consts/journal.inc"
     .include "consts/map.inc"
-    .include "consts/moves.inc"
     .include "consts/poketch.inc"
     .include "consts/scrcmd.inc"
     .include "consts/sdat.inc"
-    .include "consts/species.inc"
 
 #include "res/trainers/trdata.naix"
 
@@ -2796,7 +2797,7 @@
     .short 517
     .endm
 
-    .macro ScrCmd_206
+    .macro StartGreatMarshLookout
     .short 518
     .endm
 
@@ -3250,10 +3251,10 @@
     .short 597
     .endm
 
-    .macro ScrCmd_256 arg0, arg1
+    .macro CalcCatchingShowPoints pointsCategory, destVarID
     .short 598
-    .short \arg0
-    .short \arg1
+    .short \pointsCategory
+    .short \destVarID
     .endm
 
     .macro ScrCmd_257
@@ -3370,9 +3371,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_26E arg0
+    .macro GetGBACartridgeVersion destVarID
     .short 622
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_26F
@@ -4474,10 +4475,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_337 arg0, arg1
+    .macro HasSeenSpecies species, ret
     .short 823
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \ret
     .endm
 
     .macro ScrCmd_338

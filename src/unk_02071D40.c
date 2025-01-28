@@ -19,11 +19,11 @@
 #include "game_records.h"
 #include "heap.h"
 #include "play_time.h"
+#include "pokedex.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_0202C7FC.h"
 #include "unk_0203061C.h"
@@ -46,13 +46,13 @@ static BOOL sub_02072230(FieldTask *param0);
 
 void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem *fieldSystem, TrainerCard *param5)
 {
-    TrainerInfo *v0;
-    GameRecords *v1;
-    SaveData *v2;
+    TrainerInfo *trainerInfo;
+    GameRecords *gameRecords;
+    SaveData *saveData;
 
-    v2 = FieldSystem_GetSaveData(fieldSystem);
-    v0 = SaveData_GetTrainerInfo(v2);
-    v1 = SaveData_GetGameRecordsPtr(v2);
+    saveData = FieldSystem_GetSaveData(fieldSystem);
+    trainerInfo = SaveData_GetTrainerInfo(saveData);
+    gameRecords = SaveData_GetGameRecordsPtr(saveData);
 
     param5->unk_05 = param3;
 
@@ -60,10 +60,10 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
         u8 v3;
 
         v3 = sub_02071F28(fieldSystem);
-        sub_02072014(param0, GAME_VERSION, v3, param2, TrainerInfo_RegionCode(v0), param5);
+        sub_02072014(param0, GAME_VERSION, v3, param2, TrainerInfo_RegionCode(trainerInfo), param5);
     }
 
-    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), Pokedex_CountSeen(SaveData_Pokedex(fieldSystem->saveData)), Pokedex_IsObtained(SaveData_Pokedex(fieldSystem->saveData)), GameRecords_GetTrainerScore(v1), param5);
+    sub_02072038(TrainerInfo_ID_LowHalf(trainerInfo), TrainerInfo_Gender(trainerInfo), TrainerInfo_Name(trainerInfo), TrainerInfo_Money(trainerInfo), Pokedex_CountSeen(SaveData_GetPokedex(fieldSystem->saveData)), Pokedex_IsObtained(SaveData_GetPokedex(fieldSystem->saveData)), GameRecords_GetTrainerScore(gameRecords), param5);
 
     {
         RTCDate v4;
@@ -71,7 +71,7 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
         RTCTime v6;
         PlayTime *playTime;
 
-        playTime = SaveData_GetPlayTime(v2);
+        playTime = SaveData_GetPlayTime(saveData);
 
         sub_02055BF4(fieldSystem, &v4, &v6);
         sub_02055C10(fieldSystem, &v5, &v6);
@@ -83,15 +83,15 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
         UnkStruct_0202C834 *v12;
 
         v12 = sub_0202C834(fieldSystem->saveData);
-        v8 = GameRecords_GetRecordValue(v1, RECORD_UNK_091) + GameRecords_GetRecordValue(v1, RECORD_UNK_019) + GameRecords_GetRecordValue(v1, RECORD_UNK_024) + GameRecords_GetRecordValue(v1, RECORD_UNK_020) + GameRecords_GetRecordValue(v1, RECORD_UNK_025) + GameRecords_GetRecordValue(v1, RECORD_UNK_032);
-        v9 = GameRecords_GetRecordValue(v1, RECORD_UNK_021) + GameRecords_GetRecordValue(v1, RECORD_UNK_026);
-        v10 = GameRecords_GetRecordValue(v1, RECORD_UNK_022) + GameRecords_GetRecordValue(v1, RECORD_UNK_027);
-        v11 = GameRecords_GetRecordValue(v1, RECORD_UNK_019) + GameRecords_GetRecordValue(v1, RECORD_UNK_024);
+        v8 = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_091) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_019) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_024) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_020) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_025) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_032);
+        v9 = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_021) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_026);
+        v10 = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_022) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_027);
+        v11 = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_019) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_024);
 
         sub_02072120(v8, v9, v10, v11, sub_0202C840(v12), param5);
     }
 
-    sub_0207216C(v0, fieldSystem, param5);
+    sub_0207216C(trainerInfo, fieldSystem, param5);
 
     {
         int v13, v14 = 0;
@@ -123,24 +123,24 @@ void sub_02071F20(TrainerCard *param0)
 u8 sub_02071F28(FieldSystem *fieldSystem)
 {
     u8 v0;
-    SaveData *v1;
-    GameRecords *v2;
-    VarsFlags *v3;
+    SaveData *saveData;
+    GameRecords *gameRecords;
+    VarsFlags *varsFlags;
     SecretBaseRecord *v4;
     UnkStruct_0203068C *v5;
 
-    v1 = FieldSystem_GetSaveData(fieldSystem);
-    v2 = SaveData_GetGameRecordsPtr(v1);
-    v3 = SaveData_GetVarsFlags(v1);
-    v4 = SaveData_SecretBaseRecord(v1);
-    v5 = sub_0203068C(v1);
+    saveData = FieldSystem_GetSaveData(fieldSystem);
+    gameRecords = SaveData_GetGameRecordsPtr(saveData);
+    varsFlags = SaveData_GetVarsFlags(saveData);
+    v4 = SaveData_SecretBaseRecord(saveData);
+    v5 = sub_0203068C(saveData);
     v0 = 0;
 
-    if (SystemFlag_CheckGameCompleted(v3)) {
+    if (SystemFlag_CheckGameCompleted(varsFlags)) {
         v0++;
     }
 
-    if (sub_02026EF4(SaveData_Pokedex(v1))) {
+    if (Pokedex_NationalDexCompleted(SaveData_GetPokedex(saveData))) {
         v0++;
     }
 
@@ -148,7 +148,7 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
         v0++;
     }
 
-    if (SystemFlag_CheckContestMaster(v3, 0) || SystemFlag_CheckContestMaster(v3, 1) || SystemFlag_CheckContestMaster(v3, 3) || SystemFlag_CheckContestMaster(v3, 4) || SystemFlag_CheckContestMaster(v3, 2)) {
+    if (SystemFlag_CheckContestMaster(varsFlags, 0) || SystemFlag_CheckContestMaster(varsFlags, 1) || SystemFlag_CheckContestMaster(varsFlags, 3) || SystemFlag_CheckContestMaster(varsFlags, 4) || SystemFlag_CheckContestMaster(varsFlags, 2)) {
         v0++;
     }
 

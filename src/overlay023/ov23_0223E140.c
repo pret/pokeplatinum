@@ -41,6 +41,7 @@
 #include "math.h"
 #include "menu.h"
 #include "narc.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -62,7 +63,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
 #include "unk_02039C80.h"
@@ -1777,10 +1777,10 @@ static BOOL ov23_0223F838(int param0, int param1, int param2)
 
 static int ov23_0223F970(UnkStruct_ov23_02256EB0 *param0)
 {
-    SaveData *v0 = FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem);
-    UndergroundData *v1 = sub_020298B0(v0);
-    BOOL v2 = TrainerInfo_ID(SaveData_GetTrainerInfo(v0)) % 2;
-    BOOL v3 = Pokedex_IsNationalDexObtained(SaveData_Pokedex(v0));
+    SaveData *saveData = FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem);
+    UndergroundData *v1 = sub_020298B0(saveData);
+    BOOL v2 = TrainerInfo_ID(SaveData_GetTrainerInfo(saveData)) % 2;
+    BOOL v3 = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(saveData));
     int v4 = 0;
 
     if (v3) {

@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV19_021D4DF0_H
 
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 
 #include "overlay019/struct_ov19_021D3CFC.h"
 #include "overlay019/struct_ov19_021D4DE4.h"
@@ -13,6 +12,8 @@
 #include "overlay019/struct_ov19_021D5BAC.h"
 #include "overlay019/struct_ov19_021D5D20.h"
 #include "overlay019/struct_ov19_021DF964.h"
+
+#include "party.h"
 
 typedef struct {
     const PCBoxes *unk_00;

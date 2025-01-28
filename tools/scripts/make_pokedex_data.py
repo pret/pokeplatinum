@@ -4,9 +4,9 @@ import json
 import pathlib
 import subprocess
 
-from consts.species import PokemonSpecies
-from consts.pokemon import PokemonType
 from consts.pokemon import PokemonBodyShape
+from generated.pokemon_types import PokemonType
+from generated.species import Species
 
 
 argparser = argparse.ArgumentParser(
@@ -59,8 +59,8 @@ def DataSize(num):
         return 1
     return 2
 
-NUM_FILES = 26 + PokemonType['NUMBER_OF_MON_TYPES'].value + PokemonBodyShape['NUMBER_OF_BODY_SHAPES'].value
-NUM_POKEMON = len(PokemonSpecies)-3
+NUM_FILES = 26 + PokemonType['NUM_POKEMON_TYPES'].value + PokemonBodyShape['NUMBER_OF_BODY_SHAPES'].value
+NUM_POKEMON = len(Species)-3
 
 binData = [bytes() for f in range(NUM_FILES)]
 heightData = [0 for i in range(NUM_POKEMON)]
@@ -95,13 +95,13 @@ for i, file in enumerate(args.src_files):
         binData[11] = binData[11] + i.to_bytes(2, 'little')
 
         # body shape
-        bodyIdx = PokemonBodyShape[pkdexdata['body_shape']].value + PokemonType['NUMBER_OF_MON_TYPES'].value + 26
+        bodyIdx = PokemonBodyShape[pkdexdata['body_shape']].value + PokemonType['NUM_POKEMON_TYPES'].value + 26
         binData[bodyIdx] = binData[bodyIdx] + i.to_bytes(2, 'little')
 
         # pokemon types
         typeIdx = 27
         for type in PokemonType:
-            if type.name in ['TYPE_MYSTERY', 'NUMBER_OF_MON_TYPES']:
+            if type.name in ['TYPE_MYSTERY', 'NUM_POKEMON_TYPES']:
                 continue
             if type.name in pkdata['types']:
                 binData[typeIdx] = binData[typeIdx] + i.to_bytes(2, 'little')
@@ -114,10 +114,10 @@ for i, file in enumerate(args.src_files):
 
 # sinnoh dex order
 with open(source_dir / 'sinnoh_pokedex.json') as data_file:
-    dexData = json.load(data_file)
-    for mon in dexData:
+    pokedex = json.load(data_file)
+    for mon in pokedex:
         if mon not in ['SPECIES_EGG', 'SPECIES_BAD_EGG', 'SPECIES_NONE', 'SPECIES_ARCEUS']:
-            binData[12] = binData[12] + PokemonSpecies[mon].value.to_bytes(2, 'little')
+            binData[12] = binData[12] + Species[mon].value.to_bytes(2, 'little')
 
 # alphabetical order
 alpha = sorted(range(len(nameData)), key=lambda k: nameData[k])

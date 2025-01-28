@@ -8,10 +8,7 @@
         "special_attack": 40,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_FLYING" ],
     "catch_rate": 25,
     "base_exp_reward": 168,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_STURDY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_STURDY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_PECK" ],
+            [ 6, "MOVE_SAND_ATTACK" ],
+            [ 9, "MOVE_SWIFT" ],
+            [ 12, "MOVE_AGILITY" ],
+            [ 17, "MOVE_FURY_ATTACK" ],
+            [ 20, "MOVE_FEINT" ],
+            [ 23, "MOVE_AIR_CUTTER" ],
+            [ 28, "MOVE_SPIKES" ],
+            [ 31, "MOVE_METAL_SOUND" ],
+            [ 34, "MOVE_STEEL_WING" ],
+            [ 39, "MOVE_AIR_SLASH" ],
+            [ 42, "MOVE_SLASH" ],
+            [ 45, "MOVE_NIGHT_SLASH" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -85,25 +90,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LEER",
-                "MOVE_PECK"
-            ],
-            "6": "MOVE_SAND_ATTACK",
-            "9": "MOVE_SWIFT",
-            "12": "MOVE_AGILITY",
-            "17": "MOVE_FURY_ATTACK",
-            "20": "MOVE_FEINT",
-            "23": "MOVE_AIR_CUTTER",
-            "28": "MOVE_SPIKES",
-            "31": "MOVE_METAL_SOUND",
-            "34": "MOVE_STEEL_WING",
-            "39": "MOVE_AIR_SLASH",
-            "42": "MOVE_SLASH",
-            "45": "MOVE_NIGHT_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -115,9 +102,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 17,
@@ -133,5 +121,12 @@
         "pokemon_pos_m": 2,
         "entry_text": "Despite being clad entirely in\niron-hard armor, it flies at\nspeeds over 180 mph.",
         "category": "Armor Bird Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4366
     }
 }

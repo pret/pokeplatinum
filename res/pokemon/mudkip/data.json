@@ -8,10 +8,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 65,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 6, "MOVE_MUD_SLAP" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_BIDE" ],
+            [ 19, "MOVE_FORESIGHT" ],
+            [ 24, "MOVE_MUD_SPORT" ],
+            [ 28, "MOVE_TAKE_DOWN" ],
+            [ 33, "MOVE_WHIRLPOOL" ],
+            [ 37, "MOVE_PROTECT" ],
+            [ 42, "MOVE_HYDRO_PUMP" ],
+            [ 46, "MOVE_ENDEAVOR" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -75,23 +78,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL"
-            ],
-            "6": "MOVE_MUD_SLAP",
-            "10": "MOVE_WATER_GUN",
-            "15": "MOVE_BIDE",
-            "19": "MOVE_FORESIGHT",
-            "24": "MOVE_MUD_SPORT",
-            "28": "MOVE_TAKE_DOWN",
-            "33": "MOVE_WHIRLPOOL",
-            "37": "MOVE_PROTECT",
-            "42": "MOVE_HYDRO_PUMP",
-            "46": "MOVE_ENDEAVOR"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -106,14 +93,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             16,
             "SPECIES_MARSHTOMP"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -129,5 +116,12 @@
         "pokemon_pos_m": 27,
         "entry_text": "To alert it, the fin on its head\nsenses the flow of water. It has\nthe strength to heft boulders.",
         "category": "Mud Fish Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

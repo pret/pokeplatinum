@@ -8,10 +8,7 @@
         "special_attack": 105,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_GROUND" ],
     "catch_rate": 150,
     "base_exp_reward": 175,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_MAGMA_ARMOR",
-        "ABILITY_SOLID_ROCK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_MAGMA_ARMOR", "ABILITY_SOLID_ROCK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_MAGNITUDE" ],
+            [ 5, "MOVE_EMBER" ],
+            [ 11, "MOVE_MAGNITUDE" ],
+            [ 15, "MOVE_FOCUS_ENERGY" ],
+            [ 21, "MOVE_TAKE_DOWN" ],
+            [ 25, "MOVE_AMNESIA" ],
+            [ 31, "MOVE_LAVA_PLUME" ],
+            [ 33, "MOVE_ROCK_SLIDE" ],
+            [ 39, "MOVE_EARTH_POWER" ],
+            [ 49, "MOVE_EARTHQUAKE" ],
+            [ 57, "MOVE_ERUPTION" ],
+            [ 67, "MOVE_FISSURE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -83,26 +89,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_TACKLE",
-                "MOVE_EMBER",
-                "MOVE_MAGNITUDE"
-            ],
-            "5": "MOVE_EMBER",
-            "11": "MOVE_MAGNITUDE",
-            "15": "MOVE_FOCUS_ENERGY",
-            "21": "MOVE_TAKE_DOWN",
-            "25": "MOVE_AMNESIA",
-            "31": "MOVE_LAVA_PLUME",
-            "33": "MOVE_ROCK_SLIDE",
-            "39": "MOVE_EARTH_POWER",
-            "49": "MOVE_EARTHQUAKE",
-            "57": "MOVE_ERUPTION",
-            "67": "MOVE_FISSURE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_IRON_HEAD",
@@ -111,9 +98,10 @@
             "MOVE_HEAT_WAVE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 19,
@@ -129,5 +117,12 @@
         "pokemon_pos_m": 3,
         "entry_text": "It has volcanoes on its back. If\nmagma builds up in its body, it\nshudders, then erupts violently.",
         "category": "Eruption Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2050
     }
 }

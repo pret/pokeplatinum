@@ -8,10 +8,7 @@
         "special_attack": 95,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
     "base_exp_reward": 150,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 9, "MOVE_ROCK_THROW" ],
+            [ 12, "MOVE_HYPNOSIS" ],
+            [ 20, "MOVE_ROCK_POLISH" ],
+            [ 23, "MOVE_PSYWAVE" ],
+            [ 31, "MOVE_EMBARGO" ],
+            [ 34, "MOVE_COSMIC_POWER" ],
+            [ 42, "MOVE_HEAL_BLOCK" ],
+            [ 45, "MOVE_PSYCHIC" ],
+            [ 53, "MOVE_FUTURE_SIGHT" ],
+            [ 56, "MOVE_EXPLOSION" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -89,24 +93,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_HARDEN",
-                "MOVE_CONFUSION"
-            ],
-            "9": "MOVE_ROCK_THROW",
-            "12": "MOVE_HYPNOSIS",
-            "20": "MOVE_ROCK_POLISH",
-            "23": "MOVE_PSYWAVE",
-            "31": "MOVE_EMBARGO",
-            "34": "MOVE_COSMIC_POWER",
-            "42": "MOVE_HEAL_BLOCK",
-            "45": "MOVE_PSYCHIC",
-            "53": "MOVE_FUTURE_SIGHT",
-            "56": "MOVE_EXPLOSION"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
@@ -118,9 +105,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 10,
@@ -136,5 +124,12 @@
         "pokemon_pos_m": 65532,
         "entry_text": "Because it turns active on nights\nof the full moon, it is said to have\nsome link to the lunar phases.",
         "category": "Meteorite Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2571
     }
 }

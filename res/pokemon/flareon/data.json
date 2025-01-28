@@ -8,10 +8,7 @@
         "special_attack": 95,
         "special_defense": 110
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 45,
     "base_exp_reward": 198,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 35,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_FLASH_FIRE",
-        "ABILITY_FLASH_FIRE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_FLASH_FIRE", "ABILITY_FLASH_FIRE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 8, "MOVE_SAND_ATTACK" ],
+            [ 15, "MOVE_EMBER" ],
+            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 29, "MOVE_BITE" ],
+            [ 36, "MOVE_FIRE_SPIN" ],
+            [ 43, "MOVE_FIRE_FANG" ],
+            [ 50, "MOVE_LAST_RESORT" ],
+            [ 57, "MOVE_SMOG" ],
+            [ 64, "MOVE_SCARY_FACE" ],
+            [ 71, "MOVE_FIRE_BLAST" ],
+            [ 78, "MOVE_LAVA_PLUME" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -76,25 +81,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TAIL_WHIP",
-                "MOVE_TACKLE",
-                "MOVE_HELPING_HAND"
-            ],
-            "8": "MOVE_SAND_ATTACK",
-            "15": "MOVE_EMBER",
-            "22": "MOVE_QUICK_ATTACK",
-            "29": "MOVE_BITE",
-            "36": "MOVE_FIRE_SPIN",
-            "43": "MOVE_FIRE_FANG",
-            "50": "MOVE_LAST_RESORT",
-            "57": "MOVE_SMOG",
-            "64": "MOVE_SCARY_FACE",
-            "71": "MOVE_FIRE_BLAST",
-            "78": "MOVE_LAVA_PLUME"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SUPERPOWER",
             "MOVE_SNORE",
@@ -104,9 +91,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -122,5 +110,12 @@
         "pokemon_pos_m": 16,
         "entry_text": "Inhaled air is heated in the flame\nsac in its body to an intense fire\nover 3,000 degrees Fahrenheit.",
         "category": "Flame Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 514
     }
 }

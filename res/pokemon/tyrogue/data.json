@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_FIGHTING" ],
     "catch_rate": 75,
     "base_exp_reward": 91,
     "ev_yields": {
@@ -30,21 +27,19 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_GUTS",
-        "ABILITY_STEADFAST"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_GUTS", "ABILITY_STEADFAST" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 1, "MOVE_FAKE_OUT" ],
+            [ 1, "MOVE_FORESIGHT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM08",
             "TM10",
@@ -71,15 +66,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_HELPING_HAND",
-                "MOVE_FAKE_OUT",
-                "MOVE_FORESIGHT"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -106,8 +93,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -123,5 +110,12 @@
         "pokemon_pos_m": 18,
         "entry_text": "It is famous for its eagerness to\nfight and always nurses injuries\nfrom challenging larger foes.",
         "category": "Scuffle Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2313
     }
 }

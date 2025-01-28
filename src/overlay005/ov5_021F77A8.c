@@ -20,6 +20,7 @@
 #include "list_menu.h"
 #include "message.h"
 #include "party.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "script_manager.h"
@@ -31,10 +32,9 @@
 #include "tutor_movesets.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_0202631C.h"
 #include "unk_02054884.h"
 
-#include "res/pokemon/tutor_movesets.h"
+#include "res/pokemon/species_learnsets_by_tutor.h"
 
 struct UnkStruct_ov5_021F7ED8_t {
     FieldSystem *fieldSystem;
@@ -86,48 +86,47 @@ static void ov5_021F819C(ListMenu *param0, u32 param1, u8 param2);
 static void ov5_021F81A8(SysTask *param0, void *param1);
 static void ov5_021F8250(UnkStruct_ov5_021F7ED8 *param0);
 
-BOOL ScrCmd_337(ScriptContext *param0)
+BOOL ScrCmd_HasSeenSpecies(ScriptContext *ctx)
 {
-    u16 v0 = FieldSystem_TryGetVar(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    u16 *v1 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    PokedexData *v2 = SaveData_Pokedex(param0->fieldSystem->saveData);
+    u16 species = FieldSystem_TryGetVar(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 *seen = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    *v1 = Pokedex_HasSeenSpecies(v2, v0);
+    *seen = Pokedex_HasSeenSpecies(SaveData_GetPokedex(ctx->fieldSystem->saveData), species);
     return 0;
 }
 
-BOOL ScrCmd_2E5(ScriptContext *param0)
+BOOL ScrCmd_2E5(ScriptContext *ctx)
 {
     Pokemon *v0;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
-    u16 *v3 = ScriptContext_GetVarPointer(param0);
+    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 *v3 = ScriptContext_GetVarPointer(ctx);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
+    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), v1);
     *v3 = ov5_021F7B60(v0, v2);
 
     return 0;
 }
 
-BOOL ScrCmd_2E9(ScriptContext *param0)
+BOOL ScrCmd_2E9(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
+    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 v2 = ScriptContext_GetVar(ctx);
 
-    sub_02054988(Party_GetFromSavedata(param0->fieldSystem->saveData), v0, v1, v2);
+    sub_02054988(Party_GetFromSavedata(ctx->fieldSystem->saveData), v0, v1, v2);
     return 0;
 }
 
-BOOL ScrCmd_2EA(ScriptContext *param0)
+BOOL ScrCmd_2EA(ScriptContext *ctx)
 {
     int v0;
     u8 v1, v2, v3, v4;
     Bag *v5;
-    u16 v6 = ScriptContext_GetVar(param0);
-    u16 *v7 = ScriptContext_GetVarPointer(param0);
+    u16 v6 = ScriptContext_GetVar(ctx);
+    u16 *v7 = ScriptContext_GetVarPointer(ctx);
 
-    v5 = SaveData_GetBag(param0->fieldSystem->saveData);
+    v5 = SaveData_GetBag(ctx->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -174,14 +173,14 @@ BOOL ScrCmd_2EA(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_2EB(ScriptContext *param0)
+BOOL ScrCmd_2EB(ScriptContext *ctx)
 {
     int v0;
     u8 v1, v2, v3, v4;
     Bag *v5;
-    u16 v6 = ScriptContext_GetVar(param0);
+    u16 v6 = ScriptContext_GetVar(ctx);
 
-    v5 = SaveData_GetBag(param0->fieldSystem->saveData);
+    v5 = SaveData_GetBag(ctx->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -272,7 +271,7 @@ static u8 ReadMovesetMaskByte(Pokemon *pokemon, u8 offset)
         break;
     }
 
-    return sTeachableMovesets[moveset - 1].maskData[offset];
+    return sSpeciesLearnsetsByTutor[moveset - 1].maskData[offset];
 }
 
 static u16 ov5_021F7B60(Pokemon *param0, u16 param1)

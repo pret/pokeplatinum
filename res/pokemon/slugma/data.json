@@ -8,10 +8,7 @@
         "special_attack": 70,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 190,
     "base_exp_reward": 78,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_MAGMA_ARMOR",
-        "ABILITY_FLAME_BODY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_MAGMA_ARMOR", "ABILITY_FLAME_BODY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_SMOG" ],
+            [ 8, "MOVE_EMBER" ],
+            [ 11, "MOVE_ROCK_THROW" ],
+            [ 16, "MOVE_HARDEN" ],
+            [ 23, "MOVE_RECOVER" ],
+            [ 26, "MOVE_ANCIENT_POWER" ],
+            [ 31, "MOVE_AMNESIA" ],
+            [ 38, "MOVE_LAVA_PLUME" ],
+            [ 41, "MOVE_ROCK_SLIDE" ],
+            [ 46, "MOVE_BODY_SLAM" ],
+            [ 53, "MOVE_FLAMETHROWER" ],
+            [ 56, "MOVE_EARTH_POWER" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -72,24 +76,7 @@
             "TM90",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_YAWN",
-                "MOVE_SMOG"
-            ],
-            "8": "MOVE_EMBER",
-            "11": "MOVE_ROCK_THROW",
-            "16": "MOVE_HARDEN",
-            "23": "MOVE_RECOVER",
-            "26": "MOVE_ANCIENT_POWER",
-            "31": "MOVE_AMNESIA",
-            "38": "MOVE_LAVA_PLUME",
-            "41": "MOVE_ROCK_SLIDE",
-            "46": "MOVE_BODY_SLAM",
-            "53": "MOVE_FLAMETHROWER",
-            "56": "MOVE_EARTH_POWER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -101,14 +88,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             38,
             "SPECIES_MAGCARGO"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 7,
@@ -124,5 +111,12 @@
         "pokemon_pos_m": 19,
         "entry_text": "Its body is made of magma.\nIf it doesn’t keep moving, its\nbody will cool and harden.",
         "category": "Lava Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 514
     }
 }

@@ -8,10 +8,7 @@
         "special_attack": 30,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_ROCK"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_ROCK" ],
     "catch_rate": 65,
     "base_exp_reward": 135,
     "ev_yields": {
@@ -30,21 +27,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_STURDY",
-        "ABILITY_ROCK_HEAD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_STURDY", "ABILITY_ROCK_HEAD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WOOD_HAMMER" ],
+            [ 1, "MOVE_COPYCAT" ],
+            [ 1, "MOVE_FLAIL" ],
+            [ 1, "MOVE_LOW_KICK" ],
+            [ 1, "MOVE_ROCK_THROW" ],
+            [ 6, "MOVE_FLAIL" ],
+            [ 9, "MOVE_LOW_KICK" ],
+            [ 14, "MOVE_ROCK_THROW" ],
+            [ 17, "MOVE_MIMIC" ],
+            [ 22, "MOVE_BLOCK" ],
+            [ 25, "MOVE_FAINT_ATTACK" ],
+            [ 30, "MOVE_ROCK_TOMB" ],
+            [ 33, "MOVE_ROCK_SLIDE" ],
+            [ 38, "MOVE_SLAM" ],
+            [ 41, "MOVE_SUCKER_PUNCH" ],
+            [ 46, "MOVE_DOUBLE_EDGE" ],
+            [ 49, "MOVE_HAMMER_ARM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -82,28 +90,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_WOOD_HAMMER",
-                "MOVE_COPYCAT",
-                "MOVE_FLAIL",
-                "MOVE_LOW_KICK",
-                "MOVE_ROCK_THROW"
-            ],
-            "6": "MOVE_FLAIL",
-            "9": "MOVE_LOW_KICK",
-            "14": "MOVE_ROCK_THROW",
-            "17": "MOVE_MIMIC",
-            "22": "MOVE_BLOCK",
-            "25": "MOVE_FAINT_ATTACK",
-            "30": "MOVE_ROCK_TOMB",
-            "33": "MOVE_ROCK_SLIDE",
-            "38": "MOVE_SLAM",
-            "41": "MOVE_SUCKER_PUNCH",
-            "46": "MOVE_DOUBLE_EDGE",
-            "49": "MOVE_HAMMER_ARM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -115,9 +102,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -133,5 +121,12 @@
         "pokemon_pos_m": 11,
         "entry_text": "To avoid being attacked, it does\nnothing but mimic a tree. It hates\nwater and flees from rain.",
         "category": "Imitation Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2827
     }
 }

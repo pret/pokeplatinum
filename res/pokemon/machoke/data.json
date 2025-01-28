@@ -8,10 +8,7 @@
         "special_attack": 50,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_FIGHTING" ],
     "catch_rate": 90,
     "base_exp_reward": 146,
     "ev_yields": {
@@ -30,21 +27,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_GUTS",
-        "ABILITY_NO_GUARD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_GUTS", "ABILITY_NO_GUARD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LOW_KICK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 7, "MOVE_FOCUS_ENERGY" ],
+            [ 10, "MOVE_KARATE_CHOP" ],
+            [ 13, "MOVE_FORESIGHT" ],
+            [ 19, "MOVE_SEISMIC_TOSS" ],
+            [ 22, "MOVE_REVENGE" ],
+            [ 25, "MOVE_VITAL_THROW" ],
+            [ 32, "MOVE_SUBMISSION" ],
+            [ 36, "MOVE_WAKE_UP_SLAP" ],
+            [ 40, "MOVE_CROSS_CHOP" ],
+            [ 44, "MOVE_SCARY_FACE" ],
+            [ 51, "MOVE_DYNAMIC_PUNCH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -81,25 +86,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LOW_KICK",
-                "MOVE_LEER",
-                "MOVE_FOCUS_ENERGY"
-            ],
-            "7": "MOVE_FOCUS_ENERGY",
-            "10": "MOVE_KARATE_CHOP",
-            "13": "MOVE_FORESIGHT",
-            "19": "MOVE_SEISMIC_TOSS",
-            "22": "MOVE_REVENGE",
-            "25": "MOVE_VITAL_THROW",
-            "32": "MOVE_SUBMISSION",
-            "36": "MOVE_WAKE_UP_SLAP",
-            "40": "MOVE_CROSS_CHOP",
-            "44": "MOVE_SCARY_FACE",
-            "51": "MOVE_DYNAMIC_PUNCH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -111,14 +98,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_TRADE",
-            "SPECIES_MACHAMP"
-        ]
+        [ "EVO_TRADE", "SPECIES_MACHAMP" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -134,5 +118,12 @@
         "pokemon_pos_m": 7,
         "entry_text": "It happily carries heavy cargo to\ntoughen up. It willingly does hard\nwork for people.",
         "category": "Superpower Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2313
     }
 }

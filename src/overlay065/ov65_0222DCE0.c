@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207DFAC.h"
 #include "struct_defs/struct_0207E060.h"
@@ -80,7 +80,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
-#include "unk_0202631C.h"
+#include "pokedex.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
 #include "unk_0203061C.h"
@@ -1795,7 +1795,7 @@ static int ov65_0222F490 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_160);
-    PokedexData * v1 = SaveData_Pokedex(param0->unk_160);
+    Pokedex * v1 = SaveData_GetPokedex(param0->unk_160);
     Party * v2 = Party_GetFromSavedata(param0->unk_160);
     UnkStruct_0202C878 * v3 = sub_0202C878(param0->unk_160);
     int v4, v5;
@@ -3797,7 +3797,7 @@ static u32 ov65_022319B8 (UnkStruct_ov65_0222EBE0 * param0)
         return 3;
     }
 
-    if (sub_0202AC98(Poffin_GetSavedataBlock(param0->unk_160)) >= 100) {
+    if (Poffin_GetNumberOfFilledSlots(Poffin_GetSavedataBlock(param0->unk_160)) >= MAX_POFFINS) {
         return 2;
     }
 

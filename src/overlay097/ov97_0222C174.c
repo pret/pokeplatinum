@@ -29,6 +29,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
@@ -39,7 +40,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0202631C.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
@@ -349,7 +349,7 @@ typedef struct {
     int unk_00;
     BgConfig *unk_04;
     SaveData *unk_08;
-    PokedexData *unk_0C;
+    Pokedex *unk_0C;
     TrainerInfo *unk_10;
     Options *unk_14;
     Window unk_18;
@@ -681,7 +681,7 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     v0->unk_04 = BgConfig_New(v0->unk_00);
     v0->unk_08 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
-    v0->unk_0C = SaveData_Pokedex(v0->unk_08);
+    v0->unk_0C = SaveData_GetPokedex(v0->unk_08);
     v0->unk_14 = SaveData_Options(v0->unk_08);
 
     ov97_02237694(v0->unk_00);

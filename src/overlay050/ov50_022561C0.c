@@ -10,7 +10,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "rtc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -23,7 +23,7 @@ typedef struct {
     UnkStruct_ov50_02256510_1 unk_04;
     UnkStruct_ov50_02256510 *unk_90;
     PoketchSystem *poketchSys;
-    PoketchData *poketchData;
+    Poketch *poketch;
     PoketchButtonManager *buttonManager;
     u32 unk_A0;
     u32 unk_A4;
@@ -112,7 +112,7 @@ static BOOL ov50_0225621C(UnkStruct_ov50_022561D4 *param0, PoketchSystem *poketc
     RTCDate v1;
 
     GetCurrentDate(&v1);
-    param0->poketchData = PoketchSystem_GetPoketchData(poketchSys);
+    param0->poketch = PoketchSystem_GetPoketchData(poketchSys);
     ov50_022562AC(&(param0->unk_04), param0, &v1);
 
     param0->unk_A8 = param0->unk_04.unk_0C[0].unk_02;
@@ -168,7 +168,7 @@ static void ov50_022562AC(UnkStruct_ov50_02256510_1 *param0, UnkStruct_ov50_0225
 
     for (v1 = 0; v1 < (param0->unk_04); v1++) {
         param0->unk_0C[v1].unk_00 = v1 + 1;
-        param0->unk_0C[v1].unk_03 = PoketchData_CalendarMarked(param1->poketchData, param0->unk_00, v1 + 1);
+        param0->unk_0C[v1].unk_03 = Poketch_CalendarMarked(param1->poketch, param0->unk_00, v1 + 1);
         param0->unk_0C[v1].unk_02 = v2 + v1;
     }
 }
@@ -260,10 +260,10 @@ static BOOL ov50_02256418(UnkStruct_ov50_022561D4 *param0)
             if ((param0->unk_A4 >= param0->unk_A8) && (param0->unk_A4 <= param0->unk_AC)) {
                 int v0 = (param0->unk_A4 - param0->unk_A8);
 
-                if (PoketchData_CalendarMarked(param0->poketchData, param0->unk_04.unk_00, v0 + 1)) {
-                    PoketchData_ClearCalendarMark(param0->poketchData, param0->unk_04.unk_00, v0 + 1);
+                if (Poketch_CalendarMarked(param0->poketch, param0->unk_04.unk_00, v0 + 1)) {
+                    Poketch_ClearCalendarMark(param0->poketch, param0->unk_04.unk_00, v0 + 1);
                 } else {
-                    PoketchData_SetCalendarMark(param0->poketchData, param0->unk_04.unk_00, v0 + 1);
+                    Poketch_SetCalendarMark(param0->poketch, param0->unk_04.unk_00, v0 + 1);
                 }
 
                 param0->unk_04.unk_0C[v0].unk_03 ^= 1;

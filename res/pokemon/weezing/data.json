@@ -8,10 +8,7 @@
         "special_attack": 85,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 60,
     "base_exp_reward": 173,
     "ev_yields": {
@@ -30,21 +27,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_GAS" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_SMOG" ],
+            [ 1, "MOVE_SMOKE_SCREEN" ],
+            [ 6, "MOVE_SMOG" ],
+            [ 10, "MOVE_SMOKE_SCREEN" ],
+            [ 15, "MOVE_ASSURANCE" ],
+            [ 19, "MOVE_SELFDESTRUCT" ],
+            [ 24, "MOVE_SLUDGE" ],
+            [ 28, "MOVE_HAZE" ],
+            [ 33, "MOVE_DOUBLE_HIT" ],
+            [ 40, "MOVE_EXPLOSION" ],
+            [ 48, "MOVE_SLUDGE_BOMB" ],
+            [ 55, "MOVE_DESTINY_BOND" ],
+            [ 63, "MOVE_MEMENTO" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -82,35 +88,17 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_GAS",
-                "MOVE_TACKLE",
-                "MOVE_SMOG",
-                "MOVE_SMOKE_SCREEN"
-            ],
-            "6": "MOVE_SMOG",
-            "10": "MOVE_SMOKE_SCREEN",
-            "15": "MOVE_ASSURANCE",
-            "19": "MOVE_SELFDESTRUCT",
-            "24": "MOVE_SLUDGE",
-            "28": "MOVE_HAZE",
-            "33": "MOVE_DOUBLE_HIT",
-            "40": "MOVE_EXPLOSION",
-            "48": "MOVE_SLUDGE_BOMB",
-            "55": "MOVE_DESTINY_BOND",
-            "63": "MOVE_MEMENTO"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_SPITE",
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -126,5 +114,12 @@
         "pokemon_pos_m": 65526,
         "entry_text": "It grows by feeding on gases\nreleased by garbage. Though very\nrare, triplets have been found.",
         "category": "Poison Gas Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1542
     }
 }

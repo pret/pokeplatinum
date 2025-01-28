@@ -7,9 +7,9 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
-#include "consts/abilities.h"
 #include "consts/gender.h"
 #include "consts/moves.h"
+#include "generated/abilities.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/trainer_data.h"
@@ -318,12 +318,12 @@ void StringTemplate_SetTrainerClassNameWithArticle(StringTemplate *template, u32
     SetArgFromArchive(template, idx, trainerClass, message_bank_trainer_class_names_with_articles);
 }
 
-void StringTemplate_SetTrainerClassNameBattle(StringTemplate *template, u32 idx, TrainerData *trainerData)
+void StringTemplate_SetTrainerClassNameBattle(StringTemplate *template, u32 idx, Trainer *trainer)
 {
     MessageLoader *loader = InitMessageLoader(message_bank_trainer_class_names, template->heapID);
 
     if (loader) {
-        MessageLoader_GetStrbuf(loader, trainerData->class, template->templateBuf);
+        MessageLoader_GetStrbuf(loader, trainer->class, template->templateBuf);
         SetStringTemplateArg(template, idx, template->templateBuf, NULL);
         MessageLoader_Free(loader);
     }
@@ -339,9 +339,9 @@ void StringTemplate_SetFrontierTrainerName(StringTemplate *template, u32 idx, u3
     SetArgFromArchive(template, idx, trainerID, message_bank_frontier_trainer_names);
 }
 
-void StringTemplate_SetTrainerNameBattle(StringTemplate *template, u32 idx, TrainerData *trainerData)
+void StringTemplate_SetTrainerNameBattle(StringTemplate *template, u32 idx, Trainer *trainer)
 {
-    Strbuf_CopyChars(template->templateBuf, trainerData->name);
+    Strbuf_CopyChars(template->templateBuf, trainer->name);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 

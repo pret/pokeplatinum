@@ -8,10 +8,7 @@
         "special_attack": 90,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_POISON" ],
     "catch_rate": 75,
     "base_exp_reward": 138,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SHIELD_DUST",
-        "ABILITY_TINTED_LENS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SHIELD_DUST", "ABILITY_TINTED_LENS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SILVER_WIND" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_DISABLE" ],
+            [ 1, "MOVE_FORESIGHT" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 5, "MOVE_SUPERSONIC" ],
+            [ 11, "MOVE_CONFUSION" ],
+            [ 13, "MOVE_POISON_POWDER" ],
+            [ 17, "MOVE_LEECH_LIFE" ],
+            [ 23, "MOVE_STUN_SPORE" ],
+            [ 25, "MOVE_PSYBEAM" ],
+            [ 29, "MOVE_SLEEP_POWDER" ],
+            [ 31, "MOVE_GUST" ],
+            [ 37, "MOVE_SIGNAL_BEAM" ],
+            [ 41, "MOVE_ZEN_HEADBUTT" ],
+            [ 47, "MOVE_POISON_FANG" ],
+            [ 55, "MOVE_PSYCHIC" ],
+            [ 59, "MOVE_BUG_BUZZ" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -78,29 +87,7 @@
             "TM90",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SILVER_WIND",
-                "MOVE_TACKLE",
-                "MOVE_DISABLE",
-                "MOVE_FORESIGHT",
-                "MOVE_SUPERSONIC"
-            ],
-            "5": "MOVE_SUPERSONIC",
-            "11": "MOVE_CONFUSION",
-            "13": "MOVE_POISON_POWDER",
-            "17": "MOVE_LEECH_LIFE",
-            "23": "MOVE_STUN_SPORE",
-            "25": "MOVE_PSYBEAM",
-            "29": "MOVE_SLEEP_POWDER",
-            "31": "MOVE_GUST",
-            "37": "MOVE_SIGNAL_BEAM",
-            "41": "MOVE_ZEN_HEADBUTT",
-            "47": "MOVE_POISON_FANG",
-            "55": "MOVE_PSYCHIC",
-            "59": "MOVE_BUG_BUZZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
@@ -110,9 +97,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 15,
@@ -128,5 +116,12 @@
         "pokemon_pos_m": 65530,
         "entry_text": "It flutters its wings to scatter\ndustlike scales. The scales leach\ntoxins if they contact skin.",
         "category": "Poison Moth Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1540
     }
 }

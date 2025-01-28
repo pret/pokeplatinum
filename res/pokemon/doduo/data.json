@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 190,
     "base_exp_reward": 96,
     "ev_yields": {
@@ -30,21 +27,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_RUN_AWAY",
-        "ABILITY_EARLY_BIRD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_EARLY_BIRD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_QUICK_ATTACK" ],
+            [ 10, "MOVE_RAGE" ],
+            [ 14, "MOVE_FURY_ATTACK" ],
+            [ 19, "MOVE_PURSUIT" ],
+            [ 23, "MOVE_UPROAR" ],
+            [ 28, "MOVE_ACUPRESSURE" ],
+            [ 32, "MOVE_DOUBLE_HIT" ],
+            [ 37, "MOVE_AGILITY" ],
+            [ 41, "MOVE_DRILL_PECK" ],
+            [ 46, "MOVE_ENDEAVOR" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -69,23 +72,7 @@
             "TM90",
             "HM02"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PECK",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_QUICK_ATTACK",
-            "10": "MOVE_RAGE",
-            "14": "MOVE_FURY_ATTACK",
-            "19": "MOVE_PURSUIT",
-            "23": "MOVE_UPROAR",
-            "28": "MOVE_ACUPRESSURE",
-            "32": "MOVE_DOUBLE_HIT",
-            "37": "MOVE_AGILITY",
-            "41": "MOVE_DRILL_PECK",
-            "46": "MOVE_ENDEAVOR"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
@@ -97,14 +84,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             31,
             "SPECIES_DODRIO"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 14,
@@ -120,5 +107,12 @@
         "pokemon_pos_m": 12,
         "entry_text": "The brains in its two heads appear\nto communicate emotions to each\nother with a telepathic power.",
         "category": "Twin Bird Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4357
     }
 }

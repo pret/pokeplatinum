@@ -8,10 +8,7 @@
         "special_attack": 55,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 187,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_TECHNICIAN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_TECHNICIAN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_VACUUM_WAVE" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 5, "MOVE_FOCUS_ENERGY" ],
+            [ 9, "MOVE_PURSUIT" ],
+            [ 13, "MOVE_FALSE_SWIPE" ],
+            [ 17, "MOVE_AGILITY" ],
+            [ 21, "MOVE_WING_ATTACK" ],
+            [ 25, "MOVE_FURY_CUTTER" ],
+            [ 29, "MOVE_SLASH" ],
+            [ 33, "MOVE_RAZOR_WIND" ],
+            [ 37, "MOVE_DOUBLE_TEAM" ],
+            [ 41, "MOVE_X_SCISSOR" ],
+            [ 45, "MOVE_NIGHT_SLASH" ],
+            [ 49, "MOVE_DOUBLE_HIT" ],
+            [ 53, "MOVE_AIR_SLASH" ],
+            [ 57, "MOVE_SWORDS_DANCE" ],
+            [ 61, "MOVE_FEINT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -79,29 +88,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_VACUUM_WAVE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_LEER"
-            ],
-            "5": "MOVE_FOCUS_ENERGY",
-            "9": "MOVE_PURSUIT",
-            "13": "MOVE_FALSE_SWIPE",
-            "17": "MOVE_AGILITY",
-            "21": "MOVE_WING_ATTACK",
-            "25": "MOVE_FURY_CUTTER",
-            "29": "MOVE_SLASH",
-            "33": "MOVE_RAZOR_WIND",
-            "37": "MOVE_DOUBLE_TEAM",
-            "41": "MOVE_X_SCISSOR",
-            "45": "MOVE_NIGHT_SLASH",
-            "49": "MOVE_DOUBLE_HIT",
-            "53": "MOVE_AIR_SLASH",
-            "57": "MOVE_SWORDS_DANCE",
-            "61": "MOVE_FEINT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_FURY_CUTTER",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -111,14 +98,14 @@
     },
     "evolutions": [
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_METAL_COAT",
             "SPECIES_SCIZOR"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -134,5 +121,12 @@
         "pokemon_pos_m": 7,
         "entry_text": "The sharp scythes on its forearms\nbecome increasingly sharp by\ncutting through hard objects.",
         "category": "Mantis Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4356
     }
 }

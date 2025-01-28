@@ -8,10 +8,7 @@
         "special_attack": 59,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_GROUND" ],
     "catch_rate": 45,
     "base_exp_reward": 159,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_ANTICIPATION",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_ANTICIPATION", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 10, "MOVE_PROTECT" ],
+            [ 15, "MOVE_BUG_BITE" ],
+            [ 20, "MOVE_HIDDEN_POWER" ],
+            [ 23, "MOVE_CONFUSION" ],
+            [ 26, "MOVE_ROCK_BLAST" ],
+            [ 29, "MOVE_HARDEN" ],
+            [ 32, "MOVE_PSYBEAM" ],
+            [ 35, "MOVE_CAPTIVATE" ],
+            [ 38, "MOVE_FLAIL" ],
+            [ 41, "MOVE_ATTRACT" ],
+            [ 44, "MOVE_PSYCHIC" ],
+            [ 47, "MOVE_FISSURE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -78,22 +82,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "10": "MOVE_PROTECT",
-            "15": "MOVE_BUG_BITE",
-            "20": "MOVE_HIDDEN_POWER",
-            "23": "MOVE_CONFUSION",
-            "26": "MOVE_ROCK_BLAST",
-            "29": "MOVE_HARDEN",
-            "32": "MOVE_PSYBEAM",
-            "35": "MOVE_CAPTIVATE",
-            "38": "MOVE_FLAIL",
-            "41": "MOVE_ATTRACT",
-            "44": "MOVE_PSYCHIC",
-            "47": "MOVE_FISSURE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -103,5 +92,6 @@
             "MOVE_SUCKER_PUNCH",
             "MOVE_UPROAR"
         ]
-    }
+    },
+    "evolutions": [  ]
 }

@@ -8,10 +8,7 @@
         "special_attack": 79,
         "special_defense": 116
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_PSYCHIC" ],
     "catch_rate": 90,
     "base_exp_reward": 188,
     "ev_yields": {
@@ -30,21 +27,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_HEATPROOF"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_HEATPROOF" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SUNNY_DAY" ],
+            [ 1, "MOVE_RAIN_DANCE" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 1, "MOVE_HYPNOSIS" ],
+            [ 1, "MOVE_IMPRISON" ],
+            [ 7, "MOVE_HYPNOSIS" ],
+            [ 12, "MOVE_IMPRISON" ],
+            [ 14, "MOVE_CONFUSE_RAY" ],
+            [ 19, "MOVE_EXTRASENSORY" ],
+            [ 26, "MOVE_IRON_DEFENSE" ],
+            [ 30, "MOVE_SAFEGUARD" ],
+            [ 33, "MOVE_BLOCK" ],
+            [ 38, "MOVE_GYRO_BALL" ],
+            [ 43, "MOVE_FUTURE_SIGHT" ],
+            [ 50, "MOVE_FAINT_ATTACK" ],
+            [ 61, "MOVE_PAYBACK" ],
+            [ 67, "MOVE_HEAL_BLOCK" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -91,29 +100,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SUNNY_DAY",
-                "MOVE_RAIN_DANCE",
-                "MOVE_TACKLE",
-                "MOVE_CONFUSION",
-                "MOVE_HYPNOSIS",
-                "MOVE_IMPRISON"
-            ],
-            "7": "MOVE_HYPNOSIS",
-            "12": "MOVE_IMPRISON",
-            "14": "MOVE_CONFUSE_RAY",
-            "19": "MOVE_EXTRASENSORY",
-            "26": "MOVE_IRON_DEFENSE",
-            "30": "MOVE_SAFEGUARD",
-            "33": "MOVE_BLOCK",
-            "38": "MOVE_GYRO_BALL",
-            "43": "MOVE_FUTURE_SIGHT",
-            "50": "MOVE_FAINT_ATTACK",
-            "61": "MOVE_PAYBACK",
-            "67": "MOVE_HEAL_BLOCK"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
@@ -123,9 +110,10 @@
             "MOVE_TRICK"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 13,
@@ -141,5 +129,12 @@
         "pokemon_pos_m": 7,
         "entry_text": "It brought rains by opening portals\nto another world. It was revered\nas a bringer of plentiful harvests.",
         "category": "Bronze Bell Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2827
     }
 }

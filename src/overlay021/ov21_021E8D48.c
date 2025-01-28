@@ -8,6 +8,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 
+#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1F90.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -20,6 +21,7 @@
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
 #include "overlay022/struct_ov22_022559F8.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -121,7 +123,7 @@ static void ov21_021E968C(UnkStruct_ov21_021E968C *param0);
 static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2);
 static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2);
 static void ov21_021E9968(Window *param0, int param1, int param2);
-static void ov21_021E998C(Window *param0, int param1);
+static void ov21_021E998C(Window *param0, enum HeapId heapID);
 static void ov21_021E9A0C(int param0);
 static void ov21_021E9A38(void);
 static void ov21_021E9A40(UnkStruct_ov21_021E9A9C *param0, int param1, int param2, NARC *param3);
@@ -588,12 +590,12 @@ static void ov21_021E95F8(UnkStruct_ov21_021E968C *param0, CellActorCollection *
 {
     CellActorInitParams v0;
     CellActorResourceData v1;
-    int v2, v3;
+    int type1, type2;
 
-    v2 = PokemonPersonalData_GetSpeciesValue(param4, 6);
-    v3 = PokemonPersonalData_GetSpeciesValue(param4, 7);
-    v2 = ov21_021DF180(v2);
-    v3 = ov21_021DF180(v3);
+    type1 = SpeciesData_GetSpeciesValue(param4, SPECIES_DATA_TYPE_1);
+    type2 = SpeciesData_GetSpeciesValue(param4, SPECIES_DATA_TYPE_2);
+    type1 = ov21_021DF180(type1);
+    type2 = ov21_021DF180(type2);
 
     ov21_021E93F8(param0->unk_08, param2, &v1, 2);
 
@@ -607,13 +609,13 @@ static void ov21_021E95F8(UnkStruct_ov21_021E968C *param0, CellActorCollection *
 
     param0->unk_00[0] = CellActorCollection_Add(&v0);
 
-    CellActor_SetAnim(param0->unk_00[0], 0 + v2);
+    CellActor_SetAnim(param0->unk_00[0], 0 + type1);
 
-    if (v2 != v3) {
+    if (type1 != type2) {
         v0.position.x = (220 * FX32_ONE);
         v0.position.y = (72 * FX32_ONE);
         param0->unk_00[1] = CellActorCollection_Add(&v0);
-        CellActor_SetAnim(param0->unk_00[1], 0 + v3);
+        CellActor_SetAnim(param0->unk_00[1], 0 + type2);
     } else {
         param0->unk_00[1] = NULL;
     }
@@ -745,16 +747,16 @@ static void ov21_021E9968(Window *param0, int param1, int param2)
     ov21_021E998C(param0, param1);
 }
 
-static void ov21_021E998C(Window *param0, int param1)
+static void ov21_021E998C(Window *param0, enum HeapId heapID)
 {
-    Strbuf *v0 = Strbuf_Init(64, param1);
-    MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param1);
+    Strbuf *v0 = Strbuf_Init(64, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
 
-    MessageLoader_GetStrbuf(v1, 110, v0);
+    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_registered, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 32, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
 
     Strbuf_Free(v0);
-    MessageLoader_Free(v1);
+    MessageLoader_Free(pokedexMessageBank);
 }
 
 static Sprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1, int param2, int param3, int param4)

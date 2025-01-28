@@ -8,10 +8,7 @@
         "special_attack": 86,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_FIGHTING" ],
     "catch_rate": 75,
     "base_exp_reward": 181,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_ANTICIPATION",
-        "ABILITY_DRY_SKIN"
-    ],
-    "great_marsh_flee_rate": 120,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_ANTICIPATION", "ABILITY_DRY_SKIN" ],
+    "safari_flee_rate": 120,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 1, "MOVE_POISON_STING" ],
+            [ 3, "MOVE_MUD_SLAP" ],
+            [ 8, "MOVE_POISON_STING" ],
+            [ 10, "MOVE_TAUNT" ],
+            [ 15, "MOVE_PURSUIT" ],
+            [ 17, "MOVE_FAINT_ATTACK" ],
+            [ 22, "MOVE_REVENGE" ],
+            [ 24, "MOVE_SWAGGER" ],
+            [ 29, "MOVE_MUD_BOMB" ],
+            [ 31, "MOVE_SUCKER_PUNCH" ],
+            [ 36, "MOVE_NASTY_PLOT" ],
+            [ 41, "MOVE_POISON_JAB" ],
+            [ 49, "MOVE_SLUDGE_BOMB" ],
+            [ 54, "MOVE_FLATTER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -92,27 +99,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ASTONISH",
-                "MOVE_MUD_SLAP",
-                "MOVE_POISON_STING"
-            ],
-            "3": "MOVE_MUD_SLAP",
-            "8": "MOVE_POISON_STING",
-            "10": "MOVE_TAUNT",
-            "15": "MOVE_PURSUIT",
-            "17": "MOVE_FAINT_ATTACK",
-            "22": "MOVE_REVENGE",
-            "24": "MOVE_SWAGGER",
-            "29": "MOVE_MUD_BOMB",
-            "31": "MOVE_SUCKER_PUNCH",
-            "36": "MOVE_NASTY_PLOT",
-            "41": "MOVE_POISON_JAB",
-            "49": "MOVE_SLUDGE_BOMB",
-            "54": "MOVE_FLATTER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -128,9 +115,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -146,5 +134,12 @@
         "pokemon_pos_m": 11,
         "entry_text": "It has a poison sac at its throat.\nWhen it croaks, the stored poison\nis churned for greater potency.",
         "category": "Toxic Mouth Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 3329
     }
 }

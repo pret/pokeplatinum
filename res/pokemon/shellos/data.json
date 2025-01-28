@@ -8,10 +8,7 @@
         "special_attack": 57,
         "special_defense": 62
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
     "base_exp_reward": 73,
     "ev_yields": {
@@ -30,21 +27,25 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_STICKY_HOLD",
-        "ABILITY_STORM_DRAIN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_STICKY_HOLD", "ABILITY_STORM_DRAIN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 2, "MOVE_MUD_SPORT" ],
+            [ 4, "MOVE_HARDEN" ],
+            [ 7, "MOVE_WATER_PULSE" ],
+            [ 11, "MOVE_MUD_BOMB" ],
+            [ 16, "MOVE_HIDDEN_POWER" ],
+            [ 22, "MOVE_RAIN_DANCE" ],
+            [ 29, "MOVE_BODY_SLAM" ],
+            [ 37, "MOVE_MUDDY_WATER" ],
+            [ 46, "MOVE_RECOVER" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -69,19 +70,7 @@
             "TM90",
             "HM03"
         ],
-        "level_up": {
-            "1": "MOVE_MUD_SLAP",
-            "2": "MOVE_MUD_SPORT",
-            "4": "MOVE_HARDEN",
-            "7": "MOVE_WATER_PULSE",
-            "11": "MOVE_MUD_BOMB",
-            "16": "MOVE_HIDDEN_POWER",
-            "22": "MOVE_RAIN_DANCE",
-            "29": "MOVE_BODY_SLAM",
-            "37": "MOVE_MUDDY_WATER",
-            "46": "MOVE_RECOVER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -92,14 +81,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_GASTRODON"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -115,5 +104,12 @@
         "pokemon_pos_m": 25,
         "entry_text": "Beware of pushing strongly on\nits squishy body, as it makes a\nmysterious purple fluid ooze out.",
         "category": "Sea Slug Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

@@ -8,10 +8,7 @@
         "special_attack": 95,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 30,
     "base_exp_reward": 199,
     "ev_yields": {
@@ -30,21 +27,31 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_MOTOR_DRIVE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_MOTOR_DRIVE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FIRE_PUNCH" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_THUNDER_SHOCK" ],
+            [ 1, "MOVE_LOW_KICK" ],
+            [ 7, "MOVE_THUNDER_SHOCK" ],
+            [ 10, "MOVE_LOW_KICK" ],
+            [ 16, "MOVE_SWIFT" ],
+            [ 19, "MOVE_SHOCK_WAVE" ],
+            [ 25, "MOVE_LIGHT_SCREEN" ],
+            [ 28, "MOVE_THUNDER_PUNCH" ],
+            [ 37, "MOVE_DISCHARGE" ],
+            [ 43, "MOVE_THUNDERBOLT" ],
+            [ 52, "MOVE_SCREECH" ],
+            [ 58, "MOVE_THUNDER" ],
+            [ 67, "MOVE_GIGA_IMPACT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -89,27 +96,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FIRE_PUNCH",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_LEER",
-                "MOVE_THUNDER_SHOCK",
-                "MOVE_LOW_KICK"
-            ],
-            "7": "MOVE_THUNDER_SHOCK",
-            "10": "MOVE_LOW_KICK",
-            "16": "MOVE_SWIFT",
-            "19": "MOVE_SHOCK_WAVE",
-            "25": "MOVE_LIGHT_SCREEN",
-            "28": "MOVE_THUNDER_PUNCH",
-            "37": "MOVE_DISCHARGE",
-            "43": "MOVE_THUNDERBOLT",
-            "52": "MOVE_SCREECH",
-            "58": "MOVE_THUNDER",
-            "67": "MOVE_GIGA_IMPACT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -121,9 +108,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 18,
@@ -139,5 +127,12 @@
         "pokemon_pos_m": 7,
         "entry_text": "Heedless of enemy attacks, it\ncloses in, shoves its tails onto the\nfoe, then looses high voltage.",
         "category": "Thunderbolt Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1799
     }
 }

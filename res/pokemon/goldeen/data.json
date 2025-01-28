@@ -8,10 +8,7 @@
         "special_attack": 35,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 225,
     "base_exp_reward": 111,
     "ev_yields": {
@@ -30,21 +27,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_WATER_VEIL"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_WATER_VEIL" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 7, "MOVE_SUPERSONIC" ],
+            [ 11, "MOVE_HORN_ATTACK" ],
+            [ 17, "MOVE_WATER_PULSE" ],
+            [ 21, "MOVE_FLAIL" ],
+            [ 27, "MOVE_AQUA_RING" ],
+            [ 31, "MOVE_FURY_ATTACK" ],
+            [ 37, "MOVE_WATERFALL" ],
+            [ 41, "MOVE_HORN_DRILL" ],
+            [ 47, "MOVE_AGILITY" ],
+            [ 51, "MOVE_MEGAHORN" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -70,24 +74,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PECK",
-                "MOVE_TAIL_WHIP",
-                "MOVE_WATER_SPORT"
-            ],
-            "7": "MOVE_SUPERSONIC",
-            "11": "MOVE_HORN_ATTACK",
-            "17": "MOVE_WATER_PULSE",
-            "21": "MOVE_FLAIL",
-            "27": "MOVE_AQUA_RING",
-            "31": "MOVE_FURY_ATTACK",
-            "37": "MOVE_WATERFALL",
-            "41": "MOVE_HORN_DRILL",
-            "47": "MOVE_AGILITY",
-            "51": "MOVE_MEGAHORN"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -101,14 +88,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             33,
             "SPECIES_SEAKING"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 6,
@@ -124,5 +111,12 @@
         "pokemon_pos_m": 65531,
         "entry_text": "Though it appears very elegant\nwhen swimming with fins unfurled, it\ncan jab powerfully with its horn.",
         "category": "Goldfish Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

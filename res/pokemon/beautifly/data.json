@@ -8,10 +8,7 @@
         "special_attack": 90,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 161,
     "ev_yields": {
@@ -30,21 +27,26 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ABSORB" ],
+            [ 10, "MOVE_ABSORB" ],
+            [ 13, "MOVE_GUST" ],
+            [ 17, "MOVE_STUN_SPORE" ],
+            [ 20, "MOVE_MORNING_SUN" ],
+            [ 24, "MOVE_MEGA_DRAIN" ],
+            [ 27, "MOVE_WHIRLWIND" ],
+            [ 31, "MOVE_ATTRACT" ],
+            [ 34, "MOVE_SILVER_WIND" ],
+            [ 38, "MOVE_GIGA_DRAIN" ],
+            [ 41, "MOVE_BUG_BUZZ" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -78,20 +80,7 @@
             "TM90",
             "HM05"
         ],
-        "level_up": {
-            "1": "MOVE_ABSORB",
-            "10": "MOVE_ABSORB",
-            "13": "MOVE_GUST",
-            "17": "MOVE_STUN_SPORE",
-            "20": "MOVE_MORNING_SUN",
-            "24": "MOVE_MEGA_DRAIN",
-            "27": "MOVE_WHIRLWIND",
-            "31": "MOVE_ATTRACT",
-            "34": "MOVE_SILVER_WIND",
-            "38": "MOVE_GIGA_DRAIN",
-            "41": "MOVE_BUG_BUZZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
@@ -100,9 +89,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -118,5 +108,12 @@
         "pokemon_pos_m": 65526,
         "entry_text": "Despite its looks, it is aggressive.\nIt jabs with its long, thin mouth if\ndisturbed while collecting pollen.",
         "category": "Butterfly Pokémon"
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4356
     }
 }
