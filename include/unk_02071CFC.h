@@ -4,7 +4,7 @@
 #include "message.h"
 #include "strbuf.h"
 
-u32 MapHeader_GetStringWidth(MessageLoader *param0, const int param1, Strbuf *param2);
-void sub_02071D10(const int param0, const u32 param1, Strbuf *param2);
+u32 MapHeader_GetStringWidth(MessageLoader *msgLoader, u32 entryID, Strbuf *strbuf);
+void sub_02071D10(int headerID, u32 heapID, Strbuf *strbuf);
 
 #endif // POKEPLATINUM_UNK_02071CFC_H

@@ -11,7 +11,7 @@
 #include "message.h"
 #include "strbuf.h"
 
-u32 MapHeader_GetStringWidth(MessageLoader *msgLoader, const int entryID, Strbuf *strbuf)
+u32 MapHeader_GetStringWidth(MessageLoader *msgLoader, u32 entryID, Strbuf *strbuf)
 {
     u32 width;
 
@@ -21,14 +21,14 @@ u32 MapHeader_GetStringWidth(MessageLoader *msgLoader, const int entryID, Strbuf
     return width;
 }
 
-void sub_02071D10(const int headerID, const u32 heapID, Strbuf *strbuf)
+void sub_02071D10(int headerID, u32 heapID, Strbuf *strbuf)
 {
-    int mapLabelTextID;
+    u32 mapLabelTextID;
     MessageLoader *msgLoader;
 
     msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_location_names, heapID);
     mapLabelTextID = MapHeader_GetMapLabelTextID(headerID);
 
-    MapHeader_GetStringWidth(msgLoader, mapLabelTextID, strbuf);
+    MapHeader_GetStringWidth(msgLoader, mapLabelTextID, strbuf); // It should be MessageLoader_GetStrbuf()
     MessageLoader_Free(msgLoader);
 }

@@ -18,8 +18,6 @@
 #include "text.h"
 #include "unk_02071CFC.h"
 
-#define MAP_NAME_POPUP_HEAP_ID 4
-
 enum MapNamePopUpState {
     MAP_NAME_POPUP_STATE_END,
     MAP_NAME_POPUP_STATE_SLIDE_IN,
@@ -50,7 +48,7 @@ static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 til
 static void MapNamePopUp_Reset(MapNamePopUp *mapPopUp);
 static void MapNamePopUp_SetBgConfig(MapNamePopUp *mapPopUp, BgConfig *bgConfig);
 static void SysTask_MapNamePopUpWindow(SysTask *task, void *param);
-static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const int strWidth);
+static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const s32 strWidth);
 static void MapNamePopUp_StartSlideOut(MapNamePopUp *mapPopUp);
 static void MapNamePopUp_PrintMapName(MapNamePopUp *mapPopUp, const Strbuf *strbuf);
 
@@ -68,21 +66,22 @@ static void MapNamePopUp_CreateWindow(MapNamePopUp *mapPopUp)
 static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 tileStart, u8 offset, u8 unused)
 {
     void *ptr;
-    u32 v1; // Unused
+
     NNSG2dPaletteData *paletteData;
     u8 narcMemberIdx;
 
+    // I'm confused by this
     narcMemberIdx = mapPopUp->windowID * 2;
 
-    mapPopUp->tiles = Graphics_GetCharData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx, FALSE, &mapPopUp->unk_34, MAP_NAME_POPUP_HEAP_ID);
+    mapPopUp->tiles = Graphics_GetCharData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx, FALSE, &mapPopUp->unk_34, 4);
     Bg_LoadTiles(mapPopUp->bgConfig, bgLayer, mapPopUp->unk_34->pRawData, mapPopUp->unk_34->szByte, tileStart);
-    ptr = Graphics_GetPlttData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx + 1, &paletteData, MAP_NAME_POPUP_HEAP_ID);
+    ptr = Graphics_GetPlttData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx + 1, &paletteData, 4);
 
     MapNamePopUp_LoadPalette(paletteData->pRawData, 1, offset);
     Heap_FreeToHeap(ptr);
 }
 
-static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const int strWidth)
+static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, s32 strWidth)
 {
     // I haven't figured out these yet
     int width;
@@ -124,7 +123,6 @@ static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const int strWi
 
     {
         int i;
-        int unused;
 
         MapNamePopUp_LoadAreaGfx(mapPopUp, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9 - (32 * 8)), 7, 0);
         Window_FillTilemap(&mapPopUp->window, 0);
@@ -159,7 +157,6 @@ static void MapNamePopUp_SetBgConfig(MapNamePopUp *mapPopUp, BgConfig *bgConfig)
 
 static void SysTask_MapNamePopUpWindow(SysTask *task, void *param)
 {
-    u16 unused[22];
     u32 strWidth;
     MapNamePopUp *mapPopUp = (MapNamePopUp *)(param);
 
@@ -231,21 +228,21 @@ static void MapNamePopUp_StartSlideOut(MapNamePopUp *mapPopUp)
     mapPopUp->timer = 0;
 }
 
-MapNamePopUp *MapNamePopUp_Create(BgConfig *param0)
+MapNamePopUp *MapNamePopUp_Create(BgConfig *bgConfig)
 {
     MapNamePopUp *mapPopUp;
 
-    mapPopUp = Heap_AllocFromHeap(MAP_NAME_POPUP_HEAP_ID, sizeof(MapNamePopUp));
-    mapPopUp->strbuf = Strbuf_Init(22, MAP_NAME_POPUP_HEAP_ID);
+    mapPopUp = Heap_AllocFromHeap(4, sizeof(MapNamePopUp));
+    mapPopUp->strbuf = Strbuf_Init(22, 4);
 
-    MapNamePopUp_SetBgConfig(mapPopUp, param0);
+    MapNamePopUp_SetBgConfig(mapPopUp, bgConfig);
     MapNamePopUp_CreateWindow(mapPopUp);
 
-    mapPopUp->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_location_names, MAP_NAME_POPUP_HEAP_ID);
+    mapPopUp->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_location_names, 4);
     return mapPopUp;
 }
 
-void MapNamePopUp_DestroyTextWindow(MapNamePopUp *mapPopUp)
+void MapNamePopUp_Destroy(MapNamePopUp *mapPopUp)
 {
     MessageLoader_Free(mapPopUp->msgLoader);
     Window_Remove(&mapPopUp->window);
@@ -255,9 +252,8 @@ void MapNamePopUp_DestroyTextWindow(MapNamePopUp *mapPopUp)
     mapPopUp = NULL;
 }
 
-void MapNamePop_Show(MapNamePopUp *mapPopUp, const int mapLabelTextID, const int mapLabelWindowID)
+void MapNamePop_Show(MapNamePopUp *mapPopUp, s32 mapLabelTextID, s32 mapLabelWindowID)
 {
-    u16 v0[22]; // Unused
     u32 strWidth;
 
     mapPopUp->entryID = mapLabelTextID;
@@ -305,10 +301,8 @@ void MapNamePopUp_Hide(MapNamePopUp *mapPopUp)
     Window_ClearAndCopyToVRAM(&mapPopUp->window);
     Bg_SetOffset(mapPopUp->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
 
-    {
-        BgConfig *bgConfig = mapPopUp->bgConfig;
-        MapNamePopUp_SetBgConfig(mapPopUp, bgConfig);
-    }
+    BgConfig *bgConfig = mapPopUp->bgConfig;
+    MapNamePopUp_SetBgConfig(mapPopUp, bgConfig);
 }
 
 void FieldSystem_RequestLocationName(FieldSystem *fieldSystem)
