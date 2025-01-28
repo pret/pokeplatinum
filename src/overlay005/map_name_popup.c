@@ -46,18 +46,18 @@ typedef struct UnkStruct_ov5_021DD9C8_t {
 } MapNamePopUp;
 
 static void MapNamePopUp_CreateWindow(MapNamePopUp *mapPopUp);
-static void ov5_021DD744(MapNamePopUp *mapPopUp, u8 param1, u16 param2, u8 param3, u8 param4);
-static void ov5_021DD880(MapNamePopUp *mapPopUp);
-static void MapNamePopUp_SetBgConfig(MapNamePopUp *mapPopUp, BgConfig *param1);
-static void SysTask_MapNamePopUpWindow(SysTask *mapPopUp, void *param1);
+static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 tileStart, u8 offset, u8 unused);
+static void MapNamePopUp_Reset(MapNamePopUp *mapPopUp);
+static void MapNamePopUp_SetBgConfig(MapNamePopUp *mapPopUp, BgConfig *bgConfig);
+static void SysTask_MapNamePopUpWindow(SysTask *task, void *param);
 static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const int strWidth);
 static void MapNamePopUp_SlideOut(MapNamePopUp *mapPopUp);
-static void MapNamePopUp_PrintMapName(MapNamePopUp *mapPopUp, const Strbuf *param1);
+static void MapNamePopUp_PrintMapName(MapNamePopUp *mapPopUp, const Strbuf *strbuf);
 
-static void ov5_021DD6FC(void *param0, u16 param1, u16 param2)
+static void MapNamePopUp_LoadPalette(void *src, u16 size, u16 offset)
 {
-    DC_FlushRange((void *)param0, param1 * 32);
-    GX_LoadBGPltt((const void *)param0, param2 * 32, param1 * 32);
+    DC_FlushRange((void *)src, size * 32);
+    GX_LoadBGPltt((const void *)src, offset * 32, size * 32);
 }
 
 static void MapNamePopUp_CreateWindow(MapNamePopUp *mapPopUp)
@@ -65,20 +65,20 @@ static void MapNamePopUp_CreateWindow(MapNamePopUp *mapPopUp)
     Window_Add(mapPopUp->bgConfig, &mapPopUp->window, BG_LAYER_MAIN_3, 0, 0, 32, 5, 7, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (32 * 5)));
 }
 
-static void ov5_021DD744(MapNamePopUp *mapPopUp, u8 bgLayer, u16 tileStart, u8 param3, u8 unused)
+static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 tileStart, u8 offset, u8 unused)
 {
     void *ptr;
     u32 v1; // Unused
     NNSG2dPaletteData *paletteData;
-    u8 v3;
+    u8 narcMemberIdx;
 
-    v3 = mapPopUp->windowID * 2;
+    narcMemberIdx = mapPopUp->windowID * 2;
 
-    mapPopUp->tiles = Graphics_GetCharData(NARC_INDEX_ARC__AREA_WIN_GRA, v3, FALSE, &mapPopUp->unk_34, MAP_NAME_POPUP_HEAP_ID);
+    mapPopUp->tiles = Graphics_GetCharData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx, FALSE, &mapPopUp->unk_34, MAP_NAME_POPUP_HEAP_ID);
     Bg_LoadTiles(mapPopUp->bgConfig, bgLayer, mapPopUp->unk_34->pRawData, mapPopUp->unk_34->szByte, tileStart);
-    ptr = Graphics_GetPlttData(160, v3 + 1, &paletteData, MAP_NAME_POPUP_HEAP_ID);
+    ptr = Graphics_GetPlttData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx + 1, &paletteData, MAP_NAME_POPUP_HEAP_ID);
 
-    ov5_021DD6FC(paletteData->pRawData, 1, param3);
+    MapNamePopUp_LoadPalette(paletteData->pRawData, 1, offset);
     Heap_FreeToHeap(ptr);
 }
 
@@ -86,7 +86,7 @@ static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const int strWi
 {
     int width;
     int v1;
-    int v2;
+    int xOffset;
     int v3;
     int v4;
     int v5;
@@ -111,21 +111,21 @@ static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const int strWi
 
     if (width <= 0) {
         v1 = 0;
-        v2 = 0;
+        xOffset = 0;
     } else {
         v1 = (width + 8) / 8;
         v1 += v6;
 
-        v2 = (((v1 * 8) + (4 * 2)) - strWidth) / 2;
+        xOffset = (((v1 * 8) + (4 * 2)) - strWidth) / 2;
     }
 
-    mapPopUp->xOffset = (8 - 4) + v2;
+    mapPopUp->xOffset = (8 - 4) + xOffset;
 
     {
         int i;
         int unused;
 
-        ov5_021DD744(mapPopUp, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9 - (32 * 8)), 7, 0);
+        MapNamePopUp_LoadAreaGfx(mapPopUp, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9 - (32 * 8)), 7, 0);
         Window_FillTilemap(&mapPopUp->window, 0);
 
         // window background
@@ -138,7 +138,6 @@ static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const int strWi
     }
 }
 
-// Reset
 static void MapNamePopUp_Reset(MapNamePopUp *mapPopUp)
 {
     mapPopUp->unk_00 = FALSE;
@@ -157,11 +156,11 @@ static void MapNamePopUp_SetBgConfig(MapNamePopUp *mapPopUp, BgConfig *bgConfig)
     mapPopUp->bgConfig = bgConfig;
 }
 
-static void SysTask_MapNamePopUpWindow(SysTask *param0, void *param1)
+static void SysTask_MapNamePopUpWindow(SysTask *task, void *param)
 {
-    u16 v0[22]; // Unused
+    u16 unused[22];
     u32 strWidth;
-    MapNamePopUp *mapPopUp = (MapNamePopUp *)(param1);
+    MapNamePopUp *mapPopUp = (MapNamePopUp *)(param);
 
     switch (mapPopUp->state) {
     case MAP_NAME_POPUP_STATE_SLIDE_IN:
@@ -288,7 +287,7 @@ void MapNamePop_Show(MapNamePopUp *mapPopUp, const int mapLabelTextID, const int
             mapPopUp->unk_14 = TRUE;
             mapPopUp->windowID = mapLabelWindowID;
             break;
-        case 0:
+        case MAP_NAME_POPUP_STATE_END:
         default:
             GF_ASSERT(0);
             break;
