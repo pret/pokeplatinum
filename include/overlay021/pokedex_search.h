@@ -12,7 +12,7 @@ enum FilterMethod {
     FM_NAME,
     FM_TYPE,
     FM_FORM,
-    FilterMethod_MAX
+    MAX_FILTER_METHOD
 };
 
 void PokedexSearch_TransitionFunctions(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, enum HeapId heapID);

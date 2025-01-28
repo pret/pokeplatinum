@@ -606,9 +606,9 @@ void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int pa
     hitTable->rect.right = param4;
 }
 
-void Pokedex_SetLoadingScreenParams(PokedexLoadingScreen *param0, BgConfig *config, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration)
+void Pokedex_SetLoadingScreenParams(PokedexLoadingScreen *param0, BgConfig *bgConfig, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration)
 {
-    param0->config = config;
+    param0->bgConfig = bgConfig;
     param0->layer = layer;
     param0->screenData = screenData;
     param0->topStart = topStart;
@@ -625,7 +625,7 @@ BOOL Pokedex_LoadingScreenMove(PokedexLoadingScreen *loadingScreen)
     int bottomPos;
 
     if (loadingScreen->counter <= loadingScreen->duration) {
-        Bg_FillTilemapRect(loadingScreen->config, loadingScreen->layer, 0, 0, 0, 32, 24, 16);
+        Bg_FillTilemapRect(loadingScreen->bgConfig, loadingScreen->layer, 0, 0, 0, 32, 24, 16);
 
         topPos = (loadingScreen->topDist * loadingScreen->counter) / loadingScreen->duration;
         bottomPos = (loadingScreen->bottomDist * loadingScreen->counter) / loadingScreen->duration;
@@ -633,14 +633,14 @@ BOOL Pokedex_LoadingScreenMove(PokedexLoadingScreen *loadingScreen)
         bottomPos += loadingScreen->bottomStart;
 
         if (topPos > 0) {
-            Bg_CopyToTilemapRect(loadingScreen->config, loadingScreen->layer, 0, 0, 32, topPos, loadingScreen->screenData->rawData, 0, 32 - topPos, 32, 32);
+            Bg_CopyToTilemapRect(loadingScreen->bgConfig, loadingScreen->layer, 0, 0, 32, topPos, loadingScreen->screenData->rawData, 0, 32 - topPos, 32, 32);
         }
 
         if ((32 - bottomPos) > 0) {
-            Bg_CopyToTilemapRect(loadingScreen->config, loadingScreen->layer, 0, 32 - bottomPos, 32, bottomPos, loadingScreen->screenData->rawData, 0, 0, 32, 32);
+            Bg_CopyToTilemapRect(loadingScreen->bgConfig, loadingScreen->layer, 0, 32 - bottomPos, 32, bottomPos, loadingScreen->screenData->rawData, 0, 0, 32, 32);
         }
 
-        Bg_ScheduleTilemapTransfer(loadingScreen->config, loadingScreen->layer);
+        Bg_ScheduleTilemapTransfer(loadingScreen->bgConfig, loadingScreen->layer);
         loadingScreen->counter++;
 
         return FALSE;

@@ -21,8 +21,8 @@
 #include "strbuf.h"
 #include "touch_screen.h"
 
-typedef struct {
-    BgConfig *config;
+typedef struct PokedexLoadingScreen {
+    BgConfig *bgConfig;
     NNSG2dScreenData *screenData;
     int layer;
     int topStart;

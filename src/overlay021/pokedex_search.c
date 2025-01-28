@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/sdat.h"
+
 #include "struct_decls/sprite_decl.h"
 
 #include "gmm/message_bank_pokedex.h"
@@ -33,6 +35,8 @@
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 
+#define EXITSEARCH (1 << 1)
+
 enum ScreenState {
     SS_MENU,
     SS_SEARCH,
@@ -42,7 +46,7 @@ enum ScreenState {
 };
 
 typedef struct {
-    int *unk_00;
+    int *exitFlag;
     UnkStruct_ov21_021D3320 *unk_04;
     UnkStruct_ov21_021D5B68 *unk_08;
     enum FilterMethod filterMethod;
@@ -147,7 +151,7 @@ void PokedexSearch_SetFilterMethod(UnkStruct_ov21_021E68F4 *param0, enum FilterM
 {
     PokedexSearchSettings *searchSettings = param0->unk_00;
 
-    GF_ASSERT(filterMethod < FilterMethod_MAX);
+    GF_ASSERT(filterMethod < MAX_FILTER_METHOD);
     searchSettings->filterMethod = filterMethod;
 }
 
@@ -161,7 +165,7 @@ void PokedexSearch_SetSortOrder(UnkStruct_ov21_021E68F4 *param0, enum SortOrder 
 {
     PokedexSearchSettings *searchSettings = param0->unk_00;
 
-    GF_ASSERT(sortOrder < SORTORDER_NUM);
+    GF_ASSERT(sortOrder < MAX_SORT_ORDER);
     searchSettings->sortOrder = sortOrder;
 }
 
@@ -175,7 +179,7 @@ void PokedexSearch_SetFilterName(UnkStruct_ov21_021E68F4 *param0, enum FilterNam
 {
     PokedexSearchSettings *searchSettings = param0->unk_00;
 
-    GF_ASSERT(filterName < FILTERNAME_NUM);
+    GF_ASSERT(filterName < MAX_FILTER_NAME);
     searchSettings->filterName = filterName;
 }
 
@@ -189,7 +193,7 @@ void PokedexSearch_SetFilterType(UnkStruct_ov21_021E68F4 *param0, enum FilterTyp
 {
     PokedexSearchSettings *searchSettings = param0->unk_00;
 
-    GF_ASSERT(filterType < FILTERTYPE_NUM);
+    GF_ASSERT(filterType < MAX_FILTER_TYPE);
 
     if (typeSlot == 0) {
         searchSettings->typeFilter1 = filterType;
@@ -213,7 +217,7 @@ void PokedexSearch_SetFilterForm(UnkStruct_ov21_021E68F4 *param0, enum FilterFor
 {
     PokedexSearchSettings *searchSettings = param0->unk_00;
 
-    GF_ASSERT(filterForm < FILTERFORM_NUM);
+    GF_ASSERT(filterForm < MAX_FILTER_FORM);
     searchSettings->filterForm = filterForm;
 }
 
@@ -256,7 +260,7 @@ static PokedexSearchSettings *InitSearchSettings(enum HeapId heapID, UnkStruct_o
     GF_ASSERT(searchSettings);
     memset(searchSettings, 0, sizeof(PokedexSearchSettings));
 
-    searchSettings->unk_00 = ov21_021D138C(param1);
+    searchSettings->exitFlag = ov21_021D138C(param1);
     searchSettings->unk_04 = ov21_021D13EC(param1);
     UnkStruct_ov21_021E68F4 *v1 = ov21_021D1410(param1, 0);
     searchSettings->unk_08 = v1->unk_00;
@@ -285,7 +289,7 @@ static UnkStruct_ov21_021D4660 *ov21_021D874C(enum HeapId heapID, UnkStruct_ov21
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D4660) * v1);
 
-    ov21_021D47F0(heapID, &v0[0], param1, (0x1 << 1));
+    ov21_021D47F0(heapID, &v0[0], param1, (1 << 1));
 
     return v0;
 }
@@ -359,7 +363,7 @@ static int UpdateScreenState(UnkStruct_ov21_021E6A68 *param0, void *param1)
 
         if (searchSettings->screenChange == TRUE) {
             if (searchSettings->applyFilter == FALSE) {
-                *searchSettings->unk_00 |= (0x1 << 1);
+                *searchSettings->exitFlag |= EXITSEARCH;
                 searchSettings->screenState = SS_EXIT;
             } else {
                 searchSettings->screenState = SS_SEARCH;
@@ -377,7 +381,7 @@ static int UpdateScreenState(UnkStruct_ov21_021E6A68 *param0, void *param1)
             searchSettings->screenState = SS_LOADING;
             searchSettings->screenTimer = 32;
 
-            Sound_PlayEffect(1535);
+            Sound_PlayEffect(SEQ_SE_DP_Z_SEARCH);
         }
         break;
     case 2:
@@ -392,7 +396,7 @@ static int UpdateScreenState(UnkStruct_ov21_021E6A68 *param0, void *param1)
         dexExists = PokedexSort_Sort(searchSettings->unk_04, searchSettings->sortOrder, searchSettings->filterName, searchSettings->typeFilter1, searchSettings->typeFilter2, searchSettings->filterForm, PokedexStatus_IsNationalDex(searchSettings->unk_04), param0->heapID, TRUE);
 
         if (dexExists == TRUE) {
-            *searchSettings->unk_00 |= (0x1 << 1);
+            *searchSettings->exitFlag |= EXITSEARCH;
             PokedexSort_SetCurrentValues(searchSettings->unk_04, 0);
             searchSettings->unk_04->unk_1740 = 1;
             searchSettings->unk_08->unk_18 = 1;
@@ -683,11 +687,9 @@ static void DescriptionMessage(UnkStruct_ov21_021D879C *param0, int filterMethod
 
     Strbuf *descriptionMessage = GetPokedexMessage(entryID, heapID);
 
-    {
-        u32 v3 = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, descriptionMessage, 0)) / 2;
-        u32 v4 = 8 + (32 - Strbuf_NumLines(descriptionMessage) * 16) / 2;
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, descriptionMessage, v3, v4, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    }
+    u32 xOffset = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, descriptionMessage, 0)) / 2;
+    u32 yOffset = 8 + (32 - Strbuf_NumLines(descriptionMessage) * 16) / 2;
+    Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, descriptionMessage, xOffset, yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     Strbuf_Free(descriptionMessage);
 }
@@ -808,10 +810,8 @@ static void SortOrderMessage(UnkStruct_ov21_021D879C *param0, int sortOrder, enu
     int entryID = pl_msg_pokedex_numerical + sortOrder;
     Strbuf *sortMessage = GetPokedexMessage(entryID, heapID);
 
-    {
-        u32 v3 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, sortMessage, 0, 80);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, sortMessage, v3, 52, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
-    }
+    u32 xOffset = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, sortMessage, 0, 80);
+    Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, sortMessage, xOffset, 52, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
 
     Strbuf_Free(sortMessage);
 }
@@ -859,8 +859,8 @@ static void FilterNameMessage(UnkStruct_ov21_021D879C *param0, int filterName, e
     Strbuf *filterMessage = GetPokedexMessage(entryID, heapID);
 
     {
-        u32 v4 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, filterMessage, 0, 80);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, filterMessage, v4, 77, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
+        u32 xOffset = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, filterMessage, 0, 80);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, filterMessage, xOffset, 77, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
     }
 
     Strbuf_Free(filterMessage);
@@ -933,8 +933,8 @@ static void FilterTypeMessage(UnkStruct_ov21_021D879C *param0, int typeFilter, e
     Strbuf *filterMessage = GetPokedexMessage(entryID, heapID);
 
     {
-        u32 v4 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, filterMessage, 0, 80);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, filterMessage, v4, y, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
+        u32 x = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, filterMessage, 0, 80);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, filterMessage, x, y, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
     }
 
     Strbuf_Free(filterMessage);
@@ -1047,11 +1047,9 @@ static void SearchingMessage(UnkStruct_ov21_021D879C *param0, enum HeapId heapID
 
     Strbuf *searchingMessage = GetPokedexMessage(pl_msg_pokedex_searching, heapID);
 
-    {
-        u32 xOffset = (256 - Font_CalcMaxLineWidth(FONT_SYSTEM, searchingMessage, 0)) / 2;
+    u32 xOffset = (256 - Font_CalcMaxLineWidth(FONT_SYSTEM, searchingMessage, 0)) / 2;
 
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, searchingMessage, xOffset, 128, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    }
+    Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, searchingMessage, xOffset, 128, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     Strbuf_Free(searchingMessage);
     Bg_SetPriority(1, 0);

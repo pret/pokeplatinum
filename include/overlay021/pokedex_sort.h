@@ -15,7 +15,7 @@ enum SortOrder {
     SO_LIGHTEST,
     SO_TALLEST,
     SO_SMALLEST,
-    SORTORDER_NUM
+    MAX_SORT_ORDER
 };
 
 enum FilterName {
@@ -29,7 +29,7 @@ enum FilterName {
     FN_STU,
     FN_VWX,
     FN_YZ,
-    FILTERNAME_NUM
+    MAX_FILTER_NAME
 };
 
 enum FilterType {
@@ -51,7 +51,7 @@ enum FilterType {
     FT_ICE,
     FT_DRAGON,
     FT_DARK,
-    FILTERTYPE_NUM
+    MAX_FILTER_TYPE
 };
 
 enum FilterForm { // called form in game, but refers to body shape
@@ -70,7 +70,7 @@ enum FilterForm { // called form in game, but refers to body shape
     FF_FINS,
     FF_HEAD,
     FF_MULTIBODY,
-    FILTERFORM_NUM
+    MAX_FILTER_FORM
 };
 
 void PokedexSort_PopulatePokedexStatus(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, enum HeapId heapID);
