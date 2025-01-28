@@ -28,12 +28,12 @@ enum MapNamePopUpState {
 };
 
 typedef struct UnkStruct_ov5_021DD9C8_t {
-    BOOL unk_00;
+    BOOL isInited;
     u8 state;
     SysTask *task;
     s32 yOffset;
     u16 timer;
-    BOOL unk_14;
+    BOOL shouldSlideIn;
     u32 entryID;
     BgConfig *bgConfig;
     Window window;
@@ -51,7 +51,7 @@ static void MapNamePopUp_Reset(MapNamePopUp *mapPopUp);
 static void MapNamePopUp_SetBgConfig(MapNamePopUp *mapPopUp, BgConfig *bgConfig);
 static void SysTask_MapNamePopUpWindow(SysTask *task, void *param);
 static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const int strWidth);
-static void MapNamePopUp_SlideOut(MapNamePopUp *mapPopUp);
+static void MapNamePopUp_StartSlideOut(MapNamePopUp *mapPopUp);
 static void MapNamePopUp_PrintMapName(MapNamePopUp *mapPopUp, const Strbuf *strbuf);
 
 static void MapNamePopUp_LoadPalette(void *src, u16 size, u16 offset)
@@ -84,6 +84,7 @@ static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 til
 
 static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const int strWidth)
 {
+    // I haven't figured out these yet
     int width;
     int v1;
     int xOffset;
@@ -140,12 +141,12 @@ static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, const int strWi
 
 static void MapNamePopUp_Reset(MapNamePopUp *mapPopUp)
 {
-    mapPopUp->unk_00 = FALSE;
+    mapPopUp->isInited = FALSE;
     mapPopUp->state = MAP_NAME_POPUP_STATE_END;
     mapPopUp->task = NULL;
     mapPopUp->yOffset = 0;
     mapPopUp->timer = 0;
-    mapPopUp->unk_14 = FALSE;
+    mapPopUp->shouldSlideIn = FALSE;
     mapPopUp->entryID = 0;
     mapPopUp->bgConfig = NULL;
 }
@@ -197,8 +198,8 @@ static void SysTask_MapNamePopUpWindow(SysTask *task, void *param)
         Bg_SetOffset(mapPopUp->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, mapPopUp->yOffset);
 
         if (mapPopUp->yOffset == 38) {
-            if (mapPopUp->unk_14) {
-                mapPopUp->unk_14 = FALSE;
+            if (mapPopUp->shouldSlideIn) {
+                mapPopUp->shouldSlideIn = FALSE;
 
                 strWidth = MapHeader_GetStringWidth(mapPopUp->msgLoader, mapPopUp->entryID, mapPopUp->strbuf);
 
@@ -218,13 +219,13 @@ static void SysTask_MapNamePopUpWindow(SysTask *task, void *param)
     }
 }
 
-static void MapNamePopUp_PrintMapName(MapNamePopUp *mapPopUp, const Strbuf *param1)
+static void MapNamePopUp_PrintMapName(MapNamePopUp *mapPopUp, const Strbuf *strbuf)
 {
     TextColor color = TEXT_COLOR(3, 2, 0);
-    Text_AddPrinterWithParamsAndColor(&mapPopUp->window, FONT_SYSTEM, param1, mapPopUp->xOffset, (8 * 2), TEXT_SPEED_INSTANT, color, NULL);
+    Text_AddPrinterWithParamsAndColor(&mapPopUp->window, FONT_SYSTEM, strbuf, mapPopUp->xOffset, (8 * 2), TEXT_SPEED_INSTANT, color, NULL);
 }
 
-static void MapNamePopUp_SlideOut(MapNamePopUp *mapPopUp)
+static void MapNamePopUp_StartSlideOut(MapNamePopUp *mapPopUp)
 {
     mapPopUp->state = MAP_NAME_POPUP_STATE_SLIDE_OUT;
     mapPopUp->timer = 0;
@@ -261,8 +262,8 @@ void MapNamePop_Show(MapNamePopUp *mapPopUp, const int mapLabelTextID, const int
 
     mapPopUp->entryID = mapLabelTextID;
 
-    if (mapPopUp->unk_00 == FALSE) {
-        mapPopUp->unk_00 = TRUE;
+    if (mapPopUp->isInited == FALSE) {
+        mapPopUp->isInited = TRUE;
 
         Bg_SetOffset(mapPopUp->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 38);
 
@@ -279,12 +280,12 @@ void MapNamePop_Show(MapNamePopUp *mapPopUp, const int mapLabelTextID, const int
         switch (mapPopUp->state) {
         case MAP_NAME_POPUP_STATE_SLIDE_IN:
         case MAP_NAME_POPUP_STATE_WAIT:
-            MapNamePopUp_SlideOut(mapPopUp);
-            mapPopUp->unk_14 = TRUE;
+            MapNamePopUp_StartSlideOut(mapPopUp);
+            mapPopUp->shouldSlideIn = TRUE;
             mapPopUp->windowID = mapLabelWindowID;
             break;
         case MAP_NAME_POPUP_STATE_SLIDE_OUT:
-            mapPopUp->unk_14 = TRUE;
+            mapPopUp->shouldSlideIn = TRUE;
             mapPopUp->windowID = mapLabelWindowID;
             break;
         case MAP_NAME_POPUP_STATE_END:
