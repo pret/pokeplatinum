@@ -2,9 +2,10 @@
 #define POKEPLATINUM_MAP_NAME_POPUP_H
 
 #include "field/field_system_decl.h"
-#include "overlay005/struct_ov5_021DD9C8_decl.h"
 
 #include "bg_window.h"
+
+typedef struct MapNamePopUp MapNamePopUp;
 
 MapNamePopUp *MapNamePopUp_Create(BgConfig *param0);
 void MapNamePopUp_DestroyTextWindow(MapNamePopUp *mapPopUp);

@@ -27,7 +27,7 @@ enum MapNamePopUpState {
     MAP_NAME_POPUP_STATE_WAIT
 };
 
-typedef struct UnkStruct_ov5_021DD9C8_t {
+typedef struct MapNamePopUp {
     BOOL isInited;
     u8 state;
     SysTask *task;
