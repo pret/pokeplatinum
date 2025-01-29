@@ -2627,7 +2627,7 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     v2 = (LCRNG_Next() % 29);
 
-    sub_02071D10(sub_0206C3C8(v2), 4, v6);
+    MapHeader_LoadName(sub_0206C3C8(v2), 4, v6);
     StringTemplate_SetStrbuf(param1, 0, v6, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v6);
 

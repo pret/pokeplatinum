@@ -30,7 +30,7 @@
 #include "unk_0200F174.h"
 #include "unk_02039C80.h"
 
-void sub_02071D10(const int param0, const u32 param1, Strbuf *param2);
+void MapHeader_LoadName(const int param0, const u32 param1, Strbuf *param2);
 
 typedef struct {
     int unk_00;
@@ -531,7 +531,7 @@ static void ov80_021D1A58(UnkStruct_ov80_021D2A08 *param0, int param1, int param
     };
 
     if (param1 != 0) {
-        sub_02071D10(param1, param0->unk_04, param0->unk_88);
+        MapHeader_LoadName(param1, param0->unk_04, param0->unk_88);
         return;
     }
 
@@ -540,11 +540,11 @@ static void ov80_021D1A58(UnkStruct_ov80_021D2A08 *param0, int param1, int param
             continue;
         }
 
-        sub_02071D10(v1[v0].unk_04, param0->unk_04, param0->unk_88);
+        MapHeader_LoadName(v1[v0].unk_04, param0->unk_04, param0->unk_88);
         return;
     }
 
-    sub_02071D10(0, param0->unk_04, param0->unk_88);
+    MapHeader_LoadName(0, param0->unk_04, param0->unk_88);
     return;
 }
 

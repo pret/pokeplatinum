@@ -361,7 +361,7 @@ BOOL ScrCmd_0E2(ScriptContext *param0)
     u8 v2 = ScriptContext_ReadByte(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
-    sub_02071D10(v3, 4, v0);
+    MapHeader_LoadName(v3, 4, v0);
     StringTemplate_SetStrbuf(*v1, v2, v0, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
 

@@ -198,7 +198,7 @@ static void SysTask_MapNamePopUpWindow(SysTask *task, void *param)
             if (mapPopUp->shouldSlideIn) {
                 mapPopUp->shouldSlideIn = FALSE;
 
-                strWidth = MapHeader_GetStringWidth(mapPopUp->msgLoader, mapPopUp->entryID, mapPopUp->strbuf);
+                strWidth = MapHeader_LoadString(mapPopUp->msgLoader, mapPopUp->entryID, mapPopUp->strbuf);
 
                 MapNamePopUp_DrawWindowFrame(mapPopUp, strWidth);
                 MapNamePopUp_PrintMapName(mapPopUp, mapPopUp->strbuf);
@@ -267,7 +267,7 @@ void MapNamePopUp_Show(MapNamePopUp *mapPopUp, s32 mapLabelTextID, s32 mapLabelW
         mapPopUp->task = SysTask_Start(SysTask_MapNamePopUpWindow, mapPopUp, 0);
         mapPopUp->state = MAP_NAME_POPUP_STATE_SLIDE_IN;
 
-        strWidth = MapHeader_GetStringWidth(mapPopUp->msgLoader, mapPopUp->entryID, mapPopUp->strbuf);
+        strWidth = MapHeader_LoadString(mapPopUp->msgLoader, mapPopUp->entryID, mapPopUp->strbuf);
         mapPopUp->windowID = mapLabelWindowID;
 
         MapNamePopUp_DrawWindowFrame(mapPopUp, strWidth);
