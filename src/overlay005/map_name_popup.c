@@ -13,6 +13,7 @@
 #include "map_header.h"
 #include "map_header_util.h"
 #include "message.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -54,8 +55,8 @@ static void MapNamePopUp_PrintMapName(MapNamePopUp *mapPopUp, const Strbuf *strb
 
 static void MapNamePopUp_LoadPalette(void *src, u16 size, u16 offset)
 {
-    DC_FlushRange((void *)src, size * 32);
-    GX_LoadBGPltt((const void *)src, offset * 32, size * 32);
+    DC_FlushRange(src, PLTT_OFFSET(size));
+    GX_LoadBGPltt(src, PLTT_OFFSET(offset), PLTT_OFFSET(size));
 }
 
 static void MapNamePopUp_CreateWindow(MapNamePopUp *mapPopUp)
