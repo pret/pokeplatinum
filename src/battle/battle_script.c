@@ -8,9 +8,9 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
-#include "consts/gender.h"
-#include "consts/sdat.h"
 #include "generated/abilities.h"
+#include "generated/genders.h"
+#include "generated/sdat.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/sprite_decl.h"
@@ -2109,7 +2109,7 @@ static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx)
  * @brief Compare a given data-value from a variable to a target static value.
  *
  * Inputs:
- * 1. The operation mode. See enum OpCode for possible values.
+ * 1. The operation mode. See `battle_script_opcodes` for possible values.
  * 2. The variable whose data should be retrieved for the comparison.
  * 3. The static value to compare against.
  * 4. The jump-ahead value if the comparison yields TRUE.
@@ -2187,7 +2187,7 @@ static BOOL BtlCmd_CompareVarToValue(BattleSystem *battleSys, BattleContext *bat
  * @brief Compare a given data-value from a battler to a target static value.
  *
  * Inputs:
- * 1. The operation mode. See enum OpCode for possible values.
+ * 1. The operation mode. See `battle_script_opcodes` for possible values.
  * 2. The battler whose data should be retrieved for the comparison.
  * 3. The parameter to retrieve for the comparison.
  * 4. The static value to compare against.
@@ -2894,7 +2894,7 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
  * and a static source value.
  *
  * Inputs:
- * 1. The operation to apply; see enum OpCode for possible values.
+ * 1. The operation to apply; see `battle_script_opcodes` for possible values.
  * 2. ID of the variable to target as a source operand and the destination.
  * 3. A static source value to use as the second operand.
  *
@@ -3207,7 +3207,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
  * to itself and a static source value.
  *
  * Inputs:
- * 1. The operation to apply; see enum OpCode for possible values.
+ * 1. The operation to apply; see `battle_script_opcodes` for possible values.
  * 2. ID of the battler to target as a source operand and the destination.
  * 3. ID of the battler's data field to target as a source operand and
  * the destination.
@@ -3355,7 +3355,7 @@ static BOOL BtlCmd_ToggleVanish(BattleSystem *battleSys, BattleContext *battleCt
  * @brief Check the ability of a battler or set of battlers.
  *
  * Inputs:
- * 1. Op-code which controls the behavior. See enum CheckHaveOp
+ * 1. Op-code which controls the behavior. See `CHECK_HAVE`/`CHECK_NOT_HAVE`
  * 2. Input battler (or set of battlers) whose ability should be checked
  * 3. The ability to check for any battler to have (or not have)
  * 4. GoTo distance if a battler in the input set meets the criteria
@@ -3441,7 +3441,7 @@ static BOOL BtlCmd_Random(BattleSystem *battleSys, BattleContext *battleCtx)
  * and the value of another variable.
  *
  * Inputs:
- * 1. The operation to apply; see enum OpCode for possible values.
+ * 1. The operation to apply; see `battle_script_opcodes` for possible values.
  * 2. ID of the variable to target as a source operand and the destination.
  * 3. ID of the variable to use as the second operand.
  *
@@ -3535,7 +3535,7 @@ static BOOL BtlCmd_UpdateVarFromVar(BattleSystem *battleSys, BattleContext *batt
  * to itself and the value of a variable.
  *
  * Inputs:
- * 1. The operation to apply; see enum OpCode for possible values.
+ * 1. The operation to apply; see `battle_script_opcodes` for possible values.
  * 2. ID of the battler to target as a source operand and the destination.
  * 3. ID of the battler's data field to target as a source operand and
  * the destination.
@@ -4251,7 +4251,7 @@ static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleC
  * @brief Compare a given data-value from a variable to a target variable's value.
  *
  * Inputs:
- * 1. The operation mode. See enum OpCode for possible values.
+ * 1. The operation mode. See `battle_script_opcodes` for possible values.
  * 3. The variable whose data will be used on the left-hand side of the comparison.
  * 3. The variable whose data will be used on the right-hand side of the comparison.
  * 4. The jump-ahead value if the comparison yields TRUE.
@@ -4330,7 +4330,7 @@ static BOOL BtlCmd_CompareVarToVar(BattleSystem *battleSys, BattleContext *battl
  * @brief Compare a given data-value from a battler to a target variable's value.
  *
  * Inputs:
- * 1. The operation mode. See enum OpCode for possible values.
+ * 1. The operation mode. See `battle_script_opcodes` for possible values.
  * 2. The battler whose data should be retrieved for the left-hand side of the comparison.
  * 3. The parameter to use for the left-hand side of the comparison.
  * 4. The variable whose data will be used on the right-hand side of the comparison.
@@ -7637,8 +7637,8 @@ static BOOL BtlCmd_TrySuckerPunch(BattleSystem *battleSys, BattleContext *battle
  *
  * Inputs:
  * 1. The battler for whom the side conditions should be checked/cleared.
- * 2. The op code for this command (see: enum CheckSideConditionOp).
- * 3. The specific side condition to check/modify (see: enum SideCondition).
+ * 2. The op code for this command (see: `battle_script_check_side_condition_ops`).
+ * 3. The specific side condition to check/modify (see: `battle_script_side_conditions`).
  * 4. The distance to jump if a check operation is not fulfilled.
  *
  * @param battleSys
@@ -7885,7 +7885,7 @@ static BOOL BtlCmd_CheckToxicSpikes(BattleSystem *battleSys, BattleContext *batt
  * effects which ignore that ability.
  *
  * Inputs:
- * 1. Op-code which controls the behavior. See enum CheckHaveOp
+ * 1. Op-code which controls the behavior. See `CHECK_HAVE`/`CHECK_NOT_HAVE`
  * 2. Input battler (or set of battlers) whose ability should be checked
  * 3. The ability to check for any battler to have (or not have)
  * 4. GoTo distance if a battler in the input set meets the criteria
@@ -8123,7 +8123,7 @@ static BOOL BtlCmd_IfMovedThisTurn(BattleSystem *battleSys, BattleContext *battl
  * given hold effect.
  *
  * Inputs:
- * 1. Opcode. See enum CheckHaveOp.
+ * 1. Opcode. See `CHECK_HAVE`/`CHECK_NOT_HAVE`
  * 2. The battler whose held item is to be checked.
  * 3. The effect to check for.
  * 4. The distance to jump if the battler has (or does not have) an item with

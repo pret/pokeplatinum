@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/trainer_score_events.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_0224DCB8.h"

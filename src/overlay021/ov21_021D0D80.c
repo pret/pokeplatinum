@@ -4,10 +4,11 @@
 #include <nnsys.h>
 #include <string.h>
 
+#include "generated/text_banks.h"
+
 #include "struct_decls/struct_0209ACBC_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "gmm/message_bank_pokedex.h"
 #include "overlay021/funcptr_ov21_021E9B74.h"
 #include "overlay021/funcptr_ov21_021E9B9C.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -48,7 +49,6 @@
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay022/struct_ov22_022559F8.h"
-#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -76,6 +76,8 @@
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 #include "unk_0209ACBC.h"
+
+#include "res/text/bank/pokedex.h"
 
 typedef struct UnkStruct_ov21_021D0F60_t {
     BOOL unk_00;
@@ -968,7 +970,7 @@ u32 ov21_021D1C88(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320
 Strbuf *GetPokedexMessage(int entryID, enum HeapId heapID)
 {
     Strbuf *pokedexMessage;
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     pokedexMessage = MessageLoader_GetNewStrbuf(pokedexMessageBank, entryID);
     MessageLoader_Free(pokedexMessageBank);

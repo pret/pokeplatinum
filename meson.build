@@ -146,6 +146,8 @@ subdir('lib')
 ############################################################
 subdir('res')
 
+# Phony-like target to build all generated data files
+alias_target('data', nitrofs_files, gen_species_headers)
 
 ############################################################
 ###                     ARM9 BINARY                      ###
@@ -174,7 +176,6 @@ main = executable('main',
         public_includes,
         libgds_public_includes,
         libspl_public_includes,
-        gmm_header_includes,
     ],
     dependencies: [
         nitrosdk_dep,

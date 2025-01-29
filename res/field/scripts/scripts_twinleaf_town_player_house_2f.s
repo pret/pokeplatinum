@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/twinleaf_town_player_house_2f.h"
 
     .data
 

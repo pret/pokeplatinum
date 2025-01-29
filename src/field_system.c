@@ -5,7 +5,7 @@
 
 #include "constants/field/map_load.h"
 #include "constants/heap.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_control.h"

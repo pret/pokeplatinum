@@ -6,7 +6,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
-#include "consts/game_records.h"
+#include "generated/game_records.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207AE68_decl.h"

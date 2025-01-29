@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_225_gate_to_fight_area.h"
 
     .data
 

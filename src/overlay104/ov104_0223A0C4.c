@@ -3,8 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/battle.h"
-#include "consts/pokemon.h"
+#include "generated/species_data_params.h"
 
 #include "struct_defs/struct_0202D764.h"
 #include "struct_defs/struct_0204AFC4.h"

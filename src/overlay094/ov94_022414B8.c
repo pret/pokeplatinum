@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include "constants/species.h"
-#include "consts/pokemon.h"
+#include "generated/species_data_params.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 

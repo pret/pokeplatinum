@@ -9,9 +9,9 @@
 #include "constants/overworld_weather.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
-#include "consts/battle.h"
 #include "generated/items.h"
 #include "generated/species.h"
+#include "generated/text_banks.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
@@ -61,8 +61,7 @@
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
-#include "res/text/gmm/message_bank_location_names.h"
-#include "res/text/pl_msg.naix"
+#include "res/text/bank/location_names.h"
 
 static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background);
 static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fieldSystem);
@@ -154,7 +153,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Options *options = SaveData_Options(fieldSystem->saveData);
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_CATCH_TUTORIAL);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_counterpart_names, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTERPART_NAMES, heapID);
     Strbuf *strbuf = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
     Pokemon *mon;
 
@@ -444,7 +443,7 @@ void FieldBattleDTO_UpdatePokedex(const FieldBattleDTO *dto, FieldSystem *fieldS
     Pokedex_Copy(dto->pokedex, pokedex);
 }
 
-static const enum Terrain sTerrainForBackground[] = {
+static const enum BattleTerrain sTerrainForBackground[] = {
     [BACKGROUND_PLAIN] = TERRAIN_PLAIN,
     [BACKGROUND_WATER] = TERRAIN_WATER,
     [BACKGROUND_CITY] = TERRAIN_BUILDING,

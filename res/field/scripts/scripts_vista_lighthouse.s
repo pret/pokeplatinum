@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/vista_lighthouse.h"
 
     .data
 

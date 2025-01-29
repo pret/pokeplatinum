@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_CONSTANTS_POKEMON_H
 #define POKEPLATINUM_CONSTANTS_POKEMON_H
 
-#include "consts/pokemon.h" // defs for SpeciesDataParam
 #include "generated/pokemon_types.h" // PokemonType
+#include "generated/species_data_params.h" // SpeciesDataParam
 
 /**
  * @brief Pokemon Stats

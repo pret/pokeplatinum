@@ -7,7 +7,7 @@
 
 #include "constants/communication/comm_packets.h"
 #include "constants/heap.h"
-#include "consts/game_records.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"

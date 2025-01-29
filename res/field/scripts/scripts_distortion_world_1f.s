@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/distortion_world_1f.h"
 
     .data
 

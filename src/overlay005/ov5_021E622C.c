@@ -5,7 +5,7 @@
 
 #include "constants/items.h"
 #include "constants/species.h"
-#include "consts/game_records.h"
+#include "generated/game_records.h"
 
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026224_decl.h"

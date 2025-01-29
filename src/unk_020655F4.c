@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/map_object.h"
-#include "consts/movement.h"
+#include "generated/movement_actions.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 

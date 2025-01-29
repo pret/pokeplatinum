@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/survival_area_north_house.h"
 
     .data
 

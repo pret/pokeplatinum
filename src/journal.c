@@ -3,12 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/badges.h"
-#include "consts/journal.h"
-#include "consts/map.h"
-
-#include "text/gmm/message_bank_location_names.h"
-#include "trainers/trdata.naix"
+#include "generated/badges.h"
+#include "generated/journal_location_events.h"
+#include "generated/journal_online_events.h"
+#include "generated/map_headers.h"
 
 #include "heap.h"
 #include "map_header.h"
@@ -16,6 +14,9 @@
 #include "rtc.h"
 #include "savedata.h"
 #include "trainer_info.h"
+
+#include "res/text/bank/location_names.h"
+#include "res/trainers/trdata.naix"
 
 #define LOCATION_EVENT(locationID, trainerID, eventType) ((locationID << 16) | ((trainerID & 0x3ff) << 6) | (eventType & 0x3f))
 

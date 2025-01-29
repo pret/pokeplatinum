@@ -1,6 +1,6 @@
 #include "location.h"
 
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "field_overworld_state.h"
 #include "savedata.h"

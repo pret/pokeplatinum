@@ -1,20 +1,14 @@
     .ifndef ASM_BATTLE_SCRIPT_INC
     .set ASM_BATTLE_SCRIPT_INC, 1
-#define __ASM_PM_
 
 #include "constants/battle.h"
+#include "constants/moves.h"
 #include "constants/items.h"
 #include "constants/battle/trainer_ai.h"
 #include "generated/abilities.h"
-#include "generated/moves.h"
+#include "generated/genders.h"
 #include "generated/pokemon_types.h"
-
-    .include "consts/battle.inc"
-    .include "consts/gender.inc"
-    .include "consts/moves.inc"
-    .include "consts/pokemon.inc"
-    .include "consts/trainer_ai.inc"
-    .include "macros/aicmd.inc"
+#include "macros/aicmd.inc"
 
     .text
 
@@ -201,7 +195,7 @@ Basic_ScoreMoveEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP_2_MINIMIZE, Basic_CheckHighStatStage_Evasion
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CURSE, Basic_CheckCurse
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SPIKES, Basic_CheckSpikes
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_IGNORE_EVASION_REMOVE_GHOST_IMMUNE, Basic_CheckForesight
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORESIGHT, Basic_CheckForesight
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALL_FAINT_3_TURNS, Basic_CheckPerishSong
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SANDSTORM, Basic_CheckSandstorm
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP_2_STATUS_CONFUSION, Basic_CheckCannotConfuse
@@ -210,9 +204,9 @@ Basic_ScoreMoveEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_POWER_MAYBE_HEAL, Basic_CheckNonStandardDamageOrChargeTurn
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWER_BASED_ON_LOW_FRIENDSHIP, Basic_CheckNonStandardDamageOrChargeTurn
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_STATUS, Basic_CheckAlreadyUnderSafeguard
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_POWER_10_CASES, Basic_CheckMagnitude
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PSYWAVE, Basic_CheckMagnitude
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PASS_STATS_AND_STATUS, Basic_CheckBatonPass
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_20_DAMAGE_FLAT, Basic_CheckNonStandardDamageOrChargeTurn
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_HALF_MORE_IN_SUN, Basic_CheckCanRecoverHP
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_133, Basic_CheckCanRecoverHP
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_134, Basic_CheckCanRecoverHP
@@ -1706,7 +1700,7 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CURSE, Expert_Curse
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PROTECT, Expert_Protect
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SPIKES, Expert_Spikes
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_IGNORE_EVASION_REMOVE_GHOST_IMMUNE, Expert_Foresight
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORESIGHT, Expert_Foresight
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SURVIVE_WITH_1_HP, Expert_Endure
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PASS_STATS_AND_STATUS, Expert_BatonPass
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_BEFORE_SWITCH, Expert_Pursuit
@@ -3230,7 +3224,7 @@ Expert_Encore_EncouragedMoveEffects:
     TableEntry BATTLE_EFFECT_STATUS_NIGHTMARE
     TableEntry BATTLE_EFFECT_PROTECT
     TableEntry BATTLE_EFFECT_SWITCH_ABILITIES
-    TableEntry BATTLE_EFFECT_IGNORE_EVASION_REMOVE_GHOST_IMMUNE
+    TableEntry BATTLE_EFFECT_FORESIGHT
     TableEntry BATTLE_EFFECT_ALL_FAINT_3_TURNS
     TableEntry BATTLE_EFFECT_WEATHER_SANDSTORM
     TableEntry BATTLE_EFFECT_SURVIVE_WITH_1_HP
@@ -6639,7 +6633,7 @@ TagStrategy_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, TagStrategy_ScoreMove
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, TagStrategy_ScoreMove
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, TagStrategy_ScoreMove
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, TagStrategy_ScoreMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_20_DAMAGE_FLAT, TagStrategy_ScoreMove
 
     ; If the move is not-very-effective, try to reduce its score
     IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TagStrategy_TryScoreMinus1
@@ -6702,7 +6696,7 @@ TagStrategy_CheckBeforeScoring:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, TagStrategy_CheckSpecialScoring
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, TagStrategy_CheckSpecialScoring
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, TagStrategy_CheckSpecialScoring
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, TagStrategy_CheckSpecialScoring
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_20_DAMAGE_FLAT, TagStrategy_CheckSpecialScoring
 
     ; If the move is super-effective, try to increase its score
     IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, TagStrategy_TryPrioritizingDoubleEffective
@@ -7099,7 +7093,7 @@ TagStrategy_PartnerKnowsHelpingHand:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, TagStrategy_PartnerHelpingHand_End
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, TagStrategy_PartnerHelpingHand_End
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, TagStrategy_PartnerHelpingHand_End
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, TagStrategy_PartnerHelpingHand_End
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_20_DAMAGE_FLAT, TagStrategy_PartnerHelpingHand_End
     FlagMoveDamageScore FALSE
     IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, ScorePlus1
 

@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
-#include "consts/journal.h"
+#include "generated/journal_location_events.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203D8AC.h"

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/veilstone_city_gym.h"
 
     .data
 

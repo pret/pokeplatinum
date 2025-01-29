@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/eterna_forest_outside.h"
 
     .data
 

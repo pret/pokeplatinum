@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 import pathlib
 
+from generated.battle_move_effects import BattleMoveEffect
+from generated.move_classes import MoveClass
+from generated.move_flags import MoveFlag
+from generated.move_ranges import MoveRange
 from generated.moves import Move
 from generated.pokemon_types import PokemonType
 
 from consts import (
-    battle,
-    moves,
     pokemon
 )
 
@@ -15,16 +17,16 @@ import json2bin as j2b
 
 SCHEMA = j2b.Parser() \
     .register_name(lambda s: s) \
-    .register('effect.type', 2, j2b.parse_const, battle.BattleEffect) \
-    .register('class', 1, j2b.parse_const, moves.MoveClass) \
+    .register('effect.type', 2, j2b.parse_const, BattleMoveEffect) \
+    .register('class', 1, j2b.parse_const, MoveClass) \
     .register('power', 1, j2b.parse_int) \
     .register('type', 1, j2b.parse_const, PokemonType) \
     .register('accuracy', 1, j2b.parse_int) \
     .register('pp', 1, j2b.parse_int) \
     .register('effect.chance', 1, j2b.parse_int) \
-    .register('range', 2, j2b.parse_const, battle.MoveRange) \
+    .register('range', 2, j2b.parse_const, MoveRange) \
     .register('priority', 1, j2b.parse_sint) \
-    .register('flags', 1, j2b.pack_flags, battle.MoveFlags) \
+    .register('flags', 1, j2b.pack_flags, MoveFlag) \
     .register('contest.effect', 1, j2b.parse_int) \
     .register('contest.type', 1, j2b.parse_const, pokemon.PokemonContestType) \
     .pad(2)

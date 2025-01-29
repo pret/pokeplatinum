@@ -7,7 +7,7 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
-#include "consts/sdat.h"
+#include "generated/sdat.h"
 
 #include "overlay005/encounter_effect.h"
 

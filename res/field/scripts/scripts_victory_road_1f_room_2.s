@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/victory_road_1f_room_2.h"
 
     .data
 
