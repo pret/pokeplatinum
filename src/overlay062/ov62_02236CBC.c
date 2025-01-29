@@ -109,7 +109,7 @@ static void ov62_02236D48(UnkStruct_0208C06C *param0)
 
     SpriteActor_SetSpritePositionXY(v0->unk_9C[1].unk_08, 128, 232);
     sub_020128C4(v0->unk_9C[1].unk_0C, 36, -8);
-    sub_020129D0(v0->unk_9C[1].unk_0C, 1);
+    FontOAM_SetDrawFlag(v0->unk_9C[1].unk_0C, 1);
 
     v0->unk_94[1] = ov62_022313E0(param0, NNS_G2D_VRAM_TYPE_2DSUB);
 

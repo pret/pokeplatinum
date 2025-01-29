@@ -26,7 +26,7 @@ void BattleCursor_FreeResources(SpriteGfxHandler *param0, u32 param1, u32 param2
 BattleCursor *BattleCursor_New(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void BattleCursor_Free(BattleCursor *param0);
 void ov16_0226DD7C(BattleCursor *param0, int param1, int param2, int param3, int param4);
-void ov16_0226DDE8(BattleCursor *param0);
+void BattleCursor_Disable(BattleCursor *param0);
 
 static const SpriteTemplate Unk_ov16_02270AA4 = {
     0x0,
@@ -141,7 +141,7 @@ void ov16_0226DDC0(BattleCursor *param0, int param1, int param2, int param3, fx3
     SpriteActor_EnableObject(param0->unk_00[4], 1);
 }
 
-void ov16_0226DDE8(BattleCursor *param0)
+void BattleCursor_Disable(BattleCursor *param0)
 {
     int v0;
 

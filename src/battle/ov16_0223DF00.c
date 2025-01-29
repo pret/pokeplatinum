@@ -115,7 +115,7 @@ u8 Battler_Side(BattleSystem *battleSystem, int param1);
 void *ov16_0223E220(BattleSystem *battleSystem);
 PCBoxes *ov16_0223E228(BattleSystem *battleSystem);
 enum Terrain BattleSystem_Terrain(BattleSystem *battleSys);
-int ov16_0223E240(BattleSystem *battleSystem);
+int BattleSystem_GetBackgroundId(BattleSystem *battleSystem);
 int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
@@ -514,7 +514,7 @@ enum Terrain BattleSystem_Terrain(BattleSystem *battleSys)
     return battleSys->terrain;
 }
 
-int ov16_0223E240(BattleSystem *battleSystem)
+int BattleSystem_GetBackgroundId(BattleSystem *battleSystem)
 {
     return battleSystem->unk_2400;
 }

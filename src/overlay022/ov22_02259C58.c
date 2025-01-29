@@ -67,7 +67,7 @@ void ov22_02259C58(UnkStruct_ov22_02259C58 *param0, UnkStruct_ov22_02259C58_1 *p
 
 void ov22_02259C9C(UnkStruct_ov22_0225A154 *param0, UnkStruct_ov22_02259C9C *param1)
 {
-    UnkStruct_020127E8 v0;
+    FontOAMInitData v0;
 
     ov22_02259C58(&param0->unk_00, &param1->unk_00);
 

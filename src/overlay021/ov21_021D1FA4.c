@@ -232,7 +232,7 @@ void ov21_021D22E0(UnkStruct_ov21_021D13FC *param0, UnkStruct_ov21_021D4CB8 *par
 void ov21_021D22F8(UnkStruct_ov21_021D22F8 *param0, UnkStruct_ov21_021D4CB8 *param1, int param2, int param3, u32 param4)
 {
     if ((param3 == param0->unk_28) && (param4 == param0->unk_2C)) {
-        sub_020129D0(param0->unk_08->unk_00, 1);
+        FontOAM_SetDrawFlag(param0->unk_08->unk_00, 1);
         return;
     } else {
         param0->unk_28 = param3;
@@ -281,7 +281,7 @@ void ov21_021D23C0(const UnkStruct_ov21_021D13FC *param0, BOOL param1)
     }
 
     if (param0->unk_1B0.unk_08->unk_00) {
-        sub_020129D0(param0->unk_1B0.unk_08->unk_00, param1);
+        FontOAM_SetDrawFlag(param0->unk_1B0.unk_08->unk_00, param1);
     }
 }
 
@@ -953,7 +953,7 @@ void ov21_021D2E44(UnkStruct_ov21_021D22F8 *param0, BOOL param1)
     }
 
     if (param0->unk_08->unk_00) {
-        sub_020129D0(param0->unk_08->unk_00, param1);
+        FontOAM_SetDrawFlag(param0->unk_08->unk_00, param1);
     }
 }
 

@@ -943,5 +943,5 @@ void ov13_022256E8(UnkStruct_ov13_022213F0 *param0)
 {
     ov13_02228A60(param0->unk_2084, 0);
     ov13_02228A90(param0->unk_2084);
-    ov16_0226DDE8(ov13_02228A58(param0->unk_2084));
+    BattleCursor_Disable(ov13_02228A58(param0->unk_2084));
 }

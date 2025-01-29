@@ -1003,7 +1003,7 @@ static void ov113_0225D484(UnkStruct_ov113_0225DBCC *param0)
 
         v2 = MessageLoader_GetNewStrbuf(param0->unk_30, 1);
         ov113_0225E15C(param0, &param0->unk_19C0, v2, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 0, 10003, 0x1c * 8, 176, 1);
-        sub_020129D0(param0->unk_19C0.unk_00, 1);
+        FontOAM_SetDrawFlag(param0->unk_19C0.unk_00, 1);
         Strbuf_Free(v2);
     }
 }
@@ -1503,7 +1503,7 @@ static void ov113_0225E118(UnkStruct_ov113_0225DBCC *param0)
 
 static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9)
 {
-    UnkStruct_020127E8 v0;
+    FontOAMInitData v0;
     Window v1;
     SpriteManagerAllocation v2;
     int v3;

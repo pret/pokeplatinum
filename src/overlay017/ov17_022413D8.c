@@ -1245,8 +1245,8 @@ static void ov17_0224262C(UnkStruct_ov17_02246F24 *param0, GXOamMode param1, int
 
         sub_02012AF0(param0->unk_0C.unk_180[v0].unk_00, param1);
         sub_02012AF0(param0->unk_0C.unk_1C8[v0].unk_00, param1);
-        sub_020129D0(param0->unk_0C.unk_180[v0].unk_00, v3);
-        sub_020129D0(param0->unk_0C.unk_1C8[v0].unk_00, v3);
+        FontOAM_SetDrawFlag(param0->unk_0C.unk_180[v0].unk_00, v3);
+        FontOAM_SetDrawFlag(param0->unk_0C.unk_1C8[v0].unk_00, v3);
     }
 }
 

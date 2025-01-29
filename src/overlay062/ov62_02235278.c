@@ -305,7 +305,7 @@ static BOOL ov62_02235580(UnkStruct_0208C06C *param0)
 
                             sub_0200D364(param0->unk_534.unk_00[v4].unk_00, param0->unk_818[param0->unk_534.unk_1B0].unk_0C);
                             ov62_02230FC8(param0, &param0->unk_534.unk_00[param0->unk_534.unk_1A4], param0->unk_818[param0->unk_534.unk_1B0].unk_08, &param0->unk_818[param0->unk_534.unk_1B0]);
-                            sub_020129D0(param0->unk_534.unk_00[param0->unk_534.unk_1A4].unk_14, 1);
+                            FontOAM_SetDrawFlag(param0->unk_534.unk_00[param0->unk_534.unk_1A4].unk_14, 1);
                             SpriteActor_EnableObject(param0->unk_534.unk_00[v4].unk_00, 1);
                         } else {
                             v5->unk_04 = v5->unk_00 - 4;

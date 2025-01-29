@@ -1117,10 +1117,10 @@ static void ov21_021DD9E8(PokedexMapDisplay *mapDisplay, const EncounterCollecti
 {
     if ((mapDisplay->numVisibleDungeons <= 0) && (mapDisplay->numVisibleFields <= 0) && (mapDisplay->dungeonsZero <= 0) && (mapDisplay->fieldsZero <= 0)) {
         CellActor_SetDrawFlag(mapDisplay->AreaUnknownCellActor, 1);
-        sub_020129D0(mapDisplay->AreaUnknownSpriteManager->unk_00, 1);
+        FontOAM_SetDrawFlag(mapDisplay->AreaUnknownSpriteManager->unk_00, 1);
     } else {
         CellActor_SetDrawFlag(mapDisplay->AreaUnknownCellActor, 0);
-        sub_020129D0(mapDisplay->AreaUnknownSpriteManager->unk_00, 0);
+        FontOAM_SetDrawFlag(mapDisplay->AreaUnknownSpriteManager->unk_00, 0);
     }
 }
 
@@ -1130,9 +1130,9 @@ static void ov21_021DDA48(PokedexMapDisplay *mapDisplay, int param1)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (v0 == param1) {
-            sub_020129D0(mapDisplay->unk_E0[v0]->unk_00, 1);
+            FontOAM_SetDrawFlag(mapDisplay->unk_E0[v0]->unk_00, 1);
         } else {
-            sub_020129D0(mapDisplay->unk_E0[v0]->unk_00, 0);
+            FontOAM_SetDrawFlag(mapDisplay->unk_E0[v0]->unk_00, 0);
         }
     }
 }

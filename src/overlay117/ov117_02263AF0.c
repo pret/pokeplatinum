@@ -2011,7 +2011,7 @@ static BOOL ov117_02265C3C(UnkStruct_ov117_02265C3C *param0, UnkStruct_ov117_022
 
 void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
-    UnkStruct_020127E8 v0;
+    FontOAMInitData v0;
     Window v1;
     SpriteManagerAllocation v2;
     int v3;

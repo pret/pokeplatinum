@@ -700,7 +700,7 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     sub_02012A60(param0->unk_0C[0]->unk_00, v4 + 3);
 
     if (param2->unk_1C->unk_04->unk_1740 == 1) {
-        sub_020129D0(param0->unk_0C[0]->unk_00, 0);
+        FontOAM_SetDrawFlag(param0->unk_0C[0]->unk_00, 0);
     }
 
     ov21_021D4DA0(v0);
@@ -714,7 +714,7 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     sub_02012A60(param0->unk_0C[1]->unk_00, v4 + 3);
 
     if ((ov21_021D36A4(param2->unk_1C->unk_04, 1) == 0) || (param2->unk_1C->unk_04->unk_1740 == 1)) {
-        sub_020129D0(param0->unk_0C[1]->unk_00, 0);
+        FontOAM_SetDrawFlag(param0->unk_0C[1]->unk_00, 0);
     }
 
     ov21_021D4DA0(v0);

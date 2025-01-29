@@ -741,7 +741,7 @@ static void ov62_02236C20(UnkStruct_0208C06C *param0)
     sub_0200D364(v0->unk_158[0].unk_08, 0);
     SpriteActor_SetSpritePositionXY(v0->unk_158[0].unk_08, 80, 232);
     sub_020128C4(v0->unk_158[0].unk_0C, 36, -8);
-    sub_020129D0(v0->unk_158[0].unk_0C, 1);
+    FontOAM_SetDrawFlag(v0->unk_158[0].unk_0C, 1);
 }
 
 static void ov62_02236C94(UnkStruct_0208C06C *param0)

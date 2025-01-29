@@ -2957,7 +2957,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         ov16_02264798(v3, v0->unk_00);
         v0->unk_0A = 4;
     case 4:
-        if (ov16_02269348(battleInput) == 0) {
+        if (BattleInput_CheckEffectEnded(battleInput) == 0) {
             break;
         }
 
@@ -2981,29 +2981,29 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 ov16_0226BCCC(battleInput, 1);
 
                 if (BattleSystem_BattleStatus(v0->unk_00) & 0x1) {
-                    ov16_02268C04(v12, v13, battleInput, 6, 0, &v11);
+                    BattleInput_ChangeMenu(v12, v13, battleInput, 6, 0, &v11);
                 } else if (BattleSystem_GetBattleType(v0->unk_00) & 0x200) {
-                    ov16_02268C04(v12, v13, battleInput, 10, 0, &v11);
+                    BattleInput_ChangeMenu(v12, v13, battleInput, 10, 0, &v11);
                 } else if (BattleSystem_GetBattleType(v0->unk_00) & 0x20) {
-                    ov16_02268C04(v12, v13, battleInput, 8, 0, &v11);
+                    BattleInput_ChangeMenu(v12, v13, battleInput, 8, 0, &v11);
                 } else if ((v11.unk_00 == 4) && ((BattleSystem_GetBattleType(v0->unk_00) & 0x8) == 0)) {
-                    ov16_02268C04(v12, v13, battleInput, 4, 0, &v11);
+                    BattleInput_ChangeMenu(v12, v13, battleInput, 4, 0, &v11);
                 } else {
-                    ov16_02268C04(v12, v13, battleInput, 3, 0, &v11);
+                    BattleInput_ChangeMenu(v12, v13, battleInput, 3, 0, &v11);
                 }
 
                 BattleSystem_SetCommandSelectionFlags(v0->unk_00, 1);
             } else {
                 if (BattleSystem_BattleStatus(v0->unk_00) & 0x1) {
-                    ov16_02268C04(v12, v13, battleInput, 5, 0, &v11);
+                    BattleInput_ChangeMenu(v12, v13, battleInput, 5, 0, &v11);
                 } else if (BattleSystem_GetBattleType(v0->unk_00) & 0x200) {
-                    ov16_02268C04(v12, v13, battleInput, 9, 0, &v11);
+                    BattleInput_ChangeMenu(v12, v13, battleInput, 9, 0, &v11);
                 } else if (BattleSystem_GetBattleType(v0->unk_00) & 0x20) {
-                    ov16_02268C04(v12, v13, battleInput, 7, 0, &v11);
+                    BattleInput_ChangeMenu(v12, v13, battleInput, 7, 0, &v11);
                 } else if (v11.unk_00 != 4) {
-                    ov16_02268C04(v12, v13, battleInput, 1, 0, &v11);
+                    BattleInput_ChangeMenu(v12, v13, battleInput, 1, 0, &v11);
                 } else {
-                    ov16_02268C04(v12, v13, battleInput, 2, 0, &v11);
+                    BattleInput_ChangeMenu(v12, v13, battleInput, 2, 0, &v11);
                 }
 
                 v3->unk_193 = 1;
@@ -3011,7 +3011,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
 
             ov16_0226914C(battleInput, v0->unk_1C);
             ov16_02269168(battleInput, v0->unk_10[0], v0->unk_10[1]);
-            ov16_022691BC(battleInput);
+            BattleInput_EnableBallGauge(battleInput);
             NARC_dtor(v12);
             NARC_dtor(v13);
         }
@@ -3042,7 +3042,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         }
         break;
     case 6:
-        if ((ov16_02269348(battleInput) == 1) || (v0->unk_0C == 1)) {
+        if ((BattleInput_CheckEffectEnded(battleInput) == 1) || (v0->unk_0C == 1)) {
             switch (v0->unk_0C) {
             case 1:
                 if (BattleSystem_GetBattleType(v0->unk_00) & (0x20 | 0x200)) {
@@ -3053,7 +3053,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 NARC *v16 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
                 NARC *v17 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
-                ov16_02268C04(v16, v17, battleInput, 0, 0, NULL);
+                BattleInput_ChangeMenu(v16, v17, battleInput, 0, 0, NULL);
                 ov16_0226BCCC(battleInput, 0);
                 ov16_0226846C(v6);
                 ov16_022675AC(v0->unk_04);
@@ -3065,7 +3065,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 NARC *v18 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
                 NARC *v19 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
-                ov16_02268C04(v18, v19, battleInput, 0, 0, NULL);
+                BattleInput_ChangeMenu(v18, v19, battleInput, 0, 0, NULL);
                 ov16_0226BCCC(battleInput, 0);
                 ov16_0226846C(v6);
                 ov16_022675AC(v0->unk_04);
@@ -3077,12 +3077,12 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 NARC *v20 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
                 NARC *v21 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
-                if (ov16_0226D088(battleInput) == 1) {
+                if (BattleInput_GetRunCommandType(battleInput) == BI_RUNCMD_CANCEL) {
                     ov16_0226846C(v6);
                     v0->unk_0C = 0xff;
                 }
 
-                ov16_02268C04(v20, v21, battleInput, 0, 0, NULL);
+                BattleInput_ChangeMenu(v20, v21, battleInput, 0, 0, NULL);
                 NARC_dtor(v20);
                 NARC_dtor(v21);
             } break;
@@ -3091,21 +3091,21 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 break;
             }
 
-            ov16_02269218(battleInput);
+            BattleInput_DisableBallGauge(battleInput);
             v0->unk_0A = 8;
         }
         break;
     case 7:
-        if (ov16_02269348(battleInput) == 1) {
+        if (BattleInput_CheckEffectEnded(battleInput) == 1) {
             NARC *v22 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
             NARC *v23 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
-            ov16_02268C04(v22, v23, battleInput, 0, 0, NULL);
+            BattleInput_ChangeMenu(v22, v23, battleInput, 0, 0, NULL);
             ov16_0226BCCC(battleInput, 0);
             ov16_0226846C(v6);
             ov16_022675AC(v0->unk_04);
             ov16_022647D8(v3);
-            ov16_02269218(battleInput);
+            BattleInput_DisableBallGauge(battleInput);
 
             v0->unk_0A = 8;
 
@@ -3239,7 +3239,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
 
     switch (v0->unk_20) {
     case 0:
-        if (ov16_02269348(battleInput) == 0) {
+        if (BattleInput_CheckEffectEnded(battleInput) == 0) {
             break;
         }
 
@@ -3255,10 +3255,10 @@ static void ov16_02260C00(SysTask *param0, void *param1)
             BattleMessage_Print(v0->unk_00, v6, &v7, 0);
         }
 
-        ov16_02269218(battleInput);
+        BattleInput_DisableBallGauge(battleInput);
 
         {
-            UnkStruct_ov16_02260C00 v8;
+            BattleInputMoveMenu v8;
             int i;
             NARC *v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
             NARC *v11 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
@@ -3271,7 +3271,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
 
             v8.unk_10 = v0->unk_1E;
 
-            ov16_02268C04(v10, v11, battleInput, 11, 0, &v8);
+            BattleInput_ChangeMenu(v10, v11, battleInput, 11, 0, &v8);
             NARC_dtor(v10);
             NARC_dtor(v11);
         }
@@ -3422,12 +3422,12 @@ static void ov16_02260F14(SysTask *param0, void *param1)
 
     switch (v0->unk_0F) {
     case 0:
-        if (ov16_02269348(battleInput) == 0) {
+        if (BattleInput_CheckEffectEnded(battleInput) == 0) {
             break;
         }
 
         {
-            UnkStruct_ov16_02260F14 v6;
+            BattleInputPokemonMenu v6;
             int i;
             NARC *v8 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
             NARC *v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
@@ -3439,7 +3439,7 @@ static void ov16_02260F14(SysTask *param0, void *param1)
             v6.unk_20 = v0->unk_0E;
             v6.unk_21 = ov16_02269368(v0->unk_30, v0->unk_0E);
 
-            ov16_02268C04(v8, v9, battleInput, 12, 0, &v6);
+            BattleInput_ChangeMenu(v8, v9, battleInput, 12, 0, &v6);
             NARC_dtor(v8);
             NARC_dtor(v9);
         }
@@ -4436,7 +4436,7 @@ static void ov16_022623F0(SysTask *param0, void *param1)
 
     switch (v0->unk_0E) {
     case 0:
-        if (ov16_02269348(battleInput) == 0) {
+        if (BattleInput_CheckEffectEnded(battleInput) == 0) {
             break;
         }
 
@@ -4469,26 +4469,26 @@ static void ov16_022623F0(SysTask *param0, void *param1)
                 NARC *v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
                 UnkStruct_ov16_022623F0 v11;
 
-                ov16_02269218(battleInput);
+                BattleInput_DisableBallGauge(battleInput);
 
                 v11.unk_00 = v0->unk_18;
 
                 switch (v0->unk_0F) {
                 case 0:
                 case 5:
-                    ov16_02268C04(v9, v10, battleInput, 13, 0, &v11);
+                    BattleInput_ChangeMenu(v9, v10, battleInput, 13, 0, &v11);
                     break;
                 case 1:
-                    ov16_02268C04(v9, v10, battleInput, 14, 0, &v11);
+                    BattleInput_ChangeMenu(v9, v10, battleInput, 14, 0, &v11);
                     break;
                 case 2:
-                    ov16_02268C04(v9, v10, battleInput, 15, 0, &v11);
+                    BattleInput_ChangeMenu(v9, v10, battleInput, 15, 0, &v11);
                     break;
                 case 3:
-                    ov16_02268C04(v9, v10, battleInput, 16, 0, &v11);
+                    BattleInput_ChangeMenu(v9, v10, battleInput, 16, 0, &v11);
                     break;
                 case 4:
-                    ov16_02268C04(v9, v10, battleInput, 17, 0, &v11);
+                    BattleInput_ChangeMenu(v9, v10, battleInput, 17, 0, &v11);
                     break;
                 default:
                     GF_ASSERT(0);
@@ -4511,7 +4511,7 @@ static void ov16_022623F0(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (ov16_02269348(battleInput) == 1) {
+        if (BattleInput_CheckEffectEnded(battleInput) == 1) {
             {
                 NARC *v12 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
                 NARC *v13 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
@@ -4519,8 +4519,8 @@ static void ov16_022623F0(SysTask *param0, void *param1)
                 ov16_022675AC(v0->unk_04);
                 ov16_022647D8(v5);
                 ov16_0226846C(v4);
-                ov16_02269218(battleInput);
-                ov16_02268C04(v12, v13, battleInput, 0, 0, NULL);
+                BattleInput_DisableBallGauge(battleInput);
+                BattleInput_ChangeMenu(v12, v13, battleInput, 0, 0, NULL);
 
                 if (v0->unk_08 == 1) {
                     ov16_0226BCCC(battleInput, 0);
@@ -5112,7 +5112,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
     v1 = BattleSystem_GetBgConfig(v0->unk_00);
     v2 = BattleSystem_GetPaletteData(v0->unk_00);
     v3 = BattleSystem_Terrain(v0->unk_00);
-    v4 = Unk_ov16_0226F1D0[ov16_0223E240(v0->unk_00)];
+    v4 = Unk_ov16_0226F1D0[BattleSystem_GetBackgroundId(v0->unk_00)];
 
     v0->unk_15++;
 
@@ -6188,8 +6188,8 @@ static void ov16_02264408(BattleSystem *param0, BattlerData *param1, UnkStruct_o
     v0.unk_70 = ov16_0223F1E8(param0);
     v0.unk_74 = ov16_0223F1F0(param0);
     v0.unk_54.unk_00 = 7;
-    v0.unk_54.unk_04 = 3 + ov16_0223E240(param0);
-    v0.unk_54.unk_08 = 172 + ov16_0223E240(param0) * 3 + ov16_0223EC04(param0);
+    v0.unk_54.unk_04 = 3 + BattleSystem_GetBackgroundId(param0);
+    v0.unk_54.unk_08 = 172 + BattleSystem_GetBackgroundId(param0) * 3 + ov16_0223EC04(param0);
     v0.unk_54.unk_0C = 2;
     v0.unk_54.unk_10 = 0;
     v0.unk_54.unk_14 = 8;

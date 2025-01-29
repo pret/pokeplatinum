@@ -78,7 +78,7 @@ UnkStruct_ov21_021D4CA0 *ov21_021D4CA0(const UnkStruct_ov21_021D4CB8 *param0)
 
 UnkStruct_ov21_021D4CA0 *ov21_021D4CB8(const UnkStruct_ov21_021D4CB8 *param0, int param1)
 {
-    UnkStruct_020127E8 v0;
+    FontOAMInitData v0;
     UnkStruct_ov21_021D4CA0 *v1;
 
     v1 = ov21_021D4EB4(param0->unk_00);

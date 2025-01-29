@@ -737,7 +737,7 @@ static void ov21_021E3270(UnkStruct_ov21_021E2BBC *param0, UnkStruct_ov21_021E32
         param1->unk_04[v4] = ov21_021D4CA0(&v1);
 
         sub_02012A60(param1->unk_04[v4]->unk_00, v3);
-        sub_020129D0(param1->unk_04[v4]->unk_00, 0);
+        FontOAM_SetDrawFlag(param1->unk_04[v4]->unk_00, 0);
 
         ov21_021D4DA0(v0);
     }
@@ -1591,8 +1591,8 @@ static BOOL ov21_021E3F98(UnkStruct_ov21_021E3440 *param0, BOOL param1)
 
 static void ov21_021E3FC0(UnkStruct_ov21_021E326C *param0, int param1, int param2)
 {
-    sub_020129D0(param0->unk_04[param2]->unk_00, 0);
-    sub_020129D0(param0->unk_04[param1]->unk_00, 1);
+    FontOAM_SetDrawFlag(param0->unk_04[param2]->unk_00, 0);
+    FontOAM_SetDrawFlag(param0->unk_04[param1]->unk_00, 1);
 }
 
 static void ov21_021E3FE4(UnkStruct_ov21_021E3900 *param0, const UnkStruct_ov21_021E342C *param1)

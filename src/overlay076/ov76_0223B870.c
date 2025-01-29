@@ -135,13 +135,13 @@ void ov76_0223B940(UnkStruct_ov76_0223DE00 *param0)
 
 void ov76_0223B96C(UnkStruct_ov76_0223DE00 *param0, BOOL param1)
 {
-    sub_020129D0(param0->unk_D4.unk_164[0], param1);
-    sub_020129D0(param0->unk_D4.unk_164[1], param1);
+    FontOAM_SetDrawFlag(param0->unk_D4.unk_164[0], param1);
+    FontOAM_SetDrawFlag(param0->unk_D4.unk_164[1], param1);
 }
 
 void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int param3, int param4)
 {
-    UnkStruct_020127E8 v0;
+    FontOAMInitData v0;
     Strbuf *v1;
     int v2;
     int v3;

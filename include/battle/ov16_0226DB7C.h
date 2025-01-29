@@ -17,7 +17,7 @@ void ov16_0226DD54(BattleCursor *param0, int param1, int param2, int param3, int
 void ov16_0226DD7C(BattleCursor *param0, int param1, int param2, int param3, int param4);
 void ov16_0226DD9C(BattleCursor *param0, int param1, int param2, int param3, int param4, fx32 param5);
 void ov16_0226DDC0(BattleCursor *param0, int param1, int param2, int param3, fx32 param4);
-void ov16_0226DDE8(BattleCursor *param0);
+void BattleCursor_Disable(BattleCursor *param0);
 void ov16_0226DE04(BattleCursor *param0);
 
 #endif // POKEPLATINUM_OV16_0226DB7C_H

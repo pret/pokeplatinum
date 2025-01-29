@@ -647,13 +647,13 @@ void ov17_0224A674(UnkStruct_ov17_0224A1EC *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         ov17_0223F1E8(23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[0][v0], v1, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
-        sub_020129D0(param0->unk_96C[0][v0].unk_00, 0);
+        FontOAM_SetDrawFlag(param0->unk_96C[0][v0].unk_00, 0);
 
         ov17_0223F1E8(23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[1][v0], v2, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
-        sub_020129D0(param0->unk_96C[1][v0].unk_00, 0);
+        FontOAM_SetDrawFlag(param0->unk_96C[1][v0].unk_00, 0);
 
         ov17_0223F1E8(23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[2][v0], v3, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
-        sub_020129D0(param0->unk_96C[2][v0].unk_00, 0);
+        FontOAM_SetDrawFlag(param0->unk_96C[2][v0].unk_00, 0);
     }
 
     Strbuf_Free(v1);
@@ -699,13 +699,13 @@ void ov17_0224A7E0(UnkStruct_ov17_0224A1EC *param0, SpriteRenderer *param1, Spri
     SpriteActor_EnableObject(v5->unk_00, 1);
 
     for (v1 = 0; v1 < 3; v1++) {
-        sub_020129D0(param0->unk_96C[v1][v4].unk_00, 0);
+        FontOAM_SetDrawFlag(param0->unk_96C[v1][v4].unk_00, 0);
     }
 
     v5->unk_04 = &param0->unk_96C[param3][v4];
 
     ov17_0223F2F8(v5->unk_04, v2, v3, 1);
-    sub_020129D0(v5->unk_04->unk_00, 1);
+    FontOAM_SetDrawFlag(v5->unk_04->unk_00, 1);
 
     v5->unk_08 = SysTask_Start(ov17_0224A8D4, v5, ((30000 + 10000) + 200));
 }
@@ -738,7 +738,7 @@ static void ov17_0224A8D4(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_020129D0(v0->unk_04->unk_00, 0);
+        FontOAM_SetDrawFlag(v0->unk_04->unk_00, 0);
         SpriteActor_EnableObject(v0->unk_00, 0);
         v0->unk_08 = NULL;
         SysTask_Done(param0);

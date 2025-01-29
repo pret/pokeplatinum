@@ -1565,7 +1565,7 @@ static void ov10_022212AC(UnkStruct_ov10_0221FB28 *param0)
 static void ov10_0222130C(UnkStruct_ov10_0221FB28 *param0, u32 param1, Strbuf *param2)
 {
     Window *v0;
-    UnkStruct_020127E8 v1;
+    FontOAMInitData v1;
 
     v0 = &param0->unk_10[0];
 
@@ -1605,8 +1605,8 @@ static void ov10_022213B8(UnkStruct_ov10_0221FB28 *param0)
         ov10_0222130C(param0, 1, param0->unk_00->unk_14[0]);
         ov10_0222130C(param0, 3, param0->unk_00->unk_14[1]);
 
-        sub_020129D0(param0->unk_B3C[1], 0);
-        sub_020129D0(param0->unk_B3C[3], 0);
+        FontOAM_SetDrawFlag(param0->unk_B3C[1], 0);
+        FontOAM_SetDrawFlag(param0->unk_B3C[3], 0);
     }
 }
 

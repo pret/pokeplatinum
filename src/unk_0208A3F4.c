@@ -697,7 +697,7 @@ void sub_0208B064 (UnkStruct_02089688 * param0)
 void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int param3, int param4)
 {
     s16 v0, v1;
-    UnkStruct_020127E8 v2;
+    FontOAMInitData v2;
     Strbuf* v3;
     int v4;
     int v5;

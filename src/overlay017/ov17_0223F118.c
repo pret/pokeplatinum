@@ -113,7 +113,7 @@ void ov17_0223F1E0(GenericPointerData *param0)
 
 void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
-    UnkStruct_020127E8 v0;
+    FontOAMInitData v0;
     Window v1;
     SpriteManagerAllocation v2;
     int v3;

@@ -66,8 +66,8 @@ static int sub_02012DE4(int param0, int param1, int param2, UnkStruct_02013034 *
 static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int param5);
 static int sub_02012EE0(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int param5, int param6, int param7);
 static int sub_02013034(const UnkStruct_02013034 *param0, int param1);
-static void sub_02013088(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2, FontOAM *param3);
-static CellActor *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2);
+static void sub_02013088(const FontOAMInitData *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2, FontOAM *param3);
+static CellActor *sub_02013100(const FontOAMInitData *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2);
 static void sub_020130DC(FontOAM *param0);
 static UnkStruct_02013034 *sub_02013188(int param0);
 static void sub_020131A4(UnkStruct_02013034 *param0);
@@ -129,7 +129,7 @@ void sub_020127BC(UnkStruct_02012744 *param0)
     Heap_FreeToHeap(param0);
 }
 
-FontOAM *sub_020127E8(const UnkStruct_020127E8 *param0)
+FontOAM *sub_020127E8(const FontOAMInitData *param0)
 {
     FontOAM *v0;
     UnkStruct_02013034 v1;
@@ -256,7 +256,7 @@ void sub_020129A4(const FontOAM *param0, int *param1, int *param2)
     *param2 = param0->unk_10;
 }
 
-void sub_020129D0(FontOAM *param0, BOOL param1)
+void FontOAM_SetDrawFlag(FontOAM *param0, BOOL param1)
 {
     int v0;
 
@@ -357,7 +357,7 @@ int sub_02012B58(const UnkStruct_02012B20 *param0, int param1)
     return sub_02013034(&param0->unk_00, param1);
 }
 
-FontOAM *sub_02012B60(const UnkStruct_020127E8 *param0, const UnkStruct_02012B20 *param1)
+FontOAM *sub_02012B60(const FontOAMInitData *param0, const UnkStruct_02012B20 *param1)
 {
     FontOAM *v0;
     NNSG2dImageProxy *v1;
@@ -693,7 +693,7 @@ static int sub_02013034(const UnkStruct_02013034 *param0, int param1)
     return v3;
 }
 
-static void sub_02013088(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2, FontOAM *param3)
+static void sub_02013088(const FontOAMInitData *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2, FontOAM *param3)
 {
     UnkStruct_02013034 *v0;
     int v1;
@@ -722,7 +722,7 @@ static void sub_020130DC(FontOAM *param0)
     }
 }
 
-static CellActor *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2)
+static CellActor *sub_02013100(const FontOAMInitData *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2)
 {
     CellActorInitParams v0;
     CellActorResourceData v1;

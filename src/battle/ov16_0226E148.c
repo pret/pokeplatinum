@@ -62,14 +62,14 @@ static void ov16_0226E188(SysTask *param0, void *param1)
             v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
             v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
-            ov16_02268C04(v2, v3, battleInput, 18, 0, NULL);
+            BattleInput_ChangeMenu(v2, v3, battleInput, 18, 0, NULL);
             NARC_dtor(v2);
             NARC_dtor(v3);
         }
         v0->unk_04++;
         break;
     case 1:
-        if (ov16_02269348(battleInput) == 1) {
+        if (BattleInput_CheckEffectEnded(battleInput) == 1) {
             v0->unk_04++;
         }
         break;

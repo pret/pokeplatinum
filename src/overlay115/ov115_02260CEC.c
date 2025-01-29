@@ -4424,7 +4424,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
     {
         int v2;
         BOOL v3;
-        UnkStruct_020127E8 v4;
+        FontOAMInitData v4;
 
         param0->unk_5C = Strbuf_Init(16, param3);
         Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
@@ -4455,7 +4455,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
 
         param0->unk_48 = sub_02012B60(&v4, param0->unk_4C);
 
-        sub_020129D0(param0->unk_48, 0);
+        FontOAM_SetDrawFlag(param0->unk_48, 0);
         Window_Remove(&param0->unk_38);
     }
 
@@ -4499,7 +4499,7 @@ static void ov115_02265700(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         Window_Remove(&param0->unk_38);
     }
 
-    sub_020129D0(param0->unk_48, 1);
+    FontOAM_SetDrawFlag(param0->unk_48, 1);
     CellActor_SetDrawFlag(param0->unk_34, 1);
 
     param0->unk_98 = 1;
@@ -4556,7 +4556,7 @@ static void ov115_02265820(UnkStruct_ov115_02265788 *param0)
             param0->unk_94--;
         } else {
             param0->unk_98 = 0;
-            sub_020129D0(param0->unk_48, 0);
+            FontOAM_SetDrawFlag(param0->unk_48, 0);
             CellActor_SetDrawFlag(param0->unk_34, 0);
         }
         break;

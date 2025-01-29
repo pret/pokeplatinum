@@ -790,9 +790,9 @@ static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
         ov17_02240138(param0, &param0->unk_40[8 + v2], NULL, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, Unk_ov17_02253314[v2][1][0], Unk_ov17_02253314[v2][1][1], 0, &v8->unk_A0[v2]);
 
         if (v0[v2] == 0) {
-            sub_020129D0(param0->unk_40[0 + v2].unk_00, 0);
-            sub_020129D0(param0->unk_40[4 + v2].unk_00, 0);
-            sub_020129D0(param0->unk_40[8 + v2].unk_00, 0);
+            FontOAM_SetDrawFlag(param0->unk_40[0 + v2].unk_00, 0);
+            FontOAM_SetDrawFlag(param0->unk_40[4 + v2].unk_00, 0);
+            FontOAM_SetDrawFlag(param0->unk_40[8 + v2].unk_00, 0);
         }
     }
 
@@ -946,7 +946,7 @@ static int ov17_02240094(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2
 
 static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_02240138 *param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov17_02240BF4 *param10)
 {
-    UnkStruct_020127E8 v0;
+    FontOAMInitData v0;
     Window v1;
     SpriteManagerAllocation v2;
     int v3;

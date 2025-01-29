@@ -12210,7 +12210,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     Window v9;
     int v10;
     SpriteManagerAllocation v11;
-    UnkStruct_020127E8 v12;
+    FontOAMInitData v12;
     int v13;
 
     v4 = BattleSystem_GetMessageLoader(param0);

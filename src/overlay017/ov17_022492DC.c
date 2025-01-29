@@ -675,7 +675,7 @@ static void ov17_02249B54(UnkStruct_ov17_02249B30 *param0)
 
 static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249BC4 *param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9)
 {
-    UnkStruct_020127E8 v0;
+    FontOAMInitData v0;
     Window v1;
     SpriteManagerAllocation v2;
     int v3;
@@ -773,7 +773,7 @@ static void ov17_02249CFC(UnkStruct_ov17_022492DC *param0, int param1)
 
     for (v1 = v2; v1 <= v3; v1++) {
         if (param0->unk_1C[v1].unk_00 != NULL) {
-            sub_020129D0(param0->unk_1C[v1].unk_00, param1);
+            FontOAM_SetDrawFlag(param0->unk_1C[v1].unk_00, param1);
         }
     }
 }

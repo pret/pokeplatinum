@@ -2798,7 +2798,7 @@ void ov62_0223454C(UnkStruct_0208C06C *param0, UnkStruct_ov62_022312B0 *param1, 
     ov62_0223124C(param1, &param0->unk_14, param3);
     SpriteActor_SetSpritePositionXY(param1->unk_08, param4, param5);
     sub_020128C4(param1->unk_0C, param6, param7);
-    sub_020129D0(param1->unk_0C, param9);
+    FontOAM_SetDrawFlag(param1->unk_0C, param9);
     sub_0200D364(param1->unk_08, param8);
 }
 

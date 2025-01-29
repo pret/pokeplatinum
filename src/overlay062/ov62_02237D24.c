@@ -1304,11 +1304,11 @@ static void ov62_0223958C(UnkStruct_0208C06C *param0, int param1)
 
     if (param1 == 0) {
         SpriteActor_EnableObject(v0->unk_198[1].unk_08, 1);
-        sub_020129D0(v0->unk_198[1].unk_0C, 1);
+        FontOAM_SetDrawFlag(v0->unk_198[1].unk_0C, 1);
         SpriteActor_SetSpritePositionXY(v0->unk_198[0].unk_08, 32, 232);
     } else {
         SpriteActor_EnableObject(v0->unk_198[1].unk_08, 0);
-        sub_020129D0(v0->unk_198[1].unk_0C, 0);
+        FontOAM_SetDrawFlag(v0->unk_198[1].unk_0C, 0);
         SpriteActor_SetSpritePositionXY(v0->unk_198[0].unk_08, 80, 232);
     }
 
@@ -1336,8 +1336,8 @@ static void ov62_02239608(UnkStruct_0208C06C *param0)
     SpriteActor_SetSpritePositionXY(v0->unk_198[1].unk_08, 128, 232);
     sub_020128C4(v0->unk_198[0].unk_0C, 36, -8);
     sub_020128C4(v0->unk_198[1].unk_0C, 36, -8);
-    sub_020129D0(v0->unk_198[0].unk_0C, 1);
-    sub_020129D0(v0->unk_198[1].unk_0C, 1);
+    FontOAM_SetDrawFlag(v0->unk_198[0].unk_0C, 1);
+    FontOAM_SetDrawFlag(v0->unk_198[1].unk_0C, 1);
 
     ov62_0223958C(param0, 0);
 }
