@@ -450,7 +450,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
             v9--;
         }
 
-        MapNamePop_Show(fieldSystem->unk_04->unk_08, v8, v9);
+        MapNamePopUp_Show(fieldSystem->unk_04->unk_08, v8, v9);
     }
 
     return TRUE;

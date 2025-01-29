@@ -252,7 +252,7 @@ void MapNamePopUp_Destroy(MapNamePopUp *mapPopUp)
     mapPopUp = NULL;
 }
 
-void MapNamePop_Show(MapNamePopUp *mapPopUp, s32 mapLabelTextID, s32 mapLabelWindowID)
+void MapNamePopUp_Show(MapNamePopUp *mapPopUp, s32 mapLabelTextID, s32 mapLabelWindowID)
 {
     u32 strWidth;
 
@@ -322,6 +322,6 @@ void FieldSystem_RequestLocationName(FieldSystem *fieldSystem)
             mapLabelWindowID--;
         }
 
-        MapNamePop_Show(fieldSystem->unk_04->unk_08, mapLabelTextID, mapLabelWindowID);
+        MapNamePopUp_Show(fieldSystem->unk_04->unk_08, mapLabelTextID, mapLabelWindowID);
     }
 }

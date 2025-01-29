@@ -9,7 +9,7 @@ typedef struct MapNamePopUp MapNamePopUp;
 
 MapNamePopUp *MapNamePopUp_Create(BgConfig *bgConfig);
 void MapNamePopUp_Destroy(MapNamePopUp *mapPopUp);
-void MapNamePop_Show(MapNamePopUp *mapPopUp, s32 mapLabelTextID, s32 mapLabelWindowID);
+void MapNamePopUp_Show(MapNamePopUp *mapPopUp, s32 mapLabelTextID, s32 mapLabelWindowID);
 void MapNamePopUp_Hide(MapNamePopUp *mapPopUp);
 void FieldSystem_RequestLocationName(FieldSystem *fieldSystem);
 
