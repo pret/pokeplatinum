@@ -88,5 +88,5 @@ field_board_narc = custom_target('field_board.narc',
     ]
 )
 
-nitrofs_files += field_board_narc[0]
+nitrofs_files += field_board_narc
 naix_headers += field_board_narc[1]

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/stark_mountain_room_3.h"
 
     .data
 

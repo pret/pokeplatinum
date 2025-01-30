@@ -3,9 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/game_records.h"
 #include "generated/items.h"
 #include "generated/species.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"

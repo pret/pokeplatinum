@@ -1,4 +1,4 @@
-    .include "consts/movement.inc"
+#include "generated/movement_actions.h"
 
     .macro MoveAction_000 length=1
     .short MOVEMENT_ACTION_000

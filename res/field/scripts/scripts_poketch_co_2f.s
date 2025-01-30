@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/poketch_co_2f.h"
 
     .data
 

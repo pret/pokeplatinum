@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/eterna_city_gym.h"
 
     .data
 

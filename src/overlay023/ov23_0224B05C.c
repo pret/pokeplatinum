@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"

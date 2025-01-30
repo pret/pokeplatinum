@@ -3,15 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/gender.h"
+#include "generated/genders.h"
 #include "generated/items.h"
+#include "generated/text_banks.h"
 
 #include "struct_defs/struct_02090800.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/sprite.h"
-#include "text/gmm/message_bank_pokemon_summary_screen.h"
-#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "font.h"
@@ -28,6 +27,8 @@
 #include "unk_0207A274.h"
 #include "unk_02092494.h"
 #include "unk_02094EDC.h"
+
+#include "res/text/bank/pokemon_summary_screen.h"
 
 // todo: consolidate this with more generic ones if this scheme is used elsewhere
 enum SummaryTextAlignment {
@@ -1177,7 +1178,7 @@ static void DrawSkillsPageWindows(PokemonSummaryScreen *summaryScreen)
     Strbuf_Free(buf);
 
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_ABILITY], SUMMARY_TEXT_BLACK, ALIGN_LEFT);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_ability_descriptions, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_DESCRIPTIONS, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     MessageLoader_GetStrbuf(msgLoader, summaryScreen->monData.ability, summaryScreen->strbuf);
     MessageLoader_Free(msgLoader);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_ABILITY_DESCRIPTION], SUMMARY_TEXT_BLACK, ALIGN_LEFT);
@@ -1422,7 +1423,7 @@ void PokemonSummaryScreen_PrintBattleMoveAttributes(PokemonSummaryScreen *summar
 
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_ACCURACY], SUMMARY_TEXT_BLACK, ALIGN_CENTER);
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_move_descriptions, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_DESCRIPTIONS, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     MessageLoader_GetStrbuf(msgLoader, move, summaryScreen->strbuf);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_DESCRIPTION], SUMMARY_TEXT_BLACK, ALIGN_LEFT);
@@ -1497,7 +1498,7 @@ void PokemonSummaryScreen_PrintContestMoveAttributes(PokemonSummaryScreen *summa
 
     u32 contestEffect = MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT);
     u32 descEntryID = sub_0209577C(contestEffect);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_contest_effects, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     MessageLoader_GetStrbuf(msgLoader, descEntryID, summaryScreen->strbuf);
     Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_CONTEST_MOVE_DESCRIPTION], FONT_SYSTEM, summaryScreen->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);

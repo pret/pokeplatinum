@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/solaceon_town_northeast_house.h"
 
     .data
 

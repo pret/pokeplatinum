@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/gender.h"
 #include "generated/gender_ratios.h"
+#include "generated/genders.h"
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"

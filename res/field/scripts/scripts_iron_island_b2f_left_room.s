@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/iron_island_b2f_left_room.h"
 
     .data
 

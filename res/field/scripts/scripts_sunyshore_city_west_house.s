@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/sunyshore_city_west_house.h"
 
     .data
 

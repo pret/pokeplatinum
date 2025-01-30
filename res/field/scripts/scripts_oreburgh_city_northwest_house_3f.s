@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/oreburgh_city_northwest_house_3f.h"
 
     .data
 

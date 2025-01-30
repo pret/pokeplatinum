@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/solaceon_ruins_room_2.h"
 
     .data
 

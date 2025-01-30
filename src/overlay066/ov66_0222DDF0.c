@@ -5,9 +5,9 @@
 #include <ppwlobby/ppw_lobby.h>
 #include <string.h>
 
-#include "constants/species.h"
-#include "consts/game_records.h"
-#include "consts/journal.h"
+#include "generated/game_records.h"
+#include "generated/journal_online_events.h"
+#include "generated/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014FB0_decl.h"

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/pokemon.h"
+#include "generated/species_data_params.h"
 
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/sentence.h"

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pokemon_mansion.h"
 
     .data
 

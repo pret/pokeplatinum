@@ -5,7 +5,7 @@
 
 #include "constants/field/map_load.h"
 #include "constants/overworld_weather.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/map_load_mode.h"

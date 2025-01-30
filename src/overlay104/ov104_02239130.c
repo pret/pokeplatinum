@@ -2,7 +2,7 @@
 #include <nitro/code16.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/game_records.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_defs/struct_0204AFC4.h"

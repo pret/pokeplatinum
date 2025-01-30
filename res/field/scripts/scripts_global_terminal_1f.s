@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/global_terminal_1f.h"
 
     .data
 

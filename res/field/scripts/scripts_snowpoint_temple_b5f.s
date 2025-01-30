@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/snowpoint_temple_b5f.h"
 
     .data
 

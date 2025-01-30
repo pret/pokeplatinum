@@ -3,24 +3,24 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "text/pl_msg.naix"
+#include "generated/text_banks.h"
 
 #include "narc.h"
 
 static u32 sPokedexDataNarcIndex = NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA;
-static u32 sWeightMessageBankIndex = message_bank_species_weight;
-static u32 sHeightMessageBankIndex = message_bank_species_height;
+static u32 sWeightMessageBankIndex = TEXT_BANK_SPECIES_WEIGHT;
+static u32 sHeightMessageBankIndex = TEXT_BANK_SPECIES_HEIGHT;
 
 void Pokedex_SetupGiratina(u32 formNun)
 {
     if (formNun == 0) {
         sPokedexDataNarcIndex = NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA_GIRA;
-        sWeightMessageBankIndex = message_bank_species_weight_gira;
-        sHeightMessageBankIndex = message_bank_species_height_gira;
+        sWeightMessageBankIndex = TEXT_BANK_SPECIES_WEIGHT_GIRA;
+        sHeightMessageBankIndex = TEXT_BANK_SPECIES_HEIGHT_GIRA;
     } else {
         sPokedexDataNarcIndex = NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA;
-        sWeightMessageBankIndex = message_bank_species_weight;
-        sHeightMessageBankIndex = message_bank_species_height;
+        sWeightMessageBankIndex = TEXT_BANK_SPECIES_WEIGHT;
+        sHeightMessageBankIndex = TEXT_BANK_SPECIES_HEIGHT;
     }
 }
 

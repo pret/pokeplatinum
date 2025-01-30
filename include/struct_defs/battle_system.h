@@ -111,7 +111,7 @@ struct BattleSystem {
     u8 unk_23FB_2 : 1;
     u8 unk_23FB_3 : 2;
     u8 unk_23FB_5 : 3;
-    enum Terrain terrain;
+    enum BattleTerrain terrain;
     int unk_2400;
     int unk_2404;
     u32 battleStatusMask;

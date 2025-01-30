@@ -1,8 +1,10 @@
-#include "consts/game_records.h"
+#include "game_records.h"
 
 #include <nitro.h>
 
-#include "game_records.h"
+#include "generated/game_records.h"
+#include "generated/trainer_score_events.h"
+
 #include "math.h"
 #include "pokedex.h"
 

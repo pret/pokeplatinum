@@ -5,8 +5,8 @@
 
 #include "constants/battle.h"
 #include "constants/species.h"
-#include "consts/game_records.h"
 #include "generated/pal_park_land_area.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02024440_decl.h"
 

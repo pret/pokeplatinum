@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pokemon_league_bertha_room.h"
 
     .data
 

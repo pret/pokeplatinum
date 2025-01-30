@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/newmoon_island_forest.h"
 
     .data
 

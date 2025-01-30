@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_206_cycling_road_south_gate.h"
 
     .data
 

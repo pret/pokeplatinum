@@ -3,8 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
-#include "consts/journal.h"
+#include "generated/game_records.h"
+#include "generated/journal_online_events.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"

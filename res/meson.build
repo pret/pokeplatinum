@@ -20,28 +20,33 @@ copy_gen = generator(find_program('cp'),
     output: '@PLAINNAME@'
 )
 
-make_script_bin_args = [
-    '-i', relative_source_root / 'include',
-    '-i', relative_source_root / 'asm',
-    '-i', '.' / 'res' / 'text',
-    '-i', '.' / 'res',
-    '-i', '.',
-    '--assembler', arm_none_eabi_gcc_exe.full_path(),
-    '--objcopy', arm_none_eabi_objcopy_exe.full_path(),
-    '@EXTRA_ARGS@',
-    '@INPUT@',
-]
-
-make_script_bin_deps = [
-    message_banks_narc, # for GMM headers
-    asm_consts_generators, # for ASM headers
-    c_consts_generators, # for C headers
-]
-
-s_to_bin_gen = generator(make_script_bin_sh,
-    arguments: make_script_bin_args,
-    depends: make_script_bin_deps,
-    output: '@BASENAME@'
+# NOTE: The members of the `depends` clause below will always be modified by the
+# postconf script to be order-only dependencies. This means that this generator
+# will only *wait* to run until after these files have been generated, and it
+# *breaks* the dependency-chain if any of these files are edited. However, because
+# this generator produces a depfile, the build back-end will still see the correct
+# granular headers on which each input source file depends.
+script_bin_gen = generator(make_script_bin_sh,
+    arguments: [
+        '-i', relative_source_root / 'include',
+        '-i', relative_source_root / 'asm',
+        '-i', '.' / 'res' / 'text',
+        '-i', '.' / 'res',
+        '-i', '.',
+        '--depfile',
+        '--assembler', arm_none_eabi_gcc_exe.full_path(),
+        '--objcopy', arm_none_eabi_objcopy_exe.full_path(),
+        '@EXTRA_ARGS@',
+        '@INPUT@',
+    ],
+    depends: [
+        text_banks,
+        asm_consts_generators,
+        c_consts_generators,
+        trdata_naix,
+    ],
+    output: '@BASENAME@',
+    depfile: '@BASENAME@.d',
 )
 
 ncgr_gen = generator(nitrogfx_exe,

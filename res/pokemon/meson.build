@@ -204,12 +204,6 @@ datagen_species_out = custom_target('datagen_species_out',
         species_data_files,
     ],
 )
-pl_personal_narc = datagen_species_out[0]
-evo_narc = datagen_species_out[1]
-wotbl_narc = datagen_species_out[2]
-ppark_narc = datagen_species_out[3]
-height_narc = datagen_species_out[4]
-pl_poke_data_narc = datagen_species_out[5]
 tutorable_moves_h = datagen_species_out[6]
 species_learnsets_by_tutor_h = datagen_species_out[7]
 
@@ -346,9 +340,7 @@ pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
 species_header_target = meson.current_build_dir()
 
 gen_species_headers = custom_target('gen_species_headers',
-    output: [
-        'footprint_data.h',
-    ],
+    output: 'footprint_data.h',
     input: species_data_files,
     env: json2bin_env,
     depends: [ py_consts_generators ],
@@ -359,16 +351,11 @@ gen_species_headers = custom_target('gen_species_headers',
     ]
 )
 
-nitrofs_files += pl_personal_narc
-nitrofs_files += evo_narc
-nitrofs_files += wotbl_narc
-nitrofs_files += ppark_narc
-nitrofs_files += height_narc
+nitrofs_files += datagen_species_out
 
 nitrofs_files += pl_poke_icon_narc
 nitrofs_files += pl_pokegra_narc
 nitrofs_files += pl_otherpoke_narc
-nitrofs_files += pl_poke_data_narc
 nitrofs_files += pl_pokezukan_narc
 nitrofs_files += shinzukan_narc
 nitrofs_files += pl_growtbl_narc

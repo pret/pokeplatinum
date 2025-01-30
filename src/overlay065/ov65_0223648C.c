@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/journal.h"
+#include "generated/journal_online_events.h"
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207DE04.h"
