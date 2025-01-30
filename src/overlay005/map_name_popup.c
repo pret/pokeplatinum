@@ -4,10 +4,10 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "generated/text_banks.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -241,7 +241,7 @@ MapNamePopUp *MapNamePopUp_Create(BgConfig *bgConfig)
     MapNamePopUp_SetBgConfig(mapPopUp, bgConfig);
     MapNamePopUp_CreateWindow(mapPopUp);
 
-    mapPopUp->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_location_names, HEAP_ID_FIELD);
+    mapPopUp->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, HEAP_ID_FIELD);
     return mapPopUp;
 }
 
