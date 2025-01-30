@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "text/pl_msg.naix"
@@ -74,9 +76,9 @@ static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 til
     // I'm confused by this
     narcMemberIdx = mapPopUp->windowID * 2;
 
-    mapPopUp->tiles = Graphics_GetCharData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx, FALSE, &mapPopUp->unk_34, 4);
+    mapPopUp->tiles = Graphics_GetCharData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx, FALSE, &mapPopUp->unk_34, HEAP_ID_FIELD);
     Bg_LoadTiles(mapPopUp->bgConfig, bgLayer, mapPopUp->unk_34->pRawData, mapPopUp->unk_34->szByte, tileStart);
-    ptr = Graphics_GetPlttData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx + 1, &paletteData, 4);
+    ptr = Graphics_GetPlttData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx + 1, &paletteData, HEAP_ID_FIELD);
 
     MapNamePopUp_LoadPalette(paletteData->pRawData, 1, offset);
     Heap_FreeToHeap(ptr);
@@ -233,13 +235,13 @@ MapNamePopUp *MapNamePopUp_Create(BgConfig *bgConfig)
 {
     MapNamePopUp *mapPopUp;
 
-    mapPopUp = Heap_AllocFromHeap(4, sizeof(MapNamePopUp));
-    mapPopUp->strbuf = Strbuf_Init(22, 4);
+    mapPopUp = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MapNamePopUp));
+    mapPopUp->strbuf = Strbuf_Init(22, HEAP_ID_FIELD);
 
     MapNamePopUp_SetBgConfig(mapPopUp, bgConfig);
     MapNamePopUp_CreateWindow(mapPopUp);
 
-    mapPopUp->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_location_names, 4);
+    mapPopUp->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_location_names, HEAP_ID_FIELD);
     return mapPopUp;
 }
 
