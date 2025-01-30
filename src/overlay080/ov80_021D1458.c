@@ -30,8 +30,6 @@
 #include "unk_0200F174.h"
 #include "unk_02039C80.h"
 
-void MapHeader_LoadName(const int param0, const u32 param1, Strbuf *param2);
-
 typedef struct {
     int unk_00;
     int unk_04;

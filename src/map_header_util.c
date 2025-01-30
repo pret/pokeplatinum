@@ -1,10 +1,8 @@
 #include "map_header_util.h"
 
 #include <nitro.h>
-#include <string.h>
 
-#include "field/field_system_sub2_t.h"
-#include "text/pl_msg.naix"
+#include "generated/text_banks.h"
 
 #include "font.h"
 #include "map_header.h"
@@ -19,12 +17,12 @@ u32 MapHeader_LoadString(MessageLoader *msgLoader, u32 entryID, Strbuf *strbuf)
     return width;
 }
 
-void MapHeader_LoadName(int headerID, u32 heapID, Strbuf *strbuf)
+void MapHeader_LoadName(enum MapHeader headerID, u32 heapID, Strbuf *strbuf)
 {
     u32 mapLabelTextID;
     MessageLoader *msgLoader;
 
-    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_location_names, heapID);
+    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, heapID);
     mapLabelTextID = MapHeader_GetMapLabelTextID(headerID);
 
     MapHeader_LoadString(msgLoader, mapLabelTextID, strbuf); // It should be MessageLoader_GetStrbuf()
