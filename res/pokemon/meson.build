@@ -193,6 +193,7 @@ datagen_species_out = custom_target('datagen_species_out',
         'pl_poke_data.narc',
         'tutorable_moves.h',
         'species_learnsets_by_tutor.h',
+        'species_footprints.h',
     ],
     command: [
         datagen_species_exe,
@@ -208,6 +209,7 @@ datagen_species_out = custom_target('datagen_species_out',
 )
 tutorable_moves_h = datagen_species_out[6]
 species_learnsets_by_tutor_h = datagen_species_out[7]
+species_footprints_h = datagen_species_out[8]
 
 
 # OLD NARCs
@@ -328,20 +330,6 @@ pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
     env: species_env,
     depends: [ py_consts_generators ],
     depend_files: [ species_data_files ],
-)
-
-species_header_target = meson.current_build_dir()
-
-gen_species_headers = custom_target('gen_species_headers',
-    output: 'footprint_data.h',
-    input: species_data_files,
-    env: py_consts_env,
-    depends: [ py_consts_generators ],
-    command: [
-        make_species_tables_py,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--output-dir', species_header_target,
-    ]
 )
 
 nitrofs_files += datagen_species_out

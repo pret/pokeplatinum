@@ -34,7 +34,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov113_02260D6C[][2] = {
     { 0x2D4A, 0x5651 }
 };
 
-#include "res/pokemon/footprint_data.h"
+#include "res/pokemon/species_footprints.h"
 
 static const TouchScreenRect Unk_ov113_02260D4C[] = {
     { 0xA0, 0xC0, 0x0, 0x20 },
@@ -158,7 +158,7 @@ BOOL PokemonHasOverworldFootprint(int species, int form, BOOL canShowArceus)
         return FALSE;
     }
 
-    return sSpeciesFootprintData[species].hasFootprint;
+    return sSpeciesFootprints[species].has;
 }
 
 int PokemonOverworldFootprintSize(int species, int form)
@@ -167,5 +167,5 @@ int PokemonOverworldFootprintSize(int species, int form)
         return FOOTPRINT_LARGE;
     }
 
-    return sSpeciesFootprintData[species].footprintSize;
+    return sSpeciesFootprints[species].size;
 }

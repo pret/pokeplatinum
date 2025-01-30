@@ -115,7 +115,6 @@ libcrypto_dep = dependency('libcrypto')
 libsyscall_dep = dependency('libsyscall')
 ppwlobby_dep = dependency('ppwlobby')
 
-
 ############################################################
 ###                       CONSTS                         ###
 ############################################################
@@ -146,7 +145,7 @@ subdir('lib')
 subdir('res')
 
 # Phony-like target to build all generated data files
-alias_target('data', nitrofs_files, gen_species_headers)
+alias_target('data', nitrofs_files)
 
 ############################################################
 ###                     ARM9 BINARY                      ###
@@ -160,9 +159,9 @@ main = executable('main',
         pokeplatinum_asm,
         c_consts_generators,
         naix_headers,
-        gen_species_headers,
         tutorable_moves_h,
         species_learnsets_by_tutor_h,
+        species_footprints_h,
     ],
     c_args: [
         pokeplatinum_args,
