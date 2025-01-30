@@ -71,15 +71,13 @@ gmm_to_bin_gen = generator(msgenc_exe,
 # 5. Set up targets which build generated text banks and build the final NARC.
 pokedex_text_banks = custom_target('pokedex_text_banks',
     output: pokedex_text_bank_names,
-    input: pokedex_data_srcs,
-    env: json2bin_env,
-    depends: [ py_consts_generators ],
     command: [
-        make_pokedex_message_banks_py,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        make_pokedex_text_banks_py,
+        '--source-dir', pokemon_data_root,
         '--output-dir', '@OUTDIR@',
-        pokedex_data_srcs
-    ]
+    ],
+    env: species_env,
+    depend_files: [ species_data_files ],
 )
 
 text_bank_files += pokedex_text_banks

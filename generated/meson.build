@@ -113,3 +113,6 @@ endforeach
 
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
+
+py_consts_env = environment()
+py_consts_env.append('PYTHONPATH', meson.project_build_root())
