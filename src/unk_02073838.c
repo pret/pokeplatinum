@@ -322,7 +322,7 @@ void sub_02073BC8(UnkStruct_02073B50 *param0, const VecFx32 *param1, const VecFx
 {
     MtxFx33 v0;
 
-    sub_0201E2E0(&v0, param3->unk_00, param3->unk_02, param3->unk_04);
+    MTX_Rot33Angles(&v0, param3->unk_00, param3->unk_02, param3->unk_04);
     sub_02073BA4(param0, param1, param2, &v0);
 }
 
@@ -330,7 +330,7 @@ void sub_02073BF0(UnkStruct_02073B50 *param0, const VecFx32 *param1, const UnkSt
 {
     MtxFx33 v0;
 
-    sub_0201E2E0(&v0, param2->unk_00, param2->unk_02, param2->unk_04);
+    MTX_Rot33Angles(&v0, param2->unk_00, param2->unk_02, param2->unk_04);
     sub_02073BA4(param0, param1, &Unk_020F0544, &v0);
 }
 

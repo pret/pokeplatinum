@@ -547,7 +547,7 @@ static void ov77_021D1568(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D12
     case 2:
         sub_020241B4();
         Camera_ComputeViewMatrix();
-        sub_0201E268(&v0, &param1->unk_98);
+        MTX_Rot33Vec(&v0, &param1->unk_98);
 
         if (param0->unk_29C == 0) {
             if (param0->unk_2A0 == 1) {

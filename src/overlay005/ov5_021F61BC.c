@@ -207,7 +207,7 @@ static void ov5_021F636C(UnkStruct_ov101_021D5D90 *param0, void *param1)
             break;
         }
 
-        sub_0201E2E0(&v2, 0, v1, 0);
+        MTX_Rot33Angles(&v2, 0, v1, 0);
         sub_020715E4(param0, &v3);
 
         v3.x += v6->x;

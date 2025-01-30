@@ -379,7 +379,7 @@ void ov5_021E1A6C(UnkStruct_ov5_021E1608 *param0, UnkStruct_ov5_021EF76C *const 
                 ov5_021D5790(v2->unk_00, v3, &v4);
 
                 if (v2->unk_0C) {
-                    sub_0201E268(&v1, &v2->unk_74);
+                    MTX_Rot33Vec(&v1, &v2->unk_74);
                 }
 
                 if (v4 == 0) {

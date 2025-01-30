@@ -49,26 +49,26 @@ fx32 VEC_AngleBetween(const VecFx32 *a, const VecFx32 *b)
     return angle;
 }
 
-void sub_0201E268(MtxFx33 *param0, VecFx32 *param1)
+void MTX_Rot33Vec(MtxFx33 *outRot, VecFx32 *angles)
 {
-    MtxFx33 v0;
+    MtxFx33 tmp;
 
-    MTX_RotX33(param0, FX_SinIdx((u16)param1->x), FX_CosIdx((u16)param1->x));
-    MTX_RotY33(&v0, FX_SinIdx((u16)param1->y), FX_CosIdx((u16)param1->y));
-    MTX_Concat33(param0, &v0, param0);
-    MTX_RotZ33(&v0, FX_SinIdx((u16)param1->z), FX_CosIdx((u16)param1->z));
-    MTX_Concat33(param0, &v0, param0);
+    MTX_RotX33(outRot, FX_SinIdx((u16)angles->x), FX_CosIdx((u16)angles->x));
+    MTX_RotY33(&tmp, FX_SinIdx((u16)angles->y), FX_CosIdx((u16)angles->y));
+    MTX_Concat33(outRot, &tmp, outRot);
+    MTX_RotZ33(&tmp, FX_SinIdx((u16)angles->z), FX_CosIdx((u16)angles->z));
+    MTX_Concat33(outRot, &tmp, outRot);
 }
 
-void sub_0201E2E0(MtxFx33 *param0, u16 param1, u16 param2, u16 param3)
+void MTX_Rot33Angles(MtxFx33 *outRot, u16 alpha, u16 beta, u16 gamma)
 {
-    MtxFx33 v0;
+    MtxFx33 tmp;
 
-    MTX_RotX33(param0, CalcSineDegrees(param1), CalcCosineDegrees(param1));
-    MTX_RotY33(&v0, CalcSineDegrees(param2), CalcCosineDegrees(param2));
-    MTX_Concat33(param0, &v0, param0);
-    MTX_RotZ33(&v0, CalcSineDegrees(param3), CalcCosineDegrees(param3));
-    MTX_Concat33(param0, &v0, param0);
+    MTX_RotX33(outRot, CalcSineDegrees(alpha), CalcCosineDegrees(alpha));
+    MTX_RotY33(&tmp, CalcSineDegrees(beta), CalcCosineDegrees(beta));
+    MTX_Concat33(outRot, &tmp, outRot);
+    MTX_RotZ33(&tmp, CalcSineDegrees(gamma), CalcCosineDegrees(gamma));
+    MTX_Concat33(outRot, &tmp, outRot);
 }
 
 void sub_0201E34C(u16 param0, fx32 param1, fx32 param2, fx32 *param3, fx32 *param4)

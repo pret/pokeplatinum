@@ -172,7 +172,7 @@ static void ov5_021F554C(UnkStruct_ov101_021D5D90 *param0, void *param1)
             const MtxFx43 *v4 = NNS_G3dGlbGetInvCameraMtx();
             MtxFx33 v5;
 
-            sub_0201E2E0(&v3, 90, 0, 0);
+            MTX_Rot33Angles(&v3, 90, 0, 0);
 
             MTX_Copy43To33(v4, &v5);
             MTX_Concat33(&v3, &v5, &v3);
