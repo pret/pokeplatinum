@@ -6,11 +6,8 @@ from generated.move_classes import MoveClass
 from generated.move_flags import MoveFlag
 from generated.move_ranges import MoveRange
 from generated.moves import Move
+from generated.pokemon_contest_types import PokemonContestType
 from generated.pokemon_types import PokemonType
-
-from consts import (
-    pokemon
-)
 
 import json2bin as j2b
 
@@ -28,7 +25,7 @@ SCHEMA = j2b.Parser() \
     .register('priority', 1, j2b.parse_sint) \
     .register('flags', 1, j2b.pack_flags, MoveFlag) \
     .register('contest.effect', 1, j2b.parse_int) \
-    .register('contest.type', 1, j2b.parse_const, pokemon.PokemonContestType) \
+    .register('contest.type', 1, j2b.parse_const, PokemonContestType) \
     .pad(2)
 
 def indexer(file_path: pathlib.Path) -> int:

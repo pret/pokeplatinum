@@ -1,8 +1,8 @@
 #include "system_flags.h"
 
 #include "constants/savedata/vars_flags.h"
-#include "consts/pokemon.h"
 #include "generated/map_headers.h"
+#include "generated/pokemon_contest_types.h"
 #include "generated/sdat.h"
 
 #include "rtc.h"

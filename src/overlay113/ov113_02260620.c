@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/species.h"
-#include "consts/pokemon.h"
+#include "generated/footprint_sizes.h"
 
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_022324F0.h"

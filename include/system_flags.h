@@ -2,8 +2,8 @@
 #define POKEPLATINUM_SYSTEM_FLAGS_H
 
 #include "constants/savedata/vars_flags.h"
-#include "consts/pokemon.h"
 #include "generated/map_headers.h"
+#include "generated/pokemon_contest_types.h"
 
 #include "vars_flags.h"
 

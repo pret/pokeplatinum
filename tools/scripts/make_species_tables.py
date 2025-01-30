@@ -3,7 +3,7 @@ import argparse
 import json
 import pathlib
 
-from consts.pokemon import PokemonFootprintSize
+from generated.footprint_sizes import FootprintSize 
 from generated.moves import Move
 from generated.species import Species
 
@@ -101,7 +101,7 @@ with open(output_path, "w") as output_file:
     for key, value in sorted_array:
 
             has_footprint = "TRUE" if species_footprints[key]["has"] else "FALSE"
-            footprint_size = PokemonFootprintSize[species_footprints[key]["size"]].value
+            footprint_size = FootprintSize[species_footprints[key]["size"]].value
 
             output_file.write(f"    {{ {has_footprint}, {footprint_size} }},\n")
 

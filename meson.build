@@ -119,7 +119,6 @@ ppwlobby_dep = dependency('ppwlobby')
 ############################################################
 ###                       CONSTS                         ###
 ############################################################
-subdir('consts')
 subdir('generated')
 
 
@@ -160,7 +159,6 @@ main = executable('main',
         pokeplatinum_c,
         pokeplatinum_asm,
         c_consts_generators,
-        asm_consts_generators,
         naix_headers,
         gen_species_headers,
         tutorable_moves_h,

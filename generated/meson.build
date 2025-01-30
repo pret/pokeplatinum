@@ -41,6 +41,7 @@ metang_generators = {
     'evolution_methods': { 'type': 'enum', 'tag': 'EvolutionMethod' },
     'exp_rates': { 'type': 'enum', 'tag': 'ExpRate' },
     'game_records': { 'type': 'enum', 'tag': 'GameRecord' },
+    'footprint_sizes': { 'type': 'enum', 'tag': 'FootprintSize' },
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
     'genders': { 'type': 'enum', 'tag': 'Gender' },
     'item_ai_categories': { 'type': 'enum', 'tag': 'ItemAICategory' },
@@ -58,7 +59,9 @@ metang_generators = {
     'moves': { 'type': 'enum', 'tag': 'Move' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
+    'pokemon_body_shapes': { 'type': 'enum', 'tag': 'PokemonBodyShape' },
     'pokemon_colors': { 'type': 'enum', 'tag': 'PokemonColor' },
+    'pokemon_contest_types': { 'type': 'enum', 'tag': 'PokemonContestType' },
     'pokemon_types': { 'type': 'enum', 'tag': 'PokemonType' },
     'poketch_apps': { 'type': 'enum', 'tag': 'PoketchAppID' },
     'save_types': { 'type': 'enum', 'tag': 'SaveType' },
@@ -67,8 +70,12 @@ metang_generators = {
     'species': { 'type': 'enum', 'tag': 'Species' },
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
+    'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
 }
+
+c_consts_generators = []
+py_consts_generators = []
 
 foreach gen_key : metang_generators.keys()
     gen_h = gen_key + '.h'

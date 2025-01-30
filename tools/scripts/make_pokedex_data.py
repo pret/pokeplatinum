@@ -4,7 +4,7 @@ import json
 import pathlib
 import subprocess
 
-from consts.pokemon import PokemonBodyShape
+from generated.pokemon_body_shapes import PokemonBodyShape
 from generated.pokemon_types import PokemonType
 from generated.species import Species
 
@@ -59,7 +59,7 @@ def DataSize(num):
         return 1
     return 2
 
-NUM_FILES = 26 + PokemonType['NUM_POKEMON_TYPES'].value + PokemonBodyShape['NUMBER_OF_BODY_SHAPES'].value
+NUM_FILES = 26 + PokemonType['NUM_POKEMON_TYPES'].value + PokemonBodyShape['NUM_BODY_SHAPES'].value
 NUM_POKEMON = len(Species)-3
 
 binData = [bytes() for f in range(NUM_FILES)]

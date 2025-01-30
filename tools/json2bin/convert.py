@@ -6,9 +6,9 @@ from generated import (
     ai_flags,
     items,
     moves,
-    species
+    species,
+    trainer_classes
 )
-from consts import trainer
 
 def pad(len: int) -> bytes:
     return (0).to_bytes(len, 'little')
@@ -32,7 +32,7 @@ def from_species(s: str) -> int:
     return species.Species[s].value
 
 def from_trainer_class(s: str) -> int:
-    return trainer.TrainerClass[s].value
+    return trainer_classes.TrainerClass[s].value
 
 def from_trainer_ai_flag(s: str) -> int:
     return ai_flags.AIFlag[s].value
