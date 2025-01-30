@@ -106,23 +106,6 @@ species_env.append('SPECIES', species_dirnames, separator: ';')
 species_env.append('PYTHONPATH', meson.project_build_root()) # For python scripts
 
 
-# Order of extra personal files for mon forms
-# TODO: Move these into species directories after finishing the refactor
-species_data_files += [
-    deoxys_attack_personal,
-    deoxys_defense_personal,
-    deoxys_speed_personal,
-    wormadam_sandy_personal,
-    wormadam_trash_personal,
-    giratina_origin_personal,
-    shaymin_sky_personal,
-    rotom_heat_personal,
-    rotom_wash_personal,
-    rotom_frost_personal,
-    rotom_fan_personal,
-    rotom_mow_personal
-]
-
 # The last icon added to the list before this should have been
 # the basic egg icon.
 poke_icon_files += [
