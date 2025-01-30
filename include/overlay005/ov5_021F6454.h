@@ -4,7 +4,7 @@
 #include "field_script_context.h"
 
 BOOL ScrCmd_2DE(ScriptContext *param0);
-BOOL ScrCmd_2EE(ScriptContext *param0);
+BOOL ScrCmd_JudgeStats(ScriptContext *param0);
 BOOL ScrCmd_31D(ScriptContext *param0);
 BOOL ScrCmd_31E(ScriptContext *param0);
 BOOL ScrCmd_2F1(ScriptContext *param0);

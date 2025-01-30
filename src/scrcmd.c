@@ -1516,7 +1516,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2EB,
     ScrCmd_2EC,
     ScrCmd_2ED,
-    ScrCmd_2EE,
+    ScrCmd_JudgeStats,
     ScrCmd_2EF,
     ScrCmd_2F0,
     ScrCmd_2F1,
