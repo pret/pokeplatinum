@@ -4,14 +4,11 @@
 #include <nnsys.h>
 #include <string.h>
 
-u32 sub_0201E3BC(s32 param0, s32 param1, s32 param2, s32 param3)
+u32 CalcDistance2D(s32 x0, s32 y0, s32 x1, s32 y1)
 {
-    s32 v0, v1;
-    u32 v2;
 
-    v0 = param0 - param2;
-    v1 = param1 - param3;
-    v2 = FX_Sqrt(((v0 * v0) + (v1 * v1)) << FX32_SHIFT) >> FX32_SHIFT;
+    s32 deltaX = x0 - x1;
+    s32 deltaY = y0 - y1;
 
-    return v2;
+    return FX_Sqrt(((deltaX * deltaX) + (deltaY * deltaY)) << FX32_SHIFT) >> FX32_SHIFT;
 }

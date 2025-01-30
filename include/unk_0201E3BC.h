@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_UNK_0201E3BC_H
 #define POKEPLATINUM_UNK_0201E3BC_H
 
-u32 sub_0201E3BC(s32 param0, s32 param1, s32 param2, s32 param3);
+u32 CalcDistance2D(s32 x0, s32 x1, s32 y0, s32 y1);
 
 #endif // POKEPLATINUM_UNK_0201E3BC_H
