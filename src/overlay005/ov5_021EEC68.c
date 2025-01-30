@@ -170,10 +170,10 @@ BOOL ov5_021EED9C(const fx32 param0, const fx32 param1, const fx32 param2, const
 
     if (v10 > 1) {
         v7 = 0;
-        v3 = sub_0201E198(param0, v15[0].unk_00) - sub_0201E190(param0, v15[0].unk_00);
+        v3 = FX_Max(param0, v15[0].unk_00) - FX_Min(param0, v15[0].unk_00);
 
         for (v6 = 1; v6 < v10; v6++) {
-            v4 = sub_0201E198(param0, v15[v6].unk_00) - sub_0201E190(param0, v15[v6].unk_00);
+            v4 = FX_Max(param0, v15[v6].unk_00) - FX_Min(param0, v15[v6].unk_00);
 
             if (v3 > v4) {
                 v3 = v4;

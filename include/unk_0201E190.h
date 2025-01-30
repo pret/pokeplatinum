@@ -3,8 +3,8 @@
 
 #include <nitro/fx/fx.h>
 
-fx32 sub_0201E190(fx32 param0, fx32 param1);
-fx32 sub_0201E198(fx32 param0, fx32 param1);
+fx32 FX_Min(fx32 a, fx32 b);
+fx32 FX_Max(fx32 a, fx32 b);
 fx32 VEC_AngleBetween(const VecFx32 *param0, const VecFx32 *param1);
 void sub_0201E268(MtxFx33 *param0, VecFx32 *param1);
 void sub_0201E2E0(MtxFx33 *param0, u16 param1, u16 param2, u16 param3);

@@ -10,21 +10,21 @@
 #define F32_PI               ((f32)3.14159265358979323846)
 #define FX_F32_RAD_TO_IDX(f) ((u16)(FX_RAD_TO_IDX(FX32_CONST(f))))
 
-fx32 sub_0201E190(fx32 param0, fx32 param1)
+fx32 FX_Min(fx32 a, fx32 b)
 {
-    if (param0 < param1) {
-        return param0;
+    if (a < b) {
+        return a;
     } else {
-        return param1;
+        return b;
     }
 }
 
-fx32 sub_0201E198(fx32 param0, fx32 param1)
+fx32 FX_Max(fx32 a, fx32 b)
 {
-    if (param0 > param1) {
-        return param0;
+    if (a > b) {
+        return a;
     } else {
-        return param1;
+        return b;
     }
 }
 
