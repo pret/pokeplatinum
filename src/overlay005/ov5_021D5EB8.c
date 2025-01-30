@@ -1667,7 +1667,7 @@ static void ov5_021D7028(fx32 *param0, fx32 *param1, UnkStruct_ov5_021DB4B8 *par
     v6 = (v0.z - param2->unk_B8C.z);
     v8 = FX_Div(FX32_CONST(4), FX32_CONST(3));
 
-    sub_0201E34C(Camera_GetFOV(param2->unk_00->fieldSystem->camera), Camera_GetDistance(param2->unk_00->fieldSystem->camera), v8, &v3, &v4);
+    CalcLinearFov(Camera_GetFOV(param2->unk_00->fieldSystem->camera), Camera_GetDistance(param2->unk_00->fieldSystem->camera), v8, &v3, &v4);
     v3 = FX_Div(v3, 256 * FX32_ONE);
 
     if (v6 <= 0) {

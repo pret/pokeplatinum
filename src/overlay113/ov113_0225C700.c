@@ -1174,7 +1174,7 @@ static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0)
         v2 = Camera_GetDistance(param0->camera);
         v3 = FX32_ONE * 4 / 3;
 
-        sub_0201E34C(v1, v2, v3, &v4, &v5);
+        CalcLinearFov(v1, v2, v3, &v4, &v5);
 
         param0->unk_D0 = v4;
         param0->unk_D4 = v5;

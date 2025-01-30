@@ -71,17 +71,13 @@ void MTX_Rot33Angles(MtxFx33 *outRot, u16 alpha, u16 beta, u16 gamma)
     MTX_Concat33(outRot, &tmp, outRot);
 }
 
-void sub_0201E34C(u16 param0, fx32 param1, fx32 param2, fx32 *param3, fx32 *param4)
+void CalcLinearFov(u16 angularFov, fx32 distance, fx32 aspectRatio, fx32 *outWidth, fx32 *outHeight)
 {
-    fx32 v0;
-    fx32 v1;
-    fx32 v2;
+    fx32 sin = FX_SinIdx(angularFov);
+    fx32 cos = FX_CosIdx(angularFov);
+    fx32 tan = FX_Div(sin, cos);
 
-    v0 = FX_SinIdx(param0);
-    v1 = FX_CosIdx(param0);
-    v2 = FX_Div(v0, v1);
-
-    *param4 = FX_Mul(param1, v2);
-    *param4 = FX_Mul(*param4, 2 * FX32_ONE);
-    *param3 = FX_Mul(*param4, param2);
+    *outHeight = FX_Mul(distance, tan);
+    *outHeight = FX_Mul(*outHeight, 2 * FX32_ONE);
+    *outWidth = FX_Mul(*outHeight, aspectRatio);
 }
