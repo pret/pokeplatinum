@@ -70,7 +70,7 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E190.h"
+#include "fx_util.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
 #include "unk_0202419C.h"

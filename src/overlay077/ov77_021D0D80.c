@@ -28,7 +28,7 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201E190.h"
+#include "fx_util.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 

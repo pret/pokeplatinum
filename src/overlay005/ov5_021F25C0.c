@@ -15,7 +15,7 @@
 
 #include "map_object.h"
 #include "map_object_move.h"
-#include "unk_0201E190.h"
+#include "fx_util.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 

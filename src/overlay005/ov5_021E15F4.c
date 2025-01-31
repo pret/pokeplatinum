@@ -17,7 +17,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "unk_0201CED8.h"
-#include "unk_0201E190.h"
+#include "fx_util.h"
 
 static void ov5_021E1904(const int param0, UnkStruct_ov5_021EF76C *const param1, NNSG3dRenderObj *param2, NNSG3dResMdl **param3);
 static void ov5_021E1944(const NNSG3dResMdl *param0, VecFx32 *param1, MtxFx33 *param2, VecFx32 *param3, const UnkStruct_ov5_021D5778 *param4, const int param5);

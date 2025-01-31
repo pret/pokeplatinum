@@ -8,7 +8,7 @@
 #include "overlay005/struct_ov5_021EED38.h"
 #include "overlay005/struct_ov5_021EF13C.h"
 
-#include "unk_0201E190.h"
+#include "fx_util.h"
 
 static BOOL ov5_021EED38(const UnkStruct_ov5_021EED38 *param0, const u16 param1, const fx32 param2, u16 *param3);
 

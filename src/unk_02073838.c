@@ -15,7 +15,7 @@
 #include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0201E190.h"
+#include "fx_util.h"
 
 static void sub_020739D8(UnkStruct_02073974 *param0, void *param1, u32 param2);
 
