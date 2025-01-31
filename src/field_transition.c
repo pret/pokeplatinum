@@ -7,7 +7,7 @@
 
 #include "field/field_system.h"
 #include "overlay005/encounter_effect.h"
-#include "overlay005/ov5_021DD6FC.h"
+#include "overlay005/map_name_popup.h"
 
 #include "field_system.h"
 #include "field_task.h"
