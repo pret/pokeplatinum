@@ -15,7 +15,7 @@
 #include "struct_defs/battle_io.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_io.h"
@@ -554,7 +554,7 @@ void ov16_0225D360(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
         {
             Trainer *trainer = BattleSystem_GetTrainer(param0, param1->battler);
             v0->unk_0B = 0;
-            v0->unk_0C = sub_020788D0(ov16_02264768(param0, param1->battler, trainer->class));
+            v0->unk_0C = sub_020788D0(ov16_02264768(param0, param1->battler, trainer->header.trainerType));
         }
     }
 

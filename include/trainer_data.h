@@ -3,7 +3,7 @@
 
 #include "constants/trainer.h"
 
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "field_battle_data_transfer.h"
 #include "savedata.h"
@@ -78,7 +78,7 @@ void Trainer_Load(int trainerID, Trainer *trdata);
  *
  * The struct pointer passed to this function will determine exactly how much
  * data is loaded; see the definitions of the various TrainerMon... structs in
- * struct_defs/trainer_data.h for exact specifications.
+ * struct_defs/trainer.h for exact specifications.
  *
  * @param trainerID     ID of the trainer whose party is to be loaded.
  * @param[out] trparty  Struct which will contain the loaded trainer party data.

@@ -18,7 +18,7 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0205EC34.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
@@ -404,7 +404,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
         int unionAppearance = TrainerInfo_Appearance(trainerInfo);
         int unionGender = TrainerInfo_Gender(trainerInfo);
 
-        dto->trainer[BATTLER_PLAYER_1].class = sub_0205CA14(unionGender, unionAppearance, 1);
+        dto->trainer[BATTLER_PLAYER_1].header.trainerType = sub_0205CA14(unionGender, unionAppearance, 1);
         CharCode_Copy(dto->trainer[BATTLER_PLAYER_1].name, TrainerInfo_Name(dto->trainerInfo[BATTLER_PLAYER_1]));
         dto->trainer[BATTLER_PLAYER_2] = dto->trainer[BATTLER_PLAYER_1];
     } else {
@@ -548,7 +548,7 @@ BOOL CheckPlayerDidNotCaptureWildMon(u32 battleResult)
 
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto)
 {
-    dto->trainer[BATTLER_PLAYER_1].class = TrainerInfo_Gender(dto->trainerInfo[BATTLER_PLAYER_1]);
+    dto->trainer[BATTLER_PLAYER_1].header.trainerType = TrainerInfo_Gender(dto->trainerInfo[BATTLER_PLAYER_1]);
     CharCode_Copy(dto->trainer[BATTLER_PLAYER_1].name, TrainerInfo_Name(dto->trainerInfo[BATTLER_PLAYER_1]));
     dto->trainer[BATTLER_PLAYER_2] = dto->trainer[BATTLER_PLAYER_1];
 }

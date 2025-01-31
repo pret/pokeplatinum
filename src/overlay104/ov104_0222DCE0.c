@@ -445,7 +445,7 @@ void ov104_0222E284(FieldBattleDTO *param0, UnkStruct_ov104_0223A348_sub1 *param
     Pokemon *v1;
 
     param0->trainerIDs[param3] = param1->unk_00;
-    param0->trainer[param3].class = param1->unk_04;
+    param0->trainer[param3].header.trainerType = param1->unk_04;
 
     CharCode_Copy(&param0->trainer[param3].name[0], &param1->unk_08[0]);
 

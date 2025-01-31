@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_message.h"

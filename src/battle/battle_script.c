@@ -26,7 +26,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0208737C.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
@@ -3879,40 +3879,40 @@ static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *b
     Trainer_Load(battleSys->trainerIDs[battler], &trainer);
     Trainer_LoadParty(battleSys->trainerIDs[battler], rawParty);
 
-    switch (trainer.type) {
+    switch (trainer.header.monDataType) {
     default:
     case TRDATATYPE_BASE: {
         TrainerMonBase *party = (TrainerMonBase *)rawParty;
-        lastLevel = party[trainer.partySize - 1].level;
+        lastLevel = party[trainer.header.partySize - 1].level;
         break;
     }
 
     case TRDATATYPE_WITH_MOVES: {
         TrainerMonWithMoves *party = (TrainerMonWithMoves *)rawParty;
-        lastLevel = party[trainer.partySize - 1].level;
+        lastLevel = party[trainer.header.partySize - 1].level;
         break;
     }
 
     case TRDATATYPE_WITH_ITEM: {
         TrainerMonWithItem *party = (TrainerMonWithItem *)rawParty;
-        lastLevel = party[trainer.partySize - 1].level;
+        lastLevel = party[trainer.header.partySize - 1].level;
         break;
     }
 
     case TRDATATYPE_WITH_MOVES_AND_ITEM: {
         TrainerMonWithMovesAndItem *party = (TrainerMonWithMovesAndItem *)rawParty;
-        lastLevel = party[trainer.partySize - 1].level;
+        lastLevel = party[trainer.header.partySize - 1].level;
         break;
     }
     }
 
     u32 prize;
     if ((battleSys->battleType & BATTLE_TYPE_TAG) || battleSys->battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) {
-        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.class];
+        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.header.trainerType];
     } else if (battleSys->battleType & 0x2) {
-        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * 2 * sTrainerClassPrizeMul[trainer.class];
+        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * 2 * sTrainerClassPrizeMul[trainer.header.trainerType];
     } else {
-        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.class];
+        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.header.trainerType];
     }
 
     Heap_FreeToHeap(rawParty);

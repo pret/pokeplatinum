@@ -288,7 +288,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
         sub_0200544C(1, 127);
         sub_02005464(1);
 
-        if (sub_0208BE80(param0->unk_10->trainer[1].class) == 1) {
+        if (sub_0208BE80(param0->unk_10->trainer[1].header.trainerType) == 1) {
             sub_02004550(5, 1202, 1);
         } else {
             sub_02004550(5, 1119, 1);

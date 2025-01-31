@@ -1386,7 +1386,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
     }
 
     if (param0->battleType & 0x1) {
-        if ((ov16_0223CD3C(param0->trainers[1].class) == 1) || (ov16_0223CD3C(param0->trainers[3].class) == 1)) {
+        if ((ov16_0223CD3C(param0->trainers[1].header.trainerType) == 1) || (ov16_0223CD3C(param0->trainers[3].header.trainerType) == 1)) {
             for (v0 = 0; v0 < Party_GetCurrentCount(param0->parties[0]); v0++) {
                 v3 = Party_GetPokemonBySlotIndex(param0->parties[0], v0);
                 Pokemon_UpdateFriendship(v3, 3, param0->unk_2404);

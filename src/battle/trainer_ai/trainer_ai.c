@@ -353,7 +353,7 @@ void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battle
     if (battleSys->battleType & BATTLE_TYPE_ROAMER) {
         AI_CONTEXT.thinkingMask = AI_FLAG_ROAMING_POKEMON;
     } else {
-        AI_CONTEXT.thinkingMask = battleSys->trainers[battler].aiMask;
+        AI_CONTEXT.thinkingMask = battleSys->trainers[battler].header.aiMask;
     }
 
     // force double-battle strategies, if applicable

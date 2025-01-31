@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "field/field_system_decl.h"
 
