@@ -933,12 +933,14 @@ trainer_data_gen = generator(
     trainer_data_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
     output: '@BASENAME@',
+    depends: [ py_consts_generators ],
 )
 
 trainer_party_gen = generator(
     trainer_party_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
     output: '@BASENAME@',
+    depends: [ py_consts_generators ],
 )
 
 trainers_order = files('trainers.order')
