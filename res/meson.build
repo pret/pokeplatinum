@@ -6,8 +6,7 @@ subdir('prebuilt')
 
 ### DECOMPILED DATA DIRECTORIES ###
 # These subpaths are listed because the result of some build-rule inside them
-# is a dependency of some later build-rule. e.g., `trdata.naix` is a dependency
-# of the files compiled into `scr_seq.narc`.
+# is a dependency of some later build-rule.
 subdir('pokemon')
 subdir('trainers')
 subdir('text')
@@ -42,7 +41,6 @@ script_bin_gen = generator(make_script_bin_sh,
     depends: [
         text_banks,
         c_consts_generators,
-        trdata_naix,
     ],
     output: '@BASENAME@',
     depfile: '@BASENAME@.d',

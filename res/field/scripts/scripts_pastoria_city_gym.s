@@ -49,7 +49,7 @@ _0076:
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 122, 0, 0, 0
     Message 0
     CloseMessage
-    StartTrainerBattle trainer_leader_wake
+    StartTrainerBattle TRAINER_LEADER_WAKE
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _016B
     Message 1
@@ -59,16 +59,16 @@ _0076:
     WaitSound
     GiveBadge BADGE_ID_FEN
     ScrCmd_260 23
-    SetTrainerFlag trainer_fisherman_erick
-    SetTrainerFlag trainer_sailor_damian
-    SetTrainerFlag trainer_fisherman_walter
-    SetTrainerFlag trainer_sailor_samson
-    SetTrainerFlag trainer_tuber_jacky
-    SetTrainerFlag trainer_tuber_caitlyn
+    SetTrainerFlag TRAINER_FISHERMAN_ERICK
+    SetTrainerFlag TRAINER_SAILOR_DAMIAN
+    SetTrainerFlag TRAINER_FISHERMAN_WALTER
+    SetTrainerFlag TRAINER_SAILOR_SAMSON
+    SetTrainerFlag TRAINER_TUBER_JACKY
+    SetTrainerFlag TRAINER_TUBER_CAITLYN
     SetVar 0x407C, 3
     SetFlag 0x20C
     SetFlag 0x156
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 122, trainer_leader_wake, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 122, TRAINER_LEADER_WAKE, 0, 0
     Message 3
     GoTo _010D
     End

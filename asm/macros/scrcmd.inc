@@ -10,10 +10,9 @@
 #include "generated/save_types.h"
 #include "generated/sdat.h"
 #include "generated/species.h"
+#include "generated/trainers.h"
 
 #include "macros/movement.inc"
-
-#include "res/trainers/trdata.naix"
 
     .macro Noop
     .short 0

@@ -55,7 +55,7 @@ _0096:
     FacePlayer
     Message 5
     CloseMessage
-    StartTrainerBattle trainer_galactic_boss_cyrus_distortion_world
+    StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01CE
     SetVar 0x4055, 10
