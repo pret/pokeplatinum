@@ -73,7 +73,6 @@ static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 til
     NNSG2dPaletteData *paletteData;
     u8 narcMemberIdx;
 
-    // I'm confused by this
     narcMemberIdx = mapPopUp->windowID * 2;
 
     mapPopUp->tiles = Graphics_GetCharData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx, FALSE, &mapPopUp->unk_34, HEAP_ID_FIELD);
@@ -86,7 +85,6 @@ static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 til
 
 static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, s32 strWidth)
 {
-    // I haven't figured out these yet
     int width;
     int v1;
     int xOffset;
@@ -130,7 +128,6 @@ static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, s32 strWidth)
         MapNamePopUp_LoadAreaGfx(mapPopUp, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9 - (32 * 8)), 7, 0);
         Window_FillTilemap(&mapPopUp->window, 0);
 
-        // window background
         for (i = 0; i < 85; i++) {
             Window_BlitBitmapRect(&mapPopUp->window, mapPopUp->unk_34->pRawData, i * 8, 0, 8, 8, (i % 17) * 8, (i / 17) * 8, 8, 8);
         }
