@@ -25,6 +25,6 @@ void MapHeader_LoadName(enum MapHeader headerID, u32 heapID, Strbuf *strbuf)
     msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, heapID);
     mapLabelTextID = MapHeader_GetMapLabelTextID(headerID);
 
-    MapHeader_LoadString(msgLoader, mapLabelTextID, strbuf); // It should be MessageLoader_GetStrbuf()
+    MapHeader_LoadString(msgLoader, mapLabelTextID, strbuf);
     MessageLoader_Free(msgLoader);
 }
