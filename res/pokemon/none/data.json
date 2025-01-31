@@ -37,6 +37,10 @@
         "by_tm": [  ]
     },
     "evolutions": [  ],
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL"
+    },
     "pokedex_data": {
         "height": 7,
         "weight": 69,

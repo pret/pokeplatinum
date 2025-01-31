@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import os
 import pathlib
 import subprocess
 
-from consts.pokemon import PokemonBodyShape
+from generated.pokemon_body_shapes import PokemonBodyShape
 from generated.pokemon_types import PokemonType
 from generated.species import Species
+
+
+SPECIES_DIRS = os.environ['SPECIES'].split(';')
 
 
 argparser = argparse.ArgumentParser(
@@ -27,9 +31,6 @@ argparser.add_argument('-o', '--output-dir',
                        help='Path to the output directory (where the NARC will be made)')
 argparser.add_argument('giratina_form',
                        help='String of either giratina_origin or giratina_altered')
-argparser.add_argument('src_files',
-                       nargs='+',
-                       help='List of files to process in-order')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -59,7 +60,7 @@ def DataSize(num):
         return 1
     return 2
 
-NUM_FILES = 26 + PokemonType['NUM_POKEMON_TYPES'].value + PokemonBodyShape['NUMBER_OF_BODY_SHAPES'].value
+NUM_FILES = 26 + PokemonType['NUM_POKEMON_TYPES'].value + PokemonBodyShape['NUM_BODY_SHAPES'].value
 NUM_POKEMON = len(Species)-3
 
 binData = [bytes() for f in range(NUM_FILES)]
@@ -67,7 +68,8 @@ heightData = [0 for i in range(NUM_POKEMON)]
 weightData = [0 for i in range(NUM_POKEMON)]
 nameData = ['' for i in range(NUM_POKEMON)]
 
-for i, file in enumerate(args.src_files):
+for i, species_dir in enumerate(SPECIES_DIRS):
+    file = source_dir / species_dir / 'data.json'
     with open(file, 'r', encoding='utf-8') as data_file:
         pkdata = json.load(data_file)
     pk_name = pkdata['name'].lower()

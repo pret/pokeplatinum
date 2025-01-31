@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import os
 import pathlib
 import xml.etree.ElementTree as ET
 
-from generated.species import Species
+SPECIES_DIRS = os.environ['SPECIES'].split(';')
 
 argparser = argparse.ArgumentParser(
     prog='make_pokedex_message_banks_py',
@@ -12,13 +13,10 @@ argparser = argparse.ArgumentParser(
 )
 argparser.add_argument('-s', '--source-dir',
                        required=True,
-                       help='Path to the source directory (res/text/pokedex_message_banks)')
+                       help='Path to the pokemon sources directory (res/pokemon)')
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the gmm files will be made)')
-argparser.add_argument('src_files',
-                       nargs='+',
-                       help='List of files to process in-order')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -58,7 +56,7 @@ def Convert_Height(decimeters):
     return f'  {feet}’{inches:02}”'
 
 # variables
-NUM_POKEMON = len(Species)
+NUM_POKEMON = len(SPECIES_DIRS)
 
 name_data = ['' for i in range(NUM_POKEMON)]
 name_articles = ['' for i in range(NUM_POKEMON)]
@@ -71,7 +69,8 @@ name_number = ['' for i in range(NUM_POKEMON-2)]
 dex_categories = ['' for i in range(NUM_POKEMON-2)]
 
 # collect data
-for i, file in enumerate(args.src_files):
+for i, species_dir in enumerate(SPECIES_DIRS):
+    file = source_dir / species_dir / 'data.json'
     with open(file, 'r', encoding='utf-8') as data_file:
         pkdata = json.load(data_file)
     pokemon_name = pkdata['name']

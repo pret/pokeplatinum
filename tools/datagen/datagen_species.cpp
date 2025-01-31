@@ -26,6 +26,7 @@
  *   - pl_poke_data.narc
  *   - tutorable_moves.h
  *   - species_learnsets_by_tutor.h
+ *   - species_footprints.h
  */
 #include <algorithm>
 #include <cstdlib>
@@ -408,6 +409,18 @@ static PokeSpriteFaceData ParsePokeSpriteFace(const rapidjson::Value &face)
     return data;
 }
 
+static void TryEmitFootprint(const rapidjson::Document &root, std::ofstream &ofs)
+{
+    if (!root.HasMember("footprint")) {
+        return;
+    }
+
+    const rapidjson::Value &footprint = root["footprint"];
+    ofs << "    { "
+        << (footprint["has"].GetBool() ? "TRUE,  " : "FALSE, ")
+        << footprint["size"].GetString() << ", },\n";
+}
+
 static ArchivedPokeSpriteData ParsePokeSprite(const rapidjson::Document &root)
 {
     ArchivedPokeSpriteData data = { 0 };
@@ -453,6 +466,19 @@ int main(int argc, char **argv)
                     << "static const MovesetMask sSpeciesLearnsetsByTutor[MOVESET_MAX] = {\n";
     byTutorMovesets << std::hex << std::setiosflags(std::ios::uppercase); // render all numeric inputs to the stream as hexadecimal
 
+    // Bootstrap the footprints header.
+    std::ofstream footprints(outputRoot / "species_footprints.h");
+    footprints << sHeaderMessage << "\n"
+               << "#ifndef POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n"
+               << "#define POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n"
+               << "\n"
+               << "#include \"constants/species.h\"\n"
+               << "#include \"generated/footprint_sizes.h\"\n"
+               << "\n"
+               << "#include \"overlay113/footprint_data.h\"\n"
+               << "\n"
+               << "static const FootprintData sSpeciesFootprints[NATIONAL_DEX_COUNT + 1] = {\n";
+
     // Tutorable learnsets are stored as an array of bitmasks; each bit in the mask
     // denotes if a tutorable move can be learned by a given species.
     std::size_t tutorableLearnsetSize = (tutorableMoves.size() + 7) / 8;
@@ -483,6 +509,7 @@ int main(int argc, char **argv)
             SpeciesLearnsetWithSize sizedLearnset = ParseLevelUpLearnset(doc);
             std::optional<SpeciesPalPark> palPark = TryParsePalPark(doc);
             TryEmitTutorableLearnset(doc, byTutorMovesets, tutorableMoves, tutorableLearnsetSize);
+            TryEmitFootprint(doc, footprints);
 
             narc_pack_file_copy(personalVFS, reinterpret_cast<unsigned char *>(&data), sizeof(data));
             narc_pack_file_copy(evoVFS, reinterpret_cast<unsigned char *>(&evos), sizeof(evos));
@@ -512,9 +539,14 @@ int main(int argc, char **argv)
     }
 
     byTutorMovesets << "};\n"
-                    << "#endif // POKEPLATINUM_GENERATED_SPECIES_LEARNSETS_BY_TUTOR_H"
-                    << std::endl;
+                    << "\n"
+                    << "#endif // POKEPLATINUM_GENERATED_SPECIES_LEARNSETS_BY_TUTOR_H\n";
     byTutorMovesets.close();
+
+    footprints << "};\n"
+               << "\n"
+               << "#endif // POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n";
+    footprints.close();
 
     PackNarc(personalVFS, outputRoot / "pl_personal.narc");
     PackNarc(evoVFS, outputRoot / "evo.narc");
