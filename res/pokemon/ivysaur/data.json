@@ -113,8 +113,59 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "When the bud on its back starts\nswelling, a sweet aroma wafts to\nindicate the flower’s coming bloom.",
-        "category": "Seed Pokémon"
+        "english": {
+            "category": "Seed Pokémon",
+            "entry_text": [
+                "When the bud on its back starts\n",
+                "swelling, a sweet aroma wafts to\n",
+                "indicate the flower’s coming bloom."
+            ]
+        },
+        "french": {
+            "name": "HERBIZARRE",
+            "category": "Pokémon Graine",
+            "entry_text": [
+                "Lorsque le bourgeon sur son dos\n",
+                "éclot, il répand un doux parfum\n",
+                "pour célébrer sa floraison."
+            ]
+        },
+        "german": {
+            "name": "BISAKNOSP",
+            "category": "Samen",
+            "entry_text": [
+                "Sobald die Knospe auf seinem Rücken\n",
+                "ein süßes Aroma abgibt, steht die\n",
+                "Blüte kurz bevor."
+            ]
+        },
+        "italian": {
+            "name": "IVYSAUR",
+            "category": "Pokémon Seme",
+            "entry_text": [
+                "Quando il bocciolo che ha sul dorso\n",
+                "si gonfia, emana un dolce profumo.\n",
+                "È indice dell’imminente fioritura."
+            ]
+        },
+        "spanish": {
+            "name": "IVYSAUR",
+            "category": "Pokémon Semilla",
+            "entry_text": [
+                "Cuando el bulbo de su lomo se\n",
+                "hincha, desprende un dulce aroma\n",
+                "para indicar el florecimiento."
+            ]
+        },
+        "japanese": {
+            "name": "フシギソウ",
+            "category": "たねポケモン",
+            "entry_text": [
+                "せなかの　つぼみが　ふくらみだすと\n",
+                "あまい　においが　ただよいはじめる。\n",
+                "たいりんの　はなが　さく　まえぶれ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

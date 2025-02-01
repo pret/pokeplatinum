@@ -109,8 +109,59 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "Its electric-like body can enter\nsome kinds of machines and take\ncontrol in order to make mischief.",
-        "category": "Plasma Pokémon"
+        "english": {
+            "category": "Plasma Pokémon",
+            "entry_text": [
+                "Its electric-like body can enter\n",
+                "some kinds of machines and take\n",
+                "control in order to make mischief."
+            ]
+        },
+        "french": {
+            "name": "MOTISMA",
+            "category": "Pokémon Plasma",
+            "entry_text": [
+                "Son corps est fait de plasma. Il\n",
+                "cause de gros dégâts en infiltrant\n",
+                "des appareils électroniques."
+            ]
+        },
+        "german": {
+            "name": "ROTOM",
+            "category": "Plasma",
+            "entry_text": [
+                "Sein Körper besteht aus Plasma. Mit\n",
+                "ihm kann es in elektrische Geräte\n",
+                "eindringen und für Chaos sorgen."
+            ]
+        },
+        "italian": {
+            "name": "ROTOM",
+            "category": "Pokémon Plasma",
+            "entry_text": [
+                "Il suo corpo è composto di plasma.\n",
+                "È solito infiltrarsi negli strumenti\n",
+                "elettronici per provocare caos."
+            ]
+        },
+        "spanish": {
+            "name": "ROTOM",
+            "category": "Pokémon Plasma",
+            "entry_text": [
+                "Su cuerpo está hecho de plasma.\n",
+                "Puede infiltrarse en dispositivos\n",
+                "electrónicos e inutilizarlos."
+            ]
+        },
+        "japanese": {
+            "name": "ロトム",
+            "category": "プラズマポケモン",
+            "entry_text": [
+                "プラズマで　できた　からだを　もつ。\n",
+                "でんかせいひんに　もぐりこみ\n",
+                "わるさを　することで　しられている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -108,8 +108,59 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "Because they are weak individually,\nthey form groups. However, they\nbicker if the group grows too big.",
-        "category": "Starling Pokémon"
+        "english": {
+            "category": "Starling Pokémon",
+            "entry_text": [
+                "Because they are weak individually,\n",
+                "they form groups. However, they\n",
+                "bicker if the group grows too big."
+            ]
+        },
+        "french": {
+            "name": "ETOURMI",
+            "category": "Pokémon Etourneau",
+            "entry_text": [
+                "Ils volent en nombre. Bien que\n",
+                "minuscule, il bat des ailes avec\n",
+                "une vigueur impressionnante."
+            ]
+        },
+        "german": {
+            "name": "STARALILI",
+            "category": "Star",
+            "entry_text": [
+                "Ihr Schwarm ist stets groß. Obwohl\n",
+                "es kleine PKMN sind, schwingen sie\n",
+                "ihre Flügel mit enormer Kraft."
+            ]
+        },
+        "italian": {
+            "name": "STARLY",
+            "category": "Pokémon Storno",
+            "entry_text": [
+                "Si muove in grandi gruppi. Anche\n",
+                "se piccolo, batte le ali in maniera\n",
+                "molto energica."
+            ]
+        },
+        "spanish": {
+            "name": "STARLY",
+            "category": "Pokémon Estornino",
+            "entry_text": [
+                "Viaja en grandes bandadas.\n",
+                "Aunque es pequeño, agita\n",
+                "las alas con gran fuerza."
+            ]
+        },
+        "japanese": {
+            "name": "ムックル",
+            "category": "むくどりポケモン",
+            "entry_text": [
+                "たくさんの　むれで　こうどうする。\n",
+                "からだは　ちいさいが　はばたく\n",
+                "ちからは　ひじょうに　つよい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

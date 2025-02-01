@@ -110,8 +110,59 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "Blown by seasonal winds, it\ncircles the globe, scattering\ncotton spores as it goes.",
-        "category": "Cottonweed Pokémon"
+        "english": {
+            "category": "Cottonweed Pokémon",
+            "entry_text": [
+                "Blown by seasonal winds, it\n",
+                "circles the globe, scattering\n",
+                "cotton spores as it goes."
+            ]
+        },
+        "french": {
+            "name": "COTOVOL",
+            "category": "Pokémon Pissenlit",
+            "entry_text": [
+                "Poussé par les vents saisonniers,\n",
+                "il fait le tour du globe en semant\n",
+                "des spores de coton."
+            ]
+        },
+        "german": {
+            "name": "PAPUNGHA",
+            "category": "Löwenzahn",
+            "entry_text": [
+                "Es lässt sich von den Winden um den\n",
+                "Globus tragen und verteilt auf\n",
+                "seinem Flug Baumwollsamen."
+            ]
+        },
+        "italian": {
+            "name": "JUMPLUFF",
+            "category": "Pokémon Gramigna",
+            "entry_text": [
+                "Sospinto dai venti stagionali, gira\n",
+                "intorno al globo sparpagliando i\n",
+                "suoi semi simili al cotone."
+            ]
+        },
+        "spanish": {
+            "name": "JUMPLUFF",
+            "category": "Pokémon Algadón",
+            "entry_text": [
+                "Los vientos estacionales lo llevan\n",
+                "por todo el mundo, donde suelta\n",
+                "sus esporas para reproducirse."
+            ]
+        },
+        "japanese": {
+            "name": "ワタッコ",
+            "category": "わたくさポケモン",
+            "entry_text": [
+                "きせつふうに　ながされて\n",
+                "せかいを　いっしゅうしてしまう。\n",
+                "とちゅうで　わたほうしを　ばらまく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

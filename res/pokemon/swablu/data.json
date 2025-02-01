@@ -115,8 +115,59 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "entry_text": "It can’t relax if it or its\nsurroundings are not clean.\nIt wipes off dirt with its wings.",
-        "category": "Cotton Bird Pokémon"
+        "english": {
+            "category": "Cotton Bird Pokémon",
+            "entry_text": [
+                "It can’t relax if it or its\n",
+                "surroundings are not clean.\n",
+                "It wipes off dirt with its wings."
+            ]
+        },
+        "french": {
+            "name": "TYLTON",
+            "category": "Pokémon Oiseaucoton",
+            "entry_text": [
+                "Ses ailes sont comme des balles\n",
+                "de coton. Perché sur la tête de \n",
+                "quelqu’un, on dirait un chapeau."
+            ]
+        },
+        "german": {
+            "name": "WABLU",
+            "category": "Wollvogel",
+            "entry_text": [
+                "Seine Flügel sehen aus wie Baum-\n",
+                "wolle. Legt es sie jemandem auf den\n",
+                "Kopf, sehen sie wie ein Wollhut aus."
+            ]
+        },
+        "italian": {
+            "name": "SWABLU",
+            "category": "Pokémon Alidicotone",
+            "entry_text": [
+                "Le sue ali sono come batuffoli. Se si\n",
+                "appoggia sulla testa di qualcuno,\n",
+                "sembra un cappello di cotone."
+            ]
+        },
+        "spanish": {
+            "name": "SWABLU",
+            "category": "Pokémon Ave Algodón",
+            "entry_text": [
+                "Sus alas parecen nubes de\n",
+                "algodón. Si se posa sobre una\n",
+                "cabeza, tiene pinta de gorro."
+            ]
+        },
+        "japanese": {
+            "name": "チルット",
+            "category": "わたどりポケモン",
+            "entry_text": [
+                "わたのような　つばさを　もつ。\n",
+                "ひとの　あたまに　ちょこんと　のると\n",
+                "わたの　ぼうしみたいに　みえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

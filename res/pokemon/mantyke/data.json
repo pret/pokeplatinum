@@ -109,8 +109,59 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "People organize tours to see this\nPokémon frolic and skim the tops\nof waves with REMORAID.",
-        "category": "Kite Pokémon"
+        "english": {
+            "category": "Kite Pokémon",
+            "entry_text": [
+                "People organize tours to see this\n",
+                "Pokémon frolic and skim the tops\n",
+                "of waves with REMORAID."
+            ]
+        },
+        "french": {
+            "name": "BABIMANTA",
+            "category": "Pokémon Cervolant",
+            "entry_text": [
+                "Un Pokémon amical qui analyse\n",
+                "les mouvements subtils de l’eau de\n",
+                "mer grâce à ses deux antennes."
+            ]
+        },
+        "german": {
+            "name": "MANTIRPS",
+            "category": "Flugrochen",
+            "entry_text": [
+                "Ein freundliches PKMN, das mit\n",
+                "seinen zwei Antennen die\n",
+                "Strömungen des Meeres erkennt."
+            ]
+        },
+        "italian": {
+            "name": "MANTYKE",
+            "category": "Pokémon Aquilone",
+            "entry_text": [
+                "Pokémon amichevole che con le\n",
+                "antenne è in grado di avvertire\n",
+                "anche minime correnti marine."
+            ]
+        },
+        "spanish": {
+            "name": "MANTYKE",
+            "category": "Pokémon Milano",
+            "entry_text": [
+                "Un Pokémon amable que captura\n",
+                "los débiles flujos de agua marina\n",
+                "con sus dos antenas."
+            ]
+        },
+        "japanese": {
+            "name": "タマンタ",
+            "category": "カイトポケモン",
+            "entry_text": [
+                "２ほんの　しょっかくで　かいすいの\n",
+                "びみょうな　うごきを　キャッチする。\n",
+                "ひとなつっこい　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

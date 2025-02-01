@@ -123,8 +123,59 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 4,
-        "entry_text": "It loves to match power with\nbig-bodied Pokémon. It can knock a\ntruck flying with its arm thrusts.",
-        "category": "Arm Thrust Pokémon"
+        "english": {
+            "category": "Arm Thrust Pokémon",
+            "entry_text": [
+                "It loves to match power with\n",
+                "big-bodied Pokémon. It can knock a\n",
+                "truck flying with its arm thrusts."
+            ]
+        },
+        "french": {
+            "name": "HARIYAMA",
+            "category": "Pokémon Cogneur",
+            "entry_text": [
+                "Il aime mesurer sa force à celle des\n",
+                "plus grands Pokémon. Ses coups de\n",
+                "paume peuvent projeter un camion."
+            ]
+        },
+        "german": {
+            "name": "HARIYAMA",
+            "category": "Armwurf",
+            "entry_text": [
+                "Es liebt das Kräftemessen mit\n",
+                "großen PKMN. Mit seinem Armwurf\n",
+                "kann es LKW durch die Luft werfen."
+            ]
+        },
+        "italian": {
+            "name": "HARIYAMA",
+            "category": "Pokémon Sberletese",
+            "entry_text": [
+                "Ama confrontarsi con Pokémon gros-\n",
+                "si. Con uno dei suo schiaffi, può far\n",
+                "prendere il volo a un camion."
+            ]
+        },
+        "spanish": {
+            "name": "HARIYAMA",
+            "category": "Pokémon Empuje",
+            "entry_text": [
+                "Le encanta enfrentarse a Pokémon\n",
+                "grandes y probar su fuerza. Sus\n",
+                "brazos pueden derribar un camión."
+            ]
+        },
+        "japanese": {
+            "name": "ハリテヤマ",
+            "category": "つっぱりポケモン",
+            "entry_text": [
+                "からだの　おおきな　ポケモンたちと\n",
+                "ちからくらべをすることが　だいすき。\n",
+                "はりてで　トラックを　ふっとばす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

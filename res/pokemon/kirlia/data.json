@@ -135,8 +135,59 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "If its Trainer becomes happy, it\noverflows with energy, dancing\njoyously while spinning about.",
-        "category": "Emotion Pokémon"
+        "english": {
+            "category": "Emotion Pokémon",
+            "entry_text": [
+                "If its Trainer becomes happy, it\n",
+                "overflows with energy, dancing\n",
+                "joyously while spinning about."
+            ]
+        },
+        "french": {
+            "name": "KIRLIA",
+            "category": "Pokémon Emotion",
+            "entry_text": [
+                "Il est très à l’écoute des émotions\n",
+                "de son Dresseur. Il danse quand\n",
+                "il est d’humeur joyeuse."
+            ]
+        },
+        "german": {
+            "name": "KIRLIA",
+            "category": "Emotion",
+            "entry_text": [
+                "Es nimmt die Gefühle seines Trainers\n",
+                "deutlich wahr. Wenn es glücklich\n",
+                "ist, tanzt es."
+            ]
+        },
+        "italian": {
+            "name": "KIRLIA",
+            "category": "Pokémon Emozione",
+            "entry_text": [
+                "Percepisce molto bene i sentimenti\n",
+                "del suo Allenatore. Danza quando si\n",
+                "sente felice."
+            ]
+        },
+        "spanish": {
+            "name": "KIRLIA",
+            "category": "Pokémon Sensorio",
+            "entry_text": [
+                "Puede percibir los sentimientos\n",
+                "de su entrenador. Cuando se\n",
+                "siente feliz, baila."
+            ]
+        },
+        "japanese": {
+            "name": "キルリア",
+            "category": "かんじょうポケモン",
+            "entry_text": [
+                "トレ－ナ－の　きもちを　びんかんに\n",
+                "キャッチする　ちからを　もつ。\n",
+                "たのしくなると　おどりはじめる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

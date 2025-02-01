@@ -114,8 +114,59 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "The shell on its back is made of\nsoil. On a very healthy TURTWIG,\nthe shell should feel moist.",
-        "category": "Tiny Leaf Pokémon"
+        "english": {
+            "category": "Tiny Leaf Pokémon",
+            "entry_text": [
+                "The shell on its back is made of\n",
+                "soil. On a very healthy TURTWIG,\n",
+                "the shell should feel moist."
+            ]
+        },
+        "french": {
+            "name": "TORTIPOUSS",
+            "category": "Pokémon Minifeuille",
+            "entry_text": [
+                "La coquille sur son dos est faite\n",
+                "de terre. Elle durcit lorsqu’il \n",
+                "s’abreuve. Il vit le long des lacs."
+            ]
+        },
+        "german": {
+            "name": "CHELAST",
+            "category": "Winziglaub",
+            "entry_text": [
+                "Es besteht aus Erdreich. Trinkt es\n",
+                "Wasser, verhärtet sich der Panzer\n",
+                "auf seinem Rücken. Es lebt an Seen."
+            ]
+        },
+        "italian": {
+            "name": "TURTWIG",
+            "category": "Pokémon Fogliolina",
+            "entry_text": [
+                "Il suo guscio, che è fatto di terra,\n",
+                "s’indurisce quando il Pokémon beve.\n",
+                "Vive sulle rive dei laghi."
+            ]
+        },
+        "spanish": {
+            "name": "TURTWIG",
+            "category": "Pokémon Hojita",
+            "entry_text": [
+                "La concha de su espalda es de\n",
+                "tierra y se endurece cuando bebe\n",
+                "agua. Vive cerca de los lagos."
+            ]
+        },
+        "japanese": {
+            "name": "ナエトル",
+            "category": "わかばポケモン",
+            "entry_text": [
+                "つちで　できた　せなかの　こうらは\n",
+                "みずを　のむと　さらに　かたくなる。\n",
+                "みずうみの　ほとりで　くらしている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

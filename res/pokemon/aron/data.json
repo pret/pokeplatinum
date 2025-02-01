@@ -124,8 +124,59 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It usually lives deep in mountains.\nHowever, hunger may drive it to\neat railroad tracks and cars.",
-        "category": "Iron Armor Pokémon"
+        "english": {
+            "category": "Iron Armor Pokémon",
+            "entry_text": [
+                "It usually lives deep in mountains.\n",
+                "However, hunger may drive it to\n",
+                "eat railroad tracks and cars."
+            ]
+        },
+        "french": {
+            "name": "GALEKID",
+            "category": "Pokémon Armurfer",
+            "entry_text": [
+                "Il vit habituellement au cœur des\n",
+                "montagnes. Affamé, il dévore\n",
+                "parfois des rails et des voitures."
+            ]
+        },
+        "german": {
+            "name": "STOLLUNIOR",
+            "category": "Eisenpanzer",
+            "entry_text": [
+                "Normalerweise lebt es in dunklen\n",
+                "Bergen. Ist es hungrig, frisst es\n",
+                "auch Eisenbahnschienen und Autos."
+            ]
+        },
+        "italian": {
+            "name": "ARON",
+            "category": "Pokémon Corazza",
+            "entry_text": [
+                "Vive generalmente sui monti ma,\n",
+                "spinto dalla fame, scende per\n",
+                "cibarsi di ferrovie e automobili."
+            ]
+        },
+        "spanish": {
+            "name": "ARON",
+            "category": "Pokémon Cor. Férrea",
+            "entry_text": [
+                "Suele vivir en lugares inaccesibles\n",
+                "de las montañas, pero el hambre\n",
+                "lo empuja a comer raíles y coches."
+            ]
+        },
+        "japanese": {
+            "name": "ココドラ",
+            "category": "てつヨロイポケモン",
+            "entry_text": [
+                "ふだんは　やまおくで　くらしているが\n",
+                "おなかが　すくと　ふもとに　あらわれ\n",
+                "せんろや　くるまを　たべてしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

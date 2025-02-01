@@ -126,8 +126,59 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It lets honey soak into its paws\nso it can lick them all the time.\nEvery set of paws tastes unique.",
-        "category": "Little Bear Pokémon"
+        "english": {
+            "category": "Little Bear Pokémon",
+            "entry_text": [
+                "It lets honey soak into its paws\n",
+                "so it can lick them all the time.\n",
+                "Every set of paws tastes unique."
+            ]
+        },
+        "french": {
+            "name": "TEDDIURSA",
+            "category": "Pokémon Mini Ours",
+            "entry_text": [
+                "Il baigne ses griffes dans le miel \n",
+                "pour les lécher. Chaque paire\n",
+                "de pattes a un goût unique."
+            ]
+        },
+        "german": {
+            "name": "TEDDIURSA",
+            "category": "Kleinbär",
+            "entry_text": [
+                "Es lässt Honig in seine Pranken\n",
+                "eindringen, so dass es immer\n",
+                "welchen dabeihat."
+            ]
+        },
+        "italian": {
+            "name": "TEDDIURSA",
+            "category": "Pokémon Orsetto",
+            "entry_text": [
+                "Si impregna le zampe di miele per\n",
+                "poterle leccare in continuazione.\n",
+                "Ogni assaggio ha un sapore unico."
+            ]
+        },
+        "spanish": {
+            "name": "TEDDIURSA",
+            "category": "Pokémon Osito",
+            "entry_text": [
+                "Deja que la miel se le pegue a las\n",
+                "garras para lamerla más tarde.\n",
+                "Cada una de ellas sabe diferente."
+            ]
+        },
+        "japanese": {
+            "name": "ヒメグマ",
+            "category": "こぐまポケモン",
+            "entry_text": [
+                "あまい　ミツを　てのひらに\n",
+                "しみこませて　いつも　なめている。\n",
+                "ヒメグマによって　あじが　ちがう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

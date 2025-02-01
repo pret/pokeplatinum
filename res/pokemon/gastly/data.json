@@ -125,8 +125,59 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "Born from gases, anyone would\nfaint if engulfed by its gaseous\nbody, which contains poison.",
-        "category": "Gas Pokémon"
+        "english": {
+            "category": "Gas Pokémon",
+            "entry_text": [
+                "Born from gases, anyone would\n",
+                "faint if engulfed by its gaseous\n",
+                "body, which contains poison."
+            ]
+        },
+        "french": {
+            "name": "FANTOMINUS",
+            "category": "Pokémon Gaz",
+            "entry_text": [
+                "Le corps de ce Pokémon est\n",
+                "composé de gaz à 95%. Une\n",
+                "bourrasque suffit à le disperser."
+            ]
+        },
+        "german": {
+            "name": "NEBULAK",
+            "category": "Gas",
+            "entry_text": [
+                "Der Körper des Pokémon besteht zu\n",
+                "95 % aus Gasen, die fortgeweht\n",
+                "werden, wenn starker Wind geht."
+            ]
+        },
+        "italian": {
+            "name": "GASTLY",
+            "category": "Pokémon Gas",
+            "entry_text": [
+                "Il corpo di questo Pokémon è costi-\n",
+                "tuito al 95% da gas che possono ve-\n",
+                "nir spazzati via da venti improvvisi."
+            ]
+        },
+        "spanish": {
+            "name": "GASTLY",
+            "category": "Pokémon Gas",
+            "entry_text": [
+                "El cuerpo de este Pokémon está\n",
+                "compuesto en un 95% de gases\n",
+                "que el viento puede arrastrar."
+            ]
+        },
+        "japanese": {
+            "name": "ゴ－ス",
+            "category": "ガスじょうポケモン",
+            "entry_text": [
+                "からだの　９５パ－セントが\n",
+                "ガスで　できている　ポケモン。\n",
+                "きょうふうに　ふきとばされてしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

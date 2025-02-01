@@ -116,8 +116,59 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "It shatters ice with its big tusks.\nIts thick blubber repels not only\nthe cold, but also enemy attacks.",
-        "category": "Ice Break Pokémon"
+        "english": {
+            "category": "Ice Break Pokémon",
+            "entry_text": [
+                "It shatters ice with its big tusks.\n",
+                "Its thick blubber repels not only\n",
+                "the cold, but also enemy attacks."
+            ]
+        },
+        "french": {
+            "name": "KAIMORSE",
+            "category": "Pokémon Brise Glace",
+            "entry_text": [
+                "Il brise la glace avec ses grosses\n",
+                "défenses. Sa graisse le protège du \n",
+                "froid, mais aussi des attaques."
+            ]
+        },
+        "german": {
+            "name": "WALRAISA",
+            "category": "Eisbrecher",
+            "entry_text": [
+                "Mit seinen Stoßzähnen bricht es\n",
+                "durch Eis. Eine Speckschicht\n",
+                "schützt es vor Kälte und Angriffen."
+            ]
+        },
+        "italian": {
+            "name": "WALREIN",
+            "category": "Pokémon Spaccagelo",
+            "entry_text": [
+                "Frantuma il ghiaccio con le zanne.\n",
+                "Lo spesso strato adiposo respinge\n",
+                "il freddo e gli attacchi nemici."
+            ]
+        },
+        "spanish": {
+            "name": "WALREIN",
+            "category": "Pokémon Rompehielo",
+            "entry_text": [
+                "Rompe el hielo con sus colmillos.\n",
+                "Su gruesa capa de grasa le protege\n",
+                "del frío y de los enemigos."
+            ]
+        },
+        "japanese": {
+            "name": "トドゼルガ",
+            "category": "こおりわりポケモン",
+            "entry_text": [
+                "おおきな　こおりを　キバで　くだく。\n",
+                "あつい　しぼうは　さむさだけでなく\n",
+                "てきの　こうげきも　はねかえす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

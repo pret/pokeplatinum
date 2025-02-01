@@ -142,8 +142,59 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "Rumored to sense disasters with its\nhorn, it became a target. It fled\ndeep into the mountains.",
-        "category": "Disaster Pokémon"
+        "english": {
+            "category": "Disaster Pokémon",
+            "entry_text": [
+                "Rumored to sense disasters with its\n",
+                "horn, it became a target. It fled\n",
+                "deep into the mountains."
+            ]
+        },
+        "french": {
+            "name": "ABSOL",
+            "category": "Pokémon Désastre",
+            "entry_text": [
+                "Il pressent les catastrophes et\n",
+                "n’apparaît aux gens que pour les\n",
+                "prévenir d’un danger imminent."
+            ]
+        },
+        "german": {
+            "name": "ABSOL",
+            "category": "Desaster",
+            "entry_text": [
+                "Es spürt drohende Katastrophen\n",
+                "und erscheint nur dann, wenn es\n",
+                "andere vor der Gefahr warnen will."
+            ]
+        },
+        "italian": {
+            "name": "ABSOL",
+            "category": "Pokémon Catastrofe",
+            "entry_text": [
+                "Percepisce l’arrivo di disastri na-\n",
+                "turali e appare alla gente solo per\n",
+                "avvisarla del pericolo imminente."
+            ]
+        },
+        "spanish": {
+            "name": "ABSOL",
+            "category": "Pokémon Catástrofe",
+            "entry_text": [
+                "Presiente desastres inminentes\n",
+                "y se aparece a la gente para\n",
+                "advertir del peligro."
+            ]
+        },
+        "japanese": {
+            "name": "アブソル",
+            "category": "わざわいポケモン",
+            "entry_text": [
+                "さいがいの　よかんを　かんじとる。\n",
+                "きけんを　しらせる　ときだけ\n",
+                "ひとまえに　あらわれるという。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

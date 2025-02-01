@@ -117,8 +117,59 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "If its body is torn, it can grow\nback if the red core remains.\nThe core flashes at midnight.",
-        "category": "Star Shape Pokémon"
+        "english": {
+            "category": "Star Shape Pokémon",
+            "entry_text": [
+                "If its body is torn, it can grow\n",
+                "back if the red core remains.\n",
+                "The core flashes at midnight."
+            ]
+        },
+        "french": {
+            "name": "STARI",
+            "category": "Pokémon Etoile",
+            "entry_text": [
+                "Même amoché, son corps se régé-\n",
+                "nère tant que le noyau rouge est\n",
+                "intact. Le noyau s’illumine à minuit."
+            ]
+        },
+        "german": {
+            "name": "STERNDU",
+            "category": "Sternform",
+            "entry_text": [
+                "Wird sein Körper verletzt, kann\n",
+                "es sich regenerieren, sofern\n",
+                "der rote Kern intakt ist."
+            ]
+        },
+        "italian": {
+            "name": "STARYU",
+            "category": "Pokémon Stella",
+            "entry_text": [
+                "Se il corpo è lacerato, si rigenera\n",
+                "se il nucleo rosso è ancora intat-\n",
+                "to. Il nucleo brilla a mezzanotte."
+            ]
+        },
+        "spanish": {
+            "name": "STARYU",
+            "category": "Pokémon Estrellada",
+            "entry_text": [
+                "Puede recuperar las extremidades\n",
+                "que pierde si mantiene intacto su\n",
+                "núcleo rojo, que brilla en la noche."
+            ]
+        },
+        "japanese": {
+            "name": "ヒトデマン",
+            "category": "ほしがたポケモン",
+            "entry_text": [
+                "あかい　コアが　あるかぎり　からだが\n",
+                "ちぎれても　すぐに　さいせいする。\n",
+                "まよなか　コアが　てんめつする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

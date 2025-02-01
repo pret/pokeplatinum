@@ -115,8 +115,59 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 3,
-        "entry_text": "It has volcanoes on its back. If\nmagma builds up in its body, it\nshudders, then erupts violently.",
-        "category": "Eruption Pokémon"
+        "english": {
+            "category": "Eruption Pokémon",
+            "entry_text": [
+                "It has volcanoes on its back. If\n",
+                "magma builds up in its body, it\n",
+                "shudders, then erupts violently."
+            ]
+        },
+        "french": {
+            "name": "CAMERUPT",
+            "category": "Pokémon Eruption",
+            "entry_text": [
+                "Il porte des volcans sur son dos.\n",
+                "Quand le magma remonte, il\n",
+                "frissonne et entre en éruption."
+            ]
+        },
+        "german": {
+            "name": "CAMERUPT",
+            "category": "Ausbruch",
+            "entry_text": [
+                "Auf seinem Rücken befinden sich\n",
+                "Vulkane. Magma bildet sich in seinem\n",
+                "Körper, die irgendwann ausbricht."
+            ]
+        },
+        "italian": {
+            "name": "CAMERUPT",
+            "category": "Pokémon Eruzione",
+            "entry_text": [
+                "Ha dei vulcani sul dorso. Se il\n",
+                "magma nel suo corpo aumenta,\n",
+                "trema e poi erutta violentemente."
+            ]
+        },
+        "spanish": {
+            "name": "CAMERUPT",
+            "category": "Pokémon Erupción",
+            "entry_text": [
+                "Tiene volcanes en el lomo. Si el\n",
+                "magma se acumula en su cuerpo,\n",
+                "se sacude y estalla con violencia."
+            ]
+        },
+        "japanese": {
+            "name": "バク－ダ",
+            "category": "ふんかポケモン",
+            "entry_text": [
+                "せなかに　かざんを　もつ　ポケモン。\n",
+                "たいないの　マグマが　ふえると\n",
+                "ふるえた　あとに　だいばくはつする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

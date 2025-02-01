@@ -106,8 +106,59 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "Its skin is so thin, its internal\norgans are visible. It has trouble\nwalking on its newly grown feet.",
-        "category": "Tadpole Pokémon"
+        "english": {
+            "category": "Tadpole Pokémon",
+            "entry_text": [
+                "Its skin is so thin, its internal\n",
+                "organs are visible. It has trouble\n",
+                "walking on its newly grown feet."
+            ]
+        },
+        "french": {
+            "name": "PTITARD",
+            "category": "Pokémon Têtard",
+            "entry_text": [
+                "Sa peau est si mince qu’on\n",
+                "voit ses organes internes. Il tient\n",
+                "à peine sur ses nouveaux pieds."
+            ]
+        },
+        "german": {
+            "name": "QUAPSEL",
+            "category": "Kaulquappe",
+            "entry_text": [
+                "Seine Haut ist so dünn, dass man die\n",
+                "inneren Organe sehen kann. Es hat\n",
+                "Schwierigkeiten beim Laufen."
+            ]
+        },
+        "italian": {
+            "name": "POLIWAG",
+            "category": "Pokémon Girino",
+            "entry_text": [
+                "La sua pelle è così sottile che si\n",
+                "intravedono gli organi. Cammina a\n",
+                "fatica sulle zampe poco sviluppate."
+            ]
+        },
+        "spanish": {
+            "name": "POLIWAG",
+            "category": "Pokémon Renacuajo",
+            "entry_text": [
+                "Su piel es tan fina que permite\n",
+                "ver sus órganos. Le cuesta andar\n",
+                "con sus nuevas patas."
+            ]
+        },
+        "japanese": {
+            "name": "ニョロモ",
+            "category": "おたまポケモン",
+            "entry_text": [
+                "ないぞうが　すけて　みえるほど\n",
+                "ひふが　うすい。はえたばかりの\n",
+                "あしは　あるくことが　にがて。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

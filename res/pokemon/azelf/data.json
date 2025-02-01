@@ -131,8 +131,59 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "When AZELF flew, people gained the\ndetermination to do things.\nIt was the birth of willpower.",
-        "category": "Willpower Pokémon"
+        "english": {
+            "category": "Willpower Pokémon",
+            "entry_text": [
+                "When AZELF flew, people gained the\n",
+                "determination to do things.\n",
+                "It was the birth of willpower."
+            ]
+        },
+        "french": {
+            "name": "CREFADET",
+            "category": "Pokémon Volonté",
+            "entry_text": [
+                "On l’appelle “être de la volonté”.\n",
+                "Il dort au fond d’un lac pour\n",
+                "maintenir l’équilibre du monde."
+            ]
+        },
+        "german": {
+            "name": "TOBUTZ",
+            "category": "Willenskraft",
+            "entry_text": [
+                "“Das starke Wesen”.\n",
+                "Es schläft auf dem Grund eines Sees\n",
+                "und hält so die Welt in Balance."
+            ]
+        },
+        "italian": {
+            "name": "AZELF",
+            "category": "Pokémon Volontà",
+            "entry_text": [
+                "Detto “Essere della volontà”.\n",
+                "Dorme sul fondo di un lago per\n",
+                "mantenere il mondo in equilibrio."
+            ]
+        },
+        "spanish": {
+            "name": "AZELF",
+            "category": "Pokémon Voluntad",
+            "entry_text": [
+                "Se le conoce como el “ser de la\n",
+                "voluntad”. Duerme en el fondo de\n",
+                "un lago para equilibrar el mundo."
+            ]
+        },
+        "japanese": {
+            "name": "アグノム",
+            "category": "いしポケモン",
+            "entry_text": [
+                "いしのかみ　と　よばれている。\n",
+                "みずうみの　そこで　ねむりつづけ\n",
+                "せかいの　バランスを　とっている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

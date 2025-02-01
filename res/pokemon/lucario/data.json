@@ -131,8 +131,55 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "A well-trained one can sense auras\nto identify and take in the feelings\nof creatures over half a mile away.",
-        "category": "Aura Pokémon"
+        "english": {
+            "category": "Aura Pokémon",
+            "entry_text": [
+                "A well-trained one can sense auras\n",
+                "to identify and take in the feelings\n",
+                "of creatures over half a mile away."
+            ]
+        },
+        "french": {
+            "name": "LUCARIO",
+            "category": "Pokémon Aura",
+            "entry_text": [ "Il ressent les auras de tout. Il \n", "comprend le langage humain." ]
+        },
+        "german": {
+            "name": "LUCARIO",
+            "category": "Aura",
+            "entry_text": [
+                "Es besitzt die Fähigkeit, die Aura\n",
+                "aller Dinge zu spüren. Es versteht\n",
+                "die menschliche Sprache."
+            ]
+        },
+        "italian": {
+            "name": "LUCARIO",
+            "category": "Pokémon Aura",
+            "entry_text": [
+                "È in grado di avvertire l’aura di\n",
+                "tutte le cose.\n",
+                "Comprende il linguaggio umano."
+            ]
+        },
+        "spanish": {
+            "name": "LUCARIO",
+            "category": "Pokémon Aura",
+            "entry_text": [
+                "Puede sentir el aura de todas\n",
+                "las cosas. Comprende el\n",
+                "lenguaje humano."
+            ]
+        },
+        "japanese": {
+            "name": "ルカリオ",
+            "category": "はどうポケモン",
+            "entry_text": [
+                "あらゆる　ものが　はっする　はどうを\n",
+                "キャッチする　のうりょくを　もつ。\n",
+                "ひとの　ことばを　りかいできる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

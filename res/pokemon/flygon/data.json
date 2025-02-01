@@ -123,8 +123,59 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 1,
-        "entry_text": "It whips up sandstorms with\npowerful flaps of its wings. It is\nknown as “The Desert Spirit.”",
-        "category": "Mystic Pokémon"
+        "english": {
+            "category": "Mystic Pokémon",
+            "entry_text": [
+                "It whips up sandstorms with\n",
+                "powerful flaps of its wings. It is\n",
+                "known as “The Desert Spirit.”"
+            ]
+        },
+        "french": {
+            "name": "LIBEGON",
+            "category": "Pokémon Mystique",
+            "entry_text": [
+                "Son puissant battement d’ailes\n",
+                "provoque des tempêtes de sable.\n",
+                "On l’appelle “esprit du désert”."
+            ]
+        },
+        "german": {
+            "name": "LIBELLDRA",
+            "category": "Mystik",
+            "entry_text": [
+                "Mit mächtigem Flügelschlag verur-\n",
+                "sacht es einen Sandsturm. Es wird\n",
+                "“Geist der Wüste” genannt."
+            ]
+        },
+        "italian": {
+            "name": "FLYGON",
+            "category": "Pokémon Magico",
+            "entry_text": [
+                "Genera tempeste di sabbia con il\n",
+                "battito delle ali. È detto anche\n",
+                "“Spirito primordiale del deserto”."
+            ]
+        },
+        "spanish": {
+            "name": "FLYGON",
+            "category": "Pokémon Místico",
+            "entry_text": [
+                "Levanta tormentas de arena con\n",
+                "sus alas. Se le conoce como el\n",
+                "“alma del desierto”."
+            ]
+        },
+        "japanese": {
+            "name": "フライゴン",
+            "category": "せいれいポケモン",
+            "entry_text": [
+                "きょうれつな　ハネの　はばたきで\n",
+                "すなあらしを　おこす。\n",
+                "さばくのせいれい　と　よばれる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -121,8 +121,59 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 2,
-        "entry_text": "Its body is made of ice from the\nice age. It controls frigid air of\n-328 degrees Fahrenheit.",
-        "category": "Iceberg Pokémon"
+        "english": {
+            "category": "Iceberg Pokémon",
+            "entry_text": [
+                "Its body is made of ice from the\n",
+                "ice age. It controls frigid air of\n",
+                "-328 degrees Fahrenheit."
+            ]
+        },
+        "french": {
+            "name": "REGICE",
+            "category": "Pokémon Iceberg",
+            "entry_text": [
+                "Son corps est fait de glace datant\n",
+                "de l’ère glaciaire. Il contrôle un\n",
+                "air gelé de -200 °C."
+            ]
+        },
+        "german": {
+            "name": "REGICE",
+            "category": "Eisberg",
+            "entry_text": [
+                "Sein Körper besteht aus Eis aus der\n",
+                "Eiszeit. Es kontrolliert gefrorene\n",
+                "Luft, die minus 200 Grad kalt ist."
+            ]
+        },
+        "italian": {
+            "name": "REGICE",
+            "category": "Pokémon Iceberg",
+            "entry_text": [
+                "Il suo corpo è costituito da ghiac-\n",
+                "cio dell’era glaciale. Mantiene\n",
+                "l’aria a una temperatura di -200°C."
+            ]
+        },
+        "spanish": {
+            "name": "REGICE",
+            "category": "Pokémon Iceberg",
+            "entry_text": [
+                "Su cuerpo está hecho con hielo\n",
+                "de la glaciación. Controla aire\n",
+                "gélido a 200 grados bajo cero."
+            ]
+        },
+        "japanese": {
+            "name": "レジアイス",
+            "category": "ひょうざんポケモン",
+            "entry_text": [
+                "ひょうがきに　できた　こおりで\n",
+                "からだが　つくられている。マイナス\n",
+                "２００どの　れいきを　あやつる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

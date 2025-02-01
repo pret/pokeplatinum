@@ -141,8 +141,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 0,
-        "entry_text": "It sleeps in a deep-sea trench.\nIf it flaps its wings, it is said to\ncause a 40-day storm.",
-        "category": "Diving Pokémon"
+        "english": {
+            "category": "Diving Pokémon",
+            "entry_text": [
+                "It sleeps in a deep-sea trench.\n",
+                "If it flaps its wings, it is said to\n",
+                "cause a 40-day storm."
+            ]
+        },
+        "french": {
+            "name": "LUGIA",
+            "category": "Pokémon Plongeon",
+            "entry_text": [
+                "Il dort dans une faille des grands\n",
+                "fonds. Ses battements d’ailes\n",
+                "génèrent une tempête de 40 jours."
+            ]
+        },
+        "german": {
+            "name": "LUGIA",
+            "category": "Taucher",
+            "entry_text": [
+                "Es schläft in einem Tiefseegraben.\n",
+                "Schwingt es seine Flügel, entsteht\n",
+                "ein Sturm, der 40 Tage dauert."
+            ]
+        },
+        "italian": {
+            "name": "LUGIA",
+            "category": "Pokémon Immersione",
+            "entry_text": [
+                "Dorme in una fossa negli abissi\n",
+                "marini. Con un battito d’ali provoca\n",
+                "una tempesta di 40 giorni."
+            ]
+        },
+        "spanish": {
+            "name": "LUGIA",
+            "category": "Pokémon Buceo",
+            "entry_text": [
+                "Duerme en una dorsal marina.\n",
+                "Si bate sus alas puede causar\n",
+                "tormentas de cuarenta días."
+            ]
+        },
+        "japanese": {
+            "name": "ルギア",
+            "category": "せんすいポケモン",
+            "entry_text": [
+                "ふかい　かいこうの　そこで　ねむる。\n",
+                "ルギアが　はばたくと　４０にち\n",
+                "あらしが　つづくと　いわれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

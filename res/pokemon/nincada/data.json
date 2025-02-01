@@ -107,8 +107,59 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It grows underground, sensing\nits surroundings using antennae\ninstead of its virtually blind eyes.",
-        "category": "Trainee Pokémon"
+        "english": {
+            "category": "Trainee Pokémon",
+            "entry_text": [
+                "It grows underground, sensing\n",
+                "its surroundings using antennae\n",
+                "instead of its virtually blind eyes."
+            ]
+        },
+        "french": {
+            "name": "NINGALE",
+            "category": "Pokémon Apprenti",
+            "entry_text": [
+                "Il grandit sous terre et se repère\n",
+                "grâce à ses antennes car ses\n",
+                "yeux sont quasiment aveugles."
+            ]
+        },
+        "german": {
+            "name": "NINCADA",
+            "category": "Vorbereiter",
+            "entry_text": [
+                "Es wächst unterirdisch heran und\n",
+                "nimmt seine Umgebung mit Antennen\n",
+                "wahr, da es nahezu blind ist."
+            ]
+        },
+        "italian": {
+            "name": "NINCADA",
+            "category": "Pokémon Novizio",
+            "entry_text": [
+                "Cresce sottoterra e, poiché è\n",
+                "quasi cieco, usa le antenne per\n",
+                "sondare ciò che lo circonda."
+            ]
+        },
+        "spanish": {
+            "name": "NINCADA",
+            "category": "Pokémon Aprendiz",
+            "entry_text": [
+                "Crece bajo tierra y explora el\n",
+                "entorno con sus antenas,\n",
+                "que sustituyen a ojos atrofiados."
+            ]
+        },
+        "japanese": {
+            "name": "ツチニン",
+            "category": "したづみポケモン",
+            "entry_text": [
+                "じめんの　したで　せいちょうする。\n",
+                "ほとんど　みえない　めの　かわりに\n",
+                "しょっかくで　ようすを　さぐる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

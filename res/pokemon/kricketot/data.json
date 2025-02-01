@@ -69,8 +69,59 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "Its legs are short. Whenever it\nstumbles, its stiff antennae clack\nwith a xylophone-like sound.",
-        "category": "Cricket Pokémon"
+        "english": {
+            "category": "Cricket Pokémon",
+            "entry_text": [
+                "Its legs are short. Whenever it\n",
+                "stumbles, its stiff antennae clack\n",
+                "with a xylophone-like sound."
+            ]
+        },
+        "french": {
+            "name": "CRIKZIK",
+            "category": "Pokémon Criquet",
+            "entry_text": [
+                "Quand il bascule sa tête d’avant \n",
+                "en arrière, ses antennes se\n",
+                "heurtent dans un son de xylophone."
+            ]
+        },
+        "german": {
+            "name": "ZIRPURZE",
+            "category": "Zirper",
+            "entry_text": [
+                "Es schüttelt seinen Kopf, so dass\n",
+                "die beiden Antennen sich berühren\n",
+                "und wie ein Xylophon klingen."
+            ]
+        },
+        "italian": {
+            "name": "KRICKETOT",
+            "category": "Pokémon Grillo",
+            "entry_text": [
+                "Muove la testa avanti e indietro\n",
+                "e le antenne, scontrandosi, produ-\n",
+                "cono un suono simile allo xilofono."
+            ]
+        },
+        "spanish": {
+            "name": "KRICKETOT",
+            "category": "Pokémon Grillo",
+            "entry_text": [
+                "Al agitar la cabeza de atrás hacia\n",
+                "delante, sus antenas chocan\n",
+                "y suenan como un xilófono."
+            ]
+        },
+        "japanese": {
+            "name": "コロボ－シ",
+            "category": "こおろぎポケモン",
+            "entry_text": [
+                "あたまを　ぜんごに　ゆすって\n",
+                "しょっかくを　ぶつけあうことで\n",
+                "もっきんのような　おとを　ならす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

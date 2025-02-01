@@ -144,8 +144,59 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 17,
         "pokemon_pos_m": 3,
-        "entry_text": "It can launch a rock held in its\nhand like a missile by tightening\nthen expanding muscles instantly.",
-        "category": "Drill Pokémon"
+        "english": {
+            "category": "Drill Pokémon",
+            "entry_text": [
+                "It can launch a rock held in its\n",
+                "hand like a missile by tightening\n",
+                "then expanding muscles instantly."
+            ]
+        },
+        "french": {
+            "name": "RHINASTOC",
+            "category": "Pokémon Perceur",
+            "entry_text": [
+                "Il bande ses muscles pour projeter\n",
+                "des pierres ou des RACAILLOU\n",
+                "depuis le creux de ses paumes. "
+            ]
+        },
+        "german": {
+            "name": "RIHORNIOR",
+            "category": "Bohrer",
+            "entry_text": [
+                "Es legt Steine in die Löcher seiner\n",
+                "Hände und wirft sie mit Muskelkraft.\n",
+                "Sogar GEOROK werden verwendet."
+            ]
+        },
+        "italian": {
+            "name": "RHYPERIOR",
+            "category": "Pokémon Trapano",
+            "entry_text": [
+                "Mette rocce nelle cavità dei suoi\n",
+                "palmi e le getta con tutta la sua\n",
+                "forza. Talvolta lancia GEODUDE."
+            ]
+        },
+        "spanish": {
+            "name": "RHYPERIOR",
+            "category": "Pokémon Taladro",
+            "entry_text": [
+                "Pone rocas en los agujeros de sus\n",
+                "manos y las lanza con los músculos.\n",
+                "Pocas veces ataca a GEODUDE."
+            ]
+        },
+        "japanese": {
+            "name": "ドサイドン",
+            "category": "ドリルポケモン",
+            "entry_text": [
+                "いわを　てのひらの　あなに　つめて\n",
+                "きんにくの　ちからで　はっしゃする。\n",
+                "まれに　イシツブテを　とばす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

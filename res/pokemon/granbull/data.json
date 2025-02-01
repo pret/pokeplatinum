@@ -129,8 +129,59 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "It is timid in spite of its looks.\nIf it becomes enraged, however,\nit will strike with its huge fangs.",
-        "category": "Fairy Pokémon"
+        "english": {
+            "category": "Fairy Pokémon",
+            "entry_text": [
+                "It is timid in spite of its looks.\n",
+                "If it becomes enraged, however,\n",
+                "it will strike with its huge fangs."
+            ]
+        },
+        "french": {
+            "name": "GRANBULL",
+            "category": "Pokémon Fée",
+            "entry_text": [
+                "En dépit des apparences, c’est un\n",
+                "grand timide. Quand il s’énerve, il\n",
+                "mord de ses énormes crocs."
+            ]
+        },
+        "german": {
+            "name": "GRANBULL",
+            "category": "Fee",
+            "entry_text": [
+                "Es ist trotz seines Äußeren\n",
+                "schüchtern. Wird es wütend,\n",
+                "schnappt es mit seinen Fängen zu."
+            ]
+        },
+        "italian": {
+            "name": "GRANBULL",
+            "category": "Pokémon Fata",
+            "entry_text": [
+                "Malgrado il suo aspetto, è molto\n",
+                "timido. Se si arrabbia, tuttavia,\n",
+                "colpisce con le sue enormi zanne."
+            ]
+        },
+        "spanish": {
+            "name": "GRANBULL",
+            "category": "Pokémon Hada",
+            "entry_text": [
+                "A pesar de su aspecto, es muy\n",
+                "tímido. Sin embargo, cuando se\n",
+                "enfada ataca con sus colmillos."
+            ]
+        },
+        "japanese": {
+            "name": "グランブル",
+            "category": "ようせいポケモン",
+            "entry_text": [
+                "かおに　にあわず　おくびょう。\n",
+                "しかし　ひとたび　おこりはじめると\n",
+                "おおきな　キバで　はんげきする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

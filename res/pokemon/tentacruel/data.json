@@ -109,8 +109,59 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 4,
         "pokemon_pos_m": 65535,
-        "entry_text": "It extends its 80 tentacles to\nform an encircling poisonous net\nthat is difficult to escape.",
-        "category": "Jellyfish Pokémon"
+        "english": {
+            "category": "Jellyfish Pokémon",
+            "entry_text": [
+                "It extends its 80 tentacles to\n",
+                "form an encircling poisonous net\n",
+                "that is difficult to escape."
+            ]
+        },
+        "french": {
+            "name": "TENTACRUEL",
+            "category": "Pokémon Mollusque",
+            "entry_text": [
+                "Ses 80 tentacules ligotent ses\n",
+                "proies et les retiennent jusqu’à\n",
+                "ce que son poison fasse effet."
+            ]
+        },
+        "german": {
+            "name": "TENTOXA",
+            "category": "Qualle",
+            "entry_text": [
+                "Es besitzt 80 Tentakel, um Beute zu\n",
+                "fangen und festzuhalten. Diese\n",
+                "wird durch Gift geschwächt.  "
+            ]
+        },
+        "italian": {
+            "name": "TENTACRUEL",
+            "category": "Pokémon Medusa",
+            "entry_text": [
+                "Ha 80 tentacoli per intrappolare\n",
+                "la preda e non la rilascia finché il\n",
+                "veleno non l’ha indebolita."
+            ]
+        },
+        "spanish": {
+            "name": "TENTACRUEL",
+            "category": "Pokémon Medusa",
+            "entry_text": [
+                "Posee 80 tentáculos con los que\n",
+                "aprisiona a sus presas hasta que\n",
+                "se debilitan por el veneno."
+            ]
+        },
+        "japanese": {
+            "name": "ドククラゲ",
+            "category": "くらげポケモン",
+            "entry_text": [
+                "８０ほんの　しょくしゅを　もつ。\n",
+                "えものを　からめとり　どくで\n",
+                "よわるまで　ぜったいに　にがさない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

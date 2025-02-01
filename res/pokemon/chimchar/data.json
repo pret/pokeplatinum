@@ -126,8 +126,59 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It is very agile. Before going to\nsleep, it extinguishes the flame\non its tail to prevent fires.",
-        "category": "Chimp Pokémon"
+        "english": {
+            "category": "Chimp Pokémon",
+            "entry_text": [
+                "It is very agile. Before going to\n",
+                "sleep, it extinguishes the flame\n",
+                "on its tail to prevent fires."
+            ]
+        },
+        "french": {
+            "name": "OUISTICRAM",
+            "category": "Pokémon Chimpanzé",
+            "entry_text": [
+                "Il escalade prestement les falaises\n",
+                "escarpées et vit sur les sommets.\n",
+                "Sa flamme s’éteint quand il dort."
+            ]
+        },
+        "german": {
+            "name": "PANFLAM",
+            "category": "Schimpanse",
+            "entry_text": [
+                "Es klettert behände steile Felsen\n",
+                "hinauf, um auf Bergen zu leben. Sein\n",
+                "Feuer ist aus, wenn es schläft."
+            ]
+        },
+        "italian": {
+            "name": "CHIMCHAR",
+            "category": "Pokémon Scimpanzé",
+            "entry_text": [
+                "Scala agilmente le rocce scoscese\n",
+                "e vive in cima ai monti. Prima\n",
+                "di dormire spegne le fiamme."
+            ]
+        },
+        "spanish": {
+            "name": "CHIMCHAR",
+            "category": "Pokémon Chimpancé",
+            "entry_text": [
+                "Escala acantilados escarpados con\n",
+                "agilidad. Vive en las montañas y\n",
+                "su fuego se apaga cuando duerme."
+            ]
+        },
+        "japanese": {
+            "name": "ヒコザル",
+            "category": "こざるポケモン",
+            "entry_text": [
+                "だんがいぜっぺきを　みがるに　のぼり\n",
+                "いわやまの　うえで　せいかつする。\n",
+                "ほのおを　けして　ねむる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

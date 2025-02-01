@@ -126,8 +126,59 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "It can swim while towing a large\nship. It bashes down foes with a\nswing of its thick arms.",
-        "category": "Mud Fish Pokémon"
+        "english": {
+            "category": "Mud Fish Pokémon",
+            "entry_text": [
+                "It can swim while towing a large\n",
+                "ship. It bashes down foes with a\n",
+                "swing of its thick arms."
+            ]
+        },
+        "french": {
+            "name": "LAGGRON",
+            "category": "Pokémon Poissonboue",
+            "entry_text": [
+                "Il peut traîner un grand bateau en\n",
+                "nageant. Il assomme l’ennemi d’un\n",
+                "grand coup de ses bras épais."
+            ]
+        },
+        "german": {
+            "name": "SUMPEX",
+            "category": "Lehmhüpfer",
+            "entry_text": [
+                "Es kann im Schwimmen ein großes\n",
+                "Schiff ziehen. Seine Gegner schlägt\n",
+                "es mit Schlägen seiner Arme zurück."
+            ]
+        },
+        "italian": {
+            "name": "SWAMPERT",
+            "category": "Pokémon Fango Pesce",
+            "entry_text": [
+                "Nuotando riesce a trainare una\n",
+                "grande nave. Con le braccia vigoro-\n",
+                "se abbatte i nemici in un sol colpo."
+            ]
+        },
+        "spanish": {
+            "name": "SWAMPERT",
+            "category": "Pokémon Pez Lodo",
+            "entry_text": [
+                "Puede nadar y arrastrar un barco\n",
+                "grande. Golpea a sus enemigos\n",
+                "con sus gruesos brazos."
+            ]
+        },
+        "japanese": {
+            "name": "ラグラ－ジ",
+            "category": "ぬまうおポケモン",
+            "entry_text": [
+                "おおがたせんを　ひっぱって　およぐ\n",
+                "パワ－の　もちぬし。ふとい　うでの\n",
+                "ひとふりで　あいてを　たたきのめす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

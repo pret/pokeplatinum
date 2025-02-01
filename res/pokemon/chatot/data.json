@@ -105,8 +105,59 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "Its tongue is just like a human’s.\nAs a result, it can cleverly mimic\nhuman speech.",
-        "category": "Music Note Pokémon"
+        "english": {
+            "category": "Music Note Pokémon",
+            "entry_text": [
+                "Its tongue is just like a human’s.\n",
+                "As a result, it can cleverly mimic\n",
+                "human speech."
+            ]
+        },
+        "french": {
+            "name": "PIJAKO",
+            "category": "Pokémon Note Musique",
+            "entry_text": [
+                "On peut lui enseigner quelques\n",
+                "mots. S’il s’agit d’un groupe, ils\n",
+                "retiendront les mêmes phrases."
+            ]
+        },
+        "german": {
+            "name": "PLAUDAGEI",
+            "category": "Musiknote",
+            "entry_text": [
+                "Es kann die menschliche Sprache\n",
+                "lernen. Versammeln sie sich,\n",
+                "bringen sie sich alle dasselbe bei."
+            ]
+        },
+        "italian": {
+            "name": "CHATOT",
+            "category": "Pokémon Musicale",
+            "entry_text": [
+                "Può imparare il linguaggio umano.\n",
+                "Se un gruppo si raduna, tutti\n",
+                "imparano le stesse parole."
+            ]
+        },
+        "spanish": {
+            "name": "CHATOT",
+            "category": "Pokémon Corchea",
+            "entry_text": [
+                "Pueden aprender y hablar lenguas\n",
+                "humanas. Si se juntan, todos\n",
+                "aprenden las mismas palabras."
+            ]
+        },
+        "japanese": {
+            "name": "ペラップ",
+            "category": "おんぷポケモン",
+            "entry_text": [
+                "ひとの　ことばを　おぼえて　なく。\n",
+                "なかまが　いっかしょに　あつまると\n",
+                "みんな　おなじ　ことばを　おぼえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

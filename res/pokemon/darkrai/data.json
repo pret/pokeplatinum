@@ -135,8 +135,59 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "To protect itself, it afflicts those\naround it with nightmares. However,\nit means no harm.",
-        "category": "Pitch-Black Pokémon"
+        "english": {
+            "category": "Pitch-Black Pokémon",
+            "entry_text": [
+                "To protect itself, it afflicts those\n",
+                "around it with nightmares. However,\n",
+                "it means no harm."
+            ]
+        },
+        "french": {
+            "name": "DARKRAI",
+            "category": "Pokémon Noirtotal",
+            "entry_text": [
+                "Il a la capacité de bercer les gens\n",
+                "pour les faire rêver. Il se montre\n",
+                "durant les nuits de nouvelle lune."
+            ]
+        },
+        "german": {
+            "name": "DARKRAI",
+            "category": "Dunkelnacht",
+            "entry_text": [
+                "Es kann andere in Schlaf ver-\n",
+                "setzen und ihnen Träume geben.\n",
+                "Es ist nur bei Neumond aktiv."
+            ]
+        },
+        "italian": {
+            "name": "DARKRAI",
+            "category": "Pokémon Neropesto",
+            "entry_text": [
+                "Ha l’abilità di far addormentare la\n",
+                "gente e farla sognare. È attivo\n",
+                "nelle notti di luna nuova. "
+            ]
+        },
+        "spanish": {
+            "name": "DARKRAI",
+            "category": "Pokémon Oscuridad",
+            "entry_text": [
+                "Puede adormecer a la gente\n",
+                "y hacerle soñar. Está activo\n",
+                "en las noches de luna nueva."
+            ]
+        },
+        "japanese": {
+            "name": "ダ－クライ",
+            "category": "あんこくポケモン",
+            "entry_text": [
+                "ひとびとを　ふかい　ねむりに　さそい\n",
+                "ゆめを　みせる　のうりょくを　もつ。\n",
+                "しんげつの　よるに　かつどうする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

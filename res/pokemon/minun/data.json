@@ -110,8 +110,59 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "It cheers on friends. If its\nfriends are losing, its body lets\noff more and more sparks.",
-        "category": "Cheering Pokémon"
+        "english": {
+            "category": "Cheering Pokémon",
+            "entry_text": [
+                "It cheers on friends. If its\n",
+                "friends are losing, its body lets\n",
+                "off more and more sparks."
+            ]
+        },
+        "french": {
+            "name": "NEGAPI",
+            "category": "Pokémon Acclameur",
+            "entry_text": [
+                "Il encourage ses amis. Son corps\n",
+                "produit plus d’étincelles quand il\n",
+                "est en mauvaise posture."
+            ]
+        },
+        "german": {
+            "name": "MINUN",
+            "category": "Jubel",
+            "entry_text": [
+                "Es feuert Freunde an. Sind diese im\n",
+                "Begriff zu verlieren, gibt sein\n",
+                "Körper immer mehr Funken ab."
+            ]
+        },
+        "italian": {
+            "name": "MINUN",
+            "category": "Pokémon Incitamento",
+            "entry_text": [
+                "Incoraggia gli amici e, se questi\n",
+                "perdono, il suo corpo emette\n",
+                "una maggiore quantità di scintille."
+            ]
+        },
+        "spanish": {
+            "name": "MINUN",
+            "category": "Pokémon Ánimo",
+            "entry_text": [
+                "Le gusta animar a sus amigos. Si\n",
+                "pierden, su cuerpo suelta cada vez\n",
+                "más chispas."
+            ]
+        },
+        "japanese": {
+            "name": "マイナン",
+            "category": "おうえんポケモン",
+            "entry_text": [
+                "なかまを　おうえんする　しゅうせい。\n",
+                "まけそうになると　からだから　だす\n",
+                "ひばなの　かずが　どんどん　ふえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -131,8 +131,59 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It lives in treetop colonies.\nIf one becomes enraged, the whole\ncolony rampages for no reason.",
-        "category": "Pig Monkey Pokémon"
+        "english": {
+            "category": "Pig Monkey Pokémon",
+            "entry_text": [
+                "It lives in treetop colonies.\n",
+                "If one becomes enraged, the whole\n",
+                "colony rampages for no reason."
+            ]
+        },
+        "french": {
+            "name": "FEROSINGE",
+            "category": "Pokémon Porsinge",
+            "entry_text": [
+                "Ils vivent en colonies sylvestres.\n",
+                "Quand un FEROSINGE s’énerve,\n",
+                "toute la colonie suit son exemple."
+            ]
+        },
+        "german": {
+            "name": "MENKI",
+            "category": "Schw./ Affe",
+            "entry_text": [
+                "Es lebt mit anderen in Baumkronen.\n",
+                "Wird eines von ihnen wütend, werden\n",
+                "alle anderen auch wütend."
+            ]
+        },
+        "italian": {
+            "name": "MANKEY",
+            "category": "Pokémon Suinpanzé",
+            "entry_text": [
+                "Vive in colonie sugli alberi. Se uno\n",
+                "si adira, l’intera colonia comincia a\n",
+                "agire violentemente senza motivo."
+            ]
+        },
+        "spanish": {
+            "name": "MANKEY",
+            "category": "Pokémon Mono Cerdo",
+            "entry_text": [
+                "Vive en colonias en los árboles.\n",
+                "Si uno se enfada, el resto de la\n",
+                "manada ataca sin motivo."
+            ]
+        },
+        "japanese": {
+            "name": "マンキ－",
+            "category": "ぶたざるポケモン",
+            "entry_text": [
+                "きのうえで　せいかつしている。\n",
+                "むれの　１ぴきが　おこりはじめると\n",
+                "ぜんいんが　いみもなく　あばれだす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

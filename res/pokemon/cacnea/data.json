@@ -120,8 +120,59 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "By storing water in its body, this\ndesert dweller can survive for 30\ndays without water.",
-        "category": "Cactus Pokémon"
+        "english": {
+            "category": "Cactus Pokémon",
+            "entry_text": [
+                "By storing water in its body, this\n",
+                "desert dweller can survive for 30\n",
+                "days without water."
+            ]
+        },
+        "french": {
+            "name": "CACNEA",
+            "category": "Pokémon Cactus",
+            "entry_text": [
+                "En stockant l’eau dans son corps,\n",
+                "cet habitant du désert peut \n",
+                "survivre 30 jours sans boire."
+            ]
+        },
+        "german": {
+            "name": "TUSKA",
+            "category": "Kaktus",
+            "entry_text": [
+                "Dieser Wüstenbewohner speichert\n",
+                "Wasser in seinem Körper. So kann er\n",
+                "30 Tage ohne Wasser überleben."
+            ]
+        },
+        "italian": {
+            "name": "CACNEA",
+            "category": "Pokémon Cactus",
+            "entry_text": [
+                "Immagazzina acqua nel corpo e\n",
+                "riesce a sopravvivere nel deserto\n",
+                "senz’acqua anche per 30 giorni."
+            ]
+        },
+        "spanish": {
+            "name": "CACNEA",
+            "category": "Pokémon Cactus",
+            "entry_text": [
+                "Habita en el desierto. Aguanta\n",
+                "treinta días sin agua gracias a la\n",
+                "que almacena en su cuerpo."
+            ]
+        },
+        "japanese": {
+            "name": "サボネア",
+            "category": "サボテンポケモン",
+            "entry_text": [
+                "さばくに　せいそく。たいないに\n",
+                "すいぶんを　ためることで　みずを\n",
+                "のまずに　３０にちかん　いきられる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

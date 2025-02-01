@@ -110,8 +110,59 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "It has a soft and bouncy body.\nOnce it starts bouncing, it\nbecomes impossible to stop.",
-        "category": "Balloon Pokémon"
+        "english": {
+            "category": "Balloon Pokémon",
+            "entry_text": [
+                "It has a soft and bouncy body.\n",
+                "Once it starts bouncing, it\n",
+                "becomes impossible to stop."
+            ]
+        },
+        "french": {
+            "name": "TOUDOUDOU",
+            "category": "Pokémon Bouboule",
+            "entry_text": [
+                "Son corps est doux et élastique.\n",
+                "Quand il commence à rebondir,\n",
+                "on ne peut plus l’arrêter."
+            ]
+        },
+        "german": {
+            "name": "FLUFFELUFF",
+            "category": "Ballon",
+            "entry_text": [
+                "Es hat einen weichen, elastischen\n",
+                "Körper. Hat es einmal angefangen\n",
+                "zu hüpfen, ist es nicht zu stoppen."
+            ]
+        },
+        "italian": {
+            "name": "IGGLYBUFF",
+            "category": "Pokémon Pallone",
+            "entry_text": [
+                "Ha un corpo morbido ed elastico.\n",
+                "Quando comincia a saltellare è\n",
+                "praticamente impossibile fermarlo."
+            ]
+        },
+        "spanish": {
+            "name": "IGGLYBUFF",
+            "category": "Pokémon Globo",
+            "entry_text": [
+                "Su cuerpo es suave y está\n",
+                "hinchado. Cuando empieza a\n",
+                "botar, no puede parar."
+            ]
+        },
+        "japanese": {
+            "name": "ププリン",
+            "category": "ふうせんポケモン",
+            "entry_text": [
+                "やわらかく　だんりょくせいのある\n",
+                "からだは　いちど　はずむと\n",
+                "ぜんぜん　とまれなくなってしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -118,8 +118,59 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "It is encased in a steel shell. Its\npeering eyes are all that can be\nseen of its mysterious innards.",
-        "category": "Bagworm Pokémon"
+        "english": {
+            "category": "Bagworm Pokémon",
+            "entry_text": [
+                "It is encased in a steel shell. Its\n",
+                "peering eyes are all that can be\n",
+                "seen of its mysterious innards."
+            ]
+        },
+        "french": {
+            "name": "FORETRESS",
+            "category": "Pokémon Ver Caché",
+            "entry_text": [
+                "Il est prisonnier d’une coquille \n",
+                "d’acier. Ses yeux vigilants sont la\n",
+                "seule partie visible de son corps."
+            ]
+        },
+        "german": {
+            "name": "FORSTELLKA",
+            "category": "Beutelwurm",
+            "entry_text": [
+                "Dieses PKMN ist von einer Stahlhülle\n",
+                "umgeben. Seine stechenden Augen\n",
+                "sind alles, was man von ihm sieht."
+            ]
+        },
+        "italian": {
+            "name": "FORRETRESS",
+            "category": "Pokémon Larva",
+            "entry_text": [
+                "È incassato in una conchiglia d’ac-\n",
+                "ciaio. A parte gli occhi scrutatori,\n",
+                "nessuno sa cosa ci sia all’interno."
+            ]
+        },
+        "spanish": {
+            "name": "FORRETRESS",
+            "category": "Pokémon Larva",
+            "entry_text": [
+                "Se protege con su concha de\n",
+                "acero de tal manera que solo se\n",
+                "pueden ver sus ojos."
+            ]
+        },
+        "japanese": {
+            "name": "フォレトス",
+            "category": "みのむしポケモン",
+            "entry_text": [
+                "こうてつの　カラで　まもられている。\n",
+                "すきまから　めだまが　のぞいているが\n",
+                "なかみの　しょうたいは　なぞのまま。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

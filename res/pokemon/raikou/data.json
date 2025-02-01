@@ -114,8 +114,59 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 3,
-        "entry_text": "It is said to have fallen with\nlightning. It can fire thunderbolts\nfrom the rain clouds on its back.",
-        "category": "Thunder Pokémon"
+        "english": {
+            "category": "Thunder Pokémon",
+            "entry_text": [
+                "It is said to have fallen with\n",
+                "lightning. It can fire thunderbolts\n",
+                "from the rain clouds on its back."
+            ]
+        },
+        "french": {
+            "name": "RAIKOU",
+            "category": "Pokémon Foudre",
+            "entry_text": [
+                "On prétend qu’il est tombé avec la\n",
+                "foudre. Il peut lancer des éclairs\n",
+                "grâce aux nuages sur son dos."
+            ]
+        },
+        "german": {
+            "name": "RAIKOU",
+            "category": "Donner",
+            "entry_text": [
+                "Dieses PKMN ist der personifizierte\n",
+                "Blitz. Es kann aus den Wolken über\n",
+                "seinem Rücken Blitze schleudern."
+            ]
+        },
+        "italian": {
+            "name": "RAIKOU",
+            "category": "Pokémon Tuono",
+            "entry_text": [
+                "Pare che sia caduto con un\n",
+                "fulmine. Può scagliare saette dalle\n",
+                "nuvole di pioggia che ha sul dorso."
+            ]
+        },
+        "spanish": {
+            "name": "RAIKOU",
+            "category": "Pokémon Trueno",
+            "entry_text": [
+                "Dicen que apareció con un\n",
+                "relámpago. Puede lanzar rayos\n",
+                "desde las nubes de su lomo."
+            ]
+        },
+        "japanese": {
+            "name": "ライコウ",
+            "category": "いかずちポケモン",
+            "entry_text": [
+                "カミナリと　ともに　おちてきたと\n",
+                "いわれている。せなかの　あまぐもから\n",
+                "カミナリを　うちだすことが　できる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

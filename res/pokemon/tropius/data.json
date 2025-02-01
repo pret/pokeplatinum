@@ -117,8 +117,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 0,
-        "entry_text": "Delicious fruits grew out from\naround its neck because it always\nate the same kind of fruit.",
-        "category": "Fruit Pokémon"
+        "english": {
+            "category": "Fruit Pokémon",
+            "entry_text": [
+                "Delicious fruits grew out from\n",
+                "around its neck because it always\n",
+                "ate the same kind of fruit."
+            ]
+        },
+        "french": {
+            "name": "TROPIUS",
+            "category": "Pokémon Fruit",
+            "entry_text": [
+                "A force de manger son fruit\n",
+                "préféré, il a fini par pousser\n",
+                "autour de son cou."
+            ]
+        },
+        "german": {
+            "name": "TROPIUS",
+            "category": "Obst",
+            "entry_text": [
+                "Da es ausschließlich seine Lieb-\n",
+                "lingsfrucht frisst, begann diese,\n",
+                "um seinen Hals herumzuwachsen."
+            ]
+        },
+        "italian": {
+            "name": "TROPIUS",
+            "category": "Pokémon Frutto",
+            "entry_text": [
+                "Poiché mangiava sempre i suoi frutti\n",
+                "preferiti, questi hanno cominciato\n",
+                "a crescergli attorno al collo."
+            ]
+        },
+        "spanish": {
+            "name": "TROPIUS",
+            "category": "Pokémon Fruto",
+            "entry_text": [
+                "Como solo comía su fruta favorita,\n",
+                "al final terminó creciéndole en su\n",
+                "propio cuello."
+            ]
+        },
+        "japanese": {
+            "name": "トロピウス",
+            "category": "フル－ツポケモン",
+            "entry_text": [
+                "だいこうぶつの　くだものばかり\n",
+                "たべていたら　じぶんの　くびに\n",
+                "くだものが　できるようになった。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

@@ -111,8 +111,59 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "It is highly popular among female\nTrainers for its sublime fur.\nIt does not keep a nest.",
-        "category": "Prim Pokémon"
+        "english": {
+            "category": "Prim Pokémon",
+            "entry_text": [
+                "It is highly popular among female\n",
+                "Trainers for its sublime fur.\n",
+                "It does not keep a nest."
+            ]
+        },
+        "french": {
+            "name": "DELCATTY",
+            "category": "Pokémon Guindé",
+            "entry_text": [
+                "Les femmes Dresseurs raffolent\n",
+                "de sa sublime fourrure. Il ne\n",
+                "possède pas de nid."
+            ]
+        },
+        "german": {
+            "name": "ENEKORO",
+            "category": "Eingebildet",
+            "entry_text": [
+                "Dieses PKMN ist bei weiblichen\n",
+                "Trainern aufgrund seines Fells\n",
+                "beliebt."
+            ]
+        },
+        "italian": {
+            "name": "DELCATTY",
+            "category": "Pokémon Finezza",
+            "entry_text": [
+                "Ha successo fra gli Allenatori di\n",
+                "sesso femminile per la sua bellissima\n",
+                "pelliccia. Non ha una tana fissa."
+            ]
+        },
+        "spanish": {
+            "name": "DELCATTY",
+            "category": "Pokémon Cursi",
+            "entry_text": [
+                "Tiene mucho éxito entre las\n",
+                "entrenadoras por su suave pelaje.\n",
+                "No vive en un sitio fijo."
+            ]
+        },
+        "japanese": {
+            "name": "エネコロロ",
+            "category": "おすましポケモン",
+            "entry_text": [
+                "うつくしい　けなみを　もち\n",
+                "じょせいトレ－ナ－に　だいにんき。\n",
+                "きまった　すみかを　もたない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

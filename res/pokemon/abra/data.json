@@ -116,8 +116,59 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "Using its psychic power is such a\nstrain on its brain that it needs\nto sleep for 18 hours a day.",
-        "category": "Psi Pokémon"
+        "english": {
+            "category": "Psi Pokémon",
+            "entry_text": [
+                "Using its psychic power is such a\n",
+                "strain on its brain that it needs\n",
+                "to sleep for 18 hours a day."
+            ]
+        },
+        "french": {
+            "name": "ABRA",
+            "category": "Pokémon Psy",
+            "entry_text": [
+                "Il dort 18 heures par jour. Même\n",
+                "éveillé, il ne prend pas la peine\n",
+                "de se lever pour se téléporter."
+            ]
+        },
+        "german": {
+            "name": "ABRA",
+            "category": "Psi",
+            "entry_text": [
+                "18 Stunden am Tag schläft es. Und\n",
+                "wenn es wach ist, teleportiert es\n",
+                "sich, während es sitzen bleibt."
+            ]
+        },
+        "italian": {
+            "name": "ABRA",
+            "category": "Pokémon Psico",
+            "entry_text": [
+                "Dorme per 18 ore al giorno.\n",
+                "Anche da sveglio, si teletrasporta\n",
+                "rimanendo seduto."
+            ]
+        },
+        "spanish": {
+            "name": "ABRA",
+            "category": "Pokémon Psi",
+            "entry_text": [
+                "Duerme 18 horas al día. Cuando\n",
+                "está despierto no se levanta ni\n",
+                "para teletransportarse."
+            ]
+        },
+        "japanese": {
+            "name": "ケ－シィ",
+            "category": "ねんりきポケモン",
+            "entry_text": [
+                "まいにち　１８じかん　ねむる。\n",
+                "めざめている　ときも　すわったまま\n",
+                "テレポ－トで　いどうする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

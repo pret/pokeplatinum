@@ -115,8 +115,59 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "It grips prey with its pincers\nuntil the prey is torn in half.\nWhat it can’t tear, it tosses far.",
-        "category": "Stag Beetle Pokémon"
+        "english": {
+            "category": "Stag Beetle Pokémon",
+            "entry_text": [
+                "It grips prey with its pincers\n",
+                "until the prey is torn in half.\n",
+                "What it can’t tear, it tosses far."
+            ]
+        },
+        "french": {
+            "name": "SCARABRUTE",
+            "category": "Pokémon Scarabée",
+            "entry_text": [
+                "Il serre les proies dans ses pinces\n",
+                "pour les trancher en deux. S’il n’y\n",
+                "arrive pas, il les jette au loin."
+            ]
+        },
+        "german": {
+            "name": "PINSIR",
+            "category": "Kneifkäfer",
+            "entry_text": [
+                "Es hält seine Beute mit seiner\n",
+                "Zange fest und teilt sie dann. Was\n",
+                "es nicht teilen kann, wirft es fort."
+            ]
+        },
+        "italian": {
+            "name": "PINSIR",
+            "category": "Pokémon Cervolante",
+            "entry_text": [
+                "Afferra la preda con le pinze e non\n",
+                "la molla finché non l’ha tranciata.\n",
+                "Se non ci riesce, la scaglia via."
+            ]
+        },
+        "spanish": {
+            "name": "PINSIR",
+            "category": "Pokémon Escarabajo",
+            "entry_text": [
+                "Atrapa presas con sus pinzas\n",
+                "hasta que las parte en dos. Lanza\n",
+                "lejos lo que no puede quebrar."
+            ]
+        },
+        "japanese": {
+            "name": "カイロス",
+            "category": "くわがたポケモン",
+            "entry_text": [
+                "２ほんの　ツノで　えものを　はさんで\n",
+                "ちぎれるまで　はなさない。ちぎれない\n",
+                "ときは　かなたまで　なげとばすのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

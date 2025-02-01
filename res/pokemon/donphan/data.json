@@ -117,8 +117,59 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It attacks by curling up, then\nrolling into its foe. It can blow\napart a house in one hit.",
-        "category": "Armor Pokémon"
+        "english": {
+            "category": "Armor Pokémon",
+            "entry_text": [
+                "It attacks by curling up, then\n",
+                "rolling into its foe. It can blow\n",
+                "apart a house in one hit."
+            ]
+        },
+        "french": {
+            "name": "DONPHAN",
+            "category": "Pokémon Armure",
+            "entry_text": [
+                "Il attaque en se roulant en boule\n",
+                "pour percuter l’ennemi. Il peut\n",
+                "abattre une maison d’un seul coup."
+            ]
+        },
+        "german": {
+            "name": "DONPHAN",
+            "category": "Panzer",
+            "entry_text": [
+                "Wenn es angreift, rollt es sich\n",
+                "zusammen und auf den Gegner zu. Es\n",
+                "kann Häuser zum Einsturz bringen."
+            ]
+        },
+        "italian": {
+            "name": "DONPHAN",
+            "category": "Pokémon Armatura",
+            "entry_text": [
+                "Si arrotola a palla e attacca il\n",
+                "nemico. Riesce ad abbattere\n",
+                "una casa con un solo colpo."
+            ]
+        },
+        "spanish": {
+            "name": "DONPHAN",
+            "category": "Pokémon Coraza",
+            "entry_text": [
+                "Se enrolla sobre sí mismo y se\n",
+                "lanza rodando contra el enemigo.\n",
+                "Puede derribar casas de un golpe."
+            ]
+        },
+        "japanese": {
+            "name": "ドンファン",
+            "category": "よろいポケモン",
+            "entry_text": [
+                "からだを　まるめて　かいてんしながら\n",
+                "とっしんする　こうげき。いちげきで\n",
+                "みんかを　ばらばらに　ふきとばす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

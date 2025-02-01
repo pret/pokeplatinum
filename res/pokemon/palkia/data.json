@@ -130,8 +130,59 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 2,
-        "entry_text": "A legendary Pokémon of Sinnoh.\nIt is said that space becomes more\nstable with PALKIA’s every breath.",
-        "category": "Spatial Pokémon"
+        "english": {
+            "category": "Spatial Pokémon",
+            "entry_text": [
+                "A legendary Pokémon of Sinnoh.\n",
+                "It is said that space becomes more\n",
+                "stable with PALKIA’s every breath."
+            ]
+        },
+        "french": {
+            "name": "PALKIA",
+            "category": "Pokémon Espace",
+            "entry_text": [
+                "Il peut modeler l’espace. Les\n",
+                "mythes de Sinnoh en parlent\n",
+                "comme d’une divinité ancienne."
+            ]
+        },
+        "german": {
+            "name": "PALKIA",
+            "category": "Räumlich",
+            "entry_text": [
+                "Es hat die Macht, den Raum zu\n",
+                "krümmen. In den Mythen von\n",
+                "Sinnoh erscheint es als Gottheit."
+            ]
+        },
+        "italian": {
+            "name": "PALKIA",
+            "category": "Pokémon Spazio",
+            "entry_text": [
+                "Ha l’abilità di distorcere lo spazio.\n",
+                "Nella mitologia della regione di\n",
+                "Sinnoh è una divinità."
+            ]
+        },
+        "spanish": {
+            "name": "PALKIA",
+            "category": "Pokémon Espacial",
+            "entry_text": [
+                "Tiene la habilidad de distorsionar\n",
+                "el espacio. La mitología de Sinnoh\n",
+                "lo describe como una deidad."
+            ]
+        },
+        "japanese": {
+            "name": "パルキア",
+            "category": "くうかんポケモン",
+            "entry_text": [
+                "くうかんを　ゆがめる　のうりょくを\n",
+                "もち　シンオウちほうの　しんわでは\n",
+                "かみさまとして　えがかれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

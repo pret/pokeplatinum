@@ -109,8 +109,55 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "entry_text": "It is known to drift on winds if it\nis bloated to bursting with stored\nelectricity.",
-        "category": "Ball Pokémon"
+        "english": {
+            "category": "Ball Pokémon",
+            "entry_text": [
+                "It is known to drift on winds if it\n",
+                "is bloated to bursting with stored\n",
+                "electricity."
+            ]
+        },
+        "french": {
+            "name": "ELECTRODE",
+            "category": "Pokémon Balle",
+            "entry_text": [
+                "Il se laisse porter par les vents\n",
+                "lorsque son corps est gonflé\n",
+                "d’électricité à en éclater."
+            ]
+        },
+        "german": {
+            "name": "LEKTROBAL",
+            "category": "Ball",
+            "entry_text": [
+                "Es lässt sich vom Wind treiben,\n",
+                "wenn es so voller Elektrizität ist,\n",
+                "dass es fast explodiert."
+            ]
+        },
+        "italian": {
+            "name": "ELECTRODE",
+            "category": "Pokémon Ball",
+            "entry_text": [
+                "Quando ha accumulato elettricità\n",
+                "fino quasi a scoppiare, si fa\n",
+                "trasportare dal vento."
+            ]
+        },
+        "spanish": {
+            "name": "ELECTRODE",
+            "category": "Pokémon Bola",
+            "entry_text": [ "Se lo lleva el viento si se hincha\n", "con la electricidad que almacena." ]
+        },
+        "japanese": {
+            "name": "マルマイン",
+            "category": "ボ－ルポケモン",
+            "entry_text": [
+                "でんきエネルギ－を　ためすぎて\n",
+                "ぱんぱんに　ふくらんだ　マルマインが\n",
+                "かぜに　ながされてくることが　ある。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

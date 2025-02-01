@@ -115,8 +115,59 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "It sneaks through grass without\nmaking a sound and strikes\nunsuspecting prey from behind.",
-        "category": "Snake Pokémon"
+        "english": {
+            "category": "Snake Pokémon",
+            "entry_text": [
+                "It sneaks through grass without\n",
+                "making a sound and strikes\n",
+                "unsuspecting prey from behind."
+            ]
+        },
+        "french": {
+            "name": "ABO",
+            "category": "Pokémon Serpent",
+            "entry_text": [
+                "Il se faufile dans l’herbe sans un\n",
+                "bruit et frappe dans le dos quand\n",
+                "sa proie s’y attend le moins. "
+            ]
+        },
+        "german": {
+            "name": "RETTAN",
+            "category": "Schlange",
+            "entry_text": [
+                "Es bewegt sich ohne einen Laut\n",
+                "durch das Gras und greift seine\n",
+                "ahnungslose Beute von hinten an. "
+            ]
+        },
+        "italian": {
+            "name": "EKANS",
+            "category": "Pokémon Serpente",
+            "entry_text": [
+                "Striscia nell’erba senza fare il\n",
+                "minimo rumore e colpisce alle\n",
+                "spalle le prede ignare del pericolo."
+            ]
+        },
+        "spanish": {
+            "name": "EKANS",
+            "category": "Pokémon Serpiente",
+            "entry_text": [
+                "Se mueve por la hierba en silencio\n",
+                "y sorprende a sus presas atacando\n",
+                "por detrás."
+            ]
+        },
+        "japanese": {
+            "name": "ア－ボ",
+            "category": "へびポケモン",
+            "entry_text": [
+                "おとを　まったく　たてずに　くさちの\n",
+                "なかを　すすむ。ゆだんしている\n",
+                "えものに　はいごから　おそいかかる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

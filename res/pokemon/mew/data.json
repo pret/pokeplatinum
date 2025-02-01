@@ -207,8 +207,59 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "entry_text": "Because it can use all kinds of\nmoves, many scientists believe MEW\nto be the ancestor of Pokémon.",
-        "category": "New Species Pokémon"
+        "english": {
+            "category": "New Species Pokémon",
+            "entry_text": [
+                "Because it can use all kinds of\n",
+                "moves, many scientists believe MEW\n",
+                "to be the ancestor of Pokémon."
+            ]
+        },
+        "french": {
+            "name": "MEW",
+            "category": "Pokémon Nouveau",
+            "entry_text": [
+                "Nombre de scientifiques voient en\n",
+                "lui l’ancêtre des Pokémon car il\n",
+                "maîtrise toutes leurs capacités."
+            ]
+        },
+        "german": {
+            "name": "MEW",
+            "category": "Neue Art",
+            "entry_text": [
+                "Es beherrscht alle möglichen\n",
+                "Attacken, daher sieht man in ihm\n",
+                "den Vorfahren aller Pokémon."
+            ]
+        },
+        "italian": {
+            "name": "MEW",
+            "category": "Pokémon Novaspecie",
+            "entry_text": [
+                "Poiché sa usare qualsiasi mossa,\n",
+                "molti scienziati ritengono che MEW\n",
+                "sia l’antenato di tutti i Pokémon."
+            ]
+        },
+        "spanish": {
+            "name": "MEW",
+            "category": "Pokémon N. Especie",
+            "entry_text": [
+                "Varios científicos lo consideran el\n",
+                "antecesor de los Pokémon porque\n",
+                "usa todo tipo de movimientos. "
+            ]
+        },
+        "japanese": {
+            "name": "ミュウ",
+            "category": "しんしゅポケモン",
+            "entry_text": [
+                "あらゆる　わざを　つかうため\n",
+                "ポケモンの　せんぞと　かんがえる\n",
+                "がくしゃが　たくさん　いる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

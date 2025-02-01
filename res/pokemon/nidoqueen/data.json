@@ -133,8 +133,59 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "Its entire body is armored with\nhard scales. It will protect the\nyoung in its burrow with its life.",
-        "category": "Drill Pokémon"
+        "english": {
+            "category": "Drill Pokémon",
+            "entry_text": [
+                "Its entire body is armored with\n",
+                "hard scales. It will protect the\n",
+                "young in its burrow with its life."
+            ]
+        },
+        "french": {
+            "name": "NIDOQUEEN",
+            "category": "Pokémon Perceur",
+            "entry_text": [
+                "Son corps est recouvert d’écailles\n",
+                "solides. Il donnera sa vie pour\n",
+                "secourir les petits de son terrier. "
+            ]
+        },
+        "german": {
+            "name": "NIDOQUEEN",
+            "category": "Bohrer",
+            "entry_text": [
+                "Sein ganzer Körper ist mit harten\n",
+                "Schuppen bedeckt. Es beschützt\n",
+                "sein Junges mit seinem Leben."
+            ]
+        },
+        "italian": {
+            "name": "NIDOQUEEN",
+            "category": "Pokémon Trapano",
+            "entry_text": [
+                "Una robusta armatura ricopre\n",
+                "l’intero corpo. Protegge i propri\n",
+                "cuccioli a costo della vita."
+            ]
+        },
+        "spanish": {
+            "name": "NIDOQUEEN",
+            "category": "Pokémon Taladro",
+            "entry_text": [
+                "Tiene el cuerpo cubierto de duras\n",
+                "escamas. Protege a su cría con\n",
+                "toda su fuerza."
+            ]
+        },
+        "japanese": {
+            "name": "ニドクイン",
+            "category": "ドリルポケモン",
+            "entry_text": [
+                "よろいのように　かたい　ウロコが\n",
+                "ぜんしんを　つつむ。すあなの\n",
+                "こどもを　いのちがけで　まもる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

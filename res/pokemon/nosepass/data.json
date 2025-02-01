@@ -116,8 +116,55 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "When endangered, it may protect\nitself by raising its magnetism and\ndrawing iron objects to its body.",
-        "category": "Compass Pokémon"
+        "english": {
+            "category": "Compass Pokémon",
+            "entry_text": [
+                "When endangered, it may protect\n",
+                "itself by raising its magnetism and\n",
+                "drawing iron objects to its body."
+            ]
+        },
+        "french": {
+            "name": "TARINOR",
+            "category": "Pokémon Boussole",
+            "entry_text": [
+                "Son nez est un aimant, c’est\n",
+                "pourquoi ce Pokémon fait toujours\n",
+                "face au nord."
+            ]
+        },
+        "german": {
+            "name": "NASGNET",
+            "category": "Kompass",
+            "entry_text": [ "Seine Nase ist ein Magnet. Daher\n", "sieht das PKMN immer nach Norden." ]
+        },
+        "italian": {
+            "name": "NOSEPASS",
+            "category": "Pokémon Bussola",
+            "entry_text": [
+                "Il suo naso è magnetico. Per questo\n",
+                "motivo lo tiene sempre puntato\n",
+                "verso nord."
+            ]
+        },
+        "spanish": {
+            "name": "NOSEPASS",
+            "category": "Pokémon Brújula",
+            "entry_text": [
+                "Su nariz es un imán. Por eso el\n",
+                "rostro de este Pokémon siempre\n",
+                "se orienta al norte."
+            ]
+        },
+        "japanese": {
+            "name": "ノズパス",
+            "category": "コンパスポケモン",
+            "entry_text": [
+                "はなが　じしゃくに　なっているので\n",
+                "つねに　ほっきょくの　ほうがくに\n",
+                "かおを　むけている　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -107,8 +107,59 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "In autumn, its body becomes more\nfatty in preparing to propose to a\nmate. It takes on beautiful colors.",
-        "category": "Goldfish Pokémon"
+        "english": {
+            "category": "Goldfish Pokémon",
+            "entry_text": [
+                "In autumn, its body becomes more\n",
+                "fatty in preparing to propose to a\n",
+                "mate. It takes on beautiful colors."
+            ]
+        },
+        "french": {
+            "name": "POISSOROY",
+            "category": "Pokémon Poisson",
+            "entry_text": [
+                "Il niche dans des rochers du \n",
+                "ruisseau qu’il évide avec sa corne.\n",
+                "Il donnerait sa vie pour ses œufs."
+            ]
+        },
+        "german": {
+            "name": "GOLKING",
+            "category": "Goldfisch",
+            "entry_text": [
+                "Es baut Nester, indem es Steine im\n",
+                "Fluss mit seinem Horn aushöhlt. Es\n",
+                "verteidigt seine Eier mit dem Leben."
+            ]
+        },
+        "italian": {
+            "name": "SEAKING",
+            "category": "Pokémon Pescerosso",
+            "entry_text": [
+                "Con il suo corno, perfora le rocce\n",
+                "sul letto dei fiumi per farsi il nido.\n",
+                "Difende le uova a costo della vita."
+            ]
+        },
+        "spanish": {
+            "name": "SEAKING",
+            "category": "Pokémon Pez Color",
+            "entry_text": [
+                "Hace su nido en los agujeros\n",
+                "que cava con el cuerno. Defiende\n",
+                "sus huevos con su vida."
+            ]
+        },
+        "japanese": {
+            "name": "アズマオウ",
+            "category": "きんぎょポケモン",
+            "entry_text": [
+                "あたまの　ツノで　かわぞこにある\n",
+                "いわを　くりぬいて　すを　つくる。\n",
+                "タマゴを　いのちがけで　まもる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

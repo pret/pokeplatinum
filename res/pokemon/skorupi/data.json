@@ -119,8 +119,59 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "As soon as the tail claws close,\nits needle tips secrete poison.\nIt can survive a year without food.",
-        "category": "Scorpion Pokémon"
+        "english": {
+            "category": "Scorpion Pokémon",
+            "entry_text": [
+                "As soon as the tail claws close,\n",
+                "its needle tips secrete poison.\n",
+                "It can survive a year without food."
+            ]
+        },
+        "french": {
+            "name": "RAPION",
+            "category": "Pokémon Scorpion",
+            "entry_text": [
+                "Il saisit sa proie avec les pinces de\n",
+                "sa queue, lui injecte un poison et\n",
+                "la retient jusqu’à ce qu’il agisse."
+            ]
+        },
+        "german": {
+            "name": "PIONSKORA",
+            "category": "Skorpion",
+            "entry_text": [
+                "Es greift seine Beute mit den\n",
+                "Krallen an seinem Schweif und ver-\n",
+                "giftet sie. Dann wartet es ab..."
+            ]
+        },
+        "italian": {
+            "name": "SKORUPI",
+            "category": "Pokémon Scorpione",
+            "entry_text": [
+                "Afferra le prede con gli artigli\n",
+                "della coda e non si allontana finché\n",
+                "il veleno che inietta non agisce."
+            ]
+        },
+        "spanish": {
+            "name": "SKORUPI",
+            "category": "Pokémon Escorpión",
+            "entry_text": [
+                "Agarra a sus presas con las garras\n",
+                "de la cola y les inyecta veneno.\n",
+                "Espera hasta que hace efecto."
+            ]
+        },
+        "japanese": {
+            "name": "スコルピ",
+            "category": "さそりポケモン",
+            "entry_text": [
+                "しっぽの　ツメで　えものを　はさみ\n",
+                "どくを　おくりこむ。どくが　きくまで\n",
+                "ぜったいに　はなさない　しゅうねん。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

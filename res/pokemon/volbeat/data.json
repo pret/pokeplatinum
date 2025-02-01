@@ -118,8 +118,59 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It communicates with others by\nlighting up its rear at night. It\nloves ILLUMISE’s sweet aroma.",
-        "category": "Firefly Pokémon"
+        "english": {
+            "category": "Firefly Pokémon",
+            "entry_text": [
+                "It communicates with others by\n",
+                "lighting up its rear at night. It\n",
+                "loves ILLUMISE’s sweet aroma."
+            ]
+        },
+        "french": {
+            "name": "MUCIOLE",
+            "category": "Pokémon Luciole",
+            "entry_text": [
+                "Il communique avec ses pairs en\n",
+                "allumant son postérieur la nuit. Il\n",
+                "adore le doux parfum de LUMIVOLE."
+            ]
+        },
+        "german": {
+            "name": "VOLBEAT",
+            "category": "Libelle",
+            "entry_text": [
+                "Es kommuniziert mit anderen, indem\n",
+                "es sein Hinterteil zum Leuchten\n",
+                "bringt. Es liebt ILLUMISEs Duft."
+            ]
+        },
+        "italian": {
+            "name": "VOLBEAT",
+            "category": "Pokémon Lucciola",
+            "entry_text": [
+                "Di notte comunica con gli altri\n",
+                "illuminando la sua coda.\n",
+                "Ama il dolce aroma di ILLUMISE."
+            ]
+        },
+        "spanish": {
+            "name": "VOLBEAT",
+            "category": "Pokémon Luciérnaga",
+            "entry_text": [
+                "Se comunica con otros iluminando\n",
+                "su cola por la noche. Le encanta el\n",
+                "suave aroma de ILLUMISE."
+            ]
+        },
+        "japanese": {
+            "name": "バルビ－ト",
+            "category": "ほたるポケモン",
+            "entry_text": [
+                "よるになると　おしりを　ひからせ\n",
+                "なかまと　かいわする。イルミ－ゼの\n",
+                "だす　あまい　かおりが　だいすき。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -126,8 +126,59 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "This odd Pokémon can see both\nthe past and the future. It eyes\nthe sun’s movement all day.",
-        "category": "Mystic Pokémon"
+        "english": {
+            "category": "Mystic Pokémon",
+            "entry_text": [
+                "This odd Pokémon can see both\n",
+                "the past and the future. It eyes\n",
+                "the sun’s movement all day."
+            ]
+        },
+        "french": {
+            "name": "XATU",
+            "category": "Pokémon Mystique",
+            "entry_text": [
+                "Cet étrange Pokémon peut voir\n",
+                "l’avenir et le passé. Il guette \n",
+                "sans cesse la course du soleil."
+            ]
+        },
+        "german": {
+            "name": "XATU",
+            "category": "Mystik",
+            "entry_text": [
+                "Dieses PKMN kann die Vergangenheit\n",
+                "und die Zukunft sehen. Es\n",
+                "beobachtet ständig die Sonne."
+            ]
+        },
+        "italian": {
+            "name": "XATU",
+            "category": "Pokémon Magico",
+            "entry_text": [
+                "Pokémon enigmatico che vede il\n",
+                "passato e prevede il futuro osser-\n",
+                "vando il sole tutto il giorno."
+            ]
+        },
+        "spanish": {
+            "name": "XATU",
+            "category": "Pokémon Místico",
+            "entry_text": [
+                "Este extraño Pokémon puede ver\n",
+                "el pasado y el futuro. Se pasa el\n",
+                "día mirando al sol."
+            ]
+        },
+        "japanese": {
+            "name": "ネイティオ",
+            "category": "せいれいポケモン",
+            "entry_text": [
+                "かこと　みらいを　みとおせる。\n",
+                "まいにち　たいようの　うごきを\n",
+                "みつづけている　ふしぎな　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

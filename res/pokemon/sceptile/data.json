@@ -129,8 +129,59 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "The leaves that grow on its arms\ncan slice down thick trees. It is\nwithout peer in jungle combat.",
-        "category": "Forest Pokémon"
+        "english": {
+            "category": "Forest Pokémon",
+            "entry_text": [
+                "The leaves that grow on its arms\n",
+                "can slice down thick trees. It is\n",
+                "without peer in jungle combat."
+            ]
+        },
+        "french": {
+            "name": "JUNGKO",
+            "category": "Pokémon Forêt",
+            "entry_text": [
+                "Les feuilles sur ses bras peuvent\n",
+                "trancher des troncs épais. C’est\n",
+                "le meilleur combattant des jungles."
+            ]
+        },
+        "german": {
+            "name": "GEWALDRO",
+            "category": "Dschungel",
+            "entry_text": [
+                "Die Blätter an seinen Armen können\n",
+                "dicke Bäume fällen. Im Dschungel-\n",
+                "kampf gibt es kein stärkeres PKMN."
+            ]
+        },
+        "italian": {
+            "name": "SCEPTILE",
+            "category": "Pokémon Foresta",
+            "entry_text": [
+                "Le foglie che crescono sulle sue\n",
+                "braccia tagliano anche grandi al-\n",
+                "beri. Nel suo habitat, è imbattibile."
+            ]
+        },
+        "spanish": {
+            "name": "SCEPTILE",
+            "category": "Pokémon Monte",
+            "entry_text": [
+                "Las hojas de sus brazos pueden\n",
+                "cortar gruesos árboles. Invencible\n",
+                "en los combates en la jungla."
+            ]
+        },
+        "japanese": {
+            "name": "ジュカイン",
+            "category": "みつりんポケモン",
+            "entry_text": [
+                "うでに　はえた　はっぱは　たいぼくも\n",
+                "すっぱり　きりたおす　きれあじ。\n",
+                "みつりんの　たたかいでは　むてき。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

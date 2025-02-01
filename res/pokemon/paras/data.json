@@ -111,8 +111,59 @@
         "pokemon_pos_f": 30,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 30,
-        "entry_text": "Mushrooms named tochukaso grow\non its back. They grow along\nwith the host PARAS.",
-        "category": "Mushroom Pokémon"
+        "english": {
+            "category": "Mushroom Pokémon",
+            "entry_text": [
+                "Mushrooms named tochukaso grow\n",
+                "on its back. They grow along\n",
+                "with the host PARAS."
+            ]
+        },
+        "french": {
+            "name": "PARAS",
+            "category": "Pokémon Champignon",
+            "entry_text": [
+                "Des champignons appelés\n",
+                "“tochukaso” poussent sur son dos.\n",
+                "Ils évoluent avec le PARAS hôte."
+            ]
+        },
+        "german": {
+            "name": "PARAS",
+            "category": "Pilz",
+            "entry_text": [
+                "Auf seinem Rücken wachsen Pilze,\n",
+                "die Tochukaso. Sie nehmen an Größe\n",
+                "zu, wenn PARAS wächst."
+            ]
+        },
+        "italian": {
+            "name": "PARAS",
+            "category": "Pokémon Fungo",
+            "entry_text": [
+                "Ha sul dorso dei funghi chiamati\n",
+                "tochukaso, che crescono insieme\n",
+                "al PARAS su cui si trovano."
+            ]
+        },
+        "spanish": {
+            "name": "PARAS",
+            "category": "Pokémon Hongo",
+            "entry_text": [
+                "En el lomo de PARAS crecen\n",
+                "unas setas parasitarias llamadas\n",
+                "tochukaso."
+            ]
+        },
+        "japanese": {
+            "name": "パラス",
+            "category": "きのこポケモン",
+            "entry_text": [
+                "とうちゅうかそうと　よばれる\n",
+                "キノコを　せなかに　はやしている。\n",
+                "パラスと　ともに　おおきく　そだつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

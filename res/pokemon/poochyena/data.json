@@ -112,8 +112,59 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "A Pokémon with a persistent\nnature, it chases its chosen prey\nuntil the prey becomes exhausted.",
-        "category": "Bite Pokémon"
+        "english": {
+            "category": "Bite Pokémon",
+            "entry_text": [
+                "A Pokémon with a persistent\n",
+                "nature, it chases its chosen prey\n",
+                "until the prey becomes exhausted."
+            ]
+        },
+        "french": {
+            "name": "MEDHYENA",
+            "category": "Pokémon Morsure",
+            "entry_text": [
+                "Un Pokémon très obstiné qui\n",
+                "poursuit sa proie jusqu’à ce\n",
+                "qu’elle soit épuisée."
+            ]
+        },
+        "german": {
+            "name": "FIFFYEN",
+            "category": "Biss",
+            "entry_text": [
+                "Ein beharrliches PKMN, das seine\n",
+                "Beute jagt, bis diese erschöpft\n",
+                "ist."
+            ]
+        },
+        "italian": {
+            "name": "POOCHYENA",
+            "category": "Pokémon Morso",
+            "entry_text": [
+                "Pokémon di natura ostinata.\n",
+                "Insegue la preda prescelta\n",
+                "finché questa non è esausta."
+            ]
+        },
+        "spanish": {
+            "name": "POOCHYENA",
+            "category": "Pokémon Mordisco",
+            "entry_text": [
+                "Es muy persistente. Si se fija en\n",
+                "una presa, no la dejará hasta que\n",
+                "caiga agotada."
+            ]
+        },
+        "japanese": {
+            "name": "ポチエナ",
+            "category": "かみつきポケモン",
+            "entry_text": [
+                "しつこい　せいかくの　ポケモン。\n",
+                "めをつけた　えものが　ヘトヘトに\n",
+                "つかれるまで　おいかけまわす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -117,8 +117,59 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "Almost all its body is its stomach.\nIts harsh digestive juices quickly\ndissolve anything it swallows.",
-        "category": "Stomach Pokémon"
+        "english": {
+            "category": "Stomach Pokémon",
+            "entry_text": [
+                "Almost all its body is its stomach.\n",
+                "Its harsh digestive juices quickly\n",
+                "dissolve anything it swallows."
+            ]
+        },
+        "french": {
+            "name": "GLOUPTI",
+            "category": "Pokémon Estomac",
+            "entry_text": [
+                "Il est principalement composé d’un\n",
+                "estomac dont les sucs digestifs\n",
+                "dissolvent tout ce qu’il avale."
+            ]
+        },
+        "german": {
+            "name": "SCHLUPPUCK",
+            "category": "Magen",
+            "entry_text": [
+                "Sein Körper besteht fast nur aus\n",
+                "Magen. Seine starken Verdauungs-\n",
+                "säfte zersetzen alles sehr schnell."
+            ]
+        },
+        "italian": {
+            "name": "GULPIN",
+            "category": "Pokémon Stomaco",
+            "entry_text": [
+                "La maggior parte del suo corpo è\n",
+                "stomaco. I suoi succhi gastrici\n",
+                "dissolvono subito ciò che ingerisce."
+            ]
+        },
+        "spanish": {
+            "name": "GULPIN",
+            "category": "Pokémon Estómago",
+            "entry_text": [
+                "Casi todo su cuerpo es estómago.\n",
+                "Sus potentes jugos gástricos\n",
+                "disuelven rápido cualquier cosa."
+            ]
+        },
+        "japanese": {
+            "name": "ゴクリン",
+            "category": "いぶくろポケモン",
+            "entry_text": [
+                "からだの　ほとんどが　いぶくろ。\n",
+                "きょうりょくな　いえきで　のみこんだ\n",
+                "ものを　たちまち　しょうかする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

@@ -100,8 +100,59 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "Sensitive to changing temperature,\nthe bud is said to bloom when it\nfeels the sun’s warm touch.",
-        "category": "Bud Pokémon"
+        "english": {
+            "category": "Bud Pokémon",
+            "entry_text": [
+                "Sensitive to changing temperature,\n",
+                "the bud is said to bloom when it\n",
+                "feels the sun’s warm touch."
+            ]
+        },
+        "french": {
+            "name": "ROZBOUTON",
+            "category": "Pokémon Bourgeon",
+            "entry_text": [
+                "En hiver, son bourgeon se referme\n",
+                "pour résister au froid. Il s’ouvre\n",
+                "au printemps et libère du pollen."
+            ]
+        },
+        "german": {
+            "name": "KNOSPI",
+            "category": "Knospe",
+            "entry_text": [
+                "Im Winter schließt es die Knospe.\n",
+                "Im Frühjahr öffnet es die Knospe\n",
+                "und gibt Pollen ab."
+            ]
+        },
+        "italian": {
+            "name": "BUDEW",
+            "category": "Pokémon Germoglio",
+            "entry_text": [
+                "D’inverno chiude la sua gemma e\n",
+                "resiste al freddo. In primavera la\n",
+                "gemma si riapre e rilascia polline."
+            ]
+        },
+        "spanish": {
+            "name": "BUDEW",
+            "category": "Pokémon Brote",
+            "entry_text": [
+                "En invierno cierra su capullo para\n",
+                "protegerse del frío. En primavera,\n",
+                "el capullo se abre y esparce polen."
+            ]
+        },
+        "japanese": {
+            "name": "スボミ－",
+            "category": "つぼみポケモン",
+            "entry_text": [
+                "ふゆの　あいだは　つぼみを　とざして\n",
+                "さむさに　たえる。はるになると\n",
+                "つぼみを　ひらき　かふんを　とばす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -115,8 +115,59 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 8,
         "pokemon_pos_m": 1,
-        "entry_text": "After a rainy day, the flower on\nits back smells stronger. The\nscent attracts other Pokémon.",
-        "category": "Seed Pokémon"
+        "english": {
+            "category": "Seed Pokémon",
+            "entry_text": [
+                "After a rainy day, the flower on\n",
+                "its back smells stronger. The\n",
+                "scent attracts other Pokémon."
+            ]
+        },
+        "french": {
+            "name": "FLORIZARRE",
+            "category": "Pokémon Graine",
+            "entry_text": [
+                "Le parfum de sa fleur se fait plus\n",
+                "pénétrant les lendemains de pluie.\n",
+                "Cela appâte les autres Pokémon."
+            ]
+        },
+        "german": {
+            "name": "BISAFLOR",
+            "category": "Samen",
+            "entry_text": [
+                "Nach einem Regentag riecht die\n",
+                "Blume auf seinem Rücken intensiver.\n",
+                "Das Aroma zieht andere Pokémon an."
+            ]
+        },
+        "italian": {
+            "name": "VENUSAUR",
+            "category": "Pokémon Seme",
+            "entry_text": [
+                "Dopo la pioggia, il fiore sul suo\n",
+                "dorso emana un profumo più\n",
+                "intenso e attira gli altri Pokémon."
+            ]
+        },
+        "spanish": {
+            "name": "VENUSAUR",
+            "category": "Pokémon Semilla",
+            "entry_text": [
+                "Después de un día de lluvia, la flor\n",
+                "de su lomo tiene un aroma más\n",
+                "potente y atrae a otros Pokémon."
+            ]
+        },
+        "japanese": {
+            "name": "フシギバナ",
+            "category": "たねポケモン",
+            "entry_text": [
+                "あめの　ふった　よくじつは　せなかの\n",
+                "はなの　かおりが　つよまる。かおりに\n",
+                "さそわれ　ポケモンが　あつまる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

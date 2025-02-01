@@ -120,8 +120,59 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It loves the crying of children. It\nstartles bad kids by passing\nthrough walls and making them cry.",
-        "category": "Requiem Pokémon"
+        "english": {
+            "category": "Requiem Pokémon",
+            "entry_text": [
+                "It loves the crying of children. It\n",
+                "startles bad kids by passing\n",
+                "through walls and making them cry."
+            ]
+        },
+        "french": {
+            "name": "SKELENOX",
+            "category": "Pokémon Requiem",
+            "entry_text": [
+                "Il poursuit assidûment sa proie, où\n",
+                "qu’elle aille. Il n’abandonne sa\n",
+                "traque qu’au lever du soleil."
+            ]
+        },
+        "german": {
+            "name": "ZWIRRLICHT",
+            "category": "Requiem",
+            "entry_text": [
+                "Verbissen verfolgt es seine Beute\n",
+                "überallhin. Doch sobald die Sonne\n",
+                "aufgeht, ist die Jagd vorbei."
+            ]
+        },
+        "italian": {
+            "name": "DUSKULL",
+            "category": "Pokémon Requiem",
+            "entry_text": [
+                "Segue ostinatamente la preda\n",
+                "ovunque essa vada. Abbandona la\n",
+                "caccia solo all’alba."
+            ]
+        },
+        "spanish": {
+            "name": "DUSKULL",
+            "category": "Pokémon Réquiem",
+            "entry_text": [
+                "Persigue a su presa como un perro\n",
+                "allá donde vaya. No obstante,\n",
+                "abandona la caza al amanecer."
+            ]
+        },
+        "japanese": {
+            "name": "ヨマワル",
+            "category": "おむかえポケモン",
+            "entry_text": [
+                "どこまでも　えものを　おいつづける\n",
+                "しゅうねんぶかい　せいかくだが\n",
+                "あさひが　のぼると　あきらめる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

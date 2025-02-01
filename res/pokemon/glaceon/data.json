@@ -110,8 +110,59 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "By controlling its body heat, it can\nfreeze the atmosphere around it\nto make a diamond-dust flurry.",
-        "category": "Fresh Snow Pokémon"
+        "english": {
+            "category": "Fresh Snow Pokémon",
+            "entry_text": [
+                "By controlling its body heat, it can\n",
+                "freeze the atmosphere around it\n",
+                "to make a diamond-dust flurry."
+            ]
+        },
+        "french": {
+            "name": "GIVRALI",
+            "category": "Pokémon Poudreuse",
+            "entry_text": [
+                "Il peut geler sa fourrure pour se\n",
+                "protéger en rendant ses poils\n",
+                "aussi durs que des piquants."
+            ]
+        },
+        "german": {
+            "name": "GLAZIOLA",
+            "category": "Neuschnee",
+            "entry_text": [
+                "Will es sich schützen, kann es sein\n",
+                "Fell gefrieren, so dass jedes Haar\n",
+                "wie eine Nadel absteht."
+            ]
+        },
+        "italian": {
+            "name": "GLACEON",
+            "category": "Pokémon Nevefresca",
+            "entry_text": [
+                "Come tecnica di difesa, congela\n",
+                "completamente la sua pelliccia\n",
+                "per far rizzare i peli come aghi."
+            ]
+        },
+        "spanish": {
+            "name": "GLACEON",
+            "category": "Pokémon Nievefresca",
+            "entry_text": [
+                "Para protegerse, puede congelar\n",
+                "completamente su pelaje, de modo\n",
+                "que los pelos parecen agujas."
+            ]
+        },
+        "japanese": {
+            "name": "グレイシア",
+            "category": "しんせつポケモン",
+            "entry_text": [
+                "ぜんしんの　たいもうを　こおらせて\n",
+                "ハリのように　するどく　とがらせる。\n",
+                "てきから　みを　まもる　しゅだん。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -133,8 +133,59 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It hides in the darkness of caves.\nIts diet of gems has transformed\nits eyes into gemstones.",
-        "category": "Darkness Pokémon"
+        "english": {
+            "category": "Darkness Pokémon",
+            "entry_text": [
+                "It hides in the darkness of caves.\n",
+                "Its diet of gems has transformed\n",
+                "its eyes into gemstones."
+            ]
+        },
+        "french": {
+            "name": "TENEFIX",
+            "category": "Pokémon Obscurité",
+            "entry_text": [
+                "A force de manger des gemmes, \n",
+                "les yeux de ce Pokémon des grottes\n",
+                "obscures sont devenus des joyaux."
+            ]
+        },
+        "german": {
+            "name": "ZOBIRIS",
+            "category": "Finsternis",
+            "entry_text": [
+                "Es versteckt sich im Dunkeln von\n",
+                "Höhlen. Seine Augen sind\n",
+                "Edelsteine."
+            ]
+        },
+        "italian": {
+            "name": "SABLEYE",
+            "category": "Pokémon Oscurità",
+            "entry_text": [
+                "Si cela nell’oscurità delle caverne.\n",
+                "Si nutre di gemme e per questo i\n",
+                "suoi occhi sono pietre preziose."
+            ]
+        },
+        "spanish": {
+            "name": "SABLEYE",
+            "category": "Pokémon Oscuridad",
+            "entry_text": [
+                "Se oculta en cavernas oscuras.\n",
+                "De tanto comer gemas sus ojos\n",
+                "son piedras preciosas."
+            ]
+        },
+        "japanese": {
+            "name": "ヤミラミ",
+            "category": "くらやみポケモン",
+            "entry_text": [
+                "どうくつの　くらやみに　ひそむ。\n",
+                "ほうせきを　たべているうちに\n",
+                "めが　ほうせきに　なってしまった。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -108,8 +108,59 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "It binds itself to trees in marshes.\nIt attracts prey with its sweet-\nsmelling drool and gulps them down.",
-        "category": "Bug Catcher Pokémon"
+        "english": {
+            "category": "Bug Catcher Pokémon",
+            "entry_text": [
+                "It binds itself to trees in marshes.\n",
+                "It attracts prey with its sweet-\n",
+                "smelling drool and gulps them down."
+            ]
+        },
+        "french": {
+            "name": "VORTENTE",
+            "category": "Pokémon Chopinsecte",
+            "entry_text": [
+                "Il attire sa proie avec sa salive\n",
+                "odorante avant de la croquer. Il\n",
+                "lui faut une journée pour l’avaler."
+            ]
+        },
+        "german": {
+            "name": "VENUFLIBIS",
+            "category": "Käfertot",
+            "entry_text": [
+                "Sein süßlich riechender Speichel\n",
+                "zieht Beute an, die es frisst. Es\n",
+                "braucht einen Tag, sie zu fressen."
+            ]
+        },
+        "italian": {
+            "name": "CARNIVINE",
+            "category": "Pokémon Insettivoro",
+            "entry_text": [
+                "Attira le prede con il dolce aroma\n",
+                "della saliva e poi le ingoia. Impiega\n",
+                "un giorno per mangiare una preda."
+            ]
+        },
+        "spanish": {
+            "name": "CARNIVINE",
+            "category": "Pokémon Caza Bichos",
+            "entry_text": [
+                "Atrae a sus presas con saliva de\n",
+                "olor dulce y las mastica. Tarda\n",
+                "todo un día en comérselas."
+            ]
+        },
+        "japanese": {
+            "name": "マスキッパ",
+            "category": "むしとりポケモン",
+            "entry_text": [
+                "あまい　においの　だえきで　えものを\n",
+                "おびきよせ　おおあごで　がぶり。\n",
+                "１にち　かけて　えものを　たべる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

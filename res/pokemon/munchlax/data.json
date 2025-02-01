@@ -128,8 +128,59 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "In its desperation to gulp down\nfood, it forgets about the food it\nhas hidden under its fur.",
-        "category": "Big Eater Pokémon"
+        "english": {
+            "category": "Big Eater Pokémon",
+            "entry_text": [
+                "In its desperation to gulp down\n",
+                "food, it forgets about the food it\n",
+                "has hidden under its fur."
+            ]
+        },
+        "french": {
+            "name": "GOINFREX",
+            "category": "Pokémon Goinfre",
+            "entry_text": [
+                "Il avale son poids en nourriture\n",
+                "chaque jour. Il avale tout sans \n",
+                "prendre le temps de mâcher."
+            ]
+        },
+        "german": {
+            "name": "MAMPFAXO",
+            "category": "Nimmersatt",
+            "entry_text": [
+                "Einmal am Tag verschlingt es eine\n",
+                "Nahrungsmenge, die seinem Gewicht\n",
+                "entspricht. Und das ohne zu kauen."
+            ]
+        },
+        "italian": {
+            "name": "MUNCHLAX",
+            "category": "Pokémon Ghiottone",
+            "entry_text": [
+                "Divora quotidianamente una quantità\n",
+                "di cibo pari al suo peso mandandolo\n",
+                "giù quasi senza masticare."
+            ]
+        },
+        "spanish": {
+            "name": "MUNCHLAX",
+            "category": "Pokémon Comilón",
+            "entry_text": [
+                "Engulle su peso en comida una\n",
+                "vez al día. Se lo traga todo\n",
+                "sin apenas masticar."
+            ]
+        },
+        "japanese": {
+            "name": "ゴンベ",
+            "category": "おおぐいポケモン",
+            "entry_text": [
+                "１にち　１かい　たいじゅうと　おなじ\n",
+                "りょうの　エサを　いっきに　たべる。\n",
+                "ほとんど　かまずに　まるのみ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

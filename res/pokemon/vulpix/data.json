@@ -112,8 +112,59 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It controls balls of fire. As it\ngrows, its six tails split from\ntheir tips to make more tails.",
-        "category": "Fox Pokémon"
+        "english": {
+            "category": "Fox Pokémon",
+            "entry_text": [
+                "It controls balls of fire. As it\n",
+                "grows, its six tails split from\n",
+                "their tips to make more tails."
+            ]
+        },
+        "french": {
+            "name": "GOUPIX",
+            "category": "Pokémon Renard",
+            "entry_text": [
+                "Il envoie des boules de feu. Avec\n",
+                "l’âge, ses six queues en forment de\n",
+                "nouvelles. "
+            ]
+        },
+        "german": {
+            "name": "VULPIX",
+            "category": "Fuchs",
+            "entry_text": [
+                "Es beherrscht Feuerbälle. Während\n",
+                "es wächst, teilen sich seine sechs\n",
+                "Schweife, um weitere zu bilden."
+            ]
+        },
+        "italian": {
+            "name": "VULPIX",
+            "category": "Pokémon Volpe",
+            "entry_text": [
+                "Controlla palle infuocate. Via via\n",
+                "che cresce, dalle sue sei code\n",
+                "se ne generano delle altre."
+            ]
+        },
+        "spanish": {
+            "name": "VULPIX",
+            "category": "Pokémon Zorro",
+            "entry_text": [
+                "Controla bolas de fuego. A medida\n",
+                "que crece, sus seis colas se\n",
+                "multiplican."
+            ]
+        },
+        "japanese": {
+            "name": "ロコン",
+            "category": "きつねポケモン",
+            "entry_text": [
+                "ほのおの　たまを　あやつる。\n",
+                "せいちょうすると　６ほんの　しっぽは\n",
+                "さきが　わかれて　さらに　ふえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

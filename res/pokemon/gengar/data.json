@@ -133,8 +133,59 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "The leer that floats in darkness\nbelongs to a GENGAR delighting in\ncasting curses on people.",
-        "category": "Shadow Pokémon"
+        "english": {
+            "category": "Shadow Pokémon",
+            "entry_text": [
+                "The leer that floats in darkness\n",
+                "belongs to a GENGAR delighting in\n",
+                "casting curses on people."
+            ]
+        },
+        "french": {
+            "name": "ECTOPLASMA",
+            "category": "Pokémon Ombre",
+            "entry_text": [
+                "On dit que lorsqu’ECTOPLASMA se \n",
+                "cache dans l’ombre, la température\n",
+                "alentour chute de 5 °C."
+            ]
+        },
+        "german": {
+            "name": "GENGAR",
+            "category": "Schatten",
+            "entry_text": [
+                "Es versteckt sich im Schatten. Man\n",
+                "sagt, wenn sich ein GENGAR ver-\n",
+                "steckt, kühlt es sich um 5 Grad ab."
+            ]
+        },
+        "italian": {
+            "name": "GENGAR",
+            "category": "Pokémon Ombra",
+            "entry_text": [
+                "Si nasconde nell’ombra. Pare che\n",
+                "nei luoghi in cui GENGAR si cela,\n",
+                "la temperatura si abbassi di 5°C."
+            ]
+        },
+        "spanish": {
+            "name": "GENGAR",
+            "category": "Pokémon Sombra",
+            "entry_text": [
+                "Se esconde entre las sombras.\n",
+                "Se dice que donde GENGAR acecha,\n",
+                "la temperatura baja 5 grados."
+            ]
+        },
+        "japanese": {
+            "name": "ゲンガ－",
+            "category": "シャド－ポケモン",
+            "entry_text": [
+                "ものかげに　すがたを　かくす。\n",
+                "ゲンガ－の　ひそんでいる　へやは\n",
+                "おんどが　５ど　さがると　いわれる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

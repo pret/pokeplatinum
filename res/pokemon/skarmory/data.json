@@ -119,8 +119,59 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "Despite being clad entirely in\niron-hard armor, it flies at\nspeeds over 180 mph.",
-        "category": "Armor Bird Pokémon"
+        "english": {
+            "category": "Armor Bird Pokémon",
+            "entry_text": [
+                "Despite being clad entirely in\n",
+                "iron-hard armor, it flies at\n",
+                "speeds over 180 mph."
+            ]
+        },
+        "french": {
+            "name": "AIRMURE",
+            "category": "Pokémon Armoiseau",
+            "entry_text": [
+                "Son corps est prisonnier d’une\n",
+                "armure dure comme l’acier, mais il\n",
+                "vole à plus de 300 km/h."
+            ]
+        },
+        "german": {
+            "name": "PANZAERON",
+            "category": "Flugstahl",
+            "entry_text": [
+                "Es wird komplett von einer eisen-\n",
+                "harten Rüstung geschützt. Wenn es\n",
+                "fliegt, erreicht es bis zu 300 km/h."
+            ]
+        },
+        "italian": {
+            "name": "SKARMORY",
+            "category": "Pokémon Armuccello",
+            "entry_text": [
+                "È interamente rivestito da\n",
+                "un’armatura dura come l’acciaio.\n",
+                "Vola alla velocità di 300 km/h."
+            ]
+        },
+        "spanish": {
+            "name": "SKARMORY",
+            "category": "Pokémon Coraza Ave",
+            "entry_text": [
+                "Una armadura de hierro cubre por\n",
+                "completo su cuerpo. Vuela a más\n",
+                "de 300 km por hora."
+            ]
+        },
+        "japanese": {
+            "name": "エア－ムド",
+            "category": "よろいどりポケモン",
+            "entry_text": [
+                "てつのような　かたい　よろいに\n",
+                "おおわれている。じそく３００キロの\n",
+                "スピ－ドで　おおぞらを　とびまわる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

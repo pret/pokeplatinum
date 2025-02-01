@@ -125,8 +125,59 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 13,
         "pokemon_pos_m": 7,
-        "entry_text": "Heedless of enemy attacks, it\ncloses in, shoves its tails onto the\nfoe, then looses high voltage.",
-        "category": "Thunderbolt Pokémon"
+        "english": {
+            "category": "Thunderbolt Pokémon",
+            "entry_text": [
+                "Heedless of enemy attacks, it\n",
+                "closes in, shoves its tails onto the\n",
+                "foe, then looses high voltage."
+            ]
+        },
+        "french": {
+            "name": "ELEKABLE",
+            "category": "Pokémon Foudrélec",
+            "entry_text": [
+                "Il place le bout de ses deux \n",
+                "queues sur son ennemi et libère\n",
+                "une décharge de 20 000 volts."
+            ]
+        },
+        "german": {
+            "name": "ELEVOLTEK",
+            "category": "Donnerkeil",
+            "entry_text": [
+                "Es berührt den Gegner mit seinen\n",
+                "beiden Schweifspitzen und entlädt\n",
+                "dann über 20 000 Volt."
+            ]
+        },
+        "italian": {
+            "name": "ELECTIVIRE",
+            "category": "Pokémon Saetta",
+            "entry_text": [
+                "Tocca il nemico con le sue due\n",
+                "code e rilascia una scarica\n",
+                "elettrica di oltre 20000 volt."
+            ]
+        },
+        "spanish": {
+            "name": "ELECTIVIRE",
+            "category": "Pokémon Rayo",
+            "entry_text": [
+                "Toca a su enemigo con las puntas\n",
+                "de sus dos colas y le suelta una\n",
+                "descarga de más de 20000 voltios."
+            ]
+        },
+        "japanese": {
+            "name": "エレキブル",
+            "category": "らいでんポケモン",
+            "entry_text": [
+                "２ほんの　しっぽの　さきを　あいてに\n",
+                "おしあてて　２まんボルトいじょうの\n",
+                "でんりゅうを　ながして　こうげき。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

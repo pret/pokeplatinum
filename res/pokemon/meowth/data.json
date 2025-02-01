@@ -126,8 +126,55 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "It is nocturnal in nature. If it\nspots something shiny, its eyes\nglitter brightly.",
-        "category": "Scratch Cat Pokémon"
+        "english": {
+            "category": "Scratch Cat Pokémon",
+            "entry_text": [
+                "It is nocturnal in nature. If it\n",
+                "spots something shiny, its eyes\n",
+                "glitter brightly."
+            ]
+        },
+        "french": {
+            "name": "MIAOUSS",
+            "category": "Pokémon Chadégout",
+            "entry_text": [
+                "Son regard s’anime à la vue\n",
+                "d’un objet brillant. C’est un\n",
+                "Pokémon nocturne."
+            ]
+        },
+        "german": {
+            "name": "MAUZI",
+            "category": "Katze",
+            "entry_text": [
+                "Ein nachtaktives Pokémon. Sieht es\n",
+                "etwas Schimmerndes, fangen\n",
+                "seine Augen an zu glänzen."
+            ]
+        },
+        "italian": {
+            "name": "MEOWTH",
+            "category": "Pokémon Graffimiao",
+            "entry_text": [
+                "È un Pokémon attivo di notte.\n",
+                "Se nota qualcosa di luccicante,\n",
+                "i suoi occhi cominciano a brillare. "
+            ]
+        },
+        "spanish": {
+            "name": "MEOWTH",
+            "category": "Pokémon Gato Araña",
+            "entry_text": [ "Es de naturaleza nocturna.\n", "Le atraen los objetos brillantes." ]
+        },
+        "japanese": {
+            "name": "ニャ－ス",
+            "category": "ばけねこポケモン",
+            "entry_text": [
+                "よなかに　こうどうする　しゅうせい。\n",
+                "きらきら　ひかるものを　みつけると\n",
+                "まけないくらい　ひとみが　かがやく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

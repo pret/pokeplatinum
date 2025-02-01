@@ -63,8 +63,59 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "It wraps silk around the branches\nof a tree. It drinks rainwater on\nits silk while awaiting evolution.",
-        "category": "Cocoon Pokémon"
+        "english": {
+            "category": "Cocoon Pokémon",
+            "entry_text": [
+                "It wraps silk around the branches\n",
+                "of a tree. It drinks rainwater on\n",
+                "its silk while awaiting evolution."
+            ]
+        },
+        "french": {
+            "name": "ARMULYS",
+            "category": "Pokémon Cocon",
+            "entry_text": [
+                "Il s’accroche en enroulant sa soie\n",
+                "autour des branches. Il reste\n",
+                "immobile en attendant d’évoluer."
+            ]
+        },
+        "german": {
+            "name": "SCHALOKO",
+            "category": "Kokon",
+            "entry_text": [
+                "Es bindet sich mit Seidenfäden an\n",
+                "Ästen fest und wartet so starr auf\n",
+                "seine Entwicklung."
+            ]
+        },
+        "italian": {
+            "name": "SILCOON",
+            "category": "Pokémon Bozzolo",
+            "entry_text": [
+                "SILCOON si ancora ai rami con\n",
+                "fili di seta. In questa posizione\n",
+                "aspetta immobile l’evoluzione."
+            ]
+        },
+        "spanish": {
+            "name": "SILCOON",
+            "category": "Pokémon Capullo",
+            "entry_text": [
+                "La seda que segrega su cuerpo le\n",
+                "permite agarrarse a los árboles y\n",
+                "esperar su evolución."
+            ]
+        },
+        "japanese": {
+            "name": "カラサリス",
+            "category": "さなぎポケモン",
+            "entry_text": [
+                "からだから　のびる　いとを　えだに\n",
+                "まきつけて　おちないように　こてい。\n",
+                "じっと　うごかずに　しんかを　まつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

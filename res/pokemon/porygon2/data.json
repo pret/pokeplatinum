@@ -122,8 +122,59 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "It was upgraded to enable the\nexploration of other planets.\nHowever, it failed to measure up.",
-        "category": "Virtual Pokémon"
+        "english": {
+            "category": "Virtual Pokémon",
+            "entry_text": [
+                "It was upgraded to enable the\n",
+                "exploration of other planets.\n",
+                "However, it failed to measure up."
+            ]
+        },
+        "french": {
+            "name": "PORYGON2",
+            "category": "Pokémon Virtuel",
+            "entry_text": [
+                "On lui a installé un logiciel de\n",
+                "terraformation pour lui permettre\n",
+                "de travailler dans l’espace."
+            ]
+        },
+        "german": {
+            "name": "PORYGON2",
+            "category": "Virtuell",
+            "entry_text": [
+                "Interstellare Software wurde\n",
+                "installiert, so dass dieses PKMN\n",
+                "sich auch im All bewegen kann."
+            ]
+        },
+        "italian": {
+            "name": "PORYGON2",
+            "category": "Pokémon Virtuale",
+            "entry_text": [
+                "Gli è stato installato un programma\n",
+                "di sviluppo planetario che lo rende\n",
+                "capace di lavorare nello spazio."
+            ]
+        },
+        "spanish": {
+            "name": "PORYGON2",
+            "category": "Pokémon Virtual",
+            "entry_text": [
+                "Tiene instalado un avanzado\n",
+                "software astrofísico que le\n",
+                "permite trabajar en el espacio."
+            ]
+        },
+        "japanese": {
+            "name": "ポリゴン２",
+            "category": "バ－チャルポケモン",
+            "entry_text": [
+                "わくせいかいはつようの　プログラムが\n",
+                "インスト－ルされている。しんくうの\n",
+                "うちゅうでも　かつどうできるのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

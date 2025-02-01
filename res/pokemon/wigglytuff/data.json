@@ -124,8 +124,59 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "Its fine fur feels sublime to the\ntouch. It can expand its body by\ninhaling air.",
-        "category": "Balloon Pokémon"
+        "english": {
+            "category": "Balloon Pokémon",
+            "entry_text": [
+                "Its fine fur feels sublime to the\n",
+                "touch. It can expand its body by\n",
+                "inhaling air."
+            ]
+        },
+        "french": {
+            "name": "GRODOUDOU",
+            "category": "Pokémon Bouboule",
+            "entry_text": [
+                "Sa fourrure est d’une douceur\n",
+                "incomparable au toucher. Il \n",
+                "peut gonfler en aspirant de l’air."
+            ]
+        },
+        "german": {
+            "name": "KNUDDELUFF",
+            "category": "Ballon",
+            "entry_text": [
+                "Sein feines Fell fühlt sich herrlich\n",
+                "an. Es kann sich größer machen,\n",
+                "indem es Luft einatmet."
+            ]
+        },
+        "italian": {
+            "name": "WIGGLYTUFF",
+            "category": "Pokémon Pallone",
+            "entry_text": [
+                "Il suo pelo è morbidissimo.\n",
+                "Riesce a gonfiarsi e a ingrandirsi\n",
+                "semplicemente inalando aria."
+            ]
+        },
+        "spanish": {
+            "name": "WIGGLYTUFF",
+            "category": "Pokémon Globo",
+            "entry_text": [
+                "Tiene un pelaje muy agradable al\n",
+                "tacto. Puede hinchar su cuerpo\n",
+                "tragando aire."
+            ]
+        },
+        "japanese": {
+            "name": "プクリン",
+            "category": "ふうせんポケモン",
+            "entry_text": [
+                "キメこまやかな　たいもうは\n",
+                "ごくじょうの　はだざわり。\n",
+                "いきを　すいこんで　ふくらむ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

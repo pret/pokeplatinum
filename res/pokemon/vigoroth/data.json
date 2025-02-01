@@ -128,8 +128,59 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "Its heart beats at a tenfold\ntempo, so it cannot sit still for\neven a moment.",
-        "category": "Wild Monkey Pokémon"
+        "english": {
+            "category": "Wild Monkey Pokémon",
+            "entry_text": [
+                "Its heart beats at a tenfold\n",
+                "tempo, so it cannot sit still for\n",
+                "even a moment."
+            ]
+        },
+        "french": {
+            "name": "VIGOROTH",
+            "category": "Pokémon Turbusinge",
+            "entry_text": [
+                "Son cœur bat dix fois plus vite que\n",
+                "la normale, c’est pourquoi il ne\n",
+                "tient pas en place."
+            ]
+        },
+        "german": {
+            "name": "MUNTIER",
+            "category": "Wildaffe",
+            "entry_text": [
+                "Sein Herz schlägt schneller als das\n",
+                "anderer Lebewesen. Daher kann es\n",
+                "nicht für einen Moment still sitzen."
+            ]
+        },
+        "italian": {
+            "name": "VIGOROTH",
+            "category": "Pokémon Indocile",
+            "entry_text": [
+                "Il suo cuore batte 10 volte più\n",
+                "velocemente del normale. Non\n",
+                "sta fermo neanche un momento."
+            ]
+        },
+        "spanish": {
+            "name": "VIGOROTH",
+            "category": "Pokémon Mono Feroz",
+            "entry_text": [
+                "Su corazón late a un ritmo diez\n",
+                "veces más rápido de lo normal.\n",
+                "No se está quieto ni un instante."
+            ]
+        },
+        "japanese": {
+            "name": "ヤルキモノ",
+            "category": "あばれザルポケモン",
+            "entry_text": [
+                "しんぞうが　１０ばいの　テンポで\n",
+                "こどう　しているため\n",
+                "ひとときも　じっとしていられない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

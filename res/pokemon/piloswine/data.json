@@ -123,8 +123,59 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "Covered by a shaggy coat, it is\nstrong against the cold. Its tusks\nof ice thicken when it snows.",
-        "category": "Swine Pokémon"
+        "english": {
+            "category": "Swine Pokémon",
+            "entry_text": [
+                "Covered by a shaggy coat, it is\n",
+                "strong against the cold. Its tusks\n",
+                "of ice thicken when it snows."
+            ]
+        },
+        "french": {
+            "name": "COCHIGNON",
+            "category": "Pokémon Porc",
+            "entry_text": [
+                "Il ne voit rien à cause de sa\n",
+                "fourrure touffue et se repère\n",
+                "à l’aide de son nez délicat."
+            ]
+        },
+        "german": {
+            "name": "KEIFEL",
+            "category": "Schwein",
+            "entry_text": [
+                "Sein dichtes Fell verdeckt seine\n",
+                "Augen. Es untersucht seine\n",
+                "Umgebung mit seiner Nase."
+            ]
+        },
+        "italian": {
+            "name": "PILOSWINE",
+            "category": "Pokémon Suino",
+            "entry_text": [
+                "Poiché il lungo pelo gli impedisce di\n",
+                "vedere, sonda il terreno circo-\n",
+                "stante con il sensibilissimo naso."
+            ]
+        },
+        "spanish": {
+            "name": "PILOSWINE",
+            "category": "Pokémon Puerco",
+            "entry_text": [
+                "Como su pelaje le impide ver,\n",
+                "estudia lo que le rodea con su\n",
+                "potente olfato."
+            ]
+        },
+        "japanese": {
+            "name": "イノム－",
+            "category": "いのししポケモン",
+            "entry_text": [
+                "ながい　たいもうで　おおわれていて\n",
+                "めが　みえないが　びんかんな　はなを\n",
+                "つかって　まわりの　ようすを　しる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

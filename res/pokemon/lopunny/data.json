@@ -125,8 +125,59 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "The ears appear to be delicate. If\nthey are touched roughly, it kicks\nwith its graceful legs.",
-        "category": "Rabbit Pokémon"
+        "english": {
+            "category": "Rabbit Pokémon",
+            "entry_text": [
+                "The ears appear to be delicate. If\n",
+                "they are touched roughly, it kicks\n",
+                "with its graceful legs."
+            ]
+        },
+        "french": {
+            "name": "LOCKPIN",
+            "category": "Pokémon Lapin",
+            "entry_text": [
+                "Un Pokémon extrêmement prudent.\n",
+                "Il couvre son corps de ses oreilles\n",
+                "pelucheuses en cas de danger."
+            ]
+        },
+        "german": {
+            "name": "SCHLAPOR",
+            "category": "Hase",
+            "entry_text": [
+                "Ein sehr vorsichtiges PKMN. Nimmt\n",
+                "es Gefahr wahr, schützt es seinen\n",
+                "Körper mit seinen weichen Ohren."
+            ]
+        },
+        "italian": {
+            "name": "LOPUNNY",
+            "category": "Pokémon Coniglio",
+            "entry_text": [
+                "Pokémon molto cauto. Se percepisce\n",
+                "un pericolo, si avvolge nelle sue\n",
+                "orecchie morbide e pelose."
+            ]
+        },
+        "spanish": {
+            "name": "LOPUNNY",
+            "category": "Pokémon Conejo",
+            "entry_text": [
+                "Es un Pokémon muy precavido.\n",
+                "Si siente peligro, se envuelve con\n",
+                "el pelaje de sus orejas."
+            ]
+        },
+        "japanese": {
+            "name": "ミミロップ",
+            "category": "うさぎポケモン",
+            "entry_text": [
+                "けいかいしんの　つよい　ポケモン。\n",
+                "きけんを　かんじると　ふわふわした\n",
+                "みみさきの　けで　からだを　つつむ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

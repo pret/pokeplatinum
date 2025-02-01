@@ -117,8 +117,59 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "Its four muscled arms slam foes\nwith powerful punches and chops\nat blinding speed.",
-        "category": "Superpower Pokémon"
+        "english": {
+            "category": "Superpower Pokémon",
+            "entry_text": [
+                "Its four muscled arms slam foes\n",
+                "with powerful punches and chops\n",
+                "at blinding speed."
+            ]
+        },
+        "french": {
+            "name": "MACKOGNEUR",
+            "category": "Pokémon Colosse",
+            "entry_text": [
+                "Ses quatre bras frappent à une\n",
+                "vitesse aveuglante. Il peut porter\n",
+                "1 000 coups en deux secondes."
+            ]
+        },
+        "german": {
+            "name": "MACHOMEI",
+            "category": "Kraftprotz",
+            "entry_text": [
+                "Mit seinen vier Armen schlägt es\n",
+                "blitzschnell zu. Es kann in zwei\n",
+                "Sekunden 1 000-mal zuschlagen."
+            ]
+        },
+        "italian": {
+            "name": "MACHAMP",
+            "category": "Pokémon Megaforza",
+            "entry_text": [
+                "Tira pugni con le quattro braccia\n",
+                "ad una velocità impressionante.\n",
+                "Scaglia 1000 pugni ogni 2 secondi."
+            ]
+        },
+        "spanish": {
+            "name": "MACHAMP",
+            "category": "Pokémon Superpoder",
+            "entry_text": [
+                "Golpea con sus cuatro brazos a\n",
+                "gran velocidad. Puede dar 1000\n",
+                "golpes en dos segundos."
+            ]
+        },
+        "japanese": {
+            "name": "カイリキ－",
+            "category": "かいりきポケモン",
+            "entry_text": [
+                "４ほんの　うでを　めにもとまらぬ\n",
+                "はやさで　うごかし　２びょうかんに\n",
+                "１０００ぱつの　パンチを　くりだす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

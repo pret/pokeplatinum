@@ -117,8 +117,59 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "A Pokémon that eats soil. Once it\nhas eaten a large mountain, it\ngoes to sleep so it can grow.",
-        "category": "Rock Skin Pokémon"
+        "english": {
+            "category": "Rock Skin Pokémon",
+            "entry_text": [
+                "A Pokémon that eats soil. Once it\n",
+                "has eaten a large mountain, it\n",
+                "goes to sleep so it can grow."
+            ]
+        },
+        "french": {
+            "name": "EMBRYLEX",
+            "category": "Pokémon Peaupierre",
+            "entry_text": [
+                "Un Pokémon qui se nourrit de terre.\n",
+                "Après avoir dévoré une montagne,\n",
+                "il s’endort pour grandir."
+            ]
+        },
+        "german": {
+            "name": "LARVITAR",
+            "category": "Felshaut",
+            "entry_text": [
+                "Dieses PKMN frisst das Erdreich.\n",
+                "Hat es einen Berg verspeist,\n",
+                "schläft es ein, um zu wachsen."
+            ]
+        },
+        "italian": {
+            "name": "LARVITAR",
+            "category": "Pokémon Peldisasso",
+            "entry_text": [
+                "Pokémon che mangia la terra. Dopo\n",
+                "aver mangiato un’intera montagna,\n",
+                "va a dormire per poter crescere."
+            ]
+        },
+        "spanish": {
+            "name": "LARVITAR",
+            "category": "Pokémon Piel Roca",
+            "entry_text": [
+                "Este Pokémon come tierra.\n",
+                "Cuando se come una montaña,\n",
+                "se echa a dormir para crecer."
+            ]
+        },
+        "japanese": {
+            "name": "ヨ－ギラス",
+            "category": "いわはだポケモン",
+            "entry_text": [
+                "つちを　たべる　ポケモン。\n",
+                "おおきな　やまを　たいらげると\n",
+                "せいちょうのため　ねむりはじめる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

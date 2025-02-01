@@ -128,8 +128,59 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "As a result of its long-held dream\nof flying, its cellular structure\nchanged, and wings grew out.",
-        "category": "Dragon Pokémon"
+        "english": {
+            "category": "Dragon Pokémon",
+            "entry_text": [
+                "As a result of its long-held dream\n",
+                "of flying, its cellular structure\n",
+                "changed, and wings grew out."
+            ]
+        },
+        "french": {
+            "name": "DRATTAK",
+            "category": "Pokémon Dragon",
+            "entry_text": [
+                "A force de rêver de pouvoir voler,\n",
+                "sa structure cellulaire a évolué\n",
+                "et il s’est vu pousser des ailes."
+            ]
+        },
+        "german": {
+            "name": "BRUTALANDA",
+            "category": "Drache",
+            "entry_text": [
+                "Seine Zellstruktur änderte sich, es\n",
+                "wuchsen ihm Flügel, da es immer\n",
+                "davon träumte, fliegen zu können."
+            ]
+        },
+        "italian": {
+            "name": "SALAMENCE",
+            "category": "Pokémon Drago",
+            "entry_text": [
+                "Il suo forte desiderio di volare ha\n",
+                "provocato una mutazione cellulare\n",
+                "e gli sono spuntate le ali."
+            ]
+        },
+        "spanish": {
+            "name": "SALAMENCE",
+            "category": "Pokémon Dragón",
+            "entry_text": [
+                "Siempre soñó con volar, por lo\n",
+                "que su estructura celular cambió\n",
+                "y le crecieron alas."
+            ]
+        },
+        "japanese": {
+            "name": "ボ－マンダ",
+            "category": "ドラゴンポケモン",
+            "entry_text": [
+                "そらを　とぶことを　ねがいつづけた\n",
+                "けっか　からだの　さいぼうが\n",
+                "へんかして　つばさが　はえてきた。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

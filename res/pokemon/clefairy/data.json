@@ -145,8 +145,59 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It is said that happiness will come\nto those who see a gathering of\nCLEFAIRY dancing under a full moon.",
-        "category": "Fairy Pokémon"
+        "english": {
+            "category": "Fairy Pokémon",
+            "entry_text": [
+                "It is said that happiness will come\n",
+                "to those who see a gathering of\n",
+                "CLEFAIRY dancing under a full moon."
+            ]
+        },
+        "french": {
+            "name": "MELOFEE",
+            "category": "Pokémon Fée",
+            "entry_text": [
+                "Tout le monde craque pour cet\n",
+                "adorable Pokémon. Il vit en groupe\n",
+                "dans le calme des montagnes."
+            ]
+        },
+        "german": {
+            "name": "PIEPI",
+            "category": "Fee",
+            "entry_text": [
+                "Es ist bekannt für sein liebens-\n",
+                "wertes Wesen. Man sagt, es lebt\n",
+                "in der Stille der Berge."
+            ]
+        },
+        "italian": {
+            "name": "CLEFAIRY",
+            "category": "Pokémon Fata",
+            "entry_text": [
+                "È molto amato per la sua indole\n",
+                "docile. Si pensa che viva in gruppo\n",
+                "nella quiete delle montagne."
+            ]
+        },
+        "spanish": {
+            "name": "CLEFAIRY",
+            "category": "Pokémon Hada",
+            "entry_text": [
+                "El preferido de mucha gente por su\n",
+                "naturaleza afable. Se cree que vive\n",
+                "en grupo en montañas tranquilas."
+            ]
+        },
+        "japanese": {
+            "name": "ピッピ",
+            "category": "ようせいポケモン",
+            "entry_text": [
+                "あいくるしい　しぐさで　だいにんき。\n",
+                "しずかな　やまおくで　なかまたちと\n",
+                "くらしていると　かんがえられている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -146,8 +146,59 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 4,
-        "entry_text": "Standing on its hind legs freed its\nforelegs and made it smarter. It is\nvery forgetful, however.",
-        "category": "Drill Pokémon"
+        "english": {
+            "category": "Drill Pokémon",
+            "entry_text": [
+                "Standing on its hind legs freed its\n",
+                "forelegs and made it smarter. It is\n",
+                "very forgetful, however."
+            ]
+        },
+        "french": {
+            "name": "RHINOFEROS",
+            "category": "Pokémon Perceur",
+            "entry_text": [
+                "Son cerveau s’est développé depuis\n",
+                "qu’il tient debout. Sa corne peut\n",
+                "traverser la pierre la plus dure. "
+            ]
+        },
+        "german": {
+            "name": "RIZEROS",
+            "category": "Bohrer",
+            "entry_text": [
+                "Sein Gehirn entwickelt sich, wenn es\n",
+                "sich auf die Hinterbeine stellt. Mit\n",
+                "dem Horn bohrt es durch Gestein."
+            ]
+        },
+        "italian": {
+            "name": "RHYDON",
+            "category": "Pokémon Trapano",
+            "entry_text": [
+                "Si è alzato sulle zampe posteriori\n",
+                "e poi gli si è sviluppato il cervello.\n",
+                "Con il corno perfora la roccia."
+            ]
+        },
+        "spanish": {
+            "name": "RHYDON",
+            "category": "Pokémon Taladro",
+            "entry_text": [
+                "Su cerebro se desarrolló cuando\n",
+                "se levantó sobre dos patas. Con\n",
+                "su cuerno puede cavar túneles."
+            ]
+        },
+        "japanese": {
+            "name": "サイドン",
+            "category": "ドリルポケモン",
+            "entry_text": [
+                "うしろあしで　たつようになり　のうが\n",
+                "おおきくなった。ドリルの　ツノで\n",
+                "いわを　くりぬき　トンネルを　ほる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

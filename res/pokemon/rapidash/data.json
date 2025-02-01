@@ -105,8 +105,59 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "When at an all-out gallop, its\nblazing mane sparkles, enhancing\nits beautiful appearance.",
-        "category": "Fire Horse Pokémon"
+        "english": {
+            "category": "Fire Horse Pokémon",
+            "entry_text": [
+                "When at an all-out gallop, its\n",
+                "blazing mane sparkles, enhancing\n",
+                "its beautiful appearance."
+            ]
+        },
+        "french": {
+            "name": "GALOPA",
+            "category": "Pokémon Cheval Feu",
+            "entry_text": [
+                "Son galop dépasse les 240 km/h. Il\n",
+                "file comme une flèche, laissant\n",
+                "flotter sa crinière ardente."
+            ]
+        },
+        "german": {
+            "name": "GALLOPA",
+            "category": "Feuerpferd",
+            "entry_text": [
+                "Seine Mähne lodert auf, wenn es\n",
+                "mit 240 km/h pfeilschnell\n",
+                "galoppiert."
+            ]
+        },
+        "italian": {
+            "name": "RAPIDASH",
+            "category": "Pokémon Cavalfuoco",
+            "entry_text": [
+                "Galoppa alla velocità di 240 km/h.\n",
+                "Corre come una freccia facendo\n",
+                "ondeggiare la criniera ardente."
+            ]
+        },
+        "spanish": {
+            "name": "RAPIDASH",
+            "category": "Pokémon Caballo F.",
+            "entry_text": [
+                "Galopa a casi 240 km por hora.\n",
+                "Su crin ardiente parece una flecha\n",
+                "cuando corre."
+            ]
+        },
+        "japanese": {
+            "name": "ギャロップ",
+            "category": "ひのうまポケモン",
+            "entry_text": [
+                "はしる　そくどは　じそく２４０キロ。\n",
+                "たてがみの　ほのおが　はげしく　もえ\n",
+                "やの　ように　かけぬける。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

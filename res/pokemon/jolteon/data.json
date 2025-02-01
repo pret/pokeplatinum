@@ -111,8 +111,59 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "If agitated, it uses electricity to\nstraighten out its fur and launch\nit in small bunches.",
-        "category": "Lightning Pokémon"
+        "english": {
+            "category": "Lightning Pokémon",
+            "entry_text": [
+                "If agitated, it uses electricity to\n",
+                "straighten out its fur and launch\n",
+                "it in small bunches."
+            ]
+        },
+        "french": {
+            "name": "VOLTALI",
+            "category": "Pokémon Orage",
+            "entry_text": [
+                "Il contrôle une puissance de 10 000\n",
+                "volts. Il peut hérisser sa fourrure\n",
+                "comme s’il s’agissait de piquants."
+            ]
+        },
+        "german": {
+            "name": "BLITZA",
+            "category": "Blitz",
+            "entry_text": [
+                "Es kontrolliert 10 000 Volt. Es\n",
+                "kann sein Fell so aufstellen, dass\n",
+                "es wie scharfe Nadeln wirkt."
+            ]
+        },
+        "italian": {
+            "name": "JOLTEON",
+            "category": "Pokémon Luminoso",
+            "entry_text": [
+                "Scarica elettricità a 10000 volt e\n",
+                "rizza tutti i peli come se fossero\n",
+                "aghi pungenti."
+            ]
+        },
+        "spanish": {
+            "name": "JOLTEON",
+            "category": "Pokémon Relámpago",
+            "entry_text": [
+                "Lanza rayos de 10000 voltios.\n",
+                "Es capaz de convertir su pelaje\n",
+                "en púas afiladísimas."
+            ]
+        },
+        "japanese": {
+            "name": "サンダ－ス",
+            "category": "かみなりポケモン",
+            "entry_text": [
+                "１まんボルトの　でんきを　あやつる。\n",
+                "ぜんしんの　たいもうが　さかだつと\n",
+                "ハリのように　するどく　とがる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

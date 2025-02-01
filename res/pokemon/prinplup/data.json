@@ -120,8 +120,59 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "Because every PRINPLUP considers\nitself to be the most important,\nthey can never form a group.",
-        "category": "Penguin Pokémon"
+        "english": {
+            "category": "Penguin Pokémon",
+            "entry_text": [
+                "Because every PRINPLUP considers\n",
+                "itself to be the most important,\n",
+                "they can never form a group."
+            ]
+        },
+        "french": {
+            "name": "PRINPLOUF",
+            "category": "Pokémon Pingouin",
+            "entry_text": [
+                "Il vit seul, à l’écart de ses pairs.\n",
+                "Chaque individu est convaincu\n",
+                "d’être meilleur que les autres."
+            ]
+        },
+        "german": {
+            "name": "PLIPRIN",
+            "category": "Pinguin",
+            "entry_text": [
+                "Es lebt allein, entfernt von\n",
+                "anderen. Jedes von ihnen denkt, es\n",
+                "sei das bedeutendste unter ihnen."
+            ]
+        },
+        "italian": {
+            "name": "PRINPLUP",
+            "category": "Pokémon Pinguino",
+            "entry_text": [
+                "Vive da solo lontano dagli altri.\n",
+                "Apparentemente ogni esemplare\n",
+                "crede di essere il più importante."
+            ]
+        },
+        "spanish": {
+            "name": "PRINPLUP",
+            "category": "Pokémon Pingüino",
+            "entry_text": [
+                "Vive solo, alejado de los demás.\n",
+                "Cada uno piensa que es el\n",
+                "más importante."
+            ]
+        },
+        "japanese": {
+            "name": "ポッタイシ",
+            "category": "ペンギンポケモン",
+            "entry_text": [
+                "むれを　つくらずに　１ぴきで　いる。\n",
+                "じぶんが　いちばん　えらいと　どの\n",
+                "ポッタイシも　かんがえているようだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

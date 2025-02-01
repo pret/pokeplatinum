@@ -125,8 +125,59 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "entry_text": "It stares at its silver spoon to\nfocus its mind. It emits more alpha\nwaves while doing so.",
-        "category": "Psi Pokémon"
+        "english": {
+            "category": "Psi Pokémon",
+            "entry_text": [
+                "It stares at its silver spoon to\n",
+                "focus its mind. It emits more alpha\n",
+                "waves while doing so."
+            ]
+        },
+        "french": {
+            "name": "KADABRA",
+            "category": "Pokémon Psy",
+            "entry_text": [
+                "Une ombre inquiétante obscurcit\n",
+                "l’écran télé quand il s’approche.\n",
+                "Le malheur frappe celui qui la voit."
+            ]
+        },
+        "german": {
+            "name": "KADABRA",
+            "category": "Psi",
+            "entry_text": [
+                "Wenn sich auf deinem Fernsehbild-\n",
+                "schirm ein Schatten zeigt, ist es in\n",
+                "der Nähe. Und das bringt Unglück."
+            ]
+        },
+        "italian": {
+            "name": "KADABRA",
+            "category": "Pokémon Psico",
+            "entry_text": [
+                "Se lo si avvicina, fa apparire alla\n",
+                "televisione un’ombra inquietante\n",
+                "che porta sfortuna a chi la guarda."
+            ]
+        },
+        "spanish": {
+            "name": "KADABRA",
+            "category": "Pokémon Psi",
+            "entry_text": [
+                "Si se acerca uno, una extraña\n",
+                "sombra aparece en los televisores.\n",
+                "Se dice que verla trae mala suerte."
+            ]
+        },
+        "japanese": {
+            "name": "ユンゲラ－",
+            "category": "ねんりきポケモン",
+            "entry_text": [
+                "ユンゲラ－が　そばにいると　テレビに\n",
+                "ふしぎな　かげが　うつる。それを\n",
+                "みると　ふこうになると　いわれる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

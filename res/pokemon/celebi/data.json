@@ -130,8 +130,59 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "It has the power to travel across\ntime, but it is said to appear only\nin peaceful times.",
-        "category": "Time Travel Pokémon"
+        "english": {
+            "category": "Time Travel Pokémon",
+            "entry_text": [
+                "It has the power to travel across\n",
+                "time, but it is said to appear only\n",
+                "in peaceful times."
+            ]
+        },
+        "french": {
+            "name": "CELEBI",
+            "category": "Pokémon Temporel",
+            "entry_text": [
+                "Il a le pouvoir de voyager dans le\n",
+                "temps. Cependant, on dit qu’il\n",
+                "n’apparaît qu’en temps de paix."
+            ]
+        },
+        "german": {
+            "name": "CELEBI",
+            "category": "Zeitreise",
+            "entry_text": [
+                "Es kann durch die Zeit reisen,\n",
+                "aber es erscheint nur zu\n",
+                "friedlichen Zeiten."
+            ]
+        },
+        "italian": {
+            "name": "CELEBI",
+            "category": "Pokémon Tempovia",
+            "entry_text": [
+                "Ha il potere di viaggiare attraverso\n",
+                "il tempo, ma si dice che appaia solo\n",
+                "in periodi di pace."
+            ]
+        },
+        "spanish": {
+            "name": "CELEBI",
+            "category": "Pokémon Viajetiempo",
+            "entry_text": [
+                "Puede viajar en el tiempo, pero\n",
+                "se dice que solo aparece en\n",
+                "tiempos de paz."
+            ]
+        },
+        "japanese": {
+            "name": "セレビィ",
+            "category": "ときわたりポケモン",
+            "entry_text": [
+                "じかんを　こえる　ちからを　つかう。\n",
+                "へいわな　じだいにだけ\n",
+                "すがたを　みせると　いわれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

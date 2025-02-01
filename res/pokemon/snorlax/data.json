@@ -129,8 +129,59 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 7,
-        "entry_text": "When its belly is full, it becomes\ntoo lethargic to even lift a finger,\nso it is safe to bounce on its belly.",
-        "category": "Sleeping Pokémon"
+        "english": {
+            "category": "Sleeping Pokémon",
+            "entry_text": [
+                "When its belly is full, it becomes\n",
+                "too lethargic to even lift a finger,\n",
+                "so it is safe to bounce on its belly."
+            ]
+        },
+        "french": {
+            "name": "RONFLEX",
+            "category": "Pokémon Pionceur",
+            "entry_text": [
+                "Son estomac peut digérer n’importe\n",
+                "quel type de nourriture, même \n",
+                "quand elle est moisie ou pourrie."
+            ]
+        },
+        "german": {
+            "name": "RELAXO",
+            "category": "Tagträumer",
+            "entry_text": [
+                "Sein Magen kann jede Art von\n",
+                "Nahrung verdauen, selbst wenn sie\n",
+                "verschimmelt und verdorben ist."
+            ]
+        },
+        "italian": {
+            "name": "SNORLAX",
+            "category": "Pokémon Sonno",
+            "entry_text": [
+                "Il suo stomaco riesce a digerire\n",
+                "qualsiasi tipo di cibo, anche se\n",
+                "marcio o ammuffito."
+            ]
+        },
+        "spanish": {
+            "name": "SNORLAX",
+            "category": "Pokémon Dormir",
+            "entry_text": [
+                "Su estómago puede digerir todo\n",
+                "tipo de comida, incluso si está\n",
+                "podrida o mohosa."
+            ]
+        },
+        "japanese": {
+            "name": "カビゴン",
+            "category": "いねむりポケモン",
+            "entry_text": [
+                "カビが　はえていても　くさっていても\n",
+                "だいじょうぶ。カビゴンの　いぶくろは\n",
+                "なんでも　しょうか　できるのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

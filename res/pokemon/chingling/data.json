@@ -113,8 +113,59 @@
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65527,
-        "entry_text": "There is an orb inside its mouth.\nWhen it hops, the orb bounces all\nover and makes a ringing sound.",
-        "category": "Bell Pokémon"
+        "english": {
+            "category": "Bell Pokémon",
+            "entry_text": [
+                "There is an orb inside its mouth.\n",
+                "When it hops, the orb bounces all\n",
+                "over and makes a ringing sound."
+            ]
+        },
+        "french": {
+            "name": "KORILLON",
+            "category": "Pokémon Clochette",
+            "entry_text": [
+                "Il émet des cris en agitant\n",
+                "l’orbe à l’arrière de sa gorge. Il\n",
+                "avance par bonds désordonnés."
+            ]
+        },
+        "german": {
+            "name": "KLINGPLIM",
+            "category": "Glöckchen",
+            "entry_text": [
+                "Es ruft, indem es eine Kugel in\n",
+                "seiner Kehle bewegt. Es bewegt sich\n",
+                "mit eiligen Hopsern fort."
+            ]
+        },
+        "italian": {
+            "name": "CHINGLING",
+            "category": "Pokémon Sonaglio",
+            "entry_text": [
+                "Emette versi muovendo la sfera\n",
+                "che ha nella gola.\n",
+                "Si muove saltellando agilmente."
+            ]
+        },
+        "spanish": {
+            "name": "CHINGLING",
+            "category": "Pokémon Campana",
+            "entry_text": [
+                "Emite chillidos al agitar la esfera\n",
+                "de su garganta. Se mueve con\n",
+                "enérgicos saltos."
+            ]
+        },
+        "japanese": {
+            "name": "リ－シャン",
+            "category": "すずポケモン",
+            "entry_text": [
+                "のどの　おくで　まるい　たまを\n",
+                "ふるわせて　なきごえを　だす。\n",
+                "ふわりと　はずんで　いどうする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

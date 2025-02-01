@@ -116,8 +116,59 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It attacks by spraying a horribly\nsmelly fluid from the tip of its tail.\nAttacks from above confound it.",
-        "category": "Skunk Pokémon"
+        "english": {
+            "category": "Skunk Pokémon",
+            "entry_text": [
+                "It attacks by spraying a horribly\n",
+                "smelly fluid from the tip of its tail.\n",
+                "Attacks from above confound it."
+            ]
+        },
+        "french": {
+            "name": "MOUFFLAIR",
+            "category": "Pokémon Moufette",
+            "entry_text": [
+                "Il attaque en projetant un\n",
+                "liquide fétide du bout de sa queue.\n",
+                "Il peut tirer à 50 mètres."
+            ]
+        },
+        "german": {
+            "name": "SKUNTANK",
+            "category": "Stinktier",
+            "entry_text": [
+                "Über seine Schweifspitze versprüht\n",
+                "es eine übelriechende Substanz. Die\n",
+                "Reichweite liegt bei über 50 Metern."
+            ]
+        },
+        "italian": {
+            "name": "SKUNTANK",
+            "category": "Pokémon Moffetta",
+            "entry_text": [
+                "Attacca spruzzando un fluido\n",
+                "puzzolente dalla coda. Ha un\n",
+                "raggio d’azione di oltre 50 metri."
+            ]
+        },
+        "spanish": {
+            "name": "SKUNTANK",
+            "category": "Pokémon Mofeta",
+            "entry_text": [
+                "Para atacar, emite un fluido\n",
+                "maloliente por la punta de su cola\n",
+                "que puede llegar a más de 50 m."
+            ]
+        },
+        "japanese": {
+            "name": "スカタンク",
+            "category": "スカンクポケモン",
+            "entry_text": [
+                "しっぽの　さきから　ひどい　においの\n",
+                "えきたいを　とばして　こうげきする。\n",
+                "ひきょりは　５０メ－トルいじょう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

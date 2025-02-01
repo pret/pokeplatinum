@@ -117,8 +117,59 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 13,
         "pokemon_pos_m": 65533,
-        "entry_text": "The transformation of its legs into\nwings made it better at flying, but\nmore clumsy at walking.",
-        "category": "Bat Pokémon"
+        "english": {
+            "category": "Bat Pokémon",
+            "entry_text": [
+                "The transformation of its legs into\n",
+                "wings made it better at flying, but\n",
+                "more clumsy at walking."
+            ]
+        },
+        "french": {
+            "name": "NOSTENFER",
+            "category": "Pokémon Chovsouris",
+            "entry_text": [
+                "Il vole rapidement et sans faire\n",
+                "de bruit grâce à ses quatre ailes.\n",
+                "C’est un Pokémon nocturne."
+            ]
+        },
+        "german": {
+            "name": "IKSBAT",
+            "category": "Fledermaus",
+            "entry_text": [
+                "Seine vier Flügel erlauben es dem\n",
+                "PKMN, schneller und leiser zu\n",
+                "fliegen. Es ist nachtaktiv."
+            ]
+        },
+        "italian": {
+            "name": "CROBAT",
+            "category": "Pokémon Pipistrello",
+            "entry_text": [
+                "Le sue quattro ali gli permettono\n",
+                "di volare più velocemente e più\n",
+                "silenziosamente. È attivo di notte."
+            ]
+        },
+        "spanish": {
+            "name": "CROBAT",
+            "category": "Pokémon Murciélago",
+            "entry_text": [
+                "Sus cuatro alas le permiten volar\n",
+                "más rápida y sigilosamente. Es\n",
+                "un Pokémon nocturno."
+            ]
+        },
+        "japanese": {
+            "name": "クロバット",
+            "category": "こうもりポケモン",
+            "entry_text": [
+                "４まいの　はねで　より　しずかに\n",
+                "より　はやく　とべるように　なった。\n",
+                "よるになると　かつどうを　はじめる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -127,8 +127,59 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "A very haughty Pokémon. Among\nfans, the size of the jewel in its\nforehead is a topic of much talk.",
-        "category": "Classy Cat Pokémon"
+        "english": {
+            "category": "Classy Cat Pokémon",
+            "entry_text": [
+                "A very haughty Pokémon. Among\n",
+                "fans, the size of the jewel in its\n",
+                "forehead is a topic of much talk."
+            ]
+        },
+        "french": {
+            "name": "PERSIAN",
+            "category": "Pokémon Chadeville",
+            "entry_text": [
+                "Un Pokémon très snob. La taille du\n",
+                "joyau qui orne son front alimente\n",
+                "bien des débats parmi ses fans."
+            ]
+        },
+        "german": {
+            "name": "SNOBILIKAT",
+            "category": "Rassekatze",
+            "entry_text": [
+                "Ein sehr stolzes Pokémon. Für Fans\n",
+                "ist die Größe des Juwels auf seiner\n",
+                "Stirn Anlass für Diskussionen."
+            ]
+        },
+        "italian": {
+            "name": "PERSIAN",
+            "category": "Pokémon Nobilgatto",
+            "entry_text": [
+                "Un Pokémon molto altezzoso. I fan\n",
+                "parlano spesso delle dimensioni\n",
+                "del gioiello che ha sulla testa."
+            ]
+        },
+        "spanish": {
+            "name": "PERSIAN",
+            "category": "Pokémon Gato Fino",
+            "entry_text": [
+                "Es un Pokémon muy arrogante. El\n",
+                "tamaño de la joya de su frente da\n",
+                "mucho que hablar."
+            ]
+        },
+        "japanese": {
+            "name": "ペルシアン",
+            "category": "シャムネコポケモン",
+            "entry_text": [
+                "きぐらいが　たかい　ポケモン。\n",
+                "マニアの　あいだでは　ひたいの\n",
+                "ほうせきの　サイズが　わだいになる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -146,8 +146,59 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 3,
-        "entry_text": "If it rampages, it knocks down\nmountains and buries rivers. Maps\nmust be redrawn afterward.",
-        "category": "Armor Pokémon"
+        "english": {
+            "category": "Armor Pokémon",
+            "entry_text": [
+                "If it rampages, it knocks down\n",
+                "mountains and buries rivers. Maps\n",
+                "must be redrawn afterward."
+            ]
+        },
+        "french": {
+            "name": "TYRANOCIF",
+            "category": "Pokémon Armure",
+            "entry_text": [
+                "Lorsqu’il est en colère, il abat des\n",
+                "montagnes et enterre des fleuves.\n",
+                "On doit alors modifier les cartes."
+            ]
+        },
+        "german": {
+            "name": "DESPOTAR",
+            "category": "Panzer",
+            "entry_text": [
+                "Bei einem Tobsuchtsanfall zerstört\n",
+                "es ganze Gebirge und legt Flüsse\n",
+                "trocken."
+            ]
+        },
+        "italian": {
+            "name": "TYRANITAR",
+            "category": "Pokémon Armatura",
+            "entry_text": [
+                "Se s’infuria, abbatte le montagne e\n",
+                "seppellisce i fiumi. In seguito, le\n",
+                "mappe devono essere riscritte. "
+            ]
+        },
+        "spanish": {
+            "name": "TYRANITAR",
+            "category": "Pokémon Coraza",
+            "entry_text": [
+                "Puede alterar el paisaje derribando\n",
+                "montañas y enterrando ríos. Da\n",
+                "mucho trabajo a los cartógrafos."
+            ]
+        },
+        "japanese": {
+            "name": "バンギラス",
+            "category": "よろいポケモン",
+            "entry_text": [
+                "バンギラスが　あばれると\n",
+                "やまが　くずれ　かわが　うまるため\n",
+                "ちずを　かきかえる　ことになる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

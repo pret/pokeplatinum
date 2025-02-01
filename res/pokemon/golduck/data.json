@@ -124,8 +124,59 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 8,
-        "entry_text": "It is seen swimming dynamically and\nelegantly using its well-developed\nlimbs and flippers.",
-        "category": "Duck Pokémon"
+        "english": {
+            "category": "Duck Pokémon",
+            "entry_text": [
+                "It is seen swimming dynamically and\n",
+                "elegantly using its well-developed\n",
+                "limbs and flippers."
+            ]
+        },
+        "french": {
+            "name": "AKWAKWAK",
+            "category": "Pokémon Canard",
+            "entry_text": [
+                "Un habitant des lacs. Il nage\n",
+                "plus vite qu’un champion\n",
+                "humain de natation."
+            ]
+        },
+        "german": {
+            "name": "ENTORON",
+            "category": "Ente",
+            "entry_text": [
+                "Dieses Pokémon lebt in Seen. Es\n",
+                "schwimmt schneller als der\n",
+                "schnellste menschliche Schwimmer."
+            ]
+        },
+        "italian": {
+            "name": "GOLDUCK",
+            "category": "Pokémon Papero",
+            "entry_text": [
+                "Un Pokémon che vive nei laghi.\n",
+                "Nuota più velocemente di un\n",
+                "campione di nuoto."
+            ]
+        },
+        "spanish": {
+            "name": "GOLDUCK",
+            "category": "Pokémon Pato",
+            "entry_text": [
+                "Este Pokémon vive en lagos.\n",
+                "En el agua es más rápido que\n",
+                "cualquier nadador profesional."
+            ]
+        },
+        "japanese": {
+            "name": "ゴルダック",
+            "category": "あひるポケモン",
+            "entry_text": [
+                "みずうみに　すむ　ポケモン。\n",
+                "およぐ　スピ－ドは　オリンピックの\n",
+                "きんメダリストよりも　はやい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

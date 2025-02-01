@@ -71,8 +71,59 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "The trio is together from birth.\nIt constantly gathers honey from\nflowers to please VESPIQUEN.",
-        "category": "Tiny Bee Pokémon"
+        "english": {
+            "category": "Tiny Bee Pokémon",
+            "entry_text": [
+                "The trio is together from birth.\n",
+                "It constantly gathers honey from\n",
+                "flowers to please VESPIQUEN."
+            ]
+        },
+        "french": {
+            "name": "APITRINI",
+            "category": "Pokémon Miniabeille",
+            "entry_text": [
+                "Un Pokémon qui en regroupe trois\n",
+                "autres. Il est toujours occupé à\n",
+                "apporter du nectar à APIREINE."
+            ]
+        },
+        "german": {
+            "name": "WADRIBIE",
+            "category": "Kleinbiene",
+            "entry_text": [
+                "Ein PKMN, geformt aus 3 einzelnen\n",
+                "PKMN. Fleißig bringt es Blütenhonig\n",
+                "zu HONWEISEL."
+            ]
+        },
+        "italian": {
+            "name": "COMBEE",
+            "category": "Pokémon Apetta",
+            "entry_text": [
+                "Pokémon formato da altri tre.\n",
+                "È sempre impegnato a portare il\n",
+                "nettare dei fiori a VESPIQUEN."
+            ]
+        },
+        "spanish": {
+            "name": "COMBEE",
+            "category": "Pokémon Abejita",
+            "entry_text": [
+                "Está formado por otros tres\n",
+                "Pokémon. Le lleva miel floral\n",
+                "a VESPIQUEN."
+            ]
+        },
+        "japanese": {
+            "name": "ミツハニ－",
+            "category": "はちのこポケモン",
+            "entry_text": [
+                "３びきが　ひとつになった　ポケモン。\n",
+                "ビ－クインのために　せっせと\n",
+                "はなの　あまい　ミツを　はこぶ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

@@ -115,8 +115,59 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "The fire on the tip of its tail is a\nmeasure of its life. If healthy,\nits tail burns intensely.",
-        "category": "Lizard Pokémon"
+        "english": {
+            "category": "Lizard Pokémon",
+            "entry_text": [
+                "The fire on the tip of its tail is a\n",
+                "measure of its life. If healthy,\n",
+                "its tail burns intensely."
+            ]
+        },
+        "french": {
+            "name": "SALAMECHE",
+            "category": "Pokémon Lézard",
+            "entry_text": [
+                "La flamme de sa queue symbolise sa\n",
+                "vitalité. Elle est intense quand il\n",
+                "est en bonne santé."
+            ]
+        },
+        "german": {
+            "name": "GLUMANDA",
+            "category": "Echse",
+            "entry_text": [
+                "Lodert die Flamme auf seiner\n",
+                "Schweifspitze hell, ist GLUMANDA\n",
+                "gesund."
+            ]
+        },
+        "italian": {
+            "name": "CHARMANDER",
+            "category": "Pokémon Lucertola",
+            "entry_text": [
+                "La fiamma sulla punta della coda\n",
+                "indica la sua vitalità. Se sta bene,\n",
+                "la fiamma è più ardente."
+            ]
+        },
+        "spanish": {
+            "name": "CHARMANDER",
+            "category": "Pokémon Lagartija",
+            "entry_text": [
+                "La llama de la punta de su cola\n",
+                "indica su salud. Si CHARMANDER\n",
+                "está sano, arderá con más fuerza."
+            ]
+        },
+        "japanese": {
+            "name": "ヒトカゲ",
+            "category": "とかげポケモン",
+            "entry_text": [
+                "ヒトカゲの　しっぽの　ほのおは\n",
+                "いのちの　ともしび。げんきな　ときは\n",
+                "ほのおも　ちからづよく　もえあがる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

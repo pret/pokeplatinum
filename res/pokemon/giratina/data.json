@@ -119,8 +119,8 @@
         "has": true,
         "size": "FOOTPRINT_LARGE"
     },
-    "pokedex_data": [
-        {
+    "pokedex_data": {
+        "origin": {
             "height": 69,
             "weight": 6500,
             "body_shape": "SHAPE_SERPENTINE",
@@ -131,11 +131,9 @@
             "trainer_pos_f": 24,
             "pokemon_pos_f": 1,
             "trainer_pos_m": 23,
-            "pokemon_pos_m": 1,
-            "entry_text": "It was banished for its violence.\nIt silently gazed upon the old\nworld from the Distortion World.",
-            "category": "Renegade Pokémon"
+            "pokemon_pos_m": 1
         },
-        {
+        "altered": {
             "height": 45,
             "weight": 7500,
             "body_shape": "SHAPE_TENTACLES",
@@ -146,10 +144,62 @@
             "trainer_pos_f": 26,
             "pokemon_pos_f": 3,
             "trainer_pos_m": 26,
-            "pokemon_pos_m": 3,
-            "entry_text": "It was banished for its violence.\nIt silently gazed upon the old\nworld from the Distortion World."
+            "pokemon_pos_m": 3
+        },
+        "english": {
+            "category": "Renegade Pokémon",
+            "entry_text": [
+                "It was banished for its violence.\n",
+                "It silently gazed upon the old\n",
+                "world from the Distortion World."
+            ]
+        },
+        "french": {
+            "name": "GIRATINA",
+            "category": "Pokémon Renégat",
+            "entry_text": [
+                "Un Pokémon censé vivre dans un\n",
+                "monde à l’opposé du nôtre. Il\n",
+                "apparaît dans un cimetière ancien."
+            ]
+        },
+        "german": {
+            "name": "GIRATINA",
+            "category": "Rebell",
+            "entry_text": [
+                "Ein PKMN, von dem man sagt, es lebt\n",
+                "in der Spiegelwelt unserer Welt.\n",
+                "Es erscheint auf alten Friedhöfen."
+            ]
+        },
+        "italian": {
+            "name": "GIRATINA",
+            "category": "Pokémon Ribelle",
+            "entry_text": [
+                "Pokémon che vive in un mondo sul\n",
+                "lato opposto al nostro. Appare in\n",
+                "cimiteri antichi."
+            ]
+        },
+        "spanish": {
+            "name": "GIRATINA",
+            "category": "Pokémon Renegado",
+            "entry_text": [
+                "Se dice que vive en un mundo\n",
+                "en el lado inverso del nuestro.\n",
+                "Aparece en viejos cementerios."
+            ]
+        },
+        "japanese": {
+            "name": "ギラティナ",
+            "category": "はんこつポケモン",
+            "entry_text": [
+                "このよの　うらがわにある　せかいに\n",
+                "すんでいると　いわれる　ポケモン。\n",
+                "こだいの　はかばに　あらわれる。"
+            ]
         }
-    ],
+    },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",

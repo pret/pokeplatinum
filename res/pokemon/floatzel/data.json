@@ -117,8 +117,59 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "It is a common sight around\nfishing ports. It is known to\nrescue people and carry off prey.",
-        "category": "Sea Weasel Pokémon"
+        "english": {
+            "category": "Sea Weasel Pokémon",
+            "entry_text": [
+                "It is a common sight around\n",
+                "fishing ports. It is known to\n",
+                "rescue people and carry off prey."
+            ]
+        },
+        "french": {
+            "name": "MUSTEFLOTT",
+            "category": "Pokémon Aquabelette",
+            "entry_text": [
+                "Il flotte grâce à sa bouée très\n",
+                "développée. Il vole au secours\n",
+                "des gens sur le point de se noyer."
+            ]
+        },
+        "german": {
+            "name": "BOJELIN",
+            "category": "Meereswiesel",
+            "entry_text": [
+                "Es treibt mithilfe einer Art\n",
+                "Rettungsring auf dem Wasser und\n",
+                "hilft dem, der zu ertrinken droht."
+            ]
+        },
+        "italian": {
+            "name": "FLOATZEL",
+            "category": "Pokémon Maridonnola",
+            "entry_text": [
+                "Nuota con il suo grosso galleg-\n",
+                "giante e aiuta a soccorrere\n",
+                "chi sta per annegare."
+            ]
+        },
+        "spanish": {
+            "name": "FLOATZEL",
+            "category": "Pokémon Nutria Mar.",
+            "entry_text": [
+                "Nada gracias a su flotador.\n",
+                "Ayuda en los rescates de\n",
+                "gente que se está ahogando."
+            ]
+        },
+        "japanese": {
+            "name": "フロ－ゼル",
+            "category": "うみイタチポケモン",
+            "entry_text": [
+                "はったつした　うきぶくろで　うかぶ。\n",
+                "おぼれた　ひとを　きゅうじょする\n",
+                "てつだいを　している　ポケモンだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

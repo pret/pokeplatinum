@@ -118,8 +118,59 @@
         "pokemon_pos_f": 65523,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65523,
-        "entry_text": "Its cries echo inside its hollow\nbody to emerge as beautiful notes\nfor startling and repelling foes.",
-        "category": "Wind Chime Pokémon"
+        "english": {
+            "category": "Wind Chime Pokémon",
+            "entry_text": [
+                "Its cries echo inside its hollow\n",
+                "body to emerge as beautiful notes\n",
+                "for startling and repelling foes."
+            ]
+        },
+        "french": {
+            "name": "EOKO",
+            "category": "Pokémon Carillon",
+            "entry_text": [
+                "Son langage comporte sept cris.\n",
+                "Il les utilise pour faire vibrer\n",
+                "l’air et projeter son ennemi."
+            ]
+        },
+        "german": {
+            "name": "PALIMPALIM",
+            "category": "Windspiel",
+            "entry_text": [
+                "Um die Gegner fortzuwehen, setzt\n",
+                "es die Luft mit Schreien in\n",
+                "Bewegung."
+            ]
+        },
+        "italian": {
+            "name": "CHIMECHO",
+            "category": "Pokémon Vencampana",
+            "entry_text": [
+                "Le sue urla sono così potenti da\n",
+                "far volar via i nemici. Comunica con\n",
+                "sette versi differenti."
+            ]
+        },
+        "spanish": {
+            "name": "CHIMECHO",
+            "category": "Pokémon Sonido Aire",
+            "entry_text": [
+                "Sus gritos sacuden el aire para\n",
+                "derribar a los rivales voladores.\n",
+                "Habla con siete tipos de gritos."
+            ]
+        },
+        "japanese": {
+            "name": "チリ－ン",
+            "category": "ふうりんポケモン",
+            "entry_text": [
+                "なきごえで　くうきを　しんどうさせ\n",
+                "あいてを　ふきとばす。７しゅるいの\n",
+                "こえで　なかまと　かいわする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

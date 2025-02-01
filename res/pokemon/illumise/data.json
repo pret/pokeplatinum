@@ -116,8 +116,59 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "With its sweet aroma, it guides\nVOLBEAT to draw signs with light in\nthe night sky.",
-        "category": "Firefly Pokémon"
+        "english": {
+            "category": "Firefly Pokémon",
+            "entry_text": [
+                "With its sweet aroma, it guides\n",
+                "VOLBEAT to draw signs with light in\n",
+                "the night sky."
+            ]
+        },
+        "french": {
+            "name": "LUMIVOLE",
+            "category": "Pokémon Luciole",
+            "entry_text": [
+                "Il utilise son doux parfum pour\n",
+                "aider MUCIOLE à décrire des\n",
+                "arabesques dans le ciel nocturne."
+            ]
+        },
+        "german": {
+            "name": "ILLUMISE",
+            "category": "Libelle",
+            "entry_text": [
+                "Sein süßer Duft leitet VOLBEAT an,\n",
+                "Zeichen aus Licht an den\n",
+                "Nachthimmel zu malen."
+            ]
+        },
+        "italian": {
+            "name": "ILLUMISE",
+            "category": "Pokémon Lucciola",
+            "entry_text": [
+                "Con il suo dolce aroma dirige il volo\n",
+                "di VOLBEAT, che disegna figure\n",
+                "luminose nel cielo stellato."
+            ]
+        },
+        "spanish": {
+            "name": "ILLUMISE",
+            "category": "Pokémon Luciérnaga",
+            "entry_text": [
+                "Su suave aroma guía a VOLBEAT\n",
+                "para que haga señales luminosas\n",
+                "en el cielo nocturno."
+            ]
+        },
+        "japanese": {
+            "name": "イルミ－ゼ",
+            "category": "ほたるポケモン",
+            "entry_text": [
+                "あまい　かおりで　バルビ－トを\n",
+                "ゆうどうして　よぞらに\n",
+                "ひかりの　サインを　えがく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

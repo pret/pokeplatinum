@@ -100,8 +100,59 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "It fights by keeping its shell\ntightly shut for protection and\nby shooting spikes to repel foes.",
-        "category": "Bivalve Pokémon"
+        "english": {
+            "category": "Bivalve Pokémon",
+            "entry_text": [
+                "It fights by keeping its shell\n",
+                "tightly shut for protection and\n",
+                "by shooting spikes to repel foes."
+            ]
+        },
+        "french": {
+            "name": "CRUSTABRI",
+            "category": "Pokémon Bivalve",
+            "entry_text": [
+                "Il se défend en fermant sa coquille\n",
+                "et projette des piquants qui\n",
+                "repoussent ses agresseurs."
+            ]
+        },
+        "german": {
+            "name": "AUSTOS",
+            "category": "Muschel",
+            "entry_text": [
+                "Im Kampf schließt es seine Schale,\n",
+                "um sich zu schützen. Es schießt mit\n",
+                "Stacheln auf seine Gegner."
+            ]
+        },
+        "italian": {
+            "name": "CLOYSTER",
+            "category": "Pokémon Bivalve",
+            "entry_text": [
+                "Quando lotta si protegge tenendo\n",
+                "la conchiglia chiusa e spara punte\n",
+                "per respingere i nemici."
+            ]
+        },
+        "spanish": {
+            "name": "CLOYSTER",
+            "category": "Pokémon Bivalvo",
+            "entry_text": [
+                "En la lucha se protege cerrando\n",
+                "su concha y lanzando pinchos\n",
+                "a sus oponentes."
+            ]
+        },
+        "japanese": {
+            "name": "パルシェン",
+            "category": "２まいがいポケモン",
+            "entry_text": [
+                "カラを　しっかりと　とじて　みを\n",
+                "まもりながら　トゲを　とばして\n",
+                "てきを　げきたいする　せんぽう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

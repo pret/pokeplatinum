@@ -132,8 +132,59 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "A smart and sneaky Pokémon. A pair\nmay work together to steal eggs by\nhaving one lure the parents away.",
-        "category": "Sharp Claw Pokémon"
+        "english": {
+            "category": "Sharp Claw Pokémon",
+            "entry_text": [
+                "A smart and sneaky Pokémon. A pair\n",
+                "may work together to steal eggs by\n",
+                "having one lure the parents away."
+            ]
+        },
+        "french": {
+            "name": "FARFURET",
+            "category": "Pokémon Grifacérée",
+            "entry_text": [
+                "Il se nourrit d’œufs volés dans \n",
+                "des nids. Ses griffes crochues\n",
+                "percent les défenses de l’ennemi."
+            ]
+        },
+        "german": {
+            "name": "SNIEBEL",
+            "category": "Stichklaue",
+            "entry_text": [
+                "Es ernährt sich von Eiern, die es\n",
+                "aus Nestern stiehlt. Beute greift\n",
+                "es mit seinen scharfen Krallen an."
+            ]
+        },
+        "italian": {
+            "name": "SNEASEL",
+            "category": "Pokémon Lamartigli",
+            "entry_text": [
+                "Mangia uova rubate dai nidi.\n",
+                "Attacca i nemici nei punti deboli\n",
+                "con i suoi artigli uncinati."
+            ]
+        },
+        "spanish": {
+            "name": "SNEASEL",
+            "category": "Pokémon Garra Filo",
+            "entry_text": [
+                "Se alimenta de huevos robados en\n",
+                "nidos. Clava sus afiladas garras en\n",
+                "los puntos débiles de sus rivales."
+            ]
+        },
+        "japanese": {
+            "name": "ニュ－ラ",
+            "category": "かぎづめポケモン",
+            "entry_text": [
+                "すみかから　タマゴを　かすめとり\n",
+                "たべてしまう。するどい　カギヅメが\n",
+                "あいての　きゅうしょを　きりさく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -128,8 +128,59 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 2,
-        "entry_text": "A legendary Pokémon of Sinnoh.\nIt is said that time flows when\nDIALGA’s heart beats.",
-        "category": "Temporal Pokémon"
+        "english": {
+            "category": "Temporal Pokémon",
+            "entry_text": [
+                "A legendary Pokémon of Sinnoh.\n",
+                "It is said that time flows when\n",
+                "DIALGA’s heart beats."
+            ]
+        },
+        "french": {
+            "name": "DIALGA",
+            "category": "Pokémon Temps",
+            "entry_text": [
+                "Il peut contrôler le temps. Les\n",
+                "mythes de Sinnoh en parlent\n",
+                "comme d’une divinité ancienne."
+            ]
+        },
+        "german": {
+            "name": "DIALGA",
+            "category": "Zeitweilig",
+            "entry_text": [
+                "Es besitzt die Macht, die Zeit zu\n",
+                "kontrollieren. In den Mythen von\n",
+                "Sinnoh erscheint es als Gottheit."
+            ]
+        },
+        "italian": {
+            "name": "DIALGA",
+            "category": "Pokémon Tempo",
+            "entry_text": [
+                "Ha il potere di controllare il tempo.\n",
+                "Descritto nei miti della regione di\n",
+                "Sinnoh come un’antica divinità."
+            ]
+        },
+        "spanish": {
+            "name": "DIALGA",
+            "category": "Pokémon Temporal",
+            "entry_text": [
+                "Tiene el poder de controlar el\n",
+                "tiempo. Aparece en los mitos de\n",
+                "Sinnoh como una vieja deidad."
+            ]
+        },
+        "japanese": {
+            "name": "ディアルガ",
+            "category": "じかんポケモン",
+            "entry_text": [
+                "じかんを　あやつる　ちからを　もつ。\n",
+                "シンオウちほうでは　かみさまと\n",
+                "よばれ　しんわに　とうじょうする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

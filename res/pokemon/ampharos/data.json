@@ -114,8 +114,59 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "The tip of its tail shines brightly.\nIn the olden days, people sent\nsignals using the tail’s light.",
-        "category": "Light Pokémon"
+        "english": {
+            "category": "Light Pokémon",
+            "entry_text": [
+                "The tip of its tail shines brightly.\n",
+                "In the olden days, people sent\n",
+                "signals using the tail’s light."
+            ]
+        },
+        "french": {
+            "name": "PHARAMP",
+            "category": "Pokémon Lumière",
+            "entry_text": [
+                "Le bout de sa queue brille avec\n",
+                "intensité. Jadis, on s’en servait\n",
+                "pour envoyer des signaux."
+            ]
+        },
+        "german": {
+            "name": "AMPHAROS",
+            "category": "Leuchte",
+            "entry_text": [
+                "Seine Schweifspitze leuchtet hell.\n",
+                "In alten Zeiten hat man mit seiner\n",
+                "Hilfe Lichtsignale gegeben."
+            ]
+        },
+        "italian": {
+            "name": "AMPHAROS",
+            "category": "Pokémon Luce",
+            "entry_text": [
+                "La punta della sua coda brilla. In\n",
+                "passato, le persone si inviavano\n",
+                "segnali usando la luce della coda."
+            ]
+        },
+        "spanish": {
+            "name": "AMPHAROS",
+            "category": "Pokémon Luz",
+            "entry_text": [
+                "La punta de su cola brilla.\n",
+                "Antiguamente la gente enviaba\n",
+                "señales con ella."
+            ]
+        },
+        "japanese": {
+            "name": "デンリュウ",
+            "category": "ライトポケモン",
+            "entry_text": [
+                "しっぽの　さきが　ひかりかがやく。\n",
+                "むかしの　ひとたちは　その　あかりを\n",
+                "つかって　あいずを　おくりあった。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

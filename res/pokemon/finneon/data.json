@@ -116,8 +116,59 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "The line running down its side can\nstore sunlight. It shines vividly at\nnight.",
-        "category": "Wing Fish Pokémon"
+        "english": {
+            "category": "Wing Fish Pokémon",
+            "entry_text": [
+                "The line running down its side can\n",
+                "store sunlight. It shines vividly at\n",
+                "night."
+            ]
+        },
+        "french": {
+            "name": "ECAYON",
+            "category": "Pokémon Poisson Ailé",
+            "entry_text": [
+                "Après une longue exposition au\n",
+                "soleil, les motifs de ses nageoires\n",
+                "caudales luisent à la nuit tombée."
+            ]
+        },
+        "german": {
+            "name": "FINNEON",
+            "category": "Flügelfisch",
+            "entry_text": [
+                "Wurden die Flossen lange dem\n",
+                "Sonnenlicht ausgesetzt, leuchten\n",
+                "sie in der Dunkelheit."
+            ]
+        },
+        "italian": {
+            "name": "FINNEON",
+            "category": "Pokémon Pescealato",
+            "entry_text": [
+                "Dopo una lunga esposizione al sole,\n",
+                "i motivi sulle sue pinne brillano\n",
+                "vividamente al calar dell’oscurità."
+            ]
+        },
+        "spanish": {
+            "name": "FINNEON",
+            "category": "Pokémon Pez Ala",
+            "entry_text": [
+                "Si se expone mucho al sol, los\n",
+                "dibujos de sus aletas brillan\n",
+                "en la oscuridad."
+            ]
+        },
+        "japanese": {
+            "name": "ケイコウオ",
+            "category": "はねうおポケモン",
+            "entry_text": [
+                "たいようを　いっぱいに　あびた\n",
+                "おびれの　もようは　くらくなると\n",
+                "あざやかな　いろで　ひかりだす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -124,8 +124,59 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "The shock waves from its cries can\ntip over trucks. It stamps its\nfeet to power up.",
-        "category": "Big Voice Pokémon"
+        "english": {
+            "category": "Big Voice Pokémon",
+            "entry_text": [
+                "The shock waves from its cries can\n",
+                "tip over trucks. It stamps its\n",
+                "feet to power up."
+            ]
+        },
+        "french": {
+            "name": "RAMBOUM",
+            "category": "Pokémon Grosse Voix",
+            "entry_text": [
+                "L’onde de choc provoquée par son\n",
+                "cri peut renverser un camion. Il\n",
+                "trépigne pour augmenter sa force."
+            ]
+        },
+        "german": {
+            "name": "KRAKEELO",
+            "category": "Lauthals",
+            "entry_text": [
+                "Die Schockwellen, die durch sein\n",
+                "Rufen entstehen, können einen\n",
+                "LKW umkippen."
+            ]
+        },
+        "italian": {
+            "name": "LOUDRED",
+            "category": "Pokémon Vocione",
+            "entry_text": [
+                "Le onde d’urto dei suoi versi\n",
+                "ribaltano anche i camion. Pesta i\n",
+                "piedi per accumulare energia."
+            ]
+        },
+        "spanish": {
+            "name": "LOUDRED",
+            "category": "Pokémon Chillón",
+            "entry_text": [
+                "Las ondas de sus gritos pueden\n",
+                "voltear un camión. Patea el suelo\n",
+                "para ganar potencia."
+            ]
+        },
+        "japanese": {
+            "name": "ドゴ－ム",
+            "category": "おおごえポケモン",
+            "entry_text": [
+                "おおごえの　しょうげきはで\n",
+                "トラックを　ひっくりかえしてしまう。\n",
+                "あしを　ふみならして　パワ－アップ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

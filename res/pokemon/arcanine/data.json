@@ -102,8 +102,59 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 6,
-        "entry_text": "Its proud and regal appearance\nhas captured the hearts of\npeople since long ago.",
-        "category": "Legendary Pokémon"
+        "english": {
+            "category": "Legendary Pokémon",
+            "entry_text": [
+                "Its proud and regal appearance\n",
+                "has captured the hearts of\n",
+                "people since long ago."
+            ]
+        },
+        "french": {
+            "name": "ARCANIN",
+            "category": "Pokémon Légendaire",
+            "entry_text": [
+                "Son port altier et son attitude \n",
+                "fière ont depuis longtemps conquis\n",
+                "le cœur des hommes."
+            ]
+        },
+        "german": {
+            "name": "ARKANI",
+            "category": "Legendär",
+            "entry_text": [
+                "Mit seiner stolzen und königlichen\n",
+                "Erscheinung gewinnt es die\n",
+                "Herzen der Menschen."
+            ]
+        },
+        "italian": {
+            "name": "ARCANINE",
+            "category": "Pokémon Leggenda",
+            "entry_text": [
+                "Con il suo aspetto fiero ed\n",
+                "elegante, è riuscito da tempo\n",
+                "a conquistare i cuori della gente."
+            ]
+        },
+        "spanish": {
+            "name": "ARCANINE",
+            "category": "Pokémon Legendario",
+            "entry_text": [
+                "Su aspecto regio y orgulloso se\n",
+                "ha ganado el corazón de la\n",
+                "gente hace tiempo."
+            ]
+        },
+        "japanese": {
+            "name": "ウインディ",
+            "category": "でんせつポケモン",
+            "entry_text": [
+                "いふうどうどうとした　すがたは\n",
+                "ふるくから　ひとびとの　こころを\n",
+                "とりこにしてきた。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

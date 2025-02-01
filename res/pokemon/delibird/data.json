@@ -97,8 +97,59 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It carries food rolled up in its\ntail. It has the habit of sharing\nfood with people lost in mountains.",
-        "category": "Delivery Pokémon"
+        "english": {
+            "category": "Delivery Pokémon",
+            "entry_text": [
+                "It carries food rolled up in its\n",
+                "tail. It has the habit of sharing\n",
+                "food with people lost in mountains."
+            ]
+        },
+        "french": {
+            "name": "CADOIZO",
+            "category": "Pokémon Livraison",
+            "entry_text": [
+                "Il dépose sa nourriture dans sa\n",
+                "queue enroulée. Il l’offre souvent\n",
+                "aux gens égarés en montagne."
+            ]
+        },
+        "german": {
+            "name": "BOTOGEL",
+            "category": "Lieferant",
+            "entry_text": [
+                "Im eingerollten Schweif transpor-\n",
+                "tiert es Futter, das es mit denen\n",
+                "teilt, die sich verlaufen haben."
+            ]
+        },
+        "italian": {
+            "name": "DELIBIRD",
+            "category": "Pokémon Consegna",
+            "entry_text": [
+                "Trascina il cibo avvolgendolo nella\n",
+                "coda e ha l’abitudine di condividerlo\n",
+                "con chi si perde fra le montagne."
+            ]
+        },
+        "spanish": {
+            "name": "DELIBIRD",
+            "category": "Pokémon Reparto",
+            "entry_text": [
+                "Lleva alimentos en su saco. Le\n",
+                "gusta compartir su comida con\n",
+                "los montañistas perdidos."
+            ]
+        },
+        "japanese": {
+            "name": "デリバ－ド",
+            "category": "はこびやポケモン",
+            "entry_text": [
+                "しっぽで　えさを　つつんで　はこぶ。\n",
+                "やまで　そうなんした　ひとに\n",
+                "えさを　わけあたえる　しゅうせい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

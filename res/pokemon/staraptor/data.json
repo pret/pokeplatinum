@@ -107,8 +107,59 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "It never stops attacking even\nif it is injured. It fusses over the\nshape of its comb.",
-        "category": "Predator Pokémon"
+        "english": {
+            "category": "Predator Pokémon",
+            "entry_text": [
+                "It never stops attacking even\n",
+                "if it is injured. It fusses over the\n",
+                "shape of its comb."
+            ]
+        },
+        "french": {
+            "name": "ETOURAPTOR",
+            "category": "Pokémon Rapace",
+            "entry_text": [
+                "Un Pokémon sauvage qui a le\n",
+                "courage de défier des ennemis\n",
+                "beaucoup plus grands que lui."
+            ]
+        },
+        "german": {
+            "name": "STARAPTOR",
+            "category": "Raubtier",
+            "entry_text": [
+                "Es hat ein wildes Wesen. Mutig\n",
+                "fordert es immer wieder Gegner\n",
+                "heraus, die viel größer sind."
+            ]
+        },
+        "italian": {
+            "name": "STARAPTOR",
+            "category": "Pokémon Rapace",
+            "entry_text": [
+                "Ha un’indole selvaggia. Sfida\n",
+                "coraggiosamente i nemici più\n",
+                "grossi di lui."
+            ]
+        },
+        "spanish": {
+            "name": "STARAPTOR",
+            "category": "Pokémon Depredador",
+            "entry_text": [
+                "Tiene un carácter salvaje.\n",
+                "No duda en desafiar a rivales\n",
+                "mucho mayores."
+            ]
+        },
+        "japanese": {
+            "name": "ムクホ－ク",
+            "category": "もうきんポケモン",
+            "entry_text": [
+                "どうもうな　せいかくの　ポケモン。\n",
+                "じぶんよりも　からだの　おおきい\n",
+                "あいてにも　かかんに　いどみかかる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

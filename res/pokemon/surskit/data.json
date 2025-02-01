@@ -104,8 +104,59 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "It appears as if it is skating on\nwater. It draws prey with a sweet\nscent from the tip of its head.",
-        "category": "Pond Skater Pokémon"
+        "english": {
+            "category": "Pond Skater Pokémon",
+            "entry_text": [
+                "It appears as if it is skating on\n",
+                "water. It draws prey with a sweet\n",
+                "scent from the tip of its head."
+            ]
+        },
+        "french": {
+            "name": "ARAKDO",
+            "category": "Pokémon Maresurfeur",
+            "entry_text": [
+                "Il semble patiner sur l’eau. Le\n",
+                "parfum diffusé par le sommet de\n",
+                "sa tête sert à attirer ses proies."
+            ]
+        },
+        "german": {
+            "name": "GEHWEIHER",
+            "category": "Wassergeher",
+            "entry_text": [
+                "Scheinbar reitet es auf dem Wasser.\n",
+                "Es lockt seine Beute mit einem\n",
+                "süßen Duft an."
+            ]
+        },
+        "italian": {
+            "name": "SURSKIT",
+            "category": "Pokémon Sfiorapozze",
+            "entry_text": [
+                "Cammina a pelo d’acqua. Dall’aculeo\n",
+                "sulla testa emana un dolce aroma\n",
+                "con cui attira le prede."
+            ]
+        },
+        "spanish": {
+            "name": "SURSKIT",
+            "category": "Pokémon Zapatero",
+            "entry_text": [
+                "Parece que patina sobre el agua.\n",
+                "Atrae a las presas con el suave\n",
+                "aroma de su cabeza."
+            ]
+        },
+        "japanese": {
+            "name": "アメタマ",
+            "category": "あめんぼポケモン",
+            "entry_text": [
+                "すいめんを　すべるように　あるく。\n",
+                "あたまの　さきから　あまい　においを\n",
+                "だして　えものを　さそう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

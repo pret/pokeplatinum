@@ -115,8 +115,59 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It basically does not fight. With\ncells similar to those of plants, it\ncan perform photosynthesis.",
-        "category": "Verdant Pokémon"
+        "english": {
+            "category": "Verdant Pokémon",
+            "entry_text": [
+                "It basically does not fight. With\n",
+                "cells similar to those of plants, it\n",
+                "can perform photosynthesis."
+            ]
+        },
+        "french": {
+            "name": "PHYLLALI",
+            "category": "Pokémon Verdoyant",
+            "entry_text": [
+                "Il utilise la photosynthèse comme\n",
+                "une plante. C’est pourquoi il est \n",
+                "toujours entouré d’air pur."
+            ]
+        },
+        "german": {
+            "name": "FOLIPURBA",
+            "category": "Unreif",
+            "entry_text": [
+                "Genau wie ein Pflanze führt es die\n",
+                "Photosynthese aus. Deshalb ist es\n",
+                "ständig von reiner Luft umgeben."
+            ]
+        },
+        "italian": {
+            "name": "LEAFEON",
+            "category": "Pokémon Rigoglioso",
+            "entry_text": [
+                "Usa la fotosintesi, proprio come\n",
+                "una pianta. Pertanto è sempre\n",
+                "circondato da aria pulita."
+            ]
+        },
+        "spanish": {
+            "name": "LEAFEON",
+            "category": "Pokémon Verdor",
+            "entry_text": [
+                "Al igual que una planta, hace la\n",
+                "fotosíntesis. Como consecuencia,\n",
+                "siempre está rodeado de aire puro."
+            ]
+        },
+        "japanese": {
+            "name": "リ－フィア",
+            "category": "しんりょくポケモン",
+            "entry_text": [
+                "しょくぶつのように　こうごうせいを\n",
+                "するため　リ－フィアの　まわりは\n",
+                "すんだ　くうきに　つつまれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

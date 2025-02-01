@@ -139,8 +139,59 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "To share its happiness, it flies\naround the world seeking kind-\nhearted people.",
-        "category": "Happiness Pokémon"
+        "english": {
+            "category": "Happiness Pokémon",
+            "entry_text": [
+                "To share its happiness, it flies\n",
+                "around the world seeking kind-\n",
+                "hearted people."
+            ]
+        },
+        "french": {
+            "name": "TOGETIC",
+            "category": "Pokémon Bonheur",
+            "entry_text": [
+                "On dit qu’il apparaît aux êtres\n",
+                "bons pour répandre un duvet\n",
+                "brillant appelé “poudre de joie”."
+            ]
+        },
+        "german": {
+            "name": "TOGETIC",
+            "category": "Freude",
+            "entry_text": [
+                "Man sagt, es erscheint vor denen,\n",
+                "die gutherzig sind, und verteilt\n",
+                "glänzenden “Glücksstaub”."
+            ]
+        },
+        "italian": {
+            "name": "TOGETIC",
+            "category": "Pokémon Felicità",
+            "entry_text": [
+                "Pare che appaia alle persone gentili\n",
+                "diffondendo un pulviscolo luminoso\n",
+                "detto “Polvere della gioia”."
+            ]
+        },
+        "spanish": {
+            "name": "TOGETIC",
+            "category": "Pokémon Felicidad",
+            "entry_text": [
+                "Se dice que se aparece a la gente\n",
+                "de buen corazón y que esparce un\n",
+                "“polvillo de la alegría”."
+            ]
+        },
+        "japanese": {
+            "name": "トゲチック",
+            "category": "しあわせポケモン",
+            "entry_text": [
+                "やさしい　ひとの　もとへ　あらわれて\n",
+                "しあわせのこな　と　よばれる\n",
+                "ひかる　うもうを　ふりまくと　いう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -116,8 +116,59 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "It sprays a foul fluid from its\nrear. Its stench spreads over a\nmile radius, driving Pokémon away.",
-        "category": "Skunk Pokémon"
+        "english": {
+            "category": "Skunk Pokémon",
+            "entry_text": [
+                "It sprays a foul fluid from its\n",
+                "rear. Its stench spreads over a\n",
+                "mile radius, driving Pokémon away."
+            ]
+        },
+        "french": {
+            "name": "MOUFOUETTE",
+            "category": "Pokémon Moufette",
+            "entry_text": [
+                "Il se protège en expulsant un \n",
+                "fluide nocif par son derrière. \n",
+                "La puanteur dure 24 heures."
+            ]
+        },
+        "german": {
+            "name": "SKUNKAPUH",
+            "category": "Stinktier",
+            "entry_text": [
+                "Um sich zu schützen, versprüht es\n",
+                "eine Substanz aus seinem\n",
+                "Hinterleib, die 24 Stunden stinkt."
+            ]
+        },
+        "italian": {
+            "name": "STUNKY",
+            "category": "Pokémon Moffetta",
+            "entry_text": [
+                "Si protegge spruzzando un\n",
+                "fluido puzzolente dal posteriore.\n",
+                "Il tanfo permane per 24 ore."
+            ]
+        },
+        "spanish": {
+            "name": "STUNKY",
+            "category": "Pokémon Mofeta",
+            "entry_text": [
+                "Se protege expulsando un fluido\n",
+                "nocivo por su parte trasera.\n",
+                "El hedor dura 24 horas."
+            ]
+        },
+        "japanese": {
+            "name": "スカンプ－",
+            "category": "スカンクポケモン",
+            "entry_text": [
+                "おしりから　きょうれつに　くさい\n",
+                "えきたいを　とばして　みを　まもる。\n",
+                "においは　２４じかん　きえない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

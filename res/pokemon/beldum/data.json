@@ -66,8 +66,59 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "It converses with others by using\nmagnetic pulses. In a swarm, they\nmove in perfect unison.",
-        "category": "Iron Ball Pokémon"
+        "english": {
+            "category": "Iron Ball Pokémon",
+            "entry_text": [
+                "It converses with others by using\n",
+                "magnetic pulses. In a swarm, they\n",
+                "move in perfect unison."
+            ]
+        },
+        "french": {
+            "name": "TERHAL",
+            "category": "Pokémon Boulefer",
+            "entry_text": [
+                "Il dialogue avec les siens par \n",
+                "impulsions magnétiques. En bande,\n",
+                "ils se déplacent à l’unisson."
+            ]
+        },
+        "german": {
+            "name": "TANHEL",
+            "category": "Eisenkugel",
+            "entry_text": [
+                "Es kommuniziert mit anderen durch\n",
+                "magnetische Impulse. Im Schwarm\n",
+                "bilden sie eine perfekte Einheit."
+            ]
+        },
+        "italian": {
+            "name": "BELDUM",
+            "category": "Pokémon Ferrosfera",
+            "entry_text": [
+                "Comunica con i suoi simili mediante\n",
+                "onde magnetiche. I gruppi di BELDUM\n",
+                "si muovono in perfetta sintonia."
+            ]
+        },
+        "spanish": {
+            "name": "BELDUM",
+            "category": "Pokémon Bola Hierro",
+            "entry_text": [
+                "Se comunican mediante pulsos\n",
+                "magnéticos. Cuando van en\n",
+                "grupos, se mueven al unísono."
+            ]
+        },
+        "japanese": {
+            "name": "ダンバル",
+            "category": "てっきゅうポケモン",
+            "entry_text": [
+                "じりょくの　はちょうで　なかまと\n",
+                "かいわする。むれになった　ダンバルは\n",
+                "いっしみだれぬ　うごきを　する。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

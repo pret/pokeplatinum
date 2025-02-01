@@ -133,8 +133,59 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "The long tongue is always soggy\nwith slobber. The saliva contains\na solvent that causes numbness.",
-        "category": "Licking Pokémon"
+        "english": {
+            "category": "Licking Pokémon",
+            "entry_text": [
+                "The long tongue is always soggy\n",
+                "with slobber. The saliva contains\n",
+                "a solvent that causes numbness."
+            ]
+        },
+        "french": {
+            "name": "COUDLANGUE",
+            "category": "Pokémon Lécheur",
+            "entry_text": [
+                "Il enroule tout dans sa langue\n",
+                "extensible. Ceux qui l’approchent\n",
+                "finissent couverts de bave."
+            ]
+        },
+        "german": {
+            "name": "SCHLURPLEK",
+            "category": "Schlecker",
+            "entry_text": [
+                "Es umklammert Dinge mit seiner\n",
+                "dehnbaren Zunge. Kommt man ihm zu\n",
+                "nahe, wird man eingespeichelt."
+            ]
+        },
+        "italian": {
+            "name": "LICKILICKY",
+            "category": "Pokémon Linguaccia",
+            "entry_text": [
+                "Avvolge ogni cosa con la sua lingua\n",
+                "allungabile. Chi si avvicina troppo,\n",
+                "si ritroverà tutto bagnato di bava."
+            ]
+        },
+        "spanish": {
+            "name": "LICKILICKY",
+            "category": "Pokémon Lametazo",
+            "entry_text": [
+                "Agarra cosas con su lengua\n",
+                "extensible. Si te acercas mucho,\n",
+                "te deja lleno de babas."
+            ]
+        },
+        "japanese": {
+            "name": "ベロベルト",
+            "category": "なめまわしポケモン",
+            "entry_text": [
+                "ぐんぐん　のびる　ベロを　なんにでも\n",
+                "まきつける。うかつに　ちかよると\n",
+                "だえきで　べとべとに　されてしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

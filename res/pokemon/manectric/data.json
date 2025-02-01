@@ -111,8 +111,59 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "It discharges electricity from its\nmane. It creates a thundercloud\noverhead to drop lightning bolts.",
-        "category": "Discharge Pokémon"
+        "english": {
+            "category": "Discharge Pokémon",
+            "entry_text": [
+                "It discharges electricity from its\n",
+                "mane. It creates a thundercloud\n",
+                "overhead to drop lightning bolts."
+            ]
+        },
+        "french": {
+            "name": "ELECSPRINT",
+            "category": "Pokémon Décharge",
+            "entry_text": [
+                "Il libère l’électricité par sa\n",
+                "crinière. Il crée un nuage d’orage\n",
+                "pour appeler la foudre."
+            ]
+        },
+        "german": {
+            "name": "VOLTENSO",
+            "category": "Entladung",
+            "entry_text": [
+                "Aus seiner Mähne entlädt es Elekt-\n",
+                "rizität. Es generiert eine Gewitter-\n",
+                "wolke, aus der es Blitze entlädt."
+            ]
+        },
+        "italian": {
+            "name": "MANECTRIC",
+            "category": "Pokémon Scossa",
+            "entry_text": [
+                "Scarica elettricità dalla criniera.\n",
+                "Crea nubi temporalesche in\n",
+                "cielo che fanno cadere saette."
+            ]
+        },
+        "spanish": {
+            "name": "MANECTRIC",
+            "category": "Pokémon Descarga",
+            "entry_text": [
+                "Descarga electricidad desde su\n",
+                "melena. Crea nubarrones desde\n",
+                "los que lanza rayos."
+            ]
+        },
+        "japanese": {
+            "name": "ライボルト",
+            "category": "ほうでんポケモン",
+            "entry_text": [
+                "たてがみから　ほうでんしている。\n",
+                "ずじょうに　かみなりぐもを　つくり\n",
+                "いなずまを　おとして　こうげきする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

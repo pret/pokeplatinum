@@ -128,8 +128,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "An ancient clay figurine that came\nto life as a Pokémon from exposure\nto a mysterious ray of light.",
-        "category": "Clay Doll Pokémon"
+        "english": {
+            "category": "Clay Doll Pokémon",
+            "entry_text": [
+                "An ancient clay figurine that came\n",
+                "to life as a Pokémon from exposure\n",
+                "to a mysterious ray of light."
+            ]
+        },
+        "french": {
+            "name": "KAORINE",
+            "category": "Pokémon Poupargile",
+            "entry_text": [
+                "Une ancienne figurine d’argile qui \n",
+                "s’est animée suite à son exposition\n",
+                "à un rayon de lumière étrange."
+            ]
+        },
+        "german": {
+            "name": "LEPUMENTAS",
+            "category": "Lehmpuppe",
+            "entry_text": [
+                "Eine antike Lehmstatue, die durch\n",
+                "ein mysteriöses Licht zum Leben\n",
+                "erwacht ist."
+            ]
+        },
+        "italian": {
+            "name": "CLAYDOL",
+            "category": "Pokémon Argilla",
+            "entry_text": [
+                "Pokémon nato da un’antica\n",
+                "statuetta d’argilla portata in\n",
+                "vita da misteriose radiazioni."
+            ]
+        },
+        "spanish": {
+            "name": "CLAYDOL",
+            "category": "Pokémon Muñ. Barro",
+            "entry_text": [
+                "Este Pokémon es una vieja figurilla\n",
+                "de barro que cobró vida mediante la\n",
+                "exposición a extraños rayos de luz."
+            ]
+        },
+        "japanese": {
+            "name": "ネンド－ル",
+            "category": "どぐうポケモン",
+            "entry_text": [
+                "こだいの　どろにんぎょうが\n",
+                "かいこうせんを　あびたことで\n",
+                "いのちが　やどり　ポケモンとなった。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

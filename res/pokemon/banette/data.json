@@ -124,8 +124,59 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "A doll that became a Pokémon over\nits grudge from being junked. It\nseeks the child that disowned it.",
-        "category": "Marionette Pokémon"
+        "english": {
+            "category": "Marionette Pokémon",
+            "entry_text": [
+                "A doll that became a Pokémon over\n",
+                "its grudge from being junked. It\n",
+                "seeks the child that disowned it."
+            ]
+        },
+        "french": {
+            "name": "BRANETTE",
+            "category": "Pokémon Marionnette",
+            "entry_text": [
+                "Une poupée mue par la tristesse qui\n",
+                "la ronge depuis qu’on l’a délaissée.\n",
+                "Elle recherche son propriétaire."
+            ]
+        },
+        "german": {
+            "name": "BANETTE",
+            "category": "Marionette",
+            "entry_text": [
+                "Dieses PKMN war eine Puppe, die\n",
+                "weggeworfen wurde. Es sucht nun\n",
+                "das Kind, das dies getan hat."
+            ]
+        },
+        "italian": {
+            "name": "BANETTE",
+            "category": "Pokémon Marionetta",
+            "entry_text": [
+                "Un peluche divenuto Pokémon per la\n",
+                "rabbia di essere stato buttato via\n",
+                "da un bimbo, di cui è alla ricerca."
+            ]
+        },
+        "spanish": {
+            "name": "BANETTE",
+            "category": "Pokémon Marioneta",
+            "entry_text": [
+                "Este muñeco se convirtió en un\n",
+                "Pokémon cuando lo tiraron a la\n",
+                "basura. Busca a su antiguo dueño."
+            ]
+        },
+        "japanese": {
+            "name": "ジュペッタ",
+            "category": "ぬいぐるみポケモン",
+            "entry_text": [
+                "すてられた　ぬいぐるみに　おんねんが\n",
+                "やどり　ポケモンになった。じぶんを\n",
+                "すてた　こどもを　さがしている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

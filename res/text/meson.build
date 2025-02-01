@@ -13,15 +13,29 @@
 pokedex_text_bank_names = [
     'species_names.gmm',
     'species_names_with_articles.gmm',
-    'species_dex_entry.gmm',
+    'dex_entry_french.gmm',
+    'dex_entry_german.gmm',
+    'dex_entry_italian.gmm',
+    'dex_entry_spanish.gmm',
+    'dex_entry_japanese.gmm',
+    'dex_entry_english.gmm',
     'species_weight.gmm',
     'species_weight_gira.gmm',
     'species_height.gmm',
     'species_height_gira.gmm',
-    'species_name_number_1.gmm',
-    'species_name_number_2.gmm',
-    'species_name_number_3.gmm',
-    'species_category.gmm'
+    'species_category.gmm',
+    'species_name_number_english.gmm',
+    'species_name_number_french.gmm',
+    'species_name_number_german.gmm',
+    'species_name_number_italian.gmm',
+    'species_name_number_spanish.gmm',
+    'species_name_number_japanese.gmm',
+    'species_category_english.gmm',
+    'species_category_french.gmm',
+    'species_category_german.gmm',
+    'species_category_italian.gmm',
+    'species_category_spanish.gmm',
+    'species_category_japanese.gmm'
 ]
 
 # This list will be what's used hereafter when referring to any-and-all generated banks.
@@ -75,6 +89,7 @@ pokedex_text_banks = custom_target('pokedex_text_banks',
         make_pokedex_text_banks_py,
         '--source-dir', pokemon_data_root,
         '--output-dir', '@OUTDIR@',
+        pokedex_text_bank_names
     ],
     env: species_env,
     depend_files: [ species_data_files ],

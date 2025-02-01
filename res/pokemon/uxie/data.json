@@ -125,8 +125,59 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "When UXIE flew, people gained the\nability to solve problems.\nIt was the birth of knowledge.",
-        "category": "Knowledge Pokémon"
+        "english": {
+            "category": "Knowledge Pokémon",
+            "entry_text": [
+                "When UXIE flew, people gained the\n",
+                "ability to solve problems.\n",
+                "It was the birth of knowledge."
+            ]
+        },
+        "french": {
+            "name": "CREHELF",
+            "category": "Pokémon Savoir",
+            "entry_text": [
+                "On l’appelle “être du savoir”.\n",
+                "On raconte que son regard a le\n",
+                "pouvoir d’effacer la mémoire."
+            ]
+        },
+        "german": {
+            "name": "SELFE",
+            "category": "Wissen",
+            "entry_text": [
+                "“Das wissende Wesen”.\n",
+                "Es soll die Erinnerungen derer\n",
+                "löschen, die ihm in die Augen sehen."
+            ]
+        },
+        "italian": {
+            "name": "UXIE",
+            "category": "Pokémon Sapienza",
+            "entry_text": [
+                "Noto come “Essere della\n",
+                "conoscenza”. Pare che faccia per-\n",
+                "dere la memoria a chiunque lo fissi."
+            ]
+        },
+        "spanish": {
+            "name": "UXIE",
+            "category": "Pokémon Sabiduría",
+            "entry_text": [
+                "Se le conoce como el “ser de\n",
+                "la sabiduría”. Se dice que puede\n",
+                "borrar la memoria con una mirada."
+            ]
+        },
+        "japanese": {
+            "name": "ユクシ－",
+            "category": "ちしきポケモン",
+            "entry_text": [
+                "ちしきのかみ　と　よばれている。\n",
+                "めを　あわせた　ものの　きおくを\n",
+                "けしてしまう　ちからを　もつという。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

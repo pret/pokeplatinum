@@ -109,8 +109,59 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "It prefers hot and humid\nenvironments. It is quick at\ncapturing prey with its vines.",
-        "category": "Flower Pokémon"
+        "english": {
+            "category": "Flower Pokémon",
+            "entry_text": [
+                "It prefers hot and humid\n",
+                "environments. It is quick at\n",
+                "capturing prey with its vines."
+            ]
+        },
+        "french": {
+            "name": "CHETIFLOR",
+            "category": "Pokémon Fleur",
+            "entry_text": [
+                "Il préfère les climats chauds et\n",
+                "humides. Ses lianes peuvent\n",
+                "capturer une proie en un clin d’œil."
+            ]
+        },
+        "german": {
+            "name": "KNOFENSA",
+            "category": "Blume",
+            "entry_text": [
+                "Es bevorzugt heiße und feuchte\n",
+                "Umgebungen. Seine Beute fängt es\n",
+                "blitzschnell mit seinen Ranken."
+            ]
+        },
+        "italian": {
+            "name": "BELLSPROUT",
+            "category": "Pokémon Fiore",
+            "entry_text": [
+                "Preferisce gli habitat caldi e umidi.\n",
+                "Cattura velocemente le prede \n",
+                "con i suoi rampicanti."
+            ]
+        },
+        "spanish": {
+            "name": "BELLSPROUT",
+            "category": "Pokémon Flor",
+            "entry_text": [
+                "Prefiere los lugares cálidos y\n",
+                "húmedos. Captura presas con sus \n",
+                "rápidas lianas."
+            ]
+        },
+        "japanese": {
+            "name": "マダツボミ",
+            "category": "フラワ－ポケモン",
+            "entry_text": [
+                "こうおん　たしつの　とちを　このむ。\n",
+                "ツルを　のばして　えものを　とらえる\n",
+                "ときの　うごきは　とても　すばやい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

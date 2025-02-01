@@ -105,8 +105,59 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "It sets a trap by spinning a web\nwith thin but strong silk. It waits\nmotionlessly for prey to arrive.",
-        "category": "String Spit Pokémon"
+        "english": {
+            "category": "String Spit Pokémon",
+            "entry_text": [
+                "It sets a trap by spinning a web\n",
+                "with thin but strong silk. It waits\n",
+                "motionlessly for prey to arrive."
+            ]
+        },
+        "french": {
+            "name": "MIMIGAL",
+            "category": "Pokémon Crache Fil",
+            "entry_text": [
+                "Il tisse une toile fine mais solide\n",
+                "pour poser des pièges et se poste\n",
+                "dans l’attente d’une proie."
+            ]
+        },
+        "german": {
+            "name": "WEBARAK",
+            "category": "Fadenwurf",
+            "entry_text": [
+                "Es baut eine Falle, indem es ein\n",
+                "Netz mit dünner, starker Seide\n",
+                "spinnt. Es wartet still auf Beute."
+            ]
+        },
+        "italian": {
+            "name": "SPINARAK",
+            "category": "Pokémon Tela",
+            "entry_text": [
+                "Tesse una trappola con un filo di\n",
+                "seta, sottile ma robusto. Attende\n",
+                "la preda senza muoversi."
+            ]
+        },
+        "spanish": {
+            "name": "SPINARAK",
+            "category": "Pokémon Escupesoga",
+            "entry_text": [
+                "Pone trampas tejiendo una red\n",
+                "de seda fina y resistente y luego\n",
+                "espera inmóvil a su presa."
+            ]
+        },
+        "japanese": {
+            "name": "イトマル",
+            "category": "いとはきポケモン",
+            "entry_text": [
+                "ほそくて　じょうぶな　いとを\n",
+                "はりめぐらして　わなを　しかける。\n",
+                "えものが　かかるまで　じっと　まつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

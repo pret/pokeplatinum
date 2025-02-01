@@ -111,8 +111,59 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "For some time after its birth, it\ngrows by gaining nourishment from\nthe seed on its back.",
-        "category": "Seed Pokémon"
+        "english": {
+            "category": "Seed Pokémon",
+            "entry_text": [
+                "For some time after its birth, it\n",
+                "grows by gaining nourishment from\n",
+                "the seed on its back."
+            ]
+        },
+        "french": {
+            "name": "BULBIZARRE",
+            "category": "Pokémon Graine",
+            "entry_text": [
+                "Au matin de sa vie, la graine sur\n",
+                "son dos lui fournit les éléments\n",
+                "dont il a besoin pour grandir."
+            ]
+        },
+        "german": {
+            "name": "BISASAM",
+            "category": "Samen",
+            "entry_text": [
+                "Nach der Geburt nimmt es für eine\n",
+                "Weile Nährstoffe über den Samen\n",
+                "auf seinem Rücken auf."
+            ]
+        },
+        "italian": {
+            "name": "BULBASAUR",
+            "category": "Pokémon Seme",
+            "entry_text": [
+                "Dopo la nascita, cresce traendo\n",
+                "nutrimento dal seme piantato\n",
+                "sul suo dorso."
+            ]
+        },
+        "spanish": {
+            "name": "BULBASAUR",
+            "category": "Pokémon Semilla",
+            "entry_text": [
+                "Después de nacer, crece\n",
+                "alimentándose de las semillas\n",
+                "de su lomo."
+            ]
+        },
+        "japanese": {
+            "name": "フシギダネ",
+            "category": "たねポケモン",
+            "entry_text": [
+                "うまれてから　しばらくの　あいだは\n",
+                "せなかの　タネから　えいようを\n",
+                "もらって　おおきく　そだつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

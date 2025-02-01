@@ -131,8 +131,59 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "Split into two, the tails are so\nadept at handling and doing things,\nAMBIPOM rarely uses its hands.",
-        "category": "Long Tail Pokémon"
+        "english": {
+            "category": "Long Tail Pokémon",
+            "entry_text": [
+                "Split into two, the tails are so\n",
+                "adept at handling and doing things,\n",
+                "AMBIPOM rarely uses its hands."
+            ]
+        },
+        "french": {
+            "name": "CAPIDEXTRE",
+            "category": "Pokémon Longqueue",
+            "entry_text": [
+                "Il se nourrit de noix qu’il épluche\n",
+                "avec ses deux queues habiles. Il\n",
+                "utilise de moins en moins ses bras."
+            ]
+        },
+        "german": {
+            "name": "AMBIDIFFEL",
+            "category": "Langschweif",
+            "entry_text": [
+                "Wenn es hungrig ist, knackt es\n",
+                "Nüsse mit seinen beiden Schweifen.\n",
+                "Nur selten verwendet es die Arme."
+            ]
+        },
+        "italian": {
+            "name": "AMBIPOM",
+            "category": "Pokémon Lungacoda",
+            "entry_text": [
+                "Si nutre di nocciole che sbuccia con\n",
+                "le due code. Raramente usa le sue\n",
+                "vere braccia."
+            ]
+        },
+        "spanish": {
+            "name": "AMBIPOM",
+            "category": "Pokémon Cola Larga",
+            "entry_text": [
+                "Para comer, rompe nueces\n",
+                "con sus dos colas. Raras\n",
+                "veces utiliza sus brazos."
+            ]
+        },
+        "japanese": {
+            "name": "エテボ－ス",
+            "category": "おながポケモン",
+            "entry_text": [
+                "２ほんの　しっぽで　きのみの　からを\n",
+                "きように　むいて　たべる。ほんものの\n",
+                "うでは　ほとんど　つかわなくなった。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

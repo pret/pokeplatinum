@@ -130,8 +130,59 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 23,
         "pokemon_pos_m": 3,
-        "entry_text": "It had been asleep in underground\nmagma ever since it fiercely\nfought KYOGRE long ago.",
-        "category": "Continent Pokémon"
+        "english": {
+            "category": "Continent Pokémon",
+            "entry_text": [
+                "It had been asleep in underground\n",
+                "magma ever since it fiercely\n",
+                "fought KYOGRE long ago."
+            ]
+        },
+        "french": {
+            "name": "GROUDON",
+            "category": "Pokémon Continent",
+            "entry_text": [
+                "Il dormait dans le magma souterrain\n",
+                "depuis sa lutte féroce contre\n",
+                "KYOGRE, il y a longtemps de cela."
+            ]
+        },
+        "german": {
+            "name": "GROUDON",
+            "category": "Kontinent",
+            "entry_text": [
+                "Es hat seit dem Kampf gegen\n",
+                "KYOGRE in Magma unter dem\n",
+                "Erdboden geschlafen. "
+            ]
+        },
+        "italian": {
+            "name": "GROUDON",
+            "category": "Pokémon Continente",
+            "entry_text": [
+                "Dopo una lotta colossale contro\n",
+                "KYOGRE, si è addormentato sotto\n",
+                "terra in mezzo al magma."
+            ]
+        },
+        "spanish": {
+            "name": "GROUDON",
+            "category": "Pokémon Continente",
+            "entry_text": [
+                "Ha estado durmiendo en magma\n",
+                "subterráneo desde que luchó\n",
+                "contra KYOGRE en tiempos remotos."
+            ]
+        },
+        "japanese": {
+            "name": "グラ－ドン",
+            "category": "たいりくポケモン",
+            "entry_text": [
+                "おおむかし　カイオ－ガとの　しとうの\n",
+                "すえに　ちかマグマの　なかで\n",
+                "ねむっていた　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

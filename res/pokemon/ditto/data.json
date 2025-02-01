@@ -56,8 +56,59 @@
         "pokemon_pos_f": 30,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 30,
-        "entry_text": "It has the ability to reconstitute\nits entire cellular structure to\ntransform into whatever it sees.",
-        "category": "Transform Pokémon"
+        "english": {
+            "category": "Transform Pokémon",
+            "entry_text": [
+                "It has the ability to reconstitute\n",
+                "its entire cellular structure to\n",
+                "transform into whatever it sees."
+            ]
+        },
+        "french": {
+            "name": "METAMORPH",
+            "category": "Pokémon Morphing",
+            "entry_text": [
+                "Il a la capacité de modifier sa\n",
+                "structure cellulaire pour prendre\n",
+                "l’apparence de ce qu’il voit."
+            ]
+        },
+        "german": {
+            "name": "DITTO",
+            "category": "Transform",
+            "entry_text": [
+                "Es kann seine Zellstruktur so\n",
+                "verändern, dass es sich in alles\n",
+                "verwandeln kann, was es sieht."
+            ]
+        },
+        "italian": {
+            "name": "DITTO",
+            "category": "Pokémon Mutante",
+            "entry_text": [
+                "Ha la capacità di modificare la sua\n",
+                "struttura cellulare per trasfor-\n",
+                "marsi in qualsiasi cosa veda."
+            ]
+        },
+        "spanish": {
+            "name": "DITTO",
+            "category": "Pokémon Transform.",
+            "entry_text": [
+                "Puede alterar por completo su\n",
+                "estructura celular para emular\n",
+                "cualquier objeto que vea."
+            ]
+        },
+        "japanese": {
+            "name": "メタモン",
+            "category": "へんしんポケモン",
+            "entry_text": [
+                "ぜんしんの　さいぼうを　くみかえて\n",
+                "みたものの　かたち　そっくりに\n",
+                "へんしんする　のうりょくを　もつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

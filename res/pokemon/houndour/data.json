@@ -119,8 +119,59 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It is smart enough to hunt in\npacks. It uses a variety of cries\nfor communicating with others.",
-        "category": "Dark Pokémon"
+        "english": {
+            "category": "Dark Pokémon",
+            "entry_text": [
+                "It is smart enough to hunt in\n",
+                "packs. It uses a variety of cries\n",
+                "for communicating with others."
+            ]
+        },
+        "french": {
+            "name": "MALOSSE",
+            "category": "Pokémon Sombre",
+            "entry_text": [
+                "Il exprime ses émotions en modulant\n",
+                "son cri. Ce Pokémon rusé chasse\n",
+                "en meute pour abattre ses proies."
+            ]
+        },
+        "german": {
+            "name": "HUNDUSTER",
+            "category": "Hades",
+            "entry_text": [
+                "Durch unterschiedliche Schreie\n",
+                "drückt es seine Gefühle aus. Diese\n",
+                "PKMN jagen im Verbund nach Beute."
+            ]
+        },
+        "italian": {
+            "name": "HOUNDOUR",
+            "category": "Pokémon Buio",
+            "entry_text": [
+                "Trasmette i suoi stati d’animo con\n",
+                "vari versi. Lavora in gruppo per\n",
+                "catturare le prede con l’astuzia."
+            ]
+        },
+        "spanish": {
+            "name": "HOUNDOUR",
+            "category": "Pokémon Siniestro",
+            "entry_text": [
+                "Se comunica mediante gritos y\n",
+                "colabora en manada para atacar\n",
+                "a sus presas."
+            ]
+        },
+        "japanese": {
+            "name": "デルビル",
+            "category": "ダ－クポケモン",
+            "entry_text": [
+                "なきごえを　つかいわけて　きもちを\n",
+                "つたえる。みごとな　れんけいプレ－で\n",
+                "えものを　おいこみ　しとめる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

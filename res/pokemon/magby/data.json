@@ -110,8 +110,59 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "Its magma-like blood circulates\nthroughout its body. Its body’s\nheat can top 1,100 degrees F.",
-        "category": "Live Coal Pokémon"
+        "english": {
+            "category": "Live Coal Pokémon",
+            "entry_text": [
+                "Its magma-like blood circulates\n",
+                "throughout its body. Its body’s\n",
+                "heat can top 1,100 degrees F."
+            ]
+        },
+        "french": {
+            "name": "MAGBY",
+            "category": "Pokémon Charbon",
+            "entry_text": [
+                "Sa température corporelle avoisine\n",
+                "les 600 °C. Son souffle est\n",
+                "jaune quand il est en bonne santé."
+            ]
+        },
+        "german": {
+            "name": "MAGBY",
+            "category": "Glutherd",
+            "entry_text": [
+                "Seine Körpertemperatur liegt bei\n",
+                "etwa 600 Grad. Ist es gesund,\n",
+                "atmet es gelbe Flammen aus."
+            ]
+        },
+        "italian": {
+            "name": "MAGBY",
+            "category": "Pokémon Carbonvivo",
+            "entry_text": [
+                "La sua temperatura corporea è di\n",
+                "circa 600°C. Se le fiamme che lancia\n",
+                "sono gialle significa che è in forma."
+            ]
+        },
+        "spanish": {
+            "name": "MAGBY",
+            "category": "Pokémon Ascuas",
+            "entry_text": [
+                "Su temperatura corporal es de\n",
+                "unos 600 grados. Si está sano,\n",
+                "escupe llamas amarillas."
+            ]
+        },
+        "japanese": {
+            "name": "ブビィ",
+            "category": "ひだねポケモン",
+            "entry_text": [
+                "たいおんは　やく６００ど。\n",
+                "くちから　きいろい　ほのおを\n",
+                "だしていれば　げんきな　しょうこ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -121,8 +121,59 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "There are researchers who believe\nthis Pokémon reflected like a mirror\nin the distant past.",
-        "category": "Bronze Pokémon"
+        "english": {
+            "category": "Bronze Pokémon",
+            "entry_text": [
+                "There are researchers who believe\n",
+                "this Pokémon reflected like a mirror\n",
+                "in the distant past."
+            ]
+        },
+        "french": {
+            "name": "ARCHEOMIRE",
+            "category": "Pokémon Bronze",
+            "entry_text": [
+                "Il rappelle des objets trouvés\n",
+                "dans des sépultures anciennes.\n",
+                "Nul ne sait s’ils sont liés."
+            ]
+        },
+        "german": {
+            "name": "BRONZEL",
+            "category": "Bronze",
+            "entry_text": [
+                "Sein Körper sieht aus, als seien\n",
+                "Teile davon in alten Gräbern\n",
+                "gefunden worden."
+            ]
+        },
+        "italian": {
+            "name": "BRONZOR",
+            "category": "Pokémon Bronzo",
+            "entry_text": [
+                "Il suo aspetto ricorda alcuni\n",
+                "oggetti ritrovati in antiche tombe,\n",
+                "ma non si sa se ci sia una relazione."
+            ]
+        },
+        "spanish": {
+            "name": "BRONZOR",
+            "category": "Pokémon Bronce",
+            "entry_text": [
+                "Se descubrieron herramientas con\n",
+                "su forma en tumbas antiguas, pero\n",
+                "se desconoce si tiene relación."
+            ]
+        },
+        "japanese": {
+            "name": "ド－ミラ－",
+            "category": "せいどうポケモン",
+            "entry_text": [
+                "ふるい　おはかから　ド－ミラ－に\n",
+                "そっくりな　どうぐが　ほりだされたが\n",
+                "かんけいは　わかっていない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -123,8 +123,59 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "It tests everything by touching\nwith its lips, which remember\nwhat it likes and dislikes.",
-        "category": "Kiss Pokémon"
+        "english": {
+            "category": "Kiss Pokémon",
+            "entry_text": [
+                "It tests everything by touching\n",
+                "with its lips, which remember\n",
+                "what it likes and dislikes."
+            ]
+        },
+        "french": {
+            "name": "LIPPOUTI",
+            "category": "Pokémon Bisou",
+            "entry_text": [
+                "Il goûte à tout du bout des lèvres.\n",
+                "Elles gardent en mémoire ses\n",
+                "goûts et ses dégoûts."
+            ]
+        },
+        "german": {
+            "name": "KUSSILLA",
+            "category": "Kuss",
+            "entry_text": [
+                "Dieses PKMN berührt alles mit den\n",
+                "Lippen. Diese merken sich, was es\n",
+                "mag und nicht mag."
+            ]
+        },
+        "italian": {
+            "name": "SMOOCHUM",
+            "category": "Pokémon Bacio",
+            "entry_text": [
+                "Analizza tutto con le labbra e con\n",
+                "esse riesce a memorizzare ciò che\n",
+                "gli piace e ciò che non gli piace."
+            ]
+        },
+        "spanish": {
+            "name": "SMOOCHUM",
+            "category": "Pokémon Beso",
+            "entry_text": [
+                "Analiza todo tocándolo con los\n",
+                "labios. Así puede recordar las\n",
+                "cosas que le gustan y disgustan."
+            ]
+        },
+        "japanese": {
+            "name": "ムチュ－ル",
+            "category": "くちづけポケモン",
+            "entry_text": [
+                "なんでも　くちびるで　ふれてみて\n",
+                "たしかめる。すきな　ものも　きらいな\n",
+                "ものも　くちびるが　おぼえている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

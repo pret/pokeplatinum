@@ -103,8 +103,59 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "When it dangles from a tree\nbranch, it looks just like an acorn.\nIt enjoys scaring other Pokémon.",
-        "category": "Acorn Pokémon"
+        "english": {
+            "category": "Acorn Pokémon",
+            "entry_text": [
+                "When it dangles from a tree\n",
+                "branch, it looks just like an acorn.\n",
+                "It enjoys scaring other Pokémon."
+            ]
+        },
+        "french": {
+            "name": "GRAINIPIOT",
+            "category": "Pokémon Gland",
+            "entry_text": [
+                "Il ressemble à un gland pendu\n",
+                "à une branche. Il adore effrayer\n",
+                "les autres Pokémon."
+            ]
+        },
+        "german": {
+            "name": "SAMURZEL",
+            "category": "Eichelnuss",
+            "entry_text": [
+                "Es sieht aus wie eine Eichel, die am\n",
+                "Baum hängt. Es liebt es, andere\n",
+                "PKMN zu erschrecken."
+            ]
+        },
+        "italian": {
+            "name": "SEEDOT",
+            "category": "Pokémon Ghianda",
+            "entry_text": [
+                "Quando si attacca a un ramo,\n",
+                "sembra una vera ghianda. Si diverte\n",
+                "a spaventare gli altri Pokémon."
+            ]
+        },
+        "spanish": {
+            "name": "SEEDOT",
+            "category": "Pokémon Bellota",
+            "entry_text": [
+                "Cuando cuelga de las ramas\n",
+                "parece una bellota. Le encanta\n",
+                "asustar a otros Pokémon."
+            ]
+        },
+        "japanese": {
+            "name": "タネボ－",
+            "category": "どんぐりポケモン",
+            "entry_text": [
+                "えだに　ぶらさがっていると\n",
+                "きのみに　そっくり。ついばもうとした\n",
+                "ポケモンを　おどろかせて　よろこぶ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

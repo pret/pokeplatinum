@@ -123,8 +123,59 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "A toxic fluid seeps from its body.\nThe fluid instantly kills plants and\ntrees on contact.",
-        "category": "Sludge Pokémon"
+        "english": {
+            "category": "Sludge Pokémon",
+            "entry_text": [
+                "A toxic fluid seeps from its body.\n",
+                "The fluid instantly kills plants and\n",
+                "trees on contact."
+            ]
+        },
+        "french": {
+            "name": "GROTADMORV",
+            "category": "Pokémon Dégueu",
+            "entry_text": [
+                "Son corps exsude un fluide toxique\n",
+                "qui tue instantanément les plantes\n",
+                "et les arbres au contact."
+            ]
+        },
+        "german": {
+            "name": "SLEIMOK",
+            "category": "Schlamm",
+            "entry_text": [
+                "Sein Körper sondert eine giftige\n",
+                "Substanz ab, die bei Kontakt\n",
+                "Pflanzen und Bäume vernichtet."
+            ]
+        },
+        "italian": {
+            "name": "MUK",
+            "category": "Pokémon Melma",
+            "entry_text": [
+                "Dal suo corpo filtra un fluido tos-\n",
+                "sico che uccide all’istante piante e\n",
+                "alberi con cui viene a contatto."
+            ]
+        },
+        "spanish": {
+            "name": "MUK",
+            "category": "Pokémon Lodo",
+            "entry_text": [
+                "Su cuerpo segrega un fluido\n",
+                "tóxico que elimina la vida vegetal\n",
+                "cuando la toca."
+            ]
+        },
+        "japanese": {
+            "name": "ベトベトン",
+            "category": "ヘドロポケモン",
+            "entry_text": [
+                "からだから　もうどくの　たいえきが\n",
+                "しみでている。その　えきに　ふれた\n",
+                "くさきは　あっというまに　かれる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

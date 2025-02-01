@@ -127,8 +127,59 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "If its horns capture the warm\nfeelings of people or Pokémon,\nits body warms up slightly.",
-        "category": "Feeling Pokémon"
+        "english": {
+            "category": "Feeling Pokémon",
+            "entry_text": [
+                "If its horns capture the warm\n",
+                "feelings of people or Pokémon,\n",
+                "its body warms up slightly."
+            ]
+        },
+        "french": {
+            "name": "TARSAL",
+            "category": "Pokémon Sentiment",
+            "entry_text": [
+                "Il perçoit les émotions humaines\n",
+                "grâce aux cornes sur sa tête. On\n",
+                "dit qu’il apprécie la joie de vivre."
+            ]
+        },
+        "german": {
+            "name": "TRASLA",
+            "category": "Gefühl",
+            "entry_text": [
+                "Mit dem Horn kann es menschliche\n",
+                "Gefühle wahrnehmen. Es erscheint\n",
+                "fröhlichen Menschen."
+            ]
+        },
+        "italian": {
+            "name": "RALTS",
+            "category": "Pokémon Sensazione",
+            "entry_text": [
+                "Percepisce gli stati d’animo delle\n",
+                "persone con le corna che ha sul\n",
+                "capo. Si mostra alla gente allegra."
+            ]
+        },
+        "spanish": {
+            "name": "RALTS",
+            "category": "Pokémon Sensible",
+            "entry_text": [
+                "Su cuerno le permite presentir\n",
+                "las emociones humanas. Se dice\n",
+                "que se aparece a la gente amable."
+            ]
+        },
+        "japanese": {
+            "name": "ラルトス",
+            "category": "きもちポケモン",
+            "entry_text": [
+                "あたまの　ツノで　ひとの　きもちを\n",
+                "かんじとる。あかるい　きぶんの\n",
+                "ひとの　まえに　あらわれるという。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

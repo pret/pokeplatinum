@@ -121,8 +121,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "A man-made Pokémon created using\nadvanced scientific means. It can\nmove freely in cyberspace.",
-        "category": "Virtual Pokémon"
+        "english": {
+            "category": "Virtual Pokémon",
+            "entry_text": [
+                "A man-made Pokémon created using\n",
+                "advanced scientific means. It can\n",
+                "move freely in cyberspace."
+            ]
+        },
+        "french": {
+            "name": "PORYGON",
+            "category": "Pokémon Virtuel",
+            "entry_text": [
+                "Le premier Pokémon artificiel au\n",
+                "monde. Il a le pouvoir d’arpenter\n",
+                "l’espace électronique."
+            ]
+        },
+        "german": {
+            "name": "PORYGON",
+            "category": "Virtuell",
+            "entry_text": [
+                "Das erste künstlich erzeugte PKMN\n",
+                "der Welt. Es kann durch\n",
+                "elektronischen Raum reisen."
+            ]
+        },
+        "italian": {
+            "name": "PORYGON",
+            "category": "Pokémon Virtuale",
+            "entry_text": [
+                "Il primo Pokémon al mondo creato\n",
+                "artificialmente. Riesce a muoversi\n",
+                "liberamente nel ciberspazio."
+            ]
+        },
+        "spanish": {
+            "name": "PORYGON",
+            "category": "Pokémon Virtual",
+            "entry_text": [
+                "Es el primer Pokémon creado de\n",
+                "forma artificial. Puede viajar por\n",
+                "el ciberespacio."
+            ]
+        },
+        "japanese": {
+            "name": "ポリゴン",
+            "category": "バ－チャルポケモン",
+            "entry_text": [
+                "せかいで　はじめて　じんこうてきに\n",
+                "つくりだされた　ポケモン。\n",
+                "でんしくうかんを　いどうできる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

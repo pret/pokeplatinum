@@ -113,8 +113,59 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 1,
-        "entry_text": "One of the legendary bird Pokémon.\nIt is said that its appearance\nindicates the coming of spring.",
-        "category": "Flame Pokémon"
+        "english": {
+            "category": "Flame Pokémon",
+            "entry_text": [
+                "One of the legendary bird Pokémon.\n",
+                "It is said that its appearance\n",
+                "indicates the coming of spring."
+            ]
+        },
+        "french": {
+            "name": "SULFURA",
+            "category": "Pokémon Flamme",
+            "entry_text": [
+                "L’un des Pokémon Oiseaux\n",
+                "légendaires. On dit que sa venue\n",
+                "annonce l’arrivée du printemps."
+            ]
+        },
+        "german": {
+            "name": "LAVADOS",
+            "category": "Flamme",
+            "entry_text": [
+                "Eines der Legendären Vogel-\n",
+                "Pokémon. Es wird als Bote des\n",
+                "Frühlings angesehen."
+            ]
+        },
+        "italian": {
+            "name": "MOLTRES",
+            "category": "Pokémon Fiamma",
+            "entry_text": [
+                "Un Pokémon uccello leggendario.\n",
+                "Si dice che la sua apparizione pre-\n",
+                "annunci l’arrivo della primavera."
+            ]
+        },
+        "spanish": {
+            "name": "MOLTRES",
+            "category": "Pokémon Llama",
+            "entry_text": [
+                "Uno de los legendarios Pokémon\n",
+                "pájaro. Dicen que su presencia\n",
+                "anuncia la llegada de la primavera."
+            ]
+        },
+        "japanese": {
+            "name": "ファイヤ－",
+            "category": "かえんポケモン",
+            "entry_text": [
+                "でんせつの　とりポケモンの　１ぴき。\n",
+                "ファイヤ－が　すがたを　みせると\n",
+                "はるが　おとずれると　いわれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

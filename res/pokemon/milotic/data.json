@@ -109,8 +109,59 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 3,
-        "entry_text": "Its lovely scales are described as\nrainbow colored. They change color\ndepending on the viewing angle.",
-        "category": "Tender Pokémon"
+        "english": {
+            "category": "Tender Pokémon",
+            "entry_text": [
+                "Its lovely scales are described as\n",
+                "rainbow colored. They change color\n",
+                "depending on the viewing angle."
+            ]
+        },
+        "french": {
+            "name": "MILOBELLUS",
+            "category": "Pokémon Tendre",
+            "entry_text": [
+                "On raconte qu’il surgit du fond des\n",
+                "lacs pour calmer les esprits quand\n",
+                "les gens se querellent."
+            ]
+        },
+        "german": {
+            "name": "MILOTIC",
+            "category": "Zartheit",
+            "entry_text": [
+                "Wenn sich jemand streitet, steigt\n",
+                "es aus den Tiefen des Sees empor,\n",
+                "um die Streitenden zu beruhigen."
+            ]
+        },
+        "italian": {
+            "name": "MILOTIC",
+            "category": "Pokémon Tenerezza",
+            "entry_text": [
+                "Si dice che sorga dai fondali dei\n",
+                "laghi per placare gli animi furiosi\n",
+                "delle persone che litigano."
+            ]
+        },
+        "spanish": {
+            "name": "MILOTIC",
+            "category": "Pokémon Tierno",
+            "entry_text": [
+                "Se dice que emerge del fondo de\n",
+                "los lagos cuando la gente discute\n",
+                "para apaciguarla."
+            ]
+        },
+        "japanese": {
+            "name": "ミロカロス",
+            "category": "いつくしみポケモン",
+            "entry_text": [
+                "ひとびとが　あらそいを　はじめると\n",
+                "みずうみの　おくそこから　あらわれて\n",
+                "すさんだ　こころを　いやすという。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

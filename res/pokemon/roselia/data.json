@@ -115,8 +115,59 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "The more healthy the ROSELIA, the\nmore pleasant its flowers’ aroma.\nIts scent deeply relaxes people.",
-        "category": "Thorn Pokémon"
+        "english": {
+            "category": "Thorn Pokémon",
+            "entry_text": [
+                "The more healthy the ROSELIA, the\n",
+                "more pleasant its flowers’ aroma.\n",
+                "Its scent deeply relaxes people."
+            ]
+        },
+        "french": {
+            "name": "ROSELIA",
+            "category": "Pokémon Epine",
+            "entry_text": [
+                "Les ROSELIA élevés avec une\n",
+                "eau claire et potable font de\n",
+                "ravissantes fleurs bariolées."
+            ]
+        },
+        "german": {
+            "name": "ROSELIA",
+            "category": "Dorn",
+            "entry_text": [
+                "ROSELIA, die mit klarem Wasser\n",
+                "aufgezogen wurden, bekommen\n",
+                "Blüten in leuchtenden Farben."
+            ]
+        },
+        "italian": {
+            "name": "ROSELIA",
+            "category": "Pokémon Spina",
+            "entry_text": [
+                "ROSELIA, cresciuto bevendo acqua\n",
+                "pulita, è noto perché fa crescere\n",
+                "fiori dai vividi colori."
+            ]
+        },
+        "spanish": {
+            "name": "ROSELIA",
+            "category": "Pokémon Espina",
+            "entry_text": [
+                "Si este Pokémon crece con agua\n",
+                "limpia y potable, le brotarán\n",
+                "flores de vivos colores."
+            ]
+        },
+        "japanese": {
+            "name": "ロゼリア",
+            "category": "いばらポケモン",
+            "entry_text": [
+                "きれいな　みずを　のんで　そだった\n",
+                "ロゼリアは　いろあざやかな　はなを\n",
+                "さかせる　ことで　しられている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

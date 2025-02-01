@@ -121,8 +121,59 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It is said to live 10,000 years.\nIts furry tail is popular as a\nsymbol of longevity.",
-        "category": "Turtle Pokémon"
+        "english": {
+            "category": "Turtle Pokémon",
+            "entry_text": [
+                "It is said to live 10,000 years.\n",
+                "Its furry tail is popular as a\n",
+                "symbol of longevity."
+            ]
+        },
+        "french": {
+            "name": "CARABAFFE",
+            "category": "Pokémon Tortue",
+            "entry_text": [
+                "On prétend qu’il vit 10 000 ans.\n",
+                "Sa queue duveteuse est un\n",
+                "symbole de longévité populaire."
+            ]
+        },
+        "german": {
+            "name": "SCHILLOK",
+            "category": "Kröte",
+            "entry_text": [
+                "Man sagt, es werde 10 000 Jahre\n",
+                "alt. Sein buschiger Schweif ist ein\n",
+                "Symbol für langes Leben."
+            ]
+        },
+        "italian": {
+            "name": "WARTORTLE",
+            "category": "Pokémon Tartaruga",
+            "entry_text": [
+                "Pare che viva 10000 anni. Ha\n",
+                "la coda ricoperta da una folta\n",
+                "pelliccia, indice di longevità."
+            ]
+        },
+        "spanish": {
+            "name": "WARTORTLE",
+            "category": "Pokémon Tortuga",
+            "entry_text": [
+                "Se dice que vive 10000 años.\n",
+                "Su peluda cola es un símbolo de\n",
+                "longevidad."
+            ]
+        },
+        "japanese": {
+            "name": "カメ－ル",
+            "category": "かめポケモン",
+            "entry_text": [
+                "いちまんねんの　じゅみょうを　もつと\n",
+                "いわれている。ふさふさの　しっぽは\n",
+                "ながいきの　シンボルとして　にんき。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

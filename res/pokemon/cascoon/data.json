@@ -63,8 +63,59 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "It never forgets any attack it\nendured while in the cocoon.\nAfter evolution, it seeks payback.",
-        "category": "Cocoon Pokémon"
+        "english": {
+            "category": "Cocoon Pokémon",
+            "entry_text": [
+                "It never forgets any attack it\n",
+                "endured while in the cocoon.\n",
+                "After evolution, it seeks payback."
+            ]
+        },
+        "french": {
+            "name": "BLINDALYS",
+            "category": "Pokémon Cocon",
+            "entry_text": [
+                "Il est au chaud dans son cocon.\n",
+                "Ses cellules produisent l’énergie\n",
+                "nécessaire à son évolution."
+            ]
+        },
+        "german": {
+            "name": "PANEKON",
+            "category": "Kokon",
+            "entry_text": [
+                "In seinem Kokon ist es heiß. Seine\n",
+                "Körperzellen produzieren die Hitze,\n",
+                "damit es sich entwickeln kann."
+            ]
+        },
+        "italian": {
+            "name": "CASCOON",
+            "category": "Pokémon Bozzolo",
+            "entry_text": [
+                "Dentro, il suo bozzolo è caldo. Ogni\n",
+                "cellula del suo corpo contribuisce\n",
+                "a creare energia per l’evoluzione."
+            ]
+        },
+        "spanish": {
+            "name": "CASCOON",
+            "category": "Pokémon Capullo",
+            "entry_text": [
+                "Mantiene el calor en su capullo.\n",
+                "Dedica todas las células de su\n",
+                "cuerpo a evolucionar."
+            ]
+        },
+        "japanese": {
+            "name": "マユルド",
+            "category": "さなぎポケモン",
+            "entry_text": [
+                "マユの　なかは　おんどが　たかい。\n",
+                "そのなかで　ぜんしんの　さいぼうが\n",
+                "しんかの　エネルギ－を　つくりだす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

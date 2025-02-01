@@ -124,8 +124,59 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 4,
-        "entry_text": "They appear when the snow flowers\nbloom. When the petals fall, they\nretreat to places unknown again.",
-        "category": "Frost Tree Pokémon"
+        "english": {
+            "category": "Frost Tree Pokémon",
+            "entry_text": [
+                "They appear when the snow flowers\n",
+                "bloom. When the petals fall, they\n",
+                "retreat to places unknown again."
+            ]
+        },
+        "french": {
+            "name": "BLIZZAROI",
+            "category": "Pokémon Arbregelé",
+            "entry_text": [
+                "C’est l’abominable homme des\n",
+                "neiges. Il ensevelit les montagnes\n",
+                "sous ses blizzards."
+            ]
+        },
+        "german": {
+            "name": "REXBLISAR",
+            "category": "Frostbaum",
+            "entry_text": [
+                "Es löst in den Bergen, wo ewiger\n",
+                "Schnee liegt, Blizzards aus. Es ist\n",
+                "ein scheußlicher Schneemann."
+            ]
+        },
+        "italian": {
+            "name": "ABOMASNOW",
+            "category": "Pokémon Albergelo",
+            "entry_text": [
+                "Crea bufere di neve sui monti\n",
+                "ricoperti da nevi perenni.\n",
+                "È l’abominevole essere delle nevi."
+            ]
+        },
+        "spanish": {
+            "name": "ABOMASNOW",
+            "category": "Pokémon Árbol Nieve",
+            "entry_text": [
+                "Es el abominable hombre de las\n",
+                "nieves. Produce ventiscas en las\n",
+                "montañas cubiertas de nieve."
+            ]
+        },
+        "japanese": {
+            "name": "ユキノオ－",
+            "category": "じゅひょうポケモン",
+            "entry_text": [
+                "まんねんゆきの　つもる　やまで\n",
+                "くらし　ブリザ－ドを　まきおこす。\n",
+                "ゆきおとこの　しょうたいだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

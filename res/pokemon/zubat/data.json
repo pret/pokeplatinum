@@ -115,8 +115,59 @@
         "pokemon_pos_f": 65525,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65525,
-        "entry_text": "It checks its surroundings and\nlocation using reflections of the\nultrasonic waves from its mouth.",
-        "category": "Bat Pokémon"
+        "english": {
+            "category": "Bat Pokémon",
+            "entry_text": [
+                "It checks its surroundings and\n",
+                "location using reflections of the\n",
+                "ultrasonic waves from its mouth."
+            ]
+        },
+        "french": {
+            "name": "NOSFERAPTI",
+            "category": "Pokémon Chovsouris",
+            "entry_text": [
+                "Bien que dépourvu d’yeux, il\n",
+                "repère les obstacles grâce aux\n",
+                "ultrasons émis par sa gueule."
+            ]
+        },
+        "german": {
+            "name": "ZUBAT",
+            "category": "Fledermaus",
+            "entry_text": [
+                "Obwohl es keine Augen hat, kann es\n",
+                "Hindernisse mithilfe von\n",
+                "Ultraschallwellen wahrnehmen."
+            ]
+        },
+        "italian": {
+            "name": "ZUBAT",
+            "category": "Pokémon Pipistrello",
+            "entry_text": [
+                "Non ha occhi, ma avverte gli\n",
+                "ostacoli con le onde ultrasoniche\n",
+                "che emette dalla bocca."
+            ]
+        },
+        "spanish": {
+            "name": "ZUBAT",
+            "category": "Pokémon Murciélago",
+            "entry_text": [
+                "Aunque carezca de ojos, puede\n",
+                "detectar obstáculos con las ondas\n",
+                "ultrasónicas que emite su boca."
+            ]
+        },
+        "japanese": {
+            "name": "ズバット",
+            "category": "こうもりポケモン",
+            "entry_text": [
+                "くちから　だす　ちょうおんぱで\n",
+                "りょうめが　なくても　まわりの\n",
+                "しょうがいぶつを　さっちできる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

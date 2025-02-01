@@ -127,8 +127,59 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "Small Pokémon flee from its scary\nface. It is, however, considered\nby women to be cute.",
-        "category": "Fairy Pokémon"
+        "english": {
+            "category": "Fairy Pokémon",
+            "entry_text": [
+                "Small Pokémon flee from its scary\n",
+                "face. It is, however, considered\n",
+                "by women to be cute."
+            ]
+        },
+        "french": {
+            "name": "SNUBBULL",
+            "category": "Pokémon Fée",
+            "entry_text": [
+                "Son visage horrible fait fuir les\n",
+                "petits Pokémon. Par contre, les\n",
+                "femmes le trouvent mignon."
+            ]
+        },
+        "german": {
+            "name": "SNUBBULL",
+            "category": "Fee",
+            "entry_text": [
+                "Kleine PKMN fliehen beim Anblick\n",
+                "seines Gesichts. Frauen aber finden\n",
+                "es niedlich."
+            ]
+        },
+        "italian": {
+            "name": "SNUBBULL",
+            "category": "Pokémon Fata",
+            "entry_text": [
+                "I Pokémon più piccoli fuggono alla\n",
+                "vista della sua faccia terrificante.\n",
+                "Ma le donne lo trovano carino."
+            ]
+        },
+        "spanish": {
+            "name": "SNUBBULL",
+            "category": "Pokémon Hada",
+            "entry_text": [
+                "Los Pokémon pequeños huyen al\n",
+                "ver su cara agresiva. No obstante,\n",
+                "para muchas féminas es mono."
+            ]
+        },
+        "japanese": {
+            "name": "ブル－",
+            "category": "ようせいポケモン",
+            "entry_text": [
+                "ちいさな　ポケモンが　にげだすほどの\n",
+                "こわいかおが　ぎゃくに　かわいいと\n",
+                "じょせいに　にんきの　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

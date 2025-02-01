@@ -114,8 +114,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 7,
         "pokemon_pos_m": 0,
-        "entry_text": "A legendary bird Pokémon.\nIt can create blizzards by\nfreezing moisture in the air.",
-        "category": "Freeze Pokémon"
+        "english": {
+            "category": "Freeze Pokémon",
+            "entry_text": [
+                "A legendary bird Pokémon.\n",
+                "It can create blizzards by\n",
+                "freezing moisture in the air."
+            ]
+        },
+        "french": {
+            "name": "ARTIKODIN",
+            "category": "Pokémon Glaciaire",
+            "entry_text": [
+                "Un Pokémon Oiseau légendaire.\n",
+                "Il peut provoquer des blizzards\n",
+                "en gelant l’humidité de l’air."
+            ]
+        },
+        "german": {
+            "name": "ARKTOS",
+            "category": "Eis",
+            "entry_text": [
+                "Ein Legendäres Vogel-Pokémon.\n",
+                "Es kann Blizzards verursachen,\n",
+                "indem es Feuchtigkeit gefriert."
+            ]
+        },
+        "italian": {
+            "name": "ARTICUNO",
+            "category": "Pokémon Gelo",
+            "entry_text": [
+                "Un Pokémon uccello leggendario.\n",
+                "Riesce a creare bufere di neve\n",
+                "congelando l’umidità dell’aria."
+            ]
+        },
+        "spanish": {
+            "name": "ARTICUNO",
+            "category": "Pokémon Congelar",
+            "entry_text": [
+                "Legendario Pokémon pájaro capaz\n",
+                "de generar ventiscas congelando\n",
+                "la humedad del aire."
+            ]
+        },
+        "japanese": {
+            "name": "フリ－ザ－",
+            "category": "れいとうポケモン",
+            "entry_text": [
+                "でんせつの　とりポケモン。\n",
+                "くうきちゅうの　すいぶんを　こおらせ\n",
+                "ふぶきを　つくりだすことが　できる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

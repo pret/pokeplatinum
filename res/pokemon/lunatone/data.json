@@ -122,8 +122,59 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "Because it turns active on nights\nof the full moon, it is said to have\nsome link to the lunar phases.",
-        "category": "Meteorite Pokémon"
+        "english": {
+            "category": "Meteorite Pokémon",
+            "entry_text": [
+                "Because it turns active on nights\n",
+                "of the full moon, it is said to have\n",
+                "some link to the lunar phases."
+            ]
+        },
+        "french": {
+            "name": "SELEROC",
+            "category": "Pokémon Météorite",
+            "entry_text": [
+                "On suppose qu’il est lié au cycle\n",
+                "lunaire, car il ne sort que les\n",
+                "soirs de pleine lune."
+            ]
+        },
+        "german": {
+            "name": "LUNASTEIN",
+            "category": "Meteorit",
+            "entry_text": [
+                "Da es in Vollmondnächten aktiv wird,\n",
+                "sagt man ihm nach, mit den Mond-\n",
+                "phasen in Verbindung zu stehen."
+            ]
+        },
+        "italian": {
+            "name": "LUNATONE",
+            "category": "Pokémon Meteorite",
+            "entry_text": [
+                "Diventa attivo nelle notti di luna\n",
+                "piena, pertanto si dice che abbia\n",
+                "qualche legame con le fasi lunari."
+            ]
+        },
+        "spanish": {
+            "name": "LUNATONE",
+            "category": "Pokémon Meteorito",
+            "entry_text": [
+                "Se piensa que está muy influido\n",
+                "por las fases lunares, ya que solo\n",
+                "actúa en noches de luna llena."
+            ]
+        },
+        "japanese": {
+            "name": "ルナト－ン",
+            "category": "いんせきポケモン",
+            "entry_text": [
+                "まんげつの　よるになると　かっぱつに\n",
+                "かつどうするため　つきの　みちかけと\n",
+                "かんけいしていると　いわれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

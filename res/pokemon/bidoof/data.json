@@ -119,8 +119,59 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "A comparison revealed that\nBIDOOF’s front teeth grow at\nthe same rate as RATTATA’s.",
-        "category": "Plump Mouse Pokémon"
+        "english": {
+            "category": "Plump Mouse Pokémon",
+            "entry_text": [
+                "A comparison revealed that\n",
+                "BIDOOF’s front teeth grow at\n",
+                "the same rate as RATTATA’s."
+            ]
+        },
+        "french": {
+            "name": "KEUNOTOR",
+            "category": "Pokémon Souridodue",
+            "entry_text": [
+                "Rien ne peut perturber ses nerfs\n",
+                "d’acier. Il est plus agile et\n",
+                "énergique qu’il n’y paraît."
+            ]
+        },
+        "german": {
+            "name": "BIDIZA",
+            "category": "Dickmaus",
+            "entry_text": [
+                "Es hat Nerven wie Drahtseile,\n",
+                "nichts kann es erschüttern. Es ist\n",
+                "agiler und aktiver, als es scheint."
+            ]
+        },
+        "italian": {
+            "name": "BIDOOF",
+            "category": "Pokémon Topaffuto",
+            "entry_text": [
+                "Ha i nervi d’acciaio e niente può\n",
+                "turbarlo. È più agile e attivo di\n",
+                "quanto sembri."
+            ]
+        },
+        "spanish": {
+            "name": "BIDOOF",
+            "category": "Pokémon Gran Ratón",
+            "entry_text": [
+                "Tiene nervios de acero y nada\n",
+                "puede perturbarlo. Es más ágil\n",
+                "y activo de lo que aparenta."
+            ]
+        },
+        "japanese": {
+            "name": "ビッパ",
+            "category": "まるねずみポケモン",
+            "entry_text": [
+                "なにごとにも　どうじない　ずぶとい\n",
+                "しんけいの　もちぬし。みかけの\n",
+                "わりには　きびんに　かつどうする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

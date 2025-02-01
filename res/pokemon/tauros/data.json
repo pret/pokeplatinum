@@ -119,8 +119,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "Once it takes aim at its foe, it\nmakes a headlong charge. It is\nfamous for its violent nature.",
-        "category": "Wild Bull Pokémon"
+        "english": {
+            "category": "Wild Bull Pokémon",
+            "entry_text": [
+                "Once it takes aim at its foe, it\n",
+                "makes a headlong charge. It is\n",
+                "famous for its violent nature."
+            ]
+        },
+        "french": {
+            "name": "TAUROS",
+            "category": "Pokémon Buffle",
+            "entry_text": [
+                "Après avoir choisi sa cible, il fonce\n",
+                "dessus tête baissée. Il est réputé\n",
+                "pour sa nature violente."
+            ]
+        },
+        "german": {
+            "name": "TAUROS",
+            "category": "Wildbulle",
+            "entry_text": [
+                "Sobald es einen Gegner ins Visier\n",
+                "genommen hat, rennt es mit dem\n",
+                "Kopf voran auf ihn zu."
+            ]
+        },
+        "italian": {
+            "name": "TAUROS",
+            "category": "Pokémon Torobrado",
+            "entry_text": [
+                "Dopo aver puntato il nemico, lo\n",
+                "carica a testa bassa.\n",
+                "È noto per la sua indole violenta."
+            ]
+        },
+        "spanish": {
+            "name": "TAUROS",
+            "category": "Pokémon Toro Bravo",
+            "entry_text": [
+                "Cuando elige una presa, ataca sin\n",
+                "pensárselo. Este Pokémon es\n",
+                "famoso por su carácter violento."
+            ]
+        },
+        "japanese": {
+            "name": "ケンタロス",
+            "category": "あばれうしポケモン",
+            "entry_text": [
+                "えものに　ねらいを　さだめると\n",
+                "いっちょくせんに　とっしんする。\n",
+                "あらっぽい　せいかくで　ゆうめい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

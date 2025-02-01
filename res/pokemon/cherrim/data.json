@@ -101,8 +101,59 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "If it senses strong sunlight, it\nopens its folded petals to absorb\nthe sun’s rays with its whole body.",
-        "category": "Blossom Pokémon"
+        "english": {
+            "category": "Blossom Pokémon",
+            "entry_text": [
+                "If it senses strong sunlight, it\n",
+                "opens its folded petals to absorb\n",
+                "the sun’s rays with its whole body."
+            ]
+        },
+        "french": {
+            "name": "CERIFLOR",
+            "category": "Pokémon Floraison",
+            "entry_text": [
+                "Il fleurit lorsque le soleil est au\n",
+                "beau fixe. Il cherche à prendre sa\n",
+                "revanche sur une vie de bourgeon."
+            ]
+        },
+        "german": {
+            "name": "KINOSO",
+            "category": "Blüte",
+            "entry_text": [
+                "In Zeiten mit viel Sonnenschein\n",
+                "blüht es auf. Es holt nach, was ihm\n",
+                "als Knospe verwehrt blieb."
+            ]
+        },
+        "italian": {
+            "name": "CHERRIM",
+            "category": "Pokémon Bocciolo",
+            "entry_text": [
+                "Sboccia quando fa caldo e cerca\n",
+                "di godersi fino all’ultimo ogni mo-\n",
+                "mento che può passare al sole."
+            ]
+        },
+        "spanish": {
+            "name": "CHERRIM",
+            "category": "Pokémon Floración",
+            "entry_text": [
+                "Florece en épocas de mucha\n",
+                "luz solar. Intenta compensar\n",
+                "lo que soportó como capullo."
+            ]
+        },
+        "japanese": {
+            "name": "チェリム",
+            "category": "サクラポケモン",
+            "entry_text": [
+                "ひざしが　つよくなると　はなひらく。\n",
+                "つぼみの　ときに　たえしのんだ\n",
+                "うっぷんを　いっきに　はらすのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

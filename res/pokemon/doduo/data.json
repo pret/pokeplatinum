@@ -105,8 +105,59 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "The brains in its two heads appear\nto communicate emotions to each\nother with a telepathic power.",
-        "category": "Twin Bird Pokémon"
+        "english": {
+            "category": "Twin Bird Pokémon",
+            "entry_text": [
+                "The brains in its two heads appear\n",
+                "to communicate emotions to each\n",
+                "other with a telepathic power."
+            ]
+        },
+        "french": {
+            "name": "DODUO",
+            "category": "Pokémon Duoiseau",
+            "entry_text": [
+                "Ses deux cerveaux semblent\n",
+                "communiquer leurs émotions\n",
+                "grâce à un lien télépathique."
+            ]
+        },
+        "german": {
+            "name": "DODU",
+            "category": "Duovogel",
+            "entry_text": [
+                "Die Gehirne der beiden Köpfe\n",
+                "kommunizieren ihre Gefühle\n",
+                "über Telepathie."
+            ]
+        },
+        "italian": {
+            "name": "DODUO",
+            "category": "Pokémon Biuccello",
+            "entry_text": [
+                "I suoi due cervelli si comunicano\n",
+                "le emozioni grazie ai poteri\n",
+                "telepatici."
+            ]
+        },
+        "spanish": {
+            "name": "DODUO",
+            "category": "Pokémon Ave Gemela",
+            "entry_text": [
+                "Parece que los cerebros de sus\n",
+                "dos cabezas se comunican por\n",
+                "telepatía."
+            ]
+        },
+        "japanese": {
+            "name": "ド－ド－",
+            "category": "ふたごどりポケモン",
+            "entry_text": [
+                "２つの　あたまの　のうみそは\n",
+                "テレパシ－のような　ちからで\n",
+                "きもちを　つうじあわせているらしい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

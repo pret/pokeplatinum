@@ -137,8 +137,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "A highly intelligent Pokémon.\nBy folding back its wings in flight,\nit can overtake jet planes.",
-        "category": "Eon Pokémon"
+        "english": {
+            "category": "Eon Pokémon",
+            "entry_text": [
+                "A highly intelligent Pokémon.\n",
+                "By folding back its wings in flight,\n",
+                "it can overtake jet planes."
+            ]
+        },
+        "french": {
+            "name": "LATIOS",
+            "category": "Pokémon Eon",
+            "entry_text": [
+                "Un Pokémon très intelligent. Il\n",
+                "peut voler plus vite qu’un avion à\n",
+                "réaction en repliant ses ailes."
+            ]
+        },
+        "german": {
+            "name": "LATIOS",
+            "category": "Äon",
+            "entry_text": [
+                "Ein hochintelligentes PKMN. Wenn es\n",
+                "im Flug seine Flügel nach hinten\n",
+                "legt, ist es schneller als ein Jet."
+            ]
+        },
+        "italian": {
+            "name": "LATIOS",
+            "category": "Pokémon Eone",
+            "entry_text": [
+                "Pokémon molto intelligente.\n",
+                "Ripiegando indietro le ali, riesce a\n",
+                "volare più veloce di un jet."
+            ]
+        },
+        "spanish": {
+            "name": "LATIOS",
+            "category": "Pokémon Eón",
+            "entry_text": [
+                "Es un Pokémon muy inteligente.\n",
+                "Puede adelantar a aviones a\n",
+                "reacción plegando las alas."
+            ]
+        },
+        "japanese": {
+            "name": "ラティオス",
+            "category": "むげんポケモン",
+            "entry_text": [
+                "たかい　ちのうを　もつ　ポケモン。\n",
+                "うでを　おりたたんで　とべば\n",
+                "ジェットきを　おいこす　スピ－ドだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

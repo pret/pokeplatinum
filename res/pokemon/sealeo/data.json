@@ -115,8 +115,59 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It habitually spins things on its\nnose. By doing so, it learns\ntextures and odors.",
-        "category": "Ball Roll Pokémon"
+        "english": {
+            "category": "Ball Roll Pokémon",
+            "entry_text": [
+                "It habitually spins things on its\n",
+                "nose. By doing so, it learns\n",
+                "textures and odors."
+            ]
+        },
+        "french": {
+            "name": "PHOGLEUR",
+            "category": "Pokémon Roule Boule",
+            "entry_text": [
+                "Il fait souvent tourner des objets\n",
+                "sur son museau pour connaître\n",
+                "leur odeur et leur texture."
+            ]
+        },
+        "german": {
+            "name": "SEEJONG",
+            "category": "Spielball",
+            "entry_text": [
+                "Es balanciert Dinge auf seiner\n",
+                "Nase. Dabei lernt es etwas über die\n",
+                "Beschaffenheit und den Geruch."
+            ]
+        },
+        "italian": {
+            "name": "SEALEO",
+            "category": "Pokémon Rotapalla",
+            "entry_text": [
+                "Fa roteare oggetti sul naso\n",
+                "per controllarne l’odore e la\n",
+                "consistenza."
+            ]
+        },
+        "spanish": {
+            "name": "SEALEO",
+            "category": "Pokémon Rodabola",
+            "entry_text": [
+                "Suele hacer girar objetos en su\n",
+                "nariz. De esta forma aprende\n",
+                "texturas y olores."
+            ]
+        },
+        "japanese": {
+            "name": "トドグラ－",
+            "category": "たままわしポケモン",
+            "entry_text": [
+                "なんでも　はなの　うえで　まわす\n",
+                "クセを　もつ。まわしながら　においや\n",
+                "かんしょくを　おぼえるのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

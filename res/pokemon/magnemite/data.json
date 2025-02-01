@@ -113,8 +113,59 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "entry_text": "The faster the units at its sides\nrotate, the greater the magnetic\nforce they generate.",
-        "category": "Magnet Pokémon"
+        "english": {
+            "category": "Magnet Pokémon",
+            "entry_text": [
+                "The faster the units at its sides\n",
+                "rotate, the greater the magnetic\n",
+                "force they generate."
+            ]
+        },
+        "french": {
+            "name": "MAGNETI",
+            "category": "Pokémon Magnétique",
+            "entry_text": [
+                "Ses extrémités génèrent les vagues\n",
+                "électromagnétiques qui le font \n",
+                "voler. Il se nourrit d’électricité."
+            ]
+        },
+        "german": {
+            "name": "MAGNETILO",
+            "category": "Magnet",
+            "entry_text": [
+                "Die Vorrichtungen an seinem Körper\n",
+                "generieren elektromagnetische\n",
+                "Wellen, die es schweben lassen."
+            ]
+        },
+        "italian": {
+            "name": "MAGNEMITE",
+            "category": "Pokémon Calamita",
+            "entry_text": [
+                "Gli elementi laterali generano onde\n",
+                "magnetiche che lo mantengono in\n",
+                "sospeso. Si nutre d’elettricità."
+            ]
+        },
+        "spanish": {
+            "name": "MAGNEMITE",
+            "category": "Pokémon Imán",
+            "entry_text": [
+                "Las unidades laterales crean ondas\n",
+                "electromagnéticas que le permiten\n",
+                "flotar. Se alimenta de electricidad."
+            ]
+        },
+        "japanese": {
+            "name": "コイル",
+            "category": "じしゃくポケモン",
+            "entry_text": [
+                "さゆうの　ユニットから　でんじはを\n",
+                "だして　くうちゅうを　いどうする。\n",
+                "でんきを　たべる　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

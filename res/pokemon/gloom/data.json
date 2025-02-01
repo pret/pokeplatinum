@@ -114,8 +114,59 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "The honey it drools from its mouth\nsmells so atrocious, it can curl\nnoses more than a mile away.",
-        "category": "Weed Pokémon"
+        "english": {
+            "category": "Weed Pokémon",
+            "entry_text": [
+                "The honey it drools from its mouth\n",
+                "smells so atrocious, it can curl\n",
+                "noses more than a mile away."
+            ]
+        },
+        "french": {
+            "name": "ORTIDE",
+            "category": "Pokémon Racine",
+            "entry_text": [
+                "L’odeur du nectar de sa bouche \n",
+                "est si répugnante qu’elle agresse\n",
+                "les narines à deux kilomètres."
+            ]
+        },
+        "german": {
+            "name": "DUFLOR",
+            "category": "Unkraut",
+            "entry_text": [
+                "Der Honig, den es abgibt, riecht so\n",
+                "entsetzlich, dass sich sogar Nasen\n",
+                "in 2 km Entfernung rümpfen."
+            ]
+        },
+        "italian": {
+            "name": "GLOOM",
+            "category": "Pokémon Malerba",
+            "entry_text": [
+                "Il fluido che fuoriesce dalla sua\n",
+                "bocca è così puzzolente che si\n",
+                "sente anche a 2 km di distanza."
+            ]
+        },
+        "spanish": {
+            "name": "GLOOM",
+            "category": "Pokémon Hierbajo",
+            "entry_text": [
+                "La miel que emana de su boca\n",
+                "posee un hedor capaz de derribar\n",
+                "enemigos a 2 km de distancia."
+            ]
+        },
+        "japanese": {
+            "name": "クサイハナ",
+            "category": "ざっそうポケモン",
+            "entry_text": [
+                "くちから　たれている　ミツは\n",
+                "２キロ　はなれていても　はなが\n",
+                "まがるほど　もうれつに　くさい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

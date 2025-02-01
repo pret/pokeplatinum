@@ -121,8 +121,59 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "To protect itself from attackers,\nit curls up into a ball. It lives in\narid regions with minimal rainfall.",
-        "category": "Mouse Pokémon"
+        "english": {
+            "category": "Mouse Pokémon",
+            "entry_text": [
+                "To protect itself from attackers,\n",
+                "it curls up into a ball. It lives in\n",
+                "arid regions with minimal rainfall."
+            ]
+        },
+        "french": {
+            "name": "SABELETTE",
+            "category": "Pokémon Souris",
+            "entry_text": [
+                "Il vit sur des terres arides\n",
+                "épargnées par la pluie. Il se roule\n",
+                "en boule pour se protéger."
+            ]
+        },
+        "german": {
+            "name": "SANDAN",
+            "category": "Maus",
+            "entry_text": [
+                "Es lebt in trockenen Regionen mit\n",
+                "wenig Regen. Es rollt sich ein, um\n",
+                "sich vor Gegnern zu schützen."
+            ]
+        },
+        "italian": {
+            "name": "SANDSHREW",
+            "category": "Pokémon Topo",
+            "entry_text": [
+                "Vive in zone aride con precipitazioni\n",
+                "minime. Si arrotola come se fosse\n",
+                "una palla per difendersi dai nemici."
+            ]
+        },
+        "spanish": {
+            "name": "SANDSHREW",
+            "category": "Pokémon Ratón",
+            "entry_text": [
+                "Vive en zonas áridas donde casi\n",
+                "no llueve. Se enrosca formando\n",
+                "una bola para defenderse."
+            ]
+        },
+        "japanese": {
+            "name": "サンド",
+            "category": "ねずみポケモン",
+            "entry_text": [
+                "あめが　ほとんど　ふらない\n",
+                "かんそうした　とちに　せいそく。\n",
+                "からだを　まるめて　みを　まもる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

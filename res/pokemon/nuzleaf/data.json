@@ -123,8 +123,59 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "The sound of its grass flute makes\nits listeners uneasy. It lives deep\nin forests.",
-        "category": "Wily Pokémon"
+        "english": {
+            "category": "Wily Pokémon",
+            "entry_text": [
+                "The sound of its grass flute makes\n",
+                "its listeners uneasy. It lives deep\n",
+                "in forests."
+            ]
+        },
+        "french": {
+            "name": "PIFEUIL",
+            "category": "Pokémon Malin",
+            "entry_text": [
+                "Le son de sa flûte d’herbe\n",
+                "déstabilise l’auditeur. Il vit au \n",
+                "plus profond des forêts."
+            ]
+        },
+        "german": {
+            "name": "BLANAS",
+            "category": "Hinterlist",
+            "entry_text": [
+                "Der Ton seiner Grasflöte\n",
+                "beunruhigt die, die ihn hören.\n",
+                "Es lebt tief in den Wäldern."
+            ]
+        },
+        "italian": {
+            "name": "NUZLEAF",
+            "category": "Pokémon Scaltro",
+            "entry_text": [
+                "Il fischio del suo flauto di foglia\n",
+                "mette a disagio chi lo sente.\n",
+                "Vive nelle foreste più fitte."
+            ]
+        },
+        "spanish": {
+            "name": "NUZLEAF",
+            "category": "Pokémon Astuto",
+            "entry_text": [
+                "Cuando usa la hoja de su cabeza\n",
+                "como flauta asusta a la gente. Vive\n",
+                "en lo más profundo de los bosques."
+            ]
+        },
+        "japanese": {
+            "name": "コノハナ",
+            "category": "いじわるポケモン",
+            "entry_text": [
+                "コノハナが　かなでる　くさぶえの\n",
+                "ねいろは　ひとを　ふあんにさせる。\n",
+                "もりの　おくに　すんでいる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

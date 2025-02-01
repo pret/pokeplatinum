@@ -122,8 +122,59 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "It shares many blessings with\npeople who respect one another’s\nrights and avoid needless strife.",
-        "category": "Jubilee Pokémon"
+        "english": {
+            "category": "Jubilee Pokémon",
+            "entry_text": [
+                "It shares many blessings with\n",
+                "people who respect one another’s\n",
+                "rights and avoid needless strife."
+            ]
+        },
+        "french": {
+            "name": "TOGEKISS",
+            "category": "Pokémon Célébration",
+            "entry_text": [
+                "Il n’apparaît jamais en temps\n",
+                "de conflit. Récemment, il se\n",
+                "fait plus rare."
+            ]
+        },
+        "german": {
+            "name": "TOGEKISS",
+            "category": "Jubilierer",
+            "entry_text": [
+                "Es zeigt sich niemals dort, wo\n",
+                "es Streitigkeiten gibt. In letzter\n",
+                "Zeit wurde es nur selten gesehen."
+            ]
+        },
+        "italian": {
+            "name": "TOGEKISS",
+            "category": "Pokémon Festa",
+            "entry_text": [
+                "Non si presenta mai dove c’è un\n",
+                "conflitto. Di recente le sue\n",
+                "apparizioni sono diventate rare."
+            ]
+        },
+        "spanish": {
+            "name": "TOGEKISS",
+            "category": "Pokémon Festejo",
+            "entry_text": [
+                "Nunca aparece donde hay peleas.\n",
+                "Últimamente no se deja ver muy\n",
+                "a menudo."
+            ]
+        },
+        "japanese": {
+            "name": "トゲキッス",
+            "category": "しゅくふくポケモン",
+            "entry_text": [
+                "もめごとの　おこる　ばしょには\n",
+                "けっして　あらわれない。ちかごろは\n",
+                "すがたを　みかけなくなった。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

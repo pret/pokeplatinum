@@ -61,12 +61,12 @@ Strbuf *PokedexText_NameNumber(int species, int language, enum HeapId heapID)
         return MessageUtil_SpeciesName(species, heapID);
     } else {
         const int nameNumberBanks[] = {
-            TEXT_BANK_UNK_0717,
-            TEXT_BANK_SPECIES_NAME_NUMBER_1,
-            TEXT_BANK_UNK_0713,
-            TEXT_BANK_UNK_0714,
-            TEXT_BANK_SPECIES_NAME_NUMBER_2,
-            TEXT_BANK_SPECIES_NAME_NUMBER_3
+            TEXT_BANK_SPECIES_NAME_NUMBER_JAPANESE,
+            TEXT_BANK_SPECIES_NAME_NUMBER_ENGLISH,
+            TEXT_BANK_SPECIES_NAME_NUMBER_FRENCH,
+            TEXT_BANK_SPECIES_NAME_NUMBER_GERMAN,
+            TEXT_BANK_SPECIES_NAME_NUMBER_ITALIAN,
+            TEXT_BANK_SPECIES_NAME_NUMBER_SPANISH
         };
         bankID = nameNumberBanks[index];
         index = dexNum;
@@ -86,15 +86,15 @@ Strbuf *PokedexText_Category(int species, int language, enum HeapId heapID)
 
     if (index == NUM_LANGUAGES) {
         index = species;
-        bankID = TEXT_BANK_UNK_0711;
+        bankID = TEXT_BANK_SPECIES_CATEGORY;
     } else {
         const int categoryBanks[] = {
-            TEXT_BANK_UNK_0723,
-            TEXT_BANK_SPECIES_CATEGORY,
-            TEXT_BANK_UNK_0719,
-            TEXT_BANK_UNK_0720,
-            TEXT_BANK_UNK_0721,
-            TEXT_BANK_UNK_0722
+            TEXT_BANK_SPECIES_CATEGORY_JAPANESE,
+            TEXT_BANK_SPECIES_CATEGORY_ENGLISH,
+            TEXT_BANK_SPECIES_CATEGORY_FRENCH,
+            TEXT_BANK_SPECIES_CATEGORY_GERMAN,
+            TEXT_BANK_SPECIES_CATEGORY_ITALIAN,
+            TEXT_BANK_SPECIES_CATEGORY_SPANISH
         };
         bankID = categoryBanks[index];
         index = dexNum;
@@ -115,15 +115,15 @@ Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, enum He
     if (index == NUM_LANGUAGES) {
         GF_ASSERT(entryOffset < 1);
         index = species + entryOffset;
-        bankID = TEXT_BANK_SPECIES_DEX_ENTRY;
+        bankID = TEXT_BANK_DEX_ENTRY_ENGLISH;
     } else {
         const int dexEntryBanks[] = {
-            TEXT_BANK_UNK_0705,
-            TEXT_BANK_UNK_0700,
-            TEXT_BANK_UNK_0701,
-            TEXT_BANK_UNK_0702,
-            TEXT_BANK_UNK_0703,
-            TEXT_BANK_UNK_0704
+            TEXT_BANK_DEX_ENTRY_JAPANESE,
+            TEXT_BANK_DEX_ENTRY_UNUSED,
+            TEXT_BANK_DEX_ENTRY_FRENCH,
+            TEXT_BANK_DEX_ENTRY_GERMAN,
+            TEXT_BANK_DEX_ENTRY_ITALIAN,
+            TEXT_BANK_DEX_ENTRY_SPANISH
         };
         GF_ASSERT(entryOffset < 1);
         bankID = dexEntryBanks[index];

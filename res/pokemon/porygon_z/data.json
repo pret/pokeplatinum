@@ -120,8 +120,59 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "Its programming was modified to\nenable work in alien dimensions.\nIt did not work as planned.",
-        "category": "Virtual Pokémon"
+        "english": {
+            "category": "Virtual Pokémon",
+            "entry_text": [
+                "Its programming was modified to\n",
+                "enable work in alien dimensions.\n",
+                "It did not work as planned."
+            ]
+        },
+        "french": {
+            "name": "PORYGON-Z",
+            "category": "Pokémon Virtuel",
+            "entry_text": [
+                "Un logiciel supplémentaire fut \n",
+                "installé pour l’améliorer. Mais\n",
+                "depuis, il se comporte bizarrement."
+            ]
+        },
+        "german": {
+            "name": "PORYGON-Z",
+            "category": "Virtuell",
+            "entry_text": [
+                "Zusätzliche Software wurde instal-\n",
+                "liert, um das PKMN zu verbessern.\n",
+                "Seitdem benimmt es sich seltsam."
+            ]
+        },
+        "italian": {
+            "name": "PORYGON-Z",
+            "category": "Pokémon Virtuale",
+            "entry_text": [
+                "È stato aggiunto un software per\n",
+                "migliorare le prestazioni di questo\n",
+                "Pokémon. Agisce in modo strano."
+            ]
+        },
+        "spanish": {
+            "name": "PORYGON-Z",
+            "category": "Pokémon Virtual",
+            "entry_text": [
+                "Se le instaló un software para\n",
+                "mejorarlo. Sin embargo, comenzó\n",
+                "a comportarse de manera extraña."
+            ]
+        },
+        "japanese": {
+            "name": "ポリゴンＺ",
+            "category": "バ－チャルポケモン",
+            "entry_text": [
+                "より　すぐれた　ポケモンに　するため\n",
+                "プログラムを　ついかしたが　なぜか\n",
+                "おかしな　こうどうを　はじめた。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

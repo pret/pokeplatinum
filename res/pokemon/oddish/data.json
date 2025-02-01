@@ -105,8 +105,59 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "It often plants its root feet in the\nground during the day and sows\nseeds as it walks about at night.",
-        "category": "Weed Pokémon"
+        "english": {
+            "category": "Weed Pokémon",
+            "entry_text": [
+                "It often plants its root feet in the\n",
+                "ground during the day and sows\n",
+                "seeds as it walks about at night."
+            ]
+        },
+        "french": {
+            "name": "MYSTHERBE",
+            "category": "Pokémon Racine",
+            "entry_text": [
+                "En journée, il plante ses pieds-\n",
+                "racines dans le sol. La nuit, il se \n",
+                "promène en semant des graines."
+            ]
+        },
+        "german": {
+            "name": "MYRAPLA",
+            "category": "Unkraut",
+            "entry_text": [
+                "Tagsüber verankert es sich mit\n",
+                "seinen Wurzelfüßen im Boden. Nachts\n",
+                "wandert es und verteilt Samen."
+            ]
+        },
+        "italian": {
+            "name": "ODDISH",
+            "category": "Pokémon Malerba",
+            "entry_text": [
+                "Durante il giorno, pianta i piedi\n",
+                "per terra come se fossero radici.\n",
+                "Di notte cammina seminando."
+            ]
+        },
+        "spanish": {
+            "name": "ODDISH",
+            "category": "Pokémon Hierbajo",
+            "entry_text": [
+                "Suele plantarse en el suelo\n",
+                "durante el día. Por la noche se\n",
+                "desplaza esparciendo semillas."
+            ]
+        },
+        "japanese": {
+            "name": "ナゾノクサ",
+            "category": "ざっそうポケモン",
+            "entry_text": [
+                "ひるまは　ねっこの　あしを　じめんに\n",
+                "うめて　うごかないことが　おおい。\n",
+                "よる　あるきまわって　タネを　まく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

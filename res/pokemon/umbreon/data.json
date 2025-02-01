@@ -111,8 +111,59 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "When exposed to the moon’s aura,\nthe rings on its body glow faintly\nand it gains a mysterious power.",
-        "category": "Moonlight Pokémon"
+        "english": {
+            "category": "Moonlight Pokémon",
+            "entry_text": [
+                "When exposed to the moon’s aura,\n",
+                "the rings on its body glow faintly\n",
+                "and it gains a mysterious power."
+            ]
+        },
+        "french": {
+            "name": "NOCTALI",
+            "category": "Pokémon Lune",
+            "entry_text": [
+                "La lumière de la lune a modifié\n",
+                "le code génétique d’EVOLI. Il hante\n",
+                "les ombres en quête d’une proie."
+            ]
+        },
+        "german": {
+            "name": "NACHTARA",
+            "category": "Mondschein",
+            "entry_text": [
+                "Mondlicht hat die genetische\n",
+                "Struktur von EVOLI verändert.\n",
+                "Im Dunkeln wartet es auf Beute."
+            ]
+        },
+        "italian": {
+            "name": "UMBREON",
+            "category": "Pokémon Lucelunare",
+            "entry_text": [
+                "La luce lunare ha mutato la\n",
+                "struttura genetica di EEVEE. Si\n",
+                "cela nel buio in attesa della preda."
+            ]
+        },
+        "spanish": {
+            "name": "UMBREON",
+            "category": "Pokémon Luz Lunar",
+            "entry_text": [
+                "Creado cuando la luz lunar alteró\n",
+                "la estructura genética de EEVEE.\n",
+                "Busca presas en la oscuridad. "
+            ]
+        },
+        "japanese": {
+            "name": "ブラッキ－",
+            "category": "げっこうポケモン",
+            "entry_text": [
+                "つきの　ひかりが　イ－ブイの\n",
+                "いでんしを　へんかさせた。\n",
+                "やみに　ひそみ　えものを　まつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

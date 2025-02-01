@@ -114,8 +114,59 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "A group tried to use scientific\nmeans to make MAGNEZONE evolve,\nbut their efforts ended in failure.",
-        "category": "Magnet Area Pokémon"
+        "english": {
+            "category": "Magnet Area Pokémon",
+            "entry_text": [
+                "A group tried to use scientific\n",
+                "means to make MAGNEZONE evolve,\n",
+                "but their efforts ended in failure."
+            ]
+        },
+        "french": {
+            "name": "MAGNEZONE",
+            "category": "Pokémon Aimant",
+            "entry_text": [
+                "Il a évolué suite à son exposition\n",
+                "à un champ magnétique spécial. Ses\n",
+                "3 unités génèrent du magnétisme."
+            ]
+        },
+        "german": {
+            "name": "MAGNEZONE",
+            "category": "Magnetgebiet",
+            "entry_text": [
+                "Es entwickelte sich, als es einem\n",
+                "besonderen Magnetfeld ausgesetzt\n",
+                "wurde."
+            ]
+        },
+        "italian": {
+            "name": "MAGNEZONE",
+            "category": "Pokémon Magnetico",
+            "entry_text": [
+                "Si è evoluto in seguito all’esposi-\n",
+                "zione a uno speciale campo magneti-\n",
+                "co. Tre unità generano magnetismo."
+            ]
+        },
+        "spanish": {
+            "name": "MAGNEZONE",
+            "category": "Pokémon Magnético",
+            "entry_text": [
+                "Evolucionó por la exposición a\n",
+                "un campo magnético especial.\n",
+                "Tres unidades generan magnetismo."
+            ]
+        },
+        "japanese": {
+            "name": "ジバコイル",
+            "category": "じばポケモン",
+            "entry_text": [
+                "とくしゅな　じばの　えいきょうで\n",
+                "レアコイルが　しんかした。３つの\n",
+                "ユニットから　じりょくを　だす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

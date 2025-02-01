@@ -133,8 +133,59 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It lives high among the treetops.\nIt can use its tail as freely and\ncleverly as its hands.",
-        "category": "Long Tail Pokémon"
+        "english": {
+            "category": "Long Tail Pokémon",
+            "entry_text": [
+                "It lives high among the treetops.\n",
+                "It can use its tail as freely and\n",
+                "cleverly as its hands."
+            ]
+        },
+        "french": {
+            "name": "CAPUMAIN",
+            "category": "Pokémon Longqueue",
+            "entry_text": [
+                "Il utilise sa queue pour cueillir les\n",
+                "fruits inaccessibles. Elle est plus\n",
+                "agile que ses mains."
+            ]
+        },
+        "german": {
+            "name": "GRIFFEL",
+            "category": "Langschweif",
+            "entry_text": [
+                "Mit dem Schweif pflückt es hochhän-\n",
+                "gende Früchte. Mit ihm ist es\n",
+                "geschickter als mit den Händen."
+            ]
+        },
+        "italian": {
+            "name": "AIPOM",
+            "category": "Pokémon Lungacoda",
+            "entry_text": [
+                "Usa la coda per raccogliere i\n",
+                "frutti che sono fuori portata. La\n",
+                "sua coda è più agile delle mani."
+            ]
+        },
+        "spanish": {
+            "name": "AIPOM",
+            "category": "Pokémon Cola Larga",
+            "entry_text": [
+                "Usa su cola para recoger la fruta\n",
+                "que no está a su alcance. Su cola\n",
+                "es más hábil que sus manos."
+            ]
+        },
+        "japanese": {
+            "name": "エイパム",
+            "category": "おながポケモン",
+            "entry_text": [
+                "てを　のばしても　とどかない　えだに\n",
+                "はえる　くだものを　しっぽで　とる。\n",
+                "ほんものの　うでよりも　きよう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

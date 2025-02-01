@@ -119,8 +119,59 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "It violently shudders its wings,\ngenerating ultrasonic waves to\ninduce headaches in people.",
-        "category": "Vibration Pokémon"
+        "english": {
+            "category": "Vibration Pokémon",
+            "entry_text": [
+                "It violently shudders its wings,\n",
+                "generating ultrasonic waves to\n",
+                "induce headaches in people."
+            ]
+        },
+        "french": {
+            "name": "VIBRANINF",
+            "category": "Pokémon Vibration",
+            "entry_text": [
+                "Ses violents battements d’ailes\n",
+                "génèrent des vagues d’ultrasons\n",
+                "qui donnent mal au crâne."
+            ]
+        },
+        "german": {
+            "name": "VIBRAVA",
+            "category": "Vibration",
+            "entry_text": [
+                "Es schlägt wild mit den Flügeln.\n",
+                "So entstehen Ultraschallwellen,\n",
+                "die Kopfschmerzen verursachen."
+            ]
+        },
+        "italian": {
+            "name": "VIBRAVA",
+            "category": "Pokémon Vibrazione",
+            "entry_text": [
+                "Fa vibrare violentemente le ali\n",
+                "generando onde ultrasoniche che\n",
+                "provocano il mal di testa."
+            ]
+        },
+        "spanish": {
+            "name": "VIBRAVA",
+            "category": "Pokémon Vibrante",
+            "entry_text": [
+                "Agita violentamente sus alas para\n",
+                "crear ondas ultrasónicas que\n",
+                "provocan dolores de cabeza."
+            ]
+        },
+        "japanese": {
+            "name": "ビブラ－バ",
+            "category": "しんどうポケモン",
+            "entry_text": [
+                "はねを　はげしく　しんどうさせて\n",
+                "ちょうおんぱを　だす。にんげんも\n",
+                "ずつうを　おこすほど　きょうりょく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

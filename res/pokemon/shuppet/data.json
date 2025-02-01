@@ -122,8 +122,59 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "It loves vengeful emotions and\nhangs in rows under the eaves of\nhouses where vengeful people live.",
-        "category": "Puppet Pokémon"
+        "english": {
+            "category": "Puppet Pokémon",
+            "entry_text": [
+                "It loves vengeful emotions and\n",
+                "hangs in rows under the eaves of\n",
+                "houses where vengeful people live."
+            ]
+        },
+        "french": {
+            "name": "POLICHOMBR",
+            "category": "Pokémon Poupée",
+            "entry_text": [
+                "Il aime le goût de la vengeance.\n",
+                "Ils vivent en rangs sous les \n",
+                "gouttières des gens vindicatifs."
+            ]
+        },
+        "german": {
+            "name": "SHUPPET",
+            "category": "Puppe",
+            "entry_text": [
+                "Es liebt Rachegefühle. Diese PKMN\n",
+                "hängen sich an Dachrinnen von Häu-\n",
+                "sern, in denen Rachsüchtige leben."
+            ]
+        },
+        "italian": {
+            "name": "SHUPPET",
+            "category": "Pokémon Pupazzo",
+            "entry_text": [
+                "Si annida sotto le grondaie di case\n",
+                "dove vive gente che cova sentimenti\n",
+                "di vendetta, che lui adora."
+            ]
+        },
+        "spanish": {
+            "name": "SHUPPET",
+            "category": "Pokémon Títere",
+            "entry_text": [
+                "Les atraen los sentimientos de\n",
+                "rencor y celos. Suelen vivir cerca\n",
+                "de las casas de gente vengativa."
+            ]
+        },
+        "japanese": {
+            "name": "カゲボウズ",
+            "category": "にんぎょうポケモン",
+            "entry_text": [
+                "うらみの　かんじょうが　だいすき。\n",
+                "うらみを　もつ　ひとが　すむ　いえの\n",
+                "のきしたに　ずらりと　ぶらさがる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

@@ -117,8 +117,59 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "It attacks using its huge mouth.\nWhile its attacks are powerful, it\nhurts itself out of clumsiness, too.",
-        "category": "Land Shark Pokémon"
+        "english": {
+            "category": "Land Shark Pokémon",
+            "entry_text": [
+                "It attacks using its huge mouth.\n",
+                "While its attacks are powerful, it\n",
+                "hurts itself out of clumsiness, too."
+            ]
+        },
+        "french": {
+            "name": "GRIKNOT",
+            "category": "Pokémon Terrequin",
+            "entry_text": [
+                "Il niche dans les petits trous\n",
+                "horizontaux des murs des grottes.\n",
+                "Il bondit pour saisir sa proie."
+            ]
+        },
+        "german": {
+            "name": "KAUMALAT",
+            "category": "Landhai",
+            "entry_text": [
+                "Es nistet in kleinen Löchern in\n",
+                "Höhlenwänden. Es springt Beute, die\n",
+                "sich zu nah heranwagt, an."
+            ]
+        },
+        "italian": {
+            "name": "GIBLE",
+            "category": "Pokémon Squaloterra",
+            "entry_text": [
+                "Nidifica in piccole cavità orizzontali\n",
+                "nelle pareti delle grotte. Si avven-\n",
+                "ta sulle prede che si avvicinano."
+            ]
+        },
+        "spanish": {
+            "name": "GIBLE",
+            "category": "Pokémon Terrascualo",
+            "entry_text": [
+                "Anida en pequeños agujeros en las\n",
+                "paredes de cuevas. Cuando una\n",
+                "presa pasa cerca, salta hacia ella."
+            ]
+        },
+        "japanese": {
+            "name": "フカマル",
+            "category": "りくザメポケモン",
+            "entry_text": [
+                "どうくつの　ちいさな　よこあなを\n",
+                "ねぐらにする。えものが　ちかづくと\n",
+                "すばやく　とびだして　つかまえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

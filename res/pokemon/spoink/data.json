@@ -123,8 +123,59 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "It bounces constantly, using its\ntail like a spring. The shock of\nbouncing keeps its heart beating.",
-        "category": "Bounce Pokémon"
+        "english": {
+            "category": "Bounce Pokémon",
+            "entry_text": [
+                "It bounces constantly, using its\n",
+                "tail like a spring. The shock of\n",
+                "bouncing keeps its heart beating."
+            ]
+        },
+        "french": {
+            "name": "SPOINK",
+            "category": "Pokémon Rebond",
+            "entry_text": [
+                "Il utilise sa queue comme un \n",
+                "ressort et bondit partout. Chaque\n",
+                "nouveau choc fait battre son cœur."
+            ]
+        },
+        "german": {
+            "name": "SPOINK",
+            "category": "Sprungfeder",
+            "entry_text": [
+                "Es hüpft beständig umher, wobei es\n",
+                "seinen Schweif als Feder verwendet.\n",
+                "Nur so bleibt sein Herz aktiv."
+            ]
+        },
+        "italian": {
+            "name": "SPOINK",
+            "category": "Pokémon Molla",
+            "entry_text": [
+                "Rimbalza costantemente usando la\n",
+                "coda come una molla. Il movimento\n",
+                "sollecita il cuore e lo fa battere."
+            ]
+        },
+        "spanish": {
+            "name": "SPOINK",
+            "category": "Pokémon Saltarín",
+            "entry_text": [
+                "Bota continuamente usando su\n",
+                "cola como muelle. Salta para\n",
+                "mantener el latido de su corazón."
+            ]
+        },
+        "japanese": {
+            "name": "バネブ－",
+            "category": "とびはねポケモン",
+            "entry_text": [
+                "しっぽを　バネのかわりに　いつも\n",
+                "とびはねている。はねる　しんどうで\n",
+                "しんぞうを　こどう　させているのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

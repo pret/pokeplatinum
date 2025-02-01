@@ -105,8 +105,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "It lives deep in the sea. With a\ntail shaped like a small fish, it\nattracts unsuspecting prey.",
-        "category": "Deep Sea Pokémon"
+        "english": {
+            "category": "Deep Sea Pokémon",
+            "entry_text": [
+                "It lives deep in the sea. With a\n",
+                "tail shaped like a small fish, it\n",
+                "attracts unsuspecting prey."
+            ]
+        },
+        "french": {
+            "name": "SERPANG",
+            "category": "Pokémon Abysse",
+            "entry_text": [
+                "Il vit loin sous la mer. Il appâte\n",
+                "les proies crédules avec sa\n",
+                "queue qui rappelle un petit poisson."
+            ]
+        },
+        "german": {
+            "name": "AALABYSS",
+            "category": "Tiefsee",
+            "entry_text": [
+                "Es lebt tief im Meer. Sein Schweif\n",
+                "ist wie ein kleiner Fisch geformt.\n",
+                "Mit ihm lockt es Beute an."
+            ]
+        },
+        "italian": {
+            "name": "HUNTAIL",
+            "category": "Pokémon Abissi",
+            "entry_text": [
+                "Vive nei mari profondi. Con la coda\n",
+                "a forma di pesciolino attrae prede\n",
+                "ignare del pericolo."
+            ]
+        },
+        "spanish": {
+            "name": "HUNTAIL",
+            "category": "Pokémon Abisal",
+            "entry_text": [
+                "Vive en los fondos marinos. Atrae\n",
+                "a sus confiadas presas con\n",
+                "la cola, que tiene forma de pez."
+            ]
+        },
+        "japanese": {
+            "name": "ハンテ－ル",
+            "category": "しんかいポケモン",
+            "entry_text": [
+                "しんかいに　せいそくする　ポケモン。\n",
+                "こざかなの　かたちをした　しっぽで\n",
+                "えものを　おびきよせ　つかまえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

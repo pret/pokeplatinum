@@ -123,8 +123,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "If it bonds with a person, it will\ngently envelop the friend with its\nsoft wings, then hum.",
-        "category": "Humming Pokémon"
+        "english": {
+            "category": "Humming Pokémon",
+            "entry_text": [
+                "If it bonds with a person, it will\n",
+                "gently envelop the friend with its\n",
+                "soft wings, then hum."
+            ]
+        },
+        "french": {
+            "name": "ALTARIA",
+            "category": "Pokémon Virevolteur",
+            "entry_text": [
+                "En vol, il ressemble à un nuage\n",
+                "cotonneux. Il fredonne d’une voix\n",
+                "de soprano."
+            ]
+        },
+        "german": {
+            "name": "ALTARIA",
+            "category": "Summsel",
+            "entry_text": [
+                "Im Flug sieht es aus wie eine\n",
+                "watteweiche Wolke. Es singt mit\n",
+                "einer Sopranstimme."
+            ]
+        },
+        "italian": {
+            "name": "ALTARIA",
+            "category": "Pokémon Canterino",
+            "entry_text": [
+                "Quando lotta, sembra una morbida\n",
+                "nuvola. Canticchia con la sua\n",
+                "voce da soprano."
+            ]
+        },
+        "spanish": {
+            "name": "ALTARIA",
+            "category": "Pokémon Cantor",
+            "entry_text": [
+                "Cuando vuela, parece una nube\n",
+                "de algodón. Entona bellas\n",
+                "melodías con su voz de soprano."
+            ]
+        },
+        "japanese": {
+            "name": "チルタリス",
+            "category": "ハミングポケモン",
+            "entry_text": [
+                "そらを　とぶ　すがたは\n",
+                "まるで　わたぐものように　みえる。\n",
+                "ソプラノの　こえで　ハミングする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

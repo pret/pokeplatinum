@@ -126,8 +126,59 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "At dusk, swarms of them are\ncarried aloft on winds. When\nnoticed, they suddenly vanish.",
-        "category": "Blimp Pokémon"
+        "english": {
+            "category": "Blimp Pokémon",
+            "entry_text": [
+                "At dusk, swarms of them are\n",
+                "carried aloft on winds. When\n",
+                "noticed, they suddenly vanish."
+            ]
+        },
+        "french": {
+            "name": "GRODRIVE",
+            "category": "Pokémon Ballon",
+            "entry_text": [
+                "Il somnole la journée et s’envole\n",
+                "en grands groupes le soir venu. Nul\n",
+                "ne sait où ils vont."
+            ]
+        },
+        "german": {
+            "name": "DRIFZEPELI",
+            "category": "Luftschiff",
+            "entry_text": [
+                "Tagsüber treibt es faul vor sich\n",
+                "hin, nachts fliegt es mit anderen\n",
+                "umher. Niemand weiß wohin."
+            ]
+        },
+        "italian": {
+            "name": "DRIFBLIM",
+            "category": "Pokémon Dirigibile",
+            "entry_text": [
+                "Di giorno fluttua con aria\n",
+                "sonnolenta, ma di notte vola via\n",
+                "in gruppo. Nessuno sa dove vada."
+            ]
+        },
+        "spanish": {
+            "name": "DRIFBLIM",
+            "category": "Pokémon Dirigible",
+            "entry_text": [
+                "Durante el día está somnoliento,\n",
+                "pero por la noche sale volando en\n",
+                "grupo, aunque nadie sabe adónde."
+            ]
+        },
+        "japanese": {
+            "name": "フワライド",
+            "category": "ききゅうポケモン",
+            "entry_text": [
+                "ひるまは　ねぼけて　うかんでいるが\n",
+                "ゆうがた　たいぐんで　とんでいく。\n",
+                "いきさきは　だれも　しらない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

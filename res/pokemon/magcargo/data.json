@@ -116,8 +116,59 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "Its body temperature is roughly\n18,000 degrees F. Flames spout\nfrom gaps in its hardened shell.",
-        "category": "Lava Pokémon"
+        "english": {
+            "category": "Lava Pokémon",
+            "entry_text": [
+                "Its body temperature is roughly\n",
+                "18,000 degrees F. Flames spout\n",
+                "from gaps in its hardened shell."
+            ]
+        },
+        "french": {
+            "name": "VOLCAROPOD",
+            "category": "Pokémon Lave",
+            "entry_text": [
+                "Sa température corporelle avoisine\n",
+                "les 10 000 °C. Des flammes \n",
+                "fusent des fissures de sa coquille."
+            ]
+        },
+        "german": {
+            "name": "MAGCARGO",
+            "category": "Lava",
+            "entry_text": [
+                "Seine Körpertemperatur beträgt\n",
+                "etwa 10 000 Grad. Aus seiner Schale\n",
+                "treten immer wieder Flammen aus."
+            ]
+        },
+        "italian": {
+            "name": "MAGCARGO",
+            "category": "Pokémon Lava",
+            "entry_text": [
+                "Ha una temperatura corporea di\n",
+                "circa 10000°C. Dai fori del guscio\n",
+                "fuoriescono intense fiammate."
+            ]
+        },
+        "spanish": {
+            "name": "MAGCARGO",
+            "category": "Pokémon Lava",
+            "entry_text": [
+                "Su cuerpo está a una temperatura\n",
+                "de 10000 grados. De las fisuras\n",
+                "de su cuerpo escapan llamas."
+            ]
+        },
+        "japanese": {
+            "name": "マグカルゴ",
+            "category": "ようがんポケモン",
+            "entry_text": [
+                "たいおんは　やく１まんど。\n",
+                "マグマが　かたまって　できた　カラの\n",
+                "すきまから　ほのおを　ふきだす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

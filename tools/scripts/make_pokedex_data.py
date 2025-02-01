@@ -81,9 +81,9 @@ for i, species_dir in enumerate(SPECIES_DIRS):
     pkdexdata = pkdata['pokedex_data']
     if pk_name == 'giratina':
         if args.giratina_form == 'giratina_origin':
-            pkdexdata = pkdexdata[0]
+            pkdexdata = pkdexdata['origin']
         else:
-            pkdexdata = pkdexdata[1]
+            pkdexdata = pkdexdata['altered']
     
     for j in range(11):
         dataSize = DataSize(j)

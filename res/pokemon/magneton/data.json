@@ -114,8 +114,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "Many mysteriously appear when more\nsunspots dot the sun. They stop\nTV sets from displaying properly.",
-        "category": "Magnet Pokémon"
+        "english": {
+            "category": "Magnet Pokémon",
+            "entry_text": [
+                "Many mysteriously appear when more\n",
+                "sunspots dot the sun. They stop\n",
+                "TV sets from displaying properly."
+            ]
+        },
+        "french": {
+            "name": "MAGNETON",
+            "category": "Pokémon Magnétique",
+            "entry_text": [
+                "Il est formé de trois MAGNETI liés\n",
+                "par magnétisme. En groupe, ils\n",
+                "déclenchent un orage magnétique."
+            ]
+        },
+        "german": {
+            "name": "MAGNETON",
+            "category": "Magnet",
+            "entry_text": [
+                "Eigentlich sind es drei MAGNETILO,\n",
+                "die durch Magnetismus verbunden\n",
+                "sind."
+            ]
+        },
+        "italian": {
+            "name": "MAGNETON",
+            "category": "Pokémon Calamita",
+            "entry_text": [
+                "Pokémon formato da tre MAGNEMITE\n",
+                "uniti dalla forza magnetica. Più di\n",
+                "tre creano una tempesta magnetica."
+            ]
+        },
+        "spanish": {
+            "name": "MAGNETON",
+            "category": "Pokémon Imán",
+            "entry_text": [
+                "Realmente son tres MAGNEMITE\n",
+                "unidos por un campo magnético.\n",
+                "Provocan tormentas magnéticas."
+            ]
+        },
+        "japanese": {
+            "name": "レアコイル",
+            "category": "じしゃくポケモン",
+            "entry_text": [
+                "３びきの　コイルが　じりょくで\n",
+                "れんけつした　ポケモン。レアコイルが\n",
+                "ふえると　じきあらしが　おこる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -113,8 +113,59 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It scans its surroundings by\nraising its ears out of the grass.\nIts toxic horn is for protection.",
-        "category": "Poison Pin Pokémon"
+        "english": {
+            "category": "Poison Pin Pokémon",
+            "entry_text": [
+                "It scans its surroundings by\n",
+                "raising its ears out of the grass.\n",
+                "Its toxic horn is for protection."
+            ]
+        },
+        "french": {
+            "name": "NIDORAN♂",
+            "category": "Pokémon Venepic",
+            "entry_text": [
+                "Il jauge le terrain en laissant\n",
+                "ses oreilles dépasser de l’herbe.\n",
+                "Il se défend avec sa corne toxique."
+            ]
+        },
+        "german": {
+            "name": "NIDORAN♂",
+            "category": "Giftdorn",
+            "entry_text": [
+                "Es untersucht die Umgebung, indem\n",
+                "es die Ohren spitzt und lauscht.\n",
+                "Sein giftiges Horn schützt es."
+            ]
+        },
+        "italian": {
+            "name": "NIDORAN♂",
+            "category": "Pokémon Velenago",
+            "entry_text": [
+                "Esamina l’ambiente circostante ten-\n",
+                "dendo le orecchie fuori dall’erba.\n",
+                "Si protegge con il corno velenoso."
+            ]
+        },
+        "spanish": {
+            "name": "NIDORAN♂",
+            "category": "Pokémon Pin Veneno",
+            "entry_text": [
+                "Saca las orejas por encima de la\n",
+                "hierba para explorar el territorio.\n",
+                "Le protege su cuerno venenoso."
+            ]
+        },
+        "japanese": {
+            "name": "ニドラン㊚",
+            "category": "どくばりポケモン",
+            "entry_text": [
+                "くさむらの　うえに　みみだけ　だして\n",
+                "まわりの　けはいを　さぐる。\n",
+                "もうどくの　ツノで　みを　まもる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

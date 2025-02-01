@@ -114,8 +114,59 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It crawls along the seafloor using\nits long front fins like legs. It\ncompetes for food with LANTURN.",
-        "category": "Neon Pokémon"
+        "english": {
+            "category": "Neon Pokémon",
+            "entry_text": [
+                "It crawls along the seafloor using\n",
+                "its long front fins like legs. It\n",
+                "competes for food with LANTURN."
+            ]
+        },
+        "french": {
+            "name": "LUMINEON",
+            "category": "Pokémon Néon",
+            "entry_text": [
+                "Il vit au plus profond de l’océan.\n",
+                "Il attire sa proie en illuminant les\n",
+                "motifs de ses 4 nageoires."
+            ]
+        },
+        "german": {
+            "name": "LUMINEON",
+            "category": "Neon",
+            "entry_text": [
+                "Es lebt tief auf dem Meeresboden.\n",
+                "Das blinkende Muster auf seinen\n",
+                "vier Rückenflossen zieht Beute an."
+            ]
+        },
+        "italian": {
+            "name": "LUMINEON",
+            "category": "Pokémon Neon",
+            "entry_text": [
+                "Vive negli abissi marini.\n",
+                "Attira le prede illuminando i\n",
+                "motivi delle sue quattro pinne."
+            ]
+        },
+        "spanish": {
+            "name": "LUMINEON",
+            "category": "Pokémon Neón",
+            "entry_text": [
+                "Vive en las profundidades marinas.\n",
+                "Atrae a sus presas con parpadeos\n",
+                "del dibujo de sus cuatro aletas."
+            ]
+        },
+        "japanese": {
+            "name": "ネオラント",
+            "category": "ネオンポケモン",
+            "entry_text": [
+                "ふかい　うみの　そこで　くらす。\n",
+                "４まいの　ひれの　もようを　ひからせ\n",
+                "えものを　おびきよせる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -124,8 +124,59 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 2,
-        "entry_text": "Its arms are made of plants that\nbind themselves to things. They\ngrow back right away if cut.",
-        "category": "Vine Pokémon"
+        "english": {
+            "category": "Vine Pokémon",
+            "entry_text": [
+                "Its arms are made of plants that\n",
+                "bind themselves to things. They\n",
+                "grow back right away if cut."
+            ]
+        },
+        "french": {
+            "name": "BOULDENEU",
+            "category": "Pokémon Vigne",
+            "entry_text": [
+                "Il ligote sa proie en étirant ses\n",
+                "bras en lianes. Il ne craint pas de\n",
+                "perdre un bras face à un ennemi."
+            ]
+        },
+        "german": {
+            "name": "TANGOLOSS",
+            "category": "Ranke",
+            "entry_text": [
+                "Es umwickelt Beute, indem es seine\n",
+                "Arme, die aus Ranken bestehen,\n",
+                "verlängert."
+            ]
+        },
+        "italian": {
+            "name": "TANGROWTH",
+            "category": "Pokémon Liana",
+            "entry_text": [
+                "Intrappola le prede con gli arti,\n",
+                "che sono costituiti da liane. Se ne\n",
+                "perde uno, non si turba affatto."
+            ]
+        },
+        "spanish": {
+            "name": "TANGROWTH",
+            "category": "Pokémon Enredadera",
+            "entry_text": [
+                "Atrapa a su presa desplegando las\n",
+                "ramas de sus brazos, que no le\n",
+                "importa perder ante depredadores."
+            ]
+        },
+        "japanese": {
+            "name": "モジャンボ",
+            "category": "ツルじょうポケモン",
+            "entry_text": [
+                "しょくぶつの　ツルで　できた　うでを\n",
+                "のばして　えものを　からめとる。\n",
+                "うでを　たべられても　へっちゃら。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

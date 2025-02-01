@@ -109,8 +109,59 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "A pair may be seen rubbing their\ncheek pouches together in an\neffort to share stored electricity.",
-        "category": "EleSquirrel Pokémon"
+        "english": {
+            "category": "EleSquirrel Pokémon",
+            "entry_text": [
+                "A pair may be seen rubbing their\n",
+                "cheek pouches together in an\n",
+                "effort to share stored electricity."
+            ]
+        },
+        "french": {
+            "name": "PACHIRISU",
+            "category": "Pokémon Ecurélec",
+            "entry_text": [
+                "Il roule des boules de poils pleines\n",
+                "d’électricité statique et les range\n",
+                "dans des souches avec des Baies."
+            ]
+        },
+        "german": {
+            "name": "PACHIRISU",
+            "category": "Elektrohörnchen",
+            "entry_text": [
+                "Es bildet ein Fellknäuel, der vor\n",
+                "statischer Energie knistert. Es\n",
+                "speichert die Energie in Bäumen."
+            ]
+        },
+        "italian": {
+            "name": "PACHIRISU",
+            "category": "Pokémon Elescoiatto",
+            "entry_text": [
+                "Forma delle palle di pelo cariche\n",
+                "elettrostaticamente e le conserva\n",
+                "negli alberi insieme alle bacche."
+            ]
+        },
+        "spanish": {
+            "name": "PACHIRISU",
+            "category": "Pokémon Ardillalec",
+            "entry_text": [
+                "Crea bolas de pelo que crepitan\n",
+                "con electricidad estática. Las\n",
+                "almacena en agujeros de árboles."
+            ]
+        },
+        "japanese": {
+            "name": "パチリス",
+            "category": "でんきりすポケモン",
+            "entry_text": [
+                "せいでんきが　たまって　パチパチする\n",
+                "けだまを　だいこうぶつの　きのみと\n",
+                "いっしょに　みきの　あなに　かくす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

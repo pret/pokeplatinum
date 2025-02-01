@@ -115,8 +115,59 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "When walking on land, it covers its\nbody with a poisonous film that\nkeeps its skin from dehydrating.",
-        "category": "Water Fish Pokémon"
+        "english": {
+            "category": "Water Fish Pokémon",
+            "entry_text": [
+                "When walking on land, it covers its\n",
+                "body with a poisonous film that\n",
+                "keeps its skin from dehydrating."
+            ]
+        },
+        "french": {
+            "name": "AXOLOTO",
+            "category": "Pokémon Poisson",
+            "entry_text": [
+                "Il vit en eau froide. Il dort à demi\n",
+                "enfoui dans la boue au fond\n",
+                "de l’eau."
+            ]
+        },
+        "german": {
+            "name": "FELINO",
+            "category": "Fisch",
+            "entry_text": [
+                "Es lebt im kalten Wasser. Es\n",
+                "vergräbt sich halb im schlammigen\n",
+                "Boden, wenn es schlafen will."
+            ]
+        },
+        "italian": {
+            "name": "WOOPER",
+            "category": "Pokémon Acquapesce",
+            "entry_text": [
+                "Vive nell’acqua fredda e quando\n",
+                "vuole dormire si seppellisce a\n",
+                "metà nei fondali melmosi."
+            ]
+        },
+        "spanish": {
+            "name": "WOOPER",
+            "category": "Pokémon Pez Agua",
+            "entry_text": [
+                "Vive en aguas frías. Para dormir\n",
+                "se entierra a medias en el lodo del\n",
+                "fondo."
+            ]
+        },
+        "japanese": {
+            "name": "ウパ－",
+            "category": "みずうおポケモン",
+            "entry_text": [
+                "つめたい　みずの　なかで　くらす。\n",
+                "みずぞこの　どろに　からだを\n",
+                "はんぶん　うずめて　ねむる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

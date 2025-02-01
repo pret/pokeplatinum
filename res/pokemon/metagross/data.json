@@ -127,8 +127,59 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 9,
-        "entry_text": "METANG combined to form it.\nWith four brains, it has the\nintelligence of a supercomputer.",
-        "category": "Iron Leg Pokémon"
+        "english": {
+            "category": "Iron Leg Pokémon",
+            "entry_text": [
+                "METANG combined to form it.\n",
+                "With four brains, it has the\n",
+                "intelligence of a supercomputer."
+            ]
+        },
+        "french": {
+            "name": "METALOSSE",
+            "category": "Pokémon Pattefer",
+            "entry_text": [
+                "Il est né de la fusion de plusieurs\n",
+                "METANG. Ses quatre cerveaux en\n",
+                "font l’égal d’un superordinateur."
+            ]
+        },
+        "german": {
+            "name": "METAGROSS",
+            "category": "Eisenfuß",
+            "entry_text": [
+                "Mehrere METANG bilden dieses PKMN.\n",
+                "Mit seinen 4 Gehirnen besitzt es die\n",
+                "Intelligenz eines Supercomputers."
+            ]
+        },
+        "italian": {
+            "name": "METAGROSS",
+            "category": "Pokémon Ferrarto",
+            "entry_text": [
+                "È formato dalla fusione di due\n",
+                "METANG. Ha quattro cervelli e\n",
+                "l’intelligenza di un supercomputer."
+            ]
+        },
+        "spanish": {
+            "name": "METAGROSS",
+            "category": "Pokémon Pata Hierro",
+            "entry_text": [
+                "Está formado por varios METANG.\n",
+                "Con cuatro cerebros, tiene la\n",
+                "inteligencia de un superordenador."
+            ]
+        },
+        "japanese": {
+            "name": "メタグロス",
+            "category": "てつあしポケモン",
+            "entry_text": [
+                "メタングが　がったいして　うまれた。\n",
+                "４つの　のうを　もつ　メタグロスは\n",
+                "ス－パ－コンピュ－タなみの　ちのう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

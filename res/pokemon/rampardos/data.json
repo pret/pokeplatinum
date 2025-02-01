@@ -133,8 +133,51 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "If two were to smash their heads\ntogether, their foot-thick skulls\nwould keep them from fainting.",
-        "category": "Head Butt Pokémon"
+        "english": {
+            "category": "Head Butt Pokémon",
+            "entry_text": [
+                "If two were to smash their heads\n",
+                "together, their foot-thick skulls\n",
+                "would keep them from fainting."
+            ]
+        },
+        "french": {
+            "name": "CHARKOS",
+            "category": "Pokémon Coud’Boule",
+            "entry_text": [
+                "Son violent coup de tête est\n",
+                "assez puissant pour pulvériser\n",
+                "les matériaux les plus résistants."
+            ]
+        },
+        "german": {
+            "name": "RAMEIDON",
+            "category": "Kopfstoß",
+            "entry_text": [
+                "Sein kräftiger Kopfstoß hat genug\n",
+                "Kraft, um selbst die stabilsten\n",
+                "Dinge zu zerschmettern."
+            ]
+        },
+        "italian": {
+            "name": "RAMPARDOS",
+            "category": "Pokémon Cranioso",
+            "entry_text": [ "Tira testate talmente potenti da\n", "frantumare anche oggetti durissimi." ]
+        },
+        "spanish": {
+            "name": "RAMPARDOS",
+            "category": "Pokémon Cabezazo",
+            "entry_text": [ "Su potente cabezazo puede\n", "hacer añicos cualquier cosa." ]
+        },
+        "japanese": {
+            "name": "ラムパルド",
+            "category": "ずつきポケモン",
+            "entry_text": [
+                "きょうれつな　ずつきの　こうげきは\n",
+                "どんなに　がんじょうな　ものでも\n",
+                "いちげきで　ふんさいする　いりょく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -119,8 +119,59 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "The flames it breathes when angry\ncontain toxins. If they cause a\nburn, it will hurt forever.",
-        "category": "Dark Pokémon"
+        "english": {
+            "category": "Dark Pokémon",
+            "entry_text": [
+                "The flames it breathes when angry\n",
+                "contain toxins. If they cause a\n",
+                "burn, it will hurt forever."
+            ]
+        },
+        "french": {
+            "name": "DEMOLOSSE",
+            "category": "Pokémon Sombre",
+            "entry_text": [
+                "Jadis, les gens prenaient son\n",
+                "étrange hurlement pour\n",
+                "l’appel de la Faucheuse."
+            ]
+        },
+        "german": {
+            "name": "HUNDEMON",
+            "category": "Hades",
+            "entry_text": [
+                "In alten Zeiten glaubte man, das\n",
+                "Heulen dieses PKMN sei der Ruf\n",
+                "des Todes."
+            ]
+        },
+        "italian": {
+            "name": "HOUNDOOM",
+            "category": "Pokémon Buio",
+            "entry_text": [
+                "Molto tempo fa, si riteneva che\n",
+                "le sue urla sinistre coincidessero\n",
+                "con la chiamata della morte."
+            ]
+        },
+        "spanish": {
+            "name": "HOUNDOOM",
+            "category": "Pokémon Siniestro",
+            "entry_text": [
+                "Hace mucho, la gente creía que\n",
+                "sus horripilantes aullidos eran de\n",
+                "la muerte personificada."
+            ]
+        },
+        "japanese": {
+            "name": "ヘルガ－",
+            "category": "ダ－クポケモン",
+            "entry_text": [
+                "ヘルガ－の　ぶきみな　とおぼえは\n",
+                "じごくから　しにがみが　よぶ　こえと\n",
+                "むかしの　ひとは　そうぞうしていた。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

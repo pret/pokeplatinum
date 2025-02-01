@@ -105,8 +105,59 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "Its big eyes are actually clusters\nof tiny eyes. At night, its kind is\ndrawn by light.",
-        "category": "Insect Pokémon"
+        "english": {
+            "category": "Insect Pokémon",
+            "entry_text": [
+                "Its big eyes are actually clusters\n",
+                "of tiny eyes. At night, its kind is\n",
+                "drawn by light."
+            ]
+        },
+        "french": {
+            "name": "MIMITOSS",
+            "category": "Pokémon Vermine",
+            "entry_text": [
+                "Ses grands yeux sont en fait\n",
+                "des amas d’yeux minuscules. La\n",
+                "nuit, il est attiré par la lumière."
+            ]
+        },
+        "german": {
+            "name": "BLUZUK",
+            "category": "Insekt",
+            "entry_text": [
+                "Seine großen Augen bestehen aus\n",
+                "vielen kleinen Augen. Nachts wird\n",
+                "es von Licht angezogen."
+            ]
+        },
+        "italian": {
+            "name": "VENONAT",
+            "category": "Pokémon Insetto",
+            "entry_text": [
+                "I suoi grandi occhi sono in realtà\n",
+                "un insieme di tanti piccoli occhi.\n",
+                "Di notte, è attirato dalla luce."
+            ]
+        },
+        "spanish": {
+            "name": "VENONAT",
+            "category": "Pokémon Insecto",
+            "entry_text": [
+                "Sus grandes ojos son en realidad\n",
+                "grupos de ojos diminutos. Por la\n",
+                "noche se siente atraído por la luz."
+            ]
+        },
+        "japanese": {
+            "name": "コンパン",
+            "category": "こんちゅうポケモン",
+            "entry_text": [
+                "ちいさな　めが　たくさん　あつまって\n",
+                "おおきな　めに　なっている。\n",
+                "よるになると　あかりに　あつまる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

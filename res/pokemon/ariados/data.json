@@ -104,8 +104,59 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "It attaches silk to its prey and\nsets it free. Later, it tracks the\nsilk to the prey and its friends.",
-        "category": "Long Leg Pokémon"
+        "english": {
+            "category": "Long Leg Pokémon",
+            "entry_text": [
+                "It attaches silk to its prey and\n",
+                "sets it free. Later, it tracks the\n",
+                "silk to the prey and its friends."
+            ]
+        },
+        "french": {
+            "name": "MIGALOS",
+            "category": "Pokémon Long-Patte",
+            "entry_text": [
+                "Il attache un fil à sa proie avant\n",
+                "de la libérer. Il s’en servira pour\n",
+                "la retrouver, elle et ses amis."
+            ]
+        },
+        "german": {
+            "name": "ARIADOS",
+            "category": "Langbein",
+            "entry_text": [
+                "Es befestigt Seide an der Beute und\n",
+                "lässt sie frei. Es folgt dem Seiden-\n",
+                "faden zur Beute u. ihren Freunden."
+            ]
+        },
+        "italian": {
+            "name": "ARIADOS",
+            "category": "Pokémon Lungazampa",
+            "entry_text": [
+                "Aggancia la preda con un filo di se-\n",
+                "ta e la lascia andare. Poi segue il\n",
+                "filo e la trova quando è in gruppo."
+            ]
+        },
+        "spanish": {
+            "name": "ARIADOS",
+            "category": "Pokémon Pata Larga",
+            "entry_text": [
+                "Pega hilos de seda a sus presas y\n",
+                "las libera para seguirlas más tarde\n",
+                "y localizar también a sus amigos."
+            ]
+        },
+        "japanese": {
+            "name": "アリアドス",
+            "category": "あしながポケモン",
+            "entry_text": [
+                "えものの　からだに　いとを　つけて\n",
+                "わざと　にがす。いとを　たどれば\n",
+                "なかまごと　つかまえられるからだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

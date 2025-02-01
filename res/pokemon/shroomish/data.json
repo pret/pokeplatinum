@@ -106,8 +106,59 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "It spouts poison spores from the\ntop of its head. These spores\ncause pain all over if inhaled.",
-        "category": "Mushroom Pokémon"
+        "english": {
+            "category": "Mushroom Pokémon",
+            "entry_text": [
+                "It spouts poison spores from the\n",
+                "top of its head. These spores\n",
+                "cause pain all over if inhaled."
+            ]
+        },
+        "french": {
+            "name": "BALIGNON",
+            "category": "Pokémon Champignon",
+            "entry_text": [
+                "Le sommet de sa tête libère des\n",
+                "spores empoisonnées. Il est\n",
+                "dangereux de les inhaler."
+            ]
+        },
+        "german": {
+            "name": "KNILZ",
+            "category": "Pilz",
+            "entry_text": [
+                "Es setzt an seinem Kopf Giftsporen\n",
+                "frei. Werden diese eingeatmet,\n",
+                "verursachen sie Schmerzen."
+            ]
+        },
+        "italian": {
+            "name": "SHROOMISH",
+            "category": "Pokémon Fungo",
+            "entry_text": [
+                "Sparge spore tossiche dalla sommità\n",
+                "del capo. Se inalate, queste spore\n",
+                "provocano dolore in tutto il corpo."
+            ]
+        },
+        "spanish": {
+            "name": "SHROOMISH",
+            "category": "Pokémon Hongo",
+            "entry_text": [
+                "Lanza esporas venenosas desde\n",
+                "la parte superior de la cabeza.\n",
+                "Inhalarlas es muy doloroso."
+            ]
+        },
+        "japanese": {
+            "name": "キノココ",
+            "category": "きのこポケモン",
+            "entry_text": [
+                "あたまの　てっぺんから　どくほうしを\n",
+                "ふきだす。ほうしを　すいこむと\n",
+                "からだの　ふしぶしが　いたくなる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

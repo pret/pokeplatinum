@@ -107,8 +107,59 @@
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65527,
-        "entry_text": "Toxic powder is scattered with each\nflap. At night, it is known to strip\nleaves off trees lining boulevards.",
-        "category": "Poison Moth Pokémon"
+        "english": {
+            "category": "Poison Moth Pokémon",
+            "entry_text": [
+                "Toxic powder is scattered with each\n",
+                "flap. At night, it is known to strip\n",
+                "leaves off trees lining boulevards."
+            ]
+        },
+        "french": {
+            "name": "PAPINOX",
+            "category": "Pokémon Papipoison",
+            "entry_text": [
+                "Ce Pokémon nocturne est attiré\n",
+                "par les lueurs de la ville et aime\n",
+                "les feuilles des arbres urbains."
+            ]
+        },
+        "german": {
+            "name": "PUDOX",
+            "category": "Giftmotte",
+            "entry_text": [
+                "Nachtaktives PKMN, das vom Licht\n",
+                "der Stadt angezogen wird und dort\n",
+                "die Blätter der Bäume frisst."
+            ]
+        },
+        "italian": {
+            "name": "DUSTOX",
+            "category": "Pokémon Velentarma",
+            "entry_text": [
+                "Pokémon notturno. Attirato dalla\n",
+                "luce dei lampioni, divora le foglie\n",
+                "degli alberi lungo i viali."
+            ]
+        },
+        "spanish": {
+            "name": "DUSTOX",
+            "category": "Pokémon Polilla V.",
+            "entry_text": [
+                "Pokémon nocturno. Atraído por las\n",
+                "luces de la ciudad, se come las\n",
+                "hojas y arbustos de las avenidas."
+            ]
+        },
+        "japanese": {
+            "name": "ドクケイル",
+            "category": "どくがポケモン",
+            "entry_text": [
+                "やこうせいの　ポケモン。\n",
+                "あかりに　さそわれた　ドクケイルが\n",
+                "がいろじゅの　はを　くいちらかす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

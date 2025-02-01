@@ -107,8 +107,59 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It lives at the bottom of the sea.\nIn the springtime, its pink body\nturns more vivid for some reason.",
-        "category": "South Sea Pokémon"
+        "english": {
+            "category": "South Sea Pokémon",
+            "entry_text": [
+                "It lives at the bottom of the sea.\n",
+                "In the springtime, its pink body\n",
+                "turns more vivid for some reason."
+            ]
+        },
+        "french": {
+            "name": "ROSABYSS",
+            "category": "Pokémon Mer Du Sud",
+            "entry_text": [
+                "Au printemps, son corps rose se\n",
+                "fait plus vif sans que l’on sache\n",
+                "pourquoi. Il vit au fond de la mer. "
+            ]
+        },
+        "german": {
+            "name": "SAGANABYSS",
+            "category": "Südsee",
+            "entry_text": [
+                "Es lebt auf dem Grund des Meeres.\n",
+                "Im Frühling wirkt die Farbe seines\n",
+                "Körpers viel kräftiger."
+            ]
+        },
+        "italian": {
+            "name": "GOREBYSS",
+            "category": "Pokémon Sudmarino",
+            "entry_text": [
+                "Vive sui fondali marini. In primavera\n",
+                "il suo corpo rosato diventa più\n",
+                "vivido per chissà quale motivo."
+            ]
+        },
+        "spanish": {
+            "name": "GOREBYSS",
+            "category": "Pokémon Mar Del Sur",
+            "entry_text": [
+                "Vive en el fondo del mar. En\n",
+                "primavera, su cuerpo rosado\n",
+                "adquiere colores más vivos."
+            ]
+        },
+        "japanese": {
+            "name": "サクラビス",
+            "category": "なんかいポケモン",
+            "entry_text": [
+                "うみの　そこで　くらしているが\n",
+                "はるになると　からだの　ピンクいろが\n",
+                "なぜか　あざやかに　いろづく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

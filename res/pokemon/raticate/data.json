@@ -122,8 +122,59 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It whittles its constantly growing\nfangs by gnawing on hard things.\nIt can chew apart cinder walls.",
-        "category": "Mouse Pokémon"
+        "english": {
+            "category": "Mouse Pokémon",
+            "entry_text": [
+                "It whittles its constantly growing\n",
+                "fangs by gnawing on hard things.\n",
+                "It can chew apart cinder walls."
+            ]
+        },
+        "french": {
+            "name": "RATTATAC",
+            "category": "Pokémon Souris",
+            "entry_text": [
+                "Il grignote sans cesse pour apaiser\n",
+                "la poussée de ses crocs. Il peut\n",
+                "transpercer un mur de parpaings."
+            ]
+        },
+        "german": {
+            "name": "RATTIKARL",
+            "category": "Maus",
+            "entry_text": [
+                "Es wetzt seine ständig wachsenden\n",
+                "Zähne an harten Dingen. Es kann\n",
+                "Wände aus Beton zernagen."
+            ]
+        },
+        "italian": {
+            "name": "RATICATE",
+            "category": "Pokémon Topo",
+            "entry_text": [
+                "Si affila le zanne in perenne\n",
+                "crescita rosicchiando cose dure.\n",
+                "Riesce a frantumare persino i muri."
+            ]
+        },
+        "spanish": {
+            "name": "RATICATE",
+            "category": "Pokémon Ratón",
+            "entry_text": [
+                "Lima sus colmillos royendo objetos\n",
+                "duros. Con ellos puede destruir\n",
+                "incluso paredes de hormigón."
+            ]
+        },
+        "japanese": {
+            "name": "ラッタ",
+            "category": "ねずみポケモン",
+            "entry_text": [
+                "のびつづける　まえばを　けずるため\n",
+                "かたい　ものを　かじる　しゅうせい。\n",
+                "ブロックべいも　かじって　こわす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

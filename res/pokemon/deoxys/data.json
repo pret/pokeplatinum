@@ -140,8 +140,59 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "An alien virus that fell to earth\non a meteor underwent a DNA\nmutation to become this Pokémon.",
-        "category": "DNA Pokémon"
+        "english": {
+            "category": "DNA Pokémon",
+            "entry_text": [
+                "An alien virus that fell to earth\n",
+                "on a meteor underwent a DNA\n",
+                "mutation to become this Pokémon."
+            ]
+        },
+        "french": {
+            "name": "DEOXYS",
+            "category": "Pokémon ADN",
+            "entry_text": [
+                "Il vient d’un virus extraterrestre\n",
+                "arrivé avec une météorite et ayant\n",
+                "subi une mutation génétique."
+            ]
+        },
+        "german": {
+            "name": "DEOXYS",
+            "category": "DNS",
+            "entry_text": [
+                "Ein außerirdischer Virus kam mit\n",
+                "einem Meteor auf die Erde. Seine\n",
+                "DNA mutierte. So entstand DEOXYS."
+            ]
+        },
+        "italian": {
+            "name": "DEOXYS",
+            "category": "Pokémon DNA",
+            "entry_text": [
+                "È il risultato della mutazione gene-\n",
+                "tica di un virus alieno, giunto sulla\n",
+                "terra con un meteorite."
+            ]
+        },
+        "spanish": {
+            "name": "DEOXYS",
+            "category": "Pokémon ADN",
+            "entry_text": [
+                "Surgió a raíz de la mutación de\n",
+                "ADN de un virus alienígena que\n",
+                "cayó a la Tierra en un meteorito."
+            ]
+        },
+        "japanese": {
+            "name": "デオキシス",
+            "category": "ＤＮＡポケモン",
+            "entry_text": [
+                "いんせきに　ふちゃくしていた\n",
+                "うちゅうウイルスの　ＤＮＡが\n",
+                "へんいして　うまれた　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

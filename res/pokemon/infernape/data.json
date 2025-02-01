@@ -133,8 +133,59 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "It uses unique fighting moves with\nfire on its hands and feet. It will\ntake on any opponent.",
-        "category": "Flame Pokémon"
+        "english": {
+            "category": "Flame Pokémon",
+            "entry_text": [
+                "It uses unique fighting moves with\n",
+                "fire on its hands and feet. It will\n",
+                "take on any opponent."
+            ]
+        },
+        "french": {
+            "name": "SIMIABRAZ",
+            "category": "Pokémon Flamme",
+            "entry_text": [
+                "Il pratique un art martial spécial\n",
+                "qui utilise tous ses membres.\n",
+                "Sa flamme ne s’éteint jamais."
+            ]
+        },
+        "german": {
+            "name": "PANFERNO",
+            "category": "Flamme",
+            "entry_text": [
+                "Es kämpft auf besondere Art, indem\n",
+                "es alle Gliedmaßen einsetzt. Sein\n",
+                "Feuer erlischt nie."
+            ]
+        },
+        "italian": {
+            "name": "INFERNAPE",
+            "category": "Pokémon Fiamma",
+            "entry_text": [
+                "Usa un tipo speciale di arte marzia-\n",
+                "le che coinvolge tutti gli arti. Le\n",
+                "sue fiamme non si estinguono mai."
+            ]
+        },
+        "spanish": {
+            "name": "INFERNAPE",
+            "category": "Pokémon Llama",
+            "entry_text": [
+                "Utiliza un tipo especial de artes\n",
+                "marciales con todos sus miembros.\n",
+                "Su fuego nunca se extingue."
+            ]
+        },
+        "japanese": {
+            "name": "ゴウカザル",
+            "category": "かえんポケモン",
+            "entry_text": [
+                "りょうて　りょうあしを　つかった\n",
+                "とくしゅな　かくとうわざを　つかう。\n",
+                "ほのおは　いっしょう　きえない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

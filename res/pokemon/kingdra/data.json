@@ -110,8 +110,59 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 2,
-        "entry_text": "It lives in caves on the seafloor\nand creates giant whirlpools\nevery time it moves.",
-        "category": "Dragon Pokémon"
+        "english": {
+            "category": "Dragon Pokémon",
+            "entry_text": [
+                "It lives in caves on the seafloor\n",
+                "and creates giant whirlpools\n",
+                "every time it moves."
+            ]
+        },
+        "french": {
+            "name": "HYPOROI",
+            "category": "Pokémon Dragon",
+            "entry_text": [
+                "Chacun de ses déplacements\n",
+                "provoque des tourbillons. Il vit\n",
+                "dans les grottes sous-marines."
+            ]
+        },
+        "german": {
+            "name": "SEEDRAKING",
+            "category": "Drache",
+            "entry_text": [
+                "Es lebt in Höhlen auf dem Meeres-\n",
+                "grund. Jedes Mal, wenn es sich\n",
+                "bewegt, entsteht ein Strudel. "
+            ]
+        },
+        "italian": {
+            "name": "KINGDRA",
+            "category": "Pokémon Drago",
+            "entry_text": [
+                "Vive in caverne sui fondali marini\n",
+                "e crea vortici giganteschi ogni\n",
+                "volta che si muove."
+            ]
+        },
+        "spanish": {
+            "name": "KINGDRA",
+            "category": "Pokémon Dragón",
+            "entry_text": [
+                "Vive en cavernas del fondo marino\n",
+                "y crea grandes remolinos cuando\n",
+                "se mueve."
+            ]
+        },
+        "japanese": {
+            "name": "キングドラ",
+            "category": "ドラゴンポケモン",
+            "entry_text": [
+                "かいていどうくつに　すんでいる。\n",
+                "キングドラが　みうごきすると\n",
+                "きょだいな　うずしおが　うまれる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

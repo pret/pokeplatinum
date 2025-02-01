@@ -126,8 +126,59 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It can’t stop itself from chasing\nmoving things, and it runs in a\ncircle, chasing its own tail.",
-        "category": "Kitten Pokémon"
+        "english": {
+            "category": "Kitten Pokémon",
+            "entry_text": [
+                "It can’t stop itself from chasing\n",
+                "moving things, and it runs in a\n",
+                "circle, chasing its own tail."
+            ]
+        },
+        "french": {
+            "name": "SKITTY",
+            "category": "Pokémon Chaton",
+            "entry_text": [
+                "Il poursuit tout ce qui bouge. On\n",
+                "le voit parfois courir en cercle,\n",
+                "chassant sa propre queue."
+            ]
+        },
+        "german": {
+            "name": "ENECO",
+            "category": "Kätzchen",
+            "entry_text": [
+                "Es muss Dinge, die sich bewegen,\n",
+                "einfach jagen. Es rennt oft im Kreis\n",
+                "und jagt seinen eigenen Schweif."
+            ]
+        },
+        "italian": {
+            "name": "SKITTY",
+            "category": "Pokémon Micio",
+            "entry_text": [
+                "Non riesce ad evitare di inseguire\n",
+                "tutto ciò che si muove e corre in\n",
+                "tondo a caccia della propria coda."
+            ]
+        },
+        "spanish": {
+            "name": "SKITTY",
+            "category": "Pokémon Gatito",
+            "entry_text": [
+                "No puede evitar ir tras las cosas\n",
+                "que se mueven. Hasta corre en\n",
+                "círculos persiguiéndose la cola."
+            ]
+        },
+        "japanese": {
+            "name": "エネコ",
+            "category": "こねこポケモン",
+            "entry_text": [
+                "うごくものを　つい　おってしまう。\n",
+                "じぶんの　しっぽを　おいかけて\n",
+                "おなじ　ばしょを　グルグル　まわる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

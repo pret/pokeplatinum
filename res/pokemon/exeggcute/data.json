@@ -118,8 +118,59 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "Its six eggs converse using\ntelepathy. They can quickly gather\nif they become separated.",
-        "category": "Egg Pokémon"
+        "english": {
+            "category": "Egg Pokémon",
+            "entry_text": [
+                "Its six eggs converse using\n",
+                "telepathy. They can quickly gather\n",
+                "if they become separated."
+            ]
+        },
+        "french": {
+            "name": "NOEUNOEUF",
+            "category": "Pokémon Oeuf",
+            "entry_text": [
+                "Ces six œufs communiquent par\n",
+                "télépathie. Ils peuvent se réunir\n",
+                "rapidement si on les sépare."
+            ]
+        },
+        "german": {
+            "name": "OWEI",
+            "category": "Ei",
+            "entry_text": [
+                "Die sechs Eier kommunizieren\n",
+                "telepathisch. Werden sie getrennt,\n",
+                "finden sie sich schnell wieder."
+            ]
+        },
+        "italian": {
+            "name": "EXEGGCUTE",
+            "category": "Pokémon Uovo",
+            "entry_text": [
+                "Queste sei uova comunicano per\n",
+                "telepatia. Si riuniscono subito\n",
+                "anche se vengono divise."
+            ]
+        },
+        "spanish": {
+            "name": "EXEGGCUTE",
+            "category": "Pokémon Huevo",
+            "entry_text": [
+                "Estos seis huevos se comunican por\n",
+                "telepatía. Si se separan se pueden\n",
+                "reunir rápidamente."
+            ]
+        },
+        "japanese": {
+            "name": "タマタマ",
+            "category": "たまごポケモン",
+            "entry_text": [
+                "テレパシ－で　かいわをしているため\n",
+                "タマタマを　ひきはなそうとしても\n",
+                "すぐに　あつまって　６ぴきになる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

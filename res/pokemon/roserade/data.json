@@ -100,8 +100,59 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "Each of its hands contains\ndifferent toxins, but both hands\ncan jab with near-fatal power.",
-        "category": "Bouquet Pokémon"
+        "english": {
+            "category": "Bouquet Pokémon",
+            "entry_text": [
+                "Each of its hands contains\n",
+                "different toxins, but both hands\n",
+                "can jab with near-fatal power."
+            ]
+        },
+        "french": {
+            "name": "ROSERADE",
+            "category": "Pokémon Bouquet",
+            "entry_text": [
+                "Il attire ses proies avec son doux\n",
+                "parfum et les achève grâce aux\n",
+                "fouets d’épines de ses bras."
+            ]
+        },
+        "german": {
+            "name": "ROSERADE",
+            "category": "Blumenstrauß",
+            "entry_text": [
+                "Mit einem süßen Duft lockt es Beute\n",
+                "an, die es dann mit den dornigen\n",
+                "Ranken in seinen Armen schlägt."
+            ]
+        },
+        "italian": {
+            "name": "ROSERADE",
+            "category": "Pokémon Floreale",
+            "entry_text": [
+                "Attira la preda con un dolce aroma,\n",
+                "poi l’abbatte con le fruste spinose\n",
+                "celate fra i bouquet delle braccia."
+            ]
+        },
+        "spanish": {
+            "name": "ROSERADE",
+            "category": "Pokémon Ramillete",
+            "entry_text": [
+                "Atrae a las presas con un dulce\n",
+                "aroma y las derrota con los\n",
+                "látigos espinosos de sus brazos."
+            ]
+        },
+        "japanese": {
+            "name": "ロズレイド",
+            "category": "ブ－ケポケモン",
+            "entry_text": [
+                "あまい　かおりで　おびきよせて\n",
+                "りょううでの　はなたばの　なかに\n",
+                "ある　トゲの　ムチで　しとめる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

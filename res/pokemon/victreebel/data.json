@@ -101,8 +101,59 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 2,
         "pokemon_pos_m": 4,
-        "entry_text": "It pools in its mouth a fluid with\na honeylike scent, which is really\nan acid that dissolves anything.",
-        "category": "Flycatcher Pokémon"
+        "english": {
+            "category": "Flycatcher Pokémon",
+            "entry_text": [
+                "It pools in its mouth a fluid with\n",
+                "a honeylike scent, which is really\n",
+                "an acid that dissolves anything."
+            ]
+        },
+        "french": {
+            "name": "EMPIFLOR",
+            "category": "Pokémon Carnivore",
+            "entry_text": [
+                "Sa bouche sécrète un fluide à\n",
+                "l’odeur de miel, qui s’avère être\n",
+                "un acide extrêmement corrosif."
+            ]
+        },
+        "german": {
+            "name": "SARZENIA",
+            "category": "Fliegentot",
+            "entry_text": [
+                "In seinem Maul sammelt sich eine\n",
+                "Flüssigkeit, die nach Honig riecht,\n",
+                "in Wahrheit aber ätzend ist."
+            ]
+        },
+        "italian": {
+            "name": "VICTREEBEL",
+            "category": "Pokémon Moschivoro",
+            "entry_text": [
+                "Tiene in bocca un liquido dall’aroma\n",
+                "simile al miele, che in realtà è un\n",
+                "acido altamente corrosivo."
+            ]
+        },
+        "spanish": {
+            "name": "VICTREEBEL",
+            "category": "Pokémon Matamoscas",
+            "entry_text": [
+                "Su boca segrega un fluido de olor\n",
+                "parecido a la miel: un potente\n",
+                "ácido que disuelve cualquier cosa."
+            ]
+        },
+        "japanese": {
+            "name": "ウツボット",
+            "category": "ハエとりポケモン",
+            "entry_text": [
+                "ミツのような　かおりの　えきたいを\n",
+                "くちに　ためているが　それは\n",
+                "なんでも　とかす　ようかいえきだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

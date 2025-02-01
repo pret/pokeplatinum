@@ -112,8 +112,59 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 5,
         "pokemon_pos_m": 1,
-        "entry_text": "In snow, the pure white coat\ncovering its body obscures it from\npredators.",
-        "category": "Sea Lion Pokémon"
+        "english": {
+            "category": "Sea Lion Pokémon",
+            "entry_text": [
+                "In snow, the pure white coat\n",
+                "covering its body obscures it from\n",
+                "predators."
+            ]
+        },
+        "french": {
+            "name": "LAMANTINE",
+            "category": "Pokémon Otarie",
+            "entry_text": [
+                "Son corps est couvert d’un grand\n",
+                "manteau blanc qui, dans la neige, le\n",
+                "dissimule aux yeux des prédateurs."
+            ]
+        },
+        "german": {
+            "name": "JUGONG",
+            "category": "Seehund",
+            "entry_text": [
+                "Sein Körper ist mit einem weißen Fell\n",
+                "bedeckt, das es im Schnee fast\n",
+                "unsichtbar für Gegner macht."
+            ]
+        },
+        "italian": {
+            "name": "DEWGONG",
+            "category": "Pokémon Otaria",
+            "entry_text": [
+                "Ha il corpo ricoperto da una\n",
+                "pelliccia bianca che, sulla neve,\n",
+                "lo rende meno visibile ai predatori."
+            ]
+        },
+        "spanish": {
+            "name": "DEWGONG",
+            "category": "Pokémon León Mar.",
+            "entry_text": [
+                "Está cubierto de un luminoso\n",
+                "pelaje blanco que lo camufla\n",
+                "en la nieve."
+            ]
+        },
+        "japanese": {
+            "name": "ジュゴン",
+            "category": "あしかポケモン",
+            "entry_text": [
+                "ぜんしんが　まっしろな　たいもうに\n",
+                "おおわれているため　ゆきの　なかでは\n",
+                "てんてきに　みつからないのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

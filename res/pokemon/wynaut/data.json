@@ -68,8 +68,59 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It grows strong by pushing up\nagainst others en masse.\nIt loves eating sweet fruit.",
-        "category": "Bright Pokémon"
+        "english": {
+            "category": "Bright Pokémon",
+            "entry_text": [
+                "It grows strong by pushing up\n",
+                "against others en masse.\n",
+                "It loves eating sweet fruit."
+            ]
+        },
+        "french": {
+            "name": "OKEOKE",
+            "category": "Pokémon Ravi",
+            "entry_text": [
+                "Il se muscle en bousculant ses\n",
+                "semblables lors de mêlées. Il\n",
+                "raffole des fruits sucrés."
+            ]
+        },
+        "german": {
+            "name": "ISSO",
+            "category": "Strahlekind",
+            "entry_text": [
+                "Es wird stärker, indem es andere\n",
+                "ständig anrempelt. Es liebt\n",
+                "Süßigkeiten."
+            ]
+        },
+        "italian": {
+            "name": "WYNAUT",
+            "category": "Pokémon Brillante",
+            "entry_text": [
+                "Questi Pokémon si allenano in\n",
+                "gruppo caricandosi l’un l’altro per\n",
+                "rafforzarsi. Amano i frutti dolci."
+            ]
+        },
+        "spanish": {
+            "name": "WYNAUT",
+            "category": "Pokémon Radiante",
+            "entry_text": [
+                "Se fortalecen empujándose unos\n",
+                "a otros en grupos. Les encantan\n",
+                "los dulces."
+            ]
+        },
+        "japanese": {
+            "name": "ソ－ナノ",
+            "category": "ほがらかポケモン",
+            "entry_text": [
+                "なかまたちと　おしくらまんじゅうを\n",
+                "やることで　がまんづよく　そだつ。\n",
+                "あまい　くだものが　だいこうぶつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

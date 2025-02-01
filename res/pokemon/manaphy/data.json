@@ -119,8 +119,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "It is born with a wondrous power\nthat lets it bond with any kind of\nPokémon.",
-        "category": "Seafaring Pokémon"
+        "english": {
+            "category": "Seafaring Pokémon",
+            "entry_text": [
+                "It is born with a wondrous power\n",
+                "that lets it bond with any kind of\n",
+                "Pokémon."
+            ]
+        },
+        "french": {
+            "name": "MANAPHY",
+            "category": "Pokémon Voyagenmer",
+            "entry_text": [
+                "Né dans les profondeurs froides de\n",
+                "l’océan, il parcourt un long chemin\n",
+                "pour gagner son lieu de naissance."
+            ]
+        },
+        "german": {
+            "name": "MANAPHY",
+            "category": "Seefahrer",
+            "entry_text": [
+                "Geboren auf dem Meeresboden,\n",
+                "legt es große Entfernungen zurück,\n",
+                "um dorthin zurückzukehren."
+            ]
+        },
+        "italian": {
+            "name": "MANAPHY",
+            "category": "Pokémon Oceandante",
+            "entry_text": [
+                "Nato su freddi fondali marini, per-\n",
+                "corre a nuoto lunghe distanze per\n",
+                "tornare al suo luogo di nascita."
+            ]
+        },
+        "spanish": {
+            "name": "MANAPHY",
+            "category": "Pokémon Náutico",
+            "entry_text": [
+                "Nació en el frío fondo marino.\n",
+                "Nada grandes distancias para\n",
+                "regresar a su lugar de origen."
+            ]
+        },
+        "japanese": {
+            "name": "マナフィ",
+            "category": "かいゆうポケモン",
+            "entry_text": [
+                "つめたい　うみの　そこで　うまれた。\n",
+                "じぶんが　うまれた　うみの　そこへ\n",
+                "ながい　きょりを　およいで　かえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

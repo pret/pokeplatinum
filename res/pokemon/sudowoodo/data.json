@@ -119,8 +119,59 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "entry_text": "To avoid being attacked, it does\nnothing but mimic a tree. It hates\nwater and flees from rain.",
-        "category": "Imitation Pokémon"
+        "english": {
+            "category": "Imitation Pokémon",
+            "entry_text": [
+                "To avoid being attacked, it does\n",
+                "nothing but mimic a tree. It hates\n",
+                "water and flees from rain."
+            ]
+        },
+        "french": {
+            "name": "SIMULARBRE",
+            "category": "Pokémon Imitation",
+            "entry_text": [
+                "On pourrait le prendre pour un\n",
+                "arbre, mais il est plus proche d’une\n",
+                "pierre. L’eau est son point faible."
+            ]
+        },
+        "german": {
+            "name": "MOGELBAUM",
+            "category": "Imitation",
+            "entry_text": [
+                "Auch wenn es wie ein Baum aussieht,\n",
+                "ist es eher wie ein Stein o. Fels.\n",
+                "Es ist schwach gegenüber Wasser."
+            ]
+        },
+        "italian": {
+            "name": "SUDOWOODO",
+            "category": "Pokémon Imitazione",
+            "entry_text": [
+                "Ha l’aspetto di un albero, ma il\n",
+                "suo corpo è più simile alla roccia.\n",
+                "È debole contro l’acqua."
+            ]
+        },
+        "spanish": {
+            "name": "SUDOWOODO",
+            "category": "Pokémon Imitación",
+            "entry_text": [
+                "Aunque parezca un árbol, su\n",
+                "cuerpo se asemeja a las rocas y\n",
+                "piedras. Es débil frente al agua."
+            ]
+        },
+        "japanese": {
+            "name": "ウソッキ－",
+            "category": "まねポケモン",
+            "entry_text": [
+                "じゅもくの　ように　みえる　からだは\n",
+                "じつは　いわや　いしに　ちかい。\n",
+                "みずには　めっぽう　よわいのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

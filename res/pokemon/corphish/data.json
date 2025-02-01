@@ -124,8 +124,59 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Its hardy vitality enables it to\nadapt to any environment. Its\npincers will never release prey.",
-        "category": "Ruffian Pokémon"
+        "english": {
+            "category": "Ruffian Pokémon",
+            "entry_text": [
+                "Its hardy vitality enables it to\n",
+                "adapt to any environment. Its\n",
+                "pincers will never release prey."
+            ]
+        },
+        "french": {
+            "name": "ECRAPINCE",
+            "category": "Pokémon Brute",
+            "entry_text": [
+                "Sa nature robuste lui permet de\n",
+                "vivre sur n’importe quel terrain. \n",
+                "Ses pinces ne lâchent jamais prise."
+            ]
+        },
+        "german": {
+            "name": "KREBSCORPS",
+            "category": "Grobian",
+            "entry_text": [
+                "Ein robustes PKMN, das sich jeder\n",
+                "Umgebung anpassen kann. Seine\n",
+                "Zangen geben keine Beute frei."
+            ]
+        },
+        "italian": {
+            "name": "CORPHISH",
+            "category": "Pokémon Birbone",
+            "entry_text": [
+                "La sua grande vitalità gli permette\n",
+                "di adattarsi ad ogni habitat. Le sue\n",
+                "chele non rilasciano mai la preda."
+            ]
+        },
+        "spanish": {
+            "name": "CORPHISH",
+            "category": "Pokémon Rufián",
+            "entry_text": [
+                "Su organismo le permite adaptarse\n",
+                "a cualquier entorno. Sus pinzas\n",
+                "nunca sueltan a su presa."
+            ]
+        },
+        "japanese": {
+            "name": "ヘイガニ",
+            "category": "ごろつきポケモン",
+            "entry_text": [
+                "どんな　かんきょうにも　てきおうする\n",
+                "つよい　せいめいりょくの　もちぬし。\n",
+                "はさんだ　えものは　はなさない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

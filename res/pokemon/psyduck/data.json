@@ -122,8 +122,59 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "Overwhelmed by enigmatic abilities,\nit suffers a constant headache. It\nsometimes uses mysterious powers.",
-        "category": "Duck Pokémon"
+        "english": {
+            "category": "Duck Pokémon",
+            "entry_text": [
+                "Overwhelmed by enigmatic abilities,\n",
+                "it suffers a constant headache. It\n",
+                "sometimes uses mysterious powers."
+            ]
+        },
+        "french": {
+            "name": "PSYKOKWAK",
+            "category": "Pokémon Canard",
+            "entry_text": [
+                "Quand son mal de crâne empire,\n",
+                "il développe d’étranges pouvoirs\n",
+                "dont il ne se souvient jamais."
+            ]
+        },
+        "german": {
+            "name": "ENTON",
+            "category": "Ente",
+            "entry_text": [
+                "Werden seine konstant vorhandenen\n",
+                "Kopfschmerzen stärker, entwickelt\n",
+                "es seltsame Kräfte."
+            ]
+        },
+        "italian": {
+            "name": "PSYDUCK",
+            "category": "Pokémon Papero",
+            "entry_text": [
+                "Se la sua costante emicrania\n",
+                "peggiora, inizia ad usare poteri\n",
+                "misteriosi. Ma poi non se lo ricorda."
+            ]
+        },
+        "spanish": {
+            "name": "PSYDUCK",
+            "category": "Pokémon Pato",
+            "entry_text": [
+                "Cuando su jaqueca empeora, usa\n",
+                "poderes misteriosos. Sin embargo,\n",
+                "nunca recuerda haberlos usado."
+            ]
+        },
+        "japanese": {
+            "name": "コダック",
+            "category": "あひるポケモン",
+            "entry_text": [
+                "ずつうが　はげしくなると　ふしぎな\n",
+                "ちからを　つかうようになる。\n",
+                "そのときの　ことは　おぼえていない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

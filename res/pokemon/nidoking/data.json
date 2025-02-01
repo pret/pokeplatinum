@@ -133,8 +133,59 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "One swing of its mighty tail can\nsnap a telephone pole as if it were\na matchstick.",
-        "category": "Drill Pokémon"
+        "english": {
+            "category": "Drill Pokémon",
+            "entry_text": [
+                "One swing of its mighty tail can\n",
+                "snap a telephone pole as if it were\n",
+                "a matchstick."
+            ]
+        },
+        "french": {
+            "name": "NIDOKING",
+            "category": "Pokémon Perceur",
+            "entry_text": [
+                "Un coup de sa puissante queue\n",
+                "peut briser un poteau téléphonique\n",
+                "comme une allumette."
+            ]
+        },
+        "german": {
+            "name": "NIDOKING",
+            "category": "Bohrer",
+            "entry_text": [
+                "Ein Schlag mit seinem gewaltigen\n",
+                "Schweif kann einen Telegrafen-\n",
+                "masten knicken wie ein Streichholz."
+            ]
+        },
+        "italian": {
+            "name": "NIDOKING",
+            "category": "Pokémon Trapano",
+            "entry_text": [
+                "Con un solo colpo della potente\n",
+                "coda può abbattere un palo del te-\n",
+                "lefono come se fosse un fiammifero."
+            ]
+        },
+        "spanish": {
+            "name": "NIDOKING",
+            "category": "Pokémon Taladro",
+            "entry_text": [
+                "Un golpe de su poderosa cola\n",
+                "puede partir un poste de teléfono\n",
+                "como si fuese una cerilla."
+            ]
+        },
+        "japanese": {
+            "name": "ニドキング",
+            "category": "ドリルポケモン",
+            "entry_text": [
+                "しっぽの　いちげきは　でんちゅうを\n",
+                "まるで　マッチぼうのように\n",
+                "まっぷたつに　へしおってしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

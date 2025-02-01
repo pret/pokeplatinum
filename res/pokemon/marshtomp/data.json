@@ -122,8 +122,59 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "Its sturdy legs give it sure\nfooting, even in mud. It\nburrows into dirt to sleep.",
-        "category": "Mud Fish Pokémon"
+        "english": {
+            "category": "Mud Fish Pokémon",
+            "entry_text": [
+                "Its sturdy legs give it sure\n",
+                "footing, even in mud. It\n",
+                "burrows into dirt to sleep."
+            ]
+        },
+        "french": {
+            "name": "FLOBIO",
+            "category": "Pokémon Poissonboue",
+            "entry_text": [
+                "Ses jambes robustes lui donnent\n",
+                "un bon appui, même dans la boue.\n",
+                "Il dort enfoui dans la saleté."
+            ]
+        },
+        "german": {
+            "name": "MOORABBEL",
+            "category": "Lehmhüpfer",
+            "entry_text": [
+                "Seine kräftigen Beine geben ihm\n",
+                "sicheren Halt. Es gräbt sich in\n",
+                "Dreck ein, wenn es schlafen will."
+            ]
+        },
+        "italian": {
+            "name": "MARSHTOMP",
+            "category": "Pokémon Fango Pesce",
+            "entry_text": [
+                "Grazie alle zampe vigorose, si muove\n",
+                "con disinvoltura anche nel fango.\n",
+                "Dorme immerso nella melma."
+            ]
+        },
+        "spanish": {
+            "name": "MARSHTOMP",
+            "category": "Pokémon Pez Lodo",
+            "entry_text": [
+                "Sus piernas robustas impiden que\n",
+                "pierda el equilibrio y caiga, incluso\n",
+                "en el barro. Duerme bajo la arena."
+            ]
+        },
+        "japanese": {
+            "name": "ヌマクロ－",
+            "category": "ぬまうおポケモン",
+            "entry_text": [
+                "ぬかるんだ　あしばでも　しっかり\n",
+                "あるける　じょうぶな　あしこし。\n",
+                "どろに　からだを　うめて　ねむる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

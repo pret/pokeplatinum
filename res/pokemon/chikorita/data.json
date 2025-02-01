@@ -112,8 +112,59 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It uses the leaf on its head to\ndetermine the temperature and\nhumidity. It loves to sunbathe.",
-        "category": "Leaf Pokémon"
+        "english": {
+            "category": "Leaf Pokémon",
+            "entry_text": [
+                "It uses the leaf on its head to\n",
+                "determine the temperature and\n",
+                "humidity. It loves to sunbathe."
+            ]
+        },
+        "french": {
+            "name": "GERMIGNON",
+            "category": "Pokémon Feuille",
+            "entry_text": [
+                "Il jauge la température et\n",
+                "l’humidité grâce à la feuille sur sa\n",
+                "tête. Il raffole des bains de soleil."
+            ]
+        },
+        "german": {
+            "name": "ENDIVIE",
+            "category": "Laub",
+            "entry_text": [
+                "Mit dem Blatt auf seinem Kopf\n",
+                "bestimmt es die Temperatur und\n",
+                "Feuchtigkeit. Es liebt Sonnenbäder."
+            ]
+        },
+        "italian": {
+            "name": "CHIKORITA",
+            "category": "Pokémon Foglia",
+            "entry_text": [
+                "Usa la foglia sulla sua testa\n",
+                "per misurare la temperatura e\n",
+                "l’umidità. Ama crogiolarsi al sole."
+            ]
+        },
+        "spanish": {
+            "name": "CHIKORITA",
+            "category": "Pokémon Hoja",
+            "entry_text": [
+                "Con la hoja de su cabeza puede\n",
+                "medir la temperatura y la humedad.\n",
+                "Le encanta tomar el sol."
+            ]
+        },
+        "japanese": {
+            "name": "チコリ－タ",
+            "category": "はっぱポケモン",
+            "entry_text": [
+                "あたまの　はっぱで　まわりの\n",
+                "おんどや　しつどを　さぐる。\n",
+                "ひざしを　あびることが　だいすき。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

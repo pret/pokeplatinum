@@ -111,8 +111,59 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "With its extremely tough muscles,\nit can keep swimming in the Pacific\nOcean without resting.",
-        "category": "Tadpole Pokémon"
+        "english": {
+            "category": "Tadpole Pokémon",
+            "entry_text": [
+                "With its extremely tough muscles,\n",
+                "it can keep swimming in the Pacific\n",
+                "Ocean without resting."
+            ]
+        },
+        "french": {
+            "name": "TARTARD",
+            "category": "Pokémon Têtard",
+            "entry_text": [
+                "Il possède de sacrés biscoteaux.\n",
+                "Il peut parcourir sans relâche\n",
+                "l’Océan Pacifique."
+            ]
+        },
+        "german": {
+            "name": "QUAPPO",
+            "category": "Kaulquappe",
+            "entry_text": [
+                "Es hat extrem starke Muskeln und\n",
+                "kann durch den Ozean schwimmen,\n",
+                "ohne sich ausruhen zu müssen."
+            ]
+        },
+        "italian": {
+            "name": "POLIWRATH",
+            "category": "Pokémon Girino",
+            "entry_text": [
+                "Ha dei muscoli tanto sviluppati da\n",
+                "riuscire ad attraversare a nuoto\n",
+                "l’Oceano Pacifico senza fermarsi."
+            ]
+        },
+        "spanish": {
+            "name": "POLIWRATH",
+            "category": "Pokémon Renacuajo",
+            "entry_text": [
+                "Tiene músculos muy desarrollados.\n",
+                "Es capaz de nadar en el océano\n",
+                "sin descanso."
+            ]
+        },
+        "japanese": {
+            "name": "ニョロボン",
+            "category": "おたまポケモン",
+            "entry_text": [
+                "きょうじんな　きんにくを　もつ。\n",
+                "たいへいようを　やすむことなく\n",
+                "およぎつづけることが　できるのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

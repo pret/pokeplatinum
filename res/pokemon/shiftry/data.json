@@ -124,8 +124,59 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "By flapping its leafy fan, it can\nwhip up gusts of 100 ft/second\nthat can level houses.",
-        "category": "Wicked Pokémon"
+        "english": {
+            "category": "Wicked Pokémon",
+            "entry_text": [
+                "By flapping its leafy fan, it can\n",
+                "whip up gusts of 100 ft/second\n",
+                "that can level houses."
+            ]
+        },
+        "french": {
+            "name": "TENGALICE",
+            "category": "Pokémon Malveillant",
+            "entry_text": [
+                "D’un coup de sa feuille éventail, il\n",
+                "génère des bourrasques de 30 m/s\n",
+                "capables de souffler une maison. "
+            ]
+        },
+        "german": {
+            "name": "TENGULIST",
+            "category": "Verschlagen",
+            "entry_text": [
+                "Seine großen Fächer erzeugen Böen,\n",
+                "die eine Geschwindigkeit von\n",
+                "30 m/sek erreichen können."
+            ]
+        },
+        "italian": {
+            "name": "SHIFTRY",
+            "category": "Pokémon Burbero",
+            "entry_text": [
+                "Con le sue foglie provoca raffiche\n",
+                "di vento della velocità di 30 m/s\n",
+                "che spazzano via interi edifici."
+            ]
+        },
+        "spanish": {
+            "name": "SHIFTRY",
+            "category": "Pokémon Malvado",
+            "entry_text": [
+                "Con sus abanicos puede provocar\n",
+                "vientos de 30 m por segundo\n",
+                "capaces de levantar casas."
+            ]
+        },
+        "japanese": {
+            "name": "ダ－テング",
+            "category": "よこしまポケモン",
+            "entry_text": [
+                "はっぱの　うちわを　あおぐと\n",
+                "ふうそく３０メ－トルの　とっぷうが\n",
+                "まきおこり　みんかを　ふきとばす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

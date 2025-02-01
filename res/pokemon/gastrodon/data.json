@@ -112,8 +112,59 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "Long ago, its entire back was\nshielded with a sturdy shell. There\nare traces of it left in its cells.",
-        "category": "Sea Slug Pokémon"
+        "english": {
+            "category": "Sea Slug Pokémon",
+            "entry_text": [
+                "Long ago, its entire back was\n",
+                "shielded with a sturdy shell. There\n",
+                "are traces of it left in its cells."
+            ]
+        },
+        "french": {
+            "name": "TRITOSOR",
+            "category": "Pokémon Aqualimace",
+            "entry_text": [
+                "Son corps pliable est dépourvu\n",
+                "d’os. Lorsqu’on tranche un de ses\n",
+                "membres, il repousse immédiatement."
+            ]
+        },
+        "german": {
+            "name": "GASTRODON",
+            "category": "Seeschnecke",
+            "entry_text": [
+                "Es hat einen biegsamen Körper ohne\n",
+                "einen Knochen. Wird ein Körperteil\n",
+                "abgetrennt, wächst er nach."
+            ]
+        },
+        "italian": {
+            "name": "GASTRODON",
+            "category": "Pokémon Lumacomare",
+            "entry_text": [
+                "Ha un corpo flessibile e senza ossa.\n",
+                "Qualsiasi parte del corpo che gli\n",
+                "venga lacerata ricresce subito."
+            ]
+        },
+        "spanish": {
+            "name": "GASTRODON",
+            "category": "Pokémon Babosa Mar.",
+            "entry_text": [
+                "Posee un cuerpo flexible sin\n",
+                "huesos. Si pierde alguna parte,\n",
+                "le vuelve a crecer."
+            ]
+        },
+        "japanese": {
+            "name": "トリトドン",
+            "category": "ウミウシポケモン",
+            "entry_text": [
+                "ホネがなく　グニャグニャの　からだ。\n",
+                "からだの　いちぶが　ちぎれても\n",
+                "すぐに　さいせいされて　もとどおり。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

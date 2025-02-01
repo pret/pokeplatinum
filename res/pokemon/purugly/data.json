@@ -120,8 +120,59 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It binds its body with its tails to\nmake itself look bigger. If it locks\neyes, it will glare ceaselessly.",
-        "category": "Tiger Cat Pokémon"
+        "english": {
+            "category": "Tiger Cat Pokémon",
+            "entry_text": [
+                "It binds its body with its tails to\n",
+                "make itself look bigger. If it locks\n",
+                "eyes, it will glare ceaselessly."
+            ]
+        },
+        "french": {
+            "name": "CHAFFREUX",
+            "category": "Pokémon Chatigre",
+            "entry_text": [
+                "Cette brute arrogante n’hésite pas\n",
+                "à voler le nid d’autres Pokémon\n",
+                "pour s’y installer."
+            ]
+        },
+        "german": {
+            "name": "SHNURGARST",
+            "category": "Tigerkatze",
+            "entry_text": [
+                "Dieses PKMN ist ein Grobian, der\n",
+                "sich in die Nester anderer PKMN ein-\n",
+                "nistet und sie sich damit aneignet."
+            ]
+        },
+        "italian": {
+            "name": "PURUGLY",
+            "category": "Pokémon Gattotigre",
+            "entry_text": [
+                "Si introduce sfacciatamente\n",
+                "nelle tane degli altri Pokémon\n",
+                "rivendicandole poi come proprie."
+            ]
+        },
+        "spanish": {
+            "name": "PURUGLY",
+            "category": "Pokémon Tigre Gato",
+            "entry_text": [
+                "Es un bruto descarado que\n",
+                "entra en el nido de cualquier\n",
+                "Pokémon y se lo apropia."
+            ]
+        },
+        "japanese": {
+            "name": "ブニャット",
+            "category": "とらねこポケモン",
+            "entry_text": [
+                "ほかの　ポケモンの　すみかにも\n",
+                "かまわず　はいりこんで　じぶんの\n",
+                "ねばしょにしてしまう　ずうずうしさ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

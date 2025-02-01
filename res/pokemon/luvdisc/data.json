@@ -101,8 +101,59 @@
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65527,
-        "entry_text": "It lives in warm seas. It is said\nthat a couple finding this Pokémon\nwill be blessed with eternal love.",
-        "category": "Rendezvous Pokémon"
+        "english": {
+            "category": "Rendezvous Pokémon",
+            "entry_text": [
+                "It lives in warm seas. It is said\n",
+                "that a couple finding this Pokémon\n",
+                "will be blessed with eternal love."
+            ]
+        },
+        "french": {
+            "name": "LOVDISC",
+            "category": "Pokémon Rendezvous",
+            "entry_text": [
+                "Un habitant des mers chaudes. On\n",
+                "dit que le couple qui tombe sur ce\n",
+                "Pokémon connaîtra l’amour éternel."
+            ]
+        },
+        "german": {
+            "name": "LIEBISKUS",
+            "category": "Rendezvous",
+            "entry_text": [
+                "Es lebt in warmen Meeren. Man sagt,\n",
+                "dass Verliebte, die es sehen, mit\n",
+                "ewiger Liebe gesegnet sind."
+            ]
+        },
+        "italian": {
+            "name": "LUVDISC",
+            "category": "Pokémon Rendezvous",
+            "entry_text": [
+                "Vive nei mari caldi. Si dice che le\n",
+                "coppie che trovano questo Pokémon\n",
+                "riceveranno in dono l’eterno amore."
+            ]
+        },
+        "spanish": {
+            "name": "LUVDISC",
+            "category": "Pokémon Cita",
+            "entry_text": [
+                "Vive en mares cálidos. Se dice\n",
+                "que, si una pareja lo encuentra,\n",
+                "será bendecida con amor eterno."
+            ]
+        },
+        "japanese": {
+            "name": "ラブカス",
+            "category": "ランデブ－ポケモン",
+            "entry_text": [
+                "あたたかい　うみに　せいそくする。\n",
+                "ラブカスを　みつけた　カップルは\n",
+                "えいえんの　あいが　つづくという。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

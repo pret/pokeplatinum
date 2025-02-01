@@ -119,8 +119,59 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It shelters itself in its shell,\nthen strikes back with spouts of\nwater at every opportunity.",
-        "category": "Tiny Turtle Pokémon"
+        "english": {
+            "category": "Tiny Turtle Pokémon",
+            "entry_text": [
+                "It shelters itself in its shell,\n",
+                "then strikes back with spouts of\n",
+                "water at every opportunity."
+            ]
+        },
+        "french": {
+            "name": "CARAPUCE",
+            "category": "Pokémon Minitortue",
+            "entry_text": [
+                "Il se réfugie dans sa carapace\n",
+                "et réplique en éclaboussant\n",
+                "l’ennemi à la première occasion."
+            ]
+        },
+        "german": {
+            "name": "SCHIGGY",
+            "category": "Minikröte",
+            "entry_text": [
+                "Es zieht sich in seinen Panzer\n",
+                "zurück und greift dann mit\n",
+                "Wasserstrahlen seine Gegner an."
+            ]
+        },
+        "italian": {
+            "name": "SQUIRTLE",
+            "category": "Pokémon Tartaghina",
+            "entry_text": [
+                "Si ritira nel suo guscio e, alla prima\n",
+                "occasione, contrattacca colpendo\n",
+                "il nemico con spruzzi d’acqua."
+            ]
+        },
+        "spanish": {
+            "name": "SQUIRTLE",
+            "category": "Pokémon Tortuguita",
+            "entry_text": [
+                "Se protege con su caparazón y\n",
+                "luego contraataca lanzando agua a\n",
+                "presión cuando tiene oportunidad."
+            ]
+        },
+        "japanese": {
+            "name": "ゼニガメ",
+            "category": "かめのこポケモン",
+            "entry_text": [
+                "こうらに　とじこもり　みを　まもる。\n",
+                "あいての　すきを　みのがさず\n",
+                "みずを　ふきだして　はんげきする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

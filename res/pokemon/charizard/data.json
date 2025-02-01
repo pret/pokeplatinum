@@ -132,8 +132,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "It is said that CHARIZARD’s fire\nburns hotter if it has\nexperienced harsh battles.",
-        "category": "Flame Pokémon"
+        "english": {
+            "category": "Flame Pokémon",
+            "entry_text": [
+                "It is said that CHARIZARD’s fire\n",
+                "burns hotter if it has\n",
+                "experienced harsh battles."
+            ]
+        },
+        "french": {
+            "name": "DRACAUFEU",
+            "category": "Pokémon Flamme",
+            "entry_text": [
+                "On raconte que la flamme du\n",
+                "DRACAUFEU s’intensifie après\n",
+                "un combat difficile."
+            ]
+        },
+        "german": {
+            "name": "GLURAK",
+            "category": "Flamme",
+            "entry_text": [
+                "Man sagt, GLURAKs Feuer lodert\n",
+                "stärker, wenn es harte Kämpfe\n",
+                "überstanden hat."
+            ]
+        },
+        "italian": {
+            "name": "CHARIZARD",
+            "category": "Pokémon Fiamma",
+            "entry_text": [
+                "Pare che la temperatura della\n",
+                "fiamma di CHARIZARD aumenti\n",
+                "dopo che ha affrontato dure lotte."
+            ]
+        },
+        "spanish": {
+            "name": "CHARIZARD",
+            "category": "Pokémon Llama",
+            "entry_text": [
+                "Se dice que el fuego de CHARIZARD\n",
+                "arde con más fuerza si ha vivido\n",
+                "duras batallas."
+            ]
+        },
+        "japanese": {
+            "name": "リザ－ドン",
+            "category": "かえんポケモン",
+            "entry_text": [
+                "くるしい　たたかいを　けいけんした\n",
+                "リザ－ドンほど　ほのおの　おんどが\n",
+                "たかくなると　いわれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

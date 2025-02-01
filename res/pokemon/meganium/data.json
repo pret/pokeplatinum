@@ -116,8 +116,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "Its breath has the fantastic\nability to revive dead plants and\nflowers.",
-        "category": "Herb Pokémon"
+        "english": {
+            "category": "Herb Pokémon",
+            "entry_text": [
+                "Its breath has the fantastic\n",
+                "ability to revive dead plants and\n",
+                "flowers."
+            ]
+        },
+        "french": {
+            "name": "MEGANIUM",
+            "category": "Pokémon Herbe",
+            "entry_text": [
+                "Son souffle a l’incroyable capacité\n",
+                "de ranimer les plantes et les \n",
+                "fleurs flétries."
+            ]
+        },
+        "german": {
+            "name": "MEGANIE",
+            "category": "Kräuter",
+            "entry_text": [
+                "Mit seinem Atem kann es tote\n",
+                "Pflanzen und Blumen zu neuem\n",
+                "Leben erwecken."
+            ]
+        },
+        "italian": {
+            "name": "MEGANIUM",
+            "category": "Pokémon Erbe",
+            "entry_text": [
+                "Il suo respiro ha lo straordinario\n",
+                "potere di far tornare rigogliosi\n",
+                "piante secche e fiori avvizziti."
+            ]
+        },
+        "spanish": {
+            "name": "MEGANIUM",
+            "category": "Pokémon Hierba",
+            "entry_text": [
+                "Su aliento tiene la maravillosa\n",
+                "capacidad de revivir plantas y\n",
+                "flores muertas."
+            ]
+        },
+        "japanese": {
+            "name": "メガニウム",
+            "category": "ハ－ブポケモン",
+            "entry_text": [
+                "メガニウムが　はきだす　いきには\n",
+                "かれた　くさばなを　よみがえらせる\n",
+                "ふしぎな　ちからが　ひめられている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

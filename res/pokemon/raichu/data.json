@@ -106,8 +106,59 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "Its tail discharges electricity into\nthe ground, protecting it from\ngetting shocked.",
-        "category": "Mouse Pokémon"
+        "english": {
+            "category": "Mouse Pokémon",
+            "entry_text": [
+                "Its tail discharges electricity into\n",
+                "the ground, protecting it from\n",
+                "getting shocked."
+            ]
+        },
+        "french": {
+            "name": "RAICHU",
+            "category": "Pokémon Souris",
+            "entry_text": [
+                "Il devient agressif lorsque son\n",
+                "corps contient trop d’électricité.\n",
+                "Il la décharge par sa queue."
+            ]
+        },
+        "german": {
+            "name": "RAICHU",
+            "category": "Maus",
+            "entry_text": [
+                "Bei zu viel Elektrizität im Körper\n",
+                "wird es aggressiv. Es entlädt sich\n",
+                "über seinen Schweif."
+            ]
+        },
+        "italian": {
+            "name": "RAICHU",
+            "category": "Pokémon Topo",
+            "entry_text": [
+                "Diventa aggressivo se accumula\n",
+                "in sé troppa carica elettrica.\n",
+                "Scarica l’elettricità dalla coda."
+            ]
+        },
+        "spanish": {
+            "name": "RAICHU",
+            "category": "Pokémon Ratón",
+            "entry_text": [
+                "Se vuelve agresivo si su cuerpo\n",
+                "acumula demasiada electricidad,\n",
+                "que descarga a través de la cola."
+            ]
+        },
+        "japanese": {
+            "name": "ライチュウ",
+            "category": "ねずみポケモン",
+            "entry_text": [
+                "からだの　でんきが　たまりすぎると\n",
+                "こうげきてきな　きもちになる。\n",
+                "しっぽから　でんきを　にがす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

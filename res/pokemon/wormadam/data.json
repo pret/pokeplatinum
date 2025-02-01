@@ -110,8 +110,59 @@
         "pokemon_pos_f": 65524,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65524,
-        "entry_text": "When evolving, its body takes in\nsurrounding materials. As a result,\nthere are many body variations.",
-        "category": "Bagworm Pokémon"
+        "english": {
+            "category": "Bagworm Pokémon",
+            "entry_text": [
+                "When evolving, its body takes in\n",
+                "surrounding materials. As a result,\n",
+                "there are many body variations."
+            ]
+        },
+        "french": {
+            "name": "CHENISELLE",
+            "category": "Pokémon Ver Caché",
+            "entry_text": [
+                "Quand CHENITI a évolué, sa\n",
+                "cape a fusionné avec son corps.\n",
+                "CHENISELLE ne s’en sépare jamais."
+            ]
+        },
+        "german": {
+            "name": "BURMADAME",
+            "category": "Beutelwurm",
+            "entry_text": [
+                "Als sich BURMY entwickelte,\n",
+                "wurde sein Umhang Teil des Körpers.\n",
+                "Es legt den Umhang niemals ab."
+            ]
+        },
+        "italian": {
+            "name": "WORMADAM",
+            "category": "Pokémon Larva",
+            "entry_text": [
+                "Con l’evoluzione, il manto di BURMY\n",
+                "diventa parte del corpo di questo\n",
+                "Pokémon. Non se ne separa mai."
+            ]
+        },
+        "spanish": {
+            "name": "WORMADAM",
+            "category": "Pokémon Larva",
+            "entry_text": [
+                "Cuando BURMY evolucionó,\n",
+                "su caparazón pasó a formar parte\n",
+                "de este Pokémon."
+            ]
+        },
+        "japanese": {
+            "name": "ミノマダム",
+            "category": "みのむしポケモン",
+            "entry_text": [
+                "ミノムッチから　しんかしたとき\n",
+                "ミノが　からだの　いちぶに　なった。\n",
+                "いっしょう　ミノを　ぬぐことはない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

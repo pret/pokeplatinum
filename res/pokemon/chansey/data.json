@@ -141,8 +141,59 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "A kindly Pokémon that lays highly\nnutritious eggs and shares them\nwith injured Pokémon or people.",
-        "category": "Egg Pokémon"
+        "english": {
+            "category": "Egg Pokémon",
+            "entry_text": [
+                "A kindly Pokémon that lays highly\n",
+                "nutritious eggs and shares them\n",
+                "with injured Pokémon or people."
+            ]
+        },
+        "french": {
+            "name": "LEVEINARD",
+            "category": "Pokémon Oeuf",
+            "entry_text": [
+                "Il est censé apporter la joie. Ce\n",
+                "Pokémon charitable offre ses\n",
+                "œufs aux blessés."
+            ]
+        },
+        "german": {
+            "name": "CHANEIRA",
+            "category": "Ei",
+            "entry_text": [
+                "Man sagt, es bringe Glück. Es ist\n",
+                "sehr mitfühlend und teilt seine Eier\n",
+                "mit Verletzten."
+            ]
+        },
+        "italian": {
+            "name": "CHANSEY",
+            "category": "Pokémon Uovo",
+            "entry_text": [
+                "Si dice che porti felicità.\n",
+                "È molto altruista e condivide\n",
+                "le uova con chi è ferito."
+            ]
+        },
+        "spanish": {
+            "name": "CHANSEY",
+            "category": "Pokémon Huevo",
+            "entry_text": [
+                "Se dice que reparte felicidad.\n",
+                "Es compasivo y reparte sus\n",
+                "huevos entre la gente herida."
+            ]
+        },
+        "japanese": {
+            "name": "ラッキ－",
+            "category": "たまごポケモン",
+            "entry_text": [
+                "しあわせを　はこぶと　いわれている。\n",
+                "きずついた　ひとに　タマゴを\n",
+                "わけてあげる　やさしい　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

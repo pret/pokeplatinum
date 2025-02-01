@@ -118,8 +118,59 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "It transforms the kindness and joy\nof others into happiness, which it\nstores in its shell.",
-        "category": "Spike Ball Pokémon"
+        "english": {
+            "category": "Spike Ball Pokémon",
+            "entry_text": [
+                "It transforms the kindness and joy\n",
+                "of others into happiness, which it\n",
+                "stores in its shell."
+            ]
+        },
+        "french": {
+            "name": "TOGEPI",
+            "category": "Pokémon Balle Pic",
+            "entry_text": [
+                "On prétend que sa coquille est\n",
+                "remplie de bonheur, qu’il partage\n",
+                "avec les êtres au cœur pur."
+            ]
+        },
+        "german": {
+            "name": "TOGEPI",
+            "category": "Zackenball",
+            "entry_text": [
+                "Seine Schale ist mit Glücksgefühlen\n",
+                "gefüllt, die es mit gutherzigen\n",
+                "Lebewesen teilt."
+            ]
+        },
+        "italian": {
+            "name": "TOGEPI",
+            "category": "Pokémon Pallapunte",
+            "entry_text": [
+                "Pare che il suo guscio immagazzini\n",
+                "felicità, che condivide poi con le\n",
+                "persone gentili."
+            ]
+        },
+        "spanish": {
+            "name": "TOGEPI",
+            "category": "Pokémon Bolaclavos",
+            "entry_text": [
+                "Se dice que su cascarón está\n",
+                "lleno de alegría que comparte con\n",
+                "las personas de buen corazón."
+            ]
+        },
+        "japanese": {
+            "name": "トゲピ－",
+            "category": "はりたまポケモン",
+            "entry_text": [
+                "カラの　なかに　たくさん　しあわせが\n",
+                "つまっていて　やさしい　ひとに\n",
+                "しあわせを　わけあたえるという。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

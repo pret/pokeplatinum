@@ -132,8 +132,59 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It mimics the expressions and\nmotions of those it sees to\nunderstand the feelings of others.",
-        "category": "Mime Pokémon"
+        "english": {
+            "category": "Mime Pokémon",
+            "entry_text": [
+                "It mimics the expressions and\n",
+                "motions of those it sees to\n",
+                "understand the feelings of others."
+            ]
+        },
+        "french": {
+            "name": "MIME JR.",
+            "category": "Pokémon Mime",
+            "entry_text": [
+                "Il imite ses ennemis. Une fois\n",
+                "imités, ils ne peuvent plus\n",
+                "quitter ce Pokémon des yeux."
+            ]
+        },
+        "german": {
+            "name": "PANTIMIMI",
+            "category": "Mime",
+            "entry_text": [
+                "Es ahmt seinen Gegner nach. Der\n",
+                "kann den Blick danach nicht von\n",
+                "ihm abwenden."
+            ]
+        },
+        "italian": {
+            "name": "MIME JR.",
+            "category": "Pokémon Mimo",
+            "entry_text": [
+                "Imita i movimenti dei nemici. Quando\n",
+                "un nemico viene imitato, non riesce\n",
+                "più a distogliere lo sguardo da lui."
+            ]
+        },
+        "spanish": {
+            "name": "MIME JR.",
+            "category": "Pokémon Mimo",
+            "entry_text": [
+                "Suele imitar a sus enemigos.\n",
+                "Cuando lo hace, su rival no\n",
+                "puede apartar los ojos de él."
+            ]
+        },
+        "japanese": {
+            "name": "マネネ",
+            "category": "マイムポケモン",
+            "entry_text": [
+                "あいての　うごきを　モノマネする\n",
+                "しゅうせい。まねを　された　あいては\n",
+                "めが　はなせなくなる　という。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

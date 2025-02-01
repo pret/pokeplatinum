@@ -105,8 +105,59 @@
         "pokemon_pos_f": 32,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 32,
-        "entry_text": "The flowers all over its body burst\ninto bloom if it is lovingly hugged\nand senses gratitude.",
-        "category": "Gratitude Pokémon"
+        "english": {
+            "category": "Gratitude Pokémon",
+            "entry_text": [
+                "The flowers all over its body burst\n",
+                "into bloom if it is lovingly hugged\n",
+                "and senses gratitude."
+            ]
+        },
+        "french": {
+            "name": "SHAYMIN",
+            "category": "Pokémon Gratitude",
+            "entry_text": [
+                "Il vit dans les champs de fleurs et\n",
+                "se cache en s’enroulant pour\n",
+                "imiter une plante fleurie."
+            ]
+        },
+        "german": {
+            "name": "SHAYMIN",
+            "category": "Dankbarkeit",
+            "entry_text": [
+                "Es lebt auf Blumenwiesen und rollt\n",
+                "sich ein, um wie eine Blume auszu-\n",
+                "sehen u. nicht entdeckt zu werden."
+            ]
+        },
+        "italian": {
+            "name": "SHAYMIN",
+            "category": "Pokémon Gratitudine",
+            "entry_text": [
+                "Vive nei campi di fiori e cerca di\n",
+                "non farsi vedere arrotolandosi per\n",
+                "sembrare una pianta fiorita."
+            ]
+        },
+        "spanish": {
+            "name": "SHAYMIN",
+            "category": "Pokémon Gratitud",
+            "entry_text": [
+                "Vive entre las flores. Para evitar\n",
+                "ser descubierto, se enrosca\n",
+                "como si fuera una planta."
+            ]
+        },
+        "japanese": {
+            "name": "シェイミ",
+            "category": "かんしゃポケモン",
+            "entry_text": [
+                "はなばたけの　なかで　くらしているが\n",
+                "からだを　まるめると　はなのように\n",
+                "みえるため　だれも　きづかないのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

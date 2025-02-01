@@ -122,8 +122,59 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It has a mischievous spirit. If it\nspots an angler, it will tug on the\nfishing line to interfere.",
-        "category": "Jolly Pokémon"
+        "english": {
+            "category": "Jolly Pokémon",
+            "entry_text": [
+                "It has a mischievous spirit. If it\n",
+                "spots an angler, it will tug on the\n",
+                "fishing line to interfere."
+            ]
+        },
+        "french": {
+            "name": "LOMBRE",
+            "category": "Pokémon Jovial",
+            "entry_text": [
+                "C’est un mauvais plaisantin. Quand\n",
+                "il repère un pêcheur, il tire sur sa\n",
+                "ligne pour le déranger. "
+            ]
+        },
+        "german": {
+            "name": "LOMBRERO",
+            "category": "Frohmut",
+            "entry_text": [
+                "Es hat ein spitzbübisches Wesen.\n",
+                "Sieht es einen Angler, zieht es an\n",
+                "der Angelschnur, um ihn zu ärgern."
+            ]
+        },
+        "italian": {
+            "name": "LOMBRE",
+            "category": "Pokémon Giocoso",
+            "entry_text": [
+                "È un po’ dispettoso. Se vede un\n",
+                "pescatore, gli tira la lenza solo\n",
+                "per dargli fastidio."
+            ]
+        },
+        "spanish": {
+            "name": "LOMBRE",
+            "category": "Pokémon Alegre",
+            "entry_text": [
+                "Tiene carácter travieso. Si ve un\n",
+                "pescador, tira del anzuelo para\n",
+                "confundirlo."
+            ]
+        },
+        "japanese": {
+            "name": "ハスブレロ",
+            "category": "ようきポケモン",
+            "entry_text": [
+                "つりびとを　みつけると\n",
+                "すいちゅうから　つりいとを　ひっぱり\n",
+                "ジャマして　よろこぶ　いたずらもの。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

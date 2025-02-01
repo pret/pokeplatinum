@@ -116,8 +116,59 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "The buds that ring its neck give\noff a spicy aroma that perks\npeople up.",
-        "category": "Leaf Pokémon"
+        "english": {
+            "category": "Leaf Pokémon",
+            "entry_text": [
+                "The buds that ring its neck give\n",
+                "off a spicy aroma that perks\n",
+                "people up."
+            ]
+        },
+        "french": {
+            "name": "MACRONIUM",
+            "category": "Pokémon Feuille",
+            "entry_text": [
+                "Le collier de bourgeons à son cou\n",
+                "répand un arôme épicé qui vous\n",
+                "donne du tonus."
+            ]
+        },
+        "german": {
+            "name": "LORBLATT",
+            "category": "Laub",
+            "entry_text": [
+                "Die Knospen an seinem Hals\n",
+                "geben ein würziges Aroma ab,\n",
+                "das andere aufheitert."
+            ]
+        },
+        "italian": {
+            "name": "BAYLEEF",
+            "category": "Pokémon Foglia",
+            "entry_text": [
+                "Le foglie attorno al suo collo\n",
+                "emanano un aroma speziato\n",
+                "dall’effetto energizzante."
+            ]
+        },
+        "spanish": {
+            "name": "BAYLEEF",
+            "category": "Pokémon Hoja",
+            "entry_text": [
+                "Su cuello desprende un dulce\n",
+                "aroma que anima a quien lo\n",
+                "huele."
+            ]
+        },
+        "japanese": {
+            "name": "ベイリ－フ",
+            "category": "はっぱポケモン",
+            "entry_text": [
+                "くびまわりの　つぼみから　におう\n",
+                "スパイシ－な　かおりは\n",
+                "かいだ　ひとを　げんきに　させる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -93,8 +93,59 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "It is a shabby and ugly Pokémon.\nHowever, it is very hardy and\ncan survive on little water.",
-        "category": "Fish Pokémon"
+        "english": {
+            "category": "Fish Pokémon",
+            "entry_text": [
+                "It is a shabby and ugly Pokémon.\n",
+                "However, it is very hardy and\n",
+                "can survive on little water."
+            ]
+        },
+        "french": {
+            "name": "BARPAU",
+            "category": "Pokémon Poisson",
+            "entry_text": [
+                "Il est connu pour son teint maladif.\n",
+                "Bien que nombreux, ces Pokémon\n",
+                "se regroupent aux mêmes endroits."
+            ]
+        },
+        "german": {
+            "name": "BARSCHWA",
+            "category": "Fisch",
+            "entry_text": [
+                "Seine lumpige Gestalt ist berühmt.\n",
+                "Es lebt mit anderen in Gruppen an\n",
+                "bestimmten Orten."
+            ]
+        },
+        "italian": {
+            "name": "FEEBAS",
+            "category": "Pokémon Pesce",
+            "entry_text": [
+                "È noto per il suo aspetto disordi-\n",
+                "nato. È molto comune e tende a\n",
+                "raggrupparsi nei soliti posti."
+            ]
+        },
+        "spanish": {
+            "name": "FEEBAS",
+            "category": "Pokémon Pez",
+            "entry_text": [
+                "Se caracterizan por su aspecto\n",
+                "endeble. Se agrupan en gran\n",
+                "número en lugares muy concretos."
+            ]
+        },
+        "japanese": {
+            "name": "ヒンバス",
+            "category": "さかなポケモン",
+            "entry_text": [
+                "みすぼらしい　すがたで　ゆうめい。\n",
+                "せいそくすうは　おおいが\n",
+                "いっかしょに　あつまる　しゅうせい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

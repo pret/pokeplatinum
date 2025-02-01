@@ -116,8 +116,59 @@
         "pokemon_pos_f": 65524,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65524,
-        "entry_text": "They swarm any foe that invades\ntheir territory. Their sharp fangs\ncan tear out boat hulls.",
-        "category": "Savage Pokémon"
+        "english": {
+            "category": "Savage Pokémon",
+            "entry_text": [
+                "They swarm any foe that invades\n",
+                "their territory. Their sharp fangs\n",
+                "can tear out boat hulls."
+            ]
+        },
+        "french": {
+            "name": "CARVANHA",
+            "category": "Pokémon Féroce",
+            "entry_text": [
+                "Il attaque en banc quand on\n",
+                "menace son territoire. Ses dents\n",
+                "aiguisées peuvent couler un navire."
+            ]
+        },
+        "german": {
+            "name": "KANIVANHA",
+            "category": "Gnadenlos",
+            "entry_text": [
+                "Sie begegnen jedem Gegner, der in\n",
+                "ihr Revier eindringt, im Schwarm.\n",
+                "Ihre Zähne durchdringen alles."
+            ]
+        },
+        "italian": {
+            "name": "CARVANHA",
+            "category": "Pokémon Feroce",
+            "entry_text": [
+                "Attacca in branco chi invade il\n",
+                "suo territorio. Le zanne aguzze\n",
+                "lacerano anche gli scafi delle navi."
+            ]
+        },
+        "spanish": {
+            "name": "CARVANHA",
+            "category": "Pokémon Feroz",
+            "entry_text": [
+                "Rodean a los enemigos que osan\n",
+                "invadir su territorio. Sus afilados\n",
+                "colmillos dañan los barcos."
+            ]
+        },
+        "japanese": {
+            "name": "キバニア",
+            "category": "どうもうポケモン",
+            "entry_text": [
+                "なわばりに　はいってきた　あいてを\n",
+                "しゅうだんで　こうげき。するどい\n",
+                "キバは　ボ－トの　そこも　かみきる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

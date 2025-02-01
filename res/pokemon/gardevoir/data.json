@@ -129,8 +129,59 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "To protect its Trainer, it will\nexpend all its psychic power\nto create a small black hole.",
-        "category": "Embrace Pokémon"
+        "english": {
+            "category": "Embrace Pokémon",
+            "entry_text": [
+                "To protect its Trainer, it will\n",
+                "expend all its psychic power\n",
+                "to create a small black hole."
+            ]
+        },
+        "french": {
+            "name": "GARDEVOIR",
+            "category": "Pokémon Etreinte",
+            "entry_text": [
+                "Il donnera sa vie pour protéger\n",
+                "un Dresseur dévoué. Il a la\n",
+                "capacité de prédire l’avenir."
+            ]
+        },
+        "german": {
+            "name": "GUARDEVOIR",
+            "category": "Umarmung",
+            "entry_text": [
+                "Es wird seinen Trainer mit dem Leben\n",
+                "beschützen, wenn es ihm vertraut.\n",
+                "Es kann in die Zukunft blicken."
+            ]
+        },
+        "italian": {
+            "name": "GARDEVOIR",
+            "category": "Pokémon Abbraccio",
+            "entry_text": [
+                "Difende il suo fidato Allenatore\n",
+                "a costo della vita. Ha l’abilità di\n",
+                "predire il futuro."
+            ]
+        },
+        "spanish": {
+            "name": "GARDEVOIR",
+            "category": "Pokémon Envolvente",
+            "entry_text": [
+                "Protegerá al entrenador que le\n",
+                "merezca la pena con su último\n",
+                "aliento. Puede ver el futuro."
+            ]
+        },
+        "japanese": {
+            "name": "サ－ナイト",
+            "category": "ほうようポケモン",
+            "entry_text": [
+                "いのちがけで　しんらいする\n",
+                "トレ－ナ－を　まもろうとする。\n",
+                "みらいを　よちする　ちからを　もつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

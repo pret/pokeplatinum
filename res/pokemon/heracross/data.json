@@ -114,8 +114,59 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "It loves sweet honey. To keep all\nthe honey to itself, it hurls rivals\naway with its prized horn.",
-        "category": "Single Horn Pokémon"
+        "english": {
+            "category": "Single Horn Pokémon",
+            "entry_text": [
+                "It loves sweet honey. To keep all\n",
+                "the honey to itself, it hurls rivals\n",
+                "away with its prized horn."
+            ]
+        },
+        "french": {
+            "name": "SCARHINO",
+            "category": "Pokémon Unicorne",
+            "entry_text": [
+                "Il arpente la forêt en quête de\n",
+                "sève, son mets favori. Il est assez\n",
+                "fort pour projeter l’ennemi."
+            ]
+        },
+        "german": {
+            "name": "SKARABORN",
+            "category": "Einzelhorn",
+            "entry_text": [
+                "Auf der Suche nach Baumsaft durch-\n",
+                "streift es die Wälder. Es ist stark\n",
+                "genug, um Gegner wegzuschleudern."
+            ]
+        },
+        "italian": {
+            "name": "HERACROSS",
+            "category": "Pokémon Monocorno",
+            "entry_text": [
+                "Si aggira nelle foreste in cerca di\n",
+                "linfa, di cui è ghiotto. È tanto\n",
+                "forte da scagliare lontano i nemici."
+            ]
+        },
+        "spanish": {
+            "name": "HERACROSS",
+            "category": "Pokémon Unicornio",
+            "entry_text": [
+                "Forman grupos en los bosques para\n",
+                "buscar savia de árboles, su comida\n",
+                "favorita. Puede voltear a su presa."
+            ]
+        },
+        "japanese": {
+            "name": "ヘラクロス",
+            "category": "１ぽんヅノポケモン",
+            "entry_text": [
+                "こうぶつの　じゅえきを　もとめて\n",
+                "もりに　あつまる。たくましい　ツノで\n",
+                "あいてを　ぶんなげる　ちからもち。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

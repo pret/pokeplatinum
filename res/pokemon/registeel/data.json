@@ -124,8 +124,59 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 4,
-        "entry_text": "Tempered by pressure underground\nover tens of thousands of years,\nits body cannot be scratched.",
-        "category": "Iron Pokémon"
+        "english": {
+            "category": "Iron Pokémon",
+            "entry_text": [
+                "Tempered by pressure underground\n",
+                "over tens of thousands of years,\n",
+                "its body cannot be scratched."
+            ]
+        },
+        "french": {
+            "name": "REGISTEEL",
+            "category": "Pokémon Fer",
+            "entry_text": [
+                "Son corps invulnérable fut forgé\n",
+                "par la pression souterraine durant\n",
+                "des dizaines de milliers d’années."
+            ]
+        },
+        "german": {
+            "name": "REGISTEEL",
+            "category": "Eisen",
+            "entry_text": [
+                "Im Laufe der Jahrtausende, die es\n",
+                "unterirdisch lebte, wurde sein\n",
+                "Körper durch Druck u. Wärme hart."
+            ]
+        },
+        "italian": {
+            "name": "REGISTEEL",
+            "category": "Pokémon Ferro",
+            "entry_text": [
+                "La pressione subita sottoterra\n",
+                "per decine di migliaia di anni ha\n",
+                "reso il suo corpo resistentissimo."
+            ]
+        },
+        "spanish": {
+            "name": "REGISTEEL",
+            "category": "Pokémon Hierro",
+            "entry_text": [
+                "Su cuerpo ha estado sometido a la\n",
+                "presión subterránea durante miles\n",
+                "de años y no puede arañarse."
+            ]
+        },
+        "japanese": {
+            "name": "レジスチル",
+            "category": "くろがねポケモン",
+            "entry_text": [
+                "なんまんねんも　ちかの　あつりょくで\n",
+                "きたえられた　きんぞくの　ボディは\n",
+                "きずひとつ　つかない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

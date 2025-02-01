@@ -118,8 +118,59 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 0,
-        "entry_text": "It is said to have widened the\nseas by causing downpours. It had\nbeen asleep in a marine trench.",
-        "category": "Sea Basin Pokémon"
+        "english": {
+            "category": "Sea Basin Pokémon",
+            "entry_text": [
+                "It is said to have widened the\n",
+                "seas by causing downpours. It had\n",
+                "been asleep in a marine trench."
+            ]
+        },
+        "french": {
+            "name": "KYOGRE",
+            "category": "Pokémon Bassinmarin",
+            "entry_text": [
+                "On dit qu’il a fait monter les eaux\n",
+                "en causant des pluies diluviennes.\n",
+                "Il somnolait dans une fosse marine."
+            ]
+        },
+        "german": {
+            "name": "KYOGRE",
+            "category": "Seegründler",
+            "entry_text": [
+                "Man sagt, es habe die Meere ver-\n",
+                "größert, indem es es regnen ließ.\n",
+                "Es schlief in einem Meeresgraben."
+            ]
+        },
+        "italian": {
+            "name": "KYOGRE",
+            "category": "Pokémon Oceano",
+            "entry_text": [
+                "Si dice che abbia ampliato i mari\n",
+                "provocando piogge torrenziali. Si è\n",
+                "assopito in una fossa marina."
+            ]
+        },
+        "spanish": {
+            "name": "KYOGRE",
+            "category": "Pokémon Cuenca Mar",
+            "entry_text": [
+                "Se dice que aumentó el nivel del\n",
+                "mar a base de aguaceros. Ha estado\n",
+                "durmiendo en una fosa marina."
+            ]
+        },
+        "japanese": {
+            "name": "カイオ－ガ",
+            "category": "かいていポケモン",
+            "entry_text": [
+                "おおあめを　ふらせる　のうりょくで\n",
+                "うみを　ひろげたと　いわれている。\n",
+                "かいこうの　そこで　ねむっていた。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
