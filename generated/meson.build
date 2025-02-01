@@ -70,6 +70,7 @@ metang_generators = {
     'species': { 'type': 'enum', 'tag': 'Species' },
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
+    'trainers': { 'type': 'enum', 'tag': 'Trainer' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
 }
@@ -113,6 +114,7 @@ endforeach
 
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
+trainers_txt = files('trainers.txt')
 
 py_consts_env = environment()
 py_consts_env.append('PYTHONPATH', meson.project_build_root())

@@ -20,7 +20,7 @@ _0014:
     CloseMessage
     ApplyMovement 0, _0160
     WaitMovement
-    StartTrainerBattle trainer_commander_mars_stark_mountain
+    StartTrainerBattle TRAINER_COMMANDER_MARS_STARK_MOUNTAIN
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0150
     Message 1
@@ -33,7 +33,7 @@ _0014:
     CloseMessage
     ApplyMovement 4, _01CC
     WaitMovement
-    StartTrainerBattle trainer_commander_jupiter_stark_mountain
+    StartTrainerBattle TRAINER_COMMANDER_JUPITER_STARK_MOUNTAIN
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0150
     Message 3

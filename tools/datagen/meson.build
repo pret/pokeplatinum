@@ -16,6 +16,7 @@ libnarc_dep = dependency('libnarc')
 datagen_cpp_args = [
     '-std=c++17',
     '-Wno-deprecated-declarations', # rapidjson 1.1.0 makes use of std::iterator
+    '-Wno-shift-count-overflow', # datagen-trainer references AI flags, which warn of a shift-count overflow on an unused field
     '-O3',
 ]
 
@@ -23,6 +24,25 @@ datagen_species_exe = executable(
     'datagen-species',
     sources: [
         files('datagen_species.cpp'),
+        c_consts_generators,
+    ],
+    cpp_args: datagen_cpp_args,
+    implicit_include_directories: true,
+    include_directories: [
+        public_includes,
+        toplevel_includes,
+    ],
+    dependencies: [
+        libnarc_dep,
+        rapidjson_dep,
+    ],
+    native: true,
+)
+
+datagen_trainer_exe = executable(
+    'datagen-trainer',
+    sources: [
+        files('datagen_trainer.cpp'),
         c_consts_generators,
     ],
     cpp_args: datagen_cpp_args,

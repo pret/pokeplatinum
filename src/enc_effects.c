@@ -126,7 +126,7 @@ static u32 EncEffects_GetEffectPair(const FieldBattleDTO *dto)
     u32 battleType = dto->battleType;
 
     if (battleType & BATTLE_TYPE_TRAINER) {
-        u32 trainerEffect = EncEffects_TrainerClassEffect(dto->trainer[1].class);
+        u32 trainerEffect = EncEffects_TrainerClassEffect(dto->trainer[1].header.trainerType);
 
         if (battleType & BATTLE_TYPE_FRONTIER) {
             if (trainerEffect == ENCEFF_FRONTIER_BRAIN) {

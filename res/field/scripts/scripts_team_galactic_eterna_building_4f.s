@@ -28,7 +28,7 @@ _0022:
     WaitMovement
     Message 0
     CloseMessage
-    StartTrainerBattle trainer_commander_jupiter_team_galactic_eterna_building
+    StartTrainerBattle TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0135
     Message 1

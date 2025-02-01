@@ -582,15 +582,15 @@ _04C8:
     GoTo _053F
 
 _053F:
-    StartTrainerBattle trainer_rival_pastoria_city_piplup
+    StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_PIPLUP
     GoTo _0563
 
 _054B:
-    StartTrainerBattle trainer_rival_pastoria_city_turtwig
+    StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_TURTWIG
     GoTo _0563
 
 _0557:
-    StartTrainerBattle trainer_rival_pastoria_city_chimchar
+    StartTrainerBattle TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR
     GoTo _0563
 
 _0563:

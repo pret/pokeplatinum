@@ -184,12 +184,12 @@ _01FA:
     End
 
 _021A:
-    StartTrainerBattle trainer_rival_survival_area_1_piplup
+    StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_1_PIPLUP
     GoTo _02AE
     End
 
 _0228:
-    StartTrainerBattle trainer_rival_survival_area_2_piplup
+    StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_2_PIPLUP
     GoTo _02AE
     End
 
@@ -200,12 +200,12 @@ _0236:
     End
 
 _0256:
-    StartTrainerBattle trainer_rival_survival_area_1_turtwig
+    StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_1_TURTWIG
     GoTo _02AE
     End
 
 _0264:
-    StartTrainerBattle trainer_rival_survival_area_2_turtwig
+    StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_2_TURTWIG
     GoTo _02AE
     End
 
@@ -216,12 +216,12 @@ _0272:
     End
 
 _0292:
-    StartTrainerBattle trainer_rival_survival_area_1_chimchar
+    StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_1_CHIMCHAR
     GoTo _02AE
     End
 
 _02A0:
-    StartTrainerBattle trainer_rival_survival_area_2_chimchar
+    StartTrainerBattle TRAINER_RIVAL_SURVIVAL_AREA_2_CHIMCHAR
     GoTo _02AE
     End
 

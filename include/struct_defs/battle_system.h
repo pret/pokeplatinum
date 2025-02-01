@@ -17,7 +17,7 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/struct_ov16_0223E0C8.h"

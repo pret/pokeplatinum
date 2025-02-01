@@ -89,7 +89,7 @@ _00F5:
 _0107:
     Message 2
     CloseMessage
-    StartTrainerBattle trainer_commander_mars_valley_windworks
+    StartTrainerBattle TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02B9
     Message 3

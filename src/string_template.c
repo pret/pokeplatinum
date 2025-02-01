@@ -13,7 +13,7 @@
 #include "generated/text_banks.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "charcode.h"
 #include "enums.h"
@@ -323,7 +323,7 @@ void StringTemplate_SetTrainerClassNameBattle(StringTemplate *template, u32 idx,
     MessageLoader *loader = InitMessageLoader(TEXT_BANK_TRAINER_CLASS_NAMES, template->heapID);
 
     if (loader) {
-        MessageLoader_GetStrbuf(loader, trainer->class, template->templateBuf);
+        MessageLoader_GetStrbuf(loader, trainer->header.trainerType, template->templateBuf);
         SetStringTemplateArg(template, idx, template->templateBuf, NULL);
         MessageLoader_Free(loader);
     }

@@ -96,15 +96,15 @@ _0111:
     GoTo _0140
 
 _0140:
-    StartTrainerBattle trainer_rival_route_203_piplup
+    StartTrainerBattle TRAINER_RIVAL_ROUTE_203_PIPLUP
     GoTo _0164
 
 _014C:
-    StartTrainerBattle trainer_rival_route_203_turtwig
+    StartTrainerBattle TRAINER_RIVAL_ROUTE_203_TURTWIG
     GoTo _0164
 
 _0158:
-    StartTrainerBattle trainer_rival_route_203_chimchar
+    StartTrainerBattle TRAINER_RIVAL_ROUTE_203_CHIMCHAR
     GoTo _0164
 
 _0164:

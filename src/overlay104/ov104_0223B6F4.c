@@ -203,7 +203,7 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
     Party_InitWithCapacity(v5->parties[1], ov104_0223B7DC(param0->unk_10, 0));
 
     for (v0 = 0; v0 < 4; v0++) {
-        v5->trainer[v0].aiMask = ov104_0223BB10(param0);
+        v5->trainer[v0].header.aiMask = ov104_0223BB10(param0);
     }
 
     v6 = Pokemon_New(11);

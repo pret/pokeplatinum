@@ -26,7 +26,7 @@ _0025:
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 167, 0, 0, 0
     Message 0
     CloseMessage
-    StartTrainerBattle trainer_leader_candice
+    StartTrainerBattle TRAINER_LEADER_CANDICE
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _010E
     Message 1
@@ -36,13 +36,13 @@ _0025:
     WaitSound
     GiveBadge BADGE_ID_ICICLE
     ScrCmd_260 23
-    SetTrainerFlag trainer_ace_trainer_sergio
-    SetTrainerFlag trainer_ace_trainer_isaiah
-    SetTrainerFlag trainer_ace_trainer_anton
-    SetTrainerFlag trainer_ace_trainer_savannah
-    SetTrainerFlag trainer_ace_trainer_alicia
-    SetTrainerFlag trainer_ace_trainer_brenna
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 167, trainer_leader_candice, 0, 0
+    SetTrainerFlag TRAINER_ACE_TRAINER_SERGIO
+    SetTrainerFlag TRAINER_ACE_TRAINER_ISAIAH
+    SetTrainerFlag TRAINER_ACE_TRAINER_ANTON
+    SetTrainerFlag TRAINER_ACE_TRAINER_SAVANNAH
+    SetTrainerFlag TRAINER_ACE_TRAINER_ALICIA
+    SetTrainerFlag TRAINER_ACE_TRAINER_BRENNA
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 167, TRAINER_LEADER_CANDICE, 0, 0
     SetFlag 0x1BF
     Message 3
     GoTo _00B0

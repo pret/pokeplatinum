@@ -17,7 +17,7 @@
 #include "generated/sdat.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"
@@ -4268,7 +4268,7 @@ static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleCont
         || (battleResult == BATTLE_RESULT_WIN && (battleType & BATTLE_TYPE_FRONTIER) && (battleType & BATTLE_TYPE_LINK) == FALSE)) {
         Trainer *trainer = BattleSystem_GetTrainer(battleSys, BATTLER_ENEMY_1);
 
-        switch (trainer->class) {
+        switch (trainer->header.trainerType) {
         case TRAINER_CLASS_LEADER_ROARK:
         case TRAINER_CLASS_LEADER_GARDENIA:
         case TRAINER_CLASS_LEADER_WAKE:

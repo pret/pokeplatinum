@@ -195,7 +195,7 @@ _0230:
     WaitMovement
     Message 9
     CloseMessage
-    StartTrainerBattle trainer_commander_mars_lake_verity
+    StartTrainerBattle TRAINER_COMMANDER_MARS_LAKE_VERITY
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02DB
     Message 10

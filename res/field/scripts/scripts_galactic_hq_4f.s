@@ -35,7 +35,7 @@ _0064:
     GoTo _0074
 
 _0074:
-    StartTrainerBattle trainer_galactic_boss_cyrus_galactic_hq
+    StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00E1
     Message 2

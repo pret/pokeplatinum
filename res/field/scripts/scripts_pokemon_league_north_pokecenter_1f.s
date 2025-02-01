@@ -155,15 +155,15 @@ _01C1:
     GoTo _01F7
 
 _01F7:
-    StartTrainerBattle trainer_rival_pokemon_league_piplup
+    StartTrainerBattle TRAINER_RIVAL_POKEMON_LEAGUE_PIPLUP
     GoTo _021B
 
 _0203:
-    StartTrainerBattle trainer_rival_pokemon_league_turtwig
+    StartTrainerBattle TRAINER_RIVAL_POKEMON_LEAGUE_TURTWIG
     GoTo _021B
 
 _020F:
-    StartTrainerBattle trainer_rival_pokemon_league_chimchar
+    StartTrainerBattle TRAINER_RIVAL_POKEMON_LEAGUE_CHIMCHAR
     GoTo _021B
 
 _021B:

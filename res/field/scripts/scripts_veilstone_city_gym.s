@@ -25,7 +25,7 @@ _0022:
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 133, 0, 0, 0
     Message 0
     CloseMessage
-    StartTrainerBattle trainer_leader_maylene
+    StartTrainerBattle TRAINER_LEADER_MAYLENE
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0118
     Message 1
@@ -35,11 +35,11 @@ _0022:
     WaitSound
     GiveBadge BADGE_ID_COBBLE
     ScrCmd_260 23
-    SetTrainerFlag trainer_black_belt_colby
-    SetTrainerFlag trainer_black_belt_darren
-    SetTrainerFlag trainer_black_belt_rafael
-    SetTrainerFlag trainer_black_belt_jeffery
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 133, trainer_leader_maylene, 0, 0
+    SetTrainerFlag TRAINER_BLACK_BELT_COLBY
+    SetTrainerFlag TRAINER_BLACK_BELT_DARREN
+    SetTrainerFlag TRAINER_BLACK_BELT_RAFAEL
+    SetTrainerFlag TRAINER_BLACK_BELT_JEFFERY
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 133, TRAINER_LEADER_MAYLENE, 0, 0
     SetFlag 0x1A3
     ClearFlag 0x1A8
     SetVar 0x407D, 1

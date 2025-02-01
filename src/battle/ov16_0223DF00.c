@@ -22,7 +22,7 @@
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_display.h"
@@ -1550,7 +1550,7 @@ int ov16_0223F6F0(BattleSystem *battleSystem, u16 param1)
 
 u16 BattleSystem_TrainerItems(BattleSystem *battleSystem, int param1, int param2)
 {
-    return battleSystem->trainers[param1].items[param2];
+    return battleSystem->trainers[param1].header.items[param2];
 }
 
 u32 BattleSystem_RecordingStopped(BattleSystem *battleSystem)

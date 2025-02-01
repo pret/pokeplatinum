@@ -46,7 +46,7 @@ _0096:
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 100, 0, 0, 0
     Message 0
     CloseMessage
-    StartTrainerBattle trainer_leader_fantina
+    StartTrainerBattle TRAINER_LEADER_FANTINA
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01DC
     Message 1
@@ -56,15 +56,15 @@ _0096:
     WaitSound
     GiveBadge BADGE_ID_RELIC
     ScrCmd_260 23
-    SetTrainerFlag trainer_camper_drew
-    SetTrainerFlag trainer_ace_trainer_allen
-    SetTrainerFlag trainer_ace_trainer_catherine
-    SetTrainerFlag trainer_lass_molly
-    SetTrainerFlag trainer_picnicker_cheyenne
-    SetTrainerFlag trainer_school_kid_chance
-    SetTrainerFlag trainer_school_kid_mackenzie
-    SetTrainerFlag trainer_youngster_donny
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 100, trainer_leader_fantina, 0, 0
+    SetTrainerFlag TRAINER_CAMPER_DREW
+    SetTrainerFlag TRAINER_ACE_TRAINER_ALLEN
+    SetTrainerFlag TRAINER_ACE_TRAINER_CATHERINE
+    SetTrainerFlag TRAINER_LASS_MOLLY
+    SetTrainerFlag TRAINER_PICNICKER_CHEYENNE
+    SetTrainerFlag TRAINER_SCHOOL_KID_CHANCE
+    SetTrainerFlag TRAINER_SCHOOL_KID_MACKENZIE
+    SetTrainerFlag TRAINER_YOUNGSTER_DONNY
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 100, TRAINER_LEADER_FANTINA, 0, 0
     SetVar 0x407B, 1
     SetFlag 0x206
     ClearFlag 0x207
