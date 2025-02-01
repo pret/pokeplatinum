@@ -10,12 +10,12 @@
 #include "overlay005/struct_ov5_02201C58.h"
 
 #include "easy3d.h"
+#include "fx_util.h"
 #include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "fx_util.h"
 
 static void sub_020739D8(UnkStruct_02073974 *param0, void *param1, u32 param2);
 

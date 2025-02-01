@@ -14,6 +14,7 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "fx_util.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -26,7 +27,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "fx_util.h"
 #include "unk_0202309C.h"
 
 typedef struct UnkStruct_ov5_021D5EF8_t {

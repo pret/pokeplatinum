@@ -12,8 +12,8 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "map_object.h"
 #include "fx_util.h"
+#include "map_object.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 

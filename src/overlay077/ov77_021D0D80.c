@@ -13,6 +13,7 @@
 #include "easy3d.h"
 #include "easy3d_object.h"
 #include "font.h"
+#include "fx_util.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -28,7 +29,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "fx_util.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 
