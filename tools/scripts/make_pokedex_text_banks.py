@@ -126,11 +126,11 @@ for i, species_dir in enumerate(SPECIES_DIRS):
                 text_data[13 + j][0] = pkdexdata[lang]['name']
         else:
             if (lang == 'english'):
-                text_data[13][i] = f'{i:03}  {pokemon_name}'
+                text_data[13][i] = f'{i:03}  ' + pokemon_name
             elif (lang == 'japanese'):
-                text_data[18][i] = f'{Full_Width_Number(i)}  {pkdexdata['japanese']['name']}'
+                text_data[18][i] = f'{Full_Width_Number(i)}  ' + pkdexdata['japanese']['name']
             else:
-                text_data[13 + j][i] = f'{i:03}  {pkdexdata[lang]['name']}'
+                text_data[13 + j][i] = f'{i:03}  ' + pkdexdata[lang]['name']
 
         # category
         text_data[19 + j][i] = pkdexdata[lang]['category']
