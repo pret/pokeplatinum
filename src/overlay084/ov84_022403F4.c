@@ -17,8 +17,8 @@
 #include "item.h"
 #include "move_table.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
+#include "vram_transfer.h"
 
 static void ov84_02240424(UnkStruct_ov84_0223B5A0 *param0);
 static void ov84_022404C0(UnkStruct_ov84_0223B5A0 *param0);

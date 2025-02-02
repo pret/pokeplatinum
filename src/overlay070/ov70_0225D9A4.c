@@ -37,6 +37,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "cell_transfer.h"
 #include "char_transfer.h"
 #include "core_sys.h"
 #include "enums.h"
@@ -70,7 +71,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
@@ -78,6 +78,7 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_0207C908.h"
+#include "vram_transfer.h"
 
 typedef struct {
     u16 unk_00;

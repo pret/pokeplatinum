@@ -41,9 +41,9 @@
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_020797C8.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F2DAC.h"
 

@@ -59,7 +59,6 @@
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202F1D4.h"
@@ -68,6 +67,7 @@
 #include "unk_020393C8.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 typedef struct UnkStruct_ov10_0221FB28_t UnkStruct_ov10_0221FB28;
 typedef u8 (*UnkFuncPtr_ov10_02222AD0)(UnkStruct_ov10_0221FB28 *);

@@ -74,7 +74,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
@@ -85,6 +84,7 @@
 #include "unk_020559DC.h"
 #include "unk_02055C50.h"
 #include "unk_02068344.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay6);
 FS_EXTERN_OVERLAY(overlay7);

@@ -8,8 +8,8 @@
 
 #include "ascii_util.h"
 #include "heap.h"
-#include "unk_0201DBEC.h"
 #include "unk_0202414C.h"
+#include "vram_transfer.h"
 
 typedef struct UnkStruct_0201DDF4_t {
     const UnkStruct_02024184 *unk_00;

@@ -33,9 +33,9 @@
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 

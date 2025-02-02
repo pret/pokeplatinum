@@ -56,10 +56,10 @@
 #include "unk_0200F174.h"
 #include "unk_02015064.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
+#include "vram_transfer.h"
 
 #define NUM_STARTER_OPTIONS 3
 #define STARTER_OPTION_0    SPECIES_TURTWIG

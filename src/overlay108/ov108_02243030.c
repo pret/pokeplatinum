@@ -16,9 +16,9 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_0207E0B8.h"
+#include "vram_transfer.h"
 
 static const u8 Unk_ov108_02243760[4] = {
     11,

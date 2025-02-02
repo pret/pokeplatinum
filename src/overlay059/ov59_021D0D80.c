@@ -48,7 +48,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_02030EE0.h"
 #include "unk_020363E8.h"
@@ -59,6 +58,7 @@
 #include "unk_0205C22C.h"
 #include "unk_0205C980.h"
 #include "unk_020961E8.h"
+#include "vram_transfer.h"
 
 static void ov59_021D1100(void *param0);
 static void ov59_021D1128(void);

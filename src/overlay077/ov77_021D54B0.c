@@ -9,6 +9,7 @@
 #include "overlay077/struct_ov77_021D6734_decl.h"
 
 #include "cell_actor.h"
+#include "cell_transfer.h"
 #include "char_transfer.h"
 #include "core_sys.h"
 #include "gx_layers.h"
@@ -16,8 +17,8 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
+#include "vram_transfer.h"
 
 SDK_COMPILER_ASSERT(((3 + 1 + 1 + 2 + 4) + 6) == 17);
 

@@ -45,7 +45,6 @@
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201F834.h"
 #include "unk_02030EE0.h"
@@ -56,6 +55,7 @@
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_02095E98.h"
+#include "vram_transfer.h"
 
 typedef struct {
     int (*unk_00)(UnkStruct_02095EAC *, int);

@@ -41,7 +41,7 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"

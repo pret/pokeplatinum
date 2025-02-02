@@ -63,7 +63,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0201CED8.h"
-#include "unk_0201DBEC.h"
 #include "unk_02020AEC.h"
 #include "unk_02027F50.h"
 #include "unk_02039C80.h"
@@ -73,6 +72,7 @@
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "vars_flags.h"
+#include "vram_transfer.h"
 
 typedef struct UnkStruct_ov9_02249B04_t UnkStruct_ov9_02249B04;
 

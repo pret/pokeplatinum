@@ -15,6 +15,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "cell_actor.h"
+#include "cell_transfer.h"
 #include "char_transfer.h"
 #include "heap.h"
 #include "narc.h"
@@ -24,7 +25,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 
 typedef struct CellTransferStateData_t {

@@ -49,12 +49,12 @@
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
+#include "vram_transfer.h"
 
 typedef struct {
     fx32 unk_00;

@@ -46,10 +46,10 @@
 #include "unk_02015920.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_02023FCC.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
+#include "vram_transfer.h"
 
 typedef struct {
     int unk_00;

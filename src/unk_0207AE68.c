@@ -51,12 +51,12 @@
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02028124.h"
 #include "unk_020393C8.h"
 #include "unk_0207C63C.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
 

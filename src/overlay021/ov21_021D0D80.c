@@ -70,11 +70,11 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 #include "unk_0209ACBC.h"
+#include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
 

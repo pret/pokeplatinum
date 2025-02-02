@@ -39,9 +39,9 @@
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
+#include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
 

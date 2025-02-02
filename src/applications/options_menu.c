@@ -31,8 +31,8 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 #include "res/graphics/options_menu/config_gra.naix"
 #include "res/text/bank/options_menu.h"

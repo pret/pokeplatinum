@@ -45,7 +45,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "unk_0201E3D8.h"
 #include "unk_02024220.h"
@@ -60,6 +59,7 @@
 #include "unk_02084B70.h"
 #include "unk_0208C098.h"
 #include "unk_02096420.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F1E88.h"
 

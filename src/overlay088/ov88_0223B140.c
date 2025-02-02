@@ -66,7 +66,6 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202CC64.h"
@@ -83,6 +82,7 @@
 #include "unk_02092494.h"
 #include "unk_02095CD4.h"
 #include "vars_flags.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
 

@@ -39,8 +39,8 @@
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 enum {
     UnkEnum_ov75_021D1598_00,

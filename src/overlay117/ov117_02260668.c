@@ -52,13 +52,13 @@
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 static void ov117_02260DA0(void *param0);
 static GenericPointerData *ov117_02260E14(int param0);

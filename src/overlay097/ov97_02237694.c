@@ -42,9 +42,9 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_02033200.h"
+#include "vram_transfer.h"
 
 typedef struct {
     BgConfig *unk_00;

@@ -13,8 +13,8 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
+#include "vram_transfer.h"
 
 void ov111_021D2F80(UnkStruct_ov111_021D2F80 *param0);
 CellActor *ov111_021D3280(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u8 param5);

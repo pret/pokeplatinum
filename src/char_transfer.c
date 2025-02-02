@@ -4,7 +4,7 @@
 #include <nnsys.h>
 
 #include "heap.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 
 #define CHAR_RESOURCE_ID_NONE -1
 #define CHAR_TRANSFER_SHIFT   8

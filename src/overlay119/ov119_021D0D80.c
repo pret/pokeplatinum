@@ -41,9 +41,9 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
-#include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
+#include "vram_transfer.h"
 
 void ov119_021D0D80(void);
 void ov119_021D0DA8(void);

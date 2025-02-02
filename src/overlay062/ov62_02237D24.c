@@ -46,12 +46,12 @@
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
 #include "unk_02030A80.h"
 #include "unk_0208B284.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay22);
 

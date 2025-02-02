@@ -40,10 +40,10 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
 

@@ -23,10 +23,10 @@
 #include "pokemon_icon.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 void sub_02082C2C(GameWindowLayout *param0)
 {

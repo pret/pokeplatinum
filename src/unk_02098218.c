@@ -35,11 +35,11 @@
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_02024220.h"
 #include "unk_0202F180.h"
 #include "unk_0208694C.h"
 #include "unk_02092494.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F67FC.h"

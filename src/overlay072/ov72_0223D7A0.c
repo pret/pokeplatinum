@@ -50,10 +50,10 @@
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201F834.h"
 #include "unk_0202C7FC.h"
+#include "vram_transfer.h"
 
 static void inline_ov72_0223E2A4(UnkStruct_ov72_0223DB98 *param0, int param1);
 static void ov72_0223DA48(void *param0);

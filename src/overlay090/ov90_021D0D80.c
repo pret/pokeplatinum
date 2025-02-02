@@ -40,10 +40,10 @@
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 typedef struct {
     MessageLoader *unk_00;

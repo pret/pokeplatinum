@@ -17,9 +17,9 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_0207E0B8.h"
+#include "vram_transfer.h"
 
 void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2);
 CellActor *ov107_022498A4(UnkStruct_ov107_02249954 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);

@@ -42,11 +42,11 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_020989DC.h"
 #include "unk_02098FFC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     StringTemplate *unk_00;

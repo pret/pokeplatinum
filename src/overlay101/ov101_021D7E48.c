@@ -8,12 +8,13 @@
 #include "overlay101/struct_ov101_021D8544.h"
 
 #include "cell_actor.h"
+#include "cell_transfer.h"
 #include "heap.h"
 #include "narc.h"
 #include "sprite_resource.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     u16 unk_00;

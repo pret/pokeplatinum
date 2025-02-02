@@ -60,7 +60,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
@@ -69,6 +68,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
+#include "vram_transfer.h"
 
 typedef struct {
     u8 unk_00;

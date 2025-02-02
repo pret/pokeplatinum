@@ -51,8 +51,8 @@
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
+#include "vram_transfer.h"
 
 typedef struct UnkStruct_ov12_02223178_t {
     u8 unk_00;

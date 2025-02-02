@@ -50,7 +50,6 @@
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_0202ACE0.h"
 #include "unk_020363E8.h"
@@ -58,6 +57,7 @@
 #include "unk_0203909C.h"
 #include "unk_020393C8.h"
 #include "unk_02094EDC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     fx32 unk_00;

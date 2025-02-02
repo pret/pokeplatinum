@@ -29,8 +29,8 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
-#include "unk_0201DBEC.h"
 #include "unk_02023FCC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     UnkStruct_ov21_021E68F4 *unk_00;

@@ -42,7 +42,7 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02015064.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
 

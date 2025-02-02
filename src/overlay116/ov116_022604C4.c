@@ -40,12 +40,12 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 static void ov116_022612CC(UnkStruct_ov116_0226139C *param0);
 static void ov116_02261494(BgConfig *param0);

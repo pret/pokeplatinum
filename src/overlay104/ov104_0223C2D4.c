@@ -54,12 +54,12 @@
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020393C8.h"
 #include "unk_0209B6F8.h"
+#include "vram_transfer.h"
 
 static void ov104_0223C6EC(void *param0);
 static void ov104_0223C71C(SysTask *param0, void *param1);

@@ -8,7 +8,7 @@
 
 #include "gx_layers.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 
 void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0);
 void ov80_021D2AC0(UnkStruct_ov80_021D2A08 *param0);

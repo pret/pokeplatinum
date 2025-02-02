@@ -39,6 +39,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "cell_transfer.h"
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
@@ -77,7 +78,6 @@
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -90,6 +90,7 @@
 #include "unk_0207A6DC.h"
 #include "unk_0207AE68.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay10);
 FS_EXTERN_OVERLAY(overlay11);

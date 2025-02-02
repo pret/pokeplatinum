@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0200A5C8.h"
 
 #include "heap.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     NNSG2dPaletteData *unk_00;

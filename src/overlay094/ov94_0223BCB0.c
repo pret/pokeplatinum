@@ -44,11 +44,11 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_02033200.h"
 #include "unk_020797C8.h"
 #include "unk_02099550.h"
+#include "vram_transfer.h"
 
 static void ov94_0223BFE4(void *param0);
 static void ov94_0223C01C(void);

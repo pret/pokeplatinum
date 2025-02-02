@@ -48,13 +48,13 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202D7A8.h"
 #include "unk_020393C8.h"
 #include "unk_020683F4.h"
 #include "unk_0207CB08.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 typedef struct {
     const u8 *unk_00;

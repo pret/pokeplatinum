@@ -30,10 +30,10 @@
 #include "overlay_manager.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 typedef struct UnkStruct_ov115_0226095C_t {
     UnkStruct_ov114_0225D678 *unk_00;

@@ -5,8 +5,8 @@
 
 #include "heap.h"
 #include "narc.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201DD00.h"
+#include "vram_transfer.h"
 
 typedef struct {
     char unk_00[16];

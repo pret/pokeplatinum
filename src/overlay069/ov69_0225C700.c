@@ -50,13 +50,13 @@
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
 #include "unk_020996D0.h"
+#include "vram_transfer.h"
 
 typedef struct {
     s16 unk_00;

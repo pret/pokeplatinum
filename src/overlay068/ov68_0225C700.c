@@ -45,10 +45,10 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_02030EA4.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 typedef struct {
     u32 unk_00;
