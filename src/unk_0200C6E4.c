@@ -122,7 +122,7 @@ BOOL sub_0200C73C(SpriteRenderer *param0, const UnkStruct_ov104_0224133C *param1
         sub_0200A784(param1->unk_00, param1->unk_04, param1->unk_08, param1->unk_0C, param1->unk_10, param1->unk_14, param1->unk_18, param1->unk_1C, param0->unk_00);
     }
 
-    param0->unk_0C = sub_0201DCC8(32, param0->unk_00);
+    param0->unk_0C = CellTransfer_New(32, param0->unk_00);
 
     sub_0201E994();
     sub_0201F8E4();
@@ -158,7 +158,7 @@ void OAMManager_ApplyAndResetBuffers(void)
 
 void sub_0200C808(void)
 {
-    sub_0201DCE8();
+    CellTransfer_Update();
 }
 
 void sub_0200C810(SpriteGfxHandler *param0)
@@ -197,7 +197,7 @@ void sub_0200C82C(SpriteGfxHandler *param0)
 
 void sub_0200C880(SpriteRenderer *param0)
 {
-    sub_0201DCF0(param0->unk_0C);
+    CellTransfer_Free(param0->unk_0C);
     sub_0201E958();
     sub_0201F8B4();
 

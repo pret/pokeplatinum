@@ -3,8 +3,10 @@
 
 #include <nnsys.h>
 
-NNSG2dCellTransferState *sub_0201DCC8(int param0, int param1);
-void sub_0201DCE8(void);
-void sub_0201DCF0(NNSG2dCellTransferState *param0);
+#include "constants/heap.h"
+
+NNSG2dCellTransferState *CellTransfer_New(int capacity, enum HeapId heapID);
+void CellTransfer_Update(void);
+void CellTransfer_Free(NNSG2dCellTransferState *transferStates);
 
 #endif // POKEPLATINUM_CELL_TRANSFER_H

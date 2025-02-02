@@ -1324,7 +1324,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
             param0->unk_194[v3] = SpriteResourceCollection_New(24, v3, param2);
         }
 
-        param0->unk_1A4 = sub_0201DCC8(24, param2);
+        param0->unk_1A4 = CellTransfer_New(24, param2);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -1338,7 +1338,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
 static void ov70_0225E6C0(UnkStruct_ov70_0225E4EC *param0)
 {
     CellActorCollection_Update(param0->unk_04);
-    sub_0201DCE8();
+    CellTransfer_Update();
 }
 
 static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0)
@@ -1358,7 +1358,7 @@ static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0)
     {
         int v1;
 
-        sub_0201DCF0(param0->unk_1A4);
+        CellTransfer_Free(param0->unk_1A4);
         param0->unk_1A4 = NULL;
 
         for (v1 = 0; v1 < 4; v1++) {

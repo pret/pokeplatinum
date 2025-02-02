@@ -145,7 +145,7 @@ void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
     sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, v1);
 
     param0->unk_00 = sub_020095C4(((3 + 1 + 1 + 2 + 4) + 6 + 16), &param0->unk_04, v1);
-    param0->unk_300 = sub_0201DCC8(3, v1);
+    param0->unk_300 = CellTransfer_New(3, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov77_021D7914[v0], v0, v1);
@@ -224,7 +224,7 @@ void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
     }
 
     if (param0->unk_300 != NULL) {
-        sub_0201DCF0(param0->unk_300);
+        CellTransfer_Free(param0->unk_300);
         param0->unk_300 = NULL;
     }
 
@@ -406,7 +406,7 @@ void ov77_021D6020(UnkStruct_ov77_021D5564 *param0)
     CellActorCollection_Update(param0->unk_00);
 
     if (param0->unk_300 != NULL) {
-        sub_0201DCE8();
+        CellTransfer_Update();
     }
 }
 

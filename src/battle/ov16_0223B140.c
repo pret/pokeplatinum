@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/heap.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/battle_system.h"
@@ -648,7 +649,7 @@ static void ov16_0223B790(OverlayManager *param0)
     BagCursor_ResetBattle(BattleSystem_BagCursor(v0));
 
     v0->unk_1C4 = sub_02015F84(5, 4, 0);
-    v0->cellTransferState = sub_0201DCC8(4, 5);
+    v0->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (v0->battleStatusMask & 0x10) {
         for (v3 = 0; v3 < 4; v3++) {
@@ -799,7 +800,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
         Sound_StopEffect(1796, 0);
     }
 
-    sub_0201DCF0(battleSystem->cellTransferState);
+    CellTransfer_Free(battleSystem->cellTransferState);
 
     if (BattleSystem_RecordingStopped(battleSystem)) {
         sub_0200500C(127);

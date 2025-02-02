@@ -2,32 +2,31 @@
 
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 #include "heap.h"
 #include "vram_transfer.h"
 
-static BOOL sub_0201DCF8(NNS_GFD_DST_TYPE param0, u32 param1, void *param2, u32 param3);
+static BOOL RegisterTransferTaskCB(NNS_GFD_DST_TYPE type, u32 destAddr, void *buf, u32 size);
 
-NNSG2dCellTransferState *sub_0201DCC8(int param0, int param1)
+NNSG2dCellTransferState *CellTransfer_New(int capacity, enum HeapId heapID)
 {
-    NNSG2dCellTransferState *v0;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(NNSG2dCellTransferState) * param0);
-    NNS_G2dInitCellTransferStateManager(v0, param0, sub_0201DCF8);
-
-    return v0;
+    NNSG2dCellTransferState *transferStates = Heap_AllocFromHeap(heapID, sizeof(NNSG2dCellTransferState) * capacity);
+    NNS_G2dInitCellTransferStateManager(transferStates, capacity, RegisterTransferTaskCB);
+    return transferStates;
 }
 
-void sub_0201DCE8(void)
+void CellTransfer_Update(void)
 {
     NNS_G2dUpdateCellTransferStateManager();
 }
 
-void sub_0201DCF0(NNSG2dCellTransferState *param0)
+void CellTransfer_Free(NNSG2dCellTransferState *transferStates)
 {
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(transferStates);
 }
 
-static BOOL sub_0201DCF8(NNS_GFD_DST_TYPE param0, u32 param1, void *param2, u32 param3)
+static BOOL RegisterTransferTaskCB(NNS_GFD_DST_TYPE type, u32 destAddr, void *buf, u32 size)
 {
-    return sub_0201DC68(param0, param1, param2, param3);
+    return sub_0201DC68(type, destAddr, buf, size);
 }
