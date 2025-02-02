@@ -1307,10 +1307,10 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
         NNS_G2dInitOamManagerModule();
 
         sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param2);
-        sub_0201E88C(&Unk_ov70_0226D5DC, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_64K);
+        CharTransfer_InitWithVramModes(&Unk_ov70_0226D5DC, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_64K);
         sub_0201F834(24, param2);
 
-        sub_0201E994();
+        CharTransfer_ClearBuffers();
         sub_0201F8E4();
 
         sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
@@ -1366,7 +1366,7 @@ static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0)
         }
 
         CellActorCollection_Delete(param0->unk_04);
-        sub_0201E958();
+        CharTransfer_Free();
         sub_0201F8B4();
         sub_0200A878();
     }
@@ -2798,7 +2798,7 @@ static void ov70_02260080(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
 
 static void ov70_02260228(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4EC *param1)
 {
-    sub_0201ED1C(SpriteActor_ImageProxy(param0->unk_68));
+    CharTransfer_DeleteTask(SpriteActor_ImageProxy(param0->unk_68));
     CellActor_Delete(param0->unk_68);
 
     param0->unk_68 = NULL;

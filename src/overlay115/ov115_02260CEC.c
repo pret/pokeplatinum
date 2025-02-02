@@ -3169,11 +3169,11 @@ static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 param1)
         };
 
         v1.heapID = param1;
-        sub_0201E88C(&v1, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
+        CharTransfer_InitWithVramModes(&v1, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
     sub_0201F834(16, param1);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -3200,7 +3200,7 @@ static void ov115_02263A3C(UnkStruct_ov115_02261ADC *param0)
         SpriteResourceCollection_Delete(param0->unk_1AC[v0]);
     }
 
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
     sub_0200A878();
 }
@@ -4429,7 +4429,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         param0->unk_4C = sub_02012B20(&param0->unk_38, param3);
 
         v2 = sub_02012B58(param0->unk_4C, NNS_G2D_VRAM_TYPE_2DMAIN);
-        v3 = sub_0201ED94(v2, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_50);
+        v3 = CharTransfer_AllocRange(v2, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_50);
         GF_ASSERT(v3 == 1);
 
         param0->unk_60 = SpriteResourceCollection_AddPalette(param1->unk_1AC[1], 14, 6, 0, 150, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
@@ -4470,7 +4470,7 @@ static void ov115_02265688(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         sub_02012BD8(param0->unk_48);
         sub_0200A6DC(param0->unk_60);
         SpriteResourceCollection_Remove(param1->unk_1AC[1], param0->unk_60);
-        sub_0201EE28(&param0->unk_50);
+        CharTransfer_ClearRange(&param0->unk_50);
         sub_02012B48(param0->unk_4C);
         Strbuf_Free(param0->unk_5C);
     }

@@ -1522,7 +1522,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 118);
-    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
+    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
     if (param9 == 1) {
         param7 -= v7 / 2;
@@ -1557,7 +1557,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
 static void ov113_0225E250(UnkStruct_ov113_0225E250 *param0)
 {
     sub_02012870(param0->unk_00);
-    sub_0201EE28(&param0->unk_04);
+    CharTransfer_ClearRange(&param0->unk_04);
 }
 
 static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *param3)

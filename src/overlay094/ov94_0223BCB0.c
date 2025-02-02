@@ -299,11 +299,11 @@ static void ov94_0223C0A4(void)
             20, 2048, 2048, 62
         };
 
-        sub_0201E86C(&v0);
+        CharTransfer_Init(&v0);
     }
 
     sub_0201F834(20, 62);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 }
 
@@ -517,7 +517,7 @@ static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0)
     param0->unk_BE4 = NULL;
 
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 }
 

@@ -2034,7 +2034,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_020127
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 110);
-    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
+    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
     if (param11 == 1) {
         param9 -= v5 / 2;
@@ -2072,7 +2072,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_020127
 void ov117_02265EB0(UnkStruct_ov117_02265EB0 *param0)
 {
     sub_02012870(param0->unk_00);
-    sub_0201EE28(&param0->unk_04);
+    CharTransfer_ClearRange(&param0->unk_04);
     param0->unk_00 = NULL;
 }
 

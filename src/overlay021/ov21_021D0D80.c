@@ -420,7 +420,7 @@ void ov21_021D12B0(int param0)
 void ov21_021D12C4(void)
 {
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
     ov21_021D1F84();
 }
@@ -1063,11 +1063,11 @@ static void ov21_021D1E94(int param0)
         };
 
         v0.heapID = param0;
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
     sub_0201F834(32, param0);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 }
 

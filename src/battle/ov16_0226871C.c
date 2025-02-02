@@ -2632,7 +2632,7 @@ static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A9
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, 5);
-    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &v2);
+    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &v2);
 
     if (param9 == 1) {
         param7 -= v7 / 2;
@@ -2674,7 +2674,7 @@ static void ov16_0226AAC0(UnkStruct_ov16_02268A14 *param0)
     for (i = 0; i < 13; i++) {
         if (param0->unk_4CC[i].unk_00 != NULL) {
             sub_02012870(param0->unk_4CC[i].unk_00);
-            sub_0201EE28(&param0->unk_4CC[i].unk_04);
+            CharTransfer_ClearRange(&param0->unk_4CC[i].unk_04);
             param0->unk_4CC[i].unk_00 = NULL;
         }
     }

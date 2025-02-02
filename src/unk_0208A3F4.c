@@ -690,9 +690,9 @@ void sub_0208AFE8(UnkStruct_02089688 *param0)
 {
     Font_Free(FONT_SUBSCREEN);
     sub_02012870(param0->unk_2C0.unk_90[0]);
-    sub_0201EE28(&param0->unk_2C0.unk_98[0]);
+    CharTransfer_ClearRange(&param0->unk_2C0.unk_98[0]);
     sub_02012870(param0->unk_2C0.unk_90[1]);
-    sub_0201EE28(&param0->unk_2C0.unk_98[1]);
+    CharTransfer_ClearRange(&param0->unk_2C0.unk_98[1]);
     sub_020127BC(param0->unk_2C0.unk_8C);
 }
 
@@ -730,7 +730,7 @@ void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3
     v4 = 1003;
     v5 = sub_02012898(&v7, NNS_G2D_VRAM_TYPE_2DMAIN, 101);
 
-    sub_0201ED94(v5, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_2C0.unk_98[param1]);
+    CharTransfer_AllocRange(v5, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_2C0.unk_98[param1]);
 
     v0 = (param0->unk_2C0.unk_18[param1 + 26].rect.left + param0->unk_2C0.unk_18[param1 + 26].rect.right) / 2;
     v0 -= 40;

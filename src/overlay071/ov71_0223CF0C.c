@@ -190,7 +190,7 @@ void ov71_0223D238(UnkStruct_ov71_0223D238 *param0)
 
     CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 }
 
@@ -220,10 +220,10 @@ static void ov71_0223D2F4(void)
             1, 2048, 0, 25
         };
 
-        sub_0201E86C(&v0);
+        CharTransfer_Init(&v0);
     }
 
     sub_0201F834(2, 25);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 }

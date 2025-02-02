@@ -1388,7 +1388,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     CellActorCollection_Delete(Unk_ov23_02257740->unk_20);
     sub_0200A878();
 
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 
     SetMainCallback(NULL, NULL);
@@ -2845,11 +2845,11 @@ static void ov23_0224119C(void)
             20, (2048 * 2), (2048 * 2), 29
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
     sub_0201F834(20, 29);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);

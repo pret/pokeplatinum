@@ -484,15 +484,15 @@ static void ov101_021D150C(void)
         32, 0x4000, 0x4000, 79
     };
 
-    sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
+    CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     sub_0201F834(16, 79);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 }
 
 static void ov101_021D1544(void)
 {
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 }
 

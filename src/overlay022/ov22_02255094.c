@@ -696,11 +696,11 @@ static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
             14
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
     sub_0201F834(5, 14);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 
     NNS_G2dInitOamManagerModule();
@@ -727,7 +727,7 @@ static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0)
         }
     }
 
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
     sub_0200A878();
 }

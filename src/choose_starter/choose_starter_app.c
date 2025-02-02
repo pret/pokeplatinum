@@ -507,7 +507,7 @@ static void SetupDrawing(ChooseStarterApp *app, enum HeapId heap)
 static void ov78_021D10DC(void)
 {
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 
     ov78_021D1218();
@@ -544,10 +544,10 @@ static void SetupOAM(enum HeapId heapID)
         heapID,
     };
 
-    sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+    CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
 
     sub_0201F834(32, heapID);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 }
 

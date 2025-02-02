@@ -775,12 +775,12 @@ static void ov21_021E9A0C(int param0)
     };
 
     v0.heapID = param0;
-    sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+    CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
 }
 
 static void ov21_021E9A38(void)
 {
-    sub_0201E958();
+    CharTransfer_Free();
 }
 
 static void ov21_021E9A40(UnkStruct_ov21_021E9A9C *param0, int param1, int param2, NARC *param3)

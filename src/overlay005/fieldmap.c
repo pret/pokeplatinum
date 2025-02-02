@@ -677,17 +677,17 @@ void ov5_021D15B4(void)
             20, 0x8000, 0x4000, 4
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
     sub_0201F834(20, 4);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 }
 
 void ov5_021D15E8(void)
 {
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 }
 

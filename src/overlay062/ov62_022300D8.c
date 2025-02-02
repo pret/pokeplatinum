@@ -665,7 +665,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
             v7[v11]->unk_18 = sub_02012B20(&v6, 102);
             v4 = sub_02012898(&v6, v8[v11], 102);
 
-            sub_0201ED94(v4, 1, v8[v11], &v7[v11]->unk_1C);
+            CharTransfer_AllocRange(v4, 1, v8[v11], &v7[v11]->unk_1C);
             SpriteActor_GetSpritePositionXY(v7[v11]->unk_00, &v0, &v1);
 
             v2.unk_00 = param0->unk_14.unk_3C;
@@ -756,7 +756,7 @@ void ov62_0223113C(UnkStruct_0208C06C *param0)
         for (v1 = 0; v1 < 2; v1++) {
             sub_02012B48(v2[v1]->unk_18);
             sub_02012BD8(v2[v1]->unk_14);
-            sub_0201EE28(&v2[v1]->unk_1C);
+            CharTransfer_ClearRange(&v2[v1]->unk_1C);
         }
     }
 }
@@ -781,7 +781,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     param0->unk_10 = sub_02012B20(&v6, 102);
     v4 = sub_02012898(&v6, param2, 102);
 
-    sub_0201ED94(v4, 1, param2, &param0->unk_14);
+    CharTransfer_AllocRange(v4, 1, param2, &param0->unk_14);
     SpriteActor_GetSpritePositionXY(param0->unk_08, &v0, &v1);
 
     v2.unk_00 = param1->unk_3C;
@@ -825,7 +825,7 @@ void ov62_022312B0(UnkStruct_ov62_022312B0 *param0)
 {
     sub_02012B48(param0->unk_10);
     sub_02012BD8(param0->unk_0C);
-    sub_0201EE28(&param0->unk_14);
+    CharTransfer_ClearRange(&param0->unk_14);
 }
 
 void ov62_022312CC(UnkStruct_0208C06C *param0, int param1)

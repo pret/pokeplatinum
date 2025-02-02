@@ -83,12 +83,12 @@ static BOOL TryGetDestOffsets(u32 size, NNS_G2D_VRAM_TYPE vramType, u32 *outOffs
 
 static CharTransferTaskManager *sTaskManager = NULL;
 
-void sub_0201E86C(const CharTransferTemplate *param0)
+void CharTransfer_Init(const CharTransferTemplate *param0)
 {
-    sub_0201E88C(param0, GX_GetOBJVRamModeChar(), GXS_GetOBJVRamModeChar());
+    CharTransfer_InitWithVramModes(param0, GX_GetOBJVRamModeChar(), GXS_GetOBJVRamModeChar());
 }
 
-void sub_0201E88C(const CharTransferTemplate *param0, GXOBJVRamModeChar param1, GXOBJVRamModeChar param2)
+void CharTransfer_InitWithVramModes(const CharTransferTemplate *param0, GXOBJVRamModeChar param1, GXOBJVRamModeChar param2)
 {
     int v0;
     int v1;
@@ -105,8 +105,8 @@ void sub_0201E88C(const CharTransferTemplate *param0, GXOBJVRamModeChar param1, 
             InitTransferTask(sTaskManager->tasks + v0);
         }
 
-        sTaskManager->blockSizeMain = sub_0201F6F4(param1);
-        sTaskManager->blockSizeSub = sub_0201F6F4(param2);
+        sTaskManager->blockSizeMain = CharTransfer_GetBlockSize(param1);
+        sTaskManager->blockSizeSub = CharTransfer_GetBlockSize(param2);
 
         GX_SetOBJVRamModeChar(param1);
         GXS_SetOBJVRamModeChar(param2);
@@ -118,13 +118,13 @@ void sub_0201E88C(const CharTransferTemplate *param0, GXOBJVRamModeChar param1, 
     }
 }
 
-void sub_0201E958(void)
+void CharTransfer_Free(void)
 {
     if (sTaskManager != NULL) {
         FreeBlockTransferBuffer(sTaskManager->bufMain);
         FreeBlockTransferBuffer(sTaskManager->bufSub);
 
-        sub_0201EBA0();
+        CharTransfer_ResetAllTasks();
 
         Heap_FreeToHeap(sTaskManager->tasks);
         Heap_FreeToHeap(sTaskManager);
@@ -133,7 +133,7 @@ void sub_0201E958(void)
     }
 }
 
-void sub_0201E994(void)
+void CharTransfer_ClearBuffers(void)
 {
     sTaskManager->offsetMain = 0;
     sTaskManager->offsetSub = 0;
@@ -144,7 +144,7 @@ void sub_0201E994(void)
     UpdateVramCapacities();
 }
 
-void sub_0201E9C0(u32 param0, u32 param1, u32 param2)
+void CharTransfer_ReserveVramRange(u32 param0, u32 param1, u32 param2)
 {
     int v0;
     int v1;
@@ -164,14 +164,14 @@ void sub_0201E9C0(u32 param0, u32 param1, u32 param2)
     }
 }
 
-BOOL sub_0201EA24(const CharTransferTaskTemplate *param0)
+BOOL CharTransfer_Request(const CharTransferTaskTemplate *param0)
 {
     CharTransferTask *v0;
     u32 *v1;
     u8 v2 = 0;
     u32 v3;
 
-    if (sub_0201EAD8(param0->resourceID) == 1) {
+    if (CharTransfer_HasTask(param0->resourceID) == 1) {
         GF_ASSERT(FALSE);
     }
 
@@ -187,7 +187,7 @@ BOOL sub_0201EA24(const CharTransferTaskTemplate *param0)
     }
 
     if (ReserveAndTransfer(v0) == 0) {
-        sub_0201EB50(v0->resourceID);
+        CharTransfer_ResetTask(v0->resourceID);
         return 0;
     }
 
@@ -196,14 +196,14 @@ BOOL sub_0201EA24(const CharTransferTaskTemplate *param0)
     return 1;
 }
 
-BOOL sub_0201EA7C(const CharTransferTaskTemplate *param0)
+BOOL CharTransfer_RequestWithHardwareMappingType(const CharTransferTaskTemplate *param0)
 {
     CharTransferTask *v0;
     u32 *v1;
     u8 v2 = 0;
     u32 v3;
 
-    if (sub_0201EAD8(param0->resourceID) == 1) {
+    if (CharTransfer_HasTask(param0->resourceID) == 1) {
         GF_ASSERT(FALSE);
     }
 
@@ -221,7 +221,7 @@ BOOL sub_0201EA7C(const CharTransferTaskTemplate *param0)
     v0->useHardwareMappingType = 1;
 
     if (ReserveAndTransfer(v0) == 0) {
-        sub_0201EB50(v0->resourceID);
+        CharTransfer_ResetTask(v0->resourceID);
         return 0;
     }
 
@@ -230,7 +230,7 @@ BOOL sub_0201EA7C(const CharTransferTaskTemplate *param0)
     return 1;
 }
 
-BOOL sub_0201EAD8(int param0)
+BOOL CharTransfer_HasTask(int param0)
 {
     int v0;
 
@@ -243,7 +243,7 @@ BOOL sub_0201EAD8(int param0)
     return 0;
 }
 
-void sub_0201EB08(int param0, NNSG2dCharacterData *param1)
+void CharTransfer_ReplaceCharData(int param0, NNSG2dCharacterData *param1)
 {
     CharTransferTask *v0;
 
@@ -262,7 +262,7 @@ void sub_0201EB08(int param0, NNSG2dCharacterData *param1)
     }
 }
 
-void sub_0201EB50(int param0)
+void CharTransfer_ResetTask(int param0)
 {
     CharTransferTask *v0;
     int v1 = 1;
@@ -272,7 +272,7 @@ void sub_0201EB50(int param0)
         GF_ASSERT(v0);
 
         if (v0->state == 4) {
-            sub_0201ED1C(&v0->imageProxy);
+            CharTransfer_DeleteTask(&v0->imageProxy);
         } else {
             v1 = 0;
         }
@@ -284,7 +284,7 @@ void sub_0201EB50(int param0)
     }
 }
 
-void sub_0201EBA0(void)
+void CharTransfer_ResetAllTasks(void)
 {
     int v0;
 
@@ -296,7 +296,7 @@ void sub_0201EBA0(void)
     }
 }
 
-NNSG2dImageProxy *sub_0201EBDC(int param0)
+NNSG2dImageProxy *CharTransfer_GetImageProxy(int param0)
 {
     CharTransferTask *v0;
 
@@ -310,7 +310,7 @@ NNSG2dImageProxy *sub_0201EBDC(int param0)
     return &v0->imageProxy;
 }
 
-NNSG2dImageProxy *sub_0201EC00(int param0, u32 param1)
+NNSG2dImageProxy *CharTransfer_ResizeTaskRange(int param0, u32 param1)
 {
     u32 v0, v1;
     CharTransferTask *v2;
@@ -345,7 +345,7 @@ NNSG2dImageProxy *sub_0201EC00(int param0, u32 param1)
     return &v3->imageProxy;
 }
 
-NNSG2dImageProxy *sub_0201EC84(const NNSG2dImageProxy *param0)
+NNSG2dImageProxy *CharTransfer_CopyTask(const NNSG2dImageProxy *param0)
 {
     CharTransferTask *v0;
     CharTransferTask *v1;
@@ -385,7 +385,7 @@ NNSG2dImageProxy *sub_0201EC84(const NNSG2dImageProxy *param0)
     return &v1->imageProxy;
 }
 
-void sub_0201ED1C(const NNSG2dImageProxy *param0)
+void CharTransfer_DeleteTask(const NNSG2dImageProxy *param0)
 {
     int v0;
 
@@ -411,7 +411,7 @@ void sub_0201ED1C(const NNSG2dImageProxy *param0)
     }
 }
 
-BOOL sub_0201ED94(int param0, int param1, int param2, CharTransferAllocation *param3)
+BOOL CharTransfer_AllocRange(int param0, int param1, int param2, CharTransferAllocation *param3)
 {
     u32 v0, v1;
     u32 v2, v3;
@@ -457,7 +457,7 @@ BOOL sub_0201ED94(int param0, int param1, int param2, CharTransferAllocation *pa
     return v4;
 }
 
-void sub_0201EE28(CharTransferAllocation *param0)
+void CharTransfer_ClearRange(CharTransferAllocation *param0)
 {
     int v0;
     int v1;
@@ -481,7 +481,7 @@ void sub_0201EE28(CharTransferAllocation *param0)
     }
 }
 
-void *sub_0201EE9C(void)
+void *CharTransfer_PopTaskManager(void)
 {
     void *v0;
 
@@ -493,7 +493,7 @@ void *sub_0201EE9C(void)
     return v0;
 }
 
-void sub_0201EEB8(void *param0)
+void CharTransfer_PushTaskManager(void *param0)
 {
     GF_ASSERT(sTaskManager == NULL);
     sTaskManager = param0;
@@ -988,7 +988,7 @@ static void ClearTransferTaskRange(CharTransferTask *task)
     task->haveRange = FALSE;
 }
 
-int sub_0201F6F4(int param0)
+int CharTransfer_GetBlockSize(int param0)
 {
     int v0;
 

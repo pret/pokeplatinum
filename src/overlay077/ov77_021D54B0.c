@@ -98,11 +98,11 @@ static void ov77_021D54B0()
             11, 0x8000, 0x4000, v0
         };
 
-        sub_0201E86C(&v1);
+        CharTransfer_Init(&v1);
     }
 
     sub_0201F834(11, v0);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
     VramTransfer_New((3 * 2), v0);
 }
@@ -229,7 +229,7 @@ void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
     }
 
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
     VramTransfer_Free();
 }

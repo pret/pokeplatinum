@@ -1380,11 +1380,11 @@ static void ov114_0225CFCC(UnkStruct_ov114_0225CFCC *param0, u32 param1, u32 par
         v1.maxTasks = param2;
         v1.heapID = param4;
 
-        sub_0201E88C(&v1, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v1, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
     sub_0201F834(param3, param4);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -1399,7 +1399,7 @@ static void ov114_0225CFCC(UnkStruct_ov114_0225CFCC *param0, u32 param1, u32 par
 static void ov114_0225D058(UnkStruct_ov114_0225CFCC *param0)
 {
     CellActorCollection_Delete(param0->unk_00);
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
     sub_0200A878();
 }

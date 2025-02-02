@@ -128,7 +128,7 @@ void ov106_02243570(UnkStruct_ov106_02243310 *param0)
 
     CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 
     return;
@@ -141,11 +141,11 @@ static void ov106_022435C8(void)
             3, 2048, 2048, 98
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
     sub_0201F834((1 + 3), 98);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 
     return;

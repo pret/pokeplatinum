@@ -848,7 +848,7 @@ static void ov88_0223BF7C(UnkStruct_02095E80 *param0)
 
     CellActorCollection_Delete(param0->unk_194);
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 }
 
@@ -1226,11 +1226,11 @@ static void ov88_0223C63C(void)
             20, 2048, 2048, 26
         };
 
-        sub_0201E86C(&v0);
+        CharTransfer_Init(&v0);
     }
 
     sub_0201F834(20, 26);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 }
 

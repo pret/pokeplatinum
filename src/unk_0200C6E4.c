@@ -112,7 +112,7 @@ BOOL sub_0200C73C(SpriteRenderer *param0, const UnkStruct_ov104_0224133C *param1
         v0.sizeSub = param2->unk_08;
         v0.heapID = param0->unk_00;
 
-        sub_0201E88C(&v0, param2->unk_0C, param2->unk_10);
+        CharTransfer_InitWithVramModes(&v0, param2->unk_0C, param2->unk_10);
     }
 
     sub_0201F834(param3, param0->unk_00);
@@ -124,7 +124,7 @@ BOOL sub_0200C73C(SpriteRenderer *param0, const UnkStruct_ov104_0224133C *param1
 
     param0->unk_0C = CellTransfer_New(32, param0->unk_00);
 
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 
     return 1;
@@ -198,7 +198,7 @@ void sub_0200C82C(SpriteGfxHandler *param0)
 void sub_0200C880(SpriteRenderer *param0)
 {
     CellTransfer_Free(param0->unk_0C);
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 
     if (param0->unk_08 == 1) {
@@ -740,7 +740,7 @@ static BOOL sub_0200D27C(SpriteResourceCollection *param0, SpriteResourceList *p
         v1 = SpriteResource_GetID(param1->resources[v0]);
 
         if (v1 == param2) {
-            sub_0201EB50(param2);
+            CharTransfer_ResetTask(param2);
             SpriteResourceCollection_Remove(param0, param1->resources[v0]);
 
             param1->resources[v0] = NULL;

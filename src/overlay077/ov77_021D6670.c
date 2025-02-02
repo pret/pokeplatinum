@@ -86,11 +86,11 @@ static void ov77_021D6670()
             1, 0, 0, v0
         };
 
-        sub_0201E86C(&v1);
+        CharTransfer_Init(&v1);
     }
 
     sub_0201F834(1, v0);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 }
 
@@ -227,7 +227,7 @@ static void ov77_021D691C(UnkStruct_ov77_021D6800 *param0)
 
     CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 }
 

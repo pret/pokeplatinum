@@ -3271,7 +3271,7 @@ static void ov23_02246370(int param0)
     }
 
     if (Unk_ov23_02257764->unk_1F4[0][0]) {
-        if (sub_0201EAD8(SpriteResource_GetID(Unk_ov23_02257764->unk_1F4[0][0]))) {
+        if (CharTransfer_HasTask(SpriteResource_GetID(Unk_ov23_02257764->unk_1F4[0][0]))) {
             sub_0200A4E4(Unk_ov23_02257764->unk_1F4[0][0]);
         }
     }

@@ -84,7 +84,7 @@ UnkStruct_ov21_021D4CA0 *ov21_021D4CB8(const UnkStruct_ov21_021D4CB8 *param0, in
     v1 = ov21_021D4EB4(param0->unk_00);
 
     GF_ASSERT(v1);
-    sub_0201ED94(param1, 1, param0->unk_20, &v1->unk_04);
+    CharTransfer_AllocRange(param1, 1, param0->unk_20, &v1->unk_04);
 
     v0.unk_00 = param0->unk_00->unk_00;
     v0.unk_04 = param0->unk_04;
@@ -107,7 +107,7 @@ UnkStruct_ov21_021D4CA0 *ov21_021D4CB8(const UnkStruct_ov21_021D4CB8 *param0, in
 void ov21_021D4D1C(UnkStruct_ov21_021D4CA0 *param0)
 {
     sub_02012870(param0->unk_00);
-    sub_0201EE28(&param0->unk_04);
+    CharTransfer_ClearRange(&param0->unk_04);
 
     memset(param0, 0, sizeof(UnkStruct_ov21_021D4CA0));
 }

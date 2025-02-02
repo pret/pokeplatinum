@@ -115,9 +115,9 @@ void ov76_0223B8C4(UnkStruct_ov76_0223DE00 *param0)
 {
     Font_Free(FONT_SUBSCREEN);
     sub_02012870(param0->unk_D4.unk_164[0]);
-    sub_0201EE28(&param0->unk_D4.unk_16C[0]);
+    CharTransfer_ClearRange(&param0->unk_D4.unk_16C[0]);
     sub_02012870(param0->unk_D4.unk_164[1]);
-    sub_0201EE28(&param0->unk_D4.unk_16C[1]);
+    CharTransfer_ClearRange(&param0->unk_D4.unk_16C[1]);
     sub_020127BC(param0->unk_D4.unk_160);
 }
 
@@ -159,7 +159,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
 
     v2 = 30000;
     v3 = sub_02012898(&v5, NNS_G2D_VRAM_TYPE_2DSUB, 53);
-    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &param0->unk_D4.unk_16C[param1]);
+    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &param0->unk_D4.unk_16C[param1]);
 
     v0.unk_00 = param0->unk_D4.unk_160;
     v0.unk_04 = &v5;

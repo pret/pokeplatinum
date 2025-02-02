@@ -303,7 +303,7 @@ int ov59_021D0FF4(OverlayManager *param0, int *param1)
 
     CellActorCollection_Delete(v0->unk_50);
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 
     ov59_021D17C8(v0);
@@ -588,11 +588,11 @@ static void ov59_021D1474(void)
             20, 2048, 2048, 51
         };
 
-        sub_0201E86C(&v0);
+        CharTransfer_Init(&v0);
     }
 
     sub_0201F834(20, 51);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 }
 

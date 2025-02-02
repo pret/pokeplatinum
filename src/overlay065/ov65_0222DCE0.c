@@ -867,7 +867,7 @@ static void ov65_0222E47C(UnkStruct_ov65_0222EBE0 *param0)
 
     CellActorCollection_Delete(param0->unk_18C);
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 
     ov65_0222EF4C(param0);
@@ -1479,11 +1479,11 @@ static void ov65_0222EDD0(void)
             20, (128 * 1024), (16 * 1024), 54
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
     sub_0201F834(20, 54);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -6718,7 +6718,7 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 par
 
     v5 = sub_02012B20(&v3, param2);
     v6 = sub_02012B58(v5, NNS_G2D_VRAM_TYPE_2DSUB);
-    v0 = sub_0201ED94(v6, 1, NNS_G2D_VRAM_TYPE_2DSUB, &param0->unk_BE0.unk_228);
+    v0 = CharTransfer_AllocRange(v6, 1, NNS_G2D_VRAM_TYPE_2DSUB, &param0->unk_BE0.unk_228);
 
     GF_ASSERT(v0);
 
@@ -6750,7 +6750,7 @@ static void ov65_02234CFC(UnkStruct_ov65_0222EBE0 *param0)
 
     sub_02024034(param0->unk_BE0.unk_244);
     sub_02012BD8(param0->unk_BE0.unk_234);
-    sub_0201EE28(&param0->unk_BE0.unk_228);
+    CharTransfer_ClearRange(&param0->unk_BE0.unk_228);
 
     for (v0 = 0; v0 < 3; v0++) {
         CellActor_Delete(param0->unk_BE0.unk_21C[v0]);

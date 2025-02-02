@@ -21,7 +21,7 @@ BOOL sub_0200A328(const SpriteResource *param0)
     v0.resourceID = SpriteResource_GetID(param0);
     v0.atEnd = FALSE;
 
-    return sub_0201EA24(&v0);
+    return CharTransfer_Request(&v0);
 }
 
 void sub_0200A368(const SpriteResourceList *param0)
@@ -51,7 +51,7 @@ BOOL sub_0200A39C(const SpriteResource *param0)
     v0.resourceID = SpriteResource_GetID(param0);
     v0.atEnd = FALSE;
 
-    return sub_0201EA7C(&v0);
+    return CharTransfer_RequestWithHardwareMappingType(&v0);
 }
 
 BOOL sub_0200A3DC(const SpriteResource *param0)
@@ -66,7 +66,7 @@ BOOL sub_0200A3DC(const SpriteResource *param0)
     v0.resourceID = SpriteResource_GetID(param0);
     v0.atEnd = TRUE;
 
-    return sub_0201EA24(&v0);
+    return CharTransfer_Request(&v0);
 }
 
 void sub_0200A41C(const SpriteResourceList *param0)
@@ -96,7 +96,7 @@ BOOL sub_0200A450(const SpriteResource *param0)
     v0.resourceID = SpriteResource_GetID(param0);
     v0.atEnd = TRUE;
 
-    return sub_0201EA7C(&v0);
+    return CharTransfer_RequestWithHardwareMappingType(&v0);
 }
 
 void sub_0200A490(const SpriteResource *param0, const SpriteResource *param1)
@@ -110,7 +110,7 @@ void sub_0200A490(const SpriteResource *param0, const SpriteResource *param1)
     v0 = SpriteResource_GetID(param0);
     v1 = SpriteResource_GetTileData(param1);
 
-    sub_0201EB08(v0, v1);
+    CharTransfer_ReplaceCharData(v0, v1);
 }
 
 void sub_0200A4C0(const SpriteResource *param0)
@@ -123,7 +123,7 @@ void sub_0200A4C0(const SpriteResource *param0)
     v0 = SpriteResource_GetID(param0);
     v1 = SpriteResource_GetTileData(param0);
 
-    sub_0201EB08(v0, v1);
+    CharTransfer_ReplaceCharData(v0, v1);
 }
 
 void sub_0200A4E4(SpriteResource *param0)
@@ -134,7 +134,7 @@ void sub_0200A4E4(SpriteResource *param0)
     GF_ASSERT(SpriteResource_GetType(param0) == 0);
 
     v0 = SpriteResource_GetID(param0);
-    sub_0201EB50(v0);
+    CharTransfer_ResetTask(v0);
 }
 
 void sub_0200A508(SpriteResourceList *param0)
@@ -158,7 +158,7 @@ NNSG2dImageProxy *sub_0200A534(const SpriteResource *param0)
     GF_ASSERT(SpriteResource_GetType(param0) == 0);
 
     v0 = SpriteResource_GetID(param0);
-    return sub_0201EBDC(v0);
+    return CharTransfer_GetImageProxy(v0);
 }
 
 NNSG2dImageProxy *sub_0200A558(const SpriteResource *param0, const SpriteResource *param1)
@@ -174,13 +174,13 @@ NNSG2dImageProxy *sub_0200A558(const SpriteResource *param0, const SpriteResourc
 
     v0 = SpriteResource_GetID(param0);
     v1 = SpriteResource_GetSpriteData(param1);
-    v2 = sub_0201EC00(v0, v1->pVramTransferData->szByteMax);
+    v2 = CharTransfer_ResizeTaskRange(v0, v1->pVramTransferData->szByteMax);
 
     if (v2 == NULL) {
         NNSG2dImageProxy *v3;
 
-        v3 = sub_0201EBDC(v0);
-        v2 = sub_0201EC84(v3);
+        v3 = CharTransfer_GetImageProxy(v0);
+        v2 = CharTransfer_CopyTask(v3);
     }
 
     return v2;
@@ -189,7 +189,7 @@ NNSG2dImageProxy *sub_0200A558(const SpriteResource *param0, const SpriteResourc
 void sub_0200A5B4(const NNSG2dImageProxy *param0)
 {
     GF_ASSERT(param0);
-    sub_0201ED1C(param0);
+    CharTransfer_DeleteTask(param0);
 }
 
 BOOL sub_0200A5C8(const SpriteResource *param0)

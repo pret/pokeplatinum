@@ -307,18 +307,18 @@ static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
 
         v0.heapID = param0->unk_00;
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
     sub_0201F834(32, param0->unk_00);
-    sub_0201E994();
+    CharTransfer_ClearBuffers();
     sub_0201F8E4();
 }
 
 static void ov83_0223CDC0(UnkStruct_ov83_0223B784 *param0)
 {
     sub_0200A878();
-    sub_0201E958();
+    CharTransfer_Free();
     sub_0201F8B4();
 }
 

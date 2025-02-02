@@ -189,19 +189,19 @@ void sub_0200966C(u32 param0, GXOBJVRamModeChar param1)
     switch (param1) {
     case GX_OBJVRAMMODE_CHAR_1D_32K:
         if ((GX_GetBankForOBJ() == GX_VRAM_OBJ_16_G) || (GX_GetBankForOBJ() == GX_VRAM_OBJ_16_F)) {
-            sub_0201E9C0(((512 - 16) * 32), 16 * 32, param0);
+            CharTransfer_ReserveVramRange(((512 - 16) * 32), 16 * 32, param0);
         } else {
-            sub_0201E9C0(((1024 - 16) * 32), 16 * 32, param0);
+            CharTransfer_ReserveVramRange(((1024 - 16) * 32), 16 * 32, param0);
         }
         break;
     case GX_OBJVRAMMODE_CHAR_1D_64K:
-        sub_0201E9C0(((2048 - 16) * 32), 16 * 32, param0);
+        CharTransfer_ReserveVramRange(((2048 - 16) * 32), 16 * 32, param0);
         break;
     case GX_OBJVRAMMODE_CHAR_1D_128K:
         if ((GX_GetBankForOBJ() == GX_VRAM_OBJ_80_EF) || (GX_GetBankForOBJ() == GX_VRAM_OBJ_80_EG)) {
-            sub_0201E9C0(((2560 - 16) * 32), 16 * 32, param0);
+            CharTransfer_ReserveVramRange(((2560 - 16) * 32), 16 * 32, param0);
         } else {
-            sub_0201E9C0(((4096 - 16) * 32), 16 * 32, param0);
+            CharTransfer_ReserveVramRange(((4096 - 16) * 32), 16 * 32, param0);
         }
         break;
     default:
