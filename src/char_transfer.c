@@ -1,43 +1,43 @@
 #include "char_transfer.h"
 
-#include <nitro.h>
-#include <string.h>
+#include <nitro/gx.h>
+#include <nnsys.h>
 
 #include "heap.h"
 #include "unk_0201DBEC.h"
 
 typedef struct CharTransferTask {
-    NNSG2dCharacterData *unk_00;
-    NNS_G2D_VRAM_TYPE unk_04;
-    u8 unk_08;
-    u32 unk_0C;
-    NNSG2dImageProxy unk_10;
-    u32 unk_34;
-    u32 unk_38;
-    u8 unk_3C;
-    BOOL unk_40;
-    u32 unk_44;
-    BOOL unk_48;
-    u32 unk_4C;
-    u32 unk_50;
+    NNSG2dCharacterData *data;
+    NNS_G2D_VRAM_TYPE vramType;
+    u8 transfer;
+    u32 resourceID;
+    NNSG2dImageProxy imageProxy;
+    u32 baseAddrMain;
+    u32 baseAddrSub;
+    u8 state;
+    BOOL updateMappingType;
+    BOOL atEnd;
+    BOOL haveRegion;
+    u32 regionSizeMain;
+    u32 regionSizeSub;
 } CharTransferTask;
 
 typedef struct CharTransferTaskManager {
-    CharTransferTask *unk_00;
-    int unk_04;
-    int unk_08;
-    u32 unk_0C;
-    u32 unk_10;
-    s32 unk_14;
-    s32 unk_18;
-    s32 unk_1C;
-    s32 unk_20;
-    u32 unk_24;
-    u32 unk_28;
-    u32 unk_2C;
-    u32 unk_30;
-    u8 *unk_34;
-    u8 *unk_38;
+    CharTransferTask *tasks;
+    int capacity;
+    int length;
+    u32 offsetMain;
+    u32 offsetSub;
+    s32 vramSizeMain;
+    s32 vramSizeSub;
+    s32 freeSizeMain;
+    s32 freeSizeSub;
+    u32 numBlocksMain;
+    u32 numBlocksSub;
+    u32 blockSizeMain;
+    u32 blockSizeSub;
+    u8 *bufMain;
+    u8 *bufSub;
 } CharTransferTaskManager;
 
 static void sub_0201EED4(CharTransferTask *param0);
@@ -75,7 +75,7 @@ static int sub_0201F754(int param0, int param1);
 static int sub_0201F764(int param0, int param1);
 static void sub_0201F818(u32 param0, u32 param1, u32 param2, int *param3, int *param4);
 
-static CharTransferTaskManager *Unk_021C0760 = NULL;
+static CharTransferTaskManager *sTaskManager = NULL;
 
 void sub_0201E86C(const CharTransferTemplate *param0)
 {
@@ -88,25 +88,25 @@ void sub_0201E88C(const CharTransferTemplate *param0, GXOBJVRamModeChar param1, 
     int v1;
     int v2;
 
-    if (Unk_021C0760 == NULL) {
-        Unk_021C0760 = Heap_AllocFromHeap(param0->heapID, sizeof(CharTransferTaskManager));
-        MI_CpuClear32(Unk_021C0760, sizeof(CharTransferTaskManager));
+    if (sTaskManager == NULL) {
+        sTaskManager = Heap_AllocFromHeap(param0->heapID, sizeof(CharTransferTaskManager));
+        MI_CpuClear32(sTaskManager, sizeof(CharTransferTaskManager));
 
-        Unk_021C0760->unk_04 = param0->maxTasks;
-        Unk_021C0760->unk_00 = Heap_AllocFromHeap(param0->heapID, sizeof(CharTransferTask) * Unk_021C0760->unk_04);
+        sTaskManager->capacity = param0->maxTasks;
+        sTaskManager->tasks = Heap_AllocFromHeap(param0->heapID, sizeof(CharTransferTask) * sTaskManager->capacity);
 
         for (v0 = 0; v0 < param0->maxTasks; v0++) {
-            sub_0201EED4(Unk_021C0760->unk_00 + v0);
+            sub_0201EED4(sTaskManager->tasks + v0);
         }
 
-        Unk_021C0760->unk_2C = sub_0201F6F4(param1);
-        Unk_021C0760->unk_30 = sub_0201F6F4(param2);
+        sTaskManager->blockSizeMain = sub_0201F6F4(param1);
+        sTaskManager->blockSizeSub = sub_0201F6F4(param2);
 
         GX_SetOBJVRamModeChar(param1);
         GXS_SetOBJVRamModeChar(param2);
 
-        v1 = sub_0201F754(param0->sizeMain, Unk_021C0760->unk_2C);
-        v2 = sub_0201F754(param0->sizeSub, Unk_021C0760->unk_30);
+        v1 = sub_0201F754(param0->sizeMain, sTaskManager->blockSizeMain);
+        v2 = sub_0201F754(param0->sizeSub, sTaskManager->blockSizeSub);
 
         sub_0201F47C(v1, v2, param0->heapID);
     }
@@ -114,26 +114,26 @@ void sub_0201E88C(const CharTransferTemplate *param0, GXOBJVRamModeChar param1, 
 
 void sub_0201E958(void)
 {
-    if (Unk_021C0760 != NULL) {
-        sub_0201F4E4(Unk_021C0760->unk_34);
-        sub_0201F4E4(Unk_021C0760->unk_38);
+    if (sTaskManager != NULL) {
+        sub_0201F4E4(sTaskManager->bufMain);
+        sub_0201F4E4(sTaskManager->bufSub);
 
         sub_0201EBA0();
 
-        Heap_FreeToHeap(Unk_021C0760->unk_00);
-        Heap_FreeToHeap(Unk_021C0760);
+        Heap_FreeToHeap(sTaskManager->tasks);
+        Heap_FreeToHeap(sTaskManager);
 
-        Unk_021C0760 = NULL;
+        sTaskManager = NULL;
     }
 }
 
 void sub_0201E994(void)
 {
-    Unk_021C0760->unk_0C = 0;
-    Unk_021C0760->unk_10 = 0;
+    sTaskManager->offsetMain = 0;
+    sTaskManager->offsetSub = 0;
 
-    sub_0201F524(Unk_021C0760->unk_34);
-    sub_0201F524(Unk_021C0760->unk_38);
+    sub_0201F524(sTaskManager->bufMain);
+    sub_0201F524(sTaskManager->bufSub);
 
     sub_0201F30C();
 }
@@ -144,13 +144,13 @@ void sub_0201E9C0(u32 param0, u32 param1, u32 param2)
     int v1;
 
     if (param2 == NNS_G2D_VRAM_TYPE_2DMAIN) {
-        sub_0201F818(Unk_021C0760->unk_1C, param0, param1, &v0, &v1);
+        sub_0201F818(sTaskManager->freeSizeMain, param0, param1, &v0, &v1);
 
         if (v1 > 0) {
             sub_0201F18C(NNS_G2D_VRAM_TYPE_2DMAIN, v0, 0, v1, 0);
         }
     } else {
-        sub_0201F818(Unk_021C0760->unk_20, param0, param1, &v0, &v1);
+        sub_0201F818(sTaskManager->freeSizeSub, param0, param1, &v0, &v1);
 
         if (v1 > 0) {
             sub_0201F18C(NNS_G2D_VRAM_TYPE_2DSUB, 0, v0, 0, v1);
@@ -181,11 +181,11 @@ BOOL sub_0201EA24(const CharTransferTaskTemplate *param0)
     }
 
     if (sub_0201EF68(v0) == 0) {
-        sub_0201EB50(v0->unk_0C);
+        sub_0201EB50(v0->resourceID);
         return 0;
     }
 
-    Unk_021C0760->unk_08++;
+    sTaskManager->length++;
 
     return 1;
 }
@@ -212,14 +212,14 @@ BOOL sub_0201EA7C(const CharTransferTaskTemplate *param0)
         return 0;
     }
 
-    v0->unk_40 = 1;
+    v0->updateMappingType = 1;
 
     if (sub_0201EF68(v0) == 0) {
-        sub_0201EB50(v0->unk_0C);
+        sub_0201EB50(v0->resourceID);
         return 0;
     }
 
-    Unk_021C0760->unk_08++;
+    sTaskManager->length++;
 
     return 1;
 }
@@ -228,8 +228,8 @@ BOOL sub_0201EAD8(int param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < Unk_021C0760->unk_04; v0++) {
-        if (Unk_021C0760->unk_00[v0].unk_0C == param0) {
+    for (v0 = 0; v0 < sTaskManager->capacity; v0++) {
+        if (sTaskManager->tasks[v0].resourceID == param0) {
             return 1;
         }
     }
@@ -245,14 +245,14 @@ void sub_0201EB08(int param0, NNSG2dCharacterData *param1)
 
     v0 = sub_0201F03C(param0);
     GF_ASSERT(v0);
-    v0->unk_00 = param1;
+    v0->data = param1;
 
-    if (v0->unk_04 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v0->unk_34, param1->pRawData, param1->szByte);
+    if (v0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v0->baseAddrMain, param1->pRawData, param1->szByte);
     }
 
-    if (v0->unk_04 & NNS_G2D_VRAM_TYPE_2DSUB) {
-        sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_SUB, v0->unk_38, param1->pRawData, param1->szByte);
+    if (v0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_SUB, v0->baseAddrSub, param1->pRawData, param1->szByte);
     }
 }
 
@@ -265,16 +265,16 @@ void sub_0201EB50(int param0)
         v0 = sub_0201F03C(param0);
         GF_ASSERT(v0);
 
-        if (v0->unk_3C == 4) {
-            sub_0201ED1C(&v0->unk_10);
+        if (v0->state == 4) {
+            sub_0201ED1C(&v0->imageProxy);
         } else {
             v1 = 0;
         }
     } while (v1);
 
-    if (v0->unk_3C != 0) {
+    if (v0->state != 0) {
         sub_0201F024(v0);
-        Unk_021C0760->unk_08--;
+        sTaskManager->length--;
     }
 }
 
@@ -282,10 +282,10 @@ void sub_0201EBA0(void)
 {
     int v0;
 
-    for (v0 = 0; v0 < Unk_021C0760->unk_04; v0++) {
-        if (Unk_021C0760->unk_00[v0].unk_3C != 0) {
-            sub_0201F024(&Unk_021C0760->unk_00[v0]);
-            Unk_021C0760->unk_08--;
+    for (v0 = 0; v0 < sTaskManager->capacity; v0++) {
+        if (sTaskManager->tasks[v0].state != 0) {
+            sub_0201F024(&sTaskManager->tasks[v0]);
+            sTaskManager->length--;
         }
     }
 }
@@ -297,11 +297,11 @@ NNSG2dImageProxy *sub_0201EBDC(int param0)
     v0 = sub_0201F03C(param0);
     GF_ASSERT(v0);
 
-    if (v0->unk_3C == 0) {
+    if (v0->state == 0) {
         return NULL;
     }
 
-    return &v0->unk_10;
+    return &v0->imageProxy;
 }
 
 NNSG2dImageProxy *sub_0201EC00(int param0, u32 param1)
@@ -314,29 +314,29 @@ NNSG2dImageProxy *sub_0201EC00(int param0, u32 param1)
     v2 = sub_0201F03C(param0);
     GF_ASSERT(v2);
 
-    if (v2->unk_3C == 0) {
+    if (v2->state == 0) {
         return NULL;
     }
 
-    sub_0201F0B0(v2->unk_04, &v0, &v1, param1, &v4, &v5);
+    sub_0201F0B0(v2->vramType, &v0, &v1, param1, &v4, &v5);
 
-    if (v2->unk_3C == 3) {
+    if (v2->state == 3) {
         return NULL;
     } else {
-        v2->unk_3C = 3;
+        v2->state = 3;
         v3 = v2;
     }
 
     sub_0201F15C(v3, v0, v1);
 
-    v3->unk_48 = 1;
-    v3->unk_4C = v4;
-    v3->unk_50 = v5;
+    v3->haveRegion = 1;
+    v3->regionSizeMain = v4;
+    v3->regionSizeSub = v5;
 
     sub_0201F26C(v3);
-    sub_0201F18C(v3->unk_04, v0, v1, v4, v5);
+    sub_0201F18C(v3->vramType, v0, v1, v4, v5);
 
-    return &v3->unk_10;
+    return &v3->imageProxy;
 }
 
 NNSG2dImageProxy *sub_0201EC84(const NNSG2dImageProxy *param0)
@@ -353,55 +353,55 @@ NNSG2dImageProxy *sub_0201EC84(const NNSG2dImageProxy *param0)
     v1 = sub_0201F2D0();
     GF_ASSERT(v1);
 
-    if (v0->unk_3C != 3) {
+    if (v0->state != 3) {
         return NULL;
     }
 
     *v1 = *v0;
-    v1->unk_3C = 4;
+    v1->state = 4;
 
-    if (v1->unk_04 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        v6 = v1->unk_4C;
+    if (v1->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        v6 = v1->regionSizeMain;
     } else {
-        v6 = v1->unk_50;
+        v6 = v1->regionSizeSub;
     }
 
-    sub_0201F0B0(v1->unk_04, &v2, &v3, v6, &v4, &v5);
+    sub_0201F0B0(v1->vramType, &v2, &v3, v6, &v4, &v5);
     sub_0201F15C(v1, v2, v3);
 
-    v1->unk_48 = 1;
-    v1->unk_4C = v4;
-    v1->unk_50 = v5;
+    v1->haveRegion = 1;
+    v1->regionSizeMain = v4;
+    v1->regionSizeSub = v5;
 
     sub_0201F26C((void *)v1);
-    sub_0201F18C(v1->unk_04, v2, v3, v4, v5);
+    sub_0201F18C(v1->vramType, v2, v3, v4, v5);
 
-    return &v1->unk_10;
+    return &v1->imageProxy;
 }
 
 void sub_0201ED1C(const NNSG2dImageProxy *param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < Unk_021C0760->unk_04; v0++) {
-        if ((Unk_021C0760->unk_00[v0].unk_3C == 3) || (Unk_021C0760->unk_00[v0].unk_3C == 4)) {
-            if (&Unk_021C0760->unk_00[v0].unk_10 == param0) {
+    for (v0 = 0; v0 < sTaskManager->capacity; v0++) {
+        if ((sTaskManager->tasks[v0].state == 3) || (sTaskManager->tasks[v0].state == 4)) {
+            if (&sTaskManager->tasks[v0].imageProxy == param0) {
                 break;
             }
         }
     }
 
-    if (v0 >= Unk_021C0760->unk_04) {
+    if (v0 >= sTaskManager->capacity) {
         return;
     }
 
-    sub_0201F670(Unk_021C0760->unk_00 + v0);
+    sub_0201F670(sTaskManager->tasks + v0);
 
-    if (Unk_021C0760->unk_00[v0].unk_3C == 3) {
-        Unk_021C0760->unk_00[v0].unk_3C = 2;
+    if (sTaskManager->tasks[v0].state == 3) {
+        sTaskManager->tasks[v0].state = 2;
     } else {
-        Unk_021C0760->unk_00[v0].unk_3C = 0;
-        sub_0201EED4(&Unk_021C0760->unk_00[v0]);
+        sTaskManager->tasks[v0].state = 0;
+        sub_0201EED4(&sTaskManager->tasks[v0]);
     }
 }
 
@@ -438,10 +438,10 @@ BOOL sub_0201ED94(int param0, int param1, int param2, CharTransferAllocation *pa
 
             if (param2 == NNS_G2D_VRAM_TYPE_2DMAIN) {
                 param3->size = v2;
-                param3->offset = v0 + Unk_021C0760->unk_1C;
+                param3->offset = v0 + sTaskManager->freeSizeMain;
             } else {
                 param3->size = v3;
-                param3->offset = v1 + Unk_021C0760->unk_20;
+                param3->offset = v1 + sTaskManager->freeSizeSub;
             }
 
             param3->atEnd = 1;
@@ -461,17 +461,17 @@ void sub_0201EE28(CharTransferAllocation *param0)
     }
 
     if (param0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        v0 = sub_0201F754(param0->size, Unk_021C0760->unk_2C);
-        v1 = sub_0201F754(param0->offset - Unk_021C0760->unk_1C, Unk_021C0760->unk_2C);
+        v0 = sub_0201F754(param0->size, sTaskManager->blockSizeMain);
+        v1 = sub_0201F754(param0->offset - sTaskManager->freeSizeMain, sTaskManager->blockSizeMain);
 
-        sub_0201F620(v1, v0, Unk_021C0760->unk_34);
+        sub_0201F620(v1, v0, sTaskManager->bufMain);
     }
 
     if (param0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
-        v0 = sub_0201F754(param0->size, Unk_021C0760->unk_30);
-        v1 = sub_0201F754(param0->offset - Unk_021C0760->unk_20, Unk_021C0760->unk_30);
+        v0 = sub_0201F754(param0->size, sTaskManager->blockSizeSub);
+        v1 = sub_0201F754(param0->offset - sTaskManager->freeSizeSub, sTaskManager->blockSizeSub);
 
-        sub_0201F620(v1, v0, Unk_021C0760->unk_38);
+        sub_0201F620(v1, v0, sTaskManager->bufSub);
     }
 }
 
@@ -479,45 +479,45 @@ void *sub_0201EE9C(void)
 {
     void *v0;
 
-    GF_ASSERT(Unk_021C0760);
+    GF_ASSERT(sTaskManager);
 
-    v0 = Unk_021C0760;
-    Unk_021C0760 = NULL;
+    v0 = sTaskManager;
+    sTaskManager = NULL;
 
     return v0;
 }
 
 void sub_0201EEB8(void *param0)
 {
-    GF_ASSERT(Unk_021C0760 == NULL);
-    Unk_021C0760 = param0;
+    GF_ASSERT(sTaskManager == NULL);
+    sTaskManager = param0;
 }
 
 static void sub_0201EED4(CharTransferTask *param0)
 {
-    param0->unk_00 = NULL;
-    param0->unk_04 = 0;
-    param0->unk_08 = 0;
-    param0->unk_0C = 0xffffffff;
-    param0->unk_34 = 0;
-    param0->unk_38 = 0;
-    param0->unk_3C = 0;
-    param0->unk_40 = 0;
+    param0->data = NULL;
+    param0->vramType = 0;
+    param0->transfer = 0;
+    param0->resourceID = 0xffffffff;
+    param0->baseAddrMain = 0;
+    param0->baseAddrSub = 0;
+    param0->state = 0;
+    param0->updateMappingType = 0;
 
-    NNS_G2dInitImageProxy(&param0->unk_10);
+    NNS_G2dInitImageProxy(&param0->imageProxy);
 }
 
 static BOOL sub_0201EEF8(const CharTransferTaskTemplate *param0, CharTransferTask *param1)
 {
-    param1->unk_00 = param0->data;
-    param1->unk_0C = param0->resourceID;
-    param1->unk_04 = param0->vramType;
-    param1->unk_08 = param1->unk_00->characterFmt >> 8;
-    param1->unk_44 = param0->atEnd;
+    param1->data = param0->data;
+    param1->resourceID = param0->resourceID;
+    param1->vramType = param0->vramType;
+    param1->transfer = param1->data->characterFmt >> 8;
+    param1->atEnd = param0->atEnd;
 
-    param1->unk_48 = 0;
-    param1->unk_4C = 0;
-    param1->unk_50 = 0;
+    param1->haveRegion = 0;
+    param1->regionSizeMain = 0;
+    param1->regionSizeSub = 0;
 
     return 1;
 }
@@ -526,31 +526,31 @@ static CharTransferTask *sub_0201EF1C(const NNSG2dImageProxy *param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < Unk_021C0760->unk_04; v0++) {
-        if (Unk_021C0760->unk_00[v0].unk_3C != 0) {
-            if (&Unk_021C0760->unk_00[v0].unk_10 == param0) {
+    for (v0 = 0; v0 < sTaskManager->capacity; v0++) {
+        if (sTaskManager->tasks[v0].state != 0) {
+            if (&sTaskManager->tasks[v0].imageProxy == param0) {
                 break;
             }
         }
     }
 
-    if (v0 >= Unk_021C0760->unk_04) {
+    if (v0 >= sTaskManager->capacity) {
         return NULL;
     }
 
-    return Unk_021C0760->unk_00 + v0;
+    return sTaskManager->tasks + v0;
 }
 
 static BOOL sub_0201EF68(CharTransferTask *param0)
 {
     BOOL v0 = 1;
 
-    if (param0->unk_08) {
-        param0->unk_3C = 2;
+    if (param0->transfer) {
+        param0->state = 2;
     } else {
-        param0->unk_3C = 1;
+        param0->state = 1;
 
-        if (param0->unk_44 == 0) {
+        if (param0->atEnd == 0) {
             v0 = sub_0201EF98(param0);
         } else {
             v0 = sub_0201EFCC(param0);
@@ -565,11 +565,11 @@ static BOOL sub_0201EF98(CharTransferTask *param0)
     BOOL v0 = 1;
     u32 v1, v2;
 
-    v0 = sub_0201F76C(param0->unk_00->szByte, param0->unk_04, &v1, &v2);
+    v0 = sub_0201F76C(param0->data->szByte, param0->vramType, &v1, &v2);
 
     if (v0) {
         sub_0201F09C(param0, v1, v2);
-        sub_0201F7BC(param0->unk_00->szByte, param0->unk_04);
+        sub_0201F7BC(param0->data->szByte, param0->vramType);
     }
 
     return v0;
@@ -581,7 +581,7 @@ static BOOL sub_0201EFCC(CharTransferTask *param0)
     u32 v2, v3;
     BOOL v4;
 
-    v4 = sub_0201F0B0(param0->unk_04, &v0, &v1, param0->unk_00->szByte, &v2, &v3);
+    v4 = sub_0201F0B0(param0->vramType, &v0, &v1, param0->data->szByte, &v2, &v3);
 
     if (v4 == 0) {
         return 0;
@@ -589,19 +589,19 @@ static BOOL sub_0201EFCC(CharTransferTask *param0)
 
     sub_0201F15C(param0, v0, v1);
 
-    param0->unk_48 = 1;
-    param0->unk_4C = v2;
-    param0->unk_50 = v3;
+    param0->haveRegion = 1;
+    param0->regionSizeMain = v2;
+    param0->regionSizeSub = v3;
 
     sub_0201F1F4(param0);
-    sub_0201F18C(param0->unk_04, v0, v1, v2, v3);
+    sub_0201F18C(param0->vramType, v0, v1, v2, v3);
 
     return 1;
 }
 
 static void sub_0201F024(CharTransferTask *param0)
 {
-    if (param0->unk_48) {
+    if (param0->haveRegion) {
         sub_0201F670(param0);
     }
 
@@ -612,9 +612,9 @@ static CharTransferTask *sub_0201F03C(int param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < Unk_021C0760->unk_04; v0++) {
-        if (Unk_021C0760->unk_00[v0].unk_0C == param0) {
-            return &Unk_021C0760->unk_00[v0];
+    for (v0 = 0; v0 < sTaskManager->capacity; v0++) {
+        if (sTaskManager->tasks[v0].resourceID == param0) {
+            return &sTaskManager->tasks[v0];
         }
     }
 
@@ -624,20 +624,20 @@ static CharTransferTask *sub_0201F03C(int param0)
 static int sub_0201F074(CharTransferTask *param0, int param1)
 {
     if (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) {
-        param0->unk_00->mapingType = GX_GetOBJVRamModeChar();
+        param0->data->mapingType = GX_GetOBJVRamModeChar();
     } else {
-        param0->unk_00->mapingType = GXS_GetOBJVRamModeChar();
+        param0->data->mapingType = GXS_GetOBJVRamModeChar();
     }
 
-    return param0->unk_00->mapingType;
+    return param0->data->mapingType;
 }
 
 static void sub_0201F09C(CharTransferTask *param0, u32 param1, u32 param2)
 {
-    param0->unk_34 = param1;
-    param0->unk_38 = param2;
+    param0->baseAddrMain = param1;
+    param0->baseAddrSub = param2;
 
-    if (!param0->unk_08) {
+    if (!param0->transfer) {
         sub_0201F1F4((void *)param0);
     }
 }
@@ -647,29 +647,29 @@ static BOOL sub_0201F0B0(int param0, u32 *param1, u32 *param2, u32 param3, u32 *
     u32 v0;
 
     if (param0 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        *param4 = sub_0201F734(param3, Unk_021C0760->unk_2C, 1);
-        v0 = sub_0201F754(*param4, Unk_021C0760->unk_2C);
-        *param1 = sub_0201F598(v0, Unk_021C0760->unk_34);
+        *param4 = sub_0201F734(param3, sTaskManager->blockSizeMain, 1);
+        v0 = sub_0201F754(*param4, sTaskManager->blockSizeMain);
+        *param1 = sub_0201F598(v0, sTaskManager->bufMain);
 
         if (*param1 == 0xffffffff) {
             GF_ASSERT(FALSE);
             return 0;
         }
 
-        *param1 = sub_0201F764(*param1, Unk_021C0760->unk_2C);
+        *param1 = sub_0201F764(*param1, sTaskManager->blockSizeMain);
     }
 
     if (param0 & NNS_G2D_VRAM_TYPE_2DSUB) {
-        *param5 = sub_0201F734(param3, Unk_021C0760->unk_30, 1);
-        v0 = sub_0201F754(*param5, Unk_021C0760->unk_30);
-        *param2 = sub_0201F598(v0, Unk_021C0760->unk_38);
+        *param5 = sub_0201F734(param3, sTaskManager->blockSizeSub, 1);
+        v0 = sub_0201F754(*param5, sTaskManager->blockSizeSub);
+        *param2 = sub_0201F598(v0, sTaskManager->bufSub);
 
         if (*param2 == 0xffffffff) {
             GF_ASSERT(FALSE);
             return 0;
         }
 
-        *param2 = sub_0201F764(*param2, Unk_021C0760->unk_30);
+        *param2 = sub_0201F764(*param2, sTaskManager->blockSizeSub);
     }
 
     return 1;
@@ -677,12 +677,12 @@ static BOOL sub_0201F0B0(int param0, u32 *param1, u32 *param2, u32 param3, u32 *
 
 static void sub_0201F15C(CharTransferTask *param0, u32 param1, u32 param2)
 {
-    if (param0->unk_04 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        param0->unk_34 = param1 + Unk_021C0760->unk_1C;
+    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        param0->baseAddrMain = param1 + sTaskManager->freeSizeMain;
     }
 
-    if (param0->unk_04 & NNS_G2D_VRAM_TYPE_2DSUB) {
-        param0->unk_38 = param2 + Unk_021C0760->unk_20;
+    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        param0->baseAddrSub = param2 + sTaskManager->freeSizeSub;
     }
 }
 
@@ -692,17 +692,17 @@ static void sub_0201F18C(int param0, u32 param1, u32 param2, u32 param3, u32 par
     int v1;
 
     if (param0 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        v0 = sub_0201F754(param3, Unk_021C0760->unk_2C);
-        v1 = sub_0201F754(param1, Unk_021C0760->unk_2C);
+        v0 = sub_0201F754(param3, sTaskManager->blockSizeMain);
+        v1 = sub_0201F754(param1, sTaskManager->blockSizeMain);
 
-        sub_0201F53C(v1, v0, Unk_021C0760->unk_34);
+        sub_0201F53C(v1, v0, sTaskManager->bufMain);
     }
 
     if (param0 & NNS_G2D_VRAM_TYPE_2DSUB) {
-        v0 = sub_0201F754(param4, Unk_021C0760->unk_30);
-        v1 = sub_0201F754(param2, Unk_021C0760->unk_30);
+        v0 = sub_0201F754(param4, sTaskManager->blockSizeSub);
+        v1 = sub_0201F754(param2, sTaskManager->blockSizeSub);
 
-        sub_0201F53C(v1, v0, Unk_021C0760->unk_38);
+        sub_0201F53C(v1, v0, sTaskManager->bufSub);
     }
 }
 
@@ -711,10 +711,10 @@ static void sub_0201F1F4(void *param0)
     CharTransferTask *v0 = (CharTransferTask *)param0;
     int v1;
 
-    NNS_G2dInitImageProxy(&v0->unk_10);
+    NNS_G2dInitImageProxy(&v0->imageProxy);
 
-    if (v0->unk_04 != NNS_G2D_VRAM_TYPE_MAX) {
-        sub_0201F220(v0, v0->unk_04);
+    if (v0->vramType != NNS_G2D_VRAM_TYPE_MAX) {
+        sub_0201F220(v0, v0->vramType);
     } else {
         sub_0201F220(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
         sub_0201F220(v0, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -727,24 +727,24 @@ static void sub_0201F220(CharTransferTask *param0, int param1)
     int v1;
     u32 v2;
 
-    if (param0->unk_40) {
+    if (param0->updateMappingType) {
         v0 = sub_0201F074(param0, param1);
     } else {
         v0 = param1;
     }
 
     if (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) {
-        v1 = param0->unk_34;
+        v1 = param0->baseAddrMain;
         v2 = GX_GetOBJVRamModeChar();
     } else {
-        v1 = param0->unk_38;
+        v1 = param0->baseAddrSub;
         v2 = GXS_GetOBJVRamModeChar();
     }
 
     if (v0 == GX_OBJVRAMMODE_CHAR_2D) {
-        NNS_G2dLoadImage2DMapping(param0->unk_00, v1, param1, &param0->unk_10);
+        NNS_G2dLoadImage2DMapping(param0->data, v1, param1, &param0->imageProxy);
     } else {
-        NNS_G2dLoadImage1DMapping(param0->unk_00, v1, param1, &param0->unk_10);
+        NNS_G2dLoadImage1DMapping(param0->data, v1, param1, &param0->imageProxy);
     }
 }
 
@@ -752,10 +752,10 @@ static void sub_0201F26C(void *param0)
 {
     CharTransferTask *v0 = (CharTransferTask *)param0;
 
-    NNS_G2dInitImageProxy(&v0->unk_10);
+    NNS_G2dInitImageProxy(&v0->imageProxy);
 
-    if (v0->unk_04 != NNS_G2D_VRAM_TYPE_MAX) {
-        sub_0201F298(v0, v0->unk_04);
+    if (v0->vramType != NNS_G2D_VRAM_TYPE_MAX) {
+        sub_0201F298(v0, v0->vramType);
     } else {
         sub_0201F298(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
         sub_0201F298(v0, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -768,30 +768,30 @@ static void sub_0201F298(CharTransferTask *param0, int param1)
     int v1;
     u32 v2;
 
-    if (param0->unk_40) {
+    if (param0->updateMappingType) {
         v0 = sub_0201F074(param0, param1);
     } else {
         v0 = param1;
     }
 
     if (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) {
-        v1 = param0->unk_34;
+        v1 = param0->baseAddrMain;
         v2 = GX_GetOBJVRamModeChar();
     } else {
-        v1 = param0->unk_38;
+        v1 = param0->baseAddrSub;
         v2 = GXS_GetOBJVRamModeChar();
     }
 
-    NNS_G2dLoadImageVramTransfer(param0->unk_00, v1, param1, &param0->unk_10);
+    NNS_G2dLoadImageVramTransfer(param0->data, v1, param1, &param0->imageProxy);
 }
 
 static CharTransferTask *sub_0201F2D0(void)
 {
     int v0;
 
-    for (v0 = 0; v0 < Unk_021C0760->unk_04; v0++) {
-        if (Unk_021C0760->unk_00[v0].unk_3C == 0) {
-            return &Unk_021C0760->unk_00[v0];
+    for (v0 = 0; v0 < sTaskManager->capacity; v0++) {
+        if (sTaskManager->tasks[v0].state == 0) {
+            return &sTaskManager->tasks[v0];
         }
     }
 
@@ -808,34 +808,34 @@ static void sub_0201F30C(void)
 
     switch (v0) {
     case GX_VRAM_OBJ_NONE:
-        Unk_021C0760->unk_14 = 0;
+        sTaskManager->vramSizeMain = 0;
         break;
     case GX_VRAM_OBJ_16_F:
     case GX_VRAM_OBJ_16_G:
-        Unk_021C0760->unk_14 = 16 * 1024;
+        sTaskManager->vramSizeMain = 16 * 1024;
         break;
     case GX_VRAM_OBJ_32_FG:
-        Unk_021C0760->unk_14 = 32 * 1024;
+        sTaskManager->vramSizeMain = 32 * 1024;
         break;
     case GX_VRAM_OBJ_64_E:
-        Unk_021C0760->unk_14 = 64 * 1024;
+        sTaskManager->vramSizeMain = 64 * 1024;
         break;
     case GX_VRAM_OBJ_80_EF:
     case GX_VRAM_OBJ_80_EG:
-        Unk_021C0760->unk_14 = 80 * 1024;
+        sTaskManager->vramSizeMain = 80 * 1024;
         break;
     case GX_VRAM_OBJ_96_EFG:
-        Unk_021C0760->unk_14 = 96 * 1024;
+        sTaskManager->vramSizeMain = 96 * 1024;
         break;
     case GX_VRAM_OBJ_128_A:
     case GX_VRAM_OBJ_128_B:
-        Unk_021C0760->unk_14 = 128 * 1024;
+        sTaskManager->vramSizeMain = 128 * 1024;
         break;
     case GX_VRAM_OBJ_256_AB:
-        Unk_021C0760->unk_14 = 256 * 1024;
+        sTaskManager->vramSizeMain = 256 * 1024;
         break;
     default:
-        Unk_021C0760->unk_14 = 0;
+        sTaskManager->vramSizeMain = 0;
         break;
     }
 
@@ -843,54 +843,54 @@ static void sub_0201F30C(void)
 
     switch (v1) {
     case GX_VRAM_SUB_OBJ_NONE:
-        Unk_021C0760->unk_18 = 0;
+        sTaskManager->vramSizeSub = 0;
         break;
     case GX_VRAM_SUB_OBJ_16_I:
-        Unk_021C0760->unk_18 = 16 * 1024;
+        sTaskManager->vramSizeSub = 16 * 1024;
         break;
     case GX_VRAM_SUB_OBJ_128_D:
-        Unk_021C0760->unk_18 = 128 * 1024;
+        sTaskManager->vramSizeSub = 128 * 1024;
         break;
     default:
-        Unk_021C0760->unk_18 = 0;
+        sTaskManager->vramSizeSub = 0;
         break;
     }
 
-    v2 = sub_0201F764(Unk_021C0760->unk_24, Unk_021C0760->unk_2C);
-    Unk_021C0760->unk_1C = Unk_021C0760->unk_14 - v2;
+    v2 = sub_0201F764(sTaskManager->numBlocksMain, sTaskManager->blockSizeMain);
+    sTaskManager->freeSizeMain = sTaskManager->vramSizeMain - v2;
 
-    v2 = sub_0201F764(Unk_021C0760->unk_28, Unk_021C0760->unk_30);
-    Unk_021C0760->unk_20 = Unk_021C0760->unk_18 - v2;
+    v2 = sub_0201F764(sTaskManager->numBlocksSub, sTaskManager->blockSizeSub);
+    sTaskManager->freeSizeSub = sTaskManager->vramSizeSub - v2;
 
-    GF_ASSERT((Unk_021C0760->unk_1C >= 0) && (Unk_021C0760->unk_20 >= 0));
-    GF_ASSERT((Unk_021C0760->unk_1C >= 0) && (Unk_021C0760->unk_20 >= 0));
+    GF_ASSERT((sTaskManager->freeSizeMain >= 0) && (sTaskManager->freeSizeSub >= 0));
+    GF_ASSERT((sTaskManager->freeSizeMain >= 0) && (sTaskManager->freeSizeSub >= 0));
 }
 
 void sub_0201F460(void)
 {
-    sub_0201F524(Unk_021C0760->unk_34);
-    sub_0201F524(Unk_021C0760->unk_38);
+    sub_0201F524(sTaskManager->bufMain);
+    sub_0201F524(sTaskManager->bufSub);
 }
 
 static void sub_0201F47C(u32 param0, u32 param1, int param2)
 {
-    Unk_021C0760->unk_24 = param0;
-    Unk_021C0760->unk_28 = param1;
+    sTaskManager->numBlocksMain = param0;
+    sTaskManager->numBlocksSub = param1;
 
-    if (Unk_021C0760->unk_34 != NULL) {
-        Heap_FreeToHeap(Unk_021C0760->unk_34);
+    if (sTaskManager->bufMain != NULL) {
+        Heap_FreeToHeap(sTaskManager->bufMain);
     }
 
-    if (Unk_021C0760->unk_38 != NULL) {
-        Heap_FreeToHeap(Unk_021C0760->unk_38);
+    if (sTaskManager->bufSub != NULL) {
+        Heap_FreeToHeap(sTaskManager->bufSub);
     }
 
-    if (Unk_021C0760->unk_24 != 0) {
-        Unk_021C0760->unk_34 = Heap_AllocFromHeap(param2, sizeof(u8) * (param0 / 8));
+    if (sTaskManager->numBlocksMain != 0) {
+        sTaskManager->bufMain = Heap_AllocFromHeap(param2, sizeof(u8) * (param0 / 8));
     }
 
-    if (Unk_021C0760->unk_28 != 0) {
-        Unk_021C0760->unk_38 = Heap_AllocFromHeap(param2, sizeof(u8) * (param1 / 8));
+    if (sTaskManager->numBlocksSub != 0) {
+        sTaskManager->bufSub = Heap_AllocFromHeap(param2, sizeof(u8) * (param1 / 8));
     }
 
     sub_0201F460();
@@ -899,12 +899,12 @@ static void sub_0201F47C(u32 param0, u32 param1, int param2)
 static void sub_0201F4E4(u8 *param0)
 {
     if (param0 != NULL) {
-        if (param0 == Unk_021C0760->unk_34) {
-            Unk_021C0760->unk_24 = 0;
+        if (param0 == sTaskManager->bufMain) {
+            sTaskManager->numBlocksMain = 0;
 
             Heap_FreeToHeap(param0);
         } else {
-            Unk_021C0760->unk_28 = 0;
+            sTaskManager->numBlocksSub = 0;
             Heap_FreeToHeap(param0);
         }
 
@@ -914,11 +914,11 @@ static void sub_0201F4E4(u8 *param0)
 
 static u32 sub_0201F50C(u8 *param0)
 {
-    if (param0 == Unk_021C0760->unk_34) {
-        return Unk_021C0760->unk_24;
+    if (param0 == sTaskManager->bufMain) {
+        return sTaskManager->numBlocksMain;
     }
 
-    return Unk_021C0760->unk_28;
+    return sTaskManager->numBlocksSub;
 }
 
 static void sub_0201F524(u8 *param0)
@@ -1023,21 +1023,21 @@ static void sub_0201F670(CharTransferTask *param0)
     u32 v0;
     u32 v1;
 
-    if (param0->unk_04 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        v0 = sub_0201F754(NNS_G2dGetImageLocation(&param0->unk_10, NNS_G2D_VRAM_TYPE_2DMAIN) - Unk_021C0760->unk_1C, Unk_021C0760->unk_2C);
-        v1 = sub_0201F754(param0->unk_4C, Unk_021C0760->unk_2C);
+    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        v0 = sub_0201F754(NNS_G2dGetImageLocation(&param0->imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN) - sTaskManager->freeSizeMain, sTaskManager->blockSizeMain);
+        v1 = sub_0201F754(param0->regionSizeMain, sTaskManager->blockSizeMain);
 
-        sub_0201F620(v0, v1, Unk_021C0760->unk_34);
+        sub_0201F620(v0, v1, sTaskManager->bufMain);
     }
 
-    if (param0->unk_04 & NNS_G2D_VRAM_TYPE_2DSUB) {
-        v0 = sub_0201F754(NNS_G2dGetImageLocation(&param0->unk_10, NNS_G2D_VRAM_TYPE_2DSUB) - Unk_021C0760->unk_20, Unk_021C0760->unk_30);
-        v1 = sub_0201F754(param0->unk_50, Unk_021C0760->unk_30);
+    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        v0 = sub_0201F754(NNS_G2dGetImageLocation(&param0->imageProxy, NNS_G2D_VRAM_TYPE_2DSUB) - sTaskManager->freeSizeSub, sTaskManager->blockSizeSub);
+        v1 = sub_0201F754(param0->regionSizeSub, sTaskManager->blockSizeSub);
 
-        sub_0201F620(v0, v1, Unk_021C0760->unk_38);
+        sub_0201F620(v0, v1, sTaskManager->bufSub);
     }
 
-    param0->unk_48 = 0;
+    param0->haveRegion = 0;
 }
 
 int sub_0201F6F4(int param0)
@@ -1101,20 +1101,20 @@ static BOOL sub_0201F76C(u32 param0, int param1, u32 *param2, u32 *param3)
     BOOL v0 = 1;
 
     if (param1 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        if ((Unk_021C0760->unk_0C + param0) > Unk_021C0760->unk_1C) {
+        if ((sTaskManager->offsetMain + param0) > sTaskManager->freeSizeMain) {
             GF_ASSERT(0);
             v0 = 0;
         } else {
-            *param2 = Unk_021C0760->unk_0C;
+            *param2 = sTaskManager->offsetMain;
         }
     }
 
     if (param1 & NNS_G2D_VRAM_TYPE_2DSUB) {
-        if ((Unk_021C0760->unk_10 + param0) > Unk_021C0760->unk_20) {
+        if ((sTaskManager->offsetSub + param0) > sTaskManager->freeSizeSub) {
             GF_ASSERT(0);
             v0 = 0;
         } else {
-            *param3 = Unk_021C0760->unk_10;
+            *param3 = sTaskManager->offsetSub;
         }
     }
 
@@ -1124,13 +1124,13 @@ static BOOL sub_0201F76C(u32 param0, int param1, u32 *param2, u32 *param3)
 static void sub_0201F7BC(u32 param0, int param1)
 {
     if (param1 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        Unk_021C0760->unk_0C += param0;
-        Unk_021C0760->unk_0C = sub_0201F734(Unk_021C0760->unk_0C, Unk_021C0760->unk_2C, 1);
+        sTaskManager->offsetMain += param0;
+        sTaskManager->offsetMain = sub_0201F734(sTaskManager->offsetMain, sTaskManager->blockSizeMain, 1);
     }
 
     if (param1 & NNS_G2D_VRAM_TYPE_2DSUB) {
-        Unk_021C0760->unk_10 += param0;
-        Unk_021C0760->unk_10 = sub_0201F734(Unk_021C0760->unk_10, Unk_021C0760->unk_30, 1);
+        sTaskManager->offsetSub += param0;
+        sTaskManager->offsetSub = sub_0201F734(sTaskManager->offsetSub, sTaskManager->blockSizeSub, 1);
     }
 }
 
