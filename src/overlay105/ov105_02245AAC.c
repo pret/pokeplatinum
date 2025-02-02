@@ -123,7 +123,7 @@ void ov105_02245C50(UnkStruct_ov105_02245AAC *param0)
 static void ov105_02245C98(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             32, 2048, 2048, 93
         };
 

@@ -216,7 +216,7 @@ void ov71_0223D298(UnkStruct_ov71_0223D238 *param0, const u8 param1, const u8 pa
 static void ov71_0223D2F4(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             1, 2048, 0, 25
         };
 

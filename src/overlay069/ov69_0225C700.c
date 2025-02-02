@@ -504,7 +504,7 @@ static const BgTemplate Unk_ov69_0225F154[5] = {
     },
 };
 
-static const UnkStruct_ov22_022559F8 Unk_ov69_0225F050 = {
+static const CharTransferTemplate Unk_ov69_0225F050 = {
     0x20,
     0x4000,
     0x4000,

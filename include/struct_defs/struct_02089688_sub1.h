@@ -24,7 +24,7 @@ typedef struct {
     BOOL unk_88;
     UnkStruct_02012744 *unk_8C;
     FontOAM *unk_90[2];
-    SpriteManagerAllocation unk_98[2];
+    CharTransferAllocation unk_98[2];
     Window unk_B0;
 } UnkStruct_02089688_sub1;
 

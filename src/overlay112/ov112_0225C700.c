@@ -178,7 +178,7 @@ static void ov112_0225D75C(UnkStruct_ov112_0225D73C *param0);
 static void ov112_0225D778(UnkStruct_ov112_0225D73C *param0);
 static void ov112_0225D784(UnkStruct_ov112_0225D73C *param0);
 
-static const UnkStruct_ov22_022559F8 Unk_ov112_0225D814 = {
+static const CharTransferTemplate Unk_ov112_0225D814 = {
     0x20,
     0x18000,
     0x4000,

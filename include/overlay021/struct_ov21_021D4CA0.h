@@ -7,7 +7,7 @@
 
 typedef struct {
     FontOAM *unk_00;
-    SpriteManagerAllocation unk_04;
+    CharTransferAllocation unk_04;
 } UnkStruct_ov21_021D4CA0;
 
 #endif // POKEPLATINUM_STRUCT_OV21_021D4CA0_H

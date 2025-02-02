@@ -251,7 +251,7 @@ typedef struct {
     Window unk_38;
     FontOAM *unk_48;
     UnkStruct_02012B20 *unk_4C;
-    SpriteManagerAllocation unk_50;
+    CharTransferAllocation unk_50;
     Strbuf *unk_5C;
     SpriteResource *unk_60;
     UnkStruct_ov115_02261304 unk_64;
@@ -3164,11 +3164,11 @@ static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 param1)
     sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param1);
 
     {
-        UnkStruct_ov22_022559F8 v1 = {
+        CharTransferTemplate v1 = {
             16, (128 * 1024), (16 * 1024), 0
         };
 
-        v1.unk_0C = param1;
+        v1.heapID = param1;
         sub_0201E88C(&v1, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
@@ -4443,7 +4443,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         v4.unk_08 = param1->unk_1C;
         v4.unk_0C = sub_0200A72C(param0->unk_60, NULL);
         v4.unk_10 = param0->unk_34;
-        v4.unk_14 = param0->unk_50.unk_04;
+        v4.unk_14 = param0->unk_50.offset;
         v4.unk_18 = -7;
         v4.unk_1C = -5;
         v4.unk_20 = 0;

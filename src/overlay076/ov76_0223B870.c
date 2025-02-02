@@ -166,7 +166,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     v0.unk_08 = sub_0200D9B0(param0->unk_D4.unk_0C);
     v0.unk_0C = sub_0200D04C(param0->unk_D4.unk_0C, v2);
     v0.unk_10 = NULL;
-    v0.unk_14 = param0->unk_D4.unk_16C[param1].unk_04;
+    v0.unk_14 = param0->unk_D4.unk_16C[param1].offset;
     v0.unk_18 = param2 - Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0) / 2;
     v0.unk_1C = param3 + 192;
     v0.unk_20 = 1;

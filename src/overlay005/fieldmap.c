@@ -673,7 +673,7 @@ static void ov5_021D1578(UnkStruct_ov5_021D5894 *param0)
 void ov5_021D15B4(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20, 0x8000, 0x4000, 4
         };
 

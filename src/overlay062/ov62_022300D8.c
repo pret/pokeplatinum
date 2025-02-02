@@ -673,7 +673,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
             v2.unk_08 = sub_0200D9B0(param0->unk_14.unk_08);
             v2.unk_0C = sub_0200D04C(param0->unk_14.unk_08, v9[v11]);
             v2.unk_10 = v7[v11]->unk_00->unk_00;
-            v2.unk_14 = v7[v11]->unk_1C.unk_04;
+            v2.unk_14 = v7[v11]->unk_1C.offset;
             v2.unk_18 = v0 + 36;
             v2.unk_1C = v1 + -8;
             v2.unk_20 = 3;
@@ -789,7 +789,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     v2.unk_08 = sub_0200D9B0(param1->unk_08);
     v2.unk_0C = sub_0200D04C(param1->unk_08, v7);
     v2.unk_10 = param0->unk_08->unk_00;
-    v2.unk_14 = param0->unk_14.unk_04;
+    v2.unk_14 = param0->unk_14.offset;
     v2.unk_18 = v0 + 36;
     v2.unk_1C = v1 + -8;
     v2.unk_20 = 3;

@@ -200,7 +200,7 @@ void ov107_022499FC(UnkStruct_ov107_02249954 *param0, u16 param1)
 static void ov107_02249A3C(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             32, 1024, 1024, 100
         };
 

@@ -105,12 +105,12 @@ BOOL sub_0200C73C(SpriteRenderer *param0, const UnkStruct_ov104_0224133C *param1
     }
 
     {
-        UnkStruct_ov22_022559F8 v0;
+        CharTransferTemplate v0;
 
-        v0.unk_00 = param2->unk_00;
-        v0.unk_04 = param2->unk_04;
-        v0.unk_08 = param2->unk_08;
-        v0.unk_0C = param0->unk_00;
+        v0.maxTasks = param2->unk_00;
+        v0.sizeMain = param2->unk_04;
+        v0.sizeSub = param2->unk_08;
+        v0.heapID = param0->unk_00;
 
         sub_0201E88C(&v0, param2->unk_0C, param2->unk_10);
     }

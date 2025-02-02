@@ -6,7 +6,7 @@
 #include "heap.h"
 #include "unk_0201DBEC.h"
 
-typedef struct {
+typedef struct CharTransferTask {
     NNSG2dCharacterData *unk_00;
     NNS_G2D_VRAM_TYPE unk_04;
     u8 unk_08;
@@ -20,10 +20,10 @@ typedef struct {
     BOOL unk_48;
     u32 unk_4C;
     u32 unk_50;
-} UnkStruct_0201EED4;
+} CharTransferTask;
 
-typedef struct {
-    UnkStruct_0201EED4 *unk_00;
+typedef struct CharTransferTaskManager {
+    CharTransferTask *unk_00;
     int unk_04;
     int unk_08;
     u32 unk_0C;
@@ -38,35 +38,35 @@ typedef struct {
     u32 unk_30;
     u8 *unk_34;
     u8 *unk_38;
-} UnkStruct_021C0760;
+} CharTransferTaskManager;
 
-static void sub_0201EED4(UnkStruct_0201EED4 *param0);
-static BOOL sub_0201EEF8(const UnkStruct_0200A328 *param0, UnkStruct_0201EED4 *param1);
-static UnkStruct_0201EED4 *sub_0201EF1C(const NNSG2dImageProxy *param0);
-static BOOL sub_0201EF68(UnkStruct_0201EED4 *param0);
-static BOOL sub_0201EF98(UnkStruct_0201EED4 *param0);
-static BOOL sub_0201EFCC(UnkStruct_0201EED4 *param0);
-static void sub_0201F09C(UnkStruct_0201EED4 *param0, u32 param1, u32 param2);
+static void sub_0201EED4(CharTransferTask *param0);
+static BOOL sub_0201EEF8(const CharTransferTaskTemplate *param0, CharTransferTask *param1);
+static CharTransferTask *sub_0201EF1C(const NNSG2dImageProxy *param0);
+static BOOL sub_0201EF68(CharTransferTask *param0);
+static BOOL sub_0201EF98(CharTransferTask *param0);
+static BOOL sub_0201EFCC(CharTransferTask *param0);
+static void sub_0201F09C(CharTransferTask *param0, u32 param1, u32 param2);
 static BOOL sub_0201F0B0(int param0, u32 *param1, u32 *param2, u32 param3, u32 *param4, u32 *param5);
-static void sub_0201F15C(UnkStruct_0201EED4 *param0, u32 param1, u32 param2);
+static void sub_0201F15C(CharTransferTask *param0, u32 param1, u32 param2);
 static void sub_0201F18C(int param0, u32 param1, u32 param2, u32 param3, u32 param4);
 static void sub_0201F1F4(void *param0);
-static void sub_0201F220(UnkStruct_0201EED4 *param0, int param1);
+static void sub_0201F220(CharTransferTask *param0, int param1);
 static void sub_0201F26C(void *param0);
-static void sub_0201F298(UnkStruct_0201EED4 *param0, int param1);
+static void sub_0201F298(CharTransferTask *param0, int param1);
 static u32 sub_0201F50C(u8 *param0);
-static UnkStruct_0201EED4 *sub_0201F2D0(void);
+static CharTransferTask *sub_0201F2D0(void);
 static void sub_0201F30C(void);
-static void sub_0201F024(UnkStruct_0201EED4 *param0);
-static void sub_0201F670(UnkStruct_0201EED4 *param0);
-static UnkStruct_0201EED4 *sub_0201F03C(int param0);
+static void sub_0201F024(CharTransferTask *param0);
+static void sub_0201F670(CharTransferTask *param0);
+static CharTransferTask *sub_0201F03C(int param0);
 static void sub_0201F47C(u32 param0, u32 param1, int param2);
 static void sub_0201F4E4(u8 *param0);
 static void sub_0201F524(u8 *param0);
 static void sub_0201F53C(u32 param0, u32 param1, u8 *param2);
 static u32 sub_0201F598(u32 param0, u8 *param1);
 static void sub_0201F620(u32 param0, u32 param1, u8 *param2);
-static int sub_0201F074(UnkStruct_0201EED4 *param0, int param1);
+static int sub_0201F074(CharTransferTask *param0, int param1);
 static BOOL sub_0201F76C(u32 param0, int param1, u32 *param2, u32 *param3);
 static void sub_0201F7BC(u32 param0, int param1);
 static void sub_0201F80C(int param0, u32 *param1, u8 *param2);
@@ -75,27 +75,27 @@ static int sub_0201F754(int param0, int param1);
 static int sub_0201F764(int param0, int param1);
 static void sub_0201F818(u32 param0, u32 param1, u32 param2, int *param3, int *param4);
 
-static UnkStruct_021C0760 *Unk_021C0760 = NULL;
+static CharTransferTaskManager *Unk_021C0760 = NULL;
 
-void sub_0201E86C(const UnkStruct_ov22_022559F8 *param0)
+void sub_0201E86C(const CharTransferTemplate *param0)
 {
     sub_0201E88C(param0, GX_GetOBJVRamModeChar(), GXS_GetOBJVRamModeChar());
 }
 
-void sub_0201E88C(const UnkStruct_ov22_022559F8 *param0, GXOBJVRamModeChar param1, GXOBJVRamModeChar param2)
+void sub_0201E88C(const CharTransferTemplate *param0, GXOBJVRamModeChar param1, GXOBJVRamModeChar param2)
 {
     int v0;
     int v1;
     int v2;
 
     if (Unk_021C0760 == NULL) {
-        Unk_021C0760 = Heap_AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_021C0760));
-        MI_CpuClear32(Unk_021C0760, sizeof(UnkStruct_021C0760));
+        Unk_021C0760 = Heap_AllocFromHeap(param0->heapID, sizeof(CharTransferTaskManager));
+        MI_CpuClear32(Unk_021C0760, sizeof(CharTransferTaskManager));
 
-        Unk_021C0760->unk_04 = param0->unk_00;
-        Unk_021C0760->unk_00 = Heap_AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_0201EED4) * Unk_021C0760->unk_04);
+        Unk_021C0760->unk_04 = param0->maxTasks;
+        Unk_021C0760->unk_00 = Heap_AllocFromHeap(param0->heapID, sizeof(CharTransferTask) * Unk_021C0760->unk_04);
 
-        for (v0 = 0; v0 < param0->unk_00; v0++) {
+        for (v0 = 0; v0 < param0->maxTasks; v0++) {
             sub_0201EED4(Unk_021C0760->unk_00 + v0);
         }
 
@@ -105,10 +105,10 @@ void sub_0201E88C(const UnkStruct_ov22_022559F8 *param0, GXOBJVRamModeChar param
         GX_SetOBJVRamModeChar(param1);
         GXS_SetOBJVRamModeChar(param2);
 
-        v1 = sub_0201F754(param0->unk_04, Unk_021C0760->unk_2C);
-        v2 = sub_0201F754(param0->unk_08, Unk_021C0760->unk_30);
+        v1 = sub_0201F754(param0->sizeMain, Unk_021C0760->unk_2C);
+        v2 = sub_0201F754(param0->sizeSub, Unk_021C0760->unk_30);
 
-        sub_0201F47C(v1, v2, param0->unk_0C);
+        sub_0201F47C(v1, v2, param0->heapID);
     }
 }
 
@@ -158,14 +158,14 @@ void sub_0201E9C0(u32 param0, u32 param1, u32 param2)
     }
 }
 
-BOOL sub_0201EA24(const UnkStruct_0200A328 *param0)
+BOOL sub_0201EA24(const CharTransferTaskTemplate *param0)
 {
-    UnkStruct_0201EED4 *v0;
+    CharTransferTask *v0;
     u32 *v1;
     u8 v2 = 0;
     u32 v3;
 
-    if (sub_0201EAD8(param0->unk_08) == 1) {
+    if (sub_0201EAD8(param0->resourceID) == 1) {
         GF_ASSERT(FALSE);
     }
 
@@ -190,14 +190,14 @@ BOOL sub_0201EA24(const UnkStruct_0200A328 *param0)
     return 1;
 }
 
-BOOL sub_0201EA7C(const UnkStruct_0200A328 *param0)
+BOOL sub_0201EA7C(const CharTransferTaskTemplate *param0)
 {
-    UnkStruct_0201EED4 *v0;
+    CharTransferTask *v0;
     u32 *v1;
     u8 v2 = 0;
     u32 v3;
 
-    if (sub_0201EAD8(param0->unk_08) == 1) {
+    if (sub_0201EAD8(param0->resourceID) == 1) {
         GF_ASSERT(FALSE);
     }
 
@@ -239,7 +239,7 @@ BOOL sub_0201EAD8(int param0)
 
 void sub_0201EB08(int param0, NNSG2dCharacterData *param1)
 {
-    UnkStruct_0201EED4 *v0;
+    CharTransferTask *v0;
 
     GF_ASSERT(param1);
 
@@ -258,7 +258,7 @@ void sub_0201EB08(int param0, NNSG2dCharacterData *param1)
 
 void sub_0201EB50(int param0)
 {
-    UnkStruct_0201EED4 *v0;
+    CharTransferTask *v0;
     int v1 = 1;
 
     do {
@@ -292,7 +292,7 @@ void sub_0201EBA0(void)
 
 NNSG2dImageProxy *sub_0201EBDC(int param0)
 {
-    UnkStruct_0201EED4 *v0;
+    CharTransferTask *v0;
 
     v0 = sub_0201F03C(param0);
     GF_ASSERT(v0);
@@ -307,8 +307,8 @@ NNSG2dImageProxy *sub_0201EBDC(int param0)
 NNSG2dImageProxy *sub_0201EC00(int param0, u32 param1)
 {
     u32 v0, v1;
-    UnkStruct_0201EED4 *v2;
-    UnkStruct_0201EED4 *v3;
+    CharTransferTask *v2;
+    CharTransferTask *v3;
     u32 v4, v5;
 
     v2 = sub_0201F03C(param0);
@@ -341,8 +341,8 @@ NNSG2dImageProxy *sub_0201EC00(int param0, u32 param1)
 
 NNSG2dImageProxy *sub_0201EC84(const NNSG2dImageProxy *param0)
 {
-    UnkStruct_0201EED4 *v0;
-    UnkStruct_0201EED4 *v1;
+    CharTransferTask *v0;
+    CharTransferTask *v1;
     u32 v2, v3;
     u32 v4, v5;
     u32 v6;
@@ -405,7 +405,7 @@ void sub_0201ED1C(const NNSG2dImageProxy *param0)
     }
 }
 
-BOOL sub_0201ED94(int param0, int param1, int param2, SpriteManagerAllocation *param3)
+BOOL sub_0201ED94(int param0, int param1, int param2, CharTransferAllocation *param3)
 {
     u32 v0, v1;
     u32 v2, v3;
@@ -417,16 +417,16 @@ BOOL sub_0201ED94(int param0, int param1, int param2, SpriteManagerAllocation *p
         if (v4) {
             sub_0201F7BC(param0, param2);
 
-            param3->unk_08 = param2;
-            param3->unk_00 = param0;
+            param3->vramType = param2;
+            param3->size = param0;
 
             if (param2 == NNS_G2D_VRAM_TYPE_2DMAIN) {
-                param3->unk_04 = v0;
+                param3->offset = v0;
             } else {
-                param3->unk_04 = v1;
+                param3->offset = v1;
             }
 
-            param3->unk_0A = 0;
+            param3->atEnd = 0;
         }
     } else {
         v4 = sub_0201F0B0(param2, &v0, &v1, param0, &v2, &v3);
@@ -434,42 +434,42 @@ BOOL sub_0201ED94(int param0, int param1, int param2, SpriteManagerAllocation *p
         if (v4) {
             sub_0201F18C(param2, v0, v1, v2, v3);
 
-            param3->unk_08 = param2;
+            param3->vramType = param2;
 
             if (param2 == NNS_G2D_VRAM_TYPE_2DMAIN) {
-                param3->unk_00 = v2;
-                param3->unk_04 = v0 + Unk_021C0760->unk_1C;
+                param3->size = v2;
+                param3->offset = v0 + Unk_021C0760->unk_1C;
             } else {
-                param3->unk_00 = v3;
-                param3->unk_04 = v1 + Unk_021C0760->unk_20;
+                param3->size = v3;
+                param3->offset = v1 + Unk_021C0760->unk_20;
             }
 
-            param3->unk_0A = 1;
+            param3->atEnd = 1;
         }
     }
 
     return v4;
 }
 
-void sub_0201EE28(SpriteManagerAllocation *param0)
+void sub_0201EE28(CharTransferAllocation *param0)
 {
     int v0;
     int v1;
 
-    if (param0->unk_0A == 0) {
+    if (param0->atEnd == 0) {
         return;
     }
 
-    if (param0->unk_08 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        v0 = sub_0201F754(param0->unk_00, Unk_021C0760->unk_2C);
-        v1 = sub_0201F754(param0->unk_04 - Unk_021C0760->unk_1C, Unk_021C0760->unk_2C);
+    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        v0 = sub_0201F754(param0->size, Unk_021C0760->unk_2C);
+        v1 = sub_0201F754(param0->offset - Unk_021C0760->unk_1C, Unk_021C0760->unk_2C);
 
         sub_0201F620(v1, v0, Unk_021C0760->unk_34);
     }
 
-    if (param0->unk_08 & NNS_G2D_VRAM_TYPE_2DSUB) {
-        v0 = sub_0201F754(param0->unk_00, Unk_021C0760->unk_30);
-        v1 = sub_0201F754(param0->unk_04 - Unk_021C0760->unk_20, Unk_021C0760->unk_30);
+    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        v0 = sub_0201F754(param0->size, Unk_021C0760->unk_30);
+        v1 = sub_0201F754(param0->offset - Unk_021C0760->unk_20, Unk_021C0760->unk_30);
 
         sub_0201F620(v1, v0, Unk_021C0760->unk_38);
     }
@@ -493,7 +493,7 @@ void sub_0201EEB8(void *param0)
     Unk_021C0760 = param0;
 }
 
-static void sub_0201EED4(UnkStruct_0201EED4 *param0)
+static void sub_0201EED4(CharTransferTask *param0)
 {
     param0->unk_00 = NULL;
     param0->unk_04 = 0;
@@ -507,13 +507,13 @@ static void sub_0201EED4(UnkStruct_0201EED4 *param0)
     NNS_G2dInitImageProxy(&param0->unk_10);
 }
 
-static BOOL sub_0201EEF8(const UnkStruct_0200A328 *param0, UnkStruct_0201EED4 *param1)
+static BOOL sub_0201EEF8(const CharTransferTaskTemplate *param0, CharTransferTask *param1)
 {
-    param1->unk_00 = param0->unk_00;
-    param1->unk_0C = param0->unk_08;
-    param1->unk_04 = param0->unk_04;
+    param1->unk_00 = param0->data;
+    param1->unk_0C = param0->resourceID;
+    param1->unk_04 = param0->vramType;
     param1->unk_08 = param1->unk_00->characterFmt >> 8;
-    param1->unk_44 = param0->unk_0C;
+    param1->unk_44 = param0->atEnd;
 
     param1->unk_48 = 0;
     param1->unk_4C = 0;
@@ -522,7 +522,7 @@ static BOOL sub_0201EEF8(const UnkStruct_0200A328 *param0, UnkStruct_0201EED4 *p
     return 1;
 }
 
-static UnkStruct_0201EED4 *sub_0201EF1C(const NNSG2dImageProxy *param0)
+static CharTransferTask *sub_0201EF1C(const NNSG2dImageProxy *param0)
 {
     int v0;
 
@@ -541,7 +541,7 @@ static UnkStruct_0201EED4 *sub_0201EF1C(const NNSG2dImageProxy *param0)
     return Unk_021C0760->unk_00 + v0;
 }
 
-static BOOL sub_0201EF68(UnkStruct_0201EED4 *param0)
+static BOOL sub_0201EF68(CharTransferTask *param0)
 {
     BOOL v0 = 1;
 
@@ -560,7 +560,7 @@ static BOOL sub_0201EF68(UnkStruct_0201EED4 *param0)
     return v0;
 }
 
-static BOOL sub_0201EF98(UnkStruct_0201EED4 *param0)
+static BOOL sub_0201EF98(CharTransferTask *param0)
 {
     BOOL v0 = 1;
     u32 v1, v2;
@@ -575,7 +575,7 @@ static BOOL sub_0201EF98(UnkStruct_0201EED4 *param0)
     return v0;
 }
 
-static BOOL sub_0201EFCC(UnkStruct_0201EED4 *param0)
+static BOOL sub_0201EFCC(CharTransferTask *param0)
 {
     u32 v0, v1;
     u32 v2, v3;
@@ -599,7 +599,7 @@ static BOOL sub_0201EFCC(UnkStruct_0201EED4 *param0)
     return 1;
 }
 
-static void sub_0201F024(UnkStruct_0201EED4 *param0)
+static void sub_0201F024(CharTransferTask *param0)
 {
     if (param0->unk_48) {
         sub_0201F670(param0);
@@ -608,7 +608,7 @@ static void sub_0201F024(UnkStruct_0201EED4 *param0)
     sub_0201EED4(param0);
 }
 
-static UnkStruct_0201EED4 *sub_0201F03C(int param0)
+static CharTransferTask *sub_0201F03C(int param0)
 {
     int v0;
 
@@ -621,7 +621,7 @@ static UnkStruct_0201EED4 *sub_0201F03C(int param0)
     return NULL;
 }
 
-static int sub_0201F074(UnkStruct_0201EED4 *param0, int param1)
+static int sub_0201F074(CharTransferTask *param0, int param1)
 {
     if (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) {
         param0->unk_00->mapingType = GX_GetOBJVRamModeChar();
@@ -632,7 +632,7 @@ static int sub_0201F074(UnkStruct_0201EED4 *param0, int param1)
     return param0->unk_00->mapingType;
 }
 
-static void sub_0201F09C(UnkStruct_0201EED4 *param0, u32 param1, u32 param2)
+static void sub_0201F09C(CharTransferTask *param0, u32 param1, u32 param2)
 {
     param0->unk_34 = param1;
     param0->unk_38 = param2;
@@ -675,7 +675,7 @@ static BOOL sub_0201F0B0(int param0, u32 *param1, u32 *param2, u32 param3, u32 *
     return 1;
 }
 
-static void sub_0201F15C(UnkStruct_0201EED4 *param0, u32 param1, u32 param2)
+static void sub_0201F15C(CharTransferTask *param0, u32 param1, u32 param2)
 {
     if (param0->unk_04 & NNS_G2D_VRAM_TYPE_2DMAIN) {
         param0->unk_34 = param1 + Unk_021C0760->unk_1C;
@@ -708,7 +708,7 @@ static void sub_0201F18C(int param0, u32 param1, u32 param2, u32 param3, u32 par
 
 static void sub_0201F1F4(void *param0)
 {
-    UnkStruct_0201EED4 *v0 = (UnkStruct_0201EED4 *)param0;
+    CharTransferTask *v0 = (CharTransferTask *)param0;
     int v1;
 
     NNS_G2dInitImageProxy(&v0->unk_10);
@@ -721,7 +721,7 @@ static void sub_0201F1F4(void *param0)
     }
 }
 
-static void sub_0201F220(UnkStruct_0201EED4 *param0, int param1)
+static void sub_0201F220(CharTransferTask *param0, int param1)
 {
     int v0;
     int v1;
@@ -750,7 +750,7 @@ static void sub_0201F220(UnkStruct_0201EED4 *param0, int param1)
 
 static void sub_0201F26C(void *param0)
 {
-    UnkStruct_0201EED4 *v0 = (UnkStruct_0201EED4 *)param0;
+    CharTransferTask *v0 = (CharTransferTask *)param0;
 
     NNS_G2dInitImageProxy(&v0->unk_10);
 
@@ -762,7 +762,7 @@ static void sub_0201F26C(void *param0)
     }
 }
 
-static void sub_0201F298(UnkStruct_0201EED4 *param0, int param1)
+static void sub_0201F298(CharTransferTask *param0, int param1)
 {
     int v0;
     int v1;
@@ -785,7 +785,7 @@ static void sub_0201F298(UnkStruct_0201EED4 *param0, int param1)
     NNS_G2dLoadImageVramTransfer(param0->unk_00, v1, param1, &param0->unk_10);
 }
 
-static UnkStruct_0201EED4 *sub_0201F2D0(void)
+static CharTransferTask *sub_0201F2D0(void)
 {
     int v0;
 
@@ -1018,7 +1018,7 @@ static void sub_0201F620(u32 param0, u32 param1, u8 *param2)
     }
 }
 
-static void sub_0201F670(UnkStruct_0201EED4 *param0)
+static void sub_0201F670(CharTransferTask *param0)
 {
     u32 v0;
     u32 v1;

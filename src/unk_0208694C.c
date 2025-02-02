@@ -1519,7 +1519,7 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
 void sub_020877C4(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20, 2048, 2048, 18
         };
 

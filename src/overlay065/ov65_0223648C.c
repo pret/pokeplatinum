@@ -838,11 +838,11 @@ static void ov65_02236D50(UnkStruct_ov65_02236840 *param0, u32 param1)
     sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param1);
 
     {
-        UnkStruct_ov22_022559F8 v1 = {
+        CharTransferTemplate v1 = {
             4, (128 * 1024), (16 * 1024), 0
         };
 
-        v1.unk_0C = param1;
+        v1.heapID = param1;
         sub_0201E88C(&v1, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 

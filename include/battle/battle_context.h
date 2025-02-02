@@ -109,7 +109,7 @@ typedef struct BattleScriptTaskData {
     BallRotation *ballRotation;
     CellActorData *cellActorData[2];
     FontOAM *fontOAM;
-    SpriteManagerAllocation spriteMgrAlloc;
+    CharTransferAllocation spriteMgrAlloc;
     int flag;
     int seqNum;
     int ball;

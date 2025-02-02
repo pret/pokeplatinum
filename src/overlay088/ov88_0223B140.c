@@ -1222,7 +1222,7 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
 static void ov88_0223C63C(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20, 2048, 2048, 26
         };
 

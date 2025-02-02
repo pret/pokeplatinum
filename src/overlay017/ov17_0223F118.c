@@ -114,7 +114,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
 {
     UnkStruct_020127E8 v0;
     Window v1;
-    SpriteManagerAllocation v2;
+    CharTransferAllocation v2;
     int v3;
     FontOAM *v4;
     int v5, v6;
@@ -149,7 +149,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
     v0.unk_08 = sub_0200D9B0(param2);
     v0.unk_0C = sub_0200D04C(param2, param9);
     v0.unk_10 = NULL;
-    v0.unk_14 = v2.unk_04;
+    v0.unk_14 = v2.offset;
     v0.unk_18 = param10;
     v0.unk_1C = param11;
     v0.unk_20 = param13;

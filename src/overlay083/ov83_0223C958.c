@@ -299,13 +299,13 @@ static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
     sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, param0->unk_00);
 
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             32,
             0x20000,
             0x0,
         };
 
-        v0.unk_0C = param0->unk_00;
+        v0.heapID = param0->unk_00;
 
         sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }

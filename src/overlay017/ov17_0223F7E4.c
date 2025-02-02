@@ -96,7 +96,7 @@ typedef struct {
 
 typedef struct {
     FontOAM *unk_00;
-    SpriteManagerAllocation unk_04;
+    CharTransferAllocation unk_04;
     u16 unk_10;
 } UnkStruct_ov17_02240138;
 
@@ -947,7 +947,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
 {
     UnkStruct_020127E8 v0;
     Window v1;
-    SpriteManagerAllocation v2;
+    CharTransferAllocation v2;
     int v3;
     FontOAM *v4;
     BgConfig *v5;
@@ -988,7 +988,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     v0.unk_08 = sub_0200D9B0(v6);
     v0.unk_0C = sub_0200D04C(v6, param6);
     v0.unk_10 = NULL;
-    v0.unk_14 = v2.unk_04;
+    v0.unk_14 = v2.offset;
     v0.unk_18 = param7;
     v0.unk_1C = param8;
     v0.unk_20 = 0;

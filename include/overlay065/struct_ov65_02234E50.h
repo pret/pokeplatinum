@@ -36,7 +36,7 @@ typedef struct {
     Window unk_1FC;
     SpriteResource *unk_20C[4];
     CellActor *unk_21C[3];
-    SpriteManagerAllocation unk_228;
+    CharTransferAllocation unk_228;
     FontOAM *unk_234;
     u32 unk_238;
     u32 unk_23C;

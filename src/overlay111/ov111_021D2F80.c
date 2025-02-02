@@ -171,7 +171,7 @@ void ov111_021D3320(UnkStruct_ov111_021D2F80 *param0)
 static void ov111_021D3378(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             5, 3000, 5120, 115
         };
 

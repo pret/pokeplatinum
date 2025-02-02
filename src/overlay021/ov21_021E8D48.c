@@ -770,11 +770,11 @@ static Sprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1, int pa
 
 static void ov21_021E9A0C(int param0)
 {
-    UnkStruct_ov22_022559F8 v0 = {
+    CharTransferTemplate v0 = {
         32, (1024 * 0x40), (512 * 0x20), 0
     };
 
-    v0.unk_0C = param0;
+    v0.heapID = param0;
     sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
 }
 

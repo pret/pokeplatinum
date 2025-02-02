@@ -93,7 +93,7 @@ static void ov77_021D54B0()
     const int v0 = 76;
 
     {
-        UnkStruct_ov22_022559F8 v1 = {
+        CharTransferTemplate v1 = {
             11, 0x8000, 0x4000, v0
         };
 

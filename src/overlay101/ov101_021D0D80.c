@@ -480,7 +480,7 @@ void ov101_021D14E4(UnkStruct_ov101_021D13C8 *param0)
 
 static void ov101_021D150C(void)
 {
-    UnkStruct_ov22_022559F8 v0 = {
+    CharTransferTemplate v0 = {
         32, 0x4000, 0x4000, 79
     };
 

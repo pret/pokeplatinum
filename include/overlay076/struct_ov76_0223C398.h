@@ -45,7 +45,7 @@ typedef struct {
     GenericPointerData *unk_15C;
     UnkStruct_02012744 *unk_160;
     FontOAM *unk_164[2];
-    SpriteManagerAllocation unk_16C[2];
+    CharTransferAllocation unk_16C[2];
     BOOL unk_184;
     PokemonAnimationSys *unk_188;
     BOOL unk_18C;

@@ -351,7 +351,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
 
     GF_ASSERT(sub_0201ED94(sub_02012898(param4, NNS_G2D_VRAM_TYPE_2DMAIN, 13), 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_14));
 
-    v0.unk_24 = param0->unk_14.unk_04;
+    v0.unk_24 = param0->unk_14.offset;
 
     ov22_02259C9C(param0, &v0);
 }

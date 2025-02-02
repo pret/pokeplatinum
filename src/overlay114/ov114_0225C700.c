@@ -472,7 +472,7 @@ static const u8 Unk_ov114_022600CC[3] = {
     0x0
 };
 
-static const UnkStruct_ov22_022559F8 Unk_ov114_0226017C = {
+static const CharTransferTemplate Unk_ov114_0226017C = {
     0x0,
     0x4000,
     0x4000,
@@ -1375,10 +1375,10 @@ static void ov114_0225CFCC(UnkStruct_ov114_0225CFCC *param0, u32 param1, u32 par
     sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param4);
 
     {
-        UnkStruct_ov22_022559F8 v1 = Unk_ov114_0226017C;
+        CharTransferTemplate v1 = Unk_ov114_0226017C;
 
-        v1.unk_00 = param2;
-        v1.unk_0C = param4;
+        v1.maxTasks = param2;
+        v1.heapID = param4;
 
         sub_0201E88C(&v1, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }

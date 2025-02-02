@@ -12,7 +12,7 @@ typedef struct {
     CellActorData *unk_08;
     FontOAM *unk_0C;
     UnkStruct_02012B20 *unk_10;
-    SpriteManagerAllocation unk_14;
+    CharTransferAllocation unk_14;
 } UnkStruct_ov62_022312B0;
 
 #endif // POKEPLATINUM_STRUCT_OV62_022312B0_H

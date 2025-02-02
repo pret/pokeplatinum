@@ -12207,7 +12207,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     BgConfig *v8;
     Window v9;
     int v10;
-    SpriteManagerAllocation v11;
+    CharTransferAllocation v11;
     UnkStruct_020127E8 v12;
     int v13;
 
@@ -12269,7 +12269,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     v12.unk_08 = sub_0200D9B0(v2);
     v12.unk_0C = sub_0200D04C(v2, 20016);
     v12.unk_10 = NULL;
-    v12.unk_14 = v11.unk_04;
+    v12.unk_14 = v11.offset;
     v12.unk_18 = 176;
     v12.unk_1C = 8;
     v12.unk_20 = 0;

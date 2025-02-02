@@ -300,14 +300,14 @@ int ov97_02237A18(UnkStruct_ov97_02237808 *param0)
 void ov97_02237A20(void)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
-    UnkStruct_ov22_022559F8 v1 = {
+    CharTransferTemplate v1 = {
         40,
         4096,
         4096,
         NULL,
     };
 
-    v1.unk_0C = v0->unk_08;
+    v1.heapID = v0->unk_08;
 
     sub_0201E88C(&v1, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     sub_0201F834(30, v0->unk_08);

@@ -91,7 +91,7 @@ UnkStruct_ov21_021D4CA0 *ov21_021D4CB8(const UnkStruct_ov21_021D4CB8 *param0, in
     v0.unk_08 = param0->unk_00->unk_04;
     v0.unk_0C = param0->unk_08;
     v0.unk_10 = param0->unk_0C;
-    v0.unk_14 = v1->unk_04.unk_04;
+    v0.unk_14 = v1->unk_04.offset;
     v0.unk_18 = param0->unk_10;
     v0.unk_1C = param0->unk_14;
     v0.unk_20 = param0->unk_18;

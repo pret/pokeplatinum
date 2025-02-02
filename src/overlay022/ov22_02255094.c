@@ -689,7 +689,7 @@ static void ov22_022559E0(UnkStruct_ov22_0225A0E4 *param0)
 static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             8,
             0x8000,
             0x4000,

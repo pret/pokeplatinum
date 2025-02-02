@@ -235,7 +235,7 @@ static void ov96_0223B99C(UnkStruct_ov96_0223BF40 *param0)
 static void ov96_0223B9A0(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20, 2048, 2048, 68
         };
 
