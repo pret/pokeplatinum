@@ -13,9 +13,9 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
+#include "fx_util.h"
 #include "map_object.h"
 #include "map_object_move.h"
-#include "unk_0201E190.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 
@@ -220,7 +220,7 @@ static void ov5_021F27B4(UnkStruct_ov101_021D5D90 *param0, void *param1)
             break;
         }
 
-        sub_0201E2E0(&v2, 0, v1, 0);
+        MTX_Rot33Angles(&v2, 0, v1, 0);
         sub_020715E4(param0, &v3);
         sub_02073BA4(v5, &v3, &v4, &v2);
     }

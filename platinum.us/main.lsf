@@ -79,8 +79,8 @@ Static main
 	Object main.nef.p/src_unk_0201DD00.c.o
 	Object main.nef.p/src_unk_0201E010.c.o
 	Object main.nef.p/src_ascii_util.c.o
-	Object main.nef.p/src_unk_0201E190.c.o
-	Object main.nef.p/src_unk_0201E3BC.c.o
+	Object main.nef.p/src_fx_util.c.o
+	Object main.nef.p/src_int_distance.c.o
 	Object main.nef.p/src_unk_0201E3D8.c.o
 	Object main.nef.p/src_unk_0201E86C.c.o
 	Object main.nef.p/src_unk_0201F834.c.o
@@ -686,7 +686,7 @@ Overlay overlay15
 	Object main.nef.p/src_overlay015_ov15_dummy.c.o
 }
 
-Overlay battle 
+Overlay battle
 {
 	After overlay12
 	Object main.nef.p/src_battle_ov16_0223B140.c.o

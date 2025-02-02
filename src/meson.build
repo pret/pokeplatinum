@@ -1,4 +1,4 @@
-pokeplatinum_c = files(   
+pokeplatinum_c = files(
     'coins.c',
     'enc_effects.c',
     'error_handling.c',
@@ -74,8 +74,8 @@ pokeplatinum_c = files(
     'unk_0201DD00.c',
     'unk_0201E010.c',
     'ascii_util.c',
-    'unk_0201E190.c',
-    'unk_0201E3BC.c',
+    'fx_util.c',
+    'int_distance.c',
     'unk_0201E3D8.c',
     'unk_0201E86C.c',
     'unk_0201F834.c',
