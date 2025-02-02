@@ -2862,7 +2862,7 @@ static void ov23_022411E8(void *param0)
     ov23_02240C94(v0);
 
     Bg_RunScheduledUpdates(v0);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 }
 

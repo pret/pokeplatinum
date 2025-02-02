@@ -241,7 +241,7 @@ void ov119_021D0FD0(void *param0)
     UnkStruct_ov119_021D0FD0 *v0 = (UnkStruct_ov119_021D0FD0 *)param0;
 
     sub_02008A94(v0->unk_04.unk_38);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_04.unk_04);
     Bg_RunScheduledUpdates(v0->unk_04.unk_00);

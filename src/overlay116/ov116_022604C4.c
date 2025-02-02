@@ -64,7 +64,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     ov116_022612CC(param0);
     SetMainCallback(ov116_02261794, param0);
     DisableHBlank();
-    VRAMTransferManager_New(32, 106);
+    VramTransfer_New(32, 106);
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
     sub_02039734();
@@ -669,7 +669,7 @@ static void ov116_022610FC(UnkStruct_ov116_0226139C *param0)
 {
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     {
         u32 v0;
@@ -1107,7 +1107,7 @@ static void ov116_02261794(void *param0)
 {
     UnkStruct_ov116_0226139C *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_48.unk_14);
     Bg_RunScheduledUpdates(v0->unk_48.unk_10);

@@ -378,7 +378,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_08 = BgConfig_New(118);
 
-    VRAMTransferManager_New(64, 118);
+    VramTransfer_New(64, 118);
     SetAutorepeat(4, 8);
 
     ov113_0225CF58(v0->unk_08);
@@ -659,7 +659,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_164);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     sub_0201E530();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -689,7 +689,7 @@ static void ov113_0225CF18(void *param0)
 
     ov113_0225E65C(&v0->unk_194, v0->unk_9BC);
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);

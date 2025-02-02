@@ -974,7 +974,7 @@ void ov114_0225C904(UnkStruct_ov114_0225E854 *param0)
     G2_BlendNone();
     G2S_BlendNone();
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     Heap_FreeToHeap(param0);
 }
 
@@ -2492,7 +2492,7 @@ static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *
     v0->unk_02 = param3;
 
     ov114_0225E0F8(&v0->unk_34, &v0->unk_0C);
-    VRAMTransferManager_New(16, param3);
+    VramTransfer_New(16, param3);
 
     ov114_0225CEF0(&v0->unk_4C, &Unk_ov114_0226014C, Unk_ov114_02260324, 6, param3);
     ov114_0225CFCC(&v0->unk_A0, 32, 2, 2, param3);
@@ -3132,7 +3132,7 @@ static void ov114_0225F124(SysTask *param0, void *param1)
 {
     UnkStruct_ov114_0225E854 *v0 = param1;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
 
     ov114_0225CFC0(&v0->unk_4C);
     ov114_0225D07C(&v0->unk_A0);
@@ -3183,7 +3183,7 @@ static void ov114_0225F19C(UnkStruct_ov114_0225E854 *param0)
                     v2 += ((7 + Unk_ov114_022600D4[v0]) * 32);
                 }
 
-                v3 = sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_MAIN, v1, v2, 32);
+                v3 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, v1, v2, 32);
                 GF_ASSERT(v3);
             }
         }

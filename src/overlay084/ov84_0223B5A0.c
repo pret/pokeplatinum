@@ -573,7 +573,7 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
     ov84_0223BBC4(v0->unk_00);
 
     sub_0201E530();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     ov84_0223FB50(v0);
     ov84_0223F238(v0);
@@ -625,7 +625,7 @@ static void ov84_0223BA14(void *param0)
     UnkStruct_ov84_0223B5A0 *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_00);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

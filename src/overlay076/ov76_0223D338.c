@@ -1502,7 +1502,7 @@ void ov76_0223ECB0(void *param0)
     UnkStruct_ov76_0223DE00 *v0 = param0;
 
     sub_02008A94(v0->unk_D4.unk_D0);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_D4.unk_14);
     Bg_RunScheduledUpdates(v0->unk_D4.unk_10);

@@ -2221,7 +2221,7 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
         NNSG2dImageProxy *v18;
 
         v18 = SpriteActor_ImageProxy(v1->unk_00);
-        sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v18->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v0, (10 * 10 * ((8 / 2) * 8)));
+        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v18->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v0, (10 * 10 * ((8 / 2) * 8)));
     }
 
     if (ov12_022232FC(param0, v7) != NULL) {
@@ -4307,7 +4307,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *param0, int param1, int par
                     NNSG2dImageProxy *v17;
 
                     v17 = SpriteActor_ImageProxy(v10->unk_00);
-                    sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v17->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v8, (10 * 10 * ((8 / 2) * 8)));
+                    VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v17->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v8, (10 * 10 * ((8 / 2) * 8)));
                 }
 
                 if (v13 != NULL) {

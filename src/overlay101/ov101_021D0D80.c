@@ -658,7 +658,7 @@ static void ov101_021D197C(void *param0)
 {
     UnkStruct_ov101_021D13C8 *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     Bg_RunScheduledUpdates(v0->unk_43C);
 }

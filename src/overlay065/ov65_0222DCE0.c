@@ -763,7 +763,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_0222EBE0), 54);
 
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov65_0222EBE0));
-        VRAMTransferManager_New(32, 54);
+        VramTransfer_New(32, 54);
 
         v0->unk_180 = 8;
         v0->unk_160 = v1->unk_00;
@@ -899,7 +899,7 @@ int ov65_0222E548(OverlayManager *param0, int *param1)
 
     OverlayManager_FreeData(param0);
     sub_0201E530();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     Heap_Destroy(54);
 
     switch (v0->unk_3AC) {
@@ -932,7 +932,7 @@ static void ov65_0222E5E0(void *param0)
     UnkStruct_ov65_0222EBE0 *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_15C);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     inline_ov61_0222C1FC(&v0->unk_E2C);

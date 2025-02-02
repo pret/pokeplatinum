@@ -474,7 +474,7 @@ static void ov91_021D0F6C(UnkStruct_ov91_021D0ED8 *param0)
     ov91_021D11F0(param0);
     ov91_021D20B4(param0);
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     SetMainCallback(NULL, NULL);
 }
 
@@ -483,7 +483,7 @@ static void ov91_021D0F9C(void *param0)
     UnkStruct_ov91_021D0ED8 *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_04);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -1282,7 +1282,7 @@ static void ov91_021D2014(UnkStruct_ov91_021D0ED8 *param0)
         11, 2, 4, 4, 0, 0
     };
 
-    VRAMTransferManager_New(64, 67);
+    VramTransfer_New(64, 67);
 
     param0->unk_110 = sub_0200C6E4(67);
     param0->unk_114 = sub_0200C704(param0->unk_110);

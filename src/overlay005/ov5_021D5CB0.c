@@ -139,7 +139,7 @@ void ov5_021D5DEC(UnkStruct_ov5_021D5CB0 *param0)
                 v1->unk_14 = 0;
             }
 
-            sub_0201DC68(NNS_GFD_DST_3D_TEX_VRAM, (u32)v1->unk_00, sub_0201DEAC(v1->unk_08, v1->unk_10->unk_10[v1->unk_14][0]), v1->unk_04);
+            VramTransfer_Request(NNS_GFD_DST_3D_TEX_VRAM, (u32)v1->unk_00, sub_0201DEAC(v1->unk_08, v1->unk_10->unk_10[v1->unk_14][0]), v1->unk_04);
         } else {
             v1->unk_16++;
         }

@@ -158,7 +158,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
 
     v0->unk_0C.unk_24 = BgConfig_New(22);
 
-    VRAMTransferManager_New(64, 22);
+    VramTransfer_New(64, 22);
     SetAutorepeat(4, 8);
 
     ov17_0223D1B8(v0->unk_0C.unk_24);
@@ -309,7 +309,7 @@ int ov17_0223CF8C(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_0C.unk_24, 4);
     sub_0200D0B0(v0->unk_0C.unk_1C, v0->unk_0C.unk_20);
     sub_0200C8D4(v0->unk_0C.unk_1C);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     for (v1 = 0; v1 < 4; v1++) {
         if (v0->unk_F18[v1].unk_00 != NULL) {
@@ -370,7 +370,7 @@ static void ov17_0223D0C8(void *param0)
         }
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C.unk_44);
     Bg_RunScheduledUpdates(v0->unk_0C.unk_24);

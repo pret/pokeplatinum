@@ -523,7 +523,7 @@ static void ov97_02237E58(void *param0)
         v0->unk_F08 = NULL;
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     if (v0->unk_00) {

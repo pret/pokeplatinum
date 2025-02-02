@@ -438,7 +438,7 @@ static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32
     v0 = SaveData_Options(param1);
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
 
-    VRAMTransferManager_New(32, param2);
+    VramTransfer_New(32, param2);
     GXLayers_SetBanks(&Unk_ov68_0225DDC0);
     ov68_0225C9A0(param0, v0, param2);
     ov68_0225CAB4(param0, param2);
@@ -447,7 +447,7 @@ static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32
 static void ov68_0225C960(UnkStruct_ov68_0225C91C *param0)
 {
     NARC_dtor(param0->unk_1A4);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     ov68_0225CA8C(param0);
     ov68_0225CB44(param0);
@@ -462,7 +462,7 @@ static void ov68_0225C98C(UnkStruct_ov68_0225C91C *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_00);
     sub_0200A858();
-    sub_0201DCAC();
+    VramTransfer_Process();
 }
 
 static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *param1, u32 param2)

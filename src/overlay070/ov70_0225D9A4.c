@@ -1262,7 +1262,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
     G2_BlendNone();
     G2S_BlendNone();
 
-    VRAMTransferManager_New(32, param2);
+    VramTransfer_New(32, param2);
     GXLayers_SetBanks(&Unk_ov70_0226D664);
     gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
@@ -1343,7 +1343,7 @@ static void ov70_0225E6C0(UnkStruct_ov70_0225E4EC *param0)
 
 static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0)
 {
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     {
         int v0;
@@ -1380,7 +1380,7 @@ static void ov70_0225E740(UnkStruct_ov70_0225E4EC *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_00);
     sub_0200A858();
-    sub_0201DCAC();
+    VramTransfer_Process();
 }
 
 static void ov70_0225E754(void)

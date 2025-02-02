@@ -63,7 +63,7 @@ UnkStruct_ov101_021D7E48 *ov101_021D7E48(u32 param0, u32 param1, u32 param2, u32
     v0->unk_0C = sub_020095C4(param1, &v0->unk_10, param0);
     v0->unk_19C = CellTransfer_New(param2, param0);
 
-    VRAMTransferManager_New(param2, param0);
+    VramTransfer_New(param2, param0);
 
     v0->unk_1A0 = SpriteResourceCollection_New(param3, 0, param0);
     v0->unk_1A4 = SpriteResourceCollection_New(param4, 1, param0);
@@ -133,7 +133,7 @@ void ov101_021D7FB4(UnkStruct_ov101_021D7E48 *param0)
     Heap_FreeToHeap(param0->unk_1B4);
     Heap_FreeToHeap(param0->unk_1B8);
     Heap_FreeToHeap(param0->unk_1BC);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     CellTransfer_Free(param0->unk_19C);
     CellActorCollection_DeleteAll(param0->unk_0C);
     CellActorCollection_Delete(param0->unk_0C);

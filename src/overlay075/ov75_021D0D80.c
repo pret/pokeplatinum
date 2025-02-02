@@ -869,7 +869,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         return;
     }
 
-    VRAMTransferManager_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->unk_00);
 
     param0->unk_A8 = sub_0200C6E4(param0->unk_00);
     param0->unk_AC = sub_0200C704(param0->unk_A8);
@@ -957,6 +957,6 @@ static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0)
 
         sub_0200D0B0(param0->unk_A8, param0->unk_AC);
         sub_0200C8D4(param0->unk_A8);
-        VRAMTransferManager_Destroy();
+        VramTransfer_Free();
     }
 }

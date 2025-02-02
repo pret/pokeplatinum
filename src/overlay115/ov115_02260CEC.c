@@ -981,7 +981,7 @@ BOOL ov115_022610D4(UnkStruct_ov115_02260D78 *param0)
 void ov115_022611C8(UnkStruct_ov115_02260D78 *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_1AB4.unk_00);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 }
 

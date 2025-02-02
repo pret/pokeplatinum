@@ -142,7 +142,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     }
 
     v0->unk_D4.unk_10 = BgConfig_New(53);
-    VRAMTransferManager_New(64, 53);
+    VramTransfer_New(64, 53);
     v0->unk_D4.unk_14 = PaletteData_New(53);
     PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
     PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, 53);
@@ -253,7 +253,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     sub_02015FB8(v0->unk_D4.unk_188);
     ov76_0223B8C4(v0);
     ov76_0223C424(&v0->unk_D4);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     sub_020242C4(v0->unk_D4.unk_15C);
     ov76_0223EB54(53);
     NARC_dtor(v0->unk_42C);

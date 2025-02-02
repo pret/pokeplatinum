@@ -138,7 +138,7 @@ static void fieldmap(void *param0)
     FieldSystem *fieldSystem = param0;
 
     Bg_RunScheduledUpdates(fieldSystem->bgConfig);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     inline_fieldmap(fieldSystem);
@@ -189,7 +189,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
 
         ov5_021D1414();
 
-        VRAMTransferManager_New(128, 4);
+        VramTransfer_New(128, 4);
         sub_02020B90(4, 4);
         Easy3D_Init(4);
 
@@ -331,7 +331,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
         if (ov5_021D5C30(fieldSystem)) {
             ov5_021D15E8();
             sub_02020BD0();
-            VRAMTransferManager_Destroy();
+            VramTransfer_Free();
             Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
             SetMainCallback(NULL, NULL);

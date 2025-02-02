@@ -1320,12 +1320,12 @@ static void ov21_021E5E98(UnkStruct_ov21_021E5004 *param0)
 
 static void ov21_021E5EAC(UnkStruct_ov21_021E5004 *param0)
 {
-    sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_SUB, 7 * 32, param0->unk_6C->pRawData, 32);
+    VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_SUB, 7 * 32, param0->unk_6C->pRawData, 32);
 }
 
 static void ov21_021E5EC0(UnkStruct_ov21_021E5004 *param0)
 {
-    sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_SUB, 7 * 32, &((u8 *)(param0->unk_6C->pRawData))[32], 32);
+    VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_SUB, 7 * 32, &((u8 *)(param0->unk_6C->pRawData))[32], 32);
 }
 
 static void ov21_021E5ED8(UnkStruct_ov21_021E51DC *param0, BOOL param1)

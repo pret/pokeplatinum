@@ -8794,7 +8794,7 @@ void ov9_02250780(FieldSystem *fieldSystem)
         NNSGfdPlttKey v5 = TextureResource_GetPaletteKey(v4);
         u32 v6 = NNS_GfdGetPlttKeyAddr(v5);
 
-        sub_0201DC68(NNS_GFD_DST_3D_TEX_PLTT, v6, v1->unk_1C, 32);
+        VramTransfer_Request(NNS_GFD_DST_3D_TEX_PLTT, v6, v1->unk_1C, 32);
     }
 }
 

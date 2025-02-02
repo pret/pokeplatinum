@@ -243,7 +243,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
 
 static void ov72_0223DA48(void *param0)
 {
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     Bg_RunScheduledUpdates((BgConfig *)param0);
 

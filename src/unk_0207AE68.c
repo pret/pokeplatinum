@@ -963,7 +963,7 @@ static void sub_0207C520(void *param0)
     G2_SetWnd0Position(v0->unk_72, v0->unk_73, v0->unk_74, v0->unk_75);
 
     sub_02008A94(v0->unk_18);
-    sub_0201DCAC();
+    VramTransfer_Process();
     PaletteData_CommitFadedBuffers(v0->unk_14);
     Bg_RunScheduledUpdates(v0->unk_00);
 

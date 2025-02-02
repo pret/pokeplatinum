@@ -407,7 +407,7 @@ int ov65_0223648C(OverlayManager *param0, int *param1)
     MI_CpuFill8(v0->unk_00.unk_1C, 1, sizeof(u8) * 4);
     MI_CpuFill8(v0->unk_00.unk_20, 1, sizeof(u8) * 4);
 
-    VRAMTransferManager_New(16, 96);
+    VramTransfer_New(16, 96);
 
     v0->unk_00.unk_00 = sub_020388E8();
     v0->unk_00.unk_00->unk_00.unk_21 = v0->unk_00.unk_00->unk_00.unk_22;
@@ -506,7 +506,7 @@ int ov65_0223668C(OverlayManager *param0, int *param1)
     ov65_02237504(v0);
     ov65_022367F8(v0, 96);
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     OverlayManager_FreeData(param0);
     Heap_Destroy(97);
     Heap_Destroy(96);
@@ -568,7 +568,7 @@ static void ov65_02236780(void *param0)
     UnkStruct_ov65_022367A8 *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_30.unk_00);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 }
 
@@ -1097,7 +1097,7 @@ static void ov65_022372EC(UnkStruct_ov65_02236840 *param0, u32 param1)
 
     v2 = Unk_ov65_02239C04[param1];
     v1 = param0->unk_254->pRawData;
-    v0 = sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_MAIN, 0 * 32, &v1[v2 * 16], 32);
+    v0 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, 0 * 32, &v1[v2 * 16], 32);
 
     GF_ASSERT(v0);
 }

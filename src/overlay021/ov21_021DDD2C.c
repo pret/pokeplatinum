@@ -649,7 +649,7 @@ static void ov21_021DE4D4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
             break;
         }
 
-        v2 = sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_SUB, 2 * 32, &((u8 *)(param0->unk_20->pRawData))[(v1 * 32)], 32);
+        v2 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_SUB, 2 * 32, &((u8 *)(param0->unk_20->pRawData))[(v1 * 32)], 32);
         GF_ASSERT(v2);
     }
 }

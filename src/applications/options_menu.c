@@ -378,7 +378,7 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
     case 2:
         SetupWindows(menuData);
         PrintTitleAndEntries(menuData);
-        VRAMTransferManager_New(32, menuData->heapID);
+        VramTransfer_New(32, menuData->heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
         DrawWifiConnectionIcon();
         SetMainCallback(OptionsMenuVBlank, menuData);
@@ -396,7 +396,7 @@ static int TeardownMenuData(OptionsMenuData *menuData)
 
     switch (menuData->subState) {
     case 0:
-        VRAMTransferManager_Destroy();
+        VramTransfer_Free();
         TeardownWindows(menuData);
 
         for (v0 = 0; v0 < MAX_ENTRIES; v0++) {

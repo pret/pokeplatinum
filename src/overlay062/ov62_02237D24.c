@@ -1277,7 +1277,7 @@ static void ov62_022394D8(void *param0)
         ov22_0225B06C(v1->unk_228);
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     PaletteData_CommitFadedBuffers(v0->unk_14.unk_14);
     Bg_RunScheduledUpdates(v0->unk_14.unk_10);
 

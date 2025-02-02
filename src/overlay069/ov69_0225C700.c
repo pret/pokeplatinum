@@ -1373,7 +1373,7 @@ static void ov69_0225D318(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
 {
     param0->unk_1A8 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTIMER, param2);
 
-    VRAMTransferManager_New(64, param2);
+    VramTransfer_New(64, param2);
     GXLayers_SetBanks(&Unk_ov69_0225F0C0);
 
     ov69_0225D3A4(param0, param1, param2);
@@ -1384,7 +1384,7 @@ static void ov69_0225D318(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
 static void ov69_0225D35C(UnkStruct_ov69_0225D35C *param0)
 {
     NARC_dtor(param0->unk_1A8);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     ov69_0225D504(param0);
     ov69_0225D5D8(param0);
@@ -1400,7 +1400,7 @@ static void ov69_0225D390(UnkStruct_ov69_0225D35C *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_00);
     sub_0200A858();
-    sub_0201DCAC();
+    VramTransfer_Process();
 }
 
 static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 param2)
@@ -2524,7 +2524,7 @@ static void ov69_0225E71C(UnkStruct_ov69_0225E084 *param0, u32 param1, u32 param
     v0 = Window_GetBaseTile(&param0->unk_168[param1]);
     v0 += (27 * param2);
 
-    sub_0201DC68(NNS_GFD_DST_2D_BG1_CHAR_SUB, v0 * 32, (void *)param3, 27 * 32);
+    VramTransfer_Request(NNS_GFD_DST_2D_BG1_CHAR_SUB, v0 * 32, (void *)param3, 27 * 32);
 }
 
 static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1, const UnkStruct_ov69_0225F118 *param2, u16 param3, u32 param4)
@@ -2593,7 +2593,7 @@ static void ov69_0225E810(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D3
         param0->unk_25 = v1;
 
         v4 = (u8 *)param0->unk_20->pRawData;
-        v3 = sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_SUB, param0->unk_26 * 32, &v4[param0->unk_25 * 32], 32);
+        v3 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_SUB, param0->unk_26 * 32, &v4[param0->unk_25 * 32], 32);
         GF_ASSERT(v3);
     }
 }

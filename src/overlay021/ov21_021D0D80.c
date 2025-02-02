@@ -131,7 +131,7 @@ int ov21_021D0D80(OverlayManager *param0, int *param1)
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D0F18));
 
-    VRAMTransferManager_New(8, 37);
+    VramTransfer_New(8, 37);
 
     v1 = OverlayManager_Args(param0);
 
@@ -211,7 +211,7 @@ int ov21_021D0EC8(OverlayManager *param0, int *param1)
     GF_ASSERT(v1 == 1);
 
     ov21_021D12C4();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     OverlayManager_FreeData(param0);
     Heap_Destroy(37);
     sub_0200544C(1, 127);
@@ -227,7 +227,7 @@ static void ov21_021D0F04(void *param0)
         ov21_021D12D8(v0->unk_00);
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
 }
 
 static void ov21_021D0F18(UnkStruct_ov21_021D0F18 *param0)

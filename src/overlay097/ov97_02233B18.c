@@ -1634,7 +1634,7 @@ static void ov97_022353CC(void *param0)
         v0->unk_12664 = NULL;
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     Bg_RunScheduledUpdates(v0->unk_20);
 

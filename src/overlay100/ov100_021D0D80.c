@@ -446,7 +446,7 @@ static void ov100_021D13B4(void *param0)
 {
     UnkStruct_ov100_021D4DD8 *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C.unk_10);
     Bg_RunScheduledUpdates(v0->unk_0C.unk_0C);

@@ -332,7 +332,7 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     app->messageFrame = Options_Frame(data->options);
     app->unk_704 = Options_TextFrameDelay(data->options);
 
-    VRAMTransferManager_New(8, HEAP_ID_CHOOSE_STARTER_APP);
+    VramTransfer_New(8, HEAP_ID_CHOOSE_STARTER_APP);
     SetMainCallback(ChooseStarterAppMainCallback, app);
     DisableHBlank();
 
@@ -465,7 +465,7 @@ BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->bgl);
     ov78_021D10DC();
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     OverlayManager_FreeData(param0);
     Heap_Destroy(47);
 
@@ -479,7 +479,7 @@ static void ChooseStarterAppMainCallback(void *data)
     sub_0200A858();
     Bg_RunScheduledUpdates(app->bgl);
     sub_02008A94(app->spriteManager);
-    sub_0201DCAC();
+    VramTransfer_Process();
 }
 
 static void StartFadeIn(ChooseStarterApp *param0)

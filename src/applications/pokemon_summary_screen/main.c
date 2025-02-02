@@ -345,7 +345,7 @@ static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
     PokemonSummaryScreen_RemoveWindows(summaryScreen);
     TeardownBgs(summaryScreen->bgConfig);
     sub_0201E530();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     FreeStrings(summaryScreen);
     NARC_dtor(summaryScreen->narcPlPokeData);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
@@ -364,7 +364,7 @@ static void PokemonSummaryScreenVBlank(void *data)
 
     Bg_RunScheduledUpdates(summaryScreen->bgConfig);
     sub_02008A94(summaryScreen->monSprite.spriteManager);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

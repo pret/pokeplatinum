@@ -1,9 +1,11 @@
 #ifndef POKEPLATINUM_VRAM_TRANSFER_H
 #define POKEPLATINUM_VRAM_TRANSFER_H
 
-void VRAMTransferManager_New(u32 param0, int param1);
-void VRAMTransferManager_Destroy(void);
-BOOL sub_0201DC68(NNS_GFD_DST_TYPE param0, u32 param1, void *param2, u32 param3);
-void sub_0201DCAC(void);
+#include "constants/heap.h"
+
+void VramTransfer_New(u32 capacity, enum HeapId heapID);
+void VramTransfer_Free(void);
+BOOL VramTransfer_Request(NNS_GFD_DST_TYPE type, u32 destAddr, void *buf, u32 size);
+void VramTransfer_Process(void);
 
 #endif // POKEPLATINUM_VRAM_TRANSFER_H

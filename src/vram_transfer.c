@@ -4,58 +4,58 @@
 #include <nnsys.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "heap.h"
 
-typedef struct {
-    u32 unk_00;
-    u32 unk_04;
-    NNSGfdVramTransferTask *unk_08;
-} UnkStruct_021C0700;
+typedef struct VramTransferTaskManager {
+    u32 max;
+    u32 cur;
+    NNSGfdVramTransferTask *tasks;
+} VramTransferTaskManager;
 
-static BOOL sub_0201DCF8(NNS_GFD_DST_TYPE param0, u32 param1, void *param2, u32 param3);
+static VramTransferTaskManager *sTransferTaskManager;
 
-static UnkStruct_021C0700 *Unk_021C0700;
-
-void VRAMTransferManager_New(u32 param0, int param1)
+void VramTransfer_New(u32 capacity, enum HeapId heapID)
 {
-    GF_ASSERT(Unk_021C0700 == NULL);
-    Unk_021C0700 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_021C0700));
-    GF_ASSERT(Unk_021C0700);
+    GF_ASSERT(sTransferTaskManager == NULL);
+    sTransferTaskManager = Heap_AllocFromHeap(heapID, sizeof(VramTransferTaskManager));
+    GF_ASSERT(sTransferTaskManager);
 
-    Unk_021C0700->unk_08 = (NNSGfdVramTransferTask *)Heap_AllocFromHeap(param1, sizeof(NNSGfdVramTransferTask) * param0);
-    Unk_021C0700->unk_00 = param0;
-    Unk_021C0700->unk_04 = 0;
+    sTransferTaskManager->tasks = Heap_AllocFromHeap(heapID, sizeof(NNSGfdVramTransferTask) * capacity);
+    sTransferTaskManager->max = capacity;
+    sTransferTaskManager->cur = 0;
 
-    NNS_GfdInitVramTransferManager(Unk_021C0700->unk_08, Unk_021C0700->unk_00);
+    NNS_GfdInitVramTransferManager(sTransferTaskManager->tasks, sTransferTaskManager->max);
 }
 
-void VRAMTransferManager_Destroy(void)
+void VramTransfer_Free(void)
 {
-    GF_ASSERT(Unk_021C0700 != NULL);
+    GF_ASSERT(sTransferTaskManager != NULL);
 
-    Heap_FreeToHeap(Unk_021C0700->unk_08);
-    Heap_FreeToHeap(Unk_021C0700);
+    Heap_FreeToHeap(sTransferTaskManager->tasks);
+    Heap_FreeToHeap(sTransferTaskManager);
 
-    Unk_021C0700 = NULL;
+    sTransferTaskManager = NULL;
 }
 
-BOOL sub_0201DC68(NNS_GFD_DST_TYPE param0, u32 param1, void *param2, u32 param3)
+BOOL VramTransfer_Request(NNS_GFD_DST_TYPE type, u32 destAddr, void *buf, u32 size)
 {
-    GF_ASSERT(Unk_021C0700);
-    Unk_021C0700->unk_04++;
+    GF_ASSERT(sTransferTaskManager);
+    sTransferTaskManager->cur++;
 
-    if (Unk_021C0700->unk_04 >= Unk_021C0700->unk_00) {
+    if (sTransferTaskManager->cur >= sTransferTaskManager->max) {
         GF_ASSERT(FALSE);
-        return 0;
+        return FALSE;
     }
 
-    return NNS_GfdRegisterNewVramTransferTask(param0, param1, param2, param3);
+    return NNS_GfdRegisterNewVramTransferTask(type, destAddr, buf, size);
 }
 
-void sub_0201DCAC(void)
+void VramTransfer_Process(void)
 {
-    if (Unk_021C0700) {
+    if (sTransferTaskManager) {
         NNS_GfdDoVramTransfer();
-        Unk_021C0700->unk_04 = 0;
+        sTransferTaskManager->cur = 0;
     }
 }

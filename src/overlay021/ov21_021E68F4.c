@@ -703,7 +703,7 @@ static void ov21_021E71D0(UnkStruct_ov21_021E6A34 *param0, CellActor *param1, Un
 
         *param10 = ov21_021D27E0(param0->unk_00, v4, &v1, param7);
 
-        v2 = sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_SUB, param5 * 32, v1->pRawData, 32);
+        v2 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_SUB, param5 * 32, v1->pRawData, 32);
         GF_ASSERT(v2);
     }
 }

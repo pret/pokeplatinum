@@ -1162,7 +1162,7 @@ static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
 
     ov10_02220BE8(param1);
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     PaletteData_FreeBuffer(param1->unk_08, 0);
     PaletteData_Free(param1->unk_08);
 
@@ -1188,7 +1188,7 @@ static BOOL ov10_02220AD0(void)
 
 static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, UnkStruct_ov104_02241308 *param1, int param2)
 {
-    VRAMTransferManager_New(64, param0->unk_00->unk_24);
+    VramTransfer_New(64, param0->unk_00->unk_24);
 
     param0->unk_190 = sub_0200C6E4(param0->unk_00->unk_24);
     param0->unk_194 = sub_0200C704(param0->unk_190);
@@ -1264,7 +1264,7 @@ static void ov10_02220C64(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_0C);
     PaletteData_CommitFadedBuffers(v0->unk_08);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

@@ -163,7 +163,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
 
     v0->unk_00 = BgConfig_New(94);
 
-    VRAMTransferManager_New(64, 94);
+    VramTransfer_New(64, 94);
     SetAutorepeat(4, 8);
 
     ov104_0223C948(v0->unk_00, v2);
@@ -223,7 +223,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
     ov104_0223D058(param0);
     ov104_0223D5F0(param0->unk_10);
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     PaletteData_FreeBuffer(param0->unk_04, 0);
     PaletteData_FreeBuffer(param0->unk_04, 1);
@@ -323,7 +323,7 @@ static void ov104_0223C6EC(void *param0)
 {
     UnkStruct_ov104_0223C4CC *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_04);
     Bg_RunScheduledUpdates(v0->unk_00);

@@ -910,7 +910,7 @@ static void ov88_0223C0E0(void *param0)
         v0->unk_2168 = 0;
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

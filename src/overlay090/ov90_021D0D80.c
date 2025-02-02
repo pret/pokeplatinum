@@ -854,7 +854,7 @@ static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC *param0)
 
 static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 {
-    VRAMTransferManager_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->unk_00);
 
     param0->unk_29C = sub_0200C6E4(param0->unk_00);
     param0->unk_2A0 = sub_0200C704(param0->unk_29C);
@@ -905,7 +905,7 @@ static void ov90_021D1B6C(UnkStruct_ov90_021D0ECC *param0)
 {
     sub_0200C8B0(param0->unk_29C, param0->unk_2A0);
     sub_0200C8D4(param0->unk_29C);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 }
 
 static void ov90_021D1B90(UnkStruct_ov90_021D0ECC *param0)

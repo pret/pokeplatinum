@@ -839,5 +839,5 @@ static void ov21_021E9AE8(UnkStruct_ov21_021E9A9C *param0, int param1)
 
 static void ov21_021E9B08(UnkStruct_ov21_021E9A9C *param0, int param1)
 {
-    sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_MAIN, 0 * 32, param0->unk_08[param1]->pRawData, 1 * 32);
+    VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, 0 * 32, param0->unk_08[param1]->pRawData, 1 * 32);
 }

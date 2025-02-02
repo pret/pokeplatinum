@@ -165,11 +165,11 @@ void sub_0201F990(int param0, NNSG2dPaletteData *param1)
     v0->unk_00 = param1;
 
     if (v0->unk_04 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        sub_0201DC68(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, v0->unk_24, param1->pRawData, v0->unk_08 * 32);
+        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, v0->unk_24, param1->pRawData, v0->unk_08 * 32);
     }
 
     if (v0->unk_04 & NNS_G2D_VRAM_TYPE_2DSUB) {
-        sub_0201DC68(NNS_GFD_DST_2D_OBJ_PLTT_SUB, v0->unk_28, param1->pRawData, v0->unk_08 * 32);
+        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_PLTT_SUB, v0->unk_28, param1->pRawData, v0->unk_08 * 32);
     }
 }
 

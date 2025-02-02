@@ -120,7 +120,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     v0->unk_08 = BgConfig_New(75);
 
-    VRAMTransferManager_New(64, 75);
+    VramTransfer_New(64, 75);
     SetAutorepeat(4, 8);
 
     ov99_021D1380(v0->unk_08);
@@ -282,7 +282,7 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_10F8);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     sub_0201E530();
     OverlayManager_FreeData(param0);
     Heap_Destroy(75);
@@ -353,7 +353,7 @@ static void ov99_021D1350(void *param0)
 {
     UnkStruct_ov99_021D2CB0 *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);

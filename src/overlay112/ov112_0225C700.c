@@ -458,7 +458,7 @@ static void ov112_0225C9BC(UnkStruct_ov112_0225C9BC *param0, u32 param1)
 {
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__LOBBY_NEWS, param1);
 
-    VRAMTransferManager_New(48, param1);
+    VramTransfer_New(48, param1);
     GXLayers_SetBanks(&Unk_ov112_0225D858);
 
     ov112_0225CA34(param0, param1);
@@ -468,7 +468,7 @@ static void ov112_0225C9BC(UnkStruct_ov112_0225C9BC *param0, u32 param1)
 static void ov112_0225C9F4(UnkStruct_ov112_0225C9BC *param0)
 {
     NARC_dtor(param0->unk_1A4);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     ov112_0225CB60(param0);
     ov112_0225CC38(param0);
@@ -483,7 +483,7 @@ static void ov112_0225CA20(UnkStruct_ov112_0225C9BC *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_00);
     sub_0200A858();
-    sub_0201DCAC();
+    VramTransfer_Process();
 }
 
 static void ov112_0225CA34(UnkStruct_ov112_0225C9BC *param0, u32 param1)
@@ -938,7 +938,7 @@ static void ov112_0225D1B8(const UnkStruct_ov112_0225D180 *param0, const NNSG2dP
     v2 = param1->pRawData;
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0 = sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_MAIN, (param2 * 0x20) + (5 * 2) + (v1 * 0x4), (void *)(&v2[(7 * 0x20) + (param0->unk_00[v1] * 2)]), 0x4);
+        v0 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, (param2 * 0x20) + (5 * 2) + (v1 * 0x4), (void *)(&v2[(7 * 0x20) + (param0->unk_00[v1] * 2)]), 0x4);
         GF_ASSERT(v0);
     }
 }

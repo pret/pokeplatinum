@@ -649,7 +649,7 @@ static int sub_0207E7E0(OverlayManager *param0, int *param1)
     sub_02081B90(v0);
     sub_0207EA24(v0->unk_00);
     sub_0201E530();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     for (v1 = 0; v1 < 6; v1++) {
         Strbuf_Free(v0->unk_704[v1].unk_00);
@@ -681,7 +681,7 @@ static void sub_0207E898(void *param0)
     GameWindowLayout *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_00);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

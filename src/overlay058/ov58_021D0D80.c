@@ -369,7 +369,7 @@ int ov58_021D1018(OverlayManager *param0, int *param1)
 
 static void ov58_021D115C(void *param0)
 {
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     Bg_RunScheduledUpdates((BgConfig *)param0);
 

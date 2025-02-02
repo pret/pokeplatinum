@@ -962,7 +962,7 @@ static void ov97_0222BD14(UnkStruct_0222AE60 *param0)
 
 static void ov97_0222BD48(void *param0)
 {
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     Bg_RunScheduledUpdates((BgConfig *)param0);
 

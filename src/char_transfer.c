@@ -254,11 +254,11 @@ void sub_0201EB08(int param0, NNSG2dCharacterData *param1)
     v0->data = param1;
 
     if (v0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v0->baseAddrMain, param1->pRawData, param1->szByte);
+        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v0->baseAddrMain, param1->pRawData, param1->szByte);
     }
 
     if (v0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
-        sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_SUB, v0->baseAddrSub, param1->pRawData, param1->szByte);
+        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_SUB, v0->baseAddrSub, param1->pRawData, param1->szByte);
     }
 }
 

@@ -38,7 +38,7 @@ void ov111_021D2F80(UnkStruct_ov111_021D2F80 *param0)
     int v0;
     NARC *v1;
 
-    VRAMTransferManager_New(32, 115);
+    VramTransfer_New(32, 115);
     ov111_021D3378();
 
     NNS_G2dInitOamManagerModule();

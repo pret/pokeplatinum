@@ -100,7 +100,7 @@ static void ov83_0223B5A0(void *param0)
     UnkStruct_ov83_0223B784 *v1 = (v0->unk_18);
 
     ov83_0223CBFC(v1);
-    sub_0201DCAC();
+    VramTransfer_Process();
 }
 
 int ov83_0223B5B0(OverlayManager *param0, int *param1)
@@ -115,7 +115,7 @@ int ov83_0223B5B0(OverlayManager *param0, int *param1)
     v0->unk_18 = v1;
     v1->unk_00 = 56;
 
-    VRAMTransferManager_New(16, v1->unk_00);
+    VramTransfer_New(16, v1->unk_00);
 
     if (v0->unk_06_0 == 1) {
         v1->unk_1490 = 1;
@@ -223,7 +223,7 @@ int ov83_0223B710(OverlayManager *param0, int *param1)
 
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     MI_CpuClear8(v2, sizeof(UnkStruct_ov83_0223B784));
     OverlayManager_FreeData(param0);
 

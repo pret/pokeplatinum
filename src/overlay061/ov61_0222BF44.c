@@ -159,7 +159,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_04 = BgConfig_New(117);
 
-    VRAMTransferManager_New(64, 117);
+    VramTransfer_New(64, 117);
     SetAutorepeat(4, 8);
     ov61_0222C224(v0->unk_04);
     sub_0201E3D8();
@@ -260,7 +260,7 @@ int ov61_0222C160(OverlayManager *param0, int *param1)
     ov61_0222C38C(v0->unk_04);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     sub_0201E530();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -276,7 +276,7 @@ static void ov61_0222C1FC(void *param0)
 {
     UnkStruct_ov61_0222C664 *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     Bg_RunScheduledUpdates(v0->unk_04);
 

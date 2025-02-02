@@ -363,7 +363,7 @@ static void ov59_021D109C(SysTask *param0, void *param1)
 
 static void ov59_021D1100(void *param0)
 {
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     Bg_RunScheduledUpdates((BgConfig *)param0);
 

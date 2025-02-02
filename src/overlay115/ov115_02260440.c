@@ -143,7 +143,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         v0->unk_40 = 0;
         memset(v0->unk_84, 0, sizeof(u8) * 4);
 
-        VRAMTransferManager_New(32, 99);
+        VramTransfer_New(32, 99);
         ov115_02265A24(v0);
 
         v0->unk_80 = 1;
@@ -333,7 +333,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         v0->unk_34 = NULL;
         SetMainCallback(NULL, NULL);
         DisableHBlank();
-        VRAMTransferManager_Destroy();
+        VramTransfer_Free();
         (*param1)++;
         break;
     case 14: {
@@ -561,7 +561,7 @@ static void ov115_02260B44(UnkStruct_ov115_0226095C *param0, UnkStruct_ov115_022
         }
 
         ov115_02260D78(param0->unk_34);
-        VRAMTransferManager_Destroy();
+        VramTransfer_Free();
     }
 
     if (param1->unk_38) {

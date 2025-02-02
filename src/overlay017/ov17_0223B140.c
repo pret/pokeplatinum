@@ -178,7 +178,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     v0->unk_0C.unk_24 = BgConfig_New(21);
 
-    VRAMTransferManager_New(64, 21);
+    VramTransfer_New(64, 21);
     SetAutorepeat(4, 8);
 
     v0->unk_7E4 = ov17_0223F88C(v0->unk_00, &v0->unk_0C, &v0->unk_220);
@@ -344,7 +344,7 @@ int ov17_0223B580(OverlayManager *param0, int *param1)
 
     sub_0200D0B0(v0->unk_0C.unk_18, v0->unk_0C.unk_1C);
     sub_0200C8D4(v0->unk_0C.unk_18);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     ov17_022416E4(&v0->unk_0C);
 
@@ -389,7 +389,7 @@ static void ov17_0223B6BC(void *param0)
     UnkStruct_ov17_02246F24 *v0 = param0;
 
     sub_02008A94(v0->unk_0C.unk_04);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C.unk_50);
     Bg_RunScheduledUpdates(v0->unk_0C.unk_24);

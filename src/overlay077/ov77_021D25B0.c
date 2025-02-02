@@ -903,7 +903,7 @@ static void ov77_021D2B38(void *param0)
         v2->unk_246 = 0;
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     ov77_021D6E40(v1->unk_34.unk_1C);
 }

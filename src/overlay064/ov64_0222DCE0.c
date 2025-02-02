@@ -859,7 +859,7 @@ static void ov64_0222E21C(UnkStruct_ov64_0222E21C *param0)
 static void ov64_0222E228(UnkStruct_ov64_0222E21C *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_00);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 }
 
@@ -946,7 +946,7 @@ static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
 
     NNS_G2dInitOamManagerModule();
 
-    VRAMTransferManager_New(16, param1);
+    VramTransfer_New(16, param1);
     sub_0200A784(0, 126, 0, 30, 0, 126, 0, 30, param1);
 
     {
@@ -1005,7 +1005,7 @@ static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0)
     sub_0201E958();
     sub_0201F8B4();
     sub_0200A878();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 }
 
 static void ov64_0222E5D8(UnkStruct_ov64_0222E21C *param0, u32 param1)

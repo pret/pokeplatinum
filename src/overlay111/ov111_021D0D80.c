@@ -428,7 +428,7 @@ int ov111_021D0F40(OverlayManager *param0, int *param1)
 
     sub_0201E530();
     *(v1->unk_3D8) = v1->unk_0C;
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     ov111_021D1C0C(v1);
 
@@ -1285,7 +1285,7 @@ static void ov111_021D2090(void *param0)
     }
 
     Bg_RunScheduledUpdates(v0->unk_58);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

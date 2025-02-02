@@ -239,7 +239,7 @@ static void ov94_0223BFE4(void *param0)
         v0->unk_1118 = NULL;
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     inline_ov61_0222C1FC(&v0->unk_11B4);

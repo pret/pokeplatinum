@@ -322,7 +322,7 @@ void ov16_0223B3E4(BattleSystem *param0)
 
     sub_0200D0B0(param0->unk_90, param0->unk_94);
     sub_0200C8D4(param0->unk_90);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     Font_Free(FONT_SUBSCREEN);
 }
 
@@ -557,7 +557,7 @@ static void ov16_0223B790(OverlayManager *param0)
         v0->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(5, (32 * 10 * 10));
     }
 
-    VRAMTransferManager_New(64, 5);
+    VramTransfer_New(64, 5);
 
     {
         NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
@@ -1522,7 +1522,7 @@ static void ov16_0223CE68(void *param0)
     }
 
     sub_02008A94(v0->unk_88);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_28);
     Bg_RunScheduledUpdates(v0->unk_04);
@@ -1535,7 +1535,7 @@ static void ov16_0223CF1C(void *param0)
     UnkStruct_0207A778 *v0 = param0;
 
     PaletteData_CommitFadedBuffers(v0->unk_0C);
-    sub_0201DCAC();
+    VramTransfer_Process();
     Bg_RunScheduledUpdates(v0->unk_04);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

@@ -28,5 +28,5 @@ void CellTransfer_Free(NNSG2dCellTransferState *transferStates)
 
 static BOOL RegisterTransferTaskCB(NNS_GFD_DST_TYPE type, u32 destAddr, void *buf, u32 size)
 {
-    return sub_0201DC68(type, destAddr, buf, size);
+    return VramTransfer_Request(type, destAddr, buf, size);
 }

@@ -23,7 +23,7 @@ void ov79_021D21F8(UnkStruct_ov79_021D0E1C *param0);
 
 void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
 {
-    VRAMTransferManager_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->unk_00);
 
     param0->unk_1B8 = sub_0200C6E4(param0->unk_00);
     param0->unk_1BC = sub_0200C704(param0->unk_1B8);
@@ -83,7 +83,7 @@ void ov79_021D21CC(UnkStruct_ov79_021D0E1C *param0)
     sub_0209903C(param0->unk_1F8);
     sub_0200C8B0(param0->unk_1B8, param0->unk_1BC);
     sub_0200C8D4(param0->unk_1B8);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 }
 
 void ov79_021D21F8(UnkStruct_ov79_021D0E1C *param0)

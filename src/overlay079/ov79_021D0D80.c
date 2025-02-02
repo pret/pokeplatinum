@@ -201,7 +201,7 @@ static void ov79_021D0F7C(void *param0)
         OAMManager_ApplyAndResetBuffers();
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     Bg_RunScheduledUpdates(v0->unk_24);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

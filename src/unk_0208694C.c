@@ -1221,7 +1221,7 @@ void sub_0208716C(UnkStruct_0208737C *param0)
 
 static void sub_02087190(void *param0)
 {
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

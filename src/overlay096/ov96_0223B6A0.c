@@ -193,7 +193,7 @@ static void ov96_0223B940(void *param0)
 {
     UnkStruct_ov96_0223BF40 *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     inline_ov61_0222C1FC(&v0->unk_FF8);

@@ -1196,7 +1196,7 @@ static void ov65_02236318(UnkStruct_ov65_02236318 *param0)
 
         for (v0 = 0; v0 < 4; v0++) {
             if (param0->unk_08 & (1 << v0)) {
-                sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_MAIN, MCR_PCANM_DESTPL(v0), ov65_02236410(param0, v1), 2);
+                VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, MCR_PCANM_DESTPL(v0), ov65_02236410(param0, v1), 2);
             }
         }
     }
@@ -1236,7 +1236,7 @@ static void ov65_02236384(UnkStruct_ov65_02236318 *param0)
     }
 
     if (v0) {
-        sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_MAIN, MCR_PCANM_DESTPL(param0->unk_0C), ov65_02236410(param0, v1), 2);
+        VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, MCR_PCANM_DESTPL(param0->unk_0C), ov65_02236410(param0, v1), 2);
     }
 }
 
