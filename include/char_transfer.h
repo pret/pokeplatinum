@@ -27,25 +27,25 @@ typedef struct CharTransferAllocation {
     u16 atEnd;
 } CharTransferAllocation;
 
-void CharTransfer_Init(const CharTransferTemplate *param0);
-void CharTransfer_InitWithVramModes(const CharTransferTemplate *param0, GXOBJVRamModeChar param1, GXOBJVRamModeChar param2);
+void CharTransfer_Init(const CharTransferTemplate *template);
+void CharTransfer_InitWithVramModes(const CharTransferTemplate *template, GXOBJVRamModeChar modeMain, GXOBJVRamModeChar modeSub);
 void CharTransfer_Free(void);
 void CharTransfer_ClearBuffers(void);
-void CharTransfer_ReserveVramRange(u32 param0, u32 param1, u32 param2);
-BOOL CharTransfer_Request(const CharTransferTaskTemplate *param0);
-BOOL CharTransfer_RequestWithHardwareMappingType(const CharTransferTaskTemplate *param0);
-BOOL CharTransfer_HasTask(int param0);
-void CharTransfer_ReplaceCharData(int param0, NNSG2dCharacterData *param1);
-void CharTransfer_ResetTask(int param0);
+void CharTransfer_ReserveVramRange(u32 offset, u32 size, NNS_G2D_VRAM_TYPE vramType);
+BOOL CharTransfer_Request(const CharTransferTaskTemplate *template);
+BOOL CharTransfer_RequestWithHardwareMappingType(const CharTransferTaskTemplate *template);
+BOOL CharTransfer_HasTask(int resourceID);
+void CharTransfer_ReplaceCharData(int resourceID, NNSG2dCharacterData *data);
+void CharTransfer_ResetTask(int resourceID);
 void CharTransfer_ResetAllTasks(void);
-NNSG2dImageProxy *CharTransfer_GetImageProxy(int param0);
-NNSG2dImageProxy *CharTransfer_ResizeTaskRange(int param0, u32 param1);
-NNSG2dImageProxy *CharTransfer_CopyTask(const NNSG2dImageProxy *param0);
-void CharTransfer_DeleteTask(const NNSG2dImageProxy *param0);
-BOOL CharTransfer_AllocRange(int param0, int param1, int param2, CharTransferAllocation *param3);
-void CharTransfer_ClearRange(CharTransferAllocation *param0);
+NNSG2dImageProxy *CharTransfer_GetImageProxy(int resourceID);
+NNSG2dImageProxy *CharTransfer_ResizeTaskRange(int resourceID, u32 size);
+NNSG2dImageProxy *CharTransfer_CopyTask(const NNSG2dImageProxy *imageProxy);
+void CharTransfer_DeleteTask(const NNSG2dImageProxy *imageProxy);
+BOOL CharTransfer_AllocRange(int size, BOOL atEnd, NNS_G2D_VRAM_TYPE vramType, CharTransferAllocation *allocation);
+void CharTransfer_ClearRange(CharTransferAllocation *allocation);
 void *CharTransfer_PopTaskManager(void);
-void CharTransfer_PushTaskManager(void *param0);
-int CharTransfer_GetBlockSize(int param0);
+void CharTransfer_PushTaskManager(void *manager);
+int CharTransfer_GetBlockSize(GXOBJVRamModeChar vramMode);
 
 #endif // POKEPLATINUM_CHAR_TRANSFER_H
