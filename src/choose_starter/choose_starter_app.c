@@ -39,6 +39,7 @@
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
@@ -57,7 +58,6 @@
 #include "unk_02015064.h"
 #include "unk_02017728.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201F834.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
 

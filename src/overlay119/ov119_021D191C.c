@@ -13,6 +13,7 @@
 #include "gx_layers.h"
 #include "menu.h"
 #include "palette.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "text.h"
 #include "unk_020041CC.h"
@@ -21,7 +22,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
-#include "unk_0201F834.h"
 
 static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0);
 static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0);

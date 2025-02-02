@@ -23,6 +23,7 @@
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
@@ -41,7 +42,6 @@
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
 #include "unk_02017728.h"
-#include "unk_0201F834.h"
 #include "unk_020797C8.h"
 #include "vram_transfer.h"
 

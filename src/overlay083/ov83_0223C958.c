@@ -17,11 +17,11 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "pltt_transfer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "unk_0200A784.h"
 #include "unk_02015064.h"
-#include "unk_0201F834.h"
 #include "unk_0202419C.h"
 
 static void ov83_0223CC30(BgConfig **param0, int param1);

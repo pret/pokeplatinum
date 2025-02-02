@@ -1,9 +1,14 @@
-#ifndef POKEPLATINUM_UNK_0201F834_H
-#define POKEPLATINUM_UNK_0201F834_H
+#ifndef POKEPLATINUM_PLTT_TRANSFER_H
+#define POKEPLATINUM_PLTT_TRANSFER_H
 
 #include <nnsys.h>
 
-#include "struct_defs/struct_0200A5C8.h"
+typedef struct {
+    NNSG2dPaletteData *unk_00;
+    u32 unk_04;
+    u32 unk_08;
+    u32 unk_0C;
+} UnkStruct_0200A5C8;
 
 void sub_0201F834(int param0, int param1);
 void sub_0201F890(u16 param0, u32 param1);
@@ -19,4 +24,4 @@ NNSG2dImagePaletteProxy *sub_0201FA58(int param0);
 NNSG2dImagePaletteProxy *sub_0201FA80(int param0, NNSG2dImageProxy *param1);
 u32 sub_0201FAB4(const NNSG2dImagePaletteProxy *param0, u32 param1);
 
-#endif // POKEPLATINUM_UNK_0201F834_H
+#endif // POKEPLATINUM_PLTT_TRANSFER_H

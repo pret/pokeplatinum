@@ -33,6 +33,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -51,7 +52,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201F834.h"
 #include "unk_0202C7FC.h"
 #include "vram_transfer.h"
 

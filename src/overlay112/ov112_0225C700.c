@@ -28,6 +28,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "text.h"
@@ -36,7 +37,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201F834.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 

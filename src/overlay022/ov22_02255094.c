@@ -21,6 +21,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "pltt_transfer.h"
 #include "resource_collection.h"
 #include "sprite_resource.h"
 #include "unk_0200762C.h"
@@ -28,7 +29,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_02015064.h"
-#include "unk_0201F834.h"
 #include "unk_0202419C.h"
 
 static void ov22_02255634(void);

@@ -1,9 +1,7 @@
-#include "unk_0201F834.h"
+#include "pltt_transfer.h"
 
 #include <nitro.h>
 #include <string.h>
-
-#include "struct_defs/struct_0200A5C8.h"
 
 #include "heap.h"
 #include "vram_transfer.h"

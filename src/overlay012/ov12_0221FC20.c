@@ -42,6 +42,7 @@
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "spl.h"
 #include "sys_task.h"
@@ -51,7 +52,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
-#include "unk_0201F834.h"
 #include "vram_transfer.h"
 
 typedef struct UnkStruct_ov12_02223178_t {

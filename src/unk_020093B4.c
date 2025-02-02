@@ -10,10 +10,10 @@
 #include "cell_actor.h"
 #include "char_transfer.h"
 #include "heap.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201F834.h"
 #include "unk_0202309C.h"
 
 void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, SpriteResourceCollection *param9, SpriteResourceCollection *param10, SpriteResourceCollection *param11, SpriteResourceCollection *param12, SpriteResourceCollection *param13, SpriteResourceCollection *param14)

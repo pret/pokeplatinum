@@ -25,6 +25,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -36,7 +37,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201F834.h"
 #include "unk_020711EC.h"
 #include "vram_transfer.h"
 

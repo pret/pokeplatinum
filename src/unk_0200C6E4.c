@@ -20,12 +20,12 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_02017728.h"
-#include "unk_0201F834.h"
 
 typedef struct CellTransferStateData_t {
     int unk_00;

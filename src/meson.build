@@ -79,7 +79,7 @@ pokeplatinum_c = files(
     'int_distance.c',
     'unk_0201E3D8.c',
     'char_transfer.c',
-    'unk_0201F834.c',
+    'pltt_transfer.c',
     'camera.c',
     'unk_02020AEC.c',
     'cell_actor.c',

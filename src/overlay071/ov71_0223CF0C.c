@@ -10,11 +10,11 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201F834.h"
 
 typedef struct {
     int unk_00;

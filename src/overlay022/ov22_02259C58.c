@@ -21,6 +21,7 @@
 #include "error_handling.h"
 #include "font.h"
 #include "message.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "text.h"
@@ -29,7 +30,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02012744.h"
-#include "unk_0201F834.h"
 #include "unk_02023FCC.h"
 
 static void ov22_02259D94(UnkStruct_ov22_02259C58 *param0, void *param1);

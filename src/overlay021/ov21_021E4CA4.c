@@ -28,6 +28,7 @@
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
@@ -36,7 +37,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
-#include "unk_0201F834.h"
 #include "unk_02023FCC.h"
 #include "vram_transfer.h"
 

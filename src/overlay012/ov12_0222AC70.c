@@ -26,10 +26,10 @@
 #include "cell_actor.h"
 #include "heap.h"
 #include "palette.h"
+#include "pltt_transfer.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201F834.h"
 
 typedef struct {
     u8 unk_00;

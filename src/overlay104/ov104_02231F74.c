@@ -39,6 +39,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_text.h"
@@ -55,7 +56,6 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02014A84.h"
-#include "unk_0201F834.h"
 #include "unk_0207E0B8.h"
 #include "unk_0209B6F8.h"
 
