@@ -1,12 +1,7 @@
-#include "unk_0201E86C.h"
+#include "char_transfer.h"
 
 #include <nitro.h>
 #include <string.h>
-
-#include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/struct_0200A328.h"
-
-#include "overlay022/struct_ov22_022559F8.h"
 
 #include "heap.h"
 #include "unk_0201DBEC.h"

@@ -10,7 +10,6 @@
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay077/const_ov77_021D742C.h"
 #include "overlay097/box_pokemon_gba.h"
 #include "overlay097/ov97_02235D18.h"
@@ -23,6 +22,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -55,7 +55,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202EEC0.h"
 #include "unk_0209A74C.h"

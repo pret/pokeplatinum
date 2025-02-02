@@ -18,7 +18,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
-#include "overlay022/struct_ov22_022559F8.h"
+#include "char_transfer.h"
 #include "overlay065/ov65_02235060.h"
 #include "overlay065/struct_ov65_0222E99C.h"
 #include "overlay065/struct_ov65_0222EBE0_decl.h"
@@ -77,7 +77,7 @@
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201E86C.h"
+#include "char_transfer.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
 #include "pokedex.h"

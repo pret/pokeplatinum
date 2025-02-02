@@ -5,10 +5,10 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "sprite_resource.h"
 #include "string_template.h"
 

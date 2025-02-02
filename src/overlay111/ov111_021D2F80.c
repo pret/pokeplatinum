@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay111/struct_ov111_021D2F80.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "gx_layers.h"
 #include "narc.h"
 #include "sprite_resource.h"
@@ -14,7 +14,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 
 void ov111_021D2F80(UnkStruct_ov111_021D2F80 *param0);

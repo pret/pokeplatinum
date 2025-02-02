@@ -1,13 +1,29 @@
-#ifndef POKEPLATINUM_UNK_0201E86C_H
-#define POKEPLATINUM_UNK_0201E86C_H
+#ifndef POKEPLATINUM_CHAR_TRANSFER_H
+#define POKEPLATINUM_CHAR_TRANSFER_H
 
 #include <nitro/gx.h>
 #include <nnsys.h>
 
-#include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/struct_0200A328.h"
+typedef struct {
+    NNSG2dCharacterData *unk_00;
+    u32 unk_04;
+    u32 unk_08;
+    u32 unk_0C;
+} UnkStruct_0200A328;
 
-#include "overlay022/struct_ov22_022559F8.h"
+typedef struct {
+    int unk_00;
+    int unk_04;
+    int unk_08;
+    int unk_0C;
+} UnkStruct_ov22_022559F8;
+
+typedef struct SpriteManagerAllocation {
+    u32 unk_00;
+    u32 unk_04;
+    u16 unk_08;
+    u16 unk_0A;
+} SpriteManagerAllocation;
 
 void sub_0201E86C(const UnkStruct_ov22_022559F8 *param0);
 void sub_0201E88C(const UnkStruct_ov22_022559F8 *param0, GXOBJVRamModeChar param1, GXOBJVRamModeChar param2);
@@ -31,4 +47,4 @@ void sub_0201EEB8(void *param0);
 void sub_0201F460(void);
 int sub_0201F6F4(int param0);
 
-#endif // POKEPLATINUM_UNK_0201E86C_H
+#endif // POKEPLATINUM_CHAR_TRANSFER_H

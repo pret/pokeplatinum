@@ -8,11 +8,11 @@
 #include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "heap.h"
 #include "sprite_resource.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202309C.h"
 

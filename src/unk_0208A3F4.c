@@ -29,7 +29,7 @@
 #include "text.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_0201E86C.h"
+#include "char_transfer.h"
 
 void sub_0208A3F4 (UnkStruct_02089688 * param0)
 {

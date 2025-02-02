@@ -6,12 +6,12 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay022/struct_ov22_022550D4.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay083/ov83_0223D6A8.h"
 #include "overlay083/struct_ov83_0223B784.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -21,7 +21,6 @@
 #include "string_template.h"
 #include "unk_0200A784.h"
 #include "unk_02015064.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 

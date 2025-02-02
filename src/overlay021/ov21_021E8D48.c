@@ -21,10 +21,10 @@
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
-#include "overlay022/struct_ov22_022559F8.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -43,7 +43,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
 
 #include "res/text/bank/pokedex.h"
 

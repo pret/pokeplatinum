@@ -23,12 +23,12 @@
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "easy3d.h"
 #include "font.h"
@@ -58,7 +58,6 @@
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 

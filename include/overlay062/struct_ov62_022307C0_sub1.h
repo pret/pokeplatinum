@@ -4,8 +4,8 @@
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012B20_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 
+#include "char_transfer.h"
 #include "touch_screen.h"
 
 typedef struct {

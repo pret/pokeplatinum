@@ -6,7 +6,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -32,6 +31,7 @@
 #include "overlay117/struct_ov117_02266F10.h"
 
 #include "bg_window.h"
+#include "char_transfer.h"
 #include "communication_system.h"
 #include "error_handling.h"
 #include "font.h"
@@ -45,7 +45,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_0201E86C.h"
 
 typedef struct {
     u16 unk_00;

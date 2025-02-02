@@ -12,7 +12,7 @@
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
+#include "char_transfer.h"
 #include "overlay063/ov63_0222AE60.h"
 #include "overlay063/struct_ov63_0222AE60_decl.h"
 #include "overlay063/struct_ov63_0222BB38_decl.h"
@@ -57,7 +57,7 @@
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
+#include "char_transfer.h"
 #include "unk_0201F834.h"
 #include "unk_0202309C.h"
 #include "unk_0202ACE0.h"

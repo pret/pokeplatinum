@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay071/struct_ov71_0223D238.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -14,7 +14,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 
 typedef struct {

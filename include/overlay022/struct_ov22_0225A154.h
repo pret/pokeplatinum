@@ -2,9 +2,10 @@
 #define POKEPLATINUM_STRUCT_OV22_0225A154_H
 
 #include "struct_decls/font_oam.h"
-#include "struct_defs/sprite_manager_allocation.h"
 
 #include "overlay022/struct_ov22_02259C58.h"
+
+#include "char_transfer.h"
 
 typedef struct {
     UnkStruct_ov22_02259C58 unk_00;

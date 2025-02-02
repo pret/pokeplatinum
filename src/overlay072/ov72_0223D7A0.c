@@ -10,7 +10,6 @@
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay072/struct_ov72_0223DB98_decl.h"
 #include "overlay072/struct_ov72_0223DB98_t.h"
 #include "overlay072/struct_ov72_0223E2A8.h"
@@ -21,6 +20,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -52,7 +52,6 @@
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202C7FC.h"
 

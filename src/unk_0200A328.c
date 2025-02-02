@@ -3,11 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200A328.h"
 #include "struct_defs/struct_0200A5C8.h"
 
+#include "char_transfer.h"
 #include "sprite_resource.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 
 BOOL sub_0200A328(const SpriteResource *param0)

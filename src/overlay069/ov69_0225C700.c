@@ -10,7 +10,6 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/struct_ov66_02230F50.h"
@@ -23,6 +22,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "easy3d_object.h"
 #include "font.h"
@@ -51,7 +51,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"

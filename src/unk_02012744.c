@@ -7,9 +7,9 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "graphics.h"
 #include "heap.h"
-#include "unk_0201E86C.h"
 
 typedef struct {
     CellActor *unk_00;

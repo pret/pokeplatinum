@@ -10,7 +10,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_02230DBC.h"
 #include "overlay114/ov114_02260044.h"
@@ -20,6 +19,7 @@
 #include "bg_window.h"
 #include "buffer_manager.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
@@ -51,7 +51,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202ACE0.h"
 #include "unk_020363E8.h"

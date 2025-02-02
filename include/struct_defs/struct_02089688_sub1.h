@@ -6,9 +6,9 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 
 #include "bg_window.h"
+#include "char_transfer.h"
 #include "narc.h"
 #include "palette.h"
 #include "touch_screen.h"

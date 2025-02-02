@@ -5,11 +5,11 @@
 
 #include "struct_defs/struct_0200C738.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay077/ov77_021D6670.h"
 #include "overlay077/struct_ov77_021D6734_decl.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "gx_layers.h"
 #include "sprite_resource.h"
@@ -17,7 +17,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 
 SDK_COMPILER_ASSERT(((3 + 1 + 1 + 2 + 4) + 6) == 17);

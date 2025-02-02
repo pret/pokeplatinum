@@ -8,7 +8,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0202DF40.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay097/struct_ov97_0222D250.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "overlay097/struct_ov97_02237AEC.h"
@@ -18,6 +17,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "crypto.h"
 #include "font.h"
 #include "graphics.h"
@@ -43,7 +43,6 @@
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_02033200.h"
 

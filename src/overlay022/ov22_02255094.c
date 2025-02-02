@@ -10,12 +10,12 @@
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -28,7 +28,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_02015064.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 

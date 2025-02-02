@@ -24,6 +24,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -45,7 +46,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
-#include "unk_0201E86C.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"

@@ -15,7 +15,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay088/ov88_0223E9C4.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
@@ -23,6 +22,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "charcode_util.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -67,7 +67,6 @@
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202CC64.h"

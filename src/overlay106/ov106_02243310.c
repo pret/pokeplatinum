@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay106/struct_ov106_02243310.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "gx_layers.h"
 #include "narc.h"
 #include "pokemon.h"
@@ -15,7 +15,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 
 void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1);

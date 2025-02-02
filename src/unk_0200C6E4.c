@@ -10,12 +10,12 @@
 
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
@@ -25,7 +25,6 @@
 #include "unk_0200A784.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 
 typedef struct CellTransferStateData_t {

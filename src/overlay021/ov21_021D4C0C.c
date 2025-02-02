@@ -12,13 +12,13 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02012744.h"
-#include "unk_0201E86C.h"
 
 typedef struct UnkStruct_ov21_021D4C0C_t {
     UnkStruct_02012744 *unk_00;

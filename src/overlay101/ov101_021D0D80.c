@@ -8,7 +8,6 @@
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay101/ov101_021D1A28.h"
 #include "overlay101/ov101_021D59AC.h"
 #include "overlay101/ov101_021D7E48.h"
@@ -17,6 +16,7 @@
 #include "overlay101/struct_ov101_021D1894.h"
 
 #include "bg_window.h"
+#include "char_transfer.h"
 #include "enums.h"
 #include "font.h"
 #include "game_records.h"
@@ -37,7 +37,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_020711EC.h"
 
