@@ -192,15 +192,15 @@ void sub_0200A5B4(const NNSG2dImageProxy *param0)
 
 BOOL sub_0200A5C8(const SpriteResource *param0)
 {
-    UnkStruct_0200A5C8 v0;
+    PlttTransferTaskTemplate v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(SpriteResource_GetType(param0) == 1);
 
-    v0.unk_00 = SpriteResource_GetPaletteFade(param0);
-    v0.unk_04 = SpriteResource_GetVRAMType(param0);
-    v0.unk_0C = SpriteResource_GetID(param0);
-    v0.unk_08 = SpriteResource_GetPaletteIndex(param0);
+    v0.data = SpriteResource_GetPaletteFade(param0);
+    v0.vramType = SpriteResource_GetVRAMType(param0);
+    v0.resourceID = SpriteResource_GetID(param0);
+    v0.plttIndex = SpriteResource_GetPaletteIndex(param0);
 
     return sub_0201F90C(&v0);
 }
@@ -222,15 +222,15 @@ void sub_0200A60C(const SpriteResourceList *param0)
 
 BOOL sub_0200A640(const SpriteResource *param0)
 {
-    UnkStruct_0200A5C8 v0;
+    PlttTransferTaskTemplate v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(SpriteResource_GetType(param0) == 1);
 
-    v0.unk_00 = SpriteResource_GetPaletteFade(param0);
-    v0.unk_04 = SpriteResource_GetVRAMType(param0);
-    v0.unk_0C = SpriteResource_GetID(param0);
-    v0.unk_08 = SpriteResource_GetPaletteIndex(param0);
+    v0.data = SpriteResource_GetPaletteFade(param0);
+    v0.vramType = SpriteResource_GetVRAMType(param0);
+    v0.resourceID = SpriteResource_GetID(param0);
+    v0.plttIndex = SpriteResource_GetPaletteIndex(param0);
 
     return sub_0201F950(&v0);
 }

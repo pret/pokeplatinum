@@ -3,19 +3,19 @@
 
 #include <nnsys.h>
 
-typedef struct {
-    NNSG2dPaletteData *unk_00;
-    u32 unk_04;
-    u32 unk_08;
-    u32 unk_0C;
-} UnkStruct_0200A5C8;
+typedef struct PlttTransferTaskTemplate {
+    NNSG2dPaletteData *data;
+    NNS_G2D_VRAM_TYPE vramType;
+    u32 plttIndex;
+    u32 resourceID;
+} PlttTransferTaskTemplate;
 
 void sub_0201F834(int param0, int param1);
 void sub_0201F890(u16 param0, u32 param1);
 void sub_0201F8B4(void);
 void sub_0201F8E4(void);
-BOOL sub_0201F90C(const UnkStruct_0200A5C8 *param0);
-BOOL sub_0201F950(const UnkStruct_0200A5C8 *param0);
+BOOL sub_0201F90C(const PlttTransferTaskTemplate *param0);
+BOOL sub_0201F950(const PlttTransferTaskTemplate *param0);
 void sub_0201F990(int param0, NNSG2dPaletteData *param1);
 BOOL sub_0201F9DC(int param0);
 void sub_0201F9F0(int param0);
