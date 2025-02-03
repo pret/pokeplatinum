@@ -114,8 +114,8 @@ void ov6_02242828(GreatMarshLookout_SpriteResources *param0)
 {
     u8 v0;
 
-    sub_0200A4E4(param0->unk_10[0]);
-    sub_0200A6DC(param0->unk_10[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_10[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_10[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_00[v0]);
@@ -150,11 +150,11 @@ static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollect
     v3 = SpriteResourceCollection_Find(param0, 0);
     v4 = SpriteResourceCollection_Find(param1, 1);
 
-    sub_0200A3DC(v3);
-    sub_0200A640(v4);
+    SpriteTransfer_RequestCharAtEnd(v3);
+    SpriteTransfer_RequestPlttFreeSpace(v4);
 
-    v5 = sub_0200A534(v3);
-    v6 = sub_0200A72C(v4, v5);
+    v5 = SpriteTransfer_GetImageProxy(v3);
+    v6 = SpriteTransfer_GetPaletteProxy(v4, v5);
     v1 = NNS_G2dGetImageLocation(v5, NNS_G2D_VRAM_TYPE_2DMAIN);
     v2 = NNS_G2dGetImagePaletteLocation(v6, NNS_G2D_VRAM_TYPE_2DMAIN);
     v0 = (32 * 10) * 10;

@@ -453,8 +453,8 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     param0->unk_20[2] = sub_0205D1C4(param0->unk_08[2], NULL, 0);
     param0->unk_20[3] = sub_0205D1C4(param0->unk_08[3], NULL, 1);
 
-    sub_0200A41C(param0->unk_18[0]);
-    sub_0200A684(param0->unk_18[1]);
+    SpriteTransfer_RequestCharListAtEnd(param0->unk_18[0]);
+    SpriteTransfer_RequestPlttFreeSpaceList(param0->unk_18[1]);
 
     v1 = LoadMemberFromNARC(177, 4, 0, 4, 0);
     param0->unk_04 = sub_02009508(v1, 4, param0->unk_08[0], param0->unk_08[1], param0->unk_08[2], param0->unk_08[3], NULL, NULL);
@@ -501,8 +501,8 @@ static void sub_0205D22C(UnkStruct_0205D094 *param0)
     sub_020095A8(param0->unk_04);
     param0->unk_04 = NULL;
 
-    sub_0200A508(param0->unk_18[0]);
-    sub_0200A700(param0->unk_18[1]);
+    SpriteTransfer_ResetCharTransferList(param0->unk_18[0]);
+    SpriteTransfer_ResetPlttTransferList(param0->unk_18[1]);
 
     for (v0 = 0; v0 < 2; v0++) {
         SpriteResourceList_Delete(param0->unk_18[v0]);

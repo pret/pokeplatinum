@@ -58,8 +58,8 @@ void ov111_021D2F80(UnkStruct_ov111_021D2F80 *param0)
     ov111_021D30D8(param0, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB);
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0200A328(param0->unk_1A0[v0][0]);
-        sub_0200A5C8(param0->unk_1A0[v0][1]);
+        SpriteTransfer_RequestChar(param0->unk_1A0[v0][0]);
+        SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[v0][1]);
     }
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -152,8 +152,8 @@ void ov111_021D3320(UnkStruct_ov111_021D2F80 *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0200A4E4(param0->unk_1A0[v0][0]);
-        sub_0200A6DC(param0->unk_1A0[v0][1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_1A0[v0][0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[v0][1]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -207,7 +207,7 @@ void ov111_021D33B0(UnkStruct_ov111_021D2F80 *param0, int param1)
     v0 = SpriteResourceCollection_Find(param0->unk_190[1], 3);
 
     SpriteResourceCollection_ModifyPalette(param0->unk_190[1], v0, 184, Unk_ov111_021D3940[param1], 0, 115);
-    sub_0200A6B8(v0);
+    SpriteTransfer_ReplacePlttData(v0);
 
     return;
 }

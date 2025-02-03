@@ -1139,10 +1139,10 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
         SysTask_FinishAndFreeParam(v0->unk_400[v2]);
     }
 
-    sub_0200A4E4(v0->unk_328[0][0]);
-    sub_0200A4E4(v0->unk_328[1][0]);
-    sub_0200A6DC(v0->unk_328[0][1]);
-    sub_0200A6DC(v0->unk_328[1][1]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_328[0][0]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_328[1][0]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_328[0][1]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_328[1][1]);
 
     for (v2 = 0; v2 < 4; v2++) {
         SpriteResourceCollection_Delete(v0->unk_318[v2]);
@@ -1564,10 +1564,10 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
     param0->unk_328[1][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 13, 1, 1, 2, 18);
     param0->unk_328[1][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 15, 1, 1, 3, 18);
 
-    sub_0200A328(param0->unk_328[0][0]);
-    sub_0200A328(param0->unk_328[1][0]);
-    sub_0200A5C8(param0->unk_328[0][1]);
-    sub_0200A5C8(param0->unk_328[1][1]);
+    SpriteTransfer_RequestChar(param0->unk_328[0][0]);
+    SpriteTransfer_RequestChar(param0->unk_328[1][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_328[0][1]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_328[1][1]);
 }
 
 static void sub_020879DC(SysTask *param0, void *param1)

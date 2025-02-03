@@ -171,7 +171,7 @@ void ov22_02255248(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BO
     SpriteResource *v0;
 
     v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_48[0], param1, param2, param3, param5, param4, 14);
-    sub_0200A3DC(v0);
+    SpriteTransfer_RequestCharAtEnd(v0);
 }
 
 void ov22_02255268(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5, int param6)
@@ -179,7 +179,7 @@ void ov22_02255268(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BO
     SpriteResource *v0;
 
     v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_48[1], param1, param2, param3, param6, param4, param5, 14);
-    sub_0200A640(v0);
+    SpriteTransfer_RequestPlttFreeSpace(v0);
 }
 
 void ov22_0225528C(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4)

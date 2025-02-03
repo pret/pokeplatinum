@@ -406,7 +406,7 @@ static void ov21_021E9240(UnkStruct_ov21_021D22F8 *param0, UnkStruct_ov21_021D4C
     v2 = param0->unk_0C[1];
 
     v0.unk_00 = param1;
-    v0.unk_08 = sub_0200A72C(v2, NULL);
+    v0.unk_08 = SpriteTransfer_GetPaletteProxy(v2, NULL);
     v0.unk_0C = param0->unk_00;
     v0.unk_10 = -(128 / 2);
     v0.unk_14 = -(16 / 2);
@@ -439,12 +439,12 @@ static void ov21_021E92C4(SpriteResource **param0, SpriteResourceCollection **pa
 {
     param0[0] = SpriteResourceCollection_AddTiles(param1[0], param3, param4, 1, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
-    sub_0200A3DC(param0[0]);
+    SpriteTransfer_RequestCharAtEnd(param0[0]);
     SpriteResource_ReleaseData(param0[0]);
 
     param0[1] = SpriteResourceCollection_AddPalette(param1[1], param3, param5, 0, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param8, param2);
 
-    sub_0200A640(param0[1]);
+    SpriteTransfer_RequestPlttFreeSpace(param0[1]);
     SpriteResource_ReleaseData(param0[1]);
 
     param0[2] = SpriteResourceCollection_Add(param1[2], param3, param6, 1, param9, 2, param2);
@@ -455,12 +455,12 @@ static void ov21_021E9344(SpriteResource **param0, SpriteResourceCollection **pa
 {
     param0[0] = SpriteResourceCollection_AddTilesFrom(param1[0], param3, param4, 1, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
-    sub_0200A3DC(param0[0]);
+    SpriteTransfer_RequestCharAtEnd(param0[0]);
     SpriteResource_ReleaseData(param0[0]);
 
     param0[1] = SpriteResourceCollection_AddPaletteFrom(param1[1], param3, param5, 0, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param8, param2);
 
-    sub_0200A640(param0[1]);
+    SpriteTransfer_RequestPlttFreeSpace(param0[1]);
     SpriteResource_ReleaseData(param0[1]);
 
     param0[2] = SpriteResourceCollection_AddFrom(param1[2], param3, param6, 1, param9, 2, param2);
@@ -469,8 +469,8 @@ static void ov21_021E9344(SpriteResource **param0, SpriteResourceCollection **pa
 
 static void ov21_021E93C4(SpriteResource **param0, SpriteResourceCollection **param1)
 {
-    sub_0200A4E4(param0[0]);
-    sub_0200A6DC(param0[1]);
+    SpriteTransfer_ResetCharTransfer(param0[0]);
+    SpriteTransfer_ResetPlttTransfer(param0[1]);
 
     SpriteResourceCollection_Remove(param1[0], param0[0]);
     SpriteResourceCollection_Remove(param1[1], param0[1]);
@@ -557,7 +557,7 @@ static void ov21_021E9560(UnkStruct_ov21_021E95B0 *param0, UnkStruct_ov21_021D4C
     v0 = ov21_021DF30C(param1, param3, param2);
 
     v1.unk_00 = param1;
-    v1.unk_08 = sub_0200A72C(param4, NULL);
+    v1.unk_08 = SpriteTransfer_GetPaletteProxy(param4, NULL);
     v1.unk_0C = param0->unk_00;
     v1.unk_10 = -78;
     v1.unk_14 = -8;

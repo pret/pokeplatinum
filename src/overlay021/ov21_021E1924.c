@@ -673,14 +673,14 @@ static void ov21_021E2180(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A
 
     param0->unk_40[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 102, 1, 102 + 5000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
-    sub_0200A3DC(param0->unk_40[0]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_40[0]);
     SpriteResource_ReleaseData(param0->unk_40[0]);
 
     param0->unk_40[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 100, 1, 100 + 5000, 2, param2);
     param0->unk_40[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v1, 101, 1, 101 + 5000, 3, param2);
     param0->unk_70[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 99, 1, 99 + 5000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
-    sub_0200A3DC(param0->unk_70[0]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_70[0]);
     SpriteResource_ReleaseData(param0->unk_70[0]);
 
     param0->unk_70[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 97, 1, 97 + 5000, 2, param2);
@@ -691,12 +691,12 @@ static void ov21_021E226C(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
 
-    sub_0200A4E4(param0->unk_40[0]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_40[0]);
     SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_40[0]);
     SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_40[2]);
     SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_40[3]);
 
-    sub_0200A4E4(param0->unk_70[0]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_70[0]);
     SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_70[0]);
     SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_70[2]);
     SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_70[3]);
@@ -792,7 +792,7 @@ static void ov21_021E2478(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A
     v2 = SpriteResourceCollection_Find(v3->unk_13C[1], 11 + 2100);
 
     v1.unk_00 = v3->unk_14C;
-    v1.unk_08 = sub_0200A72C(v2, NULL);
+    v1.unk_08 = SpriteTransfer_GetPaletteProxy(v2, NULL);
     v1.unk_14 = -6;
     v1.unk_18 = 2;
     v1.unk_1C = 0;

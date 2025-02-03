@@ -373,13 +373,13 @@ static void ov6_0224339C(UnkStruct_ov6_02243258 *param0)
 
     for (v0 = 0; v0 < param0->unk_00; v0++) {
         if (param0->unk_1A8[v0].unk_00 != param0->unk_04) {
-            sub_0200A4E4(param0->unk_1A8[v0].unk_04);
+            SpriteTransfer_ResetCharTransfer(param0->unk_1A8[v0].unk_04);
         }
     }
 
     for (v0 = 0; v0 < param0->unk_01; v0++) {
         if (param0->unk_1AC[v0].unk_00 != param0->unk_05) {
-            sub_0200A6DC(param0->unk_1AC[v0].unk_04);
+            SpriteTransfer_ResetPlttTransfer(param0->unk_1AC[v0].unk_04);
         }
     }
 
@@ -429,7 +429,7 @@ static void ov6_02243520(UnkStruct_ov6_02243258 *param0, int param1)
 
     for (v0 = 0; v0 < param0->unk_00; v0++) {
         if (param0->unk_1A8[v0].unk_00 == param1) {
-            sub_0200A3DC(param0->unk_1A8[v0].unk_04);
+            SpriteTransfer_RequestCharAtEnd(param0->unk_1A8[v0].unk_04);
             return;
         }
     }
@@ -474,7 +474,7 @@ static void ov6_022435F8(UnkStruct_ov6_02243258 *param0, int param1)
 
     for (v0 = 0; v0 < param0->unk_01; v0++) {
         if (param0->unk_1AC[v0].unk_00 == param1) {
-            sub_0200A640(param0->unk_1AC[v0].unk_04);
+            SpriteTransfer_RequestPlttFreeSpace(param0->unk_1AC[v0].unk_04);
             return;
         }
     }
@@ -1596,13 +1596,13 @@ static void ov6_022446B8(SysTask *param0, void *param1)
     case 0:
         for (v0 = 0; v0 < 4; v0++) {
             if (v1->unk_210[v0] != NULL) {
-                sub_0200A3DC(v1->unk_210[v0]);
+                SpriteTransfer_RequestCharAtEnd(v1->unk_210[v0]);
             }
         }
 
         for (v0 = 0; v0 < 3; v0++) {
             if (v1->unk_220[v0] != NULL) {
-                sub_0200A640(v1->unk_220[v0]);
+                SpriteTransfer_RequestPlttFreeSpace(v1->unk_220[v0]);
             }
         }
 
@@ -1661,7 +1661,7 @@ static void ov6_022447B4(SysTask *param0, void *param1)
 
     switch (v0->unk_268) {
     case 0:
-        sub_0200A3DC(v1);
+        SpriteTransfer_RequestCharAtEnd(v1);
         SysTask_ExecuteAfterVBlank(ov6_022447EC, v0, 0x80);
         v0->unk_268++;
         break;
@@ -1798,13 +1798,13 @@ static void ov6_02244B6C(UnkStruct_ov6_02243FFC *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_210[v0] != NULL) {
-            sub_0200A4E4(param0->unk_210[v0]);
+            SpriteTransfer_ResetCharTransfer(param0->unk_210[v0]);
         }
     }
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_220[v0] != NULL) {
-            sub_0200A6DC(param0->unk_220[v0]);
+            SpriteTransfer_ResetPlttTransfer(param0->unk_220[v0]);
         }
     }
 
@@ -2092,7 +2092,7 @@ static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1)
     const NNSG2dImageProxy *v2;
 
     v1 = SpriteResourceCollection_Find(param0->unk_200, 3);
-    v2 = sub_0200A534(v1);
+    v2 = SpriteTransfer_GetImageProxy(v1);
     v0 = NNS_G2dGetImageLocation(v2, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     DC_FlushRange((void *)param1, ((32 * 10) * 10));
@@ -2116,9 +2116,9 @@ static void ov6_02245170(UnkStruct_ov6_02243FFC *param0, void *param1)
     const NNSG2dImagePaletteProxy *v4;
 
     v2 = SpriteResourceCollection_Find(param0->unk_200, 3);
-    v3 = sub_0200A534(v2);
+    v3 = SpriteTransfer_GetImageProxy(v2);
     v1 = SpriteResourceCollection_Find(param0->unk_204, 2);
-    v4 = sub_0200A72C(v1, v3);
+    v4 = SpriteTransfer_GetPaletteProxy(v1, v3);
     v0 = NNS_G2dGetImagePaletteLocation(v4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     DC_FlushRange((void *)param1, 32);
@@ -2130,7 +2130,7 @@ static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
     int v0;
     SpriteResource *v1 = SpriteResourceCollection_Find(param0->unk_200, 3);
 
-    sub_0200A4E4(v1);
+    SpriteTransfer_ResetCharTransfer(v1);
     SpriteResourceCollection_Remove(param0->unk_200, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -2143,7 +2143,7 @@ static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
     GF_ASSERT(v0 < 4);
 
     v1 = SpriteResourceCollection_Find(param0->unk_204, 2);
-    sub_0200A6DC(v1);
+    SpriteTransfer_ResetPlttTransfer(v1);
     SpriteResourceCollection_Remove(param0->unk_204, v1);
 
     for (v0 = 0; v0 < 3; v0++) {

@@ -92,11 +92,11 @@ void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2)
     NARC_dtor(v1);
 
     for (v0 = 0; v0 < 7; v0++) {
-        sub_0200A328(param0->unk_1A0[v0][0]);
+        SpriteTransfer_RequestChar(param0->unk_1A0[v0][0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200A5C8(param0->unk_1A0[v0][1]);
+        SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[v0][1]);
     }
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -154,11 +154,11 @@ void ov107_02249954(UnkStruct_ov107_02249954 *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 7; v0++) {
-        sub_0200A4E4(param0->unk_1A0[v0][0]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_1A0[v0][0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200A6DC(param0->unk_1A0[v0][1]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[v0][1]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -180,7 +180,7 @@ void ov107_022499BC(UnkStruct_ov107_02249954 *param0, u16 param1)
     v0 = SpriteResourceCollection_Find(param0->unk_190[0], 1);
 
     SpriteResourceCollection_ModifyTiles(param0->unk_190[0], v0, 16, Item_FileID(param1, 1), 0, 100);
-    sub_0200A4C0(v0);
+    SpriteTransfer_RetransferCharData(v0);
 
     return;
 }
@@ -192,7 +192,7 @@ void ov107_022499FC(UnkStruct_ov107_02249954 *param0, u16 param1)
     v0 = SpriteResourceCollection_Find(param0->unk_190[1], 1);
 
     SpriteResourceCollection_ModifyPalette(param0->unk_190[1], v0, 16, Item_FileID(param1, 2), 0, 100);
-    sub_0200A6B8(v0);
+    SpriteTransfer_ReplacePlttData(v0);
 
     return;
 }

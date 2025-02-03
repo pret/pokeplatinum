@@ -59,17 +59,17 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
     }
 
     if (param7) {
-        v6 = sub_0200A558(v0, v2);
+        v6 = SpriteTransfer_GetCellTransferProxy(v0, v2);
         GF_ASSERT(v6);
 
         param0->charData = SpriteResource_GetTileData(v0);
     } else {
-        v6 = sub_0200A534(v0);
+        v6 = SpriteTransfer_GetImageProxy(v0);
         GF_ASSERT(v6);
         param0->charData = NULL;
     }
 
-    param0->paletteProxy = sub_0200A72C(v1, v6);
+    param0->paletteProxy = SpriteTransfer_GetPaletteProxy(v1, v6);
     param0->imageProxy = v6;
     param0->cellBank = SpriteResource_GetSpriteData(v2);
 
@@ -93,7 +93,7 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
 
 void sub_020094F0(CellActorResourceData *param0)
 {
-    sub_0200A5B4(param0->imageProxy);
+    SpriteTransfer_DeleteCharTransfer(param0->imageProxy);
     memset(param0, 0, sizeof(CellActorResourceData));
 }
 

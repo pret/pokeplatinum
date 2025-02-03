@@ -899,7 +899,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, ArchivedSpr
     sub_020135F0(sprite->archive, sprite->character, param0->unk_1C6, &v7, buf + POKEMON_SPRITE_FRAME_SIZE_BYTES);
 
     charResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_TILES], POKEMON_PREVIEW_RESOURCE_ID);
-    imageProxy = sub_0200A534(charResource);
+    imageProxy = SpriteTransfer_GetImageProxy(charResource);
     offset = NNS_G2dGetImageLocation(imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     DC_FlushRange(buf, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
@@ -909,7 +909,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, ArchivedSpr
 
     buf = sub_02013660(sprite->archive, sprite->palette, param0->unk_1C6);
     plttResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_PALETTE], POKEMON_PREVIEW_RESOURCE_ID);
-    paletteProxy = sub_0200A72C(plttResource, imageProxy);
+    paletteProxy = SpriteTransfer_GetPaletteProxy(plttResource, imageProxy);
     offset = NNS_G2dGetImagePaletteLocation(paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     DC_FlushRange(buf, 32);

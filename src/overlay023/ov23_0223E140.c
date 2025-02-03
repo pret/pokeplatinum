@@ -1369,10 +1369,10 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 1);
     Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 2);
     Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 3);
-    sub_0200A4E4(Unk_ov23_02257740->unk_1C0[0]);
-    sub_0200A4E4(Unk_ov23_02257740->unk_1C0[4]);
-    sub_0200A6DC(Unk_ov23_02257740->unk_1C0[1]);
-    sub_0200A6DC(Unk_ov23_02257740->unk_1C0[5]);
+    SpriteTransfer_ResetCharTransfer(Unk_ov23_02257740->unk_1C0[0]);
+    SpriteTransfer_ResetCharTransfer(Unk_ov23_02257740->unk_1C0[4]);
+    SpriteTransfer_ResetPlttTransfer(Unk_ov23_02257740->unk_1C0[1]);
+    SpriteTransfer_ResetPlttTransfer(Unk_ov23_02257740->unk_1C0[5]);
 
     for (v1 = 0; v1 < 4; v1++) {
         SpriteResourceCollection_Delete(Unk_ov23_02257740->unk_1B0[v1]);
@@ -2782,18 +2782,18 @@ static void ov23_02240E88(void)
     v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, 29);
 
     ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
-    sub_0200A328(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
+    SpriteTransfer_RequestChar(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
     ov23_02240E60(SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257740->unk_1B0[1], v1, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 29));
 
-    sub_0200A640(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
+    SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
 
     ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[2], v1, 5, 0, 0, 2, 29));
     ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[3], v1, 4, 0, 0, 3, 29));
     ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
 
-    sub_0200A328(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
+    SpriteTransfer_RequestChar(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
     ov23_02240E60(SpriteResourceCollection_AddPalette(Unk_ov23_02257740->unk_1B0[1], 52, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 29));
-    sub_0200A640(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
+    SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
 
     ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[2], v1, 2, 0, 1, 2, 29));
     ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[3], v1, 1, 0, 1, 3, 29));

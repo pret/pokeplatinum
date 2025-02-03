@@ -1656,8 +1656,8 @@ static void ov70_0225EC20(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4
     param0->unk_40[3] = SpriteResourceCollection_AddFrom(param1->unk_194[3], v3, 6, 0, 5000, 3, param2);
 
     NARC_dtor(v3);
-    sub_0200A3DC(param0->unk_40[0]);
-    sub_0200A640(param0->unk_40[1]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_40[0]);
+    SpriteTransfer_RequestPlttFreeSpace(param0->unk_40[1]);
     sub_020093B4(&v0, 5000, 5000, 5000, 5000, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
     v1.collection = param1->unk_04;
@@ -1696,8 +1696,8 @@ static void ov70_0225ED4C(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4
         param0->unk_50[v0] = NULL;
     }
 
-    sub_0200A4E4(param0->unk_40[0]);
-    sub_0200A6DC(param0->unk_40[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_40[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_40[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Remove(param1->unk_194[v0], param0->unk_40[v0]);
@@ -2690,13 +2690,13 @@ static void ov70_0225FEF0(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
 
         param0->unk_58[0] = SpriteResourceCollection_AddTilesFrom(param1->unk_194[0], param2, 61 + (v0 * 3), 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, param3);
 
-        v2 = sub_0200A3DC(param0->unk_58[0]);
+        v2 = SpriteTransfer_RequestCharAtEnd(param0->unk_58[0]);
         GF_ASSERT(v2);
         SpriteResource_ReleaseData(param0->unk_58[0]);
 
         param0->unk_58[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194[1], param2, 89, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, 3, param3);
 
-        v2 = sub_0200A640(param0->unk_58[1]);
+        v2 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_58[1]);
         GF_ASSERT(v2);
         SpriteResource_ReleaseData(param0->unk_58[1]);
 
@@ -2732,8 +2732,8 @@ static void ov70_02260048(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
     {
         int v0;
 
-        sub_0200A4E4(param0->unk_58[0]);
-        sub_0200A6DC(param0->unk_58[1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_58[0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_58[1]);
 
         for (v0 = 0; v0 < 4; v0++) {
             SpriteResourceCollection_Remove(param1->unk_194[v0], param0->unk_58[v0]);
@@ -2764,12 +2764,12 @@ static void ov70_02260080(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
         BOOL v5;
 
         param0->unk_6C[0] = SpriteResourceCollection_AddTiles(param1->unk_194[0], v4.unk_00, v4.unk_04, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, param3);
-        v5 = sub_0200A3DC(param0->unk_6C[0]);
+        v5 = SpriteTransfer_RequestCharAtEnd(param0->unk_6C[0]);
         GF_ASSERT(v5);
 
         param0->unk_6C[1] = SpriteResourceCollection_AddPalette(param1->unk_194[1], v4.unk_00, v4.unk_08, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, 1, param3);
         ov70_02260268(SpriteResource_GetPaletteFade(param0->unk_6C[1]));
-        v5 = sub_0200A640(param0->unk_6C[1]);
+        v5 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_6C[1]);
         GF_ASSERT(v5);
 
         SpriteResource_ReleaseData(param0->unk_6C[1]);
@@ -2806,8 +2806,8 @@ static void ov70_02260228(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
     {
         int v0;
 
-        sub_0200A4E4(param0->unk_6C[0]);
-        sub_0200A6DC(param0->unk_6C[1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_6C[0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_6C[1]);
 
         for (v0 = 0; v0 < 4; v0++) {
             SpriteResourceCollection_Remove(param1->unk_194[v0], param0->unk_6C[v0]);
@@ -2967,7 +2967,7 @@ static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
         }
 
         param0->unk_AC[v0] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194[1], v2, v11[v0][1], 0, 150 + v0, NNS_G2D_VRAM_TYPE_2DSUB, v11[v0][2], param3);
-        v3 = sub_0200A640(param0->unk_AC[v0]);
+        v3 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_AC[v0]);
         GF_ASSERT(v3);
 
         SpriteResource_ReleaseData(param0->unk_AC[v0]);
@@ -2994,7 +2994,7 @@ static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
 
             param0->unk_BC[v0] = SpriteResourceCollection_AddTilesFrom(param1->unk_194[0], v2, v10->unk_02, 0, 150 + v0, NNS_G2D_VRAM_TYPE_2DSUB, param3);
 
-            v3 = sub_0200A3DC(param0->unk_BC[v0]);
+            v3 = SpriteTransfer_RequestCharAtEnd(param0->unk_BC[v0]);
             GF_ASSERT(v3);
 
             SpriteResource_ReleaseData(param0->unk_BC[v0]);
@@ -3028,7 +3028,7 @@ static void ov70_0226068C(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
 
             param0->unk_7C[v0] = NULL;
 
-            sub_0200A4E4(param0->unk_BC[v0]);
+            SpriteTransfer_ResetCharTransfer(param0->unk_BC[v0]);
             SpriteResourceCollection_Remove(param1->unk_194[0], param0->unk_BC[v0]);
 
             param0->unk_BC[v0] = NULL;
@@ -3037,7 +3037,7 @@ static void ov70_0226068C(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_AC[v0] != NULL) {
-            sub_0200A6DC(param0->unk_AC[v0]);
+            SpriteTransfer_ResetPlttTransfer(param0->unk_AC[v0]);
             SpriteResourceCollection_Remove(param1->unk_194[1], param0->unk_AC[v0]);
             SpriteResourceCollection_Remove(param1->unk_194[2], param0->unk_EC[v0]);
             SpriteResourceCollection_Remove(param1->unk_194[3], param0->unk_FC[v0]);

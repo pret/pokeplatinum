@@ -210,10 +210,10 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.pixels);
 
     SetMainCallback(NULL, NULL);
-    sub_0200A4E4(v0->unk_1DC[0][0]);
-    sub_0200A4E4(v0->unk_1DC[1][0]);
-    sub_0200A6DC(v0->unk_1DC[0][1]);
-    sub_0200A6DC(v0->unk_1DC[1][1]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_1DC[0][0]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_1DC[1][0]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_1DC[0][1]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_1DC[1][1]);
 
     for (v1 = 0; v1 < 4; v1++) {
         SpriteResourceCollection_Delete(v0->unk_1CC[v1]);
@@ -494,10 +494,10 @@ static void ov72_0223DDD8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
     param0->unk_1DC[1][2] = SpriteResourceCollection_AddFrom(param0->unk_1CC[2], param1, 8, 1, 1, 2, 39);
     param0->unk_1DC[1][3] = SpriteResourceCollection_AddFrom(param0->unk_1CC[3], param1, 9, 1, 1, 3, 39);
 
-    sub_0200A328(param0->unk_1DC[0][0]);
-    sub_0200A328(param0->unk_1DC[1][0]);
-    sub_0200A5C8(param0->unk_1DC[0][1]);
-    sub_0200A5C8(param0->unk_1DC[1][1]);
+    SpriteTransfer_RequestChar(param0->unk_1DC[0][0]);
+    SpriteTransfer_RequestChar(param0->unk_1DC[1][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1DC[0][1]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1DC[1][1]);
 }
 
 static const u16 Unk_ov72_0223EB3C[1][3] = {

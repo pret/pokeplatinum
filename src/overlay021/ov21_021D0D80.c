@@ -745,7 +745,7 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D332
     v4 = ov21_021D2344(param0, 1);
 
     v2.unk_00 = param0->unk_14C;
-    v2.unk_08 = sub_0200A72C(v4, NULL);
+    v2.unk_08 = SpriteTransfer_GetPaletteProxy(v4, NULL);
     v2.unk_0C = v0;
     v2.unk_10 = -(128 / 2);
     v2.unk_14 = -(16 / 2);

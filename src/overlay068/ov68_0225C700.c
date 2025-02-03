@@ -672,10 +672,10 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         param0->unk_18[0] = SpriteResourceCollection_AddTilesFrom(param2->unk_194[0], param2->unk_1A4, 205, 0, 20, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
         param0->unk_18[1] = SpriteResourceCollection_AddPaletteFrom(param2->unk_194[1], param2->unk_1A4, 204, 0, 20, NNS_G2D_VRAM_TYPE_2DMAIN, 3, param3);
 
-        v0 = sub_0200A3DC(param0->unk_18[0]);
+        v0 = SpriteTransfer_RequestCharAtEnd(param0->unk_18[0]);
         GF_ASSERT(v0);
 
-        v0 = sub_0200A640(param0->unk_18[1]);
+        v0 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_18[1]);
         GF_ASSERT(v0);
 
         SpriteResource_ReleaseData(param0->unk_18[0]);
@@ -860,8 +860,8 @@ static void ov68_0225D02C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
     {
         int v1;
 
-        sub_0200A4E4(param0->unk_18[0]);
-        sub_0200A6DC(param0->unk_18[1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_18[0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_18[1]);
 
         for (v1 = 0; v1 < 4; v1++) {
             SpriteResourceCollection_Remove(param2->unk_194[v1], param0->unk_18[v1]);

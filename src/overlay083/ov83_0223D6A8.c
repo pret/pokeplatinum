@@ -213,11 +213,11 @@ void ov83_0223D7A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
     param1->unk_00[2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param2, param6, 0, param8, 2, param9);
     param1->unk_00[3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param2, param7, 0, param8, 3, param9);
 
-    v0 = sub_0200A450(param1->unk_00[0]);
+    v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param1->unk_00[0]);
     GF_ASSERT(v0);
     SpriteResource_ReleaseData(param1->unk_00[0]);
 
-    v0 = sub_0200A640(param1->unk_00[1]);
+    v0 = SpriteTransfer_RequestPlttFreeSpace(param1->unk_00[1]);
     GF_ASSERT(v0);
     SpriteResource_ReleaseData(param1->unk_00[1]);
 
@@ -238,7 +238,7 @@ void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
     param1->unk_00[2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param2, param5, 0, param7, 2, param8);
     param1->unk_00[3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param2, param6, 0, param7, 3, param8);
 
-    v0 = sub_0200A450(param1->unk_00[0]);
+    v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param1->unk_00[0]);
     GF_ASSERT(v0);
 
     SpriteResource_ReleaseData(param1->unk_00[0]);
@@ -249,10 +249,10 @@ void ov83_0223D95C(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
 {
     int v0;
 
-    sub_0200A4E4(param1->unk_00[0]);
+    SpriteTransfer_ResetCharTransfer(param1->unk_00[0]);
 
     if (param1->unk_10 == 0) {
-        sub_0200A6DC(param1->unk_00[1]);
+        SpriteTransfer_ResetPlttTransfer(param1->unk_00[1]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {

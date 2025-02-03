@@ -1502,12 +1502,12 @@ static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
     v0 = SpriteResourceCollection_Find(param0->unk_94.unk_194[0], 2);
 
     SpriteResourceCollection_ModifyTiles(param0->unk_94.unk_194[0], v0, 16, Item_FileID(param1, 1), 0, 11);
-    sub_0200A4C0(v0);
+    SpriteTransfer_RetransferCharData(v0);
 
     v0 = SpriteResourceCollection_Find(param0->unk_94.unk_194[1], 1);
 
     SpriteResourceCollection_ModifyPalette(param0->unk_94.unk_194[1], v0, 16, Item_FileID(param1, 2), 0, 11);
-    sub_0200A6B8(v0);
+    SpriteTransfer_ReplacePlttData(v0);
 }
 
 static void ov7_0224EC10(UnkStruct_ov7_0224D008 *param0, u8 param1)

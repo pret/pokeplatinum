@@ -1143,11 +1143,11 @@ static void ov97_0222E398(UnkStruct_ov97_0222E398 *param0)
         param0->unk_58[v9 + 1][3] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
     }
 
-    sub_0200A328(param0->unk_58[v9 + 0][0]);
-    sub_0200A328(param0->unk_58[v9 + 1][0]);
+    SpriteTransfer_RequestChar(param0->unk_58[v9 + 0][0]);
+    SpriteTransfer_RequestChar(param0->unk_58[v9 + 1][0]);
 
-    sub_0200A640(param0->unk_58[v9 + 0][1]);
-    sub_0200A640(param0->unk_58[v9 + 1][1]);
+    SpriteTransfer_RequestPlttFreeSpace(param0->unk_58[v9 + 0][1]);
+    SpriteTransfer_RequestPlttFreeSpace(param0->unk_58[v9 + 1][1]);
 
     v6 = NNS_G2D_VRAM_TYPE_2DMAIN;
     v7 = 20000 + v6;

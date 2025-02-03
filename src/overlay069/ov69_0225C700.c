@@ -2636,7 +2636,7 @@ static void ov69_0225E960(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
     v3.heapID = param3;
 
     param0->unk_6C[0][1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194[1], param1->unk_1A8, 20, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 12, param3);
-    v2 = sub_0200A640(param0->unk_6C[0][1]);
+    v2 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_6C[0][1]);
     GF_ASSERT(v2);
     SpriteResource_ReleaseData(param0->unk_6C[0][1]);
 
@@ -2645,7 +2645,7 @@ static void ov69_0225E960(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
         param0->unk_6C[v0][2] = SpriteResourceCollection_AddFrom(param1->unk_194[2], param1->unk_1A8, (22 + ((v0) * 3)), 0, v0, 2, param3);
         param0->unk_6C[v0][3] = SpriteResourceCollection_AddFrom(param1->unk_194[3], param1->unk_1A8, (23 + ((v0) * 3)), 0, v0, 3, param3);
 
-        v2 = sub_0200A3DC(param0->unk_6C[v0][0]);
+        v2 = SpriteTransfer_RequestCharAtEnd(param0->unk_6C[v0][0]);
         GF_ASSERT(v2);
 
         SpriteResource_ReleaseData(param0->unk_6C[v0][0]);
@@ -2669,10 +2669,10 @@ static void ov69_0225EAE8(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
 
     for (v0 = 0; v0 < 12; v0++) {
         CellActor_Delete(param0->unk_3C[v0]);
-        sub_0200A4E4(param0->unk_6C[v0][0]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_6C[v0][0]);
 
         if (v0 == 0) {
-            sub_0200A6DC(param0->unk_6C[v0][1]);
+            SpriteTransfer_ResetPlttTransfer(param0->unk_6C[v0][1]);
             SpriteResourceCollection_Remove(param1->unk_194[1], param0->unk_6C[v0][1]);
         }
 

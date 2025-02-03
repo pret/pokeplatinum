@@ -1130,7 +1130,7 @@ void ov114_0225CB38(UnkStruct_ov114_0225CAD4 *param0)
 int ov114_0225CB74(UnkStruct_ov114_0225CAD4 *param0)
 {
     SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_10.unk_00[1], 5000);
-    return sub_0200A760(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
+    return SpriteTransfer_GetPlttOffset(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
 void ov114_0225CB8C(UnkStruct_ov114_0225CAD4 *param0)
@@ -1295,12 +1295,12 @@ static void ov114_0225CDE0(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_022
     param1->unk_04[2] = SpriteResourceCollection_AddFrom(param0->unk_00[2], param2, param6, 0, param8, 2, param9);
     param1->unk_04[3] = SpriteResourceCollection_AddFrom(param0->unk_00[3], param2, param7, 0, param8, 3, param9);
 
-    v0 = sub_0200A3DC(param1->unk_04[0]);
+    v0 = SpriteTransfer_RequestCharAtEnd(param1->unk_04[0]);
     GF_ASSERT(v0);
 
     SpriteResource_ReleaseData(param1->unk_04[0]);
 
-    v0 = sub_0200A640(param1->unk_04[1]);
+    v0 = SpriteTransfer_RequestPlttFreeSpace(param1->unk_04[1]);
     GF_ASSERT(v0);
 
     SpriteResource_ReleaseData(param1->unk_04[1]);
@@ -1315,8 +1315,8 @@ static void ov114_0225CEB8(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_022
 
     param1->unk_00 = 0;
 
-    sub_0200A4E4(param1->unk_04[0]);
-    sub_0200A6DC(param1->unk_04[1]);
+    SpriteTransfer_ResetCharTransfer(param1->unk_04[0]);
+    SpriteTransfer_ResetPlttTransfer(param1->unk_04[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Remove(param0->unk_00[v0], param1->unk_04[v0]);

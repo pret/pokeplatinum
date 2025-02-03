@@ -6682,10 +6682,10 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 par
     param0->unk_BE0.unk_20C[2] = SpriteResourceCollection_AddFrom(param0->unk_31C[2], param1, 40, 0, 30, 2, param2);
     param0->unk_BE0.unk_20C[3] = SpriteResourceCollection_AddFrom(param0->unk_31C[3], param1, 41, 0, 30, 3, param2);
 
-    v0 = sub_0200A450(param0->unk_BE0.unk_20C[0]);
+    v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_BE0.unk_20C[0]);
     GF_ASSERT(v0);
 
-    v0 = sub_0200A640(param0->unk_BE0.unk_20C[1]);
+    v0 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_BE0.unk_20C[1]);
     GF_ASSERT(v0);
 
     SpriteResource_ReleaseData(param0->unk_BE0.unk_20C[0]);
@@ -6725,7 +6725,7 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 par
     v7.unk_00 = param0->unk_32C;
     v7.unk_04 = &v3;
     v7.unk_08 = param0->unk_18C;
-    v7.unk_0C = sub_0200A72C(param0->unk_BE0.unk_20C[1], NULL);
+    v7.unk_0C = SpriteTransfer_GetPaletteProxy(param0->unk_BE0.unk_20C[1], NULL);
     v7.unk_10 = param0->unk_BE0.unk_21C[1];
     v7.unk_14 = param0->unk_BE0.unk_228.offset;
     v7.unk_18 = v8;
@@ -6756,8 +6756,8 @@ static void ov65_02234CFC(UnkStruct_ov65_0222EBE0 *param0)
         CellActor_Delete(param0->unk_BE0.unk_21C[v0]);
     }
 
-    sub_0200A4E4(param0->unk_BE0.unk_20C[0]);
-    sub_0200A6DC(param0->unk_BE0.unk_20C[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_BE0.unk_20C[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_BE0.unk_20C[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Remove(param0->unk_31C[v0], param0->unk_BE0.unk_20C[v0]);

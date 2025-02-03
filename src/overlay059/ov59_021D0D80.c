@@ -294,8 +294,8 @@ int ov59_021D0FF4(OverlayManager *param0, int *param1)
     int v1;
 
     SysTask_Done(v0->unk_20);
-    sub_0200A4E4(v0->unk_1F0[2][0]);
-    sub_0200A6DC(v0->unk_1F0[2][1]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_1F0[2][0]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_1F0[2][1]);
 
     for (v1 = 0; v1 < 4; v1++) {
         SpriteResourceCollection_Delete(v0->unk_1E0[v1]);
@@ -616,8 +616,8 @@ static void ov59_021D14A4(UnkStruct_020961E8 *param0, NARC *param1)
     param0->unk_1F0[2][2] = SpriteResourceCollection_AddFrom(param0->unk_1E0[2], param1, 13, 1, 2, 2, 51);
     param0->unk_1F0[2][3] = SpriteResourceCollection_AddFrom(param0->unk_1E0[3], param1, 14, 1, 2, 3, 51);
 
-    sub_0200A328(param0->unk_1F0[2][0]);
-    sub_0200A5C8(param0->unk_1F0[2][1]);
+    SpriteTransfer_RequestChar(param0->unk_1F0[2][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1F0[2][1]);
 }
 
 static const u16 Unk_ov59_021D32C4[][2] = {

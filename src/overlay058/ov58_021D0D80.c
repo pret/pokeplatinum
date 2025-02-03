@@ -308,10 +308,10 @@ int ov58_021D1018(OverlayManager *param0, int *param1)
 
         JournalEntry_SaveData(v1->unk_04, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
         SetMainCallback(NULL, NULL);
-        sub_0200A4E4(v0->unk_1D4[0][0]);
-        sub_0200A4E4(v0->unk_1D4[1][0]);
-        sub_0200A6DC(v0->unk_1D4[0][1]);
-        sub_0200A6DC(v0->unk_1D4[1][1]);
+        SpriteTransfer_ResetCharTransfer(v0->unk_1D4[0][0]);
+        SpriteTransfer_ResetCharTransfer(v0->unk_1D4[1][0]);
+        SpriteTransfer_ResetPlttTransfer(v0->unk_1D4[0][1]);
+        SpriteTransfer_ResetPlttTransfer(v0->unk_1D4[1][1]);
 
         for (v2 = 0; v2 < 4; v2++) {
             SpriteResourceCollection_Delete(v0->unk_1C4[v2]);
@@ -635,11 +635,11 @@ static void ov58_021D1554(UnkStruct_02095EAC *param0, NARC *param1)
     param0->unk_1D4[1][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 1, 2, 39);
     param0->unk_1D4[1][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 1, 3, 39);
 
-    sub_0200A328(param0->unk_1D4[0][0]);
-    sub_0200A328(param0->unk_1D4[1][0]);
+    SpriteTransfer_RequestChar(param0->unk_1D4[0][0]);
+    SpriteTransfer_RequestChar(param0->unk_1D4[1][0]);
 
-    sub_0200A5C8(param0->unk_1D4[0][1]);
-    sub_0200A5C8(param0->unk_1D4[1][1]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1D4[0][1]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1D4[1][1]);
 }
 
 static const u16 Unk_ov58_021D2EEC[][3] = {

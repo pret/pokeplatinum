@@ -70,8 +70,8 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
     }
 
     Heap_FreeToHeap(v1);
-    sub_0200A41C(param0->unk_1AC[0]);
-    sub_0200A684(param0->unk_1AC[1]);
+    SpriteTransfer_RequestCharListAtEnd(param0->unk_1AC[0]);
+    SpriteTransfer_RequestPlttFreeSpaceList(param0->unk_1AC[1]);
 
     v2 = ReadFileToHeap(param3, param1->val2.unk_18);
     param0->unk_190 = sub_02009508(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
@@ -85,8 +85,8 @@ void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)
 
     CellActorCollection_Delete(param0->unk_00);
     sub_020095A8(param0->unk_190);
-    sub_0200A508(param0->unk_1AC[0]);
-    sub_0200A700(param0->unk_1AC[1]);
+    SpriteTransfer_ResetCharTransferList(param0->unk_1AC[0]);
+    SpriteTransfer_ResetPlttTransferList(param0->unk_1AC[1]);
 
     for (v0 = 0; v0 < param0->unk_1C4; v0++) {
         SpriteResourceList_Delete(param0->unk_1AC[v0]);
@@ -172,11 +172,11 @@ void ov5_021D3270(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int pa
     v0 = SpriteResourceCollection_AddPalette(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
-        v1 = sub_0200A640(v0);
+        v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
         GF_ASSERT(v1 == 1);
 
         ov5_021D3478(param0->unk_1AC[1], v0);
-        sub_0200A760(v0, param5);
+        SpriteTransfer_GetPlttOffset(v0, param5);
         return;
     }
 
@@ -196,11 +196,11 @@ void ov5_021D32E8(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int 
     v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
-        v1 = sub_0200A640(v0);
+        v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
         GF_ASSERT(v1 == 1);
 
         ov5_021D3478(param0->unk_1AC[1], v0);
-        sub_0200A760(v0, param5);
+        SpriteTransfer_GetPlttOffset(v0, param5);
         return;
     }
 
@@ -239,7 +239,7 @@ void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL p
     v0 = SpriteResourceCollection_AddTiles(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
-        sub_0200A3DC(v0);
+        SpriteTransfer_RequestCharAtEnd(v0);
         ov5_021D3478(param0->unk_1AC[0], v0);
         return;
     }
@@ -259,7 +259,7 @@ void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL
     v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
-        sub_0200A3DC(v0);
+        SpriteTransfer_RequestCharAtEnd(v0);
         ov5_021D3478(param0->unk_1AC[0], v0);
 
         return;
@@ -398,8 +398,8 @@ void ov5_021D375C(UnkStruct_ov5_021D30A8 *param0)
     u32 v0;
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_0200A508(param0->unk_1AC[0]);
-    sub_0200A700(param0->unk_1AC[1]);
+    SpriteTransfer_ResetCharTransferList(param0->unk_1AC[0]);
+    SpriteTransfer_ResetPlttTransferList(param0->unk_1AC[1]);
 
     for (v0 = 0; v0 < param0->unk_1C4; v0++) {
         SpriteResourceList_Delete(param0->unk_1AC[v0]);

@@ -2657,9 +2657,9 @@ static void ov115_02262FB4(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_022
         param0->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_1AC[2], v0, 22, 0, 120, 2, param2);
         param0->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_1AC[3], v0, 23, 0, 120, 3, param2);
 
-        v1 = sub_0200A450(param0->unk_00[0]);
+        v1 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_00[0]);
         GF_ASSERT(v1);
-        v1 = sub_0200A640(param0->unk_00[1]);
+        v1 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_00[1]);
         GF_ASSERT(v1);
 
         SpriteResource_ReleaseData(param0->unk_00[0]);
@@ -2692,8 +2692,8 @@ static void ov115_022630DC(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_022
     }
 
     {
-        sub_0200A4E4(param0->unk_00[0]);
-        sub_0200A6DC(param0->unk_00[1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_00[0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_00[1]);
         SpriteResourceCollection_Remove(param1->unk_1AC[0], param0->unk_00[0]);
         SpriteResourceCollection_Remove(param1->unk_1AC[1], param0->unk_00[1]);
         SpriteResourceCollection_Remove(param1->unk_1AC[2], param0->unk_00[2]);
@@ -3215,9 +3215,9 @@ static void ov115_02263A74(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
         param0->unk_1E0[2] = SpriteResourceCollection_AddFrom(param0->unk_1AC[2], param1, 1, 0, 200, 2, param2);
         param0->unk_1E0[3] = SpriteResourceCollection_AddFrom(param0->unk_1AC[3], param1, 0, 0, 200, 3, param2);
 
-        v0 = sub_0200A450(param0->unk_1E0[0]);
+        v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_1E0[0]);
         GF_ASSERT(v0);
-        v0 = sub_0200A640(param0->unk_1E0[1]);
+        v0 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_1E0[1]);
         GF_ASSERT(v0);
 
         SpriteResource_ReleaseData(param0->unk_1E0[0]);
@@ -3229,8 +3229,8 @@ static void ov115_02263A74(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
 static void ov115_02263B78(UnkStruct_ov115_02261ADC *param0)
 {
     {
-        sub_0200A4E4(param0->unk_1E0[0]);
-        sub_0200A6DC(param0->unk_1E0[1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_1E0[0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_1E0[1]);
         SpriteResourceCollection_Remove(param0->unk_1AC[0], param0->unk_1E0[0]);
         SpriteResourceCollection_Remove(param0->unk_1AC[1], param0->unk_1E0[1]);
         SpriteResourceCollection_Remove(param0->unk_1AC[2], param0->unk_1E0[2]);
@@ -3618,9 +3618,9 @@ static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
         param0->unk_760.unk_60[2] = SpriteResourceCollection_AddFrom(param0->unk_1AC[2], param1, 6, 0, 100, 2, param2);
         param0->unk_760.unk_60[3] = SpriteResourceCollection_AddFrom(param0->unk_1AC[3], param1, 5, 0, 100, 3, param2);
 
-        v0 = sub_0200A450(param0->unk_760.unk_60[0]);
+        v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_760.unk_60[0]);
         GF_ASSERT(v0);
-        v0 = sub_0200A640(param0->unk_760.unk_60[1]);
+        v0 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_760.unk_60[1]);
         GF_ASSERT(v0);
 
         SpriteResource_ReleaseData(param0->unk_760.unk_60[0]);
@@ -3643,8 +3643,8 @@ static void ov115_02264564(UnkStruct_ov115_02261ADC *param0)
     }
 
     {
-        sub_0200A4E4(param0->unk_760.unk_60[0]);
-        sub_0200A6DC(param0->unk_760.unk_60[1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_760.unk_60[0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_760.unk_60[1]);
         SpriteResourceCollection_Remove(param0->unk_1AC[0], param0->unk_760.unk_60[0]);
         SpriteResourceCollection_Remove(param0->unk_1AC[1], param0->unk_760.unk_60[1]);
         SpriteResourceCollection_Remove(param0->unk_1AC[2], param0->unk_760.unk_60[2]);
@@ -4394,9 +4394,9 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         param0->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_1AC[2], param2, 9, 0, 140, 2, param3);
         param0->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_1AC[3], param2, 8, 0, 140, 3, param3);
 
-        v0 = sub_0200A450(param0->unk_00[0]);
+        v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_00[0]);
         GF_ASSERT(v0);
-        v0 = sub_0200A640(param0->unk_00[1]);
+        v0 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_00[1]);
         GF_ASSERT(v0);
 
         SpriteResource_ReleaseData(param0->unk_00[0]);
@@ -4433,7 +4433,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         GF_ASSERT(v3 == 1);
 
         param0->unk_60 = SpriteResourceCollection_AddPalette(param1->unk_1AC[1], 14, 6, 0, 150, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
-        v3 = sub_0200A640(param0->unk_60);
+        v3 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_60);
         GF_ASSERT(v3);
 
         SpriteResource_ReleaseData(param0->unk_60);
@@ -4441,7 +4441,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         v4.unk_00 = param1->unk_1F0;
         v4.unk_04 = &param0->unk_38;
         v4.unk_08 = param1->unk_1C;
-        v4.unk_0C = sub_0200A72C(param0->unk_60, NULL);
+        v4.unk_0C = SpriteTransfer_GetPaletteProxy(param0->unk_60, NULL);
         v4.unk_10 = param0->unk_34;
         v4.unk_14 = param0->unk_50.offset;
         v4.unk_18 = -7;
@@ -4468,7 +4468,7 @@ static void ov115_02265688(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
 {
     {
         sub_02012BD8(param0->unk_48);
-        sub_0200A6DC(param0->unk_60);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_60);
         SpriteResourceCollection_Remove(param1->unk_1AC[1], param0->unk_60);
         CharTransfer_ClearRange(&param0->unk_50);
         sub_02012B48(param0->unk_4C);
@@ -4478,8 +4478,8 @@ static void ov115_02265688(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
     CellActor_Delete(param0->unk_34);
 
     {
-        sub_0200A4E4(param0->unk_00[0]);
-        sub_0200A6DC(param0->unk_00[1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_00[0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_00[1]);
         SpriteResourceCollection_Remove(param1->unk_1AC[0], param0->unk_00[0]);
         SpriteResourceCollection_Remove(param1->unk_1AC[1], param0->unk_00[1]);
         SpriteResourceCollection_Remove(param1->unk_1AC[2], param0->unk_00[2]);

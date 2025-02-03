@@ -207,8 +207,8 @@ static void ov77_021D6800(UnkStruct_ov77_021D6800 *param0)
     param0->unk_1A0[2] = SpriteResourceCollection_Add(param0->unk_190[2], 128, 5, 0, 0, 2, v1);
     param0->unk_1A0[3] = SpriteResourceCollection_Add(param0->unk_190[3], 128, 6, 0, 0, 3, v1);
 
-    sub_0200A328(param0->unk_1A0[0]);
-    sub_0200A5C8(param0->unk_1A0[1]);
+    SpriteTransfer_RequestChar(param0->unk_1A0[0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[1]);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -218,8 +218,8 @@ static void ov77_021D691C(UnkStruct_ov77_021D6800 *param0)
 {
     u8 v0;
 
-    sub_0200A4E4(param0->unk_1A0[0]);
-    sub_0200A6DC(param0->unk_1A0[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_1A0[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_190[v0]);

@@ -524,8 +524,8 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
     param0->unk_1D0[2] = SpriteResourceCollection_Add(param0->unk_1B8[2], 116, 25, 1, 0, 2, 78);
     param0->unk_1D0[3] = SpriteResourceCollection_Add(param0->unk_1B8[3], 116, 24, 1, 0, 3, 78);
 
-    sub_0200A328(param0->unk_1D0[0]);
-    sub_0200A5C8(param0->unk_1D0[1]);
+    SpriteTransfer_RequestChar(param0->unk_1D0[0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1D0[1]);
     Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, 78);
 }
 
@@ -1559,8 +1559,8 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     ov97_02235158(&param0->unk_4FC);
 
     Font_Free(FONT_SUBSCREEN);
-    sub_0200A4E4(param0->unk_1D0[0]);
-    sub_0200A6DC(param0->unk_1D0[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_1D0[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_1D0[1]);
 
     for (v0 = 0; v0 < 6; v0++) {
         SpriteResourceCollection_Delete(param0->unk_1B8[v0]);

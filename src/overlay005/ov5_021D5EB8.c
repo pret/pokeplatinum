@@ -1069,11 +1069,11 @@ static void ov5_021D6690(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
 
     if (param1 != 0xffff) {
         if (param2->unk_00[0]) {
-            sub_0200A4E4(param2->unk_00[0]);
+            SpriteTransfer_ResetCharTransfer(param2->unk_00[0]);
         }
 
         if (param2->unk_00[1]) {
-            sub_0200A6DC(param2->unk_00[1]);
+            SpriteTransfer_ResetPlttTransfer(param2->unk_00[1]);
         }
 
         for (v0 = 0; v0 < 4; v0++) {
@@ -1433,7 +1433,7 @@ static void ov5_021D6C64(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
     if (param1 != 0xffff) {
         param2->unk_00[0] = ov5_021D65C0(param0->unk_08.unk_10, 0, param1, param0->unk_08.unk_00[0], param0->unk_144, 1);
 
-        sub_0200A3DC(param2->unk_00[0]);
+        SpriteTransfer_RequestCharAtEnd(param2->unk_00[0]);
         SpriteResource_ReleaseData(param2->unk_00[0]);
     }
 }
@@ -1443,7 +1443,7 @@ static void ov5_021D6CA0(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
     if (param1 != 0xffff) {
         param2->unk_00[1] = ov5_021D65C0(param0->unk_08.unk_10, 1, param1, param0->unk_08.unk_00[1], param0->unk_144, 1);
 
-        sub_0200A640(param2->unk_00[1]);
+        SpriteTransfer_RequestPlttFreeSpace(param2->unk_00[1]);
         SpriteResource_ReleaseData(param2->unk_00[1]);
     }
 }

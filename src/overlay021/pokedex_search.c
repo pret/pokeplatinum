@@ -600,12 +600,12 @@ static void GetSearchGraphics(PokedexSearchDisplay *searchDisplay, UnkStruct_ov2
 
     searchDisplay->searchGraphics[SPRITE_RESOURCE_TILES] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], pokedexGraphics, 81, 1, 81 + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
-    sub_0200A3DC(searchDisplay->searchGraphics[SPRITE_RESOURCE_TILES]);
+    SpriteTransfer_RequestCharAtEnd(searchDisplay->searchGraphics[SPRITE_RESOURCE_TILES]);
     SpriteResource_ReleaseData(searchDisplay->searchGraphics[SPRITE_RESOURCE_TILES]);
 
     searchDisplay->searchGraphics[SPRITE_RESOURCE_PALETTE] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], pokedexGraphics, 3, 0, 3 + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, 12, heapID);
 
-    sub_0200A640(searchDisplay->searchGraphics[SPRITE_RESOURCE_PALETTE]);
+    SpriteTransfer_RequestPlttFreeSpace(searchDisplay->searchGraphics[SPRITE_RESOURCE_PALETTE]);
     SpriteResource_ReleaseData(searchDisplay->searchGraphics[SPRITE_RESOURCE_PALETTE]);
 
     searchDisplay->searchGraphics[SPRITE_RESOURCE_SPRITE] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], pokedexGraphics, 79, 1, 79 + 15000, SPRITE_RESOURCE_SPRITE, heapID);
@@ -616,8 +616,8 @@ static void FreeSearchGraphics(PokedexSearchDisplay *searchDisplay, UnkStruct_ov
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
 
-    sub_0200A4E4(searchDisplay->searchGraphics[SPRITE_RESOURCE_TILES]);
-    sub_0200A6DC(searchDisplay->searchGraphics[SPRITE_RESOURCE_PALETTE]);
+    SpriteTransfer_ResetCharTransfer(searchDisplay->searchGraphics[SPRITE_RESOURCE_TILES]);
+    SpriteTransfer_ResetPlttTransfer(searchDisplay->searchGraphics[SPRITE_RESOURCE_PALETTE]);
 
     SpriteResourceCollection_Remove(v0->unk_13C[0], searchDisplay->searchGraphics[SPRITE_RESOURCE_TILES]);
     SpriteResourceCollection_Remove(v0->unk_13C[1], searchDisplay->searchGraphics[SPRITE_RESOURCE_PALETTE]);

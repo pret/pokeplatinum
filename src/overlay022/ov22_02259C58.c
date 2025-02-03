@@ -347,7 +347,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
     v0.unk_20 = 19;
 
     v3 = SpriteResourceCollection_Find(param2->unk_48[1], 1);
-    v0.unk_18 = sub_0200A72C(v3, NULL);
+    v0.unk_18 = SpriteTransfer_GetPaletteProxy(v3, NULL);
 
     GF_ASSERT(CharTransfer_AllocRange(sub_02012898(param4, NNS_G2D_VRAM_TYPE_2DMAIN, 13), 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_14));
 

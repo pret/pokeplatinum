@@ -71,8 +71,8 @@ void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
     param0->unk_1A0[0][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param1, 44, 0, 1, 2, 25);
     param0->unk_1A0[0][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param1, 46, 0, 1, 3, 25);
 
-    sub_0200A328(param0->unk_1A0[0][0]);
-    sub_0200A5C8(param0->unk_1A0[0][1]);
+    SpriteTransfer_RequestChar(param0->unk_1A0[0][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[0][1]);
 
     {
         u8 v1;
@@ -181,8 +181,8 @@ void ov71_0223D238(UnkStruct_ov71_0223D238 *param0)
         Heap_FreeToHeap(param0->unk_224[v0]);
     }
 
-    sub_0200A4E4(param0->unk_1A0[0][0]);
-    sub_0200A6DC(param0->unk_1A0[0][1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_1A0[0][0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[0][1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_190[v0]);

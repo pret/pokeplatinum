@@ -57,8 +57,8 @@ void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1)
     param0->unk_1A0[1][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], v1, PokeIcon32KAnimationFileIndex(), 0, 1, 3, 98);
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_0200A328(param0->unk_1A0[v0][0]);
-        sub_0200A5C8(param0->unk_1A0[v0][1]);
+        SpriteTransfer_RequestChar(param0->unk_1A0[v0][0]);
+        SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[v0][1]);
     }
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -118,8 +118,8 @@ void ov106_02243570(UnkStruct_ov106_02243310 *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_0200A4E4(param0->unk_1A0[v0][0]);
-        sub_0200A6DC(param0->unk_1A0[v0][1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_1A0[v0][0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[v0][1]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {

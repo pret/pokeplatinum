@@ -836,11 +836,11 @@ static void ov88_0223BF7C(UnkStruct_02095E80 *param0)
 {
     int v0;
 
-    sub_0200A4E4(param0->unk_334[0][0]);
-    sub_0200A4E4(param0->unk_334[1][0]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_334[0][0]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_334[1][0]);
 
-    sub_0200A6DC(param0->unk_334[0][1]);
-    sub_0200A6DC(param0->unk_334[1][1]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_334[0][1]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_334[1][1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_324[v0]);
@@ -1256,10 +1256,10 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     param0->unk_334[1][2] = SpriteResourceCollection_AddFrom(param0->unk_324[2], param1, 11, 1, 1, 2, 26);
     param0->unk_334[1][3] = SpriteResourceCollection_AddFrom(param0->unk_324[3], param1, 12, 1, 1, 3, 26);
 
-    sub_0200A328(param0->unk_334[0][0]);
-    sub_0200A328(param0->unk_334[1][0]);
-    sub_0200A5C8(param0->unk_334[0][1]);
-    sub_0200A5C8(param0->unk_334[1][1]);
+    SpriteTransfer_RequestChar(param0->unk_334[0][0]);
+    SpriteTransfer_RequestChar(param0->unk_334[1][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_334[0][1]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_334[1][1]);
     Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, 26);
 }
 

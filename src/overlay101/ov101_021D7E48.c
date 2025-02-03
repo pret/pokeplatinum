@@ -103,13 +103,13 @@ void ov101_021D7FB4(UnkStruct_ov101_021D7E48 *param0)
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
         if (param0->unk_1B0[v0].unk_00 != param0->unk_08) {
-            sub_0200A4E4(param0->unk_1B0[v0].unk_04);
+            SpriteTransfer_ResetCharTransfer(param0->unk_1B0[v0].unk_04);
         }
     }
 
     for (v0 = 0; v0 < param0->unk_05; v0++) {
         if (param0->unk_1B4[v0].unk_00 != param0->unk_09) {
-            sub_0200A6DC(param0->unk_1B4[v0].unk_04);
+            SpriteTransfer_ResetPlttTransfer(param0->unk_1B4[v0].unk_04);
         }
     }
 
@@ -169,7 +169,7 @@ void ov101_021D814C(UnkStruct_ov101_021D7E48 *param0, u32 param1)
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
         if (param0->unk_1B0[v0].unk_00 == param1) {
-            sub_0200A3DC(param0->unk_1B0[v0].unk_04);
+            SpriteTransfer_RequestCharAtEnd(param0->unk_1B0[v0].unk_04);
             return;
         }
     }
@@ -213,7 +213,7 @@ void ov101_021D8220(UnkStruct_ov101_021D7E48 *param0, u32 param1)
 
     for (v0 = 0; v0 < param0->unk_05; v0++) {
         if (param0->unk_1B4[v0].unk_00 == param1) {
-            sub_0200A640(param0->unk_1B4[v0].unk_04);
+            SpriteTransfer_RequestPlttFreeSpace(param0->unk_1B4[v0].unk_04);
             return;
         }
     }
@@ -275,7 +275,7 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
     if (param1 != param0->unk_08) {
         for (v0 = 0; v0 < param0->unk_04; v0++) {
             if (param0->unk_1B0[v0].unk_00 == param1) {
-                sub_0200A4E4(param0->unk_1B0[v0].unk_04);
+                SpriteTransfer_ResetCharTransfer(param0->unk_1B0[v0].unk_04);
                 SpriteResourceCollection_Remove(param0->unk_1A0, param0->unk_1B0[v0].unk_04);
                 param0->unk_1B0[v0].unk_00 = param0->unk_08;
                 break;
@@ -286,7 +286,7 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
     if (param2 != param0->unk_09) {
         for (v0 = 0; v0 < param0->unk_05; v0++) {
             if (param0->unk_1B4[v0].unk_00 == param2) {
-                sub_0200A6DC(param0->unk_1B4[v0].unk_04);
+                SpriteTransfer_ResetPlttTransfer(param0->unk_1B4[v0].unk_04);
                 SpriteResourceCollection_Remove(param0->unk_1A4, param0->unk_1B4[v0].unk_04);
                 param0->unk_1B4[v0].unk_00 = param0->unk_09;
                 break;
@@ -351,7 +351,7 @@ void ov101_021D84A4(UnkStruct_ov101_021D7E48 *param0, UnkStruct_ov101_021D8544 *
 void ov101_021D8544(UnkStruct_ov101_021D8544 *param0)
 {
     if (param0->unk_00 == 1) {
-        sub_0200A5B4(param0->unk_08);
+        SpriteTransfer_DeleteCharTransfer(param0->unk_08);
     }
 
     CellActor_Delete(param0->unk_04);

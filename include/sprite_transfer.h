@@ -5,27 +5,27 @@
 
 #include "sprite_resource.h"
 
-BOOL sub_0200A328(const SpriteResource *param0);
-void sub_0200A368(const SpriteResourceList *param0);
-BOOL sub_0200A39C(const SpriteResource *param0);
-BOOL sub_0200A3DC(const SpriteResource *param0);
-void sub_0200A41C(const SpriteResourceList *param0);
-BOOL sub_0200A450(const SpriteResource *param0);
-void sub_0200A490(const SpriteResource *param0, const SpriteResource *param1);
-void sub_0200A4C0(const SpriteResource *param0);
-void sub_0200A4E4(SpriteResource *param0);
-void sub_0200A508(SpriteResourceList *param0);
-NNSG2dImageProxy *sub_0200A534(const SpriteResource *param0);
-NNSG2dImageProxy *sub_0200A558(const SpriteResource *param0, const SpriteResource *param1);
-void sub_0200A5B4(const NNSG2dImageProxy *param0);
-BOOL sub_0200A5C8(const SpriteResource *param0);
-void sub_0200A60C(const SpriteResourceList *param0);
-BOOL sub_0200A640(const SpriteResource *param0);
-void sub_0200A684(const SpriteResourceList *param0);
-void sub_0200A6B8(const SpriteResource *param0);
-void sub_0200A6DC(SpriteResource *param0);
-void sub_0200A700(SpriteResourceList *param0);
-const NNSG2dImagePaletteProxy *sub_0200A72C(const SpriteResource *param0, NNSG2dImageProxy *param1);
-u32 sub_0200A760(const SpriteResource *param0, NNS_G2D_VRAM_TYPE param1);
+BOOL SpriteTransfer_RequestChar(const SpriteResource *param0);
+void SpriteTransfer_RequestCharList(const SpriteResourceList *param0);
+BOOL SpriteTransfer_RequestCharWithHardwareMappingType(const SpriteResource *param0);
+BOOL SpriteTransfer_RequestCharAtEnd(const SpriteResource *param0);
+void SpriteTransfer_RequestCharListAtEnd(const SpriteResourceList *param0);
+BOOL SpriteTransfer_RequestCharAtEndWithHardwareMappingType(const SpriteResource *param0);
+void SpriteTransfer_ReplaceCharData(const SpriteResource *param0, const SpriteResource *param1);
+void SpriteTransfer_RetransferCharData(const SpriteResource *param0);
+void SpriteTransfer_ResetCharTransfer(SpriteResource *param0);
+void SpriteTransfer_ResetCharTransferList(SpriteResourceList *param0);
+NNSG2dImageProxy *SpriteTransfer_GetImageProxy(const SpriteResource *param0);
+NNSG2dImageProxy *SpriteTransfer_GetCellTransferProxy(const SpriteResource *param0, const SpriteResource *param1);
+void SpriteTransfer_DeleteCharTransfer(const NNSG2dImageProxy *param0);
+BOOL SpriteTransfer_RequestPlttWholeRange(const SpriteResource *param0);
+void SpriteTransfer_RequestPlttWholeRangeList(const SpriteResourceList *param0);
+BOOL SpriteTransfer_RequestPlttFreeSpace(const SpriteResource *param0);
+void SpriteTransfer_RequestPlttFreeSpaceList(const SpriteResourceList *param0);
+void SpriteTransfer_ReplacePlttData(const SpriteResource *param0);
+void SpriteTransfer_ResetPlttTransfer(SpriteResource *param0);
+void SpriteTransfer_ResetPlttTransferList(SpriteResourceList *param0);
+const NNSG2dImagePaletteProxy *SpriteTransfer_GetPaletteProxy(const SpriteResource *param0, NNSG2dImageProxy *param1);
+u32 SpriteTransfer_GetPlttOffset(const SpriteResource *param0, NNS_G2D_VRAM_TYPE param1);
 
 #endif // POKEPLATINUM_SPRITE_TRANSFER_H

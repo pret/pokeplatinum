@@ -186,8 +186,8 @@ void sub_0200C82C(SpriteGfxHandler *param0)
     }
 
     Heap_FreeToHeap(param0->unk_08);
-    sub_0200A508(param0->unk_24[0]);
-    sub_0200A700(param0->unk_24[1]);
+    SpriteTransfer_ResetCharTransferList(param0->unk_24[0]);
+    SpriteTransfer_ResetPlttTransferList(param0->unk_24[1]);
 
     for (v0 = 0; v0 < param0->unk_54; v0++) {
         SpriteResourceList_Delete(param0->unk_24[v0]);
@@ -271,8 +271,8 @@ BOOL sub_0200C8F0(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStr
         param1->unk_3C[v0] = SpriteResourceCollection_Extend(param1->unk_0C[v0], v3, param1->unk_24[v0], param0->unk_00);
     }
 
-    sub_0200A368(param1->unk_24[0]);
-    sub_0200A60C(param1->unk_24[1]);
+    SpriteTransfer_RequestCharList(param1->unk_24[0]);
+    SpriteTransfer_RequestPlttWholeRangeList(param1->unk_24[1]);
 
     v4 = ReadFileToHeap(param0->unk_00, param2->val2.unk_18);
     param1->unk_04 = sub_02009508(v4, param0->unk_00, param1->unk_0C[0], param1->unk_0C[1], param1->unk_0C[2], param1->unk_0C[3], param1->unk_0C[4], param1->unk_0C[5]);
@@ -373,7 +373,7 @@ BOOL sub_0200CBDC(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
     v0 = SpriteResourceCollection_AddTiles(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
-        sub_0200A3DC(v0);
+        SpriteTransfer_RequestCharAtEnd(v0);
         sub_0200D1FC(param1->unk_24[0], v0);
 
         return 1;
@@ -395,7 +395,7 @@ BOOL SpriteRenderer_LoadCharResObjFromOpenNarc(SpriteRenderer *param0, SpriteGfx
     v0 = SpriteResourceCollection_AddTilesFrom(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
-        sub_0200A3DC(v0);
+        SpriteTransfer_RequestCharAtEnd(v0);
         sub_0200D1FC(param1->unk_24[0], v0);
         return 1;
     }
@@ -417,11 +417,11 @@ s8 sub_0200CC9C(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, in
     v0 = SpriteResourceCollection_AddPalette(param1->unk_0C[1], param2, param3, param4, param7, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
-        v1 = sub_0200A640(v0);
+        v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
         GF_ASSERT(v1 == 1);
 
         sub_0200D1FC(param1->unk_24[1], v0);
-        return sub_0200A760(v0, param6);
+        return SpriteTransfer_GetPlttOffset(v0, param6);
     }
 
     GF_ASSERT(0);
@@ -441,11 +441,11 @@ s8 sub_0200CD0C(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2, 
     v0 = SpriteResourceCollection_AddPaletteFrom(param1->unk_0C[1], param2, param3, param4, param7, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
-        v1 = sub_0200A640(v0);
+        v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
         GF_ASSERT(v1 == 1);
         sub_0200D1FC(param1->unk_24[1], v0);
 
-        return sub_0200A760(v0, param6);
+        return SpriteTransfer_GetPlttOffset(v0, param6);
     }
 
     GF_ASSERT(0);
@@ -583,13 +583,13 @@ CellActorData *SpriteActor_LoadResources(SpriteRenderer *param0, SpriteGfxHandle
 const NNSG2dImagePaletteProxy *sub_0200D04C(SpriteGfxHandler *param0, int param1)
 {
     SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_0C[1], param1);
-    return sub_0200A72C(v0, NULL);
+    return SpriteTransfer_GetPaletteProxy(v0, NULL);
 }
 
 u32 sub_0200D05C(SpriteGfxHandler *param0, int param1, NNS_G2D_VRAM_TYPE param2)
 {
     SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_0C[1], param1);
-    return sub_0200A760(v0, param2);
+    return SpriteTransfer_GetPlttOffset(v0, param2);
 }
 
 BOOL SpriteGfxHandler_UnloadCharObjById(SpriteGfxHandler *param0, int param1)
@@ -617,8 +617,8 @@ void sub_0200D0B0(SpriteRenderer *param0, SpriteGfxHandler *param1)
     int v0;
 
     sub_0200C810(param1);
-    sub_0200A508(param1->unk_24[0]);
-    sub_0200A700(param1->unk_24[1]);
+    SpriteTransfer_ResetCharTransferList(param1->unk_24[0]);
+    SpriteTransfer_ResetPlttTransferList(param1->unk_24[1]);
 
     for (v0 = 0; v0 < param1->unk_54; v0++) {
         SpriteResourceList_Delete(param1->unk_24[v0]);
@@ -631,7 +631,7 @@ void sub_0200D0B0(SpriteRenderer *param0, SpriteGfxHandler *param1)
 void sub_0200D0F4(CellActorData *param0)
 {
     if (param0->unk_0C) {
-        sub_0200A5B4(param0->unk_04->imageProxy);
+        SpriteTransfer_DeleteCharTransfer(param0->unk_04->imageProxy);
     }
 
     CellActor_Delete(param0->unk_00);
@@ -1246,7 +1246,7 @@ BOOL sub_0200D828(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
     v0 = SpriteResourceCollection_AddTiles(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
-        sub_0200A39C(v0);
+        SpriteTransfer_RequestCharWithHardwareMappingType(v0);
         sub_0200D1FC(param1->unk_24[0], v0);
 
         return 1;
@@ -1268,7 +1268,7 @@ BOOL sub_0200D888(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
     v0 = SpriteResourceCollection_AddTiles(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
-        sub_0200A450(v0);
+        SpriteTransfer_RequestCharAtEndWithHardwareMappingType(v0);
         sub_0200D1FC(param1->unk_24[0], v0);
 
         return 1;
@@ -1290,7 +1290,7 @@ BOOL sub_0200D8E8(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2
     v0 = SpriteResourceCollection_AddTilesFrom(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
-        sub_0200A450(v0);
+        SpriteTransfer_RequestCharAtEndWithHardwareMappingType(v0);
         sub_0200D1FC(param1->unk_24[0], v0);
 
         return 1;
@@ -1308,7 +1308,7 @@ void sub_0200D948(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
     v0 = SpriteResourceCollection_Find(param1->unk_0C[0], param5);
 
     SpriteResourceCollection_ModifyTiles(param1->unk_0C[0], v0, param2, param3, param4, param0->unk_00);
-    sub_0200A4C0(v0);
+    SpriteTransfer_RetransferCharData(v0);
 }
 
 void sub_0200D97C(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, int param3, BOOL param4, int param5)
@@ -1318,7 +1318,7 @@ void sub_0200D97C(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
     v0 = SpriteResourceCollection_Find(param1->unk_0C[1], param5);
 
     SpriteResourceCollection_ModifyPalette(param1->unk_0C[1], v0, param2, param3, param4, param0->unk_00);
-    sub_0200A6B8(v0);
+    SpriteTransfer_ReplacePlttData(v0);
 }
 
 CellActorCollection *sub_0200D9B0(SpriteGfxHandler *param0)
@@ -1333,5 +1333,5 @@ void sub_0200D9B4(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2
     v0 = SpriteResourceCollection_Find(param1->unk_0C[0], param5);
 
     SpriteResourceCollection_ModifyTilesFrom(param1->unk_0C[0], v0, param2, param3, param4, param0->unk_00);
-    sub_0200A4C0(v0);
+    SpriteTransfer_RetransferCharData(v0);
 }

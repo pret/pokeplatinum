@@ -2651,7 +2651,7 @@ static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 
 
         for (v0 = 0; v0 < 7; v0++) {
             param1->unk_1A0[v0] = SpriteResourceCollection_AddTilesFrom(param1->unk_190, param2, Unk_ov9_02251E58[v0], 0, ((v0) + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 4);
-            sub_0200A3DC(param1->unk_1A0[v0]);
+            SpriteTransfer_RequestCharAtEnd(param1->unk_1A0[v0]);
         }
 
         param1->unk_1BC[0] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194, param2, Unk_ov9_02251210[0], 0, (0 + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 5, 4);
@@ -2674,7 +2674,7 @@ static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 
             }
         }
 
-        sub_0200A640(param1->unk_1BC[0]);
+        SpriteTransfer_RequestPlttFreeSpace(param1->unk_1BC[0]);
 
         for (v0 = 0; v0 < 7; v0++) {
             param1->unk_1C0[v0] = SpriteResourceCollection_AddFrom(param1->unk_198, param2, Unk_ov9_02251E90[v0], 0, ((v0) + 0xff), 2, 4);
@@ -2698,13 +2698,13 @@ static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_1A0[v0] != NULL) {
-            sub_0200A4E4(param0->unk_1A0[v0]);
+            SpriteTransfer_ResetCharTransfer(param0->unk_1A0[v0]);
         }
     }
 
     for (v0 = 0; v0 < 1; v0++) {
         if (param0->unk_1BC[v0] != NULL) {
-            sub_0200A6DC(param0->unk_1BC[v0]);
+            SpriteTransfer_ResetPlttTransfer(param0->unk_1BC[v0]);
         }
     }
 
@@ -7836,7 +7836,7 @@ static void ov9_0224F804(UnkStruct_ov9_02249B04 *param0)
 
             v2 = &param0->unk_1A8;
             v3 = v2->unk_1BC[0];
-            v4 = sub_0200A72C(v3, NULL);
+            v4 = SpriteTransfer_GetPaletteProxy(v3, NULL);
             v1 = NNS_G2dGetImagePaletteLocation(v4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
             DC_FlushRange((void *)v0->unk_E8, 32 * 5);
