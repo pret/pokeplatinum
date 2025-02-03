@@ -29,11 +29,11 @@
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 
 #include "res/text/bank/pokedex.h"
 

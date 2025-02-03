@@ -32,9 +32,9 @@
 #include "pltt_transfer.h"
 #include "rtc.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"

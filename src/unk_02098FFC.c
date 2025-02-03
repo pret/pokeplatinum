@@ -13,8 +13,8 @@
 #include "heap.h"
 #include "narc.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
 
 static void sub_02099058(UnkStruct_0209903C *param0);

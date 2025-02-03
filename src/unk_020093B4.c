@@ -12,7 +12,7 @@
 #include "heap.h"
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
-#include "unk_0200A328.h"
+#include "sprite_transfer.h"
 #include "unk_0200A784.h"
 #include "unk_0202309C.h"
 

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0200A328_H
-#define POKEPLATINUM_UNK_0200A328_H
+#ifndef POKEPLATINUM_SPRITE_TRANSFER_H
+#define POKEPLATINUM_SPRITE_TRANSFER_H
 
 #include <nnsys.h>
 
@@ -28,4 +28,4 @@ void sub_0200A700(SpriteResourceList *param0);
 const NNSG2dImagePaletteProxy *sub_0200A72C(const SpriteResource *param0, NNSG2dImageProxy *param1);
 u32 sub_0200A760(const SpriteResource *param0, NNS_G2D_VRAM_TYPE param1);
 
-#endif // POKEPLATINUM_UNK_0200A328_H
+#endif // POKEPLATINUM_SPRITE_TRANSFER_H

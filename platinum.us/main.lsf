@@ -35,7 +35,7 @@ Static main
 	Object main.nef.p/src_unk_0200762C.c.o
 	Object main.nef.p/src_unk_020093B4.c.o
 	Object main.nef.p/src_sprite_resource.c.o
-	Object main.nef.p/src_unk_0200A328.c.o
+	Object main.nef.p/src_sprite_transfer.c.o
 	Object main.nef.p/src_unk_0200A784.c.o
 	Object main.nef.p/src_unk_0200A9DC.c.o
 	Object main.nef.p/src_message.c.o

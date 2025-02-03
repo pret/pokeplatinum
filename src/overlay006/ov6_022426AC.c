@@ -15,10 +15,10 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_020131EC.h"
 
 static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0);

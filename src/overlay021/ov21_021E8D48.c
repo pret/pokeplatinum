@@ -34,6 +34,7 @@
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -41,7 +42,6 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"

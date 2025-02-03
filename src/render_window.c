@@ -26,11 +26,11 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
 #include "unk_0200762C.h"
-#include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
 

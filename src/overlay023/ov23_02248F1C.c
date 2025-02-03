@@ -22,12 +22,12 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200679C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200F174.h"
 
 typedef struct {
