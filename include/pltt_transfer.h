@@ -3,6 +3,8 @@
 
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 typedef struct PlttTransferTaskTemplate {
     NNSG2dPaletteData *data;
     NNS_G2D_VRAM_TYPE vramType;
@@ -10,18 +12,18 @@ typedef struct PlttTransferTaskTemplate {
     u32 resourceID;
 } PlttTransferTaskTemplate;
 
-void PlttTransfer_Init(int param0, int param1);
-void PlttTransfer_MarkReservedSlots(u16 param0, u32 param1);
+void PlttTransfer_Init(int capacity, enum HeapId heapID);
+void PlttTransfer_MarkReservedSlots(u16 reservedMask, NNS_G2D_VRAM_TYPE vramType);
 void PlttTransfer_Free(void);
 void PlttTransfer_Clear(void);
-BOOL PlttTransfer_RequestWholeRange(const PlttTransferTaskTemplate *param0);
-BOOL PlttTransfer_RequestFreeSpace(const PlttTransferTaskTemplate *param0);
-void PlttTransfer_ReplacePlttData(int param0, NNSG2dPaletteData *param1);
-BOOL PlttTransfer_HasTask(int param0);
-void PlttTransfer_ResetTask(int param0);
+BOOL PlttTransfer_RequestWholeRange(const PlttTransferTaskTemplate *template);
+BOOL PlttTransfer_RequestFreeSpace(const PlttTransferTaskTemplate *template);
+void PlttTransfer_ReplacePlttData(int resourceID, NNSG2dPaletteData *data);
+BOOL PlttTransfer_HasTask(int resourceID);
+void PlttTransfer_ResetTask(int resourceID);
 void PlttTransfer_ResetAllTasks(void);
-NNSG2dImagePaletteProxy *PlttTransfer_GetPaletteProxy(int param0);
-NNSG2dImagePaletteProxy *PlttTransfer_ToggleExtPalette(int param0, NNSG2dImageProxy *param1);
-u32 PlttTransfer_GetPlttOffset(const NNSG2dImagePaletteProxy *param0, u32 param1);
+NNSG2dImagePaletteProxy *PlttTransfer_GetPaletteProxy(int resourceID);
+NNSG2dImagePaletteProxy *PlttTransfer_ToggleExtPalette(int resourceID, NNSG2dImageProxy *imageProxy);
+u32 PlttTransfer_GetPlttOffset(const NNSG2dImagePaletteProxy *paletteProxy, NNS_G2D_VRAM_TYPE vramType);
 
 #endif // POKEPLATINUM_PLTT_TRANSFER_H

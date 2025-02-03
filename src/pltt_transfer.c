@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "heap.h"
 #include "palette.h"
 #include "vram_transfer.h"
@@ -60,29 +62,27 @@ static void ResetBothTransferRanges(PlttTransferTaskManager *task);
 
 static PlttTransferTaskManager *sTaskManager = NULL;
 
-void PlttTransfer_Init(int param0, int param1)
+void PlttTransfer_Init(int capacity, enum HeapId heapID)
 {
-    int v0;
-
     if (sTaskManager == NULL) {
-        sTaskManager = Heap_AllocFromHeap(param1, sizeof(PlttTransferTaskManager));
+        sTaskManager = Heap_AllocFromHeap(heapID, sizeof(PlttTransferTaskManager));
         MI_CpuClear32(sTaskManager, sizeof(PlttTransferTaskManager));
 
-        sTaskManager->capacity = param0;
-        sTaskManager->tasks = Heap_AllocFromHeap(param1, sizeof(PlttTransferTask) * param0);
+        sTaskManager->capacity = capacity;
+        sTaskManager->tasks = Heap_AllocFromHeap(heapID, sizeof(PlttTransferTask) * capacity);
 
-        for (v0 = 0; v0 < param0; v0++) {
-            InitTransferTask(sTaskManager->tasks + v0);
+        for (int i = 0; i < capacity; i++) {
+            InitTransferTask(sTaskManager->tasks + i);
         }
     }
 }
 
-void PlttTransfer_MarkReservedSlots(u16 param0, u32 param1)
+void PlttTransfer_MarkReservedSlots(u16 reservedMask, NNS_G2D_VRAM_TYPE vramType)
 {
-    if (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) {
-        sTaskManager->vramTransferMain |= param0;
-    } else if (param1 == NNS_G2D_VRAM_TYPE_2DSUB) {
-        sTaskManager->vramTransferSub |= param0;
+    if (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) {
+        sTaskManager->vramTransferMain |= reservedMask;
+    } else if (vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
+        sTaskManager->vramTransferSub |= reservedMask;
     }
 }
 
@@ -112,172 +112,136 @@ void PlttTransfer_Clear(void)
     ResetBothTransferRanges(sTaskManager);
 }
 
-// not sure about this one...
-BOOL PlttTransfer_RequestWholeRange(const PlttTransferTaskTemplate *param0)
+BOOL PlttTransfer_RequestWholeRange(const PlttTransferTaskTemplate *template)
 {
-    PlttTransferTask *v0;
-
-    v0 = FindNextFreeTask();
-
-    if (v0 == NULL) {
-        GF_ASSERT(0 && ("テーブルが一杯で登録できません"));
-        return 0;
+    PlttTransferTask *task = FindNextFreeTask();
+    if (task == NULL) {
+        GF_ASSERT(FALSE);
+        return FALSE;
     }
 
-    if (InitTransferTaskFromTemplate(param0, v0) == 0) {
-        return 0;
+    if (InitTransferTaskFromTemplate(template, task) == FALSE) {
+        return FALSE;
     }
 
-    if (ReserveAndTransferWholeRange(param0, v0) == 0) {
-        PlttTransfer_ResetTask(param0->resourceID);
-        return 0;
+    if (ReserveAndTransferWholeRange(template, task) == FALSE) {
+        // unreachable
+        PlttTransfer_ResetTask(template->resourceID);
+        return FALSE;
     }
 
-    ReserveTaskTransferRanges(v0);
-
-    return 1;
+    ReserveTaskTransferRanges(task);
+    return TRUE;
 }
 
-BOOL PlttTransfer_RequestFreeSpace(const PlttTransferTaskTemplate *param0)
+BOOL PlttTransfer_RequestFreeSpace(const PlttTransferTaskTemplate *template)
 {
-    PlttTransferTask *v0;
-
-    v0 = FindNextFreeTask();
-
-    if (v0 == NULL) {
-        GF_ASSERT(0 && ("テーブルが一杯で登録できません"));
-        return 0;
+    PlttTransferTask *task = FindNextFreeTask();
+    if (task == NULL) {
+        GF_ASSERT(FALSE);
+        return FALSE;
     }
 
-    if (InitTransferTaskFromTemplate(param0, v0) == 0) {
-        return 0;
+    if (InitTransferTaskFromTemplate(template, task) == FALSE) {
+        return FALSE;
     }
 
-    if (ReserveAndTransferFreeSpace(param0, v0) == 0) {
-        PlttTransfer_ResetTask(param0->resourceID);
-        return 0;
+    if (ReserveAndTransferFreeSpace(template, task) == FALSE) {
+        PlttTransfer_ResetTask(template->resourceID);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-void PlttTransfer_ReplacePlttData(int param0, NNSG2dPaletteData *param1)
+void PlttTransfer_ReplacePlttData(int resourceID, NNSG2dPaletteData *data)
 {
-    PlttTransferTask *v0;
+    GF_ASSERT(data);
 
-    GF_ASSERT(param1);
-    v0 = FindTransferTask(param0);
+    PlttTransferTask *task = FindTransferTask(resourceID);
+    GF_ASSERT(task);
+    task->data = data;
 
-    GF_ASSERT(v0);
-    v0->data = param1;
-
-    if (v0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, v0->baseAddrMain, param1->pRawData, v0->numPalettes * 32);
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, task->baseAddrMain, data->pRawData, task->numPalettes * PALETTE_SIZE_BYTES);
     }
 
-    if (v0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
-        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_PLTT_SUB, v0->baseAddrSub, param1->pRawData, v0->numPalettes * 32);
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_PLTT_SUB, task->baseAddrSub, data->pRawData, task->numPalettes * PALETTE_SIZE_BYTES);
     }
 }
 
 BOOL PlttTransfer_HasTask(int resourceID)
 {
-    if (FindTransferTask(resourceID)) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return FindTransferTask(resourceID) != NULL;
 }
 
-void PlttTransfer_ResetTask(int param0)
+void PlttTransfer_ResetTask(int resourceID)
 {
-    PlttTransferTask *v0;
+    PlttTransferTask *task = FindTransferTask(resourceID);
+    GF_ASSERT(task);
 
-    v0 = FindTransferTask(param0);
-
-    GF_ASSERT(v0);
-
-    if (v0->hasWork == 1) {
-        ClearTaskTransferRanges(v0);
-        ResetTransferTask(v0);
+    if (task->hasWork == TRUE) {
+        ClearTaskTransferRanges(task);
+        ResetTransferTask(task);
     }
 }
 
 void PlttTransfer_ResetAllTasks(void)
 {
-    int v0;
-
-    for (v0 = 0; v0 < sTaskManager->capacity; v0++) {
-        if (sTaskManager->tasks[v0].hasWork == 1) {
-            ClearTaskTransferRanges(&sTaskManager->tasks[v0]);
-            ResetTransferTask(&sTaskManager->tasks[v0]);
+    for (int i = 0; i < sTaskManager->capacity; i++) {
+        if (sTaskManager->tasks[i].hasWork == TRUE) {
+            ClearTaskTransferRanges(&sTaskManager->tasks[i]);
+            ResetTransferTask(&sTaskManager->tasks[i]);
         }
     }
 }
 
-NNSG2dImagePaletteProxy *PlttTransfer_GetPaletteProxy(int param0)
+NNSG2dImagePaletteProxy *PlttTransfer_GetPaletteProxy(int resourceID)
 {
-    PlttTransferTask *v0;
-
-    v0 = FindTransferTask(param0);
-
-    if (v0 == NULL) {
-        GF_ASSERT(v0);
+    PlttTransferTask *task = FindTransferTask(resourceID);
+    if (task == NULL) {
+        GF_ASSERT(task);
         return NULL;
     }
 
-    if (v0->hasWork == 1) {
-        return &v0->paletteProxy;
+    if (task->hasWork == TRUE) {
+        return &task->paletteProxy;
     }
 
     return NULL;
 }
 
-NNSG2dImagePaletteProxy *PlttTransfer_ToggleExtPalette(int param0, NNSG2dImageProxy *param1)
+NNSG2dImagePaletteProxy *PlttTransfer_ToggleExtPalette(int resourceID, NNSG2dImageProxy *imageProxy)
 {
-    PlttTransferTask *v0;
-
-    v0 = FindTransferTask(param0);
-
-    if (v0 == NULL) {
-        GF_ASSERT(v0);
+    PlttTransferTask *task = FindTransferTask(resourceID);
+    if (task == NULL) {
+        GF_ASSERT(task);
         return NULL;
     }
 
-    if (v0->hasWork != 1) {
+    if (task->hasWork != TRUE) {
         return NULL;
     }
 
-    if (v0->data->bExtendedPlt) {
-        NNS_G2dSetImageExtPaletteFlag(param1, 1);
+    if (task->data->bExtendedPlt) {
+        NNS_G2dSetImageExtPaletteFlag(imageProxy, TRUE);
     }
 
-    return &v0->paletteProxy;
+    return &task->paletteProxy;
 }
 
-u32 PlttTransfer_GetPlttOffset(const NNSG2dImagePaletteProxy *param0, u32 param1)
+u32 PlttTransfer_GetPlttOffset(const NNSG2dImagePaletteProxy *paletteProxy, NNS_G2D_VRAM_TYPE vramType)
 {
-    u32 v0;
-    u32 v1;
+    u32 size = paletteProxy->bExtendedPlt
+        ? PALETTE_SIZE_EXT_BYTES
+        : paletteProxy->fmt == GX_TEXFMT_PLTT256
+        ? 0
+        : PALETTE_SIZE_BYTES;
 
-    if (param0->bExtendedPlt) {
-        v0 = 32 * 16;
-    } else {
-        if (param0->fmt == GX_TEXFMT_PLTT256) {
-            v0 = 0;
-        } else {
-            v0 = 32;
-        }
-    }
-
-    if (v0 != 0) {
-        v1 = NNS_G2dGetImagePaletteLocation(param0, param1);
-        v1 /= v0;
-    } else {
-        v1 = 0;
-    }
-
-    return v1;
+    return size != 0
+        ? NNS_G2dGetImagePaletteLocation(paletteProxy, vramType) / size
+        : 0;
 }
 
 static void ResetTransferTask(PlttTransferTask *task)
