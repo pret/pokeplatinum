@@ -63,7 +63,7 @@ typedef struct {
     NNSG2dCharacterData *unk_68;
     NNSG2dPaletteData *unk_6C;
     CellActorCollection *unk_70;
-    UnkStruct_0200C738 unk_74;
+    G2dRenderer unk_74;
     SpriteResourceCollection *unk_200;
     SpriteResourceCollection *unk_204;
     SpriteResourceCollection *unk_208;
@@ -150,7 +150,7 @@ typedef struct {
     s8 unk_06;
     s8 unk_07;
     CellActorCollection *unk_08;
-    UnkStruct_0200C738 unk_0C;
+    G2dRenderer unk_0C;
     SpriteResourceCollection *unk_198;
     SpriteResourceCollection *unk_19C;
     SpriteResourceCollection *unk_1A0;

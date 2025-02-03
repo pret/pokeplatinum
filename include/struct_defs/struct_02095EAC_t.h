@@ -28,7 +28,7 @@ struct UnkStruct_02095EAC_t {
     Strbuf *unk_2C;
     int unk_30;
     CellActorCollection *unk_34;
-    UnkStruct_0200C738 unk_38;
+    G2dRenderer unk_38;
     SpriteResourceCollection *unk_1C4[4];
     SpriteResource *unk_1D4[2][4];
     CellActorResourceData unk_1F4;

@@ -30,12 +30,12 @@ typedef struct CellTransferStateData_t {
     int unk_04;
     int unk_08;
     NNSG2dCellTransferState *unk_0C;
-    UnkStruct_0200C738 unk_10;
+    G2dRenderer unk_10;
 } SpriteRenderer;
 
 typedef struct AnimationResourceCollection_t {
     CellActorCollection *unk_00;
-    UnkStruct_02009508 *unk_04;
+    SpriteResourcesHeaderList *unk_04;
     SpriteResourceTable *unk_08;
     SpriteResourceCollection *unk_0C[6];
     SpriteResourceList *unk_24[6];
@@ -89,7 +89,7 @@ SpriteGfxHandler *sub_0200C704(SpriteRenderer *param0)
     return v1;
 }
 
-UnkStruct_0200C738 *sub_0200C738(SpriteRenderer *param0)
+G2dRenderer *sub_0200C738(SpriteRenderer *param0)
 {
     return &param0->unk_10;
 }
@@ -293,7 +293,7 @@ CellActor *sub_0200CA44(SpriteRenderer *param0, SpriteGfxHandler *param1, int pa
     CellActorInitParamsEx v1;
 
     v1.collection = param1->unk_00;
-    v1.resourceData = &param1->unk_04->unk_00[param2];
+    v1.resourceData = &param1->unk_04->headers[param2];
     v1.position.x = FX32_CONST(param3);
     v1.position.y = FX32_CONST(param4);
     v1.position.z = FX32_CONST(param5);
@@ -510,16 +510,16 @@ CellActorData *SpriteActor_LoadResources(SpriteRenderer *param0, SpriteGfxHandle
         return NULL;
     }
 
-    v2->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02009508));
+    v2->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(SpriteResourcesHeaderList));
 
     if (v2->unk_08 == NULL) {
         return NULL;
     }
 
-    v2->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
-    v2->unk_04 = v2->unk_08->unk_00;
+    v2->unk_08->headers = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
+    v2->unk_04 = v2->unk_08->headers;
 
-    if (v2->unk_08->unk_00 == NULL) {
+    if (v2->unk_08->headers == NULL) {
         if (v2->unk_08) {
             Heap_FreeToHeap(v2->unk_08);
         }

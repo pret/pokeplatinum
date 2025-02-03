@@ -40,7 +40,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     const UnkStruct_020998EC *unk_1C;
     BgConfig *unk_20;
     CellActorCollection *unk_24;
-    UnkStruct_0200C738 unk_28;
+    G2dRenderer unk_28;
     NNSG2dImageProxy unk_1B4[2];
     NNSG2dImagePaletteProxy unk_1FC[2];
     NNSG2dCellDataBank *unk_224[2];

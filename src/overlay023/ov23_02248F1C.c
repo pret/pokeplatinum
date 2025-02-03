@@ -46,7 +46,7 @@ struct UnkStruct_ov23_0224942C_t {
     FieldSystem *fieldSystem;
     BgConfig *unk_1B8;
     CellActorCollection *unk_1BC;
-    UnkStruct_0200C738 unk_1C0;
+    G2dRenderer unk_1C0;
     SpriteResourceCollection *unk_34C[4];
     SpriteResource *unk_35C[4];
     CellActorResourceData unk_36C;

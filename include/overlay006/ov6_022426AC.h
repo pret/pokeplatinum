@@ -14,7 +14,7 @@ typedef struct GreatMarshLookout_SpriteResources {
     void *unk_24;
     ArchivedSprite unk_28;
     CellActorCollection *unk_38;
-    UnkStruct_0200C738 unk_3C;
+    G2dRenderer unk_3C;
     CellActor *unk_1C8;
     BOOL unk_1CC;
     BOOL unk_1D0;

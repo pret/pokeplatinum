@@ -108,7 +108,7 @@ typedef struct {
 typedef struct {
     BgConfig *unk_00;
     CellActorCollection *unk_04;
-    UnkStruct_0200C738 unk_08;
+    G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
     NARC *unk_1A4;
 } UnkStruct_ov68_0225C91C;

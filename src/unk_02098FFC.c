@@ -129,9 +129,9 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
 
     v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorData));
 
-    v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02009508));
-    v4->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
-    v4->unk_04 = v4->unk_08->unk_00;
+    v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(SpriteResourcesHeaderList));
+    v4->unk_08->headers = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
+    v4->unk_04 = v4->unk_08->headers;
 
     sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 

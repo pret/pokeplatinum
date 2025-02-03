@@ -72,7 +72,7 @@ struct UnkStruct_ov56_02256468_t {
     u16 *unk_20;
     NNSG2dScreenData *unk_24;
     CellActorCollection *unk_28;
-    UnkStruct_0200C738 unk_2C;
+    G2dRenderer unk_2C;
     SpriteResourceCollection *unk_1B8[4];
     SpriteResource *unk_1C8[4];
     CellActorResourceData unk_1D8;

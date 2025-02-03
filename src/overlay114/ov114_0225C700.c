@@ -80,7 +80,7 @@ typedef struct {
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
+    G2dRenderer unk_04;
 } UnkStruct_ov114_0225CFCC;
 
 typedef struct {

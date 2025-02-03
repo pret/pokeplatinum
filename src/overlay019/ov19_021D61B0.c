@@ -56,7 +56,7 @@ struct UnkStruct_ov19_021D61B0_t {
     SysTask *unk_04;
     SysTask *unk_08[4];
     CellActorCollection *unk_18;
-    UnkStruct_0200C738 unk_1C;
+    G2dRenderer unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
     UnkStruct_02007768 *unk_1BC;
     BgConfig *unk_1C0;

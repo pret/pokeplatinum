@@ -7,7 +7,7 @@
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
+    G2dRenderer unk_04;
     SpriteResourceCollection *unk_190[4];
     SpriteResource *unk_1A0[5][4];
 } UnkStruct_ov111_021D2F80;

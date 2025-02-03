@@ -105,7 +105,7 @@ CellActor *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224
     v3.z = param1->unk_08 * FX32_ONE;
 
     v0.collection = param0->unk_00;
-    v0.resourceData = &param0->unk_190->unk_00[param1->unk_00];
+    v0.resourceData = &param0->unk_190->headers[param1->unk_00];
     v0.position = v3;
     v0.affineScale = v2;
     v0.affineZRotation = 0;
@@ -338,9 +338,9 @@ CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
 
     v2 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorData));
 
-    v2->unk_08 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(UnkStruct_02009508));
-    v2->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorResourceData));
-    v2->unk_04 = v2->unk_08->unk_00;
+    v2->unk_08 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(SpriteResourcesHeaderList));
+    v2->unk_08->headers = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorResourceData));
+    v2->unk_04 = v2->unk_08->headers;
 
     for (v0 = 0; v0 < 6; v0++) {
         v4[v0] = param1->resources[v0];

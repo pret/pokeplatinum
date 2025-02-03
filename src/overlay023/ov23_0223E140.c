@@ -137,7 +137,7 @@ typedef struct {
     BgConfig *unk_04;
     MATHRandContext32 unk_08;
     CellActorCollection *unk_20;
-    UnkStruct_0200C738 unk_24;
+    G2dRenderer unk_24;
     SpriteResourceCollection *unk_1B0[4];
     SpriteResource *unk_1C0[8];
     CellActorResourceData unk_1E0;

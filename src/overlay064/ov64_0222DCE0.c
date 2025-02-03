@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "sprite_util.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
@@ -38,12 +37,15 @@
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -51,14 +53,10 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "sprite_util.h"
-#include "sprite_transfer.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "vram_transfer.h"
-#include "pltt_transfer.h"
 #include "unk_0202309C.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
@@ -67,6 +65,7 @@
 #include "unk_0208694C.h"
 #include "unk_020890F4.h"
 #include "vars_flags.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F2DBC.h"
@@ -120,7 +119,7 @@ typedef struct {
     BgConfig *unk_00;
     CellActorCollection *unk_04;
     NNSG2dRenderSurface unk_08;
-    UnkStruct_0200C738 unk_78;
+    G2dRenderer unk_78;
     SpriteResourceCollection *unk_204[4];
     StringTemplate *unk_214;
     MessageLoader *unk_218;
@@ -964,7 +963,7 @@ static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
 
     param0->unk_04 = sub_020095C4(64, &param0->unk_78, param1);
 
-    sub_0200A8B0(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.unk_00);
+    sub_0200A8B0(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.renderer);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_204[v0] = SpriteResourceCollection_New(64, v0, param1);

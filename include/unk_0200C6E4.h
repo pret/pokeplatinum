@@ -22,7 +22,7 @@
 
 SpriteRenderer *sub_0200C6E4(int param0);
 SpriteGfxHandler *sub_0200C704(SpriteRenderer *param0);
-UnkStruct_0200C738 *sub_0200C738(SpriteRenderer *param0);
+G2dRenderer *sub_0200C738(SpriteRenderer *param0);
 BOOL sub_0200C73C(SpriteRenderer *param0, const UnkStruct_ov104_0224133C *param1, const UnkStruct_ov104_022412F4 *param2, int param3);
 BOOL sub_0200C7C0(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2);
 void sub_0200C7E4(CellActor *param0);

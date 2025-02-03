@@ -56,7 +56,7 @@ void sub_02082C2C(GameWindowLayout *param0)
     }
 
     {
-        UnkStruct_0200C738 *v2 = sub_0200C738(param0->unk_5A8);
+        G2dRenderer *v2 = sub_0200C738(param0->unk_5A8);
         sub_0200964C(v2, 0, (256 * FX32_ONE));
     }
 

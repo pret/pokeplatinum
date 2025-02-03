@@ -35,7 +35,7 @@ typedef struct {
     BgConfig *unk_40;
     CellActorCollection *unk_44;
     SpriteResourceCollection *unk_48[4];
-    UnkStruct_0200C738 unk_58;
+    G2dRenderer unk_58;
     NARC *unk_5C;
 } UnkStruct_ov22_0225A0E4;
 

@@ -14,7 +14,7 @@
 #include "sprite_util.h"
 
 typedef struct UnkStruct_ov63_0222D1C0_t {
-    UnkStruct_0200C738 *unk_00;
+    G2dRenderer *unk_00;
     BgConfig *unk_04;
     void *unk_08;
     NNSG2dScreenData *unk_0C;
@@ -31,7 +31,7 @@ static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 
 static u8 ov63_0222D688(u8 param0, u8 param1);
 static const void *ov63_0222D6BC(const u8 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, UnkStruct_ov63_0222CC3C *param6);
 
-UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(UnkStruct_0200C738 *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 param3)
+UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 param3)
 {
     UnkStruct_ov63_0222D1C0 *v0;
 

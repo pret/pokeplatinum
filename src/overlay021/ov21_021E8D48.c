@@ -73,7 +73,7 @@ typedef struct UnkStruct_ov21_021E8D48_t {
     Window *unk_04;
     PaletteData *unk_08;
     Sprite *unk_0C;
-    UnkStruct_0200C738 unk_10;
+    G2dRenderer unk_10;
     CellActorCollection *unk_19C;
     SpriteResourceCollection *unk_1A0[4];
     UnkStruct_ov21_021D4C0C *unk_1B0;

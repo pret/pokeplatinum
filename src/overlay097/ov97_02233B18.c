@@ -119,7 +119,7 @@ typedef struct {
     BgConfig *unk_20;
     int unk_24;
     CellActorCollection *unk_28;
-    UnkStruct_0200C738 unk_2C;
+    G2dRenderer unk_2C;
     SpriteResourceCollection *unk_1B8[6];
     SpriteResource *unk_1D0[6];
     CellActorResourceData unk_1E8;

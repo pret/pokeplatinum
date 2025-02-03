@@ -104,7 +104,7 @@ typedef struct {
     u8 unk_15;
     u16 unk_16;
     CellActorCollection *unk_18;
-    UnkStruct_0200C738 unk_1C;
+    G2dRenderer unk_1C;
     SpriteResourceCollection *unk_1A8[4];
     UnkStruct_ov63_0222BE18 *unk_1B8;
     UnkStruct_ov63_0222CD2C *unk_1BC;

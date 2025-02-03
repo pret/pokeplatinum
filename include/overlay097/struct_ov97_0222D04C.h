@@ -43,7 +43,7 @@ typedef struct {
     int unk_43C;
     int unk_440;
     CellActorCollection *unk_444;
-    UnkStruct_0200C738 unk_448;
+    G2dRenderer unk_448;
     SpriteResourceCollection *unk_5D4[6];
     SpriteResource *unk_5EC[6];
     CellActorResourceData unk_604;

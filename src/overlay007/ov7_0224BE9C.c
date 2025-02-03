@@ -122,7 +122,7 @@ typedef struct UnkStruct_ov7_0224BEFC_t {
     BgConfig *unk_14;
     u32 unk_18;
     CellActorCollection *unk_1C;
-    UnkStruct_0200C738 unk_20;
+    G2dRenderer unk_20;
     MessageLoader *unk_1AC;
     u32 unk_1B0;
     u32 unk_1B4;

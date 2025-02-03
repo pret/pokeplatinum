@@ -24,11 +24,11 @@
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_02009508 *unk_04;
+    SpriteResourcesHeaderList *unk_04;
     SpriteResourceCollection *unk_08[4];
     SpriteResourceList *unk_18[2];
     int unk_20[4];
-    UnkStruct_0200C738 unk_30;
+    G2dRenderer unk_30;
 } UnkStruct_0205D094;
 
 typedef struct UnkStruct_0205D3AC_t {
@@ -559,7 +559,7 @@ static CellActor *sub_0205D344(UnkStruct_0205D094 *param0, int param1, VecFx32 *
     memset(&v0, 0, sizeof(CellActorInitParamsEx));
 
     v0.collection = param0->unk_00;
-    v0.resourceData = &param0->unk_04->unk_00[param1];
+    v0.resourceData = &param0->unk_04->headers[param1];
     v0.position = *param2;
     v0.affineScale = v2;
     v0.priority = param3;

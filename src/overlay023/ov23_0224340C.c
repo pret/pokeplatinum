@@ -114,7 +114,7 @@ typedef struct {
     SysTask *unk_20[8];
     FieldSystem *fieldSystem;
     CellActorCollection *unk_44;
-    UnkStruct_0200C738 unk_48;
+    G2dRenderer unk_48;
     SpriteResourceCollection *unk_1D4[2][4];
     SpriteResource *unk_1F4[2][4];
     CellActorResourceData unk_214;

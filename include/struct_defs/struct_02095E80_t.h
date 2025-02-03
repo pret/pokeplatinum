@@ -70,7 +70,7 @@ struct UnkStruct_02095E80_t {
     Strbuf *unk_18C;
     Strbuf *unk_190;
     CellActorCollection *unk_194;
-    UnkStruct_0200C738 unk_198;
+    G2dRenderer unk_198;
     SpriteResourceCollection *unk_324[4];
     SpriteResource *unk_334[2][4];
     CellActorResourceData unk_354;

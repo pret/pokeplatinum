@@ -40,7 +40,7 @@ typedef struct UnkStruct_ov87_021D106C_t {
     BgConfig *unk_10;
     Window unk_14[2];
     CellActorCollection *unk_34;
-    UnkStruct_0200C738 unk_38;
+    G2dRenderer unk_38;
     CellActor *unk_1C4[6];
     void *unk_1DC;
     void *unk_1E0;

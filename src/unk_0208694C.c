@@ -83,7 +83,7 @@ struct UnkStruct_02087A10_t {
     Strbuf *unk_180;
     Strbuf *unk_184;
     CellActorCollection *unk_188;
-    UnkStruct_0200C738 unk_18C;
+    G2dRenderer unk_18C;
     SpriteResourceCollection *unk_318[4];
     SpriteResource *unk_328[2][4];
     CellActorResourceData unk_348;

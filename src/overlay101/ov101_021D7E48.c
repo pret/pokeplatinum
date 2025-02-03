@@ -31,7 +31,7 @@ typedef struct UnkStruct_ov101_021D7E48_t {
     u8 unk_0A;
     u8 unk_0B;
     CellActorCollection *unk_0C;
-    UnkStruct_0200C738 unk_10;
+    G2dRenderer unk_10;
     NNSG2dCellTransferState *unk_19C;
     SpriteResourceCollection *unk_1A0;
     SpriteResourceCollection *unk_1A4;

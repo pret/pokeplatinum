@@ -206,7 +206,7 @@ typedef struct ChooseStarterApp {
     Strbuf *unk_AC;
     WindowTemplate unk_B0;
     Menu *unk_B8;
-    UnkStruct_0200C738 unk_BC;
+    G2dRenderer unk_BC;
     CellActorCollection *unk_248;
     SpriteResourceCollection *unk_24C[6];
     UnkStruct_02007768 *spriteManager;

@@ -39,7 +39,7 @@ typedef struct UnkStruct_ov109_021D5140_t {
     Strbuf *unk_58;
     int unk_5C;
     CellActorCollection *unk_60;
-    UnkStruct_0200C738 unk_64;
+    G2dRenderer unk_64;
     SpriteResourceCollection *unk_1F0[4];
     SpriteResource *unk_200[3][4];
     CellActorResourceData unk_230;

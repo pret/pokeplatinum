@@ -278,7 +278,7 @@ typedef struct {
     u16 unk_16;
     GenericPointerData *unk_18;
     CellActorCollection *unk_1C;
-    UnkStruct_0200C738 unk_20;
+    G2dRenderer unk_20;
     SpriteResourceCollection *unk_1AC[4];
     CellActorResourceData unk_1BC;
     SpriteResource *unk_1E0[4];

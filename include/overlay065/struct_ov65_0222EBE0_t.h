@@ -49,7 +49,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     Menu *unk_184;
     void *unk_188;
     CellActorCollection *unk_18C;
-    UnkStruct_0200C738 unk_190;
+    G2dRenderer unk_190;
     SpriteResourceCollection *unk_31C[4];
     UnkStruct_02012744 *unk_32C;
     Window unk_330;

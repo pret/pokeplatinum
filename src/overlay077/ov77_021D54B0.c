@@ -24,7 +24,7 @@ void include_data_ov77_021D79B8(void);
 
 typedef struct UnkStruct_ov77_021D5564_t {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
+    G2dRenderer unk_04;
     SpriteResourceCollection *unk_190[4];
     SpriteResource *unk_1A0[11][4];
     CellActor *unk_250[17];

@@ -21,7 +21,7 @@
 typedef struct {
     BgConfig *unk_00;
     Window unk_04;
-    UnkStruct_0200C738 unk_14;
+    G2dRenderer unk_14;
     CellActorCollection *unk_138;
     SpriteResourceCollection *unk_13C[4];
     UnkStruct_ov21_021D4C0C *unk_14C;

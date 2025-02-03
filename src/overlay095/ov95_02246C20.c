@@ -49,7 +49,7 @@ struct UnkStruct_ov95_02247628_t {
     MessageLoader *unk_10;
     Strbuf *unk_14;
     CellActorCollection *unk_18;
-    UnkStruct_0200C738 unk_1C;
+    G2dRenderer unk_1C;
     SysTask *unk_1A8;
     BOOL unk_1AC;
     u16 unk_1B0;
