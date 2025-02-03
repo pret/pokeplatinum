@@ -1472,9 +1472,9 @@ static void ov69_0225D53C(UnkStruct_ov69_0225D35C *param0, u32 param1)
 
     sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param1);
     CharTransfer_InitWithVramModes(&Unk_ov69_0225F050, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
-    sub_0201F834(32, param1);
+    PlttTransfer_Init(32, param1);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -1502,7 +1502,7 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
     }
 
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
     sub_0200A878();
 }
 

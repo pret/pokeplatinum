@@ -485,15 +485,15 @@ static void ov101_021D150C(void)
     };
 
     CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_0201F834(16, 79);
+    PlttTransfer_Init(16, 79);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 }
 
 static void ov101_021D1544(void)
 {
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 }
 
 static void ov101_021D1550(UnkStruct_ov101_021D13C8 *param0)

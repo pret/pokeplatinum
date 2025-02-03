@@ -2753,7 +2753,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     int v1;
     u32 v2;
 
-    v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
+    v1 = PlttTransfer_GetPlttOffset(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(param2, 8, 2);
     v2 = Pokedex_DisplayMessage(param2, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_order, 0, 0);
 
@@ -2846,7 +2846,7 @@ static void ov21_021DC088(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     int entryID;
     u32 v4;
 
-    v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
+    v1 = PlttTransfer_GetPlttOffset(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
 
     for (v2 = 0; v2 < 6; v2++) {
         v0 = ov21_021D4D6C(param2, 10, 2);
@@ -2893,7 +2893,7 @@ static void ov21_021DC12C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     int entryID;
     u32 v5;
 
-    v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
+    v1 = PlttTransfer_GetPlttOffset(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
 
     for (v2 = 0; v2 < 10; v2++) {
         v0 = ov21_021D4D6C(param2, 10, 2);
@@ -2952,7 +2952,7 @@ static void ov21_021DC1E8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     int entryID;
     u32 v5;
 
-    v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
+    v1 = PlttTransfer_GetPlttOffset(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
 
     for (v2 = 0; v2 < 10; v2++) {
         v0 = ov21_021D4D6C(param2, 10, 2);
@@ -3011,7 +3011,7 @@ static void ov21_021DC2A4(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     int entryID;
     u32 v5;
 
-    v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
+    v1 = PlttTransfer_GetPlttOffset(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
 
     for (v2 = 0; v2 < 9; v2++) {
         v0 = ov21_021D4D6C(param2, 10, 2);

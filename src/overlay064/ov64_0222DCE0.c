@@ -958,9 +958,9 @@ static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
         CharTransfer_InitWithVramModes(&v2, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
-    sub_0201F834(64, param1);
+    PlttTransfer_Init(64, param1);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 
     param0->unk_04 = sub_020095C4(64, &param0->unk_78, param1);
 
@@ -1003,7 +1003,7 @@ static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0)
 
     CellActorCollection_Delete(param0->unk_04);
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
     sub_0200A878();
     VramTransfer_Free();
 }

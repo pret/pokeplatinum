@@ -552,7 +552,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
                 int v2;
 
                 v1 = CellActor_GetPaletteProxy(param0->unk_78->unk_00);
-                v2 = sub_0201FAB4(v1, NNS_G2D_VRAM_TYPE_2DMAIN);
+                v2 = PlttTransfer_GetPlttOffset(v1, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v2), 0, 0, 16, 0xFFFF);
             }
@@ -658,7 +658,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
                 int v1;
 
                 v0 = CellActor_GetPaletteProxy(param0->unk_78->unk_00);
-                v1 = sub_0201FAB4(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
+                v1 = PlttTransfer_GetPlttOffset(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v1), 0, 0, 16, 0xFFFF);
             }

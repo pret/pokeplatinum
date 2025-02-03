@@ -680,15 +680,15 @@ void ov5_021D15B4(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(20, 4);
+    PlttTransfer_Init(20, 4);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 }
 
 void ov5_021D15E8(void)
 {
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 }
 
 static void ov5_021D15F4(FieldSystem *fieldSystem)

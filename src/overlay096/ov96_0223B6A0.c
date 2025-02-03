@@ -242,9 +242,9 @@ static void ov96_0223B9A0(void)
         CharTransfer_Init(&v0);
     }
 
-    sub_0201F834(20, 68);
+    PlttTransfer_Init(20, 68);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 }
 
 static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0)
@@ -417,5 +417,5 @@ static void ov96_0223BC8C(UnkStruct_ov96_0223BF40 *param0)
 
     sub_0200A878();
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 }

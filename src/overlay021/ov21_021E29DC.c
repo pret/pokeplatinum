@@ -730,7 +730,7 @@ static void ov21_021E3270(UnkStruct_ov21_021E2BBC *param0, UnkStruct_ov21_021E32
     v1.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.heapID = param2;
 
-    v3 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DMAIN);
+    v3 = PlttTransfer_GetPlttOffset(v1.unk_08, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     for (v4 = 0; v4 < 5; v4++) {
         v0 = ov21_021D4D6C(v2->unk_14C, 8, 2);

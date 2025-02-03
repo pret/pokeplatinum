@@ -2229,7 +2229,7 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
         int v20;
 
         v19 = CellActor_GetPaletteProxy(v1->unk_00);
-        v20 = sub_0201FAB4(v19, NNS_G2D_VRAM_TYPE_2DMAIN);
+        v20 = PlttTransfer_GetPlttOffset(v19, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         PaletteData_LoadBufferFromFileStart(param0->unk_C4, v8, v9, param0->unk_00, 2, 0x20, v20 * 16);
     }
@@ -4315,7 +4315,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *param0, int param1, int par
                     int v19;
 
                     v18 = CellActor_GetPaletteProxy(v10->unk_00);
-                    v19 = sub_0201FAB4(v18, NNS_G2D_VRAM_TYPE_2DMAIN);
+                    v19 = PlttTransfer_GetPlttOffset(v18, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                     PaletteData_LoadBufferFromFileStart(v2->unk_08.unk_08, v6, v7, v2->unk_00, 2, 0x20, v19 * 16);
                 }

@@ -699,9 +699,9 @@ static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(5, 14);
+    PlttTransfer_Init(5, 14);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 
     NNS_G2dInitOamManagerModule();
 
@@ -728,7 +728,7 @@ static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0)
     }
 
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
     sub_0200A878();
 }
 

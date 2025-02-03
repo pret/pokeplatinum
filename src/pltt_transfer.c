@@ -60,7 +60,7 @@ static void ResetBothTransferRanges(PlttTransferTaskManager *task);
 
 static PlttTransferTaskManager *sTaskManager = NULL;
 
-void sub_0201F834(int param0, int param1)
+void PlttTransfer_Init(int param0, int param1)
 {
     int v0;
 
@@ -77,7 +77,7 @@ void sub_0201F834(int param0, int param1)
     }
 }
 
-void sub_0201F890(u16 param0, u32 param1)
+void PlttTransfer_MarkReservedSlots(u16 param0, u32 param1)
 {
     if (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) {
         sTaskManager->vramTransferMain |= param0;
@@ -86,10 +86,10 @@ void sub_0201F890(u16 param0, u32 param1)
     }
 }
 
-void sub_0201F8B4(void)
+void PlttTransfer_Free(void)
 {
     if (sTaskManager != NULL) {
-        sub_0201FA18();
+        PlttTransfer_ResetAllTasks();
         Heap_FreeToHeap(sTaskManager->tasks);
         Heap_FreeToHeap(sTaskManager);
         sTaskManager = NULL;
@@ -101,7 +101,7 @@ static void DummyFunc(void)
     return;
 }
 
-void sub_0201F8E4(void)
+void PlttTransfer_Clear(void)
 {
     sTaskManager->offsetMain = 0;
     sTaskManager->offsetSub = 0;
@@ -112,7 +112,8 @@ void sub_0201F8E4(void)
     ResetBothTransferRanges(sTaskManager);
 }
 
-BOOL sub_0201F90C(const PlttTransferTaskTemplate *param0)
+// not sure about this one...
+BOOL PlttTransfer_RequestWholeRange(const PlttTransferTaskTemplate *param0)
 {
     PlttTransferTask *v0;
 
@@ -128,7 +129,7 @@ BOOL sub_0201F90C(const PlttTransferTaskTemplate *param0)
     }
 
     if (ReserveAndTransferWholeRange(param0, v0) == 0) {
-        sub_0201F9F0(param0->resourceID);
+        PlttTransfer_ResetTask(param0->resourceID);
         return 0;
     }
 
@@ -137,7 +138,7 @@ BOOL sub_0201F90C(const PlttTransferTaskTemplate *param0)
     return 1;
 }
 
-BOOL sub_0201F950(const PlttTransferTaskTemplate *param0)
+BOOL PlttTransfer_RequestFreeSpace(const PlttTransferTaskTemplate *param0)
 {
     PlttTransferTask *v0;
 
@@ -153,14 +154,14 @@ BOOL sub_0201F950(const PlttTransferTaskTemplate *param0)
     }
 
     if (ReserveAndTransferFreeSpace(param0, v0) == 0) {
-        sub_0201F9F0(param0->resourceID);
+        PlttTransfer_ResetTask(param0->resourceID);
         return 0;
     }
 
     return 1;
 }
 
-void sub_0201F990(int param0, NNSG2dPaletteData *param1)
+void PlttTransfer_ReplacePlttData(int param0, NNSG2dPaletteData *param1)
 {
     PlttTransferTask *v0;
 
@@ -179,7 +180,7 @@ void sub_0201F990(int param0, NNSG2dPaletteData *param1)
     }
 }
 
-BOOL sub_0201F9DC(int resourceID)
+BOOL PlttTransfer_HasTask(int resourceID)
 {
     if (FindTransferTask(resourceID)) {
         return TRUE;
@@ -188,7 +189,7 @@ BOOL sub_0201F9DC(int resourceID)
     return FALSE;
 }
 
-void sub_0201F9F0(int param0)
+void PlttTransfer_ResetTask(int param0)
 {
     PlttTransferTask *v0;
 
@@ -202,7 +203,7 @@ void sub_0201F9F0(int param0)
     }
 }
 
-void sub_0201FA18(void)
+void PlttTransfer_ResetAllTasks(void)
 {
     int v0;
 
@@ -214,7 +215,7 @@ void sub_0201FA18(void)
     }
 }
 
-NNSG2dImagePaletteProxy *sub_0201FA58(int param0)
+NNSG2dImagePaletteProxy *PlttTransfer_GetPaletteProxy(int param0)
 {
     PlttTransferTask *v0;
 
@@ -232,7 +233,7 @@ NNSG2dImagePaletteProxy *sub_0201FA58(int param0)
     return NULL;
 }
 
-NNSG2dImagePaletteProxy *sub_0201FA80(int param0, NNSG2dImageProxy *param1)
+NNSG2dImagePaletteProxy *PlttTransfer_ToggleExtPalette(int param0, NNSG2dImageProxy *param1)
 {
     PlttTransferTask *v0;
 
@@ -254,7 +255,7 @@ NNSG2dImagePaletteProxy *sub_0201FA80(int param0, NNSG2dImageProxy *param1)
     return &v0->paletteProxy;
 }
 
-u32 sub_0201FAB4(const NNSG2dImagePaletteProxy *param0, u32 param1)
+u32 PlttTransfer_GetPlttOffset(const NNSG2dImagePaletteProxy *param0, u32 param1)
 {
     u32 v0;
     u32 v1;
@@ -288,7 +289,7 @@ static BOOL InitTransferTaskFromTemplate(const PlttTransferTaskTemplate *templat
 {
     task->data = template->data;
 
-    if (sub_0201F9DC(template->resourceID) == TRUE) {
+    if (PlttTransfer_HasTask(template->resourceID) == TRUE) {
         GF_ASSERT(FALSE);
         return FALSE;
     }

@@ -508,7 +508,7 @@ static void ov78_021D10DC(void)
 {
     sub_0200A878();
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 
     ov78_021D1218();
 }
@@ -546,9 +546,9 @@ static void SetupOAM(enum HeapId heapID)
 
     CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
 
-    sub_0201F834(32, heapID);
+    PlttTransfer_Init(32, heapID);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 }
 
 static void Setup3D(ChooseStarterApp *app)

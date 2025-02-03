@@ -421,7 +421,7 @@ void ov21_021D12C4(void)
 {
     sub_0200A878();
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
     ov21_021D1F84();
 }
 
@@ -1066,9 +1066,9 @@ static void ov21_021D1E94(int param0)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(32, param0);
+    PlttTransfer_Init(32, param0);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 }
 
 static void ov21_021D1EEC(UnkStruct_ov21_021D0F60 *param0)

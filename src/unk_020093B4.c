@@ -212,5 +212,5 @@ void sub_0200966C(u32 param0, GXOBJVRamModeChar param1)
 
 void sub_02009704(u32 param0)
 {
-    sub_0201F890((1 << 14 | 1 << 15), param0);
+    PlttTransfer_MarkReservedSlots((1 << 14 | 1 << 15), param0);
 }

@@ -208,8 +208,8 @@ void ov22_02259F24(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *par
         CharTransfer_ResetTask(v0);
     }
 
-    sub_0201F9F0(0);
-    sub_0201F9F0(1);
+    PlttTransfer_ResetTask(0);
+    PlttTransfer_ResetTask(1);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov22_02259CE8(&param0->unk_00[v0]);

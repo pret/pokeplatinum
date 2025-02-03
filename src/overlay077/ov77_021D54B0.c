@@ -101,9 +101,9 @@ static void ov77_021D54B0()
         CharTransfer_Init(&v1);
     }
 
-    sub_0201F834(11, v0);
+    PlttTransfer_Init(11, v0);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
     VramTransfer_New((3 * 2), v0);
 }
 
@@ -230,7 +230,7 @@ void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
 
     sub_0200A878();
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
     VramTransfer_Free();
 }
 

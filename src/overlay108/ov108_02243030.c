@@ -130,7 +130,7 @@ void ov108_02243194(UnkStruct_ov108_02243030 *param0)
     CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 
     return;
 }
@@ -145,9 +145,9 @@ static void ov108_022431FC(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834((8 + 2 + 1 + 3), 103);
+    PlttTransfer_Init((8 + 2 + 1 + 3), 103);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 
     return;
 }

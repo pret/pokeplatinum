@@ -310,16 +310,16 @@ static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(32, param0->unk_00);
+    PlttTransfer_Init(32, param0->unk_00);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 }
 
 static void ov83_0223CDC0(UnkStruct_ov83_0223B784 *param0)
 {
     sub_0200A878();
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 }
 
 static void ov83_0223CDD0(UnkStruct_ov83_0223B784 *param0, NARC *param1)

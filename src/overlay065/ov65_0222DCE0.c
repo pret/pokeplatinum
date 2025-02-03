@@ -868,7 +868,7 @@ static void ov65_0222E47C(UnkStruct_ov65_0222EBE0 *param0)
     CellActorCollection_Delete(param0->unk_18C);
     sub_0200A878();
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 
     ov65_0222EF4C(param0);
     ov65_0222EC5C(param0->unk_15C);
@@ -1482,9 +1482,9 @@ static void ov65_0222EDD0(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(20, 54);
+    PlttTransfer_Init(20, 54);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 }

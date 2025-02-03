@@ -1383,9 +1383,9 @@ static void ov114_0225CFCC(UnkStruct_ov114_0225CFCC *param0, u32 param1, u32 par
         CharTransfer_InitWithVramModes(&v1, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(param3, param4);
+    PlttTransfer_Init(param3, param4);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -1400,7 +1400,7 @@ static void ov114_0225D058(UnkStruct_ov114_0225CFCC *param0)
 {
     CellActorCollection_Delete(param0->unk_00);
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
     sub_0200A878();
 }
 

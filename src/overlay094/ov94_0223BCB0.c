@@ -302,9 +302,9 @@ static void ov94_0223C0A4(void)
         CharTransfer_Init(&v0);
     }
 
-    sub_0201F834(20, 62);
+    PlttTransfer_Init(20, 62);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 }
 
 static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
@@ -518,7 +518,7 @@ static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0)
 
     sub_0200A878();
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 }
 
 static void ov94_0223C578(UnkStruct_ov94_0223FD4C *param0)

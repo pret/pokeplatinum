@@ -500,9 +500,9 @@ static void ov97_02233F74(void)
         CharTransfer_Init(&v0);
     }
 
-    sub_0201F834(20, 78);
+    PlttTransfer_Init(20, 78);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 }
 
 static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
@@ -1571,7 +1571,7 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
 
     sub_0200A878();
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 
     sub_02015938(param0->unk_E8EC);
     gCoreSys.unk_65 = 0;

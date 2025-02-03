@@ -3279,7 +3279,7 @@ static void ov23_02246370(int param0)
     Unk_ov23_02257764->unk_1F4[0][0] = NULL;
 
     if (Unk_ov23_02257764->unk_1F4[0][1]) {
-        if (sub_0201F9DC(SpriteResource_GetID(Unk_ov23_02257764->unk_1F4[0][1]))) {
+        if (PlttTransfer_HasTask(SpriteResource_GetID(Unk_ov23_02257764->unk_1F4[0][1]))) {
             sub_0200A6DC(Unk_ov23_02257764->unk_1F4[0][1]);
         }
     }

@@ -1389,7 +1389,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     sub_0200A878();
 
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 
     SetMainCallback(NULL, NULL);
     Heap_FreeToHeap(Unk_ov23_02257740->unk_04);
@@ -2848,9 +2848,9 @@ static void ov23_0224119C(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
-    sub_0201F834(20, 29);
+    PlttTransfer_Init(20, 29);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 }

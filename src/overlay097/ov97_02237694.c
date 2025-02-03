@@ -310,10 +310,10 @@ void ov97_02237A20(void)
     v1.heapID = v0->unk_08;
 
     CharTransfer_InitWithVramModes(&v1, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
-    sub_0201F834(30, v0->unk_08);
+    PlttTransfer_Init(30, v0->unk_08);
 
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 }
 
 BOOL ov97_02237A60(void)
@@ -504,7 +504,7 @@ void ov97_02237DA0(void)
 
     sub_0200A878();
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
 
     SetMainCallback(NULL, NULL);
 }

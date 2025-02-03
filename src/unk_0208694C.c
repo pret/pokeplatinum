@@ -1159,7 +1159,7 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
 
     Bg_FreeTilemapBuffer(v0->unk_160, 7);
     CharTransfer_Free();
-    sub_0201F8B4();
+    PlttTransfer_Free();
     sub_0208765C(v0->unk_160, v0->unk_41C);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
 
@@ -1526,9 +1526,9 @@ void sub_020877C4(void)
         CharTransfer_Init(&v0);
     }
 
-    sub_0201F834(20, 18);
+    PlttTransfer_Init(20, 18);
     CharTransfer_ClearBuffers();
-    sub_0201F8E4();
+    PlttTransfer_Clear();
 }
 
 static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)

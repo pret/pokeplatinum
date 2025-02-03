@@ -202,7 +202,7 @@ BOOL sub_0200A5C8(const SpriteResource *param0)
     v0.resourceID = SpriteResource_GetID(param0);
     v0.plttIndex = SpriteResource_GetPaletteIndex(param0);
 
-    return sub_0201F90C(&v0);
+    return PlttTransfer_RequestWholeRange(&v0);
 }
 
 void sub_0200A60C(const SpriteResourceList *param0)
@@ -232,7 +232,7 @@ BOOL sub_0200A640(const SpriteResource *param0)
     v0.resourceID = SpriteResource_GetID(param0);
     v0.plttIndex = SpriteResource_GetPaletteIndex(param0);
 
-    return sub_0201F950(&v0);
+    return PlttTransfer_RequestFreeSpace(&v0);
 }
 
 void sub_0200A684(const SpriteResourceList *param0)
@@ -261,7 +261,7 @@ void sub_0200A6B8(const SpriteResource *param0)
     v1 = SpriteResource_GetID(param0);
     v0 = SpriteResource_GetPaletteFade(param0);
 
-    sub_0201F990(v1, v0);
+    PlttTransfer_ReplacePlttData(v1, v0);
 }
 
 void sub_0200A6DC(SpriteResource *param0)
@@ -272,7 +272,7 @@ void sub_0200A6DC(SpriteResource *param0)
     GF_ASSERT(SpriteResource_GetType(param0) == 1);
 
     v0 = SpriteResource_GetID(param0);
-    sub_0201F9F0(v0);
+    PlttTransfer_ResetTask(v0);
 }
 
 void sub_0200A700(SpriteResourceList *param0)
@@ -298,10 +298,10 @@ const NNSG2dImagePaletteProxy *sub_0200A72C(const SpriteResource *param0, NNSG2d
     v0 = SpriteResource_GetID(param0);
 
     if (param1) {
-        return sub_0201FA80(v0, param1);
+        return PlttTransfer_ToggleExtPalette(v0, param1);
     }
 
-    return sub_0201FA58(v0);
+    return PlttTransfer_GetPaletteProxy(v0);
 }
 
 u32 sub_0200A760(const SpriteResource *param0, NNS_G2D_VRAM_TYPE param1)
