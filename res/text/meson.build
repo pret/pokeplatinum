@@ -5,7 +5,7 @@
 # the authority on mapping the in-repo filename of each bank and the index of that bank within the
 # archive. All text bank files to be processed *must* have a name which *matches* their
 # corresponding entry in `generated/text_banks.txt`, minus the `TEXT_BANK_` prefix. For example,
-# `TEXT_BANK_SPECIES_NAME` corresponds to a file named `species_names`.
+# `TEXT_BANK_SPECIES_NAME` corresponds to a file named `species_name`.
 
 # 1. Declare a set of files which are known to be generated. As with all other text banks, these
 # *must* have names which match the values in `generated/text_banks.txt`, minus the `TEXT_BANK_`
