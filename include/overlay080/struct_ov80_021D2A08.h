@@ -4,9 +4,9 @@
 #include <nnsys.h>
 
 #include "struct_decls/cell_actor_data.h"
+#include "struct_decls/main_map_matrix_data_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02039EBC_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
 
 #include "overlay080/struct_ov80_021D259C.h"
@@ -33,7 +33,7 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     int unk_24;
     BgConfig *unk_28;
     UnkStruct_0203D8AC *unk_2C;
-    UnkStruct_02039EBC *unk_30;
+    MainMapMatrixData *unk_30;
     void *unk_34;
     int (*unk_38)(struct UnkStruct_ov80_021D2A08_t *);
     UnkStruct_ov80_021D2C1C *unk_3C;

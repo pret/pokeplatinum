@@ -18,12 +18,12 @@
 #include "inlines.h"
 #include "location.h"
 #include "map_header.h"
+#include "map_matrix.h"
 #include "player_avatar.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_02039C80.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
@@ -102,7 +102,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
         v11--;
     }
 
-    v6 = sub_02039E30(fieldSystem->unk_2C, x / 32, z / 32);
+    v6 = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x / 32, z / 32);
 
     if (MapHeader_IsOnMainMatrix(v6)) {
         param1->unk_00 = x;

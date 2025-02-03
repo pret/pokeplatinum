@@ -168,7 +168,7 @@ Static main
 	Object main.nef.p/src_unk_02039814.c.o
 	Object main.nef.p/src_unk_02039A58.c.o
 	Object main.nef.p/src_unk_02039A64.c.o
-	Object main.nef.p/src_unk_02039C80.c.o
+	Object main.nef.p/src_map_matrix.c.o
 	Object main.nef.p/src_map_header.c.o
 	Object main.nef.p/src_map_header_data.c.o
 	Object main.nef.p/src_field_overworld_state.c.o
@@ -686,7 +686,7 @@ Overlay overlay15
 	Object main.nef.p/src_overlay015_ov15_dummy.c.o
 }
 
-Overlay battle 
+Overlay battle
 {
 	After overlay12
 	Object main.nef.p/src_battle_ov16_0223B140.c.o

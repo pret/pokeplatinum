@@ -7,9 +7,9 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "map_matrix.h"
 #include "narc.h"
 #include "record_mixed_rng.h"
-#include "unk_02039C80.h"
 #include "unk_0205F180.h"
 
 BOOL ov6_02247660(FieldSystem *fieldSystem)
@@ -39,7 +39,7 @@ BOOL ov6_02247660(FieldSystem *fieldSystem)
 
     sub_020615AC(fieldSystem->playerAvatar, &v15, &v16);
 
-    v14 = sub_02039E10(fieldSystem->unk_2C);
+    v14 = MapMatrix_GetWidth(fieldSystem->mapMatrix);
     v12 = 0;
 
     v8[0] = (v13 >> 24) & 0xff;
