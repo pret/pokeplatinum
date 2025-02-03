@@ -3,8 +3,6 @@
 
 #include <dwc.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "overlay097/struct_ov97_0223829C.h"
 #include "overlay097/union_ov97_0222D2B0.h"
 
@@ -15,6 +13,7 @@
 #include "message.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"

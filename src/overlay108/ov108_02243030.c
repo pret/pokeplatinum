@@ -15,7 +15,7 @@
 #include "pokemon_icon.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "unk_0200A784.h"
 #include "unk_0207E0B8.h"
 #include "vram_transfer.h"

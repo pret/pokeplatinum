@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay005/struct_ov5_021D30A8.h"
@@ -17,7 +16,7 @@
 #include "narc.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "unk_02017728.h"
 
 static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1);

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "overlay101/struct_ov101_021D8544.h"
 
 #include "cell_actor.h"
@@ -13,7 +11,7 @@
 #include "narc.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "vram_transfer.h"
 
 typedef struct {

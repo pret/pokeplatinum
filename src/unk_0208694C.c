@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02087A10_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -29,6 +28,7 @@
 #include "render_window.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -36,7 +36,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"

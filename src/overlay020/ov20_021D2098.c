@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_020998EC_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay020/ov20_021D0D80.h"
@@ -26,9 +25,9 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"

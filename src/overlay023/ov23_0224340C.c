@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EAFA4.h"
@@ -43,13 +42,13 @@
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"

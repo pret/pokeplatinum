@@ -4,7 +4,6 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_0209C194_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0209BDF8.h"
 
 #include "overlay109/struct_ov109_021D5140_sub1.h"
@@ -16,6 +15,7 @@
 #include "menu.h"
 #include "message.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"

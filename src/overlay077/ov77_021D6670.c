@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "cell_actor.h"
 #include "char_transfer.h"
 #include "gx_layers.h"
@@ -13,9 +11,9 @@
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_020093B4.h"
 #include "unk_0200A784.h"
 
 typedef struct {

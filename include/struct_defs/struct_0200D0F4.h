@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_0200D0F4_H
 #define POKEPLATINUM_STRUCT_0200D0F4_H
 
-#include "struct_defs/struct_02009508.h"
-
 #include "cell_actor.h"
+#include "sprite_util.h"
 
 typedef struct CellActorData {
     CellActor *unk_00;

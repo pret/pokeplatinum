@@ -30,10 +30,10 @@
 #include "pokedex_heightweight.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 
 #include "res/text/bank/pokedex.h"
 

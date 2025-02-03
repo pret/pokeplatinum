@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "overlay063/ov63_0222D160.h"
 #include "overlay063/struct_ov63_0222CC3C.h"
 #include "overlay063/struct_ov63_0222D160.h"
@@ -13,7 +11,7 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 
 typedef struct UnkStruct_ov63_0222D1C0_t {
     UnkStruct_0200C738 *unk_00;

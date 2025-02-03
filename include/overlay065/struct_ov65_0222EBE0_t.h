@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207DFAC.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -20,6 +19,7 @@
 #include "overlay_manager.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "trainer_info.h"

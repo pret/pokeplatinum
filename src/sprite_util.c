@@ -1,11 +1,7 @@
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 
 #include <nitro.h>
 #include <string.h>
-
-#include "struct_defs/struct_02009508.h"
-#include "struct_defs/struct_02009508_1.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"
 #include "char_transfer.h"
@@ -13,6 +9,7 @@
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "unk_0200A784.h"
 #include "unk_0202309C.h"
 

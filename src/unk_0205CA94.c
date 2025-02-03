@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02009508.h"
-#include "struct_defs/struct_0200C738.h"
-
 #include "field/field_system.h"
 
 #include "bg_window.h"
@@ -18,11 +15,11 @@
 #include "save_player.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_020093B4.h"
 #include "unk_0200F174.h"
 
 typedef struct {

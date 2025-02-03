@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_sub1.h"
 
@@ -27,6 +26,7 @@
 #include "party.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"

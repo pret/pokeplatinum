@@ -31,7 +31,7 @@
 #include "narc.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "vram_transfer.h"
 
 #define MCR_PCANM_DESTPL(x) ((7 * 32) + (((x) + 1) * 2))

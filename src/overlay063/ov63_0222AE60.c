@@ -11,7 +11,7 @@
 #include "palette.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 
 typedef struct {
     int unk_00;

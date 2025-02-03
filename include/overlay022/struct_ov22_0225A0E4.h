@@ -7,13 +7,13 @@
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "narc.h"
 #include "resource_collection.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 
 typedef struct {
     UnkStruct_02015064 *unk_00;

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_020831B4.h"
 
@@ -21,7 +20,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201E010.h"
 #include "unk_0207E0B8.h"

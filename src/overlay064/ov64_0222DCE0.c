@@ -8,7 +8,7 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_defs/struct_0200C738.h"
+#include "sprite_util.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
@@ -51,7 +51,7 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "sprite_transfer.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"

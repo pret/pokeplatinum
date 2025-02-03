@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_02009508.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay007/struct_ov7_0224F2EC.h"
@@ -23,7 +21,7 @@
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "unk_0200A784.h"
 #include "unk_02017728.h"
 

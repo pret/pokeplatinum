@@ -37,10 +37,10 @@
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
-#include "unk_020093B4.h"
 #include "unk_02014000.h"
 #include "unk_02054884.h"
 

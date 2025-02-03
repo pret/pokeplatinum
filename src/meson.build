@@ -29,7 +29,7 @@ pokeplatinum_c = files(
     'overlay_manager.c',
     'graphics.c',
     'unk_0200762C.c',
-    'unk_020093B4.c',
+    'sprite_util.c',
     'sprite_resource.c',
     'sprite_transfer.c',
     'unk_0200A784.c',

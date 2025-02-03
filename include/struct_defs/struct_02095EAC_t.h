@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_02095EAC_T_H
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_02095EAC_sub1.h"
 
@@ -13,6 +12,7 @@
 #include "cell_actor.h"
 #include "message.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"

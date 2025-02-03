@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV72_0223DB98_T_H
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "overlay072/struct_ov72_0223E7D8.h"
 #include "overlay072/struct_ov72_0223E80C.h"
@@ -14,6 +13,7 @@
 #include "game_records.h"
 #include "message.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 

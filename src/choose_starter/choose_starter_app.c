@@ -16,7 +16,6 @@
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay021/struct_ov21_021E7F40.h"
@@ -45,6 +44,7 @@
 #include "render_window.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -52,7 +52,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02015064.h"

@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_020961E8_sub1.h"
 
@@ -16,6 +15,7 @@
 #include "message.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"

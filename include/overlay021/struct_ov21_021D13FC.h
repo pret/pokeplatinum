@@ -4,7 +4,6 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
@@ -16,6 +15,7 @@
 #include "cell_actor.h"
 #include "narc.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "sys_task_manager.h"
 
 typedef struct {

@@ -8,7 +8,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
@@ -19,6 +18,7 @@
 #include "cell_actor.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_util.h"
 
 SpriteRenderer *sub_0200C6E4(int param0);
 SpriteGfxHandler *sub_0200C704(SpriteRenderer *param0);

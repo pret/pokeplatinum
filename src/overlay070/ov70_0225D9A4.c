@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -59,6 +58,7 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -68,7 +68,6 @@
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"

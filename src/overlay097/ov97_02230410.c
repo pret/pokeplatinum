@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202442C_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0202DBAC.h"
 
 #include "overlay097/ov97_0222D04C.h"
@@ -34,6 +33,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"

@@ -7,7 +7,6 @@
 #include "generated/genders.h"
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"
 #include "heap.h"
@@ -16,9 +15,9 @@
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_020093B4.h"
 #include "unk_020131EC.h"
 
 static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0);
