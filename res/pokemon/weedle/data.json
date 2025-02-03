@@ -1,5 +1,4 @@
 {
-    "name": "Weedle",
     "base_stats": {
         "hp": 40,
         "attack": 35,
@@ -64,8 +63,60 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "It eats its weight in leaves every\nday. It fends off attackers with\nthe needle on its head.",
-        "category": "Hairy Bug Pokémon"
+        "en": {
+            "name": "WEEDLE",
+            "category": "Hairy Bug Pokémon",
+            "entry_text": [
+                "It eats its weight in leaves every\n",
+                "day. It fends off attackers with\n",
+                "the needle on its head."
+            ]
+        },
+        "fr": {
+            "name": "ASPICOT",
+            "category": "Pokémon Insectopic",
+            "entry_text": [
+                "Il mange chaque jour son poids en\n",
+                "feuilles. Il utilise l’aiguillon sur sa\n",
+                "tête pour repousser l’ennemi."
+            ]
+        },
+        "de": {
+            "name": "HORNLIU",
+            "category": "Raupe",
+            "entry_text": [
+                "Es frisst täglich sein Gewicht in\n",
+                "Blättern. Die Nadel auf seinem Kopf\n",
+                "dient der Verteidigung."
+            ]
+        },
+        "it": {
+            "name": "WEEDLE",
+            "category": "Pokémon Millepiedi",
+            "entry_text": [
+                "Divora ogni giorno una quantità di\n",
+                "foglie pari al suo peso. Respinge i\n",
+                "nemici con l’aculeo sulla testa."
+            ]
+        },
+        "es": {
+            "name": "WEEDLE",
+            "category": "Pokémon Oruga",
+            "entry_text": [
+                "Come el equivalente a su peso en\n",
+                "hojas todos los días. Se defiende\n",
+                "con el aguijón de su cabeza."
+            ]
+        },
+        "jp": {
+            "name": "ビ－ドル",
+            "category": "けむしポケモン",
+            "entry_text": [
+                "まいにち　じぶんと　おなじ　おもさの\n",
+                "はっぱを　たべる。あたまの　ハリで\n",
+                "おそってきた　てきを　げきたい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

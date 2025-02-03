@@ -1,5 +1,4 @@
 {
-    "name": "Horsea",
     "base_stats": {
         "hp": 30,
         "attack": 40,
@@ -109,8 +108,60 @@
         "pokemon_pos_f": 65530,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65530,
-        "entry_text": "It makes its nest in the shade of\ncorals. If it senses danger, it\nspits murky ink and flees.",
-        "category": "Dragon Pokémon"
+        "en": {
+            "name": "HORSEA",
+            "category": "Dragon Pokémon",
+            "entry_text": [
+                "It makes its nest in the shade of\n",
+                "corals. If it senses danger, it\n",
+                "spits murky ink and flees."
+            ]
+        },
+        "fr": {
+            "name": "HYPOTREMPE",
+            "category": "Pokémon Dragon",
+            "entry_text": [
+                "Il niche à l’ombre du corail. Quand\n",
+                "il se sent menacé, il disparaît\n",
+                "dans un nuage d’encre opaque."
+            ]
+        },
+        "de": {
+            "name": "SEEPER",
+            "category": "Drache",
+            "entry_text": [
+                "Im Schatten von Korallen legt es\n",
+                "sein Nest an. Bei Gefahr versprüht\n",
+                "es Tinte und flieht."
+            ]
+        },
+        "it": {
+            "name": "HORSEA",
+            "category": "Pokémon Drago",
+            "entry_text": [
+                "Crea la sua tana all’ombra dei\n",
+                "coralli. Se avverte un pericolo,\n",
+                "spruzza inchiostro nero e fugge."
+            ]
+        },
+        "es": {
+            "name": "HORSEA",
+            "category": "Pokémon Dragón",
+            "entry_text": [
+                "Hace su nido entre los corales.\n",
+                "Si se siente en peligro, escupe\n",
+                "tinta y huye."
+            ]
+        },
+        "jp": {
+            "name": "タッツ－",
+            "category": "ドラゴンポケモン",
+            "entry_text": [
+                "サンゴの　かげに　すみかを　つくる。\n",
+                "きけんを　かんじると　くちから\n",
+                "まっくろい　スミを　はいて　にげる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

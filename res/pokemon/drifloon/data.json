@@ -1,5 +1,4 @@
 {
-    "name": "Drifloon",
     "base_stats": {
         "hp": 90,
         "attack": 50,
@@ -127,8 +126,60 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "entry_text": "Because of the way it floats\naimlessly, an old folktale calls it a\n“Signpost for Wandering Spirits.”",
-        "category": "Balloon Pokémon"
+        "en": {
+            "name": "DRIFLOON",
+            "category": "Balloon Pokémon",
+            "entry_text": [
+                "Because of the way it floats\n",
+                "aimlessly, an old folktale calls it a\n",
+                "“Signpost for Wandering Spirits.”"
+            ]
+        },
+        "fr": {
+            "name": "BAUDRIVE",
+            "category": "Pokémon Bouboule",
+            "entry_text": [
+                "Un Pokémon né de l’esprit des gens\n",
+                "et des Pokémon. Il aime les saisons\n",
+                "chaudes et humides."
+            ]
+        },
+        "de": {
+            "name": "DRIFTLON",
+            "category": "Ballon",
+            "entry_text": [
+                "Ein PKMN, entstanden aus den\n",
+                "Gefühlen von Menschen und PKMN.\n",
+                "Es mag feuchte Jahreszeiten."
+            ]
+        },
+        "it": {
+            "name": "DRIFLOON",
+            "category": "Pokémon Pallone",
+            "entry_text": [
+                "Pokémon formato dalle anime di\n",
+                "persone e Pokémon. Ama le\n",
+                "stagioni umide."
+            ]
+        },
+        "es": {
+            "name": "DRIFLOON",
+            "category": "Pokémon Globo",
+            "entry_text": [
+                "Está formado por los espíritus de\n",
+                "personas y Pokémon. Le encantan\n",
+                "las estaciones húmedas."
+            ]
+        },
+        "jp": {
+            "name": "フワンテ",
+            "category": "ふうせんポケモン",
+            "entry_text": [
+                "ひとや　ポケモンの　たましいが\n",
+                "かたまって　うまれた　ポケモン。\n",
+                "ジメジメした　きせつが　だいすき。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

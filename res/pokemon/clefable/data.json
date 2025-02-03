@@ -1,5 +1,4 @@
 {
-    "name": "Clefable",
     "base_stats": {
         "hp": 95,
         "attack": 70,
@@ -129,8 +128,60 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "It is very wary and rarely shows\nitself to people. Its ears can hear\na pin drop over half a mile away.",
-        "category": "Fairy Pokémon"
+        "en": {
+            "name": "CLEFABLE",
+            "category": "Fairy Pokémon",
+            "entry_text": [
+                "It is very wary and rarely shows\n",
+                "itself to people. Its ears can hear\n",
+                "a pin drop over half a mile away."
+            ]
+        },
+        "fr": {
+            "name": "MELODELFE",
+            "category": "Pokémon Fée",
+            "entry_text": [
+                "Il joue au bord des lacs déserts\n",
+                "les soirs de pleine lune. Rares\n",
+                "sont ceux qui l’ont aperçu."
+            ]
+        },
+        "de": {
+            "name": "PIXI",
+            "category": "Fee",
+            "entry_text": [
+                "Man bekommt es selten zu sehen.\n",
+                "Bei Vollmond soll es an den Ufern\n",
+                "einsam gelegener Seen spielen."
+            ]
+        },
+        "it": {
+            "name": "CLEFABLE",
+            "category": "Pokémon Fata",
+            "entry_text": [
+                "Si vedono raramente. Pare che nelle\n",
+                "notti di luna piena vadano a giocare\n",
+                "in prossimità di laghetti sperduti."
+            ]
+        },
+        "es": {
+            "name": "CLEFABLE",
+            "category": "Pokémon Hada",
+            "entry_text": [
+                "Rara vez se le ve. Se dice que en\n",
+                "noches de luna llena sale a jugar\n",
+                "en lagos solitarios."
+            ]
+        },
+        "jp": {
+            "name": "ピクシ－",
+            "category": "ようせいポケモン",
+            "entry_text": [
+                "めったに　すがたを　あらわさない。\n",
+                "まんげつに　さそわれて　ひとけのない\n",
+                "みずうみで　あそぶと　いわれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

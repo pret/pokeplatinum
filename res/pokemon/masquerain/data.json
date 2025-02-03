@@ -1,5 +1,4 @@
 {
-    "name": "Masquerain",
     "base_stats": {
         "hp": 70,
         "attack": 60,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "Its antennae have eye patterns\non them. Its four wings enable it\nto hover and fly in any direction.",
-        "category": "Eyeball Pokémon"
+        "en": {
+            "name": "MASQUERAIN",
+            "category": "Eyeball Pokémon",
+            "entry_text": [
+                "Its antennae have eye patterns\n",
+                "on them. Its four wings enable it\n",
+                "to hover and fly in any direction."
+            ]
+        },
+        "fr": {
+            "name": "MASKADRA",
+            "category": "Pokémon Boule Oeil",
+            "entry_text": [
+                "Des motifs en forme d’yeux ornent\n",
+                "ses antennes. Ses 4 ailes l’aident\n",
+                "à voler dans toutes les directions."
+            ]
+        },
+        "de": {
+            "name": "MASKEREGEN",
+            "category": "Auge",
+            "entry_text": [
+                "Seine Antenne besitzt ein Augen-\n",
+                "muster. Seine vier Flügel erlauben\n",
+                "es, in alle Richtungen zu fliegen."
+            ]
+        },
+        "it": {
+            "name": "MASQUERAIN",
+            "category": "Pokémon Occhi",
+            "entry_text": [
+                "Le sue antenne presentano un\n",
+                "motivo ad occhi. Con le quattro ali\n",
+                "riesce a volare in ogni direzione."
+            ]
+        },
+        "es": {
+            "name": "MASQUERAIN",
+            "category": "Pokémon Globocular",
+            "entry_text": [
+                "Sus antenas tienen dibujos de ojos,\n",
+                "mientras que sus alas le permiten\n",
+                "volar en cualquier dirección."
+            ]
+        },
+        "jp": {
+            "name": "アメモ－ス",
+            "category": "めだまポケモン",
+            "entry_text": [
+                "めだまもようの　しょっかくを　もつ。\n",
+                "４まいの　はねで　うかびあがり\n",
+                "ぜんごさゆうに　うごくことができる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

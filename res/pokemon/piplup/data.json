@@ -1,5 +1,4 @@
 {
-    "name": "Piplup",
     "base_stats": {
         "hp": 53,
         "attack": 51,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "A poor walker, it often falls down.\nHowever, its strong pride makes it\npuff up its chest without a care.",
-        "category": "Penguin Pokémon"
+        "en": {
+            "name": "PIPLUP",
+            "category": "Penguin Pokémon",
+            "entry_text": [
+                "A poor walker, it often falls down.\n",
+                "However, its strong pride makes it\n",
+                "puff up its chest without a care."
+            ]
+        },
+        "fr": {
+            "name": "TIPLOUF",
+            "category": "Pokémon Pingouin",
+            "entry_text": [
+                "Il est fier et déteste accepter\n",
+                "la nourriture qu’on lui offre. Son\n",
+                "pelage épais le protège du froid."
+            ]
+        },
+        "de": {
+            "name": "PLINFA",
+            "category": "Pinguin",
+            "entry_text": [
+                "Es ist sehr stolz und nimmt daher\n",
+                "kein Futter von anderen an. Seine\n",
+                "dicken Daunen schützen vor Kälte."
+            ]
+        },
+        "it": {
+            "name": "PIPLUP",
+            "category": "Pokémon Pinguino",
+            "entry_text": [
+                "È molto orgoglioso e odia accettare\n",
+                "cibo dalla gente. Le fitte piume lo\n",
+                "proteggono dal freddo."
+            ]
+        },
+        "es": {
+            "name": "PIPLUP",
+            "category": "Pokémon Pingüino",
+            "entry_text": [
+                "Es muy orgulloso, por lo que odia\n",
+                "aceptar comida de la gente. Su\n",
+                "grueso plumón le protege del frío."
+            ]
+        },
+        "jp": {
+            "name": "ポッチャマ",
+            "category": "ペンギンポケモン",
+            "entry_text": [
+                "プライドが　たかく　ひとから\n",
+                "たべものを　もらう　ことを　きらう。\n",
+                "ながい　うぶげが　さむさを　ふせぐ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

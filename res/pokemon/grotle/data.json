@@ -1,5 +1,4 @@
 {
-    "name": "Grotle",
     "base_stats": {
         "hp": 75,
         "attack": 89,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It knows where pure water wells\nup. It carries fellow Pokémon there\non its back.",
-        "category": "Grove Pokémon"
+        "en": {
+            "name": "GROTLE",
+            "category": "Grove Pokémon",
+            "entry_text": [
+                "It knows where pure water wells\n",
+                "up. It carries fellow Pokémon there\n",
+                "on its back."
+            ]
+        },
+        "fr": {
+            "name": "BOSKARA",
+            "category": "Pokémon Bosquet",
+            "entry_text": [
+                "Il vit en forêt près de l’eau.\n",
+                "En journée, il la quitte pour dorer\n",
+                "sa carapace feuillue au soleil."
+            ]
+        },
+        "de": {
+            "name": "CHELCARAIN",
+            "category": "Hain",
+            "entry_text": [
+                "Es lebt in der Nähe von Wasser in\n",
+                "Wäldern. Tagsüber verlässt es\n",
+                "diese, um ein Sonnenbad zu nehmen."
+            ]
+        },
+        "it": {
+            "name": "GROTLE",
+            "category": "Pokémon Boschetto",
+            "entry_text": [
+                "Vive nelle foreste vicino all’acqua,\n",
+                "ma esce di giorno per far pren-\n",
+                "dere sole alle piante sul guscio."
+            ]
+        },
+        "es": {
+            "name": "GROTLE",
+            "category": "Pokémon Arboleda",
+            "entry_text": [
+                "Vive en los bosques cerca del\n",
+                "agua. Por el día, sale a que les dé\n",
+                "el sol a las plantas de su espalda."
+            ]
+        },
+        "jp": {
+            "name": "ハヤシガメ",
+            "category": "こだちポケモン",
+            "entry_text": [
+                "もりの　なかの　みずべで　くらす。\n",
+                "ひるまは　もりの　そとに　でて\n",
+                "こうらの　きに　ひかりを　あてる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

@@ -1,5 +1,4 @@
 {
-    "name": "Poliwrath",
     "base_stats": {
         "hp": 90,
         "attack": 85,
@@ -111,8 +110,60 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "With its extremely tough muscles,\nit can keep swimming in the Pacific\nOcean without resting.",
-        "category": "Tadpole Pokémon"
+        "en": {
+            "name": "POLIWRATH",
+            "category": "Tadpole Pokémon",
+            "entry_text": [
+                "With its extremely tough muscles,\n",
+                "it can keep swimming in the Pacific\n",
+                "Ocean without resting."
+            ]
+        },
+        "fr": {
+            "name": "TARTARD",
+            "category": "Pokémon Têtard",
+            "entry_text": [
+                "Il possède de sacrés biscoteaux.\n",
+                "Il peut parcourir sans relâche\n",
+                "l’Océan Pacifique."
+            ]
+        },
+        "de": {
+            "name": "QUAPPO",
+            "category": "Kaulquappe",
+            "entry_text": [
+                "Es hat extrem starke Muskeln und\n",
+                "kann durch den Ozean schwimmen,\n",
+                "ohne sich ausruhen zu müssen."
+            ]
+        },
+        "it": {
+            "name": "POLIWRATH",
+            "category": "Pokémon Girino",
+            "entry_text": [
+                "Ha dei muscoli tanto sviluppati da\n",
+                "riuscire ad attraversare a nuoto\n",
+                "l’Oceano Pacifico senza fermarsi."
+            ]
+        },
+        "es": {
+            "name": "POLIWRATH",
+            "category": "Pokémon Renacuajo",
+            "entry_text": [
+                "Tiene músculos muy desarrollados.\n",
+                "Es capaz de nadar en el océano\n",
+                "sin descanso."
+            ]
+        },
+        "jp": {
+            "name": "ニョロボン",
+            "category": "おたまポケモン",
+            "entry_text": [
+                "きょうじんな　きんにくを　もつ。\n",
+                "たいへいようを　やすむことなく\n",
+                "およぎつづけることが　できるのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

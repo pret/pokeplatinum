@@ -1,5 +1,4 @@
 {
-    "name": "Exeggutor",
     "base_stats": {
         "hp": 95,
         "attack": 95,
@@ -109,8 +108,60 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 2,
-        "entry_text": "It is called “The Walking Jungle.”\nIf a head grows too big, it falls\noff and becomes an EXEGGCUTE.",
-        "category": "Coconut Pokémon"
+        "en": {
+            "name": "EXEGGUTOR",
+            "category": "Coconut Pokémon",
+            "entry_text": [
+                "It is called “The Walking Jungle.”\n",
+                "If a head grows too big, it falls\n",
+                "off and becomes an EXEGGCUTE."
+            ]
+        },
+        "fr": {
+            "name": "NOADKOKO",
+            "category": "Pokémon Fruitpalme",
+            "entry_text": [
+                "On l’appelle “jungle sur pattes”.\n",
+                "Si une tête devient trop grosse,\n",
+                "elle tombe et produit un NOEUNOEUF."
+            ]
+        },
+        "de": {
+            "name": "KOKOWEI",
+            "category": "Palmfrucht",
+            "entry_text": [
+                "Man nennt es den “Laufenden\n",
+                "Dschungel”. Wird ein Kopf zu groß,\n",
+                "fällt er ab und wird zu einem OWEI."
+            ]
+        },
+        "it": {
+            "name": "EXEGGUTOR",
+            "category": "Pokémon Nocecocco",
+            "entry_text": [
+                "Noto come “Giungla in moto”. Se\n",
+                "una testa diventa troppo grande,\n",
+                "cade e si trasforma in EXEGGCUTE."
+            ]
+        },
+        "es": {
+            "name": "EXEGGUTOR",
+            "category": "Pokémon Coco",
+            "entry_text": [
+                "Se le llama la “selva andante”.\n",
+                "Si una cabeza crece demasiado,\n",
+                "se cae y forma un EXEGGCUTE."
+            ]
+        },
+        "jp": {
+            "name": "ナッシ－",
+            "category": "やしのみポケモン",
+            "entry_text": [
+                "あるく　ねったいうりんと　よばれる。\n",
+                "おおきくなった　あたまの　ひとつが\n",
+                "じめんに　おちると　タマタマになる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

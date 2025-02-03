@@ -1,5 +1,4 @@
 {
-    "name": "Wailmer",
     "base_stats": {
         "hp": 130,
         "attack": 70,
@@ -113,8 +112,60 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 9,
-        "entry_text": "On sunny days, it lands on beaches\nto bounce like a ball and play.\nIt spouts water from its nose.",
-        "category": "Ball Whale Pokémon"
+        "en": {
+            "name": "WAILMER",
+            "category": "Ball Whale Pokémon",
+            "entry_text": [
+                "On sunny days, it lands on beaches\n",
+                "to bounce like a ball and play.\n",
+                "It spouts water from its nose."
+            ]
+        },
+        "fr": {
+            "name": "WAILMER",
+            "category": "Pokémon Baleinboule",
+            "entry_text": [
+                "Par beau temps, il se pose sur les\n",
+                "plages pour jouer et rebondir. Il\n",
+                "expulse de l’eau par son évent."
+            ]
+        },
+        "de": {
+            "name": "WAILMER",
+            "category": "Kugelwal",
+            "entry_text": [
+                "An sonnigen Tagen trifft man diese\n",
+                "Pokémon an Stränden, wo sie wie\n",
+                "Bälle herumhüpfen. "
+            ]
+        },
+        "it": {
+            "name": "WAILMER",
+            "category": "Pokémon Balenottero",
+            "entry_text": [
+                "In giornate soleggiate, gioca\n",
+                "rimbalzando sulla spiaggia.\n",
+                "Spruzza acqua dalle narici."
+            ]
+        },
+        "es": {
+            "name": "WAILMER",
+            "category": "Pokémon Ballenabola",
+            "entry_text": [
+                "En días soleados se tumba en las\n",
+                "playas para jugar y botar como una\n",
+                "pelota. Lanza agua por la nariz."
+            ]
+        },
+        "jp": {
+            "name": "ホエルコ",
+            "category": "たまくじらポケモン",
+            "entry_text": [
+                "はれた　ひは　すなはまに　あがり\n",
+                "ボ－ルのように　はずんで　あそぶ。\n",
+                "はなから　みずを　ふきあげる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

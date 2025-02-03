@@ -1,5 +1,4 @@
 {
-    "name": "Natu",
     "base_stats": {
         "hp": 40,
         "attack": 50,
@@ -127,8 +126,60 @@
         "pokemon_pos_f": 31,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 31,
-        "entry_text": "It picks food from cactus plants,\ndeftly avoiding buds and spines.\nIt seems to skip about to move.",
-        "category": "Tiny Bird Pokémon"
+        "en": {
+            "name": "NATU",
+            "category": "Tiny Bird Pokémon",
+            "entry_text": [
+                "It picks food from cactus plants,\n",
+                "deftly avoiding buds and spines.\n",
+                "It seems to skip about to move."
+            ]
+        },
+        "fr": {
+            "name": "NATU",
+            "category": "Pokémon Minoiseau",
+            "entry_text": [
+                "Il mange des cactus en prenant\n",
+                "soin d’éviter les bourgeons et les\n",
+                "épines. Il ne tient pas en place. "
+            ]
+        },
+        "de": {
+            "name": "NATU",
+            "category": "Kleinvogel",
+            "entry_text": [
+                "Es pickt seine Nahrung aus\n",
+                "Kakteen, wobei es Knospen und\n",
+                "Dornen verschont."
+            ]
+        },
+        "it": {
+            "name": "NATU",
+            "category": "Pokémon Uccellino",
+            "entry_text": [
+                "Raccoglie cibo dai cactus, evitando\n",
+                "agilmente germogli e spine. Si muove\n",
+                "saltellando."
+            ]
+        },
+        "es": {
+            "name": "NATU",
+            "category": "Pokémon Pajarito",
+            "entry_text": [
+                "Recoge alimento de los cactos\n",
+                "evitando los pinchos. Se mueve\n",
+                "dando saltos."
+            ]
+        },
+        "jp": {
+            "name": "ネイティ",
+            "category": "ことりポケモン",
+            "entry_text": [
+                "サボテンの　つぼみや　トゲを\n",
+                "きように　よけながら　ついばむ。\n",
+                "とびはねるようにして　いどうする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

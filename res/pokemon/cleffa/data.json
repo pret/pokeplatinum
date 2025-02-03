@@ -1,5 +1,4 @@
 {
-    "name": "Cleffa",
     "base_stats": {
         "hp": 50,
         "attack": 25,
@@ -114,8 +113,60 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "It is often seen when shooting\nstars fill the night skies. It’s said\nto arrive riding on a shooting star.",
-        "category": "Star Shape Pokémon"
+        "en": {
+            "name": "CLEFFA",
+            "category": "Star Shape Pokémon",
+            "entry_text": [
+                "It is often seen when shooting\n",
+                "stars fill the night skies. It’s said\n",
+                "to arrive riding on a shooting star."
+            ]
+        },
+        "fr": {
+            "name": "MELO",
+            "category": "Pokémon Etoile",
+            "entry_text": [
+                "Sa silhouette rappelle une étoile.\n",
+                "On dit qu’il descend sur terre\n",
+                "en chevauchant une étoile filante."
+            ]
+        },
+        "de": {
+            "name": "PII",
+            "category": "Sternform",
+            "entry_text": [
+                "Seine Silhouette sieht aus wie ein\n",
+                "Stern. Man sagt, es würde auf\n",
+                "Sternschnuppen reisen."
+            ]
+        },
+        "it": {
+            "name": "CLEFFA",
+            "category": "Pokémon Stella",
+            "entry_text": [
+                "La sua sagoma ricorda quella di\n",
+                "una stella. Si ritiene che giunga\n",
+                "a cavallo di stelle cadenti."
+            ]
+        },
+        "es": {
+            "name": "CLEFFA",
+            "category": "Pokémon Estrellada",
+            "entry_text": [
+                "Tiene forma de estrella. Se cree\n",
+                "que llega cabalgando sobre\n",
+                "estrellas fugaces."
+            ]
+        },
+        "jp": {
+            "name": "ピィ",
+            "category": "ほしがたポケモン",
+            "entry_text": [
+                "よぞらの　ほしに　にた　シルエット。\n",
+                "ながれぼしに　のって　やってくると\n",
+                "しんじられている　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

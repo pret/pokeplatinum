@@ -1,5 +1,4 @@
 {
-    "name": "Torterra",
     "base_stats": {
         "hp": 95,
         "attack": 109,
@@ -124,8 +123,60 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 0,
-        "entry_text": "Some Pokémon are born on a\nTORTERRA’s back and spend their\nentire life there.",
-        "category": "Continent Pokémon"
+        "en": {
+            "name": "TORTERRA",
+            "category": "Continent Pokémon",
+            "entry_text": [
+                "Some Pokémon are born on a\n",
+                "TORTERRA’s back and spend their\n",
+                "entire life there."
+            ]
+        },
+        "fr": {
+            "name": "TORTERRA",
+            "category": "Pokémon Continent",
+            "entry_text": [
+                "Il arrive que de petits Pokémon\n",
+                "se rassemblent sur son dos \n",
+                "immobile pour y faire leur nid."
+            ]
+        },
+        "de": {
+            "name": "CHELTERRAR",
+            "category": "Kontinent",
+            "entry_text": [
+                "Kleine PKMN fangen manchmal an,\n",
+                "auf dem bewegungslosen Rücken\n",
+                "Nester zu bauen."
+            ]
+        },
+        "it": {
+            "name": "TORTERRA",
+            "category": "Pokémon Continente",
+            "entry_text": [
+                "Piccoli Pokémon si radunano\n",
+                "talvolta sul suo dorso immobile\n",
+                "per costruirvi la loro tana."
+            ]
+        },
+        "es": {
+            "name": "TORTERRA",
+            "category": "Pokémon Continente",
+            "entry_text": [
+                "Algunos Pokémon pequeños\n",
+                "se juntan en su espalda\n",
+                "para hacer sus nidos."
+            ]
+        },
+        "jp": {
+            "name": "ドダイトス",
+            "category": "たいりくポケモン",
+            "entry_text": [
+                "ちいさな　ポケモンたちが　あつまり\n",
+                "うごかない　ドダイトスの　せなかで\n",
+                "すづくりを　はじめることがある。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

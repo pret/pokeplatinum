@@ -1,5 +1,4 @@
 {
-    "name": "Slaking",
     "base_stats": {
         "hp": 150,
         "attack": 160,
@@ -127,8 +126,60 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "The world’s laziest Pokémon. When\nit is lounging, it is actually saving\nenergy for striking back.",
-        "category": "Lazy Pokémon"
+        "en": {
+            "name": "SLAKING",
+            "category": "Lazy Pokémon",
+            "entry_text": [
+                "The world’s laziest Pokémon. When\n",
+                "it is lounging, it is actually saving\n",
+                "energy for striking back."
+            ]
+        },
+        "fr": {
+            "name": "MONAFLEMIT",
+            "category": "Pokémon Fainéant",
+            "entry_text": [
+                "Le Pokémon le plus fainéant du\n",
+                "monde. Il s’allonge pour économiser\n",
+                "ses forces et contre-attaquer."
+            ]
+        },
+        "de": {
+            "name": "LETARKING",
+            "category": "Müßig",
+            "entry_text": [
+                "Das faulste PKMN der Welt. Wenn es\n",
+                "faulenzt, sammelt es in Wahrheit\n",
+                "Energie, um zuzuschlagen."
+            ]
+        },
+        "it": {
+            "name": "SLAKING",
+            "category": "Pokémon Pigrizia",
+            "entry_text": [
+                "Il Pokémon più pigro in assoluto.\n",
+                "Stando disteso, in realtà cerca di\n",
+                "risparmiare forze per attaccare."
+            ]
+        },
+        "es": {
+            "name": "SLAKING",
+            "category": "Pokémon Holgazán",
+            "entry_text": [
+                "El Pokémon más perezoso del\n",
+                "mundo. Si está tumbado, es que\n",
+                "reúne fuerzas para contraatacar."
+            ]
+        },
+        "jp": {
+            "name": "ケッキング",
+            "category": "ものぐさポケモン",
+            "entry_text": [
+                "せかいいち　ぐうたらな　ポケモン。\n",
+                "ねころがっているだけに　みえるが\n",
+                "はんげきの　パワ－を　ためている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

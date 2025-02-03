@@ -1,5 +1,4 @@
 {
-    "name": "Beedrill",
     "base_stats": {
         "hp": 65,
         "attack": 80,
@@ -113,8 +112,60 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "Its best attack involves flying\naround at high speed, striking with\npoison needles, then flying off.",
-        "category": "Poison Bee Pokémon"
+        "en": {
+            "name": "BEEDRILL",
+            "category": "Poison Bee Pokémon",
+            "entry_text": [
+                "Its best attack involves flying\n",
+                "around at high speed, striking with\n",
+                "poison needles, then flying off."
+            ]
+        },
+        "fr": {
+            "name": "DARDARGNAN",
+            "category": "Pokémon Guêpoison",
+            "entry_text": [
+                "Il virevolte rapidement autour de\n",
+                "l’ennemi et frappe de son dard\n",
+                "empoisonné avant de décamper."
+            ]
+        },
+        "de": {
+            "name": "BIBOR",
+            "category": "Giftbiene",
+            "entry_text": [
+                "Sein bester Angriff: Schnell auf den\n",
+                "Gegner zufliegen, mit Giftstacheln\n",
+                "zustechen und davonfliegen."
+            ]
+        },
+        "it": {
+            "name": "BEEDRILL",
+            "category": "Pokémon Velenape",
+            "entry_text": [
+                "Vola intorno al nemico ad alta\n",
+                "velocità, attacca con i pungiglioni\n",
+                "avvelenati e si allontana rapido."
+            ]
+        },
+        "es": {
+            "name": "BEEDRILL",
+            "category": "Pokémon Abeja Ven.",
+            "entry_text": [
+                "Atacan volando alrededor del\n",
+                "objetivo y usando su aguijón\n",
+                "venenoso antes de huir."
+            ]
+        },
+        "jp": {
+            "name": "スピア－",
+            "category": "どくばちポケモン",
+            "entry_text": [
+                "こうそくで　とびまわり　どくバリで\n",
+                "こうげきしたあと　すぐに　とびさる\n",
+                "せんぽうが　とくいわざだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

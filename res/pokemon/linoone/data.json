@@ -1,5 +1,4 @@
 {
-    "name": "Linoone",
     "base_stats": {
         "hp": 78,
         "attack": 70,
@@ -124,8 +123,60 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It charges prey at speeds over\n60 mph. However, because it can\nonly run straight, it often fails.",
-        "category": "Rushing Pokémon"
+        "en": {
+            "name": "LINOONE",
+            "category": "Rushing Pokémon",
+            "entry_text": [
+                "It charges prey at speeds over\n",
+                "60 mph. However, because it can\n",
+                "only run straight, it often fails."
+            ]
+        },
+        "fr": {
+            "name": "LINEON",
+            "category": "Pokémon Fonceur",
+            "entry_text": [
+                "Il fonce sur sa proie à plus de 100\n",
+                "km/h. Mais il ne peut pas dévier sa\n",
+                "course et loupe souvent sa cible."
+            ]
+        },
+        "de": {
+            "name": "GERADAKS",
+            "category": "Sprinter",
+            "entry_text": [
+                "Es stürzt sich mit 100 km/h auf\n",
+                "Beute. Aber es kann nur geradeaus\n",
+                "laufen und die Jagd misslingt oft."
+            ]
+        },
+        "it": {
+            "name": "LINOONE",
+            "category": "Pokémon Sfrecciante",
+            "entry_text": [
+                "Carica la preda ad una velocità di\n",
+                "100 km/h. Ma dal momento che\n",
+                "va solo dritto, sbaglia spesso."
+            ]
+        },
+        "es": {
+            "name": "LINOONE",
+            "category": "Pokémon Lanzado",
+            "entry_text": [
+                "Carga contra sus enemigos a más\n",
+                "de 100 km por hora. Como solo\n",
+                "va en línea recta, falla a menudo."
+            ]
+        },
+        "jp": {
+            "name": "マッスグマ",
+            "category": "とっしんポケモン",
+            "entry_text": [
+                "じそく１００キロで　えものに\n",
+                "おそいかかるが　まっすぐにしか\n",
+                "はしれないので　しっぱいも　おおい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

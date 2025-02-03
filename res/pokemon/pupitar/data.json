@@ -1,5 +1,4 @@
 {
-    "name": "Pupitar",
     "base_stats": {
         "hp": 70,
         "attack": 84,
@@ -120,8 +119,60 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "Its body is as hard as bedrock.\nBy venting pressurized gas, it can\nlaunch itself like a rocket.",
-        "category": "Hard Shell Pokémon"
+        "en": {
+            "name": "PUPITAR",
+            "category": "Hard Shell Pokémon",
+            "entry_text": [
+                "Its body is as hard as bedrock.\n",
+                "By venting pressurized gas, it can\n",
+                "launch itself like a rocket."
+            ]
+        },
+        "fr": {
+            "name": "YMPHECT",
+            "category": "Pokémon Carapadure",
+            "entry_text": [
+                "Son corps est dur comme la pierre\n",
+                "souterraine. Il file comme une\n",
+                "fusée en expulsant des gaz."
+            ]
+        },
+        "de": {
+            "name": "PUPITAR",
+            "category": "Hartschale",
+            "entry_text": [
+                "Sein Körper ist hart wie Fels. Es\n",
+                "lässt mit Hochdruck Gas ab, um wie\n",
+                "eine Rakete nach oben zu schießen."
+            ]
+        },
+        "it": {
+            "name": "PUPITAR",
+            "category": "Pokémon Guscioduro",
+            "entry_text": [
+                "Il suo corpo è duro come la roccia.\n",
+                "Riesce a muoversi come un razzo\n",
+                "espellendo gas con tutta forza."
+            ]
+        },
+        "es": {
+            "name": "PUPITAR",
+            "category": "Pokémon Caparazón",
+            "entry_text": [
+                "Su cuerpo es duro como la roca.\n",
+                "Se autopropulsa como un cohete\n",
+                "soltando los gases de su interior."
+            ]
+        },
+        "jp": {
+            "name": "サナギラス",
+            "category": "だんがんポケモン",
+            "entry_text": [
+                "がんばんのような　かたい　からだ。\n",
+                "あっしゅくした　ガスを　ふんしゃして\n",
+                "まるで　ロケットのように　とびだす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

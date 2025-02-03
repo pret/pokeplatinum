@@ -1,5 +1,4 @@
 {
-    "name": "Latias",
     "base_stats": {
         "hp": 80,
         "attack": 80,
@@ -138,8 +137,60 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "Its body is covered with a down\nthat can refract light in such a\nway that it becomes invisible.",
-        "category": "Eon Pokémon"
+        "en": {
+            "name": "LATIAS",
+            "category": "Eon Pokémon",
+            "entry_text": [
+                "Its body is covered with a down\n",
+                "that can refract light in such a\n",
+                "way that it becomes invisible."
+            ]
+        },
+        "fr": {
+            "name": "LATIAS",
+            "category": "Pokémon Eon",
+            "entry_text": [
+                "Son corps est recouvert d’un \n",
+                "duvet qui reflète la lumière\n",
+                "et le rend invisible."
+            ]
+        },
+        "de": {
+            "name": "LATIAS",
+            "category": "Äon",
+            "entry_text": [
+                "Sein Körper ist mit Daunen bedeckt,\n",
+                "die das Licht so brechen, dass das\n",
+                "PKMN unsichtbar wird."
+            ]
+        },
+        "it": {
+            "name": "LATIAS",
+            "category": "Pokémon Eone",
+            "entry_text": [
+                "Questo Pokémon ha il corpo\n",
+                "ricoperto di piume che riflettono la\n",
+                "luce e lo rendono invisibile."
+            ]
+        },
+        "es": {
+            "name": "LATIAS",
+            "category": "Pokémon Eón",
+            "entry_text": [
+                "Su cuerpo está cubierto de un\n",
+                "plumón que refleja la luz de\n",
+                "forma que se vuelve invisible."
+            ]
+        },
+        "jp": {
+            "name": "ラティアス",
+            "category": "むげんポケモン",
+            "entry_text": [
+                "ひかりを　くっせつさせる　うもうで\n",
+                "ぜんしんを　つつみこみ　すがたを\n",
+                "みえなくする　のうりょくを　もつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

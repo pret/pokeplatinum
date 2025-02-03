@@ -1,5 +1,4 @@
 {
-    "name": "Marill",
     "base_stats": {
         "hp": 70,
         "attack": 20,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "The oil-filled end of its tail floats\non water. It keeps MARILL from\ndrowning even in a strong current.",
-        "category": "Aqua Mouse Pokémon"
+        "en": {
+            "name": "MARILL",
+            "category": "Aqua Mouse Pokémon",
+            "entry_text": [
+                "The oil-filled end of its tail floats\n",
+                "on water. It keeps MARILL from\n",
+                "drowning even in a strong current."
+            ]
+        },
+        "fr": {
+            "name": "MARILL",
+            "category": "Pokémon Aquasouris",
+            "entry_text": [
+                "Il plonge sous l’eau en utilisant sa\n",
+                "queue comme un flotteur. Il aime\n",
+                "les plantes du fond des rivières."
+            ]
+        },
+        "de": {
+            "name": "MARILL",
+            "category": "Aquamaus",
+            "entry_text": [
+                "Seinen Schweif verwendet es als\n",
+                "eine Art Rettungsring, wenn es\n",
+                "taucht. Es liebt Wasserpflanzen."
+            ]
+        },
+        "it": {
+            "name": "MARILL",
+            "category": "Pokémon Acquatopo",
+            "entry_text": [
+                "Si tuffa in acqua e usa la coda come\n",
+                "galleggiante. Ama mangiare le piante\n",
+                "che crescono sul fondo dei fiumi."
+            ]
+        },
+        "es": {
+            "name": "MARILL",
+            "category": "Pokémon Ratón Agua",
+            "entry_text": [
+                "Bucea usando su cola a modo\n",
+                "de boya. Le gusta comer las\n",
+                "plantas del fondo fluvial."
+            ]
+        },
+        "jp": {
+            "name": "マリル",
+            "category": "みずねずみポケモン",
+            "entry_text": [
+                "しっぽを　うきぶくろにして\n",
+                "すいちゅうに　もぐる。\n",
+                "かわぞこの　みずくさが　こうぶつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

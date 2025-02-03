@@ -1,5 +1,4 @@
 {
-    "name": "Starmie",
     "base_stats": {
         "hp": 60,
         "attack": 75,
@@ -110,8 +109,60 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "At the center of its body is a red\ncore, which sends mysterious\nradio signals into the night sky.",
-        "category": "Mysterious Pokémon"
+        "en": {
+            "name": "STARMIE",
+            "category": "Mysterious Pokémon",
+            "entry_text": [
+                "At the center of its body is a red\n",
+                "core, which sends mysterious\n",
+                "radio signals into the night sky."
+            ]
+        },
+        "fr": {
+            "name": "STAROSS",
+            "category": "Pokémon Mystérieux",
+            "entry_text": [
+                "Un noyau rouge trône en son\n",
+                "centre. Il envoie des signaux radio\n",
+                "mystérieux vers le ciel nocturne."
+            ]
+        },
+        "de": {
+            "name": "STARMIE",
+            "category": "Mysteriös",
+            "entry_text": [
+                "In der Körpermitte befindet sich\n",
+                "ein roter Kern, der mysteriöse\n",
+                "Radiowellen in die Nacht sendet."
+            ]
+        },
+        "it": {
+            "name": "STARMIE",
+            "category": "Pokémon Misterioso",
+            "entry_text": [
+                "Al centro del corpo ha un nucleo\n",
+                "rosso che diffonde misteriosi\n",
+                "segnali radio nel cielo notturno."
+            ]
+        },
+        "es": {
+            "name": "STARMIE",
+            "category": "Pokémon Misterioso",
+            "entry_text": [
+                "El centro de su cuerpo alberga un\n",
+                "órgano que emite extrañas señales\n",
+                "de radio en la noche."
+            ]
+        },
+        "jp": {
+            "name": "スタ－ミ－",
+            "category": "なぞのポケモン",
+            "entry_text": [
+                "からだの　ちゅうしんにある　あかい\n",
+                "コアから　よぞらに　むかって\n",
+                "なぞの　でんぱを　はっしんしている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

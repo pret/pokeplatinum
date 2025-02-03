@@ -1,5 +1,4 @@
 {
-    "name": "Growlithe",
     "base_stats": {
         "hp": 55,
         "attack": 70,
@@ -111,8 +110,60 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "A Pokémon with a loyal nature.\nIt will remain motionless until it is\ngiven an order by its Trainer.",
-        "category": "Puppy Pokémon"
+        "en": {
+            "name": "GROWLITHE",
+            "category": "Puppy Pokémon",
+            "entry_text": [
+                "A Pokémon with a loyal nature.\n",
+                "It will remain motionless until it is\n",
+                "given an order by its Trainer."
+            ]
+        },
+        "fr": {
+            "name": "CANINOS",
+            "category": "Pokémon Chiot",
+            "entry_text": [
+                "Un Pokémon très loyal. Il\n",
+                "restera immobile jusqu’à ce que\n",
+                "son Dresseur lui donne un ordre."
+            ]
+        },
+        "de": {
+            "name": "FUKANO",
+            "category": "Hund",
+            "entry_text": [
+                "Ein loyales Pokémon. Es wird erst\n",
+                "dann aktiv, wenn sein Trainer ihm\n",
+                "Anweisungen gegeben hat."
+            ]
+        },
+        "it": {
+            "name": "GROWLITHE",
+            "category": "Pokémon Cagnolino",
+            "entry_text": [
+                "Un Pokémon fedele per natura.\n",
+                "Rimane immobile finché non\n",
+                "riceve ordini dal suo Allenatore."
+            ]
+        },
+        "es": {
+            "name": "GROWLITHE",
+            "category": "Pokémon Perrito",
+            "entry_text": [
+                "Pokémon de naturaleza leal.\n",
+                "Permanece quieto en espera\n",
+                "de órdenes de su entrenador."
+            ]
+        },
+        "jp": {
+            "name": "ガ－ディ",
+            "category": "こいぬポケモン",
+            "entry_text": [
+                "ちゅうじつな　せいかくの　ポケモン。\n",
+                "トレ－ナ－の　めいれいが　あるまでは\n",
+                "いっぽも　うごかない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

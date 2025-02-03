@@ -1,5 +1,4 @@
 {
-    "name": "Swinub",
     "base_stats": {
         "hp": 50,
         "attack": 50,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "It has a very sensitive nose. It\ncan locate mushrooms, berries, and\neven hot springs buried under ice.",
-        "category": "Pig Pokémon"
+        "en": {
+            "name": "SWINUB",
+            "category": "Pig Pokémon",
+            "entry_text": [
+                "It has a very sensitive nose. It\n",
+                "can locate mushrooms, berries, and\n",
+                "even hot springs buried under ice."
+            ]
+        },
+        "fr": {
+            "name": "MARCACRIN",
+            "category": "Pokémon Cochon",
+            "entry_text": [
+                "Il adore les champignons qui\n",
+                "poussent sous l’herbe morte. Il\n",
+                "trouve aussi des sources chaudes."
+            ]
+        },
+        "de": {
+            "name": "QUIEKEL",
+            "category": "Ferkel",
+            "entry_text": [
+                "Es liebt Pilze, die unter totem Gras\n",
+                "wachsen. Auf der Suche nach\n",
+                "Nahrung findet es heiße Quellen."
+            ]
+        },
+        "it": {
+            "name": "SWINUB",
+            "category": "Pokémon Maiale",
+            "entry_text": [
+                "Ama mangiare i funghi che crescono\n",
+                "sotto l’erba secca. Mentre cerca,\n",
+                "talvolta trova sorgenti termali."
+            ]
+        },
+        "es": {
+            "name": "SWINUB",
+            "category": "Pokémon Cerdo",
+            "entry_text": [
+                "Le encanta comer las setas que\n",
+                "crecen bajo la hierba seca. A\n",
+                "veces descubre aguas termales."
+            ]
+        },
+        "jp": {
+            "name": "ウリム－",
+            "category": "いのぶたポケモン",
+            "entry_text": [
+                "かれくさの　したに　はえた　キノコが\n",
+                "だいこうぶつ。においで　キノコを\n",
+                "さがすうちに　おんせんを　みつける。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

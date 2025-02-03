@@ -1,5 +1,4 @@
 {
-    "name": "Electrike",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -110,8 +109,60 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Using electricity stored in its fur,\nit stimulates its muscles to\nheighten its reaction speed.",
-        "category": "Lightning Pokémon"
+        "en": {
+            "name": "ELECTRIKE",
+            "category": "Lightning Pokémon",
+            "entry_text": [
+                "Using electricity stored in its fur,\n",
+                "it stimulates its muscles to\n",
+                "heighten its reaction speed."
+            ]
+        },
+        "fr": {
+            "name": "DYNAVOLT",
+            "category": "Pokémon Orage",
+            "entry_text": [
+                "Il améliore ses réflexes en\n",
+                "stimulant ses muscles grâce à \n",
+                "l’électricité dans sa fourrure."
+            ]
+        },
+        "de": {
+            "name": "FRIZELBLIZ",
+            "category": "Gewitter",
+            "entry_text": [
+                "Die Elektrizität, die es im Fell\n",
+                "speichert, nutzt es, um seine\n",
+                "Muskeln zu stimulieren."
+            ]
+        },
+        "it": {
+            "name": "ELECTRIKE",
+            "category": "Pokémon Lampo",
+            "entry_text": [
+                "L’elettricità immagazzinata nella\n",
+                "pelliccia gli stimola i muscoli e\n",
+                "aumenta la sua velocità di reazione."
+            ]
+        },
+        "es": {
+            "name": "ELECTRIKE",
+            "category": "Pokémon Calambre",
+            "entry_text": [
+                "Estimula sus músculos y aumenta\n",
+                "sus reflejos con la electricidad\n",
+                "que almacena su pelaje."
+            ]
+        },
+        "jp": {
+            "name": "ラクライ",
+            "category": "いなずまポケモン",
+            "entry_text": [
+                "たいもうに　ためた　でんきを　つかい\n",
+                "きんにくを　しげきすることで\n",
+                "しゅんぱつりょくを　たかめる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

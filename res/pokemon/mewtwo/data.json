@@ -1,5 +1,4 @@
 {
-    "name": "Mewtwo",
     "base_stats": {
         "hp": 106,
         "attack": 110,
@@ -152,8 +151,60 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 6,
-        "entry_text": "A Pokémon created by recombining\nMEW’s genes. It’s said to have the\nmost savage heart among Pokémon.",
-        "category": "Genetic Pokémon"
+        "en": {
+            "name": "MEWTWO",
+            "category": "Genetic Pokémon",
+            "entry_text": [
+                "A Pokémon created by recombining\n",
+                "MEW’s genes. It’s said to have the\n",
+                "most savage heart among Pokémon."
+            ]
+        },
+        "fr": {
+            "name": "MEWTWO",
+            "category": "Pokémon Génétique",
+            "entry_text": [
+                "Un Pokémon conçu en réorganisant\n",
+                "les gènes de MEW. On raconte qu’il\n",
+                "s’agit du Pokémon le plus féroce."
+            ]
+        },
+        "de": {
+            "name": "MEWTU",
+            "category": "Genmutant",
+            "entry_text": [
+                "Die Gene von MEW wurden neu\n",
+                "angeordnet, wodurch dieses PKMN\n",
+                "entstand. Es hat ein wildes Herz."
+            ]
+        },
+        "it": {
+            "name": "MEWTWO",
+            "category": "Pokémon Genetico",
+            "entry_text": [
+                "Un Pokémon creato usando i geni\n",
+                "di MEW. Si dice che fra i Pokémon\n",
+                "sia quello con l’animo più crudele."
+            ]
+        },
+        "es": {
+            "name": "MEWTWO",
+            "category": "Pokémon Genético",
+            "entry_text": [
+                "Pokémon creado por recombinación\n",
+                "genética de MEW. Se dice que es el\n",
+                "más salvaje de los Pokémon."
+            ]
+        },
+        "jp": {
+            "name": "ミュウツ－",
+            "category": "いでんしポケモン",
+            "entry_text": [
+                "ミュウの　いでんしを　くみかえて\n",
+                "うみだされた。ポケモンで　いちばん\n",
+                "きょうぼうな　こころを　もつという。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

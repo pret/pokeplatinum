@@ -1,5 +1,4 @@
 {
-    "name": "Yanmega",
     "base_stats": {
         "hp": 86,
         "attack": 76,
@@ -118,8 +117,60 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "Its jaw power is incredible. It is\nadept at biting apart foes while\nflying by at high speed.",
-        "category": "Ogre Darner Pokémon"
+        "en": {
+            "name": "YANMEGA",
+            "category": "Ogre Darner Pokémon",
+            "entry_text": [
+                "Its jaw power is incredible. It is\n",
+                "adept at biting apart foes while\n",
+                "flying by at high speed."
+            ]
+        },
+        "fr": {
+            "name": "YANMEGA",
+            "category": "Pokémon Libellogre",
+            "entry_text": [
+                "Les ondes de choc qu’il génère\n",
+                "en battant des ailes infligent de\n",
+                "graves blessures internes."
+            ]
+        },
+        "de": {
+            "name": "YANMEGA",
+            "category": "Agrion",
+            "entry_text": [
+                "Durch die Bewegung seiner Flügel\n",
+                "entstehen Schockwellen, die dem\n",
+                "Gegn. innere Verletzungen zufügen."
+            ]
+        },
+        "it": {
+            "name": "YANMEGA",
+            "category": "Pokémon Libellorco",
+            "entry_text": [
+                "Agitando le ali crea onde d’urto\n",
+                "che infliggono gravi ferite agli\n",
+                "organi interni dei nemici."
+            ]
+        },
+        "es": {
+            "name": "YANMEGA",
+            "category": "Pokémon Libélula",
+            "entry_text": [
+                "Agita sus alas para crear ondas\n",
+                "de choque que producen\n",
+                "lesiones internas a sus rivales."
+            ]
+        },
+        "jp": {
+            "name": "メガヤンマ",
+            "category": "オニトンボポケモン",
+            "entry_text": [
+                "はばたいたときの　しょうげきはで\n",
+                "あいての　からだの　うちがわに\n",
+                "ちめいてきな　ダメ－ジを　あたえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

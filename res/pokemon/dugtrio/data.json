@@ -1,5 +1,4 @@
 {
-    "name": "Dugtrio",
     "base_stats": {
         "hp": 35,
         "attack": 80,
@@ -110,8 +109,60 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Its three heads move alternately,\ndriving it through tough soil to\ndepths of over 60 miles.",
-        "category": "Mole Pokémon"
+        "en": {
+            "name": "DUGTRIO",
+            "category": "Mole Pokémon",
+            "entry_text": [
+                "Its three heads move alternately,\n",
+                "driving it through tough soil to\n",
+                "depths of over 60 miles."
+            ]
+        },
+        "fr": {
+            "name": "TRIOPIKEUR",
+            "category": "Pokémon Taupe",
+            "entry_text": [
+                "Ses trois têtes creusent le sol à\n",
+                "tour de rôle. Il peut atteindre des\n",
+                "profondeurs de 100 kilomètres."
+            ]
+        },
+        "de": {
+            "name": "DIGDRI",
+            "category": "Maulwurf",
+            "entry_text": [
+                "Die drei Köpfe bewegen sich abwech-\n",
+                "selnd, um sich durch harte Erde in\n",
+                "Tiefen von bis zu 100 km zu graben."
+            ]
+        },
+        "it": {
+            "name": "DUGTRIO",
+            "category": "Pokémon Talpa",
+            "entry_text": [
+                "Le sue tre teste si muovono a\n",
+                "turno per scavare nel duro suolo\n",
+                "fino ad una profondità di 100 km."
+            ]
+        },
+        "es": {
+            "name": "DUGTRIO",
+            "category": "Pokémon Topo",
+            "entry_text": [
+                "Sus tres cabezas se mueven por\n",
+                "turnos para excavar la tierra a\n",
+                "una profundidad de unos 100 km."
+            ]
+        },
+        "jp": {
+            "name": "ダグトリオ",
+            "category": "もぐらポケモン",
+            "entry_text": [
+                "３つの　あたまが　たがいちがいに\n",
+                "うごいて　どんなに　かたい　ちそうも\n",
+                "ちか１００キロまで　ほりすすむ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

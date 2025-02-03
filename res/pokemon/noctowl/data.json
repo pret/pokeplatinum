@@ -1,5 +1,4 @@
 {
-    "name": "Noctowl",
     "base_stats": {
         "hp": 100,
         "attack": 50,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "Its eyes are specially developed\nto enable it to see clearly even in\nmurky darkness and minimal light.",
-        "category": "Owl Pokémon"
+        "en": {
+            "name": "NOCTOWL",
+            "category": "Owl Pokémon",
+            "entry_text": [
+                "Its eyes are specially developed\n",
+                "to enable it to see clearly even in\n",
+                "murky darkness and minimal light."
+            ]
+        },
+        "fr": {
+            "name": "NOARFANG",
+            "category": "Pokémon Hibou",
+            "entry_text": [
+                "Ses yeux sont particuliers. La\n",
+                "plus petite source de lumière leur\n",
+                "permet de distinguer les objets."
+            ]
+        },
+        "de": {
+            "name": "NOCTUH",
+            "category": "Eule",
+            "entry_text": [
+                "Seine Augen sind etwas Besonderes.\n",
+                "Sie können selbst bei schwächstem\n",
+                "Licht alles erkennen."
+            ]
+        },
+        "it": {
+            "name": "NOCTOWL",
+            "category": "Pokémon Gufo",
+            "entry_text": [
+                "Ha una vista acutissima, tanto da\n",
+                "riuscire a scorgere oggetti anche\n",
+                "con la luce più fioca."
+            ]
+        },
+        "es": {
+            "name": "NOCTOWL",
+            "category": "Pokémon Búho",
+            "entry_text": [
+                "Sus ojos son especiales: pueden\n",
+                "distinguir objetos siempre y cuando\n",
+                "haya algo de luz."
+            ]
+        },
+        "jp": {
+            "name": "ヨルノズク",
+            "category": "ふくろうポケモン",
+            "entry_text": [
+                "すこしの　ひかりが　あれば\n",
+                "くらやみでも　みわけられる\n",
+                "とくしゅな　めを　もつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

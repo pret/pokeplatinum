@@ -1,5 +1,4 @@
 {
-    "name": "Tentacool",
     "base_stats": {
         "hp": 40,
         "attack": 40,
@@ -111,8 +110,60 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "Because its body is almost entirely\ncomposed of water, it shrivels up if\nit is washed ashore.",
-        "category": "Jellyfish Pokémon"
+        "en": {
+            "name": "TENTACOOL",
+            "category": "Jellyfish Pokémon",
+            "entry_text": [
+                "Because its body is almost entirely\n",
+                "composed of water, it shrivels up if\n",
+                "it is washed ashore."
+            ]
+        },
+        "fr": {
+            "name": "TENTACOOL",
+            "category": "Pokémon Mollusque",
+            "entry_text": [
+                "Son corps est principalement\n",
+                "composé d’eau. Ses yeux cristallins\n",
+                "projettent d’étranges rayons."
+            ]
+        },
+        "de": {
+            "name": "TENTACHA",
+            "category": "Qualle",
+            "entry_text": [
+                "Sein Körper besteht aus Wasser.\n",
+                "Aus seinen kristallartigen Augen\n",
+                "verschießt es eigenartige Strahlen."
+            ]
+        },
+        "it": {
+            "name": "TENTACOOL",
+            "category": "Pokémon Medusa",
+            "entry_text": [
+                "Il suo corpo è quasi interamente\n",
+                "composto d’acqua. Emette dei raggi\n",
+                "misteriosi dagli occhi cristallini."
+            ]
+        },
+        "es": {
+            "name": "TENTACOOL",
+            "category": "Pokémon Medusa",
+            "entry_text": [
+                "Su cuerpo se compone casi en\n",
+                "exclusiva de agua. Lanza extraños\n",
+                "rayos con sus ojos cristalinos."
+            ]
+        },
+        "jp": {
+            "name": "メノクラゲ",
+            "category": "くらげポケモン",
+            "entry_text": [
+                "からだの　ほとんどが　すいぶん。\n",
+                "すいしょうのような　めだまから\n",
+                "ふしぎな　ビ－ムを　はっしゃする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

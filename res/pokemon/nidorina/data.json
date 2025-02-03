@@ -1,5 +1,4 @@
 {
-    "name": "Nidorina",
     "base_stats": {
         "hp": 70,
         "attack": 62,
@@ -113,8 +112,60 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "When it senses danger, it raises\nall the barbs on its body. These\nbarbs grow slower than NIDORINO’s.",
-        "category": "Poison Pin Pokémon"
+        "en": {
+            "name": "NIDORINA",
+            "category": "Poison Pin Pokémon",
+            "entry_text": [
+                "When it senses danger, it raises\n",
+                "all the barbs on its body. These\n",
+                "barbs grow slower than NIDORINO’s."
+            ]
+        },
+        "fr": {
+            "name": "NIDORINA",
+            "category": "Pokémon Venepic",
+            "entry_text": [
+                "Ce Pokémon dresse ses piquants\n",
+                "en cas de danger. Ils poussent\n",
+                "moins vite que ceux de NIDORINO."
+            ]
+        },
+        "de": {
+            "name": "NIDORINA",
+            "category": "Giftdorn",
+            "entry_text": [
+                "Bei Gefahr fährt es die Wider-\n",
+                "haken am Körper aus. Diese wachsen\n",
+                "langsamer als die von NIDORINO."
+            ]
+        },
+        "it": {
+            "name": "NIDORINA",
+            "category": "Pokémon Velenago",
+            "entry_text": [
+                "Quando avverte il pericolo, rizza\n",
+                "gli aculei, che fuoriescono più\n",
+                "lentamente di quelli di NIDORINO."
+            ]
+        },
+        "es": {
+            "name": "NIDORINA",
+            "category": "Pokémon Pin Veneno",
+            "entry_text": [
+                "Saca las púas de su cuerpo si\n",
+                "siente peligro. Sus púas crecen\n",
+                "más despacio que las de NIDORINO."
+            ]
+        },
+        "jp": {
+            "name": "ニドリ－ナ",
+            "category": "どくばりポケモン",
+            "entry_text": [
+                "きけんを　かんじると　ぜんしんの\n",
+                "トゲを　さかだてる。ニドリ－ノに\n",
+                "くらべて　トゲの　そだちが　おそい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -1,5 +1,4 @@
 {
-    "name": "Cyndaquil",
     "base_stats": {
         "hp": 39,
         "attack": 52,
@@ -105,8 +104,60 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It has a timid nature. If it is\nstartled, the flames on its back\nburn more vigorously.",
-        "category": "Fire Mouse Pokémon"
+        "en": {
+            "name": "CYNDAQUIL",
+            "category": "Fire Mouse Pokémon",
+            "entry_text": [
+                "It has a timid nature. If it is\n",
+                "startled, the flames on its back\n",
+                "burn more vigorously."
+            ]
+        },
+        "fr": {
+            "name": "HERICENDRE",
+            "category": "Pokémon Souris Feu",
+            "entry_text": [
+                "Ce Pokémon est un grand timide.\n",
+                "Les flammes sur son dos \n",
+                "s’intensifient lorsqu’il prend peur."
+            ]
+        },
+        "de": {
+            "name": "FEURIGEL",
+            "category": "Feuermaus",
+            "entry_text": [
+                "Erschrickt sich dieses scheue PKMN,\n",
+                "lodern die Flammen auf seinem\n",
+                "Rücken kräftiger."
+            ]
+        },
+        "it": {
+            "name": "CYNDAQUIL",
+            "category": "Pokémon Fuocotopo",
+            "entry_text": [
+                "È riservato per natura. Se viene\n",
+                "spaventato, le fiamme sul suo\n",
+                "dorso bruciano ardentemente."
+            ]
+        },
+        "es": {
+            "name": "CYNDAQUIL",
+            "category": "Pokémon Ratónfuego",
+            "entry_text": [
+                "Es un Pokémon muy tímido. Si\n",
+                "se asusta, las llamas de su lomo\n",
+                "arden con más fuerza."
+            ]
+        },
+        "jp": {
+            "name": "ヒノアラシ",
+            "category": "ひねずみポケモン",
+            "entry_text": [
+                "おくびょうな　せいかく。\n",
+                "おどろくと　せなかの　ほのおが\n",
+                "いちだんと　つよく　もえあがる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

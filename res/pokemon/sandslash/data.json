@@ -1,5 +1,4 @@
 {
-    "name": "Sandslash",
     "base_stats": {
         "hp": 75,
         "attack": 100,
@@ -122,8 +121,60 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It curls up, then rolls into foes\nwith its back. Its sharp spines\ninflict severe damage.",
-        "category": "Mouse Pokémon"
+        "en": {
+            "name": "SANDSLASH",
+            "category": "Mouse Pokémon",
+            "entry_text": [
+                "It curls up, then rolls into foes\n",
+                "with its back. Its sharp spines\n",
+                "inflict severe damage."
+            ]
+        },
+        "fr": {
+            "name": "SABLAIREAU",
+            "category": "Pokémon Souris",
+            "entry_text": [
+                "Il se met en boule pour percuter\n",
+                "l’ennemi. Ses épines aiguisées\n",
+                "font beaucoup de dégâts."
+            ]
+        },
+        "de": {
+            "name": "SANDAMER",
+            "category": "Maus",
+            "entry_text": [
+                "Es rollt sich zusammen und rollt\n",
+                "dann auf Gegner zu, die durch\n",
+                "seine Stacheln Schaden nehmen."
+            ]
+        },
+        "it": {
+            "name": "SANDSLASH",
+            "category": "Pokémon Topo",
+            "entry_text": [
+                "Si arrotola come una palla e rotola\n",
+                "sul dorso verso i nemici. Gli aculei\n",
+                "aguzzi provocano gravi danni."
+            ]
+        },
+        "es": {
+            "name": "SANDSLASH",
+            "category": "Pokémon Ratón",
+            "entry_text": [
+                "Se hace una bola y se lanza\n",
+                "rodando hacia los enemigos para\n",
+                "clavarles sus afiladas púas."
+            ]
+        },
+        "jp": {
+            "name": "サンドパン",
+            "category": "ねずみポケモン",
+            "entry_text": [
+                "からだを　まるめて　せなかから\n",
+                "たいあたり。するどい　トゲトゲが\n",
+                "おおきな　ダメ－ジを　あたえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

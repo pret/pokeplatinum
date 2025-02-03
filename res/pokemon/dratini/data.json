@@ -1,5 +1,4 @@
 {
-    "name": "Dratini",
     "base_stats": {
         "hp": 41,
         "attack": 64,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 5,
         "pokemon_pos_m": 6,
-        "entry_text": "It is called the “Mirage Pokémon”\nbecause so few have seen it.\nIts shed skin has been found.",
-        "category": "Dragon Pokémon"
+        "en": {
+            "name": "DRATINI",
+            "category": "Dragon Pokémon",
+            "entry_text": [
+                "It is called the “Mirage Pokémon”\n",
+                "because so few have seen it.\n",
+                "Its shed skin has been found."
+            ]
+        },
+        "fr": {
+            "name": "MINIDRACO",
+            "category": "Pokémon Dragon",
+            "entry_text": [
+                "On l’appelle “Pokémon mirage”\n",
+                "en raison de sa rareté. On a\n",
+                "découvert sa mue."
+            ]
+        },
+        "de": {
+            "name": "DRATINI",
+            "category": "Drache",
+            "entry_text": [
+                "Man nennt es “Illusion-Pokémon”,\n",
+                "denn nur wenige haben es gesehen.\n",
+                "Nur seine Haut wurde oft gefunden."
+            ]
+        },
+        "it": {
+            "name": "DRATINI",
+            "category": "Pokémon Drago",
+            "entry_text": [
+                "Detto “Pokémon miraggio” perché\n",
+                "è stato avvistato da pochi. È facile\n",
+                "trovare la sua pelle della muta."
+            ]
+        },
+        "es": {
+            "name": "DRATINI",
+            "category": "Pokémon Dragón",
+            "entry_text": [
+                "Se le llama el “Pokémon espejismo”\n",
+                "porque son muy pocos los que lo\n",
+                "han visto. Se encontró su muda."
+            ]
+        },
+        "jp": {
+            "name": "ミニリュウ",
+            "category": "ドラゴンポケモン",
+            "entry_text": [
+                "もくげきしゃが　すくないために\n",
+                "まぼろしのポケモンと　よばれていた。\n",
+                "だっぴした　かわが　みつかっている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

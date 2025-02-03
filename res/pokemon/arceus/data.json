@@ -1,5 +1,4 @@
 {
-    "name": "Arceus",
     "base_stats": {
         "hp": 120,
         "attack": 120,
@@ -169,8 +168,60 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 23,
         "pokemon_pos_m": 0,
-        "entry_text": "It is said to have emerged from an\negg in a place where there was\nnothing, then shaped the world.",
-        "category": "Alpha Pokémon"
+        "en": {
+            "name": "ARCEUS",
+            "category": "Alpha Pokémon",
+            "entry_text": [
+                "It is said to have emerged from an\n",
+                "egg in a place where there was\n",
+                "nothing, then shaped the world."
+            ]
+        },
+        "fr": {
+            "name": "ARCEUS",
+            "category": "Pokémon Alpha",
+            "entry_text": [
+                "La mythologie le décrit comme\n",
+                "le Pokémon qui a façonné\n",
+                "l’univers avec ses 1 000 bras."
+            ]
+        },
+        "de": {
+            "name": "ARCEUS",
+            "category": "Alpha",
+            "entry_text": [
+                "Die Mythologie nennt dieses PKMN\n",
+                "als Former des Universums, wobei es\n",
+                "seine tausend Arme eingesetzt hat."
+            ]
+        },
+        "it": {
+            "name": "ARCEUS",
+            "category": "Pokémon Primevo",
+            "entry_text": [
+                "Nella mitologia è descritto come il\n",
+                "Pokémon che ha dato forma all’uni-\n",
+                "verso con le sue 1000 braccia."
+            ]
+        },
+        "es": {
+            "name": "ARCEUS",
+            "category": "Pokémon Alfa",
+            "entry_text": [
+                "La mitología lo describe como\n",
+                "el Pokémon que dio forma al\n",
+                "Universo con sus 1000 brazos."
+            ]
+        },
+        "jp": {
+            "name": "アルセウス",
+            "category": "そうぞうポケモン",
+            "entry_text": [
+                "１０００ぼんの　うでで\n",
+                "うちゅうを　つくった　ポケモンとして\n",
+                "しんわに　えがかれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

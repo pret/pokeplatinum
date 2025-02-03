@@ -1,5 +1,4 @@
 {
-    "name": "Gligar",
     "base_stats": {
         "hp": 65,
         "attack": 75,
@@ -129,8 +128,60 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "It glides as if sliding. It startles\nfoes by clamping on to their faces,\nthen jabs with its poison stinger.",
-        "category": "FlyScorpion Pokémon"
+        "en": {
+            "name": "GLIGAR",
+            "category": "FlyScorpion Pokémon",
+            "entry_text": [
+                "It glides as if sliding. It startles\n",
+                "foes by clamping on to their faces,\n",
+                "then jabs with its poison stinger."
+            ]
+        },
+        "fr": {
+            "name": "SCORPLANE",
+            "category": "Pokémon Scorpivol",
+            "entry_text": [
+                "Il chevauche les vents en tendant\n",
+                "ses membres pour frapper depuis\n",
+                "le ciel. Il vise toujours au visage."
+            ]
+        },
+        "de": {
+            "name": "SKORGLA",
+            "category": "Flugskorpi",
+            "entry_text": [
+                "Es segelt durch die Lüfte und\n",
+                "breitet seine Gliedmaßen aus, um\n",
+                "aus der Luft anzugreifen."
+            ]
+        },
+        "it": {
+            "name": "GLIGAR",
+            "category": "Pokémon Aliscorpio",
+            "entry_text": [
+                "Si fa trasportare dai venti con le\n",
+                "ali spalancate e colpisce la preda\n",
+                "dall’alto mirando al volto."
+            ]
+        },
+        "es": {
+            "name": "GLIGAR",
+            "category": "Pokémon Escorpiala",
+            "entry_text": [
+                "Ataca desde el aire con sus\n",
+                "extremidades extendidas. Va\n",
+                "directo a la cara de su oponente."
+            ]
+        },
+        "jp": {
+            "name": "グライガ－",
+            "category": "とびさそりポケモン",
+            "entry_text": [
+                "てあしの　まくで　かぜに　のって\n",
+                "そらから　おそいかかる　せんぽう。\n",
+                "えものの　かおを　ねらう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

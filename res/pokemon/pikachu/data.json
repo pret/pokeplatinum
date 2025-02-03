@@ -1,5 +1,4 @@
 {
-    "name": "Pikachu",
     "base_stats": {
         "hp": 35,
         "attack": 55,
@@ -117,8 +116,60 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "It occasionally uses an electric\nshock to recharge a fellow PIKACHU\nthat is in a weakened state.",
-        "category": "Mouse Pokémon"
+        "en": {
+            "name": "PIKACHU",
+            "category": "Mouse Pokémon",
+            "entry_text": [
+                "It occasionally uses an electric\n",
+                "shock to recharge a fellow PIKACHU\n",
+                "that is in a weakened state."
+            ]
+        },
+        "fr": {
+            "name": "PIKACHU",
+            "category": "Pokémon Souris",
+            "entry_text": [
+                "Il vit en forêt avec ses pairs.\n",
+                "Il accumule l’électricité dans\n",
+                "les poches de ses joues."
+            ]
+        },
+        "de": {
+            "name": "PIKACHU",
+            "category": "Maus",
+            "entry_text": [
+                "Es lebt zusammen mit anderen\n",
+                "in Wäldern. In seinen Backen-\n",
+                "taschen speichert es Elektrizität."
+            ]
+        },
+        "it": {
+            "name": "PIKACHU",
+            "category": "Pokémon Topo",
+            "entry_text": [
+                "Vive nelle foreste insieme agli\n",
+                "altri. Immagazzina elettricità\n",
+                "nelle sacche sulle guance."
+            ]
+        },
+        "es": {
+            "name": "PIKACHU",
+            "category": "Pokémon Ratón",
+            "entry_text": [
+                "Vive en grupo en los bosques.\n",
+                "Almacena electricidad en las\n",
+                "bolsas de sus mejillas."
+            ]
+        },
+        "jp": {
+            "name": "ピカチュウ",
+            "category": "ねずみポケモン",
+            "entry_text": [
+                "もりの　なかで　なかまと　くらす。\n",
+                "ほっぺたの　りょうがわにある\n",
+                "でんきぶくろに　でんきを　ためる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

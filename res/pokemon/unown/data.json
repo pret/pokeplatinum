@@ -1,5 +1,4 @@
 {
-    "name": "Unown",
     "base_stats": {
         "hp": 48,
         "attack": 72,
@@ -56,8 +55,60 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "When alone, nothing happens.\nHowever, if there are two or more,\nan odd power is said to emerge.",
-        "category": "Symbol Pokémon"
+        "en": {
+            "name": "UNOWN",
+            "category": "Symbol Pokémon",
+            "entry_text": [
+                "When alone, nothing happens.\n",
+                "However, if there are two or more,\n",
+                "an odd power is said to emerge."
+            ]
+        },
+        "fr": {
+            "name": "ZARBI",
+            "category": "Pokémon Symbolique",
+            "entry_text": [
+                "Il rappelle une écriture ancienne.\n",
+                "Reste à savoir qui du langage ou de\n",
+                "ZARBI est apparu en premier."
+            ]
+        },
+        "de": {
+            "name": "ICOGNITO",
+            "category": "Symbol",
+            "entry_text": [
+                "Seine Form sieht aus wie antike\n",
+                "Schrift. Was war zuerst da? Die\n",
+                "Sprache oder ICOGNITO?"
+            ]
+        },
+        "it": {
+            "name": "UNOWN",
+            "category": "Pokémon Simbolo",
+            "entry_text": [
+                "È a forma di lettera di un antico\n",
+                "alfabeto. È un mistero chi sia ap-\n",
+                "parso prima, l’alfabeto o UNOWN."
+            ]
+        },
+        "es": {
+            "name": "UNOWN",
+            "category": "Pokémon Símbolo",
+            "entry_text": [
+                "Tienen forma de letras antiguas.\n",
+                "Se desconoce qué fue antes: si\n",
+                "la escritura o los UNOWN."
+            ]
+        },
+        "jp": {
+            "name": "アンノ－ン",
+            "category": "シンボルポケモン",
+            "entry_text": [
+                "こだいぶんめいの　もじに　にている。\n",
+                "もじが　さきか　アンノ－ンが　さきか\n",
+                "せかいの　７ふしぎの　ひとつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

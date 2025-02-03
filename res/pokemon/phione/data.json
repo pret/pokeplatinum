@@ -1,5 +1,4 @@
 {
-    "name": "Phione",
     "base_stats": {
         "hp": 80,
         "attack": 80,
@@ -107,8 +106,60 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "It drifts in warm seas. It always\nreturns to where it was born, no\nmatter how far it may have drifted.",
-        "category": "Sea Drifter Pokémon"
+        "en": {
+            "name": "PHIONE",
+            "category": "Sea Drifter Pokémon",
+            "entry_text": [
+                "It drifts in warm seas. It always\n",
+                "returns to where it was born, no\n",
+                "matter how far it may have drifted."
+            ]
+        },
+        "fr": {
+            "name": "PHIONE",
+            "category": "Pokémon Dérivenmer",
+            "entry_text": [
+                "Un Pokémon des mers chaudes. Il\n",
+                "gonfle la bouée sur sa tête et\n",
+                "dérive en quête de vivres."
+            ]
+        },
+        "de": {
+            "name": "PHIONE",
+            "category": "Seedrift",
+            "entry_text": [
+                "Es lebt in warmen Meeren. Geht\n",
+                "es auf Nahrungssuche, füllt es den\n",
+                "Beutel auf seinem Kopf mit Luft."
+            ]
+        },
+        "it": {
+            "name": "PHIONE",
+            "category": "Pokémon Oceanbondo",
+            "entry_text": [
+                "Vive nei mari caldi. Sulla testa ha\n",
+                "un galleggiante gonfiabile grazie al\n",
+                "quale nuota alla ricerca di cibo."
+            ]
+        },
+        "es": {
+            "name": "PHIONE",
+            "category": "Pokémon Marino",
+            "entry_text": [
+                "Vive en los mares cálidos.\n",
+                "Infla el flotador de la cabeza\n",
+                "para nadar en busca de comida."
+            ]
+        },
+        "jp": {
+            "name": "フィオネ",
+            "category": "かいようポケモン",
+            "entry_text": [
+                "あたたかい　うみに　すむ　ポケモン。\n",
+                "あたまの　うきぶくろを　ふくらませて\n",
+                "なみまを　ただよい　えさを　さがす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

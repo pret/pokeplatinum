@@ -1,5 +1,4 @@
 {
-    "name": "Glalie",
     "base_stats": {
         "hp": 80,
         "attack": 80,
@@ -113,8 +112,60 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "It prevents prey from escaping by\ninstantaneously freezing moisture\nin the air.",
-        "category": "Face Pokémon"
+        "en": {
+            "name": "GLALIE",
+            "category": "Face Pokémon",
+            "entry_text": [
+                "It prevents prey from escaping by\n",
+                "instantaneously freezing moisture\n",
+                "in the air."
+            ]
+        },
+        "fr": {
+            "name": "ONIGLALI",
+            "category": "Pokémon Face",
+            "entry_text": [
+                "Il gèle l’humidité de l’air pour \n",
+                "former une armure de glace\n",
+                "protectrice autour de son corps."
+            ]
+        },
+        "de": {
+            "name": "FIRNONTOR",
+            "category": "Antlitz",
+            "entry_text": [
+                "Um sich zu schützen, umgibt es\n",
+                "seinen Körper mit einer Rüstung\n",
+                "aus Eis."
+            ]
+        },
+        "it": {
+            "name": "GLALIE",
+            "category": "Pokémon Tuttomuso",
+            "entry_text": [
+                "Per difendersi, riveste il suo corpo\n",
+                "con un’armatura di ghiaccio, fatta\n",
+                "congelando l’umidità dell’aria."
+            ]
+        },
+        "es": {
+            "name": "GLALIE",
+            "category": "Pokémon Cara",
+            "entry_text": [
+                "Se protege con una armadura de\n",
+                "hielo creada por congelación de\n",
+                "la humedad del aire."
+            ]
+        },
+        "jp": {
+            "name": "オニゴ－リ",
+            "category": "がんめんポケモン",
+            "entry_text": [
+                "くうきちゅうの　すいぶんを　こおらせ\n",
+                "こおりの　そうこうで　からだを\n",
+                "つつみこみ　みを　まもっている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

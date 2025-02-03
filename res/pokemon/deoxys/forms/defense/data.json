@@ -1,5 +1,4 @@
 {
-    "name": "Deoxys",
     "base_stats": {
         "hp": 50,
         "attack": 70,
@@ -121,5 +120,47 @@
             "MOVE_KNOCK_OFF"
         ]
     },
-    "evolutions": [  ]
+    "pokedex_data": {
+        "height": 0,
+        "weight": 0,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 0,
+        "pokemon_scale_f": 0,
+        "trainer_scale_m": 0,
+        "pokemon_scale_m": 0,
+        "trainer_pos_f": 0,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 0,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "DEOXYS",
+            "category": "",
+            "entry_text": [  ]
+        },
+        "fr": {
+            "name": "",
+            "category": "",
+            "entry_text": [  ]
+        },
+        "de": {
+            "name": "",
+            "category": "",
+            "entry_text": [  ]
+        },
+        "it": {
+            "name": "",
+            "category": "",
+            "entry_text": [  ]
+        },
+        "es": {
+            "name": "",
+            "category": "",
+            "entry_text": [  ]
+        },
+        "jp": {
+            "name": "",
+            "category": "",
+            "entry_text": [  ]
+        }
+    }
 }

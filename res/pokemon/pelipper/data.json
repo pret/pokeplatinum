@@ -1,5 +1,4 @@
 {
-    "name": "Pelipper",
     "base_stats": {
         "hp": 60,
         "attack": 50,
@@ -121,8 +120,60 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It is a messenger of the skies,\ncarrying small Pokémon and\neggs to safety in its bill.",
-        "category": "Water Bird Pokémon"
+        "en": {
+            "name": "PELIPPER",
+            "category": "Water Bird Pokémon",
+            "entry_text": [
+                "It is a messenger of the skies,\n",
+                "carrying small Pokémon and\n",
+                "eggs to safety in its bill."
+            ]
+        },
+        "fr": {
+            "name": "BEKIPAN",
+            "category": "Pokémon Oiseaudo",
+            "entry_text": [
+                "Il trempe son grand bec dans la\n",
+                "mer pour charrier de l’eau et\n",
+                "de nombreuses proies."
+            ]
+        },
+        "de": {
+            "name": "PELIPPER",
+            "category": "Wasservogel",
+            "entry_text": [
+                "Es taucht seinen großen Schnabel\n",
+                "ins Wasser und fängt so eine Menge\n",
+                "Beute."
+            ]
+        },
+        "it": {
+            "name": "PELIPPER",
+            "category": "Pokémon Alacquatico",
+            "entry_text": [
+                "Immerge il suo enorme becco nel\n",
+                "mare, raccogliendo acqua e\n",
+                "numerose prede."
+            ]
+        },
+        "es": {
+            "name": "PELIPPER",
+            "category": "Pokémon Ave Agua",
+            "entry_text": [
+                "Hunde su gran pico en el mar\n",
+                "para sacar numerosas presas\n",
+                "junto con mucha agua."
+            ]
+        },
+        "jp": {
+            "name": "ペリッパ－",
+            "category": "みずどりポケモン",
+            "entry_text": [
+                "おおきな　クチバシを　うみに　いれて\n",
+                "ひとすくいすると　エサが　たくさん\n",
+                "はいっているという　すんぽうだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

@@ -1,5 +1,4 @@
 {
-    "name": "Plusle",
     "base_stats": {
         "hp": 60,
         "attack": 50,
@@ -110,8 +109,60 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "It cheers on friends with pom-poms\nmade of sparks. It drains power\nfrom telephone poles.",
-        "category": "Cheering Pokémon"
+        "en": {
+            "name": "PLUSLE",
+            "category": "Cheering Pokémon",
+            "entry_text": [
+                "It cheers on friends with pom-poms\n",
+                "made of sparks. It drains power\n",
+                "from telephone poles."
+            ]
+        },
+        "fr": {
+            "name": "POSIPI",
+            "category": "Pokémon Acclameur",
+            "entry_text": [
+                "Il absorbe l’énergie des poteaux\n",
+                "électriques et encourage ses amis\n",
+                "avec des pompons d’étincelles. "
+            ]
+        },
+        "de": {
+            "name": "PLUSLE",
+            "category": "Jubel",
+            "entry_text": [
+                "Es feuert Freunde mit Pompons an,\n",
+                "die aus Funken bestehen. Es holt\n",
+                "sich Energie aus Telegrafenmasten."
+            ]
+        },
+        "it": {
+            "name": "PLUSLE",
+            "category": "Pokémon Incitamento",
+            "entry_text": [
+                "Incoraggia gli amici con un vivace\n",
+                "scoppiettio di scintille. Assorbe\n",
+                "elettricità dai pali telefonici."
+            ]
+        },
+        "es": {
+            "name": "PLUSLE",
+            "category": "Pokémon Ánimo",
+            "entry_text": [
+                "Anima a sus compañeros con\n",
+                "pompones de chispas. Roba\n",
+                "energía de los postes telefónicos."
+            ]
+        },
+        "jp": {
+            "name": "プラスル",
+            "category": "おうえんポケモン",
+            "entry_text": [
+                "ひばなの　ボンボンを　つくって\n",
+                "なかまを　おうえんする。\n",
+                "でんちゅうから　でんきを　すいとる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -70,21 +70,17 @@ nameData = ['' for i in range(NUM_POKEMON)]
 
 for i, species_dir in enumerate(SPECIES_DIRS):
     file = source_dir / species_dir / 'data.json'
+    if ((species_dir == 'giratina') and (args.giratina_form == 'giratina_origin')):
+        file = source_dir / 'giratina/forms/origin/data.json'
     with open(file, 'r', encoding='utf-8') as data_file:
         pkdata = json.load(data_file)
-    pk_name = pkdata['name'].lower()
 
     # Do not attempt to process eggs
-    if pk_name in ['egg', 'bad egg']:
+    if species_dir in ['egg', 'bad_egg']:
         continue
 
     pkdexdata = pkdata['pokedex_data']
-    if pk_name == 'giratina':
-        if args.giratina_form == 'giratina_origin':
-            pkdexdata = pkdexdata[0]
-        else:
-            pkdexdata = pkdexdata[1]
-    
+
     for j in range(11):
         dataSize = DataSize(j)
         if j == 2:
@@ -112,7 +108,7 @@ for i, species_dir in enumerate(SPECIES_DIRS):
         # store for later
         heightData[i-1] = pkdexdata['height']
         weightData[i-1] = pkdexdata['weight']
-        nameData[i-1] = pk_name.replace('porygon2','porygon-z2')
+        nameData[i-1] = pkdexdata['en']['name']
 
 # sinnoh dex order
 with open(source_dir / 'sinnoh_pokedex.json') as data_file:
@@ -128,9 +124,9 @@ for idx in alpha:
     binData[13] = binData[13] + (idx+1).to_bytes(2, 'little')
 
     # first letter
-    letter = ord(nameData[idx][0])
-    if letter > 96 and letter < 123:
-        letterIDX = int((letter - 1) / 3) - 14
+    letter = ord(nameData[idx][0].upper())
+    if letter >= ord('A') and letter <= ord('Z'):
+        letterIDX = (letter - 11) // 3
         binData[letterIDX] = binData[letterIDX] + (idx+1).to_bytes(2, 'little')
 
 # heaviest to lightest

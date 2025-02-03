@@ -1,5 +1,4 @@
 {
-    "name": "Dusclops",
     "base_stats": {
         "hp": 40,
         "attack": 70,
@@ -140,8 +139,60 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "It seeks drifting will-o’-the-wisps\nand sucks them into its empty body.\nWhat happens inside is a mystery.",
-        "category": "Beckon Pokémon"
+        "en": {
+            "name": "DUSCLOPS",
+            "category": "Beckon Pokémon",
+            "entry_text": [
+                "It seeks drifting will-o’-the-wisps\n",
+                "and sucks them into its empty body.\n",
+                "What happens inside is a mystery."
+            ]
+        },
+        "fr": {
+            "name": "TERACLOPE",
+            "category": "Pokémon Appel",
+            "entry_text": [
+                "Son corps est creux. On raconte\n",
+                "que celui qui regarde à l’intérieur\n",
+                "finira aspiré par le néant."
+            ]
+        },
+        "de": {
+            "name": "ZWIRRKLOP",
+            "category": "Wink",
+            "entry_text": [
+                "Sein Körper ist hohl. Man sagt,\n",
+                "dass diejenigen, die in den Körper\n",
+                "blicken, hineingezogen werden."
+            ]
+        },
+        "it": {
+            "name": "DUSCLOPS",
+            "category": "Pokémon Ipnosguardo",
+            "entry_text": [
+                "Il suo corpo è vuoto. Pare che\n",
+                "chiunque si avvicini per guardare\n",
+                "dentro venga risucchiato."
+            ]
+        },
+        "es": {
+            "name": "DUSCLOPS",
+            "category": "Pokémon Atrayente",
+            "entry_text": [
+                "Su cuerpo está hueco. Se dice\n",
+                "que quien mire dentro, será\n",
+                "tragado por un agujero negro."
+            ]
+        },
+        "jp": {
+            "name": "サマヨ－ル",
+            "category": "てまねきポケモン",
+            "entry_text": [
+                "からだの　なかみは　くうどうに\n",
+                "なっていて　のぞきこんだ　あいてを\n",
+                "すいこんでしまうと　いわれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

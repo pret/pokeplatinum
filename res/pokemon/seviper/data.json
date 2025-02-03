@@ -1,5 +1,4 @@
 {
-    "name": "Seviper",
     "base_stats": {
         "hp": 73,
         "attack": 100,
@@ -110,8 +109,60 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 4,
         "pokemon_pos_m": 6,
-        "entry_text": "For many generations, it has\nfeuded with ZANGOOSE. It whets its\nbladed tail on rocks for battle.",
-        "category": "Fang Snake Pokémon"
+        "en": {
+            "name": "SEVIPER",
+            "category": "Fang Snake Pokémon",
+            "entry_text": [
+                "For many generations, it has\n",
+                "feuded with ZANGOOSE. It whets its\n",
+                "bladed tail on rocks for battle."
+            ]
+        },
+        "fr": {
+            "name": "SEVIPER",
+            "category": "Pokémon Serpacroc",
+            "entry_text": [
+                "Le rival historique de MANGRIFF.\n",
+                "Il affûte la lame de sa queue \n",
+                "sur les rochers avant le combat."
+            ]
+        },
+        "de": {
+            "name": "VIPITIS",
+            "category": "Reißzahn",
+            "entry_text": [
+                "Seit Generationen ist es mit SENGO\n",
+                "verfeindet. Es wetzt seinen\n",
+                "scharfen Schweif an Felsen."
+            ]
+        },
+        "it": {
+            "name": "SEVIPER",
+            "category": "Pokémon Zannaserpe",
+            "entry_text": [
+                "È acerrimo nemico di ZANGOOSE.\n",
+                "Prima della lotta, affila sulle rocce\n",
+                "la sua coda simile ad una spada."
+            ]
+        },
+        "es": {
+            "name": "SEVIPER",
+            "category": "Pokémon Colmillos",
+            "entry_text": [
+                "Se ha enfrentado durante muchos\n",
+                "años a ZANGOOSE. Usa rocas para\n",
+                "mantener afilada su cola."
+            ]
+        },
+        "jp": {
+            "name": "ハブネ－ク",
+            "category": "キバへびポケモン",
+            "entry_text": [
+                "せんぞだいだい　ザング－スと\n",
+                "たたかってきた。しっぽの　やいばを\n",
+                "いわで　とぎ　たたかいに　そなえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

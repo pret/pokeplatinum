@@ -1,5 +1,4 @@
 {
-    "name": "Flaaffy",
     "base_stats": {
         "hp": 70,
         "attack": 55,
@@ -112,8 +111,60 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "If its coat becomes fully charged\nwith electricity, its tail lights up.\nIt fires hair that zaps on impact.",
-        "category": "Wool Pokémon"
+        "en": {
+            "name": "FLAAFFY",
+            "category": "Wool Pokémon",
+            "entry_text": [
+                "If its coat becomes fully charged\n",
+                "with electricity, its tail lights up.\n",
+                "It fires hair that zaps on impact."
+            ]
+        },
+        "fr": {
+            "name": "LAINERGIE",
+            "category": "Pokémon Laine",
+            "entry_text": [
+                "Sa queue s’allume lorsque sa\n",
+                "laine se charge d’électricité.\n",
+                "Il projette des poils électrifiés."
+            ]
+        },
+        "de": {
+            "name": "WAATY",
+            "category": "Wolle",
+            "entry_text": [
+                "Hat es sich mit Elektrizität aufge-\n",
+                "laden, leuchtet sein Schweif und es\n",
+                "feuert Haare ab, die sich entladen."
+            ]
+        },
+        "it": {
+            "name": "FLAAFFY",
+            "category": "Pokémon Lana",
+            "entry_text": [
+                "Se il suo manto è del tutto carico\n",
+                "d’elettricità, la coda s’illumina.\n",
+                "Lancia peli che danno la scossa."
+            ]
+        },
+        "es": {
+            "name": "FLAAFFY",
+            "category": "Pokémon Lana",
+            "entry_text": [
+                "Cuando su pelaje se carga de\n",
+                "electricidad, su cola se enciende.\n",
+                "Lanza pelo que explota al impacto."
+            ]
+        },
+        "jp": {
+            "name": "モココ",
+            "category": "わたげポケモン",
+            "entry_text": [
+                "たいもうに　ためた　でんきが\n",
+                "まんたんになると　しっぽが　ひかる。\n",
+                "ふれると　しびれる　けを　とばす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

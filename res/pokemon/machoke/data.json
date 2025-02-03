@@ -1,5 +1,4 @@
 {
-    "name": "Machoke",
     "base_stats": {
         "hp": 80,
         "attack": 100,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "It happily carries heavy cargo to\ntoughen up. It willingly does hard\nwork for people.",
-        "category": "Superpower Pokémon"
+        "en": {
+            "name": "MACHOKE",
+            "category": "Superpower Pokémon",
+            "entry_text": [
+                "It happily carries heavy cargo to\n",
+                "toughen up. It willingly does hard\n",
+                "work for people."
+            ]
+        },
+        "fr": {
+            "name": "MACHOPEUR",
+            "category": "Pokémon Colosse",
+            "entry_text": [
+                "La force herculéenne du MACHOPEUR\n",
+                "est très dangereuse. Il utilise une\n",
+                "ceinture pour contenir son énergie."
+            ]
+        },
+        "de": {
+            "name": "MASCHOCK",
+            "category": "Kraftprotz",
+            "entry_text": [
+                "MASCHOCKs unbegrenzte Kraft ist\n",
+                "gefährlich, daher trägt es einen\n",
+                "Gürtel, der die Kraft unterdrückt."
+            ]
+        },
+        "it": {
+            "name": "MACHOKE",
+            "category": "Pokémon Megaforza",
+            "entry_text": [
+                "La sua incredibile forza può essere\n",
+                "molto pericolosa. Indossa una cin-\n",
+                "tura per tenerla sotto controllo."
+            ]
+        },
+        "es": {
+            "name": "MACHOKE",
+            "category": "Pokémon Superpoder",
+            "entry_text": [
+                "La gran fortaleza de MACHOKE es\n",
+                "peligrosa, así que lleva un cinturón\n",
+                "que disminuye su energía."
+            ]
+        },
+        "jp": {
+            "name": "ゴ－リキ－",
+            "category": "かいりきポケモン",
+            "entry_text": [
+                "ゴ－リキ－の　そこしれない　パワ－は\n",
+                "とても　きけんなので　ちからを\n",
+                "せいぎょする　ベルトを　まいている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

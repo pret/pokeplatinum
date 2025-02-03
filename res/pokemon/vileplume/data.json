@@ -1,5 +1,4 @@
 {
-    "name": "Vileplume",
     "base_stats": {
         "hp": 75,
         "attack": 80,
@@ -97,8 +96,60 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "Its petals are the largest in the\nworld. As it walks, it scatters\nextremely allergenic pollen.",
-        "category": "Flower Pokémon"
+        "en": {
+            "name": "VILEPLUME",
+            "category": "Flower Pokémon",
+            "entry_text": [
+                "Its petals are the largest in the\n",
+                "world. As it walks, it scatters\n",
+                "extremely allergenic pollen."
+            ]
+        },
+        "fr": {
+            "name": "RAFFLESIA",
+            "category": "Pokémon Fleur",
+            "entry_text": [
+                "Ses pétales sont les plus grands\n",
+                "du monde. Il marche en répandant\n",
+                "un pollen extrêmement allergène."
+            ]
+        },
+        "de": {
+            "name": "GIFLOR",
+            "category": "Blume",
+            "entry_text": [
+                "Es besitzt die größten Blätter der\n",
+                "Welt. Es verteilt beim Gehen Pollen,\n",
+                "die schreckliche Allergien auslösen."
+            ]
+        },
+        "it": {
+            "name": "VILEPLUME",
+            "category": "Pokémon Fiore",
+            "entry_text": [
+                "I suoi petali sono i più grandi al\n",
+                "mondo. Mentre cammina diffonde\n",
+                "un polline che causa allergie."
+            ]
+        },
+        "es": {
+            "name": "VILEPLUME",
+            "category": "Pokémon Flor",
+            "entry_text": [
+                "Sus pétalos son los más grandes\n",
+                "del mundo. Cuando anda desprende\n",
+                "un terrible polen alergénico."
+            ]
+        },
+        "jp": {
+            "name": "ラフレシア",
+            "category": "フラワ－ポケモン",
+            "entry_text": [
+                "はなびらの　おおきさは　せかいいち。\n",
+                "ひどい　アレルギ－を　ひきおこす\n",
+                "どくかふんを　ばらまいて　あるく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

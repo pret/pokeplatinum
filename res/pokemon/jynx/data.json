@@ -1,5 +1,4 @@
 {
-    "name": "Jynx",
     "base_stats": {
         "hp": 65,
         "attack": 50,
@@ -128,8 +127,60 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "Its cries sound like human speech.\nHowever, it is impossible to tell\nwhat it is trying to say.",
-        "category": "Human Shape Pokémon"
+        "en": {
+            "name": "JYNX",
+            "category": "Human Shape Pokémon",
+            "entry_text": [
+                "Its cries sound like human speech.\n",
+                "However, it is impossible to tell\n",
+                "what it is trying to say."
+            ]
+        },
+        "fr": {
+            "name": "LIPPOUTOU",
+            "category": "Pokémon Humanoïde",
+            "entry_text": [
+                "Son cri ressemble à des paroles\n",
+                "humaines. Mais nul n’est jamais\n",
+                "parvenu à les comprendre. "
+            ]
+        },
+        "de": {
+            "name": "ROSSANA",
+            "category": "Humanotyp",
+            "entry_text": [
+                "Sein Ruf klingt wie menschliche\n",
+                "Sprache. Trotzdem ist nicht zu\n",
+                "verstehen, was es sagt."
+            ]
+        },
+        "it": {
+            "name": "JYNX",
+            "category": "Pokémon Umanoide",
+            "entry_text": [
+                "Le sue grida ricordano il linguaggio\n",
+                "umano, ma è impossibile capire\n",
+                "il significato delle sue parole."
+            ]
+        },
+        "es": {
+            "name": "JYNX",
+            "category": "Pokémon F. Humana",
+            "entry_text": [
+                "Sus gritos se parecen al lenguaje\n",
+                "humano, pero es imposible\n",
+                "entender lo que dice."
+            ]
+        },
+        "jp": {
+            "name": "ル－ジュラ",
+            "category": "ひとがたポケモン",
+            "entry_text": [
+                "なきごえは　まるで　にんげんの\n",
+                "ことばのように　きこえるが\n",
+                "いみは　まったく　りかいできない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

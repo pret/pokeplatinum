@@ -1,5 +1,4 @@
 {
-    "name": "Pidgeot",
     "base_stats": {
         "hp": 83,
         "attack": 80,
@@ -109,8 +108,60 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "By flapping its wings with all its\nmight, PIDGEOT can make a gust of\nwind capable of bending tall trees.",
-        "category": "Bird Pokémon"
+        "en": {
+            "name": "PIDGEOT",
+            "category": "Bird Pokémon",
+            "entry_text": [
+                "By flapping its wings with all its\n",
+                "might, PIDGEOT can make a gust of\n",
+                "wind capable of bending tall trees."
+            ]
+        },
+        "fr": {
+            "name": "ROUCARNAGE",
+            "category": "Pokémon Oiseau",
+            "entry_text": [
+                "En battant des ailes de toutes ses\n",
+                "forces, ROUCARNAGE génère une\n",
+                "rafale à en déraciner les arbres."
+            ]
+        },
+        "de": {
+            "name": "TAUBOSS",
+            "category": "Vogel",
+            "entry_text": [
+                "Schlägt TAUBOSS mit ganzer Kraft\n",
+                "seine Flügel, beugen sich selbst\n",
+                "große Bäume durch den Windstoß."
+            ]
+        },
+        "it": {
+            "name": "PIDGEOT",
+            "category": "Pokémon Uccello",
+            "entry_text": [
+                "Sbattendo le ali a più non posso,\n",
+                "PIDGEOT crea un vento tanto\n",
+                "forte da piegare alberi possenti."
+            ]
+        },
+        "es": {
+            "name": "PIDGEOT",
+            "category": "Pokémon Pájaro",
+            "entry_text": [
+                "Aleteando con toda su fuerza,\n",
+                "PIDGEOT crea corrientes de aire\n",
+                "capaces de doblar grandes árboles."
+            ]
+        },
+        "jp": {
+            "name": "ピジョット",
+            "category": "とりポケモン",
+            "entry_text": [
+                "ピジョットが　ちからいっぱい\n",
+                "はばたくと　たいぼくも　しなるほどの\n",
+                "きょうふうを　まきおこす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

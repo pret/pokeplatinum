@@ -1,5 +1,4 @@
 {
-    "name": "Remoraid",
     "base_stats": {
         "hp": 35,
         "attack": 65,
@@ -115,8 +114,52 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "It forcefully squirts water. The\nwater jet never misses prey even\nif the REMORAID is deep in the sea.",
-        "category": "Jet Pokémon"
+        "en": {
+            "name": "REMORAID",
+            "category": "Jet Pokémon",
+            "entry_text": [
+                "It forcefully squirts water. The\n",
+                "water jet never misses prey even\n",
+                "if the REMORAID is deep in the sea."
+            ]
+        },
+        "fr": {
+            "name": "REMORAID",
+            "category": "Pokémon Jet",
+            "entry_text": [ "Il crache un puissant jet d’eau\n", "pour abattre les proies volantes." ]
+        },
+        "de": {
+            "name": "REMORAID",
+            "category": "Hochdruck",
+            "entry_text": [
+                "Es spritzt Wasser mit Hochdruck\n",
+                "aus seinem Maul und schießt damit\n",
+                "auf fliegende Beute."
+            ]
+        },
+        "it": {
+            "name": "REMORAID",
+            "category": "Pokémon Jet",
+            "entry_text": [
+                "Emette potenti getti d’acqua con i\n",
+                "quali riesce ad abbattere persino\n",
+                "le prede in volo."
+            ]
+        },
+        "es": {
+            "name": "REMORAID",
+            "category": "Pokémon Reactor",
+            "entry_text": [ "Escupe potentes chorros de agua\n", "para derribar presas voladoras." ]
+        },
+        "jp": {
+            "name": "テッポウオ",
+            "category": "ふんしゃポケモン",
+            "entry_text": [
+                "くちから　みずを　はっしゃして\n",
+                "そらを　とぶ　えものを　うちおとす\n",
+                "ことから　この　なまえが　ついた。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

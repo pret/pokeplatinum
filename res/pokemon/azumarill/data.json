@@ -1,5 +1,4 @@
 {
-    "name": "Azumarill",
     "base_stats": {
         "hp": 100,
         "attack": 50,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "It can spend all day in water,\nsince it can inhale and store\na large volume of air.",
-        "category": "Aqua Rabbit Pokémon"
+        "en": {
+            "name": "AZUMARILL",
+            "category": "Aqua Rabbit Pokémon",
+            "entry_text": [
+                "It can spend all day in water,\n",
+                "since it can inhale and store\n",
+                "a large volume of air."
+            ]
+        },
+        "fr": {
+            "name": "AZUMARILL",
+            "category": "Pokémon Aqualapin",
+            "entry_text": [
+                "Il peuple les lacs et les mers. Sous\n",
+                "l’eau, ses motifs et ses couleurs\n",
+                "brouillent la vue de l’ennemi."
+            ]
+        },
+        "de": {
+            "name": "AZUMARILL",
+            "category": "Aquahase",
+            "entry_text": [
+                "Es lebt in Flüssen und Seen. Im\n",
+                "Wasser verwirrt es seine Gegner\n",
+                "durch seine Farbe und Muster."
+            ]
+        },
+        "it": {
+            "name": "AZUMARILL",
+            "category": "Pokémon Acquniglio",
+            "entry_text": [
+                "Vive nei fiumi e nei laghi. Il suo\n",
+                "colore e i disegni confondono i\n",
+                "nemici in acqua."
+            ]
+        },
+        "es": {
+            "name": "AZUMARILL",
+            "category": "Pokémon Conejoagua",
+            "entry_text": [
+                "Vive en ríos y lagos. En el agua,\n",
+                "sus colores y dibujos confunden\n",
+                "a los enemigos."
+            ]
+        },
+        "jp": {
+            "name": "マリルリ",
+            "category": "みずうさぎポケモン",
+            "entry_text": [
+                "かわや　みずうみに　せいそくする。\n",
+                "みずの　なかでは　からだの　いろと\n",
+                "もようが　てきの　めを　あざむく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

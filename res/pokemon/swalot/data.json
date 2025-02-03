@@ -1,5 +1,4 @@
 {
-    "name": "Swalot",
     "base_stats": {
         "hp": 100,
         "attack": 73,
@@ -118,8 +117,60 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "It swallows anything whole.\nIt sweats toxic fluids from its\nfollicles to douse foes.",
-        "category": "Poison Bag Pokémon"
+        "en": {
+            "name": "SWALOT",
+            "category": "Poison Bag Pokémon",
+            "entry_text": [
+                "It swallows anything whole.\n",
+                "It sweats toxic fluids from its\n",
+                "follicles to douse foes."
+            ]
+        },
+        "fr": {
+            "name": "AVALTOUT",
+            "category": "Pokémon Sac Poison",
+            "entry_text": [
+                "Il avale tout en une bouchée. Ses\n",
+                "follicules sécrètent des fluides\n",
+                "toxiques qui endorment l’ennemi."
+            ]
+        },
+        "de": {
+            "name": "SCHLUKWECH",
+            "category": "Giftbeutel",
+            "entry_text": [
+                "Es verschluckt alles in einem\n",
+                "Stück und sondert giftige Stoffe\n",
+                "ab, mit denen es Gegner besprüht. "
+            ]
+        },
+        "it": {
+            "name": "SWALOT",
+            "category": "Pokémon Velenosacco",
+            "entry_text": [
+                "Inghiotte intera qualsiasi cosa.\n",
+                "Dai pori traspira un liquido tossico\n",
+                "con cui bagna i nemici."
+            ]
+        },
+        "es": {
+            "name": "SWALOT",
+            "category": "Pokémon Bolsa Ven.",
+            "entry_text": [
+                "Se traga cualquier cosa de una\n",
+                "pieza. Sus poros segregan fluidos\n",
+                "tóxicos que dañan a sus enemigos."
+            ]
+        },
+        "jp": {
+            "name": "マルノ－ム",
+            "category": "どくぶくろポケモン",
+            "entry_text": [
+                "なんでも　まるのみしてしまう。\n",
+                "けあなから　もうどくの　たいえきを\n",
+                "ぶんぴつして　てきに　あびせかける。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

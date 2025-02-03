@@ -1,5 +1,4 @@
 {
-    "name": "Scizor",
     "base_stats": {
         "hp": 70,
         "attack": 130,
@@ -120,8 +119,60 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "It raises its pincers with eyelike\nmarkings for intimidation. It also\nswings them down dangerously.",
-        "category": "Pincer Pokémon"
+        "en": {
+            "name": "SCIZOR",
+            "category": "Pincer Pokémon",
+            "entry_text": [
+                "It raises its pincers with eyelike\n",
+                "markings for intimidation. It also\n",
+                "swings them down dangerously."
+            ]
+        },
+        "fr": {
+            "name": "CIZAYOX",
+            "category": "Pokémon Pince",
+            "entry_text": [
+                "Son corps est dur comme l’acier.\n",
+                "Il intimide ses ennemis en levant\n",
+                "ses pinces pareilles à des yeux. "
+            ]
+        },
+        "de": {
+            "name": "SCHEROX",
+            "category": "Kneifer",
+            "entry_text": [
+                "Sein Körper ist stahlhart. Es\n",
+                "bedroht seine Gegner, indem es die\n",
+                "Augen auf seinen Scheren zeigt."
+            ]
+        },
+        "it": {
+            "name": "SCIZOR",
+            "category": "Pokémon Chela",
+            "entry_text": [
+                "Ha un corpo duro come l’acciaio.\n",
+                "Spaventa i nemici con le chele, su\n",
+                "cui sono disegnati degli occhi."
+            ]
+        },
+        "es": {
+            "name": "SCIZOR",
+            "category": "Pokémon Tenaza",
+            "entry_text": [
+                "Su cuerpo es duro como el acero.\n",
+                "Confunde a los rivales con los\n",
+                "dibujos de ojos en sus pinzas."
+            ]
+        },
+        "jp": {
+            "name": "ハッサム",
+            "category": "はさみポケモン",
+            "entry_text": [
+                "はがねの　からだを　もつ。\n",
+                "めだまもようの　ついた　はさみを\n",
+                "ふりあげて　あいてを　いかくする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

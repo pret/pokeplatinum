@@ -1,5 +1,4 @@
 {
-    "name": "Aerodactyl",
     "base_stats": {
         "hp": 80,
         "attack": 105,
@@ -127,8 +126,60 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "A Pokémon that roamed the skies\nin the dinosaur era. Its teeth are\nlike saw blades.",
-        "category": "Fossil Pokémon"
+        "en": {
+            "name": "AERODACTYL",
+            "category": "Fossil Pokémon",
+            "entry_text": [
+                "A Pokémon that roamed the skies\n",
+                "in the dinosaur era. Its teeth are\n",
+                "like saw blades."
+            ]
+        },
+        "fr": {
+            "name": "PTERA",
+            "category": "Pokémon Fossile",
+            "entry_text": [
+                "Un Pokémon qui arpentait le ciel\n",
+                "au temps des dinosaures. Ses \n",
+                "crocs sont pareils à des scies."
+            ]
+        },
+        "de": {
+            "name": "AERODACTYL",
+            "category": "Fossil",
+            "entry_text": [
+                "Dieses PKMN flog zu Zeiten der\n",
+                "Dinosaurier am Himmel. Seine\n",
+                "Zähne sind wie Sägeblätter."
+            ]
+        },
+        "it": {
+            "name": "AERODACTYL",
+            "category": "Pokémon Fossile",
+            "entry_text": [
+                "Un Pokémon che vagava nei cieli\n",
+                "nell’era dei dinosauri. Le sue zanne\n",
+                "sono affilate come lame."
+            ]
+        },
+        "es": {
+            "name": "AERODACTYL",
+            "category": "Pokémon Fósil",
+            "entry_text": [
+                "Este Pokémon surcó los cielos\n",
+                "en la época de los dinosaurios.\n",
+                "Sus colmillos son muy afilados."
+            ]
+        },
+        "jp": {
+            "name": "プテラ",
+            "category": "かせきポケモン",
+            "entry_text": [
+                "きょうりゅうじだいの　おおぞらを\n",
+                "とびまわっていた　ポケモン。\n",
+                "のこぎりのような　キバを　もつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -1,5 +1,4 @@
 {
-    "name": "Cubone",
     "base_stats": {
         "hp": 50,
         "attack": 50,
@@ -126,8 +125,60 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "When it thinks of its dead mother,\nit cries. Its crying makes the\nskull it wears rattle hollowly.",
-        "category": "Lonely Pokémon"
+        "en": {
+            "name": "CUBONE",
+            "category": "Lonely Pokémon",
+            "entry_text": [
+                "When it thinks of its dead mother,\n",
+                "it cries. Its crying makes the\n",
+                "skull it wears rattle hollowly."
+            ]
+        },
+        "fr": {
+            "name": "OSSELAIT",
+            "category": "Pokémon Solitaire",
+            "entry_text": [
+                "Il pleure en pensant à sa mère\n",
+                "disparue, et ses larmes résonnent\n",
+                "dans son crâne creux."
+            ]
+        },
+        "de": {
+            "name": "TRAGOSSO",
+            "category": "Einsam",
+            "entry_text": [
+                "Denkt es an seine verstorbene\n",
+                "Mutter, weint es, wobei der Schädel\n",
+                "auf seinem Kopf hohl klingt."
+            ]
+        },
+        "it": {
+            "name": "CUBONE",
+            "category": "Pokémon Solitario",
+            "entry_text": [
+                "Piange pensando alla madre defunta\n",
+                "e dal teschio che ha in testa pro-\n",
+                "viene un rumore sordo e continuo."
+            ]
+        },
+        "es": {
+            "name": "CUBONE",
+            "category": "Pokémon Solitario",
+            "entry_text": [
+                "Llora cuando se acuerda de su\n",
+                "madre fallecida. Cuando lo hace,\n",
+                "sus llantos resuenan en su cráneo."
+            ]
+        },
+        "jp": {
+            "name": "カラカラ",
+            "category": "こどくポケモン",
+            "entry_text": [
+                "しにわかれた　ははおやを　おもいだし\n",
+                "ないてしまうとき　あたまに　かぶった\n",
+                "ホネが　からからと　おとを　たてる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

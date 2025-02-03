@@ -1,5 +1,4 @@
 {
-    "name": "Trapinch",
     "base_stats": {
         "hp": 45,
         "attack": 100,
@@ -106,8 +105,60 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It makes a conical pit in desert\nsand and lies in wait at the bottom\nfor prey to come tumbling down.",
-        "category": "Ant Pit Pokémon"
+        "en": {
+            "name": "TRAPINCH",
+            "category": "Ant Pit Pokémon",
+            "entry_text": [
+                "It makes a conical pit in desert\n",
+                "sand and lies in wait at the bottom\n",
+                "for prey to come tumbling down."
+            ]
+        },
+        "fr": {
+            "name": "KRAKNOIX",
+            "category": "Pokémon Piégeur",
+            "entry_text": [
+                "Il creuse un trou conique dans le\n",
+                "sable du désert et se terre en\n",
+                "attendant qu’une proie trébuche."
+            ]
+        },
+        "de": {
+            "name": "KNACKLION",
+            "category": "Ameisenlöwe",
+            "entry_text": [
+                "Es baut im Wüstensand eine\n",
+                "Fallgrube, setzt sich in ihr auf den\n",
+                "Boden und wartet auf Beute."
+            ]
+        },
+        "it": {
+            "name": "TRAPINCH",
+            "category": "Pokémon Trappola",
+            "entry_text": [
+                "Scava fosse coniche nella sabbia\n",
+                "del deserto e attende che le prede\n",
+                "cadano in trappola."
+            ]
+        },
+        "es": {
+            "name": "TRAPINCH",
+            "category": "Pokémon Hormigaleón",
+            "entry_text": [
+                "Cava fosas cóncavas en el desierto\n",
+                "y espera en el fondo a que las\n",
+                "presas caigan en ellas."
+            ]
+        },
+        "jp": {
+            "name": "ナックラ－",
+            "category": "ありじごくポケモン",
+            "entry_text": [
+                "さばくに　つくった　すりばちがたの\n",
+                "あなの　そこで　えものが　はまって\n",
+                "おちてくるのを　まちつづける。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

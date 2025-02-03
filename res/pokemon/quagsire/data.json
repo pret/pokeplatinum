@@ -1,5 +1,4 @@
 {
-    "name": "Quagsire",
     "base_stats": {
         "hp": 95,
         "attack": 85,
@@ -120,8 +119,60 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "It has an easygoing nature. It\ndoesn’t care if it bumps its head on\nboats and boulders while swimming.",
-        "category": "Water Fish Pokémon"
+        "en": {
+            "name": "QUAGSIRE",
+            "category": "Water Fish Pokémon",
+            "entry_text": [
+                "It has an easygoing nature. It\n",
+                "doesn’t care if it bumps its head on\n",
+                "boats and boulders while swimming."
+            ]
+        },
+        "fr": {
+            "name": "MARAISTE",
+            "category": "Pokémon Poisson",
+            "entry_text": [
+                "C’est un grand paresseux qui \n",
+                "attend au fond de la rivière qu’une\n",
+                "proie lui tombe dans le bec."
+            ]
+        },
+        "de": {
+            "name": "MORLORD",
+            "category": "Fisch",
+            "entry_text": [
+                "Ein träges PKMN, das auf dem Grund\n",
+                "des Flusses liegt und wartet, dass\n",
+                "ihm Beute ins Maul schwimmt."
+            ]
+        },
+        "it": {
+            "name": "QUAGSIRE",
+            "category": "Pokémon Acquapesce",
+            "entry_text": [
+                "È pigro per natura. Sta sul fondo\n",
+                "dei fiumi con la bocca aperta in\n",
+                "attesa di afferrare la preda."
+            ]
+        },
+        "es": {
+            "name": "QUAGSIRE",
+            "category": "Pokémon Pez Agua",
+            "entry_text": [
+                "Es un Pokémon bastante perezoso.\n",
+                "Para pescar permanece en el fondo\n",
+                "del río con la boca abierta."
+            ]
+        },
+        "jp": {
+            "name": "ヌオ－",
+            "category": "みずうおポケモン",
+            "entry_text": [
+                "のんびりとした　せいかく。\n",
+                "かわぞこで　くちを　あけて　エサが\n",
+                "とびこんでくるのを　ひたすら　まつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

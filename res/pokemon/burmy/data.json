@@ -1,5 +1,4 @@
 {
-    "name": "Burmy",
     "base_stats": {
         "hp": 40,
         "attack": 29,
@@ -70,8 +69,60 @@
         "pokemon_pos_f": 65530,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65530,
-        "entry_text": "Even if it is born where there are\nno cocooning materials, it somehow\nalways ends up with a cloak.",
-        "category": "Bagworm Pokémon"
+        "en": {
+            "name": "BURMY",
+            "category": "Bagworm Pokémon",
+            "entry_text": [
+                "Even if it is born where there are\n",
+                "no cocooning materials, it somehow\n",
+                "always ends up with a cloak."
+            ]
+        },
+        "fr": {
+            "name": "CHENITI",
+            "category": "Pokémon Ver Caché",
+            "entry_text": [
+                "Pour se protéger des vents glacés\n",
+                "de l’hiver, il s’est tissé une cape\n",
+                "de feuilles et de brindilles."
+            ]
+        },
+        "de": {
+            "name": "BURMY",
+            "category": "Beutelwurm",
+            "entry_text": [
+                "Um sich vor dem eisigen Winterwind\n",
+                "zu schützen, legt es sich unter\n",
+                "einen Umhang aus Ästen und Laub."
+            ]
+        },
+        "it": {
+            "name": "BURMY",
+            "category": "Pokémon Larva",
+            "entry_text": [
+                "Per ripararsi dal freddo e dai venti\n",
+                "invernali si copre con un manto\n",
+                "fatto di rami e foglie."
+            ]
+        },
+        "es": {
+            "name": "BURMY",
+            "category": "Pokémon Larva",
+            "entry_text": [
+                "Para protegerse de los vientos\n",
+                "fríos invernales, se cubre con un\n",
+                "caparazón de ramas y hojas."
+            ]
+        },
+        "jp": {
+            "name": "ミノムッチ",
+            "category": "みのむしポケモン",
+            "entry_text": [
+                "つめたい　こがらしを　ふせぐため\n",
+                "こえだや　おちばを　ざいりょうに\n",
+                "ミノを　つくり　からだを　おおう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

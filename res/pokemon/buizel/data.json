@@ -1,5 +1,4 @@
 {
-    "name": "Buizel",
     "base_stats": {
         "hp": 55,
         "attack": 65,
@@ -112,8 +111,60 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It spins its two tails like a screw\nto propel itself through water. The\ntails also slice clinging seaweed.",
-        "category": "Sea Weasel Pokémon"
+        "en": {
+            "name": "BUIZEL",
+            "category": "Sea Weasel Pokémon",
+            "entry_text": [
+                "It spins its two tails like a screw\n",
+                "to propel itself through water. The\n",
+                "tails also slice clinging seaweed."
+            ]
+        },
+        "fr": {
+            "name": "MUSTEBOUEE",
+            "category": "Pokémon Aquabelette",
+            "entry_text": [
+                "Sa bouée est pareille à un\n",
+                "collier gonflable. Quand il flotte,\n",
+                "il garde la tête à l’air libre."
+            ]
+        },
+        "de": {
+            "name": "BAMELIN",
+            "category": "Meereswiesel",
+            "entry_text": [
+                "Es hat eine Art Rettungsring um\n",
+                "den Hals. Wenn es schwimmt, gerät\n",
+                "sein Kopf niemals unter Wasser."
+            ]
+        },
+        "it": {
+            "name": "BUIZEL",
+            "category": "Pokémon Maridonnola",
+            "entry_text": [
+                "Ha un collare che funge da galleg-\n",
+                "giante. Quando nuota, la sua testa\n",
+                "rimane sempre fuori dall’acqua."
+            ]
+        },
+        "es": {
+            "name": "BUIZEL",
+            "category": "Pokémon Nutria Mar.",
+            "entry_text": [
+                "Posee un flotador en forma de\n",
+                "collar hinchable. Flota en el\n",
+                "agua con la cabeza fuera."
+            ]
+        },
+        "jp": {
+            "name": "ブイゼル",
+            "category": "うみイタチポケモン",
+            "entry_text": [
+                "くびに　ある　うきぶくろに　くうきを\n",
+                "ためると　うきわのように　ふくらむ。\n",
+                "すいめんに　かおを　だして　うかぶ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

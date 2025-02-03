@@ -1,5 +1,4 @@
 {
-    "name": "Elekid",
     "base_stats": {
         "hp": 45,
         "attack": 63,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "A weak electric current flows\nbetween its horns. Sticking a hand\nthere shocks the unwary.",
-        "category": "Electric Pokémon"
+        "en": {
+            "name": "ELEKID",
+            "category": "Electric Pokémon",
+            "entry_text": [
+                "A weak electric current flows\n",
+                "between its horns. Sticking a hand\n",
+                "there shocks the unwary."
+            ]
+        },
+        "fr": {
+            "name": "ELEKID",
+            "category": "Pokémon Electrique",
+            "entry_text": [
+                "Il génère de l’électricité en\n",
+                "battant des bras, mais il n’a aucun\n",
+                "moyen de stocker cette énergie."
+            ]
+        },
+        "de": {
+            "name": "ELEKID",
+            "category": "Elektro",
+            "entry_text": [
+                "Es bewegt seine Arme und generiert\n",
+                "damit Elektrizität. Diese kann es\n",
+                "aber nicht speichern."
+            ]
+        },
+        "it": {
+            "name": "ELEKID",
+            "category": "Pokémon Elettrico",
+            "entry_text": [
+                "Genera elettricità roteando le\n",
+                "braccia. Tuttavia, non riesce ad\n",
+                "immagazzinare l’energia creata."
+            ]
+        },
+        "es": {
+            "name": "ELEKID",
+            "category": "Pokémon Eléctrico",
+            "entry_text": [
+                "Genera electricidad girando los\n",
+                "brazos. No obstante, es incapaz\n",
+                "de almacenar la energía creada."
+            ]
+        },
+        "jp": {
+            "name": "エレキッド",
+            "category": "でんきポケモン",
+            "entry_text": [
+                "りょううでを　ぐるぐる　ふりまわして\n",
+                "でんきを　はっせいさせる。しかし\n",
+                "つくった　でんきは　ためておけない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

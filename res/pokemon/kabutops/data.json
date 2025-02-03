@@ -1,5 +1,4 @@
 {
-    "name": "Kabutops",
     "base_stats": {
         "hp": 60,
         "attack": 115,
@@ -128,8 +127,60 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "It is thought that this Pokémon\ncame onto land because its\nprey adapted to life on land.",
-        "category": "Shellfish Pokémon"
+        "en": {
+            "name": "KABUTOPS",
+            "category": "Shellfish Pokémon",
+            "entry_text": [
+                "It is thought that this Pokémon\n",
+                "came onto land because its\n",
+                "prey adapted to life on land."
+            ]
+        },
+        "fr": {
+            "name": "KABUTOPS",
+            "category": "Pokémon Carapace",
+            "entry_text": [
+                "On pense que ce Pokémon est\n",
+                "venu sur la terre ferme pour\n",
+                "suivre l’évolution de ses proies."
+            ]
+        },
+        "de": {
+            "name": "KABUTOPS",
+            "category": "Schaltier",
+            "entry_text": [
+                "Man geht davon aus, dass dieses\n",
+                "PKMN an Land kam, weil seine Beute\n",
+                "ebenfalls irgendwann an Land lebte."
+            ]
+        },
+        "it": {
+            "name": "KABUTOPS",
+            "category": "Pokémon Crostaceo",
+            "entry_text": [
+                "Pokémon probabilmente giunto sulla\n",
+                "terraferma perché le sue prede si\n",
+                "erano adattate a vivere lì."
+            ]
+        },
+        "es": {
+            "name": "KABUTOPS",
+            "category": "Pokémon Marisco",
+            "entry_text": [
+                "Se cree que este Pokémon cambió\n",
+                "de hábitat y pasó del mar a la\n",
+                "tierra buscando nuevas presas."
+            ]
+        },
+        "jp": {
+            "name": "カブトプス",
+            "category": "こうらポケモン",
+            "entry_text": [
+                "えものが　りくじょうせいかつを\n",
+                "はじめたため　カブトプスも　りくに\n",
+                "あがったと　かんがえられている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

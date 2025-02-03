@@ -1,5 +1,4 @@
 {
-    "name": "Combusken",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -125,8 +124,60 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "Its kicking mastery lets it loose\n10 kicks per second. It emits\nsharp cries to intimidate foes.",
-        "category": "Young Fowl Pokémon"
+        "en": {
+            "name": "COMBUSKEN",
+            "category": "Young Fowl Pokémon",
+            "entry_text": [
+                "Its kicking mastery lets it loose\n",
+                "10 kicks per second. It emits\n",
+                "sharp cries to intimidate foes."
+            ]
+        },
+        "fr": {
+            "name": "GALIFEU",
+            "category": "Pokémon Poulet",
+            "entry_text": [
+                "Ce maître du coup de pied peut\n",
+                "donner 10 coups par seconde. Ses\n",
+                "cris aigus intimident l’ennemi."
+            ]
+        },
+        "de": {
+            "name": "JUNGGLUT",
+            "category": "Kleinhahn",
+            "entry_text": [
+                "Es kann 10 Tritte pro Sekunde aus-\n",
+                "teilen. Es gibt schrille Schreie von\n",
+                "sich, um Gegner einzuschüchtern."
+            ]
+        },
+        "it": {
+            "name": "COMBUSKEN",
+            "category": "Pokémon Rampollo",
+            "entry_text": [
+                "Possiede l’abilità di sferrare anche\n",
+                "10 calci al secondo. Emette urla\n",
+                "strazianti per intimorire i nemici."
+            ]
+        },
+        "es": {
+            "name": "COMBUSKEN",
+            "category": "Pokémon Ave Corral",
+            "entry_text": [
+                "Su habilidad le permite dar diez\n",
+                "patadas por segundo. Lanza\n",
+                "potentes gritos para intimidar."
+            ]
+        },
+        "jp": {
+            "name": "ワカシャモ",
+            "category": "わかどりポケモン",
+            "entry_text": [
+                "１びょうかんに　キックを　１０ぱつ\n",
+                "くりだす　あしわざの　もちぬし。\n",
+                "するどい　なきごえで　いかくする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

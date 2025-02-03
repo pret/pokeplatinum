@@ -171,7 +171,7 @@ void StringTemplate_SetCounterpartName(StringTemplate *template, u32 idx, const 
 
 void StringTemplate_SetSpeciesName(StringTemplate *template, u32 idx, BoxPokemon *boxMon)
 {
-    MessageLoader *loader = InitMessageLoader(TEXT_BANK_SPECIES_NAMES, template->heapID);
+    MessageLoader *loader = InitMessageLoader(TEXT_BANK_SPECIES_NAME, template->heapID);
     u32 species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
     MessageLoader_GetStrbuf(loader, species, template->templateBuf);
@@ -186,7 +186,7 @@ void StringTemplate_SetSpeciesNameWithArticle(StringTemplate *template, u32 idx,
 
 void StringTemplate_SetSpeciesNameWithArticleByID(StringTemplate *template, u32 idx, u32 species)
 {
-    MessageLoader *loader = InitMessageLoader(TEXT_BANK_SPECIES_NAMES_WITH_ARTICLES, template->heapID);
+    MessageLoader *loader = InitMessageLoader(TEXT_BANK_SPECIES_NAME_WITH_ARTICLES, template->heapID);
 
     MessageLoader_GetStrbuf(loader, species, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);

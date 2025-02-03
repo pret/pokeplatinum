@@ -1,5 +1,4 @@
 {
-    "name": "Ninjask",
     "base_stats": {
         "hp": 61,
         "attack": 90,
@@ -117,8 +116,60 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "Because it moves so quickly, it\nsometimes becomes unseeable. It\ncongregates around tree sap.",
-        "category": "Ninja Pokémon"
+        "en": {
+            "name": "NINJASK",
+            "category": "Ninja Pokémon",
+            "entry_text": [
+                "Because it moves so quickly, it\n",
+                "sometimes becomes unseeable. It\n",
+                "congregates around tree sap."
+            ]
+        },
+        "fr": {
+            "name": "NINJASK",
+            "category": "Pokémon Ninja",
+            "entry_text": [
+                "Il bouge si vite que l’œil a parfois\n",
+                "du mal à le suivre. Ils se regrou-\n",
+                "pent près de la sève des arbres."
+            ]
+        },
+        "de": {
+            "name": "NINJASK",
+            "category": "Ninja",
+            "entry_text": [
+                "Es bewegt sich so schnell, dass es\n",
+                "manchmal unsichtbar zu sein\n",
+                "scheint. Es liebt Baumsaft."
+            ]
+        },
+        "it": {
+            "name": "NINJASK",
+            "category": "Pokémon Ninja",
+            "entry_text": [
+                "Si muove così in fretta da risultare\n",
+                "quasi invisibile. Lo si vede in gruppo\n",
+                "attorno agli alberi ricchi di linfa."
+            ]
+        },
+        "es": {
+            "name": "NINJASK",
+            "category": "Pokémon Ninja",
+            "entry_text": [
+                "Se mueve tan rápido que a veces\n",
+                "resulta invisible. Le atrae la savia\n",
+                "de los árboles."
+            ]
+        },
+        "jp": {
+            "name": "テッカニン",
+            "category": "しのびポケモン",
+            "entry_text": [
+                "あまりに　こうそくで　うごくため\n",
+                "すがたが　みえなくなる　ことがある。\n",
+                "じゅえきに　あつまってくる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

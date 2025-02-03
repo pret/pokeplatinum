@@ -1,5 +1,4 @@
 {
-    "name": "Vibrava",
     "base_stats": {
         "hp": 50,
         "attack": 70,
@@ -119,8 +118,60 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "It violently shudders its wings,\ngenerating ultrasonic waves to\ninduce headaches in people.",
-        "category": "Vibration Pokémon"
+        "en": {
+            "name": "VIBRAVA",
+            "category": "Vibration Pokémon",
+            "entry_text": [
+                "It violently shudders its wings,\n",
+                "generating ultrasonic waves to\n",
+                "induce headaches in people."
+            ]
+        },
+        "fr": {
+            "name": "VIBRANINF",
+            "category": "Pokémon Vibration",
+            "entry_text": [
+                "Ses violents battements d’ailes\n",
+                "génèrent des vagues d’ultrasons\n",
+                "qui donnent mal au crâne."
+            ]
+        },
+        "de": {
+            "name": "VIBRAVA",
+            "category": "Vibration",
+            "entry_text": [
+                "Es schlägt wild mit den Flügeln.\n",
+                "So entstehen Ultraschallwellen,\n",
+                "die Kopfschmerzen verursachen."
+            ]
+        },
+        "it": {
+            "name": "VIBRAVA",
+            "category": "Pokémon Vibrazione",
+            "entry_text": [
+                "Fa vibrare violentemente le ali\n",
+                "generando onde ultrasoniche che\n",
+                "provocano il mal di testa."
+            ]
+        },
+        "es": {
+            "name": "VIBRAVA",
+            "category": "Pokémon Vibrante",
+            "entry_text": [
+                "Agita violentamente sus alas para\n",
+                "crear ondas ultrasónicas que\n",
+                "provocan dolores de cabeza."
+            ]
+        },
+        "jp": {
+            "name": "ビブラ－バ",
+            "category": "しんどうポケモン",
+            "entry_text": [
+                "はねを　はげしく　しんどうさせて\n",
+                "ちょうおんぱを　だす。にんげんも\n",
+                "ずつうを　おこすほど　きょうりょく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

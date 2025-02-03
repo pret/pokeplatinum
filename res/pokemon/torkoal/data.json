@@ -1,5 +1,4 @@
 {
-    "name": "Torkoal",
     "base_stats": {
         "hp": 70,
         "attack": 85,
@@ -113,8 +112,60 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "It burns coal inside its shell for\nenergy. It blows out black soot if\nit is endangered.",
-        "category": "Coal Pokémon"
+        "en": {
+            "name": "TORKOAL",
+            "category": "Coal Pokémon",
+            "entry_text": [
+                "It burns coal inside its shell for\n",
+                "energy. It blows out black soot if\n",
+                "it is endangered."
+            ]
+        },
+        "fr": {
+            "name": "CHARTOR",
+            "category": "Pokémon Charbon",
+            "entry_text": [
+                "Il tire son énergie du charbon qu’il\n",
+                "brûle dans sa carapace et crache\n",
+                "de la suie noire en cas de danger."
+            ]
+        },
+        "de": {
+            "name": "QURTEL",
+            "category": "Kohle",
+            "entry_text": [
+                "In seinem Panzer verbrennt es\n",
+                "Kohle und gewinnt daraus Energie.\n",
+                "Bei Gefahr sondert es Ruß ab."
+            ]
+        },
+        "it": {
+            "name": "TORKOAL",
+            "category": "Pokémon Carbone",
+            "entry_text": [
+                "Genera energia bruciando carbone\n",
+                "all’interno della corazza. Se è in\n",
+                "pericolo, emette fuliggine scura."
+            ]
+        },
+        "es": {
+            "name": "TORKOAL",
+            "category": "Pokémon Carbón",
+            "entry_text": [
+                "Quema carbón en su caparazón\n",
+                "para obtener energía. Si le atacan,\n",
+                "echa un denso humo negro."
+            ]
+        },
+        "jp": {
+            "name": "コ－タス",
+            "category": "せきたんポケモン",
+            "entry_text": [
+                "こうらの　なかで　せきたんを　もやし\n",
+                "エネルギ－に　している。ピンチの\n",
+                "ときは　くろい　ススを　ふきだす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

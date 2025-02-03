@@ -1,5 +1,4 @@
 {
-    "name": "Geodude",
     "base_stats": {
         "hp": 40,
         "attack": 80,
@@ -120,8 +119,60 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "At rest, it looks just like a rock.\nCarelessly stepping on it will make\nit swing its fists angrily.",
-        "category": "Rock Pokémon"
+        "en": {
+            "name": "GEODUDE",
+            "category": "Rock Pokémon",
+            "entry_text": [
+                "At rest, it looks just like a rock.\n",
+                "Carelessly stepping on it will make\n",
+                "it swing its fists angrily."
+            ]
+        },
+        "fr": {
+            "name": "RACAILLOU",
+            "category": "Pokémon Roche",
+            "entry_text": [
+                "Nombre d’entre eux vivent sur des\n",
+                "chemins montagneux où ils restent\n",
+                "enfouis à épier les alpinistes."
+            ]
+        },
+        "de": {
+            "name": "KLEINSTEIN",
+            "category": "Gestein",
+            "entry_text": [
+                "Viele von ihnen leben auf\n",
+                "Bergpfaden, halb vergraben\n",
+                "und Bergsteiger beobachtend."
+            ]
+        },
+        "it": {
+            "name": "GEODUDE",
+            "category": "Pokémon Roccia",
+            "entry_text": [
+                "Molti vivono sui sentieri montani\n",
+                "e se ne stanno mezzi infossati nel\n",
+                "terreno ad osservare gli scalatori."
+            ]
+        },
+        "es": {
+            "name": "GEODUDE",
+            "category": "Pokémon Roca",
+            "entry_text": [
+                "Muchos viven en zonas montañosas\n",
+                "y permanecen semienterrados\n",
+                "mientras miran a los escaladores."
+            ]
+        },
+        "jp": {
+            "name": "イシツブテ",
+            "category": "がんせきポケモン",
+            "entry_text": [
+                "やまみちに　おおく　せいそくする。\n",
+                "からだの　はんぶんを　じめんに　うめ\n",
+                "とざんしゃの　ようすを　みている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

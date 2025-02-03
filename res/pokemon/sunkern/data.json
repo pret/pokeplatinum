@@ -1,5 +1,4 @@
 {
-    "name": "Sunkern",
     "base_stats": {
         "hp": 30,
         "attack": 30,
@@ -110,8 +109,60 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "It suddenly falls out of the sky in\nthe morning. A year after a cold\nsummer, their population explodes.",
-        "category": "Seed Pokémon"
+        "en": {
+            "name": "SUNKERN",
+            "category": "Seed Pokémon",
+            "entry_text": [
+                "It suddenly falls out of the sky in\n",
+                "the morning. A year after a cold\n",
+                "summer, their population explodes."
+            ]
+        },
+        "fr": {
+            "name": "TOURNEGRIN",
+            "category": "Pokémon Graine",
+            "entry_text": [
+                "Il tombe du ciel sans crier gare en\n",
+                "matinée. On en croise énormément \n",
+                "l’année suivant un été froid."
+            ]
+        },
+        "de": {
+            "name": "SONNKERN",
+            "category": "Samen",
+            "entry_text": [
+                "Morgens fällt es plötzlich aus dem\n",
+                "Himmel. War der Sommer kalt,\n",
+                "explodiert seine Population."
+            ]
+        },
+        "it": {
+            "name": "SUNKERN",
+            "category": "Pokémon Seme",
+            "entry_text": [
+                "Cade improvvisamente giù dal cielo\n",
+                "al mattino. Dopo un’estate fredda,\n",
+                "la popolazione di SUNKERN esplode."
+            ]
+        },
+        "es": {
+            "name": "SUNKERN",
+            "category": "Pokémon Semilla",
+            "entry_text": [
+                "Cae de repente del cielo por las\n",
+                "mañanas. Los años de veranos\n",
+                "suaves su número se multiplica."
+            ]
+        },
+        "jp": {
+            "name": "ヒマナッツ",
+            "category": "たねポケモン",
+            "entry_text": [
+                "あるあさ　とつぜん　ふってくる。\n",
+                "なつが　さむかった　つぎの　としは\n",
+                "かずが　ばくはつてきに　ふえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

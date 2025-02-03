@@ -1,5 +1,4 @@
 {
-    "name": "Feraligatr",
     "base_stats": {
         "hp": 85,
         "attack": 105,
@@ -132,8 +131,60 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 2,
-        "entry_text": "It usually moves slowly, but it\ngoes at blinding speed when it\nattacks and bites prey.",
-        "category": "Big Jaw Pokémon"
+        "en": {
+            "name": "FERALIGATR",
+            "category": "Big Jaw Pokémon",
+            "entry_text": [
+                "It usually moves slowly, but it\n",
+                "goes at blinding speed when it\n",
+                "attacks and bites prey."
+            ]
+        },
+        "fr": {
+            "name": "ALIGATUEUR",
+            "category": "Pokémon Mâchoire",
+            "entry_text": [
+                "Ce Pokémon à l’air pataud est\n",
+                "capable d’attaquer à la vitesse\n",
+                "de l’éclair pour mordre sa proie."
+            ]
+        },
+        "de": {
+            "name": "IMPERGATOR",
+            "category": "Großmaul",
+            "entry_text": [
+                "Eigentlich bewegt es sich langsam,\n",
+                "doch seine Beute greift es\n",
+                "blitzschnell an."
+            ]
+        },
+        "it": {
+            "name": "FERALIGATR",
+            "category": "Pokémon Mascellone",
+            "entry_text": [
+                "Di solito si muove lentamente, ma\n",
+                "quando attacca e morde la preda si\n",
+                "muove ad una velocità incredibile."
+            ]
+        },
+        "es": {
+            "name": "FERALIGATR",
+            "category": "Pokémon Fauces",
+            "entry_text": [
+                "Se suele mover lento, pero alcanza\n",
+                "velocidades de vértigo al atacar\n",
+                "y morder a sus enemigos."
+            ]
+        },
+        "jp": {
+            "name": "オ－ダイル",
+            "category": "おおあごポケモン",
+            "entry_text": [
+                "ふだんは　ゆっくりとした　うごきだが\n",
+                "えものに　かみつくときは\n",
+                "めにも　とまらない　スピ－ドだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

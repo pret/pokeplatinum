@@ -337,7 +337,7 @@ void MessageLoader_Get(const MessageLoader *loader, u32 entryID, charcode_t *dst
 
 void MessageLoader_GetSpeciesName(u32 species, u32 heapID, charcode_t *dst)
 {
-    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAMES, heapID);
+    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
 
     MessageLoader_Get(loader, species, dst);
     MessageLoader_Free(loader);

@@ -1,5 +1,4 @@
 {
-    "name": "Kangaskhan",
     "base_stats": {
         "hp": 105,
         "attack": 95,
@@ -137,8 +136,60 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 0,
-        "entry_text": "It raises its offspring in its belly\npouch. It lets the baby out to\nplay only when it feels safe.",
-        "category": "Parent Pokémon"
+        "en": {
+            "name": "KANGASKHAN",
+            "category": "Parent Pokémon",
+            "entry_text": [
+                "It raises its offspring in its belly\n",
+                "pouch. It lets the baby out to\n",
+                "play only when it feels safe."
+            ]
+        },
+        "fr": {
+            "name": "KANGOUREX",
+            "category": "Pokémon Maternel",
+            "entry_text": [
+                "Il élève ses petits dans sa poche\n",
+                "ventrale. Il attend d’être en lieu\n",
+                "sûr pour les laisser jouer dehors."
+            ]
+        },
+        "de": {
+            "name": "KANGAMA",
+            "category": "Muttertier",
+            "entry_text": [
+                "Sein Nachwuchs wächst in seinem\n",
+                "Beutel heran. Nur wenn es sicher\n",
+                "ist, darf das Junge aus dem Beutel."
+            ]
+        },
+        "it": {
+            "name": "KANGASKHAN",
+            "category": "Pokémon Genitore",
+            "entry_text": [
+                "Tiene il cucciolo nel marsupio che ha\n",
+                "sulla pancia e lo lascia uscire solo\n",
+                "quando non ci sono pericoli."
+            ]
+        },
+        "es": {
+            "name": "KANGASKHAN",
+            "category": "Pokémon Padres",
+            "entry_text": [
+                "Lleva a su cría en la bolsa de su\n",
+                "panza. Solo deja que su cría salga\n",
+                "a jugar cuando no siente peligro."
+            ]
+        },
+        "jp": {
+            "name": "ガル－ラ",
+            "category": "おやこポケモン",
+            "entry_text": [
+                "おなかの　ふくろで　こそだてをする。\n",
+                "あんぜんな　ときだけ　こどもを\n",
+                "ふくろから　だして　あそばせる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

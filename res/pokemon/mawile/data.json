@@ -1,5 +1,4 @@
 {
-    "name": "Mawile",
     "base_stats": {
         "hp": 50,
         "attack": 85,
@@ -126,8 +125,60 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "Attached to its head is a huge\nset of jaws formed by horns.\nIt can chew through iron beams.",
-        "category": "Deceiver Pokémon"
+        "en": {
+            "name": "MAWILE",
+            "category": "Deceiver Pokémon",
+            "entry_text": [
+                "Attached to its head is a huge\n",
+                "set of jaws formed by horns.\n",
+                "It can chew through iron beams."
+            ]
+        },
+        "fr": {
+            "name": "MYSDIBULE",
+            "category": "Pokémon Trompeur",
+            "entry_text": [
+                "Ses cornes forment une grande\n",
+                "mâchoire attachée à sa tête. Elle\n",
+                "peut broyer des barres de fer. "
+            ]
+        },
+        "de": {
+            "name": "FLUNKIFER",
+            "category": "Schwindler",
+            "entry_text": [
+                "Auf seinem Kopf befindet sich ein\n",
+                "riesiger Kiefer, der aus Hörnern\n",
+                "besteht. Er kann Eisen zermalmen."
+            ]
+        },
+        "it": {
+            "name": "MAWILE",
+            "category": "Pokémon Inganno",
+            "entry_text": [
+                "Le sue due enormi mandibole sono\n",
+                "corna trasformate. Con esse può\n",
+                "masticare persino travi di ferro."
+            ]
+        },
+        "es": {
+            "name": "MAWILE",
+            "category": "Pokémon Tramposo",
+            "entry_text": [
+                "Las grandes fauces de su cabeza\n",
+                "están formadas por cuernos.\n",
+                "Puede romper el hierro con ellas."
+            ]
+        },
+        "jp": {
+            "name": "クチ－ト",
+            "category": "あざむきポケモン",
+            "entry_text": [
+                "ツノが　へんけいして　できた\n",
+                "おおあごが　あたまに　ついている。\n",
+                "てっこつを　かみきってしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

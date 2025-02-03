@@ -1,5 +1,4 @@
 {
-    "name": "Makuhita",
     "base_stats": {
         "hp": 72,
         "attack": 60,
@@ -120,8 +119,60 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "It toughens its body by slamming\ninto thick trees. Many snapped\ntrees can be found near its nest.",
-        "category": "Guts Pokémon"
+        "en": {
+            "name": "MAKUHITA",
+            "category": "Guts Pokémon",
+            "entry_text": [
+                "It toughens its body by slamming\n",
+                "into thick trees. Many snapped\n",
+                "trees can be found near its nest."
+            ]
+        },
+        "fr": {
+            "name": "MAKUHITA",
+            "category": "Pokémon Tenace",
+            "entry_text": [
+                "Il fortifie son corps en fonçant\n",
+                "sur des arbres épais. Son nid est\n",
+                "entouré d’arbres abattus."
+            ]
+        },
+        "de": {
+            "name": "MAKUHITA",
+            "category": "Courage",
+            "entry_text": [
+                "Es stärkt seinen Körper, indem es\n",
+                "gegen Bäume rennt. In seiner Nähe\n",
+                "finden sich viele umgekippte Bäume."
+            ]
+        },
+        "it": {
+            "name": "MAKUHITA",
+            "category": "Pokémon Coraggio",
+            "entry_text": [
+                "Si rinforza sbattendo contro enormi\n",
+                "alberi. Vicino alla sua tana si\n",
+                "trovano parecchi alberi abbattuti."
+            ]
+        },
+        "es": {
+            "name": "MAKUHITA",
+            "category": "Pokémon Valiente",
+            "entry_text": [
+                "Endurece su cuerpo golpeando\n",
+                "grandes árboles. Cerca de su hogar\n",
+                "suele haber árboles golpeados."
+            ]
+        },
+        "jp": {
+            "name": "マクノシタ",
+            "category": "こんじょうポケモン",
+            "entry_text": [
+                "ふとい　きのみきに　ぶつかって\n",
+                "からだを　きたえる。すみかの　そばは\n",
+                "へしおられた　きが　たくさんある。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

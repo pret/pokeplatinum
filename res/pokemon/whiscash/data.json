@@ -1,5 +1,4 @@
 {
-    "name": "Whiscash",
     "base_stats": {
         "hp": 110,
         "attack": 78,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "It is extremely protective of its\nterritory. If any foe approaches,\nit attacks using vicious tremors.",
-        "category": "Whiskers Pokémon"
+        "en": {
+            "name": "WHISCASH",
+            "category": "Whiskers Pokémon",
+            "entry_text": [
+                "It is extremely protective of its\n",
+                "territory. If any foe approaches,\n",
+                "it attacks using vicious tremors."
+            ]
+        },
+        "fr": {
+            "name": "BARBICHA",
+            "category": "Pokémon Barbillon",
+            "entry_text": [
+                "Il est attaché à son territoire.\n",
+                "Il repousse l’ennemi en provoquant\n",
+                "des secousses qui portent à 5 km."
+            ]
+        },
+        "de": {
+            "name": "WELSAR",
+            "category": "Barthaar",
+            "entry_text": [
+                "Es verteidigt sein Revier, indem es\n",
+                "Erschütterungen auslöst, die noch\n",
+                "in 5 km Entfernung zu spüren sind."
+            ]
+        },
+        "it": {
+            "name": "WHISCASH",
+            "category": "Pokémon Baffetti",
+            "entry_text": [
+                "Ha un senso del territorio molto\n",
+                "sviluppato. Respinge i nemici scate-\n",
+                "nando terremoti del raggio di 5 km."
+            ]
+        },
+        "es": {
+            "name": "WHISCASH",
+            "category": "Pokémon Bigotudo",
+            "entry_text": [
+                "Es muy territorial. Expulsa a los\n",
+                "intrusos con unos temblores que\n",
+                "se sienten en un radio de 5 km."
+            ]
+        },
+        "jp": {
+            "name": "ナマズン",
+            "category": "ひげうおポケモン",
+            "entry_text": [
+                "なわばり　いしきが　とても　つよい。\n",
+                "しゅうい　５キロの　はんいで\n",
+                "じしんを　おこし　げきたいする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

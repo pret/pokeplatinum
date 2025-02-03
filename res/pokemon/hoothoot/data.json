@@ -1,5 +1,4 @@
 {
-    "name": "Hoothoot",
     "base_stats": {
         "hp": 60,
         "attack": 30,
@@ -118,8 +117,60 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It marks time precisely. Some\ncountries consider it to be a wise\nfriend, versed in the world’s ways.",
-        "category": "Owl Pokémon"
+        "en": {
+            "name": "HOOTHOOT",
+            "category": "Owl Pokémon",
+            "entry_text": [
+                "It marks time precisely. Some\n",
+                "countries consider it to be a wise\n",
+                "friend, versed in the world’s ways."
+            ]
+        },
+        "fr": {
+            "name": "HOOTHOOT",
+            "category": "Pokémon Hibou",
+            "entry_text": [
+                "Il se tient toujours sur un pied. Il\n",
+                "ne prend jamais appui sur les\n",
+                "deux, même en cas d’attaque."
+            ]
+        },
+        "de": {
+            "name": "HOOTHOOT",
+            "category": "Eule",
+            "entry_text": [
+                "Es steht ständig auf einem Fuß.\n",
+                "Selbst wenn es angreift, stellt es\n",
+                "sich nicht auf beide Beine."
+            ]
+        },
+        "it": {
+            "name": "HOOTHOOT",
+            "category": "Pokémon Gufo",
+            "entry_text": [
+                "Sta sempre ritto su un piede solo\n",
+                "e non mette giù l’altro neppure\n",
+                "quando viene attaccato."
+            ]
+        },
+        "es": {
+            "name": "HOOTHOOT",
+            "category": "Pokémon Búho",
+            "entry_text": [
+                "Siempre se yergue sobre una pata.\n",
+                "Nunca apoya ambas, ni siquiera\n",
+                "al sufrir un ataque."
+            ]
+        },
+        "jp": {
+            "name": "ホ－ホ－",
+            "category": "ふくろうポケモン",
+            "entry_text": [
+                "いつも　いっぽんあしで　たっている。\n",
+                "こうげきを　うけても　２ほんあしで\n",
+                "ふんばるようなことは　しない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

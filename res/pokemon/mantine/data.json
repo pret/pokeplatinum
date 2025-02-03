@@ -1,5 +1,4 @@
 {
-    "name": "Mantine",
     "base_stats": {
         "hp": 65,
         "attack": 40,
@@ -120,8 +119,60 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 65535,
-        "entry_text": "While elegantly swimming in the sea,\nit ignores REMORAID that cling to\nits fins seeking food scraps.",
-        "category": "Kite Pokémon"
+        "en": {
+            "name": "MANTINE",
+            "category": "Kite Pokémon",
+            "entry_text": [
+                "While elegantly swimming in the sea,\n",
+                "it ignores REMORAID that cling to\n",
+                "its fins seeking food scraps."
+            ]
+        },
+        "fr": {
+            "name": "DEMANTA",
+            "category": "Pokémon Cervolant",
+            "entry_text": [
+                "Lorsque la mer est calme, il arrive\n",
+                "de croiser un banc de DEMANTA\n",
+                "nageant comme s’ils volaient."
+            ]
+        },
+        "de": {
+            "name": "MANTAX",
+            "category": "Flugrochen",
+            "entry_text": [
+                "Wenn das Meer ruhig ist, kann man\n",
+                "vielleicht einen Schwarm MANTAX\n",
+                "sehen, die schnell vorbeischwimmen."
+            ]
+        },
+        "it": {
+            "name": "MANTINE",
+            "category": "Pokémon Aquilone",
+            "entry_text": [
+                "Quando il mare è calmo, è possibile\n",
+                "vedere branchi di MANTINE nuotare\n",
+                "leggiadri come se volassero."
+            ]
+        },
+        "es": {
+            "name": "MANTINE",
+            "category": "Pokémon Milano",
+            "entry_text": [
+                "Cuando el mar está en calma, se\n",
+                "pueden ver bancos de MANTINE\n",
+                "nadando como si volasen."
+            ]
+        },
+        "jp": {
+            "name": "マンタイン",
+            "category": "カイトポケモン",
+            "entry_text": [
+                "なみが　おだやかな　ときは\n",
+                "おおうなばらを　とぶように　およぐ\n",
+                "マンタインの　むれに　そうぐうする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

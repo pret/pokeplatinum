@@ -1,5 +1,4 @@
 {
-    "name": "Relicanth",
     "base_stats": {
         "hp": 100,
         "attack": 90,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "A rare Pokémon discovered during\na deep-sea exploration. It has not\nchanged in over 100 million years.",
-        "category": "Longevity Pokémon"
+        "en": {
+            "name": "RELICANTH",
+            "category": "Longevity Pokémon",
+            "entry_text": [
+                "A rare Pokémon discovered during\n",
+                "a deep-sea exploration. It has not\n",
+                "changed in over 100 million years."
+            ]
+        },
+        "fr": {
+            "name": "RELICANTH",
+            "category": "Pokémon Longévité",
+            "entry_text": [
+                "Un Pokémon rare aperçu lors d’une\n",
+                "exploration sous-marine. Il n’a pas\n",
+                "évolué depuis 100 millions d’années."
+            ]
+        },
+        "de": {
+            "name": "RELICANTH",
+            "category": "Bestand",
+            "entry_text": [
+                "Tiefseeforscher fanden dieses\n",
+                "seltene PKMN, das sich in 100 Mio.\n",
+                "Jahren nicht verändert hat."
+            ]
+        },
+        "it": {
+            "name": "RELICANTH",
+            "category": "Pokémon Longevità",
+            "entry_text": [
+                "Un Pokémon raro scoperto durante\n",
+                "un’esplorazione del mare profondo.\n",
+                "È immutato da 100 milioni di anni."
+            ]
+        },
+        "es": {
+            "name": "RELICANTH",
+            "category": "Pokémon Longevo",
+            "entry_text": [
+                "Un Pokémon raro descubierto en una\n",
+                "exploración marina. No ha cambiado\n",
+                "en más de 100 millones de años."
+            ]
+        },
+        "jp": {
+            "name": "ジ－ランス",
+            "category": "ちょうじゅポケモン",
+            "entry_text": [
+                "しんかいちょうさで　はっけんされた\n",
+                "めずらしい　ポケモン。１おくねんの\n",
+                "あいだ　すがたが　かわっていない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

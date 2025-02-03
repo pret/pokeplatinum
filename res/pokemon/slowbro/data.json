@@ -1,5 +1,4 @@
 {
-    "name": "Slowbro",
     "base_stats": {
         "hp": 95,
         "attack": 75,
@@ -138,8 +137,60 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "Though usually dim witted, it\nseems to become inspired if the\nSHELLDER on its tail bites down.",
-        "category": "Hermit Crab Pokémon"
+        "en": {
+            "name": "SLOWBRO",
+            "category": "Hermit Crab Pokémon",
+            "entry_text": [
+                "Though usually dim witted, it\n",
+                "seems to become inspired if the\n",
+                "SHELLDER on its tail bites down."
+            ]
+        },
+        "fr": {
+            "name": "FLAGADOSS",
+            "category": "Pokémon Symbiose",
+            "entry_text": [
+                "Ce grand benêt connaît des éclairs\n",
+                "de lucidité lorsque le KOKIYAS de sa\n",
+                "queue se met à mordre."
+            ]
+        },
+        "de": {
+            "name": "LAHMUS",
+            "category": "Symbiose",
+            "entry_text": [
+                "Ein begriffsstutziges Pokémon.\n",
+                "Beißt das MUSCHAS am Schweif zu,\n",
+                "scheint es Intelligenz zu gewinnen."
+            ]
+        },
+        "it": {
+            "name": "SLOWBRO",
+            "category": "Pokémon Paguro",
+            "entry_text": [
+                "Non è molto perspicace, ma sembra\n",
+                "aguzzare l’ingegno se lo SHELLDER\n",
+                "che ha sulla coda lo morde."
+            ]
+        },
+        "es": {
+            "name": "SLOWBRO",
+            "category": "Pokémon Ermitaño",
+            "entry_text": [
+                "Normalmente se muestra torpe,\n",
+                "aunque espabila si el SHELLDER de\n",
+                "su cola le muerde."
+            ]
+        },
+        "jp": {
+            "name": "ヤドラン",
+            "category": "やどかりポケモン",
+            "entry_text": [
+                "ぼんやりしている　ヤドランだが\n",
+                "シェルダ－が　つよく　しっぽを\n",
+                "かむとき　なにかが　ひらめくらしい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

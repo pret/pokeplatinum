@@ -1,5 +1,4 @@
 {
-    "name": "Bibarel",
     "base_stats": {
         "hp": 79,
         "attack": 85,
@@ -125,8 +124,60 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "A river dammed by BIBAREL will\nnever overflow its banks, which\nis appreciated by people nearby.",
-        "category": "Beaver Pokémon"
+        "en": {
+            "name": "BIBAREL",
+            "category": "Beaver Pokémon",
+            "entry_text": [
+                "A river dammed by BIBAREL will\n",
+                "never overflow its banks, which\n",
+                "is appreciated by people nearby."
+            ]
+        },
+        "fr": {
+            "name": "CASTORNO",
+            "category": "Pokémon Castor",
+            "entry_text": [
+                "Il construit des barrages de boue\n",
+                "et d’écorce le long des fleuves. \n",
+                "C’est un ouvrier de renom."
+            ]
+        },
+        "de": {
+            "name": "BIDIFAS",
+            "category": "Biber",
+            "entry_text": [
+                "Es baut sein Nest, indem es in\n",
+                "Flüssen Dämme aus Schlamm und\n",
+                "Ästen baut. Ein fleißiger Arbeiter."
+            ]
+        },
+        "it": {
+            "name": "BIBAREL",
+            "category": "Pokémon Castoro",
+            "entry_text": [
+                "Sbarra il corso dei fiumi con cor-\n",
+                "teccia e fango per farsi la tana. È\n",
+                "noto come lavoratore instancabile."
+            ]
+        },
+        "es": {
+            "name": "BIBAREL",
+            "category": "Pokémon Castor",
+            "entry_text": [
+                "Para anidar, crea presas en los\n",
+                "ríos con maderas y barro.\n",
+                "Tiene fama de trabajador."
+            ]
+        },
+        "jp": {
+            "name": "ビ－ダル",
+            "category": "ビ－バ－ポケモン",
+            "entry_text": [
+                "かわを　きのみきや　どろの　ダムで\n",
+                "せきとめて　すみかを　つくる。\n",
+                "はたらきものとして　しられている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

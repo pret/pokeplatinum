@@ -1,5 +1,4 @@
 {
-    "name": "Mesprit",
     "base_stats": {
         "hp": 80,
         "attack": 105,
@@ -125,8 +124,60 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "When MESPRIT flew, people learned\nthe joy and sadness of living.\nIt was the birth of emotions.",
-        "category": "Emotion Pokémon"
+        "en": {
+            "name": "MESPRIT",
+            "category": "Emotion Pokémon",
+            "entry_text": [
+                "When MESPRIT flew, people learned\n",
+                "the joy and sadness of living.\n",
+                "It was the birth of emotions."
+            ]
+        },
+        "fr": {
+            "name": "CREFOLLET",
+            "category": "Pokémon Emotion",
+            "entry_text": [
+                "On l’appelle “être de l’émotion”.\n",
+                "Il enseigne aux hommes la beauté de\n",
+                "la tristesse, la douleur et la joie."
+            ]
+        },
+        "de": {
+            "name": "VESPRIT",
+            "category": "Emotion",
+            "entry_text": [
+                "“Das fühlende Wesen”.\n",
+                "Es lehrt die Menschen die Ideale\n",
+                "von Trauer, Schmerz und Freude."
+            ]
+        },
+        "it": {
+            "name": "MESPRIT",
+            "category": "Pokémon Emozione",
+            "entry_text": [
+                "Detto “Essere delle emozioni”.\n",
+                "Ha insegnato agli uomini la nobiltà\n",
+                "di tristezza, gioia e dolore."
+            ]
+        },
+        "es": {
+            "name": "MESPRIT",
+            "category": "Pokémon Sensorio",
+            "entry_text": [
+                "Se le conoce como el “ser de la\n",
+                "emoción”. Enseñó a los humanos\n",
+                "la nobleza del dolor y la alegría."
+            ]
+        },
+        "jp": {
+            "name": "エムリット",
+            "category": "かんじょうポケモン",
+            "entry_text": [
+                "かなしみの　くるしさと　よろこびの\n",
+                "とうとさを　ひとびとに　おしえた。\n",
+                "かんじょうのかみ　と　よばれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

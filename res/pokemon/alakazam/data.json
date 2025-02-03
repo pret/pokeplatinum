@@ -1,5 +1,4 @@
 {
-    "name": "Alakazam",
     "base_stats": {
         "hp": 55,
         "attack": 50,
@@ -126,8 +125,60 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "The spoons clutched in its hands\nare said to have been created by\nits psychic powers.",
-        "category": "Psi Pokémon"
+        "en": {
+            "name": "ALAKAZAM",
+            "category": "Psi Pokémon",
+            "entry_text": [
+                "The spoons clutched in its hands\n",
+                "are said to have been created by\n",
+                "its psychic powers."
+            ]
+        },
+        "fr": {
+            "name": "ALAKAZAM",
+            "category": "Pokémon Psy",
+            "entry_text": [
+                "Grâce à sa mémoire exceptionnelle,\n",
+                "il n’a rien oublié depuis sa \n",
+                "naissance. Il a un Q.I. de 5 000."
+            ]
+        },
+        "de": {
+            "name": "SIMSALA",
+            "category": "Psi",
+            "entry_text": [
+                "Es besitzt ein fantastisches Ge-\n",
+                "dächtnis und erinnert sich an alles\n",
+                "seit seiner Geburt. IQ: Über 5 000."
+            ]
+        },
+        "it": {
+            "name": "ALAKAZAM",
+            "category": "Pokémon Psico",
+            "entry_text": [
+                "La sua incredibile memoria gli\n",
+                "fa ricordare ogni evento fin dalla\n",
+                "nascita. Il suo QI supera 5000."
+            ]
+        },
+        "es": {
+            "name": "ALAKAZAM",
+            "category": "Pokémon Psi",
+            "entry_text": [
+                "Su gran memoria le permite\n",
+                "recordar todo desde su nacimiento.\n",
+                "Su CI es superior a 5000."
+            ]
+        },
+        "jp": {
+            "name": "フ－ディン",
+            "category": "ねんりきポケモン",
+            "entry_text": [
+                "うまれてから　たいけんした　すべてを\n",
+                "おぼえているほどの　きおくりょく。\n",
+                "ちのうしすうは　５０００を　こえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

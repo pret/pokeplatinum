@@ -1,5 +1,4 @@
 {
-    "name": "Skiploom",
     "base_stats": {
         "hp": 55,
         "attack": 45,
@@ -114,8 +113,60 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "It blooms when the weather warms.\nIt floats in the sky to soak up as\nmuch sunlight as possible.",
-        "category": "Cottonweed Pokémon"
+        "en": {
+            "name": "SKIPLOOM",
+            "category": "Cottonweed Pokémon",
+            "entry_text": [
+                "It blooms when the weather warms.\n",
+                "It floats in the sky to soak up as\n",
+                "much sunlight as possible."
+            ]
+        },
+        "fr": {
+            "name": "FLORAVOL",
+            "category": "Pokémon Pissenlit",
+            "entry_text": [
+                "Il fleurit lorsque les températures\n",
+                "remontent. Il flotte dans le ciel \n",
+                "pour absorber les rayons du soleil."
+            ]
+        },
+        "de": {
+            "name": "HUBELUPF",
+            "category": "Löwenzahn",
+            "entry_text": [
+                "Sobald es wärmer wird, blüht es\n",
+                "auf. Es schwebt am Himmel und nimmt\n",
+                "so viel Sonnenlicht auf wie möglich."
+            ]
+        },
+        "it": {
+            "name": "SKIPLOOM",
+            "category": "Pokémon Gramigna",
+            "entry_text": [
+                "Il suo fiore sboccia appena l’aria\n",
+                "si riscalda. Fluttua nel cielo\n",
+                "per assorbire l’energia solare."
+            ]
+        },
+        "es": {
+            "name": "SKIPLOOM",
+            "category": "Pokémon Algadón",
+            "entry_text": [
+                "Florece en épocas cálidas. Flota\n",
+                "en el aire para absorber toda la\n",
+                "luz solar que puede."
+            ]
+        },
+        "jp": {
+            "name": "ポポッコ",
+            "category": "わたくさポケモン",
+            "entry_text": [
+                "きおんが　たかくなると　はなひらく。\n",
+                "そらに　うかんで　ひざしを\n",
+                "いっぱい　あびようとする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

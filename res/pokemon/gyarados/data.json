@@ -1,5 +1,4 @@
 {
-    "name": "Gyarados",
     "base_stats": {
         "hp": 95,
         "attack": 125,
@@ -121,8 +120,60 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 22,
         "pokemon_pos_m": 0,
-        "entry_text": "Once it begins to rampage, a\nGYARADOS will burn everything\ndown, even in a harsh storm.",
-        "category": "Atrocious Pokémon"
+        "en": {
+            "name": "GYARADOS",
+            "category": "Atrocious Pokémon",
+            "entry_text": [
+                "Once it begins to rampage, a\n",
+                "GYARADOS will burn everything\n",
+                "down, even in a harsh storm."
+            ]
+        },
+        "fr": {
+            "name": "LEVIATOR",
+            "category": "Pokémon Terrifiant",
+            "entry_text": [
+                "Lorsqu’il apparaît, sa rage ne\n",
+                "cesse qu’après qu’il a rasé les\n",
+                "plaines et montagnes alentour."
+            ]
+        },
+        "de": {
+            "name": "GARADOS",
+            "category": "Grausam",
+            "entry_text": [
+                "Sobald es erscheint, nimmt seine\n",
+                "Wut nicht eher ab, bis es die Felder\n",
+                "und Berge ringsum zerstört hat."
+            ]
+        },
+        "it": {
+            "name": "GYARADOS",
+            "category": "Pokémon Atroce",
+            "entry_text": [
+                "La sua ira non si placa finché non\n",
+                "ha raso al suolo campi e monti\n",
+                "attorno a sé."
+            ]
+        },
+        "es": {
+            "name": "GYARADOS",
+            "category": "Pokémon Atrocidad",
+            "entry_text": [
+                "Cuando se enfada, su rabia solo\n",
+                "se disipa tras arrasar los\n",
+                "campos y montañas vecinos."
+            ]
+        },
+        "jp": {
+            "name": "ギャラドス",
+            "category": "きょうあくポケモン",
+            "entry_text": [
+                "ひとたび　すがたを　あらわすと\n",
+                "のやまの　すべてを　やきつくすまで\n",
+                "いかりが　しずまらない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

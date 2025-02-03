@@ -1,5 +1,4 @@
 {
-    "name": "Hitmonchan",
     "base_stats": {
         "hp": 50,
         "attack": 105,
@@ -113,8 +112,60 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "The arm-twisting punches it throws\npulverize even concrete. It rests\nafter three minutes of fighting.",
-        "category": "Punching Pokémon"
+        "en": {
+            "name": "HITMONCHAN",
+            "category": "Punching Pokémon",
+            "entry_text": [
+                "The arm-twisting punches it throws\n",
+                "pulverize even concrete. It rests\n",
+                "after three minutes of fighting."
+            ]
+        },
+        "fr": {
+            "name": "TYGNON",
+            "category": "Pokémon Puncheur",
+            "entry_text": [
+                "Même le béton cède sous ses \n",
+                "poings dévastateurs. Au combat, il\n",
+                "s’essouffle au bout de 3 minutes."
+            ]
+        },
+        "de": {
+            "name": "NOCKCHAN",
+            "category": "Puncher",
+            "entry_text": [
+                "Die Schläge, die es austeilt, können\n",
+                "Beton pulverisieren. Es muss sich\n",
+                "im Kampf alle 3 Minuten ausruhen."
+            ]
+        },
+        "it": {
+            "name": "HITMONCHAN",
+            "category": "Pokémon Tirapugni",
+            "entry_text": [
+                "Sferra pugni così potenti da polve-\n",
+                "rizzare persino il cemento. Si ripo-\n",
+                "sa dopo tre minuti di lotta."
+            ]
+        },
+        "es": {
+            "name": "HITMONCHAN",
+            "category": "Pokémon Puñetazo",
+            "entry_text": [
+                "Los potentes golpes de sus brazos\n",
+                "pueden pulverizar el hormigón.\n",
+                "Descansa tras luchar tres minutos."
+            ]
+        },
+        "jp": {
+            "name": "エビワラ－",
+            "category": "パンチポケモン",
+            "entry_text": [
+                "うでを　ねじりながら　くりだす\n",
+                "パンチは　コンクリ－トも　ふんさい。\n",
+                "３ぷん　たたかうと　ひとやすみする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -1,5 +1,4 @@
 {
-    "name": "Garchomp",
     "base_stats": {
         "hp": 108,
         "attack": 130,
@@ -126,8 +125,60 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 1,
-        "entry_text": "It is said that when one runs at\nhigh speed, its wings create blades\nof wind that can fell nearby trees.",
-        "category": "Mach Pokémon"
+        "en": {
+            "name": "GARCHOMP",
+            "category": "Mach Pokémon",
+            "entry_text": [
+                "It is said that when one runs at\n",
+                "high speed, its wings create blades\n",
+                "of wind that can fell nearby trees."
+            ]
+        },
+        "fr": {
+            "name": "CARCHACROK",
+            "category": "Pokémon Supersonic",
+            "entry_text": [
+                "Quand il se recroqueville et étend\n",
+                "ses ailes, on dirait un chasseur.\n",
+                "Sa vitesse est supersonique."
+            ]
+        },
+        "de": {
+            "name": "KNAKRACK",
+            "category": "Rasanz",
+            "entry_text": [
+                "Spannt es seinen Körper und seine\n",
+                "Flügel, sieht es aus wie ein Jet.\n",
+                "Es fliegt mit Schallgeschwindigkeit."
+            ]
+        },
+        "it": {
+            "name": "GARCHOMP",
+            "category": "Pokémon Mach",
+            "entry_text": [
+                "Quando si piega e distende le ali,\n",
+                "sembra un jet. Vola a una velocità\n",
+                "supersonica."
+            ]
+        },
+        "es": {
+            "name": "GARCHOMP",
+            "category": "Pokémon Mach",
+            "entry_text": [
+                "Cuando despliega su cuerpo y sus\n",
+                "alas, parece un avión a reacción.\n",
+                "Vuela a velocidad sónica."
+            ]
+        },
+        "jp": {
+            "name": "ガブリアス",
+            "category": "マッハポケモン",
+            "entry_text": [
+                "からだを　おりたたみ　つばさを\n",
+                "のばすと　まるで　ジェットき。\n",
+                "おんそくで　とぶことが　できる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

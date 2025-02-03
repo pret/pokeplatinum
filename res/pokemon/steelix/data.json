@@ -1,5 +1,4 @@
 {
-    "name": "Steelix",
     "base_stats": {
         "hp": 75,
         "attack": 85,
@@ -128,8 +127,60 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 21,
         "pokemon_pos_m": 4,
-        "entry_text": "It is thought its body transformed\nas a result of iron accumulating\ninternally from swallowing soil.",
-        "category": "Iron Snake Pokémon"
+        "en": {
+            "name": "STEELIX",
+            "category": "Iron Snake Pokémon",
+            "entry_text": [
+                "It is thought its body transformed\n",
+                "as a result of iron accumulating\n",
+                "internally from swallowing soil."
+            ]
+        },
+        "fr": {
+            "name": "STEELIX",
+            "category": "Pokémon Serpenfer",
+            "entry_text": [
+                "Grâce à la température élevée et la\n",
+                "haute pression souterraines, son\n",
+                "corps est plus dur que le métal."
+            ]
+        },
+        "de": {
+            "name": "STAHLOS",
+            "category": "Stahlboa",
+            "entry_text": [
+                "Hoher Druck und hohe Temperaturen\n",
+                "haben seinen Körper härter als\n",
+                "Stahl werden lassen."
+            ]
+        },
+        "it": {
+            "name": "STEELIX",
+            "category": "Pokémon Ferroserpe",
+            "entry_text": [
+                "Temprato dalla pressione e dal\n",
+                "calore sotterraneo, il suo corpo è\n",
+                "più duro di qualsiasi metallo."
+            ]
+        },
+        "es": {
+            "name": "STEELIX",
+            "category": "Pokémon Serpférrea",
+            "entry_text": [
+                "Su cuerpo es más duro que\n",
+                "cualquier metal debido a la gran\n",
+                "presión y calor de su hábitat."
+            ]
+        },
+        "jp": {
+            "name": "ハガネ－ル",
+            "category": "てつへびポケモン",
+            "entry_text": [
+                "ちちゅうの　たかい　あつりょくと\n",
+                "ねつで　きたえられた　からだは\n",
+                "あらゆる　きんぞくよりも　かたい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

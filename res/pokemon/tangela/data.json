@@ -1,5 +1,4 @@
 {
-    "name": "Tangela",
     "base_stats": {
         "hp": 65,
         "attack": 55,
@@ -118,8 +117,60 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "The blue vines shrouding its body\nare covered in a growth of fine\nhair. It is known to be ticklish.",
-        "category": "Vine Pokémon"
+        "en": {
+            "name": "TANGELA",
+            "category": "Vine Pokémon",
+            "entry_text": [
+                "The blue vines shrouding its body\n",
+                "are covered in a growth of fine\n",
+                "hair. It is known to be ticklish."
+            ]
+        },
+        "fr": {
+            "name": "SAQUEDENEU",
+            "category": "Pokémon Vigne",
+            "entry_text": [
+                "Il s’abrite derrière des lianes\n",
+                "bleues. Nul n’a jamais vu le\n",
+                "visage qu’elles dissimulent."
+            ]
+        },
+        "de": {
+            "name": "TANGELA",
+            "category": "Ranke",
+            "entry_text": [
+                "Es ist von blauen Ranken umgeben.\n",
+                "Niemand hat jemals das Gesicht\n",
+                "dieses Pokémon gesehen."
+            ]
+        },
+        "it": {
+            "name": "TANGELA",
+            "category": "Pokémon Liana",
+            "entry_text": [
+                "È ricoperto di liane blu. Nessuno\n",
+                "ha mai visto il suo volto, poiché è\n",
+                "celato dal groviglio di liane."
+            ]
+        },
+        "es": {
+            "name": "TANGELA",
+            "category": "Pokémon Enredadera",
+            "entry_text": [
+                "Está envuelto en lianas azules.\n",
+                "Nadie ha logrado ver el rostro\n",
+                "que se oculta tras ellas."
+            ]
+        },
+        "jp": {
+            "name": "モンジャラ",
+            "category": "ツルじょうポケモン",
+            "entry_text": [
+                "あおい　ツルに　おおわれている。\n",
+                "ツルに　かくれている　かおを\n",
+                "みたものは　まだ　いない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

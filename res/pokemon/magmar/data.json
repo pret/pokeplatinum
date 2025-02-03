@@ -1,5 +1,4 @@
 {
-    "name": "Magmar",
     "base_stats": {
         "hp": 65,
         "attack": 95,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "When it breathes deeply, heat\nwaves form around its body, making\nit hard to see clearly.",
-        "category": "Spitfire Pokémon"
+        "en": {
+            "name": "MAGMAR",
+            "category": "Spitfire Pokémon",
+            "entry_text": [
+                "When it breathes deeply, heat\n",
+                "waves form around its body, making\n",
+                "it hard to see clearly."
+            ]
+        },
+        "fr": {
+            "name": "MAGMAR",
+            "category": "Pokémon Crache-Feu",
+            "entry_text": [
+                "Il est né au milieu d’un volcan.\n",
+                "Son corps est couvert de flammes\n",
+                "qui flambent comme un soleil."
+            ]
+        },
+        "de": {
+            "name": "MAGMAR",
+            "category": "Brenner",
+            "entry_text": [
+                "Es wurde bei einem Vulkanausbruch\n",
+                "geboren. Sein Körper ist von\n",
+                "hellen Flammen umgeben."
+            ]
+        },
+        "it": {
+            "name": "MAGMAR",
+            "category": "Pokémon Sputafuoco",
+            "entry_text": [
+                "È nato dallo zampillo di un vulcano.\n",
+                "Ha il corpo ricoperto da fiamme\n",
+                "che brillano come i raggi solari."
+            ]
+        },
+        "es": {
+            "name": "MAGMAR",
+            "category": "Pokémon Escupfuego",
+            "entry_text": [
+                "Nació en el centro de un volcán.\n",
+                "Su cuerpo está cubierto de llamas\n",
+                "que brillan como el Sol."
+            ]
+        },
+        "jp": {
+            "name": "ブ－バ－",
+            "category": "ひふきポケモン",
+            "entry_text": [
+                "かざんの　かこうで　うまれそだった。\n",
+                "たいようと　おなじような　ほのおの\n",
+                "ゆらめきが　ぜんしんを　おおう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

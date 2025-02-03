@@ -1,5 +1,4 @@
 {
-    "name": "Hitmontop",
     "base_stats": {
         "hp": 50,
         "attack": 95,
@@ -110,8 +109,60 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "It fights while spinning like a top.\nThe centrifugal force boosts its\ndestructive power by ten.",
-        "category": "Handstand Pokémon"
+        "en": {
+            "name": "HITMONTOP",
+            "category": "Handstand Pokémon",
+            "entry_text": [
+                "It fights while spinning like a top.\n",
+                "The centrifugal force boosts its\n",
+                "destructive power by ten."
+            ]
+        },
+        "fr": {
+            "name": "KAPOERA",
+            "category": "Pokémon Poirier",
+            "entry_text": [
+                "Il combat en tournoyant comme une\n",
+                "toupie. La force centrifuge décuple\n",
+                "sa puissance destructrice."
+            ]
+        },
+        "de": {
+            "name": "KAPOERA",
+            "category": "Kopfstand",
+            "entry_text": [
+                "Es kämpft, während es sich wie ein\n",
+                "Kreisel dreht. Die Zentrifugalkraft\n",
+                "erhöht die Kampfkraft um 10."
+            ]
+        },
+        "it": {
+            "name": "HITMONTOP",
+            "category": "Pokémon Verticale",
+            "entry_text": [
+                "Combatte mentre gira come una\n",
+                "trottola. La forza centrifuga de-\n",
+                "cuplica il suo potere distruttivo."
+            ]
+        },
+        "es": {
+            "name": "HITMONTOP",
+            "category": "Pokémon Boca Abajo",
+            "entry_text": [
+                "Gira a gran velocidad al luchar.\n",
+                "La fuerza centrífuga multiplica su\n",
+                "poder de destrucción por diez."
+            ]
+        },
+        "jp": {
+            "name": "カポエラ－",
+            "category": "さかだちポケモン",
+            "entry_text": [
+                "コマのように　かいてんしながら\n",
+                "たたかう。えんしんりょくの　パワ－で\n",
+                "はかいりょくは　１０ばいだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

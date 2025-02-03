@@ -1,5 +1,4 @@
 {
-    "name": "Ursaring",
     "base_stats": {
         "hp": 90,
         "attack": 130,
@@ -127,8 +126,60 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "In its territory, it leaves\nscratches on trees that bear\ndelicious berries or fruits.",
-        "category": "Hibernator Pokémon"
+        "en": {
+            "name": "URSARING",
+            "category": "Hibernator Pokémon",
+            "entry_text": [
+                "In its territory, it leaves\n",
+                "scratches on trees that bear\n",
+                "delicious berries or fruits."
+            ]
+        },
+        "fr": {
+            "name": "URSARING",
+            "category": "Pokémon Hibernant",
+            "entry_text": [
+                "Il marque de ses griffes les\n",
+                "arbres de son territoire qui\n",
+                "portent des Baies ou des fruits."
+            ]
+        },
+        "de": {
+            "name": "URSARING",
+            "category": "Schläfer",
+            "entry_text": [
+                "Es durchstreift sein Revier und\n",
+                "markiert Bäume, die Früchte\n",
+                "oder Beeren tragen, mit Kratzern."
+            ]
+        },
+        "it": {
+            "name": "URSARING",
+            "category": "Pokémon Letargo",
+            "entry_text": [
+                "Nel suo territorio, lascia graffi\n",
+                "sugli alberi che hanno bacche\n",
+                "o frutti deliziosi."
+            ]
+        },
+        "es": {
+            "name": "URSARING",
+            "category": "Pokémon Hibernante",
+            "entry_text": [
+                "Araña los árboles de su territorio\n",
+                "que dan bayas y frutas que le\n",
+                "gustan para marcarlos."
+            ]
+        },
+        "jp": {
+            "name": "リングマ",
+            "category": "とうみんポケモン",
+            "entry_text": [
+                "なわばりにある　おいしい　きのみや\n",
+                "くだものの　なる　き　には\n",
+                "ツメで　きずあとを　つける。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

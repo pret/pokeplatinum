@@ -1,5 +1,4 @@
 {
-    "name": "Toxicroak",
     "base_stats": {
         "hp": 83,
         "attack": 106,
@@ -132,8 +131,60 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "entry_text": "It has a poison sac at its throat.\nWhen it croaks, the stored poison\nis churned for greater potency.",
-        "category": "Toxic Mouth Pokémon"
+        "en": {
+            "name": "TOXICROAK",
+            "category": "Toxic Mouth Pokémon",
+            "entry_text": [
+                "It has a poison sac at its throat.\n",
+                "When it croaks, the stored poison\n",
+                "is churned for greater potency."
+            ]
+        },
+        "fr": {
+            "name": "COATOX",
+            "category": "Pokémon Toxique",
+            "entry_text": [
+                "Les griffes de ses poings sécrètent\n",
+                "une toxine si atroce qu’une simple\n",
+                "égratignure peut s’avérer fatale."
+            ]
+        },
+        "de": {
+            "name": "TOXIQUAK",
+            "category": "Giftmund",
+            "entry_text": [
+                "Die Gelenke an seinen Klauen geben\n",
+                "ein so starkes Gift ab, dass selbst\n",
+                "ein kleiner Kratzer fatal ist."
+            ]
+        },
+        "it": {
+            "name": "TOXICROAK",
+            "category": "Pokémon Inveieleno",
+            "entry_text": [
+                "I suoi artigli secernono una tossina\n",
+                "così velenosa che persino un\n",
+                "graffio può essere letale."
+            ]
+        },
+        "es": {
+            "name": "TOXICROAK",
+            "category": "Pokémon Boca Tóxica",
+            "entry_text": [
+                "Sus garras segregan una toxina\n",
+                "tan potente que un simple\n",
+                "arañazo puede ser mortal."
+            ]
+        },
+        "jp": {
+            "name": "ドクロッグ",
+            "category": "どくづきポケモン",
+            "entry_text": [
+                "こぶしの　トゲからは　かすりきずでも\n",
+                "いのちを　おとすほどの　もうどくを\n",
+                "ぶんぴつしている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

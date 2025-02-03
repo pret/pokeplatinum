@@ -1,5 +1,4 @@
 {
-    "name": "Barboach",
     "base_stats": {
         "hp": 50,
         "attack": 48,
@@ -110,8 +109,60 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "Its slimy body is hard to grasp. In\none region, it is said to have been\nborn from hardened mud.",
-        "category": "Whiskers Pokémon"
+        "en": {
+            "name": "BARBOACH",
+            "category": "Whiskers Pokémon",
+            "entry_text": [
+                "Its slimy body is hard to grasp. In\n",
+                "one region, it is said to have been\n",
+                "born from hardened mud."
+            ]
+        },
+        "fr": {
+            "name": "BARLOCHE",
+            "category": "Pokémon Barbillon",
+            "entry_text": [
+                "Il enduit son corps d’une \n",
+                "substance visqueuse pour glisser\n",
+                "et se libérer quand on l’agrippe."
+            ]
+        },
+        "de": {
+            "name": "SCHMERBE",
+            "category": "Barthaar",
+            "entry_text": [
+                "Es bedeckt seinen Körper mit einer\n",
+                "schleimigen Substanz und kann\n",
+                "sich so aus Umklammerungen winden."
+            ]
+        },
+        "it": {
+            "name": "BARBOACH",
+            "category": "Pokémon Baffetti",
+            "entry_text": [
+                "Il suo corpo è ricoperto da una\n",
+                "pellicola viscida, che gli permette\n",
+                "di sgusciare via, se afferrato."
+            ]
+        },
+        "es": {
+            "name": "BARBOACH",
+            "category": "Pokémon Bigotudo",
+            "entry_text": [
+                "Recubre su cuerpo de una película\n",
+                "viscosa que le permite escapar si\n",
+                "alguien lo agarra."
+            ]
+        },
+        "jp": {
+            "name": "ドジョッチ",
+            "category": "ひげうおポケモン",
+            "entry_text": [
+                "ぜんしんが　ヌルヌルの　たいえきで\n",
+                "おおわれているため　つかまっても\n",
+                "ぬるりと　ぬけだすことが　できる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

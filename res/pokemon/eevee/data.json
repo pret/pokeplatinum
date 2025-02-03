@@ -1,5 +1,4 @@
 {
-    "name": "Eevee",
     "base_stats": {
         "hp": 55,
         "attack": 55,
@@ -114,8 +113,60 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "Because its genetic makeup is\nirregular, it quickly changes its\nform due to a variety of causes.",
-        "category": "Evolution Pokémon"
+        "en": {
+            "name": "EEVEE",
+            "category": "Evolution Pokémon",
+            "entry_text": [
+                "Because its genetic makeup is\n",
+                "irregular, it quickly changes its\n",
+                "form due to a variety of causes."
+            ]
+        },
+        "fr": {
+            "name": "EVOLI",
+            "category": "Pokémon Evolutif",
+            "entry_text": [
+                "Un Pokémon rare qui s’adapte\n",
+                "aux environnements hostiles \n",
+                "en variant ses formes évolutives."
+            ]
+        },
+        "de": {
+            "name": "EVOLI",
+            "category": "Evolution",
+            "entry_text": [
+                "Ein seltenes PKMN, das sich seiner\n",
+                "Umgebung anpasst, indem es sich in\n",
+                "unterschiedlicher Form entwickelt."
+            ]
+        },
+        "it": {
+            "name": "EEVEE",
+            "category": "Pokémon Evoluzione",
+            "entry_text": [
+                "Un Pokémon raro che si adatta\n",
+                "agli ambienti più difficili assumendo\n",
+                "diverse forme nell’evoluzione."
+            ]
+        },
+        "es": {
+            "name": "EEVEE",
+            "category": "Pokémon Evolución",
+            "entry_text": [
+                "Un extraño Pokémon que se adapta\n",
+                "a los entornos más hostiles gracias\n",
+                "a sus diferentes evoluciones."
+            ]
+        },
+        "jp": {
+            "name": "イ－ブイ",
+            "category": "しんかポケモン",
+            "entry_text": [
+                "しんかのとき　すがたと　のうりょくが\n",
+                "かわることで　きびしい　かんきょうに\n",
+                "たいおうする　めずらしい　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

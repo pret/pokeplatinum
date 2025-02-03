@@ -1,5 +1,4 @@
 {
-    "name": "Pidgey",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -110,8 +109,56 @@
         "pokemon_pos_f": 31,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 31,
-        "entry_text": "It is docile and prefers to avoid\nconflict. If disturbed, however,\nit can ferociously strike back.",
-        "category": "Tiny Bird Pokémon"
+        "en": {
+            "name": "PIDGEY",
+            "category": "Tiny Bird Pokémon",
+            "entry_text": [
+                "It is docile and prefers to avoid\n",
+                "conflict. If disturbed, however,\n",
+                "it can ferociously strike back."
+            ]
+        },
+        "fr": {
+            "name": "ROUCOOL",
+            "category": "Pokémon Minoiseau",
+            "entry_text": [
+                "Ce Pokémon docile préfère éviter\n",
+                "le combat. Toutefois, il se montre\n",
+                "très féroce quand on l’agresse."
+            ]
+        },
+        "de": {
+            "name": "TAUBSI",
+            "category": "Kleinvogel",
+            "entry_text": [ "Reizt man dieses an sich gutmütige\n", "Pokémon, wehrt es sich wütend." ]
+        },
+        "it": {
+            "name": "PIDGEY",
+            "category": "Pokémon Uccellino",
+            "entry_text": [
+                "È docile e preferisce evitare i\n",
+                "conflitti. Ma se viene disturbato,\n",
+                "contrattacca ferocemente."
+            ]
+        },
+        "es": {
+            "name": "PIDGEY",
+            "category": "Pokémon Pajarito",
+            "entry_text": [
+                "Es manso y prefiere evitar los\n",
+                "problemas. Sin embargo, si le\n",
+                "molestan atacará ferozmente."
+            ]
+        },
+        "jp": {
+            "name": "ポッポ",
+            "category": "ことりポケモン",
+            "entry_text": [
+                "たたかいを　このまない　おとなしい\n",
+                "せいかくだが　へたに　てを　だすと\n",
+                "きょうれつに　はんげきされるぞ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -1,5 +1,4 @@
 {
-    "name": "Voltorb",
     "base_stats": {
         "hp": 40,
         "attack": 30,
@@ -110,8 +109,60 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It looks just like a Poké Ball.\nIt is dangerous because it may\nelectrocute or explode on touch.",
-        "category": "Ball Pokémon"
+        "en": {
+            "name": "VOLTORB",
+            "category": "Ball Pokémon",
+            "entry_text": [
+                "It looks just like a Poké Ball.\n",
+                "It is dangerous because it may\n",
+                "electrocute or explode on touch."
+            ]
+        },
+        "fr": {
+            "name": "VOLTORBE",
+            "category": "Pokémon Balle",
+            "entry_text": [
+                "Il ressemble à une Poké Ball. Ce\n",
+                "Pokémon dangereux peut exploser\n",
+                "ou s’électrifier au toucher."
+            ]
+        },
+        "de": {
+            "name": "VOLTOBAL",
+            "category": "Ball",
+            "entry_text": [
+                "Sieht aus wie ein Pokéball. Es ist\n",
+                "gefährlich, da es bei Berührung\n",
+                "explodieren kann."
+            ]
+        },
+        "it": {
+            "name": "VOLTORB",
+            "category": "Pokémon Ball",
+            "entry_text": [
+                "Sembra una Poké Ball. Toccandolo si\n",
+                "rischia di prendere la scossa e di\n",
+                "farlo esplodere."
+            ]
+        },
+        "es": {
+            "name": "VOLTORB",
+            "category": "Pokémon Bola",
+            "entry_text": [
+                "Parece una Poké Ball. Es muy\n",
+                "peligroso, ya que puede lanzar\n",
+                "descargas o explotar si se toca."
+            ]
+        },
+        "jp": {
+            "name": "ビリリダマ",
+            "category": "ボ－ルポケモン",
+            "entry_text": [
+                "モンスタ－ボ－ルに　そっくり。\n",
+                "まちがって　さわると　かんでんしたり\n",
+                "ときには　ばくはつするので　きけん。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

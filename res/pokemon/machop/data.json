@@ -1,5 +1,4 @@
 {
-    "name": "Machop",
     "base_stats": {
         "hp": 70,
         "attack": 80,
@@ -119,8 +118,60 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "Though small in stature, it is\npowerful enough to easily heft and\nthrow a number of GEODUDE at once.",
-        "category": "Superpower Pokémon"
+        "en": {
+            "name": "MACHOP",
+            "category": "Superpower Pokémon",
+            "entry_text": [
+                "Though small in stature, it is\n",
+                "powerful enough to easily heft and\n",
+                "throw a number of GEODUDE at once."
+            ]
+        },
+        "fr": {
+            "name": "MACHOC",
+            "category": "Pokémon Colosse",
+            "entry_text": [
+                "Il muscle son corps en soulevant\n",
+                "régulièrement un GRAVALANCH. Il\n",
+                "est rompu à tous les arts martiaux."
+            ]
+        },
+        "de": {
+            "name": "MACHOLLO",
+            "category": "Kraftprotz",
+            "entry_text": [
+                "Es hebt GEOROK hoch, um seinen\n",
+                "Körper zu trainieren. Außerdem übt\n",
+                "es sich in jeder Art v. Kampfsport."
+            ]
+        },
+        "it": {
+            "name": "MACHOP",
+            "category": "Pokémon Megaforza",
+            "entry_text": [
+                "Solleva GRAVELER ripetutamente\n",
+                "per mantenersi forte. Conosce\n",
+                "ogni tipo di arte marziale."
+            ]
+        },
+        "es": {
+            "name": "MACHOP",
+            "category": "Pokémon Superpoder",
+            "entry_text": [
+                "Levanta un GRAVELER para mantener\n",
+                "sus músculos en forma. Domina\n",
+                "todas las artes marciales."
+            ]
+        },
+        "jp": {
+            "name": "ワンリキ－",
+            "category": "かいりきポケモン",
+            "entry_text": [
+                "ゴロ－ンを　なんども　あげおろしして\n",
+                "ぜんしんの　きんにくを　きたえる。\n",
+                "あらゆる　かくとうぎを　つかう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

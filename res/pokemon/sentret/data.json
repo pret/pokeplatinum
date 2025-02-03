@@ -1,5 +1,4 @@
 {
-    "name": "Sentret",
     "base_stats": {
         "hp": 35,
         "attack": 46,
@@ -128,8 +127,60 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "It has a very nervous nature.\nIt stands up high on its tail so it\ncan scan wide areas.",
-        "category": "Scout Pokémon"
+        "en": {
+            "name": "SENTRET",
+            "category": "Scout Pokémon",
+            "entry_text": [
+                "It has a very nervous nature.\n",
+                "It stands up high on its tail so it\n",
+                "can scan wide areas."
+            ]
+        },
+        "fr": {
+            "name": "FOUINETTE",
+            "category": "Pokémon Espion",
+            "entry_text": [
+                "Ce Pokémon très nerveux\n",
+                "prend appui sur sa queue pour\n",
+                "observer ses alentours."
+            ]
+        },
+        "de": {
+            "name": "WIESOR",
+            "category": "Späher",
+            "entry_text": [
+                "Ein sehr nervöses PKMN. Es steht\n",
+                "auf seinem Schweif und betrachtet\n",
+                "seine Umgebung ganz genau."
+            ]
+        },
+        "it": {
+            "name": "SENTRET",
+            "category": "Pokémon Esplorante",
+            "entry_text": [
+                "Ha un’indole alquanto nervosa. Sta\n",
+                "ritto sulla punta della coda per\n",
+                "riuscire a sorvegliare ampie aree."
+            ]
+        },
+        "es": {
+            "name": "SENTRET",
+            "category": "Pokémon Explorador",
+            "entry_text": [
+                "Es de naturaleza nerviosa. Se alza\n",
+                "sobre su cola para otear grandes\n",
+                "extensiones."
+            ]
+        },
+        "jp": {
+            "name": "オタチ",
+            "category": "みはりポケモン",
+            "entry_text": [
+                "とても　しんけいしつな　せいかく。\n",
+                "とおくまで　みわたせるように\n",
+                "しっぽを　つかって　せのびをする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

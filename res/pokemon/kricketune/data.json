@@ -1,5 +1,4 @@
 {
-    "name": "Kricketune",
     "base_stats": {
         "hp": 77,
         "attack": 85,
@@ -106,8 +105,60 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "There is a village that hosts a\ncontest based on the amazingly\nvariable cries of this Pokémon.",
-        "category": "Cricket Pokémon"
+        "en": {
+            "name": "KRICKETUNE",
+            "category": "Cricket Pokémon",
+            "entry_text": [
+                "There is a village that hosts a\n",
+                "contest based on the amazingly\n",
+                "variable cries of this Pokémon."
+            ]
+        },
+        "fr": {
+            "name": "MELOKRIK",
+            "category": "Pokémon Criquet",
+            "entry_text": [
+                "Il croise ses bras affûtés devant\n",
+                "son torse pour crier. Il compose\n",
+                "tout un tas de mélodies."
+            ]
+        },
+        "de": {
+            "name": "ZIRPEISE",
+            "category": "Zirper",
+            "entry_text": [
+                "Wenn es ruft, verschränkt es seine\n",
+                "messerartigen Arme vor der Brust.\n",
+                "Es komponiert aus dem Stegreif."
+            ]
+        },
+        "it": {
+            "name": "KRICKETUNE",
+            "category": "Pokémon Grillo",
+            "entry_text": [
+                "Quando canta tiene le zampe\n",
+                "incrociate al petto.\n",
+                "Sa improvvisare melodie."
+            ]
+        },
+        "es": {
+            "name": "KRICKETUNE",
+            "category": "Pokémon Grillo",
+            "entry_text": [
+                "Cuando llora, cruza sus brazos\n",
+                "con forma de cuchillo. Puede\n",
+                "improvisar melodías."
+            ]
+        },
+        "jp": {
+            "name": "コロトック",
+            "category": "こおろぎポケモン",
+            "entry_text": [
+                "なくときは　ナイフのような　うでを\n",
+                "むねの　まえで　こうささせる。\n",
+                "そっきょうで　メロディを　つくる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

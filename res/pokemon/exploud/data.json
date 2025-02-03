@@ -1,5 +1,4 @@
 {
-    "name": "Exploud",
     "base_stats": {
         "hp": 104,
         "attack": 91,
@@ -130,8 +129,60 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "Its howls can be heard over six\nmiles away. It emits all sorts of\nnoises from the ports on its body.",
-        "category": "Loud Noise Pokémon"
+        "en": {
+            "name": "EXPLOUD",
+            "category": "Loud Noise Pokémon",
+            "entry_text": [
+                "Its howls can be heard over six\n",
+                "miles away. It emits all sorts of\n",
+                "noises from the ports on its body."
+            ]
+        },
+        "fr": {
+            "name": "BROUHABAM",
+            "category": "Pokémon Bruit Sourd",
+            "entry_text": [
+                "Son hurlement s’entend à 10 km\n",
+                "à la ronde. Ses orifices\n",
+                "émettent toutes sortes de bruits."
+            ]
+        },
+        "de": {
+            "name": "KRAWUMMS",
+            "category": "Krach",
+            "entry_text": [
+                "Sein Heulen hört man in 10 km\n",
+                "Entfernung. Es gibt alle Arten von\n",
+                "Geräuschen von sich."
+            ]
+        },
+        "it": {
+            "name": "EXPLOUD",
+            "category": "Pokémon Fragore",
+            "entry_text": [
+                "Le sue urla si sentono a 10 km di\n",
+                "distanza. Emette diversi suoni dalle\n",
+                "numerose aperture del suo corpo."
+            ]
+        },
+        "es": {
+            "name": "EXPLOUD",
+            "category": "Pokémon Escandaloso",
+            "entry_text": [
+                "Su aullido se puede oír a 10 km.\n",
+                "Emite todo tipo de sonidos desde\n",
+                "los tubos de su cuerpo."
+            ]
+        },
+        "jp": {
+            "name": "バクオング",
+            "category": "そうおんポケモン",
+            "entry_text": [
+                "バクオングの　とおぼえは　１０キロ\n",
+                "さきまで　とどく。からだじゅうの\n",
+                "あなから　さまざまな　おとを　だす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

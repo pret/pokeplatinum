@@ -1,5 +1,4 @@
 {
-    "name": "Omanyte",
     "base_stats": {
         "hp": 35,
         "attack": 40,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "A Pokémon that was resurrected\nfrom a fossil using modern science.\nIt swam in ancient seas.",
-        "category": "Spiral Pokémon"
+        "en": {
+            "name": "OMANYTE",
+            "category": "Spiral Pokémon",
+            "entry_text": [
+                "A Pokémon that was resurrected\n",
+                "from a fossil using modern science.\n",
+                "It swam in ancient seas."
+            ]
+        },
+        "fr": {
+            "name": "AMONITA",
+            "category": "Pokémon Spirale",
+            "entry_text": [
+                "Un Pokémon ramené à la vie par\n",
+                "la science à partir d’un fossile. Il\n",
+                "peuplait autrefois les mers."
+            ]
+        },
+        "de": {
+            "name": "AMONITAS",
+            "category": "Spirale",
+            "entry_text": [
+                "Dieses PKMN wurde von der modernen\n",
+                "Wissenschaft aus einem Fossil ge-\n",
+                "schaffen. Es lebte im urzeitl. Meer."
+            ]
+        },
+        "it": {
+            "name": "OMANYTE",
+            "category": "Pokémon Spirale",
+            "entry_text": [
+                "Pokémon rigenerato da un fossile\n",
+                "grazie alla scienza moderna.\n",
+                "Nuotava nei mari ancestrali."
+            ]
+        },
+        "es": {
+            "name": "OMANYTE",
+            "category": "Pokémon Espiral",
+            "entry_text": [
+                "Fue recuperado a partir de un fósil\n",
+                "gracias a la ciencia moderna.\n",
+                "Solía nadar en antiguos mares."
+            ]
+        },
+        "jp": {
+            "name": "オムナイト",
+            "category": "うずまきポケモン",
+            "entry_text": [
+                "げんだいの　すぐれた　かがくりょくで\n",
+                "かせきから　ふっかつした　ポケモン。\n",
+                "こだいの　うみを　およいでいた。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

@@ -1,5 +1,4 @@
 {
-    "name": "Shuckle",
     "base_stats": {
         "hp": 20,
         "attack": 10,
@@ -105,8 +104,60 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It stores berries in its shell.\nThe berries eventually ferment to\nbecome delicious juices.",
-        "category": "Mold Pokémon"
+        "en": {
+            "name": "SHUCKLE",
+            "category": "Mold Pokémon",
+            "entry_text": [
+                "It stores berries in its shell.\n",
+                "The berries eventually ferment to\n",
+                "become delicious juices."
+            ]
+        },
+        "fr": {
+            "name": "CARATROC",
+            "category": "Pokémon Pourri",
+            "entry_text": [
+                "Il stocke des Baies sous sa\n",
+                "carapace. Elles fermentent et\n",
+                "produisent des jus délicieux."
+            ]
+        },
+        "de": {
+            "name": "POTTROTT",
+            "category": "Schimmel",
+            "entry_text": [
+                "In seiner Schale bewahrt es Beeren\n",
+                "auf. Diese fermentieren zu einem\n",
+                "leckeren Saft."
+            ]
+        },
+        "it": {
+            "name": "SHUCKLE",
+            "category": "Pokémon Muffa",
+            "entry_text": [
+                "Conserva nel guscio delle bacche\n",
+                "che, quando fermentano, si\n",
+                "trasformano in un succo delizioso."
+            ]
+        },
+        "es": {
+            "name": "SHUCKLE",
+            "category": "Pokémon Moho",
+            "entry_text": [
+                "Almacena bayas en su caparazón,\n",
+                "que más tarde fermentan para\n",
+                "producir deliciosos zumos."
+            ]
+        },
+        "jp": {
+            "name": "ツボツボ",
+            "category": "はっこうポケモン",
+            "entry_text": [
+                "こうらの　なかに　きのみを　ためる。\n",
+                "そのうち　きのみは　はっこうして\n",
+                "おいしい　ジュ－スに　なるのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

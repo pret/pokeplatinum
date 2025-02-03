@@ -1,5 +1,4 @@
 {
-    "name": "Hypno",
     "base_stats": {
         "hp": 85,
         "attack": 73,
@@ -125,8 +124,60 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "Seeing its swinging pendulum can\ninduce sleep in three seconds,\neven in someone who just woke up.",
-        "category": "Hypnosis Pokémon"
+        "en": {
+            "name": "HYPNO",
+            "category": "Hypnosis Pokémon",
+            "entry_text": [
+                "Seeing its swinging pendulum can\n",
+                "induce sleep in three seconds,\n",
+                "even in someone who just woke up."
+            ]
+        },
+        "fr": {
+            "name": "HYPNOMADE",
+            "category": "Pokémon Hypnose",
+            "entry_text": [
+                "La vue de son pendule oscillant\n",
+                "endort en trois secondes, même\n",
+                "quand on vient de se réveiller. "
+            ]
+        },
+        "de": {
+            "name": "HYPNO",
+            "category": "Hypnose",
+            "entry_text": [
+                "Ein Blick auf das Pendel versetzt\n",
+                "einen in 3 Sekunden in Schlaf,\n",
+                "selbst wenn man gar nicht müde ist."
+            ]
+        },
+        "it": {
+            "name": "HYPNO",
+            "category": "Pokémon Ipnosi",
+            "entry_text": [
+                "Con il suo pendolo fa addormentare\n",
+                "chiunque nel giro di tre secondi,\n",
+                "anche chi si è appena svegliato."
+            ]
+        },
+        "es": {
+            "name": "HYPNO",
+            "category": "Pokémon Hipnosis",
+            "entry_text": [
+                "Mirar su péndulo puede inducir al\n",
+                "sueño en tres segundos, incluso\n",
+                "si acabas de despertarte."
+            ]
+        },
+        "jp": {
+            "name": "スリ－パ－",
+            "category": "さいみんポケモン",
+            "entry_text": [
+                "ふりこを　めのまえで　ゆらされると\n",
+                "たったいま　めざめたばかりの　ひとも\n",
+                "３びょうごには　ねむってしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

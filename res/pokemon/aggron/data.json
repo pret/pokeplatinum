@@ -1,5 +1,4 @@
 {
-    "name": "Aggron",
     "base_stats": {
         "hp": 70,
         "attack": 110,
@@ -151,8 +150,60 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 6,
-        "entry_text": "While seeking iron for food, it\ndigs tunnels by breaking through\nbedrock with its steel horns.",
-        "category": "Iron Armor Pokémon"
+        "en": {
+            "name": "AGGRON",
+            "category": "Iron Armor Pokémon",
+            "entry_text": [
+                "While seeking iron for food, it\n",
+                "digs tunnels by breaking through\n",
+                "bedrock with its steel horns."
+            ]
+        },
+        "fr": {
+            "name": "GALEKING",
+            "category": "Pokémon Armurfer",
+            "entry_text": [
+                "Il creuse des galeries à travers la\n",
+                "pierre avec ses cornes d’acier\n",
+                "pour trouver le fer qu’il apprécie. "
+            ]
+        },
+        "de": {
+            "name": "STOLLOSS",
+            "category": "Eisenpanzer",
+            "entry_text": [
+                "Auf der Suche nach Eisen, seiner\n",
+                "Nahrung, gräbt es mit seinen Stahl-\n",
+                "hörnern sogar Tunnel durch Felsen."
+            ]
+        },
+        "it": {
+            "name": "AGGRON",
+            "category": "Pokémon Corazza",
+            "entry_text": [
+                "Cerca ferro da mangiare scavando\n",
+                "tunnel nella roccia con le sue\n",
+                "corna d’acciaio."
+            ]
+        },
+        "es": {
+            "name": "AGGRON",
+            "category": "Pokémon Cor. Férrea",
+            "entry_text": [
+                "Mientras busca hierro para comer,\n",
+                "excava túneles en la roca con sus\n",
+                "potentes cuernos de acero."
+            ]
+        },
+        "jp": {
+            "name": "ボスゴドラ",
+            "category": "てつヨロイポケモン",
+            "entry_text": [
+                "はがねの　ツノで　かたい　がんばんを\n",
+                "つきくずしながら　しょくりょうの\n",
+                "てつを　さがして　トンネルを　ほる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

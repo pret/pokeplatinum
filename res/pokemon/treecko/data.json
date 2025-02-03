@@ -1,5 +1,4 @@
 {
-    "name": "Treecko",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -120,8 +119,60 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "The soles of its feet are covered\nby countless tiny spikes, enabling\nit to walk on walls and ceilings.",
-        "category": "Wood Gecko Pokémon"
+        "en": {
+            "name": "TREECKO",
+            "category": "Wood Gecko Pokémon",
+            "entry_text": [
+                "The soles of its feet are covered\n",
+                "by countless tiny spikes, enabling\n",
+                "it to walk on walls and ceilings."
+            ]
+        },
+        "fr": {
+            "name": "ARCKO",
+            "category": "Pokémon Bois Gecko",
+            "entry_text": [
+                "Ses plantes de pieds sont\n",
+                "couvertes d’épines lui permettant\n",
+                "de marcher au mur et au plafond."
+            ]
+        },
+        "de": {
+            "name": "GECKARBOR",
+            "category": "Waldgecko",
+            "entry_text": [
+                "Seine Fußsohlen sind mit kleinen\n",
+                "Stacheln bedeckt, so dass es an\n",
+                "Wänden und Decken Halt findet."
+            ]
+        },
+        "it": {
+            "name": "TREECKO",
+            "category": "Pokémon Legnogeco",
+            "entry_text": [
+                "Le piante dei suoi piedi sono piene\n",
+                "di uncini che gli permettono di\n",
+                "camminare su muri e soffitti."
+            ]
+        },
+        "es": {
+            "name": "TREECKO",
+            "category": "Pokémon Geco Bosque",
+            "entry_text": [
+                "Las plantas de sus pies tienen\n",
+                "púas diminutas que le permiten\n",
+                "andar por paredes y techos."
+            ]
+        },
+        "jp": {
+            "name": "キモリ",
+            "category": "もりトカゲポケモン",
+            "entry_text": [
+                "あしの　うらには　ちいさな　トゲが\n",
+                "たくさん　ついているので　カベや\n",
+                "てんじょうを　あるくことが　できる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

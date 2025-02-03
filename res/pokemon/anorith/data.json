@@ -1,5 +1,4 @@
 {
-    "name": "Anorith",
     "base_stats": {
         "hp": 45,
         "attack": 95,
@@ -113,8 +112,60 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "A Pokémon ancestor that was\nreanimated from a fossil. It lived\nin the sea and hunted with claws.",
-        "category": "Old Shrimp Pokémon"
+        "en": {
+            "name": "ANORITH",
+            "category": "Old Shrimp Pokémon",
+            "entry_text": [
+                "A Pokémon ancestor that was\n",
+                "reanimated from a fossil. It lived\n",
+                "in the sea and hunted with claws."
+            ]
+        },
+        "fr": {
+            "name": "ANORITH",
+            "category": "Pokémon Crustage",
+            "entry_text": [
+                "Un ancêtre Pokémon réanimé \n",
+                "à partir d’un fossile. Il vivait en\n",
+                "mer et chassait avec ses pinces."
+            ]
+        },
+        "de": {
+            "name": "ANORITH",
+            "category": "Krebssenior",
+            "entry_text": [
+                "Ein Vorfahre der PKMN, der aus\n",
+                "einem Fossil neu belebt wurde. Es\n",
+                "lebte im Meer und jagte mit Klauen."
+            ]
+        },
+        "it": {
+            "name": "ANORITH",
+            "category": "Pokémon Primaceo",
+            "entry_text": [
+                "Un antico Pokémon rigenerato\n",
+                "da un fossile. Viveva nel mare e\n",
+                "catturava le prede con gli artigli."
+            ]
+        },
+        "es": {
+            "name": "ANORITH",
+            "category": "Pokémon Camarón",
+            "entry_text": [
+                "Este Pokémon fue recreado a partir\n",
+                "de restos fósiles. Vivía en el mar y\n",
+                "cazaba con sus pinzas."
+            ]
+        },
+        "jp": {
+            "name": "アノプス",
+            "category": "むかしエビポケモン",
+            "entry_text": [
+                "かせきから　ふっかつした　ポケモンの\n",
+                "せんぞの　いっしゅ。うみで　くらし\n",
+                "ツメで　えものを　つかまえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
