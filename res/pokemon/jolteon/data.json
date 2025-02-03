@@ -1,5 +1,4 @@
 {
-    "name": "Jolteon",
     "base_stats": {
         "hp": 65,
         "attack": 65,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "JOLTEON",
             "category": "Lightning Pokémon",
             "entry_text": [
                 "If agitated, it uses electricity to\n",
@@ -119,7 +119,7 @@
                 "it in small bunches."
             ]
         },
-        "french": {
+        "fr": {
             "name": "VOLTALI",
             "category": "Pokémon Orage",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "comme s’il s’agissait de piquants."
             ]
         },
-        "german": {
+        "de": {
             "name": "BLITZA",
             "category": "Blitz",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "es wie scharfe Nadeln wirkt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "JOLTEON",
             "category": "Pokémon Luminoso",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "aghi pungenti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "JOLTEON",
             "category": "Pokémon Relámpago",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "en púas afiladísimas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サンダ－ス",
             "category": "かみなりポケモン",
             "entry_text": [

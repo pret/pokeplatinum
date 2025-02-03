@@ -1,5 +1,4 @@
 {
-    "name": "Rhyperior",
     "base_stats": {
         "hp": 115,
         "attack": 140,
@@ -144,7 +143,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 17,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "RHYPERIOR",
             "category": "Drill Pokémon",
             "entry_text": [
                 "It can launch a rock held in its\n",
@@ -152,7 +152,7 @@
                 "then expanding muscles instantly."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RHINASTOC",
             "category": "Pokémon Perceur",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "depuis le creux de ses paumes. "
             ]
         },
-        "german": {
+        "de": {
             "name": "RIHORNIOR",
             "category": "Bohrer",
             "entry_text": [
@@ -170,7 +170,7 @@
                 "Sogar GEOROK werden verwendet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RHYPERIOR",
             "category": "Pokémon Trapano",
             "entry_text": [
@@ -179,7 +179,7 @@
                 "forza. Talvolta lancia GEODUDE."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RHYPERIOR",
             "category": "Pokémon Taladro",
             "entry_text": [
@@ -188,7 +188,7 @@
                 "Pocas veces ataca a GEODUDE."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ドサイドン",
             "category": "ドリルポケモン",
             "entry_text": [

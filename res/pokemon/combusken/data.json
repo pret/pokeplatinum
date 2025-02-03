@@ -1,5 +1,4 @@
 {
-    "name": "Combusken",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "COMBUSKEN",
             "category": "Young Fowl Pokémon",
             "entry_text": [
                 "Its kicking mastery lets it loose\n",
@@ -133,7 +133,7 @@
                 "sharp cries to intimidate foes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GALIFEU",
             "category": "Pokémon Poulet",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "cris aigus intimident l’ennemi."
             ]
         },
-        "german": {
+        "de": {
             "name": "JUNGGLUT",
             "category": "Kleinhahn",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "sich, um Gegner einzuschüchtern."
             ]
         },
-        "italian": {
+        "it": {
             "name": "COMBUSKEN",
             "category": "Pokémon Rampollo",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "strazianti per intimorire i nemici."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "COMBUSKEN",
             "category": "Pokémon Ave Corral",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "potentes gritos para intimidar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ワカシャモ",
             "category": "わかどりポケモン",
             "entry_text": [

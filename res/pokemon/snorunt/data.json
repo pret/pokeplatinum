@@ -1,5 +1,4 @@
 {
-    "name": "Snorunt",
     "base_stats": {
         "hp": 50,
         "attack": 50,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "SNORUNT",
             "category": "Snow Hat Pokémon",
             "entry_text": [
                 "It is said that several SNORUNT\n",
@@ -118,7 +118,7 @@
                 "live together in harmony."
             ]
         },
-        "french": {
+        "fr": {
             "name": "STALGAMIN",
             "category": "Pokémon Capuche",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "maison, richesse à l’horizon”."
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHNEPPKE",
             "category": "Schneehut",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "stand einzieht, wenn es darin lebt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SNORUNT",
             "category": "Pokémon Cappelneve",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "prosperità alla casa in cui vive."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SNORUNT",
             "category": "Pokémon Gorro Nieve",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "casa, trae prosperidad."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ユキワラシ",
             "category": "ゆきかさポケモン",
             "entry_text": [

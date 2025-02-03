@@ -1,5 +1,4 @@
 {
-    "name": "Venomoth",
     "base_stats": {
         "hp": 70,
         "attack": 65,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 65530,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65530,
-        "english": {
+        "en": {
+            "name": "VENOMOTH",
             "category": "Poison Moth Pokémon",
             "entry_text": [
                 "It flutters its wings to scatter\n",
@@ -122,7 +122,7 @@
                 "toxins if they contact skin."
             ]
         },
-        "french": {
+        "fr": {
             "name": "AEROMITE",
             "category": "Pokémon Papipoison",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "toxiques au toucher."
             ]
         },
-        "german": {
+        "de": {
             "name": "OMOT",
             "category": "Giftmotte",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "Diese geben bei Kontakt Gift ab."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VENOMOTH",
             "category": "Pokémon Velentarma",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "con la pelle."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VENOMOTH",
             "category": "Pokémon Polilla V.",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "libera toxinas si toca la piel."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "モルフォン",
             "category": "どくがポケモン",
             "entry_text": [

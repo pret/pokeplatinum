@@ -1,5 +1,4 @@
 {
-    "name": "Drifloon",
     "base_stats": {
         "hp": 90,
         "attack": 50,
@@ -127,7 +126,8 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "english": {
+        "en": {
+            "name": "DRIFLOON",
             "category": "Balloon Pokémon",
             "entry_text": [
                 "Because of the way it floats\n",
@@ -135,7 +135,7 @@
                 "“Signpost for Wandering Spirits.”"
             ]
         },
-        "french": {
+        "fr": {
             "name": "BAUDRIVE",
             "category": "Pokémon Bouboule",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "chaudes et humides."
             ]
         },
-        "german": {
+        "de": {
             "name": "DRIFTLON",
             "category": "Ballon",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "Es mag feuchte Jahreszeiten."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DRIFLOON",
             "category": "Pokémon Pallone",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "stagioni umide."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DRIFLOON",
             "category": "Pokémon Globo",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "las estaciones húmedas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "フワンテ",
             "category": "ふうせんポケモン",
             "entry_text": [

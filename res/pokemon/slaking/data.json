@@ -1,5 +1,4 @@
 {
-    "name": "Slaking",
     "base_stats": {
         "hp": 150,
         "attack": 160,
@@ -127,7 +126,8 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "SLAKING",
             "category": "Lazy Pokémon",
             "entry_text": [
                 "The world’s laziest Pokémon. When\n",
@@ -135,7 +135,7 @@
                 "energy for striking back."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MONAFLEMIT",
             "category": "Pokémon Fainéant",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "ses forces et contre-attaquer."
             ]
         },
-        "german": {
+        "de": {
             "name": "LETARKING",
             "category": "Müßig",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "Energie, um zuzuschlagen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SLAKING",
             "category": "Pokémon Pigrizia",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "risparmiare forze per attaccare."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SLAKING",
             "category": "Pokémon Holgazán",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "reúne fuerzas para contraatacar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ケッキング",
             "category": "ものぐさポケモン",
             "entry_text": [

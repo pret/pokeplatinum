@@ -1,5 +1,4 @@
 {
-    "name": "Vespiquen",
     "base_stats": {
         "hp": 70,
         "attack": 80,
@@ -112,7 +111,8 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "english": {
+        "en": {
+            "name": "VESPIQUEN",
             "category": "Beehive Pokémon",
             "entry_text": [
                 "It releases various pheromones\n",
@@ -120,7 +120,7 @@
                 "its bidding while fighting foes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "APIREINE",
             "category": "Pokémon Ruche",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "le nectar récolté par APITRINI."
             ]
         },
-        "german": {
+        "de": {
             "name": "HONWEISEL",
             "category": "Bienenstock",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "dem Honig, den WADRIBIE sammelt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VESPIQUEN",
             "category": "Pokémon Alveare",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "raccolto da COMBEE."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VESPIQUEN",
             "category": "Pokémon Colmena",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "por COMBEE."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ビ－クイン",
             "category": "はちのすポケモン",
             "entry_text": [

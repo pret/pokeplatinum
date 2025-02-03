@@ -1,5 +1,4 @@
 {
-    "name": "Milotic",
     "base_stats": {
         "hp": 95,
         "attack": 60,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "MILOTIC",
             "category": "Tender Pokémon",
             "entry_text": [
                 "Its lovely scales are described as\n",
@@ -117,7 +117,7 @@
                 "depending on the viewing angle."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MILOBELLUS",
             "category": "Pokémon Tendre",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "les gens se querellent."
             ]
         },
-        "german": {
+        "de": {
             "name": "MILOTIC",
             "category": "Zartheit",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "um die Streitenden zu beruhigen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MILOTIC",
             "category": "Pokémon Tenerezza",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "delle persone che litigano."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MILOTIC",
             "category": "Pokémon Tierno",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "para apaciguarla."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミロカロス",
             "category": "いつくしみポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Voltorb",
     "base_stats": {
         "hp": 40,
         "attack": 30,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "english": {
+        "en": {
+            "name": "VOLTORB",
             "category": "Ball Pokémon",
             "entry_text": [
                 "It looks just like a Poké Ball.\n",
@@ -118,7 +118,7 @@
                 "electrocute or explode on touch."
             ]
         },
-        "french": {
+        "fr": {
             "name": "VOLTORBE",
             "category": "Pokémon Balle",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "ou s’électrifier au toucher."
             ]
         },
-        "german": {
+        "de": {
             "name": "VOLTOBAL",
             "category": "Ball",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "explodieren kann."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VOLTORB",
             "category": "Pokémon Ball",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "farlo esplodere."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VOLTORB",
             "category": "Pokémon Bola",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "descargas o explotar si se toca."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ビリリダマ",
             "category": "ボ－ルポケモン",
             "entry_text": [

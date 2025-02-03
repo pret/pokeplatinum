@@ -1,5 +1,4 @@
 {
-    "name": "Gligar",
     "base_stats": {
         "hp": 65,
         "attack": 75,
@@ -129,7 +128,8 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "english": {
+        "en": {
+            "name": "GLIGAR",
             "category": "FlyScorpion Pokémon",
             "entry_text": [
                 "It glides as if sliding. It startles\n",
@@ -137,7 +137,7 @@
                 "then jabs with its poison stinger."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SCORPLANE",
             "category": "Pokémon Scorpivol",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "le ciel. Il vise toujours au visage."
             ]
         },
-        "german": {
+        "de": {
             "name": "SKORGLA",
             "category": "Flugskorpi",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "aus der Luft anzugreifen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GLIGAR",
             "category": "Pokémon Aliscorpio",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "dall’alto mirando al volto."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GLIGAR",
             "category": "Pokémon Escorpiala",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "directo a la cara de su oponente."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "グライガ－",
             "category": "とびさそりポケモン",
             "entry_text": [

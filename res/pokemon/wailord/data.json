@@ -1,5 +1,4 @@
 {
-    "name": "Wailord",
     "base_stats": {
         "hp": 170,
         "attack": 90,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 18,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "WAILORD",
             "category": "Float Whale Pokémon",
             "entry_text": [
                 "The biggest of all Pokémon.\n",
@@ -121,7 +121,7 @@
                 "10,000 feet on only one breath."
             ]
         },
-        "french": {
+        "fr": {
             "name": "WAILORD",
             "category": "Pokémon Cachabouée",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "3 000 m en retenant son souffle."
             ]
         },
-        "german": {
+        "de": {
             "name": "WAILORD",
             "category": "Flutwal",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "3 000 Meter tauchen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WAILORD",
             "category": "Pokémon Megabalena",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "una profondità di 3000 metri."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WAILORD",
             "category": "Pokémon Ballenaflot",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "3000 m aguantando la respiración."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ホエルオ－",
             "category": "うきくじらポケモン",
             "entry_text": [

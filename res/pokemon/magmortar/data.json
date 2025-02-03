@@ -1,5 +1,4 @@
 {
-    "name": "Magmortar",
     "base_stats": {
         "hp": 75,
         "attack": 95,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "MAGMORTAR",
             "category": "Blast Pokémon",
             "entry_text": [
                 "When launching 3,600 degrees F\n",
@@ -127,7 +127,7 @@
                 "whitish hue from the intense heat."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MAGANON",
             "category": "Pokémon Explosion",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "vit dans les cratères volcaniques."
             ]
         },
-        "german": {
+        "de": {
             "name": "MAGBRANT",
             "category": "Detonation",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "Es lebt in Vulkankratern."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAGMORTAR",
             "category": "Pokémon Esplosivo",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "Vive nei crateri dei vulcani."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAGMORTAR",
             "category": "Pokémon Explosión",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "Vive en cráteres volcánicos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ブ－バ－ン",
             "category": "ばくえんポケモン",
             "entry_text": [

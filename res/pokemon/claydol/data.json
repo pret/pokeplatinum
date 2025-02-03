@@ -1,5 +1,4 @@
 {
-    "name": "Claydol",
     "base_stats": {
         "hp": 60,
         "attack": 70,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "CLAYDOL",
             "category": "Clay Doll Pokémon",
             "entry_text": [
                 "An ancient clay figurine that came\n",
@@ -136,7 +136,7 @@
                 "to a mysterious ray of light."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KAORINE",
             "category": "Pokémon Poupargile",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "à un rayon de lumière étrange."
             ]
         },
-        "german": {
+        "de": {
             "name": "LEPUMENTAS",
             "category": "Lehmpuppe",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "erwacht ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CLAYDOL",
             "category": "Pokémon Argilla",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "vita da misteriose radiazioni."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CLAYDOL",
             "category": "Pokémon Muñ. Barro",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "exposición a extraños rayos de luz."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ネンド－ル",
             "category": "どぐうポケモン",
             "entry_text": [

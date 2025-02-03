@@ -1,5 +1,4 @@
 {
-    "name": "Magcargo",
     "base_stats": {
         "hp": 50,
         "attack": 50,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "english": {
+        "en": {
+            "name": "MAGCARGO",
             "category": "Lava Pokémon",
             "entry_text": [
                 "Its body temperature is roughly\n",
@@ -124,7 +124,7 @@
                 "from gaps in its hardened shell."
             ]
         },
-        "french": {
+        "fr": {
             "name": "VOLCAROPOD",
             "category": "Pokémon Lave",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "fusent des fissures de sa coquille."
             ]
         },
-        "german": {
+        "de": {
             "name": "MAGCARGO",
             "category": "Lava",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "treten immer wieder Flammen aus."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAGCARGO",
             "category": "Pokémon Lava",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "fuoriescono intense fiammate."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAGCARGO",
             "category": "Pokémon Lava",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "de su cuerpo escapan llamas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マグカルゴ",
             "category": "ようがんポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Glameow",
     "base_stats": {
         "hp": 49,
         "attack": 55,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "english": {
+        "en": {
+            "name": "GLAMEOW",
             "category": "Catty Pokémon",
             "entry_text": [
                 "It hides its spiteful tendency of\n",
@@ -127,7 +127,7 @@
                 "its Trainer if it isn’t fed."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHAGLAM",
             "category": "Pokémon Chafouin",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "Certains aiment ce côté lunatique."
             ]
         },
-        "german": {
+        "de": {
             "name": "CHARMIAN",
             "category": "Fies",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "wütend oder zutraulich ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GLAMEOW",
             "category": "Pokémon Felide",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "sua incostanza piace a molti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GLAMEOW",
             "category": "Pokémon Gastuto",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "Su imprevisibilidad es famosa."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニャルマ－",
             "category": "ねこかぶりポケモン",
             "entry_text": [

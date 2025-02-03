@@ -1,5 +1,4 @@
 {
-    "name": "Gorebyss",
     "base_stats": {
         "hp": 55,
         "attack": 84,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "english": {
+        "en": {
+            "name": "GOREBYSS",
             "category": "South Sea Pokémon",
             "entry_text": [
                 "It lives at the bottom of the sea.\n",
@@ -115,7 +115,7 @@
                 "turns more vivid for some reason."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ROSABYSS",
             "category": "Pokémon Mer Du Sud",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "pourquoi. Il vit au fond de la mer. "
             ]
         },
-        "german": {
+        "de": {
             "name": "SAGANABYSS",
             "category": "Südsee",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "Körpers viel kräftiger."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GOREBYSS",
             "category": "Pokémon Sudmarino",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "vivido per chissà quale motivo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GOREBYSS",
             "category": "Pokémon Mar Del Sur",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "adquiere colores más vivos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サクラビス",
             "category": "なんかいポケモン",
             "entry_text": [

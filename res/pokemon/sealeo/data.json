@@ -1,5 +1,4 @@
 {
-    "name": "Sealeo",
     "base_stats": {
         "hp": 90,
         "attack": 60,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "SEALEO",
             "category": "Ball Roll Pokémon",
             "entry_text": [
                 "It habitually spins things on its\n",
@@ -123,7 +123,7 @@
                 "textures and odors."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PHOGLEUR",
             "category": "Pokémon Roule Boule",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "leur odeur et leur texture."
             ]
         },
-        "german": {
+        "de": {
             "name": "SEEJONG",
             "category": "Spielball",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Beschaffenheit und den Geruch."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SEALEO",
             "category": "Pokémon Rotapalla",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "consistenza."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SEALEO",
             "category": "Pokémon Rodabola",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "texturas y olores."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "トドグラ－",
             "category": "たままわしポケモン",
             "entry_text": [

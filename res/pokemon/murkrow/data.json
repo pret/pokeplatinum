@@ -1,5 +1,4 @@
 {
-    "name": "Murkrow",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "MURKROW",
             "category": "Darkness Pokémon",
             "entry_text": [
                 "If spotted, it will lure an unwary\n",
@@ -129,7 +129,7 @@
                 "the pursuer on mountain trails."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CORNEBRE",
             "category": "Pokémon Obscurité",
             "entry_text": [
@@ -138,12 +138,12 @@
                 "signe de mauvais augure."
             ]
         },
-        "german": {
+        "de": {
             "name": "KRAMURX",
             "category": "Finsternis",
             "entry_text": [ "Sieht man dieses PKMN bei Nacht,\n", "sollen merkwürdige Dinge passieren." ]
         },
-        "italian": {
+        "it": {
             "name": "MURKROW",
             "category": "Pokémon Oscurità",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "presagio infausto."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MURKROW",
             "category": "Pokémon Oscuridad",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "a ocurrir cosas terribles."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヤミカラス",
             "category": "くらやみポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Machoke",
     "base_stats": {
         "hp": 80,
         "attack": 100,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "MACHOKE",
             "category": "Superpower Pokémon",
             "entry_text": [
                 "It happily carries heavy cargo to\n",
@@ -124,7 +124,7 @@
                 "work for people."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MACHOPEUR",
             "category": "Pokémon Colosse",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "ceinture pour contenir son énergie."
             ]
         },
-        "german": {
+        "de": {
             "name": "MASCHOCK",
             "category": "Kraftprotz",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Gürtel, der die Kraft unterdrückt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MACHOKE",
             "category": "Pokémon Megaforza",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "tura per tenerla sotto controllo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MACHOKE",
             "category": "Pokémon Superpoder",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "que disminuye su energía."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゴ－リキ－",
             "category": "かいりきポケモン",
             "entry_text": [

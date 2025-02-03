@@ -1,5 +1,4 @@
 {
-    "name": "Entei",
     "base_stats": {
         "hp": 115,
         "attack": 115,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "ENTEI",
             "category": "Volcano Pokémon",
             "entry_text": [
                 "It is said that when it roars, a\n",
@@ -121,7 +121,7 @@
                 "the globe."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ENTEI",
             "category": "Pokémon Volcan",
             "entry_text": [
@@ -130,12 +130,12 @@
                 "quelque part."
             ]
         },
-        "german": {
+        "de": {
             "name": "ENTEI",
             "category": "Vulkan",
             "entry_text": [ "Man sagt, wenn es brüllt, bricht\n", "irgendwo in der Welt ein Vulkan aus." ]
         },
-        "italian": {
+        "it": {
             "name": "ENTEI",
             "category": "Pokémon Vulcano",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "un vulcano stia eruttando."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ENTEI",
             "category": "Pokémon Volcán",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "punto del globo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エンテイ",
             "category": "かざんポケモン",
             "entry_text": [

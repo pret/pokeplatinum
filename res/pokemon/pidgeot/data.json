@@ -1,5 +1,4 @@
 {
-    "name": "Pidgeot",
     "base_stats": {
         "hp": 83,
         "attack": 80,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "PIDGEOT",
             "category": "Bird Pokémon",
             "entry_text": [
                 "By flapping its wings with all its\n",
@@ -117,7 +117,7 @@
                 "wind capable of bending tall trees."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ROUCARNAGE",
             "category": "Pokémon Oiseau",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "rafale à en déraciner les arbres."
             ]
         },
-        "german": {
+        "de": {
             "name": "TAUBOSS",
             "category": "Vogel",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "große Bäume durch den Windstoß."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PIDGEOT",
             "category": "Pokémon Uccello",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "forte da piegare alberi possenti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PIDGEOT",
             "category": "Pokémon Pájaro",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "capaces de doblar grandes árboles."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ピジョット",
             "category": "とりポケモン",
             "entry_text": [

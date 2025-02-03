@@ -1,5 +1,4 @@
 {
-    "name": "Pichu",
     "base_stats": {
         "hp": 20,
         "attack": 40,
@@ -100,7 +99,8 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "PICHU",
             "category": "Tiny Mouse Pokémon",
             "entry_text": [
                 "The electric sacs in its cheeks are\n",
@@ -108,7 +108,7 @@
                 "leaks, it becomes shocked."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PICHU",
             "category": "Pokémon Minisouris",
             "entry_text": [
@@ -117,7 +117,7 @@
                 "accumuler beaucoup d’électricité."
             ]
         },
-        "german": {
+        "de": {
             "name": "PICHU",
             "category": "Babymaus",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "allzu viel Elektrizität speichern."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PICHU",
             "category": "Pokémon Topino",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "immagazzinare molta elettricità."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PICHU",
             "category": "Pokémon Ratoncito",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "mucha electricidad."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ピチュ－",
             "category": "こねずみポケモン",
             "entry_text": [

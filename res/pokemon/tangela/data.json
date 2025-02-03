@@ -1,5 +1,4 @@
 {
-    "name": "Tangela",
     "base_stats": {
         "hp": 65,
         "attack": 55,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "TANGELA",
             "category": "Vine Pokémon",
             "entry_text": [
                 "The blue vines shrouding its body\n",
@@ -126,7 +126,7 @@
                 "hair. It is known to be ticklish."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SAQUEDENEU",
             "category": "Pokémon Vigne",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "visage qu’elles dissimulent."
             ]
         },
-        "german": {
+        "de": {
             "name": "TANGELA",
             "category": "Ranke",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "dieses Pokémon gesehen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TANGELA",
             "category": "Pokémon Liana",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "celato dal groviglio di liane."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TANGELA",
             "category": "Pokémon Enredadera",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "que se oculta tras ellas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "モンジャラ",
             "category": "ツルじょうポケモン",
             "entry_text": [

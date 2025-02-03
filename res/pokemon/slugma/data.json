@@ -1,5 +1,4 @@
 {
-    "name": "Slugma",
     "base_stats": {
         "hp": 40,
         "attack": 40,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "SLUGMA",
             "category": "Lava Pokémon",
             "entry_text": [
                 "Its body is made of magma.\n",
@@ -117,7 +117,7 @@
                 "body will cool and harden."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LIMAGMA",
             "category": "Pokémon Lave",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "et durcit."
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHNECKMAG",
             "category": "Lava",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "kühlt es aus und verhärtet sich."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SLUGMA",
             "category": "Pokémon Lava",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "corpo si raffredda e s’indurisce."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SLUGMA",
             "category": "Pokémon Lava",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "endurece."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マグマッグ",
             "category": "ようがんポケモン",
             "entry_text": [

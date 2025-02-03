@@ -1,5 +1,4 @@
 {
-    "name": "Tyrogue",
     "base_stats": {
         "hp": 35,
         "attack": 35,
@@ -108,7 +107,8 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "english": {
+        "en": {
+            "name": "TYROGUE",
             "category": "Scuffle Pokémon",
             "entry_text": [
                 "It is famous for its eagerness to\n",
@@ -116,7 +116,7 @@
                 "from challenging larger foes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DEBUGANT",
             "category": "Pokémon Bagarreur",
             "entry_text": [
@@ -125,7 +125,7 @@
                 "des ennemis plus grands."
             ]
         },
-        "german": {
+        "de": {
             "name": "RABAUZ",
             "category": "Racker",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "Verletzungen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TYROGUE",
             "category": "Pokémon Baruffa",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "più forti di lui che sfida."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TYROGUE",
             "category": "Pokémon Peleón",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "luchar con enemigos más grandes."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "バルキ－",
             "category": "けんかポケモン",
             "entry_text": [

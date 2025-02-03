@@ -1,5 +1,4 @@
 {
-    "name": "Wingull",
     "base_stats": {
         "hp": 40,
         "attack": 30,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "english": {
+        "en": {
+            "name": "WINGULL",
             "category": "Seagull Pokémon",
             "entry_text": [
                 "It soars high in the sky, riding on\n",
@@ -123,7 +123,7 @@
                 "food tucked in its bill."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GOELISE",
             "category": "Pokémon Mouette",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "grâce aux courants ascendants."
             ]
         },
-        "german": {
+        "de": {
             "name": "WINGULL",
             "category": "Seemöwe",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "in größerer Höhe fliegen zu können."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WINGULL",
             "category": "Pokémon Gabbiano",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "quota dalle correnti ascensionali."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WINGULL",
             "category": "Pokémon Gaviota",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "corrientes ascendentes."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キャモメ",
             "category": "うみねこポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Volbeat",
     "base_stats": {
         "hp": 65,
         "attack": 73,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "english": {
+        "en": {
+            "name": "VOLBEAT",
             "category": "Firefly Pokémon",
             "entry_text": [
                 "It communicates with others by\n",
@@ -126,7 +126,7 @@
                 "loves ILLUMISE’s sweet aroma."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MUCIOLE",
             "category": "Pokémon Luciole",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "adore le doux parfum de LUMIVOLE."
             ]
         },
-        "german": {
+        "de": {
             "name": "VOLBEAT",
             "category": "Libelle",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "bringt. Es liebt ILLUMISEs Duft."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VOLBEAT",
             "category": "Pokémon Lucciola",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "Ama il dolce aroma di ILLUMISE."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VOLBEAT",
             "category": "Pokémon Luciérnaga",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "suave aroma de ILLUMISE."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "バルビ－ト",
             "category": "ほたるポケモン",
             "entry_text": [

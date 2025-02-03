@@ -1,5 +1,4 @@
 {
-    "name": "Chansey",
     "base_stats": {
         "hp": 250,
         "attack": 5,
@@ -141,7 +140,8 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "english": {
+        "en": {
+            "name": "CHANSEY",
             "category": "Egg Pokémon",
             "entry_text": [
                 "A kindly Pokémon that lays highly\n",
@@ -149,7 +149,7 @@
                 "with injured Pokémon or people."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LEVEINARD",
             "category": "Pokémon Oeuf",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "œufs aux blessés."
             ]
         },
-        "german": {
+        "de": {
             "name": "CHANEIRA",
             "category": "Ei",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "mit Verletzten."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CHANSEY",
             "category": "Pokémon Uovo",
             "entry_text": [
@@ -176,7 +176,7 @@
                 "le uova con chi è ferito."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CHANSEY",
             "category": "Pokémon Huevo",
             "entry_text": [
@@ -185,7 +185,7 @@
                 "huevos entre la gente herida."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ラッキ－",
             "category": "たまごポケモン",
             "entry_text": [

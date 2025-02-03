@@ -1,5 +1,4 @@
 {
-    "name": "Uxie",
     "base_stats": {
         "hp": 75,
         "attack": 75,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "english": {
+        "en": {
+            "name": "UXIE",
             "category": "Knowledge Pokémon",
             "entry_text": [
                 "When UXIE flew, people gained the\n",
@@ -133,7 +133,7 @@
                 "It was the birth of knowledge."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CREHELF",
             "category": "Pokémon Savoir",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "pouvoir d’effacer la mémoire."
             ]
         },
-        "german": {
+        "de": {
             "name": "SELFE",
             "category": "Wissen",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "löschen, die ihm in die Augen sehen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "UXIE",
             "category": "Pokémon Sapienza",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "dere la memoria a chiunque lo fissi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "UXIE",
             "category": "Pokémon Sabiduría",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "borrar la memoria con una mirada."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ユクシ－",
             "category": "ちしきポケモン",
             "entry_text": [

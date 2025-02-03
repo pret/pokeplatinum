@@ -1,5 +1,4 @@
 {
-    "name": "Magby",
     "base_stats": {
         "hp": 45,
         "attack": 75,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "english": {
+        "en": {
+            "name": "MAGBY",
             "category": "Live Coal Pokémon",
             "entry_text": [
                 "Its magma-like blood circulates\n",
@@ -118,7 +118,7 @@
                 "heat can top 1,100 degrees F."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MAGBY",
             "category": "Pokémon Charbon",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "jaune quand il est en bonne santé."
             ]
         },
-        "german": {
+        "de": {
             "name": "MAGBY",
             "category": "Glutherd",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "atmet es gelbe Flammen aus."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAGBY",
             "category": "Pokémon Carbonvivo",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "sono gialle significa che è in forma."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAGBY",
             "category": "Pokémon Ascuas",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "escupe llamas amarillas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ブビィ",
             "category": "ひだねポケモン",
             "entry_text": [

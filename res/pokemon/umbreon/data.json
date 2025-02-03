@@ -1,5 +1,4 @@
 {
-    "name": "Umbreon",
     "base_stats": {
         "hp": 95,
         "attack": 65,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "UMBREON",
             "category": "Moonlight Pokémon",
             "entry_text": [
                 "When exposed to the moon’s aura,\n",
@@ -119,7 +119,7 @@
                 "and it gains a mysterious power."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NOCTALI",
             "category": "Pokémon Lune",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "les ombres en quête d’une proie."
             ]
         },
-        "german": {
+        "de": {
             "name": "NACHTARA",
             "category": "Mondschein",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "Im Dunkeln wartet es auf Beute."
             ]
         },
-        "italian": {
+        "it": {
             "name": "UMBREON",
             "category": "Pokémon Lucelunare",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "cela nel buio in attesa della preda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "UMBREON",
             "category": "Pokémon Luz Lunar",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "Busca presas en la oscuridad. "
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ブラッキ－",
             "category": "げっこうポケモン",
             "entry_text": [

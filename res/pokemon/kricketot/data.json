@@ -1,5 +1,4 @@
 {
-    "name": "Kricketot",
     "base_stats": {
         "hp": 37,
         "attack": 25,
@@ -69,7 +68,8 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "english": {
+        "en": {
+            "name": "KRICKETOT",
             "category": "Cricket Pokémon",
             "entry_text": [
                 "Its legs are short. Whenever it\n",
@@ -77,7 +77,7 @@
                 "with a xylophone-like sound."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CRIKZIK",
             "category": "Pokémon Criquet",
             "entry_text": [
@@ -86,7 +86,7 @@
                 "heurtent dans un son de xylophone."
             ]
         },
-        "german": {
+        "de": {
             "name": "ZIRPURZE",
             "category": "Zirper",
             "entry_text": [
@@ -95,7 +95,7 @@
                 "und wie ein Xylophon klingen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KRICKETOT",
             "category": "Pokémon Grillo",
             "entry_text": [
@@ -104,7 +104,7 @@
                 "cono un suono simile allo xilofono."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KRICKETOT",
             "category": "Pokémon Grillo",
             "entry_text": [
@@ -113,7 +113,7 @@
                 "y suenan como un xilófono."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コロボ－シ",
             "category": "こおろぎポケモン",
             "entry_text": [

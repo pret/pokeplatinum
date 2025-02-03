@@ -1,5 +1,4 @@
 {
-    "name": "Glalie",
     "base_stats": {
         "hp": 80,
         "attack": 80,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "english": {
+        "en": {
+            "name": "GLALIE",
             "category": "Face Pokémon",
             "entry_text": [
                 "It prevents prey from escaping by\n",
@@ -121,7 +121,7 @@
                 "in the air."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ONIGLALI",
             "category": "Pokémon Face",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "protectrice autour de son corps."
             ]
         },
-        "german": {
+        "de": {
             "name": "FIRNONTOR",
             "category": "Antlitz",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "aus Eis."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GLALIE",
             "category": "Pokémon Tuttomuso",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "congelando l’umidità dell’aria."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GLALIE",
             "category": "Pokémon Cara",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "la humedad del aire."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オニゴ－リ",
             "category": "がんめんポケモン",
             "entry_text": [

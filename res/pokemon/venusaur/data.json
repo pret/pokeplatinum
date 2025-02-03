@@ -1,5 +1,4 @@
 {
-    "name": "Venusaur",
     "base_stats": {
         "hp": 80,
         "attack": 82,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 8,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "VENUSAUR",
             "category": "Seed Pokémon",
             "entry_text": [
                 "After a rainy day, the flower on\n",
@@ -123,7 +123,7 @@
                 "scent attracts other Pokémon."
             ]
         },
-        "french": {
+        "fr": {
             "name": "FLORIZARRE",
             "category": "Pokémon Graine",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "Cela appâte les autres Pokémon."
             ]
         },
-        "german": {
+        "de": {
             "name": "BISAFLOR",
             "category": "Samen",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Das Aroma zieht andere Pokémon an."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VENUSAUR",
             "category": "Pokémon Seme",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "intenso e attira gli altri Pokémon."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VENUSAUR",
             "category": "Pokémon Semilla",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "potente y atrae a otros Pokémon."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "フシギバナ",
             "category": "たねポケモン",
             "entry_text": [

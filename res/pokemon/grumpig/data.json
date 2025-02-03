@@ -1,5 +1,4 @@
 {
-    "name": "Grumpig",
     "base_stats": {
         "hp": 80,
         "attack": 45,
@@ -132,7 +131,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "GRUMPIG",
             "category": "Manipulate Pokémon",
             "entry_text": [
                 "It uses black pearls to amplify its\n",
@@ -140,7 +140,7 @@
                 "dance to gain control over foes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GRORET",
             "category": "Pokémon Magouilleur",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "permet de contrôler ses ennemis."
             ]
         },
-        "german": {
+        "de": {
             "name": "GROINK",
             "category": "Manipulator",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "Tanz kontrolliert es seine Gegner."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GRUMPIG",
             "category": "Pokémon Raggiro",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "acquisisce controllo sul nemico."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GRUMPIG",
             "category": "Pokémon Manipulador",
             "entry_text": [
@@ -176,7 +176,7 @@
                 "raro baile controla a los rivales."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ブ－ピッグ",
             "category": "あやつりポケモン",
             "entry_text": [

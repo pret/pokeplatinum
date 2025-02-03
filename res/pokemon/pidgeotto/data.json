@@ -1,5 +1,4 @@
 {
-    "name": "Pidgeotto",
     "base_stats": {
         "hp": 63,
         "attack": 60,
@@ -112,7 +111,8 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "english": {
+        "en": {
+            "name": "PIDGEOTTO",
             "category": "Bird Pokémon",
             "entry_text": [
                 "It flies over its wide territory in\n",
@@ -120,7 +120,7 @@
                 "with its highly developed claws."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ROUCOUPS",
             "category": "Pokémon Oiseau",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "sur elle toutes griffes en avant."
             ]
         },
-        "german": {
+        "de": {
             "name": "TAUBOGA",
             "category": "Vogel",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "es durch riesiges Territorium."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PIDGEOTTO",
             "category": "Pokémon Uccello",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "i suoi artigli affilati."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PIDGEOTTO",
             "category": "Pokémon Pájaro",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "sus poderosas garras."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ピジョン",
             "category": "とりポケモン",
             "entry_text": [

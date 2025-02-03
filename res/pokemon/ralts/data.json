@@ -1,5 +1,4 @@
 {
-    "name": "Ralts",
     "base_stats": {
         "hp": 28,
         "attack": 25,
@@ -127,7 +126,8 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "english": {
+        "en": {
+            "name": "RALTS",
             "category": "Feeling Pokémon",
             "entry_text": [
                 "If its horns capture the warm\n",
@@ -135,7 +135,7 @@
                 "its body warms up slightly."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TARSAL",
             "category": "Pokémon Sentiment",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "dit qu’il apprécie la joie de vivre."
             ]
         },
-        "german": {
+        "de": {
             "name": "TRASLA",
             "category": "Gefühl",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "fröhlichen Menschen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RALTS",
             "category": "Pokémon Sensazione",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "capo. Si mostra alla gente allegra."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RALTS",
             "category": "Pokémon Sensible",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "que se aparece a la gente amable."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ラルトス",
             "category": "きもちポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Kadabra",
     "base_stats": {
         "hp": 40,
         "attack": 35,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "english": {
+        "en": {
+            "name": "KADABRA",
             "category": "Psi Pokémon",
             "entry_text": [
                 "It stares at its silver spoon to\n",
@@ -133,7 +133,7 @@
                 "waves while doing so."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KADABRA",
             "category": "Pokémon Psy",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Le malheur frappe celui qui la voit."
             ]
         },
-        "german": {
+        "de": {
             "name": "KADABRA",
             "category": "Psi",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "der Nähe. Und das bringt Unglück."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KADABRA",
             "category": "Pokémon Psico",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "che porta sfortuna a chi la guarda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KADABRA",
             "category": "Pokémon Psi",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "Se dice que verla trae mala suerte."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ユンゲラ－",
             "category": "ねんりきポケモン",
             "entry_text": [

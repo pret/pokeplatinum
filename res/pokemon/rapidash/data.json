@@ -1,5 +1,4 @@
 {
-    "name": "Rapidash",
     "base_stats": {
         "hp": 65,
         "attack": 100,
@@ -105,7 +104,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "RAPIDASH",
             "category": "Fire Horse Pokémon",
             "entry_text": [
                 "When at an all-out gallop, its\n",
@@ -113,7 +113,7 @@
                 "its beautiful appearance."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GALOPA",
             "category": "Pokémon Cheval Feu",
             "entry_text": [
@@ -122,7 +122,7 @@
                 "flotter sa crinière ardente."
             ]
         },
-        "german": {
+        "de": {
             "name": "GALLOPA",
             "category": "Feuerpferd",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "galoppiert."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RAPIDASH",
             "category": "Pokémon Cavalfuoco",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "ondeggiare la criniera ardente."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RAPIDASH",
             "category": "Pokémon Caballo F.",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "cuando corre."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ギャロップ",
             "category": "ひのうまポケモン",
             "entry_text": [

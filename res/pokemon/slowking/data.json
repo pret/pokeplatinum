@@ -1,5 +1,4 @@
 {
-    "name": "Slowking",
     "base_stats": {
         "hp": 95,
         "attack": 75,
@@ -138,7 +137,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "SLOWKING",
             "category": "Royal Pokémon",
             "entry_text": [
                 "Being bitten by SHELLDER gave it\n",
@@ -146,7 +146,7 @@
                 "award-winning scientists."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ROIGADA",
             "category": "Pokémon Royal",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "rivalise avec celle d’un prix Nobel."
             ]
         },
-        "german": {
+        "de": {
             "name": "LASCHOKING",
             "category": "Monarch",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "Nobelpreisträgern messen kann."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SLOWKING",
             "category": "Pokémon Reale",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "rinomati scienziati."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SLOWKING",
             "category": "Pokémon Regio",
             "entry_text": [
@@ -182,7 +182,7 @@
                 "de un ganador del premio Nobel."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヤドキング",
             "category": "おうじゃポケモン",
             "entry_text": [

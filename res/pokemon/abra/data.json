@@ -1,5 +1,4 @@
 {
-    "name": "Abra",
     "base_stats": {
         "hp": 25,
         "attack": 20,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "ABRA",
             "category": "Psi Pokémon",
             "entry_text": [
                 "Using its psychic power is such a\n",
@@ -124,7 +124,7 @@
                 "to sleep for 18 hours a day."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ABRA",
             "category": "Pokémon Psy",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "de se lever pour se téléporter."
             ]
         },
-        "german": {
+        "de": {
             "name": "ABRA",
             "category": "Psi",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "sich, während es sitzen bleibt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ABRA",
             "category": "Pokémon Psico",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "rimanendo seduto."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ABRA",
             "category": "Pokémon Psi",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "para teletransportarse."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ケ－シィ",
             "category": "ねんりきポケモン",
             "entry_text": [

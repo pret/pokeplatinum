@@ -1,5 +1,4 @@
 {
-    "name": "Celebi",
     "base_stats": {
         "hp": 100,
         "attack": 100,
@@ -130,7 +129,8 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "english": {
+        "en": {
+            "name": "CELEBI",
             "category": "Time Travel Pokémon",
             "entry_text": [
                 "It has the power to travel across\n",
@@ -138,7 +138,7 @@
                 "in peaceful times."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CELEBI",
             "category": "Pokémon Temporel",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "n’apparaît qu’en temps de paix."
             ]
         },
-        "german": {
+        "de": {
             "name": "CELEBI",
             "category": "Zeitreise",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "friedlichen Zeiten."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CELEBI",
             "category": "Pokémon Tempovia",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "in periodi di pace."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CELEBI",
             "category": "Pokémon Viajetiempo",
             "entry_text": [
@@ -174,7 +174,7 @@
                 "tiempos de paz."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "セレビィ",
             "category": "ときわたりポケモン",
             "entry_text": [

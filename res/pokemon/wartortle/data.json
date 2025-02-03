@@ -1,5 +1,4 @@
 {
-    "name": "Wartortle",
     "base_stats": {
         "hp": 59,
         "attack": 63,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "WARTORTLE",
             "category": "Turtle Pokémon",
             "entry_text": [
                 "It is said to live 10,000 years.\n",
@@ -129,7 +129,7 @@
                 "symbol of longevity."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CARABAFFE",
             "category": "Pokémon Tortue",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "symbole de longévité populaire."
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHILLOK",
             "category": "Kröte",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "Symbol für langes Leben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WARTORTLE",
             "category": "Pokémon Tartaruga",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "pelliccia, indice di longevità."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WARTORTLE",
             "category": "Pokémon Tortuga",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "longevidad."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カメ－ル",
             "category": "かめポケモン",
             "entry_text": [

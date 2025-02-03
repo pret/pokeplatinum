@@ -1,5 +1,4 @@
 {
-    "name": "Quagsire",
     "base_stats": {
         "hp": 95,
         "attack": 85,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "QUAGSIRE",
             "category": "Water Fish Pokémon",
             "entry_text": [
                 "It has an easygoing nature. It\n",
@@ -128,7 +128,7 @@
                 "boats and boulders while swimming."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MARAISTE",
             "category": "Pokémon Poisson",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "proie lui tombe dans le bec."
             ]
         },
-        "german": {
+        "de": {
             "name": "MORLORD",
             "category": "Fisch",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "ihm Beute ins Maul schwimmt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "QUAGSIRE",
             "category": "Pokémon Acquapesce",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "attesa di afferrare la preda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "QUAGSIRE",
             "category": "Pokémon Pez Agua",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "del río con la boca abierta."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヌオ－",
             "category": "みずうおポケモン",
             "entry_text": [

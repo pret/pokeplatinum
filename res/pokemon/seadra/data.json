@@ -1,5 +1,4 @@
 {
-    "name": "Seadra",
     "base_stats": {
         "hp": 55,
         "attack": 65,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "english": {
+        "en": {
+            "name": "SEADRA",
             "category": "Dragon Pokémon",
             "entry_text": [
                 "Its spines provide protection.\n",
@@ -122,7 +122,7 @@
                 "traditional medicine ingredients."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HYPOCEAN",
             "category": "Pokémon Dragon",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "prisés en médecine traditionnelle."
             ]
         },
-        "german": {
+        "de": {
             "name": "SEEMON",
             "category": "Drache",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "Herstellung von Medizin verwendet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SEADRA",
             "category": "Pokémon Drago",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "nella medicina tradizionale."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SEADRA",
             "category": "Pokémon Dragón",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "por la medicina tradicional."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "シ－ドラ",
             "category": "ドラゴンポケモン",
             "entry_text": [

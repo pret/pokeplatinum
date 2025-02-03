@@ -1,5 +1,4 @@
 {
-    "name": "Magmar",
     "base_stats": {
         "hp": 65,
         "attack": 95,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "english": {
+        "en": {
+            "name": "MAGMAR",
             "category": "Spitfire Pokémon",
             "entry_text": [
                 "When it breathes deeply, heat\n",
@@ -123,7 +123,7 @@
                 "it hard to see clearly."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MAGMAR",
             "category": "Pokémon Crache-Feu",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "qui flambent comme un soleil."
             ]
         },
-        "german": {
+        "de": {
             "name": "MAGMAR",
             "category": "Brenner",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "hellen Flammen umgeben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAGMAR",
             "category": "Pokémon Sputafuoco",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "che brillano come i raggi solari."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAGMAR",
             "category": "Pokémon Escupfuego",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "que brillan como el Sol."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ブ－バ－",
             "category": "ひふきポケモン",
             "entry_text": [

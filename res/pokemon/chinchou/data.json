@@ -1,5 +1,4 @@
 {
-    "name": "Chinchou",
     "base_stats": {
         "hp": 75,
         "attack": 38,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "english": {
+        "en": {
+            "name": "CHINCHOU",
             "category": "Angler Pokémon",
             "entry_text": [
                 "It discharges positive and\n",
@@ -121,7 +121,7 @@
                 "antenna tips to shock its foes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LOUPIO",
             "category": "Pokémon Poisson",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "antennes pour paralyser sa proie."
             ]
         },
-        "german": {
+        "de": {
             "name": "LAMPI",
             "category": "Angler",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Gegnern einen Schlag versetzt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CHINCHOU",
             "category": "Pokémon Pescatore",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "le quali colpisce i nemici."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CHINCHOU",
             "category": "Pokémon Rape",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "aturdir a sus enemigos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "チョンチ－",
             "category": "あんこうポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Politoed",
     "base_stats": {
         "hp": 90,
         "attack": 75,
@@ -106,7 +105,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "english": {
+        "en": {
+            "name": "POLITOED",
             "category": "Frog Pokémon",
             "entry_text": [
                 "It gathers groups of others as\n",
@@ -114,7 +114,7 @@
                 "POLIWAG obey."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TARPAUD",
             "category": "Pokémon Grenouille",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "pour diriger PTITARD."
             ]
         },
-        "german": {
+        "de": {
             "name": "QUAXO",
             "category": "Frosch",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "POLIWAG gehorchen seinem Ruf. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "POLITOED",
             "category": "Pokémon Rana",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "I suoi versi richiamano POLIWAG."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "POLITOED",
             "category": "Pokémon Rana",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "su voz."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニョロトノ",
             "category": "かえるポケモン",
             "entry_text": [

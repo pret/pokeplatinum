@@ -1,5 +1,4 @@
 {
-    "name": "Silcoon",
     "base_stats": {
         "hp": 50,
         "attack": 35,
@@ -63,7 +62,8 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "SILCOON",
             "category": "Cocoon Pokémon",
             "entry_text": [
                 "It wraps silk around the branches\n",
@@ -71,7 +71,7 @@
                 "its silk while awaiting evolution."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ARMULYS",
             "category": "Pokémon Cocon",
             "entry_text": [
@@ -80,7 +80,7 @@
                 "immobile en attendant d’évoluer."
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHALOKO",
             "category": "Kokon",
             "entry_text": [
@@ -89,7 +89,7 @@
                 "seine Entwicklung."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SILCOON",
             "category": "Pokémon Bozzolo",
             "entry_text": [
@@ -98,7 +98,7 @@
                 "aspetta immobile l’evoluzione."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SILCOON",
             "category": "Pokémon Capullo",
             "entry_text": [
@@ -107,7 +107,7 @@
                 "esperar su evolución."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カラサリス",
             "category": "さなぎポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Ivysaur",
     "base_stats": {
         "hp": 60,
         "attack": 62,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "IVYSAUR",
             "category": "Seed Pokémon",
             "entry_text": [
                 "When the bud on its back starts\n",
@@ -121,7 +121,7 @@
                 "indicate the flower’s coming bloom."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HERBIZARRE",
             "category": "Pokémon Graine",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "pour célébrer sa floraison."
             ]
         },
-        "german": {
+        "de": {
             "name": "BISAKNOSP",
             "category": "Samen",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Blüte kurz bevor."
             ]
         },
-        "italian": {
+        "it": {
             "name": "IVYSAUR",
             "category": "Pokémon Seme",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "È indice dell’imminente fioritura."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "IVYSAUR",
             "category": "Pokémon Semilla",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "para indicar el florecimiento."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "フシギソウ",
             "category": "たねポケモン",
             "entry_text": [

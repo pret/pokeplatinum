@@ -1,5 +1,4 @@
 {
-    "name": "Qwilfish",
     "base_stats": {
         "hp": 65,
         "attack": 95,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "QWILFISH",
             "category": "Balloon Pokémon",
             "entry_text": [
                 "It shoots the poison spines on its\n",
@@ -124,7 +124,7 @@
                 "form makes it a poor swimmer."
             ]
         },
-        "french": {
+        "fr": {
             "name": "QWILFISH",
             "category": "Pokémon Bouboule",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "fait un piètre nageur."
             ]
         },
-        "german": {
+        "de": {
             "name": "BALDORFISH",
             "category": "Ballon",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Es ist kein guter Schwimmer."
             ]
         },
-        "italian": {
+        "it": {
             "name": "QWILFISH",
             "category": "Pokémon Pallone",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "tondetto, non è un gran nuotatore."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "QWILFISH",
             "category": "Pokémon Globo",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "redonda, es muy mal nadador."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ハリ－セン",
             "category": "ふうせんポケモン",
             "entry_text": [

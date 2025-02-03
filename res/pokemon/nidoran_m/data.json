@@ -1,5 +1,4 @@
 {
-    "name": "Nidoran♂",
     "base_stats": {
         "hp": 46,
         "attack": 57,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "NIDORAN♂",
             "category": "Poison Pin Pokémon",
             "entry_text": [
                 "It scans its surroundings by\n",
@@ -121,7 +121,7 @@
                 "Its toxic horn is for protection."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NIDORAN♂",
             "category": "Pokémon Venepic",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "Il se défend avec sa corne toxique."
             ]
         },
-        "german": {
+        "de": {
             "name": "NIDORAN♂",
             "category": "Giftdorn",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Sein giftiges Horn schützt es."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NIDORAN♂",
             "category": "Pokémon Velenago",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "Si protegge con il corno velenoso."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NIDORAN♂",
             "category": "Pokémon Pin Veneno",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "Le protege su cuerno venenoso."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニドラン㊚",
             "category": "どくばりポケモン",
             "entry_text": [

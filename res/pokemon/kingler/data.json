@@ -1,5 +1,4 @@
 {
-    "name": "Kingler",
     "base_stats": {
         "hp": 55,
         "attack": 130,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "english": {
+        "en": {
+            "name": "KINGLER",
             "category": "Pincer Pokémon",
             "entry_text": [
                 "The larger pincer has 10,000-\n",
@@ -127,7 +127,7 @@
                 "is so heavy, it is difficult to aim."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KRABBOSS",
             "category": "Pokémon Pince",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "poids la rend difficile à manier."
             ]
         },
-        "german": {
+        "de": {
             "name": "KINGLER",
             "category": "Kneifer",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "schwer und kaum zu handhaben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KINGLER",
             "category": "Pokémon Chela",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "che non permette di mirare bene."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KINGLER",
             "category": "Pokémon Tenaza",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "grande que le cuesta usarla."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キングラ－",
             "category": "はさみポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Togetic",
     "base_stats": {
         "hp": 55,
         "attack": 40,
@@ -139,7 +138,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "TOGETIC",
             "category": "Happiness Pokémon",
             "entry_text": [
                 "To share its happiness, it flies\n",
@@ -147,7 +147,7 @@
                 "hearted people."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TOGETIC",
             "category": "Pokémon Bonheur",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "brillant appelé “poudre de joie”."
             ]
         },
-        "german": {
+        "de": {
             "name": "TOGETIC",
             "category": "Freude",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "glänzenden “Glücksstaub”."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TOGETIC",
             "category": "Pokémon Felicità",
             "entry_text": [
@@ -174,7 +174,7 @@
                 "detto “Polvere della gioia”."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TOGETIC",
             "category": "Pokémon Felicidad",
             "entry_text": [
@@ -183,7 +183,7 @@
                 "“polvillo de la alegría”."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "トゲチック",
             "category": "しあわせポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Golem",
     "base_stats": {
         "hp": 80,
         "attack": 110,
@@ -122,7 +121,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "GOLEM",
             "category": "Megaton Pokémon",
             "entry_text": [
                 "Even dynamite can’t harm its hard,\n",
@@ -130,7 +130,7 @@
                 "just once a year."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GROLEM",
             "category": "Pokémon Titanesque",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "même à la dynamite."
             ]
         },
-        "german": {
+        "de": {
             "name": "GEOWAZ",
             "category": "Urgestein",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "selbst Dynamit nichts anhaben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GOLEM",
             "category": "Pokémon Megatone",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "è scalfito neanche dalla dinamite."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GOLEM",
             "category": "Pokémon Megatón",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "que ni la dinamita lo daña."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゴロ－ニャ",
             "category": "メガトンポケモン",
             "entry_text": [

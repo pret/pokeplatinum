@@ -1,5 +1,4 @@
 {
-    "name": "Feraligatr",
     "base_stats": {
         "hp": 85,
         "attack": 105,
@@ -132,7 +131,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "FERALIGATR",
             "category": "Big Jaw Pokémon",
             "entry_text": [
                 "It usually moves slowly, but it\n",
@@ -140,7 +140,7 @@
                 "attacks and bites prey."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ALIGATUEUR",
             "category": "Pokémon Mâchoire",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "de l’éclair pour mordre sa proie."
             ]
         },
-        "german": {
+        "de": {
             "name": "IMPERGATOR",
             "category": "Großmaul",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "blitzschnell an."
             ]
         },
-        "italian": {
+        "it": {
             "name": "FERALIGATR",
             "category": "Pokémon Mascellone",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "muove ad una velocità incredibile."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "FERALIGATR",
             "category": "Pokémon Fauces",
             "entry_text": [
@@ -176,7 +176,7 @@
                 "y morder a sus enemigos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オ－ダイル",
             "category": "おおあごポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Espeon",
     "base_stats": {
         "hp": 65,
         "attack": 65,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "english": {
+        "en": {
+            "name": "ESPEON",
             "category": "Sun Pokémon",
             "entry_text": [
                 "Its fur is so sensitive, it can\n",
@@ -121,7 +121,7 @@
                 "and predict the weather."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MENTALI",
             "category": "Pokémon Soleil",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "quand il utilise ses pouvoirs psy."
             ]
         },
-        "german": {
+        "de": {
             "name": "PSIANA",
             "category": "Sonne",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Kugel in seiner Stirn."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ESPEON",
             "category": "Pokémon Sole",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "la sfera che ha sulla fronte brilla."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ESPEON",
             "category": "Pokémon Sol",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "cuando usa sus poderes psíquicos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エ－フィ",
             "category": "たいようポケモン",
             "entry_text": [

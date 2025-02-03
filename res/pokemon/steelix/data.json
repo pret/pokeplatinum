@@ -1,5 +1,4 @@
 {
-    "name": "Steelix",
     "base_stats": {
         "hp": 75,
         "attack": 85,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 21,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "STEELIX",
             "category": "Iron Snake Pokémon",
             "entry_text": [
                 "It is thought its body transformed\n",
@@ -136,7 +136,7 @@
                 "internally from swallowing soil."
             ]
         },
-        "french": {
+        "fr": {
             "name": "STEELIX",
             "category": "Pokémon Serpenfer",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "corps est plus dur que le métal."
             ]
         },
-        "german": {
+        "de": {
             "name": "STAHLOS",
             "category": "Stahlboa",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "Stahl werden lassen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "STEELIX",
             "category": "Pokémon Ferroserpe",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "più duro di qualsiasi metallo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "STEELIX",
             "category": "Pokémon Serpférrea",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "presión y calor de su hábitat."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ハガネ－ル",
             "category": "てつへびポケモン",
             "entry_text": [

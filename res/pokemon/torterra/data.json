@@ -1,5 +1,4 @@
 {
-    "name": "Torterra",
     "base_stats": {
         "hp": 95,
         "attack": 109,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "TORTERRA",
             "category": "Continent Pokémon",
             "entry_text": [
                 "Some Pokémon are born on a\n",
@@ -132,7 +132,7 @@
                 "entire life there."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TORTERRA",
             "category": "Pokémon Continent",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "immobile pour y faire leur nid."
             ]
         },
-        "german": {
+        "de": {
             "name": "CHELTERRAR",
             "category": "Kontinent",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "Nester zu bauen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TORTERRA",
             "category": "Pokémon Continente",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "per costruirvi la loro tana."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TORTERRA",
             "category": "Pokémon Continente",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "para hacer sus nidos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ドダイトス",
             "category": "たいりくポケモン",
             "entry_text": [

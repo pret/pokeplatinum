@@ -1,5 +1,4 @@
 {
-    "name": "Bellossom",
     "base_stats": {
         "hp": 75,
         "attack": 80,
@@ -100,7 +99,8 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "BELLOSSOM",
             "category": "Flower Pokémon",
             "entry_text": [
                 "When the heavy rainfall season\n",
@@ -108,7 +108,7 @@
                 "sunlight to dance in the open."
             ]
         },
-        "french": {
+        "fr": {
             "name": "JOLIFLOR",
             "category": "Pokémon Fleur",
             "entry_text": [
@@ -117,7 +117,7 @@
                 "attiré par la chaleur du soleil."
             ]
         },
-        "german": {
+        "de": {
             "name": "BLUBELLA",
             "category": "Blume",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "draußen gezogen, wo es tanzt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BELLOSSOM",
             "category": "Pokémon Fiore",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "i caldi raggi del sole."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BELLOSSOM",
             "category": "Pokémon Flor",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "peculiar danza."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キレイハナ",
             "category": "フラワ－ポケモン",
             "entry_text": [

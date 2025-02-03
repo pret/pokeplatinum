@@ -61,12 +61,12 @@ Strbuf *PokedexText_NameNumber(int species, int language, enum HeapId heapID)
         return MessageUtil_SpeciesName(species, heapID);
     } else {
         const int nameNumberBanks[] = {
-            TEXT_BANK_SPECIES_NAME_NUMBER_JAPANESE,
-            TEXT_BANK_SPECIES_NAME_NUMBER_ENGLISH,
-            TEXT_BANK_SPECIES_NAME_NUMBER_FRENCH,
-            TEXT_BANK_SPECIES_NAME_NUMBER_GERMAN,
-            TEXT_BANK_SPECIES_NAME_NUMBER_ITALIAN,
-            TEXT_BANK_SPECIES_NAME_NUMBER_SPANISH
+            TEXT_BANK_SPECIES_NAME_WITH_NATDEX_NUMBER_JP,
+            TEXT_BANK_SPECIES_NAME_WITH_NATDEX_NUMBER_EN,
+            TEXT_BANK_SPECIES_NAME_WITH_NATDEX_NUMBER_FR,
+            TEXT_BANK_SPECIES_NAME_WITH_NATDEX_NUMBER_DE,
+            TEXT_BANK_SPECIES_NAME_WITH_NATDEX_NUMBER_IT,
+            TEXT_BANK_SPECIES_NAME_WITH_NATDEX_NUMBER_ES
         };
         bankID = nameNumberBanks[index];
         index = dexNum;
@@ -89,12 +89,12 @@ Strbuf *PokedexText_Category(int species, int language, enum HeapId heapID)
         bankID = TEXT_BANK_SPECIES_CATEGORY;
     } else {
         const int categoryBanks[] = {
-            TEXT_BANK_SPECIES_CATEGORY_JAPANESE,
-            TEXT_BANK_SPECIES_CATEGORY_ENGLISH,
-            TEXT_BANK_SPECIES_CATEGORY_FRENCH,
-            TEXT_BANK_SPECIES_CATEGORY_GERMAN,
-            TEXT_BANK_SPECIES_CATEGORY_ITALIAN,
-            TEXT_BANK_SPECIES_CATEGORY_SPANISH
+            TEXT_BANK_SPECIES_CATEGORY_JP,
+            TEXT_BANK_SPECIES_CATEGORY_EN,
+            TEXT_BANK_SPECIES_CATEGORY_FR,
+            TEXT_BANK_SPECIES_CATEGORY_DE,
+            TEXT_BANK_SPECIES_CATEGORY_IT,
+            TEXT_BANK_SPECIES_CATEGORY_ES
         };
         bankID = categoryBanks[index];
         index = dexNum;
@@ -115,15 +115,15 @@ Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, enum He
     if (index == NUM_LANGUAGES) {
         GF_ASSERT(entryOffset < 1);
         index = species + entryOffset;
-        bankID = TEXT_BANK_DEX_ENTRY_ENGLISH;
+        bankID = TEXT_BANK_SPECIES_POKEDEX_ENTRY_EN;
     } else {
         const int dexEntryBanks[] = {
-            TEXT_BANK_DEX_ENTRY_JAPANESE,
-            TEXT_BANK_DEX_ENTRY_UNUSED,
-            TEXT_BANK_DEX_ENTRY_FRENCH,
-            TEXT_BANK_DEX_ENTRY_GERMAN,
-            TEXT_BANK_DEX_ENTRY_ITALIAN,
-            TEXT_BANK_DEX_ENTRY_SPANISH
+            TEXT_BANK_SPECIES_POKEDEX_ENTRY_JP,
+            TEXT_BANK_SPECIES_POKEDEX_ENTRY_UNUSED,
+            TEXT_BANK_SPECIES_POKEDEX_ENTRY_FR,
+            TEXT_BANK_SPECIES_POKEDEX_ENTRY_DE,
+            TEXT_BANK_SPECIES_POKEDEX_ENTRY_IT,
+            TEXT_BANK_SPECIES_POKEDEX_ENTRY_ES
         };
         GF_ASSERT(entryOffset < 1);
         bankID = dexEntryBanks[index];

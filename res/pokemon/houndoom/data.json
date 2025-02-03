@@ -1,5 +1,4 @@
 {
-    "name": "Houndoom",
     "base_stats": {
         "hp": 75,
         "attack": 90,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "HOUNDOOM",
             "category": "Dark Pokémon",
             "entry_text": [
                 "The flames it breathes when angry\n",
@@ -127,7 +127,7 @@
                 "burn, it will hurt forever."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DEMOLOSSE",
             "category": "Pokémon Sombre",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "l’appel de la Faucheuse."
             ]
         },
-        "german": {
+        "de": {
             "name": "HUNDEMON",
             "category": "Hades",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "des Todes."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HOUNDOOM",
             "category": "Pokémon Buio",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "con la chiamata della morte."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HOUNDOOM",
             "category": "Pokémon Siniestro",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "la muerte personificada."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヘルガ－",
             "category": "ダ－クポケモン",
             "entry_text": [

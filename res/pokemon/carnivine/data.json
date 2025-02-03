@@ -1,5 +1,4 @@
 {
-    "name": "Carnivine",
     "base_stats": {
         "hp": 74,
         "attack": 100,
@@ -108,7 +107,8 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "english": {
+        "en": {
+            "name": "CARNIVINE",
             "category": "Bug Catcher Pokémon",
             "entry_text": [
                 "It binds itself to trees in marshes.\n",
@@ -116,7 +116,7 @@
                 "smelling drool and gulps them down."
             ]
         },
-        "french": {
+        "fr": {
             "name": "VORTENTE",
             "category": "Pokémon Chopinsecte",
             "entry_text": [
@@ -125,7 +125,7 @@
                 "lui faut une journée pour l’avaler."
             ]
         },
-        "german": {
+        "de": {
             "name": "VENUFLIBIS",
             "category": "Käfertot",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "braucht einen Tag, sie zu fressen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CARNIVINE",
             "category": "Pokémon Insettivoro",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "un giorno per mangiare una preda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CARNIVINE",
             "category": "Pokémon Caza Bichos",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "todo un día en comérselas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マスキッパ",
             "category": "むしとりポケモン",
             "entry_text": [

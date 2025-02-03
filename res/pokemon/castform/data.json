@@ -1,5 +1,4 @@
 {
-    "name": "Castform",
     "base_stats": {
         "hp": 70,
         "attack": 70,
@@ -106,7 +105,8 @@
         "pokemon_pos_f": 65523,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65523,
-        "english": {
+        "en": {
+            "name": "CASTFORM",
             "category": "Weather Pokémon",
             "entry_text": [
                 "Its appearance changes with the\n",
@@ -114,7 +114,7 @@
                 "were found to be just like water."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MORPHEO",
             "category": "Pokémon Climat",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "molécules étaient pareilles à l’eau."
             ]
         },
-        "german": {
+        "de": {
             "name": "FORMEO",
             "category": "Wetter",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "dass seine Moleküle wie Wasser sind."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CASTFORM",
             "category": "Pokémon Meteo",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "le sue molecole sono di acqua."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CASTFORM",
             "category": "Pokémon Clima",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "que sus células son como el agua.  "
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ポワルン",
             "category": "てんきポケモン",
             "entry_text": [

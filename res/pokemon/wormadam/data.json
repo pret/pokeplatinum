@@ -1,5 +1,4 @@
 {
-    "name": "Wormadam",
     "base_stats": {
         "hp": 60,
         "attack": 59,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 65524,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65524,
-        "english": {
+        "en": {
+            "name": "WORMADAM",
             "category": "Bagworm Pokémon",
             "entry_text": [
                 "When evolving, its body takes in\n",
@@ -118,7 +118,7 @@
                 "there are many body variations."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHENISELLE",
             "category": "Pokémon Ver Caché",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "CHENISELLE ne s’en sépare jamais."
             ]
         },
-        "german": {
+        "de": {
             "name": "BURMADAME",
             "category": "Beutelwurm",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "Es legt den Umhang niemals ab."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WORMADAM",
             "category": "Pokémon Larva",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "Pokémon. Non se ne separa mai."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WORMADAM",
             "category": "Pokémon Larva",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "de este Pokémon."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミノマダム",
             "category": "みのむしポケモン",
             "entry_text": [

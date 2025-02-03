@@ -1,5 +1,4 @@
 {
-    "name": "Leafeon",
     "base_stats": {
         "hp": 65,
         "attack": 110,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "english": {
+        "en": {
+            "name": "LEAFEON",
             "category": "Verdant Pokémon",
             "entry_text": [
                 "It basically does not fight. With\n",
@@ -123,7 +123,7 @@
                 "can perform photosynthesis."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PHYLLALI",
             "category": "Pokémon Verdoyant",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "toujours entouré d’air pur."
             ]
         },
-        "german": {
+        "de": {
             "name": "FOLIPURBA",
             "category": "Unreif",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "ständig von reiner Luft umgeben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LEAFEON",
             "category": "Pokémon Rigoglioso",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "circondato da aria pulita."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LEAFEON",
             "category": "Pokémon Verdor",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "siempre está rodeado de aire puro."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "リ－フィア",
             "category": "しんりょくポケモン",
             "entry_text": [

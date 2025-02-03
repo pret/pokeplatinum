@@ -1,5 +1,4 @@
 {
-    "name": "Kecleon",
     "base_stats": {
         "hp": 60,
         "attack": 90,
@@ -141,7 +140,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "KECLEON",
             "category": "Color Swap Pokémon",
             "entry_text": [
                 "It can freely change its body’s\n",
@@ -149,7 +149,7 @@
                 "belly doesn’t change, however."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KECLEON",
             "category": "Pokémon Multicolor",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "orne son ventre reste le même."
             ]
         },
-        "german": {
+        "de": {
             "name": "KECLEON",
             "category": "Farbenspiel",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "auf seinem Bauch bleibt gleich."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KECLEON",
             "category": "Pokémon Mutacolore",
             "entry_text": [
@@ -176,7 +176,7 @@
                 "zigzag sul suo ventre non cambia."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KECLEON",
             "category": "Pokémon Camaleónico",
             "entry_text": [
@@ -185,7 +185,7 @@
                 "de su panza nunca desaparece."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カクレオン",
             "category": "いろへんげポケモン",
             "entry_text": [

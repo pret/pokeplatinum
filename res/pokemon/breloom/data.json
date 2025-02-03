@@ -1,5 +1,4 @@
 {
-    "name": "Breloom",
     "base_stats": {
         "hp": 60,
         "attack": 130,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "english": {
+        "en": {
+            "name": "BRELOOM",
             "category": "Mushroom Pokémon",
             "entry_text": [
                 "Its short arms stretch when it\n",
@@ -132,7 +132,7 @@
                 "equal to that of pro boxers."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHAPIGNON",
             "category": "Pokémon Champignon",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "égale celui d’un boxeur pro."
             ]
         },
-        "german": {
+        "de": {
             "name": "KAPILZ",
             "category": "Pilz",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "ähnelt der von Profi-Boxern."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BRELOOM",
             "category": "Pokémon Fungo",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "a quella dei pugili professionisti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BRELOOM",
             "category": "Pokémon Hongo",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "técnica pugilística muy depurada."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キノガッサ",
             "category": "きのこポケモン",
             "entry_text": [

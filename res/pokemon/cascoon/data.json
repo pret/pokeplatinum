@@ -1,5 +1,4 @@
 {
-    "name": "Cascoon",
     "base_stats": {
         "hp": 50,
         "attack": 35,
@@ -63,7 +62,8 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "CASCOON",
             "category": "Cocoon Pokémon",
             "entry_text": [
                 "It never forgets any attack it\n",
@@ -71,7 +71,7 @@
                 "After evolution, it seeks payback."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BLINDALYS",
             "category": "Pokémon Cocon",
             "entry_text": [
@@ -80,7 +80,7 @@
                 "nécessaire à son évolution."
             ]
         },
-        "german": {
+        "de": {
             "name": "PANEKON",
             "category": "Kokon",
             "entry_text": [
@@ -89,7 +89,7 @@
                 "damit es sich entwickeln kann."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CASCOON",
             "category": "Pokémon Bozzolo",
             "entry_text": [
@@ -98,7 +98,7 @@
                 "a creare energia per l’evoluzione."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CASCOON",
             "category": "Pokémon Capullo",
             "entry_text": [
@@ -107,7 +107,7 @@
                 "cuerpo a evolucionar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マユルド",
             "category": "さなぎポケモン",
             "entry_text": [

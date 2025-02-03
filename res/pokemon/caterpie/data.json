@@ -1,5 +1,4 @@
 {
-    "name": "Caterpie",
     "base_stats": {
         "hp": 45,
         "attack": 30,
@@ -64,7 +63,8 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "english": {
+        "en": {
+            "name": "CATERPIE",
             "category": "Worm Pokémon",
             "entry_text": [
                 "It releases a stench from its red\n",
@@ -72,7 +72,7 @@
                 "grows by molting repeatedly."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHENIPAN",
             "category": "Pokémon Ver",
             "entry_text": [
@@ -81,7 +81,7 @@
                 "grandit par mues régulières."
             ]
         },
-        "german": {
+        "de": {
             "name": "RAUPY",
             "category": "Wurm",
             "entry_text": [
@@ -90,7 +90,7 @@
                 "wächst, indem es sich häutet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CATERPIE",
             "category": "Pokémon Baco",
             "entry_text": [
@@ -99,7 +99,7 @@
                 "cambiando più volte la pelle."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CATERPIE",
             "category": "Pokémon Gusano",
             "entry_text": [
@@ -108,7 +108,7 @@
                 "Crece mudándose repetidamente."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キャタピ－",
             "category": "いもむしポケモン",
             "entry_text": [

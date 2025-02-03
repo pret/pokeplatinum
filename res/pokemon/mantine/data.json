@@ -1,5 +1,4 @@
 {
-    "name": "Mantine",
     "base_stats": {
         "hp": 65,
         "attack": 40,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 65535,
-        "english": {
+        "en": {
+            "name": "MANTINE",
             "category": "Kite Pokémon",
             "entry_text": [
                 "While elegantly swimming in the sea,\n",
@@ -128,7 +128,7 @@
                 "its fins seeking food scraps."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DEMANTA",
             "category": "Pokémon Cervolant",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "nageant comme s’ils volaient."
             ]
         },
-        "german": {
+        "de": {
             "name": "MANTAX",
             "category": "Flugrochen",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "sehen, die schnell vorbeischwimmen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MANTINE",
             "category": "Pokémon Aquilone",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "leggiadri come se volassero."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MANTINE",
             "category": "Pokémon Milano",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "nadando como si volasen."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マンタイン",
             "category": "カイトポケモン",
             "entry_text": [

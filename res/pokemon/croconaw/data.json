@@ -1,5 +1,4 @@
 {
-    "name": "Croconaw",
     "base_stats": {
         "hp": 65,
         "attack": 80,
@@ -126,7 +125,8 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "english": {
+        "en": {
+            "name": "CROCONAW",
             "category": "Big Jaw Pokémon",
             "entry_text": [
                 "Once it bites down, it won’t let go\n",
@@ -134,7 +134,7 @@
                 "quickly grow into place."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CROCRODIL",
             "category": "Pokémon Mâchoire",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "Ils repoussent par la suite."
             ]
         },
-        "german": {
+        "de": {
             "name": "TYRACROC",
             "category": "Großmaul",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "verliert, die schnell nachwachsen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CROCONAW",
             "category": "Pokémon Mascellone",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "zanne, che però ricrescono subito."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CROCONAW",
             "category": "Pokémon Fauces",
             "entry_text": [
@@ -170,7 +170,7 @@
                 "Estos se regeneran rápidamente."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アリゲイツ",
             "category": "おおあごポケモン",
             "entry_text": [

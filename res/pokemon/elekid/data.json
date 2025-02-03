@@ -1,5 +1,4 @@
 {
-    "name": "Elekid",
     "base_stats": {
         "hp": 45,
         "attack": 63,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "ELEKID",
             "category": "Electric Pokémon",
             "entry_text": [
                 "A weak electric current flows\n",
@@ -123,7 +123,7 @@
                 "there shocks the unwary."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ELEKID",
             "category": "Pokémon Electrique",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "moyen de stocker cette énergie."
             ]
         },
-        "german": {
+        "de": {
             "name": "ELEKID",
             "category": "Elektro",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "aber nicht speichern."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ELEKID",
             "category": "Pokémon Elettrico",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "immagazzinare l’energia creata."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ELEKID",
             "category": "Pokémon Eléctrico",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "de almacenar la energía creada."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エレキッド",
             "category": "でんきポケモン",
             "entry_text": [

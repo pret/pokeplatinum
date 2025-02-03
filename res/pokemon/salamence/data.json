@@ -1,5 +1,4 @@
 {
-    "name": "Salamence",
     "base_stats": {
         "hp": 95,
         "attack": 135,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "english": {
+        "en": {
+            "name": "SALAMENCE",
             "category": "Dragon Pokémon",
             "entry_text": [
                 "As a result of its long-held dream\n",
@@ -136,7 +136,7 @@
                 "changed, and wings grew out."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DRATTAK",
             "category": "Pokémon Dragon",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "et il s’est vu pousser des ailes."
             ]
         },
-        "german": {
+        "de": {
             "name": "BRUTALANDA",
             "category": "Drache",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "davon träumte, fliegen zu können."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SALAMENCE",
             "category": "Pokémon Drago",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "e gli sono spuntate le ali."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SALAMENCE",
             "category": "Pokémon Dragón",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "y le crecieron alas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ボ－マンダ",
             "category": "ドラゴンポケモン",
             "entry_text": [

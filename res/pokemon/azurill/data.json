@@ -1,5 +1,4 @@
 {
-    "name": "Azurill",
     "base_stats": {
         "hp": 50,
         "attack": 20,
@@ -97,7 +96,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "AZURILL",
             "category": "Polka Dot Pokémon",
             "entry_text": [
                 "Its tail bounces like a rubber ball.\n",
@@ -105,7 +105,7 @@
                 "opponents bigger than itself."
             ]
         },
-        "french": {
+        "fr": {
             "name": "AZURILL",
             "category": "Pokémon Point Polka",
             "entry_text": [
@@ -114,7 +114,7 @@
                 "rebondissant sur sa grosse queue."
             ]
         },
-        "german": {
+        "de": {
             "name": "AZURILL",
             "category": "Gepunktet",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "es auf seinem großen Schweif hüpft."
             ]
         },
-        "italian": {
+        "it": {
             "name": "AZURILL",
             "category": "Pokémon Pois",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "saltellando sulla grossa coda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "AZURILL",
             "category": "Pokémon A Topos",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "sobre su gran cola."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ルリリ",
             "category": "みずたまポケモン",
             "entry_text": [

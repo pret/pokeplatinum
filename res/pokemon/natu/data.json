@@ -1,5 +1,4 @@
 {
-    "name": "Natu",
     "base_stats": {
         "hp": 40,
         "attack": 50,
@@ -127,7 +126,8 @@
         "pokemon_pos_f": 31,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 31,
-        "english": {
+        "en": {
+            "name": "NATU",
             "category": "Tiny Bird Pokémon",
             "entry_text": [
                 "It picks food from cactus plants,\n",
@@ -135,7 +135,7 @@
                 "It seems to skip about to move."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NATU",
             "category": "Pokémon Minoiseau",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "épines. Il ne tient pas en place. "
             ]
         },
-        "german": {
+        "de": {
             "name": "NATU",
             "category": "Kleinvogel",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "Dornen verschont."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NATU",
             "category": "Pokémon Uccellino",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "saltellando."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NATU",
             "category": "Pokémon Pajarito",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "dando saltos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ネイティ",
             "category": "ことりポケモン",
             "entry_text": [

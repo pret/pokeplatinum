@@ -1,5 +1,4 @@
 {
-    "name": "Weezing",
     "base_stats": {
         "hp": 65,
         "attack": 90,
@@ -112,7 +111,8 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "english": {
+        "en": {
+            "name": "WEEZING",
             "category": "Poison Gas Pokémon",
             "entry_text": [
                 "It grows by feeding on gases\n",
@@ -120,7 +120,7 @@
                 "rare, triplets have been found."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SMOGOGO",
             "category": "Pokémon Gaz Mortel",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "qu’ils soient fort rares."
             ]
         },
-        "german": {
+        "de": {
             "name": "SMOGMOG",
             "category": "Giftwolke",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "kann man Drillinge von ihnen finden."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WEEZING",
             "category": "Pokémon Velenuvola",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "hanno trovati in gruppi di tre."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WEEZING",
             "category": "Pokémon Gas Veneno",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "dado raros casos de trillizos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マタドガス",
             "category": "どくガスポケモン",
             "entry_text": [

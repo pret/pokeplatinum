@@ -1,5 +1,4 @@
 {
-    "name": "Aggron",
     "base_stats": {
         "hp": 70,
         "attack": 110,
@@ -151,7 +150,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "AGGRON",
             "category": "Iron Armor Pokémon",
             "entry_text": [
                 "While seeking iron for food, it\n",
@@ -159,7 +159,7 @@
                 "bedrock with its steel horns."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GALEKING",
             "category": "Pokémon Armurfer",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "pour trouver le fer qu’il apprécie. "
             ]
         },
-        "german": {
+        "de": {
             "name": "STOLLOSS",
             "category": "Eisenpanzer",
             "entry_text": [
@@ -177,7 +177,7 @@
                 "hörnern sogar Tunnel durch Felsen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "AGGRON",
             "category": "Pokémon Corazza",
             "entry_text": [
@@ -186,7 +186,7 @@
                 "corna d’acciaio."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "AGGRON",
             "category": "Pokémon Cor. Férrea",
             "entry_text": [
@@ -195,7 +195,7 @@
                 "potentes cuernos de acero."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ボスゴドラ",
             "category": "てつヨロイポケモン",
             "entry_text": [

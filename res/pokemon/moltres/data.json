@@ -1,5 +1,4 @@
 {
-    "name": "Moltres",
     "base_stats": {
         "hp": 90,
         "attack": 100,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "MOLTRES",
             "category": "Flame Pokémon",
             "entry_text": [
                 "One of the legendary bird Pokémon.\n",
@@ -121,7 +121,7 @@
                 "indicates the coming of spring."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SULFURA",
             "category": "Pokémon Flamme",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "annonce l’arrivée du printemps."
             ]
         },
-        "german": {
+        "de": {
             "name": "LAVADOS",
             "category": "Flamme",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Frühlings angesehen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MOLTRES",
             "category": "Pokémon Fiamma",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "annunci l’arrivo della primavera."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MOLTRES",
             "category": "Pokémon Llama",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "anuncia la llegada de la primavera."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ファイヤ－",
             "category": "かえんポケモン",
             "entry_text": [

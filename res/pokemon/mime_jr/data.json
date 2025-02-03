@@ -1,5 +1,4 @@
 {
-    "name": "Mime Jr.",
     "base_stats": {
         "hp": 20,
         "attack": 25,
@@ -132,7 +131,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "english": {
+        "en": {
+            "name": "MIME JR.",
             "category": "Mime Pokémon",
             "entry_text": [
                 "It mimics the expressions and\n",
@@ -140,7 +140,7 @@
                 "understand the feelings of others."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MIME JR.",
             "category": "Pokémon Mime",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "quitter ce Pokémon des yeux."
             ]
         },
-        "german": {
+        "de": {
             "name": "PANTIMIMI",
             "category": "Mime",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "ihm abwenden."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MIME JR.",
             "category": "Pokémon Mimo",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "più a distogliere lo sguardo da lui."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MIME JR.",
             "category": "Pokémon Mimo",
             "entry_text": [
@@ -176,7 +176,7 @@
                 "puede apartar los ojos de él."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マネネ",
             "category": "マイムポケモン",
             "entry_text": [

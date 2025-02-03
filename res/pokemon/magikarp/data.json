@@ -1,5 +1,4 @@
 {
-    "name": "Magikarp",
     "base_stats": {
         "hp": 20,
         "attack": 10,
@@ -64,7 +63,8 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "english": {
+        "en": {
+            "name": "MAGIKARP",
             "category": "Fish Pokémon",
             "entry_text": [
                 "A MAGIKARP living for many years\n",
@@ -72,7 +72,7 @@
                 "The move remains useless, though."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MAGICARPE",
             "category": "Pokémon Poisson",
             "entry_text": [
@@ -81,7 +81,7 @@
                 "sait comment son espèce perdure."
             ]
         },
-        "german": {
+        "de": {
             "name": "KARPADOR",
             "category": "Fisch",
             "entry_text": [
@@ -90,7 +90,7 @@
                 "es bisher überleben konnte."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAGIKARP",
             "category": "Pokémon Pesce",
             "entry_text": [
@@ -99,7 +99,7 @@
                 "come abbia fatto a sopravvivere."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAGIKARP",
             "category": "Pokémon Pez",
             "entry_text": [
@@ -108,7 +108,7 @@
                 "ha logrado sobrevivir."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コイキング",
             "category": "さかなポケモン",
             "entry_text": [

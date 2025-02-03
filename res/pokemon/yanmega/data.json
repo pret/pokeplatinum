@@ -1,5 +1,4 @@
 {
-    "name": "Yanmega",
     "base_stats": {
         "hp": 86,
         "attack": 76,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "english": {
+        "en": {
+            "name": "YANMEGA",
             "category": "Ogre Darner Pokémon",
             "entry_text": [
                 "Its jaw power is incredible. It is\n",
@@ -126,7 +126,7 @@
                 "flying by at high speed."
             ]
         },
-        "french": {
+        "fr": {
             "name": "YANMEGA",
             "category": "Pokémon Libellogre",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "graves blessures internes."
             ]
         },
-        "german": {
+        "de": {
             "name": "YANMEGA",
             "category": "Agrion",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "Gegn. innere Verletzungen zufügen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "YANMEGA",
             "category": "Pokémon Libellorco",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "organi interni dei nemici."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "YANMEGA",
             "category": "Pokémon Libélula",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "lesiones internas a sus rivales."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "メガヤンマ",
             "category": "オニトンボポケモン",
             "entry_text": [

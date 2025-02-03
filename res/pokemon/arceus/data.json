@@ -1,5 +1,4 @@
 {
-    "name": "Arceus",
     "base_stats": {
         "hp": 120,
         "attack": 120,
@@ -169,7 +168,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 23,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "ARCEUS",
             "category": "Alpha Pokémon",
             "entry_text": [
                 "It is said to have emerged from an\n",
@@ -177,7 +177,7 @@
                 "nothing, then shaped the world."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ARCEUS",
             "category": "Pokémon Alpha",
             "entry_text": [
@@ -186,7 +186,7 @@
                 "l’univers avec ses 1 000 bras."
             ]
         },
-        "german": {
+        "de": {
             "name": "ARCEUS",
             "category": "Alpha",
             "entry_text": [
@@ -195,7 +195,7 @@
                 "seine tausend Arme eingesetzt hat."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ARCEUS",
             "category": "Pokémon Primevo",
             "entry_text": [
@@ -204,7 +204,7 @@
                 "verso con le sue 1000 braccia."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ARCEUS",
             "category": "Pokémon Alfa",
             "entry_text": [
@@ -213,7 +213,7 @@
                 "Universo con sus 1000 brazos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アルセウス",
             "category": "そうぞうポケモン",
             "entry_text": [

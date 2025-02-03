@@ -1,5 +1,4 @@
 {
-    "name": "Lileep",
     "base_stats": {
         "hp": 66,
         "attack": 41,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "LILEEP",
             "category": "Sea Lily Pokémon",
             "entry_text": [
                 "It lived on the seafloor 100\n",
@@ -121,7 +121,7 @@
                 "reanimated scientifically."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LILIA",
             "category": "Pokémon Lis D’Eau",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "a permis de le ressusciter."
             ]
         },
-        "german": {
+        "de": {
             "name": "LILIEP",
             "category": "Seeanemone",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Die Wissenschaft belebte es neu."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LILEEP",
             "category": "Pokémon Fiordimare",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "in laboratorio."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LILEEP",
             "category": "Pokémon Lila Mar",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "recreado científicamente."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "リリ－ラ",
             "category": "ウミユリポケモン",
             "entry_text": [

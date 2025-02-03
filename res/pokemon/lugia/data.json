@@ -1,5 +1,4 @@
 {
-    "name": "Lugia",
     "base_stats": {
         "hp": 106,
         "attack": 90,
@@ -141,7 +140,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "LUGIA",
             "category": "Diving Pokémon",
             "entry_text": [
                 "It sleeps in a deep-sea trench.\n",
@@ -149,7 +149,7 @@
                 "cause a 40-day storm."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LUGIA",
             "category": "Pokémon Plongeon",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "génèrent une tempête de 40 jours."
             ]
         },
-        "german": {
+        "de": {
             "name": "LUGIA",
             "category": "Taucher",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "ein Sturm, der 40 Tage dauert."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LUGIA",
             "category": "Pokémon Immersione",
             "entry_text": [
@@ -176,7 +176,7 @@
                 "una tempesta di 40 giorni."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LUGIA",
             "category": "Pokémon Buceo",
             "entry_text": [
@@ -185,7 +185,7 @@
                 "tormentas de cuarenta días."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ルギア",
             "category": "せんすいポケモン",
             "entry_text": [

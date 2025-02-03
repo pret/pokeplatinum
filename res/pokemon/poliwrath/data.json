@@ -1,5 +1,4 @@
 {
-    "name": "Poliwrath",
     "base_stats": {
         "hp": 90,
         "attack": 85,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "POLIWRATH",
             "category": "Tadpole Pokémon",
             "entry_text": [
                 "With its extremely tough muscles,\n",
@@ -119,7 +119,7 @@
                 "Ocean without resting."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TARTARD",
             "category": "Pokémon Têtard",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "l’Océan Pacifique."
             ]
         },
-        "german": {
+        "de": {
             "name": "QUAPPO",
             "category": "Kaulquappe",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "ohne sich ausruhen zu müssen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "POLIWRATH",
             "category": "Pokémon Girino",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "l’Oceano Pacifico senza fermarsi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "POLIWRATH",
             "category": "Pokémon Renacuajo",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "sin descanso."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニョロボン",
             "category": "おたまポケモン",
             "entry_text": [

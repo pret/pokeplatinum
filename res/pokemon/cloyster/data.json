@@ -1,5 +1,4 @@
 {
-    "name": "Cloyster",
     "base_stats": {
         "hp": 50,
         "attack": 95,
@@ -100,7 +99,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "CLOYSTER",
             "category": "Bivalve Pokémon",
             "entry_text": [
                 "It fights by keeping its shell\n",
@@ -108,7 +108,7 @@
                 "by shooting spikes to repel foes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CRUSTABRI",
             "category": "Pokémon Bivalve",
             "entry_text": [
@@ -117,7 +117,7 @@
                 "repoussent ses agresseurs."
             ]
         },
-        "german": {
+        "de": {
             "name": "AUSTOS",
             "category": "Muschel",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "Stacheln auf seine Gegner."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CLOYSTER",
             "category": "Pokémon Bivalve",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "per respingere i nemici."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CLOYSTER",
             "category": "Pokémon Bivalvo",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "a sus oponentes."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "パルシェン",
             "category": "２まいがいポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Rattata",
     "base_stats": {
         "hp": 30,
         "attack": 56,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "RATTATA",
             "category": "Mouse Pokémon",
             "entry_text": [
                 "Cautious in the extreme, its\n",
@@ -127,7 +127,7 @@
                 "any kind of environment."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RATTATA",
             "category": "Pokémon Souris",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "à tous les terrains."
             ]
         },
-        "german": {
+        "de": {
             "name": "RATTFRATZ",
             "category": "Maus",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "ist extrem vorsichtig. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "RATTATA",
             "category": "Pokémon Topo",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "habitat. È estremamente cauto."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RATTATA",
             "category": "Pokémon Ratón",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "Es tremendamente cauteloso."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コラッタ",
             "category": "ねずみポケモン",
             "entry_text": [

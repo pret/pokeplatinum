@@ -1,5 +1,4 @@
 {
-    "name": "Scizor",
     "base_stats": {
         "hp": 70,
         "attack": 130,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "SCIZOR",
             "category": "Pincer Pokémon",
             "entry_text": [
                 "It raises its pincers with eyelike\n",
@@ -128,7 +128,7 @@
                 "swings them down dangerously."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CIZAYOX",
             "category": "Pokémon Pince",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "ses pinces pareilles à des yeux. "
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHEROX",
             "category": "Kneifer",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "Augen auf seinen Scheren zeigt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SCIZOR",
             "category": "Pokémon Chela",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "cui sono disegnati degli occhi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SCIZOR",
             "category": "Pokémon Tenaza",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "dibujos de ojos en sus pinzas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ハッサム",
             "category": "はさみポケモン",
             "entry_text": [

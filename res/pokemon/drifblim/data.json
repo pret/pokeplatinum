@@ -1,5 +1,4 @@
 {
-    "name": "Drifblim",
     "base_stats": {
         "hp": 150,
         "attack": 80,
@@ -126,7 +125,8 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "english": {
+        "en": {
+            "name": "DRIFBLIM",
             "category": "Blimp Pokémon",
             "entry_text": [
                 "At dusk, swarms of them are\n",
@@ -134,7 +134,7 @@
                 "noticed, they suddenly vanish."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GRODRIVE",
             "category": "Pokémon Ballon",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "ne sait où ils vont."
             ]
         },
-        "german": {
+        "de": {
             "name": "DRIFZEPELI",
             "category": "Luftschiff",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "umher. Niemand weiß wohin."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DRIFBLIM",
             "category": "Pokémon Dirigibile",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "in gruppo. Nessuno sa dove vada."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DRIFBLIM",
             "category": "Pokémon Dirigible",
             "entry_text": [
@@ -170,7 +170,7 @@
                 "grupo, aunque nadie sabe adónde."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "フワライド",
             "category": "ききゅうポケモン",
             "entry_text": [

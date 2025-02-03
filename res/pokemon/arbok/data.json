@@ -1,5 +1,4 @@
 {
-    "name": "Arbok",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -117,7 +116,8 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "english": {
+        "en": {
+            "name": "ARBOK",
             "category": "Cobra Pokémon",
             "entry_text": [
                 "The pattern on its belly is for\n",
@@ -125,7 +125,7 @@
                 "while they are frozen in fear."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ARBOK",
             "category": "Pokémon Cobra",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "l’ennemi pétrifié par la peur."
             ]
         },
-        "german": {
+        "de": {
             "name": "ARBOK",
             "category": "Kobra",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "Angst erstarrt, umklammert es sie."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ARBOK",
             "category": "Pokémon Cobra",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "poi gli si avvinghia intorno."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ARBOK",
             "category": "Pokémon Cobra",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "asfixia con su cuerpo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ア－ボック",
             "category": "コブラポケモン",
             "entry_text": [

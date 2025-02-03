@@ -1,5 +1,4 @@
 {
-    "name": "Registeel",
     "base_stats": {
         "hp": 80,
         "attack": 75,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "REGISTEEL",
             "category": "Iron Pokémon",
             "entry_text": [
                 "Tempered by pressure underground\n",
@@ -132,7 +132,7 @@
                 "its body cannot be scratched."
             ]
         },
-        "french": {
+        "fr": {
             "name": "REGISTEEL",
             "category": "Pokémon Fer",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "des dizaines de milliers d’années."
             ]
         },
-        "german": {
+        "de": {
             "name": "REGISTEEL",
             "category": "Eisen",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "Körper durch Druck u. Wärme hart."
             ]
         },
-        "italian": {
+        "it": {
             "name": "REGISTEEL",
             "category": "Pokémon Ferro",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "reso il suo corpo resistentissimo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "REGISTEEL",
             "category": "Pokémon Hierro",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "de años y no puede arañarse."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "レジスチル",
             "category": "くろがねポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Luxray",
     "base_stats": {
         "hp": 80,
         "attack": 120,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "english": {
+        "en": {
+            "name": "LUXRAY",
             "category": "Gleam Eyes Pokémon",
             "entry_text": [
                 "It can see clearly through walls\n",
@@ -115,7 +115,7 @@
                 "its lost young."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LUXRAY",
             "category": "Pokémon Brilloeil",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "un objet pour les capturer."
             ]
         },
-        "german": {
+        "de": {
             "name": "LUXTRA",
             "category": "Glühauge",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "auch Beute, die sich versteckt hat."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LUXRAY",
             "category": "Pokémon Occhiluce",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "si nascondono dietro gli oggetti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LUXRAY",
             "category": "Pokémon Chispa Ojos",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "detrás de objetos y las captura."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "レントラ－",
             "category": "がんこうポケモン",
             "entry_text": [

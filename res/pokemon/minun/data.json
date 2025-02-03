@@ -1,5 +1,4 @@
 {
-    "name": "Minun",
     "base_stats": {
         "hp": 60,
         "attack": 40,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "english": {
+        "en": {
+            "name": "MINUN",
             "category": "Cheering Pokémon",
             "entry_text": [
                 "It cheers on friends. If its\n",
@@ -118,7 +118,7 @@
                 "off more and more sparks."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NEGAPI",
             "category": "Pokémon Acclameur",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "est en mauvaise posture."
             ]
         },
-        "german": {
+        "de": {
             "name": "MINUN",
             "category": "Jubel",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "Körper immer mehr Funken ab."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MINUN",
             "category": "Pokémon Incitamento",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "una maggiore quantità di scintille."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MINUN",
             "category": "Pokémon Ánimo",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "más chispas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マイナン",
             "category": "おうえんポケモン",
             "entry_text": [

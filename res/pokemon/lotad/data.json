@@ -1,5 +1,4 @@
 {
-    "name": "Lotad",
     "base_stats": {
         "hp": 40,
         "attack": 30,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "english": {
+        "en": {
+            "name": "LOTAD",
             "category": "Water Weed Pokémon",
             "entry_text": [
                 "It looks like an aquatic plant and\n",
@@ -119,7 +119,7 @@
                 "that can’t swim."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NENUPIOT",
             "category": "Pokémon Aquaplante",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "Pokémon qui ne savent pas nager."
             ]
         },
-        "german": {
+        "de": {
             "name": "LOTURZEL",
             "category": "Wasserlinse",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "nicht schwimmen können, als Fähre."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LOTAD",
             "category": "Pokémon Alga",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "Pokémon che non sanno nuotare."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LOTAD",
             "category": "Pokémon Alga",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "saben nadar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ハスボ－",
             "category": "うきくさポケモン",
             "entry_text": [

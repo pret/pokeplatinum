@@ -1,5 +1,4 @@
 {
-    "name": "Numel",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "NUMEL",
             "category": "Numb Pokémon",
             "entry_text": [
                 "Its humped back stores intensely\n",
@@ -117,7 +117,7 @@
                 "cools, slowing its movement."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHAMALLOT",
             "category": "Pokémon Engourdi",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "temps de pluie, ce qui le ralentit."
             ]
         },
-        "german": {
+        "de": {
             "name": "CAMAUB",
             "category": "Taubheit",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "Magma ab und es wird langsamer."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NUMEL",
             "category": "Pokémon Torpore",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "il Pokémon diventa più lento."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NUMEL",
             "category": "Pokémon Torpe",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "llueve y lo ralentiza."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ドンメル",
             "category": "どんかんポケモン",
             "entry_text": [

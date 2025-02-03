@@ -1,5 +1,4 @@
 {
-    "name": "Swinub",
     "base_stats": {
         "hp": 50,
         "attack": 50,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "english": {
+        "en": {
+            "name": "SWINUB",
             "category": "Pig Pokémon",
             "entry_text": [
                 "It has a very sensitive nose. It\n",
@@ -123,7 +123,7 @@
                 "even hot springs buried under ice."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MARCACRIN",
             "category": "Pokémon Cochon",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "trouve aussi des sources chaudes."
             ]
         },
-        "german": {
+        "de": {
             "name": "QUIEKEL",
             "category": "Ferkel",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Nahrung findet es heiße Quellen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SWINUB",
             "category": "Pokémon Maiale",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "talvolta trova sorgenti termali."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SWINUB",
             "category": "Pokémon Cerdo",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "veces descubre aguas termales."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ウリム－",
             "category": "いのぶたポケモン",
             "entry_text": [

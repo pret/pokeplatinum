@@ -1,5 +1,4 @@
 {
-    "name": "Deoxys",
     "base_stats": {
         "hp": 50,
         "attack": 150,
@@ -140,7 +139,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "DEOXYS",
             "category": "DNA Pokémon",
             "entry_text": [
                 "An alien virus that fell to earth\n",
@@ -148,7 +148,7 @@
                 "mutation to become this Pokémon."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DEOXYS",
             "category": "Pokémon ADN",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "subi une mutation génétique."
             ]
         },
-        "german": {
+        "de": {
             "name": "DEOXYS",
             "category": "DNS",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "DNA mutierte. So entstand DEOXYS."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DEOXYS",
             "category": "Pokémon DNA",
             "entry_text": [
@@ -175,7 +175,7 @@
                 "terra con un meteorite."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DEOXYS",
             "category": "Pokémon ADN",
             "entry_text": [
@@ -184,7 +184,7 @@
                 "cayó a la Tierra en un meteorito."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "デオキシス",
             "category": "ＤＮＡポケモン",
             "entry_text": [

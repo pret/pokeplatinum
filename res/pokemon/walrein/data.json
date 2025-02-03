@@ -1,5 +1,4 @@
 {
-    "name": "Walrein",
     "base_stats": {
         "hp": 110,
         "attack": 80,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "english": {
+        "en": {
+            "name": "WALREIN",
             "category": "Ice Break Pokémon",
             "entry_text": [
                 "It shatters ice with its big tusks.\n",
@@ -124,7 +124,7 @@
                 "the cold, but also enemy attacks."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KAIMORSE",
             "category": "Pokémon Brise Glace",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "froid, mais aussi des attaques."
             ]
         },
-        "german": {
+        "de": {
             "name": "WALRAISA",
             "category": "Eisbrecher",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "schützt es vor Kälte und Angriffen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WALREIN",
             "category": "Pokémon Spaccagelo",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "il freddo e gli attacchi nemici."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WALREIN",
             "category": "Pokémon Rompehielo",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "del frío y de los enemigos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "トドゼルガ",
             "category": "こおりわりポケモン",
             "entry_text": [

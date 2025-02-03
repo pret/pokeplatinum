@@ -1,5 +1,4 @@
 {
-    "name": "Munchlax",
     "base_stats": {
         "hp": 135,
         "attack": 85,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "english": {
+        "en": {
+            "name": "MUNCHLAX",
             "category": "Big Eater Pokémon",
             "entry_text": [
                 "In its desperation to gulp down\n",
@@ -136,7 +136,7 @@
                 "has hidden under its fur."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GOINFREX",
             "category": "Pokémon Goinfre",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "prendre le temps de mâcher."
             ]
         },
-        "german": {
+        "de": {
             "name": "MAMPFAXO",
             "category": "Nimmersatt",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "entspricht. Und das ohne zu kauen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MUNCHLAX",
             "category": "Pokémon Ghiottone",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "giù quasi senza masticare."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MUNCHLAX",
             "category": "Pokémon Comilón",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "sin apenas masticar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゴンベ",
             "category": "おおぐいポケモン",
             "entry_text": [

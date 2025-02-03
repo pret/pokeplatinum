@@ -1,5 +1,4 @@
 {
-    "name": "Bulbasaur",
     "base_stats": {
         "hp": 45,
         "attack": 49,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "BULBASAUR",
             "category": "Seed Pokémon",
             "entry_text": [
                 "For some time after its birth, it\n",
@@ -119,7 +119,7 @@
                 "the seed on its back."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BULBIZARRE",
             "category": "Pokémon Graine",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "dont il a besoin pour grandir."
             ]
         },
-        "german": {
+        "de": {
             "name": "BISASAM",
             "category": "Samen",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "auf seinem Rücken auf."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BULBASAUR",
             "category": "Pokémon Seme",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "sul suo dorso."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BULBASAUR",
             "category": "Pokémon Semilla",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "de su lomo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "フシギダネ",
             "category": "たねポケモン",
             "entry_text": [

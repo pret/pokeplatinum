@@ -1,5 +1,4 @@
 {
-    "name": "Nuzleaf",
     "base_stats": {
         "hp": 70,
         "attack": 70,
@@ -123,7 +122,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "english": {
+        "en": {
+            "name": "NUZLEAF",
             "category": "Wily Pokémon",
             "entry_text": [
                 "The sound of its grass flute makes\n",
@@ -131,7 +131,7 @@
                 "in forests."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PIFEUIL",
             "category": "Pokémon Malin",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "plus profond des forêts."
             ]
         },
-        "german": {
+        "de": {
             "name": "BLANAS",
             "category": "Hinterlist",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "Es lebt tief in den Wäldern."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NUZLEAF",
             "category": "Pokémon Scaltro",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "Vive nelle foreste più fitte."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NUZLEAF",
             "category": "Pokémon Astuto",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "en lo más profundo de los bosques."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コノハナ",
             "category": "いじわるポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Dusclops",
     "base_stats": {
         "hp": 40,
         "attack": 70,
@@ -140,7 +139,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "DUSCLOPS",
             "category": "Beckon Pokémon",
             "entry_text": [
                 "It seeks drifting will-o’-the-wisps\n",
@@ -148,7 +148,7 @@
                 "What happens inside is a mystery."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TERACLOPE",
             "category": "Pokémon Appel",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "finira aspiré par le néant."
             ]
         },
-        "german": {
+        "de": {
             "name": "ZWIRRKLOP",
             "category": "Wink",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "blicken, hineingezogen werden."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DUSCLOPS",
             "category": "Pokémon Ipnosguardo",
             "entry_text": [
@@ -175,7 +175,7 @@
                 "dentro venga risucchiato."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DUSCLOPS",
             "category": "Pokémon Atrayente",
             "entry_text": [
@@ -184,7 +184,7 @@
                 "tragado por un agujero negro."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サマヨ－ル",
             "category": "てまねきポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Electivire",
     "base_stats": {
         "hp": 75,
         "attack": 123,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 13,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "ELECTIVIRE",
             "category": "Thunderbolt Pokémon",
             "entry_text": [
                 "Heedless of enemy attacks, it\n",
@@ -133,7 +133,7 @@
                 "foe, then looses high voltage."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ELEKABLE",
             "category": "Pokémon Foudrélec",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "une décharge de 20 000 volts."
             ]
         },
-        "german": {
+        "de": {
             "name": "ELEVOLTEK",
             "category": "Donnerkeil",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "dann über 20 000 Volt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ELECTIVIRE",
             "category": "Pokémon Saetta",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "elettrica di oltre 20000 volt."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ELECTIVIRE",
             "category": "Pokémon Rayo",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "descarga de más de 20000 voltios."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エレキブル",
             "category": "らいでんポケモン",
             "entry_text": [

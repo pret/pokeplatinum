@@ -1,5 +1,4 @@
 {
-    "name": "Hoppip",
     "base_stats": {
         "hp": 35,
         "attack": 35,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 65530,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65530,
-        "english": {
+        "en": {
+            "name": "HOPPIP",
             "category": "Cottonweed Pokémon",
             "entry_text": [
                 "It drifts on winds. It is said that\n",
@@ -119,7 +119,7 @@
                 "mountains, spring is on the way."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GRANIVOL",
             "category": "Pokémon Pissenlit",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "montagnes annonce le printemps."
             ]
         },
-        "german": {
+        "de": {
             "name": "HOPPSPROSS",
             "category": "Löwenzahn",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "sammeln, kommt der Frühling bald."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HOPPIP",
             "category": "Pokémon Gramigna",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "e monti, la primavera sia in arrivo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HOPPIP",
             "category": "Pokémon Algadón",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "que la primavera está al caer."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ハネッコ",
             "category": "わたくさポケモン",
             "entry_text": [

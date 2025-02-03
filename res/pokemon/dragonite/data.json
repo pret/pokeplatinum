@@ -1,5 +1,4 @@
 {
-    "name": "Dragonite",
     "base_stats": {
         "hp": 91,
         "attack": 134,
@@ -147,7 +146,8 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 8,
         "pokemon_pos_m": 5,
-        "english": {
+        "en": {
+            "name": "DRAGONITE",
             "category": "Dragon Pokémon",
             "entry_text": [
                 "It is said to make its home\n",
@@ -155,7 +155,7 @@
                 "crews of shipwrecks to shore."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DRACOLOSSE",
             "category": "Pokémon Dragon",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "naufragés jusqu’à la terre ferme."
             ]
         },
-        "german": {
+        "de": {
             "name": "DRAGORAN",
             "category": "Drache",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "an Land."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DRAGONITE",
             "category": "Pokémon Drago",
             "entry_text": [
@@ -182,7 +182,7 @@
                 "riva le vittime di naufragi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DRAGONITE",
             "category": "Pokémon Dragón",
             "entry_text": [
@@ -191,7 +191,7 @@
                 "de los barcos hundidos a la costa."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カイリュ－",
             "category": "ドラゴンポケモン",
             "entry_text": [

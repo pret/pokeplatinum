@@ -1,5 +1,4 @@
 {
-    "name": "Pelipper",
     "base_stats": {
         "hp": 60,
         "attack": 50,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "english": {
+        "en": {
+            "name": "PELIPPER",
             "category": "Water Bird Pokémon",
             "entry_text": [
                 "It is a messenger of the skies,\n",
@@ -129,7 +129,7 @@
                 "eggs to safety in its bill."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BEKIPAN",
             "category": "Pokémon Oiseaudo",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "de nombreuses proies."
             ]
         },
-        "german": {
+        "de": {
             "name": "PELIPPER",
             "category": "Wasservogel",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "Beute."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PELIPPER",
             "category": "Pokémon Alacquatico",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "numerose prede."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PELIPPER",
             "category": "Pokémon Ave Agua",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "junto con mucha agua."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ペリッパ－",
             "category": "みずどりポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Dodrio",
     "base_stats": {
         "hp": 60,
         "attack": 110,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "DODRIO",
             "category": "Triple Bird Pokémon",
             "entry_text": [
                 "When DODUO evolves into this odd\n",
@@ -115,7 +115,7 @@
                 "two. It runs at nearly 40 mph."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DODRIO",
             "category": "Pokémon Trioiseau",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "dédouble. Il atteint les 60 km/h."
             ]
         },
-        "german": {
+        "de": {
             "name": "DODRI",
             "category": "Trivogel",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "sich mit 60 km/h fortbewegen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DODRIO",
             "category": "Pokémon Triuccello",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "si divide a metà. Corre a 60 km/h."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DODRIO",
             "category": "Pokémon Ave Triple",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "Corre a unos 60 km por hora."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ド－ドリオ",
             "category": "みつごどりポケモン",
             "entry_text": [

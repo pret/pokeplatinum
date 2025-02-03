@@ -1,5 +1,4 @@
 {
-    "name": "Rhyhorn",
     "base_stats": {
         "hp": 80,
         "attack": 85,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "RHYHORN",
             "category": "Spikes Pokémon",
             "entry_text": [
                 "Its powerful tackles can destroy\n",
@@ -136,7 +136,7 @@
                 "slow witted to help people work."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RHINOCORNE",
             "category": "Pokémon Piquant",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "Dommage qu’il soit stupide."
             ]
         },
-        "german": {
+        "de": {
             "name": "RIHORN",
             "category": "Stachler",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "Gebäude zum Einsturz bringen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RHYHORN",
             "category": "Pokémon Punzoni",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "Non è molto sagace."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RHYHORN",
             "category": "Pokémon Clavos",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "edificios, pero no es muy listo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サイホ－ン",
             "category": "とげとげポケモン",
             "entry_text": [

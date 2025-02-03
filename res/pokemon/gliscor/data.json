@@ -1,5 +1,4 @@
 {
-    "name": "Gliscor",
     "base_stats": {
         "hp": 75,
         "attack": 95,
@@ -132,7 +131,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 10,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "GLISCOR",
             "category": "Fang Scorp Pokémon",
             "entry_text": [
                 "If it succeeds in catching even a\n",
@@ -140,7 +140,7 @@
                 "the globe without flapping once."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SCORVOL",
             "category": "Pokémon Scorpicroc",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "saisit à la première occasion. "
             ]
         },
-        "german": {
+        "de": {
             "name": "SKORGRO",
             "category": "Zahnskorpi",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "Gelegenheit stürzt es sich auf sie."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GLISCOR",
             "category": "Pokémon Scorpidente",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "capofitto sulla preda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GLISCOR",
             "category": "Pokémon Colmicorpio",
             "entry_text": [
@@ -176,7 +176,7 @@
                 "su oportunidad, se lanza en picado."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "グライオン",
             "category": "キバさそりポケモン",
             "entry_text": [

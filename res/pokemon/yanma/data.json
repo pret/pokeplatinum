@@ -1,5 +1,4 @@
 {
-    "name": "Yanma",
     "base_stats": {
         "hp": 65,
         "attack": 65,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "english": {
+        "en": {
+            "name": "YANMA",
             "category": "Clear Wing Pokémon",
             "entry_text": [
                 "It can hover in one spot by\n",
@@ -124,7 +124,7 @@
                 "flits about to guard its territory."
             ]
         },
-        "french": {
+        "fr": {
             "name": "YANMA",
             "category": "Pokémon Translaile",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "une proie, même dans son dos."
             ]
         },
-        "german": {
+        "de": {
             "name": "YANMA",
             "category": "Libelle",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Beute, die sich hinter ihm befindet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "YANMA",
             "category": "Pokémon Alachiara",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "persino le prede alle sue spalle."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "YANMA",
             "category": "Pokémon Ala Clara",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "las presas que están a su espalda."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヤンヤンマ",
             "category": "うすばねポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Zangoose",
     "base_stats": {
         "hp": 73,
         "attack": 115,
@@ -134,7 +133,8 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "english": {
+        "en": {
+            "name": "ZANGOOSE",
             "category": "Cat Ferret Pokémon",
             "entry_text": [
                 "It has feuded with SEVIPER for\n",
@@ -142,7 +142,7 @@
                 "are its biggest weapons."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MANGRIFF",
             "category": "Pokémon Chat Furet",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "aiguisées sont son meilleur atout."
             ]
         },
-        "german": {
+        "de": {
             "name": "SENGO",
             "category": "Frettkatz",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "Klauen sind seine stärksten Waffen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ZANGOOSE",
             "category": "Pokémon Furogatto",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "le sue armi più potenti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ZANGOOSE",
             "category": "Pokémon Gato Hurón",
             "entry_text": [
@@ -178,7 +178,7 @@
                 "eficaz son sus zarpas afiladas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ザング－ス",
             "category": "ネコイタチポケモン",
             "entry_text": [

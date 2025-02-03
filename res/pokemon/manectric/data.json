@@ -1,5 +1,4 @@
 {
-    "name": "Manectric",
     "base_stats": {
         "hp": 70,
         "attack": 75,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "english": {
+        "en": {
+            "name": "MANECTRIC",
             "category": "Discharge Pokémon",
             "entry_text": [
                 "It discharges electricity from its\n",
@@ -119,7 +119,7 @@
                 "overhead to drop lightning bolts."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ELECSPRINT",
             "category": "Pokémon Décharge",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "pour appeler la foudre."
             ]
         },
-        "german": {
+        "de": {
             "name": "VOLTENSO",
             "category": "Entladung",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "wolke, aus der es Blitze entlädt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MANECTRIC",
             "category": "Pokémon Scossa",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "cielo che fanno cadere saette."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MANECTRIC",
             "category": "Pokémon Descarga",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "los que lanza rayos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ライボルト",
             "category": "ほうでんポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Aron",
     "base_stats": {
         "hp": 50,
         "attack": 70,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "ARON",
             "category": "Iron Armor Pokémon",
             "entry_text": [
                 "It usually lives deep in mountains.\n",
@@ -132,7 +132,7 @@
                 "eat railroad tracks and cars."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GALEKID",
             "category": "Pokémon Armurfer",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "parfois des rails et des voitures."
             ]
         },
-        "german": {
+        "de": {
             "name": "STOLLUNIOR",
             "category": "Eisenpanzer",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "auch Eisenbahnschienen und Autos."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ARON",
             "category": "Pokémon Corazza",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "cibarsi di ferrovie e automobili."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ARON",
             "category": "Pokémon Cor. Férrea",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "lo empuja a comer raíles y coches."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ココドラ",
             "category": "てつヨロイポケモン",
             "entry_text": [

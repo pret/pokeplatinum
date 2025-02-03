@@ -1,5 +1,4 @@
 {
-    "name": "Meditite",
     "base_stats": {
         "hp": 30,
         "attack": 40,
@@ -127,7 +126,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "MEDITITE",
             "category": "Meditate Pokémon",
             "entry_text": [
                 "It always trains deep in mountains.\n",
@@ -135,7 +135,7 @@
                 "spiritual power through meditation."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MEDITIKKA",
             "category": "Pokémon Méditation",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "de fer."
             ]
         },
-        "german": {
+        "de": {
             "name": "MEDITIE",
             "category": "Meditation",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "ruhiger und schärfer."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MEDITITE",
             "category": "Pokémon Meditazione",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "viene temprato e rinvigorito."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MEDITITE",
             "category": "Pokémon Meditador",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "su capacidad de concentración."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アサナン",
             "category": "めいそうポケモン",
             "entry_text": [

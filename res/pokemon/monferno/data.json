@@ -1,5 +1,4 @@
 {
-    "name": "Monferno",
     "base_stats": {
         "hp": 64,
         "attack": 78,
@@ -131,7 +130,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "MONFERNO",
             "category": "Playful Pokémon",
             "entry_text": [
                 "It skillfully controls the intensity\n",
@@ -139,7 +139,7 @@
                 "foes at an ideal distance."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHIMPENFEU",
             "category": "Pokémon Garnement",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "pour paraître plus grand."
             ]
         },
-        "german": {
+        "de": {
             "name": "PANPYRO",
             "category": "Verspielt",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "Schweif, wodurch es größer wirkt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MONFERNO",
             "category": "Pokémon Briccone",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "sulla coda per apparire più grande."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MONFERNO",
             "category": "Pokémon Juguetón",
             "entry_text": [
@@ -175,7 +175,7 @@
                 "cola para parecer más grande."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "モウカザル",
             "category": "やんちゃポケモン",
             "entry_text": [

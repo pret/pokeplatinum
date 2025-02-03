@@ -1,5 +1,4 @@
 {
-    "name": "Nincada",
     "base_stats": {
         "hp": 31,
         "attack": 45,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "NINCADA",
             "category": "Trainee Pokémon",
             "entry_text": [
                 "It grows underground, sensing\n",
@@ -115,7 +115,7 @@
                 "instead of its virtually blind eyes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NINGALE",
             "category": "Pokémon Apprenti",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "yeux sont quasiment aveugles."
             ]
         },
-        "german": {
+        "de": {
             "name": "NINCADA",
             "category": "Vorbereiter",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "wahr, da es nahezu blind ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NINCADA",
             "category": "Pokémon Novizio",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "sondare ciò che lo circonda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NINCADA",
             "category": "Pokémon Aprendiz",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "que sustituyen a ojos atrofiados."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ツチニン",
             "category": "したづみポケモン",
             "entry_text": [

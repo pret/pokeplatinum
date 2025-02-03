@@ -1,5 +1,4 @@
 {
-    "name": "Raticate",
     "base_stats": {
         "hp": 55,
         "attack": 81,
@@ -122,7 +121,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "english": {
+        "en": {
+            "name": "RATICATE",
             "category": "Mouse Pokémon",
             "entry_text": [
                 "It whittles its constantly growing\n",
@@ -130,7 +130,7 @@
                 "It can chew apart cinder walls."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RATTATAC",
             "category": "Pokémon Souris",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "transpercer un mur de parpaings."
             ]
         },
-        "german": {
+        "de": {
             "name": "RATTIKARL",
             "category": "Maus",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "Wände aus Beton zernagen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RATICATE",
             "category": "Pokémon Topo",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "Riesce a frantumare persino i muri."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RATICATE",
             "category": "Pokémon Ratón",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "incluso paredes de hormigón."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ラッタ",
             "category": "ねずみポケモン",
             "entry_text": [

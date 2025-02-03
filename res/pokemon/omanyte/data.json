@@ -1,5 +1,4 @@
 {
-    "name": "Omanyte",
     "base_stats": {
         "hp": 35,
         "attack": 40,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "english": {
+        "en": {
+            "name": "OMANYTE",
             "category": "Spiral Pokémon",
             "entry_text": [
                 "A Pokémon that was resurrected\n",
@@ -124,7 +124,7 @@
                 "It swam in ancient seas."
             ]
         },
-        "french": {
+        "fr": {
             "name": "AMONITA",
             "category": "Pokémon Spirale",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "peuplait autrefois les mers."
             ]
         },
-        "german": {
+        "de": {
             "name": "AMONITAS",
             "category": "Spirale",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "schaffen. Es lebte im urzeitl. Meer."
             ]
         },
-        "italian": {
+        "it": {
             "name": "OMANYTE",
             "category": "Pokémon Spirale",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "Nuotava nei mari ancestrali."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "OMANYTE",
             "category": "Pokémon Espiral",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "Solía nadar en antiguos mares."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オムナイト",
             "category": "うずまきポケモン",
             "entry_text": [

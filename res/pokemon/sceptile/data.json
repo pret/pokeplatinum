@@ -1,5 +1,4 @@
 {
-    "name": "Sceptile",
     "base_stats": {
         "hp": 70,
         "attack": 85,
@@ -129,7 +128,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "SCEPTILE",
             "category": "Forest Pokémon",
             "entry_text": [
                 "The leaves that grow on its arms\n",
@@ -137,7 +137,7 @@
                 "without peer in jungle combat."
             ]
         },
-        "french": {
+        "fr": {
             "name": "JUNGKO",
             "category": "Pokémon Forêt",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "le meilleur combattant des jungles."
             ]
         },
-        "german": {
+        "de": {
             "name": "GEWALDRO",
             "category": "Dschungel",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "kampf gibt es kein stärkeres PKMN."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SCEPTILE",
             "category": "Pokémon Foresta",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "beri. Nel suo habitat, è imbattibile."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SCEPTILE",
             "category": "Pokémon Monte",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "en los combates en la jungla."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ジュカイン",
             "category": "みつりんポケモン",
             "entry_text": [

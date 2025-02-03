@@ -1,5 +1,4 @@
 {
-    "name": "Baltoy",
     "base_stats": {
         "hp": 40,
         "attack": 40,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "english": {
+        "en": {
+            "name": "BALTOY",
             "category": "Clay Doll Pokémon",
             "entry_text": [
                 "It moves by spinning on its foot.\n",
@@ -133,7 +133,7 @@
                 "discovered in ancient ruins."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BALBUTO",
             "category": "Pokémon Poupargile",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "découvert dans de vieilles ruines."
             ]
         },
-        "german": {
+        "de": {
             "name": "PUPPANCE",
             "category": "Lehmpuppe",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "PKMN, das in alten Ruinen lebte."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BALTOY",
             "category": "Pokémon Argilla",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "nei pressi di antiche rovine."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BALTOY",
             "category": "Pokémon Muñ. Barro",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "encontrado en unas viejas ruinas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヤジロン",
             "category": "どぐうポケモン",
             "entry_text": [

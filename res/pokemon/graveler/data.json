@@ -1,5 +1,4 @@
 {
-    "name": "Graveler",
     "base_stats": {
         "hp": 55,
         "attack": 95,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "english": {
+        "en": {
+            "name": "GRAVELER",
             "category": "Rock Pokémon",
             "entry_text": [
                 "It rolls on mountain paths to move.\n",
@@ -126,7 +126,7 @@
                 "can stop it without difficulty."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GRAVALANCH",
             "category": "Pokémon Roche",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "des galeries horizontales."
             ]
         },
-        "german": {
+        "de": {
             "name": "GEOROK",
             "category": "Gestein",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "dazu viele Löcher aus."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GRAVELER",
             "category": "Pokémon Roccia",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "dirupi scoscesi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GRAVELER",
             "category": "Pokémon Roca",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "establecerse dentro de ellos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゴロ－ン",
             "category": "がんせきポケモン",
             "entry_text": [

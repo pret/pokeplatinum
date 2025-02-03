@@ -1,5 +1,4 @@
 {
-    "name": "Exeggcute",
     "base_stats": {
         "hp": 60,
         "attack": 40,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "english": {
+        "en": {
+            "name": "EXEGGCUTE",
             "category": "Egg Pokémon",
             "entry_text": [
                 "Its six eggs converse using\n",
@@ -126,7 +126,7 @@
                 "if they become separated."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NOEUNOEUF",
             "category": "Pokémon Oeuf",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "rapidement si on les sépare."
             ]
         },
-        "german": {
+        "de": {
             "name": "OWEI",
             "category": "Ei",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "finden sie sich schnell wieder."
             ]
         },
-        "italian": {
+        "it": {
             "name": "EXEGGCUTE",
             "category": "Pokémon Uovo",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "anche se vengono divise."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "EXEGGCUTE",
             "category": "Pokémon Huevo",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "reunir rápidamente."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "タマタマ",
             "category": "たまごポケモン",
             "entry_text": [

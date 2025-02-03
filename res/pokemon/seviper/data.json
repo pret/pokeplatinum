@@ -1,5 +1,4 @@
 {
-    "name": "Seviper",
     "base_stats": {
         "hp": 73,
         "attack": 100,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 4,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "SEVIPER",
             "category": "Fang Snake Pokémon",
             "entry_text": [
                 "For many generations, it has\n",
@@ -118,7 +118,7 @@
                 "bladed tail on rocks for battle."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SEVIPER",
             "category": "Pokémon Serpacroc",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "sur les rochers avant le combat."
             ]
         },
-        "german": {
+        "de": {
             "name": "VIPITIS",
             "category": "Reißzahn",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "scharfen Schweif an Felsen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SEVIPER",
             "category": "Pokémon Zannaserpe",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "la sua coda simile ad una spada."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SEVIPER",
             "category": "Pokémon Colmillos",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "mantener afilada su cola."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ハブネ－ク",
             "category": "キバへびポケモン",
             "entry_text": [

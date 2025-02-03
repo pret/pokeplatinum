@@ -1,5 +1,4 @@
 {
-    "name": "Buneary",
     "base_stats": {
         "hp": 55,
         "attack": 66,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "BUNEARY",
             "category": "Rabbit Pokémon",
             "entry_text": [
                 "Its ears are always rolled up. They\n",
@@ -123,7 +123,7 @@
                 "shatter even a large boulder."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LAPOREILLE",
             "category": "Pokémon Lapin",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "peut faire pleurer un adulte."
             ]
         },
-        "german": {
+        "de": {
             "name": "HASPIROR",
             "category": "Hase",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "schmerzhaft zu schlagen. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "BUNEARY",
             "category": "Pokémon Coniglio",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "piangere di dolore anche gli adulti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BUNEARY",
             "category": "Pokémon Conejo",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "picotazos son muy dolorosos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミミロル",
             "category": "うさぎポケモン",
             "entry_text": [

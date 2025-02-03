@@ -1,5 +1,4 @@
 {
-    "name": "Mew",
     "base_stats": {
         "hp": 100,
         "attack": 100,
@@ -207,7 +206,8 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "english": {
+        "en": {
+            "name": "MEW",
             "category": "New Species Pokémon",
             "entry_text": [
                 "Because it can use all kinds of\n",
@@ -215,7 +215,7 @@
                 "to be the ancestor of Pokémon."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MEW",
             "category": "Pokémon Nouveau",
             "entry_text": [
@@ -224,7 +224,7 @@
                 "maîtrise toutes leurs capacités."
             ]
         },
-        "german": {
+        "de": {
             "name": "MEW",
             "category": "Neue Art",
             "entry_text": [
@@ -233,7 +233,7 @@
                 "den Vorfahren aller Pokémon."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MEW",
             "category": "Pokémon Novaspecie",
             "entry_text": [
@@ -242,7 +242,7 @@
                 "sia l’antenato di tutti i Pokémon."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MEW",
             "category": "Pokémon N. Especie",
             "entry_text": [
@@ -251,7 +251,7 @@
                 "usa todo tipo de movimientos. "
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミュウ",
             "category": "しんしゅポケモン",
             "entry_text": [

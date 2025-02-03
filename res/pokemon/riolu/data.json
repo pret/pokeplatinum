@@ -1,5 +1,4 @@
 {
-    "name": "Riolu",
     "base_stats": {
         "hp": 40,
         "attack": 70,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "english": {
+        "en": {
+            "name": "RIOLU",
             "category": "Emanation Pokémon",
             "entry_text": [
                 "It has the peculiar power of being\n",
@@ -123,7 +123,7 @@
                 "and rage in the form of waves."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RIOLU",
             "category": "Pokémon Emanation",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "il a peur ou qu’il est triste."
             ]
         },
-        "german": {
+        "de": {
             "name": "RIOLU",
             "category": "Wellenspiel",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "dass es ängstlich oder traurig ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RIOLU",
             "category": "Pokémon Emanazione",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "triste o spaventato."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RIOLU",
             "category": "Pokémon Emanación",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "miedo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "リオル",
             "category": "はもんポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Trapinch",
     "base_stats": {
         "hp": 45,
         "attack": 100,
@@ -106,7 +105,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "english": {
+        "en": {
+            "name": "TRAPINCH",
             "category": "Ant Pit Pokémon",
             "entry_text": [
                 "It makes a conical pit in desert\n",
@@ -114,7 +114,7 @@
                 "for prey to come tumbling down."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KRAKNOIX",
             "category": "Pokémon Piégeur",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "attendant qu’une proie trébuche."
             ]
         },
-        "german": {
+        "de": {
             "name": "KNACKLION",
             "category": "Ameisenlöwe",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "Boden und wartet auf Beute."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TRAPINCH",
             "category": "Pokémon Trappola",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "cadano in trappola."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TRAPINCH",
             "category": "Pokémon Hormigaleón",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "presas caigan en ellas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ナックラ－",
             "category": "ありじごくポケモン",
             "entry_text": [

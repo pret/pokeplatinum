@@ -1,5 +1,4 @@
 {
-    "name": "Palkia",
     "base_stats": {
         "hp": 90,
         "attack": 120,
@@ -130,7 +129,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "PALKIA",
             "category": "Spatial Pokémon",
             "entry_text": [
                 "A legendary Pokémon of Sinnoh.\n",
@@ -138,7 +138,7 @@
                 "stable with PALKIA’s every breath."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PALKIA",
             "category": "Pokémon Espace",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "comme d’une divinité ancienne."
             ]
         },
-        "german": {
+        "de": {
             "name": "PALKIA",
             "category": "Räumlich",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "Sinnoh erscheint es als Gottheit."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PALKIA",
             "category": "Pokémon Spazio",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "Sinnoh è una divinità."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PALKIA",
             "category": "Pokémon Espacial",
             "entry_text": [
@@ -174,7 +174,7 @@
                 "lo describe como una deidad."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "パルキア",
             "category": "くうかんポケモン",
             "entry_text": [

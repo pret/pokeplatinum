@@ -1,5 +1,4 @@
 {
-    "name": "Pidgey",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 31,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 31,
-        "english": {
+        "en": {
+            "name": "PIDGEY",
             "category": "Tiny Bird Pokémon",
             "entry_text": [
                 "It is docile and prefers to avoid\n",
@@ -118,7 +118,7 @@
                 "it can ferociously strike back."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ROUCOOL",
             "category": "Pokémon Minoiseau",
             "entry_text": [
@@ -127,12 +127,12 @@
                 "très féroce quand on l’agresse."
             ]
         },
-        "german": {
+        "de": {
             "name": "TAUBSI",
             "category": "Kleinvogel",
             "entry_text": [ "Reizt man dieses an sich gutmütige\n", "Pokémon, wehrt es sich wütend." ]
         },
-        "italian": {
+        "it": {
             "name": "PIDGEY",
             "category": "Pokémon Uccellino",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "contrattacca ferocemente."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PIDGEY",
             "category": "Pokémon Pajarito",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "molestan atacará ferozmente."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ポッポ",
             "category": "ことりポケモン",
             "entry_text": [

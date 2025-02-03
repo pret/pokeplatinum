@@ -1,5 +1,4 @@
 {
-    "name": "Meowth",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -126,7 +125,8 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "english": {
+        "en": {
+            "name": "MEOWTH",
             "category": "Scratch Cat Pokémon",
             "entry_text": [
                 "It is nocturnal in nature. If it\n",
@@ -134,7 +134,7 @@
                 "glitter brightly."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MIAOUSS",
             "category": "Pokémon Chadégout",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "Pokémon nocturne."
             ]
         },
-        "german": {
+        "de": {
             "name": "MAUZI",
             "category": "Katze",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "seine Augen an zu glänzen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MEOWTH",
             "category": "Pokémon Graffimiao",
             "entry_text": [
@@ -161,12 +161,12 @@
                 "i suoi occhi cominciano a brillare. "
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MEOWTH",
             "category": "Pokémon Gato Araña",
             "entry_text": [ "Es de naturaleza nocturna.\n", "Le atraen los objetos brillantes." ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニャ－ス",
             "category": "ばけねこポケモン",
             "entry_text": [

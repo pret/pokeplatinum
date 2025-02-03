@@ -1,5 +1,4 @@
 {
-    "name": "Pinsir",
     "base_stats": {
         "hp": 65,
         "attack": 125,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "english": {
+        "en": {
+            "name": "PINSIR",
             "category": "Stag Beetle Pokémon",
             "entry_text": [
                 "It grips prey with its pincers\n",
@@ -123,7 +123,7 @@
                 "What it can’t tear, it tosses far."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SCARABRUTE",
             "category": "Pokémon Scarabée",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "arrive pas, il les jette au loin."
             ]
         },
-        "german": {
+        "de": {
             "name": "PINSIR",
             "category": "Kneifkäfer",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "es nicht teilen kann, wirft es fort."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PINSIR",
             "category": "Pokémon Cervolante",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "Se non ci riesce, la scaglia via."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PINSIR",
             "category": "Pokémon Escarabajo",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "lejos lo que no puede quebrar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カイロス",
             "category": "くわがたポケモン",
             "entry_text": [

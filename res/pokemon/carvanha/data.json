@@ -1,5 +1,4 @@
 {
-    "name": "Carvanha",
     "base_stats": {
         "hp": 45,
         "attack": 90,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 65524,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65524,
-        "english": {
+        "en": {
+            "name": "CARVANHA",
             "category": "Savage Pokémon",
             "entry_text": [
                 "They swarm any foe that invades\n",
@@ -124,7 +124,7 @@
                 "can tear out boat hulls."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CARVANHA",
             "category": "Pokémon Féroce",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "aiguisées peuvent couler un navire."
             ]
         },
-        "german": {
+        "de": {
             "name": "KANIVANHA",
             "category": "Gnadenlos",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Ihre Zähne durchdringen alles."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CARVANHA",
             "category": "Pokémon Feroce",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "lacerano anche gli scafi delle navi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CARVANHA",
             "category": "Pokémon Feroz",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "colmillos dañan los barcos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キバニア",
             "category": "どうもうポケモン",
             "entry_text": [

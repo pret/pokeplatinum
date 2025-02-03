@@ -1,5 +1,4 @@
 {
-    "name": "Spoink",
     "base_stats": {
         "hp": 60,
         "attack": 25,
@@ -123,7 +122,8 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "english": {
+        "en": {
+            "name": "SPOINK",
             "category": "Bounce Pokémon",
             "entry_text": [
                 "It bounces constantly, using its\n",
@@ -131,7 +131,7 @@
                 "bouncing keeps its heart beating."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SPOINK",
             "category": "Pokémon Rebond",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "nouveau choc fait battre son cœur."
             ]
         },
-        "german": {
+        "de": {
             "name": "SPOINK",
             "category": "Sprungfeder",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "Nur so bleibt sein Herz aktiv."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SPOINK",
             "category": "Pokémon Molla",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "sollecita il cuore e lo fa battere."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SPOINK",
             "category": "Pokémon Saltarín",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "mantener el latido de su corazón."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "バネブ－",
             "category": "とびはねポケモン",
             "entry_text": [

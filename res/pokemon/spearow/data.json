@@ -1,5 +1,4 @@
 {
-    "name": "Spearow",
     "base_stats": {
         "hp": 40,
         "attack": 60,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 30,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 30,
-        "english": {
+        "en": {
+            "name": "SPEAROW",
             "category": "Tiny Bird Pokémon",
             "entry_text": [
                 "It flaps its small wings busily to\n",
@@ -115,7 +115,7 @@
                 "in grass for prey."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PIAFABEC",
             "category": "Pokémon Minoiseau",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "à manger dans l’herbe avec le bec."
             ]
         },
-        "german": {
+        "de": {
             "name": "HABITAK",
             "category": "Kleinvogel",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "es im Gras nach Beute."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SPEAROW",
             "category": "Pokémon Uccellino",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "beccando nell’erba."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SPEAROW",
             "category": "Pokémon Pajarito",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "la hierba con su pico."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オニスズメ",
             "category": "ことりポケモン",
             "entry_text": [

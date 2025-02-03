@@ -1,5 +1,4 @@
 {
-    "name": "Ninetales",
     "base_stats": {
         "hp": 73,
         "attack": 76,
@@ -101,7 +100,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "NINETALES",
             "category": "Fox Pokémon",
             "entry_text": [
                 "Its nine tails are said to be\n",
@@ -109,7 +109,7 @@
                 "It can live for a thousand years."
             ]
         },
-        "french": {
+        "fr": {
             "name": "FEUNARD",
             "category": "Pokémon Renard",
             "entry_text": [
@@ -118,7 +118,7 @@
                 "Il peut vivre pendant mille ans."
             ]
         },
-        "german": {
+        "de": {
             "name": "VULNONA",
             "category": "Fuchs",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "tausend Jahre leben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NINETALES",
             "category": "Pokémon Volpe",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "Vive anche 1000 anni."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NINETALES",
             "category": "Pokémon Zorro",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "Puede vivir mil años."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キュウコン",
             "category": "きつねポケモン",
             "entry_text": [

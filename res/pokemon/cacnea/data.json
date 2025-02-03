@@ -1,5 +1,4 @@
 {
-    "name": "Cacnea",
     "base_stats": {
         "hp": 50,
         "attack": 85,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "CACNEA",
             "category": "Cactus Pokémon",
             "entry_text": [
                 "By storing water in its body, this\n",
@@ -128,7 +128,7 @@
                 "days without water."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CACNEA",
             "category": "Pokémon Cactus",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "survivre 30 jours sans boire."
             ]
         },
-        "german": {
+        "de": {
             "name": "TUSKA",
             "category": "Kaktus",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "30 Tage ohne Wasser überleben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CACNEA",
             "category": "Pokémon Cactus",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "senz’acqua anche per 30 giorni."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CACNEA",
             "category": "Pokémon Cactus",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "que almacena en su cuerpo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サボネア",
             "category": "サボテンポケモン",
             "entry_text": [

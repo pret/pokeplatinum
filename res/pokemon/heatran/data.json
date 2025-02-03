@@ -1,5 +1,4 @@
 {
-    "name": "Heatran",
     "base_stats": {
         "hp": 91,
         "attack": 90,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 7,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "HEATRAN",
             "category": "Lava Dome Pokémon",
             "entry_text": [
                 "Its body is made of rugged steel.\n",
@@ -127,7 +127,7 @@
                 "spots because of its own heat."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HEATRAN",
             "category": "Pokémon Caldeira",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "à ses pieds en forme de croix."
             ]
         },
-        "german": {
+        "de": {
             "name": "HEATRAN",
             "category": "Lavadom",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "kann es sogar an der Decke laufen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HEATRAN",
             "category": "Pokémon Cratere",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "pareti e arrampicarsi sui soffitti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HEATRAN",
             "category": "Pokémon Domo Lava",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "para trepar por techos y paredes."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヒ－ドラン",
             "category": "かこうポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Hippowdon",
     "base_stats": {
         "hp": 108,
         "attack": 112,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 10,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "HIPPOWDON",
             "category": "Heavyweight Pokémon",
             "entry_text": [
                 "It is surprisingly quick to anger.\n",
@@ -115,7 +115,7 @@
                 "display of its strength."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HIPPODOCUS",
             "category": "Pokémon Poids Lourd",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "pores de sa peau pour attaquer."
             ]
         },
-        "german": {
+        "de": {
             "name": "HIPPOTERUS",
             "category": "Schwergewicht",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "so einen Sandwirbelsturm."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HIPPOWDON",
             "category": "Pokémon Grandepeso",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "pori, formando enormi vortici."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HIPPOWDON",
             "category": "Pokémon Peso Pesado",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "para crear un gran tornado."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カバルドン",
             "category": "じゅうりょうポケモン",
             "entry_text": [

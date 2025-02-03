@@ -1,5 +1,4 @@
 {
-    "name": "Vigoroth",
     "base_stats": {
         "hp": 80,
         "attack": 80,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "VIGOROTH",
             "category": "Wild Monkey Pokémon",
             "entry_text": [
                 "Its heart beats at a tenfold\n",
@@ -136,7 +136,7 @@
                 "even a moment."
             ]
         },
-        "french": {
+        "fr": {
             "name": "VIGOROTH",
             "category": "Pokémon Turbusinge",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "tient pas en place."
             ]
         },
-        "german": {
+        "de": {
             "name": "MUNTIER",
             "category": "Wildaffe",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "nicht für einen Moment still sitzen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VIGOROTH",
             "category": "Pokémon Indocile",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "sta fermo neanche un momento."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VIGOROTH",
             "category": "Pokémon Mono Feroz",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "No se está quieto ni un instante."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヤルキモノ",
             "category": "あばれザルポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Mesprit",
     "base_stats": {
         "hp": 80,
         "attack": 105,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "english": {
+        "en": {
+            "name": "MESPRIT",
             "category": "Emotion Pokémon",
             "entry_text": [
                 "When MESPRIT flew, people learned\n",
@@ -133,7 +133,7 @@
                 "It was the birth of emotions."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CREFOLLET",
             "category": "Pokémon Emotion",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "la tristesse, la douleur et la joie."
             ]
         },
-        "german": {
+        "de": {
             "name": "VESPRIT",
             "category": "Emotion",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "von Trauer, Schmerz und Freude."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MESPRIT",
             "category": "Pokémon Emozione",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "di tristezza, gioia e dolore."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MESPRIT",
             "category": "Pokémon Sensorio",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "la nobleza del dolor y la alegría."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エムリット",
             "category": "かんじょうポケモン",
             "entry_text": [

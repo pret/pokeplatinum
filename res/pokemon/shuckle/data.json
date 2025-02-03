@@ -1,5 +1,4 @@
 {
-    "name": "Shuckle",
     "base_stats": {
         "hp": 20,
         "attack": 10,
@@ -105,7 +104,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "SHUCKLE",
             "category": "Mold Pokémon",
             "entry_text": [
                 "It stores berries in its shell.\n",
@@ -113,7 +113,7 @@
                 "become delicious juices."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CARATROC",
             "category": "Pokémon Pourri",
             "entry_text": [
@@ -122,7 +122,7 @@
                 "produisent des jus délicieux."
             ]
         },
-        "german": {
+        "de": {
             "name": "POTTROTT",
             "category": "Schimmel",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "leckeren Saft."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SHUCKLE",
             "category": "Pokémon Muffa",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "trasformano in un succo delizioso."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SHUCKLE",
             "category": "Pokémon Moho",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "producir deliciosos zumos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ツボツボ",
             "category": "はっこうポケモン",
             "entry_text": [

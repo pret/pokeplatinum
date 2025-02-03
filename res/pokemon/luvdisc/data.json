@@ -1,5 +1,4 @@
 {
-    "name": "Luvdisc",
     "base_stats": {
         "hp": 43,
         "attack": 30,
@@ -101,7 +100,8 @@
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65527,
-        "english": {
+        "en": {
+            "name": "LUVDISC",
             "category": "Rendezvous Pokémon",
             "entry_text": [
                 "It lives in warm seas. It is said\n",
@@ -109,7 +109,7 @@
                 "will be blessed with eternal love."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LOVDISC",
             "category": "Pokémon Rendezvous",
             "entry_text": [
@@ -118,7 +118,7 @@
                 "Pokémon connaîtra l’amour éternel."
             ]
         },
-        "german": {
+        "de": {
             "name": "LIEBISKUS",
             "category": "Rendezvous",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "ewiger Liebe gesegnet sind."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LUVDISC",
             "category": "Pokémon Rendezvous",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "riceveranno in dono l’eterno amore."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LUVDISC",
             "category": "Pokémon Cita",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "será bendecida con amor eterno."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ラブカス",
             "category": "ランデブ－ポケモン",
             "entry_text": [

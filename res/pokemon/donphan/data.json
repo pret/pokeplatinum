@@ -1,5 +1,4 @@
 {
-    "name": "Donphan",
     "base_stats": {
         "hp": 90,
         "attack": 120,
@@ -117,7 +116,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "DONPHAN",
             "category": "Armor Pokémon",
             "entry_text": [
                 "It attacks by curling up, then\n",
@@ -125,7 +125,7 @@
                 "apart a house in one hit."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DONPHAN",
             "category": "Pokémon Armure",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "abattre une maison d’un seul coup."
             ]
         },
-        "german": {
+        "de": {
             "name": "DONPHAN",
             "category": "Panzer",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "kann Häuser zum Einsturz bringen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DONPHAN",
             "category": "Pokémon Armatura",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "una casa con un solo colpo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DONPHAN",
             "category": "Pokémon Coraza",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "Puede derribar casas de un golpe."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ドンファン",
             "category": "よろいポケモン",
             "entry_text": [

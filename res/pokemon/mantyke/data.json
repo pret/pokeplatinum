@@ -1,5 +1,4 @@
 {
-    "name": "Mantyke",
     "base_stats": {
         "hp": 45,
         "attack": 20,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "english": {
+        "en": {
+            "name": "MANTYKE",
             "category": "Kite Pokémon",
             "entry_text": [
                 "People organize tours to see this\n",
@@ -117,7 +117,7 @@
                 "of waves with REMORAID."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BABIMANTA",
             "category": "Pokémon Cervolant",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "mer grâce à ses deux antennes."
             ]
         },
-        "german": {
+        "de": {
             "name": "MANTIRPS",
             "category": "Flugrochen",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "Strömungen des Meeres erkennt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MANTYKE",
             "category": "Pokémon Aquilone",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "anche minime correnti marine."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MANTYKE",
             "category": "Pokémon Milano",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "con sus dos antenas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "タマンタ",
             "category": "カイトポケモン",
             "entry_text": [

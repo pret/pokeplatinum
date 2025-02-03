@@ -1,5 +1,4 @@
 {
-    "name": "Croagunk",
     "base_stats": {
         "hp": 48,
         "attack": 61,
@@ -131,7 +130,8 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "CROAGUNK",
             "category": "Toxic Mouth Pokémon",
             "entry_text": [
                 "It rarely fights fairly, but that is\n",
@@ -139,7 +139,7 @@
                 "popular as a mascot."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CRADOPAUD",
             "category": "Pokémon Toxique",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "et utilise son toucher empoisonné."
             ]
         },
-        "german": {
+        "de": {
             "name": "GLIBUNKEL",
             "category": "Giftmund",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "und mit Giftfingern zu schnappen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CROAGUNK",
             "category": "Pokémon Inveieleno",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "unghie avvelenate."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CROAGUNK",
             "category": "Pokémon Boca Tóxica",
             "entry_text": [
@@ -175,7 +175,7 @@
                 "a sus rivales para pincharles."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "グレッグル",
             "category": "どくづきポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Smeargle",
     "base_stats": {
         "hp": 55,
         "attack": 20,
@@ -65,7 +64,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "SMEARGLE",
             "category": "Painter Pokémon",
             "entry_text": [
                 "It marks its territory by using its\n",
@@ -73,7 +73,7 @@
                 "more than 5,000 different marks."
             ]
         },
-        "french": {
+        "fr": {
             "name": "QUEULORIOR",
             "category": "Pokémon Peintre",
             "entry_text": [
@@ -82,7 +82,7 @@
                 "dénombre plus de 5 000 marques."
             ]
         },
-        "german": {
+        "de": {
             "name": "FARBEAGLE",
             "category": "Maler",
             "entry_text": [
@@ -91,7 +91,7 @@
                 "mehr als 5 000 Markierungen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SMEARGLE",
             "category": "Pokémon Pittore",
             "entry_text": [
@@ -100,7 +100,7 @@
                 "lasciato oltre 5000 segni diversi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SMEARGLE",
             "category": "Pokémon Pintor",
             "entry_text": [
@@ -109,7 +109,7 @@
                 "más de 5000 marcas diferentes."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ド－ブル",
             "category": "えかきポケモン",
             "entry_text": [

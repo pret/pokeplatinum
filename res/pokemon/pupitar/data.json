@@ -1,5 +1,4 @@
 {
-    "name": "Pupitar",
     "base_stats": {
         "hp": 70,
         "attack": 84,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "english": {
+        "en": {
+            "name": "PUPITAR",
             "category": "Hard Shell Pokémon",
             "entry_text": [
                 "Its body is as hard as bedrock.\n",
@@ -128,7 +128,7 @@
                 "launch itself like a rocket."
             ]
         },
-        "french": {
+        "fr": {
             "name": "YMPHECT",
             "category": "Pokémon Carapadure",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "fusée en expulsant des gaz."
             ]
         },
-        "german": {
+        "de": {
             "name": "PUPITAR",
             "category": "Hartschale",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "eine Rakete nach oben zu schießen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PUPITAR",
             "category": "Pokémon Guscioduro",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "espellendo gas con tutta forza."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PUPITAR",
             "category": "Pokémon Caparazón",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "soltando los gases de su interior."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サナギラス",
             "category": "だんがんポケモン",
             "entry_text": [

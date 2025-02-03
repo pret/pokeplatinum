@@ -1,5 +1,4 @@
 {
-    "name": "Skorupi",
     "base_stats": {
         "hp": 40,
         "attack": 50,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "english": {
+        "en": {
+            "name": "SKORUPI",
             "category": "Scorpion Pokémon",
             "entry_text": [
                 "As soon as the tail claws close,\n",
@@ -127,7 +127,7 @@
                 "It can survive a year without food."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RAPION",
             "category": "Pokémon Scorpion",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "la retient jusqu’à ce qu’il agisse."
             ]
         },
-        "german": {
+        "de": {
             "name": "PIONSKORA",
             "category": "Skorpion",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "giftet sie. Dann wartet es ab..."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SKORUPI",
             "category": "Pokémon Scorpione",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "il veleno che inietta non agisce."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SKORUPI",
             "category": "Pokémon Escorpión",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "Espera hasta que hace efecto."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "スコルピ",
             "category": "さそりポケモン",
             "entry_text": [

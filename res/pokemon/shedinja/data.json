@@ -1,5 +1,4 @@
 {
-    "name": "Shedinja",
     "base_stats": {
         "hp": 1,
         "attack": 90,
@@ -106,7 +105,8 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "english": {
+        "en": {
+            "name": "SHEDINJA",
             "category": "Shed Pokémon",
             "entry_text": [
                 "A discarded bug shell that came to\n",
@@ -114,7 +114,7 @@
                 "back is said to steal one’s spirit."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MUNJA",
             "category": "Pokémon Exuvie",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "de celui qui regarde à l’intérieur. "
             ]
         },
-        "german": {
+        "de": {
             "name": "NINJATOM",
             "category": "Häutung",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "hinein, stiehlt es einem die Seele."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SHEDINJA",
             "category": "Pokémon Cambiapelle",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "sul suo dorso perda l’anima."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SHEDINJA",
             "category": "Pokémon Muda",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "la espalda, le robará el alma."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヌケニン",
             "category": "ぬけがらポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Starmie",
     "base_stats": {
         "hp": 60,
         "attack": 75,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "english": {
+        "en": {
+            "name": "STARMIE",
             "category": "Mysterious Pokémon",
             "entry_text": [
                 "At the center of its body is a red\n",
@@ -118,7 +118,7 @@
                 "radio signals into the night sky."
             ]
         },
-        "french": {
+        "fr": {
             "name": "STAROSS",
             "category": "Pokémon Mystérieux",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "mystérieux vers le ciel nocturne."
             ]
         },
-        "german": {
+        "de": {
             "name": "STARMIE",
             "category": "Mysteriös",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "Radiowellen in die Nacht sendet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "STARMIE",
             "category": "Pokémon Misterioso",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "segnali radio nel cielo notturno."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "STARMIE",
             "category": "Pokémon Misterioso",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "de radio en la noche."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "スタ－ミ－",
             "category": "なぞのポケモン",
             "entry_text": [

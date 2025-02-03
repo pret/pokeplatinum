@@ -1,5 +1,4 @@
 {
-    "name": "Starly",
     "base_stats": {
         "hp": 40,
         "attack": 55,
@@ -108,7 +107,8 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "english": {
+        "en": {
+            "name": "STARLY",
             "category": "Starling Pokémon",
             "entry_text": [
                 "Because they are weak individually,\n",
@@ -116,7 +116,7 @@
                 "bicker if the group grows too big."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ETOURMI",
             "category": "Pokémon Etourneau",
             "entry_text": [
@@ -125,7 +125,7 @@
                 "une vigueur impressionnante."
             ]
         },
-        "german": {
+        "de": {
             "name": "STARALILI",
             "category": "Star",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "ihre Flügel mit enormer Kraft."
             ]
         },
-        "italian": {
+        "it": {
             "name": "STARLY",
             "category": "Pokémon Storno",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "molto energica."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "STARLY",
             "category": "Pokémon Estornino",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "las alas con gran fuerza."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ムックル",
             "category": "むくどりポケモン",
             "entry_text": [

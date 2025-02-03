@@ -1,5 +1,4 @@
 {
-    "name": "Bronzor",
     "base_stats": {
         "hp": 57,
         "attack": 24,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "english": {
+        "en": {
+            "name": "BRONZOR",
             "category": "Bronze Pokémon",
             "entry_text": [
                 "There are researchers who believe\n",
@@ -129,7 +129,7 @@
                 "in the distant past."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ARCHEOMIRE",
             "category": "Pokémon Bronze",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "Nul ne sait s’ils sont liés."
             ]
         },
-        "german": {
+        "de": {
             "name": "BRONZEL",
             "category": "Bronze",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "gefunden worden."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BRONZOR",
             "category": "Pokémon Bronzo",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "ma non si sa se ci sia una relazione."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BRONZOR",
             "category": "Pokémon Bronce",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "se desconoce si tiene relación."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ド－ミラ－",
             "category": "せいどうポケモン",
             "entry_text": [

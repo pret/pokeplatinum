@@ -1,5 +1,4 @@
 {
-    "name": "Electrode",
     "base_stats": {
         "hp": 60,
         "attack": 50,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "english": {
+        "en": {
+            "name": "ELECTRODE",
             "category": "Ball Pokémon",
             "entry_text": [
                 "It is known to drift on winds if it\n",
@@ -117,7 +117,7 @@
                 "electricity."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ELECTRODE",
             "category": "Pokémon Balle",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "d’électricité à en éclater."
             ]
         },
-        "german": {
+        "de": {
             "name": "LEKTROBAL",
             "category": "Ball",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "dass es fast explodiert."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ELECTRODE",
             "category": "Pokémon Ball",
             "entry_text": [
@@ -144,12 +144,12 @@
                 "trasportare dal vento."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ELECTRODE",
             "category": "Pokémon Bola",
             "entry_text": [ "Se lo lleva el viento si se hincha\n", "con la electricidad que almacena." ]
         },
-        "japanese": {
+        "jp": {
             "name": "マルマイン",
             "category": "ボ－ルポケモン",
             "entry_text": [

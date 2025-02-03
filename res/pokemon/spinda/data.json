@@ -1,5 +1,4 @@
 {
-    "name": "Spinda",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "SPINDA",
             "category": "Spot Panda Pokémon",
             "entry_text": [
                 "No two SPINDA have the same\n",
@@ -132,7 +132,7 @@
                 "step fouls the aim of foes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SPINDA",
             "category": "Pokémon Panda Tache",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "chancelant le rend difficile à viser."
             ]
         },
-        "german": {
+        "de": {
             "name": "PANDIR",
             "category": "Punkt-Panda",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "senkt die gegn. Zielsicherheit."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SPINDA",
             "category": "Pokémon Macchipanda",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "barcollante confonde i nemici."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SPINDA",
             "category": "Pokémon Panda Topos",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "al bailar confunde a los rivales."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "パッチ－ル",
             "category": "ぶちパンダポケモン",
             "entry_text": [

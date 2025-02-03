@@ -1,5 +1,4 @@
 {
-    "name": "Charmander",
     "base_stats": {
         "hp": 39,
         "attack": 52,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "CHARMANDER",
             "category": "Lizard Pokémon",
             "entry_text": [
                 "The fire on the tip of its tail is a\n",
@@ -123,7 +123,7 @@
                 "its tail burns intensely."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SALAMECHE",
             "category": "Pokémon Lézard",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "est en bonne santé."
             ]
         },
-        "german": {
+        "de": {
             "name": "GLUMANDA",
             "category": "Echse",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "gesund."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CHARMANDER",
             "category": "Pokémon Lucertola",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "la fiamma è più ardente."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CHARMANDER",
             "category": "Pokémon Lagartija",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "está sano, arderá con más fuerza."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヒトカゲ",
             "category": "とかげポケモン",
             "entry_text": [

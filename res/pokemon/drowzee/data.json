@@ -1,5 +1,4 @@
 {
-    "name": "Drowzee",
     "base_stats": {
         "hp": 60,
         "attack": 48,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "DROWZEE",
             "category": "Hypnosis Pokémon",
             "entry_text": [
                 "It can tell what people are\n",
@@ -132,7 +132,7 @@
                 "nose. It loves fun dreams."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SOPORIFIK",
             "category": "Pokémon Hypnose",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "songes amusants."
             ]
         },
-        "german": {
+        "de": {
             "name": "TRAUMATO",
             "category": "Hypnose",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "Es liebt lustige Träume."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DROWZEE",
             "category": "Pokémon Ipnosi",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "grande naso. Ama i sogni divertenti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DROWZEE",
             "category": "Pokémon Hipnosis",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "encantan los sueños divertidos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "スリ－プ",
             "category": "さいみんポケモン",
             "entry_text": [

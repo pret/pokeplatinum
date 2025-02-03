@@ -1,5 +1,4 @@
 {
-    "name": "Lopunny",
     "base_stats": {
         "hp": 65,
         "attack": 76,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "english": {
+        "en": {
+            "name": "LOPUNNY",
             "category": "Rabbit Pokémon",
             "entry_text": [
                 "The ears appear to be delicate. If\n",
@@ -133,7 +133,7 @@
                 "with its graceful legs."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LOCKPIN",
             "category": "Pokémon Lapin",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "pelucheuses en cas de danger."
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHLAPOR",
             "category": "Hase",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "Körper mit seinen weichen Ohren."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LOPUNNY",
             "category": "Pokémon Coniglio",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "orecchie morbide e pelose."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LOPUNNY",
             "category": "Pokémon Conejo",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "el pelaje de sus orejas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミミロップ",
             "category": "うさぎポケモン",
             "entry_text": [

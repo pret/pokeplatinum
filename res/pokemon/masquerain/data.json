@@ -1,5 +1,4 @@
 {
-    "name": "Masquerain",
     "base_stats": {
         "hp": 70,
         "attack": 60,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "english": {
+        "en": {
+            "name": "MASQUERAIN",
             "category": "Eyeball Pokémon",
             "entry_text": [
                 "Its antennae have eye patterns\n",
@@ -123,7 +123,7 @@
                 "to hover and fly in any direction."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MASKADRA",
             "category": "Pokémon Boule Oeil",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "à voler dans toutes les directions."
             ]
         },
-        "german": {
+        "de": {
             "name": "MASKEREGEN",
             "category": "Auge",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "es, in alle Richtungen zu fliegen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MASQUERAIN",
             "category": "Pokémon Occhi",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "riesce a volare in ogni direzione."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MASQUERAIN",
             "category": "Pokémon Globocular",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "volar en cualquier dirección."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アメモ－ス",
             "category": "めだまポケモン",
             "entry_text": [

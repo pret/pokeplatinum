@@ -1,5 +1,4 @@
 {
-    "name": "Wailmer",
     "base_stats": {
         "hp": 130,
         "attack": 70,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "WAILMER",
             "category": "Ball Whale Pokémon",
             "entry_text": [
                 "On sunny days, it lands on beaches\n",
@@ -121,7 +121,7 @@
                 "It spouts water from its nose."
             ]
         },
-        "french": {
+        "fr": {
             "name": "WAILMER",
             "category": "Pokémon Baleinboule",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "expulse de l’eau par son évent."
             ]
         },
-        "german": {
+        "de": {
             "name": "WAILMER",
             "category": "Kugelwal",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Bälle herumhüpfen. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "WAILMER",
             "category": "Pokémon Balenottero",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "Spruzza acqua dalle narici."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WAILMER",
             "category": "Pokémon Ballenabola",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "pelota. Lanza agua por la nariz."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ホエルコ",
             "category": "たまくじらポケモン",
             "entry_text": [

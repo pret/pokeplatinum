@@ -1,5 +1,4 @@
 {
-    "name": "Armaldo",
     "base_stats": {
         "hp": 75,
         "attack": 125,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "ARMALDO",
             "category": "Plate Pokémon",
             "entry_text": [
                 "It went ashore after evolving.\n",
@@ -126,7 +126,7 @@
                 "armor."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ARMALDO",
             "category": "Pokémon Blindage",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "recouvre son corps."
             ]
         },
-        "german": {
+        "de": {
             "name": "ARMALDO",
             "category": "Schild",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "robusten Rüstung umgeben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ARMALDO",
             "category": "Pokémon Piastre",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "rivestito da un’armatura robusta."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ARMALDO",
             "category": "Pokémon Armadura",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "protege todo su cuerpo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ア－マルド",
             "category": "かっちゅうポケモン",
             "entry_text": [

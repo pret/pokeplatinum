@@ -1,5 +1,4 @@
 {
-    "name": "Mankey",
     "base_stats": {
         "hp": 40,
         "attack": 80,
@@ -131,7 +130,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "MANKEY",
             "category": "Pig Monkey Pokémon",
             "entry_text": [
                 "It lives in treetop colonies.\n",
@@ -139,7 +139,7 @@
                 "colony rampages for no reason."
             ]
         },
-        "french": {
+        "fr": {
             "name": "FEROSINGE",
             "category": "Pokémon Porsinge",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "toute la colonie suit son exemple."
             ]
         },
-        "german": {
+        "de": {
             "name": "MENKI",
             "category": "Schw./ Affe",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "alle anderen auch wütend."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MANKEY",
             "category": "Pokémon Suinpanzé",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "agire violentemente senza motivo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MANKEY",
             "category": "Pokémon Mono Cerdo",
             "entry_text": [
@@ -175,7 +175,7 @@
                 "manada ataca sin motivo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マンキ－",
             "category": "ぶたざるポケモン",
             "entry_text": [

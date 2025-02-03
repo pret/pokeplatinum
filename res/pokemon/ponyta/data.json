@@ -1,5 +1,4 @@
 {
-    "name": "Ponyta",
     "base_stats": {
         "hp": 50,
         "attack": 85,
@@ -103,7 +102,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "PONYTA",
             "category": "Fire Horse Pokémon",
             "entry_text": [
                 "As a newborn, it can barely stand.\n",
@@ -111,7 +111,7 @@
                 "legs are made tougher and faster."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PONYTA",
             "category": "Pokémon Cheval Feu",
             "entry_text": [
@@ -120,7 +120,7 @@
                 "une heure après sa naissance."
             ]
         },
-        "german": {
+        "de": {
             "name": "PONITA",
             "category": "Feuerpferd",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "Mähne und sein feuriger Schweif. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "PONYTA",
             "category": "Pokémon Cavalfuoco",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "donano un aspetto solenne."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PONYTA",
             "category": "Pokémon Caballo F.",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "después de nacer."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ポニ－タ",
             "category": "ひのうまポケモン",
             "entry_text": [

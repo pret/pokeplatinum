@@ -1,5 +1,4 @@
 {
-    "name": "Marill",
     "base_stats": {
         "hp": 70,
         "attack": 20,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "MARILL",
             "category": "Aqua Mouse Pokémon",
             "entry_text": [
                 "The oil-filled end of its tail floats\n",
@@ -124,7 +124,7 @@
                 "drowning even in a strong current."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MARILL",
             "category": "Pokémon Aquasouris",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "les plantes du fond des rivières."
             ]
         },
-        "german": {
+        "de": {
             "name": "MARILL",
             "category": "Aquamaus",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "taucht. Es liebt Wasserpflanzen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MARILL",
             "category": "Pokémon Acquatopo",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "che crescono sul fondo dei fiumi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MARILL",
             "category": "Pokémon Ratón Agua",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "plantas del fondo fluvial."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マリル",
             "category": "みずねずみポケモン",
             "entry_text": [

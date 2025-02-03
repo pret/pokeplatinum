@@ -1,5 +1,4 @@
 {
-    "name": "Metang",
     "base_stats": {
         "hp": 60,
         "attack": 75,
@@ -131,7 +130,8 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "english": {
+        "en": {
+            "name": "METANG",
             "category": "Iron Claw Pokémon",
             "entry_text": [
                 "It is formed by two BELDUM joining\n",
@@ -139,7 +139,7 @@
                 "scratched if it collides with a jet."
             ]
         },
-        "french": {
+        "fr": {
             "name": "METANG",
             "category": "Pokémon Pincefer",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "un choc avec un avion à réaction."
             ]
         },
-        "german": {
+        "de": {
             "name": "METANG",
             "category": "Eisenklaue",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "Kratzer, wenn ein Jet es streift."
             ]
         },
-        "italian": {
+        "it": {
             "name": "METANG",
             "category": "Pokémon Ferrunghia",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "scalfito neanche se urta un jet."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "METANG",
             "category": "Pokémon Garrahierro",
             "entry_text": [
@@ -175,7 +175,7 @@
                 "cuerpo de acero sufra ni rasguño."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "メタング",
             "category": "てつツメポケモン",
             "entry_text": [

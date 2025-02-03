@@ -1,5 +1,4 @@
 {
-    "name": "Machamp",
     "base_stats": {
         "hp": 90,
         "attack": 130,
@@ -117,7 +116,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "MACHAMP",
             "category": "Superpower Pokémon",
             "entry_text": [
                 "Its four muscled arms slam foes\n",
@@ -125,7 +125,7 @@
                 "at blinding speed."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MACKOGNEUR",
             "category": "Pokémon Colosse",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "1 000 coups en deux secondes."
             ]
         },
-        "german": {
+        "de": {
             "name": "MACHOMEI",
             "category": "Kraftprotz",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "Sekunden 1 000-mal zuschlagen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MACHAMP",
             "category": "Pokémon Megaforza",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "Scaglia 1000 pugni ogni 2 secondi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MACHAMP",
             "category": "Pokémon Superpoder",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "golpes en dos segundos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カイリキ－",
             "category": "かいりきポケモン",
             "entry_text": [

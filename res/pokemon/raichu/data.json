@@ -1,5 +1,4 @@
 {
-    "name": "Raichu",
     "base_stats": {
         "hp": 60,
         "attack": 90,
@@ -106,7 +105,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "english": {
+        "en": {
+            "name": "RAICHU",
             "category": "Mouse Pokémon",
             "entry_text": [
                 "Its tail discharges electricity into\n",
@@ -114,7 +114,7 @@
                 "getting shocked."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RAICHU",
             "category": "Pokémon Souris",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "Il la décharge par sa queue."
             ]
         },
-        "german": {
+        "de": {
             "name": "RAICHU",
             "category": "Maus",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "über seinen Schweif."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RAICHU",
             "category": "Pokémon Topo",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Scarica l’elettricità dalla coda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RAICHU",
             "category": "Pokémon Ratón",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "que descarga a través de la cola."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ライチュウ",
             "category": "ねずみポケモン",
             "entry_text": [

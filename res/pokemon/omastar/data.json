@@ -1,5 +1,4 @@
 {
-    "name": "Omastar",
     "base_stats": {
         "hp": 70,
         "attack": 60,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "english": {
+        "en": {
+            "name": "OMASTAR",
             "category": "Spiral Pokémon",
             "entry_text": [
                 "It is thought that this Pokémon\n",
@@ -124,7 +124,7 @@
                 "shell grew too large."
             ]
         },
-        "french": {
+        "fr": {
             "name": "AMONISTAR",
             "category": "Pokémon Spirale",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "spirale était devenue trop grosse."
             ]
         },
-        "german": {
+        "de": {
             "name": "AMOROSO",
             "category": "Spirale",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "förmige Schale zu groß wurde."
             ]
         },
-        "italian": {
+        "it": {
             "name": "OMASTAR",
             "category": "Pokémon Spirale",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "a spirale è cresciuta troppo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "OMASTAR",
             "category": "Pokémon Espiral",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "espiral creció demasiado."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オムスタ－",
             "category": "うずまきポケモン",
             "entry_text": [

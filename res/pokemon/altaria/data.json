@@ -1,5 +1,4 @@
 {
-    "name": "Altaria",
     "base_stats": {
         "hp": 75,
         "attack": 70,
@@ -123,7 +122,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "ALTARIA",
             "category": "Humming Pokémon",
             "entry_text": [
                 "If it bonds with a person, it will\n",
@@ -131,7 +131,7 @@
                 "soft wings, then hum."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ALTARIA",
             "category": "Pokémon Virevolteur",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "de soprano."
             ]
         },
-        "german": {
+        "de": {
             "name": "ALTARIA",
             "category": "Summsel",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "einer Sopranstimme."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ALTARIA",
             "category": "Pokémon Canterino",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "voce da soprano."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ALTARIA",
             "category": "Pokémon Cantor",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "melodías con su voz de soprano."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "チルタリス",
             "category": "ハミングポケモン",
             "entry_text": [

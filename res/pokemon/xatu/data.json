@@ -1,5 +1,4 @@
 {
-    "name": "Xatu",
     "base_stats": {
         "hp": 65,
         "attack": 75,
@@ -126,7 +125,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "XATU",
             "category": "Mystic Pokémon",
             "entry_text": [
                 "This odd Pokémon can see both\n",
@@ -134,7 +134,7 @@
                 "the sun’s movement all day."
             ]
         },
-        "french": {
+        "fr": {
             "name": "XATU",
             "category": "Pokémon Mystique",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "sans cesse la course du soleil."
             ]
         },
-        "german": {
+        "de": {
             "name": "XATU",
             "category": "Mystik",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "beobachtet ständig die Sonne."
             ]
         },
-        "italian": {
+        "it": {
             "name": "XATU",
             "category": "Pokémon Magico",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "vando il sole tutto il giorno."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "XATU",
             "category": "Pokémon Místico",
             "entry_text": [
@@ -170,7 +170,7 @@
                 "día mirando al sol."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ネイティオ",
             "category": "せいれいポケモン",
             "entry_text": [

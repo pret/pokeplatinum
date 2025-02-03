@@ -1,5 +1,4 @@
 {
-    "name": "Lucario",
     "base_stats": {
         "hp": 70,
         "attack": 110,
@@ -131,7 +130,8 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "english": {
+        "en": {
+            "name": "LUCARIO",
             "category": "Aura Pokémon",
             "entry_text": [
                 "A well-trained one can sense auras\n",
@@ -139,12 +139,12 @@
                 "of creatures over half a mile away."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LUCARIO",
             "category": "Pokémon Aura",
             "entry_text": [ "Il ressent les auras de tout. Il \n", "comprend le langage humain." ]
         },
-        "german": {
+        "de": {
             "name": "LUCARIO",
             "category": "Aura",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "die menschliche Sprache."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LUCARIO",
             "category": "Pokémon Aura",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "Comprende il linguaggio umano."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LUCARIO",
             "category": "Pokémon Aura",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "lenguaje humano."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ルカリオ",
             "category": "はどうポケモン",
             "entry_text": [

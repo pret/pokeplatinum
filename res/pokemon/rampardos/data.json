@@ -1,5 +1,4 @@
 {
-    "name": "Rampardos",
     "base_stats": {
         "hp": 97,
         "attack": 165,
@@ -133,7 +132,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "RAMPARDOS",
             "category": "Head Butt Pokémon",
             "entry_text": [
                 "If two were to smash their heads\n",
@@ -141,7 +141,7 @@
                 "would keep them from fainting."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHARKOS",
             "category": "Pokémon Coud’Boule",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "les matériaux les plus résistants."
             ]
         },
-        "german": {
+        "de": {
             "name": "RAMEIDON",
             "category": "Kopfstoß",
             "entry_text": [
@@ -159,17 +159,17 @@
                 "Dinge zu zerschmettern."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RAMPARDOS",
             "category": "Pokémon Cranioso",
             "entry_text": [ "Tira testate talmente potenti da\n", "frantumare anche oggetti durissimi." ]
         },
-        "spanish": {
+        "es": {
             "name": "RAMPARDOS",
             "category": "Pokémon Cabezazo",
             "entry_text": [ "Su potente cabezazo puede\n", "hacer añicos cualquier cosa." ]
         },
-        "japanese": {
+        "jp": {
             "name": "ラムパルド",
             "category": "ずつきポケモン",
             "entry_text": [

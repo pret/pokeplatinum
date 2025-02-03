@@ -1,5 +1,4 @@
 {
-    "name": "Jynx",
     "base_stats": {
         "hp": 65,
         "attack": 50,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "english": {
+        "en": {
+            "name": "JYNX",
             "category": "Human Shape Pokémon",
             "entry_text": [
                 "Its cries sound like human speech.\n",
@@ -136,7 +136,7 @@
                 "what it is trying to say."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LIPPOUTOU",
             "category": "Pokémon Humanoïde",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "parvenu à les comprendre. "
             ]
         },
-        "german": {
+        "de": {
             "name": "ROSSANA",
             "category": "Humanotyp",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "verstehen, was es sagt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "JYNX",
             "category": "Pokémon Umanoide",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "il significato delle sue parole."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "JYNX",
             "category": "Pokémon F. Humana",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "entender lo que dice."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ル－ジュラ",
             "category": "ひとがたポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Corphish",
     "base_stats": {
         "hp": 43,
         "attack": 80,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "CORPHISH",
             "category": "Ruffian Pokémon",
             "entry_text": [
                 "Its hardy vitality enables it to\n",
@@ -132,7 +132,7 @@
                 "pincers will never release prey."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ECRAPINCE",
             "category": "Pokémon Brute",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Ses pinces ne lâchent jamais prise."
             ]
         },
-        "german": {
+        "de": {
             "name": "KREBSCORPS",
             "category": "Grobian",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "Zangen geben keine Beute frei."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CORPHISH",
             "category": "Pokémon Birbone",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "chele non rilasciano mai la preda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CORPHISH",
             "category": "Pokémon Rufián",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "nunca sueltan a su presa."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヘイガニ",
             "category": "ごろつきポケモン",
             "entry_text": [

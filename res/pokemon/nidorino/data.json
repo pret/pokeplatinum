@@ -1,5 +1,4 @@
 {
-    "name": "Nidorino",
     "base_stats": {
         "hp": 61,
         "attack": 72,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "NIDORINO",
             "category": "Poison Pin Pokémon",
             "entry_text": [
                 "It has a violent disposition and\n",
@@ -121,7 +121,7 @@
                 "oozes poison upon impact."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NIDORINO",
             "category": "Pokémon Venepic",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "distille un poison puissant."
             ]
         },
-        "german": {
+        "de": {
             "name": "NIDORINO",
             "category": "Giftdorn",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "bei Berührung Gift absondert."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NIDORINO",
             "category": "Pokémon Velenago",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "all’impatto, rilascia veleno."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NIDORINO",
             "category": "Pokémon Pin Veneno",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "que desprende veneno."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニドリ－ノ",
             "category": "どくばりポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Regice",
     "base_stats": {
         "hp": 80,
         "attack": 50,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "REGICE",
             "category": "Iceberg Pokémon",
             "entry_text": [
                 "Its body is made of ice from the\n",
@@ -129,7 +129,7 @@
                 "-328 degrees Fahrenheit."
             ]
         },
-        "french": {
+        "fr": {
             "name": "REGICE",
             "category": "Pokémon Iceberg",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "air gelé de -200 °C."
             ]
         },
-        "german": {
+        "de": {
             "name": "REGICE",
             "category": "Eisberg",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "Luft, die minus 200 Grad kalt ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "REGICE",
             "category": "Pokémon Iceberg",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "l’aria a una temperatura di -200°C."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "REGICE",
             "category": "Pokémon Iceberg",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "gélido a 200 grados bajo cero."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "レジアイス",
             "category": "ひょうざんポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Typhlosion",
     "base_stats": {
         "hp": 78,
         "attack": 84,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "TYPHLOSION",
             "category": "Volcano Pokémon",
             "entry_text": [
                 "It attacks using blasts of fire.\n",
@@ -129,7 +129,7 @@
                 "intense fire to hide itself."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TYPHLOSION",
             "category": "Pokémon Volcan",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "les vagues de chaleur qu’il produit."
             ]
         },
-        "german": {
+        "de": {
             "name": "TORNUPTO",
             "category": "Vulkan",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "flimmern, in dem es sich versteckt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TYPHLOSION",
             "category": "Pokémon Vulcano",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "calore creata dalle fiamme roventi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TYPHLOSION",
             "category": "Pokémon Volcán",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "ocultarse."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "バクフ－ン",
             "category": "かざんポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Garchomp",
     "base_stats": {
         "hp": 108,
         "attack": 130,
@@ -126,7 +125,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "GARCHOMP",
             "category": "Mach Pokémon",
             "entry_text": [
                 "It is said that when one runs at\n",
@@ -134,7 +134,7 @@
                 "of wind that can fell nearby trees."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CARCHACROK",
             "category": "Pokémon Supersonic",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "Sa vitesse est supersonique."
             ]
         },
-        "german": {
+        "de": {
             "name": "KNAKRACK",
             "category": "Rasanz",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "Es fliegt mit Schallgeschwindigkeit."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GARCHOMP",
             "category": "Pokémon Mach",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "supersonica."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GARCHOMP",
             "category": "Pokémon Mach",
             "entry_text": [
@@ -170,7 +170,7 @@
                 "Vuela a velocidad sónica."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ガブリアス",
             "category": "マッハポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Grimer",
     "base_stats": {
         "hp": 80,
         "attack": 80,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "GRIMER",
             "category": "Sludge Pokémon",
             "entry_text": [
                 "It was born when sludge in a dirty\n",
@@ -128,7 +128,7 @@
                 "X-rays. It appears among filth."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TADMORV",
             "category": "Pokémon Dégueu",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "Il vit dans les ordures."
             ]
         },
-        "german": {
+        "de": {
             "name": "SLEIMA",
             "category": "Schlamm",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "wurde. Es erscheint, wo Unrat ist. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "GRIMER",
             "category": "Pokémon Melma",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "luna. Vive nella sporcizia."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GRIMER",
             "category": "Pokémon Lodo",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "rayos X lunares. Vive en la basura."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ベトベタ－",
             "category": "ヘドロポケモン",
             "entry_text": [

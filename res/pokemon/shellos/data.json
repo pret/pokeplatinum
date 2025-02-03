@@ -1,5 +1,4 @@
 {
-    "name": "Shellos",
     "base_stats": {
         "hp": 76,
         "attack": 48,
@@ -102,7 +101,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "SHELLOS",
             "category": "Sea Slug Pokémon",
             "entry_text": [
                 "Beware of pushing strongly on\n",
@@ -110,7 +110,7 @@
                 "mysterious purple fluid ooze out."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SANCOKI",
             "category": "Pokémon Aqualimace",
             "entry_text": [
@@ -119,7 +119,7 @@
                 "deux types à Sinnoh."
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHALELLOS",
             "category": "Seeschnecke",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "finden sich zwei Arten."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SHELLOS",
             "category": "Pokémon Lumacomare",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "di Sinnoh ne esistano due tipi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SHELLOS",
             "category": "Pokémon Babosa Mar.",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "tipos confirmados."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カラナクシ",
             "category": "ウミウシポケモン",
             "entry_text": [

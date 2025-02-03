@@ -1,5 +1,4 @@
 {
-    "name": "Bastiodon",
     "base_stats": {
         "hp": 60,
         "attack": 52,
@@ -122,7 +121,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "BASTIODON",
             "category": "Shield Pokémon",
             "entry_text": [
                 "When they lined up side by side, no\n",
@@ -130,7 +130,7 @@
                 "shielded their young in that way."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BASTIODON",
             "category": "Pokémon Bouclier",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "qui se nourrit d’herbe et de Baies."
             ]
         },
-        "german": {
+        "de": {
             "name": "BOLLTERUS",
             "category": "Schutzschild",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "ernährt sich von Gras und Beeren."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BASTIODON",
             "category": "Pokémon Schermo",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "che si nutre di erba e di bacche."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BASTIODON",
             "category": "Pokémon Escudo",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "hierba y bayas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "トリデプス",
             "category": "シ－ルドポケモン",
             "entry_text": [

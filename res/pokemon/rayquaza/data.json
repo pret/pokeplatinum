@@ -1,5 +1,4 @@
 {
-    "name": "Rayquaza",
     "base_stats": {
         "hp": 105,
         "attack": 150,
@@ -136,7 +135,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 22,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "RAYQUAZA",
             "category": "Sky High Pokémon",
             "entry_text": [
                 "It lives in the ozone layer far\n",
@@ -144,7 +144,7 @@
                 "seen from the ground."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RAYQUAZA",
             "category": "Pokémon Cieux",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "depuis le sol."
             ]
         },
-        "german": {
+        "de": {
             "name": "RAYQUAZA",
             "category": "Himmelhoch",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "Boden aus nicht gesehen werden."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RAYQUAZA",
             "category": "Pokémon Stratosfera",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "da terra."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RAYQUAZA",
             "category": "Pokémon Cielo",
             "entry_text": [
@@ -180,7 +180,7 @@
                 "desde el suelo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "レックウザ",
             "category": "てんくうポケモン",
             "entry_text": [

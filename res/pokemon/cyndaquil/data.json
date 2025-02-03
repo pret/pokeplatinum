@@ -1,5 +1,4 @@
 {
-    "name": "Cyndaquil",
     "base_stats": {
         "hp": 39,
         "attack": 52,
@@ -105,7 +104,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "CYNDAQUIL",
             "category": "Fire Mouse Pokémon",
             "entry_text": [
                 "It has a timid nature. If it is\n",
@@ -113,7 +113,7 @@
                 "burn more vigorously."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HERICENDRE",
             "category": "Pokémon Souris Feu",
             "entry_text": [
@@ -122,7 +122,7 @@
                 "s’intensifient lorsqu’il prend peur."
             ]
         },
-        "german": {
+        "de": {
             "name": "FEURIGEL",
             "category": "Feuermaus",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "Rücken kräftiger."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CYNDAQUIL",
             "category": "Pokémon Fuocotopo",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "dorso bruciano ardentemente."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CYNDAQUIL",
             "category": "Pokémon Ratónfuego",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "arden con más fuerza."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヒノアラシ",
             "category": "ひねずみポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Goldeen",
     "base_stats": {
         "hp": 45,
         "attack": 67,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "english": {
+        "en": {
+            "name": "GOLDEEN",
             "category": "Goldfish Pokémon",
             "entry_text": [
                 "Though it appears very elegant\n",
@@ -117,7 +117,7 @@
                 "can jab powerfully with its horn."
             ]
         },
-        "french": {
+        "fr": {
             "name": "POISSIRENE",
             "category": "Pokémon Poisson",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "une robe. Il a l’allure d’une reine."
             ]
         },
-        "german": {
+        "de": {
             "name": "GOLDINI",
             "category": "Goldfisch",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "Es sieht aus wie eine Königin."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GOLDEEN",
             "category": "Pokémon Pescerosso",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "Ha un aspetto regale."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GOLDEEN",
             "category": "Pokémon Pez Color",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "Parece una reina."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "トサキント",
             "category": "きんぎょポケモン",
             "entry_text": [

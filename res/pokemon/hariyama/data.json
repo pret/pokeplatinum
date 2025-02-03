@@ -1,5 +1,4 @@
 {
-    "name": "Hariyama",
     "base_stats": {
         "hp": 144,
         "attack": 120,
@@ -123,7 +122,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "HARIYAMA",
             "category": "Arm Thrust Pokémon",
             "entry_text": [
                 "It loves to match power with\n",
@@ -131,7 +131,7 @@
                 "truck flying with its arm thrusts."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HARIYAMA",
             "category": "Pokémon Cogneur",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "paume peuvent projeter un camion."
             ]
         },
-        "german": {
+        "de": {
             "name": "HARIYAMA",
             "category": "Armwurf",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "kann es LKW durch die Luft werfen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HARIYAMA",
             "category": "Pokémon Sberletese",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "prendere il volo a un camion."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HARIYAMA",
             "category": "Pokémon Empuje",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "brazos pueden derribar un camión."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ハリテヤマ",
             "category": "つっぱりポケモン",
             "entry_text": [

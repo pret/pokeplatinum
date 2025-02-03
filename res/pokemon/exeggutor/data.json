@@ -1,5 +1,4 @@
 {
-    "name": "Exeggutor",
     "base_stats": {
         "hp": 95,
         "attack": 95,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "EXEGGUTOR",
             "category": "Coconut Pokémon",
             "entry_text": [
                 "It is called “The Walking Jungle.”\n",
@@ -117,7 +117,7 @@
                 "off and becomes an EXEGGCUTE."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NOADKOKO",
             "category": "Pokémon Fruitpalme",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "elle tombe et produit un NOEUNOEUF."
             ]
         },
-        "german": {
+        "de": {
             "name": "KOKOWEI",
             "category": "Palmfrucht",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "fällt er ab und wird zu einem OWEI."
             ]
         },
-        "italian": {
+        "it": {
             "name": "EXEGGUTOR",
             "category": "Pokémon Nocecocco",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "cade e si trasforma in EXEGGCUTE."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "EXEGGUTOR",
             "category": "Pokémon Coco",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "se cae y forma un EXEGGCUTE."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ナッシ－",
             "category": "やしのみポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Wynaut",
     "base_stats": {
         "hp": 95,
         "attack": 23,
@@ -68,7 +67,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "english": {
+        "en": {
+            "name": "WYNAUT",
             "category": "Bright Pokémon",
             "entry_text": [
                 "It grows strong by pushing up\n",
@@ -76,7 +76,7 @@
                 "It loves eating sweet fruit."
             ]
         },
-        "french": {
+        "fr": {
             "name": "OKEOKE",
             "category": "Pokémon Ravi",
             "entry_text": [
@@ -85,7 +85,7 @@
                 "raffole des fruits sucrés."
             ]
         },
-        "german": {
+        "de": {
             "name": "ISSO",
             "category": "Strahlekind",
             "entry_text": [
@@ -94,7 +94,7 @@
                 "Süßigkeiten."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WYNAUT",
             "category": "Pokémon Brillante",
             "entry_text": [
@@ -103,7 +103,7 @@
                 "rafforzarsi. Amano i frutti dolci."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WYNAUT",
             "category": "Pokémon Radiante",
             "entry_text": [
@@ -112,7 +112,7 @@
                 "los dulces."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ソ－ナノ",
             "category": "ほがらかポケモン",
             "entry_text": [

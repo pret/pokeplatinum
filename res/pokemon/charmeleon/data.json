@@ -1,5 +1,4 @@
 {
-    "name": "Charmeleon",
     "base_stats": {
         "hp": 58,
         "attack": 64,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "CHARMELEON",
             "category": "Flame Pokémon",
             "entry_text": [
                 "In the rocky mountains where\n",
@@ -124,7 +124,7 @@
                 "tails shine at night like stars."
             ]
         },
-        "french": {
+        "fr": {
             "name": "REPTINCEL",
             "category": "Pokémon Flamme",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "dans son repaire montagneux."
             ]
         },
-        "german": {
+        "de": {
             "name": "GLUTEXO",
             "category": "Flamme",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "leuchten in der Nacht wie Sterne."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CHARMELEON",
             "category": "Pokémon Fiamma",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "come una stella nella notte."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CHARMELEON",
             "category": "Pokémon Llama",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "ardientes brillan como estrellas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "リザ－ド",
             "category": "かえんポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Sunkern",
     "base_stats": {
         "hp": 30,
         "attack": 30,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "english": {
+        "en": {
+            "name": "SUNKERN",
             "category": "Seed Pokémon",
             "entry_text": [
                 "It suddenly falls out of the sky in\n",
@@ -118,7 +118,7 @@
                 "summer, their population explodes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TOURNEGRIN",
             "category": "Pokémon Graine",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "l’année suivant un été froid."
             ]
         },
-        "german": {
+        "de": {
             "name": "SONNKERN",
             "category": "Samen",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "explodiert seine Population."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SUNKERN",
             "category": "Pokémon Seme",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "la popolazione di SUNKERN esplode."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SUNKERN",
             "category": "Pokémon Semilla",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "suaves su número se multiplica."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヒマナッツ",
             "category": "たねポケモン",
             "entry_text": [

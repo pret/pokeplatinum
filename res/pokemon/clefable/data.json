@@ -1,5 +1,4 @@
 {
-    "name": "Clefable",
     "base_stats": {
         "hp": 95,
         "attack": 70,
@@ -129,7 +128,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "CLEFABLE",
             "category": "Fairy Pokémon",
             "entry_text": [
                 "It is very wary and rarely shows\n",
@@ -137,7 +137,7 @@
                 "a pin drop over half a mile away."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MELODELFE",
             "category": "Pokémon Fée",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "sont ceux qui l’ont aperçu."
             ]
         },
-        "german": {
+        "de": {
             "name": "PIXI",
             "category": "Fee",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "einsam gelegener Seen spielen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CLEFABLE",
             "category": "Pokémon Fata",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "in prossimità di laghetti sperduti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CLEFABLE",
             "category": "Pokémon Hada",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "en lagos solitarios."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ピクシ－",
             "category": "ようせいポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Dustox",
     "base_stats": {
         "hp": 60,
         "attack": 50,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65527,
-        "english": {
+        "en": {
+            "name": "DUSTOX",
             "category": "Poison Moth Pokémon",
             "entry_text": [
                 "Toxic powder is scattered with each\n",
@@ -115,7 +115,7 @@
                 "leaves off trees lining boulevards."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PAPINOX",
             "category": "Pokémon Papipoison",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "les feuilles des arbres urbains."
             ]
         },
-        "german": {
+        "de": {
             "name": "PUDOX",
             "category": "Giftmotte",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "die Blätter der Bäume frisst."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DUSTOX",
             "category": "Pokémon Velentarma",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "degli alberi lungo i viali."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DUSTOX",
             "category": "Pokémon Polilla V.",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "hojas y arbustos de las avenidas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ドクケイル",
             "category": "どくがポケモン",
             "entry_text": [

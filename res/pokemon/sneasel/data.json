@@ -1,5 +1,4 @@
 {
-    "name": "Sneasel",
     "base_stats": {
         "hp": 55,
         "attack": 95,
@@ -132,7 +131,8 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "english": {
+        "en": {
+            "name": "SNEASEL",
             "category": "Sharp Claw Pokémon",
             "entry_text": [
                 "A smart and sneaky Pokémon. A pair\n",
@@ -140,7 +140,7 @@
                 "having one lure the parents away."
             ]
         },
-        "french": {
+        "fr": {
             "name": "FARFURET",
             "category": "Pokémon Grifacérée",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "percent les défenses de l’ennemi."
             ]
         },
-        "german": {
+        "de": {
             "name": "SNIEBEL",
             "category": "Stichklaue",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "es mit seinen scharfen Krallen an."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SNEASEL",
             "category": "Pokémon Lamartigli",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "con i suoi artigli uncinati."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SNEASEL",
             "category": "Pokémon Garra Filo",
             "entry_text": [
@@ -176,7 +176,7 @@
                 "los puntos débiles de sus rivales."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニュ－ラ",
             "category": "かぎづめポケモン",
             "entry_text": [

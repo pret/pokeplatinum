@@ -1,5 +1,4 @@
 {
-    "name": "Quilava",
     "base_stats": {
         "hp": 58,
         "attack": 64,
@@ -112,7 +111,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "QUILAVA",
             "category": "Volcano Pokémon",
             "entry_text": [
                 "It intimidates foes with the heat\n",
@@ -120,7 +120,7 @@
                 "strongly when it readies to fight."
             ]
         },
-        "french": {
+        "fr": {
             "name": "FEURISSON",
             "category": "Pokémon Volcan",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "lorsqu’il se prépare à combattre."
             ]
         },
-        "german": {
+        "de": {
             "name": "IGELAVAR",
             "category": "Vulkan",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "kampfbereit, lodern sie stärker."
             ]
         },
-        "italian": {
+        "it": {
             "name": "QUILAVA",
             "category": "Pokémon Vulcano",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "tare, le vampate sono più ardenti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "QUILAVA",
             "category": "Pokémon Volcán",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "mayor fuerza cuando va a luchar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マグマラシ",
             "category": "かざんポケモン",
             "entry_text": [

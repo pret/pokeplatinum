@@ -1,5 +1,4 @@
 {
-    "name": "Drapion",
     "base_stats": {
         "hp": 70,
         "attack": 90,
@@ -123,7 +122,8 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "english": {
+        "en": {
+            "name": "DRAPION",
             "category": "Ogre Scorp Pokémon",
             "entry_text": [
                 "Possessing a sturdy build, it takes\n",
@@ -131,7 +131,7 @@
                 "foes without using toxins."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DRASCORE",
             "category": "Pokémon Scorpogre",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "de ses pinces contient du poison."
             ]
         },
-        "german": {
+        "de": {
             "name": "PIONDRAGI",
             "category": "Ogerskorpion",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "Krallen Autos zerquetschen kann."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DRAPION",
             "category": "Pokémon Scorpiaccio",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "sono velenose."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DRAPION",
             "category": "Pokémon Escorpiogro",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "de sus zarpas segrega veneno."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ドラピオン",
             "category": "ばけさそりポケモン",
             "entry_text": [

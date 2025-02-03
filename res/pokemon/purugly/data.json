@@ -1,5 +1,4 @@
 {
-    "name": "Purugly",
     "base_stats": {
         "hp": 71,
         "attack": 82,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "PURUGLY",
             "category": "Tiger Cat Pokémon",
             "entry_text": [
                 "It binds its body with its tails to\n",
@@ -128,7 +128,7 @@
                 "eyes, it will glare ceaselessly."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHAFFREUX",
             "category": "Pokémon Chatigre",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "pour s’y installer."
             ]
         },
-        "german": {
+        "de": {
             "name": "SHNURGARST",
             "category": "Tigerkatze",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "nistet und sie sich damit aneignet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PURUGLY",
             "category": "Pokémon Gattotigre",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "rivendicandole poi come proprie."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PURUGLY",
             "category": "Pokémon Tigre Gato",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "Pokémon y se lo apropia."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ブニャット",
             "category": "とらねこポケモン",
             "entry_text": [

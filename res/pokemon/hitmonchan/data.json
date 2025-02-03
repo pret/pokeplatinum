@@ -1,5 +1,4 @@
 {
-    "name": "Hitmonchan",
     "base_stats": {
         "hp": 50,
         "attack": 105,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "english": {
+        "en": {
+            "name": "HITMONCHAN",
             "category": "Punching Pokémon",
             "entry_text": [
                 "The arm-twisting punches it throws\n",
@@ -121,7 +121,7 @@
                 "after three minutes of fighting."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TYGNON",
             "category": "Pokémon Puncheur",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "s’essouffle au bout de 3 minutes."
             ]
         },
-        "german": {
+        "de": {
             "name": "NOCKCHAN",
             "category": "Puncher",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "im Kampf alle 3 Minuten ausruhen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HITMONCHAN",
             "category": "Pokémon Tirapugni",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "sa dopo tre minuti di lotta."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HITMONCHAN",
             "category": "Pokémon Puñetazo",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "Descansa tras luchar tres minutos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エビワラ－",
             "category": "パンチポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Fearow",
     "base_stats": {
         "hp": 65,
         "attack": 90,
@@ -106,7 +105,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "FEAROW",
             "category": "Beak Pokémon",
             "entry_text": [
                 "It has the stamina to fly all\n",
@@ -114,7 +114,7 @@
                 "fights by using its sharp beak."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RAPASDEPIC",
             "category": "Pokémon Bec-Oiseau",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "ailes. Il frappe de son bec acéré."
             ]
         },
-        "german": {
+        "de": {
             "name": "IBITAK",
             "category": "Pickvogel",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "scharfer Schnabel dient als Waffe."
             ]
         },
-        "italian": {
+        "it": {
             "name": "FEAROW",
             "category": "Pokémon Becco",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Combatte usando il becco aguzzo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "FEAROW",
             "category": "Pokémon Pico",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "con su afilado pico."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オニドリル",
             "category": "くちばしポケモン",
             "entry_text": [

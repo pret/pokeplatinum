@@ -1,5 +1,4 @@
 {
-    "name": "Flygon",
     "base_stats": {
         "hp": 80,
         "attack": 100,
@@ -123,7 +122,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "FLYGON",
             "category": "Mystic Pokémon",
             "entry_text": [
                 "It whips up sandstorms with\n",
@@ -131,7 +131,7 @@
                 "known as “The Desert Spirit.”"
             ]
         },
-        "french": {
+        "fr": {
             "name": "LIBEGON",
             "category": "Pokémon Mystique",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "On l’appelle “esprit du désert”."
             ]
         },
-        "german": {
+        "de": {
             "name": "LIBELLDRA",
             "category": "Mystik",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "“Geist der Wüste” genannt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "FLYGON",
             "category": "Pokémon Magico",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "“Spirito primordiale del deserto”."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "FLYGON",
             "category": "Pokémon Místico",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "“alma del desierto”."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "フライゴン",
             "category": "せいれいポケモン",
             "entry_text": [

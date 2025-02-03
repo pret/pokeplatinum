@@ -1,5 +1,4 @@
 {
-    "name": "Hoothoot",
     "base_stats": {
         "hp": 60,
         "attack": 30,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "english": {
+        "en": {
+            "name": "HOOTHOOT",
             "category": "Owl Pokémon",
             "entry_text": [
                 "It marks time precisely. Some\n",
@@ -126,7 +126,7 @@
                 "friend, versed in the world’s ways."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HOOTHOOT",
             "category": "Pokémon Hibou",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "deux, même en cas d’attaque."
             ]
         },
-        "german": {
+        "de": {
             "name": "HOOTHOOT",
             "category": "Eule",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "sich nicht auf beide Beine."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HOOTHOOT",
             "category": "Pokémon Gufo",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "quando viene attaccato."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HOOTHOOT",
             "category": "Pokémon Búho",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "al sufrir un ataque."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ホ－ホ－",
             "category": "ふくろうポケモン",
             "entry_text": [

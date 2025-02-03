@@ -1,5 +1,4 @@
 {
-    "name": "Geodude",
     "base_stats": {
         "hp": 40,
         "attack": 80,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "GEODUDE",
             "category": "Rock Pokémon",
             "entry_text": [
                 "At rest, it looks just like a rock.\n",
@@ -128,7 +128,7 @@
                 "it swing its fists angrily."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RACAILLOU",
             "category": "Pokémon Roche",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "enfouis à épier les alpinistes."
             ]
         },
-        "german": {
+        "de": {
             "name": "KLEINSTEIN",
             "category": "Gestein",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "und Bergsteiger beobachtend."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GEODUDE",
             "category": "Pokémon Roccia",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "terreno ad osservare gli scalatori."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GEODUDE",
             "category": "Pokémon Roca",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "mientras miran a los escaladores."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "イシツブテ",
             "category": "がんせきポケモン",
             "entry_text": [

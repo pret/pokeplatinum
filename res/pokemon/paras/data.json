@@ -1,5 +1,4 @@
 {
-    "name": "Paras",
     "base_stats": {
         "hp": 35,
         "attack": 70,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 30,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 30,
-        "english": {
+        "en": {
+            "name": "PARAS",
             "category": "Mushroom Pokémon",
             "entry_text": [
                 "Mushrooms named tochukaso grow\n",
@@ -119,7 +119,7 @@
                 "with the host PARAS."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PARAS",
             "category": "Pokémon Champignon",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "Ils évoluent avec le PARAS hôte."
             ]
         },
-        "german": {
+        "de": {
             "name": "PARAS",
             "category": "Pilz",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "zu, wenn PARAS wächst."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PARAS",
             "category": "Pokémon Fungo",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "al PARAS su cui si trovano."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PARAS",
             "category": "Pokémon Hongo",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "tochukaso."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "パラス",
             "category": "きのこポケモン",
             "entry_text": [

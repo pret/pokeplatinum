@@ -1,5 +1,4 @@
 {
-    "name": "Porygon",
     "base_stats": {
         "hp": 65,
         "attack": 60,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "PORYGON",
             "category": "Virtual Pokémon",
             "entry_text": [
                 "A man-made Pokémon created using\n",
@@ -129,7 +129,7 @@
                 "move freely in cyberspace."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PORYGON",
             "category": "Pokémon Virtuel",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "l’espace électronique."
             ]
         },
-        "german": {
+        "de": {
             "name": "PORYGON",
             "category": "Virtuell",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "elektronischen Raum reisen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PORYGON",
             "category": "Pokémon Virtuale",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "liberamente nel ciberspazio."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PORYGON",
             "category": "Pokémon Virtual",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "el ciberespacio."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ポリゴン",
             "category": "バ－チャルポケモン",
             "entry_text": [

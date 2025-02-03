@@ -1,5 +1,4 @@
 {
-    "name": "Cranidos",
     "base_stats": {
         "hp": 67,
         "attack": 125,
@@ -129,7 +128,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "english": {
+        "en": {
+            "name": "CRANIDOS",
             "category": "Head Butt Pokémon",
             "entry_text": [
                 "A lifelong jungle dweller from 100\n",
@@ -137,7 +137,7 @@
                 "obstructing trees with head butts."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KRANIDOS",
             "category": "Pokémon Coud’Boule",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "crâne est dur comme du fer."
             ]
         },
-        "german": {
+        "de": {
             "name": "KOKNODON",
             "category": "Kopfstoß",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "ist hart wie Eisen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CRANIDOS",
             "category": "Pokémon Cranioso",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "è duro come il ferro."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CRANIDOS",
             "category": "Pokémon Cabezazo",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "tan duro como el hierro."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ズガイドス",
             "category": "ずつきポケモン",
             "entry_text": [

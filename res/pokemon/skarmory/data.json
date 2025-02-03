@@ -1,5 +1,4 @@
 {
-    "name": "Skarmory",
     "base_stats": {
         "hp": 65,
         "attack": 80,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "SKARMORY",
             "category": "Armor Bird Pokémon",
             "entry_text": [
                 "Despite being clad entirely in\n",
@@ -127,7 +127,7 @@
                 "speeds over 180 mph."
             ]
         },
-        "french": {
+        "fr": {
             "name": "AIRMURE",
             "category": "Pokémon Armoiseau",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "vole à plus de 300 km/h."
             ]
         },
-        "german": {
+        "de": {
             "name": "PANZAERON",
             "category": "Flugstahl",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "fliegt, erreicht es bis zu 300 km/h."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SKARMORY",
             "category": "Pokémon Armuccello",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "Vola alla velocità di 300 km/h."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SKARMORY",
             "category": "Pokémon Coraza Ave",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "de 300 km por hora."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エア－ムド",
             "category": "よろいどりポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Illumise",
     "base_stats": {
         "hp": 65,
         "attack": 47,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "ILLUMISE",
             "category": "Firefly Pokémon",
             "entry_text": [
                 "With its sweet aroma, it guides\n",
@@ -124,7 +124,7 @@
                 "the night sky."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LUMIVOLE",
             "category": "Pokémon Luciole",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "arabesques dans le ciel nocturne."
             ]
         },
-        "german": {
+        "de": {
             "name": "ILLUMISE",
             "category": "Libelle",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Nachthimmel zu malen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ILLUMISE",
             "category": "Pokémon Lucciola",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "luminose nel cielo stellato."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ILLUMISE",
             "category": "Pokémon Luciérnaga",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "en el cielo nocturno."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "イルミ－ゼ",
             "category": "ほたるポケモン",
             "entry_text": [

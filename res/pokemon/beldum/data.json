@@ -1,5 +1,4 @@
 {
-    "name": "Beldum",
     "base_stats": {
         "hp": 40,
         "attack": 55,
@@ -66,7 +65,8 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "english": {
+        "en": {
+            "name": "BELDUM",
             "category": "Iron Ball Pokémon",
             "entry_text": [
                 "It converses with others by using\n",
@@ -74,7 +74,7 @@
                 "move in perfect unison."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TERHAL",
             "category": "Pokémon Boulefer",
             "entry_text": [
@@ -83,7 +83,7 @@
                 "ils se déplacent à l’unisson."
             ]
         },
-        "german": {
+        "de": {
             "name": "TANHEL",
             "category": "Eisenkugel",
             "entry_text": [
@@ -92,7 +92,7 @@
                 "bilden sie eine perfekte Einheit."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BELDUM",
             "category": "Pokémon Ferrosfera",
             "entry_text": [
@@ -101,7 +101,7 @@
                 "si muovono in perfetta sintonia."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BELDUM",
             "category": "Pokémon Bola Hierro",
             "entry_text": [
@@ -110,7 +110,7 @@
                 "grupos, se mueven al unísono."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ダンバル",
             "category": "てっきゅうポケモン",
             "entry_text": [

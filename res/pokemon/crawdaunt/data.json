@@ -1,5 +1,4 @@
 {
-    "name": "Crawdaunt",
     "base_stats": {
         "hp": 63,
         "attack": 120,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "english": {
+        "en": {
+            "name": "CRAWDAUNT",
             "category": "Rogue Pokémon",
             "entry_text": [
                 "It is a ruffian that uses its\n",
@@ -136,7 +136,7 @@
                 "other Pokémon from its pond."
             ]
         },
-        "french": {
+        "fr": {
             "name": "COLHOMARD",
             "category": "Pokémon Crapule",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "Pokémon hors de sa mare."
             ]
         },
-        "german": {
+        "de": {
             "name": "KREBUTACK",
             "category": "Schlingel",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "aus seinem Teich."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CRAWDAUNT",
             "category": "Pokémon Canaglia",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "fuori dal suo stagno."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CRAWDAUNT",
             "category": "Pokémon Granuja",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "Pokémon que viven en su estanque."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "シザリガ－",
             "category": "ならずものポケモン",
             "entry_text": [

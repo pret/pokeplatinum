@@ -1,5 +1,4 @@
 {
-    "name": "Muk",
     "base_stats": {
         "hp": 105,
         "attack": 105,
@@ -123,7 +122,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "MUK",
             "category": "Sludge Pokémon",
             "entry_text": [
                 "A toxic fluid seeps from its body.\n",
@@ -131,7 +131,7 @@
                 "trees on contact."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GROTADMORV",
             "category": "Pokémon Dégueu",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "et les arbres au contact."
             ]
         },
-        "german": {
+        "de": {
             "name": "SLEIMOK",
             "category": "Schlamm",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "Pflanzen und Bäume vernichtet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MUK",
             "category": "Pokémon Melma",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "alberi con cui viene a contatto."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MUK",
             "category": "Pokémon Lodo",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "cuando la toca."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ベトベトン",
             "category": "ヘドロポケモン",
             "entry_text": [

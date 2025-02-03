@@ -1,5 +1,4 @@
 {
-    "name": "Beedrill",
     "base_stats": {
         "hp": 65,
         "attack": 80,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "english": {
+        "en": {
+            "name": "BEEDRILL",
             "category": "Poison Bee Pokémon",
             "entry_text": [
                 "Its best attack involves flying\n",
@@ -121,7 +121,7 @@
                 "poison needles, then flying off."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DARDARGNAN",
             "category": "Pokémon Guêpoison",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "empoisonné avant de décamper."
             ]
         },
-        "german": {
+        "de": {
             "name": "BIBOR",
             "category": "Giftbiene",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "zustechen und davonfliegen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BEEDRILL",
             "category": "Pokémon Velenape",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "avvelenati e si allontana rapido."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BEEDRILL",
             "category": "Pokémon Abeja Ven.",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "venenoso antes de huir."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "スピア－",
             "category": "どくばちポケモン",
             "entry_text": [

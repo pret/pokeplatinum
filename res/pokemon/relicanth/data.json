@@ -1,5 +1,4 @@
 {
-    "name": "Relicanth",
     "base_stats": {
         "hp": 100,
         "attack": 90,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "english": {
+        "en": {
+            "name": "RELICANTH",
             "category": "Longevity Pokémon",
             "entry_text": [
                 "A rare Pokémon discovered during\n",
@@ -123,7 +123,7 @@
                 "changed in over 100 million years."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RELICANTH",
             "category": "Pokémon Longévité",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "évolué depuis 100 millions d’années."
             ]
         },
-        "german": {
+        "de": {
             "name": "RELICANTH",
             "category": "Bestand",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Jahren nicht verändert hat."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RELICANTH",
             "category": "Pokémon Longevità",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "È immutato da 100 milioni di anni."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RELICANTH",
             "category": "Pokémon Longevo",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "en más de 100 millones de años."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ジ－ランス",
             "category": "ちょうじゅポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Skuntank",
     "base_stats": {
         "hp": 103,
         "attack": 93,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "SKUNTANK",
             "category": "Skunk Pokémon",
             "entry_text": [
                 "It attacks by spraying a horribly\n",
@@ -124,7 +124,7 @@
                 "Attacks from above confound it."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MOUFFLAIR",
             "category": "Pokémon Moufette",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "Il peut tirer à 50 mètres."
             ]
         },
-        "german": {
+        "de": {
             "name": "SKUNTANK",
             "category": "Stinktier",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Reichweite liegt bei über 50 Metern."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SKUNTANK",
             "category": "Pokémon Moffetta",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "raggio d’azione di oltre 50 metri."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SKUNTANK",
             "category": "Pokémon Mofeta",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "que puede llegar a más de 50 m."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "スカタンク",
             "category": "スカンクポケモン",
             "entry_text": [

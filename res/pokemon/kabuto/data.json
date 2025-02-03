@@ -1,5 +1,4 @@
 {
-    "name": "Kabuto",
     "base_stats": {
         "hp": 30,
         "attack": 80,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "english": {
+        "en": {
+            "name": "KABUTO",
             "category": "Shellfish Pokémon",
             "entry_text": [
                 "It is thought to have inhabited\n",
@@ -124,7 +124,7 @@
                 "It is protected by a stiff shell."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KABUTO",
             "category": "Pokémon Carapace",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "protégé par une coquille robuste."
             ]
         },
-        "german": {
+        "de": {
             "name": "KABUTO",
             "category": "Schaltier",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Strände bevölkerte."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KABUTO",
             "category": "Pokémon Crostaceo",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "una conchiglia robusta."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KABUTO",
             "category": "Pokémon Marisco",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "Se protege con una dura concha."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カブト",
             "category": "こうらポケモン",
             "entry_text": [

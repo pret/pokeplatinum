@@ -1,5 +1,4 @@
 {
-    "name": "Blissey",
     "base_stats": {
         "hp": 255,
         "attack": 10,
@@ -141,7 +140,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "BLISSEY",
             "category": "Happiness Pokémon",
             "entry_text": [
                 "The eggs it lays are filled with\n",
@@ -149,7 +149,7 @@
                 "will bring a smile to anyone."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LEUPHORIE",
             "category": "Pokémon Bonheur",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "Il ressent la tristesse d’autrui."
             ]
         },
-        "german": {
+        "de": {
             "name": "HEITEIRA",
             "category": "Freude",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "Traurigkeit anderer Lebewesen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BLISSEY",
             "category": "Pokémon Felicità",
             "entry_text": [
@@ -176,7 +176,7 @@
                 "Percepisce la tristezza altrui."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BLISSEY",
             "category": "Pokémon Felicidad",
             "entry_text": [
@@ -185,7 +185,7 @@
                 "Puede presentir la tristeza."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ハピナス",
             "category": "しあわせポケモン",
             "entry_text": [

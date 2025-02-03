@@ -1,5 +1,4 @@
 {
-    "name": "Lunatone",
     "base_stats": {
         "hp": 70,
         "attack": 55,
@@ -122,7 +121,8 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "english": {
+        "en": {
+            "name": "LUNATONE",
             "category": "Meteorite Pokémon",
             "entry_text": [
                 "Because it turns active on nights\n",
@@ -130,7 +130,7 @@
                 "some link to the lunar phases."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SELEROC",
             "category": "Pokémon Météorite",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "soirs de pleine lune."
             ]
         },
-        "german": {
+        "de": {
             "name": "LUNASTEIN",
             "category": "Meteorit",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "phasen in Verbindung zu stehen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LUNATONE",
             "category": "Pokémon Meteorite",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "qualche legame con le fasi lunari."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LUNATONE",
             "category": "Pokémon Meteorito",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "actúa en noches de luna llena."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ルナト－ン",
             "category": "いんせきポケモン",
             "entry_text": [

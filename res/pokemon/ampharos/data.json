@@ -1,5 +1,4 @@
 {
-    "name": "Ampharos",
     "base_stats": {
         "hp": 90,
         "attack": 75,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "english": {
+        "en": {
+            "name": "AMPHAROS",
             "category": "Light Pokémon",
             "entry_text": [
                 "The tip of its tail shines brightly.\n",
@@ -122,7 +122,7 @@
                 "signals using the tail’s light."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PHARAMP",
             "category": "Pokémon Lumière",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "pour envoyer des signaux."
             ]
         },
-        "german": {
+        "de": {
             "name": "AMPHAROS",
             "category": "Leuchte",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "Hilfe Lichtsignale gegeben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "AMPHAROS",
             "category": "Pokémon Luce",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "segnali usando la luce della coda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "AMPHAROS",
             "category": "Pokémon Luz",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "señales con ella."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "デンリュウ",
             "category": "ライトポケモン",
             "entry_text": [

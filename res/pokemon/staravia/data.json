@@ -1,5 +1,4 @@
 {
-    "name": "Staravia",
     "base_stats": {
         "hp": 55,
         "attack": 75,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "english": {
+        "en": {
+            "name": "STARAVIA",
             "category": "Starling Pokémon",
             "entry_text": [
                 "Recognizing their own weakness,\n",
@@ -117,7 +117,7 @@
                 "alone, a STARAVIA cries noisily."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ETOURVOL",
             "category": "Pokémon Etourneau",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "Ils forment de grandes volées."
             ]
         },
-        "german": {
+        "de": {
             "name": "STARAVIA",
             "category": "Star",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "bleibt in einem großen Schwarm."
             ]
         },
-        "italian": {
+        "it": {
             "name": "STARAVIA",
             "category": "Pokémon Storno",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "Si muove in grandi gruppi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "STARAVIA",
             "category": "Pokémon Estornino",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "Siempre va en bandadas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ムクバ－ド",
             "category": "むくどりポケモン",
             "entry_text": [

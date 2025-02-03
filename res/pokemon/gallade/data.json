@@ -1,5 +1,4 @@
 {
-    "name": "Gallade",
     "base_stats": {
         "hp": 68,
         "attack": 125,
@@ -147,7 +146,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "GALLADE",
             "category": "Blade Pokémon",
             "entry_text": [
                 "When trying to protect someone,\n",
@@ -155,7 +155,7 @@
                 "were swords and fights savagely."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GALLAME",
             "category": "Pokémon Lame",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "n’a d’égal que sa courtoisie."
             ]
         },
-        "german": {
+        "de": {
             "name": "GALAGLADI",
             "category": "Klinge",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "ist ein Meister des Kampfes."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GALLADE",
             "category": "Pokémon Lama",
             "entry_text": [
@@ -182,7 +182,7 @@
                 "lame che ha sui gomiti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GALLADE",
             "category": "Pokémon Cuchilla",
             "entry_text": [
@@ -191,7 +191,7 @@
                 "la cortesía y la esgrima."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エルレイド",
             "category": "やいばポケモン",
             "entry_text": [

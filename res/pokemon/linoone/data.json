@@ -1,5 +1,4 @@
 {
-    "name": "Linoone",
     "base_stats": {
         "hp": 78,
         "attack": 70,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "english": {
+        "en": {
+            "name": "LINOONE",
             "category": "Rushing Pokémon",
             "entry_text": [
                 "It charges prey at speeds over\n",
@@ -132,7 +132,7 @@
                 "only run straight, it often fails."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LINEON",
             "category": "Pokémon Fonceur",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "course et loupe souvent sa cible."
             ]
         },
-        "german": {
+        "de": {
             "name": "GERADAKS",
             "category": "Sprinter",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "laufen und die Jagd misslingt oft."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LINOONE",
             "category": "Pokémon Sfrecciante",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "va solo dritto, sbaglia spesso."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LINOONE",
             "category": "Pokémon Lanzado",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "va en línea recta, falla a menudo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マッスグマ",
             "category": "とっしんポケモン",
             "entry_text": [

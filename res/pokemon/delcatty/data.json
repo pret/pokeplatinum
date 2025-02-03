@@ -1,5 +1,4 @@
 {
-    "name": "Delcatty",
     "base_stats": {
         "hp": 70,
         "attack": 65,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "english": {
+        "en": {
+            "name": "DELCATTY",
             "category": "Prim Pokémon",
             "entry_text": [
                 "It is highly popular among female\n",
@@ -119,7 +119,7 @@
                 "It does not keep a nest."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DELCATTY",
             "category": "Pokémon Guindé",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "possède pas de nid."
             ]
         },
-        "german": {
+        "de": {
             "name": "ENEKORO",
             "category": "Eingebildet",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "beliebt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DELCATTY",
             "category": "Pokémon Finezza",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "pelliccia. Non ha una tana fissa."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DELCATTY",
             "category": "Pokémon Cursi",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "No vive en un sitio fijo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エネコロロ",
             "category": "おすましポケモン",
             "entry_text": [

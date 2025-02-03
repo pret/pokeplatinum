@@ -1,5 +1,4 @@
 {
-    "name": "Snubbull",
     "base_stats": {
         "hp": 60,
         "attack": 80,
@@ -127,7 +126,8 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "SNUBBULL",
             "category": "Fairy Pokémon",
             "entry_text": [
                 "Small Pokémon flee from its scary\n",
@@ -135,7 +135,7 @@
                 "by women to be cute."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SNUBBULL",
             "category": "Pokémon Fée",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "femmes le trouvent mignon."
             ]
         },
-        "german": {
+        "de": {
             "name": "SNUBBULL",
             "category": "Fee",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "es niedlich."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SNUBBULL",
             "category": "Pokémon Fata",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "Ma le donne lo trovano carino."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SNUBBULL",
             "category": "Pokémon Hada",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "para muchas féminas es mono."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ブル－",
             "category": "ようせいポケモン",
             "entry_text": [

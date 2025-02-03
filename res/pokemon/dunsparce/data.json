@@ -1,5 +1,4 @@
 {
-    "name": "Dunsparce",
     "base_stats": {
         "hp": 100,
         "attack": 70,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "DUNSPARCE",
             "category": "Land Snake Pokémon",
             "entry_text": [
                 "It digs into the ground with its\n",
@@ -133,7 +133,7 @@
                 "It can fly just a little."
             ]
         },
-        "french": {
+        "fr": {
             "name": "INSOLOURDO",
             "category": "Pokémon Serpent",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Il sait à peine voler."
             ]
         },
-        "german": {
+        "de": {
             "name": "DUMMISEL",
             "category": "Schlange",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "artiges Nest. Es kann kaum fliegen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DUNSPARCE",
             "category": "Pokémon Terraserpe",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "rinto. Sa spiccare brevissimi voli."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DUNSPARCE",
             "category": "Pokémon Serptierra",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "volar distancias cortas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ノコッチ",
             "category": "つちへびポケモン",
             "entry_text": [

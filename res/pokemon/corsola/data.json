@@ -1,5 +1,4 @@
 {
-    "name": "Corsola",
     "base_stats": {
         "hp": 55,
         "attack": 55,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "CORSOLA",
             "category": "Coral Pokémon",
             "entry_text": [
                 "Many live in the clean seas of the\n",
@@ -128,7 +128,7 @@
                 "in polluted waters."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CORAYON",
             "category": "Pokémon Corail",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "ne peut pas vivre en eau polluée."
             ]
         },
-        "german": {
+        "de": {
             "name": "CORASONN",
             "category": "Koralle",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "schmutzten können sie nicht leben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CORSOLA",
             "category": "Pokémon Corallo",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "sopravvivere nelle acque inquinate."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CORSOLA",
             "category": "Pokémon Coral",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "vivir en aguas contaminadas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サニ－ゴ",
             "category": "さんごポケモン",
             "entry_text": [

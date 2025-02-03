@@ -1,5 +1,4 @@
 {
-    "name": "Kabutops",
     "base_stats": {
         "hp": 60,
         "attack": 115,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "KABUTOPS",
             "category": "Shellfish Pokémon",
             "entry_text": [
                 "It is thought that this Pokémon\n",
@@ -136,7 +136,7 @@
                 "prey adapted to life on land."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KABUTOPS",
             "category": "Pokémon Carapace",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "suivre l’évolution de ses proies."
             ]
         },
-        "german": {
+        "de": {
             "name": "KABUTOPS",
             "category": "Schaltier",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "ebenfalls irgendwann an Land lebte."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KABUTOPS",
             "category": "Pokémon Crostaceo",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "erano adattate a vivere lì."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KABUTOPS",
             "category": "Pokémon Marisco",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "tierra buscando nuevas presas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カブトプス",
             "category": "こうらポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Tauros",
     "base_stats": {
         "hp": 75,
         "attack": 100,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "TAUROS",
             "category": "Wild Bull Pokémon",
             "entry_text": [
                 "Once it takes aim at its foe, it\n",
@@ -127,7 +127,7 @@
                 "famous for its violent nature."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TAUROS",
             "category": "Pokémon Buffle",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "pour sa nature violente."
             ]
         },
-        "german": {
+        "de": {
             "name": "TAUROS",
             "category": "Wildbulle",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "Kopf voran auf ihn zu."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TAUROS",
             "category": "Pokémon Torobrado",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "È noto per la sua indole violenta."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TAUROS",
             "category": "Pokémon Toro Bravo",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "famoso por su carácter violento."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ケンタロス",
             "category": "あばれうしポケモン",
             "entry_text": [

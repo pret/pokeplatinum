@@ -1,5 +1,4 @@
 {
-    "name": "Mightyena",
     "base_stats": {
         "hp": 70,
         "attack": 90,
@@ -112,7 +111,8 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "english": {
+        "en": {
+            "name": "MIGHTYENA",
             "category": "Bite Pokémon",
             "entry_text": [
                 "It chases down prey in a pack.\n",
@@ -120,7 +120,7 @@
                 "of a skilled Trainer."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GRAHYENA",
             "category": "Pokémon Morsure",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "ordres d’un bon Dresseur."
             ]
         },
-        "german": {
+        "de": {
             "name": "MAGNAYEN",
             "category": "Biss",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "wird es stets folgen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MIGHTYENA",
             "category": "Pokémon Morso",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "un Allenatore abile."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MIGHTYENA",
             "category": "Pokémon Mordisco",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "de un entrenador avezado."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "グラエナ",
             "category": "かみつきポケモン",
             "entry_text": [

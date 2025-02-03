@@ -1,5 +1,4 @@
 {
-    "name": "Cubone",
     "base_stats": {
         "hp": 50,
         "attack": 50,
@@ -126,7 +125,8 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "english": {
+        "en": {
+            "name": "CUBONE",
             "category": "Lonely Pokémon",
             "entry_text": [
                 "When it thinks of its dead mother,\n",
@@ -134,7 +134,7 @@
                 "skull it wears rattle hollowly."
             ]
         },
-        "french": {
+        "fr": {
             "name": "OSSELAIT",
             "category": "Pokémon Solitaire",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "dans son crâne creux."
             ]
         },
-        "german": {
+        "de": {
             "name": "TRAGOSSO",
             "category": "Einsam",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "auf seinem Kopf hohl klingt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CUBONE",
             "category": "Pokémon Solitario",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "viene un rumore sordo e continuo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CUBONE",
             "category": "Pokémon Solitario",
             "entry_text": [
@@ -170,7 +170,7 @@
                 "sus llantos resuenan en su cráneo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カラカラ",
             "category": "こどくポケモン",
             "entry_text": [

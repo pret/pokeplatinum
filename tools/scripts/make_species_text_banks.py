@@ -17,30 +17,65 @@ argparser.add_argument('-s', '--source-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the gmm files will be made)')
-argparser.add_argument('out_files',
-                       nargs=25,
-                       help='List of output file names')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
 output_dir = pathlib.Path(args.output_dir)
-file_names = args.out_files
+file_names = [
+    'species_name.gmm',
+    'species_name_with_articles.gmm',
+    'species_pokedex_entry_fr.gmm',
+    'species_pokedex_entry_de.gmm',
+    'species_pokedex_entry_it.gmm',
+    'species_pokedex_entry_es.gmm',
+    'species_pokedex_entry_jp.gmm',
+    'species_pokedex_entry_en.gmm',
+    'species_weight.gmm',
+    'species_weight_gira.gmm',
+    'species_height.gmm',
+    'species_height_gira.gmm',
+    'species_category.gmm',
+    'species_name_with_natdex_number_en.gmm',
+    'species_name_with_natdex_number_fr.gmm',
+    'species_name_with_natdex_number_de.gmm',
+    'species_name_with_natdex_number_it.gmm',
+    'species_name_with_natdex_number_es.gmm',
+    'species_name_with_natdex_number_jp.gmm',
+    'species_category_en.gmm',
+    'species_category_fr.gmm',
+    'species_category_de.gmm',
+    'species_category_it.gmm',
+    'species_category_es.gmm',
+    'species_category_jp.gmm'
+]
+
+# variables
+NUM_POKEMON = len(SPECIES_DIRS)
+languages = ['en', 'fr', 'de', 'it', 'es', 'jp']
+NUM_LANGUAGES = len(languages)
+species_name = ['' for i in range(NUM_POKEMON)]
+species_name_articles = ['' for i in range(NUM_POKEMON)]
+species_pokedex_entry = [['' for i in range(NUM_POKEMON-2)] for j in range(NUM_LANGUAGES)]
+species_weight = ['' for i in range(NUM_POKEMON-2)]
+species_weight_gira = ['' for i in range(NUM_POKEMON-2)]
+species_height = ['' for i in range(NUM_POKEMON-2)]
+species_height_gira = ['' for i in range(NUM_POKEMON-2)]
+species_name_number = [['' for i in range(NUM_POKEMON-2)] for j in range(NUM_LANGUAGES)]
+species_category = [['' for i in range(NUM_POKEMON-2)] for j in range(NUM_LANGUAGES)]
 
 def Convert_weight(hectograms):
-    conv = 4.536
+    conv = 4.536 # this is the best estimate for the value Gamefreak used for conversion
     lbs = round(hectograms/conv,1)
-    if lbs == 1505.7:
+
+    # exceptions
+    if lbs == 1505.7: # Dialga
         lbs = 1505.8
-    elif lbs == 740.7:
+    elif lbs == 740.7: # Palkia
         lbs = 740.8
-    elif lbs == 1653.4:
+    elif lbs == 1653.4: # Giratina Altered
         lbs = 1653.5
 
-    weight = f'{lbs} lbs.'
-    while (len(weight) < 11):
-        weight = ' ' + weight
-
-    return weight
+    return f'{lbs: >6} lbs.'
 
 def Convert_Height(decimeters):
     conv = 3.937
@@ -52,10 +87,7 @@ def Convert_Height(decimeters):
         inches -= 12
 
     height = f'{feet}’{inches:02}”'
-    while (len(height) < 7):
-        height = ' ' + height
-
-    return height
+    return f'{height: >7}'
 
 def Full_Width_Number(value):
     num = ''
@@ -63,84 +95,75 @@ def Full_Width_Number(value):
         num = chr(0xff10 + value%10) + num
         value = value//10
 
-    while (len(num) < NUM_CHR):
-        num = '０' + num
-
-    return num
-
-# variables
-NUM_POKEMON = len(SPECIES_DIRS)
-NUM_CHR = len(str(NUM_POKEMON))
-languages = ['english', 'french', 'german', 'italian', 'spanish', 'japanese']
-text_data = [['' for i in range(NUM_POKEMON)] for i in range(2)] + [['' for i in range(NUM_POKEMON-2)] for i in range(23)]
+    return f'{num:０>{len(str(NUM_POKEMON))}}'
 
 # collect data
 for i, species_dir in enumerate(SPECIES_DIRS):
     file = source_dir / species_dir / 'data.json'
     with open(file, 'r', encoding='utf-8') as data_file:
         pkdata = json.load(data_file)
-    pokemon_name = pkdata['name']
-
-    if pokemon_name not in ['Egg', 'Bad Egg']:
-        pokemon_name = pokemon_name.upper()
+    pokemon_name = pkdata['pokedex_data']['en']['name']
     
     # species_names
-    text_data[0][i] = pokemon_name
+    species_name[i] = pokemon_name
 
     # species_names_with_articles
     if pokemon_name[0] in ['A','E','I','O','U']:
-        text_data[1][i] = 'an {COLOR 255}' + pokemon_name + '{COLOR 0}'
+        species_name_articles[i] = f'an {{COLOR 255}}{pokemon_name}{{COLOR 0}}'
     else:
-        text_data[1][i] = 'a {COLOR 255}' + pokemon_name + '{COLOR 0}'
+        species_name_articles[i] = f'a {{COLOR 255}}{pokemon_name}{{COLOR 0}}'
 
     # eggs do not have dex entries
-    if pokemon_name in ['Egg', 'Bad Egg']:
+    if species_dir in ['egg', 'bad_egg']:
         continue
     pkdexdata = pkdata['pokedex_data']
 
     # weight and height
+    species_weight_gira[i] = Convert_weight(pkdexdata['weight'])
+    species_height_gira[i] = Convert_Height(pkdexdata['height'])
     if species_dir == 'giratina':
-        text_data[8][i] = Convert_weight(pkdexdata['origin']['weight'])
-        text_data[9][i] = Convert_weight(pkdexdata['altered']['weight'])
-        text_data[10][i] = Convert_Height(pkdexdata['origin']['height'])
-        text_data[11][i] = Convert_Height(pkdexdata['altered']['height'])
+        form_file = source_dir / species_dir / 'forms/origin/data.json'
+        with open(form_file, 'r', encoding='utf-8') as data_file:
+            form_pkdata = json.load(data_file)
+        species_weight[i] = Convert_weight(form_pkdata['pokedex_data']['weight'])
+        species_height[i] = Convert_Height(form_pkdata['pokedex_data']['height'])
     else:
-        text_data[8][i] = Convert_weight(pkdexdata['weight'])
-        text_data[9][i] = Convert_weight(pkdexdata['weight'])
-        text_data[10][i] = Convert_Height(pkdexdata['height'])
-        text_data[11][i] = Convert_Height(pkdexdata['height'])
+        species_weight[i] = Convert_weight(pkdexdata['weight'])
+        species_height[i] = Convert_Height(pkdexdata['height'])
 
     for j, lang in enumerate(languages):
         # dex_entry
         entry = ''.join(pkdexdata[lang]['entry_text']).replace('\n','\\n')
-        if (lang == 'english'):
-            text_data[7][i] = entry
+        if (lang == 'en'):
+            species_pokedex_entry[5][i] = entry
         else:
-            text_data[1 + j][i] = entry
+            species_pokedex_entry[j - 1][i] = entry
 
-        # name_number
+        # name_with_natdex_number
         if (i == 0):
-            if (lang == 'english'):
-                text_data[13][0] = pokemon_name
-            else:
-                text_data[13 + j][0] = pkdexdata[lang]['name']
+            species_name_number[j][0] = pkdexdata[lang]['name']
         else:
-            if (lang == 'english'):
-                text_data[13][i] = f'{i:03}  ' + pokemon_name
-            elif (lang == 'japanese'):
-                text_data[18][i] = f'{Full_Width_Number(i)}  ' + pkdexdata['japanese']['name']
+            if (lang == 'jp'):
+                species_name_number[5][i] = f'{Full_Width_Number(i)}  ' + pkdexdata['jp']['name']
             else:
-                text_data[13 + j][i] = f'{i:03}  ' + pkdexdata[lang]['name']
+                species_name_number[j][i] = f'{i:03}  ' + str(pkdexdata[lang]['name'])
 
         # category
-        text_data[19 + j][i] = pkdexdata[lang]['category']
-    text_data[12][i] = pkdexdata['english']['category']
+        species_category[j][i] = pkdexdata[lang]['category']
 
-text_data[0][0] = '-----'
-text_data[8][0] = '????.? lbs.'
-text_data[9][0] = '????.? lbs.'
-text_data[10][0] = '???’??”'
-text_data[11][0] = '???’??”'
+# SPECIES_NONE
+species_name[0] = '-----'
+species_weight[0] = '????.? lbs.'
+species_weight_gira[0] = '????.? lbs.'
+species_height[0] = '???’??”'
+species_height_gira[0] = '???’??”'
+
+# organize data
+text_data = [species_name, species_name_articles]
+text_data += species_pokedex_entry
+text_data += [species_weight, species_weight_gira, species_height, species_height_gira, species_category[0]]
+text_data += species_name_number
+text_data += species_category
 
 # constants
 fileKeys = [

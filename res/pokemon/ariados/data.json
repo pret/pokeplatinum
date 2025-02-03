@@ -1,5 +1,4 @@
 {
-    "name": "Ariados",
     "base_stats": {
         "hp": 70,
         "attack": 90,
@@ -104,7 +103,8 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "english": {
+        "en": {
+            "name": "ARIADOS",
             "category": "Long Leg Pokémon",
             "entry_text": [
                 "It attaches silk to its prey and\n",
@@ -112,7 +112,7 @@
                 "silk to the prey and its friends."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MIGALOS",
             "category": "Pokémon Long-Patte",
             "entry_text": [
@@ -121,7 +121,7 @@
                 "la retrouver, elle et ses amis."
             ]
         },
-        "german": {
+        "de": {
             "name": "ARIADOS",
             "category": "Langbein",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "faden zur Beute u. ihren Freunden."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ARIADOS",
             "category": "Pokémon Lungazampa",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "filo e la trova quando è in gruppo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ARIADOS",
             "category": "Pokémon Pata Larga",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "y localizar también a sus amigos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アリアドス",
             "category": "あしながポケモン",
             "entry_text": [

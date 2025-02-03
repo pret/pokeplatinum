@@ -1,5 +1,4 @@
 {
-    "name": "Unown",
     "base_stats": {
         "hp": 48,
         "attack": 72,
@@ -56,7 +55,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "UNOWN",
             "category": "Symbol Pokémon",
             "entry_text": [
                 "When alone, nothing happens.\n",
@@ -64,7 +64,7 @@
                 "an odd power is said to emerge."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ZARBI",
             "category": "Pokémon Symbolique",
             "entry_text": [
@@ -73,7 +73,7 @@
                 "ZARBI est apparu en premier."
             ]
         },
-        "german": {
+        "de": {
             "name": "ICOGNITO",
             "category": "Symbol",
             "entry_text": [
@@ -82,7 +82,7 @@
                 "Sprache oder ICOGNITO?"
             ]
         },
-        "italian": {
+        "it": {
             "name": "UNOWN",
             "category": "Pokémon Simbolo",
             "entry_text": [
@@ -91,7 +91,7 @@
                 "parso prima, l’alfabeto o UNOWN."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "UNOWN",
             "category": "Pokémon Símbolo",
             "entry_text": [
@@ -100,7 +100,7 @@
                 "la escritura o los UNOWN."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アンノ－ン",
             "category": "シンボルポケモン",
             "entry_text": [

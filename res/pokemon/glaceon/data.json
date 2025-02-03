@@ -1,5 +1,4 @@
 {
-    "name": "Glaceon",
     "base_stats": {
         "hp": 65,
         "attack": 60,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "GLACEON",
             "category": "Fresh Snow Pokémon",
             "entry_text": [
                 "By controlling its body heat, it can\n",
@@ -118,7 +118,7 @@
                 "to make a diamond-dust flurry."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GIVRALI",
             "category": "Pokémon Poudreuse",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "aussi durs que des piquants."
             ]
         },
-        "german": {
+        "de": {
             "name": "GLAZIOLA",
             "category": "Neuschnee",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "wie eine Nadel absteht."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GLACEON",
             "category": "Pokémon Nevefresca",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "per far rizzare i peli come aghi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GLACEON",
             "category": "Pokémon Nievefresca",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "que los pelos parecen agujas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "グレイシア",
             "category": "しんせつポケモン",
             "entry_text": [

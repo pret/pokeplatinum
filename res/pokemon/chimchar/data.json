@@ -1,5 +1,4 @@
 {
-    "name": "Chimchar",
     "base_stats": {
         "hp": 44,
         "attack": 58,
@@ -126,7 +125,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "CHIMCHAR",
             "category": "Chimp Pokémon",
             "entry_text": [
                 "It is very agile. Before going to\n",
@@ -134,7 +134,7 @@
                 "on its tail to prevent fires."
             ]
         },
-        "french": {
+        "fr": {
             "name": "OUISTICRAM",
             "category": "Pokémon Chimpanzé",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "Sa flamme s’éteint quand il dort."
             ]
         },
-        "german": {
+        "de": {
             "name": "PANFLAM",
             "category": "Schimpanse",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "Feuer ist aus, wenn es schläft."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CHIMCHAR",
             "category": "Pokémon Scimpanzé",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "di dormire spegne le fiamme."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CHIMCHAR",
             "category": "Pokémon Chimpancé",
             "entry_text": [
@@ -170,7 +170,7 @@
                 "su fuego se apaga cuando duerme."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヒコザル",
             "category": "こざるポケモン",
             "entry_text": [

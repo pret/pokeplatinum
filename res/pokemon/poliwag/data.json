@@ -1,5 +1,4 @@
 {
-    "name": "Poliwag",
     "base_stats": {
         "hp": 40,
         "attack": 50,
@@ -106,7 +105,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "english": {
+        "en": {
+            "name": "POLIWAG",
             "category": "Tadpole Pokémon",
             "entry_text": [
                 "Its skin is so thin, its internal\n",
@@ -114,7 +114,7 @@
                 "walking on its newly grown feet."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PTITARD",
             "category": "Pokémon Têtard",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "à peine sur ses nouveaux pieds."
             ]
         },
-        "german": {
+        "de": {
             "name": "QUAPSEL",
             "category": "Kaulquappe",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "Schwierigkeiten beim Laufen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "POLIWAG",
             "category": "Pokémon Girino",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "fatica sulle zampe poco sviluppate."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "POLIWAG",
             "category": "Pokémon Renacuajo",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "con sus nuevas patas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニョロモ",
             "category": "おたまポケモン",
             "entry_text": [

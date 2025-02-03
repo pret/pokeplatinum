@@ -1,5 +1,4 @@
 {
-    "name": "Treecko",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "TREECKO",
             "category": "Wood Gecko Pokémon",
             "entry_text": [
                 "The soles of its feet are covered\n",
@@ -128,7 +128,7 @@
                 "it to walk on walls and ceilings."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ARCKO",
             "category": "Pokémon Bois Gecko",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "de marcher au mur et au plafond."
             ]
         },
-        "german": {
+        "de": {
             "name": "GECKARBOR",
             "category": "Waldgecko",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "Wänden und Decken Halt findet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TREECKO",
             "category": "Pokémon Legnogeco",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "camminare su muri e soffitti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TREECKO",
             "category": "Pokémon Geco Bosque",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "andar por paredes y techos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キモリ",
             "category": "もりトカゲポケモン",
             "entry_text": [

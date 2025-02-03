@@ -1,5 +1,4 @@
 {
-    "name": "Vulpix",
     "base_stats": {
         "hp": 38,
         "attack": 41,
@@ -112,7 +111,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "VULPIX",
             "category": "Fox Pokémon",
             "entry_text": [
                 "It controls balls of fire. As it\n",
@@ -120,7 +120,7 @@
                 "their tips to make more tails."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GOUPIX",
             "category": "Pokémon Renard",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "nouvelles. "
             ]
         },
-        "german": {
+        "de": {
             "name": "VULPIX",
             "category": "Fuchs",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "Schweife, um weitere zu bilden."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VULPIX",
             "category": "Pokémon Volpe",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "se ne generano delle altre."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VULPIX",
             "category": "Pokémon Zorro",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "multiplican."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ロコン",
             "category": "きつねポケモン",
             "entry_text": [

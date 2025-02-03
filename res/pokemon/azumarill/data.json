@@ -1,5 +1,4 @@
 {
-    "name": "Azumarill",
     "base_stats": {
         "hp": 100,
         "attack": 50,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "AZUMARILL",
             "category": "Aqua Rabbit Pokémon",
             "entry_text": [
                 "It can spend all day in water,\n",
@@ -124,7 +124,7 @@
                 "a large volume of air."
             ]
         },
-        "french": {
+        "fr": {
             "name": "AZUMARILL",
             "category": "Pokémon Aqualapin",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "brouillent la vue de l’ennemi."
             ]
         },
-        "german": {
+        "de": {
             "name": "AZUMARILL",
             "category": "Aquahase",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "durch seine Farbe und Muster."
             ]
         },
-        "italian": {
+        "it": {
             "name": "AZUMARILL",
             "category": "Pokémon Acquniglio",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "nemici in acqua."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "AZUMARILL",
             "category": "Pokémon Conejoagua",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "a los enemigos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マリルリ",
             "category": "みずうさぎポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Wurmple",
     "base_stats": {
         "hp": 45,
         "attack": 45,
@@ -70,7 +69,8 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "WURMPLE",
             "category": "Worm Pokémon",
             "entry_text": [
                 "Often targeted by bird Pokémon,\n",
@@ -78,7 +78,7 @@
                 "poison from its tail spikes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHENIPOTTE",
             "category": "Pokémon Ver",
             "entry_text": [
@@ -87,7 +87,7 @@
                 "les piquants de son postérieur."
             ]
         },
-        "german": {
+        "de": {
             "name": "WAUMPEL",
             "category": "Wurm",
             "entry_text": [
@@ -96,7 +96,7 @@
                 "verteidigt es sich mit Stacheln."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WURMPLE",
             "category": "Pokémon Baco",
             "entry_text": [
@@ -105,7 +105,7 @@
                 "che ha sulla parte posteriore."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WURMPLE",
             "category": "Pokémon Gusano",
             "entry_text": [
@@ -114,7 +114,7 @@
                 "con sus púas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ケムッソ",
             "category": "いもむしポケモン",
             "entry_text": [

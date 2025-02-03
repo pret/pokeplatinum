@@ -1,5 +1,4 @@
 {
-    "name": "Gengar",
     "base_stats": {
         "hp": 60,
         "attack": 65,
@@ -133,7 +132,8 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "english": {
+        "en": {
+            "name": "GENGAR",
             "category": "Shadow Pokémon",
             "entry_text": [
                 "The leer that floats in darkness\n",
@@ -141,7 +141,7 @@
                 "casting curses on people."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ECTOPLASMA",
             "category": "Pokémon Ombre",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "alentour chute de 5 °C."
             ]
         },
-        "german": {
+        "de": {
             "name": "GENGAR",
             "category": "Schatten",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "steckt, kühlt es sich um 5 Grad ab."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GENGAR",
             "category": "Pokémon Ombra",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "la temperatura si abbassi di 5°C."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GENGAR",
             "category": "Pokémon Sombra",
             "entry_text": [
@@ -177,7 +177,7 @@
                 "la temperatura baja 5 grados."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゲンガ－",
             "category": "シャド－ポケモン",
             "entry_text": [

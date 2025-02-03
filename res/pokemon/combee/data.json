@@ -1,5 +1,4 @@
 {
-    "name": "Combee",
     "base_stats": {
         "hp": 30,
         "attack": 30,
@@ -71,7 +70,8 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "english": {
+        "en": {
+            "name": "COMBEE",
             "category": "Tiny Bee Pokémon",
             "entry_text": [
                 "The trio is together from birth.\n",
@@ -79,7 +79,7 @@
                 "flowers to please VESPIQUEN."
             ]
         },
-        "french": {
+        "fr": {
             "name": "APITRINI",
             "category": "Pokémon Miniabeille",
             "entry_text": [
@@ -88,7 +88,7 @@
                 "apporter du nectar à APIREINE."
             ]
         },
-        "german": {
+        "de": {
             "name": "WADRIBIE",
             "category": "Kleinbiene",
             "entry_text": [
@@ -97,7 +97,7 @@
                 "zu HONWEISEL."
             ]
         },
-        "italian": {
+        "it": {
             "name": "COMBEE",
             "category": "Pokémon Apetta",
             "entry_text": [
@@ -106,7 +106,7 @@
                 "nettare dei fiori a VESPIQUEN."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "COMBEE",
             "category": "Pokémon Abejita",
             "entry_text": [
@@ -115,7 +115,7 @@
                 "a VESPIQUEN."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミツハニ－",
             "category": "はちのこポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Gardevoir",
     "base_stats": {
         "hp": 68,
         "attack": 65,
@@ -129,7 +128,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "GARDEVOIR",
             "category": "Embrace Pokémon",
             "entry_text": [
                 "To protect its Trainer, it will\n",
@@ -137,7 +137,7 @@
                 "to create a small black hole."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GARDEVOIR",
             "category": "Pokémon Etreinte",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "capacité de prédire l’avenir."
             ]
         },
-        "german": {
+        "de": {
             "name": "GUARDEVOIR",
             "category": "Umarmung",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "Es kann in die Zukunft blicken."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GARDEVOIR",
             "category": "Pokémon Abbraccio",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "predire il futuro."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GARDEVOIR",
             "category": "Pokémon Envolvente",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "aliento. Puede ver el futuro."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サ－ナイト",
             "category": "ほうようポケモン",
             "entry_text": [

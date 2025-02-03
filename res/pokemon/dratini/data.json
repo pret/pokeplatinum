@@ -1,5 +1,4 @@
 {
-    "name": "Dratini",
     "base_stats": {
         "hp": 41,
         "attack": 64,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 5,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "DRATINI",
             "category": "Dragon Pokémon",
             "entry_text": [
                 "It is called the “Mirage Pokémon”\n",
@@ -124,7 +124,7 @@
                 "Its shed skin has been found."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MINIDRACO",
             "category": "Pokémon Dragon",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "découvert sa mue."
             ]
         },
-        "german": {
+        "de": {
             "name": "DRATINI",
             "category": "Drache",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Nur seine Haut wurde oft gefunden."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DRATINI",
             "category": "Pokémon Drago",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "trovare la sua pelle della muta."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DRATINI",
             "category": "Pokémon Dragón",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "han visto. Se encontró su muda."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミニリュウ",
             "category": "ドラゴンポケモン",
             "entry_text": [

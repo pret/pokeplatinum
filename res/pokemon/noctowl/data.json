@@ -1,5 +1,4 @@
 {
-    "name": "Noctowl",
     "base_stats": {
         "hp": 100,
         "attack": 50,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "NOCTOWL",
             "category": "Owl Pokémon",
             "entry_text": [
                 "Its eyes are specially developed\n",
@@ -124,7 +124,7 @@
                 "murky darkness and minimal light."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NOARFANG",
             "category": "Pokémon Hibou",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "permet de distinguer les objets."
             ]
         },
-        "german": {
+        "de": {
             "name": "NOCTUH",
             "category": "Eule",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Licht alles erkennen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NOCTOWL",
             "category": "Pokémon Gufo",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "con la luce più fioca."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NOCTOWL",
             "category": "Pokémon Búho",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "haya algo de luz."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヨルノズク",
             "category": "ふくろうポケモン",
             "entry_text": [

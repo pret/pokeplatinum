@@ -1,5 +1,4 @@
 {
-    "name": "Gabite",
     "base_stats": {
         "hp": 68,
         "attack": 90,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "GABITE",
             "category": "Cave Pokémon",
             "entry_text": [
                 "It loves sparkly things. It seeks\n",
@@ -127,7 +127,7 @@
                 "loot in its nest."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CARMACHE",
             "category": "Pokémon Caverne",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "guérir les maladies incurables. "
             ]
         },
-        "german": {
+        "de": {
             "name": "KNARKSEL",
             "category": "Höhle",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "gewonnen wird, alles heilen kann."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GABITE",
             "category": "Pokémon Grotta",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "curino anche i mali incurabili."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GABITE",
             "category": "Pokémon Cueva",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "escamas puede curarlo todo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ガバイト",
             "category": "ほらあなポケモン",
             "entry_text": [

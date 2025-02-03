@@ -1,5 +1,4 @@
 {
-    "name": "Snorlax",
     "base_stats": {
         "hp": 160,
         "attack": 110,
@@ -129,7 +128,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "SNORLAX",
             "category": "Sleeping Pokémon",
             "entry_text": [
                 "When its belly is full, it becomes\n",
@@ -137,7 +137,7 @@
                 "so it is safe to bounce on its belly."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RONFLEX",
             "category": "Pokémon Pionceur",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "quand elle est moisie ou pourrie."
             ]
         },
-        "german": {
+        "de": {
             "name": "RELAXO",
             "category": "Tagträumer",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "verschimmelt und verdorben ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SNORLAX",
             "category": "Pokémon Sonno",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "marcio o ammuffito."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SNORLAX",
             "category": "Pokémon Dormir",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "podrida o mohosa."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カビゴン",
             "category": "いねむりポケモン",
             "entry_text": [

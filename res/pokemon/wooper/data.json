@@ -1,5 +1,4 @@
 {
-    "name": "Wooper",
     "base_stats": {
         "hp": 55,
         "attack": 45,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "english": {
+        "en": {
+            "name": "WOOPER",
             "category": "Water Fish Pokémon",
             "entry_text": [
                 "When walking on land, it covers its\n",
@@ -123,7 +123,7 @@
                 "keeps its skin from dehydrating."
             ]
         },
-        "french": {
+        "fr": {
             "name": "AXOLOTO",
             "category": "Pokémon Poisson",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "de l’eau."
             ]
         },
-        "german": {
+        "de": {
             "name": "FELINO",
             "category": "Fisch",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Boden, wenn es schlafen will."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WOOPER",
             "category": "Pokémon Acquapesce",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "metà nei fondali melmosi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WOOPER",
             "category": "Pokémon Pez Agua",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "fondo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ウパ－",
             "category": "みずうおポケモン",
             "entry_text": [

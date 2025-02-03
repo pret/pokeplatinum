@@ -1,5 +1,4 @@
 {
-    "name": "Lairon",
     "base_stats": {
         "hp": 60,
         "attack": 90,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "english": {
+        "en": {
+            "name": "LAIRON",
             "category": "Iron Armor Pokémon",
             "entry_text": [
                 "For food, it digs up iron ore. It\n",
@@ -136,7 +136,7 @@
                 "others to fight over territory."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GALEGON",
             "category": "Pokémon Armurfer",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "chargeant avec son corps d’acier."
             ]
         },
-        "german": {
+        "de": {
             "name": "STOLLRAK",
             "category": "Eisenpanzer",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "seinen harten Körper ein."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LAIRON",
             "category": "Pokémon Corazza",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "nella lotta per il territorio."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LAIRON",
             "category": "Pokémon Cor. Férrea",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "luchar y conseguir territorio."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コドラ",
             "category": "てつヨロイポケモン",
             "entry_text": [

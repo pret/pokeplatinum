@@ -1,5 +1,4 @@
 {
-    "name": "Growlithe",
     "base_stats": {
         "hp": 55,
         "attack": 70,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "english": {
+        "en": {
+            "name": "GROWLITHE",
             "category": "Puppy Pokémon",
             "entry_text": [
                 "A Pokémon with a loyal nature.\n",
@@ -119,7 +119,7 @@
                 "given an order by its Trainer."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CANINOS",
             "category": "Pokémon Chiot",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "son Dresseur lui donne un ordre."
             ]
         },
-        "german": {
+        "de": {
             "name": "FUKANO",
             "category": "Hund",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "Anweisungen gegeben hat."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GROWLITHE",
             "category": "Pokémon Cagnolino",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "riceve ordini dal suo Allenatore."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GROWLITHE",
             "category": "Pokémon Perrito",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "de órdenes de su entrenador."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ガ－ディ",
             "category": "こいぬポケモン",
             "entry_text": [

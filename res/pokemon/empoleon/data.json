@@ -1,5 +1,4 @@
 {
-    "name": "Empoleon",
     "base_stats": {
         "hp": 84,
         "attack": 86,
@@ -129,7 +128,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "EMPOLEON",
             "category": "Emperor Pokémon",
             "entry_text": [
                 "If anyone were to hurt its pride,\n",
@@ -137,7 +137,7 @@
                 "can cleave through an ice floe."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PINGOLEON",
             "category": "Pokémon Empereur",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "sont plus grosses que les autres."
             ]
         },
-        "german": {
+        "de": {
             "name": "IMPOLEON",
             "category": "Kaiser",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "Anführer hat die größten Hörner."
             ]
         },
-        "italian": {
+        "it": {
             "name": "EMPOLEON",
             "category": "Pokémon Imperatore",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "capogruppo ha i corni più grossi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "EMPOLEON",
             "category": "Pokémon Emperador",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "tiene los cuernos más grandes."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エンペルト",
             "category": "こうていポケモン",
             "entry_text": [

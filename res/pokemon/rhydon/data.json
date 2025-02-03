@@ -1,5 +1,4 @@
 {
-    "name": "Rhydon",
     "base_stats": {
         "hp": 105,
         "attack": 130,
@@ -146,7 +145,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "RHYDON",
             "category": "Drill Pokémon",
             "entry_text": [
                 "Standing on its hind legs freed its\n",
@@ -154,7 +154,7 @@
                 "very forgetful, however."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RHINOFEROS",
             "category": "Pokémon Perceur",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "traverser la pierre la plus dure. "
             ]
         },
-        "german": {
+        "de": {
             "name": "RIZEROS",
             "category": "Bohrer",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "dem Horn bohrt es durch Gestein."
             ]
         },
-        "italian": {
+        "it": {
             "name": "RHYDON",
             "category": "Pokémon Trapano",
             "entry_text": [
@@ -181,7 +181,7 @@
                 "Con il corno perfora la roccia."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "RHYDON",
             "category": "Pokémon Taladro",
             "entry_text": [
@@ -190,7 +190,7 @@
                 "su cuerno puede cavar túneles."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サイドン",
             "category": "ドリルポケモン",
             "entry_text": [

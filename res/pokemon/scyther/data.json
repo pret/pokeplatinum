@@ -1,5 +1,4 @@
 {
-    "name": "Scyther",
     "base_stats": {
         "hp": 70,
         "attack": 110,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "SCYTHER",
             "category": "Mantis Pokémon",
             "entry_text": [
                 "The sharp scythes on its forearms\n",
@@ -127,7 +127,7 @@
                 "cutting through hard objects."
             ]
         },
-        "french": {
+        "fr": {
             "name": "INSECATEUR",
             "category": "Pokémon Mante",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "déplace comme un ninja."
             ]
         },
-        "german": {
+        "de": {
             "name": "SICHLOR",
             "category": "Mantis",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "Schnelligkeit eines Ninja zuschlägt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SCYTHER",
             "category": "Pokémon Mantide",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "Si muove come un ninja."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SCYTHER",
             "category": "Pokémon Mantis",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "un ninja."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ストライク",
             "category": "かまきりポケモン",
             "entry_text": [

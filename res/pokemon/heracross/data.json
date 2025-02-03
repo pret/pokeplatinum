@@ -1,5 +1,4 @@
 {
-    "name": "Heracross",
     "base_stats": {
         "hp": 80,
         "attack": 125,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "HERACROSS",
             "category": "Single Horn Pokémon",
             "entry_text": [
                 "It loves sweet honey. To keep all\n",
@@ -122,7 +122,7 @@
                 "away with its prized horn."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SCARHINO",
             "category": "Pokémon Unicorne",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "fort pour projeter l’ennemi."
             ]
         },
-        "german": {
+        "de": {
             "name": "SKARABORN",
             "category": "Einzelhorn",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "genug, um Gegner wegzuschleudern."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HERACROSS",
             "category": "Pokémon Monocorno",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "forte da scagliare lontano i nemici."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HERACROSS",
             "category": "Pokémon Unicornio",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "favorita. Puede voltear a su presa."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヘラクロス",
             "category": "１ぽんヅノポケモン",
             "entry_text": [

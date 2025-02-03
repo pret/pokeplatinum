@@ -1,5 +1,4 @@
 {
-    "name": "Golbat",
     "base_stats": {
         "hp": 75,
         "attack": 80,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "english": {
+        "en": {
+            "name": "GOLBAT",
             "category": "Bat Pokémon",
             "entry_text": [
                 "Its sharp fangs puncture the\n",
@@ -124,7 +124,7 @@
                 "holes for greedily sucking blood."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NOSFERALTO",
             "category": "Pokémon Chovsouris",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "d’un cou où planter ses crocs."
             ]
         },
-        "german": {
+        "de": {
             "name": "GOLBAT",
             "category": "Fledermaus",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "der Suche nach Halsvenen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GOLBAT",
             "category": "Pokémon Pipistrello",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "in cerca di vene da succhiare."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GOLBAT",
             "category": "Pokémon Murciélago",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "Sale a calmar su sed por la noche."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゴルバット",
             "category": "こうもりポケモン",
             "entry_text": [

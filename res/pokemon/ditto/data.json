@@ -1,5 +1,4 @@
 {
-    "name": "Ditto",
     "base_stats": {
         "hp": 48,
         "attack": 48,
@@ -56,7 +55,8 @@
         "pokemon_pos_f": 30,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 30,
-        "english": {
+        "en": {
+            "name": "DITTO",
             "category": "Transform Pokémon",
             "entry_text": [
                 "It has the ability to reconstitute\n",
@@ -64,7 +64,7 @@
                 "transform into whatever it sees."
             ]
         },
-        "french": {
+        "fr": {
             "name": "METAMORPH",
             "category": "Pokémon Morphing",
             "entry_text": [
@@ -73,7 +73,7 @@
                 "l’apparence de ce qu’il voit."
             ]
         },
-        "german": {
+        "de": {
             "name": "DITTO",
             "category": "Transform",
             "entry_text": [
@@ -82,7 +82,7 @@
                 "verwandeln kann, was es sieht."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DITTO",
             "category": "Pokémon Mutante",
             "entry_text": [
@@ -91,7 +91,7 @@
                 "marsi in qualsiasi cosa veda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DITTO",
             "category": "Pokémon Transform.",
             "entry_text": [
@@ -100,7 +100,7 @@
                 "cualquier objeto que vea."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "メタモン",
             "category": "へんしんポケモン",
             "entry_text": [

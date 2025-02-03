@@ -1,5 +1,4 @@
 {
-    "name": "Cresselia",
     "base_stats": {
         "hp": 120,
         "attack": 70,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 7,
         "pokemon_pos_m": 65533,
-        "english": {
+        "en": {
+            "name": "CRESSELIA",
             "category": "Lunar Pokémon",
             "entry_text": [
                 "On nights around the quarter moon,\n",
@@ -124,7 +124,7 @@
                 "and undulates beautifully."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CRESSELIA",
             "category": "Pokémon Lunaire",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "symboliserait le croissant de lune."
             ]
         },
-        "german": {
+        "de": {
             "name": "CRESSELIA",
             "category": "Lunar",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "sagt, es steht für die Mondsichel."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CRESSELIA",
             "category": "Pokémon Falcato",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "rappresenti la luna crescente."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CRESSELIA",
             "category": "Pokémon Lunar",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "que representa un cuarto lunar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "クレセリア",
             "category": "みかづきポケモン",
             "entry_text": [

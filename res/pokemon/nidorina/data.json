@@ -1,5 +1,4 @@
 {
-    "name": "Nidorina",
     "base_stats": {
         "hp": 70,
         "attack": 62,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "NIDORINA",
             "category": "Poison Pin Pokémon",
             "entry_text": [
                 "When it senses danger, it raises\n",
@@ -121,7 +121,7 @@
                 "barbs grow slower than NIDORINO’s."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NIDORINA",
             "category": "Pokémon Venepic",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "moins vite que ceux de NIDORINO."
             ]
         },
-        "german": {
+        "de": {
             "name": "NIDORINA",
             "category": "Giftdorn",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "langsamer als die von NIDORINO."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NIDORINA",
             "category": "Pokémon Velenago",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "lentamente di quelli di NIDORINO."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NIDORINA",
             "category": "Pokémon Pin Veneno",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "más despacio que las de NIDORINO."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニドリ－ナ",
             "category": "どくばりポケモン",
             "entry_text": [

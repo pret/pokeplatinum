@@ -1,5 +1,4 @@
 {
-    "name": "Bibarel",
     "base_stats": {
         "hp": 79,
         "attack": 85,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "BIBAREL",
             "category": "Beaver Pokémon",
             "entry_text": [
                 "A river dammed by BIBAREL will\n",
@@ -133,7 +133,7 @@
                 "is appreciated by people nearby."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CASTORNO",
             "category": "Pokémon Castor",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "C’est un ouvrier de renom."
             ]
         },
-        "german": {
+        "de": {
             "name": "BIDIFAS",
             "category": "Biber",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "Ästen baut. Ein fleißiger Arbeiter."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BIBAREL",
             "category": "Pokémon Castoro",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "noto come lavoratore instancabile."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BIBAREL",
             "category": "Pokémon Castor",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "Tiene fama de trabajador."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ビ－ダル",
             "category": "ビ－バ－ポケモン",
             "entry_text": [

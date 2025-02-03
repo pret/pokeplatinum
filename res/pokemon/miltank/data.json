@@ -1,5 +1,4 @@
 {
-    "name": "Miltank",
     "base_stats": {
         "hp": 95,
         "attack": 80,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "english": {
+        "en": {
+            "name": "MILTANK",
             "category": "Milk Cow Pokémon",
             "entry_text": [
                 "It is said that kids who drink\n",
@@ -132,7 +132,7 @@
                 "hearty, healthy adults."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ECREMEUH",
             "category": "Pokémon Vachalait",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "adultes braves et robustes."
             ]
         },
-        "german": {
+        "de": {
             "name": "MILTANK",
             "category": "Milchkuh",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "Erwachsenen heranwachsen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MILTANK",
             "category": "Pokémon Bovino",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "e da adulto sarà sano e buono."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MILTANK",
             "category": "Pokémon Lechera",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "en un adulto sano y campechano."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミルタンク",
             "category": "ちちうしポケモン",
             "entry_text": [

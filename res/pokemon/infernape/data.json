@@ -1,5 +1,4 @@
 {
-    "name": "Infernape",
     "base_stats": {
         "hp": 76,
         "attack": 104,
@@ -133,7 +132,8 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "english": {
+        "en": {
+            "name": "INFERNAPE",
             "category": "Flame Pokémon",
             "entry_text": [
                 "It uses unique fighting moves with\n",
@@ -141,7 +141,7 @@
                 "take on any opponent."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SIMIABRAZ",
             "category": "Pokémon Flamme",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "Sa flamme ne s’éteint jamais."
             ]
         },
-        "german": {
+        "de": {
             "name": "PANFERNO",
             "category": "Flamme",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "Feuer erlischt nie."
             ]
         },
-        "italian": {
+        "it": {
             "name": "INFERNAPE",
             "category": "Pokémon Fiamma",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "sue fiamme non si estinguono mai."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "INFERNAPE",
             "category": "Pokémon Llama",
             "entry_text": [
@@ -177,7 +177,7 @@
                 "Su fuego nunca se extingue."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゴウカザル",
             "category": "かえんポケモン",
             "entry_text": [

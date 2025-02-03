@@ -1,5 +1,4 @@
 {
-    "name": "Slowbro",
     "base_stats": {
         "hp": 95,
         "attack": 75,
@@ -138,7 +137,8 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "english": {
+        "en": {
+            "name": "SLOWBRO",
             "category": "Hermit Crab Pokémon",
             "entry_text": [
                 "Though usually dim witted, it\n",
@@ -146,7 +146,7 @@
                 "SHELLDER on its tail bites down."
             ]
         },
-        "french": {
+        "fr": {
             "name": "FLAGADOSS",
             "category": "Pokémon Symbiose",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "queue se met à mordre."
             ]
         },
-        "german": {
+        "de": {
             "name": "LAHMUS",
             "category": "Symbiose",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "scheint es Intelligenz zu gewinnen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SLOWBRO",
             "category": "Pokémon Paguro",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "che ha sulla coda lo morde."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SLOWBRO",
             "category": "Pokémon Ermitaño",
             "entry_text": [
@@ -182,7 +182,7 @@
                 "su cola le muerde."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヤドラン",
             "category": "やどかりポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Mothim",
     "base_stats": {
         "hp": 70,
         "attack": 94,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 65525,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65525,
-        "english": {
+        "en": {
+            "name": "MOTHIM",
             "category": "Moth Pokémon",
             "entry_text": [
                 "While it loves floral honey, it won’t\n",
@@ -121,7 +121,7 @@
                 "plots to steal some from COMBEE."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PAPILORD",
             "category": "Pokémon Phalène",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "que récupère APITRINI."
             ]
         },
-        "german": {
+        "de": {
             "name": "MOTERPEL",
             "category": "Motte",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "gesammelt wurde."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MOTHIM",
             "category": "Pokémon Falena",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "COMBEE."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MOTHIM",
             "category": "Pokémon Polilla",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "COMBEE."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ガ－メイル",
             "category": "ミノガポケモン",
             "entry_text": [

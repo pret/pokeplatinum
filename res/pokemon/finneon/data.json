@@ -1,5 +1,4 @@
 {
-    "name": "Finneon",
     "base_stats": {
         "hp": 49,
         "attack": 49,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "english": {
+        "en": {
+            "name": "FINNEON",
             "category": "Wing Fish Pokémon",
             "entry_text": [
                 "The line running down its side can\n",
@@ -124,7 +124,7 @@
                 "night."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ECAYON",
             "category": "Pokémon Poisson Ailé",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "caudales luisent à la nuit tombée."
             ]
         },
-        "german": {
+        "de": {
             "name": "FINNEON",
             "category": "Flügelfisch",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "sie in der Dunkelheit."
             ]
         },
-        "italian": {
+        "it": {
             "name": "FINNEON",
             "category": "Pokémon Pescealato",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "vividamente al calar dell’oscurità."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "FINNEON",
             "category": "Pokémon Pez Ala",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "en la oscuridad."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ケイコウオ",
             "category": "はねうおポケモン",
             "entry_text": [

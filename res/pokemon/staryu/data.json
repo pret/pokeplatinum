@@ -1,5 +1,4 @@
 {
-    "name": "Staryu",
     "base_stats": {
         "hp": 30,
         "attack": 45,
@@ -117,7 +116,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "STARYU",
             "category": "Star Shape Pokémon",
             "entry_text": [
                 "If its body is torn, it can grow\n",
@@ -125,7 +125,7 @@
                 "The core flashes at midnight."
             ]
         },
-        "french": {
+        "fr": {
             "name": "STARI",
             "category": "Pokémon Etoile",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "intact. Le noyau s’illumine à minuit."
             ]
         },
-        "german": {
+        "de": {
             "name": "STERNDU",
             "category": "Sternform",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "der rote Kern intakt ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "STARYU",
             "category": "Pokémon Stella",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "to. Il nucleo brilla a mezzanotte."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "STARYU",
             "category": "Pokémon Estrellada",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "núcleo rojo, que brilla en la noche."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヒトデマン",
             "category": "ほしがたポケモン",
             "entry_text": [

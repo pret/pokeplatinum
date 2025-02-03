@@ -1,5 +1,4 @@
 {
-    "name": "Lanturn",
     "base_stats": {
         "hp": 125,
         "attack": 58,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "LANTURN",
             "category": "Light Pokémon",
             "entry_text": [
                 "LANTURN’s light can shine up from\n",
@@ -122,7 +122,7 @@
                 "“The Deep-Sea Star.”"
             ]
         },
-        "french": {
+        "fr": {
             "name": "LANTURN",
             "category": "Pokémon Lumière",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "“étoile des profondeurs”."
             ]
         },
-        "german": {
+        "de": {
             "name": "LANTURN",
             "category": "Leuchte",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "es auch “Tiefseestern”."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LANTURN",
             "category": "Pokémon Luce",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "minato “Stella degli abissi”."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LANTURN",
             "category": "Pokémon Luz",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "llama la “estrella de alta mar”."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ランタ－ン",
             "category": "ライトポケモン",
             "entry_text": [

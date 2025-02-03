@@ -1,5 +1,4 @@
 {
-    "name": "Burmy",
     "base_stats": {
         "hp": 40,
         "attack": 29,
@@ -70,7 +69,8 @@
         "pokemon_pos_f": 65530,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65530,
-        "english": {
+        "en": {
+            "name": "BURMY",
             "category": "Bagworm Pokémon",
             "entry_text": [
                 "Even if it is born where there are\n",
@@ -78,7 +78,7 @@
                 "always ends up with a cloak."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHENITI",
             "category": "Pokémon Ver Caché",
             "entry_text": [
@@ -87,7 +87,7 @@
                 "de feuilles et de brindilles."
             ]
         },
-        "german": {
+        "de": {
             "name": "BURMY",
             "category": "Beutelwurm",
             "entry_text": [
@@ -96,7 +96,7 @@
                 "einen Umhang aus Ästen und Laub."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BURMY",
             "category": "Pokémon Larva",
             "entry_text": [
@@ -105,7 +105,7 @@
                 "fatto di rami e foglie."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BURMY",
             "category": "Pokémon Larva",
             "entry_text": [
@@ -114,7 +114,7 @@
                 "caparazón de ramas y hojas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミノムッチ",
             "category": "みのむしポケモン",
             "entry_text": [

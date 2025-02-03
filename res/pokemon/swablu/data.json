@@ -1,5 +1,4 @@
 {
-    "name": "Swablu",
     "base_stats": {
         "hp": 45,
         "attack": 40,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "english": {
+        "en": {
+            "name": "SWABLU",
             "category": "Cotton Bird Pokémon",
             "entry_text": [
                 "It can’t relax if it or its\n",
@@ -123,7 +123,7 @@
                 "It wipes off dirt with its wings."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TYLTON",
             "category": "Pokémon Oiseaucoton",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "quelqu’un, on dirait un chapeau."
             ]
         },
-        "german": {
+        "de": {
             "name": "WABLU",
             "category": "Wollvogel",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Kopf, sehen sie wie ein Wollhut aus."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SWABLU",
             "category": "Pokémon Alidicotone",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "sembra un cappello di cotone."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SWABLU",
             "category": "Pokémon Ave Algodón",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "cabeza, tiene pinta de gorro."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "チルット",
             "category": "わたどりポケモン",
             "entry_text": [

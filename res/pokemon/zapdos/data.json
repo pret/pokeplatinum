@@ -1,5 +1,4 @@
 {
-    "name": "Zapdos",
     "base_stats": {
         "hp": 90,
         "attack": 90,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 5,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "ZAPDOS",
             "category": "Electric Pokémon",
             "entry_text": [
                 "A legendary Pokémon that is said\n",
@@ -123,7 +123,7 @@
                 "controls lightning bolts."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ELECTHOR",
             "category": "Pokémon Electrique",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "d’orage. Il contrôle la foudre."
             ]
         },
-        "german": {
+        "de": {
             "name": "ZAPDOS",
             "category": "Elektro",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Es kontrolliert Blitze. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "ZAPDOS",
             "category": "Pokémon Elettrico",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "ralesche. Controlla i fulmini."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ZAPDOS",
             "category": "Pokémon Eléctrico",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "Controla los rayos eléctricos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サンダ－",
             "category": "でんげきポケモン",
             "entry_text": [

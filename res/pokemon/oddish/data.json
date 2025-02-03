@@ -1,5 +1,4 @@
 {
-    "name": "Oddish",
     "base_stats": {
         "hp": 45,
         "attack": 50,
@@ -105,7 +104,8 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "ODDISH",
             "category": "Weed Pokémon",
             "entry_text": [
                 "It often plants its root feet in the\n",
@@ -113,7 +113,7 @@
                 "seeds as it walks about at night."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MYSTHERBE",
             "category": "Pokémon Racine",
             "entry_text": [
@@ -122,7 +122,7 @@
                 "promène en semant des graines."
             ]
         },
-        "german": {
+        "de": {
             "name": "MYRAPLA",
             "category": "Unkraut",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "wandert es und verteilt Samen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ODDISH",
             "category": "Pokémon Malerba",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "Di notte cammina seminando."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ODDISH",
             "category": "Pokémon Hierbajo",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "desplaza esparciendo semillas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ナゾノクサ",
             "category": "ざっそうポケモン",
             "entry_text": [

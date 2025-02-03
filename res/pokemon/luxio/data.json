@@ -1,5 +1,4 @@
 {
-    "name": "Luxio",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "LUXIO",
             "category": "Spark Pokémon",
             "entry_text": [
                 "Strong electricity courses through\n",
@@ -117,7 +117,7 @@
                 "scratch causes fainting in foes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LUXIO",
             "category": "Pokémon Etincelle",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "Il vit en petits groupes."
             ]
         },
-        "german": {
+        "de": {
             "name": "LUXIO",
             "category": "Funken",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "bewusstlos zu machen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LUXIO",
             "category": "Pokémon Favilla",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "nemico. Vive in piccoli gruppi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LUXIO",
             "category": "Pokémon Chispa",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "Viven en grupos pequeños."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ルクシオ",
             "category": "でんこうポケモン",
             "entry_text": [

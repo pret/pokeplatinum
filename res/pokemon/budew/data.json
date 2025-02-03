@@ -1,5 +1,4 @@
 {
-    "name": "Budew",
     "base_stats": {
         "hp": 40,
         "attack": 30,
@@ -100,7 +99,8 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "english": {
+        "en": {
+            "name": "BUDEW",
             "category": "Bud Pokémon",
             "entry_text": [
                 "Sensitive to changing temperature,\n",
@@ -108,7 +108,7 @@
                 "feels the sun’s warm touch."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ROZBOUTON",
             "category": "Pokémon Bourgeon",
             "entry_text": [
@@ -117,7 +117,7 @@
                 "au printemps et libère du pollen."
             ]
         },
-        "german": {
+        "de": {
             "name": "KNOSPI",
             "category": "Knospe",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "und gibt Pollen ab."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BUDEW",
             "category": "Pokémon Germoglio",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "gemma si riapre e rilascia polline."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BUDEW",
             "category": "Pokémon Brote",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "el capullo se abre y esparce polen."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "スボミ－",
             "category": "つぼみポケモン",
             "entry_text": [

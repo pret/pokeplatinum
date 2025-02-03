@@ -1,5 +1,4 @@
 {
-    "name": "Makuhita",
     "base_stats": {
         "hp": 72,
         "attack": 60,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "english": {
+        "en": {
+            "name": "MAKUHITA",
             "category": "Guts Pokémon",
             "entry_text": [
                 "It toughens its body by slamming\n",
@@ -128,7 +128,7 @@
                 "trees can be found near its nest."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MAKUHITA",
             "category": "Pokémon Tenace",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "entouré d’arbres abattus."
             ]
         },
-        "german": {
+        "de": {
             "name": "MAKUHITA",
             "category": "Courage",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "finden sich viele umgekippte Bäume."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAKUHITA",
             "category": "Pokémon Coraggio",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "trovano parecchi alberi abbattuti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAKUHITA",
             "category": "Pokémon Valiente",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "suele haber árboles golpeados."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マクノシタ",
             "category": "こんじょうポケモン",
             "entry_text": [

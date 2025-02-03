@@ -1,5 +1,4 @@
 {
-    "name": "Kyogre",
     "base_stats": {
         "hp": 100,
         "attack": 100,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "KYOGRE",
             "category": "Sea Basin Pokémon",
             "entry_text": [
                 "It is said to have widened the\n",
@@ -126,7 +126,7 @@
                 "been asleep in a marine trench."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KYOGRE",
             "category": "Pokémon Bassinmarin",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "Il somnolait dans une fosse marine."
             ]
         },
-        "german": {
+        "de": {
             "name": "KYOGRE",
             "category": "Seegründler",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "Es schlief in einem Meeresgraben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KYOGRE",
             "category": "Pokémon Oceano",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "assopito in una fossa marina."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KYOGRE",
             "category": "Pokémon Cuenca Mar",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "durmiendo en una fosa marina."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カイオ－ガ",
             "category": "かいていポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Beautifly",
     "base_stats": {
         "hp": 60,
         "attack": 70,
@@ -106,7 +105,8 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "english": {
+        "en": {
+            "name": "BEAUTIFLY",
             "category": "Butterfly Pokémon",
             "entry_text": [
                 "Despite its looks, it is aggressive.\n",
@@ -114,7 +114,7 @@
                 "disturbed while collecting pollen."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHARMILLON",
             "category": "Pokémon Papillon",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "étroit et absorbe sa vitalité."
             ]
         },
-        "german": {
+        "de": {
             "name": "PAPINELLA",
             "category": "Falter",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "Beute und saugt sie aus."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BEAUTIFLY",
             "category": "Pokémon Farfalla",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "prede e ne succhia i fluidi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BEAUTIFLY",
             "category": "Pokémon Mariposa",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "rivales para drenar sus fluidos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アゲハント",
             "category": "ちょうちょポケモン",
             "entry_text": [

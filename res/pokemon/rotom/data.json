@@ -1,5 +1,4 @@
 {
-    "name": "Rotom",
     "base_stats": {
         "hp": 50,
         "attack": 50,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "english": {
+        "en": {
+            "name": "ROTOM",
             "category": "Plasma Pokémon",
             "entry_text": [
                 "Its electric-like body can enter\n",
@@ -117,7 +117,7 @@
                 "control in order to make mischief."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MOTISMA",
             "category": "Pokémon Plasma",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "des appareils électroniques."
             ]
         },
-        "german": {
+        "de": {
             "name": "ROTOM",
             "category": "Plasma",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "eindringen und für Chaos sorgen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ROTOM",
             "category": "Pokémon Plasma",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "elettronici per provocare caos."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ROTOM",
             "category": "Pokémon Plasma",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "electrónicos e inutilizarlos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ロトム",
             "category": "プラズマポケモン",
             "entry_text": [

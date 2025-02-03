@@ -1,5 +1,4 @@
 {
-    "name": "Ledyba",
     "base_stats": {
         "hp": 40,
         "attack": 20,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "english": {
+        "en": {
+            "name": "LEDYBA",
             "category": "Five Star Pokémon",
             "entry_text": [
                 "It is so timid, it can’t move if it\n",
@@ -127,7 +127,7 @@
                 "conveys its feelings with scent."
             ]
         },
-        "french": {
+        "fr": {
             "name": "COXY",
             "category": "Pokémon 5 Etoiles",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "ses émotions par l’odeur."
             ]
         },
-        "german": {
+        "de": {
             "name": "LEDYBA",
             "category": "Fünf-Punkt",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "in einem Schwarm befindet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LEDYBA",
             "category": "Pokémon Pentastra",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "emozioni emanando una fragranza."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LEDYBA",
             "category": "Pokémon 5estrellas",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "sentimientos con olores."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "レディバ",
             "category": "いつつぼしポケモン",
             "entry_text": [

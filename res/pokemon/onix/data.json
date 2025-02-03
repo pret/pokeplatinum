@@ -1,5 +1,4 @@
 {
-    "name": "Onix",
     "base_stats": {
         "hp": 35,
         "attack": 45,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 25,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "ONIX",
             "category": "Rock Snake Pokémon",
             "entry_text": [
                 "It burrows through the ground\n",
@@ -133,7 +133,7 @@
                 "feeding on large boulders.\n"
             ]
         },
-        "french": {
+        "fr": {
             "name": "ONIX",
             "category": "Pokémon Serpenroc",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Il peut atteindre les 80 km/h."
             ]
         },
-        "german": {
+        "de": {
             "name": "ONIX",
             "category": "Felsnatter",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "es Erschütterungen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ONIX",
             "category": "Pokémon Serpesasso",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "anche la velocità di 80 km/h."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ONIX",
             "category": "Pokémon Serp. Roca",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "mover a 80 km por hora."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "イワ－ク",
             "category": "いわへびポケモン",
             "entry_text": [

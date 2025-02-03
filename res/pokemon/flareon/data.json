@@ -1,5 +1,4 @@
 {
-    "name": "Flareon",
     "base_stats": {
         "hp": 65,
         "attack": 130,
@@ -108,7 +107,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "FLAREON",
             "category": "Flame Pokémon",
             "entry_text": [
                 "Inhaled air is heated in the flame\n",
@@ -116,7 +116,7 @@
                 "over 3,000 degrees Fahrenheit."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PYROLI",
             "category": "Pokémon Flamme",
             "entry_text": [
@@ -125,7 +125,7 @@
                 "à 900 °C avant le combat."
             ]
         },
-        "german": {
+        "de": {
             "name": "FLAMARA",
             "category": "Feuer",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "liegt vor dem Kampf bei 900 Grad."
             ]
         },
-        "italian": {
+        "it": {
             "name": "FLAREON",
             "category": "Pokémon Fiamma",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "temperatura si innalza a 900°C."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "FLAREON",
             "category": "Pokémon Llama",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "grados antes de un combate."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ブ－スタ－",
             "category": "ほのおポケモン",
             "entry_text": [

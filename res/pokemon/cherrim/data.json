@@ -1,5 +1,4 @@
 {
-    "name": "Cherrim",
     "base_stats": {
         "hp": 70,
         "attack": 60,
@@ -101,7 +100,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "CHERRIM",
             "category": "Blossom Pokémon",
             "entry_text": [
                 "If it senses strong sunlight, it\n",
@@ -109,7 +109,7 @@
                 "the sun’s rays with its whole body."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CERIFLOR",
             "category": "Pokémon Floraison",
             "entry_text": [
@@ -118,7 +118,7 @@
                 "revanche sur une vie de bourgeon."
             ]
         },
-        "german": {
+        "de": {
             "name": "KINOSO",
             "category": "Blüte",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "als Knospe verwehrt blieb."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CHERRIM",
             "category": "Pokémon Bocciolo",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "mento che può passare al sole."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CHERRIM",
             "category": "Pokémon Floración",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "lo que soportó como capullo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "チェリム",
             "category": "サクラポケモン",
             "entry_text": [

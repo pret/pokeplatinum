@@ -1,5 +1,4 @@
 {
-    "name": "Togepi",
     "base_stats": {
         "hp": 35,
         "attack": 20,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "english": {
+        "en": {
+            "name": "TOGEPI",
             "category": "Spike Ball Pokémon",
             "entry_text": [
                 "It transforms the kindness and joy\n",
@@ -126,7 +126,7 @@
                 "stores in its shell."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TOGEPI",
             "category": "Pokémon Balle Pic",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "avec les êtres au cœur pur."
             ]
         },
-        "german": {
+        "de": {
             "name": "TOGEPI",
             "category": "Zackenball",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "Lebewesen teilt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TOGEPI",
             "category": "Pokémon Pallapunte",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "persone gentili."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TOGEPI",
             "category": "Pokémon Bolaclavos",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "las personas de buen corazón."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "トゲピ－",
             "category": "はりたまポケモン",
             "entry_text": [

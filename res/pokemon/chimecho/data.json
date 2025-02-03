@@ -1,5 +1,4 @@
 {
-    "name": "Chimecho",
     "base_stats": {
         "hp": 65,
         "attack": 50,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 65523,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65523,
-        "english": {
+        "en": {
+            "name": "CHIMECHO",
             "category": "Wind Chime Pokémon",
             "entry_text": [
                 "Its cries echo inside its hollow\n",
@@ -126,7 +126,7 @@
                 "for startling and repelling foes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "EOKO",
             "category": "Pokémon Carillon",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "l’air et projeter son ennemi."
             ]
         },
-        "german": {
+        "de": {
             "name": "PALIMPALIM",
             "category": "Windspiel",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "Bewegung."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CHIMECHO",
             "category": "Pokémon Vencampana",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "sette versi differenti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CHIMECHO",
             "category": "Pokémon Sonido Aire",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "Habla con siete tipos de gritos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "チリ－ン",
             "category": "ふうりんポケモン",
             "entry_text": [

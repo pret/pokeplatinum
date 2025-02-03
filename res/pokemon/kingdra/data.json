@@ -1,5 +1,4 @@
 {
-    "name": "Kingdra",
     "base_stats": {
         "hp": 75,
         "attack": 95,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "KINGDRA",
             "category": "Dragon Pokémon",
             "entry_text": [
                 "It lives in caves on the seafloor\n",
@@ -118,7 +118,7 @@
                 "every time it moves."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HYPOROI",
             "category": "Pokémon Dragon",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "dans les grottes sous-marines."
             ]
         },
-        "german": {
+        "de": {
             "name": "SEEDRAKING",
             "category": "Drache",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "bewegt, entsteht ein Strudel. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "KINGDRA",
             "category": "Pokémon Drago",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "volta che si muove."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KINGDRA",
             "category": "Pokémon Dragón",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "se mueve."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キングドラ",
             "category": "ドラゴンポケモン",
             "entry_text": [

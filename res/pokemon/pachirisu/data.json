@@ -1,5 +1,4 @@
 {
-    "name": "Pachirisu",
     "base_stats": {
         "hp": 60,
         "attack": 45,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "PACHIRISU",
             "category": "EleSquirrel Pokémon",
             "entry_text": [
                 "A pair may be seen rubbing their\n",
@@ -117,7 +117,7 @@
                 "effort to share stored electricity."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PACHIRISU",
             "category": "Pokémon Ecurélec",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "dans des souches avec des Baies."
             ]
         },
-        "german": {
+        "de": {
             "name": "PACHIRISU",
             "category": "Elektrohörnchen",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "speichert die Energie in Bäumen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PACHIRISU",
             "category": "Pokémon Elescoiatto",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "negli alberi insieme alle bacche."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PACHIRISU",
             "category": "Pokémon Ardillalec",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "almacena en agujeros de árboles."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "パチリス",
             "category": "でんきりすポケモン",
             "entry_text": [

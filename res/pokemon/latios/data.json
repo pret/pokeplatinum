@@ -1,5 +1,4 @@
 {
-    "name": "Latios",
     "base_stats": {
         "hp": 80,
         "attack": 90,
@@ -137,7 +136,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "LATIOS",
             "category": "Eon Pokémon",
             "entry_text": [
                 "A highly intelligent Pokémon.\n",
@@ -145,7 +145,7 @@
                 "it can overtake jet planes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LATIOS",
             "category": "Pokémon Eon",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "réaction en repliant ses ailes."
             ]
         },
-        "german": {
+        "de": {
             "name": "LATIOS",
             "category": "Äon",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "legt, ist es schneller als ein Jet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LATIOS",
             "category": "Pokémon Eone",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "volare più veloce di un jet."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LATIOS",
             "category": "Pokémon Eón",
             "entry_text": [
@@ -181,7 +181,7 @@
                 "reacción plegando las alas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ラティオス",
             "category": "むげんポケモン",
             "entry_text": [

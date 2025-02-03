@@ -1,5 +1,4 @@
 {
-    "name": "Vaporeon",
     "base_stats": {
         "hp": 130,
         "attack": 65,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "english": {
+        "en": {
+            "name": "VAPOREON",
             "category": "Bubble Jet Pokémon",
             "entry_text": [
                 "Its cell composition is similar\n",
@@ -121,7 +121,7 @@
                 "it can melt away into water."
             ]
         },
-        "french": {
+        "fr": {
             "name": "AQUALI",
             "category": "Pokémon Bulleur",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "disparaître dans l’élément liquide."
             ]
         },
-        "german": {
+        "de": {
             "name": "AQUANA",
             "category": "Blubblase",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "selbst wird es unsichtbar."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VAPOREON",
             "category": "Pokémon Bollajet",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "nell’acqua diventando invisibile."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VAPOREON",
             "category": "Pokémon Burbuja",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "la perfección con el agua."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "シャワ－ズ",
             "category": "あわはきポケモン",
             "entry_text": [

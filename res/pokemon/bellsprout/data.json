@@ -1,5 +1,4 @@
 {
-    "name": "Bellsprout",
     "base_stats": {
         "hp": 50,
         "attack": 75,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "BELLSPROUT",
             "category": "Flower Pokémon",
             "entry_text": [
                 "It prefers hot and humid\n",
@@ -117,7 +117,7 @@
                 "capturing prey with its vines."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHETIFLOR",
             "category": "Pokémon Fleur",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "capturer une proie en un clin d’œil."
             ]
         },
-        "german": {
+        "de": {
             "name": "KNOFENSA",
             "category": "Blume",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "blitzschnell mit seinen Ranken."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BELLSPROUT",
             "category": "Pokémon Fiore",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "con i suoi rampicanti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BELLSPROUT",
             "category": "Pokémon Flor",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "rápidas lianas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マダツボミ",
             "category": "フラワ－ポケモン",
             "entry_text": [

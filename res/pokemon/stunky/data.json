@@ -1,5 +1,4 @@
 {
-    "name": "Stunky",
     "base_stats": {
         "hp": 63,
         "attack": 63,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "STUNKY",
             "category": "Skunk Pokémon",
             "entry_text": [
                 "It sprays a foul fluid from its\n",
@@ -124,7 +124,7 @@
                 "mile radius, driving Pokémon away."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MOUFOUETTE",
             "category": "Pokémon Moufette",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "La puanteur dure 24 heures."
             ]
         },
-        "german": {
+        "de": {
             "name": "SKUNKAPUH",
             "category": "Stinktier",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Hinterleib, die 24 Stunden stinkt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "STUNKY",
             "category": "Pokémon Moffetta",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "Il tanfo permane per 24 ore."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "STUNKY",
             "category": "Pokémon Mofeta",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "El hedor dura 24 horas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "スカンプ－",
             "category": "スカンクポケモン",
             "entry_text": [

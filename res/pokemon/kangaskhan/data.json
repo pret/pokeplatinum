@@ -1,5 +1,4 @@
 {
-    "name": "Kangaskhan",
     "base_stats": {
         "hp": 105,
         "attack": 95,
@@ -137,7 +136,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "KANGASKHAN",
             "category": "Parent Pokémon",
             "entry_text": [
                 "It raises its offspring in its belly\n",
@@ -145,7 +145,7 @@
                 "play only when it feels safe."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KANGOUREX",
             "category": "Pokémon Maternel",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "sûr pour les laisser jouer dehors."
             ]
         },
-        "german": {
+        "de": {
             "name": "KANGAMA",
             "category": "Muttertier",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "ist, darf das Junge aus dem Beutel."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KANGASKHAN",
             "category": "Pokémon Genitore",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "quando non ci sono pericoli."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KANGASKHAN",
             "category": "Pokémon Padres",
             "entry_text": [
@@ -181,7 +181,7 @@
                 "a jugar cuando no siente peligro."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ガル－ラ",
             "category": "おやこポケモン",
             "entry_text": [

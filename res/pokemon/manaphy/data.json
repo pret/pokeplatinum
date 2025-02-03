@@ -1,5 +1,4 @@
 {
-    "name": "Manaphy",
     "base_stats": {
         "hp": 100,
         "attack": 100,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "MANAPHY",
             "category": "Seafaring Pokémon",
             "entry_text": [
                 "It is born with a wondrous power\n",
@@ -127,7 +127,7 @@
                 "Pokémon."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MANAPHY",
             "category": "Pokémon Voyagenmer",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "pour gagner son lieu de naissance."
             ]
         },
-        "german": {
+        "de": {
             "name": "MANAPHY",
             "category": "Seefahrer",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "um dorthin zurückzukehren."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MANAPHY",
             "category": "Pokémon Oceandante",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "tornare al suo luogo di nascita."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MANAPHY",
             "category": "Pokémon Náutico",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "regresar a su lugar de origen."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マナフィ",
             "category": "かいゆうポケモン",
             "entry_text": [

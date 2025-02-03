@@ -1,5 +1,4 @@
 {
-    "name": "Victreebel",
     "base_stats": {
         "hp": 80,
         "attack": 105,
@@ -101,7 +100,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 2,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "VICTREEBEL",
             "category": "Flycatcher Pokémon",
             "entry_text": [
                 "It pools in its mouth a fluid with\n",
@@ -109,7 +109,7 @@
                 "an acid that dissolves anything."
             ]
         },
-        "french": {
+        "fr": {
             "name": "EMPIFLOR",
             "category": "Pokémon Carnivore",
             "entry_text": [
@@ -118,7 +118,7 @@
                 "un acide extrêmement corrosif."
             ]
         },
-        "german": {
+        "de": {
             "name": "SARZENIA",
             "category": "Fliegentot",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "in Wahrheit aber ätzend ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VICTREEBEL",
             "category": "Pokémon Moschivoro",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "acido altamente corrosivo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VICTREEBEL",
             "category": "Pokémon Matamoscas",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "ácido que disuelve cualquier cosa."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ウツボット",
             "category": "ハエとりポケモン",
             "entry_text": [

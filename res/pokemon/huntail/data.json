@@ -1,5 +1,4 @@
 {
-    "name": "Huntail",
     "base_stats": {
         "hp": 55,
         "attack": 104,
@@ -105,7 +104,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "HUNTAIL",
             "category": "Deep Sea Pokémon",
             "entry_text": [
                 "It lives deep in the sea. With a\n",
@@ -113,7 +113,7 @@
                 "attracts unsuspecting prey."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SERPANG",
             "category": "Pokémon Abysse",
             "entry_text": [
@@ -122,7 +122,7 @@
                 "queue qui rappelle un petit poisson."
             ]
         },
-        "german": {
+        "de": {
             "name": "AALABYSS",
             "category": "Tiefsee",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "Mit ihm lockt es Beute an."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HUNTAIL",
             "category": "Pokémon Abissi",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "ignare del pericolo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HUNTAIL",
             "category": "Pokémon Abisal",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "la cola, que tiene forma de pez."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ハンテ－ル",
             "category": "しんかいポケモン",
             "entry_text": [

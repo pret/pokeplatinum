@@ -1,5 +1,4 @@
 {
-    "name": "Mareep",
     "base_stats": {
         "hp": 55,
         "attack": 40,
@@ -103,7 +102,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "MAREEP",
             "category": "Wool Pokémon",
             "entry_text": [
                 "Its fluffy coat swells to double\n",
@@ -111,7 +111,7 @@
                 "Touching it can be shocking."
             ]
         },
-        "french": {
+        "fr": {
             "name": "WATTOUAT",
             "category": "Pokémon Laine",
             "entry_text": [
@@ -120,7 +120,7 @@
                 "Son contact peut choquer. "
             ]
         },
-        "german": {
+        "de": {
             "name": "VOLTILAMM",
             "category": "Wolle",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "aufbaut. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAREEP",
             "category": "Pokémon Lana",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "dare la scossa.\n"
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAREEP",
             "category": "Pokémon Lana",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "Tocarlo puede dar calambre."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "メリ－プ",
             "category": "わたげポケモン",
             "entry_text": [

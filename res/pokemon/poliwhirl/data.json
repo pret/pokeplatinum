@@ -1,5 +1,4 @@
 {
-    "name": "Poliwhirl",
     "base_stats": {
         "hp": 65,
         "attack": 65,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "POLIWHIRL",
             "category": "Tadpole Pokémon",
             "entry_text": [
                 "The spiral pattern on its belly\n",
@@ -129,7 +129,7 @@
                 "gradually causes drowsiness."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TETARTE",
             "category": "Pokémon Têtard",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "est saisi d’une étrange torpeur. "
             ]
         },
-        "german": {
+        "de": {
             "name": "QUAPUTZI",
             "category": "Kaulquappe",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "darauf, wird einem schwindelig."
             ]
         },
-        "italian": {
+        "it": {
             "name": "POLIWHIRL",
             "category": "Pokémon Girino",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "piano piano si assopisce."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "POLIWHIRL",
             "category": "Pokémon Renacuajo",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "provoca somnolencia."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニョロゾ",
             "category": "おたまポケモン",
             "entry_text": [

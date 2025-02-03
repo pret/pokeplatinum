@@ -1,5 +1,4 @@
 {
-    "name": "Sunflora",
     "base_stats": {
         "hp": 75,
         "attack": 75,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "english": {
+        "en": {
+            "name": "SUNFLORA",
             "category": "Sun Pokémon",
             "entry_text": [
                 "It gets energy from warm sunlight\n",
@@ -115,7 +115,7 @@
                 "moving in pursuit of it."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HELIATRONC",
             "category": "Pokémon Soleil",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "vers les régions ensoleillées."
             ]
         },
-        "german": {
+        "de": {
             "name": "SONNFLORA",
             "category": "Sonne",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "dem Sonnenlicht hinterher."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SUNFLORA",
             "category": "Pokémon Sole",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "di assorbirne sempre di più."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SUNFLORA",
             "category": "Pokémon Sol",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "su heliotropismo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キマワリ",
             "category": "たいようポケモン",
             "entry_text": [

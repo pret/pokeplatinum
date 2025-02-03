@@ -1,5 +1,4 @@
 {
-    "name": "Electabuzz",
     "base_stats": {
         "hp": 65,
         "attack": 83,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "ELECTABUZZ",
             "category": "Electric Pokémon",
             "entry_text": [
                 "It windmills its arms to slightly\n",
@@ -129,7 +129,7 @@
                 "known to escape in the meantime."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ELEKTEK",
             "category": "Pokémon Electrique",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "majorité des coupures de courant."
             ]
         },
-        "german": {
+        "de": {
             "name": "ELEKTEK",
             "category": "Elektro",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "in E-Werken Elektrizität frisst."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ELECTABUZZ",
             "category": "Pokémon Elettrico",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "provoca un black-out."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ELECTABUZZ",
             "category": "Pokémon Eléctrico",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "Pokémon que come electricidad."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エレブ－",
             "category": "でんげきポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Tangrowth",
     "base_stats": {
         "hp": 100,
         "attack": 100,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "TANGROWTH",
             "category": "Vine Pokémon",
             "entry_text": [
                 "Its arms are made of plants that\n",
@@ -132,7 +132,7 @@
                 "grow back right away if cut."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BOULDENEU",
             "category": "Pokémon Vigne",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "perdre un bras face à un ennemi."
             ]
         },
-        "german": {
+        "de": {
             "name": "TANGOLOSS",
             "category": "Ranke",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "verlängert."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TANGROWTH",
             "category": "Pokémon Liana",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "perde uno, non si turba affatto."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TANGROWTH",
             "category": "Pokémon Enredadera",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "importa perder ante depredadores."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "モジャンボ",
             "category": "ツルじょうポケモン",
             "entry_text": [

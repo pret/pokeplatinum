@@ -1,5 +1,4 @@
 {
-    "name": "Tropius",
     "base_stats": {
         "hp": 99,
         "attack": 68,
@@ -117,7 +116,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "TROPIUS",
             "category": "Fruit Pokémon",
             "entry_text": [
                 "Delicious fruits grew out from\n",
@@ -125,7 +125,7 @@
                 "ate the same kind of fruit."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TROPIUS",
             "category": "Pokémon Fruit",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "autour de son cou."
             ]
         },
-        "german": {
+        "de": {
             "name": "TROPIUS",
             "category": "Obst",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "um seinen Hals herumzuwachsen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TROPIUS",
             "category": "Pokémon Frutto",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "a crescergli attorno al collo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TROPIUS",
             "category": "Pokémon Fruto",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "propio cuello."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "トロピウス",
             "category": "フル－ツポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Koffing",
     "base_stats": {
         "hp": 40,
         "attack": 65,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "english": {
+        "en": {
+            "name": "KOFFING",
             "category": "Poison Gas Pokémon",
             "entry_text": [
                 "Lighter-than-air gases in its body\n",
@@ -122,7 +122,7 @@
                 "smell, they are also explosive."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SMOGO",
             "category": "Pokémon Gaz Mortel",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "explosifs, en plus d’être fétides."
             ]
         },
-        "german": {
+        "de": {
             "name": "SMOGON",
             "category": "Giftwolke",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "stinken und sind explosiv."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KOFFING",
             "category": "Pokémon Velenuvola",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "odoranti e altamente esplosivi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KOFFING",
             "category": "Pokémon Gas Veneno",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "oler mal, también son explosivos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ドガ－ス",
             "category": "どくガスポケモン",
             "entry_text": [

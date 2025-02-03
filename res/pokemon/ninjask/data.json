@@ -1,5 +1,4 @@
 {
-    "name": "Ninjask",
     "base_stats": {
         "hp": 61,
         "attack": 90,
@@ -117,7 +116,8 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "english": {
+        "en": {
+            "name": "NINJASK",
             "category": "Ninja Pokémon",
             "entry_text": [
                 "Because it moves so quickly, it\n",
@@ -125,7 +125,7 @@
                 "congregates around tree sap."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NINJASK",
             "category": "Pokémon Ninja",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "pent près de la sève des arbres."
             ]
         },
-        "german": {
+        "de": {
             "name": "NINJASK",
             "category": "Ninja",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "scheint. Es liebt Baumsaft."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NINJASK",
             "category": "Pokémon Ninja",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "attorno agli alberi ricchi di linfa."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NINJASK",
             "category": "Pokémon Ninja",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "de los árboles."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "テッカニン",
             "category": "しのびポケモン",
             "entry_text": [

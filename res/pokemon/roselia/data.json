@@ -1,5 +1,4 @@
 {
-    "name": "Roselia",
     "base_stats": {
         "hp": 50,
         "attack": 60,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "english": {
+        "en": {
+            "name": "ROSELIA",
             "category": "Thorn Pokémon",
             "entry_text": [
                 "The more healthy the ROSELIA, the\n",
@@ -123,7 +123,7 @@
                 "Its scent deeply relaxes people."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ROSELIA",
             "category": "Pokémon Epine",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "ravissantes fleurs bariolées."
             ]
         },
-        "german": {
+        "de": {
             "name": "ROSELIA",
             "category": "Dorn",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Blüten in leuchtenden Farben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ROSELIA",
             "category": "Pokémon Spina",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "fiori dai vividi colori."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ROSELIA",
             "category": "Pokémon Espina",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "flores de vivos colores."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ロゼリア",
             "category": "いばらポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Ledian",
     "base_stats": {
         "hp": 55,
         "attack": 35,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "english": {
+        "en": {
+            "name": "LEDIAN",
             "category": "Five Star Pokémon",
             "entry_text": [
                 "It uses starlight as energy. When\n",
@@ -128,7 +128,7 @@
                 "patterns on its back grow larger."
             ]
         },
-        "french": {
+        "fr": {
             "name": "COXYCLAQUE",
             "category": "Pokémon 5 Etoiles",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "motifs dorsaux sont grands."
             ]
         },
-        "german": {
+        "de": {
             "name": "LEDIAN",
             "category": "Fünf-Punkt",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "sind, desto größer ist sein Muster."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LEDIAN",
             "category": "Pokémon Pentastra",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "ingrandire i disegni sul suo dorso."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LEDIAN",
             "category": "Pokémon 5estrellas",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "más crecen los dibujos de su lomo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "レディアン",
             "category": "いつつぼしポケモン",
             "entry_text": [

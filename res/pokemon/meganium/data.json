@@ -1,5 +1,4 @@
 {
-    "name": "Meganium",
     "base_stats": {
         "hp": 80,
         "attack": 82,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "MEGANIUM",
             "category": "Herb Pokémon",
             "entry_text": [
                 "Its breath has the fantastic\n",
@@ -124,7 +124,7 @@
                 "flowers."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MEGANIUM",
             "category": "Pokémon Herbe",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "fleurs flétries."
             ]
         },
-        "german": {
+        "de": {
             "name": "MEGANIE",
             "category": "Kräuter",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Leben erwecken."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MEGANIUM",
             "category": "Pokémon Erbe",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "piante secche e fiori avvizziti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MEGANIUM",
             "category": "Pokémon Hierba",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "flores muertas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "メガニウム",
             "category": "ハ－ブポケモン",
             "entry_text": [

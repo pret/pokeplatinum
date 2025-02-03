@@ -1,5 +1,4 @@
 {
-    "name": "Jigglypuff",
     "base_stats": {
         "hp": 115,
         "attack": 45,
@@ -136,7 +135,8 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "JIGGLYPUFF",
             "category": "Balloon Pokémon",
             "entry_text": [
                 "When it wavers its big, round\n",
@@ -144,7 +144,7 @@
                 "that makes everyone drowsy."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RONDOUDOU",
             "category": "Pokémon Bouboule",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "qui endort son auditoire."
             ]
         },
-        "german": {
+        "de": {
             "name": "PUMMELUFF",
             "category": "Ballon",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "zu singen und jeder schläft ein."
             ]
         },
-        "italian": {
+        "it": {
             "name": "JIGGLYPUFF",
             "category": "Pokémon Pallone",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "addormentare chiunque l’ascolti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "JIGGLYPUFF",
             "category": "Pokémon Globo",
             "entry_text": [
@@ -180,7 +180,7 @@
                 "nana que duerme al enemigo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "プリン",
             "category": "ふうせんポケモン",
             "entry_text": [

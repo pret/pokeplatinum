@@ -1,5 +1,4 @@
 {
-    "name": "Prinplup",
     "base_stats": {
         "hp": 64,
         "attack": 66,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "english": {
+        "en": {
+            "name": "PRINPLUP",
             "category": "Penguin Pokémon",
             "entry_text": [
                 "Because every PRINPLUP considers\n",
@@ -128,7 +128,7 @@
                 "they can never form a group."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PRINPLOUF",
             "category": "Pokémon Pingouin",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "d’être meilleur que les autres."
             ]
         },
-        "german": {
+        "de": {
             "name": "PLIPRIN",
             "category": "Pinguin",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "sei das bedeutendste unter ihnen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PRINPLUP",
             "category": "Pokémon Pinguino",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "crede di essere il più importante."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PRINPLUP",
             "category": "Pokémon Pingüino",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "más importante."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ポッタイシ",
             "category": "ペンギンポケモン",
             "entry_text": [

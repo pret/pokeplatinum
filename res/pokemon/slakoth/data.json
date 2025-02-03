@@ -1,5 +1,4 @@
 {
-    "name": "Slakoth",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "SLAKOTH",
             "category": "Slacker Pokémon",
             "entry_text": [
                 "It spends nearly all its time in a\n",
@@ -128,7 +128,7 @@
                 "makes one drowsy."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PARECOOL",
             "category": "Pokémon Flâneur",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "envie de bâiller."
             ]
         },
-        "german": {
+        "de": {
             "name": "BUMMELZ",
             "category": "Faulpelz",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "sein Anblick macht bereits müde."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SLAKOTH",
             "category": "Pokémon Ozioso",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "si prova sonnolenza."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SLAKOTH",
             "category": "Pokémon Gandul",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "solo de verlo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ナマケロ",
             "category": "なまけものポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Girafarig",
     "base_stats": {
         "hp": 70,
         "attack": 80,
@@ -122,7 +121,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "GIRAFARIG",
             "category": "Long Neck Pokémon",
             "entry_text": [
                 "The head on its tail contains a\n",
@@ -130,7 +130,7 @@
                 "fight even while facing backward."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GIRAFARIG",
             "category": "Pokémon Long-Cou",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "essaie de le frapper dans le dos."
             ]
         },
-        "german": {
+        "de": {
             "name": "GIRAFARIG",
             "category": "Langhals",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "sich von hinten heranschleicht."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GIRAFARIG",
             "category": "Pokémon Lungocollo",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "nemici che si avvicinano da dietro."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GIRAFARIG",
             "category": "Pokémon Grancuello",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "intentan acercarse por la espalda."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キリンリキ",
             "category": "くびながポケモン",
             "entry_text": [

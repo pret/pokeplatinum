@@ -1,5 +1,4 @@
 {
-    "name": "Sudowoodo",
     "base_stats": {
         "hp": 70,
         "attack": 100,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "english": {
+        "en": {
+            "name": "SUDOWOODO",
             "category": "Imitation Pokémon",
             "entry_text": [
                 "To avoid being attacked, it does\n",
@@ -127,7 +127,7 @@
                 "water and flees from rain."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SIMULARBRE",
             "category": "Pokémon Imitation",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "pierre. L’eau est son point faible."
             ]
         },
-        "german": {
+        "de": {
             "name": "MOGELBAUM",
             "category": "Imitation",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "Es ist schwach gegenüber Wasser."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SUDOWOODO",
             "category": "Pokémon Imitazione",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "È debole contro l’acqua."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SUDOWOODO",
             "category": "Pokémon Imitación",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "piedras. Es débil frente al agua."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ウソッキ－",
             "category": "まねポケモン",
             "entry_text": [

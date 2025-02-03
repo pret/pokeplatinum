@@ -1,5 +1,4 @@
 {
-    "name": "Honchkrow",
     "base_stats": {
         "hp": 100,
         "attack": 125,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "english": {
+        "en": {
+            "name": "HONCHKROW",
             "category": "Big Boss Pokémon",
             "entry_text": [
                 "If one utters a deep cry, many\n",
@@ -122,7 +122,7 @@
                 "it is called “Summoner of Night.”"
             ]
         },
-        "french": {
+        "fr": {
             "name": "CORBOSS",
             "category": "Pokémon Big Boss",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "CORNEBRE."
             ]
         },
-        "german": {
+        "de": {
             "name": "KRAMSHEF",
             "category": "Anführer",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "Nacht bewegt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HONCHKROW",
             "category": "Pokémon Grancapo",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "MURKROW."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HONCHKROW",
             "category": "Pokémon Gran Jefe",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "numerosos MURKROW."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ドンカラス",
             "category": "おおボスポケモン",
             "entry_text": [

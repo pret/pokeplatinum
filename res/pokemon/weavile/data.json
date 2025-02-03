@@ -1,5 +1,4 @@
 {
-    "name": "Weavile",
     "base_stats": {
         "hp": 70,
         "attack": 120,
@@ -133,7 +132,8 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "english": {
+        "en": {
+            "name": "WEAVILE",
             "category": "Sharp Claw Pokémon",
             "entry_text": [
                 "Evolution made it even more\n",
@@ -141,7 +141,7 @@
                 "signs in boulders."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DIMORET",
             "category": "Pokémon Grifacérée",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "façon très organisée."
             ]
         },
-        "german": {
+        "de": {
             "name": "SNIBUNNA",
             "category": "Stichklaue",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "der Jagd großes Geschick zeigen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WEAVILE",
             "category": "Pokémon Lamartigli",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "Insieme sono cacciatori abilissimi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WEAVILE",
             "category": "Pokémon Garra Filo",
             "entry_text": [
@@ -177,7 +177,7 @@
                 "cazar con gran coordinación."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マニュ－ラ",
             "category": "かぎづめポケモン",
             "entry_text": [

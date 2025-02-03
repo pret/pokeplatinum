@@ -1,5 +1,4 @@
 {
-    "name": "Vileplume",
     "base_stats": {
         "hp": 75,
         "attack": 80,
@@ -97,7 +96,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "english": {
+        "en": {
+            "name": "VILEPLUME",
             "category": "Flower Pokémon",
             "entry_text": [
                 "Its petals are the largest in the\n",
@@ -105,7 +105,7 @@
                 "extremely allergenic pollen."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RAFFLESIA",
             "category": "Pokémon Fleur",
             "entry_text": [
@@ -114,7 +114,7 @@
                 "un pollen extrêmement allergène."
             ]
         },
-        "german": {
+        "de": {
             "name": "GIFLOR",
             "category": "Blume",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "die schreckliche Allergien auslösen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VILEPLUME",
             "category": "Pokémon Fiore",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "un polline che causa allergie."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VILEPLUME",
             "category": "Pokémon Flor",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "un terrible polen alergénico."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ラフレシア",
             "category": "フラワ－ポケモン",
             "entry_text": [

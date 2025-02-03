@@ -1,5 +1,4 @@
 {
-    "name": "Shaymin",
     "base_stats": {
         "hp": 100,
         "attack": 100,
@@ -105,7 +104,8 @@
         "pokemon_pos_f": 32,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 32,
-        "english": {
+        "en": {
+            "name": "SHAYMIN",
             "category": "Gratitude Pokémon",
             "entry_text": [
                 "The flowers all over its body burst\n",
@@ -113,7 +113,7 @@
                 "and senses gratitude."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SHAYMIN",
             "category": "Pokémon Gratitude",
             "entry_text": [
@@ -122,7 +122,7 @@
                 "imiter une plante fleurie."
             ]
         },
-        "german": {
+        "de": {
             "name": "SHAYMIN",
             "category": "Dankbarkeit",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "sehen u. nicht entdeckt zu werden."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SHAYMIN",
             "category": "Pokémon Gratitudine",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "sembrare una pianta fiorita."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SHAYMIN",
             "category": "Pokémon Gratitud",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "como si fuera una planta."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "シェイミ",
             "category": "かんしゃポケモン",
             "entry_text": [

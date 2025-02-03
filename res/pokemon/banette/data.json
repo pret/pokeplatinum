@@ -1,5 +1,4 @@
 {
-    "name": "Banette",
     "base_stats": {
         "hp": 64,
         "attack": 115,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "english": {
+        "en": {
+            "name": "BANETTE",
             "category": "Marionette Pokémon",
             "entry_text": [
                 "A doll that became a Pokémon over\n",
@@ -132,7 +132,7 @@
                 "seeks the child that disowned it."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BRANETTE",
             "category": "Pokémon Marionnette",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Elle recherche son propriétaire."
             ]
         },
-        "german": {
+        "de": {
             "name": "BANETTE",
             "category": "Marionette",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "das Kind, das dies getan hat."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BANETTE",
             "category": "Pokémon Marionetta",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "da un bimbo, di cui è alla ricerca."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BANETTE",
             "category": "Pokémon Marioneta",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "basura. Busca a su antiguo dueño."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ジュペッタ",
             "category": "ぬいぐるみポケモン",
             "entry_text": [

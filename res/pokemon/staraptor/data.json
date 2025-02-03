@@ -1,5 +1,4 @@
 {
-    "name": "Staraptor",
     "base_stats": {
         "hp": 85,
         "attack": 120,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "english": {
+        "en": {
+            "name": "STARAPTOR",
             "category": "Predator Pokémon",
             "entry_text": [
                 "It never stops attacking even\n",
@@ -115,7 +115,7 @@
                 "shape of its comb."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ETOURAPTOR",
             "category": "Pokémon Rapace",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "beaucoup plus grands que lui."
             ]
         },
-        "german": {
+        "de": {
             "name": "STARAPTOR",
             "category": "Raubtier",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "heraus, die viel größer sind."
             ]
         },
-        "italian": {
+        "it": {
             "name": "STARAPTOR",
             "category": "Pokémon Rapace",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "grossi di lui."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "STARAPTOR",
             "category": "Pokémon Depredador",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "mucho mayores."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ムクホ－ク",
             "category": "もうきんポケモン",
             "entry_text": [

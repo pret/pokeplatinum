@@ -1,5 +1,4 @@
 {
-    "name": "Porygon-Z",
     "base_stats": {
         "hp": 85,
         "attack": 80,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "english": {
+        "en": {
+            "name": "PORYGON-Z",
             "category": "Virtual Pokémon",
             "entry_text": [
                 "Its programming was modified to\n",
@@ -128,7 +128,7 @@
                 "It did not work as planned."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PORYGON-Z",
             "category": "Pokémon Virtuel",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "depuis, il se comporte bizarrement."
             ]
         },
-        "german": {
+        "de": {
             "name": "PORYGON-Z",
             "category": "Virtuell",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "Seitdem benimmt es sich seltsam."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PORYGON-Z",
             "category": "Pokémon Virtuale",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "Pokémon. Agisce in modo strano."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PORYGON-Z",
             "category": "Pokémon Virtual",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "a comportarse de manera extraña."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ポリゴンＺ",
             "category": "バ－チャルポケモン",
             "entry_text": [

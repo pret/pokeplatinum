@@ -1,5 +1,4 @@
 {
-    "name": "Duskull",
     "base_stats": {
         "hp": 20,
         "attack": 40,
@@ -120,7 +119,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "english": {
+        "en": {
+            "name": "DUSKULL",
             "category": "Requiem Pokémon",
             "entry_text": [
                 "It loves the crying of children. It\n",
@@ -128,7 +128,7 @@
                 "through walls and making them cry."
             ]
         },
-        "french": {
+        "fr": {
             "name": "SKELENOX",
             "category": "Pokémon Requiem",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "traque qu’au lever du soleil."
             ]
         },
-        "german": {
+        "de": {
             "name": "ZWIRRLICHT",
             "category": "Requiem",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "aufgeht, ist die Jagd vorbei."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DUSKULL",
             "category": "Pokémon Requiem",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "caccia solo all’alba."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DUSKULL",
             "category": "Pokémon Réquiem",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "abandona la caza al amanecer."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヨマワル",
             "category": "おむかえポケモン",
             "entry_text": [

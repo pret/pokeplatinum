@@ -1,5 +1,4 @@
 {
-    "name": "Phanpy",
     "base_stats": {
         "hp": 90,
         "attack": 60,
@@ -112,7 +111,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "PHANPY",
             "category": "Long Nose Pokémon",
             "entry_text": [
                 "It is strong despite its compact\n",
@@ -120,7 +120,7 @@
                 "carry an adult human on its back."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PHANPY",
             "category": "Pokémon Long-Nez",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "un humain adulte sur son dos."
             ]
         },
-        "german": {
+        "de": {
             "name": "PHANPY",
             "category": "Langrüssel",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "mühelos auf dem Rücken tragen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PHANPY",
             "category": "Pokémon Nasone",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "tarlo sul dorso senza fatica."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PHANPY",
             "category": "Pokémon Narizotas",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "humano a su espalda con facilidad."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゴマゾウ",
             "category": "ながはなポケモン",
             "entry_text": [

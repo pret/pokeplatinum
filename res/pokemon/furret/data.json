@@ -1,5 +1,4 @@
 {
-    "name": "Furret",
     "base_stats": {
         "hp": 85,
         "attack": 76,
@@ -131,7 +130,8 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "english": {
+        "en": {
+            "name": "FURRET",
             "category": "Long Body Pokémon",
             "entry_text": [
                 "The mother puts its offspring to\n",
@@ -139,7 +139,7 @@
                 "It corners foes with speed."
             ]
         },
-        "french": {
+        "fr": {
             "name": "FOUINAR",
             "category": "Pokémon Allongé",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "l’ennemi grâce à sa vitesse."
             ]
         },
-        "german": {
+        "de": {
             "name": "WIESENIOR",
             "category": "Langleib",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "begegnet es mit Schnelligkeit."
             ]
         },
-        "italian": {
+        "it": {
             "name": "FURRET",
             "category": "Pokémon Lungocorpo",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "i nemici con movimenti rapidi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "FURRET",
             "category": "Pokémon Alargado",
             "entry_text": [
@@ -175,7 +175,7 @@
                 "con su enorme velocidad."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オオタチ",
             "category": "どうながポケモン",
             "entry_text": [

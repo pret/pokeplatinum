@@ -1,5 +1,4 @@
 {
-    "name": "Spheal",
     "base_stats": {
         "hp": 70,
         "attack": 40,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "english": {
+        "en": {
+            "name": "SPHEAL",
             "category": "Clap Pokémon",
             "entry_text": [
                 "It rolls across ice floes to reach\n",
@@ -121,7 +121,7 @@
                 "shaped for swimming."
             ]
         },
-        "french": {
+        "fr": {
             "name": "OBALIE",
             "category": "Pokémon Clap Clap",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "n’est pas adaptée à la nage."
             ]
         },
-        "german": {
+        "de": {
             "name": "SEEMOPS",
             "category": "Applaus",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Schwimmen nicht geeignet ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SPHEAL",
             "category": "Pokémon Rotolante",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "per raggiungere la riva."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SPHEAL",
             "category": "Pokémon Aplauso",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "no está bien adaptado para nadar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "タマザラシ",
             "category": "てたたきポケモン",
             "entry_text": [

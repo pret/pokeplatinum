@@ -1,5 +1,4 @@
 {
-    "name": "Torkoal",
     "base_stats": {
         "hp": 70,
         "attack": 85,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "english": {
+        "en": {
+            "name": "TORKOAL",
             "category": "Coal Pokémon",
             "entry_text": [
                 "It burns coal inside its shell for\n",
@@ -121,7 +121,7 @@
                 "it is endangered."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHARTOR",
             "category": "Pokémon Charbon",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "de la suie noire en cas de danger."
             ]
         },
-        "german": {
+        "de": {
             "name": "QURTEL",
             "category": "Kohle",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Bei Gefahr sondert es Ruß ab."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TORKOAL",
             "category": "Pokémon Carbone",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "pericolo, emette fuliggine scura."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TORKOAL",
             "category": "Pokémon Carbón",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "echa un denso humo negro."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コ－タス",
             "category": "せきたんポケモン",
             "entry_text": [

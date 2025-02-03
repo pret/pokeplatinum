@@ -1,5 +1,4 @@
 {
-    "name": "Azelf",
     "base_stats": {
         "hp": 75,
         "attack": 125,
@@ -131,7 +130,8 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "english": {
+        "en": {
+            "name": "AZELF",
             "category": "Willpower Pokémon",
             "entry_text": [
                 "When AZELF flew, people gained the\n",
@@ -139,7 +139,7 @@
                 "It was the birth of willpower."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CREFADET",
             "category": "Pokémon Volonté",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "maintenir l’équilibre du monde."
             ]
         },
-        "german": {
+        "de": {
             "name": "TOBUTZ",
             "category": "Willenskraft",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "und hält so die Welt in Balance."
             ]
         },
-        "italian": {
+        "it": {
             "name": "AZELF",
             "category": "Pokémon Volontà",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "mantenere il mondo in equilibrio."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "AZELF",
             "category": "Pokémon Voluntad",
             "entry_text": [
@@ -175,7 +175,7 @@
                 "un lago para equilibrar el mundo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アグノム",
             "category": "いしポケモン",
             "entry_text": [

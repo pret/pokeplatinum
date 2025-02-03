@@ -1,5 +1,4 @@
 {
-    "name": "Granbull",
     "base_stats": {
         "hp": 90,
         "attack": 120,
@@ -129,7 +128,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "GRANBULL",
             "category": "Fairy Pokémon",
             "entry_text": [
                 "It is timid in spite of its looks.\n",
@@ -137,7 +137,7 @@
                 "it will strike with its huge fangs."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GRANBULL",
             "category": "Pokémon Fée",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "mord de ses énormes crocs."
             ]
         },
-        "german": {
+        "de": {
             "name": "GRANBULL",
             "category": "Fee",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "schnappt es mit seinen Fängen zu."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GRANBULL",
             "category": "Pokémon Fata",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "colpisce con le sue enormi zanne."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GRANBULL",
             "category": "Pokémon Hada",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "enfada ataca con sus colmillos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "グランブル",
             "category": "ようせいポケモン",
             "entry_text": [

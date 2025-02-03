@@ -1,5 +1,4 @@
 {
-    "name": "Venonat",
     "base_stats": {
         "hp": 60,
         "attack": 55,
@@ -105,7 +104,8 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "english": {
+        "en": {
+            "name": "VENONAT",
             "category": "Insect Pokémon",
             "entry_text": [
                 "Its big eyes are actually clusters\n",
@@ -113,7 +113,7 @@
                 "drawn by light."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MIMITOSS",
             "category": "Pokémon Vermine",
             "entry_text": [
@@ -122,7 +122,7 @@
                 "nuit, il est attiré par la lumière."
             ]
         },
-        "german": {
+        "de": {
             "name": "BLUZUK",
             "category": "Insekt",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "es von Licht angezogen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VENONAT",
             "category": "Pokémon Insetto",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "Di notte, è attirato dalla luce."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VENONAT",
             "category": "Pokémon Insecto",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "noche se siente atraído por la luz."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コンパン",
             "category": "こんちゅうポケモン",
             "entry_text": [

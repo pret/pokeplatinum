@@ -1,5 +1,4 @@
 {
-    "name": "Nosepass",
     "base_stats": {
         "hp": 30,
         "attack": 45,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "NOSEPASS",
             "category": "Compass Pokémon",
             "entry_text": [
                 "When endangered, it may protect\n",
@@ -124,7 +124,7 @@
                 "drawing iron objects to its body."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TARINOR",
             "category": "Pokémon Boussole",
             "entry_text": [
@@ -133,12 +133,12 @@
                 "face au nord."
             ]
         },
-        "german": {
+        "de": {
             "name": "NASGNET",
             "category": "Kompass",
             "entry_text": [ "Seine Nase ist ein Magnet. Daher\n", "sieht das PKMN immer nach Norden." ]
         },
-        "italian": {
+        "it": {
             "name": "NOSEPASS",
             "category": "Pokémon Bussola",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "verso nord."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NOSEPASS",
             "category": "Pokémon Brújula",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "se orienta al norte."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ノズパス",
             "category": "コンパスポケモン",
             "entry_text": [

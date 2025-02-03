@@ -5,41 +5,41 @@
 # the authority on mapping the in-repo filename of each bank and the index of that bank within the
 # archive. All text bank files to be processed *must* have a name which *matches* their
 # corresponding entry in `generated/text_banks.txt`, minus the `TEXT_BANK_` prefix. For example,
-# `TEXT_BANK_SPECIES_NAMES` corresponds to a file named `species_names`.
+# `TEXT_BANK_SPECIES_NAME` corresponds to a file named `species_names`.
 
 # 1. Declare a set of files which are known to be generated. As with all other text banks, these
 # *must* have names which match the values in `generated/text_banks.txt`, minus the `TEXT_BANK_`
 # prefix, and in lower-case.
-pokedex_text_bank_names = [
-    'species_names.gmm',
-    'species_names_with_articles.gmm',
-    'dex_entry_french.gmm',
-    'dex_entry_german.gmm',
-    'dex_entry_italian.gmm',
-    'dex_entry_spanish.gmm',
-    'dex_entry_japanese.gmm',
-    'dex_entry_english.gmm',
+species_text_bank_names = [
+    'species_name.gmm',
+    'species_name_with_articles.gmm',
+    'species_pokedex_entry_fr.gmm',
+    'species_pokedex_entry_de.gmm',
+    'species_pokedex_entry_it.gmm',
+    'species_pokedex_entry_es.gmm',
+    'species_pokedex_entry_jp.gmm',
+    'species_pokedex_entry_en.gmm',
     'species_weight.gmm',
     'species_weight_gira.gmm',
     'species_height.gmm',
     'species_height_gira.gmm',
     'species_category.gmm',
-    'species_name_number_english.gmm',
-    'species_name_number_french.gmm',
-    'species_name_number_german.gmm',
-    'species_name_number_italian.gmm',
-    'species_name_number_spanish.gmm',
-    'species_name_number_japanese.gmm',
-    'species_category_english.gmm',
-    'species_category_french.gmm',
-    'species_category_german.gmm',
-    'species_category_italian.gmm',
-    'species_category_spanish.gmm',
-    'species_category_japanese.gmm'
+    'species_name_with_natdex_number_en.gmm',
+    'species_name_with_natdex_number_fr.gmm',
+    'species_name_with_natdex_number_de.gmm',
+    'species_name_with_natdex_number_it.gmm',
+    'species_name_with_natdex_number_es.gmm',
+    'species_name_with_natdex_number_jp.gmm',
+    'species_category_en.gmm',
+    'species_category_fr.gmm',
+    'species_category_de.gmm',
+    'species_category_it.gmm',
+    'species_category_es.gmm',
+    'species_category_jp.gmm'
 ]
 
 # This list will be what's used hereafter when referring to any-and-all generated banks.
-generated_text_banks = pokedex_text_bank_names
+generated_text_banks = species_text_bank_names
 
 # 2. All other files must be static. Pull these from `generated/text_banks.txt`. This allows us
 # to circumvent needing to build an NAIX, which reduces overall build depenedencies and speeds
@@ -83,19 +83,18 @@ gmm_to_bin_gen = generator(msgenc_exe,
 )
 
 # 5. Set up targets which build generated text banks and build the final NARC.
-pokedex_text_banks = custom_target('pokedex_text_banks',
-    output: pokedex_text_bank_names,
+species_text_banks = custom_target('species_text_banks',
+    output: species_text_bank_names,
     command: [
-        make_pokedex_text_banks_py,
+        make_species_text_banks_py,
         '--source-dir', pokemon_data_root,
-        '--output-dir', '@OUTDIR@',
-        pokedex_text_bank_names
+        '--output-dir', '@OUTDIR@'
     ],
     env: species_env,
     depend_files: [ species_data_files ],
 )
 
-text_bank_files += pokedex_text_banks
+text_bank_files += species_text_banks
 
 text_banks = custom_target('pl_msg.narc',
     output: 'pl_msg.narc',

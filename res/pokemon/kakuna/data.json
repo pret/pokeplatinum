@@ -1,5 +1,4 @@
 {
-    "name": "Kakuna",
     "base_stats": {
         "hp": 45,
         "attack": 25,
@@ -63,7 +62,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "KAKUNA",
             "category": "Cocoon Pokémon",
             "entry_text": [
                 "While awaiting evolution, it\n",
@@ -71,7 +71,7 @@
                 "leaves and in nooks of branches."
             ]
         },
-        "french": {
+        "fr": {
             "name": "COCONFORT",
             "category": "Pokémon Cocon",
             "entry_text": [
@@ -80,7 +80,7 @@
                 "en attendant d’évoluer."
             ]
         },
-        "german": {
+        "de": {
             "name": "KOKUNA",
             "category": "Kokon",
             "entry_text": [
@@ -89,7 +89,7 @@
                 "Blättern und zwischen Ästen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KAKUNA",
             "category": "Pokémon Bozzolo",
             "entry_text": [
@@ -98,7 +98,7 @@
                 "dell’evoluzione."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KAKUNA",
             "category": "Pokémon Capullo",
             "entry_text": [
@@ -107,7 +107,7 @@
                 "mientras espera a evolucionar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コク－ン",
             "category": "さなぎポケモン",
             "entry_text": [

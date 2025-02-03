@@ -1,5 +1,4 @@
 {
-    "name": "Houndour",
     "base_stats": {
         "hp": 45,
         "attack": 60,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "HOUNDOUR",
             "category": "Dark Pokémon",
             "entry_text": [
                 "It is smart enough to hunt in\n",
@@ -127,7 +127,7 @@
                 "for communicating with others."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MALOSSE",
             "category": "Pokémon Sombre",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "en meute pour abattre ses proies."
             ]
         },
-        "german": {
+        "de": {
             "name": "HUNDUSTER",
             "category": "Hades",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "PKMN jagen im Verbund nach Beute."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HOUNDOUR",
             "category": "Pokémon Buio",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "catturare le prede con l’astuzia."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HOUNDOUR",
             "category": "Pokémon Siniestro",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "a sus presas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "デルビル",
             "category": "ダ－クポケモン",
             "entry_text": [

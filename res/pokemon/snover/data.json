@@ -1,5 +1,4 @@
 {
-    "name": "Snover",
     "base_stats": {
         "hp": 60,
         "attack": 62,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "SNOVER",
             "category": "Frost Tree Pokémon",
             "entry_text": [
                 "Seemingly curious about people,\n",
@@ -122,7 +122,7 @@
                 "find on snowy mountains."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BLIZZI",
             "category": "Pokémon Arbregelé",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "il lui arrive d’être très indiscret."
             ]
         },
-        "german": {
+        "de": {
             "name": "SHNEBEDECK",
             "category": "Frostbaum",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "schen und ist daher sehr neugierig."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SNOVER",
             "category": "Pokémon Albergelo",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "è molto curioso nei loro confronti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SNOVER",
             "category": "Pokémon Árbol Nieve",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "humanos y es muy curioso."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ユキカブリ",
             "category": "じゅひょうポケモン",
             "entry_text": [

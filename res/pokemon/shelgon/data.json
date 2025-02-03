@@ -1,5 +1,4 @@
 {
-    "name": "Shelgon",
     "base_stats": {
         "hp": 65,
         "attack": 95,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "english": {
+        "en": {
+            "name": "SHELGON",
             "category": "Endurance Pokémon",
             "entry_text": [
                 "Within its rugged shell, its cells\n",
@@ -126,7 +126,7 @@
                 "peels off the instant it evolves."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DRACKHAUS",
             "category": "Pokémon Endurant",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "Il la perd en évoluant."
             ]
         },
-        "german": {
+        "de": {
             "name": "DRASCHEL",
             "category": "Durchsteher",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "sobald sich das PKMN entwickelt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SHELGON",
             "category": "Pokémon Resistenza",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "Quando si evolve, la corazza cade."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SHELGON",
             "category": "Pokémon Resistencia",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "separa cuando evoluciona."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コモル－",
             "category": "にんたいポケモン",
             "entry_text": [

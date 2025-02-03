@@ -1,5 +1,4 @@
 {
-    "name": "Misdreavus",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65527,
-        "english": {
+        "en": {
+            "name": "MISDREAVUS",
             "category": "Screech Pokémon",
             "entry_text": [
                 "A Pokémon that startles people in\n",
@@ -132,7 +132,7 @@
                 "fear as its energy."
             ]
         },
-        "french": {
+        "fr": {
             "name": "FEUFOREVE",
             "category": "Pokémon Strident",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "avec son cri strident."
             ]
         },
-        "german": {
+        "de": {
             "name": "TRAUNFUGIL",
             "category": "Kreischer",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "schrillen Schrei zu erschrecken."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MISDREAVUS",
             "category": "Pokémon Strido",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "il suo urlo stridulo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MISDREAVUS",
             "category": "Pokémon Chirrido",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "estridentes gritos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ムウマ",
             "category": "よなきポケモン",
             "entry_text": [

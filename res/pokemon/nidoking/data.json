@@ -1,5 +1,4 @@
 {
-    "name": "Nidoking",
     "base_stats": {
         "hp": 81,
         "attack": 92,
@@ -133,7 +132,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "NIDOKING",
             "category": "Drill Pokémon",
             "entry_text": [
                 "One swing of its mighty tail can\n",
@@ -141,7 +141,7 @@
                 "a matchstick."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NIDOKING",
             "category": "Pokémon Perceur",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "comme une allumette."
             ]
         },
-        "german": {
+        "de": {
             "name": "NIDOKING",
             "category": "Bohrer",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "masten knicken wie ein Streichholz."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NIDOKING",
             "category": "Pokémon Trapano",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "lefono come se fosse un fiammifero."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NIDOKING",
             "category": "Pokémon Taladro",
             "entry_text": [
@@ -177,7 +177,7 @@
                 "como si fuese una cerilla."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニドキング",
             "category": "ドリルポケモン",
             "entry_text": [

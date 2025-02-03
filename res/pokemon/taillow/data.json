@@ -1,5 +1,4 @@
 {
-    "name": "Taillow",
     "base_stats": {
         "hp": 40,
         "attack": 55,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 65519,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65519,
-        "english": {
+        "en": {
+            "name": "TAILLOW",
             "category": "TinySwallow Pokémon",
             "entry_text": [
                 "It has a gutsy spirit that makes\n",
@@ -115,7 +115,7 @@
                 "flies in search of warm climates."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NIRONDELLE",
             "category": "Pokémon Minirondel",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "Il vole en quête de climats chauds."
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHWALBINI",
             "category": "Schwälblein",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "ständig nach warmen Regionen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TAILLOW",
             "category": "Pokémon Rondinella",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Migra verso i paesi caldi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TAILLOW",
             "category": "Pokémon Pequebuche",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "en busca de climas templados. "
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "スバメ",
             "category": "こツバメポケモン",
             "entry_text": [

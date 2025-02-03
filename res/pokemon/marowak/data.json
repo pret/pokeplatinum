@@ -1,5 +1,4 @@
 {
-    "name": "Marowak",
     "base_stats": {
         "hp": 60,
         "attack": 80,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "MAROWAK",
             "category": "Bone Keeper Pokémon",
             "entry_text": [
                 "From its birth, this savage Pokémon\n",
@@ -136,7 +136,7 @@
                 "skilled in using them as weapons."
             ]
         },
-        "french": {
+        "fr": {
             "name": "OSSATUEUR",
             "category": "Pokémon Gard’Os",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "pour combattre avec dextérité."
             ]
         },
-        "german": {
+        "de": {
             "name": "KNOGGA",
             "category": "Knochenfan",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "talentiert als Waffen ein."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAROWAK",
             "category": "Pokémon Guardaossi",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "Lo usa abilmente come arma."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAROWAK",
             "category": "Pokémon Apilahueso",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "nacimiento y los usa como armas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ガラガラ",
             "category": "ほねずきポケモン",
             "entry_text": [

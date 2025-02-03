@@ -1,5 +1,4 @@
 {
-    "name": "Diglett",
     "base_stats": {
         "hp": 10,
         "attack": 55,
@@ -109,7 +108,8 @@
         "pokemon_pos_f": 32,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 32,
-        "english": {
+        "en": {
+            "name": "DIGLETT",
             "category": "Mole Pokémon",
             "entry_text": [
                 "A Pokémon that lives underground.\n",
@@ -117,7 +117,7 @@
                 "repelled by bright sunlight."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TAUPIQUEUR",
             "category": "Pokémon Taupe",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "lumière du jour."
             ]
         },
-        "german": {
+        "de": {
             "name": "DIGDA",
             "category": "Maulwurf",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "schreckt helles Licht es ab."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DIGLETT",
             "category": "Pokémon Talpa",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "non sopporta la luce solare."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DIGLETT",
             "category": "Pokémon Topo",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "le espanta."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ディグダ",
             "category": "もぐらポケモン",
             "entry_text": [

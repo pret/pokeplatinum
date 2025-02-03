@@ -1,5 +1,4 @@
 {
-    "name": "Blastoise",
     "base_stats": {
         "hp": 79,
         "attack": 83,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 6,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "BLASTOISE",
             "category": "Shellfish Pokémon",
             "entry_text": [
                 "The jets of water it spouts from\n",
@@ -136,7 +136,7 @@
                 "can punch through thick steel."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TORTANK",
             "category": "Pokémon Carapace",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "percer le métal le plus résistant."
             ]
         },
-        "german": {
+        "de": {
             "name": "TURTOK",
             "category": "Panzer",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "sogar Stahlwände durchdringen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BLASTOISE",
             "category": "Pokémon Crostaceo",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "a perforare persino l’acciaio."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BLASTOISE",
             "category": "Pokémon Marisco",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "pueden atravesar el acero."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "カメックス",
             "category": "こうらポケモン",
             "entry_text": [

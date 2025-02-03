@@ -1,5 +1,4 @@
 {
-    "name": "Butterfree",
     "base_stats": {
         "hp": 60,
         "attack": 45,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "english": {
+        "en": {
+            "name": "BUTTERFREE",
             "category": "Butterfly Pokémon",
             "entry_text": [
                 "It loves the honey of flowers and\n",
@@ -121,7 +121,7 @@
                 "have even tiny amounts of pollen."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PAPILUSION",
             "category": "Pokémon Papillon",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "petite quantité de pollen."
             ]
         },
-        "german": {
+        "de": {
             "name": "SMETTBO",
             "category": "Falter",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Pollen haben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BUTTERFREE",
             "category": "Pokémon Farfalla",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "anche una minima quantità di polline."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BUTTERFREE",
             "category": "Pokémon Mariposa",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "pequeñas cantidades de polen."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "バタフリ－",
             "category": "ちょうちょポケモン",
             "entry_text": [

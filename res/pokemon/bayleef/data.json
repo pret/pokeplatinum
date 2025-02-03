@@ -1,5 +1,4 @@
 {
-    "name": "Bayleef",
     "base_stats": {
         "hp": 60,
         "attack": 62,
@@ -116,7 +115,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "BAYLEEF",
             "category": "Leaf Pokémon",
             "entry_text": [
                 "The buds that ring its neck give\n",
@@ -124,7 +124,7 @@
                 "people up."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MACRONIUM",
             "category": "Pokémon Feuille",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "donne du tonus."
             ]
         },
-        "german": {
+        "de": {
             "name": "LORBLATT",
             "category": "Laub",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "das andere aufheitert."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BAYLEEF",
             "category": "Pokémon Foglia",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "dall’effetto energizzante."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BAYLEEF",
             "category": "Pokémon Hoja",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "huele."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ベイリ－フ",
             "category": "はっぱポケモン",
             "entry_text": [

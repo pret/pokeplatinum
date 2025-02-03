@@ -1,5 +1,4 @@
 {
-    "name": "Alakazam",
     "base_stats": {
         "hp": 55,
         "attack": 50,
@@ -126,7 +125,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "ALAKAZAM",
             "category": "Psi Pokémon",
             "entry_text": [
                 "The spoons clutched in its hands\n",
@@ -134,7 +134,7 @@
                 "its psychic powers."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ALAKAZAM",
             "category": "Pokémon Psy",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "naissance. Il a un Q.I. de 5 000."
             ]
         },
-        "german": {
+        "de": {
             "name": "SIMSALA",
             "category": "Psi",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "seit seiner Geburt. IQ: Über 5 000."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ALAKAZAM",
             "category": "Pokémon Psico",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "nascita. Il suo QI supera 5000."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ALAKAZAM",
             "category": "Pokémon Psi",
             "entry_text": [
@@ -170,7 +170,7 @@
                 "Su CI es superior a 5000."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "フ－ディン",
             "category": "ねんりきポケモン",
             "entry_text": [

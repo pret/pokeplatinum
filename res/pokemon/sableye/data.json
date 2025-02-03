@@ -1,5 +1,4 @@
 {
-    "name": "Sableye",
     "base_stats": {
         "hp": 50,
         "attack": 75,
@@ -133,7 +132,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "SABLEYE",
             "category": "Darkness Pokémon",
             "entry_text": [
                 "It hides in the darkness of caves.\n",
@@ -141,7 +141,7 @@
                 "its eyes into gemstones."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TENEFIX",
             "category": "Pokémon Obscurité",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "obscures sont devenus des joyaux."
             ]
         },
-        "german": {
+        "de": {
             "name": "ZOBIRIS",
             "category": "Finsternis",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "Edelsteine."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SABLEYE",
             "category": "Pokémon Oscurità",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "suoi occhi sono pietre preziose."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SABLEYE",
             "category": "Pokémon Oscuridad",
             "entry_text": [
@@ -177,7 +177,7 @@
                 "son piedras preciosas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ヤミラミ",
             "category": "くらやみポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Mudkip",
     "base_stats": {
         "hp": 50,
         "attack": 70,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "MUDKIP",
             "category": "Mud Fish Pokémon",
             "entry_text": [
                 "To alert it, the fin on its head\n",
@@ -122,7 +122,7 @@
                 "the strength to heft boulders."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GOBOU",
             "category": "Pokémon Poissonboue",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "fort pour soulever des rochers."
             ]
         },
-        "german": {
+        "de": {
             "name": "HYDROPI",
             "category": "Lehmhüpfer",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "PKMN kann Felsen heben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MUDKIP",
             "category": "Pokémon Fango Pesce",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "guardia. Riesce a sollevare rocce."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MUDKIP",
             "category": "Pokémon Pez Lodo",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "Tiene fuerza para levantar rocas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミズゴロウ",
             "category": "ぬまうおポケモン",
             "entry_text": [

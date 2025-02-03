@@ -1,5 +1,4 @@
 {
-    "name": "Regirock",
     "base_stats": {
         "hp": 80,
         "attack": 100,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "REGIROCK",
             "category": "Rock Peak Pokémon",
             "entry_text": [
                 "Its entire body is made of rock.\n",
@@ -129,7 +129,7 @@
                 "attaches rocks to repair itself."
             ]
         },
-        "french": {
+        "fr": {
             "name": "REGIROCK",
             "category": "Pokémon Pic Rocheux",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "des pierres pour le réparer."
             ]
         },
-        "german": {
+        "de": {
             "name": "REGIROCK",
             "category": "Steingipfel",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "es durch Stein wieder ersetzt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "REGIROCK",
             "category": "Pokémon Picco",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "altre per sostituirle."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "REGIROCK",
             "category": "Pokémon Pico Roca",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "emplea piedras para repararlo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "レジロック",
             "category": "いわやまポケモン",
             "entry_text": [

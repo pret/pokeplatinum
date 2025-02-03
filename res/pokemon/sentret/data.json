@@ -1,5 +1,4 @@
 {
-    "name": "Sentret",
     "base_stats": {
         "hp": 35,
         "attack": 46,
@@ -128,7 +127,8 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "english": {
+        "en": {
+            "name": "SENTRET",
             "category": "Scout Pokémon",
             "entry_text": [
                 "It has a very nervous nature.\n",
@@ -136,7 +136,7 @@
                 "can scan wide areas."
             ]
         },
-        "french": {
+        "fr": {
             "name": "FOUINETTE",
             "category": "Pokémon Espion",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "observer ses alentours."
             ]
         },
-        "german": {
+        "de": {
             "name": "WIESOR",
             "category": "Späher",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "seine Umgebung ganz genau."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SENTRET",
             "category": "Pokémon Esplorante",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "riuscire a sorvegliare ampie aree."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SENTRET",
             "category": "Pokémon Explorador",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "extensiones."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オタチ",
             "category": "みはりポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Swellow",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -106,7 +105,8 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "english": {
+        "en": {
+            "name": "SWELLOW",
             "category": "Swallow Pokémon",
             "entry_text": [
                 "It circles the sky in search of\n",
@@ -114,7 +114,7 @@
                 "steeply to catch the prey."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HELEDELLE",
             "category": "Pokémon Hirondelle",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "sur elle en un éclair."
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHWALBOSS",
             "category": "Schwalbe",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "stürzt es sich im Sturzflug auf sie."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SWELLOW",
             "category": "Pokémon Rondine",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "in picchiata per catturarla."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SWELLOW",
             "category": "Pokémon Buche",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "sin dudarlo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オオスバメ",
             "category": "ツバメポケモン",
             "entry_text": [

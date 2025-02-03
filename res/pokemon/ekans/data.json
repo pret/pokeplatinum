@@ -1,5 +1,4 @@
 {
-    "name": "Ekans",
     "base_stats": {
         "hp": 35,
         "attack": 60,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "EKANS",
             "category": "Snake Pokémon",
             "entry_text": [
                 "It sneaks through grass without\n",
@@ -123,7 +123,7 @@
                 "unsuspecting prey from behind."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ABO",
             "category": "Pokémon Serpent",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "sa proie s’y attend le moins. "
             ]
         },
-        "german": {
+        "de": {
             "name": "RETTAN",
             "category": "Schlange",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "ahnungslose Beute von hinten an. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "EKANS",
             "category": "Pokémon Serpente",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "spalle le prede ignare del pericolo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "EKANS",
             "category": "Pokémon Serpiente",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "por detrás."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ア－ボ",
             "category": "へびポケモン",
             "entry_text": [

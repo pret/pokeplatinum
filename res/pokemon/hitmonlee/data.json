@@ -1,5 +1,4 @@
 {
-    "name": "Hitmonlee",
     "base_stats": {
         "hp": 50,
         "attack": 120,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "HITMONLEE",
             "category": "Kicking Pokémon",
             "entry_text": [
                 "Its legs can stretch double.\n",
@@ -122,7 +122,7 @@
                 "its extensible reach."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KICKLEE",
             "category": "Pokémon Latteur",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "surprendre au premier combat."
             ]
         },
-        "german": {
+        "de": {
             "name": "KICKLEE",
             "category": "Kicker",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "nicht wissen, erschrecken."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HITMONLEE",
             "category": "Pokémon Tiracalci",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "che lo vedono per la prima volta."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HITMONLEE",
             "category": "Pokémon Patada",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "a enemigos desprevenidos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サワムラ－",
             "category": "キックポケモン",
             "entry_text": [

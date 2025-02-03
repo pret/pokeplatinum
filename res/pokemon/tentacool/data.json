@@ -1,5 +1,4 @@
 {
-    "name": "Tentacool",
     "base_stats": {
         "hp": 40,
         "attack": 40,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "english": {
+        "en": {
+            "name": "TENTACOOL",
             "category": "Jellyfish Pokémon",
             "entry_text": [
                 "Because its body is almost entirely\n",
@@ -119,7 +119,7 @@
                 "it is washed ashore."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TENTACOOL",
             "category": "Pokémon Mollusque",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "projettent d’étranges rayons."
             ]
         },
-        "german": {
+        "de": {
             "name": "TENTACHA",
             "category": "Qualle",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "verschießt es eigenartige Strahlen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TENTACOOL",
             "category": "Pokémon Medusa",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "misteriosi dagli occhi cristallini."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TENTACOOL",
             "category": "Pokémon Medusa",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "rayos con sus ojos cristalinos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "メノクラゲ",
             "category": "くらげポケモン",
             "entry_text": [

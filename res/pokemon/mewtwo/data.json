@@ -1,5 +1,4 @@
 {
-    "name": "Mewtwo",
     "base_stats": {
         "hp": 106,
         "attack": 110,
@@ -152,7 +151,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "MEWTWO",
             "category": "Genetic Pokémon",
             "entry_text": [
                 "A Pokémon created by recombining\n",
@@ -160,7 +160,7 @@
                 "most savage heart among Pokémon."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MEWTWO",
             "category": "Pokémon Génétique",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "s’agit du Pokémon le plus féroce."
             ]
         },
-        "german": {
+        "de": {
             "name": "MEWTU",
             "category": "Genmutant",
             "entry_text": [
@@ -178,7 +178,7 @@
                 "entstand. Es hat ein wildes Herz."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MEWTWO",
             "category": "Pokémon Genetico",
             "entry_text": [
@@ -187,7 +187,7 @@
                 "sia quello con l’animo più crudele."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MEWTWO",
             "category": "Pokémon Genético",
             "entry_text": [
@@ -196,7 +196,7 @@
                 "más salvaje de los Pokémon."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ミュウツ－",
             "category": "いでんしポケモン",
             "entry_text": [

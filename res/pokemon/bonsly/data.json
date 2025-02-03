@@ -1,5 +1,4 @@
 {
-    "name": "Bonsly",
     "base_stats": {
         "hp": 50,
         "attack": 80,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "BONSLY",
             "category": "Bonsai Pokémon",
             "entry_text": [
                 "It prefers an arid atmosphere. It\n",
@@ -118,7 +118,7 @@
                 "when adjusting its moisture level."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MANZAI",
             "category": "Pokémon Bonsaï",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "corporels en éliminant le surplus."
             ]
         },
-        "german": {
+        "de": {
             "name": "MOBAI",
             "category": "Bonsai",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "seinen Wasserhaushalt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "BONSLY",
             "category": "Pokémon Bonsai",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "del corpo eliminando gli eccessi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "BONSLY",
             "category": "Pokémon Bonsái",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "el exceso de fluidos corporales."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ウソハチ",
             "category": "ぼんさいポケモン",
             "entry_text": [

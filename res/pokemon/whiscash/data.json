@@ -1,5 +1,4 @@
 {
-    "name": "Whiscash",
     "base_stats": {
         "hp": 110,
         "attack": 78,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "english": {
+        "en": {
+            "name": "WHISCASH",
             "category": "Whiskers Pokémon",
             "entry_text": [
                 "It is extremely protective of its\n",
@@ -123,7 +123,7 @@
                 "it attacks using vicious tremors."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BARBICHA",
             "category": "Pokémon Barbillon",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "des secousses qui portent à 5 km."
             ]
         },
-        "german": {
+        "de": {
             "name": "WELSAR",
             "category": "Barthaar",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "in 5 km Entfernung zu spüren sind."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WHISCASH",
             "category": "Pokémon Baffetti",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "nando terremoti del raggio di 5 km."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WHISCASH",
             "category": "Pokémon Bigotudo",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "se sienten en un radio de 5 km."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ナマズン",
             "category": "ひげうおポケモン",
             "entry_text": [

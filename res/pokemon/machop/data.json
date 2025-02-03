@@ -1,5 +1,4 @@
 {
-    "name": "Machop",
     "base_stats": {
         "hp": 70,
         "attack": 80,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "english": {
+        "en": {
+            "name": "MACHOP",
             "category": "Superpower Pokémon",
             "entry_text": [
                 "Though small in stature, it is\n",
@@ -127,7 +127,7 @@
                 "throw a number of GEODUDE at once."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MACHOC",
             "category": "Pokémon Colosse",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "est rompu à tous les arts martiaux."
             ]
         },
-        "german": {
+        "de": {
             "name": "MACHOLLO",
             "category": "Kraftprotz",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "es sich in jeder Art v. Kampfsport."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MACHOP",
             "category": "Pokémon Megaforza",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "ogni tipo di arte marziale."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MACHOP",
             "category": "Pokémon Superpoder",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "todas las artes marciales."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ワンリキ－",
             "category": "かいりきポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Mawile",
     "base_stats": {
         "hp": 50,
         "attack": 85,
@@ -126,7 +125,8 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "english": {
+        "en": {
+            "name": "MAWILE",
             "category": "Deceiver Pokémon",
             "entry_text": [
                 "Attached to its head is a huge\n",
@@ -134,7 +134,7 @@
                 "It can chew through iron beams."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MYSDIBULE",
             "category": "Pokémon Trompeur",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "peut broyer des barres de fer. "
             ]
         },
-        "german": {
+        "de": {
             "name": "FLUNKIFER",
             "category": "Schwindler",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "besteht. Er kann Eisen zermalmen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAWILE",
             "category": "Pokémon Inganno",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "masticare persino travi di ferro."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAWILE",
             "category": "Pokémon Tramposo",
             "entry_text": [
@@ -170,7 +170,7 @@
                 "Puede romper el hierro con ellas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "クチ－ト",
             "category": "あざむきポケモン",
             "entry_text": [

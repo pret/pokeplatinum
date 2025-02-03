@@ -1,5 +1,4 @@
 {
-    "name": "Mamoswine",
     "base_stats": {
         "hp": 110,
         "attack": 130,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 18,
         "pokemon_pos_m": 5,
-        "english": {
+        "en": {
+            "name": "MAMOSWINE",
             "category": "Twin Tusk Pokémon",
             "entry_text": [
                 "A frozen one was dug up from\n",
@@ -129,7 +129,7 @@
                 "woke up to much amazement."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MAMMOCHON",
             "category": "Pokémon Deudéfenses",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "la canicule suivant l’ère glaciaire."
             ]
         },
-        "german": {
+        "de": {
             "name": "MAMUTEL",
             "category": "Doppelstoßzahn",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "Eiszeit nahm ihre Population ab."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAMOSWINE",
             "category": "Pokémon Duezanne",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "diminuita alla fine dell’era glaciale."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAMOSWINE",
             "category": "Pokémon 2colmillos",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "redujo tras la glaciación."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "マンム－",
             "category": "２ほんキバポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Metagross",
     "base_stats": {
         "hp": 80,
         "attack": 135,
@@ -127,7 +126,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "METAGROSS",
             "category": "Iron Leg Pokémon",
             "entry_text": [
                 "METANG combined to form it.\n",
@@ -135,7 +135,7 @@
                 "intelligence of a supercomputer."
             ]
         },
-        "french": {
+        "fr": {
             "name": "METALOSSE",
             "category": "Pokémon Pattefer",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "font l’égal d’un superordinateur."
             ]
         },
-        "german": {
+        "de": {
             "name": "METAGROSS",
             "category": "Eisenfuß",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "Intelligenz eines Supercomputers."
             ]
         },
-        "italian": {
+        "it": {
             "name": "METAGROSS",
             "category": "Pokémon Ferrarto",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "l’intelligenza di un supercomputer."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "METAGROSS",
             "category": "Pokémon Pata Hierro",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "inteligencia de un superordenador."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "メタグロス",
             "category": "てつあしポケモン",
             "entry_text": [

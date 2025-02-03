@@ -1,5 +1,4 @@
 {
-    "name": "Sharpedo",
     "base_stats": {
         "hp": 70,
         "attack": 120,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 65535,
-        "english": {
+        "en": {
+            "name": "SHARPEDO",
             "category": "Brutal Pokémon",
             "entry_text": [
                 "Its fangs rip through sheet iron.\n",
@@ -133,7 +133,7 @@
                 "“The Bully of the Sea.”"
             ]
         },
-        "french": {
+        "fr": {
             "name": "SHARPEDO",
             "category": "Pokémon Brutal",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "l’appelle “tyran des mers”."
             ]
         },
-        "german": {
+        "de": {
             "name": "TOHAIDO",
             "category": "Brutal",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "wird “Tyrann des Meeres” genannt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SHARPEDO",
             "category": "Pokémon Brutale",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "come il “Tiranno del mare”."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SHARPEDO",
             "category": "Pokémon Voraz",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "Le llaman el “terror de los mares”."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "サメハダ－",
             "category": "きょうぼうポケモン",
             "entry_text": [

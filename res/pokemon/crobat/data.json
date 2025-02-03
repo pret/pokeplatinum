@@ -1,5 +1,4 @@
 {
-    "name": "Crobat",
     "base_stats": {
         "hp": 85,
         "attack": 90,
@@ -117,7 +116,8 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 13,
         "pokemon_pos_m": 65533,
-        "english": {
+        "en": {
+            "name": "CROBAT",
             "category": "Bat Pokémon",
             "entry_text": [
                 "The transformation of its legs into\n",
@@ -125,7 +125,7 @@
                 "more clumsy at walking."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NOSTENFER",
             "category": "Pokémon Chovsouris",
             "entry_text": [
@@ -134,7 +134,7 @@
                 "C’est un Pokémon nocturne."
             ]
         },
-        "german": {
+        "de": {
             "name": "IKSBAT",
             "category": "Fledermaus",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "fliegen. Es ist nachtaktiv."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CROBAT",
             "category": "Pokémon Pipistrello",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "silenziosamente. È attivo di notte."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CROBAT",
             "category": "Pokémon Murciélago",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "un Pokémon nocturno."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "クロバット",
             "category": "こうもりポケモン",
             "entry_text": [

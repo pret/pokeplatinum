@@ -1,5 +1,4 @@
 {
-    "name": "Chatot",
     "base_stats": {
         "hp": 76,
         "attack": 65,
@@ -105,7 +104,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "english": {
+        "en": {
+            "name": "CHATOT",
             "category": "Music Note Pokémon",
             "entry_text": [
                 "Its tongue is just like a human’s.\n",
@@ -113,7 +113,7 @@
                 "human speech."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PIJAKO",
             "category": "Pokémon Note Musique",
             "entry_text": [
@@ -122,7 +122,7 @@
                 "retiendront les mêmes phrases."
             ]
         },
-        "german": {
+        "de": {
             "name": "PLAUDAGEI",
             "category": "Musiknote",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "bringen sie sich alle dasselbe bei."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CHATOT",
             "category": "Pokémon Musicale",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "imparano le stesse parole."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CHATOT",
             "category": "Pokémon Corchea",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "aprenden las mismas palabras."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ペラップ",
             "category": "おんぷポケモン",
             "entry_text": [

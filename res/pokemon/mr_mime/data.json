@@ -1,5 +1,4 @@
 {
-    "name": "Mr. Mime",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -138,7 +137,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "MR. MIME",
             "category": "Barrier Pokémon",
             "entry_text": [
                 "It shapes an invisible wall in midair\n",
@@ -146,7 +146,7 @@
                 "to stop molecules in the air."
             ]
         },
-        "french": {
+        "fr": {
             "name": "M. MIME",
             "category": "Pokémon Bloqueur",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "murs invisibles."
             ]
         },
-        "german": {
+        "de": {
             "name": "PANTIMOS",
             "category": "Sperre",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "allein durch Gesten erzeugen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MR. MIME",
             "category": "Pokémon Barriera",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "invisibili che sembrano reali."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MR. MIME",
             "category": "Pokémon Barrera",
             "entry_text": [
@@ -182,7 +182,7 @@
                 "sólidas solo con sus gestos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "バリヤ－ド",
             "category": "バリア－ポケモン",
             "entry_text": [

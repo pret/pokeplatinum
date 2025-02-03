@@ -1,5 +1,4 @@
 {
-    "name": "Phione",
     "base_stats": {
         "hp": 80,
         "attack": 80,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "PHIONE",
             "category": "Sea Drifter Pokémon",
             "entry_text": [
                 "It drifts in warm seas. It always\n",
@@ -115,7 +115,7 @@
                 "matter how far it may have drifted."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PHIONE",
             "category": "Pokémon Dérivenmer",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "dérive en quête de vivres."
             ]
         },
-        "german": {
+        "de": {
             "name": "PHIONE",
             "category": "Seedrift",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "Beutel auf seinem Kopf mit Luft."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PHIONE",
             "category": "Pokémon Oceanbondo",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "quale nuota alla ricerca di cibo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PHIONE",
             "category": "Pokémon Marino",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "para nadar en busca de comida."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "フィオネ",
             "category": "かいようポケモン",
             "entry_text": [

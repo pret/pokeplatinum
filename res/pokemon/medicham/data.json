@@ -1,5 +1,4 @@
 {
-    "name": "Medicham",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -130,7 +129,8 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "english": {
+        "en": {
+            "name": "MEDICHAM",
             "category": "Meditate Pokémon",
             "entry_text": [
                 "It gains the ability to see the aura\n",
@@ -138,7 +138,7 @@
                 "through starvation."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHARMINA",
             "category": "Pokémon Méditation",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "sont gracieux."
             ]
         },
-        "german": {
+        "de": {
             "name": "MEDITALIS",
             "category": "Meditation",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "Bewegungen sind sehr elegant."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MEDICHAM",
             "category": "Pokémon Meditazione",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "sono molto eleganti."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MEDICHAM",
             "category": "Pokémon Meditador",
             "entry_text": [
@@ -174,7 +174,7 @@
                 "son extremadamente elegantes."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "チャ－レム",
             "category": "めいそうポケモン",
             "entry_text": [

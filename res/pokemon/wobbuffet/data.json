@@ -1,5 +1,4 @@
 {
-    "name": "Wobbuffet",
     "base_stats": {
         "hp": 190,
         "attack": 33,
@@ -59,7 +58,8 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "english": {
+        "en": {
+            "name": "WOBBUFFET",
             "category": "Patient Pokémon",
             "entry_text": [
                 "It desperately tries to keep its\n",
@@ -67,7 +67,7 @@
                 "proof the tail hides a secret."
             ]
         },
-        "french": {
+        "fr": {
             "name": "QULBUTOKE",
             "category": "Pokémon Patient",
             "entry_text": [
@@ -76,7 +76,7 @@
                 "qu’elle renferme un secret. "
             ]
         },
-        "german": {
+        "de": {
             "name": "WOINGENAU",
             "category": "Geduld",
             "entry_text": [
@@ -85,7 +85,7 @@
                 "Er soll ein Geheimnis enthalten."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WOBBUFFET",
             "category": "Pokémon Pazienza",
             "entry_text": [
@@ -94,7 +94,7 @@
                 "che essa celi un segreto."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WOBBUFFET",
             "category": "Pokémon Paciente",
             "entry_text": [
@@ -103,7 +103,7 @@
                 "contiene un secreto."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ソ－ナンス",
             "category": "がまんポケモン",
             "entry_text": [

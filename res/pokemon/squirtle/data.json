@@ -1,5 +1,4 @@
 {
-    "name": "Squirtle",
     "base_stats": {
         "hp": 44,
         "attack": 48,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "english": {
+        "en": {
+            "name": "SQUIRTLE",
             "category": "Tiny Turtle Pokémon",
             "entry_text": [
                 "It shelters itself in its shell,\n",
@@ -127,7 +127,7 @@
                 "water at every opportunity."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CARAPUCE",
             "category": "Pokémon Minitortue",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "l’ennemi à la première occasion."
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHIGGY",
             "category": "Minikröte",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "Wasserstrahlen seine Gegner an."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SQUIRTLE",
             "category": "Pokémon Tartaghina",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "il nemico con spruzzi d’acqua."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SQUIRTLE",
             "category": "Pokémon Tortuguita",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "presión cuando tiene oportunidad."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゼニガメ",
             "category": "かめのこポケモン",
             "entry_text": [

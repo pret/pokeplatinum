@@ -1,5 +1,4 @@
 {
-    "name": "Gyarados",
     "base_stats": {
         "hp": 95,
         "attack": 125,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 22,
         "pokemon_pos_m": 0,
-        "english": {
+        "en": {
+            "name": "GYARADOS",
             "category": "Atrocious Pokémon",
             "entry_text": [
                 "Once it begins to rampage, a\n",
@@ -129,7 +129,7 @@
                 "down, even in a harsh storm."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LEVIATOR",
             "category": "Pokémon Terrifiant",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "plaines et montagnes alentour."
             ]
         },
-        "german": {
+        "de": {
             "name": "GARADOS",
             "category": "Grausam",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "und Berge ringsum zerstört hat."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GYARADOS",
             "category": "Pokémon Atroce",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "attorno a sé."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GYARADOS",
             "category": "Pokémon Atrocidad",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "campos y montañas vecinos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ギャラドス",
             "category": "きょうあくポケモン",
             "entry_text": [

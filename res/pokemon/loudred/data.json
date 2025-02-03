@@ -1,5 +1,4 @@
 {
-    "name": "Loudred",
     "base_stats": {
         "hp": 84,
         "attack": 71,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "english": {
+        "en": {
+            "name": "LOUDRED",
             "category": "Big Voice Pokémon",
             "entry_text": [
                 "The shock waves from its cries can\n",
@@ -132,7 +132,7 @@
                 "feet to power up."
             ]
         },
-        "french": {
+        "fr": {
             "name": "RAMBOUM",
             "category": "Pokémon Grosse Voix",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "trépigne pour augmenter sa force."
             ]
         },
-        "german": {
+        "de": {
             "name": "KRAKEELO",
             "category": "Lauthals",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "LKW umkippen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LOUDRED",
             "category": "Pokémon Vocione",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "piedi per accumulare energia."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LOUDRED",
             "category": "Pokémon Chillón",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "para ganar potencia."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ドゴ－ム",
             "category": "おおごえポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Krabby",
     "base_stats": {
         "hp": 30,
         "attack": 105,
@@ -122,7 +121,8 @@
         "pokemon_pos_f": 30,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 30,
-        "english": {
+        "en": {
+            "name": "KRABBY",
             "category": "River Crab Pokémon",
             "entry_text": [
                 "It lives in burrows dug on sandy\n",
@@ -130,7 +130,7 @@
                 "back if they are broken in battle."
             ]
         },
-        "french": {
+        "fr": {
             "name": "KRABBY",
             "category": "Pokémon Doux Crabe",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "pinces repoussent si on les brise."
             ]
         },
-        "german": {
+        "de": {
             "name": "KRABBY",
             "category": "Krabbe",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "im Kampf verliert."
             ]
         },
-        "italian": {
+        "it": {
             "name": "KRABBY",
             "category": "Pokémon Granchio",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "se si spezzano nella lotta."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "KRABBY",
             "category": "Pokémon Cangrejo",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "vuelven a crecer si se rompen."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "クラブ",
             "category": "さわがにポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Seaking",
     "base_stats": {
         "hp": 80,
         "attack": 92,
@@ -107,7 +106,8 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "english": {
+        "en": {
+            "name": "SEAKING",
             "category": "Goldfish Pokémon",
             "entry_text": [
                 "In autumn, its body becomes more\n",
@@ -115,7 +115,7 @@
                 "mate. It takes on beautiful colors."
             ]
         },
-        "french": {
+        "fr": {
             "name": "POISSOROY",
             "category": "Pokémon Poisson",
             "entry_text": [
@@ -124,7 +124,7 @@
                 "Il donnerait sa vie pour ses œufs."
             ]
         },
-        "german": {
+        "de": {
             "name": "GOLKING",
             "category": "Goldfisch",
             "entry_text": [
@@ -133,7 +133,7 @@
                 "verteidigt seine Eier mit dem Leben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SEAKING",
             "category": "Pokémon Pescerosso",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "Difende le uova a costo della vita."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SEAKING",
             "category": "Pokémon Pez Color",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "sus huevos con su vida."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アズマオウ",
             "category": "きんぎょポケモン",
             "entry_text": [

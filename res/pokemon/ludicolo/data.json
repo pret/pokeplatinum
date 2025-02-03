@@ -1,5 +1,4 @@
 {
-    "name": "Ludicolo",
     "base_stats": {
         "hp": 80,
         "attack": 70,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "LUDICOLO",
             "category": "Carefree Pokémon",
             "entry_text": [
                 "If it hears festive music, all its\n",
@@ -122,7 +122,7 @@
                 "help breaking out into a dance."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LUDICOLO",
             "category": "Pokémon Insouciant",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "peut pas s’empêcher de danser."
             ]
         },
-        "german": {
+        "de": {
             "name": "KAPPALORES",
             "category": "Sorglos",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "dann einfach tanzen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LUDICOLO",
             "category": "Pokémon Spensierato",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "non riesce ad evitare di ballare."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LUDICOLO",
             "category": "Pokémon Optimista",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "no puede evitar ponerse a bailar."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ルンパッパ",
             "category": "のうてんきポケモン",
             "entry_text": [

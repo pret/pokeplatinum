@@ -1,5 +1,4 @@
 {
-    "name": "Tyranitar",
     "base_stats": {
         "hp": 100,
         "attack": 134,
@@ -146,7 +145,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "TYRANITAR",
             "category": "Armor Pokémon",
             "entry_text": [
                 "If it rampages, it knocks down\n",
@@ -154,7 +154,7 @@
                 "must be redrawn afterward."
             ]
         },
-        "french": {
+        "fr": {
             "name": "TYRANOCIF",
             "category": "Pokémon Armure",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "On doit alors modifier les cartes."
             ]
         },
-        "german": {
+        "de": {
             "name": "DESPOTAR",
             "category": "Panzer",
             "entry_text": [
@@ -172,7 +172,7 @@
                 "trocken."
             ]
         },
-        "italian": {
+        "it": {
             "name": "TYRANITAR",
             "category": "Pokémon Armatura",
             "entry_text": [
@@ -181,7 +181,7 @@
                 "mappe devono essere riscritte. "
             ]
         },
-        "spanish": {
+        "es": {
             "name": "TYRANITAR",
             "category": "Pokémon Coraza",
             "entry_text": [
@@ -190,7 +190,7 @@
                 "mucho trabajo a los cartógrafos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "バンギラス",
             "category": "よろいポケモン",
             "entry_text": [

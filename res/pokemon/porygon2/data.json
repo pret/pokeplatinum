@@ -1,5 +1,4 @@
 {
-    "name": "Porygon2",
     "base_stats": {
         "hp": 85,
         "attack": 80,
@@ -122,7 +121,8 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "english": {
+        "en": {
+            "name": "PORYGON2",
             "category": "Virtual Pokémon",
             "entry_text": [
                 "It was upgraded to enable the\n",
@@ -130,7 +130,7 @@
                 "However, it failed to measure up."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PORYGON2",
             "category": "Pokémon Virtuel",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "de travailler dans l’espace."
             ]
         },
-        "german": {
+        "de": {
             "name": "PORYGON2",
             "category": "Virtuell",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "sich auch im All bewegen kann."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PORYGON2",
             "category": "Pokémon Virtuale",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "capace di lavorare nello spazio."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PORYGON2",
             "category": "Pokémon Virtual",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "permite trabajar en el espacio."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ポリゴン２",
             "category": "バ－チャルポケモン",
             "entry_text": [

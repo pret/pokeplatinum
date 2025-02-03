@@ -1,5 +1,4 @@
 {
-    "name": "Stantler",
     "base_stats": {
         "hp": 73,
         "attack": 95,
@@ -121,7 +120,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 8,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "STANTLER",
             "category": "Big Horn Pokémon",
             "entry_text": [
                 "Staring at its antlers creates\n",
@@ -129,7 +129,7 @@
                 "being drawn into their centers."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CERFROUSSE",
             "category": "Pokémon Maxi Corne",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "comme si leur centre l’attirait."
             ]
         },
-        "german": {
+        "de": {
             "name": "DAMHIRPLEX",
             "category": "Vielender",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "Mitte gezogen zu werden."
             ]
         },
-        "italian": {
+        "it": {
             "name": "STANTLER",
             "category": "Pokémon Grancorno",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "se venisse risucchiato."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "STANTLER",
             "category": "Pokémon Grancuerno",
             "entry_text": [
@@ -165,7 +165,7 @@
                 "pérdida de equilibrio."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オドシシ",
             "category": "おおツノポケモン",
             "entry_text": [

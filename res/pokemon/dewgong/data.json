@@ -1,5 +1,4 @@
 {
-    "name": "Dewgong",
     "base_stats": {
         "hp": 90,
         "attack": 70,
@@ -112,7 +111,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 5,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "DEWGONG",
             "category": "Sea Lion Pokémon",
             "entry_text": [
                 "In snow, the pure white coat\n",
@@ -120,7 +120,7 @@
                 "predators."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LAMANTINE",
             "category": "Pokémon Otarie",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "dissimule aux yeux des prédateurs."
             ]
         },
-        "german": {
+        "de": {
             "name": "JUGONG",
             "category": "Seehund",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "unsichtbar für Gegner macht."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DEWGONG",
             "category": "Pokémon Otaria",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "lo rende meno visibile ai predatori."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DEWGONG",
             "category": "Pokémon León Mar.",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "en la nieve."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ジュゴン",
             "category": "あしかポケモン",
             "entry_text": [

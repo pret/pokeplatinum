@@ -1,5 +1,4 @@
 {
-    "name": "Ursaring",
     "base_stats": {
         "hp": 90,
         "attack": 130,
@@ -127,7 +126,8 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "english": {
+        "en": {
+            "name": "URSARING",
             "category": "Hibernator Pokémon",
             "entry_text": [
                 "In its territory, it leaves\n",
@@ -135,7 +135,7 @@
                 "delicious berries or fruits."
             ]
         },
-        "french": {
+        "fr": {
             "name": "URSARING",
             "category": "Pokémon Hibernant",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "portent des Baies ou des fruits."
             ]
         },
-        "german": {
+        "de": {
             "name": "URSARING",
             "category": "Schläfer",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "oder Beeren tragen, mit Kratzern."
             ]
         },
-        "italian": {
+        "it": {
             "name": "URSARING",
             "category": "Pokémon Letargo",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "o frutti deliziosi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "URSARING",
             "category": "Pokémon Hibernante",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "gustan para marcarlos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "リングマ",
             "category": "とうみんポケモン",
             "entry_text": [

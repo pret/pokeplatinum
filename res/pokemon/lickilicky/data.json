@@ -1,5 +1,4 @@
 {
-    "name": "Lickilicky",
     "base_stats": {
         "hp": 110,
         "attack": 85,
@@ -133,7 +132,8 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "english": {
+        "en": {
+            "name": "LICKILICKY",
             "category": "Licking Pokémon",
             "entry_text": [
                 "The long tongue is always soggy\n",
@@ -141,7 +141,7 @@
                 "a solvent that causes numbness."
             ]
         },
-        "french": {
+        "fr": {
             "name": "COUDLANGUE",
             "category": "Pokémon Lécheur",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "finissent couverts de bave."
             ]
         },
-        "german": {
+        "de": {
             "name": "SCHLURPLEK",
             "category": "Schlecker",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "nahe, wird man eingespeichelt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "LICKILICKY",
             "category": "Pokémon Linguaccia",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "si ritroverà tutto bagnato di bava."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "LICKILICKY",
             "category": "Pokémon Lametazo",
             "entry_text": [
@@ -177,7 +177,7 @@
                 "te deja lleno de babas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ベロベルト",
             "category": "なめまわしポケモン",
             "entry_text": [

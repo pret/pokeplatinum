@@ -1,5 +1,4 @@
 {
-    "name": "Shroomish",
     "base_stats": {
         "hp": 60,
         "attack": 40,
@@ -106,7 +105,8 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "SHROOMISH",
             "category": "Mushroom Pokémon",
             "entry_text": [
                 "It spouts poison spores from the\n",
@@ -114,7 +114,7 @@
                 "cause pain all over if inhaled."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BALIGNON",
             "category": "Pokémon Champignon",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "dangereux de les inhaler."
             ]
         },
-        "german": {
+        "de": {
             "name": "KNILZ",
             "category": "Pilz",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "verursachen sie Schmerzen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SHROOMISH",
             "category": "Pokémon Fungo",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "provocano dolore in tutto il corpo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SHROOMISH",
             "category": "Pokémon Hongo",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "Inhalarlas es muy doloroso."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "キノココ",
             "category": "きのこポケモン",
             "entry_text": [

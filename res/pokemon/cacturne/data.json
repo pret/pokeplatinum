@@ -1,5 +1,4 @@
 {
-    "name": "Cacturne",
     "base_stats": {
         "hp": 70,
         "attack": 115,
@@ -123,7 +122,8 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "english": {
+        "en": {
+            "name": "CACTURNE",
             "category": "Scarecrow Pokémon",
             "entry_text": [
                 "It becomes active at night,\n",
@@ -131,7 +131,7 @@
                 "from the day’s desert heat."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CACTURNE",
             "category": "Pokémon Epouvantail",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "une journée dans le désert."
             ]
         },
-        "german": {
+        "de": {
             "name": "NOKTUSKA",
             "category": "Vogelschock",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "Wüste bereits erschöpft ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CACTURNE",
             "category": "Pokémon Spavento",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "calura del deserto."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CACTURNE",
             "category": "Pokémon Espantajo",
             "entry_text": [
@@ -167,7 +167,7 @@
                 "diurno del desierto."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ノクタス",
             "category": "カカシぐさポケモン",
             "entry_text": [

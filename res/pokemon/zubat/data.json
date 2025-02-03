@@ -1,5 +1,4 @@
 {
-    "name": "Zubat",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 65525,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65525,
-        "english": {
+        "en": {
+            "name": "ZUBAT",
             "category": "Bat Pokémon",
             "entry_text": [
                 "It checks its surroundings and\n",
@@ -123,7 +123,7 @@
                 "ultrasonic waves from its mouth."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NOSFERAPTI",
             "category": "Pokémon Chovsouris",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "ultrasons émis par sa gueule."
             ]
         },
-        "german": {
+        "de": {
             "name": "ZUBAT",
             "category": "Fledermaus",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "Ultraschallwellen wahrnehmen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ZUBAT",
             "category": "Pokémon Pipistrello",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "che emette dalla bocca."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ZUBAT",
             "category": "Pokémon Murciélago",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "ultrasónicas que emite su boca."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ズバット",
             "category": "こうもりポケモン",
             "entry_text": [

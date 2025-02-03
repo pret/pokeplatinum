@@ -1,5 +1,4 @@
 {
-    "name": "Aipom",
     "base_stats": {
         "hp": 55,
         "attack": 70,
@@ -133,7 +132,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "AIPOM",
             "category": "Long Tail Pokémon",
             "entry_text": [
                 "It lives high among the treetops.\n",
@@ -141,7 +141,7 @@
                 "cleverly as its hands."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CAPUMAIN",
             "category": "Pokémon Longqueue",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "agile que ses mains."
             ]
         },
-        "german": {
+        "de": {
             "name": "GRIFFEL",
             "category": "Langschweif",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "geschickter als mit den Händen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "AIPOM",
             "category": "Pokémon Lungacoda",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "sua coda è più agile delle mani."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "AIPOM",
             "category": "Pokémon Cola Larga",
             "entry_text": [
@@ -177,7 +177,7 @@
                 "es más hábil que sus manos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エイパム",
             "category": "おながポケモン",
             "entry_text": [

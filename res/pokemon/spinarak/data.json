@@ -1,5 +1,4 @@
 {
-    "name": "Spinarak",
     "base_stats": {
         "hp": 40,
         "attack": 60,
@@ -105,7 +104,8 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "english": {
+        "en": {
+            "name": "SPINARAK",
             "category": "String Spit Pokémon",
             "entry_text": [
                 "It sets a trap by spinning a web\n",
@@ -113,7 +113,7 @@
                 "motionlessly for prey to arrive."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MIMIGAL",
             "category": "Pokémon Crache Fil",
             "entry_text": [
@@ -122,7 +122,7 @@
                 "dans l’attente d’une proie."
             ]
         },
-        "german": {
+        "de": {
             "name": "WEBARAK",
             "category": "Fadenwurf",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "spinnt. Es wartet still auf Beute."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SPINARAK",
             "category": "Pokémon Tela",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "la preda senza muoversi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SPINARAK",
             "category": "Pokémon Escupesoga",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "espera inmóvil a su presa."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "イトマル",
             "category": "いとはきポケモン",
             "entry_text": [

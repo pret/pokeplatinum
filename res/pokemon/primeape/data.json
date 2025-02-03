@@ -1,5 +1,4 @@
 {
-    "name": "Primeape",
     "base_stats": {
         "hp": 65,
         "attack": 105,
@@ -129,7 +128,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "english": {
+        "en": {
+            "name": "PRIMEAPE",
             "category": "Pig Monkey Pokémon",
             "entry_text": [
                 "It grows angry if you see its eyes\n",
@@ -137,7 +137,7 @@
                 "beat it, it gets even madder."
             ]
         },
-        "french": {
+        "fr": {
             "name": "COLOSSINGE",
             "category": "Pokémon Porsinge",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "fou de rage quand on le frappe."
             ]
         },
-        "german": {
+        "de": {
             "name": "RASAFF",
             "category": "Schw./ Affe",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "noch wütender. Ärgerst du es..."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PRIMEAPE",
             "category": "Pokémon Suinpanzé",
             "entry_text": [
@@ -164,7 +164,7 @@
                 "sconfiggi, s’arrabbia ancor di più."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PRIMEAPE",
             "category": "Pokémon Mono Cerdo",
             "entry_text": [
@@ -173,7 +173,7 @@
                 "si le golpeas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "オコリザル",
             "category": "ぶたざるポケモン",
             "entry_text": [

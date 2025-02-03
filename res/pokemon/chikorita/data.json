@@ -1,5 +1,4 @@
 {
-    "name": "Chikorita",
     "base_stats": {
         "hp": 45,
         "attack": 49,
@@ -112,7 +111,8 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "english": {
+        "en": {
+            "name": "CHIKORITA",
             "category": "Leaf Pokémon",
             "entry_text": [
                 "It uses the leaf on its head to\n",
@@ -120,7 +120,7 @@
                 "humidity. It loves to sunbathe."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GERMIGNON",
             "category": "Pokémon Feuille",
             "entry_text": [
@@ -129,7 +129,7 @@
                 "tête. Il raffole des bains de soleil."
             ]
         },
-        "german": {
+        "de": {
             "name": "ENDIVIE",
             "category": "Laub",
             "entry_text": [
@@ -138,7 +138,7 @@
                 "Feuchtigkeit. Es liebt Sonnenbäder."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CHIKORITA",
             "category": "Pokémon Foglia",
             "entry_text": [
@@ -147,7 +147,7 @@
                 "l’umidità. Ama crogiolarsi al sole."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CHIKORITA",
             "category": "Pokémon Hoja",
             "entry_text": [
@@ -156,7 +156,7 @@
                 "Le encanta tomar el sol."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "チコリ－タ",
             "category": "はっぱポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Roserade",
     "base_stats": {
         "hp": 60,
         "attack": 70,
@@ -100,7 +99,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "ROSERADE",
             "category": "Bouquet Pokémon",
             "entry_text": [
                 "Each of its hands contains\n",
@@ -108,7 +108,7 @@
                 "can jab with near-fatal power."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ROSERADE",
             "category": "Pokémon Bouquet",
             "entry_text": [
@@ -117,7 +117,7 @@
                 "fouets d’épines de ses bras."
             ]
         },
-        "german": {
+        "de": {
             "name": "ROSERADE",
             "category": "Blumenstrauß",
             "entry_text": [
@@ -126,7 +126,7 @@
                 "Ranken in seinen Armen schlägt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ROSERADE",
             "category": "Pokémon Floreale",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "celate fra i bouquet delle braccia."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ROSERADE",
             "category": "Pokémon Ramillete",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "látigos espinosos de sus brazos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ロズレイド",
             "category": "ブ－ケポケモン",
             "entry_text": [

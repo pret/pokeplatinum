@@ -1,5 +1,4 @@
 {
-    "name": "Arcanine",
     "base_stats": {
         "hp": 90,
         "attack": 110,
@@ -102,7 +101,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "ARCANINE",
             "category": "Legendary Pokémon",
             "entry_text": [
                 "Its proud and regal appearance\n",
@@ -110,7 +110,7 @@
                 "people since long ago."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ARCANIN",
             "category": "Pokémon Légendaire",
             "entry_text": [
@@ -119,7 +119,7 @@
                 "le cœur des hommes."
             ]
         },
-        "german": {
+        "de": {
             "name": "ARKANI",
             "category": "Legendär",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "Herzen der Menschen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ARCANINE",
             "category": "Pokémon Leggenda",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "a conquistare i cuori della gente."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ARCANINE",
             "category": "Pokémon Legendario",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "gente hace tiempo."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ウインディ",
             "category": "でんせつポケモン",
             "entry_text": [

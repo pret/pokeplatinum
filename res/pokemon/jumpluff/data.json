@@ -1,5 +1,4 @@
 {
-    "name": "Jumpluff",
     "base_stats": {
         "hp": 75,
         "attack": 55,
@@ -110,7 +109,8 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "english": {
+        "en": {
+            "name": "JUMPLUFF",
             "category": "Cottonweed Pokémon",
             "entry_text": [
                 "Blown by seasonal winds, it\n",
@@ -118,7 +118,7 @@
                 "cotton spores as it goes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "COTOVOL",
             "category": "Pokémon Pissenlit",
             "entry_text": [
@@ -127,7 +127,7 @@
                 "des spores de coton."
             ]
         },
-        "german": {
+        "de": {
             "name": "PAPUNGHA",
             "category": "Löwenzahn",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "seinem Flug Baumwollsamen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "JUMPLUFF",
             "category": "Pokémon Gramigna",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "suoi semi simili al cotone."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "JUMPLUFF",
             "category": "Pokémon Algadón",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "sus esporas para reproducirse."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ワタッコ",
             "category": "わたくさポケモン",
             "entry_text": [

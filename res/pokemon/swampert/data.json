@@ -1,5 +1,4 @@
 {
-    "name": "Swampert",
     "base_stats": {
         "hp": 100,
         "attack": 110,
@@ -126,7 +125,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "SWAMPERT",
             "category": "Mud Fish Pokémon",
             "entry_text": [
                 "It can swim while towing a large\n",
@@ -134,7 +134,7 @@
                 "swing of its thick arms."
             ]
         },
-        "french": {
+        "fr": {
             "name": "LAGGRON",
             "category": "Pokémon Poissonboue",
             "entry_text": [
@@ -143,7 +143,7 @@
                 "grand coup de ses bras épais."
             ]
         },
-        "german": {
+        "de": {
             "name": "SUMPEX",
             "category": "Lehmhüpfer",
             "entry_text": [
@@ -152,7 +152,7 @@
                 "es mit Schlägen seiner Arme zurück."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SWAMPERT",
             "category": "Pokémon Fango Pesce",
             "entry_text": [
@@ -161,7 +161,7 @@
                 "se abbatte i nemici in un sol colpo."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SWAMPERT",
             "category": "Pokémon Pez Lodo",
             "entry_text": [
@@ -170,7 +170,7 @@
                 "con sus gruesos brazos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ラグラ－ジ",
             "category": "ぬまうおポケモン",
             "entry_text": [

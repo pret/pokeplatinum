@@ -1,5 +1,4 @@
 {
-    "name": "Psyduck",
     "base_stats": {
         "hp": 50,
         "attack": 52,
@@ -122,7 +121,8 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "english": {
+        "en": {
+            "name": "PSYDUCK",
             "category": "Duck Pokémon",
             "entry_text": [
                 "Overwhelmed by enigmatic abilities,\n",
@@ -130,7 +130,7 @@
                 "sometimes uses mysterious powers."
             ]
         },
-        "french": {
+        "fr": {
             "name": "PSYKOKWAK",
             "category": "Pokémon Canard",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "dont il ne se souvient jamais."
             ]
         },
-        "german": {
+        "de": {
             "name": "ENTON",
             "category": "Ente",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "es seltsame Kräfte."
             ]
         },
-        "italian": {
+        "it": {
             "name": "PSYDUCK",
             "category": "Pokémon Papero",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "misteriosi. Ma poi non se lo ricorda."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "PSYDUCK",
             "category": "Pokémon Pato",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "nunca recuerda haberlos usado."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コダック",
             "category": "あひるポケモン",
             "entry_text": [

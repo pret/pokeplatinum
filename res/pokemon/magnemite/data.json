@@ -1,5 +1,4 @@
 {
-    "name": "Magnemite",
     "base_stats": {
         "hp": 25,
         "attack": 35,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "english": {
+        "en": {
+            "name": "MAGNEMITE",
             "category": "Magnet Pokémon",
             "entry_text": [
                 "The faster the units at its sides\n",
@@ -121,7 +121,7 @@
                 "force they generate."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MAGNETI",
             "category": "Pokémon Magnétique",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "voler. Il se nourrit d’électricité."
             ]
         },
-        "german": {
+        "de": {
             "name": "MAGNETILO",
             "category": "Magnet",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "Wellen, die es schweben lassen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "MAGNEMITE",
             "category": "Pokémon Calamita",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "sospeso. Si nutre d’elettricità."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "MAGNEMITE",
             "category": "Pokémon Imán",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "flotar. Se alimenta de electricidad."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "コイル",
             "category": "じしゃくポケモン",
             "entry_text": [

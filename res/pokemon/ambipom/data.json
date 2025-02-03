@@ -1,5 +1,4 @@
 {
-    "name": "Ambipom",
     "base_stats": {
         "hp": 75,
         "attack": 100,
@@ -131,7 +130,8 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "english": {
+        "en": {
+            "name": "AMBIPOM",
             "category": "Long Tail Pokémon",
             "entry_text": [
                 "Split into two, the tails are so\n",
@@ -139,7 +139,7 @@
                 "AMBIPOM rarely uses its hands."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CAPIDEXTRE",
             "category": "Pokémon Longqueue",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "utilise de moins en moins ses bras."
             ]
         },
-        "german": {
+        "de": {
             "name": "AMBIDIFFEL",
             "category": "Langschweif",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "Nur selten verwendet es die Arme."
             ]
         },
-        "italian": {
+        "it": {
             "name": "AMBIPOM",
             "category": "Pokémon Lungacoda",
             "entry_text": [
@@ -166,7 +166,7 @@
                 "vere braccia."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "AMBIPOM",
             "category": "Pokémon Cola Larga",
             "entry_text": [
@@ -175,7 +175,7 @@
                 "veces utiliza sus brazos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "エテボ－ス",
             "category": "おながポケモン",
             "entry_text": [

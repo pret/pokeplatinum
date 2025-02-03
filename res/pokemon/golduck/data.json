@@ -1,5 +1,4 @@
 {
-    "name": "Golduck",
     "base_stats": {
         "hp": 80,
         "attack": 82,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 8,
-        "english": {
+        "en": {
+            "name": "GOLDUCK",
             "category": "Duck Pokémon",
             "entry_text": [
                 "It is seen swimming dynamically and\n",
@@ -132,7 +132,7 @@
                 "limbs and flippers."
             ]
         },
-        "french": {
+        "fr": {
             "name": "AKWAKWAK",
             "category": "Pokémon Canard",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "humain de natation."
             ]
         },
-        "german": {
+        "de": {
             "name": "ENTORON",
             "category": "Ente",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "schnellste menschliche Schwimmer."
             ]
         },
-        "italian": {
+        "it": {
             "name": "GOLDUCK",
             "category": "Pokémon Papero",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "campione di nuoto."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "GOLDUCK",
             "category": "Pokémon Pato",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "cualquier nadador profesional."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゴルダック",
             "category": "あひるポケモン",
             "entry_text": [

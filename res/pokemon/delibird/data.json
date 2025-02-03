@@ -1,5 +1,4 @@
 {
-    "name": "Delibird",
     "base_stats": {
         "hp": 45,
         "attack": 55,
@@ -97,7 +96,8 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "english": {
+        "en": {
+            "name": "DELIBIRD",
             "category": "Delivery Pokémon",
             "entry_text": [
                 "It carries food rolled up in its\n",
@@ -105,7 +105,7 @@
                 "food with people lost in mountains."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CADOIZO",
             "category": "Pokémon Livraison",
             "entry_text": [
@@ -114,7 +114,7 @@
                 "aux gens égarés en montagne."
             ]
         },
-        "german": {
+        "de": {
             "name": "BOTOGEL",
             "category": "Lieferant",
             "entry_text": [
@@ -123,7 +123,7 @@
                 "teilt, die sich verlaufen haben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DELIBIRD",
             "category": "Pokémon Consegna",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "con chi si perde fra le montagne."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DELIBIRD",
             "category": "Pokémon Reparto",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "los montañistas perdidos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "デリバ－ド",
             "category": "はこびやポケモン",
             "entry_text": [

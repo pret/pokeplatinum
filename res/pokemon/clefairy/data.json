@@ -1,5 +1,4 @@
 {
-    "name": "Clefairy",
     "base_stats": {
         "hp": 70,
         "attack": 45,
@@ -145,7 +144,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "CLEFAIRY",
             "category": "Fairy Pokémon",
             "entry_text": [
                 "It is said that happiness will come\n",
@@ -153,7 +153,7 @@
                 "CLEFAIRY dancing under a full moon."
             ]
         },
-        "french": {
+        "fr": {
             "name": "MELOFEE",
             "category": "Pokémon Fée",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "dans le calme des montagnes."
             ]
         },
-        "german": {
+        "de": {
             "name": "PIEPI",
             "category": "Fee",
             "entry_text": [
@@ -171,7 +171,7 @@
                 "in der Stille der Berge."
             ]
         },
-        "italian": {
+        "it": {
             "name": "CLEFAIRY",
             "category": "Pokémon Fata",
             "entry_text": [
@@ -180,7 +180,7 @@
                 "nella quiete delle montagne."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CLEFAIRY",
             "category": "Pokémon Hada",
             "entry_text": [
@@ -189,7 +189,7 @@
                 "en grupo en montañas tranquilas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ピッピ",
             "category": "ようせいポケモン",
             "entry_text": [

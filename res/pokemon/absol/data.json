@@ -1,5 +1,4 @@
 {
-    "name": "Absol",
     "base_stats": {
         "hp": 65,
         "attack": 130,
@@ -142,7 +141,8 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "english": {
+        "en": {
+            "name": "ABSOL",
             "category": "Disaster Pokémon",
             "entry_text": [
                 "Rumored to sense disasters with its\n",
@@ -150,7 +150,7 @@
                 "deep into the mountains."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ABSOL",
             "category": "Pokémon Désastre",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "prévenir d’un danger imminent."
             ]
         },
-        "german": {
+        "de": {
             "name": "ABSOL",
             "category": "Desaster",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "andere vor der Gefahr warnen will."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ABSOL",
             "category": "Pokémon Catastrofe",
             "entry_text": [
@@ -177,7 +177,7 @@
                 "avvisarla del pericolo imminente."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ABSOL",
             "category": "Pokémon Catástrofe",
             "entry_text": [
@@ -186,7 +186,7 @@
                 "advertir del peligro."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アブソル",
             "category": "わざわいポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Wigglytuff",
     "base_stats": {
         "hp": 140,
         "attack": 70,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "english": {
+        "en": {
+            "name": "WIGGLYTUFF",
             "category": "Balloon Pokémon",
             "entry_text": [
                 "Its fine fur feels sublime to the\n",
@@ -132,7 +132,7 @@
                 "inhaling air."
             ]
         },
-        "french": {
+        "fr": {
             "name": "GRODOUDOU",
             "category": "Pokémon Bouboule",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "peut gonfler en aspirant de l’air."
             ]
         },
-        "german": {
+        "de": {
             "name": "KNUDDELUFF",
             "category": "Ballon",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "indem es Luft einatmet."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WIGGLYTUFF",
             "category": "Pokémon Pallone",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "semplicemente inalando aria."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WIGGLYTUFF",
             "category": "Pokémon Globo",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "tragando aire."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "プクリン",
             "category": "ふうせんポケモン",
             "entry_text": [

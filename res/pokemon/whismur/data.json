@@ -1,5 +1,4 @@
 {
-    "name": "Whismur",
     "base_stats": {
         "hp": 64,
         "attack": 51,
@@ -111,7 +110,8 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "english": {
+        "en": {
+            "name": "WHISMUR",
             "category": "Whisper Pokémon",
             "entry_text": [
                 "Usually, its cries are like quiet\n",
@@ -119,7 +119,7 @@
                 "at the same volume as a jet plane."
             ]
         },
-        "french": {
+        "fr": {
             "name": "CHUCHMUR",
             "category": "Pokémon Chuchoteur",
             "entry_text": [
@@ -128,7 +128,7 @@
                 "volume d’un avion à réaction."
             ]
         },
-        "german": {
+        "de": {
             "name": "FLURMEL",
             "category": "Flüster",
             "entry_text": [
@@ -137,7 +137,7 @@
                 "ist es so laut wie ein Flugzeug."
             ]
         },
-        "italian": {
+        "it": {
             "name": "WHISMUR",
             "category": "Pokémon Sussurro",
             "entry_text": [
@@ -146,7 +146,7 @@
                 "assordante quanto un jet."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "WHISMUR",
             "category": "Pokémon Susurro",
             "entry_text": [
@@ -155,7 +155,7 @@
                 "grita con el volumen de un reactor."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ゴニョニョ",
             "category": "ささやきポケモン",
             "entry_text": [

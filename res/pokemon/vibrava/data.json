@@ -1,5 +1,4 @@
 {
-    "name": "Vibrava",
     "base_stats": {
         "hp": 50,
         "attack": 70,
@@ -119,7 +118,8 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "english": {
+        "en": {
+            "name": "VIBRAVA",
             "category": "Vibration Pokémon",
             "entry_text": [
                 "It violently shudders its wings,\n",
@@ -127,7 +127,7 @@
                 "induce headaches in people."
             ]
         },
-        "french": {
+        "fr": {
             "name": "VIBRANINF",
             "category": "Pokémon Vibration",
             "entry_text": [
@@ -136,7 +136,7 @@
                 "qui donnent mal au crâne."
             ]
         },
-        "german": {
+        "de": {
             "name": "VIBRAVA",
             "category": "Vibration",
             "entry_text": [
@@ -145,7 +145,7 @@
                 "die Kopfschmerzen verursachen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "VIBRAVA",
             "category": "Pokémon Vibrazione",
             "entry_text": [
@@ -154,7 +154,7 @@
                 "provocano il mal di testa."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "VIBRAVA",
             "category": "Pokémon Vibrante",
             "entry_text": [
@@ -163,7 +163,7 @@
                 "provocan dolores de cabeza."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ビブラ－バ",
             "category": "しんどうポケモン",
             "entry_text": [

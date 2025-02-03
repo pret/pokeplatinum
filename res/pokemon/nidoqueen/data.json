@@ -1,5 +1,4 @@
 {
-    "name": "Nidoqueen",
     "base_stats": {
         "hp": 90,
         "attack": 82,
@@ -133,7 +132,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "NIDOQUEEN",
             "category": "Drill Pokémon",
             "entry_text": [
                 "Its entire body is armored with\n",
@@ -141,7 +141,7 @@
                 "young in its burrow with its life."
             ]
         },
-        "french": {
+        "fr": {
             "name": "NIDOQUEEN",
             "category": "Pokémon Perceur",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "secourir les petits de son terrier. "
             ]
         },
-        "german": {
+        "de": {
             "name": "NIDOQUEEN",
             "category": "Bohrer",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "sein Junges mit seinem Leben."
             ]
         },
-        "italian": {
+        "it": {
             "name": "NIDOQUEEN",
             "category": "Pokémon Trapano",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "cuccioli a costo della vita."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "NIDOQUEEN",
             "category": "Pokémon Taladro",
             "entry_text": [
@@ -177,7 +177,7 @@
                 "toda su fuerza."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ニドクイン",
             "category": "ドリルポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Cradily",
     "base_stats": {
         "hp": 86,
         "attack": 81,
@@ -115,7 +114,8 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "english": {
+        "en": {
+            "name": "CRADILY",
             "category": "Barnacle Pokémon",
             "entry_text": [
                 "It lives in the shallows of warm\n",
@@ -123,7 +123,7 @@
                 "digs up prey from beaches."
             ]
         },
-        "french": {
+        "fr": {
             "name": "VACILYS",
             "category": "Pokémon Bernacle",
             "entry_text": [
@@ -132,7 +132,7 @@
                 "sable quand la marée se retire."
             ]
         },
-        "german": {
+        "de": {
             "name": "WIELIE",
             "category": "Rankfüßer",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "nach Beute. "
             ]
         },
-        "italian": {
+        "it": {
             "name": "CRADILY",
             "category": "Pokémon Lepade",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "scava sulla riva in cerca di prede."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "CRADILY",
             "category": "Pokémon Percebe",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "cazar cuando baja la marea."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ユレイドル",
             "category": "いわつぼポケモン",
             "entry_text": [

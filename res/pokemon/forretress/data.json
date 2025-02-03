@@ -1,5 +1,4 @@
 {
-    "name": "Forretress",
     "base_stats": {
         "hp": 75,
         "attack": 90,
@@ -118,7 +117,8 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "english": {
+        "en": {
+            "name": "FORRETRESS",
             "category": "Bagworm Pokémon",
             "entry_text": [
                 "It is encased in a steel shell. Its\n",
@@ -126,7 +126,7 @@
                 "seen of its mysterious innards."
             ]
         },
-        "french": {
+        "fr": {
             "name": "FORETRESS",
             "category": "Pokémon Ver Caché",
             "entry_text": [
@@ -135,7 +135,7 @@
                 "seule partie visible de son corps."
             ]
         },
-        "german": {
+        "de": {
             "name": "FORSTELLKA",
             "category": "Beutelwurm",
             "entry_text": [
@@ -144,7 +144,7 @@
                 "sind alles, was man von ihm sieht."
             ]
         },
-        "italian": {
+        "it": {
             "name": "FORRETRESS",
             "category": "Pokémon Larva",
             "entry_text": [
@@ -153,7 +153,7 @@
                 "nessuno sa cosa ci sia all’interno."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "FORRETRESS",
             "category": "Pokémon Larva",
             "entry_text": [
@@ -162,7 +162,7 @@
                 "pueden ver sus ojos."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "フォレトス",
             "category": "みのむしポケモン",
             "entry_text": [

@@ -1,5 +1,4 @@
 {
-    "name": "Doduo",
     "base_stats": {
         "hp": 35,
         "attack": 85,
@@ -105,7 +104,8 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "english": {
+        "en": {
+            "name": "DODUO",
             "category": "Twin Bird Pokémon",
             "entry_text": [
                 "The brains in its two heads appear\n",
@@ -113,7 +113,7 @@
                 "other with a telepathic power."
             ]
         },
-        "french": {
+        "fr": {
             "name": "DODUO",
             "category": "Pokémon Duoiseau",
             "entry_text": [
@@ -122,7 +122,7 @@
                 "grâce à un lien télépathique."
             ]
         },
-        "german": {
+        "de": {
             "name": "DODU",
             "category": "Duovogel",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "über Telepathie."
             ]
         },
-        "italian": {
+        "it": {
             "name": "DODUO",
             "category": "Pokémon Biuccello",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "telepatici."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "DODUO",
             "category": "Pokémon Ave Gemela",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "telepatía."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ド－ド－",
             "category": "ふたごどりポケモン",
             "entry_text": [

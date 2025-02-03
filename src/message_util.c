@@ -51,7 +51,7 @@ Strbuf *MessageUtil_MoveName(u32 moveID, u32 heapID)
 
 Strbuf *MessageUtil_SpeciesName(u32 species, u32 heapID)
 {
-    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAMES, heapID);
+    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
 
     if (loader) {
         Strbuf *speciesName = MessageLoader_GetNewStrbuf(loader, species);

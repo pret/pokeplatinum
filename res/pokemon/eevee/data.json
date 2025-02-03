@@ -1,5 +1,4 @@
 {
-    "name": "Eevee",
     "base_stats": {
         "hp": 55,
         "attack": 55,
@@ -114,7 +113,8 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "english": {
+        "en": {
+            "name": "EEVEE",
             "category": "Evolution Pokémon",
             "entry_text": [
                 "Because its genetic makeup is\n",
@@ -122,7 +122,7 @@
                 "form due to a variety of causes."
             ]
         },
-        "french": {
+        "fr": {
             "name": "EVOLI",
             "category": "Pokémon Evolutif",
             "entry_text": [
@@ -131,7 +131,7 @@
                 "en variant ses formes évolutives."
             ]
         },
-        "german": {
+        "de": {
             "name": "EVOLI",
             "category": "Evolution",
             "entry_text": [
@@ -140,7 +140,7 @@
                 "unterschiedlicher Form entwickelt."
             ]
         },
-        "italian": {
+        "it": {
             "name": "EEVEE",
             "category": "Pokémon Evoluzione",
             "entry_text": [
@@ -149,7 +149,7 @@
                 "diverse forme nell’evoluzione."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "EEVEE",
             "category": "Pokémon Evolución",
             "entry_text": [
@@ -158,7 +158,7 @@
                 "a sus diferentes evoluciones."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "イ－ブイ",
             "category": "しんかポケモン",
             "entry_text": [

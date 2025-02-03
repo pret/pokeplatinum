@@ -1,5 +1,4 @@
 {
-    "name": "Hypno",
     "base_stats": {
         "hp": 85,
         "attack": 73,
@@ -125,7 +124,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "HYPNO",
             "category": "Hypnosis Pokémon",
             "entry_text": [
                 "Seeing its swinging pendulum can\n",
@@ -133,7 +133,7 @@
                 "even in someone who just woke up."
             ]
         },
-        "french": {
+        "fr": {
             "name": "HYPNOMADE",
             "category": "Pokémon Hypnose",
             "entry_text": [
@@ -142,7 +142,7 @@
                 "quand on vient de se réveiller. "
             ]
         },
-        "german": {
+        "de": {
             "name": "HYPNO",
             "category": "Hypnose",
             "entry_text": [
@@ -151,7 +151,7 @@
                 "selbst wenn man gar nicht müde ist."
             ]
         },
-        "italian": {
+        "it": {
             "name": "HYPNO",
             "category": "Pokémon Ipnosi",
             "entry_text": [
@@ -160,7 +160,7 @@
                 "anche chi si è appena svegliato."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "HYPNO",
             "category": "Pokémon Hipnosis",
             "entry_text": [
@@ -169,7 +169,7 @@
                 "si acabas de despertarte."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "スリ－パ－",
             "category": "さいみんポケモン",
             "entry_text": [

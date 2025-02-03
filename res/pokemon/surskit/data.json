@@ -1,5 +1,4 @@
 {
-    "name": "Surskit",
     "base_stats": {
         "hp": 40,
         "attack": 30,
@@ -104,7 +103,8 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "english": {
+        "en": {
+            "name": "SURSKIT",
             "category": "Pond Skater Pokémon",
             "entry_text": [
                 "It appears as if it is skating on\n",
@@ -112,7 +112,7 @@
                 "scent from the tip of its head."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ARAKDO",
             "category": "Pokémon Maresurfeur",
             "entry_text": [
@@ -121,7 +121,7 @@
                 "sa tête sert à attirer ses proies."
             ]
         },
-        "german": {
+        "de": {
             "name": "GEHWEIHER",
             "category": "Wassergeher",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "süßen Duft an."
             ]
         },
-        "italian": {
+        "it": {
             "name": "SURSKIT",
             "category": "Pokémon Sfiorapozze",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "con cui attira le prede."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "SURSKIT",
             "category": "Pokémon Zapatero",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "aroma de su cabeza."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アメタマ",
             "category": "あめんぼポケモン",
             "entry_text": [

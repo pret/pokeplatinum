@@ -1,5 +1,4 @@
 {
-    "name": "Abomasnow",
     "base_stats": {
         "hp": 90,
         "attack": 92,
@@ -124,7 +123,8 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 4,
-        "english": {
+        "en": {
+            "name": "ABOMASNOW",
             "category": "Frost Tree Pokémon",
             "entry_text": [
                 "They appear when the snow flowers\n",
@@ -132,7 +132,7 @@
                 "retreat to places unknown again."
             ]
         },
-        "french": {
+        "fr": {
             "name": "BLIZZAROI",
             "category": "Pokémon Arbregelé",
             "entry_text": [
@@ -141,7 +141,7 @@
                 "sous ses blizzards."
             ]
         },
-        "german": {
+        "de": {
             "name": "REXBLISAR",
             "category": "Frostbaum",
             "entry_text": [
@@ -150,7 +150,7 @@
                 "ein scheußlicher Schneemann."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ABOMASNOW",
             "category": "Pokémon Albergelo",
             "entry_text": [
@@ -159,7 +159,7 @@
                 "È l’abominevole essere delle nevi."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ABOMASNOW",
             "category": "Pokémon Árbol Nieve",
             "entry_text": [
@@ -168,7 +168,7 @@
                 "montañas cubiertas de nieve."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "ユキノオ－",
             "category": "じゅひょうポケモン",
             "entry_text": [

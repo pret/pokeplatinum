@@ -1,5 +1,4 @@
 {
-    "name": "Anorith",
     "base_stats": {
         "hp": 45,
         "attack": 95,
@@ -113,7 +112,8 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "english": {
+        "en": {
+            "name": "ANORITH",
             "category": "Old Shrimp Pokémon",
             "entry_text": [
                 "A Pokémon ancestor that was\n",
@@ -121,7 +121,7 @@
                 "in the sea and hunted with claws."
             ]
         },
-        "french": {
+        "fr": {
             "name": "ANORITH",
             "category": "Pokémon Crustage",
             "entry_text": [
@@ -130,7 +130,7 @@
                 "mer et chassait avec ses pinces."
             ]
         },
-        "german": {
+        "de": {
             "name": "ANORITH",
             "category": "Krebssenior",
             "entry_text": [
@@ -139,7 +139,7 @@
                 "lebte im Meer und jagte mit Klauen."
             ]
         },
-        "italian": {
+        "it": {
             "name": "ANORITH",
             "category": "Pokémon Primaceo",
             "entry_text": [
@@ -148,7 +148,7 @@
                 "catturava le prede con gli artigli."
             ]
         },
-        "spanish": {
+        "es": {
             "name": "ANORITH",
             "category": "Pokémon Camarón",
             "entry_text": [
@@ -157,7 +157,7 @@
                 "cazaba con sus pinzas."
             ]
         },
-        "japanese": {
+        "jp": {
             "name": "アノプス",
             "category": "むかしエビポケモン",
             "entry_text": [

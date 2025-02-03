@@ -1,5 +1,4 @@
 {
-    "name": "----------",
     "base_stats": {
         "hp": 0,
         "attack": 0,
@@ -53,34 +52,35 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "english": {
+        "en": {
+            "name": "----------",
             "category": "????? Pokémon",
-            "entry_text": []
+            "entry_text": [  ]
         },
-        "french": {
+        "fr": {
             "name": "----------",
             "category": "Pokémon ?????",
-            "entry_text": []
+            "entry_text": [  ]
         },
-        "german": {
+        "de": {
             "name": "----------",
             "category": "?????",
-            "entry_text": []
+            "entry_text": [  ]
         },
-        "italian": {
+        "it": {
             "name": "----------",
             "category": "Pokémon ?????",
-            "entry_text": []
+            "entry_text": [  ]
         },
-        "spanish": {
+        "es": {
             "name": "----------",
             "category": "Pokémon (?)",
-            "entry_text": []
+            "entry_text": [  ]
         },
-        "japanese": {
+        "jp": {
             "name": "－－－－－",
             "category": "？？？？？ポケモン",
-            "entry_text": []
+            "entry_text": [  ]
         }
     }
 }
