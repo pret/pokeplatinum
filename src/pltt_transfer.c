@@ -4,7 +4,13 @@
 #include <string.h>
 
 #include "heap.h"
+#include "palette.h"
 #include "vram_transfer.h"
+
+#define NUM_VRAM_PALETTES     16
+#define PLTT_RESOURCE_ID_NONE -1
+#define PLTT_RANGE_SIZE       (PALETTE_SIZE_BYTES * NUM_VRAM_PALETTES)
+#define PLTT_EXT_RANGE_SIZE   (PALETTE_SIZE_EXT_BYTES * NUM_VRAM_PALETTES)
 
 typedef struct PlttTransferTask {
     NNSG2dPaletteData *data;
@@ -27,28 +33,30 @@ typedef struct PlttTransferTaskManager {
     u32 extPlttOffsetSub;
     u32 extPlttVramSizeMain;
     u32 extPlttVramSizeSub;
-    u16 vramPlttMain;
-    u16 vramPlttSub;
+    u16 vramTransferMain;
+    u16 vramTransferSub;
 } PlttTransferTaskManager;
 
-static void sub_0201FB20(PlttTransferTask *param0);
-static BOOL sub_0201FB3C(const PlttTransferTaskTemplate *param0, PlttTransferTask *param1);
-static BOOL sub_0201FB94(const PlttTransferTaskTemplate *param0, PlttTransferTask *param1);
-static BOOL sub_0201FAEC(const PlttTransferTaskTemplate *param0, PlttTransferTask *param1);
-static void sub_0201FCD4(PlttTransferTask *param0);
-static void sub_0201FCE4(void *param0);
-static void sub_0201FC8C(void);
-static void sub_0201FAE4(PlttTransferTask *param0);
-static PlttTransferTask *sub_0201FC18(int param0);
-static PlttTransferTask *sub_0201FC50(void);
-static void sub_0201FD18(u16 *param0, int param1, int param2);
-static void sub_0201FD3C(u16 *param0, int param1, int param2);
-static int sub_0201FD5C(u16 param0, int param1);
-static void sub_0201FD9C(PlttTransferTaskManager *param0);
-static void sub_0201FDA4(PlttTransferTask *param0);
-static void sub_0201FDE0(PlttTransferTask *param0);
-static BOOL sub_0201FE1C(PlttTransferTask *param0, u32 param1, u32 param2, u32 param3, u32 param4);
-static void sub_0201FE68(PlttTransferTask *param0, u32 *param1, u32 *param2);
+static void InitTransferTask(PlttTransferTask *task);
+static BOOL InitTransferTaskFromTemplate(const PlttTransferTaskTemplate *template, PlttTransferTask *task);
+static void ResetTransferTask(PlttTransferTask *task);
+static void LoadImagePalette(PlttTransferTask *task);
+static BOOL ReserveAndTransferWholeRange(const PlttTransferTaskTemplate *unused, PlttTransferTask *task);
+static BOOL ReserveAndTransferFreeSpace(const PlttTransferTaskTemplate *unused, PlttTransferTask *task);
+static void ReserveTaskTransferRanges(PlttTransferTask *task);
+static void ClearTaskTransferRanges(PlttTransferTask *task);
+static PlttTransferTask *FindTransferTask(int resourceID);
+static PlttTransferTask *FindNextFreeTask(void);
+static void UpdateVramCapacities(void);
+static void UpdateTransferSize(PlttTransferTask *task);
+static BOOL TryGetDestOffsets(PlttTransferTask *task, u32 offsetMain, u32 offsetSub, u32 sizeMain, u32 sizeSub);
+static void ReserveVramSpace(PlttTransferTask *task, u32 *offsetMain, u32 *offsetSub);
+
+static void ReserveTransferRange(u16 *range, int count, int start);
+static void ClearTransferRange(u16 *range, int count, int start);
+static int FindAvailableTransferSlot(u16 palette, int size);
+
+static void ResetBothTransferRanges(PlttTransferTaskManager *task);
 
 static PlttTransferTaskManager *sTaskManager = NULL;
 
@@ -64,7 +72,7 @@ void sub_0201F834(int param0, int param1)
         sTaskManager->tasks = Heap_AllocFromHeap(param1, sizeof(PlttTransferTask) * param0);
 
         for (v0 = 0; v0 < param0; v0++) {
-            sub_0201FB20(sTaskManager->tasks + v0);
+            InitTransferTask(sTaskManager->tasks + v0);
         }
     }
 }
@@ -72,9 +80,9 @@ void sub_0201F834(int param0, int param1)
 void sub_0201F890(u16 param0, u32 param1)
 {
     if (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) {
-        sTaskManager->vramPlttMain |= param0;
+        sTaskManager->vramTransferMain |= param0;
     } else if (param1 == NNS_G2D_VRAM_TYPE_2DSUB) {
-        sTaskManager->vramPlttSub |= param0;
+        sTaskManager->vramTransferSub |= param0;
     }
 }
 
@@ -88,7 +96,7 @@ void sub_0201F8B4(void)
     }
 }
 
-static void sub_0201F8E0(void)
+static void DummyFunc(void)
 {
     return;
 }
@@ -100,31 +108,31 @@ void sub_0201F8E4(void)
     sTaskManager->extPlttOffsetMain = 0;
     sTaskManager->extPlttOffsetSub = 0;
 
-    sub_0201FC8C();
-    sub_0201FD9C(sTaskManager);
+    UpdateVramCapacities();
+    ResetBothTransferRanges(sTaskManager);
 }
 
 BOOL sub_0201F90C(const PlttTransferTaskTemplate *param0)
 {
     PlttTransferTask *v0;
 
-    v0 = sub_0201FC50();
+    v0 = FindNextFreeTask();
 
     if (v0 == NULL) {
         GF_ASSERT(0 && ("テーブルが一杯で登録できません"));
         return 0;
     }
 
-    if (sub_0201FAEC(param0, v0) == 0) {
+    if (InitTransferTaskFromTemplate(param0, v0) == 0) {
         return 0;
     }
 
-    if (sub_0201FB3C(param0, v0) == 0) {
+    if (ReserveAndTransferWholeRange(param0, v0) == 0) {
         sub_0201F9F0(param0->resourceID);
         return 0;
     }
 
-    sub_0201FDA4(v0);
+    ReserveTaskTransferRanges(v0);
 
     return 1;
 }
@@ -133,18 +141,18 @@ BOOL sub_0201F950(const PlttTransferTaskTemplate *param0)
 {
     PlttTransferTask *v0;
 
-    v0 = sub_0201FC50();
+    v0 = FindNextFreeTask();
 
     if (v0 == NULL) {
         GF_ASSERT(0 && ("テーブルが一杯で登録できません"));
         return 0;
     }
 
-    if (sub_0201FAEC(param0, v0) == 0) {
+    if (InitTransferTaskFromTemplate(param0, v0) == 0) {
         return 0;
     }
 
-    if (sub_0201FB94(param0, v0) == 0) {
+    if (ReserveAndTransferFreeSpace(param0, v0) == 0) {
         sub_0201F9F0(param0->resourceID);
         return 0;
     }
@@ -157,7 +165,7 @@ void sub_0201F990(int param0, NNSG2dPaletteData *param1)
     PlttTransferTask *v0;
 
     GF_ASSERT(param1);
-    v0 = sub_0201FC18(param0);
+    v0 = FindTransferTask(param0);
 
     GF_ASSERT(v0);
     v0->data = param1;
@@ -171,30 +179,26 @@ void sub_0201F990(int param0, NNSG2dPaletteData *param1)
     }
 }
 
-BOOL sub_0201F9DC(int param0)
+BOOL sub_0201F9DC(int resourceID)
 {
-    PlttTransferTask *v0;
-
-    v0 = sub_0201FC18(param0);
-
-    if (v0) {
-        return 1;
+    if (FindTransferTask(resourceID)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_0201F9F0(int param0)
 {
     PlttTransferTask *v0;
 
-    v0 = sub_0201FC18(param0);
+    v0 = FindTransferTask(param0);
 
     GF_ASSERT(v0);
 
     if (v0->hasWork == 1) {
-        sub_0201FDE0(v0);
-        sub_0201FAE4(v0);
+        ClearTaskTransferRanges(v0);
+        ResetTransferTask(v0);
     }
 }
 
@@ -204,8 +208,8 @@ void sub_0201FA18(void)
 
     for (v0 = 0; v0 < sTaskManager->capacity; v0++) {
         if (sTaskManager->tasks[v0].hasWork == 1) {
-            sub_0201FDE0(&sTaskManager->tasks[v0]);
-            sub_0201FAE4(&sTaskManager->tasks[v0]);
+            ClearTaskTransferRanges(&sTaskManager->tasks[v0]);
+            ResetTransferTask(&sTaskManager->tasks[v0]);
         }
     }
 }
@@ -214,7 +218,7 @@ NNSG2dImagePaletteProxy *sub_0201FA58(int param0)
 {
     PlttTransferTask *v0;
 
-    v0 = sub_0201FC18(param0);
+    v0 = FindTransferTask(param0);
 
     if (v0 == NULL) {
         GF_ASSERT(v0);
@@ -232,7 +236,7 @@ NNSG2dImagePaletteProxy *sub_0201FA80(int param0, NNSG2dImageProxy *param1)
 {
     PlttTransferTask *v0;
 
-    v0 = sub_0201FC18(param0);
+    v0 = FindTransferTask(param0);
 
     if (v0 == NULL) {
         GF_ASSERT(v0);
@@ -275,150 +279,132 @@ u32 sub_0201FAB4(const NNSG2dImagePaletteProxy *param0, u32 param1)
     return v1;
 }
 
-static void sub_0201FAE4(PlttTransferTask *param0)
+static void ResetTransferTask(PlttTransferTask *task)
 {
-    sub_0201FB20(param0);
+    InitTransferTask(task);
 }
 
-static BOOL sub_0201FAEC(const PlttTransferTaskTemplate *param0, PlttTransferTask *param1)
+static BOOL InitTransferTaskFromTemplate(const PlttTransferTaskTemplate *template, PlttTransferTask *task)
 {
-    param1->data = param0->data;
+    task->data = template->data;
 
-    if (sub_0201F9DC(param0->resourceID) == 1) {
-        GF_ASSERT(0);
-        return 0;
+    if (sub_0201F9DC(template->resourceID) == TRUE) {
+        GF_ASSERT(FALSE);
+        return FALSE;
     }
 
-    param1->resourceID = param0->resourceID;
-    param1->vramType = param0->vramType;
-    param1->hasWork = 1;
-    param1->numPalettes = param0->plttIndex;
-
-    return 1;
+    task->resourceID = template->resourceID;
+    task->vramType = template->vramType;
+    task->hasWork = 1;
+    task->numPalettes = template->plttIndex;
+    return TRUE;
 }
 
-static void sub_0201FB20(PlttTransferTask *param0)
+static void InitTransferTask(PlttTransferTask *task)
 {
-    memset(param0, 0, sizeof(PlttTransferTask));
-    param0->resourceID = 0xffffffff;
-    NNS_G2dInitImagePaletteProxy(&param0->paletteProxy);
+    memset(task, 0, sizeof(PlttTransferTask));
+    task->resourceID = PLTT_RESOURCE_ID_NONE;
+    NNS_G2dInitImagePaletteProxy(&task->paletteProxy);
 }
 
-static BOOL sub_0201FB3C(const PlttTransferTaskTemplate *param0, PlttTransferTask *param1)
+static BOOL ReserveAndTransferWholeRange(const PlttTransferTaskTemplate *unused, PlttTransferTask *task)
 {
-    u32 *v0;
-    u32 *v1;
-    BOOL v2 = 1;
-    u32 v3;
-    u32 v4;
+    u32 *targetOffsetMain;
+    u32 *targetOffsetSub;
+    u32 plttSizeMain;
+    u32 plttSizeSub;
 
-    if (param1->data->bExtendedPlt) {
-        v0 = &sTaskManager->extPlttOffsetMain;
-        v1 = &sTaskManager->extPlttOffsetSub;
-        v3 = sTaskManager->extPlttVramSizeMain;
-        v4 = sTaskManager->extPlttVramSizeSub;
+    if (task->data->bExtendedPlt) {
+        targetOffsetMain = &sTaskManager->extPlttOffsetMain;
+        targetOffsetSub = &sTaskManager->extPlttOffsetSub;
+        plttSizeMain = sTaskManager->extPlttVramSizeMain;
+        plttSizeSub = sTaskManager->extPlttVramSizeSub;
     } else {
-        v0 = &sTaskManager->offsetMain;
-        v1 = &sTaskManager->offsetSub;
-        v3 = (32 * 16);
-        v4 = (32 * 16);
+        targetOffsetMain = &sTaskManager->offsetMain;
+        targetOffsetSub = &sTaskManager->offsetSub;
+        plttSizeMain = PLTT_RANGE_SIZE;
+        plttSizeSub = PLTT_RANGE_SIZE;
     }
 
-    sub_0201FE1C(param1, *v0, *v1, v3, v4);
-    sub_0201FCD4(param1);
-    sub_0201FE68(param1, v0, v1);
-
-    return v2;
+    TryGetDestOffsets(task, *targetOffsetMain, *targetOffsetSub, plttSizeMain, plttSizeSub);
+    UpdateTransferSize(task);
+    ReserveVramSpace(task, targetOffsetMain, targetOffsetSub);
+    return TRUE;
 }
 
-static BOOL sub_0201FB94(const PlttTransferTaskTemplate *param0, PlttTransferTask *param1)
+static BOOL ReserveAndTransferFreeSpace(const PlttTransferTaskTemplate *unused, PlttTransferTask *task)
 {
-    int v0, v1;
-
-    if (param1->data->bExtendedPlt) {
-        GF_ASSERT(0);
+    if (task->data->bExtendedPlt) {
+        GF_ASSERT(FALSE);
     }
 
-    if (param1->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        v0 = sub_0201FD5C(sTaskManager->vramPlttMain, param1->numPalettes);
-
-        if (v0 == 0xffffffff) {
-            return 0;
+    int offsetMain;
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        offsetMain = FindAvailableTransferSlot(sTaskManager->vramTransferMain, task->numPalettes);
+        if (offsetMain == -1) {
+            return FALSE;
         }
     }
 
-    if (param1->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
-        v1 = sub_0201FD5C(sTaskManager->vramPlttSub, param1->numPalettes);
-
-        if (v1 == 0xffffffff) {
-            return 0;
+    int offsetSub;
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        offsetSub = FindAvailableTransferSlot(sTaskManager->vramTransferSub, task->numPalettes);
+        if (offsetSub == -1) {
+            return FALSE;
         }
     }
 
-    if (param1->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        param1->baseAddrMain = v0;
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        task->baseAddrMain = offsetMain;
     }
 
-    if (param1->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
-        param1->baseAddrSub = v1;
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        task->baseAddrSub = offsetSub;
     }
 
-    param1->data->szByte = param1->numPalettes * 32;
-
-    sub_0201FCE4(param1);
-    sub_0201FDA4(param1);
-
-    return 1;
+    task->data->szByte = task->numPalettes * PALETTE_SIZE_BYTES;
+    LoadImagePalette(task);
+    ReserveTaskTransferRanges(task);
+    return TRUE;
 }
 
-static PlttTransferTask *sub_0201FC18(int param0)
+static PlttTransferTask *FindTransferTask(int resourceID)
 {
-    int v0;
-
-    for (v0 = 0; v0 < sTaskManager->capacity; v0++) {
-        if (sTaskManager->tasks[v0].resourceID == param0) {
-            return sTaskManager->tasks + v0;
+    for (int i = 0; i < sTaskManager->capacity; i++) {
+        if (sTaskManager->tasks[i].resourceID == resourceID) {
+            return sTaskManager->tasks + i;
         }
     }
 
     return NULL;
 }
 
-static PlttTransferTask *sub_0201FC50(void)
+static PlttTransferTask *FindNextFreeTask(void)
 {
-    int v0;
-
-    for (v0 = 0; v0 < sTaskManager->capacity; v0++) {
-        if (sTaskManager->tasks[v0].hasWork == 0) {
-            return sTaskManager->tasks + v0;
+    for (int i = 0; i < sTaskManager->capacity; i++) {
+        if (sTaskManager->tasks[i].hasWork == 0) {
+            return sTaskManager->tasks + i;
         }
     }
 
     return NULL;
 }
 
-static void sub_0201FC8C(void)
+static void UpdateVramCapacities(void)
 {
-    GXVRamOBJExtPltt v0;
-    GXVRamSubOBJExtPltt v1;
-
-    v0 = GX_GetBankForOBJExtPltt();
-
-    switch (v0) {
+    switch (GX_GetBankForOBJExtPltt()) {
     case GX_VRAM_OBJEXTPLTT_0_F:
     case GX_VRAM_OBJEXTPLTT_0_G:
-        sTaskManager->extPlttVramSizeMain = (32 * 16 * 16);
+        sTaskManager->extPlttVramSizeMain = PLTT_EXT_RANGE_SIZE;
         break;
     default:
         sTaskManager->extPlttVramSizeMain = 0;
         break;
     }
 
-    v1 = GX_GetBankForSubOBJExtPltt();
-
-    switch (v1) {
+    switch (GX_GetBankForSubOBJExtPltt()) {
     case GX_VRAM_SUB_OBJEXTPLTT_0_I:
-        sTaskManager->extPlttVramSizeSub = (32 * 16 * 16);
+        sTaskManager->extPlttVramSizeSub = PLTT_EXT_RANGE_SIZE;
         break;
     default:
         sTaskManager->extPlttVramSizeSub = 0;
@@ -426,136 +412,126 @@ static void sub_0201FC8C(void)
     }
 }
 
-static void sub_0201FCD4(PlttTransferTask *param0)
+static void UpdateTransferSize(PlttTransferTask *task)
 {
-    param0->data->szByte = param0->numPalettes * 32;
-    sub_0201FCE4(param0);
+    task->data->szByte = task->numPalettes * PALETTE_SIZE_BYTES;
+    LoadImagePalette(task);
 }
 
-static void sub_0201FCE4(void *param0)
+static void LoadImagePalette(PlttTransferTask *task)
 {
-    PlttTransferTask *v0 = (PlttTransferTask *)param0;
-
-    NNS_G2dInitImagePaletteProxy(&v0->paletteProxy);
-
-    if (v0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        NNS_G2dLoadPalette(v0->data, v0->baseAddrMain, NNS_G2D_VRAM_TYPE_2DMAIN, &v0->paletteProxy);
+    NNS_G2dInitImagePaletteProxy(&task->paletteProxy);
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        NNS_G2dLoadPalette(task->data, task->baseAddrMain, NNS_G2D_VRAM_TYPE_2DMAIN, &task->paletteProxy);
     }
 
-    if (v0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
-        NNS_G2dLoadPalette(v0->data, v0->baseAddrSub, NNS_G2D_VRAM_TYPE_2DSUB, &v0->paletteProxy);
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        NNS_G2dLoadPalette(task->data, task->baseAddrSub, NNS_G2D_VRAM_TYPE_2DSUB, &task->paletteProxy);
     }
 }
 
-static void sub_0201FD18(u16 *param0, int param1, int param2)
+static void ReserveTransferRange(u16 *range, int count, int start)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param1; v0++) {
-        *param0 |= 1 << (param2 + v0);
+    for (int i = 0; i < count; i++) {
+        *range |= 1 << (start + i);
     }
 }
 
-static void sub_0201FD3C(u16 *param0, int param1, int param2)
+static void ClearTransferRange(u16 *range, int count, int start)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param1; v0++) {
-        *param0 &= ~(1 << (param2 + v0));
+    for (int i = 0; i < count; i++) {
+        *range &= ~(1 << (start + i));
     }
 }
 
-static int sub_0201FD5C(u16 param0, int param1)
+static int FindAvailableTransferSlot(u16 palette, int size)
 {
-    int v0, v1;
-
-    for (v0 = 0; v0 < 16; v0++) {
-        v1 = 0;
-
-        while (((param0 & (1 << (v0 + v1))) == 0) && (v1 < param1)) {
-            if ((v0 + v1) >= 16) {
+    int slot;
+    for (slot = 0; slot < NUM_VRAM_PALETTES; slot++) {
+        int colorIdx = 0;
+        while ((palette & (1 << (slot + colorIdx))) == 0 && colorIdx < size) {
+            if (slot + colorIdx >= NUM_VRAM_PALETTES) {
                 break;
             }
-
-            v1++;
+            colorIdx++;
         }
 
-        if (v1 >= param1) {
+        if (colorIdx >= size) {
             break;
         }
 
-        v0 += v1;
+        slot += colorIdx;
     }
 
-    if (v0 >= 16) {
-        return 0xffffffff;
+    if (slot >= NUM_VRAM_PALETTES) {
+        return -1;
     }
 
-    return v0 * 32;
+    return PLTT_OFFSET(slot);
 }
 
-static void sub_0201FD9C(PlttTransferTaskManager *param0)
+static void ResetBothTransferRanges(PlttTransferTaskManager *manager)
 {
-    param0->vramPlttMain = 0;
-    param0->vramPlttSub = 0;
+    manager->vramTransferMain = 0;
+    manager->vramTransferSub = 0;
 }
 
-static void sub_0201FDA4(PlttTransferTask *param0)
+static void ReserveTaskTransferRanges(PlttTransferTask *task)
 {
-    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        sub_0201FD18(&sTaskManager->vramPlttMain, param0->numPalettes, param0->baseAddrMain / 32);
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        ReserveTransferRange(&sTaskManager->vramTransferMain, task->numPalettes, task->baseAddrMain / PALETTE_SIZE_BYTES);
     }
 
-    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
-        sub_0201FD18(&sTaskManager->vramPlttSub, param0->numPalettes, param0->baseAddrSub / 32);
-    }
-}
-
-static void sub_0201FDE0(PlttTransferTask *param0)
-{
-    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        sub_0201FD3C(&sTaskManager->vramPlttMain, param0->numPalettes, param0->baseAddrMain / 32);
-    }
-
-    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
-        sub_0201FD3C(&sTaskManager->vramPlttSub, param0->numPalettes, param0->baseAddrSub / 32);
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        ReserveTransferRange(&sTaskManager->vramTransferSub, task->numPalettes, task->baseAddrSub / PALETTE_SIZE_BYTES);
     }
 }
 
-static BOOL sub_0201FE1C(PlttTransferTask *param0, u32 param1, u32 param2, u32 param3, u32 param4)
+static void ClearTaskTransferRanges(PlttTransferTask *task)
 {
-    BOOL v0 = 1;
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        ClearTransferRange(&sTaskManager->vramTransferMain, task->numPalettes, task->baseAddrMain / PALETTE_SIZE_BYTES);
+    }
 
-    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        if (param1 + (param0->numPalettes * 32) > param3) {
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        ClearTransferRange(&sTaskManager->vramTransferSub, task->numPalettes, task->baseAddrSub / PALETTE_SIZE_BYTES);
+    }
+}
+
+static BOOL TryGetDestOffsets(PlttTransferTask *task, u32 offsetMain, u32 offsetSub, u32 sizeMain, u32 sizeSub)
+{
+    BOOL result = TRUE;
+
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        if (offsetMain + (task->numPalettes * PALETTE_SIZE_BYTES) > sizeMain) {
             GF_ASSERT(FALSE);
-            sub_0201F8E0();
-            v0 = 0;
+            DummyFunc();
+            result = FALSE;
         } else {
-            param0->baseAddrMain = param1;
+            task->baseAddrMain = offsetMain;
         }
     }
 
-    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
-        if (param2 + (param0->numPalettes * 32) > param4) {
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        if (offsetSub + (task->numPalettes * PALETTE_SIZE_BYTES) > sizeSub) {
             GF_ASSERT(FALSE);
-            sub_0201F8E0();
-            v0 = 0;
+            DummyFunc();
+            result = FALSE;
         } else {
-            param0->baseAddrSub = param2;
+            task->baseAddrSub = offsetSub;
         }
     }
 
-    return v0;
+    return result;
 }
 
-static void sub_0201FE68(PlttTransferTask *param0, u32 *param1, u32 *param2)
+static void ReserveVramSpace(PlttTransferTask *task, u32 *offsetMain, u32 *offsetSub)
 {
-    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        *param1 += param0->numPalettes * 32;
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
+        *offsetMain += task->numPalettes * PALETTE_SIZE_BYTES;
     }
 
-    if (param0->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
-        *param2 += param0->numPalettes * 32;
+    if (task->vramType & NNS_G2D_VRAM_TYPE_2DSUB) {
+        *offsetSub += task->numPalettes * PALETTE_SIZE_BYTES;
     }
 }
