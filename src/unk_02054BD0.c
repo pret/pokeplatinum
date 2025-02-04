@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/map_matrix_decl.h"
-
 #include "field/field_system.h"
 
 #include "heap.h"

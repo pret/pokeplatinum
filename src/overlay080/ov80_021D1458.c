@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/main_map_matrix_data_decl.h"
-
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/ov80_021D2AF4.h"
 #include "overlay080/struct_ov80_021D1478_sub1.h"

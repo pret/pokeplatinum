@@ -3,8 +3,6 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/map_matrix_decl.h"
-
 #include "field/field_system_decl.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
@@ -14,6 +12,7 @@
 #include "overlay005/struct_ov5_021EF13C_decl.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
 
+#include "map_matrix.h"
 #include "narc.h"
 
 void ov5_021E7A54(UnkStruct_ov5_021E8F60 *param0);

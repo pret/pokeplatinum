@@ -6,31 +6,9 @@
 #include "constants/heap.h"
 #include "constants/map_matrix.h"
 
-#include "struct_decls/map_matrix_decl.h"
-
 #include "heap.h"
 #include "map_header.h"
 #include "narc.h"
-
-typedef struct {
-    u8 height;
-    u8 width;
-    u16 mapHeaderIds[MAP_MATRIX_MAX_SIZE];
-    u8 altitudes[MAP_MATRIX_MAX_SIZE];
-    u16 landDataIds[MAP_MATRIX_MAX_SIZE];
-    char modelNamePrefix[MAP_MATRIX_MAX_NAME_LENGTH];
-} MapMatrixData;
-
-struct MapMatrix_t {
-    u8 width;
-    u8 height;
-    u8 matrixId;
-    MapMatrixData data;
-};
-
-typedef struct MainMapMatrixData_t {
-    u16 mapHeaderIds[MAP_MATRIX_MAX_SIZE];
-} MainMapMatrixData;
 
 static void MapMatrixData_Load(MapMatrixData *mapMatrixData, const u16 mapMatrixId, int mapHeaderId)
 {

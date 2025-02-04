@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 #define POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 
-#include "struct_decls/map_matrix_decl.h"
 #include "struct_decls/struct_02054C18_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
@@ -41,6 +40,7 @@
 #include "journal.h"
 #include "location.h"
 #include "map_header_data.h"
+#include "map_matrix.h"
 #include "overlay_manager.h"
 #include "pokeradar.h"
 #include "savedata.h"

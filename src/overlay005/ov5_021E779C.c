@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/map_matrix_decl.h"
-
 #include "field/field_system.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/ov5_021D521C.h"

@@ -1,8 +1,27 @@
 #ifndef POKEPLATINUM_MAP_MATRIX_H
 #define POKEPLATINUM_MAP_MATRIX_H
 
-#include "struct_decls/main_map_matrix_data_decl.h"
-#include "struct_decls/map_matrix_decl.h"
+#include "constants/map_matrix.h"
+
+typedef struct MapMatrixData {
+    u8 height;
+    u8 width;
+    u16 mapHeaderIds[MAP_MATRIX_MAX_SIZE];
+    u8 altitudes[MAP_MATRIX_MAX_SIZE];
+    u16 landDataIds[MAP_MATRIX_MAX_SIZE];
+    char modelNamePrefix[MAP_MATRIX_MAX_NAME_LENGTH];
+} MapMatrixData;
+
+typedef struct MapMatrix {
+    u8 width;
+    u8 height;
+    u8 matrixId;
+    MapMatrixData data;
+} MapMatrix;
+
+typedef struct MainMapMatrixData {
+    u16 mapHeaderIds[MAP_MATRIX_MAX_SIZE];
+} MainMapMatrixData;
 
 MapMatrix *MapMatrix_New(void);
 MapMatrix *MapMatrix_NewWithHeapID(u32 heapId);
