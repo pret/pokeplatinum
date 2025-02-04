@@ -30,10 +30,10 @@
 #include "heap.h"
 #include "main.h"
 #include "map_header_data.h"
+#include "map_matrix.h"
 #include "overlay_manager.h"
 #include "pokeradar.h"
 #include "savedata.h"
-#include "unk_02039C80.h"
 #include "unk_0205F180.h"
 #include "unk_0209ACBC.h"
 #include "unk_0209C370.h"
@@ -160,7 +160,7 @@ static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
     fieldSystem->saveData = ((ApplicationArgs *)OverlayManager_Args(ovyManager))->saveData;
     fieldSystem->task = NULL;
     fieldSystem->location = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    fieldSystem->unk_2C = sub_02039D6C();
+    fieldSystem->mapMatrix = MapMatrix_New();
 
     MapHeaderData_Init(fieldSystem, HEAP_ID_FIELDMAP);
 
@@ -179,7 +179,7 @@ static void TeardownFieldSystem(OverlayManager *ovyManager)
 {
     FieldSystem *fieldSystem = OverlayManager_Data(ovyManager);
 
-    sub_02039DE4(fieldSystem->unk_2C);
+    MapMatrix_Free(fieldSystem->mapMatrix);
     MapHeaderData_Free(fieldSystem);
     Heap_FreeToHeap(fieldSystem->unk_98);
     RadarChain_Free(fieldSystem->chain);

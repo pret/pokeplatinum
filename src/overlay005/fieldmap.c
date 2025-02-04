@@ -64,6 +64,7 @@
 #include "inlines.h"
 #include "map_header.h"
 #include "map_header_data.h"
+#include "map_matrix.h"
 #include "map_object.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -80,7 +81,6 @@
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "unk_02027F50.h"
-#include "unk_02039C80.h"
 #include "unk_020553DC.h"
 #include "unk_020556C4.h"
 #include "unk_020559DC.h"
@@ -410,7 +410,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
 
     x = (Player_GetXPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
     y = (Player_GetZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
-    v0 = sub_02039E30(fieldSystem->unk_2C, x, y);
+    v0 = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x, y);
     mapId = fieldSystem->location->mapId;
 
     if (v0 == mapId) {
@@ -804,7 +804,7 @@ static void ov5_021D1790(FieldSystem *fieldSystem)
 
 static void ov5_021D17EC(FieldSystem *fieldSystem)
 {
-    fieldSystem->unk_28 = ov5_021E9084(fieldSystem->unk_2C, fieldSystem->unk_30, fieldSystem->unk_50, fieldSystem->unk_60);
+    fieldSystem->unk_28 = ov5_021E9084(fieldSystem->mapMatrix, fieldSystem->unk_30, fieldSystem->unk_50, fieldSystem->unk_60);
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         int v0 = 0, v1 = 0, v2 = 0;

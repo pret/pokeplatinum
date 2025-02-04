@@ -16,12 +16,12 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "map_matrix.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202D7A8.h"
-#include "unk_02039C80.h"
 #include "unk_02054D00.h"
 
 typedef struct {
@@ -362,7 +362,7 @@ static void ov5_021EFE7C(FieldSystem *fieldSystem, UnkStruct_ov5_021E1608 *param
     u16 v0;
     u8 v1;
 
-    v0 = sub_02039E68(fieldSystem->unk_2C, param2);
+    v0 = MapMatrix_GetMapHeaderIDAtIndex(fieldSystem->mapMatrix, param2);
     v1 = ov5_021EFF10(v0);
 
     if (v1 != 21) {

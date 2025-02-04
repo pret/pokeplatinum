@@ -37,6 +37,7 @@
 #include "location.h"
 #include "map_header.h"
 #include "map_header_data.h"
+#include "map_matrix.h"
 #include "map_object.h"
 #include "menu.h"
 #include "message.h"
@@ -57,7 +58,6 @@
 #include "unk_0200F174.h"
 #include "unk_02027F50.h"
 #include "unk_0202854C.h"
-#include "unk_02039C80.h"
 #include "unk_0203A7D8.h"
 #include "unk_0203A944.h"
 #include "unk_0203D1B8.h"
@@ -370,14 +370,14 @@ static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem)
 {
     sub_020530C8(fieldSystem);
     GF_ASSERT(fieldSystem->terrainCollisionMan == NULL);
-    sub_02039DC0(fieldSystem->location->mapId, fieldSystem->unk_2C);
+    MapMatrix_Load(fieldSystem->location->mapId, fieldSystem->mapMatrix);
 
     if (VarFlags_HiddenLocationsUnlocked(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SEABREAKPATH)) {
-        sub_02039FE0(fieldSystem->unk_2C); // reveal Seabreak Path if Oak's Letter has been used
+        MapMatrix_RevealSeabreakPath(fieldSystem->mapMatrix); // reveal Seabreak Path if Oak's Letter has been used
     }
 
     if (!VarFlags_HiddenLocationsUnlocked(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SPRINGPATH)) {
-        sub_02039F8C(fieldSystem->unk_2C);
+        MapMatrix_RevealSpringPath(fieldSystem->mapMatrix);
     }
 
     GF_ASSERT(fieldSystem->mapLoadType < MAP_LOAD_TYPE_MAX);

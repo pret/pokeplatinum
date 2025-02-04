@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
-#include "struct_decls/struct_02039E30_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -46,6 +45,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_header_data.h"
+#include "map_matrix.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
@@ -66,7 +66,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_02020AEC.h"
 #include "unk_02027F50.h"
-#include "unk_02039C80.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_0206AFE0.h"
@@ -372,7 +371,7 @@ typedef struct {
     int unk_04;
     u32 unk_08;
     NARC *unk_0C;
-    UnkStruct_02039E30 *unk_10;
+    MapMatrix *unk_10;
     UnkStruct_ov5_021EF76C *unk_14;
     UnkStruct_ov5_021E8F60 *unk_18;
 } UnkStruct_ov9_0224C8E8;
@@ -4367,8 +4366,8 @@ static void ov9_0224C8E8(UnkStruct_ov9_02249B04 *param0)
     v2->unk_00 = v1;
 
     {
-        v2->unk_10 = sub_02039D78(4);
-        sub_02039DC0(v1, v2->unk_10);
+        v2->unk_10 = MapMatrix_NewWithHeapID(4);
+        MapMatrix_Load(v1, v2->unk_10);
     }
 
     {
@@ -4437,7 +4436,7 @@ static void ov9_0224C9E8(UnkStruct_ov9_02249B04 *param0)
         }
 
         if (v0->unk_10 != NULL) {
-            sub_02039DE4(v0->unk_10);
+            MapMatrix_Free(v0->unk_10);
             v0->unk_10 = NULL;
         }
 
@@ -4676,7 +4675,7 @@ static int ov9_0224CCB8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
     v1->unk_08 = 0;
     ov9_0224CBBC(v1->unk_18, 0);
 
-    sub_02039DE4(v1->unk_10);
+    MapMatrix_Free(v1->unk_10);
     v1->unk_10 = NULL;
 
     ov9_0224CBBC(param0->fieldSystem->unk_28, 1);
@@ -4684,8 +4683,8 @@ static int ov9_0224CCB8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
 
     if (v1->unk_00 != 593) {
         v2 = ov9_0224D720(v2->unk_08);
-        v1->unk_10 = sub_02039D78(4);
-        sub_02039DC0(v2->unk_00, v1->unk_10);
+        v1->unk_10 = MapMatrix_NewWithHeapID(4);
+        MapMatrix_Load(v2->unk_00, v1->unk_10);
         param1->unk_04 = 2;
     } else {
         param1->unk_04 = 4;
@@ -4795,7 +4794,7 @@ static int ov9_0224CEBC(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
     ov9_0224BEB4(param0, param1->unk_0C);
 
     if (v1->unk_10 == NULL) {
-        v1->unk_10 = sub_02039D78(4);
+        v1->unk_10 = MapMatrix_NewWithHeapID(4);
     }
 
     if (v1->unk_14 == NULL) {
@@ -4822,12 +4821,12 @@ static int ov9_0224CEBC(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
 
     ov9_0224CBBC(v1->unk_18, 1);
     ov9_0224CBBC(param0->fieldSystem->unk_28, 0);
-    sub_02039DC0(v2->unk_00, fieldSystem->unk_2C);
+    MapMatrix_Load(v2->unk_00, fieldSystem->mapMatrix);
 
     {
         int v4 = 0, v5 = 0, v6 = 0;
 
-        ov5_021EA540(fieldSystem->unk_28, fieldSystem->unk_2C, fieldSystem->unk_30);
+        ov5_021EA540(fieldSystem->unk_28, fieldSystem->mapMatrix, fieldSystem->unk_30);
         ov9_02251094(v2->unk_00, &v4, &v5, &v6);
         ov5_021EA678(fieldSystem->unk_28, v4, v5, v6);
         ov5_021EA6A4(fieldSystem->unk_28, 1);

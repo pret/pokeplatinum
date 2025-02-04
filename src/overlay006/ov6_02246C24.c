@@ -11,8 +11,8 @@
 
 #include "field_task.h"
 #include "heap.h"
+#include "map_matrix.h"
 #include "unk_02005474.h"
-#include "unk_02039C80.h"
 #include "unk_02054D00.h"
 
 typedef struct {
@@ -55,7 +55,7 @@ void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
         {
             VecFx32 v5;
 
-            sub_020553A4(v2, sub_02039E10(fieldSystem->unk_2C), &v5);
+            sub_020553A4(v2, MapMatrix_GetWidth(fieldSystem->mapMatrix), &v5);
 
             v4->unk_00 = ov5_021E1894(v1);
             v4->unk_00.x += v5.x;

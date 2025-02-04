@@ -38,6 +38,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
+#include "map_matrix.h"
 #include "math.h"
 #include "menu.h"
 #include "narc.h"
@@ -65,7 +66,6 @@
 #include "unk_0201F834.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
-#include "unk_02039C80.h"
 #include "unk_02054D00.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
@@ -760,8 +760,8 @@ static void ov23_0223E434(MATHRandContext16 *param0, int param1)
     UnkStruct_ov23_0223E6F8 *v10;
     UndergroundData *v11 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
 
-    v6 = (sub_02039E10(Unk_ov23_02257740->fieldSystem->unk_2C) - 2) * 32;
-    v9 = (sub_02039E20(Unk_ov23_02257740->fieldSystem->unk_2C) - 2) * 32;
+    v6 = (MapMatrix_GetWidth(Unk_ov23_02257740->fieldSystem->mapMatrix) - 2) * 32;
+    v9 = (MapMatrix_GetHeight(Unk_ov23_02257740->fieldSystem->mapMatrix) - 2) * 32;
 
     do {
         v4 = MATH_Rand16(param0, v6) + 32;
