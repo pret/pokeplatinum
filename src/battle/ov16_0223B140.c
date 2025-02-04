@@ -533,7 +533,7 @@ static void ov16_0223B790(OverlayManager *param0)
     v0->unk_00 = ov16_0223CD7C();
 
     DisableHBlank();
-    Font_InitManager(FONT_SUBSCREEN, 5);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     if (v0->battleType & 0x20) {
         v0->unk_1A4 = sub_0200C440(0xe, 2, 0xf, 5);
@@ -557,7 +557,7 @@ static void ov16_0223B790(OverlayManager *param0)
         v0->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(5, (32 * 10 * 10));
     }
 
-    VramTransfer_New(64, 5);
+    VramTransfer_New(64, HEAP_ID_BATTLE);
 
     {
         NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);

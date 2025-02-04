@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "constants/heap.h"
 
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
@@ -189,9 +190,9 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
 
         ov5_021D1414();
 
-        VramTransfer_New(128, 4);
+        VramTransfer_New(128, HEAP_ID_FIELD);
         sub_02020B90(4, 4);
-        Easy3D_Init(4);
+        Easy3D_Init(HEAP_ID_FIELD);
 
         ov5_021D15B4();
         ov5_021D154C();

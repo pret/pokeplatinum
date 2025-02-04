@@ -1,5 +1,6 @@
 #include "pltt_transfer.h"
 
+#include "nitro/gx/g3.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -22,7 +23,7 @@ typedef struct PlttTransferTask {
     NNSG2dImagePaletteProxy paletteProxy;
     u32 baseAddrMain;
     u32 baseAddrSub;
-    u8 hasWork;
+    u8 initialized;
 } PlttTransferTask;
 
 typedef struct PlttTransferTaskManager {
@@ -181,7 +182,7 @@ void PlttTransfer_ResetTask(int resourceID)
     PlttTransferTask *task = FindTransferTask(resourceID);
     GF_ASSERT(task);
 
-    if (task->hasWork == TRUE) {
+    if (task->initialized == TRUE) {
         ClearTaskTransferRanges(task);
         ResetTransferTask(task);
     }
@@ -190,7 +191,7 @@ void PlttTransfer_ResetTask(int resourceID)
 void PlttTransfer_ResetAllTasks(void)
 {
     for (int i = 0; i < sTaskManager->capacity; i++) {
-        if (sTaskManager->tasks[i].hasWork == TRUE) {
+        if (sTaskManager->tasks[i].initialized == TRUE) {
             ClearTaskTransferRanges(&sTaskManager->tasks[i]);
             ResetTransferTask(&sTaskManager->tasks[i]);
         }
@@ -205,7 +206,7 @@ NNSG2dImagePaletteProxy *PlttTransfer_GetPaletteProxy(int resourceID)
         return NULL;
     }
 
-    if (task->hasWork == TRUE) {
+    if (task->initialized == TRUE) {
         return &task->paletteProxy;
     }
 
@@ -220,7 +221,7 @@ NNSG2dImagePaletteProxy *PlttTransfer_ToggleExtPalette(int resourceID, NNSG2dIma
         return NULL;
     }
 
-    if (task->hasWork != TRUE) {
+    if (task->initialized != TRUE) {
         return NULL;
     }
 
@@ -233,15 +234,16 @@ NNSG2dImagePaletteProxy *PlttTransfer_ToggleExtPalette(int resourceID, NNSG2dIma
 
 u32 PlttTransfer_GetPlttOffset(const NNSG2dImagePaletteProxy *paletteProxy, NNS_G2D_VRAM_TYPE vramType)
 {
-    u32 size = paletteProxy->bExtendedPlt
-        ? PALETTE_SIZE_EXT_BYTES
-        : paletteProxy->fmt == GX_TEXFMT_PLTT256
-        ? 0
-        : PALETTE_SIZE_BYTES;
+    u32 size;
+    if (paletteProxy->bExtendedPlt) {
+        size = PALETTE_SIZE_EXT_BYTES;
+    } else if (paletteProxy->fmt == GX_TEXFMT_PLTT256) {
+        size = 0;
+    } else {
+        size = PALETTE_SIZE_BYTES;
+    }
 
-    return size != 0
-        ? NNS_G2dGetImagePaletteLocation(paletteProxy, vramType) / size
-        : 0;
+    return size != 0 ? NNS_G2dGetImagePaletteLocation(paletteProxy, vramType) / size : 0;
 }
 
 static void ResetTransferTask(PlttTransferTask *task)
@@ -260,7 +262,7 @@ static BOOL InitTransferTaskFromTemplate(const PlttTransferTaskTemplate *templat
 
     task->resourceID = template->resourceID;
     task->vramType = template->vramType;
-    task->hasWork = 1;
+    task->initialized = TRUE;
     task->numPalettes = template->plttIndex;
     return TRUE;
 }
@@ -347,7 +349,7 @@ static PlttTransferTask *FindTransferTask(int resourceID)
 static PlttTransferTask *FindNextFreeTask(void)
 {
     for (int i = 0; i < sTaskManager->capacity; i++) {
-        if (sTaskManager->tasks[i].hasWork == 0) {
+        if (sTaskManager->tasks[i].initialized == FALSE) {
             return sTaskManager->tasks + i;
         }
     }

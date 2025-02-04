@@ -28,7 +28,7 @@ typedef struct CharTransferTask {
     u8 state;
     BOOL useHardwareMappingType;
     BOOL atEnd;
-    BOOL haveRange;
+    BOOL hasRange;
     u32 regionSizeMain;
     u32 regionSizeSub;
 } CharTransferTask;
@@ -242,7 +242,7 @@ void CharTransfer_ReplaceCharData(int resourceID, NNSG2dCharacterData *data)
 void CharTransfer_ResetTask(int resourceID)
 {
     CharTransferTask *task;
-    BOOL repeat = TRUE;
+    BOOL stillSearching = TRUE;
 
     do {
         task = FindTransferTaskByResourceID(resourceID);
@@ -251,9 +251,9 @@ void CharTransfer_ResetTask(int resourceID)
         if (task->state == CTT_VRAM_COPIED) {
             CharTransfer_DeleteTask(&task->imageProxy);
         } else {
-            repeat = FALSE;
+            stillSearching = FALSE;
         }
-    } while (repeat);
+    } while (stillSearching);
 
     if (task->state != CTT_INIT) {
         ResetTransferTask(task);
@@ -303,7 +303,7 @@ NNSG2dImageProxy *CharTransfer_ResizeTaskRange(int resourceID, u32 size)
     task->state = CTT_VRAM_READY;
     UpdateBaseAddresses(task, offsetMain, offsetSub);
 
-    task->haveRange = TRUE;
+    task->hasRange = TRUE;
     task->regionSizeMain = sizeMain;
     task->regionSizeSub = sizeSub;
 
@@ -339,7 +339,7 @@ NNSG2dImageProxy *CharTransfer_CopyTask(const NNSG2dImageProxy *imageProxy)
     TryGetFreeTransferSpace(dstTask->vramType, &offsetMain, &offsetSub, size, &sizeMain, &sizeSub);
     UpdateBaseAddresses(dstTask, offsetMain, offsetSub);
 
-    dstTask->haveRange = TRUE;
+    dstTask->hasRange = TRUE;
     dstTask->regionSizeMain = sizeMain;
     dstTask->regionSizeSub = sizeSub;
 
@@ -469,7 +469,7 @@ static BOOL InitTransferTaskFromTemplate(const CharTransferTaskTemplate *templat
     task->vramType = template->vramType;
     task->done = task->data->characterFmt >> CHAR_TRANSFER_SHIFT;
     task->atEnd = template->atEnd;
-    task->haveRange = FALSE;
+    task->hasRange = FALSE;
     task->regionSizeMain = 0;
     task->regionSizeSub = 0;
 
@@ -534,7 +534,7 @@ static BOOL ReserveAndTransferFromTail(CharTransferTask *task)
     }
 
     UpdateBaseAddresses(task, offsetMain, offsetSub);
-    task->haveRange = TRUE;
+    task->hasRange = TRUE;
     task->regionSizeMain = sizeMain;
     task->regionSizeSub = sizeSub;
 
@@ -546,7 +546,7 @@ static BOOL ReserveAndTransferFromTail(CharTransferTask *task)
 
 static void ResetTransferTask(CharTransferTask *task)
 {
-    if (task->haveRange) {
+    if (task->hasRange) {
         ClearTransferTaskRange(task);
     }
 
@@ -657,9 +657,7 @@ static void LoadImageMapping(CharTransferTask *task)
 
 static void LoadImageMappingForScreen(CharTransferTask *task, NNS_G2D_VRAM_TYPE vramType)
 {
-    int mappingType = task->useHardwareMappingType
-        ? UpdateMappingTypeFromHardware(task, vramType)
-        : vramType;
+    int mappingType = task->useHardwareMappingType ? UpdateMappingTypeFromHardware(task, vramType) : vramType;
 
     u32 baseAddr;
     if (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) {
@@ -691,9 +689,7 @@ static void LoadImageVramTransfer(CharTransferTask *task)
 
 static void LoadImageVramTransferForScreen(CharTransferTask *task, int vramType)
 {
-    int mappingType = task->useHardwareMappingType
-        ? UpdateMappingTypeFromHardware(task, vramType)
-        : vramType;
+    int mappingType = task->useHardwareMappingType ? UpdateMappingTypeFromHardware(task, vramType) : vramType;
 
     int baseAddr;
     if (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) {
@@ -934,7 +930,7 @@ static void ClearTransferTaskRange(CharTransferTask *task)
         ClearTransferRange(start, count, sTaskManager->bufSub);
     }
 
-    task->haveRange = FALSE;
+    task->hasRange = FALSE;
 }
 
 int CharTransfer_GetBlockSize(GXOBJVRamModeChar vramMode)

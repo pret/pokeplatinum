@@ -12278,7 +12278,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     v12.unk_2C = 5;
 
     param1->fontOAM = sub_020127E8(&v12);
-    param1->spriteMgrAlloc = v11;
+    param1->charTransferAllocation = v11;
 
     sub_02012AC0(param1->fontOAM, 1);
     Window_Remove(&v9);
@@ -12293,7 +12293,7 @@ static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScript
     sub_0200D0F4(param1->cellActorData[0]);
     sub_0200D0F4(param1->cellActorData[1]);
     sub_02012870(param1->fontOAM);
-    CharTransfer_ClearRange(&param1->spriteMgrAlloc);
+    CharTransfer_ClearRange(&param1->charTransferAllocation);
     SpriteGfxHandler_UnloadCharObjById(v0, 20021);
     SpriteGfxHandler_UnloadPlttObjById(v0, 20016);
     SpriteGfxHandler_UnloadCellObjById(v0, 20013);
