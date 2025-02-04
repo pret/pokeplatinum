@@ -6,6 +6,7 @@
 #include "struct_defs/struct_02055130.h"
 
 #include "field/field_system.h"
+#include "overlay005/bdhc.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EEC68.h"
@@ -13,7 +14,6 @@
 #include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
-#include "overlay005/struct_ov5_021EF13C_decl.h"
 
 #include "map_matrix.h"
 #include "map_tile_behavior.h"
@@ -104,7 +104,7 @@ static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1
             v1 = 0;
         } else {
             {
-                const UnkStruct_ov5_021EF13C *v21 = ov5_021E9610(v18, v8);
+                const BDHC *v21 = ov5_021E9610(v18, v8);
                 v1 = ov5_021EED9C(v16, v11.x, v11.z, v21, &v11.y);
             }
         }

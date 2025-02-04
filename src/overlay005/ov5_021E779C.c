@@ -4,17 +4,17 @@
 #include <string.h>
 
 #include "field/field_system.h"
+#include "overlay005/bdhc.h"
+#include "overlay005/bdhc_loader.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EEAC8.h"
-#include "overlay005/ov5_021EEF34.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021EEB48_decl.h"
-#include "overlay005/struct_ov5_021EF13C_decl.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
 
 #include "easy3d.h"
@@ -35,8 +35,8 @@ typedef struct {
     u16 unk_00[1024];
     NNSG3dRenderObj unk_800;
     NNSG3dResFileHeader *unk_854;
-    u8 *unk_858;
-    UnkStruct_ov5_021EF13C *unk_85C;
+    u8 *bdhcBuffer;
+    BDHC *bdhc;
     int unk_860;
     BOOL unk_864;
     UnkStruct_ov5_021E1608 *unk_868;
@@ -215,7 +215,7 @@ static void ov5_021E77E4(UnkStruct_ov5_021E8F60 *param0, const u8 param1)
     }
 
     if (param0->unk_04[param1].unk_00.unk_10.unk_04 != 0) {
-        ov5_021EF23C(param0->unk_04[param1].unk_00.unk_0C);
+        BDHCLoader_ForceExitTask(param0->unk_04[param1].unk_00.unk_0C);
     }
 
     param0->unk_04[param1].unk_00.unk_24 = 1;
@@ -228,7 +228,7 @@ static void ov5_021E7814(UnkStruct_ov5_021E7814 *param0)
     }
 
     if (param0->unk_10.unk_04 != 0) {
-        ov5_021EF23C(param0->unk_0C);
+        BDHCLoader_ForceExitTask(param0->unk_0C);
     }
 
     param0->unk_10.unk_00 = 0;
@@ -356,7 +356,7 @@ static void ov5_021E79A8(UnkStruct_ov5_021E8F60 *param0)
         param0->unk_84[v0]->unk_864 = 0;
 
         ov5_021EEB84(v0, param0->unk_00, (void **)&(param0->unk_84[v0]->unk_854));
-        ov5_021EEB90(v0, param0->unk_00, (void **)&(param0->unk_84[v0]->unk_858));
+        ov5_021EEB90(v0, param0->unk_00, (void **)&(param0->unk_84[v0]->bdhcBuffer));
 
         if (param0->unk_FC == 0) {
             param0->unk_84[v0]->unk_868 = ov5_021E15F4(4);
@@ -500,7 +500,7 @@ static void ov5_021E7C00(const u8 param0, UnkStruct_ov5_021EF76C *const param1, 
 
     {
         param6->unk_10.unk_04++;
-        param6->unk_0C = ov5_021EF1F0(param5->unk_EC, v3.unk_08, param6->unk_00[param0]->unk_85C, &param6->unk_10.unk_04, &param6->unk_00[param0]->unk_858, &param6->unk_10.unk_00);
+        param6->unk_0C = BDHCLoader_StartTask(param5->unk_EC, v3.unk_08, param6->unk_00[param0]->bdhc, &param6->unk_10.unk_04, &param6->unk_00[param0]->bdhcBuffer, &param6->unk_10.unk_00);
     }
 }
 
@@ -610,7 +610,7 @@ static void ov5_021E7E28(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     }
 
     {
-        ov5_021EF158(param7->unk_EC, v2.unk_08, param7->unk_84[param1]->unk_85C, param7->unk_84[param1]->unk_858);
+        BDHCLoader_Load(param7->unk_EC, v2.unk_08, param7->unk_84[param1]->bdhc, param7->unk_84[param1]->bdhcBuffer);
     }
 
     param7->unk_84[param1]->unk_860 = param0;
@@ -691,7 +691,7 @@ static void ov5_021E7FF0(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     NARC_Seek(param7->unk_EC, v1.unk_04);
 
     {
-        ov5_021EF158(param7->unk_EC, v1.unk_08, param7->unk_84[param1]->unk_85C, param7->unk_84[param1]->unk_858);
+        BDHCLoader_Load(param7->unk_EC, v1.unk_08, param7->unk_84[param1]->bdhc, param7->unk_84[param1]->bdhcBuffer);
     }
 
     param7->unk_84[param1]->unk_860 = param0;
@@ -943,7 +943,7 @@ static void ov5_021E8558(const int param0, const int param1, const u8 param2, co
 static void ov5_021E8614(const u8 param0, UnkStruct_ov5_021E8F60 *param1)
 {
     param1->unk_84[param0]->unk_864 = 0;
-    ov5_021EF1DC(param1->unk_84[param0]->unk_85C);
+    BDHC_Reset(param1->unk_84[param0]->bdhc);
 
     if (param1->unk_84[param0]->unk_868 != NULL) {
         ov5_021E1610(
@@ -1441,9 +1441,9 @@ static void ov5_021E8E28(UnkStruct_ov5_021E8F60 *param0, const int param1, const
     ov5_021E7838(param0->unk_F8, param1, param2, param3, param4, param0->unk_B4, param0->unk_B8, param5, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_84[v0]->unk_85C = ov5_021EF13C();
+        param0->unk_84[v0]->bdhc = BDHC_New();
 
-        ov5_021EF248(param0->unk_84[v0]->unk_85C);
+        BDHCLoader_MarkBDHCNotLoaded(param0->unk_84[v0]->bdhc);
         ov5_021E7E28(v1[v0], v0, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
     }
 }
@@ -1457,7 +1457,7 @@ static void ov5_021E8ECC(UnkStruct_ov5_021E8F60 *param0, const int param1, const
     ov5_021E7838(param0->unk_F8, param1, param2, param3, param4, param0->unk_B4, param0->unk_B8, param5, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_84[v0]->unk_85C = NULL;
+        param0->unk_84[v0]->bdhc = NULL;
         ov5_021E7F1C(v1[v0], v0, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
     }
 }
@@ -1628,7 +1628,7 @@ void ov5_021E924C(UnkStruct_ov5_021E8F60 *param0)
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_84[v0]->unk_864 = 0;
 
-        ov5_021EF1D0(param0->unk_84[v0]->unk_85C);
+        BDHC_Free(param0->unk_84[v0]->bdhc);
 
         if (param0->unk_84[v0]->unk_868 != NULL) {
             ov5_021E1608(param0->unk_84[v0]->unk_868);
@@ -1813,9 +1813,9 @@ BOOL ov5_021E9580(const UnkStruct_ov5_021E8F60 *param0, const int param1, const 
     }
 }
 
-const UnkStruct_ov5_021EF13C *ov5_021E9610(const UnkStruct_ov5_021E8F60 *param0, const u8 param1)
+const BDHC *ov5_021E9610(const UnkStruct_ov5_021E8F60 *param0, const u8 param1)
 {
-    return param0->unk_84[param1]->unk_85C;
+    return param0->unk_84[param1]->bdhc;
 }
 
 u16 const *ov5_021E9624(const UnkStruct_ov5_021E8F60 *param0, const u8 param1)
@@ -2085,7 +2085,7 @@ static void ov5_021E9A14(UnkStruct_ov5_021E8F60 *param0, const int param1, const
     ov5_021E7838(param0->unk_F8, param1, param2, param0->unk_100, param0->unk_108, param0->unk_B4, param0->unk_B8, param5, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_84[v0]->unk_85C = NULL;
+        param0->unk_84[v0]->bdhc = NULL;
         ov5_021E9B70(v1[v0], v0, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
     }
 }
@@ -2104,7 +2104,7 @@ void ov5_021E9AAC(UnkStruct_ov5_021E8F60 *param0, const int param1, const int pa
 
 void ov5_021E9B10(UnkStruct_ov5_021E8F60 *param0, int param1, int param2)
 {
-    param0->unk_84[param1]->unk_85C = NULL;
+    param0->unk_84[param1]->bdhc = NULL;
     ov5_021E9B70(param2, param1, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
     param0->unk_84[param1]->unk_864 = 0;
 }
@@ -2234,7 +2234,7 @@ void ov5_021E9D3C(MapMatrix *param0, UnkStruct_ov5_021EF76C *param1, UnkStruct_o
 
     for (v0 = 0; v0 < 4; v0++) {
         v1[v0] = param3->unk_84[v0]->unk_860;
-        ov5_021EF248(param3->unk_84[v0]->unk_85C);
+        BDHCLoader_MarkBDHCNotLoaded(param3->unk_84[v0]->bdhc);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -2481,12 +2481,12 @@ void ov5_021EA5E0(UnkStruct_ov5_021E8F60 *param0, int param1, int param2)
 {
     param0->unk_84[param1]->unk_864 = 0;
     ov5_021EEB84(param1, param0->unk_00, (void **)&(param0->unk_84[param1]->unk_854));
-    ov5_021EEB90(param1, param0->unk_00, (void **)&(param0->unk_84[param1]->unk_858));
+    ov5_021EEB90(param1, param0->unk_00, (void **)&(param0->unk_84[param1]->bdhcBuffer));
     param0->unk_84[param1]->unk_860 = -1;
 
     MI_CpuFillFast(param0->unk_84[param1]->unk_00, 0xffffffff, 2 * 32 * 32);
 
-    ov5_021EF248(param0->unk_84[param1]->unk_85C);
+    BDHCLoader_MarkBDHCNotLoaded(param0->unk_84[param1]->bdhc);
     ov5_021E7E28(param2, param1, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
 }
 
