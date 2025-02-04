@@ -1,5 +1,4 @@
 {
-    "name": "Onix",
     "base_stats": {
         "hp": 35,
         "attack": 45,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_GROUND" ],
     "catch_rate": 45,
     "base_exp_reward": 108,
     "ev_yields": {
@@ -30,21 +26,32 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_ROCK_HEAD",
-        "ABILITY_STURDY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_STURDY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_BIND" ],
+            [ 6, "MOVE_SCREECH" ],
+            [ 9, "MOVE_ROCK_THROW" ],
+            [ 14, "MOVE_RAGE" ],
+            [ 17, "MOVE_ROCK_TOMB" ],
+            [ 22, "MOVE_SANDSTORM" ],
+            [ 25, "MOVE_SLAM" ],
+            [ 30, "MOVE_ROCK_POLISH" ],
+            [ 33, "MOVE_DRAGON_BREATH" ],
+            [ 38, "MOVE_CURSE" ],
+            [ 41, "MOVE_IRON_TAIL" ],
+            [ 46, "MOVE_SAND_TOMB" ],
+            [ 49, "MOVE_DOUBLE_EDGE" ],
+            [ 54, "MOVE_STONE_EDGE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -84,28 +91,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_MUD_SPORT",
-                "MOVE_TACKLE",
-                "MOVE_HARDEN",
-                "MOVE_BIND"
-            ],
-            "6": "MOVE_SCREECH",
-            "9": "MOVE_ROCK_THROW",
-            "14": "MOVE_RAGE",
-            "17": "MOVE_ROCK_TOMB",
-            "22": "MOVE_SANDSTORM",
-            "25": "MOVE_SLAM",
-            "30": "MOVE_ROCK_POLISH",
-            "33": "MOVE_DRAGON_BREATH",
-            "38": "MOVE_CURSE",
-            "41": "MOVE_IRON_TAIL",
-            "46": "MOVE_SAND_TOMB",
-            "49": "MOVE_DOUBLE_EDGE",
-            "54": "MOVE_STONE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_IRON_HEAD",
@@ -117,14 +103,14 @@
     },
     "evolutions": [
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_METAL_COAT",
             "SPECIES_STEELIX"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 88,
@@ -138,7 +124,66 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 25,
         "pokemon_pos_m": 1,
-        "entry_text": "It burrows through the ground\nat a speed of 50 mph while\nfeeding on large boulders.\n",
-        "category": "Rock Snake Pokémon"
+        "en": {
+            "name": "ONIX",
+            "category": "Rock Snake Pokémon",
+            "entry_text": [
+                "It burrows through the ground\n",
+                "at a speed of 50 mph while\n",
+                "feeding on large boulders.\n"
+            ]
+        },
+        "fr": {
+            "name": "ONIX",
+            "category": "Pokémon Serpenroc",
+            "entry_text": [
+                "Il provoque des secousses\n",
+                "sismiques en creusant.\n",
+                "Il peut atteindre les 80 km/h."
+            ]
+        },
+        "de": {
+            "name": "ONIX",
+            "category": "Felsnatter",
+            "entry_text": [
+                "Wenn es sich unter dem Boden mit\n",
+                "bis zu 80 km/h bewegt, verursacht\n",
+                "es Erschütterungen."
+            ]
+        },
+        "it": {
+            "name": "ONIX",
+            "category": "Pokémon Serpesasso",
+            "entry_text": [
+                "Si muove sottoterra provocando\n",
+                "scosse e boati. Può raggiungere\n",
+                "anche la velocità di 80 km/h."
+            ]
+        },
+        "es": {
+            "name": "ONIX",
+            "category": "Pokémon Serp. Roca",
+            "entry_text": [
+                "Cuando viaja bajo tierra causa\n",
+                "temblores y estruendo. Se puede\n",
+                "mover a 80 km por hora."
+            ]
+        },
+        "jp": {
+            "name": "イワ－ク",
+            "category": "いわへびポケモン",
+            "entry_text": [
+                "イワ－クが　ちちゅうを　ほりすすむと\n",
+                "じなりが　きこえ　じめんが　ゆれる。\n",
+                "いどうそくどは　じそく８０キロ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2059
     }
 }

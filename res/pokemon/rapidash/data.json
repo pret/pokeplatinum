@@ -1,5 +1,4 @@
 {
-    "name": "Rapidash",
     "base_stats": {
         "hp": 65,
         "attack": 100,
@@ -8,10 +7,7 @@
         "special_attack": 80,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 60,
     "base_exp_reward": 192,
     "ev_yields": {
@@ -30,21 +26,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_RUN_AWAY",
-        "ABILITY_FLASH_FIRE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_FLASH_FIRE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_JAB" ],
+            [ 1, "MOVE_MEGAHORN" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 6, "MOVE_TAIL_WHIP" ],
+            [ 10, "MOVE_EMBER" ],
+            [ 15, "MOVE_FLAME_WHEEL" ],
+            [ 19, "MOVE_STOMP" ],
+            [ 24, "MOVE_FIRE_SPIN" ],
+            [ 28, "MOVE_TAKE_DOWN" ],
+            [ 33, "MOVE_AGILITY" ],
+            [ 37, "MOVE_FIRE_BLAST" ],
+            [ 40, "MOVE_FURY_ATTACK" ],
+            [ 47, "MOVE_BOUNCE" ],
+            [ 56, "MOVE_FLARE_BLITZ" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -73,37 +80,17 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_JAB",
-                "MOVE_MEGAHORN",
-                "MOVE_GROWL",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_TAIL_WHIP",
-                "MOVE_EMBER"
-            ],
-            "6": "MOVE_TAIL_WHIP",
-            "10": "MOVE_EMBER",
-            "15": "MOVE_FLAME_WHEEL",
-            "19": "MOVE_STOMP",
-            "24": "MOVE_FIRE_SPIN",
-            "28": "MOVE_TAKE_DOWN",
-            "33": "MOVE_AGILITY",
-            "37": "MOVE_FIRE_BLAST",
-            "40": "MOVE_FURY_ATTACK",
-            "47": "MOVE_BOUNCE",
-            "56": "MOVE_FLARE_BLITZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_SNORE",
             "MOVE_BOUNCE",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 17,
@@ -117,7 +104,66 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "When at an all-out gallop, its\nblazing mane sparkles, enhancing\nits beautiful appearance.",
-        "category": "Fire Horse Pokémon"
+        "en": {
+            "name": "RAPIDASH",
+            "category": "Fire Horse Pokémon",
+            "entry_text": [
+                "When at an all-out gallop, its\n",
+                "blazing mane sparkles, enhancing\n",
+                "its beautiful appearance."
+            ]
+        },
+        "fr": {
+            "name": "GALOPA",
+            "category": "Pokémon Cheval Feu",
+            "entry_text": [
+                "Son galop dépasse les 240 km/h. Il\n",
+                "file comme une flèche, laissant\n",
+                "flotter sa crinière ardente."
+            ]
+        },
+        "de": {
+            "name": "GALLOPA",
+            "category": "Feuerpferd",
+            "entry_text": [
+                "Seine Mähne lodert auf, wenn es\n",
+                "mit 240 km/h pfeilschnell\n",
+                "galoppiert."
+            ]
+        },
+        "it": {
+            "name": "RAPIDASH",
+            "category": "Pokémon Cavalfuoco",
+            "entry_text": [
+                "Galoppa alla velocità di 240 km/h.\n",
+                "Corre come una freccia facendo\n",
+                "ondeggiare la criniera ardente."
+            ]
+        },
+        "es": {
+            "name": "RAPIDASH",
+            "category": "Pokémon Caballo F.",
+            "entry_text": [
+                "Galopa a casi 240 km por hora.\n",
+                "Su crin ardiente parece una flecha\n",
+                "cuando corre."
+            ]
+        },
+        "jp": {
+            "name": "ギャロップ",
+            "category": "ひのうまポケモン",
+            "entry_text": [
+                "はしる　そくどは　じそく２４０キロ。\n",
+                "たてがみの　ほのおが　はげしく　もえ\n",
+                "やの　ように　かけぬける。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 514
     }
 }

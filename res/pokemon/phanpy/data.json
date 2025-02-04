@@ -1,5 +1,4 @@
 {
-    "name": "Phanpy",
     "base_stats": {
         "hp": 90,
         "attack": 60,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_GROUND" ],
     "catch_rate": 120,
     "base_exp_reward": 124,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_PICKUP",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_PICKUP", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ODOR_SLEUTH" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 6, "MOVE_FLAIL" ],
+            [ 10, "MOVE_TAKE_DOWN" ],
+            [ 15, "MOVE_ROLLOUT" ],
+            [ 19, "MOVE_NATURAL_GIFT" ],
+            [ 24, "MOVE_SLAM" ],
+            [ 28, "MOVE_ENDURE" ],
+            [ 33, "MOVE_CHARM" ],
+            [ 37, "MOVE_LAST_RESORT" ],
+            [ 42, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -72,24 +75,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ODOR_SLEUTH",
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_DEFENSE_CURL"
-            ],
-            "6": "MOVE_FLAIL",
-            "10": "MOVE_TAKE_DOWN",
-            "15": "MOVE_ROLLOUT",
-            "19": "MOVE_NATURAL_GIFT",
-            "24": "MOVE_SLAM",
-            "28": "MOVE_ENDURE",
-            "33": "MOVE_CHARM",
-            "37": "MOVE_LAST_RESORT",
-            "42": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SUPERPOWER",
@@ -104,14 +90,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             25,
             "SPECIES_DONPHAN"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -125,7 +111,66 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It is strong despite its compact\nsize. It can easily pick up and\ncarry an adult human on its back.",
-        "category": "Long Nose Pokémon"
+        "en": {
+            "name": "PHANPY",
+            "category": "Long Nose Pokémon",
+            "entry_text": [
+                "It is strong despite its compact\n",
+                "size. It can easily pick up and\n",
+                "carry an adult human on its back."
+            ]
+        },
+        "fr": {
+            "name": "PHANPY",
+            "category": "Pokémon Long-Nez",
+            "entry_text": [
+                "Il est fort malgré son aspect\n",
+                "ramassé. Il n’a aucun mal à porter\n",
+                "un humain adulte sur son dos."
+            ]
+        },
+        "de": {
+            "name": "PHANPY",
+            "category": "Langrüssel",
+            "entry_text": [
+                "Trotz seiner geringen Größe ist es\n",
+                "stark. Es kann einen Erwachsenen\n",
+                "mühelos auf dem Rücken tragen."
+            ]
+        },
+        "it": {
+            "name": "PHANPY",
+            "category": "Pokémon Nasone",
+            "entry_text": [
+                "Non è molto grande, ma è forte.\n",
+                "Può sollevare un adulto e traspor-\n",
+                "tarlo sul dorso senza fatica."
+            ]
+        },
+        "es": {
+            "name": "PHANPY",
+            "category": "Pokémon Narizotas",
+            "entry_text": [
+                "A pesar de su tamaño reducido,\n",
+                "es tan fuerte que puede llevar a un\n",
+                "humano a su espalda con facilidad."
+            ]
+        },
+        "jp": {
+            "name": "ゴマゾウ",
+            "category": "ながはなポケモン",
+            "entry_text": [
+                "からだは　ちいさいが　ちからもち。\n",
+                "おとなの　ひとを　かるがると\n",
+                "せなかに　のせて　あるいてしまう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2056
     }
 }

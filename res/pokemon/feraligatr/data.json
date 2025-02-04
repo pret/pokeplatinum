@@ -1,5 +1,4 @@
 {
-    "name": "Feraligatr",
     "base_stats": {
         "hp": 85,
         "attack": 105,
@@ -8,10 +7,7 @@
         "special_attack": 79,
         "special_defense": 83
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 210,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_RAGE" ],
+            [ 6, "MOVE_WATER_GUN" ],
+            [ 8, "MOVE_RAGE" ],
+            [ 13, "MOVE_BITE" ],
+            [ 15, "MOVE_SCARY_FACE" ],
+            [ 21, "MOVE_ICE_FANG" ],
+            [ 24, "MOVE_FLAIL" ],
+            [ 30, "MOVE_AGILITY" ],
+            [ 32, "MOVE_CRUNCH" ],
+            [ 37, "MOVE_SLASH" ],
+            [ 45, "MOVE_SCREECH" ],
+            [ 50, "MOVE_THRASH" ],
+            [ 58, "MOVE_AQUA_TAIL" ],
+            [ 63, "MOVE_SUPERPOWER" ],
+            [ 71, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM02",
             "TM03",
@@ -91,29 +99,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_LEER",
-                "MOVE_WATER_GUN",
-                "MOVE_RAGE"
-            ],
-            "6": "MOVE_WATER_GUN",
-            "8": "MOVE_RAGE",
-            "13": "MOVE_BITE",
-            "15": "MOVE_SCARY_FACE",
-            "21": "MOVE_ICE_FANG",
-            "24": "MOVE_FLAIL",
-            "30": "MOVE_AGILITY",
-            "32": "MOVE_CRUNCH",
-            "37": "MOVE_SLASH",
-            "45": "MOVE_SCREECH",
-            "50": "MOVE_THRASH",
-            "58": "MOVE_AQUA_TAIL",
-            "63": "MOVE_SUPERPOWER",
-            "71": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -128,9 +114,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 23,
@@ -144,7 +131,66 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 2,
-        "entry_text": "It usually moves slowly, but it\ngoes at blinding speed when it\nattacks and bites prey.",
-        "category": "Big Jaw Pokémon"
+        "en": {
+            "name": "FERALIGATR",
+            "category": "Big Jaw Pokémon",
+            "entry_text": [
+                "It usually moves slowly, but it\n",
+                "goes at blinding speed when it\n",
+                "attacks and bites prey."
+            ]
+        },
+        "fr": {
+            "name": "ALIGATUEUR",
+            "category": "Pokémon Mâchoire",
+            "entry_text": [
+                "Ce Pokémon à l’air pataud est\n",
+                "capable d’attaquer à la vitesse\n",
+                "de l’éclair pour mordre sa proie."
+            ]
+        },
+        "de": {
+            "name": "IMPERGATOR",
+            "category": "Großmaul",
+            "entry_text": [
+                "Eigentlich bewegt es sich langsam,\n",
+                "doch seine Beute greift es\n",
+                "blitzschnell an."
+            ]
+        },
+        "it": {
+            "name": "FERALIGATR",
+            "category": "Pokémon Mascellone",
+            "entry_text": [
+                "Di solito si muove lentamente, ma\n",
+                "quando attacca e morde la preda si\n",
+                "muove ad una velocità incredibile."
+            ]
+        },
+        "es": {
+            "name": "FERALIGATR",
+            "category": "Pokémon Fauces",
+            "entry_text": [
+                "Se suele mover lento, pero alcanza\n",
+                "velocidades de vértigo al atacar\n",
+                "y morder a sus enemigos."
+            ]
+        },
+        "jp": {
+            "name": "オ－ダイル",
+            "category": "おおあごポケモン",
+            "entry_text": [
+                "ふだんは　ゆっくりとした　うごきだが\n",
+                "えものに　かみつくときは\n",
+                "めにも　とまらない　スピ－ドだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 771
     }
 }

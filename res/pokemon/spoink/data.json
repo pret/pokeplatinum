@@ -1,5 +1,4 @@
 {
-    "name": "Spoink",
     "base_stats": {
         "hp": 60,
         "attack": 25,
@@ -8,10 +7,7 @@
         "special_attack": 70,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 255,
     "base_exp_reward": 89,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_OWN_TEMPO"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_OWN_TEMPO" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SPLASH" ],
+            [ 7, "MOVE_PSYWAVE" ],
+            [ 10, "MOVE_ODOR_SLEUTH" ],
+            [ 14, "MOVE_PSYBEAM" ],
+            [ 15, "MOVE_PSYCH_UP" ],
+            [ 18, "MOVE_CONFUSE_RAY" ],
+            [ 21, "MOVE_MAGIC_COAT" ],
+            [ 26, "MOVE_ZEN_HEADBUTT" ],
+            [ 29, "MOVE_REST" ],
+            [ 29, "MOVE_SNORE" ],
+            [ 34, "MOVE_PAYBACK" ],
+            [ 41, "MOVE_PSYCHIC" ],
+            [ 46, "MOVE_POWER_GEM" ],
+            [ 48, "MOVE_BOUNCE" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -85,25 +89,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": "MOVE_SPLASH",
-            "7": "MOVE_PSYWAVE",
-            "10": "MOVE_ODOR_SLEUTH",
-            "14": "MOVE_PSYBEAM",
-            "15": "MOVE_PSYCH_UP",
-            "18": "MOVE_CONFUSE_RAY",
-            "21": "MOVE_MAGIC_COAT",
-            "26": "MOVE_ZEN_HEADBUTT",
-            "29": [
-                "MOVE_REST",
-                "MOVE_SNORE"
-            ],
-            "34": "MOVE_PAYBACK",
-            "41": "MOVE_PSYCHIC",
-            "46": "MOVE_POWER_GEM",
-            "48": "MOVE_BOUNCE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
@@ -115,14 +101,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             32,
             "SPECIES_GRUMPIG"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 7,
@@ -136,7 +122,66 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "It bounces constantly, using its\ntail like a spring. The shock of\nbouncing keeps its heart beating.",
-        "category": "Bounce Pokémon"
+        "en": {
+            "name": "SPOINK",
+            "category": "Bounce Pokémon",
+            "entry_text": [
+                "It bounces constantly, using its\n",
+                "tail like a spring. The shock of\n",
+                "bouncing keeps its heart beating."
+            ]
+        },
+        "fr": {
+            "name": "SPOINK",
+            "category": "Pokémon Rebond",
+            "entry_text": [
+                "Il utilise sa queue comme un \n",
+                "ressort et bondit partout. Chaque\n",
+                "nouveau choc fait battre son cœur."
+            ]
+        },
+        "de": {
+            "name": "SPOINK",
+            "category": "Sprungfeder",
+            "entry_text": [
+                "Es hüpft beständig umher, wobei es\n",
+                "seinen Schweif als Feder verwendet.\n",
+                "Nur so bleibt sein Herz aktiv."
+            ]
+        },
+        "it": {
+            "name": "SPOINK",
+            "category": "Pokémon Molla",
+            "entry_text": [
+                "Rimbalza costantemente usando la\n",
+                "coda come una molla. Il movimento\n",
+                "sollecita il cuore e lo fa battere."
+            ]
+        },
+        "es": {
+            "name": "SPOINK",
+            "category": "Pokémon Saltarín",
+            "entry_text": [
+                "Bota continuamente usando su\n",
+                "cola como muelle. Salta para\n",
+                "mantener el latido de su corazón."
+            ]
+        },
+        "jp": {
+            "name": "バネブ－",
+            "category": "とびはねポケモン",
+            "entry_text": [
+                "しっぽを　バネのかわりに　いつも\n",
+                "とびはねている。はねる　しんどうで\n",
+                "しんぞうを　こどう　させているのだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2570
     }
 }

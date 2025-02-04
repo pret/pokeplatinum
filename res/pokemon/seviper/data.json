@@ -1,5 +1,4 @@
 {
-    "name": "Seviper",
     "base_stats": {
         "hp": 73,
         "attack": 100,
@@ -8,10 +7,7 @@
         "special_attack": 100,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 90,
     "base_exp_reward": 165,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_SHED_SKIN",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_SHED_SKIN", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WRAP" ],
+            [ 7, "MOVE_LICK" ],
+            [ 10, "MOVE_BITE" ],
+            [ 16, "MOVE_POISON_TAIL" ],
+            [ 19, "MOVE_SCREECH" ],
+            [ 25, "MOVE_GLARE" ],
+            [ 28, "MOVE_CRUNCH" ],
+            [ 34, "MOVE_POISON_FANG" ],
+            [ 37, "MOVE_SWAGGER" ],
+            [ 43, "MOVE_HAZE" ],
+            [ 46, "MOVE_NIGHT_SLASH" ],
+            [ 52, "MOVE_POISON_JAB" ],
+            [ 55, "MOVE_WRING_OUT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -79,22 +82,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_WRAP",
-            "7": "MOVE_LICK",
-            "10": "MOVE_BITE",
-            "16": "MOVE_POISON_TAIL",
-            "19": "MOVE_SCREECH",
-            "25": "MOVE_GLARE",
-            "28": "MOVE_CRUNCH",
-            "34": "MOVE_POISON_FANG",
-            "37": "MOVE_SWAGGER",
-            "43": "MOVE_HAZE",
-            "46": "MOVE_NIGHT_SLASH",
-            "52": "MOVE_POISON_JAB",
-            "55": "MOVE_WRING_OUT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_AQUA_TAIL",
@@ -104,9 +92,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 27,
@@ -120,7 +109,66 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 4,
         "pokemon_pos_m": 6,
-        "entry_text": "For many generations, it has\nfeuded with ZANGOOSE. It whets its\nbladed tail on rocks for battle.",
-        "category": "Fang Snake Pokémon"
+        "en": {
+            "name": "SEVIPER",
+            "category": "Fang Snake Pokémon",
+            "entry_text": [
+                "For many generations, it has\n",
+                "feuded with ZANGOOSE. It whets its\n",
+                "bladed tail on rocks for battle."
+            ]
+        },
+        "fr": {
+            "name": "SEVIPER",
+            "category": "Pokémon Serpacroc",
+            "entry_text": [
+                "Le rival historique de MANGRIFF.\n",
+                "Il affûte la lame de sa queue \n",
+                "sur les rochers avant le combat."
+            ]
+        },
+        "de": {
+            "name": "VIPITIS",
+            "category": "Reißzahn",
+            "entry_text": [
+                "Seit Generationen ist es mit SENGO\n",
+                "verfeindet. Es wetzt seinen\n",
+                "scharfen Schweif an Felsen."
+            ]
+        },
+        "it": {
+            "name": "SEVIPER",
+            "category": "Pokémon Zannaserpe",
+            "entry_text": [
+                "È acerrimo nemico di ZANGOOSE.\n",
+                "Prima della lotta, affila sulle rocce\n",
+                "la sua coda simile ad una spada."
+            ]
+        },
+        "es": {
+            "name": "SEVIPER",
+            "category": "Pokémon Colmillos",
+            "entry_text": [
+                "Se ha enfrentado durante muchos\n",
+                "años a ZANGOOSE. Usa rocas para\n",
+                "mantener afilada su cola."
+            ]
+        },
+        "jp": {
+            "name": "ハブネ－ク",
+            "category": "キバへびポケモン",
+            "entry_text": [
+                "せんぞだいだい　ザング－スと\n",
+                "たたかってきた。しっぽの　やいばを\n",
+                "いわで　とぎ　たたかいに　そなえる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1542
     }
 }

@@ -3,9 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/game_records.h"
 
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
@@ -26,7 +25,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
@@ -192,7 +191,7 @@ void sub_02052E58(FieldTask *param0)
     v5->unk_04.playTime = SaveData_GetPlayTime(fieldSystem->saveData);
     v5->unk_10.unk_00 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
     v5->unk_10.unk_04 = SystemFlag_CheckGameCompleted(v3);
-    v5->unk_10.unk_08 = SaveData_PokedexData(fieldSystem->saveData);
+    v5->unk_10.unk_08 = SaveData_GetPokedex(fieldSystem->saveData);
 
     if (SystemFlag_CheckGameCompleted(v3) == 0) {
         sub_02055C2C(fieldSystem);

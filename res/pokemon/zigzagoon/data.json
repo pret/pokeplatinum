@@ -1,5 +1,4 @@
 {
-    "name": "Zigzagoon",
     "base_stats": {
         "hp": 38,
         "attack": 30,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 41
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 255,
     "base_exp_reward": 60,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_PICKUP",
-        "ABILITY_GLUTTONY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_PICKUP", "ABILITY_GLUTTONY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_HEADBUTT" ],
+            [ 13, "MOVE_SAND_ATTACK" ],
+            [ 17, "MOVE_ODOR_SLEUTH" ],
+            [ 21, "MOVE_MUD_SPORT" ],
+            [ 25, "MOVE_PIN_MISSILE" ],
+            [ 29, "MOVE_COVET" ],
+            [ 33, "MOVE_FLAIL" ],
+            [ 37, "MOVE_REST" ],
+            [ 41, "MOVE_BELLY_DRUM" ],
+            [ 45, "MOVE_FLING" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -81,24 +84,7 @@
             "HM03",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_TAIL_WHIP",
-            "9": "MOVE_HEADBUTT",
-            "13": "MOVE_SAND_ATTACK",
-            "17": "MOVE_ODOR_SLEUTH",
-            "21": "MOVE_MUD_SPORT",
-            "25": "MOVE_PIN_MISSILE",
-            "29": "MOVE_COVET",
-            "33": "MOVE_FLAIL",
-            "37": "MOVE_REST",
-            "41": "MOVE_BELLY_DRUM",
-            "45": "MOVE_FLING"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -114,14 +100,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             20,
             "SPECIES_LINOONE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -135,7 +121,62 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "It walks in zigzag fashion. It is\ngood at finding items in the\ngrass and even in the ground.",
-        "category": "TinyRaccoon Pokémon"
+        "en": {
+            "name": "ZIGZAGOON",
+            "category": "TinyRaccoon Pokémon",
+            "entry_text": [
+                "It walks in zigzag fashion. It is\n",
+                "good at finding items in the\n",
+                "grass and even in the ground."
+            ]
+        },
+        "fr": {
+            "name": "ZIGZATON",
+            "category": "Pokémon Petit Raton",
+            "entry_text": [
+                "Il marche en zigzaguant et n’a\n",
+                "pas son pareil pour trouver des\n",
+                "objets dans l’herbe ou sous terre."
+            ]
+        },
+        "de": {
+            "name": "ZIGZACHS",
+            "category": "Kleindachs",
+            "entry_text": [
+                "Es läuft im Zickzack. Es hat das\n",
+                "Talent, Items im Gras, aber auch im\n",
+                "Boden, zu finden."
+            ]
+        },
+        "it": {
+            "name": "ZIGZAGOON",
+            "category": "Pokémon Procione",
+            "entry_text": [ "Avanza a zigzag. È bravo a trovare\n", "strumenti nell’erba e sul terreno." ]
+        },
+        "es": {
+            "name": "ZIGZAGOON",
+            "category": "Pokémon Mapachito",
+            "entry_text": [
+                "Se mueve en zigzag. Se le da\n",
+                "bien encontrar objetos ocultos en\n",
+                "la hierba e incluso enterrados."
+            ]
+        },
+        "jp": {
+            "name": "ジグザグマ",
+            "category": "まめだぬきポケモン",
+            "entry_text": [
+                "ジグザグに　あるいて　くさかげや\n",
+                "じめんに　うまっている　たからものを\n",
+                "みつけるのが　とくいな　ポケモン。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1285
     }
 }

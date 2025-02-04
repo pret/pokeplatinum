@@ -1,5 +1,4 @@
 {
-    "name": "Uxie",
     "base_stats": {
         "hp": 75,
         "attack": 75,
@@ -8,10 +7,7 @@
         "special_attack": 75,
         "special_defense": 130
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 3,
     "base_exp_reward": 210,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 80,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_REST" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 6, "MOVE_IMPRISON" ],
+            [ 16, "MOVE_ENDURE" ],
+            [ 21, "MOVE_SWIFT" ],
+            [ 31, "MOVE_YAWN" ],
+            [ 36, "MOVE_FUTURE_SIGHT" ],
+            [ 46, "MOVE_AMNESIA" ],
+            [ 51, "MOVE_EXTRASENSORY" ],
+            [ 61, "MOVE_FLAIL" ],
+            [ 66, "MOVE_NATURAL_GIFT" ],
+            [ 76, "MOVE_MEMENTO" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM06",
@@ -91,23 +93,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_REST",
-                "MOVE_CONFUSION"
-            ],
-            "6": "MOVE_IMPRISON",
-            "16": "MOVE_ENDURE",
-            "21": "MOVE_SWIFT",
-            "31": "MOVE_YAWN",
-            "36": "MOVE_FUTURE_SIGHT",
-            "46": "MOVE_AMNESIA",
-            "51": "MOVE_EXTRASENSORY",
-            "61": "MOVE_FLAIL",
-            "66": "MOVE_NATURAL_GIFT",
-            "76": "MOVE_MEMENTO"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -121,9 +107,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -137,7 +124,66 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "When UXIE flew, people gained the\nability to solve problems.\nIt was the birth of knowledge.",
-        "category": "Knowledge Pokémon"
+        "en": {
+            "name": "UXIE",
+            "category": "Knowledge Pokémon",
+            "entry_text": [
+                "When UXIE flew, people gained the\n",
+                "ability to solve problems.\n",
+                "It was the birth of knowledge."
+            ]
+        },
+        "fr": {
+            "name": "CREHELF",
+            "category": "Pokémon Savoir",
+            "entry_text": [
+                "On l’appelle “être du savoir”.\n",
+                "On raconte que son regard a le\n",
+                "pouvoir d’effacer la mémoire."
+            ]
+        },
+        "de": {
+            "name": "SELFE",
+            "category": "Wissen",
+            "entry_text": [
+                "“Das wissende Wesen”.\n",
+                "Es soll die Erinnerungen derer\n",
+                "löschen, die ihm in die Augen sehen."
+            ]
+        },
+        "it": {
+            "name": "UXIE",
+            "category": "Pokémon Sapienza",
+            "entry_text": [
+                "Noto come “Essere della\n",
+                "conoscenza”. Pare che faccia per-\n",
+                "dere la memoria a chiunque lo fissi."
+            ]
+        },
+        "es": {
+            "name": "UXIE",
+            "category": "Pokémon Sabiduría",
+            "entry_text": [
+                "Se le conoce como el “ser de\n",
+                "la sabiduría”. Se dice que puede\n",
+                "borrar la memoria con una mirada."
+            ]
+        },
+        "jp": {
+            "name": "ユクシ－",
+            "category": "ちしきポケモン",
+            "entry_text": [
+                "ちしきのかみ　と　よばれている。\n",
+                "めを　あわせた　ものの　きおくを\n",
+                "けしてしまう　ちからを　もつという。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 1285
     }
 }

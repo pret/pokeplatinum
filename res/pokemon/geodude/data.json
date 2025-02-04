@@ -1,5 +1,4 @@
 {
-    "name": "Geodude",
     "base_stats": {
         "hp": 40,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_GROUND" ],
     "catch_rate": 255,
     "base_exp_reward": 73,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_ROCK_HEAD",
-        "ABILITY_STURDY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_STURDY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 4, "MOVE_MUD_SPORT" ],
+            [ 8, "MOVE_ROCK_POLISH" ],
+            [ 11, "MOVE_ROCK_THROW" ],
+            [ 15, "MOVE_MAGNITUDE" ],
+            [ 18, "MOVE_SELFDESTRUCT" ],
+            [ 22, "MOVE_ROLLOUT" ],
+            [ 25, "MOVE_ROCK_BLAST" ],
+            [ 29, "MOVE_EARTHQUAKE" ],
+            [ 32, "MOVE_EXPLOSION" ],
+            [ 36, "MOVE_DOUBLE_EDGE" ],
+            [ 39, "MOVE_STONE_EDGE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -81,24 +84,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_DEFENSE_CURL"
-            ],
-            "4": "MOVE_MUD_SPORT",
-            "8": "MOVE_ROCK_POLISH",
-            "11": "MOVE_ROCK_THROW",
-            "15": "MOVE_MAGNITUDE",
-            "18": "MOVE_SELFDESTRUCT",
-            "22": "MOVE_ROLLOUT",
-            "25": "MOVE_ROCK_BLAST",
-            "29": "MOVE_EARTHQUAKE",
-            "32": "MOVE_EXPLOSION",
-            "36": "MOVE_DOUBLE_EDGE",
-            "39": "MOVE_STONE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -112,14 +98,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             25,
             "SPECIES_GRAVELER"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 4,
@@ -133,7 +119,66 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "At rest, it looks just like a rock.\nCarelessly stepping on it will make\nit swing its fists angrily.",
-        "category": "Rock Pokémon"
+        "en": {
+            "name": "GEODUDE",
+            "category": "Rock Pokémon",
+            "entry_text": [
+                "At rest, it looks just like a rock.\n",
+                "Carelessly stepping on it will make\n",
+                "it swing its fists angrily."
+            ]
+        },
+        "fr": {
+            "name": "RACAILLOU",
+            "category": "Pokémon Roche",
+            "entry_text": [
+                "Nombre d’entre eux vivent sur des\n",
+                "chemins montagneux où ils restent\n",
+                "enfouis à épier les alpinistes."
+            ]
+        },
+        "de": {
+            "name": "KLEINSTEIN",
+            "category": "Gestein",
+            "entry_text": [
+                "Viele von ihnen leben auf\n",
+                "Bergpfaden, halb vergraben\n",
+                "und Bergsteiger beobachtend."
+            ]
+        },
+        "it": {
+            "name": "GEODUDE",
+            "category": "Pokémon Roccia",
+            "entry_text": [
+                "Molti vivono sui sentieri montani\n",
+                "e se ne stanno mezzi infossati nel\n",
+                "terreno ad osservare gli scalatori."
+            ]
+        },
+        "es": {
+            "name": "GEODUDE",
+            "category": "Pokémon Roca",
+            "entry_text": [
+                "Muchos viven en zonas montañosas\n",
+                "y permanecen semienterrados\n",
+                "mientras miran a los escaladores."
+            ]
+        },
+        "jp": {
+            "name": "イシツブテ",
+            "category": "がんせきポケモン",
+            "entry_text": [
+                "やまみちに　おおく　せいそくする。\n",
+                "からだの　はんぶんを　じめんに　うめ\n",
+                "とざんしゃの　ようすを　みている。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 2059
     }
 }

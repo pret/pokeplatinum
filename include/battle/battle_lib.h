@@ -193,7 +193,7 @@ void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val);
  *                          flags will NOT be set after determining if they
  *                          should activate.
  * @return A value representing the speed-ordering of the two battlers,
- * relative to the first of the two. See enum CompareSpeedResult.
+ * relative to the first of the two. See COMPARE_SPEED constants.
  */
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *battleCtx, int battler1, int battler2, BOOL ignoreQuickClaw);
 
@@ -323,7 +323,7 @@ void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx,
  * @param battler
  * @return A value representing the battler's status non-volatile status.
  */
-enum BattleAnimation Battler_StatusCondition(BattleContext *battleCtx, int battler);
+enum BattleSubAnimation Battler_StatusCondition(BattleContext *battleCtx, int battler);
 
 /**
  * @brief Check if the given trainer has a trainer message to be shown.

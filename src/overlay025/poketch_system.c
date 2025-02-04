@@ -3,7 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/sdat.h"
+#include "generated/genders.h"
+#include "generated/sdat.h"
 
 #include "field/field_system_decl.h"
 #include "overlay025/ov25_02254560.h"
@@ -15,7 +16,6 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "game_overlay.h"
-#include "gender.h"
 #include "heap.h"
 #include "inlines.h"
 #include "save_player.h"
@@ -129,7 +129,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
 
         new_system->fieldSystem = fieldSystem;
         new_system->saveData = saveData;
-        new_system->poketchData = SaveData_PoketchData(saveData);
+        new_system->poketch = SaveData_PoketchData(saveData);
         new_system->bgl = bgl;
         new_system->oamManager = oamManager;
 
@@ -166,13 +166,13 @@ void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID even
         poketchSys->playerMoving = TRUE;
         break;
     case POKETCH_EVENT_PEDOMETER: {
-        u32 step_count = PoketchData_StepCount(poketchSys->poketchData);
+        u32 step_count = Poketch_StepCount(poketchSys->poketch);
 
         if (++step_count > POKETCH_PEDOMETER_MAX) {
             step_count = 0;
         }
 
-        PoketchData_SetStepCount(poketchSys->poketchData, step_count);
+        Poketch_SetStepCount(poketchSys->poketch, step_count);
         poketchSys->pedometerUpdated = TRUE;
     } break;
     case POKETCH_EVENT_SAVE:
@@ -278,7 +278,7 @@ static void PoketchEvent_InitApp(PoketchSystem *poketchSys)
         break;
     case 1:
         if (ov25_022547F4(poketchSys->unk_1C, 0)) {
-            u32 app_ID = PoketchData_CurrentAppID(poketchSys->poketchData);
+            u32 app_ID = Poketch_CurrentAppID(poketchSys->poketch);
 
             PoketchSystem_LoadApp(poketchSys, app_ID);
             PoketchSystem_InitApp(poketchSys, app_ID);
@@ -325,9 +325,9 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
 
         if (ov25_02254800(poketchSys->unk_1C)) {
             if (poketchSys->buttonDir == BUTTON_UP) {
-                poketchSys->unk_20.unk_00 = PoketchData_DecrementAppID(poketchSys->poketchData);
+                poketchSys->unk_20.unk_00 = Poketch_DecrementAppID(poketchSys->poketch);
             } else {
-                poketchSys->unk_20.unk_00 = PoketchData_IncrementAppID(poketchSys->poketchData);
+                poketchSys->unk_20.unk_00 = Poketch_IncrementAppID(poketchSys->poketch);
             }
 
             if (poketchSys->skipApp) {
@@ -367,9 +367,9 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
     case 4:
         if (poketchSys->buttonState == BUTTON_MANAGER_STATE_TAP || poketchSys->buttonState == BUTTON_MANAGER_STATE_TIMER0) {
             if (poketchSys->buttonDir == BUTTON_UP) {
-                poketchSys->unk_20.unk_00 = PoketchData_DecrementAppID(poketchSys->poketchData);
+                poketchSys->unk_20.unk_00 = Poketch_DecrementAppID(poketchSys->poketch);
             } else {
-                poketchSys->unk_20.unk_00 = PoketchData_IncrementAppID(poketchSys->poketchData);
+                poketchSys->unk_20.unk_00 = Poketch_IncrementAppID(poketchSys->poketch);
             }
 
             poketchSys->appSkipTimer = 30;
@@ -395,7 +395,7 @@ static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys)
         u32 v0;
 
         poketchSys->unk_06 = 1;
-        v0 = PoketchData_CurrentAppID(poketchSys->poketchData);
+        v0 = Poketch_CurrentAppID(poketchSys->poketch);
 
         PoketchSystem_LoadApp(poketchSys, v0);
         PoketchSystem_InitApp(poketchSys, v0);
@@ -741,9 +741,9 @@ FieldSystem *PoketchSystem_GetFieldSystem(const PoketchSystem *poketchSys)
     return poketchSys->fieldSystem;
 }
 
-PoketchData *PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys)
+Poketch *PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys)
 {
-    return poketchSys->poketchData;
+    return poketchSys->poketch;
 }
 
 SaveData *PoketchSystem_GetSaveData(const PoketchSystem *poketchSys)

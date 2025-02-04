@@ -1,5 +1,4 @@
 {
-    "name": "Ursaring",
     "base_stats": {
         "hp": 90,
         "attack": 130,
@@ -8,10 +7,7 @@
         "special_attack": 75,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 60,
     "base_exp_reward": 189,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_GUTS",
-        "ABILITY_QUICK_FEET"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_GUTS", "ABILITY_QUICK_FEET" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_COVET" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_LICK" ],
+            [ 1, "MOVE_FAKE_TEARS" ],
+            [ 8, "MOVE_FURY_SWIPES" ],
+            [ 15, "MOVE_FAINT_ATTACK" ],
+            [ 22, "MOVE_SWEET_SCENT" ],
+            [ 29, "MOVE_SLASH" ],
+            [ 38, "MOVE_SCARY_FACE" ],
+            [ 47, "MOVE_REST" ],
+            [ 49, "MOVE_SNORE" ],
+            [ 58, "MOVE_THRASH" ],
+            [ 67, "MOVE_HAMMER_ARM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM05",
             "TM06",
@@ -89,25 +93,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_COVET",
-                "MOVE_SCRATCH",
-                "MOVE_LEER",
-                "MOVE_LICK",
-                "MOVE_FAKE_TEARS"
-            ],
-            "8": "MOVE_FURY_SWIPES",
-            "15": "MOVE_FAINT_ATTACK",
-            "22": "MOVE_SWEET_SCENT",
-            "29": "MOVE_SLASH",
-            "38": "MOVE_SCARY_FACE",
-            "47": "MOVE_REST",
-            "49": "MOVE_SNORE",
-            "58": "MOVE_THRASH",
-            "67": "MOVE_HAMMER_ARM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -123,9 +109,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 18,
@@ -139,7 +126,66 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "In its territory, it leaves\nscratches on trees that bear\ndelicious berries or fruits.",
-        "category": "Hibernator Pokémon"
+        "en": {
+            "name": "URSARING",
+            "category": "Hibernator Pokémon",
+            "entry_text": [
+                "In its territory, it leaves\n",
+                "scratches on trees that bear\n",
+                "delicious berries or fruits."
+            ]
+        },
+        "fr": {
+            "name": "URSARING",
+            "category": "Pokémon Hibernant",
+            "entry_text": [
+                "Il marque de ses griffes les\n",
+                "arbres de son territoire qui\n",
+                "portent des Baies ou des fruits."
+            ]
+        },
+        "de": {
+            "name": "URSARING",
+            "category": "Schläfer",
+            "entry_text": [
+                "Es durchstreift sein Revier und\n",
+                "markiert Bäume, die Früchte\n",
+                "oder Beeren tragen, mit Kratzern."
+            ]
+        },
+        "it": {
+            "name": "URSARING",
+            "category": "Pokémon Letargo",
+            "entry_text": [
+                "Nel suo territorio, lascia graffi\n",
+                "sugli alberi che hanno bacche\n",
+                "o frutti deliziosi."
+            ]
+        },
+        "es": {
+            "name": "URSARING",
+            "category": "Pokémon Hibernante",
+            "entry_text": [
+                "Araña los árboles de su territorio\n",
+                "que dan bayas y frutas que le\n",
+                "gustan para marcarlos."
+            ]
+        },
+        "jp": {
+            "name": "リングマ",
+            "category": "とうみんポケモン",
+            "entry_text": [
+                "なわばりにある　おいしい　きのみや\n",
+                "くだものの　なる　き　には\n",
+                "ツメで　きずあとを　つける。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1285
     }
 }

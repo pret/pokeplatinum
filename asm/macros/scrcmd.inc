@@ -1,17 +1,18 @@
-    .include "macros/movement.inc"
-    .include "consts/badges.inc"
-    .include "consts/catching_show.inc"
-    .include "consts/game_records.inc"
-    .include "consts/items.inc"
-    .include "consts/journal.inc"
-    .include "consts/map.inc"
-    .include "consts/moves.inc"
-    .include "consts/poketch.inc"
-    .include "consts/scrcmd.inc"
-    .include "consts/sdat.inc"
-    .include "consts/species.inc"
+#include "generated/badges.h"
+#include "generated/catching_show_points_category.h"
+#include "generated/game_records.h"
+#include "generated/items.h"
+#include "generated/journal_location_events.h"
+#include "generated/journal_online_events.h"
+#include "generated/map_headers.h"
+#include "generated/moves.h"
+#include "generated/poketch_apps.h"
+#include "generated/save_types.h"
+#include "generated/sdat.h"
+#include "generated/species.h"
+#include "generated/trainers.h"
 
-#include "res/trainers/trdata.naix"
+#include "macros/movement.inc"
 
     .macro Noop
     .short 0
@@ -2797,7 +2798,7 @@
     .short 517
     .endm
 
-    .macro ScrCmd_206
+    .macro StartGreatMarshLookout
     .short 518
     .endm
 
@@ -4475,10 +4476,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_337 arg0, arg1
+    .macro HasSeenSpecies species, ret
     .short 823
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \ret
     .endm
 
     .macro ScrCmd_338

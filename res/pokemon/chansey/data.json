@@ -1,5 +1,4 @@
 {
-    "name": "Chansey",
     "base_stats": {
         "hp": 250,
         "attack": 5,
@@ -8,10 +7,7 @@
         "special_attack": 35,
         "special_defense": 105
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 30,
     "base_exp_reward": 255,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 40,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_NATURAL_CURE",
-        "ABILITY_SERENE_GRACE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_SERENE_GRACE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_REFRESH" ],
+            [ 12, "MOVE_SOFTBOILED" ],
+            [ 16, "MOVE_DOUBLE_SLAP" ],
+            [ 20, "MOVE_MINIMIZE" ],
+            [ 23, "MOVE_SING" ],
+            [ 27, "MOVE_FLING" ],
+            [ 31, "MOVE_DEFENSE_CURL" ],
+            [ 34, "MOVE_LIGHT_SCREEN" ],
+            [ 38, "MOVE_EGG_BOMB" ],
+            [ 42, "MOVE_HEALING_WISH" ],
+            [ 46, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -103,25 +107,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_TAIL_WHIP",
-            "9": "MOVE_REFRESH",
-            "12": "MOVE_SOFTBOILED",
-            "16": "MOVE_DOUBLE_SLAP",
-            "20": "MOVE_MINIMIZE",
-            "23": "MOVE_SING",
-            "27": "MOVE_FLING",
-            "31": "MOVE_DEFENSE_CURL",
-            "34": "MOVE_LIGHT_SCREEN",
-            "38": "MOVE_EGG_BOMB",
-            "42": "MOVE_HEALING_WISH",
-            "46": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -136,14 +122,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_HAPPINESS",
-            "SPECIES_BLISSEY"
-        ]
+        [ "EVO_LEVEL_HAPPINESS", "SPECIES_BLISSEY" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -157,7 +140,66 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "A kindly Pokémon that lays highly\nnutritious eggs and shares them\nwith injured Pokémon or people.",
-        "category": "Egg Pokémon"
+        "en": {
+            "name": "CHANSEY",
+            "category": "Egg Pokémon",
+            "entry_text": [
+                "A kindly Pokémon that lays highly\n",
+                "nutritious eggs and shares them\n",
+                "with injured Pokémon or people."
+            ]
+        },
+        "fr": {
+            "name": "LEVEINARD",
+            "category": "Pokémon Oeuf",
+            "entry_text": [
+                "Il est censé apporter la joie. Ce\n",
+                "Pokémon charitable offre ses\n",
+                "œufs aux blessés."
+            ]
+        },
+        "de": {
+            "name": "CHANEIRA",
+            "category": "Ei",
+            "entry_text": [
+                "Man sagt, es bringe Glück. Es ist\n",
+                "sehr mitfühlend und teilt seine Eier\n",
+                "mit Verletzten."
+            ]
+        },
+        "it": {
+            "name": "CHANSEY",
+            "category": "Pokémon Uovo",
+            "entry_text": [
+                "Si dice che porti felicità.\n",
+                "È molto altruista e condivide\n",
+                "le uova con chi è ferito."
+            ]
+        },
+        "es": {
+            "name": "CHANSEY",
+            "category": "Pokémon Huevo",
+            "entry_text": [
+                "Se dice que reparte felicidad.\n",
+                "Es compasivo y reparte sus\n",
+                "huevos entre la gente herida."
+            ]
+        },
+        "jp": {
+            "name": "ラッキ－",
+            "category": "たまごポケモン",
+            "entry_text": [
+                "しあわせを　はこぶと　いわれている。\n",
+                "きずついた　ひとに　タマゴを\n",
+                "わけてあげる　やさしい　ポケモン。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 1285
     }
 }

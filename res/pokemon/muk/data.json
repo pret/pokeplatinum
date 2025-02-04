@@ -1,5 +1,4 @@
 {
-    "name": "Muk",
     "base_stats": {
         "hp": 105,
         "attack": 105,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 75,
     "base_exp_reward": 157,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_STENCH",
-        "ABILITY_STICKY_HOLD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_STENCH", "ABILITY_STICKY_HOLD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_GAS" ],
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 4, "MOVE_HARDEN" ],
+            [ 7, "MOVE_MUD_SLAP" ],
+            [ 12, "MOVE_DISABLE" ],
+            [ 17, "MOVE_MINIMIZE" ],
+            [ 20, "MOVE_SLUDGE" ],
+            [ 23, "MOVE_MUD_BOMB" ],
+            [ 28, "MOVE_FLING" ],
+            [ 33, "MOVE_SCREECH" ],
+            [ 36, "MOVE_SLUDGE_BOMB" ],
+            [ 44, "MOVE_ACID_ARMOR" ],
+            [ 54, "MOVE_GUNK_SHOT" ],
+            [ 65, "MOVE_MEMENTO" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -90,27 +96,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_GAS",
-                "MOVE_POUND",
-                "MOVE_HARDEN",
-                "MOVE_MUD_SLAP"
-            ],
-            "4": "MOVE_HARDEN",
-            "7": "MOVE_MUD_SLAP",
-            "12": "MOVE_DISABLE",
-            "17": "MOVE_MINIMIZE",
-            "20": "MOVE_SLUDGE",
-            "23": "MOVE_MUD_BOMB",
-            "28": "MOVE_FLING",
-            "33": "MOVE_SCREECH",
-            "36": "MOVE_SLUDGE_BOMB",
-            "44": "MOVE_ACID_ARMOR",
-            "54": "MOVE_GUNK_SHOT",
-            "65": "MOVE_MEMENTO"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -119,9 +105,10 @@
             "MOVE_GUNK_SHOT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -135,7 +122,66 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "A toxic fluid seeps from its body.\nThe fluid instantly kills plants and\ntrees on contact.",
-        "category": "Sludge Pokémon"
+        "en": {
+            "name": "MUK",
+            "category": "Sludge Pokémon",
+            "entry_text": [
+                "A toxic fluid seeps from its body.\n",
+                "The fluid instantly kills plants and\n",
+                "trees on contact."
+            ]
+        },
+        "fr": {
+            "name": "GROTADMORV",
+            "category": "Pokémon Dégueu",
+            "entry_text": [
+                "Son corps exsude un fluide toxique\n",
+                "qui tue instantanément les plantes\n",
+                "et les arbres au contact."
+            ]
+        },
+        "de": {
+            "name": "SLEIMOK",
+            "category": "Schlamm",
+            "entry_text": [
+                "Sein Körper sondert eine giftige\n",
+                "Substanz ab, die bei Kontakt\n",
+                "Pflanzen und Bäume vernichtet."
+            ]
+        },
+        "it": {
+            "name": "MUK",
+            "category": "Pokémon Melma",
+            "entry_text": [
+                "Dal suo corpo filtra un fluido tos-\n",
+                "sico che uccide all’istante piante e\n",
+                "alberi con cui viene a contatto."
+            ]
+        },
+        "es": {
+            "name": "MUK",
+            "category": "Pokémon Lodo",
+            "entry_text": [
+                "Su cuerpo segrega un fluido\n",
+                "tóxico que elimina la vida vegetal\n",
+                "cuando la toca."
+            ]
+        },
+        "jp": {
+            "name": "ベトベトン",
+            "category": "ヘドロポケモン",
+            "entry_text": [
+                "からだから　もうどくの　たいえきが\n",
+                "しみでている。その　えきに　ふれた\n",
+                "くさきは　あっというまに　かれる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1542
     }
 }

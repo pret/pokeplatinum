@@ -1,5 +1,4 @@
 {
-    "name": "Magmortar",
     "base_stats": {
         "hp": 75,
         "attack": 95,
@@ -8,10 +7,7 @@
         "special_attack": 125,
         "special_defense": 95
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 30,
     "base_exp_reward": 199,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_FLAME_BODY",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_FLAME_BODY", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_THUNDER_PUNCH" ],
+            [ 1, "MOVE_SMOG" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_SMOKE_SCREEN" ],
+            [ 7, "MOVE_EMBER" ],
+            [ 10, "MOVE_SMOKE_SCREEN" ],
+            [ 16, "MOVE_FAINT_ATTACK" ],
+            [ 19, "MOVE_FIRE_SPIN" ],
+            [ 25, "MOVE_CONFUSE_RAY" ],
+            [ 28, "MOVE_FIRE_PUNCH" ],
+            [ 37, "MOVE_LAVA_PLUME" ],
+            [ 43, "MOVE_FLAMETHROWER" ],
+            [ 52, "MOVE_SUNNY_DAY" ],
+            [ 58, "MOVE_FIRE_BLAST" ],
+            [ 67, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -86,27 +92,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_SMOG",
-                "MOVE_LEER",
-                "MOVE_EMBER",
-                "MOVE_SMOKE_SCREEN"
-            ],
-            "7": "MOVE_EMBER",
-            "10": "MOVE_SMOKE_SCREEN",
-            "16": "MOVE_FAINT_ATTACK",
-            "19": "MOVE_FIRE_SPIN",
-            "25": "MOVE_CONFUSE_RAY",
-            "28": "MOVE_FIRE_PUNCH",
-            "37": "MOVE_LAVA_PLUME",
-            "43": "MOVE_FLAMETHROWER",
-            "52": "MOVE_SUNNY_DAY",
-            "58": "MOVE_FIRE_BLAST",
-            "67": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -115,9 +101,10 @@
             "MOVE_HEAT_WAVE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 16,
@@ -131,7 +118,66 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "When launching 3,600 degrees F\nfireballs, its body takes on a\nwhitish hue from the intense heat.",
-        "category": "Blast Pokémon"
+        "en": {
+            "name": "MAGMORTAR",
+            "category": "Blast Pokémon",
+            "entry_text": [
+                "When launching 3,600 degrees F\n",
+                "fireballs, its body takes on a\n",
+                "whitish hue from the intense heat."
+            ]
+        },
+        "fr": {
+            "name": "MAGANON",
+            "category": "Pokémon Explosion",
+            "entry_text": [
+                "Il projette des boules de feu de\n",
+                "2 000 °C à bout de bras. Il\n",
+                "vit dans les cratères volcaniques."
+            ]
+        },
+        "de": {
+            "name": "MAGBRANT",
+            "category": "Detonation",
+            "entry_text": [
+                "Aus den Enden seiner Arme schießen\n",
+                "Feuerbälle mit 2 000 Grad.\n",
+                "Es lebt in Vulkankratern."
+            ]
+        },
+        "it": {
+            "name": "MAGMORTAR",
+            "category": "Pokémon Esplosivo",
+            "entry_text": [
+                "Spara palle di fuoco di oltre\n",
+                "2000°C dagli arti superiori.\n",
+                "Vive nei crateri dei vulcani."
+            ]
+        },
+        "es": {
+            "name": "MAGMORTAR",
+            "category": "Pokémon Explosión",
+            "entry_text": [
+                "Sus brazos disparan bolas de\n",
+                "fuego de más de 2000 grados.\n",
+                "Vive en cráteres volcánicos."
+            ]
+        },
+        "jp": {
+            "name": "ブ－バ－ン",
+            "category": "ばくえんポケモン",
+            "entry_text": [
+                "うでの　さきから　せっし２０００どの\n",
+                "ひのたまを　はっしゃする。\n",
+                "かざんの　かこうを　すみかにする。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 514
     }
 }

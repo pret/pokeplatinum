@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/gender_ratios.h"
+#include "generated/genders.h"
+
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 
@@ -18,20 +21,7 @@
 #include "unk_0200A328.h"
 #include "unk_020131EC.h"
 
-typedef struct UnkStruct_ov6_022426B8_t {
-    SpriteResourceCollection *unk_00[4];
-    SpriteResource *unk_10[4];
-    void *unk_20;
-    void *unk_24;
-    ArchivedSprite unk_28;
-    CellActorCollection *unk_38;
-    UnkStruct_0200C738 unk_3C;
-    CellActor *unk_1C8;
-    BOOL unk_1CC;
-    BOOL unk_1D0;
-} UnkStruct_ov6_022426B8;
-
-static void ov6_022428F8(UnkStruct_ov6_022426B8 *param0);
+static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0);
 static void ov6_02242860(SysTask *param0, void *param1);
 static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollection *param1, void *param2, void *param3);
 
@@ -42,77 +32,67 @@ static const u8 Unk_ov6_02249030[] = {
     0x1
 };
 
-UnkStruct_ov6_022426B8 *ov6_022426AC(const int param0)
+GreatMarshLookout_SpriteResources *GreatMarshLookout_AllocSpriteResources(const int heapId)
 {
-    UnkStruct_ov6_022426B8 *v0;
-
-    v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_022426B8));
-    return v0;
+    return Heap_AllocFromHeapAtEnd(heapId, sizeof(GreatMarshLookout_SpriteResources));
 }
 
-void ov6_022426B8(UnkStruct_ov6_022426B8 *param0)
+void GreatMarshLookout_FreeSpriteResources(GreatMarshLookout_SpriteResources *resources)
 {
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(resources);
 }
 
-void ov6_022426C0(UnkStruct_ov6_022426B8 *param0, const int param1)
+void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources *resources, const int species)
 {
-    int v0;
+    int i;
     NARC *v1;
 
-    param0->unk_1CC = 0;
+    resources->unk_1CC = 0;
 
-    {
-        int v2;
-        u8 v3;
+    int gender;
+    u8 genderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
 
-        v3 = PokemonPersonalData_GetSpeciesValue(param1, 18);
-
-        switch (v3) {
-        case 0:
-            v2 = 0;
-            break;
-        case 254:
-            v2 = 1;
-            break;
-        case 255:
-            v2 = 2;
-            break;
-        default:
-            if (LCRNG_Next() % 2) {
-                v2 = 0;
-            } else {
-                v2 = 1;
-            }
+    switch (genderRatio) {
+    case GENDER_RATIO_MALE_ONLY:
+        gender = GENDER_MALE;
+        break;
+    case GENDER_RATIO_FEMALE_ONLY:
+        gender = GENDER_FEMALE;
+        break;
+    case GENDER_RATIO_NO_GENDER:
+        gender = GENDER_NONE;
+        break;
+    default:
+        if (LCRNG_Next() % 2) {
+            gender = GENDER_MALE;
+        } else {
+            gender = GENDER_FEMALE;
         }
-
-        BuildArchivedPokemonSprite(&param0->unk_28, param1, v2, 2, 0, NULL, NULL);
     }
 
-    param0->unk_38 = sub_020095C4(1, &param0->unk_3C, 4);
-    v1 = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, 4);
+    BuildArchivedPokemonSprite(&resources->unk_28, species, gender, 2, 0, NULL, NULL);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_00[v0] = SpriteResourceCollection_New(Unk_ov6_02249030[v0], v0, 4);
+    resources->unk_38 = sub_020095C4(1, &resources->unk_3C, HEAP_ID_FIELD);
+    v1 = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD);
+
+    for (i = 0; i < 4; i++) {
+        resources->unk_00[i] = SpriteResourceCollection_New(Unk_ov6_02249030[i], i, HEAP_ID_FIELD);
     }
 
-    {
-        param0->unk_10[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_00[0], v1, 5, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
-        param0->unk_10[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_00[1], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
-        param0->unk_10[2] = SpriteResourceCollection_AddFrom(param0->unk_00[2], v1, 6, 0, 2, 2, 4);
-        param0->unk_10[3] = SpriteResourceCollection_AddFrom(param0->unk_00[3], v1, 12, 0, 3, 3, 4);
-    }
+    resources->unk_10[0] = SpriteResourceCollection_AddTilesFrom(resources->unk_00[0], v1, 5, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+    resources->unk_10[1] = SpriteResourceCollection_AddPaletteFrom(resources->unk_00[1], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
+    resources->unk_10[2] = SpriteResourceCollection_AddFrom(resources->unk_00[2], v1, 6, 0, 2, 2, HEAP_ID_FIELD);
+    resources->unk_10[3] = SpriteResourceCollection_AddFrom(resources->unk_00[3], v1, 12, 0, 3, 3, HEAP_ID_FIELD);
+    resources->unk_20 = sub_0201363C(resources->unk_28.archive, resources->unk_28.character, HEAP_ID_FIELD);
+    resources->unk_24 = sub_02013660(resources->unk_28.archive, resources->unk_28.palette, HEAP_ID_FIELD);
 
-    param0->unk_20 = sub_0201363C(param0->unk_28.archive, param0->unk_28.character, 4);
-    param0->unk_24 = sub_02013660(param0->unk_28.archive, param0->unk_28.palette, 4);
-
-    ov6_02242880(param0->unk_00[0], param0->unk_00[1], param0->unk_20, param0->unk_24);
+    ov6_02242880(resources->unk_00[0], resources->unk_00[1], resources->unk_20, resources->unk_24);
 
     NARC_dtor(v1);
-    ov6_022428F8(param0);
+    ov6_022428F8(resources);
 }
 
-void ov6_022427F4(UnkStruct_ov6_022426B8 *param0)
+void ov6_022427F4(GreatMarshLookout_SpriteResources *param0)
 {
     param0->unk_1CC = 1;
     param0->unk_1D0 = 0;
@@ -120,17 +100,17 @@ void ov6_022427F4(UnkStruct_ov6_022426B8 *param0)
     SysTask_Start(ov6_02242860, param0, 0);
 }
 
-void ov6_02242814(UnkStruct_ov6_022426B8 *param0)
+void ov6_02242814(GreatMarshLookout_SpriteResources *param0)
 {
     param0->unk_1CC = 0;
 }
 
-BOOL ov6_02242820(UnkStruct_ov6_022426B8 *param0)
+BOOL ov6_02242820(GreatMarshLookout_SpriteResources *param0)
 {
     return param0->unk_1D0;
 }
 
-void ov6_02242828(UnkStruct_ov6_022426B8 *param0)
+void ov6_02242828(GreatMarshLookout_SpriteResources *param0)
 {
     u8 v0;
 
@@ -148,7 +128,7 @@ void ov6_02242828(UnkStruct_ov6_022426B8 *param0)
 
 static void ov6_02242860(SysTask *param0, void *param1)
 {
-    UnkStruct_ov6_022426B8 *v0 = param1;
+    GreatMarshLookout_SpriteResources *v0 = param1;
 
     if (v0->unk_1CC) {
         CellActorCollection_Update(v0->unk_38);
@@ -188,7 +168,7 @@ static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollect
     GX_LoadOBJPltt(param3, v2, v0);
 }
 
-static void ov6_022428F8(UnkStruct_ov6_022426B8 *param0)
+static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0)
 {
     int v0;
     CellActorResourceData v1;
@@ -209,7 +189,7 @@ static void ov6_022428F8(UnkStruct_ov6_022426B8 *param0)
         v2.affineZRotation = 0;
         v2.priority = 0;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v2.heapID = 4;
+        v2.heapID = HEAP_ID_FIELD;
         v2.position.x = FX32_ONE * (256 / 2);
         v2.position.y = FX32_ONE * (192 / 2);
 

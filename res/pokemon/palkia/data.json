@@ -1,5 +1,4 @@
 {
-    "name": "Palkia",
     "base_stats": {
         "hp": 90,
         "attack": 120,
@@ -8,10 +7,7 @@
         "special_attack": 150,
         "special_defense": 120
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_DRAGON"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_DRAGON" ],
     "catch_rate": 30,
     "base_exp_reward": 220,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_DRAGON_BREATH" ],
+            [ 1, "MOVE_SCARY_FACE" ],
+            [ 10, "MOVE_WATER_PULSE" ],
+            [ 20, "MOVE_ANCIENT_POWER" ],
+            [ 30, "MOVE_DRAGON_CLAW" ],
+            [ 40, "MOVE_SPACIAL_REND" ],
+            [ 50, "MOVE_HEAL_BLOCK" ],
+            [ 60, "MOVE_EARTH_POWER" ],
+            [ 70, "MOVE_SLASH" ],
+            [ 80, "MOVE_AQUA_TAIL" ],
+            [ 90, "MOVE_AURA_SPHERE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM02",
             "TM03",
@@ -98,22 +99,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_DRAGON_BREATH",
-                "MOVE_SCARY_FACE"
-            ],
-            "10": "MOVE_WATER_PULSE",
-            "20": "MOVE_ANCIENT_POWER",
-            "30": "MOVE_DRAGON_CLAW",
-            "40": "MOVE_SPACIAL_REND",
-            "50": "MOVE_HEAL_BLOCK",
-            "60": "MOVE_EARTH_POWER",
-            "70": "MOVE_SLASH",
-            "80": "MOVE_AQUA_TAIL",
-            "90": "MOVE_AURA_SPHERE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -126,9 +112,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 42,
@@ -142,7 +129,66 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 2,
-        "entry_text": "A legendary Pokémon of Sinnoh.\nIt is said that space becomes more\nstable with PALKIA’s every breath.",
-        "category": "Spatial Pokémon"
+        "en": {
+            "name": "PALKIA",
+            "category": "Spatial Pokémon",
+            "entry_text": [
+                "A legendary Pokémon of Sinnoh.\n",
+                "It is said that space becomes more\n",
+                "stable with PALKIA’s every breath."
+            ]
+        },
+        "fr": {
+            "name": "PALKIA",
+            "category": "Pokémon Espace",
+            "entry_text": [
+                "Il peut modeler l’espace. Les\n",
+                "mythes de Sinnoh en parlent\n",
+                "comme d’une divinité ancienne."
+            ]
+        },
+        "de": {
+            "name": "PALKIA",
+            "category": "Räumlich",
+            "entry_text": [
+                "Es hat die Macht, den Raum zu\n",
+                "krümmen. In den Mythen von\n",
+                "Sinnoh erscheint es als Gottheit."
+            ]
+        },
+        "it": {
+            "name": "PALKIA",
+            "category": "Pokémon Spazio",
+            "entry_text": [
+                "Ha l’abilità di distorcere lo spazio.\n",
+                "Nella mitologia della regione di\n",
+                "Sinnoh è una divinità."
+            ]
+        },
+        "es": {
+            "name": "PALKIA",
+            "category": "Pokémon Espacial",
+            "entry_text": [
+                "Tiene la habilidad de distorsionar\n",
+                "el espacio. La mitología de Sinnoh\n",
+                "lo describe como una deidad."
+            ]
+        },
+        "jp": {
+            "name": "パルキア",
+            "category": "くうかんポケモン",
+            "entry_text": [
+                "くうかんを　ゆがめる　のうりょくを\n",
+                "もち　シンオウちほうの　しんわでは\n",
+                "かみさまとして　えがかれている。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 3843
     }
 }

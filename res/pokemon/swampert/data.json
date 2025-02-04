@@ -1,5 +1,4 @@
 {
-    "name": "Swampert",
     "base_stats": {
         "hp": 100,
         "attack": 110,
@@ -8,10 +7,7 @@
         "special_attack": 85,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GROUND" ],
     "catch_rate": 45,
     "base_exp_reward": 210,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 6, "MOVE_MUD_SLAP" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_BIDE" ],
+            [ 16, "MOVE_MUD_SHOT" ],
+            [ 20, "MOVE_FORESIGHT" ],
+            [ 25, "MOVE_MUD_BOMB" ],
+            [ 31, "MOVE_TAKE_DOWN" ],
+            [ 39, "MOVE_MUDDY_WATER" ],
+            [ 46, "MOVE_PROTECT" ],
+            [ 52, "MOVE_EARTHQUAKE" ],
+            [ 61, "MOVE_ENDEAVOR" ],
+            [ 69, "MOVE_HAMMER_ARM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM05",
@@ -87,27 +93,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_MUD_SLAP",
-                "MOVE_WATER_GUN"
-            ],
-            "6": "MOVE_MUD_SLAP",
-            "10": "MOVE_WATER_GUN",
-            "15": "MOVE_BIDE",
-            "16": "MOVE_MUD_SHOT",
-            "20": "MOVE_FORESIGHT",
-            "25": "MOVE_MUD_BOMB",
-            "31": "MOVE_TAKE_DOWN",
-            "39": "MOVE_MUDDY_WATER",
-            "46": "MOVE_PROTECT",
-            "52": "MOVE_EARTHQUAKE",
-            "61": "MOVE_ENDEAVOR",
-            "69": "MOVE_HAMMER_ARM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -122,9 +108,10 @@
             "MOVE_EARTH_POWER"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 15,
@@ -138,7 +125,66 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "It can swim while towing a large\nship. It bashes down foes with a\nswing of its thick arms.",
-        "category": "Mud Fish Pokémon"
+        "en": {
+            "name": "SWAMPERT",
+            "category": "Mud Fish Pokémon",
+            "entry_text": [
+                "It can swim while towing a large\n",
+                "ship. It bashes down foes with a\n",
+                "swing of its thick arms."
+            ]
+        },
+        "fr": {
+            "name": "LAGGRON",
+            "category": "Pokémon Poissonboue",
+            "entry_text": [
+                "Il peut traîner un grand bateau en\n",
+                "nageant. Il assomme l’ennemi d’un\n",
+                "grand coup de ses bras épais."
+            ]
+        },
+        "de": {
+            "name": "SUMPEX",
+            "category": "Lehmhüpfer",
+            "entry_text": [
+                "Es kann im Schwimmen ein großes\n",
+                "Schiff ziehen. Seine Gegner schlägt\n",
+                "es mit Schlägen seiner Arme zurück."
+            ]
+        },
+        "it": {
+            "name": "SWAMPERT",
+            "category": "Pokémon Fango Pesce",
+            "entry_text": [
+                "Nuotando riesce a trainare una\n",
+                "grande nave. Con le braccia vigoro-\n",
+                "se abbatte i nemici in un sol colpo."
+            ]
+        },
+        "es": {
+            "name": "SWAMPERT",
+            "category": "Pokémon Pez Lodo",
+            "entry_text": [
+                "Puede nadar y arrastrar un barco\n",
+                "grande. Golpea a sus enemigos\n",
+                "con sus gruesos brazos."
+            ]
+        },
+        "jp": {
+            "name": "ラグラ－ジ",
+            "category": "ぬまうおポケモン",
+            "entry_text": [
+                "おおがたせんを　ひっぱって　およぐ\n",
+                "パワ－の　もちぬし。ふとい　うでの\n",
+                "ひとふりで　あいてを　たたきのめす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2051
     }
 }

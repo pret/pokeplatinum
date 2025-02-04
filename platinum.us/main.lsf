@@ -79,8 +79,8 @@ Static main
 	Object main.nef.p/src_unk_0201DD00.c.o
 	Object main.nef.p/src_unk_0201E010.c.o
 	Object main.nef.p/src_ascii_util.c.o
-	Object main.nef.p/src_unk_0201E190.c.o
-	Object main.nef.p/src_unk_0201E3BC.c.o
+	Object main.nef.p/src_fx_util.c.o
+	Object main.nef.p/src_int_distance.c.o
 	Object main.nef.p/src_unk_0201E3D8.c.o
 	Object main.nef.p/src_unk_0201E86C.c.o
 	Object main.nef.p/src_unk_0201F834.c.o
@@ -109,7 +109,7 @@ Static main
 	Object main.nef.p/src_unk_0202602C.c.o
 	Object main.nef.p/src_unk_02026150.c.o
 	Object main.nef.p/src_unk_020261E4.c.o
-	Object main.nef.p/src_pokedex_data.c.o
+	Object main.nef.p/src_pokedex.c.o
 	Object main.nef.p/src_savedata_misc.c.o
 	Object main.nef.p/src_game_options.c.o
 	Object main.nef.p/src_berry_patches.c.o
@@ -233,7 +233,7 @@ Static main
 	Object main.nef.p/src_unk_020559DC.c.o
 	Object main.nef.p/src_unk_02055C50.c.o
 	Object main.nef.p/src_catching_show.c.o
-	Object main.nef.p/src_poketch_data.c.o
+	Object main.nef.p/src_poketch.c.o
 	Object main.nef.p/src_unk_02056B30.c.o
 	Object main.nef.p/src_unk_020573FC.c.o
 	Object main.nef.p/src_unk_0205749C.c.o
@@ -266,7 +266,7 @@ Static main
 	Object main.nef.p/src_unk_0206AFE0.c.o
 	Object main.nef.p/src_unk_0206B70C.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o
-	Object main.nef.p/src_unk_0206C0E8.c.o
+	Object main.nef.p/src_great_marsh_lookout.c.o
 	Object main.nef.p/src_unk_0206C2D0.c.o
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_unk_0206C660.c.o
@@ -281,7 +281,7 @@ Static main
 	Object main.nef.p/src_unk_0207160C.c.o
 	Object main.nef.p/src_unk_02071B10.c.o
 	Object main.nef.p/src_unk_02071CD0.c.o
-	Object main.nef.p/src_unk_02071CFC.c.o
+	Object main.nef.p/src_map_header_util.c.o
 	Object main.nef.p/src_unk_02071D40.c.o
 	Object main.nef.p/src_unk_020722AC.c.o
 	Object main.nef.p/src_unk_02073700.c.o
@@ -481,7 +481,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_vs_seeker.c.o
 	Object main.nef.p/src_overlay005_ov5_021DC018.c.o
 	Object main.nef.p/src_overlay005_ov5_021DD42C.c.o
-	Object main.nef.p/src_overlay005_ov5_021DD6FC.c.o
+	Object main.nef.p/src_overlay005_map_name_popup.c.o
 	Object main.nef.p/src_overlay005_ov5_021DDAE4.c.o
 	Object main.nef.p/src_overlay005_encounter_effect.c.o
 	Object main.nef.p/src_overlay005_ov5_021DF440.c.o
@@ -566,9 +566,9 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_ov6_0223E140.c.o
 	Object main.nef.p/src_overlay006_ov6_02240C9C.c.o
 	Object main.nef.p/src_overlay006_ov6_022426AC.c.o
-	Object main.nef.p/src_overlay006_ov6_02242984.c.o
+	Object main.nef.p/src_overlay006_great_marsh_binoculars.c.o
 	Object main.nef.p/src_overlay006_ov6_02242AF0.c.o
-	Object main.nef.p/src_overlay006_ov6_02242F74.c.o
+	Object main.nef.p/src_overlay006_great_marsh_daily_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_02243004.c.o
 	Object main.nef.p/src_overlay006_ov6_022430C4.c.o
 	Object main.nef.p/src_overlay006_ov6_02243218.c.o
@@ -586,7 +586,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_ov6_02247100.c.o
 	Object main.nef.p/src_overlay006_ov6_022475B0.c.o
 	Object main.nef.p/src_overlay006_ov6_02247660.c.o
-	Object main.nef.p/src_overlay006_ov6_022477B8.c.o
+	Object main.nef.p/src_overlay006_dual_slot_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_02247830.c.o
 	Object main.nef.p/src_overlay006_ov6_02247A0C.c.o
 	Object main.nef.p/src_overlay006_ov6_02247D30.c.o
@@ -686,7 +686,7 @@ Overlay overlay15
 	Object main.nef.p/src_overlay015_ov15_dummy.c.o
 }
 
-Overlay battle 
+Overlay battle
 {
 	After overlay12
 	Object main.nef.p/src_battle_ov16_0223B140.c.o
@@ -796,7 +796,7 @@ Overlay overlay21
 	Object main.nef.p/src_overlay021_pokedex_enc_data.c.o
 	Object main.nef.p/src_overlay021_ov21_021D5AEC.c.o
 	Object main.nef.p/src_overlay021_ov21_021D76B0.c.o
-	Object main.nef.p/src_overlay021_ov21_021D85B0.c.o
+	Object main.nef.p/src_overlay021_pokedex_search.c.o
 	Object main.nef.p/src_overlay021_ov21_021D94BC.c.o
 	Object main.nef.p/src_overlay021_ov21_021DC9BC.c.o
 	Object main.nef.p/src_overlay021_ov21_021DDD2C.c.o
@@ -807,7 +807,7 @@ Overlay overlay21
 	Object main.nef.p/src_overlay021_ov21_021E29DC.c.o
 	Object main.nef.p/src_overlay021_ov21_021E3FFC.c.o
 	Object main.nef.p/src_overlay021_ov21_021E4CA4.c.o
-	Object main.nef.p/src_overlay021_ov21_021E6014.c.o
+	Object main.nef.p/src_overlay021_pokedex_height_check.c.o
 	Object main.nef.p/src_overlay021_ov21_021E68F4.c.o
 	Object main.nef.p/src_overlay021_ov21_021E737C.c.o
 	Object main.nef.p/src_overlay021_ov21_021E8484.c.o

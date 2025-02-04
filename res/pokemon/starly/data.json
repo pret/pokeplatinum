@@ -1,5 +1,4 @@
 {
-    "name": "Starly",
     "base_stats": {
         "hp": 40,
         "attack": 55,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 255,
     "base_exp_reward": 56,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 90,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_NONE" ],
+    "safari_flee_rate": 90,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_QUICK_ATTACK" ],
+            [ 9, "MOVE_WING_ATTACK" ],
+            [ 13, "MOVE_DOUBLE_TEAM" ],
+            [ 17, "MOVE_ENDEAVOR" ],
+            [ 21, "MOVE_WHIRLWIND" ],
+            [ 25, "MOVE_AERIAL_ACE" ],
+            [ 29, "MOVE_TAKE_DOWN" ],
+            [ 33, "MOVE_AGILITY" ],
+            [ 37, "MOVE_BRAVE_BIRD" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -72,22 +73,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_QUICK_ATTACK",
-            "9": "MOVE_WING_ATTACK",
-            "13": "MOVE_DOUBLE_TEAM",
-            "17": "MOVE_ENDEAVOR",
-            "21": "MOVE_WHIRLWIND",
-            "25": "MOVE_AERIAL_ACE",
-            "29": "MOVE_TAKE_DOWN",
-            "33": "MOVE_AGILITY",
-            "37": "MOVE_BRAVE_BIRD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -100,14 +86,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             14,
             "SPECIES_STARAVIA"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 3,
@@ -121,7 +107,66 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "Because they are weak individually,\nthey form groups. However, they\nbicker if the group grows too big.",
-        "category": "Starling Pokémon"
+        "en": {
+            "name": "STARLY",
+            "category": "Starling Pokémon",
+            "entry_text": [
+                "Because they are weak individually,\n",
+                "they form groups. However, they\n",
+                "bicker if the group grows too big."
+            ]
+        },
+        "fr": {
+            "name": "ETOURMI",
+            "category": "Pokémon Etourneau",
+            "entry_text": [
+                "Ils volent en nombre. Bien que\n",
+                "minuscule, il bat des ailes avec\n",
+                "une vigueur impressionnante."
+            ]
+        },
+        "de": {
+            "name": "STARALILI",
+            "category": "Star",
+            "entry_text": [
+                "Ihr Schwarm ist stets groß. Obwohl\n",
+                "es kleine PKMN sind, schwingen sie\n",
+                "ihre Flügel mit enormer Kraft."
+            ]
+        },
+        "it": {
+            "name": "STARLY",
+            "category": "Pokémon Storno",
+            "entry_text": [
+                "Si muove in grandi gruppi. Anche\n",
+                "se piccolo, batte le ali in maniera\n",
+                "molto energica."
+            ]
+        },
+        "es": {
+            "name": "STARLY",
+            "category": "Pokémon Estornino",
+            "entry_text": [
+                "Viaja en grandes bandadas.\n",
+                "Aunque es pequeño, agita\n",
+                "las alas con gran fuerza."
+            ]
+        },
+        "jp": {
+            "name": "ムックル",
+            "category": "むくどりポケモン",
+            "entry_text": [
+                "たくさんの　むれで　こうどうする。\n",
+                "からだは　ちいさいが　はばたく\n",
+                "ちからは　ひじょうに　つよい。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 4357
     }
 }

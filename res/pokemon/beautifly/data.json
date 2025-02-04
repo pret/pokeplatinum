@@ -1,5 +1,4 @@
 {
-    "name": "Beautifly",
     "base_stats": {
         "hp": 60,
         "attack": 70,
@@ -8,10 +7,7 @@
         "special_attack": 90,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 161,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ABSORB" ],
+            [ 10, "MOVE_ABSORB" ],
+            [ 13, "MOVE_GUST" ],
+            [ 17, "MOVE_STUN_SPORE" ],
+            [ 20, "MOVE_MORNING_SUN" ],
+            [ 24, "MOVE_MEGA_DRAIN" ],
+            [ 27, "MOVE_WHIRLWIND" ],
+            [ 31, "MOVE_ATTRACT" ],
+            [ 34, "MOVE_SILVER_WIND" ],
+            [ 38, "MOVE_GIGA_DRAIN" ],
+            [ 41, "MOVE_BUG_BUZZ" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -78,20 +79,7 @@
             "TM90",
             "HM05"
         ],
-        "level_up": {
-            "1": "MOVE_ABSORB",
-            "10": "MOVE_ABSORB",
-            "13": "MOVE_GUST",
-            "17": "MOVE_STUN_SPORE",
-            "20": "MOVE_MORNING_SUN",
-            "24": "MOVE_MEGA_DRAIN",
-            "27": "MOVE_WHIRLWIND",
-            "31": "MOVE_ATTRACT",
-            "34": "MOVE_SILVER_WIND",
-            "38": "MOVE_GIGA_DRAIN",
-            "41": "MOVE_BUG_BUZZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
@@ -100,9 +88,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -116,7 +105,66 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "Despite its looks, it is aggressive.\nIt jabs with its long, thin mouth if\ndisturbed while collecting pollen.",
-        "category": "Butterfly Pokémon"
+        "en": {
+            "name": "BEAUTIFLY",
+            "category": "Butterfly Pokémon",
+            "entry_text": [
+                "Despite its looks, it is aggressive.\n",
+                "It jabs with its long, thin mouth if\n",
+                "disturbed while collecting pollen."
+            ]
+        },
+        "fr": {
+            "name": "CHARMILLON",
+            "category": "Pokémon Papillon",
+            "entry_text": [
+                "Il est très agressif. Il pique sa \n",
+                "proie avec son long museau \n",
+                "étroit et absorbe sa vitalité."
+            ]
+        },
+        "de": {
+            "name": "PAPINELLA",
+            "category": "Falter",
+            "entry_text": [
+                "Es besitzt ein aggressives Wesen.\n",
+                "Es sticht seinen Rüssel in seine\n",
+                "Beute und saugt sie aus."
+            ]
+        },
+        "it": {
+            "name": "BEAUTIFLY",
+            "category": "Pokémon Farfalla",
+            "entry_text": [
+                "Ha un’indole aggressiva. Conficca\n",
+                "la sua bocca lunga e sottile nelle\n",
+                "prede e ne succhia i fluidi."
+            ]
+        },
+        "es": {
+            "name": "BEAUTIFLY",
+            "category": "Pokémon Mariposa",
+            "entry_text": [
+                "Es un Pokémon agresivo. Con su\n",
+                "boca larga y afilada ataca a sus\n",
+                "rivales para drenar sus fluidos."
+            ]
+        },
+        "jp": {
+            "name": "アゲハント",
+            "category": "ちょうちょポケモン",
+            "entry_text": [
+                "ほそながい　くちを　つきさして\n",
+                "あいての　たいえきを　すいとる。\n",
+                "こうげきてきな　せいかく。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4356
     }
 }

@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "generated/species_data_params.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 
@@ -32,7 +33,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -78,7 +79,7 @@ static int ov94_02242040(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_02242068(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_0224208C(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242668(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *param1);
-static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoader *param2, u16 *param3, u8 *param4, int param5, int param6, PokedexData *param7);
+static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoader *param2, u16 *param3, u8 *param4, int param5, int param6, Pokedex *param7);
 static TextColor ov94_022421E8(int param0, u32 param1);
 
 static int (*Unk_ov94_0224695C[])(UnkStruct_ov94_0223FD4C *) = {
@@ -640,7 +641,7 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_F9C[1]);
         param0->unk_B74.unk_00 = v0;
         Sound_PlayEffect(1500);
-        param0->unk_10E4->unk_20 = PokemonPersonalData_GetSpeciesValue(v0, 18);
+        param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(v0, SPECIES_DATA_GENDER_RATIO);
 
         if (ov94_02241B80(&param0->unk_B74, param0->unk_10E4->unk_20)) {
             param0->unk_2C = 10;
@@ -1124,7 +1125,7 @@ static u16 Unk_ov94_02246928[] = {
     0x1ED
 };
 
-static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoader *param2, u16 *param3, u8 *param4, int param5, int param6, PokedexData *param7)
+static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoader *param2, u16 *param3, u8 *param4, int param5, int param6, Pokedex *param7)
 {
     int v0, v1, v2 = 0;
     int v3 = Unk_ov94_02246928[param6 + 1] - Unk_ov94_02246928[param6];
@@ -1134,12 +1135,12 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
-            if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
+            if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
                 v2++;
             }
         } else {
             if (param4[param3[v1 + v0]]) {
-                if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
+                if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
                     v2++;
                 }
             }
@@ -1150,12 +1151,12 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
-            if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
+            if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
                 StringList_AddFromMessageBank(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
             }
         } else {
             if (param4[param3[v1 + v0]]) {
-                if (PokedexData_HasSeenSpecies(param7, param3[v1 + v0])) {
+                if (Pokedex_HasSeenSpecies(param7, param3[v1 + v0])) {
                     StringList_AddFromMessageBank(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
                 }
             }
@@ -1167,7 +1168,7 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
     return v2 + 1;
 }
 
-ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3, MessageLoader *param4, UnkStruct_ov94_0223FD4C_sub3 *param5, PokedexData *param6)
+ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3, MessageLoader *param4, UnkStruct_ov94_0223FD4C_sub3 *param5, Pokedex *param6)
 {
     ListMenuTemplate v0;
     int v1, v2, v3;
@@ -1255,7 +1256,7 @@ void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
         GF_ASSERT(param1 < (13 - 1));
     } else {
         v0 = Unk_ov94_022460AC;
-        GF_ASSERT(param1 < ((NELEMS(Unk_ov94_022460AC)) - 1));
+        GF_ASSERT(param1 < (NELEMS(Unk_ov94_022460AC) - 1));
     }
 
     param0->unk_03 = v0[param1].unk_04;

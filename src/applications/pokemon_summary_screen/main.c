@@ -7,9 +7,9 @@
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
-#include "consts/moves.h"
-#include "consts/sdat.h"
-#include "consts/species.h"
+#include "generated/sdat.h"
+#include "generated/species.h"
+#include "generated/text_banks.h"
 
 #include "struct_defs/struct_02099F80.h"
 
@@ -18,9 +18,6 @@
 #include "applications/pokemon_summary_screen/sprite.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "applications/pokemon_summary_screen/window.h"
-#include "graphics/pokemon_summary_screen/pl_pst_gra.naix"
-#include "text/gmm/message_bank_pokemon_summary_screen.h"
-#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -63,6 +60,8 @@
 #include "vars_flags.h"
 
 #include "constdata/const_020F410C.h"
+#include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix"
+#include "res/text/bank/pokemon_summary_screen.h"
 
 enum SummaryState {
     SUMMARY_STATE_TRANSITION_IN = 0,
@@ -533,15 +532,15 @@ static void SetAlphaBlending(void)
 
 static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *summaryScreen)
 {
-    summaryScreen->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokemon_summary_screen, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->ribbonLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_ribbon_names, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->ribbonLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_RIBBON_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->unk_684 = sub_0200C440(1, 2, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->strFormatter = StringTemplate_Default(HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->monData.speciesName = Strbuf_Init(12, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->monData.nickname = Strbuf_Init(12, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->monData.OTName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->strbuf = Strbuf_Init(128, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->moveNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_move_names, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->moveNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->playerName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     if (summaryScreen->data->OTName != NULL) {

@@ -6,8 +6,8 @@
 
 #include "overlay115/camera_angle.h"
 
+#include "fx_util.h"
 #include "heap.h"
-#include "unk_0201E190.h"
 
 #define CAMERA_DEFAULT_ASPECT_RATIO (FX32_ONE * 4 / 3)
 #define CAMERA_DEFAULT_NEAR_CLIP    (FX32_ONE * 150)

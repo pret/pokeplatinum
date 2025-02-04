@@ -1,5 +1,4 @@
 {
-    "name": "Shellder",
     "base_stats": {
         "hp": 30,
         "attack": 65,
@@ -8,10 +7,7 @@
         "special_attack": 45,
         "special_defense": 25
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
     "base_exp_reward": 97,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_SHELL_ARMOR",
-        "ABILITY_SKILL_LINK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_SHELL_ARMOR", "ABILITY_SKILL_LINK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 4, "MOVE_WITHDRAW" ],
+            [ 8, "MOVE_SUPERSONIC" ],
+            [ 13, "MOVE_ICICLE_SPEAR" ],
+            [ 16, "MOVE_PROTECT" ],
+            [ 20, "MOVE_LEER" ],
+            [ 25, "MOVE_CLAMP" ],
+            [ 28, "MOVE_ICE_SHARD" ],
+            [ 32, "MOVE_AURORA_BEAM" ],
+            [ 37, "MOVE_WHIRLPOOL" ],
+            [ 40, "MOVE_IRON_DEFENSE" ],
+            [ 44, "MOVE_BRINE" ],
+            [ 49, "MOVE_ICE_BEAM" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -71,22 +74,7 @@
             "TM90",
             "HM03"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "4": "MOVE_WITHDRAW",
-            "8": "MOVE_SUPERSONIC",
-            "13": "MOVE_ICICLE_SPEAR",
-            "16": "MOVE_PROTECT",
-            "20": "MOVE_LEER",
-            "25": "MOVE_CLAMP",
-            "28": "MOVE_ICE_SHARD",
-            "32": "MOVE_AURORA_BEAM",
-            "37": "MOVE_WHIRLPOOL",
-            "40": "MOVE_IRON_DEFENSE",
-            "44": "MOVE_BRINE",
-            "49": "MOVE_ICE_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -102,8 +90,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 3,
@@ -117,7 +105,66 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "It swims backward by opening and\nclosing its two shells. Its large\ntongue is always kept hanging out.",
-        "category": "Bivalve Pokémon"
+        "en": {
+            "name": "SHELLDER",
+            "category": "Bivalve Pokémon",
+            "entry_text": [
+                "It swims backward by opening and\n",
+                "closing its two shells. Its large\n",
+                "tongue is always kept hanging out."
+            ]
+        },
+        "fr": {
+            "name": "KOKIYAS",
+            "category": "Pokémon Bivalve",
+            "entry_text": [
+                "Il nage à reculons en ouvrant et en\n",
+                "refermant ses deux coquilles. Il\n",
+                "laisse traîner sa large langue."
+            ]
+        },
+        "de": {
+            "name": "MUSCHAS",
+            "category": "Muschel",
+            "entry_text": [
+                "Es schwimmt rückwärts, indem es\n",
+                "seine Schale öffnet und schließt.\n",
+                "Es zeigt immer seine breite Zunge."
+            ]
+        },
+        "it": {
+            "name": "SHELLDER",
+            "category": "Pokémon Bivalve",
+            "entry_text": [
+                "Nuota all’indietro aprendo e\n",
+                "chiudendo le due valve. La lingua\n",
+                "è sempre fuori a penzoloni."
+            ]
+        },
+        "es": {
+            "name": "SHELLDER",
+            "category": "Pokémon Bivalvo",
+            "entry_text": [
+                "Nada hacia atrás abriendo y\n",
+                "cerrando su concha. Su gran\n",
+                "lengua siempre queda colgando."
+            ]
+        },
+        "jp": {
+            "name": "シェルダ－",
+            "category": "２まいがいポケモン",
+            "entry_text": [
+                "２まいの　カラを　あけしめすることで\n",
+                "うしろむきに　およぐ。どんなときでも\n",
+                "おおきな　ベロは　だしっぱなし。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

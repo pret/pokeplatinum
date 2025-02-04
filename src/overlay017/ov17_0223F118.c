@@ -4,7 +4,7 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "consts/items.h"
+#include "generated/items.h"
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_0200C6E4_decl.h"

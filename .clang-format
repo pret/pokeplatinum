@@ -59,7 +59,7 @@ IncludeBlocks: Regroup
 IncludeCategories:
   - Regex: '((<.+>)|("nitro/.*\.h"))'
     Priority: 1
-  - Regex: '"(consts|constants)/.*\.h"'
+  - Regex: '"(consts|constants|generated)/.*\.h"'
     Priority: 2
   - Regex: '"(struct_(decls|defs))/.*\.h"'
     Priority: 3

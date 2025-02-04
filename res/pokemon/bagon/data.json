@@ -1,5 +1,4 @@
 {
-    "name": "Bagon",
     "base_stats": {
         "hp": 45,
         "attack": 75,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_DRAGON",
-        "TYPE_DRAGON"
-    ],
+    "types": [ "TYPE_DRAGON", "TYPE_DRAGON" ],
     "catch_rate": 45,
     "base_exp_reward": 89,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 40,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_DRAGON",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_ROCK_HEAD",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_DRAGON", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_RAGE" ],
+            [ 5, "MOVE_BITE" ],
+            [ 10, "MOVE_LEER" ],
+            [ 16, "MOVE_HEADBUTT" ],
+            [ 20, "MOVE_FOCUS_ENERGY" ],
+            [ 25, "MOVE_EMBER" ],
+            [ 31, "MOVE_DRAGON_BREATH" ],
+            [ 35, "MOVE_ZEN_HEADBUTT" ],
+            [ 40, "MOVE_SCARY_FACE" ],
+            [ 46, "MOVE_CRUNCH" ],
+            [ 50, "MOVE_DRAGON_CLAW" ],
+            [ 55, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM05",
             "TM06",
@@ -77,21 +79,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_RAGE",
-            "5": "MOVE_BITE",
-            "10": "MOVE_LEER",
-            "16": "MOVE_HEADBUTT",
-            "20": "MOVE_FOCUS_ENERGY",
-            "25": "MOVE_EMBER",
-            "31": "MOVE_DRAGON_BREATH",
-            "35": "MOVE_ZEN_HEADBUTT",
-            "40": "MOVE_SCARY_FACE",
-            "46": "MOVE_CRUNCH",
-            "50": "MOVE_DRAGON_CLAW",
-            "55": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -102,14 +90,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_SHELGON"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -123,7 +111,66 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Dreaming of one day flying, it\npractices by leaping off cliffs\nevery day.",
-        "category": "Rock Head Pokémon"
+        "en": {
+            "name": "BAGON",
+            "category": "Rock Head Pokémon",
+            "entry_text": [
+                "Dreaming of one day flying, it\n",
+                "practices by leaping off cliffs\n",
+                "every day."
+            ]
+        },
+        "fr": {
+            "name": "DRABY",
+            "category": "Pokémon Tête de Roc",
+            "entry_text": [
+                "Il rêve de pouvoir voler un jour. \n",
+                "Pour l’heure, il s’entraîne en\n",
+                "sautant du haut des falaises."
+            ]
+        },
+        "de": {
+            "name": "KINDWURM",
+            "category": "Steinhaupt",
+            "entry_text": [
+                "Es träumt davon, eines Tages\n",
+                "fliegen zu können und springt daher\n",
+                "jeden Tag von hohen Klippen."
+            ]
+        },
+        "it": {
+            "name": "BAGON",
+            "category": "Pokémon Rocciotesta",
+            "entry_text": [
+                "Sogna di poter volare un giorno e,\n",
+                "pertanto, si allena regolarmente\n",
+                "gettandosi da alture."
+            ]
+        },
+        "es": {
+            "name": "BAGON",
+            "category": "Pokémon Cabeza Roca",
+            "entry_text": [
+                "Sueña con volar algún día,\n",
+                "por lo que siempre practica\n",
+                "saltando desde acantilados."
+            ]
+        },
+        "jp": {
+            "name": "タツベイ",
+            "category": "いしあたまポケモン",
+            "entry_text": [
+                "おおぞらを　とぶことを　ゆめみて\n",
+                "まいにち　とぶ　れんしゅうのために\n",
+                "がけから　とびおりている。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 3855
     }
 }

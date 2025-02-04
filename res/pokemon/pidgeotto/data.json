@@ -1,5 +1,4 @@
 {
-    "name": "Pidgeotto",
     "base_stats": {
         "hp": 63,
         "attack": 60,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 120,
     "base_exp_reward": 113,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_TANGLED_FEET"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_TANGLED_FEET" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_GUST" ],
+            [ 5, "MOVE_SAND_ATTACK" ],
+            [ 9, "MOVE_GUST" ],
+            [ 13, "MOVE_QUICK_ATTACK" ],
+            [ 17, "MOVE_WHIRLWIND" ],
+            [ 22, "MOVE_TWISTER" ],
+            [ 27, "MOVE_FEATHER_DANCE" ],
+            [ 32, "MOVE_AGILITY" ],
+            [ 37, "MOVE_WING_ATTACK" ],
+            [ 42, "MOVE_ROOST" ],
+            [ 47, "MOVE_TAILWIND" ],
+            [ 52, "MOVE_MIRROR_MOVE" ],
+            [ 57, "MOVE_AIR_SLASH" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -72,26 +77,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_SAND_ATTACK",
-                "MOVE_GUST"
-            ],
-            "5": "MOVE_SAND_ATTACK",
-            "9": "MOVE_GUST",
-            "13": "MOVE_QUICK_ATTACK",
-            "17": "MOVE_WHIRLWIND",
-            "22": "MOVE_TWISTER",
-            "27": "MOVE_FEATHER_DANCE",
-            "32": "MOVE_AGILITY",
-            "37": "MOVE_WING_ATTACK",
-            "42": "MOVE_ROOST",
-            "47": "MOVE_TAILWIND",
-            "52": "MOVE_MIRROR_MOVE",
-            "57": "MOVE_AIR_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -104,14 +90,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             36,
             "SPECIES_PIDGEOT"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -125,7 +111,66 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "It flies over its wide territory in\nsearch of prey, downing it\nwith its highly developed claws.",
-        "category": "Bird Pokémon"
+        "en": {
+            "name": "PIDGEOTTO",
+            "category": "Bird Pokémon",
+            "entry_text": [
+                "It flies over its wide territory in\n",
+                "search of prey, downing it\n",
+                "with its highly developed claws."
+            ]
+        },
+        "fr": {
+            "name": "ROUCOUPS",
+            "category": "Pokémon Oiseau",
+            "entry_text": [
+                "Il survole son vaste territoire en\n",
+                "quête d’une proie avant de fondre\n",
+                "sur elle toutes griffes en avant."
+            ]
+        },
+        "de": {
+            "name": "TAUBOGA",
+            "category": "Vogel",
+            "entry_text": [
+                "Auf der Suche nach Nahrung, die es\n",
+                "mit scharfen Krallen schlägt, fliegt\n",
+                "es durch riesiges Territorium."
+            ]
+        },
+        "it": {
+            "name": "PIDGEOTTO",
+            "category": "Pokémon Uccello",
+            "entry_text": [
+                "Sorvola il suo ampio territorio a\n",
+                "caccia di prede, afferrandole con\n",
+                "i suoi artigli affilati."
+            ]
+        },
+        "es": {
+            "name": "PIDGEOTTO",
+            "category": "Pokémon Pájaro",
+            "entry_text": [
+                "Sobrevuela su extenso territorio\n",
+                "en busca de presas y ataca con\n",
+                "sus poderosas garras."
+            ]
+        },
+        "jp": {
+            "name": "ピジョン",
+            "category": "とりポケモン",
+            "entry_text": [
+                "ひろい　なわばりを　とびまわりながら\n",
+                "えものを　さがす。はったつした\n",
+                "あしの　ツメで　えものを　しとめる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4357
     }
 }

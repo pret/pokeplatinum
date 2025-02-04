@@ -1,5 +1,4 @@
 {
-    "name": "Giratina",
     "base_stats": {
         "hp": 150,
         "attack": 100,
@@ -8,10 +7,7 @@
         "special_attack": 100,
         "special_defense": 120
     },
-    "types": [
-        "TYPE_GHOST",
-        "TYPE_DRAGON"
-    ],
+    "types": [ "TYPE_GHOST", "TYPE_DRAGON" ],
     "catch_rate": 3,
     "base_exp_reward": 220,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_DRAGON_BREATH" ],
+            [ 1, "MOVE_SCARY_FACE" ],
+            [ 10, "MOVE_OMINOUS_WIND" ],
+            [ 20, "MOVE_ANCIENT_POWER" ],
+            [ 30, "MOVE_DRAGON_CLAW" ],
+            [ 40, "MOVE_SHADOW_FORCE" ],
+            [ 50, "MOVE_HEAL_BLOCK" ],
+            [ 60, "MOVE_EARTH_POWER" ],
+            [ 70, "MOVE_SLASH" ],
+            [ 80, "MOVE_SHADOW_CLAW" ],
+            [ 90, "MOVE_AURA_SPHERE" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM04",
             "TM05",
@@ -95,22 +96,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_DRAGON_BREATH",
-                "MOVE_SCARY_FACE"
-            ],
-            "10": "MOVE_OMINOUS_WIND",
-            "20": "MOVE_ANCIENT_POWER",
-            "30": "MOVE_DRAGON_CLAW",
-            "40": "MOVE_SHADOW_FORCE",
-            "50": "MOVE_HEAL_BLOCK",
-            "60": "MOVE_EARTH_POWER",
-            "70": "MOVE_SLASH",
-            "80": "MOVE_SHADOW_CLAW",
-            "90": "MOVE_AURA_SPHERE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -127,39 +113,83 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
-    "pokedex_data": [
-        {
-            "height": 69,
-            "weight": 6500,
-            "body_shape": "SHAPE_SERPENTINE",
-            "trainer_scale_f": 576,
-            "pokemon_scale_f": 256,
-            "trainer_scale_m": 554,
-            "pokemon_scale_m": 256,
-            "trainer_pos_f": 24,
-            "pokemon_pos_f": 1,
-            "trainer_pos_m": 23,
-            "pokemon_pos_m": 1,
-            "entry_text": "It was banished for its violence.\nIt silently gazed upon the old\nworld from the Distortion World.",
-            "category": "Renegade Pokémon"
+    "pokedex_data": {
+        "height": 45,
+        "weight": 7500,
+        "body_shape": "SHAPE_TENTACLES",
+        "trainer_scale_f": 680,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 645,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 26,
+        "pokemon_pos_f": 3,
+        "trainer_pos_m": 26,
+        "pokemon_pos_m": 3,
+        "en": {
+            "name": "GIRATINA",
+            "category": "Renegade Pokémon",
+            "entry_text": [
+                "It was banished for its violence.\n",
+                "It silently gazed upon the old\n",
+                "world from the Distortion World."
+            ]
         },
-        {
-            "height": 45,
-            "weight": 7500,
-            "body_shape": "SHAPE_TENTACLES",
-            "trainer_scale_f": 680,
-            "pokemon_scale_f": 256,
-            "trainer_scale_m": 645,
-            "pokemon_scale_m": 256,
-            "trainer_pos_f": 26,
-            "pokemon_pos_f": 3,
-            "trainer_pos_m": 26,
-            "pokemon_pos_m": 3,
-            "entry_text": "It was banished for its violence.\nIt silently gazed upon the old\nworld from the Distortion World."
+        "fr": {
+            "name": "GIRATINA",
+            "category": "Pokémon Renégat",
+            "entry_text": [
+                "Un Pokémon censé vivre dans un\n",
+                "monde à l’opposé du nôtre. Il\n",
+                "apparaît dans un cimetière ancien."
+            ]
+        },
+        "de": {
+            "name": "GIRATINA",
+            "category": "Rebell",
+            "entry_text": [
+                "Ein PKMN, von dem man sagt, es lebt\n",
+                "in der Spiegelwelt unserer Welt.\n",
+                "Es erscheint auf alten Friedhöfen."
+            ]
+        },
+        "it": {
+            "name": "GIRATINA",
+            "category": "Pokémon Ribelle",
+            "entry_text": [
+                "Pokémon che vive in un mondo sul\n",
+                "lato opposto al nostro. Appare in\n",
+                "cimiteri antichi."
+            ]
+        },
+        "es": {
+            "name": "GIRATINA",
+            "category": "Pokémon Renegado",
+            "entry_text": [
+                "Se dice que vive en un mundo\n",
+                "en el lado inverso del nuestro.\n",
+                "Aparece en viejos cementerios."
+            ]
+        },
+        "jp": {
+            "name": "ギラティナ",
+            "category": "はんこつポケモン",
+            "entry_text": [
+                "このよの　うらがわにある　せかいに\n",
+                "すんでいると　いわれる　ポケモン。\n",
+                "こだいの　はかばに　あらわれる。"
+            ]
         }
-    ]
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 3852
+    }
 }

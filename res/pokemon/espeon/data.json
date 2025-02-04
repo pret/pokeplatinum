@@ -1,5 +1,4 @@
 {
-    "name": "Espeon",
     "base_stats": {
         "hp": 65,
         "attack": 65,
@@ -8,10 +7,7 @@
         "special_attack": 130,
         "special_defense": 95
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
     "base_exp_reward": 197,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 35,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_SYNCHRONIZE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_SYNCHRONIZE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 8, "MOVE_SAND_ATTACK" ],
+            [ 15, "MOVE_CONFUSION" ],
+            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 29, "MOVE_SWIFT" ],
+            [ 36, "MOVE_PSYBEAM" ],
+            [ 43, "MOVE_FUTURE_SIGHT" ],
+            [ 50, "MOVE_LAST_RESORT" ],
+            [ 57, "MOVE_PSYCH_UP" ],
+            [ 64, "MOVE_PSYCHIC" ],
+            [ 71, "MOVE_MORNING_SUN" ],
+            [ 78, "MOVE_POWER_SWAP" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -80,25 +84,7 @@
             "TM92",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TAIL_WHIP",
-                "MOVE_TACKLE",
-                "MOVE_HELPING_HAND"
-            ],
-            "8": "MOVE_SAND_ATTACK",
-            "15": "MOVE_CONFUSION",
-            "22": "MOVE_QUICK_ATTACK",
-            "29": "MOVE_SWIFT",
-            "36": "MOVE_PSYBEAM",
-            "43": "MOVE_FUTURE_SIGHT",
-            "50": "MOVE_LAST_RESORT",
-            "57": "MOVE_PSYCH_UP",
-            "64": "MOVE_PSYCHIC",
-            "71": "MOVE_MORNING_SUN",
-            "78": "MOVE_POWER_SWAP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -109,9 +95,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -125,7 +112,66 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "Its fur is so sensitive, it can\nsense minute shifts in the air\nand predict the weather.",
-        "category": "Sun Pokémon"
+        "en": {
+            "name": "ESPEON",
+            "category": "Sun Pokémon",
+            "entry_text": [
+                "Its fur is so sensitive, it can\n",
+                "sense minute shifts in the air\n",
+                "and predict the weather."
+            ]
+        },
+        "fr": {
+            "name": "MENTALI",
+            "category": "Pokémon Soleil",
+            "entry_text": [
+                "Son pelage a l’aspect et la texture\n",
+                "du velours. L’orbe à son front luit\n",
+                "quand il utilise ses pouvoirs psy."
+            ]
+        },
+        "de": {
+            "name": "PSIANA",
+            "category": "Sonne",
+            "entry_text": [
+                "Sein Fell ist wie Samt. Setzt es\n",
+                "Psycho-Kräfte ein, leuchtet die\n",
+                "Kugel in seiner Stirn."
+            ]
+        },
+        "it": {
+            "name": "ESPEON",
+            "category": "Pokémon Sole",
+            "entry_text": [
+                "Il suo pelo è simile al velluto.\n",
+                "Quando usa i suoi poteri psichici,\n",
+                "la sfera che ha sulla fronte brilla."
+            ]
+        },
+        "es": {
+            "name": "ESPEON",
+            "category": "Pokémon Sol",
+            "entry_text": [
+                "Su pelaje es como el terciopelo.\n",
+                "La esfera de su frente brilla\n",
+                "cuando usa sus poderes psíquicos."
+            ]
+        },
+        "jp": {
+            "name": "エ－フィ",
+            "category": "たいようポケモン",
+            "entry_text": [
+                "たいもうは　ビロ－ドの　つやと\n",
+                "はだざわり。サイコパワ－を　つかう\n",
+                "とき　ひたいの　たまが　かがやく。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2570
     }
 }

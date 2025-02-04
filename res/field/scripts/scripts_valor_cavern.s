@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/valor_cavern.h"
 
     .data
 
@@ -76,7 +77,7 @@ _00D3:
     WaitTime 30, 0x800C
     Message 1
     CloseMessage
-    StartTrainerBattle trainer_commander_saturn_valor_cavern
+    StartTrainerBattle TRAINER_COMMANDER_SATURN_VALOR_CAVERN
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0144
     Message 2

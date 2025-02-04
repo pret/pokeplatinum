@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_0202FAA8_H
 #define POKEPLATINUM_STRUCT_0202FAA8_H
 
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 typedef struct {
     u32 unk_00;
     int unk_04;
     int unk_08[4];
-    TrainerData unk_18[4];
+    Trainer unk_18[4];
     int unk_E8;
     int unk_EC;
     int unk_F0;

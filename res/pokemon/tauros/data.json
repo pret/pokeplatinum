@@ -1,5 +1,4 @@
 {
-    "name": "Tauros",
     "base_stats": {
         "hp": 75,
         "attack": 100,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 211,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_ANGER_POINT"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_ANGER_POINT" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 3, "MOVE_TAIL_WHIP" ],
+            [ 5, "MOVE_RAGE" ],
+            [ 8, "MOVE_HORN_ATTACK" ],
+            [ 11, "MOVE_SCARY_FACE" ],
+            [ 15, "MOVE_PURSUIT" ],
+            [ 19, "MOVE_REST" ],
+            [ 24, "MOVE_PAYBACK" ],
+            [ 29, "MOVE_ZEN_HEADBUTT" ],
+            [ 35, "MOVE_TAKE_DOWN" ],
+            [ 41, "MOVE_SWAGGER" ],
+            [ 48, "MOVE_THRASH" ],
+            [ 55, "MOVE_GIGA_IMPACT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -86,22 +89,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "3": "MOVE_TAIL_WHIP",
-            "5": "MOVE_RAGE",
-            "8": "MOVE_HORN_ATTACK",
-            "11": "MOVE_SCARY_FACE",
-            "15": "MOVE_PURSUIT",
-            "19": "MOVE_REST",
-            "24": "MOVE_PAYBACK",
-            "29": "MOVE_ZEN_HEADBUTT",
-            "35": "MOVE_TAKE_DOWN",
-            "41": "MOVE_SWAGGER",
-            "48": "MOVE_THRASH",
-            "55": "MOVE_GIGA_IMPACT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
@@ -113,9 +101,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 14,
@@ -129,7 +118,66 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "Once it takes aim at its foe, it\nmakes a headlong charge. It is\nfamous for its violent nature.",
-        "category": "Wild Bull Pokémon"
+        "en": {
+            "name": "TAUROS",
+            "category": "Wild Bull Pokémon",
+            "entry_text": [
+                "Once it takes aim at its foe, it\n",
+                "makes a headlong charge. It is\n",
+                "famous for its violent nature."
+            ]
+        },
+        "fr": {
+            "name": "TAUROS",
+            "category": "Pokémon Buffle",
+            "entry_text": [
+                "Après avoir choisi sa cible, il fonce\n",
+                "dessus tête baissée. Il est réputé\n",
+                "pour sa nature violente."
+            ]
+        },
+        "de": {
+            "name": "TAUROS",
+            "category": "Wildbulle",
+            "entry_text": [
+                "Sobald es einen Gegner ins Visier\n",
+                "genommen hat, rennt es mit dem\n",
+                "Kopf voran auf ihn zu."
+            ]
+        },
+        "it": {
+            "name": "TAUROS",
+            "category": "Pokémon Torobrado",
+            "entry_text": [
+                "Dopo aver puntato il nemico, lo\n",
+                "carica a testa bassa.\n",
+                "È noto per la sua indole violenta."
+            ]
+        },
+        "es": {
+            "name": "TAUROS",
+            "category": "Pokémon Toro Bravo",
+            "entry_text": [
+                "Cuando elige una presa, ataca sin\n",
+                "pensárselo. Este Pokémon es\n",
+                "famoso por su carácter violento."
+            ]
+        },
+        "jp": {
+            "name": "ケンタロス",
+            "category": "あばれうしポケモン",
+            "entry_text": [
+                "えものに　ねらいを　さだめると\n",
+                "いっちょくせんに　とっしんする。\n",
+                "あらっぽい　せいかくで　ゆうめい。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1285
     }
 }

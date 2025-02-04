@@ -1,5 +1,4 @@
 {
-    "name": "Kyogre",
     "base_stats": {
         "hp": 100,
         "attack": 100,
@@ -8,10 +7,7 @@
         "special_attack": 150,
         "special_defense": 140
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 5,
     "base_exp_reward": 218,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_DRIZZLE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_DRIZZLE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WATER_PULSE" ],
+            [ 5, "MOVE_SCARY_FACE" ],
+            [ 15, "MOVE_ANCIENT_POWER" ],
+            [ 20, "MOVE_BODY_SLAM" ],
+            [ 30, "MOVE_CALM_MIND" ],
+            [ 35, "MOVE_ICE_BEAM" ],
+            [ 45, "MOVE_HYDRO_PUMP" ],
+            [ 50, "MOVE_REST" ],
+            [ 60, "MOVE_SHEER_COLD" ],
+            [ 65, "MOVE_DOUBLE_EDGE" ],
+            [ 75, "MOVE_AQUA_TAIL" ],
+            [ 80, "MOVE_WATER_SPOUT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM05",
@@ -85,21 +87,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_WATER_PULSE",
-            "5": "MOVE_SCARY_FACE",
-            "15": "MOVE_ANCIENT_POWER",
-            "20": "MOVE_BODY_SLAM",
-            "30": "MOVE_CALM_MIND",
-            "35": "MOVE_ICE_BEAM",
-            "45": "MOVE_HYDRO_PUMP",
-            "50": "MOVE_REST",
-            "60": "MOVE_SHEER_COLD",
-            "65": "MOVE_DOUBLE_EDGE",
-            "75": "MOVE_AQUA_TAIL",
-            "80": "MOVE_WATER_SPOUT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -112,9 +100,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 45,
@@ -128,7 +117,66 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 0,
-        "entry_text": "It is said to have widened the\nseas by causing downpours. It had\nbeen asleep in a marine trench.",
-        "category": "Sea Basin Pokémon"
+        "en": {
+            "name": "KYOGRE",
+            "category": "Sea Basin Pokémon",
+            "entry_text": [
+                "It is said to have widened the\n",
+                "seas by causing downpours. It had\n",
+                "been asleep in a marine trench."
+            ]
+        },
+        "fr": {
+            "name": "KYOGRE",
+            "category": "Pokémon Bassinmarin",
+            "entry_text": [
+                "On dit qu’il a fait monter les eaux\n",
+                "en causant des pluies diluviennes.\n",
+                "Il somnolait dans une fosse marine."
+            ]
+        },
+        "de": {
+            "name": "KYOGRE",
+            "category": "Seegründler",
+            "entry_text": [
+                "Man sagt, es habe die Meere ver-\n",
+                "größert, indem es es regnen ließ.\n",
+                "Es schlief in einem Meeresgraben."
+            ]
+        },
+        "it": {
+            "name": "KYOGRE",
+            "category": "Pokémon Oceano",
+            "entry_text": [
+                "Si dice che abbia ampliato i mari\n",
+                "provocando piogge torrenziali. Si è\n",
+                "assopito in una fossa marina."
+            ]
+        },
+        "es": {
+            "name": "KYOGRE",
+            "category": "Pokémon Cuenca Mar",
+            "entry_text": [
+                "Se dice que aumentó el nivel del\n",
+                "mar a base de aguaceros. Ha estado\n",
+                "durmiendo en una fosa marina."
+            ]
+        },
+        "jp": {
+            "name": "カイオ－ガ",
+            "category": "かいていポケモン",
+            "entry_text": [
+                "おおあめを　ふらせる　のうりょくで\n",
+                "うみを　ひろげたと　いわれている。\n",
+                "かいこうの　そこで　ねむっていた。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 771
     }
 }

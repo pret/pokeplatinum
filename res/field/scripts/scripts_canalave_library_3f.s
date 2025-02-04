@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/canalave_library_3f.h"
 
     .data
 

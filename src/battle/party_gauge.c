@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "consts/sdat.h"
+#include "generated/sdat.h"
 
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"

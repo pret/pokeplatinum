@@ -1,5 +1,4 @@
 {
-    "name": "Swalot",
     "base_stats": {
         "hp": 100,
         "attack": 73,
@@ -8,10 +7,7 @@
         "special_attack": 73,
         "special_defense": 83
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 75,
     "base_exp_reward": 168,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LIQUID_OOZE",
-        "ABILITY_STICKY_HOLD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LIQUID_OOZE", "ABILITY_STICKY_HOLD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_POISON_GAS" ],
+            [ 1, "MOVE_SLUDGE" ],
+            [ 6, "MOVE_YAWN" ],
+            [ 9, "MOVE_POISON_GAS" ],
+            [ 14, "MOVE_SLUDGE" ],
+            [ 17, "MOVE_AMNESIA" ],
+            [ 23, "MOVE_ENCORE" ],
+            [ 26, "MOVE_BODY_SLAM" ],
+            [ 30, "MOVE_TOXIC" ],
+            [ 38, "MOVE_STOCKPILE" ],
+            [ 38, "MOVE_SPIT_UP" ],
+            [ 38, "MOVE_SWALLOW" ],
+            [ 45, "MOVE_SLUDGE_BOMB" ],
+            [ 52, "MOVE_GASTRO_ACID" ],
+            [ 59, "MOVE_WRING_OUT" ],
+            [ 66, "MOVE_GUNK_SHOT" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM09",
@@ -80,31 +88,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_YAWN",
-                "MOVE_POISON_GAS",
-                "MOVE_SLUDGE"
-            ],
-            "6": "MOVE_YAWN",
-            "9": "MOVE_POISON_GAS",
-            "14": "MOVE_SLUDGE",
-            "17": "MOVE_AMNESIA",
-            "23": "MOVE_ENCORE",
-            "26": "MOVE_BODY_SLAM",
-            "30": "MOVE_TOXIC",
-            "38": [
-                "MOVE_STOCKPILE",
-                "MOVE_SPIT_UP",
-                "MOVE_SWALLOW"
-            ],
-            "45": "MOVE_SLUDGE_BOMB",
-            "52": "MOVE_GASTRO_ACID",
-            "59": "MOVE_WRING_OUT",
-            "66": "MOVE_GUNK_SHOT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -116,9 +100,10 @@
             "MOVE_SEED_BOMB"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 17,
@@ -132,7 +117,66 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "It swallows anything whole.\nIt sweats toxic fluids from its\nfollicles to douse foes.",
-        "category": "Poison Bag Pokémon"
+        "en": {
+            "name": "SWALOT",
+            "category": "Poison Bag Pokémon",
+            "entry_text": [
+                "It swallows anything whole.\n",
+                "It sweats toxic fluids from its\n",
+                "follicles to douse foes."
+            ]
+        },
+        "fr": {
+            "name": "AVALTOUT",
+            "category": "Pokémon Sac Poison",
+            "entry_text": [
+                "Il avale tout en une bouchée. Ses\n",
+                "follicules sécrètent des fluides\n",
+                "toxiques qui endorment l’ennemi."
+            ]
+        },
+        "de": {
+            "name": "SCHLUKWECH",
+            "category": "Giftbeutel",
+            "entry_text": [
+                "Es verschluckt alles in einem\n",
+                "Stück und sondert giftige Stoffe\n",
+                "ab, mit denen es Gegner besprüht. "
+            ]
+        },
+        "it": {
+            "name": "SWALOT",
+            "category": "Pokémon Velenosacco",
+            "entry_text": [
+                "Inghiotte intera qualsiasi cosa.\n",
+                "Dai pori traspira un liquido tossico\n",
+                "con cui bagna i nemici."
+            ]
+        },
+        "es": {
+            "name": "SWALOT",
+            "category": "Pokémon Bolsa Ven.",
+            "entry_text": [
+                "Se traga cualquier cosa de una\n",
+                "pieza. Sus poros segregan fluidos\n",
+                "tóxicos que dañan a sus enemigos."
+            ]
+        },
+        "jp": {
+            "name": "マルノ－ム",
+            "category": "どくぶくろポケモン",
+            "entry_text": [
+                "なんでも　まるのみしてしまう。\n",
+                "けあなから　もうどくの　たいえきを\n",
+                "ぶんぴつして　てきに　あびせかける。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1542
     }
 }

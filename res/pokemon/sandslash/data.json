@@ -1,5 +1,4 @@
 {
-    "name": "Sandslash",
     "base_stats": {
         "hp": 75,
         "attack": 100,
@@ -8,10 +7,7 @@
         "special_attack": 45,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_GROUND" ],
     "catch_rate": 90,
     "base_exp_reward": 163,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SAND_VEIL",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SAND_VEIL", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 3, "MOVE_DEFENSE_CURL" ],
+            [ 7, "MOVE_SAND_ATTACK" ],
+            [ 9, "MOVE_POISON_STING" ],
+            [ 13, "MOVE_RAPID_SPIN" ],
+            [ 15, "MOVE_SWIFT" ],
+            [ 19, "MOVE_FURY_SWIPES" ],
+            [ 21, "MOVE_ROLLOUT" ],
+            [ 22, "MOVE_CRUSH_CLAW" ],
+            [ 28, "MOVE_FURY_CUTTER" ],
+            [ 33, "MOVE_SAND_TOMB" ],
+            [ 40, "MOVE_SLASH" ],
+            [ 45, "MOVE_GYRO_BALL" ],
+            [ 52, "MOVE_SANDSTORM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -88,27 +94,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_SAND_ATTACK"
-            ],
-            "3": "MOVE_DEFENSE_CURL",
-            "7": "MOVE_SAND_ATTACK",
-            "9": "MOVE_POISON_STING",
-            "13": "MOVE_RAPID_SPIN",
-            "15": "MOVE_SWIFT",
-            "19": "MOVE_FURY_SWIPES",
-            "21": "MOVE_ROLLOUT",
-            "22": "MOVE_CRUSH_CLAW",
-            "28": "MOVE_FURY_CUTTER",
-            "33": "MOVE_SAND_TOMB",
-            "40": "MOVE_SLASH",
-            "45": "MOVE_GYRO_BALL",
-            "52": "MOVE_SANDSTORM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -118,9 +104,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -134,7 +121,66 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It curls up, then rolls into foes\nwith its back. Its sharp spines\ninflict severe damage.",
-        "category": "Mouse Pokémon"
+        "en": {
+            "name": "SANDSLASH",
+            "category": "Mouse Pokémon",
+            "entry_text": [
+                "It curls up, then rolls into foes\n",
+                "with its back. Its sharp spines\n",
+                "inflict severe damage."
+            ]
+        },
+        "fr": {
+            "name": "SABLAIREAU",
+            "category": "Pokémon Souris",
+            "entry_text": [
+                "Il se met en boule pour percuter\n",
+                "l’ennemi. Ses épines aiguisées\n",
+                "font beaucoup de dégâts."
+            ]
+        },
+        "de": {
+            "name": "SANDAMER",
+            "category": "Maus",
+            "entry_text": [
+                "Es rollt sich zusammen und rollt\n",
+                "dann auf Gegner zu, die durch\n",
+                "seine Stacheln Schaden nehmen."
+            ]
+        },
+        "it": {
+            "name": "SANDSLASH",
+            "category": "Pokémon Topo",
+            "entry_text": [
+                "Si arrotola come una palla e rotola\n",
+                "sul dorso verso i nemici. Gli aculei\n",
+                "aguzzi provocano gravi danni."
+            ]
+        },
+        "es": {
+            "name": "SANDSLASH",
+            "category": "Pokémon Ratón",
+            "entry_text": [
+                "Se hace una bola y se lanza\n",
+                "rodando hacia los enemigos para\n",
+                "clavarles sus afiladas púas."
+            ]
+        },
+        "jp": {
+            "name": "サンドパン",
+            "category": "ねずみポケモン",
+            "entry_text": [
+                "からだを　まるめて　せなかから\n",
+                "たいあたり。するどい　トゲトゲが\n",
+                "おおきな　ダメ－ジを　あたえる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2056
     }
 }

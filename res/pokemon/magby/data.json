@@ -1,5 +1,4 @@
 {
-    "name": "Magby",
     "base_stats": {
         "hp": 45,
         "attack": 75,
@@ -8,10 +7,7 @@
         "special_attack": 70,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 45,
     "base_exp_reward": 117,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_FLAME_BODY",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_FLAME_BODY", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SMOG" ],
+            [ 1, "MOVE_LEER" ],
+            [ 7, "MOVE_EMBER" ],
+            [ 10, "MOVE_SMOKE_SCREEN" ],
+            [ 16, "MOVE_FAINT_ATTACK" ],
+            [ 19, "MOVE_FIRE_SPIN" ],
+            [ 25, "MOVE_CONFUSE_RAY" ],
+            [ 28, "MOVE_FIRE_PUNCH" ],
+            [ 34, "MOVE_LAVA_PLUME" ],
+            [ 37, "MOVE_FLAMETHROWER" ],
+            [ 43, "MOVE_SUNNY_DAY" ],
+            [ 46, "MOVE_FIRE_BLAST" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -74,23 +76,7 @@
             "TM90",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SMOG",
-                "MOVE_LEER"
-            ],
-            "7": "MOVE_EMBER",
-            "10": "MOVE_SMOKE_SCREEN",
-            "16": "MOVE_FAINT_ATTACK",
-            "19": "MOVE_FIRE_SPIN",
-            "25": "MOVE_CONFUSE_RAY",
-            "28": "MOVE_FIRE_PUNCH",
-            "34": "MOVE_LAVA_PLUME",
-            "37": "MOVE_FLAMETHROWER",
-            "43": "MOVE_SUNNY_DAY",
-            "46": "MOVE_FIRE_BLAST"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -102,14 +88,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_MAGMAR"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -123,7 +109,66 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "Its magma-like blood circulates\nthroughout its body. Its body’s\nheat can top 1,100 degrees F.",
-        "category": "Live Coal Pokémon"
+        "en": {
+            "name": "MAGBY",
+            "category": "Live Coal Pokémon",
+            "entry_text": [
+                "Its magma-like blood circulates\n",
+                "throughout its body. Its body’s\n",
+                "heat can top 1,100 degrees F."
+            ]
+        },
+        "fr": {
+            "name": "MAGBY",
+            "category": "Pokémon Charbon",
+            "entry_text": [
+                "Sa température corporelle avoisine\n",
+                "les 600 °C. Son souffle est\n",
+                "jaune quand il est en bonne santé."
+            ]
+        },
+        "de": {
+            "name": "MAGBY",
+            "category": "Glutherd",
+            "entry_text": [
+                "Seine Körpertemperatur liegt bei\n",
+                "etwa 600 Grad. Ist es gesund,\n",
+                "atmet es gelbe Flammen aus."
+            ]
+        },
+        "it": {
+            "name": "MAGBY",
+            "category": "Pokémon Carbonvivo",
+            "entry_text": [
+                "La sua temperatura corporea è di\n",
+                "circa 600°C. Se le fiamme che lancia\n",
+                "sono gialle significa che è in forma."
+            ]
+        },
+        "es": {
+            "name": "MAGBY",
+            "category": "Pokémon Ascuas",
+            "entry_text": [
+                "Su temperatura corporal es de\n",
+                "unos 600 grados. Si está sano,\n",
+                "escupe llamas amarillas."
+            ]
+        },
+        "jp": {
+            "name": "ブビィ",
+            "category": "ひだねポケモン",
+            "entry_text": [
+                "たいおんは　やく６００ど。\n",
+                "くちから　きいろい　ほのおを\n",
+                "だしていれば　げんきな　しょうこ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 514
     }
 }

@@ -1,5 +1,4 @@
 {
-    "name": "Magcargo",
     "base_stats": {
         "hp": 50,
         "attack": 50,
@@ -8,10 +7,7 @@
         "special_attack": 80,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_ROCK"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_ROCK" ],
     "catch_rate": 75,
     "base_exp_reward": 154,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_MAGMA_ARMOR",
-        "ABILITY_FLAME_BODY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_MAGMA_ARMOR", "ABILITY_FLAME_BODY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_SMOG" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_ROCK_THROW" ],
+            [ 8, "MOVE_EMBER" ],
+            [ 11, "MOVE_ROCK_THROW" ],
+            [ 16, "MOVE_HARDEN" ],
+            [ 23, "MOVE_RECOVER" ],
+            [ 26, "MOVE_ANCIENT_POWER" ],
+            [ 31, "MOVE_AMNESIA" ],
+            [ 40, "MOVE_LAVA_PLUME" ],
+            [ 45, "MOVE_ROCK_SLIDE" ],
+            [ 52, "MOVE_BODY_SLAM" ],
+            [ 61, "MOVE_FLAMETHROWER" ],
+            [ 66, "MOVE_EARTH_POWER" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -83,26 +88,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_YAWN",
-                "MOVE_SMOG",
-                "MOVE_EMBER",
-                "MOVE_ROCK_THROW"
-            ],
-            "8": "MOVE_EMBER",
-            "11": "MOVE_ROCK_THROW",
-            "16": "MOVE_HARDEN",
-            "23": "MOVE_RECOVER",
-            "26": "MOVE_ANCIENT_POWER",
-            "31": "MOVE_AMNESIA",
-            "40": "MOVE_LAVA_PLUME",
-            "45": "MOVE_ROCK_SLIDE",
-            "52": "MOVE_BODY_SLAM",
-            "61": "MOVE_FLAMETHROWER",
-            "66": "MOVE_EARTH_POWER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -112,9 +98,10 @@
             "MOVE_HEAT_WAVE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 8,
@@ -128,7 +115,66 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "Its body temperature is roughly\n18,000 degrees F. Flames spout\nfrom gaps in its hardened shell.",
-        "category": "Lava Pokémon"
+        "en": {
+            "name": "MAGCARGO",
+            "category": "Lava Pokémon",
+            "entry_text": [
+                "Its body temperature is roughly\n",
+                "18,000 degrees F. Flames spout\n",
+                "from gaps in its hardened shell."
+            ]
+        },
+        "fr": {
+            "name": "VOLCAROPOD",
+            "category": "Pokémon Lave",
+            "entry_text": [
+                "Sa température corporelle avoisine\n",
+                "les 10 000 °C. Des flammes \n",
+                "fusent des fissures de sa coquille."
+            ]
+        },
+        "de": {
+            "name": "MAGCARGO",
+            "category": "Lava",
+            "entry_text": [
+                "Seine Körpertemperatur beträgt\n",
+                "etwa 10 000 Grad. Aus seiner Schale\n",
+                "treten immer wieder Flammen aus."
+            ]
+        },
+        "it": {
+            "name": "MAGCARGO",
+            "category": "Pokémon Lava",
+            "entry_text": [
+                "Ha una temperatura corporea di\n",
+                "circa 10000°C. Dai fori del guscio\n",
+                "fuoriescono intense fiammate."
+            ]
+        },
+        "es": {
+            "name": "MAGCARGO",
+            "category": "Pokémon Lava",
+            "entry_text": [
+                "Su cuerpo está a una temperatura\n",
+                "de 10000 grados. De las fisuras\n",
+                "de su cuerpo escapan llamas."
+            ]
+        },
+        "jp": {
+            "name": "マグカルゴ",
+            "category": "ようがんポケモン",
+            "entry_text": [
+                "たいおんは　やく１まんど。\n",
+                "マグマが　かたまって　できた　カラの\n",
+                "すきまから　ほのおを　ふきだす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2818
     }
 }

@@ -1,5 +1,4 @@
 {
-    "name": "Dodrio",
     "base_stats": {
         "hp": 60,
         "attack": 110,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 158,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_RUN_AWAY",
-        "ABILITY_EARLY_BIRD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_EARLY_BIRD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PLUCK" ],
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_RAGE" ],
+            [ 5, "MOVE_QUICK_ATTACK" ],
+            [ 10, "MOVE_RAGE" ],
+            [ 14, "MOVE_FURY_ATTACK" ],
+            [ 19, "MOVE_PURSUIT" ],
+            [ 23, "MOVE_UPROAR" ],
+            [ 28, "MOVE_ACUPRESSURE" ],
+            [ 34, "MOVE_TRI_ATTACK" ],
+            [ 41, "MOVE_AGILITY" ],
+            [ 47, "MOVE_DRILL_PECK" ],
+            [ 54, "MOVE_ENDEAVOR" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -74,26 +79,7 @@
             "TM90",
             "HM02"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PLUCK",
-                "MOVE_PECK",
-                "MOVE_GROWL",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_RAGE"
-            ],
-            "5": "MOVE_QUICK_ATTACK",
-            "10": "MOVE_RAGE",
-            "14": "MOVE_FURY_ATTACK",
-            "19": "MOVE_PURSUIT",
-            "23": "MOVE_UPROAR",
-            "28": "MOVE_ACUPRESSURE",
-            "34": "MOVE_TRI_ATTACK",
-            "41": "MOVE_AGILITY",
-            "47": "MOVE_DRILL_PECK",
-            "54": "MOVE_ENDEAVOR"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
@@ -103,9 +89,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 18,
@@ -119,7 +106,66 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 2,
-        "entry_text": "When DODUO evolves into this odd\nbreed, one of its heads splits into\ntwo. It runs at nearly 40 mph.",
-        "category": "Triple Bird Pokémon"
+        "en": {
+            "name": "DODRIO",
+            "category": "Triple Bird Pokémon",
+            "entry_text": [
+                "When DODUO evolves into this odd\n",
+                "breed, one of its heads splits into\n",
+                "two. It runs at nearly 40 mph."
+            ]
+        },
+        "fr": {
+            "name": "DODRIO",
+            "category": "Pokémon Trioiseau",
+            "entry_text": [
+                "Quand DODUO connaît cette étrange\n",
+                "évolution, l’une de ses têtes se \n",
+                "dédouble. Il atteint les 60 km/h."
+            ]
+        },
+        "de": {
+            "name": "DODRI",
+            "category": "Trivogel",
+            "entry_text": [
+                "Entwickelt sich DODU, teilt sich\n",
+                "einer der Köpfe in zwei. Es kann\n",
+                "sich mit 60 km/h fortbewegen."
+            ]
+        },
+        "it": {
+            "name": "DODRIO",
+            "category": "Pokémon Triuccello",
+            "entry_text": [
+                "Quando DODUO si evolve in questo\n",
+                "strano essere, una delle due teste\n",
+                "si divide a metà. Corre a 60 km/h."
+            ]
+        },
+        "es": {
+            "name": "DODRIO",
+            "category": "Pokémon Ave Triple",
+            "entry_text": [
+                "Cuando un DODUO evoluciona, una de\n",
+                "sus cabezas se divide en dos.\n",
+                "Corre a unos 60 km por hora."
+            ]
+        },
+        "jp": {
+            "name": "ド－ドリオ",
+            "category": "みつごどりポケモン",
+            "entry_text": [
+                "しんかのときに　ド－ド－の　あたまの\n",
+                "どちらかが　ぶんれつした　ちんしゅ。\n",
+                "じそく　６０キロいじょうで　はしる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4357
     }
 }

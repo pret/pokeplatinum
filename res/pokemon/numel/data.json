@@ -1,5 +1,4 @@
 {
-    "name": "Numel",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_GROUND" ],
     "catch_rate": 255,
     "base_exp_reward": 88,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_SIMPLE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_SIMPLE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 5, "MOVE_EMBER" ],
+            [ 11, "MOVE_MAGNITUDE" ],
+            [ 15, "MOVE_FOCUS_ENERGY" ],
+            [ 21, "MOVE_TAKE_DOWN" ],
+            [ 25, "MOVE_AMNESIA" ],
+            [ 31, "MOVE_LAVA_PLUME" ],
+            [ 35, "MOVE_EARTH_POWER" ],
+            [ 41, "MOVE_EARTHQUAKE" ],
+            [ 45, "MOVE_FLAMETHROWER" ],
+            [ 51, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -75,23 +77,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_TACKLE"
-            ],
-            "5": "MOVE_EMBER",
-            "11": "MOVE_MAGNITUDE",
-            "15": "MOVE_FOCUS_ENERGY",
-            "21": "MOVE_TAKE_DOWN",
-            "25": "MOVE_AMNESIA",
-            "31": "MOVE_LAVA_PLUME",
-            "35": "MOVE_EARTH_POWER",
-            "41": "MOVE_EARTHQUAKE",
-            "45": "MOVE_FLAMETHROWER",
-            "51": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -101,14 +87,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             33,
             "SPECIES_CAMERUPT"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -122,7 +108,66 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "Its humped back stores intensely\nhot magma. In rain, the magma\ncools, slowing its movement.",
-        "category": "Numb Pokémon"
+        "en": {
+            "name": "NUMEL",
+            "category": "Numb Pokémon",
+            "entry_text": [
+                "Its humped back stores intensely\n",
+                "hot magma. In rain, the magma\n",
+                "cools, slowing its movement."
+            ]
+        },
+        "fr": {
+            "name": "CHAMALLOT",
+            "category": "Pokémon Engourdi",
+            "entry_text": [
+                "Son dos bossu renferme une lave\n",
+                "bouillonnante. Elle refroidit par \n",
+                "temps de pluie, ce qui le ralentit."
+            ]
+        },
+        "de": {
+            "name": "CAMAUB",
+            "category": "Taubheit",
+            "entry_text": [
+                "In seinem Rücken speichert es sehr\n",
+                "heißes Magma. Regnet es, kühlt das\n",
+                "Magma ab und es wird langsamer."
+            ]
+        },
+        "it": {
+            "name": "NUMEL",
+            "category": "Pokémon Torpore",
+            "entry_text": [
+                "Nella gobba accumula magma. Quando\n",
+                "piove, il magma si indurisce e\n",
+                "il Pokémon diventa più lento."
+            ]
+        },
+        "es": {
+            "name": "NUMEL",
+            "category": "Pokémon Torpe",
+            "entry_text": [
+                "En su joroba almacena magma\n",
+                "ardiente que se enfría cuando\n",
+                "llueve y lo ralentiza."
+            ]
+        },
+        "jp": {
+            "name": "ドンメル",
+            "category": "どんかんポケモン",
+            "entry_text": [
+                "しゃくねつの　マグマを　せなかの\n",
+                "コブに　ためている。あめに　あたると\n",
+                "マグマが　ひえて　うごきが　にぶる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2050
     }
 }

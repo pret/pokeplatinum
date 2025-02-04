@@ -1,5 +1,4 @@
 {
-    "name": "Spearow",
     "base_stats": {
         "hp": 40,
         "attack": 60,
@@ -8,10 +7,7 @@
         "special_attack": 31,
         "special_defense": 31
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 255,
     "base_exp_reward": 58,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_LEER" ],
+            [ 9, "MOVE_FURY_ATTACK" ],
+            [ 13, "MOVE_PURSUIT" ],
+            [ 17, "MOVE_AERIAL_ACE" ],
+            [ 21, "MOVE_MIRROR_MOVE" ],
+            [ 25, "MOVE_AGILITY" ],
+            [ 29, "MOVE_ASSURANCE" ],
+            [ 33, "MOVE_ROOST" ],
+            [ 37, "MOVE_DRILL_PECK" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -72,22 +73,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PECK",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_LEER",
-            "9": "MOVE_FURY_ATTACK",
-            "13": "MOVE_PURSUIT",
-            "17": "MOVE_AERIAL_ACE",
-            "21": "MOVE_MIRROR_MOVE",
-            "25": "MOVE_AGILITY",
-            "29": "MOVE_ASSURANCE",
-            "33": "MOVE_ROOST",
-            "37": "MOVE_DRILL_PECK"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -99,14 +85,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             20,
             "SPECIES_FEAROW"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 3,
@@ -120,7 +106,66 @@
         "pokemon_pos_f": 30,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 30,
-        "entry_text": "It flaps its small wings busily to\nfly. Using its beak, it searches\nin grass for prey.",
-        "category": "Tiny Bird Pokémon"
+        "en": {
+            "name": "SPEAROW",
+            "category": "Tiny Bird Pokémon",
+            "entry_text": [
+                "It flaps its small wings busily to\n",
+                "fly. Using its beak, it searches\n",
+                "in grass for prey."
+            ]
+        },
+        "fr": {
+            "name": "PIAFABEC",
+            "category": "Pokémon Minoiseau",
+            "entry_text": [
+                "Il fait battre vigoureusement ses\n",
+                "petites ailes pour voler et cherche\n",
+                "à manger dans l’herbe avec le bec."
+            ]
+        },
+        "de": {
+            "name": "HABITAK",
+            "category": "Kleinvogel",
+            "entry_text": [
+                "Im Flug schlägt es eifrig mit den\n",
+                "Flügeln. Mit seinem Schnabel sucht\n",
+                "es im Gras nach Beute."
+            ]
+        },
+        "it": {
+            "name": "SPEAROW",
+            "category": "Pokémon Uccellino",
+            "entry_text": [
+                "Sbatte con foga le sue alette per\n",
+                "sollevarsi in volo. Cerca le prede\n",
+                "beccando nell’erba."
+            ]
+        },
+        "es": {
+            "name": "SPEAROW",
+            "category": "Pokémon Pajarito",
+            "entry_text": [
+                "Agita continuamente sus alitas\n",
+                "para volar. Busca presas entre\n",
+                "la hierba con su pico."
+            ]
+        },
+        "jp": {
+            "name": "オニスズメ",
+            "category": "ことりポケモン",
+            "entry_text": [
+                "ちいさな　つばさを　いそがしく\n",
+                "はばたかせて　とぶ。くさむらにいる\n",
+                "えものを　くちばしで　さがしだす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 4357
     }
 }

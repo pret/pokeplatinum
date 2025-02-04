@@ -13,11 +13,11 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
+#include "fx_util.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
-#include "unk_0201E190.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 
@@ -140,7 +140,7 @@ static void ov5_021F62A0(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     v0 = v1->unk_04;
 
-    v1->unk_08 = sub_02062BE8(v3);
+    v1->unk_08 = MapObject_GetCurrTileBehavior(v3);
     v1->unk_04 = ov5_021F6414(v1->unk_08);
     v1->unk_00 = 0;
 
@@ -159,7 +159,7 @@ static void ov5_021F62A0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     {
         VecFx32 v4, v5;
         int v6 = MapObject_GetX(v3) + MapObject_GetDxFromDir(v1->unk_04);
-        int v7 = MapObject_GetZ(v3) + MapObject_GetDyFromDir(v1->unk_04);
+        int v7 = MapObject_GetZ(v3) + MapObject_GetDzFromDir(v1->unk_04);
 
         sub_02064450(v6, v7, &v5);
         MapObject_GetPosPtr(v3, &v4);
@@ -207,7 +207,7 @@ static void ov5_021F636C(UnkStruct_ov101_021D5D90 *param0, void *param1)
             break;
         }
 
-        sub_0201E2E0(&v2, 0, v1, 0);
+        MTX_Rot33Angles(&v2, 0, v1, 0);
         sub_020715E4(param0, &v3);
 
         v3.x += v6->x;

@@ -1,5 +1,4 @@
 {
-    "name": "Blissey",
     "base_stats": {
         "hp": 255,
         "attack": 10,
@@ -8,10 +7,7 @@
         "special_attack": 75,
         "special_defense": 135
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 30,
     "base_exp_reward": 255,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 40,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_NATURAL_CURE",
-        "ABILITY_SERENE_GRACE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_SERENE_GRACE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_REFRESH" ],
+            [ 12, "MOVE_SOFTBOILED" ],
+            [ 16, "MOVE_DOUBLE_SLAP" ],
+            [ 20, "MOVE_MINIMIZE" ],
+            [ 23, "MOVE_SING" ],
+            [ 27, "MOVE_FLING" ],
+            [ 31, "MOVE_DEFENSE_CURL" ],
+            [ 34, "MOVE_LIGHT_SCREEN" ],
+            [ 38, "MOVE_EGG_BOMB" ],
+            [ 42, "MOVE_HEALING_WISH" ],
+            [ 46, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -105,25 +109,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_TAIL_WHIP",
-            "9": "MOVE_REFRESH",
-            "12": "MOVE_SOFTBOILED",
-            "16": "MOVE_DOUBLE_SLAP",
-            "20": "MOVE_MINIMIZE",
-            "23": "MOVE_SING",
-            "27": "MOVE_FLING",
-            "31": "MOVE_DEFENSE_CURL",
-            "34": "MOVE_LIGHT_SCREEN",
-            "38": "MOVE_EGG_BOMB",
-            "42": "MOVE_HEALING_WISH",
-            "46": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -137,9 +123,10 @@
             "MOVE_LAST_RESORT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -153,7 +140,66 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "The eggs it lays are filled with\nhappiness. Eating even one bite\nwill bring a smile to anyone.",
-        "category": "Happiness Pokémon"
+        "en": {
+            "name": "BLISSEY",
+            "category": "Happiness Pokémon",
+            "entry_text": [
+                "The eggs it lays are filled with\n",
+                "happiness. Eating even one bite\n",
+                "will bring a smile to anyone."
+            ]
+        },
+        "fr": {
+            "name": "LEUPHORIE",
+            "category": "Pokémon Bonheur",
+            "entry_text": [
+                "Ce Pokémon au cœur d’or\n",
+                "soigne les Pokémon malades.\n",
+                "Il ressent la tristesse d’autrui."
+            ]
+        },
+        "de": {
+            "name": "HEITEIRA",
+            "category": "Freude",
+            "entry_text": [
+                "Dieses gutherzige PKMN pflegt\n",
+                "kranke PKMN gesund. Es spürt die\n",
+                "Traurigkeit anderer Lebewesen."
+            ]
+        },
+        "it": {
+            "name": "BLISSEY",
+            "category": "Pokémon Felicità",
+            "entry_text": [
+                "Questo Pokémon buono cura i\n",
+                "Pokémon malati e li fa guarire.\n",
+                "Percepisce la tristezza altrui."
+            ]
+        },
+        "es": {
+            "name": "BLISSEY",
+            "category": "Pokémon Felicidad",
+            "entry_text": [
+                "Este amable Pokémon cuida de\n",
+                "Pokémon enfermos y los sana.\n",
+                "Puede presentir la tristeza."
+            ]
+        },
+        "jp": {
+            "name": "ハピナス",
+            "category": "しあわせポケモン",
+            "entry_text": [
+                "よわった　ポケモンを　なおるまで\n",
+                "かんびょうする　やさしい　ポケモン。\n",
+                "かなしい　きもちを　キャッチする。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 1285
     }
 }

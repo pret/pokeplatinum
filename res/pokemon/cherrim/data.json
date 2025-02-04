@@ -1,5 +1,4 @@
 {
-    "name": "Cherrim",
     "base_stats": {
         "hp": 70,
         "attack": 60,
@@ -8,10 +7,7 @@
         "special_attack": 87,
         "special_defense": 78
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 75,
     "base_exp_reward": 133,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_FLOWER_GIFT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_FLOWER_GIFT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWTH" ],
+            [ 7, "MOVE_GROWTH" ],
+            [ 10, "MOVE_LEECH_SEED" ],
+            [ 13, "MOVE_HELPING_HAND" ],
+            [ 19, "MOVE_MAGICAL_LEAF" ],
+            [ 22, "MOVE_SUNNY_DAY" ],
+            [ 25, "MOVE_PETAL_DANCE" ],
+            [ 30, "MOVE_WORRY_SEED" ],
+            [ 35, "MOVE_TAKE_DOWN" ],
+            [ 43, "MOVE_SOLAR_BEAM" ],
+            [ 48, "MOVE_LUCKY_CHANT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -73,23 +75,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWTH"
-            ],
-            "7": "MOVE_GROWTH",
-            "10": "MOVE_LEECH_SEED",
-            "13": "MOVE_HELPING_HAND",
-            "19": "MOVE_MAGICAL_LEAF",
-            "22": "MOVE_SUNNY_DAY",
-            "25": "MOVE_PETAL_DANCE",
-            "30": "MOVE_WORRY_SEED",
-            "35": "MOVE_TAKE_DOWN",
-            "43": "MOVE_SOLAR_BEAM",
-            "48": "MOVE_LUCKY_CHANT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -97,9 +83,10 @@
             "MOVE_SEED_BOMB"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 5,
@@ -113,7 +100,66 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "If it senses strong sunlight, it\nopens its folded petals to absorb\nthe sun’s rays with its whole body.",
-        "category": "Blossom Pokémon"
+        "en": {
+            "name": "CHERRIM",
+            "category": "Blossom Pokémon",
+            "entry_text": [
+                "If it senses strong sunlight, it\n",
+                "opens its folded petals to absorb\n",
+                "the sun’s rays with its whole body."
+            ]
+        },
+        "fr": {
+            "name": "CERIFLOR",
+            "category": "Pokémon Floraison",
+            "entry_text": [
+                "Il fleurit lorsque le soleil est au\n",
+                "beau fixe. Il cherche à prendre sa\n",
+                "revanche sur une vie de bourgeon."
+            ]
+        },
+        "de": {
+            "name": "KINOSO",
+            "category": "Blüte",
+            "entry_text": [
+                "In Zeiten mit viel Sonnenschein\n",
+                "blüht es auf. Es holt nach, was ihm\n",
+                "als Knospe verwehrt blieb."
+            ]
+        },
+        "it": {
+            "name": "CHERRIM",
+            "category": "Pokémon Bocciolo",
+            "entry_text": [
+                "Sboccia quando fa caldo e cerca\n",
+                "di godersi fino all’ultimo ogni mo-\n",
+                "mento che può passare al sole."
+            ]
+        },
+        "es": {
+            "name": "CHERRIM",
+            "category": "Pokémon Floración",
+            "entry_text": [
+                "Florece en épocas de mucha\n",
+                "luz solar. Intenta compensar\n",
+                "lo que soportó como capullo."
+            ]
+        },
+        "jp": {
+            "name": "チェリム",
+            "category": "サクラポケモン",
+            "entry_text": [
+                "ひざしが　つよくなると　はなひらく。\n",
+                "つぼみの　ときに　たえしのんだ\n",
+                "うっぷんを　いっきに　はらすのだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 1799
     }
 }

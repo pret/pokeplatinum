@@ -5,14 +5,14 @@
 
 #include "constants/field/window.h"
 #include "constants/narc.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
+#include "generated/text_banks.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/save_info_window.h"
 #include "overlay025/poketch_system.h"
-#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "field_overworld_state.h"
@@ -21,7 +21,7 @@
 #include "map_header.h"
 #include "message_util.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -51,12 +51,12 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
 {
     SaveData *saveData = fieldSystem->saveData;
     Location *curLocation = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(saveData));
-    PokedexData *pokedex = SaveData_PokedexData(saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(saveData);
 
     saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
 
-    if (PokedexData_IsObtained(pokedex)) {
-        saveInfo->pokedexCount = PokedexData_CountSeen(pokedex);
+    if (Pokedex_IsObtained(pokedex)) {
+        saveInfo->pokedexCount = Pokedex_CountSeen(pokedex);
     } else {
         saveInfo->pokedexCount = 0;
     }
@@ -170,7 +170,7 @@ SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID,
     saveInfoWin->bgLayer = bgLayer;
     saveInfoWin->bgConfig = fieldSystem->bgConfig;
     saveInfoWin->strTemplate = StringTemplate_Default(heapID);
-    saveInfoWin->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_save_info_window, heapID);
+    saveInfoWin->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SAVE_INFO_WINDOW, heapID);
 
     SaveInfo_SetValues(&saveInfoWin->saveInfo, saveInfoWin->fieldSystem);
     SaveInfoWindow_SetStrings(saveInfoWin->strTemplate, &saveInfoWin->saveInfo);

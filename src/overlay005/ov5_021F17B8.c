@@ -227,7 +227,7 @@ static void ov5_021F1978(UnkStruct_ov101_021D5D90 *param0, void *param1)
         return;
     }
 
-    if (sub_02062D58(v1) == 1) {
+    if (MapObject_IsHidden(v1) == 1) {
         sub_02021320(v0->unk_24, 0);
     } else {
         sub_02021320(v0->unk_24, 1);

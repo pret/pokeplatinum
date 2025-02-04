@@ -1,5 +1,4 @@
 {
-    "name": "Slakoth",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -8,10 +7,7 @@
         "special_attack": 35,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 255,
     "base_exp_reward": 83,
     "ev_yields": {
@@ -30,21 +26,24 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_TRUANT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_TRUANT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_YAWN" ],
+            [ 7, "MOVE_ENCORE" ],
+            [ 13, "MOVE_SLACK_OFF" ],
+            [ 19, "MOVE_FAINT_ATTACK" ],
+            [ 25, "MOVE_AMNESIA" ],
+            [ 31, "MOVE_COVET" ],
+            [ 37, "MOVE_COUNTER" ],
+            [ 43, "MOVE_FLAIL" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -85,20 +84,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_YAWN"
-            ],
-            "7": "MOVE_ENCORE",
-            "13": "MOVE_SLACK_OFF",
-            "19": "MOVE_FAINT_ATTACK",
-            "25": "MOVE_AMNESIA",
-            "31": "MOVE_COVET",
-            "37": "MOVE_COUNTER",
-            "43": "MOVE_FLAIL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -112,14 +98,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             18,
             "SPECIES_VIGOROTH"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -133,7 +119,66 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "It spends nearly all its time in a\nday sprawled out. Just seeing it\nmakes one drowsy.",
-        "category": "Slacker Pokémon"
+        "en": {
+            "name": "SLAKOTH",
+            "category": "Slacker Pokémon",
+            "entry_text": [
+                "It spends nearly all its time in a\n",
+                "day sprawled out. Just seeing it\n",
+                "makes one drowsy."
+            ]
+        },
+        "fr": {
+            "name": "PARECOOL",
+            "category": "Pokémon Flâneur",
+            "entry_text": [
+                "Il passe le plus clair de son temps\n",
+                "affalé. Rien qu’à le voir, on a\n",
+                "envie de bâiller."
+            ]
+        },
+        "de": {
+            "name": "BUMMELZ",
+            "category": "Faulpelz",
+            "entry_text": [
+                "Es verbringt fast den ganzen Tag\n",
+                "mit Faulenzen und Schlafen. Selbst\n",
+                "sein Anblick macht bereits müde."
+            ]
+        },
+        "it": {
+            "name": "SLAKOTH",
+            "category": "Pokémon Ozioso",
+            "entry_text": [
+                "Passa quasi tutto il tempo\n",
+                "sdraiato. Soltanto a guardarlo\n",
+                "si prova sonnolenza."
+            ]
+        },
+        "es": {
+            "name": "SLAKOTH",
+            "category": "Pokémon Gandul",
+            "entry_text": [
+                "Pasa la mayor parte del día\n",
+                "repanchingado. Entra sueño\n",
+                "solo de verlo."
+            ]
+        },
+        "jp": {
+            "name": "ナマケロ",
+            "category": "なまけものポケモン",
+            "entry_text": [
+                "１にちのうち　ほとんどの　じかんを\n",
+                "ねころがって　すごす。その　ようすを\n",
+                "みていると　ねむけに　おそわれる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1285
     }
 }

@@ -1,5 +1,4 @@
 {
-    "name": "Masquerain",
     "base_stats": {
         "hp": 70,
         "attack": 60,
@@ -8,10 +7,7 @@
         "special_attack": 80,
         "special_defense": 82
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_FLYING" ],
     "catch_rate": 75,
     "base_exp_reward": 128,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_OMINOUS_WIND" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_SWEET_SCENT" ],
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 7, "MOVE_QUICK_ATTACK" ],
+            [ 13, "MOVE_SWEET_SCENT" ],
+            [ 19, "MOVE_WATER_SPORT" ],
+            [ 22, "MOVE_GUST" ],
+            [ 26, "MOVE_SCARY_FACE" ],
+            [ 33, "MOVE_STUN_SPORE" ],
+            [ 40, "MOVE_SILVER_WIND" ],
+            [ 47, "MOVE_AIR_SLASH" ],
+            [ 54, "MOVE_WHIRLWIND" ],
+            [ 61, "MOVE_BUG_BUZZ" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -81,26 +86,7 @@
             "TM90",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_OMINOUS_WIND",
-                "MOVE_BUBBLE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_SWEET_SCENT",
-                "MOVE_WATER_SPORT"
-            ],
-            "7": "MOVE_QUICK_ATTACK",
-            "13": "MOVE_SWEET_SCENT",
-            "19": "MOVE_WATER_SPORT",
-            "22": "MOVE_GUST",
-            "26": "MOVE_SCARY_FACE",
-            "33": "MOVE_STUN_SPORE",
-            "40": "MOVE_SILVER_WIND",
-            "47": "MOVE_AIR_SLASH",
-            "54": "MOVE_WHIRLWIND",
-            "61": "MOVE_BUG_BUZZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_OMINOUS_WIND",
@@ -111,9 +97,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 8,
@@ -127,7 +114,66 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "Its antennae have eye patterns\non them. Its four wings enable it\nto hover and fly in any direction.",
-        "category": "Eyeball Pokémon"
+        "en": {
+            "name": "MASQUERAIN",
+            "category": "Eyeball Pokémon",
+            "entry_text": [
+                "Its antennae have eye patterns\n",
+                "on them. Its four wings enable it\n",
+                "to hover and fly in any direction."
+            ]
+        },
+        "fr": {
+            "name": "MASKADRA",
+            "category": "Pokémon Boule Oeil",
+            "entry_text": [
+                "Des motifs en forme d’yeux ornent\n",
+                "ses antennes. Ses 4 ailes l’aident\n",
+                "à voler dans toutes les directions."
+            ]
+        },
+        "de": {
+            "name": "MASKEREGEN",
+            "category": "Auge",
+            "entry_text": [
+                "Seine Antenne besitzt ein Augen-\n",
+                "muster. Seine vier Flügel erlauben\n",
+                "es, in alle Richtungen zu fliegen."
+            ]
+        },
+        "it": {
+            "name": "MASQUERAIN",
+            "category": "Pokémon Occhi",
+            "entry_text": [
+                "Le sue antenne presentano un\n",
+                "motivo ad occhi. Con le quattro ali\n",
+                "riesce a volare in ogni direzione."
+            ]
+        },
+        "es": {
+            "name": "MASQUERAIN",
+            "category": "Pokémon Globocular",
+            "entry_text": [
+                "Sus antenas tienen dibujos de ojos,\n",
+                "mientras que sus alas le permiten\n",
+                "volar en cualquier dirección."
+            ]
+        },
+        "jp": {
+            "name": "アメモ－ス",
+            "category": "めだまポケモン",
+            "entry_text": [
+                "めだまもようの　しょっかくを　もつ。\n",
+                "４まいの　はねで　うかびあがり\n",
+                "ぜんごさゆうに　うごくことができる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4356
     }
 }

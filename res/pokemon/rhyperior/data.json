@@ -1,5 +1,4 @@
 {
-    "name": "Rhyperior",
     "base_stats": {
         "hp": 115,
         "attack": 140,
@@ -8,10 +7,7 @@
         "special_attack": 55,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_ROCK"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_ROCK" ],
     "catch_rate": 30,
     "base_exp_reward": 217,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_LIGHTNING_ROD",
-        "ABILITY_SOLID_ROCK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_LIGHTNING_ROD", "ABILITY_SOLID_ROCK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_JAB" ],
+            [ 1, "MOVE_HORN_ATTACK" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_STOMP" ],
+            [ 1, "MOVE_FURY_ATTACK" ],
+            [ 9, "MOVE_STOMP" ],
+            [ 13, "MOVE_FURY_ATTACK" ],
+            [ 21, "MOVE_SCARY_FACE" ],
+            [ 25, "MOVE_ROCK_BLAST" ],
+            [ 33, "MOVE_TAKE_DOWN" ],
+            [ 37, "MOVE_HORN_DRILL" ],
+            [ 42, "MOVE_HAMMER_ARM" ],
+            [ 45, "MOVE_STONE_EDGE" ],
+            [ 49, "MOVE_EARTHQUAKE" ],
+            [ 57, "MOVE_MEGAHORN" ],
+            [ 61, "MOVE_ROCK_WRECKER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM05",
             "TM06",
@@ -100,27 +106,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_JAB",
-                "MOVE_HORN_ATTACK",
-                "MOVE_TAIL_WHIP",
-                "MOVE_STOMP",
-                "MOVE_FURY_ATTACK"
-            ],
-            "9": "MOVE_STOMP",
-            "13": "MOVE_FURY_ATTACK",
-            "21": "MOVE_SCARY_FACE",
-            "25": "MOVE_ROCK_BLAST",
-            "33": "MOVE_TAKE_DOWN",
-            "37": "MOVE_HORN_DRILL",
-            "42": "MOVE_HAMMER_ARM",
-            "45": "MOVE_STONE_EDGE",
-            "49": "MOVE_EARTHQUAKE",
-            "57": "MOVE_MEGAHORN",
-            "61": "MOVE_ROCK_WRECKER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -140,9 +126,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 24,
@@ -156,7 +143,66 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 17,
         "pokemon_pos_m": 3,
-        "entry_text": "It can launch a rock held in its\nhand like a missile by tightening\nthen expanding muscles instantly.",
-        "category": "Drill Pokémon"
+        "en": {
+            "name": "RHYPERIOR",
+            "category": "Drill Pokémon",
+            "entry_text": [
+                "It can launch a rock held in its\n",
+                "hand like a missile by tightening\n",
+                "then expanding muscles instantly."
+            ]
+        },
+        "fr": {
+            "name": "RHINASTOC",
+            "category": "Pokémon Perceur",
+            "entry_text": [
+                "Il bande ses muscles pour projeter\n",
+                "des pierres ou des RACAILLOU\n",
+                "depuis le creux de ses paumes. "
+            ]
+        },
+        "de": {
+            "name": "RIHORNIOR",
+            "category": "Bohrer",
+            "entry_text": [
+                "Es legt Steine in die Löcher seiner\n",
+                "Hände und wirft sie mit Muskelkraft.\n",
+                "Sogar GEOROK werden verwendet."
+            ]
+        },
+        "it": {
+            "name": "RHYPERIOR",
+            "category": "Pokémon Trapano",
+            "entry_text": [
+                "Mette rocce nelle cavità dei suoi\n",
+                "palmi e le getta con tutta la sua\n",
+                "forza. Talvolta lancia GEODUDE."
+            ]
+        },
+        "es": {
+            "name": "RHYPERIOR",
+            "category": "Pokémon Taladro",
+            "entry_text": [
+                "Pone rocas en los agujeros de sus\n",
+                "manos y las lanza con los músculos.\n",
+                "Pocas veces ataca a GEODUDE."
+            ]
+        },
+        "jp": {
+            "name": "ドサイドン",
+            "category": "ドリルポケモン",
+            "entry_text": [
+                "いわを　てのひらの　あなに　つめて\n",
+                "きんにくの　ちからで　はっしゃする。\n",
+                "まれに　イシツブテを　とばす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2824
     }
 }

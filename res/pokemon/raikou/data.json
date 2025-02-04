@@ -1,5 +1,4 @@
 {
-    "name": "Raikou",
     "base_stats": {
         "hp": 90,
         "attack": 85,
@@ -8,10 +7,7 @@
         "special_attack": 115,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 3,
     "base_exp_reward": 216,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 80,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 8, "MOVE_THUNDER_SHOCK" ],
+            [ 15, "MOVE_ROAR" ],
+            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 29, "MOVE_SPARK" ],
+            [ 36, "MOVE_REFLECT" ],
+            [ 43, "MOVE_CRUNCH" ],
+            [ 50, "MOVE_THUNDER_FANG" ],
+            [ 57, "MOVE_DISCHARGE" ],
+            [ 64, "MOVE_EXTRASENSORY" ],
+            [ 71, "MOVE_RAIN_DANCE" ],
+            [ 78, "MOVE_CALM_MIND" ],
+            [ 85, "MOVE_THUNDER" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM05",
             "TM06",
@@ -83,25 +87,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BITE",
-                "MOVE_LEER"
-            ],
-            "8": "MOVE_THUNDER_SHOCK",
-            "15": "MOVE_ROAR",
-            "22": "MOVE_QUICK_ATTACK",
-            "29": "MOVE_SPARK",
-            "36": "MOVE_REFLECT",
-            "43": "MOVE_CRUNCH",
-            "50": "MOVE_THUNDER_FANG",
-            "57": "MOVE_DISCHARGE",
-            "64": "MOVE_EXTRASENSORY",
-            "71": "MOVE_RAIN_DANCE",
-            "78": "MOVE_CALM_MIND",
-            "85": "MOVE_THUNDER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
@@ -110,9 +96,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 19,
@@ -126,7 +113,66 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 3,
-        "entry_text": "It is said to have fallen with\nlightning. It can fire thunderbolts\nfrom the rain clouds on its back.",
-        "category": "Thunder Pokémon"
+        "en": {
+            "name": "RAIKOU",
+            "category": "Thunder Pokémon",
+            "entry_text": [
+                "It is said to have fallen with\n",
+                "lightning. It can fire thunderbolts\n",
+                "from the rain clouds on its back."
+            ]
+        },
+        "fr": {
+            "name": "RAIKOU",
+            "category": "Pokémon Foudre",
+            "entry_text": [
+                "On prétend qu’il est tombé avec la\n",
+                "foudre. Il peut lancer des éclairs\n",
+                "grâce aux nuages sur son dos."
+            ]
+        },
+        "de": {
+            "name": "RAIKOU",
+            "category": "Donner",
+            "entry_text": [
+                "Dieses PKMN ist der personifizierte\n",
+                "Blitz. Es kann aus den Wolken über\n",
+                "seinem Rücken Blitze schleudern."
+            ]
+        },
+        "it": {
+            "name": "RAIKOU",
+            "category": "Pokémon Tuono",
+            "entry_text": [
+                "Pare che sia caduto con un\n",
+                "fulmine. Può scagliare saette dalle\n",
+                "nuvole di pioggia che ha sul dorso."
+            ]
+        },
+        "es": {
+            "name": "RAIKOU",
+            "category": "Pokémon Trueno",
+            "entry_text": [
+                "Dicen que apareció con un\n",
+                "relámpago. Puede lanzar rayos\n",
+                "desde las nubes de su lomo."
+            ]
+        },
+        "jp": {
+            "name": "ライコウ",
+            "category": "いかずちポケモン",
+            "entry_text": [
+                "カミナリと　ともに　おちてきたと\n",
+                "いわれている。せなかの　あまぐもから\n",
+                "カミナリを　うちだすことが　できる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 1799
     }
 }

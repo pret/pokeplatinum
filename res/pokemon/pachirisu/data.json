@@ -1,5 +1,4 @@
 {
-    "name": "Pachirisu",
     "base_stats": {
         "hp": 60,
         "attack": 45,
@@ -8,10 +7,7 @@
         "special_attack": 45,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 200,
     "base_exp_reward": 120,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 10,
     "base_friendship": 100,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_RUN_AWAY",
-        "ABILITY_PICKUP"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_PICKUP" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_BIDE" ],
+            [ 5, "MOVE_QUICK_ATTACK" ],
+            [ 9, "MOVE_CHARM" ],
+            [ 13, "MOVE_SPARK" ],
+            [ 17, "MOVE_ENDURE" ],
+            [ 21, "MOVE_SWIFT" ],
+            [ 25, "MOVE_SWEET_KISS" ],
+            [ 29, "MOVE_DISCHARGE" ],
+            [ 33, "MOVE_SUPER_FANG" ],
+            [ 37, "MOVE_LAST_RESORT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM16",
@@ -76,22 +77,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_BIDE"
-            ],
-            "5": "MOVE_QUICK_ATTACK",
-            "9": "MOVE_CHARM",
-            "13": "MOVE_SPARK",
-            "17": "MOVE_ENDURE",
-            "21": "MOVE_SWIFT",
-            "25": "MOVE_SWEET_KISS",
-            "29": "MOVE_DISCHARGE",
-            "33": "MOVE_SUPER_FANG",
-            "37": "MOVE_LAST_RESORT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -105,9 +91,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -121,7 +108,66 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "A pair may be seen rubbing their\ncheek pouches together in an\neffort to share stored electricity.",
-        "category": "EleSquirrel Pokémon"
+        "en": {
+            "name": "PACHIRISU",
+            "category": "EleSquirrel Pokémon",
+            "entry_text": [
+                "A pair may be seen rubbing their\n",
+                "cheek pouches together in an\n",
+                "effort to share stored electricity."
+            ]
+        },
+        "fr": {
+            "name": "PACHIRISU",
+            "category": "Pokémon Ecurélec",
+            "entry_text": [
+                "Il roule des boules de poils pleines\n",
+                "d’électricité statique et les range\n",
+                "dans des souches avec des Baies."
+            ]
+        },
+        "de": {
+            "name": "PACHIRISU",
+            "category": "Elektrohörnchen",
+            "entry_text": [
+                "Es bildet ein Fellknäuel, der vor\n",
+                "statischer Energie knistert. Es\n",
+                "speichert die Energie in Bäumen."
+            ]
+        },
+        "it": {
+            "name": "PACHIRISU",
+            "category": "Pokémon Elescoiatto",
+            "entry_text": [
+                "Forma delle palle di pelo cariche\n",
+                "elettrostaticamente e le conserva\n",
+                "negli alberi insieme alle bacche."
+            ]
+        },
+        "es": {
+            "name": "PACHIRISU",
+            "category": "Pokémon Ardillalec",
+            "entry_text": [
+                "Crea bolas de pelo que crepitan\n",
+                "con electricidad estática. Las\n",
+                "almacena en agujeros de árboles."
+            ]
+        },
+        "jp": {
+            "name": "パチリス",
+            "category": "でんきりすポケモン",
+            "entry_text": [
+                "せいでんきが　たまって　パチパチする\n",
+                "けだまを　だいこうぶつの　きのみと\n",
+                "いっしょに　みきの　あなに　かくす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 257
     }
 }

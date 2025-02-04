@@ -1,5 +1,4 @@
 {
-    "name": "Unown",
     "base_stats": {
         "hp": 48,
         "attack": 72,
@@ -8,10 +7,7 @@
         "special_attack": 72,
         "special_defense": 48
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 225,
     "base_exp_reward": 61,
     "ev_yields": {
@@ -30,29 +26,22 @@
     "hatch_cycles": 40,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": "MOVE_HIDDEN_POWER"
-        },
-        "tutor": []
+        "by_level": [
+            [ 1, "MOVE_HIDDEN_POWER" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [  ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 5,
@@ -66,7 +55,66 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "When alone, nothing happens.\nHowever, if there are two or more,\nan odd power is said to emerge.",
-        "category": "Symbol Pokémon"
+        "en": {
+            "name": "UNOWN",
+            "category": "Symbol Pokémon",
+            "entry_text": [
+                "When alone, nothing happens.\n",
+                "However, if there are two or more,\n",
+                "an odd power is said to emerge."
+            ]
+        },
+        "fr": {
+            "name": "ZARBI",
+            "category": "Pokémon Symbolique",
+            "entry_text": [
+                "Il rappelle une écriture ancienne.\n",
+                "Reste à savoir qui du langage ou de\n",
+                "ZARBI est apparu en premier."
+            ]
+        },
+        "de": {
+            "name": "ICOGNITO",
+            "category": "Symbol",
+            "entry_text": [
+                "Seine Form sieht aus wie antike\n",
+                "Schrift. Was war zuerst da? Die\n",
+                "Sprache oder ICOGNITO?"
+            ]
+        },
+        "it": {
+            "name": "UNOWN",
+            "category": "Pokémon Simbolo",
+            "entry_text": [
+                "È a forma di lettera di un antico\n",
+                "alfabeto. È un mistero chi sia ap-\n",
+                "parso prima, l’alfabeto o UNOWN."
+            ]
+        },
+        "es": {
+            "name": "UNOWN",
+            "category": "Pokémon Símbolo",
+            "entry_text": [
+                "Tienen forma de letras antiguas.\n",
+                "Se desconoce qué fue antes: si\n",
+                "la escritura o los UNOWN."
+            ]
+        },
+        "jp": {
+            "name": "アンノ－ン",
+            "category": "シンボルポケモン",
+            "entry_text": [
+                "こだいぶんめいの　もじに　にている。\n",
+                "もじが　さきか　アンノ－ンが　さきか\n",
+                "せかいの　７ふしぎの　ひとつ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2570
     }
 }

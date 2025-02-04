@@ -13,6 +13,7 @@
 #include "easy3d.h"
 #include "easy3d_object.h"
 #include "font.h"
+#include "fx_util.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -28,7 +29,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201E190.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 
@@ -547,7 +547,7 @@ static void ov77_021D1568(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D12
     case 2:
         sub_020241B4();
         Camera_ComputeViewMatrix();
-        sub_0201E268(&v0, &param1->unk_98);
+        MTX_Rot33Vec(&v0, &param1->unk_98);
 
         if (param0->unk_29C == 0) {
             if (param0->unk_2A0 == 1) {

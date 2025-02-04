@@ -1,5 +1,4 @@
 {
-    "name": "Wurmple",
     "base_stats": {
         "hp": 45,
         "attack": 45,
@@ -8,10 +7,7 @@
         "special_attack": 20,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_BUG"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_BUG" ],
     "catch_rate": 255,
     "base_exp_reward": 54,
     "ev_yields": {
@@ -30,32 +26,20 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SHIELD_DUST",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SHIELD_DUST", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_STRING_SHOT"
-            ],
-            "5": "MOVE_POISON_STING",
-            "15": "MOVE_BUG_BITE"
-        },
-        "tutor": [
-            "MOVE_SNORE"
-        ]
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_STRING_SHOT" ],
+            [ 5, "MOVE_POISON_STING" ],
+            [ 15, "MOVE_BUG_BITE" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [ "MOVE_SNORE" ]
     },
     "evolutions": [
         [
@@ -70,8 +54,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -85,7 +69,66 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "Often targeted by bird Pokémon,\nit desperately resists by releasing\npoison from its tail spikes.",
-        "category": "Worm Pokémon"
+        "en": {
+            "name": "WURMPLE",
+            "category": "Worm Pokémon",
+            "entry_text": [
+                "Often targeted by bird Pokémon,\n",
+                "it desperately resists by releasing\n",
+                "poison from its tail spikes."
+            ]
+        },
+        "fr": {
+            "name": "CHENIPOTTE",
+            "category": "Pokémon Ver",
+            "entry_text": [
+                "Il adore manger des feuilles. Si un\n",
+                "ETOURMI l’attaque, il riposte avec\n",
+                "les piquants de son postérieur."
+            ]
+        },
+        "de": {
+            "name": "WAUMPEL",
+            "category": "Wurm",
+            "entry_text": [
+                "Es isst am liebsten Blätter. Wird es\n",
+                "von einem STARALILI angegriffen,\n",
+                "verteidigt es sich mit Stacheln."
+            ]
+        },
+        "it": {
+            "name": "WURMPLE",
+            "category": "Pokémon Baco",
+            "entry_text": [
+                "Ama mangiare le foglie. Se STARLY lo\n",
+                "attacca, si difende con gli aculei\n",
+                "che ha sulla parte posteriore."
+            ]
+        },
+        "es": {
+            "name": "WURMPLE",
+            "category": "Pokémon Gusano",
+            "entry_text": [
+                "Le encanta comer hojas. Si le\n",
+                "ataca un STARLY, se defenderá\n",
+                "con sus púas."
+            ]
+        },
+        "jp": {
+            "name": "ケムッソ",
+            "category": "いもむしポケモン",
+            "entry_text": [
+                "はっぱが　だいこうぶつ。\n",
+                "ムックルに　おそわれたときは\n",
+                "おしりの　トゲで　げきたいする。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1028
     }
 }

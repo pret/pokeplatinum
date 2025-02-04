@@ -1,5 +1,4 @@
 {
-    "name": "Monferno",
     "base_stats": {
         "hp": 64,
         "attack": 78,
@@ -8,10 +7,7 @@
         "special_attack": 78,
         "special_defense": 52
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIGHTING" ],
     "catch_rate": 45,
     "base_exp_reward": 142,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_BLAZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 7, "MOVE_EMBER" ],
+            [ 9, "MOVE_TAUNT" ],
+            [ 14, "MOVE_MACH_PUNCH" ],
+            [ 16, "MOVE_FURY_SWIPES" ],
+            [ 19, "MOVE_FLAME_WHEEL" ],
+            [ 26, "MOVE_FEINT" ],
+            [ 29, "MOVE_TORMENT" ],
+            [ 36, "MOVE_CLOSE_COMBAT" ],
+            [ 39, "MOVE_FIRE_SPIN" ],
+            [ 46, "MOVE_SLACK_OFF" ],
+            [ 49, "MOVE_FLARE_BLITZ" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -89,25 +93,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_LEER",
-                "MOVE_EMBER"
-            ],
-            "7": "MOVE_EMBER",
-            "9": "MOVE_TAUNT",
-            "14": "MOVE_MACH_PUNCH",
-            "16": "MOVE_FURY_SWIPES",
-            "19": "MOVE_FLAME_WHEEL",
-            "26": "MOVE_FEINT",
-            "29": "MOVE_TORMENT",
-            "36": "MOVE_CLOSE_COMBAT",
-            "39": "MOVE_FIRE_SPIN",
-            "46": "MOVE_SLACK_OFF",
-            "49": "MOVE_FLARE_BLITZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -123,14 +109,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             36,
             "SPECIES_INFERNAPE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -144,7 +130,66 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It skillfully controls the intensity\nof the fire on its tail to keep its\nfoes at an ideal distance.",
-        "category": "Playful Pokémon"
+        "en": {
+            "name": "MONFERNO",
+            "category": "Playful Pokémon",
+            "entry_text": [
+                "It skillfully controls the intensity\n",
+                "of the fire on its tail to keep its\n",
+                "foes at an ideal distance."
+            ]
+        },
+        "fr": {
+            "name": "CHIMPENFEU",
+            "category": "Pokémon Garnement",
+            "entry_text": [
+                "Pour intimider ses agresseurs, il\n",
+                "gonfle les flammes de sa queue\n",
+                "pour paraître plus grand."
+            ]
+        },
+        "de": {
+            "name": "PANPYRO",
+            "category": "Verspielt",
+            "entry_text": [
+                "Um Angreifer abzuschrecken,\n",
+                "verstärkt es das Feuer auf seinem\n",
+                "Schweif, wodurch es größer wirkt."
+            ]
+        },
+        "it": {
+            "name": "MONFERNO",
+            "category": "Pokémon Briccone",
+            "entry_text": [
+                "Per intimorire i nemici che\n",
+                "attaccano, intensifica le fiamme\n",
+                "sulla coda per apparire più grande."
+            ]
+        },
+        "es": {
+            "name": "MONFERNO",
+            "category": "Pokémon Juguetón",
+            "entry_text": [
+                "Intimida a sus enemigos\n",
+                "desplegando el fuego de su\n",
+                "cola para parecer más grande."
+            ]
+        },
+        "jp": {
+            "name": "モウカザル",
+            "category": "やんちゃポケモン",
+            "entry_text": [
+                "しっぽの　ほのおを　ながく　のばして\n",
+                "からだを　おおきく　みせることで\n",
+                "おそってきた　てきを　こわがらせる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2306
     }
 }

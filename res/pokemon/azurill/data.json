@@ -1,5 +1,4 @@
 {
-    "name": "Azurill",
     "base_stats": {
         "hp": 50,
         "attack": 20,
@@ -8,10 +7,7 @@
         "special_attack": 20,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 150,
     "base_exp_reward": 33,
     "ev_yields": {
@@ -30,21 +26,21 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_HUGE_POWER"
-    ],
-    "great_marsh_flee_rate": 120,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_HUGE_POWER" ],
+    "safari_flee_rate": 120,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SPLASH" ],
+            [ 2, "MOVE_CHARM" ],
+            [ 7, "MOVE_TAIL_WHIP" ],
+            [ 10, "MOVE_BUBBLE" ],
+            [ 15, "MOVE_SLAM" ],
+            [ 18, "MOVE_WATER_GUN" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -70,15 +66,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_SPLASH",
-            "2": "MOVE_CHARM",
-            "7": "MOVE_TAIL_WHIP",
-            "10": "MOVE_BUBBLE",
-            "15": "MOVE_SLAM",
-            "18": "MOVE_WATER_GUN"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -90,14 +78,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_HAPPINESS",
-            "SPECIES_MARILL"
-        ]
+        [ "EVO_LEVEL_HAPPINESS", "SPECIES_MARILL" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 2,
@@ -111,7 +96,66 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "Its tail bounces like a rubber ball.\nIt flings that tail around to fight\nopponents bigger than itself.",
-        "category": "Polka Dot Pokémon"
+        "en": {
+            "name": "AZURILL",
+            "category": "Polka Dot Pokémon",
+            "entry_text": [
+                "Its tail bounces like a rubber ball.\n",
+                "It flings that tail around to fight\n",
+                "opponents bigger than itself."
+            ]
+        },
+        "fr": {
+            "name": "AZURILL",
+            "category": "Pokémon Point Polka",
+            "entry_text": [
+                "Un Pokémon qui vit près de l’eau.\n",
+                "Au sol, il se déplace rapidement en\n",
+                "rebondissant sur sa grosse queue."
+            ]
+        },
+        "de": {
+            "name": "AZURILL",
+            "category": "Gepunktet",
+            "entry_text": [
+                "Dieses PKMN lebt am Wasser. An\n",
+                "Land bewegt es sich schnell, indem\n",
+                "es auf seinem großen Schweif hüpft."
+            ]
+        },
+        "it": {
+            "name": "AZURILL",
+            "category": "Pokémon Pois",
+            "entry_text": [
+                "Pokémon che vive nell’acqua. Si\n",
+                "muove rapidamente sulla terraferma\n",
+                "saltellando sulla grossa coda."
+            ]
+        },
+        "es": {
+            "name": "AZURILL",
+            "category": "Pokémon A Topos",
+            "entry_text": [
+                "Vive cerca del agua. En la tierra\n",
+                "se mueve muy rápido botando\n",
+                "sobre su gran cola."
+            ]
+        },
+        "jp": {
+            "name": "ルリリ",
+            "category": "みずたまポケモン",
+            "entry_text": [
+                "おおきな　しっぽに　のって　はずむと\n",
+                "ちじょうでは　はやく　いどうできる。\n",
+                "みずべで　くらす　ポケモン。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1285
     }
 }

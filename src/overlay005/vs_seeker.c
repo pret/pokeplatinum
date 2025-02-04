@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/sdat.h"
+#include "generated/sdat.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -820,10 +820,10 @@ static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem)
         }
 
         if (MapObject_IsMoving(mapObj) == TRUE) {
-            sub_02062DDC(mapObj);
+            MapObject_SetPauseMovementOff(mapObj);
             anyMoving = TRUE;
         } else {
-            sub_02062DD0(mapObj);
+            MapObject_SetPauseMovementOn(mapObj);
         }
     }
 

@@ -1,5 +1,4 @@
 {
-    "name": "Jolteon",
     "base_stats": {
         "hp": 65,
         "attack": 65,
@@ -8,10 +7,7 @@
         "special_attack": 110,
         "special_defense": 95
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 45,
     "base_exp_reward": 197,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 35,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_VOLT_ABSORB",
-        "ABILITY_VOLT_ABSORB"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_VOLT_ABSORB", "ABILITY_VOLT_ABSORB" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 8, "MOVE_SAND_ATTACK" ],
+            [ 15, "MOVE_THUNDER_SHOCK" ],
+            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 29, "MOVE_DOUBLE_KICK" ],
+            [ 36, "MOVE_PIN_MISSILE" ],
+            [ 43, "MOVE_THUNDER_FANG" ],
+            [ 50, "MOVE_LAST_RESORT" ],
+            [ 57, "MOVE_THUNDER_WAVE" ],
+            [ 64, "MOVE_AGILITY" ],
+            [ 71, "MOVE_THUNDER" ],
+            [ 78, "MOVE_DISCHARGE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -79,25 +83,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TAIL_WHIP",
-                "MOVE_TACKLE",
-                "MOVE_HELPING_HAND"
-            ],
-            "8": "MOVE_SAND_ATTACK",
-            "15": "MOVE_THUNDER_SHOCK",
-            "22": "MOVE_QUICK_ATTACK",
-            "29": "MOVE_DOUBLE_KICK",
-            "36": "MOVE_PIN_MISSILE",
-            "43": "MOVE_THUNDER_FANG",
-            "50": "MOVE_LAST_RESORT",
-            "57": "MOVE_THUNDER_WAVE",
-            "64": "MOVE_AGILITY",
-            "71": "MOVE_THUNDER",
-            "78": "MOVE_DISCHARGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -107,9 +93,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -123,7 +110,66 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "If agitated, it uses electricity to\nstraighten out its fur and launch\nit in small bunches.",
-        "category": "Lightning Pokémon"
+        "en": {
+            "name": "JOLTEON",
+            "category": "Lightning Pokémon",
+            "entry_text": [
+                "If agitated, it uses electricity to\n",
+                "straighten out its fur and launch\n",
+                "it in small bunches."
+            ]
+        },
+        "fr": {
+            "name": "VOLTALI",
+            "category": "Pokémon Orage",
+            "entry_text": [
+                "Il contrôle une puissance de 10 000\n",
+                "volts. Il peut hérisser sa fourrure\n",
+                "comme s’il s’agissait de piquants."
+            ]
+        },
+        "de": {
+            "name": "BLITZA",
+            "category": "Blitz",
+            "entry_text": [
+                "Es kontrolliert 10 000 Volt. Es\n",
+                "kann sein Fell so aufstellen, dass\n",
+                "es wie scharfe Nadeln wirkt."
+            ]
+        },
+        "it": {
+            "name": "JOLTEON",
+            "category": "Pokémon Luminoso",
+            "entry_text": [
+                "Scarica elettricità a 10000 volt e\n",
+                "rizza tutti i peli come se fossero\n",
+                "aghi pungenti."
+            ]
+        },
+        "es": {
+            "name": "JOLTEON",
+            "category": "Pokémon Relámpago",
+            "entry_text": [
+                "Lanza rayos de 10000 voltios.\n",
+                "Es capaz de convertir su pelaje\n",
+                "en púas afiladísimas."
+            ]
+        },
+        "jp": {
+            "name": "サンダ－ス",
+            "category": "かみなりポケモン",
+            "entry_text": [
+                "１まんボルトの　でんきを　あやつる。\n",
+                "ぜんしんの　たいもうが　さかだつと\n",
+                "ハリのように　するどく　とがる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 1799
     }
 }

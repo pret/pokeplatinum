@@ -1,5 +1,4 @@
 {
-    "name": "Luxray",
     "base_stats": {
         "hp": 80,
         "attack": 120,
@@ -8,10 +7,7 @@
         "special_attack": 95,
         "special_defense": 79
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 45,
     "base_exp_reward": 194,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_RIVALRY",
-        "ABILITY_INTIMIDATE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_RIVALRY", "ABILITY_INTIMIDATE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_CHARGE" ],
+            [ 5, "MOVE_LEER" ],
+            [ 9, "MOVE_CHARGE" ],
+            [ 13, "MOVE_SPARK" ],
+            [ 18, "MOVE_BITE" ],
+            [ 23, "MOVE_ROAR" ],
+            [ 28, "MOVE_SWAGGER" ],
+            [ 35, "MOVE_THUNDER_FANG" ],
+            [ 42, "MOVE_CRUNCH" ],
+            [ 49, "MOVE_SCARY_FACE" ],
+            [ 56, "MOVE_DISCHARGE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -76,24 +79,7 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_LEER",
-                "MOVE_CHARGE"
-            ],
-            "5": "MOVE_LEER",
-            "9": "MOVE_CHARGE",
-            "13": "MOVE_SPARK",
-            "18": "MOVE_BITE",
-            "23": "MOVE_ROAR",
-            "28": "MOVE_SWAGGER",
-            "35": "MOVE_THUNDER_FANG",
-            "42": "MOVE_CRUNCH",
-            "49": "MOVE_SCARY_FACE",
-            "56": "MOVE_DISCHARGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SUPERPOWER",
@@ -103,9 +89,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 14,
@@ -119,7 +106,66 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "It can see clearly through walls\nto track down its prey and seek\nits lost young.",
-        "category": "Gleam Eyes Pokémon"
+        "en": {
+            "name": "LUXRAY",
+            "category": "Gleam Eyes Pokémon",
+            "entry_text": [
+                "It can see clearly through walls\n",
+                "to track down its prey and seek\n",
+                "its lost young."
+            ]
+        },
+        "fr": {
+            "name": "LUXRAY",
+            "category": "Pokémon Brilloeil",
+            "entry_text": [
+                "Ses yeux voient à travers tout. Il\n",
+                "repère les proies cachées derrière\n",
+                "un objet pour les capturer."
+            ]
+        },
+        "de": {
+            "name": "LUXTRA",
+            "category": "Glühauge",
+            "entry_text": [
+                "Mit seinen Augen kann es durch\n",
+                "alles hindurch sehen. So findet es\n",
+                "auch Beute, die sich versteckt hat."
+            ]
+        },
+        "it": {
+            "name": "LUXRAY",
+            "category": "Pokémon Occhiluce",
+            "entry_text": [
+                "Vede attraverso qualsiasi cosa.\n",
+                "Individua e cattura le prede che\n",
+                "si nascondono dietro gli oggetti."
+            ]
+        },
+        "es": {
+            "name": "LUXRAY",
+            "category": "Pokémon Chispa Ojos",
+            "entry_text": [
+                "Sus ojos pueden ver a través\n",
+                "de todo. Localiza a las presas\n",
+                "detrás de objetos y las captura."
+            ]
+        },
+        "jp": {
+            "name": "レントラ－",
+            "category": "がんこうポケモン",
+            "entry_text": [
+                "あらゆるものを　とうししてしまう\n",
+                "めを　もつ。ものかげに　かくれた\n",
+                "えものを　みつけて　とらえる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1799
     }
 }

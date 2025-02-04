@@ -1,5 +1,4 @@
 {
-    "name": "Froslass",
     "base_stats": {
         "hp": 70,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 80,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_GHOST"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_GHOST" ],
     "catch_rate": 75,
     "base_exp_reward": 187,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_SNOW_CLOAK",
-        "ABILITY_SNOW_CLOAK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_SNOW_CLOAK", "ABILITY_SNOW_CLOAK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_DOUBLE_TEAM" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 4, "MOVE_DOUBLE_TEAM" ],
+            [ 10, "MOVE_ASTONISH" ],
+            [ 13, "MOVE_ICY_WIND" ],
+            [ 19, "MOVE_CONFUSE_RAY" ],
+            [ 22, "MOVE_OMINOUS_WIND" ],
+            [ 28, "MOVE_WAKE_UP_SLAP" ],
+            [ 31, "MOVE_CAPTIVATE" ],
+            [ 37, "MOVE_ICE_SHARD" ],
+            [ 40, "MOVE_HAIL" ],
+            [ 51, "MOVE_BLIZZARD" ],
+            [ 59, "MOVE_DESTINY_BOND" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -87,26 +92,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POWDER_SNOW",
-                "MOVE_LEER",
-                "MOVE_DOUBLE_TEAM",
-                "MOVE_ASTONISH"
-            ],
-            "4": "MOVE_DOUBLE_TEAM",
-            "10": "MOVE_ASTONISH",
-            "13": "MOVE_ICY_WIND",
-            "19": "MOVE_CONFUSE_RAY",
-            "22": "MOVE_OMINOUS_WIND",
-            "28": "MOVE_WAKE_UP_SLAP",
-            "31": "MOVE_CAPTIVATE",
-            "37": "MOVE_ICE_SHARD",
-            "40": "MOVE_HAIL",
-            "51": "MOVE_BLIZZARD",
-            "59": "MOVE_DESTINY_BOND"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -119,9 +105,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 13,
@@ -135,7 +122,66 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "It freezes prey by blowing its -58\ndegrees F breath. It is said to\nthen secretly display its prey.",
-        "category": "Snow Land Pokémon"
+        "en": {
+            "name": "FROSLASS",
+            "category": "Snow Land Pokémon",
+            "entry_text": [
+                "It freezes prey by blowing its -58\n",
+                "degrees F breath. It is said to\n",
+                "then secretly display its prey."
+            ]
+        },
+        "fr": {
+            "name": "MOMARTIK",
+            "category": "Pokémon Enneigement",
+            "entry_text": [
+                "MOMARTIK gèle ses ennemis grâce à\n",
+                "son souffle à -50 °C. Ça ne se\n",
+                "voit pas, mais son corps est creux."
+            ]
+        },
+        "de": {
+            "name": "FROSDEDJE",
+            "category": "Schneegebiet",
+            "entry_text": [
+                "Sein eisiger Atem mit minus 50 Grad\n",
+                "friert Gegner ein. Was aussieht wie\n",
+                "sein Körper, ist tatsächlich hohl."
+            ]
+        },
+        "it": {
+            "name": "FROSLASS",
+            "category": "Pokémon Suolnevoso",
+            "entry_text": [
+                "Congela i nemici con un alito\n",
+                "glaciale a -50°C. Il suo corpo\n",
+                "è vuoto."
+            ]
+        },
+        "es": {
+            "name": "FROSLASS",
+            "category": "Pokémon Tierra Fría",
+            "entry_text": [
+                "Congela a sus enemigos con un\n",
+                "aliento gélido de 50 grados bajo\n",
+                "cero. Está hueco por dentro."
+            ]
+        },
+        "jp": {
+            "name": "ユキメノコ",
+            "category": "ゆきぐにポケモン",
+            "entry_text": [
+                "マイナス５０どの　れいきを　はいて\n",
+                "あいてを　こおらせる。どうたいに\n",
+                "みえる　ぶぶんは　じつは　くうどう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 3085
     }
 }

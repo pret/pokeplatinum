@@ -8,8 +8,8 @@
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
-#include "consts/journal.h"
-#include "consts/scrcmd.h"
+#include "generated/journal_location_events.h"
+#include "generated/save_types.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
@@ -23,7 +23,6 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202AB28_decl.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
@@ -31,9 +30,7 @@
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_0202A93C.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -108,6 +105,7 @@
 #include "field_task.h"
 #include "field_transition.h"
 #include "game_records.h"
+#include "great_marsh_lookout.h"
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
@@ -122,10 +120,10 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "poffin.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "pokeradar.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "render_window.h"
 #include "roaming_pokemon.h"
 #include "rtc.h"
@@ -201,7 +199,6 @@
 #include "unk_02069BE0.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
-#include "unk_0206C0E8.h"
 #include "unk_0206C660.h"
 #include "unk_0206C784.h"
 #include "unk_0206CCB0.h"
@@ -590,7 +587,7 @@ static BOOL ScrCmd_203(ScriptContext *ctx);
 static BOOL ScrCmd_204(ScriptContext *ctx);
 static BOOL ScrCmd_205(ScriptContext *ctx);
 static BOOL ScrCmd_310(ScriptContext *ctx);
-static BOOL ScrCmd_206(ScriptContext *ctx);
+static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx);
 static BOOL ScrCmd_20C(ScriptContext *ctx);
 static BOOL ScrCmd_20D(ScriptContext *ctx);
 static BOOL ScrCmd_20E(ScriptContext *ctx);
@@ -1284,7 +1281,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_203,
     ScrCmd_204,
     ScrCmd_205,
-    ScrCmd_206,
+    ScrCmd_StartGreatMarshLookout,
     ScrCmd_207,
     ScrCmd_208,
     ScrCmd_209,
@@ -1589,7 +1586,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_334,
     ScrCmd_335,
     ScrCmd_336,
-    ScrCmd_337,
+    ScrCmd_HasSeenSpecies,
     ScrCmd_338,
     ScrCmd_339,
     ScrCmd_33A,
@@ -3108,7 +3105,7 @@ static BOOL ScrCmd_LockAll(ScriptContext *ctx)
             && SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1
             && MapObject_IsMoving(object) != FALSE) {
 
-            sub_02062DDC(object);
+            MapObject_SetPauseMovementOff(object);
             ScriptContext_Pause(ctx, sub_020410CC);
             return TRUE;
         }
@@ -3148,12 +3145,12 @@ static BOOL sub_02041004(ScriptContext *ctx)
     MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
 
     if (inline_020410F4_1(1 << 0) && (LocalMapObj_CheckAnimationFinished(v2) == 1)) {
-        sub_02062DD0(v2);
+        MapObject_SetPauseMovementOn(v2);
         inline_020410F4_3(1 << 0);
     }
 
     if (inline_020410F4_1(1 << 2) && (MapObject_IsMoving(*v1) == 0)) {
-        sub_02062DD0(*v1);
+        MapObject_SetPauseMovementOn(*v1);
         inline_020410F4_3(1 << 2);
     }
 
@@ -3161,7 +3158,7 @@ static BOOL sub_02041004(ScriptContext *ctx)
         MapObject *v3 = sub_02062570(fieldSystem->mapObjMan, 0x30);
 
         if (MapObject_IsMoving(v3) == 0) {
-            sub_02062DD0(v3);
+            MapObject_SetPauseMovementOn(v3);
             inline_020410F4_3(1 << 1);
         }
     }
@@ -3170,7 +3167,7 @@ static BOOL sub_02041004(ScriptContext *ctx)
         MapObject *v4 = sub_02069EB8(*v1);
 
         if (MapObject_IsMoving(v4) == 0) {
-            sub_02062DD0(v4);
+            MapObject_SetPauseMovementOn(v4);
             inline_020410F4_3(1 << 3);
         }
     }
@@ -3188,7 +3185,7 @@ static BOOL sub_020410CC(ScriptContext *ctx)
     MapObject *v1 = sub_02062570(fieldSystem->mapObjMan, 0x30);
 
     if (MapObject_IsMoving(v1) == 0) {
-        sub_02062DD0(v1);
+        MapObject_SetPauseMovementOn(v1);
         return 1;
     }
 
@@ -3209,25 +3206,25 @@ static BOOL ScrCmd_LockLastTalked(ScriptContext *ctx)
 
     if (LocalMapObj_CheckAnimationFinished(player) == FALSE) {
         inline_020410F4_2(1 << 0);
-        sub_02062DDC(player);
+        MapObject_SetPauseMovementOff(player);
     }
 
     if (MapObject_IsMoving(*v1) != FALSE) {
         inline_020410F4_2(1 << 2);
-        sub_02062DDC(*v1);
+        MapObject_SetPauseMovementOff(*v1);
     }
 
     if (v3) {
         if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1 && MapObject_IsMoving(v3) != FALSE) {
             inline_020410F4_2(1 << 1);
-            sub_02062DDC(v3);
+            MapObject_SetPauseMovementOff(v3);
         }
     }
 
     if (v4) {
         if (MapObject_IsMoving(v4) != FALSE) {
             inline_020410F4_2(1 << 3);
-            sub_02062DDC(v4);
+            MapObject_SetPauseMovementOff(v4);
         }
     }
 
@@ -3250,9 +3247,9 @@ static BOOL ScrCmd_062(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_ReadHalfWord(ctx));
-    sub_02062DD0(mapObj);
+    MapObject_SetPauseMovementOn(mapObj);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_063(ScriptContext *ctx)
@@ -3261,9 +3258,9 @@ static BOOL ScrCmd_063(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_ReadHalfWord(ctx));
-    sub_02062DDC(mapObj);
+    MapObject_SetPauseMovementOff(mapObj);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_064(ScriptContext *ctx)
@@ -3278,7 +3275,7 @@ static BOOL ScrCmd_064(ScriptContext *ctx)
         GF_ASSERT(FALSE);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_065(ScriptContext *ctx)
@@ -4274,7 +4271,7 @@ static BOOL ScrCmd_1D8(ScriptContext *ctx)
         return 0;
     }
 
-    if (sub_0202AC98(Poffin_GetSavedataBlock(ctx->fieldSystem->saveData)) >= 100) {
+    if (Poffin_GetNumberOfFilledSlots(Poffin_GetSavedataBlock(ctx->fieldSystem->saveData)) >= MAX_POFFINS) {
         *v0 = 2;
         return 0;
     }
@@ -4804,11 +4801,11 @@ static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx)
 
 static BOOL ScrCmd_0E3(ScriptContext *ctx)
 {
-    UnkStruct_0202D7B0 *v0 = sub_0202D834(ctx->fieldSystem->saveData);
+    SpecialEncounter *v0 = SaveData_GetSpecialEncounters(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    ov6_0224322C(sub_0202D814(v0, 2), v1, v2);
+    ov6_0224322C(SpecialEncounter_GetDailyMon(v0, DAILY_SWARM), v1, v2);
     return 0;
 }
 
@@ -4830,7 +4827,7 @@ static BOOL ScrCmd_0E6(ScriptContext *ctx)
     u16 v5 = ScriptContext_GetVar(ctx);
     u16 v6 = ScriptContext_GetVar(ctx);
 
-    TrainerData_LoadMessage(v5, v6, *v2, 11);
+    Trainer_LoadMessage(v5, v6, *v2, 11);
     Window_FillTilemap(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SCRIPT_MANAGER_STR_TEMPLATE);
 
     *v4 = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *v2, SaveData_Options(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
@@ -4975,37 +4972,37 @@ static BOOL ScrCmd_11D(ScriptContext *ctx)
 
 static BOOL ScrCmd_11E(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = PokedexData_CountSeen_Local(v0);
+    *v1 = Pokedex_CountSeen_Local(v0);
     return 0;
 }
 
 static BOOL ScrCmd_11F(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = PokedexData_CountCaught_Local(v0);
+    *v1 = Pokedex_CountCaught_Local(v0);
     return 0;
 }
 
 static BOOL ScrCmd_120(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = PokedexData_CountSeen_National(v0);
+    *v1 = Pokedex_CountSeen_National(v0);
     return 0;
 }
 
 static BOOL ScrCmd_121(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = PokedexData_CountCaught_National(v0);
+    *v1 = Pokedex_CountCaught_National(v0);
     return 0;
 }
 
@@ -5018,17 +5015,17 @@ static BOOL ScrCmd_122(ScriptContext *ctx)
 
 static BOOL ScrCmd_123(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     const TrainerInfo *v1 = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
     u8 v2 = ScriptContext_ReadByte(ctx);
     u16 *v3 = ScriptContext_GetVarPointer(ctx);
     u16 v4;
 
     if (v2 == 0) {
-        v4 = PokedexData_NumCaught_Local(v0);
+        v4 = Pokedex_NumCaught_Local(v0);
         *v3 = sub_0205E078(v4, SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY));
     } else {
-        v4 = PokedexData_NumCaught_National(v0);
+        v4 = Pokedex_NumCaught_National(v0);
         *v3 = sub_0205E0E4(v4, TrainerInfo_Gender(v1));
     }
 
@@ -5180,10 +5177,10 @@ static BOOL ScrCmd_131(ScriptContext *ctx)
 
 static BOOL ScrCmd_132(ScriptContext *ctx)
 {
-    PoketchData *poketchData = SaveData_PoketchData(ctx->fieldSystem->saveData);
+    Poketch *poketch = SaveData_PoketchData(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = PoketchData_IsEnabled(poketchData);
+    *v1 = Poketch_IsEnabled(poketch);
     return 0;
 }
 
@@ -5192,7 +5189,7 @@ static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 appID = ScriptContext_GetVar(ctx);
 
-    PoketchData_RegisterApp(SaveData_PoketchData(fieldSystem->saveData), appID);
+    Poketch_RegisterApp(SaveData_PoketchData(fieldSystem->saveData), appID);
     return FALSE;
 }
 
@@ -5202,7 +5199,7 @@ static BOOL ScrCmd_134(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = PoketchData_IsAppRegistered(SaveData_PoketchData(fieldSystem->saveData), v1);
+    *v2 = Poketch_IsAppRegistered(SaveData_PoketchData(fieldSystem->saveData), v1);
     return 0;
 }
 
@@ -5632,7 +5629,7 @@ static BOOL ScrCmd_187(ScriptContext *ctx)
 
     v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
 
-    MapObject_SetPosDir(v0, v2, v3, v4, v5);
+    MapObject_SetPosDirFromCoords(v0, v2, v3, v4, v5);
     sub_020642F8(v0);
 
     return 0;
@@ -6238,12 +6235,12 @@ static BOOL ScrCmd_1D6(ScriptContext *ctx)
 
 static BOOL ScrCmd_1E8(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = 0;
 
-    if (PokedexData_LocalDexCompleted(v0) == 1) {
+    if (Pokedex_LocalDexCompleted(v0) == 1) {
         *v1 = 1;
     }
 
@@ -6252,12 +6249,12 @@ static BOOL ScrCmd_1E8(ScriptContext *ctx)
 
 static BOOL ScrCmd_1E9(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = 0;
 
-    if (PokedexData_NationalDexCompleted(v0) == 1) {
+    if (Pokedex_NationalDexCompleted(v0) == 1) {
         *v1 = 1;
     }
 
@@ -6406,10 +6403,10 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_206(ScriptContext *ctx)
+static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx)
 {
-    sub_0206C0E8(ctx->fieldSystem);
-    return 1;
+    GreatMarshLookout_Init(ctx->fieldSystem);
+    return TRUE;
 }
 
 static BOOL ScrCmd_20D(ScriptContext *ctx)
@@ -6466,16 +6463,16 @@ static BOOL ScrCmd_214(ScriptContext *ctx)
 
 static BOOL ScrCmd_218(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     u16 v2, v3, v4, v5;
 
-    v2 = PokedexData_CountSeen_Local(v0);
+    v2 = Pokedex_CountSeen_Local(v0);
     v3 = LCRNG_Next() % v2;
     *v1 = 25;
 
     for (v4 = 1, v5 = 0; v4 <= NATIONAL_DEX_COUNT; v4++) {
-        if (PokedexData_HasSeenSpecies(v0, v4) == TRUE && Pokemon_SinnohDexNumber(v4) != FALSE) {
+        if (Pokedex_HasSeenSpecies(v0, v4) == TRUE && Pokemon_SinnohDexNumber(v4) != FALSE) {
             if (v5 == v3) {
                 *v1 = v4;
                 break;
@@ -6565,13 +6562,13 @@ static BOOL ScrCmd_22A(ScriptContext *ctx)
 
 static BOOL ScrCmd_22B(ScriptContext *ctx)
 {
-    PokedexData_TurnOnLanguageDetection(SaveData_PokedexData(ctx->fieldSystem->saveData));
+    Pokedex_TurnOnLanguageDetection(SaveData_GetPokedex(ctx->fieldSystem->saveData));
     return 0;
 }
 
 static BOOL ScrCmd_22C(ScriptContext *ctx)
 {
-    PokedexData_TurnOnFormDetection(SaveData_PokedexData(ctx->fieldSystem->saveData));
+    Pokedex_TurnOnFormDetection(SaveData_GetPokedex(ctx->fieldSystem->saveData));
     return 0;
 }
 
@@ -6583,10 +6580,10 @@ static BOOL ScrCmd_22D(ScriptContext *ctx)
     *v1 = 0;
 
     if (v0 == 1) {
-        PokedexData_ObtainNationalDex(SaveData_PokedexData(ctx->fieldSystem->saveData));
+        Pokedex_ObtainNationalDex(SaveData_GetPokedex(ctx->fieldSystem->saveData));
         TrainerInfo_GiveNationalDex(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData));
     } else if (v0 == 2) {
-        *v1 = PokedexData_IsNationalDexObtained(SaveData_PokedexData(ctx->fieldSystem->saveData));
+        *v1 = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(ctx->fieldSystem->saveData));
     } else {
         GF_ASSERT(FALSE);
     }
@@ -6768,12 +6765,12 @@ static BOOL ScrCmd_24D(ScriptContext *ctx)
 
 static void sub_020451B4(FieldSystem *fieldSystem, u16 param1)
 {
-    PokedexData *v0 = SaveData_PokedexData(fieldSystem->saveData);
+    Pokedex *v0 = SaveData_GetPokedex(fieldSystem->saveData);
     Pokemon *v1 = Pokemon_New(32);
 
     Pokemon_Init(v1);
     Pokemon_InitWith(v1, param1, 50, 32, FALSE, 0, OTID_NOT_SET, 0);
-    PokedexData_Encounter(v0, v1);
+    Pokedex_Encounter(v0, v1);
     Heap_FreeToHeap(v1);
 
     return;
@@ -6887,7 +6884,7 @@ static BOOL ScrCmd_263(ScriptContext *ctx)
     int v3;
     int v4 = Party_GetCurrentCount(v1);
     Pokemon *v5;
-    PokedexData *v6 = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    Pokedex *v6 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
 
     for (v2 = 0; v2 < v4; v2++) {
         v5 = Party_GetPokemonBySlotIndex(v1, v2);
@@ -6896,7 +6893,7 @@ static BOOL ScrCmd_263(ScriptContext *ctx)
         if (v3 == SPECIES_DEOXYS) {
             Pokemon_SetValue(v5, MON_DATA_FORM, &v0);
             Pokemon_CalcLevelAndStats(v5);
-            PokedexData_Capture(v6, v5);
+            Pokedex_Capture(v6, v5);
         }
     }
 
@@ -7240,10 +7237,10 @@ static BOOL ScrCmd_282(ScriptContext *ctx)
 
 static BOOL ScrCmd_284(ScriptContext *ctx)
 {
-    const PokedexData *v0 = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = PokedexData_NumFormsSeen_Unown(v0);
+    *v1 = Pokedex_NumFormsSeen_Unown(v0);
     return 0;
 }
 
@@ -7369,7 +7366,7 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
 {
     Poffin *v0;
     int v1;
-    UnkStruct_0202AB28 *v2;
+    PoffinCase *v2;
     u8 v3[5];
     u8 v4;
     u16 v5;
@@ -7383,14 +7380,14 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
     }
 
     v4 = ScriptContext_GetVar(ctx);
-    v0 = Poffin_malloc(4);
+    v0 = Poffin_New(4);
     v1 = sub_0202A9E4(v0, v3, v4, 0);
     v2 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
-    v5 = sub_0202AB74(v2, v0);
+    v5 = Poffin_AddToCase(v2, v0);
 
     Heap_FreeToHeap(v0);
 
-    if (v5 == 0xFFFF) {
+    if (v5 == POFFIN_NONE) {
         *v6 = 0xffff;
     } else {
         *v6 = v1;
@@ -7401,13 +7398,13 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
 
 static BOOL ScrCmd_28A(ScriptContext *ctx)
 {
-    UnkStruct_0202AB28 *v0;
+    PoffinCase *poffinCase;
     u16 *v1;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
+    poffinCase = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
 
-    if (sub_0202AB54(v0) == 0xFFFF) {
+    if (Poffin_GetEmptyCaseSlot(poffinCase) == POFFIN_NONE) {
         *v1 = 0;
     } else {
         *v1 = 1;
@@ -7418,12 +7415,12 @@ static BOOL ScrCmd_28A(ScriptContext *ctx)
 
 static BOOL ScrCmd_307(ScriptContext *ctx)
 {
-    UnkStruct_0202AB28 *v0;
+    PoffinCase *poffinCase;
     u16 *v1;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
-    *v1 = sub_0202ACC0(v0);
+    poffinCase = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
+    *v1 = Poffin_GetNumberOfEmptySlots(poffinCase);
 
     return 0;
 }
@@ -8333,7 +8330,7 @@ static BOOL ScrCmd_328(ScriptContext *ctx)
             v5 = Party_GetPokemonBySlotIndex(v1, v3);
 
             if ((Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA)) {
-                PokedexData_Capture(SaveData_PokedexData(fieldSystem->saveData), v5);
+                Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), v5);
             }
         }
     }

@@ -1,5 +1,4 @@
 {
-    "name": "Luxio",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 49
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 120,
     "base_exp_reward": 117,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 20,
     "base_friendship": 100,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_RIVALRY",
-        "ABILITY_INTIMIDATE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_RIVALRY", "ABILITY_INTIMIDATE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 5, "MOVE_LEER" ],
+            [ 9, "MOVE_CHARGE" ],
+            [ 13, "MOVE_SPARK" ],
+            [ 18, "MOVE_BITE" ],
+            [ 23, "MOVE_ROAR" ],
+            [ 28, "MOVE_SWAGGER" ],
+            [ 33, "MOVE_THUNDER_FANG" ],
+            [ 38, "MOVE_CRUNCH" ],
+            [ 43, "MOVE_SCARY_FACE" ],
+            [ 48, "MOVE_DISCHARGE" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -74,23 +76,7 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_LEER"
-            ],
-            "5": "MOVE_LEER",
-            "9": "MOVE_CHARGE",
-            "13": "MOVE_SPARK",
-            "18": "MOVE_BITE",
-            "23": "MOVE_ROAR",
-            "28": "MOVE_SWAGGER",
-            "33": "MOVE_THUNDER_FANG",
-            "38": "MOVE_CRUNCH",
-            "43": "MOVE_SCARY_FACE",
-            "48": "MOVE_DISCHARGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -101,14 +87,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_LUXRAY"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -122,7 +108,66 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "Strong electricity courses through\nthe tips of its sharp claws. A light\nscratch causes fainting in foes.",
-        "category": "Spark Pokémon"
+        "en": {
+            "name": "LUXIO",
+            "category": "Spark Pokémon",
+            "entry_text": [
+                "Strong electricity courses through\n",
+                "the tips of its sharp claws. A light\n",
+                "scratch causes fainting in foes."
+            ]
+        },
+        "fr": {
+            "name": "LUXIO",
+            "category": "Pokémon Etincelle",
+            "entry_text": [
+                "L’électricité libérée par ses\n",
+                "griffes peut assommer l’ennemi.\n",
+                "Il vit en petits groupes."
+            ]
+        },
+        "de": {
+            "name": "LUXIO",
+            "category": "Funken",
+            "entry_text": [
+                "Seine Krallen geben Elektrizität ab,\n",
+                "die stark genug ist, jemanden\n",
+                "bewusstlos zu machen."
+            ]
+        },
+        "it": {
+            "name": "LUXIO",
+            "category": "Pokémon Favilla",
+            "entry_text": [
+                "Dagli artigli rilascia un’elettricità\n",
+                "talmente intensa da mandare KO il\n",
+                "nemico. Vive in piccoli gruppi."
+            ]
+        },
+        "es": {
+            "name": "LUXIO",
+            "category": "Pokémon Chispa",
+            "entry_text": [
+                "Sus garras emiten electricidad\n",
+                "que puede debilitar a sus rivales.\n",
+                "Viven en grupos pequeños."
+            ]
+        },
+        "jp": {
+            "name": "ルクシオ",
+            "category": "でんこうポケモン",
+            "entry_text": [
+                "いっぱつで　きぜつさせるほどの\n",
+                "でんりゅうを　ツメから　ながす。\n",
+                "すうひきの　グル－プで　くらす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1799
     }
 }

@@ -1,1 +1,1 @@
-personal_files += files('data.json')
+species_data_files += files('data.json')

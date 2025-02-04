@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/map_object.h"
-#include "consts/movement.h"
+#include "generated/movement_actions.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -116,18 +116,18 @@ static const fx32 Unk_020EECEC[3];
 int LocalMapObj_IsAnimationSet(const MapObject *mapObj)
 {
     if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_0)) {
-        return 0;
+        return FALSE;
     }
 
-    if (MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_1) == 1) {
-        return 0;
+    if (MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_1) == TRUE) {
+        return FALSE;
     }
 
-    if (MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_4) == 1 && !MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_5)) {
-        return 0;
+    if (MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_4) == TRUE && !MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_5)) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 void LocalMapObj_SetAnimationCode(MapObject *mapObj, int param1)
@@ -814,7 +814,7 @@ static void MovementAction_InitJumpCustomSound(MapObject *mapObj, int dir, fx32 
         MapObject_StepDir(mapObj, dir);
     }
 
-    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT | MAP_OBJ_STATUS_16);
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT | MAP_OBJ_STATUS_START_JUMP);
     MapObject_TryFaceAndTurn(mapObj, dir);
     sub_02062A0C(mapObj, param4);
     MapObject_AdvanceMovementStep(mapObj);
@@ -875,7 +875,7 @@ static int MovementAction_Jump_Step1(MapObject *mapObj)
     VecFx32 v5 = { 0, 0, 0 };
     sub_02063088(mapObj, &v5);
 
-    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_17 | MAP_OBJ_STATUS_5);
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_END_JUMP | MAP_OBJ_STATUS_5);
     MapObject_UpdateCoords(mapObj);
     sub_02062B68(mapObj);
     sub_02062A0C(mapObj, 0x0);
@@ -1418,7 +1418,7 @@ static int sub_02066710(MapObject *mapObj)
 
     ov5_021F3F10(mapObj);
 
-    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT | MAP_OBJ_STATUS_16);
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT | MAP_OBJ_STATUS_START_JUMP);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_HIDE_SHADOW);
     MapObject_AdvanceMovementStep(mapObj);
 
@@ -1443,7 +1443,7 @@ static int sub_02066764(MapObject *mapObj)
     v2.y = 0;
 
     sub_02063088(mapObj, &v2);
-    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_17 | MAP_OBJ_STATUS_5);
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_END_JUMP | MAP_OBJ_STATUS_5);
     sub_0206A230(mapObj);
     MapObject_AdvanceMovementStep(mapObj);
 
@@ -1491,7 +1491,7 @@ static void sub_02066824(MapObject *mapObj, const VecFx32 *param1, int param2, i
     MapObject_TryFace(mapObj, param2);
     MapObject_Turn(mapObj, param3);
     sub_02062A0C(mapObj, param5);
-    sub_02062D28(mapObj);
+    MapObject_SetStartMovement(mapObj);
 
     MapObject_SetXPrev(mapObj, MapObject_GetX(mapObj));
     MapObject_SetYPrev(mapObj, MapObject_GetY(mapObj));
@@ -1808,7 +1808,7 @@ static void sub_02066F88(MapObject *mapObj, fx32 distance, int facingDir, int mo
     MapObject_TryFace(mapObj, facingDir);
     MapObject_Turn(mapObj, movingDir);
     sub_02062A0C(mapObj, param5);
-    sub_02062D28(mapObj);
+    MapObject_SetStartMovement(mapObj);
 
     MapObject_SetXPrev(mapObj, MapObject_GetX(mapObj));
     MapObject_SetYPrev(mapObj, MapObject_GetY(mapObj));
@@ -1946,7 +1946,7 @@ static int sub_02067068(MapObject *mapObj)
     VecFx32 v7 = { 0, 0, 0 };
     sub_02063088(mapObj, &v7);
 
-    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_17 | MAP_OBJ_STATUS_5);
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_END_JUMP | MAP_OBJ_STATUS_5);
     MapObject_UpdateCoords(mapObj);
     sub_02062B68(mapObj);
     sub_02062A0C(mapObj, 0x0);

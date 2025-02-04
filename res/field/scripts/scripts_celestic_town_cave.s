@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/celestic_town_cave.h"
 
     .data
 
@@ -101,7 +102,7 @@ _0181:
 _019D:
     Message 8
     CloseMessage
-    StartTrainerBattle trainer_galactic_boss_cyrus_celestic_town_ruins
+    StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0393
     Call _01C3
@@ -466,7 +467,7 @@ _0538:
     GoToIfEq 0x800C, 1, _057A
     Message 8
     CloseMessage
-    StartTrainerBattle trainer_galactic_boss_cyrus_celestic_town_ruins
+    StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0393
     Call _01C3

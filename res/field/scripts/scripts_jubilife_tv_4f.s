@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/jubilife_tv_4f.h"
 
     .data
 

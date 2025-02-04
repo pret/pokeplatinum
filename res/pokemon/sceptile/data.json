@@ -1,5 +1,4 @@
 {
-    "name": "Sceptile",
     "base_stats": {
         "hp": 70,
         "attack": 85,
@@ -8,10 +7,7 @@
         "special_attack": 105,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 45,
     "base_exp_reward": 208,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_OVERGROW",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_NIGHT_SLASH" ],
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 6, "MOVE_ABSORB" ],
+            [ 11, "MOVE_QUICK_ATTACK" ],
+            [ 16, "MOVE_X_SCISSOR" ],
+            [ 17, "MOVE_PURSUIT" ],
+            [ 23, "MOVE_SCREECH" ],
+            [ 29, "MOVE_LEAF_BLADE" ],
+            [ 35, "MOVE_AGILITY" ],
+            [ 43, "MOVE_SLAM" ],
+            [ 51, "MOVE_DETECT" ],
+            [ 59, "MOVE_FALSE_SWIPE" ],
+            [ 67, "MOVE_LEAF_STORM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM02",
             "TM05",
@@ -93,27 +99,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_POUND",
-                "MOVE_LEER",
-                "MOVE_ABSORB",
-                "MOVE_QUICK_ATTACK"
-            ],
-            "6": "MOVE_ABSORB",
-            "11": "MOVE_QUICK_ATTACK",
-            "16": "MOVE_X_SCISSOR",
-            "17": "MOVE_PURSUIT",
-            "23": "MOVE_SCREECH",
-            "29": "MOVE_LEAF_BLADE",
-            "35": "MOVE_AGILITY",
-            "43": "MOVE_SLAM",
-            "51": "MOVE_DETECT",
-            "59": "MOVE_FALSE_SWIPE",
-            "67": "MOVE_LEAF_STORM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -125,9 +111,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 17,
@@ -141,7 +128,66 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "The leaves that grow on its arms\ncan slice down thick trees. It is\nwithout peer in jungle combat.",
-        "category": "Forest Pokémon"
+        "en": {
+            "name": "SCEPTILE",
+            "category": "Forest Pokémon",
+            "entry_text": [
+                "The leaves that grow on its arms\n",
+                "can slice down thick trees. It is\n",
+                "without peer in jungle combat."
+            ]
+        },
+        "fr": {
+            "name": "JUNGKO",
+            "category": "Pokémon Forêt",
+            "entry_text": [
+                "Les feuilles sur ses bras peuvent\n",
+                "trancher des troncs épais. C’est\n",
+                "le meilleur combattant des jungles."
+            ]
+        },
+        "de": {
+            "name": "GEWALDRO",
+            "category": "Dschungel",
+            "entry_text": [
+                "Die Blätter an seinen Armen können\n",
+                "dicke Bäume fällen. Im Dschungel-\n",
+                "kampf gibt es kein stärkeres PKMN."
+            ]
+        },
+        "it": {
+            "name": "SCEPTILE",
+            "category": "Pokémon Foresta",
+            "entry_text": [
+                "Le foglie che crescono sulle sue\n",
+                "braccia tagliano anche grandi al-\n",
+                "beri. Nel suo habitat, è imbattibile."
+            ]
+        },
+        "es": {
+            "name": "SCEPTILE",
+            "category": "Pokémon Monte",
+            "entry_text": [
+                "Las hojas de sus brazos pueden\n",
+                "cortar gruesos árboles. Invencible\n",
+                "en los combates en la jungla."
+            ]
+        },
+        "jp": {
+            "name": "ジュカイン",
+            "category": "みつりんポケモン",
+            "entry_text": [
+                "うでに　はえた　はっぱは　たいぼくも\n",
+                "すっぱり　きりたおす　きれあじ。\n",
+                "みつりんの　たたかいでは　むてき。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 257
     }
 }

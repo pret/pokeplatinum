@@ -1,5 +1,4 @@
 {
-    "name": "Jumpluff",
     "base_stats": {
         "hp": 75,
         "attack": 55,
@@ -8,10 +7,7 @@
         "special_attack": 55,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 176,
     "ev_yields": {
@@ -30,21 +26,34 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_CHLOROPHYLL",
-        "ABILITY_LEAF_GUARD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_LEAF_GUARD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_SYNTHESIS" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 4, "MOVE_SYNTHESIS" ],
+            [ 7, "MOVE_TAIL_WHIP" ],
+            [ 10, "MOVE_TACKLE" ],
+            [ 12, "MOVE_POISON_POWDER" ],
+            [ 14, "MOVE_STUN_SPORE" ],
+            [ 16, "MOVE_SLEEP_POWDER" ],
+            [ 20, "MOVE_BULLET_SEED" ],
+            [ 24, "MOVE_LEECH_SEED" ],
+            [ 28, "MOVE_MEGA_DRAIN" ],
+            [ 32, "MOVE_COTTON_SPORE" ],
+            [ 36, "MOVE_U_TURN" ],
+            [ 40, "MOVE_WORRY_SEED" ],
+            [ 44, "MOVE_GIGA_DRAIN" ],
+            [ 48, "MOVE_BOUNCE" ],
+            [ 52, "MOVE_MEMENTO" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -75,30 +84,7 @@
             "TM89",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SPLASH",
-                "MOVE_SYNTHESIS",
-                "MOVE_TAIL_WHIP",
-                "MOVE_TACKLE"
-            ],
-            "4": "MOVE_SYNTHESIS",
-            "7": "MOVE_TAIL_WHIP",
-            "10": "MOVE_TACKLE",
-            "12": "MOVE_POISON_POWDER",
-            "14": "MOVE_STUN_SPORE",
-            "16": "MOVE_SLEEP_POWDER",
-            "20": "MOVE_BULLET_SEED",
-            "24": "MOVE_LEECH_SEED",
-            "28": "MOVE_MEGA_DRAIN",
-            "32": "MOVE_COTTON_SPORE",
-            "36": "MOVE_U_TURN",
-            "40": "MOVE_WORRY_SEED",
-            "44": "MOVE_GIGA_DRAIN",
-            "48": "MOVE_BOUNCE",
-            "52": "MOVE_MEMENTO"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
             "MOVE_SYNTHESIS",
@@ -106,9 +92,10 @@
             "MOVE_BOUNCE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -122,7 +109,66 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "Blown by seasonal winds, it\ncircles the globe, scattering\ncotton spores as it goes.",
-        "category": "Cottonweed Pokémon"
+        "en": {
+            "name": "JUMPLUFF",
+            "category": "Cottonweed Pokémon",
+            "entry_text": [
+                "Blown by seasonal winds, it\n",
+                "circles the globe, scattering\n",
+                "cotton spores as it goes."
+            ]
+        },
+        "fr": {
+            "name": "COTOVOL",
+            "category": "Pokémon Pissenlit",
+            "entry_text": [
+                "Poussé par les vents saisonniers,\n",
+                "il fait le tour du globe en semant\n",
+                "des spores de coton."
+            ]
+        },
+        "de": {
+            "name": "PAPUNGHA",
+            "category": "Löwenzahn",
+            "entry_text": [
+                "Es lässt sich von den Winden um den\n",
+                "Globus tragen und verteilt auf\n",
+                "seinem Flug Baumwollsamen."
+            ]
+        },
+        "it": {
+            "name": "JUMPLUFF",
+            "category": "Pokémon Gramigna",
+            "entry_text": [
+                "Sospinto dai venti stagionali, gira\n",
+                "intorno al globo sparpagliando i\n",
+                "suoi semi simili al cotone."
+            ]
+        },
+        "es": {
+            "name": "JUMPLUFF",
+            "category": "Pokémon Algadón",
+            "entry_text": [
+                "Los vientos estacionales lo llevan\n",
+                "por todo el mundo, donde suelta\n",
+                "sus esporas para reproducirse."
+            ]
+        },
+        "jp": {
+            "name": "ワタッコ",
+            "category": "わたくさポケモン",
+            "entry_text": [
+                "きせつふうに　ながされて\n",
+                "せかいを　いっしゅうしてしまう。\n",
+                "とちゅうで　わたほうしを　ばらまく。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 4353
     }
 }

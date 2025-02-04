@@ -14,6 +14,7 @@
 #include "field_system.h"
 #include "inlines.h"
 #include "item.h"
+#include "map_header_util.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
@@ -27,7 +28,6 @@
 #include "unk_0205C980.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
-#include "unk_02071CFC.h"
 #include "unk_020797C8.h"
 #include "vars_flags.h"
 
@@ -312,7 +312,7 @@ BOOL ScrCmd_0DD(ScriptContext *param0)
 {
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
-    u16 v2 = sub_0206B08C(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    u16 v2 = VarsFlags_GetPlayerCounterpartStarterSpecies(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     Strbuf *v3 = sub_02047998(v2, 4);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -361,7 +361,7 @@ BOOL ScrCmd_0E2(ScriptContext *param0)
     u8 v2 = ScriptContext_ReadByte(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
-    sub_02071D10(v3, 4, v0);
+    MapHeader_LoadName(v3, 4, v0);
     StringTemplate_SetStrbuf(*v1, v2, v0, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
 
@@ -546,7 +546,7 @@ BOOL ScrCmd_342(ScriptContext *param0)
 {
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
-    u16 v2 = sub_0206B08C(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    u16 v2 = VarsFlags_GetPlayerCounterpartStarterSpecies(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
 
     StringTemplate_SetSpeciesNameWithArticleByID(*v0, v1, v2);
     return 0;

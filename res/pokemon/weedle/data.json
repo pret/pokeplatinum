@@ -1,5 +1,4 @@
 {
-    "name": "Weedle",
     "base_stats": {
         "hp": 40,
         "attack": 35,
@@ -8,10 +7,7 @@
         "special_attack": 20,
         "special_defense": 20
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_POISON" ],
     "catch_rate": 255,
     "base_exp_reward": 52,
     "ev_yields": {
@@ -30,40 +26,30 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SHIELD_DUST",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SHIELD_DUST", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_STING",
-                "MOVE_STRING_SHOT"
-            ],
-            "15": "MOVE_BUG_BITE"
-        },
-        "tutor": []
+        "by_level": [
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_STRING_SHOT" ],
+            [ 15, "MOVE_BUG_BITE" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [  ]
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             7,
             "SPECIES_KAKUNA"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -77,7 +63,66 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "It eats its weight in leaves every\nday. It fends off attackers with\nthe needle on its head.",
-        "category": "Hairy Bug Pokémon"
+        "en": {
+            "name": "WEEDLE",
+            "category": "Hairy Bug Pokémon",
+            "entry_text": [
+                "It eats its weight in leaves every\n",
+                "day. It fends off attackers with\n",
+                "the needle on its head."
+            ]
+        },
+        "fr": {
+            "name": "ASPICOT",
+            "category": "Pokémon Insectopic",
+            "entry_text": [
+                "Il mange chaque jour son poids en\n",
+                "feuilles. Il utilise l’aiguillon sur sa\n",
+                "tête pour repousser l’ennemi."
+            ]
+        },
+        "de": {
+            "name": "HORNLIU",
+            "category": "Raupe",
+            "entry_text": [
+                "Es frisst täglich sein Gewicht in\n",
+                "Blättern. Die Nadel auf seinem Kopf\n",
+                "dient der Verteidigung."
+            ]
+        },
+        "it": {
+            "name": "WEEDLE",
+            "category": "Pokémon Millepiedi",
+            "entry_text": [
+                "Divora ogni giorno una quantità di\n",
+                "foglie pari al suo peso. Respinge i\n",
+                "nemici con l’aculeo sulla testa."
+            ]
+        },
+        "es": {
+            "name": "WEEDLE",
+            "category": "Pokémon Oruga",
+            "entry_text": [
+                "Come el equivalente a su peso en\n",
+                "hojas todos los días. Se defiende\n",
+                "con el aguijón de su cabeza."
+            ]
+        },
+        "jp": {
+            "name": "ビ－ドル",
+            "category": "けむしポケモン",
+            "entry_text": [
+                "まいにち　じぶんと　おなじ　おもさの\n",
+                "はっぱを　たべる。あたまの　ハリで\n",
+                "おそってきた　てきを　げきたい。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1540
     }
 }

@@ -1,5 +1,4 @@
 {
-    "name": "Rattata",
     "base_stats": {
         "hp": 30,
         "attack": 56,
@@ -8,10 +7,7 @@
         "special_attack": 25,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 255,
     "base_exp_reward": 57,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_RUN_AWAY",
-        "ABILITY_GUTS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_GUTS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 4, "MOVE_QUICK_ATTACK" ],
+            [ 7, "MOVE_FOCUS_ENERGY" ],
+            [ 10, "MOVE_BITE" ],
+            [ 13, "MOVE_PURSUIT" ],
+            [ 16, "MOVE_HYPER_FANG" ],
+            [ 19, "MOVE_SUCKER_PUNCH" ],
+            [ 22, "MOVE_CRUNCH" ],
+            [ 25, "MOVE_ASSURANCE" ],
+            [ 28, "MOVE_SUPER_FANG" ],
+            [ 31, "MOVE_DOUBLE_EDGE" ],
+            [ 34, "MOVE_ENDEAVOR" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -81,24 +84,7 @@
             "HM01",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_TAIL_WHIP"
-            ],
-            "4": "MOVE_QUICK_ATTACK",
-            "7": "MOVE_FOCUS_ENERGY",
-            "10": "MOVE_BITE",
-            "13": "MOVE_PURSUIT",
-            "16": "MOVE_HYPER_FANG",
-            "19": "MOVE_SUCKER_PUNCH",
-            "22": "MOVE_CRUNCH",
-            "25": "MOVE_ASSURANCE",
-            "28": "MOVE_SUPER_FANG",
-            "31": "MOVE_DOUBLE_EDGE",
-            "34": "MOVE_ENDEAVOR"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -111,14 +97,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             20,
             "SPECIES_RATICATE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 3,
@@ -132,7 +118,66 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Cautious in the extreme, its\nhardy vitality lets it live in\nany kind of environment.",
-        "category": "Mouse Pokémon"
+        "en": {
+            "name": "RATTATA",
+            "category": "Mouse Pokémon",
+            "entry_text": [
+                "Cautious in the extreme, its\n",
+                "hardy vitality lets it live in\n",
+                "any kind of environment."
+            ]
+        },
+        "fr": {
+            "name": "RATTATA",
+            "category": "Pokémon Souris",
+            "entry_text": [
+                "D’une prudence extrême, sa nature\n",
+                "robuste lui permet de s’adapter\n",
+                "à tous les terrains."
+            ]
+        },
+        "de": {
+            "name": "RATTFRATZ",
+            "category": "Maus",
+            "entry_text": [
+                "Es strotzt vor Lebenskraft und\n",
+                "kann in jeder Umgebung leben. Es\n",
+                "ist extrem vorsichtig. "
+            ]
+        },
+        "it": {
+            "name": "RATTATA",
+            "category": "Pokémon Topo",
+            "entry_text": [
+                "Un’incredibile vitalità gli permette\n",
+                "di adattarsi a qualsiasi tipo di\n",
+                "habitat. È estremamente cauto."
+            ]
+        },
+        "es": {
+            "name": "RATTATA",
+            "category": "Pokémon Ratón",
+            "entry_text": [
+                "Su capacidad de adaptación le\n",
+                "permite vivir en cualquier lugar.\n",
+                "Es tremendamente cauteloso."
+            ]
+        },
+        "jp": {
+            "name": "コラッタ",
+            "category": "ねずみポケモン",
+            "entry_text": [
+                "どんな　ばしょにも　すみついて\n",
+                "いきていける　せいめいりょく。\n",
+                "けいかいしんが　とても　つよい。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1285
     }
 }

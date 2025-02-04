@@ -9,17 +9,16 @@
 #include "constants/overworld_weather.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
-#include "consts/battle.h"
-#include "consts/items.h"
-#include "consts/species.h"
+#include "generated/items.h"
+#include "generated/species.h"
+#include "generated/text_banks.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0205EC34.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
@@ -39,9 +38,9 @@
 #include "message.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -62,8 +61,7 @@
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
-#include "res/text/gmm/message_bank_location_names.h"
-#include "res/text/pl_msg.naix"
+#include "res/text/bank/location_names.h"
 
 static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background);
 static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fieldSystem);
@@ -80,13 +78,13 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
 
     for (i = 0; i < MAX_BATTLERS; i++) {
         dto->trainerIDs[i] = 0;
-        MI_CpuClear32(&dto->trainerData[i], sizeof(TrainerData));
+        MI_CpuClear32(&dto->trainer[i], sizeof(Trainer));
     }
 
     dto->background = BACKGROUND_PLAIN;
     dto->terrain = TERRAIN_MAX;
     dto->mapLabelTextID = location_names_00000;
-    dto->timeOfDay = TOD_MORNING;
+    dto->timeOfDay = TIMEOFDAY_MORNING;
     dto->mapEvolutionMethod = 0;
     dto->visitedContestHall = TRUE;
     dto->metBebe = TRUE;
@@ -101,11 +99,11 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
     }
 
     for (i = 0; i < MAX_BATTLERS; i++) {
-        dto->chatotCries[i] = AllocateAndInitializeChatotCryData(heapID);
+        dto->chatotCries[i] = ChatotCry_New(heapID);
     }
 
     dto->bag = Bag_New(heapID);
-    dto->pokedex = PokedexData_Alloc(heapID);
+    dto->pokedex = Pokedex_New(heapID);
     dto->options = Options_New(heapID);
     dto->unk_10C = sub_0206D140(heapID);
     dto->bagCursor = NULL;
@@ -155,26 +153,26 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Options *options = SaveData_Options(fieldSystem->saveData);
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_CATCH_TUTORIAL);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_counterpart_names, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTERPART_NAMES, heapID);
     Strbuf *strbuf = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
     Pokemon *mon;
 
     MessageLoader_GetStrbuf(msgLoader, TrainerInfo_Gender(trainerInfo) ^ 1, strbuf);
-    TrainerInfo_SetName(dto->trainerInfo[BATTLER_PLAYER_SLOT_1], Strbuf_GetData(strbuf));
+    TrainerInfo_SetName(dto->trainerInfo[BATTLER_PLAYER_1], Strbuf_GetData(strbuf));
     Strbuf_Free(strbuf);
     MessageLoader_Free(msgLoader);
 
-    TrainerInfo_SetGender(dto->trainerInfo[BATTLER_PLAYER_SLOT_1], TrainerInfo_Gender(trainerInfo) ^ 1);
+    TrainerInfo_SetGender(dto->trainerInfo[BATTLER_PLAYER_1], TrainerInfo_Gender(trainerInfo) ^ 1);
     SetBackgroundAndTerrain(dto, fieldSystem);
     Options_Copy(options, dto->options);
     dto->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     Bag_TryAddItem(dto->bag, ITEM_POKE_BALL, 20, heapID);
 
     mon = Pokemon_New(heapID);
-    Pokemon_InitWith(mon, sub_0206B08C(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, 32, FALSE, 0, OTID_NOT_SHINY, 0);
-    Party_AddPokemon(dto->parties[BATTLER_PLAYER_SLOT_1], mon);
+    Pokemon_InitWith(mon, VarsFlags_GetPlayerCounterpartStarterSpecies(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, 32, FALSE, 0, OTID_NOT_SHINY, 0);
+    Party_AddPokemon(dto->parties[BATTLER_PLAYER_1], mon);
     Pokemon_InitWith(mon, SPECIES_BIDOOF, 2, 32, FALSE, 0, OTID_NOT_SHINY, 0);
-    Party_AddPokemon(dto->parties[BATTLER_ENEMY_SLOT_1], mon);
+    Party_AddPokemon(dto->parties[BATTLER_ENEMY_1], mon);
     Heap_FreeToHeap(mon);
 
     dto->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
@@ -224,7 +222,7 @@ void FieldBattleDTO_AddPokemonToBattler(FieldBattleDTO *dto, Pokemon *src, int b
 void FieldBattleDTO_CopyPartyToBattler(FieldBattleDTO *dto, const Party *src, int battler)
 {
     GF_ASSERT(battler < MAX_BATTLERS);
-    Party_cpy(src, dto->parties[battler]);
+    Party_Copy(src, dto->parties[battler]);
 }
 
 void FieldBattleDTO_CopyTrainerInfoToBattler(FieldBattleDTO *dto, const TrainerInfo *src, int battler)
@@ -243,7 +241,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(save);
     Party *party = Party_GetFromSavedata(save);
     Bag *bag = SaveData_GetBag(save);
-    PokedexData *pokedex = SaveData_PokedexData(save);
+    Pokedex *pokedex = SaveData_GetPokedex(save);
     ChatotCry *chatotCry = GetChatotCryDataFromSave(save);
     Options *options = SaveData_Options(save);
     FieldOverworldState *fieldOverworldState = SaveData_GetFieldOverworldState(save);
@@ -259,12 +257,12 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
         dto->timeOfDay = TimeOfDayForHour(gameTime->time.hour);
     }
 
-    FieldBattleDTO_CopyTrainerInfoToBattler(dto, trainerInfo, BATTLER_PLAYER_SLOT_1);
-    FieldBattleDTO_CopyPartyToBattler(dto, party, BATTLER_PLAYER_SLOT_1);
+    FieldBattleDTO_CopyTrainerInfoToBattler(dto, trainerInfo, BATTLER_PLAYER_1);
+    FieldBattleDTO_CopyPartyToBattler(dto, party, BATTLER_PLAYER_1);
     Bag_Copy(bag, dto->bag);
-    PokedexData_Copy(pokedex, dto->pokedex);
+    Pokedex_Copy(pokedex, dto->pokedex);
     Options_Copy(options, dto->options);
-    FieldBattleDTO_CopyChatotCryToBattler(dto, chatotCry, BATTLER_PLAYER_SLOT_1);
+    FieldBattleDTO_CopyChatotCryToBattler(dto, chatotCry, BATTLER_PLAYER_1);
 
     dto->pcBoxes = SaveData_PCBoxes(save);
     dto->mapLabelTextID = MapHeader_GetMapLabelTextID(mapHeaderID);
@@ -274,7 +272,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     dto->fieldWeather = FieldOverworldState_GetWeather(fieldOverworldState);
     dto->bagCursor = bagCursor;
     dto->subscreenCursorOn = subscreenCursorOn;
-    dto->poketchData = SaveData_PoketchData(save);
+    dto->poketch = SaveData_PoketchData(save);
     dto->unk_104 = sub_0202C878(save);
     dto->records = SaveData_GetGameRecordsPtr(save);
     dto->journalEntry = journalEntry;
@@ -296,17 +294,17 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    PokedexData *pokedex = SaveData_PokedexData(fieldSystem->saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     ChatotCry *chatotCry = GetChatotCryDataFromSave(fieldSystem->saveData);
     Options *options = SaveData_Options(fieldSystem->saveData);
 
     dto->background = BACKGROUND_INDOORS_1;
     dto->terrain = TERRAIN_BUILDING;
 
-    FieldBattleDTO_CopyTrainerInfoToBattler(dto, trainerInfo, BATTLER_PLAYER_SLOT_1);
+    FieldBattleDTO_CopyTrainerInfoToBattler(dto, trainerInfo, BATTLER_PLAYER_1);
 
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELDMAP);
-    Party_InitWithCapacity(dto->parties[BATTLER_PLAYER_SLOT_1], Party_GetCurrentCount(party));
+    Party_InitWithCapacity(dto->parties[BATTLER_PLAYER_1], Party_GetCurrentCount(party));
     for (i = 0; i < Party_GetCurrentCount(party); i++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(party, i), mon);
 
@@ -316,20 +314,20 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
             Pokemon_CalcLevelAndStats(mon);
         }
 
-        FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_PLAYER_SLOT_1);
+        FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_PLAYER_1);
     }
     Heap_FreeToHeap(mon);
 
     Bag_Copy(bag, dto->bag);
-    PokedexData_Copy(pokedex, dto->pokedex);
+    Pokedex_Copy(pokedex, dto->pokedex);
     Options_Copy(options, dto->options);
-    FieldBattleDTO_CopyChatotCryToBattler(dto, chatotCry, BATTLER_PLAYER_SLOT_1);
+    FieldBattleDTO_CopyChatotCryToBattler(dto, chatotCry, BATTLER_PLAYER_1);
 
     dto->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
     dto->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     dto->bagCursor = fieldSystem->unk_98;
     dto->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
-    dto->poketchData = SaveData_PoketchData(fieldSystem->saveData);
+    dto->poketch = SaveData_PoketchData(fieldSystem->saveData);
     dto->unk_104 = sub_0202C878(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
@@ -344,7 +342,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    PokedexData *pokedex = SaveData_PokedexData(fieldSystem->saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     ChatotCry *chatotCry = GetChatotCryDataFromSave(fieldSystem->saveData);
     Options *options = SaveData_Options(fieldSystem->saveData);
     const BattleRegulation *regulation = fieldSystem->unk_B0;
@@ -354,10 +352,10 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     dto->background = BACKGROUND_INDOORS_1;
     dto->terrain = TERRAIN_BUILDING;
 
-    FieldBattleDTO_CopyTrainerInfoToBattler(dto, trainerInfo, BATTLER_PLAYER_SLOT_1);
+    FieldBattleDTO_CopyTrainerInfoToBattler(dto, trainerInfo, BATTLER_PLAYER_1);
 
     if (partyOrder == NULL) {
-        FieldBattleDTO_CopyPartyToBattler(dto, party, BATTLER_PLAYER_SLOT_1);
+        FieldBattleDTO_CopyPartyToBattler(dto, party, BATTLER_PLAYER_1);
     } else {
         int numToCopy = 0;
         for (i = 0; i < MAX_PARTY_SIZE; i++) {
@@ -367,13 +365,13 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
         }
 
         if (numToCopy == 0) {
-            FieldBattleDTO_CopyPartyToBattler(dto, party, BATTLER_PLAYER_SLOT_1);
+            FieldBattleDTO_CopyPartyToBattler(dto, party, BATTLER_PLAYER_1);
         } else {
             mon = Pokemon_New(HEAP_ID_FIELDMAP);
-            Party_InitWithCapacity(dto->parties[BATTLER_PLAYER_SLOT_1], numToCopy);
+            Party_InitWithCapacity(dto->parties[BATTLER_PLAYER_1], numToCopy);
             for (i = 0; i < numToCopy; i++) {
                 Pokemon_Copy(Party_GetPokemonBySlotIndex(party, partyOrder[i] - 1), mon);
-                FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_PLAYER_SLOT_1);
+                FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_PLAYER_1);
             }
 
             Heap_FreeToHeap(mon);
@@ -387,9 +385,9 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     }
 
     Bag_Copy(bag, dto->bag);
-    PokedexData_Copy(pokedex, dto->pokedex);
+    Pokedex_Copy(pokedex, dto->pokedex);
     Options_Copy(options, dto->options);
-    FieldBattleDTO_CopyChatotCryToBattler(dto, chatotCry, BATTLER_PLAYER_SLOT_1);
+    FieldBattleDTO_CopyChatotCryToBattler(dto, chatotCry, BATTLER_PLAYER_1);
 
     dto->pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
     dto->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
@@ -406,9 +404,9 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
         int unionAppearance = TrainerInfo_Appearance(trainerInfo);
         int unionGender = TrainerInfo_Gender(trainerInfo);
 
-        dto->trainerData[BATTLER_PLAYER_SLOT_1].class = sub_0205CA14(unionGender, unionAppearance, 1);
-        CharCode_Copy(dto->trainerData[BATTLER_PLAYER_SLOT_1].name, TrainerInfo_Name(dto->trainerInfo[BATTLER_PLAYER_SLOT_1]));
-        dto->trainerData[BATTLER_PLAYER_SLOT_2] = dto->trainerData[BATTLER_PLAYER_SLOT_1];
+        dto->trainer[BATTLER_PLAYER_1].header.trainerType = sub_0205CA14(unionGender, unionAppearance, 1);
+        CharCode_Copy(dto->trainer[BATTLER_PLAYER_1].name, TrainerInfo_Name(dto->trainerInfo[BATTLER_PLAYER_1]));
+        dto->trainer[BATTLER_PLAYER_2] = dto->trainer[BATTLER_PLAYER_1];
     } else {
         FieldBattleDTO_CopyPlayerInfoToTrainerData(dto);
     }
@@ -424,13 +422,13 @@ void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fi
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    PokedexData *pokedex = SaveData_PokedexData(fieldSystem->saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     u16 *fieldSysSafariBalls = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    TrainerInfo_Copy(dto->trainerInfo[BATTLER_PLAYER_SLOT_1], trainerInfo);
-    Party_cpy(dto->parties[BATTLER_PLAYER_SLOT_1], party);
+    TrainerInfo_Copy(dto->trainerInfo[BATTLER_PLAYER_1], trainerInfo);
+    Party_Copy(dto->parties[BATTLER_PLAYER_1], party);
     Bag_Copy(dto->bag, bag);
-    PokedexData_Copy(dto->pokedex, pokedex);
+    Pokedex_Copy(dto->pokedex, pokedex);
 
     *fieldSysSafariBalls = dto->countSafariBalls;
 }
@@ -440,12 +438,12 @@ void FieldBattleDTO_UpdatePokedex(const FieldBattleDTO *dto, FieldSystem *fieldS
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    PokedexData *pokedex = SaveData_PokedexData(fieldSystem->saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 
-    PokedexData_Copy(dto->pokedex, pokedex);
+    Pokedex_Copy(dto->pokedex, pokedex);
 }
 
-static const enum Terrain sTerrainForBackground[] = {
+static const enum BattleTerrain sTerrainForBackground[] = {
     [BACKGROUND_PLAIN] = TERRAIN_PLAIN,
     [BACKGROUND_WATER] = TERRAIN_WATER,
     [BACKGROUND_CITY] = TERRAIN_BUILDING,
@@ -550,7 +548,7 @@ BOOL CheckPlayerDidNotCaptureWildMon(u32 battleResult)
 
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto)
 {
-    dto->trainerData[BATTLER_PLAYER_SLOT_1].class = TrainerInfo_Gender(dto->trainerInfo[BATTLER_PLAYER_SLOT_1]);
-    CharCode_Copy(dto->trainerData[BATTLER_PLAYER_SLOT_1].name, TrainerInfo_Name(dto->trainerInfo[BATTLER_PLAYER_SLOT_1]));
-    dto->trainerData[BATTLER_PLAYER_SLOT_2] = dto->trainerData[BATTLER_PLAYER_SLOT_1];
+    dto->trainer[BATTLER_PLAYER_1].header.trainerType = TrainerInfo_Gender(dto->trainerInfo[BATTLER_PLAYER_1]);
+    CharCode_Copy(dto->trainer[BATTLER_PLAYER_1].name, TrainerInfo_Name(dto->trainerInfo[BATTLER_PLAYER_1]));
+    dto->trainer[BATTLER_PLAYER_2] = dto->trainer[BATTLER_PLAYER_1];
 }

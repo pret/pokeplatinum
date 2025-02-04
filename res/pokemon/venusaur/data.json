@@ -1,5 +1,4 @@
 {
-    "name": "Venusaur",
     "base_stats": {
         "hp": 80,
         "attack": 82,
@@ -8,10 +7,7 @@
         "special_attack": 100,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_POISON" ],
     "catch_rate": 45,
     "base_exp_reward": 208,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_OVERGROW",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_LEECH_SEED" ],
+            [ 1, "MOVE_VINE_WHIP" ],
+            [ 3, "MOVE_GROWL" ],
+            [ 7, "MOVE_LEECH_SEED" ],
+            [ 9, "MOVE_VINE_WHIP" ],
+            [ 13, "MOVE_POISON_POWDER" ],
+            [ 13, "MOVE_SLEEP_POWDER" ],
+            [ 15, "MOVE_TAKE_DOWN" ],
+            [ 20, "MOVE_RAZOR_LEAF" ],
+            [ 23, "MOVE_SWEET_SCENT" ],
+            [ 28, "MOVE_GROWTH" ],
+            [ 31, "MOVE_DOUBLE_EDGE" ],
+            [ 32, "MOVE_PETAL_DANCE" ],
+            [ 39, "MOVE_WORRY_SEED" ],
+            [ 45, "MOVE_SYNTHESIS" ],
+            [ 53, "MOVE_SOLAR_BEAM" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM09",
@@ -79,31 +87,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_LEECH_SEED",
-                "MOVE_VINE_WHIP"
-            ],
-            "3": "MOVE_GROWL",
-            "7": "MOVE_LEECH_SEED",
-            "9": "MOVE_VINE_WHIP",
-            "13": [
-                "MOVE_POISON_POWDER",
-                "MOVE_SLEEP_POWDER"
-            ],
-            "15": "MOVE_TAKE_DOWN",
-            "20": "MOVE_RAZOR_LEAF",
-            "23": "MOVE_SWEET_SCENT",
-            "28": "MOVE_GROWTH",
-            "31": "MOVE_DOUBLE_EDGE",
-            "32": "MOVE_PETAL_DANCE",
-            "39": "MOVE_WORRY_SEED",
-            "45": "MOVE_SYNTHESIS",
-            "53": "MOVE_SOLAR_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -113,9 +97,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 20,
@@ -129,7 +114,66 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 8,
         "pokemon_pos_m": 1,
-        "entry_text": "After a rainy day, the flower on\nits back smells stronger. The\nscent attracts other Pokémon.",
-        "category": "Seed Pokémon"
+        "en": {
+            "name": "VENUSAUR",
+            "category": "Seed Pokémon",
+            "entry_text": [
+                "After a rainy day, the flower on\n",
+                "its back smells stronger. The\n",
+                "scent attracts other Pokémon."
+            ]
+        },
+        "fr": {
+            "name": "FLORIZARRE",
+            "category": "Pokémon Graine",
+            "entry_text": [
+                "Le parfum de sa fleur se fait plus\n",
+                "pénétrant les lendemains de pluie.\n",
+                "Cela appâte les autres Pokémon."
+            ]
+        },
+        "de": {
+            "name": "BISAFLOR",
+            "category": "Samen",
+            "entry_text": [
+                "Nach einem Regentag riecht die\n",
+                "Blume auf seinem Rücken intensiver.\n",
+                "Das Aroma zieht andere Pokémon an."
+            ]
+        },
+        "it": {
+            "name": "VENUSAUR",
+            "category": "Pokémon Seme",
+            "entry_text": [
+                "Dopo la pioggia, il fiore sul suo\n",
+                "dorso emana un profumo più\n",
+                "intenso e attira gli altri Pokémon."
+            ]
+        },
+        "es": {
+            "name": "VENUSAUR",
+            "category": "Pokémon Semilla",
+            "entry_text": [
+                "Después de un día de lluvia, la flor\n",
+                "de su lomo tiene un aroma más\n",
+                "potente y atrae a otros Pokémon."
+            ]
+        },
+        "jp": {
+            "name": "フシギバナ",
+            "category": "たねポケモン",
+            "entry_text": [
+                "あめの　ふった　よくじつは　せなかの\n",
+                "はなの　かおりが　つよまる。かおりに\n",
+                "さそわれ　ポケモンが　あつまる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 1537
     }
 }

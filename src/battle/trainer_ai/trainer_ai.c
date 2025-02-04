@@ -6,10 +6,9 @@
 #include "constants/battle.h"
 #include "constants/items.h"
 #include "constants/species.h"
-#include "consts/abilities.h"
+#include "generated/abilities.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/battle_system.h"
 
 #include "battle/ai_context.h"
@@ -25,6 +24,8 @@
 #include "flags.h"
 #include "party.h"
 #include "pokemon.h"
+
+#define AI_CONTEXT (battleCtx->aiContext)
 
 static const u16 sRiskyMoves[] = {
     BATTLE_EFFECT_HALVE_DEFENSE,
@@ -53,7 +54,7 @@ static const u16 sAltPowerCalcMoves[] = {
     BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL,
     BATTLE_EFFECT_POWER_BASED_ON_FRIENDSHIP,
     BATTLE_EFFECT_POWER_BASED_ON_LOW_FRIENDSHIP,
-    BATTLE_EFFECT_10_DAMAGE_FLAT,
+    BATTLE_EFFECT_20_DAMAGE_FLAT,
     BATTLE_EFFECT_INCREASE_POWER_WITH_WEIGHT,
     0xFFFF
 };
@@ -352,7 +353,7 @@ void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battle
     if (battleSys->battleType & BATTLE_TYPE_ROAMER) {
         AI_CONTEXT.thinkingMask = AI_FLAG_ROAMING_POKEMON;
     } else {
-        AI_CONTEXT.thinkingMask = battleSys->trainers[battler].aiMask;
+        AI_CONTEXT.thinkingMask = battleSys->trainers[battler].header.aiMask;
     }
 
     // force double-battle strategies, if applicable
@@ -1294,8 +1295,8 @@ static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *bat
                 AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].ability;
             } else {
                 // Try to guess the opponent's ability (flip a coin)
-                int ability1 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_1);
-                int ability2 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_2);
+                int ability1 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_1);
+                int ability2 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_2);
 
                 if (ability1 && ability2) {
                     if (BattleSystem_RandNext(battleSys) & 1) {
@@ -1339,8 +1340,8 @@ static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *ba
                 tmpAbility = battleCtx->battleMons[battler].ability;
             } else {
                 // Try to guess the opponent's ability (flip a coin)
-                int ability1 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_1);
-                int ability2 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_2);
+                int ability1 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_1);
+                int ability2 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_2);
 
                 if (ability1 && ability2) {
                     // If the opponent has two abilities, but neither are the expected one,
@@ -3478,11 +3479,11 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
 
     // "Player" consts here refer to the AI's perspective.
     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
-        defender1 = BATTLER_PLAYER_SLOT_1;
-        defender2 = BATTLER_PLAYER_SLOT_2;
+        defender1 = BATTLER_PLAYER_1;
+        defender2 = BATTLER_PLAYER_2;
     } else {
-        defender1 = BATTLER_PLAYER_SLOT_1;
-        defender2 = BATTLER_PLAYER_SLOT_1;
+        defender1 = BATTLER_PLAYER_1;
+        defender2 = BATTLER_PLAYER_1;
     }
 
     // Check all of this mon's attacking moves for immunities. If any of our moves can deal damage to
@@ -4209,7 +4210,7 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
             if (item == ITEM_FULL_RESTORE) {
                 if (battleCtx->battleMons[battler].curHP < (battleCtx->battleMons[battler].maxHP / 4)
                     && battleCtx->battleMons[battler].curHP) {
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_FULL_RESTORE;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_FULL_RESTORE;
                     result = TRUE;
                 }
             } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HP_RESTORE)) {
@@ -4221,81 +4222,81 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
                     if (battleCtx->battleMons[battler].curHP
                         && (battleCtx->battleMons[battler].curHP < (battleCtx->battleMons[battler].maxHP / 4)
                             || (battleCtx->battleMons[battler].maxHP - battleCtx->battleMons[battler].curHP) > hpRestore)) {
-                        AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_HP;
+                        AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_HP;
                         result = TRUE;
                     }
                 }
             } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_SLEEP)) {
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(5);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
                     result = TRUE;
                 }
             } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_POISON)) {
                 if ((battleCtx->battleMons[battler].status & MON_CONDITION_POISON)
                     || (battleCtx->battleMons[battler].status & MON_CONDITION_TOXIC)) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(4);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
                     result = TRUE;
                 }
             } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_BURN)) {
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(3);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
                     result = TRUE;
                 }
             } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_FREEZE)) {
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_FREEZE) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(2);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
                     result = TRUE;
                 }
             } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_PARALYSIS)) {
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(1);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
                     result = TRUE;
                 }
             } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_CONFUSION)) {
                 if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(0);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
                     result = TRUE;
                 }
                 // Don't try to use any of these until after the first turn that a mon is in play.
             } else if ((battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber - battleCtx->totalTurns) >= 0) {
                 if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_ATK_STAGES)) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_ATTACK;
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_STAT_BOOSTER;
                     result = TRUE;
                 } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_DEF_STAGES)) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_DEFENSE;
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_STAT_BOOSTER;
                     result = TRUE;
                 } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_SPATK_STAGES)) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_SP_ATTACK;
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_STAT_BOOSTER;
                     result = TRUE;
                 } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_SPDEF_STAGES)) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_SP_DEFENSE;
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_STAT_BOOSTER;
                     result = TRUE;
                 } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_SPEED_STAGES)) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_SPEED;
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_STAT_BOOSTER;
                     result = TRUE;
                 } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_ACC_STAGES)) {
                     AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_ACCURACY;
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_STAT_BOOSTER;
                     result = TRUE;
                 } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_GUARD_SPEC)
                     && (battleCtx->sideConditionsMask[1] & SIDE_CONDITION_MIST) == FALSE) {
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_GUARD_SPEC;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_GUARD_SPEC;
                     result = TRUE;
                 }
             } else {
                 // Unrecognized item type
-                AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_MAX;
+                AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_MAX;
             }
 
             if (result == TRUE) {

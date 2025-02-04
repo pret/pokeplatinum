@@ -1,5 +1,4 @@
 {
-    "name": "Crawdaunt",
     "base_stats": {
         "hp": 63,
         "attack": 120,
@@ -8,10 +7,7 @@
         "special_attack": 90,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_DARK" ],
     "catch_rate": 155,
     "base_exp_reward": 161,
     "ev_yields": {
@@ -30,21 +26,32 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_HYPER_CUTTER",
-        "ABILITY_SHELL_ARMOR"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_SHELL_ARMOR" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_VICE_GRIP" ],
+            [ 1, "MOVE_LEER" ],
+            [ 7, "MOVE_HARDEN" ],
+            [ 10, "MOVE_VICE_GRIP" ],
+            [ 13, "MOVE_LEER" ],
+            [ 20, "MOVE_BUBBLE_BEAM" ],
+            [ 23, "MOVE_PROTECT" ],
+            [ 26, "MOVE_KNOCK_OFF" ],
+            [ 30, "MOVE_SWIFT" ],
+            [ 34, "MOVE_TAUNT" ],
+            [ 39, "MOVE_NIGHT_SLASH" ],
+            [ 44, "MOVE_CRABHAMMER" ],
+            [ 52, "MOVE_SWORDS_DANCE" ],
+            [ 57, "MOVE_CRUNCH" ],
+            [ 65, "MOVE_GUILLOTINE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -88,28 +95,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BUBBLE",
-                "MOVE_HARDEN",
-                "MOVE_VICE_GRIP",
-                "MOVE_LEER"
-            ],
-            "7": "MOVE_HARDEN",
-            "10": "MOVE_VICE_GRIP",
-            "13": "MOVE_LEER",
-            "20": "MOVE_BUBBLE_BEAM",
-            "23": "MOVE_PROTECT",
-            "26": "MOVE_KNOCK_OFF",
-            "30": "MOVE_SWIFT",
-            "34": "MOVE_TAUNT",
-            "39": "MOVE_NIGHT_SLASH",
-            "44": "MOVE_CRABHAMMER",
-            "52": "MOVE_SWORDS_DANCE",
-            "57": "MOVE_CRUNCH",
-            "65": "MOVE_GUILLOTINE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -124,9 +110,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -140,7 +127,66 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "It is a ruffian that uses its\npincers to pick up and toss out\nother Pokémon from its pond.",
-        "category": "Rogue Pokémon"
+        "en": {
+            "name": "CRAWDAUNT",
+            "category": "Rogue Pokémon",
+            "entry_text": [
+                "It is a ruffian that uses its\n",
+                "pincers to pick up and toss out\n",
+                "other Pokémon from its pond."
+            ]
+        },
+        "fr": {
+            "name": "COLHOMARD",
+            "category": "Pokémon Crapule",
+            "entry_text": [
+                "C’est un voyou qui utilise ses\n",
+                "pinces pour chasser les autres\n",
+                "Pokémon hors de sa mare."
+            ]
+        },
+        "de": {
+            "name": "KREBUTACK",
+            "category": "Schlingel",
+            "entry_text": [
+                "Dieser Grobian ergreift andere PKMN\n",
+                "mit seinen Scheren und wirft sie\n",
+                "aus seinem Teich."
+            ]
+        },
+        "it": {
+            "name": "CRAWDAUNT",
+            "category": "Pokémon Canaglia",
+            "entry_text": [
+                "Pokémon violento che afferra il\n",
+                "nemico con le chele e lo scaraventa\n",
+                "fuori dal suo stagno."
+            ]
+        },
+        "es": {
+            "name": "CRAWDAUNT",
+            "category": "Pokémon Granuja",
+            "entry_text": [
+                "Este malandrín usa sus pinzas para\n",
+                "atosigar y expulsar a los otros\n",
+                "Pokémon que viven en su estanque."
+            ]
+        },
+        "jp": {
+            "name": "シザリガ－",
+            "category": "ならずものポケモン",
+            "entry_text": [
+                "いけに　すむ　ほかの　ポケモンを\n",
+                "ハサミで　つまみあげ　いけの　そとへ\n",
+                "ほうりだしてしまう　あばれんぼう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4099
     }
 }

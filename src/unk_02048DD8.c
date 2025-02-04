@@ -3,11 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
@@ -29,7 +28,7 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -319,8 +318,8 @@ static BOOL sub_02049348(FieldSystem *fieldSystem)
 
 static BOOL sub_02049358(FieldSystem *fieldSystem)
 {
-    PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
-    return PoketchData_IsEnabled(poketchData);
+    Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
+    return Poketch_IsEnabled(poketch);
 }
 
 static BOOL sub_02049368(FieldSystem *fieldSystem)

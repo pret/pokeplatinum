@@ -1,5 +1,4 @@
 {
-    "name": "Nincada",
     "base_stats": {
         "hp": 31,
         "attack": 45,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_GROUND" ],
     "catch_rate": 255,
     "base_exp_reward": 65,
     "ev_yields": {
@@ -30,21 +26,25 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_COMPOUND_EYES",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_COMPOUND_EYES", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 5, "MOVE_LEECH_LIFE" ],
+            [ 9, "MOVE_SAND_ATTACK" ],
+            [ 14, "MOVE_FURY_SWIPES" ],
+            [ 19, "MOVE_MIND_READER" ],
+            [ 25, "MOVE_FALSE_SWIPE" ],
+            [ 31, "MOVE_MUD_SLAP" ],
+            [ 38, "MOVE_METAL_CLAW" ],
+            [ 45, "MOVE_DIG" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -71,21 +71,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_HARDEN"
-            ],
-            "5": "MOVE_LEECH_LIFE",
-            "9": "MOVE_SAND_ATTACK",
-            "14": "MOVE_FURY_SWIPES",
-            "19": "MOVE_MIND_READER",
-            "25": "MOVE_FALSE_SWIPE",
-            "31": "MOVE_MUD_SLAP",
-            "38": "MOVE_METAL_CLAW",
-            "45": "MOVE_DIG"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -105,8 +91,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -120,7 +106,66 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It grows underground, sensing\nits surroundings using antennae\ninstead of its virtually blind eyes.",
-        "category": "Trainee Pokémon"
+        "en": {
+            "name": "NINCADA",
+            "category": "Trainee Pokémon",
+            "entry_text": [
+                "It grows underground, sensing\n",
+                "its surroundings using antennae\n",
+                "instead of its virtually blind eyes."
+            ]
+        },
+        "fr": {
+            "name": "NINGALE",
+            "category": "Pokémon Apprenti",
+            "entry_text": [
+                "Il grandit sous terre et se repère\n",
+                "grâce à ses antennes car ses\n",
+                "yeux sont quasiment aveugles."
+            ]
+        },
+        "de": {
+            "name": "NINCADA",
+            "category": "Vorbereiter",
+            "entry_text": [
+                "Es wächst unterirdisch heran und\n",
+                "nimmt seine Umgebung mit Antennen\n",
+                "wahr, da es nahezu blind ist."
+            ]
+        },
+        "it": {
+            "name": "NINCADA",
+            "category": "Pokémon Novizio",
+            "entry_text": [
+                "Cresce sottoterra e, poiché è\n",
+                "quasi cieco, usa le antenne per\n",
+                "sondare ciò che lo circonda."
+            ]
+        },
+        "es": {
+            "name": "NINCADA",
+            "category": "Pokémon Aprendiz",
+            "entry_text": [
+                "Crece bajo tierra y explora el\n",
+                "entorno con sus antenas,\n",
+                "que sustituyen a ojos atrofiados."
+            ]
+        },
+        "jp": {
+            "name": "ツチニン",
+            "category": "したづみポケモン",
+            "entry_text": [
+                "じめんの　したで　せいちょうする。\n",
+                "ほとんど　みえない　めの　かわりに\n",
+                "しょっかくで　ようすを　さぐる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2052
     }
 }

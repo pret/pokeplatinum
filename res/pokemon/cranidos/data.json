@@ -1,5 +1,4 @@
 {
-    "name": "Cranidos",
     "base_stats": {
         "hp": 67,
         "attack": 125,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_ROCK"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_ROCK" ],
     "catch_rate": 45,
     "base_exp_reward": 99,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 30,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_MOLD_BREAKER",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_MOLD_BREAKER", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_HEADBUTT" ],
+            [ 1, "MOVE_LEER" ],
+            [ 6, "MOVE_FOCUS_ENERGY" ],
+            [ 10, "MOVE_PURSUIT" ],
+            [ 15, "MOVE_TAKE_DOWN" ],
+            [ 19, "MOVE_SCARY_FACE" ],
+            [ 24, "MOVE_ASSURANCE" ],
+            [ 28, "MOVE_ANCIENT_POWER" ],
+            [ 33, "MOVE_ZEN_HEADBUTT" ],
+            [ 37, "MOVE_SCREECH" ],
+            [ 43, "MOVE_HEAD_SMASH" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -89,22 +90,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_HEADBUTT",
-                "MOVE_LEER"
-            ],
-            "6": "MOVE_FOCUS_ENERGY",
-            "10": "MOVE_PURSUIT",
-            "15": "MOVE_TAKE_DOWN",
-            "19": "MOVE_SCARY_FACE",
-            "24": "MOVE_ASSURANCE",
-            "28": "MOVE_ANCIENT_POWER",
-            "33": "MOVE_ZEN_HEADBUTT",
-            "37": "MOVE_SCREECH",
-            "43": "MOVE_HEAD_SMASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -121,14 +107,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_RAMPARDOS"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -142,7 +128,66 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "A lifelong jungle dweller from 100\nmillion years ago, it would snap\nobstructing trees with head butts.",
-        "category": "Head Butt Pokémon"
+        "en": {
+            "name": "CRANIDOS",
+            "category": "Head Butt Pokémon",
+            "entry_text": [
+                "A lifelong jungle dweller from 100\n",
+                "million years ago, it would snap\n",
+                "obstructing trees with head butts."
+            ]
+        },
+        "fr": {
+            "name": "KRANIDOS",
+            "category": "Pokémon Coud’Boule",
+            "entry_text": [
+                "Il vivait dans la jungle il y a \n",
+                "environ 100 millions d’années. Son\n",
+                "crâne est dur comme du fer."
+            ]
+        },
+        "de": {
+            "name": "KOKNODON",
+            "category": "Kopfstoß",
+            "entry_text": [
+                "Vor über 100 Millionen Jahren lebte\n",
+                "es in den Dschungeln. Sein Schädel\n",
+                "ist hart wie Eisen."
+            ]
+        },
+        "it": {
+            "name": "CRANIDOS",
+            "category": "Pokémon Cranioso",
+            "entry_text": [
+                "Viveva nella giungla circa 100\n",
+                "milioni di anni fa. Il suo cranio\n",
+                "è duro come il ferro."
+            ]
+        },
+        "es": {
+            "name": "CRANIDOS",
+            "category": "Pokémon Cabezazo",
+            "entry_text": [
+                "Vivía en la jungla hace unos 100\n",
+                "millones de años. Su cráneo es\n",
+                "tan duro como el hierro."
+            ]
+        },
+        "jp": {
+            "name": "ズガイドス",
+            "category": "ずつきポケモン",
+            "entry_text": [
+                "およそ　１おくねんまえに\n",
+                "こだいの　みつりんで　くらしていた。\n",
+                "てつのように　かたい　ずがいこつ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 3595
     }
 }

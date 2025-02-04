@@ -1,5 +1,4 @@
 {
-    "name": "Swellow",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 162,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_GUTS",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_GUTS", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PLUCK" ],
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 4, "MOVE_FOCUS_ENERGY" ],
+            [ 8, "MOVE_QUICK_ATTACK" ],
+            [ 13, "MOVE_WING_ATTACK" ],
+            [ 19, "MOVE_DOUBLE_TEAM" ],
+            [ 28, "MOVE_ENDEAVOR" ],
+            [ 38, "MOVE_AERIAL_ACE" ],
+            [ 49, "MOVE_AGILITY" ],
+            [ 61, "MOVE_AIR_SLASH" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -74,24 +77,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PLUCK",
-                "MOVE_PECK",
-                "MOVE_GROWL",
-                "MOVE_FOCUS_ENERGY",
-                "MOVE_QUICK_ATTACK"
-            ],
-            "4": "MOVE_FOCUS_ENERGY",
-            "8": "MOVE_QUICK_ATTACK",
-            "13": "MOVE_WING_ATTACK",
-            "19": "MOVE_DOUBLE_TEAM",
-            "28": "MOVE_ENDEAVOR",
-            "38": "MOVE_AERIAL_ACE",
-            "49": "MOVE_AGILITY",
-            "61": "MOVE_AIR_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -102,9 +88,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -118,7 +105,66 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It circles the sky in search of\nprey. When it spots one, it dives\nsteeply to catch the prey.",
-        "category": "Swallow Pokémon"
+        "en": {
+            "name": "SWELLOW",
+            "category": "Swallow Pokémon",
+            "entry_text": [
+                "It circles the sky in search of\n",
+                "prey. When it spots one, it dives\n",
+                "steeply to catch the prey."
+            ]
+        },
+        "fr": {
+            "name": "HELEDELLE",
+            "category": "Pokémon Hirondelle",
+            "entry_text": [
+                "Il vole en cercle en quête d’une\n",
+                "proie. Dès qu’il l’a repérée, il fond\n",
+                "sur elle en un éclair."
+            ]
+        },
+        "de": {
+            "name": "SCHWALBOSS",
+            "category": "Schwalbe",
+            "entry_text": [
+                "Es fliegt auf der Suche nach Beute\n",
+                "ständig umher. Findet es Beute,\n",
+                "stürzt es sich im Sturzflug auf sie."
+            ]
+        },
+        "it": {
+            "name": "SWELLOW",
+            "category": "Pokémon Rondine",
+            "entry_text": [
+                "Vola in tondo alla ricerca di prede.\n",
+                "Quando ne avvista una, si lancia\n",
+                "in picchiata per catturarla."
+            ]
+        },
+        "es": {
+            "name": "SWELLOW",
+            "category": "Pokémon Buche",
+            "entry_text": [
+                "Vuela en círculos en busca de\n",
+                "presas. Cuando ve una, se lanza\n",
+                "sin dudarlo."
+            ]
+        },
+        "jp": {
+            "name": "オオスバメ",
+            "category": "ツバメポケモン",
+            "entry_text": [
+                "じょうくうを　せんかいしながら\n",
+                "えものを　さがし　まっさかさまに\n",
+                "きゅうこうかして　つかまえる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4357
     }
 }

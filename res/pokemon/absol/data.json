@@ -1,5 +1,4 @@
 {
-    "name": "Absol",
     "base_stats": {
         "hp": 65,
         "attack": 130,
@@ -8,10 +7,7 @@
         "special_attack": 75,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_DARK" ],
     "catch_rate": 30,
     "base_exp_reward": 174,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 25,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_SUPER_LUCK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_SUPER_LUCK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_FEINT" ],
+            [ 4, "MOVE_LEER" ],
+            [ 9, "MOVE_TAUNT" ],
+            [ 12, "MOVE_QUICK_ATTACK" ],
+            [ 17, "MOVE_RAZOR_WIND" ],
+            [ 20, "MOVE_PURSUIT" ],
+            [ 25, "MOVE_SWORDS_DANCE" ],
+            [ 28, "MOVE_BITE" ],
+            [ 33, "MOVE_DOUBLE_TEAM" ],
+            [ 36, "MOVE_SLASH" ],
+            [ 41, "MOVE_FUTURE_SIGHT" ],
+            [ 44, "MOVE_SUCKER_PUNCH" ],
+            [ 49, "MOVE_DETECT" ],
+            [ 52, "MOVE_NIGHT_SLASH" ],
+            [ 57, "MOVE_ME_FIRST" ],
+            [ 60, "MOVE_PSYCHO_CUT" ],
+            [ 65, "MOVE_PERISH_SONG" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM06",
@@ -102,29 +110,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_FEINT"
-            ],
-            "4": "MOVE_LEER",
-            "9": "MOVE_TAUNT",
-            "12": "MOVE_QUICK_ATTACK",
-            "17": "MOVE_RAZOR_WIND",
-            "20": "MOVE_PURSUIT",
-            "25": "MOVE_SWORDS_DANCE",
-            "28": "MOVE_BITE",
-            "33": "MOVE_DOUBLE_TEAM",
-            "36": "MOVE_SLASH",
-            "41": "MOVE_FUTURE_SIGHT",
-            "44": "MOVE_SUCKER_PUNCH",
-            "49": "MOVE_DETECT",
-            "52": "MOVE_NIGHT_SLASH",
-            "57": "MOVE_ME_FIRST",
-            "60": "MOVE_PSYCHO_CUT",
-            "65": "MOVE_PERISH_SONG"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -138,9 +124,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -154,7 +141,66 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "Rumored to sense disasters with its\nhorn, it became a target. It fled\ndeep into the mountains.",
-        "category": "Disaster Pokémon"
+        "en": {
+            "name": "ABSOL",
+            "category": "Disaster Pokémon",
+            "entry_text": [
+                "Rumored to sense disasters with its\n",
+                "horn, it became a target. It fled\n",
+                "deep into the mountains."
+            ]
+        },
+        "fr": {
+            "name": "ABSOL",
+            "category": "Pokémon Désastre",
+            "entry_text": [
+                "Il pressent les catastrophes et\n",
+                "n’apparaît aux gens que pour les\n",
+                "prévenir d’un danger imminent."
+            ]
+        },
+        "de": {
+            "name": "ABSOL",
+            "category": "Desaster",
+            "entry_text": [
+                "Es spürt drohende Katastrophen\n",
+                "und erscheint nur dann, wenn es\n",
+                "andere vor der Gefahr warnen will."
+            ]
+        },
+        "it": {
+            "name": "ABSOL",
+            "category": "Pokémon Catastrofe",
+            "entry_text": [
+                "Percepisce l’arrivo di disastri na-\n",
+                "turali e appare alla gente solo per\n",
+                "avvisarla del pericolo imminente."
+            ]
+        },
+        "es": {
+            "name": "ABSOL",
+            "category": "Pokémon Catástrofe",
+            "entry_text": [
+                "Presiente desastres inminentes\n",
+                "y se aparece a la gente para\n",
+                "advertir del peligro."
+            ]
+        },
+        "jp": {
+            "name": "アブソル",
+            "category": "わざわいポケモン",
+            "entry_text": [
+                "さいがいの　よかんを　かんじとる。\n",
+                "きけんを　しらせる　ときだけ\n",
+                "ひとまえに　あらわれるという。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 4112
     }
 }

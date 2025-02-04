@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pastoria_city_observatory_gate_2f.h"
 
     .data
 
@@ -29,7 +30,7 @@ _003E:
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     ScrCmd_073
-    ScrCmd_206
+    StartGreatMarshLookout
     ReleaseAll
     End
 

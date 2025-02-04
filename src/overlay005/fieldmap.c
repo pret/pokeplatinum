@@ -18,6 +18,7 @@
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
 #include "overlay005/hblank_system.h"
+#include "overlay005/map_name_popup.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D521C.h"
@@ -27,7 +28,6 @@
 #include "overlay005/ov5_021D5BC0.h"
 #include "overlay005/ov5_021D5CB0.h"
 #include "overlay005/ov5_021D5EB8.h"
-#include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021E1B08.h"
@@ -311,7 +311,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             ov5_021D5BA8(fieldSystem);
             ov5_021D5278(&fieldSystem->unk_4C);
             ov5_021E1B20(fieldSystem->unk_64);
-            ov5_021DD9C8(fieldSystem->unk_04->unk_08);
+            MapNamePopUp_Destroy(fieldSystem->unk_04->unk_08);
 
             if (fieldSystem->unk_04->unk_0C != NULL) {
                 ov5_021D5EF8(fieldSystem->unk_04->unk_0C);
@@ -450,7 +450,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
             v9--;
         }
 
-        ov5_021DD9E8(fieldSystem->unk_04->unk_08, v8, v9);
+        MapNamePopUp_Show(fieldSystem->unk_04->unk_08, v8, v9);
     }
 
     return TRUE;
@@ -842,7 +842,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     ov5_021DF488(fieldSystem->unk_40, 4, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
 
     if ((fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) || (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION)) {
-        sub_02062CCC(fieldSystem->mapObjMan, 0);
+        MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);
     }
 
     {
@@ -909,7 +909,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
         fieldSystem->unk_04->unk_0C = ov5_021D5EB8(fieldSystem);
     }
 
-    fieldSystem->unk_04->unk_08 = ov5_021DD98C(fieldSystem->bgConfig);
+    fieldSystem->unk_04->unk_08 = MapNamePopUp_Create(fieldSystem->bgConfig);
     fieldSystem->unk_64 = ov5_021E1B08(4);
     fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 

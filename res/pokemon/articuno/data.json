@@ -1,5 +1,4 @@
 {
-    "name": "Articuno",
     "base_stats": {
         "hp": 90,
         "attack": 85,
@@ -8,10 +7,7 @@
         "special_attack": 95,
         "special_defense": 125
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_FLYING" ],
     "catch_rate": 3,
     "base_exp_reward": 215,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 80,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GUST" ],
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 8, "MOVE_MIST" ],
+            [ 15, "MOVE_ICE_SHARD" ],
+            [ 22, "MOVE_MIND_READER" ],
+            [ 29, "MOVE_ANCIENT_POWER" ],
+            [ 36, "MOVE_AGILITY" ],
+            [ 43, "MOVE_ICE_BEAM" ],
+            [ 50, "MOVE_REFLECT" ],
+            [ 57, "MOVE_ROOST" ],
+            [ 64, "MOVE_TAILWIND" ],
+            [ 71, "MOVE_BLIZZARD" ],
+            [ 78, "MOVE_SHEER_COLD" ],
+            [ 85, "MOVE_HAIL" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -80,25 +84,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GUST",
-                "MOVE_POWDER_SNOW"
-            ],
-            "8": "MOVE_MIST",
-            "15": "MOVE_ICE_SHARD",
-            "22": "MOVE_MIND_READER",
-            "29": "MOVE_ANCIENT_POWER",
-            "36": "MOVE_AGILITY",
-            "43": "MOVE_ICE_BEAM",
-            "50": "MOVE_REFLECT",
-            "57": "MOVE_ROOST",
-            "64": "MOVE_TAILWIND",
-            "71": "MOVE_BLIZZARD",
-            "78": "MOVE_SHEER_COLD",
-            "85": "MOVE_HAIL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_OMINOUS_WIND",
@@ -110,9 +96,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 17,
@@ -126,7 +113,66 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 7,
         "pokemon_pos_m": 0,
-        "entry_text": "A legendary bird Pokémon.\nIt can create blizzards by\nfreezing moisture in the air.",
-        "category": "Freeze Pokémon"
+        "en": {
+            "name": "ARTICUNO",
+            "category": "Freeze Pokémon",
+            "entry_text": [
+                "A legendary bird Pokémon.\n",
+                "It can create blizzards by\n",
+                "freezing moisture in the air."
+            ]
+        },
+        "fr": {
+            "name": "ARTIKODIN",
+            "category": "Pokémon Glaciaire",
+            "entry_text": [
+                "Un Pokémon Oiseau légendaire.\n",
+                "Il peut provoquer des blizzards\n",
+                "en gelant l’humidité de l’air."
+            ]
+        },
+        "de": {
+            "name": "ARKTOS",
+            "category": "Eis",
+            "entry_text": [
+                "Ein Legendäres Vogel-Pokémon.\n",
+                "Es kann Blizzards verursachen,\n",
+                "indem es Feuchtigkeit gefriert."
+            ]
+        },
+        "it": {
+            "name": "ARTICUNO",
+            "category": "Pokémon Gelo",
+            "entry_text": [
+                "Un Pokémon uccello leggendario.\n",
+                "Riesce a creare bufere di neve\n",
+                "congelando l’umidità dell’aria."
+            ]
+        },
+        "es": {
+            "name": "ARTICUNO",
+            "category": "Pokémon Congelar",
+            "entry_text": [
+                "Legendario Pokémon pájaro capaz\n",
+                "de generar ventiscas congelando\n",
+                "la humedad del aire."
+            ]
+        },
+        "jp": {
+            "name": "フリ－ザ－",
+            "category": "れいとうポケモン",
+            "entry_text": [
+                "でんせつの　とりポケモン。\n",
+                "くうきちゅうの　すいぶんを　こおらせ\n",
+                "ふぶきを　つくりだすことが　できる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 4365
     }
 }

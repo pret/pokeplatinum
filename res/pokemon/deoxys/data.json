@@ -1,5 +1,4 @@
 {
-    "name": "Deoxys",
     "base_stats": {
         "hp": 50,
         "attack": 150,
@@ -8,10 +7,7 @@
         "special_attack": 150,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 3,
     "base_exp_reward": 215,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_WRAP" ],
+            [ 9, "MOVE_NIGHT_SHADE" ],
+            [ 17, "MOVE_TELEPORT" ],
+            [ 25, "MOVE_KNOCK_OFF" ],
+            [ 33, "MOVE_PURSUIT" ],
+            [ 41, "MOVE_PSYCHIC" ],
+            [ 49, "MOVE_SNATCH" ],
+            [ 57, "MOVE_PSYCHO_SHIFT" ],
+            [ 65, "MOVE_ZEN_HEADBUTT" ],
+            [ 73, "MOVE_COSMIC_POWER" ],
+            [ 81, "MOVE_RECOVER" ],
+            [ 89, "MOVE_PSYCHO_BOOST" ],
+            [ 97, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -104,25 +108,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LEER",
-                "MOVE_WRAP"
-            ],
-            "9": "MOVE_NIGHT_SHADE",
-            "17": "MOVE_TELEPORT",
-            "25": "MOVE_KNOCK_OFF",
-            "33": "MOVE_PURSUIT",
-            "41": "MOVE_PSYCHIC",
-            "49": "MOVE_SNATCH",
-            "57": "MOVE_PSYCHO_SHIFT",
-            "65": "MOVE_ZEN_HEADBUTT",
-            "73": "MOVE_COSMIC_POWER",
-            "81": "MOVE_RECOVER",
-            "89": "MOVE_PSYCHO_BOOST",
-            "97": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
@@ -136,9 +122,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 17,
@@ -152,7 +139,66 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "An alien virus that fell to earth\non a meteor underwent a DNA\nmutation to become this Pokémon.",
-        "category": "DNA Pokémon"
+        "en": {
+            "name": "DEOXYS",
+            "category": "DNA Pokémon",
+            "entry_text": [
+                "An alien virus that fell to earth\n",
+                "on a meteor underwent a DNA\n",
+                "mutation to become this Pokémon."
+            ]
+        },
+        "fr": {
+            "name": "DEOXYS",
+            "category": "Pokémon ADN",
+            "entry_text": [
+                "Il vient d’un virus extraterrestre\n",
+                "arrivé avec une météorite et ayant\n",
+                "subi une mutation génétique."
+            ]
+        },
+        "de": {
+            "name": "DEOXYS",
+            "category": "DNS",
+            "entry_text": [
+                "Ein außerirdischer Virus kam mit\n",
+                "einem Meteor auf die Erde. Seine\n",
+                "DNA mutierte. So entstand DEOXYS."
+            ]
+        },
+        "it": {
+            "name": "DEOXYS",
+            "category": "Pokémon DNA",
+            "entry_text": [
+                "È il risultato della mutazione gene-\n",
+                "tica di un virus alieno, giunto sulla\n",
+                "terra con un meteorite."
+            ]
+        },
+        "es": {
+            "name": "DEOXYS",
+            "category": "Pokémon ADN",
+            "entry_text": [
+                "Surgió a raíz de la mutación de\n",
+                "ADN de un virus alienígena que\n",
+                "cayó a la Tierra en un meteorito."
+            ]
+        },
+        "jp": {
+            "name": "デオキシス",
+            "category": "ＤＮＡポケモン",
+            "entry_text": [
+                "いんせきに　ふちゃくしていた\n",
+                "うちゅうウイルスの　ＤＮＡが\n",
+                "へんいして　うまれた　ポケモン。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 100,
+        "rarity": 1,
+        "unused": 2570
     }
 }

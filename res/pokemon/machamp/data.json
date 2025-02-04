@@ -1,5 +1,4 @@
 {
-    "name": "Machamp",
     "base_stats": {
         "hp": 90,
         "attack": 130,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_FIGHTING" ],
     "catch_rate": 45,
     "base_exp_reward": 193,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_GUTS",
-        "ABILITY_NO_GUARD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_GUTS", "ABILITY_NO_GUARD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LOW_KICK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 7, "MOVE_FOCUS_ENERGY" ],
+            [ 10, "MOVE_KARATE_CHOP" ],
+            [ 13, "MOVE_FORESIGHT" ],
+            [ 19, "MOVE_SEISMIC_TOSS" ],
+            [ 22, "MOVE_REVENGE" ],
+            [ 25, "MOVE_VITAL_THROW" ],
+            [ 32, "MOVE_SUBMISSION" ],
+            [ 36, "MOVE_WAKE_UP_SLAP" ],
+            [ 40, "MOVE_CROSS_CHOP" ],
+            [ 44, "MOVE_SCARY_FACE" ],
+            [ 51, "MOVE_DYNAMIC_PUNCH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -84,25 +88,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LOW_KICK",
-                "MOVE_LEER",
-                "MOVE_FOCUS_ENERGY"
-            ],
-            "7": "MOVE_FOCUS_ENERGY",
-            "10": "MOVE_KARATE_CHOP",
-            "13": "MOVE_FORESIGHT",
-            "19": "MOVE_SEISMIC_TOSS",
-            "22": "MOVE_REVENGE",
-            "25": "MOVE_VITAL_THROW",
-            "32": "MOVE_SUBMISSION",
-            "36": "MOVE_WAKE_UP_SLAP",
-            "40": "MOVE_CROSS_CHOP",
-            "44": "MOVE_SCARY_FACE",
-            "51": "MOVE_DYNAMIC_PUNCH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -113,9 +99,10 @@
             "MOVE_VACUUM_WAVE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 16,
@@ -129,7 +116,66 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "Its four muscled arms slam foes\nwith powerful punches and chops\nat blinding speed.",
-        "category": "Superpower Pokémon"
+        "en": {
+            "name": "MACHAMP",
+            "category": "Superpower Pokémon",
+            "entry_text": [
+                "Its four muscled arms slam foes\n",
+                "with powerful punches and chops\n",
+                "at blinding speed."
+            ]
+        },
+        "fr": {
+            "name": "MACKOGNEUR",
+            "category": "Pokémon Colosse",
+            "entry_text": [
+                "Ses quatre bras frappent à une\n",
+                "vitesse aveuglante. Il peut porter\n",
+                "1 000 coups en deux secondes."
+            ]
+        },
+        "de": {
+            "name": "MACHOMEI",
+            "category": "Kraftprotz",
+            "entry_text": [
+                "Mit seinen vier Armen schlägt es\n",
+                "blitzschnell zu. Es kann in zwei\n",
+                "Sekunden 1 000-mal zuschlagen."
+            ]
+        },
+        "it": {
+            "name": "MACHAMP",
+            "category": "Pokémon Megaforza",
+            "entry_text": [
+                "Tira pugni con le quattro braccia\n",
+                "ad una velocità impressionante.\n",
+                "Scaglia 1000 pugni ogni 2 secondi."
+            ]
+        },
+        "es": {
+            "name": "MACHAMP",
+            "category": "Pokémon Superpoder",
+            "entry_text": [
+                "Golpea con sus cuatro brazos a\n",
+                "gran velocidad. Puede dar 1000\n",
+                "golpes en dos segundos."
+            ]
+        },
+        "jp": {
+            "name": "カイリキ－",
+            "category": "かいりきポケモン",
+            "entry_text": [
+                "４ほんの　うでを　めにもとまらぬ\n",
+                "はやさで　うごかし　２びょうかんに\n",
+                "１０００ぱつの　パンチを　くりだす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2313
     }
 }

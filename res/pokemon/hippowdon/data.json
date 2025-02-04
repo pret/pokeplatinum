@@ -1,5 +1,4 @@
 {
-    "name": "Hippowdon",
     "base_stats": {
         "hp": 108,
         "attack": 112,
@@ -8,10 +7,7 @@
         "special_attack": 68,
         "special_defense": 72
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_GROUND" ],
     "catch_rate": 60,
     "base_exp_reward": 198,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 30,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SAND_STREAM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SAND_STREAM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_YAWN" ],
+            [ 7, "MOVE_BITE" ],
+            [ 13, "MOVE_YAWN" ],
+            [ 19, "MOVE_TAKE_DOWN" ],
+            [ 25, "MOVE_SAND_TOMB" ],
+            [ 31, "MOVE_CRUNCH" ],
+            [ 40, "MOVE_EARTHQUAKE" ],
+            [ 50, "MOVE_DOUBLE_EDGE" ],
+            [ 60, "MOVE_FISSURE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -76,26 +81,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ICE_FANG",
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG",
-                "MOVE_TACKLE",
-                "MOVE_SAND_ATTACK",
-                "MOVE_BITE",
-                "MOVE_YAWN"
-            ],
-            "7": "MOVE_BITE",
-            "13": "MOVE_YAWN",
-            "19": "MOVE_TAKE_DOWN",
-            "25": "MOVE_SAND_TOMB",
-            "31": "MOVE_CRUNCH",
-            "40": "MOVE_EARTHQUAKE",
-            "50": "MOVE_DOUBLE_EDGE",
-            "60": "MOVE_FISSURE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SUPERPOWER",
             "MOVE_IRON_HEAD",
@@ -103,9 +89,10 @@
             "MOVE_EARTH_POWER"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 20,
@@ -119,7 +106,66 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 10,
         "pokemon_pos_m": 3,
-        "entry_text": "It is surprisingly quick to anger.\nIt holds its mouth agape as a\ndisplay of its strength.",
-        "category": "Heavyweight Pokémon"
+        "en": {
+            "name": "HIPPOWDON",
+            "category": "Heavyweight Pokémon",
+            "entry_text": [
+                "It is surprisingly quick to anger.\n",
+                "It holds its mouth agape as a\n",
+                "display of its strength."
+            ]
+        },
+        "fr": {
+            "name": "HIPPODOCUS",
+            "category": "Pokémon Poids Lourd",
+            "entry_text": [
+                "Il emmagasine du sable qu’il\n",
+                "expulse en tornades par les\n",
+                "pores de sa peau pour attaquer."
+            ]
+        },
+        "de": {
+            "name": "HIPPOTERUS",
+            "category": "Schwergewicht",
+            "entry_text": [
+                "Es wirbelt im Körper gespeicherten\n",
+                "Sand durch Öffnungen und generiert\n",
+                "so einen Sandwirbelsturm."
+            ]
+        },
+        "it": {
+            "name": "HIPPOWDON",
+            "category": "Pokémon Grandepeso",
+            "entry_text": [
+                "Immagazzina sabbia all’interno del\n",
+                "corpo e l’espelle con violenza dai\n",
+                "pori, formando enormi vortici."
+            ]
+        },
+        "es": {
+            "name": "HIPPOWDON",
+            "category": "Pokémon Peso Pesado",
+            "entry_text": [
+                "Cuando ataca, expulsa arena\n",
+                "almacenada en su interior\n",
+                "para crear un gran tornado."
+            ]
+        },
+        "jp": {
+            "name": "カバルドン",
+            "category": "じゅうりょうポケモン",
+            "entry_text": [
+                "たいないに　ためた　すなを　からだの\n",
+                "あなから　ふきあげて　きょだいな\n",
+                "たつまきを　つくり　こうげきする。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 4355
     }
 }

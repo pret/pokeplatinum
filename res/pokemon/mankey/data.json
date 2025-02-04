@@ -1,5 +1,4 @@
 {
-    "name": "Mankey",
     "base_stats": {
         "hp": 40,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 35,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_FIGHTING" ],
     "catch_rate": 190,
     "base_exp_reward": 74,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_VITAL_SPIRIT",
-        "ABILITY_ANGER_POINT"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_VITAL_SPIRIT", "ABILITY_ANGER_POINT" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_COVET" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_LOW_KICK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 9, "MOVE_FURY_SWIPES" ],
+            [ 13, "MOVE_KARATE_CHOP" ],
+            [ 17, "MOVE_SEISMIC_TOSS" ],
+            [ 21, "MOVE_SCREECH" ],
+            [ 25, "MOVE_ASSURANCE" ],
+            [ 33, "MOVE_SWAGGER" ],
+            [ 37, "MOVE_CROSS_CHOP" ],
+            [ 41, "MOVE_THRASH" ],
+            [ 45, "MOVE_PUNISHMENT" ],
+            [ 49, "MOVE_CLOSE_COMBAT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -86,26 +91,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_COVET",
-                "MOVE_SCRATCH",
-                "MOVE_LOW_KICK",
-                "MOVE_LEER",
-                "MOVE_FOCUS_ENERGY"
-            ],
-            "9": "MOVE_FURY_SWIPES",
-            "13": "MOVE_KARATE_CHOP",
-            "17": "MOVE_SEISMIC_TOSS",
-            "21": "MOVE_SCREECH",
-            "25": "MOVE_ASSURANCE",
-            "33": "MOVE_SWAGGER",
-            "37": "MOVE_CROSS_CHOP",
-            "41": "MOVE_THRASH",
-            "45": "MOVE_PUNISHMENT",
-            "49": "MOVE_CLOSE_COMBAT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -123,14 +109,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             28,
             "SPECIES_PRIMEAPE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -144,7 +130,66 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It lives in treetop colonies.\nIf one becomes enraged, the whole\ncolony rampages for no reason.",
-        "category": "Pig Monkey Pokémon"
+        "en": {
+            "name": "MANKEY",
+            "category": "Pig Monkey Pokémon",
+            "entry_text": [
+                "It lives in treetop colonies.\n",
+                "If one becomes enraged, the whole\n",
+                "colony rampages for no reason."
+            ]
+        },
+        "fr": {
+            "name": "FEROSINGE",
+            "category": "Pokémon Porsinge",
+            "entry_text": [
+                "Ils vivent en colonies sylvestres.\n",
+                "Quand un FEROSINGE s’énerve,\n",
+                "toute la colonie suit son exemple."
+            ]
+        },
+        "de": {
+            "name": "MENKI",
+            "category": "Schw./ Affe",
+            "entry_text": [
+                "Es lebt mit anderen in Baumkronen.\n",
+                "Wird eines von ihnen wütend, werden\n",
+                "alle anderen auch wütend."
+            ]
+        },
+        "it": {
+            "name": "MANKEY",
+            "category": "Pokémon Suinpanzé",
+            "entry_text": [
+                "Vive in colonie sugli alberi. Se uno\n",
+                "si adira, l’intera colonia comincia a\n",
+                "agire violentemente senza motivo."
+            ]
+        },
+        "es": {
+            "name": "MANKEY",
+            "category": "Pokémon Mono Cerdo",
+            "entry_text": [
+                "Vive en colonias en los árboles.\n",
+                "Si uno se enfada, el resto de la\n",
+                "manada ataca sin motivo."
+            ]
+        },
+        "jp": {
+            "name": "マンキ－",
+            "category": "ぶたざるポケモン",
+            "entry_text": [
+                "きのうえで　せいかつしている。\n",
+                "むれの　１ぴきが　おこりはじめると\n",
+                "ぜんいんが　いみもなく　あばれだす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2313
     }
 }

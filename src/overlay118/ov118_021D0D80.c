@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/species.h"
+#include "generated/species.h"
 
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/struct_0207F248.h"
@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "message.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "spl.h"
 #include "strbuf.h"
@@ -93,7 +93,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
             break;
         }
 
-        PokedexData_Capture(SaveData_PokedexData(FieldSystem_GetSaveData(param0->unk_5A4->unk_1C)), v1);
+        Pokedex_Capture(SaveData_GetPokedex(FieldSystem_GetSaveData(param0->unk_5A4->unk_1C)), v1);
     }
         v0->unk_00++;
         break;

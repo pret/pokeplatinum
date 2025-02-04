@@ -4,11 +4,11 @@ import json
 import pathlib
 import sys
 
-from consts import species
 from convert import u16, u32
+from generated import species
 
 def as_species(s: str) -> bytes:
-    return u32(species.PokemonSpecies[s].value)
+    return u32(species.Species[s].value)
 
 input_path = pathlib.Path(sys.argv[1])
 output_path_species = pathlib.Path(sys.argv[2])

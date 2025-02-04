@@ -1,5 +1,4 @@
 {
-    "name": "Gorebyss",
     "base_stats": {
         "hp": 55,
         "attack": 84,
@@ -8,10 +7,7 @@
         "special_attack": 114,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 60,
     "base_exp_reward": 178,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WHIRLPOOL" ],
+            [ 6, "MOVE_CONFUSION" ],
+            [ 10, "MOVE_AGILITY" ],
+            [ 15, "MOVE_WATER_PULSE" ],
+            [ 19, "MOVE_AMNESIA" ],
+            [ 24, "MOVE_AQUA_RING" ],
+            [ 28, "MOVE_CAPTIVATE" ],
+            [ 33, "MOVE_BATON_PASS" ],
+            [ 37, "MOVE_DIVE" ],
+            [ 42, "MOVE_PSYCHIC" ],
+            [ 46, "MOVE_AQUA_TAIL" ],
+            [ 51, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -76,21 +78,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_WHIRLPOOL",
-            "6": "MOVE_CONFUSION",
-            "10": "MOVE_AGILITY",
-            "15": "MOVE_WATER_PULSE",
-            "19": "MOVE_AMNESIA",
-            "24": "MOVE_AQUA_RING",
-            "28": "MOVE_CAPTIVATE",
-            "33": "MOVE_BATON_PASS",
-            "37": "MOVE_DIVE",
-            "42": "MOVE_PSYCHIC",
-            "46": "MOVE_AQUA_TAIL",
-            "51": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -101,9 +89,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 18,
@@ -117,7 +106,66 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It lives at the bottom of the sea.\nIn the springtime, its pink body\nturns more vivid for some reason.",
-        "category": "South Sea Pokémon"
+        "en": {
+            "name": "GOREBYSS",
+            "category": "South Sea Pokémon",
+            "entry_text": [
+                "It lives at the bottom of the sea.\n",
+                "In the springtime, its pink body\n",
+                "turns more vivid for some reason."
+            ]
+        },
+        "fr": {
+            "name": "ROSABYSS",
+            "category": "Pokémon Mer Du Sud",
+            "entry_text": [
+                "Au printemps, son corps rose se\n",
+                "fait plus vif sans que l’on sache\n",
+                "pourquoi. Il vit au fond de la mer. "
+            ]
+        },
+        "de": {
+            "name": "SAGANABYSS",
+            "category": "Südsee",
+            "entry_text": [
+                "Es lebt auf dem Grund des Meeres.\n",
+                "Im Frühling wirkt die Farbe seines\n",
+                "Körpers viel kräftiger."
+            ]
+        },
+        "it": {
+            "name": "GOREBYSS",
+            "category": "Pokémon Sudmarino",
+            "entry_text": [
+                "Vive sui fondali marini. In primavera\n",
+                "il suo corpo rosato diventa più\n",
+                "vivido per chissà quale motivo."
+            ]
+        },
+        "es": {
+            "name": "GOREBYSS",
+            "category": "Pokémon Mar Del Sur",
+            "entry_text": [
+                "Vive en el fondo del mar. En\n",
+                "primavera, su cuerpo rosado\n",
+                "adquiere colores más vivos."
+            ]
+        },
+        "jp": {
+            "name": "サクラビス",
+            "category": "なんかいポケモン",
+            "entry_text": [
+                "うみの　そこで　くらしているが\n",
+                "はるになると　からだの　ピンクいろが\n",
+                "なぜか　あざやかに　いろづく。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 771
     }
 }

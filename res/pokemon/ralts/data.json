@@ -1,5 +1,4 @@
 {
-    "name": "Ralts",
     "base_stats": {
         "hp": 28,
         "attack": 25,
@@ -8,10 +7,7 @@
         "special_attack": 45,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 235,
     "base_exp_reward": 70,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_TRACE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_TRACE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 6, "MOVE_CONFUSION" ],
+            [ 10, "MOVE_DOUBLE_TEAM" ],
+            [ 12, "MOVE_TELEPORT" ],
+            [ 17, "MOVE_LUCKY_CHANT" ],
+            [ 21, "MOVE_MAGICAL_LEAF" ],
+            [ 23, "MOVE_CALM_MIND" ],
+            [ 28, "MOVE_PSYCHIC" ],
+            [ 32, "MOVE_IMPRISON" ],
+            [ 34, "MOVE_FUTURE_SIGHT" ],
+            [ 39, "MOVE_CHARM" ],
+            [ 43, "MOVE_HYPNOSIS" ],
+            [ 45, "MOVE_DREAM_EATER" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -86,22 +89,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": "MOVE_GROWL",
-            "6": "MOVE_CONFUSION",
-            "10": "MOVE_DOUBLE_TEAM",
-            "12": "MOVE_TELEPORT",
-            "17": "MOVE_LUCKY_CHANT",
-            "21": "MOVE_MAGICAL_LEAF",
-            "23": "MOVE_CALM_MIND",
-            "28": "MOVE_PSYCHIC",
-            "32": "MOVE_IMPRISON",
-            "34": "MOVE_FUTURE_SIGHT",
-            "39": "MOVE_CHARM",
-            "43": "MOVE_HYPNOSIS",
-            "45": "MOVE_DREAM_EATER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
@@ -117,14 +105,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             20,
             "SPECIES_KIRLIA"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 4,
@@ -138,7 +126,66 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "If its horns capture the warm\nfeelings of people or Pokémon,\nits body warms up slightly.",
-        "category": "Feeling Pokémon"
+        "en": {
+            "name": "RALTS",
+            "category": "Feeling Pokémon",
+            "entry_text": [
+                "If its horns capture the warm\n",
+                "feelings of people or Pokémon,\n",
+                "its body warms up slightly."
+            ]
+        },
+        "fr": {
+            "name": "TARSAL",
+            "category": "Pokémon Sentiment",
+            "entry_text": [
+                "Il perçoit les émotions humaines\n",
+                "grâce aux cornes sur sa tête. On\n",
+                "dit qu’il apprécie la joie de vivre."
+            ]
+        },
+        "de": {
+            "name": "TRASLA",
+            "category": "Gefühl",
+            "entry_text": [
+                "Mit dem Horn kann es menschliche\n",
+                "Gefühle wahrnehmen. Es erscheint\n",
+                "fröhlichen Menschen."
+            ]
+        },
+        "it": {
+            "name": "RALTS",
+            "category": "Pokémon Sensazione",
+            "entry_text": [
+                "Percepisce gli stati d’animo delle\n",
+                "persone con le corna che ha sul\n",
+                "capo. Si mostra alla gente allegra."
+            ]
+        },
+        "es": {
+            "name": "RALTS",
+            "category": "Pokémon Sensible",
+            "entry_text": [
+                "Su cuerno le permite presentir\n",
+                "las emociones humanas. Se dice\n",
+                "que se aparece a la gente amable."
+            ]
+        },
+        "jp": {
+            "name": "ラルトス",
+            "category": "きもちポケモン",
+            "entry_text": [
+                "あたまの　ツノで　ひとの　きもちを\n",
+                "かんじとる。あかるい　きぶんの\n",
+                "ひとの　まえに　あらわれるという。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2570
     }
 }

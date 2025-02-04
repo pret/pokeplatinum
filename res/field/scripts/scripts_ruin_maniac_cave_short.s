@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/ruin_maniac_cave_short.h"
 
     .data
 

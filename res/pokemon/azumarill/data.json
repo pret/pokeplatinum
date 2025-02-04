@@ -1,5 +1,4 @@
 {
-    "name": "Azumarill",
     "base_stats": {
         "hp": 100,
         "attack": 50,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 75,
     "base_exp_reward": 153,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_HUGE_POWER"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_HUGE_POWER" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 2, "MOVE_DEFENSE_CURL" ],
+            [ 7, "MOVE_TAIL_WHIP" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_ROLLOUT" ],
+            [ 20, "MOVE_BUBBLE_BEAM" ],
+            [ 27, "MOVE_AQUA_RING" ],
+            [ 33, "MOVE_DOUBLE_EDGE" ],
+            [ 40, "MOVE_RAIN_DANCE" ],
+            [ 47, "MOVE_AQUA_TAIL" ],
+            [ 54, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -80,25 +84,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_TAIL_WHIP",
-                "MOVE_WATER_GUN"
-            ],
-            "2": "MOVE_DEFENSE_CURL",
-            "7": "MOVE_TAIL_WHIP",
-            "10": "MOVE_WATER_GUN",
-            "15": "MOVE_ROLLOUT",
-            "20": "MOVE_BUBBLE_BEAM",
-            "27": "MOVE_AQUA_RING",
-            "33": "MOVE_DOUBLE_EDGE",
-            "40": "MOVE_RAIN_DANCE",
-            "47": "MOVE_AQUA_TAIL",
-            "54": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -112,9 +98,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -128,7 +115,66 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "It can spend all day in water,\nsince it can inhale and store\na large volume of air.",
-        "category": "Aqua Rabbit Pokémon"
+        "en": {
+            "name": "AZUMARILL",
+            "category": "Aqua Rabbit Pokémon",
+            "entry_text": [
+                "It can spend all day in water,\n",
+                "since it can inhale and store\n",
+                "a large volume of air."
+            ]
+        },
+        "fr": {
+            "name": "AZUMARILL",
+            "category": "Pokémon Aqualapin",
+            "entry_text": [
+                "Il peuple les lacs et les mers. Sous\n",
+                "l’eau, ses motifs et ses couleurs\n",
+                "brouillent la vue de l’ennemi."
+            ]
+        },
+        "de": {
+            "name": "AZUMARILL",
+            "category": "Aquahase",
+            "entry_text": [
+                "Es lebt in Flüssen und Seen. Im\n",
+                "Wasser verwirrt es seine Gegner\n",
+                "durch seine Farbe und Muster."
+            ]
+        },
+        "it": {
+            "name": "AZUMARILL",
+            "category": "Pokémon Acquniglio",
+            "entry_text": [
+                "Vive nei fiumi e nei laghi. Il suo\n",
+                "colore e i disegni confondono i\n",
+                "nemici in acqua."
+            ]
+        },
+        "es": {
+            "name": "AZUMARILL",
+            "category": "Pokémon Conejoagua",
+            "entry_text": [
+                "Vive en ríos y lagos. En el agua,\n",
+                "sus colores y dibujos confunden\n",
+                "a los enemigos."
+            ]
+        },
+        "jp": {
+            "name": "マリルリ",
+            "category": "みずうさぎポケモン",
+            "entry_text": [
+                "かわや　みずうみに　せいそくする。\n",
+                "みずの　なかでは　からだの　いろと\n",
+                "もようが　てきの　めを　あざむく。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 771
     }
 }

@@ -1,5 +1,4 @@
 {
-    "name": "Cacturne",
     "base_stats": {
         "hp": 70,
         "attack": 115,
@@ -8,10 +7,7 @@
         "special_attack": 115,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_DARK" ],
     "catch_rate": 60,
     "base_exp_reward": 177,
     "ev_yields": {
@@ -30,21 +26,34 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_GRASS",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_SAND_VEIL",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_SAND_VEIL", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_REVENGE" ],
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_GROWTH" ],
+            [ 5, "MOVE_ABSORB" ],
+            [ 9, "MOVE_GROWTH" ],
+            [ 13, "MOVE_LEECH_SEED" ],
+            [ 17, "MOVE_SAND_ATTACK" ],
+            [ 21, "MOVE_PIN_MISSILE" ],
+            [ 25, "MOVE_INGRAIN" ],
+            [ 29, "MOVE_FAINT_ATTACK" ],
+            [ 35, "MOVE_SPIKES" ],
+            [ 41, "MOVE_SUCKER_PUNCH" ],
+            [ 47, "MOVE_PAYBACK" ],
+            [ 53, "MOVE_NEEDLE_ARM" ],
+            [ 59, "MOVE_COTTON_SPORE" ],
+            [ 65, "MOVE_SANDSTORM" ],
+            [ 71, "MOVE_DESTINY_BOND" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM09",
@@ -84,30 +93,7 @@
             "HM01",
             "HM04"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_REVENGE",
-                "MOVE_POISON_STING",
-                "MOVE_LEER",
-                "MOVE_ABSORB",
-                "MOVE_GROWTH"
-            ],
-            "5": "MOVE_ABSORB",
-            "9": "MOVE_GROWTH",
-            "13": "MOVE_LEECH_SEED",
-            "17": "MOVE_SAND_ATTACK",
-            "21": "MOVE_PIN_MISSILE",
-            "25": "MOVE_INGRAIN",
-            "29": "MOVE_FAINT_ATTACK",
-            "35": "MOVE_SPIKES",
-            "41": "MOVE_SUCKER_PUNCH",
-            "47": "MOVE_PAYBACK",
-            "53": "MOVE_NEEDLE_ARM",
-            "59": "MOVE_COTTON_SPORE",
-            "65": "MOVE_SANDSTORM",
-            "71": "MOVE_DESTINY_BOND"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -119,9 +105,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -135,7 +122,66 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "It becomes active at night,\nseeking prey that is exhausted\nfrom the day’s desert heat.",
-        "category": "Scarecrow Pokémon"
+        "en": {
+            "name": "CACTURNE",
+            "category": "Scarecrow Pokémon",
+            "entry_text": [
+                "It becomes active at night,\n",
+                "seeking prey that is exhausted\n",
+                "from the day’s desert heat."
+            ]
+        },
+        "fr": {
+            "name": "CACTURNE",
+            "category": "Pokémon Epouvantail",
+            "entry_text": [
+                "Il sort la nuit pour chasser. Il\n",
+                "traque les proies épuisées après\n",
+                "une journée dans le désert."
+            ]
+        },
+        "de": {
+            "name": "NOKTUSKA",
+            "category": "Vogelschock",
+            "entry_text": [
+                "Ein nachtaktives PKMN, das Beute\n",
+                "sucht, die durch die Tageshitze der\n",
+                "Wüste bereits erschöpft ist."
+            ]
+        },
+        "it": {
+            "name": "CACTURNE",
+            "category": "Pokémon Spavento",
+            "entry_text": [
+                "Diventa attivo di notte, quando va\n",
+                "a caccia di prede stremate dalla\n",
+                "calura del deserto."
+            ]
+        },
+        "es": {
+            "name": "CACTURNE",
+            "category": "Pokémon Espantajo",
+            "entry_text": [
+                "Es un Pokémon nocturno. Busca\n",
+                "presas agotadas por el calor\n",
+                "diurno del desierto."
+            ]
+        },
+        "jp": {
+            "name": "ノクタス",
+            "category": "カカシぐさポケモン",
+            "entry_text": [
+                "よるになると　かつどうを　はじめる。\n",
+                "さばくの　あつさに　つかれはてた\n",
+                "えものを　みつけだし　とらえるのだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 4097
     }
 }

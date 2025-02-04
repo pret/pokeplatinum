@@ -1,5 +1,4 @@
 {
-    "name": "Exploud",
     "base_stats": {
         "hp": 104,
         "attack": 91,
@@ -8,10 +7,7 @@
         "special_attack": 91,
         "special_defense": 63
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 184,
     "ev_yields": {
@@ -30,21 +26,35 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SOUNDPROOF",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SOUNDPROOF", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_UPROAR" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_HOWL" ],
+            [ 5, "MOVE_UPROAR" ],
+            [ 11, "MOVE_ASTONISH" ],
+            [ 15, "MOVE_HOWL" ],
+            [ 20, "MOVE_BITE" ],
+            [ 23, "MOVE_SUPERSONIC" ],
+            [ 29, "MOVE_STOMP" ],
+            [ 37, "MOVE_SCREECH" ],
+            [ 40, "MOVE_CRUNCH" ],
+            [ 45, "MOVE_ROAR" ],
+            [ 55, "MOVE_REST" ],
+            [ 55, "MOVE_SLEEP_TALK" ],
+            [ 63, "MOVE_HYPER_VOICE" ],
+            [ 71, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -89,33 +99,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ICE_FANG",
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG",
-                "MOVE_POUND",
-                "MOVE_UPROAR",
-                "MOVE_ASTONISH",
-                "MOVE_HOWL"
-            ],
-            "5": "MOVE_UPROAR",
-            "11": "MOVE_ASTONISH",
-            "15": "MOVE_HOWL",
-            "20": "MOVE_BITE",
-            "23": "MOVE_SUPERSONIC",
-            "29": "MOVE_STOMP",
-            "37": "MOVE_SCREECH",
-            "40": "MOVE_CRUNCH",
-            "45": "MOVE_ROAR",
-            "55": [
-                "MOVE_REST",
-                "MOVE_SLEEP_TALK"
-            ],
-            "63": "MOVE_HYPER_VOICE",
-            "71": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -128,9 +112,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -144,7 +129,66 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "Its howls can be heard over six\nmiles away. It emits all sorts of\nnoises from the ports on its body.",
-        "category": "Loud Noise Pokémon"
+        "en": {
+            "name": "EXPLOUD",
+            "category": "Loud Noise Pokémon",
+            "entry_text": [
+                "Its howls can be heard over six\n",
+                "miles away. It emits all sorts of\n",
+                "noises from the ports on its body."
+            ]
+        },
+        "fr": {
+            "name": "BROUHABAM",
+            "category": "Pokémon Bruit Sourd",
+            "entry_text": [
+                "Son hurlement s’entend à 10 km\n",
+                "à la ronde. Ses orifices\n",
+                "émettent toutes sortes de bruits."
+            ]
+        },
+        "de": {
+            "name": "KRAWUMMS",
+            "category": "Krach",
+            "entry_text": [
+                "Sein Heulen hört man in 10 km\n",
+                "Entfernung. Es gibt alle Arten von\n",
+                "Geräuschen von sich."
+            ]
+        },
+        "it": {
+            "name": "EXPLOUD",
+            "category": "Pokémon Fragore",
+            "entry_text": [
+                "Le sue urla si sentono a 10 km di\n",
+                "distanza. Emette diversi suoni dalle\n",
+                "numerose aperture del suo corpo."
+            ]
+        },
+        "es": {
+            "name": "EXPLOUD",
+            "category": "Pokémon Escandaloso",
+            "entry_text": [
+                "Su aullido se puede oír a 10 km.\n",
+                "Emite todo tipo de sonidos desde\n",
+                "los tubos de su cuerpo."
+            ]
+        },
+        "jp": {
+            "name": "バクオング",
+            "category": "そうおんポケモン",
+            "entry_text": [
+                "バクオングの　とおぼえは　１０キロ\n",
+                "さきまで　とどく。からだじゅうの\n",
+                "あなから　さまざまな　おとを　だす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1285
     }
 }

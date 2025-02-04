@@ -4,14 +4,12 @@
 #include <string.h>
 
 #include "constants/trainer.h"
-#include "consts/gender.h"
-#include "consts/journal.h"
+#include "generated/genders.h"
+#include "generated/journal_location_events.h"
+#include "generated/journal_online_events.h"
+#include "generated/text_banks.h"
 
 #include "applications/journal_display/journal_controller.h"
-#include "text/gmm/message_bank_journal_entries.h"
-#include "text/gmm/message_bank_location_names.h"
-#include "text/gmm/message_bank_npc_trainer_names.h"
-#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "font.h"
@@ -24,6 +22,10 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_data.h"
+
+#include "res/text/bank/journal_entries.h"
+#include "res/text/bank/location_names.h"
+#include "res/text/bank/npc_trainer_names.h"
 
 #define ROW_HEIGHT              16
 #define LOCATION_EVENT_Y_OFFSET ROW_HEIGHT
@@ -340,18 +342,18 @@ static void JournalPrinter_PrintTrainerEvent(JournalManager *journalManager, Win
         return;
     }
 
-    Strbuf *name = MessageBank_GetNewStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, message_bank_location_names, MapHeader_GetMapLabelTextID(journalEntryTrainer.mapID), location_names_00042);
+    Strbuf *name = MessageBank_GetNewStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, MapHeader_GetMapLabelTextID(journalEntryTrainer.mapID), location_names_00042);
     strLength = Strbuf_Length(name);
     Strbuf_Free(name);
 
-    if (TrainerData_LoadParam(journalEntryTrainer.trainerID, TRDATA_CLASS) == TRAINER_CLASS_RIVAL) {
+    if (Trainer_LoadParam(journalEntryTrainer.trainerID, TRDATA_CLASS) == TRAINER_CLASS_RIVAL) {
         name = MessageLoader_GetNewStrbuf(journalManager->loader, journal_entries_rival_name);
         StringTemplate_SetRivalName(journalManager->template, 1, journalManager->saveData);
         StringTemplate_Format(journalManager->template, journalManager->strbuf, name);
         strLength += Strbuf_Length(journalManager->strbuf);
         Strbuf_Free(name);
     } else {
-        name = MessageBank_GetNewStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, message_bank_npc_trainer_names, journalEntryTrainer.trainerID, pl_msg_00000618_00042);
+        name = MessageBank_GetNewStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_NAMES, journalEntryTrainer.trainerID, pl_msg_00000618_00042);
         strLength += Strbuf_Length(name);
         Strbuf_Free(name);
         StringTemplate_SetTrainerName(journalManager->template, 1, journalEntryTrainer.trainerID);

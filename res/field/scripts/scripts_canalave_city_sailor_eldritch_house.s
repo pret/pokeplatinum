@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/canalave_city_sailor_eldritch_house.h"
 
     .data
 

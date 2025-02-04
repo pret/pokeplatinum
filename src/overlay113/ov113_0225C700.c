@@ -11,7 +11,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -44,6 +43,7 @@
 #include "core_sys.h"
 #include "easy3d_object.h"
 #include "font.h"
+#include "fx_util.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -71,7 +71,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E190.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
 #include "unk_0202419C.h"
@@ -1175,7 +1174,7 @@ static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0)
         v2 = Camera_GetDistance(param0->camera);
         v3 = FX32_ONE * 4 / 3;
 
-        sub_0201E34C(v1, v2, v3, &v4, &v5);
+        CalcLinearFov(v1, v2, v3, &v4, &v5);
 
         param0->unk_D0 = v4;
         param0->unk_D4 = v5;

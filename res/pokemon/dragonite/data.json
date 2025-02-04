@@ -1,5 +1,4 @@
 {
-    "name": "Dragonite",
     "base_stats": {
         "hp": 91,
         "attack": 134,
@@ -8,10 +7,7 @@
         "special_attack": 100,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_DRAGON",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_DRAGON", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 218,
     "ev_yields": {
@@ -30,21 +26,34 @@
     "hatch_cycles": 40,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_INNER_FOCUS",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_INNER_FOCUS", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FIRE_PUNCH" ],
+            [ 1, "MOVE_THUNDER_PUNCH" ],
+            [ 1, "MOVE_ROOST" ],
+            [ 1, "MOVE_WRAP" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_THUNDER_WAVE" ],
+            [ 1, "MOVE_TWISTER" ],
+            [ 5, "MOVE_THUNDER_WAVE" ],
+            [ 11, "MOVE_TWISTER" ],
+            [ 15, "MOVE_DRAGON_RAGE" ],
+            [ 21, "MOVE_SLAM" ],
+            [ 25, "MOVE_AGILITY" ],
+            [ 33, "MOVE_AQUA_TAIL" ],
+            [ 39, "MOVE_DRAGON_RUSH" ],
+            [ 47, "MOVE_SAFEGUARD" ],
+            [ 53, "MOVE_DRAGON_DANCE" ],
+            [ 55, "MOVE_WING_ATTACK" ],
+            [ 64, "MOVE_OUTRAGE" ],
+            [ 73, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM02",
             "TM03",
@@ -100,30 +109,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FIRE_PUNCH",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_ROOST",
-                "MOVE_WRAP",
-                "MOVE_LEER",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_TWISTER"
-            ],
-            "5": "MOVE_THUNDER_WAVE",
-            "11": "MOVE_TWISTER",
-            "15": "MOVE_DRAGON_RAGE",
-            "21": "MOVE_SLAM",
-            "25": "MOVE_AGILITY",
-            "33": "MOVE_AQUA_TAIL",
-            "39": "MOVE_DRAGON_RUSH",
-            "47": "MOVE_SAFEGUARD",
-            "53": "MOVE_DRAGON_DANCE",
-            "55": "MOVE_WING_ATTACK",
-            "64": "MOVE_OUTRAGE",
-            "73": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -143,9 +129,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 22,
@@ -159,7 +146,66 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 8,
         "pokemon_pos_m": 5,
-        "entry_text": "It is said to make its home\nsomewhere in the sea. It guides\ncrews of shipwrecks to shore.",
-        "category": "Dragon Pokémon"
+        "en": {
+            "name": "DRAGONITE",
+            "category": "Dragon Pokémon",
+            "entry_text": [
+                "It is said to make its home\n",
+                "somewhere in the sea. It guides\n",
+                "crews of shipwrecks to shore."
+            ]
+        },
+        "fr": {
+            "name": "DRACOLOSSE",
+            "category": "Pokémon Dragon",
+            "entry_text": [
+                "On raconte qu’il vit quelque part\n",
+                "en mer. Il guide les équipages\n",
+                "naufragés jusqu’à la terre ferme."
+            ]
+        },
+        "de": {
+            "name": "DRAGORAN",
+            "category": "Drache",
+            "entry_text": [
+                "Man sagt, es lebe in den Meeren.\n",
+                "Es bringt Schiffbrüchige sicher\n",
+                "an Land."
+            ]
+        },
+        "it": {
+            "name": "DRAGONITE",
+            "category": "Pokémon Drago",
+            "entry_text": [
+                "Si dice che faccia la sua tana da\n",
+                "qualche parte nel mare. Porta a\n",
+                "riva le vittime di naufragi."
+            ]
+        },
+        "es": {
+            "name": "DRAGONITE",
+            "category": "Pokémon Dragón",
+            "entry_text": [
+                "Se dice que vive en algún lugar\n",
+                "del mar. Guía a las tripulaciones\n",
+                "de los barcos hundidos a la costa."
+            ]
+        },
+        "jp": {
+            "name": "カイリュ－",
+            "category": "ドラゴンポケモン",
+            "entry_text": [
+                "ひろい　うみの　どこかに　すみかが\n",
+                "あると　いわれている。なんぱした\n",
+                "ふねを　りくまで　みちびいてくれる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 4367
     }
 }

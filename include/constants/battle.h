@@ -1,25 +1,6 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_H
 
-#ifndef __ASM_PM_
-#include "consts/battle.h"
-
-enum BattleActions {
-    BATTLE_ACTION_PICK_COMMAND = 0,
-    BATTLE_ACTION_CHOOSE_TARGET,
-    BATTLE_ACTION_TEMP_VALUE,
-    BATTLE_ACTION_SELECTED_COMMAND,
-
-    MAX_BATTLE_ACTIONS
-};
-
-enum BattlerBootState {
-    BATTLER_BOOT_STATE_NORMAL = 0,
-    BATTLER_BOOT_STATE_AI,
-    BATTLER_BOOT_STATE_LINK,
-};
-#endif
-
 #include "constants/battle/condition.h"
 #include "constants/battle/message_tags.h"
 #include "constants/battle/moves.h"
@@ -27,6 +8,18 @@ enum BattlerBootState {
 #include "constants/battle/system_control.h"
 #include "constants/battle/terrain.h"
 #include "constants/battle/turn_flags.h"
+#include "generated/battle_actions.h"
+#include "generated/battle_backgrounds.h"
+#include "generated/battle_boot_states.h"
+#include "generated/battle_context_params.h"
+#include "generated/battle_message_tags.h"
+#include "generated/battle_mon_params.h"
+#include "generated/battle_move_effects.h"
+#include "generated/battle_move_subscript_ptrs.h"
+#include "generated/battle_side_effect_types.h"
+#include "generated/battle_stats.h"
+#include "generated/battle_sub_animations.h"
+#include "generated/battle_terrains.h"
 
 #define BATTLE_TYPE_SINGLES        (0 << 0)
 #define BATTLE_TYPE_WILD_MON       (0 << 0)
@@ -100,11 +93,11 @@ enum BattlerBootState {
  *
  *      PLAYER_SLOT_1   PLAYER_SLOT_2
  */
-#define BATTLER_PLAYER_SLOT_1 0
-#define BATTLER_ENEMY_SLOT_1  1
-#define BATTLER_PLAYER_SLOT_2 2
-#define BATTLER_ENEMY_SLOT_2  3
-#define BATTLER_NONE          0xFF
+#define BATTLER_PLAYER_1 0
+#define BATTLER_ENEMY_1  1
+#define BATTLER_PLAYER_2 2
+#define BATTLER_ENEMY_2  3
+#define BATTLER_NONE     0xFF
 
 #define BATTLER_TYPE_SOLO_PLAYER        0
 #define BATTLER_TYPE_SOLO_ENEMY         1
@@ -164,5 +157,12 @@ enum BattlerBootState {
 #define SOUNDPROOF_SLOT_2 (1 << 1)
 #define NO_PARTNER_SLOT_1 (1 << 2)
 #define NO_PARTNER_SLOT_2 (1 << 3)
+
+#define AFTER_MOVE_MESSAGE_ONE_HIT   0
+#define AFTER_MOVE_MESSAGE_MULTI_HIT 1
+
+#define COMPARE_SPEED_FASTER 0
+#define COMPARE_SPEED_SLOWER 1
+#define COMPARE_SPEED_TIE    2
 
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_H

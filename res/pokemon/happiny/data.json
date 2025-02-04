@@ -1,5 +1,4 @@
 {
-    "name": "Happiny",
     "base_stats": {
         "hp": 100,
         "attack": 5,
@@ -8,10 +7,7 @@
         "special_attack": 15,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 130,
     "base_exp_reward": 255,
     "ev_yields": {
@@ -30,21 +26,20 @@
     "hatch_cycles": 40,
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_NATURAL_CURE",
-        "ABILITY_SERENE_GRACE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_SERENE_GRACE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 5, "MOVE_COPYCAT" ],
+            [ 9, "MOVE_REFRESH" ],
+            [ 12, "MOVE_SWEET_KISS" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -82,16 +77,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_CHARM"
-            ],
-            "5": "MOVE_COPYCAT",
-            "9": "MOVE_REFRESH",
-            "12": "MOVE_SWEET_KISS"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -105,14 +91,14 @@
     },
     "evolutions": [
         [
-            "EVO_USE_ITEM_DAY",
+            "EVO_LEVEL_WITH_HELD_ITEM_DAY",
             "ITEM_OVAL_STONE",
             "SPECIES_CHANSEY"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -126,7 +112,66 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It likes to carry around a small\nrock. It may wander around others’\nfeet and cause them to stumble.",
-        "category": "Playhouse Pokémon"
+        "en": {
+            "name": "HAPPINY",
+            "category": "Playhouse Pokémon",
+            "entry_text": [
+                "It likes to carry around a small\n",
+                "rock. It may wander around others’\n",
+                "feet and cause them to stumble."
+            ]
+        },
+        "fr": {
+            "name": "PTIRAVI",
+            "category": "Pokémon Maisonjouet",
+            "entry_text": [
+                "Ce Pokémon aime ce qui est rond et\n",
+                "blanc et transporte un caillou en\n",
+                "forme d’œuf pour imiter LEVEINARD."
+            ]
+        },
+        "de": {
+            "name": "WONNEIRA",
+            "category": "Spielhaus",
+            "entry_text": [
+                "Es liebt runde, weiße Dinge. Es\n",
+                "trägt einen eiförmigen Stein bei\n",
+                "sich, und imitiert damit CHANEIRA."
+            ]
+        },
+        "it": {
+            "name": "HAPPINY",
+            "category": "Pokémon Ovettino",
+            "entry_text": [
+                "Ama gli oggetti bianchi e tondi.\n",
+                "Imita CHANSEY trasportando una\n",
+                "roccia a forma di uovo."
+            ]
+        },
+        "es": {
+            "name": "HAPPINY",
+            "category": "Pokémon Casita",
+            "entry_text": [
+                "Le encantan las cosas blancas y\n",
+                "redondas. Imita a CHANSEY llevando\n",
+                "una roca con forma de huevo."
+            ]
+        },
+        "jp": {
+            "name": "ピンプク",
+            "category": "ままごとポケモン",
+            "entry_text": [
+                "しろくて　まるいものが　だいすき。\n",
+                "ラッキ－の　まねをして　タマゴに\n",
+                "そっくりな　いしを　かかえている。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1285
     }
 }

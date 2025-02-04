@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pokemon_league_aaron_room.h"
 
     .data
 
@@ -11,7 +12,7 @@ _000A:
     LockAll
     FacePlayer
     GoToIfSet 176, _00AC
-    ScrCmd_0EA trainer_elite_four_aaron
+    ScrCmd_0EA TRAINER_ELITE_FOUR_AARON
     Message 0
     CloseMessage
     CallIfUnset 214, _007A
@@ -30,19 +31,19 @@ _000A:
     End
 
 _007A:
-    StartTrainerBattle trainer_elite_four_aaron
+    StartTrainerBattle TRAINER_ELITE_FOUR_AARON
     Return
 
 _0082:
-    StartTrainerBattle trainer_elite_four_aaron_rematch
+    StartTrainerBattle TRAINER_ELITE_FOUR_AARON_REMATCH
     Return
 
 _008A:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_aaron, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON, 0, 0, 0
     Return
 
 _0098:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_aaron_rematch, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON_REMATCH, 0, 0, 0
     Return
 
 _00A6:

@@ -27,7 +27,7 @@
 #include "map_object.h"
 #include "menu.h"
 #include "message.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -131,9 +131,9 @@ static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
 {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
-    SaveData *v6 = FieldSystem_GetSaveData(param0->fieldSystem);
-    UndergroundData *v7 = sub_020298B0(v6);
-    BOOL v8 = PokedexData_IsNationalDexObtained(SaveData_PokedexData(v6));
+    SaveData *saveData = FieldSystem_GetSaveData(param0->fieldSystem);
+    UndergroundData *v7 = sub_020298B0(saveData);
+    BOOL natdexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(saveData));
 
     MATH_InitRand16(&v0, sub_02028930(v7) + param1);
 
@@ -154,7 +154,7 @@ static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
         param0->unk_274[v5] = v1;
         param0->unk_279[v5] = sub_0205742C(v1);
 
-        if ((v8 == 0) && (1 == sub_0205747C(v1))) {
+        if ((natdexObtained == 0) && (1 == sub_0205747C(v1))) {
             v5--;
             continue;
         }

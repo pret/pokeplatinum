@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/contest_hall_stage_no_contest.h"
 
     .data
 

@@ -1,5 +1,4 @@
 {
-    "name": "Croconaw",
     "base_stats": {
         "hp": 65,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 59,
         "special_defense": 63
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 143,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 6, "MOVE_WATER_GUN" ],
+            [ 8, "MOVE_RAGE" ],
+            [ 13, "MOVE_BITE" ],
+            [ 15, "MOVE_SCARY_FACE" ],
+            [ 21, "MOVE_ICE_FANG" ],
+            [ 24, "MOVE_FLAIL" ],
+            [ 30, "MOVE_CRUNCH" ],
+            [ 33, "MOVE_SLASH" ],
+            [ 39, "MOVE_SCREECH" ],
+            [ 42, "MOVE_THRASH" ],
+            [ 48, "MOVE_AQUA_TAIL" ],
+            [ 51, "MOVE_SUPERPOWER" ],
+            [ 57, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM05",
@@ -83,27 +89,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_LEER",
-                "MOVE_WATER_GUN"
-            ],
-            "6": "MOVE_WATER_GUN",
-            "8": "MOVE_RAGE",
-            "13": "MOVE_BITE",
-            "15": "MOVE_SCARY_FACE",
-            "21": "MOVE_ICE_FANG",
-            "24": "MOVE_FLAIL",
-            "30": "MOVE_CRUNCH",
-            "33": "MOVE_SLASH",
-            "39": "MOVE_SCREECH",
-            "42": "MOVE_THRASH",
-            "48": "MOVE_AQUA_TAIL",
-            "51": "MOVE_SUPERPOWER",
-            "57": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -118,14 +104,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_FERALIGATR"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -139,7 +125,66 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "Once it bites down, it won’t let go\nuntil it loses its fangs. New fangs\nquickly grow into place.",
-        "category": "Big Jaw Pokémon"
+        "en": {
+            "name": "CROCONAW",
+            "category": "Big Jaw Pokémon",
+            "entry_text": [
+                "Once it bites down, it won’t let go\n",
+                "until it loses its fangs. New fangs\n",
+                "quickly grow into place."
+            ]
+        },
+        "fr": {
+            "name": "CROCRODIL",
+            "category": "Pokémon Mâchoire",
+            "entry_text": [
+                "Quand il mord, il ne lâche pas prise\n",
+                "avant que ses crocs se brisent.\n",
+                "Ils repoussent par la suite."
+            ]
+        },
+        "de": {
+            "name": "TYRACROC",
+            "category": "Großmaul",
+            "entry_text": [
+                "Hat es einmal zugebissen, lässt es\n",
+                "erst los, wenn es seine Zähne\n",
+                "verliert, die schnell nachwachsen."
+            ]
+        },
+        "it": {
+            "name": "CROCONAW",
+            "category": "Pokémon Mascellone",
+            "entry_text": [
+                "Quando azzanna il nemico, non molla\n",
+                "la presa finché non gli cadono le\n",
+                "zanne, che però ricrescono subito."
+            ]
+        },
+        "es": {
+            "name": "CROCONAW",
+            "category": "Pokémon Fauces",
+            "entry_text": [
+                "Cuando muerde algo, no lo suelta\n",
+                "hasta que pierde sus colmillos.\n",
+                "Estos se regeneran rápidamente."
+            ]
+        },
+        "jp": {
+            "name": "アリゲイツ",
+            "category": "おおあごポケモン",
+            "entry_text": [
+                "いちど　かみつくと　キバが\n",
+                "ぬけるまで　ぜったいに　はなさない。\n",
+                "ぬけた　キバは　すぐに　はえてくる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 771
     }
 }

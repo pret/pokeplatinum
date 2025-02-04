@@ -3,14 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/game_records.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 

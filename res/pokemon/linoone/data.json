@@ -1,5 +1,4 @@
 {
-    "name": "Linoone",
     "base_stats": {
         "hp": 78,
         "attack": 70,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 61
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 90,
     "base_exp_reward": 128,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_PICKUP",
-        "ABILITY_GLUTTONY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_PICKUP", "ABILITY_GLUTTONY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SWITCHEROO" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_HEADBUTT" ],
+            [ 5, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_HEADBUTT" ],
+            [ 13, "MOVE_SAND_ATTACK" ],
+            [ 17, "MOVE_ODOR_SLEUTH" ],
+            [ 23, "MOVE_MUD_SPORT" ],
+            [ 29, "MOVE_FURY_SWIPES" ],
+            [ 35, "MOVE_COVET" ],
+            [ 41, "MOVE_SLASH" ],
+            [ 47, "MOVE_REST" ],
+            [ 53, "MOVE_BELLY_DRUM" ],
+            [ 59, "MOVE_FLING" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -86,27 +92,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SWITCHEROO",
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_TAIL_WHIP",
-                "MOVE_HEADBUTT"
-            ],
-            "5": "MOVE_TAIL_WHIP",
-            "9": "MOVE_HEADBUTT",
-            "13": "MOVE_SAND_ATTACK",
-            "17": "MOVE_ODOR_SLEUTH",
-            "23": "MOVE_MUD_SPORT",
-            "29": "MOVE_FURY_SWIPES",
-            "35": "MOVE_COVET",
-            "41": "MOVE_SLASH",
-            "47": "MOVE_REST",
-            "53": "MOVE_BELLY_DRUM",
-            "59": "MOVE_FLING"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -120,9 +106,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -136,7 +123,66 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It charges prey at speeds over\n60 mph. However, because it can\nonly run straight, it often fails.",
-        "category": "Rushing Pokémon"
+        "en": {
+            "name": "LINOONE",
+            "category": "Rushing Pokémon",
+            "entry_text": [
+                "It charges prey at speeds over\n",
+                "60 mph. However, because it can\n",
+                "only run straight, it often fails."
+            ]
+        },
+        "fr": {
+            "name": "LINEON",
+            "category": "Pokémon Fonceur",
+            "entry_text": [
+                "Il fonce sur sa proie à plus de 100\n",
+                "km/h. Mais il ne peut pas dévier sa\n",
+                "course et loupe souvent sa cible."
+            ]
+        },
+        "de": {
+            "name": "GERADAKS",
+            "category": "Sprinter",
+            "entry_text": [
+                "Es stürzt sich mit 100 km/h auf\n",
+                "Beute. Aber es kann nur geradeaus\n",
+                "laufen und die Jagd misslingt oft."
+            ]
+        },
+        "it": {
+            "name": "LINOONE",
+            "category": "Pokémon Sfrecciante",
+            "entry_text": [
+                "Carica la preda ad una velocità di\n",
+                "100 km/h. Ma dal momento che\n",
+                "va solo dritto, sbaglia spesso."
+            ]
+        },
+        "es": {
+            "name": "LINOONE",
+            "category": "Pokémon Lanzado",
+            "entry_text": [
+                "Carga contra sus enemigos a más\n",
+                "de 100 km por hora. Como solo\n",
+                "va en línea recta, falla a menudo."
+            ]
+        },
+        "jp": {
+            "name": "マッスグマ",
+            "category": "とっしんポケモン",
+            "entry_text": [
+                "じそく１００キロで　えものに\n",
+                "おそいかかるが　まっすぐにしか\n",
+                "はしれないので　しっぱいも　おおい。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1285
     }
 }

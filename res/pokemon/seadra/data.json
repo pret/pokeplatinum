@@ -1,5 +1,4 @@
 {
-    "name": "Seadra",
     "base_stats": {
         "hp": 55,
         "attack": 65,
@@ -8,10 +7,7 @@
         "special_attack": 95,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 75,
     "base_exp_reward": 155,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_POISON_POINT",
-        "ABILITY_SNIPER"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_POISON_POINT", "ABILITY_SNIPER" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_SMOKE_SCREEN" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 4, "MOVE_SMOKE_SCREEN" ],
+            [ 8, "MOVE_LEER" ],
+            [ 11, "MOVE_WATER_GUN" ],
+            [ 14, "MOVE_FOCUS_ENERGY" ],
+            [ 18, "MOVE_BUBBLE_BEAM" ],
+            [ 23, "MOVE_AGILITY" ],
+            [ 26, "MOVE_TWISTER" ],
+            [ 30, "MOVE_BRINE" ],
+            [ 40, "MOVE_HYDRO_PUMP" ],
+            [ 48, "MOVE_DRAGON_DANCE" ],
+            [ 57, "MOVE_DRAGON_PULSE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -74,26 +79,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BUBBLE",
-                "MOVE_SMOKE_SCREEN",
-                "MOVE_LEER",
-                "MOVE_WATER_GUN"
-            ],
-            "4": "MOVE_SMOKE_SCREEN",
-            "8": "MOVE_LEER",
-            "11": "MOVE_WATER_GUN",
-            "14": "MOVE_FOCUS_ENERGY",
-            "18": "MOVE_BUBBLE_BEAM",
-            "23": "MOVE_AGILITY",
-            "26": "MOVE_TWISTER",
-            "30": "MOVE_BRINE",
-            "40": "MOVE_HYDRO_PUMP",
-            "48": "MOVE_DRAGON_DANCE",
-            "57": "MOVE_DRAGON_PULSE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -106,14 +92,14 @@
     },
     "evolutions": [
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_DRAGON_SCALE",
             "SPECIES_KINGDRA"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -127,7 +113,66 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "Its spines provide protection.\nIts fins and bones are prized as\ntraditional medicine ingredients.",
-        "category": "Dragon Pokémon"
+        "en": {
+            "name": "SEADRA",
+            "category": "Dragon Pokémon",
+            "entry_text": [
+                "Its spines provide protection.\n",
+                "Its fins and bones are prized as\n",
+                "traditional medicine ingredients."
+            ]
+        },
+        "fr": {
+            "name": "HYPOCEAN",
+            "category": "Pokémon Dragon",
+            "entry_text": [
+                "Son épine dorsale le protège.\n",
+                "Ses os et ses nageoires sont très\n",
+                "prisés en médecine traditionnelle."
+            ]
+        },
+        "de": {
+            "name": "SEEMON",
+            "category": "Drache",
+            "entry_text": [
+                "Seine Stacheln schützen es. Seine\n",
+                "Flossen und Knochen werden bei der\n",
+                "Herstellung von Medizin verwendet."
+            ]
+        },
+        "it": {
+            "name": "SEADRA",
+            "category": "Pokémon Drago",
+            "entry_text": [
+                "Si difende con gli aculei. Pinne\n",
+                "e ossa sono comunemente usati\n",
+                "nella medicina tradizionale."
+            ]
+        },
+        "es": {
+            "name": "SEADRA",
+            "category": "Pokémon Dragón",
+            "entry_text": [
+                "Se protege con sus púas. Sus\n",
+                "aletas y huesos son muy valorados\n",
+                "por la medicina tradicional."
+            ]
+        },
+        "jp": {
+            "name": "シ－ドラ",
+            "category": "ドラゴンポケモン",
+            "entry_text": [
+                "トゲが　てきから　みを　まもる。\n",
+                "ひれや　ホネが　かんぽうやくの\n",
+                "ざいりょうとして　ちょうほうされる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 771
     }
 }

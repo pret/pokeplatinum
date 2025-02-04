@@ -1,5 +1,4 @@
 {
-    "name": "Snorlax",
     "base_stats": {
         "hp": 160,
         "attack": 110,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 110
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 25,
     "base_exp_reward": 154,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 40,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_IMMUNITY",
-        "ABILITY_THICK_FAT"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_IMMUNITY", "ABILITY_THICK_FAT" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 4, "MOVE_DEFENSE_CURL" ],
+            [ 9, "MOVE_AMNESIA" ],
+            [ 12, "MOVE_LICK" ],
+            [ 17, "MOVE_BELLY_DRUM" ],
+            [ 20, "MOVE_YAWN" ],
+            [ 25, "MOVE_REST" ],
+            [ 28, "MOVE_SNORE" ],
+            [ 28, "MOVE_SLEEP_TALK" ],
+            [ 33, "MOVE_BODY_SLAM" ],
+            [ 36, "MOVE_BLOCK" ],
+            [ 41, "MOVE_ROLLOUT" ],
+            [ 44, "MOVE_CRUNCH" ],
+            [ 49, "MOVE_GIGA_IMPACT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -90,25 +94,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "4": "MOVE_DEFENSE_CURL",
-            "9": "MOVE_AMNESIA",
-            "12": "MOVE_LICK",
-            "17": "MOVE_BELLY_DRUM",
-            "20": "MOVE_YAWN",
-            "25": "MOVE_REST",
-            "28": [
-                "MOVE_SNORE",
-                "MOVE_SLEEP_TALK"
-            ],
-            "33": "MOVE_BODY_SLAM",
-            "36": "MOVE_BLOCK",
-            "41": "MOVE_ROLLOUT",
-            "44": "MOVE_CRUNCH",
-            "49": "MOVE_GIGA_IMPACT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -125,9 +111,10 @@
             "MOVE_LAST_RESORT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 21,
@@ -141,7 +128,66 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 7,
-        "entry_text": "When its belly is full, it becomes\ntoo lethargic to even lift a finger,\nso it is safe to bounce on its belly.",
-        "category": "Sleeping Pokémon"
+        "en": {
+            "name": "SNORLAX",
+            "category": "Sleeping Pokémon",
+            "entry_text": [
+                "When its belly is full, it becomes\n",
+                "too lethargic to even lift a finger,\n",
+                "so it is safe to bounce on its belly."
+            ]
+        },
+        "fr": {
+            "name": "RONFLEX",
+            "category": "Pokémon Pionceur",
+            "entry_text": [
+                "Son estomac peut digérer n’importe\n",
+                "quel type de nourriture, même \n",
+                "quand elle est moisie ou pourrie."
+            ]
+        },
+        "de": {
+            "name": "RELAXO",
+            "category": "Tagträumer",
+            "entry_text": [
+                "Sein Magen kann jede Art von\n",
+                "Nahrung verdauen, selbst wenn sie\n",
+                "verschimmelt und verdorben ist."
+            ]
+        },
+        "it": {
+            "name": "SNORLAX",
+            "category": "Pokémon Sonno",
+            "entry_text": [
+                "Il suo stomaco riesce a digerire\n",
+                "qualsiasi tipo di cibo, anche se\n",
+                "marcio o ammuffito."
+            ]
+        },
+        "es": {
+            "name": "SNORLAX",
+            "category": "Pokémon Dormir",
+            "entry_text": [
+                "Su estómago puede digerir todo\n",
+                "tipo de comida, incluso si está\n",
+                "podrida o mohosa."
+            ]
+        },
+        "jp": {
+            "name": "カビゴン",
+            "category": "いねむりポケモン",
+            "entry_text": [
+                "カビが　はえていても　くさっていても\n",
+                "だいじょうぶ。カビゴンの　いぶくろは\n",
+                "なんでも　しょうか　できるのだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 1285
     }
 }

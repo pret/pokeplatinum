@@ -1,5 +1,4 @@
 {
-    "name": "Electabuzz",
     "base_stats": {
         "hp": 65,
         "attack": 83,
@@ -8,10 +7,7 @@
         "special_attack": 95,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 45,
     "base_exp_reward": 156,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_STATIC",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_STATIC", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_THUNDER_SHOCK" ],
+            [ 7, "MOVE_THUNDER_SHOCK" ],
+            [ 10, "MOVE_LOW_KICK" ],
+            [ 16, "MOVE_SWIFT" ],
+            [ 19, "MOVE_SHOCK_WAVE" ],
+            [ 25, "MOVE_LIGHT_SCREEN" ],
+            [ 28, "MOVE_THUNDER_PUNCH" ],
+            [ 37, "MOVE_DISCHARGE" ],
+            [ 43, "MOVE_THUNDERBOLT" ],
+            [ 52, "MOVE_SCREECH" ],
+            [ 58, "MOVE_THUNDER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -82,24 +85,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_QUICK_ATTACK",
-                "MOVE_LEER",
-                "MOVE_THUNDER_SHOCK"
-            ],
-            "7": "MOVE_THUNDER_SHOCK",
-            "10": "MOVE_LOW_KICK",
-            "16": "MOVE_SWIFT",
-            "19": "MOVE_SHOCK_WAVE",
-            "25": "MOVE_LIGHT_SCREEN",
-            "28": "MOVE_THUNDER_PUNCH",
-            "37": "MOVE_DISCHARGE",
-            "43": "MOVE_THUNDERBOLT",
-            "52": "MOVE_SCREECH",
-            "58": "MOVE_THUNDER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -113,14 +99,14 @@
     },
     "evolutions": [
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_ELECTIRIZER",
             "SPECIES_ELECTIVIRE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -134,7 +120,66 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "It windmills its arms to slightly\nboost its punches. Foes have been\nknown to escape in the meantime.",
-        "category": "Electric Pokémon"
+        "en": {
+            "name": "ELECTABUZZ",
+            "category": "Electric Pokémon",
+            "entry_text": [
+                "It windmills its arms to slightly\n",
+                "boost its punches. Foes have been\n",
+                "known to escape in the meantime."
+            ]
+        },
+        "fr": {
+            "name": "ELEKTEK",
+            "category": "Pokémon Electrique",
+            "entry_text": [
+                "Ce Pokémon dévore l’électricité des\n",
+                "centrales. Il est responsable de la\n",
+                "majorité des coupures de courant."
+            ]
+        },
+        "de": {
+            "name": "ELEKTEK",
+            "category": "Elektro",
+            "entry_text": [
+                "Die Hälfte aller Stromausfälle wird\n",
+                "durch dieses PKMN ausgelöst, das\n",
+                "in E-Werken Elektrizität frisst."
+            ]
+        },
+        "it": {
+            "name": "ELECTABUZZ",
+            "category": "Pokémon Elettrico",
+            "entry_text": [
+                "Quando si avvicina alle centrali\n",
+                "per nutrirsi dell’elettricità,\n",
+                "provoca un black-out."
+            ]
+        },
+        "es": {
+            "name": "ELECTABUZZ",
+            "category": "Pokémon Eléctrico",
+            "entry_text": [
+                "La mitad de los apagones los\n",
+                "provoca el enorme apetito de este\n",
+                "Pokémon que come electricidad."
+            ]
+        },
+        "jp": {
+            "name": "エレブ－",
+            "category": "でんげきポケモン",
+            "entry_text": [
+                "ていでんの　げんいんの　はんぶんは\n",
+                "エレブ－が　はつでんしょに　あらわれ\n",
+                "でんきを　たべてしまった　ことだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1799
     }
 }

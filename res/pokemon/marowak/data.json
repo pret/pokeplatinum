@@ -1,5 +1,4 @@
 {
-    "name": "Marowak",
     "base_stats": {
         "hp": 60,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_GROUND" ],
     "catch_rate": 75,
     "base_exp_reward": 124,
     "ev_yields": {
@@ -30,21 +26,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_ROCK_HEAD",
-        "ABILITY_LIGHTNING_ROD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_LIGHTNING_ROD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_BONE_CLUB" ],
+            [ 1, "MOVE_HEADBUTT" ],
+            [ 3, "MOVE_TAIL_WHIP" ],
+            [ 7, "MOVE_BONE_CLUB" ],
+            [ 11, "MOVE_HEADBUTT" ],
+            [ 13, "MOVE_LEER" ],
+            [ 17, "MOVE_FOCUS_ENERGY" ],
+            [ 21, "MOVE_BONEMERANG" ],
+            [ 23, "MOVE_RAGE" ],
+            [ 27, "MOVE_FALSE_SWIPE" ],
+            [ 33, "MOVE_THRASH" ],
+            [ 37, "MOVE_FLING" ],
+            [ 43, "MOVE_BONE_RUSH" ],
+            [ 49, "MOVE_ENDEAVOR" ],
+            [ 53, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -88,28 +95,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_TAIL_WHIP",
-                "MOVE_BONE_CLUB",
-                "MOVE_HEADBUTT"
-            ],
-            "3": "MOVE_TAIL_WHIP",
-            "7": "MOVE_BONE_CLUB",
-            "11": "MOVE_HEADBUTT",
-            "13": "MOVE_LEER",
-            "17": "MOVE_FOCUS_ENERGY",
-            "21": "MOVE_BONEMERANG",
-            "23": "MOVE_RAGE",
-            "27": "MOVE_FALSE_SWIPE",
-            "33": "MOVE_THRASH",
-            "37": "MOVE_FLING",
-            "43": "MOVE_BONE_RUSH",
-            "49": "MOVE_ENDEAVOR",
-            "53": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -124,9 +110,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -140,7 +127,66 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "From its birth, this savage Pokémon\nconstantly holds bones. It is\nskilled in using them as weapons.",
-        "category": "Bone Keeper Pokémon"
+        "en": {
+            "name": "MAROWAK",
+            "category": "Bone Keeper Pokémon",
+            "entry_text": [
+                "From its birth, this savage Pokémon\n",
+                "constantly holds bones. It is\n",
+                "skilled in using them as weapons."
+            ]
+        },
+        "fr": {
+            "name": "OSSATUEUR",
+            "category": "Pokémon Gard’Os",
+            "entry_text": [
+                "Ce Pokémon sauvage possède des os\n",
+                "depuis sa naissance. Il s’en sert\n",
+                "pour combattre avec dextérité."
+            ]
+        },
+        "de": {
+            "name": "KNOGGA",
+            "category": "Knochenfan",
+            "entry_text": [
+                "Von Geburt an trägt dieses wilde\n",
+                "Pokémon Knochen. Es setzt sie\n",
+                "talentiert als Waffen ein."
+            ]
+        },
+        "it": {
+            "name": "MAROWAK",
+            "category": "Pokémon Guardaossi",
+            "entry_text": [
+                "Pokémon selvatico che tiene in\n",
+                "mano un osso sin dalla nascita.\n",
+                "Lo usa abilmente come arma."
+            ]
+        },
+        "es": {
+            "name": "MAROWAK",
+            "category": "Pokémon Apilahueso",
+            "entry_text": [
+                "Este Pokémon salvaje maneja\n",
+                "huesos constantemente desde su\n",
+                "nacimiento y los usa como armas."
+            ]
+        },
+        "jp": {
+            "name": "ガラガラ",
+            "category": "ほねずきポケモン",
+            "entry_text": [
+                "うまれたときから　いつも　もっている\n",
+                "ホネを　じざいに　つかいこなす。\n",
+                "せいかくは　きょうぼうだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2056
     }
 }

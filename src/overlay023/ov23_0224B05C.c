@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
@@ -702,7 +702,7 @@ static void ov23_0224B844(int param0, int param1, BOOL param2)
     ov23_0224ADB0(param1, v2, v3, v4);
 
     v2 += MapObject_GetDxFromDir(v4);
-    v3 += MapObject_GetDyFromDir(v4);
+    v3 += MapObject_GetDzFromDir(v4);
 
     v0.unk_00 = v2;
     v0.unk_02 = v3;
@@ -2645,7 +2645,7 @@ BOOL ov23_0224D9AC(int param0, BOOL param1)
     GF_ASSERT((v2 != 0) && (v3 != 0));
 
     v2 += MapObject_GetDxFromDir(v4);
-    v3 += MapObject_GetDyFromDir(v4);
+    v3 += MapObject_GetDzFromDir(v4);
 
     Unk_ov23_022577AC->unk_13D6 = 0;
 

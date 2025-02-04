@@ -2,16 +2,15 @@
 #define POKEPLATINUM_FIELD_BATTLE_DATA_TRANSFER_H
 
 #include "constants/battle.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "field/field_system_decl.h"
 
@@ -19,7 +18,8 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "journal.h"
-#include "poketch_data.h"
+#include "party.h"
+#include "poketch.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "trainer_info.h"
@@ -35,14 +35,14 @@ typedef struct FieldBattleDTO {
     Party *parties[MAX_BATTLERS];
     int resultMask;
     int trainerIDs[MAX_BATTLERS];
-    TrainerData trainerData[MAX_BATTLERS];
+    Trainer trainer[MAX_BATTLERS];
     TrainerInfo *trainerInfo[MAX_BATTLERS];
     Bag *bag;
     BagCursor *bagCursor;
-    PokedexData *pokedex;
+    Pokedex *pokedex;
     PCBoxes *pcBoxes;
     ChatotCry *chatotCries[MAX_BATTLERS];
-    PoketchData *poketchData;
+    Poketch *poketch;
     UnkStruct_0202C878 *unk_104;
     Options *options;
     UnkStruct_0206D140 *unk_10C;
@@ -51,7 +51,7 @@ typedef struct FieldBattleDTO {
     JournalEntry *journalEntry;
     UnkStruct_02027F8C *unk_124;
     int background;
-    enum Terrain terrain;
+    enum BattleTerrain terrain;
     int mapLabelTextID;
     int mapHeaderID;
     enum TimeOfDay timeOfDay;

@@ -11,13 +11,12 @@
 #include "constants/species.h"
 #include "constants/string.h"
 #include "constants/trainer.h"
-#include "consts/abilities.h"
-#include "consts/game_records.h"
-#include "consts/gender.h"
+#include "generated/abilities.h"
+#include "generated/game_records.h"
+#include "generated/genders.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02098700_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/fraction.h"
 
 #include "battle/battle_context.h"
@@ -48,7 +47,7 @@
 #include "unk_0208C098.h"
 
 static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry);
-static int MapSideEffectToSubscript(BattleContext *battleCtx, enum SideEffectType type, u32 effect);
+static int MapSideEffectToSubscript(BattleContext *battleCtx, enum BattleSideEffectType type, u32 effect);
 static int ApplyTypeMultiplier(BattleContext *battleCtx, int attacker, int mul, int damage, BOOL update, u32 *moveStatus);
 static BOOL NoImmunityOverrides(BattleContext *battleCtx, int itemEffect, int chartEntry);
 static void UpateMoveStatusForTypeMul(int mul, u32 *moveStatusMask);
@@ -1836,7 +1835,7 @@ void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx,
     battleCtx->battleMons[battler].moveEffectsData.furyCutterCount = 0;
 }
 
-enum BattleAnimation Battler_StatusCondition(BattleContext *battleCtx, int battler)
+enum BattleSubAnimation Battler_StatusCondition(BattleContext *battleCtx, int battler)
 {
     if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
         return BATTLE_ANIMATION_ASLEEP;
@@ -1890,7 +1889,7 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
         case CHECK_TRMSG_FIRST_DAMAGE:
             if (battleCtx->battleMons[BATTLER_THEM].timesDamaged == 1
                 && (battleCtx->battleStatusMask2 & SYSCTL_FIRST_DAMAGE_MSG_SHOWN) == FALSE
-                && TrainerData_HasMessageType(trID, TRMSG_FIRST_DAMAGE, HEAP_ID_BATTLE)) {
+                && Trainer_HasMessageType(trID, TRMSG_FIRST_DAMAGE, HEAP_ID_BATTLE)) {
                 battleCtx->battleStatusMask2 |= SYSCTL_FIRST_DAMAGE_MSG_SHOWN;
                 battleCtx->msgTemp = TRMSG_FIRST_DAMAGE;
                 return TRUE;
@@ -1902,7 +1901,7 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
         case CHECK_TRMSG_ACTIVE_BATTLER_HALF_HP:
             if ((battleCtx->battleMons[BATTLER_THEM].trainerMessageFlags & TRMSG_ACTIVE_BATTLER_HALF_HP_FLAG) == FALSE
                 && battleCtx->battleMons[BATTLER_THEM].curHP <= battleCtx->battleMons[BATTLER_THEM].maxHP / 2
-                && TrainerData_HasMessageType(trID, TRMSG_ACTIVE_BATTLER_HALF_HP, HEAP_ID_BATTLE)) {
+                && Trainer_HasMessageType(trID, TRMSG_ACTIVE_BATTLER_HALF_HP, HEAP_ID_BATTLE)) {
                 battleCtx->battleMons[BATTLER_THEM].trainerMessageFlags |= TRMSG_ACTIVE_BATTLER_HALF_HP_FLAG;
                 battleCtx->msgTemp = TRMSG_ACTIVE_BATTLER_HALF_HP;
                 return TRUE;
@@ -1924,7 +1923,7 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
                     }
                 }
 
-                if (alive == 1 && TrainerData_HasMessageType(trID, TRMSG_LAST_BATTLER, HEAP_ID_BATTLE)) {
+                if (alive == 1 && Trainer_HasMessageType(trID, TRMSG_LAST_BATTLER, HEAP_ID_BATTLE)) {
                     battleCtx->battleMons[BATTLER_THEM].trainerMessageFlags |= TRMSG_LAST_BATTLER_FLAG;
                     battleCtx->msgTemp = TRMSG_LAST_BATTLER;
                     return TRUE;
@@ -1949,7 +1948,7 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
 
                 if (alive == 1
                     && battleCtx->battleMons[BATTLER_THEM].curHP <= battleCtx->battleMons[BATTLER_THEM].maxHP / 2
-                    && TrainerData_HasMessageType(trID, TRMSG_LAST_BATTLER_HALF_HP, HEAP_ID_BATTLE)) {
+                    && Trainer_HasMessageType(trID, TRMSG_LAST_BATTLER_HALF_HP, HEAP_ID_BATTLE)) {
                     battleCtx->battleMons[BATTLER_THEM].trainerMessageFlags |= TRMSG_LAST_BATTLER_HALF_HP_FLAG;
                     battleCtx->msgTemp = TRMSG_LAST_BATTLER_HALF_HP;
                     return TRUE;
@@ -2025,8 +2024,8 @@ void BattleContext_InitCounters(BattleSystem *battleSys, BattleContext *battleCt
 
     int battleType = BattleSystem_BattleType(battleSys);
     if ((battleType & BATTLE_TYPE_DOUBLES) == FALSE) {
-        battleCtx->battlersSwitchingMask |= FlagIndex(BATTLER_PLAYER_SLOT_2);
-        battleCtx->battlersSwitchingMask |= FlagIndex(BATTLER_ENEMY_SLOT_2);
+        battleCtx->battlersSwitchingMask |= FlagIndex(BATTLER_PLAYER_2);
+        battleCtx->battlersSwitchingMask |= FlagIndex(BATTLER_ENEMY_2);
     }
 
     battleCtx->safariCatchStage = 6;
@@ -7300,7 +7299,7 @@ void BattleSystem_SortMonActionOrder(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static const enum BattleAnimation sEffectsAlwaysShown[] = {
+static const enum BattleSubAnimation sEffectsAlwaysShown[] = {
     BATTLE_ANIMATION_SUB_OUT,
     BATTLE_ANIMATION_SUB_IN,
     BATTLE_ANIMATION_ITEM_ESCAPE,
@@ -7503,11 +7502,11 @@ void BattleContext_Set(BattleSystem *battleSys, BattleContext *battleCtx, enum B
  * @brief Map the given side effect to an appropriate subscript.
  *
  * @param battleCtx
- * @param type      Type of side effect; see enum SideEffectType
+ * @param type      Type of side effect; see enum BattleSideEffectType
  * @param effect    Effect which should be mapped to a corresponding subscript
  * @return int
  */
-static int MapSideEffectToSubscript(BattleContext *battleCtx, enum SideEffectType type, u32 effect)
+static int MapSideEffectToSubscript(BattleContext *battleCtx, enum BattleSideEffectType type, u32 effect)
 {
     battleCtx->sideEffectType = type;
     battleCtx->sideEffectParam = effect & MOVE_SIDE_EFFECT_SUBSCRIPT_POINTER;

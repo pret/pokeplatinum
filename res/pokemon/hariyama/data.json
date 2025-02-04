@@ -1,5 +1,4 @@
 {
-    "name": "Hariyama",
     "base_stats": {
         "hp": 144,
         "attack": 120,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_FIGHTING" ],
     "catch_rate": 200,
     "base_exp_reward": 184,
     "ev_yields": {
@@ -30,21 +26,34 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_GUTS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_GUTS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BRINE" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_ARM_THRUST" ],
+            [ 4, "MOVE_SAND_ATTACK" ],
+            [ 7, "MOVE_ARM_THRUST" ],
+            [ 10, "MOVE_VITAL_THROW" ],
+            [ 13, "MOVE_FAKE_OUT" ],
+            [ 16, "MOVE_WHIRLWIND" ],
+            [ 19, "MOVE_KNOCK_OFF" ],
+            [ 22, "MOVE_SMELLING_SALT" ],
+            [ 27, "MOVE_BELLY_DRUM" ],
+            [ 32, "MOVE_FORCE_PALM" ],
+            [ 37, "MOVE_SEISMIC_TOSS" ],
+            [ 42, "MOVE_WAKE_UP_SLAP" ],
+            [ 47, "MOVE_ENDURE" ],
+            [ 52, "MOVE_CLOSE_COMBAT" ],
+            [ 57, "MOVE_REVERSAL" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -83,30 +92,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BRINE",
-                "MOVE_TACKLE",
-                "MOVE_FOCUS_ENERGY",
-                "MOVE_SAND_ATTACK",
-                "MOVE_ARM_THRUST"
-            ],
-            "4": "MOVE_SAND_ATTACK",
-            "7": "MOVE_ARM_THRUST",
-            "10": "MOVE_VITAL_THROW",
-            "13": "MOVE_FAKE_OUT",
-            "16": "MOVE_WHIRLWIND",
-            "19": "MOVE_KNOCK_OFF",
-            "22": "MOVE_SMELLING_SALT",
-            "27": "MOVE_BELLY_DRUM",
-            "32": "MOVE_FORCE_PALM",
-            "37": "MOVE_SEISMIC_TOSS",
-            "42": "MOVE_WAKE_UP_SLAP",
-            "47": "MOVE_ENDURE",
-            "52": "MOVE_CLOSE_COMBAT",
-            "57": "MOVE_REVERSAL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -119,9 +105,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 23,
@@ -135,7 +122,66 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 12,
         "pokemon_pos_m": 4,
-        "entry_text": "It loves to match power with\nbig-bodied Pokémon. It can knock a\ntruck flying with its arm thrusts.",
-        "category": "Arm Thrust Pokémon"
+        "en": {
+            "name": "HARIYAMA",
+            "category": "Arm Thrust Pokémon",
+            "entry_text": [
+                "It loves to match power with\n",
+                "big-bodied Pokémon. It can knock a\n",
+                "truck flying with its arm thrusts."
+            ]
+        },
+        "fr": {
+            "name": "HARIYAMA",
+            "category": "Pokémon Cogneur",
+            "entry_text": [
+                "Il aime mesurer sa force à celle des\n",
+                "plus grands Pokémon. Ses coups de\n",
+                "paume peuvent projeter un camion."
+            ]
+        },
+        "de": {
+            "name": "HARIYAMA",
+            "category": "Armwurf",
+            "entry_text": [
+                "Es liebt das Kräftemessen mit\n",
+                "großen PKMN. Mit seinem Armwurf\n",
+                "kann es LKW durch die Luft werfen."
+            ]
+        },
+        "it": {
+            "name": "HARIYAMA",
+            "category": "Pokémon Sberletese",
+            "entry_text": [
+                "Ama confrontarsi con Pokémon gros-\n",
+                "si. Con uno dei suo schiaffi, può far\n",
+                "prendere il volo a un camion."
+            ]
+        },
+        "es": {
+            "name": "HARIYAMA",
+            "category": "Pokémon Empuje",
+            "entry_text": [
+                "Le encanta enfrentarse a Pokémon\n",
+                "grandes y probar su fuerza. Sus\n",
+                "brazos pueden derribar un camión."
+            ]
+        },
+        "jp": {
+            "name": "ハリテヤマ",
+            "category": "つっぱりポケモン",
+            "entry_text": [
+                "からだの　おおきな　ポケモンたちと\n",
+                "ちからくらべをすることが　だいすき。\n",
+                "はりてで　トラックを　ふっとばす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2313
     }
 }

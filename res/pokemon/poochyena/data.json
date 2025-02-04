@@ -1,5 +1,4 @@
 {
-    "name": "Poochyena",
     "base_stats": {
         "hp": 35,
         "attack": 55,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_DARK" ],
     "catch_rate": 255,
     "base_exp_reward": 55,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_RUN_AWAY",
-        "ABILITY_QUICK_FEET"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_QUICK_FEET" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 5, "MOVE_HOWL" ],
+            [ 9, "MOVE_SAND_ATTACK" ],
+            [ 13, "MOVE_BITE" ],
+            [ 17, "MOVE_ODOR_SLEUTH" ],
+            [ 21, "MOVE_ROAR" ],
+            [ 25, "MOVE_SWAGGER" ],
+            [ 29, "MOVE_ASSURANCE" ],
+            [ 33, "MOVE_SCARY_FACE" ],
+            [ 37, "MOVE_TAUNT" ],
+            [ 41, "MOVE_EMBARGO" ],
+            [ 45, "MOVE_TAKE_DOWN" ],
+            [ 49, "MOVE_SUCKER_PUNCH" ],
+            [ 53, "MOVE_CRUNCH" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -76,23 +80,7 @@
             "TM90",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "5": "MOVE_HOWL",
-            "9": "MOVE_SAND_ATTACK",
-            "13": "MOVE_BITE",
-            "17": "MOVE_ODOR_SLEUTH",
-            "21": "MOVE_ROAR",
-            "25": "MOVE_SWAGGER",
-            "29": "MOVE_ASSURANCE",
-            "33": "MOVE_SCARY_FACE",
-            "37": "MOVE_TAUNT",
-            "41": "MOVE_EMBARGO",
-            "45": "MOVE_TAKE_DOWN",
-            "49": "MOVE_SUCKER_PUNCH",
-            "53": "MOVE_CRUNCH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_SPITE",
@@ -102,14 +90,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             18,
             "SPECIES_MIGHTYENA"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -123,7 +111,66 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "A Pokémon with a persistent\nnature, it chases its chosen prey\nuntil the prey becomes exhausted.",
-        "category": "Bite Pokémon"
+        "en": {
+            "name": "POOCHYENA",
+            "category": "Bite Pokémon",
+            "entry_text": [
+                "A Pokémon with a persistent\n",
+                "nature, it chases its chosen prey\n",
+                "until the prey becomes exhausted."
+            ]
+        },
+        "fr": {
+            "name": "MEDHYENA",
+            "category": "Pokémon Morsure",
+            "entry_text": [
+                "Un Pokémon très obstiné qui\n",
+                "poursuit sa proie jusqu’à ce\n",
+                "qu’elle soit épuisée."
+            ]
+        },
+        "de": {
+            "name": "FIFFYEN",
+            "category": "Biss",
+            "entry_text": [
+                "Ein beharrliches PKMN, das seine\n",
+                "Beute jagt, bis diese erschöpft\n",
+                "ist."
+            ]
+        },
+        "it": {
+            "name": "POOCHYENA",
+            "category": "Pokémon Morso",
+            "entry_text": [
+                "Pokémon di natura ostinata.\n",
+                "Insegue la preda prescelta\n",
+                "finché questa non è esausta."
+            ]
+        },
+        "es": {
+            "name": "POOCHYENA",
+            "category": "Pokémon Mordisco",
+            "entry_text": [
+                "Es muy persistente. Si se fija en\n",
+                "una presa, no la dejará hasta que\n",
+                "caiga agotada."
+            ]
+        },
+        "jp": {
+            "name": "ポチエナ",
+            "category": "かみつきポケモン",
+            "entry_text": [
+                "しつこい　せいかくの　ポケモン。\n",
+                "めをつけた　えものが　ヘトヘトに\n",
+                "つかれるまで　おいかけまわす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 4112
     }
 }

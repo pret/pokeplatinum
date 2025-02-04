@@ -1,5 +1,4 @@
 {
-    "name": "Spinarak",
     "base_stats": {
         "hp": 40,
         "attack": 60,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_POISON" ],
     "catch_rate": 255,
     "base_exp_reward": 54,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_INSOMNIA"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_INSOMNIA" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_STRING_SHOT" ],
+            [ 5, "MOVE_SCARY_FACE" ],
+            [ 8, "MOVE_CONSTRICT" ],
+            [ 12, "MOVE_LEECH_LIFE" ],
+            [ 15, "MOVE_NIGHT_SHADE" ],
+            [ 19, "MOVE_SHADOW_SNEAK" ],
+            [ 22, "MOVE_FURY_SWIPES" ],
+            [ 26, "MOVE_SUCKER_PUNCH" ],
+            [ 29, "MOVE_SPIDER_WEB" ],
+            [ 33, "MOVE_AGILITY" ],
+            [ 36, "MOVE_PIN_MISSILE" ],
+            [ 40, "MOVE_PSYCHIC" ],
+            [ 43, "MOVE_POISON_JAB" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -71,25 +75,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_STING",
-                "MOVE_STRING_SHOT"
-            ],
-            "5": "MOVE_SCARY_FACE",
-            "8": "MOVE_CONSTRICT",
-            "12": "MOVE_LEECH_LIFE",
-            "15": "MOVE_NIGHT_SHADE",
-            "19": "MOVE_SHADOW_SNEAK",
-            "22": "MOVE_FURY_SWIPES",
-            "26": "MOVE_SUCKER_PUNCH",
-            "29": "MOVE_SPIDER_WEB",
-            "33": "MOVE_AGILITY",
-            "36": "MOVE_PIN_MISSILE",
-            "40": "MOVE_PSYCHIC",
-            "43": "MOVE_POISON_JAB"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_SIGNAL_BEAM",
             "MOVE_BOUNCE",
             "MOVE_SUCKER_PUNCH"
@@ -97,14 +83,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             22,
             "SPECIES_ARIADOS"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 5,
@@ -118,7 +104,66 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "It sets a trap by spinning a web\nwith thin but strong silk. It waits\nmotionlessly for prey to arrive.",
-        "category": "String Spit Pokémon"
+        "en": {
+            "name": "SPINARAK",
+            "category": "String Spit Pokémon",
+            "entry_text": [
+                "It sets a trap by spinning a web\n",
+                "with thin but strong silk. It waits\n",
+                "motionlessly for prey to arrive."
+            ]
+        },
+        "fr": {
+            "name": "MIMIGAL",
+            "category": "Pokémon Crache Fil",
+            "entry_text": [
+                "Il tisse une toile fine mais solide\n",
+                "pour poser des pièges et se poste\n",
+                "dans l’attente d’une proie."
+            ]
+        },
+        "de": {
+            "name": "WEBARAK",
+            "category": "Fadenwurf",
+            "entry_text": [
+                "Es baut eine Falle, indem es ein\n",
+                "Netz mit dünner, starker Seide\n",
+                "spinnt. Es wartet still auf Beute."
+            ]
+        },
+        "it": {
+            "name": "SPINARAK",
+            "category": "Pokémon Tela",
+            "entry_text": [
+                "Tesse una trappola con un filo di\n",
+                "seta, sottile ma robusto. Attende\n",
+                "la preda senza muoversi."
+            ]
+        },
+        "es": {
+            "name": "SPINARAK",
+            "category": "Pokémon Escupesoga",
+            "entry_text": [
+                "Pone trampas tejiendo una red\n",
+                "de seda fina y resistente y luego\n",
+                "espera inmóvil a su presa."
+            ]
+        },
+        "jp": {
+            "name": "イトマル",
+            "category": "いとはきポケモン",
+            "entry_text": [
+                "ほそくて　じょうぶな　いとを\n",
+                "はりめぐらして　わなを　しかける。\n",
+                "えものが　かかるまで　じっと　まつ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 1540
     }
 }

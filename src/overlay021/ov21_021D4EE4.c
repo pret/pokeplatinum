@@ -26,11 +26,11 @@ static void ov21_021D50E0(UnkStruct_ov21_021D4EE4 *param0, int param1);
 static void ov21_021D5110(UnkStruct_ov21_021D4EE4 *param0, int param1);
 static void ov21_021D5140(UnkStruct_ov21_021D4EE4 *param0, int param1);
 
-UnkStruct_ov21_021D4EE4 *ov21_021D4EE4(int param0)
+UnkStruct_ov21_021D4EE4 *ov21_021D4EE4(enum HeapId heapID)
 {
     UnkStruct_ov21_021D4EE4 *v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D4EE4));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4EE4));
     memset(v0, 0, sizeof(UnkStruct_ov21_021D4EE4));
 
     return v0;

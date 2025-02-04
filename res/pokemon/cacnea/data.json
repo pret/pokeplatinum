@@ -1,5 +1,4 @@
 {
-    "name": "Cacnea",
     "base_stats": {
         "hp": 50,
         "attack": 85,
@@ -8,10 +7,7 @@
         "special_attack": 85,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 190,
     "base_exp_reward": 97,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_GRASS",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_SAND_VEIL",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_SAND_VEIL", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_LEER" ],
+            [ 5, "MOVE_ABSORB" ],
+            [ 9, "MOVE_GROWTH" ],
+            [ 13, "MOVE_LEECH_SEED" ],
+            [ 17, "MOVE_SAND_ATTACK" ],
+            [ 21, "MOVE_PIN_MISSILE" ],
+            [ 25, "MOVE_INGRAIN" ],
+            [ 29, "MOVE_FAINT_ATTACK" ],
+            [ 33, "MOVE_SPIKES" ],
+            [ 37, "MOVE_SUCKER_PUNCH" ],
+            [ 41, "MOVE_PAYBACK" ],
+            [ 45, "MOVE_NEEDLE_ARM" ],
+            [ 49, "MOVE_COTTON_SPORE" ],
+            [ 53, "MOVE_SANDSTORM" ],
+            [ 57, "MOVE_DESTINY_BOND" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM09",
@@ -79,27 +85,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_STING",
-                "MOVE_LEER"
-            ],
-            "5": "MOVE_ABSORB",
-            "9": "MOVE_GROWTH",
-            "13": "MOVE_LEECH_SEED",
-            "17": "MOVE_SAND_ATTACK",
-            "21": "MOVE_PIN_MISSILE",
-            "25": "MOVE_INGRAIN",
-            "29": "MOVE_FAINT_ATTACK",
-            "33": "MOVE_SPIKES",
-            "37": "MOVE_SUCKER_PUNCH",
-            "41": "MOVE_PAYBACK",
-            "45": "MOVE_NEEDLE_ARM",
-            "49": "MOVE_COTTON_SPORE",
-            "53": "MOVE_SANDSTORM",
-            "57": "MOVE_DESTINY_BOND"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -112,14 +98,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             32,
             "SPECIES_CACTURNE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 4,
@@ -133,7 +119,66 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "By storing water in its body, this\ndesert dweller can survive for 30\ndays without water.",
-        "category": "Cactus Pokémon"
+        "en": {
+            "name": "CACNEA",
+            "category": "Cactus Pokémon",
+            "entry_text": [
+                "By storing water in its body, this\n",
+                "desert dweller can survive for 30\n",
+                "days without water."
+            ]
+        },
+        "fr": {
+            "name": "CACNEA",
+            "category": "Pokémon Cactus",
+            "entry_text": [
+                "En stockant l’eau dans son corps,\n",
+                "cet habitant du désert peut \n",
+                "survivre 30 jours sans boire."
+            ]
+        },
+        "de": {
+            "name": "TUSKA",
+            "category": "Kaktus",
+            "entry_text": [
+                "Dieser Wüstenbewohner speichert\n",
+                "Wasser in seinem Körper. So kann er\n",
+                "30 Tage ohne Wasser überleben."
+            ]
+        },
+        "it": {
+            "name": "CACNEA",
+            "category": "Pokémon Cactus",
+            "entry_text": [
+                "Immagazzina acqua nel corpo e\n",
+                "riesce a sopravvivere nel deserto\n",
+                "senz’acqua anche per 30 giorni."
+            ]
+        },
+        "es": {
+            "name": "CACNEA",
+            "category": "Pokémon Cactus",
+            "entry_text": [
+                "Habita en el desierto. Aguanta\n",
+                "treinta días sin agua gracias a la\n",
+                "que almacena en su cuerpo."
+            ]
+        },
+        "jp": {
+            "name": "サボネア",
+            "category": "サボテンポケモン",
+            "entry_text": [
+                "さばくに　せいそく。たいないに\n",
+                "すいぶんを　ためることで　みずを\n",
+                "のまずに　３０にちかん　いきられる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 257
     }
 }

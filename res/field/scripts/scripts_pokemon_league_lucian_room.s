@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pokemon_league_lucian_room.h"
 
     .data
 
@@ -30,19 +31,19 @@ _000A:
     End
 
 _007A:
-    StartTrainerBattle trainer_elite_four_lucian
+    StartTrainerBattle TRAINER_ELITE_FOUR_LUCIAN
     Return
 
 _0082:
-    StartTrainerBattle trainer_elite_four_lucian_rematch
+    StartTrainerBattle TRAINER_ELITE_FOUR_LUCIAN_REMATCH
     Return
 
 _008A:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_lucian, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN, 0, 0, 0
     Return
 
 _0098:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_lucian_rematch, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN_REMATCH, 0, 0, 0
     Return
 
 _00A6:

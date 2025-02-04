@@ -7,9 +7,8 @@
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
-#include "consts/battle.h"
-#include "consts/game_records.h"
-#include "consts/species.h"
+#include "generated/species.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pokedexdata_decl.h"
@@ -20,11 +19,10 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_display.h"
@@ -57,9 +55,9 @@
 #include "message.h"
 #include "palette.h"
 #include "party.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
-#include "poketch_data.h"
+#include "poketch.h"
 #include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -73,161 +71,161 @@
 #include "unk_0202F1D4.h"
 #include "unk_0206CCB0.h"
 
-BgConfig *BattleSystem_BGL(BattleSystem *param0);
-u32 BattleSystem_BattleType(BattleSystem *param0);
-BattleContext *BattleSystem_Context(BattleSystem *param0);
-BattlerData *BattleSystem_BattlerData(BattleSystem *param0, int param1);
-int BattleSystem_MaxBattlers(BattleSystem *param0);
-Party *BattleSystem_Party(BattleSystem *param0, int param1);
+BgConfig *BattleSystem_BGL(BattleSystem *battleSystem);
+u32 BattleSystem_BattleType(BattleSystem *battleSystem);
+BattleContext *BattleSystem_Context(BattleSystem *battleSystem);
+BattlerData *BattleSystem_BattlerData(BattleSystem *battleSystem, int param1);
+int BattleSystem_MaxBattlers(BattleSystem *battleSystem);
+Party *BattleSystem_Party(BattleSystem *battleSystem, int param1);
 int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
-UnkStruct_02007768 *ov16_0223E000(BattleSystem *param0);
-UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *param0);
-SpriteRenderer *ov16_0223E010(BattleSystem *param0);
-SpriteGfxHandler *ov16_0223E018(BattleSystem *param0);
-UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *param0, int param1);
-UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *param0);
-UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *param0);
-UnkStruct_0200C440 *ov16_0223E054(BattleSystem *param0);
-MessageLoader *BattleSystem_MessageLoader(BattleSystem *param0);
-MessageLoader *ov16_0223E060(BattleSystem *param0);
-PaletteData *BattleSystem_PaletteSys(BattleSystem *param0);
-PokedexData *ov16_0223E068(BattleSystem *param0);
-u8 *ov16_0223E06C(BattleSystem *param0);
-u8 *ov16_0223E074(BattleSystem *param0);
-u16 *ov16_0223E080(BattleSystem *param0);
-u16 *ov16_0223E08C(BattleSystem *param0);
-u16 *ov16_0223E098(BattleSystem *param0);
-u16 *ov16_0223E0A4(BattleSystem *param0);
-u16 *ov16_0223E0B0(BattleSystem *param0);
-u16 *ov16_0223E0BC(BattleSystem *param0);
-UnkStruct_ov16_0223E0C8 *ov16_0223E0C8(BattleSystem *param0);
-StringTemplate *BattleSystem_StringTemplate(BattleSystem *param0);
-Strbuf *ov16_0223E0D4(BattleSystem *param0);
-u16 Battler_TrainerID(BattleSystem *param0, int param1);
-TrainerData *BattleSystem_TrainerData(BattleSystem *param0, int param1);
+UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem);
+UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem);
+SpriteRenderer *ov16_0223E010(BattleSystem *battleSystem);
+SpriteGfxHandler *ov16_0223E018(BattleSystem *battleSystem);
+UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1);
+UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSystem);
+UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSystem);
+UnkStruct_0200C440 *ov16_0223E054(BattleSystem *battleSystem);
+MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSystem);
+MessageLoader *ov16_0223E060(BattleSystem *battleSystem);
+PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSystem);
+Pokedex *BattleSystem_GetPokedex(BattleSystem *battleSystem);
+u8 *ov16_0223E06C(BattleSystem *battleSystem);
+u8 *ov16_0223E074(BattleSystem *battleSystem);
+u16 *ov16_0223E080(BattleSystem *battleSystem);
+u16 *ov16_0223E08C(BattleSystem *battleSystem);
+u16 *ov16_0223E098(BattleSystem *battleSystem);
+u16 *ov16_0223E0A4(BattleSystem *battleSystem);
+u16 *ov16_0223E0B0(BattleSystem *battleSystem);
+u16 *ov16_0223E0BC(BattleSystem *battleSystem);
+UnkStruct_ov16_0223E0C8 *ov16_0223E0C8(BattleSystem *battleSystem);
+StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSystem);
+Strbuf *ov16_0223E0D4(BattleSystem *battleSystem);
+u16 Battler_TrainerID(BattleSystem *battleSystem, int param1);
+Trainer *BattleSystem_GetTrainer(BattleSystem *battleSystem, int param1);
 TrainerInfo *BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler);
-Bag *BattleSystem_Bag(BattleSystem *param0);
-BagCursor *BattleSystem_BagCursor(BattleSystem *param0);
-u32 ov16_0223E1B4(BattleSystem *param0, int param1);
+Bag *BattleSystem_Bag(BattleSystem *battleSystem);
+BagCursor *BattleSystem_BagCursor(BattleSystem *battleSystem);
+u32 BattleSystem_GetTrainerGender(BattleSystem *battleSystem, int param1);
 int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
-u8 Battler_Side(BattleSystem *param0, int param1);
-void *ov16_0223E220(BattleSystem *param0);
-PCBoxes *ov16_0223E228(BattleSystem *param0);
-enum Terrain BattleSystem_Terrain(BattleSystem *battleSys);
-int ov16_0223E240(BattleSystem *param0);
-int BattleSystem_MapHeader(BattleSystem *param0);
+u8 Battler_Side(BattleSystem *battleSystem, int param1);
+void *ov16_0223E220(BattleSystem *battleSystem);
+PCBoxes *ov16_0223E228(BattleSystem *battleSystem);
+enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
+int ov16_0223E240(BattleSystem *battleSystem);
+int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
 BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot, int moveSlot, int item);
-u32 ov16_0223EBEC(BattleSystem *param0);
+u32 ov16_0223EBEC(BattleSystem *battleSystem);
 enum Time BattleSystem_Time(BattleSystem *battleSys);
-int ov16_0223EC04(BattleSystem *param0);
-u8 ov16_0223EC58(BattleSystem *param0, int param1, u8 param2);
-u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2);
-u8 ov16_0223ED60(BattleSystem *param0);
-u8 ov16_0223ED6C(BattleSystem *param0);
-int BattleSystem_NumSafariBalls(BattleSystem *param0);
-void BattleSystem_SetSafariBalls(BattleSystem *param0, int param1);
-Options *ov16_0223EDA4(BattleSystem *param0);
+int ov16_0223EC04(BattleSystem *battleSystem);
+u8 ov16_0223EC58(BattleSystem *battleSystem, int param1, u8 param2);
+u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *param0, int *param1, int *param2);
+u8 ov16_0223ED60(BattleSystem *battleSystem);
+u8 ov16_0223ED6C(BattleSystem *battleSystem);
+int BattleSystem_NumSafariBalls(BattleSystem *battleSystem);
+void BattleSystem_SetSafariBalls(BattleSystem *battleSystem, int param1);
+Options *ov16_0223EDA4(BattleSystem *battleSystem);
 BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
-int ov16_0223EDE0(BattleSystem *param0);
-u8 BattleSystem_TextSpeed(BattleSystem *param0);
-int BattleSystem_Ruleset(BattleSystem *param0);
-PokemonAnimationSys *ov16_0223EE28(BattleSystem *param0);
-ChatotCry *BattleSystem_ChatotVoice(BattleSystem *param0, int param1);
-void ov16_0223EE70(BattleSystem *param0);
-void ov16_0223EF2C(BattleSystem *param0, int param1, int param2);
-void ov16_0223EF48(BattleSystem *param0, Pokemon *param1);
-void ov16_0223EF68(BattleSystem *param0, Pokemon *param1);
-void ov16_0223EF8C(BattleSystem *param0);
-u8 *ov16_0223F1E8(BattleSystem *param0);
-u16 *ov16_0223F1F0(BattleSystem *param0);
-int ov16_0223F1F8(BattleSystem *param0);
-u16 *ov16_0223F204(BattleSystem *param0);
-u16 *ov16_0223F210(BattleSystem *param0);
-int BattleSystem_FieldWeather(BattleSystem *param0);
-u8 ov16_0223F228(BattleSystem *param0);
-void ov16_0223F234(BattleSystem *param0, u8 param1);
-int ov16_0223F240(BattleSystem *param0);
-void ov16_0223F24C(BattleSystem *param0, int param1);
-void ov16_0223F268(BattleSystem *param0);
+int ov16_0223EDE0(BattleSystem *battleSystem);
+u8 BattleSystem_TextSpeed(BattleSystem *battleSystem);
+int BattleSystem_Ruleset(BattleSystem *battleSystem);
+PokemonAnimationSys *BattleSystem_GetPokemonAnimationSystem(BattleSystem *battleSystem);
+ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSystem, int param1);
+void ov16_0223EE70(BattleSystem *battleSystem);
+void ov16_0223EF2C(BattleSystem *battleSystem, int param1, int param2);
+void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1);
+void ov16_0223EF68(BattleSystem *battleSystem, Pokemon *param1);
+void ov16_0223EF8C(BattleSystem *battleSystem);
+u8 *ov16_0223F1E8(BattleSystem *battleSystem);
+u16 *ov16_0223F1F0(BattleSystem *battleSystem);
+int ov16_0223F1F8(BattleSystem *battleSystem);
+u16 *ov16_0223F204(BattleSystem *battleSystem);
+u16 *ov16_0223F210(BattleSystem *battleSystem);
+int BattleSystem_FieldWeather(BattleSystem *battleSystem);
+u8 ov16_0223F228(BattleSystem *battleSystem);
+void ov16_0223F234(BattleSystem *battleSystem, u8 param1);
+int ov16_0223F240(BattleSystem *battleSystem);
+void ov16_0223F24C(BattleSystem *battleSystem, int param1);
+void ov16_0223F268(BattleSystem *battleSystem);
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
-void ov16_0223F290(BattleSystem *param0, int param1);
-void *Battle_WaitDial(BattleSystem *param0);
-void Battle_SetWaitDial(BattleSystem *param0, void *param1);
+void ov16_0223F290(BattleSystem *battleSystem, int param1);
+void *Battle_WaitDial(BattleSystem *battleSystem);
+void Battle_SetWaitDial(BattleSystem *battleSystem, void *param1);
 u8 *ov16_0223F2B8(UnkStruct_ov16_0223E0C8 *param0, int param1);
 void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
 void ov16_0223F2E4(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
 void ov16_0223F2FC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
-void ov16_0223F314(BattleSystem *param0, int param1);
-void ov16_0223F320(BattleSystem *param0, u8 *param1);
-void ov16_0223F32C(BattleSystem *param0, u8 *param1);
-void ov16_0223F338(BattleSystem *param0, u8 param1);
-void ov16_0223F344(BattleSystem *param0, u8 param1);
-void ov16_0223F350(BattleSystem *param0, u8 param1);
-void ov16_0223F36C(BattleSystem *param0);
-void ov16_0223F3BC(BattleSystem *param0);
-void ov16_0223F3EC(BattleSystem *param0);
-void ov16_0223F414(BattleSystem *param0);
-u8 BattleSystem_ResultMask(BattleSystem *param0);
-void BattleSystem_SetResultFlag(BattleSystem *param0, u8 param1);
-u8 ov16_0223F450(BattleSystem *param0);
-void BattleSystem_SetRedHPSoundFlag(BattleSystem *param0, u8 param1);
-u8 ov16_0223F47C(BattleSystem *param0);
-void ov16_0223F48C(BattleSystem *param0, u8 param1);
-void ov16_0223F4B0(BattleSystem *param0, int param1);
-u16 BattleSystem_RandNext(BattleSystem *param0);
-u32 ov16_0223F4E8(BattleSystem *param0);
-void ov16_0223F4F4(BattleSystem *param0, u32 param1);
-void BattleSystem_Record(BattleSystem *param0, int param1, u8 param2);
-BOOL ov16_0223F530(BattleSystem *param0, int param1, u8 *param2);
-u8 ov16_0223F58C(BattleSystem *param0, u8 *param1);
-void ov16_0223F638(BattleSystem *param0, u16 param1, u8 *param2);
-u16 ov16_0223F6E4(BattleSystem *param0);
-int ov16_0223F6F0(BattleSystem *param0, u16 param1);
-u16 BattleSystem_TrainerItems(BattleSystem *param0, int param1, int param2);
-u32 BattleSystem_RecordingStopped(BattleSystem *param0);
+void ov16_0223F314(BattleSystem *battleSystem, int param1);
+void ov16_0223F320(BattleSystem *battleSystem, u8 *param1);
+void ov16_0223F32C(BattleSystem *battleSystem, u8 *param1);
+void ov16_0223F338(BattleSystem *battleSystem, u8 param1);
+void ov16_0223F344(BattleSystem *battleSystem, u8 param1);
+void ov16_0223F350(BattleSystem *battleSystem, u8 param1);
+void ov16_0223F36C(BattleSystem *battleSystem);
+void ov16_0223F3BC(BattleSystem *battleSystem);
+void ov16_0223F3EC(BattleSystem *battleSystem);
+void ov16_0223F414(BattleSystem *battleSystem);
+u8 BattleSystem_ResultMask(BattleSystem *battleSystem);
+void BattleSystem_SetResultFlag(BattleSystem *battleSystem, u8 param1);
+u8 ov16_0223F450(BattleSystem *battleSystem);
+void BattleSystem_SetRedHPSoundFlag(BattleSystem *battleSystem, u8 param1);
+u8 ov16_0223F47C(BattleSystem *battleSystem);
+void ov16_0223F48C(BattleSystem *battleSystem, u8 param1);
+void ov16_0223F4B0(BattleSystem *battleSystem, int param1);
+u16 BattleSystem_RandNext(BattleSystem *battleSystem);
+u32 ov16_0223F4E8(BattleSystem *battleSystem);
+void ov16_0223F4F4(BattleSystem *battleSystem, u32 param1);
+void BattleSystem_Record(BattleSystem *battleSystem, int param1, u8 param2);
+BOOL ov16_0223F530(BattleSystem *battleSystem, int param1, u8 *param2);
+u8 ov16_0223F58C(BattleSystem *battleSystem, u8 *param1);
+void ov16_0223F638(BattleSystem *battleSystem, u16 param1, u8 *param2);
+u16 ov16_0223F6E4(BattleSystem *battleSystem);
+int ov16_0223F6F0(BattleSystem *battleSystem, u16 param1);
+u16 BattleSystem_TrainerItems(BattleSystem *battleSystem, int param1, int param2);
+u32 BattleSystem_RecordingStopped(BattleSystem *battleSystem);
 void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag);
-BOOL ov16_0223F7A4(BattleSystem *param0);
-void BattleSystem_ShowStopPlaybackButton(BattleSystem *param0);
-u8 BattleSystem_RecordedChatter(BattleSystem *param0, int param1);
-void ov16_0223F858(BattleSystem *param0, u8 *param1);
-void ov16_0223F87C(BattleSystem *param0, u8 *param1);
-void ov16_0223F8AC(BattleSystem *param0, Sprite **param1);
-void BattleSystem_SetGaugePriority(BattleSystem *param0, int param1);
+BOOL ov16_0223F7A4(BattleSystem *battleSystem);
+void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSystem);
+u8 BattleSystem_RecordedChatter(BattleSystem *battleSystem, int param1);
+void ov16_0223F858(BattleSystem *battleSystem, u8 *param1);
+void ov16_0223F87C(BattleSystem *battleSystem, u8 *param1);
+void ov16_0223F8AC(BattleSystem *battleSystem, Sprite **param1);
+void BattleSystem_SetGaugePriority(BattleSystem *battleSystem, int param1);
 u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo);
-void BattleSystem_DexFlagSeen(BattleSystem *param0, int param1);
-void ov16_0223F9A0(BattleSystem *param0, int param1);
+void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1);
+void ov16_0223F9A0(BattleSystem *battleSystem, int param1);
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void Battle_SetDefaultBlend(void);
-u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int param4);
-u8 BattleMessage_PrintToWindow(BattleSystem *param0, Window *param1, MessageLoader *param2, BattleMessage *param3, int param4, int param5, int param6, int param7, int param8);
+u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3, int param4);
+u8 BattleMessage_PrintToWindow(BattleSystem *battleSystem, Window *param1, MessageLoader *param2, BattleMessage *param3, int param4, int param5, int param6, int param7, int param8);
 static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg);
 static BOOL BattleMessage_Callback(TextPrinterTemplate *param0, u16 param1);
-static void BattleMessage_Nickname(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_MoveName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_ItemName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_Number(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_NumberDigits(BattleSystem *param0, u32 param1, int param2, int param3);
-static void BattleMessage_TypeName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_AbilityName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_StatName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_StatusName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_PokemonName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_PoffinName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_FlavorName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_TrainerClassName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_TrainerName(BattleSystem *param0, u32 param1, int param2);
-static void BattleMessage_PCBoxName(BattleSystem *param0, u32 param1, int param2);
+static void BattleMessage_Nickname(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_MoveName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_ItemName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_Number(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_NumberDigits(BattleSystem *battleSystem, u32 param1, int param2, int param3);
+static void BattleMessage_TypeName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_AbilityName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_StatName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_StatusName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_PokemonName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_PoffinName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_FlavorName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_TrainerClassName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_TrainerName(BattleSystem *battleSystem, u32 param1, int param2);
+static void BattleMessage_PCBoxName(BattleSystem *battleSystem, u32 param1, int param2);
 static u8 ov16_0223F6D4(u8 *param0, u8 *param1, u16 *param2);
 
-BgConfig *BattleSystem_BGL(BattleSystem *param0)
+BgConfig *BattleSystem_BGL(BattleSystem *battleSystem)
 {
-    return param0->unk_04;
+    return battleSystem->unk_04;
 }
 
 Window *BattleSystem_Window(BattleSystem *battleSys, int idx)
@@ -255,14 +253,14 @@ int BattleSystem_MaxBattlers(BattleSystem *battleSys)
     return battleSys->maxBattlers;
 }
 
-Party *BattleSystem_Party(BattleSystem *param0, int param1)
+Party *BattleSystem_Party(BattleSystem *battleSystem, int param1)
 {
-    if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
-        return param0->parties[param1];
-    } else if (param0->battleType & 0x2) {
-        return param0->parties[param1 & 1];
+    if ((battleSystem->battleType & 0x8) || ((battleSystem->battleType & 0x10) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
+        return battleSystem->parties[param1];
+    } else if (battleSystem->battleType & 0x2) {
+        return battleSystem->parties[param1 & 1];
     } else {
-        return param0->parties[param1];
+        return battleSystem->parties[param1];
     }
 }
 
@@ -282,7 +280,7 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler)
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot)
 {
     if ((battleSys->battleType & BATTLE_TYPE_2vs2)
-        || ((battleSys->battleType & BATTLE_TYPE_TAG) && (BattleSystem_BattlerSlot(battleSys, battler) & BATTLER_ENEMY_SLOT_1))) {
+        || ((battleSys->battleType & BATTLE_TYPE_TAG) && (BattleSystem_BattlerSlot(battleSys, battler) & BATTLER_ENEMY_1))) {
         return Party_GetPokemonBySlotIndex(battleSys->parties[battler], slot);
     }
 
@@ -293,129 +291,129 @@ Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slo
     return Party_GetPokemonBySlotIndex(battleSys->parties[battler], slot);
 }
 
-UnkStruct_02007768 *ov16_0223E000(BattleSystem *param0)
+UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem)
 {
-    return param0->unk_88;
+    return battleSystem->unk_88;
 }
 
-UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *param0)
+UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem)
 {
-    return param0->unk_8C;
+    return battleSystem->unk_8C;
 }
 
-SpriteRenderer *ov16_0223E010(BattleSystem *param0)
+SpriteRenderer *ov16_0223E010(BattleSystem *battleSystem)
 {
-    return param0->unk_90;
+    return battleSystem->unk_90;
 }
 
-SpriteGfxHandler *ov16_0223E018(BattleSystem *param0)
+SpriteGfxHandler *ov16_0223E018(BattleSystem *battleSystem)
 {
-    return param0->unk_94;
+    return battleSystem->unk_94;
 }
 
-UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *param0, int param1)
+UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1)
 {
-    return &param0->unk_17C[param1];
+    return &battleSystem->unk_17C[param1];
 }
 
-UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *param0)
+UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSystem)
 {
-    return param0->unk_198;
+    return battleSystem->unk_198;
 }
 
-PartyGauge *ov16_0223E034(BattleSystem *param0, enum PartyGaugeSide param1)
+PartyGauge *ov16_0223E034(BattleSystem *battleSystem, enum PartyGaugeSide param1)
 {
-    return param0->unk_19C[param1];
+    return battleSystem->unk_19C[param1];
 }
 
-void ov16_0223E040(BattleSystem *param0, enum PartyGaugeSide param1, PartyGauge *param2)
+void ov16_0223E040(BattleSystem *battleSystem, enum PartyGaugeSide param1, PartyGauge *param2)
 {
-    param0->unk_19C[param1] = param2;
+    battleSystem->unk_19C[param1] = param2;
 }
 
-UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *param0)
+UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSystem)
 {
-    return param0->unk_1A4;
+    return battleSystem->unk_1A4;
 }
 
-UnkStruct_0200C440 *ov16_0223E054(BattleSystem *param0)
+UnkStruct_0200C440 *ov16_0223E054(BattleSystem *battleSystem)
 {
-    return param0->unk_1A8;
+    return battleSystem->unk_1A8;
 }
 
-MessageLoader *BattleSystem_MessageLoader(BattleSystem *param0)
+MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSystem)
 {
-    return param0->unk_0C;
+    return battleSystem->unk_0C;
 }
 
-MessageLoader *ov16_0223E060(BattleSystem *param0)
+MessageLoader *ov16_0223E060(BattleSystem *battleSystem)
 {
-    return param0->unk_10;
+    return battleSystem->unk_10;
 }
 
-PaletteData *BattleSystem_PaletteSys(BattleSystem *param0)
+PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSystem)
 {
-    return param0->unk_28;
+    return battleSystem->unk_28;
 }
 
-PokedexData *ov16_0223E068(BattleSystem *param0)
+Pokedex *BattleSystem_GetPokedex(BattleSystem *battleSystem)
 {
-    return param0->pokedex;
+    return battleSystem->pokedex;
 }
 
-u8 *ov16_0223E06C(BattleSystem *param0)
+u8 *ov16_0223E06C(BattleSystem *battleSystem)
 {
-    return &param0->unk_224[0];
+    return &battleSystem->unk_224[0];
 }
 
-u8 *ov16_0223E074(BattleSystem *param0)
+u8 *ov16_0223E074(BattleSystem *battleSystem)
 {
-    return &param0->unk_1224[0];
+    return &battleSystem->unk_1224[0];
 }
 
-u16 *ov16_0223E080(BattleSystem *param0)
+u16 *ov16_0223E080(BattleSystem *battleSystem)
 {
-    return &param0->unk_23E4;
+    return &battleSystem->unk_23E4;
 }
 
-u16 *ov16_0223E08C(BattleSystem *param0)
+u16 *ov16_0223E08C(BattleSystem *battleSystem)
 {
-    return &param0->unk_23E6;
+    return &battleSystem->unk_23E6;
 }
 
-u16 *ov16_0223E098(BattleSystem *param0)
+u16 *ov16_0223E098(BattleSystem *battleSystem)
 {
-    return &param0->unk_23E8;
+    return &battleSystem->unk_23E8;
 }
 
-u16 *ov16_0223E0A4(BattleSystem *param0)
+u16 *ov16_0223E0A4(BattleSystem *battleSystem)
 {
-    return &param0->unk_23EA;
+    return &battleSystem->unk_23EA;
 }
 
-u16 *ov16_0223E0B0(BattleSystem *param0)
+u16 *ov16_0223E0B0(BattleSystem *battleSystem)
 {
-    return &param0->unk_23EC;
+    return &battleSystem->unk_23EC;
 }
 
-u16 *ov16_0223E0BC(BattleSystem *param0)
+u16 *ov16_0223E0BC(BattleSystem *battleSystem)
 {
-    return &param0->unk_23EE;
+    return &battleSystem->unk_23EE;
 }
 
-UnkStruct_ov16_0223E0C8 *ov16_0223E0C8(BattleSystem *param0)
+UnkStruct_ov16_0223E0C8 *ov16_0223E0C8(BattleSystem *battleSystem)
 {
-    return &param0->unk_1CC[0];
+    return &battleSystem->unk_1CC[0];
 }
 
-StringTemplate *BattleSystem_StringTemplate(BattleSystem *param0)
+StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSystem)
 {
-    return param0->strFormatter;
+    return battleSystem->strFormatter;
 }
 
-Strbuf *ov16_0223E0D4(BattleSystem *param0)
+Strbuf *ov16_0223E0D4(BattleSystem *battleSystem)
 {
-    return param0->msgBuffer;
+    return battleSystem->msgBuffer;
 }
 
 u16 Battler_TrainerID(BattleSystem *battleSys, int battler)
@@ -432,14 +430,14 @@ u16 Battler_TrainerID(BattleSystem *battleSys, int battler)
     return battleSys->trainerIDs[battler];
 }
 
-TrainerData *BattleSystem_TrainerData(BattleSystem *param0, int param1)
+Trainer *BattleSystem_GetTrainer(BattleSystem *battleSystem, int param1)
 {
-    if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
-        return &param0->trainers[param1];
-    } else if (param0->battleType & 0x2) {
-        return &param0->trainers[param1 & 1];
+    if ((battleSystem->battleType & 0x8) || ((battleSystem->battleType & 0x10) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
+        return &battleSystem->trainers[param1];
+    } else if (battleSystem->battleType & 0x2) {
+        return &battleSystem->trainers[param1 & 1];
     } else {
-        return &param0->trainers[param1];
+        return &battleSystem->trainers[param1];
     }
 }
 
@@ -458,19 +456,19 @@ TrainerInfo *BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler)
     return battleSys->trainerInfo[battler];
 }
 
-Bag *BattleSystem_Bag(BattleSystem *param0)
+Bag *BattleSystem_Bag(BattleSystem *battleSystem)
 {
-    return param0->unk_58;
+    return battleSystem->unk_58;
 }
 
-BagCursor *BattleSystem_BagCursor(BattleSystem *param0)
+BagCursor *BattleSystem_BagCursor(BattleSystem *battleSystem)
 {
-    return param0->unk_5C;
+    return battleSystem->unk_5C;
 }
 
-u32 ov16_0223E1B4(BattleSystem *param0, int param1)
+u32 BattleSystem_GetTrainerGender(BattleSystem *battleSystem, int param1)
 {
-    return TrainerInfo_Gender(param0->trainerInfo[param1]);
+    return TrainerInfo_Gender(battleSystem->trainerInfo[param1]);
 }
 
 int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type)
@@ -491,22 +489,22 @@ u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler)
     return Battler_Type(battleSys->battlers[battler]);
 }
 
-u8 Battler_Side(BattleSystem *param0, int param1)
+u8 Battler_Side(BattleSystem *battleSystem, int param1)
 {
-    return Battler_Type(param0->battlers[param1]) & 1;
+    return Battler_Type(battleSystem->battlers[param1]) & 1;
 }
 
-void *ov16_0223E220(BattleSystem *param0)
+void *ov16_0223E220(BattleSystem *battleSystem)
 {
-    return param0->unk_1AC;
+    return battleSystem->unk_1AC;
 }
 
-PCBoxes *ov16_0223E228(BattleSystem *param0)
+PCBoxes *ov16_0223E228(BattleSystem *battleSystem)
 {
-    return param0->pcBoxes;
+    return battleSystem->pcBoxes;
 }
 
-enum Terrain BattleSystem_Terrain(BattleSystem *battleSys)
+enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys)
 {
     if (battleSys->terrain > TERRAIN_MAX || battleSys->terrain < TERRAIN_PLAIN) {
         return TERRAIN_MAX;
@@ -515,14 +513,14 @@ enum Terrain BattleSystem_Terrain(BattleSystem *battleSys)
     return battleSys->terrain;
 }
 
-int ov16_0223E240(BattleSystem *param0)
+int ov16_0223E240(BattleSystem *battleSystem)
 {
-    return param0->unk_2400;
+    return battleSystem->unk_2400;
 }
 
-int BattleSystem_MapHeader(BattleSystem *param0)
+int BattleSystem_MapHeader(BattleSystem *battleSystem)
 {
-    return param0->unk_2404;
+    return battleSystem->unk_2404;
 }
 
 int BattleSystem_Partner(BattleSystem *battleSys, int battler)
@@ -901,18 +899,18 @@ enum Time BattleSystem_Time(BattleSystem *battleSys)
     return battleSys->time;
 }
 
-int ov16_0223EC04(BattleSystem *param0)
+int ov16_0223EC04(BattleSystem *battleSystem)
 {
     int v0;
 
-    switch (param0->unk_2400) {
+    switch (battleSystem->unk_2400) {
     case 0:
     case 1:
     case 2:
     case 3:
     case 4:
     case 5:
-        switch (param0->time) {
+        switch (battleSystem->time) {
         case 0:
         case 1:
             v0 = 0;
@@ -934,19 +932,19 @@ int ov16_0223EC04(BattleSystem *param0)
     return v0;
 }
 
-u8 ov16_0223EC58(BattleSystem *param0, int param1, u8 param2)
+u8 ov16_0223EC58(BattleSystem *battleSystem, int param1, u8 param2)
 {
     u16 v0;
 
-    if ((BattleSystem_BattlerSlot(param0, param1) == 4) && ((param0->battleType & 0x8) == 0)) {
-        if (param0->battleType & 0x4) {
-            if ((param2 & FlagIndex(BattleSystem_Partner(param0, param1))) == 0) {
+    if ((BattleSystem_BattlerSlot(battleSystem, param1) == 4) && ((battleSystem->battleType & 0x8) == 0)) {
+        if (battleSystem->battleType & 0x4) {
+            if ((param2 & FlagIndex(BattleSystem_Partner(battleSystem, param1))) == 0) {
                 return 1;
             }
         } else {
-            v0 = BattleContext_Get(param0, param0->battleCtx, 12, 0) & 0xffff;
+            v0 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 12, 0) & 0xffff;
 
-            if (((BattleContext_Get(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & FlagIndex(0))) {
+            if (((BattleContext_Get(battleSystem, battleSystem->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & FlagIndex(0))) {
                 return 0;
             } else {
                 return 1;
@@ -957,61 +955,61 @@ u8 ov16_0223EC58(BattleSystem *param0, int param1, u8 param2)
     return 0;
 }
 
-u16 ov16_0223ECC4(FieldBattleDTO *param0, int *param1, int *param2)
+u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *dto, int *outPartySlot, int *outEvoType)
 {
-    Pokemon *v0;
-    u16 v1;
+    Pokemon *mon;
+    u16 species = SPECIES_NONE;
 
-    v1 = 0;
-
-    if ((param0->resultMask != BATTLE_RESULT_WIN) && (param0->resultMask != BATTLE_RESULT_CAPTURED_MON) && (param0->resultMask != BATTLE_RESULT_PLAYER_FLED)) {
-        return 0;
+    if (dto->resultMask != BATTLE_RESULT_WIN
+        && dto->resultMask != BATTLE_RESULT_CAPTURED_MON
+        && dto->resultMask != BATTLE_RESULT_PLAYER_FLED) {
+        return SPECIES_NONE;
     }
 
-    while (param0->leveledUpMonsMask) {
-        for (param1[0] = 0; param1[0] < 6; param1[0]++) {
-            if (param0->leveledUpMonsMask & FlagIndex(param1[0])) {
-                param0->leveledUpMonsMask &= (FlagIndex(param1[0]) ^ 0xffffffff);
+    while (dto->leveledUpMonsMask) {
+        for (*outPartySlot = 0; *outPartySlot < 6; (*outPartySlot)++) {
+            if (dto->leveledUpMonsMask & FlagIndex(*outPartySlot)) {
+                dto->leveledUpMonsMask &= (FlagIndex(*outPartySlot) ^ 0xFFFFFFFF);
                 break;
             }
         }
 
-        if (param1[0] < 6) {
-            v0 = Party_GetPokemonBySlotIndex(param0->parties[0], param1[0]);
-
-            if ((v1 = sub_02076B94(param0->parties[0], v0, 0, param0->mapEvolutionMethod, param2))) {
-                return v1;
+        if (*outPartySlot < 6) {
+            mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLE_SIDE_PLAYER], *outPartySlot);
+            species = Pokemon_GetEvolutionTargetSpecies(dto->parties[BATTLE_SIDE_PLAYER], mon, EVO_CLASS_BY_LEVEL, dto->mapEvolutionMethod, outEvoType);
+            if (species) {
+                return species;
             }
         }
     }
 
-    return v1;
+    return species;
 }
 
-u8 ov16_0223ED60(BattleSystem *param0)
+u8 ov16_0223ED60(BattleSystem *battleSystem)
 {
-    return param0->unk_23F8;
+    return battleSystem->unk_23F8;
 }
 
-u8 ov16_0223ED6C(BattleSystem *param0)
+u8 ov16_0223ED6C(BattleSystem *battleSystem)
 {
-    GF_ASSERT(param0->battleCtx != NULL);
-    return BattleContext_Get(param0, param0->battleCtx, 5, NULL);
+    GF_ASSERT(battleSystem->battleCtx != NULL);
+    return BattleContext_Get(battleSystem, battleSystem->battleCtx, 5, NULL);
 }
 
-int BattleSystem_NumSafariBalls(BattleSystem *param0)
+int BattleSystem_NumSafariBalls(BattleSystem *battleSystem)
 {
-    return param0->safariBalls;
+    return battleSystem->safariBalls;
 }
 
-void BattleSystem_SetSafariBalls(BattleSystem *param0, int param1)
+void BattleSystem_SetSafariBalls(BattleSystem *battleSystem, int param1)
 {
-    param0->safariBalls = param1;
+    battleSystem->safariBalls = param1;
 }
 
-Options *ov16_0223EDA4(BattleSystem *param0)
+Options *ov16_0223EDA4(BattleSystem *battleSystem)
 {
-    return param0->unk_1B0;
+    return battleSystem->unk_1B0;
 }
 
 BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys)
@@ -1024,57 +1022,57 @@ BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys)
     return Options_BattleScene(battleSys->unk_1B0) == OPTIONS_BATTLE_SCENE_ON;
 }
 
-int ov16_0223EDE0(BattleSystem *param0)
+int ov16_0223EDE0(BattleSystem *battleSystem)
 {
-    return Options_Frame(param0->unk_1B0);
+    return Options_Frame(battleSystem->unk_1B0);
 }
 
-u8 BattleSystem_TextSpeed(BattleSystem *param0)
+u8 BattleSystem_TextSpeed(BattleSystem *battleSystem)
 {
-    if ((param0->battleType & 0x4) && ((param0->battleStatusMask & 0x10) == 0)) {
+    if ((battleSystem->battleType & 0x4) && ((battleSystem->battleStatusMask & 0x10) == 0)) {
         return 1;
     }
 
-    return Options_TextFrameDelay(param0->unk_1B0);
+    return Options_TextFrameDelay(battleSystem->unk_1B0);
 }
 
-int BattleSystem_Ruleset(BattleSystem *param0)
+int BattleSystem_Ruleset(BattleSystem *battleSystem)
 {
-    return Options_BattleStyle(param0->unk_1B0);
+    return Options_BattleStyle(battleSystem->unk_1B0);
 }
 
-PokemonAnimationSys *ov16_0223EE28(BattleSystem *param0)
+PokemonAnimationSys *BattleSystem_GetPokemonAnimationSystem(BattleSystem *battleSystem)
 {
-    return param0->unk_1C4;
+    return battleSystem->unk_1C4;
 }
 
-ChatotCry *BattleSystem_ChatotVoice(BattleSystem *param0, int param1)
+ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSystem, int param1)
 {
-    if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
-        return param0->unk_78[param1];
-    } else if (param0->battleType & 0x2) {
-        return param0->unk_78[param1 & 1];
+    if ((battleSystem->battleType & 0x8) || ((battleSystem->battleType & 0x10) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
+        return battleSystem->unk_78[param1];
+    } else if (battleSystem->battleType & 0x2) {
+        return battleSystem->unk_78[param1 & 1];
     } else {
-        return param0->unk_78[param1];
+        return battleSystem->unk_78[param1];
     }
 }
 
-void ov16_0223EE70(BattleSystem *param0)
+void ov16_0223EE70(BattleSystem *battleSystem)
 {
     int v0, v1;
     Pokemon *v2;
     u16 v3;
 
-    if (param0->battleType & (0x4 | 0x80 | 0x20 | 0x200)) {
+    if (battleSystem->battleType & (0x4 | 0x80 | 0x20 | 0x200)) {
         return;
     }
 
-    for (v0 = 0; v0 < BattleSystem_PartyCount(param0, 0); v0++) {
-        v2 = BattleSystem_PartyPokemon(param0, 0, v0);
+    for (v0 = 0; v0 < BattleSystem_PartyCount(battleSystem, 0); v0++) {
+        v2 = BattleSystem_PartyPokemon(battleSystem, 0, v0);
         v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES_EGG, NULL);
 
-        if ((v3 == SPECIES_BURMY) && (param0->unk_2414[0] & FlagIndex(v0))) {
-            switch (BattleSystem_Terrain(param0)) {
+        if ((v3 == SPECIES_BURMY) && (battleSystem->unk_2414[0] & FlagIndex(v0))) {
+            switch (BattleSystem_Terrain(battleSystem)) {
             default:
             case TERRAIN_GRASS:
                 v1 = 0;
@@ -1108,37 +1106,37 @@ void ov16_0223EE70(BattleSystem *param0)
     }
 }
 
-void ov16_0223EF2C(BattleSystem *param0, int param1, int param2)
+void ov16_0223EF2C(BattleSystem *battleSystem, int param1, int param2)
 {
-    param0->unk_2414[param1] |= FlagIndex(param2);
+    battleSystem->unk_2414[param1] |= FlagIndex(param2);
 }
 
-void ov16_0223EF48(BattleSystem *param0, Pokemon *param1)
+void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1)
 {
-    if (param0->poketchData) {
-        PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(param1));
+    if (battleSystem->poketch) {
+        Poketch_PokemonHistoryEnqueue(battleSystem->poketch, Pokemon_GetBoxPokemon(param1));
     }
 }
 
-void ov16_0223EF68(BattleSystem *param0, Pokemon *param1)
+void ov16_0223EF68(BattleSystem *battleSystem, Pokemon *param1)
 {
-    sub_0206D160(param0->unk_9C, param1, param0->resultMask, param0->unk_241E, 5);
+    sub_0206D160(battleSystem->unk_9C, param1, battleSystem->resultMask, battleSystem->unk_241E, 5);
 }
 
-void ov16_0223EF8C(BattleSystem *param0)
+void ov16_0223EF8C(BattleSystem *battleSystem)
 {
     NNSG2dImageProxy *v0;
     int v1, v2, v3, v4, v5, v6;
     u8 *v7;
 
-    param0->unk_21C = Heap_AllocFromHeap(5, 0x10000);
-    param0->unk_220 = Heap_AllocFromHeap(5, 0x200);
+    battleSystem->unk_21C = Heap_AllocFromHeap(5, 0x10000);
+    battleSystem->unk_220 = Heap_AllocFromHeap(5, 0x200);
 
-    MI_CpuCopy32((void *)(HW_BG_VRAM + 0x10000), param0->unk_21C, 0x10000);
-    MI_CpuCopy32(PaletteData_GetUnfadedBuffer(param0->unk_28, 0), param0->unk_220, HW_BG_PLTT_SIZE);
+    MI_CpuCopy32((void *)(HW_BG_VRAM + 0x10000), battleSystem->unk_21C, 0x10000);
+    MI_CpuCopy32(PaletteData_GetUnfadedBuffer(battleSystem->unk_28, 0), battleSystem->unk_220, HW_BG_PLTT_SIZE);
 
     v7 = G2_GetOBJCharPtr();
-    v0 = SpriteActor_ImageProxy(param0->unk_17C[1].unk_00->unk_00);
+    v0 = SpriteActor_ImageProxy(battleSystem->unk_17C[1].unk_00->unk_00);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v2 = 20; v2 < 20 + 8; v2++) {
@@ -1162,14 +1160,14 @@ void ov16_0223EF8C(BattleSystem *param0)
                 }
 
                 if (v5) {
-                    param0->unk_21C[v2 * 0x800 + v1 * 0x40 + v6] = v5 + 0x70;
+                    battleSystem->unk_21C[v2 * 0x800 + v1 * 0x40 + v6] = v5 + 0x70;
                 }
             }
         }
     }
 
     v7 = G2_GetOBJCharPtr();
-    v0 = SpriteActor_ImageProxy(param0->unk_17C[0].unk_00->unk_00);
+    v0 = SpriteActor_ImageProxy(battleSystem->unk_17C[0].unk_00->unk_00);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v6 = 0; v6 < 0x40 * 32; v6++) {
@@ -1180,7 +1178,7 @@ void ov16_0223EF8C(BattleSystem *param0)
         }
 
         if (v5) {
-            param0->unk_21C[19 * 0x800 + v6] = v5 + 0x70;
+            battleSystem->unk_21C[19 * 0x800 + v6] = v5 + 0x70;
         }
     }
 
@@ -1197,41 +1195,41 @@ void ov16_0223EF8C(BattleSystem *param0)
                 }
 
                 if (v5) {
-                    param0->unk_21C[v2 * 0x800 + v1 * 0x40 + v6] = v5 + 0x70;
+                    battleSystem->unk_21C[v2 * 0x800 + v1 * 0x40 + v6] = v5 + 0x70;
                 }
             }
         }
     }
 
-    Bg_LoadTiles(param0->unk_04, 3, param0->unk_21C, 0x10000, 0);
+    Bg_LoadTiles(battleSystem->unk_04, 3, battleSystem->unk_21C, 0x10000, 0);
 
-    ov16_02268700(&param0->unk_17C[0]);
-    ov16_02268700(&param0->unk_17C[1]);
+    ov16_02268700(&battleSystem->unk_17C[0]);
+    ov16_02268700(&battleSystem->unk_17C[1]);
 }
 
-u8 *ov16_0223F1E8(BattleSystem *param0)
+u8 *ov16_0223F1E8(BattleSystem *battleSystem)
 {
-    return param0->unk_21C;
+    return battleSystem->unk_21C;
 }
 
-u16 *ov16_0223F1F0(BattleSystem *param0)
+u16 *ov16_0223F1F0(BattleSystem *battleSystem)
 {
-    return param0->unk_220;
+    return battleSystem->unk_220;
 }
 
-int ov16_0223F1F8(BattleSystem *param0)
+int ov16_0223F1F8(BattleSystem *battleSystem)
 {
-    return param0->unk_2424;
+    return battleSystem->unk_2424;
 }
 
-u16 *ov16_0223F204(BattleSystem *param0)
+u16 *ov16_0223F204(BattleSystem *battleSystem)
 {
-    return &param0->unk_2224[0];
+    return &battleSystem->unk_2224[0];
 }
 
-u16 *ov16_0223F210(BattleSystem *param0)
+u16 *ov16_0223F210(BattleSystem *battleSystem)
 {
-    return &param0->unk_2304[0];
+    return &battleSystem->unk_2304[0];
 }
 
 int BattleSystem_FieldWeather(BattleSystem *battleSys)
@@ -1239,37 +1237,37 @@ int BattleSystem_FieldWeather(BattleSystem *battleSys)
     return battleSys->fieldWeather;
 }
 
-u8 ov16_0223F228(BattleSystem *param0)
+u8 ov16_0223F228(BattleSystem *battleSystem)
 {
-    return param0->unk_241D;
+    return battleSystem->unk_241D;
 }
 
-void ov16_0223F234(BattleSystem *param0, u8 param1)
+void ov16_0223F234(BattleSystem *battleSystem, u8 param1)
 {
-    param0->unk_241D = param1;
+    battleSystem->unk_241D = param1;
 }
 
-int ov16_0223F240(BattleSystem *param0)
+int ov16_0223F240(BattleSystem *battleSystem)
 {
-    return param0->unk_242C;
+    return battleSystem->unk_242C;
 }
 
-void ov16_0223F24C(BattleSystem *param0, int param1)
+void ov16_0223F24C(BattleSystem *battleSystem, int param1)
 {
-    if (param0->battleStatusMask & 0x10) {
+    if (battleSystem->battleStatusMask & 0x10) {
         return;
     }
 
-    GameRecords_IncrementRecordValue(param0->records, param1);
+    GameRecords_IncrementRecordValue(battleSystem->records, param1);
 }
 
-void ov16_0223F268(BattleSystem *param0)
+void ov16_0223F268(BattleSystem *battleSystem)
 {
-    if (param0->battleStatusMask & 0x10) {
+    if (battleSystem->battleStatusMask & 0x10) {
         return;
     }
 
-    GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
+    GameRecords_IncrementTrainerScore(battleSystem->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
 }
 
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags)
@@ -1277,24 +1275,24 @@ void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags)
     battleSys->commandSelectionFlags = flags;
 }
 
-void ov16_0223F290(BattleSystem *param0, int param1)
+void ov16_0223F290(BattleSystem *battleSystem, int param1)
 {
-    param0->unk_2440 = param1;
+    battleSystem->unk_2440 = param1;
 }
 
-void *Battle_WaitDial(BattleSystem *param0)
+void *Battle_WaitDial(BattleSystem *battleSystem)
 {
-    return param0->unk_1B8;
+    return battleSystem->unk_1B8;
 }
 
-void Battle_SetWaitDial(BattleSystem *param0, void *param1)
+void Battle_SetWaitDial(BattleSystem *battleSystem, void *param1)
 {
-    param0->unk_1B8 = param1;
+    battleSystem->unk_1B8 = param1;
 }
 
-UnkStruct_ov16_0223E0C8 *ov16_0223F2AC(BattleSystem *param0, int param1)
+UnkStruct_ov16_0223E0C8 *ov16_0223F2AC(BattleSystem *battleSystem, int param1)
 {
-    return &param0->unk_1CC[param1];
+    return &battleSystem->unk_1CC[param1];
 }
 
 u8 *ov16_0223F2B8(UnkStruct_ov16_0223E0C8 *param0, int param1)
@@ -1321,64 +1319,64 @@ void ov16_0223F2FC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2)
     param0[param1].unk_0C = param2;
 }
 
-void ov16_0223F314(BattleSystem *param0, int param1)
+void ov16_0223F314(BattleSystem *battleSystem, int param1)
 {
-    param0->unk_23F9 = param1;
+    battleSystem->unk_23F9 = param1;
 }
 
-void ov16_0223F320(BattleSystem *param0, u8 *param1)
+void ov16_0223F320(BattleSystem *battleSystem, u8 *param1)
 {
-    param0->unk_23F0 = param1;
+    battleSystem->unk_23F0 = param1;
 }
 
-void ov16_0223F32C(BattleSystem *param0, u8 *param1)
+void ov16_0223F32C(BattleSystem *battleSystem, u8 *param1)
 {
-    param0->unk_23F4 = param1;
+    battleSystem->unk_23F4 = param1;
 }
 
-void ov16_0223F338(BattleSystem *param0, u8 param1)
+void ov16_0223F338(BattleSystem *battleSystem, u8 param1)
 {
-    param0->unk_23F0[0] = param1;
+    battleSystem->unk_23F0[0] = param1;
 }
 
-void ov16_0223F344(BattleSystem *param0, u8 param1)
+void ov16_0223F344(BattleSystem *battleSystem, u8 param1)
 {
-    param0->unk_23F4[0] = param1;
+    battleSystem->unk_23F4[0] = param1;
 }
 
-void ov16_0223F350(BattleSystem *param0, u8 param1)
+void ov16_0223F350(BattleSystem *battleSystem, u8 param1)
 {
-    param0->unk_23FA = param1;
+    battleSystem->unk_23FA = param1;
 }
 
-void *ov16_0223F35C(BattleSystem *param0, int param1)
+void *ov16_0223F35C(BattleSystem *battleSystem, int param1)
 {
-    return ov16_02263B08(param0->battlers[param1]);
+    return ov16_02263B08(battleSystem->battlers[param1]);
 }
 
-void ov16_0223F36C(BattleSystem *param0)
+void ov16_0223F36C(BattleSystem *battleSystem)
 {
     int v0;
     Healthbar *v1;
 
-    for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-        v1 = ov16_02263B08(param0->battlers[v0]);
+    for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+        v1 = ov16_02263B08(battleSystem->battlers[v0]);
 
-        v1->battleSys = param0;
-        v1->type = Healthbar_Type(Battler_Type(param0->battlers[v0]), BattleSystem_BattleType(param0));
+        v1->battleSys = battleSystem;
+        v1->type = Healthbar_Type(Battler_Type(battleSystem->battlers[v0]), BattleSystem_BattleType(battleSystem));
 
         ov16_022672C4(v1);
         Healthbar_Enable(v1, 0);
     }
 }
 
-void ov16_0223F3BC(BattleSystem *param0)
+void ov16_0223F3BC(BattleSystem *battleSystem)
 {
     int v0;
     Healthbar *v1;
 
-    for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-        v1 = ov16_02263B08(param0->battlers[v0]);
+    for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+        v1 = ov16_02263B08(battleSystem->battlers[v0]);
 
         if (v1->curHP) {
             Healthbar_Enable(v1, 1);
@@ -1386,120 +1384,120 @@ void ov16_0223F3BC(BattleSystem *param0)
     }
 }
 
-void ov16_0223F3EC(BattleSystem *param0)
+void ov16_0223F3EC(BattleSystem *battleSystem)
 {
     int v0;
     Healthbar *v1;
 
-    for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-        v1 = ov16_02263B08(param0->battlers[v0]);
+    for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+        v1 = ov16_02263B08(battleSystem->battlers[v0]);
         Healthbar_Enable(v1, 0);
     }
 }
 
-void ov16_0223F414(BattleSystem *param0)
+void ov16_0223F414(BattleSystem *battleSystem)
 {
     int v0;
     Healthbar *v1;
 
-    for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-        v1 = ov16_02263B08(param0->battlers[v0]);
+    for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+        v1 = ov16_02263B08(battleSystem->battlers[v0]);
         ov16_02267360(v1);
     }
 }
 
-u8 BattleSystem_ResultMask(BattleSystem *param0)
+u8 BattleSystem_ResultMask(BattleSystem *battleSystem)
 {
-    return param0->resultMask;
+    return battleSystem->resultMask;
 }
 
-void BattleSystem_SetResultFlag(BattleSystem *param0, u8 param1)
+void BattleSystem_SetResultFlag(BattleSystem *battleSystem, u8 param1)
 {
-    param0->resultMask = param1;
+    battleSystem->resultMask = param1;
 }
 
-u8 ov16_0223F450(BattleSystem *param0)
+u8 ov16_0223F450(BattleSystem *battleSystem)
 {
-    return param0->unk_23FB_3;
+    return battleSystem->unk_23FB_3;
 }
 
-void BattleSystem_SetRedHPSoundFlag(BattleSystem *param0, u8 param1)
+void BattleSystem_SetRedHPSoundFlag(BattleSystem *battleSystem, u8 param1)
 {
-    param0->unk_23FB_3 = param1;
+    battleSystem->unk_23FB_3 = param1;
 }
 
-u8 ov16_0223F47C(BattleSystem *param0)
+u8 ov16_0223F47C(BattleSystem *battleSystem)
 {
-    return param0->unk_23FB_5;
+    return battleSystem->unk_23FB_5;
 }
 
-void ov16_0223F48C(BattleSystem *param0, u8 param1)
+void ov16_0223F48C(BattleSystem *battleSystem, u8 param1)
 {
     GF_ASSERT(param1 < 15);
-    param0->unk_23FB_5 = param1;
+    battleSystem->unk_23FB_5 = param1;
 }
 
-void ov16_0223F4B0(BattleSystem *param0, int param1)
+void ov16_0223F4B0(BattleSystem *battleSystem, int param1)
 {
-    param0->unk_2438 = param1;
+    battleSystem->unk_2438 = param1;
 }
 
-u16 BattleSystem_RandNext(BattleSystem *param0)
+u16 BattleSystem_RandNext(BattleSystem *battleSystem)
 {
-    param0->unk_2444 = param0->unk_2444 * 1103515245L + 24691;
-    return (u16)(param0->unk_2444 / 65536L);
+    battleSystem->unk_2444 = battleSystem->unk_2444 * 1103515245L + 24691;
+    return (u16)(battleSystem->unk_2444 / 65536L);
 }
 
-u32 ov16_0223F4E8(BattleSystem *param0)
+u32 ov16_0223F4E8(BattleSystem *battleSystem)
 {
-    return param0->unk_2448;
+    return battleSystem->unk_2448;
 }
 
-void ov16_0223F4F4(BattleSystem *param0, u32 param1)
+void ov16_0223F4F4(BattleSystem *battleSystem, u32 param1)
 {
-    param0->unk_2448 = param1;
+    battleSystem->unk_2448 = param1;
 }
 
-void BattleSystem_Record(BattleSystem *param0, int param1, u8 param2)
+void BattleSystem_Record(BattleSystem *battleSystem, int param1, u8 param2)
 {
-    if (((param0->battleStatusMask & 0x10) == 0) && (param0->unk_245C[param1] < 0x400)) {
-        sub_0202F868(param1, param0->unk_245C[param1], param2);
-        param0->unk_245C[param1]++;
+    if (((battleSystem->battleStatusMask & 0x10) == 0) && (battleSystem->unk_245C[param1] < 0x400)) {
+        sub_0202F868(param1, battleSystem->unk_245C[param1], param2);
+        battleSystem->unk_245C[param1]++;
     }
 }
 
-BOOL ov16_0223F530(BattleSystem *param0, int param1, u8 *param2)
+BOOL ov16_0223F530(BattleSystem *battleSystem, int param1, u8 *param2)
 {
     BOOL v0;
 
     *param2 = 0xff;
 
-    if ((param0->battleStatusMask & 0x10) && (param0->unk_245C[param1] < 0x400)) {
-        *param2 = sub_0202F884(param1, param0->unk_245C[param1]);
-        param0->unk_245C[param1]++;
+    if ((battleSystem->battleStatusMask & 0x10) && (battleSystem->unk_245C[param1] < 0x400)) {
+        *param2 = sub_0202F884(param1, battleSystem->unk_245C[param1]);
+        battleSystem->unk_245C[param1]++;
         v0 = 0;
-    } else if ((param0->battleStatusMask & 0x10) && (param0->unk_245C[param1] >= 0x400)) {
+    } else if ((battleSystem->battleStatusMask & 0x10) && (battleSystem->unk_245C[param1] >= 0x400)) {
         v0 = 1;
     }
 
     return v0;
 }
 
-u8 ov16_0223F58C(BattleSystem *param0, u8 *param1)
+u8 ov16_0223F58C(BattleSystem *battleSystem, u8 *param1)
 {
     u8 v0, v1;
     u8 v2 = 0;
 
-    for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-        if (param0->unk_245C[v0] != param0->unk_244C[v0]) {
+    for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+        if (battleSystem->unk_245C[v0] != battleSystem->unk_244C[v0]) {
             param1[v2++] = v0;
-            param1[v2++] = param0->unk_245C[v0] - param0->unk_244C[v0];
+            param1[v2++] = battleSystem->unk_245C[v0] - battleSystem->unk_244C[v0];
 
-            for (v1 = 0; v1 < param0->unk_245C[v0] - param0->unk_244C[v0]; v1++) {
-                param1[v2++] = sub_0202F884(v0, param0->unk_244C[v0] + v1);
+            for (v1 = 0; v1 < battleSystem->unk_245C[v0] - battleSystem->unk_244C[v0]; v1++) {
+                param1[v2++] = sub_0202F884(v0, battleSystem->unk_244C[v0] + v1);
             }
 
-            param0->unk_244C[v0] = param0->unk_245C[v0];
+            battleSystem->unk_244C[v0] = battleSystem->unk_245C[v0];
         }
     }
 
@@ -1507,18 +1505,18 @@ u8 ov16_0223F58C(BattleSystem *param0, u8 *param1)
     return v2;
 }
 
-void ov16_0223F638(BattleSystem *param0, u16 param1, u8 *param2)
+void ov16_0223F638(BattleSystem *battleSystem, u16 param1, u8 *param2)
 {
     int v0;
     u8 v1;
     u8 v2;
     u8 v3 = 0;
 
-    if ((param0->battleType & 0x4) == 0) {
+    if ((battleSystem->battleType & 0x4) == 0) {
         return;
     }
 
-    if (param0->unk_23F8) {
+    if (battleSystem->unk_23F8) {
         return;
     }
 
@@ -1527,10 +1525,10 @@ void ov16_0223F638(BattleSystem *param0, u16 param1, u8 *param2)
         v2 = ov16_0223F6D4(param2, &v3, &param1);
 
         for (v0 = 0; v0 < v2; v0++) {
-            sub_0202F868(v1, param0->unk_2454[v1] + v0, ov16_0223F6D4(param2, &v3, &param1));
+            sub_0202F868(v1, battleSystem->unk_2454[v1] + v0, ov16_0223F6D4(param2, &v3, &param1));
         }
 
-        param0->unk_2454[v1] += v2;
+        battleSystem->unk_2454[v1] += v2;
     }
 }
 
@@ -1540,24 +1538,24 @@ static u8 ov16_0223F6D4(u8 *param0, u8 *param1, u16 *param2)
     return param0[param1[0]++];
 }
 
-u16 ov16_0223F6E4(BattleSystem *param0)
+u16 ov16_0223F6E4(BattleSystem *battleSystem)
 {
-    return param0->unk_2442;
+    return battleSystem->unk_2442;
 }
 
-int ov16_0223F6F0(BattleSystem *param0, u16 param1)
+int ov16_0223F6F0(BattleSystem *battleSystem, u16 param1)
 {
-    return param0->unk_2464[param1];
+    return battleSystem->unk_2464[param1];
 }
 
-u16 BattleSystem_TrainerItems(BattleSystem *param0, int param1, int param2)
+u16 BattleSystem_TrainerItems(BattleSystem *battleSystem, int param1, int param2)
 {
-    return param0->trainers[param1].items[param2];
+    return battleSystem->trainers[param1].header.items[param2];
 }
 
-u32 BattleSystem_RecordingStopped(BattleSystem *param0)
+u32 BattleSystem_RecordingStopped(BattleSystem *battleSystem)
 {
-    return param0->unk_2474_0;
+    return battleSystem->unk_2474_0;
 }
 
 void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
@@ -1577,9 +1575,9 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
     return;
 }
 
-BOOL ov16_0223F7A4(BattleSystem *param0)
+BOOL ov16_0223F7A4(BattleSystem *battleSystem)
 {
-    if (((param0->battleStatusMask & 0x10) == 0) || (param0->unk_2474_0) || (BattleContext_Get(param0, param0->battleCtx, 13, 0) == 43) || (BattleContext_Get(param0, param0->battleCtx, 14, 0) == 43)) {
+    if (((battleSystem->battleStatusMask & 0x10) == 0) || (battleSystem->unk_2474_0) || (BattleContext_Get(battleSystem, battleSystem->battleCtx, 13, 0) == 43) || (BattleContext_Get(battleSystem, battleSystem->battleCtx, 14, 0) == 43)) {
         return 0;
     }
 
@@ -1596,27 +1594,27 @@ void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSys)
     battleSys->playbackStopButton = ov16_0226E148(battleSys);
 }
 
-u8 BattleSystem_RecordedChatter(BattleSystem *param0, int param1)
+u8 BattleSystem_RecordedChatter(BattleSystem *battleSystem, int param1)
 {
-    if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
-        return param0->unk_247C[param1];
-    } else if (param0->battleType & 0x2) {
-        return param0->unk_247C[param1 & 1];
+    if ((battleSystem->battleType & 0x8) || ((battleSystem->battleType & 0x10) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
+        return battleSystem->unk_247C[param1];
+    } else if (battleSystem->battleType & 0x2) {
+        return battleSystem->unk_247C[param1 & 1];
     } else {
-        return param0->unk_247C[param1];
+        return battleSystem->unk_247C[param1];
     }
 }
 
-void ov16_0223F858(BattleSystem *param0, u8 *param1)
+void ov16_0223F858(BattleSystem *battleSystem, u8 *param1)
 {
     int v0;
 
-    for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-        param1[Battler_Type(param0->battlers[v0])] = v0;
+    for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+        param1[Battler_Type(battleSystem->battlers[v0])] = v0;
     }
 }
 
-void ov16_0223F87C(BattleSystem *param0, u8 *param1)
+void ov16_0223F87C(BattleSystem *battleSystem, u8 *param1)
 {
     int v0;
 
@@ -1624,12 +1622,12 @@ void ov16_0223F87C(BattleSystem *param0, u8 *param1)
         param1[v0] = 0xff;
     }
 
-    for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-        param1[v0] = Battler_Type(param0->battlers[v0]);
+    for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+        param1[v0] = Battler_Type(battleSystem->battlers[v0]);
     }
 }
 
-void ov16_0223F8AC(BattleSystem *param0, Sprite **param1)
+void ov16_0223F8AC(BattleSystem *battleSystem, Sprite **param1)
 {
     int v0;
 
@@ -1637,18 +1635,18 @@ void ov16_0223F8AC(BattleSystem *param0, Sprite **param1)
         param1[v0] = NULL;
     }
 
-    for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-        param1[v0] = ov16_02263AFC(param0->battlers[v0]);
+    for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+        param1[v0] = ov16_02263AFC(battleSystem->battlers[v0]);
     }
 }
 
-void BattleSystem_SetGaugePriority(BattleSystem *param0, int param1)
+void BattleSystem_SetGaugePriority(BattleSystem *battleSystem, int param1)
 {
     int v0;
     Healthbar *v1;
 
-    for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-        v1 = ov16_02263B08(param0->battlers[v0]);
+    for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+        v1 = ov16_02263B08(battleSystem->battlers[v0]);
         ov16_022675D8(v1, param1);
     }
 }
@@ -1678,43 +1676,43 @@ u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo)
     return penalty;
 }
 
-void BattleSystem_DexFlagSeen(BattleSystem *param0, int param1)
+void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
 {
     int v0;
     Pokemon *v1;
     int v2;
 
-    v0 = Battler_Type(param0->battlers[param1]);
-    v2 = BattleContext_Get(param0, param0->battleCtx, 2, param1);
-    v1 = BattleSystem_PartyPokemon(param0, param1, v2);
+    v0 = Battler_Type(battleSystem->battlers[param1]);
+    v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
+    v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
 
-    if ((param0->battleType & (0x4 | 0x80)) == 0) {
-        if ((v0 & 0x1) || (param0->battleType == (0x2 | 0x8 | 0x40)) || (param0->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
-            PokedexData_Encounter(param0->pokedex, v1);
+    if ((battleSystem->battleType & (0x4 | 0x80)) == 0) {
+        if ((v0 & 0x1) || (battleSystem->battleType == (0x2 | 0x8 | 0x40)) || (battleSystem->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
+            Pokedex_Encounter(battleSystem->pokedex, v1);
         }
     }
 
     if (((v0 & 0x1) == 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) == 412)) {
-        PokedexData_Capture(param0->pokedex, v1);
+        Pokedex_Capture(battleSystem->pokedex, v1);
     }
 }
 
-void ov16_0223F9A0(BattleSystem *param0, int param1)
+void ov16_0223F9A0(BattleSystem *battleSystem, int param1)
 {
     int v0;
 
-    v0 = Battler_Type(param0->battlers[param1]);
+    v0 = Battler_Type(battleSystem->battlers[param1]);
 
-    if ((param0->battleType & (0x4 | 0x80)) == 0) {
+    if ((battleSystem->battleType & (0x4 | 0x80)) == 0) {
         if (v0 & 0x1) {
             {
                 Pokemon *v1;
                 int v2;
 
-                v2 = BattleContext_Get(param0, param0->battleCtx, 2, param1);
-                v1 = BattleSystem_PartyPokemon(param0, param1, v2);
+                v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
+                v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
 
-                PokedexData_Capture(param0->pokedex, v1);
+                Pokedex_Capture(battleSystem->pokedex, v1);
             }
         }
     }
@@ -1722,7 +1720,7 @@ void ov16_0223F9A0(BattleSystem *param0, int param1)
 
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species)
 {
-    return PokedexData_HasCaughtSpecies(battleSys->pokedex, species);
+    return Pokedex_HasCaughtSpecies(battleSys->pokedex, species);
 }
 
 void Battle_SetDefaultBlend(void)
@@ -1730,20 +1728,20 @@ void Battle_SetDefaultBlend(void)
     G2_BlendNone();
 }
 
-u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int param4)
+u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3, int param4)
 {
-    Window *v0 = BattleSystem_Window(param0, 0);
+    Window *v0 = BattleSystem_Window(battleSystem, 0);
     int v1;
 
-    if (param0->battleType & 0x80) {
+    if (battleSystem->battleType & 0x80) {
         if (param1 == 10000) {
             {
                 Strbuf *v2;
 
                 if (param3 == 100) {
-                    v2 = sub_02014B34(&param0->trainers[param2].winMsg, 5);
+                    v2 = sub_02014B34(&battleSystem->trainers[param2].winMsg, 5);
                 } else {
-                    v2 = sub_02014B34(&param0->trainers[param2].loseMsg, 5);
+                    v2 = sub_02014B34(&battleSystem->trainers[param2].loseMsg, 5);
                 }
 
                 Window_FillTilemap(v0, 0xff);
@@ -1765,7 +1763,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
                 }
 
                 for (v7 = 0; v7 < 4; v7++) {
-                    if (TrainerInfo_GameCode(param0->trainerInfo[v7]) == 0) {
+                    if (TrainerInfo_GameCode(battleSystem->trainerInfo[v7]) == 0) {
                         break;
                     }
                 }
@@ -1787,9 +1785,9 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
             }
         }
     } else {
-        TrainerData_LoadMessage(param1, param3, param0->msgBuffer, 5);
+        Trainer_LoadMessage(param1, param3, battleSystem->msgBuffer, 5);
         Window_FillTilemap(v0, 0xff);
-        v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, param0->msgBuffer, 0, 0, param4, BattleMessage_Callback);
+        v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, battleSystem->msgBuffer, 0, 0, param4, BattleMessage_Callback);
     }
 
     return v1;
@@ -1808,25 +1806,25 @@ u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, Battle
     return Text_AddPrinterWithParams(textWindow, FONT_MESSAGE, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
 }
 
-u8 BattleMessage_PrintToWindow(BattleSystem *param0, Window *param1, MessageLoader *param2, BattleMessage *param3, int param4, int param5, int param6, int param7, int param8)
+u8 BattleMessage_PrintToWindow(BattleSystem *battleSystem, Window *param1, MessageLoader *param2, BattleMessage *param3, int param4, int param5, int param6, int param7, int param8)
 {
     int v0;
 
-    BattleMessage_CheckSide(param0, param3);
-    BattleMessage_FillFormatBuffers(param0, param3);
-    BattleMessage_Format(param0, param2, param3);
+    BattleMessage_CheckSide(battleSystem, param3);
+    BattleMessage_FillFormatBuffers(battleSystem, param3);
+    BattleMessage_Format(battleSystem, param2, param3);
 
     if (param6 & 0x1) {
         Window_FillTilemap(param1, 0xff);
     }
 
     if (param6 & 0x2) {
-        v0 = param7 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->msgBuffer, 0);
+        v0 = param7 - Font_CalcStrbufWidth(FONT_SYSTEM, battleSystem->msgBuffer, 0);
     } else {
         v0 = 0;
     }
 
-    return Text_AddPrinterWithParams(param1, FONT_SYSTEM, param0->msgBuffer, param4 + v0, param5, param8, BattleMessage_Callback);
+    return Text_AddPrinterWithParams(param1, FONT_SYSTEM, battleSystem->msgBuffer, param4 + v0, param5, param8, BattleMessage_Callback);
 }
 
 /**
@@ -2336,95 +2334,95 @@ static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessa
     }
 }
 
-static void BattleMessage_Nickname(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_Nickname(BattleSystem *battleSystem, u32 param1, int param2)
 {
     Pokemon *v0;
 
-    v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    StringTemplate_SetNickname(param0->strFormatter, param1, &v0->box);
+    v0 = BattleSystem_PartyPokemon(battleSystem, param2 & 0xff, (param2 & 0xff00) >> 8);
+    StringTemplate_SetNickname(battleSystem->strFormatter, param1, &v0->box);
 }
 
-static void BattleMessage_MoveName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_MoveName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    StringTemplate_SetMoveName(param0->strFormatter, param1, param2);
+    StringTemplate_SetMoveName(battleSystem->strFormatter, param1, param2);
 }
 
-static void BattleMessage_ItemName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_ItemName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    StringTemplate_SetItemName(param0->strFormatter, param1, param2);
+    StringTemplate_SetItemName(battleSystem->strFormatter, param1, param2);
 }
 
-static void BattleMessage_Number(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_Number(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    StringTemplate_SetNumber(param0->strFormatter, param1, param2, 5, 0, 1);
+    StringTemplate_SetNumber(battleSystem->strFormatter, param1, param2, 5, 0, 1);
 }
 
-static void BattleMessage_NumberDigits(BattleSystem *param0, u32 param1, int param2, int param3)
+static void BattleMessage_NumberDigits(BattleSystem *battleSystem, u32 param1, int param2, int param3)
 {
     if (param3) {
-        StringTemplate_SetNumber(param0->strFormatter, param1, param2, param3, 1, 1);
+        StringTemplate_SetNumber(battleSystem->strFormatter, param1, param2, param3, 1, 1);
     } else {
-        StringTemplate_SetNumber(param0->strFormatter, param1, param2, 5, 1, 1);
+        StringTemplate_SetNumber(battleSystem->strFormatter, param1, param2, 5, 1, 1);
     }
 }
 
-static void BattleMessage_TypeName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_TypeName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    StringTemplate_SetPokemonTypeName(param0->strFormatter, param1, param2);
+    StringTemplate_SetPokemonTypeName(battleSystem->strFormatter, param1, param2);
 }
 
-static void BattleMessage_AbilityName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_AbilityName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    StringTemplate_SetAbilityName(param0->strFormatter, param1, param2);
+    StringTemplate_SetAbilityName(battleSystem->strFormatter, param1, param2);
 }
 
-static void BattleMessage_StatName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_StatName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    StringTemplate_SetPokemonStatName(param0->strFormatter, param1, param2);
+    StringTemplate_SetPokemonStatName(battleSystem->strFormatter, param1, param2);
 }
 
-static void BattleMessage_StatusName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_StatusName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    StringTemplate_SetStatusConditionName(param0->strFormatter, param1, param2);
+    StringTemplate_SetStatusConditionName(battleSystem->strFormatter, param1, param2);
 }
 
-static void BattleMessage_PokemonName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_PokemonName(BattleSystem *battleSystem, u32 param1, int param2)
 {
     Pokemon *v0;
 
-    v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    StringTemplate_SetSpeciesName(param0->strFormatter, param1, &v0->box);
+    v0 = BattleSystem_PartyPokemon(battleSystem, param2 & 0xff, (param2 & 0xff00) >> 8);
+    StringTemplate_SetSpeciesName(battleSystem->strFormatter, param1, &v0->box);
 }
 
-static void BattleMessage_PoffinName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_PoffinName(BattleSystem *battleSystem, u32 param1, int param2)
 {
     return;
 }
 
-static void BattleMessage_FlavorName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_FlavorName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    StringTemplate_SetFlavorName(param0->strFormatter, param1, param2);
+    StringTemplate_SetFlavorName(battleSystem->strFormatter, param1, param2);
 }
 
-static void BattleMessage_TrainerClassName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_TrainerClassName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    TrainerData *v0;
+    Trainer *v0;
 
-    v0 = BattleSystem_TrainerData(param0, param2);
-    StringTemplate_SetTrainerClassNameBattle(param0->strFormatter, param1, v0);
+    v0 = BattleSystem_GetTrainer(battleSystem, param2);
+    StringTemplate_SetTrainerClassNameBattle(battleSystem->strFormatter, param1, v0);
 }
 
-static void BattleMessage_TrainerName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_TrainerName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    TrainerData *v0;
+    Trainer *v0;
 
-    v0 = BattleSystem_TrainerData(param0, param2);
-    StringTemplate_SetTrainerNameBattle(param0->strFormatter, param1, v0);
+    v0 = BattleSystem_GetTrainer(battleSystem, param2);
+    StringTemplate_SetTrainerNameBattle(battleSystem->strFormatter, param1, v0);
 }
 
-static void BattleMessage_PCBoxName(BattleSystem *param0, u32 param1, int param2)
+static void BattleMessage_PCBoxName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    StringTemplate_SetPCBoxName(param0->strFormatter, param1, param0->pcBoxes, param2);
+    StringTemplate_SetPCBoxName(battleSystem->strFormatter, param1, battleSystem->pcBoxes, param2);
 }
 
 /**

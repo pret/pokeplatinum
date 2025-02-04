@@ -1,5 +1,4 @@
 {
-    "name": "Barboach",
     "base_stats": {
         "hp": 50,
         "attack": 48,
@@ -8,10 +7,7 @@
         "special_attack": 46,
         "special_defense": 41
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GROUND" ],
     "catch_rate": 190,
     "base_exp_reward": 92,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_ANTICIPATION"
-    ],
-    "great_marsh_flee_rate": 120,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_ANTICIPATION" ],
+    "safari_flee_rate": 120,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 6, "MOVE_MUD_SPORT" ],
+            [ 6, "MOVE_WATER_SPORT" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 14, "MOVE_MUD_BOMB" ],
+            [ 18, "MOVE_AMNESIA" ],
+            [ 22, "MOVE_WATER_PULSE" ],
+            [ 26, "MOVE_MAGNITUDE" ],
+            [ 31, "MOVE_REST" ],
+            [ 31, "MOVE_SNORE" ],
+            [ 35, "MOVE_AQUA_TAIL" ],
+            [ 39, "MOVE_EARTHQUAKE" ],
+            [ 43, "MOVE_FUTURE_SIGHT" ],
+            [ 47, "MOVE_FISSURE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -72,27 +76,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_MUD_SLAP",
-            "6": [
-                "MOVE_MUD_SPORT",
-                "MOVE_WATER_SPORT"
-            ],
-            "10": "MOVE_WATER_GUN",
-            "14": "MOVE_MUD_BOMB",
-            "18": "MOVE_AMNESIA",
-            "22": "MOVE_WATER_PULSE",
-            "26": "MOVE_MAGNITUDE",
-            "31": [
-                "MOVE_REST",
-                "MOVE_SNORE"
-            ],
-            "35": "MOVE_AQUA_TAIL",
-            "39": "MOVE_EARTHQUAKE",
-            "43": "MOVE_FUTURE_SIGHT",
-            "47": "MOVE_FISSURE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -104,14 +88,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_WHISCASH"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 4,
@@ -125,7 +109,66 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "Its slimy body is hard to grasp. In\none region, it is said to have been\nborn from hardened mud.",
-        "category": "Whiskers Pokémon"
+        "en": {
+            "name": "BARBOACH",
+            "category": "Whiskers Pokémon",
+            "entry_text": [
+                "Its slimy body is hard to grasp. In\n",
+                "one region, it is said to have been\n",
+                "born from hardened mud."
+            ]
+        },
+        "fr": {
+            "name": "BARLOCHE",
+            "category": "Pokémon Barbillon",
+            "entry_text": [
+                "Il enduit son corps d’une \n",
+                "substance visqueuse pour glisser\n",
+                "et se libérer quand on l’agrippe."
+            ]
+        },
+        "de": {
+            "name": "SCHMERBE",
+            "category": "Barthaar",
+            "entry_text": [
+                "Es bedeckt seinen Körper mit einer\n",
+                "schleimigen Substanz und kann\n",
+                "sich so aus Umklammerungen winden."
+            ]
+        },
+        "it": {
+            "name": "BARBOACH",
+            "category": "Pokémon Baffetti",
+            "entry_text": [
+                "Il suo corpo è ricoperto da una\n",
+                "pellicola viscida, che gli permette\n",
+                "di sgusciare via, se afferrato."
+            ]
+        },
+        "es": {
+            "name": "BARBOACH",
+            "category": "Pokémon Bigotudo",
+            "entry_text": [
+                "Recubre su cuerpo de una película\n",
+                "viscosa que le permite escapar si\n",
+                "alguien lo agarra."
+            ]
+        },
+        "jp": {
+            "name": "ドジョッチ",
+            "category": "ひげうおポケモン",
+            "entry_text": [
+                "ぜんしんが　ヌルヌルの　たいえきで\n",
+                "おおわれているため　つかまっても\n",
+                "ぬるりと　ぬけだすことが　できる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 2051
     }
 }

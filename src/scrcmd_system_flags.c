@@ -1,6 +1,6 @@
 #include "scrcmd_system_flags.h"
 
-#include "consts/badges.h"
+#include "generated/badges.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
@@ -10,7 +10,7 @@
 #include "field_script_context.h"
 #include "inlines.h"
 #include "player_avatar.h"
-#include "pokedex_data.h"
+#include "pokedex.h"
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"
@@ -18,16 +18,16 @@
 
 BOOL ScrCmd_CheckPokedexAcquired(ScriptContext *ctx)
 {
-    const PokedexData *pokedex = SaveData_PokedexData(ctx->fieldSystem->saveData);
+    const Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
-    *destVar = PokedexData_IsObtained(pokedex);
+    *destVar = Pokedex_IsObtained(pokedex);
     return FALSE;
 }
 
 BOOL ScrCmd_GivePokedex(ScriptContext *ctx)
 {
-    PokedexData *pokedex = SaveData_PokedexData(ctx->fieldSystem->saveData);
-    PokedexData_ObtainPokedex(pokedex);
+    Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    Pokedex_ObtainPokedex(pokedex);
     return FALSE;
 }
 

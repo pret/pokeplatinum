@@ -4,13 +4,12 @@
 #include <string.h>
 
 #include "constants/species.h"
-#include "consts/game_records.h"
+#include "generated/game_records.h"
 
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204F3D0.h"
 #include "struct_defs/struct_02098C44.h"

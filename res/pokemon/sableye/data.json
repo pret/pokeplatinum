@@ -1,5 +1,4 @@
 {
-    "name": "Sableye",
     "base_stats": {
         "hp": 50,
         "attack": 75,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_GHOST"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_GHOST" ],
     "catch_rate": 45,
     "base_exp_reward": 98,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 25,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_STALL"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_STALL" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 4, "MOVE_FORESIGHT" ],
+            [ 8, "MOVE_NIGHT_SHADE" ],
+            [ 11, "MOVE_ASTONISH" ],
+            [ 15, "MOVE_FURY_SWIPES" ],
+            [ 18, "MOVE_FAKE_OUT" ],
+            [ 22, "MOVE_DETECT" ],
+            [ 25, "MOVE_SHADOW_SNEAK" ],
+            [ 29, "MOVE_KNOCK_OFF" ],
+            [ 32, "MOVE_FAINT_ATTACK" ],
+            [ 36, "MOVE_PUNISHMENT" ],
+            [ 39, "MOVE_SHADOW_CLAW" ],
+            [ 43, "MOVE_POWER_GEM" ],
+            [ 46, "MOVE_CONFUSE_RAY" ],
+            [ 50, "MOVE_ZEN_HEADBUTT" ],
+            [ 53, "MOVE_SHADOW_BALL" ],
+            [ 57, "MOVE_MEAN_LOOK" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -90,29 +98,7 @@
             "HM01",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LEER",
-                "MOVE_SCRATCH"
-            ],
-            "4": "MOVE_FORESIGHT",
-            "8": "MOVE_NIGHT_SHADE",
-            "11": "MOVE_ASTONISH",
-            "15": "MOVE_FURY_SWIPES",
-            "18": "MOVE_FAKE_OUT",
-            "22": "MOVE_DETECT",
-            "25": "MOVE_SHADOW_SNEAK",
-            "29": "MOVE_KNOCK_OFF",
-            "32": "MOVE_FAINT_ATTACK",
-            "36": "MOVE_PUNISHMENT",
-            "39": "MOVE_SHADOW_CLAW",
-            "43": "MOVE_POWER_GEM",
-            "46": "MOVE_CONFUSE_RAY",
-            "50": "MOVE_ZEN_HEADBUTT",
-            "53": "MOVE_SHADOW_BALL",
-            "57": "MOVE_MEAN_LOOK"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -129,9 +115,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -145,7 +132,66 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It hides in the darkness of caves.\nIts diet of gems has transformed\nits eyes into gemstones.",
-        "category": "Darkness Pokémon"
+        "en": {
+            "name": "SABLEYE",
+            "category": "Darkness Pokémon",
+            "entry_text": [
+                "It hides in the darkness of caves.\n",
+                "Its diet of gems has transformed\n",
+                "its eyes into gemstones."
+            ]
+        },
+        "fr": {
+            "name": "TENEFIX",
+            "category": "Pokémon Obscurité",
+            "entry_text": [
+                "A force de manger des gemmes, \n",
+                "les yeux de ce Pokémon des grottes\n",
+                "obscures sont devenus des joyaux."
+            ]
+        },
+        "de": {
+            "name": "ZOBIRIS",
+            "category": "Finsternis",
+            "entry_text": [
+                "Es versteckt sich im Dunkeln von\n",
+                "Höhlen. Seine Augen sind\n",
+                "Edelsteine."
+            ]
+        },
+        "it": {
+            "name": "SABLEYE",
+            "category": "Pokémon Oscurità",
+            "entry_text": [
+                "Si cela nell’oscurità delle caverne.\n",
+                "Si nutre di gemme e per questo i\n",
+                "suoi occhi sono pietre preziose."
+            ]
+        },
+        "es": {
+            "name": "SABLEYE",
+            "category": "Pokémon Oscuridad",
+            "entry_text": [
+                "Se oculta en cavernas oscuras.\n",
+                "De tanto comer gemas sus ojos\n",
+                "son piedras preciosas."
+            ]
+        },
+        "jp": {
+            "name": "ヤミラミ",
+            "category": "くらやみポケモン",
+            "entry_text": [
+                "どうくつの　くらやみに　ひそむ。\n",
+                "ほうせきを　たべているうちに\n",
+                "めが　ほうせきに　なってしまった。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 3088
     }
 }

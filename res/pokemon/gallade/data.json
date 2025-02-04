@@ -1,5 +1,4 @@
 {
-    "name": "Gallade",
     "base_stats": {
         "hp": 68,
         "attack": 125,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 115
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_FIGHTING" ],
     "catch_rate": 45,
     "base_exp_reward": 208,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_STEADFAST",
-        "ABILITY_STEADFAST"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_STEADFAST", "ABILITY_STEADFAST" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEAF_BLADE" ],
+            [ 1, "MOVE_NIGHT_SLASH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 1, "MOVE_DOUBLE_TEAM" ],
+            [ 1, "MOVE_TELEPORT" ],
+            [ 6, "MOVE_CONFUSION" ],
+            [ 10, "MOVE_DOUBLE_TEAM" ],
+            [ 12, "MOVE_TELEPORT" ],
+            [ 17, "MOVE_FURY_CUTTER" ],
+            [ 22, "MOVE_SLASH" ],
+            [ 25, "MOVE_SWORDS_DANCE" ],
+            [ 31, "MOVE_PSYCHO_CUT" ],
+            [ 36, "MOVE_HELPING_HAND" ],
+            [ 39, "MOVE_FEINT" ],
+            [ 45, "MOVE_FALSE_SWIPE" ],
+            [ 50, "MOVE_PROTECT" ],
+            [ 53, "MOVE_CLOSE_COMBAT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -105,29 +113,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LEAF_BLADE",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_LEER",
-                "MOVE_CONFUSION",
-                "MOVE_DOUBLE_TEAM",
-                "MOVE_TELEPORT"
-            ],
-            "6": "MOVE_CONFUSION",
-            "10": "MOVE_DOUBLE_TEAM",
-            "12": "MOVE_TELEPORT",
-            "17": "MOVE_FURY_CUTTER",
-            "22": "MOVE_SLASH",
-            "25": "MOVE_SWORDS_DANCE",
-            "31": "MOVE_PSYCHO_CUT",
-            "36": "MOVE_HELPING_HAND",
-            "39": "MOVE_FEINT",
-            "45": "MOVE_FALSE_SWIPE",
-            "50": "MOVE_PROTECT",
-            "53": "MOVE_CLOSE_COMBAT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -143,9 +129,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 16,
@@ -159,7 +146,66 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "When trying to protect someone,\nit extends its elbows as if they\nwere swords and fights savagely.",
-        "category": "Blade Pokémon"
+        "en": {
+            "name": "GALLADE",
+            "category": "Blade Pokémon",
+            "entry_text": [
+                "When trying to protect someone,\n",
+                "it extends its elbows as if they\n",
+                "were swords and fights savagely."
+            ]
+        },
+        "fr": {
+            "name": "GALLAME",
+            "category": "Pokémon Lame",
+            "entry_text": [
+                "Il frappe avec les grandes lames à\n",
+                "ses coudes. Son talent d’escrimeur\n",
+                "n’a d’égal que sa courtoisie."
+            ]
+        },
+        "de": {
+            "name": "GALAGLADI",
+            "category": "Klinge",
+            "entry_text": [
+                "Es kämpft, indem es die Schwerter\n",
+                "an seinen Ellbogen verlängert. Es\n",
+                "ist ein Meister des Kampfes."
+            ]
+        },
+        "it": {
+            "name": "GALLADE",
+            "category": "Pokémon Lama",
+            "entry_text": [
+                "Pokémon elegante e ottimo\n",
+                "spadaccino, combatte allungando le\n",
+                "lame che ha sui gomiti."
+            ]
+        },
+        "es": {
+            "name": "GALLADE",
+            "category": "Pokémon Cuchilla",
+            "entry_text": [
+                "Lucha con las espadas que salen\n",
+                "de sus codos. Es un maestro de\n",
+                "la cortesía y la esgrima."
+            ]
+        },
+        "jp": {
+            "name": "エルレイド",
+            "category": "やいばポケモン",
+            "entry_text": [
+                "のびちぢみする　ひじの　かたなで\n",
+                "たたかう。いあいの　めいしゅ。\n",
+                "れいぎ　ただしい　ポケモン。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2314
     }
 }

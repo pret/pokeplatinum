@@ -1,5 +1,4 @@
 {
-    "name": "Ludicolo",
     "base_stats": {
         "hp": 80,
         "attack": 70,
@@ -8,10 +7,7 @@
         "special_attack": 90,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GRASS" ],
     "catch_rate": 45,
     "base_exp_reward": 181,
     "ev_yields": {
@@ -30,21 +26,19 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_RAIN_DISH"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_RAIN_DISH" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_MEGA_DRAIN" ],
+            [ 1, "MOVE_NATURE_POWER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -88,15 +82,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ASTONISH",
-                "MOVE_GROWL",
-                "MOVE_MEGA_DRAIN",
-                "MOVE_NATURE_POWER"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -110,9 +96,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -126,7 +113,66 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "If it hears festive music, all its\nmuscles fill with energy. It can’t\nhelp breaking out into a dance.",
-        "category": "Carefree Pokémon"
+        "en": {
+            "name": "LUDICOLO",
+            "category": "Carefree Pokémon",
+            "entry_text": [
+                "If it hears festive music, all its\n",
+                "muscles fill with energy. It can’t\n",
+                "help breaking out into a dance."
+            ]
+        },
+        "fr": {
+            "name": "LUDICOLO",
+            "category": "Pokémon Insouciant",
+            "entry_text": [
+                "Ses muscles se tonifient au son\n",
+                "d’une musique entraînante. Il ne\n",
+                "peut pas s’empêcher de danser."
+            ]
+        },
+        "de": {
+            "name": "KAPPALORES",
+            "category": "Sorglos",
+            "entry_text": [
+                "Hört es fröhliche Musik, füllen sich\n",
+                "seine Muskeln mit Energie. Es muss\n",
+                "dann einfach tanzen."
+            ]
+        },
+        "it": {
+            "name": "LUDICOLO",
+            "category": "Pokémon Spensierato",
+            "entry_text": [
+                "Se ascolta musica allegra, tutto\n",
+                "il suo corpo si rivitalizza e\n",
+                "non riesce ad evitare di ballare."
+            ]
+        },
+        "es": {
+            "name": "LUDICOLO",
+            "category": "Pokémon Optimista",
+            "entry_text": [
+                "Cuando oye música alegre sus\n",
+                "músculos se llenan de energía y\n",
+                "no puede evitar ponerse a bailar."
+            ]
+        },
+        "jp": {
+            "name": "ルンパッパ",
+            "category": "のうてんきポケモン",
+            "entry_text": [
+                "ようきな　おんがくを　きくと\n",
+                "からだじゅうに　ちからが　みなぎり\n",
+                "おどらずには　いられなくなるのだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 259
     }
 }

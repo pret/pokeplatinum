@@ -1,5 +1,4 @@
 {
-    "name": "Politoed",
     "base_stats": {
         "hp": 90,
         "attack": 75,
@@ -8,10 +7,7 @@
         "special_attack": 90,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 185,
     "ev_yields": {
@@ -30,21 +26,22 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_WATER_ABSORB",
-        "ABILITY_DAMP"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_WATER_ABSORB", "ABILITY_DAMP" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BUBBLE_BEAM" ],
+            [ 1, "MOVE_HYPNOSIS" ],
+            [ 1, "MOVE_DOUBLE_SLAP" ],
+            [ 1, "MOVE_PERISH_SONG" ],
+            [ 27, "MOVE_SWAGGER" ],
+            [ 37, "MOVE_BOUNCE" ],
+            [ 48, "MOVE_HYPER_VOICE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -82,18 +79,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BUBBLE_BEAM",
-                "MOVE_HYPNOSIS",
-                "MOVE_DOUBLE_SLAP",
-                "MOVE_PERISH_SONG"
-            ],
-            "27": "MOVE_SWAGGER",
-            "37": "MOVE_BOUNCE",
-            "48": "MOVE_HYPER_VOICE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -102,9 +88,10 @@
             "MOVE_BOUNCE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -118,7 +105,66 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It gathers groups of others as\ntheir leader. Its cries make\nPOLIWAG obey.",
-        "category": "Frog Pokémon"
+        "en": {
+            "name": "POLITOED",
+            "category": "Frog Pokémon",
+            "entry_text": [
+                "It gathers groups of others as\n",
+                "their leader. Its cries make\n",
+                "POLIWAG obey."
+            ]
+        },
+        "fr": {
+            "name": "TARPAUD",
+            "category": "Pokémon Grenouille",
+            "entry_text": [
+                "Il rassemble ses pairs pour les\n",
+                "commander. Il utilise son cri \n",
+                "pour diriger PTITARD."
+            ]
+        },
+        "de": {
+            "name": "QUAXO",
+            "category": "Frosch",
+            "entry_text": [
+                "Es versammelt andere PKMN um sich\n",
+                "herum und führt sie an.\n",
+                "POLIWAG gehorchen seinem Ruf. "
+            ]
+        },
+        "it": {
+            "name": "POLITOED",
+            "category": "Pokémon Rana",
+            "entry_text": [
+                "Ama radunare gruppi e atteggiarsi\n",
+                "a capogruppo.\n",
+                "I suoi versi richiamano POLIWAG."
+            ]
+        },
+        "es": {
+            "name": "POLITOED",
+            "category": "Pokémon Rana",
+            "entry_text": [
+                "Agrupa a otros Pokémon para\n",
+                "liderarlos. Los POLIWAG obedecen\n",
+                "su voz."
+            ]
+        },
+        "jp": {
+            "name": "ニョロトノ",
+            "category": "かえるポケモン",
+            "entry_text": [
+                "ニョロトノを　リ－ダ－に　グル－プが\n",
+                "つくられる。ニョロトノの　なきごえが\n",
+                "ニョロモたちを　したがわせる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 771
     }
 }

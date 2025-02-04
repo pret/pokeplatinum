@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/rock_peak_ruins.h"
 
     .data
 

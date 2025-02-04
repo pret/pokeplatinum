@@ -1,5 +1,4 @@
 {
-    "name": "Solrock",
     "base_stats": {
         "hp": 70,
         "attack": 95,
@@ -8,10 +7,7 @@
         "special_attack": 55,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
     "base_exp_reward": 150,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 9, "MOVE_ROCK_THROW" ],
+            [ 12, "MOVE_FIRE_SPIN" ],
+            [ 20, "MOVE_ROCK_POLISH" ],
+            [ 23, "MOVE_PSYWAVE" ],
+            [ 31, "MOVE_EMBARGO" ],
+            [ 34, "MOVE_COSMIC_POWER" ],
+            [ 42, "MOVE_HEAL_BLOCK" ],
+            [ 45, "MOVE_ROCK_SLIDE" ],
+            [ 53, "MOVE_SOLAR_BEAM" ],
+            [ 56, "MOVE_EXPLOSION" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -92,24 +95,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_HARDEN",
-                "MOVE_CONFUSION"
-            ],
-            "9": "MOVE_ROCK_THROW",
-            "12": "MOVE_FIRE_SPIN",
-            "20": "MOVE_ROCK_POLISH",
-            "23": "MOVE_PSYWAVE",
-            "31": "MOVE_EMBARGO",
-            "34": "MOVE_COSMIC_POWER",
-            "42": "MOVE_HEAL_BLOCK",
-            "45": "MOVE_ROCK_SLIDE",
-            "53": "MOVE_SOLAR_BEAM",
-            "56": "MOVE_EXPLOSION"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
@@ -122,9 +108,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -138,7 +125,66 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "A new Pokémon species, rumored\nto be from the sun. It gives off\nlight while spinning.",
-        "category": "Meteorite Pokémon"
+        "en": {
+            "name": "SOLROCK",
+            "category": "Meteorite Pokémon",
+            "entry_text": [
+                "A new Pokémon species, rumored\n",
+                "to be from the sun. It gives off\n",
+                "light while spinning."
+            ]
+        },
+        "fr": {
+            "name": "SOLAROC",
+            "category": "Pokémon Météorite",
+            "entry_text": [
+                "Le bruit court que cette nouvelle\n",
+                "espèce vient du soleil. Il produit\n",
+                "de la lumière en tournoyant."
+            ]
+        },
+        "de": {
+            "name": "SONNFEL",
+            "category": "Meteorit",
+            "entry_text": [
+                "Eine neue PKMN-Spezies, von der\n",
+                "man annimmt, sie käme von der\n",
+                "Sonne. Sie strahlt Licht ab."
+            ]
+        },
+        "it": {
+            "name": "SOLROCK",
+            "category": "Pokémon Meteorite",
+            "entry_text": [
+                "Nuova specie di Pokémon che si\n",
+                "dice provenga dal sole. Emana luce\n",
+                "roteando vorticosamente."
+            ]
+        },
+        "es": {
+            "name": "SOLROCK",
+            "category": "Pokémon Meteorito",
+            "entry_text": [
+                "Una nueva especie de Pokémon\n",
+                "que se rumorea procede del Sol.\n",
+                "Emite luz al girar."
+            ]
+        },
+        "jp": {
+            "name": "ソルロック",
+            "category": "いんせきポケモン",
+            "entry_text": [
+                "たいようの　ぶんしんと　うわさされる\n",
+                "しんしゅの　ポケモン。からだを\n",
+                "かいてんさせて　ひかりを　はなつ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 2571
     }
 }

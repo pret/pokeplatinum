@@ -1,5 +1,4 @@
 {
-    "name": "Gligar",
     "base_stats": {
         "hp": 65,
         "attack": 75,
@@ -8,10 +7,7 @@
         "special_attack": 35,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_FLYING" ],
     "catch_rate": 60,
     "base_exp_reward": 108,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_HYPER_CUTTER",
-        "ABILITY_SAND_VEIL"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_SAND_VEIL" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_STING" ],
+            [ 5, "MOVE_SAND_ATTACK" ],
+            [ 9, "MOVE_HARDEN" ],
+            [ 12, "MOVE_KNOCK_OFF" ],
+            [ 16, "MOVE_QUICK_ATTACK" ],
+            [ 20, "MOVE_FURY_CUTTER" ],
+            [ 23, "MOVE_FAINT_ATTACK" ],
+            [ 27, "MOVE_SCREECH" ],
+            [ 31, "MOVE_SLASH" ],
+            [ 34, "MOVE_SWORDS_DANCE" ],
+            [ 38, "MOVE_U_TURN" ],
+            [ 42, "MOVE_X_SCISSOR" ],
+            [ 45, "MOVE_GUILLOTINE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -93,22 +96,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_POISON_STING",
-            "5": "MOVE_SAND_ATTACK",
-            "9": "MOVE_HARDEN",
-            "12": "MOVE_KNOCK_OFF",
-            "16": "MOVE_QUICK_ATTACK",
-            "20": "MOVE_FURY_CUTTER",
-            "23": "MOVE_FAINT_ATTACK",
-            "27": "MOVE_SCREECH",
-            "31": "MOVE_SLASH",
-            "34": "MOVE_SWORDS_DANCE",
-            "38": "MOVE_U_TURN",
-            "42": "MOVE_X_SCISSOR",
-            "45": "MOVE_GUILLOTINE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_FURY_CUTTER",
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
@@ -119,14 +107,14 @@
     },
     "evolutions": [
         [
-            "EVO_USE_ITEM_NIGHT",
+            "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
             "ITEM_RAZOR_FANG",
             "SPECIES_GLISCOR"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -140,7 +128,66 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "It glides as if sliding. It startles\nfoes by clamping on to their faces,\nthen jabs with its poison stinger.",
-        "category": "FlyScorpion Pokémon"
+        "en": {
+            "name": "GLIGAR",
+            "category": "FlyScorpion Pokémon",
+            "entry_text": [
+                "It glides as if sliding. It startles\n",
+                "foes by clamping on to their faces,\n",
+                "then jabs with its poison stinger."
+            ]
+        },
+        "fr": {
+            "name": "SCORPLANE",
+            "category": "Pokémon Scorpivol",
+            "entry_text": [
+                "Il chevauche les vents en tendant\n",
+                "ses membres pour frapper depuis\n",
+                "le ciel. Il vise toujours au visage."
+            ]
+        },
+        "de": {
+            "name": "SKORGLA",
+            "category": "Flugskorpi",
+            "entry_text": [
+                "Es segelt durch die Lüfte und\n",
+                "breitet seine Gliedmaßen aus, um\n",
+                "aus der Luft anzugreifen."
+            ]
+        },
+        "it": {
+            "name": "GLIGAR",
+            "category": "Pokémon Aliscorpio",
+            "entry_text": [
+                "Si fa trasportare dai venti con le\n",
+                "ali spalancate e colpisce la preda\n",
+                "dall’alto mirando al volto."
+            ]
+        },
+        "es": {
+            "name": "GLIGAR",
+            "category": "Pokémon Escorpiala",
+            "entry_text": [
+                "Ataca desde el aire con sus\n",
+                "extremidades extendidas. Va\n",
+                "directo a la cara de su oponente."
+            ]
+        },
+        "jp": {
+            "name": "グライガ－",
+            "category": "とびさそりポケモン",
+            "entry_text": [
+                "てあしの　まくで　かぜに　のって\n",
+                "そらから　おそいかかる　せんぽう。\n",
+                "えものの　かおを　ねらう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4360
     }
 }

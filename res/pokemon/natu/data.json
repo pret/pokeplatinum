@@ -1,5 +1,4 @@
 {
-    "name": "Natu",
     "base_stats": {
         "hp": 40,
         "attack": 50,
@@ -8,10 +7,7 @@
         "special_attack": 70,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_FLYING" ],
     "catch_rate": 190,
     "base_exp_reward": 73,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_EARLY_BIRD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_EARLY_BIRD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 6, "MOVE_NIGHT_SHADE" ],
+            [ 9, "MOVE_TELEPORT" ],
+            [ 12, "MOVE_LUCKY_CHANT" ],
+            [ 17, "MOVE_MIRACLE_EYE" ],
+            [ 20, "MOVE_ME_FIRST" ],
+            [ 23, "MOVE_CONFUSE_RAY" ],
+            [ 28, "MOVE_WISH" ],
+            [ 33, "MOVE_PSYCHO_SHIFT" ],
+            [ 36, "MOVE_FUTURE_SIGHT" ],
+            [ 39, "MOVE_OMINOUS_WIND" ],
+            [ 44, "MOVE_POWER_SWAP" ],
+            [ 44, "MOVE_GUARD_SWAP" ],
+            [ 47, "MOVE_PSYCHIC" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -85,28 +90,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PECK",
-                "MOVE_LEER"
-            ],
-            "6": "MOVE_NIGHT_SHADE",
-            "9": "MOVE_TELEPORT",
-            "12": "MOVE_LUCKY_CHANT",
-            "17": "MOVE_MIRACLE_EYE",
-            "20": "MOVE_ME_FIRST",
-            "23": "MOVE_CONFUSE_RAY",
-            "28": "MOVE_WISH",
-            "33": "MOVE_PSYCHO_SHIFT",
-            "36": "MOVE_FUTURE_SIGHT",
-            "39": "MOVE_OMINOUS_WIND",
-            "44": [
-                "MOVE_POWER_SWAP",
-                "MOVE_GUARD_SWAP"
-            ],
-            "47": "MOVE_PSYCHIC"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
@@ -121,14 +105,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             25,
             "SPECIES_XATU"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 2,
@@ -142,7 +126,66 @@
         "pokemon_pos_f": 31,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 31,
-        "entry_text": "It picks food from cactus plants,\ndeftly avoiding buds and spines.\nIt seems to skip about to move.",
-        "category": "Tiny Bird Pokémon"
+        "en": {
+            "name": "NATU",
+            "category": "Tiny Bird Pokémon",
+            "entry_text": [
+                "It picks food from cactus plants,\n",
+                "deftly avoiding buds and spines.\n",
+                "It seems to skip about to move."
+            ]
+        },
+        "fr": {
+            "name": "NATU",
+            "category": "Pokémon Minoiseau",
+            "entry_text": [
+                "Il mange des cactus en prenant\n",
+                "soin d’éviter les bourgeons et les\n",
+                "épines. Il ne tient pas en place. "
+            ]
+        },
+        "de": {
+            "name": "NATU",
+            "category": "Kleinvogel",
+            "entry_text": [
+                "Es pickt seine Nahrung aus\n",
+                "Kakteen, wobei es Knospen und\n",
+                "Dornen verschont."
+            ]
+        },
+        "it": {
+            "name": "NATU",
+            "category": "Pokémon Uccellino",
+            "entry_text": [
+                "Raccoglie cibo dai cactus, evitando\n",
+                "agilmente germogli e spine. Si muove\n",
+                "saltellando."
+            ]
+        },
+        "es": {
+            "name": "NATU",
+            "category": "Pokémon Pajarito",
+            "entry_text": [
+                "Recoge alimento de los cactos\n",
+                "evitando los pinchos. Se mueve\n",
+                "dando saltos."
+            ]
+        },
+        "jp": {
+            "name": "ネイティ",
+            "category": "ことりポケモン",
+            "entry_text": [
+                "サボテンの　つぼみや　トゲを\n",
+                "きように　よけながら　ついばむ。\n",
+                "とびはねるようにして　いどうする。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 4362
     }
 }

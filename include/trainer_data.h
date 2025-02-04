@@ -3,7 +3,7 @@
 
 #include "constants/trainer.h"
 
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "field_battle_data_transfer.h"
 #include "savedata.h"
@@ -23,7 +23,7 @@ enum TrainerDataParam {
 };
 
 /**
- * @brief Initialize the TrainerData structs within the FieldBattleDTO struct.
+ * @brief Initialize the Trainer structs within the FieldBattleDTO struct.
  *
  * This routine is responsible for loading the name of a trainer and building
  * their party from the data archives.
@@ -32,7 +32,7 @@ enum TrainerDataParam {
  * @param save          Save data; used to pull out the rival's name, if needed.
  * @param heapID        Heap on which to allocate message bank access.
  */
-void TrainerData_Encounter(FieldBattleDTO *dto, const SaveData *save, int heapID);
+void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *save, int heapID);
 
 /**
  * @brief Get a parameter for the given trainer ID from the data archive.
@@ -41,7 +41,7 @@ void TrainerData_Encounter(FieldBattleDTO *dto, const SaveData *save, int heapID
  * @param paramID       ID of the data field to be retrieved.
  * @return Value of the trainer's data field in the archive.
  */
-u32 TrainerData_LoadParam(int trainerID, enum TrainerDataParam paramID);
+u32 Trainer_LoadParam(int trainerID, enum TrainerDataParam paramID);
 
 /**
  * @brief Check if the given trainer has a message of the specified type.
@@ -51,7 +51,7 @@ u32 TrainerData_LoadParam(int trainerID, enum TrainerDataParam paramID);
  * @param heapID        Heap on which to allocate archive access.
  * @return TRUE if the trainer has a message of the given type; FALSE if not.
  */
-BOOL TrainerData_HasMessageType(int trainerID, enum TrainerMessageType msgType, int heapID);
+BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, int heapID);
 
 /**
  * @brief Load the trainer's message of a given type into the provided Strbuf.
@@ -63,7 +63,7 @@ BOOL TrainerData_HasMessageType(int trainerID, enum TrainerMessageType msgType, 
  * @param[out] strbuf   Strbuf which will contain the result message.
  * @param heapID        Heap on which to allocate archive access.
  */
-void TrainerData_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf *strbuf, int heapID);
+void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf *strbuf, int heapID);
 
 /**
  * @brief Load data for the requested trainer.
@@ -71,19 +71,19 @@ void TrainerData_LoadMessage(int trainerID, enum TrainerMessageType msgType, Str
  * @param trainerID     ID of the trainer to be loaded.
  * @param[out] trdata   Struct which will contain the loaded trainer data.
  */
-void TrainerData_Load(int trainerID, TrainerData *trdata);
+void Trainer_Load(int trainerID, Trainer *trdata);
 
 /**
  * @brief Load data for the requested trainer's party.
  *
  * The struct pointer passed to this function will determine exactly how much
  * data is loaded; see the definitions of the various TrainerMon... structs in
- * struct_defs/trainer_data.h for exact specifications.
+ * struct_defs/trainer.h for exact specifications.
  *
  * @param trainerID     ID of the trainer whose party is to be loaded.
  * @param[out] trparty  Struct which will contain the loaded trainer party data.
  */
-void TrainerData_LoadParty(int trainerID, void *trparty);
+void Trainer_LoadParty(int trainerID, void *trparty);
 
 /**
  * @brief Get the gender for a particular trainer class.

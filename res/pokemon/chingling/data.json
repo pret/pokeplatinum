@@ -1,5 +1,4 @@
 {
-    "name": "Chingling",
     "base_stats": {
         "hp": 45,
         "attack": 30,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 120,
     "base_exp_reward": 74,
     "ev_yields": {
@@ -30,21 +26,21 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WRAP" ],
+            [ 6, "MOVE_GROWL" ],
+            [ 9, "MOVE_ASTONISH" ],
+            [ 14, "MOVE_CONFUSION" ],
+            [ 17, "MOVE_UPROAR" ],
+            [ 22, "MOVE_LAST_RESORT" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -83,15 +79,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": "MOVE_WRAP",
-            "6": "MOVE_GROWL",
-            "9": "MOVE_ASTONISH",
-            "14": "MOVE_CONFUSION",
-            "17": "MOVE_UPROAR",
-            "22": "MOVE_LAST_RESORT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -106,14 +94,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_HAPPINESS_NIGHT",
-            "SPECIES_CHIMECHO"
-        ]
+        [ "EVO_LEVEL_HAPPINESS_NIGHT", "SPECIES_CHIMECHO" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 2,
@@ -127,7 +112,66 @@
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65527,
-        "entry_text": "There is an orb inside its mouth.\nWhen it hops, the orb bounces all\nover and makes a ringing sound.",
-        "category": "Bell Pokémon"
+        "en": {
+            "name": "CHINGLING",
+            "category": "Bell Pokémon",
+            "entry_text": [
+                "There is an orb inside its mouth.\n",
+                "When it hops, the orb bounces all\n",
+                "over and makes a ringing sound."
+            ]
+        },
+        "fr": {
+            "name": "KORILLON",
+            "category": "Pokémon Clochette",
+            "entry_text": [
+                "Il émet des cris en agitant\n",
+                "l’orbe à l’arrière de sa gorge. Il\n",
+                "avance par bonds désordonnés."
+            ]
+        },
+        "de": {
+            "name": "KLINGPLIM",
+            "category": "Glöckchen",
+            "entry_text": [
+                "Es ruft, indem es eine Kugel in\n",
+                "seiner Kehle bewegt. Es bewegt sich\n",
+                "mit eiligen Hopsern fort."
+            ]
+        },
+        "it": {
+            "name": "CHINGLING",
+            "category": "Pokémon Sonaglio",
+            "entry_text": [
+                "Emette versi muovendo la sfera\n",
+                "che ha nella gola.\n",
+                "Si muove saltellando agilmente."
+            ]
+        },
+        "es": {
+            "name": "CHINGLING",
+            "category": "Pokémon Campana",
+            "entry_text": [
+                "Emite chillidos al agitar la esfera\n",
+                "de su garganta. Se mueve con\n",
+                "enérgicos saltos."
+            ]
+        },
+        "jp": {
+            "name": "リ－シャン",
+            "category": "すずポケモン",
+            "entry_text": [
+                "のどの　おくで　まるい　たまを\n",
+                "ふるわせて　なきごえを　だす。\n",
+                "ふわりと　はずんで　いどうする。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1297
     }
 }

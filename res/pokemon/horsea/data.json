@@ -1,5 +1,4 @@
 {
-    "name": "Horsea",
     "base_stats": {
         "hp": 30,
         "attack": 40,
@@ -8,10 +7,7 @@
         "special_attack": 70,
         "special_defense": 25
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 225,
     "base_exp_reward": 83,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_SNIPER"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_SNIPER" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BUBBLE" ],
+            [ 4, "MOVE_SMOKE_SCREEN" ],
+            [ 8, "MOVE_LEER" ],
+            [ 11, "MOVE_WATER_GUN" ],
+            [ 14, "MOVE_FOCUS_ENERGY" ],
+            [ 18, "MOVE_BUBBLE_BEAM" ],
+            [ 23, "MOVE_AGILITY" ],
+            [ 26, "MOVE_TWISTER" ],
+            [ 30, "MOVE_BRINE" ],
+            [ 35, "MOVE_HYDRO_PUMP" ],
+            [ 38, "MOVE_DRAGON_DANCE" ],
+            [ 42, "MOVE_DRAGON_PULSE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -72,21 +74,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_BUBBLE",
-            "4": "MOVE_SMOKE_SCREEN",
-            "8": "MOVE_LEER",
-            "11": "MOVE_WATER_GUN",
-            "14": "MOVE_FOCUS_ENERGY",
-            "18": "MOVE_BUBBLE_BEAM",
-            "23": "MOVE_AGILITY",
-            "26": "MOVE_TWISTER",
-            "30": "MOVE_BRINE",
-            "35": "MOVE_HYDRO_PUMP",
-            "38": "MOVE_DRAGON_DANCE",
-            "42": "MOVE_DRAGON_PULSE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -99,14 +87,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             32,
             "SPECIES_SEADRA"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 4,
@@ -120,7 +108,66 @@
         "pokemon_pos_f": 65530,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65530,
-        "entry_text": "It makes its nest in the shade of\ncorals. If it senses danger, it\nspits murky ink and flees.",
-        "category": "Dragon Pokémon"
+        "en": {
+            "name": "HORSEA",
+            "category": "Dragon Pokémon",
+            "entry_text": [
+                "It makes its nest in the shade of\n",
+                "corals. If it senses danger, it\n",
+                "spits murky ink and flees."
+            ]
+        },
+        "fr": {
+            "name": "HYPOTREMPE",
+            "category": "Pokémon Dragon",
+            "entry_text": [
+                "Il niche à l’ombre du corail. Quand\n",
+                "il se sent menacé, il disparaît\n",
+                "dans un nuage d’encre opaque."
+            ]
+        },
+        "de": {
+            "name": "SEEPER",
+            "category": "Drache",
+            "entry_text": [
+                "Im Schatten von Korallen legt es\n",
+                "sein Nest an. Bei Gefahr versprüht\n",
+                "es Tinte und flieht."
+            ]
+        },
+        "it": {
+            "name": "HORSEA",
+            "category": "Pokémon Drago",
+            "entry_text": [
+                "Crea la sua tana all’ombra dei\n",
+                "coralli. Se avverte un pericolo,\n",
+                "spruzza inchiostro nero e fugge."
+            ]
+        },
+        "es": {
+            "name": "HORSEA",
+            "category": "Pokémon Dragón",
+            "entry_text": [
+                "Hace su nido entre los corales.\n",
+                "Si se siente en peligro, escupe\n",
+                "tinta y huye."
+            ]
+        },
+        "jp": {
+            "name": "タッツ－",
+            "category": "ドラゴンポケモン",
+            "entry_text": [
+                "サンゴの　かげに　すみかを　つくる。\n",
+                "きけんを　かんじると　くちから\n",
+                "まっくろい　スミを　はいて　にげる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

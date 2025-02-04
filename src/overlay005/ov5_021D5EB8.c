@@ -14,6 +14,7 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "fx_util.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -26,7 +27,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201E190.h"
 #include "unk_0202309C.h"
 
 typedef struct UnkStruct_ov5_021D5EF8_t {
@@ -1667,7 +1667,7 @@ static void ov5_021D7028(fx32 *param0, fx32 *param1, UnkStruct_ov5_021DB4B8 *par
     v6 = (v0.z - param2->unk_B8C.z);
     v8 = FX_Div(FX32_CONST(4), FX32_CONST(3));
 
-    sub_0201E34C(Camera_GetFOV(param2->unk_00->fieldSystem->camera), Camera_GetDistance(param2->unk_00->fieldSystem->camera), v8, &v3, &v4);
+    CalcLinearFov(Camera_GetFOV(param2->unk_00->fieldSystem->camera), Camera_GetDistance(param2->unk_00->fieldSystem->camera), v8, &v3, &v4);
     v3 = FX_Div(v3, 256 * FX32_ONE);
 
     if (v6 <= 0) {

@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_party_decl.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -93,7 +92,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     sub_0203F1FC(fieldSystem);
     sub_0206C2D0(fieldSystem->saveData, param1);
     RecordMixedRNG_AdvanceEntries(SaveData_GetRecordMixedRNG(fieldSystem->saveData), param1);
-    sub_0202D80C(sub_0202D834(fieldSystem->saveData), RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(fieldSystem->saveData)));
+    SpecialEncounter_SetMixedRecordDailies(SaveData_GetSpecialEncounters(fieldSystem->saveData), RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(fieldSystem->saveData)));
 
     {
         Party *v0;

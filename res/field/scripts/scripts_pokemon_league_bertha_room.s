@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pokemon_league_bertha_room.h"
 
     .data
 
@@ -11,7 +12,7 @@ _000A:
     LockAll
     FacePlayer
     GoToIfSet 177, _00AC
-    ScrCmd_0EA trainer_elite_four_bertha
+    ScrCmd_0EA TRAINER_ELITE_FOUR_BERTHA
     Message 0
     CloseMessage
     CallIfUnset 214, _007A
@@ -30,19 +31,19 @@ _000A:
     End
 
 _007A:
-    StartTrainerBattle trainer_elite_four_bertha
+    StartTrainerBattle TRAINER_ELITE_FOUR_BERTHA
     Return
 
 _0082:
-    StartTrainerBattle trainer_elite_four_bertha_rematch
+    StartTrainerBattle TRAINER_ELITE_FOUR_BERTHA_REMATCH
     Return
 
 _008A:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_bertha, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_BERTHA, 0, 0, 0
     Return
 
 _0098:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, trainer_elite_four_bertha_rematch, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_BERTHA_REMATCH, 0, 0, 0
     Return
 
 _00A6:

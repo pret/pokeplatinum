@@ -1,5 +1,4 @@
 {
-    "name": "Beedrill",
     "base_stats": {
         "hp": 65,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 45,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_POISON" ],
     "catch_rate": 45,
     "base_exp_reward": 159,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SWARM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SWARM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FURY_ATTACK" ],
+            [ 10, "MOVE_FURY_ATTACK" ],
+            [ 13, "MOVE_FOCUS_ENERGY" ],
+            [ 16, "MOVE_TWINEEDLE" ],
+            [ 19, "MOVE_RAGE" ],
+            [ 22, "MOVE_PURSUIT" ],
+            [ 25, "MOVE_TOXIC_SPIKES" ],
+            [ 28, "MOVE_PIN_MISSILE" ],
+            [ 31, "MOVE_AGILITY" ],
+            [ 34, "MOVE_ASSURANCE" ],
+            [ 37, "MOVE_POISON_JAB" ],
+            [ 40, "MOVE_ENDEAVOR" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -83,21 +85,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_FURY_ATTACK",
-            "10": "MOVE_FURY_ATTACK",
-            "13": "MOVE_FOCUS_ENERGY",
-            "16": "MOVE_TWINEEDLE",
-            "19": "MOVE_RAGE",
-            "22": "MOVE_PURSUIT",
-            "25": "MOVE_TOXIC_SPIKES",
-            "28": "MOVE_PIN_MISSILE",
-            "31": "MOVE_AGILITY",
-            "34": "MOVE_ASSURANCE",
-            "37": "MOVE_POISON_JAB",
-            "40": "MOVE_ENDEAVOR"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_FURY_CUTTER",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -107,9 +95,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 10,
@@ -123,7 +112,66 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "Its best attack involves flying\naround at high speed, striking with\npoison needles, then flying off.",
-        "category": "Poison Bee Pokémon"
+        "en": {
+            "name": "BEEDRILL",
+            "category": "Poison Bee Pokémon",
+            "entry_text": [
+                "Its best attack involves flying\n",
+                "around at high speed, striking with\n",
+                "poison needles, then flying off."
+            ]
+        },
+        "fr": {
+            "name": "DARDARGNAN",
+            "category": "Pokémon Guêpoison",
+            "entry_text": [
+                "Il virevolte rapidement autour de\n",
+                "l’ennemi et frappe de son dard\n",
+                "empoisonné avant de décamper."
+            ]
+        },
+        "de": {
+            "name": "BIBOR",
+            "category": "Giftbiene",
+            "entry_text": [
+                "Sein bester Angriff: Schnell auf den\n",
+                "Gegner zufliegen, mit Giftstacheln\n",
+                "zustechen und davonfliegen."
+            ]
+        },
+        "it": {
+            "name": "BEEDRILL",
+            "category": "Pokémon Velenape",
+            "entry_text": [
+                "Vola intorno al nemico ad alta\n",
+                "velocità, attacca con i pungiglioni\n",
+                "avvelenati e si allontana rapido."
+            ]
+        },
+        "es": {
+            "name": "BEEDRILL",
+            "category": "Pokémon Abeja Ven.",
+            "entry_text": [
+                "Atacan volando alrededor del\n",
+                "objetivo y usando su aguijón\n",
+                "venenoso antes de huir."
+            ]
+        },
+        "jp": {
+            "name": "スピア－",
+            "category": "どくばちポケモン",
+            "entry_text": [
+                "こうそくで　とびまわり　どくバリで\n",
+                "こうげきしたあと　すぐに　とびさる\n",
+                "せんぽうが　とくいわざだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1540
     }
 }

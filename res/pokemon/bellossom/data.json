@@ -1,5 +1,4 @@
 {
-    "name": "Bellossom",
     "base_stats": {
         "hp": 75,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 90,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 45,
     "base_exp_reward": 184,
     "ev_yields": {
@@ -30,21 +26,22 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_GRASS",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_CHLOROPHYLL",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEAF_BLADE" ],
+            [ 1, "MOVE_MEGA_DRAIN" ],
+            [ 1, "MOVE_SWEET_SCENT" ],
+            [ 1, "MOVE_STUN_SPORE" ],
+            [ 1, "MOVE_SUNNY_DAY" ],
+            [ 23, "MOVE_MAGICAL_LEAF" ],
+            [ 53, "MOVE_LEAF_STORM" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -77,18 +74,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LEAF_BLADE",
-                "MOVE_MEGA_DRAIN",
-                "MOVE_SWEET_SCENT",
-                "MOVE_STUN_SPORE",
-                "MOVE_SUNNY_DAY"
-            ],
-            "23": "MOVE_MAGICAL_LEAF",
-            "53": "MOVE_LEAF_STORM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_GASTRO_ACID",
             "MOVE_SNORE",
             "MOVE_SYNTHESIS",
@@ -96,9 +82,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 4,
@@ -112,7 +99,66 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "When the heavy rainfall season\nends, it is drawn out by warm\nsunlight to dance in the open.",
-        "category": "Flower Pokémon"
+        "en": {
+            "name": "BELLOSSOM",
+            "category": "Flower Pokémon",
+            "entry_text": [
+                "When the heavy rainfall season\n",
+                "ends, it is drawn out by warm\n",
+                "sunlight to dance in the open."
+            ]
+        },
+        "fr": {
+            "name": "JOLIFLOR",
+            "category": "Pokémon Fleur",
+            "entry_text": [
+                "A la fin de la saison des pluies,\n",
+                "il sort danser en plein air,\n",
+                "attiré par la chaleur du soleil."
+            ]
+        },
+        "de": {
+            "name": "BLUBELLA",
+            "category": "Blume",
+            "entry_text": [
+                "Sobald die Regenzeit vorbei ist,\n",
+                "wird es von der warmen Sonne nach\n",
+                "draußen gezogen, wo es tanzt."
+            ]
+        },
+        "it": {
+            "name": "BELLOSSOM",
+            "category": "Pokémon Fiore",
+            "entry_text": [
+                "Quando finisce la stagione delle\n",
+                "piogge, lo si vede danzare sotto\n",
+                "i caldi raggi del sole."
+            ]
+        },
+        "es": {
+            "name": "BELLOSSOM",
+            "category": "Pokémon Flor",
+            "entry_text": [
+                "Cuando acaba la estación de las\n",
+                "lluvias, sale al sol e inicia una\n",
+                "peculiar danza."
+            ]
+        },
+        "jp": {
+            "name": "キレイハナ",
+            "category": "フラワ－ポケモン",
+            "entry_text": [
+                "おおあめの　きせつが　おわると\n",
+                "あたたかい　ひざしに　さそわれた\n",
+                "キレイハナが　おどりはじめる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 257
     }
 }

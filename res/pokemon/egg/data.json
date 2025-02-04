@@ -1,5 +1,4 @@
 {
-    "name": "Egg",
     "base_stats": {
         "hp": 10,
         "attack": 10,
@@ -8,10 +7,7 @@
         "special_attack": 10,
         "special_defense": 10
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 3,
     "base_exp_reward": 255,
     "ev_yields": {
@@ -30,23 +26,59 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_NONE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_EGG",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_NONE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_EGG",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": "MOVE_SPLASH"
+        "by_level": [
+            [ 1, "MOVE_SPLASH" ]
+        ],
+        "by_tm": [  ]
+    },
+    "evolutions": [  ],
+    "pokedex_data": {
+        "height": 0,
+        "weight": 0,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 0,
+        "pokemon_scale_f": 0,
+        "trainer_scale_m": 0,
+        "pokemon_scale_m": 0,
+        "trainer_pos_f": 0,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 0,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "Egg",
+            "category": "",
+            "entry_text": [  ]
+        },
+        "fr": {
+            "name": "",
+            "category": "",
+            "entry_text": [  ]
+        },
+        "de": {
+            "name": "",
+            "category": "",
+            "entry_text": [  ]
+        },
+        "it": {
+            "name": "",
+            "category": "",
+            "entry_text": [  ]
+        },
+        "es": {
+            "name": "",
+            "category": "",
+            "entry_text": [  ]
+        },
+        "jp": {
+            "name": "",
+            "category": "",
+            "entry_text": [  ]
         }
     }
 }

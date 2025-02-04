@@ -1,5 +1,4 @@
 {
-    "name": "Teddiursa",
     "base_stats": {
         "hp": 60,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 120,
     "base_exp_reward": 124,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_PICKUP",
-        "ABILITY_QUICK_FEET"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_PICKUP", "ABILITY_QUICK_FEET" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_COVET" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_LICK" ],
+            [ 1, "MOVE_FAKE_TEARS" ],
+            [ 8, "MOVE_FURY_SWIPES" ],
+            [ 15, "MOVE_FAINT_ATTACK" ],
+            [ 22, "MOVE_SWEET_SCENT" ],
+            [ 29, "MOVE_SLASH" ],
+            [ 36, "MOVE_CHARM" ],
+            [ 43, "MOVE_REST" ],
+            [ 43, "MOVE_SNORE" ],
+            [ 50, "MOVE_THRASH" ],
+            [ 57, "MOVE_FLING" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM05",
             "TM06",
@@ -83,27 +87,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_COVET",
-                "MOVE_SCRATCH",
-                "MOVE_LEER",
-                "MOVE_LICK",
-                "MOVE_FAKE_TEARS"
-            ],
-            "8": "MOVE_FURY_SWIPES",
-            "15": "MOVE_FAINT_ATTACK",
-            "22": "MOVE_SWEET_SCENT",
-            "29": "MOVE_SLASH",
-            "36": "MOVE_CHARM",
-            "43": [
-                "MOVE_REST",
-                "MOVE_SNORE"
-            ],
-            "50": "MOVE_THRASH",
-            "57": "MOVE_FLING"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -120,14 +104,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_URSARING"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -141,7 +125,66 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It lets honey soak into its paws\nso it can lick them all the time.\nEvery set of paws tastes unique.",
-        "category": "Little Bear Pokémon"
+        "en": {
+            "name": "TEDDIURSA",
+            "category": "Little Bear Pokémon",
+            "entry_text": [
+                "It lets honey soak into its paws\n",
+                "so it can lick them all the time.\n",
+                "Every set of paws tastes unique."
+            ]
+        },
+        "fr": {
+            "name": "TEDDIURSA",
+            "category": "Pokémon Mini Ours",
+            "entry_text": [
+                "Il baigne ses griffes dans le miel \n",
+                "pour les lécher. Chaque paire\n",
+                "de pattes a un goût unique."
+            ]
+        },
+        "de": {
+            "name": "TEDDIURSA",
+            "category": "Kleinbär",
+            "entry_text": [
+                "Es lässt Honig in seine Pranken\n",
+                "eindringen, so dass es immer\n",
+                "welchen dabeihat."
+            ]
+        },
+        "it": {
+            "name": "TEDDIURSA",
+            "category": "Pokémon Orsetto",
+            "entry_text": [
+                "Si impregna le zampe di miele per\n",
+                "poterle leccare in continuazione.\n",
+                "Ogni assaggio ha un sapore unico."
+            ]
+        },
+        "es": {
+            "name": "TEDDIURSA",
+            "category": "Pokémon Osito",
+            "entry_text": [
+                "Deja que la miel se le pegue a las\n",
+                "garras para lamerla más tarde.\n",
+                "Cada una de ellas sabe diferente."
+            ]
+        },
+        "jp": {
+            "name": "ヒメグマ",
+            "category": "こぐまポケモン",
+            "entry_text": [
+                "あまい　ミツを　てのひらに\n",
+                "しみこませて　いつも　なめている。\n",
+                "ヒメグマによって　あじが　ちがう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 1285
     }
 }

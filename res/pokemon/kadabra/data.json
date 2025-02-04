@@ -1,5 +1,4 @@
 {
-    "name": "Kadabra",
     "base_stats": {
         "hp": 40,
         "attack": 35,
@@ -8,10 +7,7 @@
         "special_attack": 120,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 100,
     "base_exp_reward": 145,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_INNER_FOCUS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_INNER_FOCUS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TELEPORT" ],
+            [ 1, "MOVE_KINESIS" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 16, "MOVE_CONFUSION" ],
+            [ 18, "MOVE_DISABLE" ],
+            [ 22, "MOVE_MIRACLE_EYE" ],
+            [ 24, "MOVE_PSYBEAM" ],
+            [ 28, "MOVE_REFLECT" ],
+            [ 30, "MOVE_RECOVER" ],
+            [ 34, "MOVE_PSYCHO_CUT" ],
+            [ 36, "MOVE_ROLE_PLAY" ],
+            [ 40, "MOVE_PSYCHIC" ],
+            [ 42, "MOVE_FUTURE_SIGHT" ],
+            [ 46, "MOVE_TRICK" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -90,25 +94,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TELEPORT",
-                "MOVE_KINESIS",
-                "MOVE_CONFUSION"
-            ],
-            "16": "MOVE_CONFUSION",
-            "18": "MOVE_DISABLE",
-            "22": "MOVE_MIRACLE_EYE",
-            "24": "MOVE_PSYBEAM",
-            "28": "MOVE_REFLECT",
-            "30": "MOVE_RECOVER",
-            "34": "MOVE_PSYCHO_CUT",
-            "36": "MOVE_ROLE_PLAY",
-            "40": "MOVE_PSYCHIC",
-            "42": "MOVE_FUTURE_SIGHT",
-            "46": "MOVE_TRICK"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
@@ -120,14 +106,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_TRADE",
-            "SPECIES_ALAKAZAM"
-        ]
+        [ "EVO_TRADE", "SPECIES_ALAKAZAM" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -141,7 +124,66 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "entry_text": "It stares at its silver spoon to\nfocus its mind. It emits more alpha\nwaves while doing so.",
-        "category": "Psi Pokémon"
+        "en": {
+            "name": "KADABRA",
+            "category": "Psi Pokémon",
+            "entry_text": [
+                "It stares at its silver spoon to\n",
+                "focus its mind. It emits more alpha\n",
+                "waves while doing so."
+            ]
+        },
+        "fr": {
+            "name": "KADABRA",
+            "category": "Pokémon Psy",
+            "entry_text": [
+                "Une ombre inquiétante obscurcit\n",
+                "l’écran télé quand il s’approche.\n",
+                "Le malheur frappe celui qui la voit."
+            ]
+        },
+        "de": {
+            "name": "KADABRA",
+            "category": "Psi",
+            "entry_text": [
+                "Wenn sich auf deinem Fernsehbild-\n",
+                "schirm ein Schatten zeigt, ist es in\n",
+                "der Nähe. Und das bringt Unglück."
+            ]
+        },
+        "it": {
+            "name": "KADABRA",
+            "category": "Pokémon Psico",
+            "entry_text": [
+                "Se lo si avvicina, fa apparire alla\n",
+                "televisione un’ombra inquietante\n",
+                "che porta sfortuna a chi la guarda."
+            ]
+        },
+        "es": {
+            "name": "KADABRA",
+            "category": "Pokémon Psi",
+            "entry_text": [
+                "Si se acerca uno, una extraña\n",
+                "sombra aparece en los televisores.\n",
+                "Se dice que verla trae mala suerte."
+            ]
+        },
+        "jp": {
+            "name": "ユンゲラ－",
+            "category": "ねんりきポケモン",
+            "entry_text": [
+                "ユンゲラ－が　そばにいると　テレビに\n",
+                "ふしぎな　かげが　うつる。それを\n",
+                "みると　ふこうになると　いわれる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 2570
     }
 }

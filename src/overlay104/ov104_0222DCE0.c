@@ -3,8 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/species_data_params.h"
+
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
@@ -231,16 +232,16 @@ u32 ov104_0222DD6C(UnkStruct_ov104_0223A348_sub2 *param0, u16 param1, u32 param2
     param0->unk_1E_val2 = 0;
     param0->unk_1F = gGameLanguage;
 
-    v0 = PokemonPersonalData_GetSpeciesValue(param0->unk_00_val1_0, 25);
+    v0 = SpeciesData_GetSpeciesValue(param0->unk_00_val1_0, SPECIES_DATA_ABILITY_2);
 
     if (v0) {
         if (param0->unk_10 & 1) {
             param0->unk_20 = v0;
         } else {
-            param0->unk_20 = PokemonPersonalData_GetSpeciesValue(param0->unk_00_val1_0, 24);
+            param0->unk_20 = SpeciesData_GetSpeciesValue(param0->unk_00_val1_0, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        param0->unk_20 = PokemonPersonalData_GetSpeciesValue(param0->unk_00_val1_0, 24);
+        param0->unk_20 = SpeciesData_GetSpeciesValue(param0->unk_00_val1_0, SPECIES_DATA_ABILITY_1);
     }
 
     param0->unk_21 = v3;
@@ -444,15 +445,15 @@ void ov104_0222E284(FieldBattleDTO *param0, UnkStruct_ov104_0223A348_sub1 *param
     Pokemon *v1;
 
     param0->trainerIDs[param3] = param1->unk_00;
-    param0->trainerData[param3].class = param1->unk_04;
+    param0->trainer[param3].header.trainerType = param1->unk_04;
 
-    CharCode_Copy(&param0->trainerData[param3].name[0], &param1->unk_08[0]);
+    CharCode_Copy(&param0->trainer[param3].name[0], &param1->unk_08[0]);
 
     v0 = (Sentence *)&param1->unk_20[0];
-    param0->trainerData[param3].winMsg = *v0;
+    param0->trainer[param3].winMsg = *v0;
 
     v0 = (Sentence *)&param1->unk_28[0];
-    param0->trainerData[param3].loseMsg = *v0;
+    param0->trainer[param3].loseMsg = *v0;
 
     return;
 }

@@ -4,7 +4,7 @@
 #include <nnsys/g3d/glbstate.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_defs/struct_02057B48.h"
@@ -724,7 +724,7 @@ void ov23_0224ADB0(int param0, int param1, int param2, int param3)
     CommPlayerLocation *v1 = &v0->playerLocationServer[param0];
 
     v1->x = param1 + MapObject_GetDxFromDir(param3);
-    v1->z = param2 + MapObject_GetDyFromDir(param3);
+    v1->z = param2 + MapObject_GetDzFromDir(param3);
     v1->dir = param3;
 }
 

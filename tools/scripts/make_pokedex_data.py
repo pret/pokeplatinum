@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import os
 import pathlib
 import subprocess
 
-from consts.species import PokemonSpecies
-from consts.pokemon import PokemonType
-from consts.pokemon import PokemonBodyShape
+from generated.pokemon_body_shapes import PokemonBodyShape
+from generated.pokemon_types import PokemonType
+from generated.species import Species
+
+
+SPECIES_DIRS = os.environ['SPECIES'].split(';')
 
 
 argparser = argparse.ArgumentParser(
@@ -27,9 +31,6 @@ argparser.add_argument('-o', '--output-dir',
                        help='Path to the output directory (where the NARC will be made)')
 argparser.add_argument('giratina_form',
                        help='String of either giratina_origin or giratina_altered')
-argparser.add_argument('src_files',
-                       nargs='+',
-                       help='List of files to process in-order')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -59,30 +60,27 @@ def DataSize(num):
         return 1
     return 2
 
-NUM_FILES = 26 + PokemonType['NUMBER_OF_MON_TYPES'].value + PokemonBodyShape['NUMBER_OF_BODY_SHAPES'].value
-NUM_POKEMON = len(PokemonSpecies)-3
+NUM_FILES = 26 + PokemonType['NUM_POKEMON_TYPES'].value + PokemonBodyShape['NUM_BODY_SHAPES'].value
+NUM_POKEMON = len(Species)-3
 
 binData = [bytes() for f in range(NUM_FILES)]
 heightData = [0 for i in range(NUM_POKEMON)]
 weightData = [0 for i in range(NUM_POKEMON)]
 nameData = ['' for i in range(NUM_POKEMON)]
 
-for i, file in enumerate(args.src_files):
+for i, species_dir in enumerate(SPECIES_DIRS):
+    file = source_dir / species_dir / 'data.json'
+    if ((species_dir == 'giratina') and (args.giratina_form == 'giratina_origin')):
+        file = source_dir / 'giratina/forms/origin/data.json'
     with open(file, 'r', encoding='utf-8') as data_file:
         pkdata = json.load(data_file)
-    pk_name = pkdata['name'].lower()
 
     # Do not attempt to process eggs
-    if pk_name in ['egg', 'bad egg']:
+    if species_dir in ['egg', 'bad_egg']:
         continue
 
     pkdexdata = pkdata['pokedex_data']
-    if pk_name == 'giratina':
-        if args.giratina_form == 'giratina_origin':
-            pkdexdata = pkdexdata[0]
-        else:
-            pkdexdata = pkdexdata[1]
-    
+
     for j in range(11):
         dataSize = DataSize(j)
         if j == 2:
@@ -95,13 +93,13 @@ for i, file in enumerate(args.src_files):
         binData[11] = binData[11] + i.to_bytes(2, 'little')
 
         # body shape
-        bodyIdx = PokemonBodyShape[pkdexdata['body_shape']].value + PokemonType['NUMBER_OF_MON_TYPES'].value + 26
+        bodyIdx = PokemonBodyShape[pkdexdata['body_shape']].value + PokemonType['NUM_POKEMON_TYPES'].value + 26
         binData[bodyIdx] = binData[bodyIdx] + i.to_bytes(2, 'little')
 
         # pokemon types
         typeIdx = 27
         for type in PokemonType:
-            if type.name in ['TYPE_MYSTERY', 'NUMBER_OF_MON_TYPES']:
+            if type.name in ['TYPE_MYSTERY', 'NUM_POKEMON_TYPES']:
                 continue
             if type.name in pkdata['types']:
                 binData[typeIdx] = binData[typeIdx] + i.to_bytes(2, 'little')
@@ -110,14 +108,14 @@ for i, file in enumerate(args.src_files):
         # store for later
         heightData[i-1] = pkdexdata['height']
         weightData[i-1] = pkdexdata['weight']
-        nameData[i-1] = pk_name.replace('porygon2','porygon-z2')
+        nameData[i-1] = pkdexdata['en']['name']
 
 # sinnoh dex order
 with open(source_dir / 'sinnoh_pokedex.json') as data_file:
-    dexData = json.load(data_file)
-    for mon in dexData:
+    pokedex = json.load(data_file)
+    for mon in pokedex:
         if mon not in ['SPECIES_EGG', 'SPECIES_BAD_EGG', 'SPECIES_NONE', 'SPECIES_ARCEUS']:
-            binData[12] = binData[12] + PokemonSpecies[mon].value.to_bytes(2, 'little')
+            binData[12] = binData[12] + Species[mon].value.to_bytes(2, 'little')
 
 # alphabetical order
 alpha = sorted(range(len(nameData)), key=lambda k: nameData[k])
@@ -126,9 +124,9 @@ for idx in alpha:
     binData[13] = binData[13] + (idx+1).to_bytes(2, 'little')
 
     # first letter
-    letter = ord(nameData[idx][0])
-    if letter > 96 and letter < 123:
-        letterIDX = int((letter - 1) / 3) - 14
+    letter = ord(nameData[idx][0].upper())
+    if letter >= ord('A') and letter <= ord('Z'):
+        letterIDX = (letter - 11) // 3
         binData[letterIDX] = binData[letterIDX] + (idx+1).to_bytes(2, 'little')
 
 # heaviest to lightest

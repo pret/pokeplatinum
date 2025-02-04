@@ -1,5 +1,4 @@
 {
-    "name": "Poliwrath",
     "base_stats": {
         "hp": 90,
         "attack": 85,
@@ -8,10 +7,7 @@
         "special_attack": 70,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_FIGHTING" ],
     "catch_rate": 45,
     "base_exp_reward": 185,
     "ev_yields": {
@@ -30,21 +26,21 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_WATER_ABSORB",
-        "ABILITY_DAMP"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_WATER_ABSORB", "ABILITY_DAMP" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BUBBLE_BEAM" ],
+            [ 1, "MOVE_HYPNOSIS" ],
+            [ 1, "MOVE_DOUBLE_SLAP" ],
+            [ 1, "MOVE_SUBMISSION" ],
+            [ 43, "MOVE_DYNAMIC_PUNCH" ],
+            [ 53, "MOVE_MIND_READER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -87,17 +83,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BUBBLE_BEAM",
-                "MOVE_HYPNOSIS",
-                "MOVE_DOUBLE_SLAP",
-                "MOVE_SUBMISSION"
-            ],
-            "43": "MOVE_DYNAMIC_PUNCH",
-            "53": "MOVE_MIND_READER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -107,9 +93,10 @@
             "MOVE_VACUUM_WAVE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -123,7 +110,66 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "With its extremely tough muscles,\nit can keep swimming in the Pacific\nOcean without resting.",
-        "category": "Tadpole Pokémon"
+        "en": {
+            "name": "POLIWRATH",
+            "category": "Tadpole Pokémon",
+            "entry_text": [
+                "With its extremely tough muscles,\n",
+                "it can keep swimming in the Pacific\n",
+                "Ocean without resting."
+            ]
+        },
+        "fr": {
+            "name": "TARTARD",
+            "category": "Pokémon Têtard",
+            "entry_text": [
+                "Il possède de sacrés biscoteaux.\n",
+                "Il peut parcourir sans relâche\n",
+                "l’Océan Pacifique."
+            ]
+        },
+        "de": {
+            "name": "QUAPPO",
+            "category": "Kaulquappe",
+            "entry_text": [
+                "Es hat extrem starke Muskeln und\n",
+                "kann durch den Ozean schwimmen,\n",
+                "ohne sich ausruhen zu müssen."
+            ]
+        },
+        "it": {
+            "name": "POLIWRATH",
+            "category": "Pokémon Girino",
+            "entry_text": [
+                "Ha dei muscoli tanto sviluppati da\n",
+                "riuscire ad attraversare a nuoto\n",
+                "l’Oceano Pacifico senza fermarsi."
+            ]
+        },
+        "es": {
+            "name": "POLIWRATH",
+            "category": "Pokémon Renacuajo",
+            "entry_text": [
+                "Tiene músculos muy desarrollados.\n",
+                "Es capaz de nadar en el océano\n",
+                "sin descanso."
+            ]
+        },
+        "jp": {
+            "name": "ニョロボン",
+            "category": "おたまポケモン",
+            "entry_text": [
+                "きょうじんな　きんにくを　もつ。\n",
+                "たいへいようを　やすむことなく\n",
+                "およぎつづけることが　できるのだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
+        "catching_points": 90,
+        "rarity": 3,
+        "unused": 2307
     }
 }

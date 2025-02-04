@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/grand_lake_valor_lakefront_west_house.h"
 
     .data
 

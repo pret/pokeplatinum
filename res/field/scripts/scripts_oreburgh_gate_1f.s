@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/oreburgh_gate_1f.h"
 
     .data
 

@@ -1,5 +1,4 @@
 {
-    "name": "Loudred",
     "base_stats": {
         "hp": 84,
         "attack": 71,
@@ -8,10 +7,7 @@
         "special_attack": 71,
         "special_defense": 43
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 120,
     "base_exp_reward": 126,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SOUNDPROOF",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SOUNDPROOF", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_UPROAR" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_HOWL" ],
+            [ 5, "MOVE_UPROAR" ],
+            [ 11, "MOVE_ASTONISH" ],
+            [ 15, "MOVE_HOWL" ],
+            [ 20, "MOVE_BITE" ],
+            [ 23, "MOVE_SUPERSONIC" ],
+            [ 29, "MOVE_STOMP" ],
+            [ 37, "MOVE_SCREECH" ],
+            [ 43, "MOVE_ROAR" ],
+            [ 51, "MOVE_REST" ],
+            [ 51, "MOVE_SLEEP_TALK" ],
+            [ 57, "MOVE_HYPER_VOICE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -83,28 +88,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_UPROAR",
-                "MOVE_ASTONISH",
-                "MOVE_HOWL"
-            ],
-            "5": "MOVE_UPROAR",
-            "11": "MOVE_ASTONISH",
-            "15": "MOVE_HOWL",
-            "20": "MOVE_BITE",
-            "23": "MOVE_SUPERSONIC",
-            "29": "MOVE_STOMP",
-            "37": "MOVE_SCREECH",
-            "43": "MOVE_ROAR",
-            "51": [
-                "MOVE_REST",
-                "MOVE_SLEEP_TALK"
-            ],
-            "57": "MOVE_HYPER_VOICE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -118,14 +102,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             40,
             "SPECIES_EXPLOUD"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -139,7 +123,66 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "The shock waves from its cries can\ntip over trucks. It stamps its\nfeet to power up.",
-        "category": "Big Voice Pokémon"
+        "en": {
+            "name": "LOUDRED",
+            "category": "Big Voice Pokémon",
+            "entry_text": [
+                "The shock waves from its cries can\n",
+                "tip over trucks. It stamps its\n",
+                "feet to power up."
+            ]
+        },
+        "fr": {
+            "name": "RAMBOUM",
+            "category": "Pokémon Grosse Voix",
+            "entry_text": [
+                "L’onde de choc provoquée par son\n",
+                "cri peut renverser un camion. Il\n",
+                "trépigne pour augmenter sa force."
+            ]
+        },
+        "de": {
+            "name": "KRAKEELO",
+            "category": "Lauthals",
+            "entry_text": [
+                "Die Schockwellen, die durch sein\n",
+                "Rufen entstehen, können einen\n",
+                "LKW umkippen."
+            ]
+        },
+        "it": {
+            "name": "LOUDRED",
+            "category": "Pokémon Vocione",
+            "entry_text": [
+                "Le onde d’urto dei suoi versi\n",
+                "ribaltano anche i camion. Pesta i\n",
+                "piedi per accumulare energia."
+            ]
+        },
+        "es": {
+            "name": "LOUDRED",
+            "category": "Pokémon Chillón",
+            "entry_text": [
+                "Las ondas de sus gritos pueden\n",
+                "voltear un camión. Patea el suelo\n",
+                "para ganar potencia."
+            ]
+        },
+        "jp": {
+            "name": "ドゴ－ム",
+            "category": "おおごえポケモン",
+            "entry_text": [
+                "おおごえの　しょうげきはで\n",
+                "トラックを　ひっくりかえしてしまう。\n",
+                "あしを　ふみならして　パワ－アップ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1285
     }
 }

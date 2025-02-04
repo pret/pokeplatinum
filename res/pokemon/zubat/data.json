@@ -1,5 +1,4 @@
 {
-    "name": "Zubat",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_FLYING" ],
     "catch_rate": 255,
     "base_exp_reward": 54,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_INNER_FOCUS",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_INNER_FOCUS", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEECH_LIFE" ],
+            [ 5, "MOVE_SUPERSONIC" ],
+            [ 9, "MOVE_ASTONISH" ],
+            [ 13, "MOVE_BITE" ],
+            [ 17, "MOVE_WING_ATTACK" ],
+            [ 21, "MOVE_CONFUSE_RAY" ],
+            [ 25, "MOVE_AIR_CUTTER" ],
+            [ 29, "MOVE_MEAN_LOOK" ],
+            [ 33, "MOVE_POISON_FANG" ],
+            [ 37, "MOVE_HAZE" ],
+            [ 41, "MOVE_AIR_SLASH" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -79,20 +80,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": "MOVE_LEECH_LIFE",
-            "5": "MOVE_SUPERSONIC",
-            "9": "MOVE_ASTONISH",
-            "13": "MOVE_BITE",
-            "17": "MOVE_WING_ATTACK",
-            "21": "MOVE_CONFUSE_RAY",
-            "25": "MOVE_AIR_CUTTER",
-            "29": "MOVE_MEAN_LOOK",
-            "33": "MOVE_POISON_FANG",
-            "37": "MOVE_HAZE",
-            "41": "MOVE_AIR_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
@@ -105,14 +93,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             22,
             "SPECIES_GOLBAT"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 8,
@@ -126,7 +114,66 @@
         "pokemon_pos_f": 65525,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65525,
-        "entry_text": "It checks its surroundings and\nlocation using reflections of the\nultrasonic waves from its mouth.",
-        "category": "Bat Pokémon"
+        "en": {
+            "name": "ZUBAT",
+            "category": "Bat Pokémon",
+            "entry_text": [
+                "It checks its surroundings and\n",
+                "location using reflections of the\n",
+                "ultrasonic waves from its mouth."
+            ]
+        },
+        "fr": {
+            "name": "NOSFERAPTI",
+            "category": "Pokémon Chovsouris",
+            "entry_text": [
+                "Bien que dépourvu d’yeux, il\n",
+                "repère les obstacles grâce aux\n",
+                "ultrasons émis par sa gueule."
+            ]
+        },
+        "de": {
+            "name": "ZUBAT",
+            "category": "Fledermaus",
+            "entry_text": [
+                "Obwohl es keine Augen hat, kann es\n",
+                "Hindernisse mithilfe von\n",
+                "Ultraschallwellen wahrnehmen."
+            ]
+        },
+        "it": {
+            "name": "ZUBAT",
+            "category": "Pokémon Pipistrello",
+            "entry_text": [
+                "Non ha occhi, ma avverte gli\n",
+                "ostacoli con le onde ultrasoniche\n",
+                "che emette dalla bocca."
+            ]
+        },
+        "es": {
+            "name": "ZUBAT",
+            "category": "Pokémon Murciélago",
+            "entry_text": [
+                "Aunque carezca de ojos, puede\n",
+                "detectar obstáculos con las ondas\n",
+                "ultrasónicas que emite su boca."
+            ]
+        },
+        "jp": {
+            "name": "ズバット",
+            "category": "こうもりポケモン",
+            "entry_text": [
+                "くちから　だす　ちょうおんぱで\n",
+                "りょうめが　なくても　まわりの\n",
+                "しょうがいぶつを　さっちできる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 30,
+        "rarity": 50,
+        "unused": 4358
     }
 }

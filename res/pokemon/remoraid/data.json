@@ -1,5 +1,4 @@
 {
-    "name": "Remoraid",
     "base_stats": {
         "hp": 35,
         "attack": 65,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
     "base_exp_reward": 78,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_HUSTLE",
-        "ABILITY_SNIPER"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_HUSTLE", "ABILITY_SNIPER" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 6, "MOVE_LOCK_ON" ],
+            [ 10, "MOVE_PSYBEAM" ],
+            [ 14, "MOVE_AURORA_BEAM" ],
+            [ 19, "MOVE_BUBBLE_BEAM" ],
+            [ 23, "MOVE_FOCUS_ENERGY" ],
+            [ 27, "MOVE_BULLET_SEED" ],
+            [ 32, "MOVE_WATER_PULSE" ],
+            [ 36, "MOVE_SIGNAL_BEAM" ],
+            [ 40, "MOVE_ICE_BEAM" ],
+            [ 45, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM09",
@@ -78,20 +79,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_WATER_GUN",
-            "6": "MOVE_LOCK_ON",
-            "10": "MOVE_PSYBEAM",
-            "14": "MOVE_AURORA_BEAM",
-            "19": "MOVE_BUBBLE_BEAM",
-            "23": "MOVE_FOCUS_ENERGY",
-            "27": "MOVE_BULLET_SEED",
-            "32": "MOVE_WATER_PULSE",
-            "36": "MOVE_SIGNAL_BEAM",
-            "40": "MOVE_ICE_BEAM",
-            "45": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -105,14 +93,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             25,
             "SPECIES_OCTILLERY"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 6,
@@ -126,7 +114,58 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "It forcefully squirts water. The\nwater jet never misses prey even\nif the REMORAID is deep in the sea.",
-        "category": "Jet Pokémon"
+        "en": {
+            "name": "REMORAID",
+            "category": "Jet Pokémon",
+            "entry_text": [
+                "It forcefully squirts water. The\n",
+                "water jet never misses prey even\n",
+                "if the REMORAID is deep in the sea."
+            ]
+        },
+        "fr": {
+            "name": "REMORAID",
+            "category": "Pokémon Jet",
+            "entry_text": [ "Il crache un puissant jet d’eau\n", "pour abattre les proies volantes." ]
+        },
+        "de": {
+            "name": "REMORAID",
+            "category": "Hochdruck",
+            "entry_text": [
+                "Es spritzt Wasser mit Hochdruck\n",
+                "aus seinem Maul und schießt damit\n",
+                "auf fliegende Beute."
+            ]
+        },
+        "it": {
+            "name": "REMORAID",
+            "category": "Pokémon Jet",
+            "entry_text": [
+                "Emette potenti getti d’acqua con i\n",
+                "quali riesce ad abbattere persino\n",
+                "le prede in volo."
+            ]
+        },
+        "es": {
+            "name": "REMORAID",
+            "category": "Pokémon Reactor",
+            "entry_text": [ "Escupe potentes chorros de agua\n", "para derribar presas voladoras." ]
+        },
+        "jp": {
+            "name": "テッポウオ",
+            "category": "ふんしゃポケモン",
+            "entry_text": [
+                "くちから　みずを　はっしゃして\n",
+                "そらを　とぶ　えものを　うちおとす\n",
+                "ことから　この　なまえが　ついた。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
+        "catching_points": 50,
+        "rarity": 30,
+        "unused": 771
     }
 }

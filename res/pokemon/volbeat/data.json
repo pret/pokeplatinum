@@ -1,5 +1,4 @@
 {
-    "name": "Volbeat",
     "base_stats": {
         "hp": 65,
         "attack": 73,
@@ -8,10 +7,7 @@
         "special_attack": 47,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_BUG"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_BUG" ],
     "catch_rate": 150,
     "base_exp_reward": 146,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_ILLUMINATE",
-        "ABILITY_SWARM"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_ILLUMINATE", "ABILITY_SWARM" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FLASH" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 5, "MOVE_DOUBLE_TEAM" ],
+            [ 9, "MOVE_CONFUSE_RAY" ],
+            [ 13, "MOVE_MOONLIGHT" ],
+            [ 17, "MOVE_QUICK_ATTACK" ],
+            [ 21, "MOVE_TAIL_GLOW" ],
+            [ 25, "MOVE_SIGNAL_BEAM" ],
+            [ 29, "MOVE_PROTECT" ],
+            [ 33, "MOVE_HELPING_HAND" ],
+            [ 37, "MOVE_ZEN_HEADBUTT" ],
+            [ 41, "MOVE_BUG_BUZZ" ],
+            [ 45, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -84,24 +87,7 @@
             "TM89",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FLASH",
-                "MOVE_TACKLE"
-            ],
-            "5": "MOVE_DOUBLE_TEAM",
-            "9": "MOVE_CONFUSE_RAY",
-            "13": "MOVE_MOONLIGHT",
-            "17": "MOVE_QUICK_ATTACK",
-            "21": "MOVE_TAIL_GLOW",
-            "25": "MOVE_SIGNAL_BEAM",
-            "29": "MOVE_PROTECT",
-            "33": "MOVE_HELPING_HAND",
-            "37": "MOVE_ZEN_HEADBUTT",
-            "41": "MOVE_BUG_BUZZ",
-            "45": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_ICE_PUNCH",
@@ -114,9 +100,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 7,
@@ -130,7 +117,66 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It communicates with others by\nlighting up its rear at night. It\nloves ILLUMISE’s sweet aroma.",
-        "category": "Firefly Pokémon"
+        "en": {
+            "name": "VOLBEAT",
+            "category": "Firefly Pokémon",
+            "entry_text": [
+                "It communicates with others by\n",
+                "lighting up its rear at night. It\n",
+                "loves ILLUMISE’s sweet aroma."
+            ]
+        },
+        "fr": {
+            "name": "MUCIOLE",
+            "category": "Pokémon Luciole",
+            "entry_text": [
+                "Il communique avec ses pairs en\n",
+                "allumant son postérieur la nuit. Il\n",
+                "adore le doux parfum de LUMIVOLE."
+            ]
+        },
+        "de": {
+            "name": "VOLBEAT",
+            "category": "Libelle",
+            "entry_text": [
+                "Es kommuniziert mit anderen, indem\n",
+                "es sein Hinterteil zum Leuchten\n",
+                "bringt. Es liebt ILLUMISEs Duft."
+            ]
+        },
+        "it": {
+            "name": "VOLBEAT",
+            "category": "Pokémon Lucciola",
+            "entry_text": [
+                "Di notte comunica con gli altri\n",
+                "illuminando la sua coda.\n",
+                "Ama il dolce aroma di ILLUMISE."
+            ]
+        },
+        "es": {
+            "name": "VOLBEAT",
+            "category": "Pokémon Luciérnaga",
+            "entry_text": [
+                "Se comunica con otros iluminando\n",
+                "su cola por la noche. Le encanta el\n",
+                "suave aroma de ILLUMISE."
+            ]
+        },
+        "jp": {
+            "name": "バルビ－ト",
+            "category": "ほたるポケモン",
+            "entry_text": [
+                "よるになると　おしりを　ひからせ\n",
+                "なかまと　かいわする。イルミ－ゼの\n",
+                "だす　あまい　かおりが　だいすき。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 70,
+        "rarity": 20,
+        "unused": 1028
     }
 }

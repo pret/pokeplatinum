@@ -1,5 +1,4 @@
 {
-    "name": "Quilava",
     "base_stats": {
         "hp": 58,
         "attack": 64,
@@ -8,10 +7,7 @@
         "special_attack": 80,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 45,
     "base_exp_reward": 142,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_BLAZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_SMOKE_SCREEN" ],
+            [ 4, "MOVE_SMOKE_SCREEN" ],
+            [ 10, "MOVE_EMBER" ],
+            [ 13, "MOVE_QUICK_ATTACK" ],
+            [ 20, "MOVE_FLAME_WHEEL" ],
+            [ 24, "MOVE_DEFENSE_CURL" ],
+            [ 31, "MOVE_SWIFT" ],
+            [ 35, "MOVE_LAVA_PLUME" ],
+            [ 42, "MOVE_FLAMETHROWER" ],
+            [ 46, "MOVE_ROLLOUT" ],
+            [ 53, "MOVE_DOUBLE_EDGE" ],
+            [ 57, "MOVE_ERUPTION" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM05",
             "TM06",
@@ -75,25 +79,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_LEER",
-                "MOVE_SMOKE_SCREEN"
-            ],
-            "4": "MOVE_SMOKE_SCREEN",
-            "10": "MOVE_EMBER",
-            "13": "MOVE_QUICK_ATTACK",
-            "20": "MOVE_FLAME_WHEEL",
-            "24": "MOVE_DEFENSE_CURL",
-            "31": "MOVE_SWIFT",
-            "35": "MOVE_LAVA_PLUME",
-            "42": "MOVE_FLAMETHROWER",
-            "46": "MOVE_ROLLOUT",
-            "53": "MOVE_DOUBLE_EDGE",
-            "57": "MOVE_ERUPTION"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -104,14 +90,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             36,
             "SPECIES_TYPHLOSION"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 9,
@@ -125,7 +111,66 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "It intimidates foes with the heat\nof its flames. The fire burns more\nstrongly when it readies to fight.",
-        "category": "Volcano Pokémon"
+        "en": {
+            "name": "QUILAVA",
+            "category": "Volcano Pokémon",
+            "entry_text": [
+                "It intimidates foes with the heat\n",
+                "of its flames. The fire burns more\n",
+                "strongly when it readies to fight."
+            ]
+        },
+        "fr": {
+            "name": "FEURISSON",
+            "category": "Pokémon Volcan",
+            "entry_text": [
+                "La chaleur de ses flammes intimide\n",
+                "l’ennemi. Elles s’intensifient\n",
+                "lorsqu’il se prépare à combattre."
+            ]
+        },
+        "de": {
+            "name": "IGELAVAR",
+            "category": "Vulkan",
+            "entry_text": [
+                "Es bedroht seine Gegner mit der\n",
+                "Hitze seiner Flammen. Ist es\n",
+                "kampfbereit, lodern sie stärker."
+            ]
+        },
+        "it": {
+            "name": "QUILAVA",
+            "category": "Pokémon Vulcano",
+            "entry_text": [
+                "Intimorisce i nemici con il calore\n",
+                "delle sue fiamme. Se è pronto a lot-\n",
+                "tare, le vampate sono più ardenti."
+            ]
+        },
+        "es": {
+            "name": "QUILAVA",
+            "category": "Pokémon Volcán",
+            "entry_text": [
+                "Intimida a sus enemigos con el\n",
+                "calor de sus llamas. Arde con\n",
+                "mayor fuerza cuando va a luchar."
+            ]
+        },
+        "jp": {
+            "name": "マグマラシ",
+            "category": "かざんポケモン",
+            "entry_text": [
+                "ほのおの　ねつで　あいてを　いかく。\n",
+                "たたかう　たいせいになると\n",
+                "ほのおの　いきおいが　ます。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 80,
+        "rarity": 10,
+        "unused": 514
     }
 }
