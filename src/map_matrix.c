@@ -186,8 +186,6 @@ int MainMapMatrixData_GetMapHeaderIDAtCoords(const MainMapMatrixData *mainMapMat
 int MapMatrixData_GetMapHeaderIDAtCoords(const int mapMatrixId, const u16 x, const u16 y)
 {
     MapMatrixData mapMatrixData;
-    u16 v1, v2;
-
     MapMatrixData_Load(&mapMatrixData, mapMatrixId, 0);
 
     GF_ASSERT(x < mapMatrixData.width);
@@ -198,14 +196,8 @@ int MapMatrixData_GetMapHeaderIDAtCoords(const int mapMatrixId, const u16 x, con
 
 const u16 MapMatrix_GetLandDataIdByIndex(const int index, const MapMatrix *mapMatrix)
 {
-    u16 v0;
-    int x = index % mapMatrix->width;
-    int y = index / mapMatrix->width;
-
     GF_ASSERT(mapMatrix != NULL);
-
-    v0 = MapMatrix_GetLandDataIdByIndex2(index, mapMatrix);
-    return v0;
+    return MapMatrix_GetLandDataIdByIndex2(index, mapMatrix);
 }
 
 void MapMatrix_RevealSpringPath(MapMatrix *mapMatrix)
@@ -214,7 +206,6 @@ void MapMatrix_RevealSpringPath(MapMatrix *mapMatrix)
     u8 *mapMatrixAltitudes = mapMatrix->data.altitudes;
     int mapMatrixHeight = mapMatrix->height;
     int mapMatrixWidth = mapMatrix->width;
-    int v4, v5;
 
     if (mapMatrix->matrixId != 0) {
         return;
@@ -233,7 +224,6 @@ void MapMatrix_RevealSpringPath(MapMatrix *mapMatrix)
 
 void MapMatrix_RevealSeabreakPath(MapMatrix *mapMatrix)
 {
-    int v0, v1;
     u16 *mapMatrixLandDataIds = mapMatrix->data.landDataIds;
     int mapMatrixHeight = mapMatrix->height;
     int mapMatrixWidth = mapMatrix->width;
